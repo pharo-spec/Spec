@@ -2,9 +2,12 @@ language: smalltalk
 sudo: false
 
 os:
-- linux
-- osx
+  - linux
+  - osx
 
 smalltalk:
-- Pharo-7.0
-- Pharo64-7.0
+  - Pharo-7.0
+  - Pharo64-7.0
+  
+matrix:
+  fast_finish: true
