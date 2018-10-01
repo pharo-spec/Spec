@@ -1,11 +1,11 @@
 Class {
-	#name : #BaselineOfSpec,
+	#name : #BaselineOfSpecFramework,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfSpec
+	#category : #BaselineOfSpecFramework
 }
 
 { #category : #baseline }
-BaselineOfSpec >> baseline: spec [
+BaselineOfSpecFramework >> baseline: spec [
 	<baseline>
 	spec
 		for: #common
