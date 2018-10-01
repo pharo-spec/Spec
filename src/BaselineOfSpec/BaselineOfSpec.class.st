@@ -15,16 +15,6 @@ BaselineOfSpec >> baseline: spec [
 			spec package: 'Spec-MorphicAdapters'.
 			spec package: 'Spec-PolyWidgets'.
 			spec package: 'Spec-Tools'.
+			spec package: 'Spec-Tests'.
 			spec package: 'Spec-StubAdapter' ]
-]
-
-{ #category : #accessing }
-BaselineOfSpec >> project [
-	
-	| aProject |
-	
-	aProject := super project.
-	aProject loadType: #atomic.
-	^ aProject.
-	
 ]
