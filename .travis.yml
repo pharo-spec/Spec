@@ -3,11 +3,7 @@ sudo: false
 
 os:
   - linux
-  - osx
-
-smalltalk_edge:
-  source: estebanlm/smalltalkCI
-  branch: dev
+#  - osx
 
 smalltalk:
   - Pharo-7.0
