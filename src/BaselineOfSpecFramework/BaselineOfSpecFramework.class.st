@@ -9,7 +9,8 @@ BaselineOfSpecFramework >> baseline: spec [
 	<baseline>
 	spec
 		for: #common
-		do: [ spec package: 'Spec-Core'.
+		do: [ 
+			spec package: 'Spec-Core'.
 			spec package: 'Spec-Inspector'.
 			spec package: 'Spec-Layout'.
 			spec package: 'Spec-MorphicAdapters'.
