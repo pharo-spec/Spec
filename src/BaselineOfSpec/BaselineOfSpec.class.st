@@ -7,15 +7,15 @@ Class {
 { #category : #baseline }
 BaselineOfSpec >> baseline: spec [
 	<baseline>
-	spec
-		for: #common
-		do: [ 
-			spec package: 'Spec-Core'.
-			spec package: 'Spec-Inspector'.
-			spec package: 'Spec-Layout'.
-			spec package: 'Spec-MorphicAdapters'.
-			spec package: 'Spec-PolyWidgets'.
-			spec package: 'Spec-Tools'.
-			spec package: 'Spec-Tests'.
-			spec package: 'Spec-StubAdapter' ]
+
+	spec for: #common do: [ 
+		spec 
+			package: 'Spec-Core';
+			package: 'Spec-Inspector';
+			package: 'Spec-Layout';
+			package: 'Spec-MorphicAdapters';
+			package: 'Spec-PolyWidgets';
+			package: 'Spec-Tools';
+			package: 'Spec-StubAdapter';
+			package: 'Spec-Tests' ]
 ]

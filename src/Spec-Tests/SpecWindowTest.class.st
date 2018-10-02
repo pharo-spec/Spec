@@ -25,3 +25,18 @@ SpecWindowTest >> testIsDisplayed [
 
 	
 ]
+
+{ #category : #tests }
+SpecWindowTest >> testTitle [
+
+	"Test for case: 16800 -> ask a SpecWindow for #isDisplayed always returns true"
+	
+	| windowPresenter |
+
+	windowPresenter := TextPresenter new openWithSpec.	
+	self assert: (windowPresenter isDisplayed).
+	
+	self assert: windowPresenter title equals: 'Text'.
+	windowPresenter title: 'Test Window'.
+	self assert: windowPresenter title equals: 'Test Window'.
+]
