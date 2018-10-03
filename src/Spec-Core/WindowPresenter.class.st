@@ -35,35 +35,30 @@ WindowPresenter >> aboutText [
 	  - else use the behavior defined in super
 	"
 
-	^aboutText value
-		ifNil: [self model
-			ifNil: [ super aboutText ]
-			ifNotNil: [:m | m aboutText ]]
-		ifNotNil: [ aboutText value ]
+	^ aboutText value ifNil: [ self presenter ifNil: [ super aboutText ] ifNotNil: #aboutText ] ifNotNil: [ aboutText value ]
 ]
 
 { #category : #api }
 WindowPresenter >> aboutTitle [
 	"Answer the title of my About window"
 
-	(self model respondsTo: #aboutTitle)
-		ifTrue: [^self model aboutTitle].
-	^(self model respondsTo: #toolName)
-		ifTrue: [self model toolName]
-		ifFalse: [self model class name].
-
+	(self presenter respondsTo: #aboutTitle) ifTrue: [ ^ self presenter aboutTitle ].
+	
+	^ (self presenter respondsTo: #toolName)
+		ifTrue: [ self presenter toolName ]
+		ifFalse: [ self presenter class name ]
 ]
 
 { #category : #menu }
 WindowPresenter >> addMenuItemsToWindowMenu: aMenu [
 
-	self model addMenuItemsToWindowMenu: aMenu
+	self presenter addMenuItemsToWindowMenu: aMenu
 ]
 
 { #category : #private }
 WindowPresenter >> addModelIn: widget withSpec: aSpec [
 
-	self model ifNil: [ ^ self ].
+	self presenter ifNil: [ ^ self ].
 	
 	self changed: #addModelIn:withSpec: with: { widget . aSpec }
 ]
@@ -71,6 +66,7 @@ WindowPresenter >> addModelIn: widget withSpec: aSpec [
 { #category : #private }
 WindowPresenter >> addModelIn: widget withSpecLayout: aSpec [
 	self presenter ifNil: [ ^ self ].
+	
 	self
 		changed: #addModelIn:withSpecLayout:
 		with:
@@ -80,8 +76,7 @@ WindowPresenter >> addModelIn: widget withSpecLayout: aSpec [
 
 { #category : #menu }
 WindowPresenter >> addModelItemsToWindowMenu: aMenu [
-
-	self model addModelItemsToWindowMenu: aMenu
+	self presenter addModelItemsToWindowMenu: aMenu
 ]
 
 { #category : #api }
@@ -139,13 +134,13 @@ WindowPresenter >> defaultInitialExtent [
 { #category : #focus }
 WindowPresenter >> giveFocusToNextFrom: aModel [ 
 
-	^ self model giveFocusToNextFrom: aModel
+	^ self presenter giveFocusToNextFrom: aModel
 ]
 
 { #category : #focus }
 WindowPresenter >> giveFocusToPreviousFrom: aModel [ 
 
-	^ self model giveFocusToPreviousFrom: aModel 
+	^ self presenter giveFocusToPreviousFrom: aModel 
 ]
 
 { #category : #api }
