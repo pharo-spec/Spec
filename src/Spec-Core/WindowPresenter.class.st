@@ -5,7 +5,7 @@ Class {
 	#name : #WindowPresenter,
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
-		'model',
+		'presenter',
 		'initialExtent',
 		'title',
 		'isClosedHolder',
@@ -70,10 +70,12 @@ WindowPresenter >> addModelIn: widget withSpec: aSpec [
 
 { #category : #private }
 WindowPresenter >> addModelIn: widget withSpecLayout: aSpec [
-
-	self model ifNil: [ ^ self ].
-	
-	self changed: #addModelIn:withSpecLayout: with: { widget . aSpec }
+	self presenter ifNil: [ ^ self ].
+	self
+		changed: #addModelIn:withSpecLayout:
+		with:
+			{widget.
+			aSpec}
 ]
 
 { #category : #menu }
@@ -84,8 +86,7 @@ WindowPresenter >> addModelItemsToWindowMenu: aMenu [
 
 { #category : #api }
 WindowPresenter >> askOkToClose [
-
-	^ self model askOkToClose
+	^ self presenter askOkToClose
 ]
 
 { #category : #private }
@@ -149,13 +150,12 @@ WindowPresenter >> giveFocusToPreviousFrom: aModel [
 
 { #category : #api }
 WindowPresenter >> initialExtent [
-
 	^ initialExtent value
-		ifNil: [ self model 
-			ifNil: [ self defaultInitialExtent ]
-			ifNotNil: [:m | m extent
-				ifNil: [ m initialExtent
-					ifNil: [ self defaultInitialExtent ] ] ] ]
+		ifNil: [ self presenter
+				ifNil: [ self defaultInitialExtent ]
+				ifNotNil: [ :m | 
+					m extent
+						ifNil: [ m initialExtent ifNil: [ self defaultInitialExtent ] ] ] ]
 ]
 
 { #category : #initialization }
@@ -163,13 +163,13 @@ WindowPresenter >> initialize [
 
 	super initialize.
 
-	model := nil asValueHolder.
+	presenter := nil asValueHolder.
 	initialExtent := nil asValueHolder.
 	title := self class title asValueHolder.
 	isClosedHolder := false asValueHolder.
 	isResizeable := true asValueHolder.
 	
-	model whenChangedDo: [:m | self updateTitle ].
+	presenter whenChangedDo: [:m | self updateTitle ].
 ]
 
 { #category : #testing }
@@ -215,20 +215,21 @@ WindowPresenter >> modalRelativeTo: aWindow [
 
 { #category : #accessing }
 WindowPresenter >> model [
+	self deprecated: 'Model was renamed Presenter in Pharo 7' transformWith: '`@receiver model' -> '`@receiver presenter'.
 	
-	^ model value
+	^ self presenter
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 WindowPresenter >> model: aModel [
+	self deprecated: 'Model was renamed Presenter in Pharo 7' transformWith: '`@receiver model: `@statements1' -> '`@receiver presenter: `@statements1'.
 
-	model value: aModel
+	self presenter: aModel
 ]
 
 { #category : #private }
 WindowPresenter >> okToChange [
-
-	^ self model okToChange
+	^ self presenter okToChange
 ]
 
 { #category : #api }
@@ -245,6 +246,18 @@ WindowPresenter >> openWithSpecLayout: aSpec [
 	self updateTitle.
 ]
 
+{ #category : #accessing }
+WindowPresenter >> presenter [
+	
+	^ presenter value
+]
+
+{ #category : #accessing }
+WindowPresenter >> presenter: aModel [
+
+	presenter value: aModel
+]
+
 { #category : #private }
 WindowPresenter >> rebuildWithSpec: aSpec [
 
@@ -259,27 +272,20 @@ WindowPresenter >> rebuildWithSpecLayout: aSpec [
 
 { #category : #api }
 WindowPresenter >> taskbarIcon [
-
-	^ model value 
+	^ self presenter value
 		ifNil: [ super taskbarIcon ]
-		ifNotNil: [ :m |
-			m windowIcon
-				ifNil: [ m taskbarIcon ] ]
+		ifNotNil: [ :pres | pres windowIcon ifNil: [ pres taskbarIcon ] ]
 ]
 
 { #category : #private }
 WindowPresenter >> title [
-
-	^ self model
-		ifNil: [ super title ]
-		ifNotNil: [:m | m title ]
+	^ self presenter ifNil: [ super title ] ifNotNil: [ :m | m title ]
 ]
 
 { #category : #private }
 WindowPresenter >> title: aString [
-
-	self changed: #title: with: { aString }.
-	self model title: aString
+	self changed: #title: with: {aString}.
+	self presenter title: aString
 ]
 
 { #category : #api }
@@ -308,8 +314,6 @@ WindowPresenter >> whenClosedDo: aBlock [
 
 { #category : #updating }
 WindowPresenter >> windowIsClosing [
-
 	isClosedHolder value: true.
-	
-	self model windowIsClosing 
+	self presenter windowIsClosing
 ]
