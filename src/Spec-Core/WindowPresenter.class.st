@@ -278,7 +278,8 @@ WindowPresenter >> title [
 { #category : #private }
 WindowPresenter >> title: aString [
 
-	self changed: #title: with: { aString }
+	self changed: #title: with: { aString }.
+	self model title: aString
 ]
 
 { #category : #api }

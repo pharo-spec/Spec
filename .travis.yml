@@ -1,0 +1,17 @@
+language: smalltalk
+sudo: false
+
+os:
+  - linux
+#  - osx
+
+smalltalk_edge:
+  source: estebanlm/smalltalkCI
+  branch: dev
+
+smalltalk:
+  - Pharo-7.0
+  - Pharo64-7.0
+  
+matrix:
+  fast_finish: true

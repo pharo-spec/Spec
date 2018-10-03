@@ -1,0 +1,12 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'Spec',
+      #directory : 'src',
+      #onConflict : #useIncoming,
+      #onUpgrade : #useIncoming,
+	  #ignoreImage : true,
+      #platforms : [ #pharo ]
+    }
+  ]
+}
