@@ -10,22 +10,22 @@ Class {
 	#category : #'Spec-Tests-Core-Support'
 }
 
-{ #category : #running }
-SpecWindowTest >> setUp [
-	super setUp.
-	windowPresenter := TextPresenter new openWithSpec
-]
-
-{ #category : #running }
-SpecWindowTest >> tearDown [
-	(windowPresenter isNotNil and: [ windowPresenter isDisplayed ]) ifTrue: [ windowPresenter close ].
-	super tearDown
+{ #category : #tests }
+SpecWindowTest >> testAboutText [
+	windowPresenter := WindowPresenter new.
+	windowPresenter aboutText: 'test'.
+	self assert: windowPresenter aboutText equals: 'test'.
+	windowPresenter close.
+	
+	windowPresenter := TextPresenter new aboutText: 'test2'.
+	self assert: windowPresenter aboutText equals: 'test2'
 ]
 
 { #category : #tests }
 SpecWindowTest >> testIsDisplayed [
 	"Test for case: 16800 -> ask a SpecWindow for #isDisplayed always returns true"
 	
+	windowPresenter := TextPresenter new openWithSpec.
 	self assert: (windowPresenter isDisplayed).
 	
 	windowPresenter window minimize.	
@@ -39,9 +39,12 @@ SpecWindowTest >> testIsDisplayed [
 
 { #category : #tests }
 SpecWindowTest >> testTitle [
+	windowPresenter := TextPresenter new openWithSpec.
+	
 	self assert: windowPresenter isDisplayed.
 	self assert: windowPresenter title equals: 'Text'.
 	
 	windowPresenter title: 'Test Window'.
-	self assert: windowPresenter title equals: 'Test Window' 
+	self assert: windowPresenter title equals: 'Test Window'.
+	windowPresenter close
 ]
