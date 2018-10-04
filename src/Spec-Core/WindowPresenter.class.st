@@ -7,7 +7,6 @@ Class {
 	#instVars : [
 		'presenter',
 		'initialExtent',
-		'title',
 		'isClosedHolder',
 		'isResizeable'
 	],
@@ -160,7 +159,6 @@ WindowPresenter >> initialize [
 
 	presenter := nil asValueHolder.
 	initialExtent := nil asValueHolder.
-	title := self class title asValueHolder.
 	isClosedHolder := false asValueHolder.
 	isResizeable := true asValueHolder.
 	
