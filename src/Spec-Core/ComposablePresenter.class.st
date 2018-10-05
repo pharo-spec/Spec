@@ -192,6 +192,13 @@ ComposablePresenter class >> title [
 ]
 
 { #category : #defaults }
+ComposablePresenter class >> toolName [
+	"The tool name can be used in some places such as the About window's title."
+	
+	^ self name
+]
+
+{ #category : #defaults }
 ComposablePresenter class >> toolbarHeight [
 
 	^ self defaultFont height + 12
@@ -1047,6 +1054,11 @@ ComposablePresenter >> title [
 ComposablePresenter >> title: aString [
 
 	titleHolder value: aString
+]
+
+{ #category : #accessing }
+ComposablePresenter >> toolName [	
+	^ self class toolName
 ]
 
 { #category : #private }
