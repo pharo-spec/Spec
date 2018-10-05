@@ -43,9 +43,7 @@ WindowPresenter >> aboutTitle [
 
 	(self presenter respondsTo: #aboutTitle) ifTrue: [ ^ self presenter aboutTitle ].
 	
-	^ (self presenter respondsTo: #toolName)
-		ifTrue: [ self presenter toolName ]
-		ifFalse: [ self presenter class name ]
+	^ self presenter toolName
 ]
 
 { #category : #menu }
