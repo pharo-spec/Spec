@@ -192,21 +192,15 @@ SpecInterpreter >> presenter: anObject [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> retrieveSpecFrom: aPresenter selector: aSelector [
-	((self presenter respondsTo: #needRebuild)
-		and: [ self presenter needRebuild not and: [ self presenter spec notNil ] ])
+	(self presenter needRebuild not and: [ self presenter spec notNil ])
 		ifTrue: [ spec := self presenter spec.
 			self presenter needRebuild: true.
-			((spec respondsTo: #isRedrawable)
-				and: [ spec instance isSpecAdapter ])
-				ifFalse: [ spec := self
-						computeSpecFrom: arrayToInterpret first
-						selector: aSelector ]
+			((spec respondsTo: #isRedrawable) and: [ spec instance isSpecAdapter ])
+				ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first selector: aSelector ]
 				ifTrue: [ spec isRedrawable
 						ifTrue: [ spec removeSubWidgets ]
 						ifFalse: [ ^ spec instance ] ] ]
-		ifFalse: [ spec := self
-				computeSpecFrom: arrayToInterpret first
-				selector: aSelector ].
+		ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first selector: aSelector ].
 	aSelector
 		ifNil: [ aPresenter isSpecLayout
 				ifTrue: [ spec selector: aPresenter selector ] ]
