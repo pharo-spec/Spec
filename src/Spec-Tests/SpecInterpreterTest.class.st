@@ -18,7 +18,7 @@ SpecInterpreterTest >> setUp [
 	super setUp.
 	specInterpreterClass := SpecInterpreter.
 	specInterpreter := specInterpreterClass new.
-	specInterpreter model: TestingComposablePresenter new
+	specInterpreter presenter: TestingComposablePresenter new
 ]
 
 { #category : #running }

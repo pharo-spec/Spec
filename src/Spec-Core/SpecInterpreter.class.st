@@ -5,10 +5,10 @@ Class {
 	#name : #SpecInterpreter,
 	#superclass : #Object,
 	#instVars : [
-		'model',
 		'spec',
 		'arrayToInterpret',
-		'index'
+		'index',
+		'presenter'
 	],
 	#category : #'Spec-Core-Utilities'
 }
@@ -73,9 +73,9 @@ SpecInterpreter >> computeSpecFrom: aSymbol selector: aSelector [
 			result := self convertSymbolOfClassToInstance: aSymbol.
 			result isSpecContainer
 				ifTrue: [ result := result buildAdapterWithSpec.
-					model addDependent: result ].
+					self presenter addDependent: result ].
 			result ]
-		ifFalse: [ self class interpretASpec: aSymbol model: model selector: aSelector ].
+		ifFalse: [ self class interpretASpec: aSymbol model: self presenter selector: aSelector ].
 		
 	^ SpecWrapper instance: instance selector: aSelector
 ]
@@ -105,15 +105,14 @@ SpecInterpreter >> extractArrayToInterpretFrom: aFragment [
 	(aFragment isString or: [ aFragment isText ])
 		ifTrue: [ 
 			^ aFragment == #model
-				ifTrue: [ model ]
+				ifTrue: [ self presenter ]
 				ifFalse: [ self convertSymbolOfClassToInstance: aFragment ] ].
 	^ nil
 ]
 
 { #category : #interpreting }
-SpecInterpreter >> interpretASpec: aPresenter model: aModel  selector: aSelector [
-	
-	self model: aModel.
+SpecInterpreter >> interpretASpec: aPresenter model: aModel selector: aSelector [
+	self presenter: aModel.
 	^ self interpretASpec: aPresenter selector: aSelector
 ]
 
@@ -140,20 +139,21 @@ SpecInterpreter >> interpretASpec: aPresenter selector: aSelector [
 	"If you get here, there is a problem. Must probably it comes from the Spec which is wrongly defined"
 	self assert: arrayToInterpret size < 2.
 	
-	(model respondsTo: #spec:)
-		ifTrue: [ model spec: spec ].
+	self presenter spec: spec.
 		
 	^ spec instance
 ]
 
 { #category : #accessing }
 SpecInterpreter >> model [
-	^ model
+	self deprecated: 'Use #presenter instead' transformWith: '`@receiver model' -> '`@receiver presenter'.
+	^ self presenter
 ]
 
 { #category : #accessing }
 SpecInterpreter >> model: anObject [
-	model := anObject
+	self deprecated: 'Use #presenter: instead' transformWith: '`@receiver model: `@statment1' -> '`@receiver presenter: `@statment1'.
+	self presenter: anObject
 ]
 
 { #category : #'interpreting-private' }
@@ -174,39 +174,50 @@ SpecInterpreter >> performNextSelectorAndIncrementIndex [
 			numArgs := 0.
 			args := array allButFirst ].
 	
-	args := args collect: [ :each | self class interpretASpec: each model: model selector: spec selector ].
+	args := args collect: [ :each | self class interpretASpec: each model: self presenter selector: spec selector ].
 
 	index := index + numArgs + 1.
 	^ self actionToPerformWithSelector: selector arguments: args
 ]
 
+{ #category : #accessing }
+SpecInterpreter >> presenter [
+	^ presenter
+]
+
+{ #category : #accessing }
+SpecInterpreter >> presenter: anObject [
+	presenter := anObject
+]
+
 { #category : #'interpreting-private' }
 SpecInterpreter >> retrieveSpecFrom: aPresenter selector: aSelector [
-
-	((self model respondsTo: #needRebuild) and: [ self model needRebuild not and: [ self model spec notNil ] ])
-		ifTrue: [
-			spec := self model spec.
-			self model needRebuild: true.
-			((spec respondsTo: #isRedrawable) and: [ spec instance isSpecAdapter ])
-				ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first selector: aSelector ]
-				ifTrue: [ 
-					spec isRedrawable
+	((self presenter respondsTo: #needRebuild)
+		and: [ self presenter needRebuild not and: [ self presenter spec notNil ] ])
+		ifTrue: [ spec := self presenter spec.
+			self presenter needRebuild: true.
+			((spec respondsTo: #isRedrawable)
+				and: [ spec instance isSpecAdapter ])
+				ifFalse: [ spec := self
+						computeSpecFrom: arrayToInterpret first
+						selector: aSelector ]
+				ifTrue: [ spec isRedrawable
 						ifTrue: [ spec removeSubWidgets ]
 						ifFalse: [ ^ spec instance ] ] ]
-		ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first selector: aSelector ].
-	
+		ifFalse: [ spec := self
+				computeSpecFrom: arrayToInterpret first
+				selector: aSelector ].
 	aSelector
-		ifNil: [ aPresenter isSpecLayout ifTrue: [ spec selector: aPresenter selector ] ]
+		ifNil: [ aPresenter isSpecLayout
+				ifTrue: [ spec selector: aPresenter selector ] ]
 		ifNotNil: [ spec selector: aSelector ].
-		
 	^ nil
 ]
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> returnInterpretationOf: newInstance [
 	| result |
-	(model respondsTo: #spec:)
-		ifTrue: [ model spec: spec ].
+	self presenter spec: spec.
 	result := self class interpretASpec: newInstance model: spec instance selector: spec selector.
 	^ (result isKindOf: ComposablePresenter)
 		ifTrue: [ result private_buildWithSpec ]
