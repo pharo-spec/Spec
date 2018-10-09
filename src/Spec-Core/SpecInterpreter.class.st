@@ -10,70 +10,47 @@ Class {
 		'arrayToInterpret',
 		'index'
 	],
-	#classInstVars : [
-		'bindings'
-	],
 	#category : #'Spec-Core-Utilities'
 }
 
 { #category : #accessing }
 SpecInterpreter class >> bindings [
-
-	^ self defaultBindings 
+	^ (SpecBindings value ifNil: [ self environment at: #MorphicAdapterBindings ]) new
 ]
 
 { #category : #accessing }
 SpecInterpreter class >> bindings: anAdapterBinding [
-
-	bindings := anAdapterBinding
+	self deprecated: 'Never worked.'
 ]
 
 { #category : #private }
 SpecInterpreter class >> defaultBindings [
-	
-	^ (CurrentSpecDefaultBindings value ifNil: [ self environment at: #MorphicAdapterBindings]) new
-	
+	self deprecated: 'Use #bindings instead.' transformWith: '`@receiver defaultBindings' -> '`@receiver bindings'.
+	^ self bindings
 ]
 
 { #category : #accessing }
 SpecInterpreter class >> hardResetBindings [
-
-	bindings := nil
+	self deprecated: 'Never worked'
 ]
 
 { #category : #protocol }
 SpecInterpreter class >> interpretASpec: aSpec model: aModel [
-	
-	^ self
-		interpretASpec: aSpec
-		model: aModel
-		selector: nil
+	^ self interpretASpec: aSpec model: aModel selector: nil
 ]
 
 { #category : #protocol }
 SpecInterpreter class >> interpretASpec: aPresenter model: aModel selector: aSelector [
-	| result |
-	
-	 [ result :=  self 
-				private_interpretASpec: aPresenter
-				model: aModel
-				selector: aSelector ] ensure: [ self hardResetBindings ].
-	^ result
+	^ self new
+		interpretASpec: aPresenter
+		model: aModel
+		selector: aSelector
 ]
 
 { #category : #private }
 SpecInterpreter class >> private_buildWidgetFor: aComposablePresenter withSpec: aSymbol [
 	
-	^ self private_interpretASpec: (aComposablePresenter retrieveSpec: aSymbol) model: aComposablePresenter selector: aSymbol
-]
-
-{ #category : #private }
-SpecInterpreter class >> private_interpretASpec: aPresenter model: aModel selector: aSelector [
-	
-	^ self new
-		interpretASpec: aPresenter
-		model: aModel
-		selector: aSelector
+	^ self interpretASpec: (aComposablePresenter retrieveSpec: aSymbol) model: aComposablePresenter selector: aSymbol
 ]
 
 { #category : #'interpreting-private' }
@@ -91,20 +68,16 @@ SpecInterpreter >> bindings [
 { #category : #'interpreting-private' }
 SpecInterpreter >> computeSpecFrom: aSymbol selector: aSelector [
 	| instance |
-
 	instance := (aSymbol isSymbol and: [ aSymbol ~= #model ])
 		ifTrue: [ | result |
 			result := self convertSymbolOfClassToInstance: aSymbol.
 			result isSpecContainer
-				ifTrue: [ 
-					result := result buildAdapterWithSpec.
+				ifTrue: [ result := result buildAdapterWithSpec.
 					model addDependent: result ].
 			result ]
-		ifFalse: [ self class private_interpretASpec: aSymbol model: model selector: aSelector ].
+		ifFalse: [ self class interpretASpec: aSymbol model: model selector: aSelector ].
 		
-	^ SpecWrapper
-		instance: instance
-		selector: aSelector
+	^ SpecWrapper instance: instance selector: aSelector
 ]
 
 { #category : #bindings }
@@ -201,7 +174,7 @@ SpecInterpreter >> performNextSelectorAndIncrementIndex [
 			numArgs := 0.
 			args := array allButFirst ].
 	
-	args := args collect: [ :each | self class private_interpretASpec: each model: model selector: spec selector ].
+	args := args collect: [ :each | self class interpretASpec: each model: model selector: spec selector ].
 
 	index := index + numArgs + 1.
 	^ self actionToPerformWithSelector: selector arguments: args
@@ -234,11 +207,8 @@ SpecInterpreter >> returnInterpretationOf: newInstance [
 	| result |
 	(model respondsTo: #spec:)
 		ifTrue: [ model spec: spec ].
-	result := self class private_interpretASpec: newInstance model: spec instance selector: spec selector.
+	result := self class interpretASpec: newInstance model: spec instance selector: spec selector.
 	^ (result isKindOf: ComposablePresenter)
-		ifTrue: [ 
-			| return |
-			return := result private_buildWithSpec.
-			^ return ]
-		ifFalse: [ ^ result ]
+		ifTrue: [ result private_buildWithSpec ]
+		ifFalse: [ result ]
 ]
