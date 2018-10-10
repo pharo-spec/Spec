@@ -35,15 +35,15 @@ SpecInterpreter class >> hardResetBindings [
 ]
 
 { #category : #protocol }
-SpecInterpreter class >> interpretASpec: aSpec model: aModel [
-	^ self interpretASpec: aSpec model: aModel selector: nil
+SpecInterpreter class >> interpretASpec: aSpec model: aPresenter [
+	^ self interpretASpec: aSpec model: aPresenter selector: nil
 ]
 
 { #category : #protocol }
-SpecInterpreter class >> interpretASpec: aPresenter model: aModel selector: aSelector [
+SpecInterpreter class >> interpretASpec: aSpec model: aPresenter selector: aSelector [
 	^ self new
-		interpretASpec: aPresenter
-		model: aModel
+		interpretASpec: aSpec
+		model: aPresenter
 		selector: aSelector
 ]
 
@@ -111,18 +111,18 @@ SpecInterpreter >> extractArrayToInterpretFrom: aFragment [
 ]
 
 { #category : #interpreting }
-SpecInterpreter >> interpretASpec: aPresenter model: aModel selector: aSelector [
-	self presenter: aModel.
-	^ self interpretASpec: aPresenter selector: aSelector
+SpecInterpreter >> interpretASpec: aSpec model: aPresenter selector: aSelector [
+	self presenter: aPresenter.
+	^ self interpretASpec: aSpec selector: aSelector
 ]
 
 { #category : #interpreting }
-SpecInterpreter >> interpretASpec: aPresenter selector: aSelector [
-	aPresenter ifNil: [ ^ nil ].
+SpecInterpreter >> interpretASpec: aSpec selector: aSelector [
+	aSpec ifNil: [ ^ nil ].
 	
-	(self extractArrayToInterpretFrom: aPresenter) ifNotNil: [ :result | ^ result ].
+	(self extractArrayToInterpretFrom: aSpec) ifNotNil: [ :result | ^ result ].
 	
-	(self retrieveSpecFrom: aPresenter selector: aSelector)
+	(self retrieveSpecFrom: aSpec selector: aSelector)
 		ifNotNil: [ :instance | ^ instance ].
 
 	index := 2.
@@ -191,7 +191,7 @@ SpecInterpreter >> presenter: anObject [
 ]
 
 { #category : #'interpreting-private' }
-SpecInterpreter >> retrieveSpecFrom: aPresenter selector: aSelector [
+SpecInterpreter >> retrieveSpecFrom: aSpec selector: aSelector [
 	(self presenter needRebuild not and: [ self presenter spec notNil ])
 		ifTrue: [ spec := self presenter spec.
 			self presenter needRebuild: true.
@@ -202,8 +202,8 @@ SpecInterpreter >> retrieveSpecFrom: aPresenter selector: aSelector [
 						ifFalse: [ ^ spec instance ] ] ]
 		ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first selector: aSelector ].
 	aSelector
-		ifNil: [ aPresenter isSpecLayout
-				ifTrue: [ spec selector: aPresenter selector ] ]
+		ifNil: [ aSpec isSpecLayout
+				ifTrue: [ spec selector: aSpec selector ] ]
 		ifNotNil: [ spec selector: aSelector ].
 	^ nil
 ]
