@@ -27,14 +27,15 @@ ContainerPresenter class >> defaultSpec [
 { #category : #api }
 ContainerPresenter >> buildAdapterWithSpec [
 	"Build the widget using the spec name provided as argument"
-	| adapter widget aSpecLayout |	
-	aSpecLayout := (self retrieveSpec: self defaultSpecSelector).
-	adapter := SpecInterpreter 
-		private_interpretASpec: aSpecLayout
-		model: self
+
+	| adapter widget aSpecLayout |
+	aSpecLayout := self retrieveSpec: self defaultSpecSelector.
+	adapter := SpecInterpreter
+		interpretASpec: aSpecLayout
+		presenter: self
 		selector: self defaultSpecSelector.
 	widget := adapter widget.
-	self setExtentAndBindingTo: widget. 
+	self setExtentAndBindingTo: widget.
 	^ adapter
 ]
 

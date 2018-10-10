@@ -1,8 +1,13 @@
 "
-Dynamic variable for Spec on which of the bindings (Morphic or other) should be used as default
+Use my superclass. I am deprecated.
 "
 Class {
 	#name : #CurrentSpecDefaultBindings,
-	#superclass : #DynamicVariable,
+	#superclass : #SpecBindings,
 	#category : #'Spec-Core-Support'
 }
+
+{ #category : #deprecation }
+CurrentSpecDefaultBindings class >> isDeprecated [
+	^ true
+]

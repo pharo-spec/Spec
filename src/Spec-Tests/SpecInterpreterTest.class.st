@@ -18,7 +18,7 @@ SpecInterpreterTest >> setUp [
 	super setUp.
 	specInterpreterClass := SpecInterpreter.
 	specInterpreter := specInterpreterClass new.
-	specInterpreter model: TestingComposablePresenter new
+	specInterpreter presenter: TestingComposablePresenter new
 ]
 
 { #category : #running }
@@ -73,11 +73,9 @@ SpecInterpreterTest >> testDynamicBuild [
 
 { #category : #tests }
 SpecInterpreterTest >> testInterpretASpecModelMorphAssociation [
-
 	| spec model morph |
 	model := AbstractWidgetPresenter new.
-	spec := {#PluggableListMorph. #model:. #model}.
-	morph := specInterpreterClass interpretASpec: spec model: model.
-	
-	self assert: (model widget == morph).
+	spec := {#PluggableListMorph . #model: . #model}.
+	morph := specInterpreterClass interpretASpec: spec presenter: model.
+	self assert: model widget == morph
 ]

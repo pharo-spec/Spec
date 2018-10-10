@@ -218,7 +218,7 @@ ComposablePresenter >> aboutText: aString [
 
 { #category : #api }
 ComposablePresenter >> adapterFrom: aSpecLayout model: aModel [
-	^ SpecInterpreter interpretASpec: aSpecLayout model: aModel
+	^ SpecInterpreter interpretASpec: aSpecLayout presenter: aModel
 ]
 
 { #category : #private }
