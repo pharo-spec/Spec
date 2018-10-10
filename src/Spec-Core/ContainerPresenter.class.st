@@ -30,7 +30,10 @@ ContainerPresenter >> buildAdapterWithSpec [
 
 	| adapter widget aSpecLayout |
 	aSpecLayout := self retrieveSpec: self defaultSpecSelector.
-	adapter := SpecInterpreter interpretASpec: aSpecLayout model: self selector: self defaultSpecSelector.
+	adapter := SpecInterpreter
+		interpretASpec: aSpecLayout
+		presenter: self
+		selector: self defaultSpecSelector.
 	widget := adapter widget.
 	self setExtentAndBindingTo: widget.
 	^ adapter
