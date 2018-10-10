@@ -36,17 +36,15 @@ SpecInterpreterTest >> testBuildWidgetForWithSpec [
 	model := TestingComposablePresenter new.
 	morph := model buildWithSpec: #testingSpec.
 	self assert: morph model == model.
-	self assert: model widget class = RubPluggableTextMorph
+	self assert: model widget class equals: RubPluggableTextMorph
 ]
 
 { #category : #tests }
 SpecInterpreterTest >> testConvertRandomSymbolOfClassToInstance [
-	
 	| symbol instance |
 	symbol := #PluggableListMorph.
-	
 	instance := specInterpreter convertSymbolOfClassToInstance: symbol.
-	self assert: (instance class name = symbol)
+	self assert: instance class name equals: symbol
 ]
 
 { #category : #tests }
