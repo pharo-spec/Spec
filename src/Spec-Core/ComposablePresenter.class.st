@@ -217,8 +217,13 @@ ComposablePresenter >> aboutText: aString [
 ]
 
 { #category : #api }
-ComposablePresenter >> adapterFrom: aSpecLayout model: aModel [
-	^ SpecInterpreter interpretASpec: aSpecLayout presenter: aModel
+ComposablePresenter >> adapterFrom: aSpecLayout [
+	^ SpecInterpreter interpretASpec: aSpecLayout presenter: self
+]
+
+{ #category : #api }
+ComposablePresenter >> adapterFromSelector: aSymbol [
+	^ self adapterFrom: (self retrieveSpec: aSymbol)
 ]
 
 { #category : #private }
@@ -298,6 +303,16 @@ ComposablePresenter >> bindMenuKeyCombination: aShortcut toAction: aBlock [
 ]
 
 { #category : #api }
+ComposablePresenter >> buildAdapterWithSpecLayout: aSpecLayout [
+	"Build the adapter using the spec name provided as argument"
+
+	| adapter |
+	adapter := self adapterFrom: aSpecLayout.
+	self setExtentAndBindingTo: adapter widget.
+	^ adapter
+]
+
+{ #category : #api }
 ComposablePresenter >> buildWithSpec [
 	"Build the widget using the default spec"
 	
@@ -314,11 +329,8 @@ ComposablePresenter >> buildWithSpec: aSpec [
 { #category : #api }
 ComposablePresenter >> buildWithSpecLayout: aSpecLayout [
 	"Build the widget using the spec name provided as argument"
-	| widget adapter|
-	adapter := self adapterFrom: aSpecLayout model: self.
-	widget := adapter asWidget.
-	self setExtentAndBindingTo: widget.
-	^ widget
+
+	^ (self buildAdapterWithSpecLayout: aSpecLayout) widget
 ]
 
 { #category : #api }
@@ -898,28 +910,6 @@ ComposablePresenter >> owner [
 ComposablePresenter >> owner: anObject [
 
 	owner := anObject.
-]
-
-{ #category : #private }
-ComposablePresenter >> privateAdapterFromModel: aModel withSpec: aSpec [
-	"apparently when looking at the implementation, it does not return a widget but an adapter so it should be called adapter :)"
-	^ SpecInterpreter private_buildWidgetFor: self withSpec: aSpec.
-]
-
-{ #category : #private }
-ComposablePresenter >> private_buildWithSpec [
-	"Build the widget using the default spec"
-	
-	^ self private_buildWithSpec: self defaultSpecSelector
-]
-
-{ #category : #private }
-ComposablePresenter >> private_buildWithSpec: aSpec [
-	"Build the widget using the spec name provided as argument"
-	| adapter |
-	adapter := self privateAdapterFromModel: self withSpec: aSpec.
-	self setExtentAndBindingTo: adapter widget.	
-	^ adapter
 ]
 
 { #category : #'private-focus' }

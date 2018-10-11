@@ -57,11 +57,6 @@ SpecInterpreter class >> interpretASpec: aSpec presenter: aPresenter [
 	^ self new interpretASpec: aSpec presenter: aPresenter
 ]
 
-{ #category : #private }
-SpecInterpreter class >> private_buildWidgetFor: aComposablePresenter withSpec: aSymbol [
-	^ self interpretASpec: (aComposablePresenter retrieveSpec: aSymbol) presenter: aComposablePresenter
-]
-
 { #category : #'interpreting-private' }
 SpecInterpreter >> actionToPerformWithSelector: selector arguments: args [
 
@@ -224,10 +219,8 @@ SpecInterpreter >> retrieveSpecFrom: aSpec [
 SpecInterpreter >> returnInterpretationOf: newInstance [
 	| result |
 	self presenter spec: spec.
-	result := self class
-		interpretASpec: newInstance
-		presenter: spec instance.
+	result := self class interpretASpec: newInstance presenter: spec instance.
 	^ (result isKindOf: ComposablePresenter)
-		ifTrue: [ result private_buildWithSpec ]
+		ifTrue: [ result buildAdapterWithSpecLayout: (result retrieveSpec: result defaultSpecSelector) ]
 		ifFalse: [ result ]
 ]
