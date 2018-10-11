@@ -5,18 +5,16 @@ Class {
 	#name : #SpecWrapper,
 	#superclass : #Object,
 	#instVars : [
-		'instance',
-		'selector'
+		'instance'
 	],
 	#category : #'Spec-Core-Utilities'
 }
 
 { #category : #'instance creation' }
-SpecWrapper class >> instance: instance selector: selector [
+SpecWrapper class >> instance: instance [
 
 	^ self new
 		instance: instance;
-		selector: selector;
 		yourself
 ]
 
@@ -42,16 +40,4 @@ SpecWrapper >> isRedrawable [
 SpecWrapper >> removeSubWidgets [
 	
 	^ self instance removeSubWidgets
-]
-
-{ #category : #accessing }
-SpecWrapper >> selector [
-	
-	^ selector
-]
-
-{ #category : #accessing }
-SpecWrapper >> selector: anObject [
-	
-	selector := anObject
 ]
