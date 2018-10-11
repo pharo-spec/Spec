@@ -7,7 +7,6 @@ Class {
 	#instVars : [
 		'type',
 		'commands',
-		'selector',
 		'result',
 		'shouldCheckSplitters',
 		'currentOffset',
@@ -426,12 +425,12 @@ SpecLayout >> resetArrayComputation [
 
 { #category : #accessing }
 SpecLayout >> selector [
-	^ selector
+	self deprecated: 'This method it useless and adding a selector variable only make the code more complexe. It is now removed.'.
 ]
 
 { #category : #accessing }
 SpecLayout >> selector: anObject [
-	selector := anObject
+	self deprecated: 'This method it useless and adding a selector variable only make the code more complexe. It is now removed.'.
 ]
 
 { #category : #commands }

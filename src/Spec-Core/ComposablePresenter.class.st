@@ -968,11 +968,7 @@ ComposablePresenter >> resolveSymbol: aSymbol [
 
 { #category : #api }
 ComposablePresenter >> retrieveSpec: aSelector [
-	| layout |
-	
-	layout := self class perform: aSelector.
-	layout isSpecLayout ifTrue: [ layout selector: aSelector ].
-	^ layout
+	^ self class perform: aSelector
 ]
 
 { #category : #api }
