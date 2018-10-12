@@ -31,15 +31,6 @@ SpecInterpreterTest >> tearDown [
 ]
 
 { #category : #tests }
-SpecInterpreterTest >> testBuildWidgetForWithSpec [
-	| model morph |
-	model := TestingComposablePresenter new.
-	morph := model buildWithSpec: #testingSpec.
-	self assert: morph model == model.
-	self assert: model widget class equals: RubPluggableTextMorph
-]
-
-{ #category : #tests }
 SpecInterpreterTest >> testConvertRandomSymbolOfClassToInstance [
 	| symbol instance |
 	symbol := #PluggableListMorph.

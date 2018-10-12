@@ -74,7 +74,7 @@ MenuGroupPresenter >> autoRefresh: aBoolean [
 MenuGroupPresenter >> buildWithSpecLayout: aSpecLayout [
 	"Build the widget using the spec name provided as argument"
 	| adapter widget|
-	adapter := self adapterFrom: aSpecLayout model: self.
+	adapter := self adapterFrom: aSpecLayout.
 	widget := adapter asWidget.
 	self announce: (WidgetBuilt model: self widget: widget).
 	^ widget
