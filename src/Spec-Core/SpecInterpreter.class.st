@@ -15,7 +15,13 @@ Class {
 
 { #category : #accessing }
 SpecInterpreter class >> bindings [
-	^ (SpecBindings value ifNil: [ self environment at: #MorphicAdapterBindings ]) new
+	"Spec bindings is a DynamicVariable. It has a default value. In order to change it you can do something like: 
+	
+	SpecBindings value: MorphicAdapterBindings during: [ myUI openWithSpec ].
+	
+	"
+	
+	^ SpecBindings value new
 ]
 
 { #category : #accessing }
