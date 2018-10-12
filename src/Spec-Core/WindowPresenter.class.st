@@ -241,9 +241,9 @@ WindowPresenter >> presenter [
 ]
 
 { #category : #accessing }
-WindowPresenter >> presenter: aModel [
-
-	presenter value: aModel
+WindowPresenter >> presenter: aPresenter [
+	(aPresenter isKindOf: ComposablePresenter) ifFalse: [ Transcript crLog: thisContext longStack ].
+	presenter value: aPresenter
 ]
 
 { #category : #private }
@@ -261,8 +261,8 @@ WindowPresenter >> rebuildWithSpecLayout: aSpec [
 { #category : #api }
 WindowPresenter >> taskbarIcon [
 	^ self presenter value
-		ifNil: [ super taskbarIcon ]
-		ifNotNil: [ :pres | pres windowIcon ifNil: [ pres taskbarIcon ] ]
+		ifNil: [ 'Presenter is nil' crLog. super taskbarIcon ]
+		ifNotNil: [ :pres | 'Presenter is NOT nil' crLog. Transcript show: pres. pres windowIcon ifNil: [ pres taskbarIcon ] ]
 ]
 
 { #category : #private }
