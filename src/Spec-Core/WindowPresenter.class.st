@@ -241,9 +241,9 @@ WindowPresenter >> presenter [
 ]
 
 { #category : #accessing }
-WindowPresenter >> presenter: aModel [
+WindowPresenter >> presenter: aPresenter [
 
-	presenter value: aModel
+	presenter value: aPresenter
 ]
 
 { #category : #private }
@@ -260,7 +260,7 @@ WindowPresenter >> rebuildWithSpecLayout: aSpec [
 
 { #category : #api }
 WindowPresenter >> taskbarIcon [
-	^ self presenter value
+	^ self presenter
 		ifNil: [ super taskbarIcon ]
 		ifNotNil: [ :pres | pres windowIcon ifNil: [ pres taskbarIcon ] ]
 ]
