@@ -134,14 +134,14 @@ SpecInterpreter >> interpretASpec: aSpec [
 			
 			index > arrayToInterpret size
 				ifTrue: [ ^ self returnInterpretationOf: newInstance ].
-			spec instance: newInstance ].	
+			spec := newInstance ].	
 			
 	"If you get here, there is a problem. Must probably it comes from the Spec which is wrongly defined"
 	self assert: arrayToInterpret size < 2.
 	
 	self presenter spec: spec.
-		
-	^ spec instance
+
+	^ spec
 ]
 
 { #category : #interpreting }

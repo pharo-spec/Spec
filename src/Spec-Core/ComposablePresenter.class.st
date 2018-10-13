@@ -1086,10 +1086,11 @@ ComposablePresenter >> whenWindowChanged: aBlock [
 
 { #category : #accessing }
 ComposablePresenter >> widget [
-
-	^ spec
-		ifNil: [ nil ]
-		ifNotNil: [:s | s instance ]
+	"I return the adapter responsible of building my widget. 
+	
+	CyrilFerlicot: We should probably do some renaming later."
+	
+	^ self spec
 ]
 
 { #category : #accessing }
