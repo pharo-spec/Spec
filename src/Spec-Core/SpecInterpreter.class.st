@@ -66,7 +66,7 @@ SpecInterpreter class >> interpretASpec: aSpec presenter: aPresenter [
 { #category : #'interpreting-private' }
 SpecInterpreter >> actionToPerformWithSelector: selector arguments: args [
 
-	^ spec instance perform: selector withArguments: args
+	^ spec perform: selector withArguments: args
 ]
 
 { #category : #bindings }
@@ -77,16 +77,14 @@ SpecInterpreter >> bindings [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> computeSpecFrom: aSymbol [
-	| instance |
-	instance := (aSymbol isSymbol and: [ aSymbol ~= #model ])
+	^ (aSymbol isSymbol and: [ aSymbol ~= #model ])
 		ifTrue: [ | result |
 			result := self convertSymbolOfClassToInstance: aSymbol.
 			result isSpecContainer
 				ifTrue: [ result := result buildAdapterWithSpec.
 					self presenter addDependent: result ].
 			result ]
-		ifFalse: [ self class interpretASpec: aSymbol presenter: self presenter ].
-	^ SpecWrapper instance: instance
+		ifFalse: [ self class interpretASpec: aSymbol presenter: self presenter ]
 ]
 
 { #category : #bindings }
@@ -211,11 +209,11 @@ SpecInterpreter >> retrieveSpecFrom: aSpec [
 	(self presenter needRebuild not and: [ self presenter spec notNil ])
 		ifTrue: [ spec := self presenter spec.
 			self presenter needRebuild: true.
-			((spec respondsTo: #isRedrawable) and: [ spec instance isSpecAdapter ])
+			((spec respondsTo: #isRedrawable) and: [ spec isSpecAdapter ])
 				ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first ]
 				ifTrue: [ spec isRedrawable
 						ifTrue: [ spec removeSubWidgets ]
-						ifFalse: [ ^ spec instance ] ] ]
+						ifFalse: [ ^ spec ] ] ]
 		ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first ].
 
 	^ nil
@@ -225,7 +223,7 @@ SpecInterpreter >> retrieveSpecFrom: aSpec [
 SpecInterpreter >> returnInterpretationOf: newInstance [
 	| result |
 	self presenter spec: spec.
-	result := self class interpretASpec: newInstance presenter: spec instance.
+	result := self class interpretASpec: newInstance presenter: spec.
 	^ (result isKindOf: ComposablePresenter)
 		ifTrue: [ result buildAdapterWithSpecLayout: (result retrieveSpec: result defaultSpecSelector) ]
 		ifFalse: [ result ]

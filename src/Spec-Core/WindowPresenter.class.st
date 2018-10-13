@@ -87,7 +87,7 @@ WindowPresenter >> buildWithSpecLayout: aSpec [
 
 	| adapter widget |
 	(self spec notNil and: [ self needRebuild not ])
-		ifTrue: [ widget := self spec instance ]
+		ifTrue: [ widget := self widget ]
 		ifFalse: [ adapter := self adapterFromSelector: self defaultSpecSelector.
 			widget := adapter widget.
 			self addModelIn: widget withSpecLayout: aSpec ].
