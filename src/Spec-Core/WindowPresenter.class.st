@@ -19,14 +19,6 @@ WindowPresenter class >> adapterName [
 	^ #WindowAdapter
 ]
 
-{ #category : #specs }
-WindowPresenter class >> defaultSpec [
-	<spec>
-	
-	^ #(WindowAdapter
-		adapt: #(model))
-]
-
 { #category : #api }
 WindowPresenter >> aboutText [
 	"if my aboutText has not been set the fallback is:

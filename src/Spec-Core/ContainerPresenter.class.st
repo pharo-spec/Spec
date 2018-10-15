@@ -16,14 +16,6 @@ ContainerPresenter class >> adapterName [
 	^ #ContainerAdapter
 ]
 
-{ #category : #specs }
-ContainerPresenter class >> defaultSpec [
-	<spec>
-	
-	^ #(ContainerAdapter
-		adapt: #(model))
-]
-
 { #category : #api }
 ContainerPresenter >> buildAdapterWithSpec [
 	| adapter widget |

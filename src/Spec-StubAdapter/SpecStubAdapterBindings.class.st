@@ -43,6 +43,7 @@ SpecStubAdapterBindings >> initializeBindings [
 		at: #SliderAdapter				put: #SpecStubSliderAdapter;
 		at: #TabManagerAdapter		put: #SpecStubTabManagerAdapter;
 		at: #TabAdapter					put: #SpecStubTabAdapter;
+		at: #TableContainerAdapter 	put: #SpecStubTableContainerAdapter;
 		at: #TextAdapter				put: #SpecStubTextAdapter;
 		at: #TextInputFieldAdapter	put: #SpecStubTextInputFieldAdapter;
 		at: #TransferAdapter			put: #SpecStubTransferAdapter;

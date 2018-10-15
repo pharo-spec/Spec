@@ -42,14 +42,6 @@ MenuPresenter class >> adapterName [
 ]
 
 { #category : #specs }
-MenuPresenter class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(MenuAdapter
-		adapt: #(model))
-]
-
-{ #category : #specs }
 MenuPresenter class >> popup [
 	<spec>
 	
