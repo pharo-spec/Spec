@@ -173,24 +173,17 @@ SpecInterpreter >> model: anObject [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> performNextSelectorAndIncrementIndex [
-	| args numArgs selector |
+	| args selector |
 	selector := arrayToInterpret at: index.
-	selector isArray not
-		ifTrue: [ selector := selector asSymbol.
-			numArgs := selector numArgs.
-			args := arrayToInterpret copyFrom: index + 1 to: index + numArgs ]
-		ifFalse: [ "Here I assume that if it's not a symbol, it's a collection"
-			| array |
-			array := selector.
-			selector := array first.
-			numArgs := 0.
-			args := array allButFirst ].
-	args := args
-		collect: [ :each | 
-			self class
-				interpretASpec: each
-				presenter: self presenter ].
-	index := index + numArgs + 1.
+	
+	self
+		assert: selector isArray not
+		description: 'Before there was an #ifTrue:ifFalse: on `selector isArray` but it seems that the selector could never be an Array. If one day we have an array here, please report the problem and link it to https://github.com/pharo-spec/Spec/issues/60'.
+		
+	selector := selector asSymbol.
+	args := (arrayToInterpret copyFrom: index + 1 to: index + selector numArgs) collect: [ :each | self class interpretASpec: each presenter: self presenter ].
+	index := index + selector numArgs + 1.
+	
 	^ self actionToPerformWithSelector: selector arguments: args
 ]
 
@@ -206,16 +199,16 @@ SpecInterpreter >> presenter: aPresenter [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> retrieveSpecFrom: aSpec [
-	(self presenter needRebuild not and: [ self presenter spec notNil ])
-		ifTrue: [ spec := self presenter spec.
+	self presenter needRebuild
+		ifTrue: [ spec := self computeSpecFrom: arrayToInterpret first ]
+		ifFalse: [ spec := self presenter spec.
 			self presenter needRebuild: true.
-			((spec respondsTo: #isRedrawable) and: [ spec isSpecAdapter ])
+			spec isSpecAdapter
 				ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first ]
 				ifTrue: [ spec isRedrawable
 						ifTrue: [ spec removeSubWidgets ]
-						ifFalse: [ ^ spec ] ] ]
-		ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first ].
-
+						ifFalse: [ ^ spec ] ] ].
+				
 	^ nil
 ]
 
