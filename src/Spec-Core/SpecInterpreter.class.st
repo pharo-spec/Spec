@@ -199,16 +199,16 @@ SpecInterpreter >> presenter: aPresenter [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> retrieveSpecFrom: aSpec [
-	self presenter needRebuild not
-		ifTrue: [ spec := self presenter spec.
+	self presenter needRebuild
+		ifTrue: [ spec := self computeSpecFrom: arrayToInterpret first ]
+		ifFalse: [ spec := self presenter spec.
 			self presenter needRebuild: true.
 			spec isSpecAdapter
 				ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first ]
 				ifTrue: [ spec isRedrawable
 						ifTrue: [ spec removeSubWidgets ]
-						ifFalse: [ ^ spec ] ] ]
-		ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first ].
-
+						ifFalse: [ ^ spec ] ] ].
+				
 	^ nil
 ]
 
