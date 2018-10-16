@@ -19,14 +19,6 @@ FastTablePresenter class >> adapterName [
 	^ #FastTableAdapter
 ]
 
-{ #category : #specs }
-FastTablePresenter class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(FastTableAdapter
-		adapt: #(model))
-]
-
 { #category : #example }
 FastTablePresenter class >> example [
 	<sampleInstance>

@@ -78,14 +78,6 @@ TextPresenter class >> adapterName [
 	^ #TextAdapter
 ]
 
-{ #category : #specs }
-TextPresenter class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(TextAdapter
-		adapt: #(model))
-]
-
 { #category : #example }
 TextPresenter class >> example [
 	<sampleInstance>

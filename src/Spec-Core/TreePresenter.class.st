@@ -37,14 +37,7 @@ Class {
 
 { #category : #specs }
 TreePresenter class >> adapterName [
-]
-
-{ #category : #specs }
-TreePresenter class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(TreeAdapter
-		adapt: #(model))
+	^ #TreeAdapter
 ]
 
 { #category : #examples }
