@@ -651,6 +651,14 @@ ComposablePresenter >> instantiate: aComposablePresenterClass on: aModel [
 ]
 
 { #category : #'instance creation' }
+ComposablePresenter >> instantiateModels: aCollectionOfPairs [
+	
+	self deprecated: 'Use #instantiatePresenters: instead' transformWith: '`@receiver instantiateModels: `@statement' -> '`@receiver instantiatePresenters: `@statement'.
+
+	^ self instantiatePresenters: aCollectionOfPairs
+]
+
+{ #category : #'instance creation' }
 ComposablePresenter >> instantiatePresenters: aCollectionOfPairs [
 	"instantiatePresenters: is legacy code in ComposablePresenter and must not be used. It will be deprecated and removed."
 
