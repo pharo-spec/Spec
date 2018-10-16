@@ -34,6 +34,7 @@ MorphicAdapterBindings >> initializeBindings [
 		at: #MenuItemAdapter			put: #MorphicMenuItemAdapter;
 		at: #RadioButtonAdapter		put: #MorphicRadioButtonAdapter;
 		at: #SliderAdapter				put: #MorphicSliderAdapter;
+		at: #SpacerAdapter 			put: #MorphicSpacerAdapter;
 		at: #TabManagerAdapter		put: #MorphicTabManagerAdapter;
 		at: #TabAdapter					put: #MorphicTabAdapter;
 		at: #TableContainerAdapter 	put: #MorphicTableContainerAdapter;

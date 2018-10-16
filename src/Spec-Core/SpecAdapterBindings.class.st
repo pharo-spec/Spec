@@ -48,6 +48,7 @@ SpecAdapterBindings >> initializeBindings [
 		at: #MenuItemAdapter			put: #MenuItemAdapter;	
 		at: #RadioButtonAdapter		put: #RadioButtonAdapter;
 		at: #SliderAdapter				put: #SliderAdapter;
+		at: #SpacerAdapter 			put: #SpacerAdapter;
 		at: #TabManagerAdapter		put: #TabManagerAdapter;
 		at: #TabAdapter					put: #TabAdapter;
 		at: #TableContainerAdapter 	put: #TableContainerAdapter;

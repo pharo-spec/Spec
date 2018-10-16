@@ -1014,6 +1014,11 @@ ComposablePresenter >> specSelectors [
 	^ self class specSelectors
 ]
 
+{ #category : #accessing }
+ComposablePresenter >> specSpacer [
+	^ SpacerPresenter new
+]
+
 { #category : #'private-focus' }
 ComposablePresenter >> takeKeyboardFocus [
 

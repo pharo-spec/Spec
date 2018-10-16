@@ -41,6 +41,7 @@ SpecStubAdapterBindings >> initializeBindings [
 		at: #MenuItemAdapter			put: #SpecStubMenuItemAdapter;
 		at: #RadioButtonAdapter		put: #SpecStubRadioButtonAdapter;
 		at: #SliderAdapter				put: #SpecStubSliderAdapter;
+		at: #SpacerAdapter 			put: #SpecStubSpacerAdapter;
 		at: #TabManagerAdapter		put: #SpecStubTabManagerAdapter;
 		at: #TabAdapter					put: #SpecStubTabAdapter;
 		at: #TableContainerAdapter 	put: #SpecStubTableContainerAdapter;
