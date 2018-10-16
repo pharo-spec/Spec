@@ -82,12 +82,24 @@ MorphicWindowAdapter >> addModelItemsToWindowMenu: aMenu [
 
 { #category : #private }
 MorphicWindowAdapter >> addStatusbarTo: aMorph [
+	| statusBarMorph |
 
+	statusBarMorph := self model statusbar buildWithSpec.
+	aMorph addMorph: statusBarMorph.	
+	statusBarMorph
+		hResizing: #spaceFill;
+		vResizing: #rigid
 ]
 
 { #category : #private }
 MorphicWindowAdapter >> addToolbarTo: aMorph [
+	| toolbarMorph |
 
+	toolbarMorph := self model menu buildWithSpec.
+	aMorph addMorph: toolbarMorph.	
+	toolbarMorph
+		hResizing: #spaceFill;
+		vResizing: #rigid
 ]
 
 { #category : #'widget API' }
