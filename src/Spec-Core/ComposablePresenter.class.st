@@ -396,6 +396,13 @@ ComposablePresenter >> defaultSpecSelector [
 
 { #category : #accessing }
 ComposablePresenter >> defaultWindowModelClass [ 
+	self deprecated: 'Use #defaultWindowPresenterClass instead' transformWith: '`@receiver defaultWindowModelClass' -> '`@receiver defaultWindowPresenterClass'.
+	
+	^ self defaultWindowPresenterClass
+]
+
+{ #category : #accessing }
+ComposablePresenter >> defaultWindowPresenterClass [ 
 	^ WindowPresenter
 ]
 
@@ -894,7 +901,7 @@ ComposablePresenter >> openWithSpecLayout: aSpec [
 
 	(window value notNil and: [ self needRebuild not ])
 		ifTrue: [ window value rebuildWithSpecLayout: aSpec ]
-		ifFalse: [ window value: (self defaultWindowModelClass new presenter: self).
+		ifFalse: [ window value: (self defaultWindowPresenterClass new presenter: self).
 			window value openWithSpecLayout: aSpec.
 			self takeKeyboardFocus ].
 	^ window value
