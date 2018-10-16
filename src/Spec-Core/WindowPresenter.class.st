@@ -10,8 +10,8 @@ Class {
 		'isClosedHolder',
 		'isResizeable',
 		'menuHolder',
-		'toolbarHolder',
-		'statusbarHolder'
+		'statusbarHolder',
+		'toolBarHolder'
 	],
 	#category : #'Spec-Core-Support'
 }
@@ -146,15 +146,15 @@ WindowPresenter >> hasMenu [
 ]
 
 { #category : #testing }
-WindowPresenter >> hasStatusbar [
+WindowPresenter >> hasStatusBar [
 	
-	^ self statusbar notNil
+	^ self statusBar notNil
 ]
 
 { #category : #testing }
-WindowPresenter >> hasToolbar [
+WindowPresenter >> hasToolBar [
 	
-	^ self toolbar notNil
+	^ self toolBar notNil
 ]
 
 { #category : #api }
@@ -178,7 +178,7 @@ WindowPresenter >> initialize [
 	isResizeable := true asValueHolder.
 
 	menuHolder := nil asValueHolder.
-	toolbarHolder := nil asValueHolder.
+	toolBarHolder := nil asValueHolder.
 	statusbarHolder := nil asValueHolder.
 	
 	presenter whenChangedDo: [:m | self updateTitle ].
@@ -295,13 +295,13 @@ WindowPresenter >> rebuildWithSpecLayout: aSpec [
 ]
 
 { #category : #api }
-WindowPresenter >> statusbar [
+WindowPresenter >> statusBar [
 
 	^ statusbarHolder value
 ]
 
 { #category : #api }
-WindowPresenter >> statusbar: aStatusbarPresenter [
+WindowPresenter >> statusBar: aStatusbarPresenter [
 
 	^ statusbarHolder value: aStatusbarPresenter
 ]
@@ -325,15 +325,15 @@ WindowPresenter >> title: aString [
 ]
 
 { #category : #api }
-WindowPresenter >> toolbar [
+WindowPresenter >> toolBar [
 
-	^ toolbarHolder value
+	^ toolBarHolder value
 ]
 
 { #category : #api }
-WindowPresenter >> toolbar: aToolbarPresenter [
+WindowPresenter >> toolBar: aToolbarPresenter [
 
-	^ toolbarHolder value: aToolbarPresenter
+	^ toolBarHolder value: aToolbarPresenter
 ]
 
 { #category : #api }

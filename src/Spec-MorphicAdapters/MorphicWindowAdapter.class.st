@@ -37,12 +37,12 @@ MorphicWindowAdapter >> addContent: aMorph to: aSpecWindow [
 		yourself.
 
 	self model hasMenu ifTrue: [ self addMenuTo: containerMorph ].
-	self model hasToolbar ifTrue: [ self addToolbarTo: containerMorph ].
+	self model hasToolBar ifTrue: [ self addToolBarTo: containerMorph ].
 	containerMorph addMorphBack: aMorph.
 	aMorph
 		hResizing: #spaceFill;
 		vResizing: #spaceFill.
-	self model hasStatusbar ifTrue: [ self addStatusbarTo: containerMorph ].
+	self model hasStatusBar ifTrue: [ self addStatusBarTo: containerMorph ].
 	
 	aSpecWindow 
 		addMorph: containerMorph 
@@ -81,10 +81,10 @@ MorphicWindowAdapter >> addModelItemsToWindowMenu: aMenu [
 ]
 
 { #category : #private }
-MorphicWindowAdapter >> addStatusbarTo: aMorph [
+MorphicWindowAdapter >> addStatusBarTo: aMorph [
 	| statusBarMorph |
 
-	statusBarMorph := self model statusbar buildWithSpec.
+	statusBarMorph := self model statusBar buildWithSpec.
 	aMorph addMorph: statusBarMorph.	
 	statusBarMorph
 		hResizing: #spaceFill;
@@ -92,10 +92,10 @@ MorphicWindowAdapter >> addStatusbarTo: aMorph [
 ]
 
 { #category : #private }
-MorphicWindowAdapter >> addToolbarTo: aMorph [
+MorphicWindowAdapter >> addToolBarTo: aMorph [
 	| toolbarMorph |
 
-	toolbarMorph := self model menu buildWithSpec.
+	toolbarMorph := self model toolBar buildWithSpec.
 	aMorph addMorph: toolbarMorph.	
 	toolbarMorph
 		hResizing: #spaceFill;
