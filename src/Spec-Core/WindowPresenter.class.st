@@ -8,7 +8,10 @@ Class {
 		'presenter',
 		'initialExtent',
 		'isClosedHolder',
-		'isResizeable'
+		'isResizeable',
+		'menuHolder',
+		'toolbarHolder',
+		'statusbarHolder'
 	],
 	#category : #'Spec-Core-Support'
 }
@@ -64,11 +67,10 @@ WindowPresenter >> addModelIn: widget withSpec: aSpec [
 WindowPresenter >> addModelIn: widget withSpecLayout: aSpec [
 	self presenter ifNil: [ ^ self ].
 	
-	self
+	self presenter prepareWindow: self.
+	self 
 		changed: #addModelIn:withSpecLayout:
-		with:
-			{widget.
-			aSpec}
+		with: { widget. aSpec }
 ]
 
 { #category : #menu }
@@ -137,6 +139,24 @@ WindowPresenter >> giveFocusToPreviousFrom: aModel [
 	^ self presenter giveFocusToPreviousFrom: aModel 
 ]
 
+{ #category : #testing }
+WindowPresenter >> hasMenu [ 
+	
+	^ self menu notNil
+]
+
+{ #category : #testing }
+WindowPresenter >> hasStatusbar [
+	
+	^ self statusbar notNil
+]
+
+{ #category : #testing }
+WindowPresenter >> hasToolbar [
+	
+	^ self toolbar notNil
+]
+
 { #category : #api }
 WindowPresenter >> initialExtent [
 	^ initialExtent value
@@ -156,6 +176,10 @@ WindowPresenter >> initialize [
 	initialExtent := nil asValueHolder.
 	isClosedHolder := false asValueHolder.
 	isResizeable := true asValueHolder.
+
+	menuHolder := nil asValueHolder.
+	toolbarHolder := nil asValueHolder.
+	statusbarHolder := nil asValueHolder.
 	
 	presenter whenChangedDo: [:m | self updateTitle ].
 ]
@@ -187,6 +211,18 @@ WindowPresenter >> isResizeable: aBoolean [
 WindowPresenter >> maximize [
 
 	self changed: #maximize with: #()
+]
+
+{ #category : #api }
+WindowPresenter >> menu [ 
+
+	^ menuHolder value
+]
+
+{ #category : #api }
+WindowPresenter >> menu: aMenuPresenter [
+
+	^ menuHolder value: aMenuPresenter
 ]
 
 { #category : #api }
@@ -259,6 +295,18 @@ WindowPresenter >> rebuildWithSpecLayout: aSpec [
 ]
 
 { #category : #api }
+WindowPresenter >> statusbar [
+
+	^ statusbarHolder value
+]
+
+{ #category : #api }
+WindowPresenter >> statusbar: aStatusbarPresenter [
+
+	^ statusbarHolder value: aStatusbarPresenter
+]
+
+{ #category : #api }
 WindowPresenter >> taskbarIcon [
 	^ self presenter
 		ifNil: [ super taskbarIcon ]
@@ -274,6 +322,18 @@ WindowPresenter >> title [
 WindowPresenter >> title: aString [
 	self changed: #title: with: {aString}.
 	self presenter title: aString
+]
+
+{ #category : #api }
+WindowPresenter >> toolbar [
+
+	^ toolbarHolder value
+]
+
+{ #category : #api }
+WindowPresenter >> toolbar: aToolbarPresenter [
+
+	^ toolbarHolder value: aToolbarPresenter
 ]
 
 { #category : #api }

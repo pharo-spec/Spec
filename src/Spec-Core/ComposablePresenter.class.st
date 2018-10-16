@@ -893,8 +893,12 @@ ComposablePresenter >> openWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
 	(window value notNil and: [ self needRebuild not ])
-		ifTrue: [ window value rebuildWithSpecLayout: aSpec ]
-		ifFalse: [ window value: (self defaultWindowModelClass new presenter: self).
+		ifTrue: [ 
+			window value rebuildWithSpecLayout: aSpec ]
+		ifFalse: [ 
+			window value: (self defaultWindowModelClass new 
+				presenter: self;
+				yourself).
 			window value openWithSpecLayout: aSpec.
 			self takeKeyboardFocus ].
 	^ window value
@@ -910,6 +914,12 @@ ComposablePresenter >> owner [
 ComposablePresenter >> owner: anObject [
 
 	owner := anObject.
+]
+
+{ #category : #api }
+ComposablePresenter >> prepareWindow: aWindowPresenter [
+	"override this to set window values before opening. 
+	 You may want to add a menu, a toolbar or a statusbar"
 ]
 
 { #category : #'private-focus' }
