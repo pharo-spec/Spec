@@ -36,16 +36,13 @@ MorphicWindowAdapter >> addContent: aMorph to: aSpecWindow [
 		listDirection: #topToBottom; 
 		yourself.
 
-	self model hasMenu ifTrue: [ 
-		self addMenuTo: containerMorph ].
-	self model hasToolbar ifTrue: [ 
-		self addToolbarTo: containerMorph ].
+	self model hasMenu ifTrue: [ self addMenuTo: containerMorph ].
+	self model hasToolbar ifTrue: [ self addToolbarTo: containerMorph ].
 	containerMorph addMorphBack: aMorph.
 	aMorph
 		hResizing: #spaceFill;
 		vResizing: #spaceFill.
-	self model hasStatusbar ifTrue: [ 
-		self addStatusbarTo: containerMorph ].
+	self model hasStatusbar ifTrue: [ self addStatusbarTo: containerMorph ].
 	
 	aSpecWindow 
 		addMorph: containerMorph 
