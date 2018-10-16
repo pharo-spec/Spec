@@ -13,14 +13,6 @@ TickingWindowPresenter class >> adapterName [
 	^ #TickingWindowAdapter
 ]
 
-{ #category : #specs }
-TickingWindowPresenter class >> defaultSpec [
-	<spec>
-	
-	^ #(TickingWindowAdapter
-		adapt: #(model))
-]
-
 { #category : #stepping }
 TickingWindowPresenter >> step [
 	self presenter step

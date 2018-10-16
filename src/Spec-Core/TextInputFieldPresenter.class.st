@@ -42,14 +42,6 @@ TextInputFieldPresenter class >> adapterName [
 	^ #TextInputFieldAdapter
 ]
 
-{ #category : #specs }
-TextInputFieldPresenter class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(TextInputFieldAdapter
-		adapt: #(model))
-]
-
 { #category : #example }
 TextInputFieldPresenter class >> example [
 	<sampleInstance>

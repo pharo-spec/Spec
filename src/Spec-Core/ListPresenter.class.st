@@ -64,14 +64,6 @@ ListPresenter class >> adapterName [
 	^ #ListAdapter
 ]
 
-{ #category : #specs }
-ListPresenter class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(ListAdapter
-		adapt: #(model))
-]
-
 { #category : #example }
 ListPresenter class >> example [
 	<sampleInstance>

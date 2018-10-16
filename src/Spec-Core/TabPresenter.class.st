@@ -32,14 +32,6 @@ TabPresenter class >> adapterName [
 	^ #TabAdapter
 ]
 
-{ #category : #specs }
-TabPresenter class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(TabAdapter
-		adapt: #(model))
-]
-
 { #category : #api }
 TabPresenter >> actions [
 

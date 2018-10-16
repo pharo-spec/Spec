@@ -33,14 +33,6 @@ MenuGroupPresenter class >> adapterName [
 	^ #MenuGroupAdapter
 ]
 
-{ #category : #specs }
-MenuGroupPresenter class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(MenuGroupAdapter
-		adapt: #(model))
-]
-
 { #category : #api }
 MenuGroupPresenter >> addItem: aBlock [
 	| item |

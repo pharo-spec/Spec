@@ -17,14 +17,6 @@ DialogWindowPresenter class >> adapterName [
 	^ #DialogWindowAdapter
 ]
 
-{ #category : #specs }
-DialogWindowPresenter class >> defaultSpec [
-	<spec>
-	
-	^ #(DialogWindowAdapter
-		adapt: #(model))
-]
-
 { #category : #private }
 DialogWindowPresenter >> buildWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument"

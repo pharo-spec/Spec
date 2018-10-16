@@ -41,14 +41,6 @@ ButtonPresenter class >> adapterName [
 	^ #ButtonAdapter
 ]
 
-{ #category : #specs }
-ButtonPresenter class >> defaultSpec [
-	<spec>
-	
-	^ #(ButtonAdapter
-		adapt: #(model))
-]
-
 { #category : #example }
 ButtonPresenter class >> example [
 	<sampleInstance>
