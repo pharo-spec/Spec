@@ -344,14 +344,13 @@ ComposablePresenter >> centerWidget: aWindow [
 
 { #category : #api }
 ComposablePresenter >> centered [
-
-	window value ifNotNil: [ :w | w centered ]
+	self presenterWindow ifNotNil: [ :w | w centered ]
 ]
 
 { #category : #api }
 ComposablePresenter >> centeredRelativeTo: aModel [
 
-	window value ifNotNil: [ :w | w centeredRelativeTo: aModel ]
+	self presenterWindow ifNotNil: [ :w | w centeredRelativeTo: aModel ]
 ]
 
 { #category : #'instance creation' }
@@ -403,10 +402,7 @@ ComposablePresenter >> defaultWindowPresenterClass [
 
 { #category : #private }
 ComposablePresenter >> delete [
-
-	window value
-		ifNil: [ self changed: #delete with: #() ]
-		ifNotNil: [ :w | w delete ]
+	self presenterWindow ifNil: [ self changed: #delete with: #() ] ifNotNil: [ :w | w delete ]
 ]
 
 { #category : #api }
@@ -874,14 +870,14 @@ ComposablePresenter >> openDialogWithSpec: aSpec [
 ComposablePresenter >> openDialogWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
-	(window value notNil and: [ self needRebuild not ])
-		ifTrue: [ window value rebuildWithSpec: aSpec ]
-		ifFalse: [ window value: (DialogWindowPresenter new presenter: self).
-			window value openWithSpecLayout: aSpec.
-			self initializeDialogWindow: window value.
-			window value updateTitle.
+	(self presenterWindow notNil and: [ self needRebuild not ])
+		ifTrue: [ self presenterWindow rebuildWithSpec: aSpec ]
+		ifFalse: [ self presenterWindow: (DialogWindowPresenter new presenter: self).
+			self presenterWindow openWithSpecLayout: aSpec.
+			self initializeDialogWindow: self presenterWindow.
+			self presenterWindow updateTitle.
 			self takeKeyboardFocus ].
-	^ window value
+	^ self presenterWindow
 ]
 
 { #category : #api }
@@ -902,12 +898,12 @@ ComposablePresenter >> openWithSpec: aSpec [
 ComposablePresenter >> openWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
-	(window value notNil and: [ self needRebuild not ])
-		ifTrue: [ window value rebuildWithSpecLayout: aSpec ]
-		ifFalse: [ window value: (self defaultWindowPresenterClass new presenter: self).
-			window value openWithSpecLayout: aSpec.
+	(self presenterWindow notNil and: [ self needRebuild not ])
+		ifTrue: [ self presenterWindow rebuildWithSpecLayout: aSpec ]
+		ifFalse: [ self presenterWindow: (self defaultWindowPresenterClass new presenter: self).
+			self presenterWindow openWithSpecLayout: aSpec.
 			self takeKeyboardFocus ].
-	^ window value
+	^ self presenterWindow
 ]
 
 { #category : #accessing }
@@ -920,6 +916,16 @@ ComposablePresenter >> owner [
 ComposablePresenter >> owner: anObject [
 
 	owner := anObject.
+]
+
+{ #category : #accessing }
+ComposablePresenter >> presenterWindow [
+	^ window value
+]
+
+{ #category : #accessing }
+ComposablePresenter >> presenterWindow: aWindow [
+	window value: aWindow
 ]
 
 { #category : #'private-focus' }
@@ -1112,12 +1118,7 @@ ComposablePresenter >> widget [
 
 { #category : #accessing }
 ComposablePresenter >> window [
-
-	^ window value
-		ifNil: [
-			owner
-				ifNil: [ nil ]
-				ifNotNil: [:o | o window ]]
+	^ self presenterWindow ifNil: [ owner ifNotNil: [ :o | o window ] ]
 ]
 
 { #category : #api }
