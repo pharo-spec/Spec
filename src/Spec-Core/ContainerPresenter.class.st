@@ -16,15 +16,6 @@ ContainerPresenter class >> adapterName [
 	^ #ContainerAdapter
 ]
 
-{ #category : #api }
-ContainerPresenter >> buildAdapterWithSpec [
-	| adapter widget |
-	adapter := self adapterFromSelector: self defaultSpecSelector.
-	widget := adapter widget.
-	self setExtentAndBindingTo: widget.
-	^ adapter
-]
-
 { #category : #'api-focus' }
 ContainerPresenter >> eventKeyStrokesForNextFocus [
 	"String describing the keystroke to perform to jump to the next widget"

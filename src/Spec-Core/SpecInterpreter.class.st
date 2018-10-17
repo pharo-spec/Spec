@@ -81,7 +81,7 @@ SpecInterpreter >> computeSpecFrom: aSymbol [
 		ifTrue: [ | result |
 			result := self convertSymbolOfClassToInstance: aSymbol.
 			result isSpecContainer
-				ifTrue: [ result := result buildAdapterWithSpec.
+				ifTrue: [ result := self getAdaptorWithDefaultSpecOf: result.
 					self presenter addDependent: result ].
 			result ]
 		ifFalse: [ self class interpretASpec: aSymbol presenter: self presenter ]
@@ -115,6 +115,11 @@ SpecInterpreter >> extractArrayToInterpretFrom: aFragment [
 				ifTrue: [ self presenter ]
 				ifFalse: [ self convertSymbolOfClassToInstance: aFragment ] ].
 	^ nil
+]
+
+{ #category : #'interpreting-private' }
+SpecInterpreter >> getAdaptorWithDefaultSpecOf: result [
+	^ result buildAdapterWithSpecLayout: (result retrieveSpec: result defaultSpecSelector)
 ]
 
 { #category : #interpreting }
@@ -218,6 +223,6 @@ SpecInterpreter >> returnInterpretationOf: newInstance [
 	self presenter spec: spec.
 	result := self class interpretASpec: newInstance presenter: spec.
 	^ (result isKindOf: ComposablePresenter)
-		ifTrue: [ result buildAdapterWithSpecLayout: (result retrieveSpec: result defaultSpecSelector) ]
+		ifTrue: [ self getAdaptorWithDefaultSpecOf: result ]
 		ifFalse: [ result ]
 ]
