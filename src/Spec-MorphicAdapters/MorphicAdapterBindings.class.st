@@ -28,6 +28,7 @@ MorphicAdapterBindings >> initializeBindings [
 		at: #FastTableAdapter			put: #MorphicFastTableAdapter;
 		at: #ImageAdapter			put: #MorphicImageAdapter;
 		at: #MultiColumnListAdapter	put: #MorphicMultiColumnListAdapter;
+		at: #MenuBarAdapter			put: #MorphicMenuAdapter;
 		at: #MenuAdapter				put: #MorphicMenuAdapter;
 		at: #MenuGroupAdapter		put: #MorphicMenuGroupAdapter;
 		at: #MenuItemAdapter			put: #MorphicMenuItemAdapter;
