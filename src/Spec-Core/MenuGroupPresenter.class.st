@@ -53,6 +53,7 @@ MenuGroupPresenter >> addItem: aBlock [
 { #category : #private }
 MenuGroupPresenter >> addMenuItem: aMenuItem [
 
+	aMenuItem owner: self.
 	items add: aMenuItem.
 	self autoRefresh 
 		ifNotNil: [ aMenuItem autoRefresh: self autoRefresh ]

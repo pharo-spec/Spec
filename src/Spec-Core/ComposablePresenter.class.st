@@ -971,6 +971,14 @@ ComposablePresenter >> retrieveSpec: aSelector [
 	^ self class perform: aSelector
 ]
 
+{ #category : #accessing }
+ComposablePresenter >> root [ 
+
+	^ self owner 
+		ifNotNil: [ self owner root ]
+		ifNil: [ self ]
+]
+
 { #category : #api }
 ComposablePresenter >> setExtentAndBindingTo: widget [
 
