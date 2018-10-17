@@ -250,7 +250,7 @@ ComposablePresenter >> addMenuItemsToWindowMenu: aMenu [
 { #category : #'api-shortcuts' }
 ComposablePresenter >> additionalKeyBindings [
 
-	^ additionalKeyBindings value
+	^ additionalKeyBindings
 ]
 
 { #category : #api }
@@ -289,7 +289,7 @@ ComposablePresenter >> askOkToClose: aBoolean [
 { #category : #'api-shortcuts' }
 ComposablePresenter >> bindKeyCombination: aShortcut toAction: aBlock [
 
-	additionalKeyBindings at: aShortcut put: aBlock.
+	self additionalKeyBindings at: aShortcut put: aBlock.
 	
 	self changed: #bindKeyCombination:toAction: with: {aShortcut . aBlock}
 ]
@@ -297,7 +297,7 @@ ComposablePresenter >> bindKeyCombination: aShortcut toAction: aBlock [
 { #category : #'api-shortcuts' }
 ComposablePresenter >> bindMenuKeyCombination: aShortcut toAction: aBlock [
 
-	additionalKeyBindings at: aShortcut put: aBlock.
+	self additionalKeyBindings at: aShortcut put: aBlock.
 	
 	self changed: #bindMenuKeyCombination:toAction: with: {aShortcut . aBlock}
 ]
@@ -434,7 +434,7 @@ ComposablePresenter >> ensureKeyBindingsFor: aWidget [
 	self registerKeyStrokesForNextFor: aWidget.
 	self registerKeyStrokesForPreviousFor: aWidget.
 	
-	additionalKeyBindings associationsDo: [:association | aWidget bindKeyCombination: association key toAction: association value ]
+	self additionalKeyBindings associationsDo: [:association | aWidget bindKeyCombination: association key toAction: association value ]
 ]
 
 { #category : #'api-focus' }
@@ -948,21 +948,17 @@ ComposablePresenter >> registerKeyStrokesForPreviousFor: aWidget [
 { #category : #'api-shortcuts' }
 ComposablePresenter >> removeKeyCombination: aShortcut [
 
-	additionalKeyBindings 
-		removeKey: aShortcut 
-		ifAbsent: [ ^ self ].
+	self additionalKeyBindings removeKey: aShortcut ifAbsent: [ ^ self ].
 	
-	self changed: #removeKeyCombination: with: { aShortcut }
+	self changed: #removeKeyCombination: with: {aShortcut}
 ]
 
 { #category : #'api-shortcuts' }
 ComposablePresenter >> removeMenuKeyCombination: aShortcut [
 
-	additionalKeyBindings 
-		removeKey: aShortcut 
-		ifAbsent: [ ^ self ].
+	self additionalKeyBindings removeKey: aShortcut ifAbsent: [ ^ self ].
 	
-	self changed: #removeMenuKeyCombination: with: { aShortcut }
+	self changed: #removeMenuKeyCombination: with: {aShortcut}
 ]
 
 { #category : #'instance creation' }
@@ -1095,7 +1091,8 @@ ComposablePresenter >> whenBuiltDo: aBlock [
 { #category : #'api-events' }
 ComposablePresenter >> whenShortcutsChanged: aBlock [
 	"Set a block to value when the shortcuts block has changed"
-	additionalKeyBindings whenChangedDo: aBlock
+	
+	self additionalKeyBindings whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
