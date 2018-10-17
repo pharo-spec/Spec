@@ -119,7 +119,7 @@ SpecInterpreter >> extractArrayToInterpretFrom: aFragment [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> getAdaptorWithDefaultSpecOf: result [
-	^ result buildAdapterWithSpecLayout: (result retrieveSpec: result defaultSpecSelector)
+	^ result buildAdapterWithSpecLayout: result retrieveDefaultSpec
 ]
 
 { #category : #interpreting }

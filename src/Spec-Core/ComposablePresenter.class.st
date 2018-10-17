@@ -221,11 +221,6 @@ ComposablePresenter >> adapterFrom: aSpecLayout [
 	^ SpecInterpreter interpretASpec: aSpecLayout presenter: self
 ]
 
-{ #category : #api }
-ComposablePresenter >> adapterFromSelector: aSymbol [
-	^ self adapterFrom: (self retrieveSpec: aSymbol)
-]
-
 { #category : #private }
 ComposablePresenter >> addAll: aWindow withSpec: aSpec [
 
@@ -965,6 +960,11 @@ ComposablePresenter >> removeMenuKeyCombination: aShortcut [
 ComposablePresenter >> resolveSymbol: aSymbol [
 
 	^ Smalltalk at: aSymbol
+]
+
+{ #category : #api }
+ComposablePresenter >> retrieveDefaultSpec [
+	^ self retrieveSpec: self defaultSpecSelector
 ]
 
 { #category : #api }
