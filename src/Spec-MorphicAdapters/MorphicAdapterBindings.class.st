@@ -26,24 +26,28 @@ MorphicAdapterBindings >> initializeBindings [
 		at: #ListAdapter				put: #MorphicListAdapter;
 		at: #IconListAdapter			put: #MorphicIconListAdapter;
 		at: #FastTableAdapter			put: #MorphicFastTableAdapter;
-		at: #ImageAdapter			put: #MorphicImageAdapter;
+		at: #ImageAdapter				put: #MorphicImageAdapter;
 		at: #MultiColumnListAdapter	put: #MorphicMultiColumnListAdapter;
-		at: #MenuBarAdapter			put: #MorphicMenuAdapter;
-		at: #MenuAdapter				put: #MorphicMenuAdapter;
-		at: #MenuGroupAdapter		put: #MorphicMenuGroupAdapter;
-		at: #MenuItemAdapter			put: #MorphicMenuItemAdapter;
 		at: #RadioButtonAdapter		put: #MorphicRadioButtonAdapter;
 		at: #SliderAdapter				put: #MorphicSliderAdapter;
 		at: #TabManagerAdapter		put: #MorphicTabManagerAdapter;
-		at: #TabAdapter				put: #MorphicTabAdapter;
+		at: #TabAdapter					put: #MorphicTabAdapter;
 		at: #TextAdapter				put: #MorphicTextAdapter;
-		at: #TextInputFieldAdapter		put: #MorphicTextInputFieldAdapter;
+		at: #TextInputFieldAdapter	put: #MorphicTextInputFieldAdapter;
 		at: #TransferAdapter			put: #MorphicTransferAdapter;
 		at: #TreeAdapter				put: #MorphicTreeAdapter;
 		at: #TreeColumnAdapter		put: #MorphicTreeColumnAdapter;
 		at: #TreeNodeAdapter			put: #MorphicTreeNodeAdapter;
-		at: #WindowAdapter			put: #MorphicWindowAdapter;
+		at: #WindowAdapter				put: #MorphicWindowAdapter;
 		at: #TickingWindowAdapter	put: #MorphicTickingWindowAdapter;
 		at: #DialogWindowAdapter		put: #MorphicDialogWindowAdapter;
+		"menu"
+		at: #MenuBarAdapter			put: #MorphicMenuAdapter;
+		at: #MenuAdapter				put: #MorphicMenuAdapter;
+		at: #MenuGroupAdapter			put: #MorphicMenuGroupAdapter;
+		at: #MenuItemAdapter			put: #MorphicMenuItemAdapter;
+		"toolBar"
+		at: #ToolBarAdapter			put: #MorphicToolBarAdapter;
+		at: #ToolBarButtonAdapter	put: #MorphicToolBarButtonAdapter;
 		yourself
 ]

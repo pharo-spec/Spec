@@ -1,0 +1,50 @@
+Class {
+	#name : #MorphicToolBarAdapter,
+	#superclass : #AbstractMorphicAdapter,
+	#category : #'Spec-MorphicAdapters-Base'
+}
+
+{ #category : #factory }
+MorphicToolBarAdapter >> addModelTo: toolBarMorph [
+
+	self model items 
+		at: ITItemPosition left 
+		ifPresent: [ :items |
+			items do: [ :each | 
+				toolBarMorph addItemLeft: (self 
+					configureItem: each 
+					morph: each buildWithSpec 
+					toolBar: toolBarMorph) ] ].
+	self model items 
+		at: ITItemPosition right 
+		ifPresent: [ :items |
+			items do: [ :each | 
+				toolBarMorph addItemRight: (self 
+					configureItem: each 
+					morph: each buildWithSpec 
+					toolBar: toolBarMorph) ] ]
+]
+
+{ #category : #factory }
+MorphicToolBarAdapter >> buildWidget [
+	| toolBarMorph |
+	
+	toolBarMorph := ToolBarMorph new.
+	self addModelTo: toolBarMorph.
+	
+	^ toolBarMorph
+]
+
+{ #category : #factory }
+MorphicToolBarAdapter >> configureItem: itemModel morph: itemMorph toolBar: toolBarMorph [
+	
+	itemMorph 
+		font: toolBarMorph toolbarItemFont;
+		width: toolBarMorph toolbarItemSize.
+	
+	toolBarMorph displayMode 
+		configureButton: itemMorph 
+		item: itemModel.
+		
+	^ itemMorph
+]
