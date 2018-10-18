@@ -54,7 +54,7 @@ MorphicWindowAdapter >> addMenuTo: aMorph [
 	| menuMorph |
 
 	menuMorph := self model menu buildWithSpec.
-	aMorph addMorph: menuMorph.	
+	aMorph addMorphBack: menuMorph.	
 	menuMorph
 		hResizing: #spaceFill;
 		vResizing: #rigid
@@ -85,7 +85,7 @@ MorphicWindowAdapter >> addStatusBarTo: aMorph [
 	| statusBarMorph |
 
 	statusBarMorph := self model statusBar buildWithSpec.
-	aMorph addMorph: statusBarMorph.	
+	aMorph addMorphBack: statusBarMorph.	
 	statusBarMorph
 		hResizing: #spaceFill;
 		vResizing: #rigid
@@ -96,7 +96,7 @@ MorphicWindowAdapter >> addToolBarTo: aMorph [
 	| toolbarMorph |
 
 	toolbarMorph := self model toolBar buildWithSpec.
-	aMorph addMorph: toolbarMorph.	
+	aMorph addMorphBack: toolbarMorph.	
 	toolbarMorph
 		hResizing: #spaceFill;
 		vResizing: #rigid
