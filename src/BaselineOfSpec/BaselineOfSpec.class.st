@@ -17,7 +17,7 @@ BaselineOfSpec >> addHackToLoadSpec [
 		link:
 			(MetaLink new
 				metaObject: #receiver;
-				selector: #warnAboutLosingChangesForSpecTo:ifCancel:ifMerge:;
+				selector: #warnAboutLosingChangesForSpec:;
 				arguments: #(#arguments);
 				control: #instead)
 ]
