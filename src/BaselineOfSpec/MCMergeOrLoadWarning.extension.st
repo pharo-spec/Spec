@@ -14,6 +14,7 @@ MCMergeOrLoadWarning >> defaultAction [
 { #category : #'*BaselineOfSpec' }
 MCMergeOrLoadWarning >> pass [
 	'Pass' crLog.
+	handlerContext nextHandlerContext crLog.
 	super pass
 ]
 
