@@ -44,9 +44,13 @@ BaselineOfSpec >> shouldInstallHackedUIManager [
 { #category : #'pre/post load' }
 BaselineOfSpec >> useCustomUIManager [
 	"Metacello pop some UIManager request during the loading of Spec. This cause a problem so we register a new UIManager if we are in non interactive mode that will always say to load the code in anycase."
-	UIManager default crLog.
+	
+	'UIManager: ' crLog.
+	UIManager default log.
 	self shouldInstallHackedUIManager ifFalse: [ ^ self ].
 	
 	currentManager := UIManager default.
-	UIManager default: InImageProjectLoadingUIManager new
+	UIManager default: InImageProjectLoadingUIManager new.
+	'UIManager: ' crLog. 
+	UIManager default log.
 ]
