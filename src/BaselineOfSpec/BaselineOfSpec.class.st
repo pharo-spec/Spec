@@ -38,13 +38,13 @@ BaselineOfSpec >> restoreOldUIManager [
 
 { #category : #'pre/post load' }
 BaselineOfSpec >> shouldInstallHackedUIManager [
-	^ {CommandLineUIManager.	NonInteractiveUIManager} anySatisfy: [ :e | UIManager default isKindOf: e ]
+	^ {CommandLineUIManager. NonInteractiveUIManager} anySatisfy: [ :e | UIManager default isKindOf: e ]
 ]
 
 { #category : #'pre/post load' }
 BaselineOfSpec >> useCustomUIManager [
 	"Metacello pop some UIManager request during the loading of Spec. This cause a problem so we register a new UIManager if we are in non interactive mode that will always say to load the code in anycase."
-
+	UIManager default crLog.
 	self shouldInstallHackedUIManager ifFalse: [ ^ self ].
 	
 	currentManager := UIManager default.

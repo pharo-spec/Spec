@@ -8,7 +8,7 @@ I am used by the baseline of Spec because during the loading of Spec Metacello w
 "
 Class {
 	#name : #InImageProjectLoadingUIManager,
-	#superclass : #NonInteractiveUIManager,
+	#superclass : #CommandLineUIManager,
 	#category : #BaselineOfSpec
 }
 
