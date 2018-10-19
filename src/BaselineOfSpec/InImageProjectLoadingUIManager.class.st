@@ -16,3 +16,21 @@ Class {
 InImageProjectLoadingUIManager >> confirm: queryString trueChoice: trueChoice falseChoice: falseChoice cancelChoice: cancelChoice default: aSymbol [
 	^ true
 ]
+
+{ #category : #'ui requests' }
+InImageProjectLoadingUIManager >> warningDefaultAction: aWarning [
+	| logBlock |
+	"Pass all warnings, but log them"
+	
+	logBlock := [:logger |
+		logger 
+			cr;
+			nextPutAll: '*** Warning: ';
+			nextPutAll: aWarning description;
+			cr ].
+	
+	Smalltalk logDuring: logBlock.
+	self logYellowDuring: logBlock.
+	
+	aWarning pass
+]
