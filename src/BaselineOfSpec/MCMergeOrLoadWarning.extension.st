@@ -10,3 +10,11 @@ MCMergeOrLoadWarning >> defaultAction [
 		cancelChoice: 'Cancel' translated
 		default: nil
 ]
+
+{ #category : #'*BaselineOfSpec' }
+MCMergeOrLoadWarning class >> signalFor: aVersionCollection [
+	'Signal merge or load ' crLog.
+	^ self new
+		versions: aVersionCollection;
+		signal
+]
