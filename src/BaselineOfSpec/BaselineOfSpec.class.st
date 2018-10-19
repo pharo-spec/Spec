@@ -13,13 +13,13 @@ BaselineOfSpec >> addHackToLoadSpec [
 
 	self shouldInstallHack ifFalse: [ ^ self ].
 	
-	link := (MCVersionLoader >> #warnAboutLosingChangesTo:ifCancel:ifMerge:) ast
-		link:
-			(MetaLink new
-				metaObject: #receiver;
-				selector: #warnAboutLosingChangesForSpec:;
-				arguments: #(#arguments);
-				control: #instead)
+	link := MetaLink new
+		metaObject: #receiver;
+		selector: #warnAboutLosingChangesForSpec:;
+		arguments: #(#arguments);
+		control: #instead.
+		
+	(MCVersionLoader >> #warnAboutLosingChangesTo:ifCancel:ifMerge:) ast link: link
 ]
 
 { #category : #baseline }
