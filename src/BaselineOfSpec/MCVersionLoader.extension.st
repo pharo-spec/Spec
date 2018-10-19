@@ -1,6 +1,6 @@
 Extension { #name : #MCVersionLoader }
 
 { #category : #'*BaselineOfSpec' }
-MCVersionLoader >> warnAboutLosingChangesForSpecTo: anArray [
+MCVersionLoader >> warnAboutLosingChangesForSpec: anArray [
 	"Do nothing for Spec"
 ]
