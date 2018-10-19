@@ -12,6 +12,18 @@ MCMergeOrLoadWarning >> defaultAction [
 ]
 
 { #category : #'*BaselineOfSpec' }
+MCMergeOrLoadWarning >> pass [
+	'Pass' crLog.
+	super pass
+]
+
+{ #category : #'*BaselineOfSpec' }
+MCMergeOrLoadWarning >> resume [
+	'resume' crLog.
+	super resume
+]
+
+{ #category : #'*BaselineOfSpec' }
 MCMergeOrLoadWarning class >> signalFor: aVersionCollection [
 	'Signal merge or load ' crLog.
 	^ self new
