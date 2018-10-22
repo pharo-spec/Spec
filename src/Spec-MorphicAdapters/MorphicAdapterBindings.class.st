@@ -41,6 +41,8 @@ MorphicAdapterBindings >> initializeBindings [
 		at: #WindowAdapter				put: #MorphicWindowAdapter;
 		at: #TickingWindowAdapter	put: #MorphicTickingWindowAdapter;
 		at: #DialogWindowAdapter		put: #MorphicDialogWindowAdapter;
+		at: #TableContainerAdapter 	put: #MorphicTableContainerAdapter;
+		at: #SpacerAdapter 			put: #MorphicSpacerAdapter;
 		"menu"
 		at: #MenuBarAdapter			put: #MorphicMenuAdapter;
 		at: #MenuAdapter				put: #MorphicMenuAdapter;
