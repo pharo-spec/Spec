@@ -22,14 +22,6 @@ WindowPresenter class >> adapterName [
 	^ #WindowAdapter
 ]
 
-{ #category : #specs }
-WindowPresenter class >> defaultSpec [
-	<spec>
-	
-	^ #(WindowAdapter
-		adapt: #(model))
-]
-
 { #category : #api }
 WindowPresenter >> aboutText [
 	"if my aboutText has not been set the fallback is:
@@ -86,17 +78,14 @@ WindowPresenter >> askOkToClose [
 { #category : #private }
 WindowPresenter >> buildWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument"
+
 	| adapter widget |
-	
 	(self spec notNil and: [ self needRebuild not ])
-		ifTrue: [ 
-			widget := self spec instance ]
-		ifFalse: [ 
-			adapter := self adapterFromSelector: self defaultSpecSelector.
+		ifTrue: [ widget := self widget ]
+		ifFalse: [ adapter := self adapterFrom: self retrieveDefaultSpec.
 			widget := adapter widget.
 			self addModelIn: widget withSpecLayout: aSpec ].
 	self ensureExtentFor: widget.
-	
 	^ widget
 ]
 

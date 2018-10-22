@@ -14,3 +14,8 @@ Class {
 	#superclass : #DynamicVariable,
 	#category : #'Spec-Core-Support'
 }
+
+{ #category : #accessing }
+SpecBindings >> default [
+	^ self class environment at: #MorphicAdapterBindings
+]

@@ -50,6 +50,7 @@ AbstractWidgetPresenter class >> adapterName [
 
 { #category : #specs }
 AbstractWidgetPresenter class >> defaultSpec [
+	<spec: #default>
 
 	^ { self adapterName. #adapt:. #model }
 ]

@@ -29,14 +29,6 @@ LabelPresenter class >> adapterName [
 ]
 
 { #category : #specs }
-LabelPresenter class >> defaultSpec [
-	<spec>
-	
-	^ #(LabelAdapter
-		adapt: #(model))
-]
-
-{ #category : #specs }
 LabelPresenter class >> title [
 
 	^ 'Label Morph'

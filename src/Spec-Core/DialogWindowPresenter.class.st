@@ -17,23 +17,15 @@ DialogWindowPresenter class >> adapterName [
 	^ #DialogWindowAdapter
 ]
 
-{ #category : #specs }
-DialogWindowPresenter class >> defaultSpec [
-	<spec>
-	
-	^ #(DialogWindowAdapter
-		adapt: #(model))
-]
-
 { #category : #private }
 DialogWindowPresenter >> buildWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument"
 
 	| widget |
 	(self spec notNil and: [ self needRebuild not ])
-		ifTrue: [ widget := self spec instance ]
+		ifTrue: [ widget := self widget ]
 		ifFalse: [ contents := self presenter buildWithSpecLayout: aSpec.
-			widget := self adapterFromSelector: self defaultSpecSelector.
+			widget := self adapterFrom: self retrieveDefaultSpec.
 			contents := nil ].
 	self extent
 		ifNotNil: [ :ex | 

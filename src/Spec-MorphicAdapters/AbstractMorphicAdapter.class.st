@@ -9,7 +9,6 @@ Class {
 
 { #category : #specs }
 AbstractMorphicAdapter class >> defaultSpec [
-
 	^ SpecLayout composed
 ]
 

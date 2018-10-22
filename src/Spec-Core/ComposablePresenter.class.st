@@ -221,11 +221,6 @@ ComposablePresenter >> adapterFrom: aSpecLayout [
 	^ SpecInterpreter interpretASpec: aSpecLayout presenter: self
 ]
 
-{ #category : #api }
-ComposablePresenter >> adapterFromSelector: aSymbol [
-	^ self adapterFrom: (self retrieveSpec: aSymbol)
-]
-
 { #category : #private }
 ComposablePresenter >> addAll: aWindow withSpec: aSpec [
 
@@ -250,7 +245,7 @@ ComposablePresenter >> addMenuItemsToWindowMenu: aMenu [
 { #category : #'api-shortcuts' }
 ComposablePresenter >> additionalKeyBindings [
 
-	^ additionalKeyBindings value
+	^ additionalKeyBindings
 ]
 
 { #category : #api }
@@ -289,7 +284,7 @@ ComposablePresenter >> askOkToClose: aBoolean [
 { #category : #'api-shortcuts' }
 ComposablePresenter >> bindKeyCombination: aShortcut toAction: aBlock [
 
-	additionalKeyBindings at: aShortcut put: aBlock.
+	self additionalKeyBindings at: aShortcut put: aBlock.
 	
 	self changed: #bindKeyCombination:toAction: with: {aShortcut . aBlock}
 ]
@@ -297,7 +292,7 @@ ComposablePresenter >> bindKeyCombination: aShortcut toAction: aBlock [
 { #category : #'api-shortcuts' }
 ComposablePresenter >> bindMenuKeyCombination: aShortcut toAction: aBlock [
 
-	additionalKeyBindings at: aShortcut put: aBlock.
+	self additionalKeyBindings at: aShortcut put: aBlock.
 	
 	self changed: #bindMenuKeyCombination:toAction: with: {aShortcut . aBlock}
 ]
@@ -349,14 +344,13 @@ ComposablePresenter >> centerWidget: aWindow [
 
 { #category : #api }
 ComposablePresenter >> centered [
-
-	window value ifNotNil: [ :w | w centered ]
+	self presenterWindow ifNotNil: [ :w | w centered ]
 ]
 
 { #category : #api }
 ComposablePresenter >> centeredRelativeTo: aModel [
 
-	window value ifNotNil: [ :w | w centeredRelativeTo: aModel ]
+	self presenterWindow ifNotNil: [ :w | w centeredRelativeTo: aModel ]
 ]
 
 { #category : #'instance creation' }
@@ -396,15 +390,19 @@ ComposablePresenter >> defaultSpecSelector [
 
 { #category : #accessing }
 ComposablePresenter >> defaultWindowModelClass [ 
+	self deprecated: 'Use #defaultWindowPresenterClass instead' transformWith: '`@receiver defaultWindowModelClass' -> '`@receiver defaultWindowPresenterClass'.
+	
+	^ self defaultWindowPresenterClass
+]
+
+{ #category : #accessing }
+ComposablePresenter >> defaultWindowPresenterClass [ 
 	^ WindowPresenter
 ]
 
 { #category : #private }
 ComposablePresenter >> delete [
-
-	window value
-		ifNil: [ self changed: #delete with: #() ]
-		ifNotNil: [ :w | w delete ]
+	self presenterWindow ifNil: [ self changed: #delete with: #() ] ifNotNil: [ :w | w delete ]
 ]
 
 { #category : #api }
@@ -427,7 +425,7 @@ ComposablePresenter >> ensureKeyBindingsFor: aWidget [
 	self registerKeyStrokesForNextFor: aWidget.
 	self registerKeyStrokesForPreviousFor: aWidget.
 	
-	additionalKeyBindings associationsDo: [:association | aWidget bindKeyCombination: association key toAction: association value ]
+	self additionalKeyBindings associationsDo: [:association | aWidget bindKeyCombination: association key toAction: association value ]
 ]
 
 { #category : #'api-focus' }
@@ -641,6 +639,14 @@ ComposablePresenter >> instantiate: aComposablePresenterClass [
 ComposablePresenter >> instantiate: aComposablePresenterClass on: aModel [
 	"Instantiate a ComposablePresenter subclass and set its instance owner and model"
 	^ aComposablePresenterClass owner: self on: aModel
+]
+
+{ #category : #'instance creation' }
+ComposablePresenter >> instantiateModels: aCollectionOfPairs [
+	
+	self deprecated: 'Use #instantiatePresenters: instead' transformWith: '`@receiver instantiateModels: `@statement' -> '`@receiver instantiatePresenters: `@statement'.
+
+	^ self instantiatePresenters: aCollectionOfPairs
 ]
 
 { #category : #'instance creation' }
@@ -864,14 +870,14 @@ ComposablePresenter >> openDialogWithSpec: aSpec [
 ComposablePresenter >> openDialogWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
-	(window value notNil and: [ self needRebuild not ])
-		ifTrue: [ window value rebuildWithSpec: aSpec ]
-		ifFalse: [ window value: (DialogWindowPresenter new presenter: self).
-			window value openWithSpecLayout: aSpec.
-			self initializeDialogWindow: window value.
-			window value updateTitle.
+	(self presenterWindow notNil and: [ self needRebuild not ])
+		ifTrue: [ self presenterWindow rebuildWithSpec: aSpec ]
+		ifFalse: [ self presenterWindow: (DialogWindowPresenter new presenter: self).
+			self presenterWindow openWithSpecLayout: aSpec.
+			self initializeDialogWindow: self presenterWindow.
+			self presenterWindow updateTitle.
 			self takeKeyboardFocus ].
-	^ window value
+	^ self presenterWindow
 ]
 
 { #category : #api }
@@ -892,16 +898,12 @@ ComposablePresenter >> openWithSpec: aSpec [
 ComposablePresenter >> openWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
-	(window value notNil and: [ self needRebuild not ])
-		ifTrue: [ 
-			window value rebuildWithSpecLayout: aSpec ]
-		ifFalse: [ 
-			window value: (self defaultWindowModelClass new 
-				presenter: self;
-				yourself).
-			window value openWithSpecLayout: aSpec.
+	(self presenterWindow notNil and: [ self needRebuild not ])
+		ifTrue: [ self presenterWindow rebuildWithSpecLayout: aSpec ]
+		ifFalse: [ self presenterWindow: (self defaultWindowPresenterClass new presenter: self).
+			self presenterWindow openWithSpecLayout: aSpec.
 			self takeKeyboardFocus ].
-	^ window value
+	^ self presenterWindow
 ]
 
 { #category : #accessing }
@@ -920,6 +922,16 @@ ComposablePresenter >> owner: anObject [
 ComposablePresenter >> prepareWindow: aWindowPresenter [
 	"override this to set window values before opening. 
 	 You may want to add a menu, a toolbar or a statusbar"
+]
+
+{ #category : #accessing }
+ComposablePresenter >> presenterWindow [
+	^ window value
+]
+
+{ #category : #accessing }
+ComposablePresenter >> presenterWindow: aWindow [
+	window value: aWindow
 ]
 
 { #category : #'private-focus' }
@@ -943,27 +955,28 @@ ComposablePresenter >> registerKeyStrokesForPreviousFor: aWidget [
 { #category : #'api-shortcuts' }
 ComposablePresenter >> removeKeyCombination: aShortcut [
 
-	additionalKeyBindings 
-		removeKey: aShortcut 
-		ifAbsent: [ ^ self ].
+	self additionalKeyBindings removeKey: aShortcut ifAbsent: [ ^ self ].
 	
-	self changed: #removeKeyCombination: with: { aShortcut }
+	self changed: #removeKeyCombination: with: {aShortcut}
 ]
 
 { #category : #'api-shortcuts' }
 ComposablePresenter >> removeMenuKeyCombination: aShortcut [
 
-	additionalKeyBindings 
-		removeKey: aShortcut 
-		ifAbsent: [ ^ self ].
+	self additionalKeyBindings removeKey: aShortcut ifAbsent: [ ^ self ].
 	
-	self changed: #removeMenuKeyCombination: with: { aShortcut }
+	self changed: #removeMenuKeyCombination: with: {aShortcut}
 ]
 
 { #category : #'instance creation' }
 ComposablePresenter >> resolveSymbol: aSymbol [
 
 	^ Smalltalk at: aSymbol
+]
+
+{ #category : #api }
+ComposablePresenter >> retrieveDefaultSpec [
+	^ self retrieveSpec: self defaultSpecSelector
 ]
 
 { #category : #api }
@@ -1032,6 +1045,11 @@ ComposablePresenter >> specSelectors [
 	^ self class specSelectors
 ]
 
+{ #category : #accessing }
+ComposablePresenter >> specSpacer [
+	^ SpacerPresenter new
+]
+
 { #category : #'private-focus' }
 ComposablePresenter >> takeKeyboardFocus [
 
@@ -1093,7 +1111,8 @@ ComposablePresenter >> whenBuiltDo: aBlock [
 { #category : #'api-events' }
 ComposablePresenter >> whenShortcutsChanged: aBlock [
 	"Set a block to value when the shortcuts block has changed"
-	additionalKeyBindings whenChangedDo: aBlock
+	
+	self additionalKeyBindings whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
@@ -1104,20 +1123,16 @@ ComposablePresenter >> whenWindowChanged: aBlock [
 
 { #category : #accessing }
 ComposablePresenter >> widget [
-
-	^ spec
-		ifNil: [ nil ]
-		ifNotNil: [:s | s instance ]
+	"I return the adapter responsible of building my widget. 
+	
+	CyrilFerlicot: We should probably do some renaming later."
+	
+	^ self spec
 ]
 
 { #category : #accessing }
 ComposablePresenter >> window [
-
-	^ window value
-		ifNil: [
-			owner
-				ifNil: [ nil ]
-				ifNotNil: [:o | o window ]]
+	^ self presenterWindow ifNil: [ owner ifNotNil: [ :o | o window ] ]
 ]
 
 { #category : #api }

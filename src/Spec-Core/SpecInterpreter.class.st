@@ -15,7 +15,13 @@ Class {
 
 { #category : #accessing }
 SpecInterpreter class >> bindings [
-	^ (SpecBindings value ifNil: [ self environment at: #MorphicAdapterBindings ]) new
+	"Spec bindings is a DynamicVariable. It has a default value. In order to change it you can do something like: 
+	
+	SpecBindings value: MorphicAdapterBindings during: [ myUI openWithSpec ].
+	
+	"
+	
+	^ SpecBindings value new
 ]
 
 { #category : #accessing }
@@ -60,7 +66,7 @@ SpecInterpreter class >> interpretASpec: aSpec presenter: aPresenter [
 { #category : #'interpreting-private' }
 SpecInterpreter >> actionToPerformWithSelector: selector arguments: args [
 
-	^ spec instance perform: selector withArguments: args
+	^ spec perform: selector withArguments: args
 ]
 
 { #category : #bindings }
@@ -71,16 +77,14 @@ SpecInterpreter >> bindings [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> computeSpecFrom: aSymbol [
-	| instance |
-	instance := (aSymbol isSymbol and: [ aSymbol ~= #model ])
+	^ (aSymbol isSymbol and: [ aSymbol ~= #model ])
 		ifTrue: [ | result |
 			result := self convertSymbolOfClassToInstance: aSymbol.
 			result isSpecContainer
-				ifTrue: [ result := result buildAdapterWithSpec.
+				ifTrue: [ result := self getAdaptorWithDefaultSpecOf: result.
 					self presenter addDependent: result ].
 			result ]
-		ifFalse: [ self class interpretASpec: aSymbol presenter: self presenter ].
-	^ SpecWrapper instance: instance
+		ifFalse: [ self class interpretASpec: aSymbol presenter: self presenter ]
 ]
 
 { #category : #bindings }
@@ -113,6 +117,11 @@ SpecInterpreter >> extractArrayToInterpretFrom: aFragment [
 	^ nil
 ]
 
+{ #category : #'interpreting-private' }
+SpecInterpreter >> getAdaptorWithDefaultSpecOf: result [
+	^ result buildAdapterWithSpecLayout: result retrieveDefaultSpec
+]
+
 { #category : #interpreting }
 SpecInterpreter >> interpretASpec: aSpec [
 	aSpec ifNil: [ ^ nil ].
@@ -130,14 +139,14 @@ SpecInterpreter >> interpretASpec: aSpec [
 			
 			index > arrayToInterpret size
 				ifTrue: [ ^ self returnInterpretationOf: newInstance ].
-			spec instance: newInstance ].	
+			spec := newInstance ].	
 			
 	"If you get here, there is a problem. Must probably it comes from the Spec which is wrongly defined"
 	self assert: arrayToInterpret size < 2.
 	
 	self presenter spec: spec.
-		
-	^ spec instance
+
+	^ spec
 ]
 
 { #category : #interpreting }
@@ -169,24 +178,17 @@ SpecInterpreter >> model: anObject [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> performNextSelectorAndIncrementIndex [
-	| args numArgs selector |
+	| args selector |
 	selector := arrayToInterpret at: index.
-	selector isArray not
-		ifTrue: [ selector := selector asSymbol.
-			numArgs := selector numArgs.
-			args := arrayToInterpret copyFrom: index + 1 to: index + numArgs ]
-		ifFalse: [ "Here I assume that if it's not a symbol, it's a collection"
-			| array |
-			array := selector.
-			selector := array first.
-			numArgs := 0.
-			args := array allButFirst ].
-	args := args
-		collect: [ :each | 
-			self class
-				interpretASpec: each
-				presenter: self presenter ].
-	index := index + numArgs + 1.
+	
+	self
+		assert: selector isArray not
+		description: 'Before there was an #ifTrue:ifFalse: on `selector isArray` but it seems that the selector could never be an Array. If one day we have an array here, please report the problem and link it to https://github.com/pharo-spec/Spec/issues/60'.
+		
+	selector := selector asSymbol.
+	args := (arrayToInterpret copyFrom: index + 1 to: index + selector numArgs) collect: [ :each | self class interpretASpec: each presenter: self presenter ].
+	index := index + selector numArgs + 1.
+	
 	^ self actionToPerformWithSelector: selector arguments: args
 ]
 
@@ -202,16 +204,16 @@ SpecInterpreter >> presenter: aPresenter [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> retrieveSpecFrom: aSpec [
-	(self presenter needRebuild not and: [ self presenter spec notNil ])
-		ifTrue: [ spec := self presenter spec.
+	self presenter needRebuild
+		ifTrue: [ spec := self computeSpecFrom: arrayToInterpret first ]
+		ifFalse: [ spec := self presenter spec.
 			self presenter needRebuild: true.
-			((spec respondsTo: #isRedrawable) and: [ spec instance isSpecAdapter ])
+			spec isSpecAdapter
 				ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first ]
 				ifTrue: [ spec isRedrawable
 						ifTrue: [ spec removeSubWidgets ]
-						ifFalse: [ ^ spec instance ] ] ]
-		ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first ].
-
+						ifFalse: [ ^ spec ] ] ].
+				
 	^ nil
 ]
 
@@ -219,8 +221,8 @@ SpecInterpreter >> retrieveSpecFrom: aSpec [
 SpecInterpreter >> returnInterpretationOf: newInstance [
 	| result |
 	self presenter spec: spec.
-	result := self class interpretASpec: newInstance presenter: spec instance.
+	result := self class interpretASpec: newInstance presenter: spec.
 	^ (result isKindOf: ComposablePresenter)
-		ifTrue: [ result buildAdapterWithSpecLayout: (result retrieveSpec: result defaultSpecSelector) ]
+		ifTrue: [ self getAdaptorWithDefaultSpecOf: result ]
 		ifFalse: [ result ]
 ]
