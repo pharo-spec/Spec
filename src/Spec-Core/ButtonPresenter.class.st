@@ -226,9 +226,9 @@ ButtonPresenter >> registerShortcut: newShortcut [
 	| receiver |
 	receiver := self window.
 	(receiver isNil or: [ newShortcut isNil ]) ifTrue: [ ^ self ].
-
-	receiver model
-		bindKeyCombination: newShortcut 
+	
+	receiver presenter
+		bindKeyCombination: newShortcut
 		toAction: [ self performAction ]
 ]
 
