@@ -6,8 +6,8 @@ Class {
 
 { #category : #factory }
 MorphicSpacerAdapter >> buildWidget [
-	^ PanelMorph new
-		changeTableLayout;
+	^ Morph new
+		color: Color transparent;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		yourself
