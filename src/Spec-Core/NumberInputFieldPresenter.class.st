@@ -57,7 +57,7 @@ NumberInputFieldPresenter >> digits: aNumber [
 NumberInputFieldPresenter >> initialize [
 
 	super initialize.
-	self numberType: Integer.
+	self beInteger.
 	self digits: self class defaultDigits
 ]
 
