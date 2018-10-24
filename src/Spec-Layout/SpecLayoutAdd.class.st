@@ -20,6 +20,11 @@ SpecLayoutAdd class >> subwidget: subwidget layoutFrame: aLayoutFrame [
 		yourself
 ]
 
+{ #category : #'instance creation' }
+SpecLayoutAdd >> arguments [
+	^ {{subwidget. #layout:. layoutFrame generateSpec}}
+]
+
 { #category : #protocol }
 SpecLayoutAdd >> bottomFraction [
 
@@ -47,12 +52,6 @@ SpecLayoutAdd >> bottomOffset: aNumber [
 { #category : #accessing }
 SpecLayoutAdd >> fractions [
 	^ layoutFrame fractionRectangle
-]
-
-{ #category : #'instance creation' }
-SpecLayoutAdd >> generateArguments [
-	
-	self arguments: {{subwidget .#layout:. layoutFrame generateSpec}}.
 ]
 
 { #category : #initialization }
@@ -161,7 +160,6 @@ SpecLayoutAdd >> subwidget: aSpec layoutFrame: aLayoutFrame [
 							aSpec ]].
 	
 	layoutFrame := aLayoutFrame.
-	self generateArguments
 ]
 
 { #category : #protocol }

@@ -23,6 +23,5 @@ SpecLayoutAddColumn >> block: aBlock layoutFrame: aLayoutFrame [
 	row := SpecColumnLayout composed.
 	aBlock value: row.
 	subwidget := row asArray.
-	self layoutFrame: aLayoutFrame.
-	self generateArguments
+	self layoutFrame: aLayoutFrame
 ]

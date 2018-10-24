@@ -19,8 +19,8 @@ SpecTableLayoutAdd class >> subwidget: aSymbol [
 ]
 
 { #category : #'instance creation' }
-SpecTableLayoutAdd >> generateArguments [
-	self arguments: {{subwidget}}
+SpecTableLayoutAdd >> arguments [
+	^ {{subwidget}}
 ]
 
 { #category : #initialization }
@@ -49,6 +49,4 @@ SpecTableLayoutAdd >> subwidget: aSpec [
 				ifFalse: [ 
 					"Not a symbol or a collection. We assume it's an object to add directly (like a morph by example)"
 					aSpec ]].
-		
-	self generateArguments
 ]

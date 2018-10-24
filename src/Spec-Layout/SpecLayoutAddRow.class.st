@@ -24,6 +24,5 @@ SpecLayoutAddRow >> block: aBlock layoutFrame: aLayoutFrame [
 	row := SpecRowLayout composed.
 	aBlock value: row.
 	subwidget := row asArray.
-	self layoutFrame: aLayoutFrame.
-	self generateArguments
+	self layoutFrame: aLayoutFrame
 ]

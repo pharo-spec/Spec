@@ -252,8 +252,7 @@ SpecLayout >> computeNotSplitterWidget: widget [
 		bottom: widget bottomOffset
 		right: widget rightOffset
 		borderWidth: self class windowBorderWidth.
-	
-	widget generateArguments.
+
 	widget asSpecElements do: [ :el | result add: el ]
 ]
 
@@ -270,7 +269,6 @@ SpecLayout >> computeSplitters [
 	(self commands select: [ :e | e isSplitter ])
 		do: [ :e | 
 			shouldCheckSplitters := true.
-			e generateArguments.
 			e asSpecElements do: [ :el | result add: el ] ].
 	shouldCheckSplitters
 		ifTrue: [ result add: #checkSplitters ]
@@ -441,11 +439,7 @@ SpecLayout >> send: aSelector [
 
 { #category : #commands }
 SpecLayout >> send: aSelector withArguments: arguments [
-
-
-	self commands add: (SpecLayoutSend
-							selector: aSelector
-							arguments: arguments).
+	self commands add: (SpecLayoutSend selector: aSelector)
 ]
 
 { #category : #initialization }
