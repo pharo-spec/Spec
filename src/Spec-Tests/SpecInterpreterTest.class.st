@@ -68,3 +68,10 @@ SpecInterpreterTest >> testInterpretASpecModelMorphAssociation [
 	morph := specInterpreterClass interpretASpec: spec presenter: model.
 	self assert: model widget == morph
 ]
+
+{ #category : #tests }
+SpecInterpreterTest >> testInterpreterCanAccessPresenterVariablesWithoutAccessor [
+	| window |
+	[ self shouldnt: [ window := SpecMockPesenterWithoutGetter new openWithSpec ] raise: MessageNotUnderstood ]
+		ensure: [ window ifNotNil: #close ]
+]

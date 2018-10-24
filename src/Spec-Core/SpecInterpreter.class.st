@@ -65,8 +65,18 @@ SpecInterpreter class >> interpretASpec: aSpec presenter: aPresenter [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> actionToPerformWithSelector: selector arguments: args [
+	^ [ spec perform: selector withArguments: args ]
+		on: MessageNotUnderstood
+		do: [ :ex | 
+			"Maybe the message is not understood because we are trying to access a sub-part of a presenter but there is no accessor. In that case we can try to directly access the presenter.
 
-	^ spec perform: selector withArguments: args
+			We are thinking of killing the interpreter. Maybe later if we know that we are getting the content of a variable of a presenter we can avoid using a catch and directly access the variable."
+			(selector last ~= $: and: [ args isEmpty ])
+				ifTrue: [ spec class instVarNames
+						detect: [ :var | var = selector ]
+						ifFound: [ :var | spec instVarNamed: selector ]
+						ifNone: [ self error: spec asString , ' does not implement the method ' , selector , '. Maybe your spec reference a presenter that does not exists.' ] ]
+				ifFalse: [ ex resume ] ]
 ]
 
 { #category : #bindings }
