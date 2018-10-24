@@ -792,6 +792,11 @@ ComposablePresenter >> newNullPresenter [
 ]
 
 { #category : #widgets }
+ComposablePresenter >> newNumberInput [
+	^ self instantiate: NumberInputFieldPresenter
+]
+
+{ #category : #widgets }
 ComposablePresenter >> newRadioButton [
 	^ self instantiate: RadioButtonPresenter
 ]
