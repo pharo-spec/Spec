@@ -7,6 +7,28 @@ Class {
 	#category : #'Spec-MorphicAdapters-Base'
 }
 
+{ #category : #accessing }
+AbstractMorphicAdapter class >> adaptingAliases [
+	"Answers an array of aliases my class can adapt."
+
+	^ #()
+]
+
+{ #category : #accessing }
+AbstractMorphicAdapter class >> adaptingName [ 
+	"Answers the name this component adapts. 
+	 Override me if adapter will not follow the common pattern"
+
+	"remove 'Morphic' part and *in general*, I will have the adapting name"
+	^ (self name allButFirst: 7) asSymbol
+]
+
+{ #category : #accessing }
+AbstractMorphicAdapter class >> allAdapters [
+
+	^ self allSubclasses
+]
+
 { #category : #specs }
 AbstractMorphicAdapter class >> defaultSpec [
 	^ SpecLayout composed

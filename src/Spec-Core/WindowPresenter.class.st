@@ -8,10 +8,7 @@ Class {
 		'presenter',
 		'initialExtent',
 		'isClosedHolder',
-		'isResizeable',
-		'menuHolder',
-		'statusbarHolder',
-		'toolBarHolder'
+		'isResizeable'
 	],
 	#category : #'Spec-Core-Support'
 }

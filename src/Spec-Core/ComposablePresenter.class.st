@@ -300,9 +300,11 @@ ComposablePresenter >> bindMenuKeyCombination: aShortcut toAction: aBlock [
 { #category : #api }
 ComposablePresenter >> buildAdapterWithSpecLayout: aSpecLayout [
 	"Build the adapter using the spec name provided as argument"
-
 	| adapter |
-	adapter := self adapterFrom: aSpecLayout.
+	
+	adapter := ((aSpecLayout isSpecLayout) and: [ aSpecLayout isExecutable ]) 
+		ifTrue: [ aSpecLayout buildAdapterFor: self bindings: SpecBindings value new ]
+		ifFalse: [ self adapterFrom: aSpecLayout ].
 	self setExtentAndBindingTo: adapter widget.
 	^ adapter
 ]
@@ -789,6 +791,11 @@ ComposablePresenter >> newMultiColumnList [
 { #category : #widgets }
 ComposablePresenter >> newNullPresenter [
 	^ self instantiate: NullPresenter
+]
+
+{ #category : #widgets }
+ComposablePresenter >> newNumberInput [
+	^ self instantiate: NumberInputFieldPresenter
 ]
 
 { #category : #widgets }
