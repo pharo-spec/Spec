@@ -18,6 +18,14 @@ SpecAdapterBindings class >> isAbstract [
 	^ self name = #SpecAdapterBindings
 ]
 
+{ #category : #'as yet unclassified' }
+SpecAdapterBindings >> adapterClass: aSymbol [ 
+	
+	^ Smalltalk 
+		at: (self translateSymbol: aSymbol) 
+		ifAbsent: [ aSymbol ]
+]
+
 { #category : #initialize }
 SpecAdapterBindings >> allAdapters [
 	

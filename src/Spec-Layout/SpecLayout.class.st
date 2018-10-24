@@ -285,6 +285,14 @@ SpecLayout >> initialize [
 ]
 
 { #category : #testing }
+SpecLayout >> isExecutable [
+	"If the spec layout is executable, the interpreter will try to execute it directly (without 
+	 interpreting it)"
+
+	^ false
+]
+
+{ #category : #testing }
 SpecLayout >> isSpecLayout [
 
 	^ true
