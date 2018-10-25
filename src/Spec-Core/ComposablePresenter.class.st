@@ -185,6 +185,12 @@ ComposablePresenter class >> specSelectors [
 			collect: [ :pragmas | pragmas method selector ]]
 ]
 
+{ #category : #'as yet unclassified' }
+ComposablePresenter class >> systemIconName [
+
+	^ #smallWindow
+]
+
 { #category : #specs }
 ComposablePresenter class >> title [
 	
