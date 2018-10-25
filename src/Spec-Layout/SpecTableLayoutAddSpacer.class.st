@@ -53,7 +53,7 @@ SpecTableLayoutAddSpacer >> arguments [
 			ifTrue: [ {#hResizing: . resizingMode . #vResizing: . #shrinkWrap} ]
 			ifFalse: [ {#hResizing: . #shrinkWrap . #vResizing: . resizingMode} ].
 	
-	^ { {subwidget} , resizing , dimensions }
+	^ { {subwidget asArray} , resizing , dimensions }
 ]
 
 { #category : #initialization }

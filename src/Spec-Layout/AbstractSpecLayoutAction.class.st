@@ -17,8 +17,7 @@ AbstractSpecLayoutAction >> arguments [
 
 { #category : #protocol }
 AbstractSpecLayoutAction >> asSpecElements [
-
-	self subclassResponsibility 
+	^ {self selector} , self arguments
 ]
 
 { #category : #accesing }

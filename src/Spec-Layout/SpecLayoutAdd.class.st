@@ -22,7 +22,7 @@ SpecLayoutAdd class >> subwidget: subwidget layoutFrame: aLayoutFrame [
 
 { #category : #'instance creation' }
 SpecLayoutAdd >> arguments [
-	^ {{subwidget. #layout:. layoutFrame generateSpec}}
+	^ {{self subwidgetArguments. #layout:. layoutFrame generateSpec}}
 ]
 
 { #category : #protocol }
@@ -59,8 +59,7 @@ SpecLayoutAdd >> initialize [
 
 	super initialize.
 	self selector: #add:.
-	layoutFrame := SpecLayoutFrame identity.
-	subwidget := nil.
+	layoutFrame := SpecLayoutFrame identity
 ]
 
 { #category : #accessing }
@@ -160,6 +159,11 @@ SpecLayoutAdd >> subwidget: aSpec layoutFrame: aLayoutFrame [
 							aSpec ]].
 	
 	layoutFrame := aLayoutFrame.
+]
+
+{ #category : #'instance creation' }
+SpecLayoutAdd >> subwidgetArguments [
+	^ subwidget asArray
 ]
 
 { #category : #protocol }
