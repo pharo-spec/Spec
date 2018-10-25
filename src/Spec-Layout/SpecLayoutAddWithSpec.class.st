@@ -24,6 +24,5 @@ SpecLayoutAddWithSpec >> subwidget: sub spec: aSpecSelector layoutFrame: aFrameL
 						ifTrue: [ #(model), sub , {#retrieveSpec:. aSpecSelector} ]
 						ifFalse: [ {#model. sub . #retrieveSpec: . aSpecSelector } ]).
 						
-	self layoutFrame: aFrameLayout.
-	self generateArguments
+	self layoutFrame: aFrameLayout
 ]

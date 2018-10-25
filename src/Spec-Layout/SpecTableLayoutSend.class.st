@@ -9,10 +9,9 @@ Class {
 }
 
 { #category : #'instance creation' }
-SpecTableLayoutSend class >> selector: selector arguments: arguments [
+SpecTableLayoutSend class >> selector: selector [
 
 	^ self new
-		arguments: arguments;
 		selector: selector;
 		yourself
 ]

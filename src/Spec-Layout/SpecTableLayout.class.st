@@ -241,10 +241,7 @@ SpecTableLayout >> send: aSelector [
 
 { #category : #commands }
 SpecTableLayout >> send: aSelector withArguments: arguments [
-	commands 
-		add: (SpecTableLayoutSend
-					selector: aSelector
-					arguments: arguments)
+	commands add: (SpecTableLayoutSend selector: aSelector)
 ]
 
 { #category : #'commands - layout properties' }

@@ -29,14 +29,8 @@ SpecTableLayoutAddSpacer class >> weighted: aNumber [
 	^ self new spaceFillWeight: aNumber
 ]
 
-{ #category : #protocol }
-SpecTableLayoutAddSpacer >> asSpecElements [
-	self generateArguments.
-	^ super asSpecElements
-]
-
 { #category : #'instance creation' }
-SpecTableLayoutAddSpacer >> generateArguments [
+SpecTableLayoutAddSpacer >> arguments [
 	| resizingMode resizing width height dimensions |
 	width := 0.
 	height := 0.
@@ -59,7 +53,7 @@ SpecTableLayoutAddSpacer >> generateArguments [
 			ifTrue: [ {#hResizing: . resizingMode . #vResizing: . #shrinkWrap} ]
 			ifFalse: [ {#hResizing: . #shrinkWrap . #vResizing: . resizingMode} ].
 	
-	self arguments: { {subwidget} , resizing , dimensions }
+	^ { {subwidget} , resizing , dimensions }
 ]
 
 { #category : #initialization }
