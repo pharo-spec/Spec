@@ -15,9 +15,3 @@ SpecTableLayoutSend class >> selector: selector [
 		selector: selector;
 		yourself
 ]
-
-{ #category : #protocol }
-SpecTableLayoutSend >> asSpecElements [
-
-	^ {self selector.}, self arguments
-]

@@ -21,12 +21,6 @@ SpecLayoutSend >> arguments [
 ]
 
 { #category : #protocol }
-SpecLayoutSend >> asSpecElements [
-
-	^ {self selector.}, self arguments
-]
-
-{ #category : #protocol }
 SpecLayoutSend >> bottomFraction [
 
 	^ 0
