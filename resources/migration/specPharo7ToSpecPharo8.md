@@ -10,6 +10,12 @@ This guide will cover the main changes that happened in Spec between Pharo 7 and
 
 ## Removals
 
+### SpecTableLayout
+
+An important change in this version of spec is the removal of the `SpecTableLayout`. This layout was removed because it was not used, it was untested and it was conceptually duplicating `SpecLayout`. In order to replace it you can use the `SpecTableLayout` with rows and columns.
+
+### Methods and variables
+
 * `WindowPresenter` title variable was removed because it provided no public API to it. If you used it, please contact us with your usecase.
 * `SpecLayout>>#selector(:)` was removed because it was unused and added complexity to the code.
 
