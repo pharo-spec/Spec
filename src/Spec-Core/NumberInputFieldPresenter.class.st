@@ -10,6 +10,7 @@ Class {
 		'#numberType => SpecPropertySlot',
 		'#minimum => SpecPropertySlot',
 		'#maximum => SpecPropertySlot',
+		'#climbRate => SpecPropertySlot',
 		'#digits => SpecPropertySlot'
 	],
 	#category : #'Spec-Core-Widgets'
@@ -37,6 +38,19 @@ NumberInputFieldPresenter >> beFloat [
 NumberInputFieldPresenter >> beInteger [
 
 	self numberType: Integer
+]
+
+{ #category : #accessing }
+NumberInputFieldPresenter >> climbRate [
+	"This field indicates the jumo rate when a spin is present."
+
+	^ climbRate
+]
+
+{ #category : #accessing }
+NumberInputFieldPresenter >> climbRate: aNumber [
+
+	climbRate := aNumber
 ]
 
 { #category : #accessing }
