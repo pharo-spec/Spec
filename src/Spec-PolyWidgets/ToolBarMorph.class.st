@@ -32,7 +32,7 @@ ToolBarMorph class >> defaultItemSize [
 
 { #category : #accessing }
 ToolBarMorph class >> defaultMode [
-	^ ITToolbarDisplayMode default
+	^ ToolBarDisplayMode default
 ]
 
 { #category : #accessing }
@@ -44,7 +44,7 @@ ToolBarMorph class >> statusBarHeight [
 { #category : #accessing }
 ToolBarMorph >> addItem: aToolbarItem [
 	
-	self addItem: aToolbarItem position: ITItemPosition left
+	self addItem: aToolbarItem position: ToolBarItemPosition left
 ]
 
 { #category : #accessing }
@@ -92,7 +92,7 @@ ToolBarMorph >> color: aColor [
 
 { #category : #accessing }
 ToolBarMorph >> displayMode [
-	^ displayMode ifNil: [ displayMode := ITToolbarDisplayMode default ]
+	^ displayMode ifNil: [ displayMode := ToolBarDisplayMode default ]
 ]
 
 { #category : #accessing }

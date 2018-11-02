@@ -8,7 +8,7 @@ Class {
 MorphicToolBarAdapter >> addModelTo: toolBarMorph [
 
 	self model items 
-		at: ITItemPosition left 
+		at: ToolBarItemPosition left 
 		ifPresent: [ :items |
 			items do: [ :each | 
 				toolBarMorph addItemLeft: (self 
@@ -16,7 +16,7 @@ MorphicToolBarAdapter >> addModelTo: toolBarMorph [
 					morph: each buildWithSpec 
 					toolBar: toolBarMorph) ] ].
 	self model items 
-		at: ITItemPosition right 
+		at: ToolBarItemPosition right 
 		ifPresent: [ :items |
 			items do: [ :each | 
 				toolBarMorph addItemRight: (self 
