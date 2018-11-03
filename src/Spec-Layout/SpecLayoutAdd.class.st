@@ -6,7 +6,8 @@ Class {
 	#superclass : #SpecLayoutSend,
 	#instVars : [
 		'layoutFrame',
-		'subwidget'
+		'subwidget',
+		'subwidgetArguments'
 	],
 	#category : #'Spec-Layout-Actions'
 }
@@ -22,7 +23,9 @@ SpecLayoutAdd class >> subwidget: subwidget layoutFrame: aLayoutFrame [
 
 { #category : #'instance creation' }
 SpecLayoutAdd >> arguments [
-	^ {{self subwidgetArguments. #layout:. layoutFrame generateSpec}}
+	"We store the result because it change the state of the layouts and should be called only one time. I do not like this implementation but we'll clean later if we have time."
+	subwidgetArguments ifNil: [ subwidgetArguments := self subwidgetArguments ].
+	^ {{subwidgetArguments. #layout:. layoutFrame generateSpec}}
 ]
 
 { #category : #protocol }
