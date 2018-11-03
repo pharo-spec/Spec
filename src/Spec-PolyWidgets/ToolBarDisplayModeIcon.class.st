@@ -4,7 +4,7 @@ Display the toolbar with icons only
 Class {
 	#name : #ToolBarDisplayModeIcon,
 	#superclass : #ToolBarDisplayMode,
-	#category : #'Spec-PolyWidgets-Toolbar'
+	#category : #'Spec-PolyWidgets-ToolBar'
 }
 
 { #category : #configuring }

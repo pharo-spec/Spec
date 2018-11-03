@@ -12,7 +12,7 @@ Class {
 		'displayMode',
 		'toolbarItemFont'
 	],
-	#category : #'Spec-PolyWidgets-Toolbar'
+	#category : #'Spec-PolyWidgets-ToolBar'
 }
 
 { #category : #accessing }

@@ -13,7 +13,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'Spec-PolyWidgets-Toolbar'
+	#category : #'Spec-PolyWidgets-ToolBar'
 }
 
 { #category : #accessing }

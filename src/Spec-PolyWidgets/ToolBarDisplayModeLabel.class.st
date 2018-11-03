@@ -4,7 +4,7 @@ Display the toolbar with labels only
 Class {
 	#name : #ToolBarDisplayModeLabel,
 	#superclass : #ToolBarDisplayMode,
-	#category : #'Spec-PolyWidgets-Toolbar'
+	#category : #'Spec-PolyWidgets-ToolBar'
 }
 
 { #category : #configuring }

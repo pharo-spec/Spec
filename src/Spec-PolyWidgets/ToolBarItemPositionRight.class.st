@@ -8,7 +8,7 @@ Do not use the class directly, instead use:
 Class {
 	#name : #ToolBarItemPositionRight,
 	#superclass : #ToolBarItemPosition,
-	#category : #'Spec-PolyWidgets-Toolbar'
+	#category : #'Spec-PolyWidgets-ToolBar'
 }
 
 { #category : #accessing }
