@@ -8,7 +8,10 @@ Class {
 		'presenter',
 		'initialExtent',
 		'isClosedHolder',
-		'isResizeable'
+		'isResizeable',
+		'statusbarHolder',
+		'toolBarHolder',
+		'menuHolder'
 	],
 	#category : #'Spec-Core-Support'
 }
@@ -203,7 +206,7 @@ WindowPresenter >> maximize [
 ]
 
 { #category : #api }
-WindowPresenter >> menu [ 
+WindowPresenter >> menu [
 
 	^ menuHolder value
 ]

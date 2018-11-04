@@ -721,8 +721,20 @@ ComposablePresenter >> neglectMenuModel: aMenuModel [
 ]
 
 { #category : #widgets }
+ComposablePresenter >> newActionBar [
+
+	^ self instantiate: ActionBarPresenter
+]
+
+{ #category : #widgets }
 ComposablePresenter >> newButton [
 	^ self instantiate: ButtonPresenter
+]
+
+{ #category : #widgets }
+ComposablePresenter >> newButtonBar [
+
+	^ self instantiate: ButtonBarPresenter
 ]
 
 { #category : #widgets }
@@ -878,12 +890,15 @@ ComposablePresenter >> openDialogWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
 	(self presenterWindow notNil and: [ self needRebuild not ])
-		ifTrue: [ self presenterWindow rebuildWithSpec: aSpec ]
-		ifFalse: [ self presenterWindow: (DialogWindowPresenter new presenter: self).
+		ifTrue: [ 
+			self presenterWindow rebuildWithSpec: aSpec ]
+		ifFalse: [ 
+			self presenterWindow: (DialogWindowPresenter new presenter: self).
 			self presenterWindow openWithSpecLayout: aSpec.
 			self initializeDialogWindow: self presenterWindow.
 			self presenterWindow updateTitle.
 			self takeKeyboardFocus ].
+		
 	^ self presenterWindow
 ]
 
@@ -906,8 +921,10 @@ ComposablePresenter >> openWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
 	(self presenterWindow notNil and: [ self needRebuild not ])
-		ifTrue: [ self presenterWindow rebuildWithSpecLayout: aSpec ]
-		ifFalse: [ self presenterWindow: (self defaultWindowPresenterClass new presenter: self).
+		ifTrue: [ 
+			self presenterWindow rebuildWithSpecLayout: aSpec ]
+		ifFalse: [ 
+			self presenterWindow: (self defaultWindowPresenterClass new presenter: self).
 			self presenterWindow openWithSpecLayout: aSpec.
 			self takeKeyboardFocus ].
 	^ self presenterWindow
@@ -1139,7 +1156,9 @@ ComposablePresenter >> widget [
 
 { #category : #accessing }
 ComposablePresenter >> window [
-	^ self presenterWindow ifNil: [ owner ifNotNil: [ :o | o window ] ]
+
+	self presenterWindow ifNotNil: [ :theWindow | ^ theWindow ].
+	^ owner ifNotNil: [ owner window ]
 ]
 
 { #category : #api }
