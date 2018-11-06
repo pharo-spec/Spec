@@ -8,7 +8,7 @@ Class {
 MorphicToolBarButtonAdapter >> buildWidget [
 	| button |
 	
-	button := (ITButtonMorph
+	button := (ToolBarButtonMorph
 			on: self model
 			getState: nil 
 			action:  #execute)

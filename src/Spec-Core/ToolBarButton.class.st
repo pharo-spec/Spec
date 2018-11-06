@@ -52,7 +52,7 @@ ToolBarButton >> badge: aString [
 ToolBarButton >> buildMorphOnToolbar: aToolbar [
 	| button |
 	
-	button := (ITButtonMorph
+	button := (ToolBarButtonMorph
 			on: self 
 			getState: nil 
 			action:  #execute)
