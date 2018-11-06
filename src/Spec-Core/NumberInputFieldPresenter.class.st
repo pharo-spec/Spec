@@ -108,6 +108,19 @@ NumberInputFieldPresenter >> minimum: aNumber [
 ]
 
 { #category : #accessing }
+NumberInputFieldPresenter >> number [
+
+	^ self text asNumber
+]
+
+{ #category : #accessing }
+NumberInputFieldPresenter >> number: aNumber [
+
+	self text: aNumber asString
+
+]
+
+{ #category : #accessing }
 NumberInputFieldPresenter >> numberType [
 	^ numberType
 ]
