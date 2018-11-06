@@ -88,7 +88,19 @@ ToolBarPresenter >> isDisplayModeText [
 	^ self displayMode = ToolBarDisplayMode modeLabel
 ]
 
+{ #category : #testing }
+ToolBarPresenter >> isEmpty [
+	
+	^ self items isEmpty
+]
+
 { #category : #api }
 ToolBarPresenter >> items [
 	^ items value
+]
+
+{ #category : #testing }
+ToolBarPresenter >> notEmpty [
+
+	^ self isEmpty not
 ]

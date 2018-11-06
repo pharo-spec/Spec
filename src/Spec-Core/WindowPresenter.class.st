@@ -147,6 +147,7 @@ WindowPresenter >> hasStatusBar [
 WindowPresenter >> hasToolBar [
 	
 	^ self toolBar notNil
+	and: [ self toolBar notEmpty ]
 ]
 
 { #category : #api }
