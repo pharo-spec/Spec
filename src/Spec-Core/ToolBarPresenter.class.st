@@ -1,3 +1,15 @@
+"
+I'm a presenter to render a toolbar.
+I can receive any kind of ToolBarItemPresenters, even if the most frequent one is ToolBarButton.
+
+Toolbars can be displayed in diferent modes: 
+- icons and labels (default)
+- icons
+- labels
+
+And they can be placed at the left (default) or at the right. 
+Not all platforms support left/right alignments for toolbars. In that case they will be presented as simple groups.
+"
 Class {
 	#name : #ToolBarPresenter,
 	#superclass : #AbstractWidgetPresenter,
@@ -5,7 +17,7 @@ Class {
 		'items',
 		'displayMode'
 	],
-	#category : #'Spec-Core-Widgets'
+	#category : #'Spec-Core-Widgets-Toolbar'
 }
 
 { #category : #specs }

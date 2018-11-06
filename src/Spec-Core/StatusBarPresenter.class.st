@@ -1,7 +1,7 @@
 Class {
 	#name : #StatusBarPresenter,
-	#superclass : #ToolBarPresenter,
-	#category : #'Spec-Core-Widgets'
+	#superclass : #AbstractWidgetPresenter,
+	#category : #'Spec-Core-Widgets-Toolbar'
 }
 
 { #category : #specs }

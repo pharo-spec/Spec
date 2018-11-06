@@ -1,5 +1,5 @@
 "
-Abstract superclass for Icetray visual items like buttons, labels or other
+Abstract superclass for toolbar visual items like buttons, labels or other
 "
 Class {
 	#name : #ToolBarItemPresenter,
