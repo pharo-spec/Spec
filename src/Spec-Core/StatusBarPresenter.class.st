@@ -1,3 +1,8 @@
+"
+I'm a presenter to render a statusBar.
+A status bar is a simple component that will push messages to be shown in the bar.
+In general, this is used to present information to the user in a non-intrusive way, hence it is usually less important (otherwise you should use dialogs, etc.)
+"
 Class {
 	#name : #StatusBarPresenter,
 	#superclass : #AbstractWidgetPresenter,

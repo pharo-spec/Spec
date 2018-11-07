@@ -1,3 +1,6 @@
+"
+I'm the adapter used to bridge a ToolBarButton and its morphic representation.
+"
 Class {
 	#name : #MorphicToolBarButtonAdapter,
 	#superclass : #AbstractMorphicAdapter,

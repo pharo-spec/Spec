@@ -1,3 +1,6 @@
+"
+I'm the adapter used to bridge a StatusBarPresenter and its morphic representation.
+"
 Class {
 	#name : #MorphicStatusBarAdapter,
 	#superclass : #AbstractMorphicAdapter,
