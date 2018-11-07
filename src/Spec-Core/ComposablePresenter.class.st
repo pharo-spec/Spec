@@ -128,6 +128,11 @@ ComposablePresenter class >> defaultSpec [
 	^ self subclassResponsibility
 ]
 
+{ #category : #accessing }
+ComposablePresenter class >> iconNamed: aSymbol [
+	^ Smalltalk ui icons iconNamed: aSymbol
+]
+
 { #category : #defaults }
 ComposablePresenter class >> inputTextHeight [
 
@@ -548,9 +553,13 @@ ComposablePresenter >> hide [
 
 { #category : #icon }
 ComposablePresenter >> icon: aSymbol [
-	"Return the icon associated with the argument."
-	self flag: #remove.
+	self deprecated: 'Use #iconNamed: instead' transformWith: '`@receiver icon: `@statements' -> '`@receiver iconNamed: `@statements'.
 	^ self iconNamed: aSymbol
+]
+
+{ #category : #accessing }
+ComposablePresenter >> iconNamed: aSymbol [
+	^ self class iconNamed: aSymbol
 ]
 
 { #category : #api }
