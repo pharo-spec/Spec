@@ -120,7 +120,7 @@ AbstractWidgetPresenter >> color: aColor [
 
 { #category : #initialization }
 AbstractWidgetPresenter >> defaultColor [
-	^ Smalltalk ui theme backgroundColor
+	^ self theme backgroundColor
 ]
 
 { #category : #'drag and drop' }
