@@ -7,44 +7,13 @@ Class {
 	#category : #'Spec-MorphicAdapters-Support'
 }
 
+{ #category : #initialize }
+MorphicAdapterBindings >> abstractAdapterClass [
+	^ AbstractMorphicAdapter
+]
+
 { #category : #fonts }
 MorphicAdapterBindings >> defaultFont [
 
 	^ StandardFonts defaultFont
-]
-
-{ #category : #initialize }
-MorphicAdapterBindings >> initializeBindings [
-	
-	^ bindings
-		at: #ButtonAdapter				put: #MorphicButtonAdapter;
-		at: #CheckBoxAdapter			put: #MorphicCheckBoxAdapter;
-		at: #ContainerAdapter			put: #MorphicContainerAdapter;
-		at: #DialogWindowAdapter		put: #MorphicDialogWindowAdapter;
-		at: #DiffAdapter				put: #MorphicDiffAdapter;
-		at: #DropListAdapter			put: #MorphicDropListAdapter;
-		at: #FastTableAdapter			put: #MorphicFastTableAdapter;
-		at: #IconListAdapter			put: #MorphicIconListAdapter;
-		at: #ImageAdapter				put: #MorphicImageAdapter;
-		at: #LabelAdapter				put: #MorphicLabelAdapter;
-		at: #ListAdapter				put: #MorphicListAdapter;
-		at: #MultiColumnListAdapter	put: #MorphicMultiColumnListAdapter;
-		at: #MenuAdapter				put: #MorphicMenuAdapter;
-		at: #MenuGroupAdapter			put: #MorphicMenuGroupAdapter;
-		at: #MenuItemAdapter			put: #MorphicMenuItemAdapter;
-		at: #RadioButtonAdapter		put: #MorphicRadioButtonAdapter;
-		at: #SliderAdapter				put: #MorphicSliderAdapter;
-		at: #SpacerAdapter 			put: #MorphicSpacerAdapter;
-		at: #TabManagerAdapter		put: #MorphicTabManagerAdapter;
-		at: #TabAdapter					put: #MorphicTabAdapter;
-		at: #TableContainerAdapter 	put: #MorphicTableContainerAdapter;
-		at: #TextAdapter				put: #MorphicTextAdapter;
-		at: #TextInputFieldAdapter	put: #MorphicTextInputFieldAdapter;
-		at: #TickingWindowAdapter	put: #MorphicTickingWindowAdapter;
-		at: #TransferAdapter			put: #MorphicTransferAdapter;
-		at: #TreeAdapter				put: #MorphicTreeAdapter;
-		at: #TreeColumnAdapter		put: #MorphicTreeColumnAdapter;
-		at: #TreeNodeAdapter			put: #MorphicTreeNodeAdapter;
-		at: #WindowAdapter				put: #MorphicWindowAdapter;
-		yourself
 ]

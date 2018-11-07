@@ -311,9 +311,11 @@ ComposablePresenter >> bindMenuKeyCombination: aShortcut toAction: aBlock [
 { #category : #api }
 ComposablePresenter >> buildAdapterWithSpecLayout: aSpecLayout [
 	"Build the adapter using the spec name provided as argument"
-
 	| adapter |
-	adapter := self adapterFrom: aSpecLayout.
+	
+	adapter := ((aSpecLayout isSpecLayout) and: [ aSpecLayout isExecutable ]) 
+		ifTrue: [ aSpecLayout buildAdapterFor: self bindings: SpecBindings value new ]
+		ifFalse: [ self adapterFrom: aSpecLayout ].
 	self setExtentAndBindingTo: adapter widget.
 	^ adapter
 ]
@@ -734,8 +736,20 @@ ComposablePresenter >> neglectMenuModel: aMenuModel [
 ]
 
 { #category : #widgets }
+ComposablePresenter >> newActionBar [
+
+	^ self instantiate: ActionBarPresenter
+]
+
+{ #category : #widgets }
 ComposablePresenter >> newButton [
 	^ self instantiate: ButtonPresenter
+]
+
+{ #category : #widgets }
+ComposablePresenter >> newButtonBar [
+
+	^ self instantiate: ButtonBarPresenter
 ]
 
 { #category : #widgets }
@@ -804,6 +818,11 @@ ComposablePresenter >> newMultiColumnList [
 { #category : #widgets }
 ComposablePresenter >> newNullPresenter [
 	^ self instantiate: NullPresenter
+]
+
+{ #category : #widgets }
+ComposablePresenter >> newNumberInput [
+	^ self instantiate: NumberInputFieldPresenter
 ]
 
 { #category : #widgets }
@@ -886,12 +905,15 @@ ComposablePresenter >> openDialogWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
 	(self presenterWindow notNil and: [ self needRebuild not ])
-		ifTrue: [ self presenterWindow rebuildWithSpec: aSpec ]
-		ifFalse: [ self presenterWindow: (DialogWindowPresenter new presenter: self).
+		ifTrue: [ 
+			self presenterWindow rebuildWithSpec: aSpec ]
+		ifFalse: [ 
+			self presenterWindow: (DialogWindowPresenter new presenter: self).
 			self presenterWindow openWithSpecLayout: aSpec.
 			self initializeDialogWindow: self presenterWindow.
 			self presenterWindow updateTitle.
 			self takeKeyboardFocus ].
+		
 	^ self presenterWindow
 ]
 
@@ -914,8 +936,10 @@ ComposablePresenter >> openWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
 	(self presenterWindow notNil and: [ self needRebuild not ])
-		ifTrue: [ self presenterWindow rebuildWithSpecLayout: aSpec ]
-		ifFalse: [ self presenterWindow: (self defaultWindowPresenterClass new presenter: self).
+		ifTrue: [ 
+			self presenterWindow rebuildWithSpecLayout: aSpec ]
+		ifFalse: [ 
+			self presenterWindow: (self defaultWindowPresenterClass new presenter: self).
 			self presenterWindow openWithSpecLayout: aSpec.
 			self takeKeyboardFocus ].
 	^ self presenterWindow
@@ -931,6 +955,12 @@ ComposablePresenter >> owner [
 ComposablePresenter >> owner: anObject [
 
 	owner := anObject.
+]
+
+{ #category : #api }
+ComposablePresenter >> prepareWindow: aWindowPresenter [
+	"override this to set window values before opening. 
+	 You may want to add a menu, a toolbar or a statusbar"
 ]
 
 { #category : #accessing }
@@ -991,6 +1021,14 @@ ComposablePresenter >> retrieveDefaultSpec [
 { #category : #api }
 ComposablePresenter >> retrieveSpec: aSelector [
 	^ self class perform: aSelector
+]
+
+{ #category : #accessing }
+ComposablePresenter >> root [ 
+
+	^ self owner 
+		ifNotNil: [ self owner root ]
+		ifNil: [ self ]
 ]
 
 { #category : #api }
@@ -1133,7 +1171,9 @@ ComposablePresenter >> widget [
 
 { #category : #accessing }
 ComposablePresenter >> window [
-	^ self presenterWindow ifNil: [ owner ifNotNil: [ :o | o window ] ]
+
+	self presenterWindow ifNotNil: [ :theWindow | ^ theWindow ].
+	^ owner ifNotNil: [ owner window ]
 ]
 
 { #category : #api }
