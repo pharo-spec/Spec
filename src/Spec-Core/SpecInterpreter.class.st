@@ -218,12 +218,11 @@ SpecInterpreter >> retrieveSpecFrom: aSpec [
 		ifTrue: [ spec := self computeSpecFrom: arrayToInterpret first ]
 		ifFalse: [ spec := self presenter spec.
 			self presenter needRebuild: true.
-			spec isSpecAdapter
-				ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first ]
-				ifTrue: [ spec isRedrawable
+			spec
+				ifNil: [ spec := self computeSpecFrom: arrayToInterpret first ]
+				ifNotNil: [ spec isRedrawable
 						ifTrue: [ spec removeSubWidgets ]
 						ifFalse: [ ^ spec ] ] ].
-				
 	^ nil
 ]
 
