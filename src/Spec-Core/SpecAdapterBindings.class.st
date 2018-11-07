@@ -18,6 +18,12 @@ SpecAdapterBindings class >> isAbstract [
 	^ self name = #SpecAdapterBindings
 ]
 
+{ #category : #initialize }
+SpecAdapterBindings >> abstractAdapterClass [
+	
+	^ self subclassResponsibility
+]
+
 { #category : #'as yet unclassified' }
 SpecAdapterBindings >> adapterClass: aSymbol [ 
 	
@@ -28,8 +34,7 @@ SpecAdapterBindings >> adapterClass: aSymbol [
 
 { #category : #initialize }
 SpecAdapterBindings >> allAdapters [
-	
-	^ self subclassResponsibility
+	^ self abstractAdapterClass allAdapters
 ]
 
 { #category : #initialize }

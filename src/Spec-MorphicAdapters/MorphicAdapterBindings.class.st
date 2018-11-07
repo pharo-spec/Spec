@@ -8,9 +8,8 @@ Class {
 }
 
 { #category : #initialize }
-MorphicAdapterBindings >> allAdapters [
-	
-	^ AbstractMorphicAdapter allAdapters
+MorphicAdapterBindings >> abstractAdapterClass [
+	^ AbstractMorphicAdapter
 ]
 
 { #category : #fonts }

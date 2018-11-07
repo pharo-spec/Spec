@@ -26,6 +26,27 @@ AbstractAdapter class >> adapt: aComposablePresenter [
 		yourself
 ]
 
+{ #category : #accessing }
+AbstractAdapter class >> adaptingAliases [
+	"Answers an array of aliases my class can adapt."
+
+	^ #()
+]
+
+{ #category : #accessing }
+AbstractAdapter class >> adaptingName [
+	"Answers the name this component adapts."
+
+	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+AbstractAdapter class >> allAdapters [
+	"The abstract adapters should be able to return all the adapters for a framework"
+	
+	^ self subclassResponsibility
+]
+
 { #category : #initialization }
 AbstractAdapter >> adapt: aComposablePresenter [
 
