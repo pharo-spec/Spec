@@ -463,9 +463,9 @@ TreePresenter >> initialize [
 	isCheckList := false asValueHolder.
 	keyStroke := [ :key | ] asValueHolder.
 	multiSelection := false asValueHolder.
-	evenRowColor := Smalltalk ui theme backgroundColor asValueHolder.
-	oddRowColor := Smalltalk ui theme backgroundColor asValueHolder.
-	preferedPaneColor := Smalltalk ui theme backgroundColor asValueHolder.
+	evenRowColor := self theme backgroundColor asValueHolder.
+	oddRowColor := self theme backgroundColor asValueHolder.
+	preferedPaneColor := self theme backgroundColor asValueHolder.
 	resizerWidth := 2 asValueHolder.
 	rowInset := 2 asValueHolder.
 	iconBlock := [ :each : node | node icon ] asValueHolder.
