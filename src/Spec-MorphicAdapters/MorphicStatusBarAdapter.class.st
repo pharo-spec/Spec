@@ -19,7 +19,7 @@ MorphicStatusBarAdapter class >> defaultHeight [
 { #category : #accessing }
 MorphicStatusBarAdapter class >> defaultItemSeparation [
 
-	^ 0
+	^ 5
 ]
 
 { #category : #factory }
@@ -38,7 +38,7 @@ MorphicStatusBarAdapter >> buildWidget [
 		listDirection: #leftToRight;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
-		cellInset: self class defaultItemSeparation@0;
+		cellInset: self class defaultItemSeparation;
 		height: self class defaultHeight;
 		yourself.
 
@@ -65,6 +65,7 @@ MorphicStatusBarAdapter >> popMessage [
 MorphicStatusBarAdapter >> popMessageFrom: aMorph [
 	| message |
 
+	pushedMessages ifEmpty: [ ^ self ].
 	pushedMessages removeLast.
 	message := pushedMessages 
 		ifNotEmpty: #last
