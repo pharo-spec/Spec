@@ -16,14 +16,6 @@ ToolBarToggleButton class >> adapterName [
 	^ #ToolBarToggleButtonAdapter
 ]
 
-{ #category : #specs }
-ToolBarToggleButton class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(ToolBarToggleButtonAdapter
-		adapt: #(model))
-]
-
 { #category : #selection }
 ToolBarToggleButton >> beSelected [
 	

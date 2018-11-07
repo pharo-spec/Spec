@@ -18,14 +18,6 @@ StatusBarPresenter class >> adapterName [
 	^ #StatusBarAdapter
 ]
 
-{ #category : #specs }
-StatusBarPresenter class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(StatusBarAdapter
-		adapt: #(model))
-]
-
 { #category : #initialization }
 StatusBarPresenter >> initialize [
 

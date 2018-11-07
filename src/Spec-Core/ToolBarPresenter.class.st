@@ -26,14 +26,6 @@ ToolBarPresenter class >> adapterName [
 	^ #ToolBarAdapter
 ]
 
-{ #category : #specs }
-ToolBarPresenter class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(ToolBarAdapter
-		adapt: #(model))
-]
-
 { #category : #adding }
 ToolBarPresenter >> addItem: aToolbarItem [
 	

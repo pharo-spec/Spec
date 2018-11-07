@@ -17,14 +17,6 @@ ToolBarLabel class >> adapterName [
 	^ #ToolBarLabelAdapter
 ]
 
-{ #category : #specs }
-ToolBarLabel class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(ToolBarLabelAdapter
-		adapt: #(model))
-]
-
 { #category : #factory }
 ToolBarLabel >> buildMorphOnToolbar: aToolbar [
 

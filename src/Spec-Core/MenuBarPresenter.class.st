@@ -17,11 +17,3 @@ MenuBarPresenter class >> adapterName [
 
 	^ #MenuBarAdapter
 ]
-
-{ #category : #specs }
-MenuBarPresenter class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(MenuBarAdapter
-		adapt: #(model))
-]

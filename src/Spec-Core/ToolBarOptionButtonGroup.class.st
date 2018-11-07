@@ -16,14 +16,6 @@ ToolBarOptionButtonGroup class >> adapterName [
 	^ #ToolBarOptionButtonGroupAdapter
 ]
 
-{ #category : #specs }
-ToolBarOptionButtonGroup class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(ToolBarOptionButtonGroupAdapter
-		adapt: #(model))
-]
-
 { #category : #accessing }
 ToolBarOptionButtonGroup >> addOption: anOption [
 

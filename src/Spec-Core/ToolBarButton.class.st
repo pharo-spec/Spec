@@ -20,14 +20,6 @@ ToolBarButton class >> adapterName [
 	^ #ToolBarButtonAdapter
 ]
 
-{ #category : #specs }
-ToolBarButton class >> defaultSpec [
-	<spec: #default>
-	
-	^ #(ToolBarButtonAdapter
-		adapt: #(model))
-]
-
 { #category : #accessing }
 ToolBarButton >> action [
 	^ action
