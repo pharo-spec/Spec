@@ -52,7 +52,7 @@ AbstractWidgetPresenter class >> adapterName [
 AbstractWidgetPresenter class >> defaultSpec [
 	<spec: #default>
 
-	^ { self adapterName. #adapt:. #model }
+	^ { self adapterName. #adapt:. #presenter }
 ]
 
 { #category : #'drag and drop' }
@@ -120,7 +120,7 @@ AbstractWidgetPresenter >> color: aColor [
 
 { #category : #initialization }
 AbstractWidgetPresenter >> defaultColor [
-	^ Smalltalk ui theme backgroundColor
+	^ self theme backgroundColor
 ]
 
 { #category : #'drag and drop' }

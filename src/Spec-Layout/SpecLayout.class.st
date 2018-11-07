@@ -7,8 +7,6 @@ Class {
 	#instVars : [
 		'type',
 		'commands',
-		'result',
-		'shouldCheckSplitters',
 		'currentOffset',
 		'currentProportional',
 		'numberOfProportionals',
@@ -243,37 +241,25 @@ SpecLayout >> computeLayoutFromTop: top bottom: bottom left: left right: right [
 ]
 
 { #category : #private }
-SpecLayout >> computeNotSplitterWidget: widget [
-	
-	self
-		setOffsetsFor: widget
-		top: widget topOffset
-		left: widget leftOffset
-		bottom: widget bottomOffset
-		right: widget rightOffset
-		borderWidth: self class windowBorderWidth.
-	
-	widget generateArguments.
-	widget asSpecElements do: [ :el | result add: el ]
+SpecLayout >> computeNonSplitterWidgetsIn: result [
+	(self commands reject: #isSplitter)
+		do: [ :widget | 
+			self
+				setOffsetsFor: widget
+				top: widget topOffset
+				left: widget leftOffset
+				bottom: widget bottomOffset
+				right: widget rightOffset
+				borderWidth: self class windowBorderWidth.
+			result addAll: widget asSpecElements ]
 ]
 
 { #category : #private }
-SpecLayout >> computeNotSplitterWidgets [
-
-	(self commands reject: [ :e | e isSplitter ]) 
-		do: [ :e | self computeNotSplitterWidget: e ]
-]
-
-{ #category : #private }
-SpecLayout >> computeSplitters [
-
-	(self commands select: [ :e | e isSplitter ])
-		do: [ :e | 
-			shouldCheckSplitters := true.
-			e generateArguments.
-			e asSpecElements do: [ :el | result add: el ] ].
-	shouldCheckSplitters
-		ifTrue: [ result add: #checkSplitters ]
+SpecLayout >> computeSplittersIn: result [
+	(self commands select: #isSplitter)
+		ifNotEmpty: [ :spliters | 
+			spliters do: [ :spliter | result addAll: spliter asSpecElements ].
+			result add: #checkSplitters ]
 ]
 
 { #category : #initialization }
@@ -416,19 +402,20 @@ SpecLayout >> newRow: aBlock top: top bottom: bottom [
 
 { #category : #converting }
 SpecLayout >> privateAsArray [
-
+	| result |
+	result := OrderedCollection new.
+	
 	self resetArrayComputation.
 	
-	self computeNotSplitterWidgets.
-	self computeSplitters.
+	self computeNonSplitterWidgetsIn: result.
+	self computeSplittersIn: result.
 	
 	^ result asArray
 ]
 
 { #category : #converting }
 SpecLayout >> resetArrayComputation [
-	result := OrderedCollection new.
-	shouldCheckSplitters := false
+	"Do nothing here"
 ]
 
 { #category : #accessing }
@@ -449,11 +436,7 @@ SpecLayout >> send: aSelector [
 
 { #category : #commands }
 SpecLayout >> send: aSelector withArguments: arguments [
-
-
-	self commands add: (SpecLayoutSend
-							selector: aSelector
-							arguments: arguments).
+	self commands add: (SpecLayoutSend selector: aSelector)
 ]
 
 { #category : #initialization }

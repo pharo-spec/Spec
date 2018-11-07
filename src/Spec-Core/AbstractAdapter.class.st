@@ -78,12 +78,6 @@ AbstractAdapter >> isRedrawable [
 	^ false
 ]
 
-{ #category : #testing }
-AbstractAdapter >> isSpecAdapter [
-
-	^ true
-]
-
 { #category : #protocol }
 AbstractAdapter >> layout: aLayout [
 

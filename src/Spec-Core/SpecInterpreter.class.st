@@ -65,8 +65,18 @@ SpecInterpreter class >> interpretASpec: aSpec presenter: aPresenter [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> actionToPerformWithSelector: selector arguments: args [
+	^ [ spec perform: selector withArguments: args ]
+		on: MessageNotUnderstood
+		do: [ :ex | 
+			"Maybe the message is not understood because we are trying to access a sub-part of a presenter but there is no accessor. In that case we can try to directly access the presenter.
 
-	^ spec perform: selector withArguments: args
+			We are thinking of killing the interpreter. Maybe later if we know that we are getting the content of a variable of a presenter we can avoid using a catch and directly access the variable."
+			(selector last ~= $: and: [ args isEmpty ])
+				ifTrue: [ spec class instVarNames
+						detect: [ :var | var = selector ]
+						ifFound: [ :var | spec instVarNamed: selector ]
+						ifNone: [ self error: spec asString , ' does not implement the method ' , selector , '. Maybe your spec reference a presenter that does not exists.' ] ]
+				ifFalse: [ ex resume ] ]
 ]
 
 { #category : #bindings }
@@ -77,7 +87,7 @@ SpecInterpreter >> bindings [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> computeSpecFrom: aSymbol [
-	^ (aSymbol isSymbol and: [ aSymbol ~= #model ])
+	^ (aSymbol isSymbol and: [ (self isPresenterSymbol: aSymbol) not ])
 		ifTrue: [ | result |
 			result := self convertSymbolOfClassToInstance: aSymbol.
 			result isSpecContainer
@@ -111,7 +121,7 @@ SpecInterpreter >> extractArrayToInterpretFrom: aFragment [
 	
 	(aFragment isString or: [ aFragment isText ])
 		ifTrue: [ 
-			^ aFragment == #model
+			^ (self isPresenterSymbol: aFragment)
 				ifTrue: [ self presenter ]
 				ifFalse: [ self convertSymbolOfClassToInstance: aFragment ] ].
 	^ nil
@@ -164,6 +174,13 @@ SpecInterpreter >> interpretASpec: aSpec presenter: aPresenter [
 	^ self interpretASpec: aSpec
 ]
 
+{ #category : #testing }
+SpecInterpreter >> isPresenterSymbol: aSymbol [
+	self flag: #todo. "We keep #model for one version of Pharo then we should only keep #presenter."
+	
+	^ #(#model #presenter) anySatisfy: [ :symbol | symbol = aSymbol ]
+]
+
 { #category : #accessing }
 SpecInterpreter >> model [
 	self deprecated: 'Use #presenter instead' transformWith: '`@receiver model' -> '`@receiver presenter'.
@@ -208,12 +225,11 @@ SpecInterpreter >> retrieveSpecFrom: aSpec [
 		ifTrue: [ spec := self computeSpecFrom: arrayToInterpret first ]
 		ifFalse: [ spec := self presenter spec.
 			self presenter needRebuild: true.
-			spec isSpecAdapter
-				ifFalse: [ spec := self computeSpecFrom: arrayToInterpret first ]
-				ifTrue: [ spec isRedrawable
+			spec
+				ifNil: [ spec := self computeSpecFrom: arrayToInterpret first ]
+				ifNotNil: [ spec isRedrawable
 						ifTrue: [ spec removeSubWidgets ]
 						ifFalse: [ ^ spec ] ] ].
-				
 	^ nil
 ]
 
