@@ -16,17 +16,30 @@ ActionBarPresenter class >> adapterName [
 { #category : #adding }
 ActionBarPresenter >> add: aButtonPresenter [
 	
-	items add: aButtonPresenter
+	(items 
+		at: #start
+		ifAbsentPut: [ OrderedCollection new ] ) 
+		add: aButtonPresenter
+]
+
+{ #category : #adding }
+ActionBarPresenter >> addLast: aButtonPresenter [
+	
+	(items 
+		at: #end
+		ifAbsentPut: [ OrderedCollection new ] ) 
+		add: aButtonPresenter
 ]
 
 { #category : #initialization }
 ActionBarPresenter >> initialize [
 
 	super initialize.
-	items := OrderedCollection new asValueHolder
+	items := Dictionary new asValueHolder
 ]
 
 { #category : #api }
 ActionBarPresenter >> items [
+
 	^ items value
 ]
