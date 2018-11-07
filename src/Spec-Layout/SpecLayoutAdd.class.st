@@ -146,22 +146,18 @@ SpecLayoutAdd >> subwidget: anObject [
 
 { #category : #'instance creation' }
 SpecLayoutAdd >> subwidget: aSpec layoutFrame: aLayoutFrame [
-	
 	subwidget := aSpec isSymbol
-				ifTrue: [{#model. aSpec}]
-				ifFalse: [
-					aSpec isCollection
-						ifTrue: [
-							aSpec isEmpty 
-								ifTrue: [ "should raise an error" ]
-								ifFalse: [ aSpec first == #model 
-											ifTrue: [ aSpec ]
-											ifFalse: [ {#model}, aSpec ]]]
-						ifFalse: [ 
-							"Not a symbol or a collection. We assume it's an object to add directly (like a morph by example)"
-							aSpec ]].
-	
-	layoutFrame := aLayoutFrame.
+		ifTrue: [ {#presenter.
+			aSpec} ]
+		ifFalse: [ aSpec isCollection
+				ifTrue: [ aSpec isEmpty
+						ifTrue: [ "should raise an error" ]
+						ifFalse: [ self flag: #todo.	"In one version of Pharo the #model should disaper. It's just here for retro compatibility"
+							(#(#model #presenter) anySatisfy: [ :symbol | aSpec first = symbol ])
+								ifTrue: [ aSpec ]
+								ifFalse: [ {#presenter} , aSpec ] ] ]
+				ifFalse: [ "Not a symbol or a collection. We assume it's an object to add directly (like a morph by example)" aSpec ] ].
+	layoutFrame := aLayoutFrame
 ]
 
 { #category : #'instance creation' }
