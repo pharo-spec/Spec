@@ -7,11 +7,11 @@ Class {
 	#name : #NumberInputFieldPresenter,
 	#superclass : #TextInputFieldPresenter,
 	#instVars : [
-		'#numberType => SpecPropertySlot',
-		'#minimum => SpecPropertySlot',
-		'#maximum => SpecPropertySlot',
-		'#climbRate => SpecPropertySlot',
-		'#digits => SpecPropertySlot'
+		'numberType',
+		'minimum',
+		'maximum',
+		'climbRate',
+		'digits'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -20,6 +20,12 @@ Class {
 NumberInputFieldPresenter class >> adapterName [
 
 	^ #NumberInputFieldAdapter
+]
+
+{ #category : #accessing }
+NumberInputFieldPresenter class >> defaultClimbRate [
+
+	^ 1
 ]
 
 { #category : #accessing }
@@ -42,37 +48,44 @@ NumberInputFieldPresenter >> beInteger [
 
 { #category : #accessing }
 NumberInputFieldPresenter >> climbRate [
-	"This field indicates the jumo rate when a spin is present."
+	"This field indicates the jump rate when a spin is present."
 
-	^ climbRate
+	^ climbRate value
 ]
 
 { #category : #accessing }
 NumberInputFieldPresenter >> climbRate: aNumber [
 
-	climbRate := aNumber
+	climbRate value: aNumber
 ]
 
 { #category : #accessing }
 NumberInputFieldPresenter >> digits [
 	"digits to show when we have a float number"
 
-	^ digits
+	^ digits value
 ]
 
 { #category : #accessing }
 NumberInputFieldPresenter >> digits: aNumber [
 	"digits to show when we have a float number"
 
-	digits := aNumber
+	digits value: aNumber
 ]
 
 { #category : #initialization }
 NumberInputFieldPresenter >> initialize [
 
 	super initialize.
+	numberType := nil asValueHolder. 
+	minimum := nil asValueHolder. 
+	maximum := nil asValueHolder. 
+	climbRate := nil asValueHolder. 
+	digits := nil asValueHolder.
+	
 	self beInteger.
-	self digits: self class defaultDigits
+	self digits: self class defaultDigits.
+	self climbRate: self class defaultClimbRate.
 ]
 
 { #category : #testing }
@@ -89,22 +102,26 @@ NumberInputFieldPresenter >> isInteger [
 
 { #category : #accessing }
 NumberInputFieldPresenter >> maximum [
-	^ maximum
+
+	^ maximum value
 ]
 
 { #category : #accessing }
 NumberInputFieldPresenter >> maximum: aNumber [
-	maximum := aNumber
+
+	maximum value: aNumber
 ]
 
 { #category : #accessing }
 NumberInputFieldPresenter >> minimum [
-	^ minimum
+
+	^ minimum value
 ]
 
 { #category : #accessing }
 NumberInputFieldPresenter >> minimum: aNumber [
-	minimum := aNumber
+
+	minimum value: aNumber
 ]
 
 { #category : #accessing }
@@ -122,7 +139,8 @@ NumberInputFieldPresenter >> number: aNumber [
 
 { #category : #accessing }
 NumberInputFieldPresenter >> numberType [
-	^ numberType
+
+	^ numberType value
 ]
 
 { #category : #private }
@@ -130,12 +148,6 @@ NumberInputFieldPresenter >> numberType: aClass [
 	"This can be Integer or Float, no more"
 
 	numberType := aClass
-]
-
-{ #category : #accessing }
-NumberInputFieldPresenter >> propertyAt: aName [
-
-	^ (self class slotNamed: aName) propertyAt: self
 ]
 
 { #category : #accessing }
