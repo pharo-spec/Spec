@@ -46,7 +46,7 @@ MenuPresenter class >> popup [
 	<spec>
 	
 	^ #(MenuAdapter
-		adaptAsPopup: #(model))
+		adaptAsPopup: #(presenter))
 ]
 
 { #category : #'api-building' }

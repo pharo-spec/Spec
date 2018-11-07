@@ -64,7 +64,7 @@ SpecInterpreterTest >> testDynamicBuild [
 SpecInterpreterTest >> testInterpretASpecModelMorphAssociation [
 	| spec model morph |
 	model := AbstractWidgetPresenter new.
-	spec := {#PluggableListMorph . #model: . #model}.
+	spec := {#PluggableListMorph . #model: . #presenter}.
 	morph := specInterpreterClass interpretASpec: spec presenter: model.
 	self assert: model widget == morph
 ]

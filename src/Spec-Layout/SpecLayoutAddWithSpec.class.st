@@ -40,6 +40,6 @@ SpecLayoutAddWithSpec >> subwidget: sub spec: aSpecSelector layoutFrame: aFrameL
 { #category : #'instance creation' }
 SpecLayoutAddWithSpec >> subwidgetArguments [
 	^ self subwidget isArray
-		ifTrue: [ #(model) , self subwidget , {#retrieveSpec:. self specSelector} ]
-		ifFalse: [ {#model. self subwidget. #retrieveSpec:. self specSelector} ]
+		ifTrue: [ #(presenter) , self subwidget , {#retrieveSpec:. self specSelector} ]
+		ifFalse: [ {#presenter. self subwidget. #retrieveSpec:. self specSelector} ]
 ]

@@ -87,7 +87,7 @@ SpecInterpreter >> bindings [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> computeSpecFrom: aSymbol [
-	^ (aSymbol isSymbol and: [ aSymbol ~= #model ])
+	^ (aSymbol isSymbol and: [ (self isPresenterSymbol: aSymbol) not ])
 		ifTrue: [ | result |
 			result := self convertSymbolOfClassToInstance: aSymbol.
 			result isSpecContainer
@@ -121,7 +121,7 @@ SpecInterpreter >> extractArrayToInterpretFrom: aFragment [
 	
 	(aFragment isString or: [ aFragment isText ])
 		ifTrue: [ 
-			^ aFragment == #model
+			^ (self isPresenterSymbol: aFragment)
 				ifTrue: [ self presenter ]
 				ifFalse: [ self convertSymbolOfClassToInstance: aFragment ] ].
 	^ nil
@@ -172,6 +172,13 @@ SpecInterpreter >> interpretASpec: aSpec model: aPresenter selector: aSelector [
 SpecInterpreter >> interpretASpec: aSpec presenter: aPresenter [
 	self presenter: aPresenter.
 	^ self interpretASpec: aSpec
+]
+
+{ #category : #testing }
+SpecInterpreter >> isPresenterSymbol: aSymbol [
+	self flag: #todo. "We keep #model for one version of Pharo then we should only keep #presenter."
+	
+	^ #(#model #presenter) anySatisfy: [ :symbol | symbol = aSymbol ]
 ]
 
 { #category : #accessing }
