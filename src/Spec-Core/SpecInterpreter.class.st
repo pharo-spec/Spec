@@ -24,40 +24,6 @@ SpecInterpreter class >> bindings [
 	^ SpecBindings value new
 ]
 
-{ #category : #accessing }
-SpecInterpreter class >> bindings: anAdapterBinding [
-	self deprecated: 'Never worked.'
-]
-
-{ #category : #private }
-SpecInterpreter class >> defaultBindings [
-	self deprecated: 'Use #bindings instead.' transformWith: '`@receiver defaultBindings' -> '`@receiver bindings'.
-	^ self bindings
-]
-
-{ #category : #accessing }
-SpecInterpreter class >> hardResetBindings [
-	self deprecated: 'Never worked'
-]
-
-{ #category : #protocol }
-SpecInterpreter class >> interpretASpec: aSpec model: aPresenter [
-	self
-		deprecated: 'Use `interpretASpec: aSpec presenter: aPresenter` instead'
-		transformWith: '`@receiver interpretASpec: `@statements1 model: `@statements2' -> '`@receiver interpretASpec: `@statements1 presenter: `@statements2'.
-		
-	^ self interpretASpec: aSpec presenter: aPresenter
-]
-
-{ #category : #protocol }
-SpecInterpreter class >> interpretASpec: aSpec model: aPresenter selector: aSelector [
-	self
-		deprecated: 'Use `interpretASpec: aSpec presenter: aPresenter` instead'
-		transformWith: '`@receiver interpretASpec: `@statements1 model: `@statements2 selector: `@statements3' -> '`@receiver interpretASpec: `@statements1 presenter: `@statements2'.
-		
-	^ self interpretASpec: aSpec presenter: aPresenter
-]
-
 { #category : #protocol }
 SpecInterpreter class >> interpretASpec: aSpec presenter: aPresenter [
 	^ self new interpretASpec: aSpec presenter: aPresenter
@@ -160,15 +126,6 @@ SpecInterpreter >> interpretASpec: aSpec [
 ]
 
 { #category : #interpreting }
-SpecInterpreter >> interpretASpec: aSpec model: aPresenter selector: aSelector [
-	self
-		deprecated: 'Use `interpretASpec: aSpec presenter: aPresenter` instead'
-		transformWith: '`@receiver interpretASpec: `@statements1 model: `@statements2 selector: `@statements3' -> '`@receiver interpretASpec: `@statements1 presenter: `@statements2'.
-
-	^ self interpretASpec: aSpec presenter: aPresenter
-]
-
-{ #category : #interpreting }
 SpecInterpreter >> interpretASpec: aSpec presenter: aPresenter [
 	self presenter: aPresenter.
 	^ self interpretASpec: aSpec
@@ -179,18 +136,6 @@ SpecInterpreter >> isPresenterSymbol: aSymbol [
 	self flag: #todo. "We keep #model for one version of Pharo then we should only keep #presenter."
 	
 	^ #(#model #presenter) anySatisfy: [ :symbol | symbol = aSymbol ]
-]
-
-{ #category : #accessing }
-SpecInterpreter >> model [
-	self deprecated: 'Use #presenter instead' transformWith: '`@receiver model' -> '`@receiver presenter'.
-	^ self presenter
-]
-
-{ #category : #accessing }
-SpecInterpreter >> model: anObject [
-	self deprecated: 'Use #presenter: instead' transformWith: '`@receiver model: `@statment1' -> '`@receiver presenter: `@statment1'.
-	self presenter: anObject
 ]
 
 { #category : #'interpreting-private' }

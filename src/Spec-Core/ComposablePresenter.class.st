@@ -402,13 +402,6 @@ ComposablePresenter >> defaultSpecSelector [
 ]
 
 { #category : #accessing }
-ComposablePresenter >> defaultWindowModelClass [ 
-	self deprecated: 'Use #defaultWindowPresenterClass instead' transformWith: '`@receiver defaultWindowModelClass' -> '`@receiver defaultWindowPresenterClass'.
-	
-	^ self defaultWindowPresenterClass
-]
-
-{ #category : #accessing }
 ComposablePresenter >> defaultWindowPresenterClass [ 
 	^ WindowPresenter
 ]
@@ -553,12 +546,6 @@ ComposablePresenter >> hide [
 		(widget respondsTo: #hide) ifTrue: [ widget hide ]].
 ]
 
-{ #category : #icon }
-ComposablePresenter >> icon: aSymbol [
-	self deprecated: 'Use #iconNamed: instead' transformWith: '`@receiver icon: `@statements' -> '`@receiver iconNamed: `@statements'.
-	^ self iconNamed: aSymbol
-]
-
 { #category : #accessing }
 ComposablePresenter >> iconNamed: aSymbol [
 	^ self class iconNamed: aSymbol
@@ -656,14 +643,6 @@ ComposablePresenter >> instantiate: aComposablePresenterClass [
 ComposablePresenter >> instantiate: aComposablePresenterClass on: aModel [
 	"Instantiate a ComposablePresenter subclass and set its instance owner and model"
 	^ aComposablePresenterClass owner: self on: aModel
-]
-
-{ #category : #'instance creation' }
-ComposablePresenter >> instantiateModels: aCollectionOfPairs [
-	
-	self deprecated: 'Use #instantiatePresenters: instead' transformWith: '`@receiver instantiateModels: `@statement' -> '`@receiver instantiatePresenters: `@statement'.
-
-	^ self instantiatePresenters: aCollectionOfPairs
 ]
 
 { #category : #'instance creation' }

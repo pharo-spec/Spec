@@ -230,20 +230,6 @@ WindowPresenter >> modalRelativeTo: aWindow [
 	self changed: #modalRelativeTo: with: { aWindow }
 ]
 
-{ #category : #accessing }
-WindowPresenter >> model [
-	self deprecated: 'Model was renamed Presenter in Pharo 7' transformWith: '`@receiver model' -> '`@receiver presenter'.
-	
-	^ self presenter
-]
-
-{ #category : #accessing }
-WindowPresenter >> model: aModel [
-	self deprecated: 'Model was renamed Presenter in Pharo 7' transformWith: '`@receiver model: `@statements1' -> '`@receiver presenter: `@statements1'.
-
-	self presenter: aModel
-]
-
 { #category : #private }
 WindowPresenter >> okToChange [
 	^ self presenter okToChange

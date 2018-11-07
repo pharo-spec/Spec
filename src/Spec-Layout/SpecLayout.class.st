@@ -418,16 +418,6 @@ SpecLayout >> resetArrayComputation [
 	"Do nothing here"
 ]
 
-{ #category : #accessing }
-SpecLayout >> selector [
-	self deprecated: 'This method it useless and adding a selector variable only make the code more complexe. It is now removed.'.
-]
-
-{ #category : #accessing }
-SpecLayout >> selector: anObject [
-	self deprecated: 'This method it useless and adding a selector variable only make the code more complexe. It is now removed.'.
-]
-
 { #category : #commands }
 SpecLayout >> send: aSelector [
 	
