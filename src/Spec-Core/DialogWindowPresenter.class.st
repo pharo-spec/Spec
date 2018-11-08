@@ -27,8 +27,10 @@ DialogWindowPresenter >> buildWithSpecLayout: aSpec [
 			widget := self widget ]
 		ifFalse: [ 
 			contents := self presenter buildWithSpecLayout: aSpec.
-			widget := self adapterFrom: self retrieveDefaultSpec.
-			contents := nil ].
+			[ 	
+				widget := (self adapterFrom: self retrieveDefaultSpec) widget.
+				self addModelIn: widget withSpecLayout: aSpec ]
+			ensure: [ contents := nil ] ].
 	
 	self extent ifNotNil: [ :ex | 
 		(widget respondsTo: #extent:) ifTrue: [ 
