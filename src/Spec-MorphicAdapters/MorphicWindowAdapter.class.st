@@ -26,16 +26,21 @@ MorphicWindowAdapter >> aboutTitle [
 ]
 
 { #category : #private }
-MorphicWindowAdapter >> addContent: aMorph to: aSpecWindow [
+MorphicWindowAdapter >> add: containerMorph toWindow: aSpecWindow [
+
+	aSpecWindow 
+		addMorph: containerMorph 
+		fullFrame: LayoutFrame identity
+]
+
+{ #category : #private }
+MorphicWindowAdapter >> addContent: aMorph toWindow: aSpecWindow [
 	| containerMorph |
 	
-	containerMorph := PanelMorph new
-		layoutPolicy: TableLayout new; 
-		hResizing: #spaceFill;
-		vResizing: #spaceFill;		
-		listDirection: #topToBottom; 
-		yourself.
-
+	containerMorph := self newContainerMorph.
+	"hook to allow my children to replace an already built morph"
+	self replace: aMorph with: containerMorph onWindow: aSpecWindow. 
+	"add all decorations (menu, toolbar and statusbar)"
 	self model hasMenu ifTrue: [ self addMenuTo: containerMorph ].
 	self model hasToolBar ifTrue: [ self addToolBarTo: containerMorph ].
 	containerMorph addMorphBack: aMorph.
@@ -44,9 +49,7 @@ MorphicWindowAdapter >> addContent: aMorph to: aSpecWindow [
 		vResizing: #spaceFill.
 	self model hasStatusBar ifTrue: [ self addStatusBarTo: containerMorph ].
 	
-	aSpecWindow 
-		addMorph: containerMorph 
-		fullFrame: LayoutFrame identity
+	self add: containerMorph toWindow: aSpecWindow
 ]
 
 { #category : #private }
@@ -64,14 +67,14 @@ MorphicWindowAdapter >> addMenuTo: aMorph [
 MorphicWindowAdapter >> addModelIn: widgetToBuild withSpec: aSpec [
 	self
 		addContent: (self model model buildWithSpec: aSpec)
-		to: widgetToBuild
+		toWindow: widgetToBuild
 ]
 
 { #category : #protocol }
 MorphicWindowAdapter >> addModelIn: widgetToBuild withSpecLayout: aSpec [
 	self
 		addContent: (self model presenter buildWithSpecLayout: aSpec)
-		to: widgetToBuild
+		toWindow: widgetToBuild
 ]
 
 { #category : #'widget API' }
@@ -200,6 +203,17 @@ MorphicWindowAdapter >> modalRelativeTo: aWindow [
 	self widgetDo: [ :w | aWindow setModal: w ]
 ]
 
+{ #category : #private }
+MorphicWindowAdapter >> newContainerMorph [
+		
+	^ PanelMorph new
+		layoutPolicy: TableLayout new; 
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;		
+		listDirection: #topToBottom; 
+		yourself
+]
+
 { #category : #'widget API' }
 MorphicWindowAdapter >> okToChange [
 ^ self model okToChange
@@ -237,6 +251,14 @@ MorphicWindowAdapter >> rebuildWithSpecLayout: aSpec [
 	sub allButLast do: [:e | self model window addMorphBack: e ].
 	self model addModelIn: self widget withSpecLayout: aSpec.
 	self widget model: self
+]
+
+{ #category : #private }
+MorphicWindowAdapter >> replace: aMorph with: containerMorph onWindow: aSpecWindow [
+	"If the window is already built, I need to replace old generated content with new 
+	 content with decorations. This is not the case of regular windows, but my children 
+	 may need this hook."
+
 ]
 
 { #category : #icons }
