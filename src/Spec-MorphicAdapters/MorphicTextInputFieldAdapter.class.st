@@ -7,12 +7,6 @@ Class {
 	#category : #'Spec-MorphicAdapters-Base'
 }
 
-{ #category : #accessing }
-MorphicTextInputFieldAdapter class >> adaptingAliases [ 
-	
-	^ #( NumberInputFieldAdapter )
-]
-
 { #category : #'widget API' }
 MorphicTextInputFieldAdapter >> accept: aText [
 

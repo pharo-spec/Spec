@@ -212,17 +212,8 @@ SpecDemoStandaloneFormPresenter >> genderLabel: anObject [
 
 { #category : #initialization }
 SpecDemoStandaloneFormPresenter >> initializePresenter [
-	
-	self submitButton action: [self submit].	
-	self restoreButton action: [self restore].
-	
-	self number1Input whenTextChanged: [ 
-		| receivedText newText |
-		receivedText := self number1Input text asString.
-		newText := receivedText select: [ :aCharacter | aCharacter isDigit ].
-		newText = receivedText ifFalse: [ 
-			self number1Input textHolder rawValue: newText.
-			self number1Input textHolder valueChanged: newText] ]
+	self submitButton action: [ self submit ].
+	self restoreButton action: [ self restore ]
 ]
 
 { #category : #initialization }
@@ -235,10 +226,10 @@ SpecDemoStandaloneFormPresenter >> initializeWidgets [
 	surnameTextInput := self newTextInput autoAccept: true.
 	surnameTextInput placeholder: 'empty'.
 	number1Label := self newLabel label: 'number 1:'.
-	number1Input := self newTextInput autoAccept: true.
+	number1Input := self newNumberInput autoAccept: true.
 
 	number2Label := self newLabel label: 'number 2:'.
-	number2Input := self newTextInput autoAccept: true.
+	number2Input := self newNumberInput autoAccept: true; beFloat; digits: 3; climbRate: 0.005; minimum: 10.005; maximum: 20.05.
 
 	scaleLabel := self newLabel label: 'scale:'.
 	scaleInput := self newSlider.
