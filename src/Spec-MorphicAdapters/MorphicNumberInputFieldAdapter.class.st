@@ -1,69 +1,60 @@
 "
-I am the adapter used to display a NumberInputFieldPresenter with Morphic
+I am the adapter used to display a NumberInputFieldPresenter with Morphic.
+
+I will display a text morph accepting only number from the user. The up and down keys will increase or decrease the value of the input. On top of that I also have two icons. One with an arrow up and one with an arrow down.
 "
 Class {
 	#name : #MorphicNumberInputFieldAdapter,
-	#superclass : #MorphicTextAdapter,
+	#superclass : #MorphicTextInputFieldAdapter,
 	#category : #'Spec-MorphicAdapters-Base'
 }
 
 { #category : #'widget API' }
 MorphicNumberInputFieldAdapter >> accept: aText [
 	| textToSet |
-	
-	textToSet := (self shouldAccept: aText)
-		ifTrue: [ aText ]
-		ifFalse: [ self model text ].
-		
-	self model accept: textToSet
-]
+	textToSet := (self shouldAccept: aText asString) ifTrue: [ aText ] ifFalse: [ self model text ].
 
-{ #category : #'widget API' }
-MorphicNumberInputFieldAdapter >> acceptOnCR [
-
-	^ self model acceptOnCR
-]
-
-{ #category : #initialization }
-MorphicNumberInputFieldAdapter >> adapt: aModel [
-	
-	super adapt: aModel.
-	aModel whenBuiltDo: [ :w | w widget color: Smalltalk ui theme backgroundColor ]
+	super accept: textToSet
 ]
 
 { #category : #factory }
 MorphicNumberInputFieldAdapter >> buildWidget [
-	| plu |
-	plu := PluggableTextFieldMorph new
-		convertTo: String;
-		on: self
-			text: #getText
-			accept: #accept:
-			readSelection: nil
-			menu: nil
-			setSelection: #setSelection:.
-	plu
-		entryCompletion: self entryCompletion;
-		autoAccept: self autoAccept;
-		ghostText: self placeholder;
-		enabled: self enabled;
-		setBalloonText: self help;
-		dragEnabled: self dragEnabled;
-		dropEnabled: self dropEnabled;
-		hResizing: #spaceFill;
-		vResizing: #spaceFill;
-		acceptOnCR: self acceptOnCR;
-		hideScrollBarsIndefinitely;
-		eventHandler: (MorphicEventHandler new on: #keyStroke send: #keystroke:from: to: self).
-	^ plu
+	| textMorph iconsContainer |
+	
+	textMorph := super buildWidget.
+	textMorph eventHandler: (MorphicEventHandler new on: #keyStroke send: #keystroke:from: to: self).
+
+	"We add an arrow up and arrow down to the morph to match common input number implementations"	
+	iconsContainer := Morph new
+		extent: 12 @ 12;
+		color: Color transparent;
+		changeTableLayout;
+		listDirection: #topToBottom;
+		addMorph: (self newIconButtonAction: #decreaseValueOf: with: textMorph iconSelector: #arrowDoubleDownIcon);
+		addMorph: (self newIconButtonAction: #increaseValueOf: with: textMorph iconSelector: #arrowDoubleUpIcon);
+		yourself.
+
+	"With the layout frame I set next it, the arrows will be at the top right of the text morph. We should be able to make it vertically centered but I don't know how to do that with morphs. If someone knows, please do :)"
+	textMorph
+		changeProportionalLayout;
+		addMorph: iconsContainer
+			fullFrame:
+			(LayoutFrame identity
+				bottomFraction: 0;
+				leftFraction: 1;
+				topOffset: 4;
+				leftOffset: -25;
+				yourself).
+
+	^ textMorph
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #actions }
 MorphicNumberInputFieldAdapter >> decreaseValueOf: aTextMorph [
 	aTextMorph setTextAndAccept: (self decreasedValueFrom: aTextMorph getText)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #actions }
 MorphicNumberInputFieldAdapter >> decreasedValueFrom: aString [
 	"I get the current value from a string and decrease it by the step.
 	
@@ -78,23 +69,25 @@ MorphicNumberInputFieldAdapter >> decreasedValueFrom: aString [
 		ifFalse: [ newValue printShowingDecimalPlaces: self model digits ]
 ]
 
-{ #category : #'widget API' }
-MorphicNumberInputFieldAdapter >> entryCompletion [
-
-	^ self model entryCompletion
-]
-
-{ #category : #accessing }
+{ #category : #'ensure bounds' }
 MorphicNumberInputFieldAdapter >> inBounds: aNumber [
+	"I return a the closest number from my input that is inside the bounds defined by the user.
+	
+	For example with 10 as min and 20 as max I will return:
+	
+	- Input: 15 Result: 15
+	- Input: 8  Result: 10
+	- Input: 25 Result: 20"
+	
 	^ self inferiorToMaximum: (self superiorToMinimum: aNumber)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #actions }
 MorphicNumberInputFieldAdapter >> increaseValueOf: aTextMorph [
 	aTextMorph setTextAndAccept: (self increasedValueFrom: aTextMorph getText)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #actions }
 MorphicNumberInputFieldAdapter >> increasedValueFrom: aString [
 	"I get the current value from a aString and increase it by the step.
 	
@@ -109,15 +102,9 @@ MorphicNumberInputFieldAdapter >> increasedValueFrom: aString [
 		ifFalse: [ newValue printShowingDecimalPlaces: self model digits ]
 ]
 
-{ #category : #accessing }
+{ #category : #'ensure bounds' }
 MorphicNumberInputFieldAdapter >> inferiorToMaximum: aNumber [
 	^ self model maximum ifNil: [ aNumber ] ifNotNil: [ :max | aNumber min: max ]
-]
-
-{ #category : #NOCompletion }
-MorphicNumberInputFieldAdapter >> isCodeCompletionAllowed [
-	
-	^ false
 ]
 
 { #category : #events }
@@ -134,14 +121,17 @@ MorphicNumberInputFieldAdapter >> keystroke: aKeyboardEvent from: aTextMorph [
 	^ false
 ]
 
-{ #category : #'widget API' }
-MorphicNumberInputFieldAdapter >> placeholder [
-	^ self model placeholder
-]
-
-{ #category : #'widget API' }
-MorphicNumberInputFieldAdapter >> placeholder: aText [
-	^ self model placeholder: aText
+{ #category : #factory }
+MorphicNumberInputFieldAdapter >> newIconButtonAction: aSymbol with: textMorph iconSelector: anIconSymbol [
+	^ IconicButton new
+		target: self;
+		actionSelector: aSymbol;
+		arguments: {textMorph};
+		labelGraphic: (self iconNamed: anIconSymbol);
+		color: Color transparent;
+		extent: 16 @ 8;
+		borderWidth: 0;
+		yourself
 ]
 
 { #category : #testing }
@@ -165,7 +155,7 @@ MorphicNumberInputFieldAdapter >> shouldAccept: aText [
 	
 ]
 
-{ #category : #accessing }
+{ #category : #'ensure bounds' }
 MorphicNumberInputFieldAdapter >> superiorToMinimum: aNumber [
 	^ self model minimum ifNil: [ aNumber ] ifNotNil: [ :min | aNumber max: min ]
 ]

@@ -1,3 +1,6 @@
+"
+I am a test class for the MorphicNumberInputFieldAdapter.
+"
 Class {
 	#name : #MorphicNumberInputFieldAdapterTest,
 	#superclass : #TestCase,
@@ -38,6 +41,20 @@ MorphicNumberInputFieldAdapterTest >> testDecreasedValueFrom [
 
 	self assert: (adapter decreasedValueFrom: '85') equals: '82.5'.
 	self assert: (adapter decreasedValueFrom: '81') equals: '80.0'
+]
+
+{ #category : #tests }
+MorphicNumberInputFieldAdapterTest >> testInBounds [
+	presenter maximum: nil.
+	presenter minimum: nil.
+	self assert: (adapter inBounds: 100) equals: 100.
+	self assert: (adapter inBounds: 160) equals: 160.
+	self assert: (adapter inBounds: 80) equals: 80.
+	presenter maximum: 150.
+	presenter minimum: 90.
+	self assert: (adapter inBounds: 100) equals: 100.
+	self assert: (adapter inBounds: 160) equals: 150.
+	self assert: (adapter inBounds: 80) equals: 90
 ]
 
 { #category : #tests }
