@@ -6,7 +6,8 @@ Class {
 	#superclass : #WindowPresenter,
 	#instVars : [
 		'contents',
-		'toolbar'
+		'toolbar',
+		'buttons'
 	],
 	#category : #'Spec-Core-Support'
 }
@@ -15,6 +16,15 @@ Class {
 DialogWindowPresenter class >> adapterName [
 
 	^ #DialogWindowAdapter
+]
+
+{ #category : #accessing }
+DialogWindowPresenter >> addButton: aString do: aBlock [
+	"Adds button logic to dialog."
+	
+	buttons 
+		at: aString 
+		put: aBlock
 ]
 
 { #category : #private }
@@ -37,6 +47,14 @@ DialogWindowPresenter >> buildWithSpecLayout: aSpec [
 			widget extent: ex ] ].
 
 	^ widget
+]
+
+{ #category : #accessing }
+DialogWindowPresenter >> buttons [ 
+	"buttons is an ordered dictionary that matches labels with actions. 
+	 Default action will always be the last one."
+	
+	^ buttons 
 ]
 
 { #category : #api }
@@ -63,7 +81,9 @@ DialogWindowPresenter >> initialize [
 	super initialize.
 
 	toolbar := OkCancelToolbar new asValueHolder.
-	toolbar whenChangedDo: [ :t | self changed: #toolbar: with: { t } ]
+	toolbar whenChangedDo: [ :t | self changed: #toolbar: with: { t } ].
+	
+	buttons := OrderedDictionary new
 ]
 
 { #category : #api }
@@ -76,6 +96,13 @@ DialogWindowPresenter >> okAction: aBlock [
 DialogWindowPresenter >> okButtonEnabled: aBoolean [
 
 	self changed: #okButtonEnabled: with: { aBoolean }
+]
+
+{ #category : #private }
+DialogWindowPresenter >> prepareWindow [
+		
+	super prepareWindow.
+	self presenter prepareDialogButtons: self
 ]
 
 { #category : #api }

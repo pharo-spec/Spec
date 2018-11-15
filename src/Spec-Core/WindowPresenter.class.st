@@ -60,7 +60,7 @@ WindowPresenter >> addModelIn: widget withSpec: aSpec [
 WindowPresenter >> addModelIn: widget withSpecLayout: aSpec [
 	
 	self presenter ifNil: [ ^ self ].
-	self presenter prepareWindow: self.
+	self prepareWindow.
 	self 
 		changed: #addModelIn:withSpecLayout:
 		with: { widget. aSpec }
@@ -258,6 +258,12 @@ WindowPresenter >> openWithSpecLayout: aSpec [
 	window value: (self buildWithSpecLayout: aSpec).
 	self changed: #open with: #().
 	self updateTitle.
+]
+
+{ #category : #private }
+WindowPresenter >> prepareWindow [
+		
+	self presenter prepareWindow: self
 ]
 
 { #category : #accessing }

@@ -937,6 +937,15 @@ ComposablePresenter >> owner: anObject [
 ]
 
 { #category : #api }
+ComposablePresenter >> prepareDialogButtons: aDialogWindowPresenter [
+	"override this to set buttons other than the default (Ok, Cancel)."
+	
+	aDialogWindowPresenter 
+		addButton: 'Ok' do: [ "do nothing" ];
+		addButton: 'Cancel' do: [ "do nothing" ]
+]
+
+{ #category : #api }
 ComposablePresenter >> prepareWindow: aWindowPresenter [
 	"override this to set window values before opening. 
 	 You may want to add a menu, a toolbar or a statusbar"
