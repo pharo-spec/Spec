@@ -27,13 +27,20 @@ MorphicDialogWindowAdapter >> addModelIn: widgetToBuild withSpecLayout: aSpec [
 	
 	self 
 		addContent: widgetToBuild mainPanel
-		toWindow: widgetToBuild
+		toWindow: widgetToBuild.
+		
+	widgetToBuild setToolbarFrom: [ self buildButtonBar ]
 ]
 
 { #category : #factory }
-MorphicDialogWindowAdapter >> buildToolBar [
+MorphicDialogWindowAdapter >> buildButtonBar [
+	| buttonBar |
 	
+	buttonBar := ButtonBarPresenter new placeAtEnd.
+	self model buttons do: [ :buttonPresenter | 
+		buttonBar add: buttonPresenter ].
 	
+	^ buttonBar
 ]
 
 { #category : #factory }
@@ -41,24 +48,9 @@ MorphicDialogWindowAdapter >> buildWidget [
 
 	^ SpecDialogWindow new
 		specWidget: self model contents;
-		setToolbarFrom: [ self model toolbar ];
 		model: self model;
 		initialize;
 		yourself
-]
-
-{ #category : #'spec protocol' }
-MorphicDialogWindowAdapter >> cancelAction: aBlock [
-
-	^ self widget
-		ifNotNil: [:w | w cancelAction: aBlock ]
-]
-
-{ #category : #'spec protocol' }
-MorphicDialogWindowAdapter >> okAction: aBlock [
-
-	^ self widget
-		ifNotNil: [:w | w okAction: aBlock ]
 ]
 
 { #category : #'spec protocol' }
@@ -81,22 +73,4 @@ MorphicDialogWindowAdapter >> replace: aMorph with: containerMorph onWindow: aSp
 		replaceSubmorph: aMorph 
 		by: containerMorph
 
-]
-
-{ #category : #'spec protocol' }
-MorphicDialogWindowAdapter >> toolbar: aToolbar [ 
-
-	self widgetDo: [ :w | w toolbar: aToolbar ]
-]
-
-{ #category : #'spec protocol' }
-MorphicDialogWindowAdapter >> triggerCancelAction [
-
-	self widget ifNotNil: [:w | w toolbar triggerCancelAction ]
-]
-
-{ #category : #'spec protocol' }
-MorphicDialogWindowAdapter >> triggerOkAction [
-
-	self widget ifNotNil: [:w | w toolbar triggerOkAction ]
 ]

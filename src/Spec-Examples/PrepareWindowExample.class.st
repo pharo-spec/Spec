@@ -54,6 +54,17 @@ PrepareWindowExample >> initializeWidgets [
 BEWARE: This elements will be added just when you will open the presenter as a window or dialog. Otherwise, your component will behave just as another composable presenter.'
 ]
 
+{ #category : #initialization }
+PrepareWindowExample >> initializeWindow: aWindowPresenter [
+	"I'm called whenever the component will be displayed in a window (or dialog). 
+	 This is usually attained sending #openWithSpec or #openDialogWithSpec."
+	
+	aWindowPresenter 
+		menu: (menu := self newMenu);
+		toolBar: (toolBar := self newToolBar);
+		statusBar: (statusBar := self newStatusBar)
+]
+
 { #category : #'private factory' }
 PrepareWindowExample >> newFileMenu [
 		
@@ -111,17 +122,6 @@ PrepareWindowExample >> newToolBar [
 PrepareWindowExample >> popMessage [
 
 	statusBar popMessage
-]
-
-{ #category : #api }
-PrepareWindowExample >> prepareWindow: aWindowPresenter [
-	"I'm called whenever the component will be displayed in a window (or dialog). 
-	 This is usually attained sending #openWithSpec or #openDialogWithSpec."
-	
-	aWindowPresenter 
-		menu: (menu := self newMenu);
-		toolBar: (toolBar := self newToolBar);
-		statusBar: (statusBar := self newStatusBar)
 ]
 
 { #category : #actions }

@@ -60,7 +60,7 @@ WindowPresenter >> addModelIn: widget withSpec: aSpec [
 WindowPresenter >> addModelIn: widget withSpecLayout: aSpec [
 	
 	self presenter ifNil: [ ^ self ].
-	self prepareWindow.
+	self initializeWindow.
 	self 
 		changed: #addModelIn:withSpecLayout:
 		with: { widget. aSpec }
@@ -182,6 +182,12 @@ WindowPresenter >> initialize [
 	centered whenChangedDo: [ :m | self changed: #centered with: #() ]
 ]
 
+{ #category : #initialization }
+WindowPresenter >> initializeWindow [
+		
+	self presenter initializeWindow: self
+]
+
 { #category : #testing }
 WindowPresenter >> isCentered [
 
@@ -258,12 +264,6 @@ WindowPresenter >> openWithSpecLayout: aSpec [
 	window value: (self buildWithSpecLayout: aSpec).
 	self changed: #open with: #().
 	self updateTitle.
-]
-
-{ #category : #private }
-WindowPresenter >> prepareWindow [
-		
-	self presenter prepareWindow: self
 ]
 
 { #category : #accessing }

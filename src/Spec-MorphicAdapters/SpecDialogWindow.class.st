@@ -27,14 +27,13 @@ SpecDialogWindow >> cancelled [
 { #category : #actions }
 SpecDialogWindow >> close [
 
-	super close.
-	self toolbar cancel
+	super close
 ]
 
 { #category : #actions }
 SpecDialogWindow >> escapePressed [
 
-	self toolbar triggerCancelAction
+	self model triggerCancelAction
 ]
 
 { #category : #focus }
@@ -114,9 +113,9 @@ SpecDialogWindow >> setToolbarFrom: aBlock [
 	| newToolbar |
 	
 	newToolbar := aBlock value.
+	newToolbar owner: self.
 	
-	toolbar := newToolbar.
-	newToolbar owner: self
+	self toolbar: newToolbar
 ]
 
 { #category : #accessing }
