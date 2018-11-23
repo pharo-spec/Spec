@@ -571,9 +571,17 @@ ComposablePresenter >> initialize [
 ]
 
 { #category : #initialization }
-ComposablePresenter >> initializeDialogWindow: aWindow [
-	"used to initialize the model in the case of the use into a dialog window"
-
+ComposablePresenter >> initializeDialogWindow: aDialogWindowPresenter [
+	"used to initialize the model in the case of the use into a dialog window.
+	 Override this to set buttons other than the default (Ok, Cancel)."
+	
+	aDialogWindowPresenter
+		addButton: 'Ok' do: [ :presenter | 
+			presenter triggerOkAction.
+			presenter close ];
+		addButton: 'Cancel' do: [ :presenter | 
+			presenter triggerCancelAction.
+			presenter close ]
 ]
 
 { #category : #initialization }
@@ -896,7 +904,6 @@ ComposablePresenter >> openDialogWithSpecLayout: aSpec [
 		ifFalse: [ 
 			self presenterWindow: (DialogWindowPresenter new presenter: self).
 			self presenterWindow openWithSpecLayout: aSpec.
-			self initializeDialogWindow: self presenterWindow.
 			self presenterWindow updateTitle.
 			self takeKeyboardFocus ].
 		
@@ -941,19 +948,6 @@ ComposablePresenter >> owner [
 ComposablePresenter >> owner: anObject [
 
 	owner := anObject.
-]
-
-{ #category : #initialization }
-ComposablePresenter >> prepareDialogButtons: aDialogWindowPresenter [
-	"override this to set buttons other than the default (Ok, Cancel)."
-	
-	aDialogWindowPresenter
-		addButton: 'Ok' do: [ :presenter | 
-			presenter triggerOkAction.
-			presenter close ];
-		addButton: 'Cancel' do: [ :presenter | 
-			presenter triggerCancelAction.
-			presenter close ]
 ]
 
 { #category : #accessing }

@@ -9,7 +9,8 @@ Class {
 
 { #category : #private }
 MorphicDialogWindowAdapter >> add: aMorph toWindow: aWindow [
-	"do nothing, the morph is already managed"
+	
+	aWindow specWidget: aMorph
 ]
 
 { #category : #private }
@@ -51,12 +52,6 @@ MorphicDialogWindowAdapter >> buildWidget [
 		model: self model;
 		initialize;
 		yourself
-]
-
-{ #category : #'spec protocol' }
-MorphicDialogWindowAdapter >> okButtonEnabled: aBoolean [
-
-	self widget ifNotNil: [ :w | w toolbar okButton enabled: aBoolean ]
 ]
 
 { #category : #protocol }

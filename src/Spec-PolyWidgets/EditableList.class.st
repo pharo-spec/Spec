@@ -100,6 +100,16 @@ EditableList >> initialize [
 ]
 
 { #category : #initialization }
+EditableList >> initializeDialogWindow: aWindow [
+
+	aWindow 
+		addButton: 'Ok' 
+		do: [ :presenter | 
+			self performOkAction. 
+			presenter close ]
+]
+
+{ #category : #initialization }
 EditableList >> initializePresenter [
 	super initializePresenter
 	
@@ -186,16 +196,6 @@ EditableList >> okAction: aBlock [
 EditableList >> performOkAction [
 
 	okBlock value
-]
-
-{ #category : #initialization }
-EditableList >> prepareDialogButtons: aWindow [
-
-	aWindow 
-		addButton: 'Ok' 
-		do: [ :presenter | 
-			self performOkAction. 
-			presenter close ]
 ]
 
 { #category : #accessing }

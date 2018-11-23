@@ -103,7 +103,7 @@ DialogWindowPresenter >> initializeDefaultActions [
 DialogWindowPresenter >> initializeWindow [
 		
 	super initializeWindow.
-	self presenter prepareDialogButtons: self
+	self presenter initializeDialogWindow: self
 ]
 
 { #category : #api }
