@@ -20,6 +20,7 @@ MorphicButtonBarAdapter class >> defaultItemSeparation [
 MorphicButtonBarAdapter >> addModelTo: panelMorph [
 	
 	self model items do: [ :each |
+		self model focusOrder add: each.
 		panelMorph addMorph: (each buildWithSpec
 			width: 100;
 			hResizing: #rigid;

@@ -17,6 +17,7 @@ ButtonBarPresenter class >> adapterName [
 { #category : #adding }
 ButtonBarPresenter >> add: aButtonPresenter [
 	
+	aButtonPresenter owner: self.
 	items add: aButtonPresenter
 ]
 

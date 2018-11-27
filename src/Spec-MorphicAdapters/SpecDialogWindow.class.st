@@ -25,12 +25,6 @@ SpecDialogWindow >> cancelled [
 ]
 
 { #category : #actions }
-SpecDialogWindow >> close [
-
-	super close
-]
-
-{ #category : #actions }
 SpecDialogWindow >> escapePressed [
 
 	self model triggerCancelAction
@@ -63,13 +57,6 @@ SpecDialogWindow >> initialize [
 	super initialize.
 
 	self beResizeable
-]
-
-{ #category : #accessing }
-SpecDialogWindow >> model: aModel [
-	super model: aModel.
-	aModel presenter focusOrder addLast: toolbar.
-	toolbar focusOrder addLast: model
 ]
 
 { #category : #accessing }
@@ -115,7 +102,10 @@ SpecDialogWindow >> setToolbarFrom: aBlock [
 	newToolbar := aBlock value.
 	newToolbar owner: self.
 	
-	self toolbar: newToolbar
+	self toolbar: newToolbar.
+	
+	self model presenter focusOrder addLast: toolbar.
+	toolbar focusOrder addLast: self model
 ]
 
 { #category : #accessing }
