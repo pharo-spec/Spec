@@ -11,7 +11,8 @@ Class {
 		'isResizeable',
 		'statusbarHolder',
 		'toolBarHolder',
-		'menuHolder'
+		'menuHolder',
+		'centered'
 	],
 	#category : #'Spec-Core-Support'
 }
@@ -57,9 +58,9 @@ WindowPresenter >> addModelIn: widget withSpec: aSpec [
 
 { #category : #private }
 WindowPresenter >> addModelIn: widget withSpecLayout: aSpec [
-	self presenter ifNil: [ ^ self ].
 	
-	self presenter prepareWindow: self.
+	self presenter ifNil: [ ^ self ].
+	self initializeWindow.
 	self 
 		changed: #addModelIn:withSpecLayout:
 		with: { widget. aSpec }
@@ -78,11 +79,13 @@ WindowPresenter >> askOkToClose [
 { #category : #private }
 WindowPresenter >> buildWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument"
-
 	| adapter widget |
+	
 	(self spec notNil and: [ self needRebuild not ])
-		ifTrue: [ widget := self widget ]
-		ifFalse: [ adapter := self adapterFrom: self retrieveDefaultSpec.
+		ifTrue: [ 
+			widget := self widget ]
+		ifFalse: [ 
+			adapter := self adapterFrom: self retrieveDefaultSpec.
 			widget := adapter widget.
 			self addModelIn: widget withSpecLayout: aSpec ].
 	self ensureExtentFor: widget.
@@ -98,7 +101,7 @@ WindowPresenter >> cancelled [
 { #category : #api }
 WindowPresenter >> centered [
 
-	self changed: #centered with: #()
+	centered value: true
 ]
 
 { #category : #api }
@@ -169,12 +172,26 @@ WindowPresenter >> initialize [
 	initialExtent := nil asValueHolder.
 	isClosedHolder := false asValueHolder.
 	isResizeable := true asValueHolder.
+	centered := false asValueHolder.
 
 	menuHolder := nil asValueHolder.
 	toolBarHolder := nil asValueHolder.
 	statusbarHolder := nil asValueHolder.
 	
-	presenter whenChangedDo: [:m | self updateTitle ].
+	presenter whenChangedDo: [ :m | self updateTitle ].
+	centered whenChangedDo: [ :m | self changed: #centered with: #() ]
+]
+
+{ #category : #initialization }
+WindowPresenter >> initializeWindow [
+		
+	self presenter initializeWindow: self
+]
+
+{ #category : #testing }
+WindowPresenter >> isCentered [
+
+	^ centered value
 ]
 
 { #category : #testing }

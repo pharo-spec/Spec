@@ -25,16 +25,9 @@ SpecDialogWindow >> cancelled [
 ]
 
 { #category : #actions }
-SpecDialogWindow >> close [
-
-	super close.
-	self toolbar cancel
-]
-
-{ #category : #actions }
 SpecDialogWindow >> escapePressed [
 
-	self toolbar triggerCancelAction
+	self model triggerCancelAction
 ]
 
 { #category : #focus }
@@ -67,13 +60,6 @@ SpecDialogWindow >> initialize [
 ]
 
 { #category : #accessing }
-SpecDialogWindow >> model: aModel [
-	super model: aModel.
-	aModel presenter focusOrder addLast: toolbar.
-	toolbar focusOrder addLast: model
-]
-
-{ #category : #accessing }
 SpecDialogWindow >> newButtonRow [
 
 	^ self toolbar 
@@ -99,7 +85,7 @@ SpecDialogWindow >> newMainPanel [
 	| panel |
 	panel := self newDialogPanel.
 	self newContentMorph ifNotNil: [:m | panel 	addMorphBack: m ].
-	self newButtonRow ifNotNil: [:m | panel 	addMorphBack: m ].
+	self newButtonRow ifNotNil: [:m | panel addMorphBack: m ].
 	^ panel
 ]
 
@@ -114,9 +100,12 @@ SpecDialogWindow >> setToolbarFrom: aBlock [
 	| newToolbar |
 	
 	newToolbar := aBlock value.
+	newToolbar owner: self.
 	
-	toolbar := newToolbar.
-	newToolbar owner: self
+	self toolbar: newToolbar.
+	
+	self model presenter focusOrder addLast: toolbar.
+	toolbar focusOrder addLast: self model
 ]
 
 { #category : #accessing }

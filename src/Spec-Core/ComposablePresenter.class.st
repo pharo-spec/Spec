@@ -571,8 +571,17 @@ ComposablePresenter >> initialize [
 ]
 
 { #category : #initialization }
-ComposablePresenter >> initializeDialogWindow: aWindow [
-	"used to initialize the model in the case of the use into a dialog window"
+ComposablePresenter >> initializeDialogWindow: aDialogWindowPresenter [
+	"used to initialize the model in the case of the use into a dialog window.
+	 Override this to set buttons other than the default (Ok, Cancel)."
+	
+	aDialogWindowPresenter
+		addButton: 'Ok' do: [ :presenter | 
+			presenter triggerOkAction.
+			presenter close ];
+		addButton: 'Cancel' do: [ :presenter | 
+			presenter triggerCancelAction.
+			presenter close ]
 ]
 
 { #category : #initialization }
@@ -631,6 +640,12 @@ ComposablePresenter >> initializePrivateValueHolders [
 ComposablePresenter >> initializeWidgets [
 	
 	self subclassResponsibility
+]
+
+{ #category : #initialization }
+ComposablePresenter >> initializeWindow: aWindowPresenter [
+	"override this to set window values before opening. 
+	 You may want to add a menu, a toolbar or a statusbar"
 ]
 
 { #category : #'instance creation' }
@@ -889,7 +904,6 @@ ComposablePresenter >> openDialogWithSpecLayout: aSpec [
 		ifFalse: [ 
 			self presenterWindow: (DialogWindowPresenter new presenter: self).
 			self presenterWindow openWithSpecLayout: aSpec.
-			self initializeDialogWindow: self presenterWindow.
 			self presenterWindow updateTitle.
 			self takeKeyboardFocus ].
 		
@@ -934,12 +948,6 @@ ComposablePresenter >> owner [
 ComposablePresenter >> owner: anObject [
 
 	owner := anObject.
-]
-
-{ #category : #api }
-ComposablePresenter >> prepareWindow: aWindowPresenter [
-	"override this to set window values before opening. 
-	 You may want to add a menu, a toolbar or a statusbar"
 ]
 
 { #category : #accessing }

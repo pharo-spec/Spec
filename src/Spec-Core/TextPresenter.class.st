@@ -166,6 +166,14 @@ TextPresenter >> acceptBlock: aBlockWithOneArgument [
 	actionToPerformHolder value: aBlockWithOneArgument
 ]
 
+{ #category : #private }
+TextPresenter >> acceptText: aString [
+	"Used to set the text value comming from the adapter (we do not want to re-send 
+	 this value to the adapter, hence we set it 'raw', not triggering events)"
+
+	textHolder rawValue: aString
+]
+
 { #category : #api }
 TextPresenter >> askBeforeDiscardingEdits [
 

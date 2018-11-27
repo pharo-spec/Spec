@@ -23,6 +23,13 @@ OkCancelToolbar class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #deprecation }
+OkCancelToolbar class >> isDeprecated [
+	"You should use a ToolBarPresenter"
+
+	^ true
+]
+
 { #category : #specs }
 OkCancelToolbar class >> title [
 
