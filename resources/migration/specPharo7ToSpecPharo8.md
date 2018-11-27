@@ -51,3 +51,23 @@ This is not necessary anymore. You only needs to implement the method `#adapterN
 ButtonPresenter class >> adapterName 
 	^ #ButtonAdapter
 ```
+
+## Dialog's toolbar
+
+The way dialogs toolbar works changed in this new version of Spec.
+	
+Before the dialog bar had one or two buttons: Ok and Cancel, but they where not configurable. Now the user can add itself multiple buttons and configure their action more easily.
+	
+So here is how the new way works:
+	
+If you do not override the method #initializeDialogWindow: in your dialog, two default buttons will be added: "Ok" and "Cancel". You can then configure their actions with the #okAction: and #cancelAction: selectors.
+	
+If you do not want those default buttons you can override #initializeDialogWindow: and use this new API:
+	
+```Smalltalk
+aWindow 
+	addButton: ''Debug''
+	do: [ :presenter | self accept. presenter close ];
+	addButton: ''Ignore'' 
+	do: [ :presenter | presenter close ]
+```
