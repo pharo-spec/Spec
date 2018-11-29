@@ -800,6 +800,11 @@ ComposablePresenter >> newLabel [
 ]
 
 { #category : #widgets }
+ComposablePresenter >> newLink [
+	^ self instantiate: LinkPresenter
+]
+
+{ #category : #widgets }
 ComposablePresenter >> newList [
 	^ self instantiate: FastTablePresenter
 ]
