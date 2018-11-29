@@ -882,32 +882,58 @@ ComposablePresenter >> on: anAnnouncement send: aSelector to: aTarget [
 
 { #category : #api }
 ComposablePresenter >> openDialogWithSpec [
-	"Build the widget using the default spec and display it into a window"
+	"Build the widget using the default spec and display it into a dialog. 
+	
+	Be aware that this way will not create a real modal in the sens that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openModalWithSpec instead."
 
-	^ self openDialogWithSpec: self defaultSpecSelector.
+	^ self openDialogWithSpec: self defaultSpecSelector
 ]
 
 { #category : #api }
 ComposablePresenter >> openDialogWithSpec: aSpec [
-	"Build the widget using the spec name provided as argument and display it into a window"
-
+	"Build the widget using the default spec and display it into a dialog. 
+	
+	Be aware that this way will not create a real modal in the sens that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openModalWithSpec: instead."
+	
 	^ self openDialogWithSpecLayout: (self retrieveSpec: aSpec)
 ]
 
 { #category : #api }
 ComposablePresenter >> openDialogWithSpecLayout: aSpec [
-	"Build the widget using the spec name provided as argument and display it into a window"
+	^ self openDialogWithSpecLayout: aSpec dialogClass: DialogWindowPresenter
+]
 
+{ #category : #api }
+ComposablePresenter >> openDialogWithSpecLayout: aSpec dialogClass: dialogClass [
+	"Build the widget using the default spec and display it into a dialog whose kind is passed as the second parameter"
+
+	self flag: #todo. "Cyril: we have duplication here with other way to open a spec. We should refactor that."
 	(self presenterWindow notNil and: [ self needRebuild not ])
-		ifTrue: [ 
-			self presenterWindow rebuildWithSpec: aSpec ]
-		ifFalse: [ 
-			self presenterWindow: (DialogWindowPresenter new presenter: self).
+		ifTrue: [ self presenterWindow rebuildWithSpec: aSpec ]
+		ifFalse: [ self presenterWindow: (dialogClass new presenter: self).
 			self presenterWindow openWithSpecLayout: aSpec.
 			self presenterWindow updateTitle.
 			self takeKeyboardFocus ].
-		
 	^ self presenterWindow
+]
+
+{ #category : #api }
+ComposablePresenter >> openModalWithSpec [
+	"Build the widget using the default spec and display it into a modal"
+
+	^ self openModalWithSpec: self defaultSpecSelector.
+]
+
+{ #category : #api }
+ComposablePresenter >> openModalWithSpec: aSpec [
+	"Build the widget using the spec name provided as argument and display it into a modal"
+
+	^ self openModalWithSpecLayout: (self retrieveSpec: aSpec)
+]
+
+{ #category : #api }
+ComposablePresenter >> openModalWithSpecLayout: aSpec [
+	^ self openDialogWithSpecLayout: aSpec dialogClass: ModalWindowPresenter
 ]
 
 { #category : #api }

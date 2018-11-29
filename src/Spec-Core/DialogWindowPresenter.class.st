@@ -62,6 +62,12 @@ DialogWindowPresenter >> buttons [
 ]
 
 { #category : #api }
+DialogWindowPresenter >> cancelAction [
+
+	^ cancelAction
+]
+
+{ #category : #api }
 DialogWindowPresenter >> cancelAction: aBlock [
 
 	cancelAction := aBlock
