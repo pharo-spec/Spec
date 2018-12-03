@@ -46,5 +46,6 @@ MorphicModalWindowAdapter >> open [
 
 	self widget
 		setProperty: #morphicLayerNumber toValue: 1;
+		toggleStickiness;
 		openCenteredInWorld
 ]
