@@ -56,14 +56,6 @@ WindowPresenter >> addMenuItemsToWindowMenu: aMenu [
 ]
 
 { #category : #private }
-WindowPresenter >> addModelIn: widget withSpec: aSpec [
-
-	self presenter ifNil: [ ^ self ].
-	
-	self changed: #addModelIn:withSpec: with: { widget . aSpec }
-]
-
-{ #category : #private }
 WindowPresenter >> addModelIn: widget withSpecLayout: aSpec [
 	
 	self presenter ifNil: [ ^ self ].
@@ -283,12 +275,6 @@ WindowPresenter >> presenter [
 WindowPresenter >> presenter: aPresenter [
 
 	presenter value: aPresenter
-]
-
-{ #category : #private }
-WindowPresenter >> rebuildWithSpec: aSpec [
-
-	self changed: #rebuildWithSpec: with: { aSpec }.
 ]
 
 { #category : #private }
