@@ -953,7 +953,7 @@ ComposablePresenter >> openWithSpecLayout: aSpec in: aWindowClass [
 	"I build the widget with the spec as parameter and open it with the window presenter passed as parameter."
 
 	(self presenterWindow notNil and: [ self needRebuild not ])
-		ifTrue: [ self presenterWindow rebuildWithSpec: aSpec ]
+		ifTrue: [ self presenterWindow rebuildWithSpecLayout: aSpec ]
 		ifFalse: [ self presenterWindow: (aWindowClass presenter: self).
 			self presenterWindow openWithSpecLayout: aSpec.
 			self takeKeyboardFocus ].
