@@ -64,13 +64,6 @@ MorphicWindowAdapter >> addMenuTo: aMorph [
 ]
 
 { #category : #protocol }
-MorphicWindowAdapter >> addModelIn: widgetToBuild withSpec: aSpec [
-	self
-		addContent: (self model model buildWithSpec: aSpec)
-		toWindow: widgetToBuild
-]
-
-{ #category : #protocol }
 MorphicWindowAdapter >> addModelIn: widgetToBuild withSpecLayout: aSpec [
 	self
 		addContent: (self model presenter buildWithSpecLayout: aSpec)
@@ -230,16 +223,6 @@ MorphicWindowAdapter >> openModal: aWindow [
 
 	^ self widget 
 		ifNotNil: [:w | w openModal: aWindow asWidget ].
-]
-
-{ #category : #protocol }
-MorphicWindowAdapter >> rebuildWithSpec: aSpec [
-	| sub |
-	
-	sub := self model window submorphs copy.
-	self model window removeAllMorphs.
-	sub allButLast do: [:e | self model window addMorphBack: e ].
-	self model addModelIn: self widget withSpec: aSpec
 ]
 
 { #category : #protocol }

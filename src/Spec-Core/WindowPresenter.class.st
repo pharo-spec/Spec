@@ -23,6 +23,13 @@ WindowPresenter class >> adapterName [
 	^ #WindowAdapter
 ]
 
+{ #category : #'instance creation' }
+WindowPresenter class >> presenter: aPresenter [
+	^ self new
+		presenter: aPresenter;
+		yourself
+]
+
 { #category : #api }
 WindowPresenter >> aboutText [
 	"if my aboutText has not been set the fallback is:
@@ -46,14 +53,6 @@ WindowPresenter >> aboutTitle [
 WindowPresenter >> addMenuItemsToWindowMenu: aMenu [
 
 	self presenter addMenuItemsToWindowMenu: aMenu
-]
-
-{ #category : #private }
-WindowPresenter >> addModelIn: widget withSpec: aSpec [
-
-	self presenter ifNil: [ ^ self ].
-	
-	self changed: #addModelIn:withSpec: with: { widget . aSpec }
 ]
 
 { #category : #private }
@@ -276,12 +275,6 @@ WindowPresenter >> presenter [
 WindowPresenter >> presenter: aPresenter [
 
 	presenter value: aPresenter
-]
-
-{ #category : #private }
-WindowPresenter >> rebuildWithSpec: aSpec [
-
-	self changed: #rebuildWithSpec: with: { aSpec }.
 ]
 
 { #category : #private }
