@@ -27,10 +27,7 @@ MorphicWindowAdapter >> aboutTitle [
 
 { #category : #private }
 MorphicWindowAdapter >> add: containerMorph toWindow: aSpecWindow [
-
-	aSpecWindow 
-		addMorph: containerMorph 
-		fullFrame: LayoutFrame identity
+	aSpecWindow addMorph: containerMorph fullFrame: LayoutFrame identity
 ]
 
 { #category : #private }
@@ -38,8 +35,8 @@ MorphicWindowAdapter >> addContent: aMorph toWindow: aSpecWindow [
 	| containerMorph |
 	
 	containerMorph := self newContainerMorph.
-	"hook to allow my children to replace an already built morph"
-	self replace: aMorph with: containerMorph onWindow: aSpecWindow. 
+	containerMorph layoutFrame: aMorph layoutFrame.
+
 	"add all decorations (menu, toolbar and statusbar)"
 	self model hasMenu ifTrue: [ self addMenuTo: containerMorph ].
 	self model hasToolBar ifTrue: [ self addToolBarTo: containerMorph ].
@@ -234,14 +231,6 @@ MorphicWindowAdapter >> rebuildWithSpecLayout: aSpec [
 	sub allButLast do: [:e | self model window addMorphBack: e ].
 	self model addModelIn: self widget withSpecLayout: aSpec.
 	self widget model: self
-]
-
-{ #category : #private }
-MorphicWindowAdapter >> replace: aMorph with: containerMorph onWindow: aSpecWindow [
-	"If the window is already built, I need to replace old generated content with new 
-	 content with decorations. This is not the case of regular windows, but my children 
-	 may need this hook."
-
 ]
 
 { #category : #icons }
