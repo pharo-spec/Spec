@@ -23,6 +23,13 @@ WindowPresenter class >> adapterName [
 	^ #WindowAdapter
 ]
 
+{ #category : #'instance creation' }
+WindowPresenter class >> presenter: aPresenter [
+	^ self new
+		presenter: aPresenter;
+		yourself
+]
+
 { #category : #api }
 WindowPresenter >> aboutText [
 	"if my aboutText has not been set the fallback is:

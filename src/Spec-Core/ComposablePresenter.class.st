@@ -905,21 +905,7 @@ ComposablePresenter >> openDialogWithSpec: aSpec [
 
 { #category : #api }
 ComposablePresenter >> openDialogWithSpecLayout: aSpec [
-	^ self openDialogWithSpecLayout: aSpec dialogClass: DialogWindowPresenter
-]
-
-{ #category : #api }
-ComposablePresenter >> openDialogWithSpecLayout: aSpec dialogClass: dialogClass [
-	"Build the widget using the default spec and display it into a dialog whose kind is passed as the second parameter"
-
-	self flag: #todo. "Cyril: we have duplication here with other way to open a spec. We should refactor that."
-	(self presenterWindow notNil and: [ self needRebuild not ])
-		ifTrue: [ self presenterWindow rebuildWithSpec: aSpec ]
-		ifFalse: [ self presenterWindow: (dialogClass new presenter: self).
-			self presenterWindow openWithSpecLayout: aSpec.
-			self presenterWindow updateTitle.
-			self takeKeyboardFocus ].
-	^ self presenterWindow
+	^  self openWithSpecLayout: aSpec in: DialogWindowPresenter
 ]
 
 { #category : #api }
@@ -938,7 +924,7 @@ ComposablePresenter >> openModalWithSpec: aSpec [
 
 { #category : #api }
 ComposablePresenter >> openModalWithSpecLayout: aSpec [
-	^ self openDialogWithSpecLayout: aSpec dialogClass: ModalWindowPresenter
+	^ self openWithSpecLayout: aSpec in: ModalWindowPresenter
 ]
 
 { #category : #api }
@@ -959,11 +945,16 @@ ComposablePresenter >> openWithSpec: aSpec [
 ComposablePresenter >> openWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
+	^ self openWithSpecLayout: aSpec in: self defaultWindowPresenterClass
+]
+
+{ #category : #api }
+ComposablePresenter >> openWithSpecLayout: aSpec in: aWindowClass [
+	"I build the widget with the spec as parameter and open it with the window presenter passed as parameter."
+
 	(self presenterWindow notNil and: [ self needRebuild not ])
-		ifTrue: [ 
-			self presenterWindow rebuildWithSpecLayout: aSpec ]
-		ifFalse: [ 
-			self presenterWindow: (self defaultWindowPresenterClass new presenter: self).
+		ifTrue: [ self presenterWindow rebuildWithSpec: aSpec ]
+		ifFalse: [ self presenterWindow: (aWindowClass presenter: self).
 			self presenterWindow openWithSpecLayout: aSpec.
 			self takeKeyboardFocus ].
 	^ self presenterWindow
