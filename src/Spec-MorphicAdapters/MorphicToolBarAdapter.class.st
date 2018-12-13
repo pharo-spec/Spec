@@ -10,6 +10,7 @@ Class {
 { #category : #factory }
 MorphicToolBarAdapter >> addModelTo: toolBarMorph [
 
+	toolBarMorph displayMode: self model displayMode. 
 	self model items 
 		at: ToolBarItemPosition left 
 		ifPresent: [ :items |
