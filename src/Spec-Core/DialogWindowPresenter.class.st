@@ -5,7 +5,6 @@ Class {
 	#name : #DialogWindowPresenter,
 	#superclass : #WindowPresenter,
 	#instVars : [
-		'contents',
 		'buttons',
 		'okAction',
 		'cancelAction',
@@ -29,28 +28,6 @@ DialogWindowPresenter >> addButton: aString do: aBlock [
 		label: aString;
 		action: [ aBlock cull: self ];
 		yourself)
-]
-
-{ #category : #private }
-DialogWindowPresenter >> buildWithSpecLayout: aSpec [
-	"Build the widget using the spec name provided as argument"
-	| widget |
-
-	(self spec notNil and: [ self needRebuild not ])
-		ifTrue: [ 
-			widget := self widget ]
-		ifFalse: [ 
-			contents := self presenter buildWithSpecLayout: aSpec.
-			[ 	
-				widget := (self adapterFrom: self retrieveDefaultSpec) widget.
-				self addModelIn: widget withSpecLayout: aSpec ]
-			ensure: [ contents := nil ] ].
-	
-	self extent ifNotNil: [ :ex | 
-		(widget respondsTo: #extent:) ifTrue: [ 
-			widget extent: ex ] ].
-
-	^ widget
 ]
 
 { #category : #accessing }
@@ -77,12 +54,6 @@ DialogWindowPresenter >> cancelAction: aBlock [
 DialogWindowPresenter >> cancelled [
 
 	^ cancelled
-]
-
-{ #category : #accessing }
-DialogWindowPresenter >> contents [
-
-	^ contents
 ]
 
 { #category : #initialization }
