@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'tabManager'
 	],
-	#category : #'Spec-Examples-Demo-Support'
+	#category : #'Spec-Examples-Demo'
 }
 
 { #category : #specs }
@@ -30,6 +30,23 @@ SpecDemoPage class >> pageName [
 SpecDemoPage class >> priority [
 
 	^ 999
+]
+
+{ #category : #initialization }
+SpecDemoPage >> codeFor: aClass [
+	^ TonelWriter sourceCodeOf: aClass
+]
+
+{ #category : #initialization }
+SpecDemoPage >> codeTab [
+	^ self newTab
+		label: 'Code';
+		icon: (self iconNamed: #changeUpdate);
+		presenter:
+			(self newCode
+				text: (self codeFor: self pageClass);
+				yourself);
+		yourself
 ]
 
 { #category : #initialization }
@@ -71,7 +88,8 @@ SpecDemoPage >> initializeWidgets [
 	"tabManager whenTabSelected: [ self updateTitle ]."
 	tabManager
 		addTab: self exampleTab;
-		addTab: self commentTab.
+		addTab: self commentTab;
+		addTab: self codeTab.
 ]
 
 { #category : #initialization }

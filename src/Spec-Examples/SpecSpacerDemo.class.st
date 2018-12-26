@@ -12,7 +12,7 @@ I am a simple demo to show how to use spacers in Spec layouts.
 "
 Class {
 	#name : #SpecSpacerDemo,
-	#superclass : #SpecDemoPage,
+	#superclass : #ComposablePresenter,
 	#instVars : [
 		'input2',
 		'input3',
@@ -55,11 +55,6 @@ SpecSpacerDemo class >> defaultSpec [
 { #category : #specs }
 SpecSpacerDemo class >> example [
 	^ self new openWithSpec
-]
-
-{ #category : #initialization }
-SpecSpacerDemo class >> pageName [
-	^ 'Spacers in layout'
 ]
 
 { #category : #specs }
