@@ -10,6 +10,9 @@ Class {
 		'index',
 		'presenter'
 	],
+	#classInstVars : [
+		'bindings'
+	],
 	#category : #'Spec-Core-Utilities'
 }
 
