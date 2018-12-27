@@ -12,10 +12,15 @@
 * **Layouts now understand `presenter` instead of `model`** ([7a78375](https://github.com/pharo-spec/Spec/commit/7a783758881fbbb6d536e2b0e2db97f91b3150a1))
 * **It is now possible to add menus, status bar and menu bars to window presenters** ([ee0acf6](https://github.com/pharo-spec/Spec/commit/ee0acf6ce49245ae441e0e3475d52795e3426f2e))
 * **Add NumberPresenter with its Morphic adapter** ([88792da](https://github.com/pharo-spec/Spec/commit/88792daa4b8c230946fda633ecbab43143c4124d))
+* **Refactor dialog presenter to be more flexible** ([e835558](https://github.com/pharo-spec/Spec/commit/e8355589c1f56eedd37f68887f711cddfe04fa74))
+* **New presenter: URL prensenter** ([49f941f](https://github.com/pharo-spec/Spec/commit/49f941fd6587052688b76e546dd824db22a8b615))
+* **Introduction of real modals**: Those modals will stop the workflow of the user to force the interaction. Like everymodal everywhere else. ([27289a8](https://github.com/pharo-spec/Spec/commit/27289a8c73a711d18142b8e79d8d1d1d06d82c76))
 
 ### Bug fixes
 
 * **#additianalKeybindings is not a value holder** ([547d5f0](https://github.com/pharo-spec/Spec/commit/547d5f09762ae30c965307f2129e4b1db0537241))
+* ** ** ([](https://github.com/pharo-spec/Spec/commit/))
+* ** ** ([](https://github.com/pharo-spec/Spec/commit/))
 
 ### Cleaning
 
@@ -35,6 +40,7 @@
 * **Remove references to `Smalltalk ui theme`** ([b37dd2a](https://github.com/pharo-spec/Spec/commit/b37dd2afffb12adf1daa2d6b4ea6a0091e5b1239))
 * **Remove Object>>isSpecAdaptor** ([1664920](https://github.com/pharo-spec/Spec/commit/1664920c4a16dbe7489e17f95ac0d5e115b9b90d))
 * **Rename #ghostText into #placeholder** ([639e7e5](https://github.com/pharo-spec/Spec/commit/639e7e5f97f25126f219e780c385e0bdc7a72f09))
+* **Clean windows/dialogs opening mechanism** ([39ce96a](https://github.com/pharo-spec/Spec/commit/39ce96accf02835aea2d607fa4eac25217e41572))
 
 ### Infrastructure
 
@@ -42,10 +48,5 @@
 * **Add dependencies between packages** ([b655505](https://github.com/pharo-spec/Spec/commit/b655505c32533a18860a1e26819d7f93ef2e212a))
 * **Make Spec loadable in non interactive mode** ([0411400](https://github.com/pharo-spec/Spec/commit/0411400b7aa6507d857ee7114964c5ff1c287d92))
 * **Register Spec demo in the Help menu** ([d36d2ed](https://github.com/pharo-spec/Spec/commit/d36d2ed6b0804ac1171014d7a1b519bb6febcc74))
-
-
-
-
-
-* ** ** ([](https://github.com/pharo-spec/Spec/commit/))
+* **Add source code in Tonel format to demos** ([648a681](https://github.com/pharo-spec/Spec/commit/648a6813a09c23a64ff8b3bf98b15ff14a182e15))
 
