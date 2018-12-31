@@ -17,21 +17,25 @@ Class {
 
 { #category : #accessing }
 ToolBarMorph class >> defaultHeight [
+	
 	^ self defaultMode height
 ]
 
 { #category : #accessing }
 ToolBarMorph class >> defaultItemSeparation [
+
 	^ 0
 ]
 
 { #category : #accessing }
 ToolBarMorph class >> defaultItemSize [
+
 	^ 50
 ]
 
 { #category : #accessing }
 ToolBarMorph class >> defaultMode [
+
 	^ ToolBarDisplayMode default
 ]
 
@@ -72,11 +76,13 @@ ToolBarMorph >> addItemRight: aMorph [
 
 { #category : #'as yet unclassified' }
 ToolBarMorph >> addItemsFromContext: aContext [
-	| menu |
+	
+	self flag: #TODO.
+	"| menu |
 	
 	menu := CmdMenu activatedBy: ITToolbarActivation.
 	menu buildInContext: aContext.
-	menu buildToolbarOn: self
+	menu buildToolbarOn: self"
 
 ]
 
@@ -160,32 +166,9 @@ ToolBarMorph >> newToolbarItemFont [
 ]
 
 { #category : #accessing }
-ToolBarMorph >> rebuildLeftPanel [
-	
-	self halt.
-	"self leftPanel removeAllMorphs.
-	leftItems do: [ :each | 
-		leftPanel addMorphBack: ((each buildMorphOnToolbar: self)
-			vResizing: #spaceFill;
-			yourself) ]"
-]
-
-{ #category : #accessing }
-ToolBarMorph >> rebuildRightPanel [
-	
-	self halt.
-	"self rightPanel removeAllMorphs.
-	rightItems do: [ :each | 
-		rightPanel addMorphBack: ((each buildMorphOnToolbar: self)
-			vResizing: #spaceFill;
-			yourself) ]"
-]
-
-{ #category : #accessing }
 ToolBarMorph >> refresh [
 
-	self rebuildLeftPanel.
-	self rebuildRightPanel.
+	self flag: #TODO. "Maybe remove?"
 ]
 
 { #category : #'private accessing' }
@@ -210,5 +193,6 @@ ToolBarMorph >> toolbarItemFont: anObject [
 
 { #category : #accessing }
 ToolBarMorph >> toolbarItemSize [
-	^ self class defaultItemSize
+
+	^ self displayMode height
 ]

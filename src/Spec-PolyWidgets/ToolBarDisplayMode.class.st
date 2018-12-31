@@ -55,5 +55,12 @@ ToolBarDisplayMode >> extent [
 
 { #category : #accessing }
 ToolBarDisplayMode >> height [
+
 	^ self extent y
+]
+
+{ #category : #accessing }
+ToolBarDisplayMode >> width [
+
+	^ self extent x
 ]

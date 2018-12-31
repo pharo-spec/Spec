@@ -11,6 +11,8 @@ Class {
 MorphicToolBarAdapter >> addModelTo: toolBarMorph [
 
 	toolBarMorph displayMode: self model displayMode. 
+	toolBarMorph height: self model displayMode height.
+
 	self model items 
 		at: ToolBarItemPosition left 
 		ifPresent: [ :items |
@@ -19,6 +21,7 @@ MorphicToolBarAdapter >> addModelTo: toolBarMorph [
 					configureItem: each 
 					morph: each buildWithSpec 
 					toolBar: toolBarMorph) ] ].
+
 	self model items 
 		at: ToolBarItemPosition right 
 		ifPresent: [ :items |

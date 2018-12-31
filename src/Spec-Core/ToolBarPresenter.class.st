@@ -83,7 +83,7 @@ ToolBarPresenter >> isDisplayModeBoth [
 { #category : #testing }
 ToolBarPresenter >> isDisplayModeIcons [
 
-	^ self displayMode = ToolBarDisplayMode modeIcon.
+	^ self displayMode = ToolBarDisplayMode modeIcon
 ]
 
 { #category : #testing }
