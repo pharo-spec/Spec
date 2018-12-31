@@ -34,17 +34,6 @@ WorldPresenter class >> setUpWorld [
 ]
 
 { #category : #private }
-WorldPresenter >> addModelIn: container withSpec: aSpec [
-	
-	self presenter ifNil: [ ^ self ].
-	widget := self presenter buildWithSpec: aSpec.
-	
-	container
-		addMorph: widget
-		fullFrame: LayoutFrame identity
-]
-
-{ #category : #private }
 WorldPresenter >> addModelIn: container withSpecLayout: aSpec [
 
 	self presenter ifNil: [ ^ self ].

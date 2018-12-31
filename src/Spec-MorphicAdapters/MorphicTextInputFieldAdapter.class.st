@@ -7,12 +7,6 @@ Class {
 	#category : #'Spec-MorphicAdapters-Base'
 }
 
-{ #category : #accessing }
-MorphicTextInputFieldAdapter class >> adaptingAliases [ 
-	
-	^ #( NumberInputFieldAdapter )
-]
-
 { #category : #'widget API' }
 MorphicTextInputFieldAdapter >> accept: aText [
 
@@ -46,7 +40,7 @@ MorphicTextInputFieldAdapter >> buildWidget [
 	plu
 		entryCompletion: self entryCompletion;
 		autoAccept: self autoAccept;
-		ghostText: self ghostText;
+		ghostText: self placeholder;
 		enabled: self enabled;
 		encrypted: self encrypted;
 		setBalloonText: self help;
@@ -79,20 +73,18 @@ MorphicTextInputFieldAdapter >> entryCompletion [
 	^ self model entryCompletion
 ]
 
-{ #category : #'widget API' }
-MorphicTextInputFieldAdapter >> ghostText [
-
-	^ self model ghostText
-]
-
-{ #category : #'widget API' }
-MorphicTextInputFieldAdapter >> ghostText: aText [
-
-	^ self model ghostText: aText
-]
-
 { #category : #NOCompletion }
 MorphicTextInputFieldAdapter >> isCodeCompletionAllowed [
 	
 	^ false
+]
+
+{ #category : #'widget API' }
+MorphicTextInputFieldAdapter >> placeholder [
+	^ self model placeholder
+]
+
+{ #category : #'widget API' }
+MorphicTextInputFieldAdapter >> placeholder: aText [
+	^ self model placeholder: aText
 ]

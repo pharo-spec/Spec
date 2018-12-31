@@ -29,7 +29,7 @@ SpecDemo class >> defaultSpec [
 			c add: #menu height: self toolbarHeight.
 			c newRow: [ :row | 
 				row add: #list right: listWidth.
-				row addSplitter.
+				row addHSplitter.
 				row add: #page] ];
 		yourself
 	

@@ -23,6 +23,13 @@ WindowPresenter class >> adapterName [
 	^ #WindowAdapter
 ]
 
+{ #category : #'instance creation' }
+WindowPresenter class >> presenter: aPresenter [
+	^ self new
+		presenter: aPresenter;
+		yourself
+]
+
 { #category : #api }
 WindowPresenter >> aboutText [
 	"if my aboutText has not been set the fallback is:
@@ -49,14 +56,6 @@ WindowPresenter >> addMenuItemsToWindowMenu: aMenu [
 ]
 
 { #category : #private }
-WindowPresenter >> addModelIn: widget withSpec: aSpec [
-
-	self presenter ifNil: [ ^ self ].
-	
-	self changed: #addModelIn:withSpec: with: { widget . aSpec }
-]
-
-{ #category : #private }
 WindowPresenter >> addModelIn: widget withSpecLayout: aSpec [
 	
 	self presenter ifNil: [ ^ self ].
@@ -79,14 +78,11 @@ WindowPresenter >> askOkToClose [
 { #category : #private }
 WindowPresenter >> buildWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument"
-	| adapter widget |
-	
+
+	| widget |
 	(self spec notNil and: [ self needRebuild not ])
-		ifTrue: [ 
-			widget := self widget ]
-		ifFalse: [ 
-			adapter := self adapterFrom: self retrieveDefaultSpec.
-			widget := adapter widget.
+		ifTrue: [ widget := self widget ]
+		ifFalse: [ widget := (self adapterFrom: self retrieveDefaultSpec) widget.
 			self addModelIn: widget withSpecLayout: aSpec ].
 	self ensureExtentFor: widget.
 	^ widget
@@ -276,12 +272,6 @@ WindowPresenter >> presenter [
 WindowPresenter >> presenter: aPresenter [
 
 	presenter value: aPresenter
-]
-
-{ #category : #private }
-WindowPresenter >> rebuildWithSpec: aSpec [
-
-	self changed: #rebuildWithSpec: with: { aSpec }.
 ]
 
 { #category : #private }

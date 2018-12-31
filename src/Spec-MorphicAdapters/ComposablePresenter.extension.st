@@ -83,12 +83,7 @@ ComposablePresenter >> openWorldWithSpec: aSpec [
 ComposablePresenter >> openWorldWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument and display it into the world"
 
-	(self presenterWindow notNil and: [ self needRebuild not ])
-		ifTrue: [ self presenterWindow rebuildWithSpecLayout: aSpec ]
-		ifFalse: [ self presenterWindow: (WorldPresenter new model: self).
-			self presenterWindow openWithSpecLayout: aSpec.
-			self takeKeyboardFocus ].
-	^ self presenterWindow
+	^ self openWithSpecLayout: aSpec in: WorldPresenter
 ]
 
 { #category : #'*Spec-MorphicAdapters' }

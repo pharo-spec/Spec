@@ -9,7 +9,7 @@ Class {
 		'cancelAction',
 		'cancelled'
 	],
-	#category : #'Spec-Core-Support'
+	#category : #'Spec-Deprecated80-Obsolete'
 }
 
 { #category : #specs }

@@ -4,7 +4,7 @@ Use my superclass. I am deprecated.
 Class {
 	#name : #CurrentSpecDefaultBindings,
 	#superclass : #SpecBindings,
-	#category : #'Spec-Deprecated80'
+	#category : #'Spec-Deprecated80-Obsolete'
 }
 
 { #category : #deprecation }

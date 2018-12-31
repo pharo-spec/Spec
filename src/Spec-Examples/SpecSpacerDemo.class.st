@@ -12,7 +12,7 @@ I am a simple demo to show how to use spacers in Spec layouts.
 "
 Class {
 	#name : #SpecSpacerDemo,
-	#superclass : #SpecDemoPage,
+	#superclass : #ComposablePresenter,
 	#instVars : [
 		'input2',
 		'input3',
@@ -57,11 +57,6 @@ SpecSpacerDemo class >> example [
 	^ self new openWithSpec
 ]
 
-{ #category : #initialization }
-SpecSpacerDemo class >> pageName [
-	^ 'Spacers in layout'
-]
-
 { #category : #specs }
 SpecSpacerDemo class >> title [
 	^ 'Spacer demo'
@@ -94,7 +89,6 @@ SpecSpacerDemo >> extent [
 
 { #category : #initialization }
 SpecSpacerDemo >> initializeWidgets [
-	
 	input1 := self newTextInput.
 	input2 := self newTextInput.
 	input3 := self newTextInput.
@@ -105,10 +99,10 @@ SpecSpacerDemo >> initializeWidgets [
 	button3 := self newButton.
 	button4 := self newButton.
 	
-	input1 ghostText: 'Input 1'.
-	input2 ghostText: 'Input 2'.
-	input3 ghostText: 'Input 3'.
-	input4 ghostText: 'Input 4'.
+	input1 placeholder: 'Input 1'.
+	input2 placeholder: 'Input 2'.
+	input3 placeholder: 'Input 3'.
+	input4 placeholder: 'Input 4'.
 	
 	button1 label: 'Button 1'.
 	button2 label: 'Button 2'.

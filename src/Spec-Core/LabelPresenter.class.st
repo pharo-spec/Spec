@@ -31,7 +31,7 @@ LabelPresenter class >> adapterName [
 { #category : #specs }
 LabelPresenter class >> title [
 
-	^ 'Label Morph'
+	^ 'Label presenter'
 ]
 
 { #category : #initialization }
