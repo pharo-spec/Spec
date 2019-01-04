@@ -1,3 +1,41 @@
+"
+Description
+--------------------
+
+I am a presenter used to define a progress bar.
+
+I am using a Strategy design pattern to define the kind of progress bar. For example I can be fixed at a value, indetermineted or progressing.
+
+Examples
+--------------------
+
+	""Following example considers we are currently in a composable presenter""
+	self newProgressBar indeterminate.
+	
+	
+	self newProgressBar fixedPercentage: 30.
+	self newProgressBar fixedAt: 0.3.
+	
+	progress := 0.
+	self newProgressBar progress: [ progress := progress + 0.01 ] every: 0.5 second.
+	
+	progress := 0.
+	self newProgressBar progress: [ progress := progress + 0.01 ].
+	
+	progress := 0.
+	label := self newLabel.
+	self newProgressBar
+		progress: [ progress := progress + 0.01 ]; 
+		whenValueChangedDo: [ :value | label label: (value * 100) asInteger asString , '%' ];
+		yourself.
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	state:		<aProgressBarState> 	Subclass of ProgressBarState to define the behavior of the progress bar (fixed, indeterminated, progressing).
+
+"
 Class {
 	#name : #ProgressBarPresenter,
 	#superclass : #AbstractWidgetPresenter,

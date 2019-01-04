@@ -1,3 +1,14 @@
+"
+Description
+--------------------
+
+I am a state of a ProgressBarPresenter managing the behavior of a indeterminated progress bar. I will have no value and display a bar going back and forth.
+
+Examples
+--------------------
+
+	ProgressBarIndeterminated new
+"
 Class {
 	#name : #ProgressBarIndeterminated,
 	#superclass : #ProgressBarState,
@@ -6,5 +17,5 @@ Class {
 
 { #category : #enumerating }
 ProgressBarIndeterminated >> whenValueChangedDo: aBlock [
-	"Value cannot change here"
+	"Value cannot change in indeterminate state"
 ]

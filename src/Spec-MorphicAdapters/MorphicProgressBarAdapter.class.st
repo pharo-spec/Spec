@@ -1,3 +1,9 @@
+"
+Description
+--------------------
+
+I am a Morphic adapter to bridge the ProgressBarPresenter and the ProgressBarMorph.
+"
 Class {
 	#name : #MorphicProgressBarAdapter,
 	#superclass : #AbstractMorphicAdapter,
