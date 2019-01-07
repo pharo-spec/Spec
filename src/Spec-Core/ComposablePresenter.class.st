@@ -99,7 +99,10 @@ Class {
 		'windowIcon',
 		'aboutText',
 		'askOkToClose',
-		'titleHolder'
+		'titleHolder',
+		'inputPorts',
+		'outputPorts',
+		'transmissions'
 	],
 	#category : #'Spec-Core-Base'
 }
@@ -248,9 +251,25 @@ ComposablePresenter >> addAll: aWindow withSpecLayout: aSpec [
 		frame: (0@0 corner: 1@1).
 ]
 
+{ #category : #'accessing flow' }
+ComposablePresenter >> addInputPort: aPort [
+
+	aPort presenter: self.
+	inputPorts ifNil: [ inputPorts := #() ].
+	inputPorts := inputPorts copyWith: aPort
+]
+
 { #category : #'window menu' }
 ComposablePresenter >> addMenuItemsToWindowMenu: aMenu [
 	"Do nothing"
+]
+
+{ #category : #'accessing flow' }
+ComposablePresenter >> addOutputPort: aPort [
+
+	aPort presenter: self.
+	outputPorts ifNil: [ outputPorts := #() ].
+	outputPorts := outputPorts copyWith: aPort
 ]
 
 { #category : #'api-shortcuts' }
@@ -278,6 +297,13 @@ ComposablePresenter >> applyMenuModel: aMenuModel [
 		group menuItems do: [ :item |
 			item shortcut ifNotNil: [ :shortcut | self bindMenuKeyCombination: shortcut toAction: [ item performMenuActionWith: {} ] ].
 			item subMenu ifNotNil: [ :subMenu | subMenu applyTo: self	] ] ]
+]
+
+{ #category : #initialization }
+ComposablePresenter >> applyTransmissions [
+	
+	transmissions ifNil: [ ^ self ].
+	transmissions do: #apply
 ]
 
 { #category : #api }
@@ -562,12 +588,11 @@ ComposablePresenter >> initialize [
 
 	super initialize.
 
+	self initializePorts.
 	self initializePrivateAnnouncer.
 	self initializePrivateValueHolders.
-	
 	self initializePrivateHooks.
-		
-	self initializePrivateAnnouncements.
+	self initializePrivateAnnouncements
 ]
 
 { #category : #initialization }
@@ -582,6 +607,13 @@ ComposablePresenter >> initializeDialogWindow: aDialogWindowPresenter [
 		addButton: 'Cancel' do: [ :presenter | 
 			presenter triggerCancelAction.
 			presenter close ]
+]
+
+{ #category : #initialization }
+ComposablePresenter >> initializePorts [
+	
+	"By default, all presenters can receive a change model transmission"
+	self addInputPort: ModelPresenterPort new
 ]
 
 { #category : #initialization }
@@ -615,6 +647,7 @@ ComposablePresenter >> initializePrivateHooks [
 
 	self initializeWidgets.
 	self initializePresenter.
+	self applyTransmissions.
 	self updatePresenter.
 
 ]
@@ -646,6 +679,26 @@ ComposablePresenter >> initializeWidgets [
 ComposablePresenter >> initializeWindow: aWindowPresenter [
 	"override this to set window values before opening. 
 	 You may want to add a menu, a toolbar or a statusbar"
+]
+
+{ #category : #'accessing flow' }
+ComposablePresenter >> inputPortDefault [
+
+	"first input port will be default. 
+	 this may be bad design and probably needs to be revisited later"
+	^ self inputPorts first
+]
+
+{ #category : #'accessing flow' }
+ComposablePresenter >> inputPortNamed: aSymbol [
+
+	^ self inputPorts detect: [ :each | each name = aSymbol ]
+]
+
+{ #category : #'accessing flow' }
+ComposablePresenter >> inputPorts [
+
+	^ inputPorts
 ]
 
 { #category : #'instance creation' }
@@ -960,6 +1013,26 @@ ComposablePresenter >> openWithSpecLayout: aSpec in: aWindowClass [
 	^ self presenterWindow
 ]
 
+{ #category : #'accessing flow' }
+ComposablePresenter >> outputPortDefault [
+
+	"first output port will be default. 
+	 this may be bad design and probably needs to be revisited later"
+	^ self outputPorts first
+]
+
+{ #category : #'accessing flow' }
+ComposablePresenter >> outputPortNamed: aSymbol [
+
+	^ self outputPorts detect: [ :each | each name = aSymbol ]
+]
+
+{ #category : #'accessing flow' }
+ComposablePresenter >> outputPorts [
+
+	^ outputPorts
+]
+
 { #category : #accessing }
 ComposablePresenter >> owner [
 
@@ -1129,6 +1202,16 @@ ComposablePresenter >> title: aString [
 { #category : #accessing }
 ComposablePresenter >> toolName [	
 	^ self class toolName
+]
+
+{ #category : #'accessing flow' }
+ComposablePresenter >> transmit [ 
+	| newTransmition |
+
+	transmissions ifNil: [ transmissions := Set new ].
+	newTransmition := PresenterTransmission on: self.
+	transmissions add: newTransmition.
+	^ newTransmition
 ]
 
 { #category : #private }
