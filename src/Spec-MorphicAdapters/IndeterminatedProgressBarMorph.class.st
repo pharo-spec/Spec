@@ -54,7 +54,7 @@ IndeterminatedProgressBarMorph >> drawOn: aCanvas [
 IndeterminatedProgressBarMorph >> indeterminateStepIncrease [
 	"To get a feeling of recent design we use a progression with two timing and we switch the speed at each passage."
 
-	^ oddPassage ifTrue: [ 25 ] ifFalse: [ 10 ]
+	^ oddPassage ifTrue: [ 40 ] ifFalse: [ 15 ]
 ]
 
 { #category : #initialization }
