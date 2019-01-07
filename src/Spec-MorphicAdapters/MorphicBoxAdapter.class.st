@@ -1,6 +1,6 @@
 Class {
 	#name : #MorphicBoxAdapter,
-	#superclass : #AbstractMorphicAdapter,
+	#superclass : #MorphicLayoutAdapter,
 	#category : #'Spec-MorphicAdapters-Base'
 }
 
@@ -59,12 +59,6 @@ MorphicBoxAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [
 ]
 
 { #category : #factory }
-MorphicBoxAdapter >> buildWidget [
-
-	^ nil
-]
-
-{ #category : #factory }
 MorphicBoxAdapter >> layout: aLayout [
 
 	"build of widget was differed up to here (to know what is the direction)"
@@ -87,6 +81,7 @@ MorphicBoxAdapter >> newHorizontal [
 		addMorphBack: (self newPanel
 			listDirection: #leftToRight;
 			hResizing: #shrinkWrap;
+			width: 0;
 			yourself);
 		yourself	
 ]
@@ -113,6 +108,7 @@ MorphicBoxAdapter >> newVertical [
 		addMorphBack: (self newPanel
 			listDirection: #topToBottom;
 			vResizing: #shrinkWrap;
+			height: 0;
 			yourself);
 		yourself	
 ]
