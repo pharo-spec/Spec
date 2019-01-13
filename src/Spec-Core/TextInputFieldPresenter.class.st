@@ -143,6 +143,11 @@ TextInputFieldPresenter >> eventKeyStrokesForPreviousFocus [
 	^ { Character tab shift asKeyCombination }
 ]
 
+{ #category : #'as yet unclassified' }
+TextInputFieldPresenter >> ghostText: aString [ 
+	self placeholder: aString
+]
+
 { #category : #initialization }
 TextInputFieldPresenter >> initialize [
 
