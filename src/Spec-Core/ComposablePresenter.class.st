@@ -251,7 +251,7 @@ ComposablePresenter >> addAll: aWindow withSpecLayout: aSpec [
 		frame: (0@0 corner: 1@1).
 ]
 
-{ #category : #'accessing flow' }
+{ #category : #'accessing ports' }
 ComposablePresenter >> addInputPort: aPort [
 
 	aPort presenter: self.
@@ -264,7 +264,7 @@ ComposablePresenter >> addMenuItemsToWindowMenu: aMenu [
 	"Do nothing"
 ]
 
-{ #category : #'accessing flow' }
+{ #category : #'accessing ports' }
 ComposablePresenter >> addOutputPort: aPort [
 
 	aPort presenter: self.
@@ -681,7 +681,7 @@ ComposablePresenter >> initializeWindow: aWindowPresenter [
 	 You may want to add a menu, a toolbar or a statusbar"
 ]
 
-{ #category : #'accessing flow' }
+{ #category : #'accessing ports' }
 ComposablePresenter >> inputPortDefault [
 
 	"first input port will be default. 
@@ -689,13 +689,13 @@ ComposablePresenter >> inputPortDefault [
 	^ self inputPorts first
 ]
 
-{ #category : #'accessing flow' }
+{ #category : #'accessing ports' }
 ComposablePresenter >> inputPortNamed: aSymbol [
 
 	^ self inputPorts detect: [ :each | each name = aSymbol ]
 ]
 
-{ #category : #'accessing flow' }
+{ #category : #'accessing ports' }
 ComposablePresenter >> inputPorts [
 
 	^ inputPorts
@@ -1018,7 +1018,7 @@ ComposablePresenter >> openWithSpecLayout: aSpec in: aWindowClass [
 	^ self presenterWindow
 ]
 
-{ #category : #'accessing flow' }
+{ #category : #'accessing ports' }
 ComposablePresenter >> outputPortDefault [
 
 	"first output port will be default. 
@@ -1026,13 +1026,13 @@ ComposablePresenter >> outputPortDefault [
 	^ self outputPorts first
 ]
 
-{ #category : #'accessing flow' }
+{ #category : #'accessing ports' }
 ComposablePresenter >> outputPortNamed: aSymbol [
 
 	^ self outputPorts detect: [ :each | each name = aSymbol ]
 ]
 
-{ #category : #'accessing flow' }
+{ #category : #'accessing ports' }
 ComposablePresenter >> outputPorts [
 
 	^ outputPorts
@@ -1209,7 +1209,7 @@ ComposablePresenter >> toolName [
 	^ self class toolName
 ]
 
-{ #category : #'accessing flow' }
+{ #category : #'accessing ports' }
 ComposablePresenter >> transmit [ 
 	| newTransmition |
 
