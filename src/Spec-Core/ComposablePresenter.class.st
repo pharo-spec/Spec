@@ -878,6 +878,11 @@ ComposablePresenter >> newNumberInput [
 ]
 
 { #category : #widgets }
+ComposablePresenter >> newProgressBar [
+	^ self instantiate: ProgressBarPresenter
+]
+
+{ #category : #widgets }
 ComposablePresenter >> newRadioButton [
 	^ self instantiate: RadioButtonPresenter
 ]
