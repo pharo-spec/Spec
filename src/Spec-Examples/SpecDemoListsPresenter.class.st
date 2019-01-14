@@ -29,8 +29,12 @@ SpecDemoListsPresenter >> initializeWidgets [
 	list1
 		items: Smalltalk globals allClasses;
 		backgroundColorBlock: [ :object :rowIndex | rowIndex odd ifTrue: [ Smalltalk ui theme lightBackgroundColor ] ifFalse: [ Smalltalk ui theme backgroundColor ] ].
-	list2 items: Smalltalk globals allClasses.
-	list3 items: Smalltalk globals allClasses
+	list2
+		items: Smalltalk globals allClasses;
+		sortingBlock: [ :a :b | a asString size < b asString size ].
+	list3
+		items: Smalltalk globals allClasses;
+		itemFilterBlock: [ :item :string | item asString includesSubstring: string ]
 ]
 
 { #category : #accessing }

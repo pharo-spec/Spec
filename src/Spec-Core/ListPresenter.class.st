@@ -53,7 +53,8 @@ Class {
 		'wrapBlockHolder',
 		'listAnnouncer',
 		'backgroundColorBlock',
-		'autoDeselect'
+		'autoDeselect',
+		'itemFilterBlockHolder'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -244,6 +245,7 @@ ListPresenter >> initializeValueHolders [
 	listHolder := Array new asValueHolder.
 	sortingBlockHolder := self defaultSortingBlock asValueHolder.
 	filteringBlockHolder := self defaultFilteringBlock asValueHolder.
+	itemFilterBlockHolder := nil asValueHolder.
 	wrapBlockHolder := [ :object | object asStringOrText ] asValueHolder.
 	menuHolder := [ :menu :shifted | nil ] asValueHolder.
 	multiSelectionHolder := IdentityDictionary new asValueHolder.
@@ -253,6 +255,16 @@ ListPresenter >> initializeValueHolders [
 	autoDeselect := true asValueHolder.
 	listAnnouncer := Announcer new.
 
+]
+
+{ #category : #api }
+ListPresenter >> itemFilterBlock [
+	^ itemFilterBlockHolder value
+]
+
+{ #category : #api }
+ListPresenter >> itemFilterBlock: aBlock [
+	itemFilterBlockHolder value: aBlock
 ]
 
 { #category : #api }

@@ -43,8 +43,7 @@ MorphicListAdapter >> backgroundColorFor: anItem at: index [
 
 { #category : #factory }
 MorphicListAdapter >> buildWidget [
-	self flag: #todo. "Check #autoDeselect, background color and filtering management."
-	^ FTSpecPluggableIconListMorphAdaptor new
+	widget := FTSpecPluggableIconListMorphAdaptor new
 		model: self model;
 		hideColumnHeaders;
 		beResizable;
@@ -66,7 +65,9 @@ MorphicListAdapter >> buildWidget [
 		setBalloonText: self help;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
-		yourself
+		yourself.
+		
+	^ widget
 ]
 
 { #category : #'widget API' }
@@ -79,6 +80,11 @@ MorphicListAdapter >> getIndex [
 MorphicListAdapter >> getSelectionStateFor: anIndex [
 
 	^ self model getSelectionStateFor: anIndex
+]
+
+{ #category : #'widget API' }
+MorphicListAdapter >> itemFilterBlock [
+	^ self model itemFilterBlock
 ]
 
 { #category : #'widget API' }
