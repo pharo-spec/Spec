@@ -67,10 +67,10 @@ ListPresenter class >> adapterName [
 { #category : #example }
 ListPresenter class >> example [
 	<sampleInstance>
-	^ self
-		new
+	^ self new
+		items: Smalltalk globals allClasses;
 		openWithSpec;
-		items: Smalltalk allClasses
+		yourself
 ]
 
 { #category : #specs }

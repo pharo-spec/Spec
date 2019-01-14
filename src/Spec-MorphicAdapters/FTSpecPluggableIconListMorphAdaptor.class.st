@@ -10,6 +10,11 @@ Class {
 	#category : #'Spec-MorphicAdapters-Support'
 }
 
+{ #category : #accessing }
+FTSpecPluggableIconListMorphAdaptor >> backgroundColoringBlockOrSelector: anObject [
+	self dataSource backgroundColoringBlockOrSelector: anObject
+]
+
 { #category : #initialization }
 FTSpecPluggableIconListMorphAdaptor >> initialize [
 	super initialize.

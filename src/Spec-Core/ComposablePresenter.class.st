@@ -806,7 +806,7 @@ ComposablePresenter >> newLink [
 
 { #category : #widgets }
 ComposablePresenter >> newList [
-	^ self instantiate: FastTablePresenter
+	^ self instantiate: ListPresenter
 ]
 
 { #category : #widgets }

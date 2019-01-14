@@ -59,6 +59,7 @@ MorphicListAdapter >> buildWidget [
 		setMultipleSelection: self multiSelection;
 		doubleClickSelector: #doubleClick:;
 		basicWrapSelector: #wrapItem:index:;
+		backgroundColoringBlockOrSelector: #backgroundColorFor:at:;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
 		setBalloonText: self help;
