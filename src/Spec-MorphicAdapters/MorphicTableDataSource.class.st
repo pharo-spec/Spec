@@ -11,6 +11,5 @@ MorphicTableDataSource >> cellColumn: column row: rowIndex [
 	cell := FTCellMorph new.
 	(column readObject: (self elementAt: rowIndex)) ifNotNil: [ :object |
 		cell addMorphBack: object asMorph ].
-	^ cell 
-		
+	^ cell
 ]

@@ -8,9 +8,8 @@ self example
 "
 Class {
 	#name : #TablePresenter,
-	#superclass : #AbstractWidgetPresenter,
+	#superclass : #TableBasePresenter,
 	#instVars : [
-		'columns',
 		'itemsHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
@@ -45,31 +44,12 @@ TablePresenter class >> exampleEditableCell [
 	self flag: #TODO
 ]
 
-{ #category : #accessing }
-TablePresenter >> addColumn: aColumn [
-
-	columns := columns copyWith: aColumn
-]
-
-{ #category : #accessing }
-TablePresenter >> columns [
-	^ columns
-]
-
-{ #category : #accessing }
-TablePresenter >> columns: aCollection [
-
-	columns := aCollection
-]
-
 { #category : #initialization }
 TablePresenter >> initialize [ 
 
 	super initialize.
-	columns := #().
 	itemsHolder := #() asValueHolder.
-	
-	itemsHolder whenChangedDo: [ self itemsChanged ].
+	itemsHolder whenChangedDo: [ self itemsChanged ].	
 ]
 
 { #category : #accessing }

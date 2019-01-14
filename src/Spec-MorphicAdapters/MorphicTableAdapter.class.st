@@ -9,10 +9,7 @@ MorphicTableAdapter >> addModelTo: tableMorph [
 	
 	self model columns do: [ :each |
 		tableMorph addColumn: (self newColumnFrom: each) ].
-	
-	tableMorph dataSource: (MorphicTableDataSource new 
-		elements: self model items;
-		yourself)
+	tableMorph dataSource: self newDataSource
 ]
 
 { #category : #factory }
@@ -27,10 +24,18 @@ MorphicTableAdapter >> buildWidget [
 	^ tableMorph
 ]
 
-{ #category : #factory }
+{ #category : #'private factory' }
 MorphicTableAdapter >> newColumnFrom: aTableColumn [
 
 	^ (MorphicTableColumn on: aTableColumn)
 		width: aTableColumn width;
+		yourself
+]
+
+{ #category : #'private factory' }
+MorphicTableAdapter >> newDataSource [ 
+
+	^ MorphicTableDataSource new 
+		elements: self model items;
 		yourself
 ]

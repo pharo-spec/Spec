@@ -903,6 +903,12 @@ ComposablePresenter >> newTabManager [
 ]
 
 { #category : #widgets }
+ComposablePresenter >> newTable [
+
+	^ self instantiate: TablePresenter
+]
+
+{ #category : #widgets }
 ComposablePresenter >> newText [
 	^ self instantiate: TextPresenter
 ]
@@ -915,6 +921,12 @@ ComposablePresenter >> newTextInput [
 { #category : #widgets }
 ComposablePresenter >> newTree [
 	^ self instantiate: TreePresenter
+]
+
+{ #category : #widgets }
+ComposablePresenter >> newTreeTable [
+
+	^ self instantiate: TreeTablePresenter
 ]
 
 { #category : #private }
