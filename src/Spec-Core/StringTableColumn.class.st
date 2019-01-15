@@ -21,7 +21,7 @@ StringTableColumn >> acceptAction [
 ]
 
 { #category : #visiting }
-StringTableColumn >> acceptColumnBuilder: aBuilder [
+StringTableColumn >> acceptColumnVisitor: aBuilder [
 
 	^ aBuilder visitStringColumn: self
 ]

@@ -18,7 +18,7 @@ Class {
 }
 
 { #category : #visiting }
-TableColumn >> acceptColumnBuilder: aBuilder [
+TableColumn >> acceptColumnVisitor: aBuilder [
 
 	^ self subclassResponsibility
 ]

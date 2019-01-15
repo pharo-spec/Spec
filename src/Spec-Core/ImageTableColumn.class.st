@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #visiting }
-ImageTableColumn >> acceptColumnBuilder: aBuilder [
+ImageTableColumn >> acceptColumnVisitor: aBuilder [
 
 	^ aBuilder visitImageColumn: self
 ]
