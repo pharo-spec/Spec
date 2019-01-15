@@ -1,3 +1,9 @@
+"
+I am the adapter used to realise a TreeTablePresenter.
+I will create a tree table (using FTTableMorph), using the columns TableColumn* as definitions.
+
+Is important notice here that most of the row/cell creation happens on MorphicTreeTableDataSource. Check there for some implementation details.
+"
 Class {
 	#name : #MorphicTreeTableAdapter,
 	#superclass : #MorphicTableAdapter,

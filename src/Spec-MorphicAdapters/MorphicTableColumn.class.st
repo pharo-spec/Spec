@@ -1,3 +1,7 @@
+"
+I'm a column for the table on a MorphicTableAdapter hierarchy.
+I delegate most of my behavior to my model (which is a TableColumn* instance)
+"
 Class {
 	#name : #MorphicTableColumn,
 	#superclass : #FTColumn,

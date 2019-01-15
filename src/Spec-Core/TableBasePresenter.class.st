@@ -1,3 +1,8 @@
+"
+I'm a base presenter for tables (simple tables and trees).
+I define common members for my children.
+
+"
 Class {
 	#name : #TableBasePresenter,
 	#superclass : #AbstractWidgetPresenter,

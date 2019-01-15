@@ -1,3 +1,8 @@
+"
+I'm a dataSource to be used in MorphicTableAdapter to realise a TablePresenter.
+I define my cells following the definition on columns (MorphicTableColumn).
+I use a builder (MorphicTableCellBuilder) to realise the cell content. 
+"
 Class {
 	#name : #MorphicTableDataSource,
 	#superclass : #FTSimpleDataSource,

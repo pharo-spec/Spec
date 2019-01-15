@@ -1,3 +1,6 @@
+"
+I build cells for a MorphicTreeTableAdapter.
+"
 Class {
 	#name : #MorphicTreeTableCellBuilder,
 	#superclass : #MorphicTableCellBuilder,

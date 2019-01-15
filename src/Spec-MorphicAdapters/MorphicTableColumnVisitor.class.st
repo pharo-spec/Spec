@@ -1,3 +1,6 @@
+"
+I'm a visitor to be used to traverse TableColumn hierarchy.
+"
 Class {
 	#name : #MorphicTableColumnVisitor,
 	#superclass : #Object,

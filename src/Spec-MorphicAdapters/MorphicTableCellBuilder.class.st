@@ -1,3 +1,6 @@
+"
+I build cells for a MorphicTableAdapter.
+"
 Class {
 	#name : #MorphicTableCellBuilder,
 	#superclass : #MorphicTableColumnVisitor,
@@ -38,13 +41,7 @@ MorphicTableCellBuilder >> dataSource: anObject [
 { #category : #private }
 MorphicTableCellBuilder >> item [ 
 
-	^ self itemOf: (self dataSource elementAt: self rowIndex)
-]
-
-{ #category : #private }
-MorphicTableCellBuilder >> itemOf: anObject [ 
-
-	^ anObject
+	^ self dataSource elementAt: self rowIndex
 ]
 
 { #category : #accessing }

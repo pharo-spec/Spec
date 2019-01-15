@@ -1,3 +1,9 @@
+"
+I am the adapter used to realise a TablePresenter.
+I will create a table (using FTTableMorph), using the columns TableColumn* as definitions.
+
+Is important notice here that most of the row/cell creation happens on MorphicTableDataSource. Check there for some implementation details.
+"
 Class {
 	#name : #MorphicTableAdapter,
 	#superclass : #AbstractMorphicAdapter,
