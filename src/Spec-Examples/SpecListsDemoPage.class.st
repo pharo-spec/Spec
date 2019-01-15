@@ -1,3 +1,9 @@
+"
+Description
+--------------------
+
+I am a demo page to show how to use spec litsts.
+"
 Class {
 	#name : #SpecListsDemoPage,
 	#superclass : #SpecDemoPage,

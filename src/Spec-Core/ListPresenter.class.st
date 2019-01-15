@@ -133,7 +133,6 @@ ListPresenter >> backgroundColorBlock: aBlock [
 
 { #category : #api }
 ListPresenter >> backgroundColorFor: anItem at: index [
-
 	^ self backgroundColorBlock cull: anItem cull: index
 ]
 
@@ -251,10 +250,15 @@ ListPresenter >> initializeValueHolders [
 	multiSelectionHolder := IdentityDictionary new asValueHolder.
 	multiSelection := false asValueHolder.
 	allowToSelect := true asValueHolder.
-	backgroundColorBlock := [ :item :index | self theme backgroundColor ] asValueHolder.
+	backgroundColorBlock := [ :item :index | Color transparent ] asValueHolder.
 	autoDeselect := true asValueHolder.
 	listAnnouncer := Announcer new.
 
+]
+
+{ #category : #api }
+ListPresenter >> itemBeginsWithFilter [
+	self itemFilterBlock: [ :each :pattern | each asLowercase beginsWith: pattern asLowercase ]
 ]
 
 { #category : #api }
@@ -265,6 +269,11 @@ ListPresenter >> itemFilterBlock [
 { #category : #api }
 ListPresenter >> itemFilterBlock: aBlock [
 	itemFilterBlockHolder value: aBlock
+]
+
+{ #category : #api }
+ListPresenter >> itemSubstringFilter [
+	self itemFilterBlock: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
 ]
 
 { #category : #api }
@@ -351,6 +360,14 @@ ListPresenter >> multiSelection: aBoolean [
 	Otherwise set the selection as single"
 
 	multiSelection value: aBoolean
+]
+
+{ #category : #private }
+ListPresenter >> prepareForFilteredDataSourceWith: items [
+
+	listHolder := items asValueHolder.
+	listHolder whenChangedDo: [ self refreshListItems ].
+	listItemsCache := nil
 ]
 
 { #category : #private }

@@ -45,6 +45,26 @@ FTSpecPluggableIconListMorphAdaptorDataSource >> elementWrapped: anObject index:
 			[ :selector | selector numArgs == 0 ifTrue: [ anObject perform: selector ] ifFalse: [ self model perform: selector withEnoughArguments: {anObject. anIndex} ] ]
 ]
 
+{ #category : #accessing }
+FTSpecPluggableIconListMorphAdaptorDataSource >> newDataSourceMatching: aFTFilter [
+	| newElements wrappedItem text newDataSource modelCopy index |
+	index := 1.
+	newElements := self elements select: [ :each | 
+		wrappedItem := self elementWrapped: each index: index.
+		index := index + 1.
+		table columns anySatisfy: [ :column | 
+			text := column transform: wrappedItem.
+			aFTFilter matches: text]
+		 ].
+	
+	newDataSource := self copy.
+	modelCopy := self model copy.
+	modelCopy prepareForFilteredDataSourceWith: newElements.
+	newDataSource model: modelCopy.
+	
+	^newDataSource
+]
+
 { #category : #private }
 FTSpecPluggableIconListMorphAdaptorDataSource >> setColorOf: cell object: object rowIndex: rowIndex [
 	| valuable color |

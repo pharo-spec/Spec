@@ -31,7 +31,6 @@ MorphicListAdapter >> autoDeselect: aBoolean [
 
 { #category : #'widget API' }
 MorphicListAdapter >> backgroundColorFor: anItem [
-
 	^ self model backgroundColorFor: anItem
 ]
 
@@ -66,7 +65,13 @@ MorphicListAdapter >> buildWidget [
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		yourself.
-		
+
+	self itemFilterBlock
+		ifNotNil: [ :block | 
+			widget
+				enableFilter: (FTSpecFilter block: block);
+				explicitFunction ].
+
 	^ widget
 ]
 
