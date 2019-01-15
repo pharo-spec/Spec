@@ -6,10 +6,21 @@ Class {
 
 { #category : #accessing }
 MorphicTreeTableDataSource >> cellColumn: column row: rowIndex [
+	| cell builder item |
+	
+	item := self elementAt: rowIndex.
+	cell := FTIndentedCellMorph new.
+	cell indentBy: (self cellIndentFor: item).
+	(self isFirstColumn: column) ifTrue: [
+		cell addMorphBack: (self buttonFor: item) ].
 
-	^ self 
-		newCellFor: (self elementAt: rowIndex)
-		column: column
+	builder := MorphicTreeTableCellBuilder on: self.
+	builder 
+		cell: cell;
+		item: item data;
+		visit: column model.
+	
+	^ cell 
 ]
 
 { #category : #accessing }
@@ -22,20 +33,6 @@ MorphicTreeTableDataSource >> cellIndentFor: item [
 MorphicTreeTableDataSource >> isFirstColumn: column [
 	
 	^ (table columns indexOf: column) = 1
-]
-
-{ #category : #accessing }
-MorphicTreeTableDataSource >> newCellFor: item column: column [
-	| cell |
-	
-	cell := FTIndentedCellMorph new.
-	cell indentBy: (self cellIndentFor: item).
-	(self isFirstColumn: column) ifTrue: [
-		cell addMorphBack: (self buttonFor: item) ].
-	(column readObject: item data) ifNotNil: [ :object |
-		cell addMorphBack: object asMorph asReadOnlyMorph ].
-	
-	^ cell 
 ]
 
 { #category : #accessing }

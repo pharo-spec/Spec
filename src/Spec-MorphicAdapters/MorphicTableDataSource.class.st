@@ -6,10 +6,14 @@ Class {
 
 { #category : #accessing }
 MorphicTableDataSource >> cellColumn: column row: rowIndex [
-	| cell |
+	| cell builder |
 
 	cell := FTCellMorph new.
-	(column readObject: (self elementAt: rowIndex)) ifNotNil: [ :object |
-		cell addMorphBack: object asMorph ].
+	builder := MorphicTableCellBuilder on: self.
+	builder 
+		cell: cell;
+		rowIndex: rowIndex;
+		visit: column model.
+		
 	^ cell
 ]
