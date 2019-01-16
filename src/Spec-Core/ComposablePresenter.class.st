@@ -1034,7 +1034,10 @@ ComposablePresenter >> retrieveDefaultSpec [
 
 { #category : #api }
 ComposablePresenter >> retrieveSpec: aSelector [
-	^ self class perform: aSelector
+	| layout |
+	layout := self class perform: aSelector.
+	layout isSpecLayout ifTrue: [ layout selector: aSelector ].
+	^ layout
 ]
 
 { #category : #accessing }
