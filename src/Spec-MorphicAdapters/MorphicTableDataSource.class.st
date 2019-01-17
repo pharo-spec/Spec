@@ -22,3 +22,13 @@ MorphicTableDataSource >> cellColumn: column row: rowIndex [
 		
 	^ cell
 ]
+
+{ #category : #accessing }
+MorphicTableDataSource >> headerColumn: column [
+
+	column id ifNil: [ ^ nil ].
+	^ FTCellMorph new 
+		listCentering: #left;
+		addMorph: column id asMorph;
+		yourself
+]
