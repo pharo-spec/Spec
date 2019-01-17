@@ -35,6 +35,23 @@ SpecDemoListsPresenter class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #defaults }
+SpecDemoListsPresenter >> iconFor: class [
+	((class includesBehavior: (Smalltalk globals at: #TestCase ifAbsent: [ false ])) and: [ class isAbstract not ])
+		ifTrue: [ class hasPassedTest ifTrue: [ ^ self iconNamed: #testGreenIcon ].
+			class hasFailedTest ifTrue: [ ^ self iconNamed: #testYellowIcon ].
+			class hasErrorTest ifTrue: [ ^ self iconNamed: #testRedIcon ].
+			^ self iconNamed: #testNotRunIcon ].
+	class organization classComment ifEmpty: [ ^ self iconNamed: #uncommentedClassIcon ].
+	((class includesBehavior: (Smalltalk globals at: #TestCase ifAbsent: [ false ])) and: [ class isAbstract not ])
+		ifTrue: [ class hasPassedTest ifTrue: [ ^ self iconNamed: #testGreenIcon ].
+			class hasFailedTest ifTrue: [ ^ self iconNamed: #testYellowIcon ].
+			class hasErrorTest ifTrue: [ ^ self iconNamed: #testRedIcon ].
+			^ self iconNamed: #testNotRunIcon ].
+	class organization classComment ifEmpty: [ ^ self iconNamed: #uncommentedClassIcon ].
+	^ class systemIcon
+]
+
 { #category : #initialization }
 SpecDemoListsPresenter >> initializePresenter [
 	list1
@@ -51,7 +68,7 @@ SpecDemoListsPresenter >> initializePresenter [
 SpecDemoListsPresenter >> initializeWidgets [
 	list1 := self newList.
 	list2 := self newList.
-	list3 := self newList.
+	list3 := self newIconList.
 	label := self newLabel.
 	multiLabel := self newLabel.
 
@@ -65,7 +82,8 @@ SpecDemoListsPresenter >> initializeWidgets [
 		multiSelection: true.
 	list3
 		items: Smalltalk globals allClasses;
-		itemFilterBlock: [ :item :string | item asString includesSubstring: string ].
+		itemFilterBlock: [ :item :string | item asString includesSubstring: string ];
+		icons: [ :elem | self iconFor: elem ].
 	label label: 'No selection'.
 	multiLabel label: 'Not multi selection (from list 2 only)'
 ]
