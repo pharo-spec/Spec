@@ -25,5 +25,9 @@ MorphicTableColumnVisitor >> visitImageColumn: aTableColumn [
 ]
 
 { #category : #visiting }
+MorphicTableColumnVisitor >> visitIndexColumn: aTableColumn [
+]
+
+{ #category : #visiting }
 MorphicTableColumnVisitor >> visitStringColumn: aTableColumn [
 ]

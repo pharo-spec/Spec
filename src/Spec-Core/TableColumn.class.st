@@ -56,12 +56,20 @@ TableColumn >> evaluated: aValuable [
 
 { #category : #accessing }
 TableColumn >> evaluation [
+
 	^ evaluation
 ]
 
 { #category : #accessing }
 TableColumn >> evaluation: anObject [
+
 	evaluation := anObject
+]
+
+{ #category : #testing }
+TableColumn >> isEditable [
+
+	^ false
 ]
 
 { #category : #accessing }

@@ -18,6 +18,28 @@ MorphicTableCellBuilder class >> on: aDataSource [
 	^ self new dataSource: aDataSource
 ]
 
+{ #category : #private }
+MorphicTableCellBuilder >> addCell: anObject column: aTableColumn [
+	| morph |
+
+	anObject ifNil: [ ^ self ]. 
+
+	morph := 	anObject asMorph.
+	aTableColumn width ifNotNil: [ :w |
+		morph 
+			width: w;
+			hResizing: #rigid ].
+	cell addMorphBack: morph.
+]
+
+{ #category : #private }
+MorphicTableCellBuilder >> addCellColumn: aTableColumn [
+	
+	self 
+		addCell: (aTableColumn readObject: self item) 
+		column: aTableColumn
+]
+
 { #category : #accessing }
 MorphicTableCellBuilder >> cell [
 	^ cell
@@ -56,24 +78,20 @@ MorphicTableCellBuilder >> rowIndex: anObject [
 
 { #category : #visiting }
 MorphicTableCellBuilder >> visitImageColumn: aTableColumn [
+	
+	self addCellColumn: aTableColumn
+]
 
-	self visitStringColumn: aTableColumn
+{ #category : #visiting }
+MorphicTableCellBuilder >> visitIndexColumn: aTableColumn [
+
+	self 
+		addCell: self rowIndex 
+		column: aTableColumn
 ]
 
 { #category : #visiting }
 MorphicTableCellBuilder >> visitStringColumn: aTableColumn [
-	| object morph |
-
-	object := aTableColumn readObject: self item. 
-	object ifNil: [ ^ self ]. 
-
-	morph := 	object asMorph.
-	aTableColumn width ifNotNil: [ :w |
-		morph 
-			width: w;
-			hResizing: #rigid ].
-	cell addMorphBack: morph.
-
 	
-
+	self addCellColumn: aTableColumn
 ]
