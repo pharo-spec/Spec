@@ -11,7 +11,8 @@ Class {
 		'list1',
 		'list2',
 		'list3',
-		'label'
+		'label',
+		'multiLabel'
 	],
 	#category : #'Spec-Examples-Demo-Lists'
 }
@@ -26,15 +27,24 @@ SpecDemoListsPresenter class >> defaultSpec [
 						newColumn: #list1;
 						newColumn: #list2;
 						newColumn: #list3 ];
-				newRow: #label height: self labelHeight ];
+				newRow: [ :row | 
+					row
+						newColumn: #multiLabel;
+						newColumn: #label ]
+					height: self labelHeight ];
 		yourself
 ]
 
 { #category : #initialization }
 SpecDemoListsPresenter >> initializePresenter [
-	list1 whenSelectedItemChanged: [ :elem | label label: (elem ifNil: [ 'Deselection from list 1' ] ifNotNil: [ 'Selection from list 1: ' , elem asString ]) ].
-	list2 whenSelectedItemChanged: [ :elem | label label: (elem ifNil: [ 'Deselection from list 2' ] ifNotNil: [ 'Selection from list 2: ' , elem asString ]) ].
-	list3 whenSelectedItemChanged: [ :elem | label label: (elem ifNil: [ 'Deselection from list 3' ] ifNotNil: [ 'Selection from list 3: ' , elem asString ]) ]
+	list1
+		whenSelectedItemChanged: [ :elem | label label: (elem ifNil: [ 'Deselection from list 1' ] ifNotNil: [ 'Selection from list 1: ' , elem asString ]) ].
+	list2
+		whenSelectedItemChanged: [ :elem | label label: (elem ifNil: [ 'Deselection from list 1' ] ifNotNil: [ 'Selection from list 1: ' , elem asString ]) ].
+	list2
+		whenSelectedItemsChanged: [ :elems | multiLabel label: (elems ifEmpty: [ 'Not multi selection (from list 2 only)' ] ifNotEmpty: [ 'Multi-selection from list 2: ' , elems asString ]) ].
+	list3
+		whenSelectedItemChanged: [ :elem | label label: (elem ifNil: [ 'Deselection from list 3' ] ifNotNil: [ 'Selection from list 3: ' , elem asString ]) ]
 ]
 
 { #category : #initialization }
@@ -43,6 +53,7 @@ SpecDemoListsPresenter >> initializeWidgets [
 	list2 := self newList.
 	list3 := self newList.
 	label := self newLabel.
+	multiLabel := self newLabel.
 
 	list1
 		items: Smalltalk globals allClasses;
@@ -50,11 +61,13 @@ SpecDemoListsPresenter >> initializeWidgets [
 				[ :object :rowIndex | rowIndex odd ifTrue: [ Smalltalk ui theme lightBackgroundColor alpha: 0.5 ] ifFalse: [ Smalltalk ui theme backgroundColor alpha: 0.5 ] ].
 	list2
 		items: Smalltalk globals allClasses;
-		sortingBlock: [ :a :b | a asString size < b asString size ].
+		sortingBlock: [ :a :b | a asString size < b asString size ];
+		multiSelection: true.
 	list3
 		items: Smalltalk globals allClasses;
 		itemFilterBlock: [ :item :string | item asString includesSubstring: string ].
-	label label: ''
+	label label: 'No selection'.
+	multiLabel label: 'Not multi selection (from list 2 only)'
 ]
 
 { #category : #accessing }
@@ -75,4 +88,9 @@ SpecDemoListsPresenter >> list2 [
 { #category : #accessing }
 SpecDemoListsPresenter >> list3 [
 	^ list3
+]
+
+{ #category : #accessing }
+SpecDemoListsPresenter >> multiLabel [
+	^ multiLabel
 ]

@@ -51,8 +51,8 @@ MorphicListAdapter >> buildWidget [
 		getListSizeSelector: #listSize;
 		getIndexSelector: #getIndex;
 		setIndexSelector: #setIndex:;
-		getSelectionListSelector: #getSelectionStateFor:;
-		setSelectionListSelector: #setSelectionStateFor:at:;
+		getIndexesSelector: #getIndexes;
+		setIndexesSelector: #setIndexes:;
 		resetListSelector: #resetListSelection;
 		getMenuSelector: #menu:shifted:;
 		setMultipleSelection: self multiSelection;
