@@ -18,7 +18,7 @@ MorphicTableColumn class >> on: anObject [
 ]
 
 { #category : #accessing }
-MorphicTableColumn >> id [
+MorphicTableColumn >> id [ 
 
 	^ self model title
 ]
@@ -30,10 +30,11 @@ MorphicTableColumn >> model [
 
 { #category : #accessing }
 MorphicTableColumn >> model: anObject [
+
 	model := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 MorphicTableColumn >> readObject: anObject [ 
 
 	^ self model readObject: anObject

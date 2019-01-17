@@ -15,6 +15,9 @@ MorphicTableAdapter >> addModelTo: tableMorph [
 	
 	self model columns do: [ :each |
 		tableMorph addColumn: (self newColumnFrom: each) ].
+	self model isShowingColumnHeaders 
+		ifTrue: [ tableMorph showColumnHeaders ]
+		ifFalse: [ tableMorph hideColumnHeaders ].
 	tableMorph dataSource: self newDataSource
 ]
 

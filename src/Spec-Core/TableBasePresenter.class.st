@@ -7,7 +7,8 @@ Class {
 	#name : #TableBasePresenter,
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
-		'columns'
+		'columns',
+		'showColumnHeadersHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -30,9 +31,36 @@ TableBasePresenter >> columns: aCollection [
 	columns := aCollection
 ]
 
+{ #category : #accessing }
+TableBasePresenter >> hideColumnHeaders [
+
+	showColumnHeadersHolder value: false
+]
+
 { #category : #initialization }
 TableBasePresenter >> initialize [ 
 
 	super initialize.
-	columns := #()
+	showColumnHeadersHolder := true asValueHolder.
+	columns := #().
+	
+	showColumnHeadersHolder whenChangedDo: [ self showColumnHeadersChanged ]
+]
+
+{ #category : #testing }
+TableBasePresenter >> isShowingColumnHeaders [
+
+	^ showColumnHeadersHolder value
+]
+
+{ #category : #accessing }
+TableBasePresenter >> showColumnHeaders [
+
+	showColumnHeadersHolder value: true
+]
+
+{ #category : #private }
+TableBasePresenter >> showColumnHeadersChanged [
+
+	self changed: #showColumnHeaders
 ]

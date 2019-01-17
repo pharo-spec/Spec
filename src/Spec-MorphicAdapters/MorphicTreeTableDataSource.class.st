@@ -34,6 +34,16 @@ MorphicTreeTableDataSource >> cellIndentFor: item [
 	^ item depth * 16
 ]
 
+{ #category : #accessing }
+MorphicTreeTableDataSource >> headerColumn: column [
+
+	column id ifNil: [ ^ nil ].
+	^ FTCellMorph new 
+		listCentering: #center;
+		addMorph: column id asMorph;
+		yourself
+]
+
 { #category : #testing }
 MorphicTreeTableDataSource >> isFirstColumn: column [
 	
