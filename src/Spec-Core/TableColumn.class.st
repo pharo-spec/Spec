@@ -17,6 +17,31 @@ Class {
 	#category : #'Spec-Core-Widgets-Table'
 }
 
+{ #category : #'instance creation' }
+TableColumn class >> evaluated: aValuable [
+
+	^ self new 
+		evaluated: aValuable;
+		yourself
+]
+
+{ #category : #'instance creation' }
+TableColumn class >> title: aString [
+
+	^ self new 
+		title: aString;
+		yourself
+]
+
+{ #category : #'instance creation' }
+TableColumn class >> title: aString evaluated: aValuable [
+
+	^ self new 
+		title: aString;
+		evaluated: aValuable;
+		yourself
+]
+
 { #category : #visiting }
 TableColumn >> acceptColumnVisitor: aBuilder [
 

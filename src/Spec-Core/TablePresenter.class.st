@@ -26,14 +26,8 @@ TablePresenter class >> example [
 	<sampleInstance>
 	
 	^ self new
-		addColumn: (ImageTableColumn new 
-			title: 'Icon';
-			evaluated: #systemIcon;
-			yourself);
-		addColumn: (StringTableColumn new 
-			title: 'Name';
-			evaluated: #name;
-			yourself);
+		addColumn: (ImageTableColumn title: 'Icon' evaluated: #systemIcon);
+		addColumn: (StringTableColumn title: 'Name' evaluated: #name);
 		items: Smalltalk allClasses;
 		openWithSpec
 ]

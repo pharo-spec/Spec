@@ -12,10 +12,60 @@ Class {
 	#category : #'Spec-Core-Widgets-Table'
 }
 
+{ #category : #'instance creation' }
+CompositeTableColumn class >> title: aString withAll: aCollection [
+
+	^ self new
+		title: aString;
+		addAllColumns: aCollection;
+		yourself
+]
+
+{ #category : #'instance creation' }
+CompositeTableColumn class >> with: column [
+
+	^ self new
+		addColumn: column;
+		yourself
+]
+
+{ #category : #'instance creation' }
+CompositeTableColumn class >> with: column1 with: column2 [ 
+
+	^ self new
+		addColumn: column1;
+		addColumn: column2;
+		yourself
+]
+
+{ #category : #'instance creation' }
+CompositeTableColumn class >> with: column1 with: column2 with: column3 [
+
+	^ self new
+		addColumn: column1;
+		addColumn: column2;
+		addColumn: column3;
+		yourself
+]
+
+{ #category : #'instance creation' }
+CompositeTableColumn class >> withAll: aCollection [
+
+	^ self new
+		addAllColumns: aCollection;
+		yourself
+]
+
 { #category : #visiting }
 CompositeTableColumn >> acceptColumnVisitor: aBuilder [
 
 	^ aBuilder visitCompositeColumn: self
+]
+
+{ #category : #accessing }
+CompositeTableColumn >> addAllColumns: aCollection [ 
+	
+	aCollection do: [ :each | self addColumn: each ]
 ]
 
 { #category : #accessing }
