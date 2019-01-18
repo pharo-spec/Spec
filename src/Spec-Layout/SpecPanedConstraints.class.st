@@ -5,7 +5,7 @@ Class {
 		'resize',
 		'shrink'
 	],
-	#category : #'Spec-Layout-Box'
+	#category : #'Spec-Layout-Paned'
 }
 
 { #category : #'as yet unclassified' }
@@ -27,25 +27,25 @@ SpecPanedConstraints class >> defaultPadding [
 ]
 
 { #category : #accessing }
-SpecPanedConstraints >> beNotResizeable [
+SpecPanedConstraints >> beNotResizable [
 
 	resize := false
 ]
 
 { #category : #accessing }
-SpecPanedConstraints >> beNotShrinkeable [
+SpecPanedConstraints >> beNotShrinkable [
 
 	shrink := false
 ]
 
 { #category : #accessing }
-SpecPanedConstraints >> beResizeable [
+SpecPanedConstraints >> beResizable [
 
 	resize := true
 ]
 
 { #category : #accessing }
-SpecPanedConstraints >> beShrinkeable [
+SpecPanedConstraints >> beShrinkable [
 
 	shrink := true
 ]
@@ -66,6 +66,6 @@ SpecPanedConstraints >> canShrink [
 SpecPanedConstraints >> initialize [ 
 
 	super initialize.
-	self canResize.
-	self canShrink.
+	self beResizable.
+	self beShrinkable
 ]

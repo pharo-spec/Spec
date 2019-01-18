@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'direction'
 	],
-	#category : #'Spec-Layout-Box'
+	#category : #'Spec-Layout-Paned'
 }
 
 { #category : #'instance creation' }
@@ -43,6 +43,9 @@ SpecPanedLayout >> add: aName [
 SpecPanedLayout >> add: aName withConstraints: aBlock [
 	| constraints |
 	
+	children size = 2 ifTrue: [ 
+		self error: 'You can not add more than two paned presenters.' ].
+
 	constraints := self constraintsClass new.
 	aBlock value: constraints.
 	children 

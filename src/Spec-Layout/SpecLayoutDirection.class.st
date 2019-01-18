@@ -4,7 +4,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'Spec-Layout-Box'
+	#category : #'Spec-Layout-Base'
 }
 
 { #category : #accessing }

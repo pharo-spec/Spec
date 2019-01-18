@@ -1,7 +1,7 @@
 Class {
 	#name : #SpecLayoutDirectionHorizontal,
 	#superclass : #SpecLayoutDirection,
-	#category : #'Spec-Layout-Box'
+	#category : #'Spec-Layout-Base'
 }
 
 { #category : #factory }
