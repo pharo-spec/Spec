@@ -16,5 +16,6 @@ ToolBarDisplayModeIcon >> configureButton: aButton item: aToolbarItem [
 
 { #category : #accessing }
 ToolBarDisplayModeIcon >> extent [
-	^ 25@25
+
+	^ 30@30
 ]

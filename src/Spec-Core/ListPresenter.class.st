@@ -239,6 +239,13 @@ ListPresenter >> initialize [
 ]
 
 { #category : #initialization }
+ListPresenter >> initializePorts [
+
+	self addOutputPort: SelectionPresenterPort new.
+	self addInputPort: ItemsPresenterPort new
+]
+
+{ #category : #initialization }
 ListPresenter >> initializeValueHolders [
 	selectionHolder := SelectionValueHolder new.
 	listHolder := Array new asValueHolder.
