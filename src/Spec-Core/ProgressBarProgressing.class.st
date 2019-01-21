@@ -15,18 +15,18 @@ Internal Representation and Key Implementation Points.
 --------------------
 
     Instance Variables
-	currentValueHolder:		<aValueHolder>	Store the current value of the progress bar. We need it to be able to notify the user when it changes so that the user can register to the change.
-	progressionBlock:			<aBlock>			A block returning a number between 0 and 1 defining the progress of the bar.
-	refreshDelay:				<aDelay>			A delay defining the refresh rate of the bar.
+	currentValueHolder:		<aValueHolder>		Store the current value of the progress bar. We need it to be able to notify the user when it changes so that the user can register to the change.
+	progression:					<aValuable>			A block returning a number between 0 and 1 defining the progress of the bar.
+	refreshDelay:				<aDelay>				A delay defining the refresh rate of the bar.
 
 "
 Class {
 	#name : #ProgressBarProgressing,
 	#superclass : #ProgressBarState,
 	#instVars : [
-		'progressionBlock',
 		'refreshDelay',
-		'currentValueHolder'
+		'currentValueHolder',
+		'progression'
 	],
 	#category : #'Spec-Core-Widgets-Utils'
 }
@@ -34,7 +34,7 @@ Class {
 { #category : #'instance creation' }
 ProgressBarProgressing class >> progression: aBlock every: aDelay [
 	^ self new
-		progressionBlock: aBlock;
+		progression: aBlock;
 		refreshDelay: aDelay;
 		yourself
 ]
@@ -56,13 +56,13 @@ ProgressBarProgressing >> initialize [
 ]
 
 { #category : #accessing }
-ProgressBarProgressing >> progressionBlock [
-	^ progressionBlock
+ProgressBarProgressing >> progression [
+	^ progression
 ]
 
 { #category : #accessing }
-ProgressBarProgressing >> progressionBlock: anObject [
-	progressionBlock := anObject
+ProgressBarProgressing >> progression: aValuable [
+	progression := aValuable
 ]
 
 { #category : #accessing }
@@ -71,8 +71,8 @@ ProgressBarProgressing >> refreshDelay [
 ]
 
 { #category : #accessing }
-ProgressBarProgressing >> refreshDelay: anObject [
-	refreshDelay := anObject
+ProgressBarProgressing >> refreshDelay: aDelay [
+	refreshDelay := aDelay
 ]
 
 { #category : #enumerating }
