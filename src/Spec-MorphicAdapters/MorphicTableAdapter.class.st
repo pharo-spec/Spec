@@ -12,25 +12,36 @@ Class {
 
 { #category : #factory }
 MorphicTableAdapter >> addModelTo: tableMorph [
-	
-	self model columns do: [ :each |
-		tableMorph addColumn: (self newColumnFrom: each) ].
-	self model isShowingColumnHeaders 
-		ifTrue: [ tableMorph showColumnHeaders ]
-		ifFalse: [ tableMorph hideColumnHeaders ].
+	self model columns do: [ :each | tableMorph addColumn: (self newColumnFrom: each) ].
+
+	self isShowingColumnHeaders ifTrue: [ tableMorph showColumnHeaders ] ifFalse: [ tableMorph hideColumnHeaders ].
+
+	self isResizable ifTrue: [ tableMorph beResizable ] ifFalse: [ tableMorph beNotResizable ].
+
 	tableMorph dataSource: self newDataSource
 ]
 
 { #category : #factory }
 MorphicTableAdapter >> buildWidget [
 	| tableMorph |
-	
 	tableMorph := FTTableMorph new
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		yourself.
+
 	self addModelTo: tableMorph.
+
 	^ tableMorph
+]
+
+{ #category : #testing }
+MorphicTableAdapter >> isResizable [
+	^ self model isResizable
+]
+
+{ #category : #testing }
+MorphicTableAdapter >> isShowingColumnHeaders [
+	^ self model isShowingColumnHeaders
 ]
 
 { #category : #'private factory' }
