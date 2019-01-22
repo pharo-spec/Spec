@@ -8,15 +8,26 @@ Class {
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
 		'columns',
-		'showColumnHeadersHolder'
+		'showColumnHeadersHolder',
+		'isResizableHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
 
-{ #category : #accessing }
+{ #category : #api }
 TableBasePresenter >> addColumn: aColumn [
 
 	columns := columns copyWith: aColumn
+]
+
+{ #category : #api }
+TableBasePresenter >> beNotResizable [
+	self isResizable: false
+]
+
+{ #category : #api }
+TableBasePresenter >> beResizable [
+	self isResizable: true
 ]
 
 { #category : #accessing }
@@ -25,13 +36,13 @@ TableBasePresenter >> columns [
 	^ columns
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 TableBasePresenter >> columns: aCollection [
 
 	columns := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 TableBasePresenter >> hideColumnHeaders [
 
 	showColumnHeadersHolder value: false
@@ -43,8 +54,19 @@ TableBasePresenter >> initialize [
 	super initialize.
 	showColumnHeadersHolder := true asValueHolder.
 	columns := #().
+	isResizableHolder := false asValueHolder.
 	
 	showColumnHeadersHolder whenChangedDo: [ self showColumnHeadersChanged ]
+]
+
+{ #category : #accessing }
+TableBasePresenter >> isResizable [
+	^ isResizableHolder value
+]
+
+{ #category : #accessing }
+TableBasePresenter >> isResizable: aBoolean [
+	isResizableHolder value: aBoolean
 ]
 
 { #category : #testing }
@@ -53,7 +75,7 @@ TableBasePresenter >> isShowingColumnHeaders [
 	^ showColumnHeadersHolder value
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 TableBasePresenter >> showColumnHeaders [
 
 	showColumnHeadersHolder value: true
@@ -63,4 +85,9 @@ TableBasePresenter >> showColumnHeaders [
 TableBasePresenter >> showColumnHeadersChanged [
 
 	self changed: #showColumnHeaders
+]
+
+{ #category : #'api-events' }
+TableBasePresenter >> whenIsResizableChangedDo: aBlock [
+	isResizableHolder whenChangedDo: aBlock
 ]
