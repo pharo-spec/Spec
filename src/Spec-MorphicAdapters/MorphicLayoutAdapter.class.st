@@ -1,7 +1,7 @@
 Class {
 	#name : #MorphicLayoutAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #'Spec-MorphicAdapters-Base'
+	#category : #'Spec-MorphicAdapters-Layout'
 }
 
 { #category : #factory }

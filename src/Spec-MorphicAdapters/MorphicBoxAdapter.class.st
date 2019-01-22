@@ -1,7 +1,7 @@
 Class {
 	#name : #MorphicBoxAdapter,
 	#superclass : #MorphicLayoutAdapter,
-	#category : #'Spec-MorphicAdapters-Base'
+	#category : #'Spec-MorphicAdapters-Layout'
 }
 
 { #category : #factory }
@@ -66,7 +66,6 @@ MorphicBoxAdapter >> layout: aLayout [
 	widget 
 		borderWidth: aLayout borderWidth;
 		cellInset: aLayout spacing.
-	
 	"widget homogeneous: aLayout isHomogeneous"
 ]
 
@@ -89,7 +88,7 @@ MorphicBoxAdapter >> newHorizontal [
 { #category : #factory }
 MorphicBoxAdapter >> newPanel [
 
-	^ Morph new 
+	^ PanelMorph new 
 		changeTableLayout;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
