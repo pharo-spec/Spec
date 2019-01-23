@@ -267,20 +267,8 @@ PanedResizerMorph >> splitsTopAndBottom [
 
 { #category : #accessing }
 PanedResizerMorph >> target [ 
-
-	^ self targetBefore
-]
-
-{ #category : #private }
-PanedResizerMorph >> targetAfter [
-
-	^ self owner ifNotNil: [ :aMorph | 
-		aMorph submorphs after: self ]
-]
-
-{ #category : #private }
-PanedResizerMorph >> targetBefore [
-
+	"answers previous morph in owners submorph list"
+	
 	^ self owner ifNotNil: [ :aMorph | 
 		aMorph submorphs before: self ]
 ]
