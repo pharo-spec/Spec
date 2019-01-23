@@ -1,3 +1,9 @@
+"
+I'm a paned horizontal resizer.
+I'm called ""horizonal"" (even if my draw is vertical) because I split horizontally the panes between me.
+
+self exampleHorizontal.
+"
 Class {
 	#name : #PanedResizerHorizontalMorph,
 	#superclass : #PanedResizerMorph,

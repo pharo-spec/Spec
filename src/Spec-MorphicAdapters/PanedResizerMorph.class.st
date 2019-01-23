@@ -1,3 +1,14 @@
+"
+I'm a base splitter to be used with a SpecPanedLayout. 
+Splitters can be placed vertically or horizontally and my children deal with each of the cases.
+The way I work is easy: 
+
+- I need to be placed between two other morphs.
+- I also need to act inside a morph with table layout (other layours may work, but is not testes).
+
+self exampleVertical.
+self exampleHorizontal.
+"
 Class {
 	#name : #PanedResizerMorph,
 	#superclass : #AbstractResizerMorph,
