@@ -1,3 +1,6 @@
+"
+I'm a base adapter for layouts.
+"
 Class {
 	#name : #MorphicLayoutAdapter,
 	#superclass : #AbstractMorphicAdapter,

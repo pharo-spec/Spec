@@ -1,3 +1,7 @@
+"
+I'm an adapter for Paned Layouts.
+A paned layout will split (horizontally or vertically) a panel and allow its resize. 
+"
 Class {
 	#name : #MorphicPanedAdapter,
 	#superclass : #MorphicLayoutAdapter,

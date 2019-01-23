@@ -1,3 +1,8 @@
+"
+I'm a Paned Layout.
+A paned layout is like a Box Layout (it places childen in vertical or horizontal fashion), but it will add a splitter in between, that user can drag to resize the panel.
+In exchange, a paned layout can have just two children.
+"
 Class {
 	#name : #SpecPanedLayout,
 	#superclass : #SpecExecutableLayout,
