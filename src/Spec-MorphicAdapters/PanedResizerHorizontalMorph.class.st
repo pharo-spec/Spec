@@ -33,3 +33,19 @@ PanedResizerHorizontalMorph >> positionPoint: aPoint [
 	
 	^ self position: self left @ aPoint y
 ]
+
+{ #category : #private }
+PanedResizerHorizontalMorph >> setLayoutSizing [
+	"Adjust the sizing for use within table layouts."
+
+	self 
+		hResizing: #rigid; 
+		vResizing: #spaceFill
+]
+
+{ #category : #private }
+PanedResizerHorizontalMorph >> setTargetLayoutSizing [
+
+	(self target hResizing = #rigid) ifTrue: [ ^ self ].
+	self target hResizing: #rigid
+]

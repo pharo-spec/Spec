@@ -14,9 +14,17 @@ PanedResizerMorph class >> exampleHorizontal [
 	(PanelMorph new 
 		changeTableLayout;
 		listDirection: #leftToRight;
-		addMorphBack: (Morph new color: Color red);
+		addMorphBack: (Morph new 
+			color: Color red;
+			vResizing: #spaceFill;
+			hResizing: #spaceFill;
+			yourself);
 		addMorphBack: self newHorizontal;
-		addMorphBack: (Morph new color: Color blue);
+		addMorphBack: (Morph new 
+			color: Color blue;
+			hResizing: #spaceFill;
+			vResizing: #spaceFill;
+			yourself);
 		openInWindow)
 		extent: 500@500
 ]
@@ -27,9 +35,17 @@ PanedResizerMorph class >> exampleVertical [
 	
 	(PanelMorph new 
 		changeTableLayout;
-		addMorphBack: (Morph new color: Color red);
+		addMorphBack: (Morph new 
+			color: Color red;
+			vResizing: #spaceFill;
+			hResizing: #spaceFill;
+			yourself);
 		addMorphBack: self newVertical;
-		addMorphBack: (Morph new color: Color blue);
+		addMorphBack: (Morph new 
+			color: Color blue;
+			vResizing: #spaceFill;
+			hResizing: #spaceFill;
+			yourself);
 		openInWindow)
 		extent: 500@500
 ]
@@ -134,7 +150,7 @@ PanedResizerMorph >> initialize [
 		fitTargetOwner: false;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
-		setLayoutSizingFor: self edgeName;
+		setLayoutSizing;
 		layoutFrame: self gripLayoutFrame;
 		extent: self defaultWidth @ self defaultHeight		
 ]
@@ -165,16 +181,11 @@ PanedResizerMorph >> mouseMove: anEvent [
 	"Track the mouse for resizing."
 	
 	self target ifNil: [ ^ self ] .
-		
-	self flag: #TODO. "Maybe remove the fast dragging? part"
-	self theme settings fastDragging
-		ifTrue: [ 
-			{ self targetBefore. self targetAfter } 
-				do: [ :each | each doFastReframe: self edgeName ] ]
-		ifFalse: [
-			lastMouse at: 1 put: anEvent cursorPoint.
-			self targetPoint: lastMouse first - lastMouse last.
-			self positionPoint: (lastMouse first - lastMouse second) ]
+	self setTargetLayoutSizing.
+	
+	lastMouse at: 1 put: anEvent cursorPoint.
+	self targetPoint: lastMouse first - lastMouse last.
+	self positionPoint: (lastMouse first - lastMouse second)
 ]
 
 { #category : #'event handling' }
@@ -213,17 +224,14 @@ PanedResizerMorph >> resizeCursor [
 	^ Cursor resizeForEdge: self edgeName
 ]
 
-{ #category : #initialization }
-PanedResizerMorph >> setLayoutSizingFor: aSymbol [
+{ #category : #private }
+PanedResizerMorph >> setLayoutSizing [
 	"Adjust the sizing for use within table layouts."
 
-	(aSymbol = #left or: [aSymbol = #right])
-		ifTrue: [self hResizing: #rigid; vResizing: #spaceFill].
-	(aSymbol = #top or: [aSymbol = #bottom])
-		ifTrue: [self hResizing: #spaceFill; vResizing: #rigid]
+	self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : #private }
 PanedResizerMorph >> setTargetBounds: aRect [
 	"Set the target bounds, taking owner into account if required."
 
@@ -233,6 +241,12 @@ PanedResizerMorph >> setTargetBounds: aRect [
 		self fitTargetBoundsInOwner: aRect]
 ]
 
+{ #category : #private }
+PanedResizerMorph >> setTargetLayoutSizing [
+
+	self subclassResponsibility
+]
+
 { #category : #accessing }
 PanedResizerMorph >> splitsTopAndBottom [
 	"Answer true if the receiver has a horizontal layout."
@@ -240,21 +254,20 @@ PanedResizerMorph >> splitsTopAndBottom [
 	^ self isHorizontal
 ]
 
-{ #category : #private }
+{ #category : #accessing }
 PanedResizerMorph >> target [ 
 
 	^ self targetBefore
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 PanedResizerMorph >> targetAfter [
 
-	
 	^ self owner ifNotNil: [ :aMorph | 
 		aMorph submorphs after: self ]
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 PanedResizerMorph >> targetBefore [
 
 	^ self owner ifNotNil: [ :aMorph | 

@@ -33,3 +33,18 @@ PanedResizerVerticalMorph >> positionPoint: aPoint [
 	
 	^ self position: aPoint x @ self top
 ]
+
+{ #category : #private }
+PanedResizerVerticalMorph >> setLayoutSizing [
+	
+	self 
+		hResizing: #spaceFill; 
+		vResizing: #rigid
+]
+
+{ #category : #private }
+PanedResizerVerticalMorph >> setTargetLayoutSizing [
+
+	(self target vResizing = #rigid) ifTrue: [ ^ self ].
+	self target vResizing: #rigid
+]
