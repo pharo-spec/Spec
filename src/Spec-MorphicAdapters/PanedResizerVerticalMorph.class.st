@@ -17,15 +17,6 @@ PanedResizerVerticalMorph >> edgeName [
 	^ #bottom
 ]
 
-{ #category : #accessing }
-PanedResizerVerticalMorph >> gripLayoutFrame [
-	"Answer the layout frame dependinbg on our edge."
-	
-	^ (0 @ 1 corner: 1 @ 1) asLayoutFrame 
-		topLeftOffset: 22 @ SystemWindow borderWidth negated ;
-		rightOffset: -22
-]
-
 { #category : #testing }
 PanedResizerVerticalMorph >> isHorizontal [
 	"Answer true if the receiver has a horizontal layout."
@@ -37,7 +28,7 @@ PanedResizerVerticalMorph >> isHorizontal [
 PanedResizerVerticalMorph >> positionPoint: aPoint [
 	"Reposition based on ptName."
 	
-	^ self position: aPoint x @ self top
+	^ self position: self left @ aPoint y
 ]
 
 { #category : #private }
@@ -49,8 +40,17 @@ PanedResizerVerticalMorph >> setLayoutSizing [
 ]
 
 { #category : #private }
+PanedResizerVerticalMorph >> setTargetBounds [
+	| target |
+
+	target := self target.
+	target bounds: (target position corner: (target right @ (self top - 1)))
+]
+
+{ #category : #private }
 PanedResizerVerticalMorph >> setTargetLayoutSizing [
 
 	(self target vResizing = #rigid) ifTrue: [ ^ self ].
-	self target vResizing: #rigid
+	self target vResizing: #rigid.
+	self targetAfter vResizing: #spaceFill.
 ]

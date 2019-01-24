@@ -12,9 +12,6 @@ self exampleHorizontal.
 Class {
 	#name : #PanedResizerMorph,
 	#superclass : #AbstractResizerMorph,
-	#instVars : [
-		'fitTargetOwner'
-	],
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
@@ -100,7 +97,7 @@ PanedResizerMorph >> defaultHeight [
 	^ self class splitterWidth
 ]
 
-{ #category : #configuration }
+{ #category : #accessing }
 PanedResizerMorph >> defaultWidth [
 	"Answer the default width for the receiver."
 	
@@ -114,55 +111,15 @@ PanedResizerMorph >> edgeName [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
-PanedResizerMorph >> fitTargetBoundsInOwner: aRect [
-	"Reset the target bounds if required to
-	ensure that the owner's submorphs fit within the owner's
-	exisiting bounds when layed out."
-	|ownerMinExt targetOwner|
-	
-	targetOwner := self target owner ifNil: [^self].
-	ownerMinExt :=  targetOwner minExtent.
-	ownerMinExt x > self target owner width
-		ifTrue: [self edgeName = #left
-				ifTrue: [self target bounds: (aRect left + (ownerMinExt x - targetOwner width) @ aRect top extent: (aRect width - (ownerMinExt x - targetOwner width)) @ aRect height)]
-				ifFalse: [self target bounds: (aRect origin extent: (aRect width - (ownerMinExt x - targetOwner width)) @ aRect height)]].
-	ownerMinExt y > self target owner height
-		ifTrue: [self edgeName = #top
-				ifTrue: [self target bounds: (aRect left @ (aRect top + (ownerMinExt y - targetOwner height)) extent: aRect width @ (aRect height - (ownerMinExt y - targetOwner height)))]
-				ifFalse: [self target bounds: (aRect origin extent: aRect width @ (aRect height - (ownerMinExt y - targetOwner height))) ] ]
-]
-
-{ #category : #accessing }
-PanedResizerMorph >> fitTargetOwner [
-
-	^ fitTargetOwner
-]
-
-{ #category : #accessing }
-PanedResizerMorph >> fitTargetOwner: anObject [
-
-	fitTargetOwner := anObject
-]
-
-{ #category : #accessing }
-PanedResizerMorph >> gripLayoutFrame [
-	"Answer the layout frame dependinbg on our edge."
-	
-	self subclassResponsibility
-]
-
 { #category : #initialization }
 PanedResizerMorph >> initialize [
 	"Initialize the receiver."
 	
 	super initialize.
 	self
-		fitTargetOwner: false;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		setLayoutSizing;
-		layoutFrame: self gripLayoutFrame;
 		extent: self defaultWidth @ self defaultHeight		
 ]
 
@@ -176,13 +133,11 @@ PanedResizerMorph >> isHorizontal [
 { #category : #'event handling' }
 PanedResizerMorph >> mouseDown: anEvent [
 	"Remember the receiver and target offsets too."
-	| cp |
 	
 	(self bounds containsPoint: anEvent cursorPoint)
 		ifTrue: [ self fillStyle: self pressedFillStyle ].
 		
-	cp := anEvent cursorPoint.
-	lastMouse := { cp. cp - self position. cp - self targetPoint }.
+	lastMouse := anEvent cursorPoint - self position.
 	self eventHandler ifNotNil: [ :handler |
 		handler mouseDown: anEvent fromMorph: self ]
 ]
@@ -194,9 +149,8 @@ PanedResizerMorph >> mouseMove: anEvent [
 	self target ifNil: [ ^ self ] .
 	self setTargetLayoutSizing.
 	
-	lastMouse at: 1 put: anEvent cursorPoint.
-	self targetPoint: lastMouse first - lastMouse last.
-	self positionPoint: (lastMouse first - lastMouse second)
+	self positionPoint: (anEvent cursorPoint - lastMouse).
+	self setTargetBounds
 ]
 
 { #category : #'event handling' }
@@ -243,13 +197,9 @@ PanedResizerMorph >> setLayoutSizing [
 ]
 
 { #category : #private }
-PanedResizerMorph >> setTargetBounds: aRect [
-	"Set the target bounds, taking owner into account if required."
+PanedResizerMorph >> setTargetBounds [ 
 
-	self target bounds: aRect.
-	self flag: #TODO. "What is this?"
-	self fitTargetOwner ifTrue: [
-		self fitTargetBoundsInOwner: aRect]
+	self subclassResponsibility
 ]
 
 { #category : #private }
@@ -258,9 +208,8 @@ PanedResizerMorph >> setTargetLayoutSizing [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 PanedResizerMorph >> splitsTopAndBottom [
-	"Answer true if the receiver has a horizontal layout."
 	
 	^ self isHorizontal
 ]
@@ -273,31 +222,10 @@ PanedResizerMorph >> target [
 		aMorph submorphs before: self ]
 ]
 
-{ #category : #accessing }
-PanedResizerMorph >> targetPoint [
-	"Answer the reference point of the target."
+{ #category : #private }
+PanedResizerMorph >> targetAfter [ 
 
-	^ self target bounds pointAtSideOrCorner: self edgeName
-]
-
-{ #category : #accessing }
-PanedResizerMorph >> targetPoint: aPoint [
-	"Set the reference point of the target."
-	| minExt rect target |
-	
-	target := self target.
-	rect := target bounds withSideOrCorner: self edgeName setToPoint: aPoint.
-	
-	minExt := (target layoutPolicy notNil and: [ target layoutPolicy isTableLayout])
-		ifTrue: [ target layoutPolicy minExtentOf: target in: target layoutBounds]
-		ifFalse: [ target minimumExtent].
-		
-	rect width <= minExt x ifTrue: [
-		rect withSideOrCorner: #right setToPoint: target bounds topLeft + minExt ].
-	rect height <= minExt y ifTrue: [
-		rect withSideOrCorner: #top setToPoint: target bounds bottomRight - minExt ].
-	
-	self setTargetBounds: rect
+	^ self owner submorphs after: self
 ]
 
 { #category : #updating }

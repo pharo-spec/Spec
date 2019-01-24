@@ -36,11 +36,9 @@ MorphicPanedAdapter >> addConstraits: constraints toChild: childMorph [
 
 { #category : #private }
 MorphicPanedAdapter >> addSplitterIn: aPanel for: childMorph [
-	| index |
 	
-	index := aPanel submorphs indexOf: childMorph.
-	index > 1 ifTrue: [ 
-		aPanel perform: self selector with: index ]
+	aPanel submorphs size = 1 ifFalse: [ ^ self ].
+	aPanel addMorphBack: (PanedResizerMorph perform: self selector)
 ]
 
 { #category : #private }
@@ -77,12 +75,6 @@ MorphicPanedAdapter >> direction [
 	^ self layout direction
 ]
 
-{ #category : #testing }
-MorphicPanedAdapter >> isFlexible [
-
-	^ self selector notNil
-]
-
 { #category : #accessing }
 MorphicPanedAdapter >> layout [
 
@@ -102,7 +94,7 @@ MorphicPanedAdapter >> layout: aLayout [
 MorphicPanedAdapter >> newPanel [
 
 	^ PanelMorph new 
-		changeProportionalLayout;
+		changeTableLayout;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		color: Color transparent;
@@ -113,6 +105,6 @@ MorphicPanedAdapter >> newPanel [
 MorphicPanedAdapter >> splitterSelectorFor: aLayout [
 
 	^ aLayout isHorizontal 
-		ifTrue: [ #newVSplitterAt: ]
-		ifFalse: [ #newHSplitterAt: ]
+		ifTrue: [ #newHorizontal ]
+		ifFalse: [ #newVertical ]
 ]
