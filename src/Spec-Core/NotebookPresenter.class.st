@@ -16,6 +16,7 @@ NotebookPresenter class >> adapterName [
 { #category : #accessing }
 NotebookPresenter >> addPage: aPage [
 
+	aPage owner: self.
 	pagesHolder add: aPage
 ]
 
@@ -33,6 +34,12 @@ NotebookPresenter >> pageAt: index [
 	^ self pages at: index
 ]
 
+{ #category : #private }
+NotebookPresenter >> pageChanged: aPage [ 
+
+	self changed: #updatePage: with: { aPage }
+]
+
 { #category : #accessing }
 NotebookPresenter >> pages [ 
 
@@ -42,7 +49,8 @@ NotebookPresenter >> pages [
 { #category : #accessing }
 NotebookPresenter >> pages: aCollection [
 
-	pagesHolder value: aCollection
+	aCollection do: [ :each |
+		self addPage: each ]
 ]
 
 { #category : #private }

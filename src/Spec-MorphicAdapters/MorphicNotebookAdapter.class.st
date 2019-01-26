@@ -1,9 +1,6 @@
 Class {
 	#name : #MorphicNotebookAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#instVars : [
-		'isClosedHolder'
-	],
 	#category : #'Spec-MorphicAdapters-Base'
 }
 
@@ -13,19 +10,36 @@ MorphicNotebookAdapter >> addModelTo: aNotebook [
 	self model pages ifEmpty: [ ^ self ].
 	self model pages do: [ :each |
 		aNotebook 
-			addLazyPage: [ each presenter buildWithSpec ] 
-			label: each title ].
+			addLazyPage: [ each retrievePresenter buildWithSpec ] 
+			label: (self buildLabelForPage: each) ].
+	"force first page to be drawn"
 	aNotebook selectedPageIndex: 1
 ]
 
 { #category : #factory }
-MorphicNotebookAdapter >> buildWidget [
-	| notebook |
+MorphicNotebookAdapter >> buildLabelForPage: aPage [
+	"I cannot use a PanelMorph here (as I would like) because Panels have bg colors setted 
+	 from theme (and then... they look always same in the tab)"
+	
+	^ Morph new 
+		changeTableLayout;
+		vResizing: #spaceFill;
+		hResizing: #shrinkWrap;
+		color: Color transparent;
+		listDirection: #leftToRight;
+		addMorphBack: aPage title asMorph;
+		yourself
+]
 
-	notebook := LazyTabGroupMorph new
+{ #category : #factory }
+MorphicNotebookAdapter >> buildWidget [
+	| notebookMorph |
+
+	notebookMorph := NotebookMorph new
 		vResizing: #spaceFill;
 		hResizing: #spaceFill;
 		yourself.
-	self addModelTo: notebook.
-	^ notebook
+	self addModelTo: notebookMorph.
+
+	^ notebookMorph
 ]

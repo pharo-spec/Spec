@@ -2,48 +2,102 @@ Class {
 	#name : #NotebookPage,
 	#superclass : #Object,
 	#instVars : [
-		'title',
-		'icon',
-		'presenter'
+		'owner',
+		'presenter',
+		'presenterProvider',
+		'titleHolder',
+		'iconHolder'
 	],
 	#category : #'Spec-Core-Widgets-Tab'
 }
 
 { #category : #'instance creation' }
-NotebookPage class >> title: aString presenter: aPresenter [
+NotebookPage class >> title: aString icon: anIcon provider: aBlock [
 
 	^ self new 
 		title: aString;
-		presenter: aPresenter;
+		icon: anIcon;
+		presenterProvider: aBlock;
+		yourself
+]
+
+{ #category : #'instance creation' }
+NotebookPage class >> title: aString provider: aBlock [
+
+	^ self new 
+		title: aString;
+		presenterProvider: aBlock;
 		yourself
 ]
 
 { #category : #accessing }
 NotebookPage >> icon [
-	^ icon
+
+	^ iconHolder value
 ]
 
 { #category : #accessing }
-NotebookPage >> icon: anObject [
-	icon := anObject
+NotebookPage >> icon: anIcon [
+
+	iconHolder value: anIcon
+]
+
+{ #category : #initialization }
+NotebookPage >> initialize [ 
+
+	super initialize.
+	titleHolder := nil asValueHolder.
+	iconHolder := nil asValueHolder.
+	
+	titleHolder whenChangedDo: [ self pageChanged ].
+	iconHolder whenChangedDo: [ self pageChanged ]
 ]
 
 { #category : #accessing }
-NotebookPage >> presenter [
-	^ presenter
+NotebookPage >> owner [
+
+	^ owner
 ]
 
 { #category : #accessing }
-NotebookPage >> presenter: anObject [
-	presenter := anObject
+NotebookPage >> owner: anObject [
+
+	owner := anObject
+]
+
+{ #category : #private }
+NotebookPage >> pageChanged [
+
+	self owner ifNil: [ ^ self ].
+	self owner pageChanged: self
+]
+
+{ #category : #accessing }
+NotebookPage >> presenterProvider [
+
+	^ presenterProvider
+]
+
+{ #category : #accessing }
+NotebookPage >> presenterProvider: aBlock [
+
+	presenterProvider := aBlock
+]
+
+{ #category : #accessing }
+NotebookPage >> retrievePresenter [
+
+	^ self presenterProvider value
 ]
 
 { #category : #accessing }
 NotebookPage >> title [
-	^ title
+
+	^ titleHolder value
 ]
 
 { #category : #accessing }
 NotebookPage >> title: anObject [
-	title := anObject
+
+	titleHolder value: anObject
 ]
