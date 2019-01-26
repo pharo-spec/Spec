@@ -2,8 +2,6 @@ Class {
 	#name : #NotebookMorph,
 	#superclass : #TabGroupMorph,
 	#instVars : [
-		'announcer',
-		'toolbarMorph',
 		'headerMorph',
 		'tabSelectorWidth'
 	],
@@ -12,22 +10,19 @@ Class {
 
 { #category : #adding }
 NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph [
-	self addLazyPage: aBlock label: aStringOrMorph toolbar: nil
+
+	self 
+		addLazyPage: aBlock 
+		label: aStringOrMorph 
+		collapsable: nil
 ]
 
 { #category : #adding }
-NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar [
-	self addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar collapsable: false
-]
-
-{ #category : #adding }
-NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar action: anActionMorphOrNil [
+NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph action: anActionMorphOrNil [
 	| newPage label |
 	
 	newPage := NotebookPageMorph new.
-	newPage
-		lazyPageMorphCreation: aBlock; 
-		toolbar: aToolbar.
+	newPage lazyPageMorphCreation: aBlock.
 		
 	label := self 
 		buildLabelFrom: aStringOrMorph 
@@ -39,13 +34,11 @@ NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar act
 ]
 
 { #category : #adding }
-NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar collapsable: aBoolean [
+NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph collapsable: aBoolean [
 	| newPage label |
 	
 	newPage := NotebookPageMorph new.
-	newPage
-		lazyPageMorphCreation: aBlock;
-		toolbar: aToolbar.
+	newPage lazyPageMorphCreation: aBlock.
 
 	label := self 
 		buildLabelFrom: aStringOrMorph 
@@ -56,11 +49,6 @@ NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar col
 	newPage labelMorph: label.
 	
 	self addPage: newPage label: label
-]
-
-{ #category : #accessing }
-NotebookMorph >> announcer [
-	^ announcer ifNil: [ announcer := GLMAnnouncer new ]
 ]
 
 { #category : #private }
@@ -107,7 +95,6 @@ NotebookMorph >> initialize [
 	self 
 		removeMorph: self contentMorph;
 		removeMorph: self tabSelectorMorph;  
-		toolbarMorph: self newToolbarMorph;
 		headerMorph: self newHeaderMorph;
 		addMorph: self headerMorph;
 		addMorph: self contentMorph
@@ -139,14 +126,10 @@ NotebookMorph >> newContentMorph [
 { #category : #private }
 NotebookMorph >> newHeaderMorph [
 
-	^ (self theme 
-			newRowIn: self theme
-			for: { 
-				self tabSelectorMorph . 
-				self toolbarMorph}) 
-			cellInset: 0; 
-			cellPositioning: #bottomCenter; 
-			borderWidth: 0
+	^ (self theme newRowIn: self theme for: { self tabSelectorMorph }) 
+		cellInset: 0; 
+		cellPositioning: #bottomCenter; 
+		borderWidth: 0
 ]
 
 { #category : #factory }
@@ -198,18 +181,6 @@ NotebookMorph >> removePageIndex: anInteger [
 	self removePage: (self pages at: anInteger)
 ]
 
-{ #category : #accessing }
-NotebookMorph >> toolbarMorph [
-
-	self flag: #TODO. "I don't think I need this"
-	^ toolbarMorph
-]
-
-{ #category : #accessing }
-NotebookMorph >> toolbarMorph: anObject [
-	toolbarMorph := anObject.
-]
-
 { #category : #updating }
 NotebookMorph >> updatePageAtIndex: anInteger withLabel: aStringOrMorph toolbar: aToolbar action: anActionMorph [
 	
@@ -244,15 +215,6 @@ NotebookMorph >> updatePageIndex: index [
 			self flag: 'Without setting here the bounds the pange moves a few pizels when refreshing the inspector'.
 			self pageMorph bounds: pageBounds.
 			self pageMorph layoutChanged ].
-		
-	((self pages at: index) toolbar notNil and: [(self pages at: index) toolbar hasSubmorphs])
-		ifTrue: [
-			self toolbarMorph hasSubmorphs
-				ifFalse: [self toolbarMorph addMorph: (self pages at: index) toolbar ]
-				ifTrue: [self toolbarMorph 
-								replaceSubmorph: self toolbarMorph submorphs first 
-								by: (self pages at: index) toolbar ]]
-		ifFalse: [self toolbarMorph removeAllMorphs ].
 		
 	self headerMorph layoutChanged.
 	self pageMorph layoutChanged.

@@ -1,3 +1,6 @@
+"
+I'm an adapter to show a notebook (a tab manager)
+"
 Class {
 	#name : #MorphicNotebookAdapter,
 	#superclass : #AbstractMorphicAdapter,
@@ -11,7 +14,10 @@ MorphicNotebookAdapter >> addModelTo: aNotebook [
 	self model pages do: [ :each |
 		aNotebook 
 			addLazyPage: [ each retrievePresenter buildWithSpec ] 
-			label: (self buildLabelForPage: each) ].
+			label: (self buildLabelForPage: each).
+		"Since I do not have the page added, I need to take it from the list. 
+		 But I know this will be the last added :)"
+		aNotebook pages last model: each ].
 	"force first page to be drawn"
 	aNotebook selectedPageIndex: 1
 ]
@@ -42,4 +48,14 @@ MorphicNotebookAdapter >> buildWidget [
 	self addModelTo: notebookMorph.
 
 	^ notebookMorph
+]
+
+{ #category : #updating }
+MorphicNotebookAdapter >> updatePage: aPage [
+
+	self widgetDo: [ :w |
+		w 
+			relabelPage: (w pages detect: [ :each | each model = aPage]) 
+			with: (self buildLabelForPage: aPage) ] 
+	
 ]

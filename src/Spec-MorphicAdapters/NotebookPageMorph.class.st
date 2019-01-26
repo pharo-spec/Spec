@@ -5,57 +5,65 @@ Class {
 		'actualPageMorph',
 		'lazyPageMorphCreation',
 		'labelMorph',
-		'toolbar'
+		'model'
 	],
 	#category : #'Spec-MorphicAdapters-Notebook'
 }
 
 { #category : #accessing }
 NotebookPageMorph >> actualPageMorph [
-	^ actualPageMorph ifNil: 
-		[actualPageMorph := 
-			self lazyPageMorphCreation value
-				hResizing: #spaceFill;
-				vResizing: #spaceFill;
-				yourself]
+
+	^ actualPageMorph ifNil: [
+		actualPageMorph := self lazyPageMorphCreation value
+			hResizing: #spaceFill;
+			vResizing: #spaceFill;
+			yourself ]
 ]
 
 { #category : #accessing }
 NotebookPageMorph >> actualPageMorph: anObject [
+
 	actualPageMorph := anObject
 ]
 
 { #category : #testing }
 NotebookPageMorph >> isRendered [
+
 	^ actualPageMorph notNil
 ]
 
 { #category : #accessing }
 NotebookPageMorph >> labelMorph [
+
 	^ labelMorph
 ]
 
 { #category : #accessing }
 NotebookPageMorph >> labelMorph: anObject [
+
 	labelMorph := anObject
 ]
 
 { #category : #accessing }
 NotebookPageMorph >> lazyPageMorphCreation [
+
 	^ lazyPageMorphCreation
 ]
 
 { #category : #accessing }
 NotebookPageMorph >> lazyPageMorphCreation: anObject [
+
 	lazyPageMorphCreation := anObject
 ]
 
 { #category : #accessing }
-NotebookPageMorph >> toolbar [
-	^ toolbar
+NotebookPageMorph >> model [
+
+	^ model
 ]
 
 { #category : #accessing }
-NotebookPageMorph >> toolbar: anObject [
-	toolbar := anObject
+NotebookPageMorph >> model: anObject [
+
+	model := anObject
 ]
