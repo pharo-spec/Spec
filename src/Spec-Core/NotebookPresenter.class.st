@@ -21,6 +21,12 @@ NotebookPresenter >> addPage: aPage [
 	pagesHolder add: aPage
 ]
 
+{ #category : #private }
+NotebookPresenter >> basicSelectedPage: aPage [
+
+	selectedPageHolder value: aPage
+]
+
 { #category : #initialization }
 NotebookPresenter >> initialize [
 
@@ -63,10 +69,10 @@ NotebookPresenter >> pagesChanged [
 	self changed: #updatePages
 ]
 
-{ #category : #private }
-NotebookPresenter >> rawSelectedPage: aPage [
+{ #category : #accessing }
+NotebookPresenter >> resetAllPageContents [
 
-	selectedPageHolder value: aPage
+	self pages do: #resetContent
 ]
 
 { #category : #accessing }
@@ -79,7 +85,7 @@ NotebookPresenter >> selectedPage [
 NotebookPresenter >> selectedPage: aPage [
 
 	aPage = self selectedPage ifTrue: [ ^self ].
-	self rawSelectedPage: aPage.
+	self basicSelectedPage: aPage.
 	self changed: #selectedPage
 ]
 

@@ -72,7 +72,7 @@ MorphicNotebookAdapter >> buildWidget [
 { #category : #private }
 MorphicNotebookAdapter >> pageChanged: ann [
 
-	self model rawSelectedPage: ann page
+	self model basicSelectedPage: ann page model
 ]
 
 { #category : #updating }
@@ -87,9 +87,9 @@ MorphicNotebookAdapter >> updatePageContent: aPage [
 
 	self widgetDo: [ :w |
 		(w pageWithModel: aPage) reset.
-		"not working :("
+		"if we are updating the page being displayed, we need to trigger a refresh"
 		aPage = self model selectedPage ifTrue: [ 
-			self selectedPage ] ]
+			w updatePageIndex: (self model selectedPageIndex) ] ]
 ]
 
 { #category : #updating }
