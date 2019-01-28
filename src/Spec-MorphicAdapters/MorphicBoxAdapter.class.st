@@ -41,8 +41,8 @@ MorphicBoxAdapter >> addConstraits: constraints toChild: childMorph [
 			theMorph 
 				hResizing: #spaceFill; 
 				vResizing: #rigid.
-			constraints minWidth ifNotNil: [ :w | theMorph width: w ].
-			constraints minHeight ifNotNil: [ :h | theMorph height: h ] ].
+			constraints width ifNotNil: [ :w | theMorph width: w ].
+			constraints height ifNotNil: [ :h | theMorph height: h ] ].
 	"constraints padding"
 	
 	^ theMorph 

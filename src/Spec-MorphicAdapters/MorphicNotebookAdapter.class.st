@@ -19,7 +19,7 @@ MorphicNotebookAdapter >> addModelTo: aNotebook [
 	self model pages ifEmpty: [ ^ self ].
 	self model pages do: [ :each |
 		aNotebook 
-			addLazyPage: [ each retrievePresenter buildWithSpec ] 
+			addLazyPage: [ self buildContentForPage: each ] 
 			label: (self buildLabelForPage: each).
 		"Since I do not have the page added, I need to take it from the list. 
 		 But I know this will be the last added :)"
@@ -32,6 +32,12 @@ MorphicNotebookAdapter >> addModelTo: aNotebook [
 		when: NotebookPageChanged 
 		send: #pageChanged:
 		to: self
+]
+
+{ #category : #factory }
+MorphicNotebookAdapter >> buildContentForPage: aPage [
+		
+	^ aPage retrievePresenter ifNotNil: #buildWithSpec
 ]
 
 { #category : #factory }
