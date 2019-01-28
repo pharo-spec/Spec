@@ -49,8 +49,8 @@ NotebookPage >> initialize [
 	titleHolder := nil asValueHolder.
 	iconHolder := nil asValueHolder.
 	
-	titleHolder whenChangedDo: [ self pageChanged ].
-	iconHolder whenChangedDo: [ self pageChanged ]
+	titleHolder whenChangedDo: [ self pageTitleChanged ].
+	iconHolder whenChangedDo: [ self pageTitleChanged ]
 ]
 
 { #category : #accessing }
@@ -66,10 +66,10 @@ NotebookPage >> owner: anObject [
 ]
 
 { #category : #private }
-NotebookPage >> pageChanged [
+NotebookPage >> pageTitleChanged [
 
 	self owner ifNil: [ ^ self ].
-	self owner pageChanged: self
+	self owner pageTitleChanged: self
 ]
 
 { #category : #accessing }
@@ -82,6 +82,13 @@ NotebookPage >> presenterProvider [
 NotebookPage >> presenterProvider: aBlock [
 
 	presenterProvider := aBlock
+]
+
+{ #category : #accessing }
+NotebookPage >> resetContent [
+	"force a redraw of contents of this page (next time it is selected)"
+	
+	self owner updatePageContent: self
 ]
 
 { #category : #accessing }

@@ -67,3 +67,9 @@ NotebookPageMorph >> model: anObject [
 
 	model := anObject
 ]
+
+{ #category : #accessing }
+NotebookPageMorph >> reset [
+
+	self actualPageMorph: nil
+]

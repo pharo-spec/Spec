@@ -2,7 +2,8 @@ Class {
 	#name : #NotebookPresenter,
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
-		'pagesHolder'
+		'pagesHolder',
+		'selectedPageHolder'
 	],
 	#category : #'Spec-Core-Widgets-Tab'
 }
@@ -25,7 +26,10 @@ NotebookPresenter >> initialize [
 
 	super initialize.
 	pagesHolder := OrderedCollection new asValueHolder.
-	pagesHolder whenChangedDo: [ self pagesChanged ]
+	selectedPageHolder := nil asValueHolder.
+	
+	pagesHolder whenChangedDo: [ self pagesChanged ].
+	
 ]
 
 { #category : #accessing }
@@ -35,9 +39,9 @@ NotebookPresenter >> pageAt: index [
 ]
 
 { #category : #private }
-NotebookPresenter >> pageChanged: aPage [ 
+NotebookPresenter >> pageTitleChanged: aPage [ 
 
-	self changed: #updatePage: with: { aPage }
+	self changed: #updatePageTitle: with: { aPage }
 ]
 
 { #category : #accessing }
@@ -57,4 +61,52 @@ NotebookPresenter >> pages: aCollection [
 NotebookPresenter >> pagesChanged [
 
 	self changed: #updatePages
+]
+
+{ #category : #private }
+NotebookPresenter >> rawSelectedPage: aPage [
+
+	selectedPageHolder value: aPage
+]
+
+{ #category : #accessing }
+NotebookPresenter >> selectedPage [ 
+
+	^ selectedPageHolder value
+]
+
+{ #category : #accessing }
+NotebookPresenter >> selectedPage: aPage [
+
+	aPage = self selectedPage ifTrue: [ ^self ].
+	self rawSelectedPage: aPage.
+	self changed: #selectedPage
+]
+
+{ #category : #accessing }
+NotebookPresenter >> selectedPageIndex [
+	| page |
+	
+	page := self selectedPage.
+	page ifNil: [ ^ 0 ].
+	
+	^ self pages indexOf: page
+]
+
+{ #category : #accessing }
+NotebookPresenter >> selectedPageIndex: aNumber [
+
+	self selectedPage: (self pages at: aNumber)
+]
+
+{ #category : #private }
+NotebookPresenter >> updatePageContent: aPage [
+
+	self changed: #updatePageContent: with: { aPage }
+]
+
+{ #category : #'api-events' }
+NotebookPresenter >> whenSelectedPageChanged: aBlock [
+
+	selectedPageHolder whenChangedDo: aBlock
 ]

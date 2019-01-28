@@ -8,6 +8,12 @@ Class {
 	#category : #'Spec-MorphicAdapters-Notebook'
 }
 
+{ #category : #accessing }
+NotebookMorph class >> tabCellInset [
+
+	^ 2
+]
+
 { #category : #adding }
 NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph [
 
@@ -120,7 +126,8 @@ NotebookMorph >> newContentMorph [
 		cellInset: 8;
 		vResizing: #spaceFill;
 		hResizing: #spaceFill;
-		borderStyle: (self theme tabPanelBorderStyleFor: self)
+		borderStyle: (self theme tabPanelBorderStyleFor: self);
+		yourself
 ]
 
 { #category : #private }
@@ -133,13 +140,12 @@ NotebookMorph >> newHeaderMorph [
 ]
 
 { #category : #factory }
-NotebookMorph >> newTabSelectorMorph [
-	"Answer a new tab selector morph"
+NotebookMorph >> newTabSelectorMorph [ 
 
-	^ TabSelectorMorph new
-		hResizing: #spaceFill;
+	^ NotebookTabSelectorMorph new
 		vResizing: #shrinkWrap;
-		removeProperty: #roundedCorners;
+		hResizing: #spaceFill;
+		cellInset: self class tabCellInset;
 		yourself
 ]
 
@@ -159,6 +165,13 @@ NotebookMorph >> newToolbarMorph [
 { #category : #private }
 NotebookMorph >> pageAt: index [
 	^ (self pages at: index ) actualPageMorph
+]
+
+{ #category : #accessing }
+NotebookMorph >> pageWithModel: anObject [
+	"an utility to easy find pages with a model"
+
+	^ self pages detect: [ :each | each model = anObject ]
 ]
 
 { #category : #private }
@@ -181,37 +194,21 @@ NotebookMorph >> removePageIndex: anInteger [
 	self removePage: (self pages at: anInteger)
 ]
 
-{ #category : #updating }
-NotebookMorph >> updatePageAtIndex: anInteger withLabel: aStringOrMorph toolbar: aToolbar action: anActionMorph [
-	
-	(self pages at: anInteger)
-			toolbar: aToolbar.
-	self 
-		relabelPage: (self pages at: anInteger)
-		with: (self 
-			buildLabelFrom: aStringOrMorph 
-			withAction: anActionMorph).
-	(self tabSelectorMorph selectedIndex = anInteger) ifTrue: [  
-		self updatePageIndex: anInteger ]
-
-]
-
 { #category : #private }
 NotebookMorph >> updatePageIndex: index [
 	"Change to the given page index, update the toolbar and send the announcement"
-
-	| p oldPage |
+	| page oldPage |
 	
 	index = 0 ifTrue: [ ^ self ].
 	
 	oldPage := self tabSelectorMorph selectedTab.
-	p := self pageMorph.
-	p isNil
+	page := self pageMorph.
+	page isNil
 		ifTrue: [
 			self contentMorph addMorph: (self pageAt: index).]
 		ifFalse: [ | pageBounds |
 			pageBounds := self pageMorph bounds.
-			self contentMorph replaceSubmorph: p by: (self pageAt: index).
+			self contentMorph replaceSubmorph: page by: (self pageAt: index).
 			self flag: 'Without setting here the bounds the pange moves a few pizels when refreshing the inspector'.
 			self pageMorph bounds: pageBounds.
 			self pageMorph layoutChanged ].
@@ -219,7 +216,10 @@ NotebookMorph >> updatePageIndex: index [
 	self headerMorph layoutChanged.
 	self pageMorph layoutChanged.
 	self adoptPaneColor: (self owner ifNil: [self]) paneColor.
-	"(self tabSelectorMorph tabs at: index) font: self tabSelectorMorph font."
+	(self tabSelectorMorph tabs at: index) font: self tabSelectorMorph font.
 	
-	"self announcer announce: (LazyTabPageChanged new tabs: self; page: (self pages at: index); oldPage: oldPage; pageIndex: index)"
+	self announcer announce: (NotebookPageChanged new 
+		page: (self pages at: index); 
+		oldPage: oldPage; 
+		pageIndex: index)
 ]
