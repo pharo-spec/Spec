@@ -18,7 +18,6 @@ MorphicButtonBarAdapter class >> defaultItemSeparation [
 
 { #category : #factory }
 MorphicButtonBarAdapter >> addModelTo: panelMorph [
-	
 	self model items do: [ :each |
 		self model focusOrder add: each.
 		panelMorph addMorph: (each buildWithSpec

@@ -14,6 +14,10 @@ SpecStubWindowAdapter >> buildWidget [
 ]
 
 { #category : #factory }
+SpecStubWindowAdapter >> close [
+]
+
+{ #category : #factory }
 SpecStubWindowAdapter >> open [
 ]
 
