@@ -55,6 +55,7 @@ TableBasePresenter >> initialize [
 	showColumnHeadersHolder := true asValueHolder.
 	columns := #().
 	isResizableHolder := false asValueHolder.
+	selectionHolder := SelectionValueHolder new.
 	
 	showColumnHeadersHolder whenChangedDo: [ self showColumnHeadersChanged ]
 ]
@@ -76,6 +77,41 @@ TableBasePresenter >> isShowingColumnHeaders [
 ]
 
 { #category : #api }
+TableBasePresenter >> selectedIndex [
+	
+	^ selectionHolder index value
+]
+
+{ #category : #api }
+TableBasePresenter >> selectedItem [
+	
+	^ selectionHolder selection value
+]
+
+{ #category : #api }
+TableBasePresenter >> setSelectedIndex: anIndex [
+	
+	| selectedIndex selection |
+	selectedIndex := anIndex.
+	selection := self items
+		at: selectedIndex
+		ifAbsent: [ 
+			selectedIndex := 0.
+			nil ].
+
+	selectionHolder index value: selectedIndex.
+	selectionHolder selection value: selection.
+]
+
+{ #category : #api }
+TableBasePresenter >> setSelectedItem: anInteger [ 
+	
+	| index |
+	index := self items indexOf: anInteger ifAbsent: [ ^ self ].
+	self setSelectedIndex: index
+]
+
+{ #category : #api }
 TableBasePresenter >> showColumnHeaders [
 
 	showColumnHeadersHolder value: true
@@ -90,4 +126,23 @@ TableBasePresenter >> showColumnHeadersChanged [
 { #category : #'api-events' }
 TableBasePresenter >> whenIsResizableChangedDo: aBlock [
 	isResizableHolder whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+TableBasePresenter >> whenSelectedIndexChangedDo: aBlockClosure [ 
+	
+	self whenSelectionChangedDo: [ :selection | aBlockClosure cull: selection first ]
+]
+
+{ #category : #'api-events' }
+TableBasePresenter >> whenSelectedItemChangedDo: aBlockClosure [ 
+	
+	self whenSelectionChangedDo: [ :selection | aBlockClosure cull: selection second ]
+]
+
+{ #category : #'api-events' }
+TableBasePresenter >> whenSelectionChangedDo: aBlockClosure [ 
+	
+	selectionHolder whenChangedDo: [ :selectionValueHolderValues | 
+		aBlockClosure cull: (selectionValueHolderValues collect: #value) ]
 ]
