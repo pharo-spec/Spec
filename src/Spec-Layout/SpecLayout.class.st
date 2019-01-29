@@ -12,7 +12,8 @@ Class {
 		'numberOfProportionals',
 		'lastFractionIndex',
 		'autoFractionComputation',
-		'size'
+		'size',
+		'selector'
 	],
 	#category : #'Spec-Layout-Layouts'
 }
@@ -416,6 +417,16 @@ SpecLayout >> privateAsArray [
 { #category : #converting }
 SpecLayout >> resetArrayComputation [
 	"Do nothing here"
+]
+
+{ #category : #accessing }
+SpecLayout >> selector [
+	^ selector
+]
+
+{ #category : #accessing }
+SpecLayout >> selector: aSymbol [
+	selector := aSymbol
 ]
 
 { #category : #commands }

@@ -8,7 +8,8 @@ Class {
 		'spec',
 		'arrayToInterpret',
 		'index',
-		'presenter'
+		'presenter',
+		'selector'
 	],
 	#classInstVars : [
 		'bindings'
@@ -56,14 +57,19 @@ SpecInterpreter >> bindings [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> computeSpecFrom: aSymbol [
-	^ (aSymbol isSymbol and: [ (self isPresenterSymbol: aSymbol) not ])
+	| res |
+	res := (aSymbol isSymbol and: [ (self isPresenterSymbol: aSymbol) not ])
 		ifTrue: [ | result |
 			result := self convertSymbolOfClassToInstance: aSymbol.
 			result isSpecContainer
 				ifTrue: [ result := self getAdaptorWithDefaultSpecOf: result.
 					self presenter addDependent: result ].
 			result ]
-		ifFalse: [ self class interpretASpec: aSymbol presenter: self presenter ]
+		ifFalse: [ self class interpretASpec: aSymbol presenter: self presenter ].
+
+	selector ifNotNil: [ :sel | res selector: sel ].
+
+	^ res
 ]
 
 { #category : #bindings }
@@ -79,20 +85,16 @@ SpecInterpreter >> convertSymbolOfClassToInstance: aSymbol [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> extractArrayToInterpretFrom: aFragment [
-
 	arrayToInterpret := aFragment.
-	
+
 	aFragment isSpecLayout
-		ifTrue: [ arrayToInterpret := aFragment asArray ].
-	
-	(arrayToInterpret isCollection and: [ arrayToInterpret isSequenceable ])
-		ifFalse: [ ^ arrayToInterpret ].
-	
+		ifTrue: [ arrayToInterpret := aFragment asArray.
+			selector := aFragment selector ].
+
+	(arrayToInterpret isCollection and: [ arrayToInterpret isSequenceable ]) ifFalse: [ ^ arrayToInterpret ].
+
 	(aFragment isString or: [ aFragment isText ])
-		ifTrue: [ 
-			^ (self isPresenterSymbol: aFragment)
-				ifTrue: [ self presenter ]
-				ifFalse: [ self convertSymbolOfClassToInstance: aFragment ] ].
+		ifTrue: [ ^ (self isPresenterSymbol: aFragment) ifTrue: [ self presenter ] ifFalse: [ self convertSymbolOfClassToInstance: aFragment ] ].
 	^ nil
 ]
 

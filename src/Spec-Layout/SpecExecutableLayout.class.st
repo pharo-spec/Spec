@@ -2,7 +2,8 @@ Class {
 	#name : #SpecExecutableLayout,
 	#superclass : #Object,
 	#instVars : [
-		'children'
+		'children',
+		'selector'
 	],
 	#category : #'Spec-Layout-Base'
 }
@@ -71,4 +72,14 @@ SpecExecutableLayout >> isExecutable [
 SpecExecutableLayout >> isSpecLayout [
 
 	^ true
+]
+
+{ #category : #accessing }
+SpecExecutableLayout >> selector [
+	^ selector
+]
+
+{ #category : #accessing }
+SpecExecutableLayout >> selector: anObject [
+	selector := anObject
 ]
