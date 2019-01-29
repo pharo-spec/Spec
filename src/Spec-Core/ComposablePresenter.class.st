@@ -899,26 +899,6 @@ ComposablePresenter >> newSlider [
 ]
 
 { #category : #widgets }
-ComposablePresenter >> newTab [
-
-	self 
-		deprecated: 'Use newNotebook instead' 
-		on: '2019-01-24' 
-		in: #Pharo8.
-	^ self instantiate: TabPresenter
-]
-
-{ #category : #widgets }
-ComposablePresenter >> newTabManager [
-	
-	self 
-		deprecated: 'Use newNotebook instead' 
-		on: '2019-01-24' 
-		in: #Pharo8.
-	^ self instantiate: TabManagerPresenter
-]
-
-{ #category : #widgets }
 ComposablePresenter >> newTable [
 
 	^ self instantiate: TablePresenter
@@ -1135,7 +1115,10 @@ ComposablePresenter >> retrieveDefaultSpec [
 
 { #category : #api }
 ComposablePresenter >> retrieveSpec: aSelector [
-	^ self class perform: aSelector
+	| layout |
+	layout := self class perform: aSelector.
+	layout isSpecLayout ifTrue: [ layout selector: aSelector ].
+	^ layout
 ]
 
 { #category : #accessing }

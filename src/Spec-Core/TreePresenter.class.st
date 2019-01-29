@@ -87,7 +87,7 @@ TreePresenter class >> exampleOfAutoRefreshOnExpand [
 
 { #category : #examples }
 TreePresenter class >> exampleWithCustomColumnsAndNodes [
-	"self exampleWithCustomColumnsAndNodes"
+	<haltOrBreakpointForTesting>
 	| m col1 col2 |
 
 	m := TreePresenter new.
@@ -130,7 +130,7 @@ TreePresenter class >> exampleWithCustomColumnsAndNodes [
 
 { #category : #examples }
 TreePresenter class >> exampleWithCustomColumnsAndNodesAndChildren [
-	"self exampleWithCustomColumnsAndNodesAndChildren"
+	<haltOrBreakpointForTesting>
 
 	| m col1 col2 |
 	m := TreePresenter new.
