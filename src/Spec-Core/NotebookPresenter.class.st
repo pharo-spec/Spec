@@ -1,3 +1,6 @@
+"
+I'm a presenter for a tabbed notebook container.
+"
 Class {
 	#name : #NotebookPresenter,
 	#superclass : #AbstractWidgetPresenter,

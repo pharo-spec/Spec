@@ -1,3 +1,9 @@
+"
+I represent a page for a NotebookPresenter.
+I have title, icon and some properties.
+
+In particular, I contain a presenterProvider, a block who's responsibility is to retrieve a presenter when demanded (lazily).
+"
 Class {
 	#name : #NotebookPage,
 	#superclass : #Object,
