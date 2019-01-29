@@ -147,8 +147,9 @@ PanedResizerMorph >> mouseMove: anEvent [
 	"Track the mouse for resizing."
 	
 	self target ifNil: [ ^ self ] .
-	self setTargetLayoutSizing.
 	
+	self setTargetLayoutSizing.
+	self resetLayoutPosition.
 	self positionPoint: (anEvent cursorPoint - lastMouse).
 	self setTargetBounds
 ]
@@ -181,6 +182,13 @@ PanedResizerMorph >> pressedFillStyle [
 	"Return the pressed fillStyle of the receiver."
 	
 	^ self theme splitterPressedFillStyleFor: self
+]
+
+{ #category : #private }
+PanedResizerMorph >> resetLayoutPosition [
+	"since we are going to move the split bar, layout position (if any) needs to be reseted".
+	
+	self owner layoutPolicy resetPosition
 ]
 
 { #category : #actions }

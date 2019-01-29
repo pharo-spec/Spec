@@ -13,8 +13,14 @@ MorphicLayoutAdapter >> buildWidget [
 	^ nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #factory }
 MorphicLayoutAdapter >> buildWithSpec [
 	
 	^ self widget
+]
+
+{ #category : #factory }
+MorphicLayoutAdapter >> buildWithSpec: aString [ 
+
+	^ self buildWithSpec
 ]

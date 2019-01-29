@@ -45,7 +45,9 @@ MorphicPanedAdapter >> addSplitterIn: aPanel for: childMorph [
 MorphicPanedAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [
 	| childMorph |
 
-	childMorph := self addConstraits: constraints toChild: aPresenter buildWithSpec.
+	childMorph := self 
+		addConstraits: constraints 
+		toChild: (aPresenter buildWithSpec: constraints spec).
 
 	aPanel addMorphBack: childMorph.
 	self calulateLayoutsFor: aPanel submorphs.
@@ -53,20 +55,20 @@ MorphicPanedAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [
 ]
 
 { #category : #private }
-MorphicPanedAdapter >> calulateLayoutsFor: aCollection [
-	| numOfMorphs step |
+MorphicPanedAdapter >> calulateLayoutsFor: anArray [
+	| pane |
 
-	aCollection size = 1 ifTrue: [ 
-		aCollection first layoutFrame: LayoutFrame identity.
-		^ self ].
+	"enter just the first time"
+	"anArray size = 1 ifFalse: [ ^ self ].
+	layout position ifNil: [ ^ self ].
 	
-	numOfMorphs := aCollection size.
-	step := 1 / numOfMorphs.
-	aCollection withIndexDo: [ :each :index | 
-		each layoutFrame: (LayoutFrame identity 
-			topFraction: step * (index - 1);
-			bottomFraction: (step * index);
-			yourself) ]
+	pane := anArray first.
+	""if it is a percentage, we need a different approach""
+	pane perform: self resizingSetSelector with: #rigid.
+	self flag: #TODO.
+	pane height: (layout position < 1 
+		ifTrue: [ 150 ]
+		ifFalse: [ layout position ])"
 ]
 
 { #category : #accessing }
@@ -85,26 +87,51 @@ MorphicPanedAdapter >> layout [
 MorphicPanedAdapter >> layout: aLayout [
 
 	layout := aLayout.
-	widget := self newPanel.	
-	self selector: (self splitterSelectorFor: aLayout).
+	widget := aLayout direction newWidgetOn: self.
+	widget layoutPolicy position: aLayout position.
+	self selector: self splitterNewSelector.
 
+]
+
+{ #category : #factory }
+MorphicPanedAdapter >> newHorizontal [
+
+	^ self newPanel 
+		listDirection: #leftToRight;
+		yourself
 ]
 
 { #category : #factory }
 MorphicPanedAdapter >> newPanel [
 
 	^ PanelMorph new 
-		changeTableLayout;
+		layoutPolicy: PanedLayout new;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		color: Color transparent;
 		yourself
 ]
 
-{ #category : #private }
-MorphicPanedAdapter >> splitterSelectorFor: aLayout [
+{ #category : #factory }
+MorphicPanedAdapter >> newVertical [
 
-	^ aLayout isHorizontal 
+	^ self newPanel 
+		listDirection: #topToBottom;
+		yourself	
+]
+
+{ #category : #private }
+MorphicPanedAdapter >> resizingSetSelector [
+
+	^ layout isHorizontal 
+		ifTrue: [ #hResizing: ]
+		ifFalse: [ #vResizing: ]
+]
+
+{ #category : #private }
+MorphicPanedAdapter >> splitterNewSelector [
+
+	^ layout isHorizontal 
 		ifTrue: [ #newHorizontal ]
 		ifFalse: [ #newVertical ]
 ]

@@ -1,3 +1,7 @@
+"
+I'm an adapter for Box Layouts.
+A paned layout will split (horizontally or vertically) panels (in fixed yet proportional spaces).
+"
 Class {
 	#name : #MorphicBoxAdapter,
 	#superclass : #MorphicLayoutAdapter,
@@ -52,7 +56,9 @@ MorphicBoxAdapter >> addConstraits: constraints toChild: childMorph [
 MorphicBoxAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [
 	| childMorph |
 
-	childMorph := self addConstraits: constraints toChild: aPresenter buildWithSpec.
+	childMorph := self 
+		addConstraits: constraints 
+		toChild: (aPresenter buildWithSpec: constraints spec).
 	constraints isPlacedAtStart
 		ifTrue: [ aPanel submorphs first addMorphBack: childMorph ]
 		ifFalse: [ aPanel submorphs second addMorphBack: childMorph ]

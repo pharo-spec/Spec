@@ -1,6 +1,6 @@
 Class {
 	#name : #SpecBoxConstraints,
-	#superclass : #Object,
+	#superclass : #SpecLayoutConstraints,
 	#instVars : [
 		'expand',
 		'fill',

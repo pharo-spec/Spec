@@ -1,0 +1,73 @@
+"
+I'm a table layout for PanedLayouts. 
+I add some posibilities to layouting (like defining the initial position in proportional 
+numbers instead a fixed number).
+
+This is needed because sometimes I want to express a position like: 
+
+SpecPanedLayout new 
+	position: 80 percent;
+	...
+	
+instead a fixed number I may change in other places.
+"
+Class {
+	#name : #PanedLayout,
+	#superclass : #TableLayout,
+	#instVars : [
+		'position'
+	],
+	#category : #'Spec-MorphicAdapters-Layout'
+}
+
+{ #category : #private }
+PanedLayout >> heightPositionIn: aPoint [ 
+
+	^ self position < 1 
+		ifTrue: [ (aPoint y * self position) asInteger ]
+		ifFalse: [ self position ]
+]
+
+{ #category : #private }
+PanedLayout >> layoutLeftToRight: aMorph in: newBounds [
+
+	self position ifNotNil: [
+		aMorph submorphs first 
+			hResizing: #rigid;
+			width: (self widthPositionIn: newBounds extent) ].
+	super layoutLeftToRight: aMorph in: newBounds
+]
+
+{ #category : #private }
+PanedLayout >> layoutTopToBottom: aMorph in: newBounds [
+
+	self position ifNotNil: [
+		aMorph submorphs first 
+			vResizing: #rigid;
+			height: (self heightPositionIn: newBounds extent) ].
+	super layoutTopToBottom: aMorph in: newBounds
+]
+
+{ #category : #accessing }
+PanedLayout >> position [
+	^ position
+]
+
+{ #category : #accessing }
+PanedLayout >> position: anObject [
+	position := anObject
+]
+
+{ #category : #accessing }
+PanedLayout >> resetPosition [
+
+	position := nil
+]
+
+{ #category : #private }
+PanedLayout >> widthPositionIn: aPoint [ 
+
+	^ self position < 1 
+		ifTrue: [ (aPoint x * self position) asInteger ]
+		ifFalse: [ self position ]
+]

@@ -7,7 +7,8 @@ Class {
 	#name : #SpecPanedLayout,
 	#superclass : #SpecExecutableLayout,
 	#instVars : [
-		'direction'
+		'direction',
+		'position'
 	],
 	#category : #'Spec-Layout-Paned'
 }
@@ -82,12 +83,6 @@ SpecPanedLayout >> direction [
 	^ direction
 ]
 
-{ #category : #initialization }
-SpecPanedLayout >> initialize [
-
-	super initialize.
-]
-
 { #category : #testing }
 SpecPanedLayout >> isHorizontal [ 
 
@@ -98,4 +93,18 @@ SpecPanedLayout >> isHorizontal [
 SpecPanedLayout >> isVertical [ 
 
 	^ self direction = SpecLayoutDirection vertical
+]
+
+{ #category : #accessing }
+SpecPanedLayout >> position [
+	"Indicates original position of splitter. 
+	 It can be nil (then it defaults to 50%).
+	 It can be a percentage (e.g. 30 percent)"
+
+	^ position
+]
+
+{ #category : #accessing }
+SpecPanedLayout >> position: anObject [
+	position := anObject
 ]
