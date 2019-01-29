@@ -4,7 +4,7 @@ Splitters can be placed vertically or horizontally and my children deal with eac
 The way I work is easy: 
 
 - I need to be placed between two other morphs.
-- I also need to act inside a morph with table layout (other layours may work, but is not testes).
+- I also need to act inside a morph with PanedLayout. 
 
 self exampleVertical.
 self exampleHorizontal.
@@ -20,7 +20,7 @@ PanedResizerMorph class >> exampleHorizontal [
 	<example>
 	
 	(PanelMorph new 
-		changeTableLayout;
+		layoutPolicy: PanedLayout new;
 		listDirection: #leftToRight;
 		addMorphBack: (Morph new 
 			color: Color red;
@@ -42,7 +42,7 @@ PanedResizerMorph class >> exampleVertical [
 	<example>
 	
 	(PanelMorph new 
-		changeTableLayout;
+		layoutPolicy: PanedLayout new;
 		addMorphBack: (Morph new 
 			color: Color red;
 			vResizing: #spaceFill;
@@ -160,7 +160,8 @@ PanedResizerMorph >> mouseUp: anEvent [
 	
 	(self bounds containsPoint: anEvent cursorPoint)
 		ifFalse: [ anEvent hand showTemporaryCursor: nil ].
-	self adoptPaneColor: self paneColor
+	self adoptPaneColor: self paneColor.
+	self preserveLayoutPosition
 ]
 
 { #category : #style }
@@ -175,6 +176,12 @@ PanedResizerMorph >> positionPoint: aPoint [
 	"Reposition based on ptName."
 	
 	^ self subclassResponsibility
+]
+
+{ #category : #private }
+PanedResizerMorph >> preserveLayoutPosition [
+
+	self owner layoutPolicy preservePositionProportionOn: self owner
 ]
 
 { #category : #style }

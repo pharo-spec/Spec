@@ -10,6 +10,7 @@ SpecPanedLayout new
 	...
 	
 instead a fixed number I may change in other places.
+ 
 "
 Class {
 	#name : #PanedLayout,
@@ -26,6 +27,13 @@ PanedLayout >> heightPositionIn: aPoint [
 	^ self position < 1 
 		ifTrue: [ (aPoint y * self position) asInteger ]
 		ifFalse: [ self position ]
+]
+
+{ #category : #testing }
+PanedLayout >> isHorizontal [
+
+	^ (properties listDirection == #topToBottom 
+		or: [ properties listDirection == #bottomToTop ]) not
 ]
 
 { #category : #private }
@@ -56,6 +64,16 @@ PanedLayout >> position [
 { #category : #accessing }
 PanedLayout >> position: anObject [
 	position := anObject
+]
+
+{ #category : #accessing }
+PanedLayout >> preservePositionProportionOn: layoutedMorph [
+	| referenceMorph |
+
+	referenceMorph := layoutedMorph submorphs first.
+	position := self isHorizontal
+		ifTrue: [ (referenceMorph width * 100/ layoutedMorph width) asInteger percent ]
+		ifFalse: [ (referenceMorph height * 100/ layoutedMorph height) asInteger percent ]
 ]
 
 { #category : #accessing }
