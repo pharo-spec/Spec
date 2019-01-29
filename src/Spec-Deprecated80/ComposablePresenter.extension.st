@@ -20,3 +20,23 @@ ComposablePresenter >> instantiateModels: aCollectionOfPairs [
 
 	^ self instantiatePresenters: aCollectionOfPairs
 ]
+
+{ #category : #'*Spec-Deprecated80' }
+ComposablePresenter >> newTab [
+
+	self 
+		deprecated: 'Use newNotebook instead' 
+		on: '2019-01-24' 
+		in: #Pharo8.
+	^ self instantiate: TabPresenter
+]
+
+{ #category : #'*Spec-Deprecated80' }
+ComposablePresenter >> newTabManager [
+	
+	self 
+		deprecated: 'Use newNotebook instead' 
+		on: '2019-01-24' 
+		in: #Pharo8.
+	^ self instantiate: TabManagerPresenter
+]
