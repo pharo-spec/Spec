@@ -83,6 +83,13 @@ SpecPanedLayout >> direction [
 	^ direction
 ]
 
+{ #category : #initialization }
+SpecPanedLayout >> initialize [ 
+
+	super initialize.
+	self position: 50 percent
+]
+
 { #category : #testing }
 SpecPanedLayout >> isHorizontal [ 
 
