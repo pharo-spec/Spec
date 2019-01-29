@@ -12,7 +12,9 @@ Class {
 
 { #category : #factory }
 MorphicTableAdapter >> addModelTo: tableMorph [
+
 	self model columns do: [ :each | tableMorph addColumn: (self newColumnFrom: each) ].
+	self ensureAtLeastOneColumnIn: tableMorph.
 
 	self isShowingColumnHeaders ifTrue: [ tableMorph showColumnHeaders ] ifFalse: [ tableMorph hideColumnHeaders ].
 
@@ -32,6 +34,18 @@ MorphicTableAdapter >> buildWidget [
 	self addModelTo: tableMorph.
 
 	^ tableMorph
+]
+
+{ #category : #factory }
+MorphicTableAdapter >> defaultColumn [
+
+	^ StringTableColumn new evaluated: #yourself
+]
+
+{ #category : #factory }
+MorphicTableAdapter >> ensureAtLeastOneColumnIn: tableMorph [
+	self model columns ifNotEmpty: [ ^ self ].
+	tableMorph addColumn: (self newColumnFrom: self defaultColumn)
 ]
 
 { #category : #testing }
