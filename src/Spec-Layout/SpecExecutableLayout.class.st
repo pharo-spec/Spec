@@ -42,7 +42,7 @@ SpecExecutableLayout >> buildAdapterFor: aModel bindings: bindings [
 		 or a layout"
 		adapter
 			add: (presenterNameOrLayout isSymbol 
-				ifTrue: [ aModel readSlotNamed: presenterNameOrLayout ]
+				ifTrue: [ self subpresenterOrLayoutNamed: presenterNameOrLayout of: aModel ]
 				ifFalse: [ presenterNameOrLayout buildAdapterFor: aModel bindings: bindings ])
 			constraints: constraints ].
 	
@@ -82,4 +82,15 @@ SpecExecutableLayout >> selector [
 { #category : #accessing }
 SpecExecutableLayout >> selector: anObject [
 	selector := anObject
+]
+
+{ #category : #private }
+SpecExecutableLayout >> subpresenterOrLayoutNamed: presenterNameOrLayout of: aPresenter [
+
+	^ aPresenter additionalSubpresentersMap at: presenterNameOrLayout ifAbsent: [
+		aPresenter readSlotNamed: presenterNameOrLayout ]
+
+	
+
+	
 ]
