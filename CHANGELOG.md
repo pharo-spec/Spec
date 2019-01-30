@@ -1,6 +1,6 @@
 # Changelog
 
-## Dev [INÂ PROGRESS]
+## Dev [IN PROGRESS]
 
 ### Features
 

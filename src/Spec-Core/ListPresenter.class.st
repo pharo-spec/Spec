@@ -240,6 +240,13 @@ ListPresenter >> initialize [
 ]
 
 { #category : #initialization }
+ListPresenter >> initializePorts [
+
+	self addOutputPort: SelectionPresenterPort new.
+	self addInputPort: ItemsPresenterPort new
+]
+
+{ #category : #initialization }
 ListPresenter >> initializeValueHolders [
 	selectionHolder := SpecSelectionValueHolder new.
 	listHolder := Array new asValueHolder.
@@ -445,6 +452,25 @@ ListPresenter >> selectedIndex [
 ]
 
 { #category : #api }
+ListPresenter >> selectedIndex: anIndex [
+
+	"Set the index of the item you want to be selected"
+	| idx selection |
+	
+	self allowToSelect ifFalse: [ ^ self ].
+	self okToChange ifFalse: [ ^ self ].
+	
+	idx := anIndex.
+	selection := self 
+					listElementAt: anIndex 
+					ifAbsent: [ idx := 0.
+								nil ].
+
+	selectionHolder index value: idx.
+	selectionHolder selection value: selection.
+]
+
+{ #category : #api }
 ListPresenter >> selectedIndexes [
 	"<api: #inspect>"
 	"Return the indexes of selected items on the case of a multiple selection list"
@@ -459,6 +485,23 @@ ListPresenter >> selectedItem [
 	In the case of a multiple selection list, it returns the last selected item"
 	
 	^ self selectedItemHolder value
+]
+
+{ #category : #api }
+ListPresenter >> selectedItem: anItem [
+	"Set the item you want to be selected"
+	| index selectedItem |
+
+	self okToChange ifFalse: [ ^ self ].
+
+	selectedItem := anItem.
+	index := self listItems
+		identityIndexOf: anItem
+		ifAbsent: [ 
+			selectedItem := nil.
+			0 "No selection" ].
+	selectionHolder index value: index.
+	selectionHolder selection value: selectedItem
 ]
 
 { #category : #private }
@@ -507,33 +550,22 @@ ListPresenter >> setIndexes: aCollectionOfIndex [
 
 { #category : #api }
 ListPresenter >> setSelectedIndex: anIndex [
-	"<api: #integer min: 0 max: #listSize getter: #selectedIndex registration: #whenSelectionIndexChanged:>"
-	"Set the index of the item you want to be selected"
-	| idx selection |
 	
-	self allowToSelect ifFalse: [ ^ self ].
-	self okToChange ifFalse: [ ^ self ].
-	
-	idx := anIndex min: self listSize.
-	selection := self 
-					listElementAt: idx 
-					ifAbsent: [ idx := 0.
-								nil ].
-
-	selectionHolder index value: idx.
-	selectionHolder selection value: selection.
+	self
+		deprecated: 'Use #selectedIndex: instead'
+		transformWith: '`@receiver setSelectedIndex: `@argument'
+						-> '`@receiver selectedIndex: `@argument'.
+	^ self selectedIndex: anIndex
 ]
 
 { #category : #api }
-ListPresenter >> setSelectedItem: anItem [
-	"<api: #st getter: #selectedItem registration: #whenSelectedItemChanged:>"
-	"Set the item you want to be selected"
-	| index |
-
-	self okToChange ifFalse: [ ^ self ].
-	index := self listItems identityIndexOf: anItem ifAbsent: [ ^ self ].
-	selectionHolder index value: index.
-	selectionHolder selection value: anItem
+ListPresenter >> setSelectedItem: anIndex [
+	
+	self
+		deprecated: 'Use #selectedItem: instead'
+		transformWith: '`@receiver setSelectedItem: `@argument'
+						-> '`@receiver selectedItem:`@argument'.
+	^ self selectedItem: anIndex
 ]
 
 { #category : #private }
@@ -638,7 +670,24 @@ ListPresenter >> whenMultiSelectionChanged: aBlock [
 ]
 
 { #category : #'api-events' }
+ListPresenter >> whenSelectedIndexChangedDo: aBlock [
+	"Set a block to value when the selection index has changed"
+	
+	selectionHolder index whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
 ListPresenter >> whenSelectedItemChanged: aBlock [
+	
+	self
+		deprecated: 'Use #whenSelectedItemChangedDo: instead'
+		transformWith: '`@receiver whenSelectedItemChanged: `@argument'
+						-> '`@receiver whenSelectedItemChangedDo: `@argument'.
+	^ self whenSelectedItemChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+ListPresenter >> whenSelectedItemChangedDo: aBlock [
 	"Set a block to value when the select item is changed"
 	
 	selectionHolder selection whenChangedDo: aBlock
@@ -653,17 +702,33 @@ ListPresenter >> whenSelectedItemsChanged: aBlock [
 
 { #category : #'api-events' }
 ListPresenter >> whenSelectionChanged: aBlock [
-	"Set a block to value when the selection of the list has changed"
+	
+	self
+		deprecated: 'Use #whenSelectionChangedDo: instead'
+		transformWith: '`@receiver whenSelectionChanged: `@argument'
+						-> '`@receiver whenSelectionChangedDo: `@argument'.
+	^ self whenSelectionChangedDo: aBlock
+]
 
-	selectionHolder selection whenChangedDo: aBlock.
+{ #category : #'api-events' }
+ListPresenter >> whenSelectionChangedDo: aBlock [
+	"The method should be used only if you are interested in the fact that there was a change, without caring about what has changed
+	If you are interested in the items, use whenSelectedItemChanged:
+	If you are interested in the index, use whenSelectionIndexChanged:"
+
+	selectionHolder whenChangedDo: [ :selectionValueHolderValues |
+		aBlock cull: (selectionValueHolderValues collect: #value) ].
 	multiSelectionHolder selections whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
 ListPresenter >> whenSelectionIndexChanged: aBlock [
-	"Set a block to value when the selection index has changed"
 	
-	selectionHolder index whenChangedDo: aBlock
+	self
+		deprecated: 'Use #whenSelectedIndexChangedDo: instead'
+		transformWith: '`@receiver whenSelectionIndexChanged: `@argument'
+						-> '`@receiver whenSelectedIndexChangedDo: `@argument'.
+	^ self whenSelectedIndexChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

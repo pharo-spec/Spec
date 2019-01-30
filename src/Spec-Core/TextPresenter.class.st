@@ -376,6 +376,12 @@ TextPresenter >> initialize [
 	self registerEventsForShout
 ]
 
+{ #category : #initialization }
+TextPresenter >> initializePorts [
+
+	self addInputPort: TextPresenterPort new
+]
+
 { #category : #'api-shout' }
 TextPresenter >> isAboutToStyle [
 	"<api: #inspect>"

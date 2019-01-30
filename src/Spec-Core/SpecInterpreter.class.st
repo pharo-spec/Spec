@@ -8,7 +8,8 @@ Class {
 		'spec',
 		'arrayToInterpret',
 		'index',
-		'presenter'
+		'presenter',
+		'selector'
 	],
 	#classInstVars : [
 		'bindings'
@@ -33,18 +34,18 @@ SpecInterpreter class >> interpretASpec: aSpec presenter: aPresenter [
 ]
 
 { #category : #'interpreting-private' }
-SpecInterpreter >> actionToPerformWithSelector: selector arguments: args [
-	^ [ spec perform: selector withArguments: args ]
+SpecInterpreter >> actionToPerformWithSelector: aSelector arguments: args [
+	^ [ spec perform: aSelector withArguments: args ]
 		on: MessageNotUnderstood
 		do: [ :ex | 
 			"Maybe the message is not understood because we are trying to access a sub-part of a presenter but there is no accessor. In that case we can try to directly access the presenter.
 
 			We are thinking of killing the interpreter. Maybe later if we know that we are getting the content of a variable of a presenter we can avoid using a catch and directly access the variable."
-			(selector last ~= $: and: [ args isEmpty ])
+			(aSelector last ~= $: and: [ args isEmpty ])
 				ifTrue: [ spec class instVarNames
-						detect: [ :var | var = selector ]
-						ifFound: [ :var | spec instVarNamed: selector ]
-						ifNone: [ self error: spec asString , ' does not implement the method ' , selector , '. Maybe your spec reference a presenter that does not exists.' ] ]
+						detect: [ :var | var = aSelector ]
+						ifFound: [ :var | spec instVarNamed: aSelector ]
+						ifNone: [ self error: spec asString , ' does not implement the method ' , aSelector , '. Maybe your spec reference a presenter that does not exists.' ] ]
 				ifFalse: [ ex resume ] ]
 ]
 
@@ -56,14 +57,19 @@ SpecInterpreter >> bindings [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> computeSpecFrom: aSymbol [
-	^ (aSymbol isSymbol and: [ (self isPresenterSymbol: aSymbol) not ])
+	| res |
+	res := (aSymbol isSymbol and: [ (self isPresenterSymbol: aSymbol) not ])
 		ifTrue: [ | result |
 			result := self convertSymbolOfClassToInstance: aSymbol.
 			result isSpecContainer
 				ifTrue: [ result := self getAdaptorWithDefaultSpecOf: result.
 					self presenter addDependent: result ].
 			result ]
-		ifFalse: [ self class interpretASpec: aSymbol presenter: self presenter ]
+		ifFalse: [ self class interpretASpec: aSymbol presenter: self presenter ].
+
+	selector ifNotNil: [ :sel | res selector: sel ].
+
+	^ res
 ]
 
 { #category : #bindings }
@@ -79,20 +85,16 @@ SpecInterpreter >> convertSymbolOfClassToInstance: aSymbol [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> extractArrayToInterpretFrom: aFragment [
-
 	arrayToInterpret := aFragment.
-	
+
 	aFragment isSpecLayout
-		ifTrue: [ arrayToInterpret := aFragment asArray ].
-	
-	(arrayToInterpret isCollection and: [ arrayToInterpret isSequenceable ])
-		ifFalse: [ ^ arrayToInterpret ].
-	
+		ifTrue: [ arrayToInterpret := aFragment asArray.
+			selector := aFragment selector ].
+
+	(arrayToInterpret isCollection and: [ arrayToInterpret isSequenceable ]) ifFalse: [ ^ arrayToInterpret ].
+
 	(aFragment isString or: [ aFragment isText ])
-		ifTrue: [ 
-			^ (self isPresenterSymbol: aFragment)
-				ifTrue: [ self presenter ]
-				ifFalse: [ self convertSymbolOfClassToInstance: aFragment ] ].
+		ifTrue: [ ^ (self isPresenterSymbol: aFragment) ifTrue: [ self presenter ] ifFalse: [ self convertSymbolOfClassToInstance: aFragment ] ].
 	^ nil
 ]
 
@@ -143,18 +145,18 @@ SpecInterpreter >> isPresenterSymbol: aSymbol [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> performNextSelectorAndIncrementIndex [
-	| args selector |
-	selector := arrayToInterpret at: index.
+	| args aSelector |
+	aSelector := arrayToInterpret at: index.
 	
 	self
-		assert: selector isArray not
-		description: 'Before there was an #ifTrue:ifFalse: on `selector isArray` but it seems that the selector could never be an Array. If one day we have an array here, please report the problem and link it to https://github.com/pharo-spec/Spec/issues/60'.
+		assert: aSelector isArray not
+		description: 'Before there was an #ifTrue:ifFalse: on `aSelector isArray` but it seems that the aSelector could never be an Array. If one day we have an array here, please report the problem and link it to https://github.com/pharo-spec/Spec/issues/60'.
 		
-	selector := selector asSymbol.
-	args := (arrayToInterpret copyFrom: index + 1 to: index + selector numArgs) collect: [ :each | self class interpretASpec: each presenter: self presenter ].
-	index := index + selector numArgs + 1.
+	aSelector := aSelector asSymbol.
+	args := (arrayToInterpret copyFrom: index + 1 to: index + aSelector numArgs) collect: [ :each | self class interpretASpec: each presenter: self presenter ].
+	index := index + aSelector numArgs + 1.
 	
-	^ self actionToPerformWithSelector: selector arguments: args
+	^ self actionToPerformWithSelector: aSelector arguments: args
 ]
 
 { #category : #accessing }

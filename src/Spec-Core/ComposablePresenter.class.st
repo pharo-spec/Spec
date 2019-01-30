@@ -99,7 +99,10 @@ Class {
 		'windowIcon',
 		'aboutText',
 		'askOkToClose',
-		'titleHolder'
+		'titleHolder',
+		'inputPorts',
+		'outputPorts',
+		'transmissions'
 	],
 	#category : #'Spec-Core-Base'
 }
@@ -248,9 +251,25 @@ ComposablePresenter >> addAll: aWindow withSpecLayout: aSpec [
 		frame: (0@0 corner: 1@1).
 ]
 
+{ #category : #'accessing ports' }
+ComposablePresenter >> addInputPort: aPort [
+
+	aPort presenter: self.
+	inputPorts ifNil: [ inputPorts := #() ].
+	inputPorts := inputPorts copyWith: aPort
+]
+
 { #category : #'window menu' }
 ComposablePresenter >> addMenuItemsToWindowMenu: aMenu [
 	"Do nothing"
+]
+
+{ #category : #'accessing ports' }
+ComposablePresenter >> addOutputPort: aPort [
+
+	aPort presenter: self.
+	outputPorts ifNil: [ outputPorts := #() ].
+	outputPorts := outputPorts copyWith: aPort
 ]
 
 { #category : #'api-shortcuts' }
@@ -278,6 +297,13 @@ ComposablePresenter >> applyMenuModel: aMenuModel [
 		group menuItems do: [ :item |
 			item shortcut ifNotNil: [ :shortcut | self bindMenuKeyCombination: shortcut toAction: [ item performMenuActionWith: {} ] ].
 			item subMenu ifNotNil: [ :subMenu | subMenu applyTo: self	] ] ]
+]
+
+{ #category : #initialization }
+ComposablePresenter >> applyTransmissions [
+	
+	transmissions ifNil: [ ^ self ].
+	transmissions do: #apply
 ]
 
 { #category : #api }
@@ -562,12 +588,11 @@ ComposablePresenter >> initialize [
 
 	super initialize.
 
+	self initializePorts.
 	self initializePrivateAnnouncer.
 	self initializePrivateValueHolders.
-	
 	self initializePrivateHooks.
-		
-	self initializePrivateAnnouncements.
+	self initializePrivateAnnouncements
 ]
 
 { #category : #initialization }
@@ -582,6 +607,13 @@ ComposablePresenter >> initializeDialogWindow: aDialogWindowPresenter [
 		addButton: 'Cancel' do: [ :presenter | 
 			presenter triggerCancelAction.
 			presenter close ]
+]
+
+{ #category : #initialization }
+ComposablePresenter >> initializePorts [
+	
+	"By default, all presenters can receive a change model transmission"
+	self addInputPort: ModelPresenterPort new
 ]
 
 { #category : #initialization }
@@ -615,6 +647,7 @@ ComposablePresenter >> initializePrivateHooks [
 
 	self initializeWidgets.
 	self initializePresenter.
+	self applyTransmissions.
 	self updatePresenter.
 
 ]
@@ -646,6 +679,26 @@ ComposablePresenter >> initializeWidgets [
 ComposablePresenter >> initializeWindow: aWindowPresenter [
 	"override this to set window values before opening. 
 	 You may want to add a menu, a toolbar or a statusbar"
+]
+
+{ #category : #'accessing ports' }
+ComposablePresenter >> inputPortDefault [
+
+	"first input port will be default. 
+	 this may be bad design and probably needs to be revisited later"
+	^ self inputPorts first
+]
+
+{ #category : #'accessing ports' }
+ComposablePresenter >> inputPortNamed: aSymbol [
+
+	^ self inputPorts detect: [ :each | each name = aSymbol ]
+]
+
+{ #category : #'accessing ports' }
+ComposablePresenter >> inputPorts [
+
+	^ inputPorts
 ]
 
 { #category : #'instance creation' }
@@ -850,6 +903,12 @@ ComposablePresenter >> newTabManager [
 ]
 
 { #category : #widgets }
+ComposablePresenter >> newTable [
+
+	^ self instantiate: TablePresenter
+]
+
+{ #category : #widgets }
 ComposablePresenter >> newText [
 	^ self instantiate: TextPresenter
 ]
@@ -862,6 +921,12 @@ ComposablePresenter >> newTextInput [
 { #category : #widgets }
 ComposablePresenter >> newTree [
 	^ self instantiate: TreePresenter
+]
+
+{ #category : #widgets }
+ComposablePresenter >> newTreeTable [
+
+	^ self instantiate: TreeTablePresenter
 ]
 
 { #category : #private }
@@ -965,6 +1030,26 @@ ComposablePresenter >> openWithSpecLayout: aSpec in: aWindowClass [
 	^ self presenterWindow
 ]
 
+{ #category : #'accessing ports' }
+ComposablePresenter >> outputPortDefault [
+
+	"first output port will be default. 
+	 this may be bad design and probably needs to be revisited later"
+	^ self outputPorts first
+]
+
+{ #category : #'accessing ports' }
+ComposablePresenter >> outputPortNamed: aSymbol [
+
+	^ self outputPorts detect: [ :each | each name = aSymbol ]
+]
+
+{ #category : #'accessing ports' }
+ComposablePresenter >> outputPorts [
+
+	^ outputPorts
+]
+
 { #category : #accessing }
 ComposablePresenter >> owner [
 
@@ -1034,7 +1119,10 @@ ComposablePresenter >> retrieveDefaultSpec [
 
 { #category : #api }
 ComposablePresenter >> retrieveSpec: aSelector [
-	^ self class perform: aSelector
+	| layout |
+	layout := self class perform: aSelector.
+	layout isSpecLayout ifTrue: [ layout selector: aSelector ].
+	^ layout
 ]
 
 { #category : #accessing }
@@ -1134,6 +1222,16 @@ ComposablePresenter >> title: aString [
 { #category : #accessing }
 ComposablePresenter >> toolName [	
 	^ self class toolName
+]
+
+{ #category : #'accessing ports' }
+ComposablePresenter >> transmit [ 
+	| newTransmition |
+
+	transmissions ifNil: [ transmissions := Set new ].
+	newTransmition := PresenterTransmission on: self.
+	transmissions add: newTransmition.
+	^ newTransmition
 ]
 
 { #category : #private }

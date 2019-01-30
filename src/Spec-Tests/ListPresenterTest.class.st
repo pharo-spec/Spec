@@ -3,7 +3,7 @@ testing ListComposablePresenter
 "
 Class {
 	#name : #ListPresenterTest,
-	#superclass : #SpecTestCase,
+	#superclass : #TablePresenterTest,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 
