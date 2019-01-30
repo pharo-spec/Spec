@@ -465,18 +465,21 @@ MessageBrowser >> initializeDropList [
 
 { #category : #initialization }
 MessageBrowser >> initializePresenter [
-
-	listModel whenSelectedItemChanged: [:item |
-			toolbarModel method: item.
-			textModel behavior: (item ifNil: [ nil ] ifNotNil: [ item methodClass ]).
-			textModel doItReceiver: textModel behavior.
-			textModel text: (self textConverter method: item; getText).
-			textModel clearUndoManager.
-			self installIconStylerFor: item].
+	
+	listModel whenSelectedItemChangedDo: [ :item | 
+		toolbarModel method: item.
+		textModel behavior: (item ifNotNil: [ item methodClass ]).
+		textModel doItReceiver: textModel behavior.
+		textModel text: (self textConverter
+			method: item;
+			getText).
+		textModel clearUndoManager.
+		self installIconStylerFor: item ].
+	
 	listModel whenListChanged: [ self updateTitle ].
-		
 	titleHolder whenChangedDo: [ self updateTitle ].
-	textModel acceptBlock: [ :text :notifyer | (self accept: text notifying: notifyer)  notNil].
+	textModel acceptBlock: [ :text :notifyer | 
+		(self accept: text notifying: notifyer) notNil ]
 ]
 
 { #category : #initialization }
@@ -752,7 +755,7 @@ MessageBrowser >> setRefreshingBlockForSendersOf: aSelector [
 { #category : #api }
 MessageBrowser >> setSelectedIndex: anIndex [
 
-	listModel setSelectedIndex: anIndex 
+	listModel selectedIndex: anIndex
 ]
 
 { #category : #announcements }
