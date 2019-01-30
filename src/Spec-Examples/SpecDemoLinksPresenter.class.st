@@ -12,7 +12,7 @@ Class {
 		'link2',
 		'link3'
 	],
-	#category : #'Spec-Examples-Demo'
+	#category : #'Spec-Examples-Demo-Other'
 }
 
 { #category : #specs }

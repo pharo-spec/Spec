@@ -18,9 +18,9 @@ ListPresenterTest >> testSelectAll [
 	items := #(#AAA #BBB #CCC).
 	testedInstance items: items.
 	testedInstance beMultipleSelection.
-	self assert: testedInstance selectedItems equals: #().
+	self assertCollection: testedInstance selectedItems hasSameElements: #().
 	testedInstance selectAll.
-	self assert: testedInstance selectedItems equals: items
+	self assertCollection: testedInstance selectedItems hasSameElements: items
 ]
 
 { #category : #tests }
