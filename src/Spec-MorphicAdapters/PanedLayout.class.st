@@ -22,6 +22,32 @@ Class {
 }
 
 { #category : #private }
+PanedLayout >> ensureHeightPosition: aMorph in: aRect [
+	| firstMorph |
+
+	self position ifNil: [ ^ self ].
+
+	firstMorph := aMorph submorphs first.
+	firstMorph vResizing = #rigid ifFalse: [ 
+		firstMorph vResizing: #rigid ].
+	firstMorph width: (self heightPositionIn: aRect extent)	
+
+]
+
+{ #category : #private }
+PanedLayout >> ensureWidthPosition: aMorph in: aRect [
+	| firstMorph |
+
+	self position ifNil: [ ^ self ].
+
+	firstMorph := aMorph submorphs first.
+	firstMorph hResizing = #rigid ifFalse: [ 
+		firstMorph hResizing: #rigid ].
+	firstMorph width: (self widthPositionIn: aRect extent)	
+
+]
+
+{ #category : #private }
 PanedLayout >> heightPositionIn: aPoint [ 
 
 	^ self position < 1 
@@ -39,20 +65,14 @@ PanedLayout >> isHorizontal [
 { #category : #private }
 PanedLayout >> layoutLeftToRight: aMorph in: newBounds [
 
-	self position ifNotNil: [
-		aMorph submorphs first 
-			hResizing: #rigid;
-			width: (self widthPositionIn: newBounds extent) ].
+	self ensureWidthPosition: aMorph in: newBounds.
 	super layoutLeftToRight: aMorph in: newBounds
 ]
 
 { #category : #private }
 PanedLayout >> layoutTopToBottom: aMorph in: newBounds [
 
-	self position ifNotNil: [
-		aMorph submorphs first 
-			vResizing: #rigid;
-			height: (self heightPositionIn: newBounds extent) ].
+	self ensureHeightPosition: aMorph in: newBounds.
 	super layoutTopToBottom: aMorph in: newBounds
 ]
 
