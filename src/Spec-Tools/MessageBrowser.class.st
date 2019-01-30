@@ -412,29 +412,29 @@ MessageBrowser >> handleMethodModified: anAnnouncement [
 
 { #category : #announcements }
 MessageBrowser >> handleMethodRemoved: anAnnouncement [
-	| item sel itm |
+	| item selection removeItem |
 	
 	self isDisplayed ifFalse: [ ^ self ].
 	refreshingBlockHolder ifNil: [ ^ self ].
 	self okToChange ifFalse: [ ^ self ].
 	
-	item := anAnnouncement method.	"Item is a compiled methed, where the list is populated with RGMethod"
-	
-	((item methodClass notNil) and:[item methodClass isObsolete not]) ifFalse:[ ^ self ].
-	
-	sel := listModel selectedIndex.
-	itm := listModel selectedItem.
-	
-	(itm notNil and: [ itm methodClass = item methodClass and: [ itm selector = item selector ] ])
+	"Item is a compiled methed, where the list is populated with RGMethod"
+	item := anAnnouncement method.	
+	(item methodClass notNil and: [ item methodClass isObsolete not ])
+		ifFalse: [ ^ self ].
+		
+	selection := listModel selectedIndex.
+	removeItem := listModel selectedItem.
+	(removeItem notNil 
+		and: [ removeItem methodClass = item methodClass
+		and: [ removeItem selector = item selector ] ])
 		ifTrue: [ textModel hasUnacceptedEdits: false ].
 	
-	self
-		messages:
-			(listModel listItems
-				remove: item asFullRingDefinition ifAbsent: [ nil ];
-				yourself).
-	
-	listModel setSelectedIndex: sel
+	self messages: (listModel listItems
+		remove: item asFullRingDefinition ifAbsent: [ nil ];
+		yourself).
+
+	listModel selectedIndex: selection
 ]
 
 { #category : #private }
@@ -553,10 +553,11 @@ MessageBrowser >> messages [
 MessageBrowser >> messages: aCollection [
 
 	self cacheHierarchyForClasses: aCollection.
-	listModel items: (cachedHierarchy keys sort: [:a :b | self sortClassesInCachedHierarchy: a b: b]) asOrderedCollection.
+	listModel items: (cachedHierarchy keys
+		sort: [ :a :b | self sortClassesInCachedHierarchy: a b: b ])
+		asOrderedCollection.
 	listModel listSize > 0
-		ifTrue: [ 
-			listModel setSelectedIndex: 1 ].
+		ifTrue: [ listModel selectedIndex: 1 ]
 ]
 
 { #category : #announcements }
