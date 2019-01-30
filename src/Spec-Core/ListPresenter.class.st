@@ -420,6 +420,25 @@ ListPresenter >> selectedIndex [
 ]
 
 { #category : #api }
+ListPresenter >> selectedIndex: anIndex [
+
+	"Set the index of the item you want to be selected"
+	| idx selection |
+	
+	self allowToSelect ifFalse: [ ^ self ].
+	self okToChange ifFalse: [ ^ self ].
+	
+	idx := anIndex min: self listSize.
+	selection := self 
+					listElementAt: idx 
+					ifAbsent: [ idx := 0.
+								nil ].
+
+	selectionHolder index value: idx.
+	selectionHolder selection value: selection.
+]
+
+{ #category : #api }
 ListPresenter >> selectedIndexes [
 	"<api: #inspect>"
 	"Return the indexes of selected items on the case of a multiple selection list"
@@ -434,6 +453,17 @@ ListPresenter >> selectedItem [
 	In the case of a multiple selection list, it returns the last selected item"
 	
 	^ self selectedItemHolder value
+]
+
+{ #category : #api }
+ListPresenter >> selectedItem: anItem [
+	"Set the item you want to be selected"
+	| index |
+
+	self okToChange ifFalse: [ ^ self ].
+	index := self listItems identityIndexOf: anItem ifAbsent: [ ^ self ].
+	selectionHolder index value: index.
+	selectionHolder selection value: anItem
 ]
 
 { #category : #private }
@@ -472,33 +502,22 @@ ListPresenter >> setIndex: anIndex [
 
 { #category : #api }
 ListPresenter >> setSelectedIndex: anIndex [
-	"<api: #integer min: 0 max: #listSize getter: #selectedIndex registration: #whenSelectionIndexChanged:>"
-	"Set the index of the item you want to be selected"
-	| idx selection |
 	
-	self allowToSelect ifFalse: [ ^ self ].
-	self okToChange ifFalse: [ ^ self ].
-	
-	idx := anIndex min: self listSize.
-	selection := self 
-					listElementAt: idx 
-					ifAbsent: [ idx := 0.
-								nil ].
-
-	selectionHolder index value: idx.
-	selectionHolder selection value: selection.
+	self
+		deprecated: 'Use #selectedIndex: instead'
+		transformWith: '`@receiver setSelectedIndex: `@argument'
+						-> '`@receiver selectedIndex: `@argument'.
+	^ self selectedIndex: anIndex
 ]
 
 { #category : #api }
-ListPresenter >> setSelectedItem: anItem [
-	"<api: #st getter: #selectedItem registration: #whenSelectedItemChanged:>"
-	"Set the item you want to be selected"
-	| index |
-
-	self okToChange ifFalse: [ ^ self ].
-	index := self listItems identityIndexOf: anItem ifAbsent: [ ^ self ].
-	selectionHolder index value: index.
-	selectionHolder selection value: anItem
+ListPresenter >> setSelectedItem: anIndex [
+	
+	self
+		deprecated: 'Use #selectedItem: instead'
+		transformWith: '`@receiver setSelectedItem: `@argument'
+						-> '`@receiver selectedItem:`@argument'.
+	^ self selectedItem: anIndex
 ]
 
 { #category : #private }
