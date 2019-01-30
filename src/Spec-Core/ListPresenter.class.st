@@ -621,7 +621,24 @@ ListPresenter >> whenMultiSelectionChanged: aBlock [
 ]
 
 { #category : #'api-events' }
+ListPresenter >> whenSelectedIndexChangedDo: aBlock [
+	"Set a block to value when the selection index has changed"
+	
+	selectionHolder index whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
 ListPresenter >> whenSelectedItemChanged: aBlock [
+	
+	self
+		deprecated: 'Use #whenSelectedItemChangedDo: instead'
+		transformWith: '`@receiver whenSelectedItemChanged: `@argument'
+						-> '`@receiver whenSelectedItemChangedDo: `@argument'.
+	^ self whenSelectedItemChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+ListPresenter >> whenSelectedItemChangedDo: aBlock [
 	"Set a block to value when the select item is changed"
 	
 	selectionHolder selection whenChangedDo: aBlock
@@ -629,6 +646,16 @@ ListPresenter >> whenSelectedItemChanged: aBlock [
 
 { #category : #'api-events' }
 ListPresenter >> whenSelectionChanged: aBlock [
+	
+	self
+		deprecated: 'Use #whenSelectionChangedDo: instead'
+		transformWith: '`@receiver whenSelectionChanged: `@argument'
+						-> '`@receiver whenSelectionChangedDo: `@argument'.
+	^ self whenSelectionChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+ListPresenter >> whenSelectionChangedDo: aBlock [
 	"Set a block to value when the selection of the list has changed"
 
 	"The method should be used only if you are interested in the fact that there was a change, without caring about what has changed
@@ -641,9 +668,12 @@ ListPresenter >> whenSelectionChanged: aBlock [
 
 { #category : #'api-events' }
 ListPresenter >> whenSelectionIndexChanged: aBlock [
-	"Set a block to value when the selection index has changed"
 	
-	selectionHolder index whenChangedDo: aBlock
+	self
+		deprecated: 'Use #whenSelectedIndexChangedDo: instead'
+		transformWith: '`@receiver whenSelectionIndexChanged: `@argument'
+						-> '`@receiver whenSelectedIndexChangedDo: `@argument'.
+	^ self whenSelectedIndexChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
