@@ -44,6 +44,19 @@ TableBasePresenter >> columns: aCollection [
 	columns := aCollection
 ]
 
+{ #category : #'api-events' }
+TableBasePresenter >> doubleClickAction: aBlockClosure [ 
+	
+	doubleClickActionHolder value: aBlockClosure
+]
+
+{ #category : #simulation }
+TableBasePresenter >> doubleClickAtIndex: anInteger [ 
+	
+	self selectedIndex: anInteger.
+	doubleClickActionHolder value cull: anInteger
+]
+
 { #category : #api }
 TableBasePresenter >> hideColumnHeaders [
 

@@ -44,6 +44,8 @@ TablePresenter >> initialize [
 	super initialize.
 	itemsHolder := #() asValueHolder.
 	itemsHolder whenChangedDo: [ self itemsChanged ].	
+	
+	doubleClickActionHolder := [ ] asValueHolder.
 ]
 
 { #category : #accessing }

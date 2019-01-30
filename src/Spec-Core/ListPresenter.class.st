@@ -53,7 +53,8 @@ Class {
 		'wrapBlockHolder',
 		'listAnnouncer',
 		'backgroundColorBlock',
-		'autoDeselect'
+		'autoDeselect',
+		'doubleClickActionHolder'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -190,6 +191,20 @@ ListPresenter >> displayBlock: aBlock [
 	wrapBlockHolder value: aBlock
 ]
 
+{ #category : #'api-events' }
+ListPresenter >> doubleClickAction: aBlockClosure [ 
+	
+	doubleClickActionHolder value: aBlockClosure
+]
+
+{ #category : #simulation }
+ListPresenter >> doubleClickAtIndex: anInteger [ 
+
+	
+	self selectedIndex: anInteger.
+	doubleClickActionHolder value cull: anInteger
+]
+
 { #category : #api }
 ListPresenter >> filteringBlock [
 	"<api: #inspect>"
@@ -252,6 +267,7 @@ ListPresenter >> initializeValueHolders [
 	sortingBlockHolder := self defaultSortingBlock asValueHolder.
 	filteringBlockHolder := self defaultFilteringBlock asValueHolder.
 	wrapBlockHolder := [ :object | object asStringOrText ] asValueHolder.
+	doubleClickActionHolder := [  ] asValueHolder.
 	menuHolder := [ :menu :shifted | nil ] asValueHolder.
 	multiSelectionHolder := IdentityDictionary new asValueHolder.
 	multiSelection := false asValueHolder.
@@ -325,6 +341,10 @@ ListPresenter >> menu: aBlock [
 { #category : #private }
 ListPresenter >> menu: aMenu shifted: aBoolean [
 	"Build the menu when you right click on an item"
+
+	"This does not work on multiple selection"
+	self flag: #bug.
+	self selectedItem ifNil: [ ^ nil ].
 
 	^ menuHolder value cull: aMenu cull: aBoolean
 ]

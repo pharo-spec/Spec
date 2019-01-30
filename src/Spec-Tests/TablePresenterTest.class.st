@@ -19,6 +19,58 @@ TablePresenterTest >> setUp [
 	presenter := self classToTest new.
 ]
 
+{ #category : #'tests-doubleClick' }
+TablePresenterTest >> testDoubleClickCallsDoubleClickAction [
+
+	| doubleClickInvoked |
+	doubleClickInvoked := false.
+
+	window := presenter
+		items: #(10 20 30);
+		doubleClickAction: [ doubleClickInvoked := true ];
+		openWithSpec.
+
+	presenter doubleClickAtIndex: 2.
+	
+	self assert: doubleClickInvoked
+]
+
+{ #category : #'tests-doubleClick' }
+TablePresenterTest >> testDoubleClickOutsideSelectionUnsetsSelectedIndex [
+
+	window := presenter
+		items: #(10 20 30);
+		openWithSpec.
+
+	presenter doubleClickAtIndex: 4.
+	
+	self assert: presenter selectedIndex equals: 0
+]
+
+{ #category : #'tests-doubleClick' }
+TablePresenterTest >> testDoubleClickOutsideSelectionUnsetsSelectedItem [
+
+	window := presenter
+		items: #(10 20 30);
+		openWithSpec.
+
+	presenter doubleClickAtIndex: 4.
+	
+	self assert: presenter selectedItem equals: nil
+]
+
+{ #category : #'tests-doubleClick' }
+TablePresenterTest >> testDoubleClickSelectsItem [
+
+	window := presenter
+		items: #(10 20 30);
+		openWithSpec.
+
+	presenter doubleClickAtIndex: 2.
+	
+	self assert: presenter selectedIndex equals: 2
+]
+
 { #category : #'tests-selection-index' }
 TablePresenterTest >> testSelectIndexOutsideRangeUnsetsSelectedIndex [
 
