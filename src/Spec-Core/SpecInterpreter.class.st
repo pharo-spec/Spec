@@ -42,10 +42,7 @@ SpecInterpreter >> actionToPerformWithSelector: aSelector arguments: args [
 
 			We are thinking of killing the interpreter. Maybe later if we know that we are getting the content of a variable of a presenter we can avoid using a catch and directly access the variable."
 			(aSelector last ~= $: and: [ args isEmpty ])
-				ifTrue: [ spec class instVarNames
-						detect: [ :var | var = aSelector ]
-						ifFound: [ :var | spec instVarNamed: aSelector ]
-						ifNone: [ self error: spec asString , ' does not implement the method ' , aSelector , '. Maybe your spec reference a presenter that does not exists.' ] ]
+				ifTrue: [ self subpresenterNamed: aSelector]
 				ifFalse: [ ex resume ] ]
 ]
 
@@ -191,4 +188,15 @@ SpecInterpreter >> returnInterpretationOf: newInstance [
 	^ (result isKindOf: ComposablePresenter)
 		ifTrue: [ self getAdaptorWithDefaultSpecOf: result ]
 		ifFalse: [ result ]
+]
+
+{ #category : #'interpreting-private' }
+SpecInterpreter >> subpresenterNamed: aSelector [
+
+ 	^ spec additionalSubpresentersMap at: aSelector ifAbsent: [
+		spec class allInstVarNames
+			detect: [ :var | var = aSelector ]
+			ifFound: [ :var | spec instVarNamed: aSelector ]
+			ifNone: [ self error: spec asString , ' does not implement the method ' , aSelector , '. Maybe your spec reference a presenter that does not exists.' ]
+		]
 ]
