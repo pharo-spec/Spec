@@ -102,7 +102,8 @@ Class {
 		'titleHolder',
 		'inputPorts',
 		'outputPorts',
-		'transmissions'
+		'transmissions',
+		'additionalSubpresentersMap'
 	],
 	#category : #'Spec-Core-Base'
 }
@@ -276,6 +277,15 @@ ComposablePresenter >> addOutputPort: aPort [
 ComposablePresenter >> additionalKeyBindings [
 
 	^ additionalKeyBindings
+]
+
+{ #category : #accessing }
+ComposablePresenter >> additionalSubpresentersMap [
+
+	"additionalSubpresentersMap serves for storing of sub-presenters that are not
+	stored in instance variables"
+
+	^ additionalSubpresentersMap ifNil: [ additionalSubpresentersMap := Dictionary new ]
 ]
 
 { #category : #api }
@@ -587,6 +597,8 @@ ComposablePresenter >> initialExtent [
 ComposablePresenter >> initialize [
 
 	super initialize.
+	
+	additionalSubpresentersMap := nil.
 
 	self initializePorts.
 	self initializePrivateAnnouncer.
