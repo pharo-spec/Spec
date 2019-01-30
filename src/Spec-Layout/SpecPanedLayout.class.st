@@ -1,8 +1,14 @@
+"
+I'm a Paned Layout.
+A paned layout is like a Box Layout (it places childen in vertical or horizontal fashion), but it will add a splitter in between, that user can drag to resize the panel.
+In exchange, a paned layout can have just two children.
+"
 Class {
 	#name : #SpecPanedLayout,
 	#superclass : #SpecExecutableLayout,
 	#instVars : [
-		'direction'
+		'direction',
+		'position'
 	],
 	#category : #'Spec-Layout-Paned'
 }
@@ -78,9 +84,10 @@ SpecPanedLayout >> direction [
 ]
 
 { #category : #initialization }
-SpecPanedLayout >> initialize [
+SpecPanedLayout >> initialize [ 
 
 	super initialize.
+	self position: 50 percent
 ]
 
 { #category : #testing }
@@ -93,4 +100,18 @@ SpecPanedLayout >> isHorizontal [
 SpecPanedLayout >> isVertical [ 
 
 	^ self direction = SpecLayoutDirection vertical
+]
+
+{ #category : #accessing }
+SpecPanedLayout >> position [
+	"Indicates original position of splitter. 
+	 It can be nil (then it defaults to 50%).
+	 It can be a percentage (e.g. 30 percent)"
+
+	^ position
+]
+
+{ #category : #accessing }
+SpecPanedLayout >> position: anObject [
+	position := anObject
 ]

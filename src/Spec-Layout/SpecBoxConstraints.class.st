@@ -1,13 +1,13 @@
 Class {
 	#name : #SpecBoxConstraints,
-	#superclass : #Object,
+	#superclass : #SpecLayoutConstraints,
 	#instVars : [
 		'expand',
 		'fill',
 		'padding',
-		'minWidth',
-		'minHeight',
-		'placedAtStart'
+		'placedAtStart',
+		'height',
+		'width'
 	],
 	#category : #'Spec-Layout-Box'
 }
@@ -54,6 +54,23 @@ SpecBoxConstraints >> fill: aBoolean [
 	fill := aBoolean
 ]
 
+{ #category : #accessing }
+SpecBoxConstraints >> height [
+	"height of component.
+	 this just has sense in the case of expand=false"
+
+	^ height
+]
+
+{ #category : #accessing }
+SpecBoxConstraints >> height: anObject [
+	"height of component.
+	 this just has sense in the case of expand=false"
+
+	self expand: false.
+	height := anObject
+]
+
 { #category : #testing }
 SpecBoxConstraints >> initialize [ 
 
@@ -78,32 +95,6 @@ SpecBoxConstraints >> isPlacedAtStart [
 ]
 
 { #category : #accessing }
-SpecBoxConstraints >> minHeight [
-	"Minimum height of component.
-	 this just has sense in the case of expand=false"
-
-	^ minHeight
-]
-
-{ #category : #accessing }
-SpecBoxConstraints >> minHeight: anObject [
-	minHeight := anObject
-]
-
-{ #category : #accessing }
-SpecBoxConstraints >> minWidth [
-	"Minimum height of component.
-	 this just has sense in the case of expand=false"
-
-	^ minWidth
-]
-
-{ #category : #accessing }
-SpecBoxConstraints >> minWidth: anObject [
-	minWidth := anObject
-]
-
-{ #category : #accessing }
 SpecBoxConstraints >> padding [
 	^ padding ifNil: [ self class defaultPadding ]
 ]
@@ -112,4 +103,21 @@ SpecBoxConstraints >> padding [
 SpecBoxConstraints >> padding: aNumber [
 
 	padding := aNumber
+]
+
+{ #category : #accessing }
+SpecBoxConstraints >> width [
+	"width of component.
+	 this just has sense in the case of expand=false"
+
+	^ width
+]
+
+{ #category : #accessing }
+SpecBoxConstraints >> width: aNumber [
+	"width of component.
+	 this just has sense in the case of expand=false"
+
+	self expand: false.
+	^ width
 ]

@@ -1,6 +1,10 @@
+"
+I define the constraints of a presenter to be shown in a Paned Layout.
+
+"
 Class {
 	#name : #SpecPanedConstraints,
-	#superclass : #Object,
+	#superclass : #SpecLayoutConstraints,
 	#instVars : [
 		'resize',
 		'shrink'

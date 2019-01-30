@@ -868,6 +868,12 @@ ComposablePresenter >> newMultiColumnList [
 ]
 
 { #category : #widgets }
+ComposablePresenter >> newNotebook [
+
+	^ self instantiate: NotebookPresenter
+]
+
+{ #category : #widgets }
 ComposablePresenter >> newNullPresenter [
 	^ self instantiate: NullPresenter
 ]
@@ -890,16 +896,6 @@ ComposablePresenter >> newRadioButton [
 { #category : #widgets }
 ComposablePresenter >> newSlider [
 	^ self instantiate: SliderPresenter
-]
-
-{ #category : #widgets }
-ComposablePresenter >> newTab [
-	^ self instantiate: TabPresenter
-]
-
-{ #category : #widgets }
-ComposablePresenter >> newTabManager [
-	^ self instantiate: TabManagerPresenter
 ]
 
 { #category : #widgets }

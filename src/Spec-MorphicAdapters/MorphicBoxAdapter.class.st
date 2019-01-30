@@ -1,7 +1,11 @@
+"
+I'm an adapter for Box Layouts.
+A paned layout will split (horizontally or vertically) panels (in fixed yet proportional spaces).
+"
 Class {
 	#name : #MorphicBoxAdapter,
 	#superclass : #MorphicLayoutAdapter,
-	#category : #'Spec-MorphicAdapters-Base'
+	#category : #'Spec-MorphicAdapters-Layout'
 }
 
 { #category : #factory }
@@ -41,8 +45,8 @@ MorphicBoxAdapter >> addConstraits: constraints toChild: childMorph [
 			theMorph 
 				hResizing: #spaceFill; 
 				vResizing: #rigid.
-			constraints minWidth ifNotNil: [ :w | theMorph width: w ].
-			constraints minHeight ifNotNil: [ :h | theMorph height: h ] ].
+			constraints width ifNotNil: [ :w | theMorph width: w ].
+			constraints height ifNotNil: [ :h | theMorph height: h ] ].
 	"constraints padding"
 	
 	^ theMorph 
@@ -52,7 +56,9 @@ MorphicBoxAdapter >> addConstraits: constraints toChild: childMorph [
 MorphicBoxAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [
 	| childMorph |
 
-	childMorph := self addConstraits: constraints toChild: aPresenter buildWithSpec.
+	childMorph := self 
+		addConstraits: constraints 
+		toChild: (aPresenter buildWithSpec: constraints spec).
 	constraints isPlacedAtStart
 		ifTrue: [ aPanel submorphs first addMorphBack: childMorph ]
 		ifFalse: [ aPanel submorphs second addMorphBack: childMorph ]
@@ -66,7 +72,6 @@ MorphicBoxAdapter >> layout: aLayout [
 	widget 
 		borderWidth: aLayout borderWidth;
 		cellInset: aLayout spacing.
-	
 	"widget homogeneous: aLayout isHomogeneous"
 ]
 
@@ -89,7 +94,7 @@ MorphicBoxAdapter >> newHorizontal [
 { #category : #factory }
 MorphicBoxAdapter >> newPanel [
 
-	^ Morph new 
+	^ PanelMorph new 
 		changeTableLayout;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;

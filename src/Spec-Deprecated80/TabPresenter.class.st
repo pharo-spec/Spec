@@ -23,7 +23,7 @@ Class {
 		'closeableHolder',
 		'selectedHolder'
 	],
-	#category : #'Spec-Core-Widgets'
+	#category : #'Spec-Deprecated80-Replaced'
 }
 
 { #category : #specs }

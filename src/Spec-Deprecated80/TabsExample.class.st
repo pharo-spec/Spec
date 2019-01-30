@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'manager'
 	],
-	#category : #'Spec-Examples-Standalone'
+	#category : #'Spec-Deprecated80-Replaced'
 }
 
 { #category : #specs }
