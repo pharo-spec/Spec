@@ -428,9 +428,9 @@ ListPresenter >> selectedIndex: anIndex [
 	self allowToSelect ifFalse: [ ^ self ].
 	self okToChange ifFalse: [ ^ self ].
 	
-	idx := anIndex min: self listSize.
+	idx := anIndex.
 	selection := self 
-					listElementAt: idx 
+					listElementAt: anIndex 
 					ifAbsent: [ idx := 0.
 								nil ].
 
@@ -458,12 +458,18 @@ ListPresenter >> selectedItem [
 { #category : #api }
 ListPresenter >> selectedItem: anItem [
 	"Set the item you want to be selected"
-	| index |
+	| index selectedItem |
 
 	self okToChange ifFalse: [ ^ self ].
-	index := self listItems identityIndexOf: anItem ifAbsent: [ ^ self ].
+
+	selectedItem := anItem.
+	index := self listItems
+		identityIndexOf: anItem
+		ifAbsent: [ 
+			selectedItem := nil.
+			0 "No selection" ].
 	selectionHolder index value: index.
-	selectionHolder selection value: anItem
+	selectionHolder selection value: selectedItem
 ]
 
 { #category : #private }
@@ -662,7 +668,8 @@ ListPresenter >> whenSelectionChangedDo: aBlock [
 	If you are interested in the items, use whenSelectedItemChanged:
 	If you are interested in the index, use whenSelectionIndexChanged:"
 
-	selectionHolder whenChangedDo: aBlock.
+	selectionHolder whenChangedDo: [ :selectionValueHolderValues |
+		aBlock cull: (selectionValueHolderValues collect: #value) ].
 	multiSelectionHolder whenChangedDo: aBlock.
 ]
 

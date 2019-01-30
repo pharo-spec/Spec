@@ -16,7 +16,7 @@ TablePresenterTest >> classToTest [
 { #category : #running }
 TablePresenterTest >> setUp [
 	super setUp.
-	presenter := TablePresenter new.
+	presenter := self classToTest new.
 ]
 
 { #category : #'tests-selection-index' }
