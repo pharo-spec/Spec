@@ -30,8 +30,7 @@ PanedLayout >> ensureHeightPosition: aMorph in: aRect [
 	firstMorph := aMorph submorphs first.
 	firstMorph vResizing = #rigid ifFalse: [ 
 		firstMorph vResizing: #rigid ].
-	firstMorph height: (self heightPositionIn: aRect extent)	
-
+	firstMorph privateBounds: (firstMorph bounds withHeight: (self heightPositionIn: aRect extent)).
 ]
 
 { #category : #private }
@@ -43,8 +42,7 @@ PanedLayout >> ensureWidthPosition: aMorph in: aRect [
 	firstMorph := aMorph submorphs first.
 	firstMorph hResizing = #rigid ifFalse: [ 
 		firstMorph hResizing: #rigid ].
-	firstMorph width: (self widthPositionIn: aRect extent)	
-
+	firstMorph privateBounds: (firstMorph bounds withWidth: (self widthPositionIn: aRect extent)).
 ]
 
 { #category : #private }

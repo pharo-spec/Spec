@@ -45,7 +45,7 @@ PanedResizerHorizontalMorph >> setTargetBounds [
 	| target |
 	
 	target := self target.
-	target bounds: (self target bounds withRight: self left - 1)
+	target bounds: (target bounds withRight: self left - 1)
 ]
 
 { #category : #private }

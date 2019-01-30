@@ -50,25 +50,7 @@ MorphicPanedAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [
 		toChild: (aPresenter buildWithSpec: constraints spec).
 
 	aPanel addMorphBack: childMorph.
-	self calulateLayoutsFor: aPanel submorphs.
 	self addSplitterIn: aPanel for: childMorph
-]
-
-{ #category : #private }
-MorphicPanedAdapter >> calulateLayoutsFor: anArray [
-	| pane |
-
-	"enter just the first time"
-	"anArray size = 1 ifFalse: [ ^ self ].
-	layout position ifNil: [ ^ self ].
-	
-	pane := anArray first.
-	""if it is a percentage, we need a different approach""
-	pane perform: self resizingSetSelector with: #rigid.
-	self flag: #TODO.
-	pane height: (layout position < 1 
-		ifTrue: [ 150 ]
-		ifFalse: [ layout position ])"
 ]
 
 { #category : #accessing }
