@@ -54,7 +54,8 @@ Class {
 		'listAnnouncer',
 		'backgroundColorBlock',
 		'autoDeselect',
-		'doubleClickActionHolder'
+		'doubleClickActionHolder',
+		'itemFilterBlockHolder'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -267,12 +268,13 @@ ListPresenter >> initializeValueHolders [
 	sortingBlockHolder := self defaultSortingBlock asValueHolder.
 	filteringBlockHolder := self defaultFilteringBlock asValueHolder.
 	itemFilterBlockHolder := nil asValueHolder.
+	doubleClickActionHolder := [  ] asValueHolder.
 	wrapBlockHolder := [ :object | object asStringOrText ] asValueHolder.
 	menuHolder := [ :menu :shifted | nil ] asValueHolder.
 	multiSelectionHolder := SpecSelectionsValueHolder new.
 	multiSelection := false asValueHolder.
 	allowToSelect := true asValueHolder.
-	backgroundColorBlock := [ :item :index | Color transparent ] asValueHolder.
+	backgroundColorBlock := [ :item :index | self theme backgroundColor ] asValueHolder.
 	autoDeselect := true asValueHolder.
 	listAnnouncer := Announcer new.
 
