@@ -30,7 +30,7 @@ PanedLayout >> ensureHeightPosition: aMorph in: aRect [
 	firstMorph := aMorph submorphs first.
 	firstMorph vResizing = #rigid ifFalse: [ 
 		firstMorph vResizing: #rigid ].
-	firstMorph width: (self heightPositionIn: aRect extent)	
+	firstMorph height: (self heightPositionIn: aRect extent)	
 
 ]
 
