@@ -41,7 +41,9 @@ BaselineOfSpec >> baseline: spec [
 			package: 'Spec-Tools' with: [ spec requires: #('Spec-PolyWidgets') ];
 			package: 'Spec-StubAdapter' with: [ spec requires: #('Spec-Core') ];
 			package: 'Spec-Examples' with: [ spec requires: #('Spec-Tools' 'Spec-Inspector') ];
-			package: 'Spec-Tests' with: [ spec requires: #('Spec-PolyWidgets' 'Spec-Examples') ] ]
+			package: 'Spec-Tests' with: [ spec requires: #('Spec-PolyWidgets' 'Spec-Examples') ] ].
+	spec for: #'pharo7.x' do: [ 
+		spec package: 'Spec-Pharo7To8Compatibility' ]
 ]
 
 { #category : #'pre/post load' }
