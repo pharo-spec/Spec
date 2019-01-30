@@ -31,7 +31,6 @@ MorphicListAdapter >> autoDeselect: aBoolean [
 
 { #category : #'widget API' }
 MorphicListAdapter >> backgroundColorFor: anItem [
-
 	^ self model backgroundColorFor: anItem
 ]
 
@@ -43,26 +42,37 @@ MorphicListAdapter >> backgroundColorFor: anItem at: index [
 
 { #category : #factory }
 MorphicListAdapter >> buildWidget [
-
-	^ PluggableListMorph new
-		model: self;
-		getListSizeSelector: #listSize;
+	widget := FTSpecPluggableIconListMorphAdaptor new
+		model: self model;
+		hideColumnHeaders;
+		beResizable;
 		autoDeselect: self autoDeselect;
+		getListElementSelector: #listElementAt:;
+		getListSizeSelector: #listSize;
 		getIndexSelector: #getIndex;
 		setIndexSelector: #setIndex:;
-		getSelectionListSelector: #getSelectionStateFor:;
-		setSelectionListSelector: #setSelectionStateFor:at:;
-		backgroundColoringBlockOrSelector: #backgroundColorFor:at: ;
-		getListElementSelector: #listElementAt: ;
+		getIndexesSelector: #getIndexes;
+		setIndexesSelector: #setIndexes:;
 		resetListSelector: #resetListSelection;
-		getMenuSelector: #menu:shifted: ;
+		getMenuSelector: #menu:shifted:;
 		setMultipleSelection: self multiSelection;
-		wrapSelector: #wrapItem:index: ;
-		setBalloonText: self help;
+		doubleClickSelector: #doubleClick:;
+		basicWrapSelector: #wrapItem:index:;
+		backgroundColoringBlockOrSelector: #backgroundColorFor:at:;
 		dragEnabled: self dragEnabled;
-		dropEnabled: self dropEnabled;	
+		dropEnabled: self dropEnabled;
+		setBalloonText: self help;
 		hResizing: #spaceFill;
-		vResizing: #spaceFill
+		vResizing: #spaceFill;
+		yourself.
+
+	self itemFilterBlock
+		ifNotNil: [ :block | 
+			widget
+				enableFilter: (FTSpecFilter block: block);
+				explicitFunction ].
+
+	^ widget
 ]
 
 { #category : #'widget API' }
@@ -75,6 +85,11 @@ MorphicListAdapter >> getIndex [
 MorphicListAdapter >> getSelectionStateFor: anIndex [
 
 	^ self model getSelectionStateFor: anIndex
+]
+
+{ #category : #'widget API' }
+MorphicListAdapter >> itemFilterBlock [
+	^ self model itemFilterBlock
 ]
 
 { #category : #'widget API' }

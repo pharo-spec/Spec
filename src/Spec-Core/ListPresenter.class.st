@@ -53,7 +53,8 @@ Class {
 		'wrapBlockHolder',
 		'listAnnouncer',
 		'backgroundColorBlock',
-		'autoDeselect'
+		'autoDeselect',
+		'itemFilterBlockHolder'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -67,10 +68,10 @@ ListPresenter class >> adapterName [
 { #category : #example }
 ListPresenter class >> example [
 	<sampleInstance>
-	^ self
-		new
+	^ self new
+		items: Smalltalk globals allClasses;
 		openWithSpec;
-		items: Smalltalk allClasses
+		yourself
 ]
 
 { #category : #specs }
@@ -132,7 +133,6 @@ ListPresenter >> backgroundColorBlock: aBlock [
 
 { #category : #api }
 ListPresenter >> backgroundColorFor: anItem at: index [
-
 	^ self backgroundColorBlock cull: anItem cull: index
 ]
 
@@ -224,6 +224,7 @@ ListPresenter >> getSelectionStateFor: anIndex [
 	"Return the current state of the item -if selected or not - in a multiple selection list"
 	"Answer true if the item at index _anIndex_ is selected"
 	
+	self flag: 'refactoring in progress'.
 	^ (multiSelectionHolder at: anIndex ifAbsent: [ ^ false ]) == true
 ]
 
@@ -247,19 +248,40 @@ ListPresenter >> initializePorts [
 
 { #category : #initialization }
 ListPresenter >> initializeValueHolders [
-	selectionHolder := SelectionValueHolder new.
+	selectionHolder := SpecSelectionValueHolder new.
 	listHolder := Array new asValueHolder.
 	sortingBlockHolder := self defaultSortingBlock asValueHolder.
 	filteringBlockHolder := self defaultFilteringBlock asValueHolder.
+	itemFilterBlockHolder := nil asValueHolder.
 	wrapBlockHolder := [ :object | object asStringOrText ] asValueHolder.
 	menuHolder := [ :menu :shifted | nil ] asValueHolder.
-	multiSelectionHolder := IdentityDictionary new asValueHolder.
+	multiSelectionHolder := SpecSelectionsValueHolder new.
 	multiSelection := false asValueHolder.
 	allowToSelect := true asValueHolder.
-	backgroundColorBlock := [ :item :index | self theme backgroundColor ] asValueHolder.
+	backgroundColorBlock := [ :item :index | Color transparent ] asValueHolder.
 	autoDeselect := true asValueHolder.
 	listAnnouncer := Announcer new.
 
+]
+
+{ #category : #api }
+ListPresenter >> itemBeginsWithFilter [
+	self itemFilterBlock: [ :each :pattern | each asLowercase beginsWith: pattern asLowercase ]
+]
+
+{ #category : #api }
+ListPresenter >> itemFilterBlock [
+	^ itemFilterBlockHolder value
+]
+
+{ #category : #api }
+ListPresenter >> itemFilterBlock: aBlock [
+	itemFilterBlockHolder value: aBlock
+]
+
+{ #category : #api }
+ListPresenter >> itemSubstringFilter [
+	self itemFilterBlock: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
 ]
 
 { #category : #api }
@@ -349,6 +371,14 @@ ListPresenter >> multiSelection: aBoolean [
 ]
 
 { #category : #private }
+ListPresenter >> prepareForFilteredDataSourceWith: items [
+
+	listHolder := items asValueHolder.
+	listHolder whenChangedDo: [ self refreshListItems ].
+	listItemsCache := nil
+]
+
+{ #category : #private }
 ListPresenter >> refreshListItems [
 
 	listItemsCache := nil.
@@ -384,7 +414,7 @@ ListPresenter >> resetFilteringBlock [
 ListPresenter >> resetListSelection [
 	"Reset the selection manager for multiple selection lists"
 	
-	multiSelectionHolder removeAll
+	multiSelectionHolder reset
 ]
 
 { #category : #api }
@@ -393,7 +423,7 @@ ListPresenter >> resetSelection [
 	"Unselect every items"
 
 	selectionHolder reset.
-	multiSelectionHolder removeAll
+	multiSelectionHolder reset
 ]
 
 { #category : #api }
@@ -406,7 +436,9 @@ ListPresenter >> resetSortingBlock [
 
 { #category : #api }
 ListPresenter >> selectAll [
-	self listItems withIndexDo: [ :each :i | self setSelectionStateFor: i at: true ].
+	self listItems ifEmpty: [ ^ self ].
+
+	self setIndexes: (1 to: self listItems size).
 	self changed: #listElementAt:
 ]
 
@@ -443,7 +475,7 @@ ListPresenter >> selectedIndexes [
 	"<api: #inspect>"
 	"Return the indexes of selected items on the case of a multiple selection list"
 	
-	^ multiSelectionHolder keys select: [:index | multiSelectionHolder at: index ]
+	^ multiSelectionHolder indexes
 ]
 
 { #category : #api }
@@ -483,27 +515,37 @@ ListPresenter >> selectedItems [
 	"<api: #inspect>"
 	"Return all the selected items in the case of a multiple selection list"
 
-	^ multiSelectionHolder keys select: [:index | multiSelectionHolder at: index ] thenCollect: [:index | self listElementAt: index ]
+	^ self selectedItemsAtIndexes: self selectedIndexes
+]
+
+{ #category : #private }
+ListPresenter >> selectedItemsAtIndexes: aCollectionOfIndex [
+	^ aCollectionOfIndex collect: [ :anIndex | self listElementAt: anIndex ]
 ]
 
 { #category : #api }
 ListPresenter >> selectedItemsSorted [
-	
 	"return all the selected items sorted by their index"
 
-	^ (multiSelectionHolder keys 
-			select: [:index | multiSelectionHolder at: index ]) sort 
-				collect: [:index | self listElementAt: index ]
+	^ self selectedItemsAtIndexes: self selectedIndexes sort
 ]
 
 { #category : #private }
 ListPresenter >> setIndex: anIndex [
 	"Set the index of the selected item when you click on an item"
 
-	self allowToSelect ifFalse: [ ^ self ].
-	self okToChange ifFalse: [ ^ self ].
+	(self allowToSelect and: [ self okToChange ]) ifFalse: [ ^ self ].
 	selectionHolder index value: anIndex.
-	selectionHolder selection value: (self listElementAt: anIndex).
+	selectionHolder selection value: (self listElementAt: anIndex)
+]
+
+{ #category : #private }
+ListPresenter >> setIndexes: aCollectionOfIndex [
+	"Set the indexexs of the selected items in case of multiple selection"
+
+	(self allowToSelect and: [ self okToChange and: [ self multiSelection ] ]) ifFalse: [ ^ self ].
+	multiSelectionHolder indexes value: aCollectionOfIndex.
+	multiSelectionHolder selections value: (self selectedItemsAtIndexes: aCollectionOfIndex)
 ]
 
 { #category : #api }
@@ -529,8 +571,9 @@ ListPresenter >> setSelectedItem: anIndex [
 { #category : #private }
 ListPresenter >> setSelectionStateFor: anIndex at: aBoolean [
 	"Set the selection state of the item at index _anIndex_ in the case of multiple selection list"
+	self flag: 'refactoring in progress'.
+	(self allowToSelect and: [ self multiSelection ]) ifFalse: [ ^ self ].
 
-	self allowToSelect ifFalse: [ ^ self ].
 	^ multiSelectionHolder at: anIndex put: aBoolean
 ]
 
@@ -651,6 +694,13 @@ ListPresenter >> whenSelectedItemChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
+ListPresenter >> whenSelectedItemsChanged: aBlock [
+	"Set a block to value when the select item is changed"
+	
+	multiSelectionHolder selections whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
 ListPresenter >> whenSelectionChanged: aBlock [
 	
 	self
@@ -662,15 +712,13 @@ ListPresenter >> whenSelectionChanged: aBlock [
 
 { #category : #'api-events' }
 ListPresenter >> whenSelectionChangedDo: aBlock [
-	"Set a block to value when the selection of the list has changed"
-
 	"The method should be used only if you are interested in the fact that there was a change, without caring about what has changed
 	If you are interested in the items, use whenSelectedItemChanged:
 	If you are interested in the index, use whenSelectionIndexChanged:"
 
 	selectionHolder whenChangedDo: [ :selectionValueHolderValues |
 		aBlock cull: (selectionValueHolderValues collect: #value) ].
-	multiSelectionHolder whenChangedDo: aBlock.
+	multiSelectionHolder selections whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
@@ -681,6 +729,13 @@ ListPresenter >> whenSelectionIndexChanged: aBlock [
 		transformWith: '`@receiver whenSelectionIndexChanged: `@argument'
 						-> '`@receiver whenSelectedIndexChangedDo: `@argument'.
 	^ self whenSelectedIndexChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+ListPresenter >> whenSelectionIndexesChanged: aBlock [
+	"Set a block to value when the selection index has changed"
+	
+	multiSelectionHolder indexes whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

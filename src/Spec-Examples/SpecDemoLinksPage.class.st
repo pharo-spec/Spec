@@ -7,7 +7,7 @@ Demo page for SpecDemoLinksPresenter
 Class {
 	#name : #SpecDemoLinksPage,
 	#superclass : #SpecDemoPage,
-	#category : #'Spec-Examples-Demo'
+	#category : #'Spec-Examples-Demo-Other'
 }
 
 { #category : #specs }

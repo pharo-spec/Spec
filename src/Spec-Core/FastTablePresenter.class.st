@@ -134,14 +134,6 @@ FastTablePresenter >> numberOfColumns: aNumber withWidths: widths [
 		FTArrayIndexColumn index: index width: (widths at: index) ] )
 ]
 
-{ #category : #private }
-FastTablePresenter >> prepareForFilteredDataSourceWith: items [
-
-	listHolder := items asValueHolder.
-	listHolder whenChangedDo: [ self refreshListItems ].
-	listItemsCache := nil
-]
-
 { #category : #initialization }
 FastTablePresenter >> registerEvents [
 	super registerEvents.
