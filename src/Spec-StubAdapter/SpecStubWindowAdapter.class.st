@@ -18,6 +18,10 @@ SpecStubWindowAdapter >> close [
 ]
 
 { #category : #factory }
+SpecStubWindowAdapter >> delete [
+]
+
+{ #category : #factory }
 SpecStubWindowAdapter >> open [
 ]
 
