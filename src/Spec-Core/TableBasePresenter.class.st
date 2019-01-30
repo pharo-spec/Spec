@@ -9,7 +9,9 @@ Class {
 	#instVars : [
 		'columns',
 		'showColumnHeadersHolder',
-		'isResizableHolder'
+		'isResizableHolder',
+		'selectionHolder',
+		'doubleClickActionHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -83,13 +85,7 @@ TableBasePresenter >> selectedIndex [
 ]
 
 { #category : #api }
-TableBasePresenter >> selectedItem [
-	
-	^ selectionHolder selection value
-]
-
-{ #category : #api }
-TableBasePresenter >> setSelectedIndex: anIndex [
+TableBasePresenter >> selectedIndex: anIndex [
 	
 	| selectedIndex selection |
 	selectedIndex := anIndex.
@@ -104,11 +100,17 @@ TableBasePresenter >> setSelectedIndex: anIndex [
 ]
 
 { #category : #api }
-TableBasePresenter >> setSelectedItem: anInteger [ 
+TableBasePresenter >> selectedItem [
+	
+	^ selectionHolder selection value
+]
+
+{ #category : #api }
+TableBasePresenter >> selectedItem: anInteger [ 
 	
 	| index |
-	index := self items indexOf: anInteger ifAbsent: [ ^ self ].
-	self setSelectedIndex: index
+	index := self items indexOf: anInteger.
+	self selectedIndex: index
 ]
 
 { #category : #api }

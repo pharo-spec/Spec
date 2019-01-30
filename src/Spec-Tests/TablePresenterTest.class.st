@@ -13,61 +13,137 @@ TablePresenterTest >> classToTest [
 	^ TablePresenter
 ]
 
-{ #category : #tests }
+{ #category : #running }
 TablePresenterTest >> setUp [
 	super setUp.
 	presenter := TablePresenter new.
 ]
 
-{ #category : #tests }
+{ #category : #'tests-selection-index' }
+TablePresenterTest >> testSelectIndexOutsideRangeUnsetsSelectedIndex [
+
+	window := presenter
+		items: #(10 20 30);
+		openWithSpec.
+		
+	presenter selectedIndex: 4.
+	
+	self assert: presenter selectedIndex equals: 0
+]
+
+{ #category : #'tests-selection-index' }
+TablePresenterTest >> testSelectIndexOutsideRangeUnsetsSelectedItem [
+
+	window := presenter
+		items: #(10 20 30);
+		openWithSpec.
+		
+	presenter selectedIndex: 4.
+	
+	self assert: presenter selectedItem equals: nil
+]
+
+{ #category : #'tests-selection-index' }
 TablePresenterTest >> testSelectIndexSetsSelectedIndex [
 
 	window := presenter
 		items: #(10 20 30);
 		openWithSpec.
 		
-	presenter setSelectedIndex: 1.
+	presenter selectedIndex: 1.
 	
 	self assert: presenter selectedIndex equals: 1
 ]
 
-{ #category : #tests }
+{ #category : #'tests-selection-index' }
 TablePresenterTest >> testSelectIndexSetsSelectedItem [
 
 	window := presenter
 		items: #(10 20 30);
 		openWithSpec.
 		
-	presenter setSelectedIndex: 1.
+	presenter selectedIndex: 1.
 	
 	self assert: presenter selectedItem equals: 10
 ]
 
-{ #category : #tests }
-TablePresenterTest >> testSelectValueSetsSelectedIndex [
+{ #category : #'tests-selection-item' }
+TablePresenterTest >> testSelectItemOutsideRangeUnsetsSelectedIndex [
 
 	window := presenter
 		items: #(10 20 30);
 		openWithSpec.
 		
-	presenter setSelectedItem: 20.
+	presenter selectedItem: 40.
+	
+	self assert: presenter selectedIndex equals: 0
+]
+
+{ #category : #'tests-selection-item' }
+TablePresenterTest >> testSelectItemOutsideRangeUnsetsSelectedItem [
+
+	window := presenter
+		items: #(10 20 30);
+		openWithSpec.
+		
+	presenter selectedItem: 40.
+	
+	self assert: presenter selectedItem equals: nil
+]
+
+{ #category : #'tests-selection-item' }
+TablePresenterTest >> testSelectItemSetsSelectedIndex [
+
+	window := presenter
+		items: #(10 20 30);
+		openWithSpec.
+		
+	presenter selectedItem: 20.
 	
 	self assert: presenter selectedIndex equals: 2
 ]
 
-{ #category : #tests }
-TablePresenterTest >> testSelectValueSetsSelectedItem [
+{ #category : #'tests-selection-item' }
+TablePresenterTest >> testSelectItemSetsSelectedItem [
 
 	window := presenter
 		items: #(10 20 30);
 		openWithSpec.
 		
-	presenter setSelectedItem: 20.
+	presenter selectedItem: 20.
 	
 	self assert: presenter selectedItem equals: 20
 ]
 
-{ #category : #tests }
+{ #category : #'tests-selection-index' }
+TablePresenterTest >> testSetSelectIndexOutsideRangeRaisesSelectionChangeEventWithUnsetIndex [
+
+	| selectedIndex |
+	window := presenter
+		items: #(10 20 30);
+		openWithSpec.
+
+	presenter whenSelectionChangedDo: [ :selection | selectedIndex := selection first ].
+	presenter selectedIndex: 4.
+	
+	self assert: selectedIndex equals: 0
+]
+
+{ #category : #'tests-selection-index' }
+TablePresenterTest >> testSetSelectIndexOutsideRangeRaisesSelectionChangeEventWithUnsetItem [
+
+	| selectedItem |
+	window := presenter
+		items: #(10 20 30);
+		openWithSpec.
+
+	presenter whenSelectionChangedDo: [ :selection | selectedItem := selection second ].
+	presenter selectedIndex: 4.
+	
+	self assert: selectedItem equals: nil
+]
+
+{ #category : #'tests-selection-index' }
 TablePresenterTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedIndex [
 
 	| selectedIndex |
@@ -76,12 +152,12 @@ TablePresenterTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedIn
 		openWithSpec.
 
 	presenter whenSelectionChangedDo: [ :selection | selectedIndex := selection first ].
-	presenter setSelectedIndex: 1.
+	presenter selectedIndex: 1.
 	
 	self assert: selectedIndex equals: 1
 ]
 
-{ #category : #tests }
+{ #category : #'tests-selection-index' }
 TablePresenterTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedItem [
 
 	| selectedElement |
@@ -90,12 +166,12 @@ TablePresenterTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedIt
 		openWithSpec.
 
 	presenter whenSelectionChangedDo: [ :selection | selectedElement := selection second ].
-	presenter setSelectedIndex: 1.
+	presenter selectedIndex: 1.
 	
 	self assert: selectedElement equals: 10
 ]
 
-{ #category : #tests }
+{ #category : #'tests-selection-index' }
 TablePresenterTest >> testSetSelectIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
 
 	| selectedIndex |
@@ -104,12 +180,12 @@ TablePresenterTest >> testSetSelectIndexRaisesSelectionIndexChangeEventWithSelec
 		openWithSpec.
 
 	presenter whenSelectedIndexChangedDo: [ :selection | selectedIndex := selection ].
-	presenter setSelectedIndex: 1.
+	presenter selectedIndex: 1.
 	
 	self assert: selectedIndex equals: 1
 ]
 
-{ #category : #tests }
+{ #category : #'tests-selection-index' }
 TablePresenterTest >> testSetSelectIndexRaisesSelectionItemChangeEventWithSelectedIndex [
 
 	| selectedItem |
@@ -118,12 +194,40 @@ TablePresenterTest >> testSetSelectIndexRaisesSelectionItemChangeEventWithSelect
 		openWithSpec.
 
 	presenter whenSelectedItemChangedDo: [ :selection | selectedItem := selection ].
-	presenter setSelectedIndex: 1.
+	presenter selectedIndex: 1.
 	
 	self assert: selectedItem equals: 10
 ]
 
-{ #category : #tests }
+{ #category : #'tests-selection-item' }
+TablePresenterTest >> testSetSelectItemOutsideRangeRaisesSelectionChangeEventWithUnsetIndex [
+
+	| selectedIndex |
+	window := presenter
+		items: #(10 20 30);
+		openWithSpec.
+
+	presenter whenSelectionChangedDo: [ :selection | selectedIndex := selection first ].
+	presenter selectedItem: 40.
+	
+	self assert: selectedIndex equals: 0
+]
+
+{ #category : #'tests-selection-item' }
+TablePresenterTest >> testSetSelectItemOutsideRangeRaisesSelectionChangeEventWithUnsetItem [
+
+	| selectedItem |
+	window := presenter
+		items: #(10 20 30);
+		openWithSpec.
+
+	presenter whenSelectionChangedDo: [ :selection | selectedItem := selection second ].
+	presenter selectedItem: 40.
+	
+	self assert: selectedItem equals: nil
+]
+
+{ #category : #'tests-selection-item' }
 TablePresenterTest >> testSetSelectItemRaisesSelectionChangeEventWithSelectedIndex [
 
 	| selectedIndex |
@@ -132,12 +236,12 @@ TablePresenterTest >> testSetSelectItemRaisesSelectionChangeEventWithSelectedInd
 		openWithSpec.
 
 	presenter whenSelectionChangedDo: [ :selection | selectedIndex := selection first ].
-	presenter setSelectedItem: 20.
+	presenter selectedItem: 20.
 	
 	self assert: selectedIndex equals: 2
 ]
 
-{ #category : #tests }
+{ #category : #'tests-selection-item' }
 TablePresenterTest >> testSetSelectItemRaisesSelectionChangeEventWithSelectedItem [
 
 	| selectedElement |
@@ -146,12 +250,12 @@ TablePresenterTest >> testSetSelectItemRaisesSelectionChangeEventWithSelectedIte
 		openWithSpec.
 
 	presenter whenSelectionChangedDo: [ :selection | selectedElement := selection second ].
-	presenter setSelectedItem: 20.
+	presenter selectedItem: 20.
 	
 	self assert: selectedElement equals: 20
 ]
 
-{ #category : #tests }
+{ #category : #'tests-selection-item' }
 TablePresenterTest >> testSetSelectItemRaisesSelectionIndexChangeEventWithSelectedIndex [
 
 	| selectedIndex |
@@ -160,18 +264,32 @@ TablePresenterTest >> testSetSelectItemRaisesSelectionIndexChangeEventWithSelect
 		openWithSpec.
 
 	presenter whenSelectedIndexChangedDo: [ :selection | selectedIndex := selection ].
-	presenter setSelectedItem: 10.
+	presenter selectedItem: 10.
 	
 	self assert: selectedIndex equals: 1
 ]
 
-{ #category : #tests }
+{ #category : #'tests-selection-item' }
+TablePresenterTest >> testSetSelectItemRaisesSelectionItemChangeEventWithSelectedItem [
+
+	| selectedItem |
+	window := presenter
+		items: #(10 20 30);
+		openWithSpec.
+
+	presenter whenSelectedItemChangedDo: [ :selection | selectedItem := selection ].
+	presenter selectedItem: 10.
+	
+	self assert: selectedItem equals: 10
+]
+
+{ #category : #'tests-smoke' }
 TablePresenterTest >> testSmokeOpenEmptyTablePresenter [
 
 	window := presenter openWithSpec
 ]
 
-{ #category : #tests }
+{ #category : #'tests-smoke' }
 TablePresenterTest >> testSmokeOpenTablePresenterWithItemsButNoColumns [
 
 	window := presenter
