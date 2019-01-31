@@ -7,7 +7,7 @@ Class {
 { #category : #running }
 ColumnedListPresenterTest >> classToTest [
 	
-	^ TablePresenter
+	^ ColumnedListPresenter
 ]
 
 { #category : #tests }
