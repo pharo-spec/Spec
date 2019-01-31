@@ -467,15 +467,7 @@ MessageBrowser >> initializeDropList [
 MessageBrowser >> initializePresenter [
 	
 	listModel whenSelectedItemChangedDo: [ :item | 
-		toolbarModel method: item.
-		textModel behavior: (item ifNotNil: [ item methodClass ]).
-		textModel doItReceiver: textModel behavior.
-		textModel text: (self textConverter
-			method: item;
-			getText).
-		textModel clearUndoManager.
-		self installIconStylerFor: item ].
-	
+		self selectItem: item ].
 	listModel whenListChanged: [ self updateTitle ].
 	titleHolder whenChangedDo: [ self updateTitle ].
 	textModel acceptBlock: [ :text :notifyer | 
@@ -687,6 +679,19 @@ MessageBrowser >> searchedString: searchedString in: aString [
 			 firstIndex > 0
 						ifTrue: [ interval := firstIndex to: (firstIndex+searchedString size - 1) ] ].
 	^ interval
+]
+
+{ #category : #private }
+MessageBrowser >> selectItem: item [
+	toolbarModel method: item.
+	textModel behavior: (item ifNotNil: [ item methodClass ]).
+	textModel doItReceiver: textModel behavior.
+	textModel text: (self textConverter
+		method: item;
+		getText).
+	textModel clearUndoManager.
+	self installIconStylerFor: item
+
 ]
 
 { #category : #api }
