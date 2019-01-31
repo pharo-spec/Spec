@@ -15,7 +15,7 @@ Class {
 { #category : #specs }
 ColumnedListPresenter class >> adapterName [
 
-	^ #TableAdapter
+	^ #ColumnedListAdapter
 ]
 
 { #category : #api }
