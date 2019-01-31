@@ -81,17 +81,17 @@ ListPresenter class >> title [
 
 { #category : #api }
 ListPresenter >> allowToSelect [
-	"<api: #inspect>"
 	"Return whether the list items can be selected or not"
-
+	
+	self deprecated: 'Should not use. Use #selectionMode instead'.
 	^ allowToSelect value
 ]
 
 { #category : #api }
 ListPresenter >> allowToSelect: aBoolean [
-	"<api: #boolean getter: #allowToSelect registration: #whenAllowToSelectChanged:>"
 	"Set if the list items can be selected or not"
 
+	self deprecated: 'Should not use. Use #selectionMode: instead'.
 	allowToSelect value: aBoolean.
 	aBoolean 
 		ifFalse: [ self resetSelection ].
@@ -99,39 +99,41 @@ ListPresenter >> allowToSelect: aBoolean [
 
 { #category : #api }
 ListPresenter >> autoDeselect [
-	"<api: #inspect>"
 	"Return whether the list items can be selected if it's already the selected item"
 	"If true, clicking again on the selected item will unselect it"
 
+	self deprecated: 'Should not use. This feature is not supported anymore'.	
 	^ autoDeselect value
 ]
 
 { #category : #api }
 ListPresenter >> autoDeselect: aBoolean [
-	"<api: #boolean getter: #autoDeselect registration: #whenAutoSelectChanged:>"
 	"Set if the list items can be selected again"
 
+	self deprecated: 'Should not use. This feature is not supported anymore'.
 	autoDeselect value: aBoolean
 ]
 
 { #category : #api }
 ListPresenter >> backgroundColorBlock [
-	"<api: #inspect>"
 	"Return the block use to compute the background color for each item"
 
+	self deprecated: 'Should not use. This feature is not supported anymore. This feature depends on the theme'.
 	^ backgroundColorBlock value
 ]
 
 { #category : #api }
 ListPresenter >> backgroundColorBlock: aBlock [
-	"<api: #block getter: #backgroundColorBlock registration: #whenBackgroundColorBlockChanged:>"
 	"Set the block used to compute an item background"
 
+	self deprecated: 'Should not use. This feature is not supported anymore. This feature depends on the theme'.
 	backgroundColorBlock value: aBlock
 ]
 
 { #category : #api }
 ListPresenter >> backgroundColorFor: anItem at: index [
+
+	self deprecated: 'Should not use. This feature is not supported anymore. This feature depends on the theme'.
 	^ self backgroundColorBlock cull: anItem cull: index
 ]
 
