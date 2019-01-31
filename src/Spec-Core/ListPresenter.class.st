@@ -240,7 +240,8 @@ ListPresenter >> getSelectionStateFor: anIndex [
 	"Answer true if the item at index _anIndex_ is selected"
 	
 	self flag: 'refactoring in progress'.
-	^ (multiSelectionHolder at: anIndex ifAbsent: [ ^ false ]) == true
+
+	^ multiSelectionHolder indexes
 ]
 
 { #category : #initialization }
@@ -263,7 +264,7 @@ ListPresenter >> initializePorts [
 
 { #category : #initialization }
 ListPresenter >> initializeValueHolders [
-	selectionHolder := SpecSelectionValueHolder new.
+	selectionHolder := SelectionValueHolder new.
 	listHolder := Array new asValueHolder.
 	sortingBlockHolder := self defaultSortingBlock asValueHolder.
 	filteringBlockHolder := self defaultFilteringBlock asValueHolder.
@@ -594,7 +595,7 @@ ListPresenter >> setSelectionStateFor: anIndex at: aBoolean [
 	self flag: 'refactoring in progress'.
 	(self allowToSelect and: [ self multiSelection ]) ifFalse: [ ^ self ].
 
-	^ multiSelectionHolder at: anIndex put: aBoolean
+	^ self setIndexes: (self selectedIndexes value copyWith: anIndex) asSet asOrderedCollection
 ]
 
 { #category : #api }

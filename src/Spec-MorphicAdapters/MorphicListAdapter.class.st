@@ -42,29 +42,28 @@ MorphicListAdapter >> backgroundColorFor: anItem at: index [
 
 { #category : #factory }
 MorphicListAdapter >> buildWidget [
-	widget := FTSpecPluggableIconListMorphAdaptor new
-		model: self model;
-		hideColumnHeaders;
-		beResizable;
-		autoDeselect: self autoDeselect;
-		getListElementSelector: #listElementAt:;
-		getListSizeSelector: #listSize;
-		getIndexSelector: #getIndex;
-		setIndexSelector: #setIndex:;
-		getIndexesSelector: #getIndexes;
-		setIndexesSelector: #setIndexes:;
-		resetListSelector: #resetListSelection;
-		getMenuSelector: #menu:shifted:;
-		setMultipleSelection: self multiSelection;
-		doubleClickSelector: #doubleClick:;
-		basicWrapSelector: #wrapItem:index:;
-		backgroundColoringBlockOrSelector: #backgroundColorFor:at:;
-		dragEnabled: self dragEnabled;
-		dropEnabled: self dropEnabled;
-		setBalloonText: self help;
-		hResizing: #spaceFill;
-		vResizing: #spaceFill;
-		yourself.
+	widget := FTPluggableIconListMorphAdaptor new
+		   model: self model;
+			hideColumnHeaders;
+			beResizable;
+			getListSizeSelector: #listSize ;
+			getListElementSelector: #listElementAt: ;
+			getIndexSelector: #getIndex ;
+			setIndexSelector: #setIndex: ;
+			getSelectionListSelector:	#getSelectionStateFor: ;
+			setSelectionListSelector:	#setSelectionStateFor:at: ;
+			resetListSelector:	#resetListSelection ; 
+			getMenuSelector:	#menu:shifted: ;
+			setMultipleSelection: self multiSelection;
+			doubleClickSelector: #doubleClick: ;
+			basicWrapSelector: #wrapItem: ;
+			dragEnabled:	self dragEnabled ;
+			dropEnabled:	self dropEnabled ; 	
+			setBalloonText: self help; 
+			hResizing: 	#spaceFill;
+			vResizing: 	#spaceFill;
+			selectRowIndex: 1;
+			yourself.
 
 	self itemFilterBlock
 		ifNotNil: [ :block | 
