@@ -39,9 +39,8 @@ todo
 "
 Class {
 	#name : #ListPresenter,
-	#superclass : #AbstractWidgetPresenter,
+	#superclass : #ColumnedListPresenter,
 	#instVars : [
-		'selectionHolder',
 		'listHolder',
 		'menuHolder',
 		'multiSelectionHolder',
@@ -54,10 +53,9 @@ Class {
 		'listAnnouncer',
 		'backgroundColorBlock',
 		'autoDeselect',
-		'doubleClickActionHolder',
 		'itemFilterBlockHolder'
 	],
-	#category : #'Spec-Core-Widgets'
+	#category : #'Spec-Core-Widgets-Table'
 }
 
 { #category : #specs }
