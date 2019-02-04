@@ -39,11 +39,10 @@ todo
 "
 Class {
 	#name : #ListPresenter,
-	#superclass : #AbstractWidgetPresenter,
+	#superclass : #AbstractListPresenter,
 	#instVars : [
 		'listHolder',
 		'menuHolder',
-		'multiSelectionHolder',
 		'multiSelection',
 		'allowToSelect',
 		'listItemsCache',
@@ -54,8 +53,6 @@ Class {
 		'backgroundColorBlock',
 		'autoDeselect',
 		'itemFilterBlockHolder',
-		'selectionMode',
-		'selectionHolder',
 		'doubleClickActionHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
@@ -470,123 +467,6 @@ ListPresenter >> selectAll [
 	self changed: #listElementAt:
 ]
 
-{ #category : #selection }
-ListPresenter >> selectIndex: anInteger [ 
-	
-	self selectionMode selectIndex: anInteger on: self
-]
-
-{ #category : #selection }
-ListPresenter >> selectItem: anItem [ 
-	
-	self selectionMode selectItem: anItem on: self
-]
-
-{ #category : #api }
-ListPresenter >> selectedIndex [
-	"Return the index of the selected item
-	In the case of a multiple selection list, it returns the last selected item"
-	
-	self
-		deprecated: 'Use the #selection object instead. This method assumes single selection'
-		transformWith: '`@receiver selectedIndex'
-						-> '`@receiver selection selectedIndex'.
-	
-	^  self selection selectedIndex
-]
-
-{ #category : #api }
-ListPresenter >> selectedIndex: anIndex [
-
-	"Set the index of the item you want to be selected"
-	| idx selection |
-	self
-		deprecated: 'Use #selectIndex: instead'
-		transformWith: '`@receiver selectedIndex: `@arg'
-						-> '`@receiver selectIndex: `@arg'.
-	
-	self allowToSelect ifFalse: [ ^ self ].
-	self okToChange ifFalse: [ ^ self ].
-	
-	idx := anIndex.
-	selection := self 
-					listElementAt: anIndex 
-					ifAbsent: [ idx := 0.
-								nil ].
-
-	selectionHolder index value: idx.
-	selectionHolder selection value: selection.
-]
-
-{ #category : #api }
-ListPresenter >> selectedIndexes [
-	"<api: #inspect>"
-	"Return the indexes of selected items on the case of a multiple selection list"
-	
-	^ multiSelectionHolder indexes
-]
-
-{ #category : #api }
-ListPresenter >> selectedItem [
-	"Return the selected item.
-	In the case of a multiple selection list, it returns the last selected item"
-	
-	self
-		deprecated: 'Use the #selection object instead. This method assumes single selection'
-		transformWith: '`@receiver selectedItem'
-						-> '`@receiver selection selectedItem'.
-	
-	^ self selection selectedItem
-]
-
-{ #category : #api }
-ListPresenter >> selectedItem: anItem [
-	"Set the item you want to be selected"
-	| index selectedItem |
-	
-	self
-		deprecated: 'Use #selectItem: instead'
-		transformWith: '`@receiver selectedItem: `@arg'
-						-> '`@receiver selectItem: `@arg'.
-
-	self okToChange ifFalse: [ ^ self ].
-
-	selectedItem := anItem.
-	index := self listItems
-		identityIndexOf: anItem
-		ifAbsent: [ 
-			selectedItem := nil.
-			0 "No selection" ].
-	selectionHolder index value: index.
-	selectionHolder selection value: selectedItem
-]
-
-{ #category : #private }
-ListPresenter >> selectedItemHolder [
-
-	^ selectionHolder selection
-]
-
-{ #category : #api }
-ListPresenter >> selectedItems [
-	"<api: #inspect>"
-	"Return all the selected items in the case of a multiple selection list"
-
-	^ self selectedItemsAtIndexes: self selectedIndexes
-]
-
-{ #category : #private }
-ListPresenter >> selectedItemsAtIndexes: aCollectionOfIndex [
-	^ aCollectionOfIndex collect: [ :anIndex | self listElementAt: anIndex ]
-]
-
-{ #category : #api }
-ListPresenter >> selectedItemsSorted [
-	"return all the selected items sorted by their index"
-
-	^ self selectedItemsAtIndexes: self selectedIndexes sort
-]
-
 { #category : #accessing }
 ListPresenter >> selection [
 	
@@ -597,44 +477,6 @@ ListPresenter >> selection [
 ListPresenter >> selectionMode [
 	
 	^ selectionMode
-]
-
-{ #category : #private }
-ListPresenter >> setIndex: anIndex [
-	"Set the index of the selected item when you click on an item"
-
-	(self allowToSelect and: [ self okToChange ]) ifFalse: [ ^ self ].
-	selectionHolder index value: anIndex.
-	selectionHolder selection value: (self listElementAt: anIndex)
-]
-
-{ #category : #private }
-ListPresenter >> setIndexes: aCollectionOfIndex [
-	"Set the indexexs of the selected items in case of multiple selection"
-
-	(self allowToSelect and: [ self okToChange and: [ self multiSelection ] ]) ifFalse: [ ^ self ].
-	multiSelectionHolder indexes value: aCollectionOfIndex.
-	multiSelectionHolder selections value: (self selectedItemsAtIndexes: aCollectionOfIndex)
-]
-
-{ #category : #api }
-ListPresenter >> setSelectedIndex: anIndex [
-	self
-		deprecated: 'Use #selectedIndex: instead'
-		transformWith:
-			'`@receiver setSelectedIndex: `@argument'
-				-> '`@receiver selectedIndex: `@argument'.
-	^ self selectIndex: anIndex
-]
-
-{ #category : #api }
-ListPresenter >> setSelectedItem: anIndex [
-	self
-		deprecated: 'Use #selectedItem: instead'
-		transformWith:
-			'`@receiver setSelectedItem: `@argument'
-				-> '`@receiver selectedItem:`@argument'.
-	^ self selectItem: anIndex
 ]
 
 { #category : #private }
