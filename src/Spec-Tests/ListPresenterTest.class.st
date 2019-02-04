@@ -30,38 +30,29 @@ ListPresenterTest >> testDoubleClickCallsDoubleClickAction [
 
 { #category : #'tests-doubleClick' }
 ListPresenterTest >> testDoubleClickOutsideSelectionUnsetsSelectedIndex [
-
 	window := testedInstance
 		items: #(10 20 30);
 		openWithSpec.
-
 	testedInstance doubleClickAtIndex: 4.
-	
-	self assert: testedInstance selectedIndex equals: 0
+	self assert: testedInstance selection selectedIndex equals: 0
 ]
 
 { #category : #'tests-doubleClick' }
 ListPresenterTest >> testDoubleClickOutsideSelectionUnsetsSelectedItem [
-
 	window := testedInstance
 		items: #(10 20 30);
 		openWithSpec.
-
 	testedInstance doubleClickAtIndex: 4.
-	
-	self assert: testedInstance selectedItem equals: nil
+	self assert: testedInstance selection selectedItem equals: nil
 ]
 
 { #category : #'tests-doubleClick' }
 ListPresenterTest >> testDoubleClickSelectsItem [
-
 	window := testedInstance
 		items: #(10 20 30);
 		openWithSpec.
-
 	testedInstance doubleClickAtIndex: 2.
-	
-	self assert: testedInstance selectedIndex equals: 2
+	self assert: testedInstance selection selectedIndex equals: 2
 ]
 
 { #category : #tests }
@@ -75,267 +66,180 @@ ListPresenterTest >> testSelectAll [
 	self assertCollection: testedInstance selectedItems hasSameElements: items
 ]
 
-{ #category : #'tests-selection-index' }
+{ #category : #'tests-singleselection-index' }
 ListPresenterTest >> testSelectIndexOutsideRangeUnsetsSelectedIndex [
+	self useSingleSelectionList.			
+	testedInstance selectIndex: 4.
 
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-		
-	testedInstance selectedIndex: 4.
-	
-	self assert: testedInstance selectedIndex equals: 0
+	self assert: (testedInstance selection includesIndex: 0)
 ]
 
-{ #category : #'tests-selection-index' }
+{ #category : #'tests-singleselection-index' }
 ListPresenterTest >> testSelectIndexOutsideRangeUnsetsSelectedItem [
-
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-		
-	testedInstance selectedIndex: 4.
-	
-	self assert: testedInstance selectedItem equals: nil
+	self useSingleSelectionList.
+	testedInstance selectIndex: 4.
+	self assert: testedInstance selection selectedItem equals: nil
 ]
 
-{ #category : #'tests-selection-index' }
+{ #category : #'tests-singleselection-index' }
 ListPresenterTest >> testSelectIndexSetsSelectedIndex [
-
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-		
-	testedInstance selectedIndex: 1.
-	
-	self assert: testedInstance selectedIndex equals: 1
+	self useSingleSelectionList.
+	testedInstance selectIndex: 1.
+	self assert: testedInstance selection selectedIndex equals: 1
 ]
 
-{ #category : #'tests-selection-index' }
+{ #category : #'tests-singleselection-index' }
 ListPresenterTest >> testSelectIndexSetsSelectedItem [
-
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-		
-	testedInstance selectedIndex: 1.
-	
-	self assert: testedInstance selectedItem equals: 10
+	self useSingleSelectionList.
+	testedInstance selectIndex: 1.
+	self assert: testedInstance selection selectedItem equals: 10
 ]
 
-{ #category : #'tests-selection-item' }
+{ #category : #'tests-singleselection-item' }
 ListPresenterTest >> testSelectItemOutsideRangeUnsetsSelectedIndex [
-
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-		
-	testedInstance selectedItem: 40.
-	
-	self assert: testedInstance selectedIndex equals: 0
+	self useSingleSelectionList.
+	testedInstance selectItem: 40.
+	self assert: testedInstance selection selectedIndex equals: 0
 ]
 
-{ #category : #'tests-selection-item' }
+{ #category : #'tests-singleselection-item' }
 ListPresenterTest >> testSelectItemOutsideRangeUnsetsSelectedItem [
-
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-		
-	testedInstance selectedItem: 40.
-	
-	self assert: testedInstance selectedItem equals: nil
+	self useSingleSelectionList.
+	testedInstance selectItem: 40.
+	self assert: testedInstance selection selectedItem equals: nil
 ]
 
-{ #category : #'tests-selection-item' }
+{ #category : #'tests-singleselection-item' }
 ListPresenterTest >> testSelectItemSetsSelectedIndex [
-
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-		
-	testedInstance selectedItem: 20.
-	
-	self assert: testedInstance selectedIndex equals: 2
+	self useSingleSelectionList.
+	testedInstance selectItem: 20.
+	self assert: testedInstance selection selectedIndex equals: 2
 ]
 
-{ #category : #'tests-selection-item' }
+{ #category : #'tests-singleselection-item' }
 ListPresenterTest >> testSelectItemSetsSelectedItem [
-
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-		
-	testedInstance selectedItem: 20.
-	
-	self assert: testedInstance selectedItem equals: 20
+	self useSingleSelectionList.
+	testedInstance selectItem: 20.
+	self assert: testedInstance selection selectedItem equals: 20
 ]
 
-{ #category : #'tests-selection-index' }
+{ #category : #'tests-singleselection-index' }
 ListPresenterTest >> testSetSelectIndexOutsideRangeRaisesSelectionChangeEventWithUnsetIndex [
-
 	| selectedIndex |
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-
-	testedInstance whenSelectionChangedDo: [ :selection | selectedIndex := selection first ].
-	testedInstance selectedIndex: 4.
-	
+	self useSingleSelectionList.
+	testedInstance
+		whenSelectionChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
+	testedInstance selectIndex: 4.
 	self assert: selectedIndex equals: 0
 ]
 
-{ #category : #'tests-selection-index' }
+{ #category : #'tests-singleselection-index' }
 ListPresenterTest >> testSetSelectIndexOutsideRangeRaisesSelectionChangeEventWithUnsetItem [
-
 	| selectedItem |
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-
-	testedInstance whenSelectionChangedDo: [ :selection | selectedItem := selection second ].
-	testedInstance selectedIndex: 4.
-	
+	self useSingleSelectionList.
+	testedInstance
+		whenSelectionChangedDo: [ :selection | selectedItem := selection selectedItem ].
+	testedInstance selectIndex: 4.
 	self assert: selectedItem equals: nil
 ]
 
-{ #category : #'tests-selection-index' }
+{ #category : #'tests-singleselection-index' }
 ListPresenterTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedIndex [
-
 	| selectedIndex |
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-
-	testedInstance whenSelectionChangedDo: [ :selection | selectedIndex := selection first ].
-	testedInstance selectedIndex: 1.
-	
+	self useSingleSelectionList.
+	testedInstance
+		whenSelectionChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
+	testedInstance selectIndex: 1.
 	self assert: selectedIndex equals: 1
 ]
 
-{ #category : #'tests-selection-index' }
+{ #category : #'tests-singleselection-index' }
 ListPresenterTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedItem [
-
 	| selectedElement |
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-
-	testedInstance whenSelectionChangedDo: [ :selection | selectedElement := selection second ].
-	testedInstance selectedIndex: 1.
-	
+	self useSingleSelectionList.
+	testedInstance
+		whenSelectionChangedDo: [ :selection | selectedElement := selection selectedItem ].
+	testedInstance selectIndex: 1.
 	self assert: selectedElement equals: 10
 ]
 
-{ #category : #'tests-selection-index' }
+{ #category : #'tests-singleselection-index' }
 ListPresenterTest >> testSetSelectIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
-
 	| selectedIndex |
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-
-	testedInstance whenSelectedIndexChangedDo: [ :selection | selectedIndex := selection ].
-	testedInstance selectedIndex: 1.
-	
+	self useSingleSelectionList.
+	testedInstance
+		whenSelectedIndexChangedDo: [ :selection | selectedIndex := selection ].
+	testedInstance selectIndex: 1.
 	self assert: selectedIndex equals: 1
 ]
 
-{ #category : #'tests-selection-index' }
+{ #category : #'tests-singleselection-index' }
 ListPresenterTest >> testSetSelectIndexRaisesSelectionItemChangeEventWithSelectedIndex [
-
 	| selectedItem |
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-
-	testedInstance whenSelectedItemChangedDo: [ :selection | selectedItem := selection ].
-	testedInstance selectedIndex: 1.
-	
+	self useSingleSelectionList.
+	testedInstance
+		whenSelectedItemChangedDo: [ :selection | selectedItem := selection ].
+	testedInstance selectIndex: 1.
 	self assert: selectedItem equals: 10
 ]
 
-{ #category : #'tests-selection-item' }
+{ #category : #'tests-singleselection-item' }
 ListPresenterTest >> testSetSelectItemOutsideRangeRaisesSelectionChangeEventWithUnsetIndex [
-
 	| selectedIndex |
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-
-	testedInstance whenSelectionChangedDo: [ :selection | selectedIndex := selection first ].
-	testedInstance selectedItem: 40.
-	
+	self useSingleSelectionList.
+	testedInstance
+		whenSelectionChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
+	testedInstance selectItem: 40.
 	self assert: selectedIndex equals: 0
 ]
 
-{ #category : #'tests-selection-item' }
+{ #category : #'tests-singleselection-item' }
 ListPresenterTest >> testSetSelectItemOutsideRangeRaisesSelectionChangeEventWithUnsetItem [
-
 	| selectedItem |
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-
-	testedInstance whenSelectionChangedDo: [ :selection | selectedItem := selection second ].
-	testedInstance selectedItem: 40.
-	
+	self useSingleSelectionList.
+	testedInstance
+		whenSelectionChangedDo: [ :selection | selectedItem := selection selectedItem ].
+	testedInstance selectItem: 40.
 	self assert: selectedItem equals: nil
 ]
 
-{ #category : #'tests-selection-item' }
+{ #category : #'tests-singleselection-item' }
 ListPresenterTest >> testSetSelectItemRaisesSelectionChangeEventWithSelectedIndex [
-
 	| selectedIndex |
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-
-	testedInstance whenSelectionChangedDo: [ :selection | selectedIndex := selection first ].
-	testedInstance selectedItem: 20.
-	
+	self useSingleSelectionList.
+	testedInstance
+		whenSelectionChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
+	testedInstance selectItem: 20.
 	self assert: selectedIndex equals: 2
 ]
 
-{ #category : #'tests-selection-item' }
+{ #category : #'tests-singleselection-item' }
 ListPresenterTest >> testSetSelectItemRaisesSelectionChangeEventWithSelectedItem [
-
 	| selectedElement |
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-
-	testedInstance whenSelectionChangedDo: [ :selection | selectedElement := selection second ].
-	testedInstance selectedItem: 20.
-	
+	self useSingleSelectionList.
+	testedInstance
+		whenSelectionChangedDo: [ :selection | selectedElement := selection selectedItem ].
+	testedInstance selectItem: 20.
 	self assert: selectedElement equals: 20
 ]
 
-{ #category : #'tests-selection-item' }
+{ #category : #'tests-singleselection-item' }
 ListPresenterTest >> testSetSelectItemRaisesSelectionIndexChangeEventWithSelectedIndex [
-
 	| selectedIndex |
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-
-	testedInstance whenSelectedIndexChangedDo: [ :selection | selectedIndex := selection ].
-	testedInstance selectedItem: 10.
-	
+	self useSingleSelectionList.
+	testedInstance
+		whenSelectedIndexChangedDo: [ :selection | selectedIndex := selection ].
+	testedInstance selectItem: 10.
 	self assert: selectedIndex equals: 1
 ]
 
-{ #category : #'tests-selection-item' }
+{ #category : #'tests-singleselection-item' }
 ListPresenterTest >> testSetSelectItemRaisesSelectionItemChangeEventWithSelectedItem [
-
 	| selectedItem |
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-
-	testedInstance whenSelectedItemChangedDo: [ :selection | selectedItem := selection ].
-	testedInstance selectedItem: 10.
-	
+	self useSingleSelectionList.
+	testedInstance
+		whenSelectedItemChangedDo: [ :selection | selectedItem := selection ].
+	testedInstance selectItem: 10.
 	self assert: selectedItem equals: 10
 ]
 
@@ -384,4 +288,13 @@ ListPresenterTest >> testWhenListChangedOldContents [
 			self assert: newL equals: aList ].
 	testedInstance listItems.	"Call listItems to set the cache"
 	testedInstance items: #(1 2 3)
+]
+
+{ #category : #running }
+ListPresenterTest >> useSingleSelectionList [
+
+	window := testedInstance
+		beSingleSelection;
+		items: #(10 20 30);
+		openWithSpec.
 ]

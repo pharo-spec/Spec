@@ -39,7 +39,7 @@ todo
 "
 Class {
 	#name : #ListPresenter,
-	#superclass : #ColumnedListPresenter,
+	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
 		'listHolder',
 		'menuHolder',
@@ -53,7 +53,10 @@ Class {
 		'listAnnouncer',
 		'backgroundColorBlock',
 		'autoDeselect',
-		'itemFilterBlockHolder'
+		'itemFilterBlockHolder',
+		'selectionMode',
+		'selectionHolder',
+		'doubleClickActionHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -198,10 +201,8 @@ ListPresenter >> doubleClickAction: aBlockClosure [
 ]
 
 { #category : #simulation }
-ListPresenter >> doubleClickAtIndex: anInteger [ 
-
-	
-	self selectedIndex: anInteger.
+ListPresenter >> doubleClickAtIndex: anInteger [
+	self selectIndex: anInteger.
 	doubleClickActionHolder value cull: anInteger
 ]
 
@@ -223,9 +224,8 @@ ListPresenter >> filteringBlock: aBlock [
 
 { #category : #api }
 ListPresenter >> getIndex [
-	"Return the index of the selected item"
-	
-	^  selectionHolder index value
+
+	^ self selection selectedIndex
 ]
 
 { #category : #api }
@@ -247,7 +247,8 @@ ListPresenter >> getSelectionStateFor: anIndex [
 { #category : #initialization }
 ListPresenter >> initialize [
 	super initialize.
-	self initializeValueHolders.	
+	selectionMode := SpecSingleSelectionMode new.
+	self initializeValueHolders.
 	self registerEvents.
 
 	self
@@ -372,6 +373,12 @@ ListPresenter >> menu: aMenu shifted: aBoolean [
 	^ menuHolder value cull: aMenu cull: aBoolean
 ]
 
+{ #category : #accessing }
+ListPresenter >> model [
+	
+	^ listHolder value
+]
+
 { #category : #api }
 ListPresenter >> multiSelection [
 	"<api: #inspect>"
@@ -463,13 +470,29 @@ ListPresenter >> selectAll [
 	self changed: #listElementAt:
 ]
 
+{ #category : #selection }
+ListPresenter >> selectIndex: anInteger [ 
+	
+	self selectionMode selectIndex: anInteger on: self
+]
+
+{ #category : #selection }
+ListPresenter >> selectItem: anItem [ 
+	
+	self selectionMode selectItem: anItem on: self
+]
+
 { #category : #api }
 ListPresenter >> selectedIndex [
-	"<api: #inspect>"
 	"Return the index of the selected item
 	In the case of a multiple selection list, it returns the last selected item"
-
-	^ self getIndex
+	
+	self
+		deprecated: 'Use the #selection object instead. This method assumes single selection'
+		transformWith: '`@receiver selectedIndex'
+						-> '`@receiver selection selectedIndex'.
+	
+	^  self selection selectedIndex
 ]
 
 { #category : #api }
@@ -477,6 +500,10 @@ ListPresenter >> selectedIndex: anIndex [
 
 	"Set the index of the item you want to be selected"
 	| idx selection |
+	self
+		deprecated: 'Use #selectIndex: instead'
+		transformWith: '`@receiver selectedIndex: `@arg'
+						-> '`@receiver selectIndex: `@arg'.
 	
 	self allowToSelect ifFalse: [ ^ self ].
 	self okToChange ifFalse: [ ^ self ].
@@ -501,17 +528,26 @@ ListPresenter >> selectedIndexes [
 
 { #category : #api }
 ListPresenter >> selectedItem [
-	"<api: #inspect>"
 	"Return the selected item.
 	In the case of a multiple selection list, it returns the last selected item"
 	
-	^ self selectedItemHolder value
+	self
+		deprecated: 'Use the #selection object instead. This method assumes single selection'
+		transformWith: '`@receiver selectedItem'
+						-> '`@receiver selection selectedItem'.
+	
+	^ self selection selectedItem
 ]
 
 { #category : #api }
 ListPresenter >> selectedItem: anItem [
 	"Set the item you want to be selected"
 	| index selectedItem |
+	
+	self
+		deprecated: 'Use #selectItem: instead'
+		transformWith: '`@receiver selectedItem: `@arg'
+						-> '`@receiver selectItem: `@arg'.
 
 	self okToChange ifFalse: [ ^ self ].
 
@@ -551,6 +587,18 @@ ListPresenter >> selectedItemsSorted [
 	^ self selectedItemsAtIndexes: self selectedIndexes sort
 ]
 
+{ #category : #accessing }
+ListPresenter >> selection [
+	
+	^ selectionMode
+]
+
+{ #category : #accessing }
+ListPresenter >> selectionMode [
+	
+	^ selectionMode
+]
+
 { #category : #private }
 ListPresenter >> setIndex: anIndex [
 	"Set the index of the selected item when you click on an item"
@@ -571,22 +619,22 @@ ListPresenter >> setIndexes: aCollectionOfIndex [
 
 { #category : #api }
 ListPresenter >> setSelectedIndex: anIndex [
-	
 	self
 		deprecated: 'Use #selectedIndex: instead'
-		transformWith: '`@receiver setSelectedIndex: `@argument'
-						-> '`@receiver selectedIndex: `@argument'.
-	^ self selectedIndex: anIndex
+		transformWith:
+			'`@receiver setSelectedIndex: `@argument'
+				-> '`@receiver selectedIndex: `@argument'.
+	^ self selectIndex: anIndex
 ]
 
 { #category : #api }
 ListPresenter >> setSelectedItem: anIndex [
-	
 	self
 		deprecated: 'Use #selectedItem: instead'
-		transformWith: '`@receiver setSelectedItem: `@argument'
-						-> '`@receiver selectedItem:`@argument'.
-	^ self selectedItem: anIndex
+		transformWith:
+			'`@receiver setSelectedItem: `@argument'
+				-> '`@receiver selectedItem:`@argument'.
+	^ self selectItem: anIndex
 ]
 
 { #category : #private }
@@ -694,7 +742,7 @@ ListPresenter >> whenMultiSelectionChanged: aBlock [
 ListPresenter >> whenSelectedIndexChangedDo: aBlock [
 	"Set a block to value when the selection index has changed"
 	
-	selectionHolder index whenChangedDo: aBlock
+	self selection whenChangedDo: [ :selection | aBlock cull: selection selectedIndex ]
 ]
 
 { #category : #'api-events' }
@@ -711,7 +759,7 @@ ListPresenter >> whenSelectedItemChanged: aBlock [
 ListPresenter >> whenSelectedItemChangedDo: aBlock [
 	"Set a block to value when the select item is changed"
 	
-	selectionHolder selection whenChangedDo: aBlock
+	self selection whenChangedDo: [ :selection | aBlock cull: selection selectedItem ]
 ]
 
 { #category : #'api-events' }
@@ -737,9 +785,7 @@ ListPresenter >> whenSelectionChangedDo: aBlock [
 	If you are interested in the items, use whenSelectedItemChanged:
 	If you are interested in the index, use whenSelectionIndexChanged:"
 
-	selectionHolder whenChangedDo: [ :selectionValueHolderValues |
-		aBlock cull: (selectionValueHolderValues collect: #value) ].
-	multiSelectionHolder selections whenChangedDo: aBlock
+	self selection whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

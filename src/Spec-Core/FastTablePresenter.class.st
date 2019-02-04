@@ -7,8 +7,7 @@ Class {
 	#instVars : [
 		'iconHolder',
 		'handlesDoubleClick',
-		'doubleClick',
-		'columns'
+		'doubleClick'
 	],
 	#category : #'Spec-Core-Widgets'
 }
