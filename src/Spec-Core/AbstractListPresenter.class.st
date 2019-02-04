@@ -4,10 +4,151 @@ Class {
 	#instVars : [
 		'selectionMode',
 		'multiSelectionHolder',
-		'selectionHolder'
+		'selectionHolder',
+		'listHolder',
+		'sortingBlockHolder',
+		'filteringBlockHolder',
+		'multiSelection',
+		'autoDeselect',
+		'wrapBlockHolder',
+		'listAnnouncer',
+		'itemFilterBlockHolder',
+		'menuHolder',
+		'allowToSelect',
+		'doubleClickActionHolder',
+		'listItemsCache'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
+
+{ #category : #api }
+AbstractListPresenter >> beMultipleSelection [
+	"<api: #do>"
+	"Make list selection multiple"
+
+	self multiSelection: true
+]
+
+{ #category : #api }
+AbstractListPresenter >> beSingleSelection [
+	"<api: #do>"
+	"Make list selection single"
+
+	self multiSelection: false
+]
+
+{ #category : #initialization }
+AbstractListPresenter >> defaultFilteringBlock [ 
+	^ [:col | col]
+]
+
+{ #category : #initialization }
+AbstractListPresenter >> defaultSortingBlock [ 
+	^ [:a :b | true]
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> doubleClickAction: aBlockClosure [ 
+	
+	doubleClickActionHolder value: aBlockClosure
+]
+
+{ #category : #simulation }
+AbstractListPresenter >> doubleClickAtIndex: anInteger [
+	self selectIndex: anInteger.
+	doubleClickActionHolder value cull: anInteger
+]
+
+{ #category : #initialization }
+AbstractListPresenter >> initialize [
+	super initialize.
+	selectionMode := SpecSingleSelectionMode new.
+	self initializeValueHolders.
+	self registerEvents.
+
+	self
+		bindKeyCombination: Character space
+		toAction: [ self clickOnSelectedItem ]
+]
+
+{ #category : #initialization }
+AbstractListPresenter >> initializeValueHolders [
+	selectionHolder := SelectionValueHolder new.
+	listHolder := Array new asValueHolder.
+	sortingBlockHolder := self defaultSortingBlock asValueHolder.
+	filteringBlockHolder := self defaultFilteringBlock asValueHolder.
+	itemFilterBlockHolder := nil asValueHolder.
+	doubleClickActionHolder := [  ] asValueHolder.
+	wrapBlockHolder := [ :object | object asStringOrText ] asValueHolder.
+	menuHolder := [ :menu :shifted | nil ] asValueHolder.
+	multiSelectionHolder := SpecSelectionsValueHolder new.
+	multiSelection := false asValueHolder.
+	allowToSelect := true asValueHolder.
+	autoDeselect := true asValueHolder.
+	listAnnouncer := Announcer new.
+
+]
+
+{ #category : #api }
+AbstractListPresenter >> items: aList [
+	"Set the items of the list.
+	aList is a collection of your domain specific items.
+	Use a two stages notification (issue 7420)."
+
+	"<api: #st getter: #listItems registration: #whenListChanged:>"
+	| oldContents |
+	oldContents := listHolder value.
+	listHolder value: (aList sorted: sortingBlockHolder value).
+	listAnnouncer announce: (ValueChanged oldValue: oldContents newValue: listHolder value)
+]
+
+{ #category : #accessing }
+AbstractListPresenter >> model [
+	
+	^ listHolder value
+]
+
+{ #category : #api }
+AbstractListPresenter >> multiSelection [
+	"<api: #inspect>"
+	"Return true if the list has a multiple selection.
+	False if the list has a single selection"
+	
+	^ multiSelection value
+]
+
+{ #category : #api }
+AbstractListPresenter >> multiSelection: aBoolean [
+	"<api: #boolean getter: #multiSelection registration: #whenMultiSelectionChanged:>"
+
+	"Make the list selection become multiple if aBoolean is true.
+	Otherwise set the selection as single"
+
+	multiSelection value: aBoolean
+]
+
+{ #category : #private }
+AbstractListPresenter >> refreshListItems [
+
+	listItemsCache := nil.
+	^ self changed: #listElementAt:
+]
+
+{ #category : #initialization }
+AbstractListPresenter >> registerEvents [
+
+	listHolder whenChangedDo: [ self refreshListItems ].
+	filteringBlockHolder whenChangedDo: [ self refreshListItems ].
+	selectionHolder index whenChangedDo: [ self changed: #getIndex ].
+	multiSelection whenChangedDo: [ :b | self changed: { #setMultipleSelection: . b } ].
+	wrapBlockHolder whenChangedDo:[ self changed: #listElementAt: ].
+	autoDeselect whenChangedDo: [ :boolean | self changed: #autoDeselect: with: { boolean }].
+	sortingBlockHolder
+		whenChangedDo: [
+			listHolder value: (listHolder value sorted: sortingBlockHolder value).
+			self changed: #listElementAt: ].
+
+]
 
 { #category : #selection }
 AbstractListPresenter >> selectIndex: anInteger [ 
@@ -101,6 +242,18 @@ AbstractListPresenter >> selectedItemsSorted [
 	^ self selectedItemsAtIndexes: self selectedIndexes sort
 ]
 
+{ #category : #accessing }
+AbstractListPresenter >> selection [
+	
+	^ selectionMode
+]
+
+{ #category : #accessing }
+AbstractListPresenter >> selectionMode [
+	
+	^ selectionMode
+]
+
 { #category : #private }
 AbstractListPresenter >> setIndex: anIndex [
 	"Set the index of the selected item when you click on an item"
@@ -137,4 +290,96 @@ AbstractListPresenter >> setSelectedItem: anIndex [
 			'`@receiver setSelectedItem: `@argument'
 				-> '`@receiver selectedItem:`@argument'.
 	^ self selectItem: anIndex
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> whenListChanged: aBlock [
+	"Specify a block to value after the contents of the list has changed"
+	"Basically when you set a new list of items"
+	"<api: #event>"
+	| block |
+	block := [ :announcement :ann | 
+	aBlock
+		cull: announcement newValue
+		cull: announcement oldValue
+		cull: announcement
+		cull: ann ].
+	
+	listAnnouncer
+		when: ValueChanged
+		do: block
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> whenMultiSelectionChanged: aBlock [
+	"Set a block to value when the multiSelection value has changed"
+	
+	multiSelection whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> whenSelectedIndexChangedDo: aBlock [
+	"Set a block to value when the selection index has changed"
+	
+	self selection whenChangedDo: [ :selection | aBlock cull: selection selectedIndex ]
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> whenSelectedItemChanged: aBlock [
+	
+	self
+		deprecated: 'Use #whenSelectedItemChangedDo: instead'
+		transformWith: '`@receiver whenSelectedItemChanged: `@argument'
+						-> '`@receiver whenSelectedItemChangedDo: `@argument'.
+	^ self whenSelectedItemChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> whenSelectedItemChangedDo: aBlock [
+	"Set a block to value when the select item is changed"
+	
+	self selection whenChangedDo: [ :selection | aBlock cull: selection selectedItem ]
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> whenSelectedItemsChanged: aBlock [
+	"Set a block to value when the select item is changed"
+	
+	multiSelectionHolder selections whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> whenSelectionChanged: aBlock [
+	
+	self
+		deprecated: 'Use #whenSelectionChangedDo: instead'
+		transformWith: '`@receiver whenSelectionChanged: `@argument'
+						-> '`@receiver whenSelectionChangedDo: `@argument'.
+	^ self whenSelectionChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> whenSelectionChangedDo: aBlock [
+	"The method should be used only if you are interested in the fact that there was a change, without caring about what has changed
+	If you are interested in the items, use whenSelectedItemChanged:
+	If you are interested in the index, use whenSelectionIndexChanged:"
+
+	self selection whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> whenSelectionIndexChanged: aBlock [
+	
+	self
+		deprecated: 'Use #whenSelectedIndexChangedDo: instead'
+		transformWith: '`@receiver whenSelectionIndexChanged: `@argument'
+						-> '`@receiver whenSelectedIndexChangedDo: `@argument'.
+	^ self whenSelectedIndexChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> whenSelectionIndexesChanged: aBlock [
+	"Set a block to value when the selection index has changed"
+	
+	multiSelectionHolder indexes whenChangedDo: aBlock
 ]

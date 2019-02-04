@@ -1,6 +1,6 @@
 Class {
 	#name : #ColumnedListPresenter,
-	#superclass : #ListPresenter,
+	#superclass : #AbstractListPresenter,
 	#instVars : [
 		'columns',
 		'showColumnHeadersHolder',
