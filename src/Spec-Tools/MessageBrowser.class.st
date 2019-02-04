@@ -465,18 +465,23 @@ MessageBrowser >> initializeDropList [
 
 { #category : #initialization }
 MessageBrowser >> initializePresenter [
-
-	listModel whenSelectedItemChanged: [:item |
+	listModel
+		whenSelectedItemChangedDo: [ :item | 
 			toolbarModel method: item.
-			textModel behavior: (item ifNil: [ nil ] ifNotNil: [ item methodClass ]).
+			textModel
+				behavior: (item ifNil: [ nil ] ifNotNil: [ item methodClass ]).
 			textModel doItReceiver: textModel behavior.
-			textModel text: (self textConverter method: item; getText).
+			textModel
+				text:
+					(self textConverter
+						method: item;
+						getText).
 			textModel clearUndoManager.
-			self installIconStylerFor: item].
+			self installIconStylerFor: item ].
 	listModel whenListChanged: [ self updateTitle ].
-		
 	titleHolder whenChangedDo: [ self updateTitle ].
-	textModel acceptBlock: [ :text :notifyer | (self accept: text notifying: notifyer)  notNil].
+	textModel
+		acceptBlock: [ :text :notifyer | (self accept: text notifying: notifyer) notNil ]
 ]
 
 { #category : #initialization }
@@ -551,12 +556,14 @@ MessageBrowser >> messages [
 
 { #category : #api }
 MessageBrowser >> messages: aCollection [
-
 	self cacheHierarchyForClasses: aCollection.
-	listModel items: (cachedHierarchy keys sort: [:a :b | self sortClassesInCachedHierarchy: a b: b]) asOrderedCollection.
+	listModel
+		items:
+			(cachedHierarchy keys
+				sort: [ :a :b | self sortClassesInCachedHierarchy: a b: b ])
+				asOrderedCollection.
 	listModel listSize > 0
-		ifTrue: [ 
-			listModel setSelectedIndex: 1 ].
+		ifTrue: [ listModel selectIndex: 1 ]
 ]
 
 { #category : #announcements }
