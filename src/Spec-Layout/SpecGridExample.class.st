@@ -10,10 +10,28 @@ Class {
 	#category : #'Spec-Layout-Grid'
 }
 
+{ #category : #specs }
+SpecGridExample class >> diagonalSpec [ 
+	<spec>
+	
+	^ SpecGridLayout new 
+		add: #label1 at: 1@1;
+		add: #input1 at: 2@2;
+		add: #label2 at: 3@3;
+		add: #input2 at: 4@4;
+		yourself
+]
+
 { #category : #examples }
 SpecGridExample class >> example1 [ 
 
 	^ self new openWithSpec: #simpleSpec
+]
+
+{ #category : #examples }
+SpecGridExample class >> example2 [
+
+	^ self new openWithSpec: #diagonalSpec
 ]
 
 { #category : #specs }
@@ -26,6 +44,12 @@ SpecGridExample class >> simpleSpec [
 		add: #label2 at: 1@2;
 		add: #input2 at: 2@2;
 		yourself
+]
+
+{ #category : #api }
+SpecGridExample >> initialExtent [ 
+
+	^ 1000@800
 ]
 
 { #category : #initialization }

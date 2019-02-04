@@ -8,6 +8,23 @@ Class {
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
+{ #category : #'instance creation' }
+GridLayoutProperties class >> at: aPoint [
+
+	^ self new 
+		position: aPoint;
+		yourself
+]
+
+{ #category : #'instance creation' }
+GridLayoutProperties class >> at: aPoint span: spanPoint [
+
+	^ self new 
+		position: aPoint;
+		span: spanPoint;
+		yourself
+]
+
 { #category : #accessing }
 GridLayoutProperties >> column [ 
 

@@ -4,7 +4,9 @@ Class {
 	#instVars : [
 		'borderWidth',
 		'columnSpacing',
-		'rowSpacing'
+		'rowSpacing',
+		'columnHomogeneous',
+		'rowHomogeneous'
 	],
 	#category : #'Spec-Layout-Grid'
 }
@@ -54,6 +56,30 @@ SpecGridLayout >> add: aName at: aPoint span: spanPoint [
 ]
 
 { #category : #accessing }
+SpecGridLayout >> beColumnHomogeneous [
+
+	self columnHomogeneous: true
+]
+
+{ #category : #accessing }
+SpecGridLayout >> beColumnNotHomogeneous [
+
+	self columnHomogeneous: false
+]
+
+{ #category : #accessing }
+SpecGridLayout >> beRowHomogeneous [
+
+	self rowHomogeneous: false
+]
+
+{ #category : #accessing }
+SpecGridLayout >> beRowNotHomogeneous [
+
+	self rowHomogeneous: false
+]
+
+{ #category : #accessing }
 SpecGridLayout >> borderWidth [
 
 	^ borderWidth ifNil: [ self class defaultBorderWidth ]
@@ -68,6 +94,11 @@ SpecGridLayout >> borderWidth: anObject [
 SpecGridLayout >> children [
 
 	^ children
+]
+
+{ #category : #private }
+SpecGridLayout >> columnHomogeneous: anObject [
+	columnHomogeneous := anObject
 ]
 
 { #category : #accessing }
@@ -85,6 +116,29 @@ SpecGridLayout >> columnSpacing: anObject [
 SpecGridLayout >> constraintsClass [
 
 	^ SpecGridConstraints
+]
+
+{ #category : #accessing }
+SpecGridLayout >> initialize [ 
+
+	super initialize.
+	self beColumnHomogeneous.
+	self beRowHomogeneous.
+]
+
+{ #category : #testing }
+SpecGridLayout >> isColumnHomogeneous [
+	^ columnHomogeneous
+]
+
+{ #category : #testing }
+SpecGridLayout >> isRowHomogeneous [
+	^ rowHomogeneous
+]
+
+{ #category : #private }
+SpecGridLayout >> rowHomogeneous: anObject [
+	rowHomogeneous := anObject
 ]
 
 { #category : #accessing }
