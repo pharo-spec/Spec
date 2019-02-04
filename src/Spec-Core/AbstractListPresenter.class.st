@@ -47,6 +47,24 @@ AbstractListPresenter >> defaultSortingBlock [
 	^ [:a :b | true]
 ]
 
+{ #category : #api }
+AbstractListPresenter >> displayBlock [
+	"<api: #inspect>"
+	"Return the one argument block used to wrap your domain specific items.
+	The block should return something that can be displayed in a list - like a String or a Text"
+	
+	^ wrapBlockHolder value
+]
+
+{ #category : #api }
+AbstractListPresenter >> displayBlock: aBlock [
+	"<api: #block getter:#displayBlock registration: #whenDisplayBlockChanged:>"
+	"Set the one argument block used to wrap your domain specific items.
+	The block should return something that can be displayed in a list - like a String or a Text"
+	
+	wrapBlockHolder value: aBlock
+]
+
 { #category : #'api-events' }
 AbstractListPresenter >> doubleClickAction: aBlockClosure [ 
 	
@@ -59,6 +77,44 @@ AbstractListPresenter >> doubleClickAtIndex: anInteger [
 	doubleClickActionHolder value cull: anInteger
 ]
 
+{ #category : #api }
+AbstractListPresenter >> filteringBlock [
+	"<api: #inspect>"
+	"Return the filtering of the items"
+	
+	^ filteringBlockHolder value
+]
+
+{ #category : #api }
+AbstractListPresenter >> filteringBlock: aBlock [
+	"<api: #block getter: #filteringBlock registration: #whenFilteringBlockChanged:>"
+	"To set the filtering of the items"
+	
+	filteringBlockHolder value: aBlock
+]
+
+{ #category : #api }
+AbstractListPresenter >> getIndex [
+
+	^ self selection selectedIndex
+]
+
+{ #category : #api }
+AbstractListPresenter >> getList [
+
+	^ listHolder value
+]
+
+{ #category : #private }
+AbstractListPresenter >> getSelectionStateFor: anIndex [
+	"Return the current state of the item -if selected or not - in a multiple selection list"
+	"Answer true if the item at index _anIndex_ is selected"
+	
+	self flag: 'refactoring in progress'.
+
+	^ multiSelectionHolder indexes
+]
+
 { #category : #initialization }
 AbstractListPresenter >> initialize [
 	super initialize.
@@ -69,6 +125,13 @@ AbstractListPresenter >> initialize [
 	self
 		bindKeyCombination: Character space
 		toAction: [ self clickOnSelectedItem ]
+]
+
+{ #category : #initialization }
+AbstractListPresenter >> initializePorts [
+
+	self addOutputPort: SelectionPresenterPort new.
+	self addInputPort: ItemsPresenterPort new
 ]
 
 { #category : #initialization }
@@ -90,6 +153,26 @@ AbstractListPresenter >> initializeValueHolders [
 ]
 
 { #category : #api }
+AbstractListPresenter >> itemBeginsWithFilter [
+	self itemFilterBlock: [ :each :pattern | each asLowercase beginsWith: pattern asLowercase ]
+]
+
+{ #category : #api }
+AbstractListPresenter >> itemFilterBlock [
+	^ itemFilterBlockHolder value
+]
+
+{ #category : #api }
+AbstractListPresenter >> itemFilterBlock: aBlock [
+	itemFilterBlockHolder value: aBlock
+]
+
+{ #category : #api }
+AbstractListPresenter >> itemSubstringFilter [
+	self itemFilterBlock: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
+]
+
+{ #category : #api }
 AbstractListPresenter >> items: aList [
 	"Set the items of the list.
 	aList is a collection of your domain specific items.
@@ -100,6 +183,64 @@ AbstractListPresenter >> items: aList [
 	oldContents := listHolder value.
 	listHolder value: (aList sorted: sortingBlockHolder value).
 	listAnnouncer announce: (ValueChanged oldValue: oldContents newValue: listHolder value)
+]
+
+{ #category : #private }
+AbstractListPresenter >> listElementAt: anIndex [
+	"Return the item at index _anIndex_"
+	
+	^ self listItems at: anIndex ifAbsent: [ nil ]
+]
+
+{ #category : #private }
+AbstractListPresenter >> listElementAt: anIndex ifAbsent: aBlock [	
+	"Return the item at index _anIndex_"
+	
+	^ self listItems at: anIndex ifAbsent: aBlock
+]
+
+{ #category : #api }
+AbstractListPresenter >> listItems [
+	"<api: #inspect>"
+	"Return the items of the list. They are your domain specific items"
+	
+	^ listItemsCache ifNil: [ listItemsCache :=  filteringBlockHolder value value: listHolder value ]
+	
+]
+
+{ #category : #api }
+AbstractListPresenter >> listSize [
+	"<api: #inspect>"
+	"Return the size of the list"
+	
+	^ self listItems size
+]
+
+{ #category : #api }
+AbstractListPresenter >> menu [
+	"<api: #inspect>"
+	"Return the block used to defined the menu"
+	
+	^ menuHolder value
+]
+
+{ #category : #api }
+AbstractListPresenter >> menu: aBlock [
+	"<api: #block getter: #menu registration: #whenMenuChanged:>"
+	"Set the block used to defined the menu"
+	
+	menuHolder value: aBlock
+]
+
+{ #category : #private }
+AbstractListPresenter >> menu: aMenu shifted: aBoolean [
+	"Build the menu when you right click on an item"
+
+	"This does not work on multiple selection"
+	self flag: #bug.
+	self selectedItem ifNil: [ ^ nil ].
+
+	^ menuHolder value cull: aMenu cull: aBoolean
 ]
 
 { #category : #accessing }
@@ -148,6 +289,15 @@ AbstractListPresenter >> registerEvents [
 			listHolder value: (listHolder value sorted: sortingBlockHolder value).
 			self changed: #listElementAt: ].
 
+]
+
+{ #category : #api }
+AbstractListPresenter >> resetSelection [
+	"<api: #do>"
+	"Unselect every items"
+
+	selectionHolder reset.
+	multiSelectionHolder reset
 ]
 
 { #category : #selection }
@@ -292,6 +442,22 @@ AbstractListPresenter >> setSelectedItem: anIndex [
 	^ self selectItem: anIndex
 ]
 
+{ #category : #api }
+AbstractListPresenter >> sortingBlock [
+	"<api: #inspect>"
+	"Return the ordering of the items"
+	
+	^ sortingBlockHolder value
+]
+
+{ #category : #api }
+AbstractListPresenter >> sortingBlock: aBlock [
+	"<api: #block getter: #sortingBlock registration: #whenSortingBlockChanged:>"
+	"To set the ordering of the items"
+	
+	sortingBlockHolder value: aBlock
+]
+
 { #category : #'api-events' }
 AbstractListPresenter >> whenListChanged: aBlock [
 	"Specify a block to value after the contents of the list has changed"
@@ -382,4 +548,18 @@ AbstractListPresenter >> whenSelectionIndexesChanged: aBlock [
 	"Set a block to value when the selection index has changed"
 	
 	multiSelectionHolder indexes whenChangedDo: aBlock
+]
+
+{ #category : #private }
+AbstractListPresenter >> wrapItem: anObject [ 
+	"Return the item _anObject_ wrapped"
+
+	^ wrapBlockHolder value cull: anObject 
+]
+
+{ #category : #private }
+AbstractListPresenter >> wrapItem: anObject index: index [
+	"Return the item _anObject_ wrapped"
+
+	^ wrapBlockHolder value cull: anObject cull: index
 ]

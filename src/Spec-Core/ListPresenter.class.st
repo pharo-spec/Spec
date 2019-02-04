@@ -135,147 +135,6 @@ ListPresenter >> clickOnSelectedItem [
 		ifFalse: [ ^ false ]
 ]
 
-{ #category : #api }
-ListPresenter >> displayBlock [
-	"<api: #inspect>"
-	"Return the one argument block used to wrap your domain specific items.
-	The block should return something that can be displayed in a list - like a String or a Text"
-	
-	^ wrapBlockHolder value
-]
-
-{ #category : #api }
-ListPresenter >> displayBlock: aBlock [
-	"<api: #block getter:#displayBlock registration: #whenDisplayBlockChanged:>"
-	"Set the one argument block used to wrap your domain specific items.
-	The block should return something that can be displayed in a list - like a String or a Text"
-	
-	wrapBlockHolder value: aBlock
-]
-
-{ #category : #api }
-ListPresenter >> filteringBlock [
-	"<api: #inspect>"
-	"Return the filtering of the items"
-	
-	^ filteringBlockHolder value
-]
-
-{ #category : #api }
-ListPresenter >> filteringBlock: aBlock [
-	"<api: #block getter: #filteringBlock registration: #whenFilteringBlockChanged:>"
-	"To set the filtering of the items"
-	
-	filteringBlockHolder value: aBlock
-]
-
-{ #category : #api }
-ListPresenter >> getIndex [
-
-	^ self selection selectedIndex
-]
-
-{ #category : #api }
-ListPresenter >> getList [
-
-	^ listHolder value
-]
-
-{ #category : #private }
-ListPresenter >> getSelectionStateFor: anIndex [
-	"Return the current state of the item -if selected or not - in a multiple selection list"
-	"Answer true if the item at index _anIndex_ is selected"
-	
-	self flag: 'refactoring in progress'.
-
-	^ multiSelectionHolder indexes
-]
-
-{ #category : #initialization }
-ListPresenter >> initializePorts [
-
-	self addOutputPort: SelectionPresenterPort new.
-	self addInputPort: ItemsPresenterPort new
-]
-
-{ #category : #api }
-ListPresenter >> itemBeginsWithFilter [
-	self itemFilterBlock: [ :each :pattern | each asLowercase beginsWith: pattern asLowercase ]
-]
-
-{ #category : #api }
-ListPresenter >> itemFilterBlock [
-	^ itemFilterBlockHolder value
-]
-
-{ #category : #api }
-ListPresenter >> itemFilterBlock: aBlock [
-	itemFilterBlockHolder value: aBlock
-]
-
-{ #category : #api }
-ListPresenter >> itemSubstringFilter [
-	self itemFilterBlock: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
-]
-
-{ #category : #private }
-ListPresenter >> listElementAt: anIndex [
-	"Return the item at index _anIndex_"
-	
-	^ self listItems at: anIndex ifAbsent: [ nil ]
-]
-
-{ #category : #private }
-ListPresenter >> listElementAt: anIndex ifAbsent: aBlock [	
-	"Return the item at index _anIndex_"
-	
-	^ self listItems at: anIndex ifAbsent: aBlock
-]
-
-{ #category : #api }
-ListPresenter >> listItems [
-	"<api: #inspect>"
-	"Return the items of the list. They are your domain specific items"
-	
-	^ listItemsCache ifNil: [ listItemsCache :=  filteringBlockHolder value value: listHolder value ]
-	
-]
-
-{ #category : #api }
-ListPresenter >> listSize [
-	"<api: #inspect>"
-	"Return the size of the list"
-	
-	^ self listItems size
-]
-
-{ #category : #api }
-ListPresenter >> menu [
-	"<api: #inspect>"
-	"Return the block used to defined the menu"
-	
-	^ menuHolder value
-]
-
-{ #category : #api }
-ListPresenter >> menu: aBlock [
-	"<api: #block getter: #menu registration: #whenMenuChanged:>"
-	"Set the block used to defined the menu"
-	
-	menuHolder value: aBlock
-]
-
-{ #category : #private }
-ListPresenter >> menu: aMenu shifted: aBoolean [
-	"Build the menu when you right click on an item"
-
-	"This does not work on multiple selection"
-	self flag: #bug.
-	self selectedItem ifNil: [ ^ nil ].
-
-	^ menuHolder value cull: aMenu cull: aBoolean
-]
-
 { #category : #private }
 ListPresenter >> prepareForFilteredDataSourceWith: items [
 
@@ -296,15 +155,6 @@ ListPresenter >> resetFilteringBlock [
 ListPresenter >> resetListSelection [
 	"Reset the selection manager for multiple selection lists"
 	
-	multiSelectionHolder reset
-]
-
-{ #category : #api }
-ListPresenter >> resetSelection [
-	"<api: #do>"
-	"Unselect every items"
-
-	selectionHolder reset.
 	multiSelectionHolder reset
 ]
 
@@ -331,22 +181,6 @@ ListPresenter >> setSelectionStateFor: anIndex at: aBoolean [
 	(self allowToSelect and: [ self multiSelection ]) ifFalse: [ ^ self ].
 
 	^ self setIndexes: (self selectedIndexes value copyWith: anIndex) asSet asOrderedCollection
-]
-
-{ #category : #api }
-ListPresenter >> sortingBlock [
-	"<api: #inspect>"
-	"Return the ordering of the items"
-	
-	^ sortingBlockHolder value
-]
-
-{ #category : #api }
-ListPresenter >> sortingBlock: aBlock [
-	"<api: #block getter: #sortingBlock registration: #whenSortingBlockChanged:>"
-	"To set the ordering of the items"
-	
-	sortingBlockHolder value: aBlock
 ]
 
 { #category : #api }
@@ -405,18 +239,4 @@ ListPresenter >> whenSortingBlockChanged: aBlock [
 	"Set a block to value when the sorting block has changed"
 	
 	sortingBlockHolder whenChangedDo: aBlock
-]
-
-{ #category : #private }
-ListPresenter >> wrapItem: anObject [ 
-	"Return the item _anObject_ wrapped"
-
-	^ wrapBlockHolder value cull: anObject 
-]
-
-{ #category : #private }
-ListPresenter >> wrapItem: anObject index: index [
-	"Return the item _anObject_ wrapped"
-
-	^ wrapBlockHolder value cull: anObject cull: index
 ]
