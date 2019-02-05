@@ -1,12 +1,19 @@
 Class {
 	#name : #SpecSingleSelectionMode,
-	#superclass : #Object,
+	#superclass : #SpecAbstractSelectionMode,
 	#instVars : [
 		'selectedIndexValueHolder',
 		'selectedItemValueHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
+
+{ #category : #selecting }
+SpecSingleSelectionMode >> basicSelectIndex: indexToSelect item: valueToSelect [
+
+	selectedIndexValueHolder value: indexToSelect.
+	selectedItemValueHolder value: valueToSelect.
+]
 
 { #category : #testing }
 SpecSingleSelectionMode >> includesIndex: anIndex [
@@ -20,36 +27,6 @@ SpecSingleSelectionMode >> initialize [
 	super initialize.
 	selectedIndexValueHolder := 0 asValueHolder.
 	selectedItemValueHolder := nil asValueHolder.
-]
-
-{ #category : #selecting }
-SpecSingleSelectionMode >> selectIndex: anIndex on: aListPresenter [ 
-	
-	| indexToSelect valueToSelect |
-	indexToSelect := anIndex.
-	valueToSelect := aListPresenter model
-		at: indexToSelect
-		ifAbsent: [ 
-			indexToSelect := 0.
-			nil ].
-	
-	selectedIndexValueHolder value: indexToSelect.
-	selectedItemValueHolder value: valueToSelect.
-]
-
-{ #category : #selecting }
-SpecSingleSelectionMode >> selectItem: anItem on: aListPresenter [ 
-	
-	| indexToSelect valueToSelect |
-	valueToSelect := anItem.
-	indexToSelect := aListPresenter model
-		indexOf: valueToSelect
-		ifAbsent: [ 
-			valueToSelect := nil.
-			0 ].
-	
-	selectedIndexValueHolder value: indexToSelect.
-	selectedItemValueHolder value: valueToSelect.
 ]
 
 { #category : #accessing }

@@ -106,16 +106,14 @@ ListPresenter >> autoDeselect: aBoolean [
 ListPresenter >> backgroundColorBlock [
 	"Return the block use to compute the background color for each item"
 
-	self deprecated: 'Should not use. This feature is not supported anymore. This feature depends on the theme'.
-	^ backgroundColorBlock value
+	self deprecated: 'Should not use. This feature is not supported anymore. This feature depends on the theme'
 ]
 
 { #category : #api }
 ListPresenter >> backgroundColorBlock: aBlock [
 	"Set the block used to compute an item background"
 
-	self deprecated: 'Should not use. This feature is not supported anymore. This feature depends on the theme'.
-	backgroundColorBlock value: aBlock
+	self deprecated: 'Should not use. This feature is not supported anymore. This feature depends on the theme'
 ]
 
 { #category : #api }
@@ -208,9 +206,9 @@ ListPresenter >> whenAutoDeselectChanged: aBlock [
 
 { #category : #'api-events' }
 ListPresenter >> whenBackgroundColorBlockChanged: aBlock [
-	"Set a block to value when the backgroundColorBlock has changed"
-	
-	backgroundColorBlock whenChangedDo: aBlock
+
+	self deprecated: 'Should not use. This feature is not supported anymore. This feature depends on the theme'.
+
 ]
 
 { #category : #'api-events' }

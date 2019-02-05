@@ -16,6 +16,17 @@ ColumnedListPresenter class >> adapterName [
 	^ #ColumnedListAdapter
 ]
 
+{ #category : #specs }
+ColumnedListPresenter class >> example [
+	<sampleInstance>
+	| example |
+	example := self new.
+	example
+		items: (1 to: 10) asArray;
+		openWithSpec.
+	^ example
+]
+
 { #category : #api }
 ColumnedListPresenter >> addColumn: aColumn [
 

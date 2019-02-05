@@ -66,6 +66,14 @@ ListPresenterTest >> testSelectAll [
 	self assertCollection: testedInstance selectedItems hasSameElements: items
 ]
 
+{ #category : #'tests-multipleselection-index' }
+ListPresenterTest >> testSelectIndexOutsideRangeUnderMultipleSelectionIsEmpty [
+	self useMultipleSingleSelectionList.
+	testedInstance selectIndex: 4.
+
+	self assert: testedInstance selection isEmpty
+]
+
 { #category : #'tests-singleselection-index' }
 ListPresenterTest >> testSelectIndexOutsideRangeUnsetsSelectedIndex [
 	self useSingleSelectionList.			
@@ -288,6 +296,15 @@ ListPresenterTest >> testWhenListChangedOldContents [
 			self assert: newL equals: aList ].
 	testedInstance listItems.	"Call listItems to set the cache"
 	testedInstance items: #(1 2 3)
+]
+
+{ #category : #running }
+ListPresenterTest >> useMultipleSingleSelectionList [
+
+	window := testedInstance
+		beMultipleSelection;
+		items: #(10 20 30);
+		openWithSpec.
 ]
 
 { #category : #running }

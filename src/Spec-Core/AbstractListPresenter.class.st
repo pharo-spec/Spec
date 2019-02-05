@@ -26,6 +26,7 @@ AbstractListPresenter >> beMultipleSelection [
 	"<api: #do>"
 	"Make list selection multiple"
 
+	selectionMode := SpecMultipleSelectionMode new.
 	self multiSelection: true
 ]
 
