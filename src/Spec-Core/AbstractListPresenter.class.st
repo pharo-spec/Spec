@@ -517,9 +517,9 @@ AbstractListPresenter >> whenSelectionChanged: aBlock [
 
 { #category : #'api-events' }
 AbstractListPresenter >> whenSelectionChangedDo: aBlock [
-	"The method should be used only if you are interested in the fact that there was a change, without caring about what has changed
-	If you are interested in the items, use whenSelectedItemChanged:
-	If you are interested in the index, use whenSelectionIndexChanged:"
+	"Subscribe to changes in selection.
+	This method works for all selection modes (single, multiple and no selection).
+	The block used as argument will be sent an optional argument with the selection object."
 
 	self selection whenChangedDo: aBlock
 ]
