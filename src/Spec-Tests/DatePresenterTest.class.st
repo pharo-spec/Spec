@@ -1,6 +1,6 @@
 Class {
 	#name : #DatePresenterTest,
-	#superclass : #SpecTestCase,
+	#superclass : #SpecSmokeTestCase,
 	#category : #'Spec-Tests-PolyWidgets-Widgets'
 }
 

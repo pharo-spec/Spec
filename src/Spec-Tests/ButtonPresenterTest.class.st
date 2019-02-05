@@ -3,7 +3,7 @@ SUnit tests for Button model
 "
 Class {
 	#name : #ButtonPresenterTest,
-	#superclass : #SpecTestCase,
+	#superclass : #SpecSmokeTestCase,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 

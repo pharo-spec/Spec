@@ -1,6 +1,6 @@
 Class {
 	#name : #RadioButtonGroupPresenterTest,
-	#superclass : #SpecTestCase,
+	#superclass : #SpecSmokeTestCase,
 	#instVars : [
 		'radio1',
 		'radio2'

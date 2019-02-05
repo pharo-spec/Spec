@@ -1,6 +1,6 @@
 Class {
 	#name : #RGBSlidersTest,
-	#superclass : #SpecTestCase,
+	#superclass : #SpecSmokeTestCase,
 	#category : #'Spec-Tests-PolyWidgets-Support'
 }
 

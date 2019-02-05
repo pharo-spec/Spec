@@ -19,54 +19,42 @@ ListPresenterMultipleSelectionTest >> setUp [
 		openWithSpec.
 ]
 
-{ #category : #tests }
-ListPresenterMultipleSelectionTest >> testExample [
-
-	^ self skip
-]
-
-{ #category : #tests }
-ListPresenterMultipleSelectionTest >> testOpenWithSpec [
-
-	^ self skip
-]
-
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSelectIndexAddsIndexToSelectedIndexList [
 
 	testedInstance selectIndex: 1.
 	self assert: (testedInstance selection includesIndex: 1)
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSelectIndexAddsItemToSelectedItemList [
 
 	testedInstance selectIndex: 1.
 	self assert: (testedInstance selection includesItem: 10)
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSelectIndexOutsideRangeHasNoSelectedIndexes [
 
 	testedInstance selectIndex: 4.
 	self assert: testedInstance selection selectedIndexes isEmpty
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSelectIndexOutsideRangeHasNoSelectedItems [
 
 	testedInstance selectIndex: 4.
 	self assert: testedInstance selection selectedItems isEmpty
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSelectIndexOutsideRangeIsEmpty [
 
 	testedInstance selectIndex: 4.
 	self assert: testedInstance selection isEmpty
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSelectIndexThenSelectOutsideRangeKeepsFirstElement [
 
 	testedInstance selectIndex: 1.
@@ -74,7 +62,7 @@ ListPresenterMultipleSelectionTest >> testSelectIndexThenSelectOutsideRangeKeeps
 	self assert: (testedInstance selection includesItem: 10)
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSelectIndexThenSelectOutsideRangeKeepsFirstIndex [
 
 	testedInstance selectIndex: 1.
@@ -82,7 +70,7 @@ ListPresenterMultipleSelectionTest >> testSelectIndexThenSelectOutsideRangeKeeps
 	self assert: (testedInstance selection includesIndex: 1)
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSelectIndexThenSelectOutsideRangeKeepsSingleSelectedItem [
 
 	testedInstance selectIndex: 1.
@@ -90,42 +78,42 @@ ListPresenterMultipleSelectionTest >> testSelectIndexThenSelectOutsideRangeKeeps
 	self assert: testedInstance selection selectedItems size equals: 1
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-item' }
 ListPresenterMultipleSelectionTest >> testSelectItemAddsIndexToSelectedIndexList [
 
 	testedInstance selectItem: 10.
 	self assert: (testedInstance selection includesIndex: 1)
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-item' }
 ListPresenterMultipleSelectionTest >> testSelectItemAddsItemToSelectedItemList [
 
 	testedInstance selectItem: 10.
 	self assert: (testedInstance selection includesItem: 10)
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-item' }
 ListPresenterMultipleSelectionTest >> testSelectItemOutsideRangeHasNoSelectedIndexes [
 
 	testedInstance selectItem: 400.
 	self assert: testedInstance selection selectedIndexes isEmpty
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-item' }
 ListPresenterMultipleSelectionTest >> testSelectItemOutsideRangeHasNoSelectedItems [
 
 	testedInstance selectIndex: 400.
 	self assert: testedInstance selection selectedItems isEmpty
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-item' }
 ListPresenterMultipleSelectionTest >> testSelectItemOutsideRangeIsEmpty [
 
 	testedInstance selectItem: 4000.
 	self assert: testedInstance selection isEmpty
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-item' }
 ListPresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeepsFirstElement [
 
 	testedInstance selectItem: 10.
@@ -133,7 +121,7 @@ ListPresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeepsF
 	self assert: (testedInstance selection includesItem: 10)
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-item' }
 ListPresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeepsFirstIndex [
 
 	testedInstance selectItem: 10.
@@ -141,7 +129,7 @@ ListPresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeepsF
 	self assert: (testedInstance selection includesIndex: 1)
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-item' }
 ListPresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeepsSingleSelectedItem [
 
 	testedInstance selectItem: 10.
@@ -149,7 +137,7 @@ ListPresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeepsS
 	self assert: testedInstance selection selectedItems size equals: 1
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSelectMultipleIndexesAddsAllToSelectedIndexList [
 
 	testedInstance selectIndex: 1.
@@ -158,7 +146,7 @@ ListPresenterMultipleSelectionTest >> testSelectMultipleIndexesAddsAllToSelected
 	self assert: (testedInstance selection includesIndex: 3).
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSelectMultipleIndexesAddsAllToSelectedItemList [
 
 	testedInstance selectIndex: 1.
@@ -167,7 +155,7 @@ ListPresenterMultipleSelectionTest >> testSelectMultipleIndexesAddsAllToSelected
 	self assert: (testedInstance selection includesItem: 30).
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSelectMultipleIndexesRaisesSelectionChangeEventMultipleTimes [
 	| events |
 	events := 0.
@@ -179,7 +167,7 @@ ListPresenterMultipleSelectionTest >> testSelectMultipleIndexesRaisesSelectionCh
 	self assert: events equals: 2
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-item' }
 ListPresenterMultipleSelectionTest >> testSelectMultipleItemAddsAllToSelectedIndexList [
 
 	testedInstance selectItem: 10.
@@ -188,7 +176,7 @@ ListPresenterMultipleSelectionTest >> testSelectMultipleItemAddsAllToSelectedInd
 	self assert: (testedInstance selection includesIndex: 3).
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-item' }
 ListPresenterMultipleSelectionTest >> testSelectMultipleItemsAddsAllToSelectedItemList [
 
 	testedInstance selectItem: 10.
@@ -197,7 +185,7 @@ ListPresenterMultipleSelectionTest >> testSelectMultipleItemsAddsAllToSelectedIt
 	self assert: (testedInstance selection includesItem: 30).
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-item' }
 ListPresenterMultipleSelectionTest >> testSelectMultipleItemsRaisesSelectionChangeEventMultipleTimes [
 	| events |
 	events := 0.
@@ -209,7 +197,7 @@ ListPresenterMultipleSelectionTest >> testSelectMultipleItemsRaisesSelectionChan
 	self assert: events equals: 2
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSetSelectIndexOutsideRangeDoesNotModifySelection [
 
 	testedInstance whenSelectionChangedDo: [ :selection | self fail ].
@@ -218,7 +206,7 @@ ListPresenterMultipleSelectionTest >> testSetSelectIndexOutsideRangeDoesNotModif
 	"If we arrive here and the test did not fail, we succeeded"
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedIndex [
 	| selectedIndexes |
 	testedInstance
@@ -227,7 +215,7 @@ ListPresenterMultipleSelectionTest >> testSetSelectIndexRaisesSelectionChangeEve
 	self assert: (selectedIndexes includes: 1)
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedItem [
 	| selectedItems |
 	testedInstance
@@ -236,7 +224,7 @@ ListPresenterMultipleSelectionTest >> testSetSelectIndexRaisesSelectionChangeEve
 	self assert: (selectedItems includes: 10)
 ]
 
-{ #category : #'tests-multipleselection-index' }
+{ #category : #'tests-item' }
 ListPresenterMultipleSelectionTest >> testSetSelectItemOutsideRangeDoesNotModifySelection [
 
 	testedInstance whenSelectionChangedDo: [ :selection | self fail ].
