@@ -79,6 +79,25 @@ ListMorphicAdapterSingleSelectionTest >> testSubscribeToEventDoesNotRaiseEvent [
 		whenChangedDo: [ :selection | self fail ].
 ]
 
+{ #category : #'tests-widget-to-model' }
+ListMorphicAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesEmptySelectionChangeEvent [
+	| gotSelection |
+	presenter selection
+		whenChangedDo: [ :selection | gotSelection := selection ].
+	presenter adapter widget selectRowIndex: 0.
+	self assert: gotSelection isEmpty
+]
+
+{ #category : #'tests-widget-to-model' }
+ListMorphicAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesSelectionIndexChangeEventOnce [
+	| counter |
+	counter := 0.
+	presenter selection
+		whenChangedDo: [ :selection | counter := counter + 1 ].
+	presenter adapter widget selectRowIndex: 0.
+	self assert: counter equals: 1
+]
+
 { #category : #running }
 ListMorphicAdapterSingleSelectionTest >> widget [
 
