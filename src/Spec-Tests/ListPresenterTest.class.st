@@ -66,14 +66,6 @@ ListPresenterTest >> testSelectAll [
 	self assertCollection: testedInstance selectedItems hasSameElements: items
 ]
 
-{ #category : #'tests-multipleselection-index' }
-ListPresenterTest >> testSelectIndexOutsideRangeUnderMultipleSelectionIsEmpty [
-	self useMultipleSingleSelectionList.
-	testedInstance selectIndex: 4.
-
-	self assert: testedInstance selection isEmpty
-]
-
 { #category : #'tests-singleselection-index' }
 ListPresenterTest >> testSelectIndexOutsideRangeUnsetsSelectedIndex [
 	self useSingleSelectionList.			
@@ -132,6 +124,20 @@ ListPresenterTest >> testSelectItemSetsSelectedItem [
 ]
 
 { #category : #'tests-singleselection-index' }
+ListPresenterTest >> testSelectMultipleIndexesRaisesSelectionChangeEventMultipleTimes [
+	| events |
+	self useSingleSelectionList.
+
+	events := 0.
+	testedInstance whenSelectionChangedDo: [ :selection | events := events + 1 ].
+
+	testedInstance	selectIndex: 1.
+	testedInstance	selectIndex: 3.
+
+	self assert: events equals: 2
+]
+
+{ #category : #'tests-singleselection-index' }
 ListPresenterTest >> testSetSelectIndexOutsideRangeRaisesSelectionChangeEventWithUnsetIndex [
 	| selectedIndex |
 	self useSingleSelectionList.
@@ -175,8 +181,10 @@ ListPresenterTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedIte
 ListPresenterTest >> testSetSelectIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedIndex |
 	self useSingleSelectionList.
-	testedInstance
-		whenSelectedIndexChangedDo: [ :selection | selectedIndex := selection ].
+	testedInstance selection
+		whenChangedDo: [ :selection | 
+			[ :selection | selectedIndex := selection ]
+				value: selection selectedIndex ].
 	testedInstance selectIndex: 1.
 	self assert: selectedIndex equals: 1
 ]
@@ -235,8 +243,8 @@ ListPresenterTest >> testSetSelectItemRaisesSelectionChangeEventWithSelectedItem
 ListPresenterTest >> testSetSelectItemRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedIndex |
 	self useSingleSelectionList.
-	testedInstance
-		whenSelectedIndexChangedDo: [ :selection | selectedIndex := selection ].
+	testedInstance selection
+		whenChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
 	testedInstance selectItem: 10.
 	self assert: selectedIndex equals: 1
 ]

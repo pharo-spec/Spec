@@ -2,8 +2,7 @@ Class {
 	#name : #SpecSingleSelectionMode,
 	#superclass : #SpecAbstractSelectionMode,
 	#instVars : [
-		'selectedIndexValueHolder',
-		'selectedItemValueHolder'
+		'selectedIndexValueHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -11,8 +10,7 @@ Class {
 { #category : #selecting }
 SpecSingleSelectionMode >> basicSelectIndex: indexToSelect item: valueToSelect [
 
-	selectedIndexValueHolder value: indexToSelect.
-	selectedItemValueHolder value: valueToSelect.
+	selectedIndexValueHolder value: indexToSelect
 ]
 
 { #category : #testing }
@@ -21,12 +19,17 @@ SpecSingleSelectionMode >> includesIndex: anIndex [
 	^ selectedIndexValueHolder value = anIndex
 ]
 
+{ #category : #testing }
+SpecSingleSelectionMode >> includesItem: anItem [
+
+	^ self selectedItem = anItem
+]
+
 { #category : #initialization }
 SpecSingleSelectionMode >> initialize [
 
 	super initialize.
-	selectedIndexValueHolder := 0 asValueHolder.
-	selectedItemValueHolder := nil asValueHolder.
+	selectedIndexValueHolder := 0 asValueHolder
 ]
 
 { #category : #accessing }
@@ -38,12 +41,12 @@ SpecSingleSelectionMode >> selectedIndex [
 { #category : #accessing }
 SpecSingleSelectionMode >> selectedItem [
 
-	^ selectedItemValueHolder value
+	self selectedIndex = 0 ifTrue: [ ^ nil ].
+	^ model itemAt: self selectedIndex
 ]
 
 { #category : #events }
 SpecSingleSelectionMode >> whenChangedDo: aBlockClosure [ 
 	
-	selectedIndexValueHolder whenChangedDo: [ aBlockClosure value: self ].
-	selectedItemValueHolder whenChangedDo: [ aBlockClosure value: self ].
+	selectedIndexValueHolder whenChangedDo: [ aBlockClosure value: self ]
 ]

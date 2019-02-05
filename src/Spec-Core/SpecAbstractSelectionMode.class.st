@@ -1,8 +1,19 @@
 Class {
 	#name : #SpecAbstractSelectionMode,
 	#superclass : #Object,
+	#instVars : [
+		'model'
+	],
 	#category : #'Spec-Core-Widgets-Table'
 }
+
+{ #category : #'instance creation' }
+SpecAbstractSelectionMode class >> on: aModel [
+
+	^ self new
+		model: aModel;
+		yourself
+]
 
 { #category : #selecting }
 SpecAbstractSelectionMode >> basicSelectIndex: indexToSelect item: valueToSelect [
@@ -14,6 +25,28 @@ SpecAbstractSelectionMode >> basicSelectIndex: indexToSelect item: valueToSelect
 SpecAbstractSelectionMode >> includesIndex: anIndex [
 
 	self subclassResponsibility
+]
+
+{ #category : #testing }
+SpecAbstractSelectionMode >> includesItem: anItem [
+
+	self subclassResponsibility
+]
+
+{ #category : #testing }
+SpecAbstractSelectionMode >> isMultipleSelection [
+	
+	^ false
+]
+
+{ #category : #accessing }
+SpecAbstractSelectionMode >> model [
+	^ model
+]
+
+{ #category : #accessing }
+SpecAbstractSelectionMode >> model: anObject [
+	model := anObject
 ]
 
 { #category : #selecting }

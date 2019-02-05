@@ -95,7 +95,7 @@ ColumnedListPresenter >> isShowingColumnHeaders [
 { #category : #accessing }
 ColumnedListPresenter >> itemAt: aNumber [
 	
-	^ self items at: aNumber
+	^ super itemAt: aNumber
 ]
 
 { #category : #accessing }
