@@ -49,28 +49,6 @@ FastTablePresenter >> columns [
 ]
 
 { #category : #api }
-FastTablePresenter >> doubleClick: event [
-
-	doubleClick value cull: event
-]
-
-{ #category : #api }
-FastTablePresenter >> doubleClickAction [
-	"<api: #inspect>"
-	"Return the block evaluated on double click"
-	
-	^ doubleClick value
-]
-
-{ #category : #api }
-FastTablePresenter >> doubleClickAction: aBlock [
-	"<api: #block getter:#doubleClickAction registration: #whenDoubleClickActionChanged:>"
-	"Set the block evaluated on double click."
-	
-	doubleClick value: aBlock
-]
-
-{ #category : #api }
 FastTablePresenter >> getIconFor: anItem [
 
 	^ iconHolder value cull: anItem cull: self
@@ -118,8 +96,6 @@ FastTablePresenter >> initializeValueHolders [
 
 	iconHolder := [:item | nil ] asValueHolder.
 	handlesDoubleClick := false asValueHolder.
-	doubleClick := [  ] asValueHolder.
-
 ]
 
 { #category : #accessing }

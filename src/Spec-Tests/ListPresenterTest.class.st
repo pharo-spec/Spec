@@ -20,13 +20,41 @@ ListPresenterTest >> setUp [
 ]
 
 { #category : #'tests-activation' }
+ListPresenterTest >> testActivationOnDoubleClickShouldActivateOnDoubleClick [
+
+	| activatedItem |
+	activatedItem := nil.
+	testedInstance
+		activateOnDoubleClick;
+		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].
+	
+	testedInstance doubleClickAtIndex: 1.
+	
+	self assert: activatedItem equals: 10.
+]
+
+{ #category : #'tests-activation' }
+ListPresenterTest >> testActivationOnDoubleClickShouldNotActivateOnClick [
+
+	| activatedItem |
+	activatedItem := nil.
+	testedInstance
+		activateOnDoubleClick;
+		whenActivatedDo: [ :selection  | activatedItem := selection selectionItem ].
+	
+	testedInstance clickAtIndex: 1.
+	
+	self assert: activatedItem equals: nil.
+]
+
+{ #category : #'tests-activation' }
 ListPresenterTest >> testActivationOnSingleClickShouldActivateOnClick [
 
 	| activatedItem |
 	activatedItem := nil.
 	testedInstance
 		activateOnSingleClick;
-		whenActivatedDo: [ :item | activatedItem := item ].
+		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].
 	
 	testedInstance clickAtIndex: 1.
 	
@@ -40,7 +68,7 @@ ListPresenterTest >> testActivationOnSingleClickShouldNotActivateOnClickOutside 
 	activatedItem := nil.
 	testedInstance
 		activateOnSingleClick;
-		whenActivatedDo: [ :item | activatedItem := item ].
+		whenActivatedDo: [ :selection | activatedItem := selection selectedIndex ].
 	
 	testedInstance clickAtIndex: 100.
 	
@@ -52,55 +80,11 @@ ListPresenterTest >> testActivationWithoutActivationBlockDoesNothing [
 
 	| activatedItem |
 	activatedItem := nil.
-	testedInstance
-		activateOnSingleClick.
+	testedInstance activateOnSingleClick.
 
 	testedInstance clickAtIndex: 1.
 	
 	self assert: activatedItem equals: nil
-]
-
-{ #category : #'tests-doubleClick' }
-ListPresenterTest >> testDoubleClickCallsDoubleClickAction [
-
-	| doubleClickInvoked |
-	doubleClickInvoked := false.
-
-	window := testedInstance
-		items: #(10 20 30);
-		doubleClickAction: [ doubleClickInvoked := true ];
-		openWithSpec.
-
-	testedInstance doubleClickAtIndex: 2.
-	
-	self assert: doubleClickInvoked
-]
-
-{ #category : #'tests-doubleClick' }
-ListPresenterTest >> testDoubleClickOutsideSelectionUnsetsSelectedIndex [
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-	testedInstance doubleClickAtIndex: 4.
-	self assert: testedInstance selection selectedIndex equals: 0
-]
-
-{ #category : #'tests-doubleClick' }
-ListPresenterTest >> testDoubleClickOutsideSelectionUnsetsSelectedItem [
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-	testedInstance doubleClickAtIndex: 4.
-	self assert: testedInstance selection selectedItem equals: nil
-]
-
-{ #category : #'tests-doubleClick' }
-ListPresenterTest >> testDoubleClickSelectsItem [
-	window := testedInstance
-		items: #(10 20 30);
-		openWithSpec.
-	testedInstance doubleClickAtIndex: 2.
-	self assert: testedInstance selection selectedIndex equals: 2
 ]
 
 { #category : #'tests-header' }

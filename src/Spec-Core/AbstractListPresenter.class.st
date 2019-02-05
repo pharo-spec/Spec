@@ -23,6 +23,12 @@ Class {
 }
 
 { #category : #api }
+AbstractListPresenter >> activateOnDoubleClick [
+	
+	activateOnSingleClick := false
+]
+
+{ #category : #api }
 AbstractListPresenter >> activateOnSingleClick [
 	
 	activateOnSingleClick := true
@@ -44,7 +50,9 @@ AbstractListPresenter >> beSingleSelection [
 AbstractListPresenter >> clickAtIndex: anIndex [
 
 	self selectIndex: anIndex.
-	activationBlock cull: (self model at: anIndex ifAbsent: [ ^ self ])
+
+	activateOnSingleClick ifFalse: [ ^ self ].
+	self doActivateAtIndex: anIndex
 ]
 
 { #category : #simulation }
@@ -81,16 +89,29 @@ AbstractListPresenter >> displayBlock: aBlock [
 	wrapBlockHolder value: aBlock
 ]
 
+{ #category : #private }
+AbstractListPresenter >> doActivateAtIndex: anIndex [
+
+	"Activate only if there is an item at that position"
+	self model at: anIndex ifAbsent: [ ^ self ].
+	
+	activationBlock cull: ((SpecSingleSelectionMode on: self)
+		basicSelectIndex: anIndex;
+		yourself)
+]
+
 { #category : #'api-events' }
 AbstractListPresenter >> doubleClickAction: aBlockClosure [ 
 	
-	doubleClickActionHolder value: aBlockClosure
+	self whenActivatedDo: aBlockClosure
 ]
 
 { #category : #simulation }
-AbstractListPresenter >> doubleClickAtIndex: anInteger [
-	self selectIndex: anInteger.
-	doubleClickActionHolder value cull: anInteger
+AbstractListPresenter >> doubleClickAtIndex: anIndex [
+	self selectIndex: anIndex.
+	
+	activateOnSingleClick ifTrue: [ ^ self ].
+	self doActivateAtIndex: anIndex
 ]
 
 { #category : #api }
@@ -138,7 +159,7 @@ AbstractListPresenter >> initialize [
 	activationBlock := [ ].
 
 	self beSingleSelection.
-	self activateOnSingleClick.
+	self activateOnDoubleClick.
 
 	self initializeValueHolders.
 	self registerEvents.
