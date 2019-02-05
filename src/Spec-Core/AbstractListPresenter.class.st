@@ -103,6 +103,11 @@ AbstractListPresenter >> doActivateAtIndex: anIndex [
 { #category : #'api-events' }
 AbstractListPresenter >> doubleClickAction: aBlockClosure [ 
 	
+	self
+		deprecated: 'Use whenActivatedDo: instead'
+		transformWith: '`@receiver whenActivatedDo: `@argument'
+						-> '`@receiver doubleClickAction: `@argument'.
+	
 	self whenActivatedDo: aBlockClosure
 ]
 
@@ -333,19 +338,19 @@ AbstractListPresenter >> resetSelection [
 ]
 
 { #category : #simulation }
-AbstractListPresenter >> rightClickItem: anIndex [
+AbstractListPresenter >> rightClickAtIndex: anIndex [
 	
 	self clickItem: anIndex.
 	^ self menu: nil shifted: false
 ]
 
-{ #category : #selection }
+{ #category : #api }
 AbstractListPresenter >> selectIndex: anInteger [ 
 	
 	self selectionMode selectIndex: anInteger
 ]
 
-{ #category : #selection }
+{ #category : #api }
 AbstractListPresenter >> selectItem: anItem [ 
 	
 	self selectionMode selectItem: anItem

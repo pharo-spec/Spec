@@ -46,6 +46,12 @@ SpecMultipleSelectionMode >> isMultipleSelection [
 	^ true
 ]
 
+{ #category : #selection }
+SpecMultipleSelectionMode >> selectAll [
+	
+	self selectIndexes: (1 to: self model size)
+]
+
 { #category : #accessing }
 SpecMultipleSelectionMode >> selectIndexes: aCollection [
 

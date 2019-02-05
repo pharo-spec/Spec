@@ -184,9 +184,8 @@ ListPresenter >> resetSortingBlock [
 
 { #category : #api }
 ListPresenter >> selectAll [
-	self listItems ifEmpty: [ ^ self ].
-	self selection selectIndexes: (1 to: self listItems size).
-	self changed: #listElementAt:
+
+	self selection selectAll
 ]
 
 { #category : #private }

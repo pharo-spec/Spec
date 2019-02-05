@@ -20,6 +20,13 @@ ListPresenterMultipleSelectionTest >> setUp [
 ]
 
 { #category : #'tests-index' }
+ListPresenterMultipleSelectionTest >> testSelectAllSelectsAllItems [
+
+	testedInstance selectAll.
+	self assert: testedInstance selection selectedItems asSet equals: testedInstance model asSet
+]
+
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSelectIndexAddsIndexToSelectedIndexList [
 
 	testedInstance selectIndex: 1.

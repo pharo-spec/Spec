@@ -34,6 +34,12 @@ SpecAbstractSelectionMode >> includesItem: anItem [
 ]
 
 { #category : #testing }
+SpecAbstractSelectionMode >> isEmpty [
+	
+	^ self selectedIndex = 0
+]
+
+{ #category : #testing }
 SpecAbstractSelectionMode >> isMultipleSelection [
 	
 	^ false
@@ -42,6 +48,12 @@ SpecAbstractSelectionMode >> isMultipleSelection [
 { #category : #accessing }
 SpecAbstractSelectionMode >> model [
 	^ widget model
+]
+
+{ #category : #selection }
+SpecAbstractSelectionMode >> selectAll [
+
+	^ self subclassResponsibility
 ]
 
 { #category : #selecting }

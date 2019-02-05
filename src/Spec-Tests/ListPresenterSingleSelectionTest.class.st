@@ -21,6 +21,34 @@ ListPresenterSingleSelectionTest >> setUp [
 ]
 
 { #category : #'tests-singleselection-index' }
+ListPresenterSingleSelectionTest >> testSelectAllDoesNotRaiseEvent [
+	"Because it does nothing in single selection mode"
+	| events |
+	events := 0.
+	testedInstance whenSelectionChangedDo: [ :selection | events := events + 1 ].
+
+	testedInstance selectAll.
+
+	self assert: events equals: 0
+]
+
+{ #category : #'tests-singleselection-index' }
+ListPresenterSingleSelectionTest >> testSelectAllDoesNotSelect [
+	testedInstance selectAll.
+
+	self assert: (testedInstance selection isEmpty)
+]
+
+{ #category : #'tests-singleselection-index' }
+ListPresenterSingleSelectionTest >> testSelectAllWithExistingSelectionLeavesSelection [
+	testedInstance
+		selectIndex: 1;
+		selectAll.
+
+	self assert: (testedInstance selection includesIndex: 1)
+]
+
+{ #category : #'tests-singleselection-index' }
 ListPresenterSingleSelectionTest >> testSelectIndexOutsideRangeUnsetsSelectedIndex [
 	testedInstance selectIndex: 4.
 

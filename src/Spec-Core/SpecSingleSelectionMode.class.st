@@ -32,6 +32,12 @@ SpecSingleSelectionMode >> initialize [
 	selectedIndexValueHolder := 0 asValueHolder
 ]
 
+{ #category : #selection }
+SpecSingleSelectionMode >> selectAll [
+
+	"Do nothing"
+]
+
 { #category : #accessing }
 SpecSingleSelectionMode >> selectedIndex [
 	
