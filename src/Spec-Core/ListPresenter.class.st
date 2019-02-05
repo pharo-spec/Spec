@@ -154,9 +154,8 @@ ListPresenter >> hideHeaderTitle [
 { #category : #private }
 ListPresenter >> prepareForFilteredDataSourceWith: items [
 
-	listHolder := items asValueHolder.
-	listHolder whenChangedDo: [ self refreshListItems ].
-	listItemsCache := nil
+	listHolder := items asValueHolder
+
 ]
 
 { #category : #api }

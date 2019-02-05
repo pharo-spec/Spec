@@ -110,6 +110,11 @@ AbstractAdapter >> model [
 	^ model
 ]
 
+{ #category : #accessing }
+AbstractAdapter >> presenter [
+	^ model
+]
+
 { #category : #protocol }
 AbstractAdapter >> removeSubWidgets [
 

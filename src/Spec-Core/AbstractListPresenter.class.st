@@ -10,12 +10,10 @@ Class {
 		'filteringBlockHolder',
 		'autoDeselect',
 		'wrapBlockHolder',
-		'listAnnouncer',
 		'itemFilterBlockHolder',
 		'menuHolder',
 		'allowToSelect',
 		'doubleClickActionHolder',
-		'listItemsCache',
 		'activationBlock',
 		'activateOnSingleClick'
 	],
@@ -234,8 +232,7 @@ AbstractListPresenter >> items: aList [
 	Use a two stages notification (issue 7420)."
 
 	"<api: #st getter: #listItems registration: #whenListChanged:>"
-	| oldContents |
-	oldContents := listHolder value.
+	
 	listHolder value: (aList sorted: sortingBlockHolder value)
 ]
 
@@ -302,18 +299,9 @@ AbstractListPresenter >> model [
 	^ listHolder value
 ]
 
-{ #category : #private }
-AbstractListPresenter >> refreshListItems [
-
-	listItemsCache := nil.
-	^ self changed: #listElementAt:
-]
-
 { #category : #initialization }
 AbstractListPresenter >> registerEvents [
 
-	listHolder whenChangedDo: [ self refreshListItems ].
-	filteringBlockHolder whenChangedDo: [ self refreshListItems ].
 	selectionHolder index whenChangedDo: [ self changed: #getIndex ].
 	wrapBlockHolder whenChangedDo:[ self changed: #listElementAt: ].
 	autoDeselect whenChangedDo: [ :boolean | self changed: #autoDeselect: with: { boolean }].
@@ -552,6 +540,11 @@ AbstractListPresenter >> whenSelectedItemChanged: aBlock [
 { #category : #'api-events' }
 AbstractListPresenter >> whenSelectedItemChangedDo: aBlock [
 	"Set a block to value when the select item is changed"
+
+	self
+		deprecated: 'Use #whenSelectionChangedDo: instead'
+		transformWith: '`@receiver whenSelectedItemChangedDo: `@argument'
+						-> '`@receiver whenSelectionChangedDo: [ :selection | `@argument cull: selection selectedItems ]'.
 	
 	self selection whenChangedDo: [ :selection | aBlock cull: selection selectedItem ]
 ]
@@ -560,7 +553,12 @@ AbstractListPresenter >> whenSelectedItemChangedDo: aBlock [
 AbstractListPresenter >> whenSelectedItemsChanged: aBlock [
 	"Set a block to value when the select item is changed"
 	
-	multiSelectionHolder selections whenChangedDo: aBlock
+	self
+		deprecated: 'Use #whenSelectionChangedDo: instead'
+		transformWith: '`@receiver whenSelectedItemsChanged: `@argument'
+						-> '`@receiver whenSelectionChangedDo: [ :selection | `@argument cull: selection selectedItems ]'.
+	
+	self selection whenChangedDo: [ :selection | aBlock cull: selection selectedItem ]
 ]
 
 { #category : #'api-events' }
