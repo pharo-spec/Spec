@@ -40,6 +40,9 @@ todo
 Class {
 	#name : #ListPresenter,
 	#superclass : #AbstractListPresenter,
+	#instVars : [
+		'headerTitle'
+	],
 	#category : #'Spec-Core-Widgets-Table'
 }
 
@@ -128,6 +131,24 @@ ListPresenter >> clickOnSelectedItem [
 	(item notNil and: [ item respondsTo: #click ])
 		ifTrue: [ ^ item click ]
 		ifFalse: [ ^ false ]
+]
+
+{ #category : #testing }
+ListPresenter >> hasHeaderTitle [
+	
+	^ headerTitle notNil
+]
+
+{ #category : #'as yet unclassified' }
+ListPresenter >> headerTitle: aString [ 
+	
+	headerTitle := aString
+]
+
+{ #category : #api }
+ListPresenter >> hideHeaderTitle [
+	
+	headerTitle := nil
 ]
 
 { #category : #private }

@@ -15,10 +15,18 @@ Class {
 		'menuHolder',
 		'allowToSelect',
 		'doubleClickActionHolder',
-		'listItemsCache'
+		'listItemsCache',
+		'activationBlock',
+		'activateOnSingleClick'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
+
+{ #category : #api }
+AbstractListPresenter >> activateOnSingleClick [
+	
+	activateOnSingleClick := true
+]
 
 { #category : #api }
 AbstractListPresenter >> beMultipleSelection [
@@ -30,6 +38,19 @@ AbstractListPresenter >> beMultipleSelection [
 AbstractListPresenter >> beSingleSelection [
 	
 	selectionMode := SpecSingleSelectionMode on: self.
+]
+
+{ #category : #simulation }
+AbstractListPresenter >> clickAtIndex: anIndex [
+
+	self selectIndex: anIndex.
+	activationBlock cull: (self model at: anIndex ifAbsent: [ ^ self ])
+]
+
+{ #category : #simulation }
+AbstractListPresenter >> clickItem: anInteger [ 
+	
+	self setIndex: anInteger
 ]
 
 { #category : #initialization }
@@ -114,6 +135,7 @@ AbstractListPresenter >> getSelectionStateFor: anIndex [
 AbstractListPresenter >> initialize [
 	super initialize.
 	self beSingleSelection.
+	self activateOnSingleClick.
 	self initializeValueHolders.
 	self registerEvents.
 
@@ -285,6 +307,13 @@ AbstractListPresenter >> resetSelection [
 	multiSelectionHolder reset
 ]
 
+{ #category : #simulation }
+AbstractListPresenter >> rightClickItem: anIndex [
+	
+	self clickItem: anIndex.
+	^ self menu: nil shifted: false
+]
+
 { #category : #selection }
 AbstractListPresenter >> selectIndex: anInteger [ 
 	
@@ -443,6 +472,12 @@ AbstractListPresenter >> sortingBlock: aBlock [
 	"To set the ordering of the items"
 	
 	sortingBlockHolder value: aBlock
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> whenActivatedDo: aBlockClosure [ 
+	
+	activationBlock := aBlockClosure.
 ]
 
 { #category : #'api-events' }

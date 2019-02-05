@@ -12,6 +12,41 @@ ListPresenterTest >> classToTest [
 	^ ListPresenter
 ]
 
+{ #category : #running }
+ListPresenterTest >> setUp [
+
+	super setUp.
+	testedInstance items: #(10 20 30).
+]
+
+{ #category : #'tests-activation' }
+ListPresenterTest >> testActivationOnSingleClickShouldActivateOnClick [
+
+	| activatedItem |
+	activatedItem := nil.
+	testedInstance
+		activateOnSingleClick;
+		whenActivatedDo: [ :item | activatedItem := item ].
+	
+	testedInstance clickAtIndex: 1.
+	
+	self assert: activatedItem equals: 10.
+]
+
+{ #category : #'tests-activation' }
+ListPresenterTest >> testActivationOnSingleClickShouldNotActivateOnClickOutside [
+
+	| activatedItem |
+	activatedItem := nil.
+	testedInstance
+		activateOnSingleClick;
+		whenActivatedDo: [ :item | activatedItem := item ].
+	
+	testedInstance clickAtIndex: 100.
+	
+	self assert: activatedItem equals: nil
+]
+
 { #category : #'tests-doubleClick' }
 ListPresenterTest >> testDoubleClickCallsDoubleClickAction [
 
@@ -55,6 +90,16 @@ ListPresenterTest >> testDoubleClickSelectsItem [
 	self assert: testedInstance selection selectedIndex equals: 2
 ]
 
+{ #category : #'tests-header' }
+ListPresenterTest >> testHideHeaderTitleUnsetsTitle [
+
+	testedInstance
+		headerTitle: 'title';
+		hideHeaderTitle.
+	
+	self deny: testedInstance hasHeaderTitle
+]
+
 { #category : #tests }
 ListPresenterTest >> testSelectAll [
 	| items |
@@ -64,6 +109,14 @@ ListPresenterTest >> testSelectAll [
 	self assertCollection: testedInstance selectedItems hasSameElements: #().
 	testedInstance selectAll.
 	self assertCollection: testedInstance selectedItems hasSameElements: items
+]
+
+{ #category : #'tests-header' }
+ListPresenterTest >> testSetHeaderTitleSetsTitle [
+
+	testedInstance headerTitle: 'title'.
+	
+	self assert: testedInstance hasHeaderTitle
 ]
 
 { #category : #'tests-smoke' }
