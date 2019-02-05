@@ -165,9 +165,8 @@ ListPresenterSingleSelectionTest >> testSetSelectIndexRaisesSelectionIndexChange
 { #category : #'tests-singleselection-index' }
 ListPresenterSingleSelectionTest >> testSetSelectIndexRaisesSelectionItemChangeEventWithSelectedIndex [
 	| selectedItem |
-
 	testedInstance
-		whenSelectedItemChangedDo: [ :selection | selectedItem := selection ].
+		whenSelectionChangedDo: [ :selection | selectedItem := selection selectedItem ].
 	testedInstance selectIndex: 1.
 	self assert: selectedItem equals: 10
 ]
@@ -223,7 +222,7 @@ ListPresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionIndexChangeE
 ListPresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionItemChangeEventWithSelectedItem [
 	| selectedItem |
 	testedInstance
-		whenSelectedItemChangedDo: [ :selection | selectedItem := selection ].
+		whenSelectionChangedDo: [ :selection | selectedItem := selection selectedItem ].
 	testedInstance selectItem: 10.
 	self assert: selectedItem equals: 10
 ]

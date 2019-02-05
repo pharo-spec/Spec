@@ -35,7 +35,7 @@ ListPresenterMultipleSelectionTest >> testSelectAllRaisesSelectionEventOnce [
 ListPresenterMultipleSelectionTest >> testSelectAllSelectsAllItems [
 
 	testedInstance selectAll.
-	self assert: testedInstance selection selectedItems asSet equals: testedInstance model asSet
+	self assert: testedInstance selection selectedItems asSet equals: testedInstance model items asSet
 ]
 
 { #category : #'tests-index' }

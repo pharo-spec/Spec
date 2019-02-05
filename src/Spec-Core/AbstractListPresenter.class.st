@@ -220,14 +220,11 @@ AbstractListPresenter >> itemSubstringFilter [
 ]
 
 { #category : #api }
-AbstractListPresenter >> items: aList [
+AbstractListPresenter >> items: aCollection [
 	"Set the items of the list.
-	aList is a collection of your domain specific items.
-	Use a two stages notification (issue 7420)."
-
-	"<api: #st getter: #listItems registration: #whenListChanged:>"
+	aCollection is a collection of your domain specific items."
 	
-	listHolder value: (aList sorted: sortingBlockHolder value)
+	listHolder value: (SpecCollectionListModel on: aCollection)
 ]
 
 { #category : #private }
@@ -538,7 +535,7 @@ AbstractListPresenter >> whenSelectedItemChangedDo: aBlock [
 	self
 		deprecated: 'Use #whenSelectionChangedDo: instead'
 		transformWith: '`@receiver whenSelectedItemChangedDo: `@argument'
-						-> '`@receiver whenSelectionChangedDo: [ :selection | `@argument cull: selection selectedItems ]'.
+						-> '`@receiver whenSelectionChangedDo: [ :selection | `@argument cull: selection selectedItem ]'.
 	
 	self selection whenChangedDo: [ :selection | aBlock cull: selection selectedItem ]
 ]
@@ -550,7 +547,7 @@ AbstractListPresenter >> whenSelectedItemsChanged: aBlock [
 	self
 		deprecated: 'Use #whenSelectionChangedDo: instead'
 		transformWith: '`@receiver whenSelectedItemsChanged: `@argument'
-						-> '`@receiver whenSelectionChangedDo: [ :selection | `@argument cull: selection selectedItems ]'.
+						-> '`@receiver whenSelectionChangedDo: [ :selection | `@argument cull: selection selectedItem ]'.
 	
 	self selection whenChangedDo: [ :selection | aBlock cull: selection selectedItem ]
 ]

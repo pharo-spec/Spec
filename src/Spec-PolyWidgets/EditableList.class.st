@@ -177,7 +177,7 @@ EditableList >> moveElementAt: index to: newIndex [
 	(newIndex < 1 or: [ newIndex > list listItems size ])
 		ifTrue: [ ^ self ].
 	elementToMove := list listItems at: index.
-	orderedList := list listItems asOrderedCollection
+	orderedList := list model items copy asOrderedCollection
 		removeAt: index;
 		add: elementToMove beforeIndex: newIndex;
 		yourself.

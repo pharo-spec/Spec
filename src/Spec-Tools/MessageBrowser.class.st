@@ -466,7 +466,8 @@ MessageBrowser >> initializeDropList [
 { #category : #initialization }
 MessageBrowser >> initializePresenter [
 	listModel
-		whenSelectedItemChangedDo: [ :item | 
+		whenSelectionChangedDo: [ :selection | | item |
+			item := selection selectedItem.
 			toolbarModel method: item.
 			textModel
 				behavior: (item ifNil: [ nil ] ifNotNil: [ item methodClass ]).

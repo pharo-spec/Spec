@@ -24,7 +24,7 @@ LabelledContainerTest >> testContent [
 LabelledContainerTest >> testDoesNotUnderstand [
 	testedInstance content: ListPresenter.
 	testedInstance items: {'aaa' . 'bbb' . 'ccc'}.
-	self assertCollection: testedInstance listItems hasSameElements: {'aaa' . 'bbb' . 'ccc'}
+	self assertCollection: testedInstance model items hasSameElements: {'aaa' . 'bbb' . 'ccc'}
 ]
 
 { #category : #tests }
