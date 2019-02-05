@@ -134,8 +134,12 @@ AbstractListPresenter >> getSelectionStateFor: anIndex [
 { #category : #initialization }
 AbstractListPresenter >> initialize [
 	super initialize.
+
+	activationBlock := [ ].
+
 	self beSingleSelection.
 	self activateOnSingleClick.
+
 	self initializeValueHolders.
 	self registerEvents.
 

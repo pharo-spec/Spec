@@ -47,6 +47,19 @@ ListPresenterTest >> testActivationOnSingleClickShouldNotActivateOnClickOutside 
 	self assert: activatedItem equals: nil
 ]
 
+{ #category : #'tests-activation' }
+ListPresenterTest >> testActivationWithoutActivationBlockDoesNothing [
+
+	| activatedItem |
+	activatedItem := nil.
+	testedInstance
+		activateOnSingleClick.
+
+	testedInstance clickAtIndex: 1.
+	
+	self assert: activatedItem equals: nil
+]
+
 { #category : #'tests-doubleClick' }
 ListPresenterTest >> testDoubleClickCallsDoubleClickAction [
 
