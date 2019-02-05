@@ -307,15 +307,6 @@ ListPresenterTest >> testWhenListChangedOldContents [
 ]
 
 { #category : #running }
-ListPresenterTest >> useMultipleSingleSelectionList [
-
-	window := testedInstance
-		beMultipleSelection;
-		items: #(10 20 30);
-		openWithSpec.
-]
-
-{ #category : #running }
 ListPresenterTest >> useSingleSelectionList [
 
 	window := testedInstance
