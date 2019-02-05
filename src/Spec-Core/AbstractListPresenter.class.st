@@ -192,9 +192,7 @@ AbstractListPresenter >> initializeValueHolders [
 	wrapBlockHolder := [ :object | object asStringOrText ] asValueHolder.
 	menuHolder := [ :menu :shifted | nil ] asValueHolder.
 	allowToSelect := true asValueHolder.
-	autoDeselect := true asValueHolder.
-	listAnnouncer := Announcer new.
-
+	autoDeselect := true asValueHolder
 ]
 
 { #category : #testing }
@@ -238,8 +236,7 @@ AbstractListPresenter >> items: aList [
 	"<api: #st getter: #listItems registration: #whenListChanged:>"
 	| oldContents |
 	oldContents := listHolder value.
-	listHolder value: (aList sorted: sortingBlockHolder value).
-	listAnnouncer announce: (ValueChanged oldValue: oldContents newValue: listHolder value)
+	listHolder value: (aList sorted: sortingBlockHolder value)
 ]
 
 { #category : #private }
@@ -261,8 +258,7 @@ AbstractListPresenter >> listItems [
 	"<api: #inspect>"
 	"Return the items of the list. They are your domain specific items"
 	
-	^ listItemsCache ifNil: [ listItemsCache :=  filteringBlockHolder value value: listHolder value ]
-	
+	^ filteringBlockHolder value value: listHolder value
 ]
 
 { #category : #api }
@@ -521,17 +517,8 @@ AbstractListPresenter >> whenListChanged: aBlock [
 	"Specify a block to value after the contents of the list has changed"
 	"Basically when you set a new list of items"
 	"<api: #event>"
-	| block |
-	block := [ :announcement :ann | 
-	aBlock
-		cull: announcement newValue
-		cull: announcement oldValue
-		cull: announcement
-		cull: ann ].
 	
-	listAnnouncer
-		when: ValueChanged
-		do: block
+	listHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
