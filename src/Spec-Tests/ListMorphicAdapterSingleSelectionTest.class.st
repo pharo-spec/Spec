@@ -54,7 +54,7 @@ ListMorphicAdapterSingleSelectionTest >> testSelectPresenterItemSetsSelectedInde
 ]
 
 { #category : #'tests-widget-to-model' }
-ListMorphicAdapterSingleSelectionTest >> testSetWidgetSelectIndexRaisesSelectionIndexChangeEventOnce [
+ListMorphicAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	counter := 0.
 	presenter selection
@@ -64,7 +64,7 @@ ListMorphicAdapterSingleSelectionTest >> testSetWidgetSelectIndexRaisesSelection
 ]
 
 { #category : #'tests-widget-to-model' }
-ListMorphicAdapterSingleSelectionTest >> testSetWidgetSelectIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
+ListMorphicAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedIndex |
 	presenter selection
 		whenChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
