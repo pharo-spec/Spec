@@ -14,7 +14,7 @@ ButtonPresenterTest >> classToTest [
 
 { #category : #running }
 ButtonPresenterTest >> morph [
-	^ presenter widget widget
+	^ presenter adapter widget
 ]
 
 { #category : #tests }
@@ -22,10 +22,10 @@ ButtonPresenterTest >> testAskBeforeChanging [
 	| state |
 	self assert: presenter askBeforeChanging not.
 	self openInstance.
-	state := presenter widget askBeforeChanging.
+	state := presenter adapter askBeforeChanging.
 	self assert: state not.
 	presenter askBeforeChanging: true.
-	state := presenter widget askBeforeChanging.
+	state := presenter adapter askBeforeChanging.
 	self assert: state
 ]
 

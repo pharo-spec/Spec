@@ -42,7 +42,7 @@ MorphicTabManagerAdapter >> getTabs [
 MorphicTabManagerAdapter >> removeTab: aTab [
 	"In Morphic, Tab removal is triggered on Tab, on TabManager."
 
-	aTab widget delete
+	aTab adapter delete
 ]
 
 { #category : #'widget API' }

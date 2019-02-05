@@ -21,7 +21,8 @@ TabManagerPresenterTest >> initializeTestedInstance [
 TabManagerPresenterTest >> morphicTabsFor: aManagerModel [
 	"Retrieve all tabs in the morphic world to test whether they are being properly added/removed. It is assumed that the Model has already been built."
 
-	^ (aManagerModel widget widget submorphs detect: [ :each | each class = TabBarMorph ]) tabs
+	^ (aManagerModel adapter widget submorphs
+		detect: [ :each | each class = TabBarMorph ]) tabs
 ]
 
 { #category : #'tabs creation' }
@@ -90,10 +91,14 @@ TabManagerPresenterTest >> testRemoveTabFromManager [
 	self openInstance.
 	presenter addTab: redTab.
 	self assertCollection: presenter tabs hasSameElements: {redTab}.
-	self assertCollection: (self morphicTabsFor: presenter) hasSameElements: {redTab widget widget}.
-	redTab widget widget delete.
+	self
+		assertCollection: (self morphicTabsFor: presenter)
+		hasSameElements: {redTab adapter widget}.
+	redTab adapter widget delete.
 	self assertCollection: presenter tabs hasSameElements: #().
-	self assertCollection: (self morphicTabsFor: presenter) hasSameElements: #()
+	self
+		assertCollection: (self morphicTabsFor: presenter)
+		hasSameElements: #()
 ]
 
 { #category : #tests }
@@ -102,10 +107,12 @@ TabManagerPresenterTest >> testRemoveTabFromManager2 [
 
 	presenter addTab: redTab.
 	self assertCollection: presenter tabs hasSameElements: {redTab}.
-	self openInstance .
-	redTab widget widget delete.
+	self openInstance.
+	redTab adapter widget delete.
 	self assertCollection: presenter tabs hasSameElements: #().
-	self assertCollection: (self morphicTabsFor: presenter) hasSameElements: #()
+	self
+		assertCollection: (self morphicTabsFor: presenter)
+		hasSameElements: #()
 ]
 
 { #category : #tests }

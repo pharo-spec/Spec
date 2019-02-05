@@ -243,7 +243,7 @@ TextPresenter >> clearSelection [
 
 { #category : #'undo-redo' }
 TextPresenter >> clearUndoManager [
-	self widget ifNotNil: #clearUndoManager
+	self adapter ifNotNil: #clearUndoManager
 ]
 
 { #category : #api }
