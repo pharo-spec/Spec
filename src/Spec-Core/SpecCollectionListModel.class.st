@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'collection',
 		'filter',
-		'shownCollection'
+		'shownCollection',
+		'changedBlock'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -82,4 +83,10 @@ SpecCollectionListModel >> shownItems [
 SpecCollectionListModel >> size [
 
 	^ collection size
+]
+
+{ #category : #events }
+SpecCollectionListModel >> whenChangedDo: aBlockClosure [ 
+	
+	changedBlock := aBlockClosure
 ]

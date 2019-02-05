@@ -154,7 +154,7 @@ ListPresenter >> hideHeaderTitle [
 { #category : #private }
 ListPresenter >> prepareForFilteredDataSourceWith: items [
 
-	listHolder := items asValueHolder
+	model := items asValueHolder
 
 ]
 

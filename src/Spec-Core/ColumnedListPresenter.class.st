@@ -68,7 +68,6 @@ ColumnedListPresenter >> initialize [
 	showColumnHeadersHolder := true asValueHolder.
 	columns := #().
 	isResizableHolder := false asValueHolder.
-	selectionHolder := SelectionValueHolder new.
 	
 	showColumnHeadersHolder whenChangedDo: [ self showColumnHeadersChanged ].
 

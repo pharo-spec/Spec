@@ -5,7 +5,6 @@ Class {
 		'selectionMode',
 		'multiSelectionHolder',
 		'selectionHolder',
-		'listHolder',
 		'sortingBlockHolder',
 		'filteringBlockHolder',
 		'autoDeselect',
@@ -15,7 +14,8 @@ Class {
 		'allowToSelect',
 		'doubleClickActionHolder',
 		'activationBlock',
-		'activateOnSingleClick'
+		'activateOnSingleClick',
+		'model'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -154,6 +154,7 @@ AbstractListPresenter >> initialize [
 	super initialize.
 
 	activationBlock := [ ].
+	self items: #().
 
 	self beSingleSelection.
 	self activateOnDoubleClick.
@@ -175,8 +176,6 @@ AbstractListPresenter >> initializePorts [
 
 { #category : #initialization }
 AbstractListPresenter >> initializeValueHolders [
-	selectionHolder := SelectionValueHolder new.
-	listHolder := Array new asValueHolder.
 	sortingBlockHolder := self defaultSortingBlock asValueHolder.
 	filteringBlockHolder := self defaultFilteringBlock asValueHolder.
 	itemFilterBlockHolder := nil asValueHolder.
@@ -222,16 +221,17 @@ AbstractListPresenter >> itemSubstringFilter [
 { #category : #api }
 AbstractListPresenter >> items: aCollection [
 	"Set the items of the list.
-	aCollection is a collection of your domain specific items."
+	aCollection is a collection of your domain specific items.
+	This creates a collection model"
 	
-	listHolder value: (SpecCollectionListModel on: aCollection)
+	model := SpecCollectionListModel on: aCollection
 ]
 
 { #category : #private }
 AbstractListPresenter >> listElementAt: anIndex [
 	"Return the item at index _anIndex_"
-	
-	^ self listItems at: anIndex ifAbsent: [ nil ]
+
+	^ self model shownItems at: anIndex ifAbsent: [ nil ]
 ]
 
 { #category : #private }
@@ -243,18 +243,21 @@ AbstractListPresenter >> listElementAt: anIndex ifAbsent: aBlock [
 
 { #category : #api }
 AbstractListPresenter >> listItems [
-	"<api: #inspect>"
-	"Return the items of the list. They are your domain specific items"
 	
-	^ filteringBlockHolder value value: listHolder value
+	self
+		deprecated: 'Please use the #model instead'
+		transformWith: '`@receiver listItems' 
+						-> '`@receiver model shownItems'.	
+	^ self model shownItems
 ]
 
 { #category : #api }
 AbstractListPresenter >> listSize [
 	"<api: #inspect>"
+
 	"Return the size of the list"
-	
-	^ self listItems size
+
+	^ self model shownItems size
 ]
 
 { #category : #api }
@@ -287,29 +290,33 @@ AbstractListPresenter >> menu: aMenu shifted: aBoolean [
 { #category : #accessing }
 AbstractListPresenter >> model [
 	
-	^ listHolder value
+	^ model
+]
+
+{ #category : #accessing }
+AbstractListPresenter >> model: aModel [
+	
+	model := aModel
 ]
 
 { #category : #initialization }
 AbstractListPresenter >> registerEvents [
 
-	selectionHolder index whenChangedDo: [ self changed: #getIndex ].
+	selectionMode whenChangedDo: [ :selection | self changed: #getIndex ].
 	wrapBlockHolder whenChangedDo:[ self changed: #listElementAt: ].
 	autoDeselect whenChangedDo: [ :boolean | self changed: #autoDeselect: with: { boolean }].
-	sortingBlockHolder
-		whenChangedDo: [
-			listHolder value: (listHolder value sorted: sortingBlockHolder value).
-			self changed: #listElementAt: ].
-
 ]
 
 { #category : #api }
 AbstractListPresenter >> resetSelection [
-	"<api: #do>"
 	"Unselect every items"
 
-	selectionHolder reset.
-	multiSelectionHolder reset
+	self
+		deprecated: 'Please use #unselectAll instead'
+		transformWith: '`@receiver resetSelection' 
+						-> '`@receiver unselectAll'.
+
+	self unselectAll
 ]
 
 { #category : #simulation }
@@ -497,7 +504,7 @@ AbstractListPresenter >> whenListChanged: aBlock [
 	"Basically when you set a new list of items"
 	"<api: #event>"
 	
-	listHolder whenChangedDo: aBlock
+	model whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
