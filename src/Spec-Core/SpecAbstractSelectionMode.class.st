@@ -15,6 +15,12 @@ SpecAbstractSelectionMode class >> on: aWidget [
 		yourself
 ]
 
+{ #category : #'as yet unclassified' }
+SpecAbstractSelectionMode >> addSubscription: aSubscription [
+
+	^ self subclassResponsibility
+]
+
 { #category : #selecting }
 SpecAbstractSelectionMode >> basicSelectIndex: indexToSelect [
 
@@ -77,6 +83,18 @@ SpecAbstractSelectionMode >> selectItem: anItem [
 		ifAbsent: [ 0 ].
 	
 	self basicSelectIndex: indexToSelect
+]
+
+{ #category : #'as yet unclassified' }
+SpecAbstractSelectionMode >> subscriptions [
+
+	^ self subclassResponsibility
+]
+
+{ #category : #'as yet unclassified' }
+SpecAbstractSelectionMode >> transferSubscriptionsTo: anotherSelectionMode [
+
+	self subscriptions do: [ :aSubscription | anotherSelectionMode addSubscription: aSubscription ].
 ]
 
 { #category : #selection }

@@ -48,7 +48,7 @@ MorphicListAdapter >> buildWidget [
 			beResizable;
 			getListSizeSelector: #listSize ;
 			getListElementSelector: #listElementAt: ;
-			getIndexSelector: #getIndex ;
+			getIndexSelector: #selectedIndex ;
 			setIndexSelector: #setIndex: ;
 			getSelectionListSelector:	#getSelectionStateFor: ;
 			setSelectionListSelector:	#setSelectionStateFor:at: ;
@@ -71,12 +71,6 @@ MorphicListAdapter >> buildWidget [
 				explicitFunction ].
 
 	^ widget
-]
-
-{ #category : #'widget API' }
-MorphicListAdapter >> getIndex [
-
-	^ self model getIndex
 ]
 
 { #category : #'widget API' }

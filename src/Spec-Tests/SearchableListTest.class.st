@@ -11,7 +11,7 @@ SearchableListTest >> classToTest [
 
 { #category : #tests }
 SearchableListTest >> testFiltering [
-	testedInstance listPresenter items: {'aa' . 'bb' . 'ab' . 'ba'}.
-	testedInstance searchPresenter text: 'a'.
-	self assert: testedInstance listPresenter model shownItems asArray equals: {'aa' . 'ab'}
+	presenter listPresenter items: {'aa' . 'bb' . 'ab' . 'ba'}.
+	presenter searchPresenter text: 'a'.
+	self assert: presenter listPresenter model shownItems asArray equals: {'aa' . 'ab'}
 ]

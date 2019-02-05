@@ -14,26 +14,26 @@ ButtonPresenterTest >> classToTest [
 
 { #category : #running }
 ButtonPresenterTest >> morph [
-	^ testedInstance widget widget
+	^ presenter widget widget
 ]
 
 { #category : #tests }
 ButtonPresenterTest >> testAskBeforeChanging [
 	| state |
-	self assert: testedInstance askBeforeChanging not.
+	self assert: presenter askBeforeChanging not.
 	self openInstance.
-	state := testedInstance widget askBeforeChanging.
+	state := presenter widget askBeforeChanging.
 	self assert: state not.
-	testedInstance askBeforeChanging: true.
-	state := testedInstance widget askBeforeChanging.
+	presenter askBeforeChanging: true.
+	state := presenter widget askBeforeChanging.
 	self assert: state
 ]
 
 { #category : #tests }
 ButtonPresenterTest >> testEnabled [
-	self assert: testedInstance enabled.
+	self assert: presenter enabled.
 	self openInstance.
 	self assert: self morph enabled.
-	testedInstance enabled: false.
+	presenter enabled: false.
 	self deny: self morph enabled
 ]

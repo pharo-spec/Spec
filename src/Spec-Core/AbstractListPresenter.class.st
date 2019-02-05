@@ -41,7 +41,11 @@ AbstractListPresenter >> beMultipleSelection [
 { #category : #api }
 AbstractListPresenter >> beSingleSelection [
 	
-	selectionMode := SpecSingleSelectionMode on: self.
+	| newSelectionMode |
+	newSelectionMode := SpecSingleSelectionMode on: self.
+	selectionMode ifNotNil: [ 
+		selectionMode transferSubscriptionsTo: newSelectionMode  ].
+	selectionMode := newSelectionMode.
 ]
 
 { #category : #simulation }
@@ -131,12 +135,6 @@ AbstractListPresenter >> filteringBlock: aBlock [
 	"To set the filtering of the items"
 	
 	filteringBlockHolder value: aBlock
-]
-
-{ #category : #api }
-AbstractListPresenter >> getIndex [
-
-	^ self selection selectedIndex
 ]
 
 { #category : #private }
@@ -302,7 +300,7 @@ AbstractListPresenter >> model: aModel [
 { #category : #initialization }
 AbstractListPresenter >> registerEvents [
 
-	selectionMode whenChangedDo: [ :selection | self changed: #getIndex ].
+	selectionMode whenChangedDo: [ :selection | self changed: #selectedIndex ].
 	wrapBlockHolder whenChangedDo:[ self changed: #listElementAt: ].
 	autoDeselect whenChangedDo: [ :boolean | self changed: #autoDeselect: with: { boolean }].
 ]

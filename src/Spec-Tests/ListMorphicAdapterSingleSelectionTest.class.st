@@ -1,16 +1,16 @@
 Class {
-	#name : #ListPresenterSingleSelectionTest,
+	#name : #ListMorphicAdapterSingleSelectionTest,
 	#superclass : #SpecTestCase,
-	#category : #'Spec-Tests-Core-Widgets'
+	#category : #'Spec-Tests-MorphicAdapters'
 }
 
 { #category : #running }
-ListPresenterSingleSelectionTest >> classToTest [
+ListMorphicAdapterSingleSelectionTest >> classToTest [
 	^ ListPresenter
 ]
 
 { #category : #running }
-ListPresenterSingleSelectionTest >> setUp [
+ListMorphicAdapterSingleSelectionTest >> setUp [
 
 	super setUp.
 
@@ -21,7 +21,7 @@ ListPresenterSingleSelectionTest >> setUp [
 ]
 
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testSelectAllDoesNotRaiseEvent [
+ListMorphicAdapterSingleSelectionTest >> testSelectAllDoesNotRaiseEvent [
 	"Because it does nothing in single selection mode"
 	| events |
 	events := 0.
@@ -33,14 +33,14 @@ ListPresenterSingleSelectionTest >> testSelectAllDoesNotRaiseEvent [
 ]
 
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testSelectAllDoesNotSelect [
+ListMorphicAdapterSingleSelectionTest >> testSelectAllDoesNotSelect [
 	presenter selectAll.
 
 	self assert: (presenter selection isEmpty)
 ]
 
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testSelectAllWithExistingSelectionLeavesSelection [
+ListMorphicAdapterSingleSelectionTest >> testSelectAllWithExistingSelectionLeavesSelection [
 	presenter
 		selectIndex: 1;
 		selectAll.
@@ -49,62 +49,71 @@ ListPresenterSingleSelectionTest >> testSelectAllWithExistingSelectionLeavesSele
 ]
 
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testSelectIndexOutsideRangeUnsetsSelectedIndex [
+ListMorphicAdapterSingleSelectionTest >> testSelectIndexOutsideRangeUnsetsSelectedIndex [
 	presenter selectIndex: 4.
 
 	self assert: (presenter selection includesIndex: 0)
 ]
 
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testSelectIndexOutsideRangeUnsetsSelectedItem [
+ListMorphicAdapterSingleSelectionTest >> testSelectIndexOutsideRangeUnsetsSelectedItem [
 
 	presenter selectIndex: 4.
 	self assert: presenter selection selectedItem equals: nil
 ]
 
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testSelectIndexSetsSelectedIndex [
+ListMorphicAdapterSingleSelectionTest >> testSelectIndexSetsSelectedIndex [
 
 	presenter selectIndex: 1.
+	self halt.
 	self assert: presenter selection selectedIndex equals: 1
 ]
 
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testSelectIndexSetsSelectedItem [
+ListMorphicAdapterSingleSelectionTest >> testSelectIndexSetsSelectedItem [
 
 	presenter selectIndex: 1.
 	self assert: presenter selection selectedItem equals: 10
 ]
 
 { #category : #'tests-singleselection-item' }
-ListPresenterSingleSelectionTest >> testSelectItemOutsideRangeUnsetsSelectedIndex [
+ListMorphicAdapterSingleSelectionTest >> testSelectItemOutsideRangeUnsetsSelectedIndex [
 	
 	presenter selectItem: 40.
 	self assert: presenter selection selectedIndex equals: 0
 ]
 
 { #category : #'tests-singleselection-item' }
-ListPresenterSingleSelectionTest >> testSelectItemOutsideRangeUnsetsSelectedItem [
+ListMorphicAdapterSingleSelectionTest >> testSelectItemOutsideRangeUnsetsSelectedItem [
 
 	presenter selectItem: 40.
 	self assert: presenter selection selectedItem equals: nil
 ]
 
 { #category : #'tests-singleselection-item' }
-ListPresenterSingleSelectionTest >> testSelectItemSetsSelectedIndex [
+ListMorphicAdapterSingleSelectionTest >> testSelectItemSetsSelectedIndex [
 
 	presenter selectItem: 20.
 	self assert: presenter selection selectedIndex equals: 2
 ]
 
 { #category : #'tests-singleselection-item' }
-ListPresenterSingleSelectionTest >> testSelectItemSetsSelectedItem [
+ListMorphicAdapterSingleSelectionTest >> testSelectItemSetsSelectedItem [
 	presenter selectItem: 20.
 	self assert: presenter selection selectedItem equals: 20
 ]
 
+{ #category : #'tests-model-to-widget' }
+ListMorphicAdapterSingleSelectionTest >> testSelectManyIndexesKeepsLastSelectionInWidget [
+
+	presenter selectIndex: 1.
+	presenter selectIndex: 2.
+	self assert: presenter widget widget selectedRowIndexes equals: #(2)
+]
+
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testSelectMultipleIndexesRaisesSelectionChangeEventMultipleTimes [
+ListMorphicAdapterSingleSelectionTest >> testSelectMultipleIndexesRaisesSelectionChangeEventMultipleTimes [
 	| events |
 	events := 0.
 	presenter whenSelectionChangedDo: [ :selection | events := events + 1 ].
@@ -115,8 +124,29 @@ ListPresenterSingleSelectionTest >> testSelectMultipleIndexesRaisesSelectionChan
 	self assert: events equals: 2
 ]
 
+{ #category : #'tests-model-to-widget' }
+ListMorphicAdapterSingleSelectionTest >> testSelectPresenterIndexOutsideRangeUnsetsSelectedIndexInWidget [
+
+	presenter selectIndex: 100.
+	self assert: presenter widget widget selectedRowIndexes isEmpty
+]
+
+{ #category : #'tests-model-to-widget' }
+ListMorphicAdapterSingleSelectionTest >> testSelectPresenterIndexSetsSelectedIndexInWidget [
+
+	presenter selectIndex: 1.
+	self assert: (presenter widget widget selectedRowIndexes includes: 1)
+]
+
+{ #category : #'tests-model-to-widget' }
+ListMorphicAdapterSingleSelectionTest >> testSelectPresenterItemSetsSelectedIndexInWidget [
+
+	presenter selectItem: 20.
+	self assert: (presenter widget widget selectedRowIndexes includes: 2)
+]
+
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testSetSelectIndexOutsideRangeRaisesSelectionChangeEventWithUnsetIndex [
+ListMorphicAdapterSingleSelectionTest >> testSetSelectIndexOutsideRangeRaisesSelectionChangeEventWithUnsetIndex [
 	| selectedIndex |
 	presenter
 		whenSelectionChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
@@ -125,7 +155,7 @@ ListPresenterSingleSelectionTest >> testSetSelectIndexOutsideRangeRaisesSelectio
 ]
 
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testSetSelectIndexOutsideRangeRaisesSelectionChangeEventWithUnsetItem [
+ListMorphicAdapterSingleSelectionTest >> testSetSelectIndexOutsideRangeRaisesSelectionChangeEventWithUnsetItem [
 	| selectedItem |
 	presenter
 		whenSelectionChangedDo: [ :selection | selectedItem := selection selectedItem ].
@@ -134,7 +164,7 @@ ListPresenterSingleSelectionTest >> testSetSelectIndexOutsideRangeRaisesSelectio
 ]
 
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedIndex [
+ListMorphicAdapterSingleSelectionTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedIndex [
 	| selectedIndex |
 	presenter
 		whenSelectionChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
@@ -143,7 +173,7 @@ ListPresenterSingleSelectionTest >> testSetSelectIndexRaisesSelectionChangeEvent
 ]
 
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedItem [
+ListMorphicAdapterSingleSelectionTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedItem [
 	| selectedElement |
 
 	presenter
@@ -153,7 +183,7 @@ ListPresenterSingleSelectionTest >> testSetSelectIndexRaisesSelectionChangeEvent
 ]
 
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testSetSelectIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
+ListMorphicAdapterSingleSelectionTest >> testSetSelectIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedIndex |
 	presenter selection
 		whenChangedDo: [ :selection | 
@@ -163,7 +193,7 @@ ListPresenterSingleSelectionTest >> testSetSelectIndexRaisesSelectionIndexChange
 ]
 
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testSetSelectIndexRaisesSelectionItemChangeEventWithSelectedIndex [
+ListMorphicAdapterSingleSelectionTest >> testSetSelectIndexRaisesSelectionItemChangeEventWithSelectedIndex [
 	| selectedItem |
 	presenter
 		whenSelectionChangedDo: [ :selection | selectedItem := selection selectedItem ].
@@ -172,7 +202,7 @@ ListPresenterSingleSelectionTest >> testSetSelectIndexRaisesSelectionItemChangeE
 ]
 
 { #category : #'tests-singleselection-item' }
-ListPresenterSingleSelectionTest >> testSetSelectItemOutsideRangeRaisesSelectionChangeEventWithUnsetIndex [
+ListMorphicAdapterSingleSelectionTest >> testSetSelectItemOutsideRangeRaisesSelectionChangeEventWithUnsetIndex [
 	| selectedIndex |
 
 	presenter
@@ -182,7 +212,7 @@ ListPresenterSingleSelectionTest >> testSetSelectItemOutsideRangeRaisesSelection
 ]
 
 { #category : #'tests-singleselection-item' }
-ListPresenterSingleSelectionTest >> testSetSelectItemOutsideRangeRaisesSelectionChangeEventWithUnsetItem [
+ListMorphicAdapterSingleSelectionTest >> testSetSelectItemOutsideRangeRaisesSelectionChangeEventWithUnsetItem [
 	| selectedItem |
 	presenter
 		whenSelectionChangedDo: [ :selection | selectedItem := selection selectedItem ].
@@ -191,7 +221,7 @@ ListPresenterSingleSelectionTest >> testSetSelectItemOutsideRangeRaisesSelection
 ]
 
 { #category : #'tests-singleselection-item' }
-ListPresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionChangeEventWithSelectedIndex [
+ListMorphicAdapterSingleSelectionTest >> testSetSelectItemRaisesSelectionChangeEventWithSelectedIndex [
 	| selectedIndex |
 
 	presenter
@@ -201,7 +231,7 @@ ListPresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionChangeEventW
 ]
 
 { #category : #'tests-singleselection-item' }
-ListPresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionChangeEventWithSelectedItem [
+ListMorphicAdapterSingleSelectionTest >> testSetSelectItemRaisesSelectionChangeEventWithSelectedItem [
 	| selectedElement |
 	presenter
 		whenSelectionChangedDo: [ :selection | selectedElement := selection selectedItem ].
@@ -210,7 +240,7 @@ ListPresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionChangeEventW
 ]
 
 { #category : #'tests-singleselection-item' }
-ListPresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionIndexChangeEventWithSelectedIndex [
+ListMorphicAdapterSingleSelectionTest >> testSetSelectItemRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedIndex |
 	presenter selection
 		whenChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
@@ -219,7 +249,7 @@ ListPresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionIndexChangeE
 ]
 
 { #category : #'tests-singleselection-item' }
-ListPresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionItemChangeEventWithSelectedItem [
+ListMorphicAdapterSingleSelectionTest >> testSetSelectItemRaisesSelectionItemChangeEventWithSelectedItem [
 	| selectedItem |
 	presenter
 		whenSelectionChangedDo: [ :selection | selectedItem := selection selectedItem ].
@@ -227,8 +257,36 @@ ListPresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionItemChangeEv
 	self assert: selectedItem equals: 10
 ]
 
+{ #category : #'tests-widget-to-model' }
+ListMorphicAdapterSingleSelectionTest >> testSetWidgetSelectIndexRaisesSelectionIndexChangeEventOnce [
+	| counter |
+	counter := 0.
+	presenter selection whenChangedDo: [ :selection | 
+		counter := counter + 1 ].
+	
+	presenter widget widget selectRowIndex: 1.
+	self assert: counter equals: 1
+]
+
+{ #category : #'tests-widget-to-model' }
+ListMorphicAdapterSingleSelectionTest >> testSetWidgetSelectIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
+	| selectedIndex |
+	presenter selection whenChangedDo: [ :selection | 
+		selectedIndex := selection selectedIndex ].
+	
+	presenter widget widget selectRowIndex: 1.
+	self assert: selectedIndex equals: 1
+]
+
+{ #category : #'tests-widget-to-model' }
+ListMorphicAdapterSingleSelectionTest >> testSubscribeToEventDoesNotRaiseEvent [
+
+	presenter selection
+		whenChangedDo: [ :selection | self fail ].
+]
+
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testUnselectAllRaisesSelectionEventOnce [
+ListMorphicAdapterSingleSelectionTest >> testUnselectAllRaisesSelectionEventOnce [
 	"Because it does nothing in single selection mode"
 	| events |
 	events := 0.
@@ -240,7 +298,7 @@ ListPresenterSingleSelectionTest >> testUnselectAllRaisesSelectionEventOnce [
 ]
 
 { #category : #'tests-singleselection-index' }
-ListPresenterSingleSelectionTest >> testUnselectAllUnselectsSingleSelection [
+ListMorphicAdapterSingleSelectionTest >> testUnselectAllUnselectsSingleSelection [
 
 	presenter
 		selectIndex: 1;

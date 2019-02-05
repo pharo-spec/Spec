@@ -11,9 +11,9 @@ EditableListTest >> classToTest [
 
 { #category : #tests }
 EditableListTest >> testMoveElementAtTo [
-	testedInstance list: {'AAA' . 'BBB' . 'CCC'}.
-	testedInstance moveElementAt: 1 to: 3.
+	presenter list: {'AAA' . 'BBB' . 'CCC'}.
+	presenter moveElementAt: 1 to: 3.
 	self
-		assert: testedInstance list model items asArray 
+		assert: presenter list model items asArray 
 		equals: {'BBB' . 'CCC' . 'AAA'}
 ]

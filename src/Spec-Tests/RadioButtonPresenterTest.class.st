@@ -11,19 +11,19 @@ RadioButtonPresenterTest >> classToTest [
 
 { #category : #tests }
 RadioButtonPresenterTest >> testCanDeselectByClick [
-	self deny: testedInstance canDeselectByClick.
-	testedInstance click.
-	self assert: testedInstance state.
-	testedInstance click.
-	self assert: testedInstance state.
-	testedInstance canDeselectByClick: true.
-	testedInstance click.
-	self deny: testedInstance state
+	self deny: presenter canDeselectByClick.
+	presenter click.
+	self assert: presenter state.
+	presenter click.
+	self assert: presenter state.
+	presenter canDeselectByClick: true.
+	presenter click.
+	self deny: presenter state
 ]
 
 { #category : #tests }
 RadioButtonPresenterTest >> testToggleState [
-	self deny: testedInstance state.
-	testedInstance toggleState.
-	self assert: testedInstance state
+	self deny: presenter state.
+	presenter toggleState.
+	self assert: presenter state
 ]

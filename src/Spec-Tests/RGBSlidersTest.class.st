@@ -17,11 +17,11 @@ RGBSlidersTest >> testColor [
 	green := random nextInt: 255.
 	blue := random nextInt: 255.
 	
-	testedInstance redSlider value: red.
-	testedInstance greenSlider value: green.
-	testedInstance blueSlider value: blue.
+	presenter redSlider value: red.
+	presenter greenSlider value: green.
+	presenter blueSlider value: blue.
 	self
-		assert: testedInstance color
+		assert: presenter color
 		equals:
 			(Color
 				r: red
@@ -34,9 +34,9 @@ RGBSlidersTest >> testColor [
 RGBSlidersTest >> testwhenChangedDo [
 	| numberOfChanges |
 	numberOfChanges := 0.
-	testedInstance whenChangedDo: [ numberOfChanges := numberOfChanges + 1 ].
-	testedInstance redSlider value: 66.
-	testedInstance greenSlider value: 17.
-	testedInstance blueSlider value: 200.
+	presenter whenChangedDo: [ numberOfChanges := numberOfChanges + 1 ].
+	presenter redSlider value: 66.
+	presenter greenSlider value: 17.
+	presenter blueSlider value: 200.
 	self assert: numberOfChanges equals: 3
 ]

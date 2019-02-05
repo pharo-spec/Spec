@@ -16,7 +16,7 @@ ListPresenterTest >> classToTest [
 ListPresenterTest >> setUp [
 
 	super setUp.
-	testedInstance items: #(10 20 30).
+	presenter items: #(10 20 30).
 ]
 
 { #category : #'tests-activation' }
@@ -24,11 +24,11 @@ ListPresenterTest >> testActivationOnDoubleClickShouldActivateOnDoubleClick [
 
 	| activatedItem |
 	activatedItem := nil.
-	testedInstance
+	presenter
 		activateOnDoubleClick;
 		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].
 	
-	testedInstance doubleClickAtIndex: 1.
+	presenter doubleClickAtIndex: 1.
 	
 	self assert: activatedItem equals: 10.
 ]
@@ -38,11 +38,11 @@ ListPresenterTest >> testActivationOnDoubleClickShouldNotActivateOnClick [
 
 	| activatedItem |
 	activatedItem := nil.
-	testedInstance
+	presenter
 		activateOnDoubleClick;
 		whenActivatedDo: [ :selection  | activatedItem := selection selectionItem ].
 	
-	testedInstance clickAtIndex: 1.
+	presenter clickAtIndex: 1.
 	
 	self assert: activatedItem equals: nil.
 ]
@@ -52,11 +52,11 @@ ListPresenterTest >> testActivationOnSingleClickShouldActivateOnClick [
 
 	| activatedItem |
 	activatedItem := nil.
-	testedInstance
+	presenter
 		activateOnSingleClick;
 		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].
 	
-	testedInstance clickAtIndex: 1.
+	presenter clickAtIndex: 1.
 	
 	self assert: activatedItem equals: 10.
 ]
@@ -66,11 +66,11 @@ ListPresenterTest >> testActivationOnSingleClickShouldNotActivateOnClickOutside 
 
 	| activatedItem |
 	activatedItem := nil.
-	testedInstance
+	presenter
 		activateOnSingleClick;
 		whenActivatedDo: [ :selection | activatedItem := selection selectedIndex ].
 	
-	testedInstance clickAtIndex: 100.
+	presenter clickAtIndex: 100.
 	
 	self assert: activatedItem equals: nil
 ]
@@ -80,9 +80,9 @@ ListPresenterTest >> testActivationWithoutActivationBlockDoesNothing [
 
 	| activatedItem |
 	activatedItem := nil.
-	testedInstance activateOnSingleClick.
+	presenter activateOnSingleClick.
 
-	testedInstance clickAtIndex: 1.
+	presenter clickAtIndex: 1.
 	
 	self assert: activatedItem equals: nil
 ]
@@ -90,42 +90,42 @@ ListPresenterTest >> testActivationWithoutActivationBlockDoesNothing [
 { #category : #'tests-header' }
 ListPresenterTest >> testHideHeaderTitleUnsetsTitle [
 
-	testedInstance
+	presenter
 		headerTitle: 'title';
 		hideHeaderTitle.
 	
-	self deny: testedInstance hasHeaderTitle
+	self deny: presenter hasHeaderTitle
 ]
 
 { #category : #tests }
 ListPresenterTest >> testSelectAll [
 	| items |
 	items := #(#AAA #BBB #CCC).
-	testedInstance items: items.
-	testedInstance beMultipleSelection.
-	self assertCollection: testedInstance selectedItems hasSameElements: #().
-	testedInstance selectAll.
-	self assertCollection: testedInstance selectedItems hasSameElements: items
+	presenter items: items.
+	presenter beMultipleSelection.
+	self assertCollection: presenter selectedItems hasSameElements: #().
+	presenter selectAll.
+	self assertCollection: presenter selectedItems hasSameElements: items
 ]
 
 { #category : #'tests-header' }
 ListPresenterTest >> testSetHeaderTitleSetsTitle [
 
-	testedInstance headerTitle: 'title'.
+	presenter headerTitle: 'title'.
 	
-	self assert: testedInstance hasHeaderTitle
+	self assert: presenter hasHeaderTitle
 ]
 
 { #category : #'tests-smoke' }
 ListPresenterTest >> testSmokeOpenEmptyTablePresenter [
 
-	window := testedInstance openWithSpec
+	window := presenter openWithSpec
 ]
 
 { #category : #'tests-smoke' }
 ListPresenterTest >> testSmokeOpenTablePresenterWithItemsButNoColumns [
 
-	window := testedInstance
+	window := presenter
 		items: #(1 2 3);
 		openWithSpec.
 ]

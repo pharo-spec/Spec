@@ -7,6 +7,12 @@ Class {
 	#category : #'Spec-Core-Widgets-Table'
 }
 
+{ #category : #'as yet unclassified' }
+SpecSingleSelectionMode >> addSubscription: aSubscription [
+
+	^ selectedIndexValueHolder announcer basicSubscribe: aSubscription
+]
+
 { #category : #selecting }
 SpecSingleSelectionMode >> basicSelectIndex: indexToSelect [
 
@@ -49,6 +55,12 @@ SpecSingleSelectionMode >> selectedItem [
 
 	self selectedIndex = 0 ifTrue: [ ^ nil ].
 	^ self model at: self selectedIndex
+]
+
+{ #category : #'as yet unclassified' }
+SpecSingleSelectionMode >> subscriptions [
+
+	^ selectedIndexValueHolder announcer subscriptions subscriptions
 ]
 
 { #category : #selection }

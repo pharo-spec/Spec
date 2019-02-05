@@ -14,10 +14,10 @@ MenuPresenterTest >> testFromSpecSingle [
 	| menuDescription |
 	menuDescription := PluggableMenuSpec withModel: nil.
 	menuDescription add: 'item'.
-	testedInstance fromSpec: menuDescription.
-	self assert: testedInstance menuGroups size equals: 1.
-	self assert: testedInstance menuGroups first menuItems size equals: 1.
-	self assert: testedInstance menuGroups first menuItems first name equals: 'item'.
+	presenter fromSpec: menuDescription.
+	self assert: presenter menuGroups size equals: 1.
+	self assert: presenter menuGroups first menuItems size equals: 1.
+	self assert: presenter menuGroups first menuItems first name equals: 'item'.
 	self openInstance
 ]
 
@@ -29,8 +29,8 @@ MenuPresenterTest >> testFromSpecSubMenu [
 	subMenuRoot := PluggableMenuSpec withModel: nil.
 	subMenuRoot add: 'child'.
 	parent subMenu: subMenuRoot.
-	testedInstance fromSpec: root.
-	subMenu := testedInstance menuGroups first menuItems first subMenu.
+	presenter fromSpec: root.
+	subMenu := presenter menuGroups first menuItems first subMenu.
 	self assert: subMenu menuGroups size equals: 1.
 	self assert: subMenu menuGroups first menuItems size equals: 1.
 	self assert: subMenu menuGroups first menuItems first name equals: 'child'.

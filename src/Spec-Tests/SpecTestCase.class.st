@@ -3,7 +3,7 @@ Class {
 	#superclass : #TestCase,
 	#instVars : [
 		'window',
-		'testedInstance'
+		'presenter'
 	],
 	#category : #'Spec-Tests-Utils'
 }
@@ -19,18 +19,18 @@ SpecTestCase >> initializeTestedInstance [
 
 { #category : #running }
 SpecTestCase >> openInstance [
-	window := testedInstance openWithSpec
+	window := presenter openWithSpec
 ]
 
 { #category : #running }
 SpecTestCase >> openInstance: aLayoutSelector [
-	window := testedInstance openWithSpec: aLayoutSelector
+	window := presenter openWithSpec: aLayoutSelector
 ]
 
 { #category : #running }
 SpecTestCase >> setUp [
 	super setUp.
-	testedInstance := self classToTest new.
+	presenter := self classToTest new.
 	self initializeTestedInstance
 ]
 

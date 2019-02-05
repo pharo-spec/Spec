@@ -7,6 +7,12 @@ Class {
 	#category : #'Spec-Core-Widgets-Table'
 }
 
+{ #category : #'as yet unclassified' }
+SpecMultipleSelectionMode >> addSubscription: aSubscription [
+
+	^ selectedIndexesValueHolder announcer basicSubscribe: aSubscription
+]
+
 { #category : #selecting }
 SpecMultipleSelectionMode >> basicSelectIndex: indexToSelect [
 
@@ -68,6 +74,12 @@ SpecMultipleSelectionMode >> selectedIndexes [
 SpecMultipleSelectionMode >> selectedItems [
 
 	^ self selectedIndexes collect: [ :idx | self model at: idx ].
+]
+
+{ #category : #'as yet unclassified' }
+SpecMultipleSelectionMode >> subscriptions [
+
+	^ selectedIndexesValueHolder announcer subscriptions
 ]
 
 { #category : #selection }
