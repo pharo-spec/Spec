@@ -139,12 +139,6 @@ AbstractListPresenter >> getIndex [
 	^ self selection selectedIndex
 ]
 
-{ #category : #api }
-AbstractListPresenter >> getList [
-
-	^ listHolder value
-]
-
 { #category : #private }
 AbstractListPresenter >> getSelectionStateFor: anIndex [
 	"Return the current state of the item -if selected or not - in a multiple selection list"
