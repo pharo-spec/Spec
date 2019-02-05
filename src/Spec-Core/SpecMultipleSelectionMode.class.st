@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #selecting }
-SpecMultipleSelectionMode >> basicSelectIndex: indexToSelect item: valueToSelect [
+SpecMultipleSelectionMode >> basicSelectIndex: indexToSelect [
 
 	"Adding to the selection an out of range should not change selection"
 	indexToSelect = 0 ifTrue: [ ^ self ].
@@ -61,7 +61,7 @@ SpecMultipleSelectionMode >> selectedIndexes [
 { #category : #accessing }
 SpecMultipleSelectionMode >> selectedItems [
 
-	^ self selectedIndexes collect: [ :idx | model itemAt: idx ].
+	^ self selectedIndexes collect: [ :idx | self model at: idx ].
 ]
 
 { #category : #events }

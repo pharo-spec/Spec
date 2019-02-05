@@ -2,21 +2,21 @@ Class {
 	#name : #SpecAbstractSelectionMode,
 	#superclass : #Object,
 	#instVars : [
-		'model'
+		'widget'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
 
 { #category : #'instance creation' }
-SpecAbstractSelectionMode class >> on: aModel [
+SpecAbstractSelectionMode class >> on: aWidget [
 
 	^ self new
-		model: aModel;
+		widget: aWidget;
 		yourself
 ]
 
 { #category : #selecting }
-SpecAbstractSelectionMode >> basicSelectIndex: indexToSelect item: valueToSelect [
+SpecAbstractSelectionMode >> basicSelectIndex: indexToSelect [
 
 	self subclassResponsibility
 ]
@@ -41,44 +41,44 @@ SpecAbstractSelectionMode >> isMultipleSelection [
 
 { #category : #accessing }
 SpecAbstractSelectionMode >> model [
-	^ model
-]
-
-{ #category : #accessing }
-SpecAbstractSelectionMode >> model: anObject [
-	model := anObject
+	^ widget model
 ]
 
 { #category : #selecting }
-SpecAbstractSelectionMode >> selectIndex: anIndex on: aListPresenter [ 
+SpecAbstractSelectionMode >> selectIndex: anIndex [
 	
-	| indexToSelect valueToSelect |
+	| indexToSelect |
 	indexToSelect := anIndex.
-	valueToSelect := aListPresenter model
+	self model
 		at: indexToSelect
-		ifAbsent: [ 
-			indexToSelect := 0.
-			nil ].
-	
-	self basicSelectIndex: indexToSelect item: valueToSelect
+		ifAbsent: [ indexToSelect := 0 ].
+
+	self basicSelectIndex: indexToSelect
 ]
 
 { #category : #selecting }
-SpecAbstractSelectionMode >> selectItem: anItem on: aListPresenter [ 
+SpecAbstractSelectionMode >> selectItem: anItem [
 	
-	| indexToSelect valueToSelect |
-	valueToSelect := anItem.
-	indexToSelect := aListPresenter model
-		indexOf: valueToSelect
-		ifAbsent: [ 
-			valueToSelect := nil.
-			0 ].
+	| indexToSelect |
+	indexToSelect := self model
+		indexOf: anItem
+		ifAbsent: [ 0 ].
 	
-	self basicSelectIndex: indexToSelect item: valueToSelect
+	self basicSelectIndex: indexToSelect
 ]
 
 { #category : #events }
 SpecAbstractSelectionMode >> whenChangedDo: aBlockClosure [ 
 	
 	self subclassResponsibility
+]
+
+{ #category : #accessing }
+SpecAbstractSelectionMode >> widget [
+	^ widget
+]
+
+{ #category : #accessing }
+SpecAbstractSelectionMode >> widget: anObject [
+	widget := anObject
 ]

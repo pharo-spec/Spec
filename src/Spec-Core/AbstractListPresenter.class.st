@@ -288,13 +288,13 @@ AbstractListPresenter >> resetSelection [
 { #category : #selection }
 AbstractListPresenter >> selectIndex: anInteger [ 
 	
-	self selectionMode selectIndex: anInteger on: self
+	self selectionMode selectIndex: anInteger
 ]
 
 { #category : #selection }
 AbstractListPresenter >> selectItem: anItem [ 
 	
-	self selectionMode selectItem: anItem on: self
+	self selectionMode selectItem: anItem
 ]
 
 { #category : #api }

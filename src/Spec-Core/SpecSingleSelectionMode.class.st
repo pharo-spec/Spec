@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #selecting }
-SpecSingleSelectionMode >> basicSelectIndex: indexToSelect item: valueToSelect [
+SpecSingleSelectionMode >> basicSelectIndex: indexToSelect [
 
 	selectedIndexValueHolder value: indexToSelect
 ]
@@ -42,7 +42,7 @@ SpecSingleSelectionMode >> selectedIndex [
 SpecSingleSelectionMode >> selectedItem [
 
 	self selectedIndex = 0 ifTrue: [ ^ nil ].
-	^ model itemAt: self selectedIndex
+	^ self model at: self selectedIndex
 ]
 
 { #category : #events }
