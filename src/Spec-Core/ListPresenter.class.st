@@ -40,9 +40,6 @@ todo
 Class {
 	#name : #ListPresenter,
 	#superclass : #AbstractListPresenter,
-	#instVars : [
-		'backgroundColorBlock'
-	],
 	#category : #'Spec-Core-Widgets-Table'
 }
 
@@ -167,18 +164,21 @@ ListPresenter >> resetSortingBlock [
 { #category : #api }
 ListPresenter >> selectAll [
 	self listItems ifEmpty: [ ^ self ].
-
-	self setIndexes: (1 to: self listItems size).
+	self selection selectIndexes: (1 to: self listItems size).
 	self changed: #listElementAt:
 ]
 
 { #category : #private }
 ListPresenter >> setSelectionStateFor: anIndex at: aBoolean [
 	"Set the selection state of the item at index _anIndex_ in the case of multiple selection list"
-	self flag: 'refactoring in progress'.
-	(self allowToSelect and: [ self multiSelection ]) ifFalse: [ ^ self ].
 
-	^ self setIndexes: (self selectedIndexes value copyWith: anIndex) asSet asOrderedCollection
+	self flag: 'refactoring in progress'.
+	(self allowToSelect and: [ self isMultipleSelection ])
+		ifFalse: [ ^ self ].
+	^ self selection
+		selectIndexes:
+			(self selectedIndexes value copyWith: anIndex) asSet
+				asOrderedCollection
 ]
 
 { #category : #api }

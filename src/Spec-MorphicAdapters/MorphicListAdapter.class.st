@@ -62,7 +62,6 @@ MorphicListAdapter >> buildWidget [
 			setBalloonText: self help; 
 			hResizing: 	#spaceFill;
 			vResizing: 	#spaceFill;
-			selectRowIndex: 1;
 			yourself.
 
 	self itemFilterBlock
@@ -119,7 +118,7 @@ MorphicListAdapter >> menu: aMenu shifted: aBoolean [
 { #category : #'widget API' }
 MorphicListAdapter >> multiSelection [
 
-	^ self model multiSelection
+	^ self model isMultiSelection
 ]
 
 { #category : #'widget API' }

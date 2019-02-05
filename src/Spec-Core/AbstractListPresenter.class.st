@@ -8,7 +8,6 @@ Class {
 		'listHolder',
 		'sortingBlockHolder',
 		'filteringBlockHolder',
-		'multiSelection',
 		'autoDeselect',
 		'wrapBlockHolder',
 		'listAnnouncer',
@@ -140,7 +139,6 @@ AbstractListPresenter >> initializeValueHolders [
 	doubleClickActionHolder := [  ] asValueHolder.
 	wrapBlockHolder := [ :object | object asStringOrText ] asValueHolder.
 	menuHolder := [ :menu :shifted | nil ] asValueHolder.
-	multiSelectionHolder := SpecSelectionsValueHolder new.
 	allowToSelect := true asValueHolder.
 	autoDeselect := true asValueHolder.
 	listAnnouncer := Announcer new.
@@ -316,7 +314,6 @@ AbstractListPresenter >> selectedIndex [
 AbstractListPresenter >> selectedIndex: anIndex [
 
 	"Set the index of the item you want to be selected"
-	| idx selection |
 	self
 		deprecated: 'Use #selectIndex: instead'
 		transformWith: '`@receiver selectedIndex: `@arg'
@@ -327,10 +324,12 @@ AbstractListPresenter >> selectedIndex: anIndex [
 
 { #category : #api }
 AbstractListPresenter >> selectedIndexes [
-	"<api: #inspect>"
-	"Return the indexes of selected items on the case of a multiple selection list"
-	
-	^ multiSelectionHolder indexes
+	self
+		deprecated: 'Use the #selection object instead. This method assumes multiple selection'
+		transformWith: '`@receiver selectedIndexes'
+						-> '`@receiver selection selectedIndexes'.
+
+	^  self selection selectedIndexes
 ]
 
 { #category : #api }
@@ -349,8 +348,7 @@ AbstractListPresenter >> selectedItem [
 { #category : #api }
 AbstractListPresenter >> selectedItem: anItem [
 	"Set the item you want to be selected"
-	| index selectedItem |
-	
+
 	self
 		deprecated: 'Use #selectItem: instead'
 		transformWith: '`@receiver selectedItem: `@arg'
@@ -362,9 +360,10 @@ AbstractListPresenter >> selectedItem: anItem [
 { #category : #api }
 AbstractListPresenter >> selectedItems [
 	"<api: #inspect>"
+
 	"Return all the selected items in the case of a multiple selection list"
 
-	^ self selectedItemsAtIndexes: self selectedIndexes
+	^ self selectedItemsAtIndexes: self selection selectedIndexes
 ]
 
 { #category : #private }
@@ -393,20 +392,21 @@ AbstractListPresenter >> selectionMode [
 
 { #category : #private }
 AbstractListPresenter >> setIndex: anIndex [
-	"Set the index of the selected item when you click on an item"
-
-	(self allowToSelect and: [ self okToChange ]) ifFalse: [ ^ self ].
-	selectionHolder index value: anIndex.
-	selectionHolder selection value: (self listElementAt: anIndex)
+	self
+		deprecated: 'Use #selectIndex: instead'
+		transformWith: '`@receiver setIndex: `@arg' -> '`@receiver selectIndex: `@arg'.
+	self selectIndex: anIndex
 ]
 
 { #category : #private }
-AbstractListPresenter >> setIndexes: aCollectionOfIndex [
+AbstractListPresenter >> setIndexes: aCollectionOfIndexes [
 	"Set the indexexs of the selected items in case of multiple selection"
+	self
+		deprecated: 'Use the #selection object instead. This method assumes multiple selection'
+		transformWith: '`@receiver setIndexes: `@arg'
+						-> '`@receiver selection selectIndexes: `@arg'.
 
-	(self allowToSelect and: [ self okToChange and: [ self isMultipleSelection ] ]) ifFalse: [ ^ self ].
-	multiSelectionHolder indexes value: aCollectionOfIndex.
-	multiSelectionHolder selections value: (self selectedItemsAtIndexes: aCollectionOfIndex)
+	self selection selectIndexes: aCollectionOfIndexes
 ]
 
 { #category : #api }
@@ -466,8 +466,7 @@ AbstractListPresenter >> whenListChanged: aBlock [
 { #category : #'api-events' }
 AbstractListPresenter >> whenMultiSelectionChanged: aBlock [
 	"Set a block to value when the multiSelection value has changed"
-	self deprecated: 'Should not use'.
-	multiSelection whenChangedDo: aBlock
+	self deprecated: 'Should not use'
 ]
 
 { #category : #'api-events' }

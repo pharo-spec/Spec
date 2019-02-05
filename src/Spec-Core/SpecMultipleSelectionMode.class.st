@@ -47,6 +47,12 @@ SpecMultipleSelectionMode >> isMultipleSelection [
 ]
 
 { #category : #accessing }
+SpecMultipleSelectionMode >> selectIndexes: aCollection [
+
+	^ selectedIndexesValueHolder value: aCollection asOrderedCollection
+]
+
+{ #category : #accessing }
 SpecMultipleSelectionMode >> selectedIndexes [
 
 	^ selectedIndexesValueHolder value
