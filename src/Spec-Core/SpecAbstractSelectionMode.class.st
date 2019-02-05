@@ -79,6 +79,12 @@ SpecAbstractSelectionMode >> selectItem: anItem [
 	self basicSelectIndex: indexToSelect
 ]
 
+{ #category : #selection }
+SpecAbstractSelectionMode >> unselectAll [
+	
+	self subclassResponsibility
+]
+
 { #category : #events }
 SpecAbstractSelectionMode >> whenChangedDo: aBlockClosure [ 
 	

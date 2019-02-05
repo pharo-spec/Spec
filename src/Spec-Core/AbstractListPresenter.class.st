@@ -504,6 +504,12 @@ AbstractListPresenter >> sortingBlock: aBlock [
 	sortingBlockHolder value: aBlock
 ]
 
+{ #category : #api }
+AbstractListPresenter >> unselectAll [
+	
+	self selection unselectAll
+]
+
 { #category : #'api-events' }
 AbstractListPresenter >> whenActivatedDo: aBlockClosure [ 
 	

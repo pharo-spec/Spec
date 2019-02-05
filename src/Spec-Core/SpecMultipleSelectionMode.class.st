@@ -70,6 +70,12 @@ SpecMultipleSelectionMode >> selectedItems [
 	^ self selectedIndexes collect: [ :idx | self model at: idx ].
 ]
 
+{ #category : #selection }
+SpecMultipleSelectionMode >> unselectAll [
+	
+	self selectIndexes: #()
+]
+
 { #category : #events }
 SpecMultipleSelectionMode >> whenChangedDo: aBlockClosure [ 
 	

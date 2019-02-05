@@ -20,6 +20,18 @@ ListPresenterMultipleSelectionTest >> setUp [
 ]
 
 { #category : #'tests-index' }
+ListPresenterMultipleSelectionTest >> testSelectAllRaisesSelectionEventOnce [
+	"Because it does nothing in single selection mode"
+	| events |
+	events := 0.
+	testedInstance whenSelectionChangedDo: [ :selection | events := events + 1 ].
+
+	testedInstance selectAll.
+
+	self assert: events equals: 1
+]
+
+{ #category : #'tests-index' }
 ListPresenterMultipleSelectionTest >> testSelectAllSelectsAllItems [
 
 	testedInstance selectAll.
@@ -238,4 +250,25 @@ ListPresenterMultipleSelectionTest >> testSetSelectItemOutsideRangeDoesNotModify
 	
 	testedInstance selectItem: 100.
 	"If we arrive here and the test did not fail, we succeeded"
+]
+
+{ #category : #'tests-index' }
+ListPresenterMultipleSelectionTest >> testUnselectAllRaisesSelectionEventOnce [
+	"Because it does nothing in single selection mode"
+	| events |
+	events := 0.
+	testedInstance whenSelectionChangedDo: [ :selection | events := events + 1 ].
+
+	testedInstance unselectAll.
+
+	self assert: events equals: 1
+]
+
+{ #category : #'tests-index' }
+ListPresenterMultipleSelectionTest >> testUnselectAllUnselectsall [
+
+	testedInstance
+		selectIndex: 1;
+		unselectAll.
+	self assert: testedInstance selection isEmpty
 ]

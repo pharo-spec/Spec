@@ -227,3 +227,24 @@ ListPresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionItemChangeEv
 	testedInstance selectItem: 10.
 	self assert: selectedItem equals: 10
 ]
+
+{ #category : #'tests-singleselection-index' }
+ListPresenterSingleSelectionTest >> testUnselectAllRaisesSelectionEventOnce [
+	"Because it does nothing in single selection mode"
+	| events |
+	events := 0.
+	testedInstance whenSelectionChangedDo: [ :selection | events := events + 1 ].
+
+	testedInstance unselectAll.
+
+	self assert: events equals: 1
+]
+
+{ #category : #'tests-singleselection-index' }
+ListPresenterSingleSelectionTest >> testUnselectAllUnselectsSingleSelection [
+
+	testedInstance
+		selectIndex: 1;
+		unselectAll.
+	self assert: testedInstance selection isEmpty
+]

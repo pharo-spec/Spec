@@ -51,6 +51,12 @@ SpecSingleSelectionMode >> selectedItem [
 	^ self model at: self selectedIndex
 ]
 
+{ #category : #selection }
+SpecSingleSelectionMode >> unselectAll [
+	
+	self selectIndex: 0
+]
+
 { #category : #events }
 SpecSingleSelectionMode >> whenChangedDo: aBlockClosure [ 
 	
