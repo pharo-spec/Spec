@@ -104,22 +104,20 @@ SpecDemo >> extent [
 
 { #category : #initialization }
 SpecDemo >> initializePresenter [
-
-	list setSelectedItem: self selectedPage.
-	
-	list whenSelectedItemChanged: [ :newPageClass |
-		newPageClass
-			ifNotNil: [
-			newPageClass = self selectedPage
-				ifFalse: [
-					self selectedPage: newPageClass. 
-					page := self instantiate: newPageClass.
-				
-					self needRebuild: false.
-					self buildWithSpec.
-					list setSelectedItem: self selectedPage ] ]
-			ifNil: [ "Avoid the user to have no page selected at all."
-				list setSelectedItem: self selectedPage ] ].
+	list selectItem: self selectedPage.
+	list
+		whenSelectionChangedDo: [ :selection | 
+			[ :newPageClass | 
+			newPageClass
+				ifNotNil: [ newPageClass = self selectedPage
+						ifFalse: [ self selectedPage: newPageClass.
+							page := self instantiate: newPageClass.
+							self needRebuild: false.
+							self buildWithSpec.
+							list setSelectedItem: self selectedPage ] ]
+				ifNil:
+					[ "Avoid the user to have no page selected at all." list setSelectedItem: self selectedPage ] ]
+				cull: selection selectedItem ]
 ]
 
 { #category : #initialization }

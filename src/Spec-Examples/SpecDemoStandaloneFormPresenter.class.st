@@ -152,7 +152,6 @@ SpecDemoStandaloneFormPresenter >> dateLabel: anObject [
 SpecDemoStandaloneFormPresenter >> fillFormWithWorkingModel [
 	| aModel |
 	aModel := self workingModel.
-
 	self nameTextInput text: aModel name.
 	self surnameTextInput text: aModel surname.
 	self number1Input text: aModel number1 asString.
@@ -161,10 +160,12 @@ SpecDemoStandaloneFormPresenter >> fillFormWithWorkingModel [
 	self passwordInput text: aModel password.
 	self checkboxInput state: aModel rememberMe.
 	self dateInput date: aModel date.
-
-	genderGroup default: (genderButtons detect: [ :each | each key = aModel gender ]) value.
-
-	self itemsInput setIndexes: (self workingModel items collect: [ :elem | self itemsInput listItems indexOf: elem ]).
+	genderGroup
+		default: (genderButtons detect: [ :each | each key = aModel gender ]) value.
+	self itemsInput selection
+		selectIndexes:
+			(self workingModel items
+				collect: [ :elem | self itemsInput model shownItems indexOf: elem ]).
 	self itemsInput changed: #listElementAt:
 ]
 

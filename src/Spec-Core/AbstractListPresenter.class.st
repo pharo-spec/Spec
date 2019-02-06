@@ -525,12 +525,13 @@ AbstractListPresenter >> whenSelectedIndexChangedDo: aBlock [
 
 { #category : #'api-events' }
 AbstractListPresenter >> whenSelectedItemChanged: aBlock [
-	
 	self
 		deprecated: 'Use #whenSelectedItemChangedDo: instead'
-		transformWith: '`@receiver whenSelectedItemChanged: `@argument'
-						-> '`@receiver whenSelectedItemChangedDo: `@argument'.
-	^ self whenSelectedItemChangedDo: aBlock
+		transformWith:
+			'`@receiver whenSelectedItemChanged: `@argument'
+				-> '`@receiver whenSelectedItemChangedDo: `@argument'.
+	^ self
+		whenSelectionChangedDo: [ :selection | aBlock cull: selection selectedItem ]
 ]
 
 { #category : #'api-events' }
@@ -552,9 +553,9 @@ AbstractListPresenter >> whenSelectedItemsChanged: aBlock [
 	self
 		deprecated: 'Use #whenSelectionChangedDo: instead'
 		transformWith: '`@receiver whenSelectedItemsChanged: `@argument'
-						-> '`@receiver whenSelectionChangedDo: [ :selection | `@argument cull: selection selectedItem ]'.
-	
-	self selection whenChangedDo: [ :selection | aBlock cull: selection selectedItem ]
+						-> '`@receiver whenSelectionChangedDo: [ :selection | `@argument cull: selection selectedItems ]'.
+
+	self selection whenChangedDo: [ :selection | aBlock cull: selection selectedItems ]
 ]
 
 { #category : #'api-events' }

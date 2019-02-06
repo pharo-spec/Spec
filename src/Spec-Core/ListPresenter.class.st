@@ -196,7 +196,7 @@ ListPresenter >> setSelectionStateFor: anIndex at: aBoolean [
 		ifFalse: [ ^ self ].
 	^ self selection
 		selectIndexes:
-			(self selectedIndexes value copyWith: anIndex) asSet
+			(self selection selectedIndexes value copyWith: anIndex) asSet
 				asOrderedCollection
 ]
 
