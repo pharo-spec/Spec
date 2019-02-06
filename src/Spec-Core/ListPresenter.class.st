@@ -202,10 +202,8 @@ ListPresenter >> setSelectionStateFor: anIndex at: aBoolean [
 
 { #category : #api }
 ListPresenter >> updateList [
-	"<api: #do>"
-	"Refresh the list"
-	
-	self changed: #listElementAt:.
+
+	self adapter refreshList.
 	self resetSelection
 ]
 

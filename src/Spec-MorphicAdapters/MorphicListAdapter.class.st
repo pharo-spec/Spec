@@ -43,10 +43,10 @@ MorphicListAdapter >> backgroundColorFor: anItem at: index [
 { #category : #factory }
 MorphicListAdapter >> buildWidget [
 	widget := FTPluggableIconListMorphAdaptor new
+			dataSource: FTPluggableIconListMorphAdaptorDataSourceWithoutDependencies new;
 		   model: self model;
 			hideColumnHeaders;
 			beResizable;
-			getListSizeSelector: #listSize ;
 			getListElementSelector: #listElementAt: ;
 			getIndexSelector: #selectedIndex ;
 			setIndexSelector: #setIndex: ;
@@ -113,6 +113,12 @@ MorphicListAdapter >> menu: aMenu shifted: aBoolean [
 MorphicListAdapter >> multiSelection [
 
 	^ self model isMultiSelection
+]
+
+{ #category : #'widget API' }
+MorphicListAdapter >> refreshList [
+
+	^ self widget updateList
 ]
 
 { #category : #'widget API' }
