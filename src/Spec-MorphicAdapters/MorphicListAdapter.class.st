@@ -47,7 +47,6 @@ MorphicListAdapter >> buildWidget [
 		   model: self model;
 			hideColumnHeaders;
 			beResizable;
-			getListElementSelector: #listElementAt: ;
 			getIndexSelector: #selectedIndex ;
 			setIndexSelector: #setIndex: ;
 			getSelectionListSelector:	#getSelectionStateFor: ;
