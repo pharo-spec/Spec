@@ -300,8 +300,8 @@ AbstractListPresenter >> model: aModel [
 { #category : #initialization }
 AbstractListPresenter >> registerEvents [
 
-	selectionMode whenChangedDo: [ :selection | self changed: #selectedIndex ].
-	wrapBlockHolder whenChangedDo:[ self changed: #listElementAt: ].
+	selectionMode whenChangedDo: [ :selection | self adapter refreshWidgetSelection ].
+	wrapBlockHolder whenChangedDo: [ self adapter refreshWidgetList ].
 	autoDeselect whenChangedDo: [ :boolean | self changed: #autoDeselect: with: { boolean }].
 ]
 

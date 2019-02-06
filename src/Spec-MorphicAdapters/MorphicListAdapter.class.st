@@ -47,7 +47,6 @@ MorphicListAdapter >> buildWidget [
 		   model: self model;
 			hideColumnHeaders;
 			beResizable;
-			getIndexSelector: #selectedIndex ;
 			setIndexSelector: #setIndex: ;
 			getSelectionListSelector:	#getSelectionStateFor: ;
 			setSelectionListSelector:	#setSelectionStateFor:at: ;
@@ -61,6 +60,8 @@ MorphicListAdapter >> buildWidget [
 			setBalloonText: self help; 
 			hResizing: 	#spaceFill;
 			vResizing: 	#spaceFill;
+			onAnnouncement: FTSelectionChanged  send: #selectionChanged: to: self;
+			onAnnouncement: FTStrongSelectionChanged send: #strongSelectionChanged: to: self;
 			yourself.
 
 	self itemFilterBlock
@@ -81,12 +82,6 @@ MorphicListAdapter >> getSelectionStateFor: anIndex [
 { #category : #'widget API' }
 MorphicListAdapter >> itemFilterBlock [
 	^ self model itemFilterBlock
-]
-
-{ #category : #'widget API' }
-MorphicListAdapter >> listElementAt: anIndex [
-
-	^ self model listElementAt: anIndex
 ]
 
 { #category : #'widget API' }
@@ -121,9 +116,56 @@ MorphicListAdapter >> refreshList [
 ]
 
 { #category : #'widget API' }
+MorphicListAdapter >> refreshWidgetList [
+	
+	(self widget showIndex < self widget dataSource numberOfRows
+		and: [ self widget isRowIndexVisible: self widget showIndex ])
+			ifFalse: [ self widget resetPosition ].
+	
+	self refreshWidgetSelection.
+
+	(self widget hasSelection and: [ (self widget isRowIndexVisible: self widget selectedRowIndex) ])
+		ifFalse: [ 
+			self widget resetPosition.
+			self widget ensureVisibleFirstSelection ].
+	self widget refresh
+]
+
+{ #category : #'widget API' }
+MorphicListAdapter >> refreshWidgetSelection [
+
+	| rowIndex |
+	rowIndex := self presenter selection selectedIndex.
+	rowIndex = self widget selectedRowIndex ifTrue: [ ^ self ].
+	rowIndex = 0
+		ifTrue: [ self widget basicSelectRowIndexes: #() ]
+		ifFalse: [ self widget basicSelectRowIndexes: { rowIndex } ].
+
+	^ self widget refresh
+]
+
+{ #category : #'widget API' }
 MorphicListAdapter >> resetListSelection [
 
 	^ self model resetListSelection
+]
+
+{ #category : #factory }
+MorphicListAdapter >> selectionChanged: ann [
+
+	self presenter selection isMultipleSelection
+		ifTrue: [ self presenter selection
+				selectIndexes: ann newSelectedRowIndexes ].
+
+	self presenter selection isMultipleSelection
+		ifFalse: [ self presenter selection
+				selectIndex:
+					(ann newSelectedRowIndexes
+						ifNotEmpty: [ :indexes | indexes first ]
+						ifEmpty: [ 0 ]) ].
+
+	ann newSelectedRowIndexes ifNotEmpty: [ ^ self ].
+	self presenter selection unselectAll.
 ]
 
 { #category : #'widget API' }
