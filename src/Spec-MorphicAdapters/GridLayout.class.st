@@ -1,14 +1,14 @@
 "
 I'm a grid layout.
-I can arrange submorphs in a grid according to its properties (position and span, see GrisLayoutProperties), and according certain layout properties: 
+I can arrange submorphs in a grid according to its properties (position and span, see GridLayoutProperties), and according certain layout properties: 
 
-- columnHomogeneous -> weather a columns will have same size.
-- rowHomogeneous -> weather a row will have same size. 
+- columnHomogeneous -> whether a columns will have same size.
+- rowHomogeneous -> whether a row will have same size. 
 - padding -> the padding to start drawing cells
 - colSpacing -> the column space between cells
 - rowSpacing -> the row space between cells
 
-WARNING: I'm designed to work for Spec. While any other morph could benefit from this layout, tipic properties of morphic (like vResizing and hResizing) can not behave as expected. 
+WARNING: I'm designed to work for Spec. While any other morph could benefit from this layout, typical properties of morphic (like vResizing and hResizing) can not behave as expected. 
 "
 Class {
 	#name : #GridLayout,
