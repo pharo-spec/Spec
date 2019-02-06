@@ -19,8 +19,6 @@ MorphicFastTableAdapter >> buildWidget [
 			getListElementSelector: #listElementAt: ;
 			getIndexSelector: #getIndex ;
 			setIndexSelector: #setIndex: ;
-			getSelectionListSelector:	#getSelectionStateFor: ;
-			setSelectionListSelector:	#setSelectionStateFor:at: ;
 			getIconSelector: #getIconFor: ;
 			resetListSelector:	#resetListSelection ; 
 			getMenuSelector:	#menu:shifted: ;

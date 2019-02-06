@@ -7,7 +7,6 @@ Class {
 		'getListElementSelector',
 		'wrapSelector',
 		'getIconSelector',
-		'getMenuSelector',
 		'dropItemSelector',
 		'wantsDropSelector'
 	],
@@ -118,16 +117,6 @@ FTPluggableIconListMorphAdaptorDataSourceWithoutDependencies >> getListSelector:
 	getListSelector := anObject
 ]
 
-{ #category : #'accessing selectors' }
-FTPluggableIconListMorphAdaptorDataSourceWithoutDependencies >> getMenuSelector [
-	^ getMenuSelector
-]
-
-{ #category : #'accessing selectors' }
-FTPluggableIconListMorphAdaptorDataSourceWithoutDependencies >> getMenuSelector: anObject [
-	getMenuSelector := anObject
-]
-
 { #category : #accessing }
 FTPluggableIconListMorphAdaptorDataSourceWithoutDependencies >> listModel [
 	^ model model
@@ -136,12 +125,8 @@ FTPluggableIconListMorphAdaptorDataSourceWithoutDependencies >> listModel [
 { #category : #accessing }
 FTPluggableIconListMorphAdaptorDataSourceWithoutDependencies >> menuColumn: column row: rowIndex [
 	| menu menuPresenter |
-	self getMenuSelector ifNil: [ ^ nil ].
-	
 	menu := UIManager default newMenuIn: self table for: self model.
-	menuPresenter := self getMenuSelector numArgs = 1
-		ifTrue: [ self model perform: self getMenuSelector with: menu ]
-		ifFalse: [ self model perform: self getMenuSelector with: menu with: false ].
+	menuPresenter := self model menu: menu shifted: false.
 	^ menuPresenter
 ]
 

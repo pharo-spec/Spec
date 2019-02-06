@@ -17,12 +17,6 @@ MorphicListAdapter >> acceptDroppingMorph: draggedMorph event: event inMorph: so
 	^ self acceptDropBlock valueWithEnoughArguments: { draggedMorph model model . event. source model model. item. index }
 ]
 
-{ #category : #'widget API' }
-MorphicListAdapter >> autoDeselect [
-
-	^ self model autoDeselect
-]
-
 { #category : #'spec protocol' }
 MorphicListAdapter >> autoDeselect: aBoolean [
 
@@ -47,11 +41,7 @@ MorphicListAdapter >> buildWidget [
 		   model: self model;
 			hideColumnHeaders;
 			beResizable;
-			getSelectionListSelector:	#getSelectionStateFor: ;
-			setSelectionListSelector:	#setSelectionStateFor:at: ;
-			resetListSelector:	#resetListSelection ; 
-			getMenuSelector:	#menu:shifted: ;
-			setMultipleSelection: self multiSelection;
+			setMultipleSelection: self model isMultiSelection;
 			doubleClickSelector: #doubleClick: ;
 			basicWrapSelector: #wrapItem: ;
 			dragEnabled:	self dragEnabled ;
@@ -103,12 +93,6 @@ MorphicListAdapter >> menu: aMenu shifted: aBoolean [
 ]
 
 { #category : #'widget API' }
-MorphicListAdapter >> multiSelection [
-
-	^ self model isMultiSelection
-]
-
-{ #category : #'widget API' }
 MorphicListAdapter >> refreshList [
 
 	^ self widget updateList
@@ -143,12 +127,6 @@ MorphicListAdapter >> refreshWidgetSelection [
 	^ self widget refresh
 ]
 
-{ #category : #'widget API' }
-MorphicListAdapter >> resetListSelection [
-
-	^ self model resetListSelection
-]
-
 { #category : #factory }
 MorphicListAdapter >> selectionChanged: ann [
 
@@ -165,18 +143,6 @@ MorphicListAdapter >> selectionChanged: ann [
 
 	ann newSelectedRowIndexes ifNotEmpty: [ ^ self ].
 	self presenter selection unselectAll.
-]
-
-{ #category : #'widget API' }
-MorphicListAdapter >> setIndex: anIndex [
-
-	^ self model setIndex: anIndex
-]
-
-{ #category : #'widget API' }
-MorphicListAdapter >> setSelectionStateFor: anIndex at: aBoolean [
-
-	^ self model setSelectionStateFor: anIndex at: aBoolean
 ]
 
 { #category : #'widget API' }
