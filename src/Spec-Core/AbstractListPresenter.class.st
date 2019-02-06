@@ -60,7 +60,7 @@ AbstractListPresenter >> clickAtIndex: anIndex [
 { #category : #simulation }
 AbstractListPresenter >> clickItem: anInteger [ 
 	
-	self setIndex: anInteger
+	self selectIndex: anInteger
 ]
 
 { #category : #initialization }
