@@ -60,7 +60,7 @@ TablePresenter >> items [
 	^ itemsHolder value
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 TablePresenter >> items: aSequenceableCollection [
 
 	itemsHolder value: aSequenceableCollection

@@ -91,6 +91,11 @@ TableBasePresenter >> isShowingColumnHeaders [
 	^ showColumnHeadersHolder value
 ]
 
+{ #category : #accessing }
+TableBasePresenter >> items [
+	^ self subclassResponsibility
+]
+
 { #category : #api }
 TableBasePresenter >> selectedIndex [
 	
