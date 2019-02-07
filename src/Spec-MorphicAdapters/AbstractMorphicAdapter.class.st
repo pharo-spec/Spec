@@ -121,7 +121,7 @@ AbstractMorphicAdapter >> disable [
 { #category : #'drag and drop' }
 AbstractMorphicAdapter >> dragEnabled [
 
-	^ self model dragEnabled
+	^ self presenter dragEnabled
 ]
 
 { #category : #'drag and drop' }
@@ -151,7 +151,7 @@ AbstractMorphicAdapter >> dragTransformationBlock [
 { #category : #'drag and drop' }
 AbstractMorphicAdapter >> dropEnabled [
 
-	^ self model dropEnabled
+	^ self presenter dropEnabled
 ]
 
 { #category : #'drag and drop' }

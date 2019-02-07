@@ -133,6 +133,18 @@ ListPresenter >> clickOnSelectedItem [
 		ifFalse: [ ^ false ]
 ]
 
+{ #category : #'adapter-api' }
+ListPresenter >> displayValueAt: anIndex [
+	
+	^ self displayValueOf: (model value at: anIndex)
+]
+
+{ #category : #'adapter-api' }
+ListPresenter >> displayValueOf: anObject [
+
+	^ self displayBlock value: anObject
+]
+
 { #category : #testing }
 ListPresenter >> hasHeaderTitle [
 	
@@ -232,7 +244,7 @@ ListPresenter >> whenBackgroundColorBlockChanged: aBlock [
 ListPresenter >> whenDisplayBlockChanged: aBlock [
 	"Set a block to value when the filtering block has changed"
 	
-	wrapBlockHolder whenChangedDo: aBlock
+	displayBlockValueHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

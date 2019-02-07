@@ -36,7 +36,7 @@ ListPresenterSingleSelectionTest >> testSelectAllDoesNotRaiseEvent [
 ListPresenterSingleSelectionTest >> testSelectAllDoesNotSelect [
 	presenter selectAll.
 
-	self assert: (presenter selection isEmpty)
+	self assert: presenter selection isEmpty
 ]
 
 { #category : #'tests-singleselection-index' }

@@ -22,6 +22,7 @@ ColumnedListPresenter class >> example [
 	| example |
 	example := self new.
 	example
+		addColumn: (StringTableColumn new evaluated: #yourself);
 		items: (1 to: 10) asArray;
 		openWithSpec.
 	^ example

@@ -549,6 +549,12 @@ TextPresenter >> textArea [
 	^ self widget widget 
 ]
 
+{ #category : #simulating }
+TextPresenter >> type: aString [ 
+	"For simulation: Do as if we type the given string"
+	self text: aString
+]
+
 { #category : #api }
 TextPresenter >> wantsVisualFeedback [
 

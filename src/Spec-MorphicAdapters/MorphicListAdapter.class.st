@@ -37,15 +37,14 @@ MorphicListAdapter >> backgroundColorFor: anItem at: index [
 { #category : #factory }
 MorphicListAdapter >> buildWidget [
 	widget := FTPluggableIconListMorphAdaptor new
-			dataSource: FTPluggableIconListMorphAdaptorDataSourceWithoutDependencies new;
+			dataSource: SpecListFastTableDataSource new;
 		   model: self model;
 			hideColumnHeaders;
 			beResizable;
 			setMultipleSelection: self model isMultiSelection;
-			doubleClickSelector: #doubleClick: ;
-			basicWrapSelector: #wrapItem: ;
-			dragEnabled:	self dragEnabled ;
-			dropEnabled:	self dropEnabled ; 	
+			doubleClickSelector: #doubleClick:;
+			dragEnabled:	 self dragEnabled ;
+			dropEnabled:	 self dropEnabled ;
 			setBalloonText: self help; 
 			hResizing: 	#spaceFill;
 			vResizing: 	#spaceFill;
@@ -117,12 +116,12 @@ MorphicListAdapter >> refreshWidgetList [
 { #category : #'widget API' }
 MorphicListAdapter >> refreshWidgetSelection [
 
-	| rowIndex |
-	rowIndex := self presenter selection selectedIndex.
-	rowIndex = self widget selectedRowIndex ifTrue: [ ^ self ].
-	rowIndex = 0
+	| rowIndexes |
+	rowIndexes := self presenter selection selectedIndexes.
+	rowIndexes = self widget selectedRowIndexes ifTrue: [ ^ self ].
+	rowIndexes isEmpty
 		ifTrue: [ self widget basicSelectRowIndexes: #() ]
-		ifFalse: [ self widget basicSelectRowIndexes: { rowIndex } ].
+		ifFalse: [ self widget basicSelectRowIndexes: rowIndexes ].
 
 	^ self widget refresh
 ]
@@ -132,7 +131,7 @@ MorphicListAdapter >> selectionChanged: ann [
 
 	self presenter selection isMultipleSelection
 		ifTrue: [ self presenter selection
-				selectIndexes: ann newSelectedRowIndexes ].
+				selectIndexes: (ann newSelectedRowIndexes reject: [ :e | e = 0 ]) ].
 
 	self presenter selection isMultipleSelection
 		ifFalse: [ self presenter selection
@@ -143,10 +142,4 @@ MorphicListAdapter >> selectionChanged: ann [
 
 	ann newSelectedRowIndexes ifNotEmpty: [ ^ self ].
 	self presenter selection unselectAll.
-]
-
-{ #category : #'widget API' }
-MorphicListAdapter >> wrapItem: anObject index: index [
-
-	^ self model wrapItem: anObject index: index
 ]
