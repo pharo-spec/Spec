@@ -55,13 +55,33 @@ SpecDemoListsPresenter >> iconFor: class [
 { #category : #initialization }
 SpecDemoListsPresenter >> initializePresenter [
 	list1
-		whenSelectedItemChanged: [ :elem | label label: (elem ifNil: [ 'Deselection from list 1' ] ifNotNil: [ 'Selection from list 1: ' , elem asString ]) ].
+		whenSelectionChangedDo: [ :selection | 
+			[ :elem | 
+			label
+				label:
+					(elem
+						ifNil: [ 'Deselection from list 1' ]
+						ifNotNil: [ 'Selection from list 1: ' , elem asString ]) ]
+				cull: selection selectedItem ].
+
 	list2
-		whenSelectedItemChanged: [ :elem | label label: (elem ifNil: [ 'Deselection from list 1' ] ifNotNil: [ 'Selection from list 1: ' , elem asString ]) ].
-	list2
-		whenSelectedItemsChanged: [ :elems | multiLabel label: (elems ifEmpty: [ 'Not multi selection (from list 2 only)' ] ifNotEmpty: [ 'Multi-selection from list 2: ' , elems asString ]) ].
+		whenSelectionChangedDo: [ :selection | 
+			[ :elems | 
+			multiLabel
+				label:
+					(elems
+						ifEmpty: [ 'Not multi selection (from list 2 only)' ]
+						ifNotEmpty: [ 'Multi-selection from list 2: ' , elems asString ]) ]
+				cull: selection selectedItems ].
 	list3
-		whenSelectedItemChanged: [ :elem | label label: (elem ifNil: [ 'Deselection from list 3' ] ifNotNil: [ 'Selection from list 3: ' , elem asString ]) ]
+		whenSelectionChangedDo: [ :selection | 
+			[ :elem | 
+			label
+				label:
+					(elem
+						ifNil: [ 'Deselection from list 3' ]
+						ifNotNil: [ 'Selection from list 3: ' , elem asString ]) ]
+				cull: selection selectedItem ]
 ]
 
 { #category : #initialization }
@@ -79,7 +99,7 @@ SpecDemoListsPresenter >> initializeWidgets [
 	list2
 		items: Smalltalk globals allClasses;
 		sortingBlock: [ :a :b | a asString size < b asString size ];
-		multiSelection: true.
+		beMultipleSelection.
 	list3
 		items: Smalltalk globals allClasses;
 		itemFilterBlock: [ :item :string | item asString includesSubstring: string ];

@@ -3,7 +3,7 @@ testing ListComposablePresenter
 "
 Class {
 	#name : #ListPresenterTest,
-	#superclass : #TablePresenterTest,
+	#superclass : #SpecTestCase,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 
@@ -12,46 +12,120 @@ ListPresenterTest >> classToTest [
 	^ ListPresenter
 ]
 
+{ #category : #running }
+ListPresenterTest >> setUp [
+
+	super setUp.
+	presenter items: #(10 20 30).
+]
+
+{ #category : #'tests-activation' }
+ListPresenterTest >> testActivationOnDoubleClickShouldActivateOnDoubleClick [
+
+	| activatedItem |
+	activatedItem := nil.
+	presenter
+		activateOnDoubleClick;
+		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].
+	
+	presenter doubleClickAtIndex: 1.
+	
+	self assert: activatedItem equals: 10.
+]
+
+{ #category : #'tests-activation' }
+ListPresenterTest >> testActivationOnDoubleClickShouldNotActivateOnClick [
+
+	| activatedItem |
+	activatedItem := nil.
+	presenter
+		activateOnDoubleClick;
+		whenActivatedDo: [ :selection  | activatedItem := selection selectionItem ].
+	
+	presenter clickAtIndex: 1.
+	
+	self assert: activatedItem equals: nil.
+]
+
+{ #category : #'tests-activation' }
+ListPresenterTest >> testActivationOnSingleClickShouldActivateOnClick [
+
+	| activatedItem |
+	activatedItem := nil.
+	presenter
+		activateOnSingleClick;
+		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].
+	
+	presenter clickAtIndex: 1.
+	
+	self assert: activatedItem equals: 10.
+]
+
+{ #category : #'tests-activation' }
+ListPresenterTest >> testActivationOnSingleClickShouldNotActivateOnClickOutside [
+
+	| activatedItem |
+	activatedItem := nil.
+	presenter
+		activateOnSingleClick;
+		whenActivatedDo: [ :selection | activatedItem := selection selectedIndex ].
+	
+	presenter clickAtIndex: 100.
+	
+	self assert: activatedItem equals: nil
+]
+
+{ #category : #'tests-activation' }
+ListPresenterTest >> testActivationWithoutActivationBlockDoesNothing [
+
+	| activatedItem |
+	activatedItem := nil.
+	presenter activateOnSingleClick.
+
+	presenter clickAtIndex: 1.
+	
+	self assert: activatedItem equals: nil
+]
+
+{ #category : #'tests-header' }
+ListPresenterTest >> testHideHeaderTitleUnsetsTitle [
+
+	presenter
+		headerTitle: 'title';
+		hideHeaderTitle.
+	
+	self deny: presenter hasHeaderTitle
+]
+
 { #category : #tests }
 ListPresenterTest >> testSelectAll [
 	| items |
 	items := #(#AAA #BBB #CCC).
-	testedInstance items: items.
-	testedInstance beMultipleSelection.
-	self assertCollection: testedInstance selectedItems hasSameElements: #().
-	testedInstance selectAll.
-	self assertCollection: testedInstance selectedItems hasSameElements: items
+	presenter items: items.
+	presenter beMultipleSelection.
+	self assertCollection: presenter selectedItems hasSameElements: #().
+	presenter selectAll.
+	self assertCollection: presenter selectedItems hasSameElements: items
 ]
 
-{ #category : #tests }
-ListPresenterTest >> testWhenListChanged [
-	"Two stages list changed notification."
+{ #category : #'tests-header' }
+ListPresenterTest >> testSetHeaderTitleSetsTitle [
 
-	50
-		timesRepeat: [ | ok |
-			ok := false.
-			testedInstance := ListPresenter new.
-			testedInstance
-				items: #(1 2);
-				whenListChanged: [ :aList | ok := aList = testedInstance listItems ];
-				listItems;
-				"Call listItems to set the cache"
-				items: #(1 2 3).
-			self assert: ok ]
+	presenter headerTitle: 'title'.
+	
+	self assert: presenter hasHeaderTitle
 ]
 
-{ #category : #tests }
-ListPresenterTest >> testWhenListChangedOldContents [
-	"access to old and new contents in whenListChanged."
+{ #category : #'tests-smoke' }
+ListPresenterTest >> testSmokeOpenEmptyTablePresenter [
 
-	| oldL newL |
-	oldL := #(1 2).
-	newL := #(1 2 3).
-	testedInstance items: oldL.
-	testedInstance
-		whenListChanged: [ :aList :anOldList | 
-			self assert: oldL equals: anOldList.
-			self assert: newL equals: aList ].
-	testedInstance listItems.	"Call listItems to set the cache"
-	testedInstance items: #(1 2 3)
+	window := presenter openWithSpec
+]
+
+{ #category : #'tests-smoke' }
+ListPresenterTest >> testSmokeOpenTablePresenterWithItemsButNoColumns [
+
+	window := presenter
+		items: #(1 2 3);
+		openWithSpec.
 ]

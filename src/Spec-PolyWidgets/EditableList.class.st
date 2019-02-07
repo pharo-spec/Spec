@@ -174,16 +174,15 @@ EditableList >> list: aList [
 { #category : #private }
 EditableList >> moveElementAt: index to: newIndex [
 	| elementToMove orderedList |
-	
-	(newIndex < 1 or: [ newIndex > list listItems size ]) ifTrue: [ ^self ].
-	
-	elementToMove := list listItems at: index.	
-	orderedList := list listItems asOrderedCollection
+	(newIndex < 1 or: [ newIndex > list model shownItems size ])
+		ifTrue: [ ^ self ].
+	elementToMove := list model shownItems at: index.
+	orderedList := list model items copy asOrderedCollection
 		removeAt: index;
 		add: elementToMove beforeIndex: newIndex;
 		yourself.
 	self list: orderedList.
-	self list setSelectedIndex: newIndex.
+	self list selectIndex: newIndex
 ]
 
 { #category : #api }

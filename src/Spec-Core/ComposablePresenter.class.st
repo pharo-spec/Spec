@@ -231,6 +231,12 @@ ComposablePresenter >> aboutText: aString [
 	aboutText value: aString
 ]
 
+{ #category : #accessing }
+ComposablePresenter >> adapter [
+
+	^ spec
+]
+
 { #category : #api }
 ComposablePresenter >> adapterFrom: aSpecLayout [
 	^ SpecInterpreter interpretASpec: aSpecLayout presenter: self
@@ -631,12 +637,15 @@ ComposablePresenter >> initializePorts [
 { #category : #initialization }
 ComposablePresenter >> initializePresenter [
 	"Used to specify the subwidgets, and/or to bind them together"
+
 	"By default, do not do anything"
-	
-	extentHolder whenChangedDo: [:ex | 
-		self widget ifNotNil: [:widget |
-			(widget respondsTo: #extent:)
-				ifTrue: [ widget extent: ex ]]].
+
+	extentHolder
+		whenChangedDo: [ :ex | 
+			self adapter
+				ifNotNil: [ :widget | 
+					(widget respondsTo: #extent:)
+						ifTrue: [ widget extent: ex ] ] ]
 ]
 
 { #category : #'initialization - private' }
@@ -1282,9 +1291,10 @@ ComposablePresenter >> whenWindowChanged: aBlock [
 
 { #category : #accessing }
 ComposablePresenter >> widget [
-	"I return the adapter responsible of building my widget. 
+	"I return the adapter responsible of building my widget"
 	
-	CyrilFerlicot: We should probably do some renaming later."
+	self deprecated: 'Should use #adapter instead'
+		transformWith: '`@receiver widget' -> '`@receiver adapter'.
 	
 	^ self spec
 ]

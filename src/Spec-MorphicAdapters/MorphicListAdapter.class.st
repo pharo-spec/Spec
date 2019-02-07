@@ -12,7 +12,7 @@ MorphicListAdapter >> acceptDroppingMorph: draggedMorph event: event inMorph: so
 	| item index |
 	
 	index := source rowAtLocation: event position.
-	item := self model getList at: index ifAbsent: [ nil ].
+	item := self presenter model at: index ifAbsent: [ nil ].
 	
 	^ self acceptDropBlock valueWithEnoughArguments: { draggedMorph model model . event. source model model. item. index }
 ]
@@ -42,29 +42,26 @@ MorphicListAdapter >> backgroundColorFor: anItem at: index [
 
 { #category : #factory }
 MorphicListAdapter >> buildWidget [
-	widget := FTSpecPluggableIconListMorphAdaptor new
-		model: self model;
-		hideColumnHeaders;
-		beResizable;
-		autoDeselect: self autoDeselect;
-		getListElementSelector: #listElementAt:;
-		getListSizeSelector: #listSize;
-		getIndexSelector: #getIndex;
-		setIndexSelector: #setIndex:;
-		getIndexesSelector: #getIndexes;
-		setIndexesSelector: #setIndexes:;
-		resetListSelector: #resetListSelection;
-		getMenuSelector: #menu:shifted:;
-		setMultipleSelection: self multiSelection;
-		doubleClickSelector: #doubleClick:;
-		basicWrapSelector: #wrapItem:index:;
-		backgroundColoringBlockOrSelector: #backgroundColorFor:at:;
-		dragEnabled: self dragEnabled;
-		dropEnabled: self dropEnabled;
-		setBalloonText: self help;
-		hResizing: #spaceFill;
-		vResizing: #spaceFill;
-		yourself.
+	widget := FTPluggableIconListMorphAdaptor new
+			dataSource: FTPluggableIconListMorphAdaptorDataSourceWithoutDependencies new;
+		   model: self model;
+			hideColumnHeaders;
+			beResizable;
+			getIndexSelector: #selectedIndex ;
+			setIndexSelector: #setIndex: ;
+			getSelectionListSelector:	#getSelectionStateFor: ;
+			setSelectionListSelector:	#setSelectionStateFor:at: ;
+			resetListSelector:	#resetListSelection ; 
+			getMenuSelector:	#menu:shifted: ;
+			setMultipleSelection: self multiSelection;
+			doubleClickSelector: #doubleClick: ;
+			basicWrapSelector: #wrapItem: ;
+			dragEnabled:	self dragEnabled ;
+			dropEnabled:	self dropEnabled ; 	
+			setBalloonText: self help; 
+			hResizing: 	#spaceFill;
+			vResizing: 	#spaceFill;
+			yourself.
 
 	self itemFilterBlock
 		ifNotNil: [ :block | 
@@ -73,12 +70,6 @@ MorphicListAdapter >> buildWidget [
 				explicitFunction ].
 
 	^ widget
-]
-
-{ #category : #'widget API' }
-MorphicListAdapter >> getIndex [
-
-	^ self model getIndex
 ]
 
 { #category : #'widget API' }
@@ -120,7 +111,13 @@ MorphicListAdapter >> menu: aMenu shifted: aBoolean [
 { #category : #'widget API' }
 MorphicListAdapter >> multiSelection [
 
-	^ self model multiSelection
+	^ self model isMultiSelection
+]
+
+{ #category : #'widget API' }
+MorphicListAdapter >> refreshList [
+
+	^ self widget updateList
 ]
 
 { #category : #'widget API' }

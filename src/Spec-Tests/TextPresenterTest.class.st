@@ -1,6 +1,6 @@
 Class {
 	#name : #TextPresenterTest,
-	#superclass : #SpecTestCase,
+	#superclass : #SpecSmokeTestCase,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 
@@ -11,15 +11,15 @@ TextPresenterTest >> classToTest [
 
 { #category : #running }
 TextPresenterTest >> initializationText [
-	testedInstance text: 'Text for tests.'
+	presenter text: 'Text for tests.'
 ]
 
 { #category : #tests }
 TextPresenterTest >> testSelectAll [
 	self initializationText.
 	self openInstance.
-	testedInstance selectAll.
-	self assert: testedInstance getSelection equals: (1 to: 15).
-	testedInstance clearSelection.
-	self assert: testedInstance getSelection isEmpty
+	presenter selectAll.
+	self assert: presenter getSelection equals: (1 to: 15).
+	presenter clearSelection.
+	self assert: presenter getSelection isEmpty
 ]
