@@ -36,28 +36,32 @@ MorphicListAdapter >> backgroundColorFor: anItem at: index [
 
 { #category : #factory }
 MorphicListAdapter >> buildWidget [
-	widget := FTPluggableIconListMorphAdaptor new
-			dataSource: SpecListFastTableDataSource new;
-		   model: self model;
-			hideColumnHeaders;
-			beResizable;
-			setMultipleSelection: self model isMultiSelection;
-			doubleClickSelector: #doubleClick:;
-			dragEnabled:	 self dragEnabled ;
-			dropEnabled:	 self dropEnabled ;
-			setBalloonText: self help; 
-			hResizing: 	#spaceFill;
-			vResizing: 	#spaceFill;
-			onAnnouncement: FTSelectionChanged  send: #selectionChanged: to: self;
-			onAnnouncement: FTStrongSelectionChanged send: #strongSelectionChanged: to: self;
-			yourself.
+	| datasource |
+	datasource := SpecListFastTableDataSource new.
+	datasource model: self model.
 
+	widget := FTPluggableIconListMorphAdaptor new
+		dataSource: datasource;
+		hideColumnHeaders;
+		beResizable;
+		setMultipleSelection: self model isMultiSelection;
+		dragEnabled: self dragEnabled;
+		dropEnabled: self dropEnabled;
+		setBalloonText: self help;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		onAnnouncement: FTSelectionChanged
+			send: #selectionChanged:
+			to: self;
+		onAnnouncement: FTStrongSelectionChanged
+			send: #strongSelectionChanged:
+			to: self;
+		yourself.
 	self itemFilterBlock
 		ifNotNil: [ :block | 
 			widget
 				enableFilter: (FTSpecFilter block: block);
 				explicitFunction ].
-
 	^ widget
 ]
 
