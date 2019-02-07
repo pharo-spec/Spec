@@ -40,7 +40,7 @@ MorphicListAdapter >> buildWidget [
 	datasource := SpecListFastTableDataSource new.
 	datasource model: self model.
 
-	widget := FTPluggableIconListMorphAdaptor new
+	widget := FTTableMorph new
 		dataSource: datasource;
 		hideColumnHeaders;
 		beResizable;

@@ -2,12 +2,7 @@ Class {
 	#name : #SpecListFastTableDataSource,
 	#superclass : #FTDataSource,
 	#instVars : [
-		'model',
-		'getListSelector',
-		'getListElementSelector',
-		'getIconSelector',
-		'dropItemSelector',
-		'wantsDropSelector'
+		'model'
 	],
 	#category : #'Spec-MorphicAdapters-List'
 }
@@ -24,31 +19,6 @@ SpecListFastTableDataSource >> cellColumn: column row: rowIndex [
 ]
 
 { #category : #accessing }
-SpecListFastTableDataSource >> dragTransferType [
-	^ self getListElementSelector
-]
-
-{ #category : #'drag and drop' }
-SpecListFastTableDataSource >> dropElements: aCollection index: rowIndex [
-	self dropItemSelector ifNil: [ ^ self ].
-	self model 
-		perform: self dropItemSelector 
-		with: aCollection
-		with: rowIndex
-]
-
-{ #category : #'accessing selectors' }
-SpecListFastTableDataSource >> dropItemSelector [
-	^ dropItemSelector 
-]
-
-{ #category : #'accessing selectors' }
-SpecListFastTableDataSource >> dropItemSelector: aSelector [
-	dropItemSelector := aSelector
-
-]
-
-{ #category : #accessing }
 SpecListFastTableDataSource >> elementAt: rowIndex [
 
 	^ self listModel at: rowIndex
@@ -57,26 +27,6 @@ SpecListFastTableDataSource >> elementAt: rowIndex [
 { #category : #accessing }
 SpecListFastTableDataSource >> elements [
 	^self model getList
-]
-
-{ #category : #'accessing selectors' }
-SpecListFastTableDataSource >> getListElementSelector [
-	^ getListElementSelector
-]
-
-{ #category : #'accessing selectors' }
-SpecListFastTableDataSource >> getListElementSelector: anObject [
-	getListElementSelector := anObject
-]
-
-{ #category : #'accessing selectors' }
-SpecListFastTableDataSource >> getListSelector [
-	^ getListSelector
-]
-
-{ #category : #'accessing selectors' }
-SpecListFastTableDataSource >> getListSelector: anObject [
-	getListSelector := anObject
 ]
 
 { #category : #accessing }
@@ -142,23 +92,4 @@ SpecListFastTableDataSource >> searchText: aString [
 { #category : #'drag and drop' }
 SpecListFastTableDataSource >> transferFor: passenger from: aMorph [
     ^(self model transferFor: passenger from: self table) buildWithSpec
-]
-
-{ #category : #'drag and drop' }
-SpecListFastTableDataSource >> wantsDropElements: aCollection type: type index: rowIndex [
-	self dropItemSelector ifNil: [ ^ false ].
-	self wantsDropSelector ifNil: [ ^ true ].
-	^ self model 
-		perform: self wantsDropSelector 
-		with: aCollection
-]
-
-{ #category : #'accessing selectors' }
-SpecListFastTableDataSource >> wantsDropSelector [
-	^ wantsDropSelector
-]
-
-{ #category : #'accessing selectors' }
-SpecListFastTableDataSource >> wantsDropSelector: aSelector [
-	wantsDropSelector := aSelector
 ]
