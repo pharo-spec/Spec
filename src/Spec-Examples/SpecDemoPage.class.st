@@ -50,29 +50,6 @@ SpecDemoPage >> codeTab [
 ]
 
 { #category : #initialization }
-SpecDemoPage >> commentFor: aClass [
-
-	^ String streamContents: [ :s |
-		s nextPutAll: aClass name; cr.
-		s nextPutAll: '--------------------------------------------'; cr.
-		s cr.
-		s nextPutAll: aClass comment ]
-		
-]
-
-{ #category : #initialization }
-SpecDemoPage >> commentTab [
-	^ self newTab
-		label: 'Comment';
-		icon: (self iconNamed: #helpIcon);
-		presenter:
-			(self newText
-				text: (self commentFor: self pageClass);
-				yourself);
-		yourself
-]
-
-{ #category : #initialization }
 SpecDemoPage >> exampleTab [
 	^ self newTab
 		label: 'Example';
@@ -88,7 +65,6 @@ SpecDemoPage >> initializeWidgets [
 	"tabManager whenTabSelected: [ self updateTitle ]."
 	tabManager
 		addTab: self exampleTab;
-		addTab: self commentTab;
 		addTab: self codeTab.
 ]
 
