@@ -97,12 +97,26 @@ TableBasePresenter >> items [
 ]
 
 { #category : #api }
+TableBasePresenter >> selectIndex: anIndex [
+	"Alias to make the API better."
+
+	self selectedIndex: anIndex
+]
+
+{ #category : #api }
+TableBasePresenter >> selectItem: anItem [
+	"Alias to make the API better."
+
+	self selectedItem: anItem
+]
+
+{ #category : #accessing }
 TableBasePresenter >> selectedIndex [
 	
 	^ selectionHolder index value
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 TableBasePresenter >> selectedIndex: anIndex [
 	
 	| selectedIndex selection |
@@ -117,13 +131,13 @@ TableBasePresenter >> selectedIndex: anIndex [
 	selectionHolder selection value: selection.
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 TableBasePresenter >> selectedItem [
 	
 	^ selectionHolder selection value
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 TableBasePresenter >> selectedItem: anInteger [ 
 	
 	| index |

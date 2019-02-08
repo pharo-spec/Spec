@@ -30,22 +30,22 @@ TableBasePresenterTest >> testAddColumn [
 ]
 
 { #category : #test }
-TableBasePresenterTest >> testSelectedIndex [
+TableBasePresenterTest >> testSelectIndex [
 	| selectedIndexChanged |
 	selectedIndexChanged := false.
 	presenter whenSelectedIndexChangedDo: [ selectedIndexChanged := true ].
-	presenter selectedIndex: 2.
+	presenter selectIndex: 2.
 	self assert: selectedIndexChanged.
 	self assert: presenter selectedIndex equals: 2.
 	self assert: presenter selectedItem equals: self elementAtTheSecondIndex
 ]
 
 { #category : #test }
-TableBasePresenterTest >> testSelectedItem [
+TableBasePresenterTest >> testSelectItem [
 	| selectedItemChanged |
 	selectedItemChanged := false.
 	presenter whenSelectedItemChangedDo: [ selectedItemChanged := true ].
-	presenter selectedItem: self elementAtTheSecondIndex.
+	presenter selectItem: self elementAtTheSecondIndex.
 	self assert: selectedItemChanged.
 	self assert: presenter selectedItem equals: self elementAtTheSecondIndex.
 	self assert: presenter selectedIndex equals: 2
