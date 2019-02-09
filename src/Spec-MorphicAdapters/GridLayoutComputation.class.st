@@ -38,16 +38,19 @@ GridLayoutComputation >> cellExtentAt: aPoint [
 
 { #category : #private }
 GridLayoutComputation >> cellExtents [
+
 	^ cellExtents
 ]
 
 { #category : #private }
 GridLayoutComputation >> columnPositions [
+
 	^ columnPositions
 ]
 
 { #category : #private }
 GridLayoutComputation >> columnWidths [
+
 	^ columnWidths
 ]
 
@@ -176,11 +179,13 @@ GridLayoutComputation >> maxWidth [
 
 { #category : #private }
 GridLayoutComputation >> numColumns [
+
 	^ numColumns
 ]
 
 { #category : #private }
 GridLayoutComputation >> numRows [
+
 	^ numRows
 ]
 
@@ -192,10 +197,12 @@ GridLayoutComputation >> positionAt: aPoint [
 
 { #category : #private }
 GridLayoutComputation >> rowHeights [
+
 	^ rowHeights
 ]
 
 { #category : #private }
 GridLayoutComputation >> rowPositions [
+
 	^ rowPositions
 ]

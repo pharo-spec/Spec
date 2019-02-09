@@ -7,6 +7,11 @@ Class {
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
+{ #category : #initialization }
+MorphicLayoutAdapter >> applyStyle: aMorph [
+	
+]
+
 { #category : #factory }
 MorphicLayoutAdapter >> buildWidget [
 
