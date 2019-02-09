@@ -61,6 +61,7 @@ SpecMultipleSelectionMode >> selectAll [
 { #category : #accessing }
 SpecMultipleSelectionMode >> selectIndexes: aCollection [
 
+	1haltIf: [ aCollection includes: 0 ].
 	^ selectedIndexesValueHolder value: aCollection asOrderedCollection
 ]
 

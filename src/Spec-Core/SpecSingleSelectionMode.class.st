@@ -51,6 +51,14 @@ SpecSingleSelectionMode >> selectedIndex [
 ]
 
 { #category : #accessing }
+SpecSingleSelectionMode >> selectedIndexes [
+	
+	^ self isEmpty
+		ifTrue: [ #() ]
+		ifFalse: [ { self selectedIndex } ]
+]
+
+{ #category : #accessing }
 SpecSingleSelectionMode >> selectedItem [
 
 	self selectedIndex = 0 ifTrue: [ ^ nil ].

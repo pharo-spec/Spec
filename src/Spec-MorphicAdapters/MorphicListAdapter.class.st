@@ -17,12 +17,6 @@ MorphicListAdapter >> acceptDroppingMorph: draggedMorph event: event inMorph: so
 	^ self acceptDropBlock valueWithEnoughArguments: { draggedMorph model model . event. source model model. item. index }
 ]
 
-{ #category : #'widget API' }
-MorphicListAdapter >> autoDeselect [
-
-	^ self model autoDeselect
-]
-
 { #category : #'spec protocol' }
 MorphicListAdapter >> autoDeselect: aBoolean [
 
@@ -42,33 +36,32 @@ MorphicListAdapter >> backgroundColorFor: anItem at: index [
 
 { #category : #factory }
 MorphicListAdapter >> buildWidget [
-	widget := FTPluggableIconListMorphAdaptor new
-			dataSource: FTPluggableIconListMorphAdaptorDataSourceWithoutDependencies new;
-		   model: self model;
-			hideColumnHeaders;
-			beResizable;
-			getIndexSelector: #selectedIndex ;
-			setIndexSelector: #setIndex: ;
-			getSelectionListSelector:	#getSelectionStateFor: ;
-			setSelectionListSelector:	#setSelectionStateFor:at: ;
-			resetListSelector:	#resetListSelection ; 
-			getMenuSelector:	#menu:shifted: ;
-			setMultipleSelection: self multiSelection;
-			doubleClickSelector: #doubleClick: ;
-			basicWrapSelector: #wrapItem: ;
-			dragEnabled:	self dragEnabled ;
-			dropEnabled:	self dropEnabled ; 	
-			setBalloonText: self help; 
-			hResizing: 	#spaceFill;
-			vResizing: 	#spaceFill;
-			yourself.
+	| datasource |
+	datasource := SpecListFastTableDataSource new.
+	datasource model: self model.
 
+	widget := FTTableMorph new
+		dataSource: datasource;
+		hideColumnHeaders;
+		beResizable;
+		setMultipleSelection: self model isMultiSelection;
+		dragEnabled: self dragEnabled;
+		dropEnabled: self dropEnabled;
+		setBalloonText: self help;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		onAnnouncement: FTSelectionChanged
+			send: #selectionChanged:
+			to: self;
+		onAnnouncement: FTStrongSelectionChanged
+			send: #strongSelectionChanged:
+			to: self;
+		yourself.
 	self itemFilterBlock
 		ifNotNil: [ :block | 
 			widget
 				enableFilter: (FTSpecFilter block: block);
 				explicitFunction ].
-
 	^ widget
 ]
 
@@ -81,12 +74,6 @@ MorphicListAdapter >> getSelectionStateFor: anIndex [
 { #category : #'widget API' }
 MorphicListAdapter >> itemFilterBlock [
 	^ self model itemFilterBlock
-]
-
-{ #category : #'widget API' }
-MorphicListAdapter >> listElementAt: anIndex [
-
-	^ self model listElementAt: anIndex
 ]
 
 { #category : #'widget API' }
@@ -109,37 +96,54 @@ MorphicListAdapter >> menu: aMenu shifted: aBoolean [
 ]
 
 { #category : #'widget API' }
-MorphicListAdapter >> multiSelection [
-
-	^ self model isMultiSelection
-]
-
-{ #category : #'widget API' }
 MorphicListAdapter >> refreshList [
 
 	^ self widget updateList
 ]
 
 { #category : #'widget API' }
-MorphicListAdapter >> resetListSelection [
+MorphicListAdapter >> refreshWidgetList [
+	
+	(self widget showIndex < self widget dataSource numberOfRows
+		and: [ self widget isRowIndexVisible: self widget showIndex ])
+			ifFalse: [ self widget resetPosition ].
+	
+	self refreshWidgetSelection.
 
-	^ self model resetListSelection
+	(self widget hasSelection and: [ (self widget isRowIndexVisible: self widget selectedRowIndex) ])
+		ifFalse: [ 
+			self widget resetPosition.
+			self widget ensureVisibleFirstSelection ].
+	self widget refresh
 ]
 
 { #category : #'widget API' }
-MorphicListAdapter >> setIndex: anIndex [
+MorphicListAdapter >> refreshWidgetSelection [
 
-	^ self model setIndex: anIndex
+	| rowIndexes |
+	rowIndexes := self presenter selection selectedIndexes.
+	rowIndexes = self widget selectedRowIndexes ifTrue: [ ^ self ].
+	rowIndexes isEmpty
+		ifTrue: [ self widget basicSelectRowIndexes: #() ]
+		ifFalse: [ self widget basicSelectRowIndexes: rowIndexes ].
+
+	^ self widget refresh
 ]
 
-{ #category : #'widget API' }
-MorphicListAdapter >> setSelectionStateFor: anIndex at: aBoolean [
+{ #category : #factory }
+MorphicListAdapter >> selectionChanged: ann [
 
-	^ self model setSelectionStateFor: anIndex at: aBoolean
-]
+	self presenter selection isMultipleSelection
+		ifTrue: [ self presenter selection
+				selectIndexes: (ann newSelectedRowIndexes reject: [ :e | e = 0 ]) ].
 
-{ #category : #'widget API' }
-MorphicListAdapter >> wrapItem: anObject index: index [
+	self presenter selection isMultipleSelection
+		ifFalse: [ self presenter selection
+				selectIndex:
+					(ann newSelectedRowIndexes
+						ifNotEmpty: [ :indexes | indexes first ]
+						ifEmpty: [ 0 ]) ].
 
-	^ self model wrapItem: anObject index: index
+	ann newSelectedRowIndexes ifNotEmpty: [ ^ self ].
+	self presenter selection unselectAll.
 ]

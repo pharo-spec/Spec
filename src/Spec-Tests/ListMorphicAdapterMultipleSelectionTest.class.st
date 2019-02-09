@@ -30,7 +30,7 @@ ListMorphicAdapterMultipleSelectionTest >> setUp [
 ListMorphicAdapterMultipleSelectionTest >> testSelectManyIndexesKeepsAllSelected [
 	presenter selectIndex: 1.
 	presenter selectIndex: 2.
-	self assert: presenter adapter widget selectedRowIndexes equals: #(1 2)
+	self assert: presenter adapter widget selectedRowIndexes asArray equals: #(1 2)
 ]
 
 { #category : #'tests-model-to-widget' }
@@ -67,9 +67,9 @@ ListMorphicAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelectionI
 ListMorphicAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedIndex |
 	presenter selection
-		whenChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
+		whenChangedDo: [ :selection | selectedIndex := selection selectedIndexes ].
 	presenter adapter widget selectRowIndex: 1.
-	self assert: selectedIndex equals: 1
+	self assert: (selectedIndex includes: 1)
 ]
 
 { #category : #'tests-widget-to-model' }
