@@ -4,16 +4,6 @@ Class {
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
-{ #category : #factory }
-MorphicGridAdapter >> add: aPresenter constraints: constraints [
- 
-	self widgetDo: [ :aPanel | 
-		self 
-			basicAdd: aPresenter 
-			constaints: constraints 
-			to: aPanel ]
-]
-
 { #category : #private }
 MorphicGridAdapter >> addConstraits: constraints toChild: childMorph [
 	"adds constraits by child"
@@ -33,7 +23,9 @@ MorphicGridAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [
 	childMorph := self 
 		addConstraits: constraints 
 		toChild: (aPresenter buildWithSpec: constraints spec).
-	aPanel addMorphBack: childMorph
+	aPanel addMorphBack: childMorph.
+		
+	^ childMorph	
 ]
 
 { #category : #factory }

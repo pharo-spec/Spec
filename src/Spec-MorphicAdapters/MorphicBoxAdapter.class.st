@@ -8,16 +8,6 @@ Class {
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
-{ #category : #factory }
-MorphicBoxAdapter >> add: aPresenter constraints: constraints [
- 
-	self widgetDo: [ :aPanel | 
-		self 
-			basicAdd: aPresenter 
-			constaints: constraints 
-			to: aPanel ]
-]
-
 { #category : #private }
 MorphicBoxAdapter >> addConstraits: constraints toChild: childMorph [
 	"adds constraits by child"
@@ -61,7 +51,9 @@ MorphicBoxAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [
 		toChild: (aPresenter buildWithSpec: constraints spec).
 	constraints isPlacedAtStart
 		ifTrue: [ aPanel submorphs first addMorphBack: childMorph ]
-		ifFalse: [ aPanel submorphs second addMorphBack: childMorph ]
+		ifFalse: [ aPanel submorphs second addMorphBack: childMorph ].
+		
+	^ childMorph
 ]
 
 { #category : #factory }

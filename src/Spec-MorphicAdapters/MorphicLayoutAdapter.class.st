@@ -7,9 +7,43 @@ Class {
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
+{ #category : #'as yet unclassified' }
+MorphicLayoutAdapter >> adapter [
+	
+	^ nil
+]
+
+{ #category : #factory }
+MorphicLayoutAdapter >> add: aPresenter constraints: constraints [
+ 
+	self widgetDo: [ :aPanel | | child |
+		child := self 
+			basicAdd: aPresenter 
+			constaints: constraints 
+			to: aPanel.
+		self applyStyle: aPresenter to: child ]
+]
+
 { #category : #initialization }
 MorphicLayoutAdapter >> applyStyle: aMorph [
-	
+	"layouts do not have style to apply"
+]
+
+{ #category : #factory }
+MorphicLayoutAdapter >> applyStyle: aPresenter to: aMorph [
+	self flag: #TODO. "This is a HACK, to apply styles just when I'm using new layouts 
+	(otherwise, it interferes on how the old layout is displayed). 
+	 Of course, this needs to be applied where it belongs, but for now we need to keep 
+	 it this way :("
+
+	aPresenter adapter ifNotNil: [ :anAdapter |
+		anAdapter style applyTo: aMorph ]
+]
+
+{ #category : #private }
+MorphicLayoutAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [ 
+
+	self subclassResponsibility
 ]
 
 { #category : #factory }

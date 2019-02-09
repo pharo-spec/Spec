@@ -12,16 +12,6 @@ Class {
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
-{ #category : #factory }
-MorphicPanedAdapter >> add: aPresenter constraints: constraints [
- 
-	self widgetDo: [ :aPanel | 
-		self 
-			basicAdd: aPresenter 
-			constaints: constraints 
-			to: aPanel ]
-]
-
 { #category : #private }
 MorphicPanedAdapter >> addConstraits: constraints toChild: childMorph [
 	"adds constraits by child"
@@ -50,7 +40,9 @@ MorphicPanedAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [
 		toChild: (aPresenter buildWithSpec: constraints spec).
 
 	aPanel addMorphBack: childMorph.
-	self addSplitterIn: aPanel for: childMorph
+	self addSplitterIn: aPanel for: childMorph.
+	
+	^ childMorph
 ]
 
 { #category : #accessing }
