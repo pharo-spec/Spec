@@ -46,12 +46,6 @@ SpecGridExample class >> simpleSpec [
 		yourself
 ]
 
-{ #category : #api }
-SpecGridExample >> initialExtent [ 
-
-	^ 1000@800
-]
-
 { #category : #initialization }
 SpecGridExample >> initializeWidgets [
 	
