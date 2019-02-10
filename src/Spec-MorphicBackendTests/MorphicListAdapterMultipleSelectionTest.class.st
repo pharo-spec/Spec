@@ -1,6 +1,6 @@
 Class {
 	#name : #MorphicListAdapterMultipleSelectionTest,
-	#superclass : #SpecTestCase,
+	#superclass : #MorphicAdapterTestCase,
 	#category : #'Spec-MorphicBackendTests'
 }
 

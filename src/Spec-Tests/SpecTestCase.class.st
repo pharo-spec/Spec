@@ -27,6 +27,11 @@ SpecTestCase >> openInstance: aLayoutSelector [
 	window := presenter openWithSpec: aLayoutSelector
 ]
 
+{ #category : #accessing }
+SpecTestCase >> presenter [
+	^ presenter
+]
+
 { #category : #running }
 SpecTestCase >> setUp [
 	super setUp.
@@ -38,4 +43,10 @@ SpecTestCase >> setUp [
 SpecTestCase >> tearDown [
 	window ifNotNil: [ window delete ].
 	super tearDown
+]
+
+{ #category : #accessing }
+SpecTestCase >> widget [
+	
+	^ self adapter widget
 ]

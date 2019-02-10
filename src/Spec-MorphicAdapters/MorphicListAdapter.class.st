@@ -57,6 +57,9 @@ MorphicListAdapter >> buildWidget [
 			send: #strongSelectionChanged:
 			to: self;
 		yourself.
+	
+	self refreshHeaderTitle.
+	
 	self itemFilterBlock
 		ifNotNil: [ :block | 
 			widget
@@ -93,6 +96,22 @@ MorphicListAdapter >> menu: aMenu shifted: aBoolean [
 
 	^ (self model menu: aMenu shifted: aBoolean) 
 		
+]
+
+{ #category : #'widget API' }
+MorphicListAdapter >> refreshHeaderTitle [
+	
+	self presenter hasHeaderTitle 
+		ifTrue: [ 
+			self widget columns first id: self presenter headerTitle.
+			self widget
+				showColumnHeaders;
+				refresh. ]
+		ifFalse: [ 
+			self widget columns first id: ''.
+			self widget
+				hideColumnHeaders;
+				refresh ].
 ]
 
 { #category : #'widget API' }

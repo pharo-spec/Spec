@@ -30,6 +30,15 @@ SpecListFastTableDataSource >> elements [
 ]
 
 { #category : #accessing }
+SpecListFastTableDataSource >> headerColumn: column [
+	column id ifNil: [ ^ nil ]. 
+	^ FTCellMorph new 
+		listCentering: #center;
+		addMorph: column id asMorph;
+		yourself
+]
+
+{ #category : #accessing }
 SpecListFastTableDataSource >> listModel [
 	^ model model
 ]

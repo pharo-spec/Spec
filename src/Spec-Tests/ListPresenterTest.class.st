@@ -98,11 +98,19 @@ ListPresenterTest >> testHideHeaderTitleUnsetsTitle [
 ]
 
 { #category : #'tests-header' }
-ListPresenterTest >> testSetHeaderTitleSetsTitle [
+ListPresenterTest >> testSetHeaderTitleHasTitle [
 
 	presenter headerTitle: 'title'.
 	
 	self assert: presenter hasHeaderTitle
+]
+
+{ #category : #'tests-header' }
+ListPresenterTest >> testSetHeaderTitleSetsTitle [
+
+	presenter headerTitle: 'title'.
+	
+	self assert: presenter headerTitle equals: 'title'
 ]
 
 { #category : #'tests-smoke' }
