@@ -501,6 +501,12 @@ AbstractListPresenter >> unselectIndex: anInteger [
 	self selection unselectIndex: anInteger
 ]
 
+{ #category : #api }
+AbstractListPresenter >> unselectItem: anInteger [ 
+	
+	self selection unselectItem: anInteger
+]
+
 { #category : #'api-events' }
 AbstractListPresenter >> whenActivatedDo: aBlockClosure [ 
 	

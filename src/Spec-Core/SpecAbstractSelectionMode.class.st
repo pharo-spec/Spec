@@ -39,6 +39,14 @@ SpecAbstractSelectionMode >> includesItem: anItem [
 	self subclassResponsibility
 ]
 
+{ #category : #selecting }
+SpecAbstractSelectionMode >> indexOfItem: anItem [
+	
+	^ self model
+		indexOf: anItem
+		ifAbsent: [ 0 ].
+]
+
 { #category : #testing }
 SpecAbstractSelectionMode >> isEmpty [
 	
@@ -65,24 +73,13 @@ SpecAbstractSelectionMode >> selectAll [
 { #category : #selecting }
 SpecAbstractSelectionMode >> selectIndex: anIndex [
 	
-	| indexToSelect |
-	indexToSelect := anIndex.
-	self model
-		at: indexToSelect
-		ifAbsent: [ indexToSelect := 0 ].
-
-	self basicSelectIndex: indexToSelect
+	self basicSelectIndex: (self withinRangeIndex: anIndex)
 ]
 
 { #category : #selecting }
 SpecAbstractSelectionMode >> selectItem: anItem [
 	
-	| indexToSelect |
-	indexToSelect := self model
-		indexOf: anItem
-		ifAbsent: [ 0 ].
-	
-	self basicSelectIndex: indexToSelect
+	self basicSelectIndex: (self indexOfItem: anItem)
 ]
 
 { #category : #'as yet unclassified' }
@@ -109,6 +106,12 @@ SpecAbstractSelectionMode >> unselectIndex: anInteger [
 	self subclassResponsibility
 ]
 
+{ #category : #selecting }
+SpecAbstractSelectionMode >> unselectItem: anInteger [ 
+	
+	self unselectIndex: (self indexOfItem: anInteger)
+]
+
 { #category : #events }
 SpecAbstractSelectionMode >> whenChangedDo: aBlockClosure [ 
 	
@@ -123,4 +126,15 @@ SpecAbstractSelectionMode >> widget [
 { #category : #accessing }
 SpecAbstractSelectionMode >> widget: anObject [
 	widget := anObject
+]
+
+{ #category : #selecting }
+SpecAbstractSelectionMode >> withinRangeIndex: anIndex [
+	
+	| indexToSelect |
+	indexToSelect := anIndex.
+	self model
+		at: indexToSelect
+		ifAbsent: [ indexToSelect := 0 ].
+	^ indexToSelect
 ]
