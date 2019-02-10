@@ -61,6 +61,16 @@ ListPresenter class >> example [
 		yourself
 ]
 
+{ #category : #example }
+ListPresenter class >> exampleWithHeaderTitle [
+	<sampleInstance>
+	^ self new
+		items: Smalltalk globals allClasses;
+		headerTitle: 'Title';
+		openWithSpec;
+		yourself
+]
+
 { #category : #specs }
 ListPresenter class >> title [
 

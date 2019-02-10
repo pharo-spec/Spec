@@ -82,8 +82,10 @@ MorphicListAdapterMultipleSelectionTest >> testSubscribeToEventDoesNotRaiseEvent
 { #category : #'tests-widget-to-model' }
 MorphicListAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesEmptySelectionChangeEvent [
 	| gotSelection |
+	presenter adapter widget selectRowIndex: 1.
 	presenter selection
 		whenChangedDo: [ :selection | gotSelection := selection ].
+
 	presenter adapter widget selectRowIndex: 0.
 	self assert: gotSelection isEmpty
 ]
@@ -92,8 +94,10 @@ MorphicListAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesEmptySel
 MorphicListAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	counter := 0.
+	presenter adapter widget selectRowIndex: 1.
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
+
 	presenter adapter widget selectRowIndex: 0.
 	self assert: counter equals: 1
 ]
