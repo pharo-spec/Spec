@@ -32,6 +32,18 @@ AbstractListPresenter >> activateOnSingleClick [
 	activateOnSingleClick := true
 ]
 
+{ #category : #testing }
+AbstractListPresenter >> activatesOnDoubleClick [
+	
+	^ activateOnSingleClick not
+]
+
+{ #category : #testing }
+AbstractListPresenter >> activatesOnSingleClick [
+	
+	^ activateOnSingleClick
+]
+
 { #category : #api }
 AbstractListPresenter >> beMultipleSelection [
 	self selectionMode: (SpecMultipleSelectionMode on: self)

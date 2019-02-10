@@ -152,6 +152,7 @@ MorphicListAdapter >> refreshWidgetSelection [
 { #category : #factory }
 MorphicListAdapter >> selectionChanged: ann [
 
+	| diff |
 	self presenter selection isMultipleSelection
 		ifTrue: [ self presenter selection
 				selectIndexes: (ann newSelectedRowIndexes reject: [ :e | e = 0 ]) ].
@@ -162,7 +163,18 @@ MorphicListAdapter >> selectionChanged: ann [
 					(ann newSelectedRowIndexes
 						ifNotEmpty: [ :indexes | indexes first ]
 						ifEmpty: [ 0 ]) ].
+	
+	diff := ann newSelectedRowIndexes difference: ann oldSelectedRowIndexes.
+	(diff notEmpty and: [ self presenter activatesOnSingleClick ])
+		ifTrue: [ self presenter doActivateAtIndex: diff last ].
 
 	ann newSelectedRowIndexes ifNotEmpty: [ ^ self ].
 	self presenter selection unselectAll.
+]
+
+{ #category : #events }
+MorphicListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [ 
+	
+	self presenter activatesOnDoubleClick
+		ifTrue: [ self presenter doubleClickAtIndex: aFTStrongSelectionChanged selectedRowIndex ]
 ]
