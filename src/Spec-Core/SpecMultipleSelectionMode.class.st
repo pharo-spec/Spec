@@ -19,7 +19,7 @@ SpecMultipleSelectionMode >> basicSelectIndex: indexToSelect [
 	"Adding to the selection an out of range should not change selection"
 	indexToSelect = 0 ifTrue: [ ^ self ].
 
-	selectedIndexesValueHolder value: (selectedIndexesValueHolder value copyWith: indexToSelect)
+	self selectIndexes: (selectedIndexesValueHolder value copyWith: indexToSelect)
 ]
 
 { #category : #testing }
@@ -61,8 +61,10 @@ SpecMultipleSelectionMode >> selectAll [
 { #category : #accessing }
 SpecMultipleSelectionMode >> selectIndexes: aCollection [
 
-	1haltIf: [ aCollection includes: 0 ].
-	^ selectedIndexesValueHolder value: aCollection asOrderedCollection
+	aCollection asSet = selectedIndexesValueHolder value asSet
+		ifTrue: [ ^ self ].
+
+	^ selectedIndexesValueHolder value: aCollection asSet asOrderedCollection
 ]
 
 { #category : #accessing }
@@ -89,8 +91,14 @@ SpecMultipleSelectionMode >> unselectAll [
 	self selectIndexes: #()
 ]
 
+{ #category : #selecting }
+SpecMultipleSelectionMode >> unselectIndex: anIndex [
+
+	self selectIndexes: (selectedIndexesValueHolder value copyWithout: anIndex)
+]
+
 { #category : #events }
 SpecMultipleSelectionMode >> whenChangedDo: aBlockClosure [ 
 	
-	selectedIndexesValueHolder whenChangedDo: [ aBlockClosure value: self ]
+	selectedIndexesValueHolder whenChangedDo: [ aBlockClosure cull: self ]
 ]
