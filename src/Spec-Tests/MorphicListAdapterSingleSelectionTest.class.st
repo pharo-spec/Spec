@@ -1,22 +1,22 @@
 Class {
-	#name : #ListMorphicAdapterSingleSelectionTest,
+	#name : #MorphicListAdapterSingleSelectionTest,
 	#superclass : #SpecTestCase,
 	#category : #'Spec-Tests-MorphicAdapters'
 }
 
 { #category : #running }
-ListMorphicAdapterSingleSelectionTest >> adapter [
+MorphicListAdapterSingleSelectionTest >> adapter [
 
 	^ presenter adapter
 ]
 
 { #category : #running }
-ListMorphicAdapterSingleSelectionTest >> classToTest [
+MorphicListAdapterSingleSelectionTest >> classToTest [
 	^ ListPresenter
 ]
 
 { #category : #running }
-ListMorphicAdapterSingleSelectionTest >> setUp [
+MorphicListAdapterSingleSelectionTest >> setUp [
 
 	super setUp.
 
@@ -27,34 +27,34 @@ ListMorphicAdapterSingleSelectionTest >> setUp [
 ]
 
 { #category : #'tests-model-to-widget' }
-ListMorphicAdapterSingleSelectionTest >> testSelectManyIndexesKeepsLastSelectionInWidget [
+MorphicListAdapterSingleSelectionTest >> testSelectManyIndexesKeepsLastSelectionInWidget [
 	presenter selectIndex: 1.
 	presenter selectIndex: 2.
 	self assert: presenter adapter widget selectedRowIndexes equals: #(2)
 ]
 
 { #category : #'tests-model-to-widget' }
-ListMorphicAdapterSingleSelectionTest >> testSelectPresenterIndexOutsideRangeUnsetsSelectedIndexInWidget [
+MorphicListAdapterSingleSelectionTest >> testSelectPresenterIndexOutsideRangeUnsetsSelectedIndexInWidget [
 	presenter selectIndex: 100.
 	self assert: presenter adapter widget selectedRowIndexes isEmpty
 ]
 
 { #category : #'tests-model-to-widget' }
-ListMorphicAdapterSingleSelectionTest >> testSelectPresenterIndexSetsSelectedIndexInWidget [
+MorphicListAdapterSingleSelectionTest >> testSelectPresenterIndexSetsSelectedIndexInWidget [
 	presenter selectIndex: 1.
 	self
 		assert: (presenter adapter widget selectedRowIndexes includes: 1)
 ]
 
 { #category : #'tests-model-to-widget' }
-ListMorphicAdapterSingleSelectionTest >> testSelectPresenterItemSetsSelectedIndexInWidget [
+MorphicListAdapterSingleSelectionTest >> testSelectPresenterItemSetsSelectedIndexInWidget [
 	presenter selectItem: 20.
 	self
 		assert: (presenter adapter widget selectedRowIndexes includes: 2)
 ]
 
 { #category : #'tests-widget-to-model' }
-ListMorphicAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventOnce [
+MorphicListAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	counter := 0.
 	presenter selection
@@ -64,7 +64,7 @@ ListMorphicAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionInd
 ]
 
 { #category : #'tests-widget-to-model' }
-ListMorphicAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
+MorphicListAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedIndex |
 	presenter selection
 		whenChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
@@ -73,14 +73,14 @@ ListMorphicAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionInd
 ]
 
 { #category : #'tests-widget-to-model' }
-ListMorphicAdapterSingleSelectionTest >> testSubscribeToEventDoesNotRaiseEvent [
+MorphicListAdapterSingleSelectionTest >> testSubscribeToEventDoesNotRaiseEvent [
 
 	presenter selection
 		whenChangedDo: [ :selection | self fail ].
 ]
 
 { #category : #'tests-widget-to-model' }
-ListMorphicAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesEmptySelectionChangeEvent [
+MorphicListAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesEmptySelectionChangeEvent [
 	| gotSelection |
 	presenter selection
 		whenChangedDo: [ :selection | gotSelection := selection ].
@@ -89,7 +89,7 @@ ListMorphicAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesEmptySelec
 ]
 
 { #category : #'tests-widget-to-model' }
-ListMorphicAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesSelectionIndexChangeEventOnce [
+MorphicListAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	counter := 0.
 	presenter selection
@@ -99,7 +99,7 @@ ListMorphicAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesSelectionI
 ]
 
 { #category : #running }
-ListMorphicAdapterSingleSelectionTest >> widget [
+MorphicListAdapterSingleSelectionTest >> widget [
 
 	^ self adapter widget
 ]

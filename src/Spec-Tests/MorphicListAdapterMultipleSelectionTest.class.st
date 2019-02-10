@@ -1,22 +1,22 @@
 Class {
-	#name : #ListMorphicAdapterMultipleSelectionTest,
+	#name : #MorphicListAdapterMultipleSelectionTest,
 	#superclass : #SpecTestCase,
 	#category : #'Spec-Tests-MorphicAdapters'
 }
 
 { #category : #running }
-ListMorphicAdapterMultipleSelectionTest >> adapter [
+MorphicListAdapterMultipleSelectionTest >> adapter [
 
 	^ presenter adapter
 ]
 
 { #category : #running }
-ListMorphicAdapterMultipleSelectionTest >> classToTest [
+MorphicListAdapterMultipleSelectionTest >> classToTest [
 	^ ListPresenter
 ]
 
 { #category : #running }
-ListMorphicAdapterMultipleSelectionTest >> setUp [
+MorphicListAdapterMultipleSelectionTest >> setUp [
 
 	super setUp.
 
@@ -27,34 +27,34 @@ ListMorphicAdapterMultipleSelectionTest >> setUp [
 ]
 
 { #category : #'tests-model-to-widget' }
-ListMorphicAdapterMultipleSelectionTest >> testSelectManyIndexesKeepsAllSelected [
+MorphicListAdapterMultipleSelectionTest >> testSelectManyIndexesKeepsAllSelected [
 	presenter selectIndex: 1.
 	presenter selectIndex: 2.
 	self assert: presenter adapter widget selectedRowIndexes asArray equals: #(1 2)
 ]
 
 { #category : #'tests-model-to-widget' }
-ListMorphicAdapterMultipleSelectionTest >> testSelectPresenterIndexOutsideRangeUnsetsSelectedIndexInWidget [
+MorphicListAdapterMultipleSelectionTest >> testSelectPresenterIndexOutsideRangeUnsetsSelectedIndexInWidget [
 	presenter selectIndex: 100.
 	self assert: presenter adapter widget selectedRowIndexes isEmpty
 ]
 
 { #category : #'tests-model-to-widget' }
-ListMorphicAdapterMultipleSelectionTest >> testSelectPresenterIndexSetsSelectedIndexInWidget [
+MorphicListAdapterMultipleSelectionTest >> testSelectPresenterIndexSetsSelectedIndexInWidget [
 	presenter selectIndex: 1.
 	self
 		assert: (presenter adapter widget selectedRowIndexes includes: 1)
 ]
 
 { #category : #'tests-model-to-widget' }
-ListMorphicAdapterMultipleSelectionTest >> testSelectPresenterItemSetsSelectedIndexInWidget [
+MorphicListAdapterMultipleSelectionTest >> testSelectPresenterItemSetsSelectedIndexInWidget [
 	presenter selectItem: 20.
 	self
 		assert: (presenter adapter widget selectedRowIndexes includes: 2)
 ]
 
 { #category : #'tests-widget-to-model' }
-ListMorphicAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventOnce [
+MorphicListAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	counter := 0.
 	presenter selection
@@ -64,7 +64,7 @@ ListMorphicAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelectionI
 ]
 
 { #category : #'tests-widget-to-model' }
-ListMorphicAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
+MorphicListAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedIndex |
 	presenter selection
 		whenChangedDo: [ :selection | selectedIndex := selection selectedIndexes ].
@@ -73,14 +73,14 @@ ListMorphicAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelectionI
 ]
 
 { #category : #'tests-widget-to-model' }
-ListMorphicAdapterMultipleSelectionTest >> testSubscribeToEventDoesNotRaiseEvent [
+MorphicListAdapterMultipleSelectionTest >> testSubscribeToEventDoesNotRaiseEvent [
 
 	presenter selection
 		whenChangedDo: [ :selection | self fail ].
 ]
 
 { #category : #'tests-widget-to-model' }
-ListMorphicAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesEmptySelectionChangeEvent [
+MorphicListAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesEmptySelectionChangeEvent [
 	| gotSelection |
 	presenter selection
 		whenChangedDo: [ :selection | gotSelection := selection ].
@@ -89,7 +89,7 @@ ListMorphicAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesEmptySel
 ]
 
 { #category : #'tests-widget-to-model' }
-ListMorphicAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesSelectionIndexChangeEventOnce [
+MorphicListAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	counter := 0.
 	presenter selection
@@ -99,7 +99,7 @@ ListMorphicAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesSelectio
 ]
 
 { #category : #running }
-ListMorphicAdapterMultipleSelectionTest >> widget [
+MorphicListAdapterMultipleSelectionTest >> widget [
 
 	^ self adapter widget
 ]
