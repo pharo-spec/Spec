@@ -306,6 +306,27 @@ ListPresenterMultipleSelectionTest >> testUnselectSelectedIndexRemovesItFromSele
 	self assert: (presenter selection isEmpty)
 ]
 
+{ #category : #'tests-unselect-item' }
+ListPresenterMultipleSelectionTest >> testUnselectSelectedItemRaisesSelectionEventOnce [
+	
+	| counter |
+	counter := 0.
+	presenter
+		selectItem: 10;
+		whenSelectionChangedDo: [ counter := counter + 1 ];
+		unselectItem: 10.
+	self assert: counter equals: 1
+]
+
+{ #category : #'tests-unselect-item' }
+ListPresenterMultipleSelectionTest >> testUnselectSelectedItemRemovesItFromSelectionList [
+
+	presenter
+		selectItem: 10;
+		unselectItem: 10.
+	self assert: (presenter selection isEmpty)
+]
+
 { #category : #'tests-unselect-index' }
 ListPresenterMultipleSelectionTest >> testUnselectUnselectedIndexKeepsSelectionList [
 
@@ -324,5 +345,26 @@ ListPresenterMultipleSelectionTest >> testUnselectUnselectedIndexRaisesNoSelecti
 		selectIndex: 1;
 		whenSelectionChangedDo: [ counter := counter + 1 ];
 		unselectIndex: 2.
+	self assert: counter equals: 0
+]
+
+{ #category : #'tests-unselect-item' }
+ListPresenterMultipleSelectionTest >> testUnselectUnselectedItemKeepsSelectionList [
+
+	presenter
+		selectItem: 10;
+		unselectItem: 20.
+	self assert: presenter selection selectedItems asArray equals: #(10)
+]
+
+{ #category : #'tests-unselect-item' }
+ListPresenterMultipleSelectionTest >> testUnselectUnselectedItemRaisesNoSelectionEvent [
+	
+	| counter |
+	counter := 0.
+	presenter
+		selectItem: 10;
+		whenSelectionChangedDo: [ counter := counter + 1 ];
+		unselectItem: 20.
 	self assert: counter equals: 0
 ]
