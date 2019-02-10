@@ -546,7 +546,7 @@ TextPresenter >> text: aText [
 
 { #category : #private }
 TextPresenter >> textArea [
-	^ self widget widget 
+	^ self adapter widget
 ]
 
 { #category : #simulating }

@@ -1,7 +1,7 @@
 Class {
 	#name : #MorphicListAdapterSingleSelectionTest,
 	#superclass : #SpecTestCase,
-	#category : #'Spec-Tests-MorphicAdapters'
+	#category : #'Spec-MorphicBackendTests'
 }
 
 { #category : #running }
@@ -103,7 +103,7 @@ MorphicListAdapterSingleSelectionTest >> testUnselectPresenterIndexUnselectsInde
 	presenter
 		selectIndex: 1;
 		unselectIndex: 1.
-	self assert: (presenter adapter widget selectedRowIndexes isEmpty)
+	self assert: presenter adapter widget selectedRowIndexes isEmpty
 ]
 
 { #category : #'tests-model-to-widget' }
