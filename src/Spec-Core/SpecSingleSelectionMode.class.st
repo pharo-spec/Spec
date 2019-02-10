@@ -38,7 +38,7 @@ SpecSingleSelectionMode >> initialize [
 	selectedIndexValueHolder := 0 asValueHolder
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpecSingleSelectionMode >> selectAll [
 
 	"Do nothing"
@@ -71,14 +71,21 @@ SpecSingleSelectionMode >> subscriptions [
 	^ selectedIndexValueHolder announcer subscriptions subscriptions
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpecSingleSelectionMode >> unselectAll [
 	
 	self selectIndex: 0
 ]
 
+{ #category : #selecting }
+SpecSingleSelectionMode >> unselectIndex: anInteger [ 
+
+	(selectedIndexValueHolder value = anInteger)
+		ifTrue: [ selectedIndexValueHolder value: 0 ]
+]
+
 { #category : #events }
 SpecSingleSelectionMode >> whenChangedDo: aBlockClosure [ 
 	
-	selectedIndexValueHolder whenChangedDo: [ aBlockClosure value: self ]
+	selectedIndexValueHolder whenChangedDo: [ aBlockClosure cull: self ]
 ]

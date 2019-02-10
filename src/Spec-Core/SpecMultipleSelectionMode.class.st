@@ -52,7 +52,7 @@ SpecMultipleSelectionMode >> isMultipleSelection [
 	^ true
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpecMultipleSelectionMode >> selectAll [
 	
 	self selectIndexes: (1 to: self model size)
@@ -83,7 +83,7 @@ SpecMultipleSelectionMode >> subscriptions [
 	^ selectedIndexesValueHolder announcer subscriptions
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpecMultipleSelectionMode >> unselectAll [
 	
 	self selectIndexes: #()

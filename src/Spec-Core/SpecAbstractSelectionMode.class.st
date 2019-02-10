@@ -56,7 +56,7 @@ SpecAbstractSelectionMode >> model [
 	^ widget model
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpecAbstractSelectionMode >> selectAll [
 
 	^ self subclassResponsibility
@@ -97,8 +97,14 @@ SpecAbstractSelectionMode >> transferSubscriptionsTo: anotherSelectionMode [
 	self subscriptions do: [ :aSubscription | anotherSelectionMode addSubscription: aSubscription ].
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpecAbstractSelectionMode >> unselectAll [
+	
+	self subclassResponsibility
+]
+
+{ #category : #selecting }
+SpecAbstractSelectionMode >> unselectIndex: anInteger [ 
 	
 	self subclassResponsibility
 ]

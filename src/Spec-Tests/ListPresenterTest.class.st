@@ -97,17 +97,6 @@ ListPresenterTest >> testHideHeaderTitleUnsetsTitle [
 	self deny: presenter hasHeaderTitle
 ]
 
-{ #category : #tests }
-ListPresenterTest >> testSelectAll [
-	| items |
-	items := #(#AAA #BBB #CCC).
-	presenter items: items.
-	presenter beMultipleSelection.
-	self assertCollection: presenter selectedItems hasSameElements: #().
-	presenter selectAll.
-	self assertCollection: presenter selectedItems hasSameElements: items
-]
-
 { #category : #'tests-header' }
 ListPresenterTest >> testSetHeaderTitleSetsTitle [
 
