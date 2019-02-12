@@ -7,9 +7,10 @@ Class {
 	#category : #'Spec-Tests-Core-Widgets'
 }
 
-{ #category : #running }
-AbstractListPresenterTest >> classToTest [
-	^ ListPresenter
+{ #category : #testing }
+AbstractListPresenterTest class >> isAbstract [
+
+	^ self ==  AbstractListPresenterTest
 ]
 
 { #category : #running }

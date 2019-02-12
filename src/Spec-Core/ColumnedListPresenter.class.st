@@ -5,7 +5,7 @@ Class {
 	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
 		'#columns => SpecObservableSlot',
-		'#showColumnHeadersHolder',
+		'#showColumnHeaders => SpecObservableSlot',
 		'#isResizableHolder',
 		'#itemsHolder'
 	],
@@ -61,7 +61,7 @@ ColumnedListPresenter >> columns: aCollection [
 { #category : #api }
 ColumnedListPresenter >> hideColumnHeaders [
 
-	showColumnHeadersHolder value: false
+	showColumnHeaders := false
 ]
 
 { #category : #initialization }
@@ -69,12 +69,9 @@ ColumnedListPresenter >> initialize [
 
 	self class initializeSlots: self.
 	super initialize.
-	showColumnHeadersHolder := true asValueHolder.
+	showColumnHeaders := true.
 	columns := #().
 	isResizableHolder := false asValueHolder.
-	
-	showColumnHeadersHolder whenChangedDo: [ self showColumnHeadersChanged ].
-
 	itemsHolder := #() asValueHolder.
 	itemsHolder whenChangedDo: [ self itemsChanged ].
 ]
@@ -92,7 +89,7 @@ ColumnedListPresenter >> isResizable: aBoolean [
 { #category : #testing }
 ColumnedListPresenter >> isShowingColumnHeaders [
 
-	^ showColumnHeadersHolder value
+	^ showColumnHeaders
 ]
 
 { #category : #accessing }
@@ -116,13 +113,13 @@ ColumnedListPresenter >> itemsChanged [
 { #category : #api }
 ColumnedListPresenter >> showColumnHeaders [
 
-	showColumnHeadersHolder value: true
+	showColumnHeaders := true
 ]
 
 { #category : #private }
 ColumnedListPresenter >> showColumnHeadersChanged [
 
-	self changed: #showColumnHeaders
+	self notifyPropertyChanged: #showColumnHeaders
 ]
 
 { #category : #'api-events' }
@@ -134,4 +131,10 @@ ColumnedListPresenter >> whenColumnsChangedDo: aBlock [
 { #category : #'api-events' }
 ColumnedListPresenter >> whenIsResizableChangedDo: aBlock [
 	isResizableHolder whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+ColumnedListPresenter >> whenShowColumnsChangedDo: aBlock [
+	
+	self property: #showColumnHeaders whenChangedDo: aBlock
 ]

@@ -5,6 +5,12 @@ Class {
 }
 
 { #category : #'tests-header' }
+ListPresenterTest >> classToTest [
+	
+	^ ListPresenter
+]
+
+{ #category : #'tests-header' }
 ListPresenterTest >> testHideHeaderTitleUnsetsTitle [
 
 	presenter
