@@ -38,5 +38,6 @@ ComposablePresenter >> newTabManager [
 		deprecated: 'Use newNotebook instead' 
 		on: '2019-01-24' 
 		in: #Pharo8.
+	
 	^ self instantiate: TabManagerPresenter
 ]

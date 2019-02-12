@@ -12,9 +12,10 @@ SelectionPresenterPort class >> portName [
 
 { #category : #'as yet unclassified' }
 SelectionPresenterPort >> attachTransmission: aTransmission [
-
-	self presenter whenSelectedItemChanged: [ :selection | 
-		aTransmission toPort
-			incomingTransmission: (aTransmission transformed: selection)
-			from: self ]
+	self presenter
+		whenSelectionChangedDo: [ :selection | 
+			[ :selection | 
+			aTransmission toPort
+				incomingTransmission: (aTransmission transformed: selection)
+				from: self ] cull: selection selectedItem ]
 ]
