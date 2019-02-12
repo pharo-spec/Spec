@@ -9,3 +9,15 @@ ColumnedListPresenterTest >> classToTest [
 	
 	^ ColumnedListPresenter
 ]
+
+{ #category : #'tests-activation' }
+ColumnedListPresenterTest >> testAddColumnRaisesColumnChangedEvent [
+
+	| columnsChanged |
+	columnsChanged := false.
+	presenter whenColumnsChangedDo: [ columnsChanged := true ].
+
+	presenter addColumn: (StringTableColumn new evaluated: #yourself).
+	
+	self assert: columnsChanged
+]
