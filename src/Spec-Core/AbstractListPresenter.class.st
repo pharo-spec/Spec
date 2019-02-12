@@ -32,6 +32,18 @@ AbstractListPresenter >> activateOnSingleClick [
 	activateOnSingleClick := true
 ]
 
+{ #category : #testing }
+AbstractListPresenter >> activatesOnDoubleClick [
+	
+	^ activateOnSingleClick not
+]
+
+{ #category : #testing }
+AbstractListPresenter >> activatesOnSingleClick [
+	
+	^ activateOnSingleClick
+]
+
 { #category : #api }
 AbstractListPresenter >> beMultipleSelection [
 	self selectionMode: (SpecMultipleSelectionMode on: self)
@@ -273,9 +285,9 @@ AbstractListPresenter >> menu: aMenu shifted: aBoolean [
 	"Build the menu when you right click on an item"
 
 	"This does not work on multiple selection"
-	self flag: #bug.
-	self selectedItem ifNil: [ ^ nil ].
 
+	self flag: #bug.
+	self selection selectedItem ifNil: [ ^ nil ].
 	^ menuHolder value cull: aMenu cull: aBoolean
 ]
 
@@ -493,6 +505,18 @@ AbstractListPresenter >> sortingBlock: aBlock [
 AbstractListPresenter >> unselectAll [
 	
 	self selection unselectAll
+]
+
+{ #category : #api }
+AbstractListPresenter >> unselectIndex: anInteger [ 
+	
+	self selection unselectIndex: anInteger
+]
+
+{ #category : #api }
+AbstractListPresenter >> unselectItem: anInteger [ 
+	
+	self selection unselectItem: anInteger
 ]
 
 { #category : #'api-events' }

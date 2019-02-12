@@ -24,12 +24,22 @@ SpecDemoButtonsPresenter class >> defaultSpec [
 
 	<spec: #default>
 
-	| fontWidth rowHeight buttonHeight |
-	fontWidth := (StandardFonts defaultFont widthOfString: 'M').
-	rowHeight := self inputTextHeight.
-	buttonHeight := rowHeight*1.3.
+	^ SpecBoxLayout newVertical
+		add: (SpecBoxLayout newHorizontal 
+					add: #buttonNormal;
+					add: #buttonDisabled;
+					add: #buttonWithIcon;
+					add: #buttonWithIconOnly;
+					add: #buttonHighlighted);
+		add: (SpecBoxLayout newHorizontal 
+					add: #buttonWithColor;
+					add: #buttonWithMenu;
+					add: #buttonWithShortcut;
+					add: #buttonWithHelp;
+					add: #buttonWithDifferentFont);		
+		yourself
 	
-	^ SpecLayout composed
+"	^ SpecLayout composed
 		newColumn: [ :col | 
 
 		col newRow: [ :row | 
@@ -48,9 +58,8 @@ SpecDemoButtonsPresenter class >> defaultSpec [
 				row add: #buttonWithDifferentFont.
 				 ] 	height: buttonHeight.
 
-		"fill the rest of the space"
 		col newRow: [ :row |  ] ]; 
-		yourself.	
+		yourself.	"
 ]
 
 { #category : #accessing }
@@ -110,6 +119,7 @@ SpecDemoButtonsPresenter >> buttonWithHelp [
 
 { #category : #accessing }
 SpecDemoButtonsPresenter >> buttonWithHelp: anObject [
+
 	buttonWithHelp := anObject
 ]
 

@@ -1,6 +1,6 @@
 Class {
 	#name : #ColumnedListPresenterTest,
-	#superclass : #ListPresenterTest,
+	#superclass : #AbstractListPresenterTest,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 
@@ -10,14 +10,14 @@ ColumnedListPresenterTest >> classToTest [
 	^ ColumnedListPresenter
 ]
 
-{ #category : #tests }
-ColumnedListPresenterTest >> testSelectAll [
-	"Not implemented yet"
-	^ self skip.
-]
+{ #category : #'tests-activation' }
+ColumnedListPresenterTest >> testAddColumnRaisesColumnChangedEvent [
 
-{ #category : #tests }
-ColumnedListPresenterTest >> testWhenListChangedOldContents [
-	"Not implemented yet"
-	^ self skip.
+	| columnsChanged |
+	columnsChanged := false.
+	presenter whenColumnsChangedDo: [ columnsChanged := true ].
+
+	presenter addColumn: (StringTableColumn new evaluated: #yourself).
+	
+	self assert: columnsChanged
 ]

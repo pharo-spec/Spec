@@ -386,7 +386,7 @@ MessageBrowser >> handleMethodModified: anAnnouncement [
 	refreshingBlockHolder ifNil: [ ^ self ].
 	item := anAnnouncement newMethod.
 	oldItem := anAnnouncement oldMethod.
-	sel := listModel selectedItem.
+	sel := listModel selection selectedItem.
 	sel ifNil: [ ^ self ].
 	(sel methodClass = oldItem methodClass
 		and: [ sel selector = oldItem selector ])
@@ -701,14 +701,12 @@ MessageBrowser >> selectedClass [
 
 { #category : #accessing }
 MessageBrowser >> selectedItem [
-
-	^ listModel selectedItem
+	^ listModel selection selectedItem
 ]
 
 { #category : #api }
 MessageBrowser >> selectedMessage [
-
-	^ listModel selectedItem
+	^ listModel selection selectedItem
 ]
 
 { #category : #api }

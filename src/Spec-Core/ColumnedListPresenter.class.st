@@ -1,11 +1,13 @@
 Class {
 	#name : #ColumnedListPresenter,
 	#superclass : #AbstractListPresenter,
+	#traits : 'TSpecObservable',
+	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
-		'columns',
-		'showColumnHeadersHolder',
-		'isResizableHolder',
-		'itemsHolder'
+		'#columns => SpecObservableSlot',
+		'#showColumnHeadersHolder',
+		'#isResizableHolder',
+		'#itemsHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -65,6 +67,7 @@ ColumnedListPresenter >> hideColumnHeaders [
 { #category : #initialization }
 ColumnedListPresenter >> initialize [ 
 
+	self class initializeSlots: self.
 	super initialize.
 	showColumnHeadersHolder := true asValueHolder.
 	columns := #().
@@ -120,6 +123,12 @@ ColumnedListPresenter >> showColumnHeaders [
 ColumnedListPresenter >> showColumnHeadersChanged [
 
 	self changed: #showColumnHeaders
+]
+
+{ #category : #'api-events' }
+ColumnedListPresenter >> whenColumnsChangedDo: aBlock [
+	
+	self property: #columns whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

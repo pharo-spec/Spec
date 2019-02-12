@@ -57,6 +57,9 @@ MorphicListAdapter >> buildWidget [
 			send: #strongSelectionChanged:
 			to: self;
 		yourself.
+	
+	self refreshHeaderTitle.
+	
 	self itemFilterBlock
 		ifNotNil: [ :block | 
 			widget
@@ -96,6 +99,22 @@ MorphicListAdapter >> menu: aMenu shifted: aBoolean [
 ]
 
 { #category : #'widget API' }
+MorphicListAdapter >> refreshHeaderTitle [
+	
+	self presenter hasHeaderTitle 
+		ifTrue: [ 
+			self widget columns first id: self presenter headerTitle.
+			self widget
+				showColumnHeaders;
+				refresh. ]
+		ifFalse: [ 
+			self widget columns first id: ''.
+			self widget
+				hideColumnHeaders;
+				refresh ].
+]
+
+{ #category : #'widget API' }
 MorphicListAdapter >> refreshList [
 
 	^ self widget updateList
@@ -119,20 +138,20 @@ MorphicListAdapter >> refreshWidgetList [
 
 { #category : #'widget API' }
 MorphicListAdapter >> refreshWidgetSelection [
-
 	| rowIndexes |
 	rowIndexes := self presenter selection selectedIndexes.
-	rowIndexes = self widget selectedRowIndexes ifTrue: [ ^ self ].
+	rowIndexes = self widget selectedRowIndexes
+		ifTrue: [ ^ self ].
 	rowIndexes isEmpty
 		ifTrue: [ self widget basicSelectRowIndexes: #() ]
 		ifFalse: [ self widget basicSelectRowIndexes: rowIndexes ].
-
 	^ self widget refresh
 ]
 
 { #category : #factory }
 MorphicListAdapter >> selectionChanged: ann [
 
+	| diff |
 	self presenter selection isMultipleSelection
 		ifTrue: [ self presenter selection
 				selectIndexes: (ann newSelectedRowIndexes reject: [ :e | e = 0 ]) ].
@@ -143,7 +162,18 @@ MorphicListAdapter >> selectionChanged: ann [
 					(ann newSelectedRowIndexes
 						ifNotEmpty: [ :indexes | indexes first ]
 						ifEmpty: [ 0 ]) ].
+	
+	diff := ann newSelectedRowIndexes difference: ann oldSelectedRowIndexes.
+	(diff notEmpty and: [ self presenter activatesOnSingleClick ])
+		ifTrue: [ self presenter doActivateAtIndex: diff last ].
 
 	ann newSelectedRowIndexes ifNotEmpty: [ ^ self ].
 	self presenter selection unselectAll.
+]
+
+{ #category : #events }
+MorphicListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [ 
+	
+	self presenter activatesOnDoubleClick
+		ifTrue: [ self presenter doubleClickAtIndex: aFTStrongSelectionChanged selectedRowIndex ]
 ]

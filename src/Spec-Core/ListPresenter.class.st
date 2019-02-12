@@ -61,6 +61,16 @@ ListPresenter class >> example [
 		yourself
 ]
 
+{ #category : #example }
+ListPresenter class >> exampleWithHeaderTitle [
+	<sampleInstance>
+	^ self new
+		items: Smalltalk globals allClasses;
+		headerTitle: 'Title';
+		openWithSpec;
+		yourself
+]
+
 { #category : #specs }
 ListPresenter class >> title [
 
@@ -151,10 +161,15 @@ ListPresenter >> hasHeaderTitle [
 	^ headerTitle notNil
 ]
 
+{ #category : #accessing }
+ListPresenter >> headerTitle [
+	^ headerTitle value
+]
+
 { #category : #'as yet unclassified' }
 ListPresenter >> headerTitle: aString [ 
 	
-	headerTitle := aString
+	headerTitle value: aString
 ]
 
 { #category : #api }
@@ -163,11 +178,26 @@ ListPresenter >> hideHeaderTitle [
 	headerTitle := nil
 ]
 
+{ #category : #api }
+ListPresenter >> initializeValueHolders [
+	
+	super initializeValueHolders.
+	headerTitle := nil asValueHolder
+]
+
 { #category : #private }
 ListPresenter >> prepareForFilteredDataSourceWith: items [
 
 	model := items asValueHolder
 
+]
+
+{ #category : #private }
+ListPresenter >> registerEvents [
+	
+	super registerEvents.
+	headerTitle whenChangedDo: [ 
+		self adapter ifNotNil: #refreshHeaderTitle ]
 ]
 
 { #category : #api }
