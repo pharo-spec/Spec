@@ -285,9 +285,9 @@ AbstractListPresenter >> menu: aMenu shifted: aBoolean [
 	"Build the menu when you right click on an item"
 
 	"This does not work on multiple selection"
-	self flag: #bug.
-	self selectedItem ifNil: [ ^ nil ].
 
+	self flag: #bug.
+	self selection selectedItem ifNil: [ ^ nil ].
 	^ menuHolder value cull: aMenu cull: aBoolean
 ]
 
