@@ -1,6 +1,6 @@
 Class {
 	#name : #MorphicListCommonPropertiestTest,
-	#superclass : #MorphicAdapterTestCase,
+	#superclass : #MorphicAbstractListCommonPropertiestTest,
 	#category : #'Spec-MorphicBackendTests'
 }
 
@@ -10,38 +10,13 @@ MorphicListCommonPropertiestTest >> classToTest [
 ]
 
 { #category : #running }
-MorphicListCommonPropertiestTest >> setUp [
-
-	super setUp.
-
-	window := presenter
-		items: #(10 20 30);
-		openWithSpec.
-]
-
-{ #category : #running }
-MorphicListCommonPropertiestTest >> testDoubleClickActivatesRowInDoubleClickActivationMode [
-
-	| activated |
-	activated := false.
-	self presenter activateOnDoubleClick.
-	self presenter whenActivatedDo: [ activated := true ].
-	
-	self widget doubleClick: (MouseEvent new
-		setPosition: 1@1;
-		yourself).
-	
-	self assert: activated.
-]
-
-{ #category : #running }
 MorphicListCommonPropertiestTest >> testRemoveHeaderTitleInPresenterRemovesColumnHeaderMorph [
 
 	| tableContainer |
 	self presenter headerTitle: 'test'.
 	World doOneCycle.
 
-	self presenter headerTitle: nil.
+	self presenter hideHeaderTitle.
 	World doOneCycle.
 
 	tableContainer := self widget submorphs first.
@@ -67,21 +42,4 @@ MorphicListCommonPropertiestTest >> testSetColumnTitleInPresenterShowsThemInWidg
 	self presenter headerTitle: 'test'.
 	
 	self assert: self widget isShowColumnHeaders
-]
-
-{ #category : #running }
-MorphicListCommonPropertiestTest >> testSingleClickActivatesRowInSingleClickActivationMode [
-
-	| activated |
-	activated := false.
-	self presenter activateOnSingleClick.
-	self presenter whenActivatedDo: [ activated := true ].
-	World doOneCycle.
-	
-	self widget mouseDown: (MouseEvent new
-		setHand: HandMorph new;
-		setPosition: self widget submorphs first submorphs first bounds center;
-		yourself).
-	
-	self assert: activated.
 ]

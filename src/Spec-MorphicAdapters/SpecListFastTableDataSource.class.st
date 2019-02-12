@@ -10,7 +10,7 @@ Class {
 { #category : #accessing }
 SpecListFastTableDataSource >> cellColumn: column row: rowIndex [
 	| displayValue cell |
-	displayValue := column transform: (self model displayValueAt: rowIndex).
+	displayValue := column readObject: (self model itemAt: rowIndex).
 	cell := FTCellMorph new
 		cellInset: 5;
 		yourself.
