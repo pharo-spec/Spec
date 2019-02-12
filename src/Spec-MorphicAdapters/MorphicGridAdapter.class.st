@@ -8,21 +8,23 @@ Class {
 MorphicGridAdapter >> addConstraits: constraints toChild: childMorph [
 	"adds constraits by child"
 	
-	childMorph layoutProperties: (GridLayoutProperties new 
-		position: constraints position;
-		span: constraints span;
-		yourself).
+	
+	childMorph hResizing: #spaceFill.
+	childMorph vResizing: #spaceFill.
+	childMorph 
+		setProperty: #gridConstraints 
+		toValue: constraints.
 	
 	^ childMorph
 ]
 
 { #category : #private }
-MorphicGridAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [
+MorphicGridAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
 	| childMorph |
 
 	childMorph := self 
-		addConstraits: constraints 
-		toChild: (aPresenter buildWithSpec: constraints spec).
+		buildMorph: aPresenter 
+		constraints: constraints.	
 	aPanel addMorphBack: childMorph.
 		
 	^ childMorph	

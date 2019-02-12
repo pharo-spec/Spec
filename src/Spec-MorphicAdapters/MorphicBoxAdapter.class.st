@@ -43,12 +43,10 @@ MorphicBoxAdapter >> addConstraits: constraints toChild: childMorph [
 ]
 
 { #category : #private }
-MorphicBoxAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [
+MorphicBoxAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
 	| childMorph |
 
-	childMorph := self 
-		addConstraits: constraints 
-		toChild: (aPresenter buildWithSpec: constraints spec).
+	childMorph := self buildMorph: aPresenter constraints: constraints.	
 	constraints isPlacedAtStart
 		ifTrue: [ aPanel submorphs first addMorphBack: childMorph ]
 		ifFalse: [ aPanel submorphs second addMorphBack: childMorph ].

@@ -23,6 +23,22 @@ Class {
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
+{ #category : #private }
+GridLayout >> calculateExtentFor: aMorph constraint: constraint computation: computation [
+	| result cellExtent height width |
+	
+	cellExtent := computation cellExtentAt: constraint position.
+	width := (aMorph width ~= 0 or: [ self isColumnHomogeneous ])
+		ifTrue: [ cellExtent x ]
+		ifFalse: [ aMorph width ].
+	height := (aMorph height ~= 0 or: [ self isRowHomogeneous ])
+		ifTrue: [ cellExtent y ]
+		ifFalse: [ aMorph height ].
+	result := width @ height.
+	
+	^ result
+]
+
 { #category : #accessing }
 GridLayout >> columnHomogeneous: anObject [
 
@@ -59,14 +75,6 @@ GridLayout >> isColumnHomogeneous [
 ]
 
 { #category : #testing }
-GridLayout >> isComputedSize: aNumber ifNot: aBlock [
-	
-	^ aNumber = 0 
-		ifTrue: aBlock 
-		ifFalse: [ aNumber ]
-]
-
-{ #category : #testing }
 GridLayout >> isRowHomogeneous [
 
 	^ rowHomogeneous
@@ -90,27 +98,22 @@ GridLayout >> layout: aMorph in: aRect [
 			staringAt: origin 
 			withComputation: computation ].
 
-	aMorph bounds: ((origin - self padding) corner: (computation extent + self padding))
+	"aMorph bounds: ((origin - self padding) corner: (computation extent + self padding))"
 ]
 
-{ #category : #layout }
+{ #category : #private }
 GridLayout >> layoutMorph: aMorph staringAt: originPoint withComputation: computation [
 	| constraint pos extent |
-		
-	constraint := aMorph layoutProperties.
+	
+	constraint := aMorph valueOfProperty: #gridConstraints.
 	pos := originPoint + (computation positionAt: constraint position).
 	"if widget is resizable, it will take all the available space. 
 	 if widget is not resizable, we need to take into account its alignment constraint, since it 
 	 can be placed differently."
-	((aMorph hResizing = #spaceFill) and: [ aMorph vResizing = #spaceFill ]) 
-		ifTrue: [ 
-			extent := computation cellExtentAt: constraint position ]
-		ifFalse: [ | cellExtent width height |
-			cellExtent := (computation cellExtentAt: constraint position). 
-			width := self isComputedSize: aMorph width ifNot: [ cellExtent x ].
-			height := self isComputedSize: aMorph width ifNot: [ cellExtent y ].
-			extent := width@height.
-			pos := pos + cellExtent ].
+	extent := (aMorph hResizing = #spaceFill and: [ aMorph vResizing = #spaceFill ])
+		ifTrue: [ computation cellExtentAt: constraint position ]
+		ifFalse: [ self calculateExtentFor: aMorph constraint: constraint computation: computation ].
+	
 	aMorph bounds: (pos extent: extent)
 ]
 

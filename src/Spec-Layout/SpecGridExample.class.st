@@ -11,6 +11,24 @@ Class {
 }
 
 { #category : #specs }
+SpecGridExample class >> boxSpec [ 
+	<spec>
+	
+	^ SpecBoxLayout newVertical
+		add: (SpecBoxLayout newHorizontal
+			add: #label1;
+			add: #input1;
+			yourself)
+			expand: false fill: true padding: 0;
+		add: (SpecBoxLayout newHorizontal
+			add: #label2;
+			add: #input2;
+			yourself)
+			expand: false fill: true padding: 0;
+		yourself
+]
+
+{ #category : #specs }
 SpecGridExample class >> diagonalSpec [ 
 	<spec>
 	
@@ -32,6 +50,12 @@ SpecGridExample class >> example1 [
 SpecGridExample class >> example2 [
 
 	^ self new openWithSpec: #diagonalSpec
+]
+
+{ #category : #examples }
+SpecGridExample class >> example3 [
+
+	^ self new openWithSpec: #boxSpec
 ]
 
 { #category : #specs }

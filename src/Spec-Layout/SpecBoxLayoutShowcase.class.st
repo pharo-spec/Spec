@@ -5,8 +5,7 @@ Class {
 		'direction',
 		'homogeneous',
 		'spacing',
-		'borderWidth',
-		'currentLayoutSpec'
+		'borderWidth'
 	],
 	#category : #'Spec-Layout-Examples'
 }
@@ -18,7 +17,7 @@ SpecBoxLayoutShowcase class >> defaultSpec [
 	^ SpecBoxLayout newVertical
 		beHomogeneous;
 		add: #displayedLayout;
-		add: (SpecBoxLayout newVertical 
+		add: (SpecBoxLayout newVertical
 			add: #direction;
 			add: #homogeneous;
 			add: #spacing;
@@ -28,22 +27,21 @@ SpecBoxLayoutShowcase class >> defaultSpec [
 ]
 
 { #category : #initialization }
-SpecBoxLayoutShowcase >> currentLayoutSpec [
-
-	^ currentLayoutSpec
+SpecBoxLayoutShowcase >> initialize [ 
+	
+	self initializeLayout.		
+	super initialize.
 ]
 
 { #category : #initialization }
-SpecBoxLayoutShowcase >> initialize [ 
-	
+SpecBoxLayoutShowcase >> initializeLayout [
+
 	currentLayoutSpec := SpecBoxLayout newVertical
 		add: #presenter1;
 		add: #presenter2;
 		add: #presenter3;
 		add: #presenter4;
 		yourself.
-		
-	super initialize.
 ]
 
 { #category : #initialization }
@@ -67,13 +65,4 @@ SpecBoxLayoutShowcase >> initializeWidgets [
 	borderWidth := self newNumberInput
 		number: currentLayoutSpec borderWidth
 	
-]
-
-{ #category : #initialization }
-SpecBoxLayoutShowcase >> newLayout [
-
-	^ SpecLayoutShowcaseInstance new
-		owner: self;
-		layout: self currentLayoutSpec;
-		yourself
 ]

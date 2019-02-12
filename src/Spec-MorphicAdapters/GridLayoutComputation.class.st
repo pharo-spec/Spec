@@ -30,6 +30,15 @@ GridLayoutComputation class >> new [
 	self error: 'Use #morphs:bounds:'
 ]
 
+{ #category : #private }
+GridLayoutComputation >> allGridConstraints [
+
+	^ morphs collect: [ :each | 
+		each 
+			valueOfProperty: #gridConstraints
+			ifAbsent: [ self error: 'Constraints not defined for ', each asString ] ]
+]
+
 { #category : #accessing }
 GridLayoutComputation >> cellExtentAt: aPoint [
 
@@ -59,17 +68,15 @@ GridLayoutComputation >> computeCellExtents [
 	"Calculate cell extents"
 
 	cellExtents := SmallDictionary new.
-	morphs 
-		collect: #layoutProperties 
-		thenDo: [ :constraint | | width height |
-			width := (columnWidths 
-				copyFrom: constraint column 
-				to: constraint column + constraint columnSpan - 1) 
-				sum.
-			height := (rowHeights 
-				copyFrom: constraint row 
-				to: constraint row + constraint rowSpan - 1) 
-				sum.
+	self allGridConstraints do: [ :constraint | | width height |
+		width := (columnWidths 
+			copyFrom: constraint column 
+			to: constraint column + constraint columnSpan - 1) 
+			sum.
+		height := (rowHeights 
+			copyFrom: constraint row 
+			to: constraint row + constraint rowSpan - 1) 
+			sum.
 		cellExtents 
 			at: constraint position 
 			put: width@height ]
@@ -105,11 +112,9 @@ GridLayoutComputation >> computeNumberOfRowsAndColumns [
 	
 	numRows := 0.
 	numColumns := 0.
-	morphs
-		collect: #layoutProperties 
-		thenDo: [ :each |
-			numRows := numRows max: (each row + each rowSpan - 1).
-			numColumns := numColumns max: (each column + each columnSpan - 1) ]
+	self allGridConstraints do: [ :each |
+		numRows := numRows max: (each row + each rowSpan - 1).
+		numColumns := numColumns max: (each column + each columnSpan - 1) ]
 ]
 
 { #category : #'private computation' }
@@ -137,7 +142,7 @@ GridLayoutComputation >> computeWidgetSizes [
 	rowHeights := Array new: numRows withAll: 0.
 	columnWidths := Array new: numColumns withAll: 0.
 	morphs do: [ :each | | properties |
-		properties := each layoutProperties.
+		properties := each valueOfProperty: #gridConstraints.
 		rowHeights 
 			at: properties row 
 			put: (fixedHeight ifNil: [ (rowHeights at: properties row) max: each height ]).

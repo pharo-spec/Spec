@@ -32,13 +32,10 @@ MorphicPanedAdapter >> addSplitterIn: aPanel for: childMorph [
 ]
 
 { #category : #private }
-MorphicPanedAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [
+MorphicPanedAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
 	| childMorph |
 
-	childMorph := self 
-		addConstraits: constraints 
-		toChild: (aPresenter buildWithSpec: constraints spec).
-
+	childMorph := self buildMorph: aPresenter constraints: constraints.	
 	aPanel addMorphBack: childMorph.
 	self addSplitterIn: aPanel for: childMorph.
 	

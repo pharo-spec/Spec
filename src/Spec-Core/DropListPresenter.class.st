@@ -114,9 +114,9 @@ DropListPresenter >> initialize [
 	selectionHolder := SelectionValueHolder new.
 	
 	listHolder whenChangedDo: [ 
-					self changed: #getList.
-					self changed: #getIconFor:.
-					self internalResetSelection.].
+		self changed: #getList.
+		self changed: #getIconFor:.
+		self internalResetSelection.].
 				
 	selectionHolder whenChangedDo: [ self changed: #getIndex ].
 	displayBlock := [ :model :item | item label ] asValueHolder.

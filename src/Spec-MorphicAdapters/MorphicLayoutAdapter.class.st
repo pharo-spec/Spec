@@ -16,12 +16,17 @@ MorphicLayoutAdapter >> adapter [
 { #category : #factory }
 MorphicLayoutAdapter >> add: aPresenter constraints: constraints [
  
-	self widgetDo: [ :aPanel | | child |
-		child := self 
+	self widgetDo: [ :aPanel |
+		self 
 			basicAdd: aPresenter 
-			constaints: constraints 
-			to: aPanel.
-		self applyStyle: aPresenter to: child ]
+			constraints: constraints 
+			to: aPanel ]
+]
+
+{ #category : #adding }
+MorphicLayoutAdapter >> addConstraits: constraints toChild: childMorph [
+
+	self subclassResponsibility
 ]
 
 { #category : #initialization }
@@ -36,14 +41,25 @@ MorphicLayoutAdapter >> applyStyle: aPresenter to: aMorph [
 	 Of course, this needs to be applied where it belongs, but for now we need to keep 
 	 it this way :("
 
-	aPresenter adapter ifNotNil: [ :anAdapter |
-		anAdapter style applyTo: aMorph ]
+	"aPresenter adapter ifNotNil: [ :anAdapter |
+		anAdapter style applyTo: aMorph ]"
 ]
 
 { #category : #private }
-MorphicLayoutAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [ 
+MorphicLayoutAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [ 
 
 	self subclassResponsibility
+]
+
+{ #category : #private }
+MorphicLayoutAdapter >> buildMorph: aPresenter constraints: constraints [ 
+	| childMorph |
+
+	childMorph := aPresenter buildWithSpec: constraints spec.
+	self applyStyle: aPresenter to: childMorph.
+	childMorph := self addConstraits: constraints toChild: childMorph.
+	
+	^ childMorph
 ]
 
 { #category : #factory }

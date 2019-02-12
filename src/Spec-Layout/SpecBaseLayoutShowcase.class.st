@@ -3,7 +3,8 @@ Class {
 	#superclass : #ComposablePresenter,
 	#instVars : [
 		'displayedLayout',
-		'control'
+		'control',
+		'currentLayoutSpec'
 	],
 	#category : #'Spec-Layout-Examples'
 }
@@ -12,4 +13,19 @@ Class {
 SpecBaseLayoutShowcase class >> label [ 
 
 	^ self subclassResponsibility
+]
+
+{ #category : #initialization }
+SpecBaseLayoutShowcase >> currentLayoutSpec [
+
+	^ currentLayoutSpec
+]
+
+{ #category : #initialization }
+SpecBaseLayoutShowcase >> newLayout [
+
+	^ SpecLayoutShowcaseInstance new
+		owner: self;
+		layout: self currentLayoutSpec;
+		yourself
 ]
