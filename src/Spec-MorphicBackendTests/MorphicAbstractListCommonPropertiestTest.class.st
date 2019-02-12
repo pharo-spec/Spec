@@ -13,10 +13,14 @@ MorphicAbstractListCommonPropertiestTest class >> isAbstract [
 MorphicAbstractListCommonPropertiestTest >> setUp [
 
 	super setUp.
+	self setUpPresenter.
+	window := presenter openWithSpec.
+]
 
-	window := presenter
-		items: #(10 20 30);
-		openWithSpec.
+{ #category : #running }
+MorphicAbstractListCommonPropertiestTest >> setUpPresenter [
+
+	presenter items: #(10 20 30).
 ]
 
 { #category : #running }
@@ -39,8 +43,9 @@ MorphicAbstractListCommonPropertiestTest >> testSingleClickActivatesRowInSingleC
 
 	| activated |
 	activated := false.
-	self presenter activateOnSingleClick.
-	self presenter whenActivatedDo: [ activated := true ].
+	self presenter
+		activateOnSingleClick;
+		whenActivatedDo: [ activated := true ].
 	World doOneCycle.
 	
 	self widget mouseDown: (MouseEvent new

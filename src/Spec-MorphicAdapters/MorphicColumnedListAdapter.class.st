@@ -11,8 +11,18 @@ MorphicColumnedListAdapter >> addModelTo: tableMorph [
 	self ensureAtLeastOneColumnIn: tableMorph.
 
 	self isResizable ifTrue: [ tableMorph beResizable ] ifFalse: [ tableMorph beNotResizable ].
+	
+	tableMorph setMultipleSelection: self model isMultiSelection.
 
-	self refreshShowColumnHeaders.
+	self presenter isShowingColumnHeaders 
+		ifTrue: [ 
+			tableMorph
+				showColumnHeaders;
+				refresh ]
+		ifFalse: [ 
+			tableMorph
+				hideColumnHeaders;
+				refresh ].
 	self presenter whenShowColumnHeadersChangedDo: [ :showColumns |
 		self refreshShowColumnHeaders.
 	].
@@ -83,9 +93,16 @@ MorphicColumnedListAdapter >> newDataSource [
 
 { #category : #factory }
 MorphicColumnedListAdapter >> refreshShowColumnHeaders [
-	self isShowingColumnHeaders
-		ifTrue: [ self widget showColumnHeaders ]
-		ifFalse: [ self widget hideColumnHeaders ]
+	
+	self presenter isShowingColumnHeaders 
+		ifTrue: [ 
+			self widget
+				showColumnHeaders;
+				refresh ]
+		ifFalse: [ 
+			self widget
+				hideColumnHeaders;
+				refresh ]
 ]
 
 { #category : #refreshing }

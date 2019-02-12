@@ -32,6 +32,20 @@ ColumnedListPresenter class >> example [
 	^ example
 ]
 
+{ #category : #specs }
+ColumnedListPresenter class >> exampleWithoutColumnHeaders [
+	<sampleInstance>
+	| example |
+	example := self new.
+	example
+		addColumn: (StringTableColumn title: 'Number' evaluated: #yourself);
+		addColumn: (StringTableColumn title: 'Hex' evaluated: #hex);
+		items: (1 to: 10) asArray;
+		hideColumnHeaders;
+		openWithSpec.
+	^ example
+]
+
 { #category : #api }
 ColumnedListPresenter >> addColumn: aColumn [
 
@@ -96,12 +110,6 @@ ColumnedListPresenter >> isShowingColumnHeaders [
 ColumnedListPresenter >> showColumnHeaders [
 
 	showColumnHeaders := true
-]
-
-{ #category : #private }
-ColumnedListPresenter >> showColumnHeadersChanged [
-
-	self notifyPropertyChanged: #showColumnHeaders
 ]
 
 { #category : #'api-events' }

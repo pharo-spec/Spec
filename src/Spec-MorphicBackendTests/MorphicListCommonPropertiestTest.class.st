@@ -16,7 +16,7 @@ MorphicListCommonPropertiestTest >> testRemoveHeaderTitleInPresenterRemovesColum
 	self presenter headerTitle: 'test'.
 	World doOneCycle.
 
-	self presenter headerTitle: nil.
+	self presenter hideHeaderTitle.
 	World doOneCycle.
 
 	tableContainer := self widget submorphs first.
