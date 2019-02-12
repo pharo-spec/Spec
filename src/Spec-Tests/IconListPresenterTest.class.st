@@ -1,6 +1,6 @@
 Class {
 	#name : #IconListPresenterTest,
-	#superclass : #ListPresenterTest,
+	#superclass : #AbstractListPresenterTest,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 
