@@ -18,6 +18,8 @@ MorphicColumnedListAdapter >> addModelTo: tableMorph [
 	self presenter whenShowColumnHeadersChangedDo: [ :showColumns |
 		self refreshShowColumnHeaders.
 	].
+
+	self presenter whenColumnsChangedDo: [ self refreshColumnsInWidget ].
 	
 	tableMorph
 		onAnnouncement: FTSelectionChanged
@@ -80,6 +82,13 @@ MorphicColumnedListAdapter >> newDataSource [
 		model: self model;
 		yourself
 		
+]
+
+{ #category : #factory }
+MorphicColumnedListAdapter >> refreshColumnsInWidget [
+
+	widget columns: (self model columns collect: [ :each | self newColumnFrom: each ]).
+	self ensureAtLeastOneColumnIn: widget.
 ]
 
 { #category : #factory }

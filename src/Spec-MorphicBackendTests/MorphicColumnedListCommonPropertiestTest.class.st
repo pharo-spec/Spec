@@ -20,6 +20,18 @@ MorphicColumnedListCommonPropertiestTest >> setUpPresenter [
 ]
 
 { #category : #tests }
+MorphicColumnedListCommonPropertiestTest >> testAddColumnInPresenterAddsItToWidget [
+
+	| newColumn |
+	newColumn := StringTableColumn title: 'Hex' evaluated: #hex.
+	self presenter
+		addColumn: newColumn.
+	World doOneCycle.
+	
+	self assert: self widget columns last model equals: newColumn
+]
+
+{ #category : #tests }
 MorphicColumnedListCommonPropertiestTest >> testHideColumnHeadersInPresenterHidesThemInWidget [
 
 	self presenter hideColumnHeaders.
