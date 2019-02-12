@@ -14,15 +14,7 @@ MorphicColumnedListAdapter >> addModelTo: tableMorph [
 	
 	tableMorph setMultipleSelection: self model isMultiSelection.
 
-	self presenter isShowingColumnHeaders 
-		ifTrue: [ 
-			tableMorph
-				showColumnHeaders;
-				refresh ]
-		ifFalse: [ 
-			tableMorph
-				hideColumnHeaders;
-				refresh ].
+	self refreshShowColumnHeaders.
 	self presenter whenShowColumnHeadersChangedDo: [ :showColumns |
 		self refreshShowColumnHeaders.
 	].
@@ -41,15 +33,14 @@ MorphicColumnedListAdapter >> addModelTo: tableMorph [
 
 { #category : #factory }
 MorphicColumnedListAdapter >> buildWidget [
-	| tableMorph |
-	tableMorph := FTTableMorph new
+	widget := FTTableMorph new
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		yourself.
 
-	self addModelTo: tableMorph.
+	self addModelTo: widget.
 
-	^ tableMorph
+	^ widget
 ]
 
 { #category : #factory }
