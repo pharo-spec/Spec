@@ -24,7 +24,9 @@ ColumnedListPresenter class >> example [
 	| example |
 	example := self new.
 	example
-		addColumn: (StringTableColumn new evaluated: #yourself);
+		addColumn: (StringTableColumn title: 'Number' evaluated: #yourself);
+		addColumn: (StringTableColumn title: 'Hex' evaluated: #hex);
+		showColumnHeaders;
 		items: (1 to: 10) asArray;
 		openWithSpec.
 	^ example
@@ -72,8 +74,6 @@ ColumnedListPresenter >> initialize [
 	showColumnHeaders := true.
 	columns := #().
 	isResizableHolder := false asValueHolder.
-	itemsHolder := #() asValueHolder.
-	itemsHolder whenChangedDo: [ self itemsChanged ].
 ]
 
 { #category : #accessing }
@@ -90,24 +90,6 @@ ColumnedListPresenter >> isResizable: aBoolean [
 ColumnedListPresenter >> isShowingColumnHeaders [
 
 	^ showColumnHeaders
-]
-
-{ #category : #accessing }
-ColumnedListPresenter >> itemAt: aNumber [
-	
-	^ super itemAt: aNumber
-]
-
-{ #category : #accessing }
-ColumnedListPresenter >> items [
-
-	^ itemsHolder value
-]
-
-{ #category : #private }
-ColumnedListPresenter >> itemsChanged [
-
-	self changed: #items
 ]
 
 { #category : #api }
@@ -134,7 +116,7 @@ ColumnedListPresenter >> whenIsResizableChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
-ColumnedListPresenter >> whenShowColumnsChangedDo: aBlock [
+ColumnedListPresenter >> whenShowColumnHeadersChangedDo: aBlock [
 	
 	self property: #showColumnHeaders whenChangedDo: aBlock
 ]

@@ -47,7 +47,7 @@ ColumnedListPresenterTest >> testHideColumnHeadersRaisesOneEventOnly [
 
 	| count |
 	count := 0.
-	presenter whenShowColumnsChangedDo: [ count := count + 1 ].
+	presenter whenShowColumnHeadersChangedDo: [ count := count + 1 ].
 	presenter hideColumnHeaders.
 
 	self assert: count equals: 1
@@ -58,7 +58,7 @@ ColumnedListPresenterTest >> testShowColumnHeadersRaisesOneEventOnly [
 
 	| count |
 	count := 0.
-	presenter whenShowColumnsChangedDo: [ count := count + 1 ].
+	presenter whenShowColumnHeadersChangedDo: [ count := count + 1 ].
 	presenter showColumnHeaders.
 
 	self assert: count equals: 1

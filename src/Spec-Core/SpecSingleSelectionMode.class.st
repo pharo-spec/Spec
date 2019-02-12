@@ -44,13 +44,13 @@ SpecSingleSelectionMode >> selectAll [
 	"Do nothing"
 ]
 
-{ #category : #accessing }
+{ #category : #selecting }
 SpecSingleSelectionMode >> selectedIndex [
 	
 	^ selectedIndexValueHolder value
 ]
 
-{ #category : #accessing }
+{ #category : #selecting }
 SpecSingleSelectionMode >> selectedIndexes [
 	
 	^ self isEmpty
@@ -58,11 +58,17 @@ SpecSingleSelectionMode >> selectedIndexes [
 		ifFalse: [ { self selectedIndex } ]
 ]
 
-{ #category : #accessing }
+{ #category : #selecting }
 SpecSingleSelectionMode >> selectedItem [
 
 	self selectedIndex = 0 ifTrue: [ ^ nil ].
 	^ self model at: self selectedIndex
+]
+
+{ #category : #selecting }
+SpecSingleSelectionMode >> selectedItems [
+	
+	^ { self selectedItem }
 ]
 
 { #category : #'as yet unclassified' }

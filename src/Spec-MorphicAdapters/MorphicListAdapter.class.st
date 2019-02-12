@@ -44,6 +44,10 @@ MorphicListAdapter >> buildWidget [
 		dataSource: datasource;
 		hideColumnHeaders;
 		beResizable;
+		columns: { (MorphicTableColumn on: (StringTableColumn 
+			title: self presenter headerTitle
+			evaluated: self presenter displayBlock))
+				yourself };
 		setMultipleSelection: self model isMultiSelection;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
@@ -103,12 +107,12 @@ MorphicListAdapter >> refreshHeaderTitle [
 	
 	self presenter hasHeaderTitle 
 		ifTrue: [ 
-			self widget columns first id: self presenter headerTitle.
+			self widget columns first model title: self presenter headerTitle.
 			self widget
 				showColumnHeaders;
 				refresh. ]
 		ifFalse: [ 
-			self widget columns first id: ''.
+			self widget columns first model title: ''.
 			self widget
 				hideColumnHeaders;
 				refresh ].
