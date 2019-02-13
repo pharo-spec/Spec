@@ -88,6 +88,33 @@ GridLayoutTests >> testBasicLayout [
 ]
 
 { #category : #tests }
+GridLayoutTests >> testBorderWidth [
+	"
+	-----------
+	| 50 | 50 |
+	-----------
+	| 50 | 50 |
+	-----------
+	"
+	| layout |
+	
+	self place: label1 at: 1@1.
+	self place: morph1 at: 2@1.
+	self place: label2 at: 1@2.
+	self place: morph2 at: 2@2.
+	
+	layout := GridLayout new
+		padding: 5;
+		yourself.
+	layout layout: panel in: (0@0 corner: 100@100).
+	
+	self assert: label1 bounds equals: (5@5 corner: 55@25).
+	self assert: morph1 bounds equals: (55@5 corner: 105@25).
+	self assert: label2 bounds equals: (5@25 corner: 55@45).
+	self assert: morph2 bounds equals: (55@25 corner: 105@45)
+]
+
+{ #category : #tests }
 GridLayoutTests >> testColumnHomogeneousDiferentRowsAndColumns [
 	"Each element in a different row and column
 	
