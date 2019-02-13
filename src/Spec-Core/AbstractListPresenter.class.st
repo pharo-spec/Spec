@@ -423,7 +423,7 @@ AbstractListPresenter >> selectedItemsAtIndexes: aCollectionOfIndex [
 AbstractListPresenter >> selectedItemsSorted [
 	"return all the selected items sorted by their index"
 
-	^ self selectedItemsAtIndexes: self selectedIndexes sort
+	^ self selectedItemsAtIndexes: self selection selectedIndexes sort
 ]
 
 { #category : #accessing }
