@@ -42,11 +42,63 @@ MorphicButtonAdapterTest >> emulateRightClick [
 ]
 
 { #category : #running }
+MorphicButtonAdapterTest >> testChangingHelpAffectTheWidget [
+	
+	presenter help: 'ALabel'.
+
+	self openInstance.
+
+	self assert: presenter adapter widget helpText equals: 'ALabel'
+]
+
+{ #category : #running }
+MorphicButtonAdapterTest >> testChangingHelpAffectTheWidgetAfterOpen [
+	
+
+	self openInstance.
+
+	presenter help: 'ALabel'.
+
+	self assert: presenter adapter widget helpText equals: 'ALabel'
+]
+
+{ #category : #running }
+MorphicButtonAdapterTest >> testChangingIconAffectTheWidget [
+	
+	presenter iconName: #pharo.
+	
+	self openInstance.
+
+	self assert: presenter adapter widget label icon form equals: (self iconNamed: #pharo)
+]
+
+{ #category : #running }
+MorphicButtonAdapterTest >> testChangingIconAffectTheWidgetAfterOpen [
+	
+	
+	self openInstance.
+
+	presenter iconName: #pharo.
+
+	self assert: presenter adapter widget label icon form equals: (self iconNamed: #pharo)
+]
+
+{ #category : #running }
 MorphicButtonAdapterTest >> testChangingLabelAffectTheWidget [
 	
 	presenter label: 'ALabel'.
 
 	self openInstance.
+
+	self assert: presenter adapter widget label equals: 'ALabel'
+]
+
+{ #category : #running }
+MorphicButtonAdapterTest >> testChangingLabelAffectTheWidgetAfterOpen [
+	
+	self openInstance.
+
+	presenter label: 'ALabel'.
 
 	self assert: presenter adapter widget label equals: 'ALabel'
 ]

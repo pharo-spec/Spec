@@ -109,7 +109,7 @@ MorphicColumnedListAdapter >> refreshShowColumnHeaders [
 MorphicColumnedListAdapter >> refreshWidgetSelection [
 	| rowIndexes |
 	rowIndexes := self presenter selection selectedIndexes.
-	rowIndexes = self widget selectedRowIndexes
+	rowIndexes = self widget selectedIndexes
 		ifTrue: [ ^ self ].
 	rowIndexes isEmpty
 		ifTrue: [ self widget basicSelectRowIndexes: #() ]
