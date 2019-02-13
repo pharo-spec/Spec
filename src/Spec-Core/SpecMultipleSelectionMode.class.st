@@ -58,7 +58,7 @@ SpecMultipleSelectionMode >> selectAll [
 	self selectIndexes: (1 to: self model size)
 ]
 
-{ #category : #accessing }
+{ #category : #selecting }
 SpecMultipleSelectionMode >> selectIndexes: aCollection [
 
 	aCollection asSet = selectedIndexesValueHolder value asSet
@@ -67,13 +67,13 @@ SpecMultipleSelectionMode >> selectIndexes: aCollection [
 	^ selectedIndexesValueHolder value: aCollection asSet asOrderedCollection
 ]
 
-{ #category : #accessing }
+{ #category : #selecting }
 SpecMultipleSelectionMode >> selectedIndexes [
 
 	^ selectedIndexesValueHolder value
 ]
 
-{ #category : #accessing }
+{ #category : #selecting }
 SpecMultipleSelectionMode >> selectedItems [
 
 	^ self selectedIndexes collect: [ :idx | self model at: idx ].

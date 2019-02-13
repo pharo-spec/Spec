@@ -44,6 +44,10 @@ MorphicListAdapter >> buildWidget [
 		dataSource: datasource;
 		hideColumnHeaders;
 		beResizable;
+		columns: { (MorphicTableColumn on: (StringTableColumn 
+			title: self presenter headerTitle
+			evaluated: self presenter displayBlock))
+				yourself };
 		setMultipleSelection: self model isMultiSelection;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
@@ -58,7 +62,7 @@ MorphicListAdapter >> buildWidget [
 			to: self;
 		yourself.
 	
-	self refreshHeaderTitle.
+	self refreshWidgetHeaderTitle.
 	
 	self itemFilterBlock
 		ifNotNil: [ :block | 
@@ -99,25 +103,25 @@ MorphicListAdapter >> menu: aMenu shifted: aBoolean [
 ]
 
 { #category : #'widget API' }
-MorphicListAdapter >> refreshHeaderTitle [
+MorphicListAdapter >> refreshList [
+
+	^ self widget updateList
+]
+
+{ #category : #'widget API' }
+MorphicListAdapter >> refreshWidgetHeaderTitle [
 	
 	self presenter hasHeaderTitle 
 		ifTrue: [ 
-			self widget columns first id: self presenter headerTitle.
+			self widget columns first model title: self presenter headerTitle.
 			self widget
 				showColumnHeaders;
 				refresh. ]
 		ifFalse: [ 
-			self widget columns first id: ''.
+			self widget columns first model title: nil.
 			self widget
 				hideColumnHeaders;
 				refresh ].
-]
-
-{ #category : #'widget API' }
-MorphicListAdapter >> refreshList [
-
-	^ self widget updateList
 ]
 
 { #category : #'widget API' }

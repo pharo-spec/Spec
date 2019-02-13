@@ -138,6 +138,23 @@ ButtonPresenterTest >> testWhenActionPerformedDoAfterAction [
 ]
 
 { #category : #tests }
+ButtonPresenterTest >> testWhenLabelChangedDo [
+
+	presenter label: 'label1'.
+
+	presenter whenLabelChangedDo: [ :new :old | 
+		self assert: old equals: 'label1'. self assert: new equals: 'label2'].
+
+	self assert: presenter label equals: 'label1'.
+
+	self openInstance.
+	presenter label: 'label2'.
+
+	self assert: presenter label equals: 'label2'.
+
+]
+
+{ #category : #tests }
 ButtonPresenterTest >> testWhenStateChangedDo [
 
 	presenter whenStateChangedDo: [ :new :old | self deny: old. self assert: new ].
