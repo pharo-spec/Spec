@@ -297,6 +297,12 @@ ButtonPresenter >> whenFontChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
+ButtonPresenter >> whenIconChangedDo: aBlock [
+
+	iconHolder whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
 ButtonPresenter >> whenLabelChangedDo: aBlock [
 	"set a block to perform after that the button has been aclicked, and its action performed"
 
