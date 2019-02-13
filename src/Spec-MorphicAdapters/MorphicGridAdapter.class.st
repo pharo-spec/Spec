@@ -1,3 +1,7 @@
+"
+I'm an adapter for Grid Layouts.
+A grid layout will arrange components according to its coordinates and span information.
+"
 Class {
 	#name : #MorphicGridAdapter,
 	#superclass : #MorphicLayoutAdapter,

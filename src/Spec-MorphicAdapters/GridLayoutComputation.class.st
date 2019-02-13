@@ -1,3 +1,12 @@
+"
+I'm a computation to apply to a morph with GridLayout policy. 
+Computation happens easily: 
+
+- Computates number of columns and row
+- Computates widths and heights (taking into account different element contraints)
+
+check computeMorphs:bounds: to have a better idea :)
+"
 Class {
 	#name : #GridLayoutComputation,
 	#superclass : #LayoutPolicy,
