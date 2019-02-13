@@ -18,17 +18,28 @@ GridLayoutTests >> setUp [
 	panel := Morph new
 		extent: 100@100;
 		addMorphBack: ((label1 := Morph new)
-			extent: 50@20;
+			setProperty: #style toValue: self style;
 			yourself); 
 		addMorphBack: ((morph1 := Morph new) 
-			extent: 50@20;
+			setProperty: #style toValue: self style;
 			yourself); 
 		addMorphBack: ((label2 := Morph new) 
-			extent: 50@20;
+			setProperty: #style toValue: self style;
 			yourself); 
 		addMorphBack: ((morph2 := Morph new) 
-			extent: 50@20;
+			setProperty: #style toValue: self style;
 			yourself);
+		yourself
+]
+
+{ #category : #running }
+GridLayoutTests >> style [ 
+
+	^ MorphicStyleSheet new 
+		propertyAt: #extent put: (MorphicStyleSheetExtent 
+			newExtent: 50@20 
+			hResizing: true 
+			vResizing: true);
 		yourself
 ]
 

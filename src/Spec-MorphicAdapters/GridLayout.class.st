@@ -18,25 +18,58 @@ Class {
 		'columnSpacing',
 		'padding',
 		'columnHomogeneous',
-		'rowHomogeneous'
+		'rowHomogeneous',
+		'calculating'
 	],
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
+{ #category : #layout }
+GridLayout >> basicLayout: aMorph in: aRect [
+	| computation morphs innerBounds origin |
+	
+	morphs := aMorph submorphs.
+	innerBounds := aRect insetBy: self padding.
+	computation := (GridLayoutComputation layout: self)
+		computeMorphs: morphs 
+		bounds: innerBounds.
+	
+	"Now calculate the bounds for each widget"
+	origin := innerBounds origin.
+	morphs do: [ :each | 
+		self 
+			layoutMorph: each 
+			staringAt: origin 
+			withComputation: computation ].
+
+	"aMorph bounds: ((origin - self padding) corner: (computation extent + self padding))"
+]
+
 { #category : #private }
 GridLayout >> calculateExtentFor: aMorph constraint: constraint computation: computation [
-	| result cellExtent height width |
+	| cellExtent height width |
 	
 	cellExtent := computation cellExtentAt: constraint position.
-	width := (aMorph width ~= 0 or: [ self isColumnHomogeneous ])
-		ifTrue: [ cellExtent x ]
-		ifFalse: [ aMorph width ].
-	height := (aMorph height ~= 0 or: [ self isRowHomogeneous ])
-		ifTrue: [ cellExtent y ]
-		ifFalse: [ aMorph height ].
-	result := width @ height.
-	
-	^ result
+	width := self calculateWidthFor: aMorph base: cellExtent x.
+	height := self calculateHeightFor: aMorph base: cellExtent y.
+		
+	^ width @ height
+]
+
+{ #category : #private }
+GridLayout >> calculateHeightFor: aMorph base: aNumber [
+
+	self isRowHomogeneous ifTrue: [ ^ aNumber ].
+	aMorph vResizing = #spaceFill ifTrue: [ ^ aNumber ].
+	^ aMorph height
+]
+
+{ #category : #private }
+GridLayout >> calculateWidthFor: aMorph base: aNumber [
+
+	self isColumnHomogeneous ifTrue: [ ^ aNumber ].
+	aMorph hResizing = #spaceFill ifTrue: [ ^ aNumber ].
+	^ aMorph width
 ]
 
 { #category : #accessing }
@@ -61,6 +94,8 @@ GridLayout >> columnSpacing: anObject [
 GridLayout >> initialize [
 
 	super initialize.
+	calculating := false.
+
 	self padding: 0.
 	self columnSpacing: 0.
 	self rowSpacing: 0.
@@ -82,23 +117,13 @@ GridLayout >> isRowHomogeneous [
 
 { #category : #layout }
 GridLayout >> layout: aMorph in: aRect [
-	| computation morphs innerBounds origin |
 	
-	morphs := aMorph submorphs.
-	innerBounds := aRect insetBy: self padding.
-	computation := (GridLayoutComputation layout: self)
-		computeMorphs: morphs 
-		bounds: innerBounds.
-	
-	"Now calculate the bounds for each widget"
-	origin := innerBounds origin.
-	morphs do: [ :each | 
-		self 
-			layoutMorph: each 
-			staringAt: origin 
-			withComputation: computation ].
-
-	"aMorph bounds: ((origin - self padding) corner: (computation extent + self padding))"
+	calculating ifTrue: [ ^ self ].
+	[
+		calculating := true. 
+		self basicLayout: aMorph in: aRect ]
+	ensure: [
+		calculating := false ].
 ]
 
 { #category : #private }

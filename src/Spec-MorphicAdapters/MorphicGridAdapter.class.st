@@ -50,6 +50,5 @@ MorphicGridAdapter >> newPanel [
 		layoutPolicy: GridLayout new;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
-		color: Color transparent;
 		yourself
 ]

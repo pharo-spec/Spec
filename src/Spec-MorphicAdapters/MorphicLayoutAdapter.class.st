@@ -41,8 +41,8 @@ MorphicLayoutAdapter >> applyStyle: aPresenter to: aMorph [
 	 Of course, this needs to be applied where it belongs, but for now we need to keep 
 	 it this way :("
 
-	"aPresenter adapter ifNotNil: [ :anAdapter |
-		anAdapter style applyTo: aMorph ]"
+	aPresenter adapter ifNotNil: [ :anAdapter |
+		anAdapter style applyTo: aMorph ]
 ]
 
 { #category : #private }

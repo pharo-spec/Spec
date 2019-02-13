@@ -466,8 +466,8 @@ MessageBrowser >> initializeDropList [
 { #category : #initialization }
 MessageBrowser >> initializePresenter [
 	
-	listModel whenSelectedItemChangedDo: [ :item | 
-		self selectItem: item ].
+	listModel whenSelectionChangedDo: [ :selection | 
+		[ :item | self selectItem: item ] cull: selection selectedItem ].
 	listModel whenListChanged: [ self updateTitle ].
 	titleHolder whenChangedDo: [ self updateTitle ].
 	textModel acceptBlock: [ :text :notifyer | 
@@ -552,7 +552,7 @@ MessageBrowser >> messages: aCollection [
 		sort: [ :a :b | self sortClassesInCachedHierarchy: a b: b ])
 		asOrderedCollection.
 	listModel listSize > 0
-		ifTrue: [ listModel selectedIndex: 1 ]
+		ifTrue: [ listModel selectIndex: 1 ]
 ]
 
 { #category : #announcements }

@@ -179,7 +179,8 @@ GridLayoutComputation >> maxHeight [
 { #category : #private }
 GridLayoutComputation >> maxWidth [
 
-	^ (morphs collect: #width) max
+	^ ((morphs collect: [ :each | (each valueOfProperty: #style) width ]) max) 
+		max: (bounds width / self numColumns) asInteger
 ]
 
 { #category : #private }

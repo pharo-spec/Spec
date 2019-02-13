@@ -35,20 +35,20 @@ MorphicStyleSheet class >> fromProperties: anArrayofProperties [
 MorphicStyleSheet class >> newDefault [
 	
 	^ self new 
-		addClass: #Button with: { MorphicStyleSheetExtent value: 80@26 };
-		addClass: #CheckBox with: { MorphicStyleSheetExtent value: 15@26 };
-		addClass: #RadioButton with: { MorphicStyleSheetExtent value: 15@26 };
-		addClass: #DropList with: { MorphicStyleSheetExtent value: 150@26 };
-		addClass: #List with: { MorphicStyleSheetExtent value: 150@104 };
-		addClass: #Label with: { MorphicStyleSheetExtent value: 50@26 };
-		addClass: #Link with: { MorphicStyleSheetExtent value: 50@26 };
-		addClass: #Text with: { MorphicStyleSheetExtent value: 150@104 };
-		addClass: #TextInputField with: { MorphicStyleSheetExtent value: 150@26 };
-		addClass: #NumberInputField with: { MorphicStyleSheetExtent value: 150@26 };
+		addClass: #Button with: { MorphicStyleSheetExtent newExtent: 80@25 };
+		addClass: #CheckBox with: { MorphicStyleSheetExtent newExtent: 15@25 hResizing: true };
+		addClass: #RadioButton with: { MorphicStyleSheetExtent newExtent: 15@25 };
+		addClass: #DropList with: { MorphicStyleSheetExtent newExtent: 150@25 hResizing: true };
+		addClass: #List with: { MorphicStyleSheetExtent newExtent: 150@100 hResizing: true };
+		addClass: #Label with: { MorphicStyleSheetExtent newExtent: 50@25 hResizing: true };
+		addClass: #Link with: { MorphicStyleSheetExtent newExtent: 50@25 hResizing: true };
+		addClass: #Text with: { MorphicStyleSheetExtent newExtent: 150@100 hResizing: true vResizing: true};
+		addClass: #TextInputField with: { MorphicStyleSheetExtent newExtent: 150@25 hResizing: true };
+		addClass: #NumberInputField with: { MorphicStyleSheetExtent newExtent: 150@25 hResizing: true };
 		yourself
 ]
 
-{ #category : #adding }
+{ #category : #accessing }
 MorphicStyleSheet >> addClass: aSymbol with: anArray [
 
 	self 
@@ -59,7 +59,9 @@ MorphicStyleSheet >> addClass: aSymbol with: anArray [
 { #category : #operations }
 MorphicStyleSheet >> applyTo: aMorph [ 
 
-	properties valuesDo: [ :each | each applyTo: aMorph ]
+	aMorph setProperty: #style toValue: self.
+	properties valuesDo: [ :each | 
+		each applyTo: aMorph ]
 ]
 
 { #category : #accessing }
@@ -71,9 +73,15 @@ MorphicStyleSheet >> atClass: aName [
 ]
 
 { #category : #style }
-MorphicStyleSheet >> initialExtent [
+MorphicStyleSheet >> extent [
 
 	^ self propertyAt: #extent
+]
+
+{ #category : #style }
+MorphicStyleSheet >> height [
+
+	^ self extent height
 ]
 
 { #category : #initialization }
@@ -124,4 +132,10 @@ MorphicStyleSheet >> propertyAt: aName put: aValue [
 	^ self properties 
 		at: aName 
 		put: aValue
+]
+
+{ #category : #style }
+MorphicStyleSheet >> width [
+
+	^ self extent width
 ]
