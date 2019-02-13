@@ -8,7 +8,7 @@ Class {
 		'morph2',
 		'panel'
 	],
-	#category : #'Spec-MorphicAdapters-Layout'
+	#category : #'Spec-MorphicBackendTests'
 }
 
 { #category : #private }
