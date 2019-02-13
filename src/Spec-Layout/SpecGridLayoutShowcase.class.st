@@ -19,6 +19,7 @@ SpecGridLayoutShowcase class >> defaultSpec [
 		beHomogeneous;
 		add: #displayedLayout;
 		add: (SpecGridLayout new
+			beColumnHomogeneous;
 			add: (SpecLabel label: 'Column homogeneous') at: 1@1;
 			add: #columnHomogeneous at: 2@1;
 			add: (SpecLabel label: 'Row homogeneous') at: 1@2;
@@ -36,7 +37,7 @@ SpecGridLayoutShowcase class >> defaultSpec [
 { #category : #initialization }
 SpecGridLayoutShowcase >> initializeLayout [
 
-	currentLayoutSpec := SpecGridLayout new
+	layoutSpec := SpecGridLayout new
 		add: #presenter1 at: 1@1;
 		add: #presenter2 at: 2@1;
 		add: #presenter3 at: 1@2;
@@ -51,7 +52,16 @@ SpecGridLayoutShowcase >> initializeWidgets [
 	
 	columnHomogeneous := self newCheckBox.
 	rowHomogeneous := self newCheckBox.
-	columnSpacing := self newNumberInput.
-	rowSpacing := self newNumberInput.
-	borderWidth := self newNumberInput
+	(columnSpacing := self newNumberInput) 
+		number: 0;
+		minimum: 0;
+		maximum: 100.
+	(rowSpacing := self newNumberInput number: 0)
+		number: 0;
+		minimum: 0;
+		maximum: 100.
+	(borderWidth := self newNumberInput number: 0)
+		number: 0;
+		minimum: 0;
+		maximum: 100
 ]

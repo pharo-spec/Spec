@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'displayedLayout',
 		'control',
-		'currentLayoutSpec'
+		'layoutSpec'
 	],
 	#category : #'Spec-Layout-Examples'
 }
@@ -16,16 +16,27 @@ SpecBaseLayoutShowcase class >> label [
 ]
 
 { #category : #initialization }
-SpecBaseLayoutShowcase >> currentLayoutSpec [
-
-	^ currentLayoutSpec
+SpecBaseLayoutShowcase >> initialize [ 
+	
+	self initializeLayout.		
+	super initialize.
 ]
 
 { #category : #initialization }
+SpecBaseLayoutShowcase >> initializeLayout [
+]
+
+{ #category : #private }
+SpecBaseLayoutShowcase >> layoutSpec [
+
+	^ layoutSpec
+]
+
+{ #category : #private }
 SpecBaseLayoutShowcase >> newLayout [
 
 	^ SpecLayoutShowcaseInstance new
 		owner: self;
-		layout: self currentLayoutSpec;
+		layout: self layoutSpec;
 		yourself
 ]

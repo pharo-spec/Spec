@@ -27,16 +27,9 @@ SpecBoxLayoutShowcase class >> defaultSpec [
 ]
 
 { #category : #initialization }
-SpecBoxLayoutShowcase >> initialize [ 
-	
-	self initializeLayout.		
-	super initialize.
-]
-
-{ #category : #initialization }
 SpecBoxLayoutShowcase >> initializeLayout [
 
-	currentLayoutSpec := SpecBoxLayout newVertical
+	layoutSpec := SpecBoxLayout newVertical
 		add: #presenter1;
 		add: #presenter2;
 		add: #presenter3;
@@ -57,12 +50,12 @@ SpecBoxLayoutShowcase >> initializeWidgets [
 	
 	homogeneous := self newCheckBox
 		label: 'be Homogeneous';
-		state: currentLayoutSpec isHomogeneous. 
+		state: layoutSpec isHomogeneous. 
 	
 	spacing := self newNumberInput
-		number: currentLayoutSpec spacing. 
+		number: layoutSpec spacing. 
 	
 	borderWidth := self newNumberInput
-		number: currentLayoutSpec borderWidth
+		number: layoutSpec borderWidth
 	
 ]
