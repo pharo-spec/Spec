@@ -1,3 +1,13 @@
+"
+I'm something like a stylesheet. 
+Each stylesheet can has a set of properties.
+A property can also be another stylesheer (a class).
+
+StyleSheets can be applied to morphs (see #applyTo:)
+
+There is a default stylesheet which is the one that spec uses. See #newDefault method.
+See concrete properties to see how this work.
+"
 Class {
 	#name : #MorphicStyleSheet,
 	#superclass : #Object,

@@ -197,7 +197,8 @@ GridLayoutTests >> testColumnNotHomogeneousPairedRowsAndColumns [
 
 { #category : #tests }
 GridLayoutTests >> testLayoutIn [
-	"This is a meta-test that tries all the others."
+	"This is a meta-test that tries all the others (just to have access to all tests while seeing 
+	 the class. Yes, I know that means all tests are executed twice in CI, but they are fast :)"
 
 	(self class localSelectors 
 		reject: [ :each | each = #testLayoutIn ])
