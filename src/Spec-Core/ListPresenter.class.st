@@ -158,7 +158,7 @@ ListPresenter >> displayValueOf: anObject [
 { #category : #testing }
 ListPresenter >> hasHeaderTitle [
 	
-	^ headerTitle notNil
+	^ headerTitle value isEmptyOrNil not
 ]
 
 { #category : #accessing }
@@ -175,7 +175,7 @@ ListPresenter >> headerTitle: aString [
 { #category : #api }
 ListPresenter >> hideHeaderTitle [
 	
-	headerTitle := nil
+	headerTitle value: nil
 ]
 
 { #category : #api }
@@ -197,7 +197,7 @@ ListPresenter >> registerEvents [
 	
 	super registerEvents.
 	headerTitle whenChangedDo: [ 
-		self adapter ifNotNil: #refreshHeaderTitle ]
+		self adapter ifNotNil: #refreshWidgetHeaderTitle ]
 ]
 
 { #category : #api }

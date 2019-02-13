@@ -11,11 +11,15 @@ MorphicColumnedListAdapter >> addModelTo: tableMorph [
 	self ensureAtLeastOneColumnIn: tableMorph.
 
 	self isResizable ifTrue: [ tableMorph beResizable ] ifFalse: [ tableMorph beNotResizable ].
+	
+	tableMorph setMultipleSelection: self model isMultiSelection.
 
 	self refreshShowColumnHeaders.
 	self presenter whenShowColumnHeadersChangedDo: [ :showColumns |
 		self refreshShowColumnHeaders.
 	].
+
+	self presenter whenColumnsChangedDo: [ self refreshColumnsInWidget ].
 	
 	tableMorph
 		onAnnouncement: FTSelectionChanged
@@ -31,15 +35,14 @@ MorphicColumnedListAdapter >> addModelTo: tableMorph [
 
 { #category : #factory }
 MorphicColumnedListAdapter >> buildWidget [
-	| tableMorph |
-	tableMorph := FTTableMorph new
+	widget := FTTableMorph new
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		yourself.
 
-	self addModelTo: tableMorph.
+	self addModelTo: widget.
 
-	^ tableMorph
+	^ widget
 ]
 
 { #category : #factory }
@@ -82,10 +85,24 @@ MorphicColumnedListAdapter >> newDataSource [
 ]
 
 { #category : #factory }
+MorphicColumnedListAdapter >> refreshColumnsInWidget [
+
+	widget columns: (self model columns collect: [ :each | self newColumnFrom: each ]).
+	self ensureAtLeastOneColumnIn: widget.
+]
+
+{ #category : #factory }
 MorphicColumnedListAdapter >> refreshShowColumnHeaders [
-	self isShowingColumnHeaders
-		ifTrue: [ self widget showColumnHeaders ]
-		ifFalse: [ self widget hideColumnHeaders ]
+	
+	self presenter isShowingColumnHeaders 
+		ifTrue: [ 
+			self widget
+				showColumnHeaders;
+				refresh ]
+		ifFalse: [ 
+			self widget
+				hideColumnHeaders;
+				refresh ]
 ]
 
 { #category : #refreshing }
