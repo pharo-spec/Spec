@@ -11,33 +11,52 @@ Class {
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
+{ #category : #private }
+GridLayoutTests >> place: aMorph at: aPoint [ 
+
+	aMorph 
+		setProperty: #gridConstraints 
+		toValue: (SpecGridConstraints at: aPoint)
+]
+
+{ #category : #private }
+GridLayoutTests >> place: aMorph at: aPoint span: spanPoint [
+
+	aMorph 
+		setProperty: #gridConstraints 
+		toValue: (SpecGridConstraints at: aPoint span: spanPoint)
+]
+
 { #category : #running }
 GridLayoutTests >> setUp [
 	
 	super setUp.
+	label1 := Morph new.
+	morph1 := Morph new.
+	label2 := Morph new.
+	morph2 := Morph new.
+	
 	panel := Morph new
 		extent: 100@100;
-		addMorphBack: ((label1 := Morph new)
-			setProperty: #style toValue: self style;
-			yourself); 
-		addMorphBack: ((morph1 := Morph new) 
-			setProperty: #style toValue: self style;
-			yourself); 
-		addMorphBack: ((label2 := Morph new) 
-			setProperty: #style toValue: self style;
-			yourself); 
-		addMorphBack: ((morph2 := Morph new) 
-			setProperty: #style toValue: self style;
-			yourself);
-		yourself
+		yourself.
+		
+	{ label1. morph1. label2. morph2 } do: [ :each |
+		panel addMorphBack: each.
+		self style applyTo: each ]
 ]
 
-{ #category : #running }
+{ #category : #private }
 GridLayoutTests >> style [ 
+
+	^ self styleExtent: 50@20
+]
+
+{ #category : #private }
+GridLayoutTests >> styleExtent: aPoint [
 
 	^ MorphicStyleSheet new 
 		propertyAt: #extent put: (MorphicStyleSheetExtent 
-			newExtent: 50@20 
+			newExtent: aPoint
 			hResizing: true 
 			vResizing: true);
 		yourself
@@ -54,10 +73,10 @@ GridLayoutTests >> testBasicLayout [
 	"
 	| layout |
 	
-	label1 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 1@1).
-	morph1 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 2@1).
-	label2 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 1@2).
-	morph2 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 2@2).
+	self place: label1 at: 1@1.
+	self place: morph1 at: 2@1.
+	self place: label2 at: 1@2.
+	self place: morph2 at: 2@2.
 	
 	layout := GridLayout new.
 	layout layout: panel in: (0@0 corner: 100@100).
@@ -84,15 +103,15 @@ GridLayoutTests >> testColumnHomogeneousDiferentRowsAndColumns [
 	"
 	| layout |
 	
-	label1 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 1@1).
-	morph1 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 2@2).
-	label2 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 3@3).
-	morph2 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 4@4).
+	self place: label1 at: 1@1.
+	self place: morph1 at: 2@2.
+	self place: label2 at: 3@3.
+	self place: morph2 at: 4@4.
 			
 	layout := GridLayout new.
 	layout columnHomogeneous: true.
 	"make one column width to 100 (it should force all columns to 100, instead 50)"
-	label2 width: 100. 
+	(self styleExtent: 100@20) applyTo: label2.
 	
 	layout layout: panel in: (0@0 corner: 100@100).
 	
@@ -119,10 +138,10 @@ GridLayoutTests >> testColumnNotHomogeneousDiferentRowsAndColumns [
 	"
 	| layout |
 	
-	label1 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 1@1).
-	morph1 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 2@2).
-	label2 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 3@3).
-	morph2 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 4@4).
+	self place: label1 at: 1@1.
+	self place: morph1 at: 2@2.
+	self place: label2 at: 3@3.
+	self place: morph2 at: 4@4.
 	
 	layout := GridLayout new.
 	layout columnHomogeneous: false.
@@ -154,10 +173,10 @@ GridLayoutTests >> testColumnNotHomogeneousPairedRowsAndColumns [
 	"
 	| layout |
 	
-	label1 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 1@1).
-	morph1 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 2@1).
-	label2 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 1@2).
-	morph2 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 2@2).
+	self place: label1 at: 1@1.
+	self place: morph1 at: 2@1.
+	self place: label2 at: 1@2.
+	self place: morph2 at: 2@2.
 	
 	layout := GridLayout new.
 	layout columnHomogeneous: false.
@@ -201,10 +220,10 @@ GridLayoutTests >> testSpanColumn [
 	"
 	| layout |
 	
-	label1 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 1@1).
-	morph1 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 2@1).
-	label2 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 3@1).
-	morph2 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 2@2 span: 2@1).
+	self place: label1 at: 1@1.
+	self place: morph1 at: 2@1.
+	self place: label2 at: 3@1.
+	self place: morph2 at: 2@2 span: 2@1.
 	
 	layout := GridLayout new.
 	layout layout: panel in: (0@0 corner: 100@100).
@@ -228,10 +247,10 @@ GridLayoutTests >> testSpanRow [
 	"
 	| layout |
 	
-	label1 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 1@1).
-	morph1 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 2@1 span: 1@2).
-	label2 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 1@2).
-	morph2 setProperty: #gridConstraints toValue: (SpecGridConstraints at: 3@2).
+	self place: label1 at: 1@1.
+	self place: morph1 at: 2@1 span: 1@2.
+	self place: label2 at: 1@2.
+	self place: morph2 at: 3@2.
 	
 	layout := GridLayout new.
 	layout layout: panel in: (0@0 corner: 100@100).
@@ -240,5 +259,4 @@ GridLayoutTests >> testSpanRow [
 	self assert: morph1 bounds equals: (50@0 corner: 100@40).	
 	self assert: label2 bounds equals: (0@20 corner: 50@40).
 	self assert: morph2 bounds equals: (100@20 corner: 150@40)
-
 ]
