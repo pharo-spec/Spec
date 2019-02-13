@@ -1,3 +1,6 @@
+"
+I am a list of components ( Widgets :) )
+"
 Class {
 	#name : #ComponentListPresenter,
 	#superclass : #AbstractWidgetPresenter,
