@@ -109,7 +109,7 @@ MorphicColumnedListAdapter >> refreshShowColumnHeaders [
 MorphicColumnedListAdapter >> refreshWidgetSelection [
 	| rowIndexes |
 	rowIndexes := self presenter selection selectedIndexes.
-	rowIndexes = self widget selectedRowIndexes
+	rowIndexes = self widget selectedIndexes
 		ifTrue: [ ^ self ].
 	rowIndexes isEmpty
 		ifTrue: [ self widget basicSelectRowIndexes: #() ]
@@ -119,25 +119,21 @@ MorphicColumnedListAdapter >> refreshWidgetSelection [
 
 { #category : #factory }
 MorphicColumnedListAdapter >> selectionChanged: ann [
-
 	| diff |
 	self presenter selection isMultipleSelection
 		ifTrue: [ self presenter selection
 				selectIndexes: (ann newSelectedRowIndexes reject: [ :e | e = 0 ]) ].
-
 	self presenter selection isMultipleSelection
 		ifFalse: [ self presenter selection
 				selectIndex:
-					(ann newSelectedRowIndexes
+					(ann newSelectedIndexes
 						ifNotEmpty: [ :indexes | indexes first ]
 						ifEmpty: [ 0 ]) ].
-	
-	diff := ann newSelectedRowIndexes difference: ann oldSelectedRowIndexes.
+	diff := ann newSelectedIndexes difference: ann oldSelectedIndexes.
 	(diff notEmpty and: [ self presenter activatesOnSingleClick ])
 		ifTrue: [ self presenter doActivateAtIndex: diff last ].
-
-	ann newSelectedRowIndexes ifNotEmpty: [ ^ self ].
-	self presenter selection unselectAll.
+	ann newSelectedIndexes ifNotEmpty: [ ^ self ].
+	self presenter selection unselectAll
 ]
 
 { #category : #factory }
