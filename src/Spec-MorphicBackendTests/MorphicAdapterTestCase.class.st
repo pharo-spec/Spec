@@ -4,18 +4,13 @@ Class {
 	#category : #'Spec-MorphicBackendTests'
 }
 
+{ #category : #testing }
+MorphicAdapterTestCase class >> isAbstract [ 
+	^ self == MorphicAdapterTestCase
+]
+
 { #category : #running }
 MorphicAdapterTestCase >> adapter [
 
 	^ presenter adapter
-]
-
-{ #category : #running }
-MorphicAdapterTestCase >> testChangingColorAffectTheWidget [
-	
-	presenter color: Color red.
-
-	self openInstance.
-
-	self assert: presenter adapter widget color equals: Color red
 ]

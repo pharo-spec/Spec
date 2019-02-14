@@ -25,6 +25,9 @@ MorphicCheckBoxAdapter >> buildWidget [
 			dragEnabled: self dragEnabled;
 			dropEnabled: self dropEnabled;	
 			labelClickable: self labelClickable.
+			
+	self presenter whenLabelChangedDo: [ :newLabel | checkButton label: newLabel ].
+	self presenter whenChangedDo: [ checkButton updateSelection ].
 	^ checkButton
 ]
 
