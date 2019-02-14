@@ -90,11 +90,13 @@ GridLayoutTests >> testBasicLayout [
 { #category : #tests }
 GridLayoutTests >> testBorderWidth [
 	"
-	-----------
-	| 50 | 50 |
-	-----------
-	| 50 | 50 |
-	-----------
+	---------------
+	| 5 | 5  | 5  |
+	---------------
+	| 5 | 50 | 50 |
+	---------------
+	| 5 | 50 | 50 |
+	---------------
 	"
 	| layout |
 	
@@ -223,6 +225,33 @@ GridLayoutTests >> testColumnNotHomogeneousPairedRowsAndColumns [
 ]
 
 { #category : #tests }
+GridLayoutTests >> testColumnSpacing [
+	"
+	---------------
+	| 50 | 5 | 50 |
+	---------------
+	| 50 | 5 | 50 |
+	---------------
+	"
+	| layout |
+	
+	self place: label1 at: 1@1.
+	self place: morph1 at: 2@1.
+	self place: label2 at: 1@2.
+	self place: morph2 at: 2@2.
+	
+	layout := GridLayout new
+		columnSpacing: 5;
+		yourself.
+	layout layout: panel in: (0@0 corner: 100@100).
+	
+	self assert: label1 bounds equals: (0@0 corner: 50@20).
+	self assert: morph1 bounds equals: (55@0 corner: 105@20).
+	self assert: label2 bounds equals: (0@20 corner: 50@40).
+	self assert: morph2 bounds equals: (55@20 corner: 105@40)
+]
+
+{ #category : #tests }
 GridLayoutTests >> testLayoutIn [
 	"This is a meta-test that tries all the others (just to have access to all tests while seeing 
 	 the class. Yes, I know that means all tests are executed twice in CI, but they are fast :)"
@@ -234,6 +263,35 @@ GridLayoutTests >> testLayoutIn [
 			self setUp.
 			self perform: each.
 			self tearDown ]
+]
+
+{ #category : #tests }
+GridLayoutTests >> testRowSpacing [
+	"
+	-----------
+	| 50 | 50 |
+	-----------
+	| 5  | 5  |
+	-----------
+	| 50 | 50 |
+	-----------
+	"
+	| layout |
+	
+	self place: label1 at: 1@1.
+	self place: morph1 at: 2@1.
+	self place: label2 at: 1@2.
+	self place: morph2 at: 2@2.
+	
+	layout := GridLayout new
+		rowSpacing: 5;
+		yourself.
+	layout layout: panel in: (0@0 corner: 100@100).
+	
+	self assert: label1 bounds equals: (0@0 corner: 50@20).
+	self assert: morph1 bounds equals: (50@0 corner: 100@20).
+	self assert: label2 bounds equals: (0@25 corner: 50@45).
+	self assert: morph2 bounds equals: (50@25 corner: 100@45)
 ]
 
 { #category : #tests }

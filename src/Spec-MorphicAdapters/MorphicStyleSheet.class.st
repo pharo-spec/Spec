@@ -41,7 +41,7 @@ MorphicStyleSheet class >> fromProperties: anArrayofProperties [
 	^ self fromDictionary: (anArrayofProperties collect: [ :each | each name -> each ]) asDictionary
 ]
 
-{ #category : #'instance creation' }
+{ #category : #theme }
 MorphicStyleSheet class >> newDefault [
 	
 	^ self new 
