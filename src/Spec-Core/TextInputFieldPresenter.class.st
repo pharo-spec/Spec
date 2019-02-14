@@ -203,6 +203,12 @@ TextInputFieldPresenter >> isInvisible [
 	^ isVisible not
 ]
 
+{ #category : #testing }
+TextInputFieldPresenter >> isVisible [
+	
+	^ isVisible
+]
+
 { #category : #accessing }
 TextInputFieldPresenter >> maxLength [
 	^ maxLength
@@ -211,7 +217,8 @@ TextInputFieldPresenter >> maxLength [
 { #category : #accessing }
 TextInputFieldPresenter >> maxLength: anInteger [ 
 	
-	maxLength := anInteger
+	maxLength := anInteger.
+	self updateText.
 ]
 
 { #category : #api }
@@ -235,9 +242,26 @@ TextInputFieldPresenter >> removeEntryCompletion [
 ]
 
 { #category : #accessing }
+TextInputFieldPresenter >> text: aText [
+
+	| truncatedText |
+	truncatedText := self maxLength = 0
+		ifTrue: [ aText ]
+		ifFalse: [ aText first: (self maxLength min: aText size) ].
+	super text: truncatedText
+]
+
+{ #category : #accessing }
 TextInputFieldPresenter >> textHolder [
 
 	^ textHolder
+]
+
+{ #category : #accessing }
+TextInputFieldPresenter >> updateText [
+
+	"Update text but applying lenght constraints"
+	self text: self text.
 ]
 
 { #category : #'api-events' }
@@ -255,7 +279,19 @@ TextInputFieldPresenter >> whenEntryCompletionChanged: aBlock [
 ]
 
 { #category : #'api-events' }
+TextInputFieldPresenter >> whenMaxLengthChangedDo: aBlockClosure [ 
+	
+	self property: #maxLength whenChangedDo: aBlockClosure
+]
+
+{ #category : #'api-events' }
 TextInputFieldPresenter >> whenPlaceholderChangedDo: aBlock [
 	
 	self property: #placeholder whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+TextInputFieldPresenter >> whenVisibilityChangedDo: aBlockClosure [ 
+	
+	self property: #isVisible whenChangedDo: aBlockClosure
 ]

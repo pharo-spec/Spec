@@ -42,7 +42,7 @@ MorphicTextInputFieldAdapter >> buildWidget [
 		autoAccept: self autoAccept;
 		ghostText: self placeholder;
 		enabled: self enabled;
-		encrypted: self encrypted;
+		encrypted: self presenter isVisible not;
 		setBalloonText: self help;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
@@ -50,6 +50,11 @@ MorphicTextInputFieldAdapter >> buildWidget [
 		vResizing: #spaceFill;
 		acceptOnCR: self acceptOnCR;
 		hideScrollBarsIndefinitely.
+
+	self presenter whenTextChangedDo: [ :text | plu setText: text ].
+	self presenter whenPlaceholderChangedDo: [ :text | plu ghostText: text ].
+	self presenter whenVisibilityChangedDo: [ :isVisible | plu encrypted: isVisible not ].	
+	self presenter whenMaxLengthChangedDo: [ :length | plu maxLength: length ].
 	^ plu
 ]
 

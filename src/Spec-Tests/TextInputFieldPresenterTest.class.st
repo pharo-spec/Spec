@@ -58,6 +58,22 @@ TextInputFieldPresenterTest >> testMaxLengthIsSet [
 ]
 
 { #category : #tests }
+TextInputFieldPresenterTest >> testMaxLengthTruncatesAlreadyTypedText [
+
+	presenter text: '1234567890 ---'.
+	presenter maxLength: 10.
+	self assert: presenter text equals: '1234567890'
+]
+
+{ #category : #tests }
+TextInputFieldPresenterTest >> testMaxLengthTruncatesText [
+
+	presenter maxLength: 10.
+	presenter text: '1234567890 ---'.
+	self assert: presenter text equals: '1234567890'
+]
+
+{ #category : #tests }
 TextInputFieldPresenterTest >> testPlaceholderIsSet [
 
 	presenter placeholder: 'enter something...'.
