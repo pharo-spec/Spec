@@ -55,8 +55,7 @@ MorphicTextInputFieldAdapter >> buildWidget [
 
 { #category : #'widget API' }
 MorphicTextInputFieldAdapter >> encrypted [
-
-	^ self model encrypted
+	^ self model isVisible
 ]
 
 { #category : #'spec protocol' }
