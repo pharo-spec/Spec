@@ -115,6 +115,13 @@ CheckboxPresenterTest >> testDeactivateRaisesDeactivatedEvent [
 ]
 
 { #category : #tests }
+CheckboxPresenterTest >> testLabelIsSet [
+
+	presenter label: 'test'.
+	self assert: presenter label equals: 'test'
+]
+
+{ #category : #tests }
 CheckboxPresenterTest >> testStayingActiveDoesNotRaiseChangedEvent [
 
 	presenter state: true.
