@@ -34,6 +34,13 @@ MorphicCheckboxAdapterTest >> emulateRightClick [
 ]
 
 { #category : #running }
+MorphicCheckboxAdapterTest >> setUp [
+
+	super setUp.
+	self openInstance
+]
+
+{ #category : #running }
 MorphicCheckboxAdapterTest >> testActivatedCheckboxPresenterStartsActivatedCheckboxMorph [
 
 	presenter state: true.

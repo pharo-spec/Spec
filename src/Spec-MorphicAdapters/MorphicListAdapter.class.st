@@ -147,7 +147,7 @@ MorphicListAdapter >> refreshWidgetSelection [
 	rowIndexes = self widget selectedIndexes
 		ifTrue: [ ^ self ].
 	rowIndexes isEmpty
-		ifTrue: [ self widget basicSelectRowIndexes: #() ]
+		ifTrue: [ self widget basicSelectIndexes: #() ]
 		ifFalse: [ self widget basicSelectIndexes: rowIndexes ].
 	^ self widget refresh
 ]

@@ -42,6 +42,13 @@ MorphicButtonAdapterTest >> emulateRightClick [
 ]
 
 { #category : #running }
+MorphicButtonAdapterTest >> setUp [
+
+	super setUp.
+	self openInstance
+]
+
+{ #category : #running }
 MorphicButtonAdapterTest >> testChangingHelpAffectTheWidget [
 	
 	presenter help: 'ALabel'.

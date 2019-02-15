@@ -636,6 +636,18 @@ TextPresenter >> whenScrollValueChanged: aBlock [
 TextPresenter >> whenTextChanged: aBlock [
 	"Set a block to perform when the text changed"
 	
+	self
+		deprecated: 'Use #whenTextChangedDo: instead.'
+		transformWith: '`@receiver whenTextChanged: `@statement' 
+			-> '`@receiver whenTextChangedDo: `@statement'.
+	
+	textHolder whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+TextPresenter >> whenTextChangedDo: aBlock [
+	"Set a block to perform when the text changed"
+	
 	textHolder whenChangedDo: aBlock
 ]
 
