@@ -15,5 +15,5 @@ TextInputFieldPresenter >> ghostText: aText [
 { #category : #'*Spec-Deprecated80' }
 TextInputFieldPresenter >> whenGhostTextChanged: aBlock [
 	self deprecated: 'This API is too tight to Morph. Use #whenPlaceholderChanged: instead.' transformWith: '`@receiver whenGhostTextChanged: `@statement' -> '`@receiver whenPlaceholderChanged: `@statement'.
-	self whenPlaceholderChanged: aBlock
+	self whenPlaceholderChangedDo: aBlock
 ]
