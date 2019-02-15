@@ -89,6 +89,7 @@ MorphicBoxAdapter >> newPanel [
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		color: Color transparent;
+		borderColor: Color transparent;
 		yourself
 ]
 
