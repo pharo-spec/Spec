@@ -45,6 +45,13 @@ SpecSingleSelectionMode >> selectAll [
 ]
 
 { #category : #selecting }
+SpecSingleSelectionMode >> selectIndexes: aCollection [
+
+	aCollection ifEmpty: [ ^ self unselectAll ].
+	self selectIndex: aCollection first.
+]
+
+{ #category : #selecting }
 SpecSingleSelectionMode >> selectedIndex [
 	
 	^ selectedIndexValueHolder value

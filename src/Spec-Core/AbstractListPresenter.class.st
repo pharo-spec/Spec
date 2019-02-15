@@ -287,7 +287,7 @@ AbstractListPresenter >> menu: aMenu shifted: aBoolean [
 	"This does not work on multiple selection"
 
 	self flag: #bug.
-	self selection selectedItem ifNil: [ ^ nil ].
+	self selection selectedItems ifEmpty: [ ^ nil ].
 	^ menuHolder value cull: aMenu cull: aBoolean
 ]
 
