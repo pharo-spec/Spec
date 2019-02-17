@@ -59,9 +59,10 @@ MorphicBoxAdapter >> layout: aLayout [
 
 	"build of widget was differed up to here (to know what is the direction)"
 	widget := aLayout direction newWidgetOn: self.
-	widget 
-		borderWidth: aLayout borderWidth;
-		cellInset: aLayout spacing.
+	widget borderWidth: aLayout borderWidth.
+	"the spacing needs to be applied to the inner sub-panels"
+	widget submorphs do: [ :each |
+		each cellInset: aLayout spacing ].
 	"widget homogeneous: aLayout isHomogeneous"
 ]
 
