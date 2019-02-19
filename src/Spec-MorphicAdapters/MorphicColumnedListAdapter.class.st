@@ -112,8 +112,8 @@ MorphicColumnedListAdapter >> refreshWidgetSelection [
 	rowIndexes = self widget selectedIndexes
 		ifTrue: [ ^ self ].
 	rowIndexes isEmpty
-		ifTrue: [ self widget basicSelectRowIndexes: #() ]
-		ifFalse: [ self widget basicSelectRowIndexes: rowIndexes ].
+		ifTrue: [ self widget basicSelectIndexes: #() ]
+		ifFalse: [ self widget basicSelectIndexes: rowIndexes ].
 	^ self widget refresh
 ]
 
@@ -122,7 +122,7 @@ MorphicColumnedListAdapter >> selectionChanged: ann [
 	| diff |
 	self presenter selection isMultipleSelection
 		ifTrue: [ self presenter selection
-				selectIndexes: (ann newSelectedRowIndexes reject: [ :e | e = 0 ]) ].
+				selectIndexes: (ann newSelectedIndexes reject: [ :e | e = 0 ]) ].
 	self presenter selection isMultipleSelection
 		ifFalse: [ self presenter selection
 				selectIndex:
@@ -137,8 +137,8 @@ MorphicColumnedListAdapter >> selectionChanged: ann [
 ]
 
 { #category : #factory }
-MorphicColumnedListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [ 
-	
+MorphicColumnedListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
 	self presenter activatesOnDoubleClick
-		ifTrue: [ self presenter doubleClickAtIndex: aFTStrongSelectionChanged selectedRowIndex ]
+		ifTrue: [ self presenter
+				doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex ]
 ]

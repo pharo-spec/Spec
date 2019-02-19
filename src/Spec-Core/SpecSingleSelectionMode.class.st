@@ -46,10 +46,9 @@ SpecSingleSelectionMode >> selectAll [
 
 { #category : #selecting }
 SpecSingleSelectionMode >> selectIndexes: aCollection [
-	"This provides polymorphism with sibling classes, but in our case it will work 
-	 selecting just one (first) element of the collection."
-	
-	self selectIndex: aCollection first 
+
+	aCollection ifEmpty: [ ^ self unselectAll ].
+	self selectIndex: aCollection first.
 ]
 
 { #category : #selecting }
