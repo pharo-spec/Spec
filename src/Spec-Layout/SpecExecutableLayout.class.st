@@ -34,18 +34,20 @@ SpecExecutableLayout >> asArray [
 { #category : #building }
 SpecExecutableLayout >> buildAdapterFor: aModel bindings: bindings [
 	| adapter |
-
+	
 	adapter := (bindings adapterClass: self adapterName) adapt: aModel.
 	adapter layout: self.
-	children keysAndValuesDo: [ :presenterNameOrLayout :constraints |
-		"Since a layout can be composed (by other layouts), we can include a
+	children
+		keysAndValuesDo: [ :presenterNameOrLayout :constraints | 
+			"Since a layout can be composed (by other layouts), we can include a
 		 presenter or a layout"
-		adapter
-			add: (presenterNameOrLayout isSymbol 
-				ifTrue: [ self subpresenterOrLayoutNamed: presenterNameOrLayout of: aModel ]
-				ifFalse: [ presenterNameOrLayout buildAdapterFor: aModel bindings: bindings ])
-			constraints: constraints ].
-	
+			adapter 
+				add: (self 
+					resolvePresenter: presenterNameOrLayout 
+					model: aModel 
+					bindings: bindings)
+				constraints: constraints ].
+
 	^ adapter
 ]
 
@@ -74,6 +76,21 @@ SpecExecutableLayout >> isSpecLayout [
 	^ true
 ]
 
+{ #category : #private }
+SpecExecutableLayout >> resolvePresenter: presenterNameOrLayout model: aModel bindings: bindings [
+
+	"most common case: I receive a symbol that I need to convert into a presenter"
+	presenterNameOrLayout isSymbol ifTrue: [ 
+		^ self subpresenterOrLayoutNamed: presenterNameOrLayout of: aModel ].
+	
+	"I receive a layout: dig inside."
+	presenterNameOrLayout isSpecLayout ifTrue: [ 
+		^ presenterNameOrLayout buildAdapterFor: aModel bindings: bindings ].
+	
+	"I receive an arbitrary object (needs to understand #asPresenter)"
+	^ presenterNameOrLayout asPresenter
+]
+
 { #category : #accessing }
 SpecExecutableLayout >> selector [
 	^ selector
@@ -87,8 +104,9 @@ SpecExecutableLayout >> selector: anObject [
 { #category : #private }
 SpecExecutableLayout >> subpresenterOrLayoutNamed: presenterNameOrLayout of: aPresenter [
 
-	^ aPresenter additionalSubpresentersMap at: presenterNameOrLayout ifAbsent: [
-		aPresenter readSlotNamed: presenterNameOrLayout ]
+	^ aPresenter additionalSubpresentersMap 
+		at: presenterNameOrLayout 
+		ifAbsent: [ aPresenter readSlotNamed: presenterNameOrLayout ]
 
 	
 

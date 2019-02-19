@@ -17,13 +17,19 @@ MorphicGenericAdapter class >> morph: morph [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
+MorphicGenericAdapter >> adapter [
+
+	^ self
+]
+
+{ #category : #api }
 MorphicGenericAdapter >> buildWithSpec [
 
 	^ self widget
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #api }
 MorphicGenericAdapter >> buildWithSpec: aString [ 
 	
 	^ self buildWithSpec
