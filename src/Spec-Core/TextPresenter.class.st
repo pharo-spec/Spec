@@ -527,7 +527,7 @@ TextPresenter >> setSelection: anInterval [
 
 { #category : #api }
 TextPresenter >> setSelectionInterval: anInterval [
-	selection rawValue: anInterval
+	selection value: anInterval
 ]
 
 { #category : #api }

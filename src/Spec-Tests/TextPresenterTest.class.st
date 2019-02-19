@@ -23,3 +23,14 @@ TextPresenterTest >> testSelectAll [
 	presenter clearSelection.
 	self assert: presenter getSelection isEmpty
 ]
+
+{ #category : #tests }
+TextPresenterTest >> testSelectionChangedAnnouncement [
+	|selectionHolder tag|
+	self initializationText.
+	selectionHolder := (self classToTest slotNamed: #selection) read: presenter.
+	selectionHolder whenChangedDo: [ tag := #tag ].
+	self assert: tag isNil.	
+	presenter setSelectionInterval: (1 to: 15).
+	self assert: tag equals: #tag
+]
