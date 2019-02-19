@@ -1,11 +1,13 @@
 Class {
 	#name : #ColumnedListPresenter,
 	#superclass : #AbstractListPresenter,
+	#traits : 'TSpecObservable',
+	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
-		'columns',
-		'showColumnHeadersHolder',
-		'isResizableHolder',
-		'itemsHolder'
+		'#columns => SpecObservableSlot',
+		'#showColumnHeaders => SpecObservableSlot',
+		'#isResizableHolder',
+		'#itemsHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -22,7 +24,24 @@ ColumnedListPresenter class >> example [
 	| example |
 	example := self new.
 	example
+		addColumn: (StringTableColumn title: 'Number' evaluated: #yourself);
+		addColumn: (StringTableColumn title: 'Hex' evaluated: #hex);
+		showColumnHeaders;
 		items: (1 to: 10) asArray;
+		openWithSpec.
+	^ example
+]
+
+{ #category : #specs }
+ColumnedListPresenter class >> exampleWithoutColumnHeaders [
+	<sampleInstance>
+	| example |
+	example := self new.
+	example
+		addColumn: (StringTableColumn title: 'Number' evaluated: #yourself);
+		addColumn: (StringTableColumn title: 'Hex' evaluated: #hex);
+		items: (1 to: 10) asArray;
+		hideColumnHeaders;
 		openWithSpec.
 	^ example
 ]
@@ -58,21 +77,17 @@ ColumnedListPresenter >> columns: aCollection [
 { #category : #api }
 ColumnedListPresenter >> hideColumnHeaders [
 
-	showColumnHeadersHolder value: false
+	showColumnHeaders := false
 ]
 
 { #category : #initialization }
 ColumnedListPresenter >> initialize [ 
 
+	self class initializeSlots: self.
 	super initialize.
-	showColumnHeadersHolder := true asValueHolder.
+	showColumnHeaders := true.
 	columns := #().
 	isResizableHolder := false asValueHolder.
-	
-	showColumnHeadersHolder whenChangedDo: [ self showColumnHeadersChanged ].
-
-	itemsHolder := #() asValueHolder.
-	itemsHolder whenChangedDo: [ self itemsChanged ].
 ]
 
 { #category : #accessing }
@@ -88,40 +103,28 @@ ColumnedListPresenter >> isResizable: aBoolean [
 { #category : #testing }
 ColumnedListPresenter >> isShowingColumnHeaders [
 
-	^ showColumnHeadersHolder value
-]
-
-{ #category : #accessing }
-ColumnedListPresenter >> itemAt: aNumber [
-	
-	^ super itemAt: aNumber
-]
-
-{ #category : #accessing }
-ColumnedListPresenter >> items [
-
-	^ itemsHolder value
-]
-
-{ #category : #private }
-ColumnedListPresenter >> itemsChanged [
-
-	self changed: #items
+	^ showColumnHeaders
 ]
 
 { #category : #api }
 ColumnedListPresenter >> showColumnHeaders [
 
-	showColumnHeadersHolder value: true
+	showColumnHeaders := true
 ]
 
-{ #category : #private }
-ColumnedListPresenter >> showColumnHeadersChanged [
-
-	self changed: #showColumnHeaders
+{ #category : #'api-events' }
+ColumnedListPresenter >> whenColumnsChangedDo: aBlock [
+	
+	self property: #columns whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
 ColumnedListPresenter >> whenIsResizableChangedDo: aBlock [
 	isResizableHolder whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+ColumnedListPresenter >> whenShowColumnHeadersChangedDo: aBlock [
+	
+	self property: #showColumnHeaders whenChangedDo: aBlock
 ]

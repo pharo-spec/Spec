@@ -78,13 +78,16 @@ WindowPresenter >> askOkToClose [
 { #category : #private }
 WindowPresenter >> buildWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument"
-
 	| widget |
+
 	(self spec notNil and: [ self needRebuild not ])
-		ifTrue: [ widget := self widget ]
-		ifFalse: [ widget := (self adapterFrom: self retrieveDefaultSpec) widget.
+		ifTrue: [ 
+			widget := self widget ]
+		ifFalse: [ 
+			widget := (self adapterFrom: self retrieveDefaultSpec) widget.
 			self addModelIn: widget withSpecLayout: aSpec ].
 	self ensureExtentFor: widget.
+	
 	^ widget
 ]
 

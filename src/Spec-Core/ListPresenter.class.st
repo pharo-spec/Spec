@@ -61,6 +61,16 @@ ListPresenter class >> example [
 		yourself
 ]
 
+{ #category : #example }
+ListPresenter class >> exampleWithHeaderTitle [
+	<sampleInstance>
+	^ self new
+		items: Smalltalk globals allClasses;
+		headerTitle: 'Title';
+		openWithSpec;
+		yourself
+]
+
 { #category : #specs }
 ListPresenter class >> title [
 
@@ -133,22 +143,46 @@ ListPresenter >> clickOnSelectedItem [
 		ifFalse: [ ^ false ]
 ]
 
+{ #category : #'adapter-api' }
+ListPresenter >> displayValueAt: anIndex [
+	
+	^ self displayValueOf: (model value at: anIndex)
+]
+
+{ #category : #'adapter-api' }
+ListPresenter >> displayValueOf: anObject [
+
+	^ self displayBlock value: anObject
+]
+
 { #category : #testing }
 ListPresenter >> hasHeaderTitle [
 	
-	^ headerTitle notNil
+	^ headerTitle value isEmptyOrNil not
+]
+
+{ #category : #accessing }
+ListPresenter >> headerTitle [
+	^ headerTitle value
 ]
 
 { #category : #'as yet unclassified' }
 ListPresenter >> headerTitle: aString [ 
 	
-	headerTitle := aString
+	headerTitle value: aString
 ]
 
 { #category : #api }
 ListPresenter >> hideHeaderTitle [
 	
-	headerTitle := nil
+	headerTitle value: nil
+]
+
+{ #category : #api }
+ListPresenter >> initializeValueHolders [
+	
+	super initializeValueHolders.
+	headerTitle := nil asValueHolder
 ]
 
 { #category : #private }
@@ -156,6 +190,14 @@ ListPresenter >> prepareForFilteredDataSourceWith: items [
 
 	model := items asValueHolder
 
+]
+
+{ #category : #private }
+ListPresenter >> registerEvents [
+	
+	super registerEvents.
+	headerTitle whenChangedDo: [ 
+		self adapter ifNotNil: #refreshWidgetHeaderTitle ]
 ]
 
 { #category : #api }
@@ -203,7 +245,7 @@ ListPresenter >> setSelectionStateFor: anIndex at: aBoolean [
 { #category : #api }
 ListPresenter >> updateList [
 
-	self adapter refreshList.
+	self adapter refreshWidgetList.
 	self resetSelection
 ]
 
@@ -232,7 +274,7 @@ ListPresenter >> whenBackgroundColorBlockChanged: aBlock [
 ListPresenter >> whenDisplayBlockChanged: aBlock [
 	"Set a block to value when the filtering block has changed"
 	
-	wrapBlockHolder whenChangedDo: aBlock
+	displayBlockValueHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

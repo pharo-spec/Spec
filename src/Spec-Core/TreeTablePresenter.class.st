@@ -110,3 +110,10 @@ TreeTablePresenter >> rootsChanged [
 
 	self changed: #items
 ]
+
+{ #category : #api }
+TreeTablePresenter >> selectedPath: path [
+
+	selectionHolder index value: path.
+	selectionHolder selection value: (self itemAtPath: path).
+]

@@ -44,6 +44,12 @@ TableBasePresenter >> columns: aCollection [
 	columns := aCollection
 ]
 
+{ #category : #private }
+TableBasePresenter >> doubleClickAction [
+
+	^ doubleClickActionHolder value
+]
+
 { #category : #'api-events' }
 TableBasePresenter >> doubleClickAction: aBlockClosure [ 
 	
@@ -92,38 +98,9 @@ TableBasePresenter >> isShowingColumnHeaders [
 ]
 
 { #category : #api }
-TableBasePresenter >> selectedIndex [
-	
-	^ selectionHolder index value
-]
-
-{ #category : #api }
-TableBasePresenter >> selectedIndex: anIndex [
-	
-	| selectedIndex selection |
-	selectedIndex := anIndex.
-	selection := self items
-		at: selectedIndex
-		ifAbsent: [ 
-			selectedIndex := 0.
-			nil ].
-
-	selectionHolder index value: selectedIndex.
-	selectionHolder selection value: selection.
-]
-
-{ #category : #api }
 TableBasePresenter >> selectedItem [
 	
 	^ selectionHolder selection value
-]
-
-{ #category : #api }
-TableBasePresenter >> selectedItem: anInteger [ 
-	
-	| index |
-	index := self items indexOf: anInteger.
-	self selectedIndex: index
 ]
 
 { #category : #api }

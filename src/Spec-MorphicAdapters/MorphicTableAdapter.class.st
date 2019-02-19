@@ -13,12 +13,17 @@ Class {
 { #category : #factory }
 MorphicTableAdapter >> addModelTo: tableMorph [
 
-	self model columns do: [ :each | tableMorph addColumn: (self newColumnFrom: each) ].
+	self model columns do: [ :each | 
+		tableMorph addColumn: (self newColumnFrom: each) ].
 	self ensureAtLeastOneColumnIn: tableMorph.
 
-	self isShowingColumnHeaders ifTrue: [ tableMorph showColumnHeaders ] ifFalse: [ tableMorph hideColumnHeaders ].
+	self isShowingColumnHeaders 
+		ifTrue: [ tableMorph showColumnHeaders ] 
+		ifFalse: [ tableMorph hideColumnHeaders ].
 
-	self isResizable ifTrue: [ tableMorph beResizable ] ifFalse: [ tableMorph beNotResizable ].
+	self isResizable 
+		ifTrue: [ tableMorph beResizable ] 
+		ifFalse: [ tableMorph beNotResizable ].
 
 	tableMorph dataSource: self newDataSource
 ]

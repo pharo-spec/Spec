@@ -20,7 +20,7 @@ NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph [
 	self 
 		addLazyPage: aBlock 
 		label: aStringOrMorph 
-		collapsable: nil
+		collapsable: false
 ]
 
 { #category : #adding }

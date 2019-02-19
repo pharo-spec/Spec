@@ -8,14 +8,14 @@ Class {
 		'sortingBlockHolder',
 		'filteringBlockHolder',
 		'autoDeselect',
-		'wrapBlockHolder',
 		'itemFilterBlockHolder',
 		'menuHolder',
 		'allowToSelect',
 		'doubleClickActionHolder',
 		'activationBlock',
 		'activateOnSingleClick',
-		'model'
+		'model',
+		'displayBlockValueHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -32,20 +32,27 @@ AbstractListPresenter >> activateOnSingleClick [
 	activateOnSingleClick := true
 ]
 
+{ #category : #testing }
+AbstractListPresenter >> activatesOnDoubleClick [
+	
+	^ activateOnSingleClick not
+]
+
+{ #category : #testing }
+AbstractListPresenter >> activatesOnSingleClick [
+	
+	^ activateOnSingleClick
+]
+
 { #category : #api }
 AbstractListPresenter >> beMultipleSelection [
-	"Make list selection multiple"
-	selectionMode := SpecMultipleSelectionMode on: self
+	self selectionMode: (SpecMultipleSelectionMode on: self)
 ]
 
 { #category : #api }
 AbstractListPresenter >> beSingleSelection [
 	
-	| newSelectionMode |
-	newSelectionMode := SpecSingleSelectionMode on: self.
-	selectionMode ifNotNil: [ 
-		selectionMode transferSubscriptionsTo: newSelectionMode  ].
-	selectionMode := newSelectionMode.
+	self selectionMode: (SpecSingleSelectionMode on: self)
 ]
 
 { #category : #simulation }
@@ -60,7 +67,7 @@ AbstractListPresenter >> clickAtIndex: anIndex [
 { #category : #simulation }
 AbstractListPresenter >> clickItem: anInteger [ 
 	
-	self setIndex: anInteger
+	self selectIndex: anInteger
 ]
 
 { #category : #initialization }
@@ -75,11 +82,10 @@ AbstractListPresenter >> defaultSortingBlock [
 
 { #category : #api }
 AbstractListPresenter >> displayBlock [
-	"<api: #inspect>"
 	"Return the one argument block used to wrap your domain specific items.
 	The block should return something that can be displayed in a list - like a String or a Text"
 	
-	^ wrapBlockHolder value
+	^ displayBlockValueHolder value
 ]
 
 { #category : #api }
@@ -88,7 +94,7 @@ AbstractListPresenter >> displayBlock: aBlock [
 	"Set the one argument block used to wrap your domain specific items.
 	The block should return something that can be displayed in a list - like a String or a Text"
 	
-	wrapBlockHolder value: aBlock
+	displayBlockValueHolder value: aBlock
 ]
 
 { #category : #private }
@@ -178,7 +184,7 @@ AbstractListPresenter >> initializeValueHolders [
 	filteringBlockHolder := self defaultFilteringBlock asValueHolder.
 	itemFilterBlockHolder := nil asValueHolder.
 	doubleClickActionHolder := [  ] asValueHolder.
-	wrapBlockHolder := [ :object | object asStringOrText ] asValueHolder.
+	displayBlockValueHolder := [ :object | object asStringOrText ] asValueHolder.
 	menuHolder := [ :menu :shifted | nil ] asValueHolder.
 	allowToSelect := true asValueHolder.
 	autoDeselect := true asValueHolder
@@ -279,9 +285,9 @@ AbstractListPresenter >> menu: aMenu shifted: aBoolean [
 	"Build the menu when you right click on an item"
 
 	"This does not work on multiple selection"
-	self flag: #bug.
-	self selectedItem ifNil: [ ^ nil ].
 
+	self flag: #bug.
+	self selection selectedItem ifNil: [ ^ nil ].
 	^ menuHolder value cull: aMenu cull: aBoolean
 ]
 
@@ -300,9 +306,12 @@ AbstractListPresenter >> model: aModel [
 { #category : #initialization }
 AbstractListPresenter >> registerEvents [
 
-	selectionMode whenChangedDo: [ :selection | self changed: #selectedIndex ].
-	wrapBlockHolder whenChangedDo:[ self changed: #listElementAt: ].
-	autoDeselect whenChangedDo: [ :boolean | self changed: #autoDeselect: with: { boolean }].
+	selectionMode whenChangedDo: [ :selection | 
+		self adapter ifNotNil: #refreshWidgetSelection ].
+	displayBlockValueHolder whenChangedDo: [ 
+		self adapter ifNotNil: #refreshWidgetList ].
+	autoDeselect whenChangedDo: [ :boolean | 
+		self changed: #autoDeselect: with: { boolean }].
 ]
 
 { #category : #api }
@@ -414,7 +423,7 @@ AbstractListPresenter >> selectedItemsAtIndexes: aCollectionOfIndex [
 AbstractListPresenter >> selectedItemsSorted [
 	"return all the selected items sorted by their index"
 
-	^ self selectedItemsAtIndexes: self selectedIndexes sort
+	^ self selectedItemsAtIndexes: self selection selectedIndexes sort
 ]
 
 { #category : #accessing }
@@ -427,6 +436,14 @@ AbstractListPresenter >> selection [
 AbstractListPresenter >> selectionMode [
 	
 	^ selectionMode
+]
+
+{ #category : #api }
+AbstractListPresenter >> selectionMode: aMode [
+	
+	selectionMode ifNotNil: [ 
+		selectionMode transferSubscriptionsTo: aMode ].
+	selectionMode := aMode.
 ]
 
 { #category : #private }
@@ -488,6 +505,18 @@ AbstractListPresenter >> sortingBlock: aBlock [
 AbstractListPresenter >> unselectAll [
 	
 	self selection unselectAll
+]
+
+{ #category : #api }
+AbstractListPresenter >> unselectIndex: anInteger [ 
+	
+	self selection unselectIndex: anInteger
+]
+
+{ #category : #api }
+AbstractListPresenter >> unselectItem: anInteger [ 
+	
+	self selection unselectItem: anInteger
 ]
 
 { #category : #'api-events' }
@@ -603,12 +632,12 @@ AbstractListPresenter >> whenSelectionIndexesChanged: aBlock [
 AbstractListPresenter >> wrapItem: anObject [ 
 	"Return the item _anObject_ wrapped"
 
-	^ wrapBlockHolder value cull: anObject 
+	^ displayBlockValueHolder value cull: anObject 
 ]
 
 { #category : #private }
 AbstractListPresenter >> wrapItem: anObject index: index [
 	"Return the item _anObject_ wrapped"
 
-	^ wrapBlockHolder value cull: anObject cull: index
+	^ displayBlockValueHolder value cull: anObject cull: index
 ]
