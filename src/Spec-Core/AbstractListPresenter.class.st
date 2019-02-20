@@ -158,7 +158,8 @@ AbstractListPresenter >> initialize [
 	super initialize.
 
 	activationBlock := [ ].
-	self items: #().
+	
+	self model: 	self newEmptyModel.
 
 	self beSingleSelection.
 	self activateOnDoubleClick.
@@ -227,10 +228,6 @@ AbstractListPresenter >> items: aCollection [
 	"Set the items of the list.
 	aCollection is a collection of your domain specific items.
 	This creates a collection model"
-	
-	model ifNil: [ 
-		model := SpecCollectionListModel on: aCollection.
-		^ self ].
 	
 	model collection: aCollection
 ]
@@ -304,7 +301,15 @@ AbstractListPresenter >> model [
 { #category : #accessing }
 AbstractListPresenter >> model: aModel [
 	
-	model := aModel
+	model := aModel.
+	model whenChangedDo: [ 
+		self changed: #refreshList ]
+]
+
+{ #category : #private }
+AbstractListPresenter >> newEmptyModel [
+
+	^ SpecCollectionListModel on: #()
 ]
 
 { #category : #initialization }
