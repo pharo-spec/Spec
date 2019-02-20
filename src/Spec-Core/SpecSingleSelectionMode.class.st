@@ -59,7 +59,9 @@ SpecSingleSelectionMode >> selectedIndex [
 
 { #category : #selecting }
 SpecSingleSelectionMode >> selectedIndexes [
-	
+	"This provides polymorphism with sibling classes, and answers an array with a single 
+	 element."
+		
 	^ self isEmpty
 		ifTrue: [ #() ]
 		ifFalse: [ { self selectedIndex } ]

@@ -228,7 +228,11 @@ AbstractListPresenter >> items: aCollection [
 	aCollection is a collection of your domain specific items.
 	This creates a collection model"
 	
-	model := SpecCollectionListModel on: aCollection
+	model ifNil: [ 
+		model := SpecCollectionListModel on: aCollection.
+		^ self ].
+	
+	model collection: aCollection
 ]
 
 { #category : #private }
@@ -530,7 +534,17 @@ AbstractListPresenter >> whenListChanged: aBlock [
 	"Specify a block to value after the contents of the list has changed"
 	"Basically when you set a new list of items"
 	"<api: #event>"
+	self
+		deprecated: 'Use #whenModelChangedDo: instead'
+		transformWith: '`@receiver whenListChanged: `@argument'
+						-> '`@receiver whenModelChangedDo: `@argument'.
 	
+	self whenModelChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> whenModelChangedDo: aBlock [
+
 	model whenChangedDo: aBlock
 ]
 
