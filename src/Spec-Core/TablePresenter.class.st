@@ -29,6 +29,7 @@ TablePresenter class >> example [
 		addColumn: (ImageTableColumn title: 'Icon' evaluated: #systemIcon);
 		addColumn: (StringTableColumn title: 'Name' evaluated: #name);
 		items: Smalltalk allClasses;
+		doubleClickAction: [ :aClass | self inform: 'Double click on: ', aClass name ];
 		openWithSpec
 ]
 
@@ -52,6 +53,14 @@ TablePresenter >> initialize [
 TablePresenter >> itemAt: aNumber [
 	
 	^ self items at: aNumber
+]
+
+{ #category : #accessing }
+TablePresenter >> itemAt: aNumber ifAbsent: aBlock [
+	
+	^ self items 
+		at: aNumber
+		ifAbsent: aBlock
 ]
 
 { #category : #accessing }
@@ -94,14 +103,10 @@ TablePresenter >> selectedIndex [
 
 { #category : #accessing }
 TablePresenter >> selectedIndex: anIndex [
-	
 	| selectedIndex selection |
-	selectedIndex := anIndex.
-	selection := self items
-		at: selectedIndex
-		ifAbsent: [ 
-			selectedIndex := 0.
-			nil ].
+
+	selection := self itemAt: index ifAbsent: [ nil ].
+	selectedIndex := selection ifNil: [ 0 ].
 
 	selectionHolder index value: selectedIndex.
 	selectionHolder selection value: selection.

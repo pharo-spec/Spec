@@ -546,7 +546,13 @@ TextPresenter >> text: aText [
 
 { #category : #private }
 TextPresenter >> textArea [
-	^ self widget widget 
+	^ self adapter widget
+]
+
+{ #category : #simulating }
+TextPresenter >> type: aString [ 
+	"For simulation: Do as if we type the given string"
+	self text: aString
 ]
 
 { #category : #api }
@@ -628,6 +634,18 @@ TextPresenter >> whenScrollValueChanged: aBlock [
 
 { #category : #'api-events' }
 TextPresenter >> whenTextChanged: aBlock [
+	"Set a block to perform when the text changed"
+	
+	self
+		deprecated: 'Use #whenTextChangedDo: instead.'
+		transformWith: '`@receiver whenTextChanged: `@statement' 
+			-> '`@receiver whenTextChangedDo: `@statement'.
+	
+	textHolder whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+TextPresenter >> whenTextChangedDo: aBlock [
 	"Set a block to perform when the text changed"
 	
 	textHolder whenChangedDo: aBlock

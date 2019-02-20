@@ -44,6 +44,12 @@ TableBasePresenter >> columns: aCollection [
 	columns := aCollection
 ]
 
+{ #category : #private }
+TableBasePresenter >> doubleClickAction [
+
+	^ doubleClickActionHolder value
+]
+
 { #category : #'api-events' }
 TableBasePresenter >> doubleClickAction: aBlockClosure [ 
 	

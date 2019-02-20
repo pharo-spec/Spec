@@ -39,10 +39,26 @@ AbstractMorphicAdapter >> acceptDroppingMorph: draggedMorph event: event inMorph
 	^ self acceptDropBlock cull: draggedMorph model model cull: event cull: source model model
 ]
 
+{ #category : #initialization }
+AbstractMorphicAdapter >> adapt: aPresenter [
+
+	super adapt: aPresenter.
+	self flag: #TODO. "this should be here, but is interfering with old layouts reason why 
+	 I'm moving it to MorphicLayoutAdapter >> #applyStyle:to:"
+	"self applyStyle: self widget."
+]
+
 { #category : #protocol }
 AbstractMorphicAdapter >> add: aWidget [
 	
 	self widgetDo: [ :w | w ensureLayoutAndAddMorph: aWidget asWidget ]
+]
+
+{ #category : #initialization }
+AbstractMorphicAdapter >> applyStyle: morph [
+	"this will apply general properties to the built morph"
+	
+	self style applyTo: morph
 ]
 
 { #category : #dispatch }
@@ -121,7 +137,7 @@ AbstractMorphicAdapter >> disable [
 { #category : #'drag and drop' }
 AbstractMorphicAdapter >> dragEnabled [
 
-	^ self model dragEnabled
+	^ self presenter dragEnabled
 ]
 
 { #category : #'drag and drop' }
@@ -151,7 +167,7 @@ AbstractMorphicAdapter >> dragTransformationBlock [
 { #category : #'drag and drop' }
 AbstractMorphicAdapter >> dropEnabled [
 
-	^ self model dropEnabled
+	^ self presenter dropEnabled
 ]
 
 { #category : #'drag and drop' }
@@ -295,6 +311,20 @@ AbstractMorphicAdapter >> setBalloonText: aString [
 AbstractMorphicAdapter >> setModal: aWindow [ 
 
 	self widgetDo: [ :w | w setModal: aWindow ]
+]
+
+{ #category : #accessing }
+AbstractMorphicAdapter >> style [
+	"i.e. ButtonAdapter = Button"
+	
+	^ MorphicStyleSheet current atClass: self styleName
+]
+
+{ #category : #accessing }
+AbstractMorphicAdapter >> styleName [
+	"i.e. ButtonAdapter = Button"
+	
+	^ ((self className allButFirst: 7) allButLast: 7) asSymbol
 ]
 
 { #category : #'drag and drop' }

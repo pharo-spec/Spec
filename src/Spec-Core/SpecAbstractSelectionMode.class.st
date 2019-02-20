@@ -39,6 +39,14 @@ SpecAbstractSelectionMode >> includesItem: anItem [
 	self subclassResponsibility
 ]
 
+{ #category : #selecting }
+SpecAbstractSelectionMode >> indexOfItem: anItem [
+	
+	^ self model
+		indexOf: anItem
+		ifAbsent: [ 0 ].
+]
+
 { #category : #testing }
 SpecAbstractSelectionMode >> isEmpty [
 	
@@ -56,7 +64,7 @@ SpecAbstractSelectionMode >> model [
 	^ widget model
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpecAbstractSelectionMode >> selectAll [
 
 	^ self subclassResponsibility
@@ -65,24 +73,25 @@ SpecAbstractSelectionMode >> selectAll [
 { #category : #selecting }
 SpecAbstractSelectionMode >> selectIndex: anIndex [
 	
-	| indexToSelect |
-	indexToSelect := anIndex.
-	self model
-		at: indexToSelect
-		ifAbsent: [ indexToSelect := 0 ].
+	self basicSelectIndex: (self withinRangeIndex: anIndex)
+]
 
-	self basicSelectIndex: indexToSelect
+{ #category : #selecting }
+SpecAbstractSelectionMode >> selectIndexes: aCollection [
+
+	self subclassResponsibility
 ]
 
 { #category : #selecting }
 SpecAbstractSelectionMode >> selectItem: anItem [
 	
-	| indexToSelect |
-	indexToSelect := self model
-		indexOf: anItem
-		ifAbsent: [ 0 ].
-	
-	self basicSelectIndex: indexToSelect
+	self basicSelectIndex: (self indexOfItem: anItem)
+]
+
+{ #category : #selecting }
+SpecAbstractSelectionMode >> selectedIndexes [
+
+	self subclassResponsibility
 ]
 
 { #category : #'as yet unclassified' }
@@ -97,10 +106,22 @@ SpecAbstractSelectionMode >> transferSubscriptionsTo: anotherSelectionMode [
 	self subscriptions do: [ :aSubscription | anotherSelectionMode addSubscription: aSubscription ].
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpecAbstractSelectionMode >> unselectAll [
 	
 	self subclassResponsibility
+]
+
+{ #category : #selecting }
+SpecAbstractSelectionMode >> unselectIndex: anInteger [ 
+	
+	self subclassResponsibility
+]
+
+{ #category : #selecting }
+SpecAbstractSelectionMode >> unselectItem: anInteger [ 
+	
+	self unselectIndex: (self indexOfItem: anInteger)
 ]
 
 { #category : #events }
@@ -117,4 +138,15 @@ SpecAbstractSelectionMode >> widget [
 { #category : #accessing }
 SpecAbstractSelectionMode >> widget: anObject [
 	widget := anObject
+]
+
+{ #category : #selecting }
+SpecAbstractSelectionMode >> withinRangeIndex: anIndex [
+	
+	| indexToSelect |
+	indexToSelect := anIndex.
+	self model
+		at: indexToSelect
+		ifAbsent: [ indexToSelect := 0 ].
+	^ indexToSelect
 ]

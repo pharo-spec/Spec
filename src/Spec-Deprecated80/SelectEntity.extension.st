@@ -14,6 +14,6 @@ SelectEntity >> ghostText: aText [
 
 { #category : #'*Spec-Deprecated80' }
 SelectEntity >> whenGhostTextChanged: aBlock [
-	self deprecated: 'This API is too tight to Morph. Use #whenPlaceholderChanged: instead.' transformWith: '`@receiver whenGhostTextChanged: `@statement' -> '`@receiver whenPlaceholderChanged: `@statement'.
-	self whenPlaceholderChanged: aBlock
+	self deprecated: 'This API is too tight to Morph. Use #whenPlaceholderChanged: instead.' transformWith: '`@receiver whenGhostTextChanged: `@statement' -> '`@receiver whenPlaceholderChangedDo: `@statement'.
+	self whenPlaceholderChangedDo: aBlock
 ]

@@ -38,32 +38,9 @@ RadioButtonGroupPresenterTest >> testAddingFocusOrder [
 ]
 
 { #category : #tests }
-RadioButtonGroupPresenterTest >> testCurrentActivated [
-	presenter addRadioButton: radio1.
-	self assert: presenter currentActivated equals: nil.
-	radio1 click.
-	self assert: presenter currentActivated equals: radio1
-]
-
-{ #category : #tests }
 RadioButtonGroupPresenterTest >> testDefault [
 	presenter addRadioButton: radio1.
 	self deny: radio1 state
-]
-
-{ #category : #tests }
-RadioButtonGroupPresenterTest >> testLinkRadioButton [
-	presenter
-		addRadioButton: radio1;
-		addRadioButton: radio2.
-	self deny: radio1 state.
-	self deny: radio2 state.
-	radio1 click.
-	self assert: radio1 state.
-	self deny: radio2 state.
-	radio2 click.
-	self deny: radio1 state.
-	self assert: radio2 state
 ]
 
 { #category : #tests }

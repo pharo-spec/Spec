@@ -386,7 +386,7 @@ MessageBrowser >> handleMethodModified: anAnnouncement [
 	refreshingBlockHolder ifNil: [ ^ self ].
 	item := anAnnouncement newMethod.
 	oldItem := anAnnouncement oldMethod.
-	sel := listModel selectedItem.
+	sel := listModel selection selectedItem.
 	sel ifNil: [ ^ self ].
 	(sel methodClass = oldItem methodClass
 		and: [ sel selector = oldItem selector ])
@@ -412,29 +412,29 @@ MessageBrowser >> handleMethodModified: anAnnouncement [
 
 { #category : #announcements }
 MessageBrowser >> handleMethodRemoved: anAnnouncement [
-	| item sel itm |
+	| item selection removeItem |
 	
 	self isDisplayed ifFalse: [ ^ self ].
 	refreshingBlockHolder ifNil: [ ^ self ].
 	self okToChange ifFalse: [ ^ self ].
 	
-	item := anAnnouncement method.	"Item is a compiled methed, where the list is populated with RGMethod"
-	
-	((item methodClass notNil) and:[item methodClass isObsolete not]) ifFalse:[ ^ self ].
-	
-	sel := listModel selectedIndex.
-	itm := listModel selectedItem.
-	
-	(itm notNil and: [ itm methodClass = item methodClass and: [ itm selector = item selector ] ])
+	"Item is a compiled methed, where the list is populated with RGMethod"
+	item := anAnnouncement method.	
+	(item methodClass notNil and: [ item methodClass isObsolete not ])
+		ifFalse: [ ^ self ].
+		
+	selection := listModel selectedIndex.
+	removeItem := listModel selectedItem.
+	(removeItem notNil 
+		and: [ removeItem methodClass = item methodClass
+		and: [ removeItem selector = item selector ] ])
 		ifTrue: [ textModel hasUnacceptedEdits: false ].
 	
-	self
-		messages:
-			(listModel listItems
-				remove: item asFullRingDefinition ifAbsent: [ nil ];
-				yourself).
-	
-	listModel setSelectedIndex: sel
+	self messages: (listModel listItems
+		remove: item asFullRingDefinition ifAbsent: [ nil ];
+		yourself).
+
+	listModel selectedIndex: selection
 ]
 
 { #category : #private }
@@ -465,24 +465,13 @@ MessageBrowser >> initializeDropList [
 
 { #category : #initialization }
 MessageBrowser >> initializePresenter [
-	listModel
-		whenSelectionChangedDo: [ :selection | | item |
-			item := selection selectedItem.
-			toolbarModel method: item.
-			textModel
-				behavior: (item ifNil: [ nil ] ifNotNil: [ item methodClass ]).
-			textModel doItReceiver: textModel behavior.
-			textModel
-				text:
-					(self textConverter
-						method: item;
-						getText).
-			textModel clearUndoManager.
-			self installIconStylerFor: item ].
+	
+	listModel whenSelectionChangedDo: [ :selection | 
+		[ :item | self selectItem: item ] cull: selection selectedItem ].
 	listModel whenListChanged: [ self updateTitle ].
 	titleHolder whenChangedDo: [ self updateTitle ].
-	textModel
-		acceptBlock: [ :text :notifyer | (self accept: text notifying: notifyer) notNil ]
+	textModel acceptBlock: [ :text :notifyer | 
+		(self accept: text notifying: notifyer) notNil ]
 ]
 
 { #category : #initialization }
@@ -557,12 +546,11 @@ MessageBrowser >> messages [
 
 { #category : #api }
 MessageBrowser >> messages: aCollection [
+
 	self cacheHierarchyForClasses: aCollection.
-	listModel
-		items:
-			(cachedHierarchy keys
-				sort: [ :a :b | self sortClassesInCachedHierarchy: a b: b ])
-				asOrderedCollection.
+	listModel items: (cachedHierarchy keys
+		sort: [ :a :b | self sortClassesInCachedHierarchy: a b: b ])
+		asOrderedCollection.
 	listModel listSize > 0
 		ifTrue: [ listModel selectIndex: 1 ]
 ]
@@ -693,6 +681,19 @@ MessageBrowser >> searchedString: searchedString in: aString [
 	^ interval
 ]
 
+{ #category : #private }
+MessageBrowser >> selectItem: item [
+	toolbarModel method: item.
+	textModel behavior: (item ifNotNil: [ item methodClass ]).
+	textModel doItReceiver: textModel behavior.
+	textModel text: (self textConverter
+		method: item;
+		getText).
+	textModel clearUndoManager.
+	self installIconStylerFor: item
+
+]
+
 { #category : #api }
 MessageBrowser >> selectedClass [
 	^ self selectedMethod origin
@@ -700,14 +701,12 @@ MessageBrowser >> selectedClass [
 
 { #category : #accessing }
 MessageBrowser >> selectedItem [
-
-	^ listModel selectedItem
+	^ listModel selection selectedItem
 ]
 
 { #category : #api }
 MessageBrowser >> selectedMessage [
-
-	^ listModel selectedItem
+	^ listModel selection selectedItem
 ]
 
 { #category : #api }
@@ -759,7 +758,7 @@ MessageBrowser >> setRefreshingBlockForSendersOf: aSelector [
 { #category : #api }
 MessageBrowser >> setSelectedIndex: anIndex [
 
-	listModel setSelectedIndex: anIndex 
+	listModel selectedIndex: anIndex
 ]
 
 { #category : #announcements }

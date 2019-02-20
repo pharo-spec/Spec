@@ -38,23 +38,46 @@ SpecSingleSelectionMode >> initialize [
 	selectedIndexValueHolder := 0 asValueHolder
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpecSingleSelectionMode >> selectAll [
 
 	"Do nothing"
 ]
 
-{ #category : #accessing }
+{ #category : #selecting }
+SpecSingleSelectionMode >> selectIndexes: aCollection [
+
+	aCollection ifEmpty: [ ^ self unselectAll ].
+	self selectIndex: aCollection first.
+]
+
+{ #category : #selecting }
 SpecSingleSelectionMode >> selectedIndex [
 	
 	^ selectedIndexValueHolder value
 ]
 
-{ #category : #accessing }
+{ #category : #selecting }
+SpecSingleSelectionMode >> selectedIndexes [
+	"This provides polymorphism with sibling classes, and answers an array with a single 
+	 element."
+		
+	^ self isEmpty
+		ifTrue: [ #() ]
+		ifFalse: [ { self selectedIndex } ]
+]
+
+{ #category : #selecting }
 SpecSingleSelectionMode >> selectedItem [
 
 	self selectedIndex = 0 ifTrue: [ ^ nil ].
 	^ self model at: self selectedIndex
+]
+
+{ #category : #selecting }
+SpecSingleSelectionMode >> selectedItems [
+	
+	^ { self selectedItem }
 ]
 
 { #category : #'as yet unclassified' }
@@ -63,14 +86,21 @@ SpecSingleSelectionMode >> subscriptions [
 	^ selectedIndexValueHolder announcer subscriptions subscriptions
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpecSingleSelectionMode >> unselectAll [
 	
 	self selectIndex: 0
 ]
 
+{ #category : #selecting }
+SpecSingleSelectionMode >> unselectIndex: anInteger [ 
+
+	(selectedIndexValueHolder value = anInteger)
+		ifTrue: [ selectedIndexValueHolder value: 0 ]
+]
+
 { #category : #events }
 SpecSingleSelectionMode >> whenChangedDo: aBlockClosure [ 
 	
-	selectedIndexValueHolder whenChangedDo: [ aBlockClosure value: self ]
+	selectedIndexValueHolder whenChangedDo: [ aBlockClosure cull: self ]
 ]

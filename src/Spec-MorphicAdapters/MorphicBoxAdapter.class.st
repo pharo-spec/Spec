@@ -8,16 +8,6 @@ Class {
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
-{ #category : #factory }
-MorphicBoxAdapter >> add: aPresenter constraints: constraints [
- 
-	self widgetDo: [ :aPanel | 
-		self 
-			basicAdd: aPresenter 
-			constaints: constraints 
-			to: aPanel ]
-]
-
 { #category : #private }
 MorphicBoxAdapter >> addConstraits: constraints toChild: childMorph [
 	"adds constraits by child"
@@ -53,15 +43,15 @@ MorphicBoxAdapter >> addConstraits: constraints toChild: childMorph [
 ]
 
 { #category : #private }
-MorphicBoxAdapter >> basicAdd: aPresenter constaints: constraints to: aPanel [
+MorphicBoxAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
 	| childMorph |
 
-	childMorph := self 
-		addConstraits: constraints 
-		toChild: (aPresenter buildWithSpec: constraints spec).
+	childMorph := self buildMorph: aPresenter constraints: constraints.	
 	constraints isPlacedAtStart
 		ifTrue: [ aPanel submorphs first addMorphBack: childMorph ]
-		ifFalse: [ aPanel submorphs second addMorphBack: childMorph ]
+		ifFalse: [ aPanel submorphs second addMorphBack: childMorph ].
+		
+	^ childMorph
 ]
 
 { #category : #factory }
@@ -69,9 +59,10 @@ MorphicBoxAdapter >> layout: aLayout [
 
 	"build of widget was differed up to here (to know what is the direction)"
 	widget := aLayout direction newWidgetOn: self.
-	widget 
-		borderWidth: aLayout borderWidth;
-		cellInset: aLayout spacing.
+	widget borderWidth: aLayout borderWidth.
+	"the spacing needs to be applied to the inner sub-panels"
+	widget submorphs do: [ :each |
+		each cellInset: aLayout spacing ].
 	"widget homogeneous: aLayout isHomogeneous"
 ]
 
@@ -99,6 +90,7 @@ MorphicBoxAdapter >> newPanel [
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		color: Color transparent;
+		borderColor: Color transparent;
 		yourself
 ]
 
