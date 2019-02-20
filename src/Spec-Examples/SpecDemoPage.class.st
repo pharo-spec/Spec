@@ -39,27 +39,33 @@ SpecDemoPage >> codeFor: aClass [
 
 { #category : #initialization }
 SpecDemoPage >> codeTab [
-	^ NotebookPage
-		title: 'Code'
-		icon: (self iconNamed: #changeUpdate)
-		provider: [ self newCode
+	^ self newTab
+		label: 'Code';
+		icon: (self iconNamed: #changeUpdate);
+		presenter:
+			(self newCode
 				text: (self codeFor: self pageClass);
-				yourself ]
+				yourself);
+		yourself
 ]
 
 { #category : #initialization }
 SpecDemoPage >> exampleTab [
-	^ NotebookPage title: 'Example' icon: (self iconNamed: #smallPaint) provider: [ self instantiate: self pageClass ]
+	^ self newTab
+		label: 'Example';
+		icon: (self iconNamed: #smallPaint);
+		presenter: (self instantiate: self pageClass);
+		yourself
 ]
 
 { #category : #initialization }
 SpecDemoPage >> initializeWidgets [
 
-	tabManager := self newNotebook.
+	tabManager := self newTabManager.
 	"tabManager whenTabSelected: [ self updateTitle ]."
 	tabManager
-		addPage: self exampleTab;
-		addPage: self codeTab.
+		addTab: self exampleTab;
+		addTab: self codeTab.
 ]
 
 { #category : #initialization }

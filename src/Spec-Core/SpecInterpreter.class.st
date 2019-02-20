@@ -11,9 +11,6 @@ Class {
 		'presenter',
 		'selector'
 	],
-	#classInstVars : [
-		'bindings'
-	],
 	#category : #'Spec-Core-Utilities'
 }
 

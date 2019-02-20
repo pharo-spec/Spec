@@ -55,7 +55,7 @@ SpecDialogWindow >> initialExtent [
 						ifNil: [ super initialExtent ]]
 ]
 
-{ #category : #initialize }
+{ #category : #initialization }
 SpecDialogWindow >> initialize [
 	super initialize.
 	self beResizeable

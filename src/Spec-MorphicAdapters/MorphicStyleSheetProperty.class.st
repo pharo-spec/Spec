@@ -5,9 +5,6 @@ I have a name (something that identifies me), and I can be applies to a morph (s
 Class {
 	#name : #MorphicStyleSheetProperty,
 	#superclass : #Object,
-	#instVars : [
-		'value'
-	],
 	#category : #'Spec-MorphicAdapters-StyleSheet'
 }
 
