@@ -47,6 +47,11 @@ MorphicColumnedListCommonPropertiestTest >> testListWithoutColumnsHasSingleColum
 { #category : #tests }
 MorphicColumnedListCommonPropertiestTest >> testShowColumnHeadersInPresenterShowsThemInWidget [
 
+	SystemVersion current major = 7
+		ifTrue: [
+			"Test failing in Pharo7 due to a bug in FastTable"
+			^ self skip ].
+
 	self presenter showColumnHeaders.
 	
 	self assert: self widget container headerRow notNil
