@@ -10,15 +10,7 @@ MorphicAbstractListCommonPropertiestTest class >> isAbstract [
 ]
 
 { #category : #running }
-MorphicAbstractListCommonPropertiestTest >> setUp [
-
-	super setUp.
-	self setUpPresenter.
-	window := presenter openWithSpec.
-]
-
-{ #category : #running }
-MorphicAbstractListCommonPropertiestTest >> setUpPresenter [
+MorphicAbstractListCommonPropertiestTest >> initializeTestedInstance [ 
 
 	presenter items: #(10 20 30).
 ]
@@ -32,10 +24,10 @@ MorphicAbstractListCommonPropertiestTest >> testDoubleClickActivatesRowInDoubleC
 	self presenter whenActivatedDo: [ activated := true ].
 	
 	self widget doubleClick: (MouseEvent new
-		setPosition: 1@1;
+		setPosition: self widget submorphs first submorphs first bounds center;
 		yourself).
 	
-	self assert: activated.
+	self assert: [activated].
 ]
 
 { #category : #running }
@@ -53,5 +45,5 @@ MorphicAbstractListCommonPropertiestTest >> testSingleClickActivatesRowInSingleC
 		setPosition: self widget submorphs first submorphs first bounds center;
 		yourself).
 	
-	self assert: activated.
+	self assert: [activated].
 ]

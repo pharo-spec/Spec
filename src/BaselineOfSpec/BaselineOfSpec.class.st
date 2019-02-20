@@ -30,6 +30,13 @@ BaselineOfSpec >> baseline: spec [
 		spec 
 			preLoadDoIt: #addHackToLoadSpec;
 			postLoadDoIt: #removeHackToLoadSpec.
+			
+		spec 
+			baseline: 'ParametrizedTests' 
+			with: [ 
+				spec
+					repository: 'github://tesonep/ParametrizedTests/src';
+  					loads: 'default' ].
 
 		spec 
 			package: 'Spec-Core' with: [ spec requires: #('Spec-Layout') ];
@@ -41,7 +48,8 @@ BaselineOfSpec >> baseline: spec [
 			package: 'Spec-Tools' with: [ spec requires: #('Spec-PolyWidgets') ];
 			package: 'Spec-StubAdapter' with: [ spec requires: #('Spec-Core') ];
 			package: 'Spec-Examples' with: [ spec requires: #('Spec-Tools' 'Spec-Inspector') ];
-			package: 'Spec-Tests' with: [ spec requires: #('Spec-PolyWidgets' 'Spec-Examples') ] ].
+			package: 'Spec-Tests' with: [ spec requires: #('Spec-PolyWidgets' 'Spec-Examples') ];
+			package: 'Spec-MorphicBackendTests' with: [ spec requires: #( 'Spec-MorphicAdapters' 'ParametrizedTests') ] ].
 	spec for: #'pharo7.x' do: [ 
 		spec package: 'Spec-Pharo7To8Compatibility' ]
 ]
