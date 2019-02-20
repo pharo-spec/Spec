@@ -37,8 +37,10 @@ SpecCollectionListModel >> collection [
 
 { #category : #accessing }
 SpecCollectionListModel >> collection: anObject [
+
 	collection := anObject.
-	self refreshList
+	self refreshList.
+	self triggerListChanged
 ]
 
 { #category : #accessing }
@@ -85,8 +87,15 @@ SpecCollectionListModel >> size [
 	^ collection size
 ]
 
+{ #category : #private }
+SpecCollectionListModel >> triggerListChanged [
+
+	changedBlock ifNil: [ ^ self ].
+	changedBlock value
+]
+
 { #category : #events }
-SpecCollectionListModel >> whenChangedDo: aBlockClosure [ 
+SpecCollectionListModel >> whenChangedDo: aBlockClosure [
 	
 	changedBlock := aBlockClosure
 ]
