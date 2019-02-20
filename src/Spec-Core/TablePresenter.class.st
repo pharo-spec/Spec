@@ -95,14 +95,14 @@ TablePresenter >> selectItem: anItem [
 	self selectedItem: anItem
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 TablePresenter >> selectedIndex [
-	
+
 	^ selectionHolder index value
 ]
 
 { #category : #accessing }
-TablePresenter >> selectedIndex: anIndex [
+TablePresenter >> selectedIndex: index [
 	| selectedIndex selection |
 
 	selection := self itemAt: index ifAbsent: [ nil ].
@@ -112,9 +112,9 @@ TablePresenter >> selectedIndex: anIndex [
 	selectionHolder selection value: selection.
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 TablePresenter >> selectedItem [
-	
+
 	^ selectionHolder selection value
 ]
 
