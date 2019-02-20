@@ -91,60 +91,6 @@ TableBasePresenter >> isShowingColumnHeaders [
 	^ showColumnHeadersHolder value
 ]
 
-{ #category : #accessing }
-TableBasePresenter >> items [
-	^ self subclassResponsibility
-]
-
-{ #category : #api }
-TableBasePresenter >> selectIndex: anIndex [
-	"Alias to make the API better."
-
-	self selectedIndex: anIndex
-]
-
-{ #category : #api }
-TableBasePresenter >> selectItem: anItem [
-	"Alias to make the API better."
-
-	self selectedItem: anItem
-]
-
-{ #category : #accessing }
-TableBasePresenter >> selectedIndex [
-	
-	^ selectionHolder index value
-]
-
-{ #category : #accessing }
-TableBasePresenter >> selectedIndex: anIndex [
-	
-	| selectedIndex selection |
-	selectedIndex := anIndex.
-	selection := self items
-		at: selectedIndex
-		ifAbsent: [ 
-			selectedIndex := 0.
-			nil ].
-
-	selectionHolder index value: selectedIndex.
-	selectionHolder selection value: selection.
-]
-
-{ #category : #accessing }
-TableBasePresenter >> selectedItem [
-	
-	^ selectionHolder selection value
-]
-
-{ #category : #accessing }
-TableBasePresenter >> selectedItem: anInteger [ 
-	
-	| index |
-	index := self items indexOf: anInteger.
-	self selectedIndex: index
-]
-
 { #category : #api }
 TableBasePresenter >> showColumnHeaders [
 

@@ -17,11 +17,6 @@ TableBasePresenterTest >> columnToAdd [
 	^ self subclassResponsibility
 ]
 
-{ #category : #helpers }
-TableBasePresenterTest >> elementAtTheSecondIndex [
-	^ self subclassResponsibility
-]
-
 { #category : #tests }
 TableBasePresenterTest >> testAddColumn [
 	self assertEmpty: presenter columns.
@@ -29,29 +24,7 @@ TableBasePresenterTest >> testAddColumn [
 	self assert: presenter columns size equals: 1
 ]
 
-{ #category : #test }
-TableBasePresenterTest >> testSelectIndex [
-	| selectedIndexChanged |
-	selectedIndexChanged := false.
-	presenter whenSelectedIndexChangedDo: [ selectedIndexChanged := true ].
-	presenter selectIndex: 2.
-	self assert: selectedIndexChanged.
-	self assert: presenter selectedIndex equals: 2.
-	self assert: presenter selectedItem equals: self elementAtTheSecondIndex
-]
-
-{ #category : #test }
-TableBasePresenterTest >> testSelectItem [
-	| selectedItemChanged |
-	selectedItemChanged := false.
-	presenter whenSelectedItemChangedDo: [ selectedItemChanged := true ].
-	presenter selectItem: self elementAtTheSecondIndex.
-	self assert: selectedItemChanged.
-	self assert: presenter selectedItem equals: self elementAtTheSecondIndex.
-	self assert: presenter selectedIndex equals: 2
-]
-
-{ #category : #test }
+{ #category : #tests }
 TableBasePresenterTest >> testWhenIsResizableChangedDo [
 	| count element |
 	count := 0.
@@ -65,36 +38,4 @@ TableBasePresenterTest >> testWhenIsResizableChangedDo [
 	presenter beNotResizable.
 	self assert: count equals: 2.
 	self deny: element
-]
-
-{ #category : #test }
-TableBasePresenterTest >> testWhenSelectedIndexChangedDo [
-	"We need to change the selection implementation to make this test pass"
-
-	<expectedFailure>
-	| count element |
-	count := 0.
-	presenter
-		whenSelectedIndexChangedDo: [ :new | 
-			count := count + 1.
-			element := new ].
-	presenter selectedIndex: 2.
-	self assert: count equals: 1.
-	self assert: element equals: self elementAtTheSecondIndex
-]
-
-{ #category : #test }
-TableBasePresenterTest >> testWhenSelectedItemChangedDo [
-	"We need to change the selection implementation to make this test pass"
-
-	<expectedFailure>
-	| count element |
-	count := 0.
-	presenter
-		whenSelectedItemChangedDo: [ :new | 
-			count := count + 1.
-			element := new ].
-	presenter selected: self elementAtTheSecondIndex.
-	self assert: count equals: 1.
-	self assert: element equals: self elementAtTheSecondIndex
 ]

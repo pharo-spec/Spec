@@ -71,3 +71,52 @@ TablePresenter >> itemsChanged [
 
 	self changed: #items
 ]
+
+{ #category : #api }
+TablePresenter >> selectIndex: anIndex [
+	"Alias to make the API better."
+
+	self selectedIndex: anIndex
+]
+
+{ #category : #api }
+TablePresenter >> selectItem: anItem [
+	"Alias to make the API better."
+
+	self selectedItem: anItem
+]
+
+{ #category : #accessing }
+TablePresenter >> selectedIndex [
+	
+	^ selectionHolder index value
+]
+
+{ #category : #accessing }
+TablePresenter >> selectedIndex: anIndex [
+	
+	| selectedIndex selection |
+	selectedIndex := anIndex.
+	selection := self items
+		at: selectedIndex
+		ifAbsent: [ 
+			selectedIndex := 0.
+			nil ].
+
+	selectionHolder index value: selectedIndex.
+	selectionHolder selection value: selection.
+]
+
+{ #category : #accessing }
+TablePresenter >> selectedItem [
+	
+	^ selectionHolder selection value
+]
+
+{ #category : #accessing }
+TablePresenter >> selectedItem: anInteger [ 
+	
+	| index |
+	index := self items indexOf: anInteger.
+	self selectedIndex: index
+]
