@@ -7,6 +7,12 @@ FTTableMorph >> basicSelectIndexes: aCollection [
 ]
 
 { #category : #'*Spec-Pharo7To8Compatibility' }
+FTTableMorph >> selectIndex: anInteger [ 
+	
+	self selectRowIndex: anInteger
+]
+
+{ #category : #'*Spec-Pharo7To8Compatibility' }
 FTTableMorph >> selectedIndexes [
 	
 	^ self selectedRowIndexes
