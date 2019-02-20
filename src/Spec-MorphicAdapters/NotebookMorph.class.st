@@ -2,8 +2,7 @@ Class {
 	#name : #NotebookMorph,
 	#superclass : #TabGroupMorph,
 	#instVars : [
-		'headerMorph',
-		'tabSelectorWidth'
+		'headerMorph'
 	],
 	#category : #'Spec-MorphicAdapters-Notebook'
 }

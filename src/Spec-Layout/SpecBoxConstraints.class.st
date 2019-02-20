@@ -71,7 +71,7 @@ SpecBoxConstraints >> height: anObject [
 	height := anObject
 ]
 
-{ #category : #testing }
+{ #category : #initialization }
 SpecBoxConstraints >> initialize [ 
 
 	super initialize.

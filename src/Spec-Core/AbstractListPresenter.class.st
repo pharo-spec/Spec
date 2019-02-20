@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'selectionMode',
 		'multiSelectionHolder',
-		'selectionHolder',
 		'sortingBlockHolder',
 		'filteringBlockHolder',
 		'autoDeselect',

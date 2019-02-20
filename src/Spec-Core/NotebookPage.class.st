@@ -9,7 +9,6 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'owner',
-		'presenter',
 		'presenterProvider',
 		'titleHolder',
 		'iconHolder'

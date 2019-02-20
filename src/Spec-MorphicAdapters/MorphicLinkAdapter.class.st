@@ -7,9 +7,6 @@ I am the adapter used to bridge a URLPresenter and a morphic
 Class {
 	#name : #MorphicLinkAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#instVars : [
-		'previousCursor'
-	],
 	#category : #'Spec-MorphicAdapters-Base'
 }
 

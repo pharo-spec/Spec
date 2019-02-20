@@ -6,8 +6,7 @@ Class {
 	#instVars : [
 		'#columns => SpecObservableSlot',
 		'#showColumnHeaders => SpecObservableSlot',
-		'#isResizableHolder',
-		'#itemsHolder'
+		'#isResizableHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
