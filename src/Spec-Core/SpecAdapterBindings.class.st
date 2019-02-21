@@ -37,7 +37,7 @@ SpecAdapterBindings >> allAdapters [
 	^ self abstractAdapterClass allAdapters
 ]
 
-{ #category : #initialize }
+{ #category : #initialization }
 SpecAdapterBindings >> initialize [
 
 	super initialize.

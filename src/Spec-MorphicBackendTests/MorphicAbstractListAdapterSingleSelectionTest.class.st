@@ -39,27 +39,25 @@ MorphicAbstractListAdapterSingleSelectionTest >> testReplaceItemListUpdatesWidge
 MorphicAbstractListAdapterSingleSelectionTest >> testSelectManyIndexesKeepsLastSelectionInWidget [
 	presenter selectIndex: 1.
 	presenter selectIndex: 2.
-	self assert: presenter adapter widget selectedRowIndexes equals: #(2)
+	self assert: self widget selectedIndexes equals: #(2)
 ]
 
 { #category : #'tests-model-to-widget' }
 MorphicAbstractListAdapterSingleSelectionTest >> testSelectPresenterIndexOutsideRangeUnsetsSelectedIndexInWidget [
 	presenter selectIndex: 100.
-	self assert: presenter adapter widget selectedRowIndexes isEmpty
+	self assert: self widget selectedIndexes isEmpty
 ]
 
 { #category : #'tests-model-to-widget' }
 MorphicAbstractListAdapterSingleSelectionTest >> testSelectPresenterIndexSetsSelectedIndexInWidget [
 	presenter selectIndex: 1.
-	self
-		assert: (presenter adapter widget selectedRowIndexes includes: 1)
+	self assert: (self widget selectedIndexes includes: 1)
 ]
 
 { #category : #'tests-model-to-widget' }
 MorphicAbstractListAdapterSingleSelectionTest >> testSelectPresenterItemSetsSelectedIndexInWidget [
 	presenter selectItem: 20.
-	self
-		assert: (presenter adapter widget selectedRowIndexes includes: 2)
+	self assert: (self widget selectedIndexes includes: 2)
 ]
 
 { #category : #'tests-widget-to-model' }
@@ -68,7 +66,7 @@ MorphicAbstractListAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSele
 	counter := 0.
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
-	presenter adapter widget selectRowIndex: 1.
+	self widget selectIndex: 1.
 	self assert: counter equals: 1
 ]
 
@@ -77,7 +75,7 @@ MorphicAbstractListAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSele
 	| selectedIndex |
 	presenter selection
 		whenChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
-	presenter adapter widget selectRowIndex: 1.
+	self widget selectIndex: 1.
 	self assert: selectedIndex equals: 1
 ]
 
@@ -93,7 +91,7 @@ MorphicAbstractListAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesEm
 	| gotSelection |
 	presenter selection
 		whenChangedDo: [ :selection | gotSelection := selection ].
-	presenter adapter widget selectRowIndex: 0.
+	self widget selectIndex: 0.
 	self assert: gotSelection isEmpty
 ]
 
@@ -103,7 +101,7 @@ MorphicAbstractListAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesSe
 	counter := 0.
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
-	presenter adapter widget selectRowIndex: 0.
+	self widget selectIndex: 0.
 	self assert: counter equals: 1
 ]
 
@@ -112,7 +110,7 @@ MorphicAbstractListAdapterSingleSelectionTest >> testUnselectPresenterIndexUnsel
 	presenter
 		selectIndex: 1;
 		unselectIndex: 1.
-	self assert: presenter adapter widget selectedRowIndexes isEmpty
+	self assert: self widget selectedIndexes isEmpty
 ]
 
 { #category : #'tests-model-to-widget' }
@@ -120,7 +118,7 @@ MorphicAbstractListAdapterSingleSelectionTest >> testUnselectPresenterItemUnsele
 	presenter
 		selectItem: 20;
 		unselectItem: 20.
-	self assert: presenter adapter widget selectedRowIndexes isEmpty
+	self assert: self widget selectedIndexes isEmpty
 ]
 
 { #category : #'tests-widget-to-model' }
@@ -129,7 +127,7 @@ MorphicAbstractListAdapterSingleSelectionTest >> testUnselectUnselectedWidgetInd
 	counter := 0.
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
-	presenter adapter widget selectRowIndex: 0.
+	self widget selectIndex: 0.
 	self assert: counter equals: 1
 ]
 
@@ -138,7 +136,7 @@ MorphicAbstractListAdapterSingleSelectionTest >> testUnselectUnselectedWidgetInd
 	| selectedIndex |
 	presenter selection
 		whenChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
-	presenter adapter widget selectRowIndex: 0.
+	self widget selectIndex: 0.
 	self assert: selectedIndex equals: 0
 ]
 
@@ -146,20 +144,20 @@ MorphicAbstractListAdapterSingleSelectionTest >> testUnselectUnselectedWidgetInd
 MorphicAbstractListAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	counter := 0.
-	presenter adapter widget selectRowIndex: 1.
+	self widget selectIndex: 1.
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
-	presenter adapter widget selectRowIndex: 0.
+	self widget selectIndex: 0.
 	self assert: counter equals: 1
 ]
 
 { #category : #'tests-widget-to-model' }
 MorphicAbstractListAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedIndex |
-	presenter adapter widget selectRowIndex: 1.
+	self widget selectIndex: 1.
 	presenter selection
 		whenChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
-	presenter adapter widget selectRowIndex: 0.
+	self widget selectIndex: 0.
 	self assert: selectedIndex equals: 0
 ]
 

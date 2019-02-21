@@ -68,7 +68,7 @@ SpecCollectionListModel >> indexOf: anIndex ifAbsent: aBlock [
 	^ collection indexOf: anIndex ifAbsent: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 SpecCollectionListModel >> initialize [
 
 	super initialize.

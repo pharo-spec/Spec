@@ -118,7 +118,7 @@ SpecGridLayout >> constraintsClass [
 	^ SpecGridConstraints
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 SpecGridLayout >> initialize [ 
 
 	super initialize.

@@ -149,7 +149,7 @@ MorphicWindowAdapter >> initialExtent [
 	^ self model initialExtent
 ]
 
-{ #category : #initialize }
+{ #category : #initialization }
 MorphicWindowAdapter >> initialize [
 
 	super initialize.

@@ -49,6 +49,7 @@ MorphicTextInputFieldAdapter >> buildWidget [
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		acceptOnCR: self acceptOnCR;
+		maxLength: self presenter maxLength;
 		hideScrollBarsIndefinitely.
 
 	self presenter whenTextChangedDo: [ :text | plu setText: text ].

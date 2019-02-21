@@ -6,8 +6,7 @@ Class {
 	#superclass : #ColumnedListPresenter,
 	#instVars : [
 		'iconHolder',
-		'handlesDoubleClick',
-		'doubleClick'
+		'handlesDoubleClick'
 	],
 	#category : #'Spec-Core-Widgets'
 }

@@ -20,6 +20,11 @@ MorphicButtonAdapterTest >> emulateCenterClick [
 MorphicButtonAdapterTest >> emulateClick: mouseButtonCode [
 
 	| btn evt |
+	"Force opening the spec instance here.
+	The action should have been correctly configured before
+	depending on the spec initialization strategy"
+	self openInstance.
+	
 	btn := presenter adapter widget.
 	evt := MouseButtonEvent new setType: nil position: btn center which: mouseButtonCode buttons: mouseButtonCode hand: nil stamp: nil.
 
@@ -42,90 +47,34 @@ MorphicButtonAdapterTest >> emulateRightClick [
 ]
 
 { #category : #running }
-MorphicButtonAdapterTest >> setUp [
-
-	super setUp.
-	self openInstance
-]
-
-{ #category : #running }
 MorphicButtonAdapterTest >> testChangingHelpAffectTheWidget [
 	
 	presenter help: 'ALabel'.
-
-	self openInstance.
-
-	self assert: presenter adapter widget helpText equals: 'ALabel'
-]
-
-{ #category : #running }
-MorphicButtonAdapterTest >> testChangingHelpAffectTheWidgetAfterOpen [
-	
-
-	self openInstance.
-
-	presenter help: 'ALabel'.
-
-	self assert: presenter adapter widget helpText equals: 'ALabel'
+	self assert: self widget helpText equals: 'ALabel'
 ]
 
 { #category : #running }
 MorphicButtonAdapterTest >> testChangingIconAffectTheWidget [
 	
 	presenter iconName: #pharo.
-	
-	self openInstance.
-
-	self assert: presenter adapter widget label icon form equals: (self iconNamed: #pharo)
-]
-
-{ #category : #running }
-MorphicButtonAdapterTest >> testChangingIconAffectTheWidgetAfterOpen [
-	
-	
-	self openInstance.
-
-	presenter iconName: #pharo.
-
-	self assert: presenter adapter widget label icon form equals: (self iconNamed: #pharo)
+	self assert: self widget label icon form equals: (self iconNamed: #pharo)
 ]
 
 { #category : #running }
 MorphicButtonAdapterTest >> testChangingLabelAffectTheWidget [
 	
 	presenter label: 'ALabel'.
-
-	self openInstance.
-
-	self assert: presenter adapter widget label equals: 'ALabel'
-]
-
-{ #category : #running }
-MorphicButtonAdapterTest >> testChangingLabelAffectTheWidgetAfterOpen [
-	
-	self openInstance.
-
-	presenter label: 'ALabel'.
-
-	self assert: presenter adapter widget label equals: 'ALabel'
+	self assert: self widget label equals: 'ALabel'
 ]
 
 { #category : #running }
 MorphicButtonAdapterTest >> testClickExecuteAction [
-	| actionExecuted |
-	
+	| actionExecuted |	
 	actionExecuted := false.
-	
 	presenter action: [ actionExecuted := true].
 
-	self openInstance.
-
-	self deny: actionExecuted.	
-		
 	self emulateLeftClick.
-	
-	self assert: actionExecuted.	
-
+	self assert: actionExecuted
 ]
 
 { #category : #running }
@@ -134,27 +83,26 @@ MorphicButtonAdapterTest >> testFontAffectsTheWidget [
 	presenter label: 'ALabel'.
 	presenter font: StandardFonts codeFont.
 
-	self openInstance.
+	self assert: self widget label equals: 'ALabel'.
+	self assert: self widget font equals: StandardFonts codeFont.
 
-	self assert: presenter adapter widget label equals: 'ALabel'.
-	self assert: presenter adapter widget font equals: StandardFonts codeFont.
+]
 
+{ #category : #running }
+MorphicButtonAdapterTest >> testNoClickDoesNotExecuteAction [
+	| actionExecuted |
+	actionExecuted := false.
+	presenter action: [ actionExecuted := true].
+
+	self deny: actionExecuted
 ]
 
 { #category : #running }
 MorphicButtonAdapterTest >> testRightClickShouldNotExecuteAction [
 	| actionExecuted |
-	
 	actionExecuted := false.
-	
 	presenter action: [ actionExecuted := true.].
 
-	self openInstance.
-
-	self deny: actionExecuted.
-	
 	self emulateRightClick.
-	
-	self deny: actionExecuted.	
-
+	self deny: actionExecuted
 ]
