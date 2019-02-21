@@ -92,7 +92,6 @@ Class {
 		'focusOrder',
 		'owner',
 		'window',
-		'spec',
 		'extentHolder',
 		'needRebuild',
 		'additionalKeyBindings',
@@ -105,7 +104,8 @@ Class {
 		'inputPorts',
 		'outputPorts',
 		'transmissions',
-		'additionalSubpresentersMap'
+		'additionalSubpresentersMap',
+		'adapter'
 	],
 	#category : #'Spec-Core-Base'
 }
@@ -236,7 +236,7 @@ ComposablePresenter >> aboutText: aString [
 { #category : #accessing }
 ComposablePresenter >> adapter [
 
-	^ spec
+	^ adapter
 ]
 
 { #category : #api }
@@ -1189,13 +1189,14 @@ ComposablePresenter >> show [
 { #category : #accessing }
 ComposablePresenter >> spec [
 
-	^ spec
+	^ adapter
 ]
 
 { #category : #accessing }
-ComposablePresenter >> spec: aSpec [
+ComposablePresenter >> spec: anAdapter [
+	"This is a remaining of other times... spec accesor in fact contains an adapter"
 
-	spec := aSpec
+	adapter := anAdapter
 ]
 
 { #category : #api }
