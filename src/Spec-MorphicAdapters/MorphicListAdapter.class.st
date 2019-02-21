@@ -39,7 +39,6 @@ MorphicListAdapter >> buildWidget [
 	| datasource |
 	datasource := SpecListFastTableDataSource new.
 	datasource model: self model.
-1haltOnce.
 	widget := FTTableMorph new
 		dataSource: datasource;
 		hideColumnHeaders;
