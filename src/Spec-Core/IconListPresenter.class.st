@@ -13,18 +13,14 @@ todo
 "
 Class {
 	#name : #IconListPresenter,
-	#superclass : #ListPresenter,
+	#superclass : #ColumnedListPresenter,
 	#instVars : [
-		'iconHolder'
+		'iconHolder',
+		'iconColumn',
+		'descriptionColumn'
 	],
 	#category : #'Spec-Core-Widgets'
 }
-
-{ #category : #specs }
-IconListPresenter class >> adapterName [
-
-	^ #IconListAdapter
-]
 
 { #category : #example }
 IconListPresenter class >> example [
@@ -54,8 +50,7 @@ IconListPresenter >> icons [
 
 { #category : #api }
 IconListPresenter >> icons: aBlock [
-	"<api: #block getter: #icon registration: #whenIconsChanged: >"
-	"Set a block which takes an item as argument and returns the icon to display in the list"
+
 	iconHolder value: aBlock
 ]
 
@@ -63,8 +58,12 @@ IconListPresenter >> icons: aBlock [
 IconListPresenter >> initialize [
 
 	super initialize.
-
 	iconHolder := [:item | nil ] asValueHolder.
+	self hideColumnHeaders.
+	self
+		addColumn: (iconColumn := (ImageTableColumn title: 'Icon' evaluated: [:item | 
+			self getIconFor: item ]));
+		addColumn: (descriptionColumn := (StringTableColumn title: 'Description' evaluated: #yourself))
 ]
 
 { #category : #'api-events' }

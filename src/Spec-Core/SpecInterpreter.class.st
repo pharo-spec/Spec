@@ -40,7 +40,7 @@ SpecInterpreter >> actionToPerformWithSelector: aSelector arguments: args [
 			We are thinking of killing the interpreter. Maybe later if we know that we are getting the content of a variable of a presenter we can avoid using a catch and directly access the variable."
 			(aSelector last ~= $: and: [ args isEmpty ])
 				ifTrue: [ self subpresenterNamed: aSelector]
-				ifFalse: [ ex resume ] ]
+				ifFalse: [ ex pass ] ]
 ]
 
 { #category : #bindings }

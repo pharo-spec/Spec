@@ -3,10 +3,11 @@ An FastTablePresenter is a spec presenter for a FastTable
 "
 Class {
 	#name : #FastTablePresenter,
-	#superclass : #ListPresenter,
+	#superclass : #ColumnedListPresenter,
 	#instVars : [
 		'iconHolder',
-		'handlesDoubleClick'
+		'handlesDoubleClick',
+		'displayBlock'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -34,6 +35,25 @@ FastTablePresenter class >> exampleMultipleSelection [
 		whenSelectionChangedDo: [ :selection | selection logCr ];
 		openWithSpec.
 	^ example
+]
+
+{ #category : #'api-columns' }
+FastTablePresenter >> addColumn: aColumn [
+
+	aColumn table: self.
+	super addColumn: aColumn.
+]
+
+{ #category : #initialization }
+FastTablePresenter >> displayBlock [
+
+	^ displayBlock
+]
+
+{ #category : #initialization }
+FastTablePresenter >> displayBlock: aBlock [
+
+	displayBlock := aBlock
 ]
 
 { #category : #api }
@@ -72,12 +92,36 @@ FastTablePresenter >> icons: aBlock [
 ]
 
 { #category : #initialization }
+FastTablePresenter >> initialize [
+
+	displayBlock := #yourself.
+	super initialize.
+	self addColumn: SpecFTColumn new
+]
+
+{ #category : #initialization }
 FastTablePresenter >> initializeValueHolders [
 
 	super initializeValueHolders.
 
 	iconHolder := [:item | nil ] asValueHolder.
 	handlesDoubleClick := false asValueHolder.
+]
+
+{ #category : #'api-columns' }
+FastTablePresenter >> numberOfColumns: aNumber [
+
+	columns := OrderedCollection new.
+	((1 to: aNumber) do: [ :index | 
+		self addColumn: (SpecFTArrayIndexColumn index: index) ] )
+]
+
+{ #category : #'api-columns' }
+FastTablePresenter >> numberOfColumns: aNumber withWidths: widths [
+
+	columns := OrderedCollection new.
+	((1 to: aNumber) do: [ :index | 
+		self addColumn: (SpecFTArrayIndexColumn index: index) ] )
 ]
 
 { #category : #initialization }

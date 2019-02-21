@@ -41,7 +41,8 @@ Class {
 	#name : #ListPresenter,
 	#superclass : #AbstractListPresenter,
 	#instVars : [
-		'headerTitle'
+		'headerTitle',
+		'displayBlockValueHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -153,6 +154,23 @@ ListPresenter >> clickOnSelectedItem [
 		ifFalse: [ ^ false ]
 ]
 
+{ #category : #api }
+ListPresenter >> displayBlock [
+	"Return the one argument block used to wrap your domain specific items.
+	The block should return something that can be displayed in a list - like a String or a Text"
+	
+	^ displayBlockValueHolder value
+]
+
+{ #category : #api }
+ListPresenter >> displayBlock: aBlock [
+	"<api: #block getter:#displayBlock registration: #whenDisplayBlockChanged:>"
+	"Set the one argument block used to wrap your domain specific items.
+	The block should return something that can be displayed in a list - like a String or a Text"
+	
+	displayBlockValueHolder value: aBlock
+]
+
 { #category : #'adapter-api' }
 ListPresenter >> displayValueAt: anIndex [
 	
@@ -192,6 +210,7 @@ ListPresenter >> hideHeaderTitle [
 ListPresenter >> initializeValueHolders [
 	
 	super initializeValueHolders.
+	displayBlockValueHolder := [ :object | object asStringOrText ] asValueHolder.
 	headerTitle := nil asValueHolder
 ]
 
@@ -206,6 +225,8 @@ ListPresenter >> prepareForFilteredDataSourceWith: items [
 ListPresenter >> registerEvents [
 	
 	super registerEvents.
+	displayBlockValueHolder whenChangedDo: [ 
+		self adapter ifNotNil: #refreshWidgetList ].
 	headerTitle whenChangedDo: [ 
 		self adapter ifNotNil: #refreshWidgetHeaderTitle ]
 ]
