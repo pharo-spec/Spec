@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'point'
 	],
-	#category : #'Spec-Core-Observable'
+	#category : #'Spec-Tests-Observable'
 }
 
 { #category : #tests }
