@@ -93,9 +93,7 @@ SpecDemoListsPresenter >> initializeWidgets [
 	multiLabel := self newLabel.
 
 	list1
-		items: Smalltalk globals allClasses;
-		backgroundColorBlock:
-				[ :object :rowIndex | rowIndex odd ifTrue: [ Smalltalk ui theme lightBackgroundColor alpha: 0.5 ] ifFalse: [ Smalltalk ui theme backgroundColor alpha: 0.5 ] ].
+		items: Smalltalk globals allClasses.
 	list2
 		items: Smalltalk globals allClasses;
 		sortingBlock: [ :a :b | a asString size < b asString size ];
