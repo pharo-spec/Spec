@@ -222,6 +222,12 @@ AbstractListPresenter >> itemSubstringFilter [
 	self itemFilterBlock: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
 ]
 
+{ #category : #private }
+AbstractListPresenter >> items [
+	
+	^ self model collection
+]
+
 { #category : #api }
 AbstractListPresenter >> items: aCollection [
 	"Set the items of the list.
