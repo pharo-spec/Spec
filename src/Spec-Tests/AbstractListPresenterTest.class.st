@@ -93,7 +93,7 @@ AbstractListPresenterTest >> testReplaceItemList [
 	| changed |
 
 	changed := false.
-	presenter whenModelChangedDo: [ changed := true ]. 
+	presenter whenModelChangedDo: [ changed := true ].
 	presenter items: #(a b c).
 	
 	self 

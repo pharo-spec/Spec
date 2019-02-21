@@ -3,19 +3,13 @@ An FastTablePresenter is a spec presenter for a FastTable
 "
 Class {
 	#name : #FastTablePresenter,
-	#superclass : #ColumnedListPresenter,
+	#superclass : #ListPresenter,
 	#instVars : [
 		'iconHolder',
 		'handlesDoubleClick'
 	],
 	#category : #'Spec-Core-Widgets'
 }
-
-{ #category : #specs }
-FastTablePresenter class >> adapterName [
-
-	^ #FastTableAdapter
-]
 
 { #category : #example }
 FastTablePresenter class >> example [
@@ -37,14 +31,9 @@ FastTablePresenter class >> exampleMultipleSelection [
 	example
 		items: (1 to: 10);
 		beMultipleSelection;
-		whenSelectionChanged: [ :selection | selection logCr ];
+		whenSelectionChangedDo: [ :selection | selection logCr ];
 		openWithSpec.
 	^ example
-]
-
-{ #category : #accessing }
-FastTablePresenter >> columns [
-	^ columns
 ]
 
 { #category : #api }
@@ -83,29 +72,12 @@ FastTablePresenter >> icons: aBlock [
 ]
 
 { #category : #initialization }
-FastTablePresenter >> initialize [
-	super initialize.
-	columns := {SpecFTColumn new}
-]
-
-{ #category : #initialization }
 FastTablePresenter >> initializeValueHolders [
 
 	super initializeValueHolders.
 
 	iconHolder := [:item | nil ] asValueHolder.
 	handlesDoubleClick := false asValueHolder.
-]
-
-{ #category : #accessing }
-FastTablePresenter >> numberOfColumns: aNumber [
-	columns := ((1 to: aNumber) collect: [ :index | FTArrayIndexColumn index: index ] )
-]
-
-{ #category : #accessing }
-FastTablePresenter >> numberOfColumns: aNumber withWidths: widths [
-	columns := ((1 to: aNumber) collect: [ :index | 
-		FTArrayIndexColumn index: index width: (widths at: index) ] )
 ]
 
 { #category : #initialization }

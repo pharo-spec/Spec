@@ -16,6 +16,23 @@ MorphicAbstractListCommonPropertiestTest >> initializeTestedInstance [
 ]
 
 { #category : #running }
+MorphicAbstractListCommonPropertiestTest >> testChangeListInPresenterUpdatesWidget [
+
+	| tableContainer tableRowContents |
+	self presenter items: #( '1' '2' '3').
+
+	tableContainer := self widget submorphs first.
+	tableRowContents := tableContainer submorphs collect: [ :row | 
+		| cell |
+		cell := row submorphs first.
+		cell submorphs first contents ].
+	
+	self assert: tableRowContents first equals: '1'.
+	self assert: tableRowContents second equals: '2'.
+	self assert: tableRowContents third equals: '3'.
+]
+
+{ #category : #running }
 MorphicAbstractListCommonPropertiestTest >> testDoubleClickActivatesRowInDoubleClickActivationMode [
 
 	| activated |
@@ -27,7 +44,7 @@ MorphicAbstractListCommonPropertiestTest >> testDoubleClickActivatesRowInDoubleC
 		setPosition: self widget submorphs first submorphs first bounds center;
 		yourself).
 	
-	self assert: [activated].
+	self assert: activated
 ]
 
 { #category : #running }
@@ -45,5 +62,5 @@ MorphicAbstractListCommonPropertiestTest >> testSingleClickActivatesRowInSingleC
 		setPosition: self widget submorphs first submorphs first bounds center;
 		yourself).
 	
-	self assert: [activated].
+	self assert: activated.
 ]

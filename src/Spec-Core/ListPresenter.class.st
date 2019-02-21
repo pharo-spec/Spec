@@ -62,6 +62,16 @@ ListPresenter class >> example [
 ]
 
 { #category : #example }
+ListPresenter class >> exampleMultipleSelection [
+	<sampleInstance>
+	^ self new
+		items: Smalltalk globals allClasses;
+		beMultipleSelection;
+		openWithSpec;
+		yourself
+]
+
+{ #category : #example }
 ListPresenter class >> exampleWithHeaderTitle [
 	<sampleInstance>
 	^ self new
