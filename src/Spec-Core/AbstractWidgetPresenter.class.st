@@ -236,6 +236,7 @@ AbstractWidgetPresenter >> help: aString [
 
 { #category : #initialization }
 AbstractWidgetPresenter >> initialize [
+
 	super initialize.
 	helpHolder := nil asValueHolder.
 	borderWidth := 0 asValueHolder.
@@ -250,28 +251,21 @@ AbstractWidgetPresenter >> initialize [
 	transferBlock := [ :passenger :source | self defaultTransferFor: passenger from: source ]
 		asValueHolder.
 	color := self defaultColor asValueHolder.
-	helpHolder
-		whenChangedDo: [ :string | 
-			self adapter
-				ifNotNil: [ :w | w update: #setBalloonText: with: {string} ] ].
-	borderWidth
-		whenChangedDo:
-			[ :int | self widget ifNotNil: [ :w | w update: #borderWidth: with: {int} ] ].
-	borderColor
-		whenChangedDo: [ :newColor | 
-			self widget
-				ifNotNil: [ :w | w update: #borderColor: with: {newColor} ] ].
-	color
-		whenChangedDo:
-			[ :newColor | self adapter ifNotNil: [ :w | w update: #color: with: {newColor} ] ].
-	enabledHolder
-		whenChangedDo: [ :b | self adapter ifNotNil: [ :w | w update: #enabled: with: {b} ] ].
-	dragEnabled
-		whenChangedDo:
-			[ :b | self widget ifNotNil: [ :w | w update: #dragEnabled: with: {b} ] ].
-	dropEnabled
-		whenChangedDo:
-			[ :b | self widget ifNotNil: [ :w | w update: #dropEnabled: with: {b} ] ]
+	helpHolder whenChangedDo: [ :string | 
+		self withAdapterDo: [ :w | 
+			w update: #setBalloonText: with: {string} ] ].
+	borderWidth whenChangedDo: [ :int | 
+		self withWidgetDo: [ :w | w update: #borderWidth: with: {int} ] ].
+	borderColor whenChangedDo: [ :newColor | 
+		self withWidgetDo: [ :w | w update: #borderColor: with: {newColor} ] ].
+	color whenChangedDo: [ :newColor | 
+		self withAdapterDo: [ :w | w update: #color: with: {newColor} ] ].
+	enabledHolder whenChangedDo: [ :b | 
+		self withAdapterDo: [ :w | w update: #enabled: with: {b} ] ].
+	dragEnabled whenChangedDo: [ :b | 
+		self withWidgetDo: [ :w | w update: #dragEnabled: with: {b} ] ].
+	dropEnabled whenChangedDo: [ :b | 
+		self withWidgetDo: [ :w | w update: #dropEnabled: with: {b} ] ]
 ]
 
 { #category : #initialization }

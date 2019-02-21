@@ -197,7 +197,7 @@ ListPresenter >> registerEvents [
 	
 	super registerEvents.
 	headerTitle whenChangedDo: [ 
-		self adapter ifNotNil: #refreshWidgetHeaderTitle ]
+		self withAdapterDo: #refreshWidgetHeaderTitle ]
 ]
 
 { #category : #api }
@@ -245,7 +245,7 @@ ListPresenter >> setSelectionStateFor: anIndex at: aBoolean [
 { #category : #api }
 ListPresenter >> updateList [
 
-	self adapter refreshWidgetList.
+	self withAdapterDo: #refreshWidgetList.
 	self resetSelection
 ]
 

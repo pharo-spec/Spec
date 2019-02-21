@@ -642,12 +642,10 @@ ComposablePresenter >> initializePresenter [
 
 	"By default, do not do anything"
 
-	extentHolder
-		whenChangedDo: [ :ex | 
-			self adapter
-				ifNotNil: [ :widget | 
-					(widget respondsTo: #extent:)
-						ifTrue: [ widget extent: ex ] ] ]
+	extentHolder whenChangedDo: [ :ex | 
+		self withAdapterDo: [ :widget | 
+			(widget respondsTo: #extent:)
+				ifTrue: [ widget extent: ex ] ] ]
 ]
 
 { #category : #'initialization - private' }
@@ -1320,4 +1318,18 @@ ComposablePresenter >> windowIcon [
 ComposablePresenter >> windowIcon: aForm [
 
 	windowIcon value: aForm
+]
+
+{ #category : #private }
+ComposablePresenter >> withAdapterDo: aValuable [
+	"a convenience method to avoid verify by nil all the time"
+	
+	^ self adapter ifNotNil: aValuable
+]
+
+{ #category : #private }
+ComposablePresenter >> withWidgetDo: aValuable [
+	"a convenience method to avoid verify by nil all the time"
+	
+	^ self widget ifNotNil: aValuable
 ]

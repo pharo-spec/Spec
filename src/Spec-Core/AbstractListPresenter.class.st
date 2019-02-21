@@ -303,7 +303,7 @@ AbstractListPresenter >> model: aModel [
 	
 	model := aModel.
 	model whenChangedDo: [ 
-		self changed: #refreshList ]
+		self withAdapterDo: #refreshList ]
 ]
 
 { #category : #private }
@@ -316,9 +316,9 @@ AbstractListPresenter >> newEmptyModel [
 AbstractListPresenter >> registerEvents [
 
 	selectionMode whenChangedDo: [ :selection | 
-		self adapter ifNotNil: #refreshWidgetSelection ].
+		self withAdapterDo: #refreshWidgetSelection ].
 	displayBlockValueHolder whenChangedDo: [ 
-		self adapter ifNotNil: #refreshWidgetList ].
+		self withAdapterDo: #refreshWidgetList ].
 	autoDeselect whenChangedDo: [ :boolean | 
 		self changed: #autoDeselect: with: { boolean }].
 ]
