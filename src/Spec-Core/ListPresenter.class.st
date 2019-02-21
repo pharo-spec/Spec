@@ -275,9 +275,8 @@ ListPresenter >> setSelectionStateFor: anIndex at: aBoolean [
 
 { #category : #api }
 ListPresenter >> updateList [
-
 	self adapter refreshWidgetList.
-	self resetSelection
+	self unselectAll
 ]
 
 { #category : #'api-events' }
