@@ -179,12 +179,13 @@ SpecInterpreter >> retrieveSpecFrom: aSpec [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> returnInterpretationOf: newInstance [
-	| result |
-	self presenter spec: spec.
+	| result adaptor |
 	result := self class interpretASpec: newInstance presenter: spec.
-	^ (result isKindOf: ComposablePresenter)
+	adaptor := (result isKindOf: ComposablePresenter)
 		ifTrue: [ self getAdaptorWithDefaultSpecOf: result ]
-		ifFalse: [ result ]
+		ifFalse: [ result ].
+	self presenter spec: adaptor.
+	^ adaptor
 ]
 
 { #category : #'interpreting-private' }
