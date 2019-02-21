@@ -3,6 +3,6 @@ Stub
 "
 Class {
 	#name : #SpecStubSpacerView,
-	#superclass : #SpecStubViews,
+	#superclass : #SpecStubView,
 	#category : #'Spec-StubAdapter-Views'
 }
