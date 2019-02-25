@@ -302,9 +302,9 @@ AbstractListPresenter >> newEmptyModel [
 AbstractListPresenter >> registerEvents [
 
 	selectionMode whenChangedDo: [ :selection | 
-		self adapter ifNotNil: #refreshWidgetSelection ].
-	autoDeselect whenChangedDo: [ :boolean | 
-		self changed: #autoDeselect: with: { boolean }].
+		self withAdapterDo: #refreshWidgetSelection ].
+	autoDeselect whenChangedDo: [ :aBoolean | 
+		self changed: #autoDeselect: with: { aBoolean }].
 ]
 
 { #category : #api }

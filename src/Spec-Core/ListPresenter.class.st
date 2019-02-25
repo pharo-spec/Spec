@@ -226,9 +226,9 @@ ListPresenter >> registerEvents [
 	
 	super registerEvents.
 	displayBlockValueHolder whenChangedDo: [ 
-		self adapter ifNotNil: #refreshWidgetList ].
+		self withAdapterDo: #refreshWidgetList ].
 	headerTitle whenChangedDo: [ 
-		self adapter ifNotNil: #refreshWidgetHeaderTitle ]
+		self withAdapterDo: #refreshWidgetHeaderTitle ]
 ]
 
 { #category : #api }
@@ -275,7 +275,8 @@ ListPresenter >> setSelectionStateFor: anIndex at: aBoolean [
 
 { #category : #api }
 ListPresenter >> updateList [
-	self adapter refreshWidgetList.
+
+	self withAdapterDo: #refreshWidgetList.
 	self unselectAll
 ]
 
