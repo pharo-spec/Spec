@@ -1082,6 +1082,13 @@ ComposablePresenter >> owner: anObject [
 ]
 
 { #category : #accessing }
+ComposablePresenter >> presenterAt: aName [
+	"Retrieves a subpresenter of this composed presenter."
+
+	^ self readSlotNamed: aName
+]
+
+{ #category : #accessing }
 ComposablePresenter >> presenterWindow [
 	^ window value
 ]

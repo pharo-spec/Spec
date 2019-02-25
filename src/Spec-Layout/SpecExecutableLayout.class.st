@@ -106,7 +106,7 @@ SpecExecutableLayout >> subpresenterOrLayoutNamed: presenterNameOrLayout of: aPr
 
 	^ aPresenter additionalSubpresentersMap 
 		at: presenterNameOrLayout 
-		ifAbsent: [ aPresenter readSlotNamed: presenterNameOrLayout ]
+		ifAbsent: [ aPresenter presenterAt: presenterNameOrLayout ]
 
 	
 
