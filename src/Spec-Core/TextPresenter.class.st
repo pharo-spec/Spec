@@ -283,6 +283,15 @@ TextPresenter >> doItReceiver: anObject [
 	doItReceiver value: anObject
 ]
 
+{ #category : #api }
+TextPresenter >> enabled: aBoolean [
+
+	super enabled: aBoolean.
+	self 
+		changed: #enabled: 
+		with: { aBoolean }
+]
+
 { #category : #focus }
 TextPresenter >> eventKeyStrokesForNextFocus [
 	"String describing the keystroke to perform to jump to the next widget"

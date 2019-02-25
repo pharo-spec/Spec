@@ -187,7 +187,13 @@ AbstractWidgetPresenter >> enable [
 { #category : #api }
 AbstractWidgetPresenter >> enabled [
 	"<api: #inspect>"
-	^ enabledHolder value
+	
+	self 
+		deprecated:  'Please use #isEnabled instead' 
+		transformWith:  '`@receiver enabled' 
+						-> '`@receiver isEnabled'.
+	
+	^ self isEnabled
 ]
 
 { #category : #api }
@@ -271,6 +277,12 @@ AbstractWidgetPresenter >> initialize [
 { #category : #initialization }
 AbstractWidgetPresenter >> initializeWidgets [ 
 	"ignore this method since there is no composition in basic widgets"
+]
+
+{ #category : #api }
+AbstractWidgetPresenter >> isEnabled [
+
+	^ enabledHolder value
 ]
 
 { #category : #'drag and drop' }
