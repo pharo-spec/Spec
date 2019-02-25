@@ -83,7 +83,7 @@ MorphicStyleSheet >> atClass: aName [
 
 	^ self 
 		propertyAt: aName 
-		ifAbsentPut: [ self class new ]
+		ifAbsentPut: [ MorphicStyleSheet new ]
 ]
 
 { #category : #style }
