@@ -21,7 +21,6 @@ Class {
 
 { #category : #specs }
 SpecDemoButtonsPresenter class >> defaultSpec [
-	<spec: #default>
 	^ SpecGridLayout new
 		beColumnHomogeneous;
 		add: #buttonNormal at: 1 @ 1;
