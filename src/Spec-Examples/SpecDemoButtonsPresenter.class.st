@@ -23,6 +23,7 @@ Class {
 SpecDemoButtonsPresenter class >> defaultSpec [
 	^ SpecGridLayout new
 		beColumnHomogeneous;
+		borderWidth: 0;
 		add: #buttonNormal at: 1 @ 1;
 		add: #buttonDisabled at: 2 @ 1;
 		add: #buttonWithIcon at: 3 @ 1;
