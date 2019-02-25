@@ -15,11 +15,19 @@ TextPresenterTest >> initializationText [
 ]
 
 { #category : #tests }
+TextPresenterTest >> testClearSelection [
+	self initializationText.
+	self openInstance.
+	presenter setSelection: (1 to: 10).
+	self assert: presenter getSelection equals: (1 to: 10).
+	presenter clearSelection.
+	self assert: presenter getSelection isEmpty
+]
+
+{ #category : #tests }
 TextPresenterTest >> testSelectAll [
 	self initializationText.
 	self openInstance.
 	presenter selectAll.
-	self assert: presenter getSelection equals: (1 to: 15).
-	presenter clearSelection.
-	self assert: presenter getSelection isEmpty
+	self assert: presenter getSelection equals: (1 to: 15)
 ]

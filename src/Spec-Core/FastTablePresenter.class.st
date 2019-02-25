@@ -6,16 +6,11 @@ Class {
 	#superclass : #ColumnedListPresenter,
 	#instVars : [
 		'iconHolder',
-		'handlesDoubleClick'
+		'handlesDoubleClick',
+		'displayBlock'
 	],
 	#category : #'Spec-Core-Widgets'
 }
-
-{ #category : #specs }
-FastTablePresenter class >> adapterName [
-
-	^ #FastTableAdapter
-]
 
 { #category : #example }
 FastTablePresenter class >> example [
@@ -37,14 +32,28 @@ FastTablePresenter class >> exampleMultipleSelection [
 	example
 		items: (1 to: 10);
 		beMultipleSelection;
-		whenSelectionChanged: [ :selection | selection logCr ];
+		whenSelectionChangedDo: [ :selection | selection logCr ];
 		openWithSpec.
 	^ example
 ]
 
-{ #category : #accessing }
-FastTablePresenter >> columns [
-	^ columns
+{ #category : #'api-columns' }
+FastTablePresenter >> addColumn: aColumn [
+
+	aColumn table: self.
+	super addColumn: aColumn.
+]
+
+{ #category : #initialization }
+FastTablePresenter >> displayBlock [
+
+	^ displayBlock
+]
+
+{ #category : #initialization }
+FastTablePresenter >> displayBlock: aBlock [
+
+	displayBlock := aBlock
 ]
 
 { #category : #api }
@@ -84,8 +93,10 @@ FastTablePresenter >> icons: aBlock [
 
 { #category : #initialization }
 FastTablePresenter >> initialize [
+
+	displayBlock := #yourself.
 	super initialize.
-	columns := {SpecFTColumn new}
+	self addColumn: SpecFTColumn new
 ]
 
 { #category : #initialization }
@@ -97,15 +108,20 @@ FastTablePresenter >> initializeValueHolders [
 	handlesDoubleClick := false asValueHolder.
 ]
 
-{ #category : #accessing }
+{ #category : #'api-columns' }
 FastTablePresenter >> numberOfColumns: aNumber [
-	columns := ((1 to: aNumber) collect: [ :index | FTArrayIndexColumn index: index ] )
+
+	columns := OrderedCollection new.
+	((1 to: aNumber) do: [ :index | 
+		self addColumn: (SpecFTArrayIndexColumn index: index) ] )
 ]
 
-{ #category : #accessing }
+{ #category : #'api-columns' }
 FastTablePresenter >> numberOfColumns: aNumber withWidths: widths [
-	columns := ((1 to: aNumber) collect: [ :index | 
-		FTArrayIndexColumn index: index width: (widths at: index) ] )
+
+	columns := OrderedCollection new.
+	((1 to: aNumber) do: [ :index | 
+		self addColumn: (SpecFTArrayIndexColumn index: index) ] )
 ]
 
 { #category : #initialization }

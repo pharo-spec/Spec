@@ -39,7 +39,6 @@ MorphicListAdapter >> buildWidget [
 	| datasource |
 	datasource := SpecListFastTableDataSource new.
 	datasource model: self model.
-
 	widget := FTTableMorph new
 		dataSource: datasource;
 		hideColumnHeaders;
@@ -48,7 +47,7 @@ MorphicListAdapter >> buildWidget [
 			title: self presenter headerTitle
 			evaluated: self presenter displayBlock))
 				yourself };
-		setMultipleSelection: self model isMultiSelection;
+		setMultipleSelection: self model isMultipleSelection;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
 		setBalloonText: self help;
@@ -61,6 +60,8 @@ MorphicListAdapter >> buildWidget [
 			send: #strongSelectionChanged:
 			to: self;
 		yourself.
+	
+	self presenter whenModelChangedDo: [ widget refresh ].
 	
 	self refreshWidgetHeaderTitle.
 	

@@ -35,7 +35,8 @@ MorphicAdapterTestCase >> initializeTestedInstance [
 { #category : #running }
 MorphicAdapterTestCase >> openInstance [
 
-	window ifNil: [ window := presenter openWithSpec ]
+	window ifNil: [ window := presenter openWithSpec ].
+	World doOneCycle.
 ]
 
 { #category : #private }
