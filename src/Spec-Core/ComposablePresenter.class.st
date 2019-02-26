@@ -154,6 +154,11 @@ ComposablePresenter class >> labelHeight [
 { #category : #'instance creation' }
 ComposablePresenter class >> on: aDomainObject [
 
+	self 
+		deprecated: 'You should not use this (ComposablePresenters need have an owner)' 
+		on: '2019-02-26' 
+		in: #Pharo8.
+		
 	^ self basicNew
 		setModelBeforeInitialization: aDomainObject;
 		initialize;
@@ -287,12 +292,13 @@ ComposablePresenter >> additionalKeyBindings [
 	^ additionalKeyBindings
 ]
 
-{ #category : #accessing }
+{ #category : #TOREMOVE }
 ComposablePresenter >> additionalSubpresentersMap [
 
 	"additionalSubpresentersMap serves for storing of sub-presenters that are not
 	stored in instance variables"
-
+	
+	self flag: #TOREMOVE. "This is now provided by TDynamicPresenter"
 	^ additionalSubpresentersMap ifNil: [ additionalSubpresentersMap := Dictionary new ]
 ]
 
@@ -308,6 +314,25 @@ ComposablePresenter >> apiSelectors [
 	^ self class apiSelectors
 ]
 
+{ #category : #accessing }
+ComposablePresenter >> application [
+	"Answer application owner of this composition.
+	 The tree for a composition starts always with an application, which is responsible of 
+	 providing all resources the presenter needs. The structure is something like this: 
+	 
+	application
+		\ 
+	 root presenter
+				\
+				sub presenter 1
+				\
+				sub presenter N									"
+
+	^ self owner isPresenter
+		ifTrue: [ self owner application ]
+		ifFalse: [ self owner ]
+]
+
 { #category : #api }
 ComposablePresenter >> applyMenuModel: aMenuModel [
 
@@ -317,7 +342,7 @@ ComposablePresenter >> applyMenuModel: aMenuModel [
 			item subMenu ifNotNil: [ :subMenu | subMenu applyTo: self	] ] ]
 ]
 
-{ #category : #initialization }
+{ #category : #private }
 ComposablePresenter >> applyTransmissions [
 	
 	transmissions ifNil: [ ^ self ].
@@ -355,13 +380,15 @@ ComposablePresenter >> bindMenuKeyCombination: aShortcut toAction: aBlock [
 { #category : #api }
 ComposablePresenter >> buildAdapterWithSpecLayout: aSpecLayout [
 	"Build the adapter using the spec name provided as argument"
-	| adapter |
+	| newAdapter |
 	
-	adapter := ((aSpecLayout isSpecLayout) and: [ aSpecLayout isExecutable ]) 
+	newAdapter := ((aSpecLayout isSpecLayout) and: [ aSpecLayout isExecutable ]) 
 		ifTrue: [ aSpecLayout buildAdapterFor: self bindings: SpecBindings value new ]
 		ifFalse: [ self adapterFrom: aSpecLayout ].
-	self setExtentAndBindingTo: adapter widget.
-	^ adapter
+	self setExtentAndBindingTo: newAdapter widget.
+	self announce: (WidgetBuilt model: self widget: newAdapter widget).
+
+	^ newAdapter
 ]
 
 { #category : #api }
@@ -393,7 +420,7 @@ ComposablePresenter >> cancelled [
 		ifNotNil: [ :w | w cancelled ]
 ]
 
-{ #category : #api }
+{ #category : #TOMOVE }
 ComposablePresenter >> centerWidget: aWindow [
 
 	self changed: #centerWidget: with: { aWindow }
@@ -404,7 +431,7 @@ ComposablePresenter >> centered [
 	self presenterWindow ifNotNil: [ :w | w centered ]
 ]
 
-{ #category : #api }
+{ #category : #TOMOVE }
 ComposablePresenter >> centeredRelativeTo: aModel [
 
 	self presenterWindow ifNotNil: [ :w | w centeredRelativeTo: aModel ]
@@ -445,7 +472,7 @@ ComposablePresenter >> defaultSpecSelector [
 
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 ComposablePresenter >> defaultWindowPresenterClass [ 
 	^ WindowPresenter
 ]
@@ -455,7 +482,7 @@ ComposablePresenter >> delete [
 	self presenterWindow ifNil: [ self changed: #delete with: #() ] ifNotNil: [ :w | w delete ]
 ]
 
-{ #category : #api }
+{ #category : #TOMOVE }
 ComposablePresenter >> ensureExtentFor: widget [
 
 	self extent
@@ -492,13 +519,13 @@ ComposablePresenter >> eventKeyStrokesForPreviousFocus [
 	^ keyStrokesForPreviousFocusHolder value
 ]
 
-{ #category : #api }
+{ #category : #TOMOVE }
 ComposablePresenter >> extent [
 
 	^  extentHolder value
 ]
 
-{ #category : #api }
+{ #category : #TOMOVE }
 ComposablePresenter >> extent: aPoint [
 
 	^  extentHolder value: aPoint
@@ -579,7 +606,10 @@ ComposablePresenter >> handlesKeyboard: evt [
 ComposablePresenter >> hasWindow [
 	"Answers true if there is an open window using this model."
 
-	self owner ifNil: [ ^ self window ifNotNil: [ :w | w isClosed not ] ifNil: [ false ] ].
+	self owner ifNil: [ 
+		^ self window 
+			ifNotNil: [ :w | w isClosed not ] 
+			ifNil: [ false ] ].
 	 ^ self owner hasWindow
 ]
 
@@ -592,6 +622,7 @@ ComposablePresenter >> hide [
 
 { #category : #accessing }
 ComposablePresenter >> iconNamed: aSymbol [
+
 	^ self class iconNamed: aSymbol
 ]
 
@@ -756,6 +787,12 @@ ComposablePresenter >> isDisplayed [
 	"Return true if the widget is currently displayed on screen"
 	
 	^ self window notNil and: [ self window isDisplayed ]
+]
+
+{ #category : #testing }
+ComposablePresenter >> isPresenter [
+
+	^ true
 ]
 
 { #category : #'api-focus' }
@@ -972,7 +1009,7 @@ ComposablePresenter >> on: anAnnouncement send: aSelector to: aTarget [
 		to: aTarget
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> openDialogWithSpec [
 	"Build the widget using the default spec and display it into a dialog. 
 	
@@ -981,7 +1018,7 @@ ComposablePresenter >> openDialogWithSpec [
 	^ self openDialogWithSpec: self defaultSpecSelector
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> openDialogWithSpec: aSpec [
 	"Build the widget using the default spec and display it into a dialog. 
 	
@@ -990,52 +1027,52 @@ ComposablePresenter >> openDialogWithSpec: aSpec [
 	^ self openDialogWithSpecLayout: (self retrieveSpec: aSpec)
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> openDialogWithSpecLayout: aSpec [
 	^  self openWithSpecLayout: aSpec in: DialogWindowPresenter
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> openModalWithSpec [
 	"Build the widget using the default spec and display it into a modal"
 
 	^ self openModalWithSpec: self defaultSpecSelector.
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> openModalWithSpec: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a modal"
 
 	^ self openModalWithSpecLayout: (self retrieveSpec: aSpec)
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> openModalWithSpecLayout: aSpec [
 	^ self openWithSpecLayout: aSpec in: ModalWindowPresenter
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> openWithSpec [
 	"Build the widget using the default spec and display it into a window"
 
 	^ self openWithSpec: self defaultSpecSelector.
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> openWithSpec: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
 	^ self openWithSpecLayout: (self retrieveSpec: aSpec)
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> openWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
 	^ self openWithSpecLayout: aSpec in: self defaultWindowPresenterClass
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> openWithSpecLayout: aSpec in: aWindowClass [
 	"I build the widget with the spec as parameter and open it with the window presenter passed as parameter."
 
@@ -1072,13 +1109,15 @@ ComposablePresenter >> outputPorts [
 { #category : #accessing }
 ComposablePresenter >> owner [
 
-	^ owner
+	self flag: #TODO. "a ComposablePresenter should always have an owner. I'm adding this 
+	because they don't always follow this rule."
+	^ owner ifNil: [ owner := NullApplication new ]
 ]
 
 { #category : #accessing }
-ComposablePresenter >> owner: anObject [
+ComposablePresenter >> owner: aPresenterOrApplication [
 
-	owner := anObject.
+	owner := aPresenterOrApplication
 ]
 
 { #category : #accessing }
@@ -1088,12 +1127,12 @@ ComposablePresenter >> presenterAt: aName [
 	^ self readSlotNamed: aName
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 ComposablePresenter >> presenterWindow [
 	^ window value
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 ComposablePresenter >> presenterWindow: aWindow [
 	window value: aWindow
 ]
@@ -1152,24 +1191,29 @@ ComposablePresenter >> retrieveSpec: aSelector [
 ]
 
 { #category : #accessing }
-ComposablePresenter >> root [ 
-
-	^ self owner 
-		ifNotNil: [ self owner root ]
-		ifNil: [ self ]
+ComposablePresenter >> root [
+	"Answer root presenter of this composition.
+	 Owner can contain also an application, so we get sure we stop before."
+	
+	^ self owner isPresenter
+		ifTrue: [ self owner root ]
+		ifFalse: [ self ]
 ]
 
-{ #category : #api }
+{ #category : #TOMOVE }
 ComposablePresenter >> setExtentAndBindingTo: widget [
 
 	self ensureExtentFor: widget.
-	self ensureKeyBindingsFor: widget.
-	self announce: (WidgetBuilt model: self widget: widget).
-	
+	self ensureKeyBindingsFor: widget
 ]
 
-{ #category : #api }
-ComposablePresenter >> setModal: aWindow [ 
+{ #category : #'api-showing' }
+ComposablePresenter >> setModal: aWindow [
+
+	self 
+		deprecated: 'Do not use this directly. Use #openModalWithSpec (and family) instead.' 
+		on: '2019-02-26' 
+		in: #Pharo8.
 	
 	self changed: #setModal: with: { aWindow }
 ]
@@ -1186,11 +1230,10 @@ ComposablePresenter >> setModelBeforeInitialization: aDomainObject [
 
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> show [
-
-	self widget ifNotNil: [:widget |
-		(widget respondsTo: #show) ifTrue: [ widget show ]].
+	
+	self withAdapterDo: #show
 ]
 
 { #category : #accessing }
@@ -1206,7 +1249,7 @@ ComposablePresenter >> spec: anAdapter [
 	adapter := anAdapter
 ]
 
-{ #category : #api }
+{ #category : #TOREMOVE }
 ComposablePresenter >> specSelectors [
 	"Return all the spec names"
 	
@@ -1312,8 +1355,7 @@ ComposablePresenter >> widget [
 { #category : #accessing }
 ComposablePresenter >> window [
 
-	self presenterWindow ifNotNil: [ :theWindow | ^ theWindow ].
-	^ owner ifNotNil: [ owner window ]
+	^ self root presenterWindow
 ]
 
 { #category : #api }
