@@ -7,11 +7,16 @@ SpecInterpreter
 Class {
 	#name : #MorphicButtonAdapter,
 	#superclass : #AbstractMorphicAdapter,
+	#instVars : [
+		'subMenuWidget'
+	],
 	#category : #'Spec-MorphicAdapters-Base'
 }
 
 { #category : #'widget API' }
 MorphicButtonAdapter >> action [
+
+	self showSubMenuIfPresent.
 
 	self widget ifNotNil: [:m | m takeKeyboardFocus ].
 	self model performAction.
@@ -61,9 +66,17 @@ MorphicButtonAdapter >> buildWidget [
 	^ button
 ]
 
+{ #category : #'menus support' }
+MorphicButtonAdapter >> deleteIfPopUp: evt [
+]
+
 { #category : #'widget API' }
 MorphicButtonAdapter >> font [
 	^self model font
+]
+
+{ #category : #'menus support' }
+MorphicButtonAdapter >> isSelected: aBooolan [
 ]
 
 { #category : #'widget API' }
@@ -102,6 +115,22 @@ MorphicButtonAdapter >> setWidgetColor: button [
 							property: #buttonPressedFillStyleFor: returnsValueOf: clickedColorBlock;
 							yourself).
 
+]
+
+{ #category : #'widget API' }
+MorphicButtonAdapter >> showSubMenuIfPresent [
+
+	self model menu ifNotNil: [
+		self model menu menuGroups isEmpty ifFalse: [ 
+			subMenuWidget ifNotNil: [ 
+				subMenuWidget delete.
+				subMenuWidget := nil. ].
+			subMenuWidget := (MorphicMenuAdapter adaptAsPopup: self model menu) widget.
+			subMenuWidget
+				popUpAdjacentTo: {self widget bounds bottomLeft. self widget bounds bottomRight}
+				forHand: ActiveHand
+				from: self widget.
+			subMenuWidget popUpOwner: self ] ].
 ]
 
 { #category : #'widget API' }
