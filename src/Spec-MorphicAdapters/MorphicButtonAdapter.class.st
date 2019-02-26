@@ -61,6 +61,18 @@ MorphicButtonAdapter >> buildWidget [
 	^ button
 ]
 
+{ #category : #emulating }
+MorphicButtonAdapter >> clicked [	
+
+	| evt |
+	evt := MouseButtonEvent new setType: nil position: widget center which: MouseButtonEvent redButton buttons: MouseButtonEvent redButton hand: nil stamp: nil.
+
+	(widget handlesMouseDown: evt) ifTrue: [
+		widget mouseDown: evt.
+		widget mouseUp: evt].
+
+]
+
 { #category : #'widget API' }
 MorphicButtonAdapter >> font [
 	^self model font
@@ -93,6 +105,17 @@ MorphicButtonAdapter >> menu: aMenu [
 	menuModel := self model menu.
 	menuModel isBlock ifTrue: [ menuModel := menuModel value ].
 	^ menuModel buildWithSpec
+]
+
+{ #category : #emulating }
+MorphicButtonAdapter >> rightClicked [
+	| evt |
+	evt := MouseButtonEvent new setType: nil position: widget center which: MouseButtonEvent yellowButton buttons: MouseButtonEvent yellowButton hand: nil stamp: nil.
+
+	(widget handlesMouseDown: evt) ifTrue: [
+		widget mouseDown: evt.
+		widget mouseUp: evt].
+
 ]
 
 { #category : #factory }

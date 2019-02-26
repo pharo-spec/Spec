@@ -9,6 +9,9 @@ Class {
 	#instVars : [
 		'behavior'
 	],
+	#classInstVars : [
+		'behavior'
+	],
 	#category : #'Spec-Core-Support'
 }
 
