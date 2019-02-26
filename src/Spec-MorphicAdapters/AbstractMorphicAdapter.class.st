@@ -312,6 +312,12 @@ AbstractMorphicAdapter >> setModal: aWindow [
 	self widgetDo: [ :w | w setModal: aWindow ]
 ]
 
+{ #category : #protocol }
+AbstractMorphicAdapter >> show [ 
+
+	self widgetDo: #show
+]
+
 { #category : #accessing }
 AbstractMorphicAdapter >> style [
 	"i.e. ButtonAdapter = Button"
