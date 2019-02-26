@@ -43,10 +43,12 @@ MorphicListAdapter >> buildWidget [
 		dataSource: datasource;
 		hideColumnHeaders;
 		beResizable;
-		columns: { (MorphicTableColumn on: (StringTableColumn 
-			title: self presenter headerTitle
-			evaluated: self presenter displayBlock))
-				yourself };
+		columns:
+			{(MorphicTableColumn
+				on:
+					(StringTableColumn
+						title: self presenter headerTitle
+						evaluated: self presenter displayBlock)) yourself};
 		setMultipleSelection: self model isMultipleSelection;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
@@ -60,11 +62,13 @@ MorphicListAdapter >> buildWidget [
 			send: #strongSelectionChanged:
 			to: self;
 		yourself.
-	
 	self presenter whenModelChangedDo: [ widget refresh ].
-	
+	self presenter
+		whenSelectionChangedDo: [ self refreshWidgetSelection ].
+	self presenter selection
+		whenChangedDo: [ self refreshWidgetSelection ].
 	self refreshWidgetHeaderTitle.
-	
+	self refreshWidgetSelection.
 	self itemFilterBlock
 		ifNotNil: [ :block | 
 			widget
@@ -151,6 +155,12 @@ MorphicListAdapter >> refreshWidgetSelection [
 		ifTrue: [ self widget basicSelectIndexes: #() ]
 		ifFalse: [ self widget basicSelectIndexes: rowIndexes ].
 	^ self widget refresh
+]
+
+{ #category : #selecting }
+MorphicListAdapter >> selectIndex: anInteger [ 
+	
+	widget selectIndex: anInteger
 ]
 
 { #category : #factory }

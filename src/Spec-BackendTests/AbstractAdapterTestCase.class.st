@@ -157,10 +157,6 @@ AbstractAdapterTestCase >> testEnabledAffectWidget [
 { #category : #running }
 AbstractAdapterTestCase >> widget [
 
-	"Force opening the spec instance here.
-	The action should have been correctly configured before
-	depending on the spec initialization strategy"
-	backendForTest openInstanceOf: self.
 	^ self adapter widget
 ]
 

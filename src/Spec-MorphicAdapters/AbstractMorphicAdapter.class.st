@@ -249,6 +249,12 @@ AbstractMorphicAdapter >> help [
 	^ self model help
 ]
 
+{ #category : #accessing }
+AbstractMorphicAdapter >> helpText [
+	
+	^ self widget balloonText 
+]
+
 { #category : #testing }
 AbstractMorphicAdapter >> isMorphicAdapter [
 

@@ -15,6 +15,8 @@ MorphicColumnedListAdapter >> addModelTo: tableMorph [
 	tableMorph setMultipleSelection: self model isMultipleSelection.
 
 	self refreshShowColumnHeaders.
+	self refreshWidgetSelection.
+	
 	self presenter whenShowColumnHeadersChangedDo: [ :showColumns |
 		self refreshShowColumnHeaders.
 	].
@@ -23,6 +25,7 @@ MorphicColumnedListAdapter >> addModelTo: tableMorph [
 	self presenter whenColumnsChangedDo: [ self refreshColumnsInWidget ].
 	
 	tableMorph
+		setBalloonText: self help;
 		onAnnouncement: FTSelectionChanged
 			send: #selectionChanged:
 			to: self;
@@ -122,6 +125,12 @@ MorphicColumnedListAdapter >> refreshWidgetSelection [
 		ifTrue: [ self widget basicSelectIndexes: #() ]
 		ifFalse: [ self widget basicSelectIndexes: rowIndexes ].
 	^ self widget refresh
+]
+
+{ #category : #selection }
+MorphicColumnedListAdapter >> selectIndex: anInteger [ 
+	
+	widget selectIndex: anInteger
 ]
 
 { #category : #factory }
