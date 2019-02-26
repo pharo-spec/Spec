@@ -66,6 +66,16 @@ MorphicButtonAdapter >> font [
 	^self model font
 ]
 
+{ #category : #accessing }
+MorphicButtonAdapter >> helpText [
+	^ self widget helpText
+]
+
+{ #category : #accessing }
+MorphicButtonAdapter >> icon [
+	^ widget label icon
+]
+
 { #category : #'widget API' }
 MorphicButtonAdapter >> keyStroke: anEvent fromMorph: aMorph [
 ]
