@@ -157,7 +157,7 @@ GridLayoutComputation >> computeWidgetSizes [
 			put: (fixedHeight ifNil: [ (rowHeights at: properties row) max: each height ]).
 		columnWidths 
 			at: properties column
-			put: (fixedWidth ifNil: [ (columnWidths at: properties column) max: each width ]) ]
+			put: (fixedWidth ifNil: [ (columnWidths at: properties column) max: each width ] ) ]
 ]
 
 { #category : #accessing }
@@ -188,8 +188,13 @@ GridLayoutComputation >> maxHeight [
 { #category : #private }
 GridLayoutComputation >> maxWidth [
 
-	^ ((morphs collect: [ :each | (each valueOfProperty: #style) width ]) max) 
-		max: (bounds width / self numColumns) asInteger
+	^ (self maxWidthOf: morphs) max: (bounds width / self numColumns) asInteger
+]
+
+{ #category : #private }
+GridLayoutComputation >> maxWidthOf: aCollection [
+
+	^ (aCollection collect: [ :each | (each valueOfProperty: #style) width ]) max
 ]
 
 { #category : #private }

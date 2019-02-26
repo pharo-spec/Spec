@@ -184,8 +184,7 @@ AbstractMorphicAdapter >> enable [
 
 { #category : #protocol }
 AbstractMorphicAdapter >> enabled [
-	
-	^ self model enabled
+	^ self model isEnabled
 ]
 
 { #category : #protocol }
@@ -317,7 +316,14 @@ AbstractMorphicAdapter >> setModal: aWindow [
 AbstractMorphicAdapter >> style [
 	"i.e. ButtonAdapter = Button"
 	
-	^ MorphicStyleSheet current atClass: self styleName
+	^ self styleAt: self styleName
+]
+
+{ #category : #accessing }
+AbstractMorphicAdapter >> styleAt: aName [
+	"i.e. ButtonAdapter = Button"
+	
+	^ MorphicStyleSheet current atClass: aName
 ]
 
 { #category : #accessing }

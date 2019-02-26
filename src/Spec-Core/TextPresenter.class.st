@@ -243,7 +243,8 @@ TextPresenter >> clearSelection [
 
 { #category : #'undo-redo' }
 TextPresenter >> clearUndoManager [
-	self adapter ifNotNil: #clearUndoManager
+
+	self withAdapterDo: #clearUndoManager
 ]
 
 { #category : #api }
@@ -280,6 +281,15 @@ TextPresenter >> doItReceiver [
 TextPresenter >> doItReceiver: anObject [
 
 	doItReceiver value: anObject
+]
+
+{ #category : #api }
+TextPresenter >> enabled: aBoolean [
+
+	super enabled: aBoolean.
+	self 
+		changed: #enabled: 
+		with: { aBoolean }
 ]
 
 { #category : #focus }

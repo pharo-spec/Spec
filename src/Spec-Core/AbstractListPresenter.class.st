@@ -139,7 +139,8 @@ AbstractListPresenter >> initialize [
 	super initialize.
 
 	activationBlock := [ ].
-	self items: #().
+	
+	self model: 	self newEmptyModel.
 
 	self beSingleSelection.
 	self activateOnDoubleClick.
@@ -155,7 +156,7 @@ AbstractListPresenter >> initialize [
 { #category : #initialization }
 AbstractListPresenter >> initializePorts [
 
-	self addOutputPort: SelectionPresenterPort new.
+	self addOutputPort: ListSelectionPresenterPort new.
 	self addInputPort: ItemsPresenterPort new
 ]
 
@@ -202,15 +203,17 @@ AbstractListPresenter >> itemSubstringFilter [
 	self itemFilterBlock: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
 ]
 
+{ #category : #private }
+AbstractListPresenter >> items [
+	
+	^ self model collection
+]
+
 { #category : #api }
 AbstractListPresenter >> items: aCollection [
 	"Set the items of the list.
 	aCollection is a collection of your domain specific items.
 	This creates a collection model"
-	
-	model ifNil: [ 
-		model := SpecCollectionListModel on: aCollection.
-		^ self ].
 	
 	model collection: aCollection
 ]
@@ -284,16 +287,24 @@ AbstractListPresenter >> model [
 { #category : #accessing }
 AbstractListPresenter >> model: aModel [
 	
-	model := aModel
+	model := aModel.
+	model whenChangedDo: [ 
+		self withAdapterDo: #refreshList ]
+]
+
+{ #category : #private }
+AbstractListPresenter >> newEmptyModel [
+
+	^ SpecCollectionListModel on: #()
 ]
 
 { #category : #initialization }
 AbstractListPresenter >> registerEvents [
 
 	selectionMode whenChangedDo: [ :selection | 
-		self adapter ifNotNil: #refreshWidgetSelection ].
-	autoDeselect whenChangedDo: [ :boolean | 
-		self changed: #autoDeselect: with: { boolean }].
+		self withAdapterDo: #refreshWidgetSelection ].
+	autoDeselect whenChangedDo: [ :aBoolean | 
+		self changed: #autoDeselect: with: { aBoolean }].
 ]
 
 { #category : #api }

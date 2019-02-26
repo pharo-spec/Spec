@@ -26,7 +26,8 @@ SpecListFastTableDataSource >> elementAt: rowIndex [
 
 { #category : #accessing }
 SpecListFastTableDataSource >> elements [
-	^self model getList
+
+	^ self model items
 ]
 
 { #category : #accessing }

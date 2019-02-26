@@ -1,10 +1,14 @@
+"
+I'm a base input port.
+I handle an incomming transmission.
+"
 Class {
 	#name : #InputPresenterPort,
 	#superclass : #PresenterPort,
-	#category : #'Spec-Core-Base'
+	#category : #'Spec-Core-Transmission'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'handling transmission' }
 InputPresenterPort >> incomingTransmission: anObject from: outPort [
 
 	self subclassResponsibility

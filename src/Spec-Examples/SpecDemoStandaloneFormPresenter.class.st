@@ -234,7 +234,7 @@ SpecDemoStandaloneFormPresenter >> initializeWidgets [
 
 	passwordLabel := self newLabel label: 'password:'.
 	passwordInput := self newTextInput
-		encrypted: true;
+		beVisible: false;
 		autoAccept: true.
 	checkboxLabel := self newLabel label: 'remember me'.
 	checkboxInput := self newCheckBox state: true.

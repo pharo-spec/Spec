@@ -122,6 +122,7 @@ ToolBarMorph >> initialize [
 
 { #category : #initialization }
 ToolBarMorph >> initializePanels [
+
 	leftPanel := self newPanelMorph.
 	rightPanel := self newPanelMorph
 		listDirection: #rightToLeft;
@@ -145,6 +146,7 @@ ToolBarMorph >> leftPanel: anObject [
 
 { #category : #'private factory' }
 ToolBarMorph >> newPanelMorph [
+
 	^ PanelMorph new 
 		changeTableLayout;
 		listDirection: #leftToRight;

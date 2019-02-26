@@ -2,6 +2,7 @@ Class {
 	#name : #SpecCollectionListModel,
 	#superclass : #Object,
 	#instVars : [
+		'announcer',
 		'collection',
 		'filter',
 		'shownCollection',
@@ -16,6 +17,12 @@ SpecCollectionListModel class >> on: aCollection [
 	^ self new
 		collection: aCollection;
 		yourself
+]
+
+{ #category : #accessing }
+SpecCollectionListModel >> announcer [ 
+
+	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
 { #category : #accessing }
@@ -37,10 +44,15 @@ SpecCollectionListModel >> collection [
 
 { #category : #accessing }
 SpecCollectionListModel >> collection: anObject [
+	| oldValue |
 
+	oldValue := collection.
 	collection := anObject.
 	self refreshList.
-	self triggerListChanged
+	
+	self announcer announce: (ValueChanged 
+		oldValue: oldValue 
+		newValue: collection)
 ]
 
 { #category : #accessing }
@@ -87,15 +99,14 @@ SpecCollectionListModel >> size [
 	^ collection size
 ]
 
-{ #category : #private }
-SpecCollectionListModel >> triggerListChanged [
-
-	changedBlock ifNil: [ ^ self ].
-	changedBlock value
-]
-
 { #category : #events }
-SpecCollectionListModel >> whenChangedDo: aBlockClosure [
+SpecCollectionListModel >> whenChangedDo: aBlock [
 	
-	changedBlock := aBlockClosure
+	self announcer 
+		when: ValueChanged 
+		do: [ :ann |
+			aBlock 
+				cull: ann newValue 
+				cull: ann oldValue
+				cull: ann ]
 ]
