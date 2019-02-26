@@ -49,7 +49,8 @@ BaselineOfSpec >> baseline: spec [
 			package: 'Spec-StubAdapter' with: [ spec requires: #('Spec-Core') ];
 			package: 'Spec-Examples' with: [ spec requires: #('Spec-Tools' 'Spec-Inspector') ];
 			package: 'Spec-Tests' with: [ spec requires: #('Spec-PolyWidgets' 'Spec-Examples') ];
-			package: 'Spec-MorphicBackendTests' with: [ spec requires: #( 'Spec-MorphicAdapters' 'ParametrizedTests') ] ].
+			package: 'Spec-MorphicBackendTests' with: [ spec requires: #( 'Spec-MorphicAdapters' 'ParametrizedTests') ];
+			package: 'Spec-CompatibilityTests' with: [ spec requires: #( 'Spec-MorphicBackendTests') ] ].
 	spec for: #'pharo7.x' do: [ 
 		spec package: 'Spec-Pharo7To8Compatibility' ]
 ]
