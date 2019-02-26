@@ -184,8 +184,7 @@ AbstractMorphicAdapter >> enable [
 
 { #category : #protocol }
 AbstractMorphicAdapter >> enabled [
-	
-	^ self model enabled
+	^ self model isEnabled
 ]
 
 { #category : #protocol }

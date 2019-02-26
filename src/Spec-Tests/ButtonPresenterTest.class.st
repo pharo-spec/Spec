@@ -54,8 +54,7 @@ ButtonPresenterTest >> testAskBeforeChanging [
 
 { #category : #tests }
 ButtonPresenterTest >> testEnabled [
-
-	self assert: presenter enabled.
+	self assert: presenter isEnabled.
 	self openInstance.
 	self assert: self morph enabled.
 	presenter enabled: false.
