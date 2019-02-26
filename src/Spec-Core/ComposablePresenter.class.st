@@ -380,13 +380,15 @@ ComposablePresenter >> bindMenuKeyCombination: aShortcut toAction: aBlock [
 { #category : #api }
 ComposablePresenter >> buildAdapterWithSpecLayout: aSpecLayout [
 	"Build the adapter using the spec name provided as argument"
-	| adapter |
+	| newAdapter |
 	
-	adapter := ((aSpecLayout isSpecLayout) and: [ aSpecLayout isExecutable ]) 
+	newAdapter := ((aSpecLayout isSpecLayout) and: [ aSpecLayout isExecutable ]) 
 		ifTrue: [ aSpecLayout buildAdapterFor: self bindings: SpecBindings value new ]
 		ifFalse: [ self adapterFrom: aSpecLayout ].
-	self setExtentAndBindingTo: adapter widget.
-	^ adapter
+	self setExtentAndBindingTo: newAdapter widget.
+	self announce: (WidgetBuilt model: self widget: newAdapter widget).
+
+	^ newAdapter
 ]
 
 { #category : #api }
@@ -1202,9 +1204,7 @@ ComposablePresenter >> root [
 ComposablePresenter >> setExtentAndBindingTo: widget [
 
 	self ensureExtentFor: widget.
-	self ensureKeyBindingsFor: widget.
-	self announce: (WidgetBuilt model: self widget: widget).
-	
+	self ensureKeyBindingsFor: widget
 ]
 
 { #category : #'api-showing' }
