@@ -18,6 +18,11 @@ MorphicCheckboxAdapterTest >> emulateCenterClick [
 
 { #category : #utils }
 MorphicCheckboxAdapterTest >> emulateClick: mouseButtonCode [
+
+	"Force opening the spec instance here.
+	The action should have been correctly configured before
+	depending on the spec initialization strategy"
+	self openInstance.
 	presenter adapter widget toggleSelected
 ]
 
@@ -34,18 +39,9 @@ MorphicCheckboxAdapterTest >> emulateRightClick [
 ]
 
 { #category : #running }
-MorphicCheckboxAdapterTest >> setUp [
-
-	super setUp.
-	self openInstance
-]
-
-{ #category : #running }
 MorphicCheckboxAdapterTest >> testActivatedCheckboxPresenterStartsActivatedCheckboxMorph [
 
 	presenter state: true.
-	self openInstance.	
-	
 	self assert: self widget buttonMorph state equals: #on
 ]
 
@@ -53,7 +49,11 @@ MorphicCheckboxAdapterTest >> testActivatedCheckboxPresenterStartsActivatedCheck
 MorphicCheckboxAdapterTest >> testChangeActivatedAfterOpenCheckboxDectivatesIt [
 
 	presenter state: false.
-	self openInstance.	
+	
+	"Force opening the spec instance here.
+	We want to test that once open we can change the state"
+	self openInstance.
+
 	presenter state: true.
 	self assert: presenter state
 ]
@@ -62,7 +62,11 @@ MorphicCheckboxAdapterTest >> testChangeActivatedAfterOpenCheckboxDectivatesIt [
 MorphicCheckboxAdapterTest >> testChangeDeactivatedAfterOpenCheckboxDectivatesIt [
 
 	presenter state: true.
-	self openInstance.	
+	
+	"Force opening the spec instance here.
+	We want to test that once open we can change the state"
+	self openInstance.
+	
 	presenter state: false.
 	self deny: presenter state
 ]
@@ -71,27 +75,14 @@ MorphicCheckboxAdapterTest >> testChangeDeactivatedAfterOpenCheckboxDectivatesIt
 MorphicCheckboxAdapterTest >> testChangingLabelAffectTheWidget [
 	
 	presenter label: 'ALabel'.
-
-	self openInstance.
-
-	self assert: presenter adapter widget label equals: 'ALabel'
-]
-
-{ #category : #running }
-MorphicCheckboxAdapterTest >> testChangingLabelAffectTheWidgetAfterOpen [
-	
-	self openInstance.
-
-	presenter label: 'ALabel'.
-
-	self assert: presenter adapter widget label equals: 'ALabel'
+	self assert: self widget label equals: 'ALabel'
 ]
 
 { #category : #running }
 MorphicCheckboxAdapterTest >> testClickActivatedCheckboxDectivatesIt [
 
 	presenter state: true.
-	self openInstance.	
+	
 	self emulateLeftClick.
 	self deny: presenter state
 ]
@@ -100,9 +91,8 @@ MorphicCheckboxAdapterTest >> testClickActivatedCheckboxDectivatesIt [
 MorphicCheckboxAdapterTest >> testClickDeactivatedCheckboxActivatesIt [
 
 	presenter state: false.
-	self openInstance.	
+	
 	self emulateLeftClick.
-
 	self assert: presenter state
 ]
 
@@ -112,9 +102,8 @@ MorphicCheckboxAdapterTest >> testClickRaisesChangedEvent [
 	| activated |
 	activated := false.
 	presenter whenChangedDo: [ activated := true ].
-	self openInstance.	
-	self emulateLeftClick.
 
+	self emulateLeftClick.
 	self assert: activated
 ]
 
@@ -122,7 +111,5 @@ MorphicCheckboxAdapterTest >> testClickRaisesChangedEvent [
 MorphicCheckboxAdapterTest >> testDeactivatedCheckboxPresenterStartsDeactivatedCheckboxMorph [
 
 	presenter state: false.
-	self openInstance.	
-	
 	self assert: self widget buttonMorph state equals: #off
 ]

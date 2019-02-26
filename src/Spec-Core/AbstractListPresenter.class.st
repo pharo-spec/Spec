@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'selectionMode',
 		'multiSelectionHolder',
-		'selectionHolder',
 		'sortingBlockHolder',
 		'filteringBlockHolder',
 		'autoDeselect',
@@ -14,8 +13,7 @@ Class {
 		'doubleClickActionHolder',
 		'activationBlock',
 		'activateOnSingleClick',
-		'model',
-		'displayBlockValueHolder'
+		'model'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -80,23 +78,6 @@ AbstractListPresenter >> defaultSortingBlock [
 	^ [:a :b | true]
 ]
 
-{ #category : #api }
-AbstractListPresenter >> displayBlock [
-	"Return the one argument block used to wrap your domain specific items.
-	The block should return something that can be displayed in a list - like a String or a Text"
-	
-	^ displayBlockValueHolder value
-]
-
-{ #category : #api }
-AbstractListPresenter >> displayBlock: aBlock [
-	"<api: #block getter:#displayBlock registration: #whenDisplayBlockChanged:>"
-	"Set the one argument block used to wrap your domain specific items.
-	The block should return something that can be displayed in a list - like a String or a Text"
-	
-	displayBlockValueHolder value: aBlock
-]
-
 { #category : #private }
 AbstractListPresenter >> doActivateAtIndex: anIndex [
 
@@ -158,7 +139,8 @@ AbstractListPresenter >> initialize [
 	super initialize.
 
 	activationBlock := [ ].
-	self items: #().
+	
+	self model: 	self newEmptyModel.
 
 	self beSingleSelection.
 	self activateOnDoubleClick.
@@ -174,7 +156,7 @@ AbstractListPresenter >> initialize [
 { #category : #initialization }
 AbstractListPresenter >> initializePorts [
 
-	self addOutputPort: SelectionPresenterPort new.
+	self addOutputPort: ListSelectionPresenterPort new.
 	self addInputPort: ItemsPresenterPort new
 ]
 
@@ -184,7 +166,6 @@ AbstractListPresenter >> initializeValueHolders [
 	filteringBlockHolder := self defaultFilteringBlock asValueHolder.
 	itemFilterBlockHolder := nil asValueHolder.
 	doubleClickActionHolder := [  ] asValueHolder.
-	displayBlockValueHolder := [ :object | object asStringOrText ] asValueHolder.
 	menuHolder := [ :menu :shifted | nil ] asValueHolder.
 	allowToSelect := true asValueHolder.
 	autoDeselect := true asValueHolder
@@ -222,15 +203,17 @@ AbstractListPresenter >> itemSubstringFilter [
 	self itemFilterBlock: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
 ]
 
+{ #category : #private }
+AbstractListPresenter >> items [
+	
+	^ self model collection
+]
+
 { #category : #api }
 AbstractListPresenter >> items: aCollection [
 	"Set the items of the list.
 	aCollection is a collection of your domain specific items.
 	This creates a collection model"
-	
-	model ifNil: [ 
-		model := SpecCollectionListModel on: aCollection.
-		^ self ].
 	
 	model collection: aCollection
 ]
@@ -304,18 +287,24 @@ AbstractListPresenter >> model [
 { #category : #accessing }
 AbstractListPresenter >> model: aModel [
 	
-	model := aModel
+	model := aModel.
+	model whenChangedDo: [ 
+		self withAdapterDo: #refreshList ]
+]
+
+{ #category : #private }
+AbstractListPresenter >> newEmptyModel [
+
+	^ SpecCollectionListModel on: #()
 ]
 
 { #category : #initialization }
 AbstractListPresenter >> registerEvents [
 
 	selectionMode whenChangedDo: [ :selection | 
-		self adapter ifNotNil: #refreshWidgetSelection ].
-	displayBlockValueHolder whenChangedDo: [ 
-		self adapter ifNotNil: #refreshWidgetList ].
-	autoDeselect whenChangedDo: [ :boolean | 
-		self changed: #autoDeselect: with: { boolean }].
+		self withAdapterDo: #refreshWidgetSelection ].
+	autoDeselect whenChangedDo: [ :aBoolean | 
+		self changed: #autoDeselect: with: { aBoolean }].
 ]
 
 { #category : #api }
@@ -640,18 +629,4 @@ AbstractListPresenter >> whenSelectionIndexesChanged: aBlock [
 						-> '`@receiver whenSelectionChangedDo: [ :selection | `@argument value: selection selectedIndexes ]'.
 	
 	self whenSelectionChangedDo: [ :selection | aBlock value: selection selectedIndexes ].
-]
-
-{ #category : #private }
-AbstractListPresenter >> wrapItem: anObject [ 
-	"Return the item _anObject_ wrapped"
-
-	^ displayBlockValueHolder value cull: anObject 
-]
-
-{ #category : #private }
-AbstractListPresenter >> wrapItem: anObject index: index [
-	"Return the item _anObject_ wrapped"
-
-	^ displayBlockValueHolder value cull: anObject cull: index
 ]

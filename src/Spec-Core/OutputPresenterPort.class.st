@@ -1,10 +1,14 @@
+"
+I'm a base output port.
+I handle output transmissions by attaching them into a presenter.
+"
 Class {
 	#name : #OutputPresenterPort,
 	#superclass : #PresenterPort,
-	#category : #'Spec-Core-Base'
+	#category : #'Spec-Core-Transmission'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #attaching }
 OutputPresenterPort >> attachTransmission: aTransmission [ 
 	"override this to add specific transmissions"
 

@@ -19,8 +19,7 @@ Class {
 		'cachedHierarchy',
 		'model',
 		'topologicSortHolder',
-		'textConverterHolder',
-		'browsedEnvironment'
+		'textConverterHolder'
 	],
 	#category : #'Spec-Tools-Senders'
 }
@@ -465,13 +464,14 @@ MessageBrowser >> initializeDropList [
 
 { #category : #initialization }
 MessageBrowser >> initializePresenter [
-	
-	listModel whenSelectionChangedDo: [ :selection | 
-		[ :item | self selectItem: item ] cull: selection selectedItem ].
-	listModel whenListChanged: [ self updateTitle ].
+	listModel
+		whenSelectionChangedDo:
+			[ :selection | [ :item | self selectItem: item ] cull: selection selectedItem ].
+	listModel whenModelChangedDo: [ self updateTitle ].
 	titleHolder whenChangedDo: [ self updateTitle ].
-	textModel acceptBlock: [ :text :notifyer | 
-		(self accept: text notifying: notifyer) notNil ]
+	textModel
+		acceptBlock:
+			[ :text :notifyer | (self accept: text notifying: notifyer) notNil ]
 ]
 
 { #category : #initialization }
@@ -757,8 +757,7 @@ MessageBrowser >> setRefreshingBlockForSendersOf: aSelector [
 
 { #category : #api }
 MessageBrowser >> setSelectedIndex: anIndex [
-
-	listModel selectedIndex: anIndex
+	listModel selectIndex: anIndex
 ]
 
 { #category : #announcements }

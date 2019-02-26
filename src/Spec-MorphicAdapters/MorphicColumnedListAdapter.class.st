@@ -12,13 +12,14 @@ MorphicColumnedListAdapter >> addModelTo: tableMorph [
 
 	self isResizable ifTrue: [ tableMorph beResizable ] ifFalse: [ tableMorph beNotResizable ].
 	
-	tableMorph setMultipleSelection: self model isMultiSelection.
+	tableMorph setMultipleSelection: self model isMultipleSelection.
 
 	self refreshShowColumnHeaders.
 	self presenter whenShowColumnHeadersChangedDo: [ :showColumns |
 		self refreshShowColumnHeaders.
 	].
 
+	self presenter whenModelChangedDo: [ widget refresh ].
 	self presenter whenColumnsChangedDo: [ self refreshColumnsInWidget ].
 	
 	tableMorph
@@ -89,6 +90,12 @@ MorphicColumnedListAdapter >> refreshColumnsInWidget [
 
 	widget columns: (self model columns collect: [ :each | self newColumnFrom: each ]).
 	self ensureAtLeastOneColumnIn: widget.
+]
+
+{ #category : #updating }
+MorphicColumnedListAdapter >> refreshList [
+
+	^ self widget refresh
 ]
 
 { #category : #factory }

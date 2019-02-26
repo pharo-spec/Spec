@@ -13,6 +13,12 @@ MorphicListCommonPropertiestTest >> classToTest [
 MorphicListCommonPropertiestTest >> testRemoveHeaderTitleInPresenterRemovesColumnHeaderMorph [
 
 	| tableContainer |
+	
+	SystemVersion current major = 7
+		ifTrue: [
+			"Test failing in Pharo7 due to a bug in FastTable"
+			^ self skip ].
+	
 	self presenter headerTitle: 'test'.
 	World doOneCycle.
 
@@ -28,12 +34,11 @@ MorphicListCommonPropertiestTest >> testSetColumnTitleInPresenterPutsColumnHeade
 
 	| tableContainer tableRowMorph cellMorph |
 	self presenter headerTitle: 'test'.
-	World doOneCycle.
 
 	tableContainer := self widget submorphs first.
 	tableRowMorph := tableContainer submorphs first.
 	cellMorph := tableRowMorph submorphs first.
-	self assert: cellMorph submorphs first contents equals: 'test'.
+	self assert: cellMorph submorphs first contents equals: 'test'
 ]
 
 { #category : #running }

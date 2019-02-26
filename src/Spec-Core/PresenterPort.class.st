@@ -1,10 +1,13 @@
+"
+I'm a base port.
+"
 Class {
 	#name : #PresenterPort,
 	#superclass : #Object,
 	#instVars : [
 		'presenter'
 	],
-	#category : #'Spec-Core-Base'
+	#category : #'Spec-Core-Transmission'
 }
 
 { #category : #accessing }

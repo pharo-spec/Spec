@@ -12,15 +12,8 @@ MorphicLabelAdapterTest >> classToTest [
 	^ LabelPresenter
 ]
 
-{ #category : #accessing }
-MorphicLabelAdapterTest >> setUp [
-
-	super setUp.
-	presenter buildWithSpec
-]
-
 { #category : #tests }
 MorphicLabelAdapterTest >> testSetLabelInPresenterSetsInInMorph [
 	presenter label: 'something'.
-	self assert: presenter adapter widget contents equals: 'something'
+	self assert: self widget contents equals: 'something'
 ]

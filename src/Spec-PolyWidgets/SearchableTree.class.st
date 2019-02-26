@@ -145,10 +145,8 @@ SearchableTree >> initialize [
 
 { #category : #initialization }
 SearchableTree >> initializePresenter [
-
-	inputField whenTextChanged: [ :text | self updateRootFor: text ].
-		
-	tree whenTreeUpdated: [ inputField text: '' ].
+	inputField whenTextChangedDo: [ :text | self updateRootFor: text ].
+	tree whenTreeUpdated: [ inputField text: '' ]
 ]
 
 { #category : #initialization }

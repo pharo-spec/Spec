@@ -9,7 +9,6 @@ Class {
 	#instVars : [
 		'bottomFraction',
 		'bottomOffset',
-		'layout',
 		'leftFraction',
 		'leftOffset',
 		'rightFraction',
@@ -89,7 +88,7 @@ SpecLayoutFrame >> hasNoOffsets [
 	
 ]
 
-{ #category : #initialize }
+{ #category : #initialization }
 SpecLayoutFrame >> initialize [
 
 	super initialize.

@@ -65,13 +65,12 @@ ClassMethodBrowser >> classes: aList [
 ClassMethodBrowser >> initializePresenter [
 	listModel
 		whenSelectionChangedDo: [ :selection | 
-			[ :selection | 
-			selection
-				ifNotNil: [ :class | 
-					methodModel
-						methods: (class methods sort: [ :a :b | a selector < b selector ]).
-					methodModel listModel resetSelection ] ]
-				cull: selection selectedItems ]
+			selection isEmpty
+				ifFalse: [ methodModel
+						methods:
+							(selection selectedItem methods
+								sort: [ :a :b | a selector < b selector ]).
+					methodModel listModel unselectAll ] ]
 ]
 
 { #category : #initialization }

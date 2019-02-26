@@ -1,3 +1,9 @@
+"
+A presenter transmission modelates a transmission from one output port to an input port.
+A transmission is a way to handle how a presenter will handle input/output by default.
+
+It uses ""ports"" to define how data passes, but it can also transform it (see #transform:) to make it pass in a correct way.
+"
 Class {
 	#name : #PresenterTransmission,
 	#superclass : #Object,
@@ -9,7 +15,7 @@ Class {
 		'toPort',
 		'transformBlock'
 	],
-	#category : #'Spec-Core-Base'
+	#category : #'Spec-Core-Transmission'
 }
 
 { #category : #'instance creation' }
