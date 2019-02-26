@@ -27,15 +27,6 @@ MorphicAbstractListAdapterSingleSelectionTest >> setUp [
 ]
 
 { #category : #'tests-model-to-widget' }
-MorphicAbstractListAdapterSingleSelectionTest >> testReplaceItemListUpdatesWidget [
-
-	presenter items: #(a b c).
-	self 
-		assert: presenter adapter widget dataSource elements
-		equals: #(a b c)
-]
-
-{ #category : #'tests-model-to-widget' }
 MorphicAbstractListAdapterSingleSelectionTest >> testSelectManyIndexesKeepsLastSelectionInWidget [
 	presenter selectIndex: 1.
 	presenter selectIndex: 2.

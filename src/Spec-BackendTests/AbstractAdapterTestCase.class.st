@@ -12,7 +12,7 @@ Class {
 
 { #category : #testing }
 AbstractAdapterTestCase class >> isAbstract [ 
-	^ self == MorphicAdapterTestCase
+	^ self == AbstractAdapterTestCase
 ]
 
 { #category : #testing }
@@ -138,6 +138,20 @@ AbstractAdapterTestCase >> specInitializationStrategy: aStrategy [
 AbstractAdapterTestCase >> tearDown [
 	window ifNotNil: [ window delete ].
 	super tearDown
+]
+
+{ #category : #running }
+AbstractAdapterTestCase >> testChangingHelpAffectTheWidget [
+	
+	presenter help: 'ALabel'.
+	self assert: self adapter helpText equals: 'ALabel'
+]
+
+{ #category : #running }
+AbstractAdapterTestCase >> testEnabledAffectWidget [
+	
+	presenter enabled: false.
+	self deny: self adapter enabled
 ]
 
 { #category : #running }

@@ -11,13 +11,6 @@ ButtonAdapterTest >> classToTest [
 ]
 
 { #category : #running }
-ButtonAdapterTest >> testChangingHelpAffectTheWidget [
-	
-	presenter help: 'ALabel'.
-	self assert: self adapter helpText equals: 'ALabel'
-]
-
-{ #category : #running }
 ButtonAdapterTest >> testChangingIconAffectTheWidget [
 	
 	presenter iconName: #pharo.
