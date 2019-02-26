@@ -1,7 +1,7 @@
 Class {
 	#name : #ModelPresenterPort,
 	#superclass : #InputPresenterPort,
-	#category : #'Spec-Core-Base'
+	#category : #'Spec-Core-Transmission'
 }
 
 { #category : #accessing }
@@ -10,7 +10,7 @@ ModelPresenterPort class >> portName [
 	^ #model
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'handling transmission' }
 ModelPresenterPort >> incomingTransmission: anObject from: aTransmission [
 
 	self presenter setModel: anObject

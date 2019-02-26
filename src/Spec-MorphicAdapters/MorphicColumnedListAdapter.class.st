@@ -92,6 +92,12 @@ MorphicColumnedListAdapter >> refreshColumnsInWidget [
 	self ensureAtLeastOneColumnIn: widget.
 ]
 
+{ #category : #updating }
+MorphicColumnedListAdapter >> refreshList [
+
+	^ self widget refresh
+]
+
 { #category : #factory }
 MorphicColumnedListAdapter >> refreshShowColumnHeaders [
 	

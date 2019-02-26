@@ -92,7 +92,6 @@ Class {
 		'focusOrder',
 		'owner',
 		'window',
-		'spec',
 		'extentHolder',
 		'needRebuild',
 		'additionalKeyBindings',
@@ -105,7 +104,8 @@ Class {
 		'inputPorts',
 		'outputPorts',
 		'transmissions',
-		'additionalSubpresentersMap'
+		'additionalSubpresentersMap',
+		'adapter'
 	],
 	#category : #'Spec-Core-Base'
 }
@@ -236,7 +236,7 @@ ComposablePresenter >> aboutText: aString [
 { #category : #accessing }
 ComposablePresenter >> adapter [
 
-	^ spec
+	^ adapter
 ]
 
 { #category : #api }
@@ -642,12 +642,10 @@ ComposablePresenter >> initializePresenter [
 
 	"By default, do not do anything"
 
-	extentHolder
-		whenChangedDo: [ :ex | 
-			self adapter
-				ifNotNil: [ :widget | 
-					(widget respondsTo: #extent:)
-						ifTrue: [ widget extent: ex ] ] ]
+	extentHolder whenChangedDo: [ :ex | 
+		self withAdapterDo: [ :widget | 
+			(widget respondsTo: #extent:)
+				ifTrue: [ widget extent: ex ] ] ]
 ]
 
 { #category : #'initialization - private' }
@@ -1084,6 +1082,13 @@ ComposablePresenter >> owner: anObject [
 ]
 
 { #category : #accessing }
+ComposablePresenter >> presenterAt: aName [
+	"Retrieves a subpresenter of this composed presenter."
+
+	^ self readSlotNamed: aName
+]
+
+{ #category : #accessing }
 ComposablePresenter >> presenterWindow [
 	^ window value
 ]
@@ -1191,13 +1196,14 @@ ComposablePresenter >> show [
 { #category : #accessing }
 ComposablePresenter >> spec [
 
-	^ spec
+	^ adapter
 ]
 
 { #category : #accessing }
-ComposablePresenter >> spec: aSpec [
+ComposablePresenter >> spec: anAdapter [
+	"This is a remaining of other times... spec accesor in fact contains an adapter"
 
-	spec := aSpec
+	adapter := anAdapter
 ]
 
 { #category : #api }
@@ -1320,4 +1326,18 @@ ComposablePresenter >> windowIcon [
 ComposablePresenter >> windowIcon: aForm [
 
 	windowIcon value: aForm
+]
+
+{ #category : #private }
+ComposablePresenter >> withAdapterDo: aValuable [
+	"a convenience method to avoid verify by nil all the time"
+	
+	^ self adapter ifNotNil: aValuable
+]
+
+{ #category : #private }
+ComposablePresenter >> withWidgetDo: aValuable [
+	"a convenience method to avoid verify by nil all the time"
+	
+	^ self widget ifNotNil: aValuable
 ]

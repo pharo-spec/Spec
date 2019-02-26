@@ -106,7 +106,7 @@ MorphicListAdapter >> menu: aMenu shifted: aBoolean [
 { #category : #'widget API' }
 MorphicListAdapter >> refreshList [
 
-	^ self widget updateList
+	^ self widget refresh
 ]
 
 { #category : #'widget API' }
