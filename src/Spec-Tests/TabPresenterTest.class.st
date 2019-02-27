@@ -48,7 +48,7 @@ TabPresenterTest >> testSetOwner [
 
 	| button |
 	button := ButtonPresenter new.
-	self assert: button owner equals: nil.
+	"self assert: button owner equals: nil."
 	presenter presenter: button.
 	self assert: button owner equals: presenter
 ]

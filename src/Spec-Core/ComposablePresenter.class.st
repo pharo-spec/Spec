@@ -85,12 +85,11 @@ It possible to define more than one method to give the possibility to use anothe
 "
 Class {
 	#name : #ComposablePresenter,
-	#superclass : #Model,
+	#superclass : #Presenter,
 	#traits : 'TSpecObservable',
 	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
 		'focusOrder',
-		'owner',
 		'window',
 		'extentHolder',
 		'needRebuild',
@@ -105,7 +104,7 @@ Class {
 		'outputPorts',
 		'transmissions',
 		'additionalSubpresentersMap',
-		'adapter'
+		'application'
 	],
 	#category : #'Spec-Core-Base'
 }
@@ -152,17 +151,44 @@ ComposablePresenter class >> labelHeight [
 ]
 
 { #category : #'instance creation' }
+ComposablePresenter class >> newApplication: anApplication model: aModel [
+
+	^ self basicNew
+		setModelBeforeInitialization: aModel;
+		initializeApplication: anApplication;
+		yourself
+]
+
+{ #category : #'instance creation' }
+ComposablePresenter class >> newApplication: anApplication owner: anOwningPresenter [
+
+	^ self basicNew
+		owner: anOwningPresenter;
+		initializeApplication: anApplication;
+		yourself
+]
+
+{ #category : #'instance creation' }
+ComposablePresenter class >> newApplication: anApplication owner: anOwningPresenter model: aDomainObject [
+
+	^ self basicNew
+		owner: anOwningPresenter;
+		setModelBeforeInitialization: aDomainObject;
+		initializeApplication: anApplication;
+		yourself
+]
+
+{ #category : #'instance creation' }
 ComposablePresenter class >> on: aDomainObject [
 
-	self 
-		deprecated: 'You should not use this (ComposablePresenters need have an owner)' 
+	"self 
+		deprecated: 'ComposablePresenters are instantiated in the context of an application!' 
 		on: '2019-02-26' 
-		in: #Pharo8.
+		in: #Pharo8."
 		
-	^ self basicNew
-		setModelBeforeInitialization: aDomainObject;
-		initialize;
-		yourself
+	^ self 
+		newApplication: NullApplication new 
+		model: aDomainObject 
 ]
 
 { #category : #'instance creation' }
@@ -238,12 +264,6 @@ ComposablePresenter >> aboutText: aString [
 	aboutText value: aString
 ]
 
-{ #category : #accessing }
-ComposablePresenter >> adapter [
-
-	^ adapter
-]
-
 { #category : #api }
 ComposablePresenter >> adapterFrom: aSpecLayout [
 	^ SpecInterpreter interpretASpec: aSpecLayout presenter: self
@@ -308,7 +328,7 @@ ComposablePresenter >> announce: anAnnouncement [
 	self announcer announce: anAnnouncement
 ]
 
-{ #category : #api }
+{ #category : #TOREMOVE }
 ComposablePresenter >> apiSelectors [
 
 	^ self class apiSelectors
@@ -318,22 +338,12 @@ ComposablePresenter >> apiSelectors [
 ComposablePresenter >> application [
 	"Answer application owner of this composition.
 	 The tree for a composition starts always with an application, which is responsible of 
-	 providing all resources the presenter needs. The structure is something like this: 
-	 
-	application
-		\ 
-	 root presenter
-				\
-				sub presenter 1
-				\
-				sub presenter N									"
+	 providing all resources the presenter needs"
 
-	^ self owner isPresenter
-		ifTrue: [ self owner application ]
-		ifFalse: [ self owner ]
+	^ application ifNil: [ application := NullApplication new ] 
 ]
 
-{ #category : #api }
+{ #category : #'window menu' }
 ComposablePresenter >> applyMenuModel: aMenuModel [
 
 	aMenuModel menuGroups do: [ :group |
@@ -349,15 +359,16 @@ ComposablePresenter >> applyTransmissions [
 	transmissions do: #apply
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> askOkToClose [
 
 	^ askOkToClose value
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> askOkToClose: aBoolean [
-
+	self flag: #TODO. "Move this to WindowPresenter (it should be added in 
+	#initializeWindow:"
 	askOkToClose value: aBoolean
 ]
 
@@ -412,8 +423,9 @@ ComposablePresenter >> buildWithSpecLayout: aSpecLayout [
 	^ (self buildAdapterWithSpecLayout: aSpecLayout) widget
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> cancelled [
+	self flag: #TODO. "just for dialogs... I wonder if we need it here?"
 
 	^ self window
 		ifNil: [ false ]
@@ -426,7 +438,7 @@ ComposablePresenter >> centerWidget: aWindow [
 	self changed: #centerWidget: with: { aWindow }
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> centered [
 	self presenterWindow ifNotNil: [ :w | w centered ]
 ]
@@ -613,7 +625,7 @@ ComposablePresenter >> hasWindow [
 	 ^ self owner hasWindow
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> hide [
 
 	self widget ifNotNil: [:widget |
@@ -626,7 +638,7 @@ ComposablePresenter >> iconNamed: aSymbol [
 	^ self class iconNamed: aSymbol
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 ComposablePresenter >> initialExtent [
 
 	^ nil
@@ -644,6 +656,13 @@ ComposablePresenter >> initialize [
 	self initializePrivateValueHolders.
 	self initializePrivateHooks.
 	self initializePrivateAnnouncements
+]
+
+{ #category : #initialization }
+ComposablePresenter >> initializeApplication: anApplication [
+
+	application := anApplication.
+	self initialize
 ]
 
 { #category : #initialization }
@@ -786,7 +805,8 @@ ComposablePresenter >> instantiatePresenters: aCollectionOfPairs [
 ComposablePresenter >> isDisplayed [
 	"Return true if the widget is currently displayed on screen"
 	
-	^ self window notNil and: [ self window isDisplayed ]
+	^ self window notNil 
+		and: [ self window isDisplayed ]
 ]
 
 { #category : #testing }
@@ -831,7 +851,7 @@ ComposablePresenter >> needRebuild: aBoolean [
 	needRebuild value: aBoolean
 ]
 
-{ #category : #api }
+{ #category : #'window menu' }
 ComposablePresenter >> neglectMenuModel: aMenuModel [
 
 	aMenuModel menuGroups do: [ :group |
@@ -990,7 +1010,7 @@ ComposablePresenter >> okToChange [
 		ifNil: [
 			self canDiscardEdits ifTrue: [^ true].
 			self changed: #wantToChange.  "Solicit cancel from view"
-			^ self canDiscardEdits]
+			^ self canDiscardEdits ]
 		ifNotNil: [ owner okToChange ]
 ]
 
@@ -1107,20 +1127,6 @@ ComposablePresenter >> outputPorts [
 ]
 
 { #category : #accessing }
-ComposablePresenter >> owner [
-
-	self flag: #TODO. "a ComposablePresenter should always have an owner. I'm adding this 
-	because they don't always follow this rule."
-	^ owner ifNil: [ owner := NullApplication new ]
-]
-
-{ #category : #accessing }
-ComposablePresenter >> owner: aPresenterOrApplication [
-
-	owner := aPresenterOrApplication
-]
-
-{ #category : #accessing }
 ComposablePresenter >> presenterAt: aName [
 	"Retrieves a subpresenter of this composed presenter."
 
@@ -1192,12 +1198,11 @@ ComposablePresenter >> retrieveSpec: aSelector [
 
 { #category : #accessing }
 ComposablePresenter >> root [
-	"Answer root presenter of this composition.
-	 Owner can contain also an application, so we get sure we stop before."
+	"Answer root presenter of this composition."
 	
-	^ self owner isPresenter
-		ifTrue: [ self owner root ]
-		ifFalse: [ self ]
+	^ self owner 
+		ifNotNil: [ :presenter | presenter root ]
+		ifNil: [ self ]
 ]
 
 { #category : #TOMOVE }
@@ -1234,19 +1239,6 @@ ComposablePresenter >> setModelBeforeInitialization: aDomainObject [
 ComposablePresenter >> show [
 	
 	self withAdapterDo: #show
-]
-
-{ #category : #accessing }
-ComposablePresenter >> spec [
-
-	^ adapter
-]
-
-{ #category : #accessing }
-ComposablePresenter >> spec: anAdapter [
-	"This is a remaining of other times... spec accesor in fact contains an adapter"
-
-	adapter := anAdapter
 ]
 
 { #category : #TOREMOVE }
@@ -1302,6 +1294,25 @@ ComposablePresenter >> transmit [
 	newTransmition := PresenterTransmission on: self.
 	transmissions add: newTransmition.
 	^ newTransmition
+]
+
+{ #category : #'private-traversing' }
+ComposablePresenter >> traversePresentersDo: aBlock [
+
+	self 
+		traversePresentersDo: aBlock 
+		excluding: Set new
+]
+
+{ #category : #'private-traversing' }
+ComposablePresenter >> traversePresentersDo: aBlock excluding: excludes [
+
+	self class allSlots do: [ :each | | var |
+		var := self readSlot: each.
+		(var isKindOf: ComposablePresenter) ifTrue: [ 
+			excludes add: var.
+			aBlock value: each.
+			each traversePresentersDo: aBlock excluding: var ] ]
 ]
 
 { #category : #private }
