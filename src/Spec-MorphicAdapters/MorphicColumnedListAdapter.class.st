@@ -67,6 +67,12 @@ MorphicColumnedListAdapter >> isResizable [
 ]
 
 { #category : #testing }
+MorphicColumnedListAdapter >> isShowColumnHeaders [
+
+	^ widget isShowColumnHeaders 	
+]
+
+{ #category : #testing }
 MorphicColumnedListAdapter >> isShowingColumnHeaders [
 	^ self model isShowingColumnHeaders
 ]
