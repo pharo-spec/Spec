@@ -51,7 +51,7 @@ TabManagerPresenterTest >> testAddTabOpened [
 TabManagerPresenterTest >> testAddTabSetOwner [
 	"issue #16553"
 
-	self assert: redTab owner equals: nil.
+	self assert: redTab owner isNullApplication.
 	presenter addTab: redTab.
 	self assert: redTab owner equals: presenter
 ]
@@ -134,5 +134,5 @@ TabManagerPresenterTest >> testRemoveTabUnsetOwner [
 	presenter addTab: redTab.
 	self assert: redTab owner equals: presenter.
 	presenter removeTab: redTab.
-	self assert: redTab owner equals: nil
+	self assert: redTab owner isNullApplication 
 ]

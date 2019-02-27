@@ -12,6 +12,8 @@ AbstractListAdapterMultipleSelectionTest class >> isAbstract [
 { #category : #running }
 AbstractListAdapterMultipleSelectionTest >> initializeTestedInstance [
 
+	super initializeTestedInstance.
+
 	presenter
 		beMultipleSelection;
 		items: #(10 20 30)

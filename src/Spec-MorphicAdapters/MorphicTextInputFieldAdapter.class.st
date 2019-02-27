@@ -84,6 +84,18 @@ MorphicTextInputFieldAdapter >> isCodeCompletionAllowed [
 	^ false
 ]
 
+{ #category : #testing }
+MorphicTextInputFieldAdapter >> isPassword [
+	
+	^ self widget font isKindOf: FixedFaceFont
+]
+
+{ #category : #accessing }
+MorphicTextInputFieldAdapter >> placeHolderText [
+	
+	^ widget ghostText 
+]
+
 { #category : #'widget API' }
 MorphicTextInputFieldAdapter >> placeholder [
 	^ self model placeholder
@@ -92,4 +104,10 @@ MorphicTextInputFieldAdapter >> placeholder [
 { #category : #'widget API' }
 MorphicTextInputFieldAdapter >> placeholder: aText [
 	^ self model placeholder: aText
+]
+
+{ #category : #accessing }
+MorphicTextInputFieldAdapter >> text: aString [ 
+	
+	widget setTextAndAccept: aString
 ]

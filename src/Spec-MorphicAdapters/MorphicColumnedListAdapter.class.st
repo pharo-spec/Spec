@@ -129,7 +129,8 @@ MorphicColumnedListAdapter >> refreshWidgetSelection [
 
 { #category : #selection }
 MorphicColumnedListAdapter >> selectIndex: anInteger [ 
-	
+
+	widget selectedIndex = anInteger ifTrue: [^self].	
 	widget selectIndex: anInteger
 ]
 
