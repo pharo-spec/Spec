@@ -44,26 +44,30 @@ MorphicStyleSheet class >> fromProperties: anArrayofProperties [
 { #category : #theme }
 MorphicStyleSheet class >> newDefault [
 	
-	^ self new 
-		addClass: #Button with: { MorphicStyleSheetExtent newExtent: 80@25 };
-		addClass: #CheckBox with: { MorphicStyleSheetExtent newExtent: 15@25 hResizing: true };
-		addClass: #RadioButton with: { MorphicStyleSheetExtent newExtent: 15@25 };
-		addClass: #DropList with: { MorphicStyleSheetExtent newExtent: 150@25 hResizing: true };
-		addClass: #List with: { MorphicStyleSheetExtent newExtent: 150@100 hResizing: true };
-		addClass: #Label with: { MorphicStyleSheetExtent newExtent: 50@25 hResizing: true };
-		addClass: #Link with: { MorphicStyleSheetExtent newExtent: 50@25 hResizing: true };
-		addClass: #Text with: { MorphicStyleSheetExtent newExtent: 150@100 hResizing: true vResizing: true};
-		addClass: #TextInputField with: { MorphicStyleSheetExtent newExtent: 150@25 hResizing: true };
-		addClass: #NumberInputField with: { MorphicStyleSheetExtent newExtent: 150@25 hResizing: true };
-		yourself
+	^ MorphicDefaultStyleSheet new
+]
+
+{ #category : #utils }
+MorphicStyleSheet class >> reset [ 
+	<script>
+	
+	Current := nil
+]
+
+{ #category : #accessing }
+MorphicStyleSheet >> addClass: aSymbol style: aStyleSheet [
+
+	self 
+		propertyAt: aSymbol 
+		put: aStyleSheet
 ]
 
 { #category : #accessing }
 MorphicStyleSheet >> addClass: aSymbol with: anArray [
 
 	self 
-		propertyAt: aSymbol 
-		put: (MorphicStyleSheet fromProperties: anArray)
+		addClass: aSymbol 
+		style: (MorphicStyleSheet fromProperties: anArray)
 ]
 
 { #category : #operations }
@@ -79,7 +83,7 @@ MorphicStyleSheet >> atClass: aName [
 
 	^ self 
 		propertyAt: aName 
-		ifAbsentPut: [ self class new ]
+		ifAbsentPut: [ MorphicStyleSheet new ]
 ]
 
 { #category : #style }

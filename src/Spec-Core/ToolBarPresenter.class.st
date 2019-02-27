@@ -100,6 +100,7 @@ ToolBarPresenter >> isEmpty [
 
 { #category : #api }
 ToolBarPresenter >> items [
+
 	^ items value
 ]
 

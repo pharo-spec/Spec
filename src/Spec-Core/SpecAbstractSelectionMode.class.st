@@ -77,9 +77,21 @@ SpecAbstractSelectionMode >> selectIndex: anIndex [
 ]
 
 { #category : #selecting }
+SpecAbstractSelectionMode >> selectIndexes: aCollection [
+
+	self subclassResponsibility
+]
+
+{ #category : #selecting }
 SpecAbstractSelectionMode >> selectItem: anItem [
 	
 	self basicSelectIndex: (self indexOfItem: anItem)
+]
+
+{ #category : #selecting }
+SpecAbstractSelectionMode >> selectedIndexes [
+
+	self subclassResponsibility
 ]
 
 { #category : #'as yet unclassified' }

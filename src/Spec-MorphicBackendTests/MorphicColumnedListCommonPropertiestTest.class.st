@@ -10,9 +10,9 @@ MorphicColumnedListCommonPropertiestTest >> classToTest [
 ]
 
 { #category : #running }
-MorphicColumnedListCommonPropertiestTest >> setUpPresenter [
+MorphicColumnedListCommonPropertiestTest >> initializeTestedInstance [
 
-	super setUpPresenter.
+	super initializeTestedInstance.
 	presenter addColumn: (StringTableColumn title: 'Number' evaluated: #yourself).
 	
 	"Hide headers. We will try to click the first element, and the header is an extra element."
@@ -26,8 +26,7 @@ MorphicColumnedListCommonPropertiestTest >> testAddColumnInPresenterAddsItToWidg
 	newColumn := StringTableColumn title: 'Hex' evaluated: #hex.
 	self presenter
 		addColumn: newColumn.
-	World doOneCycle.
-	
+
 	self assert: self widget columns last model equals: newColumn
 ]
 
@@ -35,7 +34,6 @@ MorphicColumnedListCommonPropertiestTest >> testAddColumnInPresenterAddsItToWidg
 MorphicColumnedListCommonPropertiestTest >> testHideColumnHeadersInPresenterHidesThemInWidget [
 
 	self presenter hideColumnHeaders.
-	World doOneCycle.
 	
 	self assert: self widget container headerRow isNil
 ]
@@ -49,8 +47,12 @@ MorphicColumnedListCommonPropertiestTest >> testListWithoutColumnsHasSingleColum
 { #category : #tests }
 MorphicColumnedListCommonPropertiestTest >> testShowColumnHeadersInPresenterShowsThemInWidget [
 
+	SystemVersion current major = 7
+		ifTrue: [
+			"Test failing in Pharo7 due to a bug in FastTable"
+			^ self skip ].
+
 	self presenter showColumnHeaders.
-	World doOneCycle.
 	
 	self assert: self widget container headerRow notNil
 ]

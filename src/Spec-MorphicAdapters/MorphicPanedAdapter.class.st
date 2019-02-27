@@ -6,7 +6,6 @@ Class {
 	#name : #MorphicPanedAdapter,
 	#superclass : #MorphicLayoutAdapter,
 	#instVars : [
-		'direction',
 		'layout'
 	],
 	#category : #'Spec-MorphicAdapters-Layout'

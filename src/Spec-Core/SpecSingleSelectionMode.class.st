@@ -45,6 +45,13 @@ SpecSingleSelectionMode >> selectAll [
 ]
 
 { #category : #selecting }
+SpecSingleSelectionMode >> selectIndexes: aCollection [
+
+	aCollection ifEmpty: [ ^ self unselectAll ].
+	self selectIndex: aCollection first.
+]
+
+{ #category : #selecting }
 SpecSingleSelectionMode >> selectedIndex [
 	
 	^ selectedIndexValueHolder value
@@ -52,7 +59,9 @@ SpecSingleSelectionMode >> selectedIndex [
 
 { #category : #selecting }
 SpecSingleSelectionMode >> selectedIndexes [
-	
+	"This provides polymorphism with sibling classes, and answers an array with a single 
+	 element."
+		
 	^ self isEmpty
 		ifTrue: [ #() ]
 		ifFalse: [ { self selectedIndex } ]

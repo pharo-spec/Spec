@@ -14,7 +14,7 @@ SpecListFastTableDataSource >> cellColumn: column row: rowIndex [
 	cell := FTCellMorph new
 		cellInset: 5;
 		yourself.
-	cell addMorphBack: displayValue asMorph.
+	cell addMorphBack: displayValue asMorph asReadOnlyMorph.
 	^ cell
 ]
 
@@ -26,7 +26,8 @@ SpecListFastTableDataSource >> elementAt: rowIndex [
 
 { #category : #accessing }
 SpecListFastTableDataSource >> elements [
-	^self model getList
+
+	^ self model items
 ]
 
 { #category : #accessing }
@@ -34,7 +35,7 @@ SpecListFastTableDataSource >> headerColumn: column [
 	column id ifNil: [ ^ nil ]. 
 	^ FTCellMorph new 
 		listCentering: #center;
-		addMorph: column id asMorph;
+		addMorph: column id asMorph asReadOnlyMorph;
 		yourself
 ]
 

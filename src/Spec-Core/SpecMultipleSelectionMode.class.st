@@ -34,7 +34,7 @@ SpecMultipleSelectionMode >> includesItem: anItem [
 	^ self selectedItems includes: anItem
 ]
 
-{ #category : #selecting }
+{ #category : #initialization }
 SpecMultipleSelectionMode >> initialize [
 
 	super initialize.

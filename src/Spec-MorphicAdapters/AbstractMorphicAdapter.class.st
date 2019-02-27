@@ -184,8 +184,7 @@ AbstractMorphicAdapter >> enable [
 
 { #category : #protocol }
 AbstractMorphicAdapter >> enabled [
-	
-	^ self model enabled
+	^ self model isEnabled
 ]
 
 { #category : #protocol }
@@ -248,6 +247,12 @@ AbstractMorphicAdapter >> heightToDisplayInTree: aTree [
 AbstractMorphicAdapter >> help [
 
 	^ self model help
+]
+
+{ #category : #accessing }
+AbstractMorphicAdapter >> helpText [
+	
+	^ self widget balloonText 
 ]
 
 { #category : #testing }
@@ -313,11 +318,24 @@ AbstractMorphicAdapter >> setModal: aWindow [
 	self widgetDo: [ :w | w setModal: aWindow ]
 ]
 
+{ #category : #protocol }
+AbstractMorphicAdapter >> show [ 
+
+	self widgetDo: #show
+]
+
 { #category : #accessing }
 AbstractMorphicAdapter >> style [
 	"i.e. ButtonAdapter = Button"
 	
-	^ MorphicStyleSheet current atClass: self styleName
+	^ self styleAt: self styleName
+]
+
+{ #category : #accessing }
+AbstractMorphicAdapter >> styleAt: aName [
+	"i.e. ButtonAdapter = Button"
+	
+	^ MorphicStyleSheet current atClass: aName
 ]
 
 { #category : #accessing }

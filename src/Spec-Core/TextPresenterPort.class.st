@@ -1,10 +1,10 @@
 Class {
 	#name : #TextPresenterPort,
 	#superclass : #InputPresenterPort,
-	#category : #'Spec-Core-Base'
+	#category : #'Spec-Core-Transmission'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'handling transmission' }
 TextPresenterPort >> incomingTransmission: anObject from: outPort [
 
 	self presenter text: anObject

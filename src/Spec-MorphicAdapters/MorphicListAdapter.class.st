@@ -39,16 +39,17 @@ MorphicListAdapter >> buildWidget [
 	| datasource |
 	datasource := SpecListFastTableDataSource new.
 	datasource model: self model.
-
 	widget := FTTableMorph new
 		dataSource: datasource;
 		hideColumnHeaders;
 		beResizable;
-		columns: { (MorphicTableColumn on: (StringTableColumn 
-			title: self presenter headerTitle
-			evaluated: self presenter displayBlock))
-				yourself };
-		setMultipleSelection: self model isMultiSelection;
+		columns:
+			{(MorphicTableColumn
+				on:
+					(StringTableColumn
+						title: self presenter headerTitle
+						evaluated: self presenter displayBlock)) yourself};
+		setMultipleSelection: self model isMultipleSelection;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
 		setBalloonText: self help;
@@ -61,9 +62,13 @@ MorphicListAdapter >> buildWidget [
 			send: #strongSelectionChanged:
 			to: self;
 		yourself.
-	
+	self presenter whenModelChangedDo: [ widget refresh ].
+	self presenter
+		whenSelectionChangedDo: [ self refreshWidgetSelection ].
+	self presenter selection
+		whenChangedDo: [ self refreshWidgetSelection ].
 	self refreshWidgetHeaderTitle.
-	
+	self refreshWidgetSelection.
 	self itemFilterBlock
 		ifNotNil: [ :block | 
 			widget
@@ -105,7 +110,7 @@ MorphicListAdapter >> menu: aMenu shifted: aBoolean [
 { #category : #'widget API' }
 MorphicListAdapter >> refreshList [
 
-	^ self widget updateList
+	^ self widget refresh
 ]
 
 { #category : #'widget API' }
@@ -152,32 +157,35 @@ MorphicListAdapter >> refreshWidgetSelection [
 	^ self widget refresh
 ]
 
+{ #category : #selecting }
+MorphicListAdapter >> selectIndex: anInteger [ 
+	
+	widget selectedIndex = anInteger ifTrue: [^self].
+	widget selectIndex: anInteger
+]
+
 { #category : #factory }
 MorphicListAdapter >> selectionChanged: ann [
-
 	| diff |
 	self presenter selection isMultipleSelection
 		ifTrue: [ self presenter selection
-				selectIndexes: (ann newSelectedRowIndexes reject: [ :e | e = 0 ]) ].
-
+				selectIndexes: (ann newSelectedIndexes reject: [ :e | e = 0 ]) ].
 	self presenter selection isMultipleSelection
 		ifFalse: [ self presenter selection
 				selectIndex:
-					(ann newSelectedRowIndexes
+					(ann newSelectedIndexes
 						ifNotEmpty: [ :indexes | indexes first ]
 						ifEmpty: [ 0 ]) ].
-	
-	diff := ann newSelectedRowIndexes difference: ann oldSelectedRowIndexes.
+	diff := ann newSelectedIndexes difference: ann oldSelectedIndexes.
 	(diff notEmpty and: [ self presenter activatesOnSingleClick ])
 		ifTrue: [ self presenter doActivateAtIndex: diff last ].
-
-	ann newSelectedRowIndexes ifNotEmpty: [ ^ self ].
-	self presenter selection unselectAll.
+	ann newSelectedIndexes ifNotEmpty: [ ^ self ].
+	self presenter selection unselectAll
 ]
 
 { #category : #events }
-MorphicListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [ 
-	
+MorphicListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
 	self presenter activatesOnDoubleClick
-		ifTrue: [ self presenter doubleClickAtIndex: aFTStrongSelectionChanged selectedRowIndex ]
+		ifTrue: [ self presenter
+				doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex ]
 ]

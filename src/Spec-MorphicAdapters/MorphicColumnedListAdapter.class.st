@@ -12,16 +12,20 @@ MorphicColumnedListAdapter >> addModelTo: tableMorph [
 
 	self isResizable ifTrue: [ tableMorph beResizable ] ifFalse: [ tableMorph beNotResizable ].
 	
-	tableMorph setMultipleSelection: self model isMultiSelection.
+	tableMorph setMultipleSelection: self model isMultipleSelection.
 
 	self refreshShowColumnHeaders.
+	self refreshWidgetSelection.
+	
 	self presenter whenShowColumnHeadersChangedDo: [ :showColumns |
 		self refreshShowColumnHeaders.
 	].
 
+	self presenter whenModelChangedDo: [ widget refresh ].
 	self presenter whenColumnsChangedDo: [ self refreshColumnsInWidget ].
 	
 	tableMorph
+		setBalloonText: self help;
 		onAnnouncement: FTSelectionChanged
 			send: #selectionChanged:
 			to: self;
@@ -91,6 +95,12 @@ MorphicColumnedListAdapter >> refreshColumnsInWidget [
 	self ensureAtLeastOneColumnIn: widget.
 ]
 
+{ #category : #updating }
+MorphicColumnedListAdapter >> refreshList [
+
+	^ self widget refresh
+]
+
 { #category : #factory }
 MorphicColumnedListAdapter >> refreshShowColumnHeaders [
 	
@@ -112,9 +122,16 @@ MorphicColumnedListAdapter >> refreshWidgetSelection [
 	rowIndexes = self widget selectedIndexes
 		ifTrue: [ ^ self ].
 	rowIndexes isEmpty
-		ifTrue: [ self widget basicSelectRowIndexes: #() ]
-		ifFalse: [ self widget basicSelectRowIndexes: rowIndexes ].
+		ifTrue: [ self widget basicSelectIndexes: #() ]
+		ifFalse: [ self widget basicSelectIndexes: rowIndexes ].
 	^ self widget refresh
+]
+
+{ #category : #selection }
+MorphicColumnedListAdapter >> selectIndex: anInteger [ 
+
+	widget selectedIndex = anInteger ifTrue: [^self].	
+	widget selectIndex: anInteger
 ]
 
 { #category : #factory }
@@ -122,7 +139,7 @@ MorphicColumnedListAdapter >> selectionChanged: ann [
 	| diff |
 	self presenter selection isMultipleSelection
 		ifTrue: [ self presenter selection
-				selectIndexes: (ann newSelectedRowIndexes reject: [ :e | e = 0 ]) ].
+				selectIndexes: (ann newSelectedIndexes reject: [ :e | e = 0 ]) ].
 	self presenter selection isMultipleSelection
 		ifFalse: [ self presenter selection
 				selectIndex:
@@ -137,8 +154,8 @@ MorphicColumnedListAdapter >> selectionChanged: ann [
 ]
 
 { #category : #factory }
-MorphicColumnedListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [ 
-	
+MorphicColumnedListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
 	self presenter activatesOnDoubleClick
-		ifTrue: [ self presenter doubleClickAtIndex: aFTStrongSelectionChanged selectedRowIndex ]
+		ifTrue: [ self presenter
+				doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex ]
 ]

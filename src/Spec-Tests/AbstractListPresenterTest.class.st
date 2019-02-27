@@ -88,6 +88,20 @@ AbstractListPresenterTest >> testActivationWithoutActivationBlockDoesNothing [
 	self assert: activatedItem equals: nil
 ]
 
+{ #category : #tests }
+AbstractListPresenterTest >> testReplaceItemList [
+	| changed |
+
+	changed := false.
+	presenter whenModelChangedDo: [ changed := true ].
+	presenter items: #(a b c).
+	
+	self 
+		assert: presenter model collection
+		equals: #(a b c).
+	self assert: changed
+]
+
 { #category : #'tests-smoke' }
 AbstractListPresenterTest >> testSmokeOpenEmptyPresenter [
 

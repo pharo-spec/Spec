@@ -11,9 +11,6 @@ Class {
 		'presenter',
 		'selector'
 	],
-	#classInstVars : [
-		'bindings'
-	],
 	#category : #'Spec-Core-Utilities'
 }
 
@@ -43,7 +40,7 @@ SpecInterpreter >> actionToPerformWithSelector: aSelector arguments: args [
 			We are thinking of killing the interpreter. Maybe later if we know that we are getting the content of a variable of a presenter we can avoid using a catch and directly access the variable."
 			(aSelector last ~= $: and: [ args isEmpty ])
 				ifTrue: [ self subpresenterNamed: aSelector]
-				ifFalse: [ ex resume ] ]
+				ifFalse: [ ex pass ] ]
 ]
 
 { #category : #bindings }
@@ -182,12 +179,13 @@ SpecInterpreter >> retrieveSpecFrom: aSpec [
 
 { #category : #'interpreting-private' }
 SpecInterpreter >> returnInterpretationOf: newInstance [
-	| result |
-	self presenter spec: spec.
+	| result adaptor |
 	result := self class interpretASpec: newInstance presenter: spec.
-	^ (result isKindOf: ComposablePresenter)
+	adaptor := (result isKindOf: ComposablePresenter)
 		ifTrue: [ self getAdaptorWithDefaultSpecOf: result ]
-		ifFalse: [ result ]
+		ifFalse: [ result ].
+	self presenter spec: adaptor.
+	^ adaptor
 ]
 
 { #category : #'interpreting-private' }

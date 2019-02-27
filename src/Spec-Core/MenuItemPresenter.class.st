@@ -33,7 +33,6 @@ Class {
 		'icon',
 		'description',
 		'state',
-		'enabled',
 		'autoRefresh'
 	],
 	#category : #'Spec-Core-Widgets'
@@ -81,18 +80,6 @@ MenuItemPresenter >> description: aString [
 	description value: aString
 ]
 
-{ #category : #accessing }
-MenuItemPresenter >> enabled [
-
-	^ enabled value
-]
-
-{ #category : #accessing }
-MenuItemPresenter >> enabled: aBoolean [
-
-	enabled value: aBoolean
-]
-
 { #category : #'api-building' }
 MenuItemPresenter >> fromSpec: aSpec [
 
@@ -123,7 +110,6 @@ MenuItemPresenter >> initialize [
 	super initialize.
 
 	action := [] asValueHolder.
-	enabled := true asValueHolder.
 	state := nil asValueHolder.
 	description := nil asValueHolder.
 	name := '' asValueHolder.
@@ -149,7 +135,7 @@ MenuItemPresenter >> name: aString [
 MenuItemPresenter >> performMenuActionWith: aMenuItem [
 	| en |
 
-	en := self enabled.
+	en := self isEnabled.
 	en isBlock ifTrue: [ en := en value ].
 	en ifFalse: [ ^ self ].
 

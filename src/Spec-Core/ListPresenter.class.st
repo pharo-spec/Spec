@@ -41,7 +41,8 @@ Class {
 	#name : #ListPresenter,
 	#superclass : #AbstractListPresenter,
 	#instVars : [
-		'headerTitle'
+		'headerTitle',
+		'displayBlockValueHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -57,6 +58,16 @@ ListPresenter class >> example [
 	<sampleInstance>
 	^ self new
 		items: Smalltalk globals allClasses;
+		openWithSpec;
+		yourself
+]
+
+{ #category : #example }
+ListPresenter class >> exampleMultipleSelection [
+	<sampleInstance>
+	^ self new
+		items: Smalltalk globals allClasses;
+		beMultipleSelection;
 		openWithSpec;
 		yourself
 ]
@@ -143,6 +154,23 @@ ListPresenter >> clickOnSelectedItem [
 		ifFalse: [ ^ false ]
 ]
 
+{ #category : #api }
+ListPresenter >> displayBlock [
+	"Return the one argument block used to wrap your domain specific items.
+	The block should return something that can be displayed in a list - like a String or a Text"
+	
+	^ displayBlockValueHolder value
+]
+
+{ #category : #api }
+ListPresenter >> displayBlock: aBlock [
+	"<api: #block getter:#displayBlock registration: #whenDisplayBlockChanged:>"
+	"Set the one argument block used to wrap your domain specific items.
+	The block should return something that can be displayed in a list - like a String or a Text"
+	
+	displayBlockValueHolder value: aBlock
+]
+
 { #category : #'adapter-api' }
 ListPresenter >> displayValueAt: anIndex [
 	
@@ -182,6 +210,7 @@ ListPresenter >> hideHeaderTitle [
 ListPresenter >> initializeValueHolders [
 	
 	super initializeValueHolders.
+	displayBlockValueHolder := [ :object | object asStringOrText ] asValueHolder.
 	headerTitle := nil asValueHolder
 ]
 
@@ -196,8 +225,10 @@ ListPresenter >> prepareForFilteredDataSourceWith: items [
 ListPresenter >> registerEvents [
 	
 	super registerEvents.
+	displayBlockValueHolder whenChangedDo: [ 
+		self withAdapterDo: #refreshWidgetList ].
 	headerTitle whenChangedDo: [ 
-		self adapter ifNotNil: #refreshWidgetHeaderTitle ]
+		self withAdapterDo: #refreshWidgetHeaderTitle ]
 ]
 
 { #category : #api }
@@ -245,8 +276,8 @@ ListPresenter >> setSelectionStateFor: anIndex at: aBoolean [
 { #category : #api }
 ListPresenter >> updateList [
 
-	self adapter refreshWidgetList.
-	self resetSelection
+	self withAdapterDo: #refreshWidgetList.
+	self unselectAll
 ]
 
 { #category : #'api-events' }
