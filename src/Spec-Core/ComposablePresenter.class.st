@@ -338,14 +338,11 @@ ComposablePresenter >> apiSelectors [
 ComposablePresenter >> application [
 	"Answer application owner of this composition.
 	 The tree for a composition starts always with an application, which is responsible of 
-	 providing all resources the presenter needs. 
-	 NOTE: Only the root component will have a real application instance."
+	 providing all resources the presenter needs. "
 
 	^ self owner 
 		ifNotNil: [ :presenter | presenter application ]
-		ifNil: [ 
-			self flag: #TODO. "I need to ensure an application for the moment. This needs to go later."
-			application ifNil: [ application := NullApplication new ] ]
+		ifNil: [ application ]
 ]
 
 { #category : #'window menu' }
@@ -1246,6 +1243,7 @@ ComposablePresenter >> specSelectors [
 
 { #category : #accessing }
 ComposablePresenter >> specSpacer [
+
 	^ SpacerPresenter new
 ]
 
@@ -1277,9 +1275,8 @@ ComposablePresenter >> title: aString [
 	titleHolder value: aString
 ]
 
-{ #category : #TOMOVE }
+{ #category : #TOREMOVE }
 ComposablePresenter >> toolName [
-	self flag: #TODO. "the kind of things that go to WindowPresenter through #initializeWindow:"
 
 	^ self class toolName
 ]
