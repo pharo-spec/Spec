@@ -1277,8 +1277,10 @@ ComposablePresenter >> title: aString [
 	titleHolder value: aString
 ]
 
-{ #category : #accessing }
-ComposablePresenter >> toolName [	
+{ #category : #TOMOVE }
+ComposablePresenter >> toolName [
+	self flag: #TODO. "the kind of things that go to WindowPresenter through #initializeWindow:"
+
 	^ self class toolName
 ]
 
