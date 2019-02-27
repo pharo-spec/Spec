@@ -28,6 +28,12 @@ SpecApplication >> backend [
 ]
 
 { #category : #testing }
+SpecApplication >> isNullApplication [
+
+	^ false
+]
+
+{ #category : #testing }
 SpecApplication >> isPresenter [ 
 	"Presenters use this to track application/rootPresenter."
 
