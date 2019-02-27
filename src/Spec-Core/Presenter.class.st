@@ -23,6 +23,12 @@ Presenter >> adapter: anAdapter [
 ]
 
 { #category : #accessing }
+Presenter >> application [ 
+
+	^ self root application
+]
+
+{ #category : #accessing }
 Presenter >> owner [
 
 	^ owner
@@ -32,6 +38,15 @@ Presenter >> owner [
 Presenter >> owner: aPresenterOrApplication [
 
 	owner := aPresenterOrApplication
+]
+
+{ #category : #accessing }
+Presenter >> root [
+	"Answer root presenter of this composition."
+	
+	^ self owner 
+		ifNotNil: [ :presenter | presenter root ]
+		ifNil: [ self ]
 ]
 
 { #category : #accessing }
