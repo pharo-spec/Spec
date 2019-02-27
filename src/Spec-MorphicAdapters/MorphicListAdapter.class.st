@@ -160,6 +160,7 @@ MorphicListAdapter >> refreshWidgetSelection [
 { #category : #selecting }
 MorphicListAdapter >> selectIndex: anInteger [ 
 	
+	widget selectedIndex = anInteger ifTrue: [^self].
 	widget selectIndex: anInteger
 ]
 
