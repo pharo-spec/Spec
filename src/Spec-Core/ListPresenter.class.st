@@ -3,8 +3,9 @@ A ListPresenter is an applicative presenter which handle a basic list.
 See AbstractWidgetPresenter
 
 self example
-self example2
-self example3
+self exampleMultipleSelection
+self exampleWithHeaderTitle
+self exampleWithIcons
 
 You can also have a look at ExampleListPresenter >> exampleRegisteredColor and ListSelectionPresenter for more examples.
 
