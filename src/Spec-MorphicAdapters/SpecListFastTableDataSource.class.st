@@ -9,11 +9,13 @@ Class {
 
 { #category : #accessing }
 SpecListFastTableDataSource >> cellColumn: column row: rowIndex [
-	| displayValue cell |
-	displayValue := column readObject: (self model itemAt: rowIndex).
+	| displayValue cell item |
+	item := self model itemAt: rowIndex.
+	displayValue := column readObject: item.
 	cell := FTCellMorph new
 		cellInset: 5;
 		yourself.
+	(self model iconFor: item) ifNotNil: [ :icon | cell addMorphBack: icon asMorph ].
 	cell addMorphBack: displayValue asMorph asReadOnlyMorph.
 	^ cell
 ]
