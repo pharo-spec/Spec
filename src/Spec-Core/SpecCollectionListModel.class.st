@@ -19,6 +19,16 @@ SpecCollectionListModel class >> on: aCollection [
 		yourself
 ]
 
+{ #category : #adding }
+SpecCollectionListModel >> add: anItem [
+	
+	collection := collection copyWith: anItem.
+	
+	self refreshList.
+	self announcer announce: (ValueChanged newValue: self)
+	
+]
+
 { #category : #accessing }
 SpecCollectionListModel >> announcer [ 
 
