@@ -25,6 +25,10 @@ MorphicBackendForTest >> assertList: aFTTableMorph displayItems: aCollection [
 	
 	| tableContainer tableRowContents |
 	
+	World doOneCycle.
+	World doOneCycle.
+	World doOneCycle.
+	
 	tableContainer := aFTTableMorph submorphs first.
 	tableRowContents := tableContainer submorphs collect: [ :row | 
 		| cell |
@@ -40,6 +44,11 @@ MorphicBackendForTest >> assertList: aFTTableMorph displayItems: aCollection [
 MorphicBackendForTest >> assertListHeaderOf: aFTTableMorph equals: aCollection [ 
 
 	| tableContainer tableRowMorph cells |
+	
+	World doOneCycle.
+	World doOneCycle.
+	World doOneCycle.
+	
 	tableContainer := aFTTableMorph submorphs first.
 	tableRowMorph := tableContainer submorphs first.
 	cells := tableRowMorph submorphs.
@@ -57,6 +66,8 @@ MorphicBackendForTest >> canChangeFonts [
 MorphicBackendForTest >> clickFirstRowAndColumn: aFTTableMorph [ 
 
 	World doOneCycle.
+	World doOneCycle.
+	World doOneCycle.
 	
 	aFTTableMorph mouseDown: (MouseEvent new
 		setHand: HandMorph new;
@@ -67,6 +78,10 @@ MorphicBackendForTest >> clickFirstRowAndColumn: aFTTableMorph [
 
 { #category : #simulating }
 MorphicBackendForTest >> doubleClickFirstRowAndColumn: aFTTableMorph [ 
+
+	World doOneCycle.
+	World doOneCycle.
+	World doOneCycle.
 
 	aFTTableMorph doubleClick: (MouseEvent new
 		setPosition: aFTTableMorph submorphs first submorphs first bounds center;
