@@ -5,7 +5,7 @@ Then, all stimuli is run on an open presenter that should been correctly configu
 Class {
 	#name : #SpecBeforeTestInitializationStrategy,
 	#superclass : #SpecInitializationStrategy,
-	#category : #'Spec-MorphicBackendTests'
+	#category : #'Spec-BackendTests'
 }
 
 { #category : #accessing }

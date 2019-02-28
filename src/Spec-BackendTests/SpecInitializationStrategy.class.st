@@ -1,7 +1,7 @@
 Class {
 	#name : #SpecInitializationStrategy,
 	#superclass : #Object,
-	#category : #'Spec-MorphicBackendTests'
+	#category : #'Spec-BackendTests'
 }
 
 { #category : #accessing }
