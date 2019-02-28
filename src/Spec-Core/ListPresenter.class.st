@@ -42,7 +42,8 @@ Class {
 	#superclass : #AbstractListPresenter,
 	#instVars : [
 		'headerTitle',
-		'displayBlockValueHolder'
+		'displayBlockValueHolder',
+		'iconHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -78,6 +79,16 @@ ListPresenter class >> exampleWithHeaderTitle [
 	^ self new
 		items: Smalltalk globals allClasses;
 		headerTitle: 'Title';
+		openWithSpec;
+		yourself
+]
+
+{ #category : #example }
+ListPresenter class >> exampleWithIcons [
+	<sampleInstance>
+	^ self new
+		icons: [ :e | self iconNamed: #forwardIcon ];
+		items: (1 to: 10) asArray;
 		openWithSpec;
 		yourself
 ]
@@ -206,12 +217,31 @@ ListPresenter >> hideHeaderTitle [
 	headerTitle value: nil
 ]
 
+{ #category : #'widget API' }
+ListPresenter >> iconFor: anItem [
+	^ iconHolder value cull: anItem cull: self
+]
+
+{ #category : #accessing }
+ListPresenter >> icons [
+	"Return the block which takes an item as argument and returns the icon to display in the list"
+
+	^ iconHolder value
+]
+
+{ #category : #accessing }
+ListPresenter >> icons: aBlock [
+	"Set a block which takes an item as argument and returns the icon to display in the list"
+
+	iconHolder value: aBlock
+]
+
 { #category : #api }
 ListPresenter >> initializeValueHolders [
-	
 	super initializeValueHolders.
 	displayBlockValueHolder := [ :object | object asStringOrText ] asValueHolder.
-	headerTitle := nil asValueHolder
+	headerTitle := nil asValueHolder.
+	iconHolder := [ :item | nil ] asValueHolder
 ]
 
 { #category : #private }
@@ -313,6 +343,11 @@ ListPresenter >> whenFilteringBlockChanged: aBlock [
 	"Set a block to value when the filtering block block has changed"
 	
 	filteringBlockHolder whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+ListPresenter >> whenIconsChangedDo: aBlock [
+	iconHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

@@ -22,6 +22,12 @@ ComposablePresenter >> instantiateModels: aCollectionOfPairs [
 ]
 
 { #category : #'*Spec-Deprecated80' }
+ComposablePresenter >> newIconList [
+	self deprecated: 'Please use #newList instead.' transformWith: '`@receiver newIconList' -> '`@receiver newList'.
+	^ self instantiate: IconListPresenter
+]
+
+{ #category : #'*Spec-Deprecated80' }
 ComposablePresenter >> newTab [
 
 	"
