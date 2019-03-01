@@ -896,11 +896,6 @@ ComposablePresenter >> newDynamicPresentersListIn: accessorSymbol usingBuilder: 
 ]
 
 { #category : #widgets }
-ComposablePresenter >> newIconList [
-	^ self instantiate: IconListPresenter
-]
-
-{ #category : #widgets }
 ComposablePresenter >> newImage [
 	^ self instantiate: ImagePresenter
 ]

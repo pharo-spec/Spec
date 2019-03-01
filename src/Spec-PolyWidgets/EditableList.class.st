@@ -134,7 +134,7 @@ EditableList >> initializePresenter [
 
 { #category : #initialization }
 EditableList >> initializeWidgets [
-	list := self instantiate: FastTablePresenter.
+	list := self newList.
 	addButton := self newButton.
 	removeButton := self newButton.
 	upButton := self newButton.
