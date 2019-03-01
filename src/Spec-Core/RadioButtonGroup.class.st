@@ -89,14 +89,14 @@ RadioButtonGroup >> initialize [
 ]
 
 { #category : #'api-events' }
-RadioButtonGroup >> whenCanDeselectByClickChanged: aBlock [
+RadioButtonGroup >> whenCanDeselectByClickChangedDo: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	
 	canDeselectByClick whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-RadioButtonGroup >> whenCurrentlyActivatedChanged: aBlock [
+RadioButtonGroup >> whenCurrentlyActivatedChangedDo: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	
 	currentlyActivated whenChangedDo: aBlock

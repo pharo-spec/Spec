@@ -239,7 +239,7 @@ DropListPresenter >> silentlySetSelectedIndex: anIndex [
 ]
 
 { #category : #'api-events' }
-DropListPresenter >> whenSelectedItemChanged: aBlock [
+DropListPresenter >> whenSelectedItemChangedDo: aBlock [
 	"Set a block to perform when the selected item is changed"
 
 	selectionHolder selection whenChangedDo: [ :new :old :announcement :ann | 
@@ -247,7 +247,7 @@ DropListPresenter >> whenSelectedItemChanged: aBlock [
 ]
 
 { #category : #'api-events' }
-DropListPresenter >> whenSelectionChanged: aBlock [
+DropListPresenter >> whenSelectionChangedDo: aBlock [
 	"Set a block to perform when the selection is changed"
 	
 	"The method should be used only if you are interested in the fact that there was a change, without caring about what has changed
@@ -258,7 +258,7 @@ DropListPresenter >> whenSelectionChanged: aBlock [
 ]
 
 { #category : #'api-events' }
-DropListPresenter >> whenSelectionIndexChanged: aBlock [
+DropListPresenter >> whenSelectionIndexChangedDo: aBlock [
 	"Set a block to perform when the selected index is changed"
 
 	selectionHolder index whenChangedDo: aBlock

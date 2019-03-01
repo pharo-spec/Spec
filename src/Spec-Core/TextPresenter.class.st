@@ -578,14 +578,14 @@ TextPresenter >> wantsVisualFeedback: aBoolean [
 ]
 
 { #category : #'api-events' }
-TextPresenter >> whenAboutToStyleBlockChanged: aBlock [
+TextPresenter >> whenAboutToStyleBlockChangedDo: aBlock [
 	"Set a block to perform when the about to style block changed"
 	
 	aboutToStyleHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-TextPresenter >> whenAboutToStyleChanged: aBlock [
+TextPresenter >> whenAboutToStyleChangedDo: aBlock [
 	"<api: #event>"
 	"Set a block to perform when the about to style block changed"
 	
@@ -594,64 +594,52 @@ TextPresenter >> whenAboutToStyleChanged: aBlock [
 ]
 
 { #category : #'api-events' }
-TextPresenter >> whenAcceptBlockChanged: aBlock [
+TextPresenter >> whenAcceptBlockChangedDo: aBlock [
 	"Set a block to perform when the accept block changed"
 	
 	actionToPerformHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-TextPresenter >> whenAutoAcceptChanged: aBlock [
+TextPresenter >> whenAutoAcceptChangedDo: aBlock [
 	"aBlock will be performed when autoAccept changed"
 	
 	autoAccept whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-TextPresenter >> whenBehaviorChanged: aBlock [
+TextPresenter >> whenBehaviorChangedDo: aBlock [
 	"Set a block to perform when the behavior class changed"
 	
 	behaviorHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-TextPresenter >> whenCodeCompletionAllowedChanged: aBlock [
+TextPresenter >> whenCodeCompletionAllowedChangedDo: aBlock [
 	"Set a block to perform when the code completion value changed"
 	
 	actionPerformedHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-TextPresenter >> whenMenuHolderChanged: aBlock [
+TextPresenter >> whenMenuHolderChangedDo: aBlock [
 	"Set a block to perform when the block use to build menu changed"
 	
 	menuHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-TextPresenter >> whenReadSelectionIsChanged: aBlock [
+TextPresenter >> whenReadSelectionIsChangedDo: aBlock [
 	"Set a block to perform when the read selection block changed"
 	
 	readSelectionHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-TextPresenter >> whenScrollValueChanged: aBlock [
+TextPresenter >> whenScrollValueChangedDo: aBlock [
 	"Set a block to perform when the scroll value changed"
 	
 	scrollValue whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
-TextPresenter >> whenTextChanged: aBlock [
-	"Set a block to perform when the text changed"
-	
-	self
-		deprecated: 'Use #whenTextChangedDo: instead.'
-		transformWith: '`@receiver whenTextChanged: `@statement' 
-			-> '`@receiver whenTextChangedDo: `@statement'.
-	
-	textHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
@@ -662,7 +650,7 @@ TextPresenter >> whenTextChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
-TextPresenter >> whenTextIsAccepted: aBlock [
+TextPresenter >> whenTextIsAcceptedDo: aBlock [
 	"Set a block to perform when the text is accepted"
 	
 	actionPerformedHolder whenChangedDo: aBlock

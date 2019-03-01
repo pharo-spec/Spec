@@ -60,7 +60,7 @@ RadioButtonGroupPresenter class >> example [
 	^ example
 ]
 
-{ #category : #protocol }
+{ #category : #api }
 RadioButtonGroupPresenter >> addRadioButton: aButton [
 	self linkRadioButton: aButton.
 	aButton canDeselectByClick: self canDeselectByClick.
@@ -76,7 +76,7 @@ RadioButtonGroupPresenter >> buttons [
 	^ buttons
 ]
 
-{ #category : #protocol }
+{ #category : #api }
 RadioButtonGroupPresenter >> canDeselectByClick [
 	<api: #inspect>
 	"Return true clicking on a selected radio button deselects it"
@@ -84,7 +84,7 @@ RadioButtonGroupPresenter >> canDeselectByClick [
 	^ canDeselectByClick value
 ]
 
-{ #category : #protocol }
+{ #category : #api }
 RadioButtonGroupPresenter >> canDeselectByClick: aBoolean [
 	<api: #boolean getter: #canDeselectByClick registration: #whenCanDeselectByClickChanged>
 	"Set if clicking on a selected radio button can deselect it"
@@ -110,7 +110,7 @@ RadioButtonGroupPresenter >> currentActivated: aRadioButton [
 	currentActivated value: aRadioButton
 ]
 
-{ #category : #protocol }
+{ #category : #api }
 RadioButtonGroupPresenter >> default: aButton [
 	aButton privateSetState: true.
 	aButton takeKeyboardFocus.
@@ -120,7 +120,7 @@ RadioButtonGroupPresenter >> default: aButton [
 	
 ]
 
-{ #category : #protocol }
+{ #category : #api }
 RadioButtonGroupPresenter >> defaultOnce: aButton [
 	aButton privateSetState: true.
 	self currentActivated: aButton.
@@ -152,7 +152,7 @@ RadioButtonGroupPresenter >> initializePresenter [
 		whenCanDeselectByClickChanged: [ :aBoolean | buttons do: [ :each | each canDeselectByClick: aBoolean ] ]
 ]
 
-{ #category : #protocol }
+{ #category : #api }
 RadioButtonGroupPresenter >> linkRadioButton: aButton [
 	buttons
 		do: [ :b | 
@@ -169,15 +169,15 @@ RadioButtonGroupPresenter >> rebuildWidget [
 	self buildWithSpecLayout: self dynamicLayout
 ]
 
-{ #category : #'protocol-events' }
-RadioButtonGroupPresenter >> whenCanDeselectByClickChanged: aBlock [
+{ #category : #'api-events' }
+RadioButtonGroupPresenter >> whenCanDeselectByClickChangedDo: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	
 	canDeselectByClick whenChangedDo: aBlock
 ]
 
-{ #category : #'protocol-events' }
-RadioButtonGroupPresenter >> whenCurrentActivatedChanged: aBlock [
+{ #category : #'api-events' }
+RadioButtonGroupPresenter >> whenCurrentActivatedChangedDo: aBlock [
 
 	currentActivated whenChangedDo: aBlock
 ]
