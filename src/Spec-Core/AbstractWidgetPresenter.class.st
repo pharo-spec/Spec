@@ -185,18 +185,6 @@ AbstractWidgetPresenter >> enable [
 ]
 
 { #category : #api }
-AbstractWidgetPresenter >> enabled [
-	"<api: #inspect>"
-	
-	self 
-		deprecated:  'Please use #isEnabled instead' 
-		transformWith:  '`@receiver enabled' 
-						-> '`@receiver isEnabled'.
-	
-	^ self isEnabled
-]
-
-{ #category : #api }
 AbstractWidgetPresenter >> enabled: aBoolean [
 	"<api: #boolean getter: #enabled registration: #whenEnabledChanged:>"
 	"Set if the button is enabled (clickable)"
@@ -323,28 +311,28 @@ AbstractWidgetPresenter >> wantsDroppedMorph: draggedMorph event: anEvent inMorp
 ]
 
 { #category : #'api-events' }
-AbstractWidgetPresenter >> whenBorderColorChanged: aBlock [
+AbstractWidgetPresenter >> whenBorderColorChangedDo: aBlock [
 	"Set a block to be performed when the brder width changed"
 	
 	borderColor whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-AbstractWidgetPresenter >> whenBorderWidthChanged: aBlock [
+AbstractWidgetPresenter >> whenBorderWidthChangedDo: aBlock [
 	"Set a block to be performed when the brder width changed"
 	
 	borderWidth whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-AbstractWidgetPresenter >> whenEnabledChanged: aBlock [
+AbstractWidgetPresenter >> whenEnabledChangedDo: aBlock [
 	"Set a block to performed when the widget is enabled or disabled"
 	
 	enabledHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-AbstractWidgetPresenter >> whenHelpChanged: aBlock [
+AbstractWidgetPresenter >> whenHelpChangedDo: aBlock [
 	"Set a block to be performed when the help changed"
 	
 	helpHolder whenChangedDo: aBlock

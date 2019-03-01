@@ -108,8 +108,8 @@ RadioButtonPresenter >> stateHolder [
 	^ state
 ]
 
-{ #category : #'protocol-events' }
-RadioButtonPresenter >> whenCanDeselectByClickChanged: aBlock [
+{ #category : #'api-events' }
+RadioButtonPresenter >> whenCanDeselectByClickChangedDo: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	
 	canDeselectByClick whenChangedDo: aBlock

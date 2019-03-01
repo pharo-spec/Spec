@@ -87,27 +87,6 @@ TextInputFieldPresenter >> actionToPerformHolder [
 ]
 
 { #category : #api }
-TextInputFieldPresenter >> beDecrypted [
-	self
-		deprecated: 'Use #beVisible instead'
-		transformWith: '`@receiver beDecrypted' 
-						-> '`@receiver beVisible'.
-	
-	self beVisible
-]
-
-{ #category : #api }
-TextInputFieldPresenter >> beEncrypted [
-
-	self
-		deprecated: 'Use #beInvisible instead'
-		transformWith: '`@receiver beEncrypted' 
-						-> '`@receiver beInvisible'.
-	
-	self beInvisible
-]
-
-{ #category : #api }
 TextInputFieldPresenter >> beInvisible [
 	
 	self beVisible: false
@@ -123,28 +102,6 @@ TextInputFieldPresenter >> beVisible [
 TextInputFieldPresenter >> beVisible: aBoolean [
 	
 	isVisible := aBoolean
-]
-
-{ #category : #accessing }
-TextInputFieldPresenter >> encrypted [
-
-	self
-		deprecated: 'Use #isVisible instead'
-		transformWith: '`@receiver encrypted' 
-						-> '`@receiver isVisible'.
-
-	^ self isVisible not
-]
-
-{ #category : #accessing }
-TextInputFieldPresenter >> encrypted: aBoolean [
-
-	self
-		deprecated: 'Use #beVisible: instead'
-		transformWith: '`@receiver encrypted: `@arg' 
-						-> '`@receiver beVisible: `@arg not'.
-
-	self beVisible: aBoolean not.
 ]
 
 { #category : #api }
@@ -265,14 +222,14 @@ TextInputFieldPresenter >> updateText [
 ]
 
 { #category : #'api-events' }
-TextInputFieldPresenter >> whenAcceptOnCRChanged: aBlock [
+TextInputFieldPresenter >> whenAcceptOnCRChangedDo: aBlock [
 	"aBlock will be performed when acceptOnCR changed"
 	
 	acceptOnCR whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-TextInputFieldPresenter >> whenEntryCompletionChanged: aBlock [
+TextInputFieldPresenter >> whenEntryCompletionChangedDo: aBlock [
 	"aBlock will be performed when entryCompletion changed"
 	
 	entryCompletion whenChangedDo: aBlock

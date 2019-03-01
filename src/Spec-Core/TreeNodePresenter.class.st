@@ -327,7 +327,7 @@ TreeNodePresenter >> updateAccordingTo: aFilter [
 ]
 
 { #category : #'api-events' }
-TreeNodePresenter >> whenContentChanged: aBlock [
+TreeNodePresenter >> whenContentChangedDo: aBlock [
 
 	content whenChangedDo: aBlock
 
@@ -335,7 +335,7 @@ TreeNodePresenter >> whenContentChanged: aBlock [
 ]
 
 { #category : #'api-events' }
-TreeNodePresenter >> whenIsExpandedChanged: aBlock [
+TreeNodePresenter >> whenIsExpandedChangedDo: aBlock [
 
 	isExpanded whenChangedDo: aBlock
 
@@ -343,7 +343,7 @@ TreeNodePresenter >> whenIsExpandedChanged: aBlock [
 ]
 
 { #category : #'api-events' }
-TreeNodePresenter >> whenSelectedChanged: aBlock [
+TreeNodePresenter >> whenSelectedChangedDo: aBlock [
 
 	selected whenChangedDo: aBlock
 

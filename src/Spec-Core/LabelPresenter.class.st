@@ -83,7 +83,7 @@ LabelPresenter >> labelHolder [
 	^ labelHolder
 ]
 
-{ #category : #api }
+{ #category : #'api-events' }
 LabelPresenter >> whenLabelChangedDo: aValuable [
 
 	labelHolder whenChangedDo: aValuable
