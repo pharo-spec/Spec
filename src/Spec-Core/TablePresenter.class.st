@@ -21,24 +21,6 @@ TablePresenter class >> adapterName [
 	^ #TableAdapter
 ]
 
-{ #category : #example }
-TablePresenter class >> example [
-	<sampleInstance>
-	
-	^ self new
-		addColumn: (ImageTableColumn title: 'Icon' evaluated: #systemIcon);
-		addColumn: (StringTableColumn title: 'Name' evaluated: #name);
-		items: Smalltalk allClasses;
-		doubleClickAction: [ :aClass | self inform: 'Double click on: ', aClass name ];
-		openWithSpec
-]
-
-{ #category : #example }
-TablePresenter class >> exampleEditableCell [
-
-	self flag: #TODO
-]
-
 { #category : #initialization }
 TablePresenter >> initialize [ 
 

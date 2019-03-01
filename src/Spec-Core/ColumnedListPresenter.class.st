@@ -17,34 +17,6 @@ ColumnedListPresenter class >> adapterName [
 	^ #ColumnedListAdapter
 ]
 
-{ #category : #specs }
-ColumnedListPresenter class >> example [
-	<sampleInstance>
-	| example |
-	example := self new.
-	example
-		addColumn: (StringTableColumn title: 'Number' evaluated: #yourself);
-		addColumn: (StringTableColumn title: 'Hex' evaluated: #hex);
-		showColumnHeaders;
-		items: (1 to: 10) asArray;
-		openWithSpec.
-	^ example
-]
-
-{ #category : #specs }
-ColumnedListPresenter class >> exampleWithoutColumnHeaders [
-	<sampleInstance>
-	| example |
-	example := self new.
-	example
-		addColumn: (StringTableColumn title: 'Number' evaluated: #yourself);
-		addColumn: (StringTableColumn title: 'Hex' evaluated: #hex);
-		items: (1 to: 10) asArray;
-		hideColumnHeaders;
-		openWithSpec.
-	^ example
-]
-
 { #category : #api }
 ColumnedListPresenter >> addColumn: aColumn [
 

@@ -46,20 +46,6 @@ RadioButtonGroupPresenter class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #example }
-RadioButtonGroupPresenter class >> example [
-	<sampleInstance>
-	| example |
-	example := RadioButtonGroupPresenter new.
-	example
-		addRadioButton: (RadioButtonPresenter new label: '1');
-		addRadioButton: (RadioButtonPresenter new label: '2');
-		addRadioButton: (RadioButtonPresenter new label: '3');
-		whenCurrentActivatedChanged: [ self inform: example currentActivated label ].
-	example openWithSpec.
-	^ example
-]
-
 { #category : #api }
 RadioButtonGroupPresenter >> addRadioButton: aButton [
 	self linkRadioButton: aButton.

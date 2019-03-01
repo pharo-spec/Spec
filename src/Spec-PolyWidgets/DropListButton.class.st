@@ -26,22 +26,6 @@ DropListButton class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #example }
-DropListButton class >> example [
-	<sampleInstance>
-	| example |
-	
-	example := self new.
-	example
-		displayBlock: [ :item | item asString ];
-		items: {'Swordian' . 'Gardian' . 'Wizard' . 'Sniper'};
-		label: 'Add';
-		extent: 300 @ 70;
-		title: 'DropListButton example';
-		openWithSpec.
-	^ example
-]
-
 { #category : #'api-shortcuts' }
 DropListButton >> action: aBlock [
 	self button action: aBlock

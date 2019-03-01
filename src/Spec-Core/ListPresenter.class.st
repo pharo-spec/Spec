@@ -55,45 +55,6 @@ ListPresenter class >> adapterName [
 	^ #ListAdapter
 ]
 
-{ #category : #example }
-ListPresenter class >> example [
-	<sampleInstance>
-	^ self new
-		items: Smalltalk globals allClasses;
-		openWithSpec;
-		yourself
-]
-
-{ #category : #example }
-ListPresenter class >> exampleMultipleSelection [
-	<sampleInstance>
-	^ self new
-		items: Smalltalk globals allClasses;
-		beMultipleSelection;
-		openWithSpec;
-		yourself
-]
-
-{ #category : #example }
-ListPresenter class >> exampleWithHeaderTitle [
-	<sampleInstance>
-	^ self new
-		items: Smalltalk globals allClasses;
-		headerTitle: 'Title';
-		openWithSpec;
-		yourself
-]
-
-{ #category : #example }
-ListPresenter class >> exampleWithIcons [
-	<sampleInstance>
-	^ self new
-		icons: [ :e | self iconNamed: #forwardIcon ];
-		items: (1 to: 10) asArray;
-		openWithSpec;
-		yourself
-]
-
 { #category : #specs }
 ListPresenter class >> title [
 
