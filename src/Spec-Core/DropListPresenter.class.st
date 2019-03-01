@@ -186,6 +186,12 @@ DropListPresenter >> model [
 	^ model
 ]
 
+{ #category : #selection }
+DropListPresenter >> resetSelection [
+	
+	self selection unselectAll 
+]
+
 { #category : #api }
 DropListPresenter >> selectedIndex [
 	"<api: #inspect>"
@@ -213,6 +219,9 @@ DropListPresenter >> selectedItem [
 DropListPresenter >> selectedItem: anItem [ 
 	
 	| realItem |
+	
+	anItem ifNil: [ self selection unselectAll. ^self ].
+	
 	realItem := model collection detect: [ :each | each model = anItem ].
 	self selection selectItem: realItem.
 	"I execute the block associated with the item"

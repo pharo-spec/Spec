@@ -28,6 +28,18 @@ DropListAdapterTest >> testAddingAnItemSelectsItIfThereIsNone [
 ]
 
 { #category : #accessing }
+DropListAdapterTest >> testResetingSelectionResetsSelection [
+
+	self presenter selectedItem: 10.
+	
+	self presenter resetSelection.
+
+	self assert: self presenter selectedItem equals: nil.
+	self assert: self adapter selectedIndexes isEmpty.
+	
+]
+
+{ #category : #accessing }
 DropListAdapterTest >> testSelectingASecondElementSelectsIt [
 
 	self presenter selectedItem: 10.
@@ -72,6 +84,32 @@ DropListAdapterTest >> testSelectionExecutesBlock [
 
 { #category : #accessing }
 DropListAdapterTest >> testSelectionStartsEmpty [
+
+	self assert: self presenter selectedItem equals: nil.
+	self assert: self adapter selectedIndexes isEmpty.
+	
+]
+
+{ #category : #accessing }
+DropListAdapterTest >> testSettingNilResetsGeneratesEvent [
+
+	| changed |
+	
+	self presenter selectedItem: 10.
+	
+	self presenter whenSelectionChanged: [ changed := true ].
+
+	self presenter selectedItem: nil.
+
+	self assert: changed
+	
+]
+
+{ #category : #accessing }
+DropListAdapterTest >> testSettingNilResetsSelection [
+
+	self presenter selectedItem: 10.
+	self presenter selectedItem: nil.
 
 	self assert: self presenter selectedItem equals: nil.
 	self assert: self adapter selectedIndexes isEmpty.
