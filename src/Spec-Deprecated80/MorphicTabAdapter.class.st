@@ -4,8 +4,13 @@ I am the adapter used to bridge a TabPresenter and a Tab
 Class {
 	#name : #MorphicTabAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #'Spec-MorphicAdapters-Base'
+	#category : #'Spec-Deprecated80-Adapters'
 }
+
+{ #category : #deprecation }
+MorphicTabAdapter class >> isDeprecated [
+	^ true
+]
 
 { #category : #initialization }
 MorphicTabAdapter >> adapt: aComposablePresenter [

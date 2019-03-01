@@ -4,8 +4,13 @@ I am the adpater used to bridge a TabManagerPresenter and a TabManager
 Class {
 	#name : #MorphicTabManagerAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #'Spec-MorphicAdapters-Base'
+	#category : #'Spec-Deprecated80-Adapters'
 }
+
+{ #category : #deprecation }
+MorphicTabManagerAdapter class >> isDeprecated [
+	^ true
+]
 
 { #category : #'spec protocol' }
 MorphicTabManagerAdapter >> addTab: aTab [
