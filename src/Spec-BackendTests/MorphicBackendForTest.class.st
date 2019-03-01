@@ -23,6 +23,16 @@ MorphicBackendForTest >> assertIcon: anAlphaImageMorph equals: aForm [
 	self assert: (anAlphaImageMorph ifNotNil: #form) = aForm
 ]
 
+{ #category : #testing }
+MorphicBackendForTest >> assertImage: actual equals: expected [ 
+	
+	(expected isNil and: [ actual isNil or: [actual width = 1 and: [ actual height =1 ]] ]) ifTrue: [ ^ self ].
+	
+	self assert: actual width = expected width.
+	self assert: actual height = expected height.	
+	self assert: actual bits = expected bits.		
+]
+
 { #category : #asserting }
 MorphicBackendForTest >> assertList: aFTTableMorph displayItems: aCollection [ 
 	
