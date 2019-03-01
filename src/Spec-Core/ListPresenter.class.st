@@ -100,62 +100,6 @@ ListPresenter class >> title [
 	^ 'List'
 ]
 
-{ #category : #api }
-ListPresenter >> allowToSelect [
-	"Return whether the list items can be selected or not"
-	
-	self deprecated: 'Should not use. Use #selectionMode instead'.
-	^ allowToSelect value
-]
-
-{ #category : #api }
-ListPresenter >> allowToSelect: aBoolean [
-	"Set if the list items can be selected or not"
-
-	self deprecated: 'Should not use. Use #selectionMode: instead'.
-	allowToSelect value: aBoolean.
-	aBoolean 
-		ifFalse: [ self resetSelection ].
-]
-
-{ #category : #api }
-ListPresenter >> autoDeselect [
-	"Return whether the list items can be selected if it's already the selected item"
-	"If true, clicking again on the selected item will unselect it"
-
-	self deprecated: 'Should not use. This feature is not supported anymore'.	
-	^ autoDeselect value
-]
-
-{ #category : #api }
-ListPresenter >> autoDeselect: aBoolean [
-	"Set if the list items can be selected again"
-
-	self deprecated: 'Should not use. This feature is not supported anymore'.
-	autoDeselect value: aBoolean
-]
-
-{ #category : #api }
-ListPresenter >> backgroundColorBlock [
-	"Return the block use to compute the background color for each item"
-
-	self deprecated: 'Should not use. This feature is not supported anymore. This feature depends on the theme'
-]
-
-{ #category : #api }
-ListPresenter >> backgroundColorBlock: aBlock [
-	"Set the block used to compute an item background"
-
-	self deprecated: 'Should not use. This feature is not supported anymore. This feature depends on the theme'
-]
-
-{ #category : #api }
-ListPresenter >> backgroundColorFor: anItem at: index [
-
-	self deprecated: 'Should not use. This feature is not supported anymore. This feature depends on the theme'.
-	^ self backgroundColorBlock cull: anItem cull: index
-]
-
 { #category : #private }
 ListPresenter >> clickOnSelectedItem [
 	| item |
@@ -312,35 +256,28 @@ ListPresenter >> updateList [
 ]
 
 { #category : #'api-events' }
-ListPresenter >> whenAllowToSelectChanged: aBlock [
+ListPresenter >> whenAllowToSelectChangedDo: aBlock [
 	"Set a block to value when the value of allowToSelect has changed"
 	
 	allowToSelect whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-ListPresenter >> whenAutoDeselectChanged: aBlock [
+ListPresenter >> whenAutoDeselectChangedDo: aBlock [
 	"Set a block to value when the value of autoDeselect has changed"
 	
 	autoDeselect whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-ListPresenter >> whenBackgroundColorBlockChanged: aBlock [
-
-	self deprecated: 'Should not use. This feature is not supported anymore. This feature depends on the theme'.
-
-]
-
-{ #category : #'api-events' }
-ListPresenter >> whenDisplayBlockChanged: aBlock [
+ListPresenter >> whenDisplayBlockChangedDo: aBlock [
 	"Set a block to value when the filtering block has changed"
 	
 	displayBlockValueHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-ListPresenter >> whenFilteringBlockChanged: aBlock [
+ListPresenter >> whenFilteringBlockChangedDo: aBlock [
 	"Set a block to value when the filtering block block has changed"
 	
 	filteringBlockHolder whenChangedDo: aBlock
@@ -352,14 +289,14 @@ ListPresenter >> whenIconsChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
-ListPresenter >> whenMenuChanged: aBlock [
+ListPresenter >> whenMenuChangedDo: aBlock [
 	"Set a block to value when the menu block has changed"
 	
 	menuHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-ListPresenter >> whenSortingBlockChanged: aBlock [
+ListPresenter >> whenSortingBlockChangedDo: aBlock [
 	"Set a block to value when the sorting block has changed"
 	
 	sortingBlockHolder whenChangedDo: aBlock

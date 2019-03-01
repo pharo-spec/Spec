@@ -791,47 +791,47 @@ TreePresenter >> updateTree [
 ]
 
 { #category : #'api-events-compatibility' }
-TreePresenter >> whenChildrenBlockChanged: aBlock [
+TreePresenter >> whenChildrenBlockChangedDo: aBlock [
 	"Set a block to perform when a new childrenBlock is set"
 
 	childrenBlockHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events-compatibility' }
-TreePresenter >> whenDisplayBlockChanged: aBlock [
+TreePresenter >> whenDisplayBlockChangedDo: aBlock [
 	"Set a block to perform when a new displayBlock is set"
 
 	displayBlock whenChangedDo: aBlock
 ]
 
 { #category : #'api-events-compatibility' }
-TreePresenter >> whenHasChildrenBlockChanged: aBlock [
+TreePresenter >> whenHasChildrenBlockChangedDo: aBlock [
 	"Set a block to perform when a new hasChildrenBlock is set"
 
 	hasChildrenBlockHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-TreePresenter >> whenHighlightedItemChanged: aBlock [
+TreePresenter >> whenHighlightedItemChangedDo: aBlock [
 
 	highlightedItem whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-TreePresenter >> whenMenuChanged: aBlock [
+TreePresenter >> whenMenuChangedDo: aBlock [
 	"Set a block to perform when a new menuBlock is set"
 
 	menuBlockHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-TreePresenter >> whenRootsChanged: aBlock [
+TreePresenter >> whenRootsChangedDo: aBlock [
 
 	rootsHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events-compatibility' }
-TreePresenter >> whenSelectedItemChanged: aBlock [
+TreePresenter >> whenSelectedItemChangedDo: aBlock [
 	"Set a block to perform when a new item is selected"
 
 	selectionHolder whenChangedDo: [ :col | 
@@ -845,14 +845,14 @@ TreePresenter >> whenSelectedItemChanged: aBlock [
 ]
 
 { #category : #'api-events' }
-TreePresenter >> whenSelectedItemsChanged: aBlock [
+TreePresenter >> whenSelectedItemsChangedDo: aBlock [
 	"Set a block to perform when a new item is selected"
 
 	selectionHolder whenChangedDo: [ :col | aBlock cull: (col collect: [:e | e content ]) ]
 ]
 
 { #category : #'api-events' }
-TreePresenter >> whenTreeUpdated: aBlock [
+TreePresenter >> whenTreeUpdatedDo: aBlock [
 
 	treeUpdated whenChangedDo: aBlock
 ]

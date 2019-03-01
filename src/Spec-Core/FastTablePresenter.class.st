@@ -132,7 +132,7 @@ FastTablePresenter >> registerEvents [
 ]
 
 { #category : #'api-events' }
-FastTablePresenter >> whenIconsChanged: aBlock [ 
+FastTablePresenter >> whenIconsChangedDo: aBlock [ 
 	
 	iconHolder whenChangedDo: aBlock 
 
