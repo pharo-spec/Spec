@@ -4,8 +4,13 @@ Class {
 	#instVars : [
 		'manager'
 	],
-	#category : #'Spec-Tests-Core-Widgets'
+	#category : #'Spec-Deprecated80-Tests'
 }
+
+{ #category : #deprecation }
+TabPresenterTest class >> isDeprecated [
+	^ true
+]
 
 { #category : #running }
 TabPresenterTest >> classToTest [

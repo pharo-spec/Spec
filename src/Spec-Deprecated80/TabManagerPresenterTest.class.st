@@ -4,8 +4,13 @@ Class {
 	#instVars : [
 		'redTab'
 	],
-	#category : #'Spec-Tests-Core-Widgets'
+	#category : #'Spec-Deprecated80-Tests'
 }
+
+{ #category : #deprecation }
+TabManagerPresenterTest class >> isDeprecated [
+	^ true
+]
 
 { #category : #running }
 TabManagerPresenterTest >> classToTest [

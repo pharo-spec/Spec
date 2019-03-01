@@ -4,7 +4,7 @@ I am the adapter used to bridge an IconListPresenter and a PluggableIconListMorp
 Class {
 	#name : #MorphicIconListAdapter,
 	#superclass : #MorphicListAdapter,
-	#category : #'Spec-Deprecated80'
+	#category : #'Spec-Deprecated80-Adapters'
 }
 
 { #category : #deprecation }
