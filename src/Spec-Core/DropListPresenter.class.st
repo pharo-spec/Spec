@@ -84,8 +84,8 @@ DropListPresenter >> emptyList [
 
 { #category : #api }
 DropListPresenter >> getIconFor: anItem [
-	self iconBlock ifNil: [ ^ nil ].
-	^ self iconHolder cull: anItem
+
+	^ self iconBlock cull: anItem model cull: anItem
 ]
 
 { #category : #api }
@@ -98,6 +98,12 @@ DropListPresenter >> getIndex [
 DropListPresenter >> getList [
 
 	^ model items
+]
+
+{ #category : #testing }
+DropListPresenter >> hasIcons [
+	
+	^ iconBlock isNotNil and: [ self model collection anySatisfy: [ :e | e icon isNotNil ] ]
 ]
 
 { #category : #api }
@@ -139,7 +145,8 @@ DropListPresenter >> initialize [
 	
 	model := SpecCollectionListModel on: #().
 	selection := SpecSingleSelectionMode on: self.
-	displayBlock := [ :aModel :item | item label ].
+	displayBlock := [ :itemModel :item | item label ].
+	iconBlock := [ :itemModel :item | item icon ].
 		
 "	listHolder whenChangedDo: [ 
 		self changed: #getList.
@@ -147,7 +154,7 @@ DropListPresenter >> initialize [
 		self internalResetSelection.].
 				
 	selectionHolder whenChangedDo: [ self changed: #getIndex ].
-	iconHolder := [ :model :item | item icon ] asValueHolder.
+	iconHolder := [ Name already defined -> :model :item | item icon ] asValueHolder.
 	
 	"
 

@@ -15,8 +15,6 @@ MorphicDropListAdapter >> buildWidget [
 		self changed: #getIndex  ].
 	self model selection whenChangedDo: [ self changed: #getIndex ].
 
-"	self halt.
-"
 	^ SpecDropListMorph new
 		wrapSelector: #wrap:withIndex:;
 		on: self list: #getList selected: #getIndex changeSelected: #setIndex:;
@@ -27,6 +25,13 @@ MorphicDropListAdapter >> buildWidget [
 		enabled: self enabled;
 		setBalloonText: self help;
 		yourself
+]
+
+{ #category : #accessing }
+MorphicDropListAdapter >> displayedIcon [
+	
+	self model hasIcons ifFalse: [^ nil].
+	^ self widget currentIcon
 ]
 
 { #category : #icons }

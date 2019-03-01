@@ -17,7 +17,7 @@ MorphicBackendForTest >> assertHasHeader: aFTTableMorph [
 { #category : #asserting }
 MorphicBackendForTest >> assertIcon: anAlphaImageMorph equals: aForm [ 
 	
-	self assert: anAlphaImageMorph form = aForm
+	self assert: (anAlphaImageMorph ifNotNil: #form) = aForm
 ]
 
 { #category : #asserting }

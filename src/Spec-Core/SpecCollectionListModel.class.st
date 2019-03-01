@@ -97,6 +97,16 @@ SpecCollectionListModel >> refreshList [
 	shownCollection := collection select: [ :elem | filter cull: elem cull: collection ].
 ]
 
+{ #category : #collection }
+SpecCollectionListModel >> removeAll [
+	
+	collection := #().
+	
+	self refreshList.
+	self announcer announce: (ValueChanged newValue: self)
+		
+]
+
 { #category : #accessing }
 SpecCollectionListModel >> shownItems [
 	
