@@ -266,8 +266,7 @@ DropListPresenter >> setSelectedItem: anItem [
 DropListPresenter >> whenSelectedItemChangedDo: aBlock [
 	"Set a block to perform when the selected item is changed"
 
-	selection whenChangedDo: [ :new :old :announcement :ann | 
-		aBlock cull: (new ifNotNil: [ :item | item model ]) cull: old cull: announcement cull: ann ]
+	selection whenChangedDo: [	aBlock cull: self selectedItem ]
 ]
 
 { #category : #'api-events' }

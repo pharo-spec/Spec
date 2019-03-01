@@ -49,24 +49,6 @@ MorphicToggleButtonAdapter >> label [
 ]
 
 { #category : #'widget API' }
-MorphicToggleButtonAdapter >> labelClickable [
-	
-	^ self model labelClickable
-]
-
-{ #category : #'spec protocol' }
-MorphicToggleButtonAdapter >> labelOnLeft [
-
-	^ self widgetDo: [ :w | w listDirection: #leftToRight ]
-]
-
-{ #category : #'spec protocol' }
-MorphicToggleButtonAdapter >> labelOnRight [
-
-	^ self widgetDo: [ :w | w listDirection: #rightToLeft ]
-]
-
-{ #category : #'widget API' }
 MorphicToggleButtonAdapter >> state [
 	
 	^ self presenter state
@@ -81,5 +63,6 @@ MorphicToggleButtonAdapter >> state: aBoolean [
 { #category : #events }
 MorphicToggleButtonAdapter >> toggleAction: aBoolean [ 
 	
+	self model state: aBoolean.
 	^ self model action cull: aBoolean 
 ]
