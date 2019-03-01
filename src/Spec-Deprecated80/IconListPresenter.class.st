@@ -14,7 +14,7 @@ todo
 Class {
 	#name : #IconListPresenter,
 	#superclass : #ListPresenter,
-	#category : #'Spec-Deprecated80'
+	#category : #'Spec-Deprecated80-Replaced'
 }
 
 { #category : #example }

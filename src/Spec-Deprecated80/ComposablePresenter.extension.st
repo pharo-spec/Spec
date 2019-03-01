@@ -30,24 +30,21 @@ ComposablePresenter >> newIconList [
 { #category : #'*Spec-Deprecated80' }
 ComposablePresenter >> newTab [
 
-	"
-	Commented to allow Iceberg Migration.
 	self 
 		deprecated: 'Use newNotebook instead' 
 		on: '2019-01-24' 
-		in: #Pharo8."
+		in: #Pharo8.
 	^ self instantiate: TabPresenter
 ]
 
 { #category : #'*Spec-Deprecated80' }
 ComposablePresenter >> newTabManager [
 	
-	"
-	Commented to allow Iceberg Migration.
+	
 	self 
 		deprecated: 'Use newNotebook instead' 
 		on: '2019-01-24' 
-		in: #Pharo8."
+		in: #Pharo8.
 	
 	^ self instantiate: TabManagerPresenter
 ]
