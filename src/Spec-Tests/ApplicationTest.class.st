@@ -30,6 +30,21 @@ ApplicationTest >> testIsPresenter [
 ]
 
 { #category : #tests }
+ApplicationTest >> testOpenWithSpecLayout [
+	| window |
+
+	window := application 
+		open: ButtonPresenter new 
+		withSpecLayout: ButtonPresenter defaultSpec. 
+
+	self assert: window notNil.
+	self assert: window isWindowPresenter.
+	self flag: #TODO. "No idea what can I ask here yet, but probable something like: 
+	application windows last = window ?
+	"
+]
+
+{ #category : #tests }
 ApplicationTest >> testUseBackend [
 
 	self assert: application backend name equals: #Mock.
