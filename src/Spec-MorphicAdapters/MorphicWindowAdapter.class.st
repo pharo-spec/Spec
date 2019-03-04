@@ -240,14 +240,14 @@ MorphicWindowAdapter >> taskbarIcon [
 
 { #category : #'widget API' }
 MorphicWindowAdapter >> title [
+
 	^ self model title
 ]
 
-{ #category : #protocol }
+{ #category : #'widget API' }
 MorphicWindowAdapter >> title: aString [
 
-	^ self widget
-		ifNotNil: [:w | w title: aString ]
+	self widgetDo: [ :w | w setLabel: aString ]
 ]
 
 { #category : #updating }
