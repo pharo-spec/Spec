@@ -19,9 +19,9 @@ Application class >> defaultAppliction [
 ]
 
 { #category : #accessing }
-Application class >> defaultBackend [
+Application class >> defaultBackendName [
 
-	^ #morphic
+	^ #Morphic
 ]
 
 { #category : #accessing }

@@ -35,15 +35,21 @@ ApplicationBackend >> adapterBindings [
 	^ adapterBindings
 ]
 
+{ #category : #private }
+ApplicationBackend >> adapterBindingsClass [
+
+	self subclassResponsibility
+]
+
 { #category : #initialization }
 ApplicationBackend >> initialize [
 
 	super initialize.
-	adapterBindings := self newAdapterBindings
+	adapterBindings := self adapterBindingsClass
 ]
 
-{ #category : #private }
-ApplicationBackend >> newAdapterBindings [
+{ #category : #accessing }
+ApplicationBackend >> name [
 
-	self subclassResponsibility
+	^ self class backendName
 ]

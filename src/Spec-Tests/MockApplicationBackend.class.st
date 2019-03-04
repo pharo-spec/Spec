@@ -11,7 +11,7 @@ MockApplicationBackend class >> backendName [
 ]
 
 { #category : #private }
-MockApplicationBackend >> newAdapterBindingsClass [
+MockApplicationBackend >> adapterBindingsClass [
 
 	^ SpecStubAdapterBindings
 ]

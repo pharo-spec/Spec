@@ -11,7 +11,7 @@ ApplicationBackendMorphic class >> backendName [
 ]
 
 { #category : #private }
-ApplicationBackendMorphic >> newAdapterBindingsClass [
+ApplicationBackendMorphic >> adapterBindingsClass [
 
 	^ MorphicAdapterBindings
 ]
