@@ -4,11 +4,82 @@ Class {
 	#traits : 'TSpecObservable',
 	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
+		'application',
+		'owner',
 		'adapter',
-		'owner'
+		'needRebuild'
 	],
 	#category : #'Spec-Core-Base'
 }
+
+{ #category : #defaults }
+Presenter class >> buttonHeight [
+
+	^ self defaultFont height + 12
+]
+
+{ #category : #defaults }
+Presenter class >> buttonWidth [
+
+	^ (self defaultFont widthOfString: 'eilwp') + 44
+]
+
+{ #category : #defaults }
+Presenter class >> defaultFont [ 
+
+	^ self platform defaultFont
+]
+
+{ #category : #defaults }
+Presenter class >> inputTextHeight [
+
+	^ self defaultFont height + 12
+]
+
+{ #category : #defaults }
+Presenter class >> labelHeight [
+
+	^ self defaultFont height
+]
+
+{ #category : #'instance creation' }
+Presenter class >> newApplication: anApplication owner: anOwningPresenter [
+
+	^ self basicNew
+		application: anApplication;
+		owner: anOwningPresenter;
+		initialize;
+		yourself
+]
+
+{ #category : #'instance creation' }
+Presenter class >> owner: anOwningPresenter [
+
+	^ self basicNew
+		owner: anOwningPresenter;
+		initialize;
+		yourself
+]
+
+{ #category : #platform }
+Presenter class >> platform [
+
+	self flag: #TODO. "Remove me as soon as possible!"
+	^ SpecInterpreter bindings
+]
+
+{ #category : #defaults }
+Presenter class >> toolName [
+	"The tool name can be used in some places such as the About window's title."
+	
+	^ self name
+]
+
+{ #category : #defaults }
+Presenter class >> toolbarHeight [
+
+	^ self defaultFont height + 12
+]
 
 { #category : #accessing }
 Presenter >> adapter [
@@ -22,10 +93,234 @@ Presenter >> adapter: anAdapter [
 	adapter := anAdapter
 ]
 
-{ #category : #accessing }
-Presenter >> application [ 
+{ #category : #'private building' }
+Presenter >> adapterFrom: aSpecLayout [
 
-	^ self root application
+	self flag: #TODO. "this is here for compatibility (since layouts now are executable). 
+	We will need to remove the interpreter and then this method too."
+	^ SpecInterpreter 
+		interpretASpec: aSpecLayout 
+		presenter: self
+]
+
+{ #category : #accessing }
+Presenter >> application [
+	"Answer application owner of this composition.
+	 The tree for a composition starts always with an application, which is responsible of 
+	 providing all resources the presenter needs. "
+
+	^ self owner 
+		ifNotNil: [ :presenter | presenter application ]
+		ifNil: [ 
+			self flag: #TODO. "at the root, a presenter should know its application. 
+			(but all roots should be a WindowPresenter, not anything else, since 
+			tree is/should be created when showing).
+			SO REMOVE THIS, ESTEBAN OF THE FUTURE!"
+			application ifNil: [ application := Application defaultAppliction ] ]
+]
+
+{ #category : #accessing }
+Presenter >> application: anApplication [
+
+	application := anApplication
+]
+
+{ #category : #'private building' }
+Presenter >> buildAdapterWithSpecLayout: aSpecLayout [
+	"Build the adapter using the spec name provided as argument"
+	| newAdapter |
+	
+	newAdapter := aSpecLayout buildAdapterFor: self bindings: SpecBindings value new.
+	"self setExtentAndBindingTo: newAdapter widget."
+	self announcer announce: (WidgetBuilt 
+		model: self 
+		widget: newAdapter widget).
+
+	^ newAdapter
+]
+
+{ #category : #building }
+Presenter >> buildWithSpec [
+	"Build the widget using the default spec"
+	
+	^ self buildWithSpec: self defaultSpecSelector
+]
+
+{ #category : #building }
+Presenter >> buildWithSpec: aSpec [
+	"Build the widget using the spec name provided as argument"
+	
+	^ self buildWithSpecLayout: (self retrieveSpec: aSpec)
+]
+
+{ #category : #building }
+Presenter >> buildWithSpecLayout: aSpecLayout [
+	"Build the widget using the spec name provided as argument"
+
+	^ (self buildAdapterWithSpecLayout: aSpecLayout) widget
+]
+
+{ #category : #'private building' }
+Presenter >> defaultSpecSelector [
+	| selectors |
+	
+	selectors := 
+		(Pragma allNamed: #spec: from: self class class  to: Presenter class class),
+		(Pragma allNamed: #spec from: self class class to: Presenter class class).
+	
+	selectors ifEmpty: [ ^ #defaultSpec ].	
+	selectors size = 1 ifTrue: [ ^ selectors first methodSelector ].
+	^ (selectors detect: [ :each | (each argumentAt: 1) = #default ]) methodSelector
+	
+
+]
+
+{ #category : #accessing }
+Presenter >> enabled: aBoolean [ 
+
+	^ self subclassResponsibility
+]
+
+{ #category : #testing }
+Presenter >> hasOwner [
+
+	^ self owner notNil
+]
+
+{ #category : #testing }
+Presenter >> hasWindow [
+
+	^ self root isWindowPresenter
+]
+
+{ #category : #initialization }
+Presenter >> initialize [ 
+
+	super initialize.
+	needRebuild := true asValueHolder
+]
+
+{ #category : #initialization }
+Presenter >> initializeDialogWindow: aDialogWindowPresenter [
+	"used to initialize the model in the case of the use into a dialog window.
+	 Override this to set buttons other than the default (Ok, Cancel)."
+	
+	aDialogWindowPresenter
+		addButton: 'Ok' do: [ :presenter | 
+			presenter triggerOkAction.
+			presenter close ];
+		addButton: 'Cancel' do: [ :presenter | 
+			presenter triggerCancelAction.
+			presenter close ]	
+]
+
+{ #category : #initialization }
+Presenter >> initializeWindow: aWindowPresenter [
+	"override this to set window values before opening. 
+	 You may want to add a menu, a toolbar or a statusbar"
+
+	self flag: #TODO. "Does presenters needs to understand this? (they do if we 
+	want to do ButtonPresenter new openWithSpec)."
+]
+
+{ #category : #testing }
+Presenter >> isPresenter [
+
+	^ true
+]
+
+{ #category : #testing }
+Presenter >> isWindowPresenter [
+
+	^ false
+]
+
+{ #category : #accessing }
+Presenter >> needRebuild [
+
+	^ needRebuild value
+]
+
+{ #category : #accessing }
+Presenter >> needRebuild: aBoolean [
+
+	needRebuild value: aBoolean
+]
+
+{ #category : #showing }
+Presenter >> openDialogWithSpec [
+	"Build the widget using the default spec and display it into a dialog. 
+	 Beware: this way will not create a real modal in the sense that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openModalWithSpec instead."
+	
+	^ self application 
+		openDialog: self
+		withSpecLayout: self retrieveDefaultSpec
+]
+
+{ #category : #showing }
+Presenter >> openDialogWithSpec: aSelector [
+	"Build the widget using the default spec and display it into a dialog. 
+	 Beware: this way will not create a real modal in the sens that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openModalWithSpec: instead."
+	
+	^ self application 
+		openDialog: self
+		withSpecLayout: (self retrieveSpec: aSelector)
+]
+
+{ #category : #showing }
+Presenter >> openDialogWithSpecLayout: aSpecLayout [
+
+	^ self application 
+		openDialog: self
+		withSpecLayout: aSpecLayout
+]
+
+{ #category : #showing }
+Presenter >> openModalWithSpec [
+
+	^ self application 
+		openModal: self
+		withSpecLayout: self retrieveDefaultSpec
+]
+
+{ #category : #showing }
+Presenter >> openModalWithSpec: aSelector [
+
+	^ self application 
+		openModal: self
+		withSpecLayout: (self retrieveSpec: aSelector)
+]
+
+{ #category : #showing }
+Presenter >> openModalWithSpecLayout: aSpecLayout [
+
+	^ self application 
+		openModal: self
+		withSpecLayout: aSpecLayout
+]
+
+{ #category : #showing }
+Presenter >> openWithSpec [
+
+	^ self application 
+		open: self
+		withSpecLayout: self retrieveDefaultSpec
+]
+
+{ #category : #showing }
+Presenter >> openWithSpec: aSelector [
+
+	^ self application 
+		open: self
+		withSpecLayout: (self retrieveSpec: aSelector)
+]
+
+{ #category : #showing }
+Presenter >> openWithSpecLayout: aSpecLayout [
+
+	^ self application 
+		open: self
+		withSpecLayout: aSpecLayout
 ]
 
 { #category : #accessing }
@@ -35,9 +330,25 @@ Presenter >> owner [
 ]
 
 { #category : #accessing }
-Presenter >> owner: aPresenterOrApplication [
+Presenter >> owner: aPresenter [
 
-	owner := aPresenterOrApplication
+	owner := aPresenter
+]
+
+{ #category : #'private building' }
+Presenter >> retrieveDefaultSpec [
+
+	^ self retrieveSpec: self defaultSpecSelector
+]
+
+{ #category : #'private building' }
+Presenter >> retrieveSpec: aSelector [
+	| layout |
+
+	layout := self class perform: aSelector.
+	layout isSpecLayout ifTrue: [ 
+		layout selector: aSelector ].
+	^ layout
 ]
 
 { #category : #accessing }
@@ -63,4 +374,49 @@ Presenter >> spec: anAdapter [
 	
 	self flag: #TODO. "Same as #spec, it needs to go"
 	self adapter: anAdapter
+]
+
+{ #category : #updating }
+Presenter >> update: aParameter [
+
+	self changed: aParameter
+]
+
+{ #category : #events }
+Presenter >> whenBuiltDo: aBlock [
+
+	self announcer 
+		when: WidgetBuilt
+		do: aBlock
+]
+
+{ #category : #accessing }
+Presenter >> window [
+	"Answer window containing this composition."
+	
+	^ self hasWindow
+		ifTrue: [ self root ]
+		ifFalse: [ nil ]
+]
+
+{ #category : #'private utils' }
+Presenter >> withAdapterDo: aValuable [
+	"a convenience method to avoid verify by nil all the time"
+	
+	^ self adapter ifNotNil: aValuable
+]
+
+{ #category : #'private utils' }
+Presenter >> withWidgetDo: aValuable [
+	"a convenience method to avoid verify by nil all the time"
+	
+	^ self widget ifNotNil: aValuable
+]
+
+{ #category : #'private utils' }
+Presenter >> withWindowDo: aValuable [
+
+	self hasWindow ifFalse: [ ^ self ].
+	"Since Presenter has window, root = window"
+	aValuable value: self root
 ]
