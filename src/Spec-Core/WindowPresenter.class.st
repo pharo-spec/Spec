@@ -140,6 +140,12 @@ WindowPresenter >> hasMenu [
 ]
 
 { #category : #testing }
+WindowPresenter >> hasPresenter: aButtonPresenter [ 
+
+	^ self adapter hasWidget: aButtonPresenter adapter
+]
+
+{ #category : #testing }
 WindowPresenter >> hasStatusBar [
 	
 	^ self statusBar notNil

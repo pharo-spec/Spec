@@ -66,3 +66,14 @@ ButtonAdapterTest >> testRightClickShouldNotExecuteAction [
 	self emulateRightClick.
 	self deny: actionExecuted
 ]
+
+{ #category : #running }
+ButtonAdapterTest >> testWhenActivatedDo [
+
+	| actionExecuted |	
+	actionExecuted := false.
+	presenter whenActivatedDo: [ actionExecuted := true].
+
+	self emulateLeftClick.
+	self assert: actionExecuted
+]
