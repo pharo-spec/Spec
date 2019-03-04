@@ -359,7 +359,7 @@ ComposablePresenter >> delete [
 { #category : #accessing }
 ComposablePresenter >> enabled: aBoolean [
 
-	self traversePresentersDo: [ :each | 
+	self presentersDo: [ :each | 
 		each enabled: aBoolean ]
 ]
 
@@ -886,10 +886,12 @@ ComposablePresenter >> presenters [
 { #category : #'private-traversing' }
 ComposablePresenter >> presentersDo: aBlock [
 
-	self class allSlots do: [ :each | | var |
-		var := self readSlot: each.
-		(var isKindOf: Presenter) ifTrue: [ 
-			aBlock value: var ] ]
+	self class allSlots 
+		reject: [ :each | each name = #owner ] 
+		thenDo: [ :each | | var |
+			var := self readSlot: each.
+			(var isKindOf: Presenter) ifTrue: [ 
+				aBlock value: var ] ]
 ]
 
 { #category : #'private-focus' }

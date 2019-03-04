@@ -47,6 +47,15 @@ Presenter class >> labelHeight [
 ]
 
 { #category : #'instance creation' }
+Presenter class >> newApplication: anApplication [
+
+	^ self basicNew
+		application: anApplication;
+		initialize;
+		yourself
+]
+
+{ #category : #'instance creation' }
 Presenter class >> newApplication: anApplication owner: anOwningPresenter [
 
 	^ self basicNew
