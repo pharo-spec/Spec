@@ -1,6 +1,9 @@
 Class {
 	#name : #MorphicBackendForTest,
 	#superclass : #AbstractBackendForTest,
+	#instVars : [
+		'uiWaitingSemaphore'
+	],
 	#category : #'Spec-BackendTests'
 }
 
@@ -8,7 +11,7 @@ Class {
 MorphicBackendForTest >> assertHasHeader: aFTTableMorph [ 
 
 	| tableContainer |
-	World doOneCycle.
+	self waitUntilUIRedrawed.
 
 	tableContainer := aFTTableMorph submorphs first.
 	self assert: tableContainer submorphs size = 3
@@ -17,13 +20,25 @@ MorphicBackendForTest >> assertHasHeader: aFTTableMorph [
 { #category : #asserting }
 MorphicBackendForTest >> assertIcon: anAlphaImageMorph equals: aForm [ 
 	
-	self assert: anAlphaImageMorph form = aForm
+	self assert: (anAlphaImageMorph ifNotNil: #form) = aForm
+]
+
+{ #category : #testing }
+MorphicBackendForTest >> assertImage: actual equals: expected [ 
+	
+	(expected isNil and: [ actual isNil or: [actual width = 1 and: [ actual height =1 ]] ]) ifTrue: [ ^ self ].
+	
+	self assert: actual width = expected width.
+	self assert: actual height = expected height.	
+	self assert: actual bits = expected bits.		
 ]
 
 { #category : #asserting }
 MorphicBackendForTest >> assertList: aFTTableMorph displayItems: aCollection [ 
 	
 	| tableContainer tableRowContents |
+	
+	self waitUntilUIRedrawed.
 	
 	tableContainer := aFTTableMorph submorphs first.
 	tableRowContents := tableContainer submorphs collect: [ :row | 
@@ -40,6 +55,9 @@ MorphicBackendForTest >> assertList: aFTTableMorph displayItems: aCollection [
 MorphicBackendForTest >> assertListHeaderOf: aFTTableMorph equals: aCollection [ 
 
 	| tableContainer tableRowMorph cells |
+	
+	self waitUntilUIRedrawed.
+	
 	tableContainer := aFTTableMorph submorphs first.
 	tableRowMorph := tableContainer submorphs first.
 	cells := tableRowMorph submorphs.
@@ -56,7 +74,7 @@ MorphicBackendForTest >> canChangeFonts [
 { #category : #emulating }
 MorphicBackendForTest >> clickFirstRowAndColumn: aFTTableMorph [ 
 
-	World doOneCycle.
+	self waitUntilUIRedrawed.
 	
 	aFTTableMorph mouseDown: (MouseEvent new
 		setHand: HandMorph new;
@@ -68,21 +86,56 @@ MorphicBackendForTest >> clickFirstRowAndColumn: aFTTableMorph [
 { #category : #simulating }
 MorphicBackendForTest >> doubleClickFirstRowAndColumn: aFTTableMorph [ 
 
+	self waitUntilUIRedrawed.
+
 	aFTTableMorph doubleClick: (MouseEvent new
 		setPosition: aFTTableMorph submorphs first submorphs first bounds center;
 		yourself).
 
 ]
 
+{ #category : #running }
+MorphicBackendForTest >> initialize [
+
+	super initialize.
+	uiWaitingSemaphore := Semaphore new
+]
+
+{ #category : #running }
+MorphicBackendForTest >> isRunningInUIProcess [
+
+	^ UIManager default uiProcess == Processor activeProcess
+]
+
 { #category : #opening }
 MorphicBackendForTest >> openInstanceOf: aTest [ 
 
 	aTest window ifNil: [ aTest window: aTest presenter openWithSpec ].
-	World doOneCycle.
+
+	self waitUntilUIRedrawed.
+
 ]
 
 { #category : #running }
 MorphicBackendForTest >> runTest: aBlockClosure [ 
 	
 	aBlockClosure value
+]
+
+{ #category : #running }
+MorphicBackendForTest >> waitUntilUIRedrawed [
+
+	"I wait until the UI has been redrawn. 
+	I take care of selecting how to do it. 
+	If I am in the CI I should defer a semaphore signal. 
+	If I am running in the UI process I can directly execute a doOneCycle on the World.
+	If I am in the CI the tests and the UI run in different process. So I should not do a #doOneCycle.
+	If I do it, I am in a race condition!"
+	self isRunningInUIProcess ifTrue: [ 
+		World doOneCycle.
+		^ self.	
+	]. 
+
+	World defer: [ uiWaitingSemaphore ifNotNil: #signal ].	
+	uiWaitingSemaphore wait: 500 milliSecond
 ]

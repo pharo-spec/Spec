@@ -39,19 +39,6 @@ SliderPresenter class >> adapterName [
 	^ #SliderAdapter
 ]
 
-{ #category : #specs }
-SliderPresenter class >> example [
-	<sampleInstance>
-	| slider |
-	slider := self new.
-	slider
-		min: 0;
-		max: 100;
-		whenValueChangedDo: [ :value | slider label: value asString ].
-	slider openWithSpec.
-	^ slider 
-]
-
 { #category : #api }
 SliderPresenter >> absoluteValue [
 	"<api: #inspect>"

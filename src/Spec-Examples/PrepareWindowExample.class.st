@@ -115,6 +115,7 @@ PrepareWindowExample >> newToolBar [
 	^ ToolBarPresenter new 
 		addItem: self newPushMessageToolBarItem;
 		addItem: self newPopMessageToolBarItem;
+		addItem: self newPopMessageToolBarItem position: ToolBarItemPosition right;
 		yourself
 ]
 

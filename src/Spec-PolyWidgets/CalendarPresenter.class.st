@@ -34,30 +34,6 @@ CalendarPresenter class >> defaultSpec [
 						newColumn: #daysButtons ] ]
 ]
 
-{ #category : #examples }
-CalendarPresenter class >> exampleInspectClickedDate [
-	CalendarPresenter new
-		adaptToDate: Date today;
-		whenDaySelectedBlock: [ :aDate | aDate inspect ];
-		openWithSpec
-]
-
-{ #category : #examples }
-CalendarPresenter class >> exampleInspectClickedDateAndClose [
-	CalendarPresenter new
-		adaptToDate: Date today;
-		whenDaySelectedBlock: [ :aDate :calendarPresenter | aDate inspect. calendarPresenter window close ];
-		openWithSpec
-]
-
-{ #category : #examples }
-CalendarPresenter class >> exampleSimple [
-	CalendarPresenter new
-		adaptToDate: Date today;
-		whenDaySelectedBlock: [ UIManager default inform: 'A date was clicked.' ];
-		openWithSpec
-]
-
 { #category : #adapting }
 CalendarPresenter >> adaptToDate: aDate [
 	self monthYearLabel label: aDate month asString.

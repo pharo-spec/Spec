@@ -88,7 +88,7 @@ SpecDemoListsPresenter >> initializePresenter [
 SpecDemoListsPresenter >> initializeWidgets [
 	list1 := self newList.
 	list2 := self newList.
-	list3 := self newIconList.
+	list3 := self newList.
 	label := self newLabel.
 	multiLabel := self newLabel.
 

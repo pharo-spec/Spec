@@ -483,9 +483,9 @@ ChangeSorterApplication >> initializePresenter [
 { #category : #initialization }
 ChangeSorterApplication >> initializeWidgets [
 
-	methodsListPresenter := self instantiate: FastTablePresenter.
-	classesListPresenter := self instantiate: FastTablePresenter.
-	changesListPresenter := self instantiate: FastTablePresenter.
+	methodsListPresenter := self newList.
+	classesListPresenter := self newList.
+	changesListPresenter := self newList.
 	prettyButton := self newCheckBox.
 	diffButton := self newCheckBox.
 	textPresenter := self newCode.
@@ -495,6 +495,10 @@ ChangeSorterApplication >> initializeWidgets [
 	methodsListPresenter menu: [:menu :shifted | self messageMenu: menu shifted: shifted ].
 	changesListPresenter menu: [:aMenu :shifted | self changeSetMenu: aMenu shifted: shifted  ].
 	classesListPresenter menu: [:aMenu :shifted | self classMenu: aMenu shifted: shifted ].
+	
+	methodsListPresenter itemSubstringFilter.
+	classesListPresenter itemSubstringFilter.
+	changesListPresenter itemSubstringFilter.
 
 	changesListPresenter items: self model allChanges.
 	changesListPresenter displayBlock: [:item | item name ].

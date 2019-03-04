@@ -7,12 +7,6 @@ Class {
 	#category : #'Spec-Tests-Utils'
 }
 
-{ #category : #examples }
-TestingAbstractTwoButtons class >> example [
-	<sampleInstance>
-	^ self abstractExample openWithSpec 
-]
-
 { #category : #initialization }
 TestingAbstractTwoButtons >> initializeButtons [
 ]
