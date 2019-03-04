@@ -100,6 +100,17 @@ ButtonPresenter >> askBeforeChanging: aBoolean [
 	askBeforeChangingHolder value: aBoolean
 ]
 
+{ #category : #simulating }
+ButtonPresenter >> click [
+
+	"I emulate the click from the presenter point of view.
+	Of course if the button is disabled, I do nothing, like in real life!!
+	If you want to emulate other stuff use performAction"
+	
+	self isEnabled ifFalse: [ ^ self ].
+	^ self performAction
+]
+
 { #category : #'private-focus' }
 ButtonPresenter >> ensureKeyBindingsFor: widget [
 
@@ -279,6 +290,12 @@ ButtonPresenter >> whenActionPerformedDo: aBlock [
 	"set a block to perform after that the button has been aclicked, and its action performed"
 
 	actionPerformedHolder whenChangedDo: aBlock
+]
+
+{ #category : #'API - events' }
+ButtonPresenter >> whenActivatedDo: aBlockClosure [ 
+	
+	^ self whenActionPerformedDo: aBlockClosure 
 ]
 
 { #category : #'api-events' }

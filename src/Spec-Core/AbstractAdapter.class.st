@@ -92,6 +92,12 @@ AbstractAdapter >> hSpaceFill [
 	self subclassResponsibility
 ]
 
+{ #category : #testing }
+AbstractAdapter >> hasWidget: aMorphicButtonAdapter [ 
+	
+	^ self widget hasWidget: aMorphicButtonAdapter widget
+]
+
 { #category : #protocol }
 AbstractAdapter >> isRedrawable [
 	"This must be overriden in the adapter representing your container"
