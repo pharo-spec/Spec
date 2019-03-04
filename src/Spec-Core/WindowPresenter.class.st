@@ -134,6 +134,12 @@ WindowPresenter >> defaultInitialExtent [
 	^ 400@300
 ]
 
+{ #category : #private }
+WindowPresenter >> delete [
+
+	self window delete
+]
+
 { #category : #focus }
 WindowPresenter >> giveFocusToNextFrom: aModel [ 
 

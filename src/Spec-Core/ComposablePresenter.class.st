@@ -171,13 +171,13 @@ ComposablePresenter class >> title [
 	^ 'Untitled window'
 ]
 
-{ #category : #api }
+{ #category : #'api-window' }
 ComposablePresenter >> aboutText [
 
 	^ aboutText value ifNil: [ aboutText value: 'The about text for this window has not been set.'; value]
 ]
 
-{ #category : #api }
+{ #category : #'api-window' }
 ComposablePresenter >> aboutText: aString [
 
 	aboutText value: aString
@@ -236,6 +236,16 @@ ComposablePresenter >> additionalSubpresentersMap [
 	^ additionalSubpresentersMap ifNil: [ additionalSubpresentersMap := Dictionary new ]
 ]
 
+{ #category : #'private-traversing' }
+ComposablePresenter >> allPresenters [
+	| allPresenters |
+
+	allPresenters := OrderedCollection new.
+	self traversePresentersDo: [ :each | 
+		allPresenters add: each ].
+	^ allPresenters
+]
+
 { #category : #api }
 ComposablePresenter >> announce: anAnnouncement [
 
@@ -264,13 +274,13 @@ ComposablePresenter >> applyTransmissions [
 	transmissions do: #apply
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api-window' }
 ComposablePresenter >> askOkToClose [
 
 	^ askOkToClose value
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api-window' }
 ComposablePresenter >> askOkToClose: aBoolean [
 	self flag: #TODO. "Move this to WindowPresenter (it should be added in 
 	#initializeWindow:"
@@ -293,7 +303,7 @@ ComposablePresenter >> bindMenuKeyCombination: aShortcut toAction: aBlock [
 	self changed: #bindMenuKeyCombination:toAction: with: {aShortcut . aBlock}
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api-window' }
 ComposablePresenter >> cancelled [
 	self flag: #TODO. "just for dialogs... I wonder if we need it here?"
 
@@ -306,7 +316,7 @@ ComposablePresenter >> centerWidget: aWindow [
 	self changed: #centerWidget: with: { aWindow }
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api-window' }
 ComposablePresenter >> centered [
 
 	self withWindowDo: #centered
@@ -319,7 +329,7 @@ ComposablePresenter >> centeredRelativeTo: aModel [
 		w centeredRelativeTo: aModel ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : #private }
 ComposablePresenter >> createInstanceFor: aClassSymbol [
 	"Retrieve the class corresponding to aClassSymbol using the bindings, then create a new instance of theis class"
 	| class |
@@ -334,8 +344,8 @@ ComposablePresenter >> defaultSpec [
 	^ self class perform: self defaultSpecSelector
 ]
 
-{ #category : #private }
-ComposablePresenter >> defaultWindowPresenterClass [ 
+{ #category : #'api-showing' }
+ComposablePresenter >> defaultWindowPresenterClass [
 
 	^ WindowPresenter
 ]
@@ -344,6 +354,13 @@ ComposablePresenter >> defaultWindowPresenterClass [
 ComposablePresenter >> delete [
 
 	self withWindowDo: #delete
+]
+
+{ #category : #accessing }
+ComposablePresenter >> enabled: aBoolean [
+
+	self traversePresentersDo: [ :each | 
+		each enabled: aBoolean ]
 ]
 
 { #category : #TOMOVE }
@@ -479,7 +496,7 @@ ComposablePresenter >> iconNamed: aSymbol [
 	^ self class iconNamed: aSymbol
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api-window' }
 ComposablePresenter >> initialExtent [
 
 	^ nil
@@ -571,7 +588,9 @@ ComposablePresenter >> initializeWindow: aWindowPresenter [
 	
 	aWindowPresenter 
 		title: self title;
-		initialExtent: self initialExtent
+		initialExtent: self initialExtent;
+		askOkToClose: self askOkToClose;
+		aboutText: self aboutText
 ]
 
 { #category : #'accessing ports' }
@@ -807,7 +826,9 @@ ComposablePresenter >> newTreeTable [
 { #category : #private }
 ComposablePresenter >> okToChange [
 
-	self withWindowDo: #okToChange
+	^ self hasWindow
+		ifTrue: [ self window okToChange ]
+		ifFalse: [ true ] 
 ]
 
 { #category : #'api-shortcuts' }
@@ -852,6 +873,25 @@ ComposablePresenter >> presenterAt: aName [
 	^ self readSlotNamed: aName
 ]
 
+{ #category : #'private-traversing' }
+ComposablePresenter >> presenters [
+	| allPresenters |
+
+	allPresenters := OrderedCollection new.
+	self presentersDo: [ :each | 
+		allPresenters add: each ].
+	^ allPresenters
+]
+
+{ #category : #'private-traversing' }
+ComposablePresenter >> presentersDo: aBlock [
+
+	self class allSlots do: [ :each | | var |
+		var := self readSlot: each.
+		(var isKindOf: Presenter) ifTrue: [ 
+			aBlock value: var ] ]
+]
+
 { #category : #'private-focus' }
 ComposablePresenter >> registerKeyStrokesForNextFor: aWidget [
 
@@ -886,7 +926,7 @@ ComposablePresenter >> removeMenuKeyCombination: aShortcut [
 	self changed: #removeMenuKeyCombination: with: {aShortcut}
 ]
 
-{ #category : #'instance creation' }
+{ #category : #private }
 ComposablePresenter >> resolveSymbol: aSymbol [
 
 	^ Smalltalk at: aSymbol
@@ -900,6 +940,8 @@ ComposablePresenter >> retrieveDefaultSpec [
 { #category : #TOMOVE }
 ComposablePresenter >> setExtentAndBindingTo: widget [
 
+	self flag: #TODO. "This is bad. Extent needs to be 'ensured' at adapter level. 
+	Same for keybindings"
 	self ensureExtentFor: widget.
 	self ensureKeyBindingsFor: widget
 ]
@@ -915,13 +957,13 @@ ComposablePresenter >> setModal: aWindow [
 	self changed: #setModal: with: { aWindow }
 ]
 
-{ #category : #'model access' }
+{ #category : #'accessing model' }
 ComposablePresenter >> setModel: aDomainObject [
 
 
 ]
 
-{ #category : #'model access' }
+{ #category : #'accessing model' }
 ComposablePresenter >> setModelBeforeInitialization: aDomainObject [
 
 
@@ -933,9 +975,10 @@ ComposablePresenter >> show [
 	self withAdapterDo: #show
 ]
 
-{ #category : #accessing }
+{ #category : #TOREMOVE }
 ComposablePresenter >> specSpacer [
 
+	self halt.
 	^ SpacerPresenter new
 ]
 
@@ -954,14 +997,14 @@ ComposablePresenter >> takeLastKeyboardFocus [
 		ifNotEmpty: [:focus | focus last takeKeyboardFocus ].
 ]
 
-{ #category : #api }
+{ #category : #'api-window' }
 ComposablePresenter >> title [
 	"Return the window's title"
 
 	^ titleHolder value
 ]
 
-{ #category : #api }
+{ #category : #'api-window' }
 ComposablePresenter >> title: aString [
 
 	titleHolder value: aString
@@ -994,12 +1037,14 @@ ComposablePresenter >> traversePresentersDo: aBlock [
 { #category : #'private-traversing' }
 ComposablePresenter >> traversePresentersDo: aBlock excluding: excludes [
 
+	(excludes includes: self) ifTrue: [ ^ self ]. 
+	excludes add: self.
+	aBlock value: self.
+
 	self class allSlots do: [ :each | | var |
 		var := self readSlot: each.
-		(var isKindOf: ComposablePresenter) ifTrue: [ 
-			excludes add: var.
-			aBlock value: each.
-			each traversePresentersDo: aBlock excluding: var ] ]
+		(var isKindOf: Presenter) ifTrue: [ 
+			var traversePresentersDo: aBlock excluding: excludes ] ]
 ]
 
 { #category : #initialization }
@@ -1021,11 +1066,13 @@ ComposablePresenter >> whenShortcutsChanged: aBlock [
 	self additionalKeyBindings whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api-window' }
 ComposablePresenter >> whenWindowChanged: aBlock [
 
-	self flag: #TODO. "Fix this"
-	"window whenChangedDo: aBlock"
+	self flag: #TODO. "This is here for backwards compatibility (you can have same 
+	functionality in #initializeWindow:"
+	self announcer when: WindowBuilt do: [ :ann | 
+		aBlock cull: ann model ]
 ]
 
 { #category : #accessing }

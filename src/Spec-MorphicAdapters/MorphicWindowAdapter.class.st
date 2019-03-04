@@ -62,6 +62,9 @@ MorphicWindowAdapter >> addMenuTo: aMorph [
 
 { #category : #protocol }
 MorphicWindowAdapter >> addModelIn: widgetToBuild withSpecLayout: aSpec [
+
+	self model initialExtent ifNotNil: [ :extent |
+		 widgetToBuild extent: extent ].
 	self
 		addContent: (self model presenter buildWithSpecLayout: aSpec)
 		toWindow: widgetToBuild

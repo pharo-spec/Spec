@@ -1,3 +1,7 @@
+"
+I'm a base for all presenters. 
+I define common behaviours for widget presenters and also for composable presenters (the ones an user regularly uses).
+"
 Class {
 	#name : #Presenter,
 	#superclass : #Model,

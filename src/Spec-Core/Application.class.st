@@ -1,3 +1,8 @@
+"
+I'm a Spec application entry point. 
+In Spec, each application needs to have a definition that concentrates its flow and resources.
+
+"
 Class {
 	#name : #Application,
 	#superclass : #Object,
@@ -34,12 +39,6 @@ Application >> backend [
 ]
 
 { #category : #testing }
-Application >> isNullApplication [
-
-	^ false
-]
-
-{ #category : #testing }
 Application >> isPresenter [ 
 	"Presenters use this to track application/rootPresenter."
 
@@ -63,7 +62,12 @@ Application >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClass 
 		during: [ 
 			| window |
 			window := aWindowClass presenter: aPresenter.
-			window openWithSpecLayout: aSpecLayout ]
+			window openWithSpecLayout: aSpecLayout.
+			aPresenter announcer announce: (WindowBuilt new 
+				model: self;
+				window: window;
+				yourself).
+			window ]
 ]
 
 { #category : #showing }
@@ -92,5 +96,5 @@ Application >> start [
 { #category : #accessing }
 Application >> useBackend: aName [
 
-	backend := SpecBackend findBackendNamed: aName
+	backend := ApplicationBackend findBackendNamed: aName
 ]
