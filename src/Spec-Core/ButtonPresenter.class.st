@@ -41,14 +41,6 @@ ButtonPresenter class >> adapterName [
 	^ #ButtonAdapter
 ]
 
-{ #category : #example }
-ButtonPresenter class >> example [
-	<sampleInstance>
-	^ self new
-		openWithSpec;
-		label: 'Click me'
-]
-
 { #category : #specs }
 ButtonPresenter class >> title [
 

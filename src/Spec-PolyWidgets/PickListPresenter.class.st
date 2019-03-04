@@ -29,20 +29,6 @@ PickListPresenter class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #example }
-PickListPresenter class >> example [
-	<sampleInstance>
-	| example |
-	example := self new.
-	example
-		items:
-			{{1 . 2 . 4}.
-			'Foo'.
-			123}.
-	example openWithSpec.
-			^example
-]
-
 { #category : #specs }
 PickListPresenter class >> title [
 

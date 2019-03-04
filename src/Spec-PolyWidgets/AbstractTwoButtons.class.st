@@ -18,16 +18,6 @@ Class {
 	#category : #'Spec-PolyWidgets-Support'
 }
 
-{ #category : #example }
-AbstractTwoButtons class >> abstractExample [
-	| example |
-	example := self new.
-	example
-		title: self name asString , ' example';
-		extent: 100 @ 100.
-	^ example
-]
-
 { #category : #specs }
 AbstractTwoButtons class >> horizontal [
 	<spec>
