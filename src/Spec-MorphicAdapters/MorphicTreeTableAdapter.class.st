@@ -80,8 +80,9 @@ MorphicTreeTableAdapter >> newColumnFrom: aTableColumn [
 { #category : #'private factory' }
 MorphicTreeTableAdapter >> newDataSource [ 
 
-	^ MorphicTableDataSource new 
-		elements: self model items;
+	^ MorphicTreeTableDataSource new 
+		rootItem: (self rootForItems: self model roots);
+		childrenBlock: [ :data :item | self model childrenFor: data ];
 		yourself
 ]
 
