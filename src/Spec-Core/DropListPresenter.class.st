@@ -10,6 +10,7 @@ Class {
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
 		'#model => SpecObservableSlot',
+		'#startsWithSelection',
 		'#selection',
 		'#displayBlock => SpecObservableSlot',
 		'#iconBlock => SpecObservableSlot'
@@ -147,6 +148,8 @@ DropListPresenter >> initialize [
 	selection := SpecSingleSelectionMode on: self.
 	displayBlock := [ :itemModel :item | item label ].
 	iconBlock := [ :itemModel :item | item icon ].
+	
+	startsWithSelection := true.
 		
 "	listHolder whenChangedDo: [ 
 		self changed: #getList.
@@ -168,7 +171,10 @@ DropListPresenter >> items: aList [
 	
 	| dropListItems |
 	dropListItems := aList collect: [ :e | DropListItem on: e do: [] ].
-	model collection: dropListItems
+	model collection: dropListItems.
+	
+	(dropListItems isNotEmpty and: [startsWithSelection and: [ self selection isEmpty ]]) 
+		ifTrue: [ self selectedIndex: 1 ]
 ]
 
 { #category : #api }
@@ -260,6 +266,18 @@ DropListPresenter >> setSelectedItem: anItem [
 				-> '`@receiver selectedItem:`@argument'.
 	^ self selectedItem: anItem	
 
+]
+
+{ #category : #api }
+DropListPresenter >> startWithSelection [
+
+	startsWithSelection := true
+]
+
+{ #category : #api }
+DropListPresenter >> startWithoutSelection [
+
+	startsWithSelection := false
 ]
 
 { #category : #'api-events' }

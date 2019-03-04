@@ -18,20 +18,12 @@ DropListAdapterTest >> initializeTestedInstance [
 ]
 
 { #category : #accessing }
-DropListAdapterTest >> testAddingAnItemSelectsItIfThereIsNone [
-
-	self presenter addItemLabeled: 40 do: [].
-
-	self assert: self presenter selectedItem equals: 40.
-	self assert: self adapter selectedIndexes equals: #(4).
-	
-]
-
-{ #category : #accessing }
 DropListAdapterTest >> testAddingIconsShowTheIcon [
 
 	#(pharo add book) do: [ :each |
 		self presenter addItemLabeled: each do: [] icon: (self iconNamed: each)].
+
+	self presenter selectedItem: #pharo.
 
 	self assert: self adapter selectedIndexes equals: #(4).
 	backendForTest assertIcon: self adapter displayedIcon equals: (self iconNamed: #pharo). 
@@ -115,10 +107,10 @@ DropListAdapterTest >> testSelectionExecutesBlock [
 ]
 
 { #category : #accessing }
-DropListAdapterTest >> testSelectionStartsEmpty [
+DropListAdapterTest >> testSelectionStartsSelectingFirst [
 
-	self assert: self presenter selectedItem equals: nil.
-	self assert: self adapter selectedIndexes isEmpty.
+	self assert: self presenter selectedItem equals: 10.
+	self assert: self adapter selectedIndexes equals: #(1).
 	
 ]
 
