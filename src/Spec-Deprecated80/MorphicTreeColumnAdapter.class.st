@@ -6,8 +6,14 @@ Ialso add support for on the fly refresh
 Class {
 	#name : #MorphicTreeColumnAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #'Spec-MorphicAdapters-Base'
+	#category : #'Spec-Deprecated80'
 }
+
+{ #category : #deprecation }
+MorphicTreeColumnAdapter class >> isDeprecated [ 
+
+	^ true
+]
 
 { #category : #'widget API' }
 MorphicTreeColumnAdapter >> argumentBlock [

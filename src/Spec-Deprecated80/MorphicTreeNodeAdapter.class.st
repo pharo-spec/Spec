@@ -4,8 +4,14 @@ I am the bridget between a TreeNodePresenter and a SpecTreeNodeModel
 Class {
 	#name : #MorphicTreeNodeAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #'Spec-MorphicAdapters-Base'
+	#category : #'Spec-Deprecated80'
 }
+
+{ #category : #deprecation }
+MorphicTreeNodeAdapter class >> isDeprecated [ 
+
+	^ true
+]
 
 { #category : #factory }
 MorphicTreeNodeAdapter >> buildWidget [

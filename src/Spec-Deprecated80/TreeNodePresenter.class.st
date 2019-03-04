@@ -23,13 +23,19 @@ Class {
 		'isExpanded',
 		'hasChildren'
 	],
-	#category : #'Spec-Core-Widgets'
+	#category : #'Spec-Deprecated80'
 }
 
 { #category : #specs }
 TreeNodePresenter class >> adapterName [
 
 	^ #TreeNodeAdapter
+]
+
+{ #category : #specs }
+TreeNodePresenter class >> isDeprecated [ 
+
+	^ true
 ]
 
 { #category : #api }
@@ -326,10 +332,24 @@ TreeNodePresenter >> updateAccordingTo: aFilter [
 			self changed: #updateAccordingTo: with: { aFilter } ]
 ]
 
+{ #category : #'as yet unclassified' }
+TreeNodePresenter >> whenContentChanged: aBlock [
+	self deprecated: 'Use #whenContentChangedDo: instead.' transformWith: '`@receiver whenContentChanged: `@statements' -> '`@receiver whenContentChangedDo: `@statements'.
+	self whenContentChangedDo: aBlock
+]
+
 { #category : #'api-events' }
 TreeNodePresenter >> whenContentChangedDo: aBlock [
 
 	content whenChangedDo: aBlock
+
+	
+]
+
+{ #category : #'as yet unclassified' }
+TreeNodePresenter >> whenIsExpandedChanged: aBlock [
+	self deprecated: 'Use #whenIsExpandedChangedDo: instead.' transformWith: '`@receiver whenIsExpandedChanged: `@statements' -> '`@receiver whenIsExpandedChangedDo: `@statements'.
+	self whenIsExpandedChangedDo: aBlock
 
 	
 ]
@@ -340,6 +360,12 @@ TreeNodePresenter >> whenIsExpandedChangedDo: aBlock [
 	isExpanded whenChangedDo: aBlock
 
 	
+]
+
+{ #category : #'as yet unclassified' }
+TreeNodePresenter >> whenSelectedChanged: aBlock [
+	self deprecated: 'Use #whenSelectedChangedDo: instead.' transformWith: '`@receiver whenSelectedChanged: `@statements' -> '`@receiver whenSelectedChangedDo: `@statements'.
+	self whenSelectedChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

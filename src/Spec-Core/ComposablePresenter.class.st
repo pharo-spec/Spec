@@ -968,11 +968,6 @@ ComposablePresenter >> newTextInput [
 ]
 
 { #category : #widgets }
-ComposablePresenter >> newTree [
-	^ self instantiate: TreePresenter
-]
-
-{ #category : #widgets }
 ComposablePresenter >> newTreeTable [
 
 	^ self instantiate: TreeTablePresenter

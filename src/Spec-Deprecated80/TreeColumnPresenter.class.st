@@ -14,13 +14,19 @@ Class {
 		'headerIcon',
 		'headerAction'
 	],
-	#category : #'Spec-Core-Widgets'
+	#category : #'Spec-Deprecated80'
 }
 
 { #category : #specs }
 TreeColumnPresenter class >> adapterName [
 
 	^ #TreeColumnAdapter
+]
+
+{ #category : #specs }
+TreeColumnPresenter class >> isDeprecated [ 
+
+	^ true
 ]
 
 { #category : #api }

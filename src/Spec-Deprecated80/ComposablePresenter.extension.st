@@ -48,3 +48,11 @@ ComposablePresenter >> newTabManager [
 	
 	^ self instantiate: TabManagerPresenter
 ]
+
+{ #category : #'*Spec-Deprecated80' }
+ComposablePresenter >> newTree [
+	
+	self deprecated: 'Use #newTreeTable instead'.
+
+	^ self instantiate: TreePresenter
+]

@@ -10,12 +10,6 @@ Class {
 	#category : #'Spec-MorphicAdapters-Table'
 }
 
-{ #category : #deprecation }
-MorphicTreeTableAdapter class >> isDeprecated [ 
-
-	^ true
-]
-
 { #category : #factory }
 MorphicTreeTableAdapter >> addModelTo: tableMorph [
 

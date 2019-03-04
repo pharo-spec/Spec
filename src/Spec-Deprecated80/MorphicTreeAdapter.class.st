@@ -7,8 +7,14 @@ Class {
 	#instVars : [
 		'treeModel'
 	],
-	#category : #'Spec-MorphicAdapters-Base'
+	#category : #'Spec-Deprecated80'
 }
+
+{ #category : #deprecation }
+MorphicTreeAdapter class >> isDeprecated [ 
+
+	^ true
+]
 
 { #category : #'drag and drop - private' }
 MorphicTreeAdapter >> acceptDroppingMorph: draggedMorph event: event inMorph: source [
