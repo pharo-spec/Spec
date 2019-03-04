@@ -7,11 +7,11 @@ Class {
 { #category : #accessing }
 ApplicationBackendMorphic class >> backendName [
 
-	^ #morphic
+	^ #Morphic
 ]
 
 { #category : #private }
-ApplicationBackendMorphic >> newAdapterBindings [
+ApplicationBackendMorphic >> newAdapterBindingsClass [
 
 	^ MorphicAdapterBindings
 ]

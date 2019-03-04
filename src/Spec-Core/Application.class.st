@@ -34,7 +34,7 @@ Application >> adapterBindings [
 Application >> backend [
 
 	^ backend ifNil: [ 
-		self useBackend: self class defaultBackend.
+		self useBackend: self class defaultBackendName.
 		backend ]
 ]
 
