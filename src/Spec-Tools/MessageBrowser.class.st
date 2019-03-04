@@ -874,10 +874,3 @@ MessageBrowser >> windowIsClosing [
 	
 	SystemAnnouncer uniqueInstance unsubscribe: self
 ]
-
-{ #category : #private }
-MessageBrowser >> wrapItem: anItem [
-	| s packageName |
-	s := self locationOf: anItem.
-	^ {s . (self selectorOf: anItem) . (self packageOf: anItem)}
-]
