@@ -291,6 +291,14 @@ AbstractWidgetPresenter >> transferFor: passenger from: source [
 	^ transferBlock value value: passenger value: source
 ]
 
+{ #category : #'private-traversing' }
+AbstractWidgetPresenter >> traversePresentersDo: aBlock excluding: excludes [
+	"Terminate"
+
+	excludes add: self.
+	aBlock value: self
+]
+
 { #category : #'drag and drop' }
 AbstractWidgetPresenter >> wantDropBlock [
 
