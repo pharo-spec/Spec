@@ -28,13 +28,6 @@ SearchableTree class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #examples }
-SearchableTree class >> example [
-	<sampleInstance>
-	^ self new
-		openWithSpec
-]
-
 { #category : #specs }
 SearchableTree class >> searchAtBottom [
 	<spec: #default>

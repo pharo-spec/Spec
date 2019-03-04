@@ -28,16 +28,6 @@ Class {
 	#category : #'Spec-PolyWidgets-ListAndTree'
 }
 
-{ #category : #example }
-EditableList class >> example [
-	<sampleInstance>
-	^self new
-	
-		title: 'Selectors list';
-		list: self selectors;
-	 openWithSpec
-]
-
 { #category : #'instance creation' }
 EditableList class >> new: aCollection [
 	^ self new list: aCollection copy.

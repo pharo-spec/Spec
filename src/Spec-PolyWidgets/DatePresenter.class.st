@@ -24,18 +24,6 @@ Class {
 	#category : #'Spec-PolyWidgets-Widgets'
 }
 
-{ #category : #example }
-DatePresenter class >> example [
-	<sampleInstance>
-	^ self new openDialogWithSpec
-]
-
-{ #category : #example }
-DatePresenter class >> exampleModal [
-	<sampleInstance>
-	^ self new openDialogWithSpec modalRelativeTo: self currentWorld
-]
-
 { #category : #accessing }
 DatePresenter class >> spec [
 	<spec: #default>
