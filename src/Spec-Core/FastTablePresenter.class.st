@@ -3,7 +3,7 @@ An FastTablePresenter is a spec presenter for a FastTable
 "
 Class {
 	#name : #FastTablePresenter,
-	#superclass : #ColumnedListPresenter,
+	#superclass : #TablePresenter,
 	#instVars : [
 		'iconHolder',
 		'handlesDoubleClick',

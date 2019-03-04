@@ -8,7 +8,7 @@ AbstractListPresenter >> doubleClickAction: aBlockClosure [
 		transformWith: '`@receiver whenActivatedDo: `@argument'
 						-> '`@receiver doubleClickAction: `@argument'.
 	
-	self whenActivatedDo: aBlockClosure
+	self whenActivatedDo: [ :sel | aBlockClosure value: sel selectedItem]
 ]
 
 { #category : #'*Spec-Deprecated80' }

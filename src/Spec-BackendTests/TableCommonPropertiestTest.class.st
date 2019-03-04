@@ -1,16 +1,16 @@
 Class {
-	#name : #ColumnedListCommonPropertiestTest,
+	#name : #TableCommonPropertiestTest,
 	#superclass : #AbstractListCommonPropertiestTest,
 	#category : #'Spec-BackendTests'
 }
 
 { #category : #running }
-ColumnedListCommonPropertiestTest >> classToTest [
-	^ ColumnedListPresenter
+TableCommonPropertiestTest >> classToTest [
+	^ TablePresenter
 ]
 
 { #category : #running }
-ColumnedListCommonPropertiestTest >> initializeTestedInstance [
+TableCommonPropertiestTest >> initializeTestedInstance [
 
 	super initializeTestedInstance.
 	presenter addColumn: (StringTableColumn title: 'Number' evaluated: #yourself).
@@ -20,7 +20,7 @@ ColumnedListCommonPropertiestTest >> initializeTestedInstance [
 ]
 
 { #category : #tests }
-ColumnedListCommonPropertiestTest >> testAddColumnInPresenterAddsItToWidget [
+TableCommonPropertiestTest >> testAddColumnInPresenterAddsItToWidget [
 
 	| newColumn |
 	newColumn := StringTableColumn title: 'Hex' evaluated: #hex.
@@ -31,7 +31,7 @@ ColumnedListCommonPropertiestTest >> testAddColumnInPresenterAddsItToWidget [
 ]
 
 { #category : #tests }
-ColumnedListCommonPropertiestTest >> testHideColumnHeadersInPresenterHidesThemInWidget [
+TableCommonPropertiestTest >> testHideColumnHeadersInPresenterHidesThemInWidget [
 
 	self presenter hideColumnHeaders.
 	
@@ -39,13 +39,13 @@ ColumnedListCommonPropertiestTest >> testHideColumnHeadersInPresenterHidesThemIn
 ]
 
 { #category : #tests }
-ColumnedListCommonPropertiestTest >> testListWithoutColumnsHasSingleColumn [
+TableCommonPropertiestTest >> testListWithoutColumnsHasSingleColumn [
 
 	self assert: self widget columns size equals: 1
 ]
 
 { #category : #tests }
-ColumnedListCommonPropertiestTest >> testShowColumnHeadersInPresenterShowsThemInWidget [
+TableCommonPropertiestTest >> testShowColumnHeadersInPresenterShowsThemInWidget [
 
 	SystemVersion current major = 7
 		ifTrue: [

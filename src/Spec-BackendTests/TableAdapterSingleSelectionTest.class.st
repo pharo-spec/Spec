@@ -1,16 +1,16 @@
 Class {
-	#name : #ColumnedListAdapterSingleSelectionTest,
+	#name : #TableAdapterSingleSelectionTest,
 	#superclass : #AbstractListAdapterSingleSelectionTest,
 	#category : #'Spec-BackendTests'
 }
 
 { #category : #running }
-ColumnedListAdapterSingleSelectionTest >> classToTest [
-	^ ColumnedListPresenter
+TableAdapterSingleSelectionTest >> classToTest [
+	^ TablePresenter
 ]
 
 { #category : #running }
-ColumnedListAdapterSingleSelectionTest >> initializeTestedInstance [ 
+TableAdapterSingleSelectionTest >> initializeTestedInstance [ 
 
 	super initializeTestedInstance.
 	presenter addColumn: (StringTableColumn evaluated: [:e | e displayString]).

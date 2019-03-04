@@ -1,17 +1,17 @@
 Class {
-	#name : #ColumnedListPresenterTest,
+	#name : #TablePresenterTest,
 	#superclass : #AbstractListPresenterTest,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 
 { #category : #running }
-ColumnedListPresenterTest >> classToTest [
+TablePresenterTest >> classToTest [
 	
-	^ ColumnedListPresenter
+	^ TablePresenter
 ]
 
 { #category : #'tests-activation' }
-ColumnedListPresenterTest >> testAddColumnRaisesColumnChangedEvent [
+TablePresenterTest >> testAddColumnRaisesColumnChangedEvent [
 
 	| columnsChanged |
 	columnsChanged := false.
@@ -23,7 +23,7 @@ ColumnedListPresenterTest >> testAddColumnRaisesColumnChangedEvent [
 ]
 
 { #category : #'tests-activation' }
-ColumnedListPresenterTest >> testAddColumnRaisesOneEventOnly [
+TablePresenterTest >> testAddColumnRaisesOneEventOnly [
 
 	| count |
 	count := 0.
@@ -35,7 +35,7 @@ ColumnedListPresenterTest >> testAddColumnRaisesOneEventOnly [
 ]
 
 { #category : #'tests-activation' }
-ColumnedListPresenterTest >> testHideColumnHeadersDoesNotShowHeaders [
+TablePresenterTest >> testHideColumnHeadersDoesNotShowHeaders [
 
 	presenter hideColumnHeaders.
 
@@ -43,7 +43,7 @@ ColumnedListPresenterTest >> testHideColumnHeadersDoesNotShowHeaders [
 ]
 
 { #category : #'tests-activation' }
-ColumnedListPresenterTest >> testHideColumnHeadersRaisesOneEventOnly [
+TablePresenterTest >> testHideColumnHeadersRaisesOneEventOnly [
 
 	| count |
 	count := 0.
@@ -54,7 +54,7 @@ ColumnedListPresenterTest >> testHideColumnHeadersRaisesOneEventOnly [
 ]
 
 { #category : #'tests-activation' }
-ColumnedListPresenterTest >> testShowColumnHeadersRaisesOneEventOnly [
+TablePresenterTest >> testShowColumnHeadersRaisesOneEventOnly [
 
 	| count |
 	count := 0.
@@ -65,7 +65,7 @@ ColumnedListPresenterTest >> testShowColumnHeadersRaisesOneEventOnly [
 ]
 
 { #category : #'tests-activation' }
-ColumnedListPresenterTest >> testShowColumnHeadersShowHeaders [
+TablePresenterTest >> testShowColumnHeadersShowHeaders [
 
 	presenter showColumnHeaders.
 

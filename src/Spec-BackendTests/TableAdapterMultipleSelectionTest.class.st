@@ -1,16 +1,16 @@
 Class {
-	#name : #ColumnedListAdapterMultipleSelectionTest,
+	#name : #TableAdapterMultipleSelectionTest,
 	#superclass : #AbstractListAdapterMultipleSelectionTest,
 	#category : #'Spec-BackendTests'
 }
 
 { #category : #running }
-ColumnedListAdapterMultipleSelectionTest >> classToTest [
-	^ ColumnedListPresenter
+TableAdapterMultipleSelectionTest >> classToTest [
+	^ TablePresenter
 ]
 
 { #category : #running }
-ColumnedListAdapterMultipleSelectionTest >> initializeTestedInstance [
+TableAdapterMultipleSelectionTest >> initializeTestedInstance [
 
 	super initializeTestedInstance.
 
