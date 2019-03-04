@@ -312,16 +312,15 @@ MessageBrowser >> currentMethod [
 	^ self selectedMessage
 ]
 
-{ #category : #api }
-MessageBrowser >> displayBlock: aBlock [
-
-	^ listModel displayBlock: aBlock
-]
-
 { #category : #'private-focus' }
 MessageBrowser >> ensureKeyBindingsFor: aWidget [
-	
-	self registerListShortcutsFor: listModel
+	aWidget bindKeyCombination: PharoShortcuts current browseShortcut toAction: [ self browseMethod ].
+	aWidget bindKeyCombination: PharoShortcuts current inspectItShortcut toAction: [ self inspectMethod ].
+	aWidget bindKeyCombination: PharoShortcuts current browseImplementorsShortcut toAction: [ self browseMessages ].
+	aWidget bindKeyCombination: PharoShortcuts current browseSendersShortcut toAction: [ self browseSendersOfMessage ].
+	aWidget bindKeyCombination: PharoShortcuts current browseReferencesShortcut toAction: [ self browseClassRefs ].
+	aWidget bindKeyCombination: PharoShortcuts current browseVersionsShortcut toAction: [ self browseVersions ].
+	aWidget bindKeyCombination: PharoShortcuts current removeShortcut toAction: [ self removeMethods ]
 ]
 
 { #category : #'text selection' }
@@ -439,7 +438,7 @@ MessageBrowser >> handleMethodRemoved: anAnnouncement [
 { #category : #private }
 MessageBrowser >> initialExtent [
 
-	^ (700 min: (World extent x)) @ (550 min: (World extent y))
+	^ (900 min: (World extent x)) @ (550 min: (World extent y))
 ]
 
 { #category : #initialization }
@@ -465,33 +464,32 @@ MessageBrowser >> initializeDropList [
 { #category : #initialization }
 MessageBrowser >> initializePresenter [
 	listModel
-		whenSelectionChangedDo:
-			[ :selection | [ :item | self selectItem: item ] cull: selection selectedItem ].
-	listModel whenModelChangedDo: [ self updateTitle ].
+		whenSelectionChangedDo: [ :selection | [ :item | self selectItem: item ] cull: selection selectedItem ];
+		whenModelChangedDo: [ self updateTitle ].
 	titleHolder whenChangedDo: [ self updateTitle ].
-	textModel
-		acceptBlock:
-			[ :text :notifyer | (self accept: text notifying: notifyer) notNil ]
+	textModel acceptBlock: [ :text :notifyer | (self accept: text notifying: notifyer) notNil ]
 ]
 
 { #category : #initialization }
 MessageBrowser >> initializeWidgets [
-
-	listModel := self instantiate: FastTablePresenter.
+	listModel := self newTable.
 	textModel := self newCode.
 	toolbarModel := self instantiate: MethodToolbar.
-	
-	listModel numberOfColumns: 3 withWidths: #(250 250 50).
-	listModel displayBlock: [ :item | self wrapItem: item ].
+
+	listModel
+		addColumn: (StringTableColumn title: 'Location' evaluated: [ :item | self locationOf: item ]);
+		addColumn: (StringTableColumn title: 'Selector' evaluated: [ :item | self selectorOf: item ]);
+		addColumn: (StringTableColumn title: 'Package' evaluated: [ :item | self packageOf: item ]);
+		beResizable.
+
 	textModel aboutToStyle: true.
 	textModel whenBuiltDo: [ :ann | ann widget font: self codeFont ].
 	refreshingBlockHolder := [ :item | true ] asValueHolder.
-				
+
 	self
 		setListMenu;
 		initializeDropList;
-		setFocus.
-
+		setFocus
 ]
 
 { #category : #actions }
@@ -536,6 +534,19 @@ MessageBrowser >> isMethodDefinition: anItem [
 MessageBrowser >> listModel [
 	
 	^ listModel
+]
+
+{ #category : #accessing }
+MessageBrowser >> locationOf: anItem [
+	^ String
+		streamContents: [ :aStream | 
+			3 to: (cachedHierarchy at: anItem) size do: [ :i | aStream << '    ' ].
+			aStream << (self methodClassNameForItem: anItem) << ' ('.
+			anItem isFromTrait
+				ifTrue: [ aStream
+						<< anItem compiledMethod origin name;
+						space ].
+			aStream << (self protocolNameForItem: anItem) << ')' ]
 ]
 
 { #category : #api }
@@ -601,6 +612,11 @@ MessageBrowser >> packageNameForItem: anItem [
 	^ anItem package ifNil: [ '' ] ifNotNil: [ :package | package name ]
 ]
 
+{ #category : #accessing }
+MessageBrowser >> packageOf: anItem [
+	^ '[' , (self packageNameForItem: anItem) , ']'
+]
+
 { #category : #private }
 MessageBrowser >> protocolNameForItem: anItem [
 	^ anItem category ifNil: [ '' ]
@@ -610,18 +626,6 @@ MessageBrowser >> protocolNameForItem: anItem [
 MessageBrowser >> refreshingBlock: aBlock [
 
 	refreshingBlockHolder value: aBlock
-]
-
-{ #category : #initialization }
-MessageBrowser >> registerListShortcutsFor: aWidget [
-
-	aWidget bindKeyCombination: PharoShortcuts current browseShortcut toAction: [ self browseMethod ].
-	aWidget bindKeyCombination: PharoShortcuts current inspectItShortcut toAction: [ self inspectMethod ].
-	aWidget bindKeyCombination: PharoShortcuts current browseImplementorsShortcut toAction: [ self browseMessages ].
-	aWidget bindKeyCombination: PharoShortcuts current browseSendersShortcut toAction: [ self browseSendersOfMessage ].
-	aWidget bindKeyCombination: PharoShortcuts current browseReferencesShortcut toAction: [ self browseClassRefs ].
-	aWidget bindKeyCombination: PharoShortcuts current browseVersionsShortcut toAction: [ self browseVersions ].
-	aWidget bindKeyCombination: PharoShortcuts current removeShortcut toAction: [ self removeMethods ].
 ]
 
 { #category : #'announcements-registration' }
@@ -724,6 +728,11 @@ MessageBrowser >> selectedMethod [
 { #category : #accessing }
 MessageBrowser >> selectedMethods [
 	^ {self selectedMessage} asOrderedCollection 
+]
+
+{ #category : #accessing }
+MessageBrowser >> selectorOf: anItem [
+	^ anItem selector
 ]
 
 { #category : #initialization }
@@ -833,7 +842,6 @@ MessageBrowser >> textModel: aModel [
 
 { #category : #private }
 MessageBrowser >> title [
-		
 	^ titleHolder value , ' [' , listModel listSize printString , ']'
 ]
 
@@ -870,15 +878,6 @@ MessageBrowser >> windowIsClosing [
 { #category : #private }
 MessageBrowser >> wrapItem: anItem [
 	| s packageName |
-	s := String
-		streamContents: [ :aStream | 
-			3 to: (cachedHierarchy at: anItem) size do: [ :i | aStream << '    ' ].
-			aStream << (self methodClassNameForItem: anItem) << ' ('.
-			anItem isFromTrait
-				ifTrue: [ aStream
-						<< anItem compiledMethod origin name;
-						space ].
-			aStream << (self protocolNameForItem: anItem) << ')' ].
-	packageName := self packageNameForItem: anItem.
-	^ {s. anItem selector. ('[' , packageName , ']')}
+	s := self locationOf: anItem.
+	^ {s . (self selectorOf: anItem) . (self packageOf: anItem)}
 ]
