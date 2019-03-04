@@ -17,20 +17,6 @@ TablePresenter class >> adapterName [
 	^ #TableAdapter
 ]
 
-{ #category : #specs }
-TablePresenter class >> exampleWithoutColumnHeaders [
-	<sampleInstance>
-	| example |
-	example := self new.
-	example
-		addColumn: (StringTableColumn title: 'Number' evaluated: #yourself);
-		addColumn: (StringTableColumn title: 'Hex' evaluated: #hex);
-		items: (1 to: 10) asArray;
-		hideColumnHeaders;
-		openWithSpec.
-	^ example
-]
-
 { #category : #api }
 TablePresenter >> addColumn: aColumn [
 
