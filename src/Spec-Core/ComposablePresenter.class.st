@@ -297,9 +297,7 @@ ComposablePresenter >> bindMenuKeyCombination: aShortcut toAction: aBlock [
 ComposablePresenter >> cancelled [
 	self flag: #TODO. "just for dialogs... I wonder if we need it here?"
 
-	^ self window
-		ifNil: [ false ]
-		ifNotNil: [ :w | w cancelled ]
+	self withWindowDo: #cancelled
 ]
 
 { #category : #TOMOVE }
@@ -310,13 +308,15 @@ ComposablePresenter >> centerWidget: aWindow [
 
 { #category : #'api-showing' }
 ComposablePresenter >> centered [
-	self presenterWindow ifNotNil: [ :w | w centered ]
+
+	self withWindowDo: #centered
 ]
 
 { #category : #TOMOVE }
 ComposablePresenter >> centeredRelativeTo: aModel [
 
-	self presenterWindow ifNotNil: [ :w | w centeredRelativeTo: aModel ]
+	self withWindowDo: [ :w | 
+		w centeredRelativeTo: aModel ]
 ]
 
 { #category : #'instance creation' }
@@ -336,12 +336,14 @@ ComposablePresenter >> defaultSpec [
 
 { #category : #private }
 ComposablePresenter >> defaultWindowPresenterClass [ 
+
 	^ WindowPresenter
 ]
 
 { #category : #private }
 ComposablePresenter >> delete [
-	self presenterWindow ifNil: [ self changed: #delete with: #() ] ifNotNil: [ :w | w delete ]
+
+	self withWindowDo: #delete
 ]
 
 { #category : #TOMOVE }
@@ -566,6 +568,10 @@ ComposablePresenter >> initializeWidgets [
 ComposablePresenter >> initializeWindow: aWindowPresenter [
 	"override this to set window values before opening. 
 	 You may want to add a menu, a toolbar or a statusbar"
+	
+	aWindowPresenter 
+		title: self title;
+		initialExtent: self initialExtent
 ]
 
 { #category : #'accessing ports' }
@@ -621,8 +627,10 @@ ComposablePresenter >> instantiatePresenters: aCollectionOfPairs [
 ComposablePresenter >> isDisplayed [
 	"Return true if the widget is currently displayed on screen"
 	
-	^ self window notNil 
-		and: [ self window isDisplayed ]
+	self flag: #TODO. "To move to WindowPresenter exclusive?"
+	^ self hasWindow 
+		ifTrue: [ self root isDisplayed ]
+		ifFalse: [ false ]
 ]
 
 { #category : #'api-focus' }
@@ -804,12 +812,7 @@ ComposablePresenter >> newTreeTable [
 { #category : #private }
 ComposablePresenter >> okToChange [
 
-	^ owner 
-		ifNil: [
-			self canDiscardEdits ifTrue: [^ true].
-			self changed: #wantToChange.  "Solicit cancel from view"
-			^ self canDiscardEdits ]
-		ifNotNil: [ owner okToChange ]
+	self withWindowDo: #okToChange
 ]
 
 { #category : #'api-shortcuts' }
@@ -1010,9 +1013,10 @@ ComposablePresenter >> updatePresenter [
 
 { #category : #api }
 ComposablePresenter >> updateTitle [
-	"Update the window title"
 
-	self window ifNotNil: [:w | w updateTitle ]
+	self flag: #TODO. "To move to WindowPresenter"
+	"Update the window title"
+	self withWindowDo: #updateTitle
 ]
 
 { #category : #'api-events' }
@@ -1025,7 +1029,8 @@ ComposablePresenter >> whenShortcutsChanged: aBlock [
 { #category : #'api-events' }
 ComposablePresenter >> whenWindowChanged: aBlock [
 
-	window whenChangedDo: aBlock
+	self flag: #TODO. "Fix this"
+	"window whenChangedDo: aBlock"
 ]
 
 { #category : #accessing }
