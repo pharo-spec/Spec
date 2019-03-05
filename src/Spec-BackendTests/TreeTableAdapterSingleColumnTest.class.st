@@ -8,9 +8,8 @@ Class {
 TreeTableAdapterSingleColumnTest >> initializeTestedInstance [ 
 
 	presenter
-		addColumn: (StringTableColumn new 
-			evaluated: #printString;
-			yourself);	
+		addColumn: (StringTableColumn title: 'Value' evaluated: #printString);
+		hideColumnHeaders;	
 		roots: #(1 2 3);
 		children: [ :aNumber | { aNumber * 2. aNumber * 3. aNumber * 10 } ].
 
@@ -71,6 +70,14 @@ TreeTableAdapterSingleColumnTest >> testSelectingOutOfRangeResetsSelection [
 	
 	self assert: self adapter selectedItem equals: nil
 
+]
+
+{ #category : #running }
+TreeTableAdapterSingleColumnTest >> testShowingColumnDisplayColumn [
+
+	self presenter showColumnHeaders.
+	
+	backendForTest assertHasHeader: self adapter widget
 ]
 
 { #category : #running }

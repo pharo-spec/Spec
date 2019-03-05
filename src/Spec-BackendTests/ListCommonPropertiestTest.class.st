@@ -22,7 +22,7 @@ ListCommonPropertiestTest >> testRemoveHeaderTitleInPresenterRemovesColumnHeader
 	self presenter headerTitle: 'test'.
 	self presenter hideHeaderTitle.
 
-	backendForTest assertHasHeader: self widget.
+	backendForTest denyHasHeader: self widget.
 ]
 
 { #category : #running }

@@ -34,6 +34,12 @@ MorphicTreeTableAdapter >> addModelTo: tableMorph [
 	
 	self model whenSelectionChangedDo: [ self selectInto: tableMorph path: self model selection selectedPath ].
 	self model whenRootsChangedDo: [ tableMorph dataSource: self newDataSource ].
+	
+	self model whenShowColumnHeadersChangedDo: [ 	
+		self isShowingColumnHeaders 
+			ifTrue: [ tableMorph showColumnHeaders ] 
+			ifFalse: [ tableMorph hideColumnHeaders ]].
+	
 ]
 
 { #category : #factory }

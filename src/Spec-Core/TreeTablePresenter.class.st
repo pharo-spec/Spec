@@ -107,8 +107,6 @@ TreeTablePresenter >> initialize [
 	isResizableHolder := false asValueHolder.
 	selection := TreeSingleSelectionMode new.
 	
-	showColumnHeadersHolder whenChangedDo: [ self showColumnHeadersChanged ].
-	
 	rootsHolder := #() asValueHolder.
 
 ]
@@ -185,12 +183,6 @@ TreeTablePresenter >> showColumnHeaders [
 	showColumnHeadersHolder value: true
 ]
 
-{ #category : #private }
-TreeTablePresenter >> showColumnHeadersChanged [
-
-	self changed: #showColumnHeaders
-]
-
 { #category : #'api-events' }
 TreeTablePresenter >> whenIsResizableChangedDo: aBlock [
 	isResizableHolder whenChangedDo: aBlock
@@ -218,4 +210,10 @@ TreeTablePresenter >> whenSelectedItemChangedDo: aBlockClosure [
 TreeTablePresenter >> whenSelectionChangedDo: aBlockClosure [ 
 	
 	selection whenChangedDo: [ aBlockClosure cull: selection ]
+]
+
+{ #category : #'api - events' }
+TreeTablePresenter >> whenShowColumnHeadersChangedDo: aBlockClosure [ 
+	
+	showColumnHeadersHolder whenChangedDo: aBlockClosure 
 ]

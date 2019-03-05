@@ -14,8 +14,7 @@ MorphicBackendForTest >> assertHasHeader: aFTTableMorph [
 	| tableContainer |
 	self waitUntilUIRedrawed.
 
-	tableContainer := aFTTableMorph submorphs first.
-	self assert: tableContainer submorphs size = 3
+	self assert: (aFTTableMorph instVarNamed: #showColumnHeaders)
 ]
 
 { #category : #asserting }
@@ -82,6 +81,16 @@ MorphicBackendForTest >> clickFirstRowAndColumn: aFTTableMorph [
 		setPosition: aFTTableMorph submorphs first submorphs first bounds center;
 		yourself).
 
+]
+
+{ #category : #asserting }
+MorphicBackendForTest >> denyHasHeader: aFTTableMorph [ 
+
+	| tableContainer |
+	self waitUntilUIRedrawed.
+
+	tableContainer := aFTTableMorph submorphs first.
+	self assert: tableContainer submorphs size = 3
 ]
 
 { #category : #simulating }
