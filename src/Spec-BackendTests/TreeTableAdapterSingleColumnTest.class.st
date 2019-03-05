@@ -17,6 +17,37 @@ TreeTableAdapterSingleColumnTest >> initializeTestedInstance [
 ]
 
 { #category : #running }
+TreeTableAdapterSingleColumnTest >> testChangingRootsResetsSelection [
+
+	self presenter selection selectedPath: #(2 3).
+	self presenter roots: #(10 11 12).
+	
+	self assert: self adapter selectedItem equals: nil
+
+]
+
+{ #category : #running }
+TreeTableAdapterSingleColumnTest >> testChangingRootsUpdateWidget [
+
+	self presenter roots: #(10 11 12).
+	
+	backendForTest assertList: self adapter widget displayItems: #('10' '11' '12').
+	
+
+]
+
+{ #category : #running }
+TreeTableAdapterSingleColumnTest >> testSelectItemRaiseEvent [
+
+	| called |
+	
+	self presenter whenSelectionChangedDo: [ called := true ].
+	self presenter selection selectedPath: #(2 3).
+
+	self assert: called equals: true
+]
+
+{ #category : #running }
 TreeTableAdapterSingleColumnTest >> testSelectItemSelectsTheGivenElement [
 
 	self presenter selection selectedPath: #(2).
@@ -30,6 +61,16 @@ TreeTableAdapterSingleColumnTest >> testSelectItemSelectsTheGivenElementAndExpan
 	self presenter selection selectedPath: #(2 3).
 
 	self assert: self adapter selectedItem equals: 20.
+]
+
+{ #category : #running }
+TreeTableAdapterSingleColumnTest >> testSelectingOutOfRangeResetsSelection [
+
+	self presenter selection selectedPath: #(2 3).
+	self presenter selection selectedPath: #(7 3).
+	
+	self assert: self adapter selectedItem equals: nil
+
 ]
 
 { #category : #running }

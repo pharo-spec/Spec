@@ -33,6 +33,7 @@ MorphicTreeTableAdapter >> addModelTo: tableMorph [
 		ifFalse: [ self selectInto: tableMorph path: self model selection selectedPath ].
 	
 	self model whenSelectionChangedDo: [ self selectInto: tableMorph path: self model selection selectedPath ].
+	self model whenRootsChangedDo: [ tableMorph dataSource: self newDataSource ].
 ]
 
 { #category : #factory }
@@ -101,6 +102,9 @@ MorphicTreeTableAdapter >> selectInto: aFTTableMorph path: aPath [
 	| item index |
 	
 	item := aFTTableMorph dataSource itemAtPath: aPath expanding: true.
+
+	item ifNil: [ aFTTableMorph selectIndex: 0. ^ self ].
+
 	aFTTableMorph refresh.
 	index := aFTTableMorph dataSource indexOfItem: item.
 

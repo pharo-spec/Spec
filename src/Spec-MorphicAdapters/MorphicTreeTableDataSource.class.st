@@ -69,12 +69,13 @@ MorphicTreeTableDataSource >> itemAtPath: aPath expanding: shouldExpandItems [
 	
 	| item |
 	
-	aPath isEmpty ifTrue: [ ^ nil ].
+	(aPath isNil or: [aPath isEmpty]) ifTrue: [ ^ nil ].
 	item := self rootItem.
 	
 	aPath do: [ :index |
 		(shouldExpandItems and: [item isRoot not]) ifTrue: [ item expand ].
-		item := item children at: index
+		item children size < index ifTrue: [ ^ nil ].		
+		item := item children at: index.
 	].
 
 	^ item
