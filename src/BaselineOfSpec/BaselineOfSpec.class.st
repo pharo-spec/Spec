@@ -7,21 +7,6 @@ Class {
 	#category : #BaselineOfSpec
 }
 
-{ #category : #'pre/post load' }
-BaselineOfSpec >> addHackToLoadSpec [
-	"Metacello pop some UIManager request during the loading of Spec. This cause a problem so we remove the need of the UI manager."
-
-	self shouldInstallHack ifFalse: [ ^ self ].
-	
-	link := MetaLink new
-		metaObject: #receiver;
-		selector: #warnAboutLosingChangesForSpec:;
-		arguments: #(#arguments);
-		control: #instead.
-		
-	(MCVersionLoader >> #warnAboutLosingChangesTo:ifCancel:ifMerge:) ast link: link
-]
-
 { #category : #baseline }
 BaselineOfSpec >> baseline: spec [
 	<baseline>
@@ -53,17 +38,4 @@ BaselineOfSpec >> baseline: spec [
 			package: 'Spec-CompatibilityTests' with: [ spec requires: #( 'Spec-MorphicBackendTests') ] ].
 	spec for: #'pharo7.x' do: [ 
 		spec package: 'Spec-Pharo7To8Compatibility' ]
-]
-
-{ #category : #'pre/post load' }
-BaselineOfSpec >> removeHackToLoadSpec [
-	
-	self shouldInstallHack ifFalse: [ ^ self ].
-	
-	link uninstall
-]
-
-{ #category : #'pre/post load' }
-BaselineOfSpec >> shouldInstallHack [
-	^ {CommandLineUIManager. NonInteractiveUIManager} anySatisfy: [ :e | UIManager default isKindOf: e ]
 ]
