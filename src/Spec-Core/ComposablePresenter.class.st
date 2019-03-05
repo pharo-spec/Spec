@@ -916,11 +916,6 @@ ComposablePresenter >> newList [
 ]
 
 { #category : #widgets }
-ComposablePresenter >> newMultiColumnList [
-	^ self instantiate: MultiColumnListPresenter
-]
-
-{ #category : #widgets }
 ComposablePresenter >> newNotebook [
 
 	^ self instantiate: NotebookPresenter

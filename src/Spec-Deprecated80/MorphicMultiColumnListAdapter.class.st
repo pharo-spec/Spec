@@ -4,8 +4,13 @@ I am the adapter used to bridge a MultiColumnListPresenter and a PluggableMultiC
 Class {
 	#name : #MorphicMultiColumnListAdapter,
 	#superclass : #MorphicListAdapter,
-	#category : #'Spec-MorphicAdapters-Base'
+	#category : #'Spec-Deprecated80-Adapters'
 }
+
+{ #category : #deprecation }
+MorphicMultiColumnListAdapter class >> isDeprecated [
+	^ true
+]
 
 { #category : #factory }
 MorphicMultiColumnListAdapter >> buildWidget [
