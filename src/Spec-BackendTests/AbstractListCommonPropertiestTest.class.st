@@ -18,7 +18,6 @@ AbstractListCommonPropertiestTest >> initializeTestedInstance [
 { #category : #running }
 AbstractListCommonPropertiestTest >> testChangeListInPresenterUpdatesWidget [
 
-	| tableContainer tableRowContents |
 	self presenter items: #( '1' '2' '3').
 
 	backendForTest assertList: self widget displayItems: #('1' '2' '3')

@@ -25,7 +25,14 @@ MorphicTreeTableAdapter >> addModelTo: tableMorph [
 		ifTrue: [ tableMorph beResizable ] 
 		ifFalse: [ tableMorph beNotResizable ].
 
-	tableMorph dataSource: self newDataSource
+	tableMorph setBalloonText: self model help.
+	
+	tableMorph dataSource: self newDataSource.
+	
+	self model selection isEmpty 
+		ifFalse: [ self selectInto: tableMorph path: self model selection selectedPath ].
+	
+	self model whenSelectionChangedDo: [ self selectInto: tableMorph path: self model selection selectedPath ].
 ]
 
 { #category : #factory }
@@ -86,4 +93,25 @@ MorphicTreeTableAdapter >> rootForItems: aCollection [
 	^ FTRootItem new
 		data: aCollection;
 		yourself
+]
+
+{ #category : #selecting }
+MorphicTreeTableAdapter >> selectInto: aFTTableMorph path: aPath [ 
+	
+	| item index |
+	item := aFTTableMorph dataSource itemAtPath: aPath expanding: true.
+	aFTTableMorph refresh.
+	index := aFTTableMorph dataSource indexOfItem: item.
+	self halt
+]
+
+{ #category : #accessing }
+MorphicTreeTableAdapter >> selectedItem [
+	
+	| selectedIndex |
+	selectedIndex := self widget selectedIndex.
+	
+	selectedIndex = 0 ifTrue: [ ^ nil ].
+	
+	^ (self widget dataSource elementAt: selectedIndex) data
 ]

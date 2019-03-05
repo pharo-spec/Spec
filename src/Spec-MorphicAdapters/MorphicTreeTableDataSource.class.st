@@ -44,10 +44,37 @@ MorphicTreeTableDataSource >> headerColumn: column [
 		yourself
 ]
 
+{ #category : #accessing }
+MorphicTreeTableDataSource >> indexOfItem: anUndefinedObject [ 
+	self shouldBeImplemented.
+]
+
 { #category : #testing }
 MorphicTreeTableDataSource >> isFirstColumn: column [
 	
 	^ (table columns indexOf: column) = 1
+]
+
+{ #category : #accessing }
+MorphicTreeTableDataSource >> itemAtPath: aPath [ 
+	
+	^ self itemAtPath: aPath expanding: false
+]
+
+{ #category : #accessing }
+MorphicTreeTableDataSource >> itemAtPath: aPath expanding: shouldExpandItems [
+	
+	| item |
+	
+	aPath isEmpty ifTrue: [ ^ nil ].
+	item := self rootItem.
+	
+	aPath do: [ :index |
+		(shouldExpandItems and: [item isRoot not]) ifTrue: [ item expand ].
+		item := item children at: index
+	].
+
+	^ item
 ]
 
 { #category : #accessing }

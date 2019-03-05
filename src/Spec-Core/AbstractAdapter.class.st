@@ -128,11 +128,6 @@ AbstractAdapter >> removeSubWidgets [
 ]
 
 { #category : #accessing }
-AbstractAdapter >> selectedItem [
-	self shouldBeImplemented.
-]
-
-{ #category : #accessing }
 AbstractAdapter >> selector [
 	
 	^ selector
