@@ -9,8 +9,38 @@ Class {
 		'handlesDoubleClick',
 		'displayBlock'
 	],
-	#category : #'Spec-Core-Widgets'
+	#category : #'Spec-Deprecated80-Replaced'
 }
+
+{ #category : #deprecation }
+FastTablePresenter class >> example [
+	<sampleInstance>
+	| example |
+	example := self new.
+	example
+		icons: [ :e | example iconNamed: #forwardIcon ];
+		items: (1 to: 10) asArray;
+		openWithSpec.
+	^ example
+]
+
+{ #category : #deprecation }
+FastTablePresenter class >> exampleMultipleSelection [
+	<sampleInstance>
+	| example |
+	example := self new.
+	example
+		items: (1 to: 10);
+		beMultipleSelection;
+		whenSelectionChangedDo: [ :selection | selection logCr ];
+		openWithSpec.
+	^ example
+]
+
+{ #category : #deprecation }
+FastTablePresenter class >> isDeprecated [
+	^ true
+]
 
 { #category : #'api-columns' }
 FastTablePresenter >> addColumn: aColumn [
@@ -104,6 +134,12 @@ FastTablePresenter >> registerEvents [
 	super registerEvents.
 	handlesDoubleClick whenChangedDo: [ :bool | self changed: { #handlesDoubleClick . bool } ].
 
+]
+
+{ #category : #'as yet unclassified' }
+FastTablePresenter >> whenIconsChanged: aBlock [
+	self deprecated: 'Use #whenIconsChangedDo: instead.' transformWith: '`@receiver whenIconsChanged: `@statements' -> '`@receiver whenIconsChangedDo: `@statements'.
+	self whenIconsChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
