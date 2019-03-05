@@ -44,7 +44,7 @@ Application class >> activeApplicationOrDefault [
 { #category : #accessing }
 Application class >> defaultApplication [
 
-	^ NullApplication new
+	^ DefaultApplication ifNil: [ DefaultApplication := NullApplication new ]
 ]
 
 { #category : #accessing }
@@ -56,7 +56,7 @@ Application class >> defaultBackendName [
 { #category : #accessing }
 Application class >> initialize [
 
-	ActiveApplication := WeakValueHolder new
+	ActiveApplication := SpecWeakValueHolder new
 ]
 
 { #category : #accessing }

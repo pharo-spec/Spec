@@ -111,7 +111,7 @@ ListPresenter >> headerTitle [
 	^ headerTitle value
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 ListPresenter >> headerTitle: aString [ 
 	
 	headerTitle value: aString
