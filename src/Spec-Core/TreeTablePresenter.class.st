@@ -110,7 +110,7 @@ TreeTablePresenter >> initialize [
 	showColumnHeadersHolder whenChangedDo: [ self showColumnHeadersChanged ].
 	
 	rootsHolder := #() asValueHolder.
-	rootsHolder whenChangedDo: [ self rootsChanged ]
+
 ]
 
 { #category : #accessing }
@@ -163,13 +163,8 @@ TreeTablePresenter >> roots [
 { #category : #accessing }
 TreeTablePresenter >> roots: aCollection [
 
-	rootsHolder value: aCollection
-]
-
-{ #category : #private }
-TreeTablePresenter >> rootsChanged [
-
-	self changed: #items
+	rootsHolder value: aCollection.
+	selection clearSelection
 ]
 
 { #category : #api }
@@ -199,6 +194,12 @@ TreeTablePresenter >> showColumnHeadersChanged [
 { #category : #'api-events' }
 TreeTablePresenter >> whenIsResizableChangedDo: aBlock [
 	isResizableHolder whenChangedDo: aBlock
+]
+
+{ #category : #'API - events' }
+TreeTablePresenter >> whenRootsChangedDo: aBlockClosure [ 
+
+	rootsHolder whenChangedDo: aBlockClosure
 ]
 
 { #category : #'api-events' }

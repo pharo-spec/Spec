@@ -45,7 +45,7 @@ MorphicBackendForTest >> assertList: aFTTableMorph displayItems: aCollection [
 	tableRowContents := tableContainer submorphs collect: [ :row | 
 		| cell |
 		cell := row submorphs first.
-		cell submorphs first contents ].
+		(cell submorphs detect: [:e | e isKindOf: StringMorph]) contents ].
 	
 	self assert: tableRowContents first = aCollection first.
 	self assert: tableRowContents second = aCollection second.
@@ -122,10 +122,13 @@ MorphicBackendForTest >> openInstanceOf: aTest [
 { #category : #running }
 MorphicBackendForTest >> runTest: aBlockClosure [ 
 	
+	| old |
 	app := Application new.
 	app useBackend: #Morphic.
+	old := Application activeApplication.
+	Application activeApplication: app.
 	
-	aBlockClosure value
+	aBlockClosure ensure: [ Application activeApplication: old. ].
 ]
 
 { #category : #running }

@@ -9,6 +9,12 @@ Class {
 	#category : #'Spec-Core-Widgets-Tree'
 }
 
+{ #category : #selection }
+TreeSingleSelectionMode >> clearSelection [
+
+	selection := #()
+]
+
 { #category : #initialization }
 TreeSingleSelectionMode >> initialize [
 	self class initializeSlots: self.
