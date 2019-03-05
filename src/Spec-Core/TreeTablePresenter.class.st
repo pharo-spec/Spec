@@ -30,7 +30,7 @@ TreeTablePresenter class >> adapterName [
 { #category : #api }
 TreeTablePresenter >> addColumn: aColumn [
 
-	columns := columns copyWith: aColumn
+	columns value: (columns value copyWith: aColumn)
 ]
 
 { #category : #api }
@@ -64,13 +64,13 @@ TreeTablePresenter >> childrenFor: anObject [
 { #category : #accessing }
 TreeTablePresenter >> columns [
 
-	^ columns
+	^ columns value
 ]
 
 { #category : #api }
 TreeTablePresenter >> columns: aCollection [
 
-	columns := aCollection
+	columns value: aCollection
 ]
 
 { #category : #private }
@@ -103,7 +103,7 @@ TreeTablePresenter >> initialize [
 
 	super initialize.
 	showColumnHeadersHolder := true asValueHolder.
-	columns := #().
+	columns := #() asValueHolder.
 	isResizableHolder := false asValueHolder.
 	selection := TreeSingleSelectionMode new.
 	
@@ -181,6 +181,12 @@ TreeTablePresenter >> selection [
 TreeTablePresenter >> showColumnHeaders [
 
 	showColumnHeadersHolder value: true
+]
+
+{ #category : #'api - events' }
+TreeTablePresenter >> whenColumnsChangedDo: aBlockClosure [ 
+	
+	columns whenChangedDo: aBlockClosure 
 ]
 
 { #category : #'api-events' }

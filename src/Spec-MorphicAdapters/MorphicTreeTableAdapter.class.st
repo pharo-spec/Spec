@@ -39,6 +39,11 @@ MorphicTreeTableAdapter >> addModelTo: tableMorph [
 		self isShowingColumnHeaders 
 			ifTrue: [ tableMorph showColumnHeaders ] 
 			ifFalse: [ tableMorph hideColumnHeaders ]].
+		
+	self model whenColumnsChangedDo: [
+		tableMorph columns: #(). 
+		self model columns do: [ :each | tableMorph addColumn: (self newColumnFrom: each) ].
+		tableMorph dataSource: self newDataSource ].
 	
 ]
 
@@ -53,6 +58,12 @@ MorphicTreeTableAdapter >> buildWidget [
 	self addModelTo: tableMorph.
 
 	^ tableMorph
+]
+
+{ #category : #testing }
+MorphicTreeTableAdapter >> columnCount [
+	
+	^ self widget columns size
 ]
 
 { #category : #factory }
