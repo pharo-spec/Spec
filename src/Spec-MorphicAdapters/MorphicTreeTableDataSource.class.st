@@ -45,8 +45,11 @@ MorphicTreeTableDataSource >> headerColumn: column [
 ]
 
 { #category : #accessing }
-MorphicTreeTableDataSource >> indexOfItem: anUndefinedObject [ 
-	self shouldBeImplemented.
+MorphicTreeTableDataSource >> indexOfItem: anItem [ 
+	
+	| allItems |
+	allItems := rootItem children flatCollect: [ :e | e withExpandedChildren ].
+	^ allItems indexOf: anItem
 ]
 
 { #category : #testing }
