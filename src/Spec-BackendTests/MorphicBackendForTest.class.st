@@ -120,15 +120,15 @@ MorphicBackendForTest >> openInstanceOf: aTest [
 ]
 
 { #category : #running }
-MorphicBackendForTest >> runTest: aBlockClosure [ 
-	
-	| old |
-	app := Application new.
+MorphicBackendForTest >> runTest: aBlock [
+	| oldApplication |
+
+	app := SpecApplication new.
 	app useBackend: #Morphic.
-	old := Application activeApplication.
-	Application activeApplication: app.
-	
-	aBlockClosure ensure: [ Application activeApplication: old. ].
+	oldApplication := SpecApplication activeApplication.
+	SpecApplication activeApplication: app.
+	aBlock ensure: [ 
+		SpecApplication activeApplication: oldApplication ].
 ]
 
 { #category : #running }
