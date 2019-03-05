@@ -4,8 +4,13 @@ I am the adapter used to bridge an FastTablePresenter and a FTPluggableIconListM
 Class {
 	#name : #MorphicFastTableAdapter,
 	#superclass : #MorphicListAdapter,
-	#category : #'Spec-MorphicAdapters-Base'
+	#category : #'Spec-Deprecated80-Adapters'
 }
+
+{ #category : #deprecation }
+MorphicFastTableAdapter class >> isDeprecated [
+	^ true
+]
 
 { #category : #factory }
 MorphicFastTableAdapter >> buildWidget [
