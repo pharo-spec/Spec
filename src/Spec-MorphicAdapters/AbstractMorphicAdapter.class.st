@@ -71,7 +71,8 @@ AbstractMorphicAdapter >> beginsWith: aString fromList: aMorph [
 { #category : #'protocol-shortcuts' }
 AbstractMorphicAdapter >> bindKeyCombination: aShortcut toAction: aBlock [
 
-	self widget ifNotNil: [ :w | w bindKeyCombination: aShortcut toAction: aBlock ]
+	self widgetDo: [ :w | 
+		w bindKeyCombination: aShortcut toAction: aBlock ]
 ]
 
 { #category : #'protocol-shortcuts' }

@@ -186,7 +186,6 @@ AbstractWidgetPresenter >> enable [
 
 { #category : #api }
 AbstractWidgetPresenter >> enabled: aBoolean [
-	"<api: #boolean getter: #enabled registration: #whenEnabledChanged:>"
 	"Set if the button is enabled (clickable)"
 	
 	enabledHolder value: aBoolean
@@ -289,6 +288,14 @@ AbstractWidgetPresenter >> transferBlock: aBlock [
 AbstractWidgetPresenter >> transferFor: passenger from: source [
 
 	^ transferBlock value value: passenger value: source
+]
+
+{ #category : #'private-traversing' }
+AbstractWidgetPresenter >> traversePresentersDo: aBlock excluding: excludes [
+	"Terminate"
+
+	excludes add: self.
+	aBlock value: self
 ]
 
 { #category : #'drag and drop' }

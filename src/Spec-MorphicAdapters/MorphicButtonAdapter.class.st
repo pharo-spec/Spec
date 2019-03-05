@@ -43,14 +43,15 @@ MorphicButtonAdapter >> buildLabel: text withIcon: icon [
 
 { #category : #factory }
 MorphicButtonAdapter >> buildWidget [
-	
 	| button | 
+
 	button := PluggableButtonMorph
 				on: self 
 				getState: #state 
 				action:  #action 
 				label: #label 
 				menu: nil. 	
+	
 	button 
 		getEnabledSelector: #enabled ;
 		getFontSelector: #font ;
@@ -63,6 +64,9 @@ MorphicButtonAdapter >> buildWidget [
 		eventHandler: (MorphicEventHandler new on: #keyStroke send: #keyStroke:fromMorph: to: self).
 	
 	self color ifNotNil: [ self setWidgetColor: button ].
+	
+	button bindKeyCombination: Character space toAction: [ self action ].
+
 	^ button
 ]
 

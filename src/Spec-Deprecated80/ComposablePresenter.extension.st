@@ -28,6 +28,12 @@ ComposablePresenter >> newIconList [
 ]
 
 { #category : #'*Spec-Deprecated80' }
+ComposablePresenter >> newMultiColumnList [
+	self deprecated: 'Use newTable instead' on: '2019-02-05' in: #Pharo8.
+	^ self instantiate: MultiColumnListPresenter
+]
+
+{ #category : #'*Spec-Deprecated80' }
 ComposablePresenter >> newTab [
 
 	self 

@@ -14,8 +14,13 @@ All columns have the same size
 Class {
 	#name : #MultiColumnListPresenter,
 	#superclass : #FastTablePresenter,
-	#category : #'Spec-Core-Widgets'
+	#category : #'Spec-Deprecated80-Replaced'
 }
+
+{ #category : #deprecation }
+MultiColumnListPresenter class >> isDeprecated [
+	^ true
+]
 
 { #category : #api }
 MultiColumnListPresenter >> items: items [
