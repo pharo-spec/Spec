@@ -26,12 +26,6 @@ MorphicWindowAdapter >> aboutTitle [
 ]
 
 { #category : #private }
-MorphicWindowAdapter >> activateApplication [ 
-
-	SpecApplication activeApplication: self model application
-]
-
-{ #category : #private }
 MorphicWindowAdapter >> add: containerMorph toWindow: aSpecWindow [
 	aSpecWindow addMorph: containerMorph fullFrame: LayoutFrame identity
 ]
@@ -68,11 +62,6 @@ MorphicWindowAdapter >> addMenuTo: aMorph [
 
 { #category : #protocol }
 MorphicWindowAdapter >> addModelIn: widgetToBuild withSpecLayout: aSpec [
-
-	widgetToBuild announcer 
-		when: WindowActivated
-		send: #activateApplication 
-		to: self.
 
 	self model initialExtent ifNotNil: [ :extent |
 		 widgetToBuild extent: extent ].

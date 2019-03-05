@@ -140,6 +140,12 @@ MenuPresenter >> initialize [
 	autoRefresh whenChangedDo: [ :aBoolean | self menuGroups do: [ :each | each autoRefresh: aBoolean ] ]
 ]
 
+{ #category : #testing }
+MenuPresenter >> isMenuPresenter [
+
+	^ true
+]
+
 { #category : #api }
 MenuPresenter >> menuGroups [
 
@@ -171,11 +177,20 @@ MenuPresenter >> printOn: aStream [
 ]
 
 { #category : #accessing }
+MenuPresenter >> rootMenu [
+
+	^ self owner isMenuPresenter 
+		ifTrue: [ self owner rootMenu ]
+		ifFalse: [ self ]
+
+]
+
+{ #category : #accessing }
 MenuPresenter >> shortcutGroup [
 	"Some platforms use acceleration groups to store shortcut keys. 
 	 if that's the case, we use this property to access it later (and store 
 	 in windows, for example)"
-	
+
 	^ shortcutGroup
 ]
 

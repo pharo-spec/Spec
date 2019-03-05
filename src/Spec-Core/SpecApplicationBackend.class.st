@@ -45,7 +45,7 @@ SpecApplicationBackend >> adapterBindingsClass [
 SpecApplicationBackend >> initialize [
 
 	super initialize.
-	adapterBindings := self adapterBindingsClass
+	adapterBindings := self adapterBindingsClass new
 ]
 
 { #category : #accessing }

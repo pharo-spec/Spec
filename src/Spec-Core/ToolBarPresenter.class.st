@@ -36,6 +36,7 @@ ToolBarPresenter >> addItem: aToolbarItem [
 ToolBarPresenter >> addItem: aToolbarItem position: aPosition [
 	| wasEmpty |
 	
+	aToolbarItem owner: self.
 	wasEmpty := false.
 	(itemsHolder 
 		at: aPosition

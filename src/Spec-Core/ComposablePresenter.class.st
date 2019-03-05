@@ -87,6 +87,7 @@ Class {
 	#name : #ComposablePresenter,
 	#superclass : #Presenter,
 	#instVars : [
+		'application',
 		'focusOrder',
 		'extentHolder',
 		'additionalKeyBindings',
@@ -116,11 +117,30 @@ ComposablePresenter class >> iconNamed: aSymbol [
 ]
 
 { #category : #'instance creation' }
+ComposablePresenter class >> newApplication: anApplication [
+
+	^ self basicNew
+		application: anApplication;
+		initialize;
+		yourself
+]
+
+{ #category : #'instance creation' }
 ComposablePresenter class >> newApplication: anApplication model: aModel [
 
 	^ self basicNew
 		application: anApplication;
 		setModelBeforeInitialization: aModel;
+		initialize;
+		yourself
+]
+
+{ #category : #'instance creation' }
+ComposablePresenter class >> newApplication: anApplication owner: anOwningPresenter [
+
+	^ self basicNew
+		application: anApplication;
+		owner: anOwningPresenter;
 		initialize;
 		yourself
 ]
@@ -256,6 +276,26 @@ ComposablePresenter >> announce: anAnnouncement [
 ComposablePresenter >> apiSelectors [
 
 	^ self class apiSelectors
+]
+
+{ #category : #accessing }
+ComposablePresenter >> application [
+
+	^ self hasOwner 
+		ifTrue: [ self owner application ]
+		ifFalse: [
+			application ifNil: [ 
+				self flag: #TODO. "This is incorrect, no component who is also a root
+				(it does not has owner) should not have an application. But in older times
+				it was not like that and to support such components we assign them to a 
+				default application"
+				application := SpecApplication defaultApplication ] ]
+]
+
+{ #category : #accessing }
+ComposablePresenter >> application: anApplication [
+
+	application := anApplication
 ]
 
 { #category : #'window menu' }

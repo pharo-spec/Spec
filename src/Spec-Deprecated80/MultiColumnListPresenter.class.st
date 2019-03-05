@@ -13,7 +13,7 @@ All columns have the same size
 "
 Class {
 	#name : #MultiColumnListPresenter,
-	#superclass : #FastTablePresenter,
+	#superclass : #AnObsoleteFastTablePresenter,
 	#category : #'Spec-Deprecated80-Replaced'
 }
 

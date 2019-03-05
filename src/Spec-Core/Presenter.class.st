@@ -8,7 +8,6 @@ Class {
 	#traits : 'TSpecObservable',
 	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
-		'application',
 		'owner',
 		'adapter',
 		'needRebuild'
@@ -44,25 +43,6 @@ Presenter class >> inputTextHeight [
 Presenter class >> labelHeight [
 
 	^ self defaultFont height
-]
-
-{ #category : #'instance creation' }
-Presenter class >> newApplication: anApplication [
-
-	^ self basicNew
-		application: anApplication;
-		initialize;
-		yourself
-]
-
-{ #category : #'instance creation' }
-Presenter class >> newApplication: anApplication owner: anOwningPresenter [
-
-	^ self basicNew
-		application: anApplication;
-		owner: anOwningPresenter;
-		initialize;
-		yourself
 ]
 
 { #category : #'instance creation' }
@@ -122,28 +102,30 @@ Presenter >> application [
 	 The tree for a composition starts always with an application, which is responsible of 
 	 providing all resources the presenter needs. "
 
-	^ application ifNil: [ 
-		application := SpecApplication activeApplicationOrDefault ]
+	^ self owner application
 ]
 
-{ #category : #accessing }
-Presenter >> application: anApplication [
+{ #category : #'private building' }
+Presenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
+	"I assume the SpecBindings is well defined"
+	| newAdapter |
 
-	application := anApplication
+	newAdapter := aSpecLayout buildAdapterFor: self bindings: SpecBindings value.
+	"self setExtentAndBindingTo: newAdapter widget."
+	self announcer announce: (WidgetBuilt 
+		model: self 
+		widget: newAdapter widget).
+	
+	^ newAdapter
 ]
 
 { #category : #'private building' }
 Presenter >> buildAdapterWithSpecLayout: aSpecLayout [
 	"Build the adapter using the spec name provided as argument"
-	| newAdapter |
 	
-	newAdapter := aSpecLayout buildAdapterFor: self bindings: SpecBindings value new.
-	"self setExtentAndBindingTo: newAdapter widget."
-	self announcer announce: (WidgetBuilt 
-		model: self 
-		widget: newAdapter widget).
-
-	^ newAdapter
+	^ SpecBindings 
+		value: self application adapterBindings
+		during: [ self basicBuildAdapterWithSpecLayout: aSpecLayout ]
 ]
 
 { #category : #building }
@@ -228,6 +210,12 @@ Presenter >> initializeWindow: aWindowPresenter [
 
 	self flag: #TODO. "Does presenters needs to understand this? (they do if we 
 	want to do ButtonPresenter new openWithSpec)."
+]
+
+{ #category : #testing }
+Presenter >> isMenuPresenter [
+
+	^ false
 ]
 
 { #category : #testing }

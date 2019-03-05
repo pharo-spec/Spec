@@ -10,36 +10,10 @@ Class {
 		'backend'
 	],
 	#classVars : [
-		'ActiveApplication'
+		'DefaultApplication'
 	],
 	#category : #'Spec-Core-Base'
 }
-
-{ #category : #accessing }
-SpecApplication class >> activeApplication [
-	"An application is activated always that a window is activated. 
-	 This means: when a window receives the focus, it will set its own application as 
-	 active application (to ensure other applications created by it will be executed 
-	 in the same context). 
-	 You can explicit the application of a presenter using: 
-		- Application >> newPresenter:
-		- Presenter class >> newApplication:"
-
-	^ ActiveApplication contents
-]
-
-{ #category : #accessing }
-SpecApplication class >> activeApplication: anApplication [
-	
-	ActiveApplication contents: anApplication
-]
-
-{ #category : #accessing }
-SpecApplication class >> activeApplicationOrDefault [
-
-	^ self activeApplication 
-		ifNil: [ self defaultApplication ]
-]
 
 { #category : #accessing }
 SpecApplication class >> defaultApplication [
@@ -51,12 +25,6 @@ SpecApplication class >> defaultApplication [
 SpecApplication class >> defaultBackendName [
 
 	^ #Morphic
-]
-
-{ #category : #accessing }
-SpecApplication class >> initialize [
-
-	ActiveApplication := SpecWeakValueHolder new
 ]
 
 { #category : #accessing }
@@ -81,6 +49,13 @@ SpecApplication >> isPresenter [
 ]
 
 { #category : #factory }
+SpecApplication >> new: aPresenter [
+	"a synonym for #newPresenter:"
+	
+	^ self newPresenter: aPresenter
+]
+
+{ #category : #factory }
 SpecApplication >> newPresenter: aPresenterClass [
 
 	^ aPresenterClass newApplication: self
@@ -97,18 +72,16 @@ SpecApplication >> open: aPresenter withSpecLayout: aSpecLayout [
 
 { #category : #'private showing' }
 SpecApplication >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClass [
+	| window |
 
-	^ SpecBindings 
-		value: self backend adapterBindings 	
-		during: [ 
-			| window |
-			window := aWindowClass presenter: aPresenter.
-			window openWithSpecLayout: aSpecLayout.
-			aPresenter announcer announce: (WindowBuilt new 
-				model: window;
-				window: window;
-				yourself).
-			window ]
+	window := aWindowClass presenter: aPresenter.
+	window openWithSpecLayout: aSpecLayout.
+	aPresenter announcer announce: (WindowBuilt new 
+		model: window;
+		window: window;
+		yourself).
+
+	^ window
 ]
 
 { #category : #showing }
@@ -129,7 +102,13 @@ SpecApplication >> openModal: aPresenter withSpecLayout: aSpecLayout [
 		using: ModalWindowPresenter
 ]
 
-{ #category : #starting }
+{ #category : #running }
+SpecApplication >> run [ 
+
+	self start
+]
+
+{ #category : #running }
 SpecApplication >> start [ 
 	"Override this to start your app"
 ]
