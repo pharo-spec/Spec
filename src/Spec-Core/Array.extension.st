@@ -1,6 +1,13 @@
 Extension { #name : #Array }
 
 { #category : #'*Spec-Core' }
+Array >> buildAdapterFor: aPresenter bindings: adapterBindings [
+	"Provides polymorphism with executable layouts."
+
+	^ aPresenter adapterFrom: self
+]
+
+{ #category : #'*Spec-Core' }
 Array >> generateSpec [
 	| str spec |
 	str := self readStream.	

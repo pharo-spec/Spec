@@ -26,6 +26,12 @@ MorphicWindowAdapter >> aboutTitle [
 ]
 
 { #category : #private }
+MorphicWindowAdapter >> activateApplication [ 
+
+	Application activeApplication: self model application
+]
+
+{ #category : #private }
 MorphicWindowAdapter >> add: containerMorph toWindow: aSpecWindow [
 	aSpecWindow addMorph: containerMorph fullFrame: LayoutFrame identity
 ]
@@ -62,6 +68,14 @@ MorphicWindowAdapter >> addMenuTo: aMorph [
 
 { #category : #protocol }
 MorphicWindowAdapter >> addModelIn: widgetToBuild withSpecLayout: aSpec [
+
+	widgetToBuild announcer 
+		when: WindowActivated
+		send: #activateApplication 
+		to: self.
+
+	self model initialExtent ifNotNil: [ :extent |
+		 widgetToBuild extent: extent ].
 	self
 		addContent: (self model presenter buildWithSpecLayout: aSpec)
 		toWindow: widgetToBuild
@@ -240,14 +254,14 @@ MorphicWindowAdapter >> taskbarIcon [
 
 { #category : #'widget API' }
 MorphicWindowAdapter >> title [
+
 	^ self model title
 ]
 
-{ #category : #protocol }
+{ #category : #'widget API' }
 MorphicWindowAdapter >> title: aString [
 
-	^ self widget
-		ifNotNil: [:w | w title: aString ]
+	self widgetDo: [ :w | w setLabel: aString ]
 ]
 
 { #category : #updating }

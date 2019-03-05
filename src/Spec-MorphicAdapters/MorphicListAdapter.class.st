@@ -37,6 +37,7 @@ MorphicListAdapter >> backgroundColorFor: anItem at: index [
 { #category : #factory }
 MorphicListAdapter >> buildWidget [
 	| datasource |
+	
 	datasource := SpecListFastTableDataSource new.
 	datasource model: self model.
 	widget := FTTableMorph new
@@ -74,6 +75,11 @@ MorphicListAdapter >> buildWidget [
 			widget
 				enableFilter: (FTSpecFilter block: block);
 				explicitFunction ].
+			
+	widget		
+		bindKeyCombination: Character space
+		toAction: [ self model clickOnSelectedItem ].
+		
 	^ widget
 ]
 

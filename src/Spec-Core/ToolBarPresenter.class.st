@@ -14,8 +14,8 @@ Class {
 	#name : #ToolBarPresenter,
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
-		'items',
-		'displayMode'
+		'displayMode',
+		'itemsHolder'
 	],
 	#category : #'Spec-Core-Widgets-Toolbar'
 }
@@ -34,11 +34,21 @@ ToolBarPresenter >> addItem: aToolbarItem [
 
 { #category : #adding }
 ToolBarPresenter >> addItem: aToolbarItem position: aPosition [
-
-	(items 
+	| wasEmpty |
+	
+	wasEmpty := false.
+	(itemsHolder 
 		at: aPosition
-		ifAbsentPut: [ OrderedCollection new ])
-		add: aToolbarItem
+		ifAbsentPut: [ 
+			wasEmpty := true.
+			OrderedCollection new ])
+		add: aToolbarItem.
+	
+	"Triggering add messages.
+ 	 This is horrible, items holder should be a collection not a dictionary and constraints (like
+	 group) should be handled differently"
+	wasEmpty ifFalse: [ 
+		itemsHolder valueChanged: aPosition ]
 ]
 
 { #category : #accessing }
@@ -70,7 +80,7 @@ ToolBarPresenter >> initialize [
 
 	super initialize.
 	self beBoth.
-	items := Dictionary new asValueHolder.
+	itemsHolder := Dictionary new asValueHolder.
 	
 ]
 
@@ -101,7 +111,7 @@ ToolBarPresenter >> isEmpty [
 { #category : #api }
 ToolBarPresenter >> items [
 
-	^ items value
+	^ itemsHolder value
 ]
 
 { #category : #testing }

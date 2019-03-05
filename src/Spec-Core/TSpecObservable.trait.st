@@ -11,16 +11,15 @@ TSpecObservable >> notifyPropertyChanged: aName [
 
 { #category : #events }
 TSpecObservable >> observablePropertyNamed: aName [
+	| slot |
 	
-	| aSlot |
-	aSlot := self class slotNamed: aName.
-	
-	aSlot isObservableSlot
+	slot := self class slotNamed: aName.
+	slot isObservableSlot
 		ifFalse: [ SpecNonObservableSlotError signal: aName ].
 
 	"Obtain the raw value.
 	We need to access the underlying value holder to subscribe to it"
-	^ self instVarAt: aSlot index
+	^ slot rawRead: self
 ]
 
 { #category : #events }
