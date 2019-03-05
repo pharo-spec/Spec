@@ -28,7 +28,7 @@ MorphicWindowAdapter >> aboutTitle [
 { #category : #private }
 MorphicWindowAdapter >> activateApplication [ 
 
-	Application activeApplication: self model application
+	SpecApplication activeApplication: self model application
 ]
 
 { #category : #private }

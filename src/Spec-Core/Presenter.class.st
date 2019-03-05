@@ -123,7 +123,7 @@ Presenter >> application [
 	 providing all resources the presenter needs. "
 
 	^ application ifNil: [ 
-		application := Application activeApplicationOrDefault ]
+		application := SpecApplication activeApplicationOrDefault ]
 ]
 
 { #category : #accessing }

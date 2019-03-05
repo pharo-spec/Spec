@@ -3,7 +3,7 @@ I'm a trait that add ""dynamic"" behavior to presenters.
 I can be used to create components that may have variable number of children.
 "
 Trait {
-	#name : #TDynamicPresenter,
+	#name : #TSpecDynamicPresenter,
 	#instVars : [
 		'presenters'
 	],
@@ -11,19 +11,19 @@ Trait {
 }
 
 { #category : #'private accessing' }
-TDynamicPresenter >> basicPresenters [
+TSpecDynamicPresenter >> basicPresenters [
 
 	^ presenters ifNil: [ presenters := OrderedDictionary new ]
 ]
 
 { #category : #accessing }
-TDynamicPresenter >> presenterAt: aName [
+TSpecDynamicPresenter >> presenterAt: aName [
 
 	^ self basicPresenters at: aName 
 ]
 
 { #category : #accessing }
-TDynamicPresenter >> presenterAt: aName put: aPresenter [
+TSpecDynamicPresenter >> presenterAt: aName put: aPresenter [
 
 	^ self basicPresenters 
 		at: aName 
@@ -31,7 +31,7 @@ TDynamicPresenter >> presenterAt: aName put: aPresenter [
 ]
 
 { #category : #accessing }
-TDynamicPresenter >> presenters [
+TSpecDynamicPresenter >> presenters [
 
 	^ self basicPresenters values
 ]

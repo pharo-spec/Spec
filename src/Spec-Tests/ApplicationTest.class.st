@@ -23,7 +23,7 @@ ApplicationTest >> testActiveApplication [
 	presenter := application newPresenter: ButtonPresenter.
 	[ presenter openWithSpec. 
 	  5 milliSeconds wait.
-	  self assert: Application activeApplication equals: application.
+	  self assert: SpecApplication activeApplication equals: application.
 	  "test a new presenter opened in the context of ActiveApplication opens in same 
 	   application."
 	  otherPresenter := ButtonPresenter new.

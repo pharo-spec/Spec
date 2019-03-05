@@ -250,11 +250,9 @@ AbstractListPresenter >> menu: aBlock [
 AbstractListPresenter >> menu: aMenu shifted: aBoolean [
 	"Build the menu when you right click on an item"
 
-	"This does not work on multiple selection"
-
-	self flag: #bug.
-	self selection selectedItems ifEmpty: [ ^ nil ].
-	^ menuHolder value cull: aMenu cull: aBoolean
+	^ menuHolder value 
+		cull: aMenu 
+		cull: aBoolean
 ]
 
 { #category : #accessing }
