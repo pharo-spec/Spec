@@ -105,7 +105,7 @@ Application >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClass 
 			window := aWindowClass presenter: aPresenter.
 			window openWithSpecLayout: aSpecLayout.
 			aPresenter announcer announce: (WindowBuilt new 
-				model: self;
+				model: window;
 				window: window;
 				yourself).
 			window ]

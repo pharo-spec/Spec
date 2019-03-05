@@ -2,7 +2,8 @@ Class {
 	#name : #MorphicBackendForTest,
 	#superclass : #AbstractBackendForTest,
 	#instVars : [
-		'uiWaitingSemaphore'
+		'uiWaitingSemaphore',
+		'app'
 	],
 	#category : #'Spec-BackendTests'
 }
@@ -110,7 +111,9 @@ MorphicBackendForTest >> isRunningInUIProcess [
 { #category : #opening }
 MorphicBackendForTest >> openInstanceOf: aTest [ 
 
-	aTest window ifNil: [ aTest window: aTest presenter openWithSpec ].
+	aTest window ifNil: [ 
+		aTest presenter application: app.
+		aTest window: aTest presenter openWithSpec ].
 
 	self waitUntilUIRedrawed.
 
@@ -118,6 +121,9 @@ MorphicBackendForTest >> openInstanceOf: aTest [
 
 { #category : #running }
 MorphicBackendForTest >> runTest: aBlockClosure [ 
+	
+	app := Application new.
+	app useBackend: #Morphic.
 	
 	aBlockClosure value
 ]

@@ -102,7 +102,8 @@ MorphicTreeTableAdapter >> selectInto: aFTTableMorph path: aPath [
 	item := aFTTableMorph dataSource itemAtPath: aPath expanding: true.
 	aFTTableMorph refresh.
 	index := aFTTableMorph dataSource indexOfItem: item.
-	self halt
+
+	aFTTableMorph selectIndex: index.
 ]
 
 { #category : #accessing }
