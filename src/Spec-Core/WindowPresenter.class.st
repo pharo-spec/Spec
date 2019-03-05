@@ -180,8 +180,8 @@ WindowPresenter >> hasToolBar [
 { #category : #api }
 WindowPresenter >> initialExtent [
 
-	initialExtent value ifNotNil: [ :extent | ^ extent ].
-	^ self defaultInitialExtent
+	^ initialExtent value 
+		ifNil: [ self defaultInitialExtent ]
 ]
 
 { #category : #api }
@@ -320,6 +320,8 @@ WindowPresenter >> presenter [
 { #category : #accessing }
 WindowPresenter >> presenter: aPresenter [
 
+	self flag: #TODO. "Passing the application... maybe not the best?"
+	self application: aPresenter application. 
 	aPresenter owner: self.
 	presenter value: aPresenter
 ]

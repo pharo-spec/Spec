@@ -1,17 +1,17 @@
 Class {
-	#name : #ApplicationBackendMorphic,
+	#name : #MorphicBackend,
 	#superclass : #ApplicationBackend,
 	#category : #'Spec-MorphicAdapters-Backend'
 }
 
 { #category : #accessing }
-ApplicationBackendMorphic class >> backendName [
+MorphicBackend class >> backendName [
 
 	^ #Morphic
 ]
 
 { #category : #private }
-ApplicationBackendMorphic >> adapterBindingsClass [
+MorphicBackend >> adapterBindingsClass [
 
 	^ MorphicAdapterBindings
 ]

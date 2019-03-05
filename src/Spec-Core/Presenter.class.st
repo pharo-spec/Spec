@@ -122,14 +122,8 @@ Presenter >> application [
 	 The tree for a composition starts always with an application, which is responsible of 
 	 providing all resources the presenter needs. "
 
-	^ self owner 
-		ifNotNil: [ :presenter | presenter application ]
-		ifNil: [ 
-			self flag: #TODO. "at the root, a presenter should know its application. 
-			(but all roots should be a WindowPresenter, not anything else, since 
-			tree is/should be created when showing).
-			SO REMOVE THIS, ESTEBAN OF THE FUTURE!"
-			application ifNil: [ application := Application defaultAppliction ] ]
+	^ application ifNil: [ 
+		application := Application activeApplicationOrDefault ]
 ]
 
 { #category : #accessing }

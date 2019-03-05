@@ -15,6 +15,24 @@ ApplicationTest >> setUp [
 ]
 
 { #category : #tests }
+ApplicationTest >> testActiveApplication [
+	| presenter otherPresenter |
+
+	application useBackend: #Morphic. "I need the application to be a morphic application 
+	here, to test properly"
+	presenter := application newPresenter: ButtonPresenter.
+	[ presenter openWithSpec. 
+	  5 milliSeconds wait.
+	  self assert: Application activeApplication equals: application.
+	  "test a new presenter opened in the context of ActiveApplication opens in same 
+	   application."
+	  otherPresenter := ButtonPresenter new.
+	  self assert: otherPresenter application equals: application ]
+	ensure: [ 
+		presenter delete ].
+]
+
+{ #category : #tests }
 ApplicationTest >> testAdapterBindings [
 
 	self assert: application adapterBindings equals: SpecStubAdapterBindings.
@@ -27,6 +45,14 @@ ApplicationTest >> testAdapterBindings [
 ApplicationTest >> testIsPresenter [
 
 	self deny: application isPresenter 
+]
+
+{ #category : #tests }
+ApplicationTest >> testNewPresenter [
+	| presenter |
+
+	presenter := application newPresenter: ButtonPresenter.
+	self assert: presenter application equals: application
 ]
 
 { #category : #tests }
