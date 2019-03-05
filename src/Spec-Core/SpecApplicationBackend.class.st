@@ -7,7 +7,7 @@ Backends define different things from an application:
 - ...
 "
 Class {
-	#name : #ApplicationBackend,
+	#name : #SpecApplicationBackend,
 	#superclass : #Object,
 	#instVars : [
 		'adapterBindings'
@@ -16,13 +16,13 @@ Class {
 }
 
 { #category : #accessing }
-ApplicationBackend class >> backendName [
+SpecApplicationBackend class >> backendName [
 
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-ApplicationBackend class >> findBackendNamed: aName [
+SpecApplicationBackend class >> findBackendNamed: aName [
 
 	^ (self allSubclasses 
 		detect: [ :each | each backendName = aName ])
@@ -30,26 +30,26 @@ ApplicationBackend class >> findBackendNamed: aName [
 ]
 
 { #category : #accessing }
-ApplicationBackend >> adapterBindings [
+SpecApplicationBackend >> adapterBindings [
 
 	^ adapterBindings
 ]
 
 { #category : #private }
-ApplicationBackend >> adapterBindingsClass [
+SpecApplicationBackend >> adapterBindingsClass [
 
 	self subclassResponsibility
 ]
 
 { #category : #initialization }
-ApplicationBackend >> initialize [
+SpecApplicationBackend >> initialize [
 
 	super initialize.
 	adapterBindings := self adapterBindingsClass
 ]
 
 { #category : #accessing }
-ApplicationBackend >> name [
+SpecApplicationBackend >> name [
 
 	^ self class backendName
 ]

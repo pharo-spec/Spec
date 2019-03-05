@@ -4,7 +4,7 @@ In Spec, each application needs to have a definition that concentrates its flow 
 
 "
 Class {
-	#name : #Application,
+	#name : #SpecApplication,
 	#superclass : #Object,
 	#instVars : [
 		'backend'
@@ -16,7 +16,7 @@ Class {
 }
 
 { #category : #accessing }
-Application class >> activeApplication [
+SpecApplication class >> activeApplication [
 	"An application is activated always that a window is activated. 
 	 This means: when a window receives the focus, it will set its own application as 
 	 active application (to ensure other applications created by it will be executed 
@@ -29,44 +29,44 @@ Application class >> activeApplication [
 ]
 
 { #category : #accessing }
-Application class >> activeApplication: anApplication [
+SpecApplication class >> activeApplication: anApplication [
 	
 	ActiveApplication contents: anApplication
 ]
 
 { #category : #accessing }
-Application class >> activeApplicationOrDefault [
+SpecApplication class >> activeApplicationOrDefault [
 
 	^ self activeApplication 
 		ifNil: [ self defaultApplication ]
 ]
 
 { #category : #accessing }
-Application class >> defaultApplication [
+SpecApplication class >> defaultApplication [
 
-	^ DefaultApplication ifNil: [ DefaultApplication := NullApplication new ]
+	^ DefaultApplication ifNil: [ DefaultApplication := SpecNullApplication new ]
 ]
 
 { #category : #accessing }
-Application class >> defaultBackendName [
+SpecApplication class >> defaultBackendName [
 
 	^ #Morphic
 ]
 
 { #category : #accessing }
-Application class >> initialize [
+SpecApplication class >> initialize [
 
 	ActiveApplication := SpecWeakValueHolder new
 ]
 
 { #category : #accessing }
-Application >> adapterBindings [
+SpecApplication >> adapterBindings [
 	
 	^ self backend adapterBindings
 ]
 
 { #category : #accessing }
-Application >> backend [
+SpecApplication >> backend [
 
 	^ backend ifNil: [ 
 		self useBackend: self class defaultBackendName.
@@ -74,20 +74,20 @@ Application >> backend [
 ]
 
 { #category : #testing }
-Application >> isPresenter [ 
+SpecApplication >> isPresenter [ 
 	"Presenters use this to track application/rootPresenter."
 
 	^ false
 ]
 
 { #category : #factory }
-Application >> newPresenter: aPresenterClass [
+SpecApplication >> newPresenter: aPresenterClass [
 
 	^ aPresenterClass newApplication: self
 ]
 
 { #category : #showing }
-Application >> open: aPresenter withSpecLayout: aSpecLayout [
+SpecApplication >> open: aPresenter withSpecLayout: aSpecLayout [
 
 	^ self 
 		open: aPresenter 
@@ -96,7 +96,7 @@ Application >> open: aPresenter withSpecLayout: aSpecLayout [
 ]
 
 { #category : #'private showing' }
-Application >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClass [
+SpecApplication >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClass [
 
 	^ SpecBindings 
 		value: self backend adapterBindings 	
@@ -112,7 +112,7 @@ Application >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClass 
 ]
 
 { #category : #showing }
-Application >> openDialog: aPresenter withSpecLayout: aSpecLayout [
+SpecApplication >> openDialog: aPresenter withSpecLayout: aSpecLayout [
 
 	^ self 
 		open: aPresenter 
@@ -121,7 +121,7 @@ Application >> openDialog: aPresenter withSpecLayout: aSpecLayout [
 ]
 
 { #category : #showing }
-Application >> openModal: aPresenter withSpecLayout: aSpecLayout [
+SpecApplication >> openModal: aPresenter withSpecLayout: aSpecLayout [
 
 	^ self 
 		open: aPresenter 
@@ -130,12 +130,12 @@ Application >> openModal: aPresenter withSpecLayout: aSpecLayout [
 ]
 
 { #category : #starting }
-Application >> start [ 
+SpecApplication >> start [ 
 	"Override this to start your app"
 ]
 
 { #category : #accessing }
-Application >> useBackend: aName [
+SpecApplication >> useBackend: aName [
 
-	backend := ApplicationBackend findBackendNamed: aName
+	backend := SpecApplicationBackend findBackendNamed: aName
 ]

@@ -145,7 +145,7 @@ ComposablePresenter class >> on: aDomainObject [
 		in: #Pharo8."
 		
 	^ self 
-		newApplication: NullApplication new 
+		newApplication: SpecNullApplication new 
 		model: aDomainObject 
 ]
 

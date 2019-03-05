@@ -43,6 +43,7 @@ AbstractMorphicAdapter >> acceptDroppingMorph: draggedMorph event: event inMorph
 AbstractMorphicAdapter >> adapt: aPresenter [
 
 	super adapt: aPresenter.
+	self addSettingsTo: self widget.
 	self flag: #TODO. "this should be here, but is interfering with old layouts reason why 
 	 I'm moving it to MorphicLayoutAdapter >> #applyStyle:to:"
 	"self applyStyle: self widget."
@@ -52,6 +53,11 @@ AbstractMorphicAdapter >> adapt: aPresenter [
 AbstractMorphicAdapter >> add: aWidget [
 	
 	self widgetDo: [ :w | w ensureLayoutAndAddMorph: aWidget asWidget ]
+]
+
+{ #category : #initialization }
+AbstractMorphicAdapter >> addSettingsTo: aMorph [
+	
 ]
 
 { #category : #initialization }
