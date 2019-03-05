@@ -105,8 +105,8 @@ VersionBrowser >> browserForList: aList [
 	browser
 		topologicSort: false;
 		refreshingBlock: [:m | false];
-		sortingBlock: [:a :b | (a annotationNamed:#versionIndex ifAbsent:[0]) < (b annotationNamed:#versionIndex ifAbsent:[0]) ];
-		displayBlock: [:changeRecord | self displayStringsFor: changeRecord].
+		sortingBlock: [:a :b | (a annotationNamed:#versionIndex ifAbsent:[0]) < (b annotationNamed:#versionIndex ifAbsent:[0]) ]";
+		displayBlock: [:changeRecord | self displayStringsFor: changeRecord]".
 										
 	browser toolbarModel
 		emptyDropList;
