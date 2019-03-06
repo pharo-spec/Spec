@@ -1011,7 +1011,6 @@ ComposablePresenter >> show [
 { #category : #TOREMOVE }
 ComposablePresenter >> specSpacer [
 
-	self halt.
 	^ SpacerPresenter new
 ]
 
