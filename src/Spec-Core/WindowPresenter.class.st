@@ -62,7 +62,7 @@ WindowPresenter >> addMenuItemsToWindowMenu: aMenu [
 	self presenter addMenuItemsToWindowMenu: aMenu
 ]
 
-{ #category : #private }
+{ #category : #'private building' }
 WindowPresenter >> addModelIn: widget withSpecLayout: aSpec [
 	
 	self presenter ifNil: [ ^ self ].
@@ -89,19 +89,27 @@ WindowPresenter >> askOkToClose: aBoolean [
 	askOkToClose := aBoolean
 ]
 
-{ #category : #private }
-WindowPresenter >> buildWithSpecLayout: aSpec [
+{ #category : #'private building' }
+WindowPresenter >> basicBuildWithSpecLayout: aSpecLayout [
 	"Build the widget using the spec name provided as argument"
 	| widget |
 
 	(self spec isNil or: [ self needRebuild ])
 		ifTrue: [ 
 			widget := (self adapterFrom: self retrieveDefaultSpec) widget.
-			self addModelIn: widget withSpecLayout: aSpec ]
+			self addModelIn: widget withSpecLayout: aSpecLayout ]
 		ifFalse: [
 			widget := self widget ].
 	
 	^ widget
+]
+
+{ #category : #'private building' }
+WindowPresenter >> buildWithSpecLayout: aSpecLayout [
+	
+	^ SpecBindings 
+		value: self application adapterBindings
+		during: [ self basicBuildWithSpecLayout: aSpecLayout ]
 ]
 
 { #category : #api }
@@ -271,6 +279,7 @@ WindowPresenter >> menu [
 { #category : #api }
 WindowPresenter >> menu: aMenuPresenter [
 
+	aMenuPresenter owner: self.
 	^ menuHolder value: aMenuPresenter
 ]
 
@@ -294,7 +303,6 @@ WindowPresenter >> okToChange [
 	"Solicit cancel from view"
 	self changed: #wantToChange.  
 	^ self canDiscardEdits
-
 ]
 
 { #category : #api }
@@ -326,7 +334,7 @@ WindowPresenter >> presenter: aPresenter [
 	presenter value: aPresenter
 ]
 
-{ #category : #private }
+{ #category : #'private building' }
 WindowPresenter >> rebuildWithSpecLayout: aSpec [
 
 	self changed: #rebuildWithSpecLayout: with: { aSpec }
@@ -341,6 +349,7 @@ WindowPresenter >> statusBar [
 { #category : #api }
 WindowPresenter >> statusBar: aStatusbarPresenter [
 
+	aStatusbarPresenter owner: self.
 	^ statusbarHolder value: aStatusbarPresenter
 ]
 
@@ -372,6 +381,7 @@ WindowPresenter >> toolBar [
 { #category : #api }
 WindowPresenter >> toolBar: aToolbarPresenter [
 
+	aToolbarPresenter owner: self.
 	^ toolBarHolder value: aToolbarPresenter
 ]
 

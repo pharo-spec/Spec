@@ -22,7 +22,7 @@ SpecInterpreter class >> bindings [
 	
 	"
 	
-	^ SpecBindings value new
+	^ SpecBindings value
 ]
 
 { #category : #protocol }

@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 ComposablePresenterWithAdditionalSubpresentersTest >> testOpening [ 
 
-	SpecBindings value: SpecStubAdapterBindings during: [ 
+	SpecBindings value: SpecStubAdapterBindings new during: [ 
 		| aPresenter |
 		aPresenter := TestingComposablePresenterWithAdditionalPresenters new.
 		
