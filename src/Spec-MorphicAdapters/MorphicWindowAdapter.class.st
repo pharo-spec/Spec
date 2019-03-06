@@ -69,11 +69,6 @@ MorphicWindowAdapter >> addMenuTo: aMorph [
 { #category : #protocol }
 MorphicWindowAdapter >> addModelIn: widgetToBuild withSpecLayout: aSpec [
 
-	widgetToBuild announcer 
-		when: WindowActivated
-		send: #activateApplication 
-		to: self.
-
 	self model initialExtent ifNotNil: [ :extent |
 		 widgetToBuild extent: extent ].
 	self

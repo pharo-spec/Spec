@@ -1,32 +1,8 @@
 Class {
 	#name : #TreeSingleSelectionMode,
-	#superclass : #Object,
-	#traits : 'TSpecObservable',
-	#classTraits : 'TSpecObservable classTrait',
-	#instVars : [
-		'#selection => SpecObservableSlot'
-	],
+	#superclass : #AbstractTreeSingleSelectionMode,
 	#category : #'Spec-Core-Widgets-Tree'
 }
-
-{ #category : #selection }
-TreeSingleSelectionMode >> clearSelection [
-
-	selection := #()
-]
-
-{ #category : #initialization }
-TreeSingleSelectionMode >> initialize [
-	self class initializeSlots: self.
-	super initialize.
-
-]
-
-{ #category : #testing }
-TreeSingleSelectionMode >> isEmpty [
-	
-	^ selection isNil 
-]
 
 { #category : #accessing }
 TreeSingleSelectionMode >> selectedPath [
@@ -41,8 +17,10 @@ TreeSingleSelectionMode >> selectedPath: aPath [
 
 ]
 
-{ #category : #'API - events' }
-TreeSingleSelectionMode >> whenChangedDo: aBlockClosure [ 
+{ #category : #accessing }
+TreeSingleSelectionMode >> selectedPaths [
 	
-	self property: #selection whenChangedDo: aBlockClosure 
+	selection ifEmpty: [ ^ #() ].
+	
+	^ { selection }
 ]

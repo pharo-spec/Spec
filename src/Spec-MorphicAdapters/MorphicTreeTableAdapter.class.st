@@ -30,10 +30,12 @@ MorphicTreeTableAdapter >> addModelTo: tableMorph [
 	tableMorph dataSource: self newDataSource.
 	
 	self model selection isEmpty 
-		ifFalse: [ self selectInto: tableMorph path: self model selection selectedPath ].
+		ifFalse: [ self updateSelectionOf: tableMorph ].
 	
-	self model whenSelectionChangedDo: [ self selectInto: tableMorph path: self model selection selectedPath ].
-	self model whenRootsChangedDo: [ tableMorph dataSource: self newDataSource ].
+	self model whenSelectionChangedDo: [ self updateSelectionOf: tableMorph ].
+	self model whenRootsChangedDo: [ 
+		tableMorph selectIndexes: #().
+		tableMorph dataSource: self newDataSource ].
 	
 	self model whenShowColumnHeadersChangedDo: [ 	
 		self isShowingColumnHeaders 
@@ -137,4 +139,10 @@ MorphicTreeTableAdapter >> selectedItem [
 	selectedIndex = 0 ifTrue: [ ^ nil ].
 	
 	^ (self widget dataSource elementAt: selectedIndex) data
+]
+
+{ #category : #selection }
+MorphicTreeTableAdapter >> updateSelectionOf: tableMorph [
+	self model selection selectedPaths
+		do: [ :selectedPath | self selectInto: tableMorph path: selectedPath ]
 ]

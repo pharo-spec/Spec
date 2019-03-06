@@ -33,6 +33,18 @@ TreeTablePresenter >> addColumn: aColumn [
 	columns value: (columns value copyWith: aColumn)
 ]
 
+{ #category : #'selection mode' }
+TreeTablePresenter >> beMultipleSelection [
+	
+	| newSelectionMode |
+	
+	newSelectionMode := TreeMultipleSelectionMode new
+								copyFrom: selection;
+								yourself.
+	
+	selection := newSelectionMode.
+]
+
 { #category : #api }
 TreeTablePresenter >> beNotResizable [
 	self isResizable: false
