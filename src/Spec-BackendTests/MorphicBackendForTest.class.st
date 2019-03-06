@@ -134,10 +134,7 @@ MorphicBackendForTest >> runTest: aBlock [
 
 	app := SpecApplication new.
 	app useBackend: #Morphic.
-	oldApplication := SpecApplication activeApplication.
-	SpecApplication activeApplication: app.
-	aBlock ensure: [ 
-		SpecApplication activeApplication: oldApplication ].
+	aBlock value
 ]
 
 { #category : #running }
