@@ -133,7 +133,8 @@ WindowPresenter >> centeredRelativeTo: aModel [
 { #category : #api }
 WindowPresenter >> close [
 
-	self changed: #close with: #()
+	self changed: #close with: #().
+	application windowClosed: self
 ]
 
 { #category : #private }

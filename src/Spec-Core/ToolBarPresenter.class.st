@@ -26,6 +26,17 @@ ToolBarPresenter class >> adapterName [
 	^ #ToolBarAdapter
 ]
 
+{ #category : #'creation-helpers' }
+ToolBarPresenter >> addButtonLabel: aLabel iconNamed: anIconName help: aHelpString action: aBlock [
+
+	self addItem: (ToolBarButton new
+							label: aLabel;
+							icon: (self application iconNamed: #anIconName);
+							help: aHelpString;
+							action: aBlock;
+							yourself)
+]
+
 { #category : #adding }
 ToolBarPresenter >> addItem: aToolbarItem [
 	

@@ -7,7 +7,8 @@ Class {
 	#name : #SpecApplication,
 	#superclass : #Object,
 	#instVars : [
-		'backend'
+		'backend',
+		'windows'
 	],
 	#classVars : [
 		'DefaultApplication'
@@ -41,6 +42,12 @@ SpecApplication >> backend [
 		backend ]
 ]
 
+{ #category : #closing }
+SpecApplication >> close [
+	
+	self windows copy do: #close
+]
+
 { #category : #testing }
 SpecApplication >> isPresenter [ 
 	"Presenters use this to track application/rootPresenter."
@@ -62,6 +69,15 @@ SpecApplication >> newPresenter: aPresenterClass [
 ]
 
 { #category : #showing }
+SpecApplication >> open: aPresenter [
+
+	^ self 
+		open: aPresenter 
+		withSpecLayout: aPresenter defaultSpec
+		using: WindowPresenter
+]
+
+{ #category : #showing }
 SpecApplication >> open: aPresenter withSpecLayout: aSpecLayout [
 
 	^ self 
@@ -74,8 +90,12 @@ SpecApplication >> open: aPresenter withSpecLayout: aSpecLayout [
 SpecApplication >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClass [
 	| window |
 
+	self validateApplicationOfPresenter: aPresenter.
+
 	window := aWindowClass presenter: aPresenter.
 	window openWithSpecLayout: aSpecLayout.
+	self windows add: window.
+	
 	aPresenter announcer announce: (WindowBuilt new 
 		model: window;
 		window: window;
@@ -117,4 +137,23 @@ SpecApplication >> start [
 SpecApplication >> useBackend: aName [
 
 	backend := SpecApplicationBackend findBackendNamed: aName
+]
+
+{ #category : #'private showing' }
+SpecApplication >> validateApplicationOfPresenter: aPresenter [
+
+	aPresenter application == self ifFalse: [ 
+		SpecInvalidApplicationError signal: 'The requested presenter has a different application' ]
+]
+
+{ #category : #windows }
+SpecApplication >> windowClosed: aWindowPresenter [
+	
+	self windows remove: aWindowPresenter
+]
+
+{ #category : #accessing }
+SpecApplication >> windows [
+	
+	^ windows ifNil: [ windows := Set new ]
 ]

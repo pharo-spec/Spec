@@ -14,6 +14,13 @@ SpecApplicationTest >> setUp [
 	application := MockApplication new
 ]
 
+{ #category : #running }
+SpecApplicationTest >> tearDown [
+	
+	application close.
+	super tearDown
+]
+
 { #category : #tests }
 SpecApplicationTest >> testAdapterBindings [
 
@@ -21,6 +28,14 @@ SpecApplicationTest >> testAdapterBindings [
 	application useBackend: #Morphic.
 	self assert: application adapterBindings class equals: MorphicAdapterBindings
 	
+]
+
+{ #category : #tests }
+SpecApplicationTest >> testCloseWindowRemovesItFromWindowCollection [
+	| window |
+	window := (application newPresenter: ButtonPresenter) openWithSpec.
+	window close.
+	self deny: (application windows includes: window)
 ]
 
 { #category : #tests }
@@ -38,18 +53,40 @@ SpecApplicationTest >> testNewPresenter [
 ]
 
 { #category : #tests }
-SpecApplicationTest >> testOpenWithSpecLayout [
+SpecApplicationTest >> testOpenWindowAddsItToWindowCollection [
 	| window |
+	window := (application newPresenter: ButtonPresenter) openWithSpec.
+	
+	self assert: (application windows includes: window)
+]
 
-	window := application 
-		open: ButtonPresenter new 
-		withSpecLayout: ButtonPresenter defaultSpec. 
+{ #category : #tests }
+SpecApplicationTest >> testOpenWindowWithDifferentApplicationDoesNotAddItToWindowCollection [
+	| secondApplication presenterInSecondApplication windowsBefore |
 
-	self assert: window notNil.
-	self assert: window isWindowPresenter.
-	self flag: #TODO. "No idea what can I ask here yet, but probable something like: 
-	application windows last = window ?
-	"
+	secondApplication := SpecApplication new.
+	presenterInSecondApplication := secondApplication newPresenter: ButtonPresenter.
+
+	windowsBefore := application windows copy.
+
+	self should: [
+		application 
+			open: presenterInSecondApplication
+			withSpecLayout: ButtonPresenter defaultSpec ] raise: SpecInvalidApplicationError.
+		
+	self assert: application windows equals: windowsBefore
+]
+
+{ #category : #tests }
+SpecApplicationTest >> testOpenWindowWithDifferentApplicationShouldFail [
+	| secondApplication presenterInSecondApplication |
+
+	secondApplication := SpecApplication new.
+	presenterInSecondApplication := secondApplication newPresenter: ButtonPresenter.
+
+	self
+		should: [ application open: presenterInSecondApplication ]
+		raise: SpecInvalidApplicationError
 ]
 
 { #category : #tests }
