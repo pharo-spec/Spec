@@ -31,6 +31,14 @@ SpecApplicationTest >> testAdapterBindings [
 ]
 
 { #category : #tests }
+SpecApplicationTest >> testCloseDialogWindowRemovesItFromWindowCollection [
+	| window |
+	window := (application newPresenter: ButtonPresenter) openDialogWithSpec.
+	window close.
+	self deny: (application windows includes: window)
+]
+
+{ #category : #tests }
 SpecApplicationTest >> testCloseWindowRemovesItFromWindowCollection [
 	| window |
 	window := (application newPresenter: ButtonPresenter) openWithSpec.
@@ -50,6 +58,42 @@ SpecApplicationTest >> testNewPresenter [
 
 	presenter := application newPresenter: ButtonPresenter.
 	self assert: presenter application equals: application
+]
+
+{ #category : #tests }
+SpecApplicationTest >> testOpenDialogWindowAddsItToWindowCollection [
+	| window |
+	window := (application newPresenter: ButtonPresenter) openDialogWithSpec.
+	
+	self assert: (application windows includes: window)
+]
+
+{ #category : #tests }
+SpecApplicationTest >> testOpenDialogWindowWithDifferentApplicationDoesNotAddItToWindowCollection [
+	| secondApplication presenterInSecondApplication windowsBefore |
+
+	secondApplication := SpecApplication new.
+	presenterInSecondApplication := secondApplication newPresenter: ButtonPresenter.
+
+	windowsBefore := application windows copy.
+
+	self
+		should: [ application openDialog: presenterInSecondApplication ]
+		raise: SpecInvalidApplicationError.
+		
+	self assert: application windows equals: windowsBefore
+]
+
+{ #category : #tests }
+SpecApplicationTest >> testOpenDialogWindowWithDifferentApplicationShouldFail [
+	| secondApplication presenterInSecondApplication |
+
+	secondApplication := SpecApplication new.
+	presenterInSecondApplication := secondApplication newPresenter: ButtonPresenter.
+
+	self
+		should: [ application openDialog: presenterInSecondApplication ]
+		raise: SpecInvalidApplicationError
 ]
 
 { #category : #tests }

@@ -4,10 +4,19 @@ Class {
 	#traits : 'TSpecObservable',
 	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
-		'#selection => SpecObservableSlot'
+		'#selection => SpecObservableSlot',
+		'#presenter'
 	],
 	#category : #'Spec-Core-Widgets-Tree'
 }
+
+{ #category : #'accessing method dictionary' }
+AbstractTreeSingleSelectionMode class >> on: aPresenter [
+
+	^ self new
+		presenter: aPresenter;
+		yourself
+]
 
 { #category : #selection }
 AbstractTreeSingleSelectionMode >> clearSelection [

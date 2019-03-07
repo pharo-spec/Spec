@@ -168,9 +168,10 @@ WindowPresenter >> hasMenu [
 ]
 
 { #category : #testing }
-WindowPresenter >> hasPresenter: aButtonPresenter [ 
+WindowPresenter >> hasPresenter: aButtonPresenter [
 
-	^ self adapter hasWidget: aButtonPresenter adapter
+	^ aButtonPresenter isNotNil and: [aButtonPresenter adapter notNil
+		and: [ self adapter hasWidget: aButtonPresenter adapter ]]
 ]
 
 { #category : #testing }
@@ -237,6 +238,12 @@ WindowPresenter >> isCentered [
 { #category : #testing }
 WindowPresenter >> isClosed [
 	^ isClosedHolder value
+]
+
+{ #category : #testing }
+WindowPresenter >> isDialog [
+	
+	^ false
 ]
 
 { #category : #api }

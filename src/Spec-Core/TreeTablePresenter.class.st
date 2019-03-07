@@ -38,7 +38,7 @@ TreeTablePresenter >> beMultipleSelection [
 	
 	| newSelectionMode |
 	
-	newSelectionMode := TreeMultipleSelectionMode new
+	newSelectionMode := (TreeMultipleSelectionMode on: self)
 								copyFrom: selection;
 								yourself.
 	
@@ -58,7 +58,7 @@ TreeTablePresenter >> beResizable [
 { #category : #private }
 TreeTablePresenter >> children [
 
-	^ childrenBlock ifNil: [ [ :item | nil ] ]
+	^ childrenBlock
 ]
 
 { #category : #accessing }
@@ -117,7 +117,8 @@ TreeTablePresenter >> initialize [
 	showColumnHeadersHolder := true asValueHolder.
 	columns := #() asValueHolder.
 	isResizableHolder := false asValueHolder.
-	selection := TreeSingleSelectionMode new.
+	selection := TreeSingleSelectionMode on: self.
+	childrenBlock :=  [ :item | #() ].
 	
 	rootsHolder := #() asValueHolder.
 

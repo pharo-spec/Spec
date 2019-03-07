@@ -15,3 +15,9 @@ TreeTableAdapterSingleColumnMultiSelectionTest >> initializeTestedInstance [
 		children: [ :aNumber | { aNumber * 2. aNumber * 3. aNumber * 10 } ].
 
 ]
+
+{ #category : #running }
+TreeTableAdapterSingleColumnMultiSelectionTest >> testSelectingAPathUpdatesSelectionInPresenter [
+
+	self skip
+]

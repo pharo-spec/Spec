@@ -4,6 +4,12 @@ Class {
 	#category : #'Spec-Core-Widgets-Tree'
 }
 
+{ #category : #accessing }
+TreeMultipleSelectionMode >> presenter: aTreeTablePresenter [ 
+
+	presenter := aTreeTablePresenter 
+]
+
 { #category : #selection }
 TreeMultipleSelectionMode >> replaceOtherSelectionMode: anotherSelectionMode [
 
@@ -15,6 +21,11 @@ TreeMultipleSelectionMode >> replaceOtherSelectionMode: anotherSelectionMode [
 	originalValueHolder announcer subscriptions subscriptions do: [ 
 		self halt.	
 	]
+]
+
+{ #category : #accessing }
+TreeMultipleSelectionMode >> selectedItem [
+	self shouldBeImplemented.
 ]
 
 { #category : #selection }

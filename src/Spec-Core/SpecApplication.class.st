@@ -105,6 +105,15 @@ SpecApplication >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowCl
 ]
 
 { #category : #showing }
+SpecApplication >> openDialog: aPresenter [ 
+	
+	^ self 
+		open: aPresenter 
+		withSpecLayout: aPresenter defaultSpec
+		using: DialogWindowPresenter
+]
+
+{ #category : #showing }
 SpecApplication >> openDialog: aPresenter withSpecLayout: aSpecLayout [
 
 	^ self 

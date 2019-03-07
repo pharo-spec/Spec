@@ -29,9 +29,10 @@ ToolBarPresenter class >> adapterName [
 { #category : #'creation-helpers' }
 ToolBarPresenter >> addButtonLabel: aLabel iconNamed: anIconName help: aHelpString action: aBlock [
 
+
 	self addItem: (ToolBarButton new
 							label: aLabel;
-							icon: (self application iconNamed: #anIconName);
+							icon: (self application iconNamed: anIconName);
 							help: aHelpString;
 							action: aBlock;
 							yourself)
@@ -61,6 +62,12 @@ ToolBarPresenter >> addItem: aToolbarItem position: aPosition [
 	 group) should be handled differently"
 	wasEmpty ifFalse: [ 
 		itemsHolder valueChanged: aPosition ]
+]
+
+{ #category : #accessing }
+ToolBarPresenter >> allItems [
+	
+	^ self items values flattened
 ]
 
 { #category : #accessing }
@@ -118,6 +125,12 @@ ToolBarPresenter >> isDisplayModeText [
 ToolBarPresenter >> isEmpty [
 	
 	^ self items isEmpty
+]
+
+{ #category : #accessing }
+ToolBarPresenter >> itemNamed: aString [ 
+	
+	^ self allItems detect: [ :e | e label = aString ]
 ]
 
 { #category : #api }

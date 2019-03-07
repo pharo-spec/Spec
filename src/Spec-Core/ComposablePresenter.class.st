@@ -849,6 +849,12 @@ ComposablePresenter >> newTextInput [
 ]
 
 { #category : #widgets }
+ComposablePresenter >> newToolbarPresenter [
+
+	^ self instantiate: ToolBarPresenter
+]
+
+{ #category : #widgets }
 ComposablePresenter >> newTreeTable [
 
 	^ self instantiate: TreeTablePresenter

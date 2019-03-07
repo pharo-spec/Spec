@@ -64,6 +64,14 @@ AbstractTreeTableAdapterTest >> testSelectItemSelectsTheGivenElementAndExpandsTh
 ]
 
 { #category : #running }
+AbstractTreeTableAdapterTest >> testSelectingAPathUpdatesSelectionInPresenter [
+
+	self presenter selection selectedPath: #(2 3).
+
+	self assert: self presenter selectedItem equals: 20.
+]
+
+{ #category : #running }
 AbstractTreeTableAdapterTest >> testSelectingOutOfRangeResetsSelection [
 
 	self presenter selection selectedPath: #(2 3).
