@@ -35,3 +35,9 @@ TSpecDynamicPresenter >> presenters [
 
 	^ self basicPresenters values
 ]
+
+{ #category : #enumerating }
+TSpecDynamicPresenter >> presentersDo: aBlock [
+
+	self basicPresenters valuesDo: aBlock
+]
