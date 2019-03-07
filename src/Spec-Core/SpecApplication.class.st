@@ -42,7 +42,7 @@ SpecApplication >> backend [
 		backend ]
 ]
 
-{ #category : #closing }
+{ #category : #showing }
 SpecApplication >> close [
 	
 	self windows copy do: #close
@@ -74,7 +74,7 @@ SpecApplication >> open: aPresenter [
 	^ self 
 		open: aPresenter 
 		withSpecLayout: aPresenter defaultSpec
-		using: WindowPresenter
+		using: aPresenter defaultWindowPresenterClass
 ]
 
 { #category : #showing }
@@ -83,7 +83,7 @@ SpecApplication >> open: aPresenter withSpecLayout: aSpecLayout [
 	^ self 
 		open: aPresenter 
 		withSpecLayout: aSpecLayout 
-		using: WindowPresenter
+		using: aPresenter defaultWindowPresenterClass
 ]
 
 { #category : #'private showing' }
