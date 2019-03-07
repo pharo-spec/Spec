@@ -135,11 +135,7 @@ AbstractListPresenter >> initialize [
 	self activateOnDoubleClick.
 
 	self initializeValueHolders.
-	self registerEvents.
-
-	self
-		bindKeyCombination: Character space
-		toAction: [ self clickOnSelectedItem ]
+	self registerEvents
 ]
 
 { #category : #initialization }
@@ -151,10 +147,11 @@ AbstractListPresenter >> initializePorts [
 
 { #category : #initialization }
 AbstractListPresenter >> initializeValueHolders [
+
 	sortingBlockHolder := self defaultSortingBlock asValueHolder.
 	filteringBlockHolder := self defaultFilteringBlock asValueHolder.
 	itemFilterBlockHolder := nil asValueHolder.
-	doubleClickActionHolder := [  ] asValueHolder.
+	doubleClickActionHolder := [ ] asValueHolder.
 	menuHolder := [ :menu :shifted | nil ] asValueHolder.
 	allowToSelect := true asValueHolder.
 	autoDeselect := true asValueHolder

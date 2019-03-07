@@ -15,31 +15,33 @@ Class {
 	#category : #'Spec-Core-Base'
 }
 
-{ #category : #defaults }
+{ #category : #TOREMOVE }
 Presenter class >> buttonHeight [
 
 	^ self defaultFont height + 12
 ]
 
-{ #category : #defaults }
+{ #category : #TOREMOVE }
 Presenter class >> buttonWidth [
 
 	^ (self defaultFont widthOfString: 'eilwp') + 44
 ]
 
-{ #category : #defaults }
+{ #category : #TOREMOVE }
 Presenter class >> defaultFont [ 
 
-	^ self platform defaultFont
+	self flag: #TODO. "This is so wrong. All this needs to be in the theme and in the 
+	application"
+	^ StandardFonts defaultFont
 ]
 
-{ #category : #defaults }
+{ #category : #TOREMOVE }
 Presenter class >> inputTextHeight [
 
 	^ self defaultFont height + 12
 ]
 
-{ #category : #defaults }
+{ #category : #TOREMOVE }
 Presenter class >> labelHeight [
 
 	^ self defaultFont height
@@ -54,21 +56,14 @@ Presenter class >> owner: anOwningPresenter [
 		yourself
 ]
 
-{ #category : #platform }
-Presenter class >> platform [
-
-	self flag: #TODO. "Remove me as soon as possible!"
-	^ SpecInterpreter bindings
-]
-
-{ #category : #defaults }
+{ #category : #accessing }
 Presenter class >> toolName [
 	"The tool name can be used in some places such as the About window's title."
 	
 	^ self name
 ]
 
-{ #category : #defaults }
+{ #category : #TOREMOVE }
 Presenter class >> toolbarHeight [
 
 	^ self defaultFont height + 12

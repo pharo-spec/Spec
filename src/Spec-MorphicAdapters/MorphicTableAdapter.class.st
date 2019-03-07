@@ -7,10 +7,13 @@ Class {
 { #category : #factory }
 MorphicTableAdapter >> addModelTo: tableMorph [
 
-	self model columns do: [ :each | tableMorph addColumn: (self newColumnFrom: each) ].
+	self model columns do: [ :each | 
+		tableMorph addColumn: (self newColumnFrom: each) ].
 	self ensureAtLeastOneColumnIn: tableMorph.
 
-	self isResizable ifTrue: [ tableMorph beResizable ] ifFalse: [ tableMorph beNotResizable ].
+	self isResizable 
+		ifTrue: [ tableMorph beResizable ] 
+		ifFalse: [ tableMorph beNotResizable ].
 	
 	tableMorph setMultipleSelection: self model isMultipleSelection.
 
@@ -18,27 +21,27 @@ MorphicTableAdapter >> addModelTo: tableMorph [
 	self refreshWidgetSelection.
 	
 	self presenter whenShowColumnHeadersChangedDo: [ :showColumns |
-		self refreshShowColumnHeaders.
-	].
+		self refreshShowColumnHeaders ].
 
 	self presenter whenModelChangedDo: [ widget refresh ].
 	self presenter whenColumnsChangedDo: [ self refreshColumnsInWidget ].
 	
+	tableMorph setBalloonText: self help.
+
 	tableMorph
-		setBalloonText: self help;
 		onAnnouncement: FTSelectionChanged
 			send: #selectionChanged:
 			to: self;
 		onAnnouncement: FTStrongSelectionChanged
 			send: #strongSelectionChanged:
-			to: self;
-		yourself.
+			to: self.
 
 	tableMorph dataSource: self newDataSource
 ]
 
 { #category : #factory }
 MorphicTableAdapter >> buildWidget [
+
 	widget := FTTableMorph new
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;

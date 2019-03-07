@@ -142,6 +142,15 @@ ListPresenter >> icons: aBlock [
 	iconHolder value: aBlock
 ]
 
+{ #category : #initialization }
+ListPresenter >> initialize [
+
+	super initialize.
+	self
+		bindKeyCombination: Character space
+		toAction: [ self clickOnSelectedItem ]	
+]
+
 { #category : #api }
 ListPresenter >> initializeValueHolders [
 	super initializeValueHolders.
