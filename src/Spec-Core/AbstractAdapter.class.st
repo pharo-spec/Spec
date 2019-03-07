@@ -13,7 +13,8 @@ Class {
 	#instVars : [
 		'model',
 		'widget',
-		'selector'
+		'selector',
+		'owner'
 	],
 	#category : #'Spec-Core-Base'
 }
@@ -45,6 +46,12 @@ AbstractAdapter class >> allAdapters [
 	"The abstract adapters should be able to return all the adapters for a framework"
 	
 	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+AbstractAdapter class >> owner: anOwner [
+
+	^ self new owner: anOwner; yourself
 ]
 
 { #category : #initialization }
@@ -114,6 +121,18 @@ AbstractAdapter >> layout: aLayout [
 { #category : #accessing }
 AbstractAdapter >> model [
 	^ model
+]
+
+{ #category : #accessing }
+AbstractAdapter >> owner [
+
+	"Every object instantiated by the SpecInerpreter should have an owner that will assign it to a particular presenter"
+	^ owner
+]
+
+{ #category : #accessing }
+AbstractAdapter >> owner: anObject [
+	owner := anObject
 ]
 
 { #category : #accessing }

@@ -70,11 +70,13 @@ SpecInterpreter >> computeSpecFrom: aSymbol [
 SpecInterpreter >> convertSymbolOfClassToInstance: aSymbol [
 	| translatedSymbol |
 	
+	aSymbol logCr.
 	translatedSymbol := self bindings translateSymbol: aSymbol.
+	translatedSymbol logCr.
 	
 	^ (Smalltalk 
 		at: translatedSymbol
-		ifAbsent: [ ^ translatedSymbol ]) new
+		ifAbsent: [ ^ translatedSymbol ]) owner: self presenter
 ]
 
 { #category : #'interpreting-private' }

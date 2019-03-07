@@ -135,7 +135,8 @@ RadioButtonGroupPresenter >> initialize [
 { #category : #initialization }
 RadioButtonGroupPresenter >> initializePresenter [
 	self
-		whenCanDeselectByClickChanged: [ :aBoolean | buttons do: [ :each | each canDeselectByClick: aBoolean ] ]
+		whenCanDeselectByClickChangedDo:
+			[ :aBoolean | buttons do: [ :each | each canDeselectByClick: aBoolean ] ]
 ]
 
 { #category : #api }

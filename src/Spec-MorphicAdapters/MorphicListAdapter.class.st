@@ -143,16 +143,13 @@ MorphicListAdapter >> refreshWidgetHeaderTitle [
 
 { #category : #'widget API' }
 MorphicListAdapter >> refreshWidgetList [
-	
 	(self widget showIndex < self widget dataSource numberOfRows
-		and: [ self widget isRowIndexVisible: self widget showIndex ])
-			ifFalse: [ self widget resetPosition ].
-	
+		and: [ self widget isIndexVisible: self widget showIndex ])
+		ifFalse: [ self widget resetPosition ].
 	self refreshWidgetSelection.
-
-	(self widget hasSelection and: [ (self widget isRowIndexVisible: self widget selectedRowIndex) ])
-		ifFalse: [ 
-			self widget resetPosition.
+	(self widget hasSelection
+		and: [ self widget isIndexVisible: self widget selectedIndex ])
+		ifFalse: [ self widget resetPosition.
 			self widget ensureVisibleFirstSelection ].
 	self widget refresh
 ]
