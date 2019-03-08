@@ -62,19 +62,19 @@ WindowPresenter >> addMenuItemsToWindowMenu: aMenu [
 	self presenter addMenuItemsToWindowMenu: aMenu
 ]
 
+{ #category : #menu }
+WindowPresenter >> addModelItemsToWindowMenu: aMenu [
+	self presenter addModelItemsToWindowMenu: aMenu
+]
+
 { #category : #'private building' }
-WindowPresenter >> addModelIn: widget withSpecLayout: aSpec [
+WindowPresenter >> addPresenterIn: widget withSpecLayout: aSpec [
 	
 	self presenter ifNil: [ ^ self ].
 	self initializeWindow.
 	self 
-		changed: #addModelIn:withSpecLayout:
+		changed: #addPresenterIn:withSpecLayout:
 		with: { widget. aSpec }
-]
-
-{ #category : #menu }
-WindowPresenter >> addModelItemsToWindowMenu: aMenu [
-	self presenter addModelItemsToWindowMenu: aMenu
 ]
 
 { #category : #api }
@@ -97,7 +97,7 @@ WindowPresenter >> basicBuildWithSpecLayout: aSpecLayout [
 	(self spec isNil or: [ self needRebuild ])
 		ifTrue: [ 
 			widget := (self adapterFrom: self retrieveDefaultSpec) widget.
-			self addModelIn: widget withSpecLayout: aSpecLayout ]
+			self addPresenterIn: widget withSpecLayout: aSpecLayout ]
 		ifFalse: [
 			widget := self widget ].
 	
