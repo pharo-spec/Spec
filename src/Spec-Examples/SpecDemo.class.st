@@ -92,7 +92,7 @@ SpecDemo >> defaultPage [
 ]
 
 { #category : #api }
-SpecDemo >> extent [
+SpecDemo >> initialExtent [
 
 	| fontWidth rowHeight |
 	fontWidth := (StandardFonts defaultFont widthOfString: 'M').
