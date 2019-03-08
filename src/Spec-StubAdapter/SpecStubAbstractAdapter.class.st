@@ -28,7 +28,7 @@ SpecStubAbstractAdapter >> add: aWidget [
 ]
 
 { #category : #factory }
-SpecStubAbstractAdapter >> addModelIn: widgetToBuild withSpecLayout: aSpec [
+SpecStubAbstractAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
 	
 	
 ]
