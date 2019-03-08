@@ -83,7 +83,7 @@ SpecSpacerDemo >> button4 [
 ]
 
 { #category : #specs }
-SpecSpacerDemo >> extent [
+SpecSpacerDemo >> initialExtent [
 	^ 700@500
 ]
 
