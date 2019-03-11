@@ -34,6 +34,11 @@ TextFieldExample class >> title [
 	^ 'Text Field Example'
 ]
 
+{ #category : #api }
+TextFieldExample >> initialExtent [
+	^ 900@550
+]
+
 { #category : #initialization }
 TextFieldExample >> initializePresenter [
 	
@@ -45,16 +50,14 @@ TextFieldExample >> initializePresenter [
 { #category : #initialization }
 TextFieldExample >> initializeWidgets [
 	methodBrowser := self instantiate: MessageBrowser.
-	
+
 	textField := self newTextInput.
 	textField
 		placeholder: 'Enter a class name';
 		autoAccept: true;
 		removeEntryCompletion.
-		
-	methodBrowser
-		sortingBlock: [ :a :b | a selector < b selector ];
-		displayBlock: [ :m | {m selector} ]
+
+	methodBrowser sortingBlock: [ :a :b | a selector < b selector ]
 ]
 
 { #category : #accessing }

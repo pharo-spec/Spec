@@ -89,17 +89,6 @@ AbstractListPresenter >> doActivateAtIndex: anIndex [
 		yourself)
 ]
 
-{ #category : #'api-events' }
-AbstractListPresenter >> doubleClickAction: aBlockClosure [ 
-	
-	self
-		deprecated: 'Use whenActivatedDo: instead'
-		transformWith: '`@receiver whenActivatedDo: `@argument'
-						-> '`@receiver doubleClickAction: `@argument'.
-	
-	self whenActivatedDo: aBlockClosure
-]
-
 { #category : #simulation }
 AbstractListPresenter >> doubleClickAtIndex: anIndex [
 	self selectIndex: anIndex.
@@ -146,11 +135,7 @@ AbstractListPresenter >> initialize [
 	self activateOnDoubleClick.
 
 	self initializeValueHolders.
-	self registerEvents.
-
-	self
-		bindKeyCombination: Character space
-		toAction: [ self clickOnSelectedItem ]
+	self registerEvents
 ]
 
 { #category : #initialization }
@@ -162,10 +147,11 @@ AbstractListPresenter >> initializePorts [
 
 { #category : #initialization }
 AbstractListPresenter >> initializeValueHolders [
+
 	sortingBlockHolder := self defaultSortingBlock asValueHolder.
 	filteringBlockHolder := self defaultFilteringBlock asValueHolder.
 	itemFilterBlockHolder := nil asValueHolder.
-	doubleClickActionHolder := [  ] asValueHolder.
+	doubleClickActionHolder := [ ] asValueHolder.
 	menuHolder := [ :menu :shifted | nil ] asValueHolder.
 	allowToSelect := true asValueHolder.
 	autoDeselect := true asValueHolder
@@ -233,16 +219,6 @@ AbstractListPresenter >> listElementAt: anIndex ifAbsent: aBlock [
 ]
 
 { #category : #api }
-AbstractListPresenter >> listItems [
-	
-	self
-		deprecated: 'Please use the #model instead'
-		transformWith: '`@receiver listItems' 
-						-> '`@receiver model shownItems'.	
-	^ self model shownItems
-]
-
-{ #category : #api }
 AbstractListPresenter >> listSize [
 	"<api: #inspect>"
 
@@ -271,11 +247,9 @@ AbstractListPresenter >> menu: aBlock [
 AbstractListPresenter >> menu: aMenu shifted: aBoolean [
 	"Build the menu when you right click on an item"
 
-	"This does not work on multiple selection"
-
-	self flag: #bug.
-	self selection selectedItems ifEmpty: [ ^ nil ].
-	^ menuHolder value cull: aMenu cull: aBoolean
+	^ menuHolder value 
+		cull: aMenu 
+		cull: aBoolean
 ]
 
 { #category : #accessing }
@@ -307,18 +281,6 @@ AbstractListPresenter >> registerEvents [
 		self changed: #autoDeselect: with: { aBoolean }].
 ]
 
-{ #category : #api }
-AbstractListPresenter >> resetSelection [
-	"Unselect every items"
-
-	self
-		deprecated: 'Please use #unselectAll instead'
-		transformWith: '`@receiver resetSelection' 
-						-> '`@receiver unselectAll'.
-
-	self unselectAll
-]
-
 { #category : #simulation }
 AbstractListPresenter >> rightClickAtIndex: anIndex [
 	
@@ -336,66 +298,6 @@ AbstractListPresenter >> selectIndex: anInteger [
 AbstractListPresenter >> selectItem: anItem [ 
 	
 	self selectionMode selectItem: anItem
-]
-
-{ #category : #api }
-AbstractListPresenter >> selectedIndex [
-	"Return the index of the selected item
-	In the case of a multiple selection list, it returns the last selected item"
-	
-	self
-		deprecated: 'Use the #selection object instead. This method assumes single selection'
-		transformWith: '`@receiver selectedIndex'
-						-> '`@receiver selection selectedIndex'.
-	
-	^  self selection selectedIndex
-]
-
-{ #category : #api }
-AbstractListPresenter >> selectedIndex: anIndex [
-
-	"Set the index of the item you want to be selected"
-	self
-		deprecated: 'Use #selectIndex: instead'
-		transformWith: '`@receiver selectedIndex: `@arg'
-						-> '`@receiver selectIndex: `@arg'.
-	
-	self selectIndex: anIndex
-]
-
-{ #category : #api }
-AbstractListPresenter >> selectedIndexes [
-	self
-		deprecated: 'Use the #selection object instead. This method assumes multiple selection'
-		transformWith: '`@receiver selectedIndexes'
-						-> '`@receiver selection selectedIndexes'.
-
-	^  self selection selectedIndexes
-]
-
-{ #category : #api }
-AbstractListPresenter >> selectedItem [
-	"Return the selected item.
-	In the case of a multiple selection list, it returns the last selected item"
-	
-	self
-		deprecated: 'Use the #selection object instead. This method assumes single selection'
-		transformWith: '`@receiver selectedItem'
-						-> '`@receiver selection selectedItem'.
-	
-	^ self selection selectedItem
-]
-
-{ #category : #api }
-AbstractListPresenter >> selectedItem: anItem [
-	"Set the item you want to be selected"
-
-	self
-		deprecated: 'Use #selectItem: instead'
-		transformWith: '`@receiver selectedItem: `@arg'
-						-> '`@receiver selectItem: `@arg'.
-
-	self selectItem: anItem
 ]
 
 { #category : #api }
@@ -439,45 +341,6 @@ AbstractListPresenter >> selectionMode: aMode [
 	selectionMode := aMode.
 ]
 
-{ #category : #private }
-AbstractListPresenter >> setIndex: anIndex [
-	self
-		deprecated: 'Use #selectIndex: instead'
-		transformWith: '`@receiver setIndex: `@arg' -> '`@receiver selectIndex: `@arg'.
-	self selectIndex: anIndex
-]
-
-{ #category : #private }
-AbstractListPresenter >> setIndexes: aCollectionOfIndexes [
-	"Set the indexexs of the selected items in case of multiple selection"
-	self
-		deprecated: 'Use the #selection object instead. This method assumes multiple selection'
-		transformWith: '`@receiver setIndexes: `@arg'
-						-> '`@receiver selection selectIndexes: `@arg'.
-
-	self selection selectIndexes: aCollectionOfIndexes
-]
-
-{ #category : #api }
-AbstractListPresenter >> setSelectedIndex: anIndex [
-	self
-		deprecated: 'Use #selectedIndex: instead'
-		transformWith:
-			'`@receiver setSelectedIndex: `@argument'
-				-> '`@receiver selectedIndex: `@argument'.
-	^ self selectIndex: anIndex
-]
-
-{ #category : #api }
-AbstractListPresenter >> setSelectedItem: anIndex [
-	self
-		deprecated: 'Use #selectedItem: instead'
-		transformWith:
-			'`@receiver setSelectedItem: `@argument'
-				-> '`@receiver selectedItem:`@argument'.
-	^ self selectItem: anIndex
-]
-
 { #category : #api }
 AbstractListPresenter >> sortingBlock [
 	"<api: #inspect>"
@@ -519,85 +382,9 @@ AbstractListPresenter >> whenActivatedDo: aBlockClosure [
 ]
 
 { #category : #'api-events' }
-AbstractListPresenter >> whenListChanged: aBlock [
-	"Specify a block to value after the contents of the list has changed"
-	"Basically when you set a new list of items"
-	"<api: #event>"
-	self
-		deprecated: 'Use #whenModelChangedDo: instead'
-		transformWith: '`@receiver whenListChanged: `@argument'
-						-> '`@receiver whenModelChangedDo: `@argument'.
-	
-	self whenModelChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
 AbstractListPresenter >> whenModelChangedDo: aBlock [
 
 	model whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
-AbstractListPresenter >> whenMultiSelectionChanged: aBlock [
-	"Set a block to value when the multiSelection value has changed"
-	self deprecated: 'Should not use'
-]
-
-{ #category : #'api-events' }
-AbstractListPresenter >> whenSelectedIndexChangedDo: aBlock [
-	"Set a block to value when the selection index has changed"
-	
-	self
-		deprecated: 'Use #selection whenChangedDo: instead'
-		transformWith: '`@receiver whenSelectedIndexChangedDo: `@argument'
-						-> '`@receiver selection whenChangedDo: [ :selection | `@argument value: selection selectedIndex ]'.
-
-	^ self  selection whenChangedDo: [ :selection | aBlock value: selection selectedIndex ]
-]
-
-{ #category : #'api-events' }
-AbstractListPresenter >> whenSelectedItemChanged: aBlock [
-	self
-		deprecated: 'Use #whenSelectedItemChangedDo: instead'
-		transformWith:
-			'`@receiver whenSelectedItemChanged: `@argument'
-				-> '`@receiver whenSelectedItemChangedDo: `@argument'.
-	^ self
-		whenSelectionChangedDo: [ :selection | aBlock cull: selection selectedItem ]
-]
-
-{ #category : #'api-events' }
-AbstractListPresenter >> whenSelectedItemChangedDo: aBlock [
-	"Set a block to value when the select item is changed"
-
-	self
-		deprecated: 'Use #whenSelectionChangedDo: instead'
-		transformWith: '`@receiver whenSelectedItemChangedDo: `@argument'
-						-> '`@receiver whenSelectionChangedDo: [ :selection | `@argument cull: selection selectedItem ]'.
-	
-	self selection whenChangedDo: [ :selection | aBlock cull: selection selectedItem ]
-]
-
-{ #category : #'api-events' }
-AbstractListPresenter >> whenSelectedItemsChanged: aBlock [
-	"Set a block to value when the select item is changed"
-	
-	self
-		deprecated: 'Use #whenSelectionChangedDo: instead'
-		transformWith: '`@receiver whenSelectedItemsChanged: `@argument'
-						-> '`@receiver whenSelectionChangedDo: [ :selection | `@argument cull: selection selectedItems ]'.
-
-	self selection whenChangedDo: [ :selection | aBlock cull: selection selectedItems ]
-]
-
-{ #category : #'api-events' }
-AbstractListPresenter >> whenSelectionChanged: aBlock [
-	
-	self
-		deprecated: 'Use #whenSelectionChangedDo: instead'
-		transformWith: '`@receiver whenSelectionChanged: `@argument'
-						-> '`@receiver whenSelectionChangedDo: `@argument'.
-	^ self whenSelectionChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
@@ -607,26 +394,4 @@ AbstractListPresenter >> whenSelectionChangedDo: aBlock [
 	The block used as argument will be sent an optional argument with the selection object."
 
 	self selection whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
-AbstractListPresenter >> whenSelectionIndexChanged: aBlock [
-	
-	self
-		deprecated: 'Use #selection whenChangedDo: instead'
-		transformWith: '`@receiver whenSelectionIndexChanged: `@argument'
-						-> '`@receiver selection whenChangedDo: [ :selection | `@argument value: selection selectedIndex ]'.
-	^ self  selection whenChangedDo: [ :selection | aBlock value: selection selectedIndex ]
-]
-
-{ #category : #'api-events' }
-AbstractListPresenter >> whenSelectionIndexesChanged: aBlock [
-	"Set a block to value when the selection index has changed"
-	
-	self
-		deprecated: 'Use #whenSelectionChangedDo: instead'
-		transformWith: '`@receiver whenSelectionIndexesChanged: `@argument'
-						-> '`@receiver whenSelectionChangedDo: [ :selection | `@argument value: selection selectedIndexes ]'.
-	
-	self whenSelectionChangedDo: [ :selection | aBlock value: selection selectedIndexes ].
 ]

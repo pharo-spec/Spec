@@ -83,6 +83,12 @@ DialogWindowPresenter >> initializeWindow [
 	self presenter initializeDialogWindow: self
 ]
 
+{ #category : #testing }
+DialogWindowPresenter >> isDialog [
+
+	^ true
+]
+
 { #category : #api }
 DialogWindowPresenter >> okAction: aBlock [
 

@@ -110,7 +110,7 @@ SpecDemoTextInputPresenter >> initializeWidgets [
 	labelEncrypted := self newLabel label: 'Encrypted:'.
 	fieldEncrypted := self newTextInput
 		text: 'Password';
-		encrypted: true
+		beVisible: false
 ]
 
 { #category : #accessing }

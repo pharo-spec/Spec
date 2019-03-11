@@ -199,6 +199,13 @@ SpecLayout >> asArray [
 		yourself) asArray
 ]
 
+{ #category : #building }
+SpecLayout >> buildAdapterFor: aPresenter bindings: adapterBindings [
+	"Provides polymorphism with executable layouts."
+
+	^ aPresenter adapterFrom: self
+]
+
 { #category : #accessing }
 SpecLayout >> commands [
 	^ commands

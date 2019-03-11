@@ -60,17 +60,16 @@ MorphicWindowAdapter >> addMenuTo: aMorph [
 		vResizing: #rigid
 ]
 
-{ #category : #protocol }
-MorphicWindowAdapter >> addModelIn: widgetToBuild withSpecLayout: aSpec [
-	self
-		addContent: (self model presenter buildWithSpecLayout: aSpec)
-		toWindow: widgetToBuild
-]
-
 { #category : #'widget API' }
 MorphicWindowAdapter >> addModelItemsToWindowMenu: aMenu [
 
 	self model addMenuItemsToWindowMenu: aMenu
+]
+
+{ #category : #protocol }
+MorphicWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
+	self model initialExtent ifNotNil: [ :extent | widgetToBuild extent: extent ].
+	self addContent: (self model presenter buildWithSpecLayout: aSpec) toWindow: widgetToBuild
 ]
 
 { #category : #private }
@@ -229,7 +228,7 @@ MorphicWindowAdapter >> rebuildWithSpecLayout: aSpec [
 	sub := self model window submorphs copy.
 	self model window removeAllMorphs.
 	sub allButLast do: [:e | self model window addMorphBack: e ].
-	self model addModelIn: self widget withSpecLayout: aSpec.
+	self model addPresenterIn: self widget withSpecLayout: aSpec.
 	self widget model: self
 ]
 
@@ -240,14 +239,14 @@ MorphicWindowAdapter >> taskbarIcon [
 
 { #category : #'widget API' }
 MorphicWindowAdapter >> title [
+
 	^ self model title
 ]
 
-{ #category : #protocol }
+{ #category : #'widget API' }
 MorphicWindowAdapter >> title: aString [
 
-	^ self widget
-		ifNotNil: [:w | w title: aString ]
+	self widgetDo: [ :w | w setLabel: aString ]
 ]
 
 { #category : #updating }

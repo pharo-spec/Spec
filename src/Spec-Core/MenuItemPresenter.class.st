@@ -119,6 +119,12 @@ MenuItemPresenter >> initialize [
 	icon := nil asValueHolder
 ]
 
+{ #category : #testing }
+MenuItemPresenter >> isMenuPresenter [
+
+	^ true
+]
+
 { #category : #api }
 MenuItemPresenter >> name [
 
@@ -135,11 +141,17 @@ MenuItemPresenter >> name: aString [
 MenuItemPresenter >> performMenuActionWith: aMenuItem [
 	| en |
 
-	en := self enabled.
+	en := self isEnabled.
 	en isBlock ifTrue: [ en := en value ].
 	en ifFalse: [ ^ self ].
 
 	action value cull: aMenuItem
+]
+
+{ #category : #accessing }
+MenuItemPresenter >> rootMenu [ 
+	
+	^ self owner rootMenu
 ]
 
 { #category : #api }

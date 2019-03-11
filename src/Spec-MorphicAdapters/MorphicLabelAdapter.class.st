@@ -65,3 +65,15 @@ MorphicLabelAdapter >> getText [
 
 	^ self model label
 ]
+
+{ #category : #accessing }
+MorphicLabelAdapter >> helpText [
+	
+	^ widget balloonText
+]
+
+{ #category : #accessing }
+MorphicLabelAdapter >> label [
+	
+	^ widget contents
+]

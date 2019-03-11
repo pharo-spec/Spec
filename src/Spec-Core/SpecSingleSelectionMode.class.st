@@ -38,6 +38,12 @@ SpecSingleSelectionMode >> initialize [
 	selectedIndexValueHolder := 0 asValueHolder
 ]
 
+{ #category : #testing }
+SpecSingleSelectionMode >> isEmpty [
+	
+	^ self selectedIndex = 0
+]
+
 { #category : #selecting }
 SpecSingleSelectionMode >> selectAll [
 

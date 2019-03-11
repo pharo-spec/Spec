@@ -67,16 +67,6 @@ RadioButtonPresenter >> canDeselectByClick: aBoolean [
 	canDeselectByClick value: aBoolean
 ]
 
-{ #category : #api }
-RadioButtonPresenter >> enabled: aBoolean [
-	"<api: #boolean getter: #enabled registration: #whenEnabledChanged:>"
-	"Set if the button is enabled (clickable)"
-
-	super enabled: aBoolean.
-	self changed: #enabled.
-
-]
-
 { #category : #initialization }
 RadioButtonPresenter >> initialize [
 	super initialize.
@@ -108,8 +98,8 @@ RadioButtonPresenter >> stateHolder [
 	^ state
 ]
 
-{ #category : #'protocol-events' }
-RadioButtonPresenter >> whenCanDeselectByClickChanged: aBlock [
+{ #category : #'api-events' }
+RadioButtonPresenter >> whenCanDeselectByClickChangedDo: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	
 	canDeselectByClick whenChangedDo: aBlock

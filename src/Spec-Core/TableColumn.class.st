@@ -75,7 +75,7 @@ TableColumn >> isEditable [
 { #category : #accessing }
 TableColumn >> readObject: anObject [ 
 
-	^ self evaluation value: anObject
+	^ self evaluation cull: anObject
 ]
 
 { #category : #accessing }

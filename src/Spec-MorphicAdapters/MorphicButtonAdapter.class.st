@@ -7,11 +7,16 @@ SpecInterpreter
 Class {
 	#name : #MorphicButtonAdapter,
 	#superclass : #AbstractMorphicAdapter,
+	#instVars : [
+		'subMenuWidget'
+	],
 	#category : #'Spec-MorphicAdapters-Base'
 }
 
 { #category : #'widget API' }
 MorphicButtonAdapter >> action [
+
+	self showSubMenuIfPresent.
 
 	self widget ifNotNil: [:m | m takeKeyboardFocus ].
 	self model performAction.
@@ -38,14 +43,15 @@ MorphicButtonAdapter >> buildLabel: text withIcon: icon [
 
 { #category : #factory }
 MorphicButtonAdapter >> buildWidget [
-	
 	| button | 
+
 	button := PluggableButtonMorph
 				on: self 
 				getState: #state 
 				action:  #action 
 				label: #label 
 				menu: nil. 	
+	
 	button 
 		getEnabledSelector: #enabled ;
 		getFontSelector: #font ;
@@ -58,12 +64,45 @@ MorphicButtonAdapter >> buildWidget [
 		eventHandler: (MorphicEventHandler new on: #keyStroke send: #keyStroke:fromMorph: to: self).
 	
 	self color ifNotNil: [ self setWidgetColor: button ].
+	
+	button bindKeyCombination: Character space toAction: [ self action ].
+
 	^ button
+]
+
+{ #category : #emulating }
+MorphicButtonAdapter >> clicked [	
+
+	| evt |
+	evt := MouseButtonEvent new setType: nil position: widget center which: MouseButtonEvent redButton buttons: MouseButtonEvent redButton hand: nil stamp: nil.
+
+	(widget handlesMouseDown: evt) ifTrue: [
+		widget mouseDown: evt.
+		widget mouseUp: evt].
+
+]
+
+{ #category : #'menus support' }
+MorphicButtonAdapter >> deleteIfPopUp: evt [
 ]
 
 { #category : #'widget API' }
 MorphicButtonAdapter >> font [
 	^self model font
+]
+
+{ #category : #accessing }
+MorphicButtonAdapter >> helpText [
+	^ self widget helpText
+]
+
+{ #category : #accessing }
+MorphicButtonAdapter >> icon [
+	^ widget label icon
+]
+
+{ #category : #'menus support' }
+MorphicButtonAdapter >> isSelected: aBooolan [
 ]
 
 { #category : #'widget API' }
@@ -85,6 +124,17 @@ MorphicButtonAdapter >> menu: aMenu [
 	^ menuModel buildWithSpec
 ]
 
+{ #category : #emulating }
+MorphicButtonAdapter >> rightClicked [
+	| evt |
+	evt := MouseButtonEvent new setType: nil position: widget center which: MouseButtonEvent yellowButton buttons: MouseButtonEvent yellowButton hand: nil stamp: nil.
+
+	(widget handlesMouseDown: evt) ifTrue: [
+		widget mouseDown: evt.
+		widget mouseUp: evt].
+
+]
+
 { #category : #factory }
 MorphicButtonAdapter >> setWidgetColor: button [
 
@@ -102,6 +152,22 @@ MorphicButtonAdapter >> setWidgetColor: button [
 							property: #buttonPressedFillStyleFor: returnsValueOf: clickedColorBlock;
 							yourself).
 
+]
+
+{ #category : #'widget API' }
+MorphicButtonAdapter >> showSubMenuIfPresent [
+
+	self model menu ifNotNil: [
+		self model menu menuGroups isEmpty ifFalse: [ 
+			subMenuWidget ifNotNil: [ 
+				subMenuWidget delete.
+				subMenuWidget := nil. ].
+			subMenuWidget := (MorphicMenuAdapter adaptAsPopup: self model menu) widget.
+			subMenuWidget
+				popUpAdjacentTo: {self widget bounds bottomLeft. self widget bounds bottomRight}
+				forHand: ActiveHand
+				from: self widget.
+			subMenuWidget popUpOwner: self ] ].
 ]
 
 { #category : #'widget API' }

@@ -12,7 +12,8 @@ Class {
 		'statusbarHolder',
 		'toolBarHolder',
 		'menuHolder',
-		'centered'
+		'centered',
+		'windowHolder'
 	],
 	#category : #'Spec-Core-Support'
 }
@@ -21,6 +22,12 @@ Class {
 WindowPresenter class >> adapterName [
 
 	^ #WindowAdapter
+]
+
+{ #category : #accessing }
+WindowPresenter class >> defaultTitle [
+
+	^ 'Untitled window'
 ]
 
 { #category : #'instance creation' }
@@ -55,40 +62,54 @@ WindowPresenter >> addMenuItemsToWindowMenu: aMenu [
 	self presenter addMenuItemsToWindowMenu: aMenu
 ]
 
-{ #category : #private }
-WindowPresenter >> addModelIn: widget withSpecLayout: aSpec [
-	
-	self presenter ifNil: [ ^ self ].
-	self initializeWindow.
-	self 
-		changed: #addModelIn:withSpecLayout:
-		with: { widget. aSpec }
-]
-
 { #category : #menu }
 WindowPresenter >> addModelItemsToWindowMenu: aMenu [
 	self presenter addModelItemsToWindowMenu: aMenu
 ]
 
-{ #category : #api }
-WindowPresenter >> askOkToClose [
-	^ self presenter askOkToClose
+{ #category : #'private building' }
+WindowPresenter >> addPresenterIn: widget withSpecLayout: aSpec [
+	
+	self presenter ifNil: [ ^ self ].
+	self initializeWindow.
+	self 
+		changed: #addPresenterIn:withSpecLayout:
+		with: { widget. aSpec }
 ]
 
-{ #category : #private }
-WindowPresenter >> buildWithSpecLayout: aSpec [
+{ #category : #api }
+WindowPresenter >> askOkToClose [
+
+	^ askOkToClose
+]
+
+{ #category : #api }
+WindowPresenter >> askOkToClose: aBoolean [
+
+	askOkToClose := aBoolean
+]
+
+{ #category : #'private building' }
+WindowPresenter >> basicBuildWithSpecLayout: aSpecLayout [
 	"Build the widget using the spec name provided as argument"
 	| widget |
 
-	(self spec notNil and: [ self needRebuild not ])
+	(self spec isNil or: [ self needRebuild ])
 		ifTrue: [ 
-			widget := self widget ]
-		ifFalse: [ 
 			widget := (self adapterFrom: self retrieveDefaultSpec) widget.
-			self addModelIn: widget withSpecLayout: aSpec ].
-	self ensureExtentFor: widget.
+			self addPresenterIn: widget withSpecLayout: aSpecLayout ]
+		ifFalse: [
+			widget := self widget ].
 	
 	^ widget
+]
+
+{ #category : #'private building' }
+WindowPresenter >> buildWithSpecLayout: aSpecLayout [
+	
+	^ SpecBindings 
+		value: self application adapterBindings
+		during: [ self basicBuildWithSpecLayout: aSpecLayout ]
 ]
 
 { #category : #api }
@@ -112,13 +133,20 @@ WindowPresenter >> centeredRelativeTo: aModel [
 { #category : #api }
 WindowPresenter >> close [
 
-	self changed: #close with: #()
+	self changed: #close with: #().
+	application windowClosed: self
 ]
 
 { #category : #private }
 WindowPresenter >> defaultInitialExtent [
 	
 	^ 400@300
+]
+
+{ #category : #private }
+WindowPresenter >> delete [
+
+	self window delete
 ]
 
 { #category : #focus }
@@ -140,6 +168,13 @@ WindowPresenter >> hasMenu [
 ]
 
 { #category : #testing }
+WindowPresenter >> hasPresenter: aButtonPresenter [
+
+	^ aButtonPresenter isNotNil and: [aButtonPresenter adapter notNil
+		and: [ self adapter hasWidget: aButtonPresenter adapter ]]
+]
+
+{ #category : #testing }
 WindowPresenter >> hasStatusBar [
 	
 	^ self statusBar notNil
@@ -154,12 +189,15 @@ WindowPresenter >> hasToolBar [
 
 { #category : #api }
 WindowPresenter >> initialExtent [
-	^ initialExtent value
-		ifNil: [ self presenter
-				ifNil: [ self defaultInitialExtent ]
-				ifNotNil: [ :m | 
-					m extent
-						ifNil: [ m initialExtent ifNil: [ self defaultInitialExtent ] ] ] ]
+
+	^ initialExtent value 
+		ifNil: [ self defaultInitialExtent ]
+]
+
+{ #category : #api }
+WindowPresenter >> initialExtent: anExtent [
+
+	initialExtent value: anExtent
 ]
 
 { #category : #initialization }
@@ -168,16 +206,20 @@ WindowPresenter >> initialize [
 	super initialize.
 
 	presenter := nil asValueHolder.
+	windowHolder := nil asValueHolder.
+	titleHolder := self class defaultTitle asValueHolder.
 	initialExtent := nil asValueHolder.
 	isClosedHolder := false asValueHolder.
 	isResizeable := true asValueHolder.
 	centered := false asValueHolder.
+	askOkToClose := true.
 
 	menuHolder := nil asValueHolder.
 	toolBarHolder := nil asValueHolder.
 	statusbarHolder := nil asValueHolder.
 	
-	presenter whenChangedDo: [ :m | self updateTitle ].
+	"presenter whenChangedDo: [ :m | self updateTitle ]."
+	titleHolder whenChangedDo: [ :m | self changed: #title: with: { m } ].
 	centered whenChangedDo: [ :m | self changed: #centered with: #() ]
 ]
 
@@ -198,10 +240,18 @@ WindowPresenter >> isClosed [
 	^ isClosedHolder value
 ]
 
+{ #category : #testing }
+WindowPresenter >> isDialog [
+	
+	^ false
+]
+
 { #category : #api }
 WindowPresenter >> isDisplayed [
 
-	^ self window ifNil: [ false ] ifNotNil: [ :theWindow | theWindow isDisplayed ]
+	^ self window 
+		ifNotNil: [ :w | w isDisplayed ]
+		ifNil: [ false ] 
 ]
 
 { #category : #api }
@@ -214,6 +264,12 @@ WindowPresenter >> isResizeable [
 WindowPresenter >> isResizeable: aBoolean [
 
 	isResizeable value: aBoolean
+]
+
+{ #category : #testing }
+WindowPresenter >> isWindowPresenter [
+
+	^ true
 ]
 
 { #category : #api }
@@ -231,6 +287,7 @@ WindowPresenter >> menu [
 { #category : #api }
 WindowPresenter >> menu: aMenuPresenter [
 
+	aMenuPresenter owner: self.
 	^ menuHolder value: aMenuPresenter
 ]
 
@@ -248,7 +305,12 @@ WindowPresenter >> modalRelativeTo: aWindow [
 
 { #category : #private }
 WindowPresenter >> okToChange [
-	^ self presenter okToChange
+
+	self flag: #TODO. "Maybe wrong?"
+	self presenter canDiscardEdits ifTrue: [ ^ true ].
+	"Solicit cancel from view"
+	self changed: #wantToChange.  
+	^ self canDiscardEdits
 ]
 
 { #category : #api }
@@ -260,7 +322,7 @@ WindowPresenter >> openModal: aWindow [
 { #category : #private }
 WindowPresenter >> openWithSpecLayout: aSpec [
 
-	window value: (self buildWithSpecLayout: aSpec).
+	windowHolder value: (self buildWithSpecLayout: aSpec).
 	self changed: #open with: #().
 	self updateTitle.
 ]
@@ -274,10 +336,13 @@ WindowPresenter >> presenter [
 { #category : #accessing }
 WindowPresenter >> presenter: aPresenter [
 
+	self flag: #TODO. "Passing the application... maybe not the best?"
+	self application: aPresenter application. 
+	aPresenter owner: self.
 	presenter value: aPresenter
 ]
 
-{ #category : #private }
+{ #category : #'private building' }
 WindowPresenter >> rebuildWithSpecLayout: aSpec [
 
 	self changed: #rebuildWithSpecLayout: with: { aSpec }
@@ -292,6 +357,7 @@ WindowPresenter >> statusBar [
 { #category : #api }
 WindowPresenter >> statusBar: aStatusbarPresenter [
 
+	aStatusbarPresenter owner: self.
 	^ statusbarHolder value: aStatusbarPresenter
 ]
 
@@ -304,13 +370,14 @@ WindowPresenter >> taskbarIcon [
 
 { #category : #private }
 WindowPresenter >> title [
-	^ self presenter ifNil: [ super title ] ifNotNil: [ :m | m title ]
+
+	^ titleHolder value
 ]
 
 { #category : #private }
 WindowPresenter >> title: aString [
-	self changed: #title: with: {aString}.
-	self presenter title: aString
+
+	titleHolder value: aString
 ]
 
 { #category : #api }
@@ -322,6 +389,7 @@ WindowPresenter >> toolBar [
 { #category : #api }
 WindowPresenter >> toolBar: aToolbarPresenter [
 
+	aToolbarPresenter owner: self.
 	^ toolBarHolder value: aToolbarPresenter
 ]
 
@@ -339,7 +407,7 @@ WindowPresenter >> triggerOkAction [
 WindowPresenter >> updateTitle [
 	"Update the window title"
 
-	self title: self title
+	self changed: #title: with: { self title }
 ]
 
 { #category : #'api-events' }
@@ -347,6 +415,18 @@ WindowPresenter >> whenClosedDo: aBlock [
 
 	isClosedHolder whenChangedDo: [:value |
 		value ifTrue: [ aBlock value ] ]
+]
+
+{ #category : #accessing }
+WindowPresenter >> window [ 
+	
+	^ windowHolder value
+]
+
+{ #category : #accessing }
+WindowPresenter >> window: aWindow [
+	
+	windowHolder value: aWindow
 ]
 
 { #category : #updating }

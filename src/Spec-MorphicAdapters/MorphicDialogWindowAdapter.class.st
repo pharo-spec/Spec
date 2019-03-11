@@ -8,11 +8,11 @@ Class {
 }
 
 { #category : #private }
-MorphicDialogWindowAdapter >> addModelIn: widgetToBuild withSpecLayout: aSpec [
+MorphicDialogWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
 	"I replace the mainPanel (which contains contents and button bar) because like that I get the 
 	 status bar at the end (where it belongs)"
 
-	super addModelIn: widgetToBuild withSpecLayout: aSpec.
+	super addPresenterIn: widgetToBuild withSpecLayout: aSpec.
 		
 	widgetToBuild setToolbarFrom: [ self buildButtonBar ]
 ]
@@ -21,7 +21,7 @@ MorphicDialogWindowAdapter >> addModelIn: widgetToBuild withSpecLayout: aSpec [
 MorphicDialogWindowAdapter >> buildButtonBar [
 	| buttonBar |
 	
-	buttonBar := ButtonBarPresenter new placeAtEnd.
+	buttonBar := (ButtonBarPresenter owner: self model) placeAtEnd.
 	self model buttons do: [ :buttonPresenter | 
 		buttonBar add: buttonPresenter ].
 	

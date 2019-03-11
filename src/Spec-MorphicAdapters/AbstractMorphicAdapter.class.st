@@ -43,6 +43,7 @@ AbstractMorphicAdapter >> acceptDroppingMorph: draggedMorph event: event inMorph
 AbstractMorphicAdapter >> adapt: aPresenter [
 
 	super adapt: aPresenter.
+	self addSettingsTo: self widget.
 	self flag: #TODO. "this should be here, but is interfering with old layouts reason why 
 	 I'm moving it to MorphicLayoutAdapter >> #applyStyle:to:"
 	"self applyStyle: self widget."
@@ -52,6 +53,11 @@ AbstractMorphicAdapter >> adapt: aPresenter [
 AbstractMorphicAdapter >> add: aWidget [
 	
 	self widgetDo: [ :w | w ensureLayoutAndAddMorph: aWidget asWidget ]
+]
+
+{ #category : #initialization }
+AbstractMorphicAdapter >> addSettingsTo: aMorph [
+	
 ]
 
 { #category : #initialization }
@@ -71,7 +77,8 @@ AbstractMorphicAdapter >> beginsWith: aString fromList: aMorph [
 { #category : #'protocol-shortcuts' }
 AbstractMorphicAdapter >> bindKeyCombination: aShortcut toAction: aBlock [
 
-	self widget ifNotNil: [ :w | w bindKeyCombination: aShortcut toAction: aBlock ]
+	self widgetDo: [ :w | 
+		w bindKeyCombination: aShortcut toAction: aBlock ]
 ]
 
 { #category : #'protocol-shortcuts' }
@@ -249,6 +256,12 @@ AbstractMorphicAdapter >> help [
 	^ self model help
 ]
 
+{ #category : #accessing }
+AbstractMorphicAdapter >> helpText [
+	
+	^ self widget balloonText 
+]
+
 { #category : #testing }
 AbstractMorphicAdapter >> isMorphicAdapter [
 
@@ -310,6 +323,12 @@ AbstractMorphicAdapter >> setBalloonText: aString [
 AbstractMorphicAdapter >> setModal: aWindow [ 
 
 	self widgetDo: [ :w | w setModal: aWindow ]
+]
+
+{ #category : #protocol }
+AbstractMorphicAdapter >> show [ 
+
+	self widgetDo: #show
 ]
 
 { #category : #accessing }

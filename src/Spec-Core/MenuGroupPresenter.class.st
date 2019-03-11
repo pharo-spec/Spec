@@ -98,3 +98,9 @@ MenuGroupPresenter >> menuItems [
 
 	^ items value
 ]
+
+{ #category : #accessing }
+MenuGroupPresenter >> rootMenu [
+
+	^ self owner rootMenu
+]

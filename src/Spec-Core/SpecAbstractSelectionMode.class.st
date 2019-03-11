@@ -50,7 +50,7 @@ SpecAbstractSelectionMode >> indexOfItem: anItem [
 { #category : #testing }
 SpecAbstractSelectionMode >> isEmpty [
 	
-	^ self selectedIndex = 0
+	^ self subclassResponsibility
 ]
 
 { #category : #testing }

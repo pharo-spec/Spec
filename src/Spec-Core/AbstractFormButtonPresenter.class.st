@@ -54,6 +54,16 @@ AbstractFormButtonPresenter >> deactivationAction: aBlock [
 	actionWhenDeactivatedHolder value: aBlock
 ]
 
+{ #category : #api }
+AbstractFormButtonPresenter >> enabled: aBoolean [
+	"<api: #boolean getter: #enabled registration: #whenEnabledChanged:>"
+	"Set if the button is enabled (clickable)"
+
+	super enabled: aBoolean.
+	self changed: #enabled.
+
+]
+
 { #category : #initialization }
 AbstractFormButtonPresenter >> initialize [
 
@@ -131,9 +141,10 @@ AbstractFormButtonPresenter >> whenActivatedDo: aBlock [
 ]
 
 { #category : #'api-events' }
-AbstractFormButtonPresenter >> whenActivationActionChanged: aBlock [
+AbstractFormButtonPresenter >> whenActivationActionChangedDo: aBlock [
 	"A block performed when the activation action changed"
-	actionWhenActivatedHolder whenChangedDo: aBlock 
+
+	actionWhenActivatedHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
@@ -151,9 +162,10 @@ AbstractFormButtonPresenter >> whenDeactivatedDo: aBlock [
 ]
 
 { #category : #'api-events' }
-AbstractFormButtonPresenter >> whenDeactivationActionChanged: aBlock [
+AbstractFormButtonPresenter >> whenDeactivationActionChangedDo: aBlock [
 	"A block performed when the deactivation action changed"
-	actionWhenDeactivatedHolder whenChangedDo:  aBlock 
+
+	actionWhenDeactivatedHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
@@ -163,7 +175,7 @@ AbstractFormButtonPresenter >> whenLabelChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
-AbstractFormButtonPresenter >> whenLabelClickableChanged: aBlock [
+AbstractFormButtonPresenter >> whenLabelClickableChangedDo: aBlock [
 	"A block performed when the label click is activated or descativated"
 	
 	labelClickableHolder whenChangedDo:  aBlock 

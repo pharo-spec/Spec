@@ -115,7 +115,7 @@ NotebookPresenter >> updatePageContent: aPage [
 ]
 
 { #category : #'api-events' }
-NotebookPresenter >> whenSelectedPageChanged: aBlock [
+NotebookPresenter >> whenSelectedPageChangedDo: aBlock [
 
 	selectedPageHolder whenChangedDo: aBlock
 ]

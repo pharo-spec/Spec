@@ -40,7 +40,7 @@ SpecExecutableLayout >> buildAdapterFor: aModel bindings: bindings [
 	children
 		keysAndValuesDo: [ :presenterNameOrLayout :constraints | 
 			"Since a layout can be composed (by other layouts), we can include a
-		 presenter or a layout"
+		    presenter or a layout"
 			adapter 
 				add: (self 
 					resolvePresenter: presenterNameOrLayout 
@@ -89,6 +89,8 @@ SpecExecutableLayout >> resolvePresenter: presenterNameOrLayout model: aModel bi
 	
 	"I receive an arbitrary object (needs to understand #asPresenter)"
 	^ presenterNameOrLayout asPresenter
+		owner: aModel;
+		yourself
 ]
 
 { #category : #accessing }

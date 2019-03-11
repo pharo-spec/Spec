@@ -41,9 +41,10 @@ SpecMultipleSelectionMode >> initialize [
 	selectedIndexesValueHolder := OrderedCollection new asValueHolder
 ]
 
-{ #category : #selecting }
-SpecMultipleSelectionMode >> isEmpty [ 
-	^ selectedIndexesValueHolder value isEmpty
+{ #category : #testing }
+SpecMultipleSelectionMode >> isEmpty [
+	
+	^ self selectedIndexes isEmpty
 ]
 
 { #category : #testing }

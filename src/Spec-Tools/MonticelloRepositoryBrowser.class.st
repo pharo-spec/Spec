@@ -31,15 +31,6 @@ MonticelloRepositoryBrowser class >> defaultSpec [
 
 ]
 
-{ #category : #example }
-MonticelloRepositoryBrowser class >> example [
-	"self example"
-	
-	self new 
-		openWithSpec ; 
-		workingCopies: (self allManagers)
-]
-
 { #category : #utilities }
 MonticelloRepositoryBrowser class >> order [
 	^ Order ifNil: [ Order := 1 ]

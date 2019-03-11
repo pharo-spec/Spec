@@ -37,16 +37,19 @@ MorphicListAdapter >> backgroundColorFor: anItem at: index [
 { #category : #factory }
 MorphicListAdapter >> buildWidget [
 	| datasource |
+	
 	datasource := SpecListFastTableDataSource new.
 	datasource model: self model.
 	widget := FTTableMorph new
 		dataSource: datasource;
 		hideColumnHeaders;
 		beResizable;
-		columns: { (MorphicTableColumn on: (StringTableColumn 
-			title: self presenter headerTitle
-			evaluated: self presenter displayBlock))
-				yourself };
+		columns:
+			{(MorphicTableColumn
+				on:
+					(StringTableColumn
+						title: self presenter headerTitle
+						evaluated: self presenter displayBlock)) yourself};
 		setMultipleSelection: self model isMultipleSelection;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
@@ -60,16 +63,23 @@ MorphicListAdapter >> buildWidget [
 			send: #strongSelectionChanged:
 			to: self;
 		yourself.
-	
 	self presenter whenModelChangedDo: [ widget refresh ].
-	
+	self presenter
+		whenSelectionChangedDo: [ self refreshWidgetSelection ].
+	self presenter selection
+		whenChangedDo: [ self refreshWidgetSelection ].
 	self refreshWidgetHeaderTitle.
-	
+	self refreshWidgetSelection.
 	self itemFilterBlock
 		ifNotNil: [ :block | 
 			widget
 				enableFilter: (FTSpecFilter block: block);
 				explicitFunction ].
+			
+	widget		
+		bindKeyCombination: Character space
+		toAction: [ self model clickOnSelectedItem ].
+		
 	^ widget
 ]
 
@@ -77,6 +87,12 @@ MorphicListAdapter >> buildWidget [
 MorphicListAdapter >> getSelectionStateFor: anIndex [
 
 	^ self model getSelectionStateFor: anIndex
+]
+
+{ #category : #accessing }
+MorphicListAdapter >> isShowColumnHeaders [
+	
+	^ widget isShowColumnHeaders 
 ]
 
 { #category : #'widget API' }
@@ -127,16 +143,13 @@ MorphicListAdapter >> refreshWidgetHeaderTitle [
 
 { #category : #'widget API' }
 MorphicListAdapter >> refreshWidgetList [
-	
 	(self widget showIndex < self widget dataSource numberOfRows
-		and: [ self widget isRowIndexVisible: self widget showIndex ])
-			ifFalse: [ self widget resetPosition ].
-	
+		and: [ self widget isIndexVisible: self widget showIndex ])
+		ifFalse: [ self widget resetPosition ].
 	self refreshWidgetSelection.
-
-	(self widget hasSelection and: [ (self widget isRowIndexVisible: self widget selectedRowIndex) ])
-		ifFalse: [ 
-			self widget resetPosition.
+	(self widget hasSelection
+		and: [ self widget isIndexVisible: self widget selectedIndex ])
+		ifFalse: [ self widget resetPosition.
 			self widget ensureVisibleFirstSelection ].
 	self widget refresh
 ]
@@ -151,6 +164,14 @@ MorphicListAdapter >> refreshWidgetSelection [
 		ifTrue: [ self widget basicSelectIndexes: #() ]
 		ifFalse: [ self widget basicSelectIndexes: rowIndexes ].
 	^ self widget refresh
+]
+
+{ #category : #selecting }
+MorphicListAdapter >> selectIndex: anInteger [ 
+	
+	(anInteger = 0 and: [ widget selectedIndexes isEmpty ]) ifTrue: [ ^ self ].	
+	(widget selectedIndexes includes: anInteger) ifTrue: [^self].
+	widget selectIndex: anInteger
 ]
 
 { #category : #factory }

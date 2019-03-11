@@ -8,12 +8,17 @@ self example
 "
 Class {
 	#name : #TreeTablePresenter,
-	#superclass : #TableBasePresenter,
+	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
+		'columns',
+		'showColumnHeadersHolder',
+		'isResizableHolder',
+		'selection',
+		'doubleClickActionHolder',
 		'rootsHolder',
 		'childrenBlock'
 	],
-	#category : #'Spec-Core-Widgets-Table'
+	#category : #'Spec-Core-Widgets-Tree'
 }
 
 { #category : #specs }
@@ -22,30 +27,38 @@ TreeTablePresenter class >> adapterName [
 	^ #TreeTableAdapter
 ]
 
-{ #category : #example }
-TreeTablePresenter class >> example [
-	<sampleInstance>
+{ #category : #api }
+TreeTablePresenter >> addColumn: aColumn [
 
-	^ self new
-		addColumn: (CompositeTableColumn new
-			title: 'Classes';
-			addColumn: (ImageTableColumn new 
-				width: 20;
-				evaluated: #systemIcon;
-				yourself);
-			addColumn: (StringTableColumn new 
-				evaluated: #name;
-				yourself);
-			yourself);
-		roots: { Object };
-		children: [ :aClass | aClass subclasses ];
-		openWithSpec
+	columns value: (columns value copyWith: aColumn)
+]
+
+{ #category : #'selection mode' }
+TreeTablePresenter >> beMultipleSelection [
+	
+	| newSelectionMode |
+	
+	newSelectionMode := (TreeMultipleSelectionMode on: self)
+								copyFrom: selection;
+								yourself.
+	
+	selection := newSelectionMode.
+]
+
+{ #category : #api }
+TreeTablePresenter >> beNotResizable [
+	self isResizable: false
+]
+
+{ #category : #api }
+TreeTablePresenter >> beResizable [
+	self isResizable: true
 ]
 
 { #category : #private }
 TreeTablePresenter >> children [
 
-	^ childrenBlock ifNil: [ [ :item | nil ] ]
+	^ childrenBlock
 ]
 
 { #category : #accessing }
@@ -60,12 +73,71 @@ TreeTablePresenter >> childrenFor: anObject [
 	^ self children value: anObject
 ]
 
+{ #category : #accessing }
+TreeTablePresenter >> columns [
+
+	^ columns value
+]
+
+{ #category : #api }
+TreeTablePresenter >> columns: aCollection [
+
+	columns value: aCollection
+]
+
+{ #category : #private }
+TreeTablePresenter >> doubleClickAction [
+
+	^ doubleClickActionHolder value
+]
+
+{ #category : #'api-events' }
+TreeTablePresenter >> doubleClickAction: aBlockClosure [ 
+	
+	doubleClickActionHolder value: aBlockClosure
+]
+
+{ #category : #simulation }
+TreeTablePresenter >> doubleClickAtIndex: anInteger [ 
+	
+	self selectedIndex: anInteger.
+	doubleClickActionHolder value cull: anInteger
+]
+
+{ #category : #api }
+TreeTablePresenter >> hideColumnHeaders [
+
+	showColumnHeadersHolder value: false
+]
+
 { #category : #initialization }
 TreeTablePresenter >> initialize [
 
 	super initialize.
+	showColumnHeadersHolder := true asValueHolder.
+	columns := #() asValueHolder.
+	isResizableHolder := false asValueHolder.
+	selection := TreeSingleSelectionMode on: self.
+	childrenBlock :=  [ :item | #() ].
+	
 	rootsHolder := #() asValueHolder.
-	rootsHolder whenChangedDo: [ self rootsChanged ]
+
+]
+
+{ #category : #accessing }
+TreeTablePresenter >> isResizable [
+	^ isResizableHolder value
+]
+
+{ #category : #accessing }
+TreeTablePresenter >> isResizable: aBoolean [
+	isResizableHolder value: aBoolean
+]
+
+{ #category : #testing }
+TreeTablePresenter >> isShowingColumnHeaders [
+
+	^ showColumnHeadersHolder value
 ]
 
 { #category : #private }
@@ -102,18 +174,65 @@ TreeTablePresenter >> roots [
 { #category : #accessing }
 TreeTablePresenter >> roots: aCollection [
 
-	rootsHolder value: aCollection
-]
-
-{ #category : #private }
-TreeTablePresenter >> rootsChanged [
-
-	self changed: #items
+	rootsHolder value: aCollection.
+	selection clearSelection
 ]
 
 { #category : #api }
-TreeTablePresenter >> selectedPath: path [
+TreeTablePresenter >> selectedItem [
+	
+	^ selection selectedItem
+]
 
-	selectionHolder index value: path.
-	selectionHolder selection value: (self itemAtPath: path).
+{ #category : #accessing }
+TreeTablePresenter >> selection [
+	
+	^ selection
+]
+
+{ #category : #api }
+TreeTablePresenter >> showColumnHeaders [
+
+	showColumnHeadersHolder value: true
+]
+
+{ #category : #'api - events' }
+TreeTablePresenter >> whenColumnsChangedDo: aBlockClosure [ 
+	
+	columns whenChangedDo: aBlockClosure 
+]
+
+{ #category : #'api-events' }
+TreeTablePresenter >> whenIsResizableChangedDo: aBlock [
+	isResizableHolder whenChangedDo: aBlock
+]
+
+{ #category : #'API - events' }
+TreeTablePresenter >> whenRootsChangedDo: aBlockClosure [ 
+
+	rootsHolder whenChangedDo: aBlockClosure
+]
+
+{ #category : #'api-events' }
+TreeTablePresenter >> whenSelectedIndexChangedDo: aBlockClosure [ 
+	
+	self whenSelectionChangedDo: [ :selection | aBlockClosure cull: selection first ]
+]
+
+{ #category : #'api-events' }
+TreeTablePresenter >> whenSelectedItemChangedDo: aBlockClosure [ 
+	
+	self whenSelectionChangedDo: [ :selection | aBlockClosure cull: selection second ]
+]
+
+{ #category : #'api-events' }
+TreeTablePresenter >> whenSelectionChangedDo: aBlockClosure [ 
+	
+	selection whenChangedDo: [ aBlockClosure cull: selection ]
+]
+
+{ #category : #'api - events' }
+TreeTablePresenter >> whenShowColumnHeadersChangedDo: aBlockClosure [ 
+	
+	showColumnHeadersHolder whenChangedDo: aBlockClosure 
 ]

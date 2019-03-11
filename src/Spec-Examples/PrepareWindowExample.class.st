@@ -59,7 +59,8 @@ PrepareWindowExample >> initializeWindow: aWindowPresenter [
 	"I'm called whenever the component will be displayed in a window (or dialog). 
 	 This is usually attained sending #openWithSpec or #openDialogWithSpec."
 	
-	aWindowPresenter 
+	super initializeWindow: aWindowPresenter.
+	aWindowPresenter
 		menu: (menu := self newMenu);
 		toolBar: (toolBar := self newToolBar);
 		statusBar: (statusBar := self newStatusBar)
@@ -115,6 +116,7 @@ PrepareWindowExample >> newToolBar [
 	^ ToolBarPresenter new 
 		addItem: self newPushMessageToolBarItem;
 		addItem: self newPopMessageToolBarItem;
+		addItem: self newPopMessageToolBarItem position: ToolBarItemPosition right;
 		yourself
 ]
 

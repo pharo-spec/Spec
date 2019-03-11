@@ -92,7 +92,7 @@ SpecDemo >> defaultPage [
 ]
 
 { #category : #api }
-SpecDemo >> extent [
+SpecDemo >> initialExtent [
 
 	| fontWidth rowHeight |
 	fontWidth := (StandardFonts defaultFont widthOfString: 'M').
@@ -114,7 +114,7 @@ SpecDemo >> initializePresenter [
 							page := self instantiate: newPageClass.
 							self needRebuild: false.
 							self buildWithSpec.
-							list selectedItem: self selectedPage ] ]
+							list selectItem: self selectedPage ] ]
 				ifNil:
 					[ "Avoid the user to have no page selected at all." list setSelectedItem: self selectedPage ] ]
 				cull: selection selectedItem ]
