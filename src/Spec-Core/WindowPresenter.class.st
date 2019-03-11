@@ -24,6 +24,13 @@ WindowPresenter class >> adapterName [
 	^ #WindowAdapter
 ]
 
+{ #category : #'instance creation' }
+WindowPresenter class >> application: anApplication [
+	^ self new
+		application: anApplication;
+		yourself
+]
+
 { #category : #accessing }
 WindowPresenter class >> defaultTitle [
 
@@ -32,7 +39,7 @@ WindowPresenter class >> defaultTitle [
 
 { #category : #'instance creation' }
 WindowPresenter class >> presenter: aPresenter [
-	^ self new
+	^ (self application: aPresenter application)
 		presenter: aPresenter;
 		yourself
 ]
@@ -133,8 +140,11 @@ WindowPresenter >> centeredRelativeTo: aModel [
 { #category : #api }
 WindowPresenter >> close [
 
+	"Only manage closing if the presenter is really open"
+	self isOpen ifFalse: [ ^ self ].
+	
 	self changed: #close with: #().
-	application windowClosed: self
+	self application windowClosed: self
 ]
 
 { #category : #private }
@@ -254,6 +264,12 @@ WindowPresenter >> isDisplayed [
 		ifNil: [ false ] 
 ]
 
+{ #category : #testing }
+WindowPresenter >> isOpen [
+	
+	^ self application hasWindow: self
+]
+
 { #category : #api }
 WindowPresenter >> isResizeable [
 
@@ -336,8 +352,6 @@ WindowPresenter >> presenter [
 { #category : #accessing }
 WindowPresenter >> presenter: aPresenter [
 
-	self flag: #TODO. "Passing the application... maybe not the best?"
-	self application: aPresenter application. 
 	aPresenter owner: self.
 	presenter value: aPresenter
 ]

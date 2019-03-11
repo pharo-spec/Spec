@@ -48,6 +48,12 @@ SpecApplication >> close [
 	self windows copy do: #close
 ]
 
+{ #category : #windows }
+SpecApplication >> hasWindow: aWindow [
+	
+	^ self windows includes: aWindow
+]
+
 { #category : #testing }
 SpecApplication >> isPresenter [ 
 	"Presenters use this to track application/rootPresenter."
