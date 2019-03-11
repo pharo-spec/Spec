@@ -13,6 +13,18 @@ FTTableMorph >> selectIndex: anInteger [
 ]
 
 { #category : #'*Spec-Pharo7To8Compatibility' }
+FTTableMorph >> selectIndexes: indexes [
+	
+	self selectRowIndexes: indexes
+]
+
+{ #category : #'*Spec-Pharo7To8Compatibility' }
+FTTableMorph >> selectedIndex [
+	
+	^ self selectedRowIndex
+]
+
+{ #category : #'*Spec-Pharo7To8Compatibility' }
 FTTableMorph >> selectedIndexes [
 	
 	^ self selectedRowIndexes
