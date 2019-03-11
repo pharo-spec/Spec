@@ -154,6 +154,13 @@ SpecApplication >> useBackend: aName [
 	backend := SpecApplicationBackend findBackendNamed: aName
 ]
 
+{ #category : #accessing }
+SpecApplication >> useBackend: aName with: aConfiguration [
+
+	self useBackend: aName.
+	aConfiguration configure: self
+]
+
 { #category : #'private showing' }
 SpecApplication >> validateApplicationOfPresenter: aPresenter [
 
