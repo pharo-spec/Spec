@@ -6,5 +6,6 @@ Class {
 
 { #category : #factory }
 MorphicAthensStaticAdapter >> buildWidget [
-	self shouldBeImplemented.
+	
+	^ SpecAthensMorph new 
 ]
