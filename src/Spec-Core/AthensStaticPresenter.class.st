@@ -4,7 +4,8 @@ Class {
 	#traits : 'TSpecObservable',
 	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
-		'#drawBlock => SpecObservableSlot'
+		'#drawBlock => SpecObservableSlot',
+		'#surfaceExtent => SpecObservableSlot'
 	],
 	#category : #'Spec-Core-Widgets-Athens'
 }
@@ -32,7 +33,23 @@ AthensStaticPresenter >> initialize [
 	
 ]
 
+{ #category : #initialization }
+AthensStaticPresenter >> surfaceExtent [
+	^ surfaceExtent
+]
+
+{ #category : #initialization }
+AthensStaticPresenter >> surfaceExtent: anExtent [
+	surfaceExtent := anExtent.
+	
+]
+
 { #category : #'API -Events' }
 AthensStaticPresenter >> whenDrawBlockChangedDo: aBlockClosure [ 
 	self property: #drawBlock whenChangedDo: aBlockClosure 
+]
+
+{ #category : #'API -Events' }
+AthensStaticPresenter >> whenExtentChangedDo: aBlockClosure [ 
+	self property: #surfaceExtent whenChangedDo: aBlockClosure 
 ]
