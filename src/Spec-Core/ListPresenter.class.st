@@ -259,13 +259,6 @@ ListPresenter >> whenIconsChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
-ListPresenter >> whenMenuChangedDo: aBlock [
-	"Set a block to value when the menu block has changed"
-	
-	menuHolder whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
 ListPresenter >> whenSortingBlockChangedDo: aBlock [
 	"Set a block to value when the sorting block has changed"
 	

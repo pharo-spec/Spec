@@ -53,6 +53,20 @@ ButtonPresenterTest >> testAskBeforeChanging [
 ]
 
 { #category : #tests }
+ButtonPresenterTest >> testContextMenu [
+	| menu changed |
+	
+	self assert: presenter contextMenu isNil.
+	menu := MenuPresenter new.
+	changed := false.
+	presenter whenMenuChangedDo: [ 
+		changed := true. ].
+	presenter contextMenu: menu.
+	self assert: presenter contextMenu equals: menu.
+	self assert: changed
+]
+
+{ #category : #tests }
 ButtonPresenterTest >> testEnabled [
 	self assert: presenter isEnabled.
 	self openInstance.

@@ -89,6 +89,20 @@ AbstractListPresenterTest >> testActivationWithoutActivationBlockDoesNothing [
 ]
 
 { #category : #tests }
+AbstractListPresenterTest >> testContextMenu [
+	| menu changed |
+	
+	self assert: presenter contextMenu isNil.
+	menu := MenuPresenter new.
+	changed := false.
+	presenter whenMenuChangedDo: [ 
+		changed := true. ].
+	presenter contextMenu: menu.
+	self assert: presenter contextMenu equals: menu.
+	self assert: changed
+]
+
+{ #category : #tests }
 AbstractListPresenterTest >> testReplaceItemList [
 	| changed |
 

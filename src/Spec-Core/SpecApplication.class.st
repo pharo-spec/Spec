@@ -34,6 +34,22 @@ SpecApplication >> adapterBindings [
 	^ self backend adapterBindings
 ]
 
+{ #category : #'private showing' }
+SpecApplication >> announceWindowBuilt: window to: aPresenter [
+	"announce window was built as a widget"
+
+	window announcer
+		announce: (WidgetBuilt model: window widget: window adapter).
+
+	"announce window was built to its root presenter"
+	aPresenter announcer
+		announce:
+			(WindowBuilt new
+				model: window;
+				window: window;
+				yourself)
+]
+
 { #category : #accessing }
 SpecApplication >> backend [
 
@@ -102,10 +118,7 @@ SpecApplication >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowCl
 	window openWithSpecLayout: aSpecLayout.
 	self windows add: window.
 	
-	aPresenter announcer announce: (WindowBuilt new 
-		model: window;
-		window: window;
-		yourself).
+	self announceWindowBuilt: window to: aPresenter.
 
 	^ window
 ]
@@ -152,6 +165,13 @@ SpecApplication >> start [
 SpecApplication >> useBackend: aName [
 
 	backend := SpecApplicationBackend findBackendNamed: aName
+]
+
+{ #category : #accessing }
+SpecApplication >> useBackend: aName with: aConfiguration [
+
+	self useBackend: aName.
+	aConfiguration configure: self
 ]
 
 { #category : #'private showing' }

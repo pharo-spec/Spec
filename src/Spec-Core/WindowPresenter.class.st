@@ -445,6 +445,7 @@ WindowPresenter >> window: aWindow [
 
 { #category : #updating }
 WindowPresenter >> windowIsClosing [
+	
 	isClosedHolder value: true.
 	self presenter windowIsClosing
 ]
