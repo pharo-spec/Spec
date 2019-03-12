@@ -17,7 +17,17 @@ TreeTableAdapterSingleColumnMultiSelectionTest >> initializeTestedInstance [
 ]
 
 { #category : #running }
+TreeTableAdapterSingleColumnMultiSelectionTest >> testSelecting2ElementsUpdatesThePresenterCorrectly [
+
+
+]
+
+{ #category : #running }
 TreeTableAdapterSingleColumnMultiSelectionTest >> testSelectingAPathUpdatesSelectionInPresenter [
 
-	self skip
+	self presenter selection 
+		selectedPath: #(1 2);
+		selectedPath: #(2 3).
+		
+	self assert: self adapter selectedPaths asArray equals: #(#(1 2) (2 3))
 ]

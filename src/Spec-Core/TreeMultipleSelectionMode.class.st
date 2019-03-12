@@ -4,6 +4,12 @@ Class {
 	#category : #'Spec-Core-Widgets-Tree'
 }
 
+{ #category : #testing }
+TreeMultipleSelectionMode >> isMultipleSelection [
+
+	^ true
+]
+
 { #category : #accessing }
 TreeMultipleSelectionMode >> presenter: aTreeTablePresenter [ 
 

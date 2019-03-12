@@ -10,6 +10,12 @@ Class {
 }
 
 { #category : #accessing }
+MorphicTreeTableDataSource >> allShownItems [
+
+	^ rootItem children flatCollect: [ :e | e withExpandedChildren ].
+]
+
+{ #category : #accessing }
 MorphicTreeTableDataSource >> cellColumn: column row: rowIndex [
 	| cell builder item |
 	
@@ -47,9 +53,7 @@ MorphicTreeTableDataSource >> headerColumn: column [
 { #category : #accessing }
 MorphicTreeTableDataSource >> indexOfItem: anItem [ 
 	
-	| allItems |
-	allItems := rootItem children flatCollect: [ :e | e withExpandedChildren ].
-	^ allItems indexOf: anItem
+	^ self allShownItems indexOf: anItem
 ]
 
 { #category : #testing }
@@ -79,6 +83,32 @@ MorphicTreeTableDataSource >> itemAtPath: aPath expanding: shouldExpandItems [
 	].
 
 	^ item
+]
+
+{ #category : #paths }
+MorphicTreeTableDataSource >> pathFromIndex: anInteger [ 
+	
+	| item |
+	
+	item := self allShownItems at: anInteger.
+	
+	^ self pathOfItem: item root: rootItem
+]
+
+{ #category : #accessing }
+MorphicTreeTableDataSource >> pathOfItem: anItem root: aRoot [ 
+	
+	aRoot isExpanded ifFalse: [ ^#() ].
+	
+	(aRoot children includes: anItem)
+		ifTrue: [ ^ { aRoot children indexOf: anItem } ].
+		
+	aRoot children withIndexDo: [ :aChild :index | | aSubPath |
+		aSubPath := self pathOfItem: anItem root: aChild.
+		aSubPath ifNotEmpty: [ ^ { index } , aSubPath ] 
+	].
+	
+	^ #().
 ]
 
 { #category : #accessing }

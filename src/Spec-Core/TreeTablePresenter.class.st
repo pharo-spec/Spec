@@ -42,7 +42,7 @@ TreeTablePresenter >> beMultipleSelection [
 								copyFrom: selection;
 								yourself.
 	
-	selection := newSelectionMode.
+	selection value: newSelectionMode.
 ]
 
 { #category : #api }
@@ -117,7 +117,7 @@ TreeTablePresenter >> initialize [
 	showColumnHeadersHolder := true asValueHolder.
 	columns := #() asValueHolder.
 	isResizableHolder := false asValueHolder.
-	selection := TreeSingleSelectionMode on: self.
+	selection := (TreeSingleSelectionMode on: self) asValueHolder.
 	childrenBlock :=  [ :item | #() ].
 	
 	rootsHolder := #() asValueHolder.
@@ -175,19 +175,19 @@ TreeTablePresenter >> roots [
 TreeTablePresenter >> roots: aCollection [
 
 	rootsHolder value: aCollection.
-	selection clearSelection
+	self selection clearSelection
 ]
 
 { #category : #api }
 TreeTablePresenter >> selectedItem [
 	
-	^ selection selectedItem
+	^ self selection selectedItem
 ]
 
 { #category : #accessing }
 TreeTablePresenter >> selection [
 	
-	^ selection
+	^ selection value
 ]
 
 { #category : #api }
@@ -205,6 +205,12 @@ TreeTablePresenter >> whenColumnsChangedDo: aBlockClosure [
 { #category : #'api-events' }
 TreeTablePresenter >> whenIsResizableChangedDo: aBlock [
 	isResizableHolder whenChangedDo: aBlock
+]
+
+{ #category : #accessing }
+TreeTablePresenter >> whenMultiSelectionChangedDo: aBlockClosure [ 
+	
+	selection whenChangedDo: aBlockClosure 
 ]
 
 { #category : #'API - events' }
@@ -228,7 +234,7 @@ TreeTablePresenter >> whenSelectedItemChangedDo: aBlockClosure [
 { #category : #'api-events' }
 TreeTablePresenter >> whenSelectionChangedDo: aBlockClosure [ 
 	
-	selection whenChangedDo: [ aBlockClosure cull: selection ]
+	self selection whenChangedDo: [ aBlockClosure cull: selection ]
 ]
 
 { #category : #'api - events' }
