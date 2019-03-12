@@ -40,7 +40,7 @@ AthensStaticPresenterTests >> testDrawedBlackSquareIsActuallyBlack [
 	self adapter redraw.
 	form := self adapter surface asForm.
 	self assert: (form colorAt: 0 @ 0) equals: Color transparent.
-	self assert: (form colorAt: 100 @ 100) equals: Color black
+	self assert: (form colorAt: 100 @ 100) equals: Color black.
 ]
 
 { #category : #accessing }
