@@ -1,6 +1,8 @@
 Class {
 	#name : #AthensStaticPresenter,
 	#superclass : #AbstractWidgetPresenter,
+	#traits : 'TSpecObservable',
+	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
 		'#drawBlock => SpecObservableSlot'
 	],
@@ -13,14 +15,14 @@ AthensStaticPresenter class >> adapterName [
 ]
 
 { #category : #initialization }
-AthensStaticPresenter >> drawBlock: aBlock [
-	drawBlock := aBlock.
-	
+AthensStaticPresenter >> drawBlock [
+	^ drawBlock
 ]
 
 { #category : #initialization }
-AthensStaticPresenter >> drawsBlock [
-	^ drawBlock
+AthensStaticPresenter >> drawBlock: aBlock [
+	drawBlock := aBlock.
+	
 ]
 
 { #category : #initialization }
@@ -28,4 +30,9 @@ AthensStaticPresenter >> initialize [
 	self class initializeSlots: self.
 	super initialize.
 	
+]
+
+{ #category : #'API -Events' }
+AthensStaticPresenter >> whenDrawBlockChangedDo: aBlockClosure [ 
+	self property: #drawBlock whenChangedDo: aBlockClosure 
 ]

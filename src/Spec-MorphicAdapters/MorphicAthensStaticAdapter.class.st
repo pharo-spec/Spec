@@ -6,6 +6,15 @@ Class {
 
 { #category : #factory }
 MorphicAthensStaticAdapter >> buildWidget [
-	
-	^ SpecAthensMorph new 
+	| instance |
+	instance := SpecAthensMorph new.
+	self presenter
+		whenDrawBlockChangedDo: [ :newBlock | instance drawBlock: newBlock ].
+	instance drawBlock: self presenter drawBlock.
+	^ instance
+]
+
+{ #category : #drawing }
+MorphicAthensStaticAdapter >> redraw [
+	widget redraw
 ]
