@@ -10,6 +10,9 @@ MorphicAthensStaticAdapter >> buildWidget [
 	instance := SpecAthensMorph new.
 	self presenter
 		whenDrawBlockChangedDo: [ :newBlock | instance drawBlock: newBlock ].
+	self presenter
+		whenExtentChangedDo: [ : newExtent | instance extent: newExtent ].
+	instance extent: self presenter surfaceExtent.
 	instance drawBlock: self presenter drawBlock.
 	instance setBalloonText: self model help.
 	self presenter

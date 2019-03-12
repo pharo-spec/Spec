@@ -24,7 +24,8 @@ AthensStaticPresenterTests >> classToTest [
 
 { #category : #accessing }
 AthensStaticPresenterTests >> initializeTestedInstance [
-	presenter drawBlock: [ "nothing to do" ]
+	presenter drawBlock: [ "nothing to do" ].
+	presenter surfaceExtent: 800@600
 ]
 
 { #category : #accessing }
