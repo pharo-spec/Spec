@@ -19,6 +19,16 @@ AbstractListAdapterMultipleSelectionTest >> initializeTestedInstance [
 		items: #(10 20 30)
 ]
 
+{ #category : #tests }
+AbstractListAdapterMultipleSelectionTest >> newTestMenu [
+]
+
+{ #category : #tests }
+AbstractListAdapterMultipleSelectionTest >> testContextMenu [
+
+	presenter contextMenu: self newTestMenu
+]
+
 { #category : #'tests-model-to-widget' }
 AbstractListAdapterMultipleSelectionTest >> testSelectManyIndexesKeepsAllSelected [
 	presenter selectIndex: 1.

@@ -8,12 +8,12 @@ Class {
 		'filteringBlockHolder',
 		'autoDeselect',
 		'itemFilterBlockHolder',
-		'menuHolder',
 		'allowToSelect',
 		'doubleClickActionHolder',
 		'activationBlock',
 		'activateOnSingleClick',
-		'model'
+		'model',
+		'contextMenuHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -66,6 +66,20 @@ AbstractListPresenter >> clickAtIndex: anIndex [
 AbstractListPresenter >> clickItem: anInteger [ 
 	
 	self selectIndex: anInteger
+]
+
+{ #category : #api }
+AbstractListPresenter >> contextMenu [
+	"Return the block used to defined the menu"
+	
+	^ contextMenuHolder value
+]
+
+{ #category : #api }
+AbstractListPresenter >> contextMenu: aValuable [
+	"Set the block used to defined the menu"
+	
+	contextMenuHolder value: aValuable
 ]
 
 { #category : #initialization }
@@ -152,7 +166,7 @@ AbstractListPresenter >> initializeValueHolders [
 	filteringBlockHolder := self defaultFilteringBlock asValueHolder.
 	itemFilterBlockHolder := nil asValueHolder.
 	doubleClickActionHolder := [ ] asValueHolder.
-	menuHolder := [ :menu :shifted | nil ] asValueHolder.
+	contextMenuHolder := nil asValueHolder.
 	allowToSelect := true asValueHolder.
 	autoDeselect := true asValueHolder
 ]
@@ -229,25 +243,32 @@ AbstractListPresenter >> listSize [
 
 { #category : #api }
 AbstractListPresenter >> menu [
-	"<api: #inspect>"
 	"Return the block used to defined the menu"
+	self 
+		deprecated: 'Use #contextMenu instead.' 
+		transformWith: '`@receiver menu' 
+						-> '`@receiver contextMenu'.
 	
-	^ menuHolder value
+	^ self contextMenu
 ]
 
 { #category : #api }
 AbstractListPresenter >> menu: aBlock [
-	"<api: #block getter: #menu registration: #whenMenuChanged:>"
 	"Set the block used to defined the menu"
 	
-	menuHolder value: aBlock
+	self 
+		deprecated: 'Use #contextMenu: instead' 
+		on: '2019-03-07' 
+		in: #Pharo8.
+	self contextMenu: [ aBlock cull: nil cull: false ]
 ]
 
 { #category : #private }
 AbstractListPresenter >> menu: aMenu shifted: aBoolean [
 	"Build the menu when you right click on an item"
 
-	^ menuHolder value 
+	self halt.
+	^ contextMenuHolder value 
 		cull: aMenu 
 		cull: aBoolean
 ]
@@ -285,6 +306,7 @@ AbstractListPresenter >> registerEvents [
 AbstractListPresenter >> rightClickAtIndex: anIndex [
 	
 	self clickItem: anIndex.
+	self halt.
 	^ self menu: nil shifted: false
 ]
 
@@ -379,6 +401,13 @@ AbstractListPresenter >> unselectItem: anInteger [
 AbstractListPresenter >> whenActivatedDo: aBlockClosure [ 
 	
 	activationBlock := aBlockClosure.
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> whenMenuChangedDo: aBlock [
+	"Set a block to value when the menu block has changed"
+	
+	contextMenuHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

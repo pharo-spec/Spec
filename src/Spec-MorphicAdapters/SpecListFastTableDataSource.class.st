@@ -48,10 +48,13 @@ SpecListFastTableDataSource >> listModel [
 
 { #category : #accessing }
 SpecListFastTableDataSource >> menuColumn: column row: rowIndex [
-	| menu menuPresenter |
-	menu := UIManager default newMenuIn: self table for: self model.
-	menuPresenter := self model menu: menu shifted: false.
-	^ menuPresenter
+	| menuPresenter |
+	
+	menuPresenter := self model contextMenu.
+	menuPresenter ifNil: [ ^ self ].
+	^ SpecBindings
+		value: self model application adapterBindings
+		during: [ menuPresenter buildWithSpec ]
 ]
 
 { #category : #accessing }

@@ -116,17 +116,11 @@ DropListAdapterTest >> testSelectionStartsSelectingFirst [
 
 { #category : #accessing }
 DropListAdapterTest >> testSettingNilResetsGeneratesEvent [
-
 	| changed |
-	
 	self presenter selectedItem: 10.
-	
-	self presenter whenSelectionChanged: [ changed := true ].
-
+	self presenter whenSelectionChangedDo: [ changed := true ].
 	self presenter selectedItem: nil.
-
 	self assert: changed
-	
 ]
 
 { #category : #accessing }

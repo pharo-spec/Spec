@@ -103,7 +103,7 @@ SpecDemoListsPresenter >> initializeWidgets [
 		itemFilterBlock: [ :item :string | item asString includesSubstring: string ];
 		icons: [ :elem | self iconFor: elem ].
 	label label: 'No selection'.
-	multiLabel label: 'Not multi selection (from list 2 only)'
+	multiLabel label: 'Not multi selection (from list 2 only)'.
 ]
 
 { #category : #accessing }
