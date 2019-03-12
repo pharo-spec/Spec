@@ -411,28 +411,28 @@ MessageBrowser >> handleMethodModified: anAnnouncement [
 { #category : #announcements }
 MessageBrowser >> handleMethodRemoved: anAnnouncement [
 	| item selection removeItem |
-	
-	self isDisplayed ifFalse: [ ^ self ].
+	self isDisplayed
+		ifFalse: [ ^ self ].
 	refreshingBlockHolder ifNil: [ ^ self ].
-	self okToChange ifFalse: [ ^ self ].
-	
+	self okToChange
+		ifFalse: [ ^ self ].
+
 	"Item is a compiled methed, where the list is populated with RGMethod"
-	item := anAnnouncement method.	
+	item := anAnnouncement method.
 	(item methodClass notNil and: [ item methodClass isObsolete not ])
 		ifFalse: [ ^ self ].
-		
-	selection := listModel selectedIndex.
-	removeItem := listModel selectedItem.
-	(removeItem notNil 
+	selection := listModel selection selectedIndex.
+	removeItem := listModel selection selectedItem.
+	(removeItem notNil
 		and: [ removeItem methodClass = item methodClass
-		and: [ removeItem selector = item selector ] ])
+				and: [ removeItem selector = item selector ] ])
 		ifTrue: [ textModel hasUnacceptedEdits: false ].
-	
-	self messages: (listModel listItems
-		remove: item asFullRingDefinition ifAbsent: [ nil ];
-		yourself).
-
-	listModel selectedIndex: selection
+	self
+		messages:
+			(listModel model shownItems
+				remove: item asFullRingDefinition ifAbsent: [ nil ];
+				yourself).
+	listModel selectIndex: selection
 ]
 
 { #category : #private }
@@ -705,23 +705,26 @@ MessageBrowser >> selectedClass [
 
 { #category : #accessing }
 MessageBrowser >> selectedItem [
+
 	^ listModel selection selectedItem
 ]
 
 { #category : #api }
 MessageBrowser >> selectedMessage [
+
 	^ listModel selection selectedItem
 ]
 
 { #category : #api }
 MessageBrowser >> selectedMessage: aMessage [
 
-	listModel setSelectedItem: aMessage.
+	listModel selectItem: aMessage.
 ]
 
 { #category : #accessing }
 MessageBrowser >> selectedMethod [
-	self selectedMessage ifNil: [ ^nil ].
+
+	self selectedMessage ifNil: [ ^ nil ].
 	^ self selectedMessage compiledMethod
 ]
 

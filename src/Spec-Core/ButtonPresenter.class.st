@@ -29,8 +29,8 @@ Class {
 		'actionPerformedHolder',
 		'askBeforeChangingHolder',
 		'iconHolder',
-		'menuHolder',
-		'shortcutHolder'
+		'shortcutHolder',
+		'contextMenuHolder'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -111,6 +111,18 @@ ButtonPresenter >> click [
 	^ self performAction
 ]
 
+{ #category : #api }
+ButtonPresenter >> contextMenu [
+		
+	^ contextMenuHolder value
+]
+
+{ #category : #api }
+ButtonPresenter >> contextMenu: aMenu [
+		
+	contextMenuHolder value: aMenu
+]
+
 { #category : #'private-focus' }
 ButtonPresenter >> ensureKeyBindingsFor: widget [
 
@@ -180,10 +192,10 @@ ButtonPresenter >> initialize [
 		self registerShortcut: newShortcut.
 		self changed: #label ].
 	
-	menuHolder := MenuPresenter new asValueHolder.	
-	menuHolder whenChangedDo: [ :aMenuModel :oldMenu | 
+	contextMenuHolder := nil asValueHolder.	
+	"contextMenuHolder whenChangedDo: [ :aMenuModel :oldMenu | 
 		(oldMenu isNil or: [ oldMenu isBlock ]) ifFalse: [ oldMenu neglect: self ].
-		(aMenuModel isNil or: [ aMenuModel isBlock ]) ifFalse: [ aMenuModel applyTo: self ] ].
+		(aMenuModel isNil or: [ aMenuModel isBlock ]) ifFalse: [ aMenuModel applyTo: self ] ]."
 		
 	self bindKeyCombination: Character space toAction: [ self action ].
 	
@@ -207,13 +219,23 @@ ButtonPresenter >> label: aStringOrImageMorph [
 { #category : #api }
 ButtonPresenter >> menu [
 
-	^ menuHolder value
+	self 
+		deprecated: 'Use #contextMenu instead.' 
+		transformWith: '`@receiver menu' 
+						-> '`@receiver contextMenu'.
+
+	^ self contextMenu
 ]
 
 { #category : #api }
 ButtonPresenter >> menu: aMenu [
 
-	menuHolder value: aMenu
+	self 
+		deprecated: 'Use #contextMenu instead.' 
+		transformWith: '`@receiver menu: `@argument' 
+						-> '`@receiver contextMenu: `@argument'.
+		
+	self contextMenu: aMenu
 ]
 
 { #category : #morphic }
@@ -316,6 +338,12 @@ ButtonPresenter >> whenLabelChangedDo: aBlock [
 	"set a block to perform after that the button has been aclicked, and its action performed"
 
 	labelHolder whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+ButtonPresenter >> whenMenuChangedDo: aBlock [
+ 
+	contextMenuHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

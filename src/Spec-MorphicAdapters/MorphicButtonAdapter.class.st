@@ -50,8 +50,8 @@ MorphicButtonAdapter >> buildWidget [
 				getState: #state 
 				action:  #action 
 				label: #label 
-				menu: nil. 	
-	
+				menu: #menu:.
+
 	button 
 		getEnabledSelector: #enabled ;
 		getFontSelector: #font ;
@@ -102,7 +102,7 @@ MorphicButtonAdapter >> icon [
 ]
 
 { #category : #'menus support' }
-MorphicButtonAdapter >> isSelected: aBooolan [
+MorphicButtonAdapter >> isSelected: aBooolean [
 ]
 
 { #category : #'widget API' }
@@ -117,11 +117,13 @@ MorphicButtonAdapter >> label [
 
 { #category : #'widget API' }
 MorphicButtonAdapter >> menu: aMenu [
-	| menuModel |
-	
-	menuModel := self model menu.
-	menuModel isBlock ifTrue: [ menuModel := menuModel value ].
-	^ menuModel buildWithSpec
+	| menuPresenter |
+
+	menuPresenter := self model contextMenu.
+	menuPresenter ifNil: [ ^ nil ].
+	^ SpecBindings
+		value: self model application adapterBindings
+		during: [ menuPresenter buildWithSpec ]
 ]
 
 { #category : #emulating }
@@ -156,18 +158,20 @@ MorphicButtonAdapter >> setWidgetColor: button [
 
 { #category : #'widget API' }
 MorphicButtonAdapter >> showSubMenuIfPresent [
-
-	self model menu ifNotNil: [
-		self model menu menuGroups isEmpty ifFalse: [ 
-			subMenuWidget ifNotNil: [ 
-				subMenuWidget delete.
-				subMenuWidget := nil. ].
-			subMenuWidget := (MorphicMenuAdapter adaptAsPopup: self model menu) widget.
-			subMenuWidget
-				popUpAdjacentTo: {self widget bounds bottomLeft. self widget bounds bottomRight}
-				forHand: ActiveHand
-				from: self widget.
-			subMenuWidget popUpOwner: self ] ].
+	self model contextMenu
+		ifNotNil: [ self model menu menuGroups isEmpty
+				ifFalse: [ subMenuWidget
+						ifNotNil: [ subMenuWidget delete.
+							subMenuWidget := nil ].
+					subMenuWidget := (MorphicMenuAdapter
+						adaptAsPopup: self model menu) widget.
+					subMenuWidget
+						popUpAdjacentTo:
+							{self widget bounds bottomLeft.
+							self widget bounds bottomRight}
+						forHand: ActiveHand
+						from: self widget.
+					subMenuWidget popUpOwner: self ] ]
 ]
 
 { #category : #'widget API' }

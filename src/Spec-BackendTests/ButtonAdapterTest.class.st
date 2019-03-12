@@ -28,6 +28,7 @@ ButtonAdapterTest >> testChangingLabelAffectTheWidget [
 { #category : #running }
 ButtonAdapterTest >> testClickExecuteAction [
 	| actionExecuted |	
+
 	actionExecuted := false.
 	presenter action: [ actionExecuted := true].
 
@@ -65,6 +66,16 @@ ButtonAdapterTest >> testRightClickShouldNotExecuteAction [
 
 	self emulateRightClick.
 	self deny: actionExecuted
+]
+
+{ #category : #running }
+ButtonAdapterTest >> testRightClickShowsMenu [
+	| menu |
+
+	presenter contextMenu: (menu := SpecMockMenuPresenter new).
+	self deny: menu shown.
+	self emulateRightClick.
+	self assert: menu shown
 ]
 
 { #category : #running }

@@ -4,7 +4,7 @@ I am the adapter used to bridge a ListPresenter and a PluggableListMorph
 Class {
 	#name : #MorphicListAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #'Spec-MorphicAdapters-Base'
+	#category : #'Spec-MorphicAdapters-List'
 }
 
 { #category : #'widget API' }
@@ -44,12 +44,7 @@ MorphicListAdapter >> buildWidget [
 		dataSource: datasource;
 		hideColumnHeaders;
 		beResizable;
-		columns:
-			{(MorphicTableColumn
-				on:
-					(StringTableColumn
-						title: self presenter headerTitle
-						evaluated: self presenter displayBlock)) yourself};
+		columns: { self newListColumn };
 		setMultipleSelection: self model isMultipleSelection;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
@@ -112,11 +107,14 @@ MorphicListAdapter >> listSize [
 	^ self model listSize
 ]
 
-{ #category : #'widget API' }
-MorphicListAdapter >> menu: aMenu shifted: aBoolean [
-
-	^ (self model menu: aMenu shifted: aBoolean) 
-		
+{ #category : #factory }
+MorphicListAdapter >> newListColumn [
+	
+	^ MorphicTableColumn new 
+		model: (StringTableColumn
+			title: self presenter headerTitle
+			evaluated: self presenter displayBlock);
+		yourself
 ]
 
 { #category : #'widget API' }

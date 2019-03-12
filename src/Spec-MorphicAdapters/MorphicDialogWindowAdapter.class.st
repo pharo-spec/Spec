@@ -13,8 +13,9 @@ MorphicDialogWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpe
 	 status bar at the end (where it belongs)"
 
 	super addPresenterIn: widgetToBuild withSpecLayout: aSpec.
-		
-	widgetToBuild setToolbarFrom: [ self buildButtonBar ]
+	
+	self model buttons ifNotEmpty: [ 	
+		widgetToBuild setToolbarFrom: [ self buildButtonBar ] ]
 ]
 
 { #category : #factory }
