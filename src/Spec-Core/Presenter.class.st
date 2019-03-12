@@ -399,8 +399,8 @@ Presenter >> withAdapterDo: aValuable [
 { #category : #'private utils' }
 Presenter >> withWidgetDo: aValuable [
 	"a convenience method to avoid verify by nil all the time"
-	
-	^ self widget ifNotNil: aValuable
+
+	^ self adapter ifNotNil: aValuable
 ]
 
 { #category : #'private utils' }
