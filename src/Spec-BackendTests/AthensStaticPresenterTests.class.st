@@ -29,25 +29,11 @@ AthensStaticPresenterTests >> initializeTestedInstance [
 ]
 
 { #category : #accessing }
-AthensStaticPresenterTests >> testDrawedBlackSquareIsActuallyBlack [
-	| form |
-	self presenter
-		drawBlock: [ :canvas | 
-			canvas
-				setPaint: Color black;
-				setShape: (self circle: canvas surface);
-				draw ].
-	self adapter redraw.
-	form := self adapter surface asForm.
-	self assert: (form colorAt: 0 @ 0) equals: Color transparent.
-	self assert: (form colorAt: 100 @ 100) equals: Color black.
-]
-
-{ #category : #accessing }
 AthensStaticPresenterTests >> testPresentersBlockReceivesAthensCanvas [
 	| receivedCanvas |
 	self presenter drawBlock: [ :canvas | receivedCanvas := canvas ].
 	self adapter redraw.
+	self openInstance .
 	self assert: receivedCanvas isNotNil.
 	self assert: (receivedCanvas isKindOf: AthensCanvas)
 ]
