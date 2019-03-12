@@ -164,7 +164,7 @@ SpecApplication >> validateApplicationOfPresenter: aPresenter [
 { #category : #windows }
 SpecApplication >> windowClosed: aWindowPresenter [
 	
-	self windows remove: aWindowPresenter
+	self windows remove: aWindowPresenter ifAbsent: [  ]
 ]
 
 { #category : #accessing }
