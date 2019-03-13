@@ -16,26 +16,24 @@ AthensAnimatedPresenter class >> adapterName [
 ]
 
 { #category : #initialization }
-AthensAnimatedPresenter >> drawBlock: aBlock [
-	super drawBlock: [ : canvas | 
-		self updateModelToMoment: timeline ticks.
-		aBlock cull: canvas.	
-	 ]
-	
-]
-
-{ #category : #initialization }
 AthensAnimatedPresenter >> initialize [
 	self class initializeSlots: self.
 	super initialize.
 	updateBlock := [  ].
-	timeline := Timeline new.
-	timeline whenTickDo: [ :tick | self updatePresenter ]
+	self timeline: Timeline new.
 ]
 
 { #category : #initialization }
 AthensAnimatedPresenter >> tick [
 	timeline tick
+]
+
+{ #category : #initialization }
+AthensAnimatedPresenter >> timeline: aTimeline [
+	self flag: #comment.
+	" Should check what happens if there is arleady a timeline in use "
+	timeline := aTimeline.
+	timeline whenTickDo: [ :tick | self updateModelToMoment: tick ]
 ]
 
 { #category : #initialization }
@@ -51,5 +49,5 @@ AthensAnimatedPresenter >> updateBlock: aBlock [
 { #category : #initialization }
 AthensAnimatedPresenter >> updateModelToMoment: aTick [
 	updateBlock cull: aTick.
-	
+	self adapter ifNotNil: [ self adapter updateModelToMoment: aTick]
 ]

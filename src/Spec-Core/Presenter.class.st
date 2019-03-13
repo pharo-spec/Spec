@@ -105,7 +105,7 @@ Presenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	"I assume the SpecBindings is well defined"
 	| newAdapter |
 
-	newAdapter := aSpecLayout buildAdapterFor: self bindings: SpecBindings value.
+	newAdapter := aSpecLayout buildAdapterFor: self bindings: SpecBindings resetSoleInstance value.
 	"self setExtentAndBindingTo: newAdapter widget."
 	self announcer announce: (WidgetBuilt 
 		model: self 
