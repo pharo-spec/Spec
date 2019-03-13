@@ -10,6 +10,11 @@ Class {
 	#category : #'Spec-Core-Widgets-Athens'
 }
 
+{ #category : #specs }
+AthensAnimatedPresenter class >> adapterName [
+	^ #AthensAnimatedAdapter
+]
+
 { #category : #initialization }
 AthensAnimatedPresenter >> drawBlock: aBlock [
 	super drawBlock: [ : canvas | 
@@ -45,5 +50,6 @@ AthensAnimatedPresenter >> updateBlock: aBlock [
 
 { #category : #initialization }
 AthensAnimatedPresenter >> updateModelToMoment: aTick [
-	updateBlock cull: aTick
+	updateBlock cull: aTick.
+	
 ]
