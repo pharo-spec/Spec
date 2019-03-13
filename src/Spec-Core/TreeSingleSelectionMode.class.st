@@ -5,6 +5,12 @@ Class {
 }
 
 { #category : #accessing }
+TreeSingleSelectionMode >> isMultipleSelection [
+
+	^ false
+]
+
+{ #category : #accessing }
 TreeSingleSelectionMode >> presenter: aTreeTablePresenter [ 
 
 	presenter := aTreeTablePresenter

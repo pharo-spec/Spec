@@ -9,14 +9,16 @@ self example
 Class {
 	#name : #TreeTablePresenter,
 	#superclass : #AbstractWidgetPresenter,
+	#traits : 'TSpecObservable',
+	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
-		'columns',
-		'showColumnHeadersHolder',
-		'isResizableHolder',
-		'selection',
-		'doubleClickActionHolder',
-		'rootsHolder',
-		'childrenBlock'
+		'#columns',
+		'#showColumnHeaders => SpecObservableSlot',
+		'#isResizable => SpecObservableSlot',
+		'#selection => SpecObservableSlot',
+		'#doubleClickAction => SpecObservableSlot',
+		'#roots => SpecObservableSlot',
+		'#childrenBlock'
 	],
 	#category : #'Spec-Core-Widgets-Tree'
 }
@@ -88,56 +90,59 @@ TreeTablePresenter >> columns: aCollection [
 { #category : #private }
 TreeTablePresenter >> doubleClickAction [
 
-	^ doubleClickActionHolder value
+	^ doubleClickAction
 ]
 
 { #category : #'api-events' }
 TreeTablePresenter >> doubleClickAction: aBlockClosure [ 
 	
-	doubleClickActionHolder value: aBlockClosure
+	doubleClickAction := aBlockClosure
 ]
 
 { #category : #simulation }
 TreeTablePresenter >> doubleClickAtIndex: anInteger [ 
 	
 	self selectedIndex: anInteger.
-	doubleClickActionHolder value cull: anInteger
+	doubleClickAction cull: anInteger
 ]
 
 { #category : #api }
 TreeTablePresenter >> hideColumnHeaders [
 
-	showColumnHeadersHolder value: false
+	showColumnHeaders := false
 ]
 
 { #category : #initialization }
 TreeTablePresenter >> initialize [
 
 	super initialize.
-	showColumnHeadersHolder := true asValueHolder.
+	self class initializeSlots: self.
+
+	showColumnHeaders := true.
 	columns := #() asValueHolder.
-	isResizableHolder := false asValueHolder.
+	isResizable := false.
 	selection := TreeSingleSelectionMode on: self.
 	childrenBlock :=  [ :item | #() ].
 	
-	rootsHolder := #() asValueHolder.
+	roots := #().
+
 
 ]
 
 { #category : #accessing }
 TreeTablePresenter >> isResizable [
-	^ isResizableHolder value
+	^ isResizable
 ]
 
 { #category : #accessing }
 TreeTablePresenter >> isResizable: aBoolean [
-	isResizableHolder value: aBoolean
+	isResizable := aBoolean
 ]
 
 { #category : #testing }
 TreeTablePresenter >> isShowingColumnHeaders [
 
-	^ showColumnHeadersHolder value
+	^ showColumnHeaders
 ]
 
 { #category : #private }
@@ -168,32 +173,32 @@ TreeTablePresenter >> itemAtPath: anArray [
 { #category : #accessing }
 TreeTablePresenter >> roots [
 
-	^ rootsHolder value
+	^ roots
 ]
 
 { #category : #accessing }
 TreeTablePresenter >> roots: aCollection [
 
-	rootsHolder value: aCollection.
-	selection clearSelection
+	roots := aCollection.
+	self selection clearSelection
 ]
 
 { #category : #api }
 TreeTablePresenter >> selectedItem [
 	
-	^ selection selectedItem
+	^ self selection selectedItem
 ]
 
 { #category : #accessing }
 TreeTablePresenter >> selection [
 	
-	^ selection
+	^ selection value
 ]
 
 { #category : #api }
 TreeTablePresenter >> showColumnHeaders [
 
-	showColumnHeadersHolder value: true
+	showColumnHeaders := true
 ]
 
 { #category : #'api - events' }
@@ -204,13 +209,20 @@ TreeTablePresenter >> whenColumnsChangedDo: aBlockClosure [
 
 { #category : #'api-events' }
 TreeTablePresenter >> whenIsResizableChangedDo: aBlock [
-	isResizableHolder whenChangedDo: aBlock
+
+	self property: #isResizable whenChangedDo: aBlock
+]
+
+{ #category : #accessing }
+TreeTablePresenter >> whenMultiSelectionChangedDo: aBlockClosure [ 
+	
+	selection whenChangedDo: aBlockClosure 
 ]
 
 { #category : #'API - events' }
 TreeTablePresenter >> whenRootsChangedDo: aBlockClosure [ 
 
-	rootsHolder whenChangedDo: aBlockClosure
+	self property: #roots whenChangedDo: aBlockClosure
 ]
 
 { #category : #'api-events' }
@@ -228,11 +240,11 @@ TreeTablePresenter >> whenSelectedItemChangedDo: aBlockClosure [
 { #category : #'api-events' }
 TreeTablePresenter >> whenSelectionChangedDo: aBlockClosure [ 
 	
-	selection whenChangedDo: [ aBlockClosure cull: selection ]
+	self selection whenChangedDo: [ aBlockClosure cull: selection ]
 ]
 
 { #category : #'api - events' }
 TreeTablePresenter >> whenShowColumnHeadersChangedDo: aBlockClosure [ 
 	
-	showColumnHeadersHolder whenChangedDo: aBlockClosure 
+	self property: #showColumnHeaders whenChangedDo: aBlockClosure 
 ]

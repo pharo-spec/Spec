@@ -17,6 +17,10 @@ MorphicTreeTableAdapter >> addModelTo: tableMorph [
 		tableMorph addColumn: (self newColumnFrom: each) ].
 	self ensureAtLeastOneColumnIn: tableMorph.
 
+	self model selection isMultipleSelection ifTrue: [  
+		tableMorph beMultipleSelection.	
+	].
+
 	self isShowingColumnHeaders 
 		ifTrue: [ tableMorph showColumnHeaders ] 
 		ifFalse: [ tableMorph hideColumnHeaders ].
@@ -116,18 +120,20 @@ MorphicTreeTableAdapter >> rootForItems: aCollection [
 ]
 
 { #category : #selecting }
-MorphicTreeTableAdapter >> selectInto: aFTTableMorph path: aPath [ 
+MorphicTreeTableAdapter >> selectInto: aFTTableMorph paths: aCollectionOfPaths [ 
 	
-	| item index |
+	| indexes items |
 	
-	item := aFTTableMorph dataSource itemAtPath: aPath expanding: true.
-
-	item ifNil: [ aFTTableMorph selectIndex: 0. ^ self ].
+	items := aCollectionOfPaths collect: [ :aPath | | item |
+		item := aFTTableMorph dataSource itemAtPath: aPath expanding: true.
+		item 
+			ifNil: [ aFTTableMorph selectIndex: 0. ^ self ].
+		item].
 
 	aFTTableMorph refresh.
-	index := aFTTableMorph dataSource indexOfItem: item.
+	indexes := items collect: [:item | aFTTableMorph dataSource indexOfItem: item].
 
-	aFTTableMorph selectIndex: index.
+	aFTTableMorph selectIndexes: indexes.
 ]
 
 { #category : #accessing }
@@ -141,8 +147,14 @@ MorphicTreeTableAdapter >> selectedItem [
 	^ (self widget dataSource elementAt: selectedIndex) data
 ]
 
+{ #category : #accessing }
+MorphicTreeTableAdapter >> selectedPaths [
+	
+	^ self widget selectedIndexes collect: [ :e | self widget dataSource pathFromIndex: e  ] 
+]
+
 { #category : #selection }
 MorphicTreeTableAdapter >> updateSelectionOf: tableMorph [
-	self model selection selectedPaths
-		do: [ :selectedPath | self selectInto: tableMorph path: selectedPath ]
+	
+	self selectInto: tableMorph paths: self model selection selectedPaths
 ]

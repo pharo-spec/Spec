@@ -185,3 +185,9 @@ MorphicButtonAdapter >> unscaledInitialExtent [
 
 	^ 15@26
 ]
+
+{ #category : #updating }
+MorphicButtonAdapter >> updateMenu [
+	
+	"there is no need to updateMenu here because it will be resolved at #menu:"
+]
