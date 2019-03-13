@@ -4,10 +4,10 @@ Class {
 	#traits : 'TSpecObservable',
 	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
-		'ticks',
-		'highestValue',
-		'lowestValue',
-		'stepBy'
+		'#ticks => SpecObservableSlot',
+		'#highestValue',
+		'#lowestValue',
+		'#stepBy'
 	],
 	#category : #'Spec-Core-Widgets-Athens'
 }
