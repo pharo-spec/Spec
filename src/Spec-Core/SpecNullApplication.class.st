@@ -7,3 +7,9 @@ Class {
 	#superclass : #SpecApplication,
 	#category : #'Spec-Core-Base'
 }
+
+{ #category : #accessing }
+SpecNullApplication class >> reset [
+	
+	DefaultApplication := nil
+]
