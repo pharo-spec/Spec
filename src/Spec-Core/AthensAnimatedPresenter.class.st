@@ -10,11 +10,6 @@ Class {
 	#category : #'Spec-Core-Widgets-Athens'
 }
 
-{ #category : #specs }
-AthensAnimatedPresenter class >> adapterName [
-	^ #AthensAnimatedAdapter
-]
-
 { #category : #initialization }
 AthensAnimatedPresenter >> drawBlock: aBlock [
 	super drawBlock: [ : canvas | 
