@@ -1,6 +1,6 @@
 Class {
 	#name : #TextInputFieldAdapterTest,
-	#superclass : #AbstractAdapterTestCase,
+	#superclass : #AbstractWidgetAdapterTestCase,
 	#category : #'Spec-BackendTests'
 }
 

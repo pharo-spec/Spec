@@ -127,9 +127,9 @@ SpecApplication >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowCl
 SpecApplication >> openDialog: aPresenter [ 
 	
 	^ self 
-		open: aPresenter 
+		openDialog: aPresenter 
 		withSpecLayout: aPresenter defaultSpec
-		using: DialogWindowPresenter
+
 ]
 
 { #category : #showing }
@@ -139,6 +139,15 @@ SpecApplication >> openDialog: aPresenter withSpecLayout: aSpecLayout [
 		open: aPresenter 
 		withSpecLayout: aSpecLayout 
 		using: DialogWindowPresenter
+]
+
+{ #category : #showing }
+SpecApplication >> openModal: aPresenter [ 
+	
+	^ self 
+		openModal: aPresenter 
+		withSpecLayout: aPresenter defaultSpec
+
 ]
 
 { #category : #showing }

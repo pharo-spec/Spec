@@ -1,6 +1,6 @@
 Class {
 	#name : #AbstractListCommonPropertiestTest,
-	#superclass : #AbstractAdapterTestCase,
+	#superclass : #AbstractWidgetAdapterTestCase,
 	#category : #'Spec-BackendTests'
 }
 
