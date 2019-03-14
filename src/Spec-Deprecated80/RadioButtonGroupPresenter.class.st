@@ -35,7 +35,7 @@ Class {
 		'canDeselectByClick',
 		'currentActivated'
 	],
-	#category : #'Spec-Core-Widgets'
+	#category : #'Spec-Deprecated80'
 }
 
 { #category : #specs }
@@ -44,6 +44,12 @@ RadioButtonGroupPresenter class >> defaultSpec [
 	^ SpecLayout composed
 		newColumn: [ :column |  ];
 		yourself
+]
+
+{ #category : #specs }
+RadioButtonGroupPresenter class >> isDeprecated [
+
+	^ true
 ]
 
 { #category : #api }
@@ -156,11 +162,23 @@ RadioButtonGroupPresenter >> rebuildWidget [
 	self buildWithSpecLayout: self dynamicLayout
 ]
 
+{ #category : #'as yet unclassified' }
+RadioButtonGroupPresenter >> whenCanDeselectByClickChanged: aBlock [
+	self deprecated: 'Use #whenCanDeselectByClickChangedDo: instead.' transformWith: '`@receiver whenCanDeselectByClickChanged: `@statements' -> '`@receiver whenCanDeselectByClickChangedDo: `@statements'.
+	self whenCanDeselectByClickChangedDo: aBlock
+]
+
 { #category : #'api-events' }
 RadioButtonGroupPresenter >> whenCanDeselectByClickChangedDo: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	
 	canDeselectByClick whenChangedDo: aBlock
+]
+
+{ #category : #'as yet unclassified' }
+RadioButtonGroupPresenter >> whenCurrentActivatedChanged: aBlock [
+	self deprecated: 'Use #whenCurrentActivatedChangedDo: instead.' transformWith: '`@receiver whenCurrentActivatedChanged: `@statements' -> '`@receiver whenCurrentActivatedChangedDo: `@statements'.
+	self whenCurrentActivatedChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
