@@ -94,7 +94,7 @@ MorphicTableAdapter >> newDataSource [
 	^ SpecListFastTableDataSource new
 		model: self model;
 		yourself
-		
+
 ]
 
 { #category : #factory }
@@ -136,6 +136,21 @@ MorphicTableAdapter >> refreshWidgetSelection [
 	^ self widget refresh
 ]
 
+{ #category : #emulating }
+MorphicTableAdapter >> rightClicked [
+	| evt |
+
+	evt := MouseButtonEvent new 
+		setType: nil 
+		position: widget center 
+		which: MouseButtonEvent yellowButton 
+		buttons: MouseButtonEvent yellowButton 
+		hand: nil 
+		stamp: nil.
+	
+	self widget click: evt
+]
+
 { #category : #selection }
 MorphicTableAdapter >> selectIndex: anInteger [ 
 
@@ -168,4 +183,10 @@ MorphicTableAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
 	self presenter activatesOnDoubleClick
 		ifTrue: [ self presenter
 				doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex ]
+]
+
+{ #category : #updating }
+MorphicTableAdapter >> updateMenu [
+	
+	"there is no need to updateMenu here because it will be resolved at the dataSource"
 ]

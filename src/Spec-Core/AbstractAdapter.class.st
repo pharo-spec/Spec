@@ -146,6 +146,12 @@ AbstractAdapter >> removeSubWidgets [
 	self subclassResponsibility
 ]
 
+{ #category : #'as yet unclassified' }
+AbstractAdapter >> rightClicked [
+
+	self subclassResponsibility
+]
+
 { #category : #accessing }
 AbstractAdapter >> selector [
 	

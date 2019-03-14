@@ -181,22 +181,20 @@ ButtonPresenter >> initialize [
 	actionPerformedHolder := nil asValueHolder.
 	askBeforeChangingHolder := false asValueHolder.
 	shortcutHolder := nil asValueHolder.
+	contextMenuHolder := nil asValueHolder.	
 	
 	labelHolder whenChangedDo: [ self changed: #label ].
 	fontHolder whenChangedDo: [ self changed: #font ].
 	iconHolder whenChangedDo: [ self changed: #label ].
 	stateHolder whenChangedDo: [ self changed: #state ].
-	askBeforeChangingHolder whenChangedDo: [:newValue | self changed: { #askBeforeChanging: . newValue} ].
+	contextMenuHolder whenChangedDo: [ self withAdapterDo: #updateMenu ].
+	askBeforeChangingHolder whenChangedDo: [:newValue | 
+		self changed: { #askBeforeChanging: . newValue} ].
 	shortcutHolder whenChangedDo: [ :newShortcut :oldShortcut |
 		self unregisterShortcut: oldShortcut.
 		self registerShortcut: newShortcut.
 		self changed: #label ].
 	
-	contextMenuHolder := nil asValueHolder.	
-	"contextMenuHolder whenChangedDo: [ :aMenuModel :oldMenu | 
-		(oldMenu isNil or: [ oldMenu isBlock ]) ifFalse: [ oldMenu neglect: self ].
-		(aMenuModel isNil or: [ aMenuModel isBlock ]) ifFalse: [ aMenuModel applyTo: self ] ]."
-		
 	self bindKeyCombination: Character space toAction: [ self action ].
 	
 	self color: nil.

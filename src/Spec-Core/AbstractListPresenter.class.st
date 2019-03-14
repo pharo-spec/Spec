@@ -299,7 +299,9 @@ AbstractListPresenter >> registerEvents [
 	selectionMode whenChangedDo: [ :selection | 
 		self withAdapterDo: #refreshWidgetSelection ].
 	autoDeselect whenChangedDo: [ :aBoolean | 
-		self changed: #autoDeselect: with: { aBoolean }].
+		self changed: #autoDeselect: with: { aBoolean } ].
+	contextMenuHolder whenChangedDo: [ 
+		self withAdapterDo: #updateMenu ]
 ]
 
 { #category : #simulation }

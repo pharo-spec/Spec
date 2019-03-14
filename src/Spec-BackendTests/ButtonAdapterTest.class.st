@@ -61,6 +61,7 @@ ButtonAdapterTest >> testNoClickDoesNotExecuteAction [
 { #category : #running }
 ButtonAdapterTest >> testRightClickShouldNotExecuteAction [
 	| actionExecuted |
+
 	actionExecuted := false.
 	presenter action: [ actionExecuted := true.].
 

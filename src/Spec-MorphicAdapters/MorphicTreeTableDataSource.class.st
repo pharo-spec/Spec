@@ -6,6 +6,9 @@ I use a builder (MorphicTreeTableCellBuilder) to realise the cell content.
 Class {
 	#name : #MorphicTreeTableDataSource,
 	#superclass : #FTTreeDataSource,
+	#instVars : [
+		'model'
+	],
 	#category : #'Spec-MorphicAdapters-Table'
 }
 
@@ -83,6 +86,27 @@ MorphicTreeTableDataSource >> itemAtPath: aPath expanding: shouldExpandItems [
 	].
 
 	^ item
+]
+
+{ #category : #accessing }
+MorphicTreeTableDataSource >> menuColumn: column row: rowIndex [
+	| menuPresenter |
+
+	menuPresenter := self model contextMenu.
+	menuPresenter ifNil: [ ^ self ].
+	^ SpecBindings
+		value: self model application adapterBindings
+		during: [ menuPresenter value buildWithSpec ]
+]
+
+{ #category : #accessing }
+MorphicTreeTableDataSource >> model [
+	^ model
+]
+
+{ #category : #accessing }
+MorphicTreeTableDataSource >> model: anObject [
+	model := anObject
 ]
 
 { #category : #paths }
