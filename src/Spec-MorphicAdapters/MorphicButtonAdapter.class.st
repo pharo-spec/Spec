@@ -126,17 +126,6 @@ MorphicButtonAdapter >> menu: aMenu [
 		during: [ menuPresenter buildWithSpec ]
 ]
 
-{ #category : #emulating }
-MorphicButtonAdapter >> rightClicked [
-	| evt |
-	evt := MouseButtonEvent new setType: nil position: widget center which: MouseButtonEvent yellowButton buttons: MouseButtonEvent yellowButton hand: nil stamp: nil.
-
-	(widget handlesMouseDown: evt) ifTrue: [
-		widget mouseDown: evt.
-		widget mouseUp: evt].
-
-]
-
 { #category : #factory }
 MorphicButtonAdapter >> setWidgetColor: button [
 

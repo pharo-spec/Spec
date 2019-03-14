@@ -164,6 +164,21 @@ MorphicListAdapter >> refreshWidgetSelection [
 	^ self widget refresh
 ]
 
+{ #category : #emulating }
+MorphicListAdapter >> rightClicked [
+	| evt |
+
+	evt := MouseButtonEvent new 
+		setType: nil 
+		position: widget center 
+		which: MouseButtonEvent yellowButton 
+		buttons: MouseButtonEvent yellowButton 
+		hand: nil 
+		stamp: nil.
+	
+	self widget click: evt
+]
+
 { #category : #selecting }
 MorphicListAdapter >> selectIndex: anInteger [ 
 	
