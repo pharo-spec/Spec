@@ -115,8 +115,8 @@ TreeTablePresenter >> hideColumnHeaders [
 { #category : #initialization }
 TreeTablePresenter >> initialize [
 
-	super initialize.
 	self class initializeSlots: self.
+	super initialize.
 
 	showColumnHeaders := true.
 	columns := #() asValueHolder.

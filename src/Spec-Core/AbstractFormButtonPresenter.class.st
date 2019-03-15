@@ -66,9 +66,8 @@ AbstractFormButtonPresenter >> enabled: aBoolean [
 
 { #category : #initialization }
 AbstractFormButtonPresenter >> initialize [
-
-	super initialize.
 	self class initializeSlots: self.
+	super initialize.
 
 	actionWhenActivatedHolder := [] asValueHolder.
 	actionWhenDeactivatedHolder := [] asValueHolder.
