@@ -36,7 +36,8 @@ Class {
 		'moreOptionsAreaPresenter',
 		'footnoteIconPresenter',
 		'footnoteAreaPresenter',
-		'result'
+		'result',
+		'defaultButtonId'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -131,6 +132,8 @@ SpecVersatileDialogPresenter class >> example4 [
 			text: aNumber printStringRoman 
 			value: aNumber ].
 	
+	dialog defaultButtonId: #button2.
+	
 	dialog openModalWithSpec.
 	dialog result logCr.
 
@@ -176,6 +179,16 @@ SpecVersatileDialogPresenter >> contentArea [
 SpecVersatileDialogPresenter >> contentArea: aTextOrPresenter [
 
 	contentArea := aTextOrPresenter.
+]
+
+{ #category : #accessing }
+SpecVersatileDialogPresenter >> defaultButtonId [
+	^ defaultButtonId
+]
+
+{ #category : #accessing }
+SpecVersatileDialogPresenter >> defaultButtonId: anObject [
+	defaultButtonId := anObject
 ]
 
 { #category : #accessing }
@@ -282,8 +295,11 @@ SpecVersatileDialogPresenter >> layout [
 		column newRow: [ :row |	
 			moreOptionsArea ifNotNil: [
 				moreOptionsButton label: (moreOptionsVisible
-					ifFalse: [ ('↓ ', self moreOptionsText) ]
-					ifTrue: [ ('↑ ', self lessOptionsText) ]).
+					ifFalse: [ self moreOptionsText ]
+					ifTrue: [ self lessOptionsText ]).
+				moreOptionsButton icon: (moreOptionsVisible
+					ifFalse: [ self iconNamed: #arrowDown ]
+					ifTrue: [ self iconNamed: #arrowUp ]).
 				
 				row add: #moreOptionsButton.
 				moreOptionsAreaPresenter := (moreOptionsArea isString or: [ moreOptionsArea isText ]) 
@@ -305,6 +321,9 @@ SpecVersatileDialogPresenter >> layout [
 						ifTrue: [ self newLabel label: footnoteArea ]
 						ifFalse: [ footnoteArea ].
 					row add: #footnoteAreaPresenter ] ] ].
+		
+		defaultButtonId ifNotNil: [ 
+			(self buttonAt: defaultButtonId) takeKeyboardFocus ].
 	
 	^ mainLayout
 ]
