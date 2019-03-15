@@ -35,7 +35,8 @@ Class {
 		'contentAreaPresenter',
 		'moreOptionsAreaPresenter',
 		'footnoteIconPresenter',
-		'footnoteAreaPresenter'
+		'footnoteAreaPresenter',
+		'result'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -94,10 +95,16 @@ SpecVersatileDialogPresenter >> addButton: id text: buttonText value: anObject [
 	aButton := self newButton label: buttonText.
 	aButton action: [ self return: anObject ].
 
-	buttons add: (id->aButton).
+	buttons at: id put: aButton.
 
 	self additionalSubpresentersMap at: id put: aButton.
 	
+]
+
+{ #category : #initialization }
+SpecVersatileDialogPresenter >> buttons [
+
+	^ buttons
 ]
 
 { #category : #initialization }
@@ -153,7 +160,8 @@ SpecVersatileDialogPresenter >> initialize [
 	super initialize.
 	
 	moreOptionsVisible := false.
-	buttons := OrderedCollection new.
+	buttons := OrderedDictionary new.
+	result := nil.
 
 ]
 
@@ -228,8 +236,8 @@ SpecVersatileDialogPresenter >> layout [
 				moreOptionsAreaPresenter := (moreOptionsArea isString or: [ moreOptionsArea isText ]) 
 					ifTrue: [ self newLabel label: moreOptionsArea ]
 					ifFalse: [ moreOptionsArea ]] .	
-			buttons do: [ :buttonAssociation |
-				row add: buttonAssociation key ]].
+			buttons keysAndValuesDo: [ :buttonKey :aButton |
+				row add: buttonKey ]].
 		
 		moreOptionsVisible ifTrue: [ 
 			column add: #moreOptionsAreaPresenter ].
@@ -309,7 +317,20 @@ SpecVersatileDialogPresenter >> moreOptionsText: aText [
 ]
 
 { #category : #initialization }
+SpecVersatileDialogPresenter >> result [
+
+	^ result
+]
+
+{ #category : #initialization }
+SpecVersatileDialogPresenter >> result: anObject [
+
+	result := anObject
+]
+
+{ #category : #initialization }
 SpecVersatileDialogPresenter >> return: anObject [
 
+	self result: anObject.
 	self window close.
 ]
