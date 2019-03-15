@@ -60,6 +60,7 @@ SpecVersatileDialogPresenter class >> example1 [
 	dialog footnoteIcon: (self iconNamed: #error).
 	dialog footnoteArea: 'This operation can be very dangerous.'.
 	dialog openModalWithSpec.
+	dialog result logCr.
 
 	self inform: (dialog moreOptionsArea state asString).
 
@@ -82,6 +83,58 @@ SpecVersatileDialogPresenter class >> example2 [
 	
 	dialog openModalWithSpec.
 
+	dialog result logCr.
+
+
+
+
+]
+
+{ #category : #specs }
+SpecVersatileDialogPresenter class >> example3 [
+
+	<example>
+	
+	| dialog |
+	
+	dialog := SpecVersatileDialogPresenter new.
+	dialog title: 'Confirmation'.
+	dialog mainMessage: 'Save content' asText allBold.
+	dialog addButton: #save text: 'Save' value: true.
+	dialog addButton: #cancel text: 'Cancel' value: false.
+	dialog mainIcon: (self iconNamed: #question).
+	
+	(dialog buttonAt: #save) icon: (self iconNamed: #smallSave).
+	dialog footnoteIcon: (self iconNamed: #error).
+	dialog footnoteArea: 'Saving may take several minutes'.
+	
+	dialog openModalWithSpec.
+	dialog result logCr.
+
+	
+
+
+
+]
+
+{ #category : #specs }
+SpecVersatileDialogPresenter class >> example4 [
+
+	<example>
+	
+	| dialog |
+	
+	dialog := SpecVersatileDialogPresenter new.
+	dialog title: 'Select mumber'.
+	1 to: 5 do: [ :aNumber |
+		dialog addButton: ('button', aNumber asString) asSymbol 
+			text: aNumber printStringRoman 
+			value: aNumber ].
+	
+	dialog openModalWithSpec.
+	dialog result logCr.
+
+	
 
 
 
@@ -99,6 +152,12 @@ SpecVersatileDialogPresenter >> addButton: id text: buttonText value: anObject [
 
 	self additionalSubpresentersMap at: id put: aButton.
 	
+]
+
+{ #category : #initialization }
+SpecVersatileDialogPresenter >> buttonAt: id [
+
+	^ buttons at: id
 ]
 
 { #category : #initialization }
