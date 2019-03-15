@@ -140,7 +140,7 @@ SpecVersatileDialogPresenter class >> example4 [
 
 ]
 
-{ #category : #initialization }
+{ #category : #api }
 SpecVersatileDialogPresenter >> addButton: id text: buttonText value: anObject [
 
 	| aButton |
@@ -154,61 +154,55 @@ SpecVersatileDialogPresenter >> addButton: id text: buttonText value: anObject [
 	
 ]
 
-{ #category : #initialization }
+{ #category : #api }
 SpecVersatileDialogPresenter >> buttonAt: id [
 
 	^ buttons at: id
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> buttons [
 
 	^ buttons
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> contentArea [
 
 	^ contentArea
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> contentArea: aTextOrPresenter [
 
 	contentArea := aTextOrPresenter.
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> footnoteArea [
 
 	^ footnoteArea
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> footnoteArea: aTextOrPresenter [
 
 	footnoteArea := aTextOrPresenter.
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> footnoteIcon [
 
 	^ footnoteIcon
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> footnoteIcon: aForm [
 
 	footnoteIcon := aForm.
 ]
 
-{ #category : #initialization }
-SpecVersatileDialogPresenter >> hasFootnote [
-
-	^ false
-]
-
-{ #category : #initialization }
+{ #category : #'api-window' }
 SpecVersatileDialogPresenter >> initialExtent [
 	^ 400@200
 ]
@@ -250,7 +244,7 @@ SpecVersatileDialogPresenter >> initializeWidgets [
 	
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> layout [
 
 	| mainLayout |
@@ -315,79 +309,79 @@ SpecVersatileDialogPresenter >> layout [
 	^ mainLayout
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> lessOptionsText [
 
 	^ lessOptionsText
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> lessOptionsText: aText [
 
 	lessOptionsText := aText.
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> mainIcon [
 
 	^ mainIcon
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> mainIcon: aFrom [
 
 	mainIcon := aFrom
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> mainMessage [
 
 	^ mainMessage
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> mainMessage: aTextOrPresenter [
 
 	mainMessage := aTextOrPresenter.
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> moreOptionsArea [
 
 	^ moreOptionsArea
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> moreOptionsArea: aTextOrPresenter [
 
 	moreOptionsArea := aTextOrPresenter.
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> moreOptionsText [
 
 	^ moreOptionsText
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> moreOptionsText: aText [
 
 	moreOptionsText := aText.
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> result [
 
 	^ result
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> result: anObject [
 
 	result := anObject
 ]
 
-{ #category : #initialization }
+{ #category : #private }
 SpecVersatileDialogPresenter >> return: anObject [
 
 	self result: anObject.
