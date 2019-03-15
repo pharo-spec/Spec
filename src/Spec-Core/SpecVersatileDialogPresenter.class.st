@@ -65,6 +65,27 @@ SpecVersatileDialogPresenter class >> example1 [
 
 ]
 
+{ #category : #specs }
+SpecVersatileDialogPresenter class >> example2 [
+
+	<example>
+	
+	| dialog |
+	
+	dialog := SpecVersatileDialogPresenter new.
+	dialog title: 'Confirmation'.
+	dialog mainMessage: 'Save content' asText allBold.
+	dialog addButton: #save text: 'Save' value: true.
+	dialog addButton: #cancel text: 'Cancel' value: false.
+	dialog mainIcon: (self iconNamed: #question).
+	
+	dialog openModalWithSpec.
+
+
+
+
+]
+
 { #category : #initialization }
 SpecVersatileDialogPresenter >> addButton: id text: buttonText value: anObject [
 
@@ -123,7 +144,7 @@ SpecVersatileDialogPresenter >> hasFootnote [
 
 { #category : #initialization }
 SpecVersatileDialogPresenter >> initialExtent [
-	^ 600@500
+	^ 400@200
 ]
 
 { #category : #initialization }
@@ -290,6 +311,5 @@ SpecVersatileDialogPresenter >> moreOptionsText: aText [
 { #category : #initialization }
 SpecVersatileDialogPresenter >> return: anObject [
 
-	self inform: anObject.
 	self window close.
 ]
