@@ -129,6 +129,15 @@ TreeTablePresenter >> initialize [
 
 ]
 
+{ #category : #initialization }
+TreeTablePresenter >> initializePorts [
+	
+	self addOutputPort: ListSelectionPresenterPort new.
+	self addInputPort: RootsPresenterPort new.
+	
+
+]
+
 { #category : #accessing }
 TreeTablePresenter >> isResizable [
 	^ isResizable
@@ -238,9 +247,9 @@ TreeTablePresenter >> whenSelectedItemChangedDo: aBlockClosure [
 ]
 
 { #category : #'api-events' }
-TreeTablePresenter >> whenSelectionChangedDo: aBlockClosure [ 
+TreeTablePresenter >> whenSelectionChangedDo: aBlock [ 
 	
-	self selection whenChangedDo: [ aBlockClosure cull: selection ]
+	self selection whenChangedDo: [ aBlock cull: selection ]
 ]
 
 { #category : #'api - events' }
