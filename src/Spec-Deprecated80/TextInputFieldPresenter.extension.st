@@ -5,9 +5,9 @@ TextInputFieldPresenter >> beDecrypted [
 	self
 		deprecated: 'Use #beVisible instead'
 		transformWith: '`@receiver beDecrypted' 
-						-> '`@receiver beVisible'.
+						-> '`@receiver bePassword'.
 	
-	self beVisible
+	self bePassword
 ]
 
 { #category : #'*Spec-Deprecated80' }
@@ -16,9 +16,9 @@ TextInputFieldPresenter >> beEncrypted [
 	self
 		deprecated: 'Use #beInvisible instead'
 		transformWith: '`@receiver beEncrypted' 
-						-> '`@receiver beInvisible'.
+						-> '`@receiver bePassword'.
 	
-	self beInvisible
+	self bePassword
 ]
 
 { #category : #'*Spec-Deprecated80' }
@@ -27,9 +27,9 @@ TextInputFieldPresenter >> encrypted [
 	self
 		deprecated: 'Use #isVisible instead'
 		transformWith: '`@receiver encrypted' 
-						-> '`@receiver isVisible'.
+						-> '`@receiver isPassword'.
 
-	^ self isVisible not
+	^ self isPassword not
 ]
 
 { #category : #'*Spec-Deprecated80' }
@@ -38,9 +38,9 @@ TextInputFieldPresenter >> encrypted: aBoolean [
 	self
 		deprecated: 'Use #beVisible: instead'
 		transformWith: '`@receiver encrypted: `@arg' 
-						-> '`@receiver beVisible: `@arg not'.
+						-> '`@receiver bePassword: `@arg'.
 
-	self beVisible: aBoolean not.
+	self bePassword: aBoolean.
 ]
 
 { #category : #'*Spec-Deprecated80' }

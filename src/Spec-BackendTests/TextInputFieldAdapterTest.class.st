@@ -26,17 +26,24 @@ TextInputFieldAdapterTest >> testChangeWidgetTextUpdatesPresenter [
 ]
 
 { #category : #tests }
-TextInputFieldAdapterTest >> testInvisibilityIsSetInWidget [
-
-	presenter beInvisible.
-	self assert: self adapter isPassword
-]
-
-{ #category : #tests }
 TextInputFieldAdapterTest >> testMaxLengthIsSetInWidget [
 
 	presenter maxLength: 10.
 	self assert: self widget maxLength equals: 10
+]
+
+{ #category : #tests }
+TextInputFieldAdapterTest >> testNotPasswordIsSetInWidget [
+
+	presenter bePassword: false.
+	self deny: self adapter isPassword
+]
+
+{ #category : #tests }
+TextInputFieldAdapterTest >> testPasswordIsSetInWidget [
+
+	presenter bePassword.
+	self assert: self adapter isPassword
 ]
 
 { #category : #tests }
@@ -51,11 +58,4 @@ TextInputFieldAdapterTest >> testPresenterTextIsSetInWidget [
 
 	presenter text: 'something'.
 	self assert: self widget text equals: 'something'
-]
-
-{ #category : #tests }
-TextInputFieldAdapterTest >> testVisibilityIsSetInWidget [
-
-	presenter beVisible.
-	self deny: self adapter isPassword
 ]

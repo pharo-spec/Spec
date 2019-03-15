@@ -44,6 +44,12 @@ AbstractMorphicAdapter >> adapt: aPresenter [
 
 	super adapt: aPresenter.
 	self addSettingsTo: self widget.
+	
+	self widget visible: self presenter isVisible.
+	self presenter whenVisibleChangedDo: [ :value |
+		value
+			ifTrue: [ self widget show ]
+			ifFalse: [ self widget hide ] ].	
 	self flag: #TODO. "this should be here, but is interfering with old layouts reason why 
 	 I'm moving it to MorphicLayoutAdapter >> #applyStyle:to:"
 	"self applyStyle: self widget."
@@ -266,6 +272,12 @@ AbstractMorphicAdapter >> helpText [
 AbstractMorphicAdapter >> isMorphicAdapter [
 
 	^ true
+]
+
+{ #category : #visibility }
+AbstractMorphicAdapter >> isVisible [
+	
+	^ widget visible
 ]
 
 { #category : #protocol }

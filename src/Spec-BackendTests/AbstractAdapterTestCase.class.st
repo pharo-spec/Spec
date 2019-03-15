@@ -155,6 +155,20 @@ AbstractAdapterTestCase >> testEnabledAffectWidget [
 ]
 
 { #category : #running }
+AbstractAdapterTestCase >> testHidePresenterHidesWidget [
+	
+	presenter hide.
+	self deny: self adapter isVisible
+]
+
+{ #category : #running }
+AbstractAdapterTestCase >> testShowPresenterShowsWidget [
+	
+	presenter show.
+	self assert: self adapter isVisible
+]
+
+{ #category : #running }
 AbstractAdapterTestCase >> widget [
 
 	^ self adapter widget
