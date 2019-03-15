@@ -11,14 +11,16 @@ MorphicOverlayLayout >> layout: aMorph in: layoutBounds [
 		(m visible and: [ constraints isOverlay not ])
 			ifTrue: [ m bounds: layoutBounds ].
 		(m visible and: [ constraints isOverlay ])
-			ifTrue: [ | morphBounds left top |
+			ifTrue: [ | morphBounds left top newBounds |
 				morphBounds := layoutBounds area > (0@0 corner: m extent) area
 					ifTrue: [ layoutBounds origin corner: (layoutBounds origin + m extent) ]
 					ifFalse: [ layoutBounds ].
 				
 				left := (layoutBounds width / 2) - (morphBounds width / 2).
 				top := (layoutBounds height / 2) - (morphBounds height / 2).
-				m bounds: (layoutBounds origin + (left@top) corner: layoutBounds corner + (left@top)) ].
+				newBounds := (layoutBounds origin + (left@top) corner: layoutBounds corner + (left@top)).
+
+				m bounds: newBounds ].
 		m visible
 			ifFalse: [ m bounds: (0@0 corner: 0@0) ] ]
 ]
