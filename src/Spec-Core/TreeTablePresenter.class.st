@@ -210,7 +210,7 @@ TreeTablePresenter >> showColumnHeaders [
 	showColumnHeaders := true
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 TreeTablePresenter >> whenColumnsChangedDo: aBlockClosure [ 
 	
 	columns whenChangedDo: aBlockClosure 
@@ -228,7 +228,7 @@ TreeTablePresenter >> whenMultiSelectionChangedDo: aBlockClosure [
 	selection whenChangedDo: aBlockClosure 
 ]
 
-{ #category : #'API - events' }
+{ #category : #'api-events' }
 TreeTablePresenter >> whenRootsChangedDo: aBlockClosure [ 
 
 	self property: #roots whenChangedDo: aBlockClosure
@@ -252,7 +252,7 @@ TreeTablePresenter >> whenSelectionChangedDo: aBlock [
 	self selection whenChangedDo: [ aBlock cull: selection ]
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 TreeTablePresenter >> whenShowColumnHeadersChangedDo: aBlockClosure [ 
 	
 	self property: #showColumnHeaders whenChangedDo: aBlockClosure 
