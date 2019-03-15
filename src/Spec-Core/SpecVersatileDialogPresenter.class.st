@@ -50,13 +50,13 @@ SpecVersatileDialogPresenter class >> example1 [
 	dialog := SpecVersatileDialogPresenter new.
 	dialog title: 'Confirmation'.
 	dialog mainMessage: 'Confirm your choice' asText allBold.
-	dialog mainIcon: (self iconNamed: #error).
+	dialog mainIcon: (self iconNamed: #question).
 	dialog contentArea: 'Do you want to discard your content?'.
 	dialog moreOptionsArea: (dialog newCheckBox label: 'Discard permanently').
 	dialog addButton: #yes text: 'yes' value: #yes.
 	dialog addButton: #no text: 'no' value: #no.
 	dialog addButton: #cancel text: 'cancel' value: #cancel.
-	dialog footnoteIcon: (self iconNamed: #help).
+	dialog footnoteIcon: (self iconNamed: #error).
 	dialog footnoteArea: 'This operation can be very dangerous.'.
 	dialog openModalWithSpec.
 
