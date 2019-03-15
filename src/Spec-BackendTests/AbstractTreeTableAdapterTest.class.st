@@ -1,6 +1,6 @@
 Class {
 	#name : #AbstractTreeTableAdapterTest,
-	#superclass : #AbstractAdapterTestCase,
+	#superclass : #AbstractWidgetAdapterTestCase,
 	#category : #'Spec-BackendTests'
 }
 

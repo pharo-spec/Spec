@@ -152,19 +152,15 @@ ButtonPresenterTest >> testWhenActionPerformedDoAfterAction [
 
 { #category : #tests }
 ButtonPresenterTest >> testWhenHelpChanged [
-
 	presenter help: 'label1'.
-
-	presenter whenHelpChanged: [ :new :old | 
-		self assert: old equals: 'label1'. self assert: new equals: 'label2'].
-
+	presenter
+		whenHelpChangedDo: [ :new :old | 
+			self assert: old equals: 'label1'.
+			self assert: new equals: 'label2' ].
 	self assert: presenter help equals: 'label1'.
-
 	self openInstance.
 	presenter help: 'label2'.
-
-	self assert: presenter help equals: 'label2'.
-
+	self assert: presenter help equals: 'label2'
 ]
 
 { #category : #tests }

@@ -7,8 +7,13 @@ Class {
 	#instVars : [
 		'treeWithItems'
 	],
-	#category : #'Spec-Tests-Base'
+	#category : #'Spec-Deprecated80-Tests'
 }
+
+{ #category : #deprecation }
+MorphicTreeAdapterTest class >> isDeprecated [
+	^ true
+]
 
 { #category : #accessing }
 MorphicTreeAdapterTest >> modelClass [
