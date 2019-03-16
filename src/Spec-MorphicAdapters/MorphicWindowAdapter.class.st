@@ -68,8 +68,12 @@ MorphicWindowAdapter >> addModelItemsToWindowMenu: aMenu [
 
 { #category : #protocol }
 MorphicWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
-	self model initialExtent ifNotNil: [ :extent | widgetToBuild extent: extent ].
-	self addContent: (self model presenter buildWithSpecLayout: aSpec) toWindow: widgetToBuild
+
+	self model initialExtent ifNotNil: [ :extent | 
+		widgetToBuild extent: extent ].
+	self 
+		addContent: (self model presenter buildWithSpecLayout: aSpec) 
+		toWindow: widgetToBuild
 ]
 
 { #category : #private }
@@ -211,7 +215,12 @@ MorphicWindowAdapter >> okToChange [
 { #category : #protocol }
 MorphicWindowAdapter >> open [
 
-	self model window openInWorld
+	self model isCentered 
+		ifTrue: [ 
+			self centered.
+			self widget openAsIs ]
+		ifFalse: [ 
+			self widget openInWorld ]
 ]
 
 { #category : #protocol }
