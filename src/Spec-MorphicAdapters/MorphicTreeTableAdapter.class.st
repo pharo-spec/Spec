@@ -18,8 +18,7 @@ MorphicTreeTableAdapter >> addModelTo: tableMorph [
 	self ensureAtLeastOneColumnIn: tableMorph.
 
 	self model selection isMultipleSelection ifTrue: [  
-		tableMorph beMultipleSelection.	
-	].
+		tableMorph beMultipleSelection ].
 
 	self isShowingColumnHeaders 
 		ifTrue: [ tableMorph showColumnHeaders ] 
@@ -44,7 +43,7 @@ MorphicTreeTableAdapter >> addModelTo: tableMorph [
 	self model whenShowColumnHeadersChangedDo: [ 	
 		self isShowingColumnHeaders 
 			ifTrue: [ tableMorph showColumnHeaders ] 
-			ifFalse: [ tableMorph hideColumnHeaders ]].
+			ifFalse: [ tableMorph hideColumnHeaders ] ].
 		
 	self model whenColumnsChangedDo: [
 		tableMorph columns: #(). 
@@ -56,6 +55,7 @@ MorphicTreeTableAdapter >> addModelTo: tableMorph [
 { #category : #factory }
 MorphicTreeTableAdapter >> buildWidget [
 	| tableMorph |
+
 	tableMorph := FTTableMorph new
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
@@ -129,7 +129,7 @@ MorphicTreeTableAdapter >> selectInto: aFTTableMorph paths: aCollectionOfPaths [
 		item := aFTTableMorph dataSource itemAtPath: aPath expanding: true.
 		item 
 			ifNil: [ aFTTableMorph selectIndex: 0. ^ self ].
-		item].
+		item ].
 
 	aFTTableMorph refresh.
 	indexes := items collect: [:item | aFTTableMorph dataSource indexOfItem: item].

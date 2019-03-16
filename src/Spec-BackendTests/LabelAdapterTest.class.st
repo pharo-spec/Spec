@@ -3,7 +3,7 @@ SUnit tests for MorphicLabelAdapter
 "
 Class {
 	#name : #LabelAdapterTest,
-	#superclass : #AbstractAdapterTestCase,
+	#superclass : #AbstractWidgetAdapterTestCase,
 	#category : #'Spec-BackendTests'
 }
 

@@ -1,4 +1,7 @@
 "
+I am deprecated. 
+Now the radio buttons are created knowing their friends.
+
 I am a group for radio buttons which ensures that only one button is activated at the same time.
 
 I collaborate with
@@ -21,8 +24,14 @@ Class {
 		'currentlyActivated',
 		'canDeselectByClick'
 	],
-	#category : #'Spec-Core-Widgets-Support'
+	#category : #'Spec-Deprecated80-Support'
 }
+
+{ #category : #deprecation }
+RadioButtonGroup class >> isDeprecated [ 
+
+	^ true
+]
 
 { #category : #api }
 RadioButtonGroup >> addRadioButton: aButton [
@@ -88,11 +97,23 @@ RadioButtonGroup >> initialize [
 		buttons do: [ :each | each canDeselectByClick: aBoolean ]].
 ]
 
+{ #category : #'as yet unclassified' }
+RadioButtonGroup >> whenCanDeselectByClickChanged: aBlock [
+	self deprecated: 'Use #whenCanDeselectByClickChangedDo: instead.' transformWith: '`@receiver whenCanDeselectByClickChanged: `@statements' -> '`@receiver whenCanDeselectByClickChangedDo: `@statements'.
+	self whenCanDeselectByClickChangedDo: aBlock
+]
+
 { #category : #'api-events' }
 RadioButtonGroup >> whenCanDeselectByClickChangedDo: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	
 	canDeselectByClick whenChangedDo: aBlock
+]
+
+{ #category : #'as yet unclassified' }
+RadioButtonGroup >> whenCurrentlyActivatedChanged: aBlock [
+	self deprecated: 'Use #whenCurrentlyActivatedChangedDo: instead.' transformWith: '`@receiver whenCurrentlyActivatedChanged: `@statements' -> '`@receiver whenCurrentlyActivatedChangedDo: `@statements'.
+	self whenCurrentlyActivatedChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

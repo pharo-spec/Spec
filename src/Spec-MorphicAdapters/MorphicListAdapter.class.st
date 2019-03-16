@@ -212,3 +212,9 @@ MorphicListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
 		ifTrue: [ self presenter
 				doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex ]
 ]
+
+{ #category : #events }
+MorphicListAdapter >> updateMenu [
+	
+	"there is no need to updateMenu here because it will be resolved at the dataSource"
+]

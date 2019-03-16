@@ -129,6 +129,15 @@ TreeTablePresenter >> initialize [
 
 ]
 
+{ #category : #initialization }
+TreeTablePresenter >> initializePorts [
+	
+	self addOutputPort: ListSelectionPresenterPort new.
+	self addInputPort: RootsPresenterPort new.
+	
+
+]
+
 { #category : #accessing }
 TreeTablePresenter >> isResizable [
 	^ isResizable
@@ -201,7 +210,7 @@ TreeTablePresenter >> showColumnHeaders [
 	showColumnHeaders := true
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 TreeTablePresenter >> whenColumnsChangedDo: aBlockClosure [ 
 	
 	columns whenChangedDo: aBlockClosure 
@@ -219,7 +228,7 @@ TreeTablePresenter >> whenMultiSelectionChangedDo: aBlockClosure [
 	selection whenChangedDo: aBlockClosure 
 ]
 
-{ #category : #'API - events' }
+{ #category : #'api-events' }
 TreeTablePresenter >> whenRootsChangedDo: aBlockClosure [ 
 
 	self property: #roots whenChangedDo: aBlockClosure
@@ -238,12 +247,12 @@ TreeTablePresenter >> whenSelectedItemChangedDo: aBlockClosure [
 ]
 
 { #category : #'api-events' }
-TreeTablePresenter >> whenSelectionChangedDo: aBlockClosure [ 
+TreeTablePresenter >> whenSelectionChangedDo: aBlock [ 
 	
-	self selection whenChangedDo: [ aBlockClosure cull: selection ]
+	self selection whenChangedDo: [ aBlock cull: selection ]
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 TreeTablePresenter >> whenShowColumnHeadersChangedDo: aBlockClosure [ 
 	
 	self property: #showColumnHeaders whenChangedDo: aBlockClosure 

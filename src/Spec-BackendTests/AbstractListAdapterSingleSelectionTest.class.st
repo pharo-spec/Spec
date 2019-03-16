@@ -1,6 +1,6 @@
 Class {
 	#name : #AbstractListAdapterSingleSelectionTest,
-	#superclass : #AbstractAdapterTestCase,
+	#superclass : #AbstractWidgetAdapterTestCase,
 	#category : #'Spec-BackendTests'
 }
 
