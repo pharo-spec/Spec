@@ -204,6 +204,13 @@ WindowPresenter >> inform: aString [
 		anAdapter inform: aString ]
 ]
 
+{ #category : #'api-inform' }
+WindowPresenter >> informError: aString [
+
+	self withAdapterDo: [ :anAdapter |
+		anAdapter informError: aString ]
+]
+
 { #category : #api }
 WindowPresenter >> initialExtent [
 
