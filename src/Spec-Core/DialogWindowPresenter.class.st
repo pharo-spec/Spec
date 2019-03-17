@@ -31,6 +31,18 @@ DialogWindowPresenter >> addButton: aString do: aBlock [
 ]
 
 { #category : #accessing }
+DialogWindowPresenter >> beCancel [
+
+	cancelled := true
+]
+
+{ #category : #accessing }
+DialogWindowPresenter >> beOk [
+
+	cancelled := false
+]
+
+{ #category : #accessing }
 DialogWindowPresenter >> buttons [ 
 	"buttons is an ordered dictionary that matches labels with actions. 
 	 Default action will always be the last one."
@@ -61,6 +73,7 @@ DialogWindowPresenter >> initialize [
 
 	super initialize.
 	buttons := OrderedCollection new.
+	cancelled := true.
 	self initializeDefaultActions
 ]
 
@@ -84,9 +97,21 @@ DialogWindowPresenter >> initializeWindow [
 ]
 
 { #category : #testing }
+DialogWindowPresenter >> isCancelled [
+
+	^ cancelled
+]
+
+{ #category : #testing }
 DialogWindowPresenter >> isDialog [
 
 	^ true
+]
+
+{ #category : #testing }
+DialogWindowPresenter >> isOk [
+
+	^ self isCancelled not
 ]
 
 { #category : #api }

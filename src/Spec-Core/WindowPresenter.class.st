@@ -197,6 +197,20 @@ WindowPresenter >> hasToolBar [
 	and: [ self toolBar notEmpty ]
 ]
 
+{ #category : #'api-inform' }
+WindowPresenter >> inform: aString [
+
+	self withAdapterDo: [ :anAdapter |
+		anAdapter inform: aString ]
+]
+
+{ #category : #'api-inform' }
+WindowPresenter >> informError: aString [
+
+	self withAdapterDo: [ :anAdapter |
+		anAdapter informError: aString ]
+]
+
 { #category : #api }
 WindowPresenter >> initialExtent [
 
