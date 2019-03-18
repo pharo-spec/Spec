@@ -143,14 +143,14 @@ AbstractAdapterTestCase >> tearDown [
 { #category : #running }
 AbstractAdapterTestCase >> testHidePresenterHidesWidget [
 	
-	presenter hide.
+	self presenter hide.
 	self deny: self adapter isVisible
 ]
 
 { #category : #running }
 AbstractAdapterTestCase >> testShowPresenterShowsWidget [
 	
-	presenter show.
+	self presenter show.
 	self assert: self adapter isVisible
 ]
 
