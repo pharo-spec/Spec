@@ -96,6 +96,11 @@ SliderPresenter >> initialize [
 ]
 
 { #category : #api }
+SliderPresenter >> isHorizontal [
+	^ true
+]
+
+{ #category : #api }
 SliderPresenter >> label [
 	"<api: #inspect>"
 	"Return the label of the slider"
