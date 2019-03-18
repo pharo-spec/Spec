@@ -25,7 +25,7 @@ SpecVersatileDialogPresenterTest >> testResult [
 	dialog mainIcon: (self iconNamed: #question).
 	dialog moreOptionsArea: (dialog newCheckBox label: 'Save header').
 
-	dialog openWithSpec. 
+	dialog openModalWithSpec. 
 	(dialog buttons at: #save) performAction.
 	dialog moreOptionsArea click.
 
