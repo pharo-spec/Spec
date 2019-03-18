@@ -333,6 +333,23 @@ AbstractMorphicAdapter >> removeSubWidgets [
 	self widgetDo: [ :w | w removeAllMorphs ]
 ]
 
+{ #category : #emulating }
+AbstractMorphicAdapter >> rightClicked [
+	| evt |
+
+	evt := MouseButtonEvent new 
+		setType: nil 
+		position: widget center 
+		which: MouseButtonEvent yellowButton 
+		buttons: MouseButtonEvent yellowButton 
+		hand: nil 
+		stamp: nil.
+
+	(widget handlesMouseDown: evt) ifTrue: [
+		widget mouseDown: evt.
+		widget mouseUp: evt ]
+]
+
 { #category : #protocol }
 AbstractMorphicAdapter >> setBalloonText: aString [
 

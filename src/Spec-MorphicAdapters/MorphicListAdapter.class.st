@@ -164,6 +164,21 @@ MorphicListAdapter >> refreshWidgetSelection [
 	^ self widget refresh
 ]
 
+{ #category : #emulating }
+MorphicListAdapter >> rightClicked [
+	| evt |
+
+	evt := MouseButtonEvent new 
+		setType: nil 
+		position: widget center 
+		which: MouseButtonEvent yellowButton 
+		buttons: MouseButtonEvent yellowButton 
+		hand: nil 
+		stamp: nil.
+	
+	self widget click: evt
+]
+
 { #category : #selecting }
 MorphicListAdapter >> selectIndex: anInteger [ 
 	
@@ -196,4 +211,10 @@ MorphicListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
 	self presenter activatesOnDoubleClick
 		ifTrue: [ self presenter
 				doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex ]
+]
+
+{ #category : #events }
+MorphicListAdapter >> updateMenu [
+	
+	"there is no need to updateMenu here because it will be resolved at the dataSource"
 ]

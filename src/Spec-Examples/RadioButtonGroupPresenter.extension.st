@@ -9,7 +9,7 @@ RadioButtonGroupPresenter class >> example [
 		addRadioButton: (RadioButtonPresenter new label: '1');
 		addRadioButton: (RadioButtonPresenter new label: '2');
 		addRadioButton: (RadioButtonPresenter new label: '3');
-		whenCurrentActivatedChanged: [ self inform: example currentActivated label ].
+		whenCurrentActivatedChangedDo: [ self inform: example currentActivated label ].
 	example openWithSpec.
 	^ example
 ]

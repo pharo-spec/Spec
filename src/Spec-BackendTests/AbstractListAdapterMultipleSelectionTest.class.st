@@ -1,6 +1,6 @@
 Class {
 	#name : #AbstractListAdapterMultipleSelectionTest,
-	#superclass : #AbstractAdapterTestCase,
+	#superclass : #AbstractWidgetAdapterTestCase,
 	#category : #'Spec-BackendTests'
 }
 
@@ -20,13 +20,13 @@ AbstractListAdapterMultipleSelectionTest >> initializeTestedInstance [
 ]
 
 { #category : #tests }
-AbstractListAdapterMultipleSelectionTest >> newTestMenu [
-]
+AbstractListAdapterMultipleSelectionTest >> testRightClickShowsMenu [
+	| menu |
 
-{ #category : #tests }
-AbstractListAdapterMultipleSelectionTest >> testContextMenu [
-
-	presenter contextMenu: self newTestMenu
+	presenter contextMenu: (menu := SpecMockMenuPresenter new).
+	self deny: menu shown.
+	self emulateRightClick.
+	self assert: menu shown
 ]
 
 { #category : #'tests-model-to-widget' }

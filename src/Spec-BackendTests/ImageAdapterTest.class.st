@@ -1,6 +1,6 @@
 Class {
 	#name : #ImageAdapterTest,
-	#superclass : #AbstractAdapterTestCase,
+	#superclass : #AbstractWidgetAdapterTestCase,
 	#category : #'Spec-BackendTests'
 }
 

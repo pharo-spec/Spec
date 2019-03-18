@@ -53,3 +53,23 @@ SpecApplicationBackend >> name [
 
 	^ self class backendName
 ]
+
+{ #category : #notifying }
+SpecApplicationBackend >> notify: aSpecNotification [
+
+	aSpecNotification type 
+		notify: aSpecNotification
+		on: self
+]
+
+{ #category : #notifying }
+SpecApplicationBackend >> notifyError: aSpecNotification [
+
+	self subclassResponsibility
+]
+
+{ #category : #notifying }
+SpecApplicationBackend >> notifyInfo: aSpecNotification [
+
+	self subclassResponsibility
+]

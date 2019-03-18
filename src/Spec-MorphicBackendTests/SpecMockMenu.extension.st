@@ -1,6 +1,12 @@
 Extension { #name : #SpecMockMenu }
 
 { #category : #'*Spec-MorphicBackendTests' }
+SpecMockMenu >> isInWorld [
+	
+	^ false
+]
+
+{ #category : #'*Spec-MorphicBackendTests' }
 SpecMockMenu >> popUpEvent: evt in: aWorld [
 
 	self shown: true

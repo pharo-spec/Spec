@@ -49,12 +49,17 @@ SpecListFastTableDataSource >> listModel [
 { #category : #accessing }
 SpecListFastTableDataSource >> menuColumn: column row: rowIndex [
 	| menuPresenter |
-	
+
 	menuPresenter := self model contextMenu.
 	menuPresenter ifNil: [ ^ self ].
 	^ SpecBindings
 		value: self model application adapterBindings
-		during: [ menuPresenter value openInWorld ]
+		during: [ 
+			| m |
+			m := menuPresenter value.
+			(m isKindOf: Morph)
+				ifTrue: [ m ]
+				ifFalse: [ m buildWithSpec ] ]
 ]
 
 { #category : #accessing }
