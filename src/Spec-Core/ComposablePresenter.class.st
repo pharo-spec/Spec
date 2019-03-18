@@ -86,6 +86,8 @@ It possible to define more than one method to give the possibility to use anothe
 Class {
 	#name : #ComposablePresenter,
 	#superclass : #Presenter,
+	#traits : 'TSpecObservable',
+	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
 		'#application',
 		'#focusOrder',

@@ -44,6 +44,7 @@ AbstractMorphicAdapter >> adapt: aPresenter [
 
 	super adapt: aPresenter.
 	self addSettingsTo: self widget.
+	self widget ifNotNil: [ self applyVisibility ].
 	self flag: #TODO. "this should be here, but is interfering with old layouts reason why 
 	 I'm moving it to MorphicLayoutAdapter >> #applyStyle:to:"
 	"self applyStyle: self widget."
@@ -72,11 +73,12 @@ AbstractMorphicAdapter >> applyVisibility [
 	
 	"It may happen that some presenters use generic adapters and they do not have an associated presenter.
 	In that case, do not manage visibility..."
-	self presenter ifNil: [ ^ self ].
+	self presenter ifNil: [ 
+		^ self ].
 
 	self widget visible: self presenter isVisible.
-	self presenter whenVisibleChangedDo: [ :value |
-		value
+	self presenter whenVisibleChangedDo: [ :visible |
+		visible
 			ifTrue: [ self widget show ]
 			ifFalse: [ self widget hide ] ]
 ]
@@ -291,10 +293,8 @@ AbstractMorphicAdapter >> isVisible [
 { #category : #protocol }
 AbstractMorphicAdapter >> layout: aLayout [
 	| layout |
-	
 	layout := aLayout asMorphicLayout.
-	self applyVisibility.
-	self widgetDo: [ :w | w layoutFrame: layout ]
+	self widgetDo: [ :w | w layoutFrame: layout ].
 ]
 
 { #category : #dispatch }
