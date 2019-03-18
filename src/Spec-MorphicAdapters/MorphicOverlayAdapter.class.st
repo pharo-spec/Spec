@@ -37,5 +37,7 @@ MorphicOverlayAdapter >> layout: aLayout [
 		vResizing: #spaceFill;
 		color: Color transparent;
 		borderColor: Color transparent;
-		yourself
+		yourself.
+		
+	super layout: aLayout
 ]

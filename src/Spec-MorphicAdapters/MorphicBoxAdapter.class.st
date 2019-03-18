@@ -64,6 +64,8 @@ MorphicBoxAdapter >> layout: aLayout [
 	widget submorphs do: [ :each |
 		each cellInset: aLayout spacing ].
 	"widget homogeneous: aLayout isHomogeneous"
+	
+	super layout: aLayout
 ]
 
 { #category : #factory }

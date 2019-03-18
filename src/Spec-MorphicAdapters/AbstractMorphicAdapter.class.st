@@ -44,12 +44,6 @@ AbstractMorphicAdapter >> adapt: aPresenter [
 
 	super adapt: aPresenter.
 	self addSettingsTo: self widget.
-	
-	self widget visible: self presenter isVisible.
-	self presenter whenVisibleChangedDo: [ :value |
-		value
-			ifTrue: [ self widget show ]
-			ifFalse: [ self widget hide ] ].	
 	self flag: #TODO. "this should be here, but is interfering with old layouts reason why 
 	 I'm moving it to MorphicLayoutAdapter >> #applyStyle:to:"
 	"self applyStyle: self widget."
@@ -71,6 +65,20 @@ AbstractMorphicAdapter >> applyStyle: morph [
 	"this will apply general properties to the built morph"
 	
 	self style applyTo: morph
+]
+
+{ #category : #initialization }
+AbstractMorphicAdapter >> applyVisibility [
+	
+	"It may happen that some presenters use generic adapters and they do not have an associated presenter.
+	In that case, do not manage visibility..."
+	self presenter ifNil: [ ^ self ].
+
+	self widget visible: self presenter isVisible.
+	self presenter whenVisibleChangedDo: [ :value |
+		value
+			ifTrue: [ self widget show ]
+			ifFalse: [ self widget hide ] ]
 ]
 
 { #category : #dispatch }
@@ -285,7 +293,7 @@ AbstractMorphicAdapter >> layout: aLayout [
 	| layout |
 	
 	layout := aLayout asMorphicLayout.
-
+	self applyVisibility.
 	self widgetDo: [ :w | w layoutFrame: layout ]
 ]
 
