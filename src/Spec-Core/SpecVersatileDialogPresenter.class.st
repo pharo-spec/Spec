@@ -389,6 +389,12 @@ SpecVersatileDialogPresenter >> moreOptionsText: aText [
 ]
 
 { #category : #accessing }
+SpecVersatileDialogPresenter >> presenterNamed: aString [
+
+	^ self additionalSubpresentersMap at: aString
+]
+
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> result [
 
 	^ result
