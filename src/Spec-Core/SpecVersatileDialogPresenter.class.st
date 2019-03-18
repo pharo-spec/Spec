@@ -143,13 +143,46 @@ SpecVersatileDialogPresenter class >> example4 [
 
 ]
 
+{ #category : #specs }
+SpecVersatileDialogPresenter class >> example5 [
+
+	<example>
+	
+	| dialog listPresenter |
+	
+	dialog := SpecVersatileDialogPresenter new.
+	dialog title: 'Confirmation'.
+	listPresenter := dialog newList.
+	listPresenter items: #(one two three).
+	dialog contentArea: listPresenter.
+	dialog addButton: #ok text: 'OK' value: true condition: [ listPresenter selection isEmpty not ].
+	dialog addButton: #cancel text: 'Cancel' value: false.
+	dialog mainIcon: (self iconNamed: #question).
+	
+	dialog openModalWithSpec.
+
+	dialog result logCr.
+
+
+
+
+]
+
 { #category : #api }
 SpecVersatileDialogPresenter >> addButton: id text: buttonText value: anObject [
+
+	^ self addButton: id text: buttonText value: anObject condition: true
+]
+
+{ #category : #api }
+SpecVersatileDialogPresenter >> addButton: id text: buttonText value: anObject condition: aCondition [
 
 	| aButton |
 	
 	aButton := self newButton label: buttonText.
-	aButton action: [ self return: anObject ].
+	aButton action: [ 
+		aCondition value ifTrue: [ 
+			self return: anObject ] ].
 
 	buttons at: id put: aButton.
 
@@ -386,6 +419,12 @@ SpecVersatileDialogPresenter >> moreOptionsText [
 SpecVersatileDialogPresenter >> moreOptionsText: aText [
 
 	moreOptionsText := aText.
+]
+
+{ #category : #accessing }
+SpecVersatileDialogPresenter >> presenterNamed: aString [
+
+	^ self additionalSubpresentersMap at: aString
 ]
 
 { #category : #accessing }

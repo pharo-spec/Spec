@@ -10,14 +10,41 @@ SpecVersatileDialogPresenterTest >> classToTest [
 ]
 
 { #category : #tests }
+SpecVersatileDialogPresenterTest >> testListBox [
+
+	| dialog app listPresenter |
+	
+	app := MockApplication new.
+	
+	dialog := SpecVersatileDialogPresenter newApplication: app.
+	dialog title: 'Confirmation'.
+	listPresenter := dialog newList.
+	listPresenter items: #(one two three).
+	dialog contentArea: listPresenter.
+	dialog addButton: #ok text: 'OK' value: #ok condition: [ listPresenter selection isEmpty not ].
+	dialog addButton: #cancel text: 'Cancel' value: nil.
+	dialog mainIcon: (self iconNamed: #question).
+
+	dialog openModalWithSpec. 
+	
+	dialog contentArea selection selectIndex: 2.
+
+	(dialog buttons at: #ok) click.
+
+	self assert: dialog result equals: #ok.	
+	self assert: dialog contentArea selection selectedItem equals: #two.
+	
+
+]
+
+{ #category : #tests }
 SpecVersatileDialogPresenterTest >> testResult [ 
 
 	| dialog app |
 	
 	app := MockApplication new.
 	
-	dialog := SpecVersatileDialogPresenter new.
-	dialog application: app.
+	dialog := SpecVersatileDialogPresenter newApplication: app.
 	dialog title: 'Confirmation'.
 	dialog mainMessage: 'Save content' asText allBold.
 	dialog addButton: #save text: 'Save' value: true.
@@ -25,7 +52,7 @@ SpecVersatileDialogPresenterTest >> testResult [
 	dialog mainIcon: (self iconNamed: #question).
 	dialog moreOptionsArea: (dialog newCheckBox label: 'Save header').
 
-	dialog openWithSpec. 
+	dialog openModalWithSpec. 
 	(dialog buttons at: #save) performAction.
 	dialog moreOptionsArea click.
 
