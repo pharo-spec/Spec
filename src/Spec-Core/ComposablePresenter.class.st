@@ -86,21 +86,24 @@ It possible to define more than one method to give the possibility to use anothe
 Class {
 	#name : #ComposablePresenter,
 	#superclass : #Presenter,
+	#traits : 'TSpecObservable',
+	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
-		'application',
-		'focusOrder',
-		'extentHolder',
-		'additionalKeyBindings',
-		'keyStrokesForNextFocusHolder',
-		'keyStrokesForPreviousFocusHolder',
-		'windowIcon',
-		'aboutText',
-		'askOkToClose',
-		'titleHolder',
-		'inputPorts',
-		'outputPorts',
-		'transmissions',
-		'additionalSubpresentersMap'
+		'#application',
+		'#focusOrder',
+		'#extentHolder',
+		'#additionalKeyBindings',
+		'#keyStrokesForNextFocusHolder',
+		'#keyStrokesForPreviousFocusHolder',
+		'#windowIcon',
+		'#aboutText',
+		'#askOkToClose',
+		'#titleHolder',
+		'#inputPorts',
+		'#outputPorts',
+		'#transmissions',
+		'#additionalSubpresentersMap',
+		'#visible => SpecObservableSlot'
 	],
 	#category : #'Spec-Core-Base'
 }
@@ -468,26 +471,7 @@ ComposablePresenter >> giveFocusToNextFrom: aModel [
 	| focus |
 	
 	focus := self focusOrder.
-
-	(focus includes: aModel)
-		ifTrue: [
-			| index next |
-			index := (focus indexOf: aModel) + 1.
-			(index <= focus size)
-				ifTrue: [
-					next := focus at: index.
-					next takeKeyboardFocus.
-					^ true ]].
-
-	^ owner 
-		ifNil: [ " I loop "
-			| next |
-			next := focus at: 1 ifAbsent: [ ^ false ].
-			next takeKeyboardFocus.
-			true ]
-		ifNotNil: [ 
-			owner giveFocusToNextFrom: self.
-			true ]
+	^ true
 ]
 
 { #category : #'private-focus' }
@@ -523,11 +507,10 @@ ComposablePresenter >> handlesKeyboard: evt [
 	^ true
 ]
 
-{ #category : #'api-showing' }
+{ #category : #api }
 ComposablePresenter >> hide [
 
-	self widget ifNotNil: [:widget |
-		(widget respondsTo: #hide) ifTrue: [ widget hide ]].
+	visible := false
 ]
 
 { #category : #accessing }
@@ -545,6 +528,7 @@ ComposablePresenter >> initialExtent [
 { #category : #initialization }
 ComposablePresenter >> initialize [
 
+	self class initializeSlots: self.
 	super initialize.
 	
 	additionalSubpresentersMap := nil.
@@ -553,7 +537,8 @@ ComposablePresenter >> initialize [
 	self initializePrivateAnnouncer.
 	self initializePrivateValueHolders.
 	self initializePrivateHooks.
-	self initializePrivateAnnouncements
+	self initializePrivateAnnouncements.
+	visible := true
 ]
 
 { #category : #initialization }
@@ -691,6 +676,12 @@ ComposablePresenter >> isDisplayed [
 	^ self hasWindow 
 		ifTrue: [ self root isDisplayed ]
 		ifFalse: [ false ]
+]
+
+{ #category : #testing }
+ComposablePresenter >> isVisible [
+	
+	^ visible
 ]
 
 { #category : #'api-focus' }
@@ -1008,10 +999,10 @@ ComposablePresenter >> setModelBeforeInitialization: aDomainObject [
 
 ]
 
-{ #category : #'api-showing' }
+{ #category : #api }
 ComposablePresenter >> show [
-	
-	self withAdapterDo: #show
+
+	visible := true
 ]
 
 { #category : #TOREMOVE }
@@ -1102,6 +1093,12 @@ ComposablePresenter >> whenShortcutsChanged: aBlock [
 	"Set a block to value when the shortcuts block has changed"
 	
 	self additionalKeyBindings whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+ComposablePresenter >> whenVisibleChangedDo: aBlock [
+	
+	self property: #visible whenChangedDo: aBlock
 ]
 
 { #category : #'api-window' }

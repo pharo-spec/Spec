@@ -44,7 +44,9 @@ MorphicGridAdapter >> layout: aLayout [
 		rowSpacing: aLayout rowSpacing;
 		columnSpacing: aLayout columnSpacing;
 		rowHomogeneous: aLayout isRowHomogeneous;
-		columnHomogeneous: aLayout isColumnHomogeneous
+		columnHomogeneous: aLayout isColumnHomogeneous.
+		
+	super layout: aLayout
 ]
 
 { #category : #factory }

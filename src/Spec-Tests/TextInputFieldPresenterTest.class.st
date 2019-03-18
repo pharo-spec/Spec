@@ -10,25 +10,25 @@ TextInputFieldPresenterTest >> classToTest [
 ]
 
 { #category : #tests }
-TextInputFieldPresenterTest >> testBeInvisibleIsSet [
+TextInputFieldPresenterTest >> testBeNotPasswordIsSet [
 
-	presenter beInvisible.
+	presenter bePassword: false.
 	
-	self assert: presenter isInvisible
+	self deny: presenter isPassword
 ]
 
 { #category : #tests }
-TextInputFieldPresenterTest >> testBeVisibleIsSet [
+TextInputFieldPresenterTest >> testBePasswordIsSet [
 
-	presenter beVisible.
+	presenter bePassword.
 	
-	self deny: presenter isInvisible
+	self assert: presenter isPassword
 ]
 
 { #category : #tests }
-TextInputFieldPresenterTest >> testDefaultIsNotInvisible [
+TextInputFieldPresenterTest >> testDefaultIsNotPassword [
 
-	self deny: presenter isInvisible
+	self deny: presenter isPassword
 ]
 
 { #category : #tests }

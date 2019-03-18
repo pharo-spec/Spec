@@ -61,6 +61,7 @@ MorphicPanedAdapter >> layout: aLayout [
 	widget layoutPolicy position: aLayout position.
 	self selector: self splitterNewSelector.
 
+	super layout: aLayout
 ]
 
 { #category : #factory }

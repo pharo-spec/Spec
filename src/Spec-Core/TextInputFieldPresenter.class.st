@@ -30,7 +30,7 @@ Class {
 	#instVars : [
 		'#acceptOnCR',
 		'#entryCompletion',
-		'#isVisible => SpecObservableSlot',
+		'#isPassword => SpecObservableSlot',
 		'#placeholder => SpecObservableSlot',
 		'#maxLength => SpecObservableSlot'
 	],
@@ -77,21 +77,15 @@ TextInputFieldPresenter >> actionToPerformHolder [
 ]
 
 { #category : #api }
-TextInputFieldPresenter >> beInvisible [
+TextInputFieldPresenter >> bePassword [
 	
-	self beVisible: false
+	self bePassword: true
 ]
 
 { #category : #api }
-TextInputFieldPresenter >> beVisible [
+TextInputFieldPresenter >> bePassword: aBoolean [
 	
-	self beVisible: true
-]
-
-{ #category : #api }
-TextInputFieldPresenter >> beVisible: aBoolean [
-	
-	isVisible := aBoolean
+	isPassword := aBoolean
 ]
 
 { #category : #api }
@@ -134,7 +128,7 @@ TextInputFieldPresenter >> initialize [
 	placeholder := ''.
 	acceptOnCR := true asValueHolder.
 	entryCompletion := nil asValueHolder.
-	isVisible := true.
+	isPassword := false.
 	acceptOnCR whenChangedDo: [ :bool | self changed: #acceptOnCR: with: { bool } ].
 ]
 
@@ -145,15 +139,9 @@ TextInputFieldPresenter >> isCodeCompletionAllowed [
 ]
 
 { #category : #testing }
-TextInputFieldPresenter >> isInvisible [
+TextInputFieldPresenter >> isPassword [
 	
-	^ isVisible not
-]
-
-{ #category : #testing }
-TextInputFieldPresenter >> isVisible [
-	
-	^ isVisible
+	^ isPassword
 ]
 
 { #category : #accessing }
@@ -232,13 +220,13 @@ TextInputFieldPresenter >> whenMaxLengthChangedDo: aBlockClosure [
 ]
 
 { #category : #'api-events' }
-TextInputFieldPresenter >> whenPlaceholderChangedDo: aBlock [
+TextInputFieldPresenter >> whenPasswordChangedDo: aBlockClosure [ 
 	
-	self property: #placeholder whenChangedDo: aBlock
+	self property: #isPassword whenChangedDo: aBlockClosure
 ]
 
 { #category : #'api-events' }
-TextInputFieldPresenter >> whenVisibilityChangedDo: aBlockClosure [ 
+TextInputFieldPresenter >> whenPlaceholderChangedDo: aBlock [
 	
-	self property: #isVisible whenChangedDo: aBlockClosure
+	self property: #placeholder whenChangedDo: aBlock
 ]

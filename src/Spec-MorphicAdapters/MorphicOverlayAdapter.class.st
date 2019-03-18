@@ -1,5 +1,5 @@
 Class {
-	#name : #MorphicScrollableAdapter,
+	#name : #MorphicOverlayAdapter,
 	#superclass : #MorphicLayoutAdapter,
 	#instVars : [
 		'layout'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #protocol }
-MorphicScrollableAdapter >> addConstraits: constraints toChild: childMorph [
+MorphicOverlayAdapter >> addConstraits: constraints toChild: childMorph [
 	"adds constraits by child"
 	| theMorph |
 	
@@ -20,25 +20,19 @@ MorphicScrollableAdapter >> addConstraits: constraints toChild: childMorph [
 ]
 
 { #category : #protocol }
-MorphicScrollableAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
+MorphicOverlayAdapter >> basicAdd: aPresenter constraints: constraints to: aWidget [
 	| childMorph |
 
 	childMorph := self buildMorph: aPresenter constraints: constraints.	
-	
-	childMorph 
-		hResizing: #spaceFill;
-		vResizing: #spaceFill.
-
-	aPanel addMorph: childMorph.
-	
+	aWidget addMorph: childMorph.
 	^ childMorph
 ]
 
 { #category : #protocol }
-MorphicScrollableAdapter >> layout: aLayout [
+MorphicOverlayAdapter >> layout: aLayout [
 
 	widget := PanelMorph new 
-		changeTableLayout;
+		layoutPolicy: MorphicOverlayLayout new;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		color: Color transparent;

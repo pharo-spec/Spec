@@ -21,7 +21,7 @@ MorphicTextInputFieldAdapter >> acceptOnCR [
 
 { #category : #initialization }
 MorphicTextInputFieldAdapter >> adapt: aModel [
-	
+
 	super adapt: aModel.
 	aModel whenBuiltDo: [ :w | w widget color: Smalltalk ui theme backgroundColor ]
 ]
@@ -42,7 +42,7 @@ MorphicTextInputFieldAdapter >> buildWidget [
 		autoAccept: self autoAccept;
 		ghostText: self placeholder;
 		enabled: self enabled;
-		encrypted: self presenter isVisible not;
+		encrypted: self presenter isPassword;
 		setBalloonText: self help;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
@@ -54,14 +54,14 @@ MorphicTextInputFieldAdapter >> buildWidget [
 
 	self presenter whenTextChangedDo: [ :text | plu setText: text ].
 	self presenter whenPlaceholderChangedDo: [ :text | plu ghostText: text ].
-	self presenter whenVisibilityChangedDo: [ :isVisible | plu encrypted: isVisible not ].	
+	self presenter whenPasswordChangedDo: [ :isPassword | plu encrypted: isPassword ].	
 	self presenter whenMaxLengthChangedDo: [ :length | plu maxLength: length ].
 	^ plu
 ]
 
 { #category : #'widget API' }
 MorphicTextInputFieldAdapter >> encrypted [
-	^ self model isVisible
+	^ self model isPassword
 ]
 
 { #category : #'spec protocol' }

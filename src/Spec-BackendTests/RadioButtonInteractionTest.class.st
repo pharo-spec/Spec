@@ -38,6 +38,13 @@ RadioButtonInteractionTest >> testClickingRadio3SelectsIt [
 ]
 
 { #category : #accessing }
+RadioButtonInteractionTest >> testHidePresenterHidesWidget [
+
+	"Composable presenters do not have adapters so this test breaks..."
+	self skip
+]
+
+{ #category : #accessing }
 RadioButtonInteractionTest >> testRadio1StartsDeselected [
 
 	self deny: self presenter radio1 state
@@ -62,4 +69,11 @@ RadioButtonInteractionTest >> testRadio3StartsDeselected [
 
 	self openInstance.
 	self deny: self presenter radio3 state
+]
+
+{ #category : #accessing }
+RadioButtonInteractionTest >> testShowPresenterShowsWidget [
+
+	"Composable presenters do not have adapters so this test breaks..."
+	self skip
 ]

@@ -112,6 +112,12 @@ AbstractAdapter >> isRedrawable [
 	^ false
 ]
 
+{ #category : #visibility }
+AbstractAdapter >> isVisible [
+	
+	self subclassResponsibility
+]
+
 { #category : #protocol }
 AbstractAdapter >> layout: aLayout [
 

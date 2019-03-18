@@ -90,6 +90,13 @@ SpecApplication >> newPresenter: aPresenterClass [
 	^ aPresenterClass newApplication: self
 ]
 
+{ #category : #notifying }
+SpecApplication >> notify: aSpecNotification [
+	"how notifications are handled depends on the backend"
+
+	aSpecNotification dispatchTo: self backend
+]
+
 { #category : #showing }
 SpecApplication >> open: aPresenter [
 
