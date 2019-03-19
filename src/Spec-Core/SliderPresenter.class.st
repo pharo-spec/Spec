@@ -110,7 +110,7 @@ SliderPresenter >> initialize [
 		whenChangedDo: [ :v | 
 			isChanging
 				ifFalse: [ isChanging := true.
-					self absoluteValue: (v - self min) / (self max - self min).
+					self absoluteValue:(self scaleValue: v).
 					self
 						changed:
 							{#scaledValue:.
@@ -222,6 +222,11 @@ SliderPresenter >> reset [
 	"Reset the cursor to the minimum value"
 	
 	self value: self min
+]
+
+{ #category : #initialization }
+SliderPresenter >> scaleValue: v [
+	^ (v - self min) / (self max - self min)
 ]
 
 { #category : #api }
