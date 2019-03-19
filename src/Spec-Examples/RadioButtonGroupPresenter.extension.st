@@ -1,7 +1,7 @@
 Extension { #name : #RadioButtonGroupPresenter }
 
 { #category : #'*Spec-Examples' }
-RadioButtonGroupPresenter class >> example [
+RadioButtonGroupPresenter classSide >> example [
 	<sampleInstance>
 	| example |
 	example := RadioButtonGroupPresenter new.
