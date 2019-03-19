@@ -17,3 +17,14 @@ SliderPresenterBackendTest >> initializeTestedInstance [
 		quantum: 1;
 		value: 20
 ]
+
+{ #category : #accessing }
+SliderPresenterBackendTest >> testSmokeHorizontalTest [
+	self presenter beHorizontal.
+]
+
+{ #category : #accessing }
+SliderPresenterBackendTest >> testSmokeVerticalTest [
+	self presenter beVertical.
+	
+]

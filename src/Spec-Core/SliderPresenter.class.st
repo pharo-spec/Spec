@@ -56,6 +56,11 @@ SliderPresenter >> absoluteValue: aFloat [
 	absoluteValue value: aFloat
 ]
 
+{ #category : #initialization }
+SliderPresenter >> absoluteValueToValue: v [
+	^ self min + (v * (self max - self min)) roundTo: self quantum
+]
+
 { #category : #api }
 SliderPresenter >> addMark: aText at: aValue [
 	^ self
@@ -67,6 +72,16 @@ SliderPresenter >> addMark: aText at: aValue [
 						text: aText;
 						yourself);
 				yourself)
+]
+
+{ #category : #api }
+SliderPresenter >> beHorizontal [
+	isHorizontal := true
+]
+
+{ #category : #api }
+SliderPresenter >> beVertical [
+	isHorizontal := false
 ]
 
 { #category : #api }
@@ -110,7 +125,7 @@ SliderPresenter >> initialize [
 		whenChangedDo: [ :v | 
 			isChanging
 				ifFalse: [ isChanging := true.
-					self absoluteValue:(self scaleValue: v).
+					self absoluteValue: (self valueToAbsoluteValue: v).
 					self
 						changed:
 							{#scaledValue:.
@@ -121,8 +136,7 @@ SliderPresenter >> initialize [
 		whenChangedDo: [ :v | 
 			isChanging
 				ifFalse: [ isChanging := true.
-					self
-						value: (self min + (v * (self max - self min)) roundTo: self quantum).
+					self value: (self absoluteValueToValue: v).
 					self
 						changed:
 							{#value:.
@@ -226,7 +240,7 @@ SliderPresenter >> reset [
 
 { #category : #initialization }
 SliderPresenter >> scaleValue: v [
-	^ (v - self min) / (self max - self min)
+	^ ((v - self min) / (self max - self min)) asFloat
 ]
 
 { #category : #api }
@@ -244,6 +258,11 @@ SliderPresenter >> value: aNumber [
 	
 	value value == aNumber ifTrue: [ ^ self ].
 	value value: aNumber.
+]
+
+{ #category : #initialization }
+SliderPresenter >> valueToAbsoluteValue: v [
+	^ ((v - self min) / (self max - self min)) asFloat
 ]
 
 { #category : #'api-events' }

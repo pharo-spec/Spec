@@ -34,19 +34,20 @@ MorphicSliderAdapter >> buildWidget [
 		vResizing: #spaceFill;
 		hResizing: #spaceFill;
 		yourself.
-	preWidget :=  self presenter isHorizontal
-		ifTrue: [ preWidget  ]
+	preWidget := self presenter isHorizontal
+		ifTrue: [ preWidget ]
 		ifFalse: [ preWidget := TransformationMorph new asFlexOf: preWidget.
 			preWidget transform withAngle: 90 degreesToRadians negated.
 			preWidget ].
-	self presenter whenMinChangedDo: [ : newValue |  preWidget min: newValue].
-	self presenter whenMaxChangedDo: [ : newValue |  preWidget max: newValue].
-	self presenter whenQuantumChangedDo: [ : newValue |  preWidget quantum: newValue].
-	self presenter whenValueChangedDo: [ : newValue |  preWidget value: newValue].
-	
-
-
-
+	self presenter
+		whenMinChangedDo: [ :newValue | preWidget min: newValue ].
+	self presenter
+		whenMaxChangedDo: [ :newValue | preWidget max: newValue ].
+	self presenter
+		whenQuantumChangedDo: [ :newValue | preWidget quantum: newValue ].
+	self presenter
+		whenValueChangedDo: [ :newValue | preWidget value: newValue ].
+	^ preWidget
 ]
 
 { #category : #'widget API' }
