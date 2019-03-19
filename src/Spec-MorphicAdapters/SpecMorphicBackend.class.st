@@ -33,3 +33,12 @@ SpecMorphicBackend >> notifyInfo: aSpecNotification [
 		openWithLabel: 'Information' translated 
 		contents: aSpecNotification message
 ]
+
+{ #category : #'ui dialogs' }
+SpecMorphicBackend >> selectFileTitle: aString [
+
+	^ UIManager default 
+		chooseExistingFileReference: aString
+		extensions: nil 
+		path: ''
+]

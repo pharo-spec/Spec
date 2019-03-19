@@ -54,7 +54,7 @@ SpecApplicationBackend >> name [
 	^ self class backendName
 ]
 
-{ #category : #notifying }
+{ #category : #'ui notifying' }
 SpecApplicationBackend >> notify: aSpecNotification [
 
 	aSpecNotification type 
@@ -62,14 +62,20 @@ SpecApplicationBackend >> notify: aSpecNotification [
 		on: self
 ]
 
-{ #category : #notifying }
+{ #category : #'ui notifying' }
 SpecApplicationBackend >> notifyError: aSpecNotification [
 
 	self subclassResponsibility
 ]
 
-{ #category : #notifying }
+{ #category : #'ui notifying' }
 SpecApplicationBackend >> notifyInfo: aSpecNotification [
+
+	self subclassResponsibility
+]
+
+{ #category : #'ui dialogs' }
+SpecApplicationBackend >> selectFileTitle: aString [
 
 	self subclassResponsibility
 ]

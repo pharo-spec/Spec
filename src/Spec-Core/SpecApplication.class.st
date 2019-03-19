@@ -90,7 +90,7 @@ SpecApplication >> newPresenter: aPresenterClass [
 	^ aPresenterClass newApplication: self
 ]
 
-{ #category : #notifying }
+{ #category : #'ui notifying' }
 SpecApplication >> notify: aSpecNotification [
 	"how notifications are handled depends on the backend"
 
@@ -170,6 +170,18 @@ SpecApplication >> openModal: aPresenter withSpecLayout: aSpecLayout [
 SpecApplication >> run [ 
 
 	self start
+]
+
+{ #category : #'ui dialogs' }
+SpecApplication >> selectDirectoryTitle: aString [
+
+	^ self backend selectDirectoryTitle: aString
+]
+
+{ #category : #'ui dialogs' }
+SpecApplication >> selectFileTitle: aString [
+
+	^ self backend selectFileTitle: aString
 ]
 
 { #category : #running }
