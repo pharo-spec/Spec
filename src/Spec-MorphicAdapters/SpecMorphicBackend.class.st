@@ -35,6 +35,14 @@ SpecMorphicBackend >> notifyInfo: aSpecNotification [
 ]
 
 { #category : #'ui dialogs' }
+SpecMorphicBackend >> selectDirectoryTitle: aString [
+
+	^ UIManager default 
+		chooseDirectory: aString
+		path: ''
+]
+
+{ #category : #'ui dialogs' }
 SpecMorphicBackend >> selectFileTitle: aString [
 
 	^ UIManager default 
