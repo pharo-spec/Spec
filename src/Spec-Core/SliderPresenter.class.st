@@ -28,7 +28,9 @@ Class {
 		'value',
 		'isChanging',
 		'absoluteValue',
-		'labelHolder'
+		'labelHolder',
+		'marksHolder',
+		'isHorizontal'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -55,6 +57,19 @@ SliderPresenter >> absoluteValue: aFloat [
 ]
 
 { #category : #api }
+SliderPresenter >> addMark: aText at: aValue [
+	^ self
+		marks:
+			(self marks
+				add:
+					(SliderMark new
+						value: aValue;
+						text: aText;
+						yourself);
+				yourself)
+]
+
+{ #category : #api }
 SliderPresenter >> color: aColor [
 
 	"Hack because during the interpretation, the state is slightly inconistent"
@@ -63,8 +78,9 @@ SliderPresenter >> color: aColor [
 
 { #category : #initialization }
 SliderPresenter >> initialize [
-
 	super initialize.
+	isHorizontal := true.
+	marksHolder := OrderedCollection new asValueHolder.
 	max := 100 asValueHolder.
 	min := 0 asValueHolder.
 	quantum := 1 asValueHolder.
@@ -72,32 +88,57 @@ SliderPresenter >> initialize [
 	absoluteValue := 0 asValueHolder.
 	labelHolder := '' asValueHolder.
 	isChanging := false.
-	
-	max whenChangedDo: [:m | self changed: { #max: . m } ].
-	min whenChangedDo: [:m | self changed: { #min: . m } ].
-	quantum whenChangedDo: [:m | self changed: { #quantum: . m } ].
-	
-	value whenChangedDo: [:v |
-		isChanging ifFalse: [
-			isChanging := true.
-			self absoluteValue: ((v-self min)/(self max-self min)).
-			self changed: { #scaledValue: . v }.
-			isChanging := false ].
-		self changed: #value.].
-	
-	absoluteValue whenChangedDo: [:v | 
-		isChanging ifFalse: [
-			isChanging := true.
-			self value: (self min+(v*(self max-self min)) roundTo: self quantum).
-			self changed: { #value: . v }.
-			isChanging := false ]].
-	
-	labelHolder whenChangedDo: [:v | self changed: #label ].
+	max
+		whenChangedDo: [ :m | 
+			self
+				changed:
+					{#max:.
+					m} ].
+	min
+		whenChangedDo: [ :m | 
+			self
+				changed:
+					{#min:.
+					m} ].
+	quantum
+		whenChangedDo: [ :m | 
+			self
+				changed:
+					{#quantum:.
+					m} ].
+	value
+		whenChangedDo: [ :v | 
+			isChanging
+				ifFalse: [ isChanging := true.
+					self absoluteValue: (v - self min) / (self max - self min).
+					self
+						changed:
+							{#scaledValue:.
+							v}.
+					isChanging := false ].
+			self changed: #value ].
+	absoluteValue
+		whenChangedDo: [ :v | 
+			isChanging
+				ifFalse: [ isChanging := true.
+					self
+						value: (self min + (v * (self max - self min)) roundTo: self quantum).
+					self
+						changed:
+							{#value:.
+							v}.
+					isChanging := false ] ].
+	labelHolder whenChangedDo: [ :v | self changed: #label ]
 ]
 
 { #category : #api }
 SliderPresenter >> isHorizontal [
-	^ true
+	^ isHorizontal
+]
+
+{ #category : #api }
+SliderPresenter >> isVertical [
+	^ self isHorizontal not
 ]
 
 { #category : #api }
@@ -114,6 +155,17 @@ SliderPresenter >> label: aString [
 	"Set the label of the slider"
 	
 	labelHolder value: aString
+]
+
+{ #category : #api }
+SliderPresenter >> marks [
+	^ marksHolder value
+]
+
+{ #category : #api }
+SliderPresenter >> marks: anObject [
+
+	marksHolder value: anObject
 ]
 
 { #category : #api }
@@ -201,6 +253,13 @@ SliderPresenter >> whenLabelChangedDo: aBlock [
 	"Block performed when the label changed"
 
 	labelHolder whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+SliderPresenter >> whenMarksChangedDo: aBlock [
+	"Block performed when the label changed"
+
+	marksHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
