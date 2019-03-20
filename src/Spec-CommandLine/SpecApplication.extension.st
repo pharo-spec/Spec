@@ -16,6 +16,11 @@ SpecApplication class >> findAll [
 SpecApplication class >> findNamed: aString ifNone: aBlock [
 
 	^ self allSubclasses 
-		detect: [ :each | each applicationName asLowercase = aString asLowercase ]
+		detect: [ :each | each applicationName = aString ]
 		ifNone: aBlock
+]
+
+{ #category : #'*Spec-CommandLine' }
+SpecApplication >> prepareAsStandaloneApplication [
+	"override this to specify  standalone settings"
 ]

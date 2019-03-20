@@ -58,5 +58,9 @@ SpecRunCommandLineHandler >> runApplication [
 		findNamed: self applicationName
 		ifNone: [ ^ self exitFailure: ('Application {1} not found.' format: { self applicationName }) ].
 	
-	[ appClass new start ] fork
+	[ 
+		appClass new 
+			prepareAsStandaloneApplication;
+			start ] 
+	fork
 ]
