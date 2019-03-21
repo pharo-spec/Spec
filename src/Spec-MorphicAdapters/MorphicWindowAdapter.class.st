@@ -220,7 +220,9 @@ MorphicWindowAdapter >> open [
 			self centered.
 			self widget openAsIs ]
 		ifFalse: [ 
-			self widget openInWorld ]
+			self widget openInWorld ].
+	
+	self windowIsOpening
 ]
 
 { #category : #protocol }
@@ -262,4 +264,10 @@ MorphicWindowAdapter >> title: aString [
 MorphicWindowAdapter >> windowIsClosing [
 
 	self model windowIsClosing
+]
+
+{ #category : #updating }
+MorphicWindowAdapter >> windowIsOpening [
+
+	self model windowIsOpening
 ]

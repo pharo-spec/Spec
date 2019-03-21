@@ -5,11 +5,18 @@ Class {
 	#name : #WindowBuilt,
 	#superclass : #Announcement,
 	#instVars : [
-		'model',
-		'window'
+		'model'
 	],
 	#category : #'Spec-Core-Support'
 }
+
+{ #category : #'instance creation' }
+WindowBuilt class >> model: aWindowPresenter [
+
+	^ self new 
+		model: aWindowPresenter;
+		yourself
+]
 
 { #category : #accessing }
 WindowBuilt >> model [ 
@@ -21,16 +28,4 @@ WindowBuilt >> model [
 WindowBuilt >> model: aModel [
 
 	model := aModel
-]
-
-{ #category : #accessing }
-WindowBuilt >> window [
-
-	^ window
-]
-
-{ #category : #accessing }
-WindowBuilt >> window: aWindow [
-
-	window := aWindow
 ]
