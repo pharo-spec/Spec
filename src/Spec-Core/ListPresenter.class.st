@@ -193,10 +193,9 @@ ListPresenter >> resetListSelection [
 
 { #category : #api }
 ListPresenter >> resetSortingBlock [
-	"<api: #do>"
 	"Reset the sortering block with the default value which consists in not sorting"
 
-	sortingBlockHolder value: self defaultSortingBlock
+	self model sortingBlock: nil
 ]
 
 { #category : #api }
@@ -256,11 +255,4 @@ ListPresenter >> whenFilteringBlockChangedDo: aBlock [
 { #category : #'api-events' }
 ListPresenter >> whenIconsChangedDo: aBlock [
 	iconHolder whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
-ListPresenter >> whenSortingBlockChangedDo: aBlock [
-	"Set a block to value when the sorting block has changed"
-	
-	sortingBlockHolder whenChangedDo: aBlock
 ]
