@@ -19,6 +19,7 @@ SpecExecutableLayout >> add: aName withConstraints: aBlock [
 	| constraints |
 	
 	constraints := self constraintsClass new.
+	constraints layout: self.
 	aBlock value: constraints.
 	children 
 		at: aName 

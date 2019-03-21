@@ -12,7 +12,7 @@ Class {
 MorphicBoxAdapter >> addConstraits: constraints toChild: childMorph [
 	"adds constraits by child"
 	| theMorph |
-	
+
 	theMorph := childMorph.
 	constraints isExpand 
 		ifTrue: [ 
@@ -31,10 +31,7 @@ MorphicBoxAdapter >> addConstraits: constraints toChild: childMorph [
 				vResizing: #spaceFill ]
 		ifFalse: [
 			"Set morph to stay rigid"
-			self flag: #TODO. "This works for vertical but has to be inversed for horizontal"
-			theMorph 
-				hResizing: #spaceFill; 
-				vResizing: #rigid.
+			constraints direction setRigidityOfNonExpendedMorph: theMorph.
 			constraints width ifNotNil: [ :w | theMorph width: w ].
 			constraints height ifNotNil: [ :h | theMorph height: h ] ].
 	"constraints padding"
