@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'selectionMode',
 		'multiSelectionHolder',
-		'sortingBlockHolder',
 		'filteringBlockHolder',
 		'autoDeselect',
 		'itemFilterBlockHolder',
@@ -87,11 +86,6 @@ AbstractListPresenter >> defaultFilteringBlock [
 	^ [:col | col]
 ]
 
-{ #category : #initialization }
-AbstractListPresenter >> defaultSortingBlock [ 
-	^ [:a :b | true]
-]
-
 { #category : #private }
 AbstractListPresenter >> doActivateAtIndex: anIndex [
 
@@ -161,8 +155,6 @@ AbstractListPresenter >> initializePorts [
 
 { #category : #initialization }
 AbstractListPresenter >> initializeValueHolders [
-
-	sortingBlockHolder := self defaultSortingBlock asValueHolder.
 	filteringBlockHolder := self defaultFilteringBlock asValueHolder.
 	itemFilterBlockHolder := nil asValueHolder.
 	doubleClickActionHolder := [ ] asValueHolder.
@@ -367,18 +359,12 @@ AbstractListPresenter >> selectionMode: aMode [
 
 { #category : #api }
 AbstractListPresenter >> sortingBlock [
-	"<api: #inspect>"
-	"Return the ordering of the items"
-	
-	^ sortingBlockHolder value
+	^ self model sortingBlock
 ]
 
 { #category : #api }
 AbstractListPresenter >> sortingBlock: aBlock [
-	"<api: #block getter: #sortingBlock registration: #whenSortingBlockChanged:>"
-	"To set the ordering of the items"
-	
-	sortingBlockHolder value: aBlock
+	self model sortingBlock: aBlock
 ]
 
 { #category : #api }
@@ -425,4 +411,9 @@ AbstractListPresenter >> whenSelectionChangedDo: aBlock [
 	The block used as argument will be sent an optional argument with the selection object."
 
 	self selection whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+AbstractListPresenter >> whenSortingBlockChangedDo: aBlock [
+	self model whenSortingBlockChangedDo: aBlock
 ]
