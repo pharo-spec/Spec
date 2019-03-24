@@ -117,6 +117,17 @@ AbstractListPresenterTest >> testReplaceItemList [
 ]
 
 { #category : #'tests-smoke' }
+AbstractListPresenterTest >> testSetSortingBlockBeforeItems [
+	| count |
+	count := 0.
+	presenter whenSortingBlockChangedDo: [ :sortFunction | count := count + 1 ].
+	presenter sortingBlock: #yourself ascending.
+	presenter items: #(3 8 1 0).
+	self assert: count equals: 1.
+	self assert: (presenter model at: 1) equals: 0
+]
+
+{ #category : #'tests-smoke' }
 AbstractListPresenterTest >> testSmokeOpenEmptyPresenter [
 
 	window := presenter openWithSpec
@@ -128,4 +139,15 @@ AbstractListPresenterTest >> testSmokeOpenPresenterWithItems [
 	window := presenter
 		items: #(1 2 3);
 		openWithSpec.
+]
+
+{ #category : #'tests-smoke' }
+AbstractListPresenterTest >> testSortingBlock [
+	| count |
+	count := 0.
+	presenter whenSortingBlockChangedDo: [ :sortFunction | count := count + 1 ].
+	presenter items: #(3 8 1 0).
+	presenter sortingBlock: #yourself ascending.
+	self assert: count equals: 1.
+	self assert: (presenter model at: 1) equals: 0
 ]

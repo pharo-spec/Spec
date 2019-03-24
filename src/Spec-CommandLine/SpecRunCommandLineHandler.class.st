@@ -61,6 +61,6 @@ SpecRunCommandLineHandler >> runApplication [
 	[ 
 		appClass new 
 			prepareAsStandaloneApplication;
-			start ] 
+			run ] 
 	fork
 ]

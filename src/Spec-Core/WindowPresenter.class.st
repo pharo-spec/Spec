@@ -104,7 +104,9 @@ WindowPresenter >> basicBuildWithSpecLayout: aSpecLayout [
 	(self spec isNil or: [ self needRebuild ])
 		ifTrue: [ 
 			widget := (self adapterFrom: self retrieveDefaultSpec) widget.
-			self addPresenterIn: widget withSpecLayout: aSpecLayout ]
+			self addPresenterIn: widget withSpecLayout: aSpecLayout.
+			self announce: (WidgetBuilt model: self widget: widget).
+			self announce: (WindowBuilt model: self). ]
 		ifFalse: [
 			widget := self widget ].
 	
@@ -219,7 +221,7 @@ WindowPresenter >> initialize [
 	windowHolder := nil asValueHolder.
 	titleHolder := self class defaultTitle asValueHolder.
 	initialExtent := nil asValueHolder.
-	isClosedHolder := false asValueHolder.
+	isClosedHolder := true asValueHolder.
 	isResizeable := true asValueHolder.
 	centered := false asValueHolder.
 	askOkToClose := true.
@@ -247,6 +249,7 @@ WindowPresenter >> isCentered [
 
 { #category : #testing }
 WindowPresenter >> isClosed [
+
 	^ isClosedHolder value
 ]
 
@@ -267,7 +270,7 @@ WindowPresenter >> isDisplayed [
 { #category : #testing }
 WindowPresenter >> isOpen [
 	
-	^ self application hasWindow: self
+	^ self isClosed not
 ]
 
 { #category : #api }
@@ -441,6 +444,13 @@ WindowPresenter >> whenClosedDo: aBlock [
 		value ifTrue: [ aBlock value ] ]
 ]
 
+{ #category : #'api-events' }
+WindowPresenter >> whenOpenedDo: aBlock [
+
+	isClosedHolder whenChangedDo: [:value |
+		value ifFalse: [ aBlock value ] ]
+]
+
 { #category : #accessing }
 WindowPresenter >> window [ 
 	
@@ -458,4 +468,10 @@ WindowPresenter >> windowIsClosing [
 	
 	isClosedHolder value: true.
 	self presenter windowIsClosing
+]
+
+{ #category : #updating }
+WindowPresenter >> windowIsOpening [
+	
+	isClosedHolder value: false
 ]

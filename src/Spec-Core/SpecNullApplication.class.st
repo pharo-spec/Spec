@@ -10,6 +10,7 @@ Class {
 
 { #category : #accessing }
 SpecNullApplication class >> reset [
+	<script>
 	
 	DefaultApplication := nil
 ]
