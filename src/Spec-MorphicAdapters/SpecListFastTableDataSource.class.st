@@ -51,7 +51,7 @@ SpecListFastTableDataSource >> menuColumn: column row: rowIndex [
 	| menuPresenter |
 
 	menuPresenter := self model contextMenu.
-	menuPresenter ifNil: [ ^ self ].
+	menuPresenter ifNil: [ ^ nil ].
 	^ SpecBindings
 		value: self model application adapterBindings
 		during: [ 
