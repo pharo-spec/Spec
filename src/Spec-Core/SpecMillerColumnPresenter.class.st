@@ -25,10 +25,8 @@ Class {
 }
 
 { #category : #initialization }
-SpecMillerColumnPresenter >> addPresenterFor: aModel [
+SpecMillerColumnPresenter >> addPresenter: newSubPresenter [
 
-	| newSubPresenter |
-	newSubPresenter := self newPresenterFor: aModel.
 	newSubPresenter whenActivatedDo: [ :selection | 
 			self changeSelection: selection selectedItem from: newSubPresenter ].
 	presenters add: newSubPresenter.
@@ -44,11 +42,8 @@ SpecMillerColumnPresenter >> changeSelection: selection from: aPresenter [
 
 	| selectedPresenterIndex |
 	selectedPresenterIndex := presenters indexOf: aPresenter.
-	presenters copy withIndexDo: [ :presenter :index |
-		index <= selectedPresenterIndex ifFalse: [ 
-			presenters remove: presenter.
-			self adapter remove: presenter ] ].
-	self addPresenterFor: selection.
+	self resetTo: selectedPresenterIndex.
+	self pushModel: selection.
 ]
 
 { #category : #specs }
@@ -85,6 +80,28 @@ SpecMillerColumnPresenter >> presenterBlock: aBlockClosure [
 	newPresenterBlock := aBlockClosure
 ]
 
+{ #category : #accessing }
+SpecMillerColumnPresenter >> presenters [
+
+	^ presenters
+]
+
+{ #category : #model }
+SpecMillerColumnPresenter >> pushModel: aModel [
+
+	self addPresenter: (self newPresenterFor: aModel)
+]
+
+{ #category : #initialization }
+SpecMillerColumnPresenter >> resetTo: anIndex [
+	"Remove all presenters up to anIndex.
+	0 means to remove all elements."
+	presenters copy withIndexDo: [ :presenter :index |
+		index <= anIndex ifFalse: [ 
+			presenters remove: presenter.
+			self adapter ifNotNil: [ :theAdapter | theAdapter remove: presenter ] ] ]
+]
+
 { #category : #initialization }
 SpecMillerColumnPresenter >> retrieveSpec: aSelector [
 	| layout |
@@ -93,4 +110,17 @@ SpecMillerColumnPresenter >> retrieveSpec: aSelector [
 	layout isSpecLayout ifTrue: [ 
 		layout selector: aSelector ].
 	^ layout
+]
+
+{ #category : #model }
+SpecMillerColumnPresenter >> setRootModel: aModel [
+
+	self resetTo: 0.
+	self pushModel: aModel
+]
+
+{ #category : #accessing }
+SpecMillerColumnPresenter >> size [
+
+	^ self presenters size
 ]

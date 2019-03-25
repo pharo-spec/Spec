@@ -37,3 +37,9 @@ SpecNullMillerPresenter >> whenActivatedDo: aBlock [
 
 	"Do nothing"
 ]
+
+{ #category : #initialization }
+SpecNullMillerPresenter >> wrappedPresenter [
+
+	^ wrappedPresenter
+]
