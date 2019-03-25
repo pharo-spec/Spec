@@ -60,6 +60,12 @@ MorphicBoxAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
 	^ childMorph
 ]
 
+{ #category : #accessing }
+MorphicBoxAdapter >> childrenWidgets [
+	
+	^ widget submorphs first submorphs, widget submorphs second submorphs
+]
+
 { #category : #factory }
 MorphicBoxAdapter >> layout: aLayout [
 
