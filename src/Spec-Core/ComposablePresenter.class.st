@@ -317,6 +317,12 @@ ComposablePresenter >> applyTransmissions [
 	transmissions do: #apply
 ]
 
+{ #category : #converting }
+ComposablePresenter >> asPresenter [
+	"This allows to use presenter instances inside layouts directly"
+	^ self
+]
+
 { #category : #'api-window' }
 ComposablePresenter >> askOkToClose [
 
