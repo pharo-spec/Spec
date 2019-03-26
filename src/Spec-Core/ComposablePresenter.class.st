@@ -975,10 +975,10 @@ ComposablePresenter >> resolveSymbol: aSymbol [
 ]
 
 { #category : #api }
-ComposablePresenter >> retrieveDefaultSpec [
+ComposablePresenter >> retrieveSpec: aSelector [
 
 	self layout ifNotNil: [ ^ self layout ].
-	^ self retrieveSpec: self defaultSpecSelector
+	^ super retrieveSpec: aSelector
 ]
 
 { #category : #TOMOVE }
