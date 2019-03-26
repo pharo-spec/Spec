@@ -10,10 +10,24 @@ MillerColumnAdapterTest >> classToTest [
 	^ SpecMillerColumnPresenter
 ]
 
+{ #category : #running }
+MillerColumnAdapterTest >> testChangingHelpAffectTheWidget [
+
+	"This test is not valid for non-widget presenters"
+	^ self skip
+]
+
 { #category : #tests }
 MillerColumnAdapterTest >> testEmptyMillerListHasNoWidgets [
 
 	self assert: self adapter childrenWidgets isEmpty
+]
+
+{ #category : #running }
+MillerColumnAdapterTest >> testEnabledAffectWidget [
+
+	"This test is not valid for non-widget presenters"
+	^ self skip
 ]
 
 { #category : #tests }
