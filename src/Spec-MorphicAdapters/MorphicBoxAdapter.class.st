@@ -8,6 +8,12 @@ Class {
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
+{ #category : #factory }
+MorphicBoxAdapter >> add: aPresenter [
+ 
+	self add: aPresenter constraints: SpecBoxConstraints new
+]
+
 { #category : #private }
 MorphicBoxAdapter >> addConstraits: constraints toChild: childMorph [
 	"adds constraits by child"
@@ -52,6 +58,12 @@ MorphicBoxAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
 		ifFalse: [ aPanel submorphs second addMorphBack: childMorph ].
 		
 	^ childMorph
+]
+
+{ #category : #accessing }
+MorphicBoxAdapter >> childrenWidgets [
+	
+	^ widget submorphs first submorphs, widget submorphs second submorphs
 ]
 
 { #category : #factory }
@@ -110,4 +122,13 @@ MorphicBoxAdapter >> newVertical [
 			height: 0;
 			yourself);
 		yourself	
+]
+
+{ #category : #accessing }
+MorphicBoxAdapter >> remove: aPresenter [
+
+	| morph |
+	morph := aPresenter adapter widget.	
+	widget submorphs first removeMorph: morph.
+	widget submorphs second removeMorph: morph.
 ]
