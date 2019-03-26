@@ -117,7 +117,7 @@ Presenter >> buildAdapterWithSpecLayout: aSpecLayout [
 Presenter >> buildWithSpec [
 	"Build the widget using the default spec"
 	
-	^ self buildWithSpec: self defaultSpecSelector
+	^ self buildWithSpecLayout: self retrieveDefaultSpec
 ]
 
 { #category : #building }

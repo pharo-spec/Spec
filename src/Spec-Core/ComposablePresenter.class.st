@@ -353,14 +353,6 @@ ComposablePresenter >> bindMenuKeyCombination: aShortcut toAction: aBlock [
 	self changed: #bindMenuKeyCombination:toAction: with: {aShortcut . aBlock}
 ]
 
-{ #category : #building }
-ComposablePresenter >> buildWithSpec [
-	"Build the widget using the default spec"
-	
-	self layout ifNotNil: [ ^ self buildWithSpecLayout: self layout ].
-	^ super buildWithSpec
-]
-
 { #category : #'api-window' }
 ComposablePresenter >> cancelled [
 	self flag: #TODO. "just for dialogs... I wonder if we need it here?"
