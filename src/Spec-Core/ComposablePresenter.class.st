@@ -89,6 +89,7 @@ Class {
 	#traits : 'TSpecObservable',
 	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
+		'#layout',
 		'#application',
 		'#focusOrder',
 		'#extentHolder',
@@ -350,6 +351,14 @@ ComposablePresenter >> bindMenuKeyCombination: aShortcut toAction: aBlock [
 	self additionalKeyBindings at: aShortcut put: aBlock.
 	
 	self changed: #bindMenuKeyCombination:toAction: with: {aShortcut . aBlock}
+]
+
+{ #category : #building }
+ComposablePresenter >> buildWithSpec [
+	"Build the widget using the default spec"
+	
+	self layout ifNotNil: [ ^ self buildWithSpecLayout: self layout ].
+	^ super buildWithSpec
 ]
 
 { #category : #'api-window' }
@@ -714,6 +723,11 @@ ComposablePresenter >> keyStrokesForPreviousFocus: aCollection [
 	keyStrokesForPreviousFocusHolder value: aCollection 
 ]
 
+{ #category : #accessing }
+ComposablePresenter >> layout [
+	^ layout
+]
+
 { #category : #'window menu' }
 ComposablePresenter >> neglectMenuModel: aMenuModel [
 
@@ -970,6 +984,8 @@ ComposablePresenter >> resolveSymbol: aSymbol [
 
 { #category : #api }
 ComposablePresenter >> retrieveDefaultSpec [
+
+	self layout ifNotNil: [ ^ self layout ].
 	^ self retrieveSpec: self defaultSpecSelector
 ]
 

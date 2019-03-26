@@ -81,6 +81,12 @@ SpecExecutableLayout >> isSpecLayout [
 	^ true
 ]
 
+{ #category : #accessing }
+SpecExecutableLayout >> presenters [
+	
+	^ children keys
+]
+
 { #category : #private }
 SpecExecutableLayout >> resolvePresenter: presenterNameOrLayout model: aModel bindings: bindings [
 
