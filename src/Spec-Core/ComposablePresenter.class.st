@@ -275,12 +275,6 @@ ComposablePresenter >> announce: anAnnouncement [
 	self announcer announce: anAnnouncement
 ]
 
-{ #category : #TOREMOVE }
-ComposablePresenter >> apiSelectors [
-
-	^ self class apiSelectors
-]
-
 { #category : #accessing }
 ComposablePresenter >> application [
 
