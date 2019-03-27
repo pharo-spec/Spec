@@ -106,7 +106,8 @@ WindowPresenter >> basicBuildWithSpecLayout: aSpecLayout [
 			widget := (self retrieveDefaultSpec asSpecLayout
 				buildAdapterFor: self bindings: SpecBindings value) widget.
 			self addPresenterIn: widget withSpecLayout: aSpecLayout.
-			self announce: (WidgetBuilt model: self widget: widget).]
+			self announce: (WidgetBuilt model: self widget: widget).
+			self presenter announce: (WindowBuilt model: self). ]
 		ifFalse: [
 			widget := self widget ].
 	

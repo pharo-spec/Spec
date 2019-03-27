@@ -58,21 +58,21 @@ ApplicationWithToolbar >> initializeWidgets [
 			group
 				addItem: [ :item | 
 					item
-						name: nil;
+						name: '';
 						description: 'Open file';
 						icon: (self iconNamed: #openIcon);
 						action: [ self inform: 'Open File' ] ].
 			group
 				addItem: [ :item | 
 					item
-						name: nil;
+						name: '';
 						description: 'Save File';
 						icon: (self iconNamed: #smallSaveIcon);
 						action: [ self inform: 'Save File' ] ].
 			group
 				addItem: [ :item | 
 					item
-						name: nil;
+						name: '';
 						description: 'Print file';
 						icon: (self iconNamed: #smallPrintIcon);
 						action: [ self inform: 'Print file' ] ] ];
@@ -80,14 +80,14 @@ ApplicationWithToolbar >> initializeWidgets [
 			group
 				addItem: [ :item | 
 					item
-						name: nil;
+						name: '';
 						description: 'Undo';
 						icon: (self iconNamed: #smallUndoIcon);
 						action: [ self inform: 'Undo' ] ].
 			group
 				addItem: [ :item | 
 					item
-						name: nil;
+						name: '';
 						description: 'Redo';
 						icon: (self iconNamed: #smallRedoIcon);
 						action: [ self inform: 'Redo' ] ] ];
@@ -95,7 +95,7 @@ ApplicationWithToolbar >> initializeWidgets [
 			group
 				addItem: [ :item | 
 					item
-						name: nil;
+						name: '';
 						description: 'Add menu item';
 						icon: (self iconNamed:  #add);
 						action: [ self addItemTo: group ] ] ].
