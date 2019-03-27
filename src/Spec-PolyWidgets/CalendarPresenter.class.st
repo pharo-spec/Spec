@@ -19,19 +19,16 @@ Class {
 
 { #category : #specs }
 CalendarPresenter class >> defaultSpec [
-
-	^ SpecLayout composed
-		newColumn: [ :mainColumn |
-			mainColumn
-				newRow: [ :topRow |
-					topRow
-						newColumn: #previousMonthButton;
-						newColumn: #monthYearLabel;
-						newColumn: #nextMonthButton ] height: self buttonHeight;
-				newRow: #namesOfDaysLabels height: self buttonHeight;
-				newRow: [ :daysRow |
-					daysRow
-						newColumn: #daysButtons ] ]
+	^ SpecBoxLayout newVertical
+		add:
+			(SpecBoxLayout newHorizontal
+				add: #previousMonthButton;
+				add: #monthYearLabel;
+				add: #nextMonthButton)
+			withConstraints: [ :constraints | constraints height: self buttonHeight ];
+		add: #namesOfDaysLabels withConstraints: [ :constraints | constraints height: self buttonHeight ];
+		add: #daysButtons;
+		yourself
 ]
 
 { #category : #adapting }

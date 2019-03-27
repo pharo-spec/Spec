@@ -25,17 +25,15 @@ Class {
 }
 
 { #category : #accessing }
-DatePresenter class >> spec [
-	<spec: #default>
-
-	^ SpecLayout composed
-			newRow: [ :row | 
-				row 
-					newRow: [:ugly | 
-						ugly
-							add: #dateModel;  
-							add: #chooseDateButton width: 50 ]] height: 25
-			yourself.
+DatePresenter class >> defaultSpec [
+	^ SpecBoxLayout newVertical
+		add:
+			(SpecBoxLayout newHorizontal
+				add: #dateModel;
+				add: #chooseDateButton withConstraints: [ :constraints | constraints width: 50 ];
+				yourself)
+			withConstraints: [ :constraints | constraints height: 25 ];
+		yourself
 ]
 
 { #category : #private }
