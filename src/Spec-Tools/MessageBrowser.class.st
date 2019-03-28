@@ -86,14 +86,14 @@ MessageBrowser class >> browseSendersOf: aSymbol [
 
 { #category : #specs }
 MessageBrowser class >> defaultSpec [
-	<spec>
-	| delta |
-	delta := 13.
-	^ SpecLayout composed 
-			add: #listModel origin: 0@0 corner: 1@0.5 offsetOrigin: 0@0 offsetCorner: 0@(delta negated);
-			add: #toolbarModel origin: 0@0.5 corner: 1@0.5 offsetOrigin: 0@(delta negated) offsetCorner: 0@delta;
-			add: #textModel origin: 0@0.5 corner: 1@1 offsetOrigin: 0@delta offsetCorner: 0@0;
-			yourself
+	^ SpecPanedLayout newVertical
+		add: #listModel;
+		add:
+			(SpecBoxLayout newVertical
+				add: #toolbarModel withConstraints: [ :constraints | constraints height: self buttonHeight ];
+				add: #textModel;
+				yourself);
+		yourself
 ]
 
 { #category : #menu }
@@ -174,20 +174,6 @@ MessageBrowser class >> taskbarIconName [
 	"Answer the icon for an instance of the receiver in a task bar"
 
 	^#referencesIcon
-]
-
-{ #category : #specs }
-MessageBrowser class >> testSpec [
-	<spec: #default>
-	
-	^ SpecLayout composed
-			newColumn: [:col |
-				col 
-					add: #listModel;
-					addSplitter;
-					add: #toolbarModel height: self buttonHeight;
-					add: #textModel ]
-				
 ]
 
 { #category : #specs }

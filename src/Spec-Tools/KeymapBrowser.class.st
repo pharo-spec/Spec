@@ -17,15 +17,13 @@ Class {
 { #category : #specs }
 KeymapBrowser class >> defaultSpec [
 	<spec>
-	^ SpecLayout composed
-		newColumn: [ :c | 
-			c
-				newRow: [ :r | 
-					r
-						add: #filterField;
-						add: #clearFilterButton width: 25 ]
-				height: self toolbarHeight.
-			c newRow: [ :r | r add: #kmTable ] ];
+	^ SpecBoxLayout newVertical
+		add:
+			(SpecBoxLayout newHorizontal
+				add: #filterField;
+				add: #clearFilterButton withConstraints: [ :constraints | constraints width: 25 ])
+			withConstraints: [ :constraints | constraints height: self toolbarHeight ];
+		add: #kmTable;
 		yourself
 ]
 
