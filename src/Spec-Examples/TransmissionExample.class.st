@@ -52,7 +52,7 @@ TransmissionExample >> initializeWidgets [
 			aClass organization allProtocols 
 				collect: [ :each | aClass -> each ]
 				as: OrderedCollection ]
-		postTransmission: [ :origin :destination | destination selectIndex: 1 ].
+		postTransmission: [ :destination :origin | destination selectIndex: 1 ].
 			
 	self transmit 
 		from: protocols

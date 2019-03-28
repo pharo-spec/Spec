@@ -34,7 +34,7 @@ PresenterTransmission >> apply [
 PresenterTransmission >> applyPostTransmission [
 	self postTransmission ifNil: [ ^ self ].
 
-	self postTransmission cull: self fromPresenter cull: self toPresenter
+	self postTransmission cull: self toPresenter cull: self fromPresenter
 ]
 
 { #category : #script }
