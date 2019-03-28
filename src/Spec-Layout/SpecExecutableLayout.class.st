@@ -18,13 +18,9 @@ SpecExecutableLayout >> adapterName [
 { #category : #accessing }
 SpecExecutableLayout >> add: aName withConstraints: aBlock [
 	| constraints |
-	
 	constraints := self constraintsClass new.
-	constraints layout: self.
 	aBlock value: constraints.
-	children 
-		at: aName 
-		put: constraints
+	children at: aName put: constraints
 ]
 
 { #category : #converting }

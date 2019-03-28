@@ -2,8 +2,7 @@ Class {
 	#name : #SpecLayoutConstraints,
 	#superclass : #Object,
 	#instVars : [
-		'spec',
-		'layout'
+		'spec'
 	],
 	#category : #'Spec-Layout-Base'
 }
@@ -13,16 +12,6 @@ SpecLayoutConstraints >> initialize [
 
 	super initialize.
 	self spec: #defaultSpec
-]
-
-{ #category : #accessing }
-SpecLayoutConstraints >> layout [
-	^ layout
-]
-
-{ #category : #accessing }
-SpecLayoutConstraints >> layout: anObject [
-	layout := anObject
 ]
 
 { #category : #accessing }

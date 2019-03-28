@@ -43,11 +43,6 @@ SpecBoxConstraints >> bePlacedAtStart [
 ]
 
 { #category : #accessing }
-SpecBoxConstraints >> direction [
-	^ self layout direction
-]
-
-{ #category : #accessing }
 SpecBoxConstraints >> expand: aBoolean [
 
 	expand := aBoolean
