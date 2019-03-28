@@ -306,9 +306,10 @@ ComposablePresenter >> applyMenuModel: aMenuModel [
 
 { #category : #private }
 ComposablePresenter >> applyTransmissions [
-	
+	"I'll apply all transmissions the user did not applied himself."
+
 	transmissions ifNil: [ ^ self ].
-	transmissions do: #apply
+	transmissions reject: #wasApplied thenDo: #apply
 ]
 
 { #category : #converting }
