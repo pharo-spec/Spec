@@ -89,6 +89,7 @@ Class {
 	#traits : 'TSpecObservable',
 	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
+		'#layout',
 		'#application',
 		'#focusOrder',
 		'#extentHolder',
@@ -708,6 +709,11 @@ ComposablePresenter >> keyStrokesForPreviousFocus: aCollection [
 	keyStrokesForPreviousFocusHolder value: aCollection 
 ]
 
+{ #category : #accessing }
+ComposablePresenter >> layout [
+	^ layout
+]
+
 { #category : #'window menu' }
 ComposablePresenter >> neglectMenuModel: aMenuModel [
 
@@ -963,8 +969,10 @@ ComposablePresenter >> resolveSymbol: aSymbol [
 ]
 
 { #category : #api }
-ComposablePresenter >> retrieveDefaultSpec [
-	^ self retrieveSpec: self defaultSpecSelector
+ComposablePresenter >> retrieveSpec: aSelector [
+
+	self layout ifNotNil: [ ^ self layout ].
+	^ super retrieveSpec: aSelector
 ]
 
 { #category : #TOMOVE }

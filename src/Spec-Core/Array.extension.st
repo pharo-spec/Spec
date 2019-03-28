@@ -1,10 +1,11 @@
 Extension { #name : #Array }
 
 { #category : #'*Spec-Core' }
-Array >> buildAdapterFor: aPresenter bindings: adapterBindings [
-	"Provides polymorphism with executable layouts."
+Array >> asSpecLayout [
 
-	^ aPresenter adapterFrom: self
+	^ SpecLegacyArrayLayout new
+		array: self;
+		yourself
 ]
 
 { #category : #'*Spec-Core' }

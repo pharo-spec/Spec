@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'children',
-		'selector'
+		'selector',
+		'adapter'
 	],
 	#category : #'Spec-Layout-Base'
 }
@@ -31,10 +32,14 @@ SpecExecutableLayout >> asArray [
 	self error: 'Should not arrive here. This layout is executable then it will not be interpreted.'
 ]
 
+{ #category : #converting }
+SpecExecutableLayout >> asSpecLayout [
+	
+	^ self
+]
+
 { #category : #building }
 SpecExecutableLayout >> buildAdapterFor: aModel bindings: bindings [
-	| adapter |
-	
 	adapter := (bindings adapterClass: self adapterName) adapt: aModel.
 	adapter layout: self.
 	children
@@ -74,6 +79,12 @@ SpecExecutableLayout >> isExecutable [
 SpecExecutableLayout >> isSpecLayout [
 
 	^ true
+]
+
+{ #category : #accessing }
+SpecExecutableLayout >> presenters [
+	
+	^ children keys
 ]
 
 { #category : #private }

@@ -3,7 +3,7 @@ A SpecPresenter is a object used to describe a user interface
 "
 Class {
 	#name : #SpecLayout,
-	#superclass : #Object,
+	#superclass : #SpecLegacyLayout,
 	#instVars : [
 		'type',
 		'commands',
@@ -200,10 +200,9 @@ SpecLayout >> asArray [
 ]
 
 { #category : #building }
-SpecLayout >> buildAdapterFor: aPresenter bindings: adapterBindings [
-	"Provides polymorphism with executable layouts."
+SpecLayout >> asSpecLayout [
 
-	^ aPresenter adapterFrom: self
+	^ self
 ]
 
 { #category : #accessing }
@@ -284,12 +283,6 @@ SpecLayout >> isExecutable [
 	 interpreting it)"
 
 	^ false
-]
-
-{ #category : #testing }
-SpecLayout >> isSpecLayout [
-
-	^ true
 ]
 
 { #category : #commands }

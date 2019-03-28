@@ -18,7 +18,6 @@ Class {
 	#name : #SpecMillerColumnPresenter,
 	#superclass : #ComposablePresenter,
 	#instVars : [
-		'presenters',
 		'newPresenterBlock'
 	],
 	#category : #'Spec-Core-Miller'
@@ -29,30 +28,17 @@ SpecMillerColumnPresenter >> addPresenter: newSubPresenter [
 
 	newSubPresenter whenActivatedDo: [ :selection | 
 			self changeSelection: selection selectedItem from: newSubPresenter ].
-	presenters add: newSubPresenter.
-
 	newSubPresenter owner: self.
-	
-	self adapter ifNotNil: [ 
-		self adapter add: newSubPresenter ].
+	layout add: newSubPresenter.
 ]
 
 { #category : #initialization }
 SpecMillerColumnPresenter >> changeSelection: selection from: aPresenter [
 
 	| selectedPresenterIndex |
-	selectedPresenterIndex := presenters indexOf: aPresenter.
+	selectedPresenterIndex := self presenters indexOf: aPresenter.
 	self resetTo: selectedPresenterIndex.
 	self pushModel: selection.
-]
-
-{ #category : #specs }
-SpecMillerColumnPresenter >> defaultSpec [
-
-	| layout |
-	layout := SpecBoxLayout newHorizontal.
-	presenters do: [ :each | layout add: each ].
-	^ layout
 ]
 
 { #category : #initialization }
@@ -65,7 +51,7 @@ SpecMillerColumnPresenter >> initialize [
 { #category : #initialization }
 SpecMillerColumnPresenter >> initializeWidgets [
 	
-	presenters := OrderedCollection new
+	layout := SpecBoxLayout newHorizontal
 ]
 
 { #category : #initialization }
@@ -83,7 +69,7 @@ SpecMillerColumnPresenter >> presenterBlock: aBlockClosure [
 { #category : #accessing }
 SpecMillerColumnPresenter >> presenters [
 
-	^ presenters
+	^ layout presenters
 ]
 
 { #category : #model }
@@ -96,20 +82,8 @@ SpecMillerColumnPresenter >> pushModel: aModel [
 SpecMillerColumnPresenter >> resetTo: anIndex [
 	"Remove all presenters up to anIndex.
 	0 means to remove all elements."
-	presenters copy withIndexDo: [ :presenter :index |
-		index <= anIndex ifFalse: [ 
-			presenters remove: presenter.
-			self adapter ifNotNil: [ :theAdapter | theAdapter remove: presenter ] ] ]
-]
-
-{ #category : #initialization }
-SpecMillerColumnPresenter >> retrieveSpec: aSelector [
-	| layout |
-
-	layout := self perform: aSelector.
-	layout isSpecLayout ifTrue: [ 
-		layout selector: aSelector ].
-	^ layout
+	self presenters copy withIndexDo: [ :presenter :index |
+		index <= anIndex ifFalse: [ layout remove: presenter ] ]
 ]
 
 { #category : #model }

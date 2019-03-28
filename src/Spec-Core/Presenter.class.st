@@ -81,16 +81,6 @@ Presenter >> adapter: anAdapter [
 	adapter := anAdapter
 ]
 
-{ #category : #'private building' }
-Presenter >> adapterFrom: aSpecLayout [
-
-	self flag: #TODO. "this is here for compatibility (since layouts now are executable). 
-	We will need to remove the interpreter and then this method too."
-	^ SpecInterpreter 
-		interpretASpec: aSpecLayout 
-		presenter: self
-]
-
 { #category : #accessing }
 Presenter >> application [
 	"Answer application owner of this composition.
@@ -104,7 +94,7 @@ Presenter >> application [
 Presenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	"I assume the SpecBindings is well defined"
 	| newAdapter |
-	newAdapter := aSpecLayout buildAdapterFor: self bindings: SpecBindings value.
+	newAdapter := aSpecLayout asSpecLayout buildAdapterFor: self bindings: SpecBindings value.
 	adapter := newAdapter.
 	"self setExtentAndBindingTo: newAdapter widget."
 	self announcer announce: (WidgetBuilt 
@@ -127,7 +117,7 @@ Presenter >> buildAdapterWithSpecLayout: aSpecLayout [
 Presenter >> buildWithSpec [
 	"Build the widget using the default spec"
 	
-	^ self buildWithSpec: self defaultSpecSelector
+	^ self buildWithSpecLayout: self retrieveDefaultSpec
 ]
 
 { #category : #building }
