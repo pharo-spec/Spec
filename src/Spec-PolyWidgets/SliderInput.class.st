@@ -23,11 +23,9 @@ Class {
 { #category : #specs }
 SliderInput class >> sliderBottom [
 	<spec>
-	^ SpecLayout composed
-		newColumn: [ :column | 
-			column
-				add: #input origin: 0 @ 0 corner: 1 @ 0.15;
-				add: #slider origin: 0 @ 0.15 corner: 1 @ 1 ];
+	^ SpecBoxLayout newVertical
+		add: #input withConstraints: [ :constraints | constraints height: self buttonHeight ];
+		add: #slider;
 		yourself
 ]
 
@@ -56,11 +54,9 @@ SliderInput class >> sliderRight [
 { #category : #specs }
 SliderInput class >> sliderTop [
 	<spec>
-	^ SpecLayout composed
-		newColumn: [ :column | 
-			column
-				add: #slider origin: 0 @ 0 corner: 1 @ 0.85;
-				add: #input origin: 0 @ 0.85 corner: 1 @ 1 ];
+	^ SpecBoxLayout newVertical
+		add: #slider;
+		add: #input withConstraints: [ :constraints | constraints height: self buttonHeight ];
 		yourself
 ]
 
