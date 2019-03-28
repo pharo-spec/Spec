@@ -12,7 +12,6 @@ Class {
 		'fromPort',
 		'toPort',
 		'transformBlock',
-		'wasApplied',
 		'postTransmission'
 	],
 	#category : #'Spec-Core-Transmission'
@@ -28,10 +27,7 @@ PresenterTransmission class >> on: aPresenter [
 
 { #category : #actions }
 PresenterTransmission >> apply [
-	"We apply only once the transmission."
-
-	fromPort attachTransmission: self.
-	wasApplied := true
+	fromPort attachTransmission: self
 ]
 
 { #category : #script }
@@ -77,12 +73,6 @@ PresenterTransmission >> fromPort: aPort [
 { #category : #private }
 PresenterTransmission >> fromPresenter [
 	^ self fromPort presenter
-]
-
-{ #category : #initialization }
-PresenterTransmission >> initialize [
-	super initialize.
-	wasApplied := false.
 ]
 
 { #category : #initialization }
@@ -147,9 +137,4 @@ PresenterTransmission >> transformed: anObject [
 
 	transformBlock ifNil: [ ^ anObject ].
 	^ transformBlock value: anObject
-]
-
-{ #category : #accessing }
-PresenterTransmission >> wasApplied [
-	^ wasApplied
 ]

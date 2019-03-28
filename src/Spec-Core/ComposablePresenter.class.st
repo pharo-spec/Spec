@@ -304,14 +304,6 @@ ComposablePresenter >> applyMenuModel: aMenuModel [
 			item subMenu ifNotNil: [ :subMenu | subMenu applyTo: self	] ] ]
 ]
 
-{ #category : #private }
-ComposablePresenter >> applyTransmissions [
-	"I'll apply all transmissions the user did not applied himself."
-
-	transmissions ifNil: [ ^ self ].
-	transmissions reject: #wasApplied thenDo: #apply
-]
-
 { #category : #converting }
 ComposablePresenter >> asPresenter [
 	"This allows to use presenter instances inside layouts directly"
@@ -581,7 +573,6 @@ ComposablePresenter >> initializePrivateHooks [
 
 	self initializeWidgets.
 	self initializePresenter.
-	self applyTransmissions.
 	self updatePresenter.
 
 ]

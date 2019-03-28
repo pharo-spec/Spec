@@ -41,26 +41,30 @@ TransmissionExample >> initializeWidgets [
 	code := self newText beForCode.
 
 	self transmit 
-		from: packages; 
-		to: classes; 
+		from: packages
+		to: classes
 		transform: [ :aPackage | aPackage definedClasses asOrderedCollection ].
+		
 	self transmit 
-		from: classes; 
-		to: protocols; 
+		from: classes
+		to: protocols
 		transform: [ :aClass | 
 			aClass organization allProtocols 
 				collect: [ :each | aClass -> each ]
-				as: OrderedCollection ].
+				as: OrderedCollection ]
+		postTransmission: [ :origin :destination | destination selectIndex: 1 ].
+			
 	self transmit 
-		from: protocols; 
-		to: methods; 
+		from: protocols
+		to: methods
 		transform: [ :aPair | 
 			aPair value methods 
 				collect: [ :each | aPair key >> each ]
 				as: OrderedCollection ].
+			
 	self transmit 
-		from: methods; 
-		to: code; 
+		from: methods
+		to: code
 		transform: #sourceCode.
 	
 	packages items: RPackageOrganizer default packages
