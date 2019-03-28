@@ -30,6 +30,13 @@ PresenterTransmission >> apply [
 	fromPort attachTransmission: self
 ]
 
+{ #category : #actions }
+PresenterTransmission >> applyPostTransmission [
+	self postTransmission ifNil: [ ^ self ].
+
+	self postTransmission cull: self fromPresenter cull: self toPresenter
+]
+
 { #category : #script }
 PresenterTransmission >> from: aPresenter [
 	self fromPort: aPresenter outputPortDefault

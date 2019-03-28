@@ -21,5 +21,5 @@ ListSelectionPresenterPort >> attachTransmission: aTransmission [
 			aTransmission toPort
 				incomingTransmission: (aTransmission transformed: selection selectedItem)
 				from: self.
-			self postTransmission: aTransmission ]
+			aTransmission applyPostTransmission ]
 ]

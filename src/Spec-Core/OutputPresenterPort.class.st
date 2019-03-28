@@ -20,10 +20,3 @@ OutputPresenterPort >> isOutput [
 
 	^ true
 ]
-
-{ #category : #attaching }
-OutputPresenterPort >> postTransmission: aTransmission [
-	"Apply the post transmission of a transmission"
-
-	aTransmission postTransmission ifNotNil: [ :valuable | valuable cull: self presenter cull: aTransmission toPresenter ]
-]
