@@ -31,10 +31,10 @@ PresenterTransmission >> apply [
 ]
 
 { #category : #actions }
-PresenterTransmission >> applyPostTransmission [
+PresenterTransmission >> applyPostTransmissionWith: aTransmittedObject [
 	self postTransmission ifNil: [ ^ self ].
 
-	self postTransmission cull: self toPresenter cull: self fromPresenter
+	self postTransmission cull: self toPresenter cull: self fromPresenter cull: aTransmittedObject
 ]
 
 { #category : #script }

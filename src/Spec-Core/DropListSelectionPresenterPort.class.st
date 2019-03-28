@@ -13,9 +13,11 @@ DropListSelectionPresenterPort class >> portName [
 { #category : #attaching }
 DropListSelectionPresenterPort >> attachTransmission: aTransmission [
 	self presenter
-		whenSelectionChangedDo: [ :selection |
+		whenSelectionChangedDo: [ :selection | 
+			| transmitted |
+			transmitted := selection selectedItem model.
 			aTransmission toPort
-				incomingTransmission: (aTransmission transformed: selection selectedItem model)
+				incomingTransmission: (aTransmission transformed: transmitted)
 				from: self.
-			aTransmission applyPostTransmission ]
+			aTransmission applyPostTransmissionWith: transmitted ]
 ]
