@@ -48,6 +48,26 @@ PresenterTransmission >> from: aPresenter port: aSymbol [
 ]
 
 { #category : #actions }
+PresenterTransmission >> from: aPresenter port: aSymbol to: anotherPresenter transform: aValuable [
+	self
+		from: aPresenter
+		port: aSymbol
+		to: anotherPresenter
+		transform: aValuable
+		postTransmission: nil
+]
+
+{ #category : #actions }
+PresenterTransmission >> from: aPresenter port: aSymbol to: anotherPresenter transform: aValuable postTransmission: anotherValuable [
+	self
+		from: aPresenter port: aSymbol;
+		to: anotherPresenter;
+		transform: aValuable;
+		postTransmission: anotherValuable;
+		apply
+]
+
+{ #category : #actions }
 PresenterTransmission >> from: aPresenter to: anotherPresenter transform: aValuable [
 	self
 		from: aPresenter
