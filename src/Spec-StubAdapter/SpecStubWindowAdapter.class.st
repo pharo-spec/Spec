@@ -36,6 +36,8 @@ SpecStubWindowAdapter >> delete [
 
 { #category : #factory }
 SpecStubWindowAdapter >> open [
+
+	self presenter windowIsOpening
 ]
 
 { #category : #factory }

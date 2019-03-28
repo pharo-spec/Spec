@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'children',
-		'selector'
+		'selector',
+		'adapter'
 	],
 	#category : #'Spec-Layout-Base'
 }
@@ -32,10 +33,14 @@ SpecExecutableLayout >> asArray [
 	self error: 'Should not arrive here. This layout is executable then it will not be interpreted.'
 ]
 
+{ #category : #converting }
+SpecExecutableLayout >> asSpecLayout [
+	
+	^ self
+]
+
 { #category : #building }
 SpecExecutableLayout >> buildAdapterFor: aModel bindings: bindings [
-	| adapter |
-	
 	adapter := (bindings adapterClass: self adapterName) adapt: aModel.
 	adapter layout: self.
 	children
@@ -77,6 +82,12 @@ SpecExecutableLayout >> isSpecLayout [
 	^ true
 ]
 
+{ #category : #accessing }
+SpecExecutableLayout >> presenters [
+	
+	^ children keys
+]
+
 { #category : #private }
 SpecExecutableLayout >> resolvePresenter: presenterNameOrLayout model: aModel bindings: bindings [
 
@@ -90,8 +101,6 @@ SpecExecutableLayout >> resolvePresenter: presenterNameOrLayout model: aModel bi
 	
 	"I receive an arbitrary object (needs to understand #asPresenter)"
 	^ presenterNameOrLayout asPresenter
-		owner: aModel;
-		yourself
 ]
 
 { #category : #accessing }

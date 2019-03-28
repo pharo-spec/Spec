@@ -207,7 +207,7 @@ AbstractMorphicAdapter >> enable [
 
 { #category : #protocol }
 AbstractMorphicAdapter >> enabled [
-	^ self model isEnabled
+	^ self presenter isEnabled
 ]
 
 { #category : #protocol }

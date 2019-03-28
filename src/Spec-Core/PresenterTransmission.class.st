@@ -9,11 +9,10 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'presenter',
-		'fromPresenter',
-		'toPresenter',
 		'fromPort',
 		'toPort',
-		'transformBlock'
+		'transformBlock',
+		'postTransmission'
 	],
 	#category : #'Spec-Core-Transmission'
 }
@@ -27,41 +26,64 @@ PresenterTransmission class >> on: aPresenter [
 ]
 
 { #category : #actions }
-PresenterTransmission >> apply [ 
-
+PresenterTransmission >> apply [
 	fromPort attachTransmission: self
 ]
 
-{ #category : #private }
-PresenterTransmission >> basicFrom: aPresenter port: aPort [
+{ #category : #actions }
+PresenterTransmission >> applyPostTransmissionWith: aTransmittedObject [
+	self postTransmission ifNil: [ ^ self ].
 
-	fromPresenter := aPresenter.
-	fromPort := aPort
-]
-
-{ #category : #private }
-PresenterTransmission >> basicFromPort: aPort [
-
-	fromPort := aPort
-]
-
-{ #category : #private }
-PresenterTransmission >> basicTo: aPresenter port: aPort [
-
-	toPresenter := aPresenter.
-	toPort := aPort
+	self postTransmission cull: self toPresenter cull: self fromPresenter cull: aTransmittedObject
 ]
 
 { #category : #script }
 PresenterTransmission >> from: aPresenter [
-
-	self basicFrom: aPresenter port: aPresenter outputPortDefault
+	self fromPort: aPresenter outputPortDefault
 ]
 
 { #category : #script }
 PresenterTransmission >> from: aPresenter port: aSymbol [
+	self fromPort: (aPresenter outputPortNamed: aSymbol)
+]
 
-	self basicFrom: aPresenter port: (aPresenter outputPortNamed: aSymbol)
+{ #category : #actions }
+PresenterTransmission >> from: aPresenter port: aSymbol to: anotherPresenter transform: aValuable [
+	self
+		from: aPresenter
+		port: aSymbol
+		to: anotherPresenter
+		transform: aValuable
+		postTransmission: nil
+]
+
+{ #category : #actions }
+PresenterTransmission >> from: aPresenter port: aSymbol to: anotherPresenter transform: aValuable postTransmission: anotherValuable [
+	self
+		from: aPresenter port: aSymbol;
+		to: anotherPresenter;
+		transform: aValuable;
+		postTransmission: anotherValuable;
+		apply
+]
+
+{ #category : #actions }
+PresenterTransmission >> from: aPresenter to: anotherPresenter transform: aValuable [
+	self
+		from: aPresenter
+		to: anotherPresenter
+		transform: aValuable
+		postTransmission: nil
+]
+
+{ #category : #actions }
+PresenterTransmission >> from: aPresenter to: anotherPresenter transform: aValuable postTransmission: anotherValuable [
+	self
+		from: aPresenter;
+		to: anotherPresenter;
+		transform: aValuable;
+		postTransmission: anotherValuable;
+		apply
 ]
 
 { #category : #accessing }
@@ -70,11 +92,31 @@ PresenterTransmission >> fromPort [
 	^ fromPort
 ]
 
+{ #category : #private }
+PresenterTransmission >> fromPort: aPort [
+	fromPort := aPort
+]
+
+{ #category : #private }
+PresenterTransmission >> fromPresenter [
+	^ self fromPort presenter
+]
+
 { #category : #initialization }
 PresenterTransmission >> initializePresenter: aPresenter [
 
 	self initialize.
 	presenter := aPresenter
+]
+
+{ #category : #accessing }
+PresenterTransmission >> postTransmission [
+	^ postTransmission
+]
+
+{ #category : #accessing }
+PresenterTransmission >> postTransmission: aValuable [
+	postTransmission := aValuable
 ]
 
 { #category : #private }
@@ -86,19 +128,29 @@ PresenterTransmission >> presenter [
 { #category : #script }
 PresenterTransmission >> to: aPresenter [
 
-	self basicTo: aPresenter port: aPresenter inputPortDefault
+	self toPort: aPresenter inputPortDefault
 ]
 
 { #category : #script }
 PresenterTransmission >> to: aPresenter port: aSymbol [
 
-	self basicTo: aPresenter port: (aPresenter inputPortNamed: aSymbol)
+	self toPort: (aPresenter inputPortNamed: aSymbol)
 ]
 
 { #category : #accessing }
 PresenterTransmission >> toPort [
 
 	^ toPort
+]
+
+{ #category : #private }
+PresenterTransmission >> toPort: aPort [
+	toPort := aPort
+]
+
+{ #category : #private }
+PresenterTransmission >> toPresenter [
+	^ self toPort presenter
 ]
 
 { #category : #script }

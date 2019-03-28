@@ -89,6 +89,7 @@ Class {
 	#traits : 'TSpecObservable',
 	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
+		'#layout',
 		'#application',
 		'#focusOrder',
 		'#extentHolder',
@@ -275,12 +276,6 @@ ComposablePresenter >> announce: anAnnouncement [
 	self announcer announce: anAnnouncement
 ]
 
-{ #category : #TOREMOVE }
-ComposablePresenter >> apiSelectors [
-
-	^ self class apiSelectors
-]
-
 { #category : #accessing }
 ComposablePresenter >> application [
 
@@ -310,11 +305,10 @@ ComposablePresenter >> applyMenuModel: aMenuModel [
 			item subMenu ifNotNil: [ :subMenu | subMenu applyTo: self	] ] ]
 ]
 
-{ #category : #private }
-ComposablePresenter >> applyTransmissions [
-	
-	transmissions ifNil: [ ^ self ].
-	transmissions do: #apply
+{ #category : #converting }
+ComposablePresenter >> asPresenter [
+	"This allows to use presenter instances inside layouts directly"
+	^ self
 ]
 
 { #category : #'api-window' }
@@ -580,7 +574,6 @@ ComposablePresenter >> initializePrivateHooks [
 
 	self initializeWidgets.
 	self initializePresenter.
-	self applyTransmissions.
 	self updatePresenter.
 
 ]
@@ -706,6 +699,11 @@ ComposablePresenter >> keyStrokesForNextFocus: aCollection [
 ComposablePresenter >> keyStrokesForPreviousFocus: aCollection [
 
 	keyStrokesForPreviousFocusHolder value: aCollection 
+]
+
+{ #category : #accessing }
+ComposablePresenter >> layout [
+	^ layout
 ]
 
 { #category : #'window menu' }
@@ -963,8 +961,10 @@ ComposablePresenter >> resolveSymbol: aSymbol [
 ]
 
 { #category : #api }
-ComposablePresenter >> retrieveDefaultSpec [
-	^ self retrieveSpec: self defaultSpecSelector
+ComposablePresenter >> retrieveSpec: aSelector [
+
+	self layout ifNotNil: [ ^ self layout ].
+	^ super retrieveSpec: aSelector
 ]
 
 { #category : #TOMOVE }
