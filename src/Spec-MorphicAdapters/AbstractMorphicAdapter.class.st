@@ -22,11 +22,6 @@ AbstractMorphicAdapter class >> allAdapters [
 	^ self allSubclasses
 ]
 
-{ #category : #specs }
-AbstractMorphicAdapter class >> defaultSpec [
-	^ SpecLayout composed
-]
-
 { #category : #'drag and drop' }
 AbstractMorphicAdapter >> acceptDropBlock [
 
