@@ -25,19 +25,22 @@ PresenterTransmission class >> on: aPresenter [
 		yourself
 ]
 
-{ #category : #actions }
+{ #category : #private }
 PresenterTransmission >> apply [
 	fromPort attachTransmission: self
 ]
 
-{ #category : #actions }
+{ #category : #private }
 PresenterTransmission >> applyPostTransmissionWith: aTransmittedObject [
-	self postTransmission ifNil: [ ^ self ].
 
-	self postTransmission cull: self toPresenter cull: self fromPresenter cull: aTransmittedObject
+	self postTransmission ifNil: [ ^ self ].
+	self postTransmission 
+		cull: self toPresenter 
+		cull: self fromPresenter 
+		cull: aTransmittedObject
 ]
 
-{ #category : #script }
+{ #category : #private }
 PresenterTransmission >> from: aPresenter [
 	self fromPort: aPresenter outputPortDefault
 ]
@@ -59,6 +62,7 @@ PresenterTransmission >> from: aPresenter port: aSymbol to: anotherPresenter tra
 
 { #category : #actions }
 PresenterTransmission >> from: aPresenter port: aSymbol to: anotherPresenter transform: aValuable postTransmission: anotherValuable [
+
 	self
 		from: aPresenter port: aSymbol;
 		to: anotherPresenter;
@@ -68,7 +72,17 @@ PresenterTransmission >> from: aPresenter port: aSymbol to: anotherPresenter tra
 ]
 
 { #category : #actions }
+PresenterTransmission >> from: aPresenter to: anotherPresenter [
+	
+	self
+		from: aPresenter
+		to: anotherPresenter
+		transform: nil
+]
+
+{ #category : #actions }
 PresenterTransmission >> from: aPresenter to: anotherPresenter transform: aValuable [
+	
 	self
 		from: aPresenter
 		to: anotherPresenter
@@ -125,7 +139,7 @@ PresenterTransmission >> presenter [
 	^ presenter
 ]
 
-{ #category : #script }
+{ #category : #private }
 PresenterTransmission >> to: aPresenter [
 
 	self toPort: aPresenter inputPortDefault

@@ -356,6 +356,33 @@ Presenter >> spec: anAdapter [
 	self adapter: anAdapter
 ]
 
+{ #category : #'accessing ports' }
+Presenter >> transmitTo: aPresenter [		
+	
+	^ self owner transmit 
+		from: self to: aPresenter;
+		yourself
+]
+
+{ #category : #'accessing ports' }
+Presenter >> transmitTo: aPresenter transform: aValuable [
+	
+	^ self owner transmit 
+		from: self to: aPresenter;
+		transform: aValuable;
+		yourself
+]
+
+{ #category : #'accessing ports' }
+Presenter >> transmitTo: aPresenter transform: aValuable postTransmission: postValuable [
+	
+	^ self owner transmit 
+		from: self to: aPresenter;
+		transform: aValuable;
+		postTransmission: postValuable;
+		yourself
+]
+
 { #category : #updating }
 Presenter >> update: aParameter [
 

@@ -223,7 +223,7 @@ ComposablePresenter >> addAll: aWindow withSpecLayout: aSpec [
 		frame: (0@0 corner: 1@1).
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> addInputPort: aPort [
 
 	aPort presenter: self.
@@ -236,7 +236,7 @@ ComposablePresenter >> addMenuItemsToWindowMenu: aMenu [
 	"Do nothing"
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> addOutputPort: aPort [
 
 	aPort presenter: self.
@@ -612,7 +612,7 @@ ComposablePresenter >> initializeWindow: aWindowPresenter [
 		aboutText: self aboutText
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> inputPortDefault [
 
 	"first input port will be default. 
@@ -620,13 +620,13 @@ ComposablePresenter >> inputPortDefault [
 	^ self inputPorts first
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> inputPortNamed: aSymbol [
 
 	^ self inputPorts detect: [ :each | each name = aSymbol ]
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> inputPorts [
 
 	^ inputPorts
@@ -872,7 +872,7 @@ ComposablePresenter >> on: anAnnouncement send: aSelector to: aTarget [
 		to: aTarget
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> outputPortDefault [
 
 	"first output port will be default. 
@@ -880,13 +880,13 @@ ComposablePresenter >> outputPortDefault [
 	^ self outputPorts first
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> outputPortNamed: aSymbol [
 
 	^ self outputPorts detect: [ :each | each name = aSymbol ]
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> outputPorts [
 
 	^ outputPorts
@@ -1045,8 +1045,8 @@ ComposablePresenter >> toolName [
 	^ self class toolName
 ]
 
-{ #category : #'accessing ports' }
-ComposablePresenter >> transmit [ 
+{ #category : #'private-ports' }
+ComposablePresenter >> transmit [
 	| newTransmition |
 
 	transmissions ifNil: [ transmissions := Set new ].

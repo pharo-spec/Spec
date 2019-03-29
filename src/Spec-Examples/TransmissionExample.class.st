@@ -32,6 +32,16 @@ TransmissionExample class >> open [
 ]
 
 { #category : #initialization }
+TransmissionExample >> classTemplateFor: aPackage [
+	
+	^ 'Object subclass: #NameOfSubclass
+	slots: {}
+	classVariables: {}
+	package: ''', aPackage name,''' ' 
+	
+]
+
+{ #category : #initialization }
 TransmissionExample >> initializeWidgets [
 	
 	packages := self newList displayBlock: #name. 
@@ -40,32 +50,27 @@ TransmissionExample >> initializeWidgets [
 	methods := self newList displayBlock: #selector. 
 	code := self newText beForCode.
 
-	self transmit 
-		from: packages
-		to: classes
-		transform: [ :aPackage | aPackage definedClasses asOrderedCollection ].
-		
-	self transmit 
-		from: classes
-		to: protocols
-		transform: [ :aClass | 
+	packages transmitTo: classes transform: [ :aPackage | aPackage definedClasses asArray ].
+	packages transmitTo: code transform: [ :aPackage | self classTemplateFor: aPackage ].
+	
+	classes 
+		transmitTo: protocols 
+		transform: [ :aClass |
 			aClass organization allProtocols 
 				collect: [ :each | aClass -> each ]
 				as: OrderedCollection ]
 		postTransmission: [ :destination :origin | destination selectIndex: 1 ].
+	classes transmitTo: code transform: #definitionForNautilusWithSlots.
 			
-	self transmit 
-		from: protocols
-		to: methods
+	protocols 
+		transmitTo: methods 
 		transform: [ :aPair | 
 			aPair value methods 
 				collect: [ :each | aPair key >> each ]
 				as: OrderedCollection ].
-			
-	self transmit 
-		from: methods
-		to: code
-		transform: #sourceCode.
+	protocols transmitTo: code transform: [ :aPair | aPair key sourceCodeTemplate ].
+
+	methods transmitTo: code transform: #sourceCode.
 	
 	packages items: RPackageOrganizer default packages
 ]
