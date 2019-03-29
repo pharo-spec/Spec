@@ -5,6 +5,9 @@ A paned layout will split (horizontally or vertically) panels (in fixed yet prop
 Class {
 	#name : #MorphicBoxAdapter,
 	#superclass : #MorphicLayoutAdapter,
+	#instVars : [
+		'layout'
+	],
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
@@ -18,7 +21,7 @@ MorphicBoxAdapter >> add: aPresenter [
 MorphicBoxAdapter >> addConstraits: constraints toChild: childMorph [
 	"adds constraits by child"
 	| theMorph |
-	
+
 	theMorph := childMorph.
 	constraints isExpand 
 		ifTrue: [ 
@@ -37,10 +40,7 @@ MorphicBoxAdapter >> addConstraits: constraints toChild: childMorph [
 				vResizing: #spaceFill ]
 		ifFalse: [
 			"Set morph to stay rigid"
-			self flag: #TODO. "This works for vertical but has to be inversed for horizontal"
-			theMorph 
-				hResizing: #spaceFill; 
-				vResizing: #rigid.
+			layout direction setRigidityOfNonExpendedMorph: theMorph.
 			constraints width ifNotNil: [ :w | theMorph width: w ].
 			constraints height ifNotNil: [ :h | theMorph height: h ] ].
 	"constraints padding"
@@ -69,6 +69,7 @@ MorphicBoxAdapter >> childrenWidgets [
 { #category : #factory }
 MorphicBoxAdapter >> layout: aLayout [
 
+	layout := aLayout.
 	"build of widget was differed up to here (to know what is the direction)"
 	widget := aLayout direction newWidgetOn: self.
 	widget borderWidth: aLayout borderWidth.
