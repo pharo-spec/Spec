@@ -100,6 +100,8 @@ SpecExecutableLayout >> resolvePresenter: presenterNameOrLayout model: aModel bi
 	
 	"I receive an arbitrary object (needs to understand #asPresenter)"
 	^ presenterNameOrLayout asPresenter
+		owner: aModel;
+		yourself
 ]
 
 { #category : #accessing }
