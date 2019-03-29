@@ -159,7 +159,7 @@ PresenterTransmission >> transform: aBlock [
 	transformBlock := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 PresenterTransmission >> transformed: anObject [ 
 
 	transformBlock ifNil: [ ^ anObject ].
