@@ -2,45 +2,27 @@ Extension { #name : #TextInputFieldPresenter }
 
 { #category : #'*Spec-Deprecated80' }
 TextInputFieldPresenter >> beDecrypted [
-	self
-		deprecated: 'Use #beVisible instead'
-		transformWith: '`@receiver beDecrypted' 
-						-> '`@receiver bePassword'.
-	
-	self bePassword
+	self deprecated: 'Use #beText instead' transformWith: '`@receiver beDecrypted' -> '`@receiver beText'.
+	self beText
 ]
 
 { #category : #'*Spec-Deprecated80' }
 TextInputFieldPresenter >> beEncrypted [
+	self deprecated: 'Use #bePassword instead' transformWith: '`@receiver beEncrypted' -> '`@receiver bePassword'.
 
-	self
-		deprecated: 'Use #beInvisible instead'
-		transformWith: '`@receiver beEncrypted' 
-						-> '`@receiver bePassword'.
-	
 	self bePassword
 ]
 
 { #category : #'*Spec-Deprecated80' }
 TextInputFieldPresenter >> encrypted [
-
-	self
-		deprecated: 'Use #isVisible instead'
-		transformWith: '`@receiver encrypted' 
-						-> '`@receiver isPassword'.
-
-	^ self isPassword not
+	self deprecated: 'Use #isPassword instead' transformWith: '`@receiver encrypted' -> '`@receiver isPassword'.
+	^ self isPassword
 ]
 
 { #category : #'*Spec-Deprecated80' }
 TextInputFieldPresenter >> encrypted: aBoolean [
-
-	self
-		deprecated: 'Use #beVisible: instead'
-		transformWith: '`@receiver encrypted: `@arg' 
-						-> '`@receiver bePassword: `@arg'.
-
-	self bePassword: aBoolean.
+	self deprecated: 'Use #bePassword: instead' transformWith: '`@receiver encrypted: `@arg' -> '`@receiver bePassword: `@arg'.
+	self bePassword: aBoolean
 ]
 
 { #category : #'*Spec-Deprecated80' }

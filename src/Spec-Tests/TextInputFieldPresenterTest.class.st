@@ -26,6 +26,12 @@ TextInputFieldPresenterTest >> testBePasswordIsSet [
 ]
 
 { #category : #tests }
+TextInputFieldPresenterTest >> testBeTextIsSet [
+	presenter beText.
+	self deny: presenter isPassword
+]
+
+{ #category : #tests }
 TextInputFieldPresenterTest >> testDefaultIsNotPassword [
 
 	self deny: presenter isPassword

@@ -89,6 +89,11 @@ TextInputFieldPresenter >> bePassword: aBoolean [
 ]
 
 { #category : #api }
+TextInputFieldPresenter >> beText [
+	self bePassword: false
+]
+
+{ #category : #api }
 TextInputFieldPresenter >> entryCompletion [
 	"<api: #st getter: #entryCompletion registration: #whenEntryCompletionChanged:>"
 	"Return an entry completion used to suggest text while typing"
