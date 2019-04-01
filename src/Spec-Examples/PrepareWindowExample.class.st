@@ -69,16 +69,15 @@ PrepareWindowExample >> initializeWindow: aWindowPresenter [
 { #category : #'private factory' }
 PrepareWindowExample >> newFileMenu [
 	^ self newMenu
-		addGroup: [ :group | 
-			group
-				addItem: [ :item | 
-					item
-						name: 'Push message';
-						action: [ self pushMessage ] ];
-				addItem: [ :item | 
-					item
-						name: 'Pop message';
-						action: [ self popMessage ] ] ]
+		addItem: [ :item | 
+			item
+				name: 'Push message';
+				action: [ self pushMessage ] ];
+		addItem: [ :item | 
+			item
+				name: 'Pop message';
+				action: [ self popMessage ] ];
+		yourself
 ]
 
 { #category : #'private factory' }
