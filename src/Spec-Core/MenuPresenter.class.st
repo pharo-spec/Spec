@@ -31,7 +31,8 @@ Class {
 		'title',
 		'icon',
 		'autoRefresh',
-		'shortcutGroup'
+		'shortcutGroup',
+		'defaultGroup'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -65,6 +66,11 @@ MenuPresenter >> addGroup: aBlock [
 	group := MenuGroupPresenter new.
 	aBlock value: group.
 	self addMenuGroup: group
+]
+
+{ #category : #api }
+MenuPresenter >> addItem: aBlock [
+	self defaultGroup addItem: aBlock
 ]
 
 { #category : #private }
@@ -103,6 +109,14 @@ MenuPresenter >> autoRefresh: aBoolean [
 MenuPresenter >> buildWithSpecAsPopup [
 
 	^ self buildWithSpec: #popup
+]
+
+{ #category : #accessing }
+MenuPresenter >> defaultGroup [
+	^ defaultGroup
+		ifNil: [ defaultGroup := MenuGroupPresenter new.
+			self addMenuGroup: defaultGroup.
+			defaultGroup ]
 ]
 
 { #category : #'api-building' }
