@@ -10,6 +10,11 @@ Class {
 	#category : #'Spec-Examples-Demo'
 }
 
+{ #category : #accessing }
+SpecDemoPage class >> availablePages [
+	^ self allSubclasses sort: #priority ascending
+]
+
 { #category : #specs }
 SpecDemoPage class >> defaultSpec [
 	<spec>

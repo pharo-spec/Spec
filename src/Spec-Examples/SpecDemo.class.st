@@ -81,8 +81,7 @@ SpecDemo >> addItemTo: aGroup [
 
 { #category : #accessing }
 SpecDemo >> availablePages [
-
-	^ SpecDemoPage allSubclasses sort: [ :a :b | a priority <= b priority ]
+	^ SpecDemoPage availablePages
 ]
 
 { #category : #accessing }
@@ -155,7 +154,7 @@ SpecDemo >> list: anObject [
 SpecDemo >> mainMenu [
 
 	| aMenu |
-	aMenu := MenuPresenter new
+	aMenu := MenuBarPresenter new
 		addGroup: [ :group | 
 			group
 				addItem: [ :item | 
