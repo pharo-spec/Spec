@@ -791,6 +791,16 @@ ComposablePresenter >> newList [
 ]
 
 { #category : #widgets }
+ComposablePresenter >> newMenu [
+	^ self instantiate: MenuPresenter
+]
+
+{ #category : #widgets }
+ComposablePresenter >> newMenuBar [
+	^ self instantiate: MenuBarPresenter
+]
+
+{ #category : #widgets }
 ComposablePresenter >> newNotebook [
 
 	^ self instantiate: NotebookPresenter
