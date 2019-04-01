@@ -11,13 +11,34 @@ I provide shortcuts for the most common methods to avoid the use of the DoesNotU
 Class {
 	#name : #LabelledInputTextDropList,
 	#superclass : #LabelledContainer,
-	#category : #'Spec-PolyWidgets-Labelled'
+	#category : #'Spec-Deprecated80'
 }
 
 { #category : #specs }
 LabelledInputTextDropList class >> defaultSpec [
 	<spec: #default>
 	^ super labelLeft 
+]
+
+{ #category : #deprecation }
+LabelledInputTextDropList class >> example [
+	<sampleInstance>
+	| example |
+	example := self abstractExample.
+	example
+		placeholder: 'ghost text';
+		items: {'item 1' . 'item 2'};
+		displayBlock: [ :item | item asString ];
+		extent: 450 @ 50;
+		openWithSpec.
+	^ example
+]
+
+{ #category : #deprecation }
+LabelledInputTextDropList class >> isDeprecated [
+	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
+
+	^ true
 ]
 
 { #category : #'api-shortcuts' }
@@ -53,6 +74,12 @@ LabelledInputTextDropList >> encrypted: aBoolean [
 { #category : #'api-shortcuts' }
 LabelledInputTextDropList >> entryCompletion: anEntryCompletion [
 	^ self input entryCompletion: anEntryCompletion
+]
+
+{ #category : #'as yet unclassified' }
+LabelledInputTextDropList >> ghostText: aText [
+	self deprecated: 'This API is too tight to Morph. Use #placeholder: instead.' transformWith: '`@receiver ghostText: `@statement' -> '`@receiver placeholder: `@statement'.
+	self placeholder: aText
 ]
 
 { #category : #initialization }
