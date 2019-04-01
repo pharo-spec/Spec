@@ -153,9 +153,9 @@ SpecDemo >> list: anObject [
 
 { #category : #initialization }
 SpecDemo >> mainMenu [
-
 	| aMenu |
-	aMenu := MenuPresenter new
+
+	aMenu := MenuBarPresenter new
 		addGroup: [ :group | 
 			group
 				addItem: [ :item | 

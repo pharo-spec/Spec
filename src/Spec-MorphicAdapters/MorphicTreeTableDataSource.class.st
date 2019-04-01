@@ -111,11 +111,9 @@ MorphicTreeTableDataSource >> model: anObject [
 
 { #category : #paths }
 MorphicTreeTableDataSource >> pathFromIndex: anInteger [ 
-	
 	| item |
 	
 	item := self allShownItems at: anInteger.
-	
 	^ self pathOfItem: item root: rootItem
 ]
 
@@ -129,8 +127,7 @@ MorphicTreeTableDataSource >> pathOfItem: anItem root: aRoot [
 		
 	aRoot children withIndexDo: [ :aChild :index | | aSubPath |
 		aSubPath := self pathOfItem: anItem root: aChild.
-		aSubPath ifNotEmpty: [ ^ { index } , aSubPath ] 
-	].
+		aSubPath ifNotEmpty: [ ^ { index } , aSubPath ] ].
 	
 	^ #().
 ]

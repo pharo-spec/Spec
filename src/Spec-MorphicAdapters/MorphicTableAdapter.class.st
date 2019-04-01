@@ -161,28 +161,29 @@ MorphicTableAdapter >> selectIndex: anInteger [
 
 { #category : #factory }
 MorphicTableAdapter >> selectionChanged: ann [
-	| diff |
-	self presenter selection isMultipleSelection
-		ifTrue: [ self presenter selection
-				selectIndexes: (ann newSelectedIndexes reject: [ :e | e = 0 ]) ].
-	self presenter selection isMultipleSelection
-		ifFalse: [ self presenter selection
-				selectIndex:
-					(ann newSelectedIndexes
-						ifNotEmpty: [ :indexes | indexes first ]
-						ifEmpty: [ 0 ]) ].
+	| diff selection |
+
+	selection := self presenter selection.
+	selection selectIndexes: (selection isMultipleSelection
+		ifTrue: [ 
+			 (ann newSelectedIndexes reject: [ :e | e = 0 ]) ]
+		ifFalse: [ 
+			{ ann newSelectedIndexes
+				ifNotEmpty: [ :indexes | indexes first ]
+				ifEmpty: [ 0 ] } ]).
+
 	diff := ann newSelectedIndexes difference: ann oldSelectedIndexes.
 	(diff notEmpty and: [ self presenter activatesOnSingleClick ])
 		ifTrue: [ self presenter doActivateAtIndex: diff last ].
-	ann newSelectedIndexes ifNotEmpty: [ ^ self ].
-	self presenter selection unselectAll
+		
+	ann newSelectedIndexes ifEmpty: [ selection unselectAll ]
 ]
 
 { #category : #factory }
 MorphicTableAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
-	self presenter activatesOnDoubleClick
-		ifTrue: [ self presenter
-				doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex ]
+
+	self presenter activatesOnDoubleClick ifFalse: [ ^ self ].	
+	self presenter doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex
 ]
 
 { #category : #updating }
