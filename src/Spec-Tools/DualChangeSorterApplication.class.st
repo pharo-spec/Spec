@@ -149,10 +149,10 @@ DualChangeSorterApplication >> changeSorterRight [
 DualChangeSorterApplication >> changesMenu: menu shifted: shifted from: sourcePanel to: destinationPanel [
 	| menuModel menuDest |
 
-	menuModel := MenuPresenter new.
+	menuModel := self newMenu.
 	menu addTitle: 'Change Set'.
 	sourcePanel changeSetMenu1: menu shifted: shifted.
-	menuDest := MenuPresenter new
+	menuDest := self newMenu
 		fromSpec:
 			(PragmaMenuBuilder
 				pragmaKeyword: 'dualChangeSorteChangesListMenu'
@@ -186,10 +186,10 @@ DualChangeSorterApplication >> classMenu: menu shifted: shifted from: sourcePane
 	"Fill aMenu with items appropriate for the class list"
 	| menuModel menuDest |
 	
-	menuModel := MenuPresenter new.
+	menuModel := self newMenu.
 	sourcePanel selectedClass ifNil: [ ^ nil ].
 	sourcePanel classMenu: menu shifted: shifted.
-	menuDest := MenuPresenter new fromSpec: (PragmaMenuBuilder
+	menuDest := self newMenu fromSpec: (PragmaMenuBuilder
 		pragmaKeyword: 'dualChangeSorterClassListMenu'
 		model: {self. sourcePanel. destinationPanel}) 
 		menuSpec.
@@ -300,10 +300,10 @@ DualChangeSorterApplication >> messageMenu: menu shifted: shifted from: sourcePa
 	
 	| menuModel menuDual |
 	
-	menuModel := MenuPresenter new.
+	menuModel := self newMenu.
 	sourcePanel selectedSelector ifNil: [ ^ nil ].
 	sourcePanel messageMenu: menu shifted: shifted.
-	menuDual := MenuPresenter new fromSpec: (PragmaMenuBuilder 
+	menuDual := self newMenu fromSpec: (PragmaMenuBuilder 
 		pragmaKeyword: 'dualChangeSorterMessageListMenu'
 		model: { self. sourcePanel. destinationPanel }) 
 		menuSpec.
