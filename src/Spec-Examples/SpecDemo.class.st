@@ -132,18 +132,16 @@ SpecDemo >> initializeWidgets [
 		displayBlock: [ :item | item pageName ];
 		contextMenu:
 			(self newMenu
-				addGroup: [ :group | 
-					group
-						addItem: [ :item | 
-							item
-								name: 'Browse';
-								icon: (self iconNamed: #smallHelp);
-								action: [ list selectedItem browse ] ];
-						addItem: [ :item | 
-							item
-								name: 'Browse presenter';
-								icon: (self iconNamed: #smallHelp);
-								action: [ list selectedItem new pageClass browse ] ] ];
+				addItem: [ :item | 
+					item
+						name: 'Browse';
+						icon: (self iconNamed: #smallHelp);
+						action: [ list selectedItem browse ] ];
+				addItem: [ :item | 
+					item
+						name: 'Browse presenter';
+						icon: (self iconNamed: #smallHelp);
+						action: [ list selectedItem new pageClass browse ] ];
 				yourself).
 
 	self focusOrder
@@ -252,35 +250,31 @@ SpecDemo >> selectedPage: anObject [
 { #category : #initialization }
 SpecDemo >> subMenu [
 	^ self newMenu
-		addGroup: [ :group | 
-			group
-				addItem: [ :item | 
-					item
-						name: 'Open';
-						icon: (self iconNamed: #openIcon);
-						shortcut: $o meta;
-						action: [ self inform: 'Open' ] ].
-			group
-				addItem: [ :item | 
-					item
-						name: 'Save';
-						icon: (self iconNamed: #smallSaveIcon);
-						shortcut: $s meta;
-						action: [ self inform: 'Save' ] ].
-			group
-				addItem: [ :item | 
-					item
-						name: 'Print';
-						shortcut: $p meta;
-						icon: (self iconNamed: #smallPrintIcon);
-						action: [ self inform: 'Print' ] ].
-			group
-				addItem: [ :item | 
-					item
-						name: 'Close';
-						shortcut: $c meta;
-						icon: (self iconNamed: #smallCancelIcon);
-						action: [ self inform: 'Kill' ] ] ]
+		addItem: [ :item | 
+			item
+				name: 'Open';
+				icon: (self iconNamed: #openIcon);
+				shortcut: $o meta;
+				action: [ self inform: 'Open' ] ];
+		addItem: [ :item | 
+			item
+				name: 'Save';
+				icon: (self iconNamed: #smallSaveIcon);
+				shortcut: $s meta;
+				action: [ self inform: 'Save' ] ];
+		addItem: [ :item | 
+			item
+				name: 'Print';
+				shortcut: $p meta;
+				icon: (self iconNamed: #smallPrintIcon);
+				action: [ self inform: 'Print' ] ];
+		addItem: [ :item | 
+			item
+				name: 'Close';
+				shortcut: $c meta;
+				icon: (self iconNamed: #smallCancelIcon);
+				action: [ self inform: 'Kill' ] ];
+		yourself
 ]
 
 { #category : #api }
