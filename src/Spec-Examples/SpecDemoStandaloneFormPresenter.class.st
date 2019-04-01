@@ -150,6 +150,11 @@ SpecDemoStandaloneFormPresenter >> dateLabel: anObject [
 	dateLabel := anObject
 ]
 
+{ #category : #accessing }
+SpecDemoStandaloneFormPresenter >> femaleButton [
+	^ femaleButton
+]
+
 { #category : #'model updates' }
 SpecDemoStandaloneFormPresenter >> fillFormWithWorkingModel [
 	| aModel |
@@ -280,6 +285,11 @@ SpecDemoStandaloneFormPresenter >> itemsLabel [
 { #category : #accessing }
 SpecDemoStandaloneFormPresenter >> itemsLabel: anObject [
 	itemsLabel := anObject
+]
+
+{ #category : #accessing }
+SpecDemoStandaloneFormPresenter >> maleButton [
+	^ maleButton
 ]
 
 { #category : #initialization }
