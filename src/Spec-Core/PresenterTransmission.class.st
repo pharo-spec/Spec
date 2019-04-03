@@ -12,6 +12,7 @@ Class {
 		'fromPort',
 		'toPort',
 		'transformBlock',
+		'preTransmission',
 		'postTransmission'
 	],
 	#category : #'Spec-Core-Transmission'
@@ -35,6 +36,16 @@ PresenterTransmission >> applyPostTransmissionWith: aTransmittedObject [
 
 	self postTransmission ifNil: [ ^ self ].
 	self postTransmission 
+		cull: self toPresenter 
+		cull: self fromPresenter 
+		cull: aTransmittedObject
+]
+
+{ #category : #private }
+PresenterTransmission >> applyPreTransmissionWith: aTransmittedObject [
+
+	self preTransmission ifNil: [ ^ self ].
+	self preTransmission 
 		cull: self toPresenter 
 		cull: self fromPresenter 
 		cull: aTransmittedObject
@@ -131,6 +142,16 @@ PresenterTransmission >> postTransmission [
 { #category : #accessing }
 PresenterTransmission >> postTransmission: aValuable [
 	postTransmission := aValuable
+]
+
+{ #category : #accessing }
+PresenterTransmission >> preTransmission [
+	^ preTransmission
+]
+
+{ #category : #accessing }
+PresenterTransmission >> preTransmission: aValuable [
+	preTransmission := aValuable
 ]
 
 { #category : #private }

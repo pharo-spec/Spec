@@ -24,6 +24,7 @@ OutputPresenterPort >> isOutput [
 { #category : #private }
 OutputPresenterPort >> transmitWith: aTransmission value: transmitted [
 
+	aTransmission applyPreTransmissionWith: transmitted.
 	aTransmission toPort
 		incomingTransmission: (aTransmission transformed: transmitted)
 		from: self.
