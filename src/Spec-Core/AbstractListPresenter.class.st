@@ -86,6 +86,11 @@ AbstractListPresenter >> defaultFilteringBlock [
 	^ [:col | col]
 ]
 
+{ #category : #api }
+AbstractListPresenter >> disableFilter [
+	self itemFilterBlock: nil
+]
+
 { #category : #private }
 AbstractListPresenter >> doActivateAtIndex: anIndex [
 
@@ -106,6 +111,16 @@ AbstractListPresenter >> doubleClickAtIndex: anIndex [
 ]
 
 { #category : #api }
+AbstractListPresenter >> enableItemBeginsWithFilter [
+	self itemFilterBlock: [ :each :pattern | each asLowercase beginsWith: pattern asLowercase ]
+]
+
+{ #category : #api }
+AbstractListPresenter >> enableItemSubstringFilter [
+	self itemFilterBlock: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
+]
+
+{ #category : #api }
 AbstractListPresenter >> filteringBlock [
 	"<api: #inspect>"
 	"Return the filtering of the items"
@@ -115,9 +130,8 @@ AbstractListPresenter >> filteringBlock [
 
 { #category : #api }
 AbstractListPresenter >> filteringBlock: aBlock [
-	"<api: #block getter: #filteringBlock registration: #whenFilteringBlockChanged:>"
-	"To set the filtering of the items"
-	
+	"To set the filtering of the items. This filter will be used to filter the visible elements."
+
 	filteringBlockHolder value: aBlock
 ]
 
@@ -177,7 +191,8 @@ AbstractListPresenter >> itemAt: anInteger [
 
 { #category : #api }
 AbstractListPresenter >> itemBeginsWithFilter [
-	self itemFilterBlock: [ :each :pattern | each asLowercase beginsWith: pattern asLowercase ]
+	self deprecated: 'Use #enableItemBeginsWithFilter instead' transformWith: '`@receiver itemBeginsWithFilter' -> '`@receiver enableItemBeginsWithFilter'.
+	self enableItemBeginsWithFilter
 ]
 
 { #category : #api }
@@ -187,12 +202,15 @@ AbstractListPresenter >> itemFilterBlock [
 
 { #category : #api }
 AbstractListPresenter >> itemFilterBlock: aBlock [
+	"This block will be used with the search field of the list to filter it with the user input dynamically."
+
 	itemFilterBlockHolder value: aBlock
 ]
 
 { #category : #api }
 AbstractListPresenter >> itemSubstringFilter [
-	self itemFilterBlock: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
+	self deprecated: 'Use #enableItemSubstringFilter instead' transformWith: '`@receiver itemSubstringFilter' -> '`@receiver enableItemSubstringFilter'.
+	self enableItemSubstringFilter
 ]
 
 { #category : #private }
@@ -242,17 +260,6 @@ AbstractListPresenter >> menu [
 						-> '`@receiver contextMenu'.
 	
 	^ self contextMenu
-]
-
-{ #category : #api }
-AbstractListPresenter >> menu: aBlock [
-	"Set the block used to defined the menu"
-	
-	self 
-		deprecated: 'Use #contextMenu: instead' 
-		on: '2019-03-07' 
-		in: #Pharo8.
-	self contextMenu: [ aBlock cull: nil cull: false ]
 ]
 
 { #category : #private }

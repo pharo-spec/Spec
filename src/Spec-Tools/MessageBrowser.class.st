@@ -749,8 +749,7 @@ MessageBrowser >> setFocus [
 
 { #category : #menus }
 MessageBrowser >> setListMenu [
-	listModel menu: [ :menu |
-		menu addAllFromPragma: 'messageBrowserListMenu' target: self ].
+	listModel contextMenu: [ :menu | menu addAllFromPragma: 'messageBrowserListMenu' target: self ]
 ]
 
 { #category : #api }

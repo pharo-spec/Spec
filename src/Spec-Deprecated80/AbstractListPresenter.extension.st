@@ -22,6 +22,18 @@ AbstractListPresenter >> listItems [
 ]
 
 { #category : #'*Spec-Deprecated80' }
+AbstractListPresenter >> menu: aBlock [
+	"Set the block used to defined the menu"
+
+	self
+		deprecated: 'Use #contextMenu: instead'
+		on: '2019-03-07'
+		in: #Pharo8
+		transformWith: '`@receiver menu: `@arg' -> '`@receiver contextMenu: `@arg'.
+	self contextMenu: [ aBlock cull: nil cull: false ]
+]
+
+{ #category : #'*Spec-Deprecated80' }
 AbstractListPresenter >> resetSelection [
 	"Unselect every items"
 
