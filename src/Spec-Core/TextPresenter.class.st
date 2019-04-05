@@ -190,18 +190,20 @@ TextPresenter >> autoAccept: aBoolean [
 
 { #category : #api }
 TextPresenter >> beForCode [
-	self
-		isCodeCompletionAllowed: true;
-		menuHolder: [ self getMenu ];
-		isForSmalltalkCode: true
+
+	self 
+		deprecated: 'The forCode functionality has moved to TextCodePresenter, please use it instead TextPresenter.' 
+		on: '2019-04-05' 
+		in: #Pharo8
 ]
 
 { #category : #api }
 TextPresenter >> beForText [
-	self
-		isCodeCompletionAllowed: false;
-		menuHolder: [ self getMenu ];
-		isForSmalltalkCode: false
+
+	self 
+		deprecated: 'The forCode functionality has moved to TextCodePresenter, please use it instead TextPresenter.' 
+		on: '2019-04-05' 
+		in: #Pharo8
 ]
 
 { #category : #'api-shout' }
