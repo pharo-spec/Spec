@@ -48,7 +48,7 @@ TransmissionExample >> initializeWidgets [
 	classes := self newList displayBlock: #name. 
 	protocols := self newList displayBlock: [ :aPair | aPair value name ]. 
 	methods := self newList displayBlock: #selector. 
-	code := self newText beForCode.
+	code := self newCode.
 
 	packages transmitTo: classes transform: [ :aPackage | aPackage definedClasses asArray ].
 	packages transmitTo: code transform: [ :aPackage | self classTemplateFor: aPackage ].

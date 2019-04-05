@@ -78,12 +78,6 @@ MorphicTextInputFieldAdapter >> entryCompletion [
 	^ self model entryCompletion
 ]
 
-{ #category : #NOCompletion }
-MorphicTextInputFieldAdapter >> isCodeCompletionAllowed [
-	
-	^ false
-]
-
 { #category : #testing }
 MorphicTextInputFieldAdapter >> isPassword [
 	

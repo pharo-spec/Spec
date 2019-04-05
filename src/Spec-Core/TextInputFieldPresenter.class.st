@@ -137,12 +137,6 @@ TextInputFieldPresenter >> initialize [
 	acceptOnCR whenChangedDo: [ :bool | self changed: #acceptOnCR: with: { bool } ].
 ]
 
-{ #category : #NOCompletion }
-TextInputFieldPresenter >> isCodeCompletionAllowed [
-	
-	^ false
-]
-
 { #category : #testing }
 TextInputFieldPresenter >> isPassword [
 	

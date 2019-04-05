@@ -57,7 +57,6 @@ Class {
 		'actionToPerformHolder',
 		'readSelectionHolder',
 		'actionPerformedHolder',
-		'isCodeCompletionAllowedHolder',
 		'doItContext',
 		'doItReceiver',
 		'hasUnacceptedEdits',
@@ -66,8 +65,7 @@ Class {
 		'menuHolder',
 		'autoAccept',
 		'wantsVisualFeedback',
-		'askBeforeDiscardingEdits',
-		'isForSmalltalkCodeHolder'
+		'askBeforeDiscardingEdits'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -296,9 +294,12 @@ TextPresenter >> eventKeyStrokesForPreviousFocus [
 
 { #category : #private }
 TextPresenter >> getMenu [
+
+	self flag: #TODO. "move to menu presenters"
 	^ (PragmaMenuBuilder
 		pragmaKeyword: self textArea editingModeClass menuKeyword
-		model: self widget) menu
+		model: self widget) 
+		menu
 ]
 
 { #category : #api }
@@ -359,18 +360,16 @@ TextPresenter >> initialize [
 	actionToPerformHolder := [ :text |  ] asValueHolder.
 	readSelectionHolder := [ selection value ] asValueHolder.
 	actionPerformedHolder := '' asValueHolder.
-	isCodeCompletionAllowedHolder := false asValueHolder.
-	isForSmalltalkCodeHolder := false asValueHolder.
 	doItContext := nil asValueHolder.
 	doItReceiver := nil asValueHolder.
 	hasUnacceptedEdits := false asValueHolder.
 	selection := (1 to: 0) asValueHolder.
 	scrollValue := (0 @ 0) asValueHolder.
-	menuHolder := [ :menu :shifted |  ] asValueHolder.
+	menuHolder := [ self getMenu ] asValueHolder.
 	autoAccept := false asValueHolder.
 	wantsVisualFeedback := true asValueHolder.
 	askBeforeDiscardingEdits := true asValueHolder.
-	self beForText.
+
 	self registerEvents.
 	self registerEventsForShout
 ]
@@ -391,10 +390,14 @@ TextPresenter >> isAboutToStyle [
 
 { #category : #NOCompletion }
 TextPresenter >> isCodeCompletionAllowed [
-	"<api:#inspect>"
 	"Return if code completion is allowed"
 	
-	^ isCodeCompletionAllowedHolder value
+	"self 
+		deprecated: 'The forCode functionality has moved to TextCodePresenter, please use it instead TextPresenter.' 
+		on: '2019-04-05' 
+		in: #Pharo8"
+		
+	^ false
 ]
 
 { #category : #api }
@@ -402,17 +405,30 @@ TextPresenter >> isCodeCompletionAllowed: aBoolean [
 	"<api: #boolean getter: #isCodeCompletionAllowed registration: #whenCodeCompletionAllowedChanged:>"
 	"Set if code completion is allowed"
 	
-	isCodeCompletionAllowedHolder value: aBoolean
+	"self 
+		deprecated: 'The forCode functionality has moved to TextCodePresenter, please use it instead TextPresenter.' 
+		on: '2019-04-05' 
+		in: #Pharo8"
 ]
 
 { #category : #api }
 TextPresenter >> isForSmalltalkCode [
-	^ isForSmalltalkCodeHolder value
+
+	"self 
+		deprecated: 'The forCode functionality has moved to TextCodePresenter, please use it instead TextPresenter.' 
+		on: '2019-04-05' 
+		in: #Pharo8"
+
+	^ false
 ]
 
 { #category : #api }
 TextPresenter >> isForSmalltalkCode: aBoolean [
-	isForSmalltalkCodeHolder value: aBoolean
+	
+	"self 
+		deprecated: 'The forCode functionality has moved to TextCodePresenter, please use it instead TextPresenter.' 
+		on: '2019-04-05' 
+		in: #Pharo8"
 ]
 
 { #category : #api }
