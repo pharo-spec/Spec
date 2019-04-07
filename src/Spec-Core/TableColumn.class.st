@@ -67,6 +67,12 @@ TableColumn >> evaluation: anObject [
 ]
 
 { #category : #testing }
+TableColumn >> isComposite [
+
+	^ false
+]
+
+{ #category : #testing }
 TableColumn >> isEditable [
 
 	^ false
