@@ -12,7 +12,7 @@ Class {
 		'dropList',
 		'button'
 	],
-	#category : #'Spec-PolyWidgets-Elementary'
+	#category : #'Spec-Deprecated80'
 }
 
 { #category : #specs }
@@ -24,6 +24,29 @@ DropListButton class >> defaultSpec [
 				add: #dropList origin: 0 @ 0 corner: 0.8 @ 1;
 				add: #button origin: 0.8 @ 0 corner: 1 @ 1 ];
 		yourself
+]
+
+{ #category : #deprecation }
+DropListButton class >> example [
+	<sampleInstance>
+	| example |
+	
+	example := self new.
+	example
+		displayBlock: [ :item | item asString ];
+		items: {'Swordian' . 'Gardian' . 'Wizard' . 'Sniper'};
+		label: 'Add';
+		extent: 300 @ 70;
+		title: 'DropListButton example';
+		openWithSpec.
+	^ example
+]
+
+{ #category : #deprecation }
+DropListButton class >> isDeprecated [
+	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
+
+	^ true
 ]
 
 { #category : #'api-shortcuts' }

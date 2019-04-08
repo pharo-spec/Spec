@@ -739,9 +739,7 @@ ComposablePresenter >> newCheckBox [
 
 { #category : #widgets }
 ComposablePresenter >> newCode [
-	^ (self instantiate: TextPresenter)
-		beForCode;
-		yourself
+	^ self instantiate: CodePresenter
 ]
 
 { #category : #widgets }
