@@ -169,11 +169,7 @@ SpecDemoStandaloneFormPresenter >> fillFormWithWorkingModel [
 	self dateInput date: aModel date.
 	(genderButtons at: aModel gender) state: true.
 
-	self itemsInput selection
-		selectIndexes:
-			(self workingModel items
-				collect: [ :elem | self itemsInput model shownItems indexOf: elem ]).
-	self itemsInput changed: #listElementAt:
+	self itemsInput selectItems: self workingModel selectedItems
 ]
 
 { #category : #'model updates' }
