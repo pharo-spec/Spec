@@ -17,6 +17,13 @@ TreeSingleSelectionMode >> presenter: aTreeTablePresenter [
 ]
 
 { #category : #accessing }
+TreeSingleSelectionMode >> selectPath: aPath [
+	
+	selection := aPath.
+
+]
+
+{ #category : #accessing }
 TreeSingleSelectionMode >> selectedItem [
 	
 	selection ifEmpty: [ ^ nil ].
@@ -28,13 +35,6 @@ TreeSingleSelectionMode >> selectedItem [
 TreeSingleSelectionMode >> selectedPath [
 	
 	^ selection
-]
-
-{ #category : #accessing }
-TreeSingleSelectionMode >> selectedPath: aPath [
-	
-	selection := aPath.
-
 ]
 
 { #category : #accessing }

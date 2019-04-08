@@ -44,6 +44,18 @@ AbstractTreeSingleSelectionMode >> replaceOtherSelectionMode: anotherSelection [
 	self subclassResponsibility 
 ]
 
+{ #category : #selection }
+AbstractTreeSingleSelectionMode >> selectPath: pathArray [
+
+	self subclassResponsibility
+]
+
+{ #category : #selection }
+AbstractTreeSingleSelectionMode >> unselectAll [
+
+	self clearSelection
+]
+
 { #category : #'API - events' }
 AbstractTreeSingleSelectionMode >> whenChangedDo: aBlockClosure [ 
 	

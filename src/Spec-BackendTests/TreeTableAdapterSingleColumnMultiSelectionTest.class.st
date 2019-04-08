@@ -26,8 +26,8 @@ TreeTableAdapterSingleColumnMultiSelectionTest >> testSelecting2ElementsUpdatesT
 TreeTableAdapterSingleColumnMultiSelectionTest >> testSelectingAPathUpdatesSelectionInPresenter [
 
 	self presenter selection 
-		selectedPath: #(1 2);
-		selectedPath: #(2 3).
+		selectPath: #(1 2);
+		selectPath: #(2 3).
 		
 	self assert: self adapter selectedPaths asArray equals: #(#(1 2) (2 3))
 ]

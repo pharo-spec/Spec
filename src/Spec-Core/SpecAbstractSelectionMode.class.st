@@ -104,7 +104,7 @@ SpecAbstractSelectionMode >> subscriptions [
 	^ self subclassResponsibility
 ]
 
-{ #category : #selecting }
+{ #category : #private }
 SpecAbstractSelectionMode >> transferSubscriptionsTo: anotherSelectionMode [
 
 	self subscriptions do: [ :aSubscription | anotherSelectionMode addSubscription: aSubscription ].

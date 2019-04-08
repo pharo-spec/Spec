@@ -37,12 +37,11 @@ TreeTablePresenter >> addColumn: aColumn [
 
 { #category : #'selection mode' }
 TreeTablePresenter >> beMultipleSelection [
-	
 	| newSelectionMode |
 	
 	newSelectionMode := (TreeMultipleSelectionMode on: self)
-								copyFrom: selection;
-								yourself.
+		copyFrom: selection;
+		yourself.
 	
 	selection := newSelectionMode.
 ]
@@ -193,6 +192,12 @@ TreeTablePresenter >> roots: aCollection [
 ]
 
 { #category : #api }
+TreeTablePresenter >> selectPath: aPath [
+
+	self selection selectPath: aPath
+]
+
+{ #category : #api }
 TreeTablePresenter >> selectedItem [
 	
 	^ self selection selectedItem
@@ -208,6 +213,12 @@ TreeTablePresenter >> selection [
 TreeTablePresenter >> showColumnHeaders [
 
 	showColumnHeaders := true
+]
+
+{ #category : #api }
+TreeTablePresenter >> unselectAll [ 
+
+	self selection unselectAll
 ]
 
 { #category : #'api-events' }

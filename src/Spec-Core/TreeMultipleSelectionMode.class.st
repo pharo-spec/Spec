@@ -29,17 +29,16 @@ TreeMultipleSelectionMode >> replaceOtherSelectionMode: anotherSelectionMode [
 	]
 ]
 
+{ #category : #selection }
+TreeMultipleSelectionMode >> selectPath: aPath [
+	
+	(selection includes: aPath) ifTrue: [ ^ self ].
+	selection := selection copyWith: aPath.
+]
+
 { #category : #accessing }
 TreeMultipleSelectionMode >> selectedItem [
 	self shouldBeImplemented.
-]
-
-{ #category : #selection }
-TreeMultipleSelectionMode >> selectedPath: aPath [ 
-	
-	(selection includes: aPath) ifTrue: [ ^ self ].
-	
-	selection := selection copyWith: aPath.
 ]
 
 { #category : #accessing }

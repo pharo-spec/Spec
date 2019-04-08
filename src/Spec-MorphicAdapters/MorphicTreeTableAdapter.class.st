@@ -66,7 +66,7 @@ MorphicTreeTableAdapter >> basicSelectionChanged: ann [
 	selection := self presenter selection.
 	diff := ann newSelectedIndexes difference: ann oldSelectedIndexes.
 	diff ifNotEmpty: [ 
-		selection selectedPath: (self widget dataSource pathFromIndex: diff last) ].
+		selection selectPath: (self widget dataSource pathFromIndex: diff last) ].
 	ann newSelectedIndexes ifEmpty: [ selection unselectAll ]
 ]
 
