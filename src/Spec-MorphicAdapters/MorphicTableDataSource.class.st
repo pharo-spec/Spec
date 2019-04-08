@@ -6,6 +6,9 @@ I use a builder (MorphicTableCellBuilder) to realise the cell content.
 Class {
 	#name : #MorphicTableDataSource,
 	#superclass : #FTSimpleDataSource,
+	#instVars : [
+		'model'
+	],
 	#category : #'Spec-MorphicAdapters-Table'
 }
 
@@ -24,6 +27,12 @@ MorphicTableDataSource >> cellColumn: column row: rowIndex [
 ]
 
 { #category : #accessing }
+MorphicTableDataSource >> elements [ 
+	
+	^ self model items
+]
+
+{ #category : #accessing }
 MorphicTableDataSource >> headerColumn: column [
 
 	column id ifNil: [ ^ nil ].
@@ -31,4 +40,16 @@ MorphicTableDataSource >> headerColumn: column [
 		listCentering: #left;
 		addMorph: column id asMorph;
 		yourself
+]
+
+{ #category : #accessing }
+MorphicTableDataSource >> model [
+
+	^ model
+]
+
+{ #category : #accessing }
+MorphicTableDataSource >> model: anObject [
+
+	model := anObject
 ]

@@ -7,7 +7,7 @@ Class {
 { #category : #factory }
 MorphicTableAdapter >> addModelTo: tableMorph [
 
-	self model columns do: [ :each | 
+	self model columns do: [ :each |
 		tableMorph addColumn: (self newColumnFrom: each) ].
 	self ensureAtLeastOneColumnIn: tableMorph.
 
@@ -91,7 +91,7 @@ MorphicTableAdapter >> newColumnFrom: aTableColumn [
 { #category : #'private factory' }
 MorphicTableAdapter >> newDataSource [ 
 
-	^ SpecListFastTableDataSource new
+	^ MorphicTableDataSource new
 		model: self model;
 		yourself
 
