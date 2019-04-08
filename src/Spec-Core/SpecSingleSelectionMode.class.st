@@ -83,7 +83,9 @@ SpecSingleSelectionMode >> selectedItem [
 { #category : #selecting }
 SpecSingleSelectionMode >> selectedItems [
 	
-	^ { self selectedItem }
+	^ self selectedItem
+		ifNotNil: [ :anItem | { anItem } ]
+		ifNil: [ #() ]
 ]
 
 { #category : #'as yet unclassified' }

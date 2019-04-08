@@ -198,12 +198,6 @@ ListPresenter >> resetSortingBlock [
 	self model sortingBlock: nil
 ]
 
-{ #category : #api }
-ListPresenter >> selectAll [
-
-	self selection selectAll
-]
-
 { #category : #private }
 ListPresenter >> setSelectionStateFor: anIndex at: aBoolean [
 	"Set the selection state of the item at index _anIndex_ in the case of multiple selection list"

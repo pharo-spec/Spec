@@ -305,6 +305,12 @@ AbstractListPresenter >> rightClickAtIndex: anIndex [
 ]
 
 { #category : #api }
+AbstractListPresenter >> selectAll [
+
+	self selection selectAll
+]
+
+{ #category : #api }
 AbstractListPresenter >> selectIndex: anInteger [ 
 	
 	self selectionMode selectIndex: anInteger
