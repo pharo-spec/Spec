@@ -376,6 +376,14 @@ WindowPresenter >> rebuildWithSpecLayout: aSpec [
 	self changed: #rebuildWithSpecLayout: with: { aSpec }
 ]
 
+{ #category : #private }
+WindowPresenter >> requestWindowClose [
+
+	^ self presenter
+		ifNotNil: [ :aPresenter | aPresenter requestWindowClose ]
+		ifNil: [ true ]
+]
+
 { #category : #api }
 WindowPresenter >> statusBar [
 

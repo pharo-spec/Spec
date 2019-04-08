@@ -15,8 +15,18 @@ Class {
 		'firstButton',
 		'secondButton'
 	],
-	#category : #'Spec-PolyWidgets-Support'
+	#category : #'Spec-Deprecated80'
 }
+
+{ #category : #deprecation }
+AbstractTwoButtons class >> abstractExample [
+	| example |
+	example := self new.
+	example
+		title: self name asString , ' example';
+		extent: 100 @ 100.
+	^ example
+]
 
 { #category : #specs }
 AbstractTwoButtons class >> horizontal [
@@ -27,6 +37,13 @@ AbstractTwoButtons class >> horizontal [
 				add: #firstButton;
 				add: #secondButton ];
 		yourself
+]
+
+{ #category : #deprecation }
+AbstractTwoButtons class >> isDeprecated [
+	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
+
+	^ true
 ]
 
 { #category : #specs }
