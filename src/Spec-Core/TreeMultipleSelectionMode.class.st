@@ -39,6 +39,8 @@ TreeMultipleSelectionMode >> selectedPath: aPath [
 	
 	(selection includes: aPath) ifTrue: [ ^ self ].
 	
+	presenter itemAtPath: aPath ifAbsent: [ ^ self ].
+	
 	selection := selection copyWith: aPath.
 ]
 
