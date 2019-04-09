@@ -20,18 +20,18 @@ Class {
 { #category : #specs }
 ChangeSorterPresenter class >> defaultSpec [
 	<spec>
-	
-	^ SpecLayout composed
-		newColumn: [:c | 
-				c 
-					newRow: [:r | r 
-									add: #changesListPresenter;
-									addSplitter;
-									add: #classesListPresenter ];
-					addSplitter;
-					add: #methodsListPresenter;
-					addSplitter;
-					add: #textPresenter ].
+	^ SpecPanedLayout newVertical
+		position: 35 percent;
+		add:
+			(SpecPanedLayout newHorizontal
+				add: #changesListPresenter;
+				add: #classesListPresenter;
+				yourself);
+		add:
+			(SpecPanedLayout newVertical
+				add: #methodsListPresenter;
+				add: #textPresenter;
+				yourself)
 ]
 
 { #category : #'menu - change set' }

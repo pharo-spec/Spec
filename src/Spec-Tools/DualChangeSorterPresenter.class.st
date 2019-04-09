@@ -20,13 +20,10 @@ Class {
 { #category : #specs }
 DualChangeSorterPresenter class >> defaultSpec [
 	<spec>
-	
-	^ SpecLayout composed
-			newRow: [:r |
-					r 
-						add: #changeSorterLeft;
-						addSplitter;
-						add: #changeSorterRight ]
+	^ SpecPanedLayout newHorizontal
+		add: #changeSorterLeft;
+		add: #changeSorterRight;
+		yourself
 ]
 
 { #category : #menu }
