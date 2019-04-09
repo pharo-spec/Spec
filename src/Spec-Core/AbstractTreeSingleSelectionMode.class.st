@@ -57,7 +57,8 @@ AbstractTreeSingleSelectionMode >> selectedPath: aPath [
 
 { #category : #selecting }
 AbstractTreeSingleSelectionMode >> unselectAll [
-	self selectedPath: #()
+
+	self selectPath: #()
 ]
 
 { #category : #'API - events' }

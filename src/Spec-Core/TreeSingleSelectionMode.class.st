@@ -18,7 +18,8 @@ TreeSingleSelectionMode >> presenter: aTreeTablePresenter [
 
 { #category : #accessing }
 TreeSingleSelectionMode >> selectPath: aPath [
-	
+	"If the path is out of range, keep the selection."
+	presenter itemAtPath: aPath ifAbsent: [ ^ self ].
 	selection := aPath.
 
 ]
@@ -35,14 +36,6 @@ TreeSingleSelectionMode >> selectedItem [
 TreeSingleSelectionMode >> selectedPath [
 	
 	^ selection
-]
-
-{ #category : #accessing }
-TreeSingleSelectionMode >> selectedPath: aPath [
-	"If the path is out of range, keep the selection."
-	presenter itemAtPath: aPath ifAbsent: [ ^ self ].
-	selection := aPath.
-
 ]
 
 { #category : #accessing }
