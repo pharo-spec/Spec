@@ -9,10 +9,6 @@ Class {
 	#superclass : #ComposablePresenter,
 	#instVars : [
 		'model',
-		'prettyPrint',
-		'showDiff',
-		'prettyButton',
-		'diffButton',
 		'changesListPresenter',
 		'methodsListPresenter',
 		'classesListPresenter',
@@ -353,17 +349,10 @@ ChangeSorterPresenter >> forgetMessage [
 
 { #category : #initialization }
 ChangeSorterPresenter >> initialize [
-
-	prettyPrint := false.
-	showDiff := false.
 	model := ChangeSorterModel new.
-	SystemAnnouncer uniqueInstance weak
-		when: CurrentChangeSetChanged send: #updateTitle to: self.
+	SystemAnnouncer uniqueInstance weak when: CurrentChangeSetChanged send: #updateTitle to: self.
 	super initialize.
-	self initializeAnnouncements.
-	
-	
-	
+	self initializeAnnouncements
 ]
 
 { #category : #initialization }
@@ -379,22 +368,9 @@ ChangeSorterPresenter >> initializeAnnouncements [
 
 { #category : #initialization }
 ChangeSorterPresenter >> initializePresenter [
-
-	prettyButton activationAction: [ 
-		prettyPrint := true.
-		self updateTextContents ].
-	prettyButton deactivationAction: [ 
-		prettyPrint := false.
-		self updateTextContents  ].
-	diffButton activationAction: [ 
-		showDiff := true.
-		self updateTextContents ].
-	diffButton deactivationAction: [ 
-		showDiff := false.
-		self updateTextContents  ].
 	self registerChangeActions.
 	self registerClassActions.
-	self registerSelectorActions.
+	self registerSelectorActions
 ]
 
 { #category : #initialization }
@@ -402,8 +378,6 @@ ChangeSorterPresenter >> initializeWidgets [
 	methodsListPresenter := self newList.
 	classesListPresenter := self newList.
 	changesListPresenter := self newList.
-	prettyButton := self newCheckBox.
-	diffButton := self newCheckBox.
 	textPresenter := self newCode.
 
 	self setFocus.
@@ -790,9 +764,7 @@ ChangeSorterPresenter >> updateTextContents [
 	text :=  (self model 
 				setContentsOfChangeSet: self selectedChangeSet
 				forClass: self selectedClass
-				andSelector: self selectedSelector
-				prettyPrint: prettyPrint
-				showDiff: showDiff).
+				andSelector: self selectedSelector).
 	({'Method was added, but cannot be found!'. 'Added then removed (see versions)'. 'Method has been removed (see versions)'} includes: text)
 		ifTrue: [ textPresenter aboutToStyle: false ]
 		ifFalse: [ textPresenter aboutToStyle: true ] .
