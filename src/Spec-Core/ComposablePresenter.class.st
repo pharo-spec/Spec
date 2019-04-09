@@ -962,6 +962,14 @@ ComposablePresenter >> removeMenuKeyCombination: aShortcut [
 	self changed: #removeMenuKeyCombination: with: {aShortcut}
 ]
 
+{ #category : #'api-window' }
+ComposablePresenter >> requestWindowClose [
+
+	"returns <true> if the user is allowed to close the window. Useful if you want to ask user if he wants to save the changed content etc."
+	
+	^ true
+]
+
 { #category : #private }
 ComposablePresenter >> resolveSymbol: aSymbol [
 

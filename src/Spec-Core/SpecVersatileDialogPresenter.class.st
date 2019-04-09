@@ -215,6 +215,11 @@ SpecVersatileDialogPresenter >> contentArea: aTextOrPresenter [
 ]
 
 { #category : #accessing }
+SpecVersatileDialogPresenter >> contentAreaPresenter [
+	^ contentAreaPresenter
+]
+
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> defaultButtonId [
 	^ defaultButtonId
 ]
@@ -386,6 +391,11 @@ SpecVersatileDialogPresenter >> mainIcon: aFrom [
 ]
 
 { #category : #accessing }
+SpecVersatileDialogPresenter >> mainIconPresenter [
+	^ mainIconPresenter
+]
+
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> mainMessage [
 
 	^ mainMessage
@@ -398,6 +408,11 @@ SpecVersatileDialogPresenter >> mainMessage: aTextOrPresenter [
 ]
 
 { #category : #accessing }
+SpecVersatileDialogPresenter >> mainMessagePresenter [
+	^ mainMessagePresenter
+]
+
+{ #category : #accessing }
 SpecVersatileDialogPresenter >> moreOptionsArea [
 
 	^ moreOptionsArea
@@ -407,6 +422,11 @@ SpecVersatileDialogPresenter >> moreOptionsArea [
 SpecVersatileDialogPresenter >> moreOptionsArea: aTextOrPresenter [
 
 	moreOptionsArea := aTextOrPresenter.
+]
+
+{ #category : #accessing }
+SpecVersatileDialogPresenter >> moreOptionsButton [
+	^ moreOptionsButton
 ]
 
 { #category : #accessing }

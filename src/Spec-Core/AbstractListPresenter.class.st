@@ -318,9 +318,19 @@ AbstractListPresenter >> selectIndex: anInteger [
 ]
 
 { #category : #api }
+AbstractListPresenter >> selectIndexes: aCollection [
+	self selectionMode selectIndexes: aCollection
+]
+
+{ #category : #api }
 AbstractListPresenter >> selectItem: anItem [ 
 	
 	self selectionMode selectItem: anItem
+]
+
+{ #category : #api }
+AbstractListPresenter >> selectItems: aCollection [
+	self selectionMode selectItems: aCollection
 ]
 
 { #category : #api }
