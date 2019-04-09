@@ -50,6 +50,7 @@ AbstractWidgetPresenter class >> adapterName [
 
 { #category : #specs }
 AbstractWidgetPresenter class >> defaultSpec [
+	<spec: #default>
 	^ SpecAbstractWidgetLayout for: self adapterName
 ]
 
