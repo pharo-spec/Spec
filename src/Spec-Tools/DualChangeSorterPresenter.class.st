@@ -17,53 +17,6 @@ Class {
 	#category : #'Spec-Tools-ChangeSorter'
 }
 
-{ #category : #menu }
-DualChangeSorterPresenter class >> changesListMenu: aBuilder [
-	<contextMenu>
-	<dualChangeSorteChangesListMenu>
-	
-	| target src dest |
-
-	self flag: #todo. "I do not like how I'm getting the parameters (an Array), but looks the faster way now :(
-	And I need src and dest parameters because it is called in two sides of change sorter"
-	target := aBuilder model first.
-	src := aBuilder model second.
-	dest := aBuilder model third. 
-	
-	src selectedChangeSet ifNil:[ ^self ].
-	
-	(aBuilder item: #'Copy all to the other change set')
-		keyText: 'c';
-		action: [ target copyAllFrom: src to: dest ].
-	(aBuilder item: #'Submerge into the other change set')
-		action: [ target submerge: src into: dest ].
-	(aBuilder item: #'Subtract the other change set')
-		keyText: '-';
-		action: [ target subtractFrom: src to: dest ];
-		withSeparatorAfter.
-]
-
-{ #category : #menu }
-DualChangeSorterPresenter class >> classListMenu: aBuilder [
-	<contextMenu>
-	<dualChangeSorterClassListMenu>
-	
-	| target src dest |
-	
-	self flag: #todo. "I do not like how I'm getting the parameters (an Array), but looks the faster way now :(
-	And I need src and dest parameters because it is called in two sides of change sorter"
-	target := aBuilder model first.
-	src := aBuilder model second.
-	dest := aBuilder model third. 
-	
-	(aBuilder item: #'Copy class to the other change set')
-		keyText: 'c';
-		action: [ target copyClassFrom: src to: dest ].
-	(aBuilder item: #'Move class to the other change set')
-		action: [ target moveClassFrom: src to: dest ].
-
-]
-
 { #category : #specs }
 DualChangeSorterPresenter class >> defaultSpec [
 	<spec>
@@ -112,6 +65,30 @@ DualChangeSorterPresenter class >> title [
 	^'Dual Change Sorter'
 ]
 
+{ #category : #menu }
+DualChangeSorterPresenter >> changeSetMenuFrom: sourcePanel to: destinationPanel [
+	"Fill aMenu with items appropriate for the changes list"
+
+	^ sourcePanel changeSetMenu
+		addGroup: [ :aGroup | 
+			aGroup
+				addItem: [ :anItem | 
+					anItem
+						name: 'Copy all to the other change set';
+						shortcut: $s meta;
+						action: [ self copyAllFrom: sourcePanel to: destinationPanel ] ];
+				addItem: [ :anItem | 
+					anItem
+						name: 'Submerge into the other change set';
+						action: [ self submerge: sourcePanel into: destinationPanel ] ];
+				addItem: [ :anItem | 
+					anItem
+						name: 'Subtract the other change set';
+						shortcut: $- meta;
+						action: [ self subtractFrom: sourcePanel to: destinationPanel ] ] ];
+		yourself
+]
+
 { #category : #accessing }
 DualChangeSorterPresenter >> changeSorterLeft [
 
@@ -122,26 +99,6 @@ DualChangeSorterPresenter >> changeSorterLeft [
 DualChangeSorterPresenter >> changeSorterRight [
 
 	^ changeSorterRight
-]
-
-{ #category : #menu }
-DualChangeSorterPresenter >> changesMenu: menu from: sourcePanel to: destinationPanel [
-	| menuModel menuDest |
-
-	menuModel := self newMenu.
-	menu addTitle: 'Change Set'.
-	sourcePanel changeSetMenu: menu.
-	menuDest := self newMenu
-		fromSpec:
-			(PragmaMenuBuilder
-				pragmaKeyword: 'dualChangeSorteChangesListMenu'
-				model:
-					{self.
-					sourcePanel.
-					destinationPanel}) menuSpec.
-	menuDest menuGroups do: [ :each | menuModel addMenuGroup: each ].
-	menu addAllMorphs: (menuModel buildWithSpec: #popup) items.
-	^ menu
 ]
 
 { #category : #'menu - change set' }
@@ -266,7 +223,7 @@ DualChangeSorterPresenter >> menusRegistration [
 
 { #category : #menu }
 DualChangeSorterPresenter >> menusRegistrationFrom: src to: dest [
-	src changesMenu: [ :menu | self changesMenu: menu from: src to: dest ].
+	src changesMenu: (self changeSetMenuFrom: src to: dest).
 	src classesMenu: (self classMenuFrom: src to: dest).
 	src methodsMenu: (self messageMenuFrom: src to: dest)
 ]

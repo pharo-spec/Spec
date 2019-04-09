@@ -21,63 +21,6 @@ Class {
 	#category : #'Spec-Tools-ChangeSorter'
 }
 
-{ #category : #menu }
-ChangeSorterPresenter class >> changeSetMenu: aBuilder [
-	<contextMenu>
-	<changeSorterChangeSetListMenu>
-	| target cs|
-	target := aBuilder model.
-
-	target selectedChangeSet
-		ifNotNil: [ (aBuilder item: #'Make changes go to me')
-				keyText: 'm';
-				selector: #setCurrentChangeSet.
-			(aBuilder item: #'New change set...')
-				keyText: 'n';
-				selector: #newSet ].
-
-	(aBuilder item: #'Find...')
-		keyText: 'f';
-		selector: #findChangeSet.
-
-	target selectedChangeSet
-		ifNotNil: [ aBuilder withSeparatorAfter.
-			(aBuilder item: #'Rename change set')
-				keyText: 'r';
-				selector: #rename.
-			(aBuilder item: #'File out')
-				keyText: 'o';
-				selector: #fileOut.
-			(aBuilder item: #'Browse methods')
-				keyText: 'b';
-				selector: #browseChangeSet.
-			(aBuilder item: #'Browse change set')
-				keyText: 'B';
-				selector: #openChangeSetBrowser ].
-
-	cs := target selectedChangeSet.
-	cs ifNil: [ ^ self ].
-
-	cs hasPreamble
-		ifTrue: [ (aBuilder item: #'Edit preamble')
-				keyText: 'p';
-				selector: #addPreamble.
-			(aBuilder item: #'Remove preamble') selector: #removePreamble ]
-		ifFalse: [ (aBuilder item: #'Add preamble')
-				keyText: 'p';
-				selector: #addPreamble ].
-
-	cs hasPreamble
-		ifTrue: [ (aBuilder item: #'Edit postscript...') selector: #editPostscript.
-			(aBuilder item: #'Remove postscript') selector: #removePostscript ]
-		ifFalse: [ (aBuilder item: #'Add postscript...') selector: #editPostscript ].
-
-	aBuilder withSeparatorAfter.
-	(aBuilder item: #'Destroy change set')
-		keyText: 'x';
-		selector: #remove
-]
-
 { #category : #specs }
 ChangeSorterPresenter class >> defaultSpec [
 	<spec>
@@ -97,7 +40,7 @@ ChangeSorterPresenter class >> defaultSpec [
 
 { #category : #'menu - change set' }
 ChangeSorterPresenter >> addPreamble [
-
+	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
 	self model addPreambleTo: self selectedChangeSet.
 	changesListPresenter setSelectedItem: self selectedChangeSet
 ]
@@ -107,10 +50,9 @@ ChangeSorterPresenter >> browseChangeSet [
 	"Open a message list browser on methods in the current change set"
 
 	| messages |
-	messages := self selectedChangeSet changedMessageList select: [ :each | each isValid].	
-	Smalltalk tools messageList
-		browse: messages 
-		title: 'Methods in Change Set ', self selectedChangeSet name .
+	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
+	messages := self selectedChangeSet changedMessageList select: [ :each | each isValid ].
+	Smalltalk tools messageList browse: messages title: 'Methods in Change Set ' , self selectedChangeSet name
 ]
 
 { #category : #'menu - message' }
@@ -145,12 +87,75 @@ ChangeSorterPresenter >> browseVersions [
 ]
 
 { #category : #menu }
-ChangeSorterPresenter >> changeSetMenu: aMenu [
+ChangeSorterPresenter >> changeSetMenu [
 	"Set up aMenu to hold commands for the change-set-list pane.  This could be for a single or double changeSorter"
 
-	aMenu addTitle: 'Change Set'.
-	aMenu addAllFromPragma: 'changeSorterChangeSetListMenu' target: self.
-	^ aMenu
+	^ self newMenu
+		addTitle: 'Change Set';
+		addGroup: [ :aGroup | 
+			aGroup
+				addItem: [ :anItem | 
+					anItem
+						name: 'Make changes go to me';
+						shortcut: $m meta;
+						action: [ self setCurrentChangeSet ] ];
+				addItem: [ :anItem | 
+					anItem
+						name: 'New change set...';
+						shortcut: $n meta;
+						action: [ self newSet ] ];
+				addItem: [ :anItem | 
+					anItem
+						name: 'Find...';
+						shortcut: $f meta;
+						action: [ self findChangeSet ] ] ];
+		addGroup: [ :aGroup | 
+			aGroup
+				addItem: [ :anItem | 
+					anItem
+						name: 'Rename change set';
+						shortcut: $r meta;
+						action: [ self rename ] ];
+				addItem: [ :anItem | 
+					anItem
+						name: 'File out';
+						shortcut: $o meta;
+						action: [ self fileOut ] ];
+				addItem: [ :anItem | 
+					anItem
+						name: 'Browse methods';
+						shortcut: $b meta;
+						action: [ self browseChangeSet ] ];
+				addItem: [ :anItem | 
+					anItem
+						name: 'Browse change set';
+						shortcut: $B meta;
+						action: [ self openChangeSetBrowser ] ];
+				addItem: [ :anItem | 
+					anItem
+						name: 'Add/Edit preamble';
+						shortcut: $p meta;
+						action: [ self addPreamble ] ];
+				addItem: [ :anItem | 
+					anItem
+						name: 'Remove preamble';
+						action: [ self removePreamble ] ];
+				addItem: [ :anItem | 
+					anItem
+						name: 'Add/Edit postscript...';
+						action: [ self editPostscript ] ];
+				addItem: [ :anItem | 
+					anItem
+						name: 'Remove postscript';
+						action: [ self removePostscript ] ] ];
+		addGroup: [ :aGroup | 
+			aGroup
+				addItem: [ :anItem | 
+					anItem
+						name: 'Destroy change set';
+						shortcut: $x meta;
+						action: [ self remove ] ] ];
+		yourself
 ]
 
 { #category : #api }
@@ -270,7 +275,7 @@ ChangeSorterPresenter >> defaultTitle [
 
 { #category : #'menu - change set' }
 ChangeSorterPresenter >> editPostscript [
-	
+	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
 	self selectedChangeSet editPostscript
 ]
 
@@ -286,7 +291,7 @@ ChangeSorterPresenter >> ensureKeyBindingsFor: aWidget [
 
 { #category : #'menu - change set' }
 ChangeSorterPresenter >> fileOut [
-
+	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
 	self selectedChangeSet fileOut
 ]
 
@@ -404,7 +409,7 @@ ChangeSorterPresenter >> initializeWidgets [
 	self setFocus.
 
 	methodsListPresenter contextMenu: self messageMenu.
-	changesListPresenter contextMenu: [ :aMenu | self changeSetMenu: aMenu ].
+	changesListPresenter contextMenu: self changeSetMenu.
 	classesListPresenter contextMenu: self classMenu.
 
 	methodsListPresenter enableItemSubstringFilter.
@@ -503,21 +508,21 @@ ChangeSorterPresenter >> model [
 
 { #category : #'menu - change set' }
 ChangeSorterPresenter >> newSet [
-
 	| aSet |
+	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
 	self okToChange ifFalse: [ ^ self ].
 	aSet := self model createNewSet.
-	aSet ifNotNil:
-		[	self updateChangesList.
+	aSet
+		ifNotNil: [ self updateChangesList.
 			changesListPresenter setSelectedItem: aSet ]
 ]
 
 { #category : #'menu - change set' }
 ChangeSorterPresenter >> openChangeSetBrowser [
 	| cs |
-	
-	cs := self selectedChangeSet ifNil: [^self].
-	^Smalltalk tools browser openInEnvironment: (RBBrowserEnvironment new forClasses: cs changedClasses)
+	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
+	cs := self selectedChangeSet ifNil: [ ^ self ].
+	^ Smalltalk tools browser openInEnvironment: (RBBrowserEnvironment new forClasses: cs changedClasses)
 ]
 
 { #category : #initialization }
@@ -626,25 +631,26 @@ ChangeSorterPresenter >> removeMessage [
 
 { #category : #'menu - change set' }
 ChangeSorterPresenter >> removePostscript [
-
+	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
 	self model removePostscriptFrom: self selectedChangeSet.
 	changesListPresenter setSelectedItem: self selectedChangeSet
 ]
 
 { #category : #'menu - change set' }
 ChangeSorterPresenter >> removePreamble [
-
+	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
+	self selectedChangeSet hasPreamble ifFalse: [ ^ self inform: 'Change set has no preamble' ].
 	self selectedChangeSet removePreamble.
 	changesListPresenter setSelectedItem: self selectedChangeSet
 ]
 
 { #category : #'menu - change set' }
 ChangeSorterPresenter >> rename [
-
 	| set |
+	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
 	set := self model rename: self selectedChangeSet.
-	
-	changesListPresenter 
+
+	changesListPresenter
 		updateList;
 		setSelectedItem: set
 ]
@@ -684,7 +690,7 @@ ChangeSorterPresenter >> selectorsMenu: aBlock [
 
 { #category : #'menu - change set' }
 ChangeSorterPresenter >> setCurrentChangeSet [
-
+	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
 	self model setCurrentChangeSet: self selectedChangeSet.
 ]
 
