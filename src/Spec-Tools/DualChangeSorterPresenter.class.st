@@ -61,8 +61,7 @@ DualChangeSorterPresenter class >> taskbarIconName [
 
 { #category : #specs }
 DualChangeSorterPresenter class >> title [
-
-	^'Dual Change Sorter'
+	^ 'Dual Change Sorter'
 ]
 
 { #category : #menu }
@@ -211,7 +210,8 @@ DualChangeSorterPresenter >> initializeWidgets [
 
 { #category : #initialization }
 DualChangeSorterPresenter >> initializeWindow: aWindowPresenter [
-	aWindowPresenter initialExtent: 900 @ 530
+	aWindowPresenter initialExtent: 900 @ 530.
+	aWindowPresenter title: self title
 ]
 
 { #category : #initialization }
@@ -330,8 +330,7 @@ DualChangeSorterPresenter >> subtractFrom: src to: dest [
 	changeSorterRight setSelectedChangeSet: source.
 ]
 
-{ #category : #event }
+{ #category : #'api-window' }
 DualChangeSorterPresenter >> title [
-
-	^ super title, ' on: ', self model currentChangeSet name. 
+	^ String streamContents: [ :stream | stream << self class title << ' on: ' << self model currentChangeSet name ]
 ]

@@ -398,6 +398,11 @@ ChangeSorterPresenter >> initializeWidgets [
 	textPresenter aboutToStyle: true
 ]
 
+{ #category : #initialization }
+ChangeSorterPresenter >> initializeWindow: aWindowPresenter [
+	aWindowPresenter title: self title
+]
+
 { #category : #menu }
 ChangeSorterPresenter >> messageMenu [
 	"Build a menu with items appropriate for the message list; could be for a single or double changeSorter"
@@ -664,6 +669,7 @@ ChangeSorterPresenter >> selectorsMenu: aBlock [
 ChangeSorterPresenter >> setCurrentChangeSet [
 	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
 	self model setCurrentChangeSet: self selectedChangeSet.
+	self window title: self title
 ]
 
 { #category : #initialization }
@@ -708,8 +714,7 @@ ChangeSorterPresenter >> textPresenter [
 
 { #category : #api }
 ChangeSorterPresenter >> title [
-
-	^ super title, ' on: ', self model currentChangeSet name. 
+	^ String streamContents: [ :stream | stream << self class title << ' on: ' << self model currentChangeSet name ]
 ]
 
 { #category : #api }
