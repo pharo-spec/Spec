@@ -50,15 +50,10 @@ AbstractTreeSingleSelectionMode >> selectPath: pathArray [
 	self subclassResponsibility
 ]
 
-{ #category : #selection }
-AbstractTreeSingleSelectionMode >> selectedPath: aPath [
-	self subclassResponsibility
-]
-
 { #category : #selecting }
 AbstractTreeSingleSelectionMode >> unselectAll [
 
-	self selectPath: #()
+	self clearSelection
 ]
 
 { #category : #'API - events' }
