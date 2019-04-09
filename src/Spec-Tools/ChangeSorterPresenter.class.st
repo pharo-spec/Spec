@@ -370,7 +370,9 @@ ChangeSorterPresenter >> initializeAnnouncements [
 ChangeSorterPresenter >> initializePresenter [
 	self registerChangeActions.
 	self registerClassActions.
-	self registerSelectorActions
+	self registerSelectorActions.
+
+	changesListPresenter items ifNotEmpty: [ changesListPresenter selectedIndex: 1 ]
 ]
 
 { #category : #initialization }
@@ -392,6 +394,7 @@ ChangeSorterPresenter >> initializeWidgets [
 
 	changesListPresenter items: self model allChanges.
 	changesListPresenter displayBlock: [ :item | item name ].
+	classesListPresenter sortingBlock: [ :a :b | a name < b name ].
 	textPresenter aboutToStyle: true
 ]
 
@@ -503,15 +506,13 @@ ChangeSorterPresenter >> openChangeSetBrowser [
 ChangeSorterPresenter >> registerChangeActions [
 	changesListPresenter
 		whenSelectionChangedDo: [ :selection | 
-			[ :change | 
-			classesListPresenter unselectAll.
 			self updateTextContents.
-			change
+			selection selectedItem
 				ifNil: [ classesListPresenter items: {}.
 					methodsListPresenter items: {} ]
-				ifNotNil: [ classesListPresenter
-						items: (change changedClasses sort: [ :a :b | a name < b name ]) ] ]
-				cull: selection selectedItem ]
+				ifNotNil: [ :change | 
+					classesListPresenter unselectAll.
+					classesListPresenter items: change changedClasses ] ]
 ]
 
 { #category : #shortcuts }
@@ -533,16 +534,14 @@ ChangeSorterPresenter >> registerChangeSetShortcuts: aWidget [
 ChangeSorterPresenter >> registerClassActions [
 	classesListPresenter
 		whenSelectionChangedDo: [ :selection | 
-			[ :class | 
-			methodsListPresenter unselectAll.
 			self updateTextContents.
-			textPresenter behavior: class.
+			textPresenter behavior: selection selectedItem.
 			textPresenter aboutToStyle: false.
-			class
+			selection selectedItem
 				ifNil: [ methodsListPresenter items: {} ]
-				ifNotNil: [ methodsListPresenter
-						items: (self selectedChangeSet selectorsInClass: class name) sort ] ]
-				cull: selection selectedItem ]
+				ifNotNil: [ :class | 
+					methodsListPresenter unselectAll.
+					methodsListPresenter items: (self selectedChangeSet selectorsInClass: class name) sort ] ]
 ]
 
 { #category : #shortcuts }
@@ -566,8 +565,7 @@ ChangeSorterPresenter >> registerMethodShortcuts: aWidget [
 
 { #category : #initialization }
 ChangeSorterPresenter >> registerSelectorActions [
-	methodsListPresenter
-		whenSelectionChangedDo: [ :selection | [ :selector | self updateTextContents ] cull: selection selectedItem ]
+	methodsListPresenter whenSelectionChangedDo: [ :selection | self updateTextContents ]
 ]
 
 { #category : #'menu - change set' }
@@ -759,16 +757,12 @@ ChangeSorterPresenter >> updateMessagesList [
 
 { #category : #private }
 ChangeSorterPresenter >> updateTextContents [
-
 	| text |
-	text :=  (self model 
-				setContentsOfChangeSet: self selectedChangeSet
-				forClass: self selectedClass
-				andSelector: self selectedSelector).
-	({'Method was added, but cannot be found!'. 'Added then removed (see versions)'. 'Method has been removed (see versions)'} includes: text)
+	text := self model setContentsOfChangeSet: self selectedChangeSet forClass: self selectedClass andSelector: self selectedSelector.
+	({'Method was added, but cannot be found!' . 'Added then removed (see versions)' . 'Method has been removed (see versions)'} includes: text)
 		ifTrue: [ textPresenter aboutToStyle: false ]
-		ifFalse: [ textPresenter aboutToStyle: true ] .
-	textPresenter text: text.
+		ifFalse: [ textPresenter aboutToStyle: true ].
+	textPresenter text: text
 ]
 
 { #category : #'api-events' }
