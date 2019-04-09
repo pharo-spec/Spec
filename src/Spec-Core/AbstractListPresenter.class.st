@@ -83,7 +83,7 @@ AbstractListPresenter >> contextMenu: aValuable [
 
 { #category : #initialization }
 AbstractListPresenter >> defaultFilteringBlock [ 
-	^ [:col | col]
+	^ [ :col | col ]
 ]
 
 { #category : #private }
