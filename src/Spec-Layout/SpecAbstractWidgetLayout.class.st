@@ -30,6 +30,14 @@ SpecAbstractWidgetLayout class >> for: aSymbol [
 ]
 
 { #category : #building }
+SpecAbstractWidgetLayout >> adapt: aPresenter bindings: adapterBindings [
+	| adapter |
+	adapter := self adapterFor: aPresenter bindings: adapterBindings.
+	adapter adapt: aPresenter.
+	^ adapter
+]
+
+{ #category : #building }
 SpecAbstractWidgetLayout >> adapterFor: aPresenter bindings: adapterBindings [
 	^ self class environment
 		at: (adapterBindings translateSymbol: self adapterName)
@@ -56,7 +64,12 @@ SpecAbstractWidgetLayout >> asSpecLayout [
 SpecAbstractWidgetLayout >> buildAdapterFor: aPresenter bindings: adapterBindings [
 	"In case we are building an adapter, we need to get the actual adapter class for a specific binding and make it adapt the presenter."
 
-	| adapter |
-	adapter := self adapterFor: aPresenter bindings: adapterBindings.
-	^ adapter adapt: aPresenter
+	^ aPresenter needRebuild
+		ifTrue: [ self adapt: aPresenter bindings: adapterBindings ]
+		ifFalse: [ aPresenter needRebuild: true.
+			aPresenter adapter
+				ifNil: [ self adapt: aPresenter bindings: adapterBindings ]
+				ifNotNil: [ :adapter | 
+					adapter isRedrawable ifTrue: [ adapter removeSubWidgets ].
+					adapter ] ]
 ]
