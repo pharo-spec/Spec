@@ -50,9 +50,7 @@ AbstractWidgetPresenter class >> adapterName [
 
 { #category : #specs }
 AbstractWidgetPresenter class >> defaultSpec [
-	<spec: #default>
-
-	^ { self adapterName. #adapt:. #presenter }
+	^ SpecAbstractWidgetLayout for: self adapterName
 ]
 
 { #category : #'drag and drop' }
