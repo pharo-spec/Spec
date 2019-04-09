@@ -179,6 +179,13 @@ TreeTablePresenter >> itemAtPath: anArray [
 ]
 
 { #category : #accessing }
+TreeTablePresenter >> itemAtPath: anArray ifAbsent: aBlock [
+	^ [ self itemAtPath: anArray ]
+		on: SubscriptOutOfBounds
+		do: [ aBlock value ]
+]
+
+{ #category : #accessing }
 TreeTablePresenter >> roots [
 
 	^ roots

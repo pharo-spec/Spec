@@ -69,12 +69,12 @@ AbstractTreeTableAdapterTest >> testSelectingAPathUpdatesSelectionInPresenter [
 ]
 
 { #category : #running }
-AbstractTreeTableAdapterTest >> testSelectingOutOfRangeResetsSelection [
-
-	self presenter selection selectPath: #(2 3).
-	self presenter selection selectPath: #(7 3).
+AbstractTreeTableAdapterTest >> testSelectingOutOfRangeKeepOldSelection [
+	self presenter selection selectedPath: #(2 3).
+	self presenter selection selectedPath: #(7 3).
 	
-	self assert: self adapter selectedItem equals: nil
+	self assert: self adapter selectedItem equals: 20
+
 ]
 
 { #category : #running }

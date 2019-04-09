@@ -41,6 +41,16 @@ TreeMultipleSelectionMode >> selectedItem [
 	self shouldBeImplemented.
 ]
 
+{ #category : #selection }
+TreeMultipleSelectionMode >> selectedPath: aPath [ 
+	
+	(selection includes: aPath) ifTrue: [ ^ self ].
+	
+	presenter itemAtPath: aPath ifAbsent: [ ^ self ].
+	
+	selection := selection copyWith: aPath.
+]
+
 { #category : #accessing }
 TreeMultipleSelectionMode >> selectedPaths [
 	^ selection

@@ -38,6 +38,14 @@ TreeSingleSelectionMode >> selectedPath [
 ]
 
 { #category : #accessing }
+TreeSingleSelectionMode >> selectedPath: aPath [
+	"If the path is out of range, keep the selection."
+	presenter itemAtPath: aPath ifAbsent: [ ^ self ].
+	selection := aPath.
+
+]
+
+{ #category : #accessing }
 TreeSingleSelectionMode >> selectedPaths [
 	
 	selection ifEmpty: [ ^ #() ].
