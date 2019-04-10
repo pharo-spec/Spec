@@ -25,8 +25,7 @@ Class {
 	#name : #DynamicComposablePresenter,
 	#superclass : #ComposablePresenter,
 	#instVars : [
-		'widgets',
-		'layout'
+		'widgets'
 	],
 	#category : #'Spec-Core-Base'
 }

@@ -24,6 +24,12 @@ TablePresenter >> addColumn: aColumn [
 ]
 
 { #category : #api }
+TablePresenter >> addColumns: aCollection [
+
+	aCollection do: [ :each | self addColumn: each ]
+]
+
+{ #category : #api }
 TablePresenter >> beNotResizable [
 	self isResizable: false
 ]

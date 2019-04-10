@@ -150,6 +150,11 @@ SpecDemoStandaloneFormPresenter >> dateLabel: anObject [
 	dateLabel := anObject
 ]
 
+{ #category : #accessing }
+SpecDemoStandaloneFormPresenter >> femaleButton [
+	^ femaleButton
+]
+
 { #category : #'model updates' }
 SpecDemoStandaloneFormPresenter >> fillFormWithWorkingModel [
 	| aModel |
@@ -164,11 +169,7 @@ SpecDemoStandaloneFormPresenter >> fillFormWithWorkingModel [
 	self dateInput date: aModel date.
 	(genderButtons at: aModel gender) state: true.
 
-	self itemsInput selection
-		selectIndexes:
-			(self workingModel items
-				collect: [ :elem | self itemsInput model shownItems indexOf: elem ]).
-	self itemsInput changed: #listElementAt:
+	self itemsInput selectItems: self workingModel selectedItems
 ]
 
 { #category : #'model updates' }
@@ -280,6 +281,11 @@ SpecDemoStandaloneFormPresenter >> itemsLabel [
 { #category : #accessing }
 SpecDemoStandaloneFormPresenter >> itemsLabel: anObject [
 	itemsLabel := anObject
+]
+
+{ #category : #accessing }
+SpecDemoStandaloneFormPresenter >> maleButton [
+	^ maleButton
 ]
 
 { #category : #initialization }

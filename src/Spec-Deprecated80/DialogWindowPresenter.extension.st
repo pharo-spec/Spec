@@ -2,7 +2,7 @@ Extension { #name : #DialogWindowPresenter }
 
 { #category : #'*Spec-Deprecated80' }
 DialogWindowPresenter >> toolbar [
-	self deprecated: 'The way dialogs uses toolbars changed in Pharo 8 and this way is deprecated. 
+	[self deprecated: 'The way dialogs uses toolbars changed in Pharo 8 and this way is deprecated. 
 	
 	Before the dialog bar had one or two buttons: Ok and Cancel, but they where not configurable. Now the user can add itself multiple buttons and configure their action more easily.
 	
@@ -18,6 +18,6 @@ DialogWindowPresenter >> toolbar [
 		addButton: ''Ignore'' 
 		do: [ :presenter | presenter close ]. 
 
-	'.
+	'.].
 	^ DeprecatedSpecToolbarHelper for: self
 ]

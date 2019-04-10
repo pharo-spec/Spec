@@ -50,6 +50,24 @@ MorphicTreeTableAdapter >> addModelTo: tableMorph [
 		self model columns do: [ :each | tableMorph addColumn: (self newColumnFrom: each) ].
 		tableMorph dataSource: self newDataSource ].
 	
+	tableMorph
+		onAnnouncement: FTSelectionChanged
+			send: #selectionChanged:
+			to: self;
+		onAnnouncement: FTStrongSelectionChanged
+			send: #strongSelectionChanged:
+			to: self.
+]
+
+{ #category : #factory }
+MorphicTreeTableAdapter >> basicSelectionChanged: ann [
+	| diff selection |
+
+	selection := self presenter selection.
+	ann newSelectedIndexes ifEmpty: [ ^ selection unselectAll ].
+
+	diff := ann newSelectedIndexes difference: ann oldSelectedIndexes.
+	diff ifNotEmpty: [ selection selectPath: (self widget dataSource pathFromIndex: diff last) ]
 ]
 
 { #category : #factory }
@@ -152,6 +170,37 @@ MorphicTreeTableAdapter >> selectedItem [
 MorphicTreeTableAdapter >> selectedPaths [
 	
 	^ self widget selectedIndexes collect: [ :e | self widget dataSource pathFromIndex: e  ] 
+]
+
+{ #category : #factory }
+MorphicTreeTableAdapter >> selectionChanged: ann [
+
+	self suspendSelectionEventsDuring: [ 
+		self basicSelectionChanged: ann ]
+]
+
+{ #category : #factory }
+MorphicTreeTableAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
+
+	self presenter activatesOnDoubleClick ifFalse: [ ^ self ].	
+	self presenter doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex
+]
+
+{ #category : #factory }
+MorphicTreeTableAdapter >> suspendSelectionEventsDuring: aBlock [
+	| registry subscriptions |
+
+	registry := self widget announcer subscriptions.
+	subscriptions := Set new.
+	registry 
+		subscriptionsOf: self 
+		do: [ :each | 
+			({ FTSelectionChanged. FTStrongSelectionChanged } includes: each announcementClass) 
+				ifTrue: [ subscriptions add: each ] ]. 
+			
+	subscriptions do: [ :each | registry remove: each ].
+	aBlock ensure: [ 
+		 subscriptions do: [ :each | registry add: each ] ]
 ]
 
 { #category : #selection }

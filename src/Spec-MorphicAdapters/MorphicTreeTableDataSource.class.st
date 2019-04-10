@@ -6,9 +6,8 @@ I use a builder (MorphicTreeTableCellBuilder) to realise the cell content.
 Class {
 	#name : #MorphicTreeTableDataSource,
 	#superclass : #FTTreeDataSource,
-	#instVars : [
-		'model'
-	],
+	#traits : 'TMorphicTableDataSourceCommons',
+	#classTraits : 'TMorphicTableDataSourceCommons classTrait',
 	#category : #'Spec-MorphicAdapters-Table'
 }
 
@@ -41,16 +40,6 @@ MorphicTreeTableDataSource >> cellColumn: column row: rowIndex [
 MorphicTreeTableDataSource >> cellIndentFor: item [ 
 
 	^ item depth * 16
-]
-
-{ #category : #accessing }
-MorphicTreeTableDataSource >> headerColumn: column [
-
-	column id ifNil: [ ^ nil ].
-	^ FTCellMorph new 
-		listCentering: #left;
-		addMorph: column id asMorph;
-		yourself
 ]
 
 { #category : #accessing }
@@ -88,34 +77,11 @@ MorphicTreeTableDataSource >> itemAtPath: aPath expanding: shouldExpandItems [
 	^ item
 ]
 
-{ #category : #accessing }
-MorphicTreeTableDataSource >> menuColumn: column row: rowIndex [
-	| menuPresenter |
-
-	menuPresenter := self model contextMenu.
-	menuPresenter ifNil: [ ^ self ].
-	^ SpecBindings
-		value: self model application adapterBindings
-		during: [ menuPresenter value buildWithSpec ]
-]
-
-{ #category : #accessing }
-MorphicTreeTableDataSource >> model [
-	^ model
-]
-
-{ #category : #accessing }
-MorphicTreeTableDataSource >> model: anObject [
-	model := anObject
-]
-
 { #category : #paths }
 MorphicTreeTableDataSource >> pathFromIndex: anInteger [ 
-	
 	| item |
 	
-	item := self allShownItems at: anInteger.
-	
+	item := self allShownItems at: anInteger ifAbsent: [ ^ #() ].
 	^ self pathOfItem: item root: rootItem
 ]
 
@@ -129,8 +95,7 @@ MorphicTreeTableDataSource >> pathOfItem: anItem root: aRoot [
 		
 	aRoot children withIndexDo: [ :aChild :index | | aSubPath |
 		aSubPath := self pathOfItem: anItem root: aChild.
-		aSubPath ifNotEmpty: [ ^ { index } , aSubPath ] 
-	].
+		aSubPath ifNotEmpty: [ ^ { index } , aSubPath ] ].
 	
 	^ #().
 ]

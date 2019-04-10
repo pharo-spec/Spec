@@ -17,7 +17,7 @@ Class {
 		'blockToPerformOnWrappers',
 		'listPresenter'
 	],
-	#category : #'Spec-PolyWidgets-ListAndTree'
+	#category : #'Spec-Deprecated80'
 }
 
 { #category : #specs }
@@ -27,6 +27,27 @@ PickListPresenter class >> defaultSpec [
 	^ SpecLayout composed 
 		add: #listPresenter;
 		yourself
+]
+
+{ #category : #deprecation }
+PickListPresenter class >> example [
+	<sampleInstance>
+	| example |
+	example := self new.
+	example
+		items:
+			{{1 . 2 . 4}.
+			'Foo'.
+			123}.
+	example openWithSpec.
+			^example
+]
+
+{ #category : #deprecation }
+PickListPresenter class >> isDeprecated [
+	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
+
+	^ true
 ]
 
 { #category : #specs }

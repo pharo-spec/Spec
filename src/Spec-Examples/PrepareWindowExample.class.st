@@ -61,25 +61,34 @@ PrepareWindowExample >> initializeWindow: aWindowPresenter [
 	
 	super initializeWindow: aWindowPresenter.
 	aWindowPresenter
-		menu: (menu := self newMenu);
+		menu: (menu := self newMenubar);
 		toolBar: (toolBar := self newToolBar);
 		statusBar: (statusBar := self newStatusBar)
 ]
 
 { #category : #'private factory' }
 PrepareWindowExample >> newFileMenu [
-		
-	^ MenuPresenter new addGroup: [ :group |
-		group 
-			addItem: [ :item | item name: 'Push message'; action: [ self pushMessage ] ];
-			addItem: [ :item | item name: 'Pop message'; action: [ self popMessage ] ] ]
+	^ self newMenu
+		addItem: [ :item | 
+			item
+				name: 'Push message';
+				action: [ self pushMessage ] ];
+		addItem: [ :item | 
+			item
+				name: 'Pop message';
+				action: [ self popMessage ] ];
+		yourself
 ]
 
 { #category : #'private factory' }
-PrepareWindowExample >> newMenu [
-		
-	^ MenuBarPresenter new addGroup: [ :group |
-		group addItem: [ :item | item name: 'File'; subMenu: self newFileMenu ] ]
+PrepareWindowExample >> newMenubar [
+	^ self newMenuBar
+		addGroup: [ :group | 
+			group
+				addItem: [ :item | 
+					item
+						name: 'File';
+						subMenu: self newFileMenu ] ]
 ]
 
 { #category : #'private factory' }

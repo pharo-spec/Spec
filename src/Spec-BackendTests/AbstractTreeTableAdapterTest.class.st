@@ -19,7 +19,7 @@ AbstractTreeTableAdapterTest >> classToTest [
 { #category : #running }
 AbstractTreeTableAdapterTest >> testChangingRootsResetsSelection [
 
-	self presenter selection selectedPath: #(2 3).
+	self presenter selection selectPath: #(2 3).
 	self presenter roots: #(10 11 12).
 	
 	self assert: self adapter selectedItem equals: nil
@@ -42,7 +42,7 @@ AbstractTreeTableAdapterTest >> testSelectItemRaiseEvent [
 	| called |
 	
 	self presenter whenSelectionChangedDo: [ called := true ].
-	self presenter selection selectedPath: #(2 3).
+	self presenter selection selectPath: #(2 3).
 
 	self assert: called equals: true
 ]
@@ -50,34 +50,30 @@ AbstractTreeTableAdapterTest >> testSelectItemRaiseEvent [
 { #category : #running }
 AbstractTreeTableAdapterTest >> testSelectItemSelectsTheGivenElement [
 
-	self presenter selection selectedPath: #(2).
-
+	self presenter selection selectPath: #(2).
 	self assert: self adapter selectedItem equals: 2.
 ]
 
 { #category : #running }
 AbstractTreeTableAdapterTest >> testSelectItemSelectsTheGivenElementAndExpandsTheBranches [
 
-	self presenter selection selectedPath: #(2 3).
-
+	self presenter selection selectPath: #(2 3).
 	self assert: self adapter selectedItem equals: 20.
 ]
 
 { #category : #running }
 AbstractTreeTableAdapterTest >> testSelectingAPathUpdatesSelectionInPresenter [
 
-	self presenter selection selectedPath: #(2 3).
-
+	self presenter selection selectPath: #(2 3).
 	self assert: self presenter selectedItem equals: 20.
 ]
 
 { #category : #running }
-AbstractTreeTableAdapterTest >> testSelectingOutOfRangeResetsSelection [
-
-	self presenter selection selectedPath: #(2 3).
-	self presenter selection selectedPath: #(7 3).
+AbstractTreeTableAdapterTest >> testSelectingOutOfRangeKeepOldSelection [
 	
-	self assert: self adapter selectedItem equals: nil
+	self presenter selection selectPath: #(2 3).
+	self presenter selection selectPath: #(7 3).
+	self assert: self adapter selectedItem equals: 20
 
 ]
 

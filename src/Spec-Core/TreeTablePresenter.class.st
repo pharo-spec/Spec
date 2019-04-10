@@ -37,12 +37,11 @@ TreeTablePresenter >> addColumn: aColumn [
 
 { #category : #'selection mode' }
 TreeTablePresenter >> beMultipleSelection [
-	
 	| newSelectionMode |
 	
 	newSelectionMode := (TreeMultipleSelectionMode on: self)
-								copyFrom: selection;
-								yourself.
+		copyFrom: selection;
+		yourself.
 	
 	selection := newSelectionMode.
 ]
@@ -180,6 +179,13 @@ TreeTablePresenter >> itemAtPath: anArray [
 ]
 
 { #category : #accessing }
+TreeTablePresenter >> itemAtPath: anArray ifAbsent: aBlock [
+	^ [ self itemAtPath: anArray ]
+		on: SubscriptOutOfBounds
+		do: [ aBlock value ]
+]
+
+{ #category : #accessing }
 TreeTablePresenter >> roots [
 
 	^ roots
@@ -190,6 +196,12 @@ TreeTablePresenter >> roots: aCollection [
 
 	roots := aCollection.
 	self selection clearSelection
+]
+
+{ #category : #api }
+TreeTablePresenter >> selectPath: aPath [
+
+	self selection selectPath: aPath
 ]
 
 { #category : #api }
@@ -208,6 +220,12 @@ TreeTablePresenter >> selection [
 TreeTablePresenter >> showColumnHeaders [
 
 	showColumnHeaders := true
+]
+
+{ #category : #api }
+TreeTablePresenter >> unselectAll [ 
+
+	self selection unselectAll
 ]
 
 { #category : #'api-events' }

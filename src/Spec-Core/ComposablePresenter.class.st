@@ -89,6 +89,7 @@ Class {
 	#traits : 'TSpecObservable',
 	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
+		'#layout',
 		'#application',
 		'#focusOrder',
 		'#extentHolder',
@@ -222,7 +223,7 @@ ComposablePresenter >> addAll: aWindow withSpecLayout: aSpec [
 		frame: (0@0 corner: 1@1).
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> addInputPort: aPort [
 
 	aPort presenter: self.
@@ -235,7 +236,7 @@ ComposablePresenter >> addMenuItemsToWindowMenu: aMenu [
 	"Do nothing"
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> addOutputPort: aPort [
 
 	aPort presenter: self.
@@ -275,12 +276,6 @@ ComposablePresenter >> announce: anAnnouncement [
 	self announcer announce: anAnnouncement
 ]
 
-{ #category : #TOREMOVE }
-ComposablePresenter >> apiSelectors [
-
-	^ self class apiSelectors
-]
-
 { #category : #accessing }
 ComposablePresenter >> application [
 
@@ -308,13 +303,6 @@ ComposablePresenter >> applyMenuModel: aMenuModel [
 		group menuItems do: [ :item |
 			item shortcut ifNotNil: [ :shortcut | self bindMenuKeyCombination: shortcut toAction: [ item performMenuActionWith: {} ] ].
 			item subMenu ifNotNil: [ :subMenu | subMenu applyTo: self	] ] ]
-]
-
-{ #category : #private }
-ComposablePresenter >> applyTransmissions [
-	
-	transmissions ifNil: [ ^ self ].
-	transmissions do: #apply
 ]
 
 { #category : #converting }
@@ -586,7 +574,6 @@ ComposablePresenter >> initializePrivateHooks [
 
 	self initializeWidgets.
 	self initializePresenter.
-	self applyTransmissions.
 	self updatePresenter.
 
 ]
@@ -625,7 +612,7 @@ ComposablePresenter >> initializeWindow: aWindowPresenter [
 		aboutText: self aboutText
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> inputPortDefault [
 
 	"first input port will be default. 
@@ -633,13 +620,13 @@ ComposablePresenter >> inputPortDefault [
 	^ self inputPorts first
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> inputPortNamed: aSymbol [
 
 	^ self inputPorts detect: [ :each | each name = aSymbol ]
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> inputPorts [
 
 	^ inputPorts
@@ -714,6 +701,11 @@ ComposablePresenter >> keyStrokesForPreviousFocus: aCollection [
 	keyStrokesForPreviousFocusHolder value: aCollection 
 ]
 
+{ #category : #accessing }
+ComposablePresenter >> layout [
+	^ layout
+]
+
 { #category : #'window menu' }
 ComposablePresenter >> neglectMenuModel: aMenuModel [
 
@@ -747,9 +739,7 @@ ComposablePresenter >> newCheckBox [
 
 { #category : #widgets }
 ComposablePresenter >> newCode [
-	^ (self instantiate: TextPresenter)
-		beForCode;
-		yourself
+	^ self instantiate: CodePresenter
 ]
 
 { #category : #widgets }
@@ -796,6 +786,16 @@ ComposablePresenter >> newLink [
 { #category : #widgets }
 ComposablePresenter >> newList [
 	^ self instantiate: ListPresenter
+]
+
+{ #category : #widgets }
+ComposablePresenter >> newMenu [
+	^ self instantiate: MenuPresenter
+]
+
+{ #category : #widgets }
+ComposablePresenter >> newMenuBar [
+	^ self instantiate: MenuBarPresenter
 ]
 
 { #category : #widgets }
@@ -880,7 +880,7 @@ ComposablePresenter >> on: anAnnouncement send: aSelector to: aTarget [
 		to: aTarget
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> outputPortDefault [
 
 	"first output port will be default. 
@@ -888,13 +888,13 @@ ComposablePresenter >> outputPortDefault [
 	^ self outputPorts first
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> outputPortNamed: aSymbol [
 
 	^ self outputPorts detect: [ :each | each name = aSymbol ]
 ]
 
-{ #category : #'accessing ports' }
+{ #category : #'private-ports' }
 ComposablePresenter >> outputPorts [
 
 	^ outputPorts
@@ -962,6 +962,14 @@ ComposablePresenter >> removeMenuKeyCombination: aShortcut [
 	self changed: #removeMenuKeyCombination: with: {aShortcut}
 ]
 
+{ #category : #'api-window' }
+ComposablePresenter >> requestWindowClose [
+
+	"returns <true> if the user is allowed to close the window. Useful if you want to ask user if he wants to save the changed content etc."
+	
+	^ true
+]
+
 { #category : #private }
 ComposablePresenter >> resolveSymbol: aSymbol [
 
@@ -969,8 +977,10 @@ ComposablePresenter >> resolveSymbol: aSymbol [
 ]
 
 { #category : #api }
-ComposablePresenter >> retrieveDefaultSpec [
-	^ self retrieveSpec: self defaultSpecSelector
+ComposablePresenter >> retrieveSpec: aSelector [
+
+	self layout ifNotNil: [ ^ self layout ].
+	^ super retrieveSpec: aSelector
 ]
 
 { #category : #TOMOVE }
@@ -1051,8 +1061,8 @@ ComposablePresenter >> toolName [
 	^ self class toolName
 ]
 
-{ #category : #'accessing ports' }
-ComposablePresenter >> transmit [ 
+{ #category : #'private-ports' }
+ComposablePresenter >> transmit [
 	| newTransmition |
 
 	transmissions ifNil: [ transmissions := Set new ].

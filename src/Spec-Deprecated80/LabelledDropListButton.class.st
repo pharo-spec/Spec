@@ -11,13 +11,49 @@ I provide shortcuts for the most common methods to avoid the use of the DoesNotU
 Class {
 	#name : #LabelledDropListButton,
 	#superclass : #LabelledContainer,
-	#category : #'Spec-PolyWidgets-Labelled'
+	#category : #'Spec-Deprecated80'
 }
 
 { #category : #specs }
 LabelledDropListButton class >> defaultSpec [
 	<spec: #default>
 	^ super labelLeft 
+]
+
+{ #category : #deprecation }
+LabelledDropListButton class >> example [
+	<sampleInstance>
+	| example |
+	example := self abstractExample.
+	example button label: 'I am a button'.
+	example
+		items: {'item 1' . 'item 2'};
+		displayBlock: [ :item | item asString ];
+		extent: 550 @ 50;
+		openWithSpec.
+	^ example
+]
+
+{ #category : #deprecation }
+LabelledDropListButton class >> exampleUse [
+	<sampleInstance>
+	| example |
+	example := self new.
+	example button label: 'Add'.
+	example label: 'Compose your team';
+		displayBlock: [ :item | item asString ];
+		items: {'Swordian' . 'Gardian' . 'Wizard' . 'Sniper'};
+		extent: 300 @ 120;
+		title: 'LabelDropButton example of use';
+		openWithSpec: #labelTop.
+	^ example
+]
+
+{ #category : #deprecation }
+LabelledDropListButton class >> isDeprecated [
+	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
+
+	^ true
 ]
 
 { #category : #'api-shortcuts' }

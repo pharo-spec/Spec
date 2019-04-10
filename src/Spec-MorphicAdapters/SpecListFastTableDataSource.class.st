@@ -54,12 +54,7 @@ SpecListFastTableDataSource >> menuColumn: column row: rowIndex [
 	menuPresenter ifNil: [ ^ nil ].
 	^ SpecBindings
 		value: self model application adapterBindings
-		during: [ 
-			| m |
-			m := menuPresenter value.
-			(m isKindOf: Morph)
-				ifTrue: [ m ]
-				ifFalse: [ m buildWithSpec ] ]
+		during: [ menuPresenter value buildWithSpec ]
 ]
 
 { #category : #accessing }
@@ -75,6 +70,7 @@ SpecListFastTableDataSource >> model: anObject [
 { #category : #accessing }
 SpecListFastTableDataSource >> newDataSourceMatching: aFTFilter [
 	| newElements wrappedItem text newDataSource modelCopy |
+	
 	newElements := self elements select: [ :each | 
 		wrappedItem := self model displayValueOf: each.
 		table columns anySatisfy: [ :column | 

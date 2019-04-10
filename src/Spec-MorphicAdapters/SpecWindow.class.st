@@ -15,6 +15,15 @@ SpecWindow >> aboutText [
 	^ self model aboutText
 ]
 
+{ #category : #closing }
+SpecWindow >> allowedToClose [
+
+	super allowedToClose ifFalse: [ ^ false ].
+	^ self model askOkToClose 
+		ifTrue: [ self model requestWindowClose ]
+		ifFalse: [ true ].
+]
+
 { #category : #testing }
 SpecWindow >> hasWidget: aMorph [ 
 	

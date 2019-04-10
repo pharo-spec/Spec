@@ -118,9 +118,6 @@ DatePresenter >> initializeWidgets [
 	dateModel := self newTextInput.
 	chooseDateButton := self newButton.
 	
-	dateModel
-		isCodeCompletionAllowed: false.
-	
 	chooseDateButton
 		icon: self iconMorph;
 		action: [ self chooseDate ];

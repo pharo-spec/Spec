@@ -323,21 +323,21 @@ MessageBrowser >> findFirstOccurrenceOf: searchedString in: textToSearchIn [
 
 { #category : #announcements }
 MessageBrowser >> handleClassRenamed: anAnnouncement [
-	
 	| items selectedIndex |
-	items := listModel listItems collect: [ :rgMethod | | interestedClassName interestedClass |
-		interestedClassName := anAnnouncement oldName.
-		interestedClass := anAnnouncement classRenamed.
-		rgMethod isMetaSide ifTrue: [ 
-			interestedClassName := interestedClassName, ' class'.
-			interestedClass := interestedClass classSide ].
-		rgMethod parentName = interestedClassName ifTrue: [ 
-			(interestedClass >> rgMethod selector) asFullRingDefinition.
-		 	] ifFalse: [ rgMethod ] ].
-	
-	selectedIndex := listModel selectedIndex.
+	items := listModel model shownItems
+		collect: [ :rgMethod | 
+			| interestedClassName interestedClass |
+			interestedClassName := anAnnouncement oldName.
+			interestedClass := anAnnouncement classRenamed.
+			rgMethod isMetaSide
+				ifTrue: [ interestedClassName := interestedClassName , ' class'.
+					interestedClass := interestedClass classSide ].
+			rgMethod parentName = interestedClassName
+				ifTrue: [ (interestedClass >> rgMethod selector) asFullRingDefinition ]
+				ifFalse: [ rgMethod ] ].
+	selectedIndex := listModel selection selectedIndex.
 	self messages: items.
-	listModel setSelectedIndex: selectedIndex.
+	listModel selectIndex: selectedIndex
 ]
 
 { #category : #announcements }
@@ -735,8 +735,7 @@ MessageBrowser >> setFocus [
 
 { #category : #menus }
 MessageBrowser >> setListMenu [
-	listModel menu: [ :menu |
-		menu addAllFromPragma: 'messageBrowserListMenu' target: self ].
+	listModel contextMenu: [ :menu | menu addAllFromPragma: 'messageBrowserListMenu' target: self ]
 ]
 
 { #category : #api }
