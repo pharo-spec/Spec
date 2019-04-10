@@ -30,14 +30,14 @@ MorphicOverlayAdapter >> basicAdd: aPresenter constraints: constraints to: aWidg
 
 { #category : #protocol }
 MorphicOverlayAdapter >> layout: aLayout [
+	widget
+		ifNil: [ widget := PanelMorph new
+				layoutPolicy: MorphicOverlayLayout new;
+				hResizing: #spaceFill;
+				vResizing: #spaceFill;
+				color: Color transparent;
+				borderColor: Color transparent;
+				yourself ].
 
-	widget := PanelMorph new 
-		layoutPolicy: MorphicOverlayLayout new;
-		hResizing: #spaceFill;
-		vResizing: #spaceFill;
-		color: Color transparent;
-		borderColor: Color transparent;
-		yourself.
-		
 	super layout: aLayout
 ]

@@ -70,13 +70,16 @@ MorphicBoxAdapter >> childrenWidgets [
 MorphicBoxAdapter >> layout: aLayout [
 
 	layout := aLayout.
+	
+	widget
+		ifNil: [
 	"build of widget was differed up to here (to know what is the direction)"
 	widget := aLayout direction newWidgetOn: self.
 	widget borderWidth: aLayout borderWidth.
 	"the spacing needs to be applied to the inner sub-panels"
 	widget submorphs do: [ :each |
 		each cellInset: aLayout spacing ].
-	"widget homogeneous: aLayout isHomogeneous"
+	"widget homogeneous: aLayout isHomogeneous" ].
 	
 	super layout: aLayout
 ]
@@ -132,4 +135,10 @@ MorphicBoxAdapter >> remove: aPresenter [
 	morph := aPresenter adapter widget.	
 	widget submorphs first removeMorph: morph.
 	widget submorphs second removeMorph: morph.
+]
+
+{ #category : #factory }
+MorphicBoxAdapter >> removeSubWidgets [
+	widget submorphs first removeAllMorphs.
+	widget submorphs second removeAllMorphs
 ]
