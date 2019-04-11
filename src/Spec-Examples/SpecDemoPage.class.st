@@ -17,9 +17,7 @@ SpecDemoPage class >> availablePages [
 
 { #category : #specs }
 SpecDemoPage class >> defaultSpec [
-	<spec>
-	
-	^ SpecLayout composed
+	^ SpecBoxLayout newVertical
 		add: #tabManager;
 		yourself
 ]
