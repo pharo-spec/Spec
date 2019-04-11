@@ -36,19 +36,19 @@ SpecExecutableLayout >> asSpecLayout [
 ]
 
 { #category : #building }
-SpecExecutableLayout >> buildAdapterFor: aModel bindings: bindings [
-	adapter := (bindings adapterClass: self adapterName) adapt: aModel.
+SpecExecutableLayout >> buildAdapterFor: aPresenter bindings: bindings [
+	adapter := aPresenter needRebuild
+		ifTrue: [ (bindings adapterClass: self adapterName) adapt: aPresenter ]
+		ifFalse: [ aPresenter needRebuild: true.
+			aPresenter adapter
+				removeSubWidgets;
+				yourself ].
+
 	adapter layout: self.
+
 	children
-		keysAndValuesDo: [ :presenterNameOrLayout :constraints | 
-			"Since a layout can be composed (by other layouts), we can include a
-		    presenter or a layout"
-			adapter 
-				add: (self 
-					resolvePresenter: presenterNameOrLayout 
-					model: aModel 
-					bindings: bindings)
-				constraints: constraints ].
+		keysAndValuesDo:
+			[ :presenterNameOrLayout :constraints | "Since a layout can be composed (by other layouts), we can include a presenter or a layout" adapter add: (self resolvePresenter: presenterNameOrLayout model: aPresenter bindings: bindings) constraints: constraints ].
 
 	^ adapter
 ]
@@ -117,8 +117,4 @@ SpecExecutableLayout >> subpresenterOrLayoutNamed: presenterNameOrLayout of: aPr
 	^ aPresenter additionalSubpresentersMap 
 		at: presenterNameOrLayout 
 		ifAbsent: [ aPresenter presenterAt: presenterNameOrLayout ]
-
-	
-
-	
 ]

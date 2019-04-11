@@ -36,14 +36,14 @@ MorphicScrollableAdapter >> basicAdd: aPresenter constraints: constraints to: aP
 
 { #category : #protocol }
 MorphicScrollableAdapter >> layout: aLayout [
+	widget
+		ifNil: [ widget := PanelMorph new
+				changeTableLayout;
+				hResizing: #spaceFill;
+				vResizing: #spaceFill;
+				color: Color transparent;
+				borderColor: Color transparent;
+				yourself ].
 
-	widget := PanelMorph new 
-		changeTableLayout;
-		hResizing: #spaceFill;
-		vResizing: #spaceFill;
-		color: Color transparent;
-		borderColor: Color transparent;
-		yourself.
-		
 	super layout: aLayout
 ]
