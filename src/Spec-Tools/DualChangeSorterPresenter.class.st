@@ -331,3 +331,8 @@ DualChangeSorterPresenter >> subtractFrom: src to: dest [
 DualChangeSorterPresenter >> title [
 	^ String streamContents: [ :stream | stream << self class title << ' on: ' << self model currentChangeSet name ]
 ]
+
+{ #category : #api }
+DualChangeSorterPresenter >> updateTitle [
+	self window title: self title
+]

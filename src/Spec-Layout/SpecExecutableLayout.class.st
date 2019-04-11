@@ -37,12 +37,14 @@ SpecExecutableLayout >> asSpecLayout [
 
 { #category : #building }
 SpecExecutableLayout >> buildAdapterFor: aPresenter bindings: bindings [
-	adapter := aPresenter needRebuild
+	adapter := (aPresenter needRebuild or: [ aPresenter adapter isNil ])
 		ifTrue: [ (bindings adapterClass: self adapterName) adapt: aPresenter ]
-		ifFalse: [ aPresenter needRebuild: true.
-			aPresenter adapter
+		ifFalse: [ aPresenter adapter
 				removeSubWidgets;
 				yourself ].
+			
+	"Ensure we remove the flag `no need of rebuild` if it was set."
+	aPresenter needRebuild: true.
 
 	adapter layout: self.
 
