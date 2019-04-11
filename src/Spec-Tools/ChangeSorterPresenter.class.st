@@ -668,8 +668,7 @@ ChangeSorterPresenter >> selectorsMenu: aBlock [
 { #category : #'menu - change set' }
 ChangeSorterPresenter >> setCurrentChangeSet [
 	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
-	self model setCurrentChangeSet: self selectedChangeSet.
-	self window title: self title
+	self model setCurrentChangeSet: self selectedChangeSet
 ]
 
 { #category : #initialization }
@@ -735,7 +734,7 @@ ChangeSorterPresenter >> updateClassesList [
 		ifNotNil: [ :change | 
 			classesListPresenter
 				items: (change changedClasses sort: [ :a :b | a name < b name ]) ].
-	classesListPresenter selectItem: sel
+	sel ifNotNil: [ classesListPresenter selectItem: sel ]
 ]
 
 { #category : #api }
