@@ -24,18 +24,15 @@ Class {
 	#category : #'Spec-PolyWidgets-Widgets'
 }
 
-{ #category : #accessing }
-DatePresenter class >> spec [
-	<spec: #default>
-
+{ #category : #specs }
+DatePresenter class >> defaultSpec [
 	^ SpecLayout composed
-			newRow: [ :row | 
-				row 
-					newRow: [:ugly | 
-						ugly
-							add: #dateModel;  
-							add: #chooseDateButton width: 50 ]] height: 25
-			yourself.
+		newRow: [ :row | 
+			row
+				add: #dateModel;
+				add: #chooseDateButton width: 50 ]
+			height: 25;
+		yourself
 ]
 
 { #category : #private }
