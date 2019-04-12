@@ -33,7 +33,9 @@ Class {
 		'icon',
 		'description',
 		'state',
-		'autoRefresh'
+		'autoRefresh',
+		'disablingCondition',
+		'condition'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -69,6 +71,16 @@ MenuItemPresenter >> autoRefresh: aBlock [
 ]
 
 { #category : #api }
+MenuItemPresenter >> condition [
+	^ condition value
+]
+
+{ #category : #api }
+MenuItemPresenter >> condition: aValuable [
+	condition value: aValuable
+]
+
+{ #category : #api }
 MenuItemPresenter >> description [
 
 	^ description value
@@ -78,6 +90,16 @@ MenuItemPresenter >> description [
 MenuItemPresenter >> description: aString [
 
 	description value: aString
+]
+
+{ #category : #api }
+MenuItemPresenter >> disableIf: aValuable [
+	disablingCondition value: aValuable
+]
+
+{ #category : #api }
+MenuItemPresenter >> disablingCondition [
+	^ disablingCondition value
 ]
 
 { #category : #'api-building' }
@@ -109,14 +131,16 @@ MenuItemPresenter >> initialize [
 
 	super initialize.
 
-	action := [] asValueHolder.
+	action := [ ] asValueHolder.
 	state := nil asValueHolder.
 	description := nil asValueHolder.
 	name := '' asValueHolder.
 	shortcut := nil asValueHolder.
 	subMenu := nil asValueHolder.
 	autoRefresh := false asValueHolder.
-	icon := nil asValueHolder
+	icon := nil asValueHolder.
+	condition := [ true ] asValueHolder.
+	disablingCondition := [ false ] asValueHolder
 ]
 
 { #category : #testing }
