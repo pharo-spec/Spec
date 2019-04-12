@@ -34,7 +34,6 @@ Class {
 		'description',
 		'state',
 		'autoRefresh',
-		'disablingCondition',
 		'condition'
 	],
 	#category : #'Spec-Core-Widgets'
@@ -92,16 +91,6 @@ MenuItemPresenter >> description: aString [
 	description value: aString
 ]
 
-{ #category : #api }
-MenuItemPresenter >> disableIf: aValuable [
-	disablingCondition value: aValuable
-]
-
-{ #category : #api }
-MenuItemPresenter >> disablingCondition [
-	^ disablingCondition value
-]
-
 { #category : #'api-building' }
 MenuItemPresenter >> fromSpec: aSpec [
 
@@ -139,8 +128,7 @@ MenuItemPresenter >> initialize [
 	subMenu := nil asValueHolder.
 	autoRefresh := false asValueHolder.
 	icon := nil asValueHolder.
-	condition := [ true ] asValueHolder.
-	disablingCondition := [ false ] asValueHolder
+	condition := [ true ] asValueHolder
 ]
 
 { #category : #testing }
