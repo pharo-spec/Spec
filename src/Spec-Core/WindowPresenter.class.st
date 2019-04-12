@@ -97,19 +97,35 @@ WindowPresenter >> askOkToClose: aBoolean [
 ]
 
 { #category : #'private building' }
-WindowPresenter >> basicBuildWithSpecLayout: aSpecLayout [
+WindowPresenter >> basicBuildWithSpecLayout: presenterSpecLayout [
 	"Build the widget using the spec name provided as argument"
 	| widget |
 
 	(self spec isNil or: [ self needRebuild ])
 		ifTrue: [ 
-			widget := (self retrieveDefaultSpec asSpecLayout
-				buildAdapterFor: self bindings: SpecBindings value) widget.
-			self addPresenterIn: widget withSpecLayout: aSpecLayout.
-			self announce: (WidgetBuilt model: self widget: widget).
-			self presenter announce: (WindowBuilt model: self). ]
+			self 
+				buildAdapterWithLayout: self retrieveDefaultSpec 
+				presenterLayout: presenterSpecLayout ]
 		ifFalse: [
 			widget := self widget ].
+	
+	^ widget
+]
+
+{ #category : #'private building' }
+WindowPresenter >> buildAdapterWithLayout: windowSpecLayout presenterLayout: presenterSpecLayout [
+	| widget | 
+
+	"set adapter of the window"
+	self adapter: (windowSpecLayout asSpecLayout
+		buildAdapterFor: self 
+		bindings: SpecBindings value).
+	widget := self adapter widget.
+	"add presenter"
+	self addPresenterIn: widget withSpecLayout: presenterSpecLayout.
+	"announce its result"
+	self announce: (WidgetBuilt model: self widget: widget).
+	self presenter announce: (WindowBuilt model: self).	
 	
 	^ widget
 ]
@@ -449,14 +465,14 @@ WindowPresenter >> updateTitle [
 { #category : #'api-events' }
 WindowPresenter >> whenClosedDo: aBlock [
 
-	isClosedHolder whenChangedDo: [:value |
+	isClosedHolder whenChangedDo: [ :value |
 		value ifTrue: [ aBlock value ] ]
 ]
 
 { #category : #'api-events' }
 WindowPresenter >> whenOpenedDo: aBlock [
 
-	isClosedHolder whenChangedDo: [:value |
+	isClosedHolder whenChangedDo: [ :value |
 		value ifFalse: [ aBlock value ] ]
 ]
 

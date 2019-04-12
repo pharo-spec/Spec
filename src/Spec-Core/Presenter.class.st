@@ -93,15 +93,16 @@ Presenter >> application [
 { #category : #'private building' }
 Presenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	"I assume the SpecBindings is well defined"
-	| newAdapter |
-	newAdapter := aSpecLayout asSpecLayout buildAdapterFor: self bindings: SpecBindings value.
-	adapter := newAdapter.
-	"self setExtentAndBindingTo: newAdapter widget."
+	
+	self adapter: (aSpecLayout asSpecLayout 
+		buildAdapterFor: self 
+		bindings: SpecBindings value).
+
 	self announcer announce: (WidgetBuilt 
 		model: self 
-		widget: newAdapter widget).
+		widget: adapter widget).
 	
-	^ newAdapter
+	^ adapter
 ]
 
 { #category : #'private building' }

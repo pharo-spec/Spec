@@ -30,6 +30,5 @@ CodePresenter class >> title [
 { #category : #initialization }
 CodePresenter >> initialize [ 
 
-	super initialize.
-
+	super initialize
 ]
