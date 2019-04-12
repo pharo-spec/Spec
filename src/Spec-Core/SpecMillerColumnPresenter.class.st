@@ -23,6 +23,18 @@ Class {
 	#category : #'Spec-Core-Miller'
 }
 
+{ #category : #examples }
+SpecMillerColumnPresenter class >> example [
+
+	SpecMillerColumnPresenter new
+    presenterBlock: [ :model | 
+        ListPresenter new
+            items: (1 to: model);
+            yourself ];
+    setRootModel: 10;
+    openWithSpec
+]
+
 { #category : #initialization }
 SpecMillerColumnPresenter >> addPresenter: newSubPresenter [
 
