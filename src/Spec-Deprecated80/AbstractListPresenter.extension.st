@@ -29,7 +29,7 @@ AbstractListPresenter >> menu: aBlock [
 		deprecated: 'Use #contextMenu: instead'
 		on: '2019-03-07'
 		in: #Pharo8
-		transformWith: '`@receiver menu: `@arg' -> '`@receiver contextMenu: `@arg'.
+		transformWith: '`@receiver menu: `@arg' -> '`@receiver contextMenu: [ `@arg cull: nil cull: false ]'.
 	self contextMenu: [ aBlock cull: nil cull: false ]
 ]
 
