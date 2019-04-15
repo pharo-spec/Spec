@@ -104,7 +104,7 @@ WindowPresenter >> basicBuildWithSpecLayout: presenterSpecLayout [
 	(self spec isNil or: [ self needRebuild ])
 		ifTrue: [ 
 			self 
-				buildAdapterWithLayout: self retrieveDefaultSpec 
+				buildWindowWithLayout: self retrieveDefaultSpec 
 				presenterLayout: presenterSpecLayout ]
 		ifFalse: [
 			widget := self widget ].
@@ -113,21 +113,20 @@ WindowPresenter >> basicBuildWithSpecLayout: presenterSpecLayout [
 ]
 
 { #category : #'private building' }
-WindowPresenter >> buildAdapterWithLayout: windowSpecLayout presenterLayout: presenterSpecLayout [
-	| widget | 
+WindowPresenter >> buildWindowWithLayout: windowSpecLayout presenterLayout: presenterSpecLayout [
 
 	"set adapter of the window"
 	self adapter: (windowSpecLayout asSpecLayout
 		buildAdapterFor: self 
 		bindings: SpecBindings value).
-	widget := self adapter widget.
+	self window: self adapter widget.
 	"add presenter"
-	self addPresenterIn: widget withSpecLayout: presenterSpecLayout.
+	self addPresenterIn: self window withSpecLayout: presenterSpecLayout.
 	"announce its result"
-	self announce: (WidgetBuilt model: self widget: widget).
+	self announce: (WidgetBuilt model: self widget: self window).
 	self presenter announce: (WindowBuilt model: self).	
 	
-	^ widget
+	^ self window
 ]
 
 { #category : #'private building' }
@@ -368,7 +367,7 @@ WindowPresenter >> openModal: aWindow [
 { #category : #private }
 WindowPresenter >> openWithSpecLayout: aSpec [
 
-	windowHolder value: (self buildWithSpecLayout: aSpec).
+	self buildWithSpecLayout: aSpec.
 	self changed: #open with: #().
 	self updateTitle.
 ]
