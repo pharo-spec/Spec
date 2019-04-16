@@ -73,7 +73,7 @@ AbstractMorphicAdapter >> applyVisibility [
 
 	self widget visible: self presenter isVisible.
 	self presenter whenVisibleChangedDo: [ :visible |
-		visible
+		self presenter isVisible
 			ifTrue: [ self widget show ]
 			ifFalse: [ self widget hide ] ]
 ]
