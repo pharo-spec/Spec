@@ -72,6 +72,7 @@ MorphicNotebookAdapter >> buildWidget [
 	notebookMorph := NotebookMorph new
 		vResizing: #spaceFill;
 		hResizing: #spaceFill;
+		setBalloonText: self help;
 		yourself.
 	self addModelTo: notebookMorph.
 
