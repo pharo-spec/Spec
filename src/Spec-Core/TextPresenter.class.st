@@ -16,49 +16,15 @@ I provide the following methods
 - beForCode and beForText are shortcut for configuring me.
 - getSelection return the interval currently selected.
 - getText is a getter of the text
-
-
-todo
-- aboutToStyleBlock  is the block used to know if the text must be styled, it returns a boolean. aboutToStyle: is a shortcut to set directly the boolean.
-- accept , accept:notifying:
-- acceptBlock should convert the text in a boolean representing if it is to be accepted.
-- askBeforeDiscardingEdits
-- behavior
-- clearSelection
-- codePaneMenu:shifted:
-- doItContext
-- doItReceiver
-- specializing eventKeyStrokesForNextFocus , eventKeyStrokesForPreviousFocus
-- getMenu
-- hasEditingConflicts
-- hasUnacceptedEdits
-- isAboutToStyle
-- isCodeCompletionAllowed
-- isForSmalltalkCode
-- menuHolder
-- notify:at:in:
-- readSelection , readSelectionBlock
-- registerEvents , registerEventsForShout
-- scrollValue
-- selectedBehavior
-- selectedClassOrMetaClass
--  setSelection: select the text in the interval in argument, selectAll is a shorcut that set the larger interval.
-- setSelectionInterval:
-- textArea
-
 "
 Class {
 	#name : #TextPresenter,
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
-		'aboutToStyleHolder',
-		'behaviorHolder',
 		'textHolder',
 		'actionToPerformHolder',
 		'readSelectionHolder',
 		'actionPerformedHolder',
-		'doItContext',
-		'doItReceiver',
 		'hasUnacceptedEdits',
 		'selection',
 		'scrollValue',
@@ -87,14 +53,22 @@ TextPresenter >> aboutToStyle: aBoolean [
 	"<api: #boolean getter: #isAboutToStyle registration: #whenAboutToStyleChanged:>"
 	"Set if the text zone must be styled"
 	
-	aboutToStyleHolder value: [ aBoolean ]
+	self 
+		deprecated: 'This has been moved to specific presenters' 
+		on: '2019-04-15'
+		in: #Pharo8
 ]
 
 { #category : #'api-shout' }
 TextPresenter >> aboutToStyleBlock [
 	"Return the block used to know if the text must be styled"	
 	"<api:#inspect>"
-	^ aboutToStyleHolder value
+
+	self 
+		deprecated: 'This has been moved to specific presenters' 
+		on: '2019-04-15'
+		in: #Pharo8
+
 ]
 
 { #category : #'api-shout' }
@@ -103,7 +77,11 @@ TextPresenter >> aboutToStyleBlock: aBlockReturningABoolean [
 	"Set the block used to know if the text must be styled.
 	The block must return a boolean"
 
-	aboutToStyleHolder value: aBlockReturningABoolean
+	self 
+		deprecated: 'This has been moved to specific presenters' 
+		on: '2019-04-15'
+		in: #Pharo8
+
 ]
 
 { #category : #api }
@@ -208,18 +186,22 @@ TextPresenter >> beForText [
 
 { #category : #'api-shout' }
 TextPresenter >> behavior [
-	"<api: #inspect>"
 	"Return the class corresponding to the method class of the source code you are editing"
-	
-	^ behaviorHolder value
+
+	self 
+		deprecated: 'This has been moved to specific presenters' 
+		on: '2019-04-15'
+		in: #Pharo8
 ]
 
 { #category : #'api-shout' }
 TextPresenter >> behavior: aClass [
-	"< api: #st getter: #behavior registration: #whenBehaviorChanged:>"
 	"Set the class corresponding to the method class of the source code you are editing"
 
-	behaviorHolder value: aClass
+	self 
+		deprecated: 'This has been moved to specific presenters' 
+		on: '2019-04-15'
+		in: #Pharo8
 ]
 
 { #category : #api }
@@ -248,28 +230,37 @@ TextPresenter >> codePaneMenu: aMenu shifted: shifted [
 { #category : #'api-doIt' }
 TextPresenter >> doItContext [
 
-	^ doItContext value
+	self 
+		deprecated: 'This has been moved to specific presenters (check children)' 
+		on: '2019-04-15'
+		in: #Pharo8
 ]
 
 { #category : #'api-doIt' }
 TextPresenter >> doItContext: anObject [
 
-	doItContext value: anObject
+	self 
+		deprecated: 'This has been moved to specific presenters (check children)' 
+		on: '2019-04-15'
+		in: #Pharo8
 ]
 
 { #category : #'api-doIt' }
 TextPresenter >> doItReceiver [
-	| receiver |
-	
-	receiver := doItReceiver value.
-	receiver isBehavior ifTrue: [receiver  := receiver instanceSide].
-	^receiver
+
+	self 
+		deprecated: 'This has been moved to specific presenters (check children)' 
+		on: '2019-04-15'
+		in: #Pharo8
 ]
 
 { #category : #'api-doIt' }
 TextPresenter >> doItReceiver: anObject [
 
-	doItReceiver value: anObject
+	self 
+		deprecated: 'This has been moved to specific presenters (check children)' 
+		on: '2019-04-15'
+		in: #Pharo8
 ]
 
 { #category : #api }
@@ -355,15 +346,13 @@ TextPresenter >> hasUnacceptedEdits: aBoolean [
 
 { #category : #initialization }
 TextPresenter >> initialize [
+
 	super initialize.
+
 	textHolder := '' asValueHolder.
-	behaviorHolder := nil asValueHolder.
-	aboutToStyleHolder := [ false ] asValueHolder.
 	actionToPerformHolder := [ :text |  ] asValueHolder.
 	readSelectionHolder := [ selection value ] asValueHolder.
 	actionPerformedHolder := '' asValueHolder.
-	doItContext := nil asValueHolder.
-	doItReceiver := nil asValueHolder.
 	hasUnacceptedEdits := false asValueHolder.
 	selection := (1 to: 0) asValueHolder.
 	scrollValue := (0 @ 0) asValueHolder.
@@ -372,8 +361,7 @@ TextPresenter >> initialize [
 	wantsVisualFeedback := true asValueHolder.
 	askBeforeDiscardingEdits := true asValueHolder.
 
-	self registerEvents.
-	self registerEventsForShout
+	self registerEvents
 ]
 
 { #category : #initialization }
@@ -384,10 +372,12 @@ TextPresenter >> initializePorts [
 
 { #category : #'api-shout' }
 TextPresenter >> isAboutToStyle [
-	"<api: #inspect>"
 	"Return if the text zone is shouted or not"
 
-	^ self aboutToStyleBlock value
+	self 
+		deprecated: 'This has been moved to specific presenters' 
+		on: '2019-04-15'
+		in: #Pharo8
 ]
 
 { #category : #NOCompletion }
@@ -488,16 +478,6 @@ TextPresenter >> registerEvents [
 	autoAccept whenChangedDo: [:bool | self changed: #autoAccept: with: { bool } ].
 	wantsVisualFeedback whenChangedDo: [ :bool | self changed: #changed with: #() ].
 	askBeforeDiscardingEdits whenChangedDo: [ :bool | self changed: #askBeforeDiscardingEdits: with: { bool } ].
-]
-
-{ #category : #initialization }
-TextPresenter >> registerEventsForShout [
-
-	aboutToStyleHolder whenChangedDo: [ self changed: #getText ].
-	behaviorHolder
-		whenChangedDo: [ :class | 
-			self changed: #classOrMetaClass: with: { class }.
-			self changed: #getText ]
 ]
 
 { #category : #api }
