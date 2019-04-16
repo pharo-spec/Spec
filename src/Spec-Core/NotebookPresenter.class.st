@@ -24,12 +24,6 @@ NotebookPresenter >> addPage: aPage [
 	pagesHolder add: aPage
 ]
 
-{ #category : #private }
-NotebookPresenter >> basicSelectedPage: aPage [
-
-	selectedPageHolder value: aPage
-]
-
 { #category : #initialization }
 NotebookPresenter >> initialize [
 
@@ -72,10 +66,34 @@ NotebookPresenter >> pagesChanged [
 	self changed: #updatePages
 ]
 
+{ #category : #removing }
+NotebookPresenter >> removePage: aNotebookPresenter [
+	pagesHolder remove: aNotebookPresenter
+]
+
+{ #category : #removing }
+NotebookPresenter >> removePageAt: anIndex [
+	pagesHolder removeAt: anIndex
+]
+
 { #category : #accessing }
 NotebookPresenter >> resetAllPageContents [
 
 	self pages do: #resetContent
+]
+
+{ #category : #accessing }
+NotebookPresenter >> selectPage: aPage [
+	"Alias to make code more readable"
+
+	self selectedPage: aPage
+]
+
+{ #category : #accessing }
+NotebookPresenter >> selectPageIndex: aNumber [
+	"Alias to make code more readable"
+
+	^ self selectedPageIndex: aNumber
 ]
 
 { #category : #accessing }
@@ -86,10 +104,8 @@ NotebookPresenter >> selectedPage [
 
 { #category : #accessing }
 NotebookPresenter >> selectedPage: aPage [
-
-	aPage = self selectedPage ifTrue: [ ^self ].
-	self basicSelectedPage: aPage.
-	self changed: #selectedPage
+	aPage = self selectedPage ifTrue: [ ^ self ].
+	selectedPageHolder value: aPage
 ]
 
 { #category : #accessing }
@@ -112,6 +128,11 @@ NotebookPresenter >> selectedPageIndex: aNumber [
 NotebookPresenter >> updatePageContent: aPage [
 
 	self changed: #updatePageContent: with: { aPage }
+]
+
+{ #category : #enumerating }
+NotebookPresenter >> whenPagesChangedDo: aBlock [
+	pagesHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
