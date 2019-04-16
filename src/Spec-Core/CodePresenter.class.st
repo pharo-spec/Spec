@@ -38,7 +38,6 @@ CodePresenter class >> title [
 
 { #category : #'api-shout' }
 CodePresenter >> behavior [
-	"<api: #inspect>"
 	"Return the class corresponding to the method class of the source code you are editing"
 	
 	^ behaviorHolder value
@@ -46,7 +45,6 @@ CodePresenter >> behavior [
 
 { #category : #'api-shout' }
 CodePresenter >> behavior: aClass [
-	"< api: #st getter: #behavior registration: #whenBehaviorChanged:>"
 	"Set the class corresponding to the method class of the source code you are editing"
 
 	behaviorHolder value: aClass
@@ -69,8 +67,8 @@ CodePresenter >> doItReceiver [
 	| receiver |
 	
 	receiver := doItReceiver value.
-	receiver isBehavior ifTrue: [receiver  := receiver instanceSide].
-	^receiver
+	receiver isBehavior ifTrue: [ receiver := receiver instanceSide ].
+	^ receiver
 ]
 
 { #category : #'api-doIt' }
@@ -96,4 +94,17 @@ CodePresenter >> registerEventsForStyling [
 	behaviorHolder whenChangedDo: [ :class | 
 		self changed: #classOrMetaClass: with: { class }.
 		self changed: #getText ]
+]
+
+{ #category : #api }
+CodePresenter >> selectedBehavior [
+
+	^ behaviorHolder value
+]
+
+{ #category : #'api-events' }
+CodePresenter >> whenBehaviorChangedDo: aBlock [
+	"Set a block to perform when the behavior class changed"
+	
+	behaviorHolder whenChangedDo: aBlock
 ]

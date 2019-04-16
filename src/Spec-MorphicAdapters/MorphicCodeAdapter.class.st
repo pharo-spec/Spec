@@ -85,10 +85,10 @@ MorphicCodeAdapter >> setEditingModeFor: textArea [
 ]
 
 { #category : #private }
-MorphicCodeAdapter >> setEditingModeFor: textArea withBehavior: behavior [
+MorphicCodeAdapter >> setEditingModeFor: textArea withBehavior: aBehavior [
 
-	behavior
-		ifNotNil: [ :class | textArea beForSmalltalkCodeInClass: class ]		
+	aBehavior
+		ifNotNil: [ textArea beForSmalltalkCodeInClass: aBehavior ]		
 		ifNil: [ textArea beForSmalltalkScripting ]
 ]
 

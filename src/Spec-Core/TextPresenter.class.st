@@ -502,12 +502,6 @@ TextPresenter >> selectAll [
 	self changed: #selectAll with: #()
 ]
 
-{ #category : #api }
-TextPresenter >> selectedBehavior [
-
-	^ behaviorHolder value
-]
-
 { #category : #NOCompletion }
 TextPresenter >> selectedClassOrMetaClass [
 
@@ -568,7 +562,10 @@ TextPresenter >> wantsVisualFeedback: aBoolean [
 TextPresenter >> whenAboutToStyleBlockChangedDo: aBlock [
 	"Set a block to perform when the about to style block changed"
 	
-	aboutToStyleHolder whenChangedDo: aBlock
+	self 
+		deprecated: 'This has been moved to specific presenters' 
+		on: '2019-04-15'
+		in: #Pharo8
 ]
 
 { #category : #'api-events' }
@@ -594,11 +591,14 @@ TextPresenter >> whenAutoAcceptChangedDo: aBlock [
 	autoAccept whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #enumerating }
 TextPresenter >> whenBehaviorChangedDo: aBlock [
 	"Set a block to perform when the behavior class changed"
 	
-	behaviorHolder whenChangedDo: aBlock
+	self 
+		deprecated: 'This has been moved to specific presenters' 
+		on: '2019-04-15'
+		in: #Pharo8
 ]
 
 { #category : #'api-events' }
