@@ -109,7 +109,7 @@ MenuItemPresenter >> initialize [
 
 	super initialize.
 
-	action := [] asValueHolder.
+	action := [ ] asValueHolder.
 	state := nil asValueHolder.
 	description := nil asValueHolder.
 	name := '' asValueHolder.
