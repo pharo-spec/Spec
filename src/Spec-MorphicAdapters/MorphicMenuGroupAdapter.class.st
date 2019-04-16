@@ -16,7 +16,8 @@ MorphicMenuGroupAdapter >> applyVisibility [
 
 { #category : #private }
 MorphicMenuGroupAdapter >> buildWidget [
-	^ self menuItems collect: #buildWithSpec
+
+	^ self menuItems collect: [ :each | each buildWithSpec ]
 ]
 
 { #category : #protocol }
