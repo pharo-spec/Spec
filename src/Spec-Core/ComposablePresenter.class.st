@@ -674,7 +674,7 @@ ComposablePresenter >> isDisplayed [
 { #category : #testing }
 ComposablePresenter >> isVisible [
 	
-	^ visible
+	^ visible value
 ]
 
 { #category : #'api-focus' }
@@ -1102,6 +1102,11 @@ ComposablePresenter >> updateTitle [
 	self flag: #TODO. "To move to WindowPresenter"
 	"Update the window title"
 	self withWindowDo: #updateTitle
+]
+
+{ #category : #api }
+ComposablePresenter >> visibleIf: aValuable [
+	visible := aValuable
 ]
 
 { #category : #'api-events' }

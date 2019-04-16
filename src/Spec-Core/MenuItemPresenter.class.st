@@ -33,8 +33,7 @@ Class {
 		'icon',
 		'description',
 		'state',
-		'autoRefresh',
-		'condition'
+		'autoRefresh'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -67,16 +66,6 @@ MenuItemPresenter >> autoRefresh [
 MenuItemPresenter >> autoRefresh: aBlock [
 
 	autoRefresh value: aBlock
-]
-
-{ #category : #api }
-MenuItemPresenter >> condition [
-	^ condition value
-]
-
-{ #category : #api }
-MenuItemPresenter >> condition: aValuable [
-	condition value: aValuable
 ]
 
 { #category : #api }
@@ -127,8 +116,7 @@ MenuItemPresenter >> initialize [
 	shortcut := nil asValueHolder.
 	subMenu := nil asValueHolder.
 	autoRefresh := false asValueHolder.
-	icon := nil asValueHolder.
-	condition := [ true ] asValueHolder
+	icon := nil asValueHolder
 ]
 
 { #category : #testing }

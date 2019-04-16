@@ -176,7 +176,7 @@ SpecDemoListsPresenter >> list1Menu [
 				addItem: [ :anItem | 
 					anItem
 						name: 'Item showing only if item a odd number of letters';
-						condition: [ list1 selectedItem printString size odd ];
+						visibleIf: [ list1 selectedItem printString size odd ];
 						action: [ list1 selectedItem logCr ] ] ]
 ]
 
