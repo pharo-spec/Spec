@@ -58,5 +58,15 @@ CodeAdapterTest >> testTextWithStyle [
 	text := presenter adapter textWithStyle.
 	self assertText: text atInterval: "self" (1 to: 4) isStyle: #self.
 	self assertText: text atInterval: "asString" (6 to: 13) isStyle: #unary.
-	self assertText: text atInterval: "." (14 to: 15) isStyle: #default.	
+
+	presenter 
+		doItReceiver: nil;
+		type: '10 + 42.0'.
+	text := presenter adapter textWithStyle.
+	self assertText: text atInterval: "10" (1 to: 2) isStyle: #integer.
+	self assertText: text atInterval: "+" (4 to: 4) isStyle: #binary.
+	self assertText: text atInterval: "42.0" (6 to: 9) isStyle: #number.
+		
+		
+	
 ]
