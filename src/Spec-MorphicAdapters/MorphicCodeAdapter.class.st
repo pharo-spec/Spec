@@ -10,9 +10,12 @@ MorphicCodeAdapter >> behavior [
 	^ self model behavior
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'private-shout' }
 MorphicCodeAdapter >> classOrMetaClass: aClass [
-	self setEditingModeFor: self widget withBehavior: aClass
+
+	self 
+		setEditingModeFor: self widget 
+		withBehavior: aClass
 ]
 
 { #category : #'widget API' }
@@ -42,7 +45,7 @@ MorphicCodeAdapter >> initialize [
 { #category : #shout }
 MorphicCodeAdapter >> isAboutToStyle [
 
-	^ self model isAboutToStyle
+	^ true
 ]
 
 { #category : #NOCompletion }
@@ -92,5 +95,13 @@ MorphicCodeAdapter >> setEditingModeFor: textArea withBehavior: behavior [
 { #category : #shout }
 MorphicCodeAdapter >> shoutAboutToStyle: aMorph [
 	
-	^ self model isAboutToStyle
+	^ true
+]
+
+{ #category : #private }
+MorphicCodeAdapter >> textWithStyle [
+	"This method is to be used for testing. 
+	 DO NOT USE IT!"
+	
+	^ self widget getText
 ]

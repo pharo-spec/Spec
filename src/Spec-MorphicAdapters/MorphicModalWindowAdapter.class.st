@@ -36,6 +36,8 @@ MorphicModalWindowAdapter >> mouseClick: evt onBackdrop: aMorph [
 { #category : #protocol }
 MorphicModalWindowAdapter >> open [
 
+	self model windowIsOpening.
+
 	backdropMorph := Morph new
 		color: (Color black alpha: 0.7);
 		beSticky;
