@@ -24,12 +24,6 @@ NotebookPresenter >> addPage: aPage [
 	pagesHolder add: aPage
 ]
 
-{ #category : #private }
-NotebookPresenter >> basicSelectedPage: aPage [
-
-	selectedPageHolder value: aPage
-]
-
 { #category : #initialization }
 NotebookPresenter >> initialize [
 
@@ -110,10 +104,8 @@ NotebookPresenter >> selectedPage [
 
 { #category : #accessing }
 NotebookPresenter >> selectedPage: aPage [
-
-	aPage = self selectedPage ifTrue: [ ^self ].
-	self basicSelectedPage: aPage.
-	self changed: #selectedPage
+	aPage = self selectedPage ifTrue: [ ^ self ].
+	selectedPageHolder value: aPage
 ]
 
 { #category : #accessing }

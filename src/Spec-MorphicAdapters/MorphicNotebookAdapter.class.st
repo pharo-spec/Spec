@@ -77,21 +77,19 @@ MorphicNotebookAdapter >> buildWidget [
 	self addModelTo: notebookMorph.
 
 	self model whenPagesChangedDo: [ :pages | self updatePagesWith: pages ].
+	self model whenSelectedPageChangedDo: [ :page | self selectPage: page ].
 
 	^ notebookMorph
 ]
 
 { #category : #private }
 MorphicNotebookAdapter >> pageChanged: ann [
-
-	self model basicSelectedPage: ann page model
+	self model selectedPage: ann page model
 ]
 
 { #category : #updating }
-MorphicNotebookAdapter >> selectedPage [
-	
-	self widgetDo: [ :w |
-		w page: (w pageWithModel: self model selectedPage) ]
+MorphicNotebookAdapter >> selectPage: aPage [
+	self widgetDo: [ :w | w page: (w pageWithModel: aPage) ]
 ]
 
 { #category : #updating }
@@ -113,7 +111,7 @@ MorphicNotebookAdapter >> updatePageTitle: aPage [
 			with: (self buildLabelForPage: aPage) ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #updating }
 MorphicNotebookAdapter >> updatePagesWith: aCollection [
 	self
 		widgetDo: [ :aNotebook | 
