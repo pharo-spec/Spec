@@ -72,10 +72,34 @@ NotebookPresenter >> pagesChanged [
 	self changed: #updatePages
 ]
 
+{ #category : #removing }
+NotebookPresenter >> removePage: aNotebookPresenter [
+	pagesHolder remove: aNotebookPresenter
+]
+
+{ #category : #removing }
+NotebookPresenter >> removePageAt: anIndex [
+	pagesHolder removeAt: anIndex
+]
+
 { #category : #accessing }
 NotebookPresenter >> resetAllPageContents [
 
 	self pages do: #resetContent
+]
+
+{ #category : #accessing }
+NotebookPresenter >> selectPage: aPage [
+	"Alias to make code more readable"
+
+	self selectedPage: aPage
+]
+
+{ #category : #accessing }
+NotebookPresenter >> selectPageIndex: aNumber [
+	"Alias to make code more readable"
+
+	^ self selectedPageIndex: aNumber
 ]
 
 { #category : #accessing }
@@ -112,6 +136,11 @@ NotebookPresenter >> selectedPageIndex: aNumber [
 NotebookPresenter >> updatePageContent: aPage [
 
 	self changed: #updatePageContent: with: { aPage }
+]
+
+{ #category : #enumerating }
+NotebookPresenter >> whenPagesChangedDo: aBlock [
+	pagesHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
