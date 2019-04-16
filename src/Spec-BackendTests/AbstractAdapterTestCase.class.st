@@ -156,11 +156,13 @@ AbstractAdapterTestCase >> testShowPresenterShowsWidget [
 
 { #category : #running }
 AbstractAdapterTestCase >> testVisibilityWithBlock [
-	| bool |
-	bool := true.
-	self presenter visibleIf: [ bool ].
-	self assert: self adapter isVisible.
-	bool := false.
+	presenter visibleIf: [ true ].
+	self assert: self adapter isVisible
+]
+
+{ #category : #running }
+AbstractAdapterTestCase >> testVisibilityWithBlock2 [
+	presenter visibleIf: [ false ].
 	self deny: self adapter isVisible
 ]
 
