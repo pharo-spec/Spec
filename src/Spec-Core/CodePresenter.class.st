@@ -6,9 +6,9 @@ Class {
 	#name : #CodePresenter,
 	#superclass : #TextPresenter,
 	#instVars : [
-		'doItContext',
-		'doItReceiver',
-		'behaviorHolder'
+		'#doItContext => SpecObservableSlot',
+		'#doItReceiver => SpecObservableSlot',
+		'#behavior => SpecObservableSlot'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -40,50 +40,53 @@ CodePresenter class >> title [
 CodePresenter >> behavior [
 	"Return the class corresponding to the method class of the source code you are editing"
 	
-	^ behaviorHolder value
+	^ behavior
 ]
 
 { #category : #'api-shout' }
 CodePresenter >> behavior: aClass [
 	"Set the class corresponding to the method class of the source code you are editing"
 
-	behaviorHolder value: aClass
+	behavior := aClass
 ]
 
 { #category : #'api-doIt' }
 CodePresenter >> doItContext [
 
-	^ doItContext value
+	^ doItContext
 ]
 
 { #category : #'api-doIt' }
 CodePresenter >> doItContext: anObject [
 
-	doItContext value: anObject
+	doItContext := anObject
 ]
 
 { #category : #'api-doIt' }
 CodePresenter >> doItReceiver [
 	| receiver |
 	
-	receiver := doItReceiver value.
-	receiver isBehavior ifTrue: [ receiver := receiver instanceSide ].
+	receiver := doItReceiver.
+	receiver isBehavior ifTrue: [ 
+		receiver := receiver instanceSide ].
 	^ receiver
 ]
 
 { #category : #'api-doIt' }
 CodePresenter >> doItReceiver: anObject [
 
-	doItReceiver value: anObject
+	doItReceiver := anObject
 ]
 
 { #category : #initialization }
 CodePresenter >> initialize [ 
 
+	self class initializeSlots: self.
 	super initialize.
-	behaviorHolder := nil asValueHolder.
-	doItContext := nil asValueHolder.
-	doItReceiver := nil asValueHolder.
+	
+	behavior := nil.
+	doItContext := nil.
+	doItReceiver := nil.
 	
 	self registerEventsForStyling
 ]
@@ -91,7 +94,7 @@ CodePresenter >> initialize [
 { #category : #initialization }
 CodePresenter >> registerEventsForStyling [
 
-	behaviorHolder whenChangedDo: [ :class | 
+	self whenBehaviorChangedDo: [ :class | 
 		self changed: #classOrMetaClass: with: { class }.
 		self changed: #getText ]
 ]
@@ -99,12 +102,15 @@ CodePresenter >> registerEventsForStyling [
 { #category : #api }
 CodePresenter >> selectedBehavior [
 
-	^ behaviorHolder value
+	self flag: #TODO. "What this is need for?"
+	^ self behavior
 ]
 
 { #category : #'api-events' }
 CodePresenter >> whenBehaviorChangedDo: aBlock [
 	"Set a block to perform when the behavior class changed"
 	
-	behaviorHolder whenChangedDo: aBlock
+	self 
+		property: #behavior 
+		whenChangedDo: aBlock
 ]

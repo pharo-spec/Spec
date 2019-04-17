@@ -69,6 +69,7 @@ MorphicNotebookAdapter >> buildLabelForPage: aPage [
 { #category : #factory }
 MorphicNotebookAdapter >> buildWidget [
 	| notebookMorph |
+
 	notebookMorph := NotebookMorph new
 		vResizing: #spaceFill;
 		hResizing: #spaceFill;
