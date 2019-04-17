@@ -9,7 +9,8 @@ CodeAdapterTest >> assertText: text at: index isStyle: styleName [
 	| tag |
 
 	tag := CodeStyleForTest new.
-	text attributesAt: index do: [ :each | each acceptTag: tag ].
+	text attributesAt: index do: [ :each | 
+		self fillTag: tag withAttribute: each ].
 	self assert: tag equals: (self style: styleName)
 ]
 
@@ -27,12 +28,19 @@ CodeAdapterTest >> classToTest [
 ]
 
 { #category : #tests }
+CodeAdapterTest >> fillTag: tag withAttribute: attr [
+
+	attr class = TextColor ifTrue: [ tag foreground: attr color ].
+	self flag: #TODO. "Other attributes"
+]
+
+{ #category : #tests }
 CodeAdapterTest >> style: aSymbol [ 
 	| tag |
 	
 	tag := CodeStyleForTest new.
 	self styleTableAt: aSymbol do: [ :each |
-		each acceptTag: tag ]. 
+		self fillTag: tag withAttribute: each ]. 
 	
 	^ tag
 	
