@@ -1,6 +1,6 @@
 Class {
 	#name : #CodeAdapterTest,
-	#superclass : #AbstractWidgetAdapterTestCase,
+	#superclass : #TextAdapterTest,
 	#category : #'Spec-BackendTests'
 }
 
@@ -68,6 +68,7 @@ CodeAdapterTest >> testTextWithStyle [
 
 	presenter behavior: Object.
 	presenter type: 'm1 ^ "test" 42'.
+	text := presenter adapter textWithStyle.
 	self assertText: text atInterval: "m1" (1 to: 2) isStyle: #patternKeyword.
 	self assertText: text atInterval: "^" (4 to: 4) isStyle: #return.
 	self assertText: text atInterval: "test" (6 to: 11) isStyle: #comment.	
