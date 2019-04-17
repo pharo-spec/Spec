@@ -30,7 +30,8 @@ MorphicLabelAdapter >> buildWidget [
 		dropEnabled: self dropEnabled;
 		setBalloonText: self help;
 		color: self model color;
-		emphasis: (self emphasisCodeFor: self model emphasis).
+		emphasis: (self emphasisCodeFor: self model emphasis);
+		setProperty: #minWidth toValue: 3. "3 is the default value of StringMorph. We do not want the default value of LabelMorph that is the min width of the content..."
 		
 	^ label
 ]
@@ -64,12 +65,6 @@ MorphicLabelAdapter >> emphasisOptions [
 MorphicLabelAdapter >> getText [
 
 	^ self model label
-]
-
-{ #category : #accessing }
-MorphicLabelAdapter >> helpText [
-	
-	^ widget balloonText
 ]
 
 { #category : #accessing }
