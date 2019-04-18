@@ -12,6 +12,18 @@ AbstractListPresenter >> doubleClickAction: aBlockClosure [
 ]
 
 { #category : #'*Spec-Deprecated80' }
+AbstractListPresenter >> itemBeginsWithFilter [
+	self deprecated: 'Use #enableItemBeginsWithFilter instead' transformWith: '`@receiver itemBeginsWithFilter' -> '`@receiver enableItemBeginsWithFilter'.
+	self enableItemBeginsWithFilter
+]
+
+{ #category : #'*Spec-Deprecated80' }
+AbstractListPresenter >> itemSubstringFilter [
+	self deprecated: 'Use #enableItemSubstringFilter instead' transformWith: '`@receiver itemSubstringFilter' -> '`@receiver enableItemSubstringFilter'.
+	self enableItemSubstringFilter
+]
+
+{ #category : #'*Spec-Deprecated80' }
 AbstractListPresenter >> listItems [
 	
 	self
@@ -22,15 +34,48 @@ AbstractListPresenter >> listItems [
 ]
 
 { #category : #'*Spec-Deprecated80' }
+AbstractListPresenter >> menu [
+	"Return the block used to defined the menu"
+	self 
+		deprecated: 'Use #contextMenu instead.' 
+		transformWith: '`@receiver menu' 
+						-> '`@receiver contextMenu'.
+	
+	^ self contextMenu
+]
+
+{ #category : #'*Spec-Deprecated80' }
 AbstractListPresenter >> menu: aBlock [
 	"Set the block used to defined the menu"
 
 	self
-		deprecated: 'Use #contextMenu: instead'
+		deprecated:
+			'Use #contextMenu: instead. The old way to create a MenuPresenter was this method taking a MenuMorph as parameter. This will not work with other backend and will be totally removed in Pharo7. Now you should use #contextMenu takin a MeruPresenter (or a block returning a menu presenter) as parameter.'
 		on: '2019-03-07'
-		in: #Pharo8
-		transformWith: '`@receiver menu: `@arg' -> '`@receiver contextMenu: [ `@arg cull: nil cull: false ]'.
-	self contextMenu: [ aBlock cull: nil cull: false ]
+		in: #Pharo8.
+	self
+		contextMenu: [ aBlock
+				cull:
+					(MenuMorph new
+						defaultTarget: self;
+						yourself)
+				cull: false ]
+]
+
+{ #category : #'*Spec-Deprecated80' }
+AbstractListPresenter >> menu: aBlock shifted: aBoolean [
+	self
+		deprecated:
+			'Use #contextMenu: instead. The old way to create a MenuPresenter was this method taking a MenuMorph as parameter. This will not work with other backend and will be totally removed in Pharo7. Now you should use #contextMenu takin a MeruPresenter (or a block returning a menu presenter) as parameter.'
+		on: '2019-03-07'
+		in: #Pharo8.
+	self
+		contextMenu: [ aBlock
+				cull:
+					(MenuMorph new
+						defaultTarget: self;
+						yourself)
+				cull: true ]
 ]
 
 { #category : #'*Spec-Deprecated80' }
