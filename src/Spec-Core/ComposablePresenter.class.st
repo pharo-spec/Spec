@@ -521,18 +521,17 @@ ComposablePresenter >> initialExtent [
 
 { #category : #initialization }
 ComposablePresenter >> initialize [
-
 	self class initializeSlots: self.
 	super initialize.
-	
+
 	additionalSubpresentersMap := nil.
+	visible := true.
 
 	self initializePorts.
 	self initializePrivateAnnouncer.
 	self initializePrivateValueHolders.
 	self initializePrivateHooks.
 	self initializePrivateAnnouncements.
-	visible := true
 ]
 
 { #category : #initialization }
