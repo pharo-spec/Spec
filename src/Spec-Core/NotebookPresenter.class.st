@@ -24,12 +24,6 @@ NotebookPresenter >> addPage: aPage [
 	pagesHolder add: aPage
 ]
 
-{ #category : #private }
-NotebookPresenter >> basicSelectedPage: aPage [
-
-	selectedPageHolder value: aPage
-]
-
 { #category : #initialization }
 NotebookPresenter >> initialize [
 
