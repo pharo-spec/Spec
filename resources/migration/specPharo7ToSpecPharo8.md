@@ -31,7 +31,7 @@ We refactored the way to register and use a binding. The current way to do it is
 
 In the previous version of Spec it was possible to inject directly a morph into a spec while declaring it. This feature was removed because it breaks the layers of the Spec framework.
 
-The right way to use a Morph that has no presenter in Spec is to create a presenter describing the widget (as we do un `ButtonMorph`) and to create an adaopter to it for each graphical framework used as backend of Spec (like with the `MorphicButtonAdapter`).
+The right way to use a Morph that has no presenter in Spec is to create a presenter describing the widget (as we do un `ButtonMorph`) and to create an adapter to it for each graphical framework used as backend of Spec (like with the `MorphicButtonAdapter`).
 
 ## Linking a presenter to its adapter
 
@@ -56,7 +56,7 @@ ButtonPresenter class >> adapterName
 
 The way dialogs toolbar works changed in this new version of Spec.
 	
-Before the dialog bar had one or two buttons: Ok and Cancel, but they where not configurable. Now the user can add itself multiple buttons and configure their action more easily.
+Before the dialog bar had one or two buttons: Ok and Cancel, but they where not configurable. Now the user can add multiple buttons and configure their actions more easily.
 	
 So here is how the new way works:
 	
