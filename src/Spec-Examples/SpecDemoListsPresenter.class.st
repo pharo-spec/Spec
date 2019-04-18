@@ -165,6 +165,11 @@ SpecDemoListsPresenter >> list1Menu [
 			aGroup
 				addItem: [ :anItem | 
 					anItem
+						name: 'Item showing only if item a odd number of letters';
+						visibleIf: [ list1 selectedItem printString size odd ];
+						action: [ list1 selectedItem logCr ] ];
+				addItem: [ :anItem | 
+					anItem
 						name: 'Disabled in second group';
 						disable;
 						action: [ list1 selectedItem logCr ] ];
@@ -172,11 +177,6 @@ SpecDemoListsPresenter >> list1Menu [
 					anItem
 						name: 'Disabled if class begins with A';
 						enabled: [ list1 selectedItem printString first ~= $A ];
-						action: [ list1 selectedItem logCr ] ];
-				addItem: [ :anItem | 
-					anItem
-						name: 'Item showing only if item a odd number of letters';
-						visibleIf: [ list1 selectedItem printString size odd ];
 						action: [ list1 selectedItem logCr ] ] ]
 ]
 
