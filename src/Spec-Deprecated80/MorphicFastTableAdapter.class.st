@@ -26,7 +26,7 @@ MorphicFastTableAdapter >> buildWidget [
 		getIconSelector: #getIconFor:;
 		resetListSelector: #resetListSelection;
 		getMenuSelector: #menu:shifted:;
-		setMultipleSelection: self multiSelection;
+		setMultipleSelection: self model selection isMultipleSelection;
 		doubleClickSelector: #doubleClick:;
 		basicWrapSelector: #wrapItem:;
 		dragEnabled: self dragEnabled;
