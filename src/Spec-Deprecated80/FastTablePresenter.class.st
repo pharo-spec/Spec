@@ -42,13 +42,6 @@ FastTablePresenter class >> isDeprecated [
 	^ true
 ]
 
-{ #category : #'api-columns' }
-FastTablePresenter >> addColumn: aColumn [
-
-	aColumn table: self.
-	super addColumn: aColumn.
-]
-
 { #category : #initialization }
 FastTablePresenter >> displayBlock [
 
@@ -100,8 +93,7 @@ FastTablePresenter >> icons: aBlock [
 FastTablePresenter >> initialize [
 
 	displayBlock := #yourself.
-	super initialize.
-	self addColumn: SpecFTColumn new
+	super initialize
 ]
 
 { #category : #initialization }
@@ -115,18 +107,20 @@ FastTablePresenter >> initializeValueHolders [
 
 { #category : #'api-columns' }
 FastTablePresenter >> numberOfColumns: aNumber [
-
 	columns := OrderedCollection new.
-	((1 to: aNumber) do: [ :index | 
-		self addColumn: (SpecFTArrayIndexColumn index: index) ] )
+	(1 to: aNumber) do: [ :index | self addColumn: (StringTableColumn evaluated: [ :entity | (self displayBlock value: entity) at: index ]) ]
 ]
 
 { #category : #'api-columns' }
 FastTablePresenter >> numberOfColumns: aNumber withWidths: widths [
-
 	columns := OrderedCollection new.
-	((1 to: aNumber) do: [ :index | 
-		self addColumn: (SpecFTArrayIndexColumn index: index) ] )
+	(1 to: aNumber)
+		do: [ :index | 
+			self
+				addColumn:
+					((StringTableColumn evaluated: [ :entity | (self displayBlock value: entity) at: index ])
+						width: (widths at: index);
+						yourself) ]
 ]
 
 { #category : #initialization }
