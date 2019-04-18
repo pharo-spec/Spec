@@ -906,6 +906,15 @@ ComposablePresenter >> presenterAt: aName [
 	^ self readSlotNamed: aName
 ]
 
+{ #category : #accessing }
+ComposablePresenter >> presenterAt: aName ifAbsent: aBlock [
+	"Retrieves a subpresenter of this composed presenter."
+
+	^ [ self readSlotNamed: aName ]
+		on: SlotNotFound
+		do: aBlock
+]
+
 { #category : #'private-traversing' }
 ComposablePresenter >> presenters [
 	| allPresenters |

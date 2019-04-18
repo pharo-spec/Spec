@@ -91,7 +91,8 @@ SpecExecutableLayout >> resolvePresenter: presenterNameOrLayout model: aModel bi
 
 	"most common case: I receive a symbol that I need to convert into a presenter"
 	presenterNameOrLayout isSymbol ifTrue: [ 
-		^ self subpresenterOrLayoutNamed: presenterNameOrLayout of: aModel ].
+		^ (self subpresenterOrLayoutNamed: presenterNameOrLayout of: aModel)
+			ifNil: [ self error: 'You presenter named "', presenterNameOrLayout , '" from ', aModel printString ,' was not initialized.' ] ].
 	
 	"I receive a layout: dig inside."
 	presenterNameOrLayout isSpecLayout ifTrue: [ 
@@ -115,8 +116,7 @@ SpecExecutableLayout >> selector: anObject [
 
 { #category : #private }
 SpecExecutableLayout >> subpresenterOrLayoutNamed: presenterNameOrLayout of: aPresenter [
-
-	^ aPresenter additionalSubpresentersMap 
-		at: presenterNameOrLayout 
-		ifAbsent: [ aPresenter presenterAt: presenterNameOrLayout ]
+	^ aPresenter additionalSubpresentersMap
+		at: presenterNameOrLayout
+		ifAbsent: [ aPresenter presenterAt: presenterNameOrLayout ifAbsent: [ self error: 'No presenter named "' , presenterNameOrLayout , '" was found in ' , aPresenter printString ] ]
 ]
