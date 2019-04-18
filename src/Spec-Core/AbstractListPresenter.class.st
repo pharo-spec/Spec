@@ -190,12 +190,6 @@ AbstractListPresenter >> itemAt: anInteger [
 ]
 
 { #category : #api }
-AbstractListPresenter >> itemBeginsWithFilter [
-	self deprecated: 'Use #enableItemBeginsWithFilter instead' transformWith: '`@receiver itemBeginsWithFilter' -> '`@receiver enableItemBeginsWithFilter'.
-	self enableItemBeginsWithFilter
-]
-
-{ #category : #api }
 AbstractListPresenter >> itemFilterBlock [
 	^ itemFilterBlockHolder value
 ]
@@ -205,12 +199,6 @@ AbstractListPresenter >> itemFilterBlock: aBlock [
 	"This block will be used with the search field of the list to filter it with the user input dynamically."
 
 	itemFilterBlockHolder value: aBlock
-]
-
-{ #category : #api }
-AbstractListPresenter >> itemSubstringFilter [
-	self deprecated: 'Use #enableItemSubstringFilter instead' transformWith: '`@receiver itemSubstringFilter' -> '`@receiver enableItemSubstringFilter'.
-	self enableItemSubstringFilter
 ]
 
 { #category : #private }
@@ -249,27 +237,6 @@ AbstractListPresenter >> listSize [
 	"Return the size of the list"
 
 	^ self model shownItems size
-]
-
-{ #category : #api }
-AbstractListPresenter >> menu [
-	"Return the block used to defined the menu"
-	self 
-		deprecated: 'Use #contextMenu instead.' 
-		transformWith: '`@receiver menu' 
-						-> '`@receiver contextMenu'.
-	
-	^ self contextMenu
-]
-
-{ #category : #private }
-AbstractListPresenter >> menu: aMenu shifted: aBoolean [
-	"Build the menu when you right click on an item"
-
-	self halt.
-	^ contextMenuHolder value 
-		cull: aMenu 
-		cull: aBoolean
 ]
 
 { #category : #accessing }
