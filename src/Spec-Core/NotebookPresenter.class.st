@@ -102,7 +102,7 @@ NotebookPresenter >> selectedPage [
 	^ selectedPageHolder value
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 NotebookPresenter >> selectedPage: aPage [
 	aPage = self selectedPage ifTrue: [ ^ self ].
 	selectedPageHolder value: aPage
@@ -118,7 +118,7 @@ NotebookPresenter >> selectedPageIndex [
 	^ self pages indexOf: page
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 NotebookPresenter >> selectedPageIndex: aNumber [
 
 	self selectedPage: (self pages at: aNumber)
