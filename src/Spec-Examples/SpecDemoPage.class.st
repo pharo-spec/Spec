@@ -45,7 +45,7 @@ SpecDemoPage >> codeTab [
 	^ NotebookPage
 		title: 'Code'
 		icon: (self iconNamed: #changeUpdate)
-		provider: [ self newCode
+		provider: [ self newText
 				text: (self codeFor: self pageClass);
 				yourself ]
 ]
