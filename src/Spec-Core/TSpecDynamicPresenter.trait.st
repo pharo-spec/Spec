@@ -23,6 +23,14 @@ TSpecDynamicPresenter >> presenterAt: aName [
 ]
 
 { #category : #accessing }
+TSpecDynamicPresenter >> presenterAt: aName ifAbsent: aBlock [
+
+	^ self basicPresenters 
+		at: aName 
+		ifAbsent: aBlock
+]
+
+{ #category : #accessing }
 TSpecDynamicPresenter >> presenterAt: aName put: aPresenter [
 
 	^ self basicPresenters 
