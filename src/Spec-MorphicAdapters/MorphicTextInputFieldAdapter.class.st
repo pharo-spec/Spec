@@ -28,33 +28,33 @@ MorphicTextInputFieldAdapter >> adapt: aModel [
 
 { #category : #factory }
 MorphicTextInputFieldAdapter >> buildWidget [
-	| plu |
-	plu := RubPluggableTextFieldMorph new
-		on: self
-			text: #getText
-			accept: #accept:
-			readSelection: nil
-			menu: nil
-			setSelection: #setSelection:.
-	plu
+	| newWidget |
+	newWidget := (RubTextFieldMorph on: self)
+		getTextSelector: #getText;
+		setTextSelector: #accept:notifying:;
+		getSelectionSelector: #readSelection;
+		menuProvider: self selector: #codePaneMenu:shifted:;
+		setSelectionSelector: #setSelection:;
 		entryCompletion: self entryCompletion;
-		autoAccept: self autoAccept;
 		ghostText: self placeholder;
+		encrypted: self encrypted;
 		enabled: self enabled;
-		encrypted: self presenter isPassword;
+		askBeforeDiscardingEdits: self askBeforeDiscardingEdits;
+		autoAccept: self autoAccept;
+		vResizing: #spaceFill;
+		hResizing: #spaceFill;
 		setBalloonText: self help;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
-		hResizing: #spaceFill;
-		vResizing: #spaceFill;
-		acceptOnCR: self acceptOnCR;
-		maxLength: self presenter maxLength.
+		maxLength: self presenter maxLength;
+		yourself.
 
-	self presenter whenTextChangedDo: [ :text | plu setText: text ].
-	self presenter whenPlaceholderChangedDo: [ :text | plu ghostText: text ].
-	self presenter whenPasswordChangedDo: [ :isPassword | plu encrypted: isPassword ].	
-	self presenter whenMaxLengthChangedDo: [ :length | plu maxLength: length ].
-	^ plu
+	self presenter whenTextChangedDo: [ :text | newWidget setText: text ].
+	self presenter whenPlaceholderChangedDo: [ :text | newWidget ghostText: text ].
+	self presenter whenPasswordChangedDo: [ :isPassword | newWidget encrypted: isPassword ].
+	self presenter whenMaxLengthChangedDo: [ :length | newWidget maxLength: length ].
+
+	^ newWidget
 ]
 
 { #category : #'widget API' }
@@ -99,7 +99,8 @@ MorphicTextInputFieldAdapter >> placeholder: aText [
 ]
 
 { #category : #accessing }
-MorphicTextInputFieldAdapter >> text: aString [ 
-	
-	widget setTextAndAccept: aString
+MorphicTextInputFieldAdapter >> text: aString [
+	widget
+		setText: aString;
+		acceptTextInModel
 ]
