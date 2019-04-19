@@ -20,8 +20,8 @@ I provide the following methods
 Class {
 	#name : #TextPresenter,
 	#superclass : #AbstractTextPresenter,
-	#traits : 'TSpecHaveWrappingScrollBar',
-	#classTraits : 'TSpecHaveWrappingScrollBar classTrait',
+	#traits : 'TSpecHaveWrappingScrollBars',
+	#classTraits : 'TSpecHaveWrappingScrollBars classTrait',
 	#category : #'Spec-Core-Widgets'
 }
 

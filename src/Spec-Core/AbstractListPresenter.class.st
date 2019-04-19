@@ -1,8 +1,8 @@
 Class {
 	#name : #AbstractListPresenter,
 	#superclass : #AbstractWidgetPresenter,
-	#traits : 'TSpecHaveWrappingScrollBar',
-	#classTraits : 'TSpecHaveWrappingScrollBar classTrait',
+	#traits : 'TSpecHaveWrappingScrollBars',
+	#classTraits : 'TSpecHaveWrappingScrollBars classTrait',
 	#instVars : [
 		'selectionMode',
 		'multiSelectionHolder',
