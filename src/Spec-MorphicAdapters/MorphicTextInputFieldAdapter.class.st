@@ -29,7 +29,8 @@ MorphicTextInputFieldAdapter >> adapt: aModel [
 { #category : #factory }
 MorphicTextInputFieldAdapter >> buildWidget [
 	| newWidget |
-	newWidget := (RubTextFieldMorph on: self)
+	self flag: #pharo7.	"When support for P7 will be dropped, remove this compatibility hack."
+	newWidget := ((SystemVersion current major = 7 ifTrue: [ SpecRubTextFieldMorph ] ifFalse: [ RubTextFieldMorph ]) on: self)
 		getTextSelector: #getText;
 		setTextSelector: #accept:notifying:;
 		getSelectionSelector: #readSelection;
