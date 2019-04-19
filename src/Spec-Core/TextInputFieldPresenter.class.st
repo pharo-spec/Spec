@@ -26,7 +26,7 @@ todo
 "
 Class {
 	#name : #TextInputFieldPresenter,
-	#superclass : #TextPresenter,
+	#superclass : #AbstractTextPresenter,
 	#instVars : [
 		'#acceptOnCR',
 		'#entryCompletion',

@@ -1,6 +1,8 @@
 Class {
 	#name : #AbstractListPresenter,
 	#superclass : #AbstractWidgetPresenter,
+	#traits : 'TSpecHaveWrappingScrollBar',
+	#classTraits : 'TSpecHaveWrappingScrollBar classTrait',
 	#instVars : [
 		'selectionMode',
 		'multiSelectionHolder',
@@ -12,7 +14,8 @@ Class {
 		'activationBlock',
 		'activateOnSingleClick',
 		'model',
-		'contextMenuHolder'
+		'contextMenuHolder',
+		'scrollBars'
 	],
 	#category : #'Spec-Core-Widgets-Table'
 }
@@ -148,9 +151,10 @@ AbstractListPresenter >> getSelectionStateFor: anIndex [
 { #category : #initialization }
 AbstractListPresenter >> initialize [
 	super initialize.
-
+	
 	activationBlock := [ ].
 	
+	self withScrollBars.
 	self model: 	self newEmptyModel.
 
 	self beSingleSelection.

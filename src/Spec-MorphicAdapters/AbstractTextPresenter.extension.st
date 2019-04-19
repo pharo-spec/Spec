@@ -1,7 +1,7 @@
-Extension { #name : #TextPresenter }
+Extension { #name : #AbstractTextPresenter }
 
 { #category : #'*Spec-MorphicAdapters' }
-TextPresenter >> pendingText [
+AbstractTextPresenter >> pendingText [
 	"<api: #inspect>"
 	"Return the current pending text"
 
@@ -11,7 +11,7 @@ TextPresenter >> pendingText [
 ]
 
 { #category : #'*Spec-MorphicAdapters' }
-TextPresenter >> pendingText: aText [
+AbstractTextPresenter >> pendingText: aText [
 	"<api: #string getter: #pendingText>"
 	"Set the pending text. Do no accept it"
 

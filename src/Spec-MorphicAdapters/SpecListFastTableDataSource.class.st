@@ -54,7 +54,12 @@ SpecListFastTableDataSource >> menuColumn: column row: rowIndex [
 	menuPresenter ifNil: [ ^ nil ].
 	^ SpecBindings
 		value: self model application adapterBindings
-		during: [ menuPresenter value buildWithSpec ]
+		during: [ 
+			| m |
+			m := menuPresenter value.
+			m isMorph 
+				ifTrue: [ m ]
+				ifFalse: [ m buildWithSpec ] ]
 ]
 
 { #category : #accessing }

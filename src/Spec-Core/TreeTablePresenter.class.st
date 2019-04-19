@@ -9,8 +9,8 @@ self example
 Class {
 	#name : #TreeTablePresenter,
 	#superclass : #AbstractWidgetPresenter,
-	#traits : 'TSpecObservable',
-	#classTraits : 'TSpecObservable classTrait',
+	#traits : 'TSpecObservable + TSpecHaveWrappingScrollBar',
+	#classTraits : 'TSpecObservable classTrait + TSpecHaveWrappingScrollBar classTrait',
 	#instVars : [
 		'#columns',
 		'#showColumnHeaders => SpecObservableSlot',
@@ -117,6 +117,7 @@ TreeTablePresenter >> initialize [
 	self class initializeSlots: self.
 	super initialize.
 
+	self withScrollBars.	
 	showColumnHeaders := true.
 	columns := #() asValueHolder.
 	isResizable := false.
