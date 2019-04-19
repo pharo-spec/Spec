@@ -504,7 +504,7 @@ ChangeSorterPresenter >> openChangeSetBrowser [
 	| cs |
 	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
 	cs := self selectedChangeSet ifNil: [ ^ self ].
-	^ Smalltalk tools browser openInEnvironment: (RBBrowserEnvironment new forClasses: cs changedClasses)
+	^ Smalltalk tools messageList browseClasses: (RBBrowserEnvironment new forClasses: cs changedClasses)
 ]
 
 { #category : #initialization }
