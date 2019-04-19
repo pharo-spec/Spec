@@ -11,6 +11,7 @@ SpecDemoTest >> classToTest [
 
 { #category : #tests }
 SpecDemoTest >> testSmokeTestForDemoPages [
+	self timeLimit: 1 minute. 
 	SpecDemoPage availablePages
 		do: [ :demoPage | 
 			[ self shouldnt: [ window := demoPage new openWithSpec ] raise: Error description: 'Broken demo page: ' , demoPage asString ]
