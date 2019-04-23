@@ -29,7 +29,8 @@ BaselineOfSpec >> baseline: spec [
 				package: 'Spec-Tools' with: [ spec requires: #('Spec-PolyWidgets') ];
 				package: 'Spec-StubAdapter' with: [ spec requires: #('Spec-Core') ];
 				package: 'Spec-Examples' with: [ spec requires: #('Spec-Tools' 'Spec-Inspector') ];
-				package: 'Spec-Tests' with: [ spec requires: #('Spec-PolyWidgets' 'Spec-Examples') ];
+				package: 'Spec-Tests' with: [ spec requires: #('Spec-Examples') ];
+				package: 'Spec-MorphicBackendTests' with: [ spec requires: #('Spec-Tests' 'Spec-PolyWidgets') ];
 				package: 'Spec-MorphicBackendTests' with: [ spec requires: #('Spec-MorphicAdapters' 'ParametrizedTests') ];
 				package: 'Spec-BackendTests' with: [ spec requires: #('Spec-MorphicAdapters' 'ParametrizedTests') ];
 				package: 'Spec-CompatibilityTests' with: [ spec requires: #('Spec-MorphicBackendTests' 'Spec-Deprecated80') ]  ].
