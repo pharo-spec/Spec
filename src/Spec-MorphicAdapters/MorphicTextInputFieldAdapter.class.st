@@ -14,6 +14,13 @@ MorphicTextInputFieldAdapter >> accept: aText [
 ]
 
 { #category : #'widget API' }
+MorphicTextInputFieldAdapter >> accept: aText notifying: aNotifyier [
+	"We use #asString because rubric send Text instead of strings."
+
+	super accept: aText asString notifying: aNotifyier
+]
+
+{ #category : #'widget API' }
 MorphicTextInputFieldAdapter >> acceptOnCR [
 
 	^ self model acceptOnCR
@@ -30,7 +37,7 @@ MorphicTextInputFieldAdapter >> adapt: aModel [
 MorphicTextInputFieldAdapter >> buildWidget [
 	| newWidget |
 	self flag: #pharo7.	"When support for P7 will be dropped, remove this compatibility hack."
-	newWidget := ((SystemVersion current major = 7 ifTrue: [ SpecRubTextFieldMorph ] ifFalse: [ RubTextFieldMorph ]) on: self)
+	newWidget := ((self class environment at: #SpecRubTextFieldMorph ifAbsent: [ RubTextFieldMorph ]) on: self)
 		getTextSelector: #getText;
 		setTextSelector: #accept:notifying:;
 		getSelectionSelector: #readSelection;
