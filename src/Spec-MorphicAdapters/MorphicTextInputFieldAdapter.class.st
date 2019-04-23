@@ -14,6 +14,13 @@ MorphicTextInputFieldAdapter >> accept: aText [
 ]
 
 { #category : #'widget API' }
+MorphicTextInputFieldAdapter >> accept: aText notifying: aNotifyier [
+	"We use #asString because rubric send Text instead of strings."
+
+	super accept: aText asString notifying: aNotifyier
+]
+
+{ #category : #'widget API' }
 MorphicTextInputFieldAdapter >> acceptOnCR [
 
 	^ self model acceptOnCR
