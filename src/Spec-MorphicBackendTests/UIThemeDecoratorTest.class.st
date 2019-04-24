@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'themeDecorator'
 	],
-	#category : #'Spec-Tests-MorphicAdapters'
+	#category : #'Spec-MorphicBackendTests'
 }
 
 { #category : #running }

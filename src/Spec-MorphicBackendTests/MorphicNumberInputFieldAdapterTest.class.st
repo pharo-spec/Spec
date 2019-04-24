@@ -8,7 +8,7 @@ Class {
 		'presenter',
 		'adapter'
 	],
-	#category : #'Spec-Tests-MorphicAdapters'
+	#category : #'Spec-MorphicBackendTests'
 }
 
 { #category : #helpers }
