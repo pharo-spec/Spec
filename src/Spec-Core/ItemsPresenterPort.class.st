@@ -4,8 +4,14 @@ Class {
 	#category : #'Spec-Core-Transmission'
 }
 
+{ #category : #accessing }
+ItemsPresenterPort class >> portName [
+
+	^ #items
+]
+
 { #category : #'handling transmission' }
 ItemsPresenterPort >> incomingTransmission: anObject from: outPort [
 
-	self presenter items: anObject
+	self destinationPresenter items: anObject
 ]

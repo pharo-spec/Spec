@@ -5,7 +5,9 @@ Class {
 	#name : #PresenterPort,
 	#superclass : #Object,
 	#instVars : [
-		'presenter'
+		'name',
+		'presenter',
+		'delegation'
 	],
 	#category : #'Spec-Core-Transmission'
 }
@@ -14,6 +16,20 @@ Class {
 PresenterPort class >> portName [
 
 	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+PresenterPort >> delegateTo: aPresenter [
+
+	delegation := aPresenter
+]
+
+{ #category : #accessing }
+PresenterPort >> destinationPresenter [
+
+	^ delegation 
+		ifNotNil: [ delegation value ]
+		ifNil: [ presenter ]
 ]
 
 { #category : #testing }
@@ -31,7 +47,12 @@ PresenterPort >> isOutput [
 { #category : #accessing }
 PresenterPort >> name [
 
-	^ self class portName
+	^ name ifNil: [ self class portName ]
+]
+
+{ #category : #accessing }
+PresenterPort >> name: anObject [
+	name := anObject
 ]
 
 { #category : #accessing }

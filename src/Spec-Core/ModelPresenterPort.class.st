@@ -13,5 +13,5 @@ ModelPresenterPort class >> portName [
 { #category : #'handling transmission' }
 ModelPresenterPort >> incomingTransmission: anObject from: aTransmission [
 
-	self presenter setModel: anObject
+	self destinationPresenter setModel: anObject
 ]
