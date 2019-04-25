@@ -852,7 +852,7 @@ ComposablePresenter >> newTextInput [
 ]
 
 { #category : #widgets }
-ComposablePresenter >> newToolbarPresenter [
+ComposablePresenter >> newToolBar [
 
 	^ self instantiate: ToolBarPresenter
 ]
