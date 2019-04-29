@@ -52,35 +52,35 @@ NotebookPage class >> title: aString provider: aBlock [
 { #category : #accessing }
 NotebookPage >> icon [
 
-	^ iconHolder value
+	^ icon
 ]
 
 { #category : #accessing }
 NotebookPage >> icon: anIcon [
 
-	iconHolder value: anIcon
+	^ icon
 ]
 
 { #category : #initialization }
 NotebookPage >> initialize [ 
 
+	self class initializeSlots: self.
 	super initialize.
-	titleHolder := nil asValueHolder.
-	iconHolder := nil asValueHolder.
-	layoutSpecHolder := nil asValueHolder.
 	
-	titleHolder whenChangedDo: [ self pageTitleChanged ].
-	iconHolder whenChangedDo: [ self pageTitleChanged ]
+	self property: #title whenChangedDo: [ self pageTitleChanged ].
+	self property: #icon whenChangedDo: [ self pageTitleChanged ]
 ]
 
 { #category : #accessing }
 NotebookPage >> layoutSpec [
-	^ layoutSpecHolder value
+
+	^ layoutSpec
 ]
 
 { #category : #accessing }
 NotebookPage >> layoutSpec: aSymbol [
-	layoutSpecHolder value: aSymbol
+
+	layoutSpec := aSymbol
 ]
 
 { #category : #accessing }
@@ -130,11 +130,11 @@ NotebookPage >> retrievePresenter [
 { #category : #accessing }
 NotebookPage >> title [
 
-	^ titleHolder value
+	^ title
 ]
 
 { #category : #accessing }
-NotebookPage >> title: anObject [
+NotebookPage >> title: aString [
 
-	titleHolder value: anObject
+	title := aString
 ]
