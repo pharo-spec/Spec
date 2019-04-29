@@ -129,15 +129,6 @@ TreeTablePresenter >> initialize [
 
 ]
 
-{ #category : #initialization }
-TreeTablePresenter >> initializePorts [
-	
-	self addOutputPort: ListSelectionPresenterPort new.
-	self addInputPort: RootsPresenterPort new.
-	
-
-]
-
 { #category : #accessing }
 TreeTablePresenter >> isResizable [
 	^ isResizable

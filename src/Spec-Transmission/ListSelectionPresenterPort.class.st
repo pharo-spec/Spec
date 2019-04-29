@@ -5,7 +5,7 @@ I will handle the transmission when a presenter can be selected (e.g. lists).
 Class {
 	#name : #ListSelectionPresenterPort,
 	#superclass : #OutputPresenterPort,
-	#category : #'Spec-Core-Transmission'
+	#category : #'Spec-Transmission'
 }
 
 { #category : #accessing }

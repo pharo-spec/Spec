@@ -5,7 +5,7 @@ I handle an incomming transmission.
 Class {
 	#name : #InputPresenterPort,
 	#superclass : #PresenterPort,
-	#category : #'Spec-Core-Transmission'
+	#category : #'Spec-Transmission'
 }
 
 { #category : #'handling transmission' }

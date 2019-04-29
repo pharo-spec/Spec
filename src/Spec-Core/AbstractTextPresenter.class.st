@@ -2,17 +2,18 @@ Class {
 	#name : #AbstractTextPresenter,
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
-		'textHolder',
-		'actionToPerformHolder',
-		'readSelectionHolder',
-		'actionPerformedHolder',
-		'hasUnacceptedEdits',
-		'selection',
-		'scrollValue',
-		'menuHolder',
-		'autoAccept',
-		'wantsVisualFeedback',
-		'askBeforeDiscardingEdits'
+		'#textHolder',
+		'#actionToPerformHolder',
+		'#readSelectionHolder',
+		'#actionPerformedHolder',
+		'#hasUnacceptedEdits',
+		'#selection',
+		'#scrollValue',
+		'#menuHolder',
+		'#autoAccept',
+		'#wantsVisualFeedback',
+		'#askBeforeDiscardingEdits',
+		'#contextMenu => SpecObservableSlot'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -196,6 +197,18 @@ AbstractTextPresenter >> codePaneMenu: aMenu shifted: shifted [
 	^ menuHolder value cull: aMenu cull: shifted
 ]
 
+{ #category : #api }
+AbstractTextPresenter >> contextMenu [
+
+	^ contextMenu
+]
+
+{ #category : #api }
+AbstractTextPresenter >> contextMenu: aValuable [
+
+	contextMenu := aValuable
+]
+
 { #category : #'api-doIt' }
 AbstractTextPresenter >> doItContext [
 
@@ -256,12 +269,10 @@ AbstractTextPresenter >> eventKeyStrokesForPreviousFocus [
 
 { #category : #private }
 AbstractTextPresenter >> getMenu [
-
-	self flag: #TODO. "move to menu presenters"
+	self flag: #TODO.	"move to menu presenters"
 	^ (PragmaMenuBuilder
 		pragmaKeyword: self textArea editingModeClass menuKeyword
-		model: self widget) 
-		menu
+		model: self adapter) menu
 ]
 
 { #category : #api }
@@ -331,12 +342,6 @@ AbstractTextPresenter >> initialize [
 	askBeforeDiscardingEdits := true asValueHolder.
 
 	self registerEvents
-]
-
-{ #category : #initialization }
-AbstractTextPresenter >> initializePorts [
-
-	self addInputPort: TextPresenterPort new
 ]
 
 { #category : #'api-shout' }
@@ -575,6 +580,13 @@ AbstractTextPresenter >> whenCodeCompletionAllowedChangedDo: aBlock [
 	"Set a block to perform when the code completion value changed"
 	
 	actionPerformedHolder whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+AbstractTextPresenter >> whenMenuChangedDo: aBlock [
+	"Set a block to value when the menu block has changed"
+	
+	self property: #contextMenu whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

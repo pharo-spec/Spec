@@ -165,13 +165,6 @@ AbstractListPresenter >> initialize [
 ]
 
 { #category : #initialization }
-AbstractListPresenter >> initializePorts [
-
-	self addOutputPort: ListSelectionPresenterPort new.
-	self addInputPort: ItemsPresenterPort new
-]
-
-{ #category : #initialization }
 AbstractListPresenter >> initializeValueHolders [
 	filteringBlockHolder := self defaultFilteringBlock asValueHolder.
 	itemFilterBlockHolder := nil asValueHolder.

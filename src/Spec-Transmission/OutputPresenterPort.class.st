@@ -5,7 +5,7 @@ I handle output transmissions by attaching them into a presenter.
 Class {
 	#name : #OutputPresenterPort,
 	#superclass : #PresenterPort,
-	#category : #'Spec-Core-Transmission'
+	#category : #'Spec-Transmission'
 }
 
 { #category : #attaching }

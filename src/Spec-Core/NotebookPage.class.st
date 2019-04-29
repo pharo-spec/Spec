@@ -7,12 +7,14 @@ In particular, I contain a presenterProvider, a block who's responsibility is to
 Class {
 	#name : #NotebookPage,
 	#superclass : #Object,
+	#traits : 'TSpecObservable',
+	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
-		'owner',
-		'presenterProvider',
-		'titleHolder',
-		'iconHolder',
-		'layoutSpecHolder'
+		'#owner',
+		'#title => SpecObservableSlot',
+		'#icon => SpecObservableSlot',
+		'#layoutSpec => SpecObservableSlot',
+		'#presenterProvider'
 	],
 	#category : #'Spec-Core-Widgets-Tab'
 }

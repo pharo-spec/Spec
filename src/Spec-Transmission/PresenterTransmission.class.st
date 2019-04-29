@@ -15,7 +15,7 @@ Class {
 		'preTransmission',
 		'postTransmission'
 	],
-	#category : #'Spec-Core-Transmission'
+	#category : #'Spec-Transmission'
 }
 
 { #category : #'instance creation' }
@@ -49,6 +49,13 @@ PresenterTransmission >> applyPreTransmissionWith: aTransmittedObject [
 		cull: self toPresenter 
 		cull: self fromPresenter 
 		cull: aTransmittedObject
+]
+
+{ #category : #actions }
+PresenterTransmission >> do: aBlock [
+	"Will create a generic action block to handle transmission"
+	
+	self to: (ActionPresenterPort newAction: aBlock)
 ]
 
 { #category : #private }

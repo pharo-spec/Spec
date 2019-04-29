@@ -358,30 +358,71 @@ Presenter >> spec: anAdapter [
 ]
 
 { #category : #'accessing ports' }
+Presenter >> transmitDo: aBlock [
+	
+	self owner transmit
+		from: self;
+		do: aBlock;
+		apply
+]
+
+{ #category : #'accessing ports' }
+Presenter >> transmitDo: aBlock transform: transformBlock [
+	
+	self owner transmit
+		from: self;
+		do: aBlock;
+		transform: transformBlock;
+		apply
+]
+
+{ #category : #'accessing ports' }
+Presenter >> transmitPort: aPortName do: aBlock [
+	
+	self owner transmit
+		from: self port: aPortName;
+		do: aBlock;
+		apply
+]
+
+{ #category : #'accessing ports' }
+Presenter >> transmitPort: aPortName do: aBlock transform: transformBlock [
+	
+	self owner transmit
+		from: self port: aPortName;
+		do: aBlock;
+		transform: transformBlock;
+		apply
+]
+
+{ #category : #'accessing ports' }
 Presenter >> transmitTo: aPresenter [		
 	
 	^ self owner transmit 
-		from: self to: aPresenter;
-		yourself
+		from: self;
+		to: aPresenter;
+		apply
 ]
 
 { #category : #'accessing ports' }
 Presenter >> transmitTo: aPresenter transform: aValuable [
 	
 	^ self owner transmit 
-		from: self to: aPresenter;
+		from: self;
+		to: aPresenter;
 		transform: aValuable;
-		yourself
+		apply
 ]
 
 { #category : #'accessing ports' }
 Presenter >> transmitTo: aPresenter transform: aValuable postTransmission: postValuable [
 	
 	^ self owner transmit 
-		from: self to: aPresenter;
+		from: self; 
+		to: aPresenter;
 		transform: aValuable;
 		postTransmission: postValuable;
-		yourself
+		apply
 ]
 
 { #category : #updating }

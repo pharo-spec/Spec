@@ -223,25 +223,9 @@ ComposablePresenter >> addAll: aWindow withSpecLayout: aSpec [
 		frame: (0@0 corner: 1@1).
 ]
 
-{ #category : #'private-ports' }
-ComposablePresenter >> addInputPort: aPort [
-
-	aPort presenter: self.
-	inputPorts ifNil: [ inputPorts := #() ].
-	inputPorts := inputPorts copyWith: aPort
-]
-
 { #category : #'window menu' }
 ComposablePresenter >> addMenuItemsToWindowMenu: aMenu [
 	"Do nothing"
-]
-
-{ #category : #'private-ports' }
-ComposablePresenter >> addOutputPort: aPort [
-
-	aPort presenter: self.
-	outputPorts ifNil: [ outputPorts := #() ].
-	outputPorts := outputPorts copyWith: aPort
 ]
 
 { #category : #'api-shortcuts' }
@@ -527,18 +511,10 @@ ComposablePresenter >> initialize [
 	additionalSubpresentersMap := nil.
 	visible := true.
 
-	self initializePorts.
 	self initializePrivateAnnouncer.
 	self initializePrivateValueHolders.
 	self initializePrivateHooks.
 	self initializePrivateAnnouncements.
-]
-
-{ #category : #initialization }
-ComposablePresenter >> initializePorts [
-	
-	"By default, all presenters can receive a change model transmission"
-	self addInputPort: ModelPresenterPort new
 ]
 
 { #category : #initialization }
@@ -609,26 +585,6 @@ ComposablePresenter >> initializeWindow: aWindowPresenter [
 		windowIcon: self windowIcon;
 		askOkToClose: self askOkToClose;
 		aboutText: self aboutText
-]
-
-{ #category : #'private-ports' }
-ComposablePresenter >> inputPortDefault [
-
-	"first input port will be default. 
-	 this may be bad design and probably needs to be revisited later"
-	^ self inputPorts first
-]
-
-{ #category : #'private-ports' }
-ComposablePresenter >> inputPortNamed: aSymbol [
-
-	^ self inputPorts detect: [ :each | each name = aSymbol ]
-]
-
-{ #category : #'private-ports' }
-ComposablePresenter >> inputPorts [
-
-	^ inputPorts
 ]
 
 { #category : #'instance creation' }
@@ -886,26 +842,6 @@ ComposablePresenter >> on: anAnnouncement send: aSelector to: aTarget [
 		to: aTarget
 ]
 
-{ #category : #'private-ports' }
-ComposablePresenter >> outputPortDefault [
-
-	"first output port will be default. 
-	 this may be bad design and probably needs to be revisited later"
-	^ self outputPorts first
-]
-
-{ #category : #'private-ports' }
-ComposablePresenter >> outputPortNamed: aSymbol [
-
-	^ self outputPorts detect: [ :each | each name = aSymbol ]
-]
-
-{ #category : #'private-ports' }
-ComposablePresenter >> outputPorts [
-
-	^ outputPorts
-]
-
 { #category : #accessing }
 ComposablePresenter >> presenterAt: aName [
 	"Retrieves a subpresenter of this composed presenter."
@@ -1074,16 +1010,6 @@ ComposablePresenter >> title: aString [
 ComposablePresenter >> toolName [
 
 	^ self class toolName
-]
-
-{ #category : #'private-ports' }
-ComposablePresenter >> transmit [
-	| newTransmition |
-
-	transmissions ifNil: [ transmissions := Set new ].
-	newTransmition := PresenterTransmission on: self.
-	transmissions add: newTransmition.
-	^ newTransmition
 ]
 
 { #category : #'private-traversing' }

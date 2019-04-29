@@ -1,7 +1,7 @@
 Class {
 	#name : #ItemsPresenterPort,
 	#superclass : #InputPresenterPort,
-	#category : #'Spec-Core-Transmission'
+	#category : #'Spec-Transmission'
 }
 
 { #category : #accessing }

@@ -1,7 +1,7 @@
 Class {
 	#name : #DropListSelectionPresenterPort,
 	#superclass : #OutputPresenterPort,
-	#category : #'Spec-Core-Transmission'
+	#category : #'Spec-Transmission'
 }
 
 { #category : #accessing }

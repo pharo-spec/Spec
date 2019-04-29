@@ -163,12 +163,6 @@ DropListPresenter >> initialize [
 
 ]
 
-{ #category : #initialization }
-DropListPresenter >> initializePorts [
-	self addOutputPort: DropListSelectionPresenterPort new.
-	self addInputPort: ItemsPresenterPort new
-]
-
 { #category : #api }
 DropListPresenter >> items: aList [
 	"Populate the drop list with a list of ui specific items"

@@ -50,6 +50,12 @@ CodePresenter >> behavior: aClass [
 	behavior := aClass
 ]
 
+{ #category : #private }
+CodePresenter >> buildCodeMenu [
+	
+	^ CmdContextMenuActivation buildContextMenuInContext: (StCodeContext for: self)
+]
+
 { #category : #'api-doIt' }
 CodePresenter >> doItContext [
 
@@ -81,14 +87,15 @@ CodePresenter >> doItReceiver: anObject [
 { #category : #initialization }
 CodePresenter >> initialize [ 
 
-	self class initializeSlots: self.
 	super initialize.
 	
 	behavior := nil.
 	doItContext := nil.
 	doItReceiver := nil.
 	
-	self registerEventsForStyling
+	self registerEventsForStyling.
+	
+	self contextMenu: [ self buildCodeMenu ]
 ]
 
 { #category : #initialization }
