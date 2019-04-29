@@ -141,7 +141,6 @@ DropListPresenter >> iconHolder: aBlock [
 { #category : #initialization }
 DropListPresenter >> initialize [
 
-	self class initializeSlots: self.
 	super initialize.
 	
 	model := SpecCollectionListModel on: #().

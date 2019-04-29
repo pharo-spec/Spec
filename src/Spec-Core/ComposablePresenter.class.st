@@ -100,8 +100,6 @@ Class {
 		'#aboutText',
 		'#askOkToClose',
 		'#titleHolder',
-		'#inputPorts',
-		'#outputPorts',
 		'#transmissions',
 		'#additionalSubpresentersMap',
 		'#visible => SpecObservableSlot'
@@ -508,8 +506,8 @@ ComposablePresenter >> initialize [
 	self class initializeSlots: self.
 	super initialize.
 
-	additionalSubpresentersMap := nil.
 	visible := true.
+	additionalSubpresentersMap := nil.
 
 	self initializePrivateAnnouncer.
 	self initializePrivateValueHolders.

@@ -114,7 +114,6 @@ TreeTablePresenter >> hideColumnHeaders [
 { #category : #initialization }
 TreeTablePresenter >> initialize [
 
-	self class initializeSlots: self.
 	super initialize.
 
 	self withScrollBars.	

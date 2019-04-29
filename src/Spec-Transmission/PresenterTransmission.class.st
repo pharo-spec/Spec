@@ -8,7 +8,6 @@ Class {
 	#name : #PresenterTransmission,
 	#superclass : #Object,
 	#instVars : [
-		'presenter',
 		'fromPort',
 		'toPort',
 		'transformBlock',
@@ -17,14 +16,6 @@ Class {
 	],
 	#category : #'Spec-Transmission'
 }
-
-{ #category : #'instance creation' }
-PresenterTransmission class >> on: aPresenter [
-
-	^ self basicNew 
-		initializePresenter: aPresenter;
-		yourself
-]
 
 { #category : #private }
 PresenterTransmission >> apply [
@@ -134,13 +125,6 @@ PresenterTransmission >> fromPresenter [
 	^ self fromPort presenter
 ]
 
-{ #category : #initialization }
-PresenterTransmission >> initializePresenter: aPresenter [
-
-	self initialize.
-	presenter := aPresenter
-]
-
 { #category : #accessing }
 PresenterTransmission >> postTransmission [
 	^ postTransmission
@@ -159,12 +143,6 @@ PresenterTransmission >> preTransmission [
 { #category : #accessing }
 PresenterTransmission >> preTransmission: aValuable [
 	preTransmission := aValuable
-]
-
-{ #category : #private }
-PresenterTransmission >> presenter [
-
-	^ presenter
 ]
 
 { #category : #private }

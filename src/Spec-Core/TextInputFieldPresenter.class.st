@@ -126,7 +126,6 @@ TextInputFieldPresenter >> eventKeyStrokesForPreviousFocus [
 { #category : #initialization }
 TextInputFieldPresenter >> initialize [
 
-	self class initializeSlots: self.
 	super initialize.
 	
 	maxLength := 0.
