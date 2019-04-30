@@ -503,7 +503,7 @@ ComposablePresenter >> initialExtent [
 
 { #category : #initialization }
 ComposablePresenter >> initialize [
-	self class initializeSlots: self.
+
 	super initialize.
 
 	visible := true.

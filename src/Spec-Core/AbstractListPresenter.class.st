@@ -150,6 +150,7 @@ AbstractListPresenter >> getSelectionStateFor: anIndex [
 
 { #category : #initialization }
 AbstractListPresenter >> initialize [
+
 	super initialize.
 	
 	activationBlock := [ ].

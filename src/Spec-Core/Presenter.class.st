@@ -171,6 +171,7 @@ Presenter >> hasWindow [
 { #category : #initialization }
 Presenter >> initialize [ 
 
+	self class initializeSlots: self.
 	super initialize.
 	needRebuild := true asValueHolder
 ]
