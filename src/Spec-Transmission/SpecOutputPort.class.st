@@ -3,26 +3,26 @@ I'm a base output port.
 I handle output transmissions by attaching them into a presenter.
 "
 Class {
-	#name : #OutputPresenterPort,
-	#superclass : #PresenterPort,
-	#category : #'Spec-Transmission'
+	#name : #SpecOutputPort,
+	#superclass : #SpecPort,
+	#category : #'Spec-Transmission-Base'
 }
 
 { #category : #attaching }
-OutputPresenterPort >> attachTransmission: aTransmission [ 
+SpecOutputPort >> attachTransmission: aTransmission [ 
 	"override this to add specific transmissions"
 
 	self subclassResponsibility
 ]
 
 { #category : #testing }
-OutputPresenterPort >> isOutput [
+SpecOutputPort >> isOutput [
 
 	^ true
 ]
 
 { #category : #private }
-OutputPresenterPort >> transmitWith: aTransmission value: transmitted [
+SpecOutputPort >> transmitWith: aTransmission value: transmitted [
 
 	aTransmission applyPreTransmissionWith: transmitted.
 	aTransmission toPort

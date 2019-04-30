@@ -3,19 +3,19 @@ I'm a selection transmission.
 I will handle the transmission when a presenter can be selected (e.g. lists).
 "
 Class {
-	#name : #ListSelectionPresenterPort,
-	#superclass : #OutputPresenterPort,
-	#category : #'Spec-Transmission'
+	#name : #SpecListSelectionPort,
+	#superclass : #SpecOutputPort,
+	#category : #'Spec-Transmission-Base'
 }
 
 { #category : #accessing }
-ListSelectionPresenterPort class >> portName [
+SpecListSelectionPort class >> portName [
 	
 	^ #selection
 ]
 
 { #category : #attaching }
-ListSelectionPresenterPort >> attachTransmission: aTransmission [
+SpecListSelectionPort >> attachTransmission: aTransmission [
 
 	self destinationPresenter whenSelectionChangedDo: [ :selection | 
 		self 

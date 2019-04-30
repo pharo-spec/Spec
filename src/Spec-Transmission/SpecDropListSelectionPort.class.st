@@ -3,19 +3,19 @@ I'm a selection transmission specific of a drop-list.
 I will handle the transmission when an item is selected on a drop list.
 "
 Class {
-	#name : #DropListSelectionPresenterPort,
-	#superclass : #OutputPresenterPort,
-	#category : #'Spec-Transmission'
+	#name : #SpecDropListSelectionPort,
+	#superclass : #SpecOutputPort,
+	#category : #'Spec-Transmission-Base'
 }
 
 { #category : #accessing }
-DropListSelectionPresenterPort class >> portName [
+SpecDropListSelectionPort class >> portName [
 	
 	^ #selection
 ]
 
 { #category : #attaching }
-DropListSelectionPresenterPort >> attachTransmission: aTransmission [
+SpecDropListSelectionPort >> attachTransmission: aTransmission [
 	
 	self destinationPresenter whenSelectionChangedDo: [ :selection | 
 		self 

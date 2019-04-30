@@ -9,16 +9,16 @@ aPresenter
 	transform: #asString
 "
 Class {
-	#name : #ActionPresenterPort,
-	#superclass : #InputPresenterPort,
+	#name : #SpecActionPort,
+	#superclass : #SpecInputPort,
 	#instVars : [
 		'actionBlock'
 	],
-	#category : #'Spec-Transmission'
+	#category : #'Spec-Transmission-Base'
 }
 
 { #category : #'instance creation' }
-ActionPresenterPort class >> newAction: aBlock [
+SpecActionPort class >> newAction: aBlock [
 
 	^ self new
 		action: aBlock;
@@ -26,26 +26,26 @@ ActionPresenterPort class >> newAction: aBlock [
 ]
 
 { #category : #accessing }
-ActionPresenterPort class >> portName [
+SpecActionPort class >> portName [
 	"An action block does not has a name"
 	
 	^ nil
 ]
 
 { #category : #accessing }
-ActionPresenterPort >> action [ 
+SpecActionPort >> action [ 
 
 	^ actionBlock
 ]
 
 { #category : #accessing }
-ActionPresenterPort >> action: aBlock [
+SpecActionPort >> action: aBlock [
 
 	actionBlock := aBlock
 ]
 
 { #category : #'handling transmission' }
-ActionPresenterPort >> incomingTransmission: anObject from: outPort [
+SpecActionPort >> incomingTransmission: anObject from: outPort [
 
 	self action 
 		cull: anObject

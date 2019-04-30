@@ -2,18 +2,18 @@
 I'm a base port.
 "
 Class {
-	#name : #PresenterPort,
+	#name : #SpecPort,
 	#superclass : #Object,
 	#instVars : [
 		'name',
 		'presenter',
 		'delegation'
 	],
-	#category : #'Spec-Transmission'
+	#category : #'Spec-Transmission-Base'
 }
 
 { #category : #'instance creation' }
-PresenterPort class >> newDelegate: aBlock [ 
+SpecPort class >> newDelegate: aBlock [ 
 
 	^ self new 
 		delegateTo: aBlock;
@@ -21,7 +21,7 @@ PresenterPort class >> newDelegate: aBlock [
 ]
 
 { #category : #'instance creation' }
-PresenterPort class >> newName: aName [
+SpecPort class >> newName: aName [
 
 	^ self new 
 		name: aName;
@@ -29,7 +29,7 @@ PresenterPort class >> newName: aName [
 ]
 
 { #category : #'instance creation' }
-PresenterPort class >> newName: aName delegate: aBlock [ 
+SpecPort class >> newName: aName delegate: aBlock [ 
 
 	^ self new 
 		name: aName;
@@ -38,19 +38,19 @@ PresenterPort class >> newName: aName delegate: aBlock [
 ]
 
 { #category : #accessing }
-PresenterPort class >> portName [
+SpecPort class >> portName [
 
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-PresenterPort >> delegateTo: aPresenter [
+SpecPort >> delegateTo: aPresenter [
 
 	delegation := aPresenter
 ]
 
 { #category : #accessing }
-PresenterPort >> destinationPresenter [
+SpecPort >> destinationPresenter [
 
 	^ delegation 
 		ifNotNil: [ delegation value ]
@@ -58,36 +58,36 @@ PresenterPort >> destinationPresenter [
 ]
 
 { #category : #testing }
-PresenterPort >> isInput [ 
+SpecPort >> isInput [ 
 
 	^ false
 ]
 
 { #category : #testing }
-PresenterPort >> isOutput [
+SpecPort >> isOutput [
 
 	^ false
 ]
 
 { #category : #accessing }
-PresenterPort >> name [
+SpecPort >> name [
 
 	^ name ifNil: [ self class portName ]
 ]
 
 { #category : #accessing }
-PresenterPort >> name: anObject [
+SpecPort >> name: anObject [
 	name := anObject
 ]
 
 { #category : #accessing }
-PresenterPort >> presenter [ 
+SpecPort >> presenter [ 
 
 	^ presenter
 ]
 
 { #category : #accessing }
-PresenterPort >> presenter: aPresenter [
+SpecPort >> presenter: aPresenter [
 
 	presenter := aPresenter
 ]

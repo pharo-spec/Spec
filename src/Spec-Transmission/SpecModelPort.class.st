@@ -2,19 +2,19 @@
 I define an incomming transmission to modify the model of a presenter.
 "
 Class {
-	#name : #ModelPresenterPort,
-	#superclass : #InputPresenterPort,
-	#category : #'Spec-Transmission'
+	#name : #SpecModelPort,
+	#superclass : #SpecInputPort,
+	#category : #'Spec-Transmission-Base'
 }
 
 { #category : #accessing }
-ModelPresenterPort class >> portName [
+SpecModelPort class >> portName [
 	
 	^ #model
 ]
 
 { #category : #'handling transmission' }
-ModelPresenterPort >> incomingTransmission: anObject from: aTransmission [
+SpecModelPort >> incomingTransmission: anObject from: aTransmission [
 
 	self destinationPresenter setModel: anObject
 ]

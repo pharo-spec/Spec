@@ -2,19 +2,19 @@
 I define an incomming transmission to modify the text of a text style presenter (input fields or text areas).
 "
 Class {
-	#name : #TextPresenterPort,
-	#superclass : #InputPresenterPort,
-	#category : #'Spec-Transmission'
+	#name : #SpecTextPort,
+	#superclass : #SpecInputPort,
+	#category : #'Spec-Transmission-Base'
 }
 
 { #category : #accessing }
-TextPresenterPort class >> portName [
+SpecTextPort class >> portName [
 
 	^ #text
 ]
 
 { #category : #'handling transmission' }
-TextPresenterPort >> incomingTransmission: anObject from: outPort [
+SpecTextPort >> incomingTransmission: anObject from: outPort [
 
 	self destinationPresenter text: anObject
 ]
