@@ -46,7 +46,7 @@ SpecTransmission >> applyPreTransmissionWith: aTransmittedObject [
 SpecTransmission >> do: aBlock [
 	"Will create a generic action block to handle transmission"
 	
-	self to: (SpecActionPort newAction: aBlock)
+	self toPort: (SpecActionPort newAction: aBlock)
 ]
 
 { #category : #private }
