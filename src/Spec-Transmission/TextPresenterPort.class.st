@@ -1,3 +1,6 @@
+"
+I define an incomming transmission to modify the text of a text style presenter (input fields or text areas).
+"
 Class {
 	#name : #TextPresenterPort,
 	#superclass : #InputPresenterPort,

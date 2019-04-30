@@ -3,7 +3,7 @@ Extension { #name : #DropListPresenter }
 { #category : #'*Spec-Transmission' }
 DropListPresenter >> defineInputPorts [
 
-	^ { ItemsPresenterPort new }
+	^ { ListItemsPresenterPort new }
 ]
 
 { #category : #'*Spec-Transmission' }

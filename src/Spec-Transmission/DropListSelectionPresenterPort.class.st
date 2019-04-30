@@ -1,3 +1,7 @@
+"
+I'm a selection transmission specific of a drop-list.
+I will handle the transmission when an item is selected on a drop list.
+"
 Class {
 	#name : #DropListSelectionPresenterPort,
 	#superclass : #OutputPresenterPort,

@@ -1,3 +1,6 @@
+"
+I define an incomming transmission to modify the model of a presenter.
+"
 Class {
 	#name : #ModelPresenterPort,
 	#superclass : #InputPresenterPort,

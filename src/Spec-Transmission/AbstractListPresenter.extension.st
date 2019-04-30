@@ -3,7 +3,7 @@ Extension { #name : #AbstractListPresenter }
 { #category : #'*Spec-Transmission' }
 AbstractListPresenter >> defineInputPorts [
 	
-	^ { ItemsPresenterPort new }
+	^ { ListItemsPresenterPort new }
 ]
 
 { #category : #'*Spec-Transmission' }
