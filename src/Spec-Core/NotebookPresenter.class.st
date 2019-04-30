@@ -67,12 +67,20 @@ NotebookPresenter >> pagesChanged [
 ]
 
 { #category : #removing }
-NotebookPresenter >> removePage: aNotebookPresenter [
-	pagesHolder remove: aNotebookPresenter
+NotebookPresenter >> removeAll [
+
+	pagesHolder removeAll
+]
+
+{ #category : #removing }
+NotebookPresenter >> removePage: aPage [
+
+	pagesHolder remove: aPage
 ]
 
 { #category : #removing }
 NotebookPresenter >> removePageAt: anIndex [
+
 	pagesHolder removeAt: anIndex
 ]
 
