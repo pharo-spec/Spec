@@ -8,7 +8,8 @@ Class {
 	#instVars : [
 		'#doItContext => SpecObservableSlot',
 		'#doItReceiver => SpecObservableSlot',
-		'#behavior => SpecObservableSlot'
+		'#behavior => SpecObservableSlot',
+		'#syntaxHighlight'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -84,6 +85,12 @@ CodePresenter >> doItReceiver: anObject [
 	doItReceiver := anObject
 ]
 
+{ #category : #testing }
+CodePresenter >> hasSyntaxHighlight [
+
+	^ syntaxHighlight
+]
+
 { #category : #initialization }
 CodePresenter >> initialize [ 
 
@@ -92,6 +99,7 @@ CodePresenter >> initialize [
 	behavior := nil.
 	doItContext := nil.
 	doItReceiver := nil.
+	self withSyntaxHighlight.
 	
 	self registerEventsForStyling.
 	
@@ -120,4 +128,16 @@ CodePresenter >> whenBehaviorChangedDo: aBlock [
 	self 
 		property: #behavior 
 		whenChangedDo: aBlock
+]
+
+{ #category : #accessing }
+CodePresenter >> withSyntaxHighlight [
+
+	syntaxHighlight := true
+]
+
+{ #category : #accessing }
+CodePresenter >> withoutSyntaxHighlight [
+
+	syntaxHighlight := false
 ]
