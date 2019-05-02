@@ -122,10 +122,7 @@ TreeTablePresenter >> initialize [
 	isResizable := false.
 	selection := TreeSingleSelectionMode on: self.
 	childrenBlock :=  [ :item | #() ].
-	
-	roots := #().
-
-
+	roots := #()
 ]
 
 { #category : #accessing }

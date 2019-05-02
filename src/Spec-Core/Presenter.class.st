@@ -8,9 +8,9 @@ Class {
 	#traits : 'TSpecObservable',
 	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
-		'owner',
-		'adapter',
-		'needRebuild'
+		'#owner',
+		'#adapter',
+		'#needRebuild => SpecObservableSlot'
 	],
 	#category : #'Spec-Core-Base'
 }
@@ -173,7 +173,7 @@ Presenter >> initialize [
 
 	self class initializeSlots: self.
 	super initialize.
-	needRebuild := true asValueHolder
+	needRebuild := true
 ]
 
 { #category : #initialization }
@@ -220,13 +220,13 @@ Presenter >> isWindowPresenter [
 { #category : #accessing }
 Presenter >> needRebuild [
 
-	^ needRebuild value
+	^ needRebuild
 ]
 
 { #category : #accessing }
 Presenter >> needRebuild: aBoolean [
 
-	needRebuild value: aBoolean
+	needRebuild := aBoolean
 ]
 
 { #category : #showing }

@@ -27,8 +27,7 @@ ComponentListPresenter >> addPresenter: aPresenter [
 ComponentListPresenter >> initialize [
 
 	super initialize.
-	presenters := OrderedCollection new.
-	
+	presenters := OrderedCollection new
 ]
 
 { #category : #accessor }

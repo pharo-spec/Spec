@@ -512,7 +512,7 @@ ComposablePresenter >> initialize [
 	self initializePrivateAnnouncer.
 	self initializePrivateValueHolders.
 	self initializePrivateHooks.
-	self initializePrivateAnnouncements.
+	self initializePrivateAnnouncements
 ]
 
 { #category : #initialization }
