@@ -8,8 +8,6 @@ Class {
 		'#actionPerformedHolder',
 		'#hasUnacceptedEdits',
 		'#selection',
-		'#scrollValue',
-		'#menuHolder',
 		'#autoAccept',
 		'#wantsVisualFeedback',
 		'#askBeforeDiscardingEdits',
@@ -335,8 +333,6 @@ AbstractTextPresenter >> initialize [
 	actionPerformedHolder := '' asValueHolder.
 	hasUnacceptedEdits := false asValueHolder.
 	selection := (1 to: 0) asValueHolder.
-	scrollValue := (0 @ 0) asValueHolder.
-	menuHolder := [ self getMenu ] asValueHolder.
 	autoAccept := false asValueHolder.
 	wantsVisualFeedback := true asValueHolder.
 	askBeforeDiscardingEdits := true asValueHolder.
@@ -397,22 +393,6 @@ AbstractTextPresenter >> isForSmalltalkCode: aBoolean [
 		in: #Pharo8"
 ]
 
-{ #category : #api }
-AbstractTextPresenter >> menuHolder [
-	"<api: #inspect>"
-	"Return the block used to calculate the text selection"
-
-	^ menuHolder value
-]
-
-{ #category : #api }
-AbstractTextPresenter >> menuHolder: aBlock [
-	"<api: #block getter: #menuHolder registration: #whenMenuHolderChanged:>"
-	"Set the block used to compute the menu"
-
-	^ menuHolder value:  aBlock
-]
-
 { #category : #'api-errors' }
 AbstractTextPresenter >> notify: errorMessage at: position in: sourceCode [
 
@@ -448,26 +428,9 @@ AbstractTextPresenter >> registerEvents [
 	readSelectionHolder whenChangedDo: [ self changed: #readSelection ].
 	hasUnacceptedEdits whenChangedDo: [ :bool | self changed: #setHasUnacceptedEdits: with: { bool } ].
 	selection whenChangedDo: [:block | self changed: #setSelectionFromModel: with: { block value } ].
-	scrollValue whenChangedDo: [ :newPosition | self changed: #setScrollValue: with: { newPosition } ].
 	autoAccept whenChangedDo: [:bool | self changed: #autoAccept: with: { bool } ].
 	wantsVisualFeedback whenChangedDo: [ :bool | self changed: #changed with: #() ].
 	askBeforeDiscardingEdits whenChangedDo: [ :bool | self changed: #askBeforeDiscardingEdits: with: { bool } ].
-]
-
-{ #category : #api }
-AbstractTextPresenter >> scrollValue [
-	"<api: #inspect>"
-	"Return the current scroll position"
-
-	^ scrollValue value
-]
-
-{ #category : #api }
-AbstractTextPresenter >> scrollValue: aPoint [
-	"<api: #point getter: #scrollValue registration: #whenScrollValuehanged:>"
-	"Set the scroll position"
-
-	^ scrollValue value: aPoint
 ]
 
 { #category : #api }
@@ -590,24 +553,10 @@ AbstractTextPresenter >> whenMenuChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
-AbstractTextPresenter >> whenMenuHolderChangedDo: aBlock [
-	"Set a block to perform when the block use to build menu changed"
-	
-	menuHolder whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
 AbstractTextPresenter >> whenReadSelectionIsChangedDo: aBlock [
 	"Set a block to perform when the read selection block changed"
 	
 	readSelectionHolder whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
-AbstractTextPresenter >> whenScrollValueChangedDo: aBlock [
-	"Set a block to perform when the scroll value changed"
-	
-	scrollValue whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
