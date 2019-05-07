@@ -11,6 +11,25 @@ TextAdapterTest >> classToTest [
 ]
 
 { #category : #accessing }
+TextAdapterTest >> testKeyBindings [
+	| handled |
+
+	handled := false.
+	presenter 
+		bindKeyCombination: $t meta 
+		toAction: [ handled := true ].
+	self openInstance.
+
+	presenter adapter 
+		keyPressed: $t asciiValue 
+		shift: false 
+		meta: true
+		control: false
+		option: false. 
+	self assert: handled.
+]
+
+{ #category : #accessing }
 TextAdapterTest >> testRightClickShowsMenu [
 	| menu |
 

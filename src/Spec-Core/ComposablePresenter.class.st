@@ -229,6 +229,8 @@ ComposablePresenter >> addMenuItemsToWindowMenu: aMenu [
 { #category : #'api-shortcuts' }
 ComposablePresenter >> additionalKeyBindings [
 
+	self flag: #TODO. "Think is... not all presenters can have keybindings. Why are we
+	putting this functionality here and not in a trait?"
 	^ additionalKeyBindings
 ]
 
@@ -283,7 +285,10 @@ ComposablePresenter >> applyMenuModel: aMenuModel [
 
 	aMenuModel menuGroups do: [ :group |
 		group menuItems do: [ :item |
-			item shortcut ifNotNil: [ :shortcut | self bindMenuKeyCombination: shortcut toAction: [ item performMenuActionWith: {} ] ].
+			item shortcut ifNotNil: [ :shortcut | 
+				self 
+					bindKeyCombination: shortcut 
+					toAction: [ item performMenuActionWith: #() ] ].
 			item subMenu ifNotNil: [ :subMenu | subMenu applyTo: self	] ] ]
 ]
 
@@ -309,17 +314,10 @@ ComposablePresenter >> askOkToClose: aBoolean [
 { #category : #'api-shortcuts' }
 ComposablePresenter >> bindKeyCombination: aShortcut toAction: aBlock [
 
-	self additionalKeyBindings at: aShortcut put: aBlock.
-	
-	self changed: #bindKeyCombination:toAction: with: {aShortcut . aBlock}
-]
-
-{ #category : #'api-shortcuts' }
-ComposablePresenter >> bindMenuKeyCombination: aShortcut toAction: aBlock [
-
-	self additionalKeyBindings at: aShortcut put: aBlock.
-	
-	self changed: #bindMenuKeyCombination:toAction: with: {aShortcut . aBlock}
+	additionalKeyBindings ifNil: [ additionalKeyBindings := Dictionary new ].
+	additionalKeyBindings at: aShortcut put: aBlock.
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter bindKeyCombination: aShortcut toAction: aBlock ]
 ]
 
 { #category : #'api-window' }
@@ -557,7 +555,6 @@ ComposablePresenter >> initializePrivateValueHolders [
 	extentHolder := nil asValueHolder.
 	keyStrokesForNextFocusHolder := { KMNoShortcut new } asValueHolder.
 	keyStrokesForPreviousFocusHolder := { KMNoShortcut new } asValueHolder.
-	additionalKeyBindings := Dictionary new.
 	aboutText := nil asValueHolder.
 	windowIcon := nil asValueHolder.
 	askOkToClose := false asValueHolder.
@@ -664,7 +661,7 @@ ComposablePresenter >> neglectMenuModel: aMenuModel [
 
 	aMenuModel menuGroups do: [ :group |
 		group menuItems do: [ :item |
-			item shortcut ifNotNil: [ :shortcut | self removeMenuKeyCombination: shortcut ].
+			item shortcut ifNotNil: [ :shortcut | self removeKeyCombination: shortcut ].
 			item subMenu ifNotNil: [ :subMenu | subMenu neglect: self	] ] ]
 ]
 
@@ -828,6 +825,11 @@ ComposablePresenter >> okToChange [
 { #category : #'api-shortcuts' }
 ComposablePresenter >> on: aShortcut do: aBlock [
 
+	self 
+		deprecated: 'Use #bindKeyCombination:toAction: instead.' 
+		transformWith: '`@receiver on: `@statements1 do: `@statements2' 
+						-> '`@receiver bindKeyCombination: `@statements1 toAction: `@statements2'.
+
 	self bindKeyCombination: aShortcut toAction: aBlock
 ]
 
@@ -899,16 +901,8 @@ ComposablePresenter >> registerKeyStrokesForPreviousFor: aWidget [
 ComposablePresenter >> removeKeyCombination: aShortcut [
 
 	self additionalKeyBindings removeKey: aShortcut ifAbsent: [ ^ self ].
-	
-	self changed: #removeKeyCombination: with: {aShortcut}
-]
-
-{ #category : #'api-shortcuts' }
-ComposablePresenter >> removeMenuKeyCombination: aShortcut [
-
-	self additionalKeyBindings removeKey: aShortcut ifAbsent: [ ^ self ].
-	
-	self changed: #removeMenuKeyCombination: with: {aShortcut}
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter removeKeyCombination: aShortcut ]
 ]
 
 { #category : #'api-window' }
