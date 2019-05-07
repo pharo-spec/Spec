@@ -300,8 +300,9 @@ AbstractMorphicAdapter >> keyPressed: keyCode shift: shiftBoolean meta: metaBool
 		hand: World activeHand
 		stamp: Time millisecondClockValue.
 
-	evt sentTo: widget
-	
+	evt sentTo: widget.
+	"Some time to allow things to happen?"
+	10 milliseconds wait.
 ]
 
 { #category : #protocol }
