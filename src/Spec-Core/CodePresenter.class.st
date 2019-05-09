@@ -9,7 +9,8 @@ Class {
 		'#doItContext => SpecObservableSlot',
 		'#doItReceiver => SpecObservableSlot',
 		'#behavior => SpecObservableSlot',
-		'#syntaxHighlight'
+		'#syntaxHighlight',
+		'#contextKeyBindings'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -52,9 +53,27 @@ CodePresenter >> behavior: aClass [
 ]
 
 { #category : #private }
+CodePresenter >> buildCodeKeyBindings [
+	
+	^ CmdContextMenuActivation buildContextKeyBindingsInContext: (StCodeContext for: self)
+]
+
+{ #category : #private }
 CodePresenter >> buildCodeMenu [
 	
 	^ CmdContextMenuActivation buildContextMenuInContext: (StCodeContext for: self)
+]
+
+{ #category : #'api-shortcuts' }
+CodePresenter >> contextKeyBindings [
+
+	^ contextKeyBindings
+]
+
+{ #category : #'api-shortcuts' }
+CodePresenter >> contextKeyBindings: aDictionary [
+
+	contextKeyBindings := aDictionary
 ]
 
 { #category : #'api-doIt' }
@@ -103,7 +122,8 @@ CodePresenter >> initialize [
 	
 	self registerEventsForStyling.
 	
-	self contextMenu: [ self buildCodeMenu ]
+	self contextMenu: self buildCodeMenu.
+	self contextKeyBindings: self buildCodeKeyBindings
 ]
 
 { #category : #initialization }

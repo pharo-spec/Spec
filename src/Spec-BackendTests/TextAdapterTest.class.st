@@ -34,6 +34,7 @@ TextAdapterTest >> testRightClickShowsMenu [
 	| menu |
 
 	presenter contextMenu: (menu := SpecMockMenuPresenter new).
+
 	self deny: menu shown.
 	self emulateRightClick.
 	self assert: menu shown
