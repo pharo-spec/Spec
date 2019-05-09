@@ -18,7 +18,8 @@ Class {
 		'#selection => SpecObservableSlot',
 		'#doubleClickAction => SpecObservableSlot',
 		'#roots => SpecObservableSlot',
-		'#childrenBlock'
+		'#childrenBlock',
+		'#contextMenuHolder'
 	],
 	#category : #'Spec-Core-Widgets-Tree'
 }
@@ -86,6 +87,18 @@ TreeTablePresenter >> columns: aCollection [
 	columns value: aCollection
 ]
 
+{ #category : #api }
+TreeTablePresenter >> contextMenu [
+	^ contextMenuHolder value
+]
+
+{ #category : #api }
+TreeTablePresenter >> contextMenu: aValuable [
+	"Set the block used to defined the menu"
+	
+	contextMenuHolder value: aValuable
+]
+
 { #category : #private }
 TreeTablePresenter >> doubleClickAction [
 
@@ -122,7 +135,9 @@ TreeTablePresenter >> initialize [
 	isResizable := false.
 	selection := TreeSingleSelectionMode on: self.
 	childrenBlock :=  [ :item | #() ].
-	roots := #()
+	roots := #().
+	contextMenuHolder := nil asValueHolder.
+	self registerEvents 
 ]
 
 { #category : #accessing }
@@ -171,6 +186,11 @@ TreeTablePresenter >> itemAtPath: anArray ifAbsent: aBlock [
 	^ [ self itemAtPath: anArray ]
 		on: SubscriptOutOfBounds
 		do: [ aBlock value ]
+]
+
+{ #category : #initialization }
+TreeTablePresenter >> registerEvents [
+	contextMenuHolder whenChangedDo: [ self withAdapterDo: #updateMenu ]
 ]
 
 { #category : #accessing }
@@ -226,6 +246,13 @@ TreeTablePresenter >> whenColumnsChangedDo: aBlockClosure [
 TreeTablePresenter >> whenIsResizableChangedDo: aBlock [
 
 	self property: #isResizable whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+TreeTablePresenter >> whenMenuChangedDo: aBlock [
+	"Set a block to value when the menu block has changed"
+	
+	contextMenuHolder whenChangedDo: aBlock
 ]
 
 { #category : #accessing }
