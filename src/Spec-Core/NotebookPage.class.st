@@ -51,14 +51,12 @@ NotebookPage class >> title: aString provider: aBlock [
 
 { #category : #accessing }
 NotebookPage >> icon [
-
 	^ icon
 ]
 
 { #category : #accessing }
 NotebookPage >> icon: anIcon [
-
-	^ icon
+	icon := anIcon
 ]
 
 { #category : #initialization }
