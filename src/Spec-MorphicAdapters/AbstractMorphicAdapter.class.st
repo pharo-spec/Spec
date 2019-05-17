@@ -302,7 +302,7 @@ AbstractMorphicAdapter >> keyPressed: keyCode shift: shiftBoolean meta: metaBool
 
 	evt sentTo: widget.
 	"Some time to allow things to happen?"
-	10 milliseconds wait.
+	10 milliSeconds wait.
 ]
 
 { #category : #protocol }
