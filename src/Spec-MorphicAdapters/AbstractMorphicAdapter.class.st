@@ -282,19 +282,22 @@ AbstractMorphicAdapter >> isVisible [
 { #category : #emulating }
 AbstractMorphicAdapter >> keyPressed: keyCode shift: shiftBoolean meta: metaBoolean control: controlBoolean option: optionBoolean [
 	| evt modifiers |
-
 	modifiers := 0.
 	shiftBoolean ifTrue: [ modifiers := modifiers | 8 ].
-	metaBoolean ifTrue: [ modifiers := modifiers | 2r01000000 ].
+	metaBoolean ifTrue: [ modifiers := modifiers |
+		(Smalltalk os isWin32 | Smalltalk os isUnix
+			ifTrue: [ 2r00010000 ]
+			ifFalse: [ 2r01000000 ]) ].
 	controlBoolean ifTrue: [ modifiers := modifiers | 2r00010000 ].
-	optionBoolean ifTrue: [ modifiers := modifiers | (Smalltalk os isWin32 | Smalltalk os isUnix
-		ifTrue: [ 2r01000000 ]
-		ifFalse: [ 2r00100000 ]) ].
-
+	optionBoolean ifTrue: [ modifiers := modifiers |
+		(Smalltalk os isWin32 | Smalltalk os isUnix
+			ifTrue: [ 2r01000000 ]
+			ifFalse: [ 2r00100000 ]) ].
+	
 	evt := KeyboardEvent new
 		setType: #keystroke
 		buttons: modifiers
-		position: self widget position + (1@1)
+		position: self widget position + (1 @ 1)
 		keyValue: keyCode
 		charCode: keyCode
 		hand: World activeHand
@@ -302,7 +305,7 @@ AbstractMorphicAdapter >> keyPressed: keyCode shift: shiftBoolean meta: metaBool
 
 	evt sentTo: widget.
 	"Some time to allow things to happen?"
-	10 milliSeconds wait.
+	10 milliSeconds wait
 ]
 
 { #category : #protocol }
