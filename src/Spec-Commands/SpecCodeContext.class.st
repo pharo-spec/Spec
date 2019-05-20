@@ -1,5 +1,5 @@
 Class {
-	#name : #StCodeContext,
+	#name : #SpecCodeContext,
 	#superclass : #CmdToolContext,
 	#category : #'Spec-Commands-Code'
 }

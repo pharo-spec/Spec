@@ -1,5 +1,5 @@
 Class {
-	#name : #StCodeCommand,
+	#name : #SpecCodeCommand,
 	#superclass : #CmdCommand,
 	#category : #'Spec-Commands-Code'
 }

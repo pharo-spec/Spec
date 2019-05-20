@@ -55,13 +55,13 @@ CodePresenter >> behavior: aClass [
 { #category : #private }
 CodePresenter >> buildCodeKeyBindings [
 	
-	^ CmdContextMenuActivation buildContextKeyBindingsInContext: (StCodeContext for: self)
+	^ CmdContextMenuActivation buildContextKeyBindingsInContext: (SpecCodeContext for: self)
 ]
 
 { #category : #private }
 CodePresenter >> buildCodeMenu [
 	
-	^ CmdContextMenuActivation buildContextMenuInContext: (StCodeContext for: self)
+	^ CmdContextMenuActivation buildContextMenuInContext: (SpecCodeContext for: self)
 ]
 
 { #category : #'api-shortcuts' }
