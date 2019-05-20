@@ -21,6 +21,7 @@ BaselineOfSpec >> baseline: spec [
 			"Packages"
 			spec
 				package: 'Spec-Core' with: [ spec requires: #('Spec-Layout' 'Spec-Transmission') ];
+				package: 'Spec-Commands' with: [ spec requires: #('Spec-Core') ];
 				package: 'Spec-Deprecated80' with: [ spec requires: #('Spec-Tests' 'Spec-MorphicAdapters') ];
 				package: 'Spec-Inspector' with: [ spec requires: #('Spec-PolyWidgets') ];
 				package: 'Spec-Layout';
