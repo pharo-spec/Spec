@@ -25,7 +25,8 @@ TextAdapterTest >> testKeyBindings [
 		meta: true
 		control: false
 		option: false. 
-	self assert: handled.
+
+	self assert: handled
 ]
 
 { #category : #accessing }

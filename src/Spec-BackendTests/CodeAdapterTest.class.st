@@ -62,7 +62,6 @@ CodeAdapterTest >> testTextWithStyle [
 		behavior: nil;
 		doItReceiver: Object;
 		type: 'self asString.'.
-	self openInstance.
 	
 	text := self adapter textWithStyle.
 	self assertText: text atInterval: "self" (1 to: 4) isStyle: #self.
