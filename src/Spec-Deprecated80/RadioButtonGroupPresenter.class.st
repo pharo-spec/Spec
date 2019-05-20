@@ -69,7 +69,6 @@ RadioButtonGroupPresenter class >> isDeprecated [
 { #category : #api }
 RadioButtonGroupPresenter >> addRadioButton: aButton [
 	self linkRadioButton: aButton.
-	aButton canDeselectByClick: self canDeselectByClick.
 	buttons add: aButton.
 	aButton privateSetState: false;
 		owner: self.
@@ -84,18 +83,13 @@ RadioButtonGroupPresenter >> buttons [
 
 { #category : #api }
 RadioButtonGroupPresenter >> canDeselectByClick [
-	<api: #inspect>
-	"Return true clicking on a selected radio button deselects it"
-
-	^ canDeselectByClick value
+	self deprecated: 'This option is removed in Spec 2'.
+	^ false
 ]
 
 { #category : #api }
 RadioButtonGroupPresenter >> canDeselectByClick: aBoolean [
-	<api: #boolean getter: #canDeselectByClick registration: #whenCanDeselectByClickChanged>
-	"Set if clicking on a selected radio button can deselect it"
-	
-	canDeselectByClick value: aBoolean
+	self deprecated: 'This option is removed in Spec 2'
 ]
 
 { #category : #accessing }
@@ -152,13 +146,6 @@ RadioButtonGroupPresenter >> initialize [
 	super initialize.
 ]
 
-{ #category : #initialization }
-RadioButtonGroupPresenter >> initializePresenter [
-	self
-		whenCanDeselectByClickChangedDo:
-			[ :aBoolean | buttons do: [ :each | each canDeselectByClick: aBoolean ] ]
-]
-
 { #category : #api }
 RadioButtonGroupPresenter >> linkRadioButton: aButton [
 	buttons
@@ -184,9 +171,7 @@ RadioButtonGroupPresenter >> whenCanDeselectByClickChanged: aBlock [
 
 { #category : #'api-events' }
 RadioButtonGroupPresenter >> whenCanDeselectByClickChangedDo: aBlock [
-	"This method is triggered when `canDeselectByClick` changes"
-	
-	canDeselectByClick whenChangedDo: aBlock
+	self deprecated: 'This option is removed in Spec 2'
 ]
 
 { #category : #'as yet unclassified' }
