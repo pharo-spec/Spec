@@ -18,9 +18,8 @@ TextAdapterTest >> testKeyBindings [
 	presenter 
 		bindKeyCombination: $t meta 
 		toAction: [ handled := true ].
-	self openInstance.
 
-	presenter adapter 
+	self adapter 
 		keyPressed: $t asciiValue 
 		shift: false 
 		meta: true
