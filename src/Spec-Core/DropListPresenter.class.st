@@ -268,6 +268,16 @@ DropListPresenter >> setSelectedItem: anItem [
 ]
 
 { #category : #api }
+DropListPresenter >> sortingBlock [
+	^ self model sortingBlock
+]
+
+{ #category : #api }
+DropListPresenter >> sortingBlock: aBlock [
+	self model sortingBlock: aBlock
+]
+
+{ #category : #api }
 DropListPresenter >> startWithSelection [
 
 	startsWithSelection := true
@@ -304,4 +314,9 @@ DropListPresenter >> whenSelectionIndexChangedDo: aBlock [
 	self deprecated: 'Use whenSelectionChanged:'.
 
 	selection whenSelectionChanged: aBlock
+]
+
+{ #category : #'api-events' }
+DropListPresenter >> whenSortingBlockChangedDo: aBlock [
+	self model whenSortingBlockChangedDo: aBlock
 ]
