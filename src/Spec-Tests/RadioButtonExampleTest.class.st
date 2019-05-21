@@ -1,10 +1,10 @@
 Class {
-	#name : #RadioButtonGroupExampleTest,
+	#name : #RadioButtonExampleTest,
 	#superclass : #SpecSmokeTestCase,
 	#category : #'Spec-Tests-Examples-Morphic'
 }
 
 { #category : #running }
-RadioButtonGroupExampleTest >> classToTest [
+RadioButtonExampleTest >> classToTest [
 	^ RadioButtonGroupExample
 ]

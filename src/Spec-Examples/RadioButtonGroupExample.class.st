@@ -1,5 +1,5 @@
 "
-A RadioButtonGroupExample is an simple example about how to use RadioButtonGroupPresenter.
+I am a demo to show how to use radio buttons with Spec.
 
 self example
 "
@@ -10,25 +10,22 @@ Class {
 		'button1',
 		'button2',
 		'button3',
-		'container',
-		'morph1',
-		'morph2',
-		'morph3'
+		'label'
 	],
-	#category : #'Spec-Examples-Morphic'
+	#category : #'Spec-Examples-Demo-Checkboxes'
 }
 
 { #category : #specs }
 RadioButtonGroupExample class >> defaultSpec [
-	<spec: #default>
-	
-	^ SpecLayout composed
-		newRow: [ :row |
-			row 
+	^ SpecBoxLayout newVertical
+		add:
+			(SpecBoxLayout newHorizontal
 				add: #button1;
 				add: #button2;
-				add: #button3 ] height: self toolbarHeight;
-		add: #container;
+				add: #button3;
+				yourself)
+			withConstraints: [ :c | c height: self toolbarHeight ];
+		add: #label withConstraints: [ :c | c height: self labelHeight ];
 		yourself
 ]
 
@@ -41,108 +38,55 @@ RadioButtonGroupExample class >> example [
 { #category : #specs }
 RadioButtonGroupExample class >> title [
 
-	^ 'Radio Button Group Example'
-]
-
-{ #category : #accessing }
-RadioButtonGroupExample >> button1 [
-
-	^ button1
-]
-
-{ #category : #accessing }
-RadioButtonGroupExample >> button2 [
-
-	^ button2
-]
-
-{ #category : #accessing }
-RadioButtonGroupExample >> button3 [
-
-	^ button3
-]
-
-{ #category : #accessing }
-RadioButtonGroupExample >> container [
-
-	^ container asSpecAdapter
-]
-
-{ #category : #initialization }
-RadioButtonGroupExample >> initialize [
-
-	self initializeMorphs.
-	super initialize.
-
-	container := PanelMorph new.
-	container
-		changeTableLayout;
-		listDirection: #bottomToLeft.
-]
-
-{ #category : #initialization }
-RadioButtonGroupExample >> initializeMorphs [
-
-	morph1 := Morph new
-					color: Color red;
-					width: 60;
-					height: 20;
-					yourself.
-	morph2 := Morph new
-					color: Color blue;
-					width: 20;
-					height: 60;
-					yourself.
-	morph3 := Morph new
-					color: Color green;
-					width: 50;
-					height: 50;
-					yourself.
+	^ 'Radio Button Example'
 ]
 
 { #category : #initialization }
 RadioButtonGroupExample >> initializePresenter [
+	button1 whenActivatedDo: [ self updateLabel ].
+	button1 whenDeactivatedDo: [ self updateLabel ].
 
-	self on: button1 show: morph1.
-	self on: button2 show: morph2.
-	self on: button3 show: morph3.
-	
+	button2 whenChangedDo: [ self updateLabel ].
+
+	button3 whenChangedDo: [ self updateLabel ]
 ]
 
 { #category : #initialization }
 RadioButtonGroupExample >> initializeWidgets [
-	button1 := self instantiate: RadioButtonPresenter.
-	button2 := self instantiate: RadioButtonPresenter.
-	button3 := self instantiate: RadioButtonPresenter.
+	button1 := self newRadioButton.
+	button2 := self newRadioButton.
+	button3 := self newRadioButton.
+	label := self newLabel.
+
+	button1 associatedRadioButtons: {button2 . button3}.
+
 	button1 label: 'Button 1'.
 	button2 label: 'Button 2'.
 	button3 label: 'Button 3'.
-	self setFocus.
-	self setGroup
-]
 
-{ #category : #initialization }
-RadioButtonGroupExample >> on: button show: aMorph [
-
-	button whenActivatedDo: [ container addMorph: aMorph ].
-	button whenDeactivatedDo: [ container removeMorph: aMorph ]
+	self updateLabel.
+	self setFocus
 ]
 
 { #category : #initialization }
 RadioButtonGroupExample >> setFocus [
-	
 	self focusOrder
 		add: button1;
 		add: button2;
-		add: button3.
-	
+		add: button3
 ]
 
-{ #category : #initialization }
-RadioButtonGroupExample >> setGroup [
-RadioButtonGroupPresenter new
-		addRadioButton: button1;
-		addRadioButton: button2;
-		addRadioButton: button3;
-		default: button1.
+{ #category : #updating }
+RadioButtonGroupExample >> updateLabel [
+	label
+		label:
+			(String
+				streamContents: [ :s | 
+					{button1 . button2 . button3}
+						do: [ :button | 
+							s
+								<< button label;
+								<< ' : ';
+								<< (button state ifTrue: [ 'V' ] ifFalse: [ 'X' ]) ]
+						separatedBy: [ s << ' - ' ] ])
 ]
