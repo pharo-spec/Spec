@@ -19,5 +19,5 @@ SpecDemoRadioButtonsPresenter class >> defaultSpec [
 
 { #category : #initialization }
 SpecDemoRadioButtonsPresenter >> initializeWidgets [
-	radioButtonExample := self instantiate: RadioButtonGroupExample
+	radioButtonExample := self instantiate: RadioButtonExample
 ]

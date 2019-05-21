@@ -6,5 +6,5 @@ Class {
 
 { #category : #running }
 RadioButtonExampleTest >> classToTest [
-	^ RadioButtonGroupExample
+	^ RadioButtonExample
 ]

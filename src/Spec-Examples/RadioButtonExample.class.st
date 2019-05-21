@@ -4,7 +4,7 @@ I am a demo to show how to use radio buttons with Spec.
 self example
 "
 Class {
-	#name : #RadioButtonGroupExample,
+	#name : #RadioButtonExample,
 	#superclass : #ComposablePresenter,
 	#instVars : [
 		'button1',
@@ -16,7 +16,7 @@ Class {
 }
 
 { #category : #specs }
-RadioButtonGroupExample class >> defaultSpec [
+RadioButtonExample class >> defaultSpec [
 	^ SpecBoxLayout newVertical
 		add:
 			(SpecBoxLayout newHorizontal
@@ -30,19 +30,19 @@ RadioButtonGroupExample class >> defaultSpec [
 ]
 
 { #category : #example }
-RadioButtonGroupExample class >> example [
+RadioButtonExample class >> example [
 	<sampleInstance>
 	^ self new openWithSpec
 ]
 
 { #category : #specs }
-RadioButtonGroupExample class >> title [
+RadioButtonExample class >> title [
 
 	^ 'Radio Button Example'
 ]
 
 { #category : #initialization }
-RadioButtonGroupExample >> initializePresenter [
+RadioButtonExample >> initializePresenter [
 	button1 whenActivatedDo: [ self updateLabel ].
 	button1 whenDeactivatedDo: [ self updateLabel ].
 
@@ -52,7 +52,7 @@ RadioButtonGroupExample >> initializePresenter [
 ]
 
 { #category : #initialization }
-RadioButtonGroupExample >> initializeWidgets [
+RadioButtonExample >> initializeWidgets [
 	button1 := self newRadioButton.
 	button2 := self newRadioButton.
 	button3 := self newRadioButton.
@@ -69,7 +69,7 @@ RadioButtonGroupExample >> initializeWidgets [
 ]
 
 { #category : #initialization }
-RadioButtonGroupExample >> setFocus [
+RadioButtonExample >> setFocus [
 	self focusOrder
 		add: button1;
 		add: button2;
@@ -77,7 +77,7 @@ RadioButtonGroupExample >> setFocus [
 ]
 
 { #category : #updating }
-RadioButtonGroupExample >> updateLabel [
+RadioButtonExample >> updateLabel [
 	label
 		label:
 			(String
