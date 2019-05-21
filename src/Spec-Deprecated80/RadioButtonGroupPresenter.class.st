@@ -32,7 +32,6 @@ Class {
 	#superclass : #DynamicComposablePresenter,
 	#instVars : [
 		'buttons',
-		'canDeselectByClick',
 		'currentActivated'
 	],
 	#category : #'Spec-Deprecated80'
@@ -50,7 +49,7 @@ RadioButtonGroupPresenter class >> defaultSpec [
 RadioButtonGroupPresenter class >> example [
 	<sampleInstance>
 	| example |
-	example := RadioButtonGroupPresenter new.
+	example := self new.
 	example
 		addRadioButton: (RadioButtonPresenter new label: '1');
 		addRadioButton: (RadioButtonPresenter new label: '2');
@@ -141,7 +140,6 @@ RadioButtonGroupPresenter >> dynamicLayout [
 { #category : #initialization }
 RadioButtonGroupPresenter >> initialize [
 	buttons := OrderedCollection new.
-	canDeselectByClick := false asValueHolder.
 	currentActivated := nil asValueHolder.
 	super initialize.
 ]
