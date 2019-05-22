@@ -6,7 +6,6 @@ Class {
 		'collection',
 		'filter',
 		'shownCollection',
-		'changedBlock',
 		'sortingBlockHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'

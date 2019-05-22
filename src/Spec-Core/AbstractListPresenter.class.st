@@ -370,6 +370,11 @@ AbstractListPresenter >> whenActivatedDo: aBlockClosure [
 ]
 
 { #category : #'api-events' }
+AbstractListPresenter >> whenItemFilterBlockChangedDo: aBlock [
+	itemFilterBlockHolder whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
 AbstractListPresenter >> whenMenuChangedDo: aBlock [
 	"Set a block to value when the menu block has changed"
 	
