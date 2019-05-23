@@ -36,18 +36,6 @@ MorphicCodeAdapter >> guessTypeForName: aString [
 	^nil
 ]
 
-{ #category : #initialization }
-MorphicCodeAdapter >> initialize [
-
-	super initialize.
-]
-
-{ #category : #shout }
-MorphicCodeAdapter >> isAboutToStyle [
-
-	^ self okToStyle
-]
-
 { #category : #NOCompletion }
 MorphicCodeAdapter >> isCodeCompletionAllowed [
 
