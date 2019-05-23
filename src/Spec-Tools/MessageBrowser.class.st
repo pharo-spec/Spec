@@ -468,7 +468,6 @@ MessageBrowser >> initializeWidgets [
 		addColumn: (StringTableColumn title: 'Package' evaluated: [ :item | self packageOf: item ]);
 		beResizable.
 
-	textModel aboutToStyle: true.
 	textModel whenBuiltDo: [ :ann | ann widget font: self codeFont ].
 	refreshingBlockHolder := [ :item | true ] asValueHolder.
 
@@ -812,7 +811,7 @@ MessageBrowser >> textConverter [
 MessageBrowser >> textConverter: aTextConverter [
 
 	textConverterHolder value: (aTextConverter method: self textConverter method).
-	textModel aboutToStyle: self textConverter shouldShout .
+	textModel syntaxHighlight: self textConverter shouldShout .
 	textModel text: self textConverter getText.
 ]
 

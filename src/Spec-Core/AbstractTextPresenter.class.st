@@ -331,16 +331,6 @@ AbstractTextPresenter >> initialize [
 	self registerEvents
 ]
 
-{ #category : #'api-shout' }
-AbstractTextPresenter >> isAboutToStyle [
-	"Return if the text zone is shouted or not"
-
-	self 
-		deprecated: 'This has been moved to specific presenters' 
-		on: '2019-04-15'
-		in: #Pharo8
-]
-
 { #category : #NOCompletion }
 AbstractTextPresenter >> isCodeCompletionAllowed [
 	"Return if code completion is allowed"
