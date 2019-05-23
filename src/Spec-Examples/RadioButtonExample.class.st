@@ -1,10 +1,10 @@
 "
-A CheckBoxExample is a simple example of how to use CheckBoxes.
+I am a demo to show how to use radio buttons with Spec.
 
 self example
 "
 Class {
-	#name : #CheckBoxExample,
+	#name : #RadioButtonExample,
 	#superclass : #ComposablePresenter,
 	#instVars : [
 		'button1',
@@ -16,7 +16,7 @@ Class {
 }
 
 { #category : #specs }
-CheckBoxExample class >> defaultSpec [
+RadioButtonExample class >> defaultSpec [
 	^ SpecBoxLayout newVertical
 		add:
 			(SpecBoxLayout newHorizontal
@@ -30,19 +30,19 @@ CheckBoxExample class >> defaultSpec [
 ]
 
 { #category : #example }
-CheckBoxExample class >> example [
+RadioButtonExample class >> example [
 	<sampleInstance>
 	^ self new openWithSpec
 ]
 
 { #category : #specs }
-CheckBoxExample class >> title [
+RadioButtonExample class >> title [
 
-	^ 'CheckBox Example'
+	^ 'Radio Button Example'
 ]
 
 { #category : #initialization }
-CheckBoxExample >> initializePresenter [
+RadioButtonExample >> initializePresenter [
 	button1 whenActivatedDo: [ self updateLabel ].
 	button1 whenDeactivatedDo: [ self updateLabel ].
 
@@ -52,23 +52,24 @@ CheckBoxExample >> initializePresenter [
 ]
 
 { #category : #initialization }
-CheckBoxExample >> initializeWidgets [ 
-
-	button1 := self newCheckBox.
-	button2 := self newCheckBox.
-	button3 := self newCheckBox.
+RadioButtonExample >> initializeWidgets [
+	button1 := self newRadioButton.
+	button2 := self newRadioButton.
+	button3 := self newRadioButton.
 	label := self newLabel.
-	
+
+	button1 associatedRadioButtons: {button2 . button3}.
+
 	button1 label: 'Button 1'.
 	button2 label: 'Button 2'.
 	button3 label: 'Button 3'.
-	
+
 	self updateLabel.
-	self setFocus.
+	self setFocus
 ]
 
 { #category : #initialization }
-CheckBoxExample >> setFocus [
+RadioButtonExample >> setFocus [
 	self focusOrder
 		add: button1;
 		add: button2;
@@ -76,7 +77,7 @@ CheckBoxExample >> setFocus [
 ]
 
 { #category : #updating }
-CheckBoxExample >> updateLabel [
+RadioButtonExample >> updateLabel [
 	label
 		label:
 			(String

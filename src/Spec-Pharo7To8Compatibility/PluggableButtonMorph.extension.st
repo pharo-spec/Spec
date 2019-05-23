@@ -1,7 +1,7 @@
 Extension { #name : #PluggableButtonMorph }
 
-{ #category : #'*Spec-MorphicAdapters' }
-PluggableButtonMorph >> getMenu: shiftPressed [ 
+{ #category : #'*Spec-Pharo7To8Compatibility' }
+PluggableButtonMorph >> getMenu: shiftPressed [
 	"Answer the menu for this button, supplying an empty menu to be filled in. If the menu selector takes an extra argument, pass in the current state of the shift key."
 
 	| menu |
