@@ -4,8 +4,6 @@ Class {
 	#instVars : [
 		'announcer',
 		'collection',
-		'filter',
-		'shownCollection',
 		'sortingBlockHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'
@@ -66,13 +64,6 @@ SpecCollectionListModel >> collection: anObject [
 ]
 
 { #category : #accessing }
-SpecCollectionListModel >> filterWith: aBlockClosure [ 
-	
-	filter := aBlockClosure.
-	self refreshList.
-]
-
-{ #category : #accessing }
 SpecCollectionListModel >> indexOf: anIndex ifAbsent: aBlock [
 
 	^ collection indexOf: anIndex ifAbsent: aBlock
@@ -80,9 +71,7 @@ SpecCollectionListModel >> indexOf: anIndex ifAbsent: aBlock [
 
 { #category : #initialization }
 SpecCollectionListModel >> initialize [
-
 	super initialize.
-	filter := [ true ].
 	sortingBlockHolder := nil asValueHolder
 ]
 
@@ -94,8 +83,7 @@ SpecCollectionListModel >> items [
 
 { #category : #refreshing }
 SpecCollectionListModel >> refreshList [
-	self sortingBlock ifNotNil: [ :aSortFunction | collection sort: aSortFunction ].
-	shownCollection := collection select: [ :elem | filter cull: elem cull: collection ].
+	self sortingBlock ifNotNil: [ :aSortFunction | collection sort: aSortFunction ]
 ]
 
 { #category : #collection }
@@ -106,12 +94,6 @@ SpecCollectionListModel >> removeAll [
 	self refreshList.
 	self announcer announce: (ValueChanged newValue: self)
 		
-]
-
-{ #category : #accessing }
-SpecCollectionListModel >> shownItems [
-	
-	^ shownCollection
 ]
 
 { #category : #accessing }

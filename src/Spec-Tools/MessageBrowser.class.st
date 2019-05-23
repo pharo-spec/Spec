@@ -324,7 +324,7 @@ MessageBrowser >> findFirstOccurrenceOf: searchedString in: textToSearchIn [
 { #category : #announcements }
 MessageBrowser >> handleClassRenamed: anAnnouncement [
 	| items selectedIndex |
-	items := listModel model shownItems
+	items := listModel items
 		collect: [ :rgMethod | 
 			| interestedClassName interestedClass |
 			interestedClassName := anAnnouncement oldName.
@@ -381,7 +381,7 @@ MessageBrowser >> handleMethodModified: anAnnouncement [
 	edits
 		ifTrue: [ text := textModel pendingText ].
 	index := listModel selection selectedIndex.
-	list := listModel model shownItems
+	list := listModel items
 		remove: sel ifAbsent: [  ];
 		add: item asFullRingDefinition;
 		"to ensure it's still a RGMethod"
@@ -415,7 +415,7 @@ MessageBrowser >> handleMethodRemoved: anAnnouncement [
 		ifTrue: [ textModel hasUnacceptedEdits: false ].
 	self
 		messages:
-			(listModel model shownItems
+			(listModel items
 				remove: item asFullRingDefinition ifAbsent: [ nil ];
 				yourself).
 	listModel selectIndex: selection
