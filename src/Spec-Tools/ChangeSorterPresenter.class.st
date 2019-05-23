@@ -381,6 +381,7 @@ ChangeSorterPresenter >> initializeWidgets [
 	classesListPresenter := self newList.
 	changesListPresenter := self newList.
 	textPresenter := self newCode.
+	textPresenter withoutSyntaxHighlight.
 
 	self setFocus.
 
