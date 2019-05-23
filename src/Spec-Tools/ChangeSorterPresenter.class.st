@@ -372,7 +372,7 @@ ChangeSorterPresenter >> initializePresenter [
 	self registerClassActions.
 	self registerSelectorActions.
 
-	changesListPresenter items ifNotEmpty: [ changesListPresenter selectedIndex: 1 ]
+	changesListPresenter items ifNotEmpty: [ changesListPresenter selectIndex: 1 ]
 ]
 
 { #category : #initialization }
@@ -381,7 +381,6 @@ ChangeSorterPresenter >> initializeWidgets [
 	classesListPresenter := self newList.
 	changesListPresenter := self newList.
 	textPresenter := self newCode.
-	textPresenter withoutSyntaxHighlight.
 
 	self setFocus.
 
@@ -395,8 +394,7 @@ ChangeSorterPresenter >> initializeWidgets [
 
 	changesListPresenter items: self model allChanges.
 	changesListPresenter displayBlock: [ :item | item name ].
-	classesListPresenter sortingBlock: [ :a :b | a name < b name ].
-	textPresenter aboutToStyle: true
+	classesListPresenter sortingBlock: [ :a :b | a name < b name ]
 ]
 
 { #category : #initialization }
@@ -542,7 +540,7 @@ ChangeSorterPresenter >> registerClassActions [
 		whenSelectionChangedDo: [ :selection | 
 			self updateTextContents.
 			textPresenter behavior: selection selectedItem.
-			textPresenter aboutToStyle: false.
+			textPresenter syntaxHighlight: false.
 			selection selectedItem
 				ifNil: [ methodsListPresenter items: {} ]
 				ifNotNil: [ :class | 
@@ -764,9 +762,10 @@ ChangeSorterPresenter >> updateMessagesList [
 ChangeSorterPresenter >> updateTextContents [
 	| text |
 	text := self model setContentsOfChangeSet: self selectedChangeSet forClass: self selectedClass andSelector: self selectedSelector.
-	({'Method was added, but cannot be found!' . 'Added then removed (see versions)' . 'Method has been removed (see versions)'} includes: text)
-		ifTrue: [ textPresenter aboutToStyle: false ]
-		ifFalse: [ textPresenter aboutToStyle: true ].
+	(text asString lines
+		anySatisfy: [ :line | 
+			self model classDescriptionsMap values , {'Method was added, but cannot be found!' . 'Added then removed (see versions)' . 'Method has been removed (see versions)' . 'Class organization was changed.'}
+				includes: line ]) ifTrue: [ textPresenter withoutSyntaxHighlight ] ifFalse: [ textPresenter withSyntaxHighlight ].
 	textPresenter text: text
 ]
 

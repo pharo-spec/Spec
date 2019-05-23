@@ -10,6 +10,16 @@ MorphicCodeAdapter >> behavior [
 	^ self model behavior
 ]
 
+{ #category : #factory }
+MorphicCodeAdapter >> buildWidget [
+	| newWidget |
+	newWidget := super buildWidget.
+
+	self presenter whenSyntaxHighlightChangedDo: [ :hasSyntaxHighlight | self setEditingModeFor: newWidget ].
+	
+	^ newWidget
+]
+
 { #category : #'private-shout' }
 MorphicCodeAdapter >> classOrMetaClass: aClass [
 
@@ -67,7 +77,9 @@ MorphicCodeAdapter >> selectedClassOrMetaClass [
 
 { #category : #private }
 MorphicCodeAdapter >> setEditingModeFor: textArea [
-	self hasSyntaxHighlight ifTrue: [ self setEditingModeFor: textArea withBehavior: self behavior ] ifFalse: [ textArea beForPlainText ]
+	self hasSyntaxHighlight
+		ifTrue: [ self setEditingModeFor: textArea withBehavior: self behavior ]
+		ifFalse: [ super setEditingModeFor: textArea ]
 ]
 
 { #category : #private }

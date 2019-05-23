@@ -219,9 +219,7 @@ EyeAbstractInspector >> shortCuts [
 
 { #category : #accessing }
 EyeAbstractInspector >> text [
-	^ text ifNil: [ 
-		text := self newCode.
-		text aboutToStyle: true. ]
+	^ text ifNil: [ text := self newCode ]
 ]
 
 { #category : #accessing }
