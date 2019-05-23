@@ -301,8 +301,7 @@ EyeInspector >> objectChanged [
 	self description doItReceiver: self object.
 	self text doItContext: self doItContext.
 	self description doItContext: self doItContext.
-	self text adapter
-		ifNotNil: [ :w | w editingMode classOrMetaClass: self objectClass ]
+	self text ifNotNil: [ :w | w behavior: self objectClass ]
 ]
 
 { #category : #accessing }
