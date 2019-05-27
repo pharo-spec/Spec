@@ -64,6 +64,8 @@ MorphicTreeTableAdapter >> basicSelectionChanged: ann [
 	| selection |
 	selection := self presenter selection.
 	ann newSelectedIndexes ifEmpty: [ ^ selection unselectAll ].
+	(ann newSelectedIndexes difference: ann oldSelectedIndexes) ifEmpty: [ ^ self ].
+	
 	selection
 		selectPaths:
 			(ann newSelectedIndexes
