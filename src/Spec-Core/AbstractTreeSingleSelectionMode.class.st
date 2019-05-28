@@ -50,6 +50,11 @@ AbstractTreeSingleSelectionMode >> selectPath: aPath [
 	self subclassResponsibility
 ]
 
+{ #category : #selection }
+AbstractTreeSingleSelectionMode >> selectPaths: pathArray [
+	self subclassResponsibility
+]
+
 { #category : #selecting }
 AbstractTreeSingleSelectionMode >> unselectAll [
 
