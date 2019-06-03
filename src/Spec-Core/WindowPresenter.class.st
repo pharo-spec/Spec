@@ -322,7 +322,8 @@ WindowPresenter >> menu [
 { #category : #api }
 WindowPresenter >> menu: aMenuPresenter [
 
-	aMenuPresenter owner: self.
+	aMenuPresenter ifNotNil: [ 
+		aMenuPresenter owner: self ].
 	^ menuHolder value: aMenuPresenter
 ]
 
@@ -440,7 +441,8 @@ WindowPresenter >> toolBar [
 { #category : #api }
 WindowPresenter >> toolBar: aToolbarPresenter [
 
-	aToolbarPresenter owner: self.
+	aToolbarPresenter ifNotNil: [ 
+		aToolbarPresenter owner: self ].
 	^ toolBarHolder value: aToolbarPresenter
 ]
 
