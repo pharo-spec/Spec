@@ -12,6 +12,7 @@ Class {
 	#name : #MessageBrowser,
 	#superclass : #ComposablePresenter,
 	#instVars : [
+		'messageList',
 		'listModel',
 		'textModel',
 		'toolbarModel',
@@ -23,6 +24,19 @@ Class {
 	],
 	#category : #'Spec-Tools-Senders'
 }
+
+{ #category : #specs }
+MessageBrowser class >> alt [
+	<spec:#alt>
+	^ SpecPanedLayout newVertical
+		add: #messageList;
+		add:
+			(SpecBoxLayout newVertical
+				add: #toolbarModel withConstraints: [ :constraints | constraints height: self buttonHeight ];
+				add: #textModel;
+				yourself);
+		yourself
+]
 
 { #category : #'instance creation' }
 MessageBrowser class >> browse: aCollection [
@@ -143,6 +157,18 @@ MessageBrowser class >> messageBrowserListMenu: aBuilder [
 		keyText: 'v';
 		action: [ model browseVersionsFrom: message ].		
 
+]
+
+{ #category : #specs }
+MessageBrowser class >> openAlt [
+	<script>
+	| aSymbol |
+	aSymbol := #halt.
+	self new setRefreshingBlockForSendersOf: aSymbol;
+		autoSelect: aSymbol;
+		messages: aSymbol senders;
+		title: 'Senders of ', aSymbol printString;
+		openWithSpec: #alt
 ]
 
 { #category : #'instance creation - old' }
@@ -458,21 +484,22 @@ MessageBrowser >> initializePresenter [
 
 { #category : #initialization }
 MessageBrowser >> initializeWidgets [
-	listModel := self newTable.
+	messageList := self instantiate: MessageList.
+"	listModel := self newTable."
 	textModel := self newCode.
 	toolbarModel := self instantiate: MethodToolbar.
 
-	listModel
+"	listModel
 		addColumn: (StringTableColumn title: 'Location' evaluated: [ :item | self locationOf: item ]);
 		addColumn: (StringTableColumn title: 'Selector' evaluated: [ :item | self selectorOf: item ]);
 		addColumn: (StringTableColumn title: 'Package' evaluated: [ :item | self packageOf: item ]);
-		beResizable.
+		beResizable."
 
 	textModel whenBuiltDo: [ :ann | ann widget font: self codeFont ].
 	refreshingBlockHolder := [ :item | true ] asValueHolder.
 
 	self
-		setListMenu;
+	"	setListMenu;"
 		initializeDropList;
 		setFocus
 ]
