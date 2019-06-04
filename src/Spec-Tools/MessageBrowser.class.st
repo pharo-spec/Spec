@@ -10,13 +10,10 @@ MessageBrowser new
 "
 Class {
 	#name : #MessageBrowser,
-	#superclass : #ComposablePresenter,
+	#superclass : #AbstractMessageCentricBrowser,
 	#instVars : [
-		'messageList',
 		'textModel',
-		'toolbarModel',
-		'refreshingBlockHolder',
-		'textConverterHolder'
+		'refreshingBlockHolder'
 	],
 	#category : #'Spec-Tools-Senders'
 }
@@ -87,7 +84,7 @@ MessageBrowser class >> defaultSpec [
 		add: #messageList;
 		add:
 			(SpecBoxLayout newVertical
-				add: #toolbarModel withConstraints: [ :constraints | constraints height: self buttonHeight ];
+				add: #toolbarPresenter withConstraints: [ :constraints | constraints height: self buttonHeight ];
 				add: #textModel;
 				yourself);
 		yourself
@@ -284,15 +281,8 @@ MessageBrowser >> handleMethodRemoved: anAnnouncement [
 	self setSelectedIndex: selection
 ]
 
-{ #category : #private }
-MessageBrowser >> initialExtent [
-
-	^ (900 min: (World extent x)) @ (550 min: (World extent y))
-]
-
 { #category : #initialization }
 MessageBrowser >> initialize [
-	textConverterHolder := SourceMethodConverter new asValueHolder.
 	super initialize.
 	askOkToClose := true asValueHolder.
 	self windowIcon: self taskbarIcon.
@@ -302,8 +292,7 @@ MessageBrowser >> initialize [
 
 { #category : #initialization }
 MessageBrowser >> initializeDropList [
-
-	toolbarModel 
+	toolbarPresenter 
 		addItemLabeled: 'Source' do: [ self textConverter: SourceMethodConverter new ];
 		addItemLabeled: 'Time stamp' do: [ self textConverter: TimeStampMethodConverter new ]
 ]
@@ -319,9 +308,8 @@ MessageBrowser >> initializePresenter [
 
 { #category : #initialization }
 MessageBrowser >> initializeWidgets [
-	messageList := self instantiate: MessageList.
+	super initializeWidgets.
 	textModel := self newCode.
-	toolbarModel := self instantiate: MethodToolbar.
 
 	textModel whenBuiltDo: [ :ann | ann widget font: self codeFont ].
 	refreshingBlockHolder := [ :item | true ] asValueHolder.
@@ -350,18 +338,6 @@ MessageBrowser >> intervalOf: aSelector inCode: aText of: aMethod [
 { #category : #private }
 MessageBrowser >> intervalOf: aSelector inCommentText: aText [
 	^ self searchedString: aSelector asString in: aText
-]
-
-{ #category : #private }
-MessageBrowser >> isMethodDefinition: anItem [
-	"an item can be nil, a compiled method, or a ring object. Whereas a ring object can be a ring method or comment definition.
-	 Some operations are only valid for compiled methods or ring object that are a method definitions"
-
-	anItem ifNil: [ ^ false ].
-	
-	"assume it is a compiled method or ring method definition"
-	^ (anItem isRingObject and: [ anItem isMethod and: [ anItem compiledMethod isNotNil ] ])
-		or: [  anItem isCompiledMethod ]
 ]
 
 { #category : #api }
@@ -479,7 +455,7 @@ MessageBrowser >> selectIndex: anIndex [
 
 { #category : #private }
 MessageBrowser >> selectItem: item [
-	toolbarModel method: item.
+	toolbarPresenter method: item.
 	textModel behavior: (item ifNotNil: [ item methodClass ]).
 	textModel doItReceiver: textModel behavior.
 	textModel text: (self textConverter
@@ -496,15 +472,8 @@ MessageBrowser >> selectedClass [
 ]
 
 { #category : #api }
-MessageBrowser >> selectedMessage [
-
-	^ "listModel selection selectedItem" messageList selectedMessage
-]
-
-{ #category : #api }
 MessageBrowser >> selectedMessage: aMessage [
-
-	"listModel selectItem: aMessage."messageList selectMessage: aMessage
+	messageList selectMessage: aMessage
 ]
 
 { #category : #accessing }
@@ -517,7 +486,7 @@ MessageBrowser >> setFocus [
 
 	self focusOrder
 		add: messageList;
-		add: toolbarModel;
+		add: toolbarPresenter;
 		add: textModel
 ]
 
@@ -561,15 +530,8 @@ MessageBrowser >> sourceIntervalOf: aSelector in: aMethodNode [
 ]
 
 { #category : #accessing }
-MessageBrowser >> textConverter [
-	
-	^ textConverterHolder value
-]
-
-{ #category : #accessing }
 MessageBrowser >> textConverter: aTextConverter [
-
-	textConverterHolder value: (aTextConverter method: self textConverter method).
+	super textConverter: aTextConverter.
 	textModel syntaxHighlight: self textConverter shouldShout .
 	textModel text: self textConverter getText.
 ]
@@ -594,7 +556,7 @@ MessageBrowser >> title [
 { #category : #accessing }
 MessageBrowser >> toolbarModel [
 	
-	^ toolbarModel
+	^ toolbarPresenter
 ]
 
 { #category : #api }

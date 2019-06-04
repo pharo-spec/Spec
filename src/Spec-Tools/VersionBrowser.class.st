@@ -15,7 +15,7 @@ Class {
 VersionBrowser class >> browseVersionsForClass: aClass selector: aSelector [
 	^ aClass
 		compiledMethodAt: aSelector
-		ifPresent: [ :method | self new browseVersionsOf: method ]
+		ifPresent: [ :method | self browseVersionsForMethod: method ]
 		ifAbsent: [ self
 				inform:
 					('No method {1} in class {2}'
@@ -26,9 +26,7 @@ VersionBrowser class >> browseVersionsForClass: aClass selector: aSelector [
 
 { #category : #api }
 VersionBrowser class >> browseVersionsForMethod: aRingMethod [
-	^ self new
-		browseVersionsOf: aRingMethod
-		
+	^ self new browseVersionsOf: aRingMethod
 ]
 
 { #category : #'tool registry' }
@@ -83,13 +81,6 @@ VersionBrowser >> browseSenders [
 VersionBrowser >> browseVersionsOf: aMethod [
 
 	self setRGMethodFrom: aMethod.
-	^ self buildBrowser
-]
-
-{ #category : #'instance creation' }
-VersionBrowser >> browseVersionsOf: method class: aClass meta: meta category: msgCategory selector: aSelector [
-
-	self setRGMethodFrom: method.
 	^ self buildBrowser
 ]
 
