@@ -13,30 +13,13 @@ Class {
 	#superclass : #ComposablePresenter,
 	#instVars : [
 		'messageList',
-		'listModel',
 		'textModel',
 		'toolbarModel',
 		'refreshingBlockHolder',
-		'cachedHierarchy',
-		'model',
-		'topologicSortHolder',
 		'textConverterHolder'
 	],
 	#category : #'Spec-Tools-Senders'
 }
-
-{ #category : #specs }
-MessageBrowser class >> alt [
-	<spec:#alt>
-	^ SpecPanedLayout newVertical
-		add: #messageList;
-		add:
-			(SpecBoxLayout newVertical
-				add: #toolbarModel withConstraints: [ :constraints | constraints height: self buttonHeight ];
-				add: #textModel;
-				yourself);
-		yourself
-]
 
 { #category : #'instance creation' }
 MessageBrowser class >> browse: aCollection [
@@ -101,74 +84,13 @@ MessageBrowser class >> browseSendersOf: aSymbol [
 { #category : #specs }
 MessageBrowser class >> defaultSpec [
 	^ SpecPanedLayout newVertical
-		add: #listModel;
+		add: #messageList;
 		add:
 			(SpecBoxLayout newVertical
 				add: #toolbarModel withConstraints: [ :constraints | constraints height: self buttonHeight ];
 				add: #textModel;
 				yourself);
 		yourself
-]
-
-{ #category : #menu }
-MessageBrowser class >> messageBrowserListMenu: aBuilder [
-	<contextMenu>
-	<messageBrowserListMenu>
-	| target model message |
-	
-	target := aBuilder model.
-	model := target model.
-	target selectedMessage ifNil: [ ^self ].
-	
-	message := target selectedMessage compiledMethod.
-	
-	(aBuilder item: #'Browse full...')
-		keyText: 'b';
-		action: [ 
-			Smalltalk tools browser 
-				openOnClass: message methodClass
-				selector: message selector ].
-
-	(aBuilder item: #'Inspect method...')
-		keyText: 'i';
-		action: [ message inspect ];
-		withSeparatorAfter.
-
-	(aBuilder item: #'Remove method...')
-		keyText: 'x';
-		action: [ 
-			model 
-				removeMethod: message 
-				inClass: message methodClass ].
-
-	(aBuilder item: #'Senders of...')
-		keyText: 'n';
-		action: [ model browseSendersOfMessagesFrom: message selector ].
-
-	(aBuilder item: #'Implementors of...')
-		keyText: 'm';
-		action: [ model browseMessagesFrom: message selector ].
-
-	(aBuilder item: #'Users of...')
-		keyText: 'N';
-		action: [ model browseClassRefsOf: message methodClass ].
-	
-	(aBuilder item: #'Versions...')
-		keyText: 'v';
-		action: [ model browseVersionsFrom: message ].		
-
-]
-
-{ #category : #specs }
-MessageBrowser class >> openAlt [
-	<script>
-	| aSymbol |
-	aSymbol := #halt.
-	self new setRefreshingBlockForSendersOf: aSymbol;
-		autoSelect: aSymbol;
-		messages: aSymbol senders;
-		title: 'Senders of ', aSymbol printString;
-		openWithSpec: #alt
 ]
 
 { #category : #'instance creation - old' }
@@ -211,7 +133,7 @@ MessageBrowser class >> title [
 { #category : #private }
 MessageBrowser >> accept: text notifying: notifyer [
 
-	^listModel selectedItem
+	^ self selectedMessage
 		ifNotNil: [:message | 
 			message methodClass 
 				compile: text 
@@ -230,81 +152,12 @@ MessageBrowser >> autoSelect: aSelector [
 						ifTrue: [ self intervalOf: aSelector inCode: text of: msg ] ] ]
 ]
 
-{ #category : #actions }
-MessageBrowser >> browseClass [
-	self currentMethod ifNotNil: [ :method | method methodClass browse ]
-]
-
-{ #category : #actions }
-MessageBrowser >> browseClassRefs [
-	self currentMethod ifNotNil: [ :method | 
-		model browseClassRefsOf: method methodClass ]
-]
-
-{ #category : #actions }
-MessageBrowser >> browseMessages [
-	self currentMethod ifNotNil: [ :method |
-		 model browseMessagesFrom: method selector ]
-]
-
-{ #category : #actions }
-MessageBrowser >> browseMethod [
-	self currentMethod ifNotNil: [ :method | method browse ]
-]
-
-{ #category : #actions }
-MessageBrowser >> browseSendersOfMessage [
-	self currentMethod ifNotNil: [ :method |
-		model browseSendersOfMessagesFrom: method selector ]
-]
-
-{ #category : #actions }
-MessageBrowser >> browseVersions [
-	self currentMethod ifNotNil: [ :method |
-		model browseVersionsFrom: method compiledMethod ]
-]
-
-{ #category : #testing }
-MessageBrowser >> buildHierarchyForMessages: messages [
-	| result classes |
-	self topologicSort ifFalse: [ 
-		result := IdentityDictionary new.
-		messages do: [:m | result at: m put: {} ].
-		^ result ].
-	
-	result := Dictionary new.	
-	classes := (messages collect: #methodClass) asSet.
-	messages do: [:message || level class |
-		class := message methodClass.
-		level := OrderedCollection new.
-		class allSuperclassesDo: [:superClass |
-			(classes includes: superClass)
-				ifTrue: [ level addFirst: superClass ]].
-		level addLast: class.
-		level addLast: message selector.
-		result at: message put: level ].
-	^ result
-]
-
 { #category : #initialization }
 MessageBrowser >> buildUpdateTitle [
 	"Trying to have a clean subscription, this method is called in #initialize"
 	
 	self updateTitle.
 	textModel text: textModel getText.
-]
-
-{ #category : #testing }
-MessageBrowser >> cacheHierarchyForClasses: aCollection [
-
-	cachedHierarchy := self buildHierarchyForMessages: aCollection.
-]
-
-{ #category : #announcements }
-MessageBrowser >> classModified: anAnnouncement [
-	"this method forces the announcement to be handled in the UI process"
-	UIManager default defer: [ 
-		self handleClassModified: anAnnouncement ]
 ]
 
 { #category : #announcements }
@@ -317,22 +170,6 @@ MessageBrowser >> classRenamed: anAnnouncement [
 { #category : #private }
 MessageBrowser >> codeFont [
 	^ StandardFonts codeFont
-]
-
-{ #category : #accessing }
-MessageBrowser >> currentMethod [
-	^ self selectedMessage
-]
-
-{ #category : #'private-focus' }
-MessageBrowser >> ensureKeyBindingsFor: aWidget [
-	aWidget bindKeyCombination: PharoShortcuts current browseShortcut toAction: [ self browseMethod ].
-	aWidget bindKeyCombination: PharoShortcuts current inspectItShortcut toAction: [ self inspectMethod ].
-	aWidget bindKeyCombination: PharoShortcuts current browseImplementorsShortcut toAction: [ self browseMessages ].
-	aWidget bindKeyCombination: PharoShortcuts current browseSendersShortcut toAction: [ self browseSendersOfMessage ].
-	aWidget bindKeyCombination: PharoShortcuts current browseReferencesShortcut toAction: [ self browseClassRefs ].
-	aWidget bindKeyCombination: PharoShortcuts current browseVersionsShortcut toAction: [ self browseVersions ].
-	aWidget bindKeyCombination: PharoShortcuts current removeShortcut toAction: [ self removeMethods ]
 ]
 
 { #category : #'text selection' }
@@ -350,7 +187,7 @@ MessageBrowser >> findFirstOccurrenceOf: searchedString in: textToSearchIn [
 { #category : #announcements }
 MessageBrowser >> handleClassRenamed: anAnnouncement [
 	| items selectedIndex |
-	items := listModel items
+	items := self messages
 		collect: [ :rgMethod | 
 			| interestedClassName interestedClass |
 			interestedClassName := anAnnouncement oldName.
@@ -361,9 +198,9 @@ MessageBrowser >> handleClassRenamed: anAnnouncement [
 			rgMethod parentName = interestedClassName
 				ifTrue: [ (interestedClass >> rgMethod selector) asFullRingDefinition ]
 				ifFalse: [ rgMethod ] ].
-	selectedIndex := listModel selection selectedIndex.
+	selectedIndex := messageList selectedIndex.
 	self messages: items.
-	listModel selectIndex: selectedIndex
+	self setSelectedIndex: selectedIndex
 ]
 
 { #category : #announcements }
@@ -381,9 +218,9 @@ MessageBrowser >> handleMethodAdded: anAnnouncement [
 	boolean := textModel hasUnacceptedEdits.
 	boolean ifTrue: [ text := textModel pendingText ].
 	
-	sel := listModel selectedItem.
-	self messages: (listModel listItems add: item asFullRingDefinition; yourself).
-	listModel setSelectedItem: sel.
+	sel := self selectedMessage.
+	self messages: (self messages add: item asFullRingDefinition; yourself).
+	self setSelectedItem: sel.
 	
 	boolean ifTrue: [ textModel pendingText: text ]
 ]
@@ -396,7 +233,7 @@ MessageBrowser >> handleMethodModified: anAnnouncement [
 	refreshingBlockHolder ifNil: [ ^ self ].
 	item := anAnnouncement newMethod.
 	oldItem := anAnnouncement oldMethod.
-	sel := listModel selection selectedItem.
+	sel := self selectedMessage.
 	sel ifNil: [ ^ self ].
 	(sel methodClass = oldItem methodClass
 		and: [ sel selector = oldItem selector ])
@@ -406,14 +243,14 @@ MessageBrowser >> handleMethodModified: anAnnouncement [
 	edits := textModel hasUnacceptedEdits.
 	edits
 		ifTrue: [ text := textModel pendingText ].
-	index := listModel selection selectedIndex.
-	list := listModel items
+	index := messageList selectedIndex.
+	list := self messages
 		remove: sel ifAbsent: [  ];
 		add: item asFullRingDefinition;
 		"to ensure it's still a RGMethod"
 			yourself.
 	self messages: list.
-	listModel selectIndex: index.
+	self setSelectedIndex: index.
 	edits
 		ifFalse: [ ^ self ].
 	textModel pendingText: text.
@@ -433,18 +270,18 @@ MessageBrowser >> handleMethodRemoved: anAnnouncement [
 	item := anAnnouncement method.
 	(item methodClass notNil and: [ item methodClass isObsolete not ])
 		ifFalse: [ ^ self ].
-	selection := listModel selection selectedIndex.
-	removeItem := listModel selection selectedItem.
+	selection := messageList selectedIndex.
+	removeItem := self selectedMessage.
 	(removeItem notNil
 		and: [ removeItem methodClass = item methodClass
 				and: [ removeItem selector = item selector ] ])
 		ifTrue: [ textModel hasUnacceptedEdits: false ].
 	self
 		messages:
-			(listModel items
+			(self messages
 				remove: item asFullRingDefinition ifAbsent: [ nil ];
 				yourself).
-	listModel selectIndex: selection
+	self setSelectedIndex: selection
 ]
 
 { #category : #private }
@@ -456,8 +293,6 @@ MessageBrowser >> initialExtent [
 { #category : #initialization }
 MessageBrowser >> initialize [
 	textConverterHolder := SourceMethodConverter new asValueHolder.
-	model := AbstractTool new.
-	topologicSortHolder := true asValueHolder.
 	super initialize.
 	askOkToClose := true asValueHolder.
 	self windowIcon: self taskbarIcon.
@@ -475,7 +310,7 @@ MessageBrowser >> initializeDropList [
 
 { #category : #initialization }
 MessageBrowser >> initializePresenter [
-	listModel
+	messageList
 		whenSelectionChangedDo: [ :selection | [ :item | self selectItem: item ] cull: selection selectedItem ];
 		whenModelChangedDo: [ self updateTitle ].
 	titleHolder whenChangedDo: [ self updateTitle ].
@@ -485,28 +320,15 @@ MessageBrowser >> initializePresenter [
 { #category : #initialization }
 MessageBrowser >> initializeWidgets [
 	messageList := self instantiate: MessageList.
-"	listModel := self newTable."
 	textModel := self newCode.
 	toolbarModel := self instantiate: MethodToolbar.
-
-"	listModel
-		addColumn: (StringTableColumn title: 'Location' evaluated: [ :item | self locationOf: item ]);
-		addColumn: (StringTableColumn title: 'Selector' evaluated: [ :item | self selectorOf: item ]);
-		addColumn: (StringTableColumn title: 'Package' evaluated: [ :item | self packageOf: item ]);
-		beResizable."
 
 	textModel whenBuiltDo: [ :ann | ann widget font: self codeFont ].
 	refreshingBlockHolder := [ :item | true ] asValueHolder.
 
 	self
-	"	setListMenu;"
 		initializeDropList;
 		setFocus
-]
-
-{ #category : #actions }
-MessageBrowser >> inspectMethod [
-	self currentMethod ifNotNil: [ :m | m inspect ]
 ]
 
 { #category : #private }
@@ -542,40 +364,20 @@ MessageBrowser >> isMethodDefinition: anItem [
 		or: [  anItem isCompiledMethod ]
 ]
 
-{ #category : #accessing }
-MessageBrowser >> listModel [
-	
-	^ listModel
-]
-
-{ #category : #accessing }
-MessageBrowser >> locationOf: anItem [
-	^ String
-		streamContents: [ :aStream | 
-			3 to: (cachedHierarchy at: anItem) size do: [ :i | aStream << '    ' ].
-			aStream << (self methodClassNameForItem: anItem) << ' ('.
-			anItem isFromTrait
-				ifTrue: [ aStream
-						<< anItem compiledMethod origin name;
-						space ].
-			aStream << (self protocolNameForItem: anItem) << ')' ]
-]
-
 { #category : #api }
 MessageBrowser >> messages [
-
-	^ listModel listItems
+	^ messageList messages
 ]
 
 { #category : #api }
 MessageBrowser >> messages: aCollection [
-
-	self cacheHierarchyForClasses: aCollection.
+	messageList messages: aCollection
+	"self cacheHierarchyForClasses: aCollection.
 	listModel items: (cachedHierarchy keys
 		sort: [ :a :b | self sortClassesInCachedHierarchy: a b: b ])
 		asOrderedCollection.
 	listModel listSize > 0
-		ifTrue: [ listModel selectIndex: 1 ]
+		ifTrue: [ listModel selectIndex: 1 ]"
 ]
 
 { #category : #announcements }
@@ -608,11 +410,6 @@ MessageBrowser >> methodRemoved: anAnnouncement [
 		self handleMethodRemoved: anAnnouncement ]
 ]
 
-{ #category : #accessing }
-MessageBrowser >> model [ 
-	^model
-]
-
 { #category : #'messageList interface' }
 MessageBrowser >> open [
 
@@ -622,16 +419,6 @@ MessageBrowser >> open [
 { #category : #private }
 MessageBrowser >> packageNameForItem: anItem [
 	^ anItem package ifNil: [ '' ] ifNotNil: [ :package | package name ]
-]
-
-{ #category : #accessing }
-MessageBrowser >> packageOf: anItem [
-	^ '[' , (self packageNameForItem: anItem) , ']'
-]
-
-{ #category : #private }
-MessageBrowser >> protocolNameForItem: anItem [
-	^ anItem category ifNil: [ '' ]
 ]
 
 { #category : #api }
@@ -649,18 +436,6 @@ MessageBrowser >> registerToAnnouncements [
 		when: MethodRecategorized send: #methodRecategorized: to: self;
 		when: MethodRemoved send: #methodRemoved: to: self;
 		when: ClassRenamed send: #classRenamed: to: self
-]
-
-{ #category : #actions }
-MessageBrowser >> removeMethods [
-	self currentMethod ifNotNil: [ :method |
-		model removeMethod: method inClass: method methodClass ]
-]
-
-{ #category : #api }
-MessageBrowser >> resetSelection [
-	
-	listModel resetSelection
 ]
 
 { #category : #'text selection' }
@@ -697,6 +472,11 @@ MessageBrowser >> searchedString: searchedString in: aString [
 	^ interval
 ]
 
+{ #category : #api }
+MessageBrowser >> selectIndex: anIndex [
+	messageList selectIndex: anIndex
+]
+
 { #category : #private }
 MessageBrowser >> selectItem: item [
 	toolbarModel method: item.
@@ -715,53 +495,30 @@ MessageBrowser >> selectedClass [
 	^ self selectedMethod origin
 ]
 
-{ #category : #accessing }
-MessageBrowser >> selectedItem [
-
-	^ listModel selection selectedItem
-]
-
 { #category : #api }
 MessageBrowser >> selectedMessage [
 
-	^ listModel selection selectedItem
+	^ "listModel selection selectedItem" messageList selectedMessage
 ]
 
 { #category : #api }
 MessageBrowser >> selectedMessage: aMessage [
 
-	listModel selectItem: aMessage.
+	"listModel selectItem: aMessage."messageList selectMessage: aMessage
 ]
 
 { #category : #accessing }
 MessageBrowser >> selectedMethod [
-
-	self selectedMessage ifNil: [ ^ nil ].
-	^ self selectedMessage compiledMethod
-]
-
-{ #category : #accessing }
-MessageBrowser >> selectedMethods [
-	^ {self selectedMessage} asOrderedCollection 
-]
-
-{ #category : #accessing }
-MessageBrowser >> selectorOf: anItem [
-	^ anItem selector
+	^ messageList selectedMethod
 ]
 
 { #category : #initialization }
 MessageBrowser >> setFocus [
 
 	self focusOrder
-		add: listModel;
+		add: messageList;
 		add: toolbarModel;
 		add: textModel
-]
-
-{ #category : #menus }
-MessageBrowser >> setListMenu [
-	listModel contextMenu: [ :menu | menu addAllFromPragma: 'messageBrowserListMenu' target: self ]
 ]
 
 { #category : #api }
@@ -778,11 +535,6 @@ MessageBrowser >> setRefreshingBlockForSendersOf: aSelector [
 		method hasSelector: aSelector specialSelectorIndex: specialIndex ]
 ]
 
-{ #category : #api }
-MessageBrowser >> setSelectedIndex: anIndex [
-	listModel selectIndex: anIndex
-]
-
 { #category : #announcements }
 MessageBrowser >> shouldRefreshItem: item fromAnnouncement: anAnnouncement [
 	
@@ -796,29 +548,9 @@ MessageBrowser >> shouldRefreshItem: item fromAnnouncement: anAnnouncement [
 		cull: self
 ]
 
-{ #category : #testing }
-MessageBrowser >> sortClassesInCachedHierarchy: aMethodDefinition b: otherMethodDefinition [
-	"This method checks wether the cached inheritance hierarchy of a method should be before than the one of another method.
-	It compares alphabetically the hierarchy using #compare:
-	If both are alphabetically equals, it uses the size the hierarchy.
-	We do not know why this is done like this."
-	| aMethodHierarchy otherMethodHierarchy minSize|
-	aMethodHierarchy := cachedHierarchy at: aMethodDefinition.
-	otherMethodHierarchy := cachedHierarchy at: otherMethodDefinition.
-	
-	minSize := aMethodHierarchy size min: otherMethodHierarchy size.
-	
-	1 to: minSize do: [ :i | |compare|
-		compare := (aMethodHierarchy at: i) printString compare: (otherMethodHierarchy at: i) printString.
-		compare ~~ 2
-			ifTrue: [  ^ compare == 1 ]].
-	^  aMethodHierarchy size < otherMethodHierarchy size
-]
-
 { #category : #api }
 MessageBrowser >> sortingBlock: aBlock [
-
-	listModel sortingBlock: aBlock
+	messageList sortingBlock: aBlock
 ]
 
 { #category : #'text selection' }
@@ -856,7 +588,7 @@ MessageBrowser >> textModel: aModel [
 
 { #category : #private }
 MessageBrowser >> title [
-	^ titleHolder value , ' [' , listModel listSize printString , ']'
+	^ titleHolder value , ' [' , messageList numberOfElements printString , ']'
 ]
 
 { #category : #accessing }
@@ -867,20 +599,17 @@ MessageBrowser >> toolbarModel [
 
 { #category : #api }
 MessageBrowser >> topologicSort [
-	
-	^ topologicSortHolder value
+	^ messageList topologicSort
 ]
 
 { #category : #api }
 MessageBrowser >> topologicSort: aBoolean [
-	
-	^ topologicSortHolder value: aBoolean
+	^ messageList topologicSort: aBoolean
 ]
 
 { #category : #'api-events' }
 MessageBrowser >> whenSelectedItemChanged: aBlock [ 
-
-	listModel whenSelectedItemChanged: aBlock 
+	messageList whenSelectedItemChanged: aBlock 
 ]
 
 { #category : #private }
