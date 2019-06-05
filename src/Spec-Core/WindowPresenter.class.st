@@ -55,6 +55,11 @@ WindowPresenter >> aboutText [
 ]
 
 { #category : #api }
+WindowPresenter >> aboutText: aString [
+	aboutText value: aString
+]
+
+{ #category : #api }
 WindowPresenter >> aboutTitle [
 	"Answer the title of my About window"
 
@@ -487,6 +492,16 @@ WindowPresenter >> window [
 WindowPresenter >> window: aWindow [
 	
 	windowHolder value: aWindow
+]
+
+{ #category : #private }
+WindowPresenter >> windowIcon [
+	^ windowIcon value
+]
+
+{ #category : #private }
+WindowPresenter >> windowIcon: aForm [
+	windowIcon value: aForm
 ]
 
 { #category : #updating }

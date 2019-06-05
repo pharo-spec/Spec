@@ -193,18 +193,6 @@ ComposablePresenter class >> title [
 	^ 'Untitled window'
 ]
 
-{ #category : #'api-window' }
-ComposablePresenter >> aboutText [
-
-	^ aboutText value ifNil: [ aboutText value: 'The about text for this window has not been set.'; value]
-]
-
-{ #category : #'api-window' }
-ComposablePresenter >> aboutText: aString [
-
-	aboutText value: aString
-]
-
 { #category : #private }
 ComposablePresenter >> addAll: aWindow withSpec: aSpec [
 
@@ -296,19 +284,6 @@ ComposablePresenter >> applyMenuModel: aMenuModel [
 ComposablePresenter >> asPresenter [
 	"This allows to use presenter instances inside layouts directly"
 	^ self
-]
-
-{ #category : #'api-window' }
-ComposablePresenter >> askOkToClose [
-
-	^ askOkToClose value
-]
-
-{ #category : #'api-window' }
-ComposablePresenter >> askOkToClose: aBoolean [
-	self flag: #TODO. "Move this to WindowPresenter (it should be added in 
-	#initializeWindow:"
-	askOkToClose value: aBoolean
 ]
 
 { #category : #'api-shortcuts' }
@@ -491,12 +466,6 @@ ComposablePresenter >> hide [
 ComposablePresenter >> iconNamed: aSymbol [
 
 	^ self class iconNamed: aSymbol
-]
-
-{ #category : #'api-window' }
-ComposablePresenter >> initialExtent [
-
-	^ nil
 ]
 
 { #category : #initialization }
@@ -822,17 +791,6 @@ ComposablePresenter >> okToChange [
 		ifFalse: [ true ] 
 ]
 
-{ #category : #'api-shortcuts' }
-ComposablePresenter >> on: aShortcut do: aBlock [
-
-	self 
-		deprecated: 'Use #bindKeyCombination:toAction: instead.' 
-		transformWith: '`@receiver on: `@statements1 do: `@statements2' 
-						-> '`@receiver bindKeyCombination: `@statements1 toAction: `@statements2'.
-
-	self bindKeyCombination: aShortcut toAction: aBlock
-]
-
 { #category : #'api-announcements' }
 ComposablePresenter >> on: anAnnouncement send: aSelector to: aTarget [
 
@@ -935,17 +893,6 @@ ComposablePresenter >> setExtentAndBindingTo: widget [
 	self ensureKeyBindingsFor: widget
 ]
 
-{ #category : #'api-showing' }
-ComposablePresenter >> setModal: aWindow [
-
-	self 
-		deprecated: 'Do not use this directly. Use #openModalWithSpec (and family) instead.' 
-		on: '2019-02-26' 
-		in: #Pharo8.
-	
-	self changed: #setModal: with: { aWindow }
-]
-
 { #category : #'accessing model' }
 ComposablePresenter >> setModel: aDomainObject [
 
@@ -983,19 +930,6 @@ ComposablePresenter >> takeLastKeyboardFocus [
 	self focusOrder
 		ifEmpty: [ self takeKeyboardFocus ]
 		ifNotEmpty: [:focus | focus last takeKeyboardFocus ].
-]
-
-{ #category : #'api-window' }
-ComposablePresenter >> title [
-	"Return the window's title"
-
-	^ titleHolder value
-]
-
-{ #category : #'api-window' }
-ComposablePresenter >> title: aString [
-
-	titleHolder value: aString
 ]
 
 { #category : #TOREMOVE }
@@ -1063,26 +997,4 @@ ComposablePresenter >> whenWindowChanged: aBlock [
 	self announcer 
 		when: WindowBuilt 
 		do: [ :ann | aBlock cull: ann model ]
-]
-
-{ #category : #accessing }
-ComposablePresenter >> widget [
-	"I return the adapter responsible of building my widget"
-	
-	self deprecated: 'Should use #adapter instead'
-		transformWith: '`@receiver widget' -> '`@receiver adapter'.
-	
-	^ self spec
-]
-
-{ #category : #api }
-ComposablePresenter >> windowIcon [
-
-	^ windowIcon value
-]
-
-{ #category : #api }
-ComposablePresenter >> windowIcon: aForm [
-
-	windowIcon value: aForm
 ]
