@@ -420,9 +420,11 @@ WindowPresenter >> statusBar: aStatusbarPresenter [
 
 { #category : #api }
 WindowPresenter >> taskbarIcon [
-	^ self presenter
-		ifNil: [ super taskbarIcon ]
-		ifNotNil: [ :pres | pres windowIcon ifNil: [ pres taskbarIcon ] ]
+	^ self windowIcon
+		ifNil: [
+			self presenter
+				ifNil: [ super taskbarIcon ]
+				ifNotNil: #taskbarIcon ]
 ]
 
 { #category : #private }
