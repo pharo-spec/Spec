@@ -1,3 +1,6 @@
+"
+I am an abstrct class for browsers centered around messages such as MessageBrowser or VersionBrowser.
+"
 Class {
 	#name : #AbstractMessageCentricBrowser,
 	#superclass : #ComposablePresenter,

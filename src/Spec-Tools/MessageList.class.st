@@ -1,3 +1,19 @@
+"
+I am a presenter listing messages. 
+
+I am used by more complexe browsers such as MessageBrowser or VersionBrowser.
+	
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	cachedHierarchy:		<aDictionary>	 	A cache keeping info about the level of a class in the list.
+	listModel:				<aListPresenter>	A list presenter to show all the messages.
+	model:						<aTool>				A model grouping generic methods for managing packages/classes/groups/methods from a browser
+	topologySort:			<aBoolean>		 	A boolean to know if we should use a topology sort or not.
+
+"
 Class {
 	#name : #MessageList,
 	#superclass : #ComposablePresenter,
@@ -73,6 +89,11 @@ MessageList >> cacheHierarchyForClasses: aCollection [
 	cachedHierarchy := self buildHierarchyForMessages: aCollection.
 ]
 
+{ #category : #api }
+MessageList >> contextMenu: aMenuPresenter [
+	listModel contextMenu: aMenuPresenter
+]
+
 { #category : #'private-focus' }
 MessageList >> ensureKeyBindingsFor: aWidget [
 	aWidget bindKeyCombination: PharoShortcuts current browseShortcut toAction: [ self browseMethod ].
@@ -96,12 +117,13 @@ MessageList >> initializeWidgets [
 	listModel := self newTable.
 
 	listModel
+		sortingBlock: [ :a :b | self sortClassesInCachedHierarchy: a b: b ];
 		addColumn: (StringTableColumn title: 'Location' evaluated: [ :item | self locationOf: item ]);
 		addColumn: (StringTableColumn title: 'Selector' evaluated: [ :item | self selectorOf: item ]);
 		addColumn: (StringTableColumn title: 'Package' evaluated: [ :item | self packageOf: item ]);
 		beResizable.
 		
-	listModel contextMenu: self messageListMenu
+	self contextMenu: self messageListMenu
 ]
 
 { #category : #actions }
@@ -180,9 +202,7 @@ MessageList >> messages [
 { #category : #accessing }
 MessageList >> messages: aCollection [
 	self cacheHierarchyForClasses: aCollection.
-	listModel
-		items: cachedHierarchy keys asOrderedCollection;
-		sortingBlock: [ :a :b | self sortClassesInCachedHierarchy: a b: b ].
+	listModel items: cachedHierarchy keys asOrderedCollection.
 	listModel listSize > 0 ifTrue: [ listModel selectIndex: 1 ]
 ]
 
@@ -234,12 +254,12 @@ MessageList >> selectMessage: aMessage [
 
 { #category : #selecting }
 MessageList >> selectedIndex [
-	^ listModel selectedIndex
+	^ listModel selection selectedIndex
 ]
 
 { #category : #accessing }
 MessageList >> selectedMessage [
-	^ listModel selectedItem
+	^ listModel selection selectedItem
 ]
 
 { #category : #accessing }

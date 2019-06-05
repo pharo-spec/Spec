@@ -13,7 +13,7 @@ Class {
 	#superclass : #AbstractMessageCentricBrowser,
 	#instVars : [
 		'textModel',
-		'refreshingBlockHolder'
+		'refreshingBlock'
 	],
 	#category : #'Spec-Tools-Senders'
 }
@@ -123,7 +123,6 @@ MessageBrowser class >> taskbarIconName [
 
 { #category : #specs }
 MessageBrowser class >> title [
-
 	^ 'Message Browser'
 ]
 
@@ -205,7 +204,7 @@ MessageBrowser >> handleMethodAdded: anAnnouncement [
 	| item sel text boolean |
 
 	self isDisplayed ifFalse: [ ^ self ].
-	refreshingBlockHolder ifNil: [ ^ self ].
+	refreshingBlock ifNil: [ ^ self ].
 	
 	item := anAnnouncement method.
 	
@@ -217,7 +216,7 @@ MessageBrowser >> handleMethodAdded: anAnnouncement [
 	
 	sel := self selectedMessage.
 	self messages: (self messages add: item asFullRingDefinition; yourself).
-	self setSelectedItem: sel.
+	self selectedMessage: sel.
 	
 	boolean ifTrue: [ textModel pendingText: text ]
 ]
@@ -227,7 +226,7 @@ MessageBrowser >> handleMethodModified: anAnnouncement [
 	| item oldItem sel index text list edits |
 	self isDisplayed
 		ifFalse: [ ^ self ].
-	refreshingBlockHolder ifNil: [ ^ self ].
+	refreshingBlock ifNil: [ ^ self ].
 	item := anAnnouncement newMethod.
 	oldItem := anAnnouncement oldMethod.
 	sel := self selectedMessage.
@@ -259,7 +258,7 @@ MessageBrowser >> handleMethodRemoved: anAnnouncement [
 	| item selection removeItem |
 	self isDisplayed
 		ifFalse: [ ^ self ].
-	refreshingBlockHolder ifNil: [ ^ self ].
+	refreshingBlock ifNil: [ ^ self ].
 	self okToChange
 		ifFalse: [ ^ self ].
 
@@ -302,7 +301,6 @@ MessageBrowser >> initializePresenter [
 	messageList
 		whenSelectionChangedDo: [ :selection | [ :item | self selectItem: item ] cull: selection selectedItem ];
 		whenModelChangedDo: [ self updateTitle ].
-	titleHolder whenChangedDo: [ self updateTitle ].
 	textModel acceptBlock: [ :text :notifyer | (self accept: text notifying: notifyer) notNil ]
 ]
 
@@ -312,11 +310,17 @@ MessageBrowser >> initializeWidgets [
 	textModel := self newCode.
 
 	textModel whenBuiltDo: [ :ann | ann widget font: self codeFont ].
-	refreshingBlockHolder := [ :item | true ] asValueHolder.
+	refreshingBlock := [ :item | true ].
 
 	self
 		initializeDropList;
 		setFocus
+]
+
+{ #category : #initialization }
+MessageBrowser >> initializeWindow: aWindowPresenter [
+	super initializeWindow: aWindowPresenter.
+	aWindowPresenter title: self title
 ]
 
 { #category : #private }
@@ -348,12 +352,6 @@ MessageBrowser >> messages [
 { #category : #api }
 MessageBrowser >> messages: aCollection [
 	messageList messages: aCollection
-	"self cacheHierarchyForClasses: aCollection.
-	listModel items: (cachedHierarchy keys
-		sort: [ :a :b | self sortClassesInCachedHierarchy: a b: b ])
-		asOrderedCollection.
-	listModel listSize > 0
-		ifTrue: [ listModel selectIndex: 1 ]"
 ]
 
 { #category : #announcements }
@@ -399,8 +397,7 @@ MessageBrowser >> packageNameForItem: anItem [
 
 { #category : #api }
 MessageBrowser >> refreshingBlock: aBlock [
-
-	refreshingBlockHolder value: aBlock
+	refreshingBlock := aBlock
 ]
 
 { #category : #'announcements-registration' }
@@ -466,7 +463,7 @@ MessageBrowser >> selectItem: item [
 
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 MessageBrowser >> selectedClass [
 	^ self selectedMethod origin
 ]
@@ -492,8 +489,7 @@ MessageBrowser >> setFocus [
 
 { #category : #api }
 MessageBrowser >> setRefreshingBlockForImplementorsOf: aSelector [
-
-	self refreshingBlock: [:message | message selector = aSelector ].
+	self refreshingBlock: [ :message | message selector = aSelector ]
 ]
 
 { #category : #api }
@@ -506,15 +502,12 @@ MessageBrowser >> setRefreshingBlockForSendersOf: aSelector [
 
 { #category : #announcements }
 MessageBrowser >> shouldRefreshItem: item fromAnnouncement: anAnnouncement [
-	
-	"The refreshing block holder contains a block that accepts an item of the list, the received announcement and the message browser.
+	"The refreshing block contains a block that accepts an item of the list, the received announcement and the message browser.
 	It will anwer a boolean indicating if the modified item should be refreshed.
 	
 	Concretely, this is used to know if the contents of the selected message should be refreshed"
-	^ refreshingBlockHolder value
-		cull: item
-		cull: anAnnouncement
-		cull: self
+
+	^ refreshingBlock cull: item cull: anAnnouncement cull: self
 ]
 
 { #category : #api }
@@ -550,11 +543,11 @@ MessageBrowser >> textModel: aModel [
 
 { #category : #private }
 MessageBrowser >> title [
-	^ titleHolder value , ' [' , messageList numberOfElements printString , ']'
+	^ self class title , ' [' , messageList numberOfElements printString , ']'
 ]
 
 { #category : #accessing }
-MessageBrowser >> toolbarModel [
+MessageBrowser >> toolbarPresenter [
 	
 	^ toolbarPresenter
 ]
@@ -567,6 +560,11 @@ MessageBrowser >> topologicSort [
 { #category : #api }
 MessageBrowser >> topologicSort: aBoolean [
 	^ messageList topologicSort: aBoolean
+]
+
+{ #category : #api }
+MessageBrowser >> updateTitle [
+	self withWindowDo: [ :window | window title: self title ]
 ]
 
 { #category : #'api-events' }

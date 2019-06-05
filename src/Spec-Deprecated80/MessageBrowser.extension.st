@@ -46,3 +46,9 @@ MessageBrowser >> setSelectedIndex: anIndex [
 	self deprecated: 'Use #selectIndex: instead' transformWith: '`@receiver setSelectedIndex: `@argument' -> '`@receiver selectIndex: `@argument'.
 	self selectIndex: anIndex
 ]
+
+{ #category : #'*Spec-Deprecated80' }
+MessageBrowser >> toolbarModel [
+	self deprecated: 'Use #toolbarPresenter instead' transformWith: '`@receiver toolbarModel' -> '`@receiver toolbarPresenter'.
+	^ self toolbarPresenter
+]
