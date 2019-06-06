@@ -29,29 +29,6 @@ ToolBarOptionButtonGroup >> addOption: anOption [
 	anOption buttonGroup: self.
 ]
 
-{ #category : #factory }
-ToolBarOptionButtonGroup >> buildMorphOnToolbar: aToolbar [
-
-	| groupbox |
-	groupbox := PanelMorph new 
-		changeTableLayout;
-		listDirection: #leftToRight;
-		hResizing: #spaceFill;
-		vResizing: #spaceFill.
-	options doWithIndex: [ :each :index | | optionMorph |
-		optionMorph := each buildMorphOnToolbar: aToolbar.
-		groupbox addMorphBack: optionMorph
-	].
-	groupbox
-		hResizing: #rigid;
-		vResizing: #spaceFill;
-		"borderWidth: 1;"
-		borderStyle: (Smalltalk ui theme buttonNormalBorderStyleFor: groupbox);
-		cellPositioning: #center;
-		width: aToolbar toolbarItemSize * options size.
-	^ groupbox
-]
-
 { #category : #initialization }
 ToolBarOptionButtonGroup >> initialize [
 	super initialize.
