@@ -24,12 +24,6 @@ Object >> isSpecLayout [
 ]
 
 { #category : #'*Spec-Core' }
-Object >> isTreeNodeModel [
-
-	^ false
-]
-
-{ #category : #'*Spec-Core' }
 Object >> wrappedInValueHolderIfNeeded [
 
 	^ self asValueHolder
