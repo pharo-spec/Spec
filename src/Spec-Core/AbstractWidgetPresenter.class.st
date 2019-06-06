@@ -27,15 +27,15 @@ Class {
 	#name : #AbstractWidgetPresenter,
 	#superclass : #ComposablePresenter,
 	#instVars : [
-		'#borderWidth',
-		'#borderColor',
-		'#dragEnabled',
-		'#dropEnabled',
-		'#dragTransformationBlock',
-		'#wantDropBlock',
-		'#acceptDropBlock',
-		'#transferBlock',
-		'#color',
+		'#borderWidth => SpecObservableSlot',
+		'#borderColor => SpecObservableSlot',
+		'#dragEnabled => SpecObservableSlot',
+		'#dropEnabled => SpecObservableSlot',
+		'#dragTransformationBlock => SpecObservableSlot',
+		'#wantDropBlock => SpecObservableSlot',
+		'#acceptDropBlock => SpecObservableSlot',
+		'#transferBlock => SpecObservableSlot',
+		'#color => SpecObservableSlot',
 		'#help => SpecObservableSlot',
 		'#enabled => SpecObservableSlot'
 	],
@@ -56,14 +56,12 @@ AbstractWidgetPresenter class >> defaultSpec [
 
 { #category : #'drag and drop' }
 AbstractWidgetPresenter >> acceptDropBlock [
-
-	^ acceptDropBlock value
+	^ acceptDropBlock
 ]
 
 { #category : #'drag and drop' }
 AbstractWidgetPresenter >> acceptDropBlock: aBlock [
-
-	acceptDropBlock value: aBlock
+	acceptDropBlock := aBlock
 ]
 
 { #category : #'drag and drop' }
@@ -75,46 +73,40 @@ AbstractWidgetPresenter >> acceptDroppingMorph: draggedMorph event: event inMorp
 
 { #category : #api }
 AbstractWidgetPresenter >> borderColor [
-	"<api: #inspect>"
 	"Return the border color"
-	
-	^ borderColor value
+
+	^ borderColor
 ]
 
 { #category : #api }
 AbstractWidgetPresenter >> borderColor: aColor [
-	"<api: #color getter:#borderColor registration: #whenBorderColorChanged:>"
 	"Set the border width"
-	
-	borderColor value: aColor 
+
+	borderColor := aColor
 ]
 
 { #category : #api }
 AbstractWidgetPresenter >> borderWidth [
-	"<api: #inspect>"
 	"Return the border width"
-	
-	^ borderWidth value
+
+	^ borderWidth
 ]
 
 { #category : #api }
 AbstractWidgetPresenter >> borderWidth: anInteger [
-	"<api: #integer min:0 max: 5 getter:#borderWidth registration: #whenBorderWidthChanged:>"
 	"Set the border width"
-	
-	borderWidth value: anInteger
+
+	borderWidth := anInteger
 ]
 
 { #category : #api }
 AbstractWidgetPresenter >> color [
-
-	^ color value
+	^ color
 ]
 
 { #category : #api }
 AbstractWidgetPresenter >> color: aColor [
-
-	^ color value: aColor
+	^ color := aColor
 ]
 
 { #category : #initialization }
@@ -141,38 +133,32 @@ AbstractWidgetPresenter >> disable [
 
 { #category : #'drag and drop' }
 AbstractWidgetPresenter >> dragEnabled [
-
-	^ dragEnabled value
+	^ dragEnabled
 ]
 
 { #category : #'drag and drop' }
-AbstractWidgetPresenter >> dragEnabled: anObject [
-
-	dragEnabled value: anObject
+AbstractWidgetPresenter >> dragEnabled: aBoolean [
+	dragEnabled := aBoolean
 ]
 
 { #category : #'drag and drop' }
 AbstractWidgetPresenter >> dragTransformationBlock [
-
-	^ dragTransformationBlock value
+	^ dragTransformationBlock
 ]
 
 { #category : #'drag and drop' }
 AbstractWidgetPresenter >> dragTransformationBlock: aBlock [
-
-	dragTransformationBlock value: aBlock
+	dragTransformationBlock := aBlock
 ]
 
 { #category : #'drag and drop' }
 AbstractWidgetPresenter >> dropEnabled [
-
-	^ dropEnabled value
+	^ dropEnabled
 ]
 
 { #category : #'drag and drop' }
 AbstractWidgetPresenter >> dropEnabled: aBoolean [
-
-	dropEnabled value: aBoolean
+	dropEnabled := aBoolean
 ]
 
 { #category : #api }
@@ -224,23 +210,23 @@ AbstractWidgetPresenter >> initialize [
 	super initialize.
 
 	help := nil.
-	borderWidth := 0 asValueHolder.
-	borderColor := Color transparent asValueHolder.
+	borderWidth := 0.
+	borderColor := Color transparent.
 	enabled := true.
-	dragEnabled := false asValueHolder.
-	dropEnabled := false asValueHolder.
-	dragTransformationBlock := [ :item :source | item ] asValueHolder.
-	wantDropBlock := [ :draggedItem :event :source | self dropEnabled ] asValueHolder.
-	acceptDropBlock := [ :draggedItem :event :source |  ] asValueHolder.
-	transferBlock := [ :passenger :source | self defaultTransferFor: passenger from: source ] asValueHolder.
-	color := self defaultColor asValueHolder.
+	dragEnabled := false.
+	dropEnabled := false.
+	dragTransformationBlock := [ :item :source | item ].
+	wantDropBlock := [ :draggedItem :event :source | self dropEnabled ].
+	acceptDropBlock := [ :draggedItem :event :source |  ].
+	transferBlock := [ :passenger :source | self defaultTransferFor: passenger from: source ].
+	color := self defaultColor.
 	self whenHelpChangedDo: [ :string | self withAdapterDo: [ :w | w update: #setBalloonText: with: {string} ] ].
-	borderWidth whenChangedDo: [ :int | self withWidgetDo: [ :w | w update: #borderWidth: with: {int} ] ].
-	borderColor whenChangedDo: [ :newColor | self withWidgetDo: [ :w | w update: #borderColor: with: {newColor} ] ].
-	color whenChangedDo: [ :newColor | self withAdapterDo: [ :w | w update: #color: with: {newColor} ] ].
+	self whenBorderWidthChangedDo: [ :int | self withWidgetDo: [ :w | w update: #borderWidth: with: {int} ] ].
+	self whenBorderColorChangedDo: [ :newColor | self withWidgetDo: [ :w | w update: #borderColor: with: {newColor} ] ].
+	self property: #color whenChangedDo: [ :newColor | self withAdapterDo: [ :w | w update: #color: with: {newColor} ] ].
 	self whenEnabledChangedDo: [ :b | self withAdapterDo: [ :w | w update: #enabled: with: {b} ] ].
-	dragEnabled whenChangedDo: [ :b | self withWidgetDo: [ :w | w update: #dragEnabled: with: {b} ] ].
-	dropEnabled whenChangedDo: [ :b | self withWidgetDo: [ :w | w update: #dropEnabled: with: {b} ] ]
+	self property: #dragEnabled whenChangedDo: [ :b | self withWidgetDo: [ :w | w update: #dragEnabled: with: {b} ] ].
+	self property: #dropEnabled whenChangedDo: [ :b | self withWidgetDo: [ :w | w update: #dropEnabled: with: {b} ] ]
 ]
 
 { #category : #initialization }
@@ -255,20 +241,17 @@ AbstractWidgetPresenter >> isEnabled [
 
 { #category : #'drag and drop' }
 AbstractWidgetPresenter >> transferBlock [
-
-	^ transferBlock value
+	^ transferBlock
 ]
 
 { #category : #'drag and drop' }
 AbstractWidgetPresenter >> transferBlock: aBlock [
-
-	transferBlock value: aBlock
+	transferBlock := aBlock
 ]
 
 { #category : #'drag and drop' }
 AbstractWidgetPresenter >> transferFor: passenger from: source [
-
-	^ transferBlock value value: passenger value: source
+	^ self transferBlock value: passenger value: source
 ]
 
 { #category : #'private-traversing' }
@@ -281,35 +264,33 @@ AbstractWidgetPresenter >> traversePresentersDo: aBlock excluding: excludes [
 
 { #category : #'drag and drop' }
 AbstractWidgetPresenter >> wantDropBlock [
-
-	^ wantDropBlock value
+	^ wantDropBlock
 ]
 
 { #category : #'drag and drop' }
 AbstractWidgetPresenter >> wantDropBlock: aBlock [
-
-	wantDropBlock value: aBlock
+	wantDropBlock := aBlock
 ]
 
 { #category : #'drag and drop' }
 AbstractWidgetPresenter >> wantsDroppedMorph: draggedMorph event: anEvent inMorph: source [
-	draggedMorph isTransferable ifFalse: [ ^false ].
-	
-	^wantDropBlock value cull: draggedMorph passenger cull: anEvent cull:source
+	draggedMorph isTransferable ifFalse: [ ^ false ].
+
+	^ self wantDropBlock cull: draggedMorph passenger cull: anEvent cull: source
 ]
 
 { #category : #'api-events' }
 AbstractWidgetPresenter >> whenBorderColorChangedDo: aBlock [
 	"Set a block to be performed when the brder width changed"
-	
-	borderColor whenChangedDo: aBlock
+
+	self property: #borderColor whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
 AbstractWidgetPresenter >> whenBorderWidthChangedDo: aBlock [
 	"Set a block to be performed when the brder width changed"
-	
-	borderWidth whenChangedDo: aBlock
+
+	self property: #borderWidth whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
