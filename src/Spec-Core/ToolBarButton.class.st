@@ -8,8 +8,7 @@ Class {
 		'label',
 		'icon',
 		'action',
-		'badge',
-		'help'
+		'badge'
 	],
 	#category : #'Spec-Core-Widgets-Toolbar'
 }
