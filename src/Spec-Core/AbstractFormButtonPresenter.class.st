@@ -69,7 +69,6 @@ AbstractFormButtonPresenter >> initialize [
 
 	actionWhenActivatedHolder := [] asValueHolder.
 	actionWhenDeactivatedHolder := [] asValueHolder.
-	enabledHolder := true asValueHolder.
 	state := false.
 	
 	labelClickableHolder := true asValueHolder. 

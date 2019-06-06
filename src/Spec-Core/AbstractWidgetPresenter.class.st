@@ -29,7 +29,6 @@ Class {
 	#instVars : [
 		'#borderWidth',
 		'#borderColor',
-		'#enabledHolder',
 		'#dragEnabled',
 		'#dropEnabled',
 		'#dragTransformationBlock',
@@ -37,7 +36,8 @@ Class {
 		'#acceptDropBlock',
 		'#transferBlock',
 		'#color',
-		'#help => SpecObservableSlot'
+		'#help => SpecObservableSlot',
+		'#enabled => SpecObservableSlot'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -184,16 +184,11 @@ AbstractWidgetPresenter >> enable [
 ]
 
 { #category : #api }
-AbstractWidgetPresenter >> enabled: aBoolean [
-	"Set if the button is enabled (clickable)"
-	
-	enabledHolder value: aBoolean
-]
+AbstractWidgetPresenter >> enabled: aBooleanOrValuable [
+	"Set if the button is enabled (clickable).
+	This can either be a boolean or a block returning a boolean."
 
-{ #category : #api }
-AbstractWidgetPresenter >> enabledHolder [
-	
-	^ enabledHolder
+	enabled := aBooleanOrValuable
 ]
 
 { #category : #'api-focus' }
@@ -231,7 +226,7 @@ AbstractWidgetPresenter >> initialize [
 	help := nil.
 	borderWidth := 0 asValueHolder.
 	borderColor := Color transparent asValueHolder.
-	enabledHolder := true asValueHolder.
+	enabled := true.
 	dragEnabled := false asValueHolder.
 	dropEnabled := false asValueHolder.
 	dragTransformationBlock := [ :item :source | item ] asValueHolder.
@@ -243,7 +238,7 @@ AbstractWidgetPresenter >> initialize [
 	borderWidth whenChangedDo: [ :int | self withWidgetDo: [ :w | w update: #borderWidth: with: {int} ] ].
 	borderColor whenChangedDo: [ :newColor | self withWidgetDo: [ :w | w update: #borderColor: with: {newColor} ] ].
 	color whenChangedDo: [ :newColor | self withAdapterDo: [ :w | w update: #color: with: {newColor} ] ].
-	enabledHolder whenChangedDo: [ :b | self withAdapterDo: [ :w | w update: #enabled: with: {b} ] ].
+	self whenEnabledChangedDo: [ :b | self withAdapterDo: [ :w | w update: #enabled: with: {b} ] ].
 	dragEnabled whenChangedDo: [ :b | self withWidgetDo: [ :w | w update: #dragEnabled: with: {b} ] ].
 	dropEnabled whenChangedDo: [ :b | self withWidgetDo: [ :w | w update: #dropEnabled: with: {b} ] ]
 ]
@@ -255,8 +250,7 @@ AbstractWidgetPresenter >> initializeWidgets [
 
 { #category : #api }
 AbstractWidgetPresenter >> isEnabled [
-
-	^ enabledHolder value
+	^ enabled
 ]
 
 { #category : #'drag and drop' }
@@ -321,8 +315,8 @@ AbstractWidgetPresenter >> whenBorderWidthChangedDo: aBlock [
 { #category : #'api-events' }
 AbstractWidgetPresenter >> whenEnabledChangedDo: aBlock [
 	"Set a block to performed when the widget is enabled or disabled"
-	
-	enabledHolder whenChangedDo: aBlock
+
+	self property: #enabled whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
