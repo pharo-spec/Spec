@@ -1,9 +1,6 @@
 Class {
 	#name : #BaselineOfSpec,
 	#superclass : #BaselineOf,
-	#instVars : [
-		'link'
-	],
 	#category : #BaselineOfSpec
 }
 
