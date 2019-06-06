@@ -56,6 +56,12 @@ Presenter class >> owner: anOwningPresenter [
 		yourself
 ]
 
+{ #category : #'as yet unclassified' }
+Presenter class >> systemIconName [
+
+	^ #smallWindow
+]
+
 { #category : #accessing }
 Presenter class >> toolName [
 	"The tool name can be used in some places such as the About window's title."

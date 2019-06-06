@@ -1,8 +1,6 @@
 Class {
 	#name : #AthensAnimatedPresenter,
 	#superclass : #AthensStaticPresenter,
-	#traits : 'TSpecObservable',
-	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
 		'timeline',
 		'updateBlock'

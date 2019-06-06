@@ -9,8 +9,6 @@ I provide the following variables and their accessors
 Class {
 	#name : #ImagePresenter,
 	#superclass : #AbstractWidgetPresenter,
-	#traits : 'TSpecObservable',
-	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
 		'#image => SpecObservableSlot',
 		'#action => SpecObservableSlot',

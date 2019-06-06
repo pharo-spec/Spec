@@ -9,8 +9,8 @@ self example
 Class {
 	#name : #TreeTablePresenter,
 	#superclass : #AbstractWidgetPresenter,
-	#traits : 'TSpecObservable + TSpecHaveWrappingScrollBars',
-	#classTraits : 'TSpecObservable classTrait + TSpecHaveWrappingScrollBars classTrait',
+	#traits : 'TSpecHaveWrappingScrollBars',
+	#classTraits : 'TSpecHaveWrappingScrollBars classTrait',
 	#instVars : [
 		'#columns',
 		'#showColumnHeaders => SpecObservableSlot',

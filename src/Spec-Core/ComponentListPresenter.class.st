@@ -4,8 +4,6 @@ I am a list of components ( Widgets :) )
 Class {
 	#name : #ComponentListPresenter,
 	#superclass : #AbstractWidgetPresenter,
-	#traits : 'TSpecObservable',
-	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
 		'#presenters => SpecObservableSlot'
 	],

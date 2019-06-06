@@ -86,8 +86,6 @@ It possible to define more than one method to give the possibility to use anothe
 Class {
 	#name : #ComposablePresenter,
 	#superclass : #Presenter,
-	#traits : 'TSpecObservable',
-	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
 		'#layout',
 		'#application',
@@ -179,12 +177,6 @@ ComposablePresenter class >> owner: anOwningPresenter on: aDomainObject [
 		setModelBeforeInitialization: aDomainObject;
 		initialize;
 		yourself
-]
-
-{ #category : #'as yet unclassified' }
-ComposablePresenter class >> systemIconName [
-
-	^ #smallWindow
 ]
 
 { #category : #specs }
