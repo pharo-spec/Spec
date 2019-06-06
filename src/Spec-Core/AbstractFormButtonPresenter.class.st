@@ -17,8 +17,6 @@ I provide the following methods
 Class {
 	#name : #AbstractFormButtonPresenter,
 	#superclass : #AbstractWidgetPresenter,
-	#traits : 'TSpecObservable',
-	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
 		'#actionWhenActivatedHolder',
 		'#state => SpecObservableSlot',

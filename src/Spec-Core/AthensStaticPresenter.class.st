@@ -1,8 +1,6 @@
 Class {
 	#name : #AthensStaticPresenter,
 	#superclass : #AbstractWidgetPresenter,
-	#traits : 'TSpecObservable',
-	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
 		'#drawBlock => SpecObservableSlot',
 		'#surfaceExtent => SpecObservableSlot'

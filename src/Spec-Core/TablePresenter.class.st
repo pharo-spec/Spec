@@ -1,8 +1,6 @@
 Class {
 	#name : #TablePresenter,
 	#superclass : #AbstractListPresenter,
-	#traits : 'TSpecObservable',
-	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
 		'#columns => SpecObservableSlot',
 		'#showColumnHeaders => SpecObservableSlot',
