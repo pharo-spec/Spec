@@ -27,17 +27,17 @@ Class {
 	#name : #AbstractWidgetPresenter,
 	#superclass : #ComposablePresenter,
 	#instVars : [
-		'helpHolder',
-		'borderWidth',
-		'borderColor',
-		'enabledHolder',
-		'dragEnabled',
-		'dropEnabled',
-		'dragTransformationBlock',
-		'wantDropBlock',
-		'acceptDropBlock',
-		'transferBlock',
-		'color'
+		'#borderWidth',
+		'#borderColor',
+		'#enabledHolder',
+		'#dragEnabled',
+		'#dropEnabled',
+		'#dragTransformationBlock',
+		'#wantDropBlock',
+		'#acceptDropBlock',
+		'#transferBlock',
+		'#color',
+		'#help => SpecObservableSlot'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -212,53 +212,40 @@ AbstractWidgetPresenter >> eventKeyStrokesForPreviousFocus [
 
 { #category : #api }
 AbstractWidgetPresenter >> help [
-	"<api: #inspect>"
-	"Return the ballon text"
-	
-	^ helpHolder value
+	"Return the help string to display as help to the user."
+
+	^ help
 ]
 
 { #category : #api }
 AbstractWidgetPresenter >> help: aString [
-	"<api: #string getter:#help registration: #whenHelpChanged:>"
-	"Set the help string"
-	
-	helpHolder value: aString
+	"Set a help string to display to the user if he let the mouse over the widget."
+
+	help := aString
 ]
 
 { #category : #initialization }
 AbstractWidgetPresenter >> initialize [
-
 	super initialize.
 
-	helpHolder := nil asValueHolder.
+	help := nil.
 	borderWidth := 0 asValueHolder.
 	borderColor := Color transparent asValueHolder.
 	enabledHolder := true asValueHolder.
 	dragEnabled := false asValueHolder.
 	dropEnabled := false asValueHolder.
 	dragTransformationBlock := [ :item :source | item ] asValueHolder.
-	wantDropBlock := [ :draggedItem :event :source | self dropEnabled ]
-		asValueHolder.
+	wantDropBlock := [ :draggedItem :event :source | self dropEnabled ] asValueHolder.
 	acceptDropBlock := [ :draggedItem :event :source |  ] asValueHolder.
-	transferBlock := [ :passenger :source | self defaultTransferFor: passenger from: source ]
-		asValueHolder.
+	transferBlock := [ :passenger :source | self defaultTransferFor: passenger from: source ] asValueHolder.
 	color := self defaultColor asValueHolder.
-	helpHolder whenChangedDo: [ :string | 
-		self withAdapterDo: [ :w | 
-			w update: #setBalloonText: with: {string} ] ].
-	borderWidth whenChangedDo: [ :int | 
-		self withWidgetDo: [ :w | w update: #borderWidth: with: {int} ] ].
-	borderColor whenChangedDo: [ :newColor | 
-		self withWidgetDo: [ :w | w update: #borderColor: with: {newColor} ] ].
-	color whenChangedDo: [ :newColor | 
-		self withAdapterDo: [ :w | w update: #color: with: {newColor} ] ].
-	enabledHolder whenChangedDo: [ :b | 
-		self withAdapterDo: [ :w | w update: #enabled: with: {b} ] ].
-	dragEnabled whenChangedDo: [ :b | 
-		self withWidgetDo: [ :w | w update: #dragEnabled: with: {b} ] ].
-	dropEnabled whenChangedDo: [ :b | 
-		self withWidgetDo: [ :w | w update: #dropEnabled: with: {b} ] ]
+	self whenHelpChangedDo: [ :string | self withAdapterDo: [ :w | w update: #setBalloonText: with: {string} ] ].
+	borderWidth whenChangedDo: [ :int | self withWidgetDo: [ :w | w update: #borderWidth: with: {int} ] ].
+	borderColor whenChangedDo: [ :newColor | self withWidgetDo: [ :w | w update: #borderColor: with: {newColor} ] ].
+	color whenChangedDo: [ :newColor | self withAdapterDo: [ :w | w update: #color: with: {newColor} ] ].
+	enabledHolder whenChangedDo: [ :b | self withAdapterDo: [ :w | w update: #enabled: with: {b} ] ].
+	dragEnabled whenChangedDo: [ :b | self withWidgetDo: [ :w | w update: #dragEnabled: with: {b} ] ].
+	dropEnabled whenChangedDo: [ :b | self withWidgetDo: [ :w | w update: #dropEnabled: with: {b} ] ]
 ]
 
 { #category : #initialization }
@@ -341,6 +328,6 @@ AbstractWidgetPresenter >> whenEnabledChangedDo: aBlock [
 { #category : #'api-events' }
 AbstractWidgetPresenter >> whenHelpChangedDo: aBlock [
 	"Set a block to be performed when the help changed"
-	
-	helpHolder whenChangedDo: aBlock
+
+	self property: #help whenChangedDo: aBlock
 ]
