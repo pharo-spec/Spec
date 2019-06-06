@@ -46,12 +46,14 @@ WindowPresenter class >> presenter: aPresenter [
 
 { #category : #api }
 WindowPresenter >> aboutText [
-	"if my aboutText has not been set the fallback is:
-	  - if I do have a model, use its' about text
-	  - else use the behavior defined in super
-	"
+	^ aboutText value
+		ifNil: [ self aboutText: 'The about text for this window has not been set.'.
+			aboutText value ]
+]
 
-	^ aboutText value ifNil: [ self presenter ifNil: [ super aboutText ] ifNotNil: #aboutText ] ifNotNil: [ aboutText value ]
+{ #category : #api }
+WindowPresenter >> aboutText: aString [
+	aboutText value: aString
 ]
 
 { #category : #api }
@@ -415,9 +417,11 @@ WindowPresenter >> statusBar: aStatusbarPresenter [
 
 { #category : #api }
 WindowPresenter >> taskbarIcon [
-	^ self presenter
-		ifNil: [ super taskbarIcon ]
-		ifNotNil: [ :pres | pres windowIcon ifNil: [ pres taskbarIcon ] ]
+	^ self windowIcon
+		ifNil: [
+			self presenter
+				ifNil: [ super taskbarIcon ]
+				ifNotNil: #taskbarIcon ]
 ]
 
 { #category : #private }
@@ -487,6 +491,16 @@ WindowPresenter >> window [
 WindowPresenter >> window: aWindow [
 	
 	windowHolder value: aWindow
+]
+
+{ #category : #private }
+WindowPresenter >> windowIcon [
+	^ windowIcon value
+]
+
+{ #category : #private }
+WindowPresenter >> windowIcon: aForm [
+	windowIcon value: aForm
 ]
 
 { #category : #updating }
