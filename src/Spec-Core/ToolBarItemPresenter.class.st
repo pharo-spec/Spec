@@ -6,9 +6,3 @@ Class {
 	#superclass : #AbstractWidgetPresenter,
 	#category : #'Spec-Core-Widgets-Toolbar'
 }
-
-{ #category : #factory }
-ToolBarItemPresenter >> buildMorphOnToolbar: aToolbar [
-
-	self subclassResponsibility
-]

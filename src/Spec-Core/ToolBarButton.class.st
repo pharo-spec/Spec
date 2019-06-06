@@ -8,8 +8,7 @@ Class {
 		'label',
 		'icon',
 		'action',
-		'badge',
-		'help'
+		'badge'
 	],
 	#category : #'Spec-Core-Widgets-Toolbar'
 }
@@ -40,32 +39,6 @@ ToolBarButton >> badge: aString [
 	badge := aString
 ]
 
-{ #category : #factory }
-ToolBarButton >> buildMorphOnToolbar: aToolbar [
-	| button |
-	
-	button := (ToolBarButtonMorph
-			on: self 
-			getState: nil 
-			action:  #execute)
-		helpText: self help;
-		font: aToolbar toolbarItemFont;
-		beIconTop;
-		hResizing: #rigid;
-		vResizing: #spaceFill;
-		borderWidth: 0;
-		borderColor: Color transparent;		
-		cellPositioning: #center;
-		width: aToolbar toolbarItemSize;
-		yourself.
-		
-	aToolbar displayMode 
-		configureButton: button 
-		item: self.
-
-	^ button
-]
-
 { #category : #simulating }
 ToolBarButton >> click [
 	
@@ -75,16 +48,6 @@ ToolBarButton >> click [
 { #category : #execution }
 ToolBarButton >> execute [
 	self action cull: self
-]
-
-{ #category : #accessing }
-ToolBarButton >> help [
-	^ help
-]
-
-{ #category : #accessing }
-ToolBarButton >> help: anObject [
-	help := anObject
 ]
 
 { #category : #accessing }
