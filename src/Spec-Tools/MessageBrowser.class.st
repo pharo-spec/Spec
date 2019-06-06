@@ -283,8 +283,6 @@ MessageBrowser >> handleMethodRemoved: anAnnouncement [
 { #category : #initialization }
 MessageBrowser >> initialize [
 	super initialize.
-	askOkToClose := true asValueHolder.
-	self windowIcon: self taskbarIcon.
 	self registerToAnnouncements.
 	self announcer when: WidgetBuilt send: #buildUpdateTitle to: self
 ]
@@ -320,7 +318,10 @@ MessageBrowser >> initializeWidgets [
 { #category : #initialization }
 MessageBrowser >> initializeWindow: aWindowPresenter [
 	super initializeWindow: aWindowPresenter.
-	aWindowPresenter title: self title
+	aWindowPresenter
+		title: self title;
+		windowIcon: self taskbarIcon;
+		askOkToClose: true
 ]
 
 { #category : #private }
