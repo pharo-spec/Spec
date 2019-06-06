@@ -1,20 +1,6 @@
 Extension { #name : #ComposablePresenter }
 
 { #category : #'*Spec-Deprecated80' }
-ComposablePresenter >> aboutText [
-	self
-		deprecated:
-			'With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
-	From now on, if you want to interact with a window you need to:
-	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
-	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.'.
-	^ aboutText value
-		ifNil: [ aboutText
-				value: 'The about text for this window has not been set.';
-				value ]
-]
-
-{ #category : #'*Spec-Deprecated80' }
 ComposablePresenter >> aboutText: aString [
 	self
 		deprecated:
@@ -23,17 +9,6 @@ ComposablePresenter >> aboutText: aString [
 	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
 	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.'.
 	self window ifNil: [ aboutText value: aString ] ifNotNil: [ :window | window aboutText: aString ]
-]
-
-{ #category : #'*Spec-Deprecated80' }
-ComposablePresenter >> askOkToClose [
-	self
-		deprecated:
-			'With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
-	From now on, if you want to interact with a window you need to:
-	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
-	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.'.
-	^ askOkToClose value
 ]
 
 { #category : #'*Spec-Deprecated80' }
@@ -58,17 +33,6 @@ ComposablePresenter >> defaultWindowModelClass [
 ComposablePresenter >> icon: aSymbol [
 	self deprecated: 'Use #iconNamed: instead' transformWith: '`@receiver icon: `@statements' -> '`@receiver iconNamed: `@statements'.
 	^ self iconNamed: aSymbol
-]
-
-{ #category : #'*Spec-Deprecated80' }
-ComposablePresenter >> initialExtent [
-	self
-		deprecated:
-			'With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
-	From now on, if you want to interact with a window you need to:
-	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
-	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.'.
-	^ nil
 ]
 
 { #category : #'*Spec-Deprecated80' }
@@ -144,17 +108,6 @@ ComposablePresenter >> setModal: aWindow [
 ]
 
 { #category : #'*Spec-Deprecated80' }
-ComposablePresenter >> title [
-	self
-		deprecated:
-			'With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
-	From now on, if you want to interact with a window you need to:
-	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
-	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.'.
-	^ titleHolder value
-]
-
-{ #category : #'*Spec-Deprecated80' }
 ComposablePresenter >> title: aString [
 	self
 		deprecated:
@@ -173,17 +126,6 @@ ComposablePresenter >> widget [
 		transformWith: '`@receiver widget' -> '`@receiver adapter'.
 	
 	^ self spec
-]
-
-{ #category : #'*Spec-Deprecated80' }
-ComposablePresenter >> windowIcon [
-	self
-		deprecated:
-			'With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
-	From now on, if you want to interact with a window you need to:
-	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
-	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.'.
-	^ windowIcon value
 ]
 
 { #category : #'*Spec-Deprecated80' }

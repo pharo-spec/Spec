@@ -193,6 +193,19 @@ ComposablePresenter class >> title [
 	^ 'Untitled window'
 ]
 
+{ #category : #TOREMOVE }
+ComposablePresenter >> aboutText [
+	"DO NOT USE
+	With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
+	From now on, if you want to interact with a window you need to:
+	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
+	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
+	
+	This method cannot be deprecated because during a transition phase we keep this mecanism. "
+
+	^ aboutText value
+]
+
 { #category : #private }
 ComposablePresenter >> addAll: aWindow withSpec: aSpec [
 
@@ -284,6 +297,19 @@ ComposablePresenter >> applyMenuModel: aMenuModel [
 ComposablePresenter >> asPresenter [
 	"This allows to use presenter instances inside layouts directly"
 	^ self
+]
+
+{ #category : #TOREMOVE }
+ComposablePresenter >> askOkToClose [
+
+	"DO NOT USE
+	With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
+	From now on, if you want to interact with a window you need to:
+	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
+	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
+	
+	This method cannot be deprecated because during a transition phase we keep this mecanism. "
+	^ askOkToClose value
 ]
 
 { #category : #'api-shortcuts' }
@@ -468,6 +494,19 @@ ComposablePresenter >> iconNamed: aSymbol [
 	^ self class iconNamed: aSymbol
 ]
 
+{ #category : #TOREMOVE }
+ComposablePresenter >> initialExtent [
+	
+	"DO NOT USE
+	With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
+	From now on, if you want to interact with a window you need to:
+	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
+	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
+	
+	This method cannot be deprecated because during a transition phase we keep this mecanism. "
+	^ nil
+]
+
 { #category : #initialization }
 ComposablePresenter >> initialize [
 
@@ -542,8 +581,12 @@ ComposablePresenter >> initializeWidgets [
 ComposablePresenter >> initializeWindow: aWindowPresenter [
 	"override this to set window values before opening. 
 	 You may want to add a menu, a toolbar or a statusbar"
-	
-	aWindowPresenter 
+
+	"IMPORTANT: Please ovirride this method and set yourself the informations you want in your window.
+	The content of this method is here to help the transition between Spec 1 and 2.
+	In the next Spec version the content of this method will be removed and it will do nothing by default because the goal is to remove the management of all of those informations from Composable to put them in WindowPresenter."
+
+	aWindowPresenter
 		title: self title;
 		initialExtent: self initialExtent;
 		windowIcon: self windowIcon;
@@ -933,6 +976,19 @@ ComposablePresenter >> takeLastKeyboardFocus [
 ]
 
 { #category : #TOREMOVE }
+ComposablePresenter >> title [
+	"DO NOT USE
+	With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
+	From now on, if you want to interact with a window you need to:
+	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
+	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
+	
+	This method cannot be deprecated because during a transition phase we keep this mecanism. "
+
+	^ titleHolder value
+]
+
+{ #category : #TOREMOVE }
 ComposablePresenter >> toolName [
 
 	^ self class toolName
@@ -997,4 +1053,17 @@ ComposablePresenter >> whenWindowChanged: aBlock [
 	self announcer 
 		when: WindowBuilt 
 		do: [ :ann | aBlock cull: ann model ]
+]
+
+{ #category : #TOREMOVE }
+ComposablePresenter >> windowIcon [
+	"DO NOT USE
+	With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
+	From now on, if you want to interact with a window you need to:
+	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
+	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
+	
+	This method cannot be deprecated because during a transition phase we keep this mecanism. "
+
+	^ windowIcon value
 ]

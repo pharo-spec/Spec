@@ -46,12 +46,9 @@ WindowPresenter class >> presenter: aPresenter [
 
 { #category : #api }
 WindowPresenter >> aboutText [
-	"if my aboutText has not been set the fallback is:
-	  - if I do have a model, use its' about text
-	  - else use the behavior defined in super
-	"
-
-	^ aboutText value ifNil: [ self presenter ifNil: [ super aboutText ] ifNotNil: #aboutText ] ifNotNil: [ aboutText value ]
+	^ aboutText value
+		ifNil: [ self aboutText: 'The about text for this window has not been set.'.
+			aboutText value ]
 ]
 
 { #category : #api }
