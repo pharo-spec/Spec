@@ -1007,6 +1007,12 @@ ComposablePresenter >> traversePresentersDo: aBlock excluding: excludes [
 			var traversePresentersDo: aBlock excluding: excludes ] ]
 ]
 
+{ #category : #updating }
+ComposablePresenter >> update [
+	self needRebuild: false.
+	self buildWithSpec
+]
+
 { #category : #initialization }
 ComposablePresenter >> updatePresenter [
 ]
