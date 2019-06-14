@@ -70,7 +70,7 @@ AbstractListPresenter >> menu: aBlock [
 
 	self
 		deprecated:
-			'Use #contextMenu: instead. The old way to create a MenuPresenter was this method taking a MenuMorph as parameter. This will not work with other backend and will be totally removed in Pharo7. Now you should use #contextMenu takin a MeruPresenter (or a block returning a menu presenter) as parameter.'
+			'Use #contextMenu: instead. The old way to create a MenuPresenter was this method taking a MenuMorph as parameter. This will not work with other backend and will be totally removed in Pharo7. Now you should use #contextMenu takin a MenuPresenter (or a block returning a menu presenter) as parameter.'
 		on: '2019-03-07'
 		in: #Pharo8.
 	self
@@ -86,7 +86,7 @@ AbstractListPresenter >> menu: aBlock [
 AbstractListPresenter >> menu: aBlock shifted: aBoolean [
 	self
 		deprecated:
-			'Use #contextMenu: instead. The old way to create a MenuPresenter was this method taking a MenuMorph as parameter. This will not work with other backend and will be totally removed in Pharo7. Now you should use #contextMenu takin a MeruPresenter (or a block returning a menu presenter) as parameter.'
+			'Use #contextMenu: instead. The old way to create a MenuPresenter was this method taking a MenuMorph as parameter. This will not work with other backend and will be totally removed in Pharo7. Now you should use #contextMenu takin a MenuPresenter (or a block returning a menu presenter) as parameter.'
 		on: '2019-03-07'
 		in: #Pharo8.
 	self
