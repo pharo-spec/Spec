@@ -2,7 +2,7 @@
 Description
 --------------------
 
-I am a demo page to show how to use spec litsts.
+I am a demo page to show how to use spec lists.
 "
 Class {
 	#name : #SpecListsDemoPage,
