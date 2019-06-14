@@ -1,3 +1,9 @@
+"
+Description
+--------------------
+
+Demo page for SpecDemoNotebookPresenter
+"
 Class {
 	#name : #SpecDemoNotebookPage,
 	#superclass : #SpecDemoPage,
