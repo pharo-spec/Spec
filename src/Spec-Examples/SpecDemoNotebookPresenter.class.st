@@ -1,3 +1,9 @@
+"
+Description
+--------------------
+
+I am a presenter to show how to use notebook with spec.
+"
 Class {
 	#name : #SpecDemoNotebookPresenter,
 	#superclass : #ComposablePresenter,

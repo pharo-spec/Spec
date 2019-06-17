@@ -100,6 +100,8 @@ Presenter >> application [
 Presenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	"I assume the SpecBindings is well defined"
 	
+	self announcer announce: (WidgetWillBeBuilt model: self).
+
 	self adapter: (aSpecLayout asSpecLayout 
 		buildAdapterFor: self 
 		bindings: SpecBindings value).
@@ -375,6 +377,14 @@ Presenter >> whenBuiltDo: aBlock [
 
 	self announcer 
 		when: WidgetBuilt
+		do: aBlock
+]
+
+{ #category : #events }
+Presenter >> whenWillBeBuiltDo: aBlock [
+
+	self announcer 
+		when: WidgetWillBeBuilt
 		do: aBlock
 ]
 

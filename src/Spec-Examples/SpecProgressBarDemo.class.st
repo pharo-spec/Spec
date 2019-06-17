@@ -1,3 +1,8 @@
+"
+A demo for progress bar usage
+
+   self example
+"
 Class {
 	#name : #SpecProgressBarDemo,
 	#superclass : #ComposablePresenter,
@@ -29,6 +34,13 @@ SpecProgressBarDemo class >> defaultSpec [
 					height: 40;
 				newRow: [ :r |  ] ];
 		yourself
+]
+
+{ #category : #examples }
+SpecProgressBarDemo class >> example [
+	<sampleInstance>
+	
+	^ self new openWithSpec
 ]
 
 { #category : #accessing }

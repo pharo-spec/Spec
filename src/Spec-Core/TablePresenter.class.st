@@ -1,3 +1,10 @@
+"
+A TablePresenter is a spec presenter for a table.
+See AbstractWidgetPresenter
+
+self example
+
+"
 Class {
 	#name : #TablePresenter,
 	#superclass : #AbstractListPresenter,

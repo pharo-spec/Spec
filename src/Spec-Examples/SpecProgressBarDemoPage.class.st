@@ -1,3 +1,9 @@
+"
+Description
+--------------------
+
+I am a demo page to show how to use progress bar.
+"
 Class {
 	#name : #SpecProgressBarDemoPage,
 	#superclass : #SpecDemoPage,
