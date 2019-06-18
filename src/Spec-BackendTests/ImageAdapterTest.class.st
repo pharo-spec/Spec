@@ -19,6 +19,15 @@ ImageAdapterTest >> imageForm [
 ]
 
 { #category : #building }
+ImageAdapterTest >> testAutoscale [
+	self presenter autoScale: false.
+	self deny: self adapter hasImageAutoscaled.
+	self presenter autoScale: true.
+	self assert: self adapter hasImageAutoscaled.
+
+]
+
+{ #category : #building }
 ImageAdapterTest >> testSettingAnImageSetsTheImage [
 
 	self presenter image: self imageForm.

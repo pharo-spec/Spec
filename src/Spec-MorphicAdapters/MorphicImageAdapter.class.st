@@ -32,10 +32,9 @@ MorphicImageAdapter >> buildWidget [
 		setBalloonText: self help;
 		update: #getImage.
 
-	self model whenImageChangeDo: [ 
-		self getImage
-			ifNotNil: [ :x | alphaImage image: x ]
-			ifNil: [ alphaImage image: (Form extent: 1 @ 1 depth: 32) ] ].
+	self model
+		whenImageChangeDo: [ alphaImage image: (self getImage ifNil: [ Form extent: 1 @ 1 depth: 32 ]) ];
+		whenAutoScaleChangeDo: [ widget layout: self layoutValue ].
 
 	^ alphaImage
 ]

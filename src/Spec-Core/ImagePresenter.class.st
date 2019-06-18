@@ -37,8 +37,12 @@ ImagePresenter >> action: aBlock [
 
 { #category : #api }
 ImagePresenter >> autoScale [
-
 	^ autoScale
+]
+
+{ #category : #api }
+ImagePresenter >> autoScale: aBoolean [
+	autoScale := aBoolean
 ]
 
 { #category : #api }
@@ -70,6 +74,11 @@ ImagePresenter >> initialize [
 ImagePresenter >> switchAutoscale [
 	autoScale := autoScale not.
 
+]
+
+{ #category : #events }
+ImagePresenter >> whenAutoScaleChangeDo: aBlockClosure [
+	self property: #autoScale whenChangedDo: aBlockClosure
 ]
 
 { #category : #events }
