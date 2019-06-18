@@ -10,6 +10,19 @@ ImagePresenterTest >> classToTest [
 ]
 
 { #category : #tests }
+ImagePresenterTest >> testAutoScale [
+	| count result |
+	count := 0.
+	presenter
+		whenAutoScaleChangeDo: [ :value | 
+			result := value.
+			count := count + 1 ].
+	presenter autoScale: true.
+	self assert: count equals: 1.
+	self assert: result
+]
+
+{ #category : #tests }
 ImagePresenterTest >> testSwitchAutoScale [
 	| autoState |
 	autoState := presenter autoScale.
