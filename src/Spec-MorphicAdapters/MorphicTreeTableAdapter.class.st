@@ -132,6 +132,21 @@ MorphicTreeTableAdapter >> newDataSource [
 		yourself
 ]
 
+{ #category : #emulating }
+MorphicTreeTableAdapter >> rightClicked [
+	| evt |
+
+	evt := MouseButtonEvent new 
+		setType: nil 
+		position: widget center 
+		which: MouseButtonEvent yellowButton 
+		buttons: MouseButtonEvent yellowButton 
+		hand: nil 
+		stamp: nil.
+	
+	self widget click: evt
+]
+
 { #category : #private }
 MorphicTreeTableAdapter >> rootForItems: aCollection [
 
@@ -203,6 +218,11 @@ MorphicTreeTableAdapter >> suspendSelectionEventsDuring: aBlock [
 	subscriptions do: [ :each | registry remove: each ].
 	aBlock ensure: [ 
 		 subscriptions do: [ :each | registry add: each ] ]
+]
+
+{ #category : #update }
+MorphicTreeTableAdapter >> updateMenu [
+	"there is no need to updateMenu here because it will be resolved at the dataSource"
 ]
 
 { #category : #selection }
