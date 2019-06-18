@@ -26,8 +26,6 @@ TreeTablePresenterTest >> setUp [
 { #category : #tests }
 TreeTablePresenterTest >> testContextMenu [
 	| menu changed |
-	self flag: #copyPaste.
-	
 	self assert: presenter contextMenu isNil.
 	menu := MenuPresenter new.
 	changed := false.
