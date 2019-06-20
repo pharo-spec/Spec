@@ -8,5 +8,5 @@ AbstractTextPresenter >> defineInputPorts [
 
 { #category : #'*Spec-Transmission' }
 AbstractTextPresenter >> defineOutputPorts [
-	^ {SpecTextAcceptedPort new . SpecTextChangedPort new}
+	^ {SpecTextChangedPort new}
 ]
