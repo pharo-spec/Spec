@@ -1,10 +1,10 @@
 Class {
-	#name : #TextFieldExampleTest,
+	#name : #SpTextFieldExampleTest,
 	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Examples'
 }
 
 { #category : #running }
-TextFieldExampleTest >> classToTest [
-	^ TextFieldExample
+SpTextFieldExampleTest >> classToTest [
+	^ SpTextFieldExample
 ]

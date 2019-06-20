@@ -100,7 +100,7 @@ SpDemoCheckboxesPresenter >> initializeWidgets [
 	checkboxWithLabelOnLeft := self newCheckBox 
 		label: 'left';
 		yourself.
-	checkboxExample := self instantiate: CheckBoxExample.
+	checkboxExample := self instantiate: SpCheckBoxExample.
 		
 	self whenBuiltDo: [ 
 		checkboxWithLabelOnLeft labelOnLeft.].		

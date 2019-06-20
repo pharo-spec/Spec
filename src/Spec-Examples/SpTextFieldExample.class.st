@@ -2,7 +2,7 @@
 A TextFieldExample is a simple example of how to use TextFields.
 "
 Class {
-	#name : #TextFieldExample,
+	#name : #SpTextFieldExample,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'methodBrowser',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #specs }
-TextFieldExample class >> defaultSpec [
+SpTextFieldExample class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add: #textField withConstraints: [ :constraints | constraints height: StandardFonts defaultFont height + 15 ];
 		add: #methodBrowser;
@@ -20,24 +20,24 @@ TextFieldExample class >> defaultSpec [
 ]
 
 { #category : #example }
-TextFieldExample class >> example [
+SpTextFieldExample class >> example [
 	<sampleInstance>
 	^ self new openWithSpec
 ]
 
 { #category : #specs }
-TextFieldExample class >> title [
+SpTextFieldExample class >> title [
 
 	^ 'Text Field Example'
 ]
 
 { #category : #api }
-TextFieldExample >> initialExtent [
+SpTextFieldExample >> initialExtent [
 	^ 900@550
 ]
 
 { #category : #initialization }
-TextFieldExample >> initializePresenter [
+SpTextFieldExample >> initializePresenter [
 	
 	textField acceptBlock: [:text | Smalltalk globals at: text asSymbol
 								ifPresent: [:class | methodBrowser messages: class methods ]
@@ -45,7 +45,7 @@ TextFieldExample >> initializePresenter [
 ]
 
 { #category : #initialization }
-TextFieldExample >> initializeWidgets [
+SpTextFieldExample >> initializeWidgets [
 	methodBrowser := self instantiate: MessageBrowser.
 
 	textField := self newTextInput.
@@ -58,13 +58,13 @@ TextFieldExample >> initializeWidgets [
 ]
 
 { #category : #accessing }
-TextFieldExample >> methodBrowser [
+SpTextFieldExample >> methodBrowser [
 
 	^ methodBrowser
 ]
 
 { #category : #accessing }
-TextFieldExample >> textField [
+SpTextFieldExample >> textField [
 
 	^ textField
 ]

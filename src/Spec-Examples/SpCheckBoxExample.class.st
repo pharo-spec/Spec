@@ -1,10 +1,10 @@
 "
-I am a demo to show how to use radio buttons with Spec.
+A CheckBoxExample is a simple example of how to use CheckBoxes.
 
 self example
 "
 Class {
-	#name : #RadioButtonExample,
+	#name : #SpCheckBoxExample,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'button1',
@@ -16,7 +16,7 @@ Class {
 }
 
 { #category : #specs }
-RadioButtonExample class >> defaultSpec [
+SpCheckBoxExample class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add:
 			(SpBoxLayout newHorizontal
@@ -30,19 +30,19 @@ RadioButtonExample class >> defaultSpec [
 ]
 
 { #category : #example }
-RadioButtonExample class >> example [
+SpCheckBoxExample class >> example [
 	<sampleInstance>
 	^ self new openWithSpec
 ]
 
 { #category : #specs }
-RadioButtonExample class >> title [
+SpCheckBoxExample class >> title [
 
-	^ 'Radio Button Example'
+	^ 'CheckBox Example'
 ]
 
 { #category : #initialization }
-RadioButtonExample >> initializePresenter [
+SpCheckBoxExample >> initializePresenter [
 	button1 whenActivatedDo: [ self updateLabel ].
 	button1 whenDeactivatedDo: [ self updateLabel ].
 
@@ -52,24 +52,23 @@ RadioButtonExample >> initializePresenter [
 ]
 
 { #category : #initialization }
-RadioButtonExample >> initializeWidgets [
-	button1 := self newRadioButton.
-	button2 := self newRadioButton.
-	button3 := self newRadioButton.
+SpCheckBoxExample >> initializeWidgets [ 
+
+	button1 := self newCheckBox.
+	button2 := self newCheckBox.
+	button3 := self newCheckBox.
 	label := self newLabel.
-
-	button1 associatedRadioButtons: {button2 . button3}.
-
+	
 	button1 label: 'Button 1'.
 	button2 label: 'Button 2'.
 	button3 label: 'Button 3'.
-
+	
 	self updateLabel.
-	self setFocus
+	self setFocus.
 ]
 
 { #category : #initialization }
-RadioButtonExample >> setFocus [
+SpCheckBoxExample >> setFocus [
 	self focusOrder
 		add: button1;
 		add: button2;
@@ -77,7 +76,7 @@ RadioButtonExample >> setFocus [
 ]
 
 { #category : #updating }
-RadioButtonExample >> updateLabel [
+SpCheckBoxExample >> updateLabel [
 	label
 		label:
 			(String

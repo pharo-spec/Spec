@@ -6,7 +6,7 @@ self example
 I display simply an TextInputFieldPresenter, disable to don't be edditable by the user.
 "
 Class {
-	#name : #OpenOnNilExample,
+	#name : #SpOpenOnNilExample,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'text'
@@ -15,7 +15,7 @@ Class {
 }
 
 { #category : #specs }
-OpenOnNilExample class >> defaultSpec [
+SpOpenOnNilExample class >> defaultSpec [
 	<spec: #default>
 	^ SpLayout composed
 		newRow: #text height: 25;
@@ -23,7 +23,7 @@ OpenOnNilExample class >> defaultSpec [
 ]
 
 { #category : #examples }
-OpenOnNilExample class >> example [
+SpOpenOnNilExample class >> example [
 	<sampleInstance>
 	| example |
 	example := self new.
@@ -34,12 +34,12 @@ OpenOnNilExample class >> example [
 ]
 
 { #category : #initialization }
-OpenOnNilExample >> initialize: anInteger [
+SpOpenOnNilExample >> initialize: anInteger [
 	text label: anInteger asString
 ]
 
 { #category : #initialization }
-OpenOnNilExample >> initializeWidgets [
+SpOpenOnNilExample >> initializeWidgets [
 	text := self instantiate: SpTextInputFieldPresenter.
 	text
 		text: 'Object is nil';
@@ -47,11 +47,11 @@ OpenOnNilExample >> initializeWidgets [
 ]
 
 { #category : #accessing }
-OpenOnNilExample >> text [
+SpOpenOnNilExample >> text [
 	^ text
 ]
 
 { #category : #accessing }
-OpenOnNilExample >> title [
+SpOpenOnNilExample >> title [
 	^ 'OpenOnNilExample'
 ]

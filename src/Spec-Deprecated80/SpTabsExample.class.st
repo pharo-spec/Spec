@@ -4,7 +4,7 @@ I am an example of how to use tabs reusing DynamicWidgetChange, ClassMethodBrows
 self example
 "
 Class {
-	#name : #TabsExample,
+	#name : #SpTabsExample,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'manager'
@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : #specs }
-TabsExample class >> defaultSpec [
+SpTabsExample class >> defaultSpec [
 	<spec>
 	
 	^ SpLayout composed
@@ -22,23 +22,23 @@ TabsExample class >> defaultSpec [
 ]
 
 { #category : #examples }
-TabsExample class >> example [
+SpTabsExample class >> example [
 	<sampleInstance>
 	^ self open
 ]
 
 { #category : #deprecation }
-TabsExample class >> isDeprecated [
+SpTabsExample class >> isDeprecated [
 	^ true
 ]
 
 { #category : #'instance creation' }
-TabsExample class >> open [
+SpTabsExample class >> open [
 	^self new openWithSpec
 ]
 
 { #category : #private }
-TabsExample >> browserTab [
+SpTabsExample >> browserTab [
 	^ self newTab
 		label: 'Browser';
 		icon: (self iconNamed: #nautilusIcon);
@@ -50,7 +50,7 @@ TabsExample >> browserTab [
 ]
 
 { #category : #private }
-TabsExample >> dynamicTab [
+SpTabsExample >> dynamicTab [
 	^ self newTab
 		label: 'Dynamic';
 		icon: (self iconNamed: #nautilusIcon);
@@ -59,12 +59,12 @@ TabsExample >> dynamicTab [
 ]
 
 { #category : #api }
-TabsExample >> initialExtent [
+SpTabsExample >> initialExtent [
 	^ 900@600
 ]
 
 { #category : #initialization }
-TabsExample >> initializeWidgets [
+SpTabsExample >> initializeWidgets [
 
 	manager := self newTabManager.
 	manager whenTabSelected: [ self updateTitle ].
@@ -72,13 +72,13 @@ TabsExample >> initializeWidgets [
 ]
 
 { #category : #accessing }
-TabsExample >> manager [
+SpTabsExample >> manager [
 
 	^ manager
 ]
 
 { #category : #private }
-TabsExample >> objectClassTab [
+SpTabsExample >> objectClassTab [
 	^ self newTab
 		label: 'Object class';
 		icon: (self iconNamed: #nautilusIcon);
@@ -87,7 +87,7 @@ TabsExample >> objectClassTab [
 ]
 
 { #category : #private }
-TabsExample >> objectInspectorTab [
+SpTabsExample >> objectInspectorTab [
 	^ self newTab
 		label: 'Object inspector';
 		icon: (self iconNamed: #nautilusIcon);
@@ -98,7 +98,7 @@ TabsExample >> objectInspectorTab [
 ]
 
 { #category : #initialization }
-TabsExample >> populateManager [
+SpTabsExample >> populateManager [
 
 	manager
 		addTab: self objectClassTab;
@@ -108,7 +108,7 @@ TabsExample >> populateManager [
 ]
 
 { #category : #accessing }
-TabsExample >> title [
+SpTabsExample >> title [
 
 	^ self manager selectedTab
 		ifNil: [ 'Tabs Example' ]

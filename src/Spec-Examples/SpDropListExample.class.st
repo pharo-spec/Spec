@@ -4,7 +4,7 @@ A DropListExample is a simple example of how to use drop lists.
 self example
 "
 Class {
-	#name : #DropListExample,
+	#name : #SpDropListExample,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'container',
@@ -19,7 +19,7 @@ Class {
 }
 
 { #category : #specs }
-DropListExample class >> defaultSpec [
+SpDropListExample class >> defaultSpec [
 	^ SpColumnLayout composed
 		newRow: [ :r | 
 			r
@@ -31,38 +31,38 @@ DropListExample class >> defaultSpec [
 ]
 
 { #category : #example }
-DropListExample class >> example [
+SpDropListExample class >> example [
 	<sampleInstance>
 	
 	^ self new openWithSpec
 ]
 
 { #category : #specs }
-DropListExample class >> title [
+SpDropListExample class >> title [
 
 	^ 'Drop list'
 ]
 
 { #category : #accessing }
-DropListExample >> container [
+SpDropListExample >> container [
 
 	^ container asSpecAdapter
 ]
 
 { #category : #accessing }
-DropListExample >> disabledDropList [
+SpDropListExample >> disabledDropList [
 
 	^ disabledDropList
 ]
 
 { #category : #accessing }
-DropListExample >> heterogeneousDropList [
+SpDropListExample >> heterogeneousDropList [
 
 	^ heterogeneousDropList.
 ]
 
 { #category : #initialization }
-DropListExample >> initialize [
+SpDropListExample >> initialize [
 
 	container := PanelMorph new.
 	self instantiateMorphs.
@@ -75,7 +75,7 @@ DropListExample >> initialize [
 ]
 
 { #category : #initialization }
-DropListExample >> initializeWidgets [
+SpDropListExample >> initializeWidgets [
 	uniformDropList := self newDropList.
 	heterogeneousDropList := self newDropList.
 	(disabledDropList := self newDropList)
@@ -109,7 +109,7 @@ DropListExample >> initializeWidgets [
 ]
 
 { #category : #initialization }
-DropListExample >> instantiateMorphs [
+SpDropListExample >> instantiateMorphs [
 
 	morph1 := Morph new
 					color: Color red;
@@ -126,7 +126,7 @@ DropListExample >> instantiateMorphs [
 ]
 
 { #category : #initialization }
-DropListExample >> setFocus [
+SpDropListExample >> setFocus [
 	
 	self focusOrder
 		add: uniformDropList;
@@ -136,7 +136,7 @@ DropListExample >> setFocus [
 ]
 
 { #category : #accessing }
-DropListExample >> uniformDropList [
+SpDropListExample >> uniformDropList [
 
 	^ uniformDropList
 ]

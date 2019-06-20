@@ -1,10 +1,10 @@
 Class {
-	#name : #OpenOnStringExampleTest,
+	#name : #SpOpenOnIntExampleTest,
 	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Examples-Wrapper'
 }
 
 { #category : #running }
-OpenOnStringExampleTest >> classToTest [
-	^ OpenOnStringExample
+SpOpenOnIntExampleTest >> classToTest [
+	^ SpOpenOnIntExample
 ]

@@ -6,7 +6,7 @@ You can choose which one(s) you want to add.
 self show.
 "
 Class {
-	#name : #PrepareWindowExample,
+	#name : #SpPrepareWindowExample,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'menu',
@@ -19,7 +19,7 @@ Class {
 }
 
 { #category : #specs }
-PrepareWindowExample class >> defaultSpec [
+SpPrepareWindowExample class >> defaultSpec [
 	<spec: #default>
 
 	^ SpLayout composed 
@@ -27,14 +27,14 @@ PrepareWindowExample class >> defaultSpec [
 ]
 
 { #category : #showing }
-PrepareWindowExample class >> show [
+SpPrepareWindowExample class >> show [
 	<script>
 
 	self new openWithSpec
 ]
 
 { #category : #'private building' }
-PrepareWindowExample >> buildFileMenu [
+SpPrepareWindowExample >> buildFileMenu [
 
 	^ self newMenu
 		addItem: [ :item | item name: 'Push message'; action: [ self pushMessage ] ];
@@ -43,7 +43,7 @@ PrepareWindowExample >> buildFileMenu [
 ]
 
 { #category : #'private building' }
-PrepareWindowExample >> buildMenuBar [
+SpPrepareWindowExample >> buildMenuBar [
 
 	^ self newMenuBar
 		addGroup: [ :group | group
@@ -51,7 +51,7 @@ PrepareWindowExample >> buildMenuBar [
 ]
 
 { #category : #'private building' }
-PrepareWindowExample >> buildPopMessageToolBarItem [
+SpPrepareWindowExample >> buildPopMessageToolBarItem [
 		
 	^ ToolBarButton new
 		label: 'Pop';
@@ -62,7 +62,7 @@ PrepareWindowExample >> buildPopMessageToolBarItem [
 ]
 
 { #category : #'private building' }
-PrepareWindowExample >> buildPushMessageToolBarItem [
+SpPrepareWindowExample >> buildPushMessageToolBarItem [
 		
 	^ ToolBarButton new
 		label: 'Push';
@@ -73,13 +73,13 @@ PrepareWindowExample >> buildPushMessageToolBarItem [
 ]
 
 { #category : #'private building' }
-PrepareWindowExample >> buildStatusBar [
+SpPrepareWindowExample >> buildStatusBar [
 
 	^ SpStatusBarPresenter new
 ]
 
 { #category : #'private building' }
-PrepareWindowExample >> buildToolBar [
+SpPrepareWindowExample >> buildToolBar [
 	
 	^ self newToolBar 
 		addItem: self buildPushMessageToolBarItem;
@@ -89,20 +89,20 @@ PrepareWindowExample >> buildToolBar [
 ]
 
 { #category : #api }
-PrepareWindowExample >> initialExtent [
+SpPrepareWindowExample >> initialExtent [
  
 	^ 600@400
 ]
 
 { #category : #initialization }
-PrepareWindowExample >> initialize [
+SpPrepareWindowExample >> initialize [
 
 	super initialize.
 	count := 0
 ]
 
 { #category : #initialization }
-PrepareWindowExample >> initializeWidgets [
+SpPrepareWindowExample >> initializeWidgets [
 	
 	text := self newText text: 'Implementing #prepareWindow:, you can add a menu, toolbar and statusBar to your component.
 
@@ -110,7 +110,7 @@ BEWARE: This elements will be added just when you will open the presenter as a w
 ]
 
 { #category : #initialization }
-PrepareWindowExample >> initializeWindow: aWindowPresenter [
+SpPrepareWindowExample >> initializeWindow: aWindowPresenter [
 	"I'm called whenever the component will be displayed in a window (or dialog). 
 	 This is usually attained sending #openWithSpec or #openDialogWithSpec."
 	
@@ -122,32 +122,32 @@ PrepareWindowExample >> initializeWindow: aWindowPresenter [
 ]
 
 { #category : #actions }
-PrepareWindowExample >> popMessage [
+SpPrepareWindowExample >> popMessage [
 
 	statusBar popMessage
 ]
 
 { #category : #actions }
-PrepareWindowExample >> pushMessage [
+SpPrepareWindowExample >> pushMessage [
 	
 	count := count + 1.
 	statusBar pushMessage: ('StatusBar message {1}...' format: { count })
 ]
 
 { #category : #'accessing ui' }
-PrepareWindowExample >> text [ 
+SpPrepareWindowExample >> text [ 
 
 	^ text
 ]
 
 { #category : #actions }
-PrepareWindowExample >> text: aPresenter [
+SpPrepareWindowExample >> text: aPresenter [
 
 	text := aPresenter
 ]
 
 { #category : #api }
-PrepareWindowExample >> title [ 
+SpPrepareWindowExample >> title [ 
 
 	^ 'Example of using #prepareWindow:'
 ]

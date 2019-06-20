@@ -1,10 +1,10 @@
 Class {
-	#name : #RadioButtonExampleTest,
+	#name : #SpCheckBoxExampleTest,
 	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Examples-Morphic'
 }
 
 { #category : #running }
-RadioButtonExampleTest >> classToTest [
-	^ RadioButtonExample
+SpCheckBoxExampleTest >> classToTest [
+	^ SpCheckBoxExample
 ]

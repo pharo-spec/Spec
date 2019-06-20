@@ -1,10 +1,10 @@
 Class {
-	#name : #DropListExampleTest,
+	#name : #SpDropListExampleTest,
 	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Examples-Morphic'
 }
 
 { #category : #running }
-DropListExampleTest >> classToTest [
-	^ DropListExample
+SpDropListExampleTest >> classToTest [
+	^ SpDropListExample
 ]

@@ -1,10 +1,10 @@
 Class {
-	#name : #ScrollSyncExampleTest,
+	#name : #SpRadioButtonExampleTest,
 	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Examples-Morphic'
 }
 
 { #category : #running }
-ScrollSyncExampleTest >> classToTest [
-	^ ScrollSyncExample
+SpRadioButtonExampleTest >> classToTest [
+	^ SpRadioButtonExample
 ]

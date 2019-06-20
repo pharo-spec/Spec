@@ -1,10 +1,10 @@
 Class {
-	#name : #CheckBoxExampleTest,
+	#name : #SpScrollSyncExampleTest,
 	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Examples-Morphic'
 }
 
 { #category : #running }
-CheckBoxExampleTest >> classToTest [
-	^ CheckBoxExample
+SpScrollSyncExampleTest >> classToTest [
+	^ SpScrollSyncExample
 ]

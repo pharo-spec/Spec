@@ -1,5 +1,5 @@
 Class {
-	#name : #TransmissionExample,
+	#name : #SpTransmissionExample,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'packages',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #specs }
-TransmissionExample class >> defaultSpec [
+SpTransmissionExample class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
 		add: (SpBoxLayout newHorizontal 
@@ -25,14 +25,14 @@ TransmissionExample class >> defaultSpec [
 ]
 
 { #category : #showing }
-TransmissionExample class >> open [ 
+SpTransmissionExample class >> open [ 
 	<script>
 	
 	^ self new openWithSpec
 ]
 
 { #category : #initialization }
-TransmissionExample >> classTemplateFor: aPackage [
+SpTransmissionExample >> classTemplateFor: aPackage [
 	
 	^ 'Object subclass: #NameOfSubclass
 	slots: {}
@@ -42,7 +42,7 @@ TransmissionExample >> classTemplateFor: aPackage [
 ]
 
 { #category : #initialization }
-TransmissionExample >> initializeWidgets [
+SpTransmissionExample >> initializeWidgets [
 	
 	packages := self newList displayBlock: #name. 
 	classes := self newList displayBlock: #name. 
@@ -76,7 +76,7 @@ TransmissionExample >> initializeWidgets [
 ]
 
 { #category : #initialization }
-TransmissionExample >> initializeWindow: aWindowPresenter [
+SpTransmissionExample >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
 		title: 'Transmission example browser';

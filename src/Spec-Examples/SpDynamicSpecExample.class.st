@@ -6,7 +6,7 @@ self exampleNil
 self exampleString
 "
 Class {
-	#name : #DynamicSpecExample,
+	#name : #SpDynamicSpecExample,
 	#superclass : #Object,
 	#instVars : [
 		'ui',
@@ -16,27 +16,27 @@ Class {
 }
 
 { #category : #example }
-DynamicSpecExample class >> exampleInt [
+SpDynamicSpecExample class >> exampleInt [
 	<sampleInstance>
 	^ self new open: 42
 ]
 
 { #category : #example }
-DynamicSpecExample class >> exampleNil [
+SpDynamicSpecExample class >> exampleNil [
 	<sampleInstance>
 	^ self new
 		open: nil
 ]
 
 { #category : #example }
-DynamicSpecExample class >> exampleString [
+SpDynamicSpecExample class >> exampleString [
 	<sampleInstance>
 	^ self new
 		open: 'Hello World'
 ]
 
 { #category : #'instance creation' }
-DynamicSpecExample class >> object: object [
+SpDynamicSpecExample class >> object: object [
 
 	^ self new
 		object: object;
@@ -44,26 +44,26 @@ DynamicSpecExample class >> object: object [
 ]
 
 { #category : #initialization }
-DynamicSpecExample >> initialize [
+SpDynamicSpecExample >> initialize [
 
 	super initialize.
 	object := nil asValueHolder.
 ]
 
 { #category : #accessing }
-DynamicSpecExample >> object [
+SpDynamicSpecExample >> object [
 
 	^ object value
 ]
 
 { #category : #accessing }
-DynamicSpecExample >> object: anObject [
+SpDynamicSpecExample >> object: anObject [
 	
 	object value: anObject
 ]
 
 { #category : #protocol }
-DynamicSpecExample >> open [
+SpDynamicSpecExample >> open [
 
 	object value ifNil: [ ^ self openOnNil ].
 	object value isInteger ifTrue: [ ^ self openOnInteger ].
@@ -71,7 +71,7 @@ DynamicSpecExample >> open [
 ]
 
 { #category : #protocol }
-DynamicSpecExample >> open: anObject [
+SpDynamicSpecExample >> open: anObject [
 	anObject ifNil: [ ^ self openOnNil ].
 	anObject isInteger
 		ifTrue: [ ^ self openOnInteger: anObject ].
@@ -80,7 +80,7 @@ DynamicSpecExample >> open: anObject [
 ]
 
 { #category : #protocol }
-DynamicSpecExample >> openOnInteger [
+SpDynamicSpecExample >> openOnInteger [
 	<script: '(DynamicSpecExample object: 42) open'>
 	
 	| anUI layout |
@@ -118,22 +118,22 @@ DynamicSpecExample >> openOnInteger [
 ]
 
 { #category : #protocol }
-DynamicSpecExample >> openOnInteger: anInteger [
-	ui := OpenOnIntExample new: anInteger.
+SpDynamicSpecExample >> openOnInteger: anInteger [
+	ui := SpOpenOnIntExample new: anInteger.
 	ui
 		extent: 100 @ 100;
 		openWithSpec
 ]
 
 { #category : #protocol }
-DynamicSpecExample >> openOnNil [
-	ui := OpenOnNilExample new.
+SpDynamicSpecExample >> openOnNil [
+	ui := SpOpenOnNilExample new.
 	ui 
 		extent: 200 @ 100; openWithSpec
 ]
 
 { #category : #protocol }
-DynamicSpecExample >> openOnString [
+SpDynamicSpecExample >> openOnString [
 	<script: '(DynamicSpecExample object: ''Pharo'') open'>
 	
 	| anUI layout bottomLayout temp |	
@@ -192,14 +192,14 @@ DynamicSpecExample >> openOnString [
 ]
 
 { #category : #protocol }
-DynamicSpecExample >> openOnString: aString [
-	ui := OpenOnStringExample new:aString.
+SpDynamicSpecExample >> openOnString: aString [
+	ui := SpOpenOnStringExample new:aString.
 	ui 
 		extent: 300 @ 200;openWithSpec
 ]
 
 { #category : #accessing }
-DynamicSpecExample >> title [
+SpDynamicSpecExample >> title [
 
 	^ 'Dynamic Examples'
 ]

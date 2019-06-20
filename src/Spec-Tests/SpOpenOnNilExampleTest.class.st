@@ -1,10 +1,10 @@
 Class {
-	#name : #OpenOnNilExampleTest,
+	#name : #SpOpenOnNilExampleTest,
 	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Examples-Wrapper'
 }
 
 { #category : #running }
-OpenOnNilExampleTest >> classToTest [
-	^ OpenOnNilExample
+SpOpenOnNilExampleTest >> classToTest [
+	^ SpOpenOnNilExample
 ]

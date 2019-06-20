@@ -6,7 +6,7 @@ self example
 I show also how to dynamically redrawn a widget.
 "
 Class {
-	#name : #OpenOnStringExample,
+	#name : #SpOpenOnStringExample,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'label',
@@ -19,7 +19,7 @@ Class {
 }
 
 { #category : #specs }
-OpenOnStringExample class >> bottomLayout [
+SpOpenOnStringExample class >> bottomLayout [
 	<spec>
 	^ SpLayout composed
 		newColumn: [ :column | 
@@ -38,7 +38,7 @@ OpenOnStringExample class >> bottomLayout [
 ]
 
 { #category : #specs }
-OpenOnStringExample class >> defaultSpec [
+SpOpenOnStringExample class >> defaultSpec [
 	<spec: #default>
 	^ SpLayout composed
 		newColumn: [ :column | 
@@ -57,7 +57,7 @@ OpenOnStringExample class >> defaultSpec [
 ]
 
 { #category : #examples }
-OpenOnStringExample class >> example [
+SpOpenOnStringExample class >> example [
 	<sampleInstance>
 	| example |
 	example := self new: 'Hello world'.
@@ -68,29 +68,29 @@ OpenOnStringExample class >> example [
 ]
 
 { #category : #instantiation }
-OpenOnStringExample class >> new: aString [
+SpOpenOnStringExample class >> new: aString [
 	^ self new initialize: aString
 ]
 
 { #category : #accessing }
-OpenOnStringExample >> button [
+SpOpenOnStringExample >> button [
 	^ button
 ]
 
 { #category : #accessing }
-OpenOnStringExample >> check [
+SpOpenOnStringExample >> check [
 	^ check
 ]
 
 { #category : #initialization }
-OpenOnStringExample >> initialize: aString [
+SpOpenOnStringExample >> initialize: aString [
 	label label: aString.
 	input text: aString.
 	textToReset := aString
 ]
 
 { #category : #initialization }
-OpenOnStringExample >> initializePresenter [
+SpOpenOnStringExample >> initializePresenter [
 	button action: [ input text: textToReset ].
 	input whenTextChangedDo: [ :text | label label: text ].
 	check
@@ -101,7 +101,7 @@ OpenOnStringExample >> initializePresenter [
 ]
 
 { #category : #initialization }
-OpenOnStringExample >> initializeWidgets [
+SpOpenOnStringExample >> initializeWidgets [
 	label := self instantiate: SpLabelPresenter.
 	check := self instantiate: SpCheckBoxPresenter.
 	input := self instantiate: SpTextInputFieldPresenter.
@@ -115,17 +115,17 @@ OpenOnStringExample >> initializeWidgets [
 ]
 
 { #category : #accessing }
-OpenOnStringExample >> input [
+SpOpenOnStringExample >> input [
 	^ input
 ]
 
 { #category : #accessing }
-OpenOnStringExample >> label [
+SpOpenOnStringExample >> label [
 	^ label
 ]
 
 { #category : #'as yet unclassified' }
-OpenOnStringExample >> openOnString [
+SpOpenOnStringExample >> openOnString [
 	| ui temp object |
 	object whenChangedDo: [ :o | ui label label: o asString ].
 	temp := object value.
@@ -133,11 +133,11 @@ OpenOnStringExample >> openOnString [
 ]
 
 { #category : #accessing }
-OpenOnStringExample >> textToReset [
+SpOpenOnStringExample >> textToReset [
 	^ textToReset
 ]
 
 { #category : #accessing }
-OpenOnStringExample >> title [
+SpOpenOnStringExample >> title [
 	^ 'OpenOnStringExample'
 ]

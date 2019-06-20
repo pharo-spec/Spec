@@ -4,7 +4,7 @@ I am the component of DynamycSpecExample used for Integer.
 self example 
 "
 Class {
-	#name : #OpenOnIntExample,
+	#name : #SpOpenOnIntExample,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'text',
@@ -15,7 +15,7 @@ Class {
 }
 
 { #category : #specs }
-OpenOnIntExample class >> defaultSpec [
+SpOpenOnIntExample class >> defaultSpec [
 	<spec: #default>
 	^ SpLayout composed
 		newColumn: [ :column | 
@@ -31,7 +31,7 @@ OpenOnIntExample class >> defaultSpec [
 ]
 
 { #category : #examples }
-OpenOnIntExample class >> example [
+SpOpenOnIntExample class >> example [
 	<sampleInstance>
 	| example |
 	example := (self new: 42).
@@ -40,17 +40,17 @@ OpenOnIntExample class >> example [
 ]
 
 { #category : #instantiation }
-OpenOnIntExample class >> new: anInteger [
+SpOpenOnIntExample class >> new: anInteger [
 	^ self new initialize: anInteger
 ]
 
 { #category : #initialization }
-OpenOnIntExample >> initialize: anInteger [
+SpOpenOnIntExample >> initialize: anInteger [
 	text label: anInteger asString
 ]
 
 { #category : #initialization }
-OpenOnIntExample >> initializePresenter [
+SpOpenOnIntExample >> initializePresenter [
 	minus
 		action: [ | currentValue |
 			currentValue := text label asInteger.
@@ -62,7 +62,7 @@ OpenOnIntExample >> initializePresenter [
 ]
 
 { #category : #initialization }
-OpenOnIntExample >> initializeWidgets [
+SpOpenOnIntExample >> initializeWidgets [
 	text := self instantiate: SpLabelPresenter.
 	plus := self instantiate: SpButtonPresenter.
 	minus := self instantiate: SpButtonPresenter.
@@ -73,21 +73,21 @@ OpenOnIntExample >> initializeWidgets [
 ]
 
 { #category : #accessing }
-OpenOnIntExample >> minus [
+SpOpenOnIntExample >> minus [
 	^ minus
 ]
 
 { #category : #accessing }
-OpenOnIntExample >> plus [
+SpOpenOnIntExample >> plus [
 	^ plus
 ]
 
 { #category : #accessing }
-OpenOnIntExample >> text [
+SpOpenOnIntExample >> text [
 	^ text
 ]
 
 { #category : #accessing }
-OpenOnIntExample >> title [
+SpOpenOnIntExample >> title [
 	^ 'OpenOnIntExample'
 ]

@@ -4,7 +4,7 @@ I am an example that exposes to the world how to use a ScrollPane announcement t
 self example
 "
 Class {
-	#name : #ScrollSyncExample,
+	#name : #SpScrollSyncExample,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'text',
@@ -15,7 +15,7 @@ Class {
 }
 
 { #category : #specs }
-ScrollSyncExample class >> defaultSpec [
+SpScrollSyncExample class >> defaultSpec [
 	<spec>
 	^ SpLayout composed
 		newRow: [ :row | 
@@ -26,24 +26,24 @@ ScrollSyncExample class >> defaultSpec [
 ]
 
 { #category : #example }
-ScrollSyncExample class >> example [
+SpScrollSyncExample class >> example [
 	<sampleInstance>
 	^ self new openWithSpec
 ]
 
 { #category : #specs }
-ScrollSyncExample class >> title [
+SpScrollSyncExample class >> title [
 
 	^ self name
 ]
 
 { #category : #accessing }
-ScrollSyncExample >> currentVerticalScrollPosition [
+SpScrollSyncExample >> currentVerticalScrollPosition [
 	^ currentVerticalScrollPosition
 ]
 
 { #category : #layouts }
-ScrollSyncExample >> defaultSpecLayout [
+SpScrollSyncExample >> defaultSpecLayout [
 	<spec>
 	^ SpLayout composed
 		add: #sideRuler
@@ -60,7 +60,7 @@ ScrollSyncExample >> defaultSpecLayout [
 ]
 
 { #category : #initialization }
-ScrollSyncExample >> initialize [
+SpScrollSyncExample >> initialize [
 	super initialize.
 	sideRuler := (Morph new
 		color: Color yellow;
@@ -73,7 +73,7 @@ ScrollSyncExample >> initialize [
 ]
 
 { #category : #initialization }
-ScrollSyncExample >> initializeWidgets [
+SpScrollSyncExample >> initializeWidgets [
 	text := self newText.
 	text
 		whenBuiltDo: [ :builtAnnouncement | 
@@ -83,17 +83,17 @@ ScrollSyncExample >> initializeWidgets [
 ]
 
 { #category : #private }
-ScrollSyncExample >> loremIpsum [
+SpScrollSyncExample >> loremIpsum [
 	^ String loremIpsum: 2854
 ]
 
 { #category : #accessing }
-ScrollSyncExample >> sideRuler [
+SpScrollSyncExample >> sideRuler [
 	^ sideRuler
 ]
 
 { #category : #private }
-ScrollSyncExample >> syncMorphPosition [
+SpScrollSyncExample >> syncMorphPosition [
 	currentVerticalScrollPosition = text scrollValue y
 		ifTrue: [ ^ self ].
 	currentVerticalScrollPosition := text scrollValue y.
@@ -105,6 +105,6 @@ ScrollSyncExample >> syncMorphPosition [
 ]
 
 { #category : #accessing }
-ScrollSyncExample >> text [
+SpScrollSyncExample >> text [
 	^ text
 ]
