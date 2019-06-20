@@ -8,7 +8,7 @@ You should implement the method #modelChanged in my subclasses
 "
 Class {
 	#name : #ComposablePresenterWithModel,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'announcingObject'
 	],

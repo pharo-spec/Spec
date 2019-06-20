@@ -1,6 +1,6 @@
 Class {
 	#name : #LabelledDropListTest,
-	#superclass : #DropListPresenterTest,
+	#superclass : #SpDropListPresenterTest,
 	#category : #'Spec-PolyWidgets-Tests'
 }
 

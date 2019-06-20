@@ -6,7 +6,7 @@ I show demos of tree tables
 "
 Class {
 	#name : #SpDemoTreeTablePresenter,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'table1'
 	],

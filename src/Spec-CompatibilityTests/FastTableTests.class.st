@@ -7,7 +7,7 @@ Class {
 { #category : #running }
 FastTableTests >> classToTest [
 
-	^ FastTablePresenter
+	^ SpFastTablePresenter
 ]
 
 { #category : #running }

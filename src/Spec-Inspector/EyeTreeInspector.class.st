@@ -133,7 +133,7 @@ EyeTreeInspector >> takeKeyboardFocus [
 { #category : #accessing }
 EyeTreeInspector >> tree [
 	^ tree
-		ifNil: [ tree := self instantiate: TreePresenter.
+		ifNil: [ tree := self instantiate: SpTreePresenter.
 			tree whenBuiltDo: [ self initializeShortcuts ].
 			tree
 				whenSelectedItemChanged: [ :item | item ifNotNil: [ self elementChanged ] ];

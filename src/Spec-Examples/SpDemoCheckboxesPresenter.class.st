@@ -3,7 +3,7 @@ This demo shows differenty styles of check boxes.
 "
 Class {
 	#name : #SpDemoCheckboxesPresenter,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'checkboxNormal',
 		'checkboxDisabled',

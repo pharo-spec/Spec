@@ -1,6 +1,6 @@
 Class {
 	#name : #DualChangeSorterApplication,
-	#superclass : #DualChangeSorterPresenter,
+	#superclass : #SpDualChangeSorterPresenter,
 	#category : #'Spec-Tools-ChangeSorter'
 }
 

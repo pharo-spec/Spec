@@ -3,7 +3,7 @@ Extension { #name : #SelectEntity }
 { #category : #'*Spec-Examples' }
 SelectEntity class >> example [
 	self new
-		selectDialog: [ ListPresenter new
+		selectDialog: [ SpListPresenter new
 				items: #(Henrik Peter);
 				yourself ];
 		displaySymbol: #asString;

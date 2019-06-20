@@ -11,18 +11,18 @@ LabelledContainerTest >> classToTest [
 
 { #category : #running }
 LabelledContainerTest >> initializeTestedInstance [
-	presenter content: TestingComposablePresenter.
+	presenter content: SpTestingComposablePresenter.
 ]
 
 { #category : #tests }
 LabelledContainerTest >> testContent [
-	presenter content: ListPresenter.
-	self assert: presenter subwidget class equals: ListPresenter
+	presenter content: SpListPresenter.
+	self assert: presenter subwidget class equals: SpListPresenter
 ]
 
 { #category : #tests }
 LabelledContainerTest >> testDoesNotUnderstand [
-	presenter content: ListPresenter.
+	presenter content: SpListPresenter.
 	presenter items: {'aaa' . 'bbb' . 'ccc'}.
 	self assertCollection: presenter model items hasSameElements: {'aaa' . 'bbb' . 'ccc'}
 ]

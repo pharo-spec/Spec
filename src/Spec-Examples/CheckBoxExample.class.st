@@ -5,7 +5,7 @@ self example
 "
 Class {
 	#name : #CheckBoxExample,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'button1',
 		'button2',

@@ -6,7 +6,7 @@ Class {
 
 { #category : #running }
 ListCommonPropertiestTest >> classToTest [
-	^ ListPresenter
+	^ SpListPresenter
 ]
 
 { #category : #running }

@@ -85,12 +85,12 @@ DynamicSpecExample >> openOnInteger [
 	
 	| anUI layout |
 	
-	anUI := DynamicComposablePresenter new.
+	anUI := SpDynamicComposablePresenter new.
 	anUI title: self title.
 	anUI instantiatePresenters: #( 
-		text LabelPresenter
-		plus ButtonPresenter
-		minus ButtonPresenter ).
+		text #SpLabelPresenter
+		plus #SpButtonPresenter
+		minus #SpButtonPresenter ).
 		
 	anUI text label: object value asString.
 	anUI minus 
@@ -137,13 +137,13 @@ DynamicSpecExample >> openOnString [
 	<script: '(DynamicSpecExample object: ''Pharo'') open'>
 	
 	| anUI layout bottomLayout temp |	
-	anUI := DynamicComposablePresenter new.
+	anUI := SpDynamicComposablePresenter new.
 	anUI title: self title.
 	anUI instantiatePresenters: #( 
-		label LabelPresenter
-		check CheckBoxPresenter
-		text TextInputFieldPresenter
-		button ButtonPresenter ).
+		label #SpLabelPresenter
+		check #SpCheckBoxPresenter
+		text #SpTextInputFieldPresenter
+		button #SpButtonPresenter ).
 		
 	anUI label label: object value.
 

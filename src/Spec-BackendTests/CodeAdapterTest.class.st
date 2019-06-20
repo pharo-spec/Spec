@@ -24,7 +24,7 @@ CodeAdapterTest >> assertText: text atInterval: interval isStyle: styleName [
 { #category : #accessing }
 CodeAdapterTest >> classToTest [
 
-	^ CodePresenter
+	^ SpCodePresenter
 ]
 
 { #category : #tests }

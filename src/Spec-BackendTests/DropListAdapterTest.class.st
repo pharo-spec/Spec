@@ -7,7 +7,7 @@ Class {
 { #category : #accessing }
 DropListAdapterTest >> classToTest [
 
-	^ DropListPresenter 
+	^ SpDropListPresenter 
 ]
 
 { #category : #accessing }

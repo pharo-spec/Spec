@@ -10,7 +10,7 @@ How do I make textModel react to every keystroke without an accept
 "
 Class {
 	#name : #SearchableList,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'listPresenter',
 		'searchPresenter',

@@ -7,7 +7,7 @@ Class {
 { #category : #running }
 RadioButtonAdapterTest >> classToTest [
 
-	^ RadioButtonPresenter 
+	^ SpRadioButtonPresenter 
 ]
 
 { #category : #running }

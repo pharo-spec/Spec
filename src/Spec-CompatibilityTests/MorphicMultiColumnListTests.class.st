@@ -7,7 +7,7 @@ Class {
 { #category : #running }
 MorphicMultiColumnListTests >> classToTest [
 
-	^ MultiColumnListPresenter
+	^ SpMultiColumnListPresenter
 ]
 
 { #category : #tests }

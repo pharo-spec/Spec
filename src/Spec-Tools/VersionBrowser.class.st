@@ -111,7 +111,7 @@ VersionBrowser >> compareTo: anOtherVersion withLabel: aLabel [
 	| versions texts |
 	versions := Array with: anOtherVersion with: self selectedMessage.
 	texts := (DiffMorphChangeRecordConverter methodReference: anOtherVersion referencesList: versions) getText.
-	DiffPresenter new
+	SpDiffPresenter new
 		title: ('Comparison from {1} to {2}' format: {versions second stamp . aLabel});
 		leftText: texts first;
 		rightText: texts second;

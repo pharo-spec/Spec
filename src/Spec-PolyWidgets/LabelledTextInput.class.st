@@ -53,7 +53,7 @@ LabelledTextInput >> entryCompletion: anEntryCompletion [
 { #category : #initialization }
 LabelledTextInput >> initializeWidgets [
 	super initializeWidgets.
-	self content: TextInputFieldPresenter.
+	self content: SpTextInputFieldPresenter.
 ]
 
 { #category : #accessing }

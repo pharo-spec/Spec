@@ -16,7 +16,7 @@ DynamicTopToBottomRowsLayoutTest >> setUp [
 	super setUp.
 	presentersBuilder := DynamicPresentersListBuilder new
 		modelObjects: (1 to: 14);
-		presenter: ButtonPresenter configuredAs: [ :button :i | "No config. on purpose." ];
+		presenter: SpButtonPresenter configuredAs: [ :button :i | "No config. on purpose." ];
 		buildDynamicPresenter;
 		yourself.
 		

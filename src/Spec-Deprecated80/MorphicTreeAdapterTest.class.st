@@ -17,7 +17,7 @@ MorphicTreeAdapterTest class >> isDeprecated [
 
 { #category : #accessing }
 MorphicTreeAdapterTest >> modelClass [
-	^ TreePresenter
+	^ SpTreePresenter
 ]
 
 { #category : #running }

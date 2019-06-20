@@ -3,7 +3,7 @@ A button with an icon and label associated with an action and a badge
 "
 Class {
 	#name : #ToolBarButton,
-	#superclass : #ToolBarItemPresenter,
+	#superclass : #SpToolBarItemPresenter,
 	#instVars : [
 		'label',
 		'icon',

@@ -6,7 +6,7 @@ Class {
 
 { #category : #running }
 TableAdapterMultipleSelectionTest >> classToTest [
-	^ TablePresenter
+	^ SpTablePresenter
 ]
 
 { #category : #running }

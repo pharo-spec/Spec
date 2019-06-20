@@ -13,12 +13,12 @@ Class {
 { #category : #tests }
 SpWindowTest >> testAboutText [
 	| presenter window |
-	windowPresenter := WindowPresenter new.
+	windowPresenter := SpWindowPresenter new.
 	windowPresenter aboutText: 'test'.
 	self assert: windowPresenter aboutText equals: 'test'.
 	windowPresenter close.
 
-	presenter := TextPresenter new.
+	presenter := SpTextPresenter new.
 	[ window := presenter openWithSpec.
 	presenter withWindowDo: [ :w | w aboutText: 'test2' ].
 	self assert: presenter window aboutText equals: 'test2' ]
@@ -29,7 +29,7 @@ SpWindowTest >> testAboutText [
 SpWindowTest >> testIsDisplayed [
 	"Test for case: 16800 -> ask a SpecWindow for #isDisplayed always returns true"
 	
-	windowPresenter := TextPresenter new openWithSpec.
+	windowPresenter := SpTextPresenter new openWithSpec.
 	self assert: (windowPresenter isDisplayed).
 	
 	windowPresenter window minimize.	
@@ -44,13 +44,13 @@ SpWindowTest >> testIsDisplayed [
 { #category : #tests }
 SpWindowTest >> testTitle [
 	| presenter window |
-	windowPresenter := TextPresenter new openWithSpec.
+	windowPresenter := SpTextPresenter new openWithSpec.
 
 	self assert: windowPresenter isDisplayed.
 	self assert: windowPresenter title equals: 'Text'.
 	windowPresenter close.
 
-	presenter := TextPresenter new.
+	presenter := SpTextPresenter new.
 	[ window := presenter openWithSpec.
 	presenter withWindowDo: [ :w | w title: 'Test Window' ].
 	self assert: presenter window title equals: 'Test Window' ]

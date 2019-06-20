@@ -6,7 +6,7 @@ MethodToolbar class >> example [
 	| example |
 	example := MethodToolbar new.
 	example
-		method: ButtonPresenter >> #state:;
+		method: SpButtonPresenter >> #state:;
 		method: nil;
 		extent: 550 @ 100;
 		openWithSpec.

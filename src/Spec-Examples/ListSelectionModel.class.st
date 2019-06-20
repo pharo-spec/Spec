@@ -3,6 +3,6 @@ This is deprecated class because the original class ListSelectionModel was renam
 "
 Class {
 	#name : #ListSelectionModel,
-	#superclass : #ListSelectionPresenter,
+	#superclass : #SpListSelectionPresenter,
 	#category : #'Spec-Examples-Deprecated'
 }

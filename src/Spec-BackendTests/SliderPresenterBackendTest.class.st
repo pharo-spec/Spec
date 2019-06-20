@@ -6,7 +6,7 @@ Class {
 
 { #category : #accessing }
 SliderPresenterBackendTest >> classToTest [
-	^ SliderPresenter 
+	^ SpSliderPresenter 
 ]
 
 { #category : #accessing }

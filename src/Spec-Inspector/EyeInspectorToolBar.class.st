@@ -3,7 +3,7 @@ Toolbar to explore previous or next inpected elements
 "
 Class {
 	#name : #EyeInspectorToolBar,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'previousButton',
 		'nextButton',
@@ -46,7 +46,7 @@ EyeInspectorToolBar >> initializeWidgets [
 EyeInspectorToolBar >> inspectorChoice [
 	inspectorChoice
 		ifNil: [ 
-			inspectorChoice := self instantiate: DropListPresenter.
+			inspectorChoice := self instantiate: SpDropListPresenter.
 			inspectorChoice
 				whenSelectedItemChanged: [ :inspectorType |
 					self preventUpdatesDuring: [
@@ -78,7 +78,7 @@ EyeInspectorToolBar >> inspectorWrapper [
 EyeInspectorToolBar >> nextButton [
 	nextButton
 		ifNil: [ 
-			nextButton := self instantiate: ButtonPresenter.
+			nextButton := self instantiate: SpButtonPresenter.
 			nextButton 
 				label: '>';
 				action: [ 
@@ -100,7 +100,7 @@ EyeInspectorToolBar >> preventUpdatesDuring: aBlock [
 EyeInspectorToolBar >> previousButton [
 	previousButton
 		ifNil: [ 
-			previousButton := self instantiate: ButtonPresenter.
+			previousButton := self instantiate: SpButtonPresenter.
 			previousButton label: '<'.
 			previousButton
 				action: [ 

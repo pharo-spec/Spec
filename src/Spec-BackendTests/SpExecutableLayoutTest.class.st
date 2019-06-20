@@ -6,7 +6,7 @@ Class {
 
 { #category : #accessing }
 SpExecutableLayoutTest >> classToTest [
-	^ MockDynamicPresenter
+	^ SpMockDynamicPresenter
 ]
 
 { #category : #tests }

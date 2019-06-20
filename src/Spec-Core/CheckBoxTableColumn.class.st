@@ -36,7 +36,7 @@ CheckBoxTableColumn >> onDesactivation: anObject [
 { #category : #accessing }
 CheckBoxTableColumn >> readObject: anItem [
 	| presenter |
-	presenter := CheckBoxPresenter new
+	presenter := SpCheckBoxPresenter new
 		state: (super readObject: anItem);
 		yourself.
 

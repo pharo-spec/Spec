@@ -33,14 +33,14 @@ MillerColumnAdapterTest >> testEnabledAffectWidget [
 { #category : #tests }
 MillerColumnAdapterTest >> testManyPresentersShowManyWidgets [
 
-	3 timesRepeat: [ self presenter addPresenter: (SpNullMillerPresenter on: LabelPresenter new).].
+	3 timesRepeat: [ self presenter addPresenter: (SpNullMillerPresenter on: SpLabelPresenter new).].
 	self assert: self adapter childrenWidgets size equals: 3
 ]
 
 { #category : #tests }
 MillerColumnAdapterTest >> testOnePresenterShowsOneWidget [
 
-	self presenter addPresenter: (SpNullMillerPresenter on: LabelPresenter new).
+	self presenter addPresenter: (SpNullMillerPresenter on: SpLabelPresenter new).
 	
 	self assert: self adapter childrenWidgets size equals: 1
 ]
@@ -48,7 +48,7 @@ MillerColumnAdapterTest >> testOnePresenterShowsOneWidget [
 { #category : #tests }
 MillerColumnAdapterTest >> testResettingMillerListRemovesWidgets [
 
-	3 timesRepeat: [ self presenter addPresenter: (SpNullMillerPresenter on: LabelPresenter new).].
+	3 timesRepeat: [ self presenter addPresenter: (SpNullMillerPresenter on: SpLabelPresenter new).].
 	
 	self presenter resetTo: 0.
 	self assert: self adapter childrenWidgets isEmpty

@@ -5,7 +5,7 @@ self example
 "
 Class {
 	#name : #MethodBrowser,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'listModel',
 		'textModel',
@@ -91,7 +91,7 @@ MethodBrowser >> initializePresenter [
 
 { #category : #initialization }
 MethodBrowser >> initializeWidgets [
-	listModel := self instantiate: ListPresenter .
+	listModel := self instantiate: SpListPresenter .
 	textModel := self newCode.
 	toolbarModel := self instantiate: MethodToolbar.
 	self focusOrder

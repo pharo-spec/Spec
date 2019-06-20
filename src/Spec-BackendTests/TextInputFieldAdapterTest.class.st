@@ -6,7 +6,7 @@ Class {
 
 { #category : #running }
 TextInputFieldAdapterTest >> classToTest [
-	^ TextInputFieldPresenter
+	^ SpTextInputFieldPresenter
 ]
 
 { #category : #tests }

@@ -4,7 +4,7 @@ Extension { #name : #SpMillerColumnPresenter }
 SpMillerColumnPresenter class >> example [
 	^ SpMillerColumnPresenter new
 		presenterBlock: [ :model | 
-			ListPresenter new
+			SpListPresenter new
 				items: (1 to: model);
 				yourself ];
 		setRootModel: 10;

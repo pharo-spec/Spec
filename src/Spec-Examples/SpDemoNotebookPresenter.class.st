@@ -6,7 +6,7 @@ I am a presenter to show how to use notebook with spec.
 "
 Class {
 	#name : #SpDemoNotebookPresenter,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'notebook',
 		'checkbox',

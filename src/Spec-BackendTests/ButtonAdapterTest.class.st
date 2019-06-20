@@ -7,7 +7,7 @@ Class {
 { #category : #running }
 ButtonAdapterTest >> classToTest [
 
-	^ ButtonPresenter
+	^ SpButtonPresenter
 ]
 
 { #category : #running }

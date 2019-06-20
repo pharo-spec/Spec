@@ -6,7 +6,7 @@ I am a presenter to show how to use modals with spec.
 "
 Class {
 	#name : #SpDemoModalPresenter,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'button1',
 		'button2'

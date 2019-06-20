@@ -3,7 +3,7 @@ Extension { #name : #String }
 { #category : #'*Spec-Core' }
 String >> asPresenter [ 
 
-	^ LabelPresenter new 
+	^ SpLabelPresenter new 
 		label: self;
 		yourself
 ]

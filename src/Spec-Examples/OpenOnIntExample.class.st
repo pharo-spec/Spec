@@ -5,7 +5,7 @@ self example
 "
 Class {
 	#name : #OpenOnIntExample,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'text',
 		'plus',
@@ -63,9 +63,9 @@ OpenOnIntExample >> initializePresenter [
 
 { #category : #initialization }
 OpenOnIntExample >> initializeWidgets [
-	text := self instantiate: LabelPresenter.
-	plus := self instantiate: ButtonPresenter.
-	minus := self instantiate: ButtonPresenter.
+	text := self instantiate: SpLabelPresenter.
+	plus := self instantiate: SpButtonPresenter.
+	minus := self instantiate: SpButtonPresenter.
 	plus
 		label: '+'.
 	minus

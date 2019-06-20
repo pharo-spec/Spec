@@ -6,7 +6,7 @@ Class {
 
 { #category : #running }
 ListPresenterMultipleSelectionTest >> classToTest [
-	^ ListPresenter
+	^ SpListPresenter
 ]
 
 { #category : #running }

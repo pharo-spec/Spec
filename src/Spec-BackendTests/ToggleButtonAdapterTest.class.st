@@ -7,5 +7,5 @@ Class {
 { #category : #running }
 ToggleButtonAdapterTest >> classToTest [
 
-	^ ToggleButtonPresenter 
+	^ SpToggleButtonPresenter 
 ]

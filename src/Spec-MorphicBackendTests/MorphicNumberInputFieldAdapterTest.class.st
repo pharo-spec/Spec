@@ -19,7 +19,7 @@ MorphicNumberInputFieldAdapterTest >> actualClass [
 { #category : #running }
 MorphicNumberInputFieldAdapterTest >> setUp [
 	super setUp.
-	presenter := NumberInputFieldPresenter new.
+	presenter := SpNumberInputFieldPresenter new.
 	adapter := self actualClass adapt: presenter
 ]
 

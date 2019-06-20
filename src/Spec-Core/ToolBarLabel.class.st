@@ -3,7 +3,7 @@ A label
 "
 Class {
 	#name : #ToolBarLabel,
-	#superclass : #ToolBarItemPresenter,
+	#superclass : #SpToolBarItemPresenter,
 	#instVars : [
 		'contents'
 	],

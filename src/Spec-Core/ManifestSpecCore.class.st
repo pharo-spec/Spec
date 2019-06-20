@@ -9,17 +9,17 @@ Class {
 
 { #category : #'code-critics' }
 ManifestSpecCore class >> ruleExcessiveMethodsRuleV1FalsePositive [
-	^ #(#(#(#RGClassDefinition #(#ComposablePresenter)) #'2016-07-01T15:56:13.465539+02:00') )
+	^ #(#(#(#RGClassDefinition #(#SpComposablePresenter)) #'2016-07-01T15:56:13.465539+02:00') )
 ]
 
 { #category : #'code-critics' }
 ManifestSpecCore class >> ruleExcessiveVariablesRuleV1FalsePositive [
-	^ #(#(#(#RGClassDefinition #(#ComposablePresenter)) #'2016-07-01T15:56:13.372336+02:00') #(#(#RGClassDefinition #(#AbstractWidgetPresenter)) #'2016-07-01T15:56:13.372528+02:00') )
+	^ #(#(#(#RGClassDefinition #(#SpComposablePresenter)) #'2016-07-01T15:56:13.372336+02:00') #(#(#RGClassDefinition #(#SpAbstractWidgetPresenter)) #'2016-07-01T15:56:13.372528+02:00') )
 ]
 
 { #category : #'code-critics' }
 ManifestSpecCore class >> ruleGTExampleNotDefinedRuleV1FalsePositive [
-	^ #(#(#(#RGClassDefinition #(#ComposablePresenter)) #'2016-07-01T15:56:13.363445+02:00') )
+	^ #(#(#(#RGClassDefinition #(#SpComposablePresenter)) #'2016-07-01T15:56:13.363445+02:00') )
 ]
 
 { #category : #'code-critics' }
@@ -29,7 +29,7 @@ ManifestSpecCore class >> ruleImplementedNotSentRuleV1FalsePositive [
 
 { #category : #'code-critics' }
 ManifestSpecCore class >> ruleLongMethodsRuleV1FalsePositive [
-	^ #(#(#(#RGMethodDefinition #(#AbstractWidgetPresenter #initialize #false)) #'2016-07-01T15:56:13.356024+02:00') #(#(#RGMethodDefinition #(#ComposablePresenter #initialize #false)) #'2016-07-01T15:56:13.355982+02:00') )
+	^ #(#(#(#RGMethodDefinition #(#SpAbstractWidgetPresenter #initialize #false)) #'2016-07-01T15:56:13.356024+02:00') #(#(#RGMethodDefinition #(#SpComposablePresenter #initialize #false)) #'2016-07-01T15:56:13.355982+02:00') )
 ]
 
 { #category : #'code-critics' }
@@ -39,7 +39,7 @@ ManifestSpecCore class >> ruleRBEquivalentSuperclassMethodsRuleV1FalsePositive [
 
 { #category : #'code-critics' }
 ManifestSpecCore class >> ruleRBOverridesDeprecatedMethodRuleV1FalsePositive [
-	^ #(#(#(#RGMethodDefinition #(#MenuItemPresenter #name #false)) #'2016-07-01T15:56:13.378417+02:00') )
+	^ #(#(#(#RGMethodDefinition #(#SpMenuItemPresenter #name #false)) #'2016-07-01T15:56:13.378417+02:00') )
 ]
 
 { #category : #'code-critics' }

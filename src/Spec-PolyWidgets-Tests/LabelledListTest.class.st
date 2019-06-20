@@ -1,6 +1,6 @@
 Class {
 	#name : #LabelledListTest,
-	#superclass : #AbstractListPresenterTest,
+	#superclass : #SpAbstractListPresenterTest,
 	#category : #'Spec-PolyWidgets-Tests'
 }
 

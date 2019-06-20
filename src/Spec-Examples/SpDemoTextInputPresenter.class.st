@@ -3,7 +3,7 @@ This demo shows differenty styles of text inputs.
 "
 Class {
 	#name : #SpDemoTextInputPresenter,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'labelNormal',
 		'fieldNormal',

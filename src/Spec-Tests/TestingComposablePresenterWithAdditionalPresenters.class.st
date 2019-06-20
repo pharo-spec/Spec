@@ -3,7 +3,7 @@ This presenter contains several subpresenters that are stored in additionalSubpr
 "
 Class {
 	#name : #TestingComposablePresenterWithAdditionalPresenters,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'subpresenter1',
 		'subpresenter2',

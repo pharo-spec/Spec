@@ -27,7 +27,7 @@ LabelledList >> displayBlock: aBlock [
 { #category : #initialization }
 LabelledList >> initializeWidgets [
 super initializeWidgets.
-	self content: ListPresenter
+	self content: SpListPresenter
 ]
 
 { #category : #'api-shortcuts' }

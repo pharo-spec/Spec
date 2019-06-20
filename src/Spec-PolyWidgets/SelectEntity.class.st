@@ -7,7 +7,7 @@ See my class side for an example
 "
 Class {
 	#name : #SelectEntity,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'entity',
 		'selectEntity',
@@ -28,8 +28,8 @@ SelectEntity class >> defaultSpec [
 		newColumn: [ :col |
 				col newRow: [:row |
 					row add: #entityText;
-						add: #selectEntity width: ComposablePresenter toolbarHeight]
-					height: ComposablePresenter toolbarHeight];
+						add: #selectEntity width: SpComposablePresenter toolbarHeight]
+					height: SpComposablePresenter toolbarHeight];
 		yourself
 
 ]

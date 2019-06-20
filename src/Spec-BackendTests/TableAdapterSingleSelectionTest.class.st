@@ -6,7 +6,7 @@ Class {
 
 { #category : #running }
 TableAdapterSingleSelectionTest >> classToTest [
-	^ TablePresenter
+	^ SpTablePresenter
 ]
 
 { #category : #running }

@@ -39,7 +39,7 @@ LabelledDropList >> emptyList [
 { #category : #initialization }
 LabelledDropList >> initializeWidgets [
 super initializeWidgets.
-	self content: DropListPresenter
+	self content: SpDropListPresenter
 ]
 
 { #category : #'api-shortcuts' }

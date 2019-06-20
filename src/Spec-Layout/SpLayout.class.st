@@ -22,7 +22,7 @@ Class {
 SpLayout class >> composed [
 
 	^self new
-		type: #ContainerPresenter;
+		type: #SpContainerPresenter;
 		yourself
 ]
 
@@ -273,7 +273,7 @@ SpLayout >> computeSplittersIn: result [
 SpLayout >> initialize [ 
 	super initialize.
 	
-	type := #ContainerPresenter.
+	type := #SpContainerPresenter.
 	self commands: OrderedCollection new.
 ]
 

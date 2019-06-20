@@ -13,7 +13,7 @@ AbstractTreeTableAdapterTest class >> isAbstract [
 { #category : #accessing }
 AbstractTreeTableAdapterTest >> classToTest [
 
-	^ TreeTablePresenter 
+	^ SpTreeTablePresenter 
 ]
 
 { #category : #running }

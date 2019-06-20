@@ -13,7 +13,7 @@ I provide extentForPreview, a point used to define the size of the preview.
 "
 Class {
 	#name : #RGBWidget,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'preview',
 		'sliders',
@@ -45,7 +45,7 @@ RGBWidget >> initializePresenter [
 
 { #category : #initialization }
 RGBWidget >> initializeWidgets [
-	preview := self instantiate: ImagePresenter.
+	preview := self instantiate: SpImagePresenter.
 	sliders := self instantiate: RGBSliders.
 	preview image: (Form extent: 30 @ 30 depth: 32).
 	preview image: self makeNewForm.

@@ -1,6 +1,6 @@
 Class {
 	#name : #SpMockMenuPresenter,
-	#superclass : #MenuPresenter,
+	#superclass : #SpMenuPresenter,
 	#instVars : [
 		'shown'
 	],

@@ -11,7 +11,7 @@ I provide four layouts on my class side, to chose the position of the label.
 "
 Class {
 	#name : #LabelledContainer,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'label',
 		'subwidget'
@@ -76,7 +76,7 @@ LabelledContainer >> doesNotUnderstand: aMessage [
 
 { #category : #initialization }
 LabelledContainer >> initializeWidgets [
-	label := self instantiate: LabelPresenter.
+	label := self instantiate: SpLabelPresenter.
 ]
 
 { #category : #accessing }

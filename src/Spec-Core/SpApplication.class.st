@@ -127,7 +127,7 @@ SpApplication >> openDialog: aPresenter withSpecLayout: aSpecLayout [
 	^ self 
 		open: aPresenter 
 		withSpecLayout: aSpecLayout 
-		using: DialogWindowPresenter
+		using: SpDialogWindowPresenter
 ]
 
 { #category : #showing }
@@ -145,7 +145,7 @@ SpApplication >> openModal: aPresenter withSpecLayout: aSpecLayout [
 	^ self 
 		open: aPresenter 
 		withSpecLayout: aSpecLayout 
-		using: ModalWindowPresenter
+		using: SpModalWindowPresenter
 ]
 
 { #category : #running }

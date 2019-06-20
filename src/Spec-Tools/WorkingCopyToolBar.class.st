@@ -3,7 +3,7 @@ WorkingCopyToolBar new openWithSpec
 "
 Class {
 	#name : #WorkingCopyToolBar,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'browseButton',
 		'configButton',
@@ -16,7 +16,7 @@ Class {
 { #category : #specs }
 WorkingCopyToolBar class >> defaultSpec [ 
 
-	^ {#ContainerPresenter.
+	^ {#SpContainerPresenter.
 			#add: . {{#presenter . #packageButton.} . #layout: .  #(FrameLayout
 										rightFraction: 0.25
 										bottomFraction: 0
@@ -117,7 +117,7 @@ WorkingCopyToolBar >> setPackageButton [
 
 { #category : #initialization }
 WorkingCopyToolBar >> setSliceButton [
-	sliceButton := self instantiate: ButtonPresenter.
+	sliceButton := self instantiate: SpButtonPresenter.
 	sliceButton
 		state: false;
 		label: '+Slice';

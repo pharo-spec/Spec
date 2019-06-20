@@ -33,7 +33,7 @@ SpApplicationTest >> testAdapterBindings [
 { #category : #tests }
 SpApplicationTest >> testCloseDialogWindowRemovesItFromWindowCollection [
 	| window |
-	window := (application newPresenter: ButtonPresenter) openDialogWithSpec.
+	window := (application newPresenter: SpButtonPresenter) openDialogWithSpec.
 	window close.
 	self deny: (application windows includes: window)
 ]
@@ -41,7 +41,7 @@ SpApplicationTest >> testCloseDialogWindowRemovesItFromWindowCollection [
 { #category : #tests }
 SpApplicationTest >> testCloseWindowRemovesItFromWindowCollection [
 	| window |
-	window := (application newPresenter: ButtonPresenter) openWithSpec.
+	window := (application newPresenter: SpButtonPresenter) openWithSpec.
 	window close.
 	self deny: (application windows includes: window)
 ]
@@ -56,14 +56,14 @@ SpApplicationTest >> testIsPresenter [
 SpApplicationTest >> testNewPresenter [
 	| presenter |
 
-	presenter := application newPresenter: ButtonPresenter.
+	presenter := application newPresenter: SpButtonPresenter.
 	self assert: presenter application equals: application
 ]
 
 { #category : #tests }
 SpApplicationTest >> testOpenDialogWindowAddsItToWindowCollection [
 	| window |
-	window := (application newPresenter: ButtonPresenter) openDialogWithSpec.
+	window := (application newPresenter: SpButtonPresenter) openDialogWithSpec.
 	
 	self assert: (application windows includes: window)
 ]
@@ -73,7 +73,7 @@ SpApplicationTest >> testOpenDialogWindowWithDifferentApplicationDoesNotAddItToW
 	| secondApplication presenterInSecondApplication windowsBefore |
 
 	secondApplication := SpApplication new.
-	presenterInSecondApplication := secondApplication newPresenter: ButtonPresenter.
+	presenterInSecondApplication := secondApplication newPresenter: SpButtonPresenter.
 
 	windowsBefore := application windows copy.
 
@@ -89,7 +89,7 @@ SpApplicationTest >> testOpenDialogWindowWithDifferentApplicationShouldFail [
 	| secondApplication presenterInSecondApplication |
 
 	secondApplication := SpApplication new.
-	presenterInSecondApplication := secondApplication newPresenter: ButtonPresenter.
+	presenterInSecondApplication := secondApplication newPresenter: SpButtonPresenter.
 
 	self
 		should: [ application openDialog: presenterInSecondApplication ]
@@ -99,7 +99,7 @@ SpApplicationTest >> testOpenDialogWindowWithDifferentApplicationShouldFail [
 { #category : #tests }
 SpApplicationTest >> testOpenWindowAddsItToWindowCollection [
 	| window |
-	window := (application newPresenter: ButtonPresenter) openWithSpec.
+	window := (application newPresenter: SpButtonPresenter) openWithSpec.
 	
 	self assert: (application windows includes: window)
 ]
@@ -109,14 +109,14 @@ SpApplicationTest >> testOpenWindowWithDifferentApplicationDoesNotAddItToWindowC
 	| secondApplication presenterInSecondApplication windowsBefore |
 
 	secondApplication := SpApplication new.
-	presenterInSecondApplication := secondApplication newPresenter: ButtonPresenter.
+	presenterInSecondApplication := secondApplication newPresenter: SpButtonPresenter.
 
 	windowsBefore := application windows copy.
 
 	self should: [
 		application 
 			open: presenterInSecondApplication
-			withSpecLayout: ButtonPresenter defaultSpec ] raise: SpInvalidApplicationError.
+			withSpecLayout: SpButtonPresenter defaultSpec ] raise: SpInvalidApplicationError.
 		
 	self assert: application windows equals: windowsBefore
 ]
@@ -126,7 +126,7 @@ SpApplicationTest >> testOpenWindowWithDifferentApplicationShouldFail [
 	| secondApplication presenterInSecondApplication |
 
 	secondApplication := SpApplication new.
-	presenterInSecondApplication := secondApplication newPresenter: ButtonPresenter.
+	presenterInSecondApplication := secondApplication newPresenter: SpButtonPresenter.
 
 	self
 		should: [ application open: presenterInSecondApplication ]

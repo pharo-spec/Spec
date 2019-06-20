@@ -5,7 +5,7 @@ slef example
 "
 Class {
 	#name : #DynamicWidgetChange,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'boolean',
 		'button',
@@ -59,7 +59,7 @@ DynamicWidgetChange >> change [
 DynamicWidgetChange >> changeToButton [
 
 	self instantiatePresenters: 
-		#( bottom ButtonPresenter ).
+		#( bottom #SpButtonPresenter ).
 	button font: (LogicalFont familyName: 'Source Sans Pro' pointSize: 9).
 		
 	bottom label: 'I am useless'.
@@ -69,7 +69,7 @@ DynamicWidgetChange >> changeToButton [
 DynamicWidgetChange >> changeToList [
 
 	self instantiatePresenters: 
-		#( bottom #ListPresenter ).
+		#( bottom #SpListPresenter ).
 
 	button font: (LogicalFont familyName: 'Source Sans Pro' pointSize: 10).
 		

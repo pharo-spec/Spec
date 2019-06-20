@@ -6,5 +6,5 @@ Class {
 
 { #category : #running }
 ListAdapterSingleSelectionTest >> classToTest [
-	^ ListPresenter
+	^ SpListPresenter
 ]

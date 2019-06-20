@@ -233,7 +233,7 @@ SpDemoStandaloneFormPresenter >> initializeWidgets [
 	checkboxInput := self newCheckBox state: true.
 
 	dateLabel := self newLabel label: 'date:'.
-	dateInput := self instantiate: DatePresenter.
+	dateInput := self instantiate: SpDatePresenter.
 	dateInput displayBlock: [ :item | item yyyymmdd ].
 	
 	maleButton := self newRadioButton label: 'male'. 

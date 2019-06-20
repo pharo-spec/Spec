@@ -7,7 +7,7 @@ I show also how to dynamically redrawn a widget.
 "
 Class {
 	#name : #OpenOnStringExample,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'label',
 		'check',
@@ -102,10 +102,10 @@ OpenOnStringExample >> initializePresenter [
 
 { #category : #initialization }
 OpenOnStringExample >> initializeWidgets [
-	label := self instantiate: LabelPresenter.
-	check := self instantiate: CheckBoxPresenter.
-	input := self instantiate: TextInputFieldPresenter.
-	button := self instantiate: ButtonPresenter.
+	label := self instantiate: SpLabelPresenter.
+	check := self instantiate: SpCheckBoxPresenter.
+	input := self instantiate: SpTextInputFieldPresenter.
+	button := self instantiate: SpButtonPresenter.
 	button
 		label: 'reset';
 		action: [ input text: textToReset ].

@@ -7,7 +7,7 @@ Class {
 { #category : #accessing }
 ImageAdapterTest >> classToTest [
 
-	^ ImagePresenter
+	^ SpImagePresenter
 ]
 
 { #category : #building }

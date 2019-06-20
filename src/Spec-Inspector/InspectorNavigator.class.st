@@ -3,7 +3,7 @@ This a wrapper around inspectors for diving. It is used in the case where the in
 "
 Class {
 	#name : #InspectorNavigator,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'inspector',
 		'history',
@@ -106,7 +106,7 @@ InspectorNavigator >> customMenuActions [
 
 { #category : #accessing }
 InspectorNavigator >> defaultWindowPresenterClass [
-	^ TickingWindowPresenter
+	^ SpTickingWindowPresenter
 ]
 
 { #category : #actions }

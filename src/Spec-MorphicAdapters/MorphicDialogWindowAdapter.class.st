@@ -21,7 +21,7 @@ MorphicDialogWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpe
 MorphicDialogWindowAdapter >> buildButtonBar [
 	| buttonBar |
 	
-	buttonBar := (ButtonBarPresenter owner: self model) placeAtEnd.
+	buttonBar := (SpButtonBarPresenter owner: self model) placeAtEnd.
 	self model buttons do: [ :buttonPresenter | 
 		buttonBar add: buttonPresenter ].
 	

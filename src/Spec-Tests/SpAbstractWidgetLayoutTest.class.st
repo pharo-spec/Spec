@@ -11,21 +11,21 @@ Class {
 SpAbstractWidgetLayoutTest >> testAdapterForBindings [
 	| layout |
 	layout := SpAbstractWidgetLayout for: #ListAdapter.
-	self assert: (layout adapterFor: ListPresenter new bindings: SpStubAdapterBindings new) class equals: SpStubListAdapter
+	self assert: (layout adapterFor: SpListPresenter new bindings: SpStubAdapterBindings new) class equals: SpStubListAdapter
 ]
 
 { #category : #test }
 SpAbstractWidgetLayoutTest >> testAdapterForBindingsRaiseErrorIfNoBinding [
 	| layout |
 	layout := SpAbstractWidgetLayout for: #NonExistingAdapter.
-	self should: [ layout adapterFor: ListPresenter new bindings: SpStubAdapterBindings new ] raise: Error
+	self should: [ layout adapterFor: SpListPresenter new bindings: SpStubAdapterBindings new ] raise: Error
 ]
 
 { #category : #test }
 SpAbstractWidgetLayoutTest >> testBuildAdapterForBindings [
 	| layout |
 	layout := SpAbstractWidgetLayout for: #ListAdapter.
-	self assert: (layout buildAdapterFor: ListPresenter new bindings: SpStubAdapterBindings new) widget class equals: SpStubListView
+	self assert: (layout buildAdapterFor: SpListPresenter new bindings: SpStubAdapterBindings new) widget class equals: SpStubListView
 ]
 
 { #category : #test }
@@ -33,7 +33,7 @@ SpAbstractWidgetLayoutTest >> testDynamicBuild [
 	"Cyril: This is currently a duplicated of a test in SpecInterpreter, but this test is useful for more that the SpecInterpreter and since we plan to remove the interpreter I want to ensure we do not lose this test. This comment can be removed once the SpecInterpreter will be removed."
 
 	| model widget1 widget2 widget3 |
-	model := TestingComposablePresenter new.
+	model := SpTestingComposablePresenter new.
 	model openWithSpec close.
 	widget1 := model list adapter.
 	model openWithSpec close.

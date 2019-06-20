@@ -4,7 +4,7 @@ Extension { #name : #CmdMenu }
 CmdMenu >> buildContextMenu [
 	| menu |
 
-	menu := MenuPresenter new.
+	menu := SpMenuPresenter new.
 	rootGroup buildContextMenu: menu.
 	^ menu
 ]

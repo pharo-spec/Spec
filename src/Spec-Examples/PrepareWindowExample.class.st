@@ -7,7 +7,7 @@ self show.
 "
 Class {
 	#name : #PrepareWindowExample,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'menu',
 		'toolBar',
@@ -75,7 +75,7 @@ PrepareWindowExample >> buildPushMessageToolBarItem [
 { #category : #'private building' }
 PrepareWindowExample >> buildStatusBar [
 
-	^ StatusBarPresenter new
+	^ SpStatusBarPresenter new
 ]
 
 { #category : #'private building' }

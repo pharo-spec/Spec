@@ -9,7 +9,7 @@ The slider triggers rebuilds of the dynamic presenter in order to update the num
 "
 Class {
 	#name : #SpDemoDynamicMemoryGamePresenter,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'dynamicPresenter',
 		'builder',
@@ -112,7 +112,7 @@ SpDemoDynamicMemoryGamePresenter >> rebuildDynamicPresenter [
 	"Build the presenters list depending on the total number of cards."
 	builder := DynamicPresentersListBuilder new
 		modelObjects: allCards;
-		presenter: ButtonPresenter "We use buttons as UI for cards."
+		presenter: SpButtonPresenter "We use buttons as UI for cards."
 			configuredAs: [ :presenter :modelObject | 
 			self
 				gameLogicWithShowedCards: showedCards

@@ -6,7 +6,7 @@ Class {
 
 { #category : #running }
 TableCommonPropertiestTest >> classToTest [
-	^ TablePresenter
+	^ SpTablePresenter
 ]
 
 { #category : #running }

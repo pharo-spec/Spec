@@ -3,7 +3,7 @@ A group of option buttons
 "
 Class {
 	#name : #ToolBarOptionButtonGroup,
-	#superclass : #ToolBarItemPresenter,
+	#superclass : #SpToolBarItemPresenter,
 	#instVars : [
 		'options'
 	],

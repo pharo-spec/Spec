@@ -7,7 +7,7 @@ I display simply an TextInputFieldPresenter, disable to don't be edditable by th
 "
 Class {
 	#name : #OpenOnNilExample,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'text'
 	],
@@ -40,7 +40,7 @@ OpenOnNilExample >> initialize: anInteger [
 
 { #category : #initialization }
 OpenOnNilExample >> initializeWidgets [
-	text := self instantiate: TextInputFieldPresenter.
+	text := self instantiate: SpTextInputFieldPresenter.
 	text
 		text: 'Object is nil';
 		enabled: false.

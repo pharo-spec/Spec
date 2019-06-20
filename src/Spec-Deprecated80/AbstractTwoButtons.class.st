@@ -10,7 +10,7 @@ I provide two layout on my class side, vertical and horizontal.
 "
 Class {
 	#name : #AbstractTwoButtons,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'firstButton',
 		'secondButton'
@@ -82,8 +82,8 @@ self subclassResponsibility
 
 { #category : #initialization }
 AbstractTwoButtons >> initializeWidgets [
-	firstButton := self instantiate: ButtonPresenter.
-	secondButton := self instantiate: ButtonPresenter.
+	firstButton := self instantiate: SpButtonPresenter.
+	secondButton := self instantiate: SpButtonPresenter.
 	self initializeButtons.
 	self focusOrder
 		add: firstButton;

@@ -45,10 +45,10 @@ DynamicPresentersListBuilderTest >> testInstVarNames [
 DynamicPresentersListBuilderTest >> testInstVarNamesAndPresenterNamesArray [
 	builder
 		modelObjects: { 3 . 2 . 1 };
-		presenterBlock: [ :o | ButtonPresenter ].
+		presenterBlock: [ :o | SpButtonPresenter ].
 		
 	self
-		assertCollection: builder instVarNamesAndPresenterNamesArray hasSameElements: #(var1 ButtonPresenter var2 ButtonPresenter var3 ButtonPresenter)
+		assertCollection: builder instVarNamesAndPresenterNamesArray hasSameElements: #(var1 #SpButtonPresenter var2 #SpButtonPresenter var3 #SpButtonPresenter)
 ]
 
 { #category : #tests }
@@ -64,12 +64,12 @@ DynamicPresentersListBuilderTest >> testModelObjects [
 DynamicPresentersListBuilderTest >> testNullPresentersInstVarNamesAndPresenterNamesArray [
 	builder
 		modelObjects: { 1 . 2 . 3 };
-		presenter: CheckBoxPresenter configuredAs: [ :presenter :modelObject | ];
+		presenter: SpCheckBoxPresenter configuredAs: [ :presenter :modelObject | ];
 		buildDynamicPresenter;
 		createNullPresenters: 3.
 	
 	self
-		assertCollection: builder nullPresentersInstVarNamesAndPresenterNamesArray equals: #(var4 NullPresenter var5 NullPresenter var6 NullPresenter)
+		assertCollection: builder nullPresentersInstVarNamesAndPresenterNamesArray equals: #(var4 #SpNullPresenter var5 #SpNullPresenter var6 #SpNullPresenter)
 ]
 
 { #category : #tests }
@@ -81,10 +81,10 @@ DynamicPresentersListBuilderTest >> testPresenterConfiguredAs [
 	
 	block := [ :p :m | ].
 	builder
-		presenter: ButtonPresenter configuredAs: block.
+		presenter: SpButtonPresenter configuredAs: block.
 		
 	self
-		assert: (builder presenterBlock value: nil) equals: ButtonPresenter; "Any value can be provided to the block in this case, always the same presenter is returned."
+		assert: (builder presenterBlock value: nil) equals: SpButtonPresenter; "Any value can be provided to the block in this case, always the same presenter is returned."
 		assert: builder configurationBlock equals: block
 ]
 
@@ -99,11 +99,11 @@ DynamicPresentersListBuilderTest >> testPresenterProvidedByConfiguredAs [
 	builder
 		presenterProvidedBy: [ :integer |
 			integer even
-				ifTrue: [ ButtonPresenter ]
-				ifFalse: [ LabelPresenter ] ] configuredAs: block.
+				ifTrue: [ SpButtonPresenter ]
+				ifFalse: [ SpLabelPresenter ] ] configuredAs: block.
 		
 	self
-		assert: (builder presenterBlock value: 1) equals: LabelPresenter;
-		assert: (builder presenterBlock value: 2) equals: ButtonPresenter;
+		assert: (builder presenterBlock value: 1) equals: SpLabelPresenter;
+		assert: (builder presenterBlock value: 2) equals: SpButtonPresenter;
 		assert: builder configurationBlock equals: block
 ]

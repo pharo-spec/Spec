@@ -7,7 +7,7 @@ I provide accessors dropList and input and shortcuts for the most common methods
 "
 Class {
 	#name : #DropListButton,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'dropList',
 		'button'
@@ -80,8 +80,8 @@ DropListButton >> icon: anIcon [
 
 { #category : #initialization }
 DropListButton >> initializeWidgets [
-	dropList := self instantiate: DropListPresenter.
-	button := self instantiate: ButtonPresenter.
+	dropList := self instantiate: SpDropListPresenter.
+	button := self instantiate: SpButtonPresenter.
 	self focusOrder
 		add: dropList;
 		add: button

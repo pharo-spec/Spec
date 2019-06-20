@@ -5,7 +5,7 @@ self example
 "
 Class {
 	#name : #TabsExample,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'manager'
 	],

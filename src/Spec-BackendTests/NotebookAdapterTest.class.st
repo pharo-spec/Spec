@@ -6,20 +6,20 @@ Class {
 
 { #category : #accessing }
 NotebookAdapterTest >> classToTest [
-	^ NotebookPresenter
+	^ SpNotebookPresenter
 ]
 
 { #category : #running }
 NotebookAdapterTest >> initializeTestedInstance [
 	presenter
-		addPage: (NotebookPage title: 'Mock' icon: (self iconNamed: #changeUpdate) provider: [ ButtonPresenter new ]);
-		addPage: (NotebookPage title: 'Mock2' icon: (self iconNamed: #changeUpdate) provider: [ LabelPresenter new ])
+		addPage: (NotebookPage title: 'Mock' icon: (self iconNamed: #changeUpdate) provider: [ SpButtonPresenter new ]);
+		addPage: (NotebookPage title: 'Mock2' icon: (self iconNamed: #changeUpdate) provider: [ SpLabelPresenter new ])
 ]
 
 { #category : #tests }
 NotebookAdapterTest >> testAddPage [
 	self assert: self adapter numberOfTabs equals: 2.
-	presenter addPage: (NotebookPage title: 'Mock3' provider: [ LabelPresenter new ]).
+	presenter addPage: (NotebookPage title: 'Mock3' provider: [ SpLabelPresenter new ]).
 	self assert: self adapter numberOfTabs equals: 3
 ]
 
@@ -40,7 +40,7 @@ NotebookAdapterTest >> testRemoveAll [
 { #category : #tests }
 NotebookAdapterTest >> testRemovePage [
 	| page |
-	presenter addPage: (page := NotebookPage title: 'Mock3' provider: [ LabelPresenter new ]).
+	presenter addPage: (page := NotebookPage title: 'Mock3' provider: [ SpLabelPresenter new ]).
 	self assert: self adapter numberOfTabs equals: 3.
 	presenter removePage: page.
 	self assert: self adapter numberOfTabs equals: 2
@@ -48,7 +48,7 @@ NotebookAdapterTest >> testRemovePage [
 
 { #category : #tests }
 NotebookAdapterTest >> testRemovePageAt [
-	presenter addPage: (NotebookPage title: 'Mock3' provider: [ LabelPresenter new ]).
+	presenter addPage: (NotebookPage title: 'Mock3' provider: [ SpLabelPresenter new ]).
 	self assert: self adapter numberOfTabs equals: 3.
 	presenter removePageAt: 2.
 	self assert: self adapter numberOfTabs equals: 2.

@@ -6,7 +6,7 @@ I am a simple presenter to add spacers to spec layouts.
 "
 Class {
 	#name : #SpacerPresenter,
-	#superclass : #AbstractWidgetPresenter,
+	#superclass : #SpAbstractWidgetPresenter,
 	#category : #'Spec-Core-Widgets'
 }
 

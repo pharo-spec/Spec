@@ -7,7 +7,7 @@ Class {
 { #category : #accessing }
 TextAdapterTest >> classToTest [
 
-	^ TextPresenter
+	^ SpTextPresenter
 ]
 
 { #category : #accessing }

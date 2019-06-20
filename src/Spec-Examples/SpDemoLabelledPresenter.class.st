@@ -6,7 +6,7 @@ Demo for the labelled presenter
 "
 Class {
 	#name : #SpDemoLabelledPresenter,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'email',
 		'password'
@@ -37,8 +37,8 @@ SpDemoLabelledPresenter >> initializeWidgets [
 		bePassword;
 		yourself.
 		
-	email := self instantiate: (LabelledPresenter label: 'Email' input: self newTextInput description: 'Email you will use to send activations mails to your users.').
-	password := self instantiate: (LabelledPresenter label: 'Password' input: passwordInput description: 'Password of the email account used.').
+	email := self instantiate: (SpLabelledPresenter label: 'Email' input: self newTextInput description: 'Email you will use to send activations mails to your users.').
+	password := self instantiate: (SpLabelledPresenter label: 'Password' input: passwordInput description: 'Password of the email account used.').
 	
 	self focusOrder add: email; add: password
 ]

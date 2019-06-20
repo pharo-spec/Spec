@@ -18,7 +18,7 @@ SpInterpreterTest >> setUp [
 	super setUp.
 	specInterpreterClass := SpInterpreter.
 	specInterpreter := specInterpreterClass new.
-	specInterpreter presenter: TestingComposablePresenter new
+	specInterpreter presenter: SpTestingComposablePresenter new
 ]
 
 { #category : #running }
@@ -41,7 +41,7 @@ SpInterpreterTest >> testConvertRandomSymbolOfClassToInstance [
 { #category : #tests }
 SpInterpreterTest >> testDynamicBuild [
 	| model widget1 widget2 widget3 |
-	model := TestingComposablePresenter new.
+	model := SpTestingComposablePresenter new.
 	model openWithSpec close.
 	widget1 := model list adapter.
 	model openWithSpec close.
@@ -58,7 +58,7 @@ SpInterpreterTest >> testDynamicBuild [
 { #category : #tests }
 SpInterpreterTest >> testInterpretASpecModelMorphAssociation [
 	| spec model morph |
-	model := AbstractWidgetPresenter new.
+	model := SpAbstractWidgetPresenter new.
 	spec := {#MenuRegistration . #help: . #icon:}.
 	morph := specInterpreterClass interpretASpec: spec presenter: model.
 	self assert: model adapter == morph

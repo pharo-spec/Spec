@@ -21,6 +21,6 @@ LabelledContainer class >> example [
 
 { #category : #'*Spec-Examples' }
 LabelledContainer class >> setUpExample: example [
-	example content: ButtonPresenter.
+	example content: SpButtonPresenter.
 	example subwidget label: 'I am a button'
 ]

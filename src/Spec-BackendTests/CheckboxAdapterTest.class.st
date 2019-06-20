@@ -7,7 +7,7 @@ Class {
 { #category : #running }
 CheckboxAdapterTest >> classToTest [
 
-	^ CheckBoxPresenter
+	^ SpCheckBoxPresenter
 ]
 
 { #category : #running }

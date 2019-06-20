@@ -16,8 +16,8 @@ Class {
 SpFocusOrderTest >> setUp [
 	super setUp.
 	specFocusOrder := SpFocusOrder new.
-	button1 := ButtonPresenter new.
-	button2 := ButtonPresenter new
+	button1 := SpButtonPresenter new.
+	button2 := SpButtonPresenter new
 ]
 
 { #category : #tests }

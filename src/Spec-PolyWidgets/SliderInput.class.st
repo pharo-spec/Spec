@@ -12,7 +12,7 @@ Note
 "
 Class {
 	#name : #SliderInput,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'slider',
 		'input'
@@ -89,8 +89,8 @@ SliderInput >> initializePresenter [
 
 { #category : #initialization }
 SliderInput >> initializeWidgets [
-	slider := self instantiate: SliderPresenter.
-	input := self instantiate: TextInputFieldPresenter.
+	slider := self instantiate: SpSliderPresenter.
+	input := self instantiate: SpTextInputFieldPresenter.
 	self focusOrder add: input
 ]
 

@@ -28,7 +28,7 @@ DynamicPresentersListBuilder class >> example [
 	| dynamicPresenter |
 	dynamicPresenter := DynamicPresentersListBuilder new
 		modelObjects: {1 . 2 . 3 . 4 . 5};
-		presenter: CheckBoxPresenter
+		presenter: SpCheckBoxPresenter
 			configuredAs: [ :presenter :modelObject | 
 			presenter
 				label: modelObject asString;
@@ -49,8 +49,8 @@ DynamicPresentersListBuilder class >> example2 [
 		modelObjects: {1 . 2 . 3 . 4 . 5};
 		presenterProvidedBy: [ :integer |
 			integer odd "In your real code, avoid conditionals, use dispatch."
-				ifTrue: [ CheckBoxPresenter ]
-				ifFalse: [ LabelPresenter ] ]
+				ifTrue: [ SpCheckBoxPresenter ]
+				ifFalse: [ SpLabelPresenter ] ]
 			configuredAs: [ :presenter :modelObject | 
 			presenter
 				label: modelObject asString ];
@@ -71,7 +71,7 @@ DynamicPresentersListBuilder >> build [
 
 { #category : #building }
 DynamicPresentersListBuilder >> buildDynamicPresenter [
-	dynamicPresenter := DynamicComposablePresenter new.
+	dynamicPresenter := SpDynamicComposablePresenter new.
 	dynamicPresenter instantiatePresenters: self instVarNamesAndPresenterNamesArray.
 	
 	"Apply configuration block."
@@ -183,7 +183,7 @@ DynamicPresentersListBuilder >> nullPresentersInstVarNamesAndPresenterNamesArray
 		into: [ :col :instVar |
 			col
 				add: instVar;
-				add: NullPresenter name;
+				add: SpNullPresenter name;
 				yourself ]) asArray
 ]
 

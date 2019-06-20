@@ -6,7 +6,7 @@ I show demos of tables
 "
 Class {
 	#name : #SpDemoTablePresenter,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'table1',
 		'label',

@@ -104,7 +104,7 @@ EyePointerExplorer >> title [
 { #category : #accessing }
 EyePointerExplorer >> tree [
 	^ tree ifNil: [ 
-		tree := self instantiate: TreePresenter.
+		tree := self instantiate: SpTreePresenter.
 		tree whenBuiltDo: [ self initializeShortcuts ].
 		tree 
 			whenSelectedItemChanged: [ :item | item ifNotNil: [ self text doItReceiver: item value ]];	

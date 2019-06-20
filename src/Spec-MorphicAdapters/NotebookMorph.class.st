@@ -115,7 +115,7 @@ NotebookMorph >> initialize [
 { #category : #factory }
 NotebookMorph >> newCloseButtonFor: aPage [
 
-	^ ButtonPresenter new 
+	^ SpButtonPresenter new 
 		icon: (self theme windowCloseForm);
 		action: [ self removePage: aPage ];
 		buildWithSpec

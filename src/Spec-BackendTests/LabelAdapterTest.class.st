@@ -9,7 +9,7 @@ Class {
 
 { #category : #accessing }
 LabelAdapterTest >> classToTest [
-	^ LabelPresenter
+	^ SpLabelPresenter
 ]
 
 { #category : #tests }
