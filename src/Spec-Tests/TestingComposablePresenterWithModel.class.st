@@ -15,7 +15,7 @@ Class {
 TestingComposablePresenterWithModel class >> defaultSpec [
 	<spec: #default>
 
-	^ SpecLayout composed newColumn: [ :col |
+	^ SpLayout composed newColumn: [ :col |
 		col newRow: [:row | row add: #x; add: #y ]];
 		yourself
 

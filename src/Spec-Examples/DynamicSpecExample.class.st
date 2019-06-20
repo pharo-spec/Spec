@@ -107,7 +107,7 @@ DynamicSpecExample >> openOnInteger [
 			object value: object value +1.
 			anUI text label: object value asString ].
 	
-	layout := SpecLayout composed
+	layout := SpLayout composed
 		newColumn: [ :c |
 			c
 				add: #text height: 25;
@@ -164,14 +164,14 @@ DynamicSpecExample >> openOnString [
 			anUI text text: temp.
 			self object: temp ].
 		
-	layout := SpecLayout composed
+	layout := SpLayout composed
 				newColumn: [ :c |
 					c 
 						newRow: [ :r | r add: #label; add: #check width: 100 ] height: 25;
 						newRow: [ :r | r add: #text; add: #button ] height: 25 ];
 				yourself.
 				
-	bottomLayout := SpecLayout composed
+	bottomLayout := SpLayout composed
 				newColumn: [ :c |
 					c 
 						newRow: [ :r | r add: #text; add: #button ] height: 25;

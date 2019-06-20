@@ -9,11 +9,11 @@ Class {
 	#name : #DropListPresenter,
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
-		'#model => SpecObservableSlot',
+		'#model => SpObservableSlot',
 		'#startsWithSelection',
 		'#selection',
-		'#displayBlock => SpecObservableSlot',
-		'#iconBlock => SpecObservableSlot'
+		'#displayBlock => SpObservableSlot',
+		'#iconBlock => SpObservableSlot'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -143,8 +143,8 @@ DropListPresenter >> initialize [
 
 	super initialize.
 	
-	model := SpecCollectionListModel on: #().
-	selection := SpecSingleSelectionMode on: self.
+	model := SpCollectionListModel on: #().
+	selection := SpSingleSelectionMode on: self.
 	displayBlock := [ :itemModel :item | item label ].
 	iconBlock := [ :itemModel :item | item icon ].
 	

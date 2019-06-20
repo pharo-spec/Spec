@@ -18,7 +18,7 @@ Class {
 SearchableTree class >> defaultSpec [
 	<spec: #default>
 	
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [:r |
 			r
 			"add: #label width: 50;"
@@ -32,7 +32,7 @@ SearchableTree class >> defaultSpec [
 SearchableTree class >> searchAtBottom [
 	<spec: #default>
 	
-	^ SpecLayout composed
+	^ SpLayout composed
 		newColumn: [:c |
 			c 
 				add: #tree;

@@ -17,9 +17,9 @@ Class {
 
 { #category : #specs }
 RadioButtonExample class >> defaultSpec [
-	^ SpecBoxLayout newVertical
+	^ SpBoxLayout newVertical
 		add:
-			(SpecBoxLayout newHorizontal
+			(SpBoxLayout newHorizontal
 				add: #button1;
 				add: #button2;
 				add: #button3;

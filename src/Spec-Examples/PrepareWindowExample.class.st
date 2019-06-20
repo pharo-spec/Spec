@@ -22,7 +22,7 @@ Class {
 PrepareWindowExample class >> defaultSpec [
 	<spec: #default>
 
-	^ SpecLayout composed 
+	^ SpLayout composed 
 		newColumn: #text
 ]
 

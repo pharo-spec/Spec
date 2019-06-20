@@ -16,7 +16,7 @@ Class {
 { #category : #specs }
 EyeInspectorToolBar class >> defaultSpec [
 	<spec>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [ :r | 
 			r
 				add: #previousButton width: 24;

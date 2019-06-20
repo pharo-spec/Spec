@@ -18,7 +18,7 @@ Class {
 DynamicWidgetChange class >> defaultSpec [
 	<spec>
 	
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: #button height: 25;
 		newRow: #bottom top: 25;
 		yourself

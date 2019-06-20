@@ -3,7 +3,7 @@ I am used to link the spec-adapter names to the morphic adapters
 "
 Class {
 	#name : #MorphicAdapterBindings,
-	#superclass : #SpecAdapterBindings,
+	#superclass : #SpAdapterBindings,
 	#category : #'Spec-MorphicAdapters-Support'
 }
 

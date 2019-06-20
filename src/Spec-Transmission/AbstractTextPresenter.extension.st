@@ -3,10 +3,10 @@ Extension { #name : #AbstractTextPresenter }
 { #category : #'*Spec-Transmission' }
 AbstractTextPresenter >> defineInputPorts [ 
 
-	^ { SpecTextPort new }
+	^ { SpTextPort new }
 ]
 
 { #category : #'*Spec-Transmission' }
 AbstractTextPresenter >> defineOutputPorts [
-	^ {SpecTextChangedPort new}
+	^ {SpTextChangedPort new}
 ]

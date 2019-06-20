@@ -11,9 +11,9 @@ Class {
 	#classTraits : 'TSpecObservable classTrait',
 	#instVars : [
 		'#owner',
-		'#title => SpecObservableSlot',
-		'#icon => SpecObservableSlot',
-		'#layoutSpec => SpecObservableSlot',
+		'#title => SpObservableSlot',
+		'#icon => SpObservableSlot',
+		'#layoutSpec => SpObservableSlot',
 		'#presenterProvider'
 	],
 	#category : #'Spec-Core-Widgets-Tab'
@@ -79,6 +79,19 @@ NotebookPage >> layoutSpec [
 NotebookPage >> layoutSpec: aSymbol [
 
 	layoutSpec := aSymbol
+]
+
+{ #category : #events }
+NotebookPage >> observablePropertyNamed: aName [
+	| slot |
+	
+	slot := self class slotNamed: aName.
+	slot isObservableSlot
+		ifFalse: [ SpNonObservableSlotError signal: aName ].
+
+	"Obtain the raw value.
+	We need to access the underlying value holder to subscribe to it"
+	^ slot rawRead: self
 ]
 
 { #category : #accessing }

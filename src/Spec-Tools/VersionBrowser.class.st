@@ -51,10 +51,10 @@ VersionBrowser class >> browseVersionsForMethod: aRingMethod [
 
 { #category : #specs }
 VersionBrowser class >> defaultSpec [
-	^ SpecPanedLayout newVertical
+	^ SpPanedLayout newVertical
 		add: #messageList;
 		add:
-			(SpecBoxLayout newVertical
+			(SpBoxLayout newVertical
 				add: #toolbarPresenter withConstraints: [ :constraints | constraints height: self buttonHeight ];
 				add: #sourcePresenter;
 				yourself);

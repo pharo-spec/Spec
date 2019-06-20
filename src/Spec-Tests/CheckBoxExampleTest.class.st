@@ -1,6 +1,6 @@
 Class {
 	#name : #CheckBoxExampleTest,
-	#superclass : #SpecSmokeTestCase,
+	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Examples-Morphic'
 }
 

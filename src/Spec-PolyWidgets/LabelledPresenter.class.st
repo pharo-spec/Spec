@@ -21,7 +21,7 @@ Class {
 
 { #category : #specs }
 LabelledPresenter class >> defaultSpec [
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [ :row | 
 			row
 				newColumn: [ :c | 

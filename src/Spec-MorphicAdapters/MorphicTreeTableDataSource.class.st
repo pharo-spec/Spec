@@ -77,6 +77,17 @@ MorphicTreeTableDataSource >> itemAtPath: aPath expanding: shouldExpandItems [
 	^ item
 ]
 
+{ #category : #accessing }
+MorphicTreeTableDataSource >> menuColumn: column row: rowIndex [
+	| menuPresenter |
+
+	menuPresenter := self model contextMenu.
+	menuPresenter ifNil: [ ^ nil ].
+	^ SpBindings
+		value: self model application adapterBindings
+		during: [ menuPresenter value buildWithSpec ]
+]
+
 { #category : #paths }
 MorphicTreeTableDataSource >> pathFromIndex: anInteger [ 
 	| item |

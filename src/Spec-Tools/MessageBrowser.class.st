@@ -80,10 +80,10 @@ MessageBrowser class >> browseSendersOf: aSymbol [
 
 { #category : #specs }
 MessageBrowser class >> defaultSpec [
-	^ SpecPanedLayout newVertical
+	^ SpPanedLayout newVertical
 		add: #messageList;
 		add:
-			(SpecBoxLayout newVertical
+			(SpBoxLayout newVertical
 				add: #toolbarPresenter withConstraints: [ :constraints | constraints height: self buttonHeight ];
 				add: #textModel;
 				yourself);

@@ -26,7 +26,7 @@ Class {
 
 { #category : #specs }
 DatePresenter class >> defaultSpec [
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [ :row | 
 			row
 				add: #dateModel;

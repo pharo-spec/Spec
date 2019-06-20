@@ -18,7 +18,7 @@ Class {
 { #category : #specs }
 InputTextDropList class >> defaultSpec [
 	<spec: #default>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [ :row | 
 			row
 				add: #input origin: 0 @ 0 corner: 0.3 @ 1;

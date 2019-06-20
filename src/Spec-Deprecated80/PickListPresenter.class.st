@@ -24,7 +24,7 @@ Class {
 PickListPresenter class >> defaultSpec [
 	<spec>
 	
-	^ SpecLayout composed 
+	^ SpLayout composed 
 		add: #listPresenter;
 		yourself
 ]

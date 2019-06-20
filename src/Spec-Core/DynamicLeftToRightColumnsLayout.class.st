@@ -19,7 +19,7 @@ DynamicLeftToRightColumnsLayout class >> columns: anInteger [
 
 { #category : #building }
 DynamicLeftToRightColumnsLayout >> buildLayoutFor: aDynamicPresentersListBuilder [
-	^ SpecLayout composed
+	^ SpLayout composed
 		newColumn: [ :mainColumn | 
 			(self instVarNamesFrom: aDynamicPresentersListBuilder)
 				groupsOf: self columnsCount

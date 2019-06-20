@@ -120,7 +120,7 @@ WindowPresenter >> buildWindowWithLayout: windowSpecLayout presenterLayout: pres
 	"set adapter of the window"
 	self adapter: (windowSpecLayout asSpecLayout
 		buildAdapterFor: self 
-		bindings: SpecBindings value).
+		bindings: SpBindings value).
 	self window: self adapter widget.
 	"add presenter"
 	self addPresenterIn: self window withSpecLayout: presenterSpecLayout.
@@ -134,7 +134,7 @@ WindowPresenter >> buildWindowWithLayout: windowSpecLayout presenterLayout: pres
 { #category : #'private building' }
 WindowPresenter >> buildWithSpecLayout: aSpecLayout [
 	
-	^ SpecBindings 
+	^ SpBindings 
 		value: self application adapterBindings
 		during: [ self basicBuildWithSpecLayout: aSpecLayout ]
 ]

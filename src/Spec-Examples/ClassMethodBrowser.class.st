@@ -16,7 +16,7 @@ Class {
 { #category : #specs }
 ClassMethodBrowser class >> defaultSpec [
 <spec>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [:row | row
 						add: #listModel;
 						add: #methodModel ];
@@ -27,7 +27,7 @@ ClassMethodBrowser class >> defaultSpec [
 ClassMethodBrowser class >> defaultSpec2 [
 <spec: #default>
 
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [:r | 
 			r 
 				newColumn: #listModel right: 0.5;

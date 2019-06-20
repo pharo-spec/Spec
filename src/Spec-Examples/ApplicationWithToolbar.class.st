@@ -17,7 +17,7 @@ Class {
 ApplicationWithToolbar class >> defaultSpec [
 	<spec: #default>
 	
-	^ SpecLayout composed
+	^ SpLayout composed
 		newColumn: [ :c | 
 			c 
 				add: #menu height: self toolbarHeight;

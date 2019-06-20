@@ -1,6 +1,6 @@
 Class {
 	#name : #WindowPresenterTest,
-	#superclass : #SpecTestCase,
+	#superclass : #SpTestCase,
 	#category : #'Spec-Tests'
 }
 

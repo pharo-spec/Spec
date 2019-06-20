@@ -17,7 +17,7 @@ Class {
 { #category : #specs }
 OpenOnIntExample class >> defaultSpec [
 	<spec: #default>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newColumn: [ :column | 
 			column 
 				add: #text height: 25;

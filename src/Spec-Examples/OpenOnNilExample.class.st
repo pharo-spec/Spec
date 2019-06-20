@@ -17,7 +17,7 @@ Class {
 { #category : #specs }
 OpenOnNilExample class >> defaultSpec [
 	<spec: #default>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: #text height: 25;
 		yourself.
 ]

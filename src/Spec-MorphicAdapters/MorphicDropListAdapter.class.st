@@ -15,7 +15,7 @@ MorphicDropListAdapter >> buildWidget [
 		self changed: #getIndex  ].
 	self model selection whenChangedDo: [ self changed: #getIndex ].
 
-	^ SpecDropListMorph new
+	^ SpDropListMorph new
 		wrapSelector: #wrap:withIndex:;
 		on: self list: #getList selected: #getIndex changeSelected: #setIndex:;
 		hResizing: #spaceFill;

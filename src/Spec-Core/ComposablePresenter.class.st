@@ -100,7 +100,7 @@ Class {
 		'#titleHolder',
 		'#transmissions',
 		'#additionalSubpresentersMap',
-		'#visible => SpecObservableSlot'
+		'#visible => SpObservableSlot'
 	],
 	#category : #'Spec-Core-Base'
 }
@@ -165,7 +165,7 @@ ComposablePresenter class >> on: aDomainObject [
 		in: #Pharo8."
 		
 	^ self 
-		newApplication: SpecNullApplication new 
+		newApplication: SpNullApplication new 
 		model: aDomainObject 
 ]
 
@@ -264,7 +264,7 @@ ComposablePresenter >> application [
 				(it does not has owner) should not have an application. But in older times
 				it was not like that and to support such components we assign them to a 
 				default application"
-				application := SpecApplication defaultApplication ] ]
+				application := SpApplication defaultApplication ] ]
 ]
 
 { #category : #accessing }

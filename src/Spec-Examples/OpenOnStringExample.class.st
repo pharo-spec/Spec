@@ -21,7 +21,7 @@ Class {
 { #category : #specs }
 OpenOnStringExample class >> bottomLayout [
 	<spec>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newColumn: [ :column | 
 			column
 				newRow: [ :row | 
@@ -40,7 +40,7 @@ OpenOnStringExample class >> bottomLayout [
 { #category : #specs }
 OpenOnStringExample class >> defaultSpec [
 	<spec: #default>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newColumn: [ :column | 
 			column
 				newRow: [ :row | 

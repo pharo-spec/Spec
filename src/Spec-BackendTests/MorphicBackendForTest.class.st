@@ -128,7 +128,7 @@ MorphicBackendForTest >> openInstanceOf: aTest [
 
 { #category : #running }
 MorphicBackendForTest >> runTest: aBlock [
-	app := SpecApplication new.
+	app := SpApplication new.
 	app useBackend: #Morphic.
 	aBlock value
 ]

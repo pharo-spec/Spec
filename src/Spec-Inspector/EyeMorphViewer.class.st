@@ -14,7 +14,7 @@ Class {
 EyeMorphViewer class >> inspectorSpec [
 	<spec>
 	
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: #container bottom: 0.3;
 		addHSplitter;
 		newRow: #text top: 0.7;
@@ -48,7 +48,7 @@ EyeMorphViewer >> objectChanged [
 	self container morph removeAllMorphs.
 	self container morph
 		addMorph: self thumbnailMorph
-		fullFrame: SpecLayoutFrame identity
+		fullFrame: SpLayoutFrame identity
 ]
 
 { #category : #initialization }

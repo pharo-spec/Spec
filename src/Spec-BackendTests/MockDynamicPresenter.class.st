@@ -10,7 +10,7 @@ Class {
 
 { #category : #specs }
 MockDynamicPresenter class >> defaultSpec [
-	^ SpecBoxLayout newVertical
+	^ SpBoxLayout newVertical
 		add: #list;
 		add: #label;
 		yourself

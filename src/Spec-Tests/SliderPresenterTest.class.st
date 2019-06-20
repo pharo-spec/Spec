@@ -1,6 +1,6 @@
 Class {
 	#name : #SliderPresenterTest,
-	#superclass : #SpecSmokeTestCase,
+	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 

@@ -1,6 +1,6 @@
 Class {
 	#name : #MockApplication,
-	#superclass : #SpecApplication,
+	#superclass : #SpApplication,
 	#category : #'Spec-Tests-Core-Base'
 }
 

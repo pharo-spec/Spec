@@ -17,7 +17,7 @@ Class {
 { #category : #specs }
 ScrollSyncExample class >> defaultSpec [
 	<spec>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [ :row | 
 			row
 				add: #sideRuler width: 50;
@@ -45,7 +45,7 @@ ScrollSyncExample >> currentVerticalScrollPosition [
 { #category : #layouts }
 ScrollSyncExample >> defaultSpecLayout [
 	<spec>
-	^ SpecLayout composed
+	^ SpLayout composed
 		add: #sideRuler
 			origin: 0 @ (1 - self currentVerticalScrollPosition)
 			corner: 0 @ (1 - self currentVerticalScrollPosition)

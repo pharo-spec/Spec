@@ -2,7 +2,7 @@ Class {
 	#name : #MorphPresenter,
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
-		'#morph => SpecObservableSlot'
+		'#morph => SpObservableSlot'
 	],
 	#category : #'Spec-Core-Morphic'
 }
@@ -16,7 +16,7 @@ MorphPresenter class >> adapterName [
 { #category : #initialization }
 MorphPresenter >> defineInputPorts [
 
-	^ { SpecMorphPort new }
+	^ { SpMorphPort new }
 ]
 
 { #category : #initialization }

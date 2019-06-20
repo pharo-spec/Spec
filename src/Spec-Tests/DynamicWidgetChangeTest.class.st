@@ -1,6 +1,6 @@
 Class {
 	#name : #DynamicWidgetChangeTest,
-	#superclass : #SpecSmokeTestCase,
+	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Examples'
 }
 

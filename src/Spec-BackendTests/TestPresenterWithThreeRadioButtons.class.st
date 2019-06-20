@@ -12,7 +12,7 @@ Class {
 { #category : #specs }
 TestPresenterWithThreeRadioButtons class >> defaultSpec [
 
-	^ SpecBoxLayout newVertical 
+	^ SpBoxLayout newVertical 
 		add: #radio1;
 		add: #radio2;
 		add: #radio3;

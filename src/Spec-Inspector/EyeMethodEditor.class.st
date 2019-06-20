@@ -14,7 +14,7 @@ Class {
 EyeMethodEditor class >> inspectorSpec [
 	<spec>
 	
-	^ SpecLayout composed
+	^ SpLayout composed
 		add: #text;
 		yourself
 ]

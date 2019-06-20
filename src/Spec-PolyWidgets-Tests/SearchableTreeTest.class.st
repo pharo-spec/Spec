@@ -1,6 +1,6 @@
 Class {
 	#name : #SearchableTreeTest,
-	#superclass : #SpecSmokeTestCase,
+	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-PolyWidgets-Tests'
 }
 

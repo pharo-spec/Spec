@@ -4,7 +4,7 @@ Extension { #name : #Rectangle }
 Rectangle >> asSpecLayoutFrame [
 	"Answer an instance of LayoutFrame which uses fractions from receiver "
 	
-	^ SpecLayoutFrame new
+	^ SpLayoutFrame new
 		leftFraction: self left;
 		rightFraction: self right;
 		topFraction: self top;

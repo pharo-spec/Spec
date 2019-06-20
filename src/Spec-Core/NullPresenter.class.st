@@ -11,7 +11,7 @@ Class {
 { #category : #specs }
 NullPresenter class >> defaultSpec [
 	"Returns empty layout. That's the point of null presenter."
-	^ SpecLayout composed
+	^ SpLayout composed
 ]
 
 { #category : #initialization }

@@ -10,7 +10,7 @@ Class {
 { #category : #factory }
 MorphicTransferAdapter >> buildWidget [
 
-	^ SpecTransferMorph new
+	^ SpTransferMorph new
 		model: self;
 		passenger: self passenger;
 		source: self source;

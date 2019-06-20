@@ -26,7 +26,7 @@ AbstractTwoButtons class >> abstractExample [
 { #category : #specs }
 AbstractTwoButtons class >> horizontal [
 	<spec>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [ :row | 
 			row
 				add: #firstButton;
@@ -44,7 +44,7 @@ AbstractTwoButtons class >> isDeprecated [
 { #category : #specs }
 AbstractTwoButtons class >> vertical [
 	<spec: #default>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newColumn: [ :column | 
 			column
 				add: #firstButton;

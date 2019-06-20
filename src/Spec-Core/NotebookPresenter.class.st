@@ -6,7 +6,7 @@ Class {
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
 		'#pagesHolder',
-		'#selectedPage => SpecObservableSlot'
+		'#selectedPage => SpObservableSlot'
 	],
 	#category : #'Spec-Core-Widgets-Tab'
 }

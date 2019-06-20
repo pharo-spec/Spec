@@ -1,6 +1,6 @@
 Class {
 	#name : #CheckboxPresenterTest,
-	#superclass : #SpecTestCase,
+	#superclass : #SpTestCase,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 

@@ -28,7 +28,7 @@ Class {
 
 { #category : #specs }
 MessageList class >> defaultSpec [
-	^ SpecBoxLayout newVertical
+	^ SpBoxLayout newVertical
 		add: #listModel;
 		yourself
 ]

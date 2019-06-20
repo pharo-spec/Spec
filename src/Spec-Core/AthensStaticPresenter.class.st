@@ -2,8 +2,8 @@ Class {
 	#name : #AthensStaticPresenter,
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
-		'#drawBlock => SpecObservableSlot',
-		'#surfaceExtent => SpecObservableSlot'
+		'#drawBlock => SpObservableSlot',
+		'#surfaceExtent => SpObservableSlot'
 	],
 	#category : #'Spec-Core-Widgets-Athens'
 }

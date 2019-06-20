@@ -7,7 +7,7 @@ Class {
 { #category : #factory }
 MorphicAthensStaticAdapter >> buildWidget [
 	| instance |
-	instance := SpecAthensMorph new.
+	instance := SpAthensMorph new.
 	self presenter
 		whenDrawBlockChangedDo: [ :newBlock | instance drawBlock: newBlock ].
 	self presenter

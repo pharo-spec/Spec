@@ -10,9 +10,9 @@ Class {
 	#name : #ImagePresenter,
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
-		'#image => SpecObservableSlot',
-		'#action => SpecObservableSlot',
-		'#autoScale => SpecObservableSlot'
+		'#image => SpObservableSlot',
+		'#action => SpObservableSlot',
+		'#autoScale => SpObservableSlot'
 	],
 	#category : #'Spec-Core-Widgets'
 }

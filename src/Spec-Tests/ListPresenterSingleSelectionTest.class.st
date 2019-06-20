@@ -1,6 +1,6 @@
 Class {
 	#name : #ListPresenterSingleSelectionTest,
-	#superclass : #SpecTestCase,
+	#superclass : #SpTestCase,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 

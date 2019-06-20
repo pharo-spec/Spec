@@ -5,7 +5,7 @@ Class {
 	#name : #ComponentListPresenter,
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
-		'#presenters => SpecObservableSlot'
+		'#presenters => SpObservableSlot'
 	],
 	#category : #'Spec-Core-Widgets'
 }

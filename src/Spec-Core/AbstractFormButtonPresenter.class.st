@@ -19,9 +19,9 @@ Class {
 	#superclass : #AbstractWidgetPresenter,
 	#instVars : [
 		'#actionWhenActivatedHolder',
-		'#state => SpecObservableSlot',
+		'#state => SpObservableSlot',
 		'#labelClickableHolder',
-		'#label => SpecObservableSlot',
+		'#label => SpObservableSlot',
 		'#actionWhenDeactivatedHolder'
 	],
 	#category : #'Spec-Core-Widgets'

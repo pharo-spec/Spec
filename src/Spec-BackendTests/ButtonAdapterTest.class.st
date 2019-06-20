@@ -73,7 +73,7 @@ ButtonAdapterTest >> testRightClickShouldNotExecuteAction [
 ButtonAdapterTest >> testRightClickShowsMenu [
 	| menu |
 
-	presenter contextMenu: (menu := SpecMockMenuPresenter new).
+	presenter contextMenu: (menu := SpMockMenuPresenter new).
 	self deny: menu shown.
 	self emulateRightClick.
 	self assert: menu shown

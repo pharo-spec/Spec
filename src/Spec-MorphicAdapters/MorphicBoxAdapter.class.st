@@ -14,7 +14,7 @@ Class {
 { #category : #factory }
 MorphicBoxAdapter >> add: aPresenter [
  
-	self add: aPresenter constraints: SpecBoxConstraints new
+	self add: aPresenter constraints: SpBoxConstraints new
 ]
 
 { #category : #private }

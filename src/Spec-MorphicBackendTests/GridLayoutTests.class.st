@@ -16,7 +16,7 @@ GridLayoutTests >> place: aMorph at: aPoint [
 
 	aMorph 
 		setProperty: #gridConstraints 
-		toValue: (SpecGridConstraints at: aPoint)
+		toValue: (SpGridConstraints at: aPoint)
 ]
 
 { #category : #private }
@@ -24,7 +24,7 @@ GridLayoutTests >> place: aMorph at: aPoint span: spanPoint [
 
 	aMorph 
 		setProperty: #gridConstraints 
-		toValue: (SpecGridConstraints at: aPoint span: spanPoint)
+		toValue: (SpGridConstraints at: aPoint span: spanPoint)
 ]
 
 { #category : #running }

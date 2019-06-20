@@ -6,10 +6,10 @@ Class {
 	#name : #CodePresenter,
 	#superclass : #TextPresenter,
 	#instVars : [
-		'#doItContext => SpecObservableSlot',
-		'#doItReceiver => SpecObservableSlot',
-		'#behavior => SpecObservableSlot',
-		'#syntaxHighlight => SpecObservableSlot',
+		'#doItContext => SpObservableSlot',
+		'#doItReceiver => SpObservableSlot',
+		'#behavior => SpObservableSlot',
+		'#syntaxHighlight => SpObservableSlot',
 		'#contextKeyBindings'
 	],
 	#category : #'Spec-Core-Widgets'
@@ -55,13 +55,13 @@ CodePresenter >> behavior: aClass [
 { #category : #private }
 CodePresenter >> buildCodeKeyBindings [
 	
-	^ CmdContextMenuActivation buildContextKeyBindingsInContext: (SpecCodeContext for: self)
+	^ CmdContextMenuActivation buildContextKeyBindingsInContext: (SpCodeContext for: self)
 ]
 
 { #category : #private }
 CodePresenter >> buildCodeMenu [
 	
-	^ CmdContextMenuActivation buildContextMenuInContext: (SpecCodeContext for: self)
+	^ CmdContextMenuActivation buildContextMenuInContext: (SpCodeContext for: self)
 ]
 
 { #category : #'api-shortcuts' }

@@ -10,7 +10,7 @@ Class {
 	#instVars : [
 		'#owner',
 		'#adapter',
-		'#needRebuild => SpecObservableSlot'
+		'#needRebuild => SpObservableSlot'
 	],
 	#category : #'Spec-Core-Base'
 }
@@ -104,7 +104,7 @@ Presenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 
 	self adapter: (aSpecLayout asSpecLayout 
 		buildAdapterFor: self 
-		bindings: SpecBindings value).
+		bindings: SpBindings value).
 
 	self announcer announce: (WidgetBuilt 
 		model: self 
@@ -117,7 +117,7 @@ Presenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 Presenter >> buildAdapterWithSpecLayout: aSpecLayout [
 	"Build the adapter using the spec name provided as argument"
 	
-	^ SpecBindings 
+	^ SpBindings 
 		value: self application adapterBindings
 		during: [ self basicBuildAdapterWithSpecLayout: aSpecLayout ]
 ]
@@ -235,6 +235,19 @@ Presenter >> needRebuild [
 Presenter >> needRebuild: aBoolean [
 
 	needRebuild := aBoolean
+]
+
+{ #category : #events }
+Presenter >> observablePropertyNamed: aName [
+	| slot |
+	
+	slot := self class slotNamed: aName.
+	slot isObservableSlot
+		ifFalse: [ SpNonObservableSlotError signal: aName ].
+
+	"Obtain the raw value.
+	We need to access the underlying value holder to subscribe to it"
+	^ slot rawRead: self
 ]
 
 { #category : #showing }

@@ -37,7 +37,7 @@ MorphicListAdapter >> backgroundColorFor: anItem at: index [
 { #category : #factory }
 MorphicListAdapter >> buildWidget [
 	| datasource |
-	datasource := SpecListFastTableDataSource new.
+	datasource := SpListFastTableDataSource new.
 	datasource model: self model.
 	widget := FTTableMorph new
 		dataSource: datasource;

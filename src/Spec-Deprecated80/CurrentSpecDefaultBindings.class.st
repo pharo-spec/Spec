@@ -3,7 +3,7 @@ Use my superclass. I am deprecated.
 "
 Class {
 	#name : #CurrentSpecDefaultBindings,
-	#superclass : #SpecBindings,
+	#superclass : #SpBindings,
 	#category : #'Spec-Deprecated80-Obsolete'
 }
 

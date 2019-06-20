@@ -18,7 +18,7 @@ Class {
 { #category : #specs }
 DropListButton class >> defaultSpec [
 	<spec: #default>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [ :row | 
 			row
 				add: #dropList origin: 0 @ 0 corner: 0.8 @ 1;

@@ -107,7 +107,7 @@ MorphicWindowAdapter >> askOkToClose [
 { #category : #factory }
 MorphicWindowAdapter >> buildWidget [
 
-	^ SpecWindow new
+	^ SpWindow new
 		model: model;
 		isResizeable: self isResizeable;
 		yourself

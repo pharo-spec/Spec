@@ -27,17 +27,17 @@ Class {
 	#name : #AbstractWidgetPresenter,
 	#superclass : #ComposablePresenter,
 	#instVars : [
-		'#borderWidth => SpecObservableSlot',
-		'#borderColor => SpecObservableSlot',
-		'#dragEnabled => SpecObservableSlot',
-		'#dropEnabled => SpecObservableSlot',
-		'#dragTransformationBlock => SpecObservableSlot',
-		'#wantDropBlock => SpecObservableSlot',
-		'#acceptDropBlock => SpecObservableSlot',
-		'#transferBlock => SpecObservableSlot',
-		'#color => SpecObservableSlot',
-		'#help => SpecObservableSlot',
-		'#enabled => SpecObservableSlot'
+		'#borderWidth => SpObservableSlot',
+		'#borderColor => SpObservableSlot',
+		'#dragEnabled => SpObservableSlot',
+		'#dropEnabled => SpObservableSlot',
+		'#dragTransformationBlock => SpObservableSlot',
+		'#wantDropBlock => SpObservableSlot',
+		'#acceptDropBlock => SpObservableSlot',
+		'#transferBlock => SpObservableSlot',
+		'#color => SpObservableSlot',
+		'#help => SpObservableSlot',
+		'#enabled => SpObservableSlot'
 	],
 	#category : #'Spec-Core-Widgets'
 }
@@ -51,7 +51,7 @@ AbstractWidgetPresenter class >> adapterName [
 { #category : #specs }
 AbstractWidgetPresenter class >> defaultSpec [
 	<spec: #default>
-	^ SpecAbstractWidgetLayout for: self adapterName
+	^ SpAbstractWidgetLayout for: self adapterName
 ]
 
 { #category : #'drag and drop' }

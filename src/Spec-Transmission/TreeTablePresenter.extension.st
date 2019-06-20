@@ -9,5 +9,5 @@ TreeTablePresenter >> defineInputPorts [
 { #category : #'*Spec-Transmission' }
 TreeTablePresenter >> defineOutputPorts [ 
 
-	^ { SpecListSelectionPort new }
+	^ { SpListSelectionPort new }
 ]

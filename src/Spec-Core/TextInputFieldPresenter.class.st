@@ -30,9 +30,9 @@ Class {
 	#instVars : [
 		'#acceptOnCR',
 		'#entryCompletion',
-		'#isPassword => SpecObservableSlot',
-		'#placeholder => SpecObservableSlot',
-		'#maxLength => SpecObservableSlot'
+		'#isPassword => SpObservableSlot',
+		'#placeholder => SpObservableSlot',
+		'#maxLength => SpObservableSlot'
 	],
 	#category : #'Spec-Core-Widgets'
 }

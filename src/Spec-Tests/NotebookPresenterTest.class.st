@@ -1,6 +1,6 @@
 Class {
 	#name : #NotebookPresenterTest,
-	#superclass : #SpecTestCase,
+	#superclass : #SpTestCase,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 

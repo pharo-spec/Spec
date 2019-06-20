@@ -19,7 +19,7 @@ MorphicAdapterTestCase class >> testParameters [
 
 	^ ParametrizedTestMatrix new
 		forSelector: #specInitializationStrategy
-		addOptions: { [ SpecInitializationStrategy beforeTest ]. [ SpecInitializationStrategy afterTest ] }
+		addOptions: { [ SpInitializationStrategy beforeTest ]. [ SpInitializationStrategy afterTest ] }
 ]
 
 { #category : #running }

@@ -1,20 +1,20 @@
 Class {
 	#name : #MillerColumnPresenterTest,
-	#superclass : #SpecSmokeTestCase,
+	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Miller'
 }
 
 { #category : #running }
 MillerColumnPresenterTest >> classToTest [
 	
-	^ SpecMillerColumnPresenter
+	^ SpMillerColumnPresenter
 ]
 
 { #category : #tests }
 MillerColumnPresenterTest >> testActivateSubPresenterPushesElementToList [
 
 	| mock |
-	self presenter presenterBlock: [ :model | mock := SpecMockMillerPresenter new ].	
+	self presenter presenterBlock: [ :model | mock := SpMockMillerPresenter new ].	
 	self presenter setRootModel: 1.
 	
 	mock activate.
@@ -24,14 +24,14 @@ MillerColumnPresenterTest >> testActivateSubPresenterPushesElementToList [
 { #category : #tests }
 MillerColumnPresenterTest >> testAddManyPresentersPushesThemToPresenterList [
 
-	3 timesRepeat: [self presenter addPresenter: (SpecNullMillerPresenter on: LabelPresenter new)].
+	3 timesRepeat: [self presenter addPresenter: (SpNullMillerPresenter on: LabelPresenter new)].
 	self assert: self presenter size equals: 3
 ]
 
 { #category : #tests }
 MillerColumnPresenterTest >> testAddPresenterPushesItToPresenterList [
 
-	self presenter addPresenter: (SpecNullMillerPresenter on: LabelPresenter new).
+	self presenter addPresenter: (SpNullMillerPresenter on: LabelPresenter new).
 	self assert: self presenter size equals: 1
 ]
 
@@ -40,7 +40,7 @@ MillerColumnPresenterTest >> testPushModelUsesPresenterBlock [
 
 	| subpresenter |
 	self presenter presenterBlock: [ :model | 
-		subpresenter := SpecNullMillerPresenter on: (LabelPresenter new label: model asString) ].	
+		subpresenter := SpNullMillerPresenter on: (LabelPresenter new label: model asString) ].	
 	self presenter pushModel: 1.
 	self assert: self presenter presenters first equals: subpresenter
 ]
@@ -50,7 +50,7 @@ MillerColumnPresenterTest >> testSetRootModelManyTimesPushesOnlyLastPresenterToL
 
 	| nullMillerPresenter |
 	self presenter presenterBlock: [ :model | 
-		SpecNullMillerPresenter on: (LabelPresenter new label: model asString) ].
+		SpNullMillerPresenter on: (LabelPresenter new label: model asString) ].
 
 	1 to: 3 do: [ :each | self presenter setRootModel: each ].
 	
@@ -64,7 +64,7 @@ MillerColumnPresenterTest >> testSetRootModelManyTimesPushesOnlyLastPresenterToL
 MillerColumnPresenterTest >> testSetRootModelManyTimesPushesOnlyOnePresenterToList [
 
 	self presenter presenterBlock: [ :model | 
-		SpecNullMillerPresenter on: (LabelPresenter new label: model asString) ].
+		SpNullMillerPresenter on: (LabelPresenter new label: model asString) ].
 
 	1 to: 3 do: [ :each | self presenter setRootModel: each ].
 	
@@ -75,7 +75,7 @@ MillerColumnPresenterTest >> testSetRootModelManyTimesPushesOnlyOnePresenterToLi
 MillerColumnPresenterTest >> testSetRootModelPushesPresenterToList [
 
 	self presenter presenterBlock: [ :model | 
-		SpecNullMillerPresenter on: (LabelPresenter new label: model asString) ].
+		SpNullMillerPresenter on: (LabelPresenter new label: model asString) ].
 	self presenter setRootModel: 1.
 	
 	self assert: self presenter size equals: 1
@@ -85,8 +85,8 @@ MillerColumnPresenterTest >> testSetRootModelPushesPresenterToList [
 MillerColumnPresenterTest >> testSetRootModelResetsToSinglePresenter [
 
 	self presenter presenterBlock: [ :model | 
-		SpecNullMillerPresenter on: (LabelPresenter new label: model asString) ].
-	3 timesRepeat: [self presenter addPresenter: (SpecNullMillerPresenter on: LabelPresenter new)].
+		SpNullMillerPresenter on: (LabelPresenter new label: model asString) ].
+	3 timesRepeat: [self presenter addPresenter: (SpNullMillerPresenter on: LabelPresenter new)].
 	
 	self presenter setRootModel: 1.
 	self assert: self presenter size equals: 1
@@ -96,7 +96,7 @@ MillerColumnPresenterTest >> testSetRootModelResetsToSinglePresenter [
 MillerColumnPresenterTest >> testSetRootModelWithPresenterDoesNotFail [
 
 	self presenter presenterBlock: [ :model | 
-		SpecNullMillerPresenter on: (LabelPresenter new label: model asString) ].
+		SpNullMillerPresenter on: (LabelPresenter new label: model asString) ].
 	
 	self
 		shouldnt: [self presenter setRootModel: 1]

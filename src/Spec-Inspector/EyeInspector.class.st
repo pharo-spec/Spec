@@ -26,7 +26,7 @@ EyeInspector class >> basicInspect: anObject [
 EyeInspector class >> debuggerSpec [
 	<spec:#default>
 	
-	^ SpecLayout composed
+	^ SpLayout composed
 		add: #list origin: 0@0 corner: 0.33@1;
 		addVSplitter;
 		add: #description origin: 0.33@0 corner: 1@1;
@@ -37,7 +37,7 @@ EyeInspector class >> debuggerSpec [
 EyeInspector class >> debuggerSpecSlow [
 	<spec>
 	
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [:row | 
 			row 
 				add: #list width: 135;
@@ -75,7 +75,7 @@ EyeInspector class >> inspector: anObject [
 EyeInspector class >> inspectorSpec [
 	<spec>
 	
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [ :r |
 			r 
 				newColumn: #list right: 0.6;

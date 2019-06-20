@@ -20,7 +20,7 @@ Class {
 { #category : #specs }
 DualChangeSorterPresenter class >> defaultSpec [
 	<spec>
-	^ SpecPanedLayout newHorizontal
+	^ SpPanedLayout newHorizontal
 		add: #changeSorterLeft;
 		add: #changeSorterRight;
 		yourself

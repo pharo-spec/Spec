@@ -1,6 +1,6 @@
 Class {
 	#name : #TextPresenterTest,
-	#superclass : #SpecSmokeTestCase,
+	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 

@@ -25,7 +25,7 @@ Class {
 { #category : #specs }
 RGBWidget class >> defaultSpec [
 	<spec: #default>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newColumn: [ :column | 
 			column
 				add: #preview;

@@ -14,7 +14,7 @@ Class {
 EyeTreeInspector class >> inspectorSpec [
 	<spec>
 	
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: #tree bottom: 0.3;
 		addHSplitter;
 		newRow: #text top: 0.7;

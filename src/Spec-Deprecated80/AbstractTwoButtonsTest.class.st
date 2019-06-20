@@ -1,6 +1,6 @@
 Class {
 	#name : #AbstractTwoButtonsTest,
-	#superclass : #SpecSmokeTestCase,
+	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Deprecated80'
 }
 

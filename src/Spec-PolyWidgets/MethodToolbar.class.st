@@ -22,7 +22,7 @@ Class {
 { #category : #specs }
 MethodToolbar class >> defaultSpec [
 	<spec>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow:
 				[ :row | 
 			row

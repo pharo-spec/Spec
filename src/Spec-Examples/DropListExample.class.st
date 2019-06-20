@@ -20,7 +20,7 @@ Class {
 
 { #category : #specs }
 DropListExample class >> defaultSpec [
-	^ SpecColumnLayout composed
+	^ SpColumnLayout composed
 		newRow: [ :r | 
 			r
 				add: #uniformDropList;

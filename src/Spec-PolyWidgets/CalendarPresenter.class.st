@@ -19,9 +19,9 @@ Class {
 
 { #category : #specs }
 CalendarPresenter class >> defaultSpec [
-	^ SpecBoxLayout newVertical
+	^ SpBoxLayout newVertical
 		add:
-			(SpecBoxLayout newHorizontal
+			(SpBoxLayout newHorizontal
 				add: #previousMonthButton;
 				add: #monthYearLabel;
 				add: #nextMonthButton)

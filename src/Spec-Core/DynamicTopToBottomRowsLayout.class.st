@@ -19,7 +19,7 @@ DynamicTopToBottomRowsLayout class >> rows: anInteger [
 
 { #category : #building }
 DynamicTopToBottomRowsLayout >> buildLayoutFor: aDynamicPresentersListBuilder [
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [ :mainRow | 
 			(self instVarNamesFrom: aDynamicPresentersListBuilder)
 				groupsOf: self rowsCount

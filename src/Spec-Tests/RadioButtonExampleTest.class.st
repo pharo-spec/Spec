@@ -1,6 +1,6 @@
 Class {
 	#name : #RadioButtonExampleTest,
-	#superclass : #SpecSmokeTestCase,
+	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Examples-Morphic'
 }
 

@@ -23,7 +23,7 @@ MorphicTreeColumnAdapter >> argumentBlock [
 
 { #category : #factory }
 MorphicTreeColumnAdapter >> buildWidget [
-	^ SpecTreeColumn new
+	^ SpTreeColumn new
 		resizable: self resizable;
 		startWidth: self initialWidth;
 		setHeaderButtonLabel: self headerLabel

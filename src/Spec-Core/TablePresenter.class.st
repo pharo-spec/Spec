@@ -9,8 +9,8 @@ Class {
 	#name : #TablePresenter,
 	#superclass : #AbstractListPresenter,
 	#instVars : [
-		'#columns => SpecObservableSlot',
-		'#showColumnHeaders => SpecObservableSlot',
+		'#columns => SpObservableSlot',
+		'#showColumnHeaders => SpObservableSlot',
 		'#isResizableHolder'
 	],
 	#category : #'Spec-Core-Widgets-Table'

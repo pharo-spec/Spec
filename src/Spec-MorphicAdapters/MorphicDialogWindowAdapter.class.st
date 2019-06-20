@@ -30,7 +30,7 @@ MorphicDialogWindowAdapter >> buildButtonBar [
 
 { #category : #factory }
 MorphicDialogWindowAdapter >> buildWidget [
-	^ SpecDialogWindow new
+	^ SpDialogWindow new
 		model: self model;
 		yourself
 ]

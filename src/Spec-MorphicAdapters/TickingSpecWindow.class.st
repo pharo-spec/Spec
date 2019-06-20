@@ -3,7 +3,7 @@ TickingSpecWindow new openInWorld
 "
 Class {
 	#name : #TickingSpecWindow,
-	#superclass : #SpecWindow,
+	#superclass : #SpWindow,
 	#category : #'Spec-MorphicAdapters-Support'
 }
 

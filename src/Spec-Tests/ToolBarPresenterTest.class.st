@@ -1,6 +1,6 @@
 Class {
 	#name : #ToolBarPresenterTest,
-	#superclass : #SpecTestCase,
+	#superclass : #SpTestCase,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 

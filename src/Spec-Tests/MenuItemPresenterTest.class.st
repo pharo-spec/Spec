@@ -1,6 +1,6 @@
 Class {
 	#name : #MenuItemPresenterTest,
-	#superclass : #SpecSmokeTestCase,
+	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 

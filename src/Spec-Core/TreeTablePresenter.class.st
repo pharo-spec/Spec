@@ -13,11 +13,11 @@ Class {
 	#classTraits : 'TSpecHaveWrappingScrollBars classTrait',
 	#instVars : [
 		'#columns',
-		'#showColumnHeaders => SpecObservableSlot',
-		'#isResizable => SpecObservableSlot',
-		'#selection => SpecObservableSlot',
-		'#doubleClickAction => SpecObservableSlot',
-		'#roots => SpecObservableSlot',
+		'#showColumnHeaders => SpObservableSlot',
+		'#isResizable => SpObservableSlot',
+		'#selection => SpObservableSlot',
+		'#doubleClickAction => SpObservableSlot',
+		'#roots => SpObservableSlot',
 		'#childrenBlock',
 		'#contextMenuHolder'
 	],

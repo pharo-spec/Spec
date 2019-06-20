@@ -18,7 +18,7 @@ Class {
 { #category : #specs }
 ListSelectionPresenter class >> bottomSpec [
 
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [ :row |
 			row
 				add: #textModel1;
@@ -29,7 +29,7 @@ ListSelectionPresenter class >> bottomSpec [
 { #category : #specs }
 ListSelectionPresenter class >> defaultSpec [
 
-	^ SpecLayout composed
+	^ SpLayout composed
 		newColumn: [ :column |
 			column 
 				add: #listModel;

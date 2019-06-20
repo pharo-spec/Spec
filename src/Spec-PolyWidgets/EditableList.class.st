@@ -37,7 +37,7 @@ EditableList class >> new: aCollection [
 { #category : #spec }
 EditableList class >> spec [
 	<spec: #default>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newColumn:
 			[ :column | 
 			column

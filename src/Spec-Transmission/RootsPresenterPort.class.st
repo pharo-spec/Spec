@@ -1,6 +1,6 @@
 Class {
 	#name : #RootsPresenterPort,
-	#superclass : #SpecInputPort,
+	#superclass : #SpInputPort,
 	#category : #'Spec-Transmission'
 }
 

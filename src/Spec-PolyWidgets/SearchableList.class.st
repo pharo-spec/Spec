@@ -22,7 +22,7 @@ Class {
 { #category : #specs }
 SearchableList class >> defaultSpec [
 
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: #searchPresenter height: self toolbarHeight;
 		add: #listPresenter top: self toolbarHeight;
 		yourself

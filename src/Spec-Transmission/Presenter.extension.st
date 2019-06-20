@@ -35,7 +35,7 @@ Presenter >> inputPorts [
 { #category : #'*Spec-Transmission' }
 Presenter >> newTransmission [
 
-	^ SpecTransmission new
+	^ SpTransmission new
 ]
 
 { #category : #'*Spec-Transmission' }

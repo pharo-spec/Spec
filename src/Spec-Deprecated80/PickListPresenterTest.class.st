@@ -1,6 +1,6 @@
 Class {
 	#name : #PickListPresenterTest,
-	#superclass : #SpecSmokeTestCase,
+	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Deprecated80'
 }
 

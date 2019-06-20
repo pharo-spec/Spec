@@ -3,7 +3,7 @@ Extension { #name : #Array }
 { #category : #'*Spec-Core' }
 Array >> asSpecLayout [
 
-	^ SpecLegacyArrayLayout new
+	^ SpLegacyArrayLayout new
 		array: self;
 		yourself
 ]
@@ -13,7 +13,7 @@ Array >> generateSpec [
 	| str spec |
 	str := self readStream.	
 	
-	spec :=  OrderedCollection with: #SpecLayoutFrame.
+	spec :=  OrderedCollection with: #SpLayoutFrame.
 		
 	#( leftFraction: topFraction: rightFraction: bottomFraction: leftOffset: topOffset: rightOffset: bottomOffset: ) do: [:sel |
 		spec add: sel.

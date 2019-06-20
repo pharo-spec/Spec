@@ -11,7 +11,7 @@ Class {
 		'#autoAccept',
 		'#wantsVisualFeedback',
 		'#askBeforeDiscardingEdits',
-		'#contextMenu => SpecObservableSlot'
+		'#contextMenu => SpObservableSlot'
 	],
 	#category : #'Spec-Core-Widgets'
 }

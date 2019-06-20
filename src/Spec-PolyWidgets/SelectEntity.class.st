@@ -24,7 +24,7 @@ Class {
 SelectEntity class >> defaultSpec [
 	<spec: #default>
 		
-	^SpecLayout composed
+	^SpLayout composed
 		newColumn: [ :col |
 				col newRow: [:row |
 					row add: #entityText;

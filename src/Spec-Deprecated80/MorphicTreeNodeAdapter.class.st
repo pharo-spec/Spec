@@ -15,7 +15,7 @@ MorphicTreeNodeAdapter class >> isDeprecated [
 
 { #category : #factory }
 MorphicTreeNodeAdapter >> buildWidget [
-	^ SpecTreeNodeModel new
+	^ SpTreeNodeModel new
 		setItemFromBlock: self itemBlock;
 		icon: self icon;
 		setChildren: self childrenBlock;

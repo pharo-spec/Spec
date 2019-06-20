@@ -121,7 +121,7 @@ MorphicButtonAdapter >> menu: aMenu [
 
 	menuPresenter := self model contextMenu.
 	menuPresenter ifNil: [ ^ nil ].
-	^ SpecBindings
+	^ SpBindings
 		value: self model application adapterBindings
 		during: [ menuPresenter buildWithSpec ]
 ]

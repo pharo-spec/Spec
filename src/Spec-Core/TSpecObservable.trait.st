@@ -15,7 +15,7 @@ TSpecObservable >> observablePropertyNamed: aName [
 	
 	slot := self class slotNamed: aName.
 	slot isObservableSlot
-		ifFalse: [ SpecNonObservableSlotError signal: aName ].
+		ifFalse: [ SpNonObservableSlotError signal: aName ].
 
 	"Obtain the raw value.
 	We need to access the underlying value holder to subscribe to it"

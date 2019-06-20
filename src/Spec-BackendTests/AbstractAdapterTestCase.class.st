@@ -20,7 +20,7 @@ AbstractAdapterTestCase class >> testParameters [
 
 	^ ParametrizedTestMatrix new
 		forSelector: #specInitializationStrategy
-			addOptions: { [ SpecInitializationStrategy beforeTest ]. [ SpecInitializationStrategy afterTest ] };
+			addOptions: { [ SpInitializationStrategy beforeTest ]. [ SpInitializationStrategy afterTest ] };
 		forSelector: #backendForTest
 			addOptions: AbstractBackendForTest allSubclasses;
 		yourself

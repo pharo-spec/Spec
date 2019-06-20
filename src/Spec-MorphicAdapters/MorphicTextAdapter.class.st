@@ -106,7 +106,7 @@ MorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
 
 	menuPresenter := self model contextMenu.
 	menuPresenter ifNil: [ ^ nil ].
-	^ SpecBindings
+	^ SpBindings
 		value: self model application adapterBindings
 		during: [ menuPresenter value buildWithSpec ]
 ]

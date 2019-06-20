@@ -17,7 +17,7 @@ Class {
 InspectorNavigator class >> debuggerSpec [
 	<spec: #default>
 	
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: #toolbar height: self toolbarHeight;
 		add: #inspector withSpec: #debuggerSpec top: self toolbarHeight;
 		yourself
@@ -32,7 +32,7 @@ InspectorNavigator class >> inspect: anObject [
 InspectorNavigator class >> inspectorSpec [
 	<spec>
 	
-	^ SpecLayout composed
+	^ SpLayout composed
 		newColumn: [ :c | 
 			c 
 				add: #toolbar height: self toolbarHeight;

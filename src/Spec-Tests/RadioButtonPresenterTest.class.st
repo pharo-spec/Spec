@@ -1,6 +1,6 @@
 Class {
 	#name : #RadioButtonPresenterTest,
-	#superclass : #SpecSmokeTestCase,
+	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Core-Widgets'
 }
 

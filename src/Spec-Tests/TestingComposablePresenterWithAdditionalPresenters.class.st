@@ -22,7 +22,7 @@ TestingComposablePresenterWithAdditionalPresenters class >> defaultSpec [
 
 	| aLayout |
 	
-	aLayout := SpecLayout composed newColumn: [ :row |
+	aLayout := SpLayout composed newColumn: [ :row |
 		self keys do: [ :aKey |
 			row add: aKey ].
 		

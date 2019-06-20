@@ -22,7 +22,7 @@ Class {
 { #category : #specs }
 LabelledContainer class >> labelBottom [
 	<spec>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newColumn: [ :column | 
 			column
 				add: #subwidget origin: 0 @ 0 corner: 1 @ 0.9;
@@ -33,7 +33,7 @@ LabelledContainer class >> labelBottom [
 { #category : #specs }
 LabelledContainer class >> labelLeft [
 	<spec>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [ :row | 
 			row
 				add: #label origin: 0 @ 0 corner: 0.2 @ 1;
@@ -44,7 +44,7 @@ LabelledContainer class >> labelLeft [
 { #category : #specs }
 LabelledContainer class >> labelRight [
 	<spec>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newRow: [ :row | 
 			row
 				add: #subwidget origin: 0 @ 0 corner: 0.8 @ 1;
@@ -55,7 +55,7 @@ LabelledContainer class >> labelRight [
 { #category : #specs }
 LabelledContainer class >> labelTop [
 	<spec: #default>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newColumn: [ :column | 
 			column
 				add: #label origin: 0 @ 0 corner: 1 @ 0.1;

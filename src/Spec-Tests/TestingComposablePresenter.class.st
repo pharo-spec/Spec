@@ -14,7 +14,7 @@ Class {
 TestingComposablePresenter class >> defaultSpec [
 	<spec>
 
-	^ SpecLayout composed
+	^ SpLayout composed
 		add: #list;
 		yourself
 ]

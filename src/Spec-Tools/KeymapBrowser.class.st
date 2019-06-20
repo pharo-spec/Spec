@@ -17,9 +17,9 @@ Class {
 { #category : #specs }
 KeymapBrowser class >> defaultSpec [
 	<spec>
-	^ SpecBoxLayout newVertical
+	^ SpBoxLayout newVertical
 		add:
-			(SpecBoxLayout newHorizontal
+			(SpBoxLayout newHorizontal
 				add: #filterField;
 				add: #clearFilterButton withConstraints: [ :constraints | constraints width: 25 ])
 			withConstraints: [ :constraints | constraints height: self toolbarHeight ];

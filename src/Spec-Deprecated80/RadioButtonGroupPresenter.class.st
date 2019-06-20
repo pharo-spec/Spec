@@ -40,7 +40,7 @@ Class {
 { #category : #specs }
 RadioButtonGroupPresenter class >> defaultSpec [
 	<spec: #default>
-	^ SpecLayout composed
+	^ SpLayout composed
 		newColumn: [ :column |  ];
 		yourself
 ]
@@ -129,7 +129,7 @@ RadioButtonGroupPresenter >> defaultOnce: aButton [
 { #category : #specs }
 RadioButtonGroupPresenter >> dynamicLayout [
 	|lay|
-	lay := SpecLayout composed
+	lay := SpLayout composed
 		newColumn: [ :column | 
 			widgets keysDo: [ :item | column newRow: [ :row | row add: item ] ].
 			column newRow: [ :row |  ] ].

@@ -2,7 +2,7 @@ Class {
 	#name : #ToggleButtonPresenter,
 	#superclass : #AbstractFormButtonPresenter,
 	#instVars : [
-		'#action => SpecObservableSlot'
+		'#action => SpObservableSlot'
 	],
 	#category : #'Spec-Core-Widgets'
 }

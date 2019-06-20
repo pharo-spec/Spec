@@ -46,13 +46,13 @@ AbstractListPresenter >> activatesOnSingleClick [
 
 { #category : #api }
 AbstractListPresenter >> beMultipleSelection [
-	self selectionMode: (SpecMultipleSelectionMode on: self)
+	self selectionMode: (SpMultipleSelectionMode on: self)
 ]
 
 { #category : #api }
 AbstractListPresenter >> beSingleSelection [
 	
-	self selectionMode: (SpecSingleSelectionMode on: self)
+	self selectionMode: (SpSingleSelectionMode on: self)
 ]
 
 { #category : #simulation }
@@ -100,7 +100,7 @@ AbstractListPresenter >> doActivateAtIndex: anIndex [
 	"Activate only if there is an item at that position"
 	self model at: anIndex ifAbsent: [ ^ self ].
 	
-	activationBlock cull: ((SpecSingleSelectionMode on: self)
+	activationBlock cull: ((SpSingleSelectionMode on: self)
 		basicSelectIndex: anIndex;
 		yourself)
 ]
@@ -228,7 +228,7 @@ AbstractListPresenter >> model: aModel [
 { #category : #private }
 AbstractListPresenter >> newEmptyModel [
 
-	^ SpecCollectionListModel on: #()
+	^ SpCollectionListModel on: #()
 ]
 
 { #category : #initialization }

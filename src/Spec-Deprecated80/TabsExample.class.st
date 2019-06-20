@@ -16,7 +16,7 @@ Class {
 TabsExample class >> defaultSpec [
 	<spec>
 	
-	^ SpecLayout composed
+	^ SpLayout composed
 		add: #manager;
 		yourself
 ]

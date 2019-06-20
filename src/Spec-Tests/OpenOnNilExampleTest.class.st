@@ -1,6 +1,6 @@
 Class {
 	#name : #OpenOnNilExampleTest,
-	#superclass : #SpecSmokeTestCase,
+	#superclass : #SpSmokeTestCase,
 	#category : #'Spec-Tests-Examples-Wrapper'
 }
 
