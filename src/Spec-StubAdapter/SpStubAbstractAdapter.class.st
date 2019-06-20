@@ -4,7 +4,7 @@ I am an abstract class providing all the properties shared amongs all the stub a
 "
 Class {
 	#name : #SpStubAbstractAdapter,
-	#superclass : #AbstractAdapter,
+	#superclass : #SpAbstractAdapter,
 	#category : #'Spec-StubAdapter-Adapters'
 }
 
@@ -12,9 +12,9 @@ Class {
 SpStubAbstractAdapter class >> adaptingName [
 	"Override me if adapter will not follow the common pattern"
 
-	"remove 'SpecStub' part and *in general*, I will have the adapting name"
+	"remove 'SpStub' part and *in general*, I will have the adapting name"
 
-	^ (self name allButFirst: 8) asSymbol
+	^ (self name withoutPrefix: 'SpStub') asSymbol
 ]
 
 { #category : #accessing }

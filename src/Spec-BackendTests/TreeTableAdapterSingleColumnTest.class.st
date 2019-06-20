@@ -1,6 +1,6 @@
 Class {
 	#name : #TreeTableAdapterSingleColumnTest,
-	#superclass : #AbstractTreeTableAdapterTest,
+	#superclass : #SpAbstractTreeTableAdapterTest,
 	#category : #'Spec-BackendTests'
 }
 

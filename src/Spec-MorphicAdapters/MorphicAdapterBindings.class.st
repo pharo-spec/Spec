@@ -9,7 +9,7 @@ Class {
 
 { #category : #initialize }
 MorphicAdapterBindings >> abstractAdapterClass [
-	^ AbstractMorphicAdapter
+	^ SpAbstractMorphicAdapter
 ]
 
 { #category : #fonts }
