@@ -2,8 +2,8 @@
 I am the layout for which you define the number of columns to store you presenters and set them from left to right in these rows.
 "
 Class {
-	#name : #DynamicLeftToRightColumnsLayout,
-	#superclass : #DynamicPresentersListLayout,
+	#name : #SpDynamicLeftToRightColumnsLayout,
+	#superclass : #SpDynamicPresentersListLayout,
 	#instVars : [
 		'columnsCount'
 	],
@@ -11,14 +11,14 @@ Class {
 }
 
 { #category : #'instance creation' }
-DynamicLeftToRightColumnsLayout class >> columns: anInteger [
+SpDynamicLeftToRightColumnsLayout class >> columns: anInteger [
 	^ self new
 		columnsCount: anInteger;
 		yourself
 ]
 
 { #category : #building }
-DynamicLeftToRightColumnsLayout >> buildLayoutFor: aDynamicPresentersListBuilder [
+SpDynamicLeftToRightColumnsLayout >> buildLayoutFor: aDynamicPresentersListBuilder [
 	^ SpLayout composed
 		newColumn: [ :mainColumn | 
 			(self instVarNamesFrom: aDynamicPresentersListBuilder)
@@ -29,12 +29,12 @@ DynamicLeftToRightColumnsLayout >> buildLayoutFor: aDynamicPresentersListBuilder
 ]
 
 { #category : #accessing }
-DynamicLeftToRightColumnsLayout >> columnsCount [
+SpDynamicLeftToRightColumnsLayout >> columnsCount [
 	^ columnsCount
 ]
 
 { #category : #accessing }
-DynamicLeftToRightColumnsLayout >> columnsCount: anObject [
+SpDynamicLeftToRightColumnsLayout >> columnsCount: anObject [
 	(anObject isInteger and: [ anObject > 0 ])
 		ifFalse: [ self error: 'A positive integer is expected as parameter.' ].
 	
@@ -42,7 +42,7 @@ DynamicLeftToRightColumnsLayout >> columnsCount: anObject [
 ]
 
 { #category : #building }
-DynamicLeftToRightColumnsLayout >> nullPresentersNeededFor: aDynamicPresentersListBuilder [
+SpDynamicLeftToRightColumnsLayout >> nullPresentersNeededFor: aDynamicPresentersListBuilder [
 	"Compute the number of empty presenters required to fill additional space if the number of model objects modulo the number of columns/rows is not equals to 0."
 	^ self columnsCount - (((aDynamicPresentersListBuilder modelObjects size - 1) % self columnsCount) + 1)
 ]

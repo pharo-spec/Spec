@@ -8,7 +8,7 @@ Computation happens easily:
 check computeMorphs:bounds: to have a better idea :)
 "
 Class {
-	#name : #GridLayoutComputation,
+	#name : #SpMorphicGridLayoutComputation,
 	#superclass : #LayoutPolicy,
 	#instVars : [
 		'morphs',
@@ -26,7 +26,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-GridLayoutComputation class >> layout: aLayout [
+SpMorphicGridLayoutComputation class >> layout: aLayout [
 
 	^ self basicNew 
 		initializeLayout: aLayout;
@@ -34,13 +34,13 @@ GridLayoutComputation class >> layout: aLayout [
 ]
 
 { #category : #'instance creation' }
-GridLayoutComputation class >> new [
+SpMorphicGridLayoutComputation class >> new [
 
 	self error: 'Use #morphs:bounds:'
 ]
 
 { #category : #private }
-GridLayoutComputation >> allGridConstraints [
+SpMorphicGridLayoutComputation >> allGridConstraints [
 
 	^ morphs collect: [ :each | 
 		each 
@@ -49,31 +49,31 @@ GridLayoutComputation >> allGridConstraints [
 ]
 
 { #category : #accessing }
-GridLayoutComputation >> cellExtentAt: aPoint [
+SpMorphicGridLayoutComputation >> cellExtentAt: aPoint [
 
 	^ self cellExtents at: aPoint
 ]
 
 { #category : #private }
-GridLayoutComputation >> cellExtents [
+SpMorphicGridLayoutComputation >> cellExtents [
 
 	^ cellExtents
 ]
 
 { #category : #private }
-GridLayoutComputation >> columnPositions [
+SpMorphicGridLayoutComputation >> columnPositions [
 
 	^ columnPositions
 ]
 
 { #category : #private }
-GridLayoutComputation >> columnWidths [
+SpMorphicGridLayoutComputation >> columnWidths [
 
 	^ columnWidths
 ]
 
 { #category : #'private computation' }
-GridLayoutComputation >> computeCellExtents [
+SpMorphicGridLayoutComputation >> computeCellExtents [
 	"Calculate cell extents"
 
 	cellExtents := SmallDictionary new.
@@ -92,7 +92,7 @@ GridLayoutComputation >> computeCellExtents [
 ]
 
 { #category : #'private computation' }
-GridLayoutComputation >> computeColumnPositions [
+SpMorphicGridLayoutComputation >> computeColumnPositions [
 	"Calculate columns positions"
 	
 	columnPositions := Array new: numColumns.
@@ -104,7 +104,7 @@ GridLayoutComputation >> computeColumnPositions [
 ]
 
 { #category : #computation }
-GridLayoutComputation >> computeMorphs: anArray bounds: aRect [
+SpMorphicGridLayoutComputation >> computeMorphs: anArray bounds: aRect [
 
 	morphs := anArray.
 	bounds := aRect.
@@ -117,7 +117,7 @@ GridLayoutComputation >> computeMorphs: anArray bounds: aRect [
 ]
 
 { #category : #'private computation' }
-GridLayoutComputation >> computeNumberOfRowsAndColumns [
+SpMorphicGridLayoutComputation >> computeNumberOfRowsAndColumns [
 	
 	numRows := 0.
 	numColumns := 0.
@@ -127,7 +127,7 @@ GridLayoutComputation >> computeNumberOfRowsAndColumns [
 ]
 
 { #category : #'private computation' }
-GridLayoutComputation >> computeRowPositions [
+SpMorphicGridLayoutComputation >> computeRowPositions [
 	"Calculate row positions"
 
 	rowPositions := Array new: numRows.	
@@ -139,7 +139,7 @@ GridLayoutComputation >> computeRowPositions [
 ]
 
 { #category : #'private computation' }
-GridLayoutComputation >> computeWidgetSizes [
+SpMorphicGridLayoutComputation >> computeWidgetSizes [
 	"Collect actual widget sizes"
 	| fixedHeight fixedWidth |
 	
@@ -161,68 +161,68 @@ GridLayoutComputation >> computeWidgetSizes [
 ]
 
 { #category : #accessing }
-GridLayoutComputation >> extent [ 
+SpMorphicGridLayoutComputation >> extent [ 
 
 	^ self columnWidths sum @ self rowHeights sum
 ]
 
 { #category : #initialization }
-GridLayoutComputation >> initializeLayout: aLayout [
+SpMorphicGridLayoutComputation >> initializeLayout: aLayout [
 
 	self initialize.
 	layout := aLayout
 ]
 
 { #category : #accessing }
-GridLayoutComputation >> layout [
+SpMorphicGridLayoutComputation >> layout [
 
 	^ layout
 ]
 
 { #category : #private }
-GridLayoutComputation >> maxHeight [
+SpMorphicGridLayoutComputation >> maxHeight [
 
 	^ (morphs collect: #height) max
 ]
 
 { #category : #private }
-GridLayoutComputation >> maxWidth [
+SpMorphicGridLayoutComputation >> maxWidth [
 
 	^ (self maxWidthOf: morphs) max: (bounds width / self numColumns) asInteger
 ]
 
 { #category : #private }
-GridLayoutComputation >> maxWidthOf: aCollection [
+SpMorphicGridLayoutComputation >> maxWidthOf: aCollection [
 
 	^ (aCollection collect: [ :each | (each valueOfProperty: #style) width ]) max
 ]
 
 { #category : #private }
-GridLayoutComputation >> numColumns [
+SpMorphicGridLayoutComputation >> numColumns [
 
 	^ numColumns
 ]
 
 { #category : #private }
-GridLayoutComputation >> numRows [
+SpMorphicGridLayoutComputation >> numRows [
 
 	^ numRows
 ]
 
 { #category : #accessing }
-GridLayoutComputation >> positionAt: aPoint [
+SpMorphicGridLayoutComputation >> positionAt: aPoint [
 
 	^ (self columnPositions at: aPoint x) @ (self rowPositions at: aPoint y) 
 ]
 
 { #category : #private }
-GridLayoutComputation >> rowHeights [
+SpMorphicGridLayoutComputation >> rowHeights [
 
 	^ rowHeights
 ]
 
 { #category : #private }
-GridLayoutComputation >> rowPositions [
+SpMorphicGridLayoutComputation >> rowPositions [
 
 	^ rowPositions
 ]

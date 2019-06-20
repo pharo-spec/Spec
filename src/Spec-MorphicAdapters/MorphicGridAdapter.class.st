@@ -54,7 +54,7 @@ MorphicGridAdapter >> layout: aLayout [
 MorphicGridAdapter >> newPanel [
 
 	^ PanelMorph new 
-		layoutPolicy: GridLayout new;
+		layoutPolicy: SpMorphicGridLayout new;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		yourself

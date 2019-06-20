@@ -76,7 +76,7 @@ MorphicPanedAdapter >> newHorizontal [
 MorphicPanedAdapter >> newPanel [
 
 	^ PanelMorph new 
-		layoutPolicy: PanedLayout new;
+		layoutPolicy: SpMorphicPanedLayout new;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		color: Color transparent;

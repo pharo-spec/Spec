@@ -119,7 +119,7 @@ SpDemoDynamicMemoryGamePresenter >> rebuildDynamicPresenter [
 				objectConcerned: modelObject
 				andAssociatedPresenter: presenter ];
 		"We specify that the cards should be organized on 10 columns, placed from left to right."
-		layoutBuilder: (DynamicLeftToRightColumnsLayout columns: 10);
+		layoutBuilder: (SpDynamicLeftToRightColumnsLayout columns: 10);
 		yourself.
 		
 	"Update the dynamic presenter using the builder (the symbol provided as parameter is the accessor.

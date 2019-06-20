@@ -11,7 +11,7 @@ I can arrange submorphs in a grid according to its properties (position and span
 WARNING: I'm designed to work for Spec. While any other morph could benefit from this layout, tipic properties of morphic (like vResizing and hResizing) can not behave as expected. 
 "
 Class {
-	#name : #GridLayout,
+	#name : #SpMorphicGridLayout,
 	#superclass : #LayoutPolicy,
 	#instVars : [
 		'rowSpacing',
@@ -25,12 +25,12 @@ Class {
 }
 
 { #category : #layout }
-GridLayout >> basicLayout: aMorph in: aRect [
+SpMorphicGridLayout >> basicLayout: aMorph in: aRect [
 	| computation morphs innerBounds origin |
 	
 	morphs := aMorph submorphs.
 	innerBounds := aRect insetBy: self padding.
-	computation := (GridLayoutComputation layout: self)
+	computation := (SpMorphicGridLayoutComputation layout: self)
 		computeMorphs: morphs 
 		bounds: innerBounds.
 	
@@ -46,7 +46,7 @@ GridLayout >> basicLayout: aMorph in: aRect [
 ]
 
 { #category : #private }
-GridLayout >> calculateExtentFor: aMorph constraint: constraint computation: computation [
+SpMorphicGridLayout >> calculateExtentFor: aMorph constraint: constraint computation: computation [
 	| cellExtent height width |
 	
 	cellExtent := computation cellExtentAt: constraint position.
@@ -57,7 +57,7 @@ GridLayout >> calculateExtentFor: aMorph constraint: constraint computation: com
 ]
 
 { #category : #private }
-GridLayout >> calculateHeightFor: aMorph base: aNumber [
+SpMorphicGridLayout >> calculateHeightFor: aMorph base: aNumber [
 
 	self isRowHomogeneous ifTrue: [ ^ aNumber ].
 	aMorph vResizing = #spaceFill ifTrue: [ ^ aNumber ].
@@ -65,7 +65,7 @@ GridLayout >> calculateHeightFor: aMorph base: aNumber [
 ]
 
 { #category : #private }
-GridLayout >> calculateWidthFor: aMorph base: aNumber [
+SpMorphicGridLayout >> calculateWidthFor: aMorph base: aNumber [
 
 	self isColumnHomogeneous ifTrue: [ ^ aNumber ].
 	aMorph hResizing = #spaceFill ifTrue: [ ^ aNumber ].
@@ -73,25 +73,25 @@ GridLayout >> calculateWidthFor: aMorph base: aNumber [
 ]
 
 { #category : #accessing }
-GridLayout >> columnHomogeneous: anObject [
+SpMorphicGridLayout >> columnHomogeneous: anObject [
 
 	columnHomogeneous := anObject
 ]
 
 { #category : #accessing }
-GridLayout >> columnSpacing [
+SpMorphicGridLayout >> columnSpacing [
 
 	^ columnSpacing
 ]
 
 { #category : #accessing }
-GridLayout >> columnSpacing: anObject [
+SpMorphicGridLayout >> columnSpacing: anObject [
 
 	columnSpacing := anObject
 ]
 
 { #category : #initialization }
-GridLayout >> initialize [
+SpMorphicGridLayout >> initialize [
 
 	super initialize.
 	calculating := false.
@@ -104,19 +104,19 @@ GridLayout >> initialize [
 ]
 
 { #category : #testing }
-GridLayout >> isColumnHomogeneous [
+SpMorphicGridLayout >> isColumnHomogeneous [
 
 	^ columnHomogeneous
 ]
 
 { #category : #testing }
-GridLayout >> isRowHomogeneous [
+SpMorphicGridLayout >> isRowHomogeneous [
 
 	^ rowHomogeneous
 ]
 
 { #category : #layout }
-GridLayout >> layout: aMorph in: aRect [
+SpMorphicGridLayout >> layout: aMorph in: aRect [
 	
 	calculating ifTrue: [ ^ self ].
 	[
@@ -127,7 +127,7 @@ GridLayout >> layout: aMorph in: aRect [
 ]
 
 { #category : #private }
-GridLayout >> layoutMorph: aMorph staringAt: originPoint withComputation: computation [
+SpMorphicGridLayout >> layoutMorph: aMorph staringAt: originPoint withComputation: computation [
 	| constraint pos extent |
 	
 	constraint := aMorph valueOfProperty: #gridConstraints.
@@ -143,30 +143,30 @@ GridLayout >> layoutMorph: aMorph staringAt: originPoint withComputation: comput
 ]
 
 { #category : #accessing }
-GridLayout >> padding [
+SpMorphicGridLayout >> padding [
 
 	^ padding
 ]
 
 { #category : #accessing }
-GridLayout >> padding: aNumber [
+SpMorphicGridLayout >> padding: aNumber [
 
 	padding := aNumber
 ]
 
 { #category : #accessing }
-GridLayout >> rowHomogeneous: aBoolean [
+SpMorphicGridLayout >> rowHomogeneous: aBoolean [
 
 	rowHomogeneous := aBoolean
 ]
 
 { #category : #accessing }
-GridLayout >> rowSpacing [
+SpMorphicGridLayout >> rowSpacing [
 	^ rowSpacing
 ]
 
 { #category : #accessing }
-GridLayout >> rowSpacing: aBoolean [
+SpMorphicGridLayout >> rowSpacing: aBoolean [
 
 	rowSpacing := aBoolean
 ]

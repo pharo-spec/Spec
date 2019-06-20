@@ -2,7 +2,7 @@
 I hold tests for DynamicTopToBottomRowsLayout.
 "
 Class {
-	#name : #DynamicTopToBottomRowsLayoutTest,
+	#name : #SpDynamicTopToBottomRowsLayoutTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'presentersBuilder',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #running }
-DynamicTopToBottomRowsLayoutTest >> setUp [
+SpDynamicTopToBottomRowsLayoutTest >> setUp [
 	super setUp.
 	presentersBuilder := DynamicPresentersListBuilder new
 		modelObjects: (1 to: 14);
@@ -20,11 +20,11 @@ DynamicTopToBottomRowsLayoutTest >> setUp [
 		buildDynamicPresenter;
 		yourself.
 		
-	layout := DynamicTopToBottomRowsLayout rows: 7.
+	layout := SpDynamicTopToBottomRowsLayout rows: 7.
 ]
 
 { #category : #tests }
-DynamicTopToBottomRowsLayoutTest >> testNullPresentersNeededFor [
+SpDynamicTopToBottomRowsLayoutTest >> testNullPresentersNeededFor [
 	self
 		assert: (layout nullPresentersNeededFor: presentersBuilder) equals: 0
 ]

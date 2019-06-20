@@ -96,7 +96,7 @@ SpCalendarPresenter >> daysButtonsBuilderFrom: aDate [
 			"Add icon next to current date."
 			date julianDayNumber = Date today julianDayNumber
 				ifTrue: [ button icon: (self iconNamed: #glamorousGrayCircle) ] ];
-		layoutBuilder: (DynamicLeftToRightColumnsLayout columns: self daysInAWeek);
+		layoutBuilder: (SpDynamicLeftToRightColumnsLayout columns: self daysInAWeek);
 		yourself
 ]
 
@@ -112,7 +112,7 @@ SpCalendarPresenter >> daysLabelsBuilder [
 		modelObjects: self dayNames;
 		presenter: SpLabelPresenter
 			configuredAs: [ :label :str | label label: str ];
-		layoutBuilder: (DynamicLeftToRightColumnsLayout columns: self daysInAWeek);
+		layoutBuilder: (SpDynamicLeftToRightColumnsLayout columns: self daysInAWeek);
 		yourself
 ]
 

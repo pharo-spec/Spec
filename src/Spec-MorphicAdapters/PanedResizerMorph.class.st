@@ -20,7 +20,7 @@ PanedResizerMorph class >> exampleHorizontal [
 	<example>
 	
 	(PanelMorph new 
-		layoutPolicy: PanedLayout new;
+		layoutPolicy: SpMorphicPanedLayout new;
 		listDirection: #leftToRight;
 		addMorphBack: (Morph new 
 			color: Color red;
@@ -42,7 +42,7 @@ PanedResizerMorph class >> exampleVertical [
 	<example>
 	
 	(PanelMorph new 
-		layoutPolicy: PanedLayout new;
+		layoutPolicy: SpMorphicPanedLayout new;
 		addMorphBack: (Morph new 
 			color: Color red;
 			vResizing: #spaceFill;

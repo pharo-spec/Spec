@@ -34,7 +34,7 @@ DynamicPresentersListBuilder class >> example [
 				label: modelObject asString;
 				whenActivatedDo: [ UIManager default inform: modelObject asString , ' activated.' ];
 				whenDeactivatedDo: [ UIManager default inform: modelObject asString , ' deactivated.' ] ];
-		layoutBuilder: (DynamicTopToBottomColumnsLayout columns: 2);
+		layoutBuilder: (SpDynamicTopToBottomColumnsLayout columns: 2);
 		build.
 	
 	^ dynamicPresenter
@@ -54,7 +54,7 @@ DynamicPresentersListBuilder class >> example2 [
 			configuredAs: [ :presenter :modelObject | 
 			presenter
 				label: modelObject asString ];
-		layoutBuilder: (DynamicTopToBottomColumnsLayout columns: 2);
+		layoutBuilder: (SpDynamicTopToBottomColumnsLayout columns: 2);
 		build.
 	
 	^ dynamicPresenter

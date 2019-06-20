@@ -1,5 +1,5 @@
 Class {
-	#name : #GridLayoutTests,
+	#name : #SpGridLayoutTests,
 	#superclass : #TestCase,
 	#instVars : [
 		'label1',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #private }
-GridLayoutTests >> place: aMorph at: aPoint [ 
+SpGridLayoutTests >> place: aMorph at: aPoint [ 
 
 	aMorph 
 		setProperty: #gridConstraints 
@@ -20,7 +20,7 @@ GridLayoutTests >> place: aMorph at: aPoint [
 ]
 
 { #category : #private }
-GridLayoutTests >> place: aMorph at: aPoint span: spanPoint [
+SpGridLayoutTests >> place: aMorph at: aPoint span: spanPoint [
 
 	aMorph 
 		setProperty: #gridConstraints 
@@ -28,7 +28,7 @@ GridLayoutTests >> place: aMorph at: aPoint span: spanPoint [
 ]
 
 { #category : #running }
-GridLayoutTests >> setUp [
+SpGridLayoutTests >> setUp [
 	
 	super setUp.
 	label1 := Morph new.
@@ -46,13 +46,13 @@ GridLayoutTests >> setUp [
 ]
 
 { #category : #private }
-GridLayoutTests >> style [ 
+SpGridLayoutTests >> style [ 
 
 	^ self styleExtent: 50@20
 ]
 
 { #category : #private }
-GridLayoutTests >> styleExtent: aPoint [
+SpGridLayoutTests >> styleExtent: aPoint [
 
 	^ MorphicStyleSheet new 
 		propertyAt: #extent put: (MorphicStyleSheetExtent 
@@ -63,7 +63,7 @@ GridLayoutTests >> styleExtent: aPoint [
 ]
 
 { #category : #tests }
-GridLayoutTests >> testBasicLayout [
+SpGridLayoutTests >> testBasicLayout [
 	"
 	-----------
 	| 50 | 50 |
@@ -78,7 +78,7 @@ GridLayoutTests >> testBasicLayout [
 	self place: label2 at: 1@2.
 	self place: morph2 at: 2@2.
 	
-	layout := GridLayout new.
+	layout := SpMorphicGridLayout new.
 	layout layout: panel in: (0@0 corner: 100@100).
 	
 	self assert: label1 bounds equals: (0@0 corner: 50@20).
@@ -88,7 +88,7 @@ GridLayoutTests >> testBasicLayout [
 ]
 
 { #category : #tests }
-GridLayoutTests >> testBorderWidth [
+SpGridLayoutTests >> testBorderWidth [
 	"
 	---------------
 	| 5 | 5  | 5  |
@@ -105,7 +105,7 @@ GridLayoutTests >> testBorderWidth [
 	self place: label2 at: 1@2.
 	self place: morph2 at: 2@2.
 	
-	layout := GridLayout new
+	layout := SpMorphicGridLayout new
 		padding: 5;
 		yourself.
 	layout layout: panel in: (0@0 corner: 100@100).
@@ -117,7 +117,7 @@ GridLayoutTests >> testBorderWidth [
 ]
 
 { #category : #tests }
-GridLayoutTests >> testColumnHomogeneousDiferentRowsAndColumns [
+SpGridLayoutTests >> testColumnHomogeneousDiferentRowsAndColumns [
 	"Each element in a different row and column
 	
 	-------------------------
@@ -137,7 +137,7 @@ GridLayoutTests >> testColumnHomogeneousDiferentRowsAndColumns [
 	self place: label2 at: 3@3.
 	self place: morph2 at: 4@4.
 			
-	layout := GridLayout new.
+	layout := SpMorphicGridLayout new.
 	layout columnHomogeneous: true.
 	"make one column width to 100 (it should force all columns to 100, instead 50)"
 	(self styleExtent: 100@20) applyTo: label2.
@@ -152,7 +152,7 @@ GridLayoutTests >> testColumnHomogeneousDiferentRowsAndColumns [
 ]
 
 { #category : #tests }
-GridLayoutTests >> testColumnNotHomogeneousDiferentRowsAndColumns [
+SpGridLayoutTests >> testColumnNotHomogeneousDiferentRowsAndColumns [
 	"Each element in a different row and column
 	
 	-------------------------
@@ -172,7 +172,7 @@ GridLayoutTests >> testColumnNotHomogeneousDiferentRowsAndColumns [
 	self place: label2 at: 3@3.
 	self place: morph2 at: 4@4.
 	
-	layout := GridLayout new.
+	layout := SpMorphicGridLayout new.
 	layout columnHomogeneous: false.
 	"make columns differ, to make each column different"
 	label1 width: 30.
@@ -190,7 +190,7 @@ GridLayoutTests >> testColumnNotHomogeneousDiferentRowsAndColumns [
 ]
 
 { #category : #tests }
-GridLayoutTests >> testColumnNotHomogeneousPairedRowsAndColumns [
+SpGridLayoutTests >> testColumnNotHomogeneousPairedRowsAndColumns [
 	"Paired elements in a rows and columns
 	
 	-----------
@@ -207,7 +207,7 @@ GridLayoutTests >> testColumnNotHomogeneousPairedRowsAndColumns [
 	self place: label2 at: 1@2.
 	self place: morph2 at: 2@2.
 	
-	layout := GridLayout new.
+	layout := SpMorphicGridLayout new.
 	layout columnHomogeneous: false.
 	"make columns differ, to make each column different"
 	label1 width: 30.
@@ -225,7 +225,7 @@ GridLayoutTests >> testColumnNotHomogeneousPairedRowsAndColumns [
 ]
 
 { #category : #tests }
-GridLayoutTests >> testColumnSpacing [
+SpGridLayoutTests >> testColumnSpacing [
 	"
 	---------------
 	| 50 | 5 | 50 |
@@ -240,7 +240,7 @@ GridLayoutTests >> testColumnSpacing [
 	self place: label2 at: 1@2.
 	self place: morph2 at: 2@2.
 	
-	layout := GridLayout new
+	layout := SpMorphicGridLayout new
 		columnSpacing: 5;
 		yourself.
 	layout layout: panel in: (0@0 corner: 100@100).
@@ -252,7 +252,7 @@ GridLayoutTests >> testColumnSpacing [
 ]
 
 { #category : #tests }
-GridLayoutTests >> testLayoutIn [
+SpGridLayoutTests >> testLayoutIn [
 	"This is a meta-test that tries all the others (just to have access to all tests while seeing 
 	 the class. Yes, I know that means all tests are executed twice in CI, but they are fast :)"
 
@@ -266,7 +266,7 @@ GridLayoutTests >> testLayoutIn [
 ]
 
 { #category : #tests }
-GridLayoutTests >> testRowSpacing [
+SpGridLayoutTests >> testRowSpacing [
 	"
 	-----------
 	| 50 | 50 |
@@ -283,7 +283,7 @@ GridLayoutTests >> testRowSpacing [
 	self place: label2 at: 1@2.
 	self place: morph2 at: 2@2.
 	
-	layout := GridLayout new
+	layout := SpMorphicGridLayout new
 		rowSpacing: 5;
 		yourself.
 	layout layout: panel in: (0@0 corner: 100@100).
@@ -295,7 +295,7 @@ GridLayoutTests >> testRowSpacing [
 ]
 
 { #category : #tests }
-GridLayoutTests >> testSpanColumn [
+SpGridLayoutTests >> testSpanColumn [
 	"Each element in a different row and column
 	
 	--------------------
@@ -311,7 +311,7 @@ GridLayoutTests >> testSpanColumn [
 	self place: label2 at: 3@1.
 	self place: morph2 at: 2@2 span: 2@1.
 	
-	layout := GridLayout new.
+	layout := SpMorphicGridLayout new.
 	layout layout: panel in: (0@0 corner: 100@100).
 	
 	self assert: label1 bounds equals: (0@0 corner: 50@20).
@@ -322,7 +322,7 @@ GridLayoutTests >> testSpanColumn [
 ]
 
 { #category : #tests }
-GridLayoutTests >> testSpanRow [
+SpGridLayoutTests >> testSpanRow [
 	"Each element in a different row and column
 	
 	--------------------
@@ -338,7 +338,7 @@ GridLayoutTests >> testSpanRow [
 	self place: label2 at: 1@2.
 	self place: morph2 at: 3@2.
 	
-	layout := GridLayout new.
+	layout := SpMorphicGridLayout new.
 	layout layout: panel in: (0@0 corner: 100@100).
 	
 	self assert: label1 bounds equals: (0@0 corner: 50@20).

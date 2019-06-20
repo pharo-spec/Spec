@@ -2,8 +2,8 @@
 I am the layout for which you define the number of rows to store you presenters and set them from top to bottom in these rows.
 "
 Class {
-	#name : #DynamicTopToBottomRowsLayout,
-	#superclass : #DynamicPresentersListLayout,
+	#name : #SpDynamicTopToBottomRowsLayout,
+	#superclass : #SpDynamicPresentersListLayout,
 	#instVars : [
 		'rowsCount'
 	],
@@ -11,14 +11,14 @@ Class {
 }
 
 { #category : #'instance creation' }
-DynamicTopToBottomRowsLayout class >> rows: anInteger [
+SpDynamicTopToBottomRowsLayout class >> rows: anInteger [
 	^ self new
 		rowsCount: anInteger;
 		yourself
 ]
 
 { #category : #building }
-DynamicTopToBottomRowsLayout >> buildLayoutFor: aDynamicPresentersListBuilder [
+SpDynamicTopToBottomRowsLayout >> buildLayoutFor: aDynamicPresentersListBuilder [
 	^ SpLayout composed
 		newRow: [ :mainRow | 
 			(self instVarNamesFrom: aDynamicPresentersListBuilder)
@@ -29,18 +29,18 @@ DynamicTopToBottomRowsLayout >> buildLayoutFor: aDynamicPresentersListBuilder [
 ]
 
 { #category : #building }
-DynamicTopToBottomRowsLayout >> nullPresentersNeededFor: aDynamicPresentersListBuilder [
+SpDynamicTopToBottomRowsLayout >> nullPresentersNeededFor: aDynamicPresentersListBuilder [
 	"Compute the number of empty presenters required to fill additional space if the number of model objects modulo the number of columns/rows is not equals to 0."
 	^ self rowsCount - ((aDynamicPresentersListBuilder modelObjects size - 1 % self rowsCount) + 1)
 ]
 
 { #category : #accessing }
-DynamicTopToBottomRowsLayout >> rowsCount [
+SpDynamicTopToBottomRowsLayout >> rowsCount [
 	^ rowsCount
 ]
 
 { #category : #accessing }
-DynamicTopToBottomRowsLayout >> rowsCount: anObject [
+SpDynamicTopToBottomRowsLayout >> rowsCount: anObject [
 	(anObject isInteger and: [ anObject > 0 ])
 		ifFalse: [ self error: 'A positive integer is expected as parameter.' ].
 	rowsCount := anObject

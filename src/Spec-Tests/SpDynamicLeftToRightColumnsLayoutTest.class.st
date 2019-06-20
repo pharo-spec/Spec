@@ -2,7 +2,7 @@
 I hold tests for DynamicLeftToRightColumnsLayout.
 "
 Class {
-	#name : #DynamicLeftToRightColumnsLayoutTest,
+	#name : #SpDynamicLeftToRightColumnsLayoutTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'presentersBuilder',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #running }
-DynamicLeftToRightColumnsLayoutTest >> setUp [
+SpDynamicLeftToRightColumnsLayoutTest >> setUp [
 	super setUp.
 	presentersBuilder := DynamicPresentersListBuilder new
 		modelObjects: (1 to: 14);
@@ -20,11 +20,11 @@ DynamicLeftToRightColumnsLayoutTest >> setUp [
 		buildDynamicPresenter;
 		yourself.
 		
-	layout := DynamicLeftToRightColumnsLayout columns: 7.
+	layout := SpDynamicLeftToRightColumnsLayout columns: 7.
 ]
 
 { #category : #tests }
-DynamicLeftToRightColumnsLayoutTest >> testNullPresentersNeededFor [
+SpDynamicLeftToRightColumnsLayoutTest >> testNullPresentersNeededFor [
 	self
 		assert: (layout nullPresentersNeededFor: presentersBuilder) equals: 0
 ]

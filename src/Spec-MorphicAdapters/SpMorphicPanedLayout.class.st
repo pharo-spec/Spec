@@ -13,7 +13,7 @@ instead a fixed number I may change in other places.
  
 "
 Class {
-	#name : #PanedLayout,
+	#name : #SpMorphicPanedLayout,
 	#superclass : #TableLayout,
 	#instVars : [
 		'position'
@@ -22,7 +22,7 @@ Class {
 }
 
 { #category : #private }
-PanedLayout >> ensureHeightPosition: aMorph in: aRect [
+SpMorphicPanedLayout >> ensureHeightPosition: aMorph in: aRect [
 	| firstMorph |
 
 	self position ifNil: [ ^ self ].
@@ -34,7 +34,7 @@ PanedLayout >> ensureHeightPosition: aMorph in: aRect [
 ]
 
 { #category : #private }
-PanedLayout >> ensureWidthPosition: aMorph in: aRect [
+SpMorphicPanedLayout >> ensureWidthPosition: aMorph in: aRect [
 	| firstMorph |
 
 	self position ifNil: [ ^ self ].
@@ -46,7 +46,7 @@ PanedLayout >> ensureWidthPosition: aMorph in: aRect [
 ]
 
 { #category : #private }
-PanedLayout >> heightPositionIn: aPoint [ 
+SpMorphicPanedLayout >> heightPositionIn: aPoint [ 
 
 	^ self position < 1 
 		ifTrue: [ (aPoint y * self position) asInteger ]
@@ -54,38 +54,38 @@ PanedLayout >> heightPositionIn: aPoint [
 ]
 
 { #category : #testing }
-PanedLayout >> isHorizontal [
+SpMorphicPanedLayout >> isHorizontal [
 
 	^ (properties listDirection == #topToBottom 
 		or: [ properties listDirection == #bottomToTop ]) not
 ]
 
 { #category : #private }
-PanedLayout >> layoutLeftToRight: aMorph in: newBounds [
+SpMorphicPanedLayout >> layoutLeftToRight: aMorph in: newBounds [
 
 	self ensureWidthPosition: aMorph in: newBounds.
 	super layoutLeftToRight: aMorph in: newBounds
 ]
 
 { #category : #private }
-PanedLayout >> layoutTopToBottom: aMorph in: newBounds [
+SpMorphicPanedLayout >> layoutTopToBottom: aMorph in: newBounds [
 
 	self ensureHeightPosition: aMorph in: newBounds.
 	super layoutTopToBottom: aMorph in: newBounds
 ]
 
 { #category : #accessing }
-PanedLayout >> position [
+SpMorphicPanedLayout >> position [
 	^ position
 ]
 
 { #category : #accessing }
-PanedLayout >> position: anObject [
+SpMorphicPanedLayout >> position: anObject [
 	position := anObject
 ]
 
 { #category : #accessing }
-PanedLayout >> preservePositionProportionOn: layoutedMorph [
+SpMorphicPanedLayout >> preservePositionProportionOn: layoutedMorph [
 	| referenceMorph |
 
 	referenceMorph := layoutedMorph submorphs first.
@@ -95,13 +95,13 @@ PanedLayout >> preservePositionProportionOn: layoutedMorph [
 ]
 
 { #category : #accessing }
-PanedLayout >> resetPosition [
+SpMorphicPanedLayout >> resetPosition [
 
 	position := nil
 ]
 
 { #category : #private }
-PanedLayout >> widthPositionIn: aPoint [ 
+SpMorphicPanedLayout >> widthPositionIn: aPoint [ 
 
 	^ self position < 1 
 		ifTrue: [ (aPoint x * self position) asInteger ]

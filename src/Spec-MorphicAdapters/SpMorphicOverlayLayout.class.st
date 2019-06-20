@@ -1,11 +1,11 @@
 Class {
-	#name : #MorphicOverlayLayout,
+	#name : #SpMorphicOverlayLayout,
 	#superclass : #LayoutPolicy,
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
 { #category : #layout }
-MorphicOverlayLayout >> layout: aMorph in: layoutBounds [
+SpMorphicOverlayLayout >> layout: aMorph in: layoutBounds [
 	aMorph submorphsDo: [ :m | | constraints |
 		constraints := m valueOfProperty: #constraints.
 		(m visible and: [ constraints isOverlay not ])

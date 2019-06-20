@@ -32,7 +32,7 @@ MorphicOverlayAdapter >> basicAdd: aPresenter constraints: constraints to: aWidg
 MorphicOverlayAdapter >> layout: aLayout [
 	widget
 		ifNil: [ widget := PanelMorph new
-				layoutPolicy: MorphicOverlayLayout new;
+				layoutPolicy: SpMorphicOverlayLayout new;
 				hResizing: #spaceFill;
 				vResizing: #spaceFill;
 				color: Color transparent;
