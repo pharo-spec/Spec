@@ -1,5 +1,5 @@
 Trait {
-	#name : #TMorphicTableDataSourceCommons,
+	#name : #TSpMorphicTableDataSourceCommons,
 	#instVars : [
 		'model'
 	],
@@ -7,7 +7,7 @@ Trait {
 }
 
 { #category : #accessing }
-TMorphicTableDataSourceCommons >> headerColumn: column [
+TSpMorphicTableDataSourceCommons >> headerColumn: column [
 
 	column id ifNil: [ ^ nil ].
 	^ FTCellMorph new 
@@ -17,7 +17,7 @@ TMorphicTableDataSourceCommons >> headerColumn: column [
 ]
 
 { #category : #accessing }
-TMorphicTableDataSourceCommons >> menuColumn: column row: rowIndex [
+TSpMorphicTableDataSourceCommons >> menuColumn: column row: rowIndex [
 	| menuPresenter |
 
 	menuPresenter := self model contextMenu.
@@ -28,13 +28,13 @@ TMorphicTableDataSourceCommons >> menuColumn: column row: rowIndex [
 ]
 
 { #category : #accessing }
-TMorphicTableDataSourceCommons >> model [
+TSpMorphicTableDataSourceCommons >> model [
 
 	^ model
 ]
 
 { #category : #accessing }
-TMorphicTableDataSourceCommons >> model: aTablePresenter [
+TSpMorphicTableDataSourceCommons >> model: aTablePresenter [
 
 	model := aTablePresenter
 ]

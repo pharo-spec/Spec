@@ -4,8 +4,8 @@ I am the abstract superclass for all kind of inspectors
 Class {
 	#name : #SpEyeAbstractInspector,
 	#superclass : #SpComposablePresenter,
-	#traits : 'SpTInspectorActions',
-	#classTraits : 'SpTInspectorActions classTrait',
+	#traits : 'TSpInspectorActions',
+	#classTraits : 'TSpInspectorActions classTrait',
 	#instVars : [
 		'object',
 		'customMenuActions',

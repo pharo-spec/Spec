@@ -3,7 +3,7 @@ I'm a trait that add ""dynamic"" behavior to presenters.
 I can be used to create components that may have variable number of children.
 "
 Trait {
-	#name : #SpTSpecDynamicPresenter,
+	#name : #TSpDynamicPresenter,
 	#instVars : [
 		'presenters'
 	],
@@ -11,19 +11,19 @@ Trait {
 }
 
 { #category : #'private accessing' }
-SpTSpecDynamicPresenter >> basicPresenters [
+TSpDynamicPresenter >> basicPresenters [
 
 	^ presenters ifNil: [ presenters := OrderedDictionary new ]
 ]
 
 { #category : #accessing }
-SpTSpecDynamicPresenter >> presenterAt: aName [
+TSpDynamicPresenter >> presenterAt: aName [
 
 	^ self basicPresenters at: aName 
 ]
 
 { #category : #accessing }
-SpTSpecDynamicPresenter >> presenterAt: aName ifAbsent: aBlock [
+TSpDynamicPresenter >> presenterAt: aName ifAbsent: aBlock [
 
 	^ self basicPresenters 
 		at: aName 
@@ -31,7 +31,7 @@ SpTSpecDynamicPresenter >> presenterAt: aName ifAbsent: aBlock [
 ]
 
 { #category : #accessing }
-SpTSpecDynamicPresenter >> presenterAt: aName put: aPresenter [
+TSpDynamicPresenter >> presenterAt: aName put: aPresenter [
 
 	^ self basicPresenters 
 		at: aName 
@@ -39,13 +39,13 @@ SpTSpecDynamicPresenter >> presenterAt: aName put: aPresenter [
 ]
 
 { #category : #accessing }
-SpTSpecDynamicPresenter >> presenters [
+TSpDynamicPresenter >> presenters [
 
 	^ self basicPresenters values
 ]
 
 { #category : #enumerating }
-SpTSpecDynamicPresenter >> presentersDo: aBlock [
+TSpDynamicPresenter >> presentersDo: aBlock [
 
 	self basicPresenters valuesDo: aBlock
 ]

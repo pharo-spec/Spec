@@ -9,7 +9,7 @@ if your backend of choice supports it.
 THIS CANNOT BE CHANGED ONCE THE WIDGET IS CREATED.
 "
 Trait {
-	#name : #TSpecHaveWrappingScrollBars,
+	#name : #TSpHaveWrappingScrollBars,
 	#instVars : [
 		'wrapScrollBars'
 	],
@@ -17,7 +17,7 @@ Trait {
 }
 
 { #category : #testing }
-TSpecHaveWrappingScrollBars >> hasScrollBars [
+TSpHaveWrappingScrollBars >> hasScrollBars [
 	"Some backends like Morphic forces the scrollbars in their Tables and Lists. 
 	 But some others like Gtk3 don't. This option allows you to configure the precence 
 	 of scrollbars for platforms who do not have them automatically.
@@ -29,7 +29,7 @@ TSpecHaveWrappingScrollBars >> hasScrollBars [
 ]
 
 { #category : #accessing }
-TSpecHaveWrappingScrollBars >> withScrollBars [
+TSpHaveWrappingScrollBars >> withScrollBars [
 	"Some backends like Morphic forces the scrollbars in their Tables and Lists. 
 	 But some others like Gtk3 don't. This option allows you to configure the precence 
 	 of scrollbars for platforms who do not have them automatically.
@@ -41,7 +41,7 @@ TSpecHaveWrappingScrollBars >> withScrollBars [
 ]
 
 { #category : #accessing }
-TSpecHaveWrappingScrollBars >> withoutScrollBars [
+TSpHaveWrappingScrollBars >> withoutScrollBars [
 	"Some backends like Morphic forces the scrollbars in their Tables and Lists. 
 	 But some others like Gtk3 don't. This option allows you to configure the precence 
 	 of scrollbars for platforms who do not have them automatically.

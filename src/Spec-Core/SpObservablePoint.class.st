@@ -7,8 +7,8 @@ I use TObservable that has methods to ease the usage of my observable properties
 Class {
 	#name : #SpObservablePoint,
 	#superclass : #Object,
-	#traits : 'TSpecObservable',
-	#classTraits : 'TSpecObservable classTrait',
+	#traits : 'TSpObservable',
+	#classTraits : 'TSpObservable classTrait',
 	#instVars : [
 		'#x => SpObservableSlot',
 		'#y'

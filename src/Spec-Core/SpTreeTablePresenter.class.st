@@ -9,8 +9,8 @@ self example
 Class {
 	#name : #SpTreeTablePresenter,
 	#superclass : #SpAbstractWidgetPresenter,
-	#traits : 'TSpecHaveWrappingScrollBars',
-	#classTraits : 'TSpecHaveWrappingScrollBars classTrait',
+	#traits : 'TSpHaveWrappingScrollBars',
+	#classTraits : 'TSpHaveWrappingScrollBars classTrait',
 	#instVars : [
 		'#columns',
 		'#showColumnHeaders => SpObservableSlot',

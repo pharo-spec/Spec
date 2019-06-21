@@ -1,8 +1,8 @@
 Class {
 	#name : #Timeline,
 	#superclass : #Object,
-	#traits : 'TSpecObservable',
-	#classTraits : 'TSpecObservable classTrait',
+	#traits : 'TSpObservable',
+	#classTraits : 'TSpObservable classTrait',
 	#instVars : [
 		'#ticks => SpObservableSlot',
 		'#highestValue',

@@ -1,16 +1,16 @@
 Trait {
-	#name : #TSpecObservable,
+	#name : #TSpObservable,
 	#category : #'Spec-Core-Observable'
 }
 
 { #category : #events }
-TSpecObservable >> notifyPropertyChanged: aName [
+TSpObservable >> notifyPropertyChanged: aName [
 
 	(self observablePropertyNamed: aName) valueChanged
 ]
 
 { #category : #events }
-TSpecObservable >> observablePropertyNamed: aName [
+TSpObservable >> observablePropertyNamed: aName [
 	| slot |
 	
 	slot := self class slotNamed: aName.
@@ -23,7 +23,7 @@ TSpecObservable >> observablePropertyNamed: aName [
 ]
 
 { #category : #events }
-TSpecObservable >> property: aName whenChangedDo: aBlockClosure [ 
+TSpObservable >> property: aName whenChangedDo: aBlockClosure [ 
 	
 	"Obtain the raw value.
 	We need to access the underlying value holder to subscribe to it"

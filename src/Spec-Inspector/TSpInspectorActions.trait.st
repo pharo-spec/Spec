@@ -2,37 +2,37 @@
 I contain common actions for inspectors and inspector elements/wrappers
 "
 Trait {
-	#name : #SpTInspectorActions,
+	#name : #TSpInspectorActions,
 	#category : #'Spec-Inspector-Traits'
 }
 
 { #category : #actions }
-SpTInspectorActions >> browseSelectedObject [
+TSpInspectorActions >> browseSelectedObject [
 	self selectedObjectDo: [ :anObject | anObject browse ]
 ]
 
 { #category : #actions }
-SpTInspectorActions >> browseSelectedObjectClass [
+TSpInspectorActions >> browseSelectedObjectClass [
 	self selectedObjectDo: [ :anObject | Smalltalk tools browser openOnClass: anObject class ]
 ]
 
 { #category : #actions }
-SpTInspectorActions >> browseSelectedObjectClassHierarchy [
+TSpInspectorActions >> browseSelectedObjectClassHierarchy [
 	self selectedObjectDo: [ :anObject | anObject class browseHierarchy ]
 ]
 
 { #category : #actions }
-SpTInspectorActions >> exploreSelectedObject [
+TSpInspectorActions >> exploreSelectedObject [
 	self selectedObjectDo: [ :anObject | anObject inspect ].
 ]
 
 { #category : #actions }
-SpTInspectorActions >> inspectInNewWindow: anObject [
+TSpInspectorActions >> inspectInNewWindow: anObject [
 
 	anObject inspect
 ]
 
 { #category : #actions }
-SpTInspectorActions >> inspectSelectedObjectInNewWindow [
+TSpInspectorActions >> inspectSelectedObjectInNewWindow [
 	self selectedObjectDo: [ :anObject | self inspectInNewWindow: anObject ].
 ]

@@ -10,8 +10,8 @@ value: object represented by this eye element
 Class {
 	#name : #SpAbstractEyeElement,
 	#superclass : #Model,
-	#traits : 'SpTInspectorActions',
-	#classTraits : 'SpTInspectorActions classTrait',
+	#traits : 'TSpInspectorActions',
+	#classTraits : 'TSpInspectorActions classTrait',
 	#instVars : [
 		'host'
 	],
