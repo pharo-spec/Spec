@@ -8,8 +8,8 @@ Class {
 SpTreeTableAdapterMultiColumnTest >> initializeTestedInstance [ 
 
 	presenter
-		addColumn: (StringTableColumn title: 'Value' evaluated: #printString);
-		addColumn: (ImageTableColumn title: 'Icon' evaluated: [ :x | self iconNamed: #add ]);
+		addColumn: (SpStringTableColumn title: 'Value' evaluated: #printString);
+		addColumn: (SpImageTableColumn title: 'Icon' evaluated: [ :x | self iconNamed: #add ]);
 		hideColumnHeaders;
 		roots: #(1 2 3);
 		children: [ :aNumber | { aNumber * 2. aNumber * 3. aNumber * 10 } ].
@@ -19,7 +19,7 @@ SpTreeTableAdapterMultiColumnTest >> initializeTestedInstance [
 { #category : #running }
 SpTreeTableAdapterMultiColumnTest >> testAddingColumnUpdatesWidget [
 
-	self presenter addColumn: (StringTableColumn title: 'Value' evaluated: #printString).
+	self presenter addColumn: (SpStringTableColumn title: 'Value' evaluated: #printString).
 	
 	self assert: self adapter columnCount equals: 3
 ]

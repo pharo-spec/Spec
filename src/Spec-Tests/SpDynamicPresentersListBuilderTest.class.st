@@ -14,7 +14,7 @@ Class {
 SpDynamicPresentersListBuilderTest >> setUp [
 	"Hooks that subclasses may override to define the fixture of test."
 	super setUp.
-	builder := DynamicPresentersListBuilder new
+	builder := SpDynamicPresentersListBuilder new
 ]
 
 { #category : #tests }

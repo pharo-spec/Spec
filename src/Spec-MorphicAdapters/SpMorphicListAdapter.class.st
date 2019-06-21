@@ -98,7 +98,7 @@ SpMorphicListAdapter >> listSize [
 SpMorphicListAdapter >> newListColumn [
 	
 	^ SpMorphicTableColumn new 
-		model: (StringTableColumn
+		model: (SpStringTableColumn
 			title: self presenter headerTitle
 			evaluated: self presenter displayBlock);
 		yourself

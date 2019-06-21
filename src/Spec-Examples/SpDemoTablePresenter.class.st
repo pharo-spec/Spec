@@ -38,7 +38,7 @@ SpDemoTablePresenter >> initializeWidgets [
 
 	table1
 		addColumn:
-			((CheckBoxTableColumn title: ' ' evaluated: [ :class | selectedClasses includes: class ])
+			((SpCheckBoxTableColumn title: ' ' evaluated: [ :class | selectedClasses includes: class ])
 				onActivation: [ :class | 
 					selectedClasses add: class.
 					self resetLabel ];
@@ -48,11 +48,11 @@ SpDemoTablePresenter >> initializeWidgets [
 				width: 20;
 				yourself);
 		addColumn:
-			((ImageTableColumn title: 'Icon' evaluated: #systemIcon)
+			((SpImageTableColumn title: 'Icon' evaluated: #systemIcon)
 				width: 50;
 				yourself);
-		addColumn: (StringTableColumn title: 'Name' evaluated: #name);
-		addColumn: (StringTableColumn title: 'Number of subclasses' evaluated: [ :class | class subclasses size asString ]);
+		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
+		addColumn: (SpStringTableColumn title: 'Number of subclasses' evaluated: [ :class | class subclasses size asString ]);
 		items: self class environment allClasses;
 		beResizable
 ]

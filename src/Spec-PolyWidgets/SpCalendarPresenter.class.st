@@ -85,7 +85,7 @@ SpCalendarPresenter >> daysButtons: anObject [
 
 { #category : #private }
 SpCalendarPresenter >> daysButtonsBuilderFrom: aDate [
-	^ DynamicPresentersListBuilder new
+	^ SpDynamicPresentersListBuilder new
 		modelObjects: (self datesToDisplayFor: aDate);
 		presenter: SpButtonPresenter
 		configuredAs: [ :button :date | 
@@ -108,7 +108,7 @@ SpCalendarPresenter >> daysInAWeek [
 
 { #category : #private }
 SpCalendarPresenter >> daysLabelsBuilder [
-	^ DynamicPresentersListBuilder new
+	^ SpDynamicPresentersListBuilder new
 		modelObjects: self dayNames;
 		presenter: SpLabelPresenter
 			configuredAs: [ :label :str | label label: str ];

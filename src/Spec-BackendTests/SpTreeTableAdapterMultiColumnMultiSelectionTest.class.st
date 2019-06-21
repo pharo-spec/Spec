@@ -8,8 +8,8 @@ Class {
 SpTreeTableAdapterMultiColumnMultiSelectionTest >> initializeTestedInstance [ 
 
 	presenter
-		addColumn: (StringTableColumn title: 'Value' evaluated: #printString);
-		addColumn: (ImageTableColumn title: 'Icon' evaluated: [ :x | self iconNamed: #add ]);
+		addColumn: (SpStringTableColumn title: 'Value' evaluated: #printString);
+		addColumn: (SpImageTableColumn title: 'Icon' evaluated: [ :x | self iconNamed: #add ]);
 		hideColumnHeaders;	
 		beMultipleSelection;
 		roots: #(1 2 3);

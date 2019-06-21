@@ -18,7 +18,7 @@ SpAthensAnimatedPresenter >> initialize [
 
 	super initialize.
 	updateBlock := [  ].
-	self timeline: Timeline new.
+	self timeline: SpTimeline new.
 ]
 
 { #category : #initialization }

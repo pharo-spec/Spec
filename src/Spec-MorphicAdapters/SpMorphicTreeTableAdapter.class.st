@@ -95,7 +95,7 @@ SpMorphicTreeTableAdapter >> columnCount [
 { #category : #factory }
 SpMorphicTreeTableAdapter >> defaultColumn [
 
-	^ StringTableColumn new evaluated: #yourself
+	^ SpStringTableColumn new evaluated: #yourself
 ]
 
 { #category : #factory }

@@ -142,7 +142,7 @@ SpInspectorNavigator >> initialize [
 	inspector whenChangedDo: [ :new :old | 
 		self updateInspectorFrom: old ].
 	self announcer
-		when: WidgetBuilt send: #setRefreshedToTrue to: self.
+		when: SpWidgetBuilt send: #setRefreshedToTrue to: self.
 	
 	canBeRefreshed := false.
 	self whenWindowChanged: [ :w |

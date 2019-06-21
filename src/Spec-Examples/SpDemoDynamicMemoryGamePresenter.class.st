@@ -110,7 +110,7 @@ SpDemoDynamicMemoryGamePresenter >> rebuildDynamicPresenter [
 	"This var. holds the set of cards actually shown to the user."
 	showedCards := OrderedCollection new.
 	"Build the presenters list depending on the total number of cards."
-	builder := DynamicPresentersListBuilder new
+	builder := SpDynamicPresentersListBuilder new
 		modelObjects: allCards;
 		presenter: SpButtonPresenter "We use buttons as UI for cards."
 			configuredAs: [ :presenter :modelObject | 

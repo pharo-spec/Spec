@@ -5,8 +5,8 @@ SpTablePresenter class >> example [
 	<sampleInstance>
 	
 	^ self new
-		addColumn: (ImageTableColumn title: 'Icon' evaluated: #systemIcon);
-		addColumn: (StringTableColumn title: 'Name' evaluated: #name);
+		addColumn: (SpImageTableColumn title: 'Icon' evaluated: #systemIcon);
+		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
 		items: Smalltalk allClasses;
 		doubleClickAction: [ :aClass | self inform: 'Double click on: ', aClass name ];
 		openWithSpec
@@ -24,8 +24,8 @@ SpTablePresenter class >> exampleWithColumnHeaders [
 	| example |
 	example := self new.
 	example
-		addColumn: (StringTableColumn title: 'Number' evaluated: #yourself);
-		addColumn: (StringTableColumn title: 'Hex' evaluated: #hex);
+		addColumn: (SpStringTableColumn title: 'Number' evaluated: #yourself);
+		addColumn: (SpStringTableColumn title: 'Hex' evaluated: #hex);
 		showColumnHeaders;
 		items: (1 to: 10) asArray;
 		openWithSpec.
@@ -38,8 +38,8 @@ SpTablePresenter class >> exampleWithoutColumnHeaders [
 	| example |
 	example := self new.
 	example
-		addColumn: (StringTableColumn title: 'Number' evaluated: #yourself);
-		addColumn: (StringTableColumn title: 'Hex' evaluated: #hex);
+		addColumn: (SpStringTableColumn title: 'Number' evaluated: #yourself);
+		addColumn: (SpStringTableColumn title: 'Hex' evaluated: #hex);
 		items: (1 to: 10) asArray;
 		hideColumnHeaders;
 		openWithSpec.

@@ -13,7 +13,7 @@ SpTableCommonPropertiestTest >> classToTest [
 SpTableCommonPropertiestTest >> initializeTestedInstance [
 
 	super initializeTestedInstance.
-	presenter addColumn: (StringTableColumn title: 'Number' evaluated: #yourself).
+	presenter addColumn: (SpStringTableColumn title: 'Number' evaluated: #yourself).
 	
 	"Hide headers. We will try to click the first element, and the header is an extra element."
 	presenter hideColumnHeaders.
@@ -23,7 +23,7 @@ SpTableCommonPropertiestTest >> initializeTestedInstance [
 SpTableCommonPropertiestTest >> testAddColumnInPresenterAddsItToWidget [
 
 	| newColumn |
-	newColumn := StringTableColumn title: 'Hex' evaluated: #hex.
+	newColumn := SpStringTableColumn title: 'Hex' evaluated: #hex.
 	self presenter
 		addColumn: newColumn.
 

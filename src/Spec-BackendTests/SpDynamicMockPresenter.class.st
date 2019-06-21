@@ -34,7 +34,7 @@ SpDynamicMockPresenter >> initializeWidgets [
 { #category : #'dynamic presenter' }
 SpDynamicMockPresenter >> rebuildDynamicPresenter [
 
-	builder := DynamicPresentersListBuilder new
+	builder := SpDynamicPresentersListBuilder new
 		modelObjects: (1 to: 15);
 		presenter: SpButtonPresenter configuredAs: [ :presenter :modelObject | presenter label: modelObject asString ];
 		layoutBuilder: (SpDynamicLeftToRightColumnsLayout columns: 5);

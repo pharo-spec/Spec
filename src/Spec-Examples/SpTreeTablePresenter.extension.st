@@ -5,15 +5,15 @@ SpTreeTablePresenter class >> example [
 	<sampleInstance>
 	^ self new
 		addColumn:
-			(CompositeTableColumn new
+			(SpCompositeTableColumn new
 				title: 'Classes';
 				addColumn:
-					(ImageTableColumn new
+					(SpImageTableColumn new
 						width: 20;
 						evaluated: #systemIcon;
 						yourself);
 				addColumn:
-					(StringTableColumn new
+					(SpStringTableColumn new
 						evaluated: #name;
 						yourself);
 				yourself);

@@ -10,7 +10,7 @@ Class {
 { #category : #running }
 SpTimelineTest >> setUp [
 	super setUp.
-	timeline := Timeline new
+	timeline := SpTimeline new
 ]
 
 { #category : #running }

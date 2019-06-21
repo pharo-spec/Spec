@@ -53,7 +53,7 @@ SpPrepareWindowExample >> buildMenuBar [
 { #category : #'private building' }
 SpPrepareWindowExample >> buildPopMessageToolBarItem [
 		
-	^ ToolBarButton new
+	^ SpToolBarButton new
 		label: 'Pop';
 		icon: (self iconNamed: #glamorousDown);
 		help: 'Pop last status bar message';
@@ -64,7 +64,7 @@ SpPrepareWindowExample >> buildPopMessageToolBarItem [
 { #category : #'private building' }
 SpPrepareWindowExample >> buildPushMessageToolBarItem [
 		
-	^ ToolBarButton new
+	^ SpToolBarButton new
 		label: 'Push';
 		icon: (self iconNamed: #glamorousUp);
 		help: 'Push a new status bar message';

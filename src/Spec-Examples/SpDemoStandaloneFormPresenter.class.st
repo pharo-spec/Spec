@@ -3,7 +3,7 @@ The presenter that provides only the standalone form for the form demo
 "
 Class {
 	#name : #SpDemoStandaloneFormPresenter,
-	#superclass : #ComposablePresenterWithModel,
+	#superclass : #SpComposablePresenterWithModel,
 	#instVars : [
 		'workingModel',
 		'nameLabel',

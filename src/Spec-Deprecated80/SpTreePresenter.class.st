@@ -630,7 +630,7 @@ SpTreePresenter >> registerEvents [
 		newMenu applyTo: self ] ].
 
 	self announcer 
-		when: WidgetBuilt
+		when: SpWidgetBuilt
 		send: #onWidgetBuilt
 		to: self.
 ]

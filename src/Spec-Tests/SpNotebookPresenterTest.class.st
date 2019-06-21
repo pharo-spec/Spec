@@ -11,7 +11,7 @@ SpNotebookPresenterTest >> classToTest [
 
 { #category : #'as yet unclassified' }
 SpNotebookPresenterTest >> mockPage [
-	^ NotebookPage
+	^ SpNotebookPage
 		title: 'Mock'
 		icon: (self iconNamed: #changeUpdate)
 		provider: [ SpButtonPresenter new ]
@@ -29,7 +29,7 @@ SpNotebookPresenterTest >> testAddPage [
 SpNotebookPresenterTest >> testPageAt [
 	| page |
 	presenter addPage: self mockPage.
-	page := NotebookPage title: 'test' provider: [ SpButtonPresenter new ].
+	page := SpNotebookPage title: 'test' provider: [ SpButtonPresenter new ].
 	presenter addPage: page.
 	self assert: (presenter pageAt: 2) equals: page
 ]
@@ -38,7 +38,7 @@ SpNotebookPresenterTest >> testPageAt [
 SpNotebookPresenterTest >> testRemovePage [
 	| page |
 	presenter addPage: self mockPage.
-	page := NotebookPage title: 'test' provider: [ SpButtonPresenter new ].
+	page := SpNotebookPage title: 'test' provider: [ SpButtonPresenter new ].
 	presenter addPage: page.
 	self assert: presenter pages size equals: 2.
 	presenter removePage: page.
@@ -49,7 +49,7 @@ SpNotebookPresenterTest >> testRemovePage [
 SpNotebookPresenterTest >> testRemovePageAt [
 	| page |
 	presenter addPage: self mockPage.
-	page := NotebookPage title: 'test' provider: [ SpButtonPresenter new ].
+	page := SpNotebookPage title: 'test' provider: [ SpButtonPresenter new ].
 	presenter addPage: page.
 	self assert: presenter pages size equals: 2.
 	presenter removePageAt: 1.
@@ -60,7 +60,7 @@ SpNotebookPresenterTest >> testRemovePageAt [
 SpNotebookPresenterTest >> testSelectPage [
 	| mock mock2 |
 	mock := self mockPage.
-	mock2 := NotebookPage title: 'test' provider: [ SpButtonPresenter new ].
+	mock2 := SpNotebookPage title: 'test' provider: [ SpButtonPresenter new ].
 	presenter addPage: mock.
 	presenter addPage: mock2.
 	presenter selectPage: mock2.
@@ -71,7 +71,7 @@ SpNotebookPresenterTest >> testSelectPage [
 SpNotebookPresenterTest >> testSelectPageIndex [
 	| mock mock2 |
 	mock := self mockPage.
-	mock2 := NotebookPage title: 'test' provider: [ SpButtonPresenter new ].
+	mock2 := SpNotebookPage title: 'test' provider: [ SpButtonPresenter new ].
 	presenter addPage: mock.
 	presenter addPage: mock2.
 	presenter selectPageIndex: 2.
@@ -93,7 +93,7 @@ SpNotebookPresenterTest >> testWhenSelectedPageChangedDo [
 	| mock mock2 counter selected |
 	counter := 0.
 	mock := self mockPage.
-	mock2 := NotebookPage title: 'test' provider: [ SpButtonPresenter new ].
+	mock2 := SpNotebookPage title: 'test' provider: [ SpButtonPresenter new ].
 	presenter
 		whenSelectedPageChangedDo: [ :page | 
 			selected := page.

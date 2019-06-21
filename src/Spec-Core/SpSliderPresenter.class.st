@@ -67,7 +67,7 @@ SpSliderPresenter >> addMark: aText at: aValue [
 		marks:
 			(self marks
 				add:
-					(SliderMark new
+					(SpSliderMark new
 						value: aValue;
 						text: aText;
 						yourself);

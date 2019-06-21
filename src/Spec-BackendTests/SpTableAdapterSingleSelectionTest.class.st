@@ -13,5 +13,5 @@ SpTableAdapterSingleSelectionTest >> classToTest [
 SpTableAdapterSingleSelectionTest >> initializeTestedInstance [ 
 
 	super initializeTestedInstance.
-	presenter addColumn: (StringTableColumn evaluated: [:e | e displayString]).
+	presenter addColumn: (SpStringTableColumn evaluated: [:e | e displayString]).
 ]

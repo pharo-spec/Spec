@@ -14,5 +14,5 @@ SpTableAdapterMultipleSelectionTest >> initializeTestedInstance [
 
 	super initializeTestedInstance.
 
-	presenter addColumn: (StringTableColumn evaluated: [ :e | e asString ])
+	presenter addColumn: (SpStringTableColumn evaluated: [ :e | e asString ])
 ]

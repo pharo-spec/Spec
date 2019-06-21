@@ -40,7 +40,7 @@ SpDropListPresenter >> addItemLabeled: aString do: aBlock [
 SpDropListPresenter >> addItemLabeled: aString do: aBlock icon: anIcon [
 
 	| item |
-	item := DropListItem on: aString do: aBlock.
+	item := SpDropListItem on: aString do: aBlock.
 	item icon: anIcon.
 
 	model add: item.
@@ -168,7 +168,7 @@ SpDropListPresenter >> items: aList [
 	"<api: #st getter: #listItems>"
 	
 	| dropListItems |
-	dropListItems := aList collect: [ :e | DropListItem on: e do: [] ].
+	dropListItems := aList collect: [ :e | SpDropListItem on: e do: [] ].
 	model collection: dropListItems.
 	
 	(dropListItems isNotEmpty and: [startsWithSelection and: [ self selection isEmpty ]]) 

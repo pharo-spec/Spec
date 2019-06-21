@@ -40,7 +40,7 @@ SpTreeTablePresenter >> addColumn: aColumn [
 SpTreeTablePresenter >> beMultipleSelection [
 	| newSelectionMode |
 	
-	newSelectionMode := (TreeMultipleSelectionMode on: self)
+	newSelectionMode := (SpTreeMultipleSelectionMode on: self)
 		copyFrom: selection;
 		yourself.
 	
@@ -133,7 +133,7 @@ SpTreeTablePresenter >> initialize [
 	showColumnHeaders := true.
 	columns := #() asValueHolder.
 	isResizable := false.
-	selection := TreeSingleSelectionMode on: self.
+	selection := SpTreeSingleSelectionMode on: self.
 	childrenBlock :=  [ :item | #() ].
 	roots := #().
 	contextMenuHolder := nil asValueHolder.

@@ -97,9 +97,9 @@ KeymapBrowser >> initializePresenter [
 KeymapBrowser >> initializeWidgets [
 	kmTable := self newTable.
 	kmTable
-		addColumn: (StringTableColumn title: 'Shortcut' evaluated: [ :aKMShortcutDeclaration | aKMShortcutDeclaration realValue shortcut asString ]);
-		addColumn: (StringTableColumn title: 'Name' evaluated: #shortcutName);
-		addColumn: (StringTableColumn title: 'Category' evaluated: #categoryName);
+		addColumn: (SpStringTableColumn title: 'Shortcut' evaluated: [ :aKMShortcutDeclaration | aKMShortcutDeclaration realValue shortcut asString ]);
+		addColumn: (SpStringTableColumn title: 'Name' evaluated: #shortcutName);
+		addColumn: (SpStringTableColumn title: 'Category' evaluated: #categoryName);
 		beResizable;
 		menu: [ :m :s | self menu: m shifted: s ].
 	filterField := self newTextInput.

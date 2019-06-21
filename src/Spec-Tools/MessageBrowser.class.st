@@ -284,7 +284,7 @@ MessageBrowser >> handleMethodRemoved: anAnnouncement [
 MessageBrowser >> initialize [
 	super initialize.
 	self registerToAnnouncements.
-	self announcer when: WidgetBuilt send: #buildUpdateTitle to: self
+	self announcer when: SpWidgetBuilt send: #buildUpdateTitle to: self
 ]
 
 { #category : #initialization }

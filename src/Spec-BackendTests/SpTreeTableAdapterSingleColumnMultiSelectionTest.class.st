@@ -8,7 +8,7 @@ Class {
 SpTreeTableAdapterSingleColumnMultiSelectionTest >> initializeTestedInstance [ 
 
 	presenter
-		addColumn: (StringTableColumn title: 'Value' evaluated: #printString);
+		addColumn: (SpStringTableColumn title: 'Value' evaluated: #printString);
 		hideColumnHeaders;	
 		beMultipleSelection;
 		roots: #(1 2 3);

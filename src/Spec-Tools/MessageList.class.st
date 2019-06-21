@@ -118,9 +118,9 @@ MessageList >> initializeWidgets [
 
 	listModel
 		sortingBlock: [ :a :b | self sortClassesInCachedHierarchy: a b: b ];
-		addColumn: (StringTableColumn title: 'Location' evaluated: [ :item | self locationOf: item ]);
-		addColumn: (StringTableColumn title: 'Selector' evaluated: [ :item | self selectorOf: item ]);
-		addColumn: (StringTableColumn title: 'Package' evaluated: [ :item | self packageOf: item ]);
+		addColumn: (SpStringTableColumn title: 'Location' evaluated: [ :item | self locationOf: item ]);
+		addColumn: (SpStringTableColumn title: 'Selector' evaluated: [ :item | self selectorOf: item ]);
+		addColumn: (SpStringTableColumn title: 'Package' evaluated: [ :item | self packageOf: item ]);
 		beResizable.
 		
 	self contextMenu: self messageListMenu

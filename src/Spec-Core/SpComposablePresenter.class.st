@@ -762,7 +762,7 @@ SpComposablePresenter >> newNotebook [
 SpComposablePresenter >> newNotebookPage [
 
 	self flag: #TODO. "NotebookPage needs to be a Presenter?"
-	^ NotebookPage new
+	^ SpNotebookPage new
 ]
 
 { #category : #widgets }
@@ -1049,7 +1049,7 @@ SpComposablePresenter >> whenWindowChanged: aBlock [
 	self flag: #TODO. "This is here for backwards compatibility (you can have same 
 	functionality in #initializeWindow:"
 	self announcer 
-		when: WindowBuilt 
+		when: SpWindowBuilt 
 		do: [ :ann | aBlock cull: ann model ]
 ]
 

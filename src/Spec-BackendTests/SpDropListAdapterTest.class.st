@@ -100,7 +100,7 @@ SpDropListAdapterTest >> testSelectionExecutesBlock [
 	| selected |
 
 	self presenter dropListItems: (#(10 20 30) 
-		collect: [ :e | DropListItem on: e do: [ selected := e ] ]).
+		collect: [ :e | SpDropListItem on: e do: [ selected := e ] ]).
 
 	self presenter selectedItem: 20.
 	self assert: selected equals: 20	

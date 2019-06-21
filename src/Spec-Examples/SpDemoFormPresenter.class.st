@@ -23,7 +23,7 @@ For displaying of the model state, the FastTable Morph is used. Currently, Spec 
 "
 Class {
 	#name : #SpDemoFormPresenter,
-	#superclass : #ComposablePresenterWithModel,
+	#superclass : #SpComposablePresenterWithModel,
 	#instVars : [
 		'form',
 		'resultPane',
@@ -74,8 +74,8 @@ SpDemoFormPresenter >> initializeWidgets [
 		subwidget: (table := self newTable).
 
 	table
-		addColumn: (StringTableColumn title: 'Name' evaluated: #key);
-		addColumn: (StringTableColumn title: 'Value' evaluated: #value);
+		addColumn: (SpStringTableColumn title: 'Name' evaluated: #key);
+		addColumn: (SpStringTableColumn title: 'Value' evaluated: #value);
 		items: self model elements;
 		beResizable.
 

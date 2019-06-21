@@ -100,13 +100,13 @@ SpPresenter >> application [
 SpPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	"I assume the SpecBindings is well defined"
 	
-	self announcer announce: (WidgetWillBeBuilt model: self).
+	self announcer announce: (SpWidgetWillBeBuilt model: self).
 
 	self adapter: (aSpecLayout asSpecLayout 
 		buildAdapterFor: self 
 		bindings: SpBindings value).
 
-	self announcer announce: (WidgetBuilt 
+	self announcer announce: (SpWidgetBuilt 
 		model: self 
 		widget: adapter widget).
 	
@@ -389,7 +389,7 @@ SpPresenter >> update: aParameter [
 SpPresenter >> whenBuiltDo: aBlock [
 
 	self announcer 
-		when: WidgetBuilt
+		when: SpWidgetBuilt
 		do: aBlock
 ]
 
@@ -397,7 +397,7 @@ SpPresenter >> whenBuiltDo: aBlock [
 SpPresenter >> whenWillBeBuiltDo: aBlock [
 
 	self announcer 
-		when: WidgetWillBeBuilt
+		when: SpWidgetWillBeBuilt
 		do: aBlock
 ]
 

@@ -14,7 +14,7 @@ Class {
 { #category : #running }
 SpDynamicTopToBottomRowsLayoutTest >> setUp [
 	super setUp.
-	presentersBuilder := DynamicPresentersListBuilder new
+	presentersBuilder := SpDynamicPresentersListBuilder new
 		modelObjects: (1 to: 14);
 		presenter: SpButtonPresenter configuredAs: [ :button :i | "No config. on purpose." ];
 		buildDynamicPresenter;

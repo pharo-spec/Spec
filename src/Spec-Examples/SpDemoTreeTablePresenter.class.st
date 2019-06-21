@@ -27,20 +27,20 @@ SpDemoTreeTablePresenter >> initializeWidgets [
 
 	table1
 		addColumn:
-			(CompositeTableColumn new
+			(SpCompositeTableColumn new
 				title: 'Classes';
 				addColumn:
-					(ImageTableColumn new
+					(SpImageTableColumn new
 						width: 20;
 						evaluated: #systemIcon;
 						yourself);
 				addColumn:
-					(StringTableColumn new
+					(SpStringTableColumn new
 						evaluated: #name;
 						yourself);
 				yourself);
-		addColumn: (StringTableColumn title: 'Number of subclasses' evaluated: [ :class | class subclasses size asString ]);
-		addColumn: (StringTableColumn title: 'Number of methods' evaluated: [ :class | class methods size asString ]);
+		addColumn: (SpStringTableColumn title: 'Number of subclasses' evaluated: [ :class | class subclasses size asString ]);
+		addColumn: (SpStringTableColumn title: 'Number of methods' evaluated: [ :class | class methods size asString ]);
 		roots: {Object};
 		children: [ :aClass | aClass subclasses ];
 		beResizable;

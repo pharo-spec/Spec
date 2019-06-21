@@ -3,7 +3,7 @@ A testing composable presenter for testing of the class ComposablePresenterWithM
 "
 Class {
 	#name : #TestingComposablePresenterWithModel,
-	#superclass : #ComposablePresenterWithModel,
+	#superclass : #SpComposablePresenterWithModel,
 	#instVars : [
 		'x',
 		'y'

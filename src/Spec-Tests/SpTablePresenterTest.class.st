@@ -17,7 +17,7 @@ SpTablePresenterTest >> testAddColumnRaisesColumnChangedEvent [
 	columnsChanged := false.
 	presenter whenColumnsChangedDo: [ columnsChanged := true ].
 
-	presenter addColumn: (StringTableColumn new evaluated: #yourself).
+	presenter addColumn: (SpStringTableColumn new evaluated: #yourself).
 	
 	self assert: columnsChanged
 ]
@@ -29,7 +29,7 @@ SpTablePresenterTest >> testAddColumnRaisesOneEventOnly [
 	count := 0.
 	presenter whenColumnsChangedDo: [ count := count + 1 ].
 
-	presenter addColumn: (StringTableColumn new evaluated: #yourself).
+	presenter addColumn: (SpStringTableColumn new evaluated: #yourself).
 	
 	self assert: count equals: 1
 ]

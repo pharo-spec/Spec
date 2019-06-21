@@ -125,8 +125,8 @@ SpWindowPresenter >> buildWindowWithLayout: windowSpecLayout presenterLayout: pr
 	"add presenter"
 	self addPresenterIn: self window withSpecLayout: presenterSpecLayout.
 	"announce its result"
-	self announce: (WidgetBuilt model: self widget: self window).
-	self presenter announce: (WindowBuilt model: self).	
+	self announce: (SpWidgetBuilt model: self widget: self window).
+	self presenter announce: (SpWindowBuilt model: self).	
 	
 	^ self window
 ]

@@ -108,7 +108,7 @@ SpFastTablePresenter >> initializeValueHolders [
 { #category : #'api-columns' }
 SpFastTablePresenter >> numberOfColumns: aNumber [
 	columns := OrderedCollection new.
-	(1 to: aNumber) do: [ :index | self addColumn: (StringTableColumn evaluated: [ :entity | (self displayBlock value: entity) at: index ]) ]
+	(1 to: aNumber) do: [ :index | self addColumn: (SpStringTableColumn evaluated: [ :entity | (self displayBlock value: entity) at: index ]) ]
 ]
 
 { #category : #'api-columns' }
@@ -118,7 +118,7 @@ SpFastTablePresenter >> numberOfColumns: aNumber withWidths: widths [
 		do: [ :index | 
 			self
 				addColumn:
-					((StringTableColumn evaluated: [ :entity | (self displayBlock value: entity) at: index ])
+					((SpStringTableColumn evaluated: [ :entity | (self displayBlock value: entity) at: index ])
 						width: (widths at: index);
 						yourself) ]
 ]

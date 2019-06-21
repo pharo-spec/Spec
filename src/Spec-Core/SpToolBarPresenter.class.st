@@ -29,7 +29,7 @@ SpToolBarPresenter class >> adapterName [
 { #category : #convenience }
 SpToolBarPresenter >> addButtonLabel: aLabel iconNamed: anIconName help: aHelpString action: aBlock [
 
-	self addItem: (ToolBarButton new
+	self addItem: (SpToolBarButton new
 		label: aLabel;
 		icon: (self application iconNamed: anIconName);
 		help: aHelpString;

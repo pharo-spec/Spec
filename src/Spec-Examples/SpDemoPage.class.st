@@ -42,7 +42,7 @@ SpDemoPage >> codeFor: aClass [
 
 { #category : #initialization }
 SpDemoPage >> codeTab [
-	^ NotebookPage
+	^ SpNotebookPage
 		title: 'Code'
 		icon: (self iconNamed: #changeUpdate)
 		provider: [ self newText
@@ -52,7 +52,7 @@ SpDemoPage >> codeTab [
 
 { #category : #initialization }
 SpDemoPage >> exampleTab [
-	^ NotebookPage title: 'Example' icon: (self iconNamed: #smallPaint) provider: [ self instantiate: self pageClass ]
+	^ SpNotebookPage title: 'Example' icon: (self iconNamed: #smallPaint) provider: [ self instantiate: self pageClass ]
 ]
 
 { #category : #initialization }

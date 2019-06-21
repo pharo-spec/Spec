@@ -302,7 +302,7 @@ SpSearchableTree >> tree [
 SpSearchableTree >> updateRootFor: aText [
 	| aFilter |
 	
-	aFilter := TokenTreeFilter token: aText.
+	aFilter := SpTokenTreeFilter token: aText.
 	tree filterWith: aFilter
 ]
 
