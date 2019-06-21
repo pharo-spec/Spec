@@ -82,12 +82,6 @@ SpLayoutFrame >> bottomRightOffset: aPoint [
 	rightOffset := aPoint x.
 ]
 
-{ #category : #generation }
-SpLayoutFrame >> generateSpec [
-
-	^ self asArray generateSpec
-]
-
 { #category : #testing }
 SpLayoutFrame >> hasNoOffsets [
 

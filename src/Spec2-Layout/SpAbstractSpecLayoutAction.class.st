@@ -10,6 +10,13 @@ Class {
 	#category : #'Spec2-Layout-Actions'
 }
 
+{ #category : #deprecation }
+SpAbstractSpecLayoutAction class >> isDeprecated [
+	"Layouts from Spec 1 will be removed in Pharo 9 because the implementation is not good. Please use the new SpecExecutableLayout subclasses instead"
+
+	^ true
+]
+
 { #category : #accesing }
 SpAbstractSpecLayoutAction >> arguments [
 	^ self subclassResponsibility

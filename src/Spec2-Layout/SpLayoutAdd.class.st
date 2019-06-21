@@ -24,8 +24,9 @@ SpLayoutAdd class >> subwidget: subwidget layoutFrame: aLayoutFrame [
 { #category : #'instance creation' }
 SpLayoutAdd >> arguments [
 	"We store the result because it change the state of the layouts and should be called only one time. I do not like this implementation but we'll clean later if we have time."
+
 	subwidgetArguments ifNil: [ subwidgetArguments := self subwidgetArguments ].
-	^ {{subwidgetArguments. #layout:. layoutFrame generateSpec}}
+	^ {{subwidgetArguments . #layout: . self generateSpec}}
 ]
 
 { #category : #protocol }
@@ -55,6 +56,19 @@ SpLayoutAdd >> bottomOffset: aNumber [
 { #category : #accessing }
 SpLayoutAdd >> fractions [
 	^ layoutFrame fractionRectangle
+]
+
+{ #category : #'as yet unclassified' }
+SpLayoutAdd >> generateSpec [
+	| str spec |
+	str := layoutFrame asArray readStream.	
+	
+	spec :=  OrderedCollection with: #SpLayoutFrame.
+		
+	#( leftFraction: topFraction: rightFraction: bottomFraction: leftOffset: topOffset: rightOffset: bottomOffset: ) do: [:sel |
+		spec add: sel.
+		str next ifNil: [ spec add: 0 ] ifNotNil: [:value | spec add: value ]].
+	^ spec asArray
 ]
 
 { #category : #initialization }
