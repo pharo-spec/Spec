@@ -2,7 +2,7 @@
 A testing model for testing of the class ComposablePresenterWithModel
 "
 Class {
-	#name : #TestingPointModel,
+	#name : #SpTestingPointModel,
 	#superclass : #Model,
 	#instVars : [
 		'x',
@@ -12,34 +12,34 @@ Class {
 }
 
 { #category : #'instance creation' }
-TestingPointModel class >> x: xInteger y: yInteger [ 
+SpTestingPointModel class >> x: xInteger y: yInteger [ 
 
 	^ self new setX: xInteger setY: yInteger
 ]
 
 { #category : #accessing }
-TestingPointModel >> setX: xValue setY: yValue [ 
+SpTestingPointModel >> setX: xValue setY: yValue [ 
 
 	x := xValue.
 	y := yValue
 ]
 
 { #category : #accessing }
-TestingPointModel >> x [
+SpTestingPointModel >> x [
 	^ x
 ]
 
 { #category : #accessing }
-TestingPointModel >> x: anObject [
+SpTestingPointModel >> x: anObject [
 	x := anObject
 ]
 
 { #category : #accessing }
-TestingPointModel >> y [
+SpTestingPointModel >> y [
 	^ y
 ]
 
 { #category : #accessing }
-TestingPointModel >> y: anObject [
+SpTestingPointModel >> y: anObject [
 	y := anObject
 ]

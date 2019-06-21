@@ -40,8 +40,8 @@ SpComposablePresenterWithModelTest >> testModelSettingModelToModel [
 
 	"we had a Model, new model is another Model"
 	| model model2 presenter |
-	model := TestingPointModel x: 1 y: 2.
-	model2 := TestingPointModel x: 4 y: 5.
+	model := SpTestingPointModel x: 1 y: 2.
+	model2 := SpTestingPointModel x: 4 y: 5.
 	presenter := TestingComposablePresenterWithModel on: model.
 	self assert: presenter announcingObject isAnnouncingObject.
 	self deny: presenter announcingObject isValueHolder.
@@ -64,7 +64,7 @@ SpComposablePresenterWithModelTest >> testModelSettingModelToValueHolder [
 	point := 40@54.
 
 	presenter := TestingComposablePresenterWithModel on: point.
-	model := TestingPointModel x: 1 y: 2.
+	model := SpTestingPointModel x: 1 y: 2.
 	self assert: presenter announcingObject isAnnouncingObject.
 	self assert: presenter announcingObject isValueHolder.
 	self assert: model isAnnouncingObject.
@@ -84,7 +84,7 @@ SpComposablePresenterWithModelTest >> testModelSettingObjectToModel [
 	| point model presenter |
 	
 	"we had a Model, new model is a regular object"
-	model := TestingPointModel x: 1 y: 2.
+	model := SpTestingPointModel x: 1 y: 2.
 	point := 40@54.
 	presenter := TestingComposablePresenterWithModel on: model.
 	self assert: presenter announcingObject isAnnouncingObject.
@@ -128,7 +128,7 @@ SpComposablePresenterWithModelTest >> testModelSettingValueHolderToModel [
 	"we had a Model, new model is a value holder"
 	| model point valueHolder presenter |
 	point := 1@0.
-	model := TestingPointModel x: 1 y: 2.
+	model := SpTestingPointModel x: 1 y: 2.
 	valueHolder := NewValueHolder value: point.
 	presenter := TestingComposablePresenterWithModel on: model.
 	self assert: presenter announcingObject isAnnouncingObject.
@@ -173,7 +173,7 @@ SpComposablePresenterWithModelTest >> testUpdateModel [
 
 	| aPoint presenter |
 	
-	aPoint := TestingPointModel x: 40 y: 54.
+	aPoint := SpTestingPointModel x: 40 y: 54.
 	presenter := TestingComposablePresenterWithModel on: aPoint.
 	
 	self assert: presenter x text equals: aPoint x asString.
