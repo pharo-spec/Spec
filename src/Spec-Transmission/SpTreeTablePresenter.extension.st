@@ -3,7 +3,7 @@ Extension { #name : #SpTreeTablePresenter }
 { #category : #'*Spec-Transmission' }
 SpTreeTablePresenter >> defineInputPorts [ 
 
-	^ { RootsPresenterPort new }
+	^ { SpRootsPresenterPort new }
 ]
 
 { #category : #'*Spec-Transmission' }
