@@ -13,5 +13,5 @@ SpDropListButtonTest class >> isDeprecated [
 
 { #category : #running }
 SpDropListButtonTest >> classToTest [
-	^ DropListButton
+	^ SpDropListButton
 ]

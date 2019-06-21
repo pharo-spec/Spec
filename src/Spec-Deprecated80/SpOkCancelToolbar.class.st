@@ -2,8 +2,8 @@
 An OkCancelToolbar is a model for a basic Ok-Cancel toolbar
 "
 Class {
-	#name : #OkCancelToolbar,
-	#superclass : #OkToolbar,
+	#name : #SpOkCancelToolbar,
+	#superclass : #SpOkToolbar,
 	#instVars : [
 		'cancelButton',
 		'cancelAction',
@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : #specs }
-OkCancelToolbar class >> defaultSpec [
+SpOkCancelToolbar class >> defaultSpec [
 	<spec>
 	
 	^ SpLayout composed
@@ -24,56 +24,56 @@ OkCancelToolbar class >> defaultSpec [
 ]
 
 { #category : #deprecation }
-OkCancelToolbar class >> isDeprecated [
+SpOkCancelToolbar class >> isDeprecated [
 	"You should use a ToolBarPresenter"
 
 	^ true
 ]
 
 { #category : #specs }
-OkCancelToolbar class >> title [
+SpOkCancelToolbar class >> title [
 
 	^ 'Ok Cancel'
 ]
 
 { #category : #api }
-OkCancelToolbar >> cancel [
+SpOkCancelToolbar >> cancel [
 
 	self cancelled: true
 ]
 
 { #category : #api }
-OkCancelToolbar >> cancelAction [
+SpOkCancelToolbar >> cancelAction [
 
 	^ cancelAction value
 ]
 
 { #category : #api }
-OkCancelToolbar >> cancelAction: aBlock [
+SpOkCancelToolbar >> cancelAction: aBlock [
 
 	^ cancelAction value: aBlock
 ]
 
 { #category : #accessing }
-OkCancelToolbar >> cancelButton [
+SpOkCancelToolbar >> cancelButton [
 
 	^ cancelButton
 ]
 
 { #category : #api }
-OkCancelToolbar >> cancelled [
+SpOkCancelToolbar >> cancelled [
 
 	^ cancelled value
 ]
 
 { #category : #api }
-OkCancelToolbar >> cancelled: aBoolean [
+SpOkCancelToolbar >> cancelled: aBoolean [
 
 	cancelled value: aBoolean
 ]
 
 { #category : #initialization }
-OkCancelToolbar >> initialize [
+SpOkCancelToolbar >> initialize [
 
 	cancelled := false asValueHolder.
 	cancelAction := [ true ] asValueHolder.
@@ -81,14 +81,14 @@ OkCancelToolbar >> initialize [
 ]
 
 { #category : #initialization }
-OkCancelToolbar >> initializePresenter [
+SpOkCancelToolbar >> initializePresenter [
 
 	super initializePresenter.
 	cancelButton action: [ self performCancelAction ]
 ]
 
 { #category : #initialization }
-OkCancelToolbar >> initializeWidgets [
+SpOkCancelToolbar >> initializeWidgets [
 
 	super initializeWidgets.
 	cancelButton := self newButton.
@@ -99,7 +99,7 @@ OkCancelToolbar >> initializeWidgets [
 ]
 
 { #category : #api }
-OkCancelToolbar >> performCancelAction [
+SpOkCancelToolbar >> performCancelAction [
 
 	^ cancelAction value value == false
 		ifFalse: [ 
@@ -108,7 +108,7 @@ OkCancelToolbar >> performCancelAction [
 ]
 
 { #category : #initialization }
-OkCancelToolbar >> registerCancelButtonEvents [
+SpOkCancelToolbar >> registerCancelButtonEvents [
 
 	cancelButton 
 		label: 'Cancel';
@@ -117,7 +117,7 @@ OkCancelToolbar >> registerCancelButtonEvents [
 ]
 
 { #category : #api }
-OkCancelToolbar >> triggerCancelAction [
+SpOkCancelToolbar >> triggerCancelAction [
 
 	self performCancelAction
 ]

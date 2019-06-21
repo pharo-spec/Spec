@@ -17,7 +17,7 @@ todo
 - canDeselectByClick
 "
 Class {
-	#name : #RadioButtonGroup,
+	#name : #SpRadioButtonGroup,
 	#superclass : #Object,
 	#instVars : [
 		'buttons',
@@ -28,13 +28,13 @@ Class {
 }
 
 { #category : #deprecation }
-RadioButtonGroup class >> isDeprecated [ 
+SpRadioButtonGroup class >> isDeprecated [ 
 
 	^ true
 ]
 
 { #category : #api }
-RadioButtonGroup >> addRadioButton: aButton [
+SpRadioButtonGroup >> addRadioButton: aButton [
 
 	buttons do: [:b | 
 		aButton whenActivatedDo: [ b privateSetState: false ].
@@ -47,36 +47,36 @@ RadioButtonGroup >> addRadioButton: aButton [
 ]
 
 { #category : #accessing }
-RadioButtonGroup >> buttons [
+SpRadioButtonGroup >> buttons [
 	^ buttons
 ]
 
 { #category : #api }
-RadioButtonGroup >> canDeselectByClick [
+SpRadioButtonGroup >> canDeselectByClick [
 	"Return true clicking on a selected radio button deselects it"
 
 	^ canDeselectByClick value
 ]
 
 { #category : #api }
-RadioButtonGroup >> canDeselectByClick: aBoolean [
+SpRadioButtonGroup >> canDeselectByClick: aBoolean [
 	"Set if clicking on a selected radio button can deselect it"
 	
 	canDeselectByClick value: aBoolean
 ]
 
 { #category : #accessing }
-RadioButtonGroup >> currentlyActivated [
+SpRadioButtonGroup >> currentlyActivated [
 	^ currentlyActivated
 ]
 
 { #category : #accessing }
-RadioButtonGroup >> currentlyActivated: anObject [
+SpRadioButtonGroup >> currentlyActivated: anObject [
 	currentlyActivated := anObject
 ]
 
 { #category : #api }
-RadioButtonGroup >> default: aButton [
+SpRadioButtonGroup >> default: aButton [
 
 	aButton privateSetState: true.
 	aButton takeKeyboardFocus.
@@ -84,7 +84,7 @@ RadioButtonGroup >> default: aButton [
 ]
 
 { #category : #initialization }
-RadioButtonGroup >> initialize [
+SpRadioButtonGroup >> initialize [
 
 	super initialize.
 
@@ -94,26 +94,26 @@ RadioButtonGroup >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-RadioButtonGroup >> whenCanDeselectByClickChanged: aBlock [
+SpRadioButtonGroup >> whenCanDeselectByClickChanged: aBlock [
 	self deprecated: 'Use #whenCanDeselectByClickChangedDo: instead.' transformWith: '`@receiver whenCanDeselectByClickChanged: `@statements' -> '`@receiver whenCanDeselectByClickChangedDo: `@statements'.
 	self whenCanDeselectByClickChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-RadioButtonGroup >> whenCanDeselectByClickChangedDo: aBlock [
+SpRadioButtonGroup >> whenCanDeselectByClickChangedDo: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	
 	canDeselectByClick whenChangedDo: aBlock
 ]
 
 { #category : #'as yet unclassified' }
-RadioButtonGroup >> whenCurrentlyActivatedChanged: aBlock [
+SpRadioButtonGroup >> whenCurrentlyActivatedChanged: aBlock [
 	self deprecated: 'Use #whenCurrentlyActivatedChangedDo: instead.' transformWith: '`@receiver whenCurrentlyActivatedChanged: `@statements' -> '`@receiver whenCurrentlyActivatedChangedDo: `@statements'.
 	self whenCurrentlyActivatedChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
-RadioButtonGroup >> whenCurrentlyActivatedChangedDo: aBlock [
+SpRadioButtonGroup >> whenCurrentlyActivatedChangedDo: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	
 	currentlyActivated whenChangedDo: aBlock

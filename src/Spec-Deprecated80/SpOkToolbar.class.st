@@ -2,7 +2,7 @@
 An OkCancelToolbar is a model for a basic Ok toolbar
 "
 Class {
-	#name : #OkToolbar,
+	#name : #SpOkToolbar,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'okButton',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #specs }
-OkToolbar class >> defaultSpec [
+SpOkToolbar class >> defaultSpec [
 	<spec>
 	
 	^ SpLayout composed
@@ -22,20 +22,20 @@ OkToolbar class >> defaultSpec [
 ]
 
 { #category : #deprecation }
-OkToolbar class >> isDeprecated [
+SpOkToolbar class >> isDeprecated [
 	"You should use a ToolBarPresenter"
 
 	^ true
 ]
 
 { #category : #specs }
-OkToolbar class >> title [
+SpOkToolbar class >> title [
 
 	^ 'Ok Toolbar'
 ]
 
 { #category : #private }
-OkToolbar >> addAll: aWindow  withSpec: aSpec [
+SpOkToolbar >> addAll: aWindow  withSpec: aSpec [
 
 	aWindow
 		addMorph: (self buildWithSpec: aSpec)
@@ -43,7 +43,7 @@ OkToolbar >> addAll: aWindow  withSpec: aSpec [
 ]
 
 { #category : #api }
-OkToolbar >> cancel [
+SpOkToolbar >> cancel [
 	
 	owner 
 		ifNil: [ self delete ] 
@@ -51,20 +51,20 @@ OkToolbar >> cancel [
 ]
 
 { #category : #initialization }
-OkToolbar >> initialize [
+SpOkToolbar >> initialize [
 
 	super initialize.
 	okAction := [ true ] asValueHolder.
 ]
 
 { #category : #initialization }
-OkToolbar >> initializePresenter [
+SpOkToolbar >> initializePresenter [
 
 	okButton action: self okActionBlock
 ]
 
 { #category : #initialization }
-OkToolbar >> initializeWidgets [
+SpOkToolbar >> initializeWidgets [
 	
 	
 	okButton := self newButton.
@@ -75,19 +75,19 @@ OkToolbar >> initializeWidgets [
 ]
 
 { #category : #api }
-OkToolbar >> okAction [
+SpOkToolbar >> okAction [
 
 	^ okAction value
 ]
 
 { #category : #api }
-OkToolbar >> okAction: aBlock [
+SpOkToolbar >> okAction: aBlock [
 
 	^ okAction value: aBlock
 ]
 
 { #category : #private }
-OkToolbar >> okActionBlock [
+SpOkToolbar >> okActionBlock [
 
 	^ [ okAction value value == false
 		ifFalse: [ owner 
@@ -96,13 +96,13 @@ OkToolbar >> okActionBlock [
 ]
 
 { #category : #accessing }
-OkToolbar >> okButton [
+SpOkToolbar >> okButton [
 
 	^ okButton
 ]
 
 { #category : #initialization }
-OkToolbar >> registerOkButtonEvents [
+SpOkToolbar >> registerOkButtonEvents [
 
 	okButton 
 		label: 'Ok';
@@ -111,13 +111,13 @@ OkToolbar >> registerOkButtonEvents [
 ]
 
 { #category : #api }
-OkToolbar >> triggerCancelAction [
+SpOkToolbar >> triggerCancelAction [
 	
 	self cancel
 ]
 
 { #category : #api }
-OkToolbar >> triggerOkAction [
+SpOkToolbar >> triggerOkAction [
 
 	self okActionBlock value
 ]

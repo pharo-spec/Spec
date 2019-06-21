@@ -13,5 +13,5 @@ SpLabelledInputTextDropListTest class >> isDeprecated [
 
 { #category : #running }
 SpLabelledInputTextDropListTest >> classToTest [
-	^ LabelledInputTextDropList
+	^ SpLabelledInputTextDropList
 ]

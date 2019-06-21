@@ -9,7 +9,7 @@ I provide shortcuts to set easier the buttons
 I provide two layout on my class side, vertical and horizontal.
 "
 Class {
-	#name : #AbstractTwoButtons,
+	#name : #SpAbstractTwoButtons,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'firstButton',
@@ -19,12 +19,12 @@ Class {
 }
 
 { #category : #deprecation }
-AbstractTwoButtons class >> abstractExample [
+SpAbstractTwoButtons class >> abstractExample [
 	^ self new
 ]
 
 { #category : #specs }
-AbstractTwoButtons class >> horizontal [
+SpAbstractTwoButtons class >> horizontal [
 	<spec>
 	^ SpLayout composed
 		newRow: [ :row | 
@@ -35,14 +35,14 @@ AbstractTwoButtons class >> horizontal [
 ]
 
 { #category : #deprecation }
-AbstractTwoButtons class >> isDeprecated [
+SpAbstractTwoButtons class >> isDeprecated [
 	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
 
 	^ true
 ]
 
 { #category : #specs }
-AbstractTwoButtons class >> vertical [
+SpAbstractTwoButtons class >> vertical [
 	<spec: #default>
 	^ SpLayout composed
 		newColumn: [ :column | 
@@ -53,35 +53,35 @@ AbstractTwoButtons class >> vertical [
 ]
 
 { #category : #api }
-AbstractTwoButtons >> firstAction: firstActionBlock secondAction: secondActionBlock [
+SpAbstractTwoButtons >> firstAction: firstActionBlock secondAction: secondActionBlock [
 	self firstButton action: firstActionBlock.
 	self secondButton action: secondActionBlock
 ]
 
 { #category : #accessing }
-AbstractTwoButtons >> firstButton [
+SpAbstractTwoButtons >> firstButton [
 	^ firstButton
 ]
 
 { #category : #api }
-AbstractTwoButtons >> firstIcon: firstIconName secondIcon: secondIconName [
+SpAbstractTwoButtons >> firstIcon: firstIconName secondIcon: secondIconName [
 	self firstButton icon: (self iconNamed: firstIconName).
 	self secondButton icon: (self iconNamed: secondIconName)
 ]
 
 { #category : #api }
-AbstractTwoButtons >> firstLabel: firstLabel secondLabel: secondLabel [
+SpAbstractTwoButtons >> firstLabel: firstLabel secondLabel: secondLabel [
 	self firstButton label: firstLabel.
 	self secondButton label: secondLabel
 ]
 
 { #category : #initialization }
-AbstractTwoButtons >> initializeButtons [
+SpAbstractTwoButtons >> initializeButtons [
 self subclassResponsibility
 ]
 
 { #category : #initialization }
-AbstractTwoButtons >> initializeWidgets [
+SpAbstractTwoButtons >> initializeWidgets [
 	firstButton := self instantiate: SpButtonPresenter.
 	secondButton := self instantiate: SpButtonPresenter.
 	self initializeButtons.
@@ -91,6 +91,6 @@ AbstractTwoButtons >> initializeWidgets [
 ]
 
 { #category : #accessing }
-AbstractTwoButtons >> secondButton [
+SpAbstractTwoButtons >> secondButton [
 	^ secondButton
 ]

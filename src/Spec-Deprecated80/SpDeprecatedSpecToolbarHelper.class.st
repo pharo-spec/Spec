@@ -7,7 +7,7 @@ I am a class only here to help to migrate from Spec-Pharo70 to Spec-Pharo80.
 I will catch methods from the old dialog toolbar implementation and use the new API.
 "
 Class {
-	#name : #DeprecatedSpecToolbarHelper,
+	#name : #SpDeprecatedSpecToolbarHelper,
 	#superclass : #Object,
 	#instVars : [
 		'windowPresenter'
@@ -16,19 +16,19 @@ Class {
 }
 
 { #category : #'instance creation' }
-DeprecatedSpecToolbarHelper class >> for: aWindowPresenter [
+SpDeprecatedSpecToolbarHelper class >> for: aWindowPresenter [
 	^ self new
 		windowPresenter: aWindowPresenter;
 		yourself
 ]
 
 { #category : #deprecation }
-DeprecatedSpecToolbarHelper class >> isDeprecated [
+SpDeprecatedSpecToolbarHelper class >> isDeprecated [
 	^ true
 ]
 
 { #category : #deprecated }
-DeprecatedSpecToolbarHelper >> cancelButton [
+SpDeprecatedSpecToolbarHelper >> cancelButton [
 	^ windowPresenter
 		addButton: 'Cancel'
 		do: [ :presenter | 
@@ -37,7 +37,7 @@ DeprecatedSpecToolbarHelper >> cancelButton [
 ]
 
 { #category : #deprecated }
-DeprecatedSpecToolbarHelper >> okButton [
+SpDeprecatedSpecToolbarHelper >> okButton [
 	^ windowPresenter
 		addButton: 'Ok'
 		do: [ :presenter | 
@@ -46,6 +46,6 @@ DeprecatedSpecToolbarHelper >> okButton [
 ]
 
 { #category : #deprecated }
-DeprecatedSpecToolbarHelper >> windowPresenter: aDialogWindowPresenter [ 
+SpDeprecatedSpecToolbarHelper >> windowPresenter: aDialogWindowPresenter [ 
 	windowPresenter := aDialogWindowPresenter
 ]

@@ -13,7 +13,7 @@ SpAbstractTwoButtonsTest class >> isDeprecated [
 
 { #category : #running }
 SpAbstractTwoButtonsTest >> classToTest [
-	^ TestingAbstractTwoButtons
+	^ SpTestingAbstractTwoButtons
 ]
 
 { #category : #tests }

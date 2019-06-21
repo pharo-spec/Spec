@@ -19,5 +19,5 @@ SpDialogWindowPresenter >> toolbar [
 		do: [ :presenter | presenter close ]. 
 
 	'.].
-	^ DeprecatedSpecToolbarHelper for: self
+	^ SpDeprecatedSpecToolbarHelper for: self
 ]

@@ -9,19 +9,19 @@ I provide the accessors dropListButton to be more intuitive than subwidget, and 
 I provide shortcuts for the most common methods to avoid the use of the DoesNotUnderstand or the writing of long chain of accessors.
 "
 Class {
-	#name : #LabelledDropListButton,
+	#name : #SpLabelledDropListButton,
 	#superclass : #SpLabelledContainer,
 	#category : #'Spec-Deprecated80'
 }
 
 { #category : #specs }
-LabelledDropListButton class >> defaultSpec [
+SpLabelledDropListButton class >> defaultSpec [
 	<spec: #default>
 	^ super labelLeft 
 ]
 
 { #category : #deprecation }
-LabelledDropListButton class >> example [
+SpLabelledDropListButton class >> example [
 	<sampleInstance>
 	| example |
 	example := self abstractExample.
@@ -35,7 +35,7 @@ LabelledDropListButton class >> example [
 ]
 
 { #category : #deprecation }
-LabelledDropListButton class >> exampleUse [
+SpLabelledDropListButton class >> exampleUse [
 	<sampleInstance>
 	| example |
 	example := self new.
@@ -50,92 +50,92 @@ LabelledDropListButton class >> exampleUse [
 ]
 
 { #category : #deprecation }
-LabelledDropListButton class >> isDeprecated [
+SpLabelledDropListButton class >> isDeprecated [
 	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
 
 	^ true
 ]
 
 { #category : #'api-shortcuts' }
-LabelledDropListButton >> action: aBlock [
+SpLabelledDropListButton >> action: aBlock [
 	^self button action: aBlock
 ]
 
 { #category : #accessing }
-LabelledDropListButton >> button [
+SpLabelledDropListButton >> button [
 	^ self dropListButton button
 ]
 
 { #category : #'api-shortcuts' }
-LabelledDropListButton >> displayBlock: aBlock [
+SpLabelledDropListButton >> displayBlock: aBlock [
 	^self dropList displayBlock: aBlock
 ]
 
 { #category : #accessing }
-LabelledDropListButton >> dropList [
+SpLabelledDropListButton >> dropList [
 	^ self dropListButton dropList
 ]
 
 { #category : #accessing }
-LabelledDropListButton >> dropListButton [
+SpLabelledDropListButton >> dropListButton [
 	^ subwidget
 ]
 
 { #category : #'api-shortcuts' }
-LabelledDropListButton >> emptyList [
+SpLabelledDropListButton >> emptyList [
 	^self dropList emptyList
 ]
 
 { #category : #'api-shortcuts' }
-LabelledDropListButton >> icon: anIcon [
+SpLabelledDropListButton >> icon: anIcon [
 ^	self button icon: anIcon
 ]
 
 { #category : #initialization }
-LabelledDropListButton >> initializeWidgets [
+SpLabelledDropListButton >> initializeWidgets [
 super initializeWidgets.
-	self content: DropListButton.
+	self content: SpDropListButton.
 ]
 
 { #category : #'api-shortcuts' }
-LabelledDropListButton >> items: aList [
+SpLabelledDropListButton >> items: aList [
 	^self dropList items: aList
 ]
 
 { #category : #'api-shortcuts' }
-LabelledDropListButton >> listSize [
+SpLabelledDropListButton >> listSize [
 	^ self dropList listSize
 ]
 
 { #category : #'api-shortcuts' }
-LabelledDropListButton >> resetSelection [
+SpLabelledDropListButton >> resetSelection [
 ^	self dropList resetSelection
 ]
 
 { #category : #'api-shortcuts' }
-LabelledDropListButton >> selectedItem [
+SpLabelledDropListButton >> selectedItem [
 	^ self dropList selectedItem
 ]
 
 { #category : #'api-shortcuts' }
-LabelledDropListButton >> setIndex: anIndex [
+SpLabelledDropListButton >> setIndex: anIndex [
 	^ self dropList setIndex: anIndex
 ]
 
 { #category : #'events-shortcuts' }
-LabelledDropListButton >> whenSelectedItemChanged: aBlock [
+SpLabelledDropListButton >> whenSelectedItemChanged: aBlock [
 	self dropList
 		whenSelectedItemChanged: aBlock
 ]
 
 { #category : #'events-shortcuts' }
-LabelledDropListButton >> whenSelectionChanged: aBlock [
+SpLabelledDropListButton >> whenSelectionChanged: aBlock [
 	self dropList
 		whenSelectionChanged: aBlock
 ]
 
 { #category : #'events-shortcuts' }
-LabelledDropListButton >> whenSelectionIndexChanged: aBlock [
+SpLabelledDropListButton >> whenSelectionIndexChanged: aBlock [
 	self dropList
 		whenSelectionIndexChanged: aBlock
 ]

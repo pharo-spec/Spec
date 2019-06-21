@@ -13,5 +13,5 @@ SpLabelledDropListButtonTest class >> isDeprecated [
 
 { #category : #running }
 SpLabelledDropListButtonTest >> classToTest [
-	^ LabelledDropListButton
+	^ SpLabelledDropListButton
 ]

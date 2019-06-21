@@ -6,7 +6,7 @@ self example
 I provide accessors dropList and input and shortcuts for the most common methods of their api.
 "
 Class {
-	#name : #DropListButton,
+	#name : #SpDropListButton,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'dropList',
@@ -16,7 +16,7 @@ Class {
 }
 
 { #category : #specs }
-DropListButton class >> defaultSpec [
+SpDropListButton class >> defaultSpec [
 	<spec: #default>
 	^ SpLayout composed
 		newRow: [ :row | 
@@ -27,7 +27,7 @@ DropListButton class >> defaultSpec [
 ]
 
 { #category : #deprecation }
-DropListButton class >> example [
+SpDropListButton class >> example [
 	<sampleInstance>
 	| example |
 	example := self new.
@@ -42,44 +42,44 @@ DropListButton class >> example [
 ]
 
 { #category : #deprecation }
-DropListButton class >> isDeprecated [
+SpDropListButton class >> isDeprecated [
 	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
 
 	^ true
 ]
 
 { #category : #'api-shortcuts' }
-DropListButton >> action: aBlock [
+SpDropListButton >> action: aBlock [
 	self button action: aBlock
 ]
 
 { #category : #accessing }
-DropListButton >> button [
+SpDropListButton >> button [
 	^ button
 ]
 
 { #category : #'api-shortcuts' }
-DropListButton >> displayBlock: aBlock [
+SpDropListButton >> displayBlock: aBlock [
 	self dropList displayBlock: aBlock
 ]
 
 { #category : #accessing }
-DropListButton >> dropList [
+SpDropListButton >> dropList [
 	^ dropList
 ]
 
 { #category : #'api-shortcuts' }
-DropListButton >> emptyList [
+SpDropListButton >> emptyList [
 	self dropList emptyList
 ]
 
 { #category : #'api-shortcuts' }
-DropListButton >> icon: anIcon [
+SpDropListButton >> icon: anIcon [
 	self button icon: anIcon
 ]
 
 { #category : #initialization }
-DropListButton >> initializeWidgets [
+SpDropListButton >> initializeWidgets [
 	dropList := self instantiate: SpDropListPresenter.
 	button := self instantiate: SpButtonPresenter.
 	self focusOrder
@@ -88,54 +88,54 @@ DropListButton >> initializeWidgets [
 ]
 
 { #category : #'api-shortcuts' }
-DropListButton >> items: aList [
+SpDropListButton >> items: aList [
 	self dropList items: aList
 ]
 
 { #category : #'api-shortcuts' }
-DropListButton >> label [
+SpDropListButton >> label [
 	self button label
 ]
 
 { #category : #'api-shortcuts' }
-DropListButton >> label: aStringOrImageMorph [
+SpDropListButton >> label: aStringOrImageMorph [
 	self button label: aStringOrImageMorph
 ]
 
 { #category : #'api-shortcuts' }
-DropListButton >> listSize [
+SpDropListButton >> listSize [
 	self dropList listSize
 ]
 
 { #category : #'api-shortcuts' }
-DropListButton >> resetSelection [
+SpDropListButton >> resetSelection [
 	self dropList resetSelection
 ]
 
 { #category : #'api-shortcuts' }
-DropListButton >> selectedItem [
+SpDropListButton >> selectedItem [
 	self dropList selectedItem
 ]
 
 { #category : #'api-shortcuts' }
-DropListButton >> setIndex: anIndex [
+SpDropListButton >> setIndex: anIndex [
 	self dropList setIndex: anIndex
 ]
 
 { #category : #'events-shortcuts' }
-DropListButton >> whenSelectedItemChanged: aBlock [
+SpDropListButton >> whenSelectedItemChanged: aBlock [
 	self dropList
 		whenSelectedItemChanged: aBlock
 ]
 
 { #category : #'events-shortcuts' }
-DropListButton >> whenSelectionChanged: aBlock [
+SpDropListButton >> whenSelectionChanged: aBlock [
 	self dropList
 		whenSelectionChanged: aBlock
 ]
 
 { #category : #'events-shortcuts' }
-DropListButton >> whenSelectionIndexChanged: aBlock [
+SpDropListButton >> whenSelectionIndexChanged: aBlock [
 	self dropList
 		whenSelectionIndexChanged: aBlock
 ]

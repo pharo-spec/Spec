@@ -2,12 +2,12 @@
 Use my superclass. I am deprecated.
 "
 Class {
-	#name : #CurrentSpecDefaultBindings,
+	#name : #SpCurrentSpecDefaultBindings,
 	#superclass : #SpBindings,
 	#category : #'Spec-Deprecated80-Obsolete'
 }
 
 { #category : #deprecation }
-CurrentSpecDefaultBindings class >> isDeprecated [
+SpCurrentSpecDefaultBindings class >> isDeprecated [
 	^ true
 ]
