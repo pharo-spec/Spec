@@ -9,7 +9,7 @@ There is a default stylesheet which is the one that spec uses. See #newDefault m
 See concrete properties to see how this work.
 "
 Class {
-	#name : #MorphicStyleSheet,
+	#name : #SpMorphicStyleSheet,
 	#superclass : #Object,
 	#instVars : [
 		'properties'
@@ -21,13 +21,13 @@ Class {
 }
 
 { #category : #'instance creation' }
-MorphicStyleSheet class >> current [
+SpMorphicStyleSheet class >> current [
 
 	^ Current ifNil: [ Current := self newDefault ]
 ]
 
 { #category : #'instance creation' }
-MorphicStyleSheet class >> fromDictionary: aDictionary [
+SpMorphicStyleSheet class >> fromDictionary: aDictionary [
 
 	^ self basicNew 
 		initializeWith: aDictionary;
@@ -36,26 +36,26 @@ MorphicStyleSheet class >> fromDictionary: aDictionary [
 ]
 
 { #category : #'instance creation' }
-MorphicStyleSheet class >> fromProperties: anArrayofProperties [
+SpMorphicStyleSheet class >> fromProperties: anArrayofProperties [
 
 	^ self fromDictionary: (anArrayofProperties collect: [ :each | each name -> each ]) asDictionary
 ]
 
 { #category : #theme }
-MorphicStyleSheet class >> newDefault [
+SpMorphicStyleSheet class >> newDefault [
 	
-	^ MorphicDefaultStyleSheet new
+	^ SpMorphicDefaultStyleSheet new
 ]
 
 { #category : #utils }
-MorphicStyleSheet class >> reset [ 
+SpMorphicStyleSheet class >> reset [ 
 	<script>
 	
 	Current := nil
 ]
 
 { #category : #accessing }
-MorphicStyleSheet >> addClass: aSymbol style: aStyleSheet [
+SpMorphicStyleSheet >> addClass: aSymbol style: aStyleSheet [
 
 	self 
 		propertyAt: aSymbol 
@@ -63,15 +63,15 @@ MorphicStyleSheet >> addClass: aSymbol style: aStyleSheet [
 ]
 
 { #category : #accessing }
-MorphicStyleSheet >> addClass: aSymbol with: anArray [
+SpMorphicStyleSheet >> addClass: aSymbol with: anArray [
 
 	self 
 		addClass: aSymbol 
-		style: (MorphicStyleSheet fromProperties: anArray)
+		style: (SpMorphicStyleSheet fromProperties: anArray)
 ]
 
 { #category : #operations }
-MorphicStyleSheet >> applyTo: aMorph [ 
+SpMorphicStyleSheet >> applyTo: aMorph [ 
 
 	aMorph setProperty: #style toValue: self.
 	properties valuesDo: [ :each | 
@@ -79,53 +79,53 @@ MorphicStyleSheet >> applyTo: aMorph [
 ]
 
 { #category : #accessing }
-MorphicStyleSheet >> atClass: aName [
+SpMorphicStyleSheet >> atClass: aName [
 
 	^ self 
 		propertyAt: aName 
-		ifAbsentPut: [ MorphicStyleSheet new ]
+		ifAbsentPut: [ SpMorphicStyleSheet new ]
 ]
 
 { #category : #style }
-MorphicStyleSheet >> extent [
+SpMorphicStyleSheet >> extent [
 
 	^ self propertyAt: #extent
 ]
 
 { #category : #style }
-MorphicStyleSheet >> height [
+SpMorphicStyleSheet >> height [
 
 	^ self extent height
 ]
 
 { #category : #initialization }
-MorphicStyleSheet >> initialize [
+SpMorphicStyleSheet >> initialize [
 
 	super initialize.
 	properties := Dictionary new
 ]
 
 { #category : #initialization }
-MorphicStyleSheet >> initializeWith: aDictionary [ 
+SpMorphicStyleSheet >> initializeWith: aDictionary [ 
 
 	super initialize.
 	properties := aDictionary
 ]
 
 { #category : #accessing }
-MorphicStyleSheet >> properties [ 
+SpMorphicStyleSheet >> properties [ 
 
 	^ properties
 ]
 
 { #category : #accessing }
-MorphicStyleSheet >> propertyAt: aName [
+SpMorphicStyleSheet >> propertyAt: aName [
 
 	^ self propertyAt: aName ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
-MorphicStyleSheet >> propertyAt: aName ifAbsent: aBlock [
+SpMorphicStyleSheet >> propertyAt: aName ifAbsent: aBlock [
 
 	^ self properties 
 		at: aName 
@@ -133,7 +133,7 @@ MorphicStyleSheet >> propertyAt: aName ifAbsent: aBlock [
 ]
 
 { #category : #accessing }
-MorphicStyleSheet >> propertyAt: aName ifAbsentPut: aBlock [
+SpMorphicStyleSheet >> propertyAt: aName ifAbsentPut: aBlock [
 
 	^ self properties 
 		at: aName 
@@ -141,7 +141,7 @@ MorphicStyleSheet >> propertyAt: aName ifAbsentPut: aBlock [
 ]
 
 { #category : #accessing }
-MorphicStyleSheet >> propertyAt: aName put: aValue [
+SpMorphicStyleSheet >> propertyAt: aName put: aValue [
 
 	^ self properties 
 		at: aName 
@@ -149,7 +149,7 @@ MorphicStyleSheet >> propertyAt: aName put: aValue [
 ]
 
 { #category : #style }
-MorphicStyleSheet >> width [
+SpMorphicStyleSheet >> width [
 
 	^ self extent width
 ]

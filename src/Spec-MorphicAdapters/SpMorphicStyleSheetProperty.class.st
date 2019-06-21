@@ -3,17 +3,17 @@ I'm a base property for stylesheets.
 I have a name (something that identifies me), and I can be applies to a morph (see #applyTo:)
 "
 Class {
-	#name : #MorphicStyleSheetProperty,
+	#name : #SpMorphicStyleSheetProperty,
 	#superclass : #Object,
 	#category : #'Spec-MorphicAdapters-StyleSheet'
 }
 
 { #category : #operations }
-MorphicStyleSheetProperty >> applyTo: aMorph [
+SpMorphicStyleSheetProperty >> applyTo: aMorph [
 ]
 
 { #category : #accessing }
-MorphicStyleSheetProperty >> name [
+SpMorphicStyleSheetProperty >> name [
 
 	^ self subclassResponsibility
 ]

@@ -13,7 +13,7 @@ Class {
 { #category : #running }
 SpUIThemeDecoratorTest >> setUp [
 	super setUp.
-	themeDecorator := UIThemeDecorator exampleDecoratorToMakePluggableButtonRed
+	themeDecorator := SpUIThemeDecorator exampleDecoratorToMakePluggableButtonRed
 ]
 
 { #category : #tests }

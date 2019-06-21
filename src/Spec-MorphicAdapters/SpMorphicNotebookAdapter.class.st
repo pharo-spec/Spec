@@ -24,7 +24,7 @@ SpMorphicNotebookAdapter >> addModelTo: aNotebook [
 	"force first page to be drawn"
 	self model selectedPage ifNil: [ self model selectedPageIndex: 1 ].
 	aNotebook selectedPageIndex: self model selectedPageIndex.
-	aNotebook announcer when: NotebookPageChanged send: #pageChanged: to: self
+	aNotebook announcer when: SpNotebookPageChanged send: #pageChanged: to: self
 ]
 
 { #category : #factory }
@@ -70,7 +70,7 @@ SpMorphicNotebookAdapter >> buildLabelForPage: aPage [
 SpMorphicNotebookAdapter >> buildWidget [
 	| notebookMorph |
 
-	notebookMorph := NotebookMorph new
+	notebookMorph := SpNotebookMorph new
 		vResizing: #spaceFill;
 		hResizing: #spaceFill;
 		setBalloonText: self help;

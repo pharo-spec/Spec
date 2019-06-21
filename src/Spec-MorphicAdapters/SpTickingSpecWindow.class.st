@@ -2,23 +2,23 @@
 TickingSpecWindow new openInWorld
 "
 Class {
-	#name : #TickingSpecWindow,
+	#name : #SpTickingSpecWindow,
 	#superclass : #SpWindow,
 	#category : #'Spec-MorphicAdapters-Support'
 }
 
 { #category : #'stepping and presenter' }
-TickingSpecWindow >> step [
+SpTickingSpecWindow >> step [
 	self model step.
 ]
 
 { #category : #stepping }
-TickingSpecWindow >> stepTime [
+SpTickingSpecWindow >> stepTime [
 
 	^ self model stepTime
 ]
 
 { #category : #stepping }
-TickingSpecWindow >> wantsSteps [
+SpTickingSpecWindow >> wantsSteps [
 	^ true
 ]

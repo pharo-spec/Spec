@@ -2,8 +2,8 @@
 I'm a property to define the initial extent of a morph and whether this morph can be resized (horizontally and/or vertically)
 "
 Class {
-	#name : #MorphicStyleSheetExtent,
-	#superclass : #MorphicStyleSheetProperty,
+	#name : #SpMorphicStyleSheetExtent,
+	#superclass : #SpMorphicStyleSheetProperty,
 	#instVars : [
 		'extent',
 		'hResizing',
@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-MorphicStyleSheetExtent class >> newExtent: aPoint [
+SpMorphicStyleSheetExtent class >> newExtent: aPoint [
 
 	^ self 
 		newExtent: aPoint 
@@ -24,7 +24,7 @@ MorphicStyleSheetExtent class >> newExtent: aPoint [
 ]
 
 { #category : #'instance creation' }
-MorphicStyleSheetExtent class >> newExtent: aPoint hResizing: hBoolean [
+SpMorphicStyleSheetExtent class >> newExtent: aPoint hResizing: hBoolean [
 
 	^ self 
 		newExtent: aPoint 
@@ -33,7 +33,7 @@ MorphicStyleSheetExtent class >> newExtent: aPoint hResizing: hBoolean [
 ]
 
 { #category : #'instance creation' }
-MorphicStyleSheetExtent class >> newExtent: aPoint hResizing: hBoolean vResizing: vBoolean [
+SpMorphicStyleSheetExtent class >> newExtent: aPoint hResizing: hBoolean vResizing: vBoolean [
 
 	^ self basicNew 
 		initializeExtent: aPoint 
@@ -43,7 +43,7 @@ MorphicStyleSheetExtent class >> newExtent: aPoint hResizing: hBoolean vResizing
 ]
 
 { #category : #'instance creation' }
-MorphicStyleSheetExtent class >> newExtent: aPoint vResizing: vBoolean [
+SpMorphicStyleSheetExtent class >> newExtent: aPoint vResizing: vBoolean [
 
 	^ self 
 		newExtent: aPoint 
@@ -52,14 +52,14 @@ MorphicStyleSheetExtent class >> newExtent: aPoint vResizing: vBoolean [
 ]
 
 { #category : #operations }
-MorphicStyleSheetExtent >> applyExtentTo: aMorph [
+SpMorphicStyleSheetExtent >> applyExtentTo: aMorph [
 	
 	self extent ifNil: [ ^ self ].
 	aMorph extent: self extent
 ]
 
 { #category : #operations }
-MorphicStyleSheetExtent >> applyHResizingTo: aMorph [
+SpMorphicStyleSheetExtent >> applyHResizingTo: aMorph [
 	
 	aMorph hResizing: (self hResizing
 		ifTrue: [ #spaceFill ]
@@ -67,7 +67,7 @@ MorphicStyleSheetExtent >> applyHResizingTo: aMorph [
 ]
 
 { #category : #operations }
-MorphicStyleSheetExtent >> applyTo: aMorph [
+SpMorphicStyleSheetExtent >> applyTo: aMorph [
 
 	self applyExtentTo: aMorph.
 	self applyHResizingTo: aMorph.
@@ -75,7 +75,7 @@ MorphicStyleSheetExtent >> applyTo: aMorph [
 ]
 
 { #category : #operations }
-MorphicStyleSheetExtent >> applyVResizingTo: aMorph [
+SpMorphicStyleSheetExtent >> applyVResizingTo: aMorph [
 	
 	aMorph vResizing: (self vResizing
 		ifTrue: [ #spaceFill ]
@@ -83,23 +83,23 @@ MorphicStyleSheetExtent >> applyVResizingTo: aMorph [
 ]
 
 { #category : #style }
-MorphicStyleSheetExtent >> extent [
+SpMorphicStyleSheetExtent >> extent [
 	^ extent
 ]
 
 { #category : #style }
-MorphicStyleSheetExtent >> hResizing [
+SpMorphicStyleSheetExtent >> hResizing [
 	^ hResizing
 ]
 
 { #category : #style }
-MorphicStyleSheetExtent >> height [
+SpMorphicStyleSheetExtent >> height [
 	
 	^ self extent y
 ]
 
 { #category : #initialization }
-MorphicStyleSheetExtent >> initializeExtent: aPoint hResizing: hBoolean vResizing: vBoolean [
+SpMorphicStyleSheetExtent >> initializeExtent: aPoint hResizing: hBoolean vResizing: vBoolean [
 
 	self initialize.
 	extent := aPoint.
@@ -108,18 +108,18 @@ MorphicStyleSheetExtent >> initializeExtent: aPoint hResizing: hBoolean vResizin
 ]
 
 { #category : #accessing }
-MorphicStyleSheetExtent >> name [
+SpMorphicStyleSheetExtent >> name [
 
 	^ #extent
 ]
 
 { #category : #style }
-MorphicStyleSheetExtent >> vResizing [
+SpMorphicStyleSheetExtent >> vResizing [
 	^ vResizing
 ]
 
 { #category : #style }
-MorphicStyleSheetExtent >> width [
+SpMorphicStyleSheetExtent >> width [
 	
 	^ self extent x
 ]

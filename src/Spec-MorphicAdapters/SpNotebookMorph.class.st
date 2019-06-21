@@ -1,5 +1,5 @@
 Class {
-	#name : #NotebookMorph,
+	#name : #SpNotebookMorph,
 	#superclass : #TabGroupMorph,
 	#instVars : [
 		'headerMorph'
@@ -8,13 +8,13 @@ Class {
 }
 
 { #category : #accessing }
-NotebookMorph class >> tabCellInset [
+SpNotebookMorph class >> tabCellInset [
 
 	^ 2
 ]
 
 { #category : #adding }
-NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph [
+SpNotebookMorph >> addLazyPage: aBlock label: aStringOrMorph [
 
 	self 
 		addLazyPage: aBlock 
@@ -23,10 +23,10 @@ NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph [
 ]
 
 { #category : #adding }
-NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph action: anActionMorphOrNil [
+SpNotebookMorph >> addLazyPage: aBlock label: aStringOrMorph action: anActionMorphOrNil [
 	| newPage label |
 	
-	newPage := NotebookPageMorph new.
+	newPage := SpNotebookPageMorph new.
 	newPage lazyPageMorphCreation: aBlock.
 		
 	label := self 
@@ -39,10 +39,10 @@ NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph action: anActionMorph
 ]
 
 { #category : #adding }
-NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph collapsable: aBoolean [
+SpNotebookMorph >> addLazyPage: aBlock label: aStringOrMorph collapsable: aBoolean [
 	| newPage label |
 	
-	newPage := NotebookPageMorph new.
+	newPage := SpNotebookPageMorph new.
 	newPage lazyPageMorphCreation: aBlock.
 
 	label := self 
@@ -57,13 +57,13 @@ NotebookMorph >> addLazyPage: aBlock label: aStringOrMorph collapsable: aBoolean
 ]
 
 { #category : #private }
-NotebookMorph >> buildLabelFrom: aString [ 
+SpNotebookMorph >> buildLabelFrom: aString [ 
 	
 	^ LabelMorph newLabel: aString
 ]
 
 { #category : #private }
-NotebookMorph >> buildLabelFrom: aStringOrMorph withAction: aMorph [
+SpNotebookMorph >> buildLabelFrom: aStringOrMorph withAction: aMorph [
 	| innerLabel |
 
 	innerLabel := aStringOrMorph isMorph
@@ -82,26 +82,26 @@ NotebookMorph >> buildLabelFrom: aStringOrMorph withAction: aMorph [
 ]
 
 { #category : #testing }
-NotebookMorph >> hasPageWithModel: anObject [
+SpNotebookMorph >> hasPageWithModel: anObject [
 	"an utility to easy know if the notebook has a page for a model"
 
 	^ self pages anySatisfy: [ :each | each model = anObject ]
 ]
 
 { #category : #accessing }
-NotebookMorph >> headerMorph [
+SpNotebookMorph >> headerMorph [
 	^ headerMorph
 ]
 
 { #category : #accessing }
-NotebookMorph >> headerMorph: anObject [
+SpNotebookMorph >> headerMorph: anObject [
 	headerMorph := anObject.
 	
 	headerMorph clipSubmorphs: true.
 ]
 
 { #category : #initialization }
-NotebookMorph >> initialize [
+SpNotebookMorph >> initialize [
 
 	super initialize.
 	self 
@@ -113,7 +113,7 @@ NotebookMorph >> initialize [
 ]
 
 { #category : #factory }
-NotebookMorph >> newCloseButtonFor: aPage [
+SpNotebookMorph >> newCloseButtonFor: aPage [
 
 	^ SpButtonPresenter new 
 		icon: (self theme windowCloseForm);
@@ -122,7 +122,7 @@ NotebookMorph >> newCloseButtonFor: aPage [
 ]
 
 { #category : #factory }
-NotebookMorph >> newContentMorph [
+SpNotebookMorph >> newContentMorph [
 	"Answer a new content morph"
 
 	^ PanelMorph new
@@ -137,7 +137,7 @@ NotebookMorph >> newContentMorph [
 ]
 
 { #category : #private }
-NotebookMorph >> newHeaderMorph [
+SpNotebookMorph >> newHeaderMorph [
 
 	^ (self theme newRowIn: self theme for: { self tabSelectorMorph }) 
 		cellInset: 0; 
@@ -146,9 +146,9 @@ NotebookMorph >> newHeaderMorph [
 ]
 
 { #category : #factory }
-NotebookMorph >> newTabSelectorMorph [ 
+SpNotebookMorph >> newTabSelectorMorph [ 
 
-	^ NotebookTabSelectorMorph new
+	^ SpNotebookTabSelectorMorph new
 		vResizing: #shrinkWrap;
 		hResizing: #spaceFill;
 		cellInset: self class tabCellInset;
@@ -156,7 +156,7 @@ NotebookMorph >> newTabSelectorMorph [
 ]
 
 { #category : #private }
-NotebookMorph >> newToolbarMorph [
+SpNotebookMorph >> newToolbarMorph [
 	^ GLMPanelMorph new
 		fillStyle: (SolidFillStyle color: Color transparent);
 		borderStyle: (BorderStyle width: 0);
@@ -169,19 +169,19 @@ NotebookMorph >> newToolbarMorph [
 ]
 
 { #category : #private }
-NotebookMorph >> pageAt: index [
+SpNotebookMorph >> pageAt: index [
 	^ (self pages at: index ) actualPageMorph
 ]
 
 { #category : #accessing }
-NotebookMorph >> pageWithModel: anObject [
+SpNotebookMorph >> pageWithModel: anObject [
 	"an utility to easy find pages with a model"
 
 	^ self pages detect: [ :each | each model = anObject ]
 ]
 
 { #category : #private }
-NotebookMorph >> removePage: aPage [
+SpNotebookMorph >> removePage: aPage [
 	| removedPageIndex |
 	removedPageIndex := self pages indexOf: aPage.
 
@@ -198,12 +198,12 @@ NotebookMorph >> removePage: aPage [
 ]
 
 { #category : #private }
-NotebookMorph >> removePageIndex: anInteger [
+SpNotebookMorph >> removePageIndex: anInteger [
 	self removePage: (self pages at: anInteger)
 ]
 
 { #category : #private }
-NotebookMorph >> suspendAnnouncementsDuring: aBlock [
+SpNotebookMorph >> suspendAnnouncementsDuring: aBlock [
 	| subscriptions |
 	subscriptions := self announcer subscriptions subscriptions.
 	subscriptions do: [ :sub | self announcer unsubscribe: sub ].
@@ -212,7 +212,7 @@ NotebookMorph >> suspendAnnouncementsDuring: aBlock [
 ]
 
 { #category : #private }
-NotebookMorph >> updatePageIndex: index [
+SpNotebookMorph >> updatePageIndex: index [
 	"Change to the given page index, update the toolbar and send the announcement"
 	| page oldPage |
 	
@@ -235,7 +235,7 @@ NotebookMorph >> updatePageIndex: index [
 	self adoptPaneColor: (self owner ifNil: [self]) paneColor.
 	(self tabSelectorMorph tabs at: index) font: self tabSelectorMorph font.
 	
-	self announcer announce: (NotebookPageChanged new 
+	self announcer announce: (SpNotebookPageChanged new 
 		page: (self pages at: index); 
 		oldPage: oldPage; 
 		pageIndex: index)

@@ -5,34 +5,34 @@ I'm called ""vertical"" (even if my draw is horizontal) because I split vertical
 self exampleVertical.
 "
 Class {
-	#name : #PanedResizerVerticalMorph,
-	#superclass : #PanedResizerMorph,
+	#name : #SpPanedResizerVerticalMorph,
+	#superclass : #SpPanedResizerMorph,
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
 { #category : #accessing }
-PanedResizerVerticalMorph >> edgeName [
+SpPanedResizerVerticalMorph >> edgeName [
 	"Answer the value of edgeName"
 
 	^ #bottom
 ]
 
 { #category : #testing }
-PanedResizerVerticalMorph >> isHorizontal [
+SpPanedResizerVerticalMorph >> isHorizontal [
 	"Answer true if the receiver has a horizontal layout."
 	
 	^ false
 ]
 
 { #category : #accessing }
-PanedResizerVerticalMorph >> positionPoint: aPoint [
+SpPanedResizerVerticalMorph >> positionPoint: aPoint [
 	"Reposition based on ptName."
 	
 	^ self position: self left @ aPoint y
 ]
 
 { #category : #private }
-PanedResizerVerticalMorph >> setLayoutSizing [
+SpPanedResizerVerticalMorph >> setLayoutSizing [
 	
 	self 
 		hResizing: #spaceFill; 
@@ -40,7 +40,7 @@ PanedResizerVerticalMorph >> setLayoutSizing [
 ]
 
 { #category : #private }
-PanedResizerVerticalMorph >> setTargetBounds [
+SpPanedResizerVerticalMorph >> setTargetBounds [
 	| target |
 
 	target := self target.
@@ -48,7 +48,7 @@ PanedResizerVerticalMorph >> setTargetBounds [
 ]
 
 { #category : #private }
-PanedResizerVerticalMorph >> setTargetLayoutSizing [
+SpPanedResizerVerticalMorph >> setTargetLayoutSizing [
 
 	(self target vResizing = #rigid) ifTrue: [ ^ self ].
 	self target vResizing: #rigid.

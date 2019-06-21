@@ -13,7 +13,7 @@ SpMorphicBackend class >> backendName [
 { #category : #private }
 SpMorphicBackend >> adapterBindingsClass [
 
-	^ MorphicAdapterBindings
+	^ SpMorphicAdapterBindings
 ]
 
 { #category : #'private notifying' }

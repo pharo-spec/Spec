@@ -5,34 +5,34 @@ I'm called ""horizonal"" (even if my draw is vertical) because I split horizonta
 self exampleHorizontal.
 "
 Class {
-	#name : #PanedResizerHorizontalMorph,
-	#superclass : #PanedResizerMorph,
+	#name : #SpPanedResizerHorizontalMorph,
+	#superclass : #SpPanedResizerMorph,
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
 { #category : #accessing }
-PanedResizerHorizontalMorph >> edgeName [
+SpPanedResizerHorizontalMorph >> edgeName [
 	"Answer the value of edgeName"
 
 	^ #right
 ]
 
 { #category : #testing }
-PanedResizerHorizontalMorph >> isHorizontal [
+SpPanedResizerHorizontalMorph >> isHorizontal [
 	"Answer true if the receiver has a horizontal layout."
 	
 	^ true
 ]
 
 { #category : #accessing }
-PanedResizerHorizontalMorph >> positionPoint: aPoint [
+SpPanedResizerHorizontalMorph >> positionPoint: aPoint [
 	"Reposition based on ptName."
 	
 	^ self position: aPoint x @ self top
 ]
 
 { #category : #private }
-PanedResizerHorizontalMorph >> setLayoutSizing [
+SpPanedResizerHorizontalMorph >> setLayoutSizing [
 	"Adjust the sizing for use within table layouts."
 
 	self 
@@ -41,7 +41,7 @@ PanedResizerHorizontalMorph >> setLayoutSizing [
 ]
 
 { #category : #private }
-PanedResizerHorizontalMorph >> setTargetBounds [
+SpPanedResizerHorizontalMorph >> setTargetBounds [
 	| target |
 	
 	target := self target.
@@ -49,7 +49,7 @@ PanedResizerHorizontalMorph >> setTargetBounds [
 ]
 
 { #category : #private }
-PanedResizerHorizontalMorph >> setTargetLayoutSizing [
+SpPanedResizerHorizontalMorph >> setTargetLayoutSizing [
 
 	(self target hResizing = #rigid) ifTrue: [ ^ self ].
 	self target hResizing: #rigid.

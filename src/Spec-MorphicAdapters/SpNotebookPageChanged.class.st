@@ -1,6 +1,6 @@
 Class {
-	#name : #NotebookPageChanged,
-	#superclass : #NotebookPageAnnouncement,
+	#name : #SpNotebookPageChanged,
+	#superclass : #SpNotebookPageAnnouncement,
 	#instVars : [
 		'oldPage'
 	],
@@ -8,11 +8,11 @@ Class {
 }
 
 { #category : #accessing }
-NotebookPageChanged >> oldPage [
+SpNotebookPageChanged >> oldPage [
 	^ oldPage
 ]
 
 { #category : #accessing }
-NotebookPageChanged >> oldPage: anObject [
+SpNotebookPageChanged >> oldPage: anObject [
 	oldPage := anObject
 ]

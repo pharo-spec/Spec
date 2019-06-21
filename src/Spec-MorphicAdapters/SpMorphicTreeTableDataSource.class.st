@@ -4,7 +4,7 @@ I define my cells following the definition on columns (MorphicTableColumn).
 I use a builder (MorphicTreeTableCellBuilder) to realise the cell content. 
 "
 Class {
-	#name : #MorphicTreeTableDataSource,
+	#name : #SpMorphicTreeTableDataSource,
 	#superclass : #FTTreeDataSource,
 	#traits : 'TSpMorphicTableDataSourceCommons',
 	#classTraits : 'TSpMorphicTableDataSourceCommons classTrait',
@@ -12,13 +12,13 @@ Class {
 }
 
 { #category : #accessing }
-MorphicTreeTableDataSource >> allShownItems [
+SpMorphicTreeTableDataSource >> allShownItems [
 
 	^ rootItem children flatCollect: [ :e | e withExpandedChildren ].
 ]
 
 { #category : #accessing }
-MorphicTreeTableDataSource >> cellColumn: column row: rowIndex [
+SpMorphicTreeTableDataSource >> cellColumn: column row: rowIndex [
 	| cell builder item |
 	
 	item := self elementAt: rowIndex.
@@ -27,7 +27,7 @@ MorphicTreeTableDataSource >> cellColumn: column row: rowIndex [
 	(self isFirstColumn: column) ifTrue: [
 		cell addMorphBack: (self buttonFor: item) ].
 
-	builder := MorphicTreeTableCellBuilder on: self.
+	builder := SpMorphicTreeTableCellBuilder on: self.
 	builder 
 		cell: cell;
 		item: item data;
@@ -37,31 +37,31 @@ MorphicTreeTableDataSource >> cellColumn: column row: rowIndex [
 ]
 
 { #category : #accessing }
-MorphicTreeTableDataSource >> cellIndentFor: item [ 
+SpMorphicTreeTableDataSource >> cellIndentFor: item [ 
 
 	^ item depth * 16
 ]
 
 { #category : #accessing }
-MorphicTreeTableDataSource >> indexOfItem: anItem [ 
+SpMorphicTreeTableDataSource >> indexOfItem: anItem [ 
 	
 	^ self allShownItems indexOf: anItem
 ]
 
 { #category : #testing }
-MorphicTreeTableDataSource >> isFirstColumn: column [
+SpMorphicTreeTableDataSource >> isFirstColumn: column [
 	
 	^ (table columns indexOf: column) = 1
 ]
 
 { #category : #accessing }
-MorphicTreeTableDataSource >> itemAtPath: aPath [ 
+SpMorphicTreeTableDataSource >> itemAtPath: aPath [ 
 	
 	^ self itemAtPath: aPath expanding: false
 ]
 
 { #category : #accessing }
-MorphicTreeTableDataSource >> itemAtPath: aPath expanding: shouldExpandItems [
+SpMorphicTreeTableDataSource >> itemAtPath: aPath expanding: shouldExpandItems [
 	
 	| item |
 	
@@ -78,7 +78,7 @@ MorphicTreeTableDataSource >> itemAtPath: aPath expanding: shouldExpandItems [
 ]
 
 { #category : #accessing }
-MorphicTreeTableDataSource >> menuColumn: column row: rowIndex [
+SpMorphicTreeTableDataSource >> menuColumn: column row: rowIndex [
 	| menuPresenter |
 
 	menuPresenter := self model contextMenu.
@@ -89,7 +89,7 @@ MorphicTreeTableDataSource >> menuColumn: column row: rowIndex [
 ]
 
 { #category : #paths }
-MorphicTreeTableDataSource >> pathFromIndex: anInteger [ 
+SpMorphicTreeTableDataSource >> pathFromIndex: anInteger [ 
 	| item |
 	
 	item := self allShownItems at: anInteger ifAbsent: [ ^ #() ].
@@ -97,7 +97,7 @@ MorphicTreeTableDataSource >> pathFromIndex: anInteger [
 ]
 
 { #category : #accessing }
-MorphicTreeTableDataSource >> pathOfItem: anItem root: aRoot [ 
+SpMorphicTreeTableDataSource >> pathOfItem: anItem root: aRoot [ 
 	
 	aRoot isExpanded ifFalse: [ ^#() ].
 	
@@ -112,7 +112,7 @@ MorphicTreeTableDataSource >> pathOfItem: anItem root: aRoot [
 ]
 
 { #category : #accessing }
-MorphicTreeTableDataSource >> rootItem: anItem [
+SpMorphicTreeTableDataSource >> rootItem: anItem [
 
 	super rootItem: anItem.
 	self addSourceToRootItem

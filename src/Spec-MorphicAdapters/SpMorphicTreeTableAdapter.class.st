@@ -117,7 +117,7 @@ SpMorphicTreeTableAdapter >> isShowingColumnHeaders [
 { #category : #'private factory' }
 SpMorphicTreeTableAdapter >> newColumnFrom: aTableColumn [
 
-	^ (MorphicTableColumn on: aTableColumn)
+	^ (SpMorphicTableColumn on: aTableColumn)
 		width: aTableColumn width;
 		yourself
 ]
@@ -125,7 +125,7 @@ SpMorphicTreeTableAdapter >> newColumnFrom: aTableColumn [
 { #category : #'private factory' }
 SpMorphicTreeTableAdapter >> newDataSource [ 
 
-	^ MorphicTreeTableDataSource new
+	^ SpMorphicTreeTableDataSource new
 		model: self model; 
 		rootItem: (self rootForItems: self model roots);
 		childrenBlock: [ :data :item | self model childrenFor: data ];

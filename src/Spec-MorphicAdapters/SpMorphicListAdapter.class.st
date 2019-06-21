@@ -97,7 +97,7 @@ SpMorphicListAdapter >> listSize [
 { #category : #factory }
 SpMorphicListAdapter >> newListColumn [
 	
-	^ MorphicTableColumn new 
+	^ SpMorphicTableColumn new 
 		model: (StringTableColumn
 			title: self presenter headerTitle
 			evaluated: self presenter displayBlock);
@@ -204,7 +204,7 @@ SpMorphicListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
 SpMorphicListAdapter >> updateItemFilterBlockWith: block [
 	^ block
 		ifNotNil: [ widget
-				enableFilter: (FTSpecFilter block: block);
+				enableFilter: (SpFTSpecFilter block: block);
 				explicitFunction ]
 		ifNil: [ widget disableFunction ]
 ]

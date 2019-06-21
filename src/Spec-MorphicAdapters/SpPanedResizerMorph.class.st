@@ -10,13 +10,13 @@ self exampleVertical.
 self exampleHorizontal.
 "
 Class {
-	#name : #PanedResizerMorph,
+	#name : #SpPanedResizerMorph,
 	#superclass : #AbstractResizerMorph,
 	#category : #'Spec-MorphicAdapters-Layout'
 }
 
 { #category : #examples }
-PanedResizerMorph class >> exampleHorizontal [
+SpPanedResizerMorph class >> exampleHorizontal [
 	<example>
 	
 	(PanelMorph new 
@@ -38,7 +38,7 @@ PanedResizerMorph class >> exampleHorizontal [
 ]
 
 { #category : #examples }
-PanedResizerMorph class >> exampleVertical [
+SpPanedResizerMorph class >> exampleVertical [
 	<example>
 	
 	(PanelMorph new 
@@ -59,31 +59,31 @@ PanedResizerMorph class >> exampleVertical [
 ]
 
 { #category : #'instance creation' }
-PanedResizerMorph class >> new [ 
+SpPanedResizerMorph class >> new [ 
 	
 	self error: 'Use #newHorizonal or #newVertical'
 ]
 
 { #category : #'instance creation' }
-PanedResizerMorph class >> newHorizontal [ 
+SpPanedResizerMorph class >> newHorizontal [ 
 	
-	^ PanedResizerHorizontalMorph basicNew initialize
+	^ SpPanedResizerHorizontalMorph basicNew initialize
 ]
 
 { #category : #'instance creation' }
-PanedResizerMorph class >> newVertical [
+SpPanedResizerMorph class >> newVertical [
 	
-	^ PanedResizerVerticalMorph basicNew initialize
+	^ SpPanedResizerVerticalMorph basicNew initialize
 ]
 
 { #category : #accessing }
-PanedResizerMorph class >> splitterWidth [
+SpPanedResizerMorph class >> splitterWidth [
 
 	^ 4
 ]
 
 { #category : #accessing }
-PanedResizerMorph >> adoptPaneColor: paneColor [
+SpPanedResizerMorph >> adoptPaneColor: paneColor [
 	"Change our color too."
 	
 	super adoptPaneColor: paneColor.
@@ -91,28 +91,28 @@ PanedResizerMorph >> adoptPaneColor: paneColor [
 ]
 
 { #category : #accessing }
-PanedResizerMorph >> defaultHeight [
+SpPanedResizerMorph >> defaultHeight [
 	"Answer the default height for the receiver."
 	
 	^ self class splitterWidth
 ]
 
 { #category : #accessing }
-PanedResizerMorph >> defaultWidth [
+SpPanedResizerMorph >> defaultWidth [
 	"Answer the default width for the receiver."
 	
 	^ self class splitterWidth
 ]
 
 { #category : #accessing }
-PanedResizerMorph >> edgeName [
+SpPanedResizerMorph >> edgeName [
 	"Answer the value of edgeName"
 
 	^ self subclassResponsibility
 ]
 
 { #category : #initialization }
-PanedResizerMorph >> initialize [
+SpPanedResizerMorph >> initialize [
 	"Initialize the receiver."
 	
 	super initialize.
@@ -124,14 +124,14 @@ PanedResizerMorph >> initialize [
 ]
 
 { #category : #testing }
-PanedResizerMorph >> isHorizontal [
+SpPanedResizerMorph >> isHorizontal [
 	"Answer true if the receiver has a horizontal layout."
 	
 	^ self subclassResponsibility
 ]
 
 { #category : #'event handling' }
-PanedResizerMorph >> mouseDown: anEvent [
+SpPanedResizerMorph >> mouseDown: anEvent [
 	"Remember the receiver and target offsets too."
 	
 	(self bounds containsPoint: anEvent cursorPoint)
@@ -143,7 +143,7 @@ PanedResizerMorph >> mouseDown: anEvent [
 ]
 
 { #category : #'event handling' }
-PanedResizerMorph >> mouseMove: anEvent [
+SpPanedResizerMorph >> mouseMove: anEvent [
 	"Track the mouse for resizing."
 	
 	self target ifNil: [ ^ self ] .
@@ -155,7 +155,7 @@ PanedResizerMorph >> mouseMove: anEvent [
 ]
 
 { #category : #'event handling' }
-PanedResizerMorph >> mouseUp: anEvent [
+SpPanedResizerMorph >> mouseUp: anEvent [
 	"Change the cursor back to normal if necessary and change the color back to normal."
 	
 	(self bounds containsPoint: anEvent cursorPoint)
@@ -165,72 +165,72 @@ PanedResizerMorph >> mouseUp: anEvent [
 ]
 
 { #category : #style }
-PanedResizerMorph >> normalFillStyle [
+SpPanedResizerMorph >> normalFillStyle [
 	"Return the normal fillStyle of the receiver."
 	
 	^self theme splitterNormalFillStyleFor: self
 ]
 
 { #category : #accessing }
-PanedResizerMorph >> positionPoint: aPoint [
+SpPanedResizerMorph >> positionPoint: aPoint [
 	"Reposition based on ptName."
 	
 	^ self subclassResponsibility
 ]
 
 { #category : #private }
-PanedResizerMorph >> preserveLayoutPosition [
+SpPanedResizerMorph >> preserveLayoutPosition [
 
 	self owner layoutPolicy preservePositionProportionOn: self owner
 ]
 
 { #category : #style }
-PanedResizerMorph >> pressedFillStyle [
+SpPanedResizerMorph >> pressedFillStyle [
 	"Return the pressed fillStyle of the receiver."
 	
 	^ self theme splitterPressedFillStyleFor: self
 ]
 
 { #category : #private }
-PanedResizerMorph >> resetLayoutPosition [
+SpPanedResizerMorph >> resetLayoutPosition [
 	"since we are going to move the split bar, layout position (if any) needs to be reseted".
 	
 	self owner layoutPolicy resetPosition
 ]
 
 { #category : #actions }
-PanedResizerMorph >> resizeCursor [
+SpPanedResizerMorph >> resizeCursor [
 
 	^ Cursor resizeForEdge: self edgeName
 ]
 
 { #category : #private }
-PanedResizerMorph >> setLayoutSizing [
+SpPanedResizerMorph >> setLayoutSizing [
 	"Adjust the sizing for use within table layouts."
 
 	self subclassResponsibility
 ]
 
 { #category : #private }
-PanedResizerMorph >> setTargetBounds [ 
+SpPanedResizerMorph >> setTargetBounds [ 
 
 	self subclassResponsibility
 ]
 
 { #category : #private }
-PanedResizerMorph >> setTargetLayoutSizing [
+SpPanedResizerMorph >> setTargetLayoutSizing [
 
 	self subclassResponsibility
 ]
 
 { #category : #testing }
-PanedResizerMorph >> splitsTopAndBottom [
+SpPanedResizerMorph >> splitsTopAndBottom [
 	
 	^ self isHorizontal
 ]
 
 { #category : #accessing }
-PanedResizerMorph >> target [ 
+SpPanedResizerMorph >> target [ 
 	"answers previous morph in owners submorph list"
 	
 	^ self owner ifNotNil: [ :aMorph | 
@@ -238,13 +238,13 @@ PanedResizerMorph >> target [
 ]
 
 { #category : #private }
-PanedResizerMorph >> targetAfter [ 
+SpPanedResizerMorph >> targetAfter [ 
 
 	^ self owner submorphs after: self
 ]
 
 { #category : #updating }
-PanedResizerMorph >> themeChanged [
+SpPanedResizerMorph >> themeChanged [
 	"Update the fill style."
 
 	self fillStyle: self normalFillStyle.

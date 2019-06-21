@@ -3,7 +3,7 @@ I'm a column for the table on a MorphicTableAdapter hierarchy.
 I delegate most of my behavior to my model (which is a TableColumn* instance)
 "
 Class {
-	#name : #MorphicTableColumn,
+	#name : #SpMorphicTableColumn,
 	#superclass : #FTColumn,
 	#instVars : [
 		'model'
@@ -12,30 +12,30 @@ Class {
 }
 
 { #category : #'instance creation' }
-MorphicTableColumn class >> on: anObject [
+SpMorphicTableColumn class >> on: anObject [
 
 	^ self new model: anObject
 ]
 
 { #category : #accessing }
-MorphicTableColumn >> id [ 
+SpMorphicTableColumn >> id [ 
 
 	^ self model title
 ]
 
 { #category : #accessing }
-MorphicTableColumn >> model [
+SpMorphicTableColumn >> model [
 	^ model
 ]
 
 { #category : #accessing }
-MorphicTableColumn >> model: anObject [
+SpMorphicTableColumn >> model: anObject [
 
 	model := anObject
 ]
 
 { #category : #accessing }
-MorphicTableColumn >> readObject: anObject [ 
+SpMorphicTableColumn >> readObject: anObject [ 
 
 	^ self model readObject: anObject
 ]

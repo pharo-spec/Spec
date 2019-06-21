@@ -4,7 +4,7 @@ I define my cells following the definition on columns (MorphicTableColumn).
 I use a builder (MorphicTableCellBuilder) to realise the cell content. 
 "
 Class {
-	#name : #MorphicTableDataSource,
+	#name : #SpMorphicTableDataSource,
 	#superclass : #FTSimpleDataSource,
 	#traits : 'TSpMorphicTableDataSourceCommons',
 	#classTraits : 'TSpMorphicTableDataSourceCommons classTrait',
@@ -12,11 +12,11 @@ Class {
 }
 
 { #category : #accessing }
-MorphicTableDataSource >> cellColumn: column row: rowIndex [
+SpMorphicTableDataSource >> cellColumn: column row: rowIndex [
 	| cell builder |
 
 	cell := FTCellMorph new.
-	builder := MorphicTableCellBuilder on: self.
+	builder := SpMorphicTableCellBuilder on: self.
 	builder 
 		cell: cell;
 		rowIndex: rowIndex;
@@ -26,7 +26,7 @@ MorphicTableDataSource >> cellColumn: column row: rowIndex [
 ]
 
 { #category : #accessing }
-MorphicTableDataSource >> elements [ 
+SpMorphicTableDataSource >> elements [ 
 	
 	^ self model 
 		ifNotNil: #items
@@ -34,7 +34,7 @@ MorphicTableDataSource >> elements [
 ]
 
 { #category : #accessing }
-MorphicTableDataSource >> menuColumn: column row: rowIndex [
+SpMorphicTableDataSource >> menuColumn: column row: rowIndex [
 	| menuPresenter |
 
 	menuPresenter := self model contextMenu.

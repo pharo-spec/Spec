@@ -2,18 +2,18 @@
 I am used to link the spec-adapter names to the morphic adapters
 "
 Class {
-	#name : #MorphicAdapterBindings,
+	#name : #SpMorphicAdapterBindings,
 	#superclass : #SpAdapterBindings,
 	#category : #'Spec-MorphicAdapters-Support'
 }
 
 { #category : #initialize }
-MorphicAdapterBindings >> abstractAdapterClass [
+SpMorphicAdapterBindings >> abstractAdapterClass [
 	^ SpAbstractMorphicAdapter
 ]
 
 { #category : #fonts }
-MorphicAdapterBindings >> defaultFont [
+SpMorphicAdapterBindings >> defaultFont [
 
 	^ StandardFonts defaultFont
 ]

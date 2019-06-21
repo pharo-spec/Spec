@@ -10,7 +10,7 @@ Example
 	FTSpecFilter block: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
 "
 Class {
-	#name : #FTSpecFilter,
+	#name : #SpFTSpecFilter,
 	#superclass : #FTFilter,
 	#instVars : [
 		'block'
@@ -19,23 +19,23 @@ Class {
 }
 
 { #category : #'instance creation' }
-FTSpecFilter class >> block: aBlockClosure [
+SpFTSpecFilter class >> block: aBlockClosure [
 	^ self new
 		block: aBlockClosure;
 		yourself
 ]
 
 { #category : #accessing }
-FTSpecFilter >> block [
+SpFTSpecFilter >> block [
 	^ block
 ]
 
 { #category : #accessing }
-FTSpecFilter >> block: anObject [
+SpFTSpecFilter >> block: anObject [
 	block := anObject
 ]
 
 { #category : #matching }
-FTSpecFilter >> matches: anObject [
+SpFTSpecFilter >> matches: anObject [
 	^ self block cull: anObject cull: pattern
 ]

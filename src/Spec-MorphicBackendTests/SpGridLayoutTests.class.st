@@ -54,8 +54,8 @@ SpGridLayoutTests >> style [
 { #category : #private }
 SpGridLayoutTests >> styleExtent: aPoint [
 
-	^ MorphicStyleSheet new 
-		propertyAt: #extent put: (MorphicStyleSheetExtent 
+	^ SpMorphicStyleSheet new 
+		propertyAt: #extent put: (SpMorphicStyleSheetExtent 
 			newExtent: aPoint
 			hResizing: true 
 			vResizing: true);

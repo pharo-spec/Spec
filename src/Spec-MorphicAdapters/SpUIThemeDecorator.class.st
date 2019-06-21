@@ -4,7 +4,7 @@ I decorate a UITheme allowing to override desired properties.
 See #example on class side.
 "
 Class {
-	#name : #UIThemeDecorator,
+	#name : #SpUIThemeDecorator,
 	#superclass : #Object,
 	#instVars : [
 		'theme',
@@ -14,14 +14,14 @@ Class {
 }
 
 { #category : #examples }
-UIThemeDecorator class >> exampleDecoratorToMakePluggableButtonRed [
+SpUIThemeDecorator class >> exampleDecoratorToMakePluggableButtonRed [
 	| normalColorBlock clickedColorBlock |
 	normalColorBlock := [ :aButton |
 							(aButton valueOfProperty: #noFill ifAbsent: [false]) 
 								ifTrue: [ SolidFillStyle color: Color transparent ]
 								ifFalse: [ SolidFillStyle color: Color red ] ].
 	clickedColorBlock := [ :aButton | SolidFillStyle color: Color red muchDarker ].
-	^ (UIThemeDecorator theme: Smalltalk ui theme)
+	^ (SpUIThemeDecorator theme: Smalltalk ui theme)
 			property: #buttonNormalFillStyleFor: returnsValueOf: normalColorBlock;
 			property: #buttonMouseOverFillStyleFor: returnsValueOf: normalColorBlock;
 			property: #buttonPressedFillStyleFor: returnsValueOf: clickedColorBlock;
@@ -29,14 +29,14 @@ UIThemeDecorator class >> exampleDecoratorToMakePluggableButtonRed [
 ]
 
 { #category : #'instance creation' }
-UIThemeDecorator class >> theme: aUITheme [
+SpUIThemeDecorator class >> theme: aUITheme [
 	^ self new
 		theme: aUITheme;
 		yourself
 ]
 
 { #category : #'reflective operations' }
-UIThemeDecorator >> doesNotUnderstand: aMessage [
+SpUIThemeDecorator >> doesNotUnderstand: aMessage [
 	(self hasProperty: aMessage selector)
 		ifTrue: [ |objOrBlock|
 			objOrBlock := self objectAtProperty: aMessage selector.
@@ -51,33 +51,33 @@ UIThemeDecorator >> doesNotUnderstand: aMessage [
 ]
 
 { #category : #testing }
-UIThemeDecorator >> hasProperty: aSymbol [
+SpUIThemeDecorator >> hasProperty: aSymbol [
 	^ themeOverrideDict includesKey: aSymbol
 ]
 
 { #category : #initialization }
-UIThemeDecorator >> initialize [
+SpUIThemeDecorator >> initialize [
 	super initialize.
 	themeOverrideDict := Dictionary new
 ]
 
 { #category : #accessing }
-UIThemeDecorator >> objectAtProperty: aSymbol [
+SpUIThemeDecorator >> objectAtProperty: aSymbol [
 	^ themeOverrideDict at: aSymbol
 ]
 
 { #category : #accessing }
-UIThemeDecorator >> property: aSymbol returnsValueOf: anObject [
+SpUIThemeDecorator >> property: aSymbol returnsValueOf: anObject [
 	themeOverrideDict
 		at: aSymbol put: anObject
 ]
 
 { #category : #accessing }
-UIThemeDecorator >> theme [
+SpUIThemeDecorator >> theme [
 	^ theme
 ]
 
 { #category : #accessing }
-UIThemeDecorator >> theme: anObject [
+SpUIThemeDecorator >> theme: anObject [
 	theme := anObject
 ]

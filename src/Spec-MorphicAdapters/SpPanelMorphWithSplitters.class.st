@@ -2,7 +2,7 @@
 A PanelMorphWithSplitters is which add splitters the way SystemWindow do it
 "
 Class {
-	#name : #PanelMorphWithSplitters,
+	#name : #SpPanelMorphWithSplitters,
 	#superclass : #PanelMorph,
 	#instVars : [
 		'paneMorphs'
@@ -11,21 +11,21 @@ Class {
 }
 
 { #category : #'submorphs-add/remove' }
-PanelMorphWithSplitters >> addMorph: aMorph [
+SpPanelMorphWithSplitters >> addMorph: aMorph [
 
 	paneMorphs add: aMorph.
 	^ super addMorph: aMorph
 ]
 
 { #category : #'submorphs-add/remove' }
-PanelMorphWithSplitters >> addMorph: aMorph fullFrame: aLayout [
+SpPanelMorphWithSplitters >> addMorph: aMorph fullFrame: aLayout [
 
 	paneMorphs add: aMorph.
 	super addMorph: aMorph fullFrame: aLayout
 ]
 
 { #category : #private }
-PanelMorphWithSplitters >> addPaneHSplitterBetween: topMorphs and: bottomMorphs [
+SpPanelMorphWithSplitters >> addPaneHSplitterBetween: topMorphs and: bottomMorphs [
 	"Add a horizontal splitter for the given morphs that share a common bottom fraction.
 	If there is a horizontal discontinuity apply the splitter to the first contiguous group.
 	Answer the morphs to which the splitter was applied."
@@ -73,7 +73,7 @@ PanelMorphWithSplitters >> addPaneHSplitterBetween: topMorphs and: bottomMorphs 
 ]
 
 { #category : #private }
-PanelMorphWithSplitters >> addPaneHSplitters [
+SpPanelMorphWithSplitters >> addPaneHSplitters [
 	"Add the horizontal pane splitters."
 
 	|remaining targetBottom sameBottom sameTop|
@@ -91,7 +91,7 @@ PanelMorphWithSplitters >> addPaneHSplitters [
 ]
 
 { #category : #private }
-PanelMorphWithSplitters >> addPaneSplitters [
+SpPanelMorphWithSplitters >> addPaneSplitters [
 	"Add the vertical and horizontal pane splitters."
 
 	self removePaneSplitters.
@@ -101,7 +101,7 @@ PanelMorphWithSplitters >> addPaneSplitters [
 ]
 
 { #category : #private }
-PanelMorphWithSplitters >> addPaneVSplitterBetween: leftMorphs and: rightMorphs [
+SpPanelMorphWithSplitters >> addPaneVSplitterBetween: leftMorphs and: rightMorphs [
 	"Add a vertical splitter for the given morphs that share a common right fraction.
 	If there is a vertical discontinuity apply the splitter to the first contiguous group.
 	Answer the morphs to which the splitter was applied."
@@ -146,7 +146,7 @@ PanelMorphWithSplitters >> addPaneVSplitterBetween: leftMorphs and: rightMorphs 
 ]
 
 { #category : #private }
-PanelMorphWithSplitters >> addPaneVSplitters [
+SpPanelMorphWithSplitters >> addPaneVSplitters [
 	"Add the vertical pane splitters."
 
 	|remaining targetRight sameRight sameLeft |
@@ -165,7 +165,7 @@ PanelMorphWithSplitters >> addPaneVSplitters [
 ]
 
 { #category : #initialization }
-PanelMorphWithSplitters >> initialize [
+SpPanelMorphWithSplitters >> initialize [
 
 	super initialize.
 
@@ -173,14 +173,14 @@ PanelMorphWithSplitters >> initialize [
 ]
 
 { #category : #'layout-properties' }
-PanelMorphWithSplitters >> layoutFrame: aFrame [
+SpPanelMorphWithSplitters >> layoutFrame: aFrame [
 
 	self activate.
 	super layoutFrame: aFrame
 ]
 
 { #category : #private }
-PanelMorphWithSplitters >> linkSplittersToSplitters [
+SpPanelMorphWithSplitters >> linkSplittersToSplitters [
 	"The pane morphs are already linked. Cross link the splitters as appropriate."
 	
 	self splitters do: [:each |

@@ -392,7 +392,7 @@ SpAbstractMorphicAdapter >> style [
 SpAbstractMorphicAdapter >> styleAt: aName [
 	"i.e. ButtonAdapter = Button"
 	
-	^ MorphicStyleSheet current atClass: aName
+	^ SpMorphicStyleSheet current atClass: aName
 ]
 
 { #category : #accessing }

@@ -7,5 +7,5 @@ ProgressBarIndeterminated >> customizeMorphicBar: aProgressBarMorph [
 
 { #category : #'*Spec-MorphicAdapters' }
 ProgressBarIndeterminated >> progressBarMorph [
-	^ IndeterminatedProgressBarMorph
+	^ SpIndeterminatedProgressBarMorph
 ]

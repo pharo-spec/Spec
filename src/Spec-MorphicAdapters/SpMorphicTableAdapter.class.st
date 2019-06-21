@@ -83,7 +83,7 @@ SpMorphicTableAdapter >> isShowingColumnHeaders [
 { #category : #'private factory' }
 SpMorphicTableAdapter >> newColumnFrom: aTableColumn [
 
-	^ (MorphicTableColumn on: aTableColumn)
+	^ (SpMorphicTableColumn on: aTableColumn)
 		width: aTableColumn width;
 		yourself
 ]
@@ -91,7 +91,7 @@ SpMorphicTableAdapter >> newColumnFrom: aTableColumn [
 { #category : #'private factory' }
 SpMorphicTableAdapter >> newDataSource [ 
 
-	^ MorphicTableDataSource new
+	^ SpMorphicTableDataSource new
 		model: self model;
 		yourself
 

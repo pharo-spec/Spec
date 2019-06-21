@@ -1,5 +1,5 @@
 Class {
-	#name : #NotebookPageAnnouncement,
+	#name : #SpNotebookPageAnnouncement,
 	#superclass : #Announcement,
 	#instVars : [
 		'page',
@@ -9,21 +9,21 @@ Class {
 }
 
 { #category : #accessing }
-NotebookPageAnnouncement >> page [
+SpNotebookPageAnnouncement >> page [
 	^ page
 ]
 
 { #category : #accessing }
-NotebookPageAnnouncement >> page: anObject [
+SpNotebookPageAnnouncement >> page: anObject [
 	page := anObject
 ]
 
 { #category : #accessing }
-NotebookPageAnnouncement >> pageIndex [
+SpNotebookPageAnnouncement >> pageIndex [
 	^ pageIndex
 ]
 
 { #category : #accessing }
-NotebookPageAnnouncement >> pageIndex: anObject [
+SpNotebookPageAnnouncement >> pageIndex: anObject [
 	pageIndex := anObject
 ]

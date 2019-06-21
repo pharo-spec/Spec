@@ -2,8 +2,8 @@
 I build cells for a MorphicTableAdapter.
 "
 Class {
-	#name : #MorphicTableCellBuilder,
-	#superclass : #MorphicTableColumnVisitor,
+	#name : #SpMorphicTableCellBuilder,
+	#superclass : #SpMorphicTableColumnVisitor,
 	#instVars : [
 		'dataSource',
 		'rowIndex',
@@ -13,13 +13,13 @@ Class {
 }
 
 { #category : #'instance creation' }
-MorphicTableCellBuilder class >> on: aDataSource [
+SpMorphicTableCellBuilder class >> on: aDataSource [
 
 	^ self new dataSource: aDataSource
 ]
 
 { #category : #private }
-MorphicTableCellBuilder >> addCell: anObject column: aTableColumn [
+SpMorphicTableCellBuilder >> addCell: anObject column: aTableColumn [
 	| morph |
 
 	anObject ifNil: [ ^ self ]. 
@@ -33,7 +33,7 @@ MorphicTableCellBuilder >> addCell: anObject column: aTableColumn [
 ]
 
 { #category : #private }
-MorphicTableCellBuilder >> addCellColumn: aTableColumn [
+SpMorphicTableCellBuilder >> addCellColumn: aTableColumn [
 	
 	self 
 		addCell: (aTableColumn readObject: self item) 
@@ -41,54 +41,54 @@ MorphicTableCellBuilder >> addCellColumn: aTableColumn [
 ]
 
 { #category : #accessing }
-MorphicTableCellBuilder >> cell [
+SpMorphicTableCellBuilder >> cell [
 	^ cell
 ]
 
 { #category : #accessing }
-MorphicTableCellBuilder >> cell: anObject [
+SpMorphicTableCellBuilder >> cell: anObject [
 	cell := anObject
 ]
 
 { #category : #accessing }
-MorphicTableCellBuilder >> dataSource [
+SpMorphicTableCellBuilder >> dataSource [
 	^ dataSource
 ]
 
 { #category : #accessing }
-MorphicTableCellBuilder >> dataSource: anObject [
+SpMorphicTableCellBuilder >> dataSource: anObject [
 	dataSource := anObject
 ]
 
 { #category : #private }
-MorphicTableCellBuilder >> item [ 
+SpMorphicTableCellBuilder >> item [ 
 
 	^ self dataSource elementAt: self rowIndex
 ]
 
 { #category : #accessing }
-MorphicTableCellBuilder >> rowIndex [
+SpMorphicTableCellBuilder >> rowIndex [
 	^ rowIndex
 ]
 
 { #category : #accessing }
-MorphicTableCellBuilder >> rowIndex: anObject [
+SpMorphicTableCellBuilder >> rowIndex: anObject [
 	rowIndex := anObject
 ]
 
 { #category : #visiting }
-MorphicTableCellBuilder >> visitCheckboxColumn: aTableColumn [
+SpMorphicTableCellBuilder >> visitCheckboxColumn: aTableColumn [
 	self addCellColumn: aTableColumn
 ]
 
 { #category : #visiting }
-MorphicTableCellBuilder >> visitImageColumn: aTableColumn [
+SpMorphicTableCellBuilder >> visitImageColumn: aTableColumn [
 	
 	self addCellColumn: aTableColumn
 ]
 
 { #category : #visiting }
-MorphicTableCellBuilder >> visitIndexColumn: aTableColumn [
+SpMorphicTableCellBuilder >> visitIndexColumn: aTableColumn [
 
 	self 
 		addCell: self rowIndex 
@@ -96,7 +96,7 @@ MorphicTableCellBuilder >> visitIndexColumn: aTableColumn [
 ]
 
 { #category : #visiting }
-MorphicTableCellBuilder >> visitStringColumn: aTableColumn [
+SpMorphicTableCellBuilder >> visitStringColumn: aTableColumn [
 	
 	self addCellColumn: aTableColumn
 ]

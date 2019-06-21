@@ -27,7 +27,7 @@ SpMorphicPanedAdapter >> addConstraits: constraints toChild: childMorph [
 SpMorphicPanedAdapter >> addSplitterIn: aPanel for: childMorph [
 	
 	aPanel submorphs size = 1 ifFalse: [ ^ self ].
-	aPanel addMorphBack: (PanedResizerMorph perform: self selector)
+	aPanel addMorphBack: (SpPanedResizerMorph perform: self selector)
 ]
 
 { #category : #private }

@@ -1,5 +1,5 @@
 Class {
-	#name : #NotebookPageMorph,
+	#name : #SpNotebookPageMorph,
 	#superclass : #Morph,
 	#instVars : [
 		'actualPageMorph',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #accessing }
-NotebookPageMorph >> actualPageMorph [
+SpNotebookPageMorph >> actualPageMorph [
 
 	^ actualPageMorph ifNil: [
 		actualPageMorph := self lazyPageMorphCreation value
@@ -21,55 +21,55 @@ NotebookPageMorph >> actualPageMorph [
 ]
 
 { #category : #accessing }
-NotebookPageMorph >> actualPageMorph: anObject [
+SpNotebookPageMorph >> actualPageMorph: anObject [
 
 	actualPageMorph := anObject
 ]
 
 { #category : #testing }
-NotebookPageMorph >> isRendered [
+SpNotebookPageMorph >> isRendered [
 
 	^ actualPageMorph notNil
 ]
 
 { #category : #accessing }
-NotebookPageMorph >> labelMorph [
+SpNotebookPageMorph >> labelMorph [
 
 	^ labelMorph
 ]
 
 { #category : #accessing }
-NotebookPageMorph >> labelMorph: anObject [
+SpNotebookPageMorph >> labelMorph: anObject [
 
 	labelMorph := anObject
 ]
 
 { #category : #accessing }
-NotebookPageMorph >> lazyPageMorphCreation [
+SpNotebookPageMorph >> lazyPageMorphCreation [
 
 	^ lazyPageMorphCreation
 ]
 
 { #category : #accessing }
-NotebookPageMorph >> lazyPageMorphCreation: anObject [
+SpNotebookPageMorph >> lazyPageMorphCreation: anObject [
 
 	lazyPageMorphCreation := anObject
 ]
 
 { #category : #accessing }
-NotebookPageMorph >> model [
+SpNotebookPageMorph >> model [
 
 	^ model
 ]
 
 { #category : #accessing }
-NotebookPageMorph >> model: anObject [
+SpNotebookPageMorph >> model: anObject [
 
 	model := anObject
 ]
 
 { #category : #accessing }
-NotebookPageMorph >> reset [
+SpNotebookPageMorph >> reset [
 
 	self actualPageMorph: nil
 ]

@@ -3,8 +3,8 @@ I'm a property to define the font of a morph.
 Since fonts can ne affected by scale and others, I receive a provider (a block) and not a font directly.
 "
 Class {
-	#name : #MorphicStyleSheetFont,
-	#superclass : #MorphicStyleSheetProperty,
+	#name : #SpMorphicStyleSheetFont,
+	#superclass : #SpMorphicStyleSheetProperty,
 	#instVars : [
 		'providerBlock'
 	],
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-MorphicStyleSheetFont class >> provider: aBlock [
+SpMorphicStyleSheetFont class >> provider: aBlock [
 
 	^ self new 
 		provider: aBlock;
@@ -20,19 +20,19 @@ MorphicStyleSheetFont class >> provider: aBlock [
 ]
 
 { #category : #operations }
-MorphicStyleSheetFont >> applyTo: aMorph [
+SpMorphicStyleSheetFont >> applyTo: aMorph [
 
 	aMorph font: providerBlock value
 ]
 
 { #category : #accessing }
-MorphicStyleSheetFont >> name [
+SpMorphicStyleSheetFont >> name [
 
 	^ #font
 ]
 
 { #category : #accessing }
-MorphicStyleSheetFont >> provider: aBlock [
+SpMorphicStyleSheetFont >> provider: aBlock [
 
 	providerBlock := aBlock
 ]

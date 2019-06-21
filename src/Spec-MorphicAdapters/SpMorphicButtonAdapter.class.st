@@ -137,7 +137,7 @@ SpMorphicButtonAdapter >> setWidgetColor: button [
 								ifFalse: [ SolidFillStyle color: self color ] ].
 	
 		clickedColorBlock := [ :aButton | SolidFillStyle color: self color muchDarker ].
-		button theme: ((UIThemeDecorator theme: button theme)
+		button theme: ((SpUIThemeDecorator theme: button theme)
 							property: #buttonNormalFillStyleFor: returnsValueOf: normalColorBlock;
 							property: #buttonMouseOverFillStyleFor: returnsValueOf: normalColorBlock;
 							property: #buttonPressedFillStyleFor: returnsValueOf: clickedColorBlock;

@@ -9,7 +9,7 @@ Class {
 
 { #category : #factory }
 SpMorphicTickingWindowAdapter >> buildWidget [
-	^ TickingSpecWindow new
+	^ SpTickingSpecWindow new
 			model: self;
 			isResizeable: self isResizeable;
 			yourself

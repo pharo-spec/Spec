@@ -1,11 +1,11 @@
 Class {
-	#name : #NotebookTabSelectorMorph,
+	#name : #SpNotebookTabSelectorMorph,
 	#superclass : #TabSelectorMorph,
 	#category : #'Spec-MorphicAdapters-Notebook'
 }
 
 { #category : #operations }
-NotebookTabSelectorMorph >> removeTabIndex: anInteger [
+SpNotebookTabSelectorMorph >> removeTabIndex: anInteger [
 	"Remove the tab at the given index and
 	adjust any selected (next or first if was last)."
 

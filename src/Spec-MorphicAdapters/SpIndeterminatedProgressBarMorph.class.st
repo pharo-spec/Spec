@@ -19,7 +19,7 @@ Internal Representation and Key Implementation Points.
 
 "
 Class {
-	#name : #IndeterminatedProgressBarMorph,
+	#name : #SpIndeterminatedProgressBarMorph,
 	#superclass : #ProgressBarMorph,
 	#instVars : [
 		'oddPassage'
@@ -28,7 +28,7 @@ Class {
 }
 
 { #category : #example }
-IndeterminatedProgressBarMorph class >> example [
+SpIndeterminatedProgressBarMorph class >> example [
 	<script>
 	self new
 		extent: 200 @ 6;
@@ -36,7 +36,7 @@ IndeterminatedProgressBarMorph class >> example [
 ]
 
 { #category : #drawing }
-IndeterminatedProgressBarMorph >> drawOn: aCanvas [
+SpIndeterminatedProgressBarMorph >> drawOn: aCanvas [
 	"Draw the receiver with the fill style for the bar, clipping to the inner bounds."
 
 	| area |
@@ -51,21 +51,21 @@ IndeterminatedProgressBarMorph >> drawOn: aCanvas [
 ]
 
 { #category : #'stepping and presenter' }
-IndeterminatedProgressBarMorph >> indeterminateStepIncrease [
+SpIndeterminatedProgressBarMorph >> indeterminateStepIncrease [
 	"To get a feeling of recent design we use a progression with two timing and we switch the speed at each passage."
 
 	^ oddPassage ifTrue: [ 40 ] ifFalse: [ 15 ]
 ]
 
 { #category : #initialization }
-IndeterminatedProgressBarMorph >> initialize [
+SpIndeterminatedProgressBarMorph >> initialize [
 	self flag: #pharoTodo. "I think this class should be merged in ProgressBarMorph in Pharo 8."
 	super initialize.
 	oddPassage := true
 ]
 
 { #category : #'stepping and presenter' }
-IndeterminatedProgressBarMorph >> step [
+SpIndeterminatedProgressBarMorph >> step [
 	"At each step we are increasing the value of the progress bar. If we get at the end, we juts begin once again."
 
 	| range |
@@ -82,6 +82,6 @@ IndeterminatedProgressBarMorph >> step [
 ]
 
 { #category : #'stepping and presenter' }
-IndeterminatedProgressBarMorph >> stepTime [
+SpIndeterminatedProgressBarMorph >> stepTime [
 	^ 20
 ]

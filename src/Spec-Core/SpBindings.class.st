@@ -17,5 +17,5 @@ Class {
 
 { #category : #accessing }
 SpBindings >> default [
-	^ (self class environment at: #MorphicAdapterBindings) new
+	^ (self class environment at: #SpMorphicAdapterBindings) new
 ]

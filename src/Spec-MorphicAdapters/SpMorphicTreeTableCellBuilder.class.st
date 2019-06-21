@@ -2,8 +2,8 @@
 I build cells for a MorphicTreeTableAdapter.
 "
 Class {
-	#name : #MorphicTreeTableCellBuilder,
-	#superclass : #MorphicTableCellBuilder,
+	#name : #SpMorphicTreeTableCellBuilder,
+	#superclass : #SpMorphicTableCellBuilder,
 	#instVars : [
 		'item'
 	],
@@ -11,13 +11,13 @@ Class {
 }
 
 { #category : #accessing }
-MorphicTreeTableCellBuilder >> item [
+SpMorphicTreeTableCellBuilder >> item [
 	
 	^ item
 ]
 
 { #category : #accessing }
-MorphicTreeTableCellBuilder >> item: anObject [
+SpMorphicTreeTableCellBuilder >> item: anObject [
 
 	item := anObject
 ]
