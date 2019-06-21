@@ -6,5 +6,5 @@ Class {
 
 { #category : #running }
 SpDynamicWidgetChangeTest >> classToTest [
-	^ DynamicWidgetChange
+	^ SpDynamicWidgetChange
 ]

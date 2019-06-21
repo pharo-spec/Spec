@@ -4,7 +4,7 @@ I am a dummy proto to see how easy it is to replace a subwidget with another one
 slef example
 "
 Class {
-	#name : #DynamicWidgetChange,
+	#name : #SpDynamicWidgetChange,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'boolean',
@@ -15,7 +15,7 @@ Class {
 }
 
 { #category : #specs }
-DynamicWidgetChange class >> defaultSpec [
+SpDynamicWidgetChange class >> defaultSpec [
 	<spec>
 	
 	^ SpLayout composed
@@ -25,23 +25,23 @@ DynamicWidgetChange class >> defaultSpec [
 ]
 
 { #category : #example }
-DynamicWidgetChange class >> example [
+SpDynamicWidgetChange class >> example [
 	<sampleInstance>
 	^ self new openWithSpec
 ]
 
 { #category : #accessing }
-DynamicWidgetChange >> bottom [
+SpDynamicWidgetChange >> bottom [
 	^ bottom
 ]
 
 { #category : #accessing }
-DynamicWidgetChange >> button [
+SpDynamicWidgetChange >> button [
 	^ button
 ]
 
 { #category : #private }
-DynamicWidgetChange >> change [
+SpDynamicWidgetChange >> change [
 
 	boolean := boolean not.
 
@@ -56,7 +56,7 @@ DynamicWidgetChange >> change [
 ]
 
 { #category : #private }
-DynamicWidgetChange >> changeToButton [
+SpDynamicWidgetChange >> changeToButton [
 
 	self instantiatePresenters: 
 		#( bottom #SpButtonPresenter ).
@@ -66,7 +66,7 @@ DynamicWidgetChange >> changeToButton [
 ]
 
 { #category : #private }
-DynamicWidgetChange >> changeToList [
+SpDynamicWidgetChange >> changeToList [
 
 	self instantiatePresenters: 
 		#( bottom #SpListPresenter ).
@@ -77,7 +77,7 @@ DynamicWidgetChange >> changeToList [
 ]
 
 { #category : #initialization }
-DynamicWidgetChange >> initialize [
+SpDynamicWidgetChange >> initialize [
 
 	super initialize.
 
@@ -85,7 +85,7 @@ DynamicWidgetChange >> initialize [
 ]
 
 { #category : #initialization }
-DynamicWidgetChange >> initializeWidgets [
+SpDynamicWidgetChange >> initializeWidgets [
 
 	button := self newButton.
 	bottom := self newList.

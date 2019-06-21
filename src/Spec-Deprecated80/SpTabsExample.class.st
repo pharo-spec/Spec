@@ -43,7 +43,7 @@ SpTabsExample >> browserTab [
 		label: 'Browser';
 		icon: (self iconNamed: #nautilusIcon);
 		presenter:
-			(ClassMethodBrowser new
+			(SpClassMethodBrowser new
 				classes: Smalltalk allClasses;
 				yourself);
 		yourself
@@ -54,7 +54,7 @@ SpTabsExample >> dynamicTab [
 	^ self newTab
 		label: 'Dynamic';
 		icon: (self iconNamed: #nautilusIcon);
-		presenter: DynamicWidgetChange new;
+		presenter: SpDynamicWidgetChange new;
 		yourself
 ]
 

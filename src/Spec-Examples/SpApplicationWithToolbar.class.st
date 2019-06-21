@@ -4,7 +4,7 @@ I am a simple example showing how to use a menu model to have a menu toolbar.
 self example
 "
 Class {
-	#name : #ApplicationWithToolbar,
+	#name : #SpApplicationWithToolbar,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'menu',
@@ -14,7 +14,7 @@ Class {
 }
 
 { #category : #specs }
-ApplicationWithToolbar class >> defaultSpec [
+SpApplicationWithToolbar class >> defaultSpec [
 	<spec: #default>
 	
 	^ SpLayout composed
@@ -26,13 +26,13 @@ ApplicationWithToolbar class >> defaultSpec [
 ]
 
 { #category : #example }
-ApplicationWithToolbar class >> example [
+SpApplicationWithToolbar class >> example [
 	<sampleInstance>
 	^ self new openWithSpec
 ]
 
 { #category : #initialization }
-ApplicationWithToolbar >> addItemTo: aGroup [
+SpApplicationWithToolbar >> addItemTo: aGroup [
 	aGroup
 		addItem: [ :item | 
 			item
@@ -46,7 +46,7 @@ ApplicationWithToolbar >> addItemTo: aGroup [
 ]
 
 { #category : #initialization }
-ApplicationWithToolbar >> initializeWidgets [
+SpApplicationWithToolbar >> initializeWidgets [
 	menu := self newMenuBar
 		addGroup: [ :group | 
 			group
@@ -105,12 +105,12 @@ ApplicationWithToolbar >> initializeWidgets [
 ]
 
 { #category : #accessing }
-ApplicationWithToolbar >> menu [
+SpApplicationWithToolbar >> menu [
 	^ menu
 ]
 
 { #category : #initialization }
-ApplicationWithToolbar >> subMenu [
+SpApplicationWithToolbar >> subMenu [
 	^ self newMenu
 		addItem: [ :item | 
 			item
@@ -140,12 +140,12 @@ ApplicationWithToolbar >> subMenu [
 ]
 
 { #category : #accessing }
-ApplicationWithToolbar >> text [
+SpApplicationWithToolbar >> text [
 	^ text
 ]
 
 { #category : #api }
-ApplicationWithToolbar >> title [
+SpApplicationWithToolbar >> title [
 
 	^ 'Text editor'
 ]

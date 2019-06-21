@@ -6,5 +6,5 @@ Class {
 
 { #category : #running }
 SpApplicationWithToolbarTest >> classToTest [
-	^ ApplicationWithToolbar
+	^ SpApplicationWithToolbar
 ]

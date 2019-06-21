@@ -32,14 +32,14 @@ SpDemoNotebookPresenter >> browserPage [
 	^ SpNotebookPage
 		title: 'Browser'
 		icon: (self iconNamed: #nautilusIcon)
-		provider: [ ClassMethodBrowser new
+		provider: [ SpClassMethodBrowser new
 				classes: self class environment allClasses;
 				yourself ]
 ]
 
 { #category : #pages }
 SpDemoNotebookPresenter >> dynamicPage [
-	^ SpNotebookPage title: 'Dynamic' icon: (self iconNamed: #nautilusIcon) provider: [ DynamicWidgetChange new ]
+	^ SpNotebookPage title: 'Dynamic' icon: (self iconNamed: #nautilusIcon) provider: [ SpDynamicWidgetChange new ]
 ]
 
 { #category : #initialization }

@@ -4,7 +4,7 @@ A MethodBrowser is a simple browser using Spec to display a list of methods and 
 self example
 "
 Class {
-	#name : #MethodBrowser,
+	#name : #SpMethodBrowser,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'listModel',
@@ -15,7 +15,7 @@ Class {
 }
 
 { #category : #specs }
-MethodBrowser class >> defaultSpec [
+SpMethodBrowser class >> defaultSpec [
 	<spec>
 	| delta |
 	delta := 15.
@@ -27,7 +27,7 @@ MethodBrowser class >> defaultSpec [
 ]
 
 { #category : #specs }
-MethodBrowser class >> defaultSpec2 [
+SpMethodBrowser class >> defaultSpec2 [
 ^{ #Panel.
 		#changeTableLayout.
 		#listDirection:. 	#bottomToTop.
@@ -38,41 +38,41 @@ MethodBrowser class >> defaultSpec2 [
 ]
 
 { #category : #example }
-MethodBrowser class >> example [
+SpMethodBrowser class >> example [
 	<sampleInstance>
 	| example |
-	example := MethodBrowser new.
+	example := SpMethodBrowser new.
 	example methods: Object methods;
 	 openWithSpec.
 	^example
 ]
 
 { #category : #specs }
-MethodBrowser class >> title [
+SpMethodBrowser class >> title [
 
 	^ 'Method Browser'
 ]
 
 { #category : #accessing }
-MethodBrowser >> acceptBlock: aBlock [
+SpMethodBrowser >> acceptBlock: aBlock [
 
 	textModel acceptBlock: aBlock
 ]
 
 { #category : #accessing }
-MethodBrowser >> action [
+SpMethodBrowser >> action [
 
 	^ textModel actionToPerformHolder content
 ]
 
 { #category : #api }
-MethodBrowser >> displayBlock: aBlock [
+SpMethodBrowser >> displayBlock: aBlock [
 
 	listModel displayBlock: aBlock
 ]
 
 { #category : #initialization }
-MethodBrowser >> initializePresenter [
+SpMethodBrowser >> initializePresenter [
 	listModel
 		whenSelectionChangedDo: [ :selection | 
 			selection isEmpty
@@ -90,7 +90,7 @@ MethodBrowser >> initializePresenter [
 ]
 
 { #category : #initialization }
-MethodBrowser >> initializeWidgets [
+SpMethodBrowser >> initializeWidgets [
 	listModel := self instantiate: SpListPresenter .
 	textModel := self newCode.
 	toolbarModel := self instantiate: SpMethodToolbar.
@@ -101,44 +101,44 @@ MethodBrowser >> initializeWidgets [
 ]
 
 { #category : #accessing }
-MethodBrowser >> listModel [
+SpMethodBrowser >> listModel [
 
 	^ listModel
 ]
 
 { #category : #api }
-MethodBrowser >> methods: aList [
+SpMethodBrowser >> methods: aList [
 
 	"Here I reroute my entry point to the list model's entry point"
 	self listModel items: aList
 ]
 
 { #category : #api }
-MethodBrowser >> sortingBlock: aBlock [ 
+SpMethodBrowser >> sortingBlock: aBlock [ 
 
 	listModel sortingBlock: aBlock 
 ]
 
 { #category : #focus }
-MethodBrowser >> takeKeyboardFocus [
+SpMethodBrowser >> takeKeyboardFocus [
 
 	^ self listModel takeKeyboardFocus
 ]
 
 { #category : #accessing }
-MethodBrowser >> textModel [
+SpMethodBrowser >> textModel [
 
 	^ textModel
 ]
 
 { #category : #accessing }
-MethodBrowser >> toolbarModel [
+SpMethodBrowser >> toolbarModel [
 
 	^ toolbarModel
 ]
 
 { #category : #api }
-MethodBrowser >> wrapWith: aBlock [
+SpMethodBrowser >> wrapWith: aBlock [
 
 	listModel displayBlock: aBlock
 ]

@@ -4,7 +4,7 @@ A ClassMethodBrowser is a simple browser using spec and reusing MethodBrowser to
 self example
 "
 Class {
-	#name : #ClassMethodBrowser,
+	#name : #SpClassMethodBrowser,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'listModel',
@@ -14,7 +14,7 @@ Class {
 }
 
 { #category : #specs }
-ClassMethodBrowser class >> defaultSpec [
+SpClassMethodBrowser class >> defaultSpec [
 <spec>
 	^ SpLayout composed
 		newRow: [:row | row
@@ -24,7 +24,7 @@ ClassMethodBrowser class >> defaultSpec [
 ]
 
 { #category : #specs }
-ClassMethodBrowser class >> defaultSpec2 [
+SpClassMethodBrowser class >> defaultSpec2 [
 <spec: #default>
 
 	^ SpLayout composed
@@ -39,10 +39,10 @@ ClassMethodBrowser class >> defaultSpec2 [
 ]
 
 { #category : #example }
-ClassMethodBrowser class >> example [
+SpClassMethodBrowser class >> example [
 	<sampleInstance>
 	| example |
-	example := ClassMethodBrowser new.
+	example := SpClassMethodBrowser new.
 	example
 		classes: Smalltalk allClasses;
 		openWithSpec.
@@ -50,19 +50,19 @@ ClassMethodBrowser class >> example [
 ]
 
 { #category : #specs }
-ClassMethodBrowser class >> title [
+SpClassMethodBrowser class >> title [
 
 	^ 'Class Method Browser'
 ]
 
 { #category : #api }
-ClassMethodBrowser >> classes: aList [
+SpClassMethodBrowser >> classes: aList [
 
 	self listModel items: aList
 ]
 
 { #category : #initialization }
-ClassMethodBrowser >> initializePresenter [
+SpClassMethodBrowser >> initializePresenter [
 	listModel
 		whenSelectionChangedDo: [ :selection | 
 			selection isEmpty
@@ -74,9 +74,9 @@ ClassMethodBrowser >> initializePresenter [
 ]
 
 { #category : #initialization }
-ClassMethodBrowser >> initializeWidgets [
+SpClassMethodBrowser >> initializeWidgets [
 	listModel := self instantiate:  SpListPresenter .
-	methodModel := self instantiate: MethodBrowser.
+	methodModel := self instantiate: SpMethodBrowser.
 	self focusOrder
 		add: listModel;
 		add: methodModel.
@@ -84,13 +84,13 @@ ClassMethodBrowser >> initializeWidgets [
 ]
 
 { #category : #accessing }
-ClassMethodBrowser >> listModel [
+SpClassMethodBrowser >> listModel [
 
 	^ listModel
 ]
 
 { #category : #accessing }
-ClassMethodBrowser >> methodModel [
+SpClassMethodBrowser >> methodModel [
 
 	^ methodModel
 ]

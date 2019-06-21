@@ -6,5 +6,5 @@ Class {
 
 { #category : #running }
 SpMethodBrowserTest >> classToTest [
-	^ MethodBrowser
+	^ SpMethodBrowser
 ]
