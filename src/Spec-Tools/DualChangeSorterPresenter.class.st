@@ -6,7 +6,7 @@ ChangeSorterModel defines the application logic.
 
 "
 Class {
-	#name : #SpDualChangeSorterPresenter,
+	#name : #DualChangeSorterPresenter,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'model',
@@ -18,7 +18,7 @@ Class {
 }
 
 { #category : #specs }
-SpDualChangeSorterPresenter class >> defaultSpec [
+DualChangeSorterPresenter class >> defaultSpec [
 	<spec>
 	^ SpPanedLayout newHorizontal
 		add: #changeSorterLeft;
@@ -27,7 +27,7 @@ SpDualChangeSorterPresenter class >> defaultSpec [
 ]
 
 { #category : #menu }
-SpDualChangeSorterPresenter class >> menuCommandOn: aBuilder [
+DualChangeSorterPresenter class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder group: #SystemChanges)
 		parent: #Tools;
@@ -40,29 +40,29 @@ SpDualChangeSorterPresenter class >> menuCommandOn: aBuilder [
 ]
 
 { #category : #specs }
-SpDualChangeSorterPresenter class >> open [
+DualChangeSorterPresenter class >> open [
 	self new openWithSpec
 ]
 
 { #category : #'tools-registry' }
-SpDualChangeSorterPresenter class >> registerToolsOn: registry [
+DualChangeSorterPresenter class >> registerToolsOn: registry [
 
 	"Add ourselves to registry. See [Smalltalk tools]" 
 	registry register: self as: #changeSorter
 ]
 
 { #category : #icons }
-SpDualChangeSorterPresenter class >> taskbarIconName [
+DualChangeSorterPresenter class >> taskbarIconName [
 	^ #changeSorterIcon
 ]
 
 { #category : #specs }
-SpDualChangeSorterPresenter class >> title [
+DualChangeSorterPresenter class >> title [
 	^ 'Dual Change Sorter'
 ]
 
 { #category : #menu }
-SpDualChangeSorterPresenter >> changeSetMenuFrom: sourcePanel to: destinationPanel [
+DualChangeSorterPresenter >> changeSetMenuFrom: sourcePanel to: destinationPanel [
 	"Fill aMenu with items appropriate for the changes list"
 
 	^ sourcePanel changeSetMenu
@@ -86,19 +86,19 @@ SpDualChangeSorterPresenter >> changeSetMenuFrom: sourcePanel to: destinationPan
 ]
 
 { #category : #accessing }
-SpDualChangeSorterPresenter >> changeSorterLeft [
+DualChangeSorterPresenter >> changeSorterLeft [
 
 	^ changeSorterLeft
 ]
 
 { #category : #accessing }
-SpDualChangeSorterPresenter >> changeSorterRight [
+DualChangeSorterPresenter >> changeSorterRight [
 
 	^ changeSorterRight
 ]
 
 { #category : #'menu - change set' }
-SpDualChangeSorterPresenter >> checkThatSidesDiffer: escapeBlock [
+DualChangeSorterPresenter >> checkThatSidesDiffer: escapeBlock [
 	"If the change sets on both sides of the dual sorter are the same, put up an error message and escape via escapeBlock, else proceed happily"
 
 	changeSorterLeft selectedChangeSet == changeSorterRight selectedChangeSet
@@ -113,7 +113,7 @@ be the same.'.
 ]
 
 { #category : #menu }
-SpDualChangeSorterPresenter >> classMenuFrom: sourcePanel to: destinationPanel [
+DualChangeSorterPresenter >> classMenuFrom: sourcePanel to: destinationPanel [
 	"Fill aMenu with items appropriate for the class list"
 
 	^ sourcePanel classMenu
@@ -131,7 +131,7 @@ SpDualChangeSorterPresenter >> classMenuFrom: sourcePanel to: destinationPanel [
 ]
 
 { #category : #'menu - change set' }
-SpDualChangeSorterPresenter >> copyAllFrom: src to: dest [
+DualChangeSorterPresenter >> copyAllFrom: src to: dest [
 
 	self checkThatSidesDiffer: [ ^ self ].
 	self model copyAllChangesFrom: (src selectedChangeSet) to: (dest selectedChangeSet).
@@ -139,7 +139,7 @@ SpDualChangeSorterPresenter >> copyAllFrom: src to: dest [
 ]
 
 { #category : #'menu - class' }
-SpDualChangeSorterPresenter >> copyClassFrom: src to: dest [
+DualChangeSorterPresenter >> copyClassFrom: src to: dest [
 	"Place these changes in the other changeSet also"
 
 	| otherChangeSet |
@@ -154,7 +154,7 @@ SpDualChangeSorterPresenter >> copyClassFrom: src to: dest [
 ]
 
 { #category : #'menu - method' }
-SpDualChangeSorterPresenter >> copyMethodFrom: src to: dest [
+DualChangeSorterPresenter >> copyMethodFrom: src to: dest [
 	"Place this change in the other changeSet also"	
 	| other |
 	
@@ -174,7 +174,7 @@ SpDualChangeSorterPresenter >> copyMethodFrom: src to: dest [
 ]
 
 { #category : #initialization }
-SpDualChangeSorterPresenter >> initialize [
+DualChangeSorterPresenter >> initialize [
 
 	super initialize.
 	model := ChangeSorterModel new.
@@ -186,7 +186,7 @@ SpDualChangeSorterPresenter >> initialize [
 ]
 
 { #category : #initialization }
-SpDualChangeSorterPresenter >> initializePresenter [
+DualChangeSorterPresenter >> initializePresenter [
 
 	changeSorterLeft 	whenChangesListChanges: [ self refeshedChangeSet: changeSorterRight ].
 	changeSorterRight	whenChangesListChanges: [ self refeshedChangeSet: changeSorterLeft ].
@@ -195,10 +195,10 @@ SpDualChangeSorterPresenter >> initializePresenter [
 ]
 
 { #category : #initialization }
-SpDualChangeSorterPresenter >> initializeWidgets [
+DualChangeSorterPresenter >> initializeWidgets [
 
-	changeSorterLeft := self instantiate: SpChangeSorterPresenter.
-	changeSorterRight := self instantiate: SpChangeSorterPresenter.
+	changeSorterLeft := self instantiate: ChangeSorterPresenter.
+	changeSorterRight := self instantiate: ChangeSorterPresenter.
 		
 	self menusRegistration.
 	self shortcutsRegistration.
@@ -206,27 +206,27 @@ SpDualChangeSorterPresenter >> initializeWidgets [
 ]
 
 { #category : #initialization }
-SpDualChangeSorterPresenter >> initializeWindow: aWindowPresenter [
+DualChangeSorterPresenter >> initializeWindow: aWindowPresenter [
 	aWindowPresenter initialExtent: 900 @ 530.
 	aWindowPresenter title: self title
 ]
 
 { #category : #initialization }
-SpDualChangeSorterPresenter >> menusRegistration [
+DualChangeSorterPresenter >> menusRegistration [
 
 	self menusRegistrationFrom: changeSorterLeft to: changeSorterRight.
 	self menusRegistrationFrom: changeSorterRight to: changeSorterLeft
 ]
 
 { #category : #menu }
-SpDualChangeSorterPresenter >> menusRegistrationFrom: src to: dest [
+DualChangeSorterPresenter >> menusRegistrationFrom: src to: dest [
 	src changesMenu: (self changeSetMenuFrom: src to: dest).
 	src classesMenu: (self classMenuFrom: src to: dest).
 	src methodsMenu: (self messageMenuFrom: src to: dest)
 ]
 
 { #category : #menu }
-SpDualChangeSorterPresenter >> messageMenuFrom: sourcePanel to: destinationPanel [
+DualChangeSorterPresenter >> messageMenuFrom: sourcePanel to: destinationPanel [
 	"Fill aMenu with items appropriate for the message list; could be for a single or double changeSorter"
 
 	^ sourcePanel messageMenu
@@ -244,13 +244,13 @@ SpDualChangeSorterPresenter >> messageMenuFrom: sourcePanel to: destinationPanel
 ]
 
 { #category : #accessing }
-SpDualChangeSorterPresenter >> model [
+DualChangeSorterPresenter >> model [
 
 	^ model
 ]
 
 { #category : #'menu - class' }
-SpDualChangeSorterPresenter >> moveClassFrom: src to: dest [
+DualChangeSorterPresenter >> moveClassFrom: src to: dest [
 
 	self checkThatSidesDiffer: [^ self].
 	(self okToChange and: [ src selectedClass notNil]) ifFalse: [ ^ self ].
@@ -260,7 +260,7 @@ SpDualChangeSorterPresenter >> moveClassFrom: src to: dest [
 ]
 
 { #category : #'menu - method' }
-SpDualChangeSorterPresenter >> moveMethodFrom: src to: dest [
+DualChangeSorterPresenter >> moveMethodFrom: src to: dest [
 
 	self copyMethodFrom: src to: dest.
 	src forgetMessage.
@@ -268,7 +268,7 @@ SpDualChangeSorterPresenter >> moveMethodFrom: src to: dest [
 ]
 
 { #category : #event }
-SpDualChangeSorterPresenter >> refeshedChangeSet: changeSet [
+DualChangeSorterPresenter >> refeshedChangeSet: changeSet [
 	isRefreshing
 		ifTrue: [ ^ self ].
 	isRefreshing := true.
@@ -277,7 +277,7 @@ SpDualChangeSorterPresenter >> refeshedChangeSet: changeSet [
 ]
 
 { #category : #initialization }
-SpDualChangeSorterPresenter >> setFocusOrder [
+DualChangeSorterPresenter >> setFocusOrder [
 
 	self focusOrder
 		add: changeSorterLeft;
@@ -285,21 +285,21 @@ SpDualChangeSorterPresenter >> setFocusOrder [
 ]
 
 { #category : #initialization }
-SpDualChangeSorterPresenter >> shortcutsRegistration [
+DualChangeSorterPresenter >> shortcutsRegistration [
 
 	self shortcutsRegistrationFrom: changeSorterLeft to: changeSorterRight.
 	self shortcutsRegistrationFrom: changeSorterRight to: changeSorterLeft.
 ]
 
 { #category : #initialization }
-SpDualChangeSorterPresenter >> shortcutsRegistrationFrom: src to: dest [
+DualChangeSorterPresenter >> shortcutsRegistrationFrom: src to: dest [
 	
 	src changesPresenterOn: $c meta do: [ self copyAllFrom: src to: dest ].
 	src changesPresenterOn: $- meta do: [ self subtractFrom: src to: dest ]. 
 ]
 
 { #category : #'menu - change set' }
-SpDualChangeSorterPresenter >> submergeFrom: src into: dest [
+DualChangeSorterPresenter >> submergeFrom: src into: dest [
 	"Copy the contents of the receiver to the other side, then remove the receiver -- all after checking that all is well."
 	| source destination index |
 
@@ -314,7 +314,7 @@ SpDualChangeSorterPresenter >> submergeFrom: src into: dest [
 ]
 
 { #category : #'menu - change set' }
-SpDualChangeSorterPresenter >> subtractFrom: src to: dest [
+DualChangeSorterPresenter >> subtractFrom: src to: dest [
 	"Subtract the changes found on the other side from the requesting side."
 	| source destination |
 	source := src selectedChangeSet.
@@ -328,11 +328,11 @@ SpDualChangeSorterPresenter >> subtractFrom: src to: dest [
 ]
 
 { #category : #'api-window' }
-SpDualChangeSorterPresenter >> title [
+DualChangeSorterPresenter >> title [
 	^ String streamContents: [ :stream | stream << self class title << ' on: ' << self model currentChangeSet name ]
 ]
 
 { #category : #api }
-SpDualChangeSorterPresenter >> updateTitle [
+DualChangeSorterPresenter >> updateTitle [
 	self window title: self title
 ]

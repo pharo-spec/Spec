@@ -1,6 +1,6 @@
 Class {
 	#name : #ChangeSorterApplication,
-	#superclass : #SpChangeSorterPresenter,
+	#superclass : #ChangeSorterPresenter,
 	#category : #'Spec-Tools-ChangeSorter'
 }
 
