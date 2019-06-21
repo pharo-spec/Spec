@@ -55,7 +55,7 @@ SpInterpreter >> computeSpecFrom: aSymbol [
 	res := (aSymbol isSymbol and: [ (self isPresenterSymbol: aSymbol) not ])
 		ifTrue: [ | result |
 			result := self convertSymbolOfClassToInstance: aSymbol.
-			result isSpecContainer
+			(result isKindOf: SpContainerPresenter) "I take the liberty to add this ugly code since we want to remove it and it simplify things for Spec 2 migration"
 				ifTrue: [ result := self getAdaptorWithDefaultSpecOf: result.
 					self presenter addDependent: result ].
 			result ]
@@ -81,7 +81,7 @@ SpInterpreter >> convertSymbolOfClassToInstance: aSymbol [
 SpInterpreter >> extractArrayToInterpretFrom: aFragment [
 	arrayToInterpret := aFragment.
 
-	aFragment isSpecLayout
+	aFragment isSpLayout
 		ifTrue: [ arrayToInterpret := aFragment asArray.
 			selector := aFragment selector ].
 

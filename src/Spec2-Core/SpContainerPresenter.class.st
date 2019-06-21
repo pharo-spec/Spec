@@ -29,8 +29,3 @@ SpContainerPresenter >> eventKeyStrokesForPreviousFocus [
 
 	^ keyStrokesForPreviousFocusHolder value
 ]
-
-{ #category : #testing }
-SpContainerPresenter >> isSpecContainer [
-	^ true
-]

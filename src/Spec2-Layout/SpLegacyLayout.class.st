@@ -21,7 +21,7 @@ SpLegacyLayout >> buildAdapterFor: aPresenter bindings: adapterBindings [
 ]
 
 { #category : #testing }
-SpLegacyLayout >> isSpecLayout [
+SpLegacyLayout >> isSpLayout [
 
 	^ true
 ]

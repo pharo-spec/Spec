@@ -32,7 +32,7 @@ SpComposablePresenterWithModel >> model: aDomainObject [
 
 	"aDomainObject can be regular object, a value holder (NewValueHolder) or an instance of Model"
 	
-	(aDomainObject isAnnouncingObject not and: [ self announcingObject isValueHolder ])
+	(aDomainObject isSpAnnouncingObject not and: [ self announcingObject isValueHolder ])
 		ifTrue: [ self announcingObject value: aDomainObject ]
 		ifFalse: [ self setAnnouncingObject: aDomainObject ]
 	
@@ -47,7 +47,7 @@ SpComposablePresenterWithModel >> modelChanged [
 { #category : #'accessing - private' }
 SpComposablePresenterWithModel >> setAnnouncingObject: aDomainObject [
 
-	announcingObject := aDomainObject wrappedInValueHolderIfNeeded.
+	announcingObject := aDomainObject isSpAnnouncingObject ifFalse: [ aDomainObject asValueHolder ].
 	announcingObject whenChangedDo: [ self modelChanged ].
 	
 ]

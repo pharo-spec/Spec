@@ -75,7 +75,7 @@ SpExecutableLayout >> isExecutable [
 ]
 
 { #category : #testing }
-SpExecutableLayout >> isSpecLayout [
+SpExecutableLayout >> isSpLayout [
 
 	^ true
 ]
@@ -95,7 +95,7 @@ SpExecutableLayout >> resolvePresenter: presenterNameOrLayout model: aModel bind
 			ifNil: [ self error: 'You presenter named "', presenterNameOrLayout , '" from ', aModel printString ,' was not initialized.' ] ].
 	
 	"I receive a layout: dig inside."
-	presenterNameOrLayout isSpecLayout ifTrue: [ 
+	presenterNameOrLayout isSpLayout ifTrue: [ 
 		^ presenterNameOrLayout buildAdapterFor: aModel bindings: bindings ].
 	
 	"I receive an arbitrary object (needs to understand #asPresenter)"

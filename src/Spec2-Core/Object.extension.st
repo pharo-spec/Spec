@@ -1,24 +1,13 @@
 Extension { #name : #Object }
 
 { #category : #'*Spec2-Core' }
-Object >> isAnnouncingObject [
+Object >> isSpAnnouncingObject [
 
 	^ false
 ]
 
 { #category : #'*Spec2-Core' }
-Object >> isSpecContainer [
-	^ false
-]
-
-{ #category : #'*Spec2-Core' }
-Object >> isSpecLayout [
+Object >> isSpLayout [
 
 	^ false
-]
-
-{ #category : #'*Spec2-Core' }
-Object >> wrappedInValueHolderIfNeeded [
-
-	^ self asValueHolder
 ]
