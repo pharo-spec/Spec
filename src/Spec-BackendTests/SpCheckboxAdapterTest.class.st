@@ -1,6 +1,6 @@
 Class {
 	#name : #SpCheckboxAdapterTest,
-	#superclass : #AbstractWidgetAdapterTestCase,
+	#superclass : #SpAbstractWidgetAdapterTestCase,
 	#category : #'Spec-BackendTests'
 }
 

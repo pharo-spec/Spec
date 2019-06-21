@@ -1,6 +1,6 @@
 Class {
 	#name : #SpExecutableLayoutTest,
-	#superclass : #AbstractLayoutTestCase,
+	#superclass : #SpAbstractLayoutTestCase,
 	#category : #'Spec-BackendTests-Layout'
 }
 

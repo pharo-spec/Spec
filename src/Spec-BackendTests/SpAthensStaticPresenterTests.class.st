@@ -1,6 +1,6 @@
 Class {
 	#name : #SpAthensStaticPresenterTests,
-	#superclass : #AbstractWidgetAdapterTestCase,
+	#superclass : #SpAbstractWidgetAdapterTestCase,
 	#category : #'Spec-BackendTests'
 }
 

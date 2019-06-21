@@ -1,6 +1,6 @@
 Class {
 	#name : #SpRadioButtonAdapterTest,
-	#superclass : #AbstractWidgetAdapterTestCase,
+	#superclass : #SpAbstractWidgetAdapterTestCase,
 	#category : #'Spec-BackendTests'
 }
 

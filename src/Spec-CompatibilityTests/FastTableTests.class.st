@@ -1,6 +1,6 @@
 Class {
 	#name : #FastTableTests,
-	#superclass : #MorphicAdapterTestCase,
+	#superclass : #SpMorphicAdapterTestCase,
 	#category : #'Spec-CompatibilityTests'
 }
 

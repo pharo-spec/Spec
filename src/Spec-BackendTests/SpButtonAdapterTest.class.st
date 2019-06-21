@@ -1,6 +1,6 @@
 Class {
 	#name : #SpButtonAdapterTest,
-	#superclass : #AbstractWidgetAdapterTestCase,
+	#superclass : #SpAbstractWidgetAdapterTestCase,
 	#category : #'Spec-BackendTests'
 }
 

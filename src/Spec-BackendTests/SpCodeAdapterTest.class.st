@@ -8,7 +8,7 @@ Class {
 SpCodeAdapterTest >> assertText: text at: index isStyle: styleName [
 	| tag |
 
-	tag := CodeStyleForTest new.
+	tag := SpCodeStyleForTest new.
 	text attributesAt: index do: [ :each | 
 		self fillTag: tag withAttribute: each ].
 	self assert: tag equals: (self style: styleName)
@@ -38,7 +38,7 @@ SpCodeAdapterTest >> fillTag: tag withAttribute: attr [
 SpCodeAdapterTest >> style: aSymbol [ 
 	| tag |
 	
-	tag := CodeStyleForTest new.
+	tag := SpCodeStyleForTest new.
 	self styleTableAt: aSymbol do: [ :each |
 		self fillTag: tag withAttribute: each ]. 
 	

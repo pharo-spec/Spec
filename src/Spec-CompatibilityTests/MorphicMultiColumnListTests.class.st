@@ -1,6 +1,6 @@
 Class {
 	#name : #MorphicMultiColumnListTests,
-	#superclass : #MorphicAdapterTestCase,
+	#superclass : #SpMorphicAdapterTestCase,
 	#category : #'Spec-CompatibilityTests'
 }
 
