@@ -226,13 +226,6 @@ SpMorphicWindowAdapter >> open [
 ]
 
 { #category : #protocol }
-SpMorphicWindowAdapter >> openModal: aWindow [
-
-	^ self widget 
-		ifNotNil: [:w | w openModal: aWindow asWidget ].
-]
-
-{ #category : #protocol }
 SpMorphicWindowAdapter >> rebuildWithSpecLayout: aSpec [
 	| sub |
 	

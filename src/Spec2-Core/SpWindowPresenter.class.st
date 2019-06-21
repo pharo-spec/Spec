@@ -361,12 +361,6 @@ SpWindowPresenter >> okToChange [
 	^ self canDiscardEdits
 ]
 
-{ #category : #api }
-SpWindowPresenter >> openModal: aWindow [ 
-
-	self changed: #openModal: with: { aWindow }
-]
-
 { #category : #private }
 SpWindowPresenter >> openWithSpecLayout: aSpec [
 

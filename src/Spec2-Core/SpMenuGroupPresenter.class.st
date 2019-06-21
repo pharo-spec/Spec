@@ -68,7 +68,7 @@ SpMenuGroupPresenter >> buildWithSpecLayout: aSpecLayout [
 	"Build the widget using the spec name provided as argument"
 	| widget|
 	adapter := self basicBuildAdapterWithSpecLayout: aSpecLayout.
-	widget := adapter asWidget.
+	widget := adapter widget.
 	self announce: (SpWidgetBuilt model: self widget: widget).
 	^ widget
 ]

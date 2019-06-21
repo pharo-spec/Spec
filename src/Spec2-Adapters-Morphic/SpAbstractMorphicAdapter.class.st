@@ -46,9 +46,8 @@ SpAbstractMorphicAdapter >> adapt: aPresenter [
 ]
 
 { #category : #protocol }
-SpAbstractMorphicAdapter >> add: aWidget [
-	
-	self widgetDo: [ :w | w ensureLayoutAndAddMorph: aWidget asWidget ]
+SpAbstractMorphicAdapter >> add: anAdapter [
+	self widgetDo: [ :w | w ensureLayoutAndAddMorph: anAdapter widget ]
 ]
 
 { #category : #initialization }

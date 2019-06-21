@@ -69,12 +69,6 @@ SpAbstractAdapter >> add: aWidget [
 	self subclassResponsibility
 ]
 
-{ #category : #protocol }
-SpAbstractAdapter >> asWidget [
-
-	^ self widget
-]
-
 { #category : #factory }
 SpAbstractAdapter >> buildWidget [
 

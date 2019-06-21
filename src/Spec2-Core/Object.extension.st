@@ -1,12 +1,6 @@
 Extension { #name : #Object }
 
 { #category : #'*Spec2-Core' }
-Object >> asWidget [
-
-	^ self
-]
-
-{ #category : #'*Spec2-Core' }
 Object >> isAnnouncingObject [
 
 	^ false
