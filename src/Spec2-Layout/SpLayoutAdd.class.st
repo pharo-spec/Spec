@@ -17,7 +17,7 @@ SpLayoutAdd class >> subwidget: subwidget layoutFrame: aLayoutFrame [
 
 	^ self new
 		subwidget: subwidget 
-		layoutFrame: aLayoutFrame asSpecLayoutFrame; 
+		layoutFrame: aLayoutFrame asSpLayoutFrame; 
 		yourself
 ]
 
@@ -74,7 +74,7 @@ SpLayoutAdd >> layoutFrame [
 { #category : #accessing }
 SpLayoutAdd >> layoutFrame: newFrame [
 
-	layoutFrame := newFrame asSpecLayoutFrame
+	layoutFrame := newFrame asSpLayoutFrame
 ]
 
 { #category : #protocol }

@@ -46,7 +46,7 @@ SpLayoutFrame >> asArray [
 ]
 
 { #category : #converting }
-SpLayoutFrame >> asSpecLayoutFrame [
+SpLayoutFrame >> asSpLayoutFrame [
 
 	^ self
 ]

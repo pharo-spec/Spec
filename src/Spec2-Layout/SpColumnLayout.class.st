@@ -88,7 +88,7 @@ SpColumnLayout >> resetArrayComputation [
 SpColumnLayout >> setWidgetLayoutWithNoOffset: widget at: index delta: delta [
 
 	widget layoutFrame:
-		((0 @ currentProportional corner: 1 @ (currentProportional + delta)) asSpecLayoutFrame 
+		((0 @ currentProportional corner: 1 @ (currentProportional + delta)) asSpLayoutFrame 
 			topOffset: currentOffset;
 			yourself).
 				
@@ -106,12 +106,12 @@ SpColumnLayout >> setWidgetLayoutWithOffset: widget at: index [
 	index = size
 		ifTrue: [ 
 			widget layoutFrame:
-				((0 @ 1 corner: 1 @ 1) asSpecLayoutFrame
+				((0 @ 1 corner: 1 @ 1) asSpLayoutFrame
 					topLeftOffset: widget leftOffset @ height negated;
 					bottomRightOffset: widget rightOffset @ 0) ]
 		ifFalse: [ 
 			widget layoutFrame:
-				((0 @ currentProportional corner: 1 @ currentProportional) asSpecLayoutFrame
+				((0 @ currentProportional corner: 1 @ currentProportional) asSpLayoutFrame
 					topLeftOffset: widget leftOffset @ currentOffset;
 					bottomRightOffset: widget rightOffset @ (currentOffset + height)).
 			currentOffset := currentOffset + height ]

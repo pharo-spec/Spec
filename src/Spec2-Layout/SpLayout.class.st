@@ -68,7 +68,7 @@ SpLayout >> add: aSpec origin: originPoint corner: cornerPoint offsetOrigin: ooP
 	commands add: (SpLayoutAdd 
 							subwidget: aSpec
 							layoutFrame: 
-								((originPoint corner: cornerPoint) asSpecLayoutFrame 
+								((originPoint corner: cornerPoint) asSpLayoutFrame 
 									topLeftOffset: ooPoint;
 									bottomRightOffset: ocPoint ))
 ]
@@ -141,7 +141,7 @@ SpLayout >> add: modelGetter withSpec: aSymbol origin: originPoint corner: corne
 	commands add: (SpLayoutAddWithSpec 
 							subwidget: modelGetter 
 							spec: aSymbol 
-							layoutFrame: ((originPoint corner: cornerPoint) asSpecLayoutFrame 
+							layoutFrame: ((originPoint corner: cornerPoint) asSpLayoutFrame 
 												topLeftOffset: ooPoint;
 												bottomRightOffset: ocPoint))
 ]
@@ -326,7 +326,7 @@ SpLayout >> newColumn: aBlock origin: originPoint corner: cornerPoint offsetOrig
 	
 	commands add: (SpLayoutAddColumn
 							block: block
-							layoutFrame: ((originPoint corner: cornerPoint) asSpecLayoutFrame
+							layoutFrame: ((originPoint corner: cornerPoint) asSpLayoutFrame
 										topLeftOffset: ooPoint;
 										bottomRightOffset: ocPoint)).
 ]
@@ -376,7 +376,7 @@ SpLayout >> newRow: aBlock origin: originPoint corner: cornerPoint offsetOrigin:
 	
 	commands add: (SpLayoutAddRow
 							block: block
-							layoutFrame: ((originPoint corner: cornerPoint) asSpecLayoutFrame 
+							layoutFrame: ((originPoint corner: cornerPoint) asSpLayoutFrame 
 										topLeftOffset: ooPoint;
 										bottomRightOffset: ocPoint)).
 ]

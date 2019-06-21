@@ -89,7 +89,7 @@ SpRowLayout >> resetArrayComputation [
 { #category : #private }
 SpRowLayout >> setWidgetLayoutWithNoOffset: widget at: index delta: delta [
 
-	widget layoutFrame: ((currentProportional @ 0 corner: (currentProportional + delta) @ 1) asSpecLayoutFrame leftOffset: currentOffset).
+	widget layoutFrame: ((currentProportional @ 0 corner: (currentProportional + delta) @ 1) asSpLayoutFrame leftOffset: currentOffset).
 	
 	currentOffset := 0.
 	currentProportional := currentProportional + delta.
@@ -107,12 +107,12 @@ SpRowLayout >> setWidgetLayoutWithOffset: e at: idx [
 	idx = size
 		ifTrue: [ 
 			e layoutFrame:
-				((1 @ 0 corner: 1 @ 1) asSpecLayoutFrame
+				((1 @ 0 corner: 1 @ 1) asSpLayoutFrame
 					topLeftOffset: width negated @ y0;
 					bottomRightOffset: 0 @ y1) ]
 		ifFalse: [ 
 			e layoutFrame:
-				((currentProportional @ 0 corner: currentProportional @ 1) asSpecLayoutFrame
+				((currentProportional @ 0 corner: currentProportional @ 1) asSpLayoutFrame
 					topLeftOffset: currentOffset @ y0;
 					bottomRightOffset: (currentOffset + width) @ y1).
 			currentOffset := currentOffset + width ]

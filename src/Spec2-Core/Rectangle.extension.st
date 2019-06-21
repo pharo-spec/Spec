@@ -1,7 +1,7 @@
 Extension { #name : #Rectangle }
 
 { #category : #'*Spec2-Core' }
-Rectangle >> asSpecLayoutFrame [
+Rectangle >> asSpLayoutFrame [
 	"Answer an instance of LayoutFrame which uses fractions from receiver "
 	
 	^ SpLayoutFrame new

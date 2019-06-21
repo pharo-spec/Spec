@@ -31,7 +31,7 @@ SpMorphWrapper >> addIn: aContainer [
 { #category : #accessing }
 SpMorphWrapper >> frame: rectangle [
 	
-	layout := rectangle asSpecLayoutFrame
+	layout := rectangle asSpLayoutFrame
 ]
 
 { #category : #accessing }
