@@ -102,7 +102,7 @@ SpPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	
 	self announcer announce: (SpWidgetWillBeBuilt model: self).
 
-	self adapter: (aSpecLayout asSpecLayout 
+	self adapter: (aSpecLayout asSpLayout 
 		buildAdapterFor: self 
 		bindings: SpBindings value).
 

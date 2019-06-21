@@ -56,7 +56,7 @@ SpAbstractWidgetLayout >> adapterName: anObject [
 ]
 
 { #category : #accessing }
-SpAbstractWidgetLayout >> asSpecLayout [
+SpAbstractWidgetLayout >> asSpLayout [
 	^ self
 ]
 

@@ -118,7 +118,7 @@ SpWindowPresenter >> basicBuildWithSpecLayout: presenterSpecLayout [
 SpWindowPresenter >> buildWindowWithLayout: windowSpecLayout presenterLayout: presenterSpecLayout [
 
 	"set adapter of the window"
-	self adapter: (windowSpecLayout asSpecLayout
+	self adapter: (windowSpecLayout asSpLayout
 		buildAdapterFor: self 
 		bindings: SpBindings value).
 	self window: self adapter widget.

@@ -30,7 +30,7 @@ SpExecutableLayout >> asArray [
 ]
 
 { #category : #converting }
-SpExecutableLayout >> asSpecLayout [
+SpExecutableLayout >> asSpLayout [
 	
 	^ self
 ]

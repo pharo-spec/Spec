@@ -200,7 +200,7 @@ SpLayout >> asArray [
 ]
 
 { #category : #building }
-SpLayout >> asSpecLayout [
+SpLayout >> asSpLayout [
 
 	^ self
 ]
