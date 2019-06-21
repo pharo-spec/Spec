@@ -33,11 +33,11 @@ SpDemo class >> menuExamplesOn: aBuilder [
 	"Add a custom menu item to the world menu"
 
 	<worldMenu>
-	(aBuilder item: #'Spec examples')
+	(aBuilder item: #'Spec2 examples')
 		iconName: #smallHelpIcon;
 		parent: #Help;
 		order: 3.5;
-		help: 'Open Spec demo browser.';
+		help: 'Open Spec2 demo browser.';
 		action: [ self open ].
 	aBuilder withSeparatorAfter	
 ]
