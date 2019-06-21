@@ -1,5 +1,5 @@
 Class {
-	#name : #TestPresenterWithThreeRadioButtons,
+	#name : #SpTestPresenterWithThreeRadioButtons,
 	#superclass : #SpComposablePresenter,
 	#instVars : [
 		'radio1',
@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : #specs }
-TestPresenterWithThreeRadioButtons class >> defaultSpec [
+SpTestPresenterWithThreeRadioButtons class >> defaultSpec [
 
 	^ SpBoxLayout newVertical 
 		add: #radio1;
@@ -20,7 +20,7 @@ TestPresenterWithThreeRadioButtons class >> defaultSpec [
 ]
 
 { #category : #initialization }
-TestPresenterWithThreeRadioButtons >> initializePresenter [ 
+SpTestPresenterWithThreeRadioButtons >> initializePresenter [ 
 
 	radio1 state: false.
 	radio2 state: true.
@@ -29,7 +29,7 @@ TestPresenterWithThreeRadioButtons >> initializePresenter [
 ]
 
 { #category : #initialization }
-TestPresenterWithThreeRadioButtons >> initializeWidgets [
+SpTestPresenterWithThreeRadioButtons >> initializeWidgets [
 	
 	radio1 := self newRadioButton
 					label: 'radio1';
@@ -47,16 +47,16 @@ TestPresenterWithThreeRadioButtons >> initializeWidgets [
 ]
 
 { #category : #accessing }
-TestPresenterWithThreeRadioButtons >> radio1 [
+SpTestPresenterWithThreeRadioButtons >> radio1 [
 	^ radio1
 ]
 
 { #category : #accessing }
-TestPresenterWithThreeRadioButtons >> radio2 [
+SpTestPresenterWithThreeRadioButtons >> radio2 [
 	^ radio2
 ]
 
 { #category : #accessing }
-TestPresenterWithThreeRadioButtons >> radio3 [
+SpTestPresenterWithThreeRadioButtons >> radio3 [
 	^ radio3
 ]

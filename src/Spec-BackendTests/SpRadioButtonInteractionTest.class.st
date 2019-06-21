@@ -7,7 +7,7 @@ Class {
 { #category : #accessing }
 SpRadioButtonInteractionTest >> classToTest [
 
-	^ TestPresenterWithThreeRadioButtons 
+	^ SpTestPresenterWithThreeRadioButtons 
 ]
 
 { #category : #accessing }
