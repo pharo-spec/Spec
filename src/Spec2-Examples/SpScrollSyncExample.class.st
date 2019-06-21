@@ -68,7 +68,7 @@ SpScrollSyncExample >> initialize [
 		useGradientFill;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
-		yourself) asSpecAdapter.
+		yourself) asSpAdapter.
 	currentVerticalScrollPosition := 0
 ]
 

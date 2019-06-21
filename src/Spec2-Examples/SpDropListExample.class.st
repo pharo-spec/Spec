@@ -46,7 +46,7 @@ SpDropListExample class >> title [
 { #category : #accessing }
 SpDropListExample >> container [
 
-	^ container asSpecAdapter
+	^ container asSpAdapter
 ]
 
 { #category : #accessing }

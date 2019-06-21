@@ -17,7 +17,7 @@ SpWorldPresenter class >> defaultSpec [
 	<spec>
 	
 	self setUpWorld.
-	^ self currentWorld asSpecAdapter
+	^ self currentWorld asSpAdapter
 ]
 
 { #category : #private }
@@ -47,7 +47,7 @@ SpWorldPresenter >> addPresenterIn: container withSpecLayout: aSpec [
 { #category : #factory }
 SpWorldPresenter >> buildWidget [
 
-	^ self currentWorld asSpecAdapter
+	^ self currentWorld asSpAdapter
 ]
 
 { #category : #private }

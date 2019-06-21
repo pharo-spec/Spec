@@ -30,7 +30,7 @@ SpEyeMorphViewer class >> label [
 SpEyeMorphViewer >> container [
 	^ container ifNil: [ container := (PanelMorph new 
 		changeProportionalLayout)
-		asSpecAdapter
+		asSpAdapter
 		 vSpaceFill;
 		hSpaceFill]
 ]

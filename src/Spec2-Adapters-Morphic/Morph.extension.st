@@ -1,7 +1,7 @@
 Extension { #name : #Morph }
 
 { #category : #'*Spec2-Adapters-Morphic' }
-Morph >> asSpecAdapter [
+Morph >> asSpAdapter [
 
 	^ (SpBindings value 
 		adapterClass: #GenericAdapter)
