@@ -17,22 +17,22 @@ BaselineOfSpec >> baseline: spec [
 
 			"Packages"
 			spec
-				package: 'Spec-Core' with: [ spec requires: #('Spec-Layout' 'Spec-Transmission') ];
-				package: 'Spec-Commands' with: [ spec requires: #('Spec-Core') ];
-				package: 'Spec-Deprecated80' with: [ spec requires: #('Spec-Tests' 'Spec-PolyWidgets-Tests' 'Spec-MorphicAdapters') ];
-				package: 'Spec-Inspector' with: [ spec requires: #('Spec-PolyWidgets') ];
-				package: 'Spec-Layout';
-				package: 'Spec-Transmission';
-				package: 'Spec-MorphicAdapters' with: [ spec requires: #('Spec-Core') ];
-				package: 'Spec-PolyWidgets' with: [ spec requires: #('Spec-Core') ];
-				package: 'Spec-Tools' with: [ spec requires: #('Spec-PolyWidgets') ];
-				package: 'Spec-StubAdapter' with: [ spec requires: #('Spec-Core') ];
-				package: 'Spec-Examples' with: [ spec requires: #('Spec-Tools' 'Spec-Inspector') ];
-				package: 'Spec-Tests' with: [ spec requires: #('Spec-Examples') ];
-				package: 'Spec-PolyWidgets-Tests' with: [ spec requires: #('Spec-Tests' 'Spec-PolyWidgets') ];
-				package: 'Spec-MorphicBackendTests' with: [ spec requires: #('Spec-MorphicAdapters' 'ParametrizedTests') ];
-				package: 'Spec-BackendTests' with: [ spec requires: #('Spec-MorphicAdapters' 'ParametrizedTests') ];
-				package: 'Spec-CompatibilityTests' with: [ spec requires: #('Spec-MorphicBackendTests' 'Spec-Deprecated80') ]  ].
+				package: 'Spec2-Core' with: [ spec requires: #('Spec2-Layout' 'Spec2-Transmission') ];
+				package: 'Spec2-Commands' with: [ spec requires: #('Spec2-Core') ];
+				package: 'Spec2-Deprecated' with: [ spec requires: #('Spec2-Tests' 'Spec2-PolyWidgets-Tests' 'Spec2-Adapters-Morphic') ];
+				package: 'Spec2-Inspector' with: [ spec requires: #('Spec2-PolyWidgets') ];
+				package: 'Spec2-Layout';
+				package: 'Spec2-Transmission';
+				package: 'Spec2-Adapters-Morphic' with: [ spec requires: #('Spec2-Core') ];
+				package: 'Spec2-PolyWidgets' with: [ spec requires: #('Spec2-Core') ];
+				package: 'Spec2-Tools' with: [ spec requires: #('Spec2-PolyWidgets') ];
+				package: 'Spec2-Adapters-Stub' with: [ spec requires: #('Spec2-Core') ];
+				package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Tools' 'Spec2-Inspector') ];
+				package: 'Spec2-Tests' with: [ spec requires: #('Spec2-Examples') ];
+				package: 'Spec2-PolyWidgets-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-PolyWidgets') ];
+				package: 'Spec2-Morphic-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic' 'ParametrizedTests') ];
+				package: 'Spec2-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic' 'ParametrizedTests') ];
+				package: 'Spec2-Compatibility-Tests' with: [ spec requires: #('Spec2-Morphic-Backend-Tests' 'Spec2-Deprecated') ]  ].
 	spec for: #'pharo7.x' do: [ spec package: 'Spec-Pharo7To8Compatibility' ]
 ]
 
