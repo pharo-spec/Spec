@@ -12,7 +12,7 @@ SpVersatileDialogPresenterTest >> classToTest [
 { #category : #tests }
 SpVersatileDialogPresenterTest >> testListBox [
 	| dialog app listPresenter |
-	app := MockApplication new.
+	app := SpMockApplication new.
 
 	dialog := SpVersatileDialogPresenter newApplication: app.
 	listPresenter := dialog newList.
@@ -42,7 +42,7 @@ SpVersatileDialogPresenterTest >> testResult [
 
 	| dialog app |
 	
-	app := MockApplication new.
+	app := SpMockApplication new.
 	
 	dialog := SpVersatileDialogPresenter newApplication: app.
 	dialog mainMessage: 'Save content' asText allBold.

@@ -11,7 +11,7 @@ Class {
 SpApplicationTest >> setUp [
 	
 	super setUp.
-	application := MockApplication new
+	application := SpMockApplication new
 ]
 
 { #category : #running }

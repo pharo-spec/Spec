@@ -10,7 +10,7 @@ Class {
 { #category : #running }
 SpComposablePresenterWithAdditionalSubpresentersTest >> setUp [
 	super setUp.
-	application := MockApplication new
+	application := SpMockApplication new
 ]
 
 { #category : #tests }
