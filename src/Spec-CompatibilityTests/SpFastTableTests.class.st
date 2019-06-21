@@ -1,17 +1,17 @@
 Class {
-	#name : #FastTableTests,
+	#name : #SpFastTableTests,
 	#superclass : #SpMorphicAdapterTestCase,
 	#category : #'Spec-CompatibilityTests'
 }
 
 { #category : #running }
-FastTableTests >> classToTest [
+SpFastTableTests >> classToTest [
 
 	^ SpFastTablePresenter
 ]
 
 { #category : #running }
-FastTableTests >> initializeTestedInstance [
+SpFastTableTests >> initializeTestedInstance [
 
 	presenter
 		numberOfColumns: 2;
@@ -20,7 +20,7 @@ FastTableTests >> initializeTestedInstance [
 ]
 
 { #category : #running }
-FastTableTests >> testColumnsAreExplicitlySetEvenIfDisplayBlockContainsMoreItems [
+SpFastTableTests >> testColumnsAreExplicitlySetEvenIfDisplayBlockContainsMoreItems [
 
 	self assert: presenter columns size equals: 2
 ]
