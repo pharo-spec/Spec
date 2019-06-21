@@ -91,7 +91,7 @@ SpTabsExample >> objectInspectorTab [
 	^ self newTab
 		label: 'Object inspector';
 		icon: (self iconNamed: #nautilusIcon);
-		retrievingBlock: [ EyeInspector new
+		retrievingBlock: [ SpEyeInspector new
 				inspect: Object;
 				buildWithSpec: #inspectorSpec ];
 		yourself
