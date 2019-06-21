@@ -3,7 +3,7 @@ A component that should encapsulate a form part with a specific label
 "
 Class {
 	#name : #SpDemoLabeledContainer,
-	#superclass : #LabelledContainer,
+	#superclass : #SpLabelledContainer,
 	#category : #'Spec-Examples-Demo-Support'
 }
 

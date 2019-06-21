@@ -40,7 +40,7 @@ SpToolBarPresenter >> addButtonLabel: aLabel iconNamed: anIconName help: aHelpSt
 { #category : #adding }
 SpToolBarPresenter >> addItem: aToolbarItem [
 	
-	self addItem: aToolbarItem position: ToolBarItemPosition left
+	self addItem: aToolbarItem position: SpToolBarItemPosition left
 ]
 
 { #category : #adding }
@@ -72,19 +72,19 @@ SpToolBarPresenter >> allItems [
 { #category : #accessing }
 SpToolBarPresenter >> beBoth [
 
-	displayMode := ToolBarDisplayMode modeIconAndLabel
+	displayMode := SpToolBarDisplayMode modeIconAndLabel
 ]
 
 { #category : #accessing }
 SpToolBarPresenter >> beIcons [
 
-	displayMode := ToolBarDisplayMode modeIcon
+	displayMode := SpToolBarDisplayMode modeIcon
 ]
 
 { #category : #accessing }
 SpToolBarPresenter >> beText [
 
-	displayMode := ToolBarDisplayMode modeLabel
+	displayMode := SpToolBarDisplayMode modeLabel
 ]
 
 { #category : #accessing }
@@ -105,19 +105,19 @@ SpToolBarPresenter >> initialize [
 { #category : #testing }
 SpToolBarPresenter >> isDisplayModeBoth [
 
-	^ self displayMode = ToolBarDisplayMode modeIconAndLabel
+	^ self displayMode = SpToolBarDisplayMode modeIconAndLabel
 ]
 
 { #category : #testing }
 SpToolBarPresenter >> isDisplayModeIcons [
 
-	^ self displayMode = ToolBarDisplayMode modeIcon
+	^ self displayMode = SpToolBarDisplayMode modeIcon
 ]
 
 { #category : #testing }
 SpToolBarPresenter >> isDisplayModeText [
 
-	^ self displayMode = ToolBarDisplayMode modeLabel
+	^ self displayMode = SpToolBarDisplayMode modeLabel
 ]
 
 { #category : #testing }

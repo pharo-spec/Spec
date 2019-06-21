@@ -5,13 +5,13 @@ SpToolBarPresenterTest >> testAddItemPosition [
 	| itemLeft itemRight |
 
 	self assert: presenter items isEmpty.
-	presenter addItem: (itemLeft := self newToolbarItem) position: ToolBarItemPosition left.
-	presenter addItem: (itemRight := self newToolbarItem) position: ToolBarItemPosition right.
+	presenter addItem: (itemLeft := self newToolbarItem) position: SpToolBarItemPosition left.
+	presenter addItem: (itemRight := self newToolbarItem) position: SpToolBarItemPosition right.
 	self 
 		assert: presenter items 
 		equals: (Dictionary newFromPairs: { 
-			ToolBarItemPosition left. { itemLeft } asOrderedCollection.
-			ToolBarItemPosition right. { itemRight } asOrderedCollection })
+			SpToolBarItemPosition left. { itemLeft } asOrderedCollection.
+			SpToolBarItemPosition right. { itemRight } asOrderedCollection })
 ]
 
 { #category : #'*Spec-PolyWidgets-Tests' }
@@ -22,5 +22,5 @@ SpToolBarPresenterTest >> testItems [
 	presenter addItem: (item := self newToolbarItem).
 	self 
 		assert: presenter items 
-		equals: (Dictionary newFromPairs: { ToolBarItemPosition left. { item } asOrderedCollection })
+		equals: (Dictionary newFromPairs: { SpToolBarItemPosition left. { item } asOrderedCollection })
 ]

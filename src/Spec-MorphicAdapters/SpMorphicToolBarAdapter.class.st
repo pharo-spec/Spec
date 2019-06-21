@@ -14,7 +14,7 @@ SpMorphicToolBarAdapter >> addModelTo: toolBarMorph [
 	toolBarMorph height: self model displayMode height.
 
 	self model items 
-		at: ToolBarItemPosition left 
+		at: SpToolBarItemPosition left 
 		ifPresent: [ :items |
 			items do: [ :each | 
 				toolBarMorph addItemLeft: (self 
@@ -23,7 +23,7 @@ SpMorphicToolBarAdapter >> addModelTo: toolBarMorph [
 					toolBar: toolBarMorph) ] ].
 
 	self model items 
-		at: ToolBarItemPosition right 
+		at: SpToolBarItemPosition right 
 		ifPresent: [ :items |
 			items do: [ :each | 
 				toolBarMorph addItemRight: (self 
@@ -36,7 +36,7 @@ SpMorphicToolBarAdapter >> addModelTo: toolBarMorph [
 SpMorphicToolBarAdapter >> buildWidget [
 	| toolBarMorph |
 	
-	toolBarMorph := ToolBarMorph new.
+	toolBarMorph := SpToolBarMorph new.
 	self addModelTo: toolBarMorph.
 	
 	^ toolBarMorph

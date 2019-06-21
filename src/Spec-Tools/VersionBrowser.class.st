@@ -152,7 +152,7 @@ VersionBrowser >> initializePresenter [
 { #category : #initialization }
 VersionBrowser >> initializeWidgets [
 	messageList := self instantiate: MessageList.
-	toolbarPresenter := self instantiate: MethodToolbar.
+	toolbarPresenter := self instantiate: SpMethodToolbar.
 
 	messageList
 		topologicSort: false;

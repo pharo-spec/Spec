@@ -6,7 +6,7 @@ Class {
 
 { #category : #running }
 SpEditableListTest >> classToTest [
-	^ EditableList
+	^ SpEditableList
 ]
 
 { #category : #tests }

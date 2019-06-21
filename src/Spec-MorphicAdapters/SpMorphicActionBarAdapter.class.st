@@ -32,7 +32,7 @@ SpMorphicActionBarAdapter >> buildWidget [
 	
 	"Using a toolbar morph because is more or less the same, it just change 
 	 the kind of elements it can have inside (which are just buttons)"
-	panelMorph := ToolBarMorph new.
+	panelMorph := SpToolBarMorph new.
 	self addModelTo: panelMorph.
 	
 	^ panelMorph

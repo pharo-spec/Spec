@@ -21,7 +21,7 @@ AbstractMessageCentricBrowser >> initialize [
 { #category : #initialization }
 AbstractMessageCentricBrowser >> initializeWidgets [
 	messageList := self instantiate: MessageList.
-	toolbarPresenter := self instantiate: MethodToolbar
+	toolbarPresenter := self instantiate: SpMethodToolbar
 ]
 
 { #category : #initialization }

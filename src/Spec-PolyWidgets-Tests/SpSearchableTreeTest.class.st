@@ -6,5 +6,5 @@ Class {
 
 { #category : #running }
 SpSearchableTreeTest >> classToTest [
-	^ SearchableTree
+	^ SpSearchableTree
 ]

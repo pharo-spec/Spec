@@ -11,7 +11,7 @@ Class {
 SpMorphicToolBarButtonAdapter >> buildWidget [
 	| button |
 	
-	button := (ToolBarButtonMorph
+	button := (SpToolBarButtonMorph
 			on: self model
 			getState: nil 
 			action:  #execute)

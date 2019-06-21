@@ -6,5 +6,5 @@ Class {
 
 { #category : #running }
 SpLabelledTextInputTest >> classToTest [
-	^ LabelledTextInput
+	^ SpLabelledTextInput
 ]

@@ -6,7 +6,7 @@ Class {
 
 { #category : #running }
 SpRGBSlidersTest >> classToTest [
-	^ RGBSliders
+	^ SpRGBSliders
 ]
 
 { #category : #tests }

@@ -46,5 +46,5 @@ SpEyeMethodEditor >> title [
 { #category : #accessing }
 SpEyeMethodEditor >> toolbar [
 	^ toolbar ifNil: [ 
-		toolbar := self instantiate: MethodToolbar. ]
+		toolbar := self instantiate: SpMethodToolbar. ]
 ]

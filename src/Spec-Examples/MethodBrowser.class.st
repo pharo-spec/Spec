@@ -93,7 +93,7 @@ MethodBrowser >> initializePresenter [
 MethodBrowser >> initializeWidgets [
 	listModel := self instantiate: SpListPresenter .
 	textModel := self newCode.
-	toolbarModel := self instantiate: MethodToolbar.
+	toolbarModel := self instantiate: SpMethodToolbar.
 	self focusOrder
 		add: listModel;
 		add: toolbarModel;

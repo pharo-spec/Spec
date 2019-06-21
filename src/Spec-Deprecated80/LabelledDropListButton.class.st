@@ -10,7 +10,7 @@ I provide shortcuts for the most common methods to avoid the use of the DoesNotU
 "
 Class {
 	#name : #LabelledDropListButton,
-	#superclass : #LabelledContainer,
+	#superclass : #SpLabelledContainer,
 	#category : #'Spec-Deprecated80'
 }
 

@@ -84,7 +84,7 @@ SpPrepareWindowExample >> buildToolBar [
 	^ self newToolBar 
 		addItem: self buildPushMessageToolBarItem;
 		addItem: self buildPopMessageToolBarItem;
-		addItem: self buildPopMessageToolBarItem position: ToolBarItemPosition right;
+		addItem: self buildPopMessageToolBarItem position: SpToolBarItemPosition right;
 		yourself
 ]
 

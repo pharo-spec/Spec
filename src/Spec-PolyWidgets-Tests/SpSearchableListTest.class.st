@@ -6,7 +6,7 @@ Class {
 
 { #category : #running }
 SpSearchableListTest >> classToTest [
-	^ SearchableList
+	^ SpSearchableList
 ]
 
 { #category : #tests }

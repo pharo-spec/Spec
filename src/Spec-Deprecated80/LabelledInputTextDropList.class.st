@@ -10,7 +10,7 @@ I provide shortcuts for the most common methods to avoid the use of the DoesNotU
 "
 Class {
 	#name : #LabelledInputTextDropList,
-	#superclass : #LabelledContainer,
+	#superclass : #SpLabelledContainer,
 	#category : #'Spec-Deprecated80'
 }
 
@@ -85,7 +85,7 @@ LabelledInputTextDropList >> ghostText: aText [
 { #category : #initialization }
 LabelledInputTextDropList >> initializeWidgets [
 super initializeWidgets.
-	self content: InputTextDropList.
+	self content: SpInputTextDropList.
 ]
 
 { #category : #accessing }
