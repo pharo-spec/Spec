@@ -2,7 +2,7 @@
 AbstractSpecLayoutAction is an abstract class representing a spec layout action.
 "
 Class {
-	#name : #AbstractSpecLayoutAction,
+	#name : #SpAbstractSpecLayoutAction,
 	#superclass : #Object,
 	#instVars : [
 		'selector'
@@ -11,21 +11,21 @@ Class {
 }
 
 { #category : #accesing }
-AbstractSpecLayoutAction >> arguments [
+SpAbstractSpecLayoutAction >> arguments [
 	^ self subclassResponsibility
 ]
 
 { #category : #protocol }
-AbstractSpecLayoutAction >> asSpecElements [
+SpAbstractSpecLayoutAction >> asSpecElements [
 	^ {self selector} , self arguments
 ]
 
 { #category : #accesing }
-AbstractSpecLayoutAction >> selector [
+SpAbstractSpecLayoutAction >> selector [
 	^ selector
 ]
 
 { #category : #accesing }
-AbstractSpecLayoutAction >> selector: anObject [
+SpAbstractSpecLayoutAction >> selector: anObject [
 	selector := anObject
 ]
