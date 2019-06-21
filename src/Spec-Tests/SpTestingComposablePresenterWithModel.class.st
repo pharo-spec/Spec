@@ -2,7 +2,7 @@
 A testing composable presenter for testing of the class ComposablePresenterWithModel
 "
 Class {
-	#name : #TestingComposablePresenterWithModel,
+	#name : #SpTestingComposablePresenterWithModel,
 	#superclass : #SpComposablePresenterWithModel,
 	#instVars : [
 		'x',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #specs }
-TestingComposablePresenterWithModel class >> defaultSpec [
+SpTestingComposablePresenterWithModel class >> defaultSpec [
 	<spec: #default>
 
 	^ SpLayout composed newColumn: [ :col |
@@ -22,7 +22,7 @@ TestingComposablePresenterWithModel class >> defaultSpec [
 ]
 
 { #category : #specs }
-TestingComposablePresenterWithModel class >> open [
+SpTestingComposablePresenterWithModel class >> open [
 
 	<example>
 	
@@ -30,14 +30,14 @@ TestingComposablePresenterWithModel class >> open [
 ]
 
 { #category : #initialization }
-TestingComposablePresenterWithModel >> initializeWidgets [
+SpTestingComposablePresenterWithModel >> initializeWidgets [
 
 	x := self newTextInput.
 	y := self newTextInput.
 ]
 
 { #category : #initialization }
-TestingComposablePresenterWithModel >> modelChanged [
+SpTestingComposablePresenterWithModel >> modelChanged [
 
 	x text: self model x asString.
 	y text: self model y asString.	
@@ -45,27 +45,27 @@ TestingComposablePresenterWithModel >> modelChanged [
 ]
 
 { #category : #api }
-TestingComposablePresenterWithModel >> title [
+SpTestingComposablePresenterWithModel >> title [
 
 	^ 'Point'
 ]
 
 { #category : #accessing }
-TestingComposablePresenterWithModel >> x [
+SpTestingComposablePresenterWithModel >> x [
 	^ x
 ]
 
 { #category : #accessing }
-TestingComposablePresenterWithModel >> x: anObject [
+SpTestingComposablePresenterWithModel >> x: anObject [
 	x := anObject
 ]
 
 { #category : #accessing }
-TestingComposablePresenterWithModel >> y [
+SpTestingComposablePresenterWithModel >> y [
 	^ y
 ]
 
 { #category : #accessing }
-TestingComposablePresenterWithModel >> y: anObject [
+SpTestingComposablePresenterWithModel >> y: anObject [
 	y := anObject
 ]
