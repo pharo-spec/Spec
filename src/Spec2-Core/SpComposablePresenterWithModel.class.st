@@ -47,7 +47,7 @@ SpComposablePresenterWithModel >> modelChanged [
 { #category : #'accessing - private' }
 SpComposablePresenterWithModel >> setAnnouncingObject: aDomainObject [
 
-	announcingObject := aDomainObject isSpAnnouncingObject ifFalse: [ aDomainObject asValueHolder ].
+	announcingObject := aDomainObject isSpAnnouncingObject ifFalse: [ aDomainObject asValueHolder ] ifTrue: [ aDomainObject ].
 	announcingObject whenChangedDo: [ self modelChanged ].
 	
 ]
