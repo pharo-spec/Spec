@@ -30,7 +30,7 @@ SpHelpTopics class >> key [
 
 { #category : #accessing }
 SpHelpTopics class >> pages [
-	^#(introduction terminology #SpExamples TheHeartOfSpec #SpLayouts)
+	^#(introduction terminology #SpExamples #SpTheHeartOfSpec #SpLayouts)
 ]
 
 { #category : #pages }

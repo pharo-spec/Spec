@@ -4,18 +4,18 @@ See class side for selectors.
 
 "
 Class {
-	#name : #TheHeartOfSpec,
+	#name : #SpTheHeartOfSpec,
 	#superclass : #SpHelpTopics,
 	#category : #'Spec-Help-Topics'
 }
 
 { #category : #accessing }
-TheHeartOfSpec class >> bookName [
+SpTheHeartOfSpec class >> bookName [
 	^'The Heart of Spec'
 ]
 
 { #category : #pages }
-TheHeartOfSpec class >> initializePresenter [
+SpTheHeartOfSpec class >> initializePresenter [
 	^HelpTopic
 		title: 'The initializePresenter method'
 		contents: 'This method takes care of the interactions between the different widgets. By linking the behavior of the different widgets it specifies the overall presentation, i.e. how the overall UI responds to interactions by the user. Usually this method consists of specifications of actions to perform when a certain event is received by a widget. From the propagation of those events the whole interaction flow of the UI emerges. In Spec, the different UI models are contained in value holders, and the event mechanism relies on the announcements of these value holders to manage the interactions between widgets. 
@@ -23,7 +23,7 @@ Value holders provide a single method whenChangedDo: that is used to register a 
 ]
 
 { #category : #pages }
-TheHeartOfSpec class >> initializeWidgets [
+SpTheHeartOfSpec class >> initializeWidgets [
 	^HelpTopic
 		title: 'The initializeWidgets method'
 		contents: 'This method is used to instantiate the models for the different widgets that will be part of the UI and store them in their respective instance variables. Instantiation of the models will in turn result in the instantiation and initialization of the different widgets that make up the UI. Consequently, configuration and default values of each widget are specified here as well, which is why this method is called initializeWidgets. This focus in this method is to specify what the widgets will look like and what their self-contained behavior is. 
@@ -50,7 +50,7 @@ Specifying this method is mandatory, as without it the UI would have no widgets.
 ]
 
 { #category : #pages }
-TheHeartOfSpec class >> intro [
+SpTheHeartOfSpec class >> intro [
 	^HelpTopic 
 		title: 'The Heart of Spec'
 		contents: 'All user interfaces in Spec are constructed through the composition of existing user interfaces. To define a user interface, it is sufficient to define the model of the user interface. The UI elements that correspond to this model are instantiated by Spec, depending on the underlying UI framework. 
@@ -67,7 +67,7 @@ These methods are hence typically found in the model for each user interface. In
 ]
 
 { #category : #pages }
-TheHeartOfSpec class >> layouts [
+SpTheHeartOfSpec class >> layouts [
 	^HelpTopic
 		title: 'The layout method'
 		contents: 'This method specifies the layout of the different widgets in the UI. It also specifies how a widget reacts when the window is resized. For the same UI multiple layouts can be described, and when the UI is built a specific layout to use can be specified. If no such specific layout is given, the following lookup mechanism will be used to obtain the layout method:
@@ -96,12 +96,12 @@ Specifying this method is mandatory, as without it the UI would show no widgets 
 ]
 
 { #category : #accessing }
-TheHeartOfSpec class >> pages [
+SpTheHeartOfSpec class >> pages [
 	^#(intro initializeWidgets widgetInstantiation initializePresenter layouts)
 ]
 
 { #category : #pages }
-TheHeartOfSpec class >> widgetInstantiation [
+SpTheHeartOfSpec class >> widgetInstantiation [
 	^HelpTopic
 		title: 'Widget Instantiation'
 		contents: 'The instantiation of the model for a widget (and hence the widget) can be done in two ways: 
