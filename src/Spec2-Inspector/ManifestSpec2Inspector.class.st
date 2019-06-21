@@ -2,7 +2,7 @@
 Spec based object inspectors ('Eye inspector' framework)
 "
 Class {
-	#name : #ManifestSpecInspector,
+	#name : #ManifestSpec2Inspector,
 	#superclass : #PackageManifest,
 	#category : #'Spec2-Inspector-Manifest'
 }
