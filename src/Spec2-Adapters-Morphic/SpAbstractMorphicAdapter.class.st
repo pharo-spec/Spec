@@ -368,12 +368,6 @@ SpAbstractMorphicAdapter >> setBalloonText: aString [
 	self widget ifNotNil: [ :w | w setBalloonText: aString ]
 ]
 
-{ #category : #'spec protocol' }
-SpAbstractMorphicAdapter >> setModal: aWindow [ 
-
-	self widgetDo: [ :w | w setModal: aWindow ]
-]
-
 { #category : #protocol }
 SpAbstractMorphicAdapter >> show [ 
 
