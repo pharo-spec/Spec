@@ -272,7 +272,7 @@ SpButtonPresenter >> shortcutCharacter [
 
 	^ self shortcut 
 		ifNil: [ nil ]
-		ifNotNil: [ :s | s currentCharacter ]
+		ifNotNil: [ :s | s spCurrentCharacter ]
 ]
 
 { #category : #morphic }

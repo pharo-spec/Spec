@@ -1,14 +1,6 @@
 Extension { #name : #KMKeyCombinationChoice }
 
 { #category : #'*Spec2-Core' }
-KMKeyCombinationChoice >> currentCharacter [
-	| candidates |
-	
-	candidates := shortcuts 
-		collect: [ :each | each currentCharacter ] 
-		thenSelect: [ :each | each isNotNil ].
-		
-	^ candidates 
-		ifEmpty: [ nil ]
-		ifNotEmpty: [ candidates first ]
+KMKeyCombinationChoice >> spCurrentCharacter [
+	^ shortcuts detect: [ :each | each spCurrentCharacter isNotNil ] ifNone: [ nil ]
 ]

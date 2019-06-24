@@ -1,7 +1,7 @@
 Extension { #name : #KMSingleKeyCombination }
 
 { #category : #'*Spec2-Core' }
-KMSingleKeyCombination >> currentCharacter [
+KMSingleKeyCombination >> spCurrentCharacter [
 
 	^ key
 ]

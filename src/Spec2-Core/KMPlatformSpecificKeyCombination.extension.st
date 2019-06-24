@@ -1,9 +1,9 @@
 Extension { #name : #KMPlatformSpecificKeyCombination }
 
 { #category : #'*Spec2-Core' }
-KMPlatformSpecificKeyCombination >> currentCharacter [
+KMPlatformSpecificKeyCombination >> spCurrentCharacter [
 
 	^ (self platform = #all or: [ self platform = OSPlatform current platformFamily ])
-		ifTrue: [ self shortcut currentCharacter ]
+		ifTrue: [ self shortcut spCurrentCharacter ]
 		ifFalse: [ nil ]
 ]
