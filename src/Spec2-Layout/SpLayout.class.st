@@ -185,6 +185,11 @@ SpLayout >> addHSplitter [
 	self commands add: (SpSplitterHorizontal commands: self commands)
 ]
 
+{ #category : #commands }
+SpLayout >> addSpacer [
+	self add: #specSpacer
+]
+
 { #category : #converting }
 SpLayout >> addVSplitter [
 
