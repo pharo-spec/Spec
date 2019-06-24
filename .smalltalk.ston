@@ -1,12 +1,11 @@
 SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
-      #baseline : 'Spec',
+      #baseline : 'Spec2',
       #directory : 'src',
       #onConflict : #useIncoming,
       #onUpgrade : #useIncoming,
-	  #ignoreImage : true,
-      #platforms : [ #pharo ]
+      #ignoreImage : true
     }
   ]
 }
