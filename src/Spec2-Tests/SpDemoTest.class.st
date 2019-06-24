@@ -11,9 +11,19 @@ SpDemoTest >> classToTest [
 
 { #category : #tests }
 SpDemoTest >> testSmokeTestForDemoPages [
-	self timeLimit: 1 minute. 
+	self timeLimit: 1 minute.
+	"We could use #shouldnt:raise: but this way give us the stack of the error"
 	SpDemoPage availablePages
 		do: [ :demoPage | 
-			[ self shouldnt: [ window := demoPage new openWithSpec ] raise: Error description: 'Broken demo page: ' , demoPage asString ]
+			[ [ window := demoPage new openWithSpec ]
+				on: Error
+				do: [ :e | 
+					self
+						fail:
+							'Broken demo page: ' , demoPage asString
+								,
+									'
+
+' , e signalerContext shortStack ] ]
 				ensure: [ window ifNotNil: #close ] ]
 ]
