@@ -1,7 +1,7 @@
 Class {
 	#name : #DualChangeSorterApplication,
 	#superclass : #DualChangeSorterPresenter,
-	#category : #'Spec2-Tools-ChangeSorter'
+	#category : #'Spec2-Deprecated-Tools'
 }
 
 { #category : #deprecation }

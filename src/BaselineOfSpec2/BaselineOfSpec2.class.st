@@ -36,7 +36,8 @@ BaselineOfSpec2 >> baseline: spec [
 		for: #'pharo8.x'
 		do: [ spec
 				package: 'Spec2-Tools' with: [ spec requires: #('Spec2-PolyWidgets') ];
-				package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Tools') ] ]
+				package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Tools') ];
+				package: 'Spec2-Deprecated-Tools' with: [ spec requires: #('Spec2-Deprecated' 'Spec2-Tools') ] ]
 ]
 
 { #category : #dependencies }
