@@ -10,8 +10,6 @@ BaselineOfSpec >> baseline: spec [
 	spec
 		for: #common
 		do: [ 
-			spec postLoadDoIt: #recompileAll.
-
 			"Dependencies"
 			self parametrizedTests: spec.
 
@@ -57,13 +55,4 @@ Then Spec-Deprecated80 is loaded but it does not migrate the subclasses of the o
 	^ super project
 		loadType: #atomic;
 		yourself
-]
-
-{ #category : #public }
-BaselineOfSpec >> recompileAll [
-	"In Pharo 7 we need to recompile the code of the image to make it work."
-
-	SystemVersion current major = 7 ifFalse: [ ^ self ].
-
-	OpalCompiler recompileAll
 ]
