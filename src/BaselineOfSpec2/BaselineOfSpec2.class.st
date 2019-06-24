@@ -25,14 +25,18 @@ BaselineOfSpec2 >> baseline: spec [
 				package: 'Spec2-Adapters-Morphic' with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-PolyWidgets' with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Adapters-Stub' with: [ spec requires: #('Spec2-Core') ];
-				package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Tools' 'Spec2-Inspector') ];
+				package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Inspector') ];
 				package: 'Spec2-Tests' with: [ spec requires: #('Spec2-Examples') ];
 				package: 'Spec2-PolyWidgets-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-PolyWidgets') ];
 				package: 'Spec2-Morphic-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic' 'ParametrizedTests') ];
 				package: 'Spec2-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic' 'ParametrizedTests') ];
 				package: 'Spec2-Compatibility-Tests' with: [ spec requires: #('Spec2-Morphic-Backend-Tests' 'Spec2-Deprecated') ] ].
 	spec for: #'pharo7.x' do: [ spec package: 'Spec2-Pharo7To8Compatibility' ].
-	spec for: #'pharo8.x' do: [ spec package: 'Spec2-Tools' with: [ spec requires: #('Spec2-PolyWidgets') ] ]
+	spec
+		for: #'pharo8.x'
+		do: [ spec
+				package: 'Spec2-Tools' with: [ spec requires: #('Spec2-PolyWidgets') ];
+				package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Tools') ] ]
 ]
 
 { #category : #dependencies }
