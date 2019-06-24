@@ -398,7 +398,7 @@ SpAbstractMorphicAdapter >> styleAt: aName [
 SpAbstractMorphicAdapter >> styleName [
 	"i.e. ButtonAdapter = Button"
 	
-	^ ((self className allButFirst: 7) allButLast: 7) asSymbol
+	^ ((self className withoutPrefix: 'SpMorphic') allButLast: 7) asSymbol
 ]
 
 { #category : #'drag and drop' }
