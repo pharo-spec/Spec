@@ -259,7 +259,7 @@ SpMorphicTreeAdapter >> resizerWidth [
 SpMorphicTreeAdapter >> rootNodeFromItem: item [
 	| node |
 	
-	node := item isTreeNodeModel
+	node := (item isKindOf: SpTreeNodePresenter)
 		ifTrue: [ item ]
 		ifFalse: [ self rootNodeHolder cull: item ].
 		

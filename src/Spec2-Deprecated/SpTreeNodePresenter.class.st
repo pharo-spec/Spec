@@ -64,7 +64,7 @@ SpTreeNodePresenter >> allUnselectedItems [
 SpTreeNodePresenter >> buildChildren [
 
 	contents := self children value collect: [ :each || node | 
-		node := each isTreeNodeModel
+		node := (each isKindOf: SpTreeNodePresenter)
 			ifTrue: [ each ]
 			ifFalse: [  (self childNodeClassFor: each) new
 				content: each  ].
@@ -228,12 +228,6 @@ SpTreeNodePresenter >> isPartialMatch [
 		(each selected or: [ each isPartialMatch ]) ifTrue: [ result := true ] ].
 
 	^ result
-]
-
-{ #category : #converting }
-SpTreeNodePresenter >> isTreeNodeModel [
-
-	^ true
 ]
 
 { #category : #api }
