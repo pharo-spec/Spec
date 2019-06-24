@@ -126,8 +126,23 @@ SpMenuPresenter >> defaultGroup [
 
 { #category : #'api-building' }
 SpMenuPresenter >> fromSpec: aSpec [
-
-	aSpec addToMenuModel: self
+	| grps subgroup |
+	
+	grps := OrderedCollection new.
+	aSpec label ifNotNil: [ :label | self title: label ]. "only change the title when a new one is specified"
+	
+	subgroup := OrderedCollection new.
+	aSpec items do: [ :each | 
+		subgroup add: each.
+		each separator
+			ifTrue: [ 
+				grps add: subgroup copy.
+				subgroup removeAll ] ].
+	subgroup ifNotEmpty: [ grps add: subgroup copy ].
+	
+	grps do: [ :each | self 
+		addGroup: [ :group | each do: [ :spec | 
+			group addItem: [ :item | item fromSpec: spec ] ] ] ]
 ]
 
 { #category : #api }

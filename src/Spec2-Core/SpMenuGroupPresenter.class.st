@@ -75,8 +75,7 @@ SpMenuGroupPresenter >> buildWithSpecLayout: aSpecLayout [
 
 { #category : #'api-building' }
 SpMenuGroupPresenter >> fromSpec: aSpec [
-
-	aSpec addToMenuGroupModel: self
+	self addItem: [ :item | item fromSpec: aSpec ]
 ]
 
 { #category : #initialization }

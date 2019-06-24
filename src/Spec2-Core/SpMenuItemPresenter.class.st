@@ -82,8 +82,17 @@ SpMenuItemPresenter >> description: aString [
 
 { #category : #'api-building' }
 SpMenuItemPresenter >> fromSpec: aSpec [
-
-	aSpec addToMenuItemModel: self
+	| en newSubMenu |
+	en := aSpec enabledBlock ifNil: [ aSpec enabled ].
+	newSubMenu := aSpec subMenu ifNotNil: [ :sub | SpMenuPresenter new fromSpec: sub ].
+	self
+		name: aSpec label;
+		state: aSpec checked;
+		enabled: en;
+		icon: aSpec icon;
+		shortcut: aSpec keyText;
+		subMenu: newSubMenu;
+		action: aSpec action
 ]
 
 { #category : #api }
