@@ -60,7 +60,7 @@ SpMorphicTextAdapter >> autoAccept: aBoolean [
 SpMorphicTextAdapter >> buildWidget [
 	| newWidget |
 	self flag: #pharo7.	"When support for P7 will be dropped, remove this compatibility hack."
-	newWidget := ((self class environment at: #SpecRubScrolledTextMorph ifAbsent: [ RubScrolledTextMorph ]) on: self)
+	newWidget := ((self class environment at: #SpRubScrolledTextMorph ifAbsent: [ RubScrolledTextMorph ]) on: self)
 		getTextSelector: #getText;
 		setTextSelector: #accept:notifying:;
 		getSelectionSelector: #readSelection;

@@ -37,7 +37,7 @@ SpMorphicTextInputFieldAdapter >> adapt: aModel [
 SpMorphicTextInputFieldAdapter >> buildWidget [
 	| newWidget |
 	self flag: #pharo7.	"When support for P7 will be dropped, remove this compatibility hack."
-	newWidget := ((self class environment at: #SpecRubTextFieldMorph ifAbsent: [ RubTextFieldMorph ]) on: self)
+	newWidget := ((self class environment at: #SpRubTextFieldMorph ifAbsent: [ RubTextFieldMorph ]) on: self)
 		getTextSelector: #getText;
 		setTextSelector: #accept:notifying:;
 		getSelectionSelector: #readSelection;

@@ -18,6 +18,7 @@ BaselineOfSpec >> baseline: spec [
 			"Packages"
 			spec
 				package: 'Spec2-Core' with: [ spec requires: #('Spec2-Layout' 'Spec2-Transmission') ];
+				package: 'Spec2-Help';
 				package: 'Spec2-Commands' with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Deprecated' with: [ spec requires: #('Spec2-Tests' 'Spec2-PolyWidgets-Tests' 'Spec2-Adapters-Morphic') ];
 				package: 'Spec2-Inspector' with: [ spec requires: #('Spec2-PolyWidgets') ];
@@ -33,7 +34,7 @@ BaselineOfSpec >> baseline: spec [
 				package: 'Spec2-Morphic-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic' 'ParametrizedTests') ];
 				package: 'Spec2-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic' 'ParametrizedTests') ];
 				package: 'Spec2-Compatibility-Tests' with: [ spec requires: #('Spec2-Morphic-Backend-Tests' 'Spec2-Deprecated') ]  ].
-	spec for: #'pharo7.x' do: [ spec package: 'Spec-Pharo7To8Compatibility' ]
+	spec for: #'pharo7.x' do: [ spec package: 'Spec2-Pharo7To8Compatibility' ]
 ]
 
 { #category : #dependencies }

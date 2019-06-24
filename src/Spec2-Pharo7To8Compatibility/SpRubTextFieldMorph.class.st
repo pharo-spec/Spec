@@ -1,5 +1,5 @@
 Class {
-	#name : #SpecRubTextFieldMorph,
+	#name : #SpRubTextFieldMorph,
 	#superclass : #RubScrolledTextMorph,
 	#instVars : [
 		'hasValidText',
@@ -9,21 +9,21 @@ Class {
 		'askBeforeDiscardingEdits',
 		'getBackgroundColorSelector'
 	],
-	#category : #'Spec-Pharo7To8Compatibility'
+	#category : #'Spec2-Pharo7To8Compatibility'
 }
 
 { #category : #'instance creation' }
-SpecRubTextFieldMorph class >> on: aModel [ 
+SpRubTextFieldMorph class >> on: aModel [ 
 	^ self new on: aModel
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> accept [
+SpRubTextFieldMorph >> accept [
 	self acceptContents.
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> acceptContents [
+SpRubTextFieldMorph >> acceptContents [
 	(self autoAccept not and: [ self canDiscardEdits and: [ self alwaysAccept not ] ])
 		ifTrue: [ ^ self flash ].
 	self hasEditingConflicts
@@ -41,17 +41,17 @@ editing it here.  Accept anyway?' translated)
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> acceptOnCR [
+SpRubTextFieldMorph >> acceptOnCR [
 	^ acceptOnCR 
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> acceptOnCR: aBoolean [
+SpRubTextFieldMorph >> acceptOnCR: aBoolean [
 	acceptOnCR := aBoolean
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> acceptTextInModel [
+SpRubTextFieldMorph >> acceptTextInModel [
 	"Inform the model that the receiver's textArea text should be accepted.
 	Answer true if the model accepted ok, something else otherwise (sic)"
 	| result |
@@ -68,13 +68,13 @@ SpecRubTextFieldMorph >> acceptTextInModel [
 ]
 
 { #category : #'accessing segments' }
-SpecRubTextFieldMorph >> addSegment: aRubTextSegmentMorph [
+SpRubTextFieldMorph >> addSegment: aRubTextSegmentMorph [
 	^ self textArea addSegment: aRubTextSegmentMorph
 
 ]
 
 { #category : #drawing }
-SpecRubTextFieldMorph >> adornmentColor [
+SpRubTextFieldMorph >> adornmentColor [
 	"color to Indicate edit status for the given morph."
 
 	self hasValidText
@@ -87,22 +87,22 @@ SpecRubTextFieldMorph >> adornmentColor [
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> adornmentRuler [
+SpRubTextFieldMorph >> adornmentRuler [
 	^ self rulerNamed: #adornment
 ]
 
 { #category : #'accessing menu' }
-SpecRubTextFieldMorph >> allowMenu [
+SpRubTextFieldMorph >> allowMenu [
 	self menuAllowed: true
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> alwaysAccept [
+SpRubTextFieldMorph >> alwaysAccept [
 	^ alwaysAccept ifNil: [ alwaysAccept := false]
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> alwaysAccept: aBoolean [
+SpRubTextFieldMorph >> alwaysAccept: aBoolean [
 	"Set the always accept flag."
 	"This flag is used when there are unsaved changes in my text field and an exterior actor tries to modify me"
 	"If the flag is true, I will accept to change even if I have pending modification instead of poping up the Accept/Discard/Cancel window"
@@ -112,12 +112,12 @@ SpecRubTextFieldMorph >> alwaysAccept: aBoolean [
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> annotationRuler [
+SpRubTextFieldMorph >> annotationRuler [
 	^ self rulerNamed: #annotation
 ]
 
 { #category : #'acessing text' }
-SpecRubTextFieldMorph >> appendText: stringOrText [
+SpRubTextFieldMorph >> appendText: stringOrText [
 	"Accept new text contents with line breaks only as in the text.
 	Fit my width and height to the result."
 
@@ -126,21 +126,21 @@ SpecRubTextFieldMorph >> appendText: stringOrText [
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> askBeforeDiscardingEdits: aBoolean [
+SpRubTextFieldMorph >> askBeforeDiscardingEdits: aBoolean [
 	"Set the flag that determines whether the user should be asked before discarding unaccepted edits."
 
 	askBeforeDiscardingEdits := aBoolean
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> autoAccept [
+SpRubTextFieldMorph >> autoAccept [
 	"Answer whether the editor accepts its contents on each change."
 
 	^autoAccept ifNil: [autoAccept := false]
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> autoAccept: aBoolean [
+SpRubTextFieldMorph >> autoAccept: aBoolean [
 	"Whether I should accept my contents on each change."
 	autoAccept := aBoolean.
 	aBoolean
@@ -149,17 +149,17 @@ SpecRubTextFieldMorph >> autoAccept: aBoolean [
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> backgroundColor [
+SpRubTextFieldMorph >> backgroundColor [
 	^self scrollPane color
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> backgroundColor: aColor [
+SpRubTextFieldMorph >> backgroundColor: aColor [
 	self scrollPane color: aColor
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> basicHasUnacceptedEdits: aBoolean [
+SpRubTextFieldMorph >> basicHasUnacceptedEdits: aBoolean [
 	self autoAccept
 		ifTrue: [ ^ self ].
 	aBoolean = hasUnacceptedEdits 
@@ -170,82 +170,82 @@ SpecRubTextFieldMorph >> basicHasUnacceptedEdits: aBoolean [
 ]
 
 { #category : #encryption }
-SpecRubTextFieldMorph >> beDecrypted [
+SpRubTextFieldMorph >> beDecrypted [
 
 	self textMorph font: TextStyle defaultFont.
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> beEditable [
+SpRubTextFieldMorph >> beEditable [
 	self textArea beEditable 
 ]
 
 { #category : #encryption }
-SpecRubTextFieldMorph >> beEncrypted [
+SpRubTextFieldMorph >> beEncrypted [
 
 	self textMorph font: (StrikeFont passwordFontSize: self theme textFont pointSize).
 ]
 
 { #category : #initialization }
-SpecRubTextFieldMorph >> beForPlainText [
+SpRubTextFieldMorph >> beForPlainText [
 	self textArea beForPlainText
 ]
 
 { #category : #initialization }
-SpecRubTextFieldMorph >> beForSmalltalkCode [
+SpRubTextFieldMorph >> beForSmalltalkCode [
 	self textArea beForSmalltalkCode.
 	self withTextSegmentIcons.
 	self textArea font: StandardFonts codeFont
 ]
 
 { #category : #initialization }
-SpecRubTextFieldMorph >> beForSmalltalkCodeInClass: aClass [
+SpRubTextFieldMorph >> beForSmalltalkCodeInClass: aClass [
 	self textArea beForSmalltalkCodeInClass: aClass.
 	self withTextSegmentIcons.
 	self textArea font: StandardFonts codeFont
 ]
 
 { #category : #initialization }
-SpecRubTextFieldMorph >> beForSmalltalkCodeWithDefaultFont [
+SpRubTextFieldMorph >> beForSmalltalkCodeWithDefaultFont [
 	self textArea beForSmalltalkCodeWithDefaultFont.
 	self withTextSegmentIcons
 ]
 
 { #category : #initialization }
-SpecRubTextFieldMorph >> beForSmalltalkComment [
+SpRubTextFieldMorph >> beForSmalltalkComment [
 	self textArea beForSmalltalkComment
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> beForSmalltalkScripting [
+SpRubTextFieldMorph >> beForSmalltalkScripting [
     self textArea beForSmalltalkScripting.
     self textArea font: StandardFonts codeFont
 
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> beForSmalltalkScriptingWithDefaultFont [
+SpRubTextFieldMorph >> beForSmalltalkScriptingWithDefaultFont [
     self textArea beForSmalltalkScriptingWithDefaultFont
 
 ]
 
 { #category : #'acessing text' }
-SpecRubTextFieldMorph >> beNotWrapped [
+SpRubTextFieldMorph >> beNotWrapped [
 	self scrollPane beNotWrapped 
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> beReadOnly [
+SpRubTextFieldMorph >> beReadOnly [
 	self textArea beReadOnly 
 ]
 
 { #category : #'acessing text' }
-SpecRubTextFieldMorph >> beWrapped [
+SpRubTextFieldMorph >> beWrapped [
 	self scrollPane beWrapped
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> borderStyleToUse [
+SpRubTextFieldMorph >> borderStyleToUse [
 	"Answer the borderStyle that should be used for the receiver."
 	
 	^self enabled
@@ -254,58 +254,58 @@ SpecRubTextFieldMorph >> borderStyleToUse [
 ]
 
 { #category : #'accessing scrollbars' }
-SpecRubTextFieldMorph >> borderWidth: anInteger [
+SpRubTextFieldMorph >> borderWidth: anInteger [
 	super borderWidth: anInteger.
 	self extent: self extent.
 	self manageLayout 
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> canDiscardEdits [
+SpRubTextFieldMorph >> canDiscardEdits [
 	^ (self hasUnacceptedEdits and: [askBeforeDiscardingEdits]) not
 
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> cancel [
+SpRubTextFieldMorph >> cancel [
 
 	self updateTextWith: self getTextFromModel.
 	self setSelection: self getSelectionFromModel
 ]
 
 { #category : #testing }
-SpecRubTextFieldMorph >> chooserHasFocus [
+SpRubTextFieldMorph >> chooserHasFocus [
 	^ self chooserIsOpened and: [entryCompletion chooser hasKeyboardFocus]
 ]
 
 { #category : #testing }
-SpecRubTextFieldMorph >> chooserIsOpened [
+SpRubTextFieldMorph >> chooserIsOpened [
 	^ entryCompletion notNil and: [entryCompletion chooser notNil]
 ]
 
 { #category : #'rulers handling' }
-SpecRubTextFieldMorph >> classOfRulerNamed: aKey [
+SpRubTextFieldMorph >> classOfRulerNamed: aKey [
 	^ RubScrolledTextExtra classOfRulerNamed: aKey
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> classOrMetaClass: aBehavior [
+SpRubTextFieldMorph >> classOrMetaClass: aBehavior [
 	self textArea classOrMetaClass: aBehavior
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> closeChooser [	
+SpRubTextFieldMorph >> closeChooser [	
 	entryCompletion
 		ifNotNil: [entryCompletion closeChooser]
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> columnRuler [
+SpRubTextFieldMorph >> columnRuler [
 	^ self rulerNamed: #column
 ]
 
 { #category : #configure }
-SpecRubTextFieldMorph >> configureGhostText: aTextArea [
+SpRubTextFieldMorph >> configureGhostText: aTextArea [
 	aTextArea width: self scrollBounds width.
 	aTextArea center: self scrollBounds center.
 	self hasKeyboardFocus
@@ -314,38 +314,38 @@ SpecRubTextFieldMorph >> configureGhostText: aTextArea [
 ]
 
 { #category : #'interactive error protocol' }
-SpecRubTextFieldMorph >> correctFrom: start to: stop with: aString [
+SpRubTextFieldMorph >> correctFrom: start to: stop with: aString [
 	self textArea correctFrom: start to: stop with: aString
 ]
 
 { #category : #'accessing scrollbars' }
-SpecRubTextFieldMorph >> currentHScrollBarThickness [
+SpRubTextFieldMorph >> currentHScrollBarThickness [
 	^self scrollPane currentHScrollBarThickness
 ]
 
 { #category : #'accessing text area' }
-SpecRubTextFieldMorph >> cursor [
+SpRubTextFieldMorph >> cursor [
 	"polymorphism with text area"
 	^ self textArea cursor
 ]
 
 { #category : #defaults }
-SpecRubTextFieldMorph >> defaultBackgroundColor [ 
+SpRubTextFieldMorph >> defaultBackgroundColor [ 
 	^ self theme backgroundColor
 ]
 
 { #category : #defaults }
-SpecRubTextFieldMorph >> defaultBorderWidth [
+SpRubTextFieldMorph >> defaultBorderWidth [
 	^ 0
 ]
 
 { #category : #defaults }
-SpecRubTextFieldMorph >> defaultColor [
+SpRubTextFieldMorph >> defaultColor [
 	^ self defaultBackgroundColor 
 ]
 
 { #category : #defaults }
-SpecRubTextFieldMorph >> defaultGhostTextMorph [
+SpRubTextFieldMorph >> defaultGhostTextMorph [
 	| gt |
 	gt := RubEditingArea new.
 	gt withoutAnyDecorator.
@@ -356,7 +356,7 @@ SpecRubTextFieldMorph >> defaultGhostTextMorph [
 ]
 
 { #category : #initialization }
-SpecRubTextFieldMorph >> defaultScrollTarget [
+SpRubTextFieldMorph >> defaultScrollTarget [
 	| textArea |
 	textArea := self textAreaClass new.
 	textArea backgroundColor: Color lightGray veryMuchLighter.
@@ -364,22 +364,22 @@ SpecRubTextFieldMorph >> defaultScrollTarget [
 ]
 
 { #category : #protocol }
-SpecRubTextFieldMorph >> disable [
+SpRubTextFieldMorph >> disable [
 	self beReadOnly 
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> drawFocusBorder [
+SpRubTextFieldMorph >> drawFocusBorder [
 	^ self scrollPane drawFocusBorder
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> drawFocusBorder: aBoolean [
+SpRubTextFieldMorph >> drawFocusBorder: aBoolean [
 	self scrollPane drawFocusBorder: aBoolean
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> drawHighlightsOn: aCanvas [
+SpRubTextFieldMorph >> drawHighlightsOn: aCanvas [
 	"Draw the highlights."
 
 	| scrollBounds scrollOffset |
@@ -395,13 +395,13 @@ SpecRubTextFieldMorph >> drawHighlightsOn: aCanvas [
 ]
 
 { #category : #drawing }
-SpecRubTextFieldMorph >> drawOn: aCanvas [
+SpRubTextFieldMorph >> drawOn: aCanvas [
 	super drawOn: aCanvas.
 	self drawHighlightsOn: aCanvas 
 ]
 
 { #category : #drawing }
-SpecRubTextFieldMorph >> drawOnAthensCanvas: anAthensCanvas [
+SpRubTextFieldMorph >> drawOnAthensCanvas: anAthensCanvas [
 	"Indicate unaccepted edits, conflicts etc."
 
 	super drawOnAthensCanvas: anAthensCanvas. 
@@ -409,7 +409,7 @@ SpecRubTextFieldMorph >> drawOnAthensCanvas: anAthensCanvas [
 ]
 
 { #category : #drawing }
-SpecRubTextFieldMorph >> drawSubmorphsOn: aCanvas [
+SpRubTextFieldMorph >> drawSubmorphsOn: aCanvas [
 	"Display submorphs back to front"
 
 	| drawBlock subs |
@@ -428,7 +428,7 @@ SpecRubTextFieldMorph >> drawSubmorphsOn: aCanvas [
 ]
 
 { #category : #drawing }
-SpecRubTextFieldMorph >> drawSubmorphsOnAthensCanvas: anAthensCanvas [
+SpRubTextFieldMorph >> drawSubmorphsOnAthensCanvas: anAthensCanvas [
 	"Display submorphs back to front"
 
 	| drawBlock subs |
@@ -447,28 +447,28 @@ SpecRubTextFieldMorph >> drawSubmorphsOnAthensCanvas: anAthensCanvas [
 ]
 
 { #category : #'accessing-selection' }
-SpecRubTextFieldMorph >> editPrimarySelectionSeparately [
+SpRubTextFieldMorph >> editPrimarySelectionSeparately [
 	self textArea editPrimarySelectionSeparately
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> editingMode [
+SpRubTextFieldMorph >> editingMode [
 	^  self textArea editingMode
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> editingMode: anEditingMode [
+SpRubTextFieldMorph >> editingMode: anEditingMode [
 	self textArea editingMode: anEditingMode.
 
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> editingModeClass [
+SpRubTextFieldMorph >> editingModeClass [
 	^ self textArea editingMode class
 ]
 
 { #category : #'mock for spec' }
-SpecRubTextFieldMorph >> enabled: aBoolean [
+SpRubTextFieldMorph >> enabled: aBoolean [
 	enabled = aBoolean ifTrue: [^self].
 	enabled := aBoolean.
 	self textArea readOnly: aBoolean not.
@@ -476,7 +476,7 @@ SpecRubTextFieldMorph >> enabled: aBoolean [
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> encrypted: aBoolean [
+SpRubTextFieldMorph >> encrypted: aBoolean [
 
 	aBoolean
 		ifTrue: [ self beEncrypted ]
@@ -484,12 +484,12 @@ SpecRubTextFieldMorph >> encrypted: aBoolean [
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> entryCompletion [ 
+SpRubTextFieldMorph >> entryCompletion [ 
 	^ entryCompletion 
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> entryCompletion: anEntryCompletion [
+SpRubTextFieldMorph >> entryCompletion: anEntryCompletion [
 	entryCompletion := anEntryCompletion.
 	entryCompletion
 		ifNil: [ self withoutDropListButton ]
@@ -504,19 +504,19 @@ SpecRubTextFieldMorph >> entryCompletion: anEntryCompletion [
 ]
 
 { #category : #geometry }
-SpecRubTextFieldMorph >> extent: aPoint [
+SpRubTextFieldMorph >> extent: aPoint [
 	super extent: aPoint x @ self textFieldHeight.
 	self manageLayout
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> extraAreas [
+SpRubTextFieldMorph >> extraAreas [
 	^ self rulers select: [ :r | r isOver ]
 
 ]
 
 { #category : #focus }
-SpecRubTextFieldMorph >> focusChanged [
+SpRubTextFieldMorph >> focusChanged [
 	(self hasFocus or: [self chooserHasFocus])
 		ifFalse: [self closeChooser].
 	super focusChanged
@@ -524,28 +524,28 @@ SpecRubTextFieldMorph >> focusChanged [
 ]
 
 { #category : #'acessing text' }
-SpecRubTextFieldMorph >> font [
+SpRubTextFieldMorph >> font [
 	^ self textArea font
 ]
 
 { #category : #'accessing text area' }
-SpecRubTextFieldMorph >> font: aFont [
+SpRubTextFieldMorph >> font: aFont [
 	"polymorphism with text area"
 	self textFont: aFont
 ]
 
 { #category : #'accessing menu' }
-SpecRubTextFieldMorph >> forbidMenu [
+SpRubTextFieldMorph >> forbidMenu [
 	self menuAllowed: false
 ]
 
 { #category : #formatting }
-SpecRubTextFieldMorph >> formatSourceCode [
+SpRubTextFieldMorph >> formatSourceCode [
 	self textArea formatMethodCode
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> getBackgroundColorFromModel [
+SpRubTextFieldMorph >> getBackgroundColorFromModel [
 	"Retrieve the color from the model"
 
 	self getBackgroundColorSelector ifNil: [^ self ].
@@ -553,47 +553,47 @@ SpecRubTextFieldMorph >> getBackgroundColorFromModel [
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> getBackgroundColorSelector [ 
+SpRubTextFieldMorph >> getBackgroundColorSelector [ 
 	^ getBackgroundColorSelector 
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> getBackgroundColorSelector: aSelector [
+SpRubTextFieldMorph >> getBackgroundColorSelector: aSelector [
 	getBackgroundColorSelector := aSelector
 ]
 
 { #category : #'accessing menu' }
-SpecRubTextFieldMorph >> getMenuPolicy: aGetMenuPolicy [
+SpRubTextFieldMorph >> getMenuPolicy: aGetMenuPolicy [
 	self textArea getMenuPolicy: aGetMenuPolicy
 ]
 
 { #category : #'accessing-selection' }
-SpecRubTextFieldMorph >> getSelectionFromModel [
+SpRubTextFieldMorph >> getSelectionFromModel [
 	"Answer the model's selection interval."
 
 	^ self getSelectionSelector ifNotNil: [ :s | self model perform: s withEnoughArguments: {self} ]
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> getSelectionSelector [
+SpRubTextFieldMorph >> getSelectionSelector [
 	^ getSelectionSelector
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> getSelectionSelector: aSelector [
+SpRubTextFieldMorph >> getSelectionSelector: aSelector [
 	getSelectionSelector := aSelector.
 
 ]
 
 { #category : #'acessing text' }
-SpecRubTextFieldMorph >> getText [
+SpRubTextFieldMorph >> getText [
 	"Retrieve the current view text, possibly not accepted"
 
 	^ self textArea text
 ]
 
 { #category : #'acessing text' }
-SpecRubTextFieldMorph >> getTextFromModel [
+SpRubTextFieldMorph >> getTextFromModel [
 	"Retrieve the current model text"
 
 	| newText |
@@ -604,112 +604,112 @@ SpecRubTextFieldMorph >> getTextFromModel [
 ]
 
 { #category : #'acessing text' }
-SpecRubTextFieldMorph >> getTextFromView [
+SpRubTextFieldMorph >> getTextFromView [
 	"Retrieve the current view text, possibly not accepted"
 
 	^ self textArea text
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> getTextSelector [
+SpRubTextFieldMorph >> getTextSelector [
 	^ getTextSelector ifNil: [  getTextSelector := #getText ]
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> getTextSelector: aSymbol [ 
+SpRubTextFieldMorph >> getTextSelector: aSymbol [ 
 	getTextSelector  := aSymbol
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> ghostText [
+SpRubTextFieldMorph >> ghostText [
 	^ (self rulerNamed: #ghostText) ghostText text
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> ghostText: aText [
+SpRubTextFieldMorph >> ghostText: aText [
 	self withGhostText: aText
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> ghostTextRuler [
+SpRubTextFieldMorph >> ghostTextRuler [
 	^ self rulerNamed: #ghostText
 ]
 
 { #category : #'accessing scrollbars' }
-SpecRubTextFieldMorph >> hScrollbarShowAlways [
+SpRubTextFieldMorph >> hScrollbarShowAlways [
 	self scrollPane hScrollbarShowAlways.
 	self extent: self extent.
 	self manageLayout 
 ]
 
 { #category : #'accessing scrollbars' }
-SpecRubTextFieldMorph >> hScrollbarShowNever [
+SpRubTextFieldMorph >> hScrollbarShowNever [
 	self scrollPane hScrollbarShowNever
 ]
 
 { #category : #'accessing scrollbars' }
-SpecRubTextFieldMorph >> hScrollbarShowWhenNeeded [
+SpRubTextFieldMorph >> hScrollbarShowWhenNeeded [
 	self scrollPane hScrollbarShowWhenNeeded
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> handleMouseDown: event [
+SpRubTextFieldMorph >> handleMouseDown: event [
 	^ super handleMouseDown: event
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> handlesKeyboard: evt [
+SpRubTextFieldMorph >> handlesKeyboard: evt [
 	"Yes for page up/down."
 	
 	^true
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> handlesMouseDown: event [
+SpRubTextFieldMorph >> handlesMouseDown: event [
 	^ self scrollBounds containsPoint: event cursorPoint
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> handlesMouseWheel: evt [
+SpRubTextFieldMorph >> handlesMouseWheel: evt [
 	"Do I want to receive mouseWheel events?" 
 
 	^ true
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> hasEditingConflicts [
+SpRubTextFieldMorph >> hasEditingConflicts [
 	^ hasEditingConflicts
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> hasEditingConflicts: aBoolean [
+SpRubTextFieldMorph >> hasEditingConflicts: aBoolean [
 	hasEditingConflicts := aBoolean
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> hasKeyboardFocus [
+SpRubTextFieldMorph >> hasKeyboardFocus [
 	^ (self scrollPane ifNil: [ ^false ]) hasKeyboardFocus
 ]
 
 { #category : #'rulers handling' }
-SpecRubTextFieldMorph >> hasRuler: aRuler [
+SpRubTextFieldMorph >> hasRuler: aRuler [
 	^ self rulers includes: aRuler
 	
 ]
 
 { #category : #'rulers handling' }
-SpecRubTextFieldMorph >> hasRulerNamed: aKey [
+SpRubTextFieldMorph >> hasRulerNamed: aKey [
 	^ self rulers anySatisfy: [ :r | r key = aKey ]
 	
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> hasUnacceptedEdits [
+SpRubTextFieldMorph >> hasUnacceptedEdits [
 	^ hasUnacceptedEdits
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> hasUnacceptedEdits: aBoolean [
+SpRubTextFieldMorph >> hasUnacceptedEdits: aBoolean [
 	"Set the hasUnacceptedEdits flag to the given value. "
 	
 	(self model respondsTo: #hasUnacceptedEdits:)
@@ -718,32 +718,32 @@ SpecRubTextFieldMorph >> hasUnacceptedEdits: aBoolean [
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> hasValidText [
+SpRubTextFieldMorph >> hasValidText [
 	^ hasValidText
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> hasValidText: aBoolean [
+SpRubTextFieldMorph >> hasValidText: aBoolean [
 	hasValidText := aBoolean
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> highlights [
+SpRubTextFieldMorph >> highlights [
 	^ highlights
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> highlights: anObject [
+SpRubTextFieldMorph >> highlights: anObject [
 	highlights := anObject
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> horizontalRulers [
+SpRubTextFieldMorph >> horizontalRulers [
 	^self rulers select: [ :r | r isHorizontal ]
 ]
 
 { #category : #initialization }
-SpecRubTextFieldMorph >> initialize [
+SpRubTextFieldMorph >> initialize [
 	super initialize.
 	self clipSubmorphs: true.
 	enabled := true.
@@ -773,35 +773,35 @@ SpecRubTextFieldMorph >> initialize [
 ]
 
 { #category : #testing }
-SpecRubTextFieldMorph >> isReadOnly [
+SpRubTextFieldMorph >> isReadOnly [
 	^ self textArea isReadOnly 
 ]
 
 { #category : #classification }
-SpecRubTextFieldMorph >> isRenderer [
+SpRubTextFieldMorph >> isRenderer [
 	^ true
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> keyStroke: event [
+SpRubTextFieldMorph >> keyStroke: event [
 	self scrollPane
 		ifNotNil: [ :scrollpane | scrollpane keyStroke: (event transformedBy: (scrollpane transformFrom: self)) ]
 ]
 
 { #category : #focus }
-SpecRubTextFieldMorph >> keyboardFocusChange: aBoolean [
+SpRubTextFieldMorph >> keyboardFocusChange: aBoolean [
 	self closeChooser.
 	super keyboardFocusChange: aBoolean.
 
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> lineNumbersRuler [
+SpRubTextFieldMorph >> lineNumbersRuler [
 	^ self rulerNamed: #lineNumbers
 ]
 
 { #category : #layout }
-SpecRubTextFieldMorph >> manageLayout [
+SpRubTextFieldMorph >> manageLayout [
 	| ret |
 	self textArea ifNil: [ ^self ].
 	ret := self manageLayoutInBounds: self innerBounds.
@@ -810,7 +810,7 @@ SpecRubTextFieldMorph >> manageLayout [
 ]
 
 { #category : #defaults }
-SpecRubTextFieldMorph >> manageLayoutInBounds: aRectangle [
+SpRubTextFieldMorph >> manageLayoutInBounds: aRectangle [
 	| myBounds |
 	myBounds := aRectangle.
 	self horizontalRulers do: [ :r | myBounds := r manageLayoutInBounds: myBounds ].
@@ -824,13 +824,13 @@ SpecRubTextFieldMorph >> manageLayoutInBounds: aRectangle [
 ]
 
 { #category : #'accessing text area' }
-SpecRubTextFieldMorph >> margins: aMargin [
+SpRubTextFieldMorph >> margins: aMargin [
 	"polymorphism with text area"
 	self textArea margins: aMargin
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> maxLength [
+SpRubTextFieldMorph >> maxLength [
 	
 	"Returns the max length of this text field.
 	0 meaning unlimited"
@@ -838,7 +838,7 @@ SpecRubTextFieldMorph >> maxLength [
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> maxLength: anInteger [
+SpRubTextFieldMorph >> maxLength: anInteger [
 	"Sets the max length of the text field.
 	0 means unlimited"
 	maxLength := anInteger.
@@ -850,12 +850,12 @@ SpecRubTextFieldMorph >> maxLength: anInteger [
 ]
 
 { #category : #'accessing menu' }
-SpecRubTextFieldMorph >> menuAllowed: aBoolean [
+SpRubTextFieldMorph >> menuAllowed: aBoolean [
 	self textArea menuAllowed: aBoolean
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> menuProvider: anObject selector: aSelector [
+SpRubTextFieldMorph >> menuProvider: anObject selector: aSelector [
 	self textArea
 		getMenuPolicy:
 			(RubPluggableGetMenuPolicy new
@@ -865,12 +865,12 @@ SpecRubTextFieldMorph >> menuProvider: anObject selector: aSelector [
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> model [ 
+SpRubTextFieldMorph >> model [ 
 	^self textArea model
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> model: aModel [
+SpRubTextFieldMorph >> model: aModel [
 	self textArea model: aModel.
 	self setTextWith: self getTextFromModel.
 	self setSelection: self getSelectionFromModel.
@@ -885,7 +885,7 @@ SpecRubTextFieldMorph >> model: aModel [
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> mouseDown: event [
+SpRubTextFieldMorph >> mouseDown: event [
 	"If pane is not empty, pass the event to the last submorph,
 	assuming it is the most appropriate recipient (!)"
 
@@ -896,7 +896,7 @@ SpecRubTextFieldMorph >> mouseDown: event [
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> mouseWheel: event [ 
+SpRubTextFieldMorph >> mouseWheel: event [ 
 	"Handle a mouseWheel event."
 	
 	(self scrollPane scrollTarget handlesMouseWheel: event)
@@ -904,12 +904,12 @@ SpecRubTextFieldMorph >> mouseWheel: event [
 ]
 
 { #category : #'accessing-selection' }
-SpecRubTextFieldMorph >> moveCursorToIndex: anIndex [ 
+SpRubTextFieldMorph >> moveCursorToIndex: anIndex [ 
 	self selectFrom: anIndex to: anIndex - 1
 ]
 
 { #category : #initialization }
-SpecRubTextFieldMorph >> newScrollPane [
+SpRubTextFieldMorph >> newScrollPane [
 	| sp |
 	sp := RubTextScrollPane new.
 	sp scrollTarget: self defaultScrollTarget.
@@ -917,34 +917,34 @@ SpecRubTextFieldMorph >> newScrollPane [
 ]
 
 { #category : #'submorphs-accessing' }
-SpecRubTextFieldMorph >> noteNewOwner: aMorph [ 
+SpRubTextFieldMorph >> noteNewOwner: aMorph [ 
 	super noteNewOwner: aMorph.
 	self manageLayout 
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> notificationStrategy: aStrategy [
+SpRubTextFieldMorph >> notificationStrategy: aStrategy [
 	self textArea notificationStrategy: aStrategy
 ]
 
 { #category : #'interactive error protocol' }
-SpecRubTextFieldMorph >> notify: message at: location in: code [
+SpRubTextFieldMorph >> notify: message at: location in: code [
 	^ self textArea notify: message at: location in: code
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> offset [
+SpRubTextFieldMorph >> offset [
 	^ self scrollPane offset
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> on: aModel [ 
+SpRubTextFieldMorph >> on: aModel [ 
 	self model: aModel.
 
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> on: aModel text: aGetTextSelector accept: aSetTextSelector readSelection: aReadSelectionSelector menu: aGetMenuSelector [
+SpRubTextFieldMorph >> on: aModel text: aGetTextSelector accept: aSetTextSelector readSelection: aReadSelectionSelector menu: aGetMenuSelector [
 	self getTextSelector: aGetTextSelector.
 	self setTextSelector: aSetTextSelector.
 	self getSelectionSelector: aReadSelectionSelector.
@@ -955,7 +955,7 @@ SpecRubTextFieldMorph >> on: aModel text: aGetTextSelector accept: aSetTextSelec
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel setSelection: setSelectionSel [
+SpRubTextFieldMorph >> on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel setSelection: setSelectionSel [
 	self
 		on: anObject
 		text: getTextSel
@@ -969,30 +969,30 @@ SpecRubTextFieldMorph >> on: anObject text: getTextSel accept: setTextSel readSe
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> openChooser [	
+SpRubTextFieldMorph >> openChooser [	
 	entryCompletion
 		ifNotNil: [
 			entryCompletion openChooserWith: self textArea text string from: self]
 ]
 
 { #category : #initialization }
-SpecRubTextFieldMorph >> outOfWorld: aWorld [
+SpRubTextFieldMorph >> outOfWorld: aWorld [
 	self closeChooser.
 	super outOfWorld: aWorld
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> overRulers [
+SpRubTextFieldMorph >> overRulers [
 	^self rulers select: [ :r | r isOver ]
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> paragraph [
+SpRubTextFieldMorph >> paragraph [
 	^ self scrollPane paragraph 
 ]
 
 { #category : #geometry }
-SpecRubTextFieldMorph >> position: aPoint [
+SpRubTextFieldMorph >> position: aPoint [
 	super position: aPoint.
 	self manageLayout
 
@@ -1000,12 +1000,12 @@ SpecRubTextFieldMorph >> position: aPoint [
 ]
 
 { #category : #'rulers handling' }
-SpecRubTextFieldMorph >> removeAllRulers [
+SpRubTextFieldMorph >> removeAllRulers [
 	[ self rulers notEmpty ] whileTrue: [ self withoutRuler: self rulers first ]
 ]
 
 { #category : #private }
-SpecRubTextFieldMorph >> resetState [
+SpRubTextFieldMorph >> resetState [
 	hasValidText := true.
 		hasEditingConflicts := false.
 	hasUnacceptedEdits := false.
@@ -1013,145 +1013,145 @@ SpecRubTextFieldMorph >> resetState [
 ]
 
 { #category : #'rulers handling' }
-SpecRubTextFieldMorph >> rulerNamed: aKey [
+SpRubTextFieldMorph >> rulerNamed: aKey [
 	^self rulers detect: [ :r | r key = aKey ] ifNone: [  ]
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> rulers [
+SpRubTextFieldMorph >> rulers [
 	^ rulers 
 ]
 
 { #category : #geometry }
-SpecRubTextFieldMorph >> scrollBounds [
+SpRubTextFieldMorph >> scrollBounds [
 	^ self scrollPane scrollBounds
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> scrollPane [
+SpRubTextFieldMorph >> scrollPane [
 	^ scrollPane
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> scrollToBeginningOfLine [
+SpRubTextFieldMorph >> scrollToBeginningOfLine [
 	self scrollPane scrollToBeginningOfLine
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> scrollToBeginningOfText [
+SpRubTextFieldMorph >> scrollToBeginningOfText [
 	self scrollPane scrollToBeginningOfText
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> scrollToEndOfLine [
+SpRubTextFieldMorph >> scrollToEndOfLine [
 	self scrollPane scrollToEndOfLine
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> scrollToEndOfText [
+SpRubTextFieldMorph >> scrollToEndOfText [
 	self scrollPane scrollToEndOfText
 ]
 
 { #category : #'accessing scrollbars' }
-SpecRubTextFieldMorph >> scrollbarsShowNever [
+SpRubTextFieldMorph >> scrollbarsShowNever [
 	self hScrollbarShowNever.
 	self vScrollbarShowNever
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> scrollerExtentChanged [
+SpRubTextFieldMorph >> scrollerExtentChanged [
 	self manageLayout
 
 ]
 
 { #category : #'accessing scrollbars' }
-SpecRubTextFieldMorph >> scrollerOffsetChanged [
+SpRubTextFieldMorph >> scrollerOffsetChanged [
 	self rulers do: [:r | r scrollerOffsetChanged]
 ]
 
 { #category : #'accessing segments' }
-SpecRubTextFieldMorph >> segments [
+SpRubTextFieldMorph >> segments [
 	^ self textArea segments
 
 ]
 
 { #category : #'accessing segments' }
-SpecRubTextFieldMorph >> segmentsAtLine: aLineNumber [
+SpRubTextFieldMorph >> segmentsAtLine: aLineNumber [
 	^ self textArea  segmentsAtLine: aLineNumber
 
 ]
 
 { #category : #'accessing-selection' }
-SpecRubTextFieldMorph >> selectAll [
+SpRubTextFieldMorph >> selectAll [
 	self selectFrom: 1 to: self text size 
 ]
 
 { #category : #'accessing-selection' }
-SpecRubTextFieldMorph >> selectFrom: firstIndex to: lastIndex [
+SpRubTextFieldMorph >> selectFrom: firstIndex to: lastIndex [
 	self selectionInterval: (firstIndex to: lastIndex)
 
 ]
 
 { #category : #'accessing-selection' }
-SpecRubTextFieldMorph >> selectionChanged [
+SpRubTextFieldMorph >> selectionChanged [
 	self rulers do: [ :r | r selectionChanged ].
 	self setModelSelection: self selectionInterval
 
 ]
 
 { #category : #'accessing-selection' }
-SpecRubTextFieldMorph >> selectionInterval [
+SpRubTextFieldMorph >> selectionInterval [
 	^ self textArea selectionInterval
 ]
 
 { #category : #'accessing-selection' }
-SpecRubTextFieldMorph >> selectionInterval: anInterval [
+SpRubTextFieldMorph >> selectionInterval: anInterval [
 	self setSelection: anInterval
 ]
 
 { #category : #'accessing-selection' }
-SpecRubTextFieldMorph >> setModelSelection: aSelectionInterval [
+SpRubTextFieldMorph >> setModelSelection: aSelectionInterval [
 	"try to set the selection in the model"
 	setSelectionSelector
 		ifNotNil: [ self model perform: setSelectionSelector with: aSelectionInterval]
 ]
 
 { #category : #'accessing-selection' }
-SpecRubTextFieldMorph >> setSelection: aSelectionInterval [
+SpRubTextFieldMorph >> setSelection: aSelectionInterval [
 	aSelectionInterval ifNil: [ ^ self ].
 	self setTextAreaSelection: aSelectionInterval.
 	self selectionChanged 
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> setSelectionSelector: aSelector [
+SpRubTextFieldMorph >> setSelectionSelector: aSelector [
 	setSelectionSelector := aSelector
 ]
 
 { #category : #'mock for spec' }
-SpecRubTextFieldMorph >> setText: aText [
+SpRubTextFieldMorph >> setText: aText [
 	self updateTextWith: aText
 ]
 
 { #category : #'accessing-selection' }
-SpecRubTextFieldMorph >> setTextAreaSelection: aSelectionInterval [
+SpRubTextFieldMorph >> setTextAreaSelection: aSelectionInterval [
 	aSelectionInterval ifNil: [ ^ self ].
 	self textArea selectFrom: aSelectionInterval first to: aSelectionInterval last.
 	self scrollPane scrollSelectionIntoView
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> setTextSelector [
+SpRubTextFieldMorph >> setTextSelector [
 	^ setTextSelector ifNil: [  setTextSelector := #setText:from:]
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> setTextSelector: aSymbol [ 
+SpRubTextFieldMorph >> setTextSelector: aSymbol [ 
 	setTextSelector  := aSymbol
 ]
 
 { #category : #'acessing text' }
-SpecRubTextFieldMorph >> setTextWith: stringOrText [
+SpRubTextFieldMorph >> setTextWith: stringOrText [
 	"Accept new text contents with line breaks only as in the text.
 	Fit my width and height to the result."
 	self scrollPane setTextWith: stringOrText.
@@ -1160,53 +1160,53 @@ SpecRubTextFieldMorph >> setTextWith: stringOrText [
 ]
 
 { #category : #private }
-SpecRubTextFieldMorph >> shoutStyler [
+SpRubTextFieldMorph >> shoutStyler [
 	^ self textArea shoutStyler
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> sideRulers [
+SpRubTextFieldMorph >> sideRulers [
 	^self rulers select: [ :r | r isSideRuler ]
 ]
 
 { #category : #'acessing text' }
-SpecRubTextFieldMorph >> tabWidth [
+SpRubTextFieldMorph >> tabWidth [
 	^ self textArea tabWidth
 ]
 
 { #category : #'acessing text' }
-SpecRubTextFieldMorph >> tabWidth: anInteger [
+SpRubTextFieldMorph >> tabWidth: anInteger [
 	self textArea tabWidth: anInteger 
 ]
 
 { #category : #'model protocol' }
-SpecRubTextFieldMorph >> takeKeyboardFocus [
+SpRubTextFieldMorph >> takeKeyboardFocus [
 	self textArea takeKeyboardFocus
 ]
 
 { #category : #'acessing text' }
-SpecRubTextFieldMorph >> text [
+SpRubTextFieldMorph >> text [
 	^ self textArea text
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> textArea [
+SpRubTextFieldMorph >> textArea [
 	^ self scrollPane ifNotNil: [:sp | sp textArea]
 ]
 
 { #category : #initialization }
-SpecRubTextFieldMorph >> textAreaClass [
+SpRubTextFieldMorph >> textAreaClass [
 	^ RubTextFieldArea
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> textAreaExtentChanged [
+SpRubTextFieldMorph >> textAreaExtentChanged [
 	self manageLayout
 
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> textChanged [
+SpRubTextFieldMorph >> textChanged [
 	self manageLayout.
 	self autoAccept ifTrue: [ self acceptContents ] ifFalse: [ self hasUnacceptedEdits: true ].
 	self rulers do: [ :r | r textChanged ].
@@ -1214,17 +1214,17 @@ SpecRubTextFieldMorph >> textChanged [
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> textColor [
+SpRubTextFieldMorph >> textColor [
 	^ self textArea textColor
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> textColor: aColor [ 
+SpRubTextFieldMorph >> textColor: aColor [ 
 	self textArea textColor: aColor
 ]
 
 { #category : #geometry }
-SpecRubTextFieldMorph >> textFieldHeight [
+SpRubTextFieldMorph >> textFieldHeight [
 	| vgap |
 	vgap := self currentHScrollBarThickness isZero
 		ifTrue: [  0 ]
@@ -1233,29 +1233,29 @@ SpecRubTextFieldMorph >> textFieldHeight [
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> textFont [
+SpRubTextFieldMorph >> textFont [
 	"We should clean"
 	
 	^ self textArea font
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> textFont: aFont [
+SpRubTextFieldMorph >> textFont: aFont [
 	self textArea font: aFont
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> textMorph [
+SpRubTextFieldMorph >> textMorph [
 	^ self textArea
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> textSegmentIconsRuler [
+SpRubTextFieldMorph >> textSegmentIconsRuler [
 	^ self rulerNamed: #textSegmentIcons
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> themeChanged [
+SpRubTextFieldMorph >> themeChanged [
 	
 	self color: self defaultColor.
 	
@@ -1263,7 +1263,7 @@ SpecRubTextFieldMorph >> themeChanged [
 ]
 
 { #category : #private }
-SpecRubTextFieldMorph >> unplug [
+SpRubTextFieldMorph >> unplug [
 	self textArea ifNotNil: [ self textArea announcer unsubscribe: self ].
 	self scrollPane
 		ifNotNil: [ :scrollpane | 
@@ -1273,13 +1273,13 @@ SpecRubTextFieldMorph >> unplug [
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> updateChooser [
+SpRubTextFieldMorph >> updateChooser [
 	entryCompletion
 		ifNotNil: [  self openChooser ] 
 ]
 
 { #category : #'acessing text' }
-SpecRubTextFieldMorph >> updateTextWith: stringOrText [
+SpRubTextFieldMorph >> updateTextWith: stringOrText [
 	"Accept new text contents with line breaks only as in the text.
 	Fit my width and height to the result."
 
@@ -1289,48 +1289,48 @@ SpecRubTextFieldMorph >> updateTextWith: stringOrText [
 ]
 
 { #category : #'accessing scrollbars' }
-SpecRubTextFieldMorph >> vScrollbarShowNever [
+SpRubTextFieldMorph >> vScrollbarShowNever [
 	self scrollPane vScrollbarShowNever
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> verticalRulers [
+SpRubTextFieldMorph >> verticalRulers [
 	^self rulers select: [ :r | r isVertical ]
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> wantsFrameAdornments: aBoolean [
+SpRubTextFieldMorph >> wantsFrameAdornments: aBoolean [
 	aBoolean ifTrue: [ self withAdornment  ] ifFalse: [ self withoutAdornment ]
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenCancelEditRequested: anAnnouncement [
+SpRubTextFieldMorph >> whenCancelEditRequested: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self cancel
 
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenCancelEditRequestedInModel: anAnnouncement [
+SpRubTextFieldMorph >> whenCancelEditRequestedInModel: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self cancel
 
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenConfigurationChanged: anAnnouncement [
+SpRubTextFieldMorph >> whenConfigurationChanged: anAnnouncement [
 	anAnnouncement configurationBlock value: self
 
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenConfigurationChangedFromModel: anAnnouncement [
+SpRubTextFieldMorph >> whenConfigurationChangedFromModel: anAnnouncement [
 	self announcer announce: anAnnouncement
 
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenEditsStateChangedInModel: anAnnouncement [
+SpRubTextFieldMorph >> whenEditsStateChangedInModel: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self basicHasUnacceptedEdits: self model hasUnacceptedEdits.
 	self changed
@@ -1338,25 +1338,25 @@ SpecRubTextFieldMorph >> whenEditsStateChangedInModel: anAnnouncement [
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenGotForcus: anAnnouncement [
+SpRubTextFieldMorph >> whenGotForcus: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self changed
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenKeystrokeInTextArea: anAnnouncement [
+SpRubTextFieldMorph >> whenKeystrokeInTextArea: anAnnouncement [
 	self announcer announce: (anAnnouncement copy morph: self).
 	entryCompletion ifNotNil: [entryCompletion keystroke: anAnnouncement event from: self]
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenLostFocus: anAnnouncement [
+SpRubTextFieldMorph >> whenLostFocus: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self changed
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenPrimarySelectionUpdatedInModel: anAnnouncement [
+SpRubTextFieldMorph >> whenPrimarySelectionUpdatedInModel: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self setTextAreaSelection: self getSelectionFromModel.
 
@@ -1364,7 +1364,7 @@ SpecRubTextFieldMorph >> whenPrimarySelectionUpdatedInModel: anAnnouncement [
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenReturnEntered: anAnnouncement [
+SpRubTextFieldMorph >> whenReturnEntered: anAnnouncement [
 	self acceptOnCR
 		ifTrue: [
 			anAnnouncement accepted: true ].
@@ -1372,84 +1372,84 @@ SpecRubTextFieldMorph >> whenReturnEntered: anAnnouncement [
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenReturnEnteredInTextArea: anAnnouncement [ 
+SpRubTextFieldMorph >> whenReturnEnteredInTextArea: anAnnouncement [ 
 	anAnnouncement morph: self.
 	self announcer announce: anAnnouncement
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenTextAcceptRequest: anAnnouncement [
+SpRubTextFieldMorph >> whenTextAcceptRequest: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self acceptContents
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenTextAcceptedInModel: anAnnouncement [
+SpRubTextFieldMorph >> whenTextAcceptedInModel: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self acceptContents
 
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenTextChangedInTextArea: anAnnouncement [ 
+SpRubTextFieldMorph >> whenTextChangedInTextArea: anAnnouncement [ 
 	self announcer announce: anAnnouncement
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenTextSetInModel: anAnnouncement [
+SpRubTextFieldMorph >> whenTextSetInModel: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self scrollPane setTextWith: self getTextFromModel
 ]
 
 { #category : #'event handling' }
-SpecRubTextFieldMorph >> whenTextUpdatedInModel: anAnnouncement [
+SpRubTextFieldMorph >> whenTextUpdatedInModel: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self updateTextWith: self getTextFromModel
 
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withAdornment [
+SpRubTextFieldMorph >> withAdornment [
 	self withRulerNamed: #adornment
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withAnnotation [
+SpRubTextFieldMorph >> withAnnotation [
 	self withRulerNamed: #annotation
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withCodeSizeFeedback [
+SpRubTextFieldMorph >> withCodeSizeFeedback [
 	self withRulerNamed: #codeSizeFeedback
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withColumns [
+SpRubTextFieldMorph >> withColumns [
 	self withRulerNamed: #column
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withCommentAnnotation [
+SpRubTextFieldMorph >> withCommentAnnotation [
 	self withRulerNamed: #commentAnnotation
 ]
 
 { #category : #'accessing decorators' }
-SpecRubTextFieldMorph >> withDecoratorNamed: aSymbol [
+SpRubTextFieldMorph >> withDecoratorNamed: aSymbol [
 	self textArea withDecoratorNamed: aSymbol
 ]
 
 { #category : #initialization }
-SpecRubTextFieldMorph >> withDropListButton [
+SpRubTextFieldMorph >> withDropListButton [
 	self withRulerNamed: #dropListButton
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> withFocusBorder [
+SpRubTextFieldMorph >> withFocusBorder [
 	self scrollPane drawFocusBorder: true
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withGhostText: aText [
+SpRubTextFieldMorph >> withGhostText: aText [
 	aText ifNil: [ ^ self withoutRulerNamed: #ghostText ].
 	self withRulerNamed: #ghostText.
 	self ghostTextRuler updateTextWith: aText asText.
@@ -1457,12 +1457,12 @@ SpecRubTextFieldMorph >> withGhostText: aText [
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withLineNumbers [
+SpRubTextFieldMorph >> withLineNumbers [
 	self withRulerNamed: #lineNumbers
 ]
 
 { #category : #'rulers handling' }
-SpecRubTextFieldMorph >> withRuler: aRuler [
+SpRubTextFieldMorph >> withRuler: aRuler [
 	(self hasRulerNamed: aRuler key)
 		ifTrue: [ ^ self ].
 	rulers add: aRuler.
@@ -1476,7 +1476,7 @@ SpecRubTextFieldMorph >> withRuler: aRuler [
 ]
 
 { #category : #'rulers handling' }
-SpecRubTextFieldMorph >> withRulerNamed: aKey [
+SpRubTextFieldMorph >> withRulerNamed: aKey [
 	"returns the ruler associated with the aKey. It can be in the receiver or in the extra hierarchy.
 	aKey is a symbol i.e., #lineNumbers"
 	(self hasRulerNamed: aKey)
@@ -1486,75 +1486,75 @@ SpecRubTextFieldMorph >> withRulerNamed: aKey [
 ]
 
 { #category : #'rulers handling' }
-SpecRubTextFieldMorph >> withRulersNamed: aCollection [
+SpRubTextFieldMorph >> withRulersNamed: aCollection [
 	"returns a collection of rulers as described by aCollection of keys. It can be in the receiver or in the extra hierarchy"
 	aCollection do: [ :m | self withRulerNamed: m ]
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withSourceCodeAnnotation [
+SpRubTextFieldMorph >> withSourceCodeAnnotation [
 	self withRulerNamed: #SourceCodeAnnotation
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withTextSegmentIcons [
+SpRubTextFieldMorph >> withTextSegmentIcons [
 	self withRulerNamed: #textSegmentIcons
 
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withoutAdornment [
+SpRubTextFieldMorph >> withoutAdornment [
 	self withoutRulerNamed: #adornment
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withoutAnnotation [
+SpRubTextFieldMorph >> withoutAnnotation [
 	self withoutRulerNamed: #annotation
 ]
 
 { #category : #'accessing decorators' }
-SpecRubTextFieldMorph >> withoutAnyDecorator [
+SpRubTextFieldMorph >> withoutAnyDecorator [
 	self textArea withoutAnyDecorator
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withoutCodeSizeFeedback [
+SpRubTextFieldMorph >> withoutCodeSizeFeedback [
 	self withoutRulerNamed: #codeSizeFeedback
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withoutColumns [
+SpRubTextFieldMorph >> withoutColumns [
 	self withoutRulerNamed: #column
 ]
 
 { #category : #'accessing decorators' }
-SpecRubTextFieldMorph >> withoutDecoratorNamed: aSymbol [
+SpRubTextFieldMorph >> withoutDecoratorNamed: aSymbol [
 	self textArea withoutDecoratorNamed: aSymbol
 ]
 
 { #category : #initialization }
-SpecRubTextFieldMorph >> withoutDropListButton [
+SpRubTextFieldMorph >> withoutDropListButton [
 	self withoutRulerNamed: #dropListButton
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> withoutFocusBorder [
+SpRubTextFieldMorph >> withoutFocusBorder [
 	self scrollPane drawFocusBorder: false
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withoutGhostText [
+SpRubTextFieldMorph >> withoutGhostText [
 	self withoutRulerNamed: #ghostText.
 
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withoutLineNumbers [
+SpRubTextFieldMorph >> withoutLineNumbers [
 	self withoutRulerNamed: #lineNumbers
 ]
 
 { #category : #'rulers handling' }
-SpecRubTextFieldMorph >> withoutRuler: aRuler [
+SpRubTextFieldMorph >> withoutRuler: aRuler [
 	(self hasRuler: aRuler)
 		ifFalse: [ ^ self ].
 	rulers remove: aRuler.
@@ -1564,45 +1564,45 @@ SpecRubTextFieldMorph >> withoutRuler: aRuler [
 ]
 
 { #category : #'rulers handling' }
-SpecRubTextFieldMorph >> withoutRulerNamed: aKey [
+SpRubTextFieldMorph >> withoutRulerNamed: aKey [
 	(self rulerNamed: aKey)
 		ifNotNil: [ :m | self withoutRuler: m ].
 	self changed
 ]
 
 { #category : #'rulers handling' }
-SpecRubTextFieldMorph >> withoutRulersNamed: aCollection [
+SpRubTextFieldMorph >> withoutRulersNamed: aCollection [
 	aCollection do: [ :m | self withoutRulerNamed: m ]
 ]
 
 { #category : #'accessing decorators' }
-SpecRubTextFieldMorph >> withoutSelectionBar [
+SpRubTextFieldMorph >> withoutSelectionBar [
 	self textArea withoutSelectionBar
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withoutTextField [
+SpRubTextFieldMorph >> withoutTextField [
 	self withoutRulerNamed: #textField.
 
 ]
 
 { #category : #'accessing rulers' }
-SpecRubTextFieldMorph >> withoutTextSegmentIcons [
+SpRubTextFieldMorph >> withoutTextSegmentIcons [
 	self withoutRulerNamed: #textSegmentIcons
 
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> wrapFlag: aBoolean [
+SpRubTextFieldMorph >> wrapFlag: aBoolean [
 	self wrapped: aBoolean
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> wrapped [
+SpRubTextFieldMorph >> wrapped [
 	^ self scrollPane wrapped
 ]
 
 { #category : #accessing }
-SpecRubTextFieldMorph >> wrapped: aBoolean [
+SpRubTextFieldMorph >> wrapped: aBoolean [
 	self scrollPane wrapped: aBoolean
 ]

@@ -1,6 +1,6 @@
 Extension { #name : #FTTableContainerMorph }
 
-{ #category : #'*Spec-Pharo7To8Compatibility' }
+{ #category : #'*Spec2-Pharo7To8Compatibility' }
 FTTableContainerMorph >> headerRow [
 	^ headerRow
 ]
