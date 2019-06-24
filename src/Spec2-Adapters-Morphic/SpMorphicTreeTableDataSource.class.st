@@ -14,7 +14,7 @@ Class {
 { #category : #accessing }
 SpMorphicTreeTableDataSource >> allShownItems [
 
-	^ rootItem children flatCollect: [ :e | e spWithExpandedChildren ].
+	^ rootItem children flatCollect: [ :e | e withExpandedChildren ].
 ]
 
 { #category : #accessing }
