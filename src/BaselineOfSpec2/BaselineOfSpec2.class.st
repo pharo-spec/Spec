@@ -1,11 +1,11 @@
 Class {
-	#name : #BaselineOfSpec,
+	#name : #BaselineOfSpec2,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfSpec
+	#category : #BaselineOfSpec2
 }
 
 { #category : #baseline }
-BaselineOfSpec >> baseline: spec [
+BaselineOfSpec2 >> baseline: spec [
 	<baseline>
 	spec
 		for: #common
@@ -36,12 +36,12 @@ BaselineOfSpec >> baseline: spec [
 ]
 
 { #category : #dependencies }
-BaselineOfSpec >> parametrizedTests: spec [
+BaselineOfSpec2 >> parametrizedTests: spec [
 	spec baseline: 'ParametrizedTests' with: [ spec repository: 'github://tesonep/ParametrizedTests/src' ]
 ]
 
 { #category : #accessing }
-BaselineOfSpec >> project [
+BaselineOfSpec2 >> project [
 	"Atomic loading is needed for Spec because we are moving classes of package and it breaks their subclasses. 
 	
 	Here is an explanation I wrote on Discord:
