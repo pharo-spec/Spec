@@ -190,12 +190,6 @@ SpMorphicWindowAdapter >> minimize [
 	self widgetDo: [ :w | w minimize ]
 ]
 
-{ #category : #'spec protocol' }
-SpMorphicWindowAdapter >> modalRelativeTo: aWindow [
-
-	self widgetDo: [ :w | aWindow setModal: w ]
-]
-
 { #category : #private }
 SpMorphicWindowAdapter >> newContainerMorph [
 		

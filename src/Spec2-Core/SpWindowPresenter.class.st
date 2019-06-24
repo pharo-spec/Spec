@@ -335,12 +335,6 @@ SpWindowPresenter >> minimize [
 	self changed: #minimize with: #()
 ]
 
-{ #category : #api }
-SpWindowPresenter >> modalRelativeTo: aWindow [
-
-	self changed: #modalRelativeTo: with: { aWindow }
-]
-
 { #category : #notifying }
 SpWindowPresenter >> notify: aSpecNotification [
 	"Receives a notification and delivers it as required"

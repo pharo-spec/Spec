@@ -9,5 +9,5 @@ SpDatePresenter class >> example [
 { #category : #'*Spec2-Examples' }
 SpDatePresenter class >> exampleModal [
 	<sampleInstance>
-	^ self new openDialogWithSpec modalRelativeTo: self currentWorld
+	^ self new openModalWithSpec
 ]
