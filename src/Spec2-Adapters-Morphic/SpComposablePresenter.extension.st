@@ -88,18 +88,6 @@ SpComposablePresenter >> openWorldWithSpecLayout: aSpec [
 ]
 
 { #category : #'*Spec2-Adapters-Morphic' }
-SpComposablePresenter >> treeRenderOn: aCanvas bounds: drawBounds color: drawColor font: aFont from: aMorph [
-	"Specify how this object as a list item should be drawn"
-
-	^ self ensureMorphicAdapterDo: [ :adapter | adapter 
-		treeRenderOn: aCanvas 
-		bounds: drawBounds 
-		color: drawColor 
-		font: aFont 
-		from: aMorph ]
-]
-
-{ #category : #'*Spec2-Adapters-Morphic' }
 SpComposablePresenter >> widthToDisplayInList: aList [
 	"Return the width of my representation as a list item"
 	
