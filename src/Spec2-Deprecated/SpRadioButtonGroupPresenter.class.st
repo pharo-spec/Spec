@@ -131,7 +131,7 @@ SpRadioButtonGroupPresenter >> dynamicLayout [
 	|lay|
 	lay := SpLayout composed
 		newColumn: [ :column | 
-			widgets keysDo: [ :item | column newRow: [ :row | row add: item ] ].
+			self basicPresenters keysDo: [ :item | column newRow: [ :row | row add: item ] ].
 			column newRow: [ :row |  ] ].
 	self layout: lay.
 	^ lay
