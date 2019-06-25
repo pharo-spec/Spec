@@ -939,12 +939,6 @@ SpPresenter >> show [
 	visible := true
 ]
 
-{ #category : #TOREMOVE }
-SpPresenter >> specSpacer [
-
-	^ SpacerPresenter new
-]
-
 { #category : #'private-focus' }
 SpPresenter >> takeKeyboardFocus [
 

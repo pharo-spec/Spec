@@ -1,8 +1,13 @@
 Class {
 	#name : #SpMorphicSpacerAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#category : #'Spec2-Deprecated'
 }
+
+{ #category : #deprecation }
+SpMorphicSpacerAdapter class >> isDeprecated [
+	^ true
+]
 
 { #category : #factory }
 SpMorphicSpacerAdapter >> buildWidget [
