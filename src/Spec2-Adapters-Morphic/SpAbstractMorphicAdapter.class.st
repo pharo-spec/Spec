@@ -77,13 +77,6 @@ SpAbstractMorphicAdapter >> applyVisibility [
 			ifFalse: [ self widget hide ] ]
 ]
 
-{ #category : #dispatch }
-SpAbstractMorphicAdapter >> beginsWith: aString fromList: aMorph [
-	"This method is used bu the list for the search of elements when you are typing directly in the list"
-	
-	^ false
-]
-
 { #category : #'protocol-shortcuts' }
 SpAbstractMorphicAdapter >> bindKeyCombination: aShortcut toAction: aBlock [
 
@@ -228,32 +221,6 @@ SpAbstractMorphicAdapter >> hSpaceFill [
 	self widgetDo: [ :w | w hResizing: #spaceFill ]
 ]
 
-{ #category : #dispatch }
-SpAbstractMorphicAdapter >> heightToDisplayInList: aList [
-	"Return the width of my representation as a list item"
-	
-	self model extent ifNotNil: [:ex | ^ ex y ].
-	self model initialExtent ifNotNil: [:ex | ^ ex y ].
-	
-	self widget ifNil: [ self buildWithSpec ].
-	self widget 
-		vResizing: #rigid;
-		hResizing: #rigid.
-		
-	^ self widget heightToDisplayInList: aList
-]
-
-{ #category : #dispatch }
-SpAbstractMorphicAdapter >> heightToDisplayInTree: aTree [
-	"Return the width of my representation as a list item"
-	
-	self extent ifNotNil: [:ex | ^ ex y ].
-	self initialExtent ifNotNil: [:ex | ^ ex y ].
-	
-	self widget ifNil: [ self buildWithSpec ].
-	^ self widget heightToDisplayInTree: aTree
-]
-
 { #category : #protocol }
 SpAbstractMorphicAdapter >> help [
 
@@ -312,24 +279,6 @@ SpAbstractMorphicAdapter >> layout: aLayout [
 	| layout |
 	layout := aLayout asMorphicLayout.
 	self widgetDo: [ :w | w layoutFrame: layout ].
-]
-
-{ #category : #dispatch }
-SpAbstractMorphicAdapter >> listRenderOn: aCanvas atRow: aRow bounds: drawBounds color: drawColor backgroundColor: backgroundColor from: aMorph [
-	"Specify how this object as a list item should be drawn"
-
-	self widget ifNil: [ self buildWithSpec ].
-	self widget 
-		vResizing: #rigid;
-		hResizing: #rigid.
-		
-	self widget
-		listRenderOn: aCanvas
-		atRow: aRow
-		bounds: drawBounds
-		color: drawColor
-		backgroundColor: backgroundColor
-		from: aMorph
 ]
 
 { #category : #'protocol-shortcuts' }
@@ -406,14 +355,6 @@ SpAbstractMorphicAdapter >> transferFor: passenger from: source [
 	^ (self transferBlock cull: passenger cull: self model) buildWithSpec
 ]
 
-{ #category : #dispatch }
-SpAbstractMorphicAdapter >> treeRenderOn: aCanvas bounds: drawBounds color: drawColor font: aFont from: aMorph [
-	"Specify how this object as a list item should be drawn"
-
-	self widget ifNil: [ self buildWithSpec ].
-	self widget treeRenderOn: aCanvas bounds: drawBounds color: drawColor font: aFont from: aMorph
-]
-
 { #category : #protocol }
 SpAbstractMorphicAdapter >> useProportionalLayout [
 
@@ -455,30 +396,4 @@ SpAbstractMorphicAdapter >> when: anAnnouncement do: aBlock [
 
 	self widgetDo: [ :w | w announcer
 		when: anAnnouncement do: aBlock ]
-]
-
-{ #category : #dispatch }
-SpAbstractMorphicAdapter >> widthToDisplayInList: aList [
-	"Return the width of my representation as a list item"
-	
-	self model extent ifNotNil: [:ex | ^ ex x ].
-	self model initialExtent ifNotNil: [:ex | ^ ex x ].
-
-	self widget ifNil: [ self buildWithSpec ].
-	self widget 
-		vResizing: #rigid;
-		hResizing: #rigid.
-		
-	^ self widget widthToDisplayInList: aList
-]
-
-{ #category : #dispatch }
-SpAbstractMorphicAdapter >> widthToDisplayInTree: aTree [
-	"Return the width of my representation as a list item"
-	
-	self extent ifNotNil: [:ex | ^ ex x ].
-	self initialExtent ifNotNil: [:ex | ^ ex x ].
-	
-	self widget ifNil: [ self buildWithSpec ].
-	^ self widget widthToDisplayInTree: aTree
 ]
