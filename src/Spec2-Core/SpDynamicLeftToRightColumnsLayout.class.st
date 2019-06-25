@@ -19,13 +19,17 @@ SpDynamicLeftToRightColumnsLayout class >> columns: anInteger [
 
 { #category : #building }
 SpDynamicLeftToRightColumnsLayout >> buildLayoutFor: aDynamicPresentersListBuilder [
-	^ SpLayout composed
-		newColumn: [ :mainColumn | 
-			(self instVarNamesFrom: aDynamicPresentersListBuilder)
-				groupsOf: self columnsCount
-				atATimeDo: [ :group | 
-					mainColumn
-						newRow: [ :row | group do: [ :instVar | row newColumn: instVar ] ] ] ]
+	| layout |
+	layout := SpBoxLayout newHorizontal.
+	(self instVarNamesFrom: aDynamicPresentersListBuilder)
+		groupsOf: self columnsCount
+		atATimeDo: [ :group | 
+			| subLayout |
+			subLayout := SpBoxLayout newVertical.
+			group do: [ :instVar | subLayout add: instVar ].
+			layout add: subLayout ].
+
+	^ layout
 ]
 
 { #category : #accessing }
