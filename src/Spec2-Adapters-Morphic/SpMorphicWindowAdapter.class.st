@@ -129,12 +129,6 @@ SpMorphicWindowAdapter >> centered [
 ]
 
 { #category : #protocol }
-SpMorphicWindowAdapter >> centeredRelativeTo: aModel [
-
-	self widgetDo: [ :w | aModel centerWidget: w ]
-]
-
-{ #category : #protocol }
 SpMorphicWindowAdapter >> close [
 
 	self widget ifNotNil: [ :w | w close ].

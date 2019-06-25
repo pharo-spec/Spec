@@ -23,6 +23,19 @@ SpComposablePresenter >> askOkToClose: aBoolean [
 ]
 
 { #category : #'*Spec2-Deprecated' }
+SpComposablePresenter >> centerWidget: aWindow [
+	self
+		deprecated:
+			'This feature is to tight to Morphic to be in Spec. If you want this feature in a Morphic specific Spec application you should apply it yourself on the widget.
+	
+	aWindow
+			fullBounds;
+			center: self adatper widget center'
+		on: '2019-06-25'
+		in: #Pharo8
+]
+
+{ #category : #'*Spec2-Deprecated' }
 SpComposablePresenter >> defaultWindowModelClass [ 
 	self deprecated: 'Use #defaultWindowPresenterClass instead' transformWith: '`@receiver defaultWindowModelClass' -> '`@receiver defaultWindowPresenterClass'.
 	

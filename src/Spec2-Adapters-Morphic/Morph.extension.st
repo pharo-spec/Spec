@@ -9,14 +9,6 @@ Morph >> asSpAdapter [
 ]
 
 { #category : #'*Spec2-Adapters-Morphic' }
-Morph >> centerWidget: aWindow [
-
-	aWindow
-			fullBounds;
-			center: self center
-]
-
-{ #category : #'*Spec2-Adapters-Morphic' }
 Morph >> ensureLayoutAndAddMorph: aMorph [
 
 	aMorph layoutFrame

@@ -17,11 +17,6 @@ SpMorphicTableContainerAdapter >> buildWidget [
 		yourself
 ]
 
-{ #category : #'spec protocol' }
-SpMorphicTableContainerAdapter >> centerWidget: aWindow [
-	self widgetDo: [ :w | w centerWidget: aWindow ]
-]
-
 { #category : #protocol }
 SpMorphicTableContainerAdapter >> height: aNumber [
 	self vRigid.
