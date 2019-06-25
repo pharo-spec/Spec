@@ -98,7 +98,6 @@ Class {
 		'#aboutText',
 		'#askOkToClose',
 		'#titleHolder',
-		'#transmissions',
 		'#additionalSubpresentersMap',
 		'#visible => SpObservableSlot'
 	],

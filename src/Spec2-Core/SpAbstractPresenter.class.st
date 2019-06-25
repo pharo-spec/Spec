@@ -237,19 +237,6 @@ SpAbstractPresenter >> needRebuild: aBoolean [
 	needRebuild := aBoolean
 ]
 
-{ #category : #events }
-SpAbstractPresenter >> observablePropertyNamed: aName [
-	| slot |
-	
-	slot := self class slotNamed: aName.
-	slot isObservableSlot
-		ifFalse: [ SpNonObservableSlotError signal: aName ].
-
-	"Obtain the raw value.
-	We need to access the underlying value holder to subscribe to it"
-	^ slot rawRead: self
-]
-
 { #category : #showing }
 SpAbstractPresenter >> openDialogWithSpec [
 	"Build the widget using the default spec and display it into a dialog. 
