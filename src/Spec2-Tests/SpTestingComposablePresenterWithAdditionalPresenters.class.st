@@ -19,17 +19,14 @@ Class {
 { #category : #accessing }
 SpTestingComposablePresenterWithAdditionalPresenters class >> defaultSpec [
 	<spec>
-
 	| aLayout |
-	
-	aLayout := SpLayout composed newColumn: [ :row |
-		self keys do: [ :aKey |
-			row add: aKey ].
-		
-		row add: #subpresenter4 ].
-	
-	 ^ aLayout
-	
+	aLayout := SpBoxLayout newVertical.
+
+	self keys do: [ :aKey | aLayout add: aKey ].
+
+	aLayout add: #subpresenter4.
+
+	^ aLayout
 ]
 
 { #category : #accessing }
