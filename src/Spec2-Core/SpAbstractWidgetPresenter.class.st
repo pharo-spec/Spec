@@ -25,7 +25,7 @@ todo
 "
 Class {
 	#name : #SpAbstractWidgetPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'#borderWidth => SpObservableSlot',
 		'#borderColor => SpObservableSlot',

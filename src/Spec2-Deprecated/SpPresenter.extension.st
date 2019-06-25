@@ -1,7 +1,7 @@
-Extension { #name : #SpComposablePresenter }
+Extension { #name : #SpPresenter }
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> aboutText: aString [
+SpPresenter >> aboutText: aString [
 	self
 		deprecated:
 			'With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
@@ -12,7 +12,7 @@ SpComposablePresenter >> aboutText: aString [
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> askOkToClose: aBoolean [
+SpPresenter >> askOkToClose: aBoolean [
 	self
 		deprecated:
 			'With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
@@ -23,7 +23,7 @@ SpComposablePresenter >> askOkToClose: aBoolean [
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> centerWidget: aWindow [
+SpPresenter >> centerWidget: aWindow [
 	self
 		deprecated:
 			'This feature is to tight to Morphic to be in Spec. If you want this feature in a Morphic specific Spec application you should apply it yourself on the widget.
@@ -36,20 +36,20 @@ SpComposablePresenter >> centerWidget: aWindow [
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> defaultWindowModelClass [ 
+SpPresenter >> defaultWindowModelClass [ 
 	self deprecated: 'Use #defaultWindowPresenterClass instead' transformWith: '`@receiver defaultWindowModelClass' -> '`@receiver defaultWindowPresenterClass'.
 	
 	^ self defaultWindowPresenterClass
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> icon: aSymbol [
+SpPresenter >> icon: aSymbol [
 	self deprecated: 'Use #iconNamed: instead' transformWith: '`@receiver icon: `@statements' -> '`@receiver iconNamed: `@statements'.
 	^ self iconNamed: aSymbol
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> instantiateModels: aCollectionOfPairs [
+SpPresenter >> instantiateModels: aCollectionOfPairs [
 	
 	self deprecated: 'Use #instantiatePresenters: instead' transformWith: '`@receiver instantiateModels: `@statement' -> '`@receiver instantiatePresenters: `@statement'.
 
@@ -57,19 +57,19 @@ SpComposablePresenter >> instantiateModels: aCollectionOfPairs [
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> newIconList [
+SpPresenter >> newIconList [
 	self deprecated: 'Please use #newList instead.' transformWith: '`@receiver newIconList' -> '`@receiver newList'.
 	^ self instantiate: SpIconListPresenter
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> newMultiColumnList [
+SpPresenter >> newMultiColumnList [
 	self deprecated: 'Use newTable instead' on: '2019-02-05' in: #Pharo8.
 	^ self instantiate: SpMultiColumnListPresenter
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> newTab [
+SpPresenter >> newTab [
 
 	self 
 		deprecated: 'Use newNotebook instead' 
@@ -79,7 +79,7 @@ SpComposablePresenter >> newTab [
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> newTabManager [
+SpPresenter >> newTabManager [
 	
 	
 	self 
@@ -91,7 +91,7 @@ SpComposablePresenter >> newTabManager [
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> newTree [
+SpPresenter >> newTree [
 	
 	self deprecated: 'Use #newTreeTable instead'.
 
@@ -99,7 +99,7 @@ SpComposablePresenter >> newTree [
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> on: aShortcut do: aBlock [
+SpPresenter >> on: aShortcut do: aBlock [
 
 	self 
 		deprecated: 'Use #bindKeyCombination:toAction: instead.' 
@@ -110,7 +110,7 @@ SpComposablePresenter >> on: aShortcut do: aBlock [
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> setModal: aWindow [
+SpPresenter >> setModal: aWindow [
 
 	self 
 		deprecated: 'Do not use this directly. Use #openModalWithSpec (and family) instead.' 
@@ -121,7 +121,7 @@ SpComposablePresenter >> setModal: aWindow [
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> title: aString [
+SpPresenter >> title: aString [
 	self
 		deprecated:
 			'With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
@@ -132,7 +132,7 @@ SpComposablePresenter >> title: aString [
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> widget [
+SpPresenter >> widget [
 	"I return the adapter responsible of building my widget"
 	
 	self deprecated: 'Should use #adapter instead'
@@ -142,7 +142,7 @@ SpComposablePresenter >> widget [
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpComposablePresenter >> windowIcon: aForm [
+SpPresenter >> windowIcon: aForm [
 	self
 		deprecated:
 			'With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.

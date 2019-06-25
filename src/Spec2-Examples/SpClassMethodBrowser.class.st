@@ -5,7 +5,7 @@ self example
 "
 Class {
 	#name : #SpClassMethodBrowser,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'listModel',
 		'methodModel'

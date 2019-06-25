@@ -12,7 +12,7 @@ Note
 "
 Class {
 	#name : #SpSliderInput,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'slider',
 		'input'

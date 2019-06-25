@@ -23,7 +23,7 @@ For displaying of the model state, the FastTable Morph is used. Currently, Spec 
 "
 Class {
 	#name : #SpDemoFormPresenter,
-	#superclass : #SpComposablePresenterWithModel,
+	#superclass : #SpPresenterWithModel,
 	#instVars : [
 		'form',
 		'resultPane',

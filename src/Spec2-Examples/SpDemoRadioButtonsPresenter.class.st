@@ -3,7 +3,7 @@ This demo shows differenty styles of radio buttons.
 "
 Class {
 	#name : #SpDemoRadioButtonsPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'radioButtonExample'
 	],

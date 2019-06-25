@@ -22,8 +22,8 @@ todo
 - retrieveSpec:
 "
 Class {
-	#name : #SpDynamicComposablePresenter,
-	#superclass : #SpComposablePresenter,
+	#name : #SpDynamicPresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'widgets'
 	],
@@ -31,7 +31,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-SpDynamicComposablePresenter >> assign: aModel to: anInstVarName [
+SpDynamicPresenter >> assign: aModel to: anInstVarName [
 
 	widgets 
 		at: anInstVarName
@@ -41,7 +41,7 @@ SpDynamicComposablePresenter >> assign: aModel to: anInstVarName [
 ]
 
 { #category : #'error handling' }
-SpDynamicComposablePresenter >> doesNotUnderstand: aMessage [
+SpDynamicPresenter >> doesNotUnderstand: aMessage [
 	"To make sure that we can use accessors to access the dynamically managed subcomponents."
 	
 	^ widgets 
@@ -50,7 +50,7 @@ SpDynamicComposablePresenter >> doesNotUnderstand: aMessage [
 ]
 
 { #category : #initialization }
-SpDynamicComposablePresenter >> initialize [
+SpDynamicPresenter >> initialize [
 
 	widgets := OrderedIdentityDictionary new asValueHolder.
 	layout := nil asValueHolder.
@@ -58,37 +58,37 @@ SpDynamicComposablePresenter >> initialize [
 ]
 
 { #category : #initialization }
-SpDynamicComposablePresenter >> initializeWidgets [
+SpDynamicPresenter >> initializeWidgets [
 ]
 
 { #category : #'instance creation' }
-SpDynamicComposablePresenter >> instantiatePresenters: aCollectionOfPairs [
+SpDynamicPresenter >> instantiatePresenters: aCollectionOfPairs [
  
 	aCollectionOfPairs pairsDo: [ :k :v |
 		widgets at: k asSymbol put: (self createInstanceFor: v) ]
 ]
 
 { #category : #accessing }
-SpDynamicComposablePresenter >> layout [
+SpDynamicPresenter >> layout [
 
 	^ layout value
 ]
 
 { #category : #accessing }
-SpDynamicComposablePresenter >> layout: aLayout [
+SpDynamicPresenter >> layout: aLayout [
 
 	layout value: aLayout
 ]
 
 { #category : #api }
-SpDynamicComposablePresenter >> needFullRebuild: aBoolean [
+SpDynamicPresenter >> needFullRebuild: aBoolean [
 
 	self needRebuild: aBoolean.
 	self widgetsDo: [ :w | w needRebuild: aBoolean ]
 ]
 
 { #category : #api }
-SpDynamicComposablePresenter >> openModalWithSpec [
+SpDynamicPresenter >> openModalWithSpec [
 
 	self layout ifNil: [ ^ super openWithSpec ].
 	^ self application 
@@ -97,7 +97,7 @@ SpDynamicComposablePresenter >> openModalWithSpec [
 ]
 
 { #category : #api }
-SpDynamicComposablePresenter >> openWithSpec [
+SpDynamicPresenter >> openWithSpec [
 
 	self layout ifNil: [ ^ super openWithSpec ].
 	^ self application 
@@ -106,7 +106,7 @@ SpDynamicComposablePresenter >> openWithSpec [
 ]
 
 { #category : #api }
-SpDynamicComposablePresenter >> retrieveSpec: aSelector [
+SpDynamicPresenter >> retrieveSpec: aSelector [
 
 	self layout ifNil: [ ^ super retrieveSpec: aSelector ].
 
@@ -114,13 +114,13 @@ SpDynamicComposablePresenter >> retrieveSpec: aSelector [
 ]
 
 { #category : #accessing }
-SpDynamicComposablePresenter >> widgets [
+SpDynamicPresenter >> widgets [
 
 	^ widgets
 ]
 
 { #category : #accessing }
-SpDynamicComposablePresenter >> widgetsDo: aBlock [
+SpDynamicPresenter >> widgetsDo: aBlock [
 
 	self widgets do: aBlock 
 ]

@@ -13,7 +13,7 @@ I provide extentForPreview, a point used to define the size of the preview.
 "
 Class {
 	#name : #SpRGBWidget,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'preview',
 		'sliders',

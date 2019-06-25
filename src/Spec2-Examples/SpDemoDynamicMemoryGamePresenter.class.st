@@ -9,7 +9,7 @@ The slider triggers rebuilds of the dynamic presenter in order to update the num
 "
 Class {
 	#name : #SpDemoDynamicMemoryGamePresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'dynamicPresenter',
 		'builder',

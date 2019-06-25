@@ -6,7 +6,7 @@ I am an abstract class for example modals.
 "
 Class {
 	#name : #SpDemoAbstractModalPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'explanation'
 	],

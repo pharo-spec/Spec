@@ -5,7 +5,7 @@ A demo for progress bar usage
 "
 Class {
 	#name : #SpProgressBarDemo,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'indeterminated',
 		'fixed',

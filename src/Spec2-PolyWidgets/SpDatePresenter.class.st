@@ -14,7 +14,7 @@ As it is Spec-based, it can be easily adapted and composed into a larger UI.
 "
 Class {
 	#name : #SpDatePresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'displayBlockHolder',
 		'chooseDateButton',

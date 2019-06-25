@@ -5,7 +5,7 @@ SpecDemo open
 "
 Class {
 	#name : #SpDemo,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'menu',
 		'list',

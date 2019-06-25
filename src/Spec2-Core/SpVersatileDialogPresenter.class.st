@@ -17,7 +17,7 @@ I have:
 "
 Class {
 	#name : #SpVersatileDialogPresenter,
-	#superclass : #SpDynamicComposablePresenter,
+	#superclass : #SpDynamicPresenter,
 	#instVars : [
 		'mainMessage',
 		'mainIcon',

@@ -10,7 +10,7 @@ I provide the methods color that calculate the Color obtains with the current va
 "
 Class {
 	#name : #SpRGBSliders,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'redSlider',
 		'greenSlider',

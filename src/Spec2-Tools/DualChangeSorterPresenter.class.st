@@ -7,7 +7,7 @@ ChangeSorterModel defines the application logic.
 "
 Class {
 	#name : #DualChangeSorterPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'model',
 		'changeSorterLeft',

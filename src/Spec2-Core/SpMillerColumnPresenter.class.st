@@ -16,7 +16,7 @@ All presenters inside this one should be polymorphic, defining:
 "
 Class {
 	#name : #SpMillerColumnPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'newPresenterBlock'
 	],

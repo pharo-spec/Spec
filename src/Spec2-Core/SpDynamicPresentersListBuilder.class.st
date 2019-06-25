@@ -71,7 +71,7 @@ SpDynamicPresentersListBuilder >> build [
 
 { #category : #building }
 SpDynamicPresentersListBuilder >> buildDynamicPresenter [
-	dynamicPresenter := SpDynamicComposablePresenter new.
+	dynamicPresenter := SpDynamicPresenter new.
 	dynamicPresenter instantiatePresenters: self instVarNamesAndPresenterNamesArray.
 	
 	"Apply configuration block."

@@ -5,7 +5,7 @@ self example
 "
 Class {
 	#name : #SpDropListExample,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'container',
 		'morph1',

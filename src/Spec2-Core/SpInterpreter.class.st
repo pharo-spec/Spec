@@ -183,7 +183,7 @@ SpInterpreter >> retrieveSpecFrom: aSpec [
 SpInterpreter >> returnInterpretationOf: newInstance [
 	| result adaptor |
 	result := self class interpretASpec: newInstance presenter: spec.
-	adaptor := (result isKindOf: SpComposablePresenter)
+	adaptor := (result isKindOf: SpPresenter)
 		ifTrue: [ self getAdaptorWithDefaultSpecOf: result ]
 		ifFalse: [ result ].
 	self presenter spec: adaptor.

@@ -1,6 +1,6 @@
 Class {
 	#name : #SpTestPresenterWithThreeRadioButtons,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'radio1',
 		'radio2',

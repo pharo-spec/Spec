@@ -3,7 +3,7 @@ A TextFieldExample is a simple example of how to use TextFields.
 "
 Class {
 	#name : #SpTextFieldExample,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'methodBrowser',
 		'textField'

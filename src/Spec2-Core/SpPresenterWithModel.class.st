@@ -7,8 +7,8 @@ You should implement the method #modelChanged in my subclasses
 
 "
 Class {
-	#name : #SpComposablePresenterWithModel,
-	#superclass : #SpComposablePresenter,
+	#name : #SpPresenterWithModel,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'announcingObject'
 	],
@@ -16,19 +16,19 @@ Class {
 }
 
 { #category : #'accessing - private' }
-SpComposablePresenterWithModel >> announcingObject [
+SpPresenterWithModel >> announcingObject [
 
 	^ announcingObject
 ]
 
 { #category : #accessing }
-SpComposablePresenterWithModel >> model [
+SpPresenterWithModel >> model [
 
 	 ^ self announcingObject value
 ]
 
 { #category : #accessing }
-SpComposablePresenterWithModel >> model: aDomainObject [
+SpPresenterWithModel >> model: aDomainObject [
 
 	"aDomainObject can be regular object, a value holder (NewValueHolder) or an instance of Model"
 	
@@ -39,13 +39,13 @@ SpComposablePresenterWithModel >> model: aDomainObject [
 ]
 
 { #category : #initialization }
-SpComposablePresenterWithModel >> modelChanged [
+SpPresenterWithModel >> modelChanged [
 
 	"subclass responsibility (optional)"
 ]
 
 { #category : #'accessing - private' }
-SpComposablePresenterWithModel >> setAnnouncingObject: aDomainObject [
+SpPresenterWithModel >> setAnnouncingObject: aDomainObject [
 
 	announcingObject := aDomainObject isSpAnnouncingObject ifFalse: [ aDomainObject asValueHolder ] ifTrue: [ aDomainObject ].
 	announcingObject whenChangedDo: [ self modelChanged ].
@@ -53,14 +53,14 @@ SpComposablePresenterWithModel >> setAnnouncingObject: aDomainObject [
 ]
 
 { #category : #initialization }
-SpComposablePresenterWithModel >> setModelBeforeInitialization: aDomainObject [
+SpPresenterWithModel >> setModelBeforeInitialization: aDomainObject [
 
 	self setAnnouncingObject: aDomainObject.
 
 ]
 
 { #category : #updating }
-SpComposablePresenterWithModel >> updatePresenter [
+SpPresenterWithModel >> updatePresenter [
 
 	self modelChanged 
 ]

@@ -3,7 +3,7 @@ This demo shows differenty styles of button elements.
 "
 Class {
 	#name : #SpDemoButtonsPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'buttonNormal',
 		'buttonDisabled',

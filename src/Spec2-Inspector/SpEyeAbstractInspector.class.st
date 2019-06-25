@@ -3,7 +3,7 @@ I am the abstract superclass for all kind of inspectors
 "
 Class {
 	#name : #SpEyeAbstractInspector,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#traits : 'TSpInspectorActions',
 	#classTraits : 'TSpInspectorActions classTrait',
 	#instVars : [

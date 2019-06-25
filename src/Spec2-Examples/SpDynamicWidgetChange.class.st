@@ -5,7 +5,7 @@ slef example
 "
 Class {
 	#name : #SpDynamicWidgetChange,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'boolean',
 		'button',

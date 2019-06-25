@@ -4,7 +4,7 @@ Used by DynamicPresentersListBuilder to fill empty space when required for the l
 "
 Class {
 	#name : #SpNullPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#category : #'Spec2-Core-Widgets'
 }
 

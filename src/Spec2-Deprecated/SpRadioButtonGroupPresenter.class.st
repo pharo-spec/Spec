@@ -29,7 +29,7 @@ todo
 "
 Class {
 	#name : #SpRadioButtonGroupPresenter,
-	#superclass : #SpDynamicComposablePresenter,
+	#superclass : #SpDynamicPresenter,
 	#instVars : [
 		'buttons',
 		'currentActivated'

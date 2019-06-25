@@ -6,7 +6,7 @@ Demo for the labelled presenter
 "
 Class {
 	#name : #SpDemoLabelledPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'email',
 		'password'

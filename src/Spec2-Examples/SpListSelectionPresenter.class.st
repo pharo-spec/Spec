@@ -5,7 +5,7 @@ self example
 "
 Class {
 	#name : #SpListSelectionPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'listModel',
 		'textModel1',

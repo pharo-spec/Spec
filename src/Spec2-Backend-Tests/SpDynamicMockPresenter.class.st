@@ -1,6 +1,6 @@
 Class {
 	#name : #SpDynamicMockPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'dynamicPresenter',
 		'builder'

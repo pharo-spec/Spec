@@ -3,7 +3,7 @@ This a wrapper around inspectors for diving. It is used in the case where the in
 "
 Class {
 	#name : #SpInspectorNavigator,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'inspector',
 		'history',

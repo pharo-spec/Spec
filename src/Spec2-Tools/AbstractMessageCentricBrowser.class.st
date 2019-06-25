@@ -3,7 +3,7 @@ I am an abstrct class for browsers centered around messages such as MessageBrows
 "
 Class {
 	#name : #AbstractMessageCentricBrowser,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'messageList',
 		'textConverter',

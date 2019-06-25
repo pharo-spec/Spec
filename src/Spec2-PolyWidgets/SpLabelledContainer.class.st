@@ -11,7 +11,7 @@ I provide four layouts on my class side, to chose the position of the label.
 "
 Class {
 	#name : #SpLabelledContainer,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'label',
 		'subwidget'

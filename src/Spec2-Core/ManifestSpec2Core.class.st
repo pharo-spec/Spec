@@ -9,17 +9,17 @@ Class {
 
 { #category : #'code-critics' }
 ManifestSpec2Core class >> ruleExcessiveMethodsRuleV1FalsePositive [
-	^ #(#(#(#RGClassDefinition #(#SpComposablePresenter)) #'2016-07-01T15:56:13.465539+02:00') )
+	^ #(#(#(#RGClassDefinition #(#SpPresenter)) #'2016-07-01T15:56:13.465539+02:00') )
 ]
 
 { #category : #'code-critics' }
 ManifestSpec2Core class >> ruleExcessiveVariablesRuleV1FalsePositive [
-	^ #(#(#(#RGClassDefinition #(#SpComposablePresenter)) #'2016-07-01T15:56:13.372336+02:00') #(#(#RGClassDefinition #(#SpAbstractWidgetPresenter)) #'2016-07-01T15:56:13.372528+02:00') )
+	^ #(#(#(#RGClassDefinition #(#SpPresenter)) #'2016-07-01T15:56:13.372336+02:00') #(#(#RGClassDefinition #(#SpAbstractWidgetPresenter)) #'2016-07-01T15:56:13.372528+02:00') )
 ]
 
 { #category : #'code-critics' }
 ManifestSpec2Core class >> ruleGTExampleNotDefinedRuleV1FalsePositive [
-	^ #(#(#(#RGClassDefinition #(#SpComposablePresenter)) #'2016-07-01T15:56:13.363445+02:00') )
+	^ #(#(#(#RGClassDefinition #(#SpPresenter)) #'2016-07-01T15:56:13.363445+02:00') )
 ]
 
 { #category : #'code-critics' }
@@ -29,7 +29,7 @@ ManifestSpec2Core class >> ruleImplementedNotSentRuleV1FalsePositive [
 
 { #category : #'code-critics' }
 ManifestSpec2Core class >> ruleLongMethodsRuleV1FalsePositive [
-	^ #(#(#(#RGMethodDefinition #(#SpAbstractWidgetPresenter #initialize #false)) #'2016-07-01T15:56:13.356024+02:00') #(#(#RGMethodDefinition #(#SpComposablePresenter #initialize #false)) #'2016-07-01T15:56:13.355982+02:00') )
+	^ #(#(#(#RGMethodDefinition #(#SpAbstractWidgetPresenter #initialize #false)) #'2016-07-01T15:56:13.356024+02:00') #(#(#RGMethodDefinition #(#SpPresenter #initialize #false)) #'2016-07-01T15:56:13.355982+02:00') )
 ]
 
 { #category : #'code-critics' }

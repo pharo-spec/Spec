@@ -10,7 +10,7 @@ I provide two layout on my class side, vertical and horizontal.
 "
 Class {
 	#name : #SpAbstractTwoButtons,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'firstButton',
 		'secondButton'
