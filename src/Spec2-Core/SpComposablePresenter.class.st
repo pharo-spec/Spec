@@ -320,12 +320,6 @@ SpComposablePresenter >> cancelled [
 	self withWindowDo: #cancelled
 ]
 
-{ #category : #TOMOVE }
-SpComposablePresenter >> centerWidget: aWindow [
-
-	self changed: #centerWidget: with: { aWindow }
-]
-
 { #category : #'api-window' }
 SpComposablePresenter >> centered [
 

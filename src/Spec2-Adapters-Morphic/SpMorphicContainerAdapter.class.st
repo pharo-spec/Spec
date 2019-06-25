@@ -17,12 +17,6 @@ SpMorphicContainerAdapter >> buildWidget [
 		yourself
 ]
 
-{ #category : #'spec protocol' }
-SpMorphicContainerAdapter >> centerWidget: aWindow [
-
-	self widgetDo: [ :w| w centerWidget: aWindow ]
-]
-
 { #category : #protocol }
 SpMorphicContainerAdapter >> checkSplitters [
 	
