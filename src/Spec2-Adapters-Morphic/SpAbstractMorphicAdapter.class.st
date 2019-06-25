@@ -243,17 +243,6 @@ SpAbstractMorphicAdapter >> heightToDisplayInList: aList [
 	^ self widget heightToDisplayInList: aList
 ]
 
-{ #category : #dispatch }
-SpAbstractMorphicAdapter >> heightToDisplayInTree: aTree [
-	"Return the width of my representation as a list item"
-	
-	self extent ifNotNil: [:ex | ^ ex y ].
-	self initialExtent ifNotNil: [:ex | ^ ex y ].
-	
-	self widget ifNil: [ self buildWithSpec ].
-	^ self widget heightToDisplayInTree: aTree
-]
-
 { #category : #protocol }
 SpAbstractMorphicAdapter >> help [
 

@@ -46,13 +46,6 @@ SpComposablePresenter >> heightToDisplayInList: aList [
 ]
 
 { #category : #'*Spec2-Adapters-Morphic' }
-SpComposablePresenter >> heightToDisplayInTree: aTree [
-	"Return the width of my representation as a list item"
-	
-	^ self ensureMorphicAdapterDo: [ :adapter | adapter heightToDisplayInTree: aTree ]
-]
-
-{ #category : #'*Spec2-Adapters-Morphic' }
 SpComposablePresenter >> listRenderOn: aCanvas atRow: aRow bounds: drawBounds color: drawColor backgroundColor: backgroundColor from: aMorph [
 	"Specify how this object as a list item should be drawn"
 
