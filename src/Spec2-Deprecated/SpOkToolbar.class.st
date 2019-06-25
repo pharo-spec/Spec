@@ -3,7 +3,7 @@ An OkCancelToolbar is a model for a basic Ok toolbar
 "
 Class {
 	#name : #SpOkToolbar,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'okButton',
 		'okAction'

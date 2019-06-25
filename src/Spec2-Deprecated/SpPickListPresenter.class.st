@@ -5,7 +5,7 @@ self example
 "
 Class {
 	#name : #SpPickListPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'defaultValueHolder',
 		'labelClickableHolder',

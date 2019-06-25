@@ -7,7 +7,7 @@ I show also how to dynamically redrawn a widget.
 "
 Class {
 	#name : #SpOpenOnStringExample,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'label',
 		'check',

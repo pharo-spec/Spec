@@ -5,7 +5,7 @@ self example
 "
 Class {
 	#name : #SpScrollSyncExample,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'text',
 		'sideRuler',

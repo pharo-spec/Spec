@@ -5,7 +5,7 @@ self example
 "
 Class {
 	#name : #SpOpenOnIntExample,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'text',
 		'plus',

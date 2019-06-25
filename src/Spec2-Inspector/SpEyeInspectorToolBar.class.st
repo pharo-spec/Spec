@@ -3,7 +3,7 @@ Toolbar to explore previous or next inpected elements
 "
 Class {
 	#name : #SpEyeInspectorToolBar,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'previousButton',
 		'nextButton',

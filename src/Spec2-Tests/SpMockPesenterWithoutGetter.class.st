@@ -1,6 +1,6 @@
 Class {
 	#name : #SpMockPesenterWithoutGetter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'buttonPresenter'
 	],

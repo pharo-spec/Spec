@@ -1,6 +1,6 @@
 Class {
 	#name : #SpTransmissionExample,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'packages',
 		'classes',

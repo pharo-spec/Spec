@@ -5,7 +5,7 @@ self example
 "
 Class {
 	#name : #SpMethodToolbar,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'methodHolder',
 		'browseModel',

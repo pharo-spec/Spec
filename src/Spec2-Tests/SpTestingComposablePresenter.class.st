@@ -3,7 +3,7 @@ A TestingComposablePresenter is a stupid composable model used to test SpecInter
 "
 Class {
 	#name : #SpTestingComposablePresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'list'
 	],

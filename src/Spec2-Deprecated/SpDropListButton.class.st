@@ -7,7 +7,7 @@ I provide accessors dropList and input and shortcuts for the most common methods
 "
 Class {
 	#name : #SpDropListButton,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'dropList',
 		'button'

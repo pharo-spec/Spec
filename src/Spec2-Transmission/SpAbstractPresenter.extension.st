@@ -1,19 +1,19 @@
-Extension { #name : #SpPresenter }
+Extension { #name : #SpAbstractPresenter }
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> defineInputPorts [
+SpAbstractPresenter >> defineInputPorts [
 
 	^ #()
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> defineOutputPorts [
+SpAbstractPresenter >> defineOutputPorts [
 
 	^ #()
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> inputPortDefault [
+SpAbstractPresenter >> inputPortDefault [
 
 	"first input port will be default. 
 	 this may be bad design and probably needs to be revisited later"
@@ -21,25 +21,25 @@ SpPresenter >> inputPortDefault [
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> inputPortNamed: aSymbol [
+SpAbstractPresenter >> inputPortNamed: aSymbol [
 
 	^ self inputPorts detect: [ :each | each name = aSymbol ]
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> inputPorts [
+SpAbstractPresenter >> inputPorts [
 
 	^ self defineInputPorts collect: [ :each | each presenter: self ]
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> newTransmission [
+SpAbstractPresenter >> newTransmission [
 
 	^ SpTransmission new
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> outputPortDefault [
+SpAbstractPresenter >> outputPortDefault [
 
 	"first output port will be default. 
 	 this may be bad design and probably needs to be revisited later"
@@ -47,19 +47,19 @@ SpPresenter >> outputPortDefault [
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> outputPortNamed: aSymbol [
+SpAbstractPresenter >> outputPortNamed: aSymbol [
 
 	^ self outputPorts detect: [ :each | each name = aSymbol ]
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> outputPorts [
+SpAbstractPresenter >> outputPorts [
 
 	^ self defineOutputPorts collect: [ :each | each presenter: self ]
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> transmitDo: aBlock [
+SpAbstractPresenter >> transmitDo: aBlock [
 	
 	self newTransmission
 		from: self;
@@ -68,7 +68,7 @@ SpPresenter >> transmitDo: aBlock [
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> transmitDo: aBlock transform: transformBlock [
+SpAbstractPresenter >> transmitDo: aBlock transform: transformBlock [
 	
 	self newTransmission
 		from: self;
@@ -78,7 +78,7 @@ SpPresenter >> transmitDo: aBlock transform: transformBlock [
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> transmitPort: aPortName do: aBlock [
+SpAbstractPresenter >> transmitPort: aPortName do: aBlock [
 	
 	self newTransmission
 		from: self port: aPortName;
@@ -87,7 +87,7 @@ SpPresenter >> transmitPort: aPortName do: aBlock [
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> transmitPort: aPortName do: aBlock transform: transformBlock [
+SpAbstractPresenter >> transmitPort: aPortName do: aBlock transform: transformBlock [
 	
 	self newTransmission
 		from: self port: aPortName;
@@ -97,7 +97,7 @@ SpPresenter >> transmitPort: aPortName do: aBlock transform: transformBlock [
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> transmitTo: aPresenter [		
+SpAbstractPresenter >> transmitTo: aPresenter [		
 	
 	^ self newTransmission
 		from: self;
@@ -106,7 +106,7 @@ SpPresenter >> transmitTo: aPresenter [
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> transmitTo: aPresenter transform: aValuable [
+SpAbstractPresenter >> transmitTo: aPresenter transform: aValuable [
 	
 	^ self newTransmission
 		from: self;
@@ -116,7 +116,7 @@ SpPresenter >> transmitTo: aPresenter transform: aValuable [
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpPresenter >> transmitTo: aPresenter transform: aValuable postTransmission: postValuable [
+SpAbstractPresenter >> transmitTo: aPresenter transform: aValuable postTransmission: postValuable [
 	
 	^ self newTransmission
 		from: self; 

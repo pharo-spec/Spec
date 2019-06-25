@@ -3,7 +3,7 @@ Basic API that a Miller Presenter should implement
 "
 Class {
 	#name : #SpMillerPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#category : #'Spec2-Core-Miller'
 }
 

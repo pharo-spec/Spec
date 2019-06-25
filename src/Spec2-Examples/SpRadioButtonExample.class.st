@@ -5,7 +5,7 @@ self example
 "
 Class {
 	#name : #SpRadioButtonExample,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'button1',
 		'button2',

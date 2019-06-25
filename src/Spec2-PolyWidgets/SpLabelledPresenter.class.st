@@ -10,7 +10,7 @@ Example:
 "
 Class {
 	#name : #SpLabelledPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'input',
 		'descriptionPresenter',

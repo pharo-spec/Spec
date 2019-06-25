@@ -5,7 +5,7 @@ See my example methods on class side.
 "
 Class {
 	#name : #SpCalendarPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'previousMonthButton',
 		'nextMonthButton',

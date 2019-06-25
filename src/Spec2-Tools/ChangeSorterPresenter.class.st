@@ -7,7 +7,7 @@ ChangeSorterPresenter new openWithSpec
 "
 Class {
 	#name : #ChangeSorterPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'model',
 		'changesListPresenter',

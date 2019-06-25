@@ -7,7 +7,7 @@ self show.
 "
 Class {
 	#name : #SpPrepareWindowExample,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'menu',
 		'toolBar',

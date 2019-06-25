@@ -5,7 +5,7 @@ self example
 "
 Class {
 	#name : #SpApplicationWithToolbar,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'menu',
 		'text'

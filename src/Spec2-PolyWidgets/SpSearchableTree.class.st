@@ -3,7 +3,7 @@ I am a tree plus an input field to be able to filter the tree elements
 "
 Class {
 	#name : #SpSearchableTree,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'inputField',
 		'roots',

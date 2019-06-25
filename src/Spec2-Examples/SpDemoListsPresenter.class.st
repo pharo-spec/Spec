@@ -6,7 +6,7 @@ I am a demo showing how to use Spec lists.
 "
 Class {
 	#name : #SpDemoListsPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'list1',
 		'list2',

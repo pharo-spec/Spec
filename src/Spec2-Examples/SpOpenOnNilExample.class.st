@@ -7,7 +7,7 @@ I display simply an TextInputFieldPresenter, disable to don't be edditable by th
 "
 Class {
 	#name : #SpOpenOnNilExample,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'text'
 	],

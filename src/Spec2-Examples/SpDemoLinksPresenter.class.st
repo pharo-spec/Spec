@@ -6,7 +6,7 @@ This demo show how to use the link presenter
 "
 Class {
 	#name : #SpDemoLinksPresenter,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'link1',
 		'link2',

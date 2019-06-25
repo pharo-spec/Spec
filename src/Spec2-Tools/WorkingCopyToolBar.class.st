@@ -3,7 +3,7 @@ WorkingCopyToolBar new openWithSpec
 "
 Class {
 	#name : #WorkingCopyToolBar,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'browseButton',
 		'configButton',

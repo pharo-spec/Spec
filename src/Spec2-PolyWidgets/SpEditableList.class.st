@@ -12,7 +12,7 @@ self example
 "
 Class {
 	#name : #SpEditableList,
-	#superclass : #SpComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'title',
 		'list',
