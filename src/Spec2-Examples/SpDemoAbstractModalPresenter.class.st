@@ -15,7 +15,7 @@ Class {
 
 { #category : #specs }
 SpDemoAbstractModalPresenter class >> defaultSpec [
-	^ SpLayout composed
+	^ SpBoxLayout newVertical
 		add: #explanation;
 		yourself
 ]

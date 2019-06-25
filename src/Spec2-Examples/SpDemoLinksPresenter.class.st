@@ -17,15 +17,10 @@ Class {
 
 { #category : #specs }
 SpDemoLinksPresenter class >> defaultSpec [
-	^ SpLayout composed
-		newColumn: [ :c | 
-			c
-				newRow: #link1 height: self labelHeight;
-				addSpacer;
-				newRow: #link2 height: self labelHeight;
-				addSpacer;
-				newRow: #link3 height: self labelHeight;
-				newRow: [ :r |  ] ];
+	^ SpBoxLayout newVertical
+		add: #link1;
+		add: #link2;
+		add: #link3;
 		yourself
 ]
 
