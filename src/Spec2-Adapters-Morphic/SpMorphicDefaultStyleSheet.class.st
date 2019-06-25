@@ -33,5 +33,6 @@ SpMorphicDefaultStyleSheet >> initialize [
 		addClass: #NumberInputField with: { SpMorphicStyleSheetExtent newExtent: 150@25 hResizing: true };
 		"Bars"
 		addClass: #ActionBar with: { SpMorphicStyleSheetExtent newExtent: 150@25 hResizing: true };
+		addClass: #MenuBar with: { SpMorphicStyleSheetExtent newExtent: 150@25 hResizing: true };
 		addClass: #ActionButton with: { SpMorphicStyleSheetExtent newExtent: 60@25 }		
 ]
