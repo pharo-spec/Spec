@@ -29,9 +29,3 @@ Morph >> treeRenderOn: aCanvas bounds: drawBounds color: drawColor font: aFont f
 	aMorph addMorphBack: self.
        
 ]
-
-{ #category : #'*Spec2-Adapters-Morphic' }
-Morph >> widthToDisplayInTree: aTree [
-
-	^ self minExtent x
-]
