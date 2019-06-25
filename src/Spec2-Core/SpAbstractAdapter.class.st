@@ -146,7 +146,7 @@ SpAbstractAdapter >> removeSubWidgets [
 	self subclassResponsibility
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #emulating }
 SpAbstractAdapter >> rightClicked [
 
 	self subclassResponsibility

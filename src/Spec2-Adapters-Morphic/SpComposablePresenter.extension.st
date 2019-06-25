@@ -79,10 +79,3 @@ SpComposablePresenter >> openWorldWithSpecLayout: aSpec [
 	self flag: #TODO. "Fix this"
 	"^ self openWithSpecLayout: aSpec in: WorldPresenter"
 ]
-
-{ #category : #'*Spec2-Adapters-Morphic' }
-SpComposablePresenter >> widthToDisplayInList: aList [
-	"Return the width of my representation as a list item"
-	
-	^ self ensureMorphicAdapterDo: [ :adapter | adapter widthToDisplayInList: aList ]
-]
