@@ -121,6 +121,12 @@ SpPresenter >> setModal: aWindow [
 ]
 
 { #category : #'*Spec2-Deprecated' }
+SpPresenter >> specSpacer [
+
+	^ SpSpacerPresenter new
+]
+
+{ #category : #'*Spec2-Deprecated' }
 SpPresenter >> title: aString [
 	self
 		deprecated:

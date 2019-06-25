@@ -9,5 +9,5 @@ Class {
 
 { #category : #factory }
 SpMorphicSpinnerAdapter >> buildWidget [
-	^ SpinnerMorph new
+	^ SpSpinnerMorph new
 ]

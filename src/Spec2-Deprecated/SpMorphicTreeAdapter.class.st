@@ -43,7 +43,7 @@ SpMorphicTreeAdapter >> buildWidget [
 		model: self treeModel;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
-		initializeColumsFrom: self;
+		spInitializeColumsFrom: self;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		autoDeselection: self autoDeselection;

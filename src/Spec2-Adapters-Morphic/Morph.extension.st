@@ -9,7 +9,7 @@ Morph >> asSpAdapter [
 ]
 
 { #category : #'*Spec2-Adapters-Morphic' }
-Morph >> ensureLayoutAndAddMorph: aMorph [
+Morph >> spEnsureLayoutAndAddMorph: aMorph [
 
 	aMorph layoutFrame
 		ifNil: [ aMorph layoutFrame: LayoutFrame identity].

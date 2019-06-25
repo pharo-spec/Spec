@@ -1,5 +1,5 @@
 Class {
-	#name : #SpinnerMorph,
+	#name : #SpSpinnerMorph,
 	#superclass : #Morph,
 	#instVars : [
 		'transformationMorph'
@@ -11,13 +11,13 @@ Class {
 }
 
 { #category : #examples }
-SpinnerMorph class >> example [
+SpSpinnerMorph class >> example [
 
 	self new openInWindow 
 ]
 
 { #category : #'as yet unclassified' }
-SpinnerMorph class >> spinnerForm [
+SpSpinnerMorph class >> spinnerForm [
 
 	SpinnerForm ifNotNil: [ ^ SpinnerForm ].
 	^ SpinnerForm := Form
@@ -29,13 +29,13 @@ SpinnerMorph class >> spinnerForm [
 ]
 
 { #category : #'stepping and presenter' }
-SpinnerMorph >> extent [
+SpSpinnerMorph >> extent [
 
 	^ transformationMorph extent
 ]
 
 { #category : #'stepping and presenter' }
-SpinnerMorph >> initialize [
+SpSpinnerMorph >> initialize [
 
 	| wheelImageMorph |
 	super initialize.
@@ -47,19 +47,19 @@ SpinnerMorph >> initialize [
 ]
 
 { #category : #'stepping and presenter' }
-SpinnerMorph >> newSpinnerMorph [
+SpSpinnerMorph >> newSpinnerMorph [
 
 	^ self spinnerForm asMorph
 ]
 
 { #category : #'stepping and presenter' }
-SpinnerMorph >> spinnerForm [
+SpSpinnerMorph >> spinnerForm [
 
 	^ self class spinnerForm
 ]
 
 { #category : #'stepping and presenter' }
-SpinnerMorph >> step [
+SpSpinnerMorph >> step [
 
 	| oldAngle transform |
 	oldAngle := transformationMorph rotationDegrees.
@@ -70,13 +70,13 @@ SpinnerMorph >> step [
 ]
 
 { #category : #'stepping and presenter' }
-SpinnerMorph >> stepTime [
+SpSpinnerMorph >> stepTime [
 
 	^ 50
 ]
 
 { #category : #'stepping and presenter' }
-SpinnerMorph >> wantsSteps [
+SpSpinnerMorph >> wantsSteps [
 
 	^ true
 ]
