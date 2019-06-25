@@ -77,13 +77,6 @@ SpAbstractMorphicAdapter >> applyVisibility [
 			ifFalse: [ self widget hide ] ]
 ]
 
-{ #category : #dispatch }
-SpAbstractMorphicAdapter >> beginsWith: aString fromList: aMorph [
-	"This method is used bu the list for the search of elements when you are typing directly in the list"
-	
-	^ false
-]
-
 { #category : #'protocol-shortcuts' }
 SpAbstractMorphicAdapter >> bindKeyCombination: aShortcut toAction: aBlock [
 
@@ -228,21 +221,6 @@ SpAbstractMorphicAdapter >> hSpaceFill [
 	self widgetDo: [ :w | w hResizing: #spaceFill ]
 ]
 
-{ #category : #dispatch }
-SpAbstractMorphicAdapter >> heightToDisplayInList: aList [
-	"Return the width of my representation as a list item"
-	
-	self model extent ifNotNil: [:ex | ^ ex y ].
-	self model initialExtent ifNotNil: [:ex | ^ ex y ].
-	
-	self widget ifNil: [ self buildWithSpec ].
-	self widget 
-		vResizing: #rigid;
-		hResizing: #rigid.
-		
-	^ self widget heightToDisplayInList: aList
-]
-
 { #category : #protocol }
 SpAbstractMorphicAdapter >> help [
 
@@ -301,24 +279,6 @@ SpAbstractMorphicAdapter >> layout: aLayout [
 	| layout |
 	layout := aLayout asMorphicLayout.
 	self widgetDo: [ :w | w layoutFrame: layout ].
-]
-
-{ #category : #dispatch }
-SpAbstractMorphicAdapter >> listRenderOn: aCanvas atRow: aRow bounds: drawBounds color: drawColor backgroundColor: backgroundColor from: aMorph [
-	"Specify how this object as a list item should be drawn"
-
-	self widget ifNil: [ self buildWithSpec ].
-	self widget 
-		vResizing: #rigid;
-		hResizing: #rigid.
-		
-	self widget
-		listRenderOn: aCanvas
-		atRow: aRow
-		bounds: drawBounds
-		color: drawColor
-		backgroundColor: backgroundColor
-		from: aMorph
 ]
 
 { #category : #'protocol-shortcuts' }
