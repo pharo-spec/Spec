@@ -12,6 +12,15 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-StyleSheet'
 }
 
+{ #category : #accessing }
+SpMorphicStyleSheetExtent class >> default [
+
+	^ self 
+		newExtent: 0@0 
+		hResizing: true 
+		vResizing: true
+]
+
 { #category : #'instance creation' }
 SpMorphicStyleSheetExtent class >> newExtent: aPoint [
 

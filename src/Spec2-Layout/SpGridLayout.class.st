@@ -1,3 +1,12 @@
+"
+I am a grid layout. 
+As my name sais, I can place my elements in a grid, following some constraints: 
+
+- a position is mandatory
+- a span can be added if desired
+
+
+"
 Class {
 	#name : #SpGridLayout,
 	#superclass : #SpExecutableLayout,
@@ -70,7 +79,7 @@ SpGridLayout >> beColumnNotHomogeneous [
 { #category : #accessing }
 SpGridLayout >> beRowHomogeneous [
 
-	self rowHomogeneous: false
+	self rowHomogeneous: true
 ]
 
 { #category : #accessing }

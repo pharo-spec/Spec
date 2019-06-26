@@ -1,5 +1,5 @@
 Class {
-	#name : #SpGridLayoutTests,
+	#name : #SpMorphicGridLayoutTests,
 	#superclass : #TestCase,
 	#instVars : [
 		'label1',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #private }
-SpGridLayoutTests >> place: aMorph at: aPoint [ 
+SpMorphicGridLayoutTests >> place: aMorph at: aPoint [ 
 
 	aMorph 
 		setProperty: #gridConstraints 
@@ -20,7 +20,7 @@ SpGridLayoutTests >> place: aMorph at: aPoint [
 ]
 
 { #category : #private }
-SpGridLayoutTests >> place: aMorph at: aPoint span: spanPoint [
+SpMorphicGridLayoutTests >> place: aMorph at: aPoint span: spanPoint [
 
 	aMorph 
 		setProperty: #gridConstraints 
@@ -28,7 +28,7 @@ SpGridLayoutTests >> place: aMorph at: aPoint span: spanPoint [
 ]
 
 { #category : #running }
-SpGridLayoutTests >> setUp [
+SpMorphicGridLayoutTests >> setUp [
 	
 	super setUp.
 	label1 := Morph new.
@@ -46,13 +46,13 @@ SpGridLayoutTests >> setUp [
 ]
 
 { #category : #private }
-SpGridLayoutTests >> style [ 
+SpMorphicGridLayoutTests >> style [ 
 
 	^ self styleExtent: 50@20
 ]
 
 { #category : #private }
-SpGridLayoutTests >> styleExtent: aPoint [
+SpMorphicGridLayoutTests >> styleExtent: aPoint [
 
 	^ SpMorphicStyleSheet new 
 		propertyAt: #extent put: (SpMorphicStyleSheetExtent 
@@ -63,7 +63,7 @@ SpGridLayoutTests >> styleExtent: aPoint [
 ]
 
 { #category : #tests }
-SpGridLayoutTests >> testBasicLayout [
+SpMorphicGridLayoutTests >> testBasicLayout [
 	"
 	-----------
 	| 50 | 50 |
@@ -88,7 +88,7 @@ SpGridLayoutTests >> testBasicLayout [
 ]
 
 { #category : #tests }
-SpGridLayoutTests >> testBorderWidth [
+SpMorphicGridLayoutTests >> testBorderWidth [
 	"
 	---------------
 	| 5 | 5  | 5  |
@@ -117,7 +117,7 @@ SpGridLayoutTests >> testBorderWidth [
 ]
 
 { #category : #tests }
-SpGridLayoutTests >> testColumnHomogeneousDiferentRowsAndColumns [
+SpMorphicGridLayoutTests >> testColumnHomogeneousDiferentRowsAndColumns [
 	"Each element in a different row and column
 	
 	-------------------------
@@ -152,7 +152,7 @@ SpGridLayoutTests >> testColumnHomogeneousDiferentRowsAndColumns [
 ]
 
 { #category : #tests }
-SpGridLayoutTests >> testColumnNotHomogeneousDiferentRowsAndColumns [
+SpMorphicGridLayoutTests >> testColumnNotHomogeneousDiferentRowsAndColumns [
 	"Each element in a different row and column
 	
 	-------------------------
@@ -190,7 +190,7 @@ SpGridLayoutTests >> testColumnNotHomogeneousDiferentRowsAndColumns [
 ]
 
 { #category : #tests }
-SpGridLayoutTests >> testColumnNotHomogeneousPairedRowsAndColumns [
+SpMorphicGridLayoutTests >> testColumnNotHomogeneousPairedRowsAndColumns [
 	"Paired elements in a rows and columns
 	
 	-----------
@@ -225,7 +225,7 @@ SpGridLayoutTests >> testColumnNotHomogeneousPairedRowsAndColumns [
 ]
 
 { #category : #tests }
-SpGridLayoutTests >> testColumnSpacing [
+SpMorphicGridLayoutTests >> testColumnSpacing [
 	"
 	---------------
 	| 50 | 5 | 50 |
@@ -252,7 +252,7 @@ SpGridLayoutTests >> testColumnSpacing [
 ]
 
 { #category : #tests }
-SpGridLayoutTests >> testLayoutIn [
+SpMorphicGridLayoutTests >> testLayoutIn [
 	"This is a meta-test that tries all the others (just to have access to all tests while seeing 
 	 the class. Yes, I know that means all tests are executed twice in CI, but they are fast :)"
 
@@ -266,7 +266,7 @@ SpGridLayoutTests >> testLayoutIn [
 ]
 
 { #category : #tests }
-SpGridLayoutTests >> testRowSpacing [
+SpMorphicGridLayoutTests >> testRowSpacing [
 	"
 	-----------
 	| 50 | 50 |
@@ -295,7 +295,7 @@ SpGridLayoutTests >> testRowSpacing [
 ]
 
 { #category : #tests }
-SpGridLayoutTests >> testSpanColumn [
+SpMorphicGridLayoutTests >> testSpanColumn [
 	"Each element in a different row and column
 	
 	--------------------
@@ -322,7 +322,7 @@ SpGridLayoutTests >> testSpanColumn [
 ]
 
 { #category : #tests }
-SpGridLayoutTests >> testSpanRow [
+SpMorphicGridLayoutTests >> testSpanRow [
 	"Each element in a different row and column
 	
 	--------------------

@@ -1,3 +1,7 @@
+"
+I am the constraints in which an element is placed into a grid layout.
+I have a position and a span.
+"
 Class {
 	#name : #SpGridConstraints,
 	#superclass : #SpLayoutConstraints,

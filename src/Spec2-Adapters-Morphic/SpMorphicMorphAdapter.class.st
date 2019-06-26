@@ -1,28 +1,23 @@
 Class {
 	#name : #SpMorphicMorphAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
+	#instVars : [
+		'currentMorph'
+	],
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
 { #category : #factory }
 SpMorphicMorphAdapter >> buildWidget [
-	| panel |
 
-	panel := PanelMorph new 
-		changeTableLayout;
-		hResizing: #spaceFill;
-		vResizing: #spaceFill;
-		color: Color transparent;
-		borderColor: Color transparent;
-		yourself.
-		
-	self presenter morph 
-		ifNotNil: [ :morph | panel addMorphBack: morph ].
-	self presenter 
-		whenMorphChangedDo: [ :morph | 
-			panel 
-				removeAllMorphs;
-				addMorphBack: morph ].
+	currentMorph := self presenter morph 
+		ifNil: [ Morph new color: Color transparent ].
+
+	self presenter whenMorphChangedDo: [ :morph | 
+		self applyStyle: morph.
+		currentMorph owner 
+			replaceSubmorph: currentMorph 
+			by: morph ].
 	
-	^ panel
+	^ currentMorph
 ]

@@ -31,6 +31,7 @@ SpMorphicDefaultStyleSheet >> initialize [
 		addClass: #Text with: { SpMorphicStyleSheetExtent newExtent: 150@100 hResizing: true vResizing: true};
 		addClass: #TextInputField with: { SpMorphicStyleSheetExtent newExtent: 150@25 hResizing: true };
 		addClass: #NumberInputField with: { SpMorphicStyleSheetExtent newExtent: 150@25 hResizing: true };
+		addClass: #Slider with: { SpMorphicStyleSheetExtent newExtent: 150@25 hResizing: true };
 		"Bars"
 		addClass: #ActionBar with: { SpMorphicStyleSheetExtent newExtent: 150@25 hResizing: true };
 		addClass: #ActionButton with: { SpMorphicStyleSheetExtent newExtent: 60@25 }		

@@ -87,7 +87,6 @@ Class {
 	#name : #SpPresenter,
 	#superclass : #SpAbstractPresenter,
 	#instVars : [
-		'#layout',
 		'#application',
 		'#focusOrder',
 		'#extentHolder',
@@ -99,6 +98,7 @@ Class {
 		'#askOkToClose',
 		'#titleHolder',
 		'#additionalSubpresentersMap',
+		'#layout',
 		'#visible => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Base'
@@ -301,6 +301,16 @@ SpPresenter >> askOkToClose [
 	
 	This method cannot be deprecated because during a transition phase we keep this mecanism. "
 	^ askOkToClose value
+]
+
+{ #category : #'private building' }
+SpPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
+
+	self flag: #TODO. "We will keep the layout used to build to allow recalculations 
+	 and other operations. But maybe this should be part of the adapter and not the presenter."
+	layout := aSpecLayout.
+	^ super basicBuildAdapterWithSpecLayout: aSpecLayout.
+
 ]
 
 { #category : #'api-shortcuts' }
@@ -650,6 +660,7 @@ SpPresenter >> keyStrokesForPreviousFocus: aCollection [
 
 { #category : #accessing }
 SpPresenter >> layout [
+
 	^ layout
 ]
 
@@ -743,6 +754,12 @@ SpPresenter >> newMenu [
 { #category : #widgets }
 SpPresenter >> newMenuBar [
 	^ self instantiate: SpMenuBarPresenter
+]
+
+{ #category : #widgets }
+SpPresenter >> newMorph [
+
+	^ self instantiate: SpMorphPresenter
 ]
 
 { #category : #widgets }

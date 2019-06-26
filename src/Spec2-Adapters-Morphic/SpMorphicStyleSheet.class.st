@@ -89,7 +89,9 @@ SpMorphicStyleSheet >> atClass: aName [
 { #category : #style }
 SpMorphicStyleSheet >> extent [
 
-	^ self propertyAt: #extent
+	^ self 
+		propertyAt: #extent 
+		ifAbsent: [ SpMorphicStyleSheetExtent default ]
 ]
 
 { #category : #style }
