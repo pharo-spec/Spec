@@ -15,7 +15,7 @@ Class {
 		'size',
 		'selector'
 	],
-	#category : #'Spec2-Layout-Layouts'
+	#category : #'Spec2-Layout-Deprecated'
 }
 
 { #category : #'instance creation' }

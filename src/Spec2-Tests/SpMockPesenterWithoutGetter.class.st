@@ -9,7 +9,9 @@ Class {
 
 { #category : #specs }
 SpMockPesenterWithoutGetter class >> defaultSpec [
-	^ SpLayout composed newColumn: [ :col | col newRow: [ :row | row add: #buttonPresenter ] ]
+	^ SpBoxLayout newHorizontal
+		add: #buttonPresenter;
+		yourself
 ]
 
 { #category : #initialization }

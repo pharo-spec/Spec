@@ -15,13 +15,9 @@ Class {
 
 { #category : #specs }
 SpApplicationWithToolbar class >> defaultSpec [
-	<spec: #default>
-	
-	^ SpLayout composed
-		newColumn: [ :c | 
-			c 
-				add: #menu height: self toolbarHeight;
-				add: #text ];
+	^ SpBoxLayout newVertical
+		add: #menu withConstraints: [ :constraints | constraints height: self toolbarHeight ];
+		add: #text;
 		yourself
 ]
 

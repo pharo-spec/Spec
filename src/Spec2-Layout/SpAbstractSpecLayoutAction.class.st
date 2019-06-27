@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'selector'
 	],
-	#category : #'Spec2-Layout-Actions'
+	#category : #'Spec2-Layout-Deprecated'
 }
 
 { #category : #deprecation }

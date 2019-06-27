@@ -16,12 +16,14 @@ Class {
 
 { #category : #specs }
 SpDemoModalPresenter class >> defaultSpec [
-	^ SpLayout composed
-		newRow: [ :r | 
-			r
-				newColumn: #button1;
-				newColumn: #button2 ]
-		height: self buttonHeight
+	^ SpBoxLayout newVertical
+		add:
+			(SpBoxLayout newHorizontal
+				add: #button1;
+				add: #button2;
+				yourself)
+			withConstraints: [ :constraints | constraints height: self buttonHeight ];
+		yourself
 ]
 
 { #category : #'instance creation' }

@@ -181,7 +181,7 @@ SpDynamicSpecExample >> openOnString [
 	anUI check
 		label: 'Label on top';
 		state: true;
-		whenActivatedDo: [ 
+		whenActivatedDo: [
 			anUI needFullRebuild: false.
 			anUI buildWithSpecLayout: layout ];
 		whenDeactivatedDo: [ 

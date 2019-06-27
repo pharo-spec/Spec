@@ -12,9 +12,7 @@ Class {
 
 { #category : #specs }
 SpTestingComposablePresenter class >> defaultSpec [
-	<spec>
-
-	^ SpLayout composed
+	^ SpBoxLayout newVertical
 		add: #list;
 		yourself
 ]

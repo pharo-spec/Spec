@@ -17,11 +17,9 @@ Class {
 { #category : #specs }
 SpScrollSyncExample class >> defaultSpec [
 	<spec>
-	^ SpLayout composed
-		newRow: [ :row | 
-			row
-				add: #sideRuler width: 50;
-				add: #text ];
+	^ SpBoxLayout newHorizontal
+		add: #sideRuler withConstraints: [ :constraints | constraints width: 50 ];
+		add: #text;
 		yourself
 ]
 

@@ -11,7 +11,8 @@ Class {
 { #category : #specs }
 SpNullPresenter class >> defaultSpec [
 	"Returns empty layout. That's the point of null presenter."
-	^ SpLayout composed
+
+	^ SpBoxLayout newVertical
 ]
 
 { #category : #initialization }

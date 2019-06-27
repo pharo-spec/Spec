@@ -19,13 +19,17 @@ SpDynamicTopToBottomRowsLayout class >> rows: anInteger [
 
 { #category : #building }
 SpDynamicTopToBottomRowsLayout >> buildLayoutFor: aDynamicPresentersListBuilder [
-	^ SpLayout composed
-		newRow: [ :mainRow | 
-			(self instVarNamesFrom: aDynamicPresentersListBuilder)
-				groupsOf: self rowsCount
-				atATimeDo: [ :group | 
-					mainRow newColumn: [ :column |
-						group do: [ :instVar | column newRow: instVar ] ] ] ]
+	| layout |
+	layout := SpBoxLayout newVertical.
+	(self instVarNamesFrom: aDynamicPresentersListBuilder)
+		groupsOf: self rowsCount
+		atATimeDo: [ :group | 
+			| subLayout |
+			subLayout := SpBoxLayout newHorizontal.
+			group do: [ :instVar | subLayout add: instVar ].
+			layout add: subLayout ].
+
+	^ layout
 ]
 
 { #category : #building }

@@ -16,25 +16,14 @@ Class {
 
 { #category : #specs }
 SpMethodBrowser class >> defaultSpec [
-	<spec>
-	| delta |
-	delta := 15.
-	^ SpLayout composed 
-			add: #listModel origin: 0@0 corner: 1@0.5 offsetOrigin: 0@0 offsetCorner: 0@(delta negated);
-			add: #toolbarModel origin: 0@0.5 corner: 1@0.5 offsetOrigin: 0@(delta negated) offsetCorner: 0@delta;
-			add: #textModel origin: 0@0.5 corner: 1@1 offsetOrigin: 0@delta offsetCorner: 0@0;
-			yourself
-]
-
-{ #category : #specs }
-SpMethodBrowser class >> defaultSpec2 [
-^{ #Panel.
-		#changeTableLayout.
-		#listDirection:. 	#bottomToTop.
-		#addMorph:. 		{#presenter. #listModel.}.
-		#addMorph:. 		{#presenter. #textModel.}.
-		#vResizing:.		 #spaceFill.
-		#hResizing:.		 #spaceFill.}
+	^ SpPanedLayout newVertical
+		add: #listModel;
+		add:
+			(SpBoxLayout newVertical
+				add: #toolbarModel withConstraints: [ :constraints | constraints height: self toolbarHeight ];
+				add: #textModel;
+				yourself);
+		yourself
 ]
 
 { #category : #example }

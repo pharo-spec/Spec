@@ -19,41 +19,17 @@ Class {
 
 { #category : #specs }
 SpDemoTextInputPresenter class >> defaultSpec [
-
-	<spec: #default>
-
-	| fontWidth labelsWidth rowHeight |
-	fontWidth := (StandardFonts defaultFont widthOfString: 'M').
-	labelsWidth := fontWidth * 8.
-	rowHeight := self inputTextHeight.
-	
-	^ SpLayout composed
-		newColumn: [ :col | 
-
-			col newRow: [ :row | 
-				row add: #labelNormal right: labelsWidth.
-				row add: #fieldNormal ]
-			height: rowHeight.
-		
-			col newRow: [ :row | 
-				row add: #labelDisabled right: labelsWidth.
-				row add: #fieldDisabled ]
-			height: rowHeight.
-
-			col newRow: [ :row | 
-				row add: #labelPlaceholderText right: labelsWidth.
-				row add: #fieldPlaceholderText ]
-			height: rowHeight.
-
-			col newRow: [ :row | 
-				row add: #labelEncrypted right: labelsWidth.
-				row add: #fieldEncrypted ]
-			height: rowHeight.
-
-		"fill the rest of the space"
-		col newRow: [ :row |  ] ]; 
-			
-		yourself.	
+	^ SpGridLayout new
+		beColumnNotHomogeneous;
+		add: #labelNormal at: 1 @ 1;
+		add: #fieldNormal at: 2 @ 1;
+		add: #labelDisabled at: 1 @ 2;
+		add: #fieldDisabled at: 2 @ 2;
+		add: #labelPlaceholderText at: 1 @ 3;
+		add: #fieldPlaceholderText at: 2 @ 3;
+		add: #labelEncrypted at: 1 @ 4;
+		add: #fieldEncrypted at: 2 @ 4;
+		yourself
 ]
 
 { #category : #accessing }

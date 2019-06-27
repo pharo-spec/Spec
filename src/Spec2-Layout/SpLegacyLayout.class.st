@@ -1,7 +1,7 @@
 Class {
 	#name : #SpLegacyLayout,
 	#superclass : #Object,
-	#category : #'Spec2-Layout-Layouts'
+	#category : #'Spec2-Layout-Deprecated'
 }
 
 { #category : #deprecation }

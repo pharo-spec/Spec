@@ -4,7 +4,7 @@ A SpecLayoutSend is a spec layout action used when a selector is sent to the lay
 Class {
 	#name : #SpLayoutSend,
 	#superclass : #SpAbstractSpecLayoutAction,
-	#category : #'Spec2-Layout-Actions'
+	#category : #'Spec2-Layout-Deprecated'
 }
 
 { #category : #'instance creation' }
