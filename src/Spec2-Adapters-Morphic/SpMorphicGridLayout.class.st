@@ -132,12 +132,23 @@ SpMorphicGridLayout >> layoutMorph: aMorph staringAt: originPoint withComputatio
 	
 	constraint := aMorph valueOfProperty: #gridConstraints.
 	pos := originPoint + (computation positionAt: constraint position).
+	
+	"just set values if they are set (to preserve the default value in case not)"
+	constraint hExpand ifNotNil: [ :expand | aMorph hResizing: (self resizingSyle: expand) ].
+	constraint vExpand ifNotNil: [ :expand | aMorph vResizing: (self resizingSyle: expand) ].
+	"constraint hAlign ifNotNil: [ :hAlign | aMorph hAlign: hAlign asGtkAlign ].
+	constraint vAlign ifNotNil: [ :vAlign | aMorph vAlign: vAlign asGtkAlign ]."	
+	
+	
 	"if widget is resizable, it will take all the available space. 
 	 if widget is not resizable, we need to take into account its alignment constraint, since it 
 	 can be placed differently."
 	extent := (aMorph hResizing = #spaceFill and: [ aMorph vResizing = #spaceFill ])
 		ifTrue: [ computation cellExtentAt: constraint position ]
 		ifFalse: [ self calculateExtentFor: aMorph constraint: constraint computation: computation ].
+
+	(aMorph class = Morph) ifTrue: [
+		extent crLog ].
 	
 	aMorph bounds: (pos extent: extent)
 ]
@@ -152,6 +163,14 @@ SpMorphicGridLayout >> padding [
 SpMorphicGridLayout >> padding: aNumber [
 
 	padding := aNumber
+]
+
+{ #category : #private }
+SpMorphicGridLayout >> resizingSyle: expand [
+	
+	^ expand 
+		ifTrue: [ #spaceFill ]
+		ifFalse: [ #rigid ]
 ]
 
 { #category : #accessing }

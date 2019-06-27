@@ -21,7 +21,9 @@ SpGridLayoutExample class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add: (SpGridLayout new 
 			beColumnHomogeneous;
-			beRowHomogeneous;
+			beRowNotHomogeneous;
+			row: 1 withConstraints: [ :c | c beNotExpand ];
+			row: 2 withConstraints: [ :c | c beExpand ];
 			add: #element11 at: 1@1;
 			add: #element21 at: 2@1;
 			add: #element12 at: 1@2;
@@ -60,14 +62,18 @@ SpGridLayoutExample class >> openWithGtk [
 SpGridLayoutExample >> initializeWidgets [
 
 	"example elements"
-	element11 := self newMorph morph: (Morph new color: Color red).
+	"element11 := self newMorph morph: (Morph new color: Color red).
 	element21 := self newMorph morph: (Morph new color: Color green).
 	element12 := self newMorph morph: (Morph new color: Color blue).
-	element22 := self newMorph morph: (Morph new color: Color yellow).
+	element22 := self newMorph morph: (Morph new color: Color yellow)."
 	"element11 := self newLabel label: '1x1'.	
 	element21 := self newLabel label: '2x1'.	
 	element12 := self newLabel label: '1x2'.	
-	element22 := self newLabel label: '2x2'."	
+	element22 := self newLabel label: '2x2'."
+	element11 := self newText text: '1x1'.	
+	element21 := self newText text: '2x1'.	
+	element12 := self newText text: '1x2'.	
+	element22 := self newText text: '2x2'.
 
 	"control elements"
 	borderWidth := self newSlider beHorizontal; min: 0; max: 100.
