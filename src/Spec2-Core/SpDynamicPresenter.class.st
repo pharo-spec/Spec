@@ -24,37 +24,28 @@ todo
 Class {
 	#name : #SpDynamicPresenter,
 	#superclass : #SpPresenter,
-	#instVars : [
-		'widgets'
-	],
+	#traits : 'TSpDynamicPresenter',
+	#classTraits : 'TSpDynamicPresenter classTrait',
 	#category : #'Spec2-Core-Base'
 }
 
 { #category : #'instance creation' }
-SpDynamicPresenter >> assign: aModel to: anInstVarName [
-
-	widgets 
-		at: anInstVarName
-		put: aModel.
-		
-	aModel owner: self
+SpDynamicPresenter >> assign: aPresenter to: anInstVarName [
+	self presenterAt: anInstVarName put: aPresenter.
+	aPresenter owner: self
 ]
 
 { #category : #'error handling' }
 SpDynamicPresenter >> doesNotUnderstand: aMessage [
 	"To make sure that we can use accessors to access the dynamically managed subcomponents."
-	
-	^ widgets 
-			at: aMessage selector 
-			ifAbsent: [ super doesNotUnderstand: aMessage ]
+
+	^ self presenterAt: aMessage selector ifAbsent: [ super doesNotUnderstand: aMessage ]
 ]
 
 { #category : #initialization }
 SpDynamicPresenter >> initialize [
-
-	widgets := OrderedIdentityDictionary new asValueHolder.
 	layout := nil asValueHolder.
-	super initialize.	
+	super initialize
 ]
 
 { #category : #initialization }
@@ -63,9 +54,7 @@ SpDynamicPresenter >> initializeWidgets [
 
 { #category : #'instance creation' }
 SpDynamicPresenter >> instantiatePresenters: aCollectionOfPairs [
- 
-	aCollectionOfPairs pairsDo: [ :k :v |
-		widgets at: k asSymbol put: (self createInstanceFor: v) ]
+	aCollectionOfPairs pairsDo: [ :k :v | self presenterAt: k asSymbol put: (self createInstanceFor: v) ]
 ]
 
 { #category : #accessing }
@@ -84,7 +73,7 @@ SpDynamicPresenter >> layout: aLayout [
 SpDynamicPresenter >> needFullRebuild: aBoolean [
 
 	self needRebuild: aBoolean.
-	self widgetsDo: [ :w | w needRebuild: aBoolean ]
+	self presentersDo: [ :w | w needRebuild: aBoolean ]
 ]
 
 { #category : #api }
@@ -111,16 +100,4 @@ SpDynamicPresenter >> retrieveSpec: aSelector [
 	self layout ifNil: [ ^ super retrieveSpec: aSelector ].
 
 	^ self layout
-]
-
-{ #category : #accessing }
-SpDynamicPresenter >> widgets [
-
-	^ widgets
-]
-
-{ #category : #accessing }
-SpDynamicPresenter >> widgetsDo: aBlock [
-
-	self widgets do: aBlock 
 ]

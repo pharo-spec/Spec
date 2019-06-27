@@ -4,7 +4,7 @@ A SpecLayoutAddColumn is an action representing the addition of a column to a la
 Class {
 	#name : #SpLayoutAddColumn,
 	#superclass : #SpLayoutAdd,
-	#category : #'Spec2-Layout-Actions'
+	#category : #'Spec2-Layout-Deprecated'
 }
 
 { #category : #'instance creation' }

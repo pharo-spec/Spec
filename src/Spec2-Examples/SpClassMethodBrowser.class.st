@@ -7,34 +7,22 @@ Class {
 	#name : #SpClassMethodBrowser,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'listModel',
-		'methodModel'
+		'methodListPresenter',
+		'textPresenter',
+		'classListPresenter'
 	],
 	#category : #'Spec2-Examples-Standalone'
 }
 
 { #category : #specs }
 SpClassMethodBrowser class >> defaultSpec [
-<spec>
-	^ SpLayout composed
-		newRow: [:row | row
-						add: #listModel;
-						add: #methodModel ];
-		yourself
-]
-
-{ #category : #specs }
-SpClassMethodBrowser class >> defaultSpec2 [
-<spec: #default>
-
-	^ SpLayout composed
-		newRow: [:r | 
-			r 
-				newColumn: #listModel right: 0.5;
-				addVSplitter;
-				newColumn: #(methodModel listModel) left: 0.5 ] bottom: 0.5;
-		addHSplitter;
-		newRow: #(methodModel textModel) top: 0.5;
+	^ SpPanedLayout newVertical
+		add:
+			(SpPanedLayout newHorizontal
+				add: #classListPresenter;
+				add: #methodListPresenter;
+				yourself);
+		add: #textPresenter;
 		yourself
 ]
 
@@ -44,9 +32,9 @@ SpClassMethodBrowser class >> example [
 	| example |
 	example := SpClassMethodBrowser new.
 	example
-		classes: Smalltalk allClasses;
+		classes: self environment allClasses;
 		openWithSpec.
-		^example
+	^ example
 ]
 
 { #category : #specs }
@@ -57,40 +45,37 @@ SpClassMethodBrowser class >> title [
 
 { #category : #api }
 SpClassMethodBrowser >> classes: aList [
+	classListPresenter items = aList ifTrue: [ ^ self ].
 
-	self listModel items: aList
+	classListPresenter
+		items: aList;
+		selectIndex: 1
 ]
 
 { #category : #initialization }
 SpClassMethodBrowser >> initializePresenter [
-	listModel
-		whenSelectionChangedDo: [ :selection | 
-			selection isEmpty
-				ifFalse: [ methodModel
-						methods:
-							(selection selectedItem methods
-								sort: [ :a :b | a selector < b selector ]).
-					methodModel listModel unselectAll ] ]
+	classListPresenter
+		transmitTo: methodListPresenter
+		transform: [ :class | class methods sort: #selector descending ]
+		postTransmission: [ :destination | destination selectIndex: 1 ].
+		
+	methodListPresenter
+		transmitTo: textPresenter
+		transform: #sourceCode
+		postTransmission: [ :destination :origin :transmited | destination behavior: transmited methodClass ]
 ]
 
 { #category : #initialization }
 SpClassMethodBrowser >> initializeWidgets [
-	listModel := self instantiate:  SpListPresenter .
-	methodModel := self instantiate: SpMethodBrowser.
+	classListPresenter := self newList.
+	methodListPresenter := self newList.
+	textPresenter := self newCode.
+	
+	textPresenter acceptBlock: [ :t | methodListPresenter selectedItem inspect ].
+	methodListPresenter displayBlock: #selector.
+
 	self focusOrder
-		add: listModel;
-		add: methodModel.
-	methodModel displayBlock: [ :method | method selector ]
-]
-
-{ #category : #accessing }
-SpClassMethodBrowser >> listModel [
-
-	^ listModel
-]
-
-{ #category : #accessing }
-SpClassMethodBrowser >> methodModel [
-
-	^ methodModel
+		add: classListPresenter;
+		add: methodListPresenter;
+		add: textPresenter
 ]

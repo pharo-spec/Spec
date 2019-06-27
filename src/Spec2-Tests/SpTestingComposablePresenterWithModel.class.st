@@ -13,12 +13,10 @@ Class {
 
 { #category : #specs }
 SpTestingComposablePresenterWithModel class >> defaultSpec [
-	<spec: #default>
-
-	^ SpLayout composed newColumn: [ :col |
-		col newRow: [:row | row add: #x; add: #y ]];
+	^ SpBoxLayout newHorizontal
+		add: #x;
+		add: #y;
 		yourself
-
 ]
 
 { #category : #specs }

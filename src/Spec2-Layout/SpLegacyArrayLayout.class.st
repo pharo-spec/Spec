@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'specArray'
 	],
-	#category : #'Spec2-Layout-Layouts'
+	#category : #'Spec2-Layout-Deprecated'
 }
 
 { #category : #accessing }

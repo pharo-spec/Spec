@@ -20,10 +20,9 @@ Class {
 
 { #category : #specs }
 SpPrepareWindowExample class >> defaultSpec [
-	<spec: #default>
-
-	^ SpLayout composed 
-		newColumn: #text
+	^ SpBoxLayout newVertical
+		add: #text;
+		yourself
 ]
 
 { #category : #showing }
