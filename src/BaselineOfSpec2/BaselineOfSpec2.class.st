@@ -26,6 +26,9 @@ BaselineOfSpec2 >> baseline: spec [
 				package: 'Spec2-PolyWidgets' with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Adapters-Stub' with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Inspector') ];
+				package: 'Spec2-Commander2' with: [ spec requires: #('Spec2-Core') ];
+				package: 'Spec2-Commander2-Compatibility' with: [ spec requires: #('Spec2-Commander2') ];
+				package: 'Spec2-Commander2-Tests' with: [ spec requires: #('Spec2-Commander2') ];
 				package: 'Spec2-Tests' with: [ spec requires: #('Spec2-Examples') ];
 				package: 'Spec2-PolyWidgets-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-PolyWidgets') ];
 				package: 'Spec2-Morphic-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic' 'ParametrizedTests') ];
