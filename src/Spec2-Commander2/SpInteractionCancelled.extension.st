@@ -1,7 +1,7 @@
-Extension { #name : #InteractionCancelled }
+Extension { #name : #SpInteractionCancelled }
 
 { #category : #'*Spec2-Commander2' }
-InteractionCancelled >> actForSpec [
+SpInteractionCancelled >> actForSpec [
 	"Does nothing on purpose."
 	self flag: #TODO. "In the best world, we should delegate the behaviour to the Spec presenter which originated the error."
 ]

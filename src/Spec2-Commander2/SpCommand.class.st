@@ -45,7 +45,7 @@ SpCommand >> displayStrategy: anObject [
 { #category : #hooks }
 SpCommand >> execute [
 	[ super execute ]
-		on: InteractionError
+		on: SpInteractionError
 		do: [ :notificationOrError | notificationOrError actForSpec ]
 ]
 

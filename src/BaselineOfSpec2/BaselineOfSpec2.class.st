@@ -36,8 +36,10 @@ BaselineOfSpec2 >> baseline: spec [
 					with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Examples'
 					with: [ spec requires: #('Spec2-Inspector') ];
-				package: 'Spec2-Commander2'
+				package: 'Spec2-Interactions'
 					with: [ spec requires: #('Spec2-Core') ];
+				package: 'Spec2-Commander2'
+					with: [ spec requires: #('Spec2-Core' 'Spec2-Interactions') ];
 				package: 'Spec2-Commander2-Compatibility'
 					with: [ spec requires: #('Spec2-Commander2') ];
 				package: 'Spec2-Commander2-Tests'
