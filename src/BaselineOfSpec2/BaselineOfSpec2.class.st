@@ -44,6 +44,10 @@ BaselineOfSpec2 >> baseline: spec [
 					with: [ spec requires: #('Spec2-Commander2') ];
 				package: 'Spec2-Commander2-Tests'
 					with: [ spec requires: #('Spec2-Commander2') ];
+				package: 'Spec2-Commander2-ContactBook'
+					with: [ spec requires: #('Spec2-Commander2') ];
+				package: 'Spec2-Commander2-ContactBook-Extensions'
+					with: [ spec requires: #('Spec2-Commander2-ContactBook') ];
 				package: 'Spec2-Tests'
 					with: [ spec requires: #('Spec2-Examples') ];
 				package: 'Spec2-PolyWidgets-Tests'
