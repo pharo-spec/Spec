@@ -122,6 +122,9 @@ SpMorphicGridLayout >> layoutMorph: aMorph staringAt: originPoint withComputatio
 	constraints := aMorph valueOfProperty: #gridConstraints.
 	pos := originPoint + (computation positionAt: constraints position).
 
+	aMorph vResizing: (self resizingSyle: self isRowHomogeneous).
+	aMorph hResizing: (self resizingSyle: self isColumnHomogeneous).
+	
 	(layout rowConstraintsAt: constraints position y) ifNotNil: [ :c |
 		c expand ifNotNil: [ :expand | aMorph vResizing: (self resizingSyle: expand) ] ].
 		
@@ -134,6 +137,8 @@ SpMorphicGridLayout >> layoutMorph: aMorph staringAt: originPoint withComputatio
 	extent := (aMorph hResizing = #spaceFill and: [ aMorph vResizing = #spaceFill ])
 		ifTrue: [ computation cellExtentAt: constraints position ]
 		ifFalse: [ self calculateExtentFor: aMorph constraint: constraints computation: computation ].
+	
+	extent crLog.
 	
 	aMorph bounds: (pos extent: extent)
 ]

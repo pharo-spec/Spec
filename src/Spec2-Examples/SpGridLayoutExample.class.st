@@ -22,6 +22,29 @@ SpGridLayoutExample class >> defaultSpec [
 		add: (SpGridLayout new 
 			beColumnHomogeneous;
 			beRowHomogeneous;
+			add: #element11 at: 1@1;
+			add: #element21 at: 2@1;
+			add: #element12 at: 1@2;
+			add: #element22 at: 2@2;
+			yourself);
+		"add: (SpGridLayout new
+			beColumnHomogeneous;
+			add: 'Border Width' 			at: 1@1; add: #borderWidth 		at: 2@1;
+			add: 'Column Spacing'			at: 1@2; add: #columnSpacing 	at: 2@2;
+			add: 'Row spacing'				at: 1@3; add: #rowSpacing 		at: 2@3;
+			add: #columnHomogeneous 		at: 1@4 span: 2@1;
+			add: #rowHomogeneous 			at: 1@5 span: 2@1;
+			yourself);"
+		yourself
+]
+
+{ #category : #specs }
+SpGridLayoutExample class >> defaultSpec1 [
+
+	^ SpBoxLayout newVertical
+		add: (SpGridLayout new 
+			beColumnHomogeneous;
+			beRowHomogeneous;
 			"beColumnNotHomogeneous;
 			beRowNotHomogeneous;"
 			"by setting columns and row to be not homogeneous, we can decide to expand or not 
@@ -35,8 +58,8 @@ SpGridLayoutExample class >> defaultSpec [
 			add: #element12 at: 1@2;
 			add: #element22 withConstraints: [ :c | 
 				c 
-					position: 2@2;
-					beHorizontalAlignmentEnd ];
+					position: 2@2";
+					beHorizontalAlignmentEnd" ];
 			yourself);
 		add: (SpGridLayout new
 			beColumnHomogeneous;
@@ -71,14 +94,14 @@ SpGridLayoutExample class >> openWithGtk [
 SpGridLayoutExample >> initializeWidgets [
 
 	"example elements"
-	element11 := self newMorph morph: (self newSimpleButtonMorph: '1x1' color: Color red).
+	"element11 := self newMorph morph: (self newSimpleButtonMorph: '1x1' color: Color red).
 	element21 := self newMorph morph: (self newSimpleButtonMorph: '2x1' color: Color green).
 	element12 := self newMorph morph: (self newSimpleButtonMorph: '1x2' color: Color blue).
-	element22 := self newMorph morph: (self newSimpleButtonMorph: '2x2' color: Color yellow).
-	"element11 := self newMorph morph: (Morph new color: Color red).
+	element22 := self newMorph morph: (self newSimpleButtonMorph: '2x2' color: Color yellow)."
+	element11 := self newMorph morph: (Morph new color: Color red).
 	element21 := self newMorph morph: (Morph new color: Color green).
 	element12 := self newMorph morph: (Morph new color: Color blue).
-	element22 := self newMorph morph: (Morph new color: Color yellow)."
+	element22 := self newMorph morph: (Morph new color: Color yellow).
 	"element11 := self newLabel label: '1x1'.	
 	element21 := self newLabel label: '2x1'.	
 	element12 := self newLabel label: '1x2'.	
