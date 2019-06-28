@@ -20,6 +20,61 @@ SpGridLayoutExample class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
 		add: (SpGridLayout new 
+			beColumnNotHomogeneous;
+			beRowNotHomogeneous;
+			"by setting columns and row to be not homogeneous, we can decide to expand or not 
+			 them individually"
+			row: 1 withConstraints: [ :c | c beNotExpand ];
+			column: 1 withConstraints: [ :c | c beNotExpand ];
+			row: 2 withConstraints: [ :c | c beExpand ];
+			column: 2 withConstraints: [ :c | c beExpand ];
+			add: #element11 at: 1@1;
+			add: #element21 at: 2@1;
+			add: #element12 at: 1@2;
+			add: #element22 withConstraints: [ :c | 
+				c 
+					position: 2@2";
+					beHorizontalAlignmentEnd" ];
+			yourself);
+		add: (SpGridLayout new
+			beColumnHomogeneous;
+			add: 'Border Width' 			at: 1@1; add: #borderWidth 		at: 2@1;
+			add: 'Column Spacing'			at: 1@2; add: #columnSpacing 	at: 2@2;
+			add: 'Row spacing'				at: 1@3; add: #rowSpacing 		at: 2@3;
+			add: #columnHomogeneous 		at: 1@4 span: 2@1;
+			add: #rowHomogeneous 			at: 1@5 span: 2@1;
+			yourself);
+		yourself
+]
+
+{ #category : #specs }
+SpGridLayoutExample class >> defaultSpec1 [
+
+	^ SpBoxLayout newVertical
+		add: (SpGridLayout new 
+			beColumnHomogeneous;
+			beRowHomogeneous;
+			add: #element11 at: 1@1;
+			add: #element21 at: 2@1;
+			add: #element12 at: 1@2;
+			add: #element22 at: 2@2;
+			yourself);
+		add: (SpGridLayout new
+			beColumnHomogeneous;
+			add: 'Border Width' 			at: 1@1; add: #borderWidth 		at: 2@1;
+			add: 'Column Spacing'			at: 1@2; add: #columnSpacing 	at: 2@2;
+			add: 'Row spacing'				at: 1@3; add: #rowSpacing 		at: 2@3;
+			add: #columnHomogeneous 		at: 1@4 span: 2@1;
+			add: #rowHomogeneous 			at: 1@5 span: 2@1;
+			yourself);
+		yourself
+]
+
+{ #category : #specs }
+SpGridLayoutExample class >> defaultSpec2 [
+
+	^ SpBoxLayout newVertical
+		add: (SpGridLayout new 
 			beColumnHomogeneous;
 			beRowHomogeneous;
 			add: #element11 at: 1@1;
@@ -39,36 +94,15 @@ SpGridLayoutExample class >> defaultSpec [
 ]
 
 { #category : #specs }
-SpGridLayoutExample class >> defaultSpec1 [
+SpGridLayoutExample class >> defaultSpec3 [
 
-	^ SpBoxLayout newVertical
-		add: (SpGridLayout new 
-			beColumnHomogeneous;
-			beRowHomogeneous;
-			"beColumnNotHomogeneous;
-			beRowNotHomogeneous;"
-			"by setting columns and row to be not homogeneous, we can decide to expand or not 
-			 them individually"
-			"row: 1 withConstraints: [ :c | c beNotExpand ];
-			column: 1 withConstraints: [ :c | c beNotExpand ];
-			row: 2 withConstraints: [ :c | c beExpand ];
-			column: 2 withConstraints: [ :c | c beExpand ];"
-			add: #element11 at: 1@1;
-			add: #element21 at: 2@1;
-			add: #element12 at: 1@2;
-			add: #element22 withConstraints: [ :c | 
-				c 
-					position: 2@2";
-					beHorizontalAlignmentEnd" ];
-			yourself);
-		add: (SpGridLayout new
-			beColumnHomogeneous;
-			add: 'Border Width' 			at: 1@1; add: #borderWidth 		at: 2@1;
-			add: 'Column Spacing'			at: 1@2; add: #columnSpacing 	at: 2@2;
-			add: 'Row spacing'				at: 1@3; add: #rowSpacing 		at: 2@3;
-			add: #columnHomogeneous 		at: 1@4 span: 2@1;
-			add: #rowHomogeneous 			at: 1@5 span: 2@1;
-			yourself);
+	^ SpGridLayout new 
+		beColumnHomogeneous;
+		beRowHomogeneous;
+		add: #element11 at: 1@1;
+		add: #element21 at: 2@1;
+		add: #element12 at: 1@2;
+		add: #element22 at: 2@2;
 		yourself
 ]
 
