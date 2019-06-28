@@ -14,12 +14,8 @@ Class {
 	#name : #SpMorphicGridLayout,
 	#superclass : #LayoutPolicy,
 	#instVars : [
-		'rowSpacing',
-		'columnSpacing',
-		'padding',
-		'columnHomogeneous',
-		'rowHomogeneous',
-		'calculating'
+		'calculating',
+		'layout'
 	],
 	#category : #'Spec2-Adapters-Morphic-Layout'
 }
@@ -73,46 +69,39 @@ SpMorphicGridLayout >> calculateWidthFor: aMorph base: aNumber [
 ]
 
 { #category : #accessing }
-SpMorphicGridLayout >> columnHomogeneous: anObject [
-
-	columnHomogeneous := anObject
-]
-
-{ #category : #accessing }
 SpMorphicGridLayout >> columnSpacing [
 
-	^ columnSpacing
-]
-
-{ #category : #accessing }
-SpMorphicGridLayout >> columnSpacing: anObject [
-
-	columnSpacing := anObject
+	^ self layout columnSpacing
 ]
 
 { #category : #initialization }
 SpMorphicGridLayout >> initialize [
 
 	super initialize.
-	calculating := false.
-
-	self padding: 0.
-	self columnSpacing: 0.
-	self rowSpacing: 0.
-	self columnHomogeneous: false.
-	self rowHomogeneous: false
+	calculating := false
 ]
 
 { #category : #testing }
 SpMorphicGridLayout >> isColumnHomogeneous [
 
-	^ columnHomogeneous
+	^ self layout isColumnHomogeneous
 ]
 
 { #category : #testing }
 SpMorphicGridLayout >> isRowHomogeneous [
 
-	^ rowHomogeneous
+	^ self layout isRowHomogeneous
+]
+
+{ #category : #accessing }
+SpMorphicGridLayout >> layout [
+	^ layout
+]
+
+{ #category : #accessing }
+SpMorphicGridLayout >> layout: aGridLayout [
+
+	layout := aGridLayout
 ]
 
 { #category : #layout }
@@ -128,27 +117,23 @@ SpMorphicGridLayout >> layout: aMorph in: aRect [
 
 { #category : #private }
 SpMorphicGridLayout >> layoutMorph: aMorph staringAt: originPoint withComputation: computation [
-	| constraint pos extent |
+	| constraints pos extent |
 	
-	constraint := aMorph valueOfProperty: #gridConstraints.
-	pos := originPoint + (computation positionAt: constraint position).
-	
-	"just set values if they are set (to preserve the default value in case not)"
-	constraint hExpand ifNotNil: [ :expand | aMorph hResizing: (self resizingSyle: expand) ].
-	constraint vExpand ifNotNil: [ :expand | aMorph vResizing: (self resizingSyle: expand) ].
-	"constraint hAlign ifNotNil: [ :hAlign | aMorph hAlign: hAlign asGtkAlign ].
-	constraint vAlign ifNotNil: [ :vAlign | aMorph vAlign: vAlign asGtkAlign ]."	
-	
-	
+	constraints := aMorph valueOfProperty: #gridConstraints.
+	pos := originPoint + (computation positionAt: constraints position).
+
+	(layout rowConstraintsAt: constraints position y) ifNotNil: [ :c |
+		c expand ifNotNil: [ :expand | aMorph vResizing: (self resizingSyle: expand) ] ].
+		
+	(layout columnConstraintsAt: constraints position x) ifNotNil: [ :c |
+		c expand ifNotNil: [ :expand | aMorph hResizing: (self resizingSyle: expand) ] ].
+
 	"if widget is resizable, it will take all the available space. 
 	 if widget is not resizable, we need to take into account its alignment constraint, since it 
 	 can be placed differently."
 	extent := (aMorph hResizing = #spaceFill and: [ aMorph vResizing = #spaceFill ])
-		ifTrue: [ computation cellExtentAt: constraint position ]
-		ifFalse: [ self calculateExtentFor: aMorph constraint: constraint computation: computation ].
-
-	(aMorph class = Morph) ifTrue: [
-		extent crLog ].
+		ifTrue: [ computation cellExtentAt: constraints position ]
+		ifFalse: [ self calculateExtentFor: aMorph constraint: constraints computation: computation ].
 	
 	aMorph bounds: (pos extent: extent)
 ]
@@ -156,13 +141,7 @@ SpMorphicGridLayout >> layoutMorph: aMorph staringAt: originPoint withComputatio
 { #category : #accessing }
 SpMorphicGridLayout >> padding [
 
-	^ padding
-]
-
-{ #category : #accessing }
-SpMorphicGridLayout >> padding: aNumber [
-
-	padding := aNumber
+	^ self layout borderWidth
 ]
 
 { #category : #private }
@@ -174,18 +153,7 @@ SpMorphicGridLayout >> resizingSyle: expand [
 ]
 
 { #category : #accessing }
-SpMorphicGridLayout >> rowHomogeneous: aBoolean [
-
-	rowHomogeneous := aBoolean
-]
-
-{ #category : #accessing }
 SpMorphicGridLayout >> rowSpacing [
-	^ rowSpacing
-]
 
-{ #category : #accessing }
-SpMorphicGridLayout >> rowSpacing: aBoolean [
-
-	rowSpacing := aBoolean
+	^ self layout rowSpacing
 ]
