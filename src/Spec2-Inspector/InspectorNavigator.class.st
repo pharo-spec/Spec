@@ -4,11 +4,13 @@ This a wrapper around inspectors for diving. It is used in the case where the in
 Class {
 	#name : #InspectorNavigator,
 	#superclass : #SpPresenter,
+	#traits : 'TSpObservable',
+	#classTraits : 'TSpObservable classTrait',
 	#instVars : [
-		'inspector',
-		'history',
-		'canBeRefreshed',
-		'toolbar'
+		'#inspector => SpObservableSlot',
+		'#history',
+		'#canBeRefreshed',
+		'#toolbar'
 	],
 	#category : #'Spec2-Inspector-Widgets'
 }
@@ -16,11 +18,7 @@ Class {
 { #category : #specs }
 InspectorNavigator class >> debuggerSpec [
 	<spec: #default>
-	
-	^ SpLayout composed
-		newRow: #toolbar height: self toolbarHeight;
-		add: #inspector withSpec: #debuggerSpec top: self toolbarHeight;
-		yourself
+	^ self layoutForSpec: #debuggerSpec
 ]
 
 { #category : #'instance creation' }
@@ -31,12 +29,14 @@ InspectorNavigator class >> inspect: anObject [
 { #category : #specs }
 InspectorNavigator class >> inspectorSpec [
 	<spec>
-	
-	^ SpLayout composed
-		newColumn: [ :c | 
-			c 
-				add: #toolbar height: self toolbarHeight;
-				add: #inspector withSpec: #inspectorSpec ];
+	^ self layoutForSpec: #inspectorSpec
+]
+
+{ #category : #specs }
+InspectorNavigator class >> layoutForSpec: spec [
+	^ SpBoxLayout newVertical
+		add: #toolbar withConstraints: [ :constraints | constraints height: self toolbarHeight ];
+		add: #inspector withConstraints: [ :constraints | constraints spec: spec ];
 		yourself
 ]
 
@@ -57,14 +57,12 @@ InspectorNavigator class >> openInspector: inspector [
 
 { #category : #accessing }
 InspectorNavigator >> basicInspector: anEyeInspector [
-	inspector value 
-		ifNotNil: [ :inspect | 
-			inspect owner: nil ].
-	inspector value: anEyeInspector.
-	
-	anEyeInspector 
+	inspector ifNotNil: [ :inspect | inspect owner: nil ].
+	inspector := anEyeInspector.
+
+	anEyeInspector
 		owner: self;
-		ownerChanged.
+		ownerChanged
 ]
 
 { #category : #accessing }
@@ -136,10 +134,9 @@ InspectorNavigator >> initialize [
 	super initialize.
 	
 	history := NavigationHistory new.
-	inspector := nil asValueHolder.
 	
 	self initializeShortcuts.
-	inspector whenChangedDo: [ :new :old | 
+	self property: #inspector whenChangedDo: [ :new :old | 
 		self updateInspectorFrom: old ].
 	self announcer
 		when: SpWidgetBuilt send: #setRefreshedToTrue to: self.
@@ -210,7 +207,7 @@ InspectorNavigator >> inspectPrevious [
 
 { #category : #accessing }
 InspectorNavigator >> inspector [
-	^ inspector value
+	^ inspector
 ]
 
 { #category : #accessing }
