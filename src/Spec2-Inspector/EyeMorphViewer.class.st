@@ -13,22 +13,16 @@ Class {
 { #category : #spec }
 EyeMorphViewer class >> inspectorSpec [
 	<spec>
-	
-	^ SpLayout composed
-		newRow: #container bottom: 0.3;
-		addHSplitter;
-		newRow: #text top: 0.7;
+	^ SpPanedLayout newVertical
+		position: 70 percent;
+		add: #morphPresenter;
+		add: #text;
 		yourself
 ]
 
 { #category : #accessing }
 EyeMorphViewer class >> label [
 	^ 'Morph Viewer'
-]
-
-{ #category : #accessing }
-EyeMorphViewer >> container [
-	^ morphPresenter
 ]
 
 { #category : #initialization }
@@ -58,14 +52,14 @@ EyeMorphViewer >> objectChanged [
 	morphPresenter morph addMorph: self thumbnailMorph fullFrame: LayoutFrame identity
 ]
 
-{ #category : #initialization }
+{ #category : #stepping }
 EyeMorphViewer >> step [
 	self objectChanged
 ]
 
 { #category : #'event-handling' }
 EyeMorphViewer >> thumbnailMorph [
-	^self object taskThumbnailOfSize: self thumbnailSize
+	^ self object taskThumbnailOfSize: self thumbnailSize
 ]
 
 { #category : #accessing }
