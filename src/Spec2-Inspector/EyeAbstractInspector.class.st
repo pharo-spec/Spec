@@ -84,7 +84,7 @@ EyeAbstractInspector >> initialize [
 { #category : #initialization }
 EyeAbstractInspector >> initializePresenter [
 	object whenChangedDo: [ self objectChanged ].
-	self text whenBuiltDo: [ :w | self text behavior: self object class ].
+	text whenBuiltDo: [ :w | self text behavior: self object class ].
 	self initializeShortcuts
 ]
 
@@ -95,6 +95,7 @@ EyeAbstractInspector >> initializeShortcuts [
 
 { #category : #initialization }
 EyeAbstractInspector >> initializeWidgets [
+	text := self newCode
 ]
 
 { #category : #accessing }
@@ -219,7 +220,7 @@ EyeAbstractInspector >> shortCuts [
 
 { #category : #accessing }
 EyeAbstractInspector >> text [
-	^ text ifNil: [ text := self newCode ]
+	^ text
 ]
 
 { #category : #accessing }

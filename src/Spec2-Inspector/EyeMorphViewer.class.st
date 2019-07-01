@@ -5,7 +5,7 @@ Class {
 	#name : #EyeMorphViewer,
 	#superclass : #EyeAbstractInspector,
 	#instVars : [
-		'container'
+		'morphPresenter'
 	],
 	#category : #'Spec2-Inspector-Base'
 }
@@ -28,11 +28,7 @@ EyeMorphViewer class >> label [
 
 { #category : #accessing }
 EyeMorphViewer >> container [
-	^ container ifNil: [ container := (PanelMorph new 
-		changeProportionalLayout)
-		asSpAdapter
-		 vSpaceFill;
-		hSpaceFill]
+	^ morphPresenter
 ]
 
 { #category : #initialization }
@@ -41,14 +37,25 @@ EyeMorphViewer >> initializePresenter [
 	self whenWindowChanged: [ self objectChanged ]
 ]
 
+{ #category : #initialization }
+EyeMorphViewer >> initializeWidgets [
+	super initializeWidgets.
+	morphPresenter := self newMorph.
+
+	morphPresenter
+		morph:
+			(PanelMorph new
+				changeProportionalLayout;
+				vResizing: #spaceFill;
+				hResizing: #spaceFill;
+				yourself)
+]
+
 { #category : #'event-handling' }
 EyeMorphViewer >> objectChanged [
-
-	self text doItReceiver: self object. 
-	self container morph removeAllMorphs.
-	self container morph
-		addMorph: self thumbnailMorph
-		fullFrame: SpLayoutFrame identity
+	text doItReceiver: self object.
+	morphPresenter morph removeAllMorphs.
+	morphPresenter morph addMorph: self thumbnailMorph fullFrame: LayoutFrame identity
 ]
 
 { #category : #initialization }
@@ -63,5 +70,5 @@ EyeMorphViewer >> thumbnailMorph [
 
 { #category : #accessing }
 EyeMorphViewer >> thumbnailSize [
-	^ self container extent
+	^ morphPresenter morph extent
 ]

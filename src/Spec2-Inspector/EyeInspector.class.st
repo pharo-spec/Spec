@@ -234,6 +234,7 @@ EyeInspector >> initializeShortcuts [
 
 { #category : #initialization }
 EyeInspector >> initializeWidgets [
+	super initializeWidgets.
 	description := self newText
 ]
 

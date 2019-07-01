@@ -174,9 +174,7 @@ InspectorNavigator >> initializeShortcuts [
 
 { #category : #initialization }
 InspectorNavigator >> initializeWidgets [
-
-	
-	toolbar := self instantiate: EyeInspectorToolBar.
+	toolbar := self instantiate: EyeInspectorToolBar
 ]
 
 { #category : #actions }
