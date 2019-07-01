@@ -16,14 +16,19 @@ Class {
 { #category : #specs }
 EyeInspectorToolBar class >> defaultSpec [
 	<spec>
-	^ SpLayout composed
-		newRow: [ :r | 
-			r
-				add: #previousButton width: 24;
-				add: #nextButton width: 28;
-				add: #inspectorChoice
-		];
-	yourself.
+	^ SpBoxLayout newHorizontal
+		add: #previousButton
+			withConstraints: [ :constraints | 
+			constraints
+				width: 24;
+				padding: 2 ];
+		add: #nextButton
+			withConstraints: [ :constraints | 
+			constraints
+				width: 24;
+				padding: 2 ];
+		add: #inspectorChoice;
+		yourself
 ]
 
 { #category : #accessing }

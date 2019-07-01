@@ -47,19 +47,19 @@ EyeInspector class >> debuggerSpecSlow [
 
 { #category : #inspecting }
 EyeInspector class >> explore: anObject [ 
-	InspectorNavigator openExplorer: (self inspector: anObject).
+	EyeInspectorNavigator openExplorer: (self inspector: anObject).
 	^ anObject
 ]
 
 { #category : #inspecting }
 EyeInspector class >> inspect: anObject [ 
-	InspectorNavigator openInspector: (self inspector: anObject).
+	EyeInspectorNavigator openInspector: (self inspector: anObject).
 	^ anObject
 ]
 
 { #category : #inspecting }
 EyeInspector class >> inspect: anObject label: aString [
-	(InspectorNavigator openInspector: (self inspector: anObject)) window title: aString.
+	(EyeInspectorNavigator openInspector: (self inspector: anObject)) window title: aString.
 	^ anObject
 
 ]
