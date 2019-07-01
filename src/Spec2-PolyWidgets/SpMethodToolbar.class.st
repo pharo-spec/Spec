@@ -22,16 +22,13 @@ Class {
 { #category : #specs }
 SpMethodToolbar class >> defaultSpec [
 	<spec>
-	^ SpLayout composed
-		newRow:
-				[ :row | 
-			row
-				add: #(#model #browseModel);
-				add: #(#model #usersModel);
-				add: #(#model #sendersModel);
-				add: #(#model #implementorsModel);
-				add: #(#model #versionModel);
-				add: #(#model #dropListModel) ];
+	^ SpBoxLayout newHorizontal
+		add: #browseModel;
+		add: #usersModel;
+		add: #sendersModel;
+		add: #implementorsModel;
+		add: #versionModel;
+		add: #dropListModel;
 		yourself
 ]
 
@@ -39,15 +36,6 @@ SpMethodToolbar class >> defaultSpec [
 SpMethodToolbar class >> title [
 
 	^ 'Toolbar'
-]
-
-{ #category : #private }
-SpMethodToolbar >> addAll: aWindow  withSpec: aSpec [
-
-	aWindow
-		addMorph: (self buildWithSpec: aSpec)
-		fullFrame: (LayoutFrame identity bottomFraction: 0; bottomOffset: 30).
-		
 ]
 
 { #category : #api }
