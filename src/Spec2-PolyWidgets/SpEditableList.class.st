@@ -28,15 +28,8 @@ Class {
 	#category : #'Spec2-PolyWidgets-ListAndTree'
 }
 
-{ #category : #'instance creation' }
-SpEditableList class >> new: aCollection [
-	^ self new list: aCollection copy.
-		
-]
-
 { #category : #spec }
-SpEditableList class >> spec [
-	<spec: #default>
+SpEditableList class >> defaultSpec [
 	^ SpLayout composed
 		newColumn:
 			[ :column | 
@@ -57,6 +50,12 @@ SpEditableList class >> spec [
 												add: #bottomButton ]
 									width: 24 ] ] 
 		yourself
+]
+
+{ #category : #'instance creation' }
+SpEditableList class >> new: aCollection [
+	^ self new list: aCollection copy.
+		
 ]
 
 { #category : #accessing }
