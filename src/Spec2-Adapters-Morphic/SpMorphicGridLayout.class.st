@@ -138,8 +138,6 @@ SpMorphicGridLayout >> layoutMorph: aMorph staringAt: originPoint withComputatio
 		ifTrue: [ computation cellExtentAt: constraints position ]
 		ifFalse: [ self calculateExtentFor: aMorph constraint: constraints computation: computation ].
 	
-	extent crLog.
-	
 	aMorph bounds: (pos extent: extent)
 ]
 
