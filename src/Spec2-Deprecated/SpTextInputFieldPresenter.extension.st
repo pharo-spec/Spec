@@ -38,6 +38,11 @@ SpTextInputFieldPresenter >> ghostText: aText [
 ]
 
 { #category : #'*Spec2-Deprecated' }
+SpTextInputFieldPresenter >> textHolder [
+	self deprecated: 'Nobody should access directly to internals of Spec. Now the text is an observable slot and not a value holder.'.
+]
+
+{ #category : #'*Spec2-Deprecated' }
 SpTextInputFieldPresenter >> whenAcceptOnCRChanged: aBlock [
 	self deprecated: 'Use #whenAcceptOnCRChangedDo: instead.' transformWith: '`@receiver whenAcceptOnCRChanged: `@statements' -> '`@receiver whenAcceptOnCRChangedDo: `@statements'.
 	self whenAcceptOnCRChangedDo: aBlock

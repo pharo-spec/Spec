@@ -23,6 +23,13 @@ TSpObservable >> observablePropertyNamed: aName [
 ]
 
 { #category : #events }
+TSpObservable >> property: aName rawValue: anObject [
+	"Write in the slot without announcing it."
+
+	(self observablePropertyNamed: aName) rawValue: anObject
+]
+
+{ #category : #events }
 TSpObservable >> property: aName whenChangedDo: aBlockClosure [ 
 	
 	"Obtain the raw value.

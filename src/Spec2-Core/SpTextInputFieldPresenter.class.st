@@ -46,7 +46,7 @@ SpTextInputFieldPresenter class >> adapterName [
 { #category : #morphic }
 SpTextInputFieldPresenter >> accept: aText [
 
-	textHolder value: aText.
+	self text: aText.
 	actionToPerformHolder value cull: aText.
 	
 	"Dummy changed to raise an announcement"
@@ -182,12 +182,6 @@ SpTextInputFieldPresenter >> text: aText [
 		ifTrue: [ aText ]
 		ifFalse: [ aText first: (self maxLength min: aText size) ].
 	super text: truncatedText
-]
-
-{ #category : #accessing }
-SpTextInputFieldPresenter >> textHolder [
-
-	^ textHolder
 ]
 
 { #category : #accessing }

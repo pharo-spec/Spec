@@ -2,7 +2,6 @@ Class {
 	#name : #SpAbstractTextPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#textHolder',
 		'#actionToPerformHolder',
 		'#readSelectionHolder',
 		'#actionPerformedHolder',
@@ -11,46 +10,11 @@ Class {
 		'#autoAccept',
 		'#wantsVisualFeedback',
 		'#askBeforeDiscardingEdits',
-		'#contextMenu => SpObservableSlot'
+		'#contextMenu => SpObservableSlot',
+		'#text => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
-
-{ #category : #'api-shout' }
-SpAbstractTextPresenter >> aboutToStyle: aBoolean [	
-	"<api: #boolean getter: #isAboutToStyle registration: #whenAboutToStyleChanged:>"
-	"Set if the text zone must be styled"
-	
-	self 
-		deprecated: 'This has been moved to specific presenters' 
-		on: '2019-04-15'
-		in: #Pharo8
-]
-
-{ #category : #'api-shout' }
-SpAbstractTextPresenter >> aboutToStyleBlock [
-	"Return the block used to know if the text must be styled"	
-	"<api:#inspect>"
-
-	self 
-		deprecated: 'This has been moved to specific presenters' 
-		on: '2019-04-15'
-		in: #Pharo8
-
-]
-
-{ #category : #'api-shout' }
-SpAbstractTextPresenter >> aboutToStyleBlock: aBlockReturningABoolean [
-	"<api: #block getter: #aboutToStyleBlock registration: #whenAboutToStyleBlockChanged:>"
-	"Set the block used to know if the text must be styled.
-	The block must return a boolean"
-
-	self 
-		deprecated: 'This has been moved to specific presenters' 
-		on: '2019-04-15'
-		in: #Pharo8
-
-]
 
 { #category : #api }
 SpAbstractTextPresenter >> accept [
@@ -71,7 +35,7 @@ SpAbstractTextPresenter >> accept: aText notifying: aNotifyier [
 	accept == false ifTrue: [ ^ false ].
 	
 	newText := aText copy.
-	textHolder value: newText.
+	text := newText.
 	
 	"Dummy changed to raise an announcement"
 	actionPerformedHolder value: newText.
@@ -104,7 +68,7 @@ SpAbstractTextPresenter >> acceptText: aString [
 	"Used to set the text value comming from the adapter (we do not want to re-send 
 	 this value to the adapter, hence we set it 'raw', not triggering events)"
 
-	textHolder rawValue: aString
+	self property: #text rawValue: aString
 ]
 
 { #category : #api }
@@ -135,44 +99,6 @@ SpAbstractTextPresenter >> autoAccept: aBoolean [
 ]
 
 { #category : #api }
-SpAbstractTextPresenter >> beForCode [
-
-	self 
-		deprecated: 'The forCode functionality has moved to TextCodePresenter, please use it instead TextPresenter.' 
-		on: '2019-04-05' 
-		in: #Pharo8
-]
-
-{ #category : #api }
-SpAbstractTextPresenter >> beForText [
-
-	self 
-		deprecated: 'The forCode functionality has moved to TextCodePresenter, please use it instead TextPresenter.' 
-		on: '2019-04-05' 
-		in: #Pharo8
-]
-
-{ #category : #'api-shout' }
-SpAbstractTextPresenter >> behavior [
-	"Return the class corresponding to the method class of the source code you are editing"
-
-	self 
-		deprecated: 'This has been moved to specific presenters' 
-		on: '2019-04-15'
-		in: #Pharo8
-]
-
-{ #category : #'api-shout' }
-SpAbstractTextPresenter >> behavior: aClass [
-	"Set the class corresponding to the method class of the source code you are editing"
-
-	self 
-		deprecated: 'This has been moved to specific presenters' 
-		on: '2019-04-15'
-		in: #Pharo8
-]
-
-{ #category : #api }
 SpAbstractTextPresenter >> clearSelection [
 "	<api: #do>"
    "Remove selection from the text model"
@@ -196,42 +122,6 @@ SpAbstractTextPresenter >> contextMenu [
 SpAbstractTextPresenter >> contextMenu: aValuable [
 
 	contextMenu := aValuable
-]
-
-{ #category : #'api-doIt' }
-SpAbstractTextPresenter >> doItContext [
-
-	self 
-		deprecated: 'This has been moved to specific presenters (check children)' 
-		on: '2019-04-15'
-		in: #Pharo8
-]
-
-{ #category : #'api-doIt' }
-SpAbstractTextPresenter >> doItContext: anObject [
-
-	self 
-		deprecated: 'This has been moved to specific presenters (check children)' 
-		on: '2019-04-15'
-		in: #Pharo8
-]
-
-{ #category : #'api-doIt' }
-SpAbstractTextPresenter >> doItReceiver [
-
-	self 
-		deprecated: 'This has been moved to specific presenters (check children)' 
-		on: '2019-04-15'
-		in: #Pharo8
-]
-
-{ #category : #'api-doIt' }
-SpAbstractTextPresenter >> doItReceiver: anObject [
-
-	self 
-		deprecated: 'This has been moved to specific presenters (check children)' 
-		on: '2019-04-15'
-		in: #Pharo8
 ]
 
 { #category : #api }
@@ -274,12 +164,6 @@ SpAbstractTextPresenter >> getSelection [
 ]
 
 { #category : #api }
-SpAbstractTextPresenter >> getText [
-	"<api: #inspect>"
-	^ textHolder value
-]
-
-{ #category : #api }
 SpAbstractTextPresenter >> hasEditingConflicts [
 	"<api:#inspect>"
 	"Return if the text zone has editing conflicts"
@@ -318,8 +202,8 @@ SpAbstractTextPresenter >> initialize [
 
 	super initialize.
 
-	textHolder := '' asValueHolder.
-	actionToPerformHolder := [ :text |  ] asValueHolder.
+	text := ''.
+	actionToPerformHolder := [ :txt |  ] asValueHolder.
 	readSelectionHolder := [ selection value ] asValueHolder.
 	actionPerformedHolder := '' asValueHolder.
 	hasUnacceptedEdits := false asValueHolder.
@@ -405,7 +289,7 @@ SpAbstractTextPresenter >> readSelectionBlock: aBlock [
 { #category : #initialization }
 SpAbstractTextPresenter >> registerEvents [
 
-	textHolder whenChangedDo: [ self changed: #getText ].
+	self whenTextChangedDo: [ self changed: #getText ].
 	readSelectionHolder whenChangedDo: [ self changed: #readSelection ].
 	hasUnacceptedEdits whenChangedDo: [ :bool | self changed: #setHasUnacceptedEdits: with: { bool } ].
 	selection whenChangedDo: [:block | self changed: #setSelectionFromModel: with: { block value } ].
@@ -441,16 +325,14 @@ SpAbstractTextPresenter >> setSelectionInterval: anInterval [
 
 { #category : #api }
 SpAbstractTextPresenter >> text [
-
-	^ self getText
+	^ text
 ]
 
 { #category : #api }
 SpAbstractTextPresenter >> text: aText [
-	"<api: #string getter: #getText registration: #whenTextChanged:>"
 	"Set the text of the text zone"
-	
-	textHolder value: aText
+
+	text := aText
 ]
 
 { #category : #private }
@@ -477,16 +359,6 @@ SpAbstractTextPresenter >> wantsVisualFeedback: aBoolean [
 ]
 
 { #category : #'api-events' }
-SpAbstractTextPresenter >> whenAboutToStyleBlockChangedDo: aBlock [
-	"Set a block to perform when the about to style block changed"
-	
-	self 
-		deprecated: 'This has been moved to specific presenters' 
-		on: '2019-04-15'
-		in: #Pharo8
-]
-
-{ #category : #'api-events' }
 SpAbstractTextPresenter >> whenAboutToStyleChangedDo: aBlock [
 	"<api: #event>"
 	"Set a block to perform when the about to style block changed"
@@ -507,16 +379,6 @@ SpAbstractTextPresenter >> whenAutoAcceptChangedDo: aBlock [
 	"aBlock will be performed when autoAccept changed"
 	
 	autoAccept whenChangedDo: aBlock
-]
-
-{ #category : #enumerating }
-SpAbstractTextPresenter >> whenBehaviorChangedDo: aBlock [
-	"Set a block to perform when the behavior class changed"
-	
-	self 
-		deprecated: 'This has been moved to specific presenters' 
-		on: '2019-04-15'
-		in: #Pharo8
 ]
 
 { #category : #'api-events' }
@@ -543,8 +405,8 @@ SpAbstractTextPresenter >> whenReadSelectionIsChangedDo: aBlock [
 { #category : #'api-events' }
 SpAbstractTextPresenter >> whenTextChangedDo: aBlock [
 	"Set a block to perform when the text changed"
-	
-	textHolder whenChangedDo: aBlock
+
+	self property: #text whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
