@@ -46,14 +46,14 @@ SpWindowPresenter class >> presenter: aPresenter [
 
 { #category : #api }
 SpWindowPresenter >> aboutText [
-	^ aboutText value
+	^ aboutText
 		ifNil: [ self aboutText: 'The about text for this window has not been set.'.
-			aboutText value ]
+			aboutText ]
 ]
 
 { #category : #api }
 SpWindowPresenter >> aboutText: aString [
-	aboutText value: aString
+	aboutText := aString
 ]
 
 { #category : #api }
@@ -237,7 +237,7 @@ SpWindowPresenter >> initialize [
 
 	presenter := nil asValueHolder.
 	windowHolder := nil asValueHolder.
-	titleHolder := self class defaultTitle asValueHolder.
+	titleHolder := self class defaultTitle.
 	initialExtent := nil asValueHolder.
 	isClosedHolder := true asValueHolder.
 	isResizeable := true asValueHolder.
@@ -414,14 +414,12 @@ SpWindowPresenter >> taskbarIcon [
 
 { #category : #private }
 SpWindowPresenter >> title [
-
-	^ titleHolder value
+	^ titleHolder
 ]
 
 { #category : #private }
 SpWindowPresenter >> title: aString [
-
-	titleHolder value: aString
+	titleHolder := aString
 ]
 
 { #category : #api }
@@ -483,12 +481,12 @@ SpWindowPresenter >> window: aWindow [
 
 { #category : #private }
 SpWindowPresenter >> windowIcon [
-	^ windowIcon value
+	^ windowIcon
 ]
 
 { #category : #private }
 SpWindowPresenter >> windowIcon: aForm [
-	windowIcon value: aForm
+	windowIcon := aForm
 ]
 
 { #category : #updating }
