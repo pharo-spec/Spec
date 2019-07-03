@@ -44,9 +44,9 @@ Class {
 	#instVars : [
 		'#allowToSelect => SpObservableSlot',
 		'#autoDeselect => SpObservableSlot',
-		'#headerTitle',
-		'#displayBlockValueHolder',
-		'#iconHolder'
+		'#headerTitle => SpObservableSlot',
+		'#iconHolder',
+		'#display => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
@@ -77,17 +77,16 @@ SpListPresenter >> clickOnSelectedItem [
 SpListPresenter >> displayBlock [
 	"Return the one argument block used to wrap your domain specific items.
 	The block should return something that can be displayed in a list - like a String or a Text"
-	
-	^ displayBlockValueHolder value
+
+	^ display
 ]
 
 { #category : #api }
 SpListPresenter >> displayBlock: aBlock [
-	"<api: #block getter:#displayBlock registration: #whenDisplayBlockChanged:>"
 	"Set the one argument block used to wrap your domain specific items.
 	The block should return something that can be displayed in a list - like a String or a Text"
-	
-	displayBlockValueHolder value: aBlock
+
+	display := aBlock
 ]
 
 { #category : #'adapter-api' }
@@ -104,25 +103,22 @@ SpListPresenter >> displayValueOf: anObject [
 
 { #category : #testing }
 SpListPresenter >> hasHeaderTitle [
-	
-	^ headerTitle value isEmptyOrNil not
+	^ headerTitle isEmptyOrNil not
 ]
 
 { #category : #accessing }
 SpListPresenter >> headerTitle [
-	^ headerTitle value
+	^ headerTitle
 ]
 
 { #category : #accessing }
-SpListPresenter >> headerTitle: aString [ 
-	
-	headerTitle value: aString
+SpListPresenter >> headerTitle: aString [
+	headerTitle := aString
 ]
 
 { #category : #api }
 SpListPresenter >> hideHeaderTitle [
-	
-	headerTitle value: nil
+	headerTitle := nil
 ]
 
 { #category : #'widget API' }
@@ -149,8 +145,7 @@ SpListPresenter >> initialize [
 	super initialize.
 	autoDeselect := true.
 	allowToSelect := true.
-	displayBlockValueHolder := [ :object | object asStringOrText ] asValueHolder.
-	headerTitle := nil asValueHolder.
+	display := [ :object | object asStringOrText ].
 	iconHolder := [ :item | nil ] asValueHolder.
 	self bindKeyCombination: Character space toAction: [ self clickOnSelectedItem ]
 ]
@@ -166,8 +161,8 @@ SpListPresenter >> prepareForFilteredDataSourceWith: items [
 SpListPresenter >> registerEvents [
 	super registerEvents.
 	self whenAutoDeselectChangedDo: [ :aBoolean | self changed: #autoDeselect: with: {aBoolean} ].
-	displayBlockValueHolder whenChangedDo: [ self withAdapterDo: #refreshWidgetList ].
-	headerTitle whenChangedDo: [ self withAdapterDo: #refreshWidgetHeaderTitle ]
+	self whenDisplayBlockChangedDo: [ self withAdapterDo: #refreshWidgetList ].
+	self property: #headerTitle whenChangedDo: [ self withAdapterDo: #refreshWidgetHeaderTitle ]
 ]
 
 { #category : #private }
@@ -205,8 +200,8 @@ SpListPresenter >> updateList [
 { #category : #'api-events' }
 SpListPresenter >> whenDisplayBlockChangedDo: aBlock [
 	"Set a block to value when the filtering block has changed"
-	
-	displayBlockValueHolder whenChangedDo: aBlock
+
+	self property: #display whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
