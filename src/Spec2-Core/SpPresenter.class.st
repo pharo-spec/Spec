@@ -98,8 +98,8 @@ Class {
 		'#layout',
 		'#visible => SpObservableSlot',
 		'#extent => SpObservableSlot',
-		'#keyStrokesForNextFocus',
-		'#keyStrokesForPreviousFocus'
+		'#keyStrokesForNextFocus => SpObservableSlot',
+		'#keyStrokesForPreviousFocus => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Base'
 }
