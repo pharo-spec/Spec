@@ -146,21 +146,13 @@ SpListPresenter >> icons: aBlock [
 
 { #category : #initialization }
 SpListPresenter >> initialize [
-
-	super initialize.
-	self
-		bindKeyCombination: Character space
-		toAction: [ self clickOnSelectedItem ]	
-]
-
-{ #category : #api }
-SpListPresenter >> initializeValueHolders [
-	super initializeValueHolders.
 	autoDeselect := true.
 	allowToSelect := true.
 	displayBlockValueHolder := [ :object | object asStringOrText ] asValueHolder.
 	headerTitle := nil asValueHolder.
-	iconHolder := [ :item | nil ] asValueHolder
+	iconHolder := [ :item | nil ] asValueHolder.
+	super initialize.
+	self bindKeyCombination: Character space toAction: [ self clickOnSelectedItem ]
 ]
 
 { #category : #private }

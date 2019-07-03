@@ -83,7 +83,11 @@ SpSelectEntity >> entityText: anObject [
 { #category : #initialization }
 SpSelectEntity >> initialize [
 	super initialize.
-	self initializeValueHolders
+	displaySymbol := #displayString asValueHolder.
+	entity := nil asValueHolder.
+	placeholder := 'Choose one' asValueHolder.
+	possibleEntities := #() asValueHolder.
+	selectDialog := [  ] asValueHolder
 ]
 
 { #category : #initialization }
@@ -95,15 +99,6 @@ SpSelectEntity >> initializePresenter [
 				okAction: [  
 					self entity: select selectedItem ]]
 
-]
-
-{ #category : #initialization }
-SpSelectEntity >> initializeValueHolders [
-	displaySymbol := #displayString asValueHolder.
-	entity := nil asValueHolder.
-	placeholder := 'Choose one' asValueHolder.
-	possibleEntities := #() asValueHolder.
-	selectDialog := [  ] asValueHolder
 ]
 
 { #category : #initialization }

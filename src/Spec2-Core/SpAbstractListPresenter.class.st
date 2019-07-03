@@ -125,13 +125,7 @@ SpAbstractListPresenter >> initialize [
 	self beSingleSelection.
 	self activateOnDoubleClick.
 
-	self initializeValueHolders.
 	self registerEvents
-]
-
-{ #category : #initialization }
-SpAbstractListPresenter >> initializeValueHolders [
-	self subclassResponsibility
 ]
 
 { #category : #testing }
