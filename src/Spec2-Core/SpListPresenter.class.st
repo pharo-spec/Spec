@@ -42,9 +42,11 @@ Class {
 	#name : #SpListPresenter,
 	#superclass : #SpAbstractListPresenter,
 	#instVars : [
-		'headerTitle',
-		'displayBlockValueHolder',
-		'iconHolder'
+		'#allowToSelect => SpObservableSlot',
+		'#autoDeselect => SpObservableSlot',
+		'#headerTitle',
+		'#displayBlockValueHolder',
+		'#iconHolder'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
@@ -154,6 +156,8 @@ SpListPresenter >> initialize [
 { #category : #api }
 SpListPresenter >> initializeValueHolders [
 	super initializeValueHolders.
+	autoDeselect := true.
+	allowToSelect := true.
 	displayBlockValueHolder := [ :object | object asStringOrText ] asValueHolder.
 	headerTitle := nil asValueHolder.
 	iconHolder := [ :item | nil ] asValueHolder
@@ -168,27 +172,15 @@ SpListPresenter >> prepareForFilteredDataSourceWith: items [
 
 { #category : #private }
 SpListPresenter >> registerEvents [
-	
 	super registerEvents.
-	displayBlockValueHolder whenChangedDo: [ 
-		self withAdapterDo: #refreshWidgetList ].
-	headerTitle whenChangedDo: [ 
-		self withAdapterDo: #refreshWidgetHeaderTitle ]
-]
-
-{ #category : #api }
-SpListPresenter >> resetFilteringBlock [
-	"<api: #do>"
-	"Reset the filtering block with the default value which consists in showing everything"
-
-	filteringBlockHolder value: self defaultFilteringBlock
+	self whenAutoDeselectChangedDo: [ :aBoolean | self changed: #autoDeselect: with: {aBoolean} ].
+	displayBlockValueHolder whenChangedDo: [ self withAdapterDo: #refreshWidgetList ].
+	headerTitle whenChangedDo: [ self withAdapterDo: #refreshWidgetHeaderTitle ]
 ]
 
 { #category : #private }
 SpListPresenter >> resetListSelection [
-	"Reset the selection manager for multiple selection lists"
-	
-	multiSelectionHolder reset
+	self selectIndex: 0
 ]
 
 { #category : #api }
@@ -219,31 +211,10 @@ SpListPresenter >> updateList [
 ]
 
 { #category : #'api-events' }
-SpListPresenter >> whenAllowToSelectChangedDo: aBlock [
-	"Set a block to value when the value of allowToSelect has changed"
-	
-	allowToSelect whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
-SpListPresenter >> whenAutoDeselectChangedDo: aBlock [
-	"Set a block to value when the value of autoDeselect has changed"
-	
-	autoDeselect whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
 SpListPresenter >> whenDisplayBlockChangedDo: aBlock [
 	"Set a block to value when the filtering block has changed"
 	
 	displayBlockValueHolder whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
-SpListPresenter >> whenFilteringBlockChangedDo: aBlock [
-	"Set a block to value when the filtering block block has changed"
-	
-	filteringBlockHolder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
