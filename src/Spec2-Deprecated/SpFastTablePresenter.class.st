@@ -91,11 +91,10 @@ SpFastTablePresenter >> icons: aBlock [
 
 { #category : #initialization }
 SpFastTablePresenter >> initialize [
-
+	super initialize.
 	displayBlock := #yourself.
-	iconHolder := [:item | nil ] asValueHolder.
-	handlesDoubleClick := false asValueHolder.
-	super initialize
+	iconHolder := [ :item | nil ] asValueHolder.
+	handlesDoubleClick := false asValueHolder
 ]
 
 { #category : #'api-columns' }
