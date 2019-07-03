@@ -5,9 +5,9 @@ Class {
 	#name : #SpFastTablePresenter,
 	#superclass : #SpTablePresenter,
 	#instVars : [
-		'iconHolder',
-		'handlesDoubleClick',
-		'displayBlock'
+		'#iconHolder',
+		'#handlesDoubleClick => SpObservableSlot',
+		'#displayBlock'
 	],
 	#category : #'Spec2-Deprecated-Replaced'
 }
@@ -62,16 +62,14 @@ SpFastTablePresenter >> getIconFor: anItem [
 
 { #category : #api }
 SpFastTablePresenter >> handlesDoubleClick [
-
-	^ handlesDoubleClick value
+	^ handlesDoubleClick
 ]
 
 { #category : #api }
 SpFastTablePresenter >> handlesDoubleClick: aBoolean [
-	"<api: #block getter:#handlesDoubleClick registration: #whenHandlesDoubleClickChanged:>"
 	"Enable or disable double click on the list."
-	
-	handlesDoubleClick value: aBoolean
+
+	handlesDoubleClick := aBoolean
 ]
 
 { #category : #api }
@@ -94,7 +92,7 @@ SpFastTablePresenter >> initialize [
 	super initialize.
 	displayBlock := #yourself.
 	iconHolder := [ :item | nil ] asValueHolder.
-	handlesDoubleClick := false asValueHolder
+	handlesDoubleClick := false
 ]
 
 { #category : #'api-columns' }
@@ -118,7 +116,7 @@ SpFastTablePresenter >> numberOfColumns: aNumber withWidths: widths [
 { #category : #initialization }
 SpFastTablePresenter >> registerEvents [
 	super registerEvents.
-	handlesDoubleClick whenChangedDo: [ :bool | self changed: { #handlesDoubleClick . bool } ].
+	self property: #handlesDoubleClick whenChangedDo: [ :bool | self changed: { #handlesDoubleClick . bool } ].
 
 ]
 
