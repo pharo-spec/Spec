@@ -621,7 +621,7 @@ SpPresenter >> keyStrokeForNextFocus: aKMShortcut [
 
 { #category : #'api-focus' }
 SpPresenter >> keyStrokeForPreviousFocus: aKMShortcut [
-	self keyStrokeForPreviousFocus: {aKMShortcut}
+	self keyStrokesForPreviousFocus: {aKMShortcut}
 ]
 
 { #category : #'api-focus' }

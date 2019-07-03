@@ -46,9 +46,7 @@ SpWindowPresenter class >> presenter: aPresenter [
 
 { #category : #api }
 SpWindowPresenter >> aboutText [
-	^ aboutText
-		ifNil: [ self aboutText: 'The about text for this window has not been set.'.
-			aboutText ]
+	^ aboutText ifNil: [ aboutText := 'The about text for this window has not been set.' ]
 ]
 
 { #category : #api }
