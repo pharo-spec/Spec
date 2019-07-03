@@ -22,16 +22,14 @@ Class {
 
 { #category : #specs }
 SpSelectEntity class >> defaultSpec [
-	<spec: #default>
-		
-	^SpLayout composed
-		newColumn: [ :col |
-				col newRow: [:row |
-					row add: #entityText;
-						add: #selectEntity width: SpPresenter toolbarHeight]
-					height: SpPresenter toolbarHeight];
+	^ SpBoxLayout newVertical
+		add:
+			(SpBoxLayout newHorizontal
+				add: #entityText;
+				add: #selectEntity withConstraints: [ :constraints | constraints width: self toolbarHeight ];
+				yourself)
+			withConstraints: [ :constraints | constraints height: self toolbarHeight ];
 		yourself
-
 ]
 
 { #category : #api }

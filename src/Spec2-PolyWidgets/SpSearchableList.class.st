@@ -21,10 +21,9 @@ Class {
 
 { #category : #specs }
 SpSearchableList class >> defaultSpec [
-
-	^ SpLayout composed
-		newRow: #searchPresenter height: self toolbarHeight;
-		add: #listPresenter top: self toolbarHeight;
+	^ SpBoxLayout newVertical
+		add: #searchPresenter withConstraints: [ :constraints | constraints height: self toolbarHeight ];
+		add: #listPresenter;
 		yourself
 ]
 
