@@ -7,14 +7,14 @@ Class {
 	#name : #SpMethodToolbar,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'methodHolder',
-		'browseModel',
-		'sendersModel',
-		'implementorsModel',
-		'versionModel',
-		'dropListModel',
-		'model',
-		'usersModel'
+		'#browseModel',
+		'#sendersModel',
+		'#implementorsModel',
+		'#versionModel',
+		'#dropListModel',
+		'#model',
+		'#usersModel',
+		'#method => SpObservableSlot'
 	],
 	#category : #'Spec2-PolyWidgets-Widgets'
 }
@@ -46,9 +46,7 @@ SpMethodToolbar >> addItemLabeled: aString do: aBlock [
 
 { #category : #private }
 SpMethodToolbar >> browseMethod [
-
-	methodHolder value
-		ifNotNil: [:aMethod | aMethod browse ]
+	self method ifNotNil: [ :aMethod | aMethod browse ]
 ]
 
 { #category : #accessing }
@@ -71,9 +69,7 @@ SpMethodToolbar >> emptyDropList [
 
 { #category : #private }
 SpMethodToolbar >> implementorsMethod [
-
-	methodHolder value
-		ifNotNil: [:aMethod | self model browseMessagesFrom: aMethod selector ]
+	self method ifNotNil: [ :aMethod | self model browseMessagesFrom: aMethod selector ]
 ]
 
 { #category : #accessing }
@@ -84,11 +80,9 @@ SpMethodToolbar >> implementorsModel [
 
 { #category : #initialization }
 SpMethodToolbar >> initialize [
-
-	methodHolder := nil asValueHolder.
 	model := AbstractTool new.
-	
-	super initialize.
+
+	super initialize
 ]
 
 { #category : #initialization }
@@ -108,10 +102,14 @@ SpMethodToolbar >> initializeWidgets [
 		setImplementorsModel
 ]
 
+{ #category : #accessing }
+SpMethodToolbar >> method [
+	^ method
+]
+
 { #category : #api }
 SpMethodToolbar >> method: aMethod [
-
-	methodHolder value: aMethod
+	method := aMethod
 ]
 
 { #category : #accessing }
@@ -122,9 +120,9 @@ SpMethodToolbar >> model [
 
 { #category : #initialization }
 SpMethodToolbar >> registerForChanges [
-	methodHolder
-		whenChangedDo:
-			[ :contents | 
+	self
+		property: #method
+		whenChangedDo: [ :contents | 
 			| boolean |
 			boolean := contents ifNil: [ false ] ifNotNil: [ true ].
 			browseModel state: boolean.
@@ -136,9 +134,7 @@ SpMethodToolbar >> registerForChanges [
 
 { #category : #private }
 SpMethodToolbar >> sendersMethod [
-
-	methodHolder value
-		ifNotNil: [:aMethod | self model browseSendersOfMessagesFrom: aMethod selector ]
+	self method ifNotNil: [ :aMethod | self model browseSendersOfMessagesFrom: aMethod selector ]
 ]
 
 { #category : #accessing }
@@ -213,7 +209,7 @@ SpMethodToolbar >> setVersionModel [
 
 { #category : #private }
 SpMethodToolbar >> usersMethod [
-	methodHolder value methodClass ifNotNil: [ :class | self model browseClassRefsOf: class ]
+	self method methodClass ifNotNil: [ :class | self model browseClassRefsOf: class ]
 ]
 
 { #category : #accessing }
@@ -223,9 +219,7 @@ SpMethodToolbar >> usersModel [
 
 { #category : #private }
 SpMethodToolbar >> versionMethod [
-
-	methodHolder value
-		ifNotNil: [:aMethod | self model browseVersionsFrom: aMethod ]
+	self method ifNotNil: [ :aMethod | self model browseVersionsFrom: aMethod ]
 ]
 
 { #category : #accessing }
