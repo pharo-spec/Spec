@@ -178,19 +178,6 @@ SpListPresenter >> resetSortingBlock [
 	self model sortingBlock: nil
 ]
 
-{ #category : #private }
-SpListPresenter >> setSelectionStateFor: anIndex at: aBoolean [
-	"Set the selection state of the item at index _anIndex_ in the case of multiple selection list"
-
-	self flag: 'refactoring in progress'.
-	(self allowToSelect and: [ self isMultipleSelection ])
-		ifFalse: [ ^ self ].
-	^ self selection
-		selectIndexes:
-			(self selection selectedIndexes value copyWith: anIndex) asSet
-				asOrderedCollection
-]
-
 { #category : #api }
 SpListPresenter >> updateList [
 
