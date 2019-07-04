@@ -160,7 +160,8 @@ SpListPresenter >> prepareForFilteredDataSourceWith: items [
 { #category : #private }
 SpListPresenter >> registerEvents [
 	super registerEvents.
-	self whenAutoDeselectChangedDo: [ :aBoolean | self changed: #autoDeselect: with: {aBoolean} ].
+	"Do not use whenAutoDeselectChangedDo: to avoid the deprecation warning."
+	self property: #autoDeselect whenChangedDo: [ :aBoolean | self changed: #autoDeselect: with: {aBoolean} ].
 	self whenDisplayBlockChangedDo: [ self withAdapterDo: #refreshWidgetList ].
 	self property: #headerTitle whenChangedDo: [ self withAdapterDo: #refreshWidgetHeaderTitle ]
 ]
