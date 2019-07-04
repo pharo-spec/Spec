@@ -178,8 +178,19 @@ SpAbstractTextPresenter >> whenBehaviorChangedDo: aBlock [
 
 { #category : #'*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenCodeCompletionAllowedChanged: aBlock [
-	self deprecated: 'Use #whenCodeCompletionAllowedChangedDo: instead.' transformWith: '`@receiver whenCodeCompletionAllowedChanged: `@statements' -> '`@receiver whenCodeCompletionAllowedChangedDo: `@statements'.
-	self whenCodeCompletionAllowedChangedDo: aBlock
+	self
+		deprecated: 'Use #whenTextIsAcceptedDo: instead or nothing. Currently, both those methods are doing the same thing but my name is really missleading. Thus, I''ll be removed.'
+		transformWith: '`@receiver whenCodeCompletionAllowedChanged: `@statements' -> '`@receiver whenTextIsAcceptedDo: `@statements'.
+	self whenTextIsAcceptedDo: aBlock
+]
+
+{ #category : #'*Spec2-Deprecated' }
+SpAbstractTextPresenter >> whenCodeCompletionAllowedChangedDo: aBlock [
+	self
+		deprecated: 'Use #whenTextIsAcceptedDo: instead or nothing. Currently, both those methods are doing the same thing but my name is really missleading. Thus, I''ll be removed.'
+		transformWith: '`@receiver whenCodeCompletionAllowedChangedDo: `@statements' -> '`@receiver whenTextIsAcceptedDo: `@statements'.
+
+	self whenTextIsAcceptedDo: aBlock
 ]
 
 { #category : #'*Spec2-Deprecated' }

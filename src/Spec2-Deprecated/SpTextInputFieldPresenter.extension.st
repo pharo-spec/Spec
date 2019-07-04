@@ -1,6 +1,11 @@
 Extension { #name : #SpTextInputFieldPresenter }
 
 { #category : #'*Spec2-Deprecated' }
+SpTextInputFieldPresenter >> actionToPerformHolder [
+	self deprecated: 'Spec should not provide a way to get its internals. actionToPerform is not a value holder anymore but an observable slot, thus, this method cannot return anything anymore.'
+]
+
+{ #category : #'*Spec2-Deprecated' }
 SpTextInputFieldPresenter >> beDecrypted [
 	self deprecated: 'Use #beText instead' transformWith: '`@receiver beDecrypted' -> '`@receiver beText'.
 	self beText

@@ -47,10 +47,10 @@ SpTextInputFieldPresenter class >> adapterName [
 SpTextInputFieldPresenter >> accept: aText [
 
 	self text: aText.
-	actionToPerformHolder value cull: aText.
+	self acceptBlock cull: aText.
 	
-	"Dummy changed to raise an announcement"
-	actionPerformedHolder value: aText.
+	"Raise an announcement"
+	self actionPerformed.
 	self changed: #clearUserEdits.
 ]
 
@@ -68,12 +68,6 @@ SpTextInputFieldPresenter >> acceptOnCR: aBoolean [
 	"Set if the text is accepted when the Enter key is stroked or not"
 
 	acceptOnCR value: aBoolean
-]
-
-{ #category : #accessing }
-SpTextInputFieldPresenter >> actionToPerformHolder [
-
-	^ actionToPerformHolder
 ]
 
 { #category : #api }
