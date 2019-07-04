@@ -45,8 +45,8 @@ Class {
 		'#allowToSelect => SpObservableSlot',
 		'#autoDeselect => SpObservableSlot',
 		'#headerTitle => SpObservableSlot',
-		'#iconHolder',
-		'#display => SpObservableSlot'
+		'#display => SpObservableSlot',
+		'#icon => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
@@ -123,21 +123,21 @@ SpListPresenter >> hideHeaderTitle [
 
 { #category : #'widget API' }
 SpListPresenter >> iconFor: anItem [
-	^ iconHolder value cull: anItem cull: self
+	^ self icons cull: anItem cull: self
 ]
 
 { #category : #accessing }
 SpListPresenter >> icons [
 	"Return the block which takes an item as argument and returns the icon to display in the list"
 
-	^ iconHolder value
+	^ icon
 ]
 
 { #category : #accessing }
 SpListPresenter >> icons: aBlock [
 	"Set a block which takes an item as argument and returns the icon to display in the list"
 
-	iconHolder value: aBlock
+	icon := aBlock
 ]
 
 { #category : #initialization }
@@ -146,7 +146,7 @@ SpListPresenter >> initialize [
 	autoDeselect := true.
 	allowToSelect := true.
 	display := [ :object | object asStringOrText ].
-	iconHolder := [ :item | nil ] asValueHolder.
+	icon := [ :item | nil ].
 	self bindKeyCombination: Character space toAction: [ self clickOnSelectedItem ]
 ]
 
@@ -194,5 +194,5 @@ SpListPresenter >> whenDisplayBlockChangedDo: aBlock [
 
 { #category : #'api-events' }
 SpListPresenter >> whenIconsChangedDo: aBlock [
-	iconHolder whenChangedDo: aBlock
+	self property: #icon whenChangedDo: aBlock
 ]

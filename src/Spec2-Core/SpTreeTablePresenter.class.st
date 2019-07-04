@@ -19,7 +19,7 @@ Class {
 		'#doubleClickAction => SpObservableSlot',
 		'#roots => SpObservableSlot',
 		'#childrenBlock',
-		'#contextMenuHolder'
+		'#contextMenu => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Tree'
 }
@@ -89,14 +89,14 @@ SpTreeTablePresenter >> columns: aCollection [
 
 { #category : #api }
 SpTreeTablePresenter >> contextMenu [
-	^ contextMenuHolder value
+	^ contextMenu
 ]
 
 { #category : #api }
 SpTreeTablePresenter >> contextMenu: aValuable [
 	"Set the block used to defined the menu"
 	
-	contextMenuHolder value: aValuable
+	contextMenu := aValuable
 ]
 
 { #category : #private }
@@ -136,7 +136,6 @@ SpTreeTablePresenter >> initialize [
 	selection := SpTreeSingleSelectionMode on: self.
 	childrenBlock :=  [ :item | #() ].
 	roots := #().
-	contextMenuHolder := nil asValueHolder.
 	self registerEvents 
 ]
 
@@ -190,7 +189,7 @@ SpTreeTablePresenter >> itemAtPath: anArray ifAbsent: aBlock [
 
 { #category : #initialization }
 SpTreeTablePresenter >> registerEvents [
-	contextMenuHolder whenChangedDo: [ self withAdapterDo: #updateMenu ]
+	self whenMenuChangedDo: [ self withAdapterDo: #updateMenu ]
 ]
 
 { #category : #accessing }
@@ -256,8 +255,8 @@ SpTreeTablePresenter >> whenIsResizableChangedDo: aBlock [
 { #category : #'api-events' }
 SpTreeTablePresenter >> whenMenuChangedDo: aBlock [
 	"Set a block to value when the menu block has changed"
-	
-	contextMenuHolder whenChangedDo: aBlock
+
+	self property: #contextMenu whenChangedDo: aBlock
 ]
 
 { #category : #accessing }

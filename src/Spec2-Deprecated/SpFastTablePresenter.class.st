@@ -5,9 +5,9 @@ Class {
 	#name : #SpFastTablePresenter,
 	#superclass : #SpTablePresenter,
 	#instVars : [
-		'#iconHolder',
 		'#handlesDoubleClick => SpObservableSlot',
-		'#displayBlock'
+		'#displayBlock',
+		'#icon => SpObservableSlot'
 	],
 	#category : #'Spec2-Deprecated-Replaced'
 }
@@ -56,8 +56,7 @@ SpFastTablePresenter >> displayBlock: aBlock [
 
 { #category : #api }
 SpFastTablePresenter >> getIconFor: anItem [
-
-	^ iconHolder value cull: anItem cull: self
+	^ self icons cull: anItem cull: self
 ]
 
 { #category : #api }
@@ -74,24 +73,23 @@ SpFastTablePresenter >> handlesDoubleClick: aBoolean [
 
 { #category : #api }
 SpFastTablePresenter >> icons [
-	"<api: #inspect>"
 	"Return the block which takes an item as argument and returns the icon to display in the list"
-	
-	^ iconHolder value
+
+	^ icon
 ]
 
 { #category : #api }
 SpFastTablePresenter >> icons: aBlock [
-	"<api: #block getter: #icon registration: #whenIconsChanged: >"
 	"Set a block which takes an item as argument and returns the icon to display in the list"
-	iconHolder value: aBlock
+
+	icon := aBlock
 ]
 
 { #category : #initialization }
 SpFastTablePresenter >> initialize [
 	super initialize.
 	displayBlock := #yourself.
-	iconHolder := [ :item | nil ] asValueHolder.
+	icon := [ :item | nil ].
 	handlesDoubleClick := false
 ]
 
@@ -127,9 +125,6 @@ SpFastTablePresenter >> whenIconsChanged: aBlock [
 ]
 
 { #category : #'api-events' }
-SpFastTablePresenter >> whenIconsChangedDo: aBlock [ 
-	
-	iconHolder whenChangedDo: aBlock 
-
-
+SpFastTablePresenter >> whenIconsChangedDo: aBlock [
+	self property: #icon whenChangedDo: aBlock
 ]
