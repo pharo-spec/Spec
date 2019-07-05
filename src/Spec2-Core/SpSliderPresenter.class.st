@@ -29,7 +29,7 @@ Class {
 		'#absoluteValue => SpObservableSlot',
 		'#isHorizontal',
 		'#label => SpObservableSlot',
-		'#marks'
+		'#marks => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -95,7 +95,7 @@ SpSliderPresenter >> initialize [
 	super initialize.
 
 	isHorizontal := true.
-	marks := OrderedCollection new asValueHolder.
+	marks := OrderedCollection new.
 	max := 100.
 	min := 0.
 	quantum := 1.
@@ -151,13 +151,12 @@ SpSliderPresenter >> label: aString [
 
 { #category : #api }
 SpSliderPresenter >> marks [
-	^ marks value
+	^ marks
 ]
 
 { #category : #api }
 SpSliderPresenter >> marks: anObject [
-
-	marks value: anObject
+	marks := anObject
 ]
 
 { #category : #api }
@@ -253,7 +252,7 @@ SpSliderPresenter >> whenLabelChangedDo: aBlock [
 SpSliderPresenter >> whenMarksChangedDo: aBlock [
 	"Block performed when the label changed"
 
-	marks whenChangedDo: aBlock
+	self property: #marks whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

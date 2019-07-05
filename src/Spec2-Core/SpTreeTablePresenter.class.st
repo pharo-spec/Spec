@@ -12,7 +12,7 @@ Class {
 	#traits : 'TSpHaveWrappingScrollBars',
 	#classTraits : 'TSpHaveWrappingScrollBars classTrait',
 	#instVars : [
-		'#columns',
+		'#columns => SpObservableSlot',
 		'#showColumnHeaders => SpObservableSlot',
 		'#isResizable => SpObservableSlot',
 		'#selection => SpObservableSlot',
@@ -32,8 +32,7 @@ SpTreeTablePresenter class >> adapterName [
 
 { #category : #api }
 SpTreeTablePresenter >> addColumn: aColumn [
-
-	columns value: (columns value copyWith: aColumn)
+	columns := self columns copyWith: aColumn
 ]
 
 { #category : #'selection mode' }
@@ -77,14 +76,12 @@ SpTreeTablePresenter >> childrenFor: anObject [
 
 { #category : #accessing }
 SpTreeTablePresenter >> columns [
-
-	^ columns value
+	^ columns
 ]
 
 { #category : #api }
 SpTreeTablePresenter >> columns: aCollection [
-
-	columns value: aCollection
+	columns := aCollection
 ]
 
 { #category : #api }
@@ -126,17 +123,16 @@ SpTreeTablePresenter >> hideColumnHeaders [
 
 { #category : #initialization }
 SpTreeTablePresenter >> initialize [
-
 	super initialize.
 
-	self withScrollBars.	
+	self withScrollBars.
 	showColumnHeaders := true.
-	columns := #() asValueHolder.
+	columns := #().
 	isResizable := false.
 	selection := SpTreeSingleSelectionMode on: self.
-	childrenBlock :=  [ :item | #() ].
+	childrenBlock := [ :item | #() ].
 	roots := #().
-	self registerEvents 
+	self registerEvents
 ]
 
 { #category : #accessing }
@@ -241,9 +237,8 @@ SpTreeTablePresenter >> unselectAll [
 ]
 
 { #category : #'api-events' }
-SpTreeTablePresenter >> whenColumnsChangedDo: aBlockClosure [ 
-	
-	columns whenChangedDo: aBlockClosure 
+SpTreeTablePresenter >> whenColumnsChangedDo: aBlockClosure [
+	self property: #columns whenChangedDo: aBlockClosure
 ]
 
 { #category : #'api-events' }

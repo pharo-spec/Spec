@@ -1,6 +1,8 @@
 Class {
 	#name : #SpAbstractSelectionMode,
 	#superclass : #Object,
+	#traits : 'TSpObservable',
+	#classTraits : 'TSpObservable classTrait',
 	#instVars : [
 		'widget'
 	],
@@ -45,6 +47,12 @@ SpAbstractSelectionMode >> indexOfItem: anItem [
 	^ self model
 		indexOf: anItem
 		ifAbsent: [ 0 ].
+]
+
+{ #category : #initialization }
+SpAbstractSelectionMode >> initialize [
+	self class initializeSlots: self.
+	super initialize
 ]
 
 { #category : #testing }

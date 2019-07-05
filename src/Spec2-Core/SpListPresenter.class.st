@@ -91,8 +91,7 @@ SpListPresenter >> displayBlock: aBlock [
 
 { #category : #'adapter-api' }
 SpListPresenter >> displayValueAt: anIndex [
-	
-	^ self displayValueOf: (model value at: anIndex)
+	^ self displayValueOf: (model at: anIndex)
 ]
 
 { #category : #'adapter-api' }
@@ -152,9 +151,7 @@ SpListPresenter >> initialize [
 
 { #category : #private }
 SpListPresenter >> prepareForFilteredDataSourceWith: items [
-
-	model := items asValueHolder
-
+	model := items
 ]
 
 { #category : #private }
