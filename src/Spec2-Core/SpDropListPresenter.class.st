@@ -121,25 +121,13 @@ SpDropListPresenter >> iconBlock: aBlock [
 
 { #category : #initialization }
 SpDropListPresenter >> initialize [
-
 	super initialize.
-	
+
 	model := SpCollectionListModel on: #().
 	selection := SpSingleSelectionMode on: self.
 	displayBlock := [ :itemModel :item | item label ].
 	iconBlock := [ :itemModel :item | item icon ].
-	
-	startsWithSelection := true.
-		
-"	listHolder whenChangedDo: [ 
-		self changed: #getList.
-		self changed: #getIconFor:.
-		self internalResetSelection.].
-				
-	selectionHolder whenChangedDo: [ self changed: #getIndex ].
-	iconHolder := [ Name already defined -> :model :item | item icon ] asValueHolder.
-	
-	"
+	startsWithSelection := true
 ]
 
 { #category : #api }

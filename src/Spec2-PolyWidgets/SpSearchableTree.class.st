@@ -5,10 +5,10 @@ Class {
 	#name : #SpSearchableTree,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'inputField',
-		'roots',
-		'tree',
-		'button'
+		'#inputField',
+		'#roots => SpObservableSlot',
+		'#tree',
+		'#button'
 	],
 	#category : #'Spec2-PolyWidgets-ListAndTree'
 }
@@ -130,10 +130,9 @@ SpSearchableTree >> iconBlock: aBlock [
 
 { #category : #initialization }
 SpSearchableTree >> initialize [
-
 	super initialize.
 
-	roots := OrderedCollection new asValueHolder
+	roots := OrderedCollection new
 ]
 
 { #category : #initialization }
@@ -243,8 +242,7 @@ SpSearchableTree >> roots [
 
 { #category : #api }
 SpSearchableTree >> roots: aCollection [
-
-	roots value: aCollection asOrderedCollection.	
+	roots := aCollection asOrderedCollection.
 	tree roots: aCollection asOrderedCollection
 ]
 
@@ -323,8 +321,7 @@ SpSearchableTree >> whenMenuChanged: aBlock [
 
 { #category : #'api-events' }
 SpSearchableTree >> whenRootsChanged: aBlock [
-
-	roots whenChangedDo: aBlock
+	self property: #roots whenChangedDo: aBlock
 ]
 
 { #category : #'list api-events' }

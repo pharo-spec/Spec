@@ -80,12 +80,9 @@ SpEditableList >> downButton [
 
 { #category : #initialization }
 SpEditableList >> initialize [
-	"Initialization code for EditableList"
-
-	title := 'Title' asValueHolder.
-	
 	super initialize.
-	okBlock := [ ].
+	title := 'Title'.
+	okBlock := [  ]
 ]
 
 { #category : #initialization }
@@ -193,7 +190,7 @@ SpEditableList >> removeButton [
 
 { #category : #accessing }
 SpEditableList >> title [
-	^ title value
+	^ title
 ]
 
 { #category : #accessing }

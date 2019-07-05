@@ -8,9 +8,11 @@ self exampleString
 Class {
 	#name : #SpDynamicSpecExample,
 	#superclass : #Object,
+	#traits : 'TSpObservable',
+	#classTraits : 'TSpObservable classTrait',
 	#instVars : [
-		'ui',
-		'object'
+		'#ui',
+		'#object => SpObservableSlot'
 	],
 	#category : #'Spec2-Examples-Wrapper'
 }
@@ -45,29 +47,25 @@ SpDynamicSpecExample class >> object: object [
 
 { #category : #initialization }
 SpDynamicSpecExample >> initialize [
-
-	super initialize.
-	object := nil asValueHolder.
+	self class initializeSlots: self.
+	super initialize
 ]
 
 { #category : #accessing }
 SpDynamicSpecExample >> object [
-
-	^ object value
+	^ object
 ]
 
 { #category : #accessing }
 SpDynamicSpecExample >> object: anObject [
-	
-	object value: anObject
+	object := anObject
 ]
 
 { #category : #protocol }
 SpDynamicSpecExample >> open [
-
-	object value ifNil: [ ^ self openOnNil ].
-	object value isInteger ifTrue: [ ^ self openOnInteger ].
-	object value isString ifTrue: [ ^ self openOnString ]
+	self object ifNil: [ ^ self openOnNil ].
+	self object isInteger ifTrue: [ ^ self openOnInteger ].
+	self object isString ifTrue: [ ^ self openOnString ]
 ]
 
 { #category : #protocol }
@@ -92,20 +90,20 @@ SpDynamicSpecExample >> openOnInteger [
 		plus #SpButtonPresenter
 		minus #SpButtonPresenter ).
 		
-	anUI text label: object value asString.
+	anUI text label: self object asString.
 	anUI minus 
 		label: '-';
 		state: false;
 		action: 	[ 
-			object value: object value -1.
-			anUI text label: object value asString ].
+			self object: self object -1.
+			anUI text label: self object asString ].
 
 	anUI plus 
 		label: '+';
 		state: false;
 		action: 	[ 
-			object value: object value +1.
-			anUI text label: object value asString ].
+			self object: self object +1.
+			anUI text label: self object asString ].
 	
 	layout := SpLayout composed
 		newColumn: [ :c |
@@ -145,17 +143,17 @@ SpDynamicSpecExample >> openOnString [
 		text #SpTextInputFieldPresenter
 		button #SpButtonPresenter ).
 		
-	anUI label label: object value.
+	anUI label label: self object.
 
 			
-	object whenChangedDo: [ :o | anUI label label: o asString ].
+	self property: #object whenChangedDo: [ :o | anUI label label: o asString ].
 		
 	anUI text 
-		text: object value;
+		text: self object;
 		enabled: true;
 		acceptBlock: [ :string | self object: string ].
 	
-	temp := object value.
+	temp := self object.
 	
 	anUI button
 		label: 'reset';
