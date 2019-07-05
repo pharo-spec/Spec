@@ -22,6 +22,18 @@ SpValueHolder >> announcer [
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
+{ #category : #transfert }
+SpValueHolder >> getSubscriptionsFromSpValueHolder: aSpValueHolder [
+	aSpValueHolder announcer subscriptions subscriptions do: [ :sub | self announcer basicSubscribe: sub ]
+]
+
+{ #category : #transfert }
+SpValueHolder >> getSubscriptionsFromValueHolder: aCollectionValueHolder [
+	self flag: #todo.	"This can be removed once NewValueHolder will not be used in multiple list selection anymore."
+
+	aCollectionValueHolder announcer subscriptions subscriptions do: [ :sub | self announcer basicSubscribe: sub ]
+]
+
 { #category : #private }
 SpValueHolder >> handleCircularReferencesWhile: aBlock [
 	"Used to handle circular references as explained in the class comment"
@@ -80,8 +92,6 @@ SpValueHolder >> valueChanged: oldValue [
 
 { #category : #enumerating }
 SpValueHolder >> whenChangedDo: aBlock [
-	"Culled block [ :newValue :oldValue :announcement :announcer | ]"
-
 	| block |
 	block := [ :announcement :ann | 
 	aBlock

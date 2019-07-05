@@ -4,14 +4,6 @@ Trait {
 }
 
 { #category : #events }
-TSpObservable >> announcerOfProperty: aName [
-	"Return the announcer of the property"
-
-	self flag: #todo. "I am not sure we should have that here but it is used for now..."
-	^ (self observablePropertyNamed: aName) announcer
-]
-
-{ #category : #events }
 TSpObservable >> notifyPropertyChanged: aName [
 
 	(self observablePropertyNamed: aName) valueChanged

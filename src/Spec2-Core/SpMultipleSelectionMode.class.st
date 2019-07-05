@@ -7,12 +7,6 @@ Class {
 	#category : #'Spec2-Core-Widgets-Table'
 }
 
-{ #category : #adding }
-SpMultipleSelectionMode >> addSubscription: aSubscription [
-
-	^ selectedIndexesValueHolder announcer basicSubscribe: aSubscription
-]
-
 { #category : #selecting }
 SpMultipleSelectionMode >> basicSelectIndex: indexToSelect [
 
@@ -100,9 +94,8 @@ SpMultipleSelectionMode >> selectedItems [
 ]
 
 { #category : #accessing }
-SpMultipleSelectionMode >> subscriptions [
-
-	^ selectedIndexesValueHolder announcer subscriptions subscriptions
+SpMultipleSelectionMode >> selectionHolder [
+	^ selectedIndexesValueHolder
 ]
 
 { #category : #selecting }
