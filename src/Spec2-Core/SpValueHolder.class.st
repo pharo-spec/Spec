@@ -2,7 +2,7 @@ Class {
 	#name : #SpValueHolder,
 	#superclass : #Object,
 	#instVars : [
-		'announcer',
+		'subscriptions',
 		'lock',
 		'value'
 	],
@@ -15,11 +15,6 @@ SpValueHolder class >> value: contents [
 	^ self new
 		rawValue: contents;
 		yourself
-]
-
-{ #category : #accessing }
-SpValueHolder >> announcer [
-	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
 { #category : #private }
@@ -35,8 +30,8 @@ SpValueHolder >> handleCircularReferencesWhile: aBlock [
 { #category : #initialization }
 SpValueHolder >> initialize [
 	super initialize.
-
-	lock := false
+	lock := false.
+	subscriptions := OrderedCollection new
 ]
 
 { #category : #printing }
@@ -54,9 +49,19 @@ SpValueHolder >> rawValue: aValue [
 	value := aValue
 ]
 
+{ #category : #accessing }
+SpValueHolder >> subscriptions [
+	^ subscriptions
+]
+
+{ #category : #accessing }
+SpValueHolder >> subscriptions: anObject [
+	subscriptions := anObject
+]
+
 { #category : #transfert }
 SpValueHolder >> transferSubscriptionsTo: aSpValueHolder [
-	self announcer subscriptions subscriptions do: [ :sub | aSpValueHolder announcer basicSubscribe: sub ]
+	aSpValueHolder subscriptions: subscriptions
 ]
 
 { #category : #evaluating }
@@ -75,22 +80,15 @@ SpValueHolder >> value: anObject [
 
 { #category : #accessing }
 SpValueHolder >> valueChanged [
-	self announcer announce: (ValueChanged newValue: self value)
+	self valueChanged: nil
 ]
 
 { #category : #accessing }
 SpValueHolder >> valueChanged: oldValue [
-	self announcer announce: (ValueChanged oldValue: oldValue newValue: self value)
+	subscriptions do: [ :block | block cull: self value cull: oldValue ]
 ]
 
 { #category : #enumerating }
 SpValueHolder >> whenChangedDo: aBlock [
-	| block |
-	block := [ :announcement :ann | 
-	aBlock
-		cull: announcement newValue
-		cull: announcement oldValue
-		cull: announcement
-		cull: ann ].
-	self announcer when: ValueChanged do: block
+	subscriptions add: aBlock
 ]
