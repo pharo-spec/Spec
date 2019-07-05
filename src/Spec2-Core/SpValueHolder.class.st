@@ -66,6 +66,12 @@ SpValueHolder >> rawValue: aValue [
 	value := aValue
 ]
 
+{ #category : #transfert }
+SpValueHolder >> transferSubscriptionsTo: aValueHolder [
+	self flag: #todo. "Double dispatch can be removed once NewValueHolder will not be used in multiple list selection anymore."
+	aValueHolder getSubscriptionsFromSpValueHolder: self
+]
+
 { #category : #evaluating }
 SpValueHolder >> value [
 	^ value
