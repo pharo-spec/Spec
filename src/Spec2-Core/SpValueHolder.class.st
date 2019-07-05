@@ -75,14 +75,7 @@ SpValueHolder >> valueChanged [
 
 { #category : #accessing }
 SpValueHolder >> valueChanged: oldValue [
-	
-	self valueChanged: oldValue to: self value
-]
-
-{ #category : #accessing }
-SpValueHolder >> valueChanged: oldValue to: newValue [
-	
-	self announcer announce: (ValueChanged oldValue: oldValue newValue: newValue)
+	self announcer announce: (ValueChanged oldValue: oldValue newValue: self value)
 ]
 
 { #category : #enumerating }
