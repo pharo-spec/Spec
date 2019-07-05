@@ -22,18 +22,6 @@ SpValueHolder >> announcer [
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{ #category : #transfert }
-SpValueHolder >> getSubscriptionsFromSpValueHolder: aSpValueHolder [
-	aSpValueHolder announcer subscriptions subscriptions do: [ :sub | self announcer basicSubscribe: sub ]
-]
-
-{ #category : #transfert }
-SpValueHolder >> getSubscriptionsFromValueHolder: aCollectionValueHolder [
-	self flag: #todo.	"This can be removed once NewValueHolder will not be used in multiple list selection anymore."
-
-	aCollectionValueHolder announcer subscriptions subscriptions do: [ :sub | self announcer basicSubscribe: sub ]
-]
-
 { #category : #private }
 SpValueHolder >> handleCircularReferencesWhile: aBlock [
 	"Used to handle circular references as explained in the class comment"
@@ -67,9 +55,8 @@ SpValueHolder >> rawValue: aValue [
 ]
 
 { #category : #transfert }
-SpValueHolder >> transferSubscriptionsTo: aValueHolder [
-	self flag: #todo. "Double dispatch can be removed once NewValueHolder will not be used in multiple list selection anymore."
-	aValueHolder getSubscriptionsFromSpValueHolder: self
+SpValueHolder >> transferSubscriptionsTo: aSpValueHolder [
+	self announcer subscriptions subscriptions do: [ :sub | aSpValueHolder announcer basicSubscribe: sub ]
 ]
 
 { #category : #evaluating }

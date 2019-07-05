@@ -2,7 +2,7 @@ Class {
 	#name : #SpMultipleSelectionMode,
 	#superclass : #SpAbstractSelectionMode,
 	#instVars : [
-		'selectedIndexesValueHolder'
+		'#selectedIndexes => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
@@ -13,7 +13,7 @@ SpMultipleSelectionMode >> basicSelectIndex: indexToSelect [
 	"Adding to the selection an out of range should not change selection"
 	indexToSelect = 0 ifTrue: [ ^ self ].
 
-	self selectIndexes: (selectedIndexesValueHolder value copyWith: indexToSelect)
+	self selectIndexes: (self selectedIndexes copyWith: indexToSelect)
 ]
 
 { #category : #testing }
@@ -40,9 +40,8 @@ SpMultipleSelectionMode >> includesItems: aCollection [
 
 { #category : #initialization }
 SpMultipleSelectionMode >> initialize [
-
 	super initialize.
-	selectedIndexesValueHolder := OrderedCollection new asValueHolder
+	selectedIndexes := OrderedCollection new
 ]
 
 { #category : #testing }
@@ -71,9 +70,9 @@ SpMultipleSelectionMode >> selectIndexes: aCollection [
 	(indexes isNotEmpty and: [ indexes allSatisfy: [ :each | each = 0 ] ]) ifTrue: [ ^ self ].
 
 	indexes := indexes reject: [ :each | each = 0 ].
-	indexes = selectedIndexesValueHolder value asSet ifTrue: [ ^ self ].
+	indexes = self selectedIndexes asSet ifTrue: [ ^ self ].
 
-	^ selectedIndexesValueHolder value: indexes asOrderedCollection
+	^ selectedIndexes := indexes asOrderedCollection
 ]
 
 { #category : #selecting }
@@ -83,8 +82,7 @@ SpMultipleSelectionMode >> selectItems: aCollection [
 
 { #category : #selecting }
 SpMultipleSelectionMode >> selectedIndexes [
-
-	^ selectedIndexesValueHolder value
+	^ selectedIndexes
 ]
 
 { #category : #selecting }
@@ -95,7 +93,7 @@ SpMultipleSelectionMode >> selectedItems [
 
 { #category : #accessing }
 SpMultipleSelectionMode >> selectionHolder [
-	^ selectedIndexesValueHolder
+	^ self observablePropertyNamed: #selectedIndexes
 ]
 
 { #category : #selecting }
@@ -106,12 +104,10 @@ SpMultipleSelectionMode >> unselectAll [
 
 { #category : #selecting }
 SpMultipleSelectionMode >> unselectIndex: anIndex [
-
-	self selectIndexes: (selectedIndexesValueHolder value copyWithout: anIndex)
+	self selectIndexes: (self selectedIndexes copyWithout: anIndex)
 ]
 
 { #category : #events }
-SpMultipleSelectionMode >> whenChangedDo: aBlockClosure [ 
-	
-	selectedIndexesValueHolder whenChangedDo: [ aBlockClosure cull: self ]
+SpMultipleSelectionMode >> whenChangedDo: aBlockClosure [
+	self property: #selectedIndexes whenChangedDo: [ aBlockClosure cull: self ]
 ]
