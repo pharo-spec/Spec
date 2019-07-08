@@ -1,29 +1,36 @@
 "
-i'm an UI to select a method , package , class 
+I am an UI used to select a method of the system. 
 
-HOW TO USE in your UI:
-1 - use BIChooseMethodUi class method openOn: 
-2 - you will have to define the method 'acceptAction: aReferenceOfBIChooseMethod' , this method use the pattern visitor , in this method you will define the action of okButton 
-	for example you can use to select a class 
+I'll display the list of packages of the system, the classes of the selected package and the methods of the selected class. 
 
+The user can configure me with an action to execute when the user does the selection. The action will take my instance as parameter to get the package/class/method selected.
+
+Public API and Key Messages
+--------------------
+
+- class>>#openOnAccept: aBlock 		This method will open me in a modal and execute the block as parameter when the user accept.
+
+Examples
+--------------------
+
+	(self openOnAccept: [ :chooseMethodPresenter | chooseMethodPresenter selectedMethod browse ])
+		withWindowDo: [ :w | w title: 'Select a method example' ]
+	
  
 Internal Representation and Key Implementation Points.
+--------------------
 
     Instance Variables
-	classList:		<ListPresenter>
-	isInstanceButtonSelected:		<Boolean>
-	methodList:		<ListPresenter>
-	packageList:		<ListPresenter>
-	radioButtonClassSide:		<RadioButtonPresenter>
-	radioButtonInstanceSide:		<RadioButtonPresenter>
-	uiReceiver:		<subClassOfComposablePresenter> a reference to a UI
+	packageList:						<aListPresenter>	A list of the packages of the system.
+	classList:						<aListPresenter>	A list of the classes in the selected package.
+	methodList:						<aListPresenter>	A list of the methods in the selected class.
+	radioButtonClassSide:			<aRadioButton>		A radio button to select the class side. 
+	radioButtonInstanceSide:		<aRadioButton>		A radio button to select the instance side.
 
-
-    Implementation Points
 "
 Class {
 	#name : #SpChooseMethodUI,
-	#superclass : #ComposablePresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'packageList',
 		'classList',
@@ -36,18 +43,23 @@ Class {
 
 { #category : #specs }
 SpChooseMethodUI class >> defaultSpec [
-	<spec>
-	^ SpecBoxLayout newHorizontal
+	^ SpPanedLayout newHorizontal
+		position: 33 percent;
 		add: #packageList;
-		add: #classList;
 		add:
-			(SpecBoxLayout newVertical
-				add: #methodList;
+			(SpPanedLayout newHorizontal
+				position: 50 percent;
+				add: #classList;
 				add:
-					(SpecBoxLayout newHorizontal
-						add: #radioButtonInstanceSide;
-						add: #radioButtonClassSide;
-						yourself)  withConstraints: [:contraint  |contraint height: 20] ;
+					(SpBoxLayout newVertical
+						add: #methodList;
+						add:
+							(SpBoxLayout newHorizontal
+								add: #radioButtonInstanceSide;
+								add: #radioButtonClassSide;
+								yourself)
+							withConstraints: [ :contraint | contraint height: 20 ];
+						yourself);
 				yourself);
 		yourself
 ]
@@ -62,7 +74,7 @@ SpChooseMethodUI class >> example [
 SpChooseMethodUI class >> openOnAccept: aBlock [
 	| instance |
 	instance := self new.
-	instance openDialogWithSpec.
+	instance openModalWithSpec.
 	instance withWindowDo: [ :w | w okAction: [ :dialog | aBlock cull: instance cull: dialog ] ].
 	^ instance
 ]
@@ -81,8 +93,9 @@ SpChooseMethodUI >> classMethodsOf: aClass [
 SpChooseMethodUI >> initializeDialogWindow: aDialog [
 	super initializeDialogWindow: aDialog.
 	aDialog
-		initialExtent: 550 @ 350;
-		title: 'Select a method'
+		initialExtent: 600 @ 400;
+		title: 'Select a method';
+		closeOnBackdropClick: false
 ]
 
 { #category : #initialization }
