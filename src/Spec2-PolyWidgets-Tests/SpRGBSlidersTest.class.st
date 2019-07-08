@@ -1,7 +1,7 @@
 Class {
 	#name : #SpRGBSlidersTest,
 	#superclass : #SpSmokeTestCase,
-	#category : #'Spec2-PolyWidgets-Tests-tests'
+	#category : #'Spec2-PolyWidgets-Tests-Tests'
 }
 
 { #category : #running }

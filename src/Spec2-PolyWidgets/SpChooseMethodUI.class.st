@@ -29,11 +29,9 @@ Class {
 		'classList',
 		'methodList',
 		'radioButtonInstanceSide',
-		'radioButtonClassSide',
-		'isInstanceButtonSelected',
-		'uiReceiver'
+		'radioButtonClassSide'
 	],
-	#category : #'Spec2-PolyWidgets'
+	#category : #'Spec2-PolyWidgets-Widgets'
 }
 
 { #category : #specs }
@@ -55,29 +53,18 @@ SpChooseMethodUI class >> defaultSpec [
 ]
 
 { #category : #examples }
-SpChooseMethodUI class >> main [ 
+SpChooseMethodUI class >> example [
 	<example>
-		^ self openOn: nil .
-]
-
-{ #category : #'as yet unclassified' }
-SpChooseMethodUI class >> open: aWindowPresenter withExtent: aPoint [ 
-	aWindowPresenter extent: aPoint.
+	(self openOnAccept: [ :chooseMethodPresenter | chooseMethodPresenter selectedMethod browse ]) withWindowDo: [ :w | w title: 'Select a method example' ]
 ]
 
 { #category : #'instance creation' }
-SpChooseMethodUI class >> openOn: aUI [
-	| window |
-	window := self new
-		uiReceiver: aUI;
-		yourself.
-	self open: window openDialogWithSpec withExtent: 550@350.
-	^ window
-]
-
-{ #category : #specs }
-SpChooseMethodUI class >> title [
-	^ 'method chooser'
+SpChooseMethodUI class >> openOnAccept: aBlock [
+	| instance |
+	instance := self new.
+	instance openDialogWithSpec.
+	instance withWindowDo: [ :w | w okAction: [ :dialog | aBlock cull: instance cull: dialog ] ].
+	^ instance
 ]
 
 { #category : #accessing }
@@ -85,15 +72,17 @@ SpChooseMethodUI >> classList [
 	^ classList
 ]
 
-{ #category : #util }
-SpChooseMethodUI >> classMethodsOfSelectedClassItem: selectedClass [
-	^ selectedClass class methods asOrderedCollection
+{ #category : #utilities }
+SpChooseMethodUI >> classMethodsOf: aClass [
+	^ aClass class methods
 ]
 
 { #category : #initialization }
 SpChooseMethodUI >> initializeDialogWindow: aDialog [
 	super initializeDialogWindow: aDialog.
-	aDialog okAction: [ :presenter | uiReceiver acceptActionBIChooseMethod: self  ]
+	aDialog
+		initialExtent: 550 @ 350;
+		title: 'Select a method'
 ]
 
 { #category : #initialization }
@@ -101,33 +90,18 @@ SpChooseMethodUI >> initializePresenter [
 	packageList
 		transmitTo: classList
 		transform: [ :selectedPacakge | selectedPacakge classes asOrderedCollection ]
-		postTransmission: [ classList items isEmpty
-				ifTrue: [ classList selectIndex: 0 ]
-				ifFalse: [ classList selectIndex: 1 ] ].
+		postTransmission: [ classList selectIndex: 1 ].
+
 	classList
 		transmitTo: methodList
-		transform: [ :selectedClass | 
-			selectedClass
-				ifNotNil: [ isInstanceButtonSelected
-						ifTrue: [ self instanceMethodsOfSelectedClassItem: selectedClass ]
-						ifFalse: [ self classMethodsOfSelectedClassItem: selectedClass ] ]
-				ifNil: [ {} asOrderedCollection ] ]
-		postTransmission: [ :destination | 
-			destination items isEmpty
-				ifTrue: [ destination selectIndex: 0 ]
-				ifFalse: [ destination selectIndex: 1 ] ].
-	radioButtonClassSide
-		whenActivatedDo: [ isInstanceButtonSelected := false.
-			methodList
-				items:
-					(self
-						classMethodsOfSelectedClassItem: classList selection selectedItem) ].
-	radioButtonInstanceSide
-		whenActivatedDo: [ isInstanceButtonSelected := true.
-			methodList
-				items:
-					(self
-						instanceMethodsOfSelectedClassItem: classList selection selectedItem) ]
+		transform: [ :selectedClass | selectedClass ifNotNil: [ self methodsToDisplayOf: selectedClass ] ifNil: [ #() ] ]
+		postTransmission: [ :destination | destination selectIndex: 1 ].
+
+	radioButtonClassSide whenActivatedDo: [ methodList items: (self classMethodsOf: self selectedClass) ].
+
+	radioButtonInstanceSide whenActivatedDo: [ methodList items: (self instanceMethodsOf: self selectedClass) ].
+
+	packageList selectIndex: 1
 ]
 
 { #category : #initialization }
@@ -137,29 +111,52 @@ SpChooseMethodUI >> initializeWidgets [
 	methodList := self newList.
 	radioButtonClassSide := self newRadioButton.
 	radioButtonInstanceSide := self newRadioButton.
-	self setupPackageList.
-	self setupClassList.
-	self setupMethodList.
-	self setupRadioButtons.
+
+	packageList
+		items: RPackageOrganizer default packages;
+		displayBlock: #name;
+		sortingBlock: #name ascending;
+		icons: [ :item | self iconNamed: #package ].
+
+	classList
+		sortingBlock: #name ascending;
+		icons: [ :item | self iconNamed: item systemIconName ].
+
+	methodList
+		sortingBlock: #selector ascending;
+		displayBlock: #selector.
+
+	radioButtonClassSide label: 'class side'.
+	radioButtonInstanceSide
+		label: 'instance side';
+		state: true.
+
+	radioButtonInstanceSide associatedRadioButtons: {radioButtonClassSide}.
+
 	self focusOrder
 		add: packageList;
 		add: classList;
 		add: methodList
 ]
 
-{ #category : #util }
-SpChooseMethodUI >> instanceMethodsOfSelectedClassItem: selectedClass [
-	^ selectedClass methods asOrderedCollection
+{ #category : #utilities }
+SpChooseMethodUI >> instanceMethodsOf: aClass [
+	^ aClass methods
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 SpChooseMethodUI >> isInstanceButtonSelected [
-	^ isInstanceButtonSelected
+	^ radioButtonInstanceSide state
 ]
 
 { #category : #accessing }
 SpChooseMethodUI >> methodList [
 	^ methodList
+]
+
+{ #category : #utilities }
+SpChooseMethodUI >> methodsToDisplayOf: aClass [
+	^ (self isInstanceButtonSelected ifTrue: [ self instanceMethodsOf: aClass ] ifFalse: [ self classMethodsOf: aClass ]) asOrderedCollection
 ]
 
 { #category : #accessing }
@@ -177,50 +174,17 @@ SpChooseMethodUI >> radioButtonInstanceSide [
 	^ radioButtonInstanceSide
 ]
 
-{ #category : #'initialize-widgets' }
-SpChooseMethodUI >> setupClassList [
-	classList
-		items: (packageList selection selectedItem classes asOrderedCollection sort: [:a :b |a name < b name]);
-		icons: [:item |self iconNamed: #system  ];
-		selectIndex: 1
-]
-
-{ #category : #'initialize-widgets' }
-SpChooseMethodUI >> setupMethodList [
-	methodList
-		items: (classList selection selectedItem methods sort: [:a :b |a selector < b selector]);
-		displayBlock: [ :item | item selector ];
-		selectIndex: 1
-]
-
-{ #category : #'initialize-widgets' }
-SpChooseMethodUI >> setupPackageList [
-	
-	packageList
-		items: (RPackageOrganizer default packages sort: [:a :b | a name < b name]);
-		icons: [:item |self iconNamed: #package];
-		displayBlock: [ :item | item name ];
-		selectIndex: 1
-]
-
-{ #category : #'initialize-widgets' }
-SpChooseMethodUI >> setupRadioButtons [
-	radioButtonClassSide
-		label: 'class side';
-		associatedRadioButtons: radioButtonInstanceSide asOrderedCollection.
-	radioButtonInstanceSide
-		label: 'instance side';
-		associatedRadioButtons: radioButtonClassSide asOrderedCollection.
-	"instance radioButton is selected at initialisation"
-	isInstanceButtonSelected := true.
+{ #category : #accessing }
+SpChooseMethodUI >> selectedClass [
+	^ classList selectedItem
 ]
 
 { #category : #accessing }
-SpChooseMethodUI >> uiReceiver [
-	^ uiReceiver
+SpChooseMethodUI >> selectedMethod [
+	^ methodList selectedItem
 ]
 
 { #category : #accessing }
-SpChooseMethodUI >> uiReceiver: anObject [
-	uiReceiver := anObject
+SpChooseMethodUI >> selectedPackage [
+	^ packageList selectedItem
 ]

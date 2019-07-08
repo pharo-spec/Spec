@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'calendar'
 	],
-	#category : #'Spec2-PolyWidgets-Tests-tests'
+	#category : #'Spec2-PolyWidgets-Tests-Tests'
 }
 
 { #category : #running }
