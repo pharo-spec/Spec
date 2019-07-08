@@ -17,12 +17,6 @@ SpAbstractSelectionMode class >> on: aWidget [
 		yourself
 ]
 
-{ #category : #adding }
-SpAbstractSelectionMode >> addSubscription: aSubscription [
-
-	^ self subclassResponsibility
-]
-
 { #category : #selecting }
 SpAbstractSelectionMode >> basicSelectIndex: indexToSelect [
 
@@ -107,15 +101,13 @@ SpAbstractSelectionMode >> selectedIndexes [
 ]
 
 { #category : #accessing }
-SpAbstractSelectionMode >> subscriptions [
-
+SpAbstractSelectionMode >> selectionHolder [
 	^ self subclassResponsibility
 ]
 
 { #category : #private }
 SpAbstractSelectionMode >> transferSubscriptionsTo: anotherSelectionMode [
-
-	self subscriptions do: [ :aSubscription | anotherSelectionMode addSubscription: aSubscription ].
+	self selectionHolder transferSubscriptionsTo: anotherSelectionMode selectionHolder
 ]
 
 { #category : #selecting }

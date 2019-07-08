@@ -7,11 +7,6 @@ Class {
 	#category : #'Spec2-Core-Widgets-Table'
 }
 
-{ #category : #adding }
-SpSingleSelectionMode >> addSubscription: aSubscription [
-	^ (self announcerOfProperty: #selectedIndex) basicSubscribe: aSubscription
-]
-
 { #category : #selecting }
 SpSingleSelectionMode >> basicSelectIndex: indexToSelect [
 	selectedIndex := indexToSelect
@@ -90,9 +85,9 @@ SpSingleSelectionMode >> selectedItems [
 		ifNil: [ #() ]
 ]
 
-{ #category : #accessing }
-SpSingleSelectionMode >> subscriptions [
-	^ (self announcerOfProperty: #selectedIndex) subscriptions subscriptions
+{ #category : #private }
+SpSingleSelectionMode >> selectionHolder [
+	^ self observablePropertyNamed: #selectedIndex
 ]
 
 { #category : #selecting }
