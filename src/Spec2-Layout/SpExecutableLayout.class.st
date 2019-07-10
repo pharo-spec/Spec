@@ -15,6 +15,18 @@ SpExecutableLayout >> adapterName [
 	^ self subclassResponsibility
 ]
 
+{ #category : #'as yet unclassified' }
+SpExecutableLayout >> add: aPresenter height: anInteger [ 
+	self add: aPresenter withConstraints: [:constraints | constraints height: anInteger ].
+]
+
+{ #category : #'as yet unclassified' }
+SpExecutableLayout >> add: aPresenter width: anInteger [
+	self
+		add: aPresenter
+		withConstraints: [ :constraints | constraints width: anInteger ].
+]
+
 { #category : #accessing }
 SpExecutableLayout >> add: aName withConstraints: aBlock [
 	| constraints |

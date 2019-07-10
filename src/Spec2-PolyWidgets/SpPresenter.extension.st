@@ -1,6 +1,11 @@
 Extension { #name : #SpPresenter }
 
 { #category : #'*Spec2-PolyWidgets' }
+SpPresenter class >> iconWidth [
+	^ 24
+]
+
+{ #category : #'*Spec2-PolyWidgets' }
 SpPresenter class >> labelWidth [
 	^ 100
 ]
