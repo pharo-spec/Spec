@@ -12,3 +12,8 @@ CmdCommandMenuItem >> addToMenuPresenter: aSpMenuPresenter [
 				description: self command class defaultHelp.
 				self getShortcutTipForMenuItem ifNotNil: [ :shortcut | anItem shortcut: shortcut ] ]
 ]
+
+{ #category : #'*Spec2-CommanderCompatibility' }
+CmdCommandMenuItem >> getShortcutTipForMenuItem [
+ 	^activator getShortcutTipForMenuItem
+]
