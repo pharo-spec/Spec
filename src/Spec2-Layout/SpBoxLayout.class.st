@@ -54,6 +54,18 @@ SpBoxLayout >> add: aName expand: shouldExpand fill: shouldFill padding: aNumber
 				padding: aNumber ]
 ]
 
+{ #category : #'as yet unclassified' }
+SpBoxLayout >> add: aPresenter height: anInteger [ 
+	self add: aPresenter withConstraints: [:constraints | constraints height: anInteger ].
+]
+
+{ #category : #'as yet unclassified' }
+SpBoxLayout >> add: aPresenter width: anInteger [
+	self
+		add: aPresenter
+		withConstraints: [ :constraints | constraints width: anInteger ].
+]
+
 { #category : #adding }
 SpBoxLayout >> add: aPresenter withConstraints: aBlock [
 	
