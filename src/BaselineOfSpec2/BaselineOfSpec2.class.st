@@ -57,7 +57,8 @@ BaselineOfSpec2 >> baseline: spec [
 				package: 'Spec2-Backend-Tests'
 					with: [ spec requires: #('Spec2-Adapters-Morphic' 'ParametrizedTests') ];
 				package: 'Spec2-Compatibility-Tests'
-					with: [ spec requires: #('Spec2-Morphic-Backend-Tests' 'Spec2-Deprecated') ] ].
+					with: [ spec requires: #('Spec2-Morphic-Backend-Tests' 'Spec2-Deprecated') ]].
+				
 	spec
 		for: #'pharo7.x'
 		do: [ self commander2: spec.
