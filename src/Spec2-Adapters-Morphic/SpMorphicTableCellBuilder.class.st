@@ -24,7 +24,7 @@ SpMorphicTableCellBuilder >> addCell: anObject column: aTableColumn [
 
 	anObject ifNil: [ ^ self ]. 
 	
-	morph := 	anObject asMorph.
+	morph := 	anObject asMorph asReadOnlyMorph.
 	aTableColumn isExpandable ifFalse: [ 
 		morph 
 			hResizing: #rigid;

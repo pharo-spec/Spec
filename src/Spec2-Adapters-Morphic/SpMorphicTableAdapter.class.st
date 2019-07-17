@@ -65,6 +65,14 @@ SpMorphicTableAdapter >> ensureAtLeastOneColumnIn: tableMorph [
 ]
 
 { #category : #testing }
+SpMorphicTableAdapter >> isEditableRow: aRow column: aColumn [
+
+	^ (self widget dataSource
+		cellColumn: (self widget columns at: aColumn)
+		row: aRow) submorphs allSatisfy: [ :e | e asReadOnlyMorph == e ]
+]
+
+{ #category : #testing }
 SpMorphicTableAdapter >> isResizable [
 	^ self model isResizable
 ]
