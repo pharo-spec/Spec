@@ -71,6 +71,14 @@ SpMorphicListAdapter >> hasFilter [
 	^ self widget submorphs anySatisfy: [ :each | each isKindOf: RubTextFieldMorph	"This morph is the explicit filter of the list" ]
 ]
 
+{ #category : #testing }
+SpMorphicListAdapter >> isEditableRow: aRow column: aColumn [
+
+	^ (self widget dataSource
+		cellColumn: (self widget columns at: aColumn)
+		row: aRow) submorphs allSatisfy: [ :e | e asReadOnlyMorph == e ]
+]
+
 { #category : #accessing }
 SpMorphicListAdapter >> isShowColumnHeaders [
 	

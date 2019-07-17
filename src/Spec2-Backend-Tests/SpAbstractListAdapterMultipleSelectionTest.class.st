@@ -16,7 +16,7 @@ SpAbstractListAdapterMultipleSelectionTest >> initializeTestedInstance [
 
 	presenter
 		beMultipleSelection;
-		items: #(10 20 30)
+		items: {10. 20. 30. 'aaa' asText}
 ]
 
 { #category : #tests }
@@ -73,6 +73,12 @@ SpAbstractListAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelecti
 		whenChangedDo: [ :selection | selectedIndex := selection selectedIndexes ].
 	self widget selectIndex: 1.
 	self assert: (selectedIndex includes: 1)
+]
+
+{ #category : #'tests-widget-to-model' }
+SpAbstractListAdapterMultipleSelectionTest >> testStringColumnsShouldBeNonEditable [
+
+	self assert: (self adapter isEditableRow: 4 column: 1)
 ]
 
 { #category : #'tests-widget-to-model' }
