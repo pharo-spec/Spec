@@ -71,18 +71,18 @@ SpButtonPresenter >> addShortcutTipFor: aString [
 
 { #category : #private }
 SpButtonPresenter >> addShortcutTipFor: aCharacter on: aString [
+
 	| index text |
-	
-	aString isNil ifTrue: [ ^ nil ].
+
+	aString ifNil: [ ^ nil ].
 	text := aString asText.
 	aCharacter ifNil: [ ^ text ].
 	index := aString asLowercase indexOf: aCharacter asLowercase.
-	index isZero ifTrue: [ ^ text ].
-	
+	index isZero
+		ifTrue: [ ^ text ].
+
 	^ text
-		addAttribute: (TextEmphasis underlined) 
-		from: index
-		to: index;
+		addAttribute: TextEmphasis underlined from: index to: index;
 		yourself
 ]
 
