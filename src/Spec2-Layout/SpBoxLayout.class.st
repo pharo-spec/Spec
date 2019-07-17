@@ -55,6 +55,18 @@ SpBoxLayout >> add: aName expand: shouldExpand fill: shouldFill padding: aNumber
 ]
 
 { #category : #adding }
+SpBoxLayout >> add: aPresenter height: anInteger [ 
+	self add: aPresenter withConstraints: [:constraints | constraints height: anInteger ].
+]
+
+{ #category : #adding }
+SpBoxLayout >> add: aPresenter width: anInteger [
+	self
+		add: aPresenter
+		withConstraints: [ :constraints | constraints width: anInteger ].
+]
+
+{ #category : #adding }
 SpBoxLayout >> add: aPresenter withConstraints: aBlock [
 	
 	super add: aPresenter withConstraints: aBlock.
