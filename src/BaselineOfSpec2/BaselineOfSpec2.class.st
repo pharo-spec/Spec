@@ -9,8 +9,7 @@ BaselineOfSpec2 >> baseline: spec [
 	<baseline>
 	spec
 		for: #common
-		do: [ "Dependencies"
-			self parametrizedTests: spec.
+		do: [ 
 
 			"Packages"
 			spec
@@ -61,7 +60,11 @@ BaselineOfSpec2 >> baseline: spec [
 				
 	spec
 		for: #'pharo7.x'
-		do: [ self commander2: spec.
+		do: [ 
+			"Dependencies for Pharo7"
+			self parametrizedTests: spec.			
+			self commander2: spec.
+
 			spec
 				package: 'Spec2-Pharo7To8Compatibility';
 				package: 'Spec2-Commander2'
