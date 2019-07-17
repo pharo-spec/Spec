@@ -67,6 +67,8 @@ BaselineOfSpec2 >> baseline: spec [
 
 			spec
 				package: 'Spec2-Pharo7To8Compatibility';
+				package: 'Spec2-Tests'
+					with: [ spec requires: #('Spec2-Examples' 'ParametrizedTests') ];
 				package: 'Spec2-Commander2'
 					with: [ spec requires: #('Commander2') ] ].
 	spec
