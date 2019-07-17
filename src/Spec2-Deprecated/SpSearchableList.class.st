@@ -27,6 +27,15 @@ SpSearchableList class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #examples }
+SpSearchableList class >> example [
+	<sampleInstance>
+	"self example"
+
+	^ self new
+		items: #(#aaa #abc #axz #bbb #bfbg #bof #c); openWithSpec
+]
+
 { #category : #deprecation }
 SpSearchableList class >> isDeprecated [
 	"Now lists have a filter integrated in them."
