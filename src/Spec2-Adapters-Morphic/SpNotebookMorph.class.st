@@ -194,7 +194,7 @@ SpNotebookMorph >> removePage: aPage [
 				page: aPage;
 				pageIndex: removedPageIndex;
 				newIndex: self tabSelectorMorph selectedIndex).
-	self pages isEmpty ifTrue: [ self contentMorph removeAllMorphs ]
+	self pages ifEmpty: [ self contentMorph removeAllMorphs ]
 ]
 
 { #category : #private }
@@ -216,17 +216,16 @@ SpNotebookMorph >> updatePageIndex: index [
 
 	"Change to the given page index, update the toolbar and send the announcement"
 
-	| page oldPage |
+	| oldPage |
 
 	index = 0
 		ifTrue: [ ^ self ].
 
 	oldPage := self tabSelectorMorph selectedTab.
-	page := self pageMorph.
-	page
+	self pageMorph
 		ifNil: [ self contentMorph addMorph: ( self pageAt: index ) ]
-		ifNotNil: [ | pageBounds |
-
+		ifNotNil: [ :page |
+			| pageBounds |
 			pageBounds := self pageMorph bounds.
 			self contentMorph replaceSubmorph: page by: ( self pageAt: index ).
 			self
