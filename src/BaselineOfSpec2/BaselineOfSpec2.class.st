@@ -52,9 +52,9 @@ BaselineOfSpec2 >> baseline: spec [
 				package: 'Spec2-PolyWidgets-Tests'
 					with: [ spec requires: #('Spec2-Tests' 'Spec2-PolyWidgets') ];
 				package: 'Spec2-Morphic-Backend-Tests'
-					with: [ spec requires: #('Spec2-Adapters-Morphic' 'ParametrizedTests') ];
+					with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 				package: 'Spec2-Backend-Tests'
-					with: [ spec requires: #('Spec2-Adapters-Morphic' 'ParametrizedTests') ];
+					with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 				package: 'Spec2-Compatibility-Tests'
 					with: [ spec requires: #('Spec2-Morphic-Backend-Tests' 'Spec2-Deprecated') ]].
 				
