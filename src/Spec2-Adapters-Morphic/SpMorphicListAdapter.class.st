@@ -72,7 +72,7 @@ SpMorphicListAdapter >> hasFilter [
 ]
 
 { #category : #testing }
-SpMorphicListAdapter >> isEditableRow: aRow column: aColumn [
+SpMorphicListAdapter >> isNonEditableRow: aRow column: aColumn [
 
 	^ (self widget dataSource
 		cellColumn: (self widget columns at: aColumn)
@@ -180,6 +180,12 @@ SpMorphicListAdapter >> selectIndex: anInteger [
 	(anInteger = 0 and: [ widget selectedIndexes isEmpty ]) ifTrue: [ ^ self ].	
 	(widget selectedIndexes includes: anInteger) ifTrue: [^self].
 	widget selectIndex: anInteger
+]
+
+{ #category : #testing }
+SpMorphicListAdapter >> selectedIndexes [
+	
+	^ widget selectedIndexes
 ]
 
 { #category : #factory }

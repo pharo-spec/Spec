@@ -132,7 +132,7 @@ SpDemoListsPresenter >> list1 [
 { #category : #menu }
 SpDemoListsPresenter >> list1Menu [
 	^ self newMenu
-		addTitle: 'Context menu example';
+		title: 'Context menu example';
 		addGroup: [ :aGroup | 
 			aGroup
 				addItem: [ :anItem | 
