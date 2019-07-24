@@ -1,19 +1,19 @@
 "
-ComposablePresenter is an abstract class which represent a applicative presenter made to be composed with other ComposablePresenter
+SpPresenter is an abstract class which represent a applicative presenter made to be composed with other SpPresenter
 
-Most often, I am used to display other subclasses of ComposablePresenter or subclasses of AbstractWidgetPresenter.
+Most often, I am used to display other subclasses of SpPresenter or subclasses of SpAbstractWidgetPresenter.
 
 I collaborate with 
--  ValueHolder to managed some of my variables.
+- ValueHolder to managed some of my variables.
 - SpecFocusOrder when no focusOrder are specified.
 - SpecLayout
 - WindowPresenter or DialogWindowPresenter to display myself.
 
-A new subclass of ComposablePresenter must at least define initializeWidgets and defaultSpec on the class side.
+A new subclass of SpPresenter must at least define initializeWidgets and defaultSpec on the class side.
 
 I provide the following methods
 - aboutText: set the text displayed in the About.
-- title: set the title of the window.
+- initializeWindow: to set the title, and other information related to the window.
 - extent: set the initial size of the window, alternative possibility is define again initialExtent, it must be called before have displayed the widget. 
 - focusOrder: set an instance what manage the order of focus of the keyboard navigation.
 - bindKeyCombination:toAction: create a shortcut on keyboard what perform the block of the  action.
@@ -25,7 +25,7 @@ On my class side, I provide methods returning standard height and width for some
 todo
 - announce:
 - applyMenuModel: and neglectMenuModel:
-- keyStrokeForNextFocus: , giveFocusToNextFrom: and takeKeyboardFocus
+- keyStrokeForNextFocus:, giveFocusToNextFrom: and takeKeyboardFocus
 - ensureExtentFor:
 - hide
 - needRebuild
@@ -36,13 +36,13 @@ todo
 Window
 =======
 
-- openWithSpec instantiate a WindowPresenter using the lookup to found the layout to use.
-- openDialogWithSpec instanciate a DialogWindowPresenter using the lookup to found the layout to use.
+- openWithSpec instantiates a WindowPresenter using the lookup to found the layout to use.
+- openDialogWithSpec instanciates a DialogWindowPresenter using the lookup to found the layout to use.
 Their variants openWithSpec: and openDialogWithSpec:  use the layout parameter.
 
 These methods can be useful to manage the window
-- isDisplayed return true if the window of the widget is displayed
-- hasWindow return true if the widget have a window
+- isDisplayed returns true if the window of the widget is displayed
+- hasWindow returns true if the widget have a window
 - centered to center the window in the world.
 - delete to delete the window.
 

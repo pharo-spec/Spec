@@ -1,5 +1,5 @@
 "
-AbstractBasicWidget is an abstract class for basic widgets
+SpAbstractBasicWidget is an abstract class for basic widgets
 
 I collaborate with
 - ValueHolder to managed some of my variables.
