@@ -1,8 +1,13 @@
 "
-A testing composable presenter for testing of the class ComposablePresenterWithModel
+A testing presenter for testing of the class SpPresenterWithModel
+
+	| model presenter |
+	model := SpTestingPointModel x: 1 y: 2.
+	presenter := SpTestingPresenterWithModel on: model.
+	presenter openWithSpec
 "
 Class {
-	#name : #SpTestingComposablePresenterWithModel,
+	#name : #SpTestingPresenterWithModel,
 	#superclass : #SpPresenterWithModel,
 	#instVars : [
 		'x',
@@ -12,7 +17,7 @@ Class {
 }
 
 { #category : #specs }
-SpTestingComposablePresenterWithModel class >> defaultSpec [
+SpTestingPresenterWithModel class >> defaultSpec [
 	^ SpBoxLayout newHorizontal
 		add: #x;
 		add: #y;
@@ -20,7 +25,7 @@ SpTestingComposablePresenterWithModel class >> defaultSpec [
 ]
 
 { #category : #specs }
-SpTestingComposablePresenterWithModel class >> open [
+SpTestingPresenterWithModel class >> open [
 
 	<example>
 	
@@ -28,14 +33,14 @@ SpTestingComposablePresenterWithModel class >> open [
 ]
 
 { #category : #initialization }
-SpTestingComposablePresenterWithModel >> initializeWidgets [
-
+SpTestingPresenterWithModel >> initializeWidgets [
+	
 	x := self newTextInput.
 	y := self newTextInput.
 ]
 
 { #category : #initialization }
-SpTestingComposablePresenterWithModel >> modelChanged [
+SpTestingPresenterWithModel >> modelChanged [
 
 	x text: self model x asString.
 	y text: self model y asString.	
@@ -43,27 +48,27 @@ SpTestingComposablePresenterWithModel >> modelChanged [
 ]
 
 { #category : #api }
-SpTestingComposablePresenterWithModel >> title [
+SpTestingPresenterWithModel >> title [
 
 	^ 'Point'
 ]
 
 { #category : #accessing }
-SpTestingComposablePresenterWithModel >> x [
+SpTestingPresenterWithModel >> x [
 	^ x
 ]
 
 { #category : #accessing }
-SpTestingComposablePresenterWithModel >> x: anObject [
+SpTestingPresenterWithModel >> x: anObject [
 	x := anObject
 ]
 
 { #category : #accessing }
-SpTestingComposablePresenterWithModel >> y [
+SpTestingPresenterWithModel >> y [
 	^ y
 ]
 
 { #category : #accessing }
-SpTestingComposablePresenterWithModel >> y: anObject [
+SpTestingPresenterWithModel >> y: anObject [
 	y := anObject
 ]
