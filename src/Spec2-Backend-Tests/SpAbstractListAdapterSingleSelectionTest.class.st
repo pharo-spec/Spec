@@ -95,7 +95,7 @@ SpAbstractListAdapterSingleSelectionTest >> testUnselectPresenterIndexUnselectsI
 	presenter
 		selectIndex: 1;
 		unselectIndex: 1.
-	self assert: self widget selectedIndexes isEmpty
+	self assert: self adapter selectedIndexes isEmpty
 ]
 
 { #category : #'tests-model-to-widget' }
