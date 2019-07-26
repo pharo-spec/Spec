@@ -38,6 +38,11 @@ SpAbstractTreeSingleSelectionMode >> isEmpty [
 	^ selection isEmpty
 ]
 
+{ #category : #accesing }
+SpAbstractTreeSingleSelectionMode >> presenter: aPresenter [
+	presenter := aPresenter
+]
+
 { #category : #selection }
 SpAbstractTreeSingleSelectionMode >> replaceOtherSelectionMode: anotherSelection [
 
