@@ -41,7 +41,7 @@ SpListCommonPropertiestTest >> testRemoveHeaderTitleInPresenterRemovesColumnHead
 	self presenter headerTitle: 'test'.
 	self presenter hideHeaderTitle.
 
-	backendForTest denyHasHeader: self widget
+	backendForTest denyHasHeader: self adapter
 ]
 
 { #category : #running }
@@ -54,7 +54,7 @@ SpListCommonPropertiestTest >> testSetColumnTitleInPresenterPutsColumnHeaderMorp
 
 	self presenter headerTitle: 'test'.
 
-	backendForTest assertListHeaderOf: self widget equals: #('test')
+	backendForTest assertListHeaderOf: self adapter equals: #('test')
 ]
 
 { #category : #running }

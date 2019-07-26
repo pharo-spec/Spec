@@ -189,7 +189,7 @@ SpChooseMethodUI >> radioButtonInstanceSide [
 
 { #category : #accessing }
 SpChooseMethodUI >> selectedClass [
-	^ classList selectedItem
+	^ classList selection selectedItem
 ]
 
 { #category : #accessing }
