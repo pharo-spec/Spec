@@ -14,8 +14,9 @@ Class {
 	#name : #SpToolBarPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'displayMode',
-		'itemsHolder'
+		'#displayMode => SpObservableSlot',
+		'#leftItems => SpObservableSlot',
+		'#rightItems => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Toolbar'
 }
@@ -45,28 +46,23 @@ SpToolBarPresenter >> addItem: aToolbarItem [
 
 { #category : #adding }
 SpToolBarPresenter >> addItem: aToolbarItem position: aPosition [
-	| wasEmpty |
 	
 	aToolbarItem owner: self.
-	wasEmpty := false.
-	(itemsHolder 
-		at: aPosition
-		ifAbsentPut: [ 
-			wasEmpty := true.
-			OrderedCollection new ])
-		add: aToolbarItem.
-	
-	"Triggering add messages.
- 	 This is horrible, items holder should be a collection not a dictionary and constraints (like
-	 group) should be handled differently"
-	wasEmpty ifFalse: [ 
-		itemsHolder valueChanged: aPosition ]
+	aPosition addItem: aToolbarItem into: self
 ]
 
-{ #category : #accessing }
-SpToolBarPresenter >> allItems [
+{ #category : #adding }
+SpToolBarPresenter >> addItemLeft: aSpToolBarItem [ 
 	
-	^ self items values flattened
+	leftItems add: aSpToolBarItem.
+	self notifyPropertyChanged: #leftItems.
+]
+
+{ #category : #adding }
+SpToolBarPresenter >> addItemRight: aSpToolBarItem [ 
+
+	rightItems add: aSpToolBarItem.
+	self notifyPropertyChanged: #rightItems.	
 ]
 
 { #category : #accessing }
@@ -98,8 +94,9 @@ SpToolBarPresenter >> initialize [
 
 	super initialize.
 	self beBoth.
-	itemsHolder := Dictionary new asValueHolder.
 	
+	leftItems := OrderedCollection new.
+	rightItems := OrderedCollection new.	
 ]
 
 { #category : #testing }
@@ -129,17 +126,35 @@ SpToolBarPresenter >> isEmpty [
 { #category : #accessing }
 SpToolBarPresenter >> itemNamed: aString [ 
 	
-	^ self allItems detect: [ :e | e label = aString ]
+	^ self items detect: [ :e | e label = aString ]
 ]
 
 { #category : #api }
 SpToolBarPresenter >> items [
 
-	^ itemsHolder value
+	^ leftItems , rightItems
+]
+
+{ #category : #accessing }
+SpToolBarPresenter >> leftItems [
+	^ leftItems
 ]
 
 { #category : #testing }
 SpToolBarPresenter >> notEmpty [
 
 	^ self isEmpty not
+]
+
+{ #category : #accessing }
+SpToolBarPresenter >> rightItems [
+	^ rightItems
+]
+
+{ #category : #events }
+SpToolBarPresenter >> whenItemsChangeDo: aBlockClosure [ 
+	
+	self 
+		property: #leftItems whenChangedDo: aBlockClosure;
+		property: #rightItems whenChangedDo: aBlockClosure
 ]
