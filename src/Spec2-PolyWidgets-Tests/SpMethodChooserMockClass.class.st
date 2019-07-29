@@ -7,7 +7,7 @@ Class {
 	#category : #'Spec2-PolyWidgets-Tests-Mocks'
 }
 
-{ #category : #accessing }
+{ #category : #accessingClassSide }
 SpMethodChooserMockClass class >> classMethod [
 ]
 
