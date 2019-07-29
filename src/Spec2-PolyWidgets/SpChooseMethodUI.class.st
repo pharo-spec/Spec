@@ -1,9 +1,9 @@
 "
-I am an UI used to select a method of the system. 
+I am an UI used to select a method of the system.
+ 
+I'll display the list of packages of the system, the classes of the selected package and the methods of the selected class , the protocols of selectedClass. 
 
-I'll display the list of packages of the system, the classes of the selected package and the methods of the selected class. 
-
-The user can configure me with an action to execute when the user does the selection. The action will take my instance as parameter to get the package/class/method selected.
+The user can configure me with an action to execute when the user does the selection. The action will take my instance as parameter to get the package/class/method/protocols selected.
 
 Public API and Key Messages
 --------------------
@@ -24,6 +24,7 @@ Internal Representation and Key Implementation Points.
 	packageList:						<aListPresenter>	A list of the packages of the system.
 	classList:						<aListPresenter>	A list of the classes in the selected package.
 	methodList:						<aListPresenter>	A list of the methods in the selected class.
+	protocolList:               <aListPresenter>  A list of the protocols in the selected class. 
 	radioButtonClassSide:			<aRadioButton>		A radio button to select the class side. 
 	radioButtonInstanceSide:		<aRadioButton>		A radio button to select the instance side.
 
@@ -36,9 +37,10 @@ Class {
 		'classList',
 		'methodList',
 		'radioButtonInstanceSide',
-		'radioButtonClassSide'
+		'radioButtonClassSide',
+		'protocolList'
 	],
-	#category : #'Spec2-PolyWidgets-Widgets'
+	#category : #'Spec2-PolyWidgets'
 }
 
 { #category : #specs }
@@ -84,6 +86,31 @@ SpChooseMethodUI >> classList [
 	^ classList
 ]
 
+{ #category : #'initialization - actions' }
+SpChooseMethodUI >> classListAction [
+	classList
+		transmitTo: methodList
+		transform: [ :selectedClass | 
+			selectedClass
+				ifNotNil: [ self methodsFromClass: selectedClass ]
+				ifNil: [ #() ] ]
+		postTransmission: [ :destination | destination selectIndex: 1 ].
+
+	classList
+		transmitTo: protocolList
+		transform: [ :selectedClass |
+			selectedClass
+				ifNotNil: [ self isInstanceButtonSelected
+						ifTrue:
+							[ selectedClass organization allProtocols as: OrderedCollection ]
+						ifFalse:
+							[ selectedClass class organization allProtocols as: OrderedCollection ] ] 
+					ifNil: [ #()]]
+		postTransmission: [ :protcolList | 
+			protocolList
+				selectIndex: ((protcolList items collect: #name) indexOf: '-- all --') ]
+]
+
 { #category : #utilities }
 SpChooseMethodUI >> classMethodsOf: aClass [
 	^ aClass class methods
@@ -100,20 +127,10 @@ SpChooseMethodUI >> initializeDialogWindow: aDialog [
 
 { #category : #initialization }
 SpChooseMethodUI >> initializePresenter [
-	packageList
-		transmitTo: classList
-		transform: [ :selectedPacakge | selectedPacakge classes asOrderedCollection ]
-		postTransmission: [ classList selectIndex: 1 ].
-
-	classList
-		transmitTo: methodList
-		transform: [ :selectedClass | selectedClass ifNotNil: [ self methodsToDisplayOf: selectedClass ] ifNil: [ #() ] ]
-		postTransmission: [ :destination | destination selectIndex: 1 ].
-
-	radioButtonClassSide whenActivatedDo: [ methodList items: (self classMethodsOf: self selectedClass) ].
-
-	radioButtonInstanceSide whenActivatedDo: [ methodList items: (self instanceMethodsOf: self selectedClass) ].
-
+	self packageListAction.
+	self classListAction.
+	self protocolListAction.
+	self radioButtonsAction.
 	packageList selectIndex: 1
 ]
 
@@ -124,6 +141,7 @@ SpChooseMethodUI >> initializeWidgets [
 	methodList := self newList.
 	radioButtonClassSide := self newRadioButton.
 	radioButtonInstanceSide := self newRadioButton.
+	protocolList := self newList.
 
 	packageList
 		items: RPackageOrganizer default packages;
@@ -135,8 +153,12 @@ SpChooseMethodUI >> initializeWidgets [
 		sortingBlock: #name ascending;
 		icons: [ :item | self iconNamed: item systemIconName ].
 
+	protocolList 
+		displayBlock: [:protocol |protocol name  ];
+		sortingBlock: #name ascending.
+
 	methodList
-		sortingBlock: #selector ascending;
+		sortingBlock: #name ascending;
 		displayBlock: #selector.
 
 	radioButtonClassSide label: 'class side'.
@@ -168,13 +190,51 @@ SpChooseMethodUI >> methodList [
 ]
 
 { #category : #utilities }
-SpChooseMethodUI >> methodsToDisplayOf: aClass [
-	^ (self isInstanceButtonSelected ifTrue: [ self instanceMethodsOf: aClass ] ifFalse: [ self classMethodsOf: aClass ]) asOrderedCollection
+SpChooseMethodUI >> methodNamed: methodSelector [
+	^ self isInstanceButtonSelected
+		ifTrue: [ self selectedClass methodNamed: methodSelector ]
+		ifFalse: [ self selectedClass class methodNamed: methodSelector ]
+]
+
+{ #category : #utilities }
+SpChooseMethodUI >> methodsFromClass: aClass [
+	^ (self isInstanceButtonSelected
+		ifTrue: [ self instanceMethodsOf: aClass ]
+		ifFalse: [ self classMethodsOf: aClass ]) asOrderedCollection
 ]
 
 { #category : #accessing }
 SpChooseMethodUI >> packageList [
 	^ packageList
+]
+
+{ #category : #'initialization - actions' }
+SpChooseMethodUI >> packageListAction [
+	packageList
+		transmitTo: classList
+		transform: [ :selectedPacakge | 
+			selectedPacakge
+				ifNotNil: [ selectedPacakge classes asOrderedCollection ] ]
+		postTransmission: [ classList selectIndex: 1 ]
+]
+
+{ #category : #accessing }
+SpChooseMethodUI >> protocolList [
+	^ protocolList
+]
+
+{ #category : #'initialization - actions' }
+SpChooseMethodUI >> protocolListAction [
+	protocolList
+		transmitTo: methodList
+		transform: [ :selectedProtocol | 
+			selectedProtocol
+				ifNotNil: [ (selectedProtocol methods
+						collect:
+							[ :methodSelector | self methodNamed: methodSelector ])
+						asOrderedCollection ]
+				ifNil: [ #() ] ]
+		postTransmission: [ :methodPresenter | methodPresenter selectIndex: 1 ]
 ]
 
 { #category : #accessing }
@@ -185,6 +245,26 @@ SpChooseMethodUI >> radioButtonClassSide [
 { #category : #accessing }
 SpChooseMethodUI >> radioButtonInstanceSide [
 	^ radioButtonInstanceSide
+]
+
+{ #category : #'initialization - actions' }
+SpChooseMethodUI >> radioButtonsAction [
+	radioButtonClassSide
+		whenActivatedDo: [ methodList items: (self classMethodsOf: self selectedClass).
+			protocolList
+				items:
+					(self selectedClass class protocols
+						collect: [ :eachSymbol | 
+							self selectedClass class organization protocolOrganizer
+								protocolNamed: eachSymbol ]) ].
+	radioButtonInstanceSide
+		whenActivatedDo: [ methodList items: (self instanceMethodsOf: self selectedClass).
+			protocolList
+				items:
+					(self selectedClass protocols
+						collect: [ :eachSymbol | 
+							self selectedClass organization protocolOrganizer
+								protocolNamed: eachSymbol ]) ]
 ]
 
 { #category : #accessing }
