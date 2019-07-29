@@ -46,30 +46,44 @@ Class {
 { #category : #specs }
 SpChooseMethodUI class >> defaultSpec [
 	^ SpPanedLayout newHorizontal
-		position: 33 percent;
+		position: 25 percent;
 		add: #packageList;
 		add:
 			(SpPanedLayout newHorizontal
-				position: 50 percent;
+				position: 25 percent;
 				add: #classList;
 				add:
-					(SpBoxLayout newVertical
-						add: #methodList;
+					(SpPanedLayout newHorizontal
+						position: 40 percent;
+						add: #protocolList;
 						add:
-							(SpBoxLayout newHorizontal
-								add: #radioButtonInstanceSide;
-								add: #radioButtonClassSide;
-								yourself)
-							withConstraints: [ :contraint | contraint height: 20 ];
+							(SpBoxLayout newVertical
+								add: #methodList;
+								add:
+									(SpBoxLayout newHorizontal
+										add: #radioButtonInstanceSide;
+										add: #radioButtonClassSide;
+										yourself)
+									withConstraints: [ :contraint | contraint height: 20 ];
+								yourself);
 						yourself);
 				yourself);
 		yourself
 ]
 
 { #category : #examples }
-SpChooseMethodUI class >> example [
+SpChooseMethodUI class >> exampleMethodChooser [
 	<example>
 	(self openOnAccept: [ :chooseMethodPresenter | chooseMethodPresenter selectedMethod browse ]) withWindowDo: [ :w | w title: 'Select a method example' ]
+]
+
+{ #category : #examples }
+SpChooseMethodUI class >> exampleNavigationSystem [
+	<example>
+	| presenter |
+	presenter := self new.
+	presenter openWithSpec extent: 900 @ 400.
+	^ presenter
 ]
 
 { #category : #'instance creation' }
