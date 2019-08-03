@@ -1,19 +1,19 @@
 "
-ComposablePresenter is an abstract class which represent a applicative presenter made to be composed with other ComposablePresenter
+SpPresenter is an abstract class which represent a applicative presenter made to be composed with other SpPresenter
 
-Most often, I am used to display other subclasses of ComposablePresenter or subclasses of AbstractWidgetPresenter.
+Most often, I am used to display other subclasses of SpPresenter or subclasses of SpAbstractWidgetPresenter.
 
 I collaborate with 
--  ValueHolder to managed some of my variables.
+- ValueHolder to managed some of my variables.
 - SpecFocusOrder when no focusOrder are specified.
 - SpecLayout
 - WindowPresenter or DialogWindowPresenter to display myself.
 
-A new subclass of ComposablePresenter must at least define initializeWidgets and defaultSpec on the class side.
+A new subclass of SpPresenter must at least define initializeWidgets and defaultSpec on the class side.
 
 I provide the following methods
 - aboutText: set the text displayed in the About.
-- title: set the title of the window.
+- initializeWindow: to set the title, and other information related to the window.
 - extent: set the initial size of the window, alternative possibility is define again initialExtent, it must be called before have displayed the widget. 
 - focusOrder: set an instance what manage the order of focus of the keyboard navigation.
 - bindKeyCombination:toAction: create a shortcut on keyboard what perform the block of the  action.
@@ -25,7 +25,7 @@ On my class side, I provide methods returning standard height and width for some
 todo
 - announce:
 - applyMenuModel: and neglectMenuModel:
-- keyStrokeForNextFocus: , giveFocusToNextFrom: and takeKeyboardFocus
+- keyStrokeForNextFocus:, giveFocusToNextFrom: and takeKeyboardFocus
 - ensureExtentFor:
 - hide
 - needRebuild
@@ -36,13 +36,13 @@ todo
 Window
 =======
 
-- openWithSpec instantiate a WindowPresenter using the lookup to found the layout to use.
-- openDialogWithSpec instanciate a DialogWindowPresenter using the lookup to found the layout to use.
+- openWithSpec instantiates a WindowPresenter using the lookup to found the layout to use.
+- openDialogWithSpec instanciates a DialogWindowPresenter using the lookup to found the layout to use.
 Their variants openWithSpec: and openDialogWithSpec:  use the layout parameter.
 
 These methods can be useful to manage the window
-- isDisplayed return true if the window of the widget is displayed
-- hasWindow return true if the widget have a window
+- isDisplayed returns true if the window of the widget is displayed
+- hasWindow returns true if the widget have a window
 - centered to center the window in the world.
 - delete to delete the window.
 
@@ -89,17 +89,17 @@ Class {
 	#instVars : [
 		'#application',
 		'#focusOrder',
-		'#extentHolder',
 		'#additionalKeyBindings',
-		'#keyStrokesForNextFocusHolder',
-		'#keyStrokesForPreviousFocusHolder',
-		'#windowIcon',
-		'#aboutText',
-		'#askOkToClose',
-		'#titleHolder',
+		'#windowIcon => SpObservableSlot',
+		'#aboutText => SpObservableSlot',
+		'#askOkToClose => SpObservableSlot',
+		'#titleHolder => SpObservableSlot',
 		'#additionalSubpresentersMap',
 		'#layout',
-		'#visible => SpObservableSlot'
+		'#visible => SpObservableSlot',
+		'#extent => SpObservableSlot',
+		'#keyStrokesForNextFocus => SpObservableSlot',
+		'#keyStrokesForPreviousFocus => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Base'
 }
@@ -194,7 +194,7 @@ SpPresenter >> aboutText [
 	
 	This method cannot be deprecated because during a transition phase we keep this mecanism. "
 
-	^ aboutText value
+	^ aboutText
 ]
 
 { #category : #private }
@@ -284,7 +284,6 @@ SpPresenter >> asPresenter [
 
 { #category : #TOREMOVE }
 SpPresenter >> askOkToClose [
-
 	"DO NOT USE
 	With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
 	From now on, if you want to interact with a window you need to:
@@ -292,7 +291,8 @@ SpPresenter >> askOkToClose [
 	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
 	
 	This method cannot be deprecated because during a transition phase we keep this mecanism. "
-	^ askOkToClose value
+
+	^ askOkToClose
 ]
 
 { #category : #'private building' }
@@ -395,26 +395,24 @@ SpPresenter >> ensureKeyBindingsFor: aWidget [
 SpPresenter >> eventKeyStrokesForNextFocus [
 	"String describing the keystroke to perform to jump to the next widget"
 
-	^ keyStrokesForNextFocusHolder value
+	^ keyStrokesForNextFocus
 ]
 
 { #category : #'api-focus' }
 SpPresenter >> eventKeyStrokesForPreviousFocus [
 	"String describing the keystroke to perform to jump to the previous widget"
 
-	^ keyStrokesForPreviousFocusHolder value
+	^ keyStrokesForPreviousFocus
 ]
 
 { #category : #TOMOVE }
 SpPresenter >> extent [
-
-	^  extentHolder value
+	^ extent
 ]
 
 { #category : #TOMOVE }
 SpPresenter >> extent: aPoint [
-
-	^  extentHolder value: aPoint
+	^ extent := aPoint
 ]
 
 { #category : #accessing }
@@ -514,18 +512,14 @@ SpPresenter >> initializePresenter [
 
 	"By default, do not do anything"
 
-	extentHolder whenChangedDo: [ :ex | 
-		self withAdapterDo: [ :widget | 
-			(widget respondsTo: #extent:)
-				ifTrue: [ widget extent: ex ] ] ]
+	self property: #extent whenChangedDo: [ :ex | self withAdapterDo: [ :widget | (widget respondsTo: #extent:) ifTrue: [ widget extent: ex ] ] ]
 ]
 
 { #category : #'initialization - private' }
 SpPresenter >> initializePrivateAnnouncements [
-
-	keyStrokesForNextFocusHolder whenChangedDo: [ self registerKeyStrokesForNextFor: self widget ].
-	keyStrokesForPreviousFocusHolder whenChangedDo: [ self registerKeyStrokesForPreviousFor: self widget ].
-	titleHolder whenChangedDo: [ self updateTitle ]
+	self property: #keyStrokesForNextFocus whenChangedDo: [ self registerKeyStrokesForNextFor: self widget ].
+	self property: #keyStrokesForPreviousFocus whenChangedDo: [ self registerKeyStrokesForPreviousFor: self widget ].
+	self property: #titleHolder whenChangedDo: [ self updateTitle ]
 ]
 
 { #category : #'initialization - private' }
@@ -546,16 +540,10 @@ SpPresenter >> initializePrivateHooks [
 
 { #category : #'initialization - private' }
 SpPresenter >> initializePrivateValueHolders [
-
-	extentHolder := nil asValueHolder.
-	keyStrokesForNextFocusHolder := { KMNoShortcut new } asValueHolder.
-	keyStrokesForPreviousFocusHolder := { KMNoShortcut new } asValueHolder.
-	aboutText := nil asValueHolder.
-	windowIcon := nil asValueHolder.
-	askOkToClose := false asValueHolder.
-	titleHolder := self class title asValueHolder.
-	
-
+	self keyStrokeForNextFocus: KMNoShortcut new.
+	self keyStrokeForPreviousFocus: KMNoShortcut new.
+	askOkToClose := false.
+	titleHolder := self class title
 ]
 
 { #category : #initialization }
@@ -628,26 +616,22 @@ SpPresenter >> isVisible [
 
 { #category : #'api-focus' }
 SpPresenter >> keyStrokeForNextFocus: aKMShortcut [
-
-	keyStrokesForNextFocusHolder value: { aKMShortcut }
+	self keyStrokesForNextFocus: {aKMShortcut}
 ]
 
 { #category : #'api-focus' }
 SpPresenter >> keyStrokeForPreviousFocus: aKMShortcut [
-
-	keyStrokesForPreviousFocusHolder value: { aKMShortcut }
+	self keyStrokesForPreviousFocus: {aKMShortcut}
 ]
 
 { #category : #'api-focus' }
 SpPresenter >> keyStrokesForNextFocus: aCollection [
-
-	keyStrokesForNextFocusHolder value: aCollection
+	keyStrokesForNextFocus := aCollection
 ]
 
 { #category : #'api-focus' }
 SpPresenter >> keyStrokesForPreviousFocus: aCollection [
-
-	keyStrokesForPreviousFocusHolder value: aCollection 
+	keyStrokesForPreviousFocus := aCollection
 ]
 
 { #category : #accessing }
@@ -973,7 +957,7 @@ SpPresenter >> title [
 	
 	This method cannot be deprecated because during a transition phase we keep this mecanism. "
 
-	^ titleHolder value
+	^ titleHolder
 ]
 
 { #category : #TOREMOVE }
@@ -1059,5 +1043,5 @@ SpPresenter >> windowIcon [
 	
 	This method cannot be deprecated because during a transition phase we keep this mecanism. "
 
-	^ windowIcon value
+	^ windowIcon
 ]

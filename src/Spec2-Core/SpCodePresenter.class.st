@@ -61,7 +61,7 @@ SpCodePresenter >> buildCodeKeyBindings [
 { #category : #private }
 SpCodePresenter >> buildCodeMenu [
 	
-	^ CmdContextMenuActivation buildContextMenuInContext: (SpCodeContext for: self)
+	^ (CmdContextMenuActivation buildMenuInContext: (SpCodeContext for: self)) asSpMenuPresenter
 ]
 
 { #category : #'api-shortcuts' }

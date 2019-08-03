@@ -7,9 +7,9 @@ Class {
 	#traits : 'TEyeInspectorActions',
 	#classTraits : 'TEyeInspectorActions classTrait',
 	#instVars : [
-		'object',
-		'customMenuActions',
-		'text'
+		'#object => SpObservableSlot',
+		'#customMenuActions',
+		'#text'
 	],
 	#category : #'Spec2-Inspector-Base'
 }
@@ -72,18 +72,8 @@ EyeAbstractInspector >> hasSelectedObject [
 ]
 
 { #category : #initialization }
-EyeAbstractInspector >> initialize [
-
-	"The inspected object will be stored in the valueObject object to be able to use WhenObjectChanged:"
-	
-	object := nil asValueHolder.
-	super initialize.
-
-]
-
-{ #category : #initialization }
 EyeAbstractInspector >> initializePresenter [
-	object whenChangedDo: [ self objectChanged ].
+	self property: #object whenChangedDo: [ self objectChanged ].
 	text whenBuiltDo: [ :w | self text behavior: self object class ].
 	self initializeShortcuts
 ]
@@ -142,14 +132,12 @@ EyeAbstractInspector >> labelFor: anEyeElement error: error [
 
 { #category : #accessing }
 EyeAbstractInspector >> object [
-
-	^ object value
+	^ object
 ]
 
 { #category : #accessing }
 EyeAbstractInspector >> object: anObject [
-
-	object value: anObject
+	object := anObject
 ]
 
 { #category : #'event-handling' }

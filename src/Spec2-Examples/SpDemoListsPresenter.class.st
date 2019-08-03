@@ -113,7 +113,7 @@ SpDemoListsPresenter >> initializeWidgets [
 		beMultipleSelection.
 	list3
 		items: self class environment allClasses;
-		itemFilterBlock: [ :item :string | item asString includesSubstring: string ];
+		itemFilter: [ :item :string | item asString includesSubstring: string ];
 		icons: [ :elem | self iconFor: elem ].
 	label label: 'No selection'.
 	multiLabel label: 'No multi selection (from list 2 only)'
@@ -132,7 +132,7 @@ SpDemoListsPresenter >> list1 [
 { #category : #menu }
 SpDemoListsPresenter >> list1Menu [
 	^ self newMenu
-		addTitle: 'Context menu example';
+		title: 'Context menu example';
 		addGroup: [ :aGroup | 
 			aGroup
 				addItem: [ :anItem | 

@@ -5,8 +5,8 @@ Class {
 	#name : #SpOkToolbar,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'okButton',
-		'okAction'
+		'#okButton',
+		'#okAction => SpObservableSlot'
 	],
 	#category : #'Spec2-Deprecated-Obsolete'
 }
@@ -44,9 +44,8 @@ SpOkToolbar >> cancel [
 
 { #category : #initialization }
 SpOkToolbar >> initialize [
-
 	super initialize.
-	okAction := [ true ] asValueHolder.
+	okAction := [ true ]
 ]
 
 { #category : #initialization }
@@ -68,23 +67,18 @@ SpOkToolbar >> initializeWidgets [
 
 { #category : #api }
 SpOkToolbar >> okAction [
-
-	^ okAction value
+	^ okAction
 ]
 
 { #category : #api }
 SpOkToolbar >> okAction: aBlock [
 
-	^ okAction value: aBlock
+	^ okAction := aBlock
 ]
 
 { #category : #private }
 SpOkToolbar >> okActionBlock [
-
-	^ [ okAction value value == false
-		ifFalse: [ owner 
-			ifNil: [ self delete ] 
-			ifNotNil: [ owner delete ] ] ]
+	^ [ self okAction value == false ifFalse: [ owner ifNil: [ self delete ] ifNotNil: [ owner delete ] ] ]
 ]
 
 { #category : #accessing }

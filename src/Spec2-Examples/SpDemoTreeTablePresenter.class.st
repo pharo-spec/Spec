@@ -50,7 +50,7 @@ SpDemoTreeTablePresenter >> initializeWidgets [
 { #category : #accessing }
 SpDemoTreeTablePresenter >> menu [
 	^ self newMenu
-		addTitle: 'Context menu example';
+		title: 'Context menu example';
 		addGroup: [ :aGroup | 
 			aGroup
 				addItem: [ :anItem | 

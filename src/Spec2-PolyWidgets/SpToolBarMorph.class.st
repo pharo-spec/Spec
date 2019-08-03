@@ -86,6 +86,13 @@ SpToolBarMorph >> addItemsFromContext: aContext [
 
 ]
 
+{ #category : #updating }
+SpToolBarMorph >> clearItems [
+	
+	leftPanel removeAllMorphs.
+	rightPanel removeAllMorphs.
+]
+
 { #category : #accessing }
 SpToolBarMorph >> color [
 	^ color ifNil: [ Color transparent ]
@@ -161,7 +168,7 @@ SpToolBarMorph >> newPanelMorph [
 SpToolBarMorph >> newToolbarItemFont [
 	| buttonFont |
 
-	buttonFont := Smalltalk ui theme buttonFont.
+	buttonFont := self theme buttonFont.
 	^ LogicalFont 
 		familyName: buttonFont familyName 
 		pointSize: buttonFont pointSize - 3

@@ -16,26 +16,43 @@ Class {
 		'searchPresenter',
 		'baseItems'
 	],
-	#category : #'Spec2-PolyWidgets-ListAndTree'
+	#category : #'Spec2-Deprecated-Replaced'
 }
 
 { #category : #specs }
 SpSearchableList class >> defaultSpec [
-
-	^ SpLayout composed
-		newRow: #searchPresenter height: self toolbarHeight;
-		add: #listPresenter top: self toolbarHeight;
+	^ SpBoxLayout newVertical
+		add: #searchPresenter withConstraints: [ :constraints | constraints height: self toolbarHeight ];
+		add: #listPresenter;
 		yourself
+]
+
+{ #category : #examples }
+SpSearchableList class >> example [
+	<sampleInstance>
+	"self example"
+
+	^ self new
+		items: #(#aaa #abc #axz #bbb #bfbg #bof #c); openWithSpec
+]
+
+{ #category : #deprecation }
+SpSearchableList class >> isDeprecated [
+	"Now lists have a filter integrated in them."
+
+	^ true
 ]
 
 { #category : #initialization }
 SpSearchableList >> initializePresenter [
 	searchPresenter
-		whenTextChangedDo:
-			[ :newText |
-			searchPresenter getText asLowercase
+		whenTextChangedDo: [ :newText | 
+			searchPresenter text asLowercase
 				ifEmpty: [ listPresenter items: baseItems ]
-				ifNotEmpty: [ :text | listPresenter items: (baseItems select: [ :element | element asLowercase beginsWith: text ]) ] ]
+				ifNotEmpty: [ :text | 
+					listPresenter
+						items:
+							(baseItems select: [ :element | element asLowercase beginsWith: text ]) ] ]
 ]
 
 { #category : #initialization }

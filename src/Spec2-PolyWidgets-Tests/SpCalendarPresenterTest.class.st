@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'calendar'
 	],
-	#category : #'Spec2-PolyWidgets-Tests'
+	#category : #'Spec2-PolyWidgets-Tests-Tests'
 }
 
 { #category : #running }
@@ -108,15 +108,13 @@ SpCalendarPresenterTest >> testPreviousMonthButton [
 SpCalendarPresenterTest >> testWhenDaySelectedBlock [
 	| blockExecuted d |
 	blockExecuted := false.
-	d := (Date year: 2018 month: 9 day: 15).
+	d := Date year: 2018 month: 9 day: 15.
 	calendar
 		adaptToDate: d;
 		whenDaySelectedBlock: [ blockExecuted := true ].
-		
 	self deny: blockExecuted.
-	
+
 	"Dirty hack to access the button."
-	calendar daysButtons widgets value values first performAction.
-	
+	calendar daysButtons basicPresenters value values first performAction.
 	self assert: blockExecuted
 ]

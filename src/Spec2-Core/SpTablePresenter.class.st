@@ -11,7 +11,7 @@ Class {
 	#instVars : [
 		'#columns => SpObservableSlot',
 		'#showColumnHeaders => SpObservableSlot',
-		'#isResizableHolder'
+		'#isResizable => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
@@ -68,17 +68,17 @@ SpTablePresenter >> initialize [
 	super initialize.
 	showColumnHeaders := true.
 	columns := #().
-	isResizableHolder := false asValueHolder
+	isResizable := false
 ]
 
 { #category : #accessing }
 SpTablePresenter >> isResizable [
-	^ isResizableHolder value
+	^ isResizable
 ]
 
 { #category : #accessing }
 SpTablePresenter >> isResizable: aBoolean [
-	isResizableHolder value: aBoolean
+	isResizable := aBoolean
 ]
 
 { #category : #testing }
@@ -93,6 +93,12 @@ SpTablePresenter >> showColumnHeaders [
 	showColumnHeaders := true
 ]
 
+{ #category : #testing }
+SpTablePresenter >> valueAtColumn: aColumn row: aRow [ 
+
+	^ (columns at: aColumn) readObject: (self model items at: aRow)
+]
+
 { #category : #'api-events' }
 SpTablePresenter >> whenColumnsChangedDo: aBlock [
 	
@@ -101,7 +107,7 @@ SpTablePresenter >> whenColumnsChangedDo: aBlock [
 
 { #category : #'api-events' }
 SpTablePresenter >> whenIsResizableChangedDo: aBlock [
-	isResizableHolder whenChangedDo: aBlock
+	self property: #isResizable whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

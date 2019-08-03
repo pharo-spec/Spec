@@ -161,7 +161,7 @@ SpAbstractAdapterTestCase >> testVisibilityWithBlock [
 ]
 
 { #category : #running }
-SpAbstractAdapterTestCase >> testVisibilityWithBlock2 [
+SpAbstractAdapterTestCase >> testVisibilityWithBlockThatReturnsFalse [
 	presenter visibleIf: [ false ].
 	self deny: self adapter isVisible
 ]

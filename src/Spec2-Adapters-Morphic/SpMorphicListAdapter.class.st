@@ -59,7 +59,7 @@ SpMorphicListAdapter >> buildWidget [
 	self refreshWidgetHeaderTitle.
 	self refreshWidgetSelection.
 	self presenter whenItemFilterBlockChangedDo: [ :block | self updateItemFilterBlockWith: block ].
-	self updateItemFilterBlockWith: self itemFilterBlock.
+	self updateItemFilterBlockWith: self itemFilter.
 
 	widget bindKeyCombination: Character space toAction: [ self model clickOnSelectedItem ].
 
@@ -71,6 +71,14 @@ SpMorphicListAdapter >> hasFilter [
 	^ self widget submorphs anySatisfy: [ :each | each isKindOf: RubTextFieldMorph	"This morph is the explicit filter of the list" ]
 ]
 
+{ #category : #testing }
+SpMorphicListAdapter >> isNonEditableRow: aRow column: aColumn [
+
+	^ (self widget dataSource
+		cellColumn: (self widget columns at: aColumn)
+		row: aRow) submorphs allSatisfy: [ :e | e asReadOnlyMorph == e ]
+]
+
 { #category : #accessing }
 SpMorphicListAdapter >> isShowColumnHeaders [
 	
@@ -78,8 +86,8 @@ SpMorphicListAdapter >> isShowColumnHeaders [
 ]
 
 { #category : #'widget API' }
-SpMorphicListAdapter >> itemFilterBlock [
-	^ self model itemFilterBlock
+SpMorphicListAdapter >> itemFilter [
+	^ self model itemFilter
 ]
 
 { #category : #'widget API' }
@@ -172,6 +180,12 @@ SpMorphicListAdapter >> selectIndex: anInteger [
 	(anInteger = 0 and: [ widget selectedIndexes isEmpty ]) ifTrue: [ ^ self ].	
 	(widget selectedIndexes includes: anInteger) ifTrue: [^self].
 	widget selectIndex: anInteger
+]
+
+{ #category : #testing }
+SpMorphicListAdapter >> selectedIndexes [
+	
+	^ widget selectedIndexes
 ]
 
 { #category : #factory }
