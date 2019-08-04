@@ -64,16 +64,14 @@ SpMorphicToolBarAdapter >> updateItems: toolBarMorph [
 	toolBarMorph clearItems.
 
 	self model leftItems do: [ :each | 
-				toolBarMorph addItemLeft: (self 
-					configureItem: each 
-					morph: each buildWithSpec 
-					toolBar: toolBarMorph) ].
+		toolBarMorph addItemLeft: (self 
+			configureItem: each 
+			morph: each buildWithSpec 
+			toolBar: toolBarMorph) ].
 
 	self model rightItems do: [ :each | 
-				toolBarMorph addItemRight: (self 
-					configureItem: each 
-					morph: each buildWithSpec 
-					toolBar: toolBarMorph) ]
-
-
+		toolBarMorph addItemRight: (self 
+			configureItem: each 
+			morph: each buildWithSpec 
+			toolBar: toolBarMorph) ]
 ]
