@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'biChooseMethod'
 	],
-	#category : #'Spec2-PolyWidgets-Tests'
+	#category : #'Spec2-Tools-Tests-Tests'
 }
 
 { #category : #running }

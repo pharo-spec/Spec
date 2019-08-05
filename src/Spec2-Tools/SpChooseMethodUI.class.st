@@ -40,7 +40,7 @@ Class {
 		'radioButtonClassSide',
 		'protocolList'
 	],
-	#category : #'Spec2-PolyWidgets'
+	#category : #'Spec2-Tools-ChooseMethod'
 }
 
 { #category : #specs }

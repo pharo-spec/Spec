@@ -87,6 +87,8 @@ BaselineOfSpec2 >> baseline: spec [
 		do: [ spec
 				package: 'Spec2-Tools'
 					with: [ spec requires: #('Spec2-PolyWidgets') ];
+				package: 'Spec2-Tools-Tests'
+					with: [ spec requires: #('Spec2-Tests' 'Spec2-Tools') ];
 				package: 'Spec2-Examples'
 					with: [ spec requires: #('Spec2-Tools') ];
 				package: 'Spec2-Deprecated-Tools'
