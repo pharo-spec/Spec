@@ -19,7 +19,7 @@ SpChooseMethodUITest >> setUp [
 { #category : #tests }
 SpChooseMethodUITest >> testClassSideRadioButtonState [
 	biChooseMethod radioButtonClassSide click.
-	self deny: biChooseMethod isInstanceButtonSelected
+	self deny: biChooseMethod isInstanceSideSelected
 ]
 
 { #category : #tests }
@@ -37,7 +37,7 @@ SpChooseMethodUITest >> testInitializeClassListShouldBeSelectTheFistItem [
 
 { #category : #tests }
 SpChooseMethodUITest >> testInitializeIsInstanceButtonSelectedShouldBetrue [
-	self assert: biChooseMethod isInstanceButtonSelected
+	self assert: biChooseMethod isInstanceSideSelected
 ]
 
 { #category : #tests }
@@ -60,9 +60,9 @@ SpChooseMethodUITest >> testInitializeProtocolListShouldSelectedItemSetToAll [
 { #category : #tests }
 SpChooseMethodUITest >> testInstanceSideRadioButtonClickIsInstanceButtonShouldbeTrue [
 	biChooseMethod radioButtonClassSide click.
-	self deny: biChooseMethod isInstanceButtonSelected.
+	self deny: biChooseMethod isInstanceSideSelected.
 	biChooseMethod radioButtonInstanceSide click.
-	self assert: biChooseMethod isInstanceButtonSelected
+	self assert: biChooseMethod isInstanceSideSelected
 ]
 
 { #category : #tests }

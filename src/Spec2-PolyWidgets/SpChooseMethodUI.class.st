@@ -114,7 +114,7 @@ SpChooseMethodUI >> classListAction [
 		transmitTo: protocolList
 		transform: [ :selectedClass |
 			selectedClass
-				ifNotNil: [ self isInstanceButtonSelected
+				ifNotNil: [ self isInstanceSideSelected
 						ifTrue:
 							[ selectedClass organization allProtocols as: OrderedCollection ]
 						ifFalse:
@@ -125,9 +125,10 @@ SpChooseMethodUI >> classListAction [
 				selectIndex: ((protcolList items collect: #name) indexOf: '-- all --') ]
 ]
 
-{ #category : #utilities }
-SpChooseMethodUI >> classMethodsOf: aClass [
-	^ aClass class methods
+{ #category : #'initialization - actions' }
+SpChooseMethodUI >> fillWith: aClass [
+	methodList items: aClass methods.
+	^ protocolList items: (aClass protocols collect: [ :eachSymbol | aClass organization protocolOrganizer protocolNamed: eachSymbol ])
 ]
 
 { #category : #initialization }
@@ -167,8 +168,8 @@ SpChooseMethodUI >> initializeWidgets [
 		sortingBlock: #name ascending;
 		icons: [ :item | self iconNamed: item systemIconName ].
 
-	protocolList 
-		displayBlock: [:protocol |protocol name  ];
+	protocolList
+		displayBlock: #name;
 		sortingBlock: #name ascending.
 
 	methodList
@@ -188,13 +189,8 @@ SpChooseMethodUI >> initializeWidgets [
 		add: methodList
 ]
 
-{ #category : #utilities }
-SpChooseMethodUI >> instanceMethodsOf: aClass [
-	^ aClass methods
-]
-
 { #category : #testing }
-SpChooseMethodUI >> isInstanceButtonSelected [
+SpChooseMethodUI >> isInstanceSideSelected [
 	^ radioButtonInstanceSide state
 ]
 
@@ -205,16 +201,12 @@ SpChooseMethodUI >> methodList [
 
 { #category : #utilities }
 SpChooseMethodUI >> methodNamed: methodSelector [
-	^ self isInstanceButtonSelected
-		ifTrue: [ self selectedClass methodNamed: methodSelector ]
-		ifFalse: [ self selectedClass class methodNamed: methodSelector ]
+	^ (self isInstanceSideSelected ifTrue: [ self selectedClass ] ifFalse: [ self selectedClass class ]) methodNamed: methodSelector
 ]
 
 { #category : #utilities }
 SpChooseMethodUI >> methodsFromClass: aClass [
-	^ (self isInstanceButtonSelected
-		ifTrue: [ self instanceMethodsOf: aClass ]
-		ifFalse: [ self classMethodsOf: aClass ]) asOrderedCollection
+	^ (self isInstanceSideSelected ifTrue: [ aClass ] ifFalse: [ aClass class ]) methods asOrderedCollection
 ]
 
 { #category : #accessing }
@@ -241,12 +233,9 @@ SpChooseMethodUI >> protocolList [
 SpChooseMethodUI >> protocolListAction [
 	protocolList
 		transmitTo: methodList
-		transform: [ :selectedProtocol | 
-			selectedProtocol
-				ifNotNil: [ (selectedProtocol methods
-						collect:
-							[ :methodSelector | self methodNamed: methodSelector ])
-						asOrderedCollection ]
+		transform:
+			[ :selectedProtocol | selectedProtocol
+				ifNotNil: [ (selectedProtocol methods collect: [ :methodSelector | self methodNamed: methodSelector ]) asOrderedCollection ]
 				ifNil: [ #() ] ]
 		postTransmission: [ :methodPresenter | methodPresenter selectIndex: 1 ]
 ]
@@ -263,22 +252,8 @@ SpChooseMethodUI >> radioButtonInstanceSide [
 
 { #category : #'initialization - actions' }
 SpChooseMethodUI >> radioButtonsAction [
-	radioButtonClassSide
-		whenActivatedDo: [ methodList items: (self classMethodsOf: self selectedClass).
-			protocolList
-				items:
-					(self selectedClass class protocols
-						collect: [ :eachSymbol | 
-							self selectedClass class organization protocolOrganizer
-								protocolNamed: eachSymbol ]) ].
-	radioButtonInstanceSide
-		whenActivatedDo: [ methodList items: (self instanceMethodsOf: self selectedClass).
-			protocolList
-				items:
-					(self selectedClass protocols
-						collect: [ :eachSymbol | 
-							self selectedClass organization protocolOrganizer
-								protocolNamed: eachSymbol ]) ]
+	radioButtonClassSide whenActivatedDo: [ self fillWith: self selectedClass class ].
+	radioButtonInstanceSide whenActivatedDo: [ self fillWith: self selectedClass ]
 ]
 
 { #category : #accessing }
@@ -294,4 +269,9 @@ SpChooseMethodUI >> selectedMethod [
 { #category : #accessing }
 SpChooseMethodUI >> selectedPackage [
 	^ packageList selectedItem
+]
+
+{ #category : #accessing }
+SpChooseMethodUI >> selectedProtocol [
+	^ protocolList selection selectedItem
 ]
