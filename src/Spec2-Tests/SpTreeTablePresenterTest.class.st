@@ -25,58 +25,50 @@ SpTreeTablePresenterTest >> setUp [
 
 { #category : #tests }
 SpTreeTablePresenterTest >> testActivationOnDoubleClickShouldActivateOnDoubleClick [
-
 	| activatedItem |
-	activatedItem := nil.
 	presenter
 		activateOnDoubleClick;
 		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].
-	
+
 	presenter doubleClickAtPath: #(1 2 1).
-	
-	self assert: activatedItem equals: 110.
+
+	self assert: activatedItem equals: 110
 ]
 
 { #category : #tests }
 SpTreeTablePresenterTest >> testActivationOnDoubleClickShouldNotActivateOnClick [
-
 	| activatedItem |
-	activatedItem := nil.
 	presenter
 		activateOnDoubleClick;
-		whenActivatedDo: [ :selection  | activatedItem := selection selectedItem ].
-	
+		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].
+
 	presenter clickAtPath: #(1).
-	
-	self assert: activatedItem equals: nil.
+
+	self assert: activatedItem isNil
 ]
 
 { #category : #tests }
 SpTreeTablePresenterTest >> testActivationOnSingleClickShouldActivateOnClick [
-
 	| activatedItem |
-	activatedItem := nil.
 	presenter
 		activateOnSingleClick;
 		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].
-	
-	presenter clickAtPath:#(1).
-	
-	self assert: activatedItem equals: 1.
+
+	presenter clickAtPath: #(1).
+
+	self assert: activatedItem equals: 1
 ]
 
 { #category : #tests }
 SpTreeTablePresenterTest >> testActivationOnSingleClickShouldNotActivateOnClickOutside [
-
 	| activatedItem |
-	activatedItem := nil.
 	presenter
 		activateOnSingleClick;
 		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].
-	
+
 	presenter clickAtPath: #(4).
-	
-	self assert: activatedItem equals: nil
+
+	self assert: activatedItem isNil
 ]
 
 { #category : #tests }
