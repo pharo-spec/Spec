@@ -1,5 +1,5 @@
 Class {
-	#name : #SpMorphicGridLayoutTests,
+	#name : #SpMorphicGridLayoutTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'label1',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #private }
-SpMorphicGridLayoutTests >> newLayout [
+SpMorphicGridLayoutTest >> newLayout [
 	
 	^ SpMorphicGridLayout new
 		layout: (SpGridLayout new
@@ -26,7 +26,7 @@ SpMorphicGridLayoutTests >> newLayout [
 ]
 
 { #category : #private }
-SpMorphicGridLayoutTests >> place: aMorph at: aPoint [ 
+SpMorphicGridLayoutTest >> place: aMorph at: aPoint [ 
 
 	aMorph 
 		setProperty: #gridConstraints 
@@ -34,7 +34,7 @@ SpMorphicGridLayoutTests >> place: aMorph at: aPoint [
 ]
 
 { #category : #private }
-SpMorphicGridLayoutTests >> place: aMorph at: aPoint span: spanPoint [
+SpMorphicGridLayoutTest >> place: aMorph at: aPoint span: spanPoint [
 
 	aMorph 
 		setProperty: #gridConstraints 
@@ -42,7 +42,7 @@ SpMorphicGridLayoutTests >> place: aMorph at: aPoint span: spanPoint [
 ]
 
 { #category : #running }
-SpMorphicGridLayoutTests >> setUp [
+SpMorphicGridLayoutTest >> setUp [
 	
 	super setUp.
 	label1 := Morph new.
@@ -60,13 +60,13 @@ SpMorphicGridLayoutTests >> setUp [
 ]
 
 { #category : #private }
-SpMorphicGridLayoutTests >> style [ 
+SpMorphicGridLayoutTest >> style [ 
 
 	^ self styleExtent: 50@20
 ]
 
 { #category : #private }
-SpMorphicGridLayoutTests >> styleExtent: aPoint [
+SpMorphicGridLayoutTest >> styleExtent: aPoint [
 
 	^ SpMorphicStyleSheet new 
 		propertyAt: #extent put: (SpMorphicStyleSheetExtent 
@@ -77,7 +77,7 @@ SpMorphicGridLayoutTests >> styleExtent: aPoint [
 ]
 
 { #category : #tests }
-SpMorphicGridLayoutTests >> testBasicLayout [
+SpMorphicGridLayoutTest >> testBasicLayout [
 	"
 	-----------
 	| 50 | 50 |
@@ -102,7 +102,7 @@ SpMorphicGridLayoutTests >> testBasicLayout [
 ]
 
 { #category : #tests }
-SpMorphicGridLayoutTests >> testBorderWidth [
+SpMorphicGridLayoutTest >> testBorderWidth [
 	"
 	---------------
 	| 5 | 5  | 5  |
@@ -129,7 +129,7 @@ SpMorphicGridLayoutTests >> testBorderWidth [
 ]
 
 { #category : #tests }
-SpMorphicGridLayoutTests >> testColumnHomogeneousDiferentRowsAndColumns [
+SpMorphicGridLayoutTest >> testColumnHomogeneousDiferentRowsAndColumns [
 	"Each element in a different row and column
 	
 	-------------------------
@@ -143,7 +143,6 @@ SpMorphicGridLayoutTests >> testColumnHomogeneousDiferentRowsAndColumns [
 	-------------------------	
 	"
 	| layout |
-	self skip. "This test is broken for now. In the end it should work but it's not yet the case."
 	
 	self place: label1 at: 1@1.
 	self place: morph1 at: 2@2.
@@ -165,7 +164,7 @@ SpMorphicGridLayoutTests >> testColumnHomogeneousDiferentRowsAndColumns [
 ]
 
 { #category : #tests }
-SpMorphicGridLayoutTests >> testColumnNotHomogeneousDiferentRowsAndColumns [
+SpMorphicGridLayoutTest >> testColumnNotHomogeneousDiferentRowsAndColumns [
 	"Each element in a different row and column
 	
 	-------------------------
@@ -203,7 +202,7 @@ SpMorphicGridLayoutTests >> testColumnNotHomogeneousDiferentRowsAndColumns [
 ]
 
 { #category : #tests }
-SpMorphicGridLayoutTests >> testColumnNotHomogeneousPairedRowsAndColumns [
+SpMorphicGridLayoutTest >> testColumnNotHomogeneousPairedRowsAndColumns [
 	"Paired elements in a rows and columns
 	
 	-----------
@@ -214,7 +213,6 @@ SpMorphicGridLayoutTests >> testColumnNotHomogeneousPairedRowsAndColumns [
 	
 	"
 	| layout |
-	self skip. "This test is broken for now. In the end it should work but it's not yet the case."
 	
 	self place: label1 at: 1@1.
 	self place: morph1 at: 2@1.
@@ -239,7 +237,7 @@ SpMorphicGridLayoutTests >> testColumnNotHomogeneousPairedRowsAndColumns [
 ]
 
 { #category : #tests }
-SpMorphicGridLayoutTests >> testColumnSpacing [
+SpMorphicGridLayoutTest >> testColumnSpacing [
 	"
 	---------------
 	| 50 | 5 | 50 |
@@ -264,11 +262,10 @@ SpMorphicGridLayoutTests >> testColumnSpacing [
 ]
 
 { #category : #tests }
-SpMorphicGridLayoutTests >> testLayoutIn [
+SpMorphicGridLayoutTest >> testLayoutIn [
 	"This is a meta-test that tries all the others (just to have access to all tests while seeing 
 	 the class. Yes, I know that means all tests are executed twice in CI, but they are fast :)"
 
-	self skip. "This test is broken for now. In the end it should work but it's not yet the case."
 	(self class localSelectors 
 		reject: [ :each | each = #testLayoutIn ])
 		select: [ :each | each beginsWith: 'test' ]
@@ -279,7 +276,7 @@ SpMorphicGridLayoutTests >> testLayoutIn [
 ]
 
 { #category : #tests }
-SpMorphicGridLayoutTests >> testRowSpacing [
+SpMorphicGridLayoutTest >> testRowSpacing [
 	"
 	-----------
 	| 50 | 50 |
@@ -306,7 +303,7 @@ SpMorphicGridLayoutTests >> testRowSpacing [
 ]
 
 { #category : #tests }
-SpMorphicGridLayoutTests >> testSpanColumn [
+SpMorphicGridLayoutTest >> testSpanColumn [
 	"Each element in a different row and column
 	
 	--------------------
@@ -316,7 +313,6 @@ SpMorphicGridLayoutTests >> testSpanColumn [
 	--------------------
 	"
 	| layout |
-	self skip. "This test is broken for now. In the end it should work but it's not yet the case."
 	
 	self place: label1 at: 1@1.
 	self place: morph1 at: 2@1.
@@ -334,7 +330,7 @@ SpMorphicGridLayoutTests >> testSpanColumn [
 ]
 
 { #category : #tests }
-SpMorphicGridLayoutTests >> testSpanRow [
+SpMorphicGridLayoutTest >> testSpanRow [
 	"Each element in a different row and column
 	
 	--------------------
@@ -344,7 +340,7 @@ SpMorphicGridLayoutTests >> testSpanRow [
 	--------------------
 	"
 	| layout |
-	self skip. "This test is broken for now. In the end it should work but it's not yet the case."
+	
 	self place: label1 at: 1@1.
 	self place: morph1 at: 2@1 span: 1@2.
 	self place: label2 at: 1@2.

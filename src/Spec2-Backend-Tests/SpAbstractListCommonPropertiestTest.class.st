@@ -20,7 +20,7 @@ SpAbstractListCommonPropertiestTest >> testChangeListInPresenterUpdatesWidget [
 
 	self presenter items: #( '1' '2' '3').
 
-	backendForTest assertList: self widget displayItems: #('1' '2' '3')
+	backendForTest assertList: self adapter displayItems: #('1' '2' '3')
 ]
 
 { #category : #running }
@@ -31,7 +31,7 @@ SpAbstractListCommonPropertiestTest >> testDoubleClickActivatesRowInDoubleClickA
 	self presenter activateOnDoubleClick.
 	self presenter whenActivatedDo: [ activated := true ].
 	
-	backendForTest doubleClickFirstRowAndColumn: self widget.
+	backendForTest doubleClickFirstRowAndColumn: self adapter.
 		
 	self assert: activated
 ]
@@ -55,7 +55,7 @@ SpAbstractListCommonPropertiestTest >> testSingleClickActivatesRowInSingleClickA
 		activateOnSingleClick;
 		whenActivatedDo: [ activated := true ].
 
-	backendForTest clickFirstRowAndColumn: self widget.
+	backendForTest clickFirstRowAndColumn: self adapter.
 	
 	self assert: activated.
 ]

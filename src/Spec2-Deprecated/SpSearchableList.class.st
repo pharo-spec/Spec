@@ -46,11 +46,13 @@ SpSearchableList class >> isDeprecated [
 { #category : #initialization }
 SpSearchableList >> initializePresenter [
 	searchPresenter
-		whenTextChangedDo:
-			[ :newText |
-			searchPresenter getText asLowercase
+		whenTextChangedDo: [ :newText | 
+			searchPresenter text asLowercase
 				ifEmpty: [ listPresenter items: baseItems ]
-				ifNotEmpty: [ :text | listPresenter items: (baseItems select: [ :element | element asLowercase beginsWith: text ]) ] ]
+				ifNotEmpty: [ :text | 
+					listPresenter
+						items:
+							(baseItems select: [ :element | element asLowercase beginsWith: text ]) ] ]
 ]
 
 { #category : #initialization }

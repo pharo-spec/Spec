@@ -86,6 +86,13 @@ SpToolBarMorph >> addItemsFromContext: aContext [
 
 ]
 
+{ #category : #updating }
+SpToolBarMorph >> clearItems [
+	
+	leftPanel removeAllMorphs.
+	rightPanel removeAllMorphs.
+]
+
 { #category : #accessing }
 SpToolBarMorph >> color [
 	^ color ifNil: [ Color transparent ]

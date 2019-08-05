@@ -68,6 +68,12 @@ SpMorphicGridLayout >> calculateWidthFor: aMorph base: aNumber [
 	^ aMorph width
 ]
 
+{ #category : #'as yet unclassified' }
+SpMorphicGridLayout >> columnConstraintsAt: aNumber [
+ 
+	^ layout columnConstraintsAt: aNumber
+]
+
 { #category : #accessing }
 SpMorphicGridLayout >> columnSpacing [
 
