@@ -16,7 +16,6 @@ Class {
 		'#showColumnHeaders => SpObservableSlot',
 		'#isResizable => SpObservableSlot',
 		'#selection => SpObservableSlot',
-		'#doubleClickAction => SpObservableSlot',
 		'#roots => SpObservableSlot',
 		'#childrenBlock',
 		'#contextMenu => SpObservableSlot',
@@ -32,25 +31,25 @@ SpTreeTablePresenter class >> adapterName [
 	^ #TreeTableAdapter
 ]
 
-{ #category : #initialization }
+{ #category : #api }
 SpTreeTablePresenter >> activateOnDoubleClick [
 	
 	activateOnSingleClick := false
 ]
 
-{ #category : #initialization }
+{ #category : #api }
 SpTreeTablePresenter >> activateOnSingleClick [
 	
 	activateOnSingleClick := true
 ]
 
-{ #category : #initialization }
+{ #category : #testing }
 SpTreeTablePresenter >> activatesOnDoubleClick [
 	
 	^ activateOnSingleClick not
 ]
 
-{ #category : #initialization }
+{ #category : #testing }
 SpTreeTablePresenter >> activatesOnSingleClick [
 	
 	^ activateOnSingleClick
@@ -100,7 +99,7 @@ SpTreeTablePresenter >> childrenFor: anObject [
 	^ self children value: anObject
 ]
 
-{ #category : #initialization }
+{ #category : #simulation }
 SpTreeTablePresenter >> clickAtPath: aPath [
 
 	self selectPath: aPath.
@@ -131,7 +130,7 @@ SpTreeTablePresenter >> contextMenu: aValuable [
 	contextMenu := aValuable
 ]
 
-{ #category : #initialization }
+{ #category : #simulation }
 SpTreeTablePresenter >> doActivateAtPath: aPath [
 	"Activate only if there is an item at that position"
 
@@ -143,26 +142,7 @@ SpTreeTablePresenter >> doActivateAtPath: aPath [
 				yourself)
 ]
 
-{ #category : #private }
-SpTreeTablePresenter >> doubleClickAction [
-
-	^ doubleClickAction
-]
-
-{ #category : #'api-events' }
-SpTreeTablePresenter >> doubleClickAction: aBlockClosure [ 
-	
-	doubleClickAction := aBlockClosure
-]
-
 { #category : #simulation }
-SpTreeTablePresenter >> doubleClickAtIndex: anInteger [ 
-	
-	self selectedIndex: anInteger.
-	doubleClickAction cull: anInteger
-]
-
-{ #category : #initialization }
 SpTreeTablePresenter >> doubleClickAtPath: aPath [
 	self selectPath: aPath.
 	
@@ -295,7 +275,7 @@ SpTreeTablePresenter >> unselectAll [
 	self selection unselectAll
 ]
 
-{ #category : #initialization }
+{ #category : #'api-events' }
 SpTreeTablePresenter >> whenActivatedDo: aBlockClosure [
 	activationBlock := aBlockClosure
 ]
