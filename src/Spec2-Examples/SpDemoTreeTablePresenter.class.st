@@ -18,6 +18,7 @@ SpDemoTreeTablePresenter class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
 		add: #table1;
+		add: 'Double click to browse.' height: self labelHeight;
 		yourself
 ]
 
@@ -44,7 +45,9 @@ SpDemoTreeTablePresenter >> initializeWidgets [
 		roots: {Object};
 		children: [ :aClass | aClass subclasses ];
 		beResizable;
-		contextMenu: self menu
+		contextMenu: self menu;
+		activateOnDoubleClick;
+		whenActivatedDo: [ :selection | selection selectedItem browse ]
 ]
 
 { #category : #accessing }
