@@ -16,10 +16,11 @@ Class {
 		'#showColumnHeaders => SpObservableSlot',
 		'#isResizable => SpObservableSlot',
 		'#selection => SpObservableSlot',
-		'#doubleClickAction => SpObservableSlot',
 		'#roots => SpObservableSlot',
 		'#childrenBlock',
-		'#contextMenu => SpObservableSlot'
+		'#contextMenu => SpObservableSlot',
+		'#activationBlock',
+		'#activateOnSingleClick'
 	],
 	#category : #'Spec2-Core-Widgets-Tree'
 }
@@ -28,6 +29,30 @@ Class {
 SpTreeTablePresenter class >> adapterName [
 
 	^ #TreeTableAdapter
+]
+
+{ #category : #api }
+SpTreeTablePresenter >> activateOnDoubleClick [
+	
+	activateOnSingleClick := false
+]
+
+{ #category : #api }
+SpTreeTablePresenter >> activateOnSingleClick [
+	
+	activateOnSingleClick := true
+]
+
+{ #category : #testing }
+SpTreeTablePresenter >> activatesOnDoubleClick [
+	
+	^ activateOnSingleClick not
+]
+
+{ #category : #testing }
+SpTreeTablePresenter >> activatesOnSingleClick [
+	
+	^ activateOnSingleClick
 ]
 
 { #category : #api }
@@ -74,6 +99,15 @@ SpTreeTablePresenter >> childrenFor: anObject [
 	^ self children value: anObject
 ]
 
+{ #category : #simulation }
+SpTreeTablePresenter >> clickAtPath: aPath [
+
+	self selectPath: aPath.
+
+	activateOnSingleClick ifFalse: [ ^ self ].
+	self doActivateAtPath: aPath
+]
+
 { #category : #accessing }
 SpTreeTablePresenter >> columns [
 	^ columns
@@ -96,23 +130,24 @@ SpTreeTablePresenter >> contextMenu: aValuable [
 	contextMenu := aValuable
 ]
 
-{ #category : #private }
-SpTreeTablePresenter >> doubleClickAction [
+{ #category : #simulation }
+SpTreeTablePresenter >> doActivateAtPath: aPath [
+	"Activate only if there is an item at that position"
 
-	^ doubleClickAction
-]
-
-{ #category : #'api-events' }
-SpTreeTablePresenter >> doubleClickAction: aBlockClosure [ 
-	
-	doubleClickAction := aBlockClosure
+	self itemAtPath: aPath ifAbsent: [ ^ self ].
+	activationBlock
+		cull:
+			((SpTreeSingleSelectionMode on: self)
+				selectPath: aPath;
+				yourself)
 ]
 
 { #category : #simulation }
-SpTreeTablePresenter >> doubleClickAtIndex: anInteger [ 
+SpTreeTablePresenter >> doubleClickAtPath: aPath [
+	self selectPath: aPath.
 	
-	self selectedIndex: anInteger.
-	doubleClickAction cull: anInteger
+	activateOnSingleClick ifTrue: [ ^ self ].
+	self doActivateAtPath: aPath
 ]
 
 { #category : #api }
@@ -126,12 +161,16 @@ SpTreeTablePresenter >> initialize [
 	super initialize.
 
 	self withScrollBars.
+	
+	activationBlock := [ ].
+	
 	showColumnHeaders := true.
 	columns := #().
 	isResizable := false.
 	selection := SpTreeSingleSelectionMode on: self.
 	childrenBlock := [ :item | #() ].
 	roots := #().
+	self activateOnDoubleClick.
 	self registerEvents
 ]
 
@@ -234,6 +273,11 @@ SpTreeTablePresenter >> showColumnHeaders [
 SpTreeTablePresenter >> unselectAll [ 
 
 	self selection unselectAll
+]
+
+{ #category : #'api-events' }
+SpTreeTablePresenter >> whenActivatedDo: aBlockClosure [
+	activationBlock := aBlockClosure
 ]
 
 { #category : #'api-events' }

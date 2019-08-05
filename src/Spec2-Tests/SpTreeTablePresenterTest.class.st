@@ -24,6 +24,54 @@ SpTreeTablePresenterTest >> setUp [
 ]
 
 { #category : #tests }
+SpTreeTablePresenterTest >> testActivationOnDoubleClickShouldActivateOnDoubleClick [
+	| activatedItem |
+	presenter
+		activateOnDoubleClick;
+		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].
+
+	presenter doubleClickAtPath: #(1 2 1).
+
+	self assert: activatedItem equals: 110
+]
+
+{ #category : #tests }
+SpTreeTablePresenterTest >> testActivationOnDoubleClickShouldNotActivateOnClick [
+	| activatedItem |
+	presenter
+		activateOnDoubleClick;
+		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].
+
+	presenter clickAtPath: #(1).
+
+	self assert: activatedItem isNil
+]
+
+{ #category : #tests }
+SpTreeTablePresenterTest >> testActivationOnSingleClickShouldActivateOnClick [
+	| activatedItem |
+	presenter
+		activateOnSingleClick;
+		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].
+
+	presenter clickAtPath: #(1).
+
+	self assert: activatedItem equals: 1
+]
+
+{ #category : #tests }
+SpTreeTablePresenterTest >> testActivationOnSingleClickShouldNotActivateOnClickOutside [
+	| activatedItem |
+	presenter
+		activateOnSingleClick;
+		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].
+
+	presenter clickAtPath: #(4).
+
+	self assert: activatedItem isNil
+]
+
+{ #category : #tests }
 SpTreeTablePresenterTest >> testContextMenu [
 	| menu changed |
 	self assert: presenter contextMenu isNil.
