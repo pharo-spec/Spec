@@ -1,6 +1,6 @@
 Class {
 	#name : #SpLabelledContainerTest,
-	#superclass : #SpSmokeTestCase,
+	#superclass : #SpSmokeTest,
 	#category : #'Spec2-PolyWidgets-Tests-Tests'
 }
 

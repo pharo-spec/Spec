@@ -1,5 +1,5 @@
 Class {
-	#name : #SpAbstractAdapterTestCase,
+	#name : #SpAbstractAdapterTest,
 	#superclass : #ParametrizedTestCase,
 	#instVars : [
 		'presenter',
@@ -11,12 +11,12 @@ Class {
 }
 
 { #category : #testing }
-SpAbstractAdapterTestCase class >> isAbstract [ 
-	^ self == SpAbstractAdapterTestCase
+SpAbstractAdapterTest class >> isAbstract [ 
+	^ self == SpAbstractAdapterTest
 ]
 
 { #category : #testing }
-SpAbstractAdapterTestCase class >> testParameters [ 
+SpAbstractAdapterTest class >> testParameters [ 
 
 	^ ParametrizedTestMatrix new
 		forSelector: #specInitializationStrategy
@@ -27,7 +27,7 @@ SpAbstractAdapterTestCase class >> testParameters [
 ]
 
 { #category : #running }
-SpAbstractAdapterTestCase >> adapter [
+SpAbstractAdapterTest >> adapter [
 
 	"Force opening the spec instance here.
 	The action should have been correctly configured before
@@ -37,79 +37,79 @@ SpAbstractAdapterTestCase >> adapter [
 ]
 
 { #category : #asserting }
-SpAbstractAdapterTestCase >> assertIcon: anIcon equals: aForm [ 
+SpAbstractAdapterTest >> assertIcon: anIcon equals: aForm [ 
 	
 	backendForTest assertIcon: anIcon equals: aForm
 ]
 
 { #category : #accessing }
-SpAbstractAdapterTestCase >> backendForTest: aClass [ 
+SpAbstractAdapterTest >> backendForTest: aClass [ 
 	
 	backendForTest := aClass new
 ]
 
 { #category : #accessing }
-SpAbstractAdapterTestCase >> classToTest [
+SpAbstractAdapterTest >> classToTest [
 
 	^ self subclassResponsibility
 ]
 
 { #category : #utils }
-SpAbstractAdapterTestCase >> emulateCenterClick [
+SpAbstractAdapterTest >> emulateCenterClick [
 
 	self emulateClick: MouseButtonEvent blueButton
 ]
 
 { #category : #utils }
-SpAbstractAdapterTestCase >> emulateClick: mouseButtonCode [
+SpAbstractAdapterTest >> emulateClick: mouseButtonCode [
 
 	backendForTest emulateClick: mouseButtonCode onTest: self.
 ]
 
 { #category : #utils }
-SpAbstractAdapterTestCase >> emulateLeftClick [
+SpAbstractAdapterTest >> emulateLeftClick [
 
 	self emulateClick: MouseButtonEvent redButton
 ]
 
 { #category : #utils }
-SpAbstractAdapterTestCase >> emulateRightClick [
+SpAbstractAdapterTest >> emulateRightClick [
 
 	self emulateClick: MouseButtonEvent yellowButton
 ]
 
 { #category : #running }
-SpAbstractAdapterTestCase >> initializeTestedInstance [
+SpAbstractAdapterTest >> initializeTestedInstance [
 ]
 
 { #category : #running }
-SpAbstractAdapterTestCase >> openInstance [
+SpAbstractAdapterTest >> openInstance [
 
 	backendForTest openInstanceOf: self 
 
 ]
 
 { #category : #private }
-SpAbstractAdapterTestCase >> performTest [
+SpAbstractAdapterTest >> performTest [
 	
 	specInitializationStrategy beforeTest: self.
 	super performTest.
 ]
 
 { #category : #running }
-SpAbstractAdapterTestCase >> prepareToRunAgain [
+SpAbstractAdapterTest >> prepareToRunAgain [
 
 	backendForTest runTest: [ super prepareToRunAgain ]
 
 ]
 
 { #category : #accessing }
-SpAbstractAdapterTestCase >> presenter [
+SpAbstractAdapterTest >> presenter [
 	^ presenter
 ]
 
 { #category : #running }
-SpAbstractAdapterTestCase >> runCase [
+SpAbstractAdapterTest >> runCase [
 
 	self resources do: [:each | each availableFor: self].
 	[	super setUp.
@@ -123,61 +123,61 @@ SpAbstractAdapterTestCase >> runCase [
 ]
 
 { #category : #running }
-SpAbstractAdapterTestCase >> setUp [
+SpAbstractAdapterTest >> setUp [
 	super setUp.	"This super is useless but it's to make the release tests happy."
 	self error: 'Do not override me.... use #initializeTestedInstance'
 ]
 
 { #category : #accessing }
-SpAbstractAdapterTestCase >> specInitializationStrategy: aStrategy [
+SpAbstractAdapterTest >> specInitializationStrategy: aStrategy [
 	
 	specInitializationStrategy := aStrategy
 ]
 
 { #category : #running }
-SpAbstractAdapterTestCase >> tearDown [
+SpAbstractAdapterTest >> tearDown [
 	window ifNotNil: [ window delete ].
 	super tearDown
 ]
 
 { #category : #running }
-SpAbstractAdapterTestCase >> testHidePresenterHidesWidget [
+SpAbstractAdapterTest >> testHidePresenterHidesWidget [
 	
 	self presenter hide.
 	self deny: self adapter isVisible
 ]
 
 { #category : #running }
-SpAbstractAdapterTestCase >> testShowPresenterShowsWidget [
+SpAbstractAdapterTest >> testShowPresenterShowsWidget [
 	
 	self presenter show.
 	self assert: self adapter isVisible
 ]
 
 { #category : #running }
-SpAbstractAdapterTestCase >> testVisibilityWithBlock [
+SpAbstractAdapterTest >> testVisibilityWithBlock [
 	presenter visibleIf: [ true ].
 	self assert: self adapter isVisible
 ]
 
 { #category : #running }
-SpAbstractAdapterTestCase >> testVisibilityWithBlockThatReturnsFalse [
+SpAbstractAdapterTest >> testVisibilityWithBlockThatReturnsFalse [
 	presenter visibleIf: [ false ].
 	self deny: self adapter isVisible
 ]
 
 { #category : #running }
-SpAbstractAdapterTestCase >> widget [
+SpAbstractAdapterTest >> widget [
 
 	^ self adapter widget
 ]
 
 { #category : #accessing }
-SpAbstractAdapterTestCase >> window [
+SpAbstractAdapterTest >> window [
 	^ window
 ]
 
 { #category : #accessing }
-SpAbstractAdapterTestCase >> window: aWindowPresenter [ 
+SpAbstractAdapterTest >> window: aWindowPresenter [ 
 	window := aWindowPresenter
 ]

@@ -1,17 +1,17 @@
 Class {
-	#name : #SpMorphicMultiColumnListTests,
+	#name : #SpMorphicMultiColumnListTest,
 	#superclass : #SpMorphicAdapterTestCase,
 	#category : #'Spec2-Compatibility-Tests'
 }
 
 { #category : #running }
-SpMorphicMultiColumnListTests >> classToTest [
+SpMorphicMultiColumnListTest >> classToTest [
 
 	^ SpMultiColumnListPresenter
 ]
 
 { #category : #tests }
-SpMorphicMultiColumnListTests >> testColumnsAreDynamicallySetInPresenter [
+SpMorphicMultiColumnListTest >> testColumnsAreDynamicallySetInPresenter [
 
 	self presenter
 		displayBlock: [ :item | { item . 42 } "2 elements for 2 columns" ];
@@ -20,7 +20,7 @@ SpMorphicMultiColumnListTests >> testColumnsAreDynamicallySetInPresenter [
 ]
 
 { #category : #tests }
-SpMorphicMultiColumnListTests >> testColumnsAreDynamicallySetInWidget [
+SpMorphicMultiColumnListTest >> testColumnsAreDynamicallySetInWidget [
 
 	self presenter
 		displayBlock: [ :item | { item . 42 } "2 elements for 2 columns" ];
