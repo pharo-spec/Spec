@@ -125,19 +125,8 @@ SpChooseMethodUITest >> testWhenClassSideRadioClickShouldChangeProtocolList [
 
 { #category : #tests }
 SpChooseMethodUITest >> testWhenSelectAProtocolShouldMethodListOnlyContainsMethodWithSelectedProtocol [
-	biChooseMethod packageList
-		selectIndex:
-			((biChooseMethod packageList items collect: #name)
-				indexOf: 'Migration-Tool-ExternalBrowser').
-	biChooseMethod classList
-		selectIndex:
-			((biChooseMethod classList items collect: #name)
-				indexOf: self class name).
-	biChooseMethod protocolList
-		selectIndex:
-			((biChooseMethod protocolList items collect: #name) indexOf: 'running').
-	self
-		assert:
-			(biChooseMethod methodList items
-				allSatisfy: [ :method | method category = 'running' ])
+	biChooseMethod packageList selectIndex: ((biChooseMethod packageList items collect: #name) indexOf: self class package name).
+	biChooseMethod classList selectIndex: ((biChooseMethod classList items collect: #name) indexOf: self class name).
+	biChooseMethod protocolList selectIndex: ((biChooseMethod protocolList items collect: #name) indexOf: 'running').
+	self assert: (biChooseMethod methodList items allSatisfy: [ :method | method category = 'running' ])
 ]
