@@ -65,6 +65,13 @@ BaselineOfSpec2 >> baseline: spec [
 			self parametrizedTests: spec.			
 			self commander2: spec.
 
+			spec 
+				baseline: 'Commander' 
+				with: [ 
+					spec 
+						repository: 'github://pharo-ide/Commander:v0.8.1/src';
+						loads: #('Commander-Spec2-Compatibility') ].
+
 			spec
 				package: 'Spec2-Pharo7To8Compatibility';
 				package: 'Spec2-Backend-Tests'
