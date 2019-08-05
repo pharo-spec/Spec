@@ -1,3 +1,6 @@
+"
+Demo page for SpecDemoToolBarPresenter
+"
 Class {
 	#name : #SpDemoToolBarPage,
 	#superclass : #SpDemoPage,

@@ -1,3 +1,6 @@
+"
+This demo shows a tool bar.
+"
 Class {
 	#name : #SpDemoToolBarPresenter,
 	#superclass : #SpPresenter,

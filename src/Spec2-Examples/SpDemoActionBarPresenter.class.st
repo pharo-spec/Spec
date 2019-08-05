@@ -1,3 +1,6 @@
+"
+This demo shows an action bar.
+"
 Class {
 	#name : #SpDemoActionBarPresenter,
 	#superclass : #SpPresenter,
