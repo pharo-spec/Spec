@@ -4,10 +4,10 @@ I am a mock class for Method Chooser tests.
 Class {
 	#name : #SpMethodChooserMockClass,
 	#superclass : #Object,
-	#category : #'Spec2-PolyWidgets-Tests-Mocks'
+	#category : #'Spec2-Tools-Tests-Mocks'
 }
 
-{ #category : #accessing }
+{ #category : #accessingClassSide }
 SpMethodChooserMockClass class >> classMethod [
 ]
 

@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'biChooseMethod'
 	],
-	#category : #'Spec2-PolyWidgets-Tests-Tests'
+	#category : #'Spec2-Tools-Tests-Tests'
 }
 
 { #category : #running }
@@ -19,7 +19,7 @@ SpChooseMethodUITest >> setUp [
 { #category : #tests }
 SpChooseMethodUITest >> testClassSideRadioButtonState [
 	biChooseMethod radioButtonClassSide click.
-	self deny: biChooseMethod isInstanceButtonSelected
+	self deny: biChooseMethod isInstanceSideSelected
 ]
 
 { #category : #tests }
@@ -37,7 +37,7 @@ SpChooseMethodUITest >> testInitializeClassListShouldBeSelectTheFistItem [
 
 { #category : #tests }
 SpChooseMethodUITest >> testInitializeIsInstanceButtonSelectedShouldBetrue [
-	self assert: biChooseMethod isInstanceButtonSelected
+	self assert: biChooseMethod isInstanceSideSelected
 ]
 
 { #category : #tests }
@@ -51,11 +51,16 @@ SpChooseMethodUITest >> testInitializePackageListShouldBeSelectTheFistItem [
 ]
 
 { #category : #tests }
+SpChooseMethodUITest >> testInitializeProtocolListShouldSelectedItemSetToAll [
+	self assert: biChooseMethod selectedProtocol name equals: '-- all --'
+]
+
+{ #category : #tests }
 SpChooseMethodUITest >> testInstanceSideRadioButtonClickIsInstanceButtonShouldbeTrue [
 	biChooseMethod radioButtonClassSide click.
-	self deny: biChooseMethod isInstanceButtonSelected.
+	self deny: biChooseMethod isInstanceSideSelected.
 	biChooseMethod radioButtonInstanceSide click.
-	self assert: biChooseMethod isInstanceButtonSelected
+	self assert: biChooseMethod isInstanceSideSelected
 ]
 
 { #category : #tests }
@@ -81,11 +86,34 @@ SpChooseMethodUITest >> testMethodListContentWhenInstanceSideIsSelected [
 ]
 
 { #category : #tests }
+SpChooseMethodUITest >> testSelectAClassShouldDisplayHisProtcolInProtocolList [
+	biChooseMethod packageList selectItem: self class package.
+	biChooseMethod classList selectItem: SpMethodChooserMockClass.
+	self assertCollection: (biChooseMethod protocolList items collect: #name) hasSameElements: #(#'-- all --' #accessing)
+]
+
+{ #category : #tests }
 SpChooseMethodUITest >> testTransmissionFromPackageToClassList [
 	| package |
-	package := RPackage named: 'MigratePrettyPrinterUI-Tests-environementEmpty' asSymbol.
+	package := RPackage named: 'TestPackageForSpecTests' asSymbol.
 	biChooseMethod packageList items: {package}.
 	biChooseMethod packageList selectItem: package.
 	self assertEmpty: biChooseMethod classList items.
-	self assert: biChooseMethod classList selection selectedItem isNil
+	self assert: biChooseMethod selectedClass isNil
+]
+
+{ #category : #tests }
+SpChooseMethodUITest >> testWhenClassSideRadioClickShouldChangeProtocolList [
+	biChooseMethod packageList selectItem: self class package.
+	biChooseMethod classList selectItem: SpMethodChooserMockClass.
+	biChooseMethod radioButtonClassSide click.
+	self assertCollection: (biChooseMethod protocolList items collect: #name) hasSameElements: SpMethodChooserMockClass class protocols
+]
+
+{ #category : #tests }
+SpChooseMethodUITest >> testWhenSelectAProtocolShouldMethodListOnlyContainsMethodWithSelectedProtocol [
+	biChooseMethod packageList selectItem: self class package.
+	biChooseMethod classList selectItem: self class.
+	biChooseMethod protocolList selectIndex: ((biChooseMethod protocolList items collect: #name) indexOf: 'running').
+	self assert: (biChooseMethod methodList items allSatisfy: [ :method | method category = 'running' ])
 ]
