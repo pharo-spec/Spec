@@ -1,7 +1,7 @@
 Class {
 	#name : #SpWindowPresenterTest,
-	#superclass : #SpTestCase,
-	#category : #'Spec2-Tests'
+	#superclass : #SpTest,
+	#category : #'Spec2-Tests-Core'
 }
 
 { #category : #running }

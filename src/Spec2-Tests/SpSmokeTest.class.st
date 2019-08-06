@@ -9,23 +9,23 @@ I provide openInstance and openInstance: to open it. These methods make me keep 
 - testExample tests the class side method example if exist, example should be a representative use.
 "
 Class {
-	#name : #SpSmokeTestCase,
-	#superclass : #SpTestCase,
+	#name : #SpSmokeTest,
+	#superclass : #SpTest,
 	#category : #'Spec2-Tests-Utils'
 }
 
 { #category : #testing }
-SpSmokeTestCase class >> isAbstract [
-	^ self name = #SpSmokeTestCase
+SpSmokeTest class >> isAbstract [
+	^ self name = #SpSmokeTest
 ]
 
 { #category : #testing }
-SpSmokeTestCase class >> shouldInheritSelectors [
+SpSmokeTest class >> shouldInheritSelectors [
 	^ true
 ]
 
 { #category : #tests }
-SpSmokeTestCase >> testExample [
+SpSmokeTest >> testExample [
 	"We do not use #shouldnt:raise: to get feedback on the CI"
 
 	self flag: #todo.	"All widgets should have an example. When it will be done remove this skip"
@@ -43,7 +43,7 @@ SpSmokeTestCase >> testExample [
 ]
 
 { #category : #tests }
-SpSmokeTestCase >> testOpenWithSpec [
+SpSmokeTest >> testOpenWithSpec [
 	"We do not use #shouldnt:raise: to get feedback on the CI"
 
 	[ self openInstance ]

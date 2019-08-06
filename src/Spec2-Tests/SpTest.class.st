@@ -1,5 +1,5 @@
 Class {
-	#name : #SpTestCase,
+	#name : #SpTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'window',
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #assertions }
-SpTestCase >> assertEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlock [
+SpTest >> assertEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlock [
 	
 	self
 		assertWith: [ :times | times > 0 ]
@@ -19,7 +19,7 @@ SpTestCase >> assertEvent: anEventName isRaisedInPresenter: aPresenter whenDoing
 ]
 
 { #category : #assertions }
-SpTestCase >> assertWith: assertionBlock timesRaisedEvent: anEventName inPresenter: aPresenter whenDoing: actionBlock [
+SpTest >> assertWith: assertionBlock timesRaisedEvent: anEventName inPresenter: aPresenter whenDoing: actionBlock [
 	
 	| timesCalled |
 	timesCalled := 0.
@@ -29,12 +29,12 @@ SpTestCase >> assertWith: assertionBlock timesRaisedEvent: anEventName inPresent
 ]
 
 { #category : #running }
-SpTestCase >> classToTest [
+SpTest >> classToTest [
 	self subclassResponsibility
 ]
 
 { #category : #assertions }
-SpTestCase >> denyEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlock [
+SpTest >> denyEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlock [
 	
 	self
 		assertWith: [ :times | times = 0 ]
@@ -44,39 +44,39 @@ SpTestCase >> denyEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: 
 ]
 
 { #category : #running }
-SpTestCase >> initializeTestedInstance [
+SpTest >> initializeTestedInstance [
 ]
 
 { #category : #running }
-SpTestCase >> openInstance [
+SpTest >> openInstance [
 	window ifNil: [ window := presenter openWithSpec ]
 ]
 
 { #category : #running }
-SpTestCase >> openInstance: aLayoutSelector [
+SpTest >> openInstance: aLayoutSelector [
 	window := presenter openWithSpec: aLayoutSelector
 ]
 
 { #category : #accessing }
-SpTestCase >> presenter [
+SpTest >> presenter [
 	^ presenter
 ]
 
 { #category : #running }
-SpTestCase >> setUp [
+SpTest >> setUp [
 	super setUp.
 	presenter := self classToTest new.
 	self initializeTestedInstance
 ]
 
 { #category : #running }
-SpTestCase >> tearDown [
+SpTest >> tearDown [
 	window ifNotNil: [ window delete ].
 	super tearDown
 ]
 
 { #category : #accessing }
-SpTestCase >> widget [
+SpTest >> widget [
 	
 	^ self adapter widget
 ]

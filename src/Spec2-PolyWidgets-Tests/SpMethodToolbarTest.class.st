@@ -1,6 +1,6 @@
 Class {
 	#name : #SpMethodToolbarTest,
-	#superclass : #SpSmokeTestCase,
+	#superclass : #SpSmokeTest,
 	#category : #'Spec2-PolyWidgets-Tests-Tests'
 }
 

@@ -1,6 +1,6 @@
 Class {
 	#name : #SpSliderInputTest,
-	#superclass : #SpSmokeTestCase,
+	#superclass : #SpSmokeTest,
 	#category : #'Spec2-PolyWidgets-Tests-Tests'
 }
 
