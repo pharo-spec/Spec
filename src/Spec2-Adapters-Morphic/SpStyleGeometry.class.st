@@ -105,6 +105,18 @@ SpStyleGeometry >> maxExtent: anObject [
 ]
 
 { #category : #accessing }
+SpStyleGeometry >> maxHeight [
+
+	^ self maxExtent ifNotNil: [ :aPoint | aPoint y ]
+]
+
+{ #category : #accessing }
+SpStyleGeometry >> maxWidth [
+
+	^ self maxExtent ifNotNil: [ :aPoint | aPoint x ]
+]
+
+{ #category : #accessing }
 SpStyleGeometry >> minExtent [
 	^ minExtent
 ]
@@ -112,6 +124,18 @@ SpStyleGeometry >> minExtent [
 { #category : #accessing }
 SpStyleGeometry >> minExtent: anObject [
 	minExtent := anObject
+]
+
+{ #category : #accessing }
+SpStyleGeometry >> minHeight [
+
+	^ self minExtent ifNotNil: [ :aPoint | aPoint y ]
+]
+
+{ #category : #accessing }
+SpStyleGeometry >> minWidth [
+
+	^ self minExtent ifNotNil: [ :aPoint | aPoint x ]
 ]
 
 { #category : #private }
