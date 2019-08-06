@@ -55,7 +55,13 @@ SpAbstractMorphicAdapter >> addSettingsTo: aMorph [
 	
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
+SpAbstractMorphicAdapter >> application [ 
+
+	^ self presenter application
+]
+
+{ #category : #styling }
 SpAbstractMorphicAdapter >> applyStyle: morph [
 	"this will apply general properties to the built morph"
 	
@@ -281,6 +287,13 @@ SpAbstractMorphicAdapter >> layout: aLayout [
 	self widgetDo: [ :w | w layoutFrame: layout ].
 ]
 
+{ #category : #styling }
+SpAbstractMorphicAdapter >> newStyleName [
+	"i.e. SpButtonAdapter = button"
+	
+	^ ((self className withoutPrefix: 'SpMorphic') allButLast: 7) uncapitalized
+]
+
 { #category : #'protocol-shortcuts' }
 SpAbstractMorphicAdapter >> removeKeyCombination: aShortcut [
 
@@ -323,25 +336,44 @@ SpAbstractMorphicAdapter >> show [
 	self widgetDo: #show
 ]
 
-{ #category : #accessing }
+{ #category : #styling }
 SpAbstractMorphicAdapter >> style [
 	"i.e. ButtonAdapter = Button"
 	
 	^ self styleAt: self styleName
 ]
 
-{ #category : #accessing }
+{ #category : #styling }
 SpAbstractMorphicAdapter >> styleAt: aName [
 	"i.e. ButtonAdapter = Button"
 	
 	^ SpMorphicStyleSheet current atClass: aName
 ]
 
-{ #category : #accessing }
+{ #category : #styling }
 SpAbstractMorphicAdapter >> styleName [
 	"i.e. ButtonAdapter = Button"
 	
 	^ ((self className withoutPrefix: 'SpMorphic') allButLast: 7) asSymbol
+]
+
+{ #category : #styling }
+SpAbstractMorphicAdapter >> styleSheet [
+
+	^ self application styleSheet
+]
+
+{ #category : #styling }
+SpAbstractMorphicAdapter >> styles [
+	"i.e. ButtonAdapter = Button"
+	
+	^ ({ 'application'. self styleName }, self presenter styles)
+	collect: [ :each |
+		"hack to allow overriding styles (even if not recommended). 
+		 I don't want to pollute string with the double dispatch, but this is ugly :("
+		each isString 
+			ifTrue: [ self styleSheet styleAt: each ]
+			ifFalse: [ each ] ]
 ]
 
 { #category : #'drag and drop' }

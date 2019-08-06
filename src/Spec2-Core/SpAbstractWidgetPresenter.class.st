@@ -37,7 +37,8 @@ Class {
 		'#transferBlock => SpObservableSlot',
 		'#color => SpObservableSlot',
 		'#help => SpObservableSlot',
-		'#enabled => SpObservableSlot'
+		'#enabled => SpObservableSlot',
+		'#styles'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -69,6 +70,12 @@ SpAbstractWidgetPresenter >> acceptDroppingMorph: draggedMorph event: event inMo
 
 	^ self acceptDropBlock cull: draggedMorph model model cull: event cull: source cull: source model 
 
+]
+
+{ #category : #api }
+SpAbstractWidgetPresenter >> addStyle: aStyle [
+
+	styles := styles copyWith: aStyle
 ]
 
 { #category : #api }
@@ -226,7 +233,9 @@ SpAbstractWidgetPresenter >> initialize [
 	self property: #color whenChangedDo: [ :newColor | self withAdapterDo: [ :w | w update: #color: with: {newColor} ] ].
 	self whenEnabledChangedDo: [ :b | self withAdapterDo: [ :w | w update: #enabled: with: {b} ] ].
 	self property: #dragEnabled whenChangedDo: [ :b | self withWidgetDo: [ :w | w update: #dragEnabled: with: {b} ] ].
-	self property: #dropEnabled whenChangedDo: [ :b | self withWidgetDo: [ :w | w update: #dropEnabled: with: {b} ] ]
+	self property: #dropEnabled whenChangedDo: [ :b | self withWidgetDo: [ :w | w update: #dropEnabled: with: {b} ] ].
+	
+	styles := #().
 ]
 
 { #category : #initialization }
@@ -237,6 +246,12 @@ SpAbstractWidgetPresenter >> initializeWidgets [
 { #category : #api }
 SpAbstractWidgetPresenter >> isEnabled [
 	^ enabled
+]
+
+{ #category : #api }
+SpAbstractWidgetPresenter >> styles [ 
+
+	^ styles
 ]
 
 { #category : #'drag and drop' }
