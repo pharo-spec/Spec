@@ -1,7 +1,7 @@
 Class {
 	#name : #SpStyleResolverTest,
 	#superclass : #TestCase,
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#category : #'Spec2-Morphic-Backend-Tests'
 }
 
 { #category : #private }
