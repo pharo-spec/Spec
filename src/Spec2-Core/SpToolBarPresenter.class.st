@@ -146,6 +146,12 @@ SpToolBarPresenter >> notEmpty [
 	^ self isEmpty not
 ]
 
+{ #category : #removing }
+SpToolBarPresenter >> removeAllItems [ 
+	leftItems := OrderedCollection new.
+	rightItems := OrderedCollection new.	
+]
+
 { #category : #accessing }
 SpToolBarPresenter >> rightItems [
 	^ rightItems
