@@ -27,5 +27,5 @@ SpPresenter class >> buildRootCommandsGroupFor: presenterInstance [
 
 { #category : #'*Spec2-Commander2' }
 SpPresenter >> rootCommandsGroup [
-	^ self class buildRootCommandsGroupFor: self
+	^ SpRecursiveContextSetter visit: (self class buildRootCommandsGroupFor: self) toSetContext: self
 ]
