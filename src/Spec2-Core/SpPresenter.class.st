@@ -115,6 +115,16 @@ SpPresenter class >> iconNamed: aSymbol [
 	^ Smalltalk ui icons iconNamed: aSymbol
 ]
 
+{ #category : #'labelled-presenters' }
+SpPresenter class >> iconWidth [
+	^ 24
+]
+
+{ #category : #'labelled-presenters' }
+SpPresenter class >> labelWidth [
+	^ 100
+]
+
 { #category : #'instance creation' }
 SpPresenter class >> newApplication: anApplication [
 
