@@ -1,14 +1,14 @@
 Extension { #name : #SpContactBookPresenter }
 
 { #category : #'*Spec2-Commander2-ContactBook-Extensions' }
-SpContactBookPresenter classSide >> changePhoneCommandWith: presenter forRootGroup: aCmCommandsGroup [
+SpContactBookPresenter class >> changePhoneCommandWith: presenter forRootGroup: aCmCommandsGroup [
 	<extensionCommands>
 	(aCmCommandsGroup / 'Context Menu' / 'Edition') "Inject an additional command in 'Edition' group."
-		register: (SpChangePhoneCommand forSpec context: presenter)
+		register: SpChangePhoneCommand forSpec
 ]
 
 { #category : #'*Spec2-Commander2-ContactBook-Extensions' }
-SpContactBookPresenter classSide >> extraCommandsWith: presenter forRootGroup: aCmCommandsGroup [
+SpContactBookPresenter class >> extraCommandsWith: presenter forRootGroup: aCmCommandsGroup [
 	<extensionCommands>
 	aCmCommandsGroup / 'Context Menu'
 		register: ((CmCommandGroup named: 'Extra') asSpecGroup
