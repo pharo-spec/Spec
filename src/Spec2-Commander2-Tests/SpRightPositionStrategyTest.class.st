@@ -2,21 +2,21 @@
 A SpSetButtonRightStrategyTest is a test class for testing the behavior of SpSetButtonRightStrategy
 "
 Class {
-	#name : #SpSetButtonRightStrategyTest,
+	#name : #SpRightPositionStrategyTest,
 	#superclass : #TestCase,
 	#category : #'Spec2-Commander2-Tests'
 }
 
 { #category : #test }
-SpSetButtonRightStrategyTest >> testAddTo [
+SpRightPositionStrategyTest >> testAddButtonToActionBar [
 	| actionBar button |
 	actionBar := SpActionBarPresenter new.
 	button := ButtonPresenter new.
 	
 	self assert: actionBar items isEmpty.
 	
-	SpSetButtonRightStrategy new
-		add: button to: actionBar.
+	SpRightPositionStrategy new
+		addButton: button toActionBar: actionBar.
 		
 	self assert: actionBar items size equals: 1.
 	self assert: (actionBar items includesKey: #end).

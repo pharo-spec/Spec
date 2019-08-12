@@ -42,12 +42,12 @@ SpCommand >> beDisabledWhenCantBeRun [
 
 { #category : #configuring }
 SpCommand >> beDisplayedOnLeftSideOfActionBar [
-	actionBarStrategy := SpSetButtonLeftStrategy new
+	actionBarStrategy := SpLeftPositionStrategy new
 ]
 
 { #category : #configuring }
 SpCommand >> beDisplayedOnRightSideOfActionBar [
-	actionBarStrategy := SpSetButtonRightStrategy new
+	actionBarStrategy := SpRightPositionStrategy new
 ]
 
 { #category : #configuring }
