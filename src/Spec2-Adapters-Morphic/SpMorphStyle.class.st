@@ -1,5 +1,19 @@
+"
+I'm a style container that can lookup for properties, following the logic of most detailed property first, most generic last.
+At creation, I receive an adapter and a stylesheet, and I will perform a traverse of the stylesheet collecting the styles that applies to the adapted presenter (see method comment).
+
+Once collected the styles, I can lookup a property using the method: #lookupProperty:valueOf:, passing the class and name of property, e.g: 
+
+myStyles 
+	lookupProperty: SpStyleGeometry 
+	valueOf: #minWidth
+
+For convenience, there are methods which perform the lookups alredy defined (see accessing* protocols).
+
+Finally, an adaptor style can be applied to a morph (using #applyTo:)
+"
 Class {
-	#name : #SpStyleLookup,
+	#name : #SpMorphStyle,
 	#superclass : #Object,
 	#instVars : [
 		'styles'
@@ -8,7 +22,10 @@ Class {
 }
 
 { #category : #'instance creation' }
-SpStyleLookup class >> fromStylesheet: aStyle adapter: anAdapter [
+SpMorphStyle class >> fromStylesheet: aStyle adapter: anAdapter [
+	"I collect all styles that apply to an adapter.
+	 I traverse all styles in a very precise order: from more generic to more specific, this way 
+	 the order of the collected elements will be in reverse order of execution."
 	| allStyleClasses |
 		
 	allStyleClasses := aStyle flattenClasses.
@@ -22,7 +39,7 @@ SpStyleLookup class >> fromStylesheet: aStyle adapter: anAdapter [
 ]
 
 { #category : #'instance creation' }
-SpStyleLookup class >> newStyles: anArray [
+SpMorphStyle class >> newStyles: anArray [
 
 	^ self new 
 		styles: anArray;
@@ -30,38 +47,41 @@ SpStyleLookup class >> newStyles: anArray [
 ]
 
 { #category : #accessing }
-SpStyleLookup >> applyTo: aMorph [ 
+SpMorphStyle >> applyTo: aMorph [ 
 
 	self styles do: [ :each |
 		each applyTo: aMorph ]
 ]
 
 { #category : #'accessing container' }
-SpStyleLookup >> borderWidth [
+SpMorphStyle >> borderWidth [
 
 	^ self lookupProperty: SpStyleContainer valueOf: #borderWidth
 ]
 
 { #category : #'accessing geometry' }
-SpStyleLookup >> extent [
+SpMorphStyle >> extent [
 
 	^ self lookupProperty: SpStyleGeometry valueOf: #extent
 ]
 
 { #category : #'accessing font' }
-SpStyleLookup >> font [
+SpMorphStyle >> font [
 
 	^ self lookupProperty: SpStyleFont valueOf: #definedFont
 ]
 
 { #category : #'accessing geometry' }
-SpStyleLookup >> height [
+SpMorphStyle >> height [
 
 	^ self lookupProperty: SpStyleGeometry valueOf: #height
 ]
 
-{ #category : #private }
-SpStyleLookup >> lookupProperty: aPropertyClass valueOf: aSymbol [
+{ #category : #accessing }
+SpMorphStyle >> lookupProperty: aPropertyClass valueOf: aSymbol [
+	"I perform the lookup of a property, for which I need a class and a property name.
+	 I will traverse all collected properties from last to first, to ensure most detailed 
+	 property is answered"
 
 	(self propertiesLike: aPropertyClass)
 		reverseDo: [ :each | 
@@ -71,37 +91,37 @@ SpStyleLookup >> lookupProperty: aPropertyClass valueOf: aSymbol [
 ]
 
 { #category : #'accessing geometry' }
-SpStyleLookup >> maxHeight [
+SpMorphStyle >> maxHeight [
 
 	^ self lookupProperty: SpStyleGeometry valueOf: #maxHeight
 ]
 
 { #category : #'accessing geometry' }
-SpStyleLookup >> maxWidth [
+SpMorphStyle >> maxWidth [
 
 	^ self lookupProperty: SpStyleGeometry valueOf: #maxWidth
 ]
 
 { #category : #'accessing geometry' }
-SpStyleLookup >> minHeight [
+SpMorphStyle >> minHeight [
 
 	^ self lookupProperty: SpStyleGeometry valueOf: #minHeight
 ]
 
 { #category : #'accessing geometry' }
-SpStyleLookup >> minWidth [
+SpMorphStyle >> minWidth [
 
 	^ self lookupProperty: SpStyleGeometry valueOf: #minWidth
 ]
 
 { #category : #'accessing container' }
-SpStyleLookup >> padding [ 
+SpMorphStyle >> padding [ 
 
 	^ self lookupProperty: SpStyleContainer valueOf: #padding
 ]
 
 { #category : #private }
-SpStyleLookup >> propertiesLike: aClass [
+SpMorphStyle >> propertiesLike: aClass [
 
 	^ (self styles 
 		inject: OrderedCollection new
@@ -114,17 +134,17 @@ SpStyleLookup >> propertiesLike: aClass [
 ]
 
 { #category : #accessing }
-SpStyleLookup >> styles [
+SpMorphStyle >> styles [
 	^ styles
 ]
 
 { #category : #accessing }
-SpStyleLookup >> styles: anObject [
+SpMorphStyle >> styles: anObject [
 	styles := anObject
 ]
 
 { #category : #'accessing geometry' }
-SpStyleLookup >> width [
+SpMorphStyle >> width [
 
 	^ self lookupProperty: SpStyleGeometry valueOf: #width
 ]
