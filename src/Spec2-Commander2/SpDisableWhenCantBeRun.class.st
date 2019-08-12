@@ -12,6 +12,6 @@ SpDisableWhenCantBeRun >> display: aCmSpecCommand in: aMenuOrGroupPresenter do: 
 	aMenuOrGroupPresenter
 		addItem: [ :item |
 			aBlock value: item.
-			item enabled: aCmSpecCommand canBeRun.
+			item enabled: aCmSpecCommand canBeExecuted.
 			item ]
 ]
