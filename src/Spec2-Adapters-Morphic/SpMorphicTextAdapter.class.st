@@ -66,6 +66,7 @@ SpMorphicTextAdapter >> buildWidget [
 		getSelectionSelector: #readSelection;
 		menuProvider: self selector: #codePaneMenu:shifted:;
 		setSelectionSelector: #setSelection:;
+		ghostText: self placeholder;
 		beWrapped;
 		enabled: self enabled;
 		askBeforeDiscardingEdits: self askBeforeDiscardingEdits;
@@ -80,6 +81,7 @@ SpMorphicTextAdapter >> buildWidget [
 	self setEditingModeFor: newWidget.
 	self model additionalKeyBindings ifNotNil: [ :bindings | bindings keysAndValuesDo: [ :shortcut :action | newWidget bindKeyCombination: shortcut toAction: action ] ].
 	self presenter whenTextChangedDo: [ :text | newWidget setText: text ].
+	self presenter whenPlaceholderChangedDo: [ :text | newWidget ghostText: text ].
 	^ newWidget
 ]
 
@@ -153,6 +155,21 @@ SpMorphicTextAdapter >> pendingText: aText [
 	self widgetDo: [ :w | 
 		w setText: aText.
 		w hasUnacceptedEdits: true ]
+]
+
+{ #category : #accessing }
+SpMorphicTextAdapter >> placeHolderText [
+	^ widget ghostText asString
+]
+
+{ #category : #'widget API' }
+SpMorphicTextAdapter >> placeholder [
+	^ self model placeholder
+]
+
+{ #category : #'widget API' }
+SpMorphicTextAdapter >> placeholder: aText [
+	^ self model placeholder: aText
 ]
 
 { #category : #'widget API' }

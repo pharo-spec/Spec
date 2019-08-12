@@ -4,6 +4,11 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
+{ #category : #testing }
+SpTextPresenterTest class >> shouldInheritSelectors [
+	^ true
+]
+
 { #category : #running }
 SpTextPresenterTest >> classToTest [
 	^ SpTextPresenter
@@ -36,6 +41,14 @@ SpTextPresenterTest >> testContextMenu [
 	presenter contextMenu: menu.
 	self assert: presenter contextMenu equals: menu.
 	self assert: changed
+]
+
+{ #category : #tests }
+SpTextPresenterTest >> testPlaceholderIsSet [
+
+	presenter placeholder: 'enter something...'.
+	
+	self assert: presenter placeholder equals: 'enter something...'
 ]
 
 { #category : #tests }

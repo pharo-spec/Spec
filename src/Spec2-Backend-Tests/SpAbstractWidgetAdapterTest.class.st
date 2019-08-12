@@ -10,6 +10,14 @@ SpAbstractWidgetAdapterTest class >> isAbstract [
 	^ self name = #SpAbstractWidgetAdapterTest 
 ]
 
+{ #category : #tests }
+SpAbstractWidgetAdapterTest >> testChangePlaceholderTextUpdatesPresenter [
+
+	presenter placeholder: 'some text'.
+	
+	self assert: self adapter placeHolderText equals: 'some text'
+]
+
 { #category : #running }
 SpAbstractWidgetAdapterTest >> testChangingHelpAffectTheWidget [
 	
@@ -22,4 +30,11 @@ SpAbstractWidgetAdapterTest >> testEnabledAffectWidget [
 	
 	presenter enabled: false.
 	self deny: self adapter enabled
+]
+
+{ #category : #tests }
+SpAbstractWidgetAdapterTest >> testPresenterPlaceholderIsSetInWidget [
+
+	presenter placeholder: 'something'.
+	self assert: self adapter placeHolderText equals: 'something'
 ]

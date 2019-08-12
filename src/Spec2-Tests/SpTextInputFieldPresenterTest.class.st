@@ -80,14 +80,6 @@ SpTextInputFieldPresenterTest >> testMaxLengthTruncatesText [
 ]
 
 { #category : #tests }
-SpTextInputFieldPresenterTest >> testPlaceholderIsSet [
-
-	presenter placeholder: 'enter something...'.
-	
-	self assert: presenter placeholder equals: 'enter something...'
-]
-
-{ #category : #tests }
 SpTextInputFieldPresenterTest >> testTextIsSet [
 
 	presenter text: 'aText'.
