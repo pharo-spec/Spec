@@ -11,3 +11,8 @@ Class {
 SpRightPositionStrategy >> addButton: aButtonPresenter toActionBar: anActionBarPresenter [
 	anActionBarPresenter addLast: aButtonPresenter
 ]
+
+{ #category : #adding }
+SpRightPositionStrategy >> addButton: aButtonPresenter toToolbar: aToolbarPresenter [
+	aToolbarPresenter addItemRight: aButtonPresenter
+]

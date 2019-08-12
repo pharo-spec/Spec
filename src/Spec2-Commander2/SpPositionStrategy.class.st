@@ -11,3 +11,8 @@ Class {
 SpPositionStrategy >> addButton: aButtonPresenter toActionBar: anActionBarPresenter [
 	self subclassResponsibility
 ]
+
+{ #category : #adding }
+SpPositionStrategy >> addButton: aButtonPresenter toToolbar: aToolbarPresenter [
+	self subclassResponsibility
+]

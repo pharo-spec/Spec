@@ -11,3 +11,8 @@ Class {
 SpLeftPositionStrategy >> addButton: aButtonPresenter toActionBar: anActionBarPresenter [
 	anActionBarPresenter add: aButtonPresenter
 ]
+
+{ #category : #adding }
+SpLeftPositionStrategy >> addButton: aButtonPresenter toToolbar: aToolbarPresenter [
+	aToolbarPresenter addItemLeft: aButtonPresenter
+]
