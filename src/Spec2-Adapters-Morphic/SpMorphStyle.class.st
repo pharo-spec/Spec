@@ -26,16 +26,21 @@ SpMorphStyle class >> fromStylesheet: aStyle adapter: anAdapter [
 	"I collect all styles that apply to an adapter.
 	 I traverse all styles in a very precise order: from more generic to more specific, this way 
 	 the order of the collected elements will be in reverse order of execution."
-	| allStyleClasses |
+	| allStyleClasses styles |
 		
 	allStyleClasses := aStyle flattenClasses.
+	styles := OrderedCollection new.
+	(({ 'application'. anAdapter styleName }, anAdapter presenter styles) do: [ :each |
+		"a hack to not do a double dispatch on string :(" 
+		each isString 
+			ifTrue: [ 
+				allStyleClasses 
+					detect: [ :eachStyle | eachStyle fullName = each ]
+					ifFound: [ :aStyleClass | styles add: aStyleClass ] ] 
+			ifFalse: [ 
+				styles add: each ] ]).
 	"WARNING. Order is important"
-	^ self newStyles: (({ 'application'. anAdapter newStyleName }, anAdapter presenter styles) 
-		collect: [ :each |
-			"a hack to not do a double dispatch on string :(" 
-			each isString 
-				ifTrue: [ allStyleClasses detect: [ :eachStyle | eachStyle fullName = each ] ] 
-				ifFalse: [ each ] ])
+	^ self newStyles: styles
 ]
 
 { #category : #'instance creation' }
@@ -49,6 +54,7 @@ SpMorphStyle class >> newStyles: anArray [
 { #category : #accessing }
 SpMorphStyle >> applyTo: aMorph [ 
 
+	aMorph setProperty: #style toValue: self.
 	self styles do: [ :each |
 		each applyTo: aMorph ]
 ]
