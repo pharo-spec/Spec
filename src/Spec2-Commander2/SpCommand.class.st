@@ -136,6 +136,11 @@ SpCommand >> initialize [
 ]
 
 { #category : #accessing }
+SpCommand >> positionStrategy [
+	^ positionStrategy
+]
+
+{ #category : #accessing }
 SpCommand >> shortcutKey [
 	^ shortcutKey ifNil: [ CmNoShortcutIsDefined signalCommand: self ]
 ]
