@@ -22,7 +22,7 @@ BaselineOfSpec2 >> baseline: spec [
 					with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Deprecated'
 					with: [ spec
-						requires: #('Spec2-Tests' 'Spec2-PolyWidgets-Tests' 'Spec2-Adapters-Morphic') ];
+						requires: #('Spec2-Tests' 'Spec2-PolyWidgets-Tests' 'Spec2-Adapters-Morphic' 'Spec2-Commander2') ];
 				package: 'Spec2-Inspector'
 					with: [ spec requires: #('Spec2-PolyWidgets') ];
 				package: 'Spec2-Layout';
