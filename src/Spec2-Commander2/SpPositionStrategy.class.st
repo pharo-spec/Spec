@@ -4,7 +4,7 @@ I model a strategy to add a command in a presenter for which it can be either le
 Class {
 	#name : #SpPositionStrategy,
 	#superclass : #Object,
-	#category : #'Spec2-Commander2-Core'
+	#category : #'Spec2-Commander2-Strategies'
 }
 
 { #category : #adding }
