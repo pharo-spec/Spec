@@ -20,7 +20,7 @@ Class {
 SpContactBookPresenter class >> buildAddingGroupWith: presenterIntance [
 	^ (CmCommandGroup named: 'Adding') asSpecGroup
 		basicDescription: 'Commands related to contact addition.';
-		register: (SpAddContactCommand forSpec context: presenterIntance);
+		register: SpAddContactCommand forSpec;
 		beDisplayedAsGroup;
 		yourself
 ]
@@ -45,7 +45,7 @@ SpContactBookPresenter class >> buildContextualMenuGroupWith: presenterIntance [
 SpContactBookPresenter class >> buildEditionGroupWith: presenterIntance [
 	^ (CmCommandGroup named: 'Edition') asSpecGroup
 		basicDescription: 'Commands related to contact edition.';
-		register: (SpRenameContactCommand forSpec context: presenterIntance);
+		register: SpRenameContactCommand forSpec;
 		beDisplayedAsGroup;
 		yourself
 ]
@@ -53,7 +53,7 @@ SpContactBookPresenter class >> buildEditionGroupWith: presenterIntance [
 { #category : #commands }
 SpContactBookPresenter class >> buildMenuBarGroupWith: presenterIntance [
 	^ (CmCommandGroup named: 'MenuBar') asSpecGroup
-		register: (SpPrintContactBookInTranscript forSpec context: presenterIntance);
+		register: SpPrintContactBookInTranscript forSpec;
 		yourself
 ]
 
@@ -61,7 +61,7 @@ SpContactBookPresenter class >> buildMenuBarGroupWith: presenterIntance [
 SpContactBookPresenter class >> buildRemovingGroupWith: presenterIntance [
 	^ (CmCommandGroup named: 'Removing') asSpecGroup
 		basicDescription: 'Command related to contact removal.';
-		register: (SpRemoveContactCommand forSpec context: presenterIntance);
+		register: SpRemoveContactCommand forSpec;
 		beDisplayedAsGroup;
 		yourself
 ]
