@@ -41,6 +41,16 @@ SpCommand >> beDisabledWhenCantBeRun [
 ]
 
 { #category : #configuring }
+SpCommand >> beDisplayedOnLeftSideOfActionBar [
+	actionBarStrategy := SpSetButtonLeftStrategy new
+]
+
+{ #category : #configuring }
+SpCommand >> beDisplayedOnRightSideOfActionBar [
+	actionBarStrategy := SpSetButtonRightStrategy new
+]
+
+{ #category : #configuring }
 SpCommand >> beHiddenWhenCantBeRun [
 	self displayStrategy: SpHideWhenCantBeRun new
 ]
@@ -121,7 +131,8 @@ SpCommand >> iconProvider: anObject [
 SpCommand >> initialize [ 
 
 	super initialize.
-	self beDisabledWhenCantBeRun
+	self beDisabledWhenCantBeRun.
+	self beDisplayedOnLeftSideOfActionBar
 ]
 
 { #category : #accessing }
