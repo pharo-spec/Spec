@@ -99,11 +99,11 @@ SpContactBookPresenter >> initializeWidgets [
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
 		addColumn: (SpStringTableColumn title: 'Phone' evaluated: #phone).
 	
-	table contextMenu: [ (self rootCommandsGroup / 'Context Menu') beRoot asMenuPresenter ].
+	table contextMenuFromCommandsGroup: [ self rootCommandsGroup / 'Context Menu' ].
 	
 	table items: contactBook contents.
 	
-	menuBar := (self rootCommandsGroup / 'MenuBar')  asMenuBarPresenter.
+	menuBar := (self rootCommandsGroup / 'MenuBar') asMenuBarPresenter.
 ]
 
 { #category : #initialization }
