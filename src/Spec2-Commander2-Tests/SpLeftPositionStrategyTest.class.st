@@ -23,3 +23,19 @@ SpLeftPositionStrategyTest >> testAddButtonToActionBar [
 	self assert: (actionBar items at: #start) size equals: 1.
 	self assert: (actionBar items at: #start) anyOne equals: button
 ]
+
+{ #category : #test }
+SpLeftPositionStrategyTest >> testAddButtonToToolbar [
+	| toolbar button |
+	toolbar := SpToolBarPresenter new.
+	button := SpToolBarButton new.
+	
+	self assert: toolbar items isEmpty.
+	
+	SpLeftPositionStrategy new
+		addButton: button toToolbar: toolbar.
+		
+	self assert: toolbar leftItems size equals: 1.
+	self assert: toolbar leftItems anyOne equals: button.
+	self assert: toolbar rightItems size equals: 0.
+]
