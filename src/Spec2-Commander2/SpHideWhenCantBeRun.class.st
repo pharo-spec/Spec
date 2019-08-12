@@ -9,7 +9,7 @@ Class {
 
 { #category : #displaying }
 SpHideWhenCantBeRun >> display: aCmSpecCommand in: aMenuOrGroupPresenter do: aBlock [
-	aCmSpecCommand canBeRun "If can not be run, stop because we want to hide the command."
+	aCmSpecCommand canBeExecuted "If can not be run, stop because we want to hide the command."
 		ifFalse: [ ^ self ].
 	aMenuOrGroupPresenter
 		addItem: [ :item |
