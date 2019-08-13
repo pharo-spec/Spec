@@ -5,7 +5,7 @@ Basically, I add:
 - an #icon (#blank by default)
 - a #shortcutKey (optional)
 - a #displayStrategy to handle how to show the command if it is not executable on a context (default is to be disabled)
-- a actionBarStrategy to handle on which side of the action bar I should be (default is left)
+- a #positionStrategy to handle on which side presenter with left and right side I should be (default is left)
 
 "
 Class {
@@ -16,7 +16,7 @@ Class {
 		'iconName',
 		'shortcutKey',
 		'displayStrategy',
-		'actionBarStrategy'
+		'positionStrategy'
 	],
 	#category : #'Spec2-Commander2-Core'
 }
@@ -38,6 +38,16 @@ SpCommand >> asButtonPresenter [
 { #category : #configuring }
 SpCommand >> beDisabledWhenCantBeRun [
 	self displayStrategy: SpDisableWhenCantBeRun new
+]
+
+{ #category : #configuring }
+SpCommand >> beDisplayedOnLeftSide [
+	positionStrategy := SpLeftPositionStrategy new
+]
+
+{ #category : #configuring }
+SpCommand >> beDisplayedOnRightSide [
+	positionStrategy := SpRightPositionStrategy new
 ]
 
 { #category : #configuring }
@@ -121,7 +131,13 @@ SpCommand >> iconProvider: anObject [
 SpCommand >> initialize [ 
 
 	super initialize.
-	self beDisabledWhenCantBeRun
+	self beDisabledWhenCantBeRun.
+	self beDisplayedOnLeftSide
+]
+
+{ #category : #accessing }
+SpCommand >> positionStrategy [
+	^ positionStrategy
 ]
 
 { #category : #accessing }
