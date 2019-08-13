@@ -159,7 +159,7 @@ SpPresenter class >> newApplication: anApplication owner: anOwningPresenter mode
 SpPresenter class >> on: aDomainObject [
 
 	"self 
-		deprecated: 'ComposablePresenters are instantiated in the context of an application!' 
+		deprecated: 'SpPresenters are instantiated in the context of an application!' 
 		on: '2019-02-26' 
 		in: #Pharo8."
 		
@@ -187,7 +187,7 @@ SpPresenter class >> title [
 { #category : #TOREMOVE }
 SpPresenter >> aboutText [
 	"DO NOT USE
-	With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
+	With Spec 2, SpPresenter was refactored to move all window management to WindowPresenter.
 	From now on, if you want to interact with a window you need to:
 	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
 	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
@@ -285,7 +285,7 @@ SpPresenter >> asPresenter [
 { #category : #TOREMOVE }
 SpPresenter >> askOkToClose [
 	"DO NOT USE
-	With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
+	With Spec 2, SpPresenter was refactored to move all window management to WindowPresenter.
 	From now on, if you want to interact with a window you need to:
 	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
 	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
@@ -483,7 +483,7 @@ SpPresenter >> iconNamed: aSymbol [
 SpPresenter >> initialExtent [
 	
 	"DO NOT USE
-	With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
+	With Spec 2, SpPresenter was refactored to move all window management to WindowPresenter.
 	From now on, if you want to interact with a window you need to:
 	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
 	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
@@ -570,20 +570,20 @@ SpPresenter >> initializeWindow: aWindowPresenter [
 ]
 
 { #category : #'instance creation' }
-SpPresenter >> instantiate: aComposablePresenterClass [
-	"Instantiate a ComposablePresenter subclass and set its instance owner"
-	^ aComposablePresenterClass owner: self
+SpPresenter >> instantiate: aPresenterClass [
+	"Instantiate a SpPresenter subclass and set its instance owner"
+	^ aPresenterClass owner: self
 ]
 
 { #category : #'instance creation' }
-SpPresenter >> instantiate: aComposablePresenterClass on: aModel [
-	"Instantiate a ComposablePresenter subclass and set its instance owner and model"
-	^ aComposablePresenterClass owner: self on: aModel
+SpPresenter >> instantiate: aPresenterClass on: aModel [
+	"Instantiate a SpPresenter subclass and set its instance owner and model"
+	^ aPresenterClass owner: self on: aModel
 ]
 
 { #category : #'instance creation' }
 SpPresenter >> instantiatePresenters: aCollectionOfPairs [
-	"instantiatePresenters: is legacy code in ComposablePresenter and must not be used. It will be deprecated and removed."
+	"instantiatePresenters: is legacy code in SpPresenter and must not be used. It will be deprecated and removed."
 
 	"Used to instantiate multiple sub widget at once. Take aCollectionOfPairs where each odd element is an inst var name and each even element is a class name, create an instance from the class name and store it into the inst var"
 
@@ -950,7 +950,7 @@ SpPresenter >> takeLastKeyboardFocus [
 { #category : #TOREMOVE }
 SpPresenter >> title [
 	"DO NOT USE
-	With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
+	With Spec 2, SpPresenter was refactored to move all window management to WindowPresenter.
 	From now on, if you want to interact with a window you need to:
 	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
 	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
@@ -1036,7 +1036,7 @@ SpPresenter >> whenWindowChanged: aBlock [
 { #category : #TOREMOVE }
 SpPresenter >> windowIcon [
 	"DO NOT USE
-	With Spec 2, ComposablePresenter was refactored to move all window management to WindowPresenter.
+	With Spec 2, SpPresenter was refactored to move all window management to WindowPresenter.
 	From now on, if you want to interact with a window you need to:
 	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
 	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.

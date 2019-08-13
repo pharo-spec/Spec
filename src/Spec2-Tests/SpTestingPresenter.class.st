@@ -2,7 +2,7 @@
 A TestingComposablePresenter is a stupid composable model used to test SpecInterpreter.
 "
 Class {
-	#name : #SpTestingComposablePresenter,
+	#name : #SpTestingPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'list'
@@ -11,30 +11,30 @@ Class {
 }
 
 { #category : #specs }
-SpTestingComposablePresenter class >> defaultSpec [
+SpTestingPresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add: #list;
 		yourself
 ]
 
 { #category : #specs }
-SpTestingComposablePresenter class >> title [
+SpTestingPresenter class >> title [
 
 	^ 'You should not see me !'
 ]
 
 { #category : #accessing }
-SpTestingComposablePresenter >> getText [
+SpTestingPresenter >> getText [
 	^ Text new
 ]
 
 { #category : #initialization }
-SpTestingComposablePresenter >> initializeWidgets [
+SpTestingPresenter >> initializeWidgets [
 	list := self newList
 ]
 
 { #category : #accessing }
-SpTestingComposablePresenter >> list [
+SpTestingPresenter >> list [
 
 	^ list
 ]
