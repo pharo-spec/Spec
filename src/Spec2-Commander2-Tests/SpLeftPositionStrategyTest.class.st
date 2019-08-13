@@ -13,7 +13,7 @@ SpLeftPositionStrategyTest >> testAddButtonToActionBar [
 	actionBar := SpActionBarPresenter new.
 	button := SpButtonPresenter new.
 	
-	self assert: actionBar items isEmpty.
+	self assertEmpty: actionBar items.
 	
 	SpLeftPositionStrategy new
 		addButton: button toActionBar: actionBar.
@@ -30,12 +30,12 @@ SpLeftPositionStrategyTest >> testAddButtonToToolbar [
 	toolbar := SpToolBarPresenter new.
 	button := SpToolBarButton new.
 	
-	self assert: toolbar items isEmpty.
+	self assertEmpty: toolbar items.
 	
 	SpLeftPositionStrategy new
 		addButton: button toToolbar: toolbar.
 		
 	self assert: toolbar leftItems size equals: 1.
 	self assert: toolbar leftItems anyOne equals: button.
-	self assert: toolbar rightItems size equals: 0.
+	self assertEmpty: toolbar rightItems
 ]
