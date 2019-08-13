@@ -2,7 +2,7 @@
 This presenter contains several subpresenters that are stored in additionalSubpresentersMap plus one presenter that is stored in instance variable but does not have any public accessors.
 "
 Class {
-	#name : #SpTestingComposablePresenterWithAdditionalPresenters,
+	#name : #SpTestingPresenterWithAdditionalPresenters,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'subpresenter1',
@@ -17,7 +17,7 @@ Class {
 }
 
 { #category : #accessing }
-SpTestingComposablePresenterWithAdditionalPresenters class >> defaultSpec [
+SpTestingPresenterWithAdditionalPresenters class >> defaultSpec [
 	<spec>
 	| aLayout |
 	aLayout := SpBoxLayout newVertical.
@@ -30,13 +30,13 @@ SpTestingComposablePresenterWithAdditionalPresenters class >> defaultSpec [
 ]
 
 { #category : #accessing }
-SpTestingComposablePresenterWithAdditionalPresenters class >> keys [ 
+SpTestingPresenterWithAdditionalPresenters class >> keys [ 
 
 	^ #(subpresenter1 subpresenter2 subpresenter3)
 ]
 
 { #category : #initialization }
-SpTestingComposablePresenterWithAdditionalPresenters >> initializeWidgets [
+SpTestingPresenterWithAdditionalPresenters >> initializeWidgets [
 
 	self class keys do: [ :aKey |
 		self additionalSubpresentersMap at: aKey put: (self newButton label: aKey)].

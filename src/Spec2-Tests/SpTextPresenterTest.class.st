@@ -20,6 +20,14 @@ SpTextPresenterTest >> initializationText [
 ]
 
 { #category : #tests }
+SpTextPresenterTest >> testClearContent [
+	self initializationText.
+	self denyEmpty: presenter text.
+	presenter clearContent.
+	self assertEmpty: presenter text
+]
+
+{ #category : #tests }
 SpTextPresenterTest >> testClearSelection [
 	self initializationText.
 	self openInstance.

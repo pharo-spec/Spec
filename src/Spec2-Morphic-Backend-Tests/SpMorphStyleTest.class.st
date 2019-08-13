@@ -1,19 +1,19 @@
 Class {
-	#name : #SpStyleLookupTest,
+	#name : #SpMorphStyleTest,
 	#superclass : #TestCase,
 	#category : #'Spec2-Morphic-Backend-Tests'
 }
 
 { #category : #private }
-SpStyleLookupTest >> newLookup: aString [
+SpMorphStyleTest >> newLookup: aString [
 	| rootClass |
 
 	rootClass := SpStyleSTONReader fromString: aString.
-	^ SpStyleLookup newStyles: rootClass flattenClasses 
+	^ SpMorphStyle newStyles: rootClass flattenClasses 
 ]
 
 { #category : #tests }
-SpStyleLookupTest >> testApplyTo [
+SpMorphStyleTest >> testApplyTo [
 	| styleResolver morph |
 	
 	styleResolver := self newLookup: '.application [ 
@@ -35,7 +35,7 @@ SpStyleLookupTest >> testApplyTo [
 ]
 
 { #category : #tests }
-SpStyleLookupTest >> testDeepLookup [
+SpMorphStyleTest >> testDeepLookup [
 	"This should answer the deepest width"
 	| styleResolver |
 	
@@ -53,7 +53,7 @@ SpStyleLookupTest >> testDeepLookup [
 ]
 
 { #category : #tests }
-SpStyleLookupTest >> testDeepMultipleLookup [
+SpMorphStyleTest >> testDeepMultipleLookup [
 	"This should answer the deepest width (last appearence)"
 	| styleResolver |
 	
@@ -74,14 +74,14 @@ SpStyleLookupTest >> testDeepMultipleLookup [
 ]
 
 { #category : #tests }
-SpStyleLookupTest >> testFromStylesheetAdapter [
+SpMorphStyleTest >> testFromStylesheetAdapter [
 	| lookup labelAdapter |
 
 	labelAdapter := SpLabelPresenter new 
 		buildWithSpec;
 		adapter.
 
-	lookup := SpStyleLookup
+	lookup := SpMorphStyle
 		fromStylesheet: (SpStyleSTONReader fromString: '
 .application [
 	.label [
@@ -92,7 +92,7 @@ SpStyleLookupTest >> testFromStylesheetAdapter [
 		
 	self assert: lookup width equals: 42.
 	
-	lookup := SpStyleLookup
+	lookup := SpMorphStyle
 		fromStylesheet: (SpStyleSTONReader fromString: '
 .application [
 	Geometry { #width: 42 },
@@ -102,7 +102,7 @@ SpStyleLookupTest >> testFromStylesheetAdapter [
 	self assert: lookup width equals: 42.
 	
 	"it refuses deeper class (because is not part of the tree)"
-	lookup := SpStyleLookup
+	lookup := SpMorphStyle
 		fromStylesheet: (SpStyleSTONReader fromString: '
 .application [
 	.label [
@@ -119,7 +119,7 @@ SpStyleLookupTest >> testFromStylesheetAdapter [
 ]
 
 { #category : #tests }
-SpStyleLookupTest >> testSimpleLookup [
+SpMorphStyleTest >> testSimpleLookup [
 	"this should answer the width defined in the only level"
 	| styleResolver |
 	

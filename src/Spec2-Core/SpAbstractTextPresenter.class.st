@@ -97,6 +97,11 @@ SpAbstractTextPresenter >> autoAccept: aBoolean [
 ]
 
 { #category : #api }
+SpAbstractTextPresenter >> clearContent [
+	self text: ''
+]
+
+{ #category : #api }
 SpAbstractTextPresenter >> clearSelection [
 "	<api: #do>"
    "Remove selection from the text model"
