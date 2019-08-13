@@ -11,7 +11,7 @@ SpLabelledContainerTest >> classToTest [
 
 { #category : #running }
 SpLabelledContainerTest >> initializeTestedInstance [
-	presenter content: SpTestingComposablePresenter.
+	presenter content: SpTestingPresenter
 ]
 
 { #category : #tests }
