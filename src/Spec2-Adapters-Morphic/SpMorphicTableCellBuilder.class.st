@@ -99,7 +99,7 @@ SpMorphicTableCellBuilder >> visitCheckboxColumn: aTableColumn [
 
 	self 
 		addCellMorph: presenter buildWithSpec
-		column: aTableColumn
+		column: aTableColumn 
 ]
 
 { #category : #visiting }

@@ -55,10 +55,10 @@ SpAbstractAdapter class >> owner: anOwner [
 ]
 
 { #category : #initialization }
-SpAbstractAdapter >> adapt: aComposablePresenter [
+SpAbstractAdapter >> adapt: aPresenter [
 
-	model := aComposablePresenter.
-	aComposablePresenter addDependent: self.
+	model := aPresenter.
+	aPresenter addDependent: self.
 
 	widget := self buildWidget.
 ]

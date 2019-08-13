@@ -12,8 +12,8 @@ Class {
 { #category : #operations }
 SpStyleClass >> applyTo: aMorph [
 
-	styles ifNil: [ ^ self ].
-	styles do: [ :each | each applyTo: aMorph ]
+	self properties do: [ :each | 
+		each applyTo: aMorph ]
 ]
 
 { #category : #accessing }

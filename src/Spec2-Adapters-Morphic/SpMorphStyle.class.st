@@ -29,18 +29,18 @@ SpMorphStyle class >> fromStylesheet: aStyle adapter: anAdapter [
 	| allStyleClasses styles |
 		
 	allStyleClasses := aStyle flattenClasses.
-	styles := OrderedCollection new.
+	styles := Array new writeStream.
 	(({ 'application'. anAdapter styleName }, anAdapter presenter styles) do: [ :each |
 		"a hack to not do a double dispatch on string :(" 
 		each isString 
 			ifTrue: [ 
 				allStyleClasses 
 					detect: [ :eachStyle | eachStyle fullName = each ]
-					ifFound: [ :aStyleClass | styles add: aStyleClass ] ] 
+					ifFound: [ :aStyleClass | styles nextPut: aStyleClass ] ] 
 			ifFalse: [ 
-				styles add: each ] ]).
+				styles nextPut: each ] ]).
 	"WARNING. Order is important"
-	^ self newStyles: styles
+	^ self newStyles: styles contents
 ]
 
 { #category : #'instance creation' }

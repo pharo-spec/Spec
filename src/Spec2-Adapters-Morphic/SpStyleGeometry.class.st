@@ -22,9 +22,12 @@ SpStyleGeometry >> applyTo: aMorph [
 
 	aMorph
 		width: (self geometryValueBetween: self extentOrDefault x and: aMorph width);		
-		height: (self geometryValueBetween: self extentOrDefault y and: aMorph height);
-		hResizing: (self resizingStringFor: self hResizing);
-		vResizing: (self resizingStringFor: self vResizing)
+		height: (self geometryValueBetween: self extentOrDefault y and: aMorph height).
+		
+	self hResizing ifNotNil: [ :aBoolean | 
+		aMorph hResizing: (self resizingStringFor: aBoolean) ].
+	self vResizing ifNotNil: [ :aBoolean |
+		aMorph vResizing: (self resizingStringFor: aBoolean) ]
 ]
 
 { #category : #private }
@@ -90,8 +93,8 @@ SpStyleGeometry >> height: aNumber [
 SpStyleGeometry >> initialize [
 
 	super initialize.
-	self hResizing: false.
-	self vResizing: false
+	self hResizing: nil.
+	self vResizing: nil
 ]
 
 { #category : #accessing }

@@ -20,7 +20,7 @@ SpStyle class >> createDefaultStyleSheet [
 	^ SpStyleSTONReader fromString: '
 .application [
 	Font { #name : "Source Sans Pro", #size : 10 },
-	Geometry { #height: 30 },
+	Geometry { #height: 25 },
 	.label [
 		Geometry { #hResizing: true }		
 	],
