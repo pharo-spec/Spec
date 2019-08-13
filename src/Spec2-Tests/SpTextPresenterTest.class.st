@@ -1,68 +1,10 @@
 Class {
 	#name : #SpTextPresenterTest,
-	#superclass : #SpSmokeTest,
+	#superclass : #SpAbstractTextPresenterTest,
 	#category : #'Spec2-Tests-Core-Widgets'
 }
-
-{ #category : #testing }
-SpTextPresenterTest class >> shouldInheritSelectors [
-	^ true
-]
 
 { #category : #running }
 SpTextPresenterTest >> classToTest [
 	^ SpTextPresenter
-]
-
-{ #category : #running }
-SpTextPresenterTest >> initializationText [
-	presenter text: 'Text for tests.'
-]
-
-{ #category : #tests }
-SpTextPresenterTest >> testClearContent [
-	self initializationText.
-	self denyEmpty: presenter text.
-	presenter clearContent.
-	self assertEmpty: presenter text
-]
-
-{ #category : #tests }
-SpTextPresenterTest >> testClearSelection [
-	self initializationText.
-	self openInstance.
-	presenter setSelection: (1 to: 10).
-	self assert: presenter getSelection equals: (1 to: 10).
-	presenter clearSelection.
-	self assert: presenter getSelection isEmpty
-]
-
-{ #category : #tests }
-SpTextPresenterTest >> testContextMenu [
-	| menu changed |
-	
-	self assert: presenter contextMenu isNil.
-	menu := SpMenuPresenter new.
-	changed := false.
-	presenter whenMenuChangedDo: [ 
-		changed := true. ].
-	presenter contextMenu: menu.
-	self assert: presenter contextMenu equals: menu.
-	self assert: changed
-]
-
-{ #category : #tests }
-SpTextPresenterTest >> testPlaceholderIsSet [
-
-	presenter placeholder: 'enter something...'.
-	
-	self assert: presenter placeholder equals: 'enter something...'
-]
-
-{ #category : #tests }
-SpTextPresenterTest >> testSelectAll [
-	self initializationText.
-	self openInstance.
-	presenter selectAll.
-	self assert: presenter getSelection equals: (1 to: 15)
 ]

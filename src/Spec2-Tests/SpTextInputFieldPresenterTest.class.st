@@ -1,6 +1,6 @@
 Class {
 	#name : #SpTextInputFieldPresenterTest,
-	#superclass : #SpTextPresenterTest,
+	#superclass : #SpAbstractTextPresenterTest,
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 

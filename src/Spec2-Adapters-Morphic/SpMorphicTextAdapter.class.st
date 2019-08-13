@@ -157,11 +157,6 @@ SpMorphicTextAdapter >> pendingText: aText [
 		w hasUnacceptedEdits: true ]
 ]
 
-{ #category : #accessing }
-SpMorphicTextAdapter >> placeHolderText [
-	^ widget ghostText asString
-]
-
 { #category : #'widget API' }
 SpMorphicTextAdapter >> placeholder [
 	^ self model placeholder

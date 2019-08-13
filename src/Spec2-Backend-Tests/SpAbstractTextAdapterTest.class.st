@@ -16,15 +16,12 @@ SpAbstractTextAdapterTest class >> shouldInheritSelectors [
 
 { #category : #tests }
 SpAbstractTextAdapterTest >> testChangePlaceholderTextUpdatesPresenter [
-
 	presenter placeholder: 'some text'.
-	
 	self assert: self adapter placeHolderText equals: 'some text'
 ]
 
 { #category : #tests }
 SpAbstractTextAdapterTest >> testPresenterPlaceholderIsSetInWidget [
-
 	presenter placeholder: 'something'.
 	self assert: self adapter placeHolderText equals: 'something'
 ]
