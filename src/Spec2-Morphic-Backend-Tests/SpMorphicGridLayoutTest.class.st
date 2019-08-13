@@ -67,13 +67,13 @@ SpMorphicGridLayoutTest >> style [
 
 { #category : #private }
 SpMorphicGridLayoutTest >> styleExtent: aPoint [
+	| rootStyle |
 
-	^ SpMorphicStyleSheet new 
-		propertyAt: #extent put: (SpMorphicStyleSheetExtent 
-			newExtent: aPoint
-			hResizing: true 
-			vResizing: true);
-		yourself
+	rootStyle := (SpStyleSTONReader fromString: ('
+.application [ Geometry \{ #width: {1}, #height: {2} \} ]'
+	format: { aPoint x. aPoint y })).
+	
+	^ SpMorphStyle newStyles: rootStyle flattenClasses
 ]
 
 { #category : #tests }

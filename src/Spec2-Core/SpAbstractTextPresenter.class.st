@@ -11,7 +11,8 @@ Class {
 		'#text => SpObservableSlot',
 		'#actionToPerform => SpObservableSlot',
 		'#readSelection => SpObservableSlot',
-		'#actionPerformed => SpObservableSlot'
+		'#actionPerformed => SpObservableSlot',
+		'#placeholder => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -200,6 +201,7 @@ SpAbstractTextPresenter >> initialize [
 	super initialize.
 
 	text := ''.
+	placeholder := ''.
 	actionToPerform := [ :txt |  ].
 	readSelection := [ selection ].
 	actionPerformed := ''.
@@ -236,6 +238,18 @@ SpAbstractTextPresenter >> isForSmalltalkCode: aBoolean [
 SpAbstractTextPresenter >> notify: errorMessage at: position in: sourceCode [
 
 	self changed: #notify:at:in: with: { errorMessage . position . sourceCode }
+]
+
+{ #category : #api }
+SpAbstractTextPresenter >> placeholder [
+
+	^ placeholder
+]
+
+{ #category : #accessing }
+SpAbstractTextPresenter >> placeholder: aText [
+
+	placeholder := aText
 ]
 
 { #category : #api }
@@ -353,6 +367,12 @@ SpAbstractTextPresenter >> whenMenuChangedDo: aBlock [
 	"Set a block to value when the menu block has changed"
 	
 	self property: #contextMenu whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+SpAbstractTextPresenter >> whenPlaceholderChangedDo: aBlock [
+	
+	self property: #placeholder whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

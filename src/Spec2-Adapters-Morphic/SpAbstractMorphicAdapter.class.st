@@ -287,13 +287,6 @@ SpAbstractMorphicAdapter >> layout: aLayout [
 	self widgetDo: [ :w | w layoutFrame: layout ].
 ]
 
-{ #category : #styling }
-SpAbstractMorphicAdapter >> newStyleName [
-	"i.e. SpButtonAdapter = button"
-	
-	^ ((self className withoutPrefix: 'SpMorphic') allButLast: 7) uncapitalized
-]
-
 { #category : #'protocol-shortcuts' }
 SpAbstractMorphicAdapter >> removeKeyCombination: aShortcut [
 
@@ -338,42 +331,25 @@ SpAbstractMorphicAdapter >> show [
 
 { #category : #styling }
 SpAbstractMorphicAdapter >> style [
-	"i.e. ButtonAdapter = Button"
-	
-	^ self styleAt: self styleName
-]
 
-{ #category : #styling }
-SpAbstractMorphicAdapter >> styleAt: aName [
-	"i.e. ButtonAdapter = Button"
-	
-	^ SpMorphicStyleSheet current atClass: aName
+	^ SpMorphStyle 
+		fromStylesheet: self styleSheet 
+		adapter: self
 ]
 
 { #category : #styling }
 SpAbstractMorphicAdapter >> styleName [
-	"i.e. ButtonAdapter = Button"
+	"i.e. SpButtonAdapter = button"
 	
-	^ ((self className withoutPrefix: 'SpMorphic') allButLast: 7) asSymbol
+	^ ((self className withoutPrefix: 'SpMorphic') allButLast: 7) uncapitalized
 ]
 
 { #category : #styling }
 SpAbstractMorphicAdapter >> styleSheet [
 
-	^ self application styleSheet
-]
-
-{ #category : #styling }
-SpAbstractMorphicAdapter >> styles [
-	"i.e. ButtonAdapter = Button"
-	
-	^ ({ 'application'. self styleName }, self presenter styles)
-	collect: [ :each |
-		"hack to allow overriding styles (even if not recommended). 
-		 I don't want to pollute string with the double dispatch, but this is ugly :("
-		each isString 
-			ifTrue: [ self styleSheet styleAt: each ]
-			ifFalse: [ each ] ]
+	self flag: #TODO. "This needs to be in the application!"
+	^ SpStyle defaultStyleSheet
+	"^ self application styleSheet"
 ]
 
 { #category : #'drag and drop' }
