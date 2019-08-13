@@ -11,6 +11,8 @@ BaselineOfSpec2 >> baseline: spec [
 		for: #common
 		do: [ 
 
+			self commander2: spec.
+
 			"Packages"
 			spec
 				package: 'Spec2-Core'
@@ -22,18 +24,23 @@ BaselineOfSpec2 >> baseline: spec [
 					with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Deprecated'
 					with: [ spec
-						requires: #('Spec2-Tests' 'Spec2-Adapters-Morphic') ];
+						requires: #('Spec2-Tests' 'Spec2-PolyWidgets-Tests' 'Spec2-Adapters-Morphic' 'Spec2-Commander2') ];
+				package: 'Spec2-Inspector'
+					with: [ spec requires: #('Spec2-PolyWidgets') ];
 				package: 'Spec2-Layout';
 				package: 'Spec2-Transmission';
 				package: 'Spec2-Adapters-Morphic'
 					with: [ spec requires: #('Spec2-Core') ];
+				package: 'Spec2-PolyWidgets'
+					with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Adapters-Stub'
 					with: [ spec requires: #('Spec2-Core') ];
-				package: 'Spec2-Examples';
+				package: 'Spec2-Examples'
+					with: [ spec requires: #('Spec2-Inspector') ];
 				package: 'Spec2-Interactions'
 					with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Commander2'
-					with: [ spec requires: #('Spec2-Core' 'Spec2-Interactions') ];
+					with: [ spec requires: #('Spec2-Core' 'Spec2-Interactions' 'Commander2') ];
 				package: 'Spec2-Commander2-Compatibility'
 					with: [ spec requires: #('Spec2-Commander2') ];
 				package: 'Spec2-Commander2-Tests'
@@ -44,6 +51,8 @@ BaselineOfSpec2 >> baseline: spec [
 					with: [ spec requires: #('Spec2-Commander2-ContactBook') ];
 				package: 'Spec2-Tests'
 					with: [ spec requires: #('Spec2-Examples') ];
+				package: 'Spec2-PolyWidgets-Tests'
+					with: [ spec requires: #('Spec2-Tests' 'Spec2-PolyWidgets') ];
 				package: 'Spec2-Morphic-Backend-Tests'
 					with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 				package: 'Spec2-Backend-Tests'
@@ -56,7 +65,6 @@ BaselineOfSpec2 >> baseline: spec [
 		do: [ 
 			"Dependencies for Pharo7"
 			self parametrizedTests: spec.			
-			self commander2: spec.
 
 			spec 
 				baseline: 'Commander' 
@@ -72,14 +80,12 @@ BaselineOfSpec2 >> baseline: spec [
 				package: 'Spec2-Morphic-Backend-Tests'	
 					with: [ spec requires: #('ParametrizedTests' 'Spec2-Adapters-Morphic') ];
 				package: 'Spec2-Tests'
-					with: [ spec requires: #('Spec2-Examples' 'ParametrizedTests') ];
-				package: 'Spec2-Commander2'
-					with: [ spec requires: #('Commander2') ] ].
+					with: [ spec requires: #('Spec2-Examples' 'ParametrizedTests') ] ].
 	spec
 		for: #'pharo8.x'
 		do: [ spec
 				package: 'Spec2-Tools'
-					with: [ spec requires: #('Spec2-Core') ];
+					with: [ spec requires: #('Spec2-PolyWidgets') ];
 				package: 'Spec2-Tools-Tests'
 					with: [ spec requires: #('Spec2-Tests' 'Spec2-Tools') ];
 				package: 'Spec2-Examples'
@@ -92,7 +98,7 @@ BaselineOfSpec2 >> baseline: spec [
 BaselineOfSpec2 >> commander2: spec [
 	spec
 		baseline: 'Commander2'
-		with: [ spec repository: 'github://pharo-spec/Commander2/src' ]
+		with: [ spec repository: 'github://pharo-spec/Commander2:v1.1.0/src' ]
 ]
 
 { #category : #dependencies }
