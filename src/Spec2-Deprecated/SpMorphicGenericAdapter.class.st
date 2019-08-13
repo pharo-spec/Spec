@@ -6,8 +6,15 @@ Be aware that when you use this, you broke Spec plateform independency and force
 Class {
 	#name : #SpMorphicGenericAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#category : #'Spec2-Deprecated'
 }
+
+{ #category : #deprecation }
+SpMorphicGenericAdapter class >> isDeprecated [
+	"You should use #SpMorphPresenter instead of #asSpAdapter."
+
+	^ true
+]
 
 { #category : #'instance creation' }
 SpMorphicGenericAdapter class >> morph: morph [
