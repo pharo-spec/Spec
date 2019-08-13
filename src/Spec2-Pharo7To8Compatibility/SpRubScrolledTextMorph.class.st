@@ -27,6 +27,21 @@ SpRubScrolledTextMorph >> canDiscardEdits [
 ]
 
 { #category : #accessing }
+SpRubScrolledTextMorph >> ghostText [
+	^ (self rulerNamed: #ghostText) ghostText text
+]
+
+{ #category : #accessing }
+SpRubScrolledTextMorph >> ghostText: aText [
+	self withGhostText: aText
+]
+
+{ #category : #accessing }
+SpRubScrolledTextMorph >> ghostTextRuler [
+	^ self rulerNamed: #ghostText
+]
+
+{ #category : #accessing }
 SpRubScrolledTextMorph >> initialize [
 	askBeforeDiscardingEdits := true.
 	super initialize
