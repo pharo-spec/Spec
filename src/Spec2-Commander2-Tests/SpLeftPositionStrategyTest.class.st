@@ -11,7 +11,7 @@ Class {
 SpLeftPositionStrategyTest >> testAddButtonToActionBar [
 	| actionBar button |
 	actionBar := SpActionBarPresenter new.
-	button := ButtonPresenter new.
+	button := SpButtonPresenter new.
 	
 	self assert: actionBar items isEmpty.
 	
