@@ -20,10 +20,10 @@ Class {
 }
 
 { #category : #'instance creation' }
-SpAbstractAdapter class >> adapt: aComposablePresenter [
+SpAbstractAdapter class >> adapt: aPresenter [
 	
 	^ self new
-		adapt: aComposablePresenter;
+		adapt: aPresenter;
 		yourself
 ]
 

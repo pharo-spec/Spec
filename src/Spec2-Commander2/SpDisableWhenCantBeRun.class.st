@@ -4,7 +4,7 @@ I implement the fact that the button corresponding to a command is disabled when
 Class {
 	#name : #SpDisableWhenCantBeRun,
 	#superclass : #SpCommandDisplayStrategy,
-	#category : #'Spec2-Commander2-Core'
+	#category : #'Spec2-Commander2-Strategies'
 }
 
 { #category : #displaying }

@@ -1,6 +1,6 @@
 Class {
 	#name : #SpTextAdapterTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
+	#superclass : #SpAbstractTextAdapterTest,
 	#category : #'Spec2-Backend-Tests'
 }
 

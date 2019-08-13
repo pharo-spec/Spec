@@ -33,18 +33,8 @@ ManifestSpec2Core class >> ruleLongMethodsRuleV1FalsePositive [
 ]
 
 { #category : #'code-critics' }
-ManifestSpec2Core class >> ruleRBEquivalentSuperclassMethodsRuleV1FalsePositive [
-	^ #(#(#(#RGMethodDefinition #(#'ComposablePresenter class' #iconNamed: #true)) #'2018-11-07T10:48:10.451257+01:00') )
-]
-
-{ #category : #'code-critics' }
 ManifestSpec2Core class >> ruleRBOverridesDeprecatedMethodRuleV1FalsePositive [
 	^ #(#(#(#RGMethodDefinition #(#SpMenuItemPresenter #name #false)) #'2016-07-01T15:56:13.378417+02:00') )
-]
-
-{ #category : #'code-critics' }
-ManifestSpec2Core class >> ruleSubclassResponsibilityNotDefinedRuleV1FalsePositive [
-	^ #(#(#(#RGMethodDefinition #(#'ComposablePresenter class' #defaultSpec #true)) #'2016-07-01T15:56:13.461086+02:00') )
 ]
 
 { #category : #'code-critics' }
