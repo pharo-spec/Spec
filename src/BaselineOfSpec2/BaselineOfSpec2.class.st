@@ -24,19 +24,14 @@ BaselineOfSpec2 >> baseline: spec [
 					with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Deprecated'
 					with: [ spec
-						requires: #('Spec2-Tests' 'Spec2-PolyWidgets-Tests' 'Spec2-Adapters-Morphic' 'Spec2-Commander2') ];
-				package: 'Spec2-Inspector'
-					with: [ spec requires: #('Spec2-PolyWidgets') ];
+						requires: #('Spec2-Tests' 'Spec2-Adapters-Morphic' 'Spec2-Commander2') ];
 				package: 'Spec2-Layout';
 				package: 'Spec2-Transmission';
 				package: 'Spec2-Adapters-Morphic'
 					with: [ spec requires: #('Spec2-Core') ];
-				package: 'Spec2-PolyWidgets'
-					with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Adapters-Stub'
 					with: [ spec requires: #('Spec2-Core') ];
-				package: 'Spec2-Examples'
-					with: [ spec requires: #('Spec2-Inspector') ];
+				package: 'Spec2-Examples';
 				package: 'Spec2-Interactions'
 					with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Commander2'
@@ -51,8 +46,6 @@ BaselineOfSpec2 >> baseline: spec [
 					with: [ spec requires: #('Spec2-Commander2-ContactBook') ];
 				package: 'Spec2-Tests'
 					with: [ spec requires: #('Spec2-Examples') ];
-				package: 'Spec2-PolyWidgets-Tests'
-					with: [ spec requires: #('Spec2-Tests' 'Spec2-PolyWidgets') ];
 				package: 'Spec2-Morphic-Backend-Tests'
 					with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 				package: 'Spec2-Backend-Tests'
@@ -85,7 +78,7 @@ BaselineOfSpec2 >> baseline: spec [
 		for: #'pharo8.x'
 		do: [ spec
 				package: 'Spec2-Tools'
-					with: [ spec requires: #('Spec2-PolyWidgets') ];
+					with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Tools-Tests'
 					with: [ spec requires: #('Spec2-Tests' 'Spec2-Tools') ];
 				package: 'Spec2-Examples'
