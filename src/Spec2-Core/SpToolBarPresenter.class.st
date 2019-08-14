@@ -52,16 +52,18 @@ SpToolBarPresenter >> addItem: aToolbarItem position: aPosition [
 ]
 
 { #category : #adding }
-SpToolBarPresenter >> addItemLeft: aSpToolBarItem [ 
+SpToolBarPresenter >> addItemLeft: aToolBarItem [ 
 	
-	leftItems add: aSpToolBarItem.
+	aToolBarItem owner: self.
+	leftItems add: aToolBarItem.
 	self notifyPropertyChanged: #leftItems.
 ]
 
 { #category : #adding }
-SpToolBarPresenter >> addItemRight: aSpToolBarItem [ 
+SpToolBarPresenter >> addItemRight: aToolBarItem [ 
 
-	rightItems add: aSpToolBarItem.
+	aToolBarItem owner: self.
+	rightItems add: aToolBarItem.
 	self notifyPropertyChanged: #rightItems.	
 ]
 
