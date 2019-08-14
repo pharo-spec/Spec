@@ -91,7 +91,7 @@ BaselineOfSpec2 >> baseline: spec [
 BaselineOfSpec2 >> commander2: spec [
 	spec
 		baseline: 'Commander2'
-		with: [ spec repository: 'github://pharo-spec/Commander2:v1.1.0/src' ]
+		with: [ spec repository: 'github://pharo-spec/Commander2:v1.2.0/src' ]
 ]
 
 { #category : #dependencies }
