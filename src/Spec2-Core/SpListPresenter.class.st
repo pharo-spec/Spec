@@ -173,7 +173,6 @@ SpListPresenter >> initialize [
 	autoDeselect := true.
 	allowToSelect := true.
 	display := [ :object | object asStringOrText ].
-	icon := [ :item | nil ].
 	self bindKeyCombination: Character space toAction: [ self clickOnSelectedItem ]
 ]
 
