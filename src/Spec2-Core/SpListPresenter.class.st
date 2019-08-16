@@ -127,6 +127,12 @@ SpListPresenter >> hasHeaderTitle [
 	^ headerTitle isEmptyOrNil not
 ]
 
+{ #category : #testing }
+SpListPresenter >> hasIcons [
+
+	^ self icons notNil
+]
+
 { #category : #accessing }
 SpListPresenter >> headerTitle [
 	^ headerTitle
