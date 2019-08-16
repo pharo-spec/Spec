@@ -20,8 +20,20 @@ SpLabelledList >> beMultipleSelection [
 ]
 
 { #category : #'api-shortcuts' }
+SpLabelledList >> display: aBlock [
+
+	^ self list display: aBlock
+]
+
+{ #category : #'api-shortcuts' }
 SpLabelledList >> displayBlock: aBlock [
-	^self list displayBlock: aBlock
+
+	self
+		deprecated: 'Please use #display: instead'
+		transformWith: '`@receiver displayBlock: `@arg' 
+						-> '`@receiver display: `@arg'.
+
+	^ self list display: aBlock
 ]
 
 { #category : #initialization }

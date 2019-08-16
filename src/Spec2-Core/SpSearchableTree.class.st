@@ -93,15 +93,37 @@ SpSearchableTree >> columns: aCollection [
 ]
 
 { #category : #'api-compatibility' }
+SpSearchableTree >> display [
+
+	^ tree display
+]
+
+{ #category : #'api-compatibility' }
+SpSearchableTree >> display: aBlock [
+	
+	tree display: aBlock
+]
+
+{ #category : #'api-compatibility' }
 SpSearchableTree >> displayBlock [
 
-	^ tree displayBlock
+	self
+		deprecated: 'Please use #display instead'
+		transformWith: '`@receiver displayBlock' 
+						-> '`@receiver display'.
+
+	^ tree display
 ]
 
 { #category : #'api-compatibility' }
 SpSearchableTree >> displayBlock: aBlock [
 	
-	tree displayBlock: aBlock
+	self
+		deprecated: 'Please use #display: instead'
+		transformWith: '`@receiver displayBlock: `@arg' 
+						-> '`@receiver display: `@arg'.
+	
+	tree display: aBlock
 ]
 
 { #category : #api }

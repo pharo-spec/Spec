@@ -6,7 +6,7 @@ SpInputTextDropList class >> example [
 	| example |
 	example := self new
 		placeholder: 'a Number';
-		displayBlock: [ :item | item asString ];
+		display: [ :item | item asString ];
 		items: {'Potatoes' . 'Carrots' . 'Onions'};
 		extent: 350 @ 50;
 		openWithSpec;

@@ -50,13 +50,36 @@ SpDropListPresenter >> addItemLabeled: aString do: aBlock icon: anIcon [
 ]
 
 { #category : #api }
+SpDropListPresenter >> display [
+	
+	^ displayBlock
+]
+
+{ #category : #api }
+SpDropListPresenter >> display: aBlock [
+	
+	displayBlock := aBlock 
+
+]
+
+{ #category : #api }
 SpDropListPresenter >> displayBlock [
+	
+	self
+		deprecated: 'Please use #display instead'
+		transformWith: '`@receiver displayBlock' 
+						-> '`@receiver display'.
 	
 	^ displayBlock
 ]
 
 { #category : #api }
 SpDropListPresenter >> displayBlock: aBlock [
+	
+	self
+		deprecated: 'Please use #display: instead'
+		transformWith: '`@receiver displayBlock: `@arg' 
+						-> '`@receiver display: `@arg'.
 	
 	displayBlock := aBlock 
 
@@ -65,8 +88,8 @@ SpDropListPresenter >> displayBlock: aBlock [
 { #category : #api }
 SpDropListPresenter >> displayForItem: anItem [
 	"The order of the arguments may look weird, but then it seems more natural while using the widget"
-	
-	^ self displayBlock cull: anItem model cull: anItem
+
+	^ self display cull: anItem model cull: anItem
 ]
 
 { #category : #api }

@@ -20,8 +20,20 @@ SpLabelledDropList class >> defaultSpec [
 ]
 
 { #category : #'api-shortcuts' }
+SpLabelledDropList >> display: aBlock [
+
+	^ self dropList display: aBlock
+]
+
+{ #category : #'api-shortcuts' }
 SpLabelledDropList >> displayBlock: aBlock [
-	^self dropList displayBlock: aBlock
+
+	self
+		deprecated: 'Please use #display: instead'
+		transformWith: '`@receiver displayBlock: `@arg' 
+						-> '`@receiver display: `@arg'.
+
+	^self dropList display: aBlock
 ]
 
 { #category : #accessing }
