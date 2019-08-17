@@ -213,7 +213,7 @@ SpButtonPresenter >> performAction [
 	self action value.
 
 	" Here I set a dummy value just to make the holder raise an event "
-	actionPerformed := nil
+	actionPerformed := (actionPerformed ifNil: [ 0 ]) + 1
 ]
 
 { #category : #private }
