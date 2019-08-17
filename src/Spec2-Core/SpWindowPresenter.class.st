@@ -208,10 +208,8 @@ SpWindowPresenter >> hasStatusBar [
 ]
 
 { #category : #testing }
-SpWindowPresenter >> hasToolBar [
-	
-	^ self toolBar notNil
-	and: [ self toolBar notEmpty ]
+SpWindowPresenter >> hasToolbar [
+	^ self toolBar notNil and: [ self toolBar notEmpty ]
 ]
 
 { #category : #api }
