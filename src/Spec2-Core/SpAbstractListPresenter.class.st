@@ -183,8 +183,6 @@ SpAbstractListPresenter >> listElementAt: anIndex ifAbsent: aBlock [
 
 { #category : #api }
 SpAbstractListPresenter >> listSize [
-	"<api: #inspect>"
-
 	"Return the size of the list"
 
 	^ self model size
@@ -254,8 +252,6 @@ SpAbstractListPresenter >> selectItems: aCollection [
 
 { #category : #api }
 SpAbstractListPresenter >> selectedItems [
-	"<api: #inspect>"
-
 	"Return all the selected items in the case of a multiple selection list"
 
 	^ self selectedItemsAtIndexes: self selection selectedIndexes
