@@ -119,7 +119,7 @@ SpDemo >> initializeWidgets [
 
 	list
 		items: self availablePages;
-		displayBlock: [ :item | item pageName ];
+		display: [ :item | item pageName ];
 		contextMenu:
 			(self newMenu
 				addItem: [ :item | 

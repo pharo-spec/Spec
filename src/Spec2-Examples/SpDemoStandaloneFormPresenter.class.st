@@ -209,7 +209,6 @@ SpDemoStandaloneFormPresenter >> initializePresenter [
 
 { #category : #initialization }
 SpDemoStandaloneFormPresenter >> initializeWidgets [
-
 	nameLabel := self newLabel label: 'name:'.
 	nameTextInput := self newTextInput autoAccept: true.
 
@@ -220,7 +219,13 @@ SpDemoStandaloneFormPresenter >> initializeWidgets [
 	number1Input := self newNumberInput autoAccept: true.
 
 	number2Label := self newLabel label: 'number 2:'.
-	number2Input := self newNumberInput autoAccept: true; beFloat; digits: 3; climbRate: 0.005; minimum: 10.005; maximum: 20.05.
+	number2Input := self newNumberInput
+		autoAccept: true;
+		beFloat;
+		digits: 3;
+		climbRate: 0.005;
+		minimum: 10.005;
+		maximum: 20.05.
 
 	scaleLabel := self newLabel label: 'scale:'.
 	scaleInput := self newSlider.
@@ -234,16 +239,13 @@ SpDemoStandaloneFormPresenter >> initializeWidgets [
 
 	dateLabel := self newLabel label: 'date:'.
 	dateInput := self instantiate: SpDatePresenter.
-	dateInput displayBlock: [ :item | item yyyymmdd ].
-	
-	maleButton := self newRadioButton label: 'male'. 
+	dateInput display: [ :item | item yyyymmdd ].
+
+	maleButton := self newRadioButton label: 'male'.
 	femaleButton := self newRadioButton label: 'female'.
-	maleButton associatedRadioButtons: { femaleButton }.
-	genderButtons := Dictionary newFrom: { 
-		#male -> maleButton.
-		#female -> femaleButton
-	}.
-		
+	maleButton associatedRadioButtons: {femaleButton}.
+	genderButtons := Dictionary newFrom: {(#male -> maleButton) . (#female -> femaleButton)}.
+
 	genderLabel := self newLabel label: 'gender:'.
 	itemsLabel := self newLabel label: 'items:'.
 	itemsInput := self newList.
