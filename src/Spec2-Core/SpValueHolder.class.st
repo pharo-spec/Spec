@@ -77,6 +77,9 @@ SpValueHolder >> value: anObject [
 	"Handle circular references as explained in the class comment"
 	lock ifTrue: [ ^ self ].
 	
+	"In case the value does not change, no need to update the value holder."
+	anObject = value ifTrue: [ ^ self ].
+	
 	lock := true.
 	
 	[ | oldValue |

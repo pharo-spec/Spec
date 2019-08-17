@@ -19,6 +19,11 @@ SpMorphPresenter >> defineInputPorts [
 	^ { SpMorphPort new }
 ]
 
+{ #category : #initialization }
+SpMorphPresenter >> initialize [
+	super initialize.
+]
+
 { #category : #accessing }
 SpMorphPresenter >> morph [
 	^ morph

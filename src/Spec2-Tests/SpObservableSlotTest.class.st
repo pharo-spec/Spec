@@ -69,6 +69,18 @@ SpObservableSlotTest >> testObservableSlotWorksAsNormalSlot [
 ]
 
 { #category : #tests }
+SpObservableSlotTest >> testSettingTwoTimesTheSameValueRaiseDeclareOnlyOnePropertyChange [
+	| count |
+	count := 0.
+	point property: #x whenChangedDo: [ count := count + 1 ].
+
+	point x: 17.
+	point x: 17.
+
+	self assert: count equals: 1
+]
+
+{ #category : #tests }
 SpObservableSlotTest >> testSubscribeBlockWithoutParametersIsCalled [
 
 	| called |
