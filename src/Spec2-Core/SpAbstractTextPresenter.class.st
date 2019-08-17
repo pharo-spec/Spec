@@ -103,7 +103,6 @@ SpAbstractTextPresenter >> clearContent [
 
 { #category : #api }
 SpAbstractTextPresenter >> clearSelection [
-"	<api: #do>"
    "Remove selection from the text model"
 
 	self setSelection: (0 to: 0)
@@ -166,7 +165,6 @@ SpAbstractTextPresenter >> getSelection [
 
 { #category : #api }
 SpAbstractTextPresenter >> hasEditingConflicts [
-	"<api:#inspect>"
 	"Return if the text zone has editing conflicts"
 
 	^ self widget 
@@ -177,7 +175,6 @@ SpAbstractTextPresenter >> hasEditingConflicts [
 { #category : #api }
 SpAbstractTextPresenter >> hasEditingConflicts: aBoolean [
 	"Set if the text zone has editing conflicts"
-	"<api:#boolean getter: #hasEditingConflicts>"
 	
 	^ self changed: #hasEditingConflicts: with: { aBoolean }
 ]
@@ -341,7 +338,6 @@ SpAbstractTextPresenter >> wantsVisualFeedback: aBoolean [
 
 { #category : #'api-events' }
 SpAbstractTextPresenter >> whenAboutToStyleChangedDo: aBlock [
-	"<api: #event>"
 	"Set a block to perform when the about to style block changed"
 	
 	self whenAboutToStyleBlockChanged: [:block :old :announcement :anAnnouncer | 
