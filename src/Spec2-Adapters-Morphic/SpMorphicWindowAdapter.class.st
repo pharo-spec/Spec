@@ -36,7 +36,7 @@ SpMorphicWindowAdapter >> addContent: aMorph toWindow: aSpecWindow [
 
 	"add all decorations (menu, toolbar and statusbar)"
 	self model hasMenu ifTrue: [ self addMenuTo: containerMorph ].
-	self model hasToolBar ifTrue: [ self addToolBarTo: containerMorph ].
+	self model hasToolbar ifTrue: [ self addToolBarTo: containerMorph ].
 	containerMorph addMorphBack: aMorph.
 	aMorph
 		hResizing: #spaceFill;
