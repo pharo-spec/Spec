@@ -136,8 +136,8 @@ SpListPresenterSingleSelectionTest >> testSelectMultipleIndexesRaisesSelectionCh
 { #category : #'tests-select-index' }
 SpListPresenterSingleSelectionTest >> testSetSelectIndexOutsideRangeRaisesSelectionChangeEventWithUnsetIndex [
 	| selectedIndex |
-	presenter
-		whenSelectionChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
+	presenter selectIndex: 1.
+	presenter whenSelectionChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
 	presenter selectIndex: 4.
 	self assert: selectedIndex equals: 0
 ]
@@ -192,9 +192,8 @@ SpListPresenterSingleSelectionTest >> testSetSelectIndexRaisesSelectionItemChang
 { #category : #'tests-select-item' }
 SpListPresenterSingleSelectionTest >> testSetSelectItemOutsideRangeRaisesSelectionChangeEventWithUnsetIndex [
 	| selectedIndex |
-
-	presenter
-		whenSelectionChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
+	presenter selectIndex: 1.
+	presenter whenSelectionChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
 	presenter selectItem: 40.
 	self assert: selectedIndex equals: 0
 ]
@@ -248,8 +247,10 @@ SpListPresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionItemChange
 { #category : #'tests-unselect-index' }
 SpListPresenterSingleSelectionTest >> testUnselectAllRaisesSelectionEventOnce [
 	"Because it does nothing in single selection mode"
+
 	| events |
 	events := 0.
+	presenter selectIndex: 1.
 	presenter whenSelectionChangedDo: [ :selection | events := events + 1 ].
 
 	presenter unselectAll.
