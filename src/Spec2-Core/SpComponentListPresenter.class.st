@@ -17,6 +17,8 @@ SpComponentListPresenter class >> adapterName [
 
 { #category : #initialization }
 SpComponentListPresenter >> addPresenter: aPresenter [
+	
+	aPresenter owner: self.
 	presenters add: aPresenter.
 	self notifyPropertyChanged: #presenters
 ]
@@ -35,5 +37,7 @@ SpComponentListPresenter >> presenters [
 
 { #category : #initialization }
 SpComponentListPresenter >> presenters: aCollection [
+
+	aCollection do: [ :each | each owner: self ].
 	presenters := aCollection
 ]
