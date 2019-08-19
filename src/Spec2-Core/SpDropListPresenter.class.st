@@ -157,7 +157,6 @@ SpDropListPresenter >> initialize [
 SpDropListPresenter >> items: aList [
 	"Populate the drop list with a list of ui specific items"
 	"aList is a list of domain specific objects. If you want to specify more precisely the item actions, see #addItemLabeled:do:"
-	"<api: #st getter: #listItems>"
 	
 	| dropListItems |
 	dropListItems := aList collect: [ :e | SpDropListItem on: e do: [] ].
@@ -169,7 +168,6 @@ SpDropListPresenter >> items: aList [
 
 { #category : #api }
 SpDropListPresenter >> listItems [
-	"<api: #inspect>"
 	"Return the list used to populate the drop list"
 	
 	^ self getList collect: [ :e | e model ].
@@ -177,7 +175,6 @@ SpDropListPresenter >> listItems [
 
 { #category : #api }
 SpDropListPresenter >> listSize [
-	"<api: #inspect>"
 	"Return the size of the list of choices"
 
 	^ self listItems size
@@ -197,7 +194,6 @@ SpDropListPresenter >> resetSelection [
 
 { #category : #api }
 SpDropListPresenter >> selectedIndex [
-	"<api: #inspect>"
 	"Useless method but it provides a better and more consistent API"
 
 	^ self getIndex
@@ -213,8 +209,6 @@ SpDropListPresenter >> selectedIndex: anInteger [
 
 { #category : #api }
 SpDropListPresenter >> selectedItem [
-	"<api: #inspect>"
-
 	^ self selection selectedItem ifNotNil: #model
 ]
 

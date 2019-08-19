@@ -36,7 +36,6 @@ SpAbstractFormButtonPresenter >> activationAction: aBlock [
 
 { #category : #api }
 SpAbstractFormButtonPresenter >> click [
-	"<api: #do>"
 	"Simulate a click on the checkbox
 	Used when the checkboc is a list item"
 
@@ -52,7 +51,6 @@ SpAbstractFormButtonPresenter >> deactivationAction: aBlock [
 
 { #category : #api }
 SpAbstractFormButtonPresenter >> enabled: aBoolean [
-	"<api: #boolean getter: #enabled registration: #whenEnabledChanged:>"
 	"Set if the button is enabled (clickable)"
 
 	super enabled: aBoolean.
@@ -118,7 +116,6 @@ SpAbstractFormButtonPresenter >> state: aBoolean [
 
 { #category : #api }
 SpAbstractFormButtonPresenter >> toggleState [
-	"<api: #do>"
 	"Toogle the current state of the checkbox"
 
 	self state: self state not

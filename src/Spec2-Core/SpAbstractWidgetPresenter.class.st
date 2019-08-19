@@ -132,7 +132,6 @@ SpAbstractWidgetPresenter >> defaultTransferFor: passenger from: source [
 
 { #category : #api }
 SpAbstractWidgetPresenter >> disable [
-	"<api: #do>"
 	"Disable the label"
 	
 	self enabled: false
@@ -170,7 +169,6 @@ SpAbstractWidgetPresenter >> dropEnabled: aBoolean [
 
 { #category : #api }
 SpAbstractWidgetPresenter >> enable [
-	"<api: #do>"
 	"Enable the label"
 	
 	self enabled: true
