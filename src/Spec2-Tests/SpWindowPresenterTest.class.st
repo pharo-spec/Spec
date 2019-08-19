@@ -11,6 +11,17 @@ SpWindowPresenterTest >> classToTest [
 ]
 
 { #category : #tests }
+SpWindowPresenterTest >> testInitialPosition [
+
+	presenter presenter: SpLabelPresenter new.
+	presenter initialPosition: 100 @ 100.
+	window := presenter openWithSpecLayout: SpLabelPresenter defaultSpec.
+	self 
+		assert: window adapter widget position 
+		equals: 100 @ 100
+]
+
+{ #category : #tests }
 SpWindowPresenterTest >> testIsClosed [
 
 	self assert: presenter isClosed.

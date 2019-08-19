@@ -66,8 +66,10 @@ SpMorphicWindowAdapter >> addModelItemsToWindowMenu: aMenu [
 { #category : #protocol }
 SpMorphicWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
 
-	self model initialExtent ifNotNil: [ :extent | 
-		widgetToBuild extent: extent ].
+	self model initialPosition 
+		ifNotNil: [ :position | widgetToBuild position: position ].
+	self model initialExtent 
+		ifNotNil: [ :extent | widgetToBuild extent: extent ].
 	self 
 		addContent: (self model presenter buildWithSpecLayout: aSpec) 
 		toWindow: widgetToBuild
@@ -193,11 +195,11 @@ SpMorphicWindowAdapter >> okToChange [
 SpMorphicWindowAdapter >> open [
 
 	self model isCentered 
-		ifTrue: [ 
-			self centered.
-			self widget openAsIs ]
-		ifFalse: [ 
-			self widget openInWorld ].
+		ifTrue: [ self centered ].
+		
+	self model initialPosition 
+		ifNotNil: [ self widget openAsIs ]
+		ifNil: [ self widget openInWorld ].
 	
 	self windowIsOpening
 ]

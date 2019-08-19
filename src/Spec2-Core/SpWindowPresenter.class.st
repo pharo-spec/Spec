@@ -6,6 +6,7 @@ Class {
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
 		'#presenter => SpObservableSlot',
+		'#initialPosition => SpObservableSlot',
 		'#initialExtent => SpObservableSlot',
 		'#isResizeable => SpObservableSlot',
 		'#menu => SpObservableSlot',
@@ -220,6 +221,18 @@ SpWindowPresenter >> initialExtent [
 { #category : #api }
 SpWindowPresenter >> initialExtent: anExtent [
 	initialExtent := anExtent
+]
+
+{ #category : #api }
+SpWindowPresenter >> initialPosition [
+
+	^ initialPosition
+]
+
+{ #category : #api }
+SpWindowPresenter >> initialPosition: aPoint [
+
+	initialPosition := aPoint
 ]
 
 { #category : #initialization }
