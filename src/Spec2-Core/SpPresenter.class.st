@@ -787,6 +787,12 @@ SpPresenter >> newSlider [
 ]
 
 { #category : #widgets }
+SpPresenter >> newStatusBar [
+
+	^ self instantiate: SpStatusBarPresenter
+]
+
+{ #category : #widgets }
 SpPresenter >> newTable [
 
 	^ self instantiate: SpTablePresenter
