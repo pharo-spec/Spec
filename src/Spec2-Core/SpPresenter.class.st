@@ -344,6 +344,11 @@ SpPresenter >> centeredRelativeTo: aModel [
 		w centeredRelativeTo: aModel ]
 ]
 
+{ #category : #initialization }
+SpPresenter >> connectPresenters [
+	"The method connectPresenters defines the interactions between the dif- ferent widgets. By connecting the behaviors of the different widgets it speci- fies the overall presentation, i.e., how the overall UI responds to interactions by the user. Usually this method consists of specifications of actions to per- form when a certain event is received by a widget. The whole interaction flow of the UI then emerges from the propagation of those events."
+]
+
 { #category : #private }
 SpPresenter >> createInstanceFor: aClassSymbol [
 	"Retrieve the class corresponding to aClassSymbol using the bindings, then create a new instance of theis class"
@@ -518,11 +523,20 @@ SpPresenter >> initialize [
 
 { #category : #initialization }
 SpPresenter >> initializePresenter [
-	"Used to specify the subwidgets, and/or to bind them together"
-
-	"By default, do not do anything"
+	"Now, presenters should implement #connectPresenters instead."
 
 	self property: #extent whenChangedDo: [ :ex | self withAdapterDo: [ :widget | (widget respondsTo: #extent:) ifTrue: [ widget extent: ex ] ] ]
+]
+
+{ #category : #initialization }
+SpPresenter >> initializePresenters [
+	"The method initializePresenters instantiates, saves in instance vari- ables, and partially configures the different widgets that will be part of the UI.
+	In general the initializePresenters method should follow the pattern:
+		• widget instantiation
+		• widget configuration specification
+		• specification of focus order"
+
+	"self subclassResponsibility"
 ]
 
 { #category : #'initialization - private' }
@@ -541,9 +555,11 @@ SpPresenter >> initializePrivateAnnouncer [
 
 { #category : #'initialization - private' }
 SpPresenter >> initializePrivateHooks [
-
+	self flag: #todo. "We should remove later #initializeWidgets and #initializePresenter."
 	self initializeWidgets.
+	self initializePresenters.
 	self initializePresenter.
+	self connectPresenters.
 	self updatePresenter.
 
 ]
@@ -558,8 +574,7 @@ SpPresenter >> initializePrivateValueHolders [
 
 { #category : #initialization }
 SpPresenter >> initializeWidgets [
-	
-	self subclassResponsibility
+	"Now, presenters should implement #initializePresenters instead."
 ]
 
 { #category : #initialization }
