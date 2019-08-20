@@ -536,7 +536,7 @@ SpPresenter >> initializePresenters [
 		• widget configuration specification
 		• specification of focus order"
 
-	self subclassResponsibility
+	"self subclassResponsibility"
 ]
 
 { #category : #'initialization - private' }
