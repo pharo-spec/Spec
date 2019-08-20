@@ -10,14 +10,11 @@ Class {
 { #category : #accessing }
 SpComponentListFastTableDataSource >> cellColumn: column row: rowIndex [
 	| displayValue cell item |
-	item := self model itemAt: rowIndex.
-	displayValue := column readObject: item.
+	item := self model presenters at: rowIndex.
 	cell := FTCellMorph new
 		cellInset: 5;
 		yourself.
-	self model hasIcons ifTrue: [ 
-		(self model iconFor: item) ifNotNil: [ :icon | cell addMorphBack: icon asMorph ] ].
-	cell addMorphBack: displayValue asMorph asReadOnlyMorph.
+	cell addMorphBack: item buildWithSpec.
 	^ cell
 ]
 

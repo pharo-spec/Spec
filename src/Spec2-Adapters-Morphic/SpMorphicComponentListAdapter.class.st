@@ -20,3 +20,19 @@ SpMorphicComponentListAdapter >> buildWidget [
 	self presenter whenPresentersChangedDo: [ widget refresh ].
 	^ widget
 ]
+
+{ #category : #accessing }
+SpMorphicComponentListAdapter >> children [
+
+	^ self rows collect: [ :row | | cell | 
+		cell := row submorphs first.
+		cell submorphs first ]
+]
+
+{ #category : #accessing }
+SpMorphicComponentListAdapter >> rows [
+
+	| tableContainer |
+	tableContainer := self widget submorphs first.
+	^ tableContainer submorphs
+]
