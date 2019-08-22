@@ -36,7 +36,7 @@ SpMorphicActionBarAdapter >> buildActionButton: aButtonPresenter [
 	morph := aButtonPresenter buildWithSpec.
 	aButtonPresenter adapter 
 		styleName: 'actionButton';
-		applyStyle: aButtonPresenter to: morph.
+		applyStyle: morph.
 		
 	^ morph
 ]
