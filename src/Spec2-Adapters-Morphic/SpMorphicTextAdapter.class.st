@@ -219,7 +219,7 @@ SpMorphicTextAdapter >> setScrollValue: aValue [
 { #category : #'widget API' }
 SpMorphicTextAdapter >> setSelection: interval [
 
-	self model setSelectionInterval: interval
+	self model rawSelection: interval
 ]
 
 { #category : #'spec protocol' }

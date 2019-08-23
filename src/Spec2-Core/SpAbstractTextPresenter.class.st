@@ -159,8 +159,13 @@ SpAbstractTextPresenter >> getMenu [
 { #category : #api }
 SpAbstractTextPresenter >> getSelection [
 	"Get the text selection"
-
-	^ selection ifNil: [ ^ 1 to: 0 ]
+	
+	self 
+		deprecated: 'Use #selection instead.' 
+		transformWith: '`@receiver getSelection' 
+		            -> '`@receiver selection'.
+		
+	^ self selection
 ]
 
 { #category : #api }
@@ -249,6 +254,11 @@ SpAbstractTextPresenter >> placeholder: aText [
 	placeholder := aText
 ]
 
+{ #category : #private }
+SpAbstractTextPresenter >> rawSelection: anInterval [
+	self property: #selection rawValue: anInterval
+]
+
 { #category : #api }
 SpAbstractTextPresenter >> readSelection [
 	^ self readSelectionBlock cull: self text cull: self
@@ -292,15 +302,29 @@ SpAbstractTextPresenter >> selectedClassOrMetaClass [
 ]
 
 { #category : #api }
-SpAbstractTextPresenter >> setSelection: anInterval [
+SpAbstractTextPresenter >> selection [
+	"Get the text selection"
+
+	^ selection ifNil: [ ^ 1 to: 0 ]
+]
+
+{ #category : #api }
+SpAbstractTextPresenter >> selection: anInterval [
 	"Set the text selection without changing the readSelectionBlock"
 
 	selection := anInterval
 ]
 
 { #category : #api }
-SpAbstractTextPresenter >> setSelectionInterval: anInterval [
-	self property: #selection rawValue: anInterval
+SpAbstractTextPresenter >> setSelection: anInterval [
+	"Set the text selection without changing the readSelectionBlock"
+
+	self 
+		deprecated: 'Use #selection: instead.' 
+		transformWith: '`@receiver setSelection: `@statement' 
+		            -> '`@receiver selection: `@statement'.
+
+	self selection: anInterval
 ]
 
 { #category : #api }
