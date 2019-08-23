@@ -4,30 +4,20 @@ Class {
 	#category : #'Spec2-Commands-Code'
 }
 
-{ #category : #activating }
-SpCodePrintItCommand class >> contextMenuActivation [
-	<classAnnotation>
-	
-	^ CmdContextMenuActivation byRootGroupItemOrder: 10 for: SpCodeContext
-]
-
-{ #category : #activating }
-SpCodePrintItCommand class >> shortcutActivation [
-	<classAnnotation>
-	
-	^ CmdShortcutActivation 
-		by: $p meta
-		for: SpCodeContext
-]
-
-{ #category : #accessing }
-SpCodePrintItCommand >> defaultMenuItemName [
+{ #category : #default }
+SpCodePrintItCommand class >> defaultName [
 
 	^ 'Print it'
+]
+
+{ #category : #default }
+SpCodePrintItCommand class >> defaultShortcutKey [
+
+	^ $p meta
 ]
 
 { #category : #execution }
 SpCodePrintItCommand >> execute [
 
-	'OK' crLog
+	context crLog.
 ]

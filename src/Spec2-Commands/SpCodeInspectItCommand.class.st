@@ -4,26 +4,16 @@ Class {
 	#category : #'Spec2-Commands-Code'
 }
 
-{ #category : #activating }
-SpCodeInspectItCommand class >> contextMenuActivation [
-	<classAnnotation>
-	
-	^ CmdContextMenuActivation byRootGroupItemOrder: 30 for: SpCodeContext
-]
-
-{ #category : #activating }
-SpCodeInspectItCommand class >> shortcutActivation [
-	<classAnnotation>
-	
-	^ CmdShortcutActivation 
-		by: $i meta
-		for: SpCodeContext
-]
-
-{ #category : #accessing }
-SpCodeInspectItCommand >> defaultMenuItemName [
+{ #category : #default }
+SpCodeInspectItCommand class >> defaultName [
 
 	^ 'Inspect it'
+]
+
+{ #category : #default }
+SpCodeInspectItCommand class >> defaultShortcutKey [
+
+	^ $i meta
 ]
 
 { #category : #execution }

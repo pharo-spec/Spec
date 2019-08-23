@@ -60,8 +60,24 @@ SpCodePresenter >> buildCodeKeyBindings [
 
 { #category : #private }
 SpCodePresenter >> buildCodeMenu [
+	| group |
 	
-	^ (CmdContextMenuActivation buildMenuInContext: (SpCodeContext for: self)) asSpMenuPresenter
+	group := CmCommandGroup forSpec
+		beDisplayedAsGroup;
+		yourself.
+		
+	self flag: #TODO. "This needs to be discoverable (otherwise is not extensible)
+	ot at least, we need to add a plug for extensions"
+	{ 	
+		SpCodeDoItCommand. 
+		SpCodePrintItCommand. 
+		SpCodeInspectItCommand. 
+		SpCodeDebugItCommand. 
+		SpCodeProfileItCommand 
+	} do: [ :eachClass | 
+		group register: (eachClass forSpecContext: self) ].
+
+	^ group asMenuPresenter
 ]
 
 { #category : #'api-shortcuts' }

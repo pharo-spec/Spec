@@ -4,26 +4,16 @@ Class {
 	#category : #'Spec2-Commands-Code'
 }
 
-{ #category : #activating }
-SpCodeDebugItCommand class >> contextMenuActivation [
-	<classAnnotation>
-	
-	^ CmdContextMenuActivation byRootGroupItemOrder: 40 for: SpCodeContext
-]
-
-{ #category : #activating }
-SpCodeDebugItCommand class >> shortcutActivation [
-	<classAnnotation>
-	
-	^ CmdShortcutActivation 
-		by: $d shift meta
-		for: SpCodeContext
-]
-
-{ #category : #accessing }
-SpCodeDebugItCommand >> defaultMenuItemName [
+{ #category : #default }
+SpCodeDebugItCommand class >> defaultName [ 
 
 	^ 'Debug it'
+]
+
+{ #category : #default }
+SpCodeDebugItCommand class >> defaultShortcutKey [
+
+	^ $d shift meta
 ]
 
 { #category : #execution }
