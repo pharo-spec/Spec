@@ -1,3 +1,8 @@
+"
+I'm a base command to be used on code presenter. 
+My children will define actions that can be executed as part of the Pharo System. 
+Operations like ""do it"", ""print it"" will be implemented by extending me. 
+"
 Class {
 	#name : #SpCodeCommand,
 	#superclass : #CmCommand,
