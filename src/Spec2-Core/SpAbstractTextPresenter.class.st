@@ -305,6 +305,14 @@ SpAbstractTextPresenter >> selectAll [
 	self changed: #selectAll with: #()
 ]
 
+{ #category : #api }
+SpAbstractTextPresenter >> selectLine [
+
+	self withAdapterDo: [ :anAdapter |
+		anAdapter selectLine ].
+	^ self selection
+]
+
 { #category : #NOCompletion }
 SpAbstractTextPresenter >> selectedClassOrMetaClass [
 

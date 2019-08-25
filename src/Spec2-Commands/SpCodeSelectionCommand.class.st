@@ -20,13 +20,6 @@ SpCodeSelectionCommand >> afterSelectionInsertAndSelect: aString [
 	self context selection: (selection last + 1 to: selection last + aString size)
 ]
 
-{ #category : #accessing }
-SpCodeSelectionCommand >> currentLine [
-
-	self flag: #TODO.
-	^ ''
-]
-
 { #category : #private }
 SpCodeSelectionCommand >> evaluate: aString andDo: aBlock [
 	"Treat the current selection as an expression; evaluate it and invoke 
@@ -37,7 +30,6 @@ SpCodeSelectionCommand >> evaluate: aString andDo: aBlock [
 	
 	receiver := self context doItReceiver.
 	evaluationContext := self context doItContext.
-	Stdio stdout << 'OK'; lf.
 	result := receiver class compiler
 		source: stream;
 		context: evaluationContext;
@@ -45,8 +37,6 @@ SpCodeSelectionCommand >> evaluate: aString andDo: aBlock [
 		requestor: receiver;
 		failBlock:  [ ^ nil ];
 		evaluate.		
-							
-	Stdio stdout << result printString; lf.
 
 	^ aBlock value: result
 ]
@@ -65,6 +55,13 @@ SpCodeSelectionCommand >> evaluateSelectionAndDo: aBlock [
 ]
 
 { #category : #accessing }
+SpCodeSelectionCommand >> selectLine [
+
+	self context selectLine.
+	^ self selection
+]
+
+{ #category : #accessing }
 SpCodeSelectionCommand >> selection [
 	| selection |
 
@@ -77,5 +74,5 @@ SpCodeSelectionCommand >> selection [
 { #category : #accessing }
 SpCodeSelectionCommand >> selectionOrLine [
 	
-	^ self selection ifEmpty: [ self currentLine ]
+	^ self selection ifEmpty: [ self selectLine ]
 ]

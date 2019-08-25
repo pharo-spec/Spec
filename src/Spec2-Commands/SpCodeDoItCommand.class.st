@@ -18,6 +18,7 @@ SpCodeDoItCommand class >> defaultShortcutKey [
 
 { #category : #execution }
 SpCodeDoItCommand >> execute [
-
-	'OK' crLog
+	"Treat the current text selection as an expression; evaluate it."
+	
+	self evaluateSelectionAndDo: [ ]
 ]

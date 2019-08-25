@@ -139,7 +139,7 @@ SpMorphicTextAdapter >> hasUnacceptedEdits: aBoolean [
 	self model hasUnacceptedEdits: aBoolean
 ]
 
-{ #category : #'widget API' }
+{ #category : #'spec protocol' }
 SpMorphicTextAdapter >> insert: aString at: positionIndex [
 	| text |
 
@@ -203,6 +203,14 @@ SpMorphicTextAdapter >> selectAll [
 { #category : #'spec protocol' }
 SpMorphicTextAdapter >> selectFrom: nodeStart to: nodeStop [
 	self widget selectFrom: nodeStart to: nodeStop
+]
+
+{ #category : #'spec protocol' }
+SpMorphicTextAdapter >> selectLine [
+
+	self widgetDo: [ :w |
+		w textArea editor selectLine ]
+
 ]
 
 { #category : #accessing }

@@ -18,6 +18,9 @@ SpCodeInspectItCommand class >> defaultShortcutKey [
 
 { #category : #execution }
 SpCodeInspectItCommand >> execute [
-
-	'OK' crLog
+	"Treat the current text selection as an expression; evaluate it."
+	
+	self evaluateSelectionAndDo: [ :result | 
+		self flag: #TODO. "this is just result inspectIt. I'm putting this now to show the flow"
+		StInspector openOn: result ]
 ]
