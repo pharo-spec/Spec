@@ -69,6 +69,7 @@ SpAbstractTextPresenter >> acceptText: aString [
 
 { #category : #private }
 SpAbstractTextPresenter >> actionPerformed [
+
 	actionPerformed := self text
 ]
 
@@ -217,6 +218,15 @@ SpAbstractTextPresenter >> initialize [
 ]
 
 { #category : #api }
+SpAbstractTextPresenter >> insert: aString at: positionIndex [
+	"inserts aString into the text string. 
+	 positionIndex indicates the position index (as in #indexOf) the insertion."
+	
+	self withAdapterDo: [ :anAdapter |
+		anAdapter insert: aString at: positionIndex ]
+]
+
+{ #category : #api }
 SpAbstractTextPresenter >> isForSmalltalkCode [
 
 	"self 
@@ -303,8 +313,10 @@ SpAbstractTextPresenter >> selectedClassOrMetaClass [
 
 { #category : #api }
 SpAbstractTextPresenter >> selection [
-	"Get the text selection"
-
+	"Get the text selection.
+	 I will update the selection from adapter first"
+	self withAdapterDo: [ :anAdapter | 
+		self rawSelection: anAdapter selection ].
 	^ selection ifNil: [ ^ 1 to: 0 ]
 ]
 
@@ -341,6 +353,8 @@ SpAbstractTextPresenter >> text: aText [
 
 { #category : #private }
 SpAbstractTextPresenter >> textArea [
+	
+	self flag: #REMOVEME.
 	^ self adapter widget
 ]
 
