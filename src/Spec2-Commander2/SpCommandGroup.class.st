@@ -28,11 +28,11 @@ SpCommandGroup class >> defaultIconName [
 ]
 
 { #category : #converting }
-SpCommandGroup >> asKeyMapDispatcher [
+SpCommandGroup >> asKMCategory [
 
-	^ SpKeyMapDispatcherBuilder new
+	^ SpKMCategoryBuilder new
 		visit: self;
-		kmDispatcher	
+		kmCategory	
 ]
 
 { #category : #converting }

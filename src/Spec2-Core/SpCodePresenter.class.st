@@ -55,7 +55,7 @@ SpCodePresenter >> behavior: aClass [
 { #category : #private }
 SpCodePresenter >> buildCodeKeyBindings [
 	
-	^ self codeCommandGroup asKeyMapDispatcher
+	^ self codeCommandGroup asKMCategory
 ]
 
 { #category : #private }
@@ -89,6 +89,7 @@ SpCodePresenter >> codeCommandGroup [
 
 { #category : #'api-shortcuts' }
 SpCodePresenter >> contextKeyBindings [
+	"contextKeyBindings stores a KMCategory with keybindings for this presenter"
 
 	^ contextKeyBindings
 ]
