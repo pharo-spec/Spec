@@ -80,7 +80,8 @@ SpCodePresenter >> codeCommandGroup [
 		SpCodePrintItCommand. 
 		SpCodeInspectItCommand. 
 		SpCodeDebugItCommand. 
-		SpCodeProfileItCommand 
+		SpCodeProfileItCommand.
+		SpCodeBrowseItCommand.
 	} do: [ :eachClass | 
 		group register: (eachClass forSpecContext: self) ].
 
