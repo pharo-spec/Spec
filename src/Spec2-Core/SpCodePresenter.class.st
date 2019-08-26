@@ -55,11 +55,18 @@ SpCodePresenter >> behavior: aClass [
 { #category : #private }
 SpCodePresenter >> buildCodeKeyBindings [
 	
-	^ CmdContextMenuActivation buildContextKeyBindingsInContext: (SpCodeContext for: self)
+	^ self codeCommandGroup asKeyMapDispatcher
 ]
 
 { #category : #private }
 SpCodePresenter >> buildCodeMenu [
+	
+	
+	^ self codeCommandGroup asMenuPresenter
+]
+
+{ #category : #private }
+SpCodePresenter >> codeCommandGroup [
 	| group |
 	
 	group := CmCommandGroup forSpec
@@ -77,7 +84,7 @@ SpCodePresenter >> buildCodeMenu [
 	} do: [ :eachClass | 
 		group register: (eachClass forSpecContext: self) ].
 
-	^ group asMenuPresenter
+	^ group
 ]
 
 { #category : #'api-shortcuts' }

@@ -28,6 +28,14 @@ SpCommandGroup class >> defaultIconName [
 ]
 
 { #category : #converting }
+SpCommandGroup >> asKeyMapDispatcher [
+
+	^ SpKeyMapDispatcherBuilder new
+		visit: self;
+		kmDispatcher	
+]
+
+{ #category : #converting }
 SpCommandGroup >> asMenuBarPresenter [
 	^ SpMenuBarPresenterBuilder new
 		visit: self;

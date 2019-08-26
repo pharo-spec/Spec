@@ -13,7 +13,7 @@ SpCodePrintItCommand class >> defaultName [
 { #category : #default }
 SpCodePrintItCommand class >> defaultShortcutKey [
 
-	^ $p meta
+	^ $p command
 ]
 
 { #category : #execution }

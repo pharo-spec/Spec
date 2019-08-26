@@ -20,5 +20,5 @@ SpCodeDoItCommand class >> defaultShortcutKey [
 SpCodeDoItCommand >> execute [
 	"Treat the current text selection as an expression; evaluate it."
 	
-	self evaluateSelectionAndDo: [ ]
+	self evaluateSelectionAndDo: [ :result | ]
 ]
