@@ -19,8 +19,32 @@ SpCodeBrowseItCommand class >> defaultShortcutKey [
 { #category : #execution }
 SpCodeBrowseItCommand >> execute [
 	"Treat the current text selection as an expression; evaluate it."
+	| classToBrowse |
 	
-	self selectionOrLine trimmed ifNotNil: [ :result | 
-		self flag: #TODO. "this is just browseIt. I'm putting this now to show the flow"
-		StSystemBrowser openOnClass: (Smalltalk classNamed: result) ]
+	classToBrowse := self findClassOn: self selectionOrLine trimmed.
+	classToBrowse ifNil: [ ^ self ].
+	self flag: #TODO. "this is just browseIt. I'm putting this now to show the flow"
+	StSystemBrowser openOnClass: classToBrowse
+]
+
+{ #category : #private }
+SpCodeBrowseItCommand >> findClassNameOn: aString [
+	| ast |
+	
+	ast := RBParser parseExpression: aString onError: [ ^ nil ].
+	ast nodesDo: [ :node |
+		(node isVariable and: [ node name first isUppercase ])
+			ifTrue: [ ^ node name ] ].
+		
+	^ nil
+]
+
+{ #category : #private }
+SpCodeBrowseItCommand >> findClassOn: aString [
+	| className |
+	
+	className := self findClassNameOn: aString.
+	className ifNil: [ ^ nil ].
+	
+	^ Smalltalk classNamed: className
 ]
