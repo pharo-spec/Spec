@@ -8,3 +8,15 @@ Class {
 SpTextPresenterTest >> classToTest [
 	^ SpTextPresenter
 ]
+
+{ #category : #tests }
+SpTextPresenterTest >> testInsertAt [
+	
+	self fail. "TODO"
+]
+
+{ #category : #tests }
+SpTextPresenterTest >> testSelectLine [
+	
+	self fail. "TODO"
+]
