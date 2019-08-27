@@ -104,9 +104,9 @@ SpAbstractTextPresenter >> clearContent [
 
 { #category : #api }
 SpAbstractTextPresenter >> clearSelection [
-   "Remove selection from the text model"
+	"Remove selection from the text model"
 
-	self setSelection: (0 to: 0)
+	self selection: (0 to: 0)
 ]
 
 { #category : #'undo-redo' }
