@@ -28,23 +28,15 @@ SpCodeBrowseItCommand >> execute [
 ]
 
 { #category : #private }
-SpCodeBrowseItCommand >> findClassNameOn: aString [
+SpCodeBrowseItCommand >> findClassOn: aString [
 	| ast |
 	
 	ast := RBParser parseExpression: aString onError: [ ^ nil ].
 	ast nodesDo: [ :node |
-		(node isVariable and: [ node name first isUppercase ])
-			ifTrue: [ ^ node name ] ].
+		(node isVariable and: [ node name first isUppercase ]) 
+			ifTrue: [ 
+				(Smalltalk classNamed: node name) 
+					ifNotNil: [ :aClass | ^ aClass ] ] ].
 		
 	^ nil
-]
-
-{ #category : #private }
-SpCodeBrowseItCommand >> findClassOn: aString [
-	| className |
-	
-	className := self findClassNameOn: aString.
-	className ifNil: [ ^ nil ].
-	
-	^ Smalltalk classNamed: className
 ]
