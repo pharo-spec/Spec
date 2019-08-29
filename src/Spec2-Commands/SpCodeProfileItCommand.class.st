@@ -10,12 +10,6 @@ SpCodeProfileItCommand class >> defaultName [
 	^ 'Profile it'
 ]
 
-{ #category : #accessing }
-SpCodeProfileItCommand >> defaultMenuItemName [
-
-	^ 'Profile it'
-]
-
 { #category : #execution }
 SpCodeProfileItCommand >> execute [
 

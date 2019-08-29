@@ -16,6 +16,13 @@ SpCodeBrowseItCommand class >> defaultShortcutKey [
 	^ $b meta
 ]
 
+{ #category : #private }
+SpCodeBrowseItCommand >> browseClass: aClass [ 
+
+	self flag: #TODO. "this is just browseIt. I'm putting this now to show the flow"
+	StSystemBrowser openOnClass: aClass
+]
+
 { #category : #execution }
 SpCodeBrowseItCommand >> execute [
 	"Treat the current text selection as an expression; evaluate it."
@@ -23,8 +30,8 @@ SpCodeBrowseItCommand >> execute [
 	
 	classToBrowse := self findClassOn: self selectionOrLine trimmed.
 	classToBrowse ifNil: [ ^ self ].
-	self flag: #TODO. "this is just browseIt. I'm putting this now to show the flow"
-	StSystemBrowser openOnClass: classToBrowse
+
+	self browseClass: classToBrowse
 ]
 
 { #category : #private }

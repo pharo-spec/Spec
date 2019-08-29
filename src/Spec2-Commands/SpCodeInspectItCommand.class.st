@@ -21,6 +21,13 @@ SpCodeInspectItCommand >> execute [
 	"Treat the current text selection as an expression; evaluate it."
 	
 	self evaluateSelectionAndDo: [ :result | 
-		self flag: #TODO. "this is just result inspectIt. I'm putting this now to show the flow"
-		StInspector openOn: result ]
+		self inspectObject: result ]
+]
+
+{ #category : #execution }
+SpCodeInspectItCommand >> inspectObject: anObject [
+	
+	self flag: #TODO. "this is just result inspectIt. I'm putting this now to show the flow"
+	StInspector openOn: anObject
+
 ]
