@@ -6,7 +6,7 @@ Be aware that when you use this, you broke Spec plateform independency and force
 Class {
 	#name : #SpMorphicGenericAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Deprecated'
+	#category : #'Spec2-Deprecated-Adapters'
 }
 
 { #category : #deprecation }

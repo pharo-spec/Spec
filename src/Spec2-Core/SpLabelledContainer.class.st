@@ -27,44 +27,48 @@ SpLabelledContainer class >> defaultSpec [
 { #category : #specs }
 SpLabelledContainer class >> labelBottom [
 	<spec>
-	^ SpLayout composed
-		newColumn: [ :column | 
-			column
-				add: #subwidget origin: 0 @ 0 corner: 1 @ 0.9;
-				add: #label origin: 0 @ 0.9 corner: 1 @ 1 ];
+	^ SpBoxLayout newVertical
+		add: #subwidget;
+		add: #label
+			expand: false
+			fill: false
+			padding: 0;
 		yourself
 ]
 
 { #category : #specs }
 SpLabelledContainer class >> labelLeft [
 	<spec>
-	^ SpLayout composed
-		newRow: [ :row | 
-			row
-				add: #label origin: 0 @ 0 corner: 0.2 @ 1;
-				add: #subwidget origin: 0.2 @ 0 corner: 1 @ 1 ];
+	^ SpBoxLayout newHorizontal
+		add: #label
+			expand: false
+			fill: false
+			padding: 0;
+		add: #subwidget;
 		yourself
 ]
 
 { #category : #specs }
 SpLabelledContainer class >> labelRight [
 	<spec>
-	^ SpLayout composed
-		newRow: [ :row | 
-			row
-				add: #subwidget origin: 0 @ 0 corner: 0.8 @ 1;
-				add: #label origin: 0.8 @ 0 corner: 1 @ 1 ];
+	^ SpBoxLayout newHorizontal
+		add: #subwidget;
+		add: #label
+			expand: false
+			fill: false
+			padding: 0;
 		yourself
 ]
 
 { #category : #specs }
 SpLabelledContainer class >> labelTop [
 	<spec>
-	^ SpLayout composed
-		newColumn: [ :column | 
-			column
-				add: #label origin: 0 @ 0 corner: 1 @ 0.1;
-				add: #subwidget origin: 0 @ 0.1 corner: 1 @ 1 ];
+	^ SpBoxLayout newVertical
+		add: #label
+			expand: false
+			fill: false
+			padding: 0;
+		add: #subwidget;
 		yourself
 ]
 

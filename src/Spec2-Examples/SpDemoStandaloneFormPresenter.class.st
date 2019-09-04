@@ -36,9 +36,41 @@ Class {
 
 { #category : #specs }
 SpDemoStandaloneFormPresenter class >> defaultSpec [
-
-	<spec: #default>
-
+	"SpBoxLayout newVertical
+		add:
+			(SpGridLayout new
+				add: 'Name:' at: 1 @ 1;
+				add: #nameTextInput at: 2 @ 1;
+				add: 'Surname:' at: 1 @ 2;
+				add: #surnameTextInput at: 2 @ 2;
+				add: 'Number 1:' at: 1 @ 3;
+				add: #number1Input at: 2 @ 3;
+				add: 'Number 2:' at: 1 @ 4;
+				add: #number2Input at: 2 @ 4;
+				add: 'Scale:' at: 1 @ 5;
+				add: #scaleInput at: 2 @ 5;
+				add: 'Password:' at: 1 @ 6;
+				add: #passwordInput at: 2 @ 6;
+				add: 'Remember me:' at: 1 @ 7;
+				add: #checkboxInput at: 2 @ 7;
+				add: 'Date:' at: 1 @ 8;
+				add: #dateInput at: 2 @ 8;
+				add: 'Gender:' at: 1 @ 9;
+				add:
+					(SpBoxLayout newHorizontal
+						add: #maleButton;
+						add: #femaleButton;
+						yourself)
+					at: 2 @ 9;
+				add: 'Items:' at: 1 @ 10;
+				add: #itemsInput at: 2 @ 10;
+				yourself);
+		add:
+			(SpBoxLayout newHorizontal
+				add: #submitButton;
+				add: #restoreButton;
+				yourself);
+		yourself"
 	| fontWidth labelsWidth rowHeight checkboxWidth |
 	fontWidth := (StandardFonts defaultFont widthOfString: 'M').
 	labelsWidth := fontWidth * 8.
