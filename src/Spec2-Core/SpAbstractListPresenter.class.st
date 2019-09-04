@@ -1,8 +1,8 @@
 Class {
 	#name : #SpAbstractListPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
-	#traits : 'TSpHaveWrappingScrollBars',
-	#classTraits : 'TSpHaveWrappingScrollBars classTrait',
+	#traits : 'SpTHaveWrappingScrollBars',
+	#classTraits : 'SpTHaveWrappingScrollBars classTrait',
 	#instVars : [
 		'#selectionMode',
 		'#activationBlock',
