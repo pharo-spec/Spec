@@ -481,6 +481,23 @@ SpPresenter >> giveFocusToPreviousFrom: aModel [
 			true ]
 ]
 
+{ #category : #'api-focus' }
+SpPresenter >> gtInspectorPreviewIn: composite [
+	<gtInspectorPresentationOrder: 30>
+	self widget ifNotNil: [ :w | w gtInspectorPreviewIn: composite ]
+]
+
+{ #category : #'api-focus' }
+SpPresenter >> gtInspectorSubPresentersIn: composite [
+	<gtInspectorPresentationOrder: 20>
+	composite tree
+		title: 'Sub presenters';
+		rootsExpanded;
+		display: [ :each | {each} ];
+		children: [ :each | each presenters ];
+		when: [ :each | each presenters isNotEmpty ]
+]
+
 { #category : #'private-focus' }
 SpPresenter >> handlesKeyboard: evt [
 
