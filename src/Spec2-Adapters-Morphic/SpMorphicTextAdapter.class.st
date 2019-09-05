@@ -147,9 +147,9 @@ SpMorphicTextAdapter >> insert: aString at: positionIndex [
 	text := 
 		(text copyFrom: 1 to: positionIndex), 
 		aString, 
-		(text copyFrom: positionIndex + 1 to: aString size).
+		(text copyFrom: positionIndex + 1 to: text size).
 
-	self pendingText: text
+	self model text: text
 ]
 
 { #category : #'spec protocol' }

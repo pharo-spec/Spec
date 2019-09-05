@@ -12,11 +12,17 @@ SpTextPresenterTest >> classToTest [
 { #category : #tests }
 SpTextPresenterTest >> testInsertAt [
 	
-	self fail. "TODO"
+	self initializationText.
+	self openInstance.
+	presenter insert: 'insertion ' at: 9.
+	self assert: presenter text equals: 'Text for insertion tests.'
 ]
 
 { #category : #tests }
 SpTextPresenterTest >> testSelectLine [
-	
-	self fail. "TODO"
+
+	self initializationText.
+	self openInstance.
+	presenter selectLine.
+	self assert: presenter selection equals: (1 to: 15)
 ]
