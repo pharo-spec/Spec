@@ -484,7 +484,7 @@ SpPresenter >> giveFocusToPreviousFrom: aModel [
 { #category : #'api-focus' }
 SpPresenter >> gtInspectorPreviewIn: composite [
 	<gtInspectorPresentationOrder: 30>
-	self widget ifNotNil: [ :w | w gtInspectorPreviewIn: composite ]
+	self adapter ifNotNil: [ :w | w gtInspectorPreviewIn: composite ]
 ]
 
 { #category : #'api-focus' }
