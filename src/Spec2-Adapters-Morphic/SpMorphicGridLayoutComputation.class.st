@@ -79,7 +79,7 @@ SpMorphicGridLayoutComputation >> calculateHomogeneousColumnWidths [
 	
 	columnWidth := 0.
 	morphs do: [ :each | 
-		columnWidth := columnWidth max: (self styleOf: each) width ].
+		columnWidth := columnWidth max: (self minWidthOf: each) ].
 	
 	^ Array new: numColumns withAll: (self baseColumnWidth max: columnWidth)
 ]
@@ -95,7 +95,7 @@ SpMorphicGridLayoutComputation >> calculateHomogeneousRowHeights [
 	
 	rowHeight := 0.
 	morphs do: [ :each | 
-		rowHeight := rowHeight max: (self styleOf: each) height ].
+		rowHeight := rowHeight max: (self minHeightOf: each) ].
 	
 	^ Array new: numRows withAll: (self baseRowHeight max: rowHeight)
 ]
@@ -288,6 +288,18 @@ SpMorphicGridLayoutComputation >> layout [
 SpMorphicGridLayoutComputation >> maxWidthOf: aCollection [
 
 	^ (aCollection collect: [ :each | (each valueOfProperty: #style) width ]) max
+]
+
+{ #category : #'private computation' }
+SpMorphicGridLayoutComputation >> minHeightOf: aMorph [ 
+
+	^ (self styleOf: aMorph) minHeight ifNil: [ 0 ]
+]
+
+{ #category : #'private computation' }
+SpMorphicGridLayoutComputation >> minWidthOf: aMorph [ 
+
+	^ (self styleOf: aMorph) minWidth ifNil: [ 0 ]
 ]
 
 { #category : #private }
