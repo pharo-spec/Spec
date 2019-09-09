@@ -17,6 +17,11 @@ Class {
 	#category : #'Spec2-Core-Widgets'
 }
 
+{ #category : #testing }
+SpAbstractTextPresenter class >> isAbstract [
+	^ self = SpAbstractTextPresenter
+]
+
 { #category : #api }
 SpAbstractTextPresenter >> accept [
 	"Accep the current pendingtext"

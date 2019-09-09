@@ -27,6 +27,11 @@ Class {
 	#category : #'Spec2-Core-Widgets'
 }
 
+{ #category : #testing }
+SpAbstractFormButtonPresenter class >> isAbstract [
+	^ self = SpAbstractFormButtonPresenter
+]
+
 { #category : #api }
 SpAbstractFormButtonPresenter >> activationAction: aBlock [
 	"This method is used to set the action to perform when I am activated"
