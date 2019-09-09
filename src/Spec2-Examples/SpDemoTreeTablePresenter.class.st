@@ -15,10 +15,12 @@ Class {
 
 { #category : #specs }
 SpDemoTreeTablePresenter class >> defaultSpec [
-
 	^ SpBoxLayout newVertical
 		add: #table1;
-		add: 'Double click to browse.' height: self labelHeight;
+		add: 'Double click to browse.'
+			expand: false
+			fill: false
+			padding: 0;
 		yourself
 ]
 
