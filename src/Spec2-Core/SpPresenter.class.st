@@ -120,6 +120,11 @@ SpPresenter class >> iconWidth [
 	^ 24
 ]
 
+{ #category : #testing }
+SpPresenter class >> isAbstract [
+	^ self = SpPresenter
+]
+
 { #category : #'labelled-presenters' }
 SpPresenter class >> labelWidth [
 	^ 100
