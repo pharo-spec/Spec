@@ -231,12 +231,12 @@ SpMorphicGridLayoutTest >> testColumnNotHomogeneousDiferentRowsAndColumns [
 	self place: morph2 at: 4@4.
 	
 	layout := self newLayout.
-	layout layout columnHomogeneous: false.
+	layout layout beColumnNotHomogeneous.
 	"make columns differ, to make each column different"
-	label1 width: 30.
-	morph1 width: 40.
-	label2 width: 50.
-	morph2 width: 60.
+	(self styleExtent: 30@20) applyTo: label1.
+	(self styleExtent: 40@20) applyTo: morph1.
+	(self styleExtent: 50@20) applyTo: label2.
+	(self styleExtent: 60@20) applyTo: morph2.
 	
 	layout layout: panel in: (0@0 corner: 100@100).
 	
@@ -249,7 +249,7 @@ SpMorphicGridLayoutTest >> testColumnNotHomogeneousDiferentRowsAndColumns [
 
 { #category : #tests }
 SpMorphicGridLayoutTest >> testColumnNotHomogeneousPairedRowsAndColumns [
-	"Paired elements in a rows and columns
+	"Paired elements in rows and columns
 	
 	-----------
 	| 50 | 60 |
@@ -266,19 +266,19 @@ SpMorphicGridLayoutTest >> testColumnNotHomogeneousPairedRowsAndColumns [
 	self place: morph2 at: 2@2.
 	
 	layout := self newLayout.
-	layout layout columnHomogeneous: false.
+	layout layout beColumnNotHomogeneous.
 	"make columns differ, to make each column different"
-	label1 width: 30.
-	morph1 width: 40.
-	label2 width: 50.
-	morph2 width: 60.
+	(self styleExtent: 30@20) applyTo: label1.
+	(self styleExtent: 50@20) applyTo: morph1.
+	(self styleExtent: 40@20) applyTo: label2.
+	(self styleExtent: 60@20) applyTo: morph2.
 	
 	layout layout: panel in: (0@0 corner: 100@100).
 	
-	self assert: label1 bounds equals: (0@0 corner: 50@20).
-	self assert: morph1 bounds equals: (50@0 corner: 110@20).	
-	self assert: label2 bounds equals: (0@20 corner: 50@40).
-	self assert: morph2 bounds equals: (50@20 corner: 110@40)
+	self assert: label1 bounds equals: (0@0 corner: 40@20).
+	self assert: morph1 bounds equals: (40@0 corner: 100@20).	
+	self assert: label2 bounds equals: (0@20 corner: 40@40).
+	self assert: morph2 bounds equals: (40@20 corner: 100@40)
 
 ]
 
