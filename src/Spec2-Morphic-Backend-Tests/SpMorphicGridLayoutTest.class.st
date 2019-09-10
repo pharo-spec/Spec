@@ -76,6 +76,17 @@ SpMorphicGridLayoutTest >> styleExtent: aPoint [
 	^ SpMorphStyle newStyles: rootStyle flattenClasses
 ]
 
+{ #category : #private }
+SpMorphicGridLayoutTest >> styleMinExtent: aPoint [
+	| rootStyle |
+
+	rootStyle := (SpStyleSTONReader fromString: ('
+.application [ Geometry \{ #minWidth: {1}, #minHeight: {2} \} ]'
+	format: { aPoint x. aPoint y })).
+	
+	^ SpMorphStyle newStyles: rootStyle flattenClasses
+]
+
 { #category : #tests }
 SpMorphicGridLayoutTest >> testBasicLayout [
 	"
@@ -185,9 +196,9 @@ SpMorphicGridLayoutTest >> testColumnHomogeneousDiferentRowsAndColumns [
 	self place: morph2 at: 4@4.
 			
 	layout := self newLayout.
-	layout layout columnHomogeneous: true.
-	"make one column width to 100 (it should force all columns to 100, instead 50)"
-	(self styleExtent: 100@20) applyTo: label2.
+	layout layout beColumnHomogeneous.
+	"make one column width to 100 (it should force all columns to 100, instead 25)"
+	(self styleMinExtent: 100@20) applyTo: label2.
 	
 	layout layout: panel in: (0@0 corner: 100@100).
 	
