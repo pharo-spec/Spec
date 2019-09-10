@@ -22,6 +22,14 @@ SpBoxLayoutWithTableForTestPresenter class >> open [
 	self new openWithSpec
 ]
 
+{ #category : #specs }
+SpBoxLayoutWithTableForTestPresenter class >> specWithPadding [
+
+	^ SpBoxLayout newVertical
+		add: #table expand: false fill: false padding: 10;
+		yourself
+]
+
 { #category : #initialization }
 SpBoxLayoutWithTableForTestPresenter >> initializeWidgets [
 	
