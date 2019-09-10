@@ -18,7 +18,7 @@ SpRenameContactCommand >> asSpecCommand [
 ]
 
 { #category : #hooks }
-SpRenameContactCommand >> canBeRun [
+SpRenameContactCommand >> canBeExecuted [
 	^ self context isContactSelected
 ]
 
