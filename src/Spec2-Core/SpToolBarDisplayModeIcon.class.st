@@ -19,3 +19,9 @@ SpToolBarDisplayModeIcon >> extent [
 
 	^ 30@30
 ]
+
+{ #category : #accessing }
+SpToolBarDisplayModeIcon >> styleName [ 
+
+	^ 'toolBar.icons'
+]

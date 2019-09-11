@@ -60,6 +60,12 @@ SpToolBarDisplayMode >> height [
 ]
 
 { #category : #accessing }
+SpToolBarDisplayMode >> styleName [ 
+
+	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
 SpToolBarDisplayMode >> width [
 
 	^ self extent x

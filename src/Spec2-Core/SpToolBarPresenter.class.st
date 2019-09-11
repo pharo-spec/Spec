@@ -70,25 +70,35 @@ SpToolBarPresenter >> addItemRight: aToolBarItem [
 { #category : #accessing }
 SpToolBarPresenter >> beBoth [
 
-	displayMode := SpToolBarDisplayMode modeIconAndLabel
+	self displayMode: SpToolBarDisplayMode modeIconAndLabel
 ]
 
 { #category : #accessing }
 SpToolBarPresenter >> beIcons [
 
-	displayMode := SpToolBarDisplayMode modeIcon
+	self displayMode: SpToolBarDisplayMode modeIcon
 ]
 
 { #category : #accessing }
 SpToolBarPresenter >> beText [
 
-	displayMode := SpToolBarDisplayMode modeLabel
+	self displayMode: SpToolBarDisplayMode modeLabel
 ]
 
 { #category : #accessing }
 SpToolBarPresenter >> displayMode [
 
 	^ displayMode
+]
+
+{ #category : #accessing }
+SpToolBarPresenter >> displayMode: aDisplayMode [
+
+	displayMode ifNotNil: [ 
+		self removeStyle: displayMode styleName ].
+	displayMode := aDisplayMode.
+	self addStyle: displayMode styleName
+
 ]
 
 { #category : #initialization }
@@ -149,9 +159,10 @@ SpToolBarPresenter >> notEmpty [
 ]
 
 { #category : #removing }
-SpToolBarPresenter >> removeAllItems [ 
+SpToolBarPresenter >> removeAllItems [
+
 	leftItems := OrderedCollection new.
-	rightItems := OrderedCollection new.	
+	rightItems := OrderedCollection new
 ]
 
 { #category : #accessing }

@@ -54,6 +54,15 @@ SpStyle class >> createDefaultStyleSheet [
 	],
 	.actionButton [  
 		Geometry { #width: 80, #hResizing: true }
+	],
+	.toolBar [ 
+		Geometry { #hResizing: true },
+		.icons [ 
+			Geometry { #height: 30 }
+		],
+		.iconsAndLabel [  
+			Geometry { #height: 45 }
+		]
 	]
 ]
 '

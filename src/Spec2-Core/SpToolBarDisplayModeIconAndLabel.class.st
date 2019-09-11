@@ -19,3 +19,9 @@ SpToolBarDisplayModeIconAndLabel >> configureButton: aButton item: aToolbarItem 
 SpToolBarDisplayModeIconAndLabel >> extent [
 	^ 45@40
 ]
+
+{ #category : #accessing }
+SpToolBarDisplayModeIconAndLabel >> styleName [ 
+
+	^ 'toolBar.iconsAndLabel'
+]

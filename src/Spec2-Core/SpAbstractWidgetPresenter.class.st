@@ -252,6 +252,13 @@ SpAbstractWidgetPresenter >> isEnabled [
 ]
 
 { #category : #api }
+SpAbstractWidgetPresenter >> removeStyle: aStyle [
+
+	(styles includes: aStyle) ifFalse: [ aStyle ].
+	styles := styles copyWithout: aStyle 
+]
+
+{ #category : #api }
 SpAbstractWidgetPresenter >> styles [ 
 
 	^ styles
