@@ -224,7 +224,9 @@ SpTreeTablePresenter >> itemAtPath: anArray ifAbsent: aBlock [
 
 { #category : #initialization }
 SpTreeTablePresenter >> registerEvents [
-	self whenMenuChangedDo: [ self withAdapterDo: #updateMenu ]
+
+	self whenMenuChangedDo: [ 
+		self withAdapterDo: [ :anAdapter | anAdapter updateMenu ] ]
 ]
 
 { #category : #accessing }
