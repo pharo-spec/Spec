@@ -9,8 +9,8 @@ self example
 Class {
 	#name : #SpTreeTablePresenter,
 	#superclass : #SpAbstractWidgetPresenter,
-	#traits : 'TSpHaveWrappingScrollBars',
-	#classTraits : 'TSpHaveWrappingScrollBars classTrait',
+	#traits : 'TSpHaveWrappingScrollBars + SpTContextMenu',
+	#classTraits : 'TSpHaveWrappingScrollBars classTrait + SpTContextMenu classTrait',
 	#instVars : [
 		'#columns => SpObservableSlot',
 		'#showColumnHeaders => SpObservableSlot',
@@ -18,7 +18,6 @@ Class {
 		'#selection => SpObservableSlot',
 		'#roots => SpObservableSlot',
 		'#childrenBlock',
-		'#contextMenu => SpObservableSlot',
 		'#activationBlock',
 		'#activateOnSingleClick'
 	],
@@ -116,18 +115,6 @@ SpTreeTablePresenter >> columns [
 { #category : #api }
 SpTreeTablePresenter >> columns: aCollection [
 	columns := aCollection
-]
-
-{ #category : #api }
-SpTreeTablePresenter >> contextMenu [
-	^ contextMenu
-]
-
-{ #category : #api }
-SpTreeTablePresenter >> contextMenu: aValuable [
-	"Set the block used to defined the menu"
-	
-	contextMenu := aValuable
 ]
 
 { #category : #simulation }

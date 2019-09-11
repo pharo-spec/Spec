@@ -21,11 +21,12 @@ todo
 Class {
 	#name : #SpButtonPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
+	#traits : 'SpTContextMenu',
+	#classTraits : 'SpTContextMenu classTrait',
 	#instVars : [
 		'#action => SpObservableSlot',
 		'#actionPerformed => SpObservableSlot',
 		'#askBeforeChanging => SpObservableSlot',
-		'#contextMenu => SpObservableSlot',
 		'#font => SpObservableSlot',
 		'#icon => SpObservableSlot',
 		'#label => SpObservableSlot',
@@ -105,16 +106,6 @@ SpButtonPresenter >> click [
 	
 	self isEnabled ifFalse: [ ^ self ].
 	^ self performAction
-]
-
-{ #category : #api }
-SpButtonPresenter >> contextMenu [
-	^ contextMenu
-]
-
-{ #category : #api }
-SpButtonPresenter >> contextMenu: aMenu [
-	contextMenu := aMenu
 ]
 
 { #category : #'private-focus' }
