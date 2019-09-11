@@ -19,7 +19,7 @@ SpRemoveContactCommand >> asSpecCommand [
 ]
 
 { #category : #hooks }
-SpRemoveContactCommand >> canBeRun [
+SpRemoveContactCommand >> canBeExecuted [
 	^ self context isContactSelected
 ]
 
