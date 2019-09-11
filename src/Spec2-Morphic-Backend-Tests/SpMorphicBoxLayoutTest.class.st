@@ -16,7 +16,26 @@ SpMorphicBoxLayoutTest >> tearDown [
 ]
 
 { #category : #tests }
-SpMorphicBoxLayoutTest >> testAddWithPadding [
+SpMorphicBoxLayoutTest >> testAddWithPaddingHorizontal [
+	| base presenter layout |
+
+	base := SpBoxLayoutWithTableForTestPresenter new.
+	presenter := SpLabelPresenter new.
+	
+	layout := SpBoxLayout newHorizontal
+		add: presenter expand: false fill: false padding: 10;
+		yourself.
+		
+	base buildAdapterWithSpecLayout: layout.
+
+	"validate the widget is within a parent that keeps the widget with a padding"	
+	self 
+		assert: presenter adapter widget extent
+		equals: (presenter adapter widget owner extent - (20@0))
+]
+
+{ #category : #tests }
+SpMorphicBoxLayoutTest >> testAddWithPaddingVertical [
 	| base presenter layout |
 
 	base := SpBoxLayoutWithTableForTestPresenter new.
