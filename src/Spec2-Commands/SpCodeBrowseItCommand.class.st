@@ -42,7 +42,7 @@ SpCodeBrowseItCommand >> findClassOn: aString [
 	ast nodesDo: [ :node |
 		(node isVariable and: [ node name first isUppercase ]) 
 			ifTrue: [ 
-				(Smalltalk classNamed: node name) 
+				(self class environment classNamed: node name) 
 					ifNotNil: [ :aClass | ^ aClass ] ] ].
 		
 	^ nil
