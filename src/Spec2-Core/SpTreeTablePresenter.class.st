@@ -9,8 +9,8 @@ self example
 Class {
 	#name : #SpTreeTablePresenter,
 	#superclass : #SpAbstractWidgetPresenter,
-	#traits : 'TSpHaveWrappingScrollBars',
-	#classTraits : 'TSpHaveWrappingScrollBars classTrait',
+	#traits : 'TSpHaveWrappingScrollBars + SpTContextMenu',
+	#classTraits : 'TSpHaveWrappingScrollBars classTrait + SpTContextMenu classTrait',
 	#instVars : [
 		'#columns => SpObservableSlot',
 		'#showColumnHeaders => SpObservableSlot',
@@ -18,7 +18,6 @@ Class {
 		'#selection => SpObservableSlot',
 		'#roots => SpObservableSlot',
 		'#childrenBlock',
-		'#contextMenu => SpObservableSlot',
 		'#activationBlock',
 		'#activateOnSingleClick'
 	],
@@ -118,18 +117,6 @@ SpTreeTablePresenter >> columns: aCollection [
 	columns := aCollection
 ]
 
-{ #category : #api }
-SpTreeTablePresenter >> contextMenu [
-	^ contextMenu
-]
-
-{ #category : #api }
-SpTreeTablePresenter >> contextMenu: aValuable [
-	"Set the block used to defined the menu"
-	
-	contextMenu := aValuable
-]
-
 { #category : #simulation }
 SpTreeTablePresenter >> doActivateAtPath: aPath [
 	"Activate only if there is an item at that position"
@@ -224,7 +211,9 @@ SpTreeTablePresenter >> itemAtPath: anArray ifAbsent: aBlock [
 
 { #category : #initialization }
 SpTreeTablePresenter >> registerEvents [
-	self whenMenuChangedDo: [ self withAdapterDo: #updateMenu ]
+
+	self whenMenuChangedDo: [ 
+		self withAdapterDo: [ :anAdapter | anAdapter updateMenu ] ]
 ]
 
 { #category : #accessing }
@@ -289,13 +278,6 @@ SpTreeTablePresenter >> whenColumnsChangedDo: aBlockClosure [
 SpTreeTablePresenter >> whenIsResizableChangedDo: aBlock [
 
 	self property: #isResizable whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
-SpTreeTablePresenter >> whenMenuChangedDo: aBlock [
-	"Set a block to value when the menu block has changed"
-
-	self property: #contextMenu whenChangedDo: aBlock
 ]
 
 { #category : #accessing }

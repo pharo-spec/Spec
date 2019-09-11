@@ -1,13 +1,14 @@
 Class {
 	#name : #SpAbstractTextPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
+	#traits : 'SpTContextMenu',
+	#classTraits : 'SpTContextMenu classTrait',
 	#instVars : [
 		'#hasUnacceptedEdits => SpObservableSlot',
 		'#selection => SpObservableSlot',
 		'#autoAccept => SpObservableSlot',
 		'#wantsVisualFeedback => SpObservableSlot',
 		'#askBeforeDiscardingEdits => SpObservableSlot',
-		'#contextMenu => SpObservableSlot',
 		'#text => SpObservableSlot',
 		'#actionToPerform => SpObservableSlot',
 		'#readSelection => SpObservableSlot',
@@ -118,18 +119,6 @@ SpAbstractTextPresenter >> clearSelection [
 SpAbstractTextPresenter >> clearUndoManager [
 
 	self withAdapterDo: #clearUndoManager
-]
-
-{ #category : #api }
-SpAbstractTextPresenter >> contextMenu [
-
-	^ contextMenu
-]
-
-{ #category : #api }
-SpAbstractTextPresenter >> contextMenu: aValuable [
-
-	contextMenu := aValuable
 ]
 
 { #category : #api }
@@ -407,13 +396,6 @@ SpAbstractTextPresenter >> whenAutoAcceptChangedDo: aBlock [
 	"aBlock will be performed when autoAccept changed"
 
 	self property: #autoAccept whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
-SpAbstractTextPresenter >> whenMenuChangedDo: aBlock [
-	"Set a block to value when the menu block has changed"
-	
-	self property: #contextMenu whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

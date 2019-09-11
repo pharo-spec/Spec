@@ -15,6 +15,20 @@ SpAthensAnimatedPresenterTest >> initializeTestedInstance [
 	presenter surfaceExtent: 800@600
 ]
 
+{ #category : #tests }
+SpAthensAnimatedPresenterTest >> testContextMenu [
+	| menu changed |
+	
+	self assert: presenter contextMenu isNil.
+	menu := SpMenuPresenter new.
+	changed := false.
+	presenter whenMenuChangedDo: [ 
+		changed := true. ].
+	presenter contextMenu: menu.
+	self assert: presenter contextMenu equals: menu.
+	self assert: changed
+]
+
 { #category : #accessing }
 SpAthensAnimatedPresenterTest >> testPresentersBlockReceivesAthensCanvas [
 	| receivedCanvas |
