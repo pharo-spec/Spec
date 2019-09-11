@@ -6,6 +6,9 @@ Class {
 	#superclass : #SpAbstractMorphicAdapter,
 	#traits : 'TViewModel',
 	#classTraits : 'TViewModel classTrait',
+	#instVars : [
+		'selection'
+	],
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
@@ -137,6 +140,19 @@ SpMorphicTextAdapter >> hasUnacceptedEdits: aBoolean [
 ]
 
 { #category : #'spec protocol' }
+SpMorphicTextAdapter >> insert: aString at: positionIndex [
+	| text |
+
+	text := self getText.
+	text := 
+		(text copyFrom: 1 to: positionIndex), 
+		aString, 
+		(text copyFrom: positionIndex + 1 to: text size).
+
+	self model text: text
+]
+
+{ #category : #'spec protocol' }
 SpMorphicTextAdapter >> notify: errorMessage at: position in: sourceCode [
 
 	self flag: #TOMOVE.
@@ -190,6 +206,20 @@ SpMorphicTextAdapter >> selectFrom: nodeStart to: nodeStop [
 ]
 
 { #category : #'spec protocol' }
+SpMorphicTextAdapter >> selectLine [
+
+	self widgetDo: [ :w |
+		w textArea editor selectLine ]
+
+]
+
+{ #category : #accessing }
+SpMorphicTextAdapter >> selection [
+	
+	^ selection
+]
+
+{ #category : #'spec protocol' }
 SpMorphicTextAdapter >> selectionInterval [
 	^ self widget selectionInterval 
 ]
@@ -219,13 +249,13 @@ SpMorphicTextAdapter >> setScrollValue: aValue [
 { #category : #'widget API' }
 SpMorphicTextAdapter >> setSelection: interval [
 
-	self model setSelectionInterval: interval
+	selection := interval
 ]
 
 { #category : #'spec protocol' }
 SpMorphicTextAdapter >> setSelectionFromModel: aSelection [
 
-	self widget ifNotNil: [:w | w setSelection: aSelection ]
+	self widget ifNotNil: [ :w | w setSelection: aSelection ]
 ]
 
 { #category : #'widget API' }

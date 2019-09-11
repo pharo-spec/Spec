@@ -4,30 +4,21 @@ Class {
 	#category : #'Spec2-Commands-Code'
 }
 
-{ #category : #activating }
-SpCodeDoItCommand class >> contextMenuActivation [
-	<classAnnotation>
-	
-	^ CmdContextMenuActivation byRootGroupItemOrder: 10 for: SpCodeContext
-]
-
-{ #category : #activating }
-SpCodeDoItCommand class >> shortcutActivation [
-	<classAnnotation>
-	
-	^ CmdShortcutActivation 
-		by: $d meta
-		for: SpCodeContext
-]
-
-{ #category : #accessing }
-SpCodeDoItCommand >> defaultMenuItemName [
+{ #category : #default }
+SpCodeDoItCommand class >> defaultName [
 
 	^ 'Do it'
 ]
 
+{ #category : #default }
+SpCodeDoItCommand class >> defaultShortcutKey [
+
+	^ $d meta
+]
+
 { #category : #execution }
 SpCodeDoItCommand >> execute [
-
-	'OK' crLog
+	"Treat the current text selection as an expression; evaluate it."
+	
+	self evaluateSelectionAndDo: [ :result | ]
 ]

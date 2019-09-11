@@ -24,7 +24,10 @@ SpMorphicWindowAdapter >> aboutTitle [
 
 { #category : #private }
 SpMorphicWindowAdapter >> add: containerMorph toWindow: aSpecWindow [
-	aSpecWindow addMorph: containerMorph fullFrame: LayoutFrame identity
+
+	aSpecWindow 
+		addMorph: containerMorph 
+		fullFrame: LayoutFrame identity
 ]
 
 { #category : #private }
@@ -109,6 +112,11 @@ SpMorphicWindowAdapter >> buildWidget [
 	^ SpWindow new
 		model: model;
 		isResizeable: self isResizeable;
+		in: [ :this | 
+			this announcer
+				when: SpWindowWillClose 
+				send: #announce: 
+				to: self presenter announcer ];
 		yourself
 ]
 

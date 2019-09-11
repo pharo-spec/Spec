@@ -17,6 +17,7 @@ SpPrintContactBookInTranscript >> execute [
 SpPrintContactBookInTranscript >> initialize [
 	super initialize.
 	self
-		basicName: 'Print'; "This is the name of the command that will be shown to user."
-		basicDescription: 'Print the contact book in Transcript.' "This is the description of the command that will be shown to user."
+		name: 'Print';
+		"This is the name of the command that will be shown to user."
+			description: 'Print the contact book in Transcript.'	"This is the description of the command that will be shown to user."
 ]

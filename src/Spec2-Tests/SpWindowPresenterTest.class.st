@@ -56,3 +56,18 @@ SpWindowPresenterTest >> testWhenOpenedDo [
 	self assert: opened
 
 ]
+
+{ #category : #tests }
+SpWindowPresenterTest >> testWhenWillCloseDo [
+	| willClose closed |
+
+	willClose := false.
+	closed := false.
+	presenter presenter: SpLabelPresenter new.
+	presenter whenWillCloseDo: [ willClose := true ].
+	presenter whenClosedDo: [ closed := willClose ].
+	window := presenter openWithSpecLayout: SpLabelPresenter defaultSpec.
+	presenter close.
+	self assert: willClose.
+	self assert: closed
+]

@@ -1,7 +1,7 @@
 Extension { #name : #SpInputTextDropList }
 
 { #category : #'*Spec2-Examples' }
-SpInputTextDropList class >> example [
+SpInputTextDropList classSide >> example [
 	<sampleInstance>
 	| example |
 	example := self new

@@ -120,6 +120,11 @@ SpPresenter class >> iconWidth [
 	^ 24
 ]
 
+{ #category : #testing }
+SpPresenter class >> isAbstract [
+	^ self = SpPresenter
+]
+
 { #category : #'labelled-presenters' }
 SpPresenter class >> labelWidth [
 	^ 100
@@ -370,6 +375,11 @@ SpPresenter >> defaultWindowPresenterClass [
 	^ SpWindowPresenter
 ]
 
+{ #category : #'as yet unclassified' }
+SpPresenter >> defer: aBlockClosure [ 
+	self application defer: aBlockClosure
+]
+
 { #category : #private }
 SpPresenter >> delete [
 
@@ -474,6 +484,23 @@ SpPresenter >> giveFocusToPreviousFrom: aModel [
 		ifNotNil: [ 
 			owner giveFocusToPreviousFrom: self.
 			true ]
+]
+
+{ #category : #'api-focus' }
+SpPresenter >> gtInspectorPreviewIn: composite [
+	<gtInspectorPresentationOrder: 30>
+	self adapter ifNotNil: [ :w | w gtInspectorPreviewIn: composite ]
+]
+
+{ #category : #'api-focus' }
+SpPresenter >> gtInspectorSubPresentersIn: composite [
+	<gtInspectorPresentationOrder: 20>
+	composite tree
+		title: 'Sub presenters';
+		rootsExpanded;
+		display: [ :each | {each} ];
+		children: [ :each | each presenters ];
+		when: [ :each | each presenters isNotEmpty ]
 ]
 
 { #category : #'private-focus' }
@@ -799,6 +826,12 @@ SpPresenter >> newRadioButton [
 { #category : #widgets }
 SpPresenter >> newSlider [
 	^ self instantiate: SpSliderPresenter
+]
+
+{ #category : #widgets }
+SpPresenter >> newStatusBar [
+
+	^ self instantiate: SpStatusBarPresenter
 ]
 
 { #category : #widgets }

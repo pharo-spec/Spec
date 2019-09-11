@@ -4,30 +4,30 @@ Class {
 	#category : #'Spec2-Commands-Code'
 }
 
-{ #category : #activating }
-SpCodeInspectItCommand class >> contextMenuActivation [
-	<classAnnotation>
-	
-	^ CmdContextMenuActivation byRootGroupItemOrder: 30 for: SpCodeContext
-]
-
-{ #category : #activating }
-SpCodeInspectItCommand class >> shortcutActivation [
-	<classAnnotation>
-	
-	^ CmdShortcutActivation 
-		by: $i meta
-		for: SpCodeContext
-]
-
-{ #category : #accessing }
-SpCodeInspectItCommand >> defaultMenuItemName [
+{ #category : #default }
+SpCodeInspectItCommand class >> defaultName [
 
 	^ 'Inspect it'
 ]
 
+{ #category : #default }
+SpCodeInspectItCommand class >> defaultShortcutKey [
+
+	^ $i meta
+]
+
 { #category : #execution }
 SpCodeInspectItCommand >> execute [
+	"Treat the current text selection as an expression; evaluate it."
+	
+	self evaluateSelectionAndDo: [ :result | 
+		self inspectObject: result ]
+]
 
-	'OK' crLog
+{ #category : #execution }
+SpCodeInspectItCommand >> inspectObject: anObject [
+	
+	self flag: #TODO. "this is just result inspectIt. I'm putting this now to show the flow"
+	StInspector openOn: anObject
+
 ]

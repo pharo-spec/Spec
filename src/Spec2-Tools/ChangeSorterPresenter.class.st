@@ -93,7 +93,7 @@ ChangeSorterPresenter >> changeSetMenu [
 	"Set up aMenu to hold commands for the change-set-list pane.  This could be for a single or double changeSorter"
 
 	^ self newMenu
-		addTitle: 'Change Set';
+		title: 'Change Set';
 		addGroup: [ :aGroup | 
 			aGroup
 				addItem: [ :anItem | 
@@ -188,7 +188,7 @@ ChangeSorterPresenter >> classMenu [
 	"Fill aMenu with items appropriate for the class list"
 
 	^ self newMenu
-		addTitle: 'Class list';
+		title: 'Class list';
 		addGroup: [ :aGroup | 
 			aGroup
 				addItem: [ :anItem | 
@@ -388,19 +388,15 @@ ChangeSorterPresenter >> initializeWidgets [
 	classesListPresenter := self newList.
 	changesListPresenter := self newList.
 	textPresenter := self newCode.
-
 	self setFocus.
-
 	methodsListPresenter contextMenu: self messageMenu.
 	changesListPresenter contextMenu: self changeSetMenu.
 	classesListPresenter contextMenu: self classMenu.
-
 	methodsListPresenter enableItemSubstringFilter.
 	classesListPresenter enableItemSubstringFilter.
 	changesListPresenter enableItemSubstringFilter.
-
 	changesListPresenter items: self model allChanges.
-	changesListPresenter displayBlock: [ :item | item name ].
+	changesListPresenter display: [ :item | item name ].
 	classesListPresenter sortingBlock: [ :a :b | a name < b name ]
 ]
 
@@ -416,7 +412,7 @@ ChangeSorterPresenter >> messageMenu [
 	"Build a menu with items appropriate for the message list; could be for a single or double changeSorter"
 
 	^ self newMenu
-		addTitle: 'Message list';
+		title: 'Message list';
 		addGroup: [ :group | 
 			group
 				addItem: [ :anItem | 

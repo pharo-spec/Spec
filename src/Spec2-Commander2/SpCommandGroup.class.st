@@ -28,6 +28,14 @@ SpCommandGroup class >> defaultIconName [
 ]
 
 { #category : #converting }
+SpCommandGroup >> asKMCategory [
+
+	^ SpKMCategoryBuilder new
+		visit: self;
+		kmCategory	
+]
+
+{ #category : #converting }
 SpCommandGroup >> asMenuBarPresenter [
 	^ SpMenuBarPresenterBuilder new
 		visit: self;

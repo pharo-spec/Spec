@@ -438,12 +438,26 @@ SpWindowPresenter >> updateTitle [
 
 { #category : #'api-events' }
 SpWindowPresenter >> whenClosedDo: aBlock [
-	self property: #isClosed whenChangedDo: [ :value | value ifTrue: [ aBlock value ] ]
+	
+	self 
+		property: #isClosed 
+		whenChangedDo: [ :value | value ifTrue: [ aBlock value ] ]
 ]
 
 { #category : #'api-events' }
 SpWindowPresenter >> whenOpenedDo: aBlock [
-	self property: #isClosed whenChangedDo: [ :value | value ifFalse: [ aBlock value ] ]
+
+	self 
+		property: #isClosed 
+		whenChangedDo: [ :value | value ifFalse: [ aBlock value ] ]
+]
+
+{ #category : #'api-events' }
+SpWindowPresenter >> whenWillCloseDo: aBlock [
+	
+	self announcer 
+		when: SpWindowWillClose
+		do: aBlock
 ]
 
 { #category : #accessing }

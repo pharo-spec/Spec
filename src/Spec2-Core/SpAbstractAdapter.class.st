@@ -48,6 +48,11 @@ SpAbstractAdapter class >> allAdapters [
 	^ self subclassResponsibility
 ]
 
+{ #category : #testing }
+SpAbstractAdapter class >> isAbstract [
+	^ self = SpAbstractAdapter
+]
+
 { #category : #accessing }
 SpAbstractAdapter class >> owner: anOwner [
 

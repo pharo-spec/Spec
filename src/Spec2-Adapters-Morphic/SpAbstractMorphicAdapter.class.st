@@ -209,6 +209,13 @@ SpAbstractMorphicAdapter >> extent [
 	^ self widget extent
 ]
 
+{ #category : #'api-focus' }
+SpAbstractMorphicAdapter >> gtInspectorPreviewIn: composite [
+	<gtInspectorPresentationOrder: 30>
+	
+	self widgetDo: [ :w | w gtInspectorMorphIn: composite ]
+]
+
 { #category : #protocol }
 SpAbstractMorphicAdapter >> hRigid [
 	

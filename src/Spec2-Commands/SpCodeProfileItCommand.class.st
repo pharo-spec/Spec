@@ -4,15 +4,8 @@ Class {
 	#category : #'Spec2-Commands-Code'
 }
 
-{ #category : #activating }
-SpCodeProfileItCommand class >> contextMenuActivation [
-	<classAnnotation>
-	
-	^ CmdContextMenuActivation byRootGroupItemOrder: 50 for: SpCodeContext
-]
-
-{ #category : #accessing }
-SpCodeProfileItCommand >> defaultMenuItemName [
+{ #category : #default }
+SpCodeProfileItCommand class >> defaultName [
 
 	^ 'Profile it'
 ]

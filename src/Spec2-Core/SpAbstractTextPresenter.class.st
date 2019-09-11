@@ -17,6 +17,11 @@ Class {
 	#category : #'Spec2-Core-Widgets'
 }
 
+{ #category : #testing }
+SpAbstractTextPresenter class >> isAbstract [
+	^ self = SpAbstractTextPresenter
+]
+
 { #category : #api }
 SpAbstractTextPresenter >> accept [
 	"Accep the current pendingtext"
@@ -69,6 +74,7 @@ SpAbstractTextPresenter >> acceptText: aString [
 
 { #category : #private }
 SpAbstractTextPresenter >> actionPerformed [
+
 	actionPerformed := self text
 ]
 
@@ -103,9 +109,9 @@ SpAbstractTextPresenter >> clearContent [
 
 { #category : #api }
 SpAbstractTextPresenter >> clearSelection [
-   "Remove selection from the text model"
+	"Remove selection from the text model"
 
-	self setSelection: (0 to: 0)
+	self selection: (0 to: 0)
 ]
 
 { #category : #'undo-redo' }
@@ -159,8 +165,13 @@ SpAbstractTextPresenter >> getMenu [
 { #category : #api }
 SpAbstractTextPresenter >> getSelection [
 	"Get the text selection"
-
-	^ selection ifNil: [ ^ 1 to: 0 ]
+	
+	self 
+		deprecated: 'Use #selection instead.' 
+		transformWith: '`@receiver getSelection' 
+		            -> '`@receiver selection'.
+		
+	^ self selection
 ]
 
 { #category : #api }
@@ -212,6 +223,15 @@ SpAbstractTextPresenter >> initialize [
 ]
 
 { #category : #api }
+SpAbstractTextPresenter >> insert: aString at: positionIndex [
+	"inserts aString into the text string. 
+	 positionIndex indicates the position index (as in #indexOf) the insertion."
+	
+	self withAdapterDo: [ :anAdapter |
+		anAdapter insert: aString at: positionIndex ]
+]
+
+{ #category : #api }
 SpAbstractTextPresenter >> isForSmalltalkCode [
 
 	"self 
@@ -247,6 +267,11 @@ SpAbstractTextPresenter >> placeholder [
 SpAbstractTextPresenter >> placeholder: aText [
 
 	placeholder := aText
+]
+
+{ #category : #private }
+SpAbstractTextPresenter >> rawSelection: anInterval [
+	self property: #selection rawValue: anInterval
 ]
 
 { #category : #api }
@@ -285,6 +310,14 @@ SpAbstractTextPresenter >> selectAll [
 	self changed: #selectAll with: #()
 ]
 
+{ #category : #api }
+SpAbstractTextPresenter >> selectLine [
+
+	self withAdapterDo: [ :anAdapter |
+		anAdapter selectLine ].
+	^ self selection
+]
+
 { #category : #NOCompletion }
 SpAbstractTextPresenter >> selectedClassOrMetaClass [
 
@@ -292,15 +325,31 @@ SpAbstractTextPresenter >> selectedClassOrMetaClass [
 ]
 
 { #category : #api }
-SpAbstractTextPresenter >> setSelection: anInterval [
+SpAbstractTextPresenter >> selection [
+	"Get the text selection.
+	 I will update the selection from adapter first"
+	self withAdapterDo: [ :anAdapter | 
+		self rawSelection: anAdapter selection ].
+	^ selection ifNil: [ ^ 1 to: 0 ]
+]
+
+{ #category : #api }
+SpAbstractTextPresenter >> selection: anInterval [
 	"Set the text selection without changing the readSelectionBlock"
 
 	selection := anInterval
 ]
 
 { #category : #api }
-SpAbstractTextPresenter >> setSelectionInterval: anInterval [
-	self property: #selection rawValue: anInterval
+SpAbstractTextPresenter >> setSelection: anInterval [
+	"Set the text selection without changing the readSelectionBlock"
+
+	self 
+		deprecated: 'Use #selection: instead.' 
+		transformWith: '`@receiver setSelection: `@statement' 
+		            -> '`@receiver selection: `@statement'.
+
+	self selection: anInterval
 ]
 
 { #category : #api }
@@ -317,6 +366,8 @@ SpAbstractTextPresenter >> text: aText [
 
 { #category : #private }
 SpAbstractTextPresenter >> textArea [
+	
+	self flag: #REMOVEME.
 	^ self adapter widget
 ]
 

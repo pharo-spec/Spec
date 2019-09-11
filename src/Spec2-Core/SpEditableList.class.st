@@ -30,25 +30,29 @@ Class {
 
 { #category : #spec }
 SpEditableList class >> defaultSpec [
-	^ SpLayout composed
-		newColumn:
-			[ :column | 
-			column
-				newRow: [ :menuRow | 
-							menuRow
-								add: #addButton;
-								add: #removeButton ]
-					height: 25;
-				newRow: [ :listRow | 
-							listRow
-								newColumn: [ :c1 | c1 add: #list ];
-								newColumn: [ :c2 | 
-											c2
-												add: #topButton;
-												add: #upButton;
-												add: #downButton;
-												add: #bottomButton ]
-									width: 24 ] ] 
+	^ SpBoxLayout newVertical
+		add:
+			(SpBoxLayout newHorizontal
+					add: #addButton;
+					add: #removeButton;
+					yourself)
+			expand: false
+			fill: false
+			padding: 0;
+		add:
+			(SpBoxLayout newHorizontal
+				add: #list;
+				add:
+					(SpBoxLayout newVertical
+							add: #topButton;
+							add: #upButton;
+							add: #downButton;
+							add: #bottomButton;
+							yourself)
+					expand: false
+					fill: false
+					padding: 0;
+				yourself);
 		yourself
 ]
 

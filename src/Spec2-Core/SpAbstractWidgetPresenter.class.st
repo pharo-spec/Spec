@@ -55,6 +55,11 @@ SpAbstractWidgetPresenter class >> defaultSpec [
 	^ SpAbstractWidgetLayout for: self adapterName
 ]
 
+{ #category : #testing }
+SpAbstractWidgetPresenter class >> isAbstract [
+	^ self = SpAbstractWidgetPresenter
+]
+
 { #category : #'drag and drop' }
 SpAbstractWidgetPresenter >> acceptDropBlock [
 	^ acceptDropBlock

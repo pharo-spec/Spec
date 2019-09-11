@@ -12,7 +12,7 @@ Class {
 		'dropList',
 		'input'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : #'Spec2-Deprecated'
 }
 
 { #category : #specs }
@@ -24,6 +24,13 @@ SpInputTextDropList class >> defaultSpec [
 				add: #input origin: 0 @ 0 corner: 0.3 @ 1;
 				add: #dropList origin: 0.3 @ 0 corner: 1 @ 1 ];
 			yourself
+]
+
+{ #category : #testing }
+SpInputTextDropList class >> isDeprecated [
+	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
+
+	^ true
 ]
 
 { #category : #'api-shortcuts' }
@@ -71,6 +78,12 @@ SpInputTextDropList >> encrypted: aBoolean [
 { #category : #'api-shortcuts' }
 SpInputTextDropList >> entryCompletion: anEntryCompletion [
 	self input entryCompletion: anEntryCompletion
+]
+
+{ #category : #'as yet unclassified' }
+SpInputTextDropList >> ghostText: aText [
+	self deprecated: 'This API is too tight to Morph. Use #placeholder: instead.' transformWith: '`@receiver ghostText: `@statement' -> '`@receiver placeholder: `@statement'.
+	self placeholder: aText
 ]
 
 { #category : #initialization }
