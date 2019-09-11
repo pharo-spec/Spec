@@ -23,3 +23,10 @@ SpTContextMenu >> contextMenu: aValuable [
 
 	contextMenu := aValuable
 ]
+
+{ #category : #'api-events' }
+SpTContextMenu >> whenMenuChangedDo: aBlock [
+	"Set a block to value when the menu block has changed"
+
+	self property: #contextMenu whenChangedDo: aBlock
+]

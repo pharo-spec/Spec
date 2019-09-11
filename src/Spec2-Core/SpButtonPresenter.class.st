@@ -296,12 +296,6 @@ SpButtonPresenter >> whenLabelChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
-SpButtonPresenter >> whenMenuChangedDo: aBlock [
- 
-	self property: #contextMenu whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
 SpButtonPresenter >> whenStateChangedDo: aBlock [
 	"set a block to perform after that the button has been aclicked, and its action performed"
 

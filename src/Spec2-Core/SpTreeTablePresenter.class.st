@@ -280,13 +280,6 @@ SpTreeTablePresenter >> whenIsResizableChangedDo: aBlock [
 	self property: #isResizable whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
-SpTreeTablePresenter >> whenMenuChangedDo: aBlock [
-	"Set a block to value when the menu block has changed"
-
-	self property: #contextMenu whenChangedDo: aBlock
-]
-
 { #category : #accessing }
 SpTreeTablePresenter >> whenMultiSelectionChangedDo: aBlockClosure [ 
 	

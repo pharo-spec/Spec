@@ -29,6 +29,20 @@ SpAthensStaticPresenterTest >> initializeTestedInstance [
 ]
 
 { #category : #accessing }
+SpAthensStaticPresenterTest >> testContextMenu [
+	| menu changed |
+	
+	self assert: presenter contextMenu isNil.
+	menu := SpMenuPresenter new.
+	changed := false.
+	presenter whenMenuChangedDo: [ 
+		changed := true. ].
+	presenter contextMenu: menu.
+	self assert: presenter contextMenu equals: menu.
+	self assert: changed
+]
+
+{ #category : #accessing }
 SpAthensStaticPresenterTest >> testPresentersBlockReceivesAthensCanvas [
 	| receivedCanvas |
 	self presenter drawBlock: [ :canvas | receivedCanvas := canvas ].

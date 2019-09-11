@@ -314,13 +314,6 @@ SpAbstractListPresenter >> whenItemFilterBlockChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
-SpAbstractListPresenter >> whenMenuChangedDo: aBlock [
-	"Set a block to value when the menu block has changed"
-
-	self property: #contextMenu whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
 SpAbstractListPresenter >> whenModelChangedDo: aBlock [
 
 	model whenChangedDo: aBlock
