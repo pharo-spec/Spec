@@ -1,7 +1,7 @@
 Class {
 	#name : #SpInputTextDropListTest,
 	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Deprecated'
+	#category : #'Spec2-Deprecated-Tests'
 }
 
 { #category : #running }

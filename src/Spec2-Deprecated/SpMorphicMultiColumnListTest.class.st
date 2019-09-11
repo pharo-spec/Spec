@@ -1,7 +1,7 @@
 Class {
 	#name : #SpMorphicMultiColumnListTest,
 	#superclass : #SpMorphicAdapterTestCase,
-	#category : #'Spec2-Compatibility-Tests'
+	#category : #'Spec2-Deprecated-Tests'
 }
 
 { #category : #running }

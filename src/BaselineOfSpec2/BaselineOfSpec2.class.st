@@ -25,14 +25,12 @@ BaselineOfSpec2 >> baseline: spec [
 				package: 'Spec2-Examples';
 				package: 'Spec2-Interactions' with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Commander2' with: [ spec requires: #('Spec2-Core' 'Spec2-Interactions' 'Commander2') ];
-				package: 'Spec2-Commander2-Compatibility' with: [ spec requires: #('Spec2-Commander2') ];
 				package: 'Spec2-Commander2-Tests' with: [ spec requires: #('Spec2-Commander2') ];
 				package: 'Spec2-Commander2-ContactBook' with: [ spec requires: #('Spec2-Commander2') ];
 				package: 'Spec2-Commander2-ContactBook-Extensions' with: [ spec requires: #('Spec2-Commander2-ContactBook') ];
 				package: 'Spec2-Tests' with: [ spec requires: #('Spec2-Examples') ];
 				package: 'Spec2-Morphic-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
-				package: 'Spec2-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
-				package: 'Spec2-Compatibility-Tests' with: [ spec requires: #('Spec2-Morphic-Backend-Tests' 'Spec2-Deprecated') ] ].
+				package: 'Spec2-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic') ] ].
 
 	spec
 		for: #'pharo7.x'
