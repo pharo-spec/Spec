@@ -33,10 +33,12 @@ SpTextFieldExample class >> title [
 
 { #category : #initialization }
 SpTextFieldExample >> connectPresenters [
-	
-	textField acceptBlock: [:text | Smalltalk globals at: text asSymbol
-								ifPresent: [:class | methodBrowser messages: class methods ]
-								ifAbsent: [ methodBrowser messages: #() ]]
+	textField
+		acceptBlock:
+			[ :text | self class environment
+				at: text asSymbol
+				ifPresent: [ :class | methodBrowser messages: class methods ]
+				ifAbsent: [ methodBrowser messages: #() ] ]
 ]
 
 { #category : #api }
