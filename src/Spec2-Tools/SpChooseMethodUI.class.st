@@ -125,6 +125,15 @@ SpChooseMethodUI >> classListAction [
 				selectIndex: ((protcolList items collect: #name) indexOf: '-- all --') ]
 ]
 
+{ #category : #initialization }
+SpChooseMethodUI >> connectPresenters [
+	self packageListAction.
+	self classListAction.
+	self protocolListAction.
+	self radioButtonsAction.
+	packageList selectIndex: 1
+]
+
 { #category : #'initialization - actions' }
 SpChooseMethodUI >> fillWith: aClass [
 	methodList items: aClass methods.
@@ -141,16 +150,7 @@ SpChooseMethodUI >> initializeDialogWindow: aDialog [
 ]
 
 { #category : #initialization }
-SpChooseMethodUI >> initializePresenter [
-	self packageListAction.
-	self classListAction.
-	self protocolListAction.
-	self radioButtonsAction.
-	packageList selectIndex: 1
-]
-
-{ #category : #initialization }
-SpChooseMethodUI >> initializeWidgets [
+SpChooseMethodUI >> initializePresenters [
 	packageList := self newList.
 	classList := self newList.
 	methodList := self newList.

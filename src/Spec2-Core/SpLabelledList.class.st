@@ -37,8 +37,8 @@ SpLabelledList >> displayBlock: aBlock [
 ]
 
 { #category : #initialization }
-SpLabelledList >> initializeWidgets [
-super initializeWidgets.
+SpLabelledList >> initializePresenters [
+super initializePresenters.
 	self content: SpListPresenter
 ]
 

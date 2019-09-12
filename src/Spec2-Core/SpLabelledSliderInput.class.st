@@ -35,8 +35,8 @@ SpLabelledSliderInput >> autoAccept: aBoolean [
 ]
 
 { #category : #initialization }
-SpLabelledSliderInput >> initializeWidgets [
-	super initializeWidgets.
+SpLabelledSliderInput >> initializePresenters [
+	super initializePresenters.
 	self content: SpSliderInput 
 ]
 

@@ -84,7 +84,7 @@ SpLabelledContainer >> doesNotUnderstand: aMessage [
 ]
 
 { #category : #initialization }
-SpLabelledContainer >> initializeWidgets [
+SpLabelledContainer >> initializePresenters [
 	label := self instantiate: SpLabelPresenter.
 ]
 

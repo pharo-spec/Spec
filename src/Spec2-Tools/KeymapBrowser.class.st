@@ -69,6 +69,15 @@ KeymapBrowser >> collectAllShortcuts [
 	self kmTable items: self shortcuts
 ]
 
+{ #category : #initialization }
+KeymapBrowser >> connectPresenters [
+	filterField
+		whenTextChanged: [ :text | 
+			clearFilterButton enabled: text isNotEmpty.
+			self setFilter: text ].
+	clearFilterButton action: [ filterField text: '' ]
+]
+
 { #category : #accessing }
 KeymapBrowser >> filterField [
 	^ filterField
@@ -85,16 +94,7 @@ KeymapBrowser >> initialExtent [
 ]
 
 { #category : #initialization }
-KeymapBrowser >> initializePresenter [
-	filterField
-		whenTextChanged: [ :text | 
-			clearFilterButton enabled: text isNotEmpty.
-			self setFilter: text ].
-	clearFilterButton action: [ filterField text: '' ]
-]
-
-{ #category : #initialization }
-KeymapBrowser >> initializeWidgets [
+KeymapBrowser >> initializePresenters [
 	kmTable := self newTable.
 	kmTable
 		addColumn: (SpStringTableColumn title: 'Shortcut' evaluated: [ :aKMShortcutDeclaration | aKMShortcutDeclaration realValue shortcut asString ]);

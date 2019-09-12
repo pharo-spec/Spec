@@ -65,7 +65,7 @@ SpLabelledPresenter >> descriptionPresenter: anObject [
 ]
 
 { #category : #initialization }
-SpLabelledPresenter >> initializeWidgets [
+SpLabelledPresenter >> initializePresenters [
 	labelPresenter := self newLabel.
 	descriptionPresenter :=  self newNullPresenter. "By default it is null"
 ]

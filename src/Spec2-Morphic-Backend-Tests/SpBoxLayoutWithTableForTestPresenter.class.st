@@ -31,7 +31,7 @@ SpBoxLayoutWithTableForTestPresenter class >> specWithPadding [
 ]
 
 { #category : #initialization }
-SpBoxLayoutWithTableForTestPresenter >> initializeWidgets [
+SpBoxLayoutWithTableForTestPresenter >> initializePresenters [
 	
 	(table := self newTable) 
 		items: Smalltalk allClassesAndTraits;

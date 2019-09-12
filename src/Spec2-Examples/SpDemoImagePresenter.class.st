@@ -50,7 +50,7 @@ SpDemoImagePresenter >> image2 [
 ]
 
 { #category : #initialization }
-SpDemoImagePresenter >> initializeWidgets [
+SpDemoImagePresenter >> initializePresenters [
 	image1 := self newImage.
 	image2 := self newImage.
 

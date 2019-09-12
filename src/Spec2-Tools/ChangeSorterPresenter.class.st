@@ -244,6 +244,16 @@ ChangeSorterPresenter >> classesOn: aShortcut do: aBlock [
 	classesListPresenter bindKeyCombination: aShortcut toAction: aBlock
 ]
 
+{ #category : #initialization }
+ChangeSorterPresenter >> connectPresenters [
+	self registerChangeActions.
+	self registerClassActions.
+	self registerSelectorActions.
+
+	changesListPresenter items
+		ifNotEmpty: [ changesListPresenter selectIndex: 1 ]
+]
+
 { #category : #private }
 ChangeSorterPresenter >> createRingMethodForRemovedSelector: aSelector inClass: aClass [
 	"Create RingMethod from the	removealinfo"
@@ -373,17 +383,7 @@ ChangeSorterPresenter >> initializeAnnouncements [
 ]
 
 { #category : #initialization }
-ChangeSorterPresenter >> initializePresenter [
-	self registerChangeActions.
-	self registerClassActions.
-	self registerSelectorActions.
-
-	changesListPresenter items
-		ifNotEmpty: [ changesListPresenter selectIndex: 1 ]
-]
-
-{ #category : #initialization }
-ChangeSorterPresenter >> initializeWidgets [
+ChangeSorterPresenter >> initializePresenters [
 	methodsListPresenter := self newList.
 	classesListPresenter := self newList.
 	changesListPresenter := self newList.

@@ -92,6 +92,12 @@ SpSearchableTree >> columns: aCollection [
 	tree columns: aCollection
 ]
 
+{ #category : #initialization }
+SpSearchableTree >> connectPresenters [
+	inputField whenTextChangedDo: [ :text | self updateRootFor: text ].
+	tree whenTreeUpdatedDo: [ inputField text: '' ]
+]
+
 { #category : #'api-compatibility' }
 SpSearchableTree >> display [
 
@@ -158,13 +164,7 @@ SpSearchableTree >> initialize [
 ]
 
 { #category : #initialization }
-SpSearchableTree >> initializePresenter [
-	inputField whenTextChangedDo: [ :text | self updateRootFor: text ].
-	tree whenTreeUpdatedDo: [ inputField text: '' ]
-]
-
-{ #category : #initialization }
-SpSearchableTree >> initializeWidgets [
+SpSearchableTree >> initializePresenters [
 	tree := self newTree.
 	inputField := self newTextInput.
 	button := self newButton.

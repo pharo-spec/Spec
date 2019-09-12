@@ -36,12 +36,12 @@ SpRGBWidget >> color [
 ]
 
 { #category : #initialization }
-SpRGBWidget >> initializePresenter [
+SpRGBWidget >> connectPresenters [
 	sliders whenChangedDo: [ preview image: self makeNewForm ].
 ]
 
 { #category : #initialization }
-SpRGBWidget >> initializeWidgets [
+SpRGBWidget >> initializePresenters [
 	preview := self instantiate: SpImagePresenter.
 	sliders := self instantiate: SpRGBSliders.
 	preview image: (Form extent: 30 @ 30 depth: 32).
