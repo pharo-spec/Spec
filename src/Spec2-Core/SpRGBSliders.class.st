@@ -48,7 +48,7 @@ SpRGBSliders >> greenSlider [
 ]
 
 { #category : #initialization }
-SpRGBSliders >> initializeWidgets [
+SpRGBSliders >> initializePresenters [
 	redSlider := self instantiate: SpSliderInput.
 	greenSlider := self instantiate: SpSliderInput.
 	blueSlider := self instantiate: SpSliderInput.

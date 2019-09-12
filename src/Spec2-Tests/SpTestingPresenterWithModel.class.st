@@ -33,7 +33,7 @@ SpTestingPresenterWithModel class >> open [
 ]
 
 { #category : #initialization }
-SpTestingPresenterWithModel >> initializeWidgets [
+SpTestingPresenterWithModel >> initializePresenters [
 	
 	x := self newTextInput.
 	y := self newTextInput.

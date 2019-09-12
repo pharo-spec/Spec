@@ -47,8 +47,8 @@ SpLabelledDropList >> emptyList [
 ]
 
 { #category : #initialization }
-SpLabelledDropList >> initializeWidgets [
-super initializeWidgets.
+SpLabelledDropList >> initializePresenters [
+super initializePresenters.
 	self content: SpDropListPresenter
 ]
 

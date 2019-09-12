@@ -29,7 +29,7 @@ SpTestingPresenter >> getText [
 ]
 
 { #category : #initialization }
-SpTestingPresenter >> initializeWidgets [
+SpTestingPresenter >> initializePresenters [
 	list := self newList
 ]
 

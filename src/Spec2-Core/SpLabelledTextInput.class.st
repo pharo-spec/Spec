@@ -50,8 +50,8 @@ SpLabelledTextInput >> entryCompletion: anEntryCompletion [
 ]
 
 { #category : #initialization }
-SpLabelledTextInput >> initializeWidgets [
-	super initializeWidgets.
+SpLabelledTextInput >> initializePresenters [
+	super initializePresenters.
 	self content: SpTextInputFieldPresenter.
 ]
 

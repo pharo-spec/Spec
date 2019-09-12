@@ -21,7 +21,7 @@ SpDemoToolBarPresenter class >> defaultSpec [
 ]
 
 { #category : #initialization }
-SpDemoToolBarPresenter >> initializeWidgets [
+SpDemoToolBarPresenter >> initializePresenters [
 	
 	toolBar := self newToolBar
 		addItem: (SpToolBarButton new

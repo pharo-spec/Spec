@@ -169,6 +169,19 @@ SpVersatileDialogPresenter >> buttons [
 	^ buttons
 ]
 
+{ #category : #initialization }
+SpVersatileDialogPresenter >> connectPresenters [ 
+
+	super connectPresenters.
+	
+	moreOptionsButton action: [ 
+		moreOptionsVisible := moreOptionsVisible not.
+		self needRebuild: false.
+		self buildWithSpec ].
+	
+
+]
+
 { #category : #accessing }
 SpVersatileDialogPresenter >> contentArea [
 
@@ -237,20 +250,7 @@ SpVersatileDialogPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 ]
 
 { #category : #initialization }
-SpVersatileDialogPresenter >> initializePresenter [ 
-
-	super initializePresenter.
-	
-	moreOptionsButton action: [ 
-		moreOptionsVisible := moreOptionsVisible not.
-		self needRebuild: false.
-		self buildWithSpec ].
-	
-
-]
-
-{ #category : #initialization }
-SpVersatileDialogPresenter >> initializeWidgets [ 
+SpVersatileDialogPresenter >> initializePresenters [ 
 
 	moreOptionsText := 'More options' asText.
 	lessOptionsText := 'Less options' asText.

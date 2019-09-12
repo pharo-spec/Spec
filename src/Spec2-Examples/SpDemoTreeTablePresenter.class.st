@@ -25,7 +25,7 @@ SpDemoTreeTablePresenter class >> defaultSpec [
 ]
 
 { #category : #initialization }
-SpDemoTreeTablePresenter >> initializeWidgets [
+SpDemoTreeTablePresenter >> initializePresenters [
 	table1 := self newTreeTable.
 
 	table1

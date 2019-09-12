@@ -162,6 +162,12 @@ SpDemoStandaloneFormPresenter >> checkboxLabel: anObject [
 	checkboxLabel := anObject
 ]
 
+{ #category : #initialization }
+SpDemoStandaloneFormPresenter >> connectPresenters [
+	self submitButton action: [ self submit ].
+	self restoreButton action: [ self restore ]
+]
+
 { #category : #accessing }
 SpDemoStandaloneFormPresenter >> dateInput [
 	^ dateInput
@@ -234,13 +240,7 @@ SpDemoStandaloneFormPresenter >> genderLabel: anObject [
 ]
 
 { #category : #initialization }
-SpDemoStandaloneFormPresenter >> initializePresenter [
-	self submitButton action: [ self submit ].
-	self restoreButton action: [ self restore ]
-]
-
-{ #category : #initialization }
-SpDemoStandaloneFormPresenter >> initializeWidgets [
+SpDemoStandaloneFormPresenter >> initializePresenters [
 	nameLabel := self newLabel label: 'name:'.
 	nameTextInput := self newTextInput autoAccept: true.
 

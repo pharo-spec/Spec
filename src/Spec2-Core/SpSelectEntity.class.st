@@ -32,6 +32,17 @@ SpSelectEntity class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #initialization }
+SpSelectEntity >> connectPresenters [
+	selectEntity 
+		action: [  |select|
+			select := self selectDialog value.
+			select openDialogWithSpec
+				okAction: [  
+					self entity: select selectedItem ]]
+
+]
+
 { #category : #api }
 SpSelectEntity >> displaySymbol [
 	"return the method selector used to get the label of the entity that is for entry completion"
@@ -88,18 +99,7 @@ SpSelectEntity >> initialize [
 ]
 
 { #category : #initialization }
-SpSelectEntity >> initializePresenter [
-	selectEntity 
-		action: [  |select|
-			select := self selectDialog value.
-			select openDialogWithSpec
-				okAction: [  
-					self entity: select selectedItem ]]
-
-]
-
-{ #category : #initialization }
-SpSelectEntity >> initializeWidgets [
+SpSelectEntity >> initializePresenters [
 	entityText := self newTextInput
 		placeholder: self placeholder;
 		autoAccept: true;

@@ -69,7 +69,7 @@ SpDemoTextInputPresenter >> fieldPlaceholderText: anObject [
 ]
 
 { #category : #initialization }
-SpDemoTextInputPresenter >> initializeWidgets [
+SpDemoTextInputPresenter >> initializePresenters [
 	fieldNormal := self newTextInput.
 	
 	fieldDisabled := self newTextInput enabled: false.
