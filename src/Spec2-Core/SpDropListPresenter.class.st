@@ -293,7 +293,7 @@ SpDropListPresenter >> whenSelectionChangedDo: aBlock [
 	If you are interested in the items, use whenSelectedItemChanged:
 	If you are interested in the index, use whenSelectionIndexChanged:"
 
-	selection whenChangedDo: aBlock.
+	selection whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

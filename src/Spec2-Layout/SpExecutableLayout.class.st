@@ -64,6 +64,12 @@ SpExecutableLayout >> buildAdapterFor: aPresenter bindings: bindings [
 	^ adapter
 ]
 
+{ #category : #accessing }
+SpExecutableLayout >> children [
+
+	^ children
+]
+
 { #category : #private }
 SpExecutableLayout >> constraintsClass [
 
