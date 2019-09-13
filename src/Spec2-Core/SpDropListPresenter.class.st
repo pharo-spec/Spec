@@ -156,14 +156,16 @@ SpDropListPresenter >> initialize [
 { #category : #api }
 SpDropListPresenter >> items: aList [
 	"Populate the drop list with a list of ui specific items"
+
 	"aList is a list of domain specific objects. If you want to specify more precisely the item actions, see #addItemLabeled:do:"
-	
+
 	| dropListItems |
-	dropListItems := aList collect: [ :e | SpDropListItem on: e do: [] ].
+	dropListItems := aList collect: [ :each | SpDropListItem on: each do: [ ] ].
 	model collection: dropListItems.
-	
-	(dropListItems isNotEmpty and: [startsWithSelection and: [ self selection isEmpty ]]) 
-		ifTrue: [ self selectedIndex: 1 ]
+	(dropListItems isNotEmpty
+		and: [ startsWithSelection 
+		and: [ self selection isEmpty ] ])
+		ifTrue: [ self selectIndex: 1 ]
 ]
 
 { #category : #api }
