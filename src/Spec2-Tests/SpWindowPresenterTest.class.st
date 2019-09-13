@@ -10,37 +10,38 @@ SpWindowPresenterTest >> classToTest [
 	^ SpWindowPresenter
 ]
 
+{ #category : #running }
+SpWindowPresenterTest >> initializeTestedInstance [
+	presenter presenter: SpLabelPresenter new
+]
+
+{ #category : #running }
+SpWindowPresenterTest >> openInstance [
+	window ifNil: [ window := presenter openWithSpecLayout: SpLabelPresenter defaultSpec ]
+]
+
 { #category : #tests }
 SpWindowPresenterTest >> testInitialPosition [
-
-	presenter presenter: SpLabelPresenter new.
 	presenter initialPosition: 100 @ 100.
-	window := presenter openWithSpecLayout: SpLabelPresenter defaultSpec.
-	self 
-		assert: window adapter widget position 
-		equals: 100 @ 100
+	self openInstance.
+	self assert: window adapter widget position equals: 100 @ 100
 ]
 
 { #category : #tests }
 SpWindowPresenterTest >> testIsClosed [
-
 	self assert: presenter isClosed.
-	presenter presenter: SpLabelPresenter new.
-	window := presenter openWithSpecLayout: SpLabelPresenter defaultSpec.
+	self openInstance.
 	self deny: presenter isClosed.
 	presenter close.
 	self assert: presenter isClosed
-	
 ]
 
 { #category : #tests }
 SpWindowPresenterTest >> testWhenClosedDo [
 	| closed |
-
 	closed := false.
-	presenter presenter: SpLabelPresenter new.
 	presenter whenClosedDo: [ closed := true ].
-	window := presenter openWithSpecLayout: SpLabelPresenter defaultSpec.
+	self openInstance.
 	presenter close.
 	self assert: closed
 ]
@@ -48,25 +49,20 @@ SpWindowPresenterTest >> testWhenClosedDo [
 { #category : #tests }
 SpWindowPresenterTest >> testWhenOpenedDo [
 	| opened |
-
 	opened := false.
-	presenter presenter: SpLabelPresenter new.
 	presenter whenOpenedDo: [ opened := true ].
-	window := presenter openWithSpecLayout: SpLabelPresenter defaultSpec.
+	self openInstance.
 	self assert: opened
-
 ]
 
 { #category : #tests }
 SpWindowPresenterTest >> testWhenWillCloseDo [
 	| willClose closed |
-
 	willClose := false.
 	closed := false.
-	presenter presenter: SpLabelPresenter new.
 	presenter whenWillCloseDo: [ willClose := true ].
 	presenter whenClosedDo: [ closed := willClose ].
-	window := presenter openWithSpecLayout: SpLabelPresenter defaultSpec.
+	self openInstance.
 	presenter close.
 	self assert: willClose.
 	self assert: closed
