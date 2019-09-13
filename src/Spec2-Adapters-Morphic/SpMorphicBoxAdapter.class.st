@@ -192,6 +192,13 @@ SpMorphicBoxAdapter >> remove: aPresenter [
 	widget submorphs second removeMorph: morph.
 ]
 
+{ #category : #accessing }
+SpMorphicBoxAdapter >> removeAll [
+
+	widget submorphs first removeAllMorphs.
+	widget submorphs second removeAllMorphs
+]
+
 { #category : #factory }
 SpMorphicBoxAdapter >> removeSubWidgets [
 

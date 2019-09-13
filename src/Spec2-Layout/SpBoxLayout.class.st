@@ -200,6 +200,13 @@ SpBoxLayout >> remove: aPresenter [
 	adapter ifNotNil: [ :theAdapter | theAdapter remove: aPresenter ]
 ]
 
+{ #category : #removing }
+SpBoxLayout >> removeAll [
+
+	children removeAll.
+	adapter ifNotNil: [ :anAdapter | anAdapter removeAll ]
+]
+
 { #category : #accessing }
 SpBoxLayout >> spacing [
 	^ spacing
