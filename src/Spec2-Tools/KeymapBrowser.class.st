@@ -72,7 +72,7 @@ KeymapBrowser >> collectAllShortcuts [
 { #category : #initialization }
 KeymapBrowser >> connectPresenters [
 	filterField
-		whenTextChanged: [ :text | 
+		whenTextChangedDo: [ :text | 
 			clearFilterButton enabled: text isNotEmpty.
 			self setFilter: text ].
 	clearFilterButton action: [ filterField text: '' ]
@@ -134,13 +134,10 @@ KeymapBrowser >> kmTable: anObject [
 
 { #category : #private }
 KeymapBrowser >> menu: aMenu shifted: aBoolean [
-	(aMenu add: 'Refresh' target: self selector: #collectAllShortcuts) 
-	icon: (self iconNamed: #smallUpdateIcon).
-	self kmTable selectedItem ifNil:[^ aMenu].
-	(aMenu add: 'Browse Definition' target: self selector: #browseDefinitionOfSelectedShortcut)
-	icon: (self iconNamed: #smallSystemBrowserIcon).
-	(aMenu add: 'Inspect Action' target: self selector: #inspectActionOfSelectedShortcut)
-	icon: (self iconNamed: #smallInspectItIcon).
+	(aMenu add: 'Refresh' target: self selector: #collectAllShortcuts) icon: (self iconNamed: #smallUpdateIcon).
+	self kmTable selectedItem ifNil: [ ^ aMenu ].
+	(aMenu add: 'Browse Definition' target: self selector: #browseDefinitionOfSelectedShortcut) icon: (self iconNamed: #smallSystemBrowserIcon).
+	(aMenu add: 'Inspect Action' target: self selector: #inspectActionOfSelectedShortcut) icon: (self iconNamed: #smallInspectItIcon).
 	^ aMenu
 ]
 
