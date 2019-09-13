@@ -193,27 +193,15 @@ SpDropListPresenter >> resetSelection [
 ]
 
 { #category : #api }
-SpDropListPresenter >> selectedIndex [
-	"Useless method but it provides a better and more consistent API"
-
-	^ self getIndex
-]
-
-{ #category : #api }
-SpDropListPresenter >> selectedIndex: anInteger [ 
+SpDropListPresenter >> selectIndex: anInteger [ 
 	
 	self selection selectIndex: anInteger.
 	"I execute the block associated with the item"
-	self selection selectedItem value.
+	self selection selectedItem value
 ]
 
 { #category : #api }
-SpDropListPresenter >> selectedItem [
-	^ self selection selectedItem ifNotNil: #model
-]
-
-{ #category : #api }
-SpDropListPresenter >> selectedItem: anItem [ 
+SpDropListPresenter >> selectItem: anItem [ 
 	
 	| realItem |
 	
@@ -222,7 +210,43 @@ SpDropListPresenter >> selectedItem: anItem [
 	realItem := model collection detect: [ :each | each model = anItem ].
 	self selection selectItem: realItem.
 	"I execute the block associated with the item"
-	realItem value.
+	realItem value
+]
+
+{ #category : #api }
+SpDropListPresenter >> selectedIndex [
+	"Useless method but it provides a better and more consistent API"
+
+	^ self getIndex
+]
+
+{ #category : #api }
+SpDropListPresenter >> selectedIndex: anIndex [
+
+	"Set the index of the item you want to be selected"
+	self
+		deprecated: 'Use #selectIndex: instead'
+		transformWith: '`@receiver selectedIndex: `@arg'
+						-> '`@receiver selectIndex: `@arg'.
+	
+	self selectIndex: anIndex
+]
+
+{ #category : #api }
+SpDropListPresenter >> selectedItem [
+	^ self selection selectedItem ifNotNil: #model
+]
+
+{ #category : #api }
+SpDropListPresenter >> selectedItem: anItem [
+	"Set the item you want to be selected"
+
+	self
+		deprecated: 'Use #selectItem: instead'
+		transformWith: '`@receiver selectedItem: `@arg'
+						-> '`@receiver selectItem: `@arg'.
+
+	self selectItem: anItem
 ]
 
 { #category : #api }
