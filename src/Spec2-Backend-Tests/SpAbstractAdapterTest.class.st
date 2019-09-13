@@ -91,16 +91,18 @@ SpAbstractAdapterTest >> openInstance [
 
 { #category : #private }
 SpAbstractAdapterTest >> performTest [
-	
-	specInitializationStrategy beforeTest: self.
-	super performTest.
+	backendForTest
+		runTest: [ presenter := self classToTest new.
+			self initializeTestedInstance.
+			super performTest ]
 ]
 
 { #category : #running }
 SpAbstractAdapterTest >> prepareToRunAgain [
+	"Redefined because setup is cancelled in this class"
 
-	backendForTest runTest: [ super prepareToRunAgain ]
-
+	self tearDown.
+	super setUp
 ]
 
 { #category : #accessing }
@@ -110,16 +112,11 @@ SpAbstractAdapterTest >> presenter [
 
 { #category : #running }
 SpAbstractAdapterTest >> runCase [
-
-	self resources do: [:each | each availableFor: self].
-	[	super setUp.
-		backendForTest runTest: [
-			presenter := self classToTest new.
-			self initializeTestedInstance.
-			self performTest].
-	] ensure: [
-		self tearDown.
-		self cleanUpInstanceVariables]
+	self resources do: [ :each | each availableFor: self ].
+	[ super setUp.
+	self performTest ]
+		ensure: [ self tearDown.
+			self cleanUpInstanceVariables ]
 ]
 
 { #category : #running }

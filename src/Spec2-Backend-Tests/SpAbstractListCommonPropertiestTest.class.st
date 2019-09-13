@@ -36,6 +36,13 @@ SpAbstractListCommonPropertiestTest >> testDoubleClickActivatesRowInDoubleClickA
 	self assert: activated
 ]
 
+{ #category : #'tests - scrolling' }
+SpAbstractListCommonPropertiestTest >> testFirstVisibleRowIsInitiallyFirstRow [
+	presenter items: (1 to: 500).
+	self openInstance.
+	self assert: presenter verticalAlignment firstVisibleRowIndex equals: 1
+]
+
 { #category : #tests }
 SpAbstractListCommonPropertiestTest >> testRightClickShowsMenu [
 	| menu |

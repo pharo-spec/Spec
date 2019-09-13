@@ -259,6 +259,19 @@ SpPresenter >> announce: anAnnouncement [
 	self announcer announce: anAnnouncement
 ]
 
+{ #category : #'api-events' }
+SpPresenter >> announceDisplayed [
+	"When using a VersatileDialogPresenter the adapter is nil.
+	We do not know if that is a correct behaviour"
+
+	self announcer
+		announce:
+			(SpWidgetDisplayed new
+				presenter: self;
+				widget: (adapter ifNotNil: [ adapter widget ]);
+				yourself)
+]
+
 { #category : #accessing }
 SpPresenter >> application [
 
@@ -648,6 +661,11 @@ SpPresenter >> instantiatePresenters: aCollectionOfPairs [
 					self instVarNamed: k asString put: (self createInstanceFor: v) ] ]
 		ifFalse: [ aCollectionOfPairs
 				pairsDo: [ :k :v | self instVarNamed: k asString put: (self createInstanceFor: v) ] ]
+]
+
+{ #category : #api }
+SpPresenter >> isBuilt [
+	^ self isDisplayed
 ]
 
 { #category : #api }
@@ -1066,6 +1084,11 @@ SpPresenter >> updateTitle [
 { #category : #api }
 SpPresenter >> visibleIf: aValuable [
 	visible := aValuable
+]
+
+{ #category : #'api-events' }
+SpPresenter >> whenDisplayDo: aBlockClosure [
+	self announcer when: SpWidgetDisplayed do: aBlockClosure
 ]
 
 { #category : #'api-events' }

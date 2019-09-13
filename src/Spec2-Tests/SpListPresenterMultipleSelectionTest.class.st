@@ -11,12 +11,10 @@ SpListPresenterMultipleSelectionTest >> classToTest [
 
 { #category : #running }
 SpListPresenterMultipleSelectionTest >> setUp [
-
 	super setUp.
-	window := presenter
+	presenter
 		beMultipleSelection;
-		items: #(10 20 30);
-		openWithSpec.
+		items: #(10 20 30)
 ]
 
 { #category : #'tests-select-index' }
