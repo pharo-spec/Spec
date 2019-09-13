@@ -36,7 +36,8 @@ SpListCommonPropertiestTest >> testEnablingFilteringUpdateOpenedList [
 
 { #category : #tests }
 SpListCommonPropertiestTest >> testRemoveHeaderTitleInPresenterRemovesColumnHeaderMorph [
-	SystemVersion current major = 7 ifTrue: [ "Test failing in Pharo7 due to a bug in FastTable" ^ self skip ].
+	self flag: #pharo7.
+	SystemVersion current major < 8 ifTrue: [ self skip. "Feature not supported in Pharo 7" ].
 
 	self presenter headerTitle: 'test'.
 	self presenter hideHeaderTitle.
@@ -46,6 +47,8 @@ SpListCommonPropertiestTest >> testRemoveHeaderTitleInPresenterRemovesColumnHead
 
 { #category : #'tests - scrolling' }
 SpListCommonPropertiestTest >> testScrollDownToNonExistingIndexScrollsBottomToLastIndex [
+	self flag: #pharo7.
+	SystemVersion current major < 8 ifTrue: [ self skip. "Feature not supported in Pharo 7" ].
 	presenter items: (1 to: 500).
 	presenter verticalAlignment desiredVisibleRow: 600.
 
@@ -58,6 +61,8 @@ SpListCommonPropertiestTest >> testScrollDownToNonExistingIndexScrollsBottomToLa
 
 { #category : #'tests - scrolling' }
 SpListCommonPropertiestTest >> testScrollDownToPosteriorIndexScrollsBottomToIndex [
+	self flag: #pharo7.
+	SystemVersion current major < 8 ifTrue: [ self skip. "Feature not supported in Pharo 7" ].
 	presenter items: (1 to: 500).
 	presenter verticalAlignment desiredVisibleRow: 100.
 
@@ -71,6 +76,8 @@ SpListCommonPropertiestTest >> testScrollDownToPosteriorIndexScrollsBottomToInde
 
 { #category : #'tests - scrolling' }
 SpListCommonPropertiestTest >> testScrollUpToNegativeIndexScrollsTopToFirstIndex [
+	self flag: #pharo7.
+	SystemVersion current major < 8 ifTrue: [ self skip. "Feature not supported in Pharo 7" ].
 	presenter items: (1 to: 500).
 	presenter verticalAlignment desiredVisibleRow: 100.
 	self openInstance.
@@ -82,6 +89,8 @@ SpListCommonPropertiestTest >> testScrollUpToNegativeIndexScrollsTopToFirstIndex
 
 { #category : #'tests - scrolling' }
 SpListCommonPropertiestTest >> testScrollUpToPreviousIndexScrollsTopToIndex [
+	self flag: #pharo7.
+	SystemVersion current major < 8 ifTrue: [ self skip. "Feature not supported in Pharo 7" ].
 	presenter items: (1 to: 500).
 	presenter verticalAlignment desiredVisibleRow: 100.
 	self openInstance.
