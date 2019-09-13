@@ -8,6 +8,11 @@ Class {
 	#category : #'Spec2-Tests-Utils'
 }
 
+{ #category : #testing }
+SpTest class >> isAbstract [
+	^ self = SpTest
+]
+
 { #category : #assertions }
 SpTest >> assertEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlock [
 	
@@ -73,6 +78,62 @@ SpTest >> setUp [
 SpTest >> tearDown [
 	window ifNotNil: [ window delete ].
 	super tearDown
+]
+
+{ #category : #tests }
+SpTest >> testNewPresenterIsNotBuilt [
+	self deny: presenter isBuilt
+]
+
+{ #category : #tests }
+SpTest >> testNewPresenterIsNotDisplayed [
+	self deny: presenter isDisplayed
+]
+
+{ #category : #tests }
+SpTest >> testNonOpenPresenterDoesNotRaiseBuiltEvent [
+	| built |
+	built := false.
+	presenter whenBuiltDo: [ built := true ].
+	self deny: built
+]
+
+{ #category : #tests }
+SpTest >> testNonOpenPresenterDoesNotRaiseDisplayedEvent [
+	| displayed |
+	displayed := false.
+	presenter whenDisplayDo: [ displayed := true ].
+	self deny: displayed
+]
+
+{ #category : #tests }
+SpTest >> testOpenPresenterIsBuilt [
+	self openInstance.
+	self assert: presenter isBuilt
+]
+
+{ #category : #tests }
+SpTest >> testOpenPresenterIsDisplayed [
+	self openInstance.
+	self assert: presenter isDisplayed
+]
+
+{ #category : #tests }
+SpTest >> testOpenPresenterRaisesBuiltEvent [
+	| built |
+	built := false.
+	presenter whenBuiltDo: [ built := true ].
+	self openInstance.
+	self assert: built
+]
+
+{ #category : #tests }
+SpTest >> testOpenPresenterRaisesDisplayEvent [
+	| displayed |
+	displayed := false.
+	presenter whenDisplayDo: [ displayed := true ].
+	self openInstance.
+	self assert: displayed
 ]
 
 { #category : #accessing }

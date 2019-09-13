@@ -8,7 +8,8 @@ Class {
 		'#activationBlock',
 		'#activateOnSingleClick',
 		'#model',
-		'#itemFilter => SpObservableSlot'
+		'#itemFilter => SpObservableSlot',
+		'#verticalAlignment'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
@@ -103,6 +104,7 @@ SpAbstractListPresenter >> initialize [
 	super initialize.
 	
 	activationBlock := [ ].
+	verticalAlignment := SpVerticalAlignment new.
 	
 	self withScrollBars.
 	self model: 	self newEmptyModel.
@@ -300,6 +302,11 @@ SpAbstractListPresenter >> unselectIndex: anInteger [
 SpAbstractListPresenter >> unselectItem: anInteger [ 
 	
 	self selection unselectItem: anInteger
+]
+
+{ #category : #accessing }
+SpAbstractListPresenter >> verticalAlignment [
+	^ verticalAlignment
 ]
 
 { #category : #'api-events' }

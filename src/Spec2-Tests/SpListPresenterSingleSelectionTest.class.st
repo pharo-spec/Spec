@@ -11,13 +11,11 @@ SpListPresenterSingleSelectionTest >> classToTest [
 
 { #category : #running }
 SpListPresenterSingleSelectionTest >> setUp [
-
 	super setUp.
 
-	window := presenter
+	presenter
 		beSingleSelection;
-		items: #(10 20 30);
-		openWithSpec.
+		items: #(10 20 30)
 ]
 
 { #category : #'tests-select-index' }
