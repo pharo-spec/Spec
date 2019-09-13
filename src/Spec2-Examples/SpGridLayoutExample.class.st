@@ -158,7 +158,7 @@ SpGridLayoutExample class >> openWithGtk [
 ]
 
 { #category : #initialization }
-SpGridLayoutExample >> initializeWidgets [
+SpGridLayoutExample >> initializePresenters [
 
 	"example elements"
 	"element11 := self newMorph morph: (self newSimpleButtonMorph: '1x1' color: Color red).

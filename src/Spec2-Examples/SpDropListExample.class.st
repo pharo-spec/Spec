@@ -66,7 +66,7 @@ SpDropListExample >> heterogeneousDropList [
 ]
 
 { #category : #initialization }
-SpDropListExample >> initializeWidgets [
+SpDropListExample >> initializePresenters [
 	uniformDropList := self newDropList.
 	heterogeneousDropList := self newDropList.
 	container := self newMorph.

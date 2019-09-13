@@ -33,7 +33,7 @@ SpDemoLinksPresenter class >> open [
 ]
 
 { #category : #initialization }
-SpDemoLinksPresenter >> initializeWidgets [
+SpDemoLinksPresenter >> initializePresenters [
 	link1 := self newLink.
 	link2 := self newLink.
 	link3 := self newLink.

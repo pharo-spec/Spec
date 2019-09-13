@@ -15,7 +15,7 @@ SpTheHeartOfSpec class >> bookName [
 ]
 
 { #category : #pages }
-SpTheHeartOfSpec class >> initializePresenter [
+SpTheHeartOfSpec class >> connectPresenters [
 	^HelpTopic
 		title: 'The initializePresenter method'
 		contents: 'This method takes care of the interactions between the different widgets. By linking the behavior of the different widgets it specifies the overall presentation, i.e. how the overall UI responds to interactions by the user. Usually this method consists of specifications of actions to perform when a certain event is received by a widget. From the propagation of those events the whole interaction flow of the UI emerges. In Spec, the different UI models are contained in value holders, and the event mechanism relies on the announcements of these value holders to manage the interactions between widgets. 
@@ -23,7 +23,7 @@ Value holders provide a single method whenChangedDo: that is used to register a 
 ]
 
 { #category : #pages }
-SpTheHeartOfSpec class >> initializeWidgets [
+SpTheHeartOfSpec class >> initializePresenters [
 	^HelpTopic
 		title: 'The initializeWidgets method'
 		contents: 'This method is used to instantiate the models for the different widgets that will be part of the UI and store them in their respective instance variables. Instantiation of the models will in turn result in the instantiation and initialization of the different widgets that make up the UI. Consequently, configuration and default values of each widget are specified here as well, which is why this method is called initializeWidgets. This focus in this method is to specify what the widgets will look like and what their self-contained behavior is. 
@@ -97,7 +97,7 @@ Specifying this method is mandatory, as without it the UI would show no widgets 
 
 { #category : #accessing }
 SpTheHeartOfSpec class >> pages [
-	^#(intro initializeWidgets widgetInstantiation initializePresenter layouts)
+	^#(intro #initializePresenters widgetInstantiation #connectPresenters layouts)
 ]
 
 { #category : #pages }

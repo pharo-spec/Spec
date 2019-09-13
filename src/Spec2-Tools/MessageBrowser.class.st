@@ -168,6 +168,14 @@ MessageBrowser >> codeFont [
 	^ StandardFonts codeFont
 ]
 
+{ #category : #initialization }
+MessageBrowser >> connectPresenters [
+	messageList
+		whenSelectionChangedDo: [ :selection | [ :item | self selectItem: item ] cull: selection selectedItem ];
+		whenModelChangedDo: [ self updateTitle ].
+	textModel acceptBlock: [ :text :notifyer | (self accept: text notifying: notifyer) notNil ]
+]
+
 { #category : #'text selection' }
 MessageBrowser >> findFirstOccurrenceOf: searchedString in: textToSearchIn [
 	"Return the first index of aString in textToSearchIn "
@@ -295,16 +303,8 @@ MessageBrowser >> initializeDropList [
 ]
 
 { #category : #initialization }
-MessageBrowser >> initializePresenter [
-	messageList
-		whenSelectionChangedDo: [ :selection | [ :item | self selectItem: item ] cull: selection selectedItem ];
-		whenModelChangedDo: [ self updateTitle ].
-	textModel acceptBlock: [ :text :notifyer | (self accept: text notifying: notifyer) notNil ]
-]
-
-{ #category : #initialization }
-MessageBrowser >> initializeWidgets [
-	super initializeWidgets.
+MessageBrowser >> initializePresenters [
+	super initializePresenters.
 	textModel := self newCode.
 
 	textModel whenBuiltDo: [ :ann | ann widget font: self codeFont ].

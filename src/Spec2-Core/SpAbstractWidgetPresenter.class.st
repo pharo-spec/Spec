@@ -242,7 +242,7 @@ SpAbstractWidgetPresenter >> initialize [
 ]
 
 { #category : #initialization }
-SpAbstractWidgetPresenter >> initializeWidgets [ 
+SpAbstractWidgetPresenter >> initializePresenters [ 
 	"ignore this method since there is no composition in basic widgets"
 ]
 

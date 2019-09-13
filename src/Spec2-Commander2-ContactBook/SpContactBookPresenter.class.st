@@ -93,7 +93,7 @@ SpContactBookPresenter >> contactBook [
 ]
 
 { #category : #initialization }
-SpContactBookPresenter >> initializeWidgets [
+SpContactBookPresenter >> initializePresenters [
 	table := self newTable.
 	table 
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);

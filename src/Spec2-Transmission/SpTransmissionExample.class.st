@@ -42,7 +42,7 @@ SpTransmissionExample >> classTemplateFor: aPackage [
 ]
 
 { #category : #initialization }
-SpTransmissionExample >> initializeWidgets [
+SpTransmissionExample >> initializePresenters [
 	packages := self newList display: #name.
 	classes := self newList display: #name.
 	protocols := self newList display: [ :aPair | aPair value name ].

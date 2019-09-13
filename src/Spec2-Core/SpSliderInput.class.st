@@ -75,7 +75,7 @@ SpSliderInput >> autoAccept: aBoolean [
 ]
 
 { #category : #initialization }
-SpSliderInput >> initializePresenter [
+SpSliderInput >> connectPresenters [
 	slider
 		whenValueChangedDo: [ :sliderValue | 
 			| inputValue |
@@ -91,7 +91,7 @@ SpSliderInput >> initializePresenter [
 ]
 
 { #category : #initialization }
-SpSliderInput >> initializeWidgets [
+SpSliderInput >> initializePresenters [
 	slider := self instantiate: SpSliderPresenter.
 	input := self instantiate: SpTextInputFieldPresenter.
 	self focusOrder add: input

@@ -44,7 +44,7 @@ SpSearchableList class >> isDeprecated [
 ]
 
 { #category : #initialization }
-SpSearchableList >> initializePresenter [
+SpSearchableList >> connectPresenters [
 	searchPresenter
 		whenTextChangedDo: [ :newText | 
 			searchPresenter text asLowercase
@@ -56,7 +56,7 @@ SpSearchableList >> initializePresenter [
 ]
 
 { #category : #initialization }
-SpSearchableList >> initializeWidgets [
+SpSearchableList >> initializePresenters [
 	listPresenter := self newList.
 	searchPresenter := self newTextInput.
 	searchPresenter

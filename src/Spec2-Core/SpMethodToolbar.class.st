@@ -86,7 +86,7 @@ SpMethodToolbar >> initialize [
 ]
 
 { #category : #initialization }
-SpMethodToolbar >> initializeWidgets [
+SpMethodToolbar >> initializePresenters [
 	browseModel := self newButton.
 	usersModel := self newButton.
 	sendersModel := self newButton.

@@ -134,7 +134,7 @@ SpDatePresenter >> initialize [
 ]
 
 { #category : #initialization }
-SpDatePresenter >> initializeWidgets [
+SpDatePresenter >> initializePresenters [
 
 	dateModel := self newTextInput.
 	chooseDateButton := self newButton.

@@ -128,7 +128,7 @@ SpCalendarPresenter >> initialize [
 ]
 
 { #category : #initialization }
-SpCalendarPresenter >> initializeWidgets [
+SpCalendarPresenter >> initializePresenters [
 	previousMonthButton := self newButton.
 	previousMonthButton label: '<'.
 	

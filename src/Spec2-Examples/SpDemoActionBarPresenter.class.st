@@ -21,7 +21,7 @@ SpDemoActionBarPresenter class >> defaultSpec [
 ]
 
 { #category : #initialization }
-SpDemoActionBarPresenter >> initializeWidgets [
+SpDemoActionBarPresenter >> initializePresenters [
 	
 	actionBar := self newActionBar
 		add: (self newButton

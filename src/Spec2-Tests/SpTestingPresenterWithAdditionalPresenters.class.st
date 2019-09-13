@@ -36,7 +36,7 @@ SpTestingPresenterWithAdditionalPresenters class >> keys [
 ]
 
 { #category : #initialization }
-SpTestingPresenterWithAdditionalPresenters >> initializeWidgets [
+SpTestingPresenterWithAdditionalPresenters >> initializePresenters [
 
 	self class keys do: [ :aKey |
 		self additionalSubpresentersMap at: aKey put: (self newButton label: aKey)].

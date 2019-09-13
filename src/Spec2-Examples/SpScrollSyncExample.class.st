@@ -64,7 +64,7 @@ SpScrollSyncExample >> initialize [
 ]
 
 { #category : #initialization }
-SpScrollSyncExample >> initializeWidgets [
+SpScrollSyncExample >> initializePresenters [
 	text := self newText.
 	sideRuler := self newMorph.
 
