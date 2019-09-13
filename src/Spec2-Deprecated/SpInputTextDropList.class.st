@@ -26,6 +26,21 @@ SpInputTextDropList class >> defaultSpec [
 			yourself
 ]
 
+{ #category : #examples }
+SpInputTextDropList class >> example [
+	<sampleInstance>
+	| example |
+	example := self new
+		placeholder: 'a Number';
+		display: [ :item | item asString ];
+		items: {'Potatoes' . 'Carrots' . 'Onions'};
+		extent: 350 @ 50;
+		openWithSpec;
+		yourself.
+	example withWindowDo: [ :window | window title: 'InputTextDropList example' ].
+	^ example
+]
+
 { #category : #testing }
 SpInputTextDropList class >> isDeprecated [
 	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
