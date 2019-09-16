@@ -459,6 +459,14 @@ SpWindowPresenter >> whenOpenedDo: aBlock [
 ]
 
 { #category : #'api-events' }
+SpWindowPresenter >> whenResizingDo: aBlock [
+	
+	self announcer 
+		when: WindowResizing
+		do: aBlock
+]
+
+{ #category : #'api-events' }
 SpWindowPresenter >> whenWillCloseDo: aBlock [
 	
 	self announcer 
