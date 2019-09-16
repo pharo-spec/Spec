@@ -46,14 +46,18 @@ SpStyle class >> createDefaultStyleSheet [
 		Geometry { #width: 150, #hResizing: true }
 	],
 	.actionBar [  
-		Container { #borderWidth: 5, #padding: 5 },
-		Geometry { #width: 150, #hResizing: true }
+		Container { 
+			#borderColor: Color { #rgb: 0, #alpha: 0 }, 
+			#borderWidth: 2, 
+			#padding: 5 },
+		Geometry { #width: 150, #height: 29, #hResizing: true, #vResizing: false }
 	],
 	.menuBar [
 		Geometry { #width: 150, #hResizing: true }
 	],
 	.actionButton [  
-		Geometry { #width: 80, #hResizing: true }
+		Geometry { #width: 60, #hResizing: false },
+		.showIcon [ Geometry { #width: 25 } ]
 	],
 	.toolBar [ 
 		Geometry { #hResizing: true },
@@ -76,6 +80,13 @@ SpStyle class >> defaultStyleSheet [
 	^ DefaultStyleSheet ifNil: [ 
 		DefaultStyleSheet := self createDefaultStyleSheet ].
 
+]
+
+{ #category : #accessing }
+SpStyle class >> reset [ 
+	<script>
+
+	DefaultStyleSheet := nil
 ]
 
 { #category : #operations }
