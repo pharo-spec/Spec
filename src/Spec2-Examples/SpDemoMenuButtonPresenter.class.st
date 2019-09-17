@@ -35,7 +35,7 @@ SpDemoMenuButtonPresenter >> initializePresenters [
 			
 	menu := self newMenuButton
 		help: 'An example menu.';
-		menu: self newExampleMenu;
+		menu: [ self newExampleMenu ];
 		yourself.
 
 
@@ -44,11 +44,15 @@ SpDemoMenuButtonPresenter >> initializePresenters [
 
 { #category : #initialization }
 SpDemoMenuButtonPresenter >> newExampleMenu [
+	| loremIpsumWorlds |
 	
+	loremIpsumWorlds := String loremIpsum substrings.
 	^ SpMenuPresenter new
-		addGroup: [ :group | group
-			addItem: [ :item | item name: 'One'; action: [ button label: 'One' ] ];
-			addItem: [ :item | item name: 'Two'; action: [ button label: 'Two' ]  ];
-			addItem: [ :item | item name: 'Three'; action: [ button label: 'Three' ]  ] ];
+		addGroup: [ :group | 
+			1 to: 10 atRandom do: [ :index |
+				group addItem: [ :item |
+					item 
+						name: ('{1}: {2}' format: { index. loremIpsumWorlds atRandom }); 
+						action: [ button label: item name ] ] ] ];
 		yourself
 ]
