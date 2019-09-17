@@ -803,6 +803,12 @@ SpPresenter >> newMenuBar [
 ]
 
 { #category : #widgets }
+SpPresenter >> newMenuButton [
+
+	^ self instantiate: SpMenuButtonPresenter
+]
+
+{ #category : #widgets }
 SpPresenter >> newMorph [
 
 	^ self instantiate: SpMorphPresenter

@@ -112,11 +112,7 @@ SpMorphicWindowAdapter >> buildWidget [
 	^ SpWindow new
 		model: model;
 		isResizeable: self isResizeable;
-		in: [ :this | 
-			this announcer
-				when: SpWindowWillClose 
-				send: #announce: 
-				to: self presenter announcer ];
+		in: [ :this | self subscribeToAnnouncements: this ];
 		yourself
 ]
 
@@ -221,6 +217,14 @@ SpMorphicWindowAdapter >> rebuildWithSpecLayout: aSpec [
 	sub allButLast do: [:e | self model window addMorphBack: e ].
 	self model addPresenterIn: self widget withSpecLayout: aSpec.
 	self widget model: self
+]
+
+{ #category : #factory }
+SpMorphicWindowAdapter >> subscribeToAnnouncements: aWindow [
+
+	aWindow announcer 
+		when: SpWindowWillClose send: #announce: to: self presenter announcer;
+		when: WindowResizing send: #announce: to: self presenter announcer
 ]
 
 { #category : #icons }
