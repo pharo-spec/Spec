@@ -30,6 +30,8 @@ SpMenuButtonPresenter class >> example [
 				addItem: [ :item | item name: 'Three' ] ];
 			yourself);
 		yourself.
+		
+	menuButton openWithSpec
 ]
 
 { #category : #specs }

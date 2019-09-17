@@ -8,8 +8,7 @@ Class {
 SpMorphicMenuButtonAdapter >> action [ 
 
 	self showSubMenu: self presenter menu.
-	self widget ifNotNil: [ :m | m takeKeyboardFocus ].
-	self model performAction
+	self widget ifNotNil: [ :m | m takeKeyboardFocus ]
 ]
 
 { #category : #protocol }
