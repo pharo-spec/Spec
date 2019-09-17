@@ -7,8 +7,13 @@ Class {
 { #category : #'widget API' }
 SpMorphicMenuButtonAdapter >> action [ 
 
-	self showSubMenu: self presenter menu.
-	self widget ifNotNil: [ :m | m takeKeyboardFocus ]
+	self presenter menu ifNotNil: [ :aValuable |
+		aValuable value ifNotNil: [ :aMenu |
+			aMenu owner: self presenter.
+			self showSubMenu: aMenu ] ].
+	
+	self widget ifNotNil: [ :m | 
+		m takeKeyboardFocus ] 
 ]
 
 { #category : #protocol }

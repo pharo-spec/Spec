@@ -20,15 +20,16 @@ SpMenuButtonPresenter class >> adapterName [
 
 { #category : #example }
 SpMenuButtonPresenter class >> example [
-	| menuButton |
+	| menuButton loremIpsumWords |
 
+	loremIpsumWords := String loremIpsum substrings.
 	menuButton := SpMenuButtonPresenter new 
-		menu: (SpMenuPresenter new
+		menu: [ SpMenuPresenter new
 			addGroup: [ :group | group
-				addItem: [ :item | item name: 'One' ];
-				addItem: [ :item | item name: 'Two' ];
-				addItem: [ :item | item name: 'Three' ] ];
-			yourself);
+				addItem: [ :item | item name: '1: ', loremIpsumWords atRandom ];
+				addItem: [ :item | item name: '2: ', loremIpsumWords atRandom ];
+				addItem: [ :item | item name: '3: ', loremIpsumWords atRandom ] ];
+			yourself ];
 		yourself.
 		
 	menuButton openWithSpec
@@ -52,10 +53,9 @@ SpMenuButtonPresenter >> menu [
 ]
 
 { #category : #api }
-SpMenuButtonPresenter >> menu: aMenuPresenter [
+SpMenuButtonPresenter >> menu: aValuable [
 
-	menu := aMenuPresenter.
-	menu owner: self
+	menu := aValuable
 ]
 
 { #category : #'api-events' }
