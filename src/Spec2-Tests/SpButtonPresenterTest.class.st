@@ -21,17 +21,13 @@ SpButtonPresenterTest >> morph [
 
 { #category : #tests }
 SpButtonPresenterTest >> testAction [
-
 	| actionExecuted |
 
 	actionExecuted := false.
-
 	self assert: actionExecuted equals: false.
 
 	presenter action: [ actionExecuted := true ].
-
 	self openInstance.
-
 	self assert: actionExecuted equals: false.
 
 	presenter adapter action.

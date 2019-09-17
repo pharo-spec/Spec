@@ -4,19 +4,11 @@ See AbstractWidgetPresenter
 
 self example
 
-You can also have a look at CustomerStatisfaction for another example.
-
 I provide the following variables and their accessors
 - action is the action performed when I am clicked.
 - icon is the icon displayed on me.
 - label is the text displayed on me.
 - state is a boolean representing if I am highlighted, it is false by default and it is reversed while clicking.
-
-todo
-- askBeforeChanging
-- font
-- menu
-- shortcut
 "
 Class {
 	#name : #SpButtonPresenter,
@@ -270,7 +262,7 @@ SpButtonPresenter >> whenActionPerformedDo: aBlock [
 	self property: #actionPerformed whenChangedDo: aBlock
 ]
 
-{ #category : #'API - events' }
+{ #category : #'api-events' }
 SpButtonPresenter >> whenActivatedDo: aBlockClosure [ 
 	
 	^ self whenActionPerformedDo: aBlockClosure 
