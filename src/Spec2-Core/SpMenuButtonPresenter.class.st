@@ -1,6 +1,11 @@
+"
+I'm a presenter to create a menu button (a button who exposes a menu instead having an action) 
+
+self example
+"
 Class {
 	#name : #SpMenuButtonPresenter,
-	#superclass : #SpButtonPresenter,
+	#superclass : #SpAbstractButtonPresenter,
 	#instVars : [
 		'#menu => SpObservableSlot'
 	],
@@ -33,6 +38,11 @@ SpMenuButtonPresenter class >> title [
 	^ 'MenuButton'
 ]
 
+{ #category : #initialization }
+SpMenuButtonPresenter >> initialize [
+	super initialize.
+]
+
 { #category : #api }
 SpMenuButtonPresenter >> menu [
 
@@ -42,7 +52,8 @@ SpMenuButtonPresenter >> menu [
 { #category : #api }
 SpMenuButtonPresenter >> menu: aMenuPresenter [
 
-	menu := aMenuPresenter
+	menu := aMenuPresenter.
+	menu owner: self
 ]
 
 { #category : #'api-events' }

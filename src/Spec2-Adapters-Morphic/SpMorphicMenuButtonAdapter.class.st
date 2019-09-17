@@ -12,10 +12,35 @@ SpMorphicMenuButtonAdapter >> action [
 	self model performAction
 ]
 
+{ #category : #protocol }
+SpMorphicMenuButtonAdapter >> askBeforeChanging [
+
+	^ false
+]
+
 { #category : #factory }
 SpMorphicMenuButtonAdapter >> defaultIcon [
 		
 	^ self application iconNamed: #arrowDown
+]
+
+{ #category : #'drag and drop' }
+SpMorphicMenuButtonAdapter >> dragEnabled [
+
+	^ false
+]
+
+{ #category : #'drag and drop' }
+SpMorphicMenuButtonAdapter >> dropEnabled [
+
+	^ false
+]
+
+{ #category : #'widget API' }
+SpMorphicMenuButtonAdapter >> font [
+	
+	self flag: #REMOVE. "Not used anymore. Font is set with styles"
+	^ nil 
 ]
 
 { #category : #accessing }
@@ -29,7 +54,7 @@ SpMorphicMenuButtonAdapter >> newButton [
 
 	^ PluggableButtonMorph
 		on: self 
-		getState: #state 
+		getState: nil
 		action:  #action 
 		label: #label 
 		icon: #icon

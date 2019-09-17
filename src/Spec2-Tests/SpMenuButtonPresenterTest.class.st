@@ -1,25 +1,13 @@
 Class {
 	#name : #SpMenuButtonPresenterTest,
-	#superclass : #SpButtonPresenterTest,
+	#superclass : #SpAbstractButtonPresenterTest,
 	#category : #'Spec2-Tests-Core-Widgets'
 }
-
-{ #category : #testing }
-SpMenuButtonPresenterTest class >> shouldInheritSelectors [
-
-	^ true
-]
 
 { #category : #running }
 SpMenuButtonPresenterTest >> classToTest [
 
 	^ SpMenuButtonPresenter
-]
-
-{ #category : #tests }
-SpMenuButtonPresenterTest >> testContextMenu [
-
-	self skip
 ]
 
 { #category : #tests }
