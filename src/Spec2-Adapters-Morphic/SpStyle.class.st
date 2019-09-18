@@ -67,6 +67,9 @@ SpStyle class >> createDefaultStyleSheet [
 		.iconsAndLabel [  
 			Geometry { #height: 45 }
 		]
+	],
+	.code [
+		Font { #name : "Source Code Pro", #size : 10 }
 	]
 ]
 '

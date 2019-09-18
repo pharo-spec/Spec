@@ -61,9 +61,14 @@ SpMorphicTextAdapter >> autoAccept: aBoolean [
 
 { #category : #factory }
 SpMorphicTextAdapter >> buildWidget [
-	| newWidget |
+	| widgetClass newWidget |
+	
 	self flag: #pharo7.	"When support for P7 will be dropped, remove this compatibility hack."
-	newWidget := ((self class environment at: #SpRubScrolledTextMorph ifAbsent: [ RubScrolledTextMorph ]) on: self)
+	widgetClass := self class environment 
+		at: #SpRubScrolledTextMorph 
+		ifAbsent: [ RubScrolledTextMorph ].
+	
+	newWidget := (widgetClass on: self)
 		getTextSelector: #getText;
 		setTextSelector: #accept:notifying:;
 		getSelectionSelector: #readSelection;
@@ -81,10 +86,15 @@ SpMorphicTextAdapter >> buildWidget [
 		dropEnabled: self dropEnabled;
 		registerScrollChanges: #scrollValueChanged:;
 		yourself.
+	
 	self setEditingModeFor: newWidget.
-	self model additionalKeyBindings ifNotNil: [ :bindings | bindings keysAndValuesDo: [ :shortcut :action | newWidget bindKeyCombination: shortcut toAction: action ] ].
+	
+	self model additionalKeyBindings ifNotNil: [ :bindings | 
+		bindings keysAndValuesDo: [ :shortcut :action | 
+			newWidget bindKeyCombination: shortcut toAction: action ] ].
 	self presenter whenTextChangedDo: [ :text | newWidget setText: text ].
 	self presenter whenPlaceholderChangedDo: [ :text | newWidget ghostText: text ].
+	
 	^ newWidget
 ]
 
