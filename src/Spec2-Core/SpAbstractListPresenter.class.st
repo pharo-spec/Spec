@@ -312,7 +312,7 @@ SpAbstractListPresenter >> verticalAlignment [
 { #category : #'api-events' }
 SpAbstractListPresenter >> whenActivatedDo: aBlock [ 
 	
-	activationBlock := aBlock.
+	activationBlock := aBlock
 ]
 
 { #category : #'api-events' }
