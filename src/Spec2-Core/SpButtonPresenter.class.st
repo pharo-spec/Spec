@@ -168,9 +168,7 @@ SpButtonPresenter >> shortcut: aShortcut [
 { #category : #private }
 SpButtonPresenter >> shortcutCharacter [
 
-	^ self shortcut 
-		ifNil: [ nil ]
-		ifNotNil: [ :s | s spCurrentCharacter ]
+	^ self shortcut ifNotNil: [ :s | s spCurrentCharacter ]
 ]
 
 { #category : #morphic }
