@@ -30,18 +30,21 @@ SpMorphicNotebookAdapter >> addModelTo: aNotebook [
 { #category : #factory }
 SpMorphicNotebookAdapter >> addPage: each to: aNotebook [
 
-	aNotebook addLazyPage: [ self buildContentForPage: each ] label: (self buildLabelForPage: each).
-	"Since I do not have the page added, I need to take it from the list. But I know this will be the last added :)"
+	aNotebook 
+		addLazyPage: [ self buildContentForPage: each ] 
+		label: (self buildLabelForPage: each).
+	"Since I do not have the page added, I need to take it from the list. But I know 
+	 this will be the last added :)"
 	aNotebook pages last model: each
 ]
 
 { #category : #factory }
 SpMorphicNotebookAdapter >> buildContentForPage: aPage [
-	^ aPage retrievePresenter
-		ifNotNil: [ :presenter |
-			aPage layoutSpec
-				ifNil: [ presenter buildWithSpec ]
-				ifNotNil: [ :spec | presenter buildWithSpec: spec ] ]
+
+	^ aPage retrievePresenter ifNotNil: [ :presenter |
+		aPage layoutSpec
+			ifNil: [ presenter buildWithSpec ]
+			ifNotNil: [ :spec | presenter buildWithSpec: spec ] ]
 ]
 
 { #category : #factory }

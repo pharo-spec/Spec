@@ -14,7 +14,8 @@ Class {
 		'#title => SpObservableSlot',
 		'#icon => SpObservableSlot',
 		'#layoutSpec => SpObservableSlot',
-		'#presenterProvider'
+		'#presenterProvider',
+		'#retrievedBlock'
 	],
 	#category : #'Spec2-Core-Widgets-Tab'
 }
@@ -121,8 +122,12 @@ SpNotebookPage >> resetContent [
 
 { #category : #accessing }
 SpNotebookPage >> retrievePresenter [
-
-	^ self presenterProvider value
+	| contentPresenter |
+	
+	contentPresenter := self presenterProvider value.
+	retrievedBlock ifNotNil: [ 
+		retrievedBlock cull: contentPresenter ].
+	^ contentPresenter
 ]
 
 { #category : #accessing }
@@ -135,4 +140,10 @@ SpNotebookPage >> title [
 SpNotebookPage >> title: aString [
 
 	title := aString
+]
+
+{ #category : #events }
+SpNotebookPage >> whenRetrievedDo: aBlock [ 
+
+	retrievedBlock := aBlock
 ]
