@@ -121,7 +121,7 @@ SpMorphicMillerAdapter >> recalculatePageHeights [
 	widgets := self childrenWidgets.
 	newHeight := widgets size = 1
 		ifTrue: [ height ]
-		ifFalse: [ height / layout visiblePages ].
+		ifFalse: [ height / (layout visiblePages min: widgets size) ].
 		
 	widgets reverseDo: [ :each |
 		each height: newHeight ]
@@ -135,7 +135,7 @@ SpMorphicMillerAdapter >> recalculatePageWidths [
 	width := self widget width.
 	newWidth := widgets size = 1
 		ifTrue: [ width ]
-		ifFalse: [ width / layout visiblePages ].
+		ifFalse: [ width / (layout visiblePages min: widgets size) ].
 		
 	widgets do: [ :each |
 		each width: newWidth ]
