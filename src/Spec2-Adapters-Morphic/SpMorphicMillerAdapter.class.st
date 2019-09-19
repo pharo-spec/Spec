@@ -1,9 +1,16 @@
+"
+I'm an adapter for Miller Layouts.
+A paned layout will split (horizontally or vertically) panels (in fixed yet proportional spaces), 
+and it will scroll the panels that exceed SpMillerLayout>>#visiblePages property.  
+"
 Class {
 	#name : #SpMorphicMillerAdapter,
 	#superclass : #SpMorphicLayoutAdapter,
 	#instVars : [
 		'layout',
-		'innerWidget'
+		'innerWidget',
+		'lastExtent',
+		'lastPageSize'
 	],
 	#category : #'Spec2-Adapters-Morphic-Layout'
 }
@@ -143,9 +150,17 @@ SpMorphicMillerAdapter >> recalculatePageWidths [
 
 { #category : #private }
 SpMorphicMillerAdapter >> recalculatePages [
-
+	
 	self widget ifNil: [ ^ self ].
-	layout direction recalculatePages: self
+	self childrenWidgets ifEmpty: [ ^ self ].
+	((lastExtent = self widget extent) 
+		and: [ lastPageSize = self childrenWidgets size ]) 
+		ifTrue: [ ^ self ].
+
+	[ layout direction recalculatePages: self ]
+	ensure: [ 
+		lastExtent := self widget extent.
+		lastPageSize := self childrenWidgets size ]
 ]
 
 { #category : #accessing }
