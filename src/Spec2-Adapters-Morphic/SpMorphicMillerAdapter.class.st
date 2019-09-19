@@ -2,15 +2,28 @@ Class {
 	#name : #SpMorphicMillerAdapter,
 	#superclass : #SpMorphicLayoutAdapter,
 	#instVars : [
-		'layout'
+		'layout',
+		'innerWidget'
 	],
 	#category : #'Spec2-Adapters-Morphic-Layout'
 }
 
-{ #category : #factory }
+{ #category : #accessing }
 SpMorphicMillerAdapter >> add: aPresenter [
  
 	self add: aPresenter constraints: SpBoxConstraints new
+]
+
+{ #category : #private }
+SpMorphicMillerAdapter >> add: aPresenter constraints: constraints [
+
+	self widget ifNil: [ ^ self ].
+
+	self 
+		basicAdd: aPresenter 
+		constraints: constraints 
+		to: innerWidget.
+	self recalculatePages	
 ]
 
 { #category : #private }
@@ -24,30 +37,19 @@ SpMorphicMillerAdapter >> addConstraits: constraints toChild: childMorph [
 ]
 
 { #category : #private }
-SpMorphicMillerAdapter >> addPadding: aNumber toMorph: aMorph [
-	
-	aNumber = 0 ifTrue: [ ^ aMorph ].
-	
-	^ layout direction 
-		addPadding: aNumber 
-		toMorph: aMorph
-		into: self
-]
-
-{ #category : #private }
 SpMorphicMillerAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
 	| childMorph |
 
 	childMorph := self buildMorph: aPresenter constraints: constraints.	
 	aPanel addMorphBack: childMorph.
-
+	
 	^ childMorph
 ]
 
 { #category : #accessing }
 SpMorphicMillerAdapter >> childrenWidgets [
 	
-	^ widget submorphs
+	^ innerWidget submorphs
 ]
 
 { #category : #factory }
@@ -57,12 +59,12 @@ SpMorphicMillerAdapter >> layout: aLayout [
 	
 	widget ifNil: [
 		"build of widget was differed up to here (to know what is the direction)"
-		widget := aLayout direction newWidgetOn: self.
-		widget borderWidth: aLayout borderWidth.
-		"the spacing needs to be applied to the inner sub-panels"
-		widget submorphs do: [ :each |
-			each cellInset: aLayout spacing ] ].
-	
+		innerWidget := aLayout direction newWidgetOn: self.
+		innerWidget borderWidth: aLayout borderWidth.
+		innerWidget cellInset: aLayout spacing.
+		
+		widget := self newScrollPaneFor: innerWidget ].
+
 	super layout: aLayout
 ]
 
@@ -81,9 +83,23 @@ SpMorphicMillerAdapter >> newPanel [
 		changeTableLayout;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
-		extent: 0@0;
+		extent: 1@1;
 		color: Color transparent;
 		borderColor: Color transparent;
+		yourself
+]
+
+{ #category : #factory }
+SpMorphicMillerAdapter >> newScrollPaneFor: aWidget [
+	
+	^ MillerScrollPane new 
+		changeScrollerTableLayout;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		color: Color transparent;
+		borderColor: Color transparent;
+		scrollTarget: aWidget;
+		onLayoutChange: [ self recalculatePages ];
 		yourself
 ]
 
@@ -95,22 +111,57 @@ SpMorphicMillerAdapter >> newVertical [
 		yourself
 ]
 
+{ #category : #private }
+SpMorphicMillerAdapter >> recalculatePageHeights [
+	| newHeight widgets height |
+
+	height := self widget height.
+	widgets := self childrenWidgets.
+	newHeight := widgets size = 1
+		ifTrue: [ height ]
+		ifFalse: [ height / layout visiblePages ].
+		
+	widgets reverseDo: [ :each |
+		each height: newHeight ]
+]
+
+{ #category : #private }
+SpMorphicMillerAdapter >> recalculatePageWidths [
+	| newWidth widgets width |
+
+	widgets := self childrenWidgets.
+	width := self widget width.
+	newWidth := widgets size = 1
+		ifTrue: [ width ]
+		ifFalse: [ width / layout visiblePages ].
+		
+	widgets do: [ :each |
+		each width: newWidth ]
+]
+
+{ #category : #private }
+SpMorphicMillerAdapter >> recalculatePages [
+
+	self widget ifNil: [ ^ self ].
+	layout direction recalculatePages: self
+]
+
 { #category : #accessing }
 SpMorphicMillerAdapter >> remove: aPresenter [
 	| morph |
 
 	morph := aPresenter adapter widget.	
-	widget removeMorph: morph
+	innerWidget removeMorph: morph
 ]
 
 { #category : #accessing }
 SpMorphicMillerAdapter >> removeAll [
 
-	widget removeAllMorphs
+	innerWidget removeAllMorphs
 ]
 
 { #category : #factory }
 SpMorphicMillerAdapter >> removeSubWidgets [
 
-	widget removeAllMorphs
+	innerWidget removeAllMorphs
 ]

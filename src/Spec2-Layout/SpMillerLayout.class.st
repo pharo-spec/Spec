@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'direction',
 		'spacing',
-		'borderWidth'
+		'borderWidth',
+		'visiblePages'
 	],
 	#category : #'Spec2-Layout-Miller'
 }
@@ -90,7 +91,8 @@ SpMillerLayout >> initialize [
 
 	super initialize.
 	self spacing: 0.
-	self borderWidth: 0
+	self borderWidth: 0.
+	self visiblePages: 2
 ]
 
 { #category : #testing }
@@ -129,4 +131,16 @@ SpMillerLayout >> spacing [
 SpMillerLayout >> spacing: aNumber [
 
 	spacing := aNumber
+]
+
+{ #category : #accessing }
+SpMillerLayout >> visiblePages [
+
+	^ visiblePages
+]
+
+{ #category : #accessing }
+SpMillerLayout >> visiblePages: aNumber [
+
+	visiblePages := aNumber
 ]

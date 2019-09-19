@@ -14,6 +14,12 @@ SpLayoutDirectionVertical >> newSplitter [
 ]
 
 { #category : #'*Spec2-Adapters-Morphic' }
+SpLayoutDirectionVertical >> recalculatePages: anAdaptor [
+
+	^ anAdaptor recalculatePageHeights
+]
+
+{ #category : #'*Spec2-Adapters-Morphic' }
 SpLayoutDirectionVertical >> setRigidityOfNonExpandedMorph: aMorph [ 
 	aMorph 
 		hResizing: #spaceFill; 
