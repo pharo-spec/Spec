@@ -1,3 +1,7 @@
+"
+I'm a layout to implement miller lists. 
+Since I am intended to be used dinamically (adding/removing components on demand), I implement just #add: and #remove: related methods.
+"
 Class {
 	#name : #SpMillerLayout,
 	#superclass : #SpExecutableLayout,
