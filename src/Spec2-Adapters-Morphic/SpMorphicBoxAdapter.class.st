@@ -102,6 +102,9 @@ SpMorphicBoxAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel 
 	constraints isPlacedAtStart
 		ifTrue: [ aPanel submorphs first addMorphBack: childMorph ]
 		ifFalse: [ aPanel submorphs second addMorphBack: childMorph ].
+	
+	aPanel height: (aPanel height max: childMorph height).
+	aPanel width: (aPanel width max: childMorph width).
 		
 	^ childMorph
 ]
@@ -152,6 +155,7 @@ SpMorphicBoxAdapter >> newPanel [
 		changeTableLayout;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
+		extent: 0@0;
 		color: Color transparent;
 		borderColor: Color transparent;
 		yourself
