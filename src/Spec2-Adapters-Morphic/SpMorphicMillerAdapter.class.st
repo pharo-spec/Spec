@@ -11,7 +11,7 @@ Class {
 { #category : #accessing }
 SpMorphicMillerAdapter >> add: aPresenter [
  
-	self add: aPresenter constraints: SpBoxConstraints new
+	self add: aPresenter constraints: SpLayoutConstraints new
 ]
 
 { #category : #private }
