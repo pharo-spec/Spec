@@ -63,6 +63,8 @@ SpMorphicMillerAdapter >> layout: aLayout [
 		innerWidget borderWidth: aLayout borderWidth.
 		innerWidget cellInset: aLayout spacing.
 		
+		layout whenVisiblePagesChangedDo: [ self recalculatePages ].
+		
 		widget := self newScrollPaneFor: innerWidget ].
 
 	super layout: aLayout
