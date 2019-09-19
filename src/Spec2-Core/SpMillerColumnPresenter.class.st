@@ -98,3 +98,15 @@ SpMillerColumnPresenter >> size [
 
 	^ self presenters size
 ]
+
+{ #category : #accessing }
+SpMillerColumnPresenter >> visiblePages [ 
+
+	^ layout visiblePages
+]
+
+{ #category : #accessing }
+SpMillerColumnPresenter >> visiblePages: aNumber [ 
+
+	layout visiblePages: aNumber
+]
