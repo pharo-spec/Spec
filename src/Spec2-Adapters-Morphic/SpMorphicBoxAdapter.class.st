@@ -40,7 +40,7 @@ SpMorphicBoxAdapter >> addConstraits: constraints toChild: childMorph [
 				vResizing: #spaceFill ]
 		ifFalse: [
 			"Set morph to stay rigid"
-			layout direction setRigidityOfNonExpendedMorph: theMorph.
+			layout direction setRigidityOfNonExpandedMorph: theMorph.
 			constraints width ifNotNil: [ :w | theMorph width: w ].
 			constraints height ifNotNil: [ :h | theMorph height: h ] ].
 	
@@ -208,24 +208,4 @@ SpMorphicBoxAdapter >> removeSubWidgets [
 
 	widget submorphs first removeAllMorphs.
 	widget submorphs second removeAllMorphs
-]
-
-{ #category : #private }
-SpMorphicBoxAdapter >> wrapMorphIfNeeded: aMorph padding: aNumber [
-	
-	aNumber = 0 ifTrue: [ ^ aMorph ].
-	^ Morph new
-		layoutPolicy: TableLayout new;
-		color: Color transparent;
-		borderColor: Color transparent;
-		borderWidth: aNumber;
-		hResizing: aMorph hResizing;
-		vResizing: aMorph vResizing;
-		width: aMorph width + (aNumber * 2);
-		height: aMorph height + (aNumber * 2);
-		addMorph: (aMorph
-			hResizing: #spaceFill;
-			vResizing: #spaceFill;
-			yourself);
-		yourself
 ]

@@ -14,7 +14,7 @@ SpLayoutDirectionVertical >> newSplitter [
 ]
 
 { #category : #'*Spec2-Adapters-Morphic' }
-SpLayoutDirectionVertical >> setRigidityOfNonExpendedMorph: aMorph [ 
+SpLayoutDirectionVertical >> setRigidityOfNonExpandedMorph: aMorph [ 
 	aMorph 
 		hResizing: #spaceFill; 
 		vResizing: #rigid

@@ -12,6 +12,6 @@ SpLayoutDirection >> newSplitter [
 ]
 
 { #category : #'*Spec2-Adapters-Morphic' }
-SpLayoutDirection >> setRigidityOfNonExpendedMorph: aMorph [ 
+SpLayoutDirection >> setRigidityOfNonExpandedMorph: aMorph [ 
 	self subclassResponsibility
 ]
