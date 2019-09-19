@@ -157,10 +157,9 @@ SpMorphicMillerAdapter >> recalculatePages [
 		and: [ lastPageSize = self childrenWidgets size ]) 
 		ifTrue: [ ^ self ].
 
-	[ layout direction recalculatePages: self ]
-	ensure: [ 
-		lastExtent := self widget extent.
-		lastPageSize := self childrenWidgets size ]
+	lastExtent := self widget extent.
+	lastPageSize := self childrenWidgets size.
+	layout direction recalculatePages: self
 ]
 
 { #category : #accessing }
