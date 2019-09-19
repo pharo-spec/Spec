@@ -5,11 +5,13 @@ Since I am intended to be used dinamically (adding/removing components on demand
 Class {
 	#name : #SpMillerLayout,
 	#superclass : #SpExecutableLayout,
+	#traits : 'TSpObservable',
+	#classTraits : 'TSpObservable classTrait',
 	#instVars : [
-		'direction',
-		'spacing',
-		'borderWidth',
-		'visiblePages'
+		'#direction',
+		'#spacing',
+		'#borderWidth',
+		'#visiblePages => SpObservableSlot'
 	],
 	#category : #'Spec2-Layout-Miller'
 }
@@ -92,6 +94,8 @@ SpMillerLayout >> direction [
 
 { #category : #initialization }
 SpMillerLayout >> initialize [
+	
+	self class initializeSlots: self.
 
 	super initialize.
 	self spacing: 0.
@@ -147,4 +151,10 @@ SpMillerLayout >> visiblePages [
 SpMillerLayout >> visiblePages: aNumber [
 
 	visiblePages := aNumber
+]
+
+{ #category : #'api-events' }
+SpMillerLayout >> whenVisiblePagesChangedDo: aBlock [
+
+	self property: #visiblePages whenChangedDo: aBlock
 ]
