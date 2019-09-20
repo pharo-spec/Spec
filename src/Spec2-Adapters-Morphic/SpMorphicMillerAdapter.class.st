@@ -30,7 +30,7 @@ SpMorphicMillerAdapter >> add: aPresenter constraints: constraints [
 		basicAdd: aPresenter 
 		constraints: constraints 
 		to: innerWidget.
-	self recalculatePages	
+	self scrollToShowLastPage
 ]
 
 { #category : #private }
@@ -130,8 +130,10 @@ SpMorphicMillerAdapter >> recalculatePageHeights [
 		ifTrue: [ height ]
 		ifFalse: [ height / (layout visiblePages min: widgets size) ].
 		
-	widgets reverseDo: [ :each |
-		each height: newHeight ]
+	widgets reverseWithIndexDo: [ :each :index |
+		each 
+			top: (index - 1) * newHeight;
+			height: newHeight ]
 ]
 
 { #category : #private }
@@ -144,8 +146,10 @@ SpMorphicMillerAdapter >> recalculatePageWidths [
 		ifTrue: [ width ]
 		ifFalse: [ width / (layout visiblePages min: widgets size) ].
 		
-	widgets do: [ :each |
-		each width: newWidth ]
+	widgets reverseWithIndexDo: [ :each :index |
+		each 
+			left: (index - 1) * newWidth;
+			width: newWidth ]
 ]
 
 { #category : #private }
@@ -180,4 +184,11 @@ SpMorphicMillerAdapter >> removeAll [
 SpMorphicMillerAdapter >> removeSubWidgets [
 
 	innerWidget removeAllMorphs
+]
+
+{ #category : #private }
+SpMorphicMillerAdapter >> scrollToShowLastPage [
+
+	self widget defer: [ 
+		self widget scrollToShow: (innerWidget submorphs last bounds) ]
 ]
