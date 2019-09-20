@@ -100,6 +100,18 @@ SpMillerColumnPresenter >> size [
 ]
 
 { #category : #accessing }
+SpMillerColumnPresenter >> spacing [
+
+	^ layout spacing
+]
+
+{ #category : #accessing }
+SpMillerColumnPresenter >> spacing: aNumber [
+
+	layout spacing: aNumber
+]
+
+{ #category : #accessing }
 SpMillerColumnPresenter >> visiblePages [ 
 
 	^ layout visiblePages
