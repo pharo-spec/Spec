@@ -51,7 +51,7 @@ SpMillerColumnPresenter >> initialize [
 { #category : #initialization }
 SpMillerColumnPresenter >> initializePresenters [
 	
-	layout := SpBoxLayout newHorizontal
+	layout := SpMillerLayout newHorizontal
 ]
 
 { #category : #initialization }
@@ -97,4 +97,28 @@ SpMillerColumnPresenter >> setRootModel: aModel [
 SpMillerColumnPresenter >> size [
 
 	^ self presenters size
+]
+
+{ #category : #accessing }
+SpMillerColumnPresenter >> spacing [
+
+	^ layout spacing
+]
+
+{ #category : #accessing }
+SpMillerColumnPresenter >> spacing: aNumber [
+
+	layout spacing: aNumber
+]
+
+{ #category : #accessing }
+SpMillerColumnPresenter >> visiblePages [ 
+
+	^ layout visiblePages
+]
+
+{ #category : #accessing }
+SpMillerColumnPresenter >> visiblePages: aNumber [ 
+
+	layout visiblePages: aNumber
 ]

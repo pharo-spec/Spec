@@ -206,9 +206,9 @@ SpButtonPresenter >> whenActionPerformedDo: aBlock [
 ]
 
 { #category : #'api-events' }
-SpButtonPresenter >> whenActivatedDo: aBlockClosure [ 
+SpButtonPresenter >> whenActivatedDo: aBlock [ 
 	
-	^ self whenActionPerformedDo: aBlockClosure 
+	^ self whenActionPerformedDo: aBlock 
 ]
 
 { #category : #'api-events' }

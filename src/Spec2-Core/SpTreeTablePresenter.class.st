@@ -265,8 +265,9 @@ SpTreeTablePresenter >> unselectAll [
 ]
 
 { #category : #'api-events' }
-SpTreeTablePresenter >> whenActivatedDo: aBlockClosure [
-	activationBlock := aBlockClosure
+SpTreeTablePresenter >> whenActivatedDo: aBlock [
+
+	activationBlock := aBlock
 ]
 
 { #category : #'api-events' }
