@@ -161,12 +161,12 @@ SpTreeTablePresenter >> initialize [
 	self registerEvents
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 SpTreeTablePresenter >> isResizable [
 	^ isResizable
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpTreeTablePresenter >> isResizable: aBoolean [
 	isResizable := aBoolean
 ]

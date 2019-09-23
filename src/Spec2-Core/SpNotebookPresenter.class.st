@@ -105,7 +105,7 @@ SpNotebookPresenter >> selectPageIndex: aNumber [
 ]
 
 { #category : #accessing }
-SpNotebookPresenter >> selectedPage [ 
+SpNotebookPresenter >> selectedPage [
 
 	^ selectedPage
 ]

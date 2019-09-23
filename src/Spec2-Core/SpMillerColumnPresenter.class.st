@@ -60,6 +60,12 @@ SpMillerColumnPresenter >> newPresenterFor: aModel [
 	^ newPresenterBlock value: aModel
 ]
 
+{ #category : #'as yet unclassified' }
+SpMillerColumnPresenter >> pages [
+	
+	^ layout presenters
+]
+
 { #category : #accessing }
 SpMillerColumnPresenter >> presenterBlock: aBlockClosure [ 
 	
