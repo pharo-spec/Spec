@@ -29,7 +29,7 @@ SpMillerColumnPresenter >> addPresenter: newSubPresenter [
 	newSubPresenter whenActivatedDo: [ :selection | 
 		self changeSelection: selection selectedItem from: newSubPresenter ].
 	newSubPresenter owner: self.
-	layout add: newSubPresenter.
+	layout add: newSubPresenter
 ]
 
 { #category : #initialization }

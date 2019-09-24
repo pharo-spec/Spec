@@ -10,7 +10,8 @@ Class {
 		'layout',
 		'innerWidget',
 		'lastExtent',
-		'lastPageSize'
+		'lastPageSize',
+		'needRecalculatePages'
 	],
 	#category : #'Spec2-Adapters-Morphic-Layout'
 }
@@ -26,6 +27,7 @@ SpMorphicMillerAdapter >> add: aPresenter constraints: constraints [
 
 	self widget ifNil: [ ^ self ].
 
+	needRecalculatePages := true.
 	self 
 		basicAdd: aPresenter 
 		constraints: constraints 
@@ -57,6 +59,13 @@ SpMorphicMillerAdapter >> basicAdd: aPresenter constraints: constraints to: aPan
 SpMorphicMillerAdapter >> childrenWidgets [
 	
 	^ innerWidget submorphs
+]
+
+{ #category : #private }
+SpMorphicMillerAdapter >> initialize [
+
+	needRecalculatePages := false.
+	super initialize
 ]
 
 { #category : #factory }
@@ -154,13 +163,15 @@ SpMorphicMillerAdapter >> recalculatePageWidths [
 
 { #category : #private }
 SpMorphicMillerAdapter >> recalculatePages [
-	
+
 	self widget ifNil: [ ^ self ].
 	self childrenWidgets ifEmpty: [ ^ self ].
-	((lastExtent = self widget extent) 
-		and: [ lastPageSize = self childrenWidgets size ]) 
+	(needRecalculatePages not 
+		and: [ lastExtent = self widget extent 
+		and: [ lastPageSize = self childrenWidgets size ] ]) 
 		ifTrue: [ ^ self ].
 
+	needRecalculatePages := false.
 	lastExtent := self widget extent.
 	lastPageSize := self childrenWidgets size.
 	layout direction recalculatePages: self
@@ -170,6 +181,7 @@ SpMorphicMillerAdapter >> recalculatePages [
 SpMorphicMillerAdapter >> remove: aPresenter [
 	| morph |
 
+	needRecalculatePages := true.
 	morph := aPresenter adapter widget.	
 	innerWidget removeMorph: morph
 ]
@@ -177,6 +189,7 @@ SpMorphicMillerAdapter >> remove: aPresenter [
 { #category : #accessing }
 SpMorphicMillerAdapter >> removeAll [
 
+	needRecalculatePages := true.
 	innerWidget removeAllMorphs
 ]
 
