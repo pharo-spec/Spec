@@ -29,7 +29,7 @@ SpMillerColumnPresenter >> addPresenter: newSubPresenter [
 	newSubPresenter whenActivatedDo: [ :selection | 
 		self changeSelection: selection selectedItem from: newSubPresenter ].
 	newSubPresenter owner: self.
-	layout add: newSubPresenter.
+	layout add: newSubPresenter
 ]
 
 { #category : #initialization }
@@ -58,6 +58,12 @@ SpMillerColumnPresenter >> initializePresenters [
 SpMillerColumnPresenter >> newPresenterFor: aModel [
 
 	^ newPresenterBlock value: aModel
+]
+
+{ #category : #'as yet unclassified' }
+SpMillerColumnPresenter >> pages [
+	
+	^ layout presenters
 ]
 
 { #category : #accessing }

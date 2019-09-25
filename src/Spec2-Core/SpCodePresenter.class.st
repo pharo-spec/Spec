@@ -96,9 +96,9 @@ SpCodePresenter >> contextKeyBindings [
 ]
 
 { #category : #'api-shortcuts' }
-SpCodePresenter >> contextKeyBindings: aDictionary [
+SpCodePresenter >> contextKeyBindings: aKMCategory [
 
-	contextKeyBindings := aDictionary
+	contextKeyBindings := aKMCategory
 ]
 
 { #category : #'api-doIt' }

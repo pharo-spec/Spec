@@ -2,17 +2,29 @@ Class {
 	#name : #MillerScrollPane,
 	#superclass : #GeneralScrollPane,
 	#instVars : [
-		'layoutChangeAction'
+		'layoutChangeAction',
+		'updating'
 	],
 	#category : #'Spec2-Adapters-Morphic-Layout'
 }
 
+{ #category : #initialization }
+MillerScrollPane >> initialize [
+
+	updating := false.	
+	super initialize
+]
+
 { #category : #layout }
 MillerScrollPane >> layoutChanged [
 
-	super layoutChanged.
-	layoutChangeAction ifNotNil: [ 
-		layoutChangeAction value ]
+	updating ifTrue: [ ^ self ].
+	updating := true.
+	[
+		super layoutChanged.
+		layoutChangeAction ifNotNil: [ layoutChangeAction value ] ]
+	ensure: [ 
+		updating := false ]
 ]
 
 { #category : #'as yet unclassified' }
