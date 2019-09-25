@@ -94,3 +94,9 @@ SpMorphicLayoutAdapter >> layout: aLayout [
 	This call is here because layouts and widgets work differently"
 	self applyVisibility
 ]
+
+{ #category : #protocol }
+SpMorphicLayoutAdapter >> takeKeyboardFocus [
+
+	self presenter presenters first takeKeyboardFocus
+]

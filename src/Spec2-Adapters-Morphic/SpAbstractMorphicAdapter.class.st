@@ -220,7 +220,7 @@ SpAbstractMorphicAdapter >> extent [
 	^ self widget extent
 ]
 
-{ #category : #'api-focus' }
+{ #category : #'as yet unclassified' }
 SpAbstractMorphicAdapter >> gtInspectorPreviewIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	
@@ -368,6 +368,12 @@ SpAbstractMorphicAdapter >> styleSheet [
 	self flag: #TODO. "This needs to be in the application!"
 	^ SpStyle defaultStyleSheet
 	"^ self application styleSheet"
+]
+
+{ #category : #protocol }
+SpAbstractMorphicAdapter >> takeKeyboardFocus [
+	
+	self widget ifNotNil: [ :w | w takeKeyboardFocus ]
 ]
 
 { #category : #'drag and drop' }
