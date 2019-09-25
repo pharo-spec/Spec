@@ -243,6 +243,16 @@ SpPresenter >> allPresenters [
 	^ allPresenters
 ]
 
+{ #category : #private }
+SpPresenter >> allPresentersInFocusOrder [
+	| allPresenters |
+
+	allPresenters := OrderedCollection new.
+	self traverseInFocusOrderDo: [ :each |
+		allPresenters add: each  ].
+	^ allPresenters
+]
+
 { #category : #api }
 SpPresenter >> announce: anAnnouncement [
 
@@ -332,6 +342,12 @@ SpPresenter >> bindKeyCombination: aShortcut toAction: aBlock [
 		action: aBlock).
 	self withAdapterDo: [ :anAdapter | 
 		anAdapter bindKeyCombination: aShortcut toAction: aBlock ]
+]
+
+{ #category : #testing }
+SpPresenter >> canTakeKeyboardFocus [
+
+	^ true
 ]
 
 { #category : #'api-window' }
@@ -872,7 +888,9 @@ SpPresenter >> presentersDo: aBlock [
 { #category : #private }
 SpPresenter >> presentersInFocusOrder [
 
-	^ focusOrder ifNil: [ self presenters ]
+	^ focusOrder ifNil: [ 
+		self presenters 
+			select: [ :each | each canTakeKeyboardFocus ] ]
 ]
 
 { #category : #'api-shortcuts' }
@@ -955,6 +973,25 @@ SpPresenter >> title [
 SpPresenter >> toolName [
 
 	^ self class toolName
+]
+
+{ #category : #'private-traversing' }
+SpPresenter >> traverseInFocusOrderDo: aBlock [
+
+	self 
+		traverseInFocusOrderDo: aBlock 
+		excluding: Set new
+]
+
+{ #category : #'private-traversing' }
+SpPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
+
+	(excludes includes: self) ifTrue: [ ^ self ]. 
+	excludes add: self.
+	aBlock value: self.
+
+	self presentersInFocusOrder do: [ :each |
+		each traverseInFocusOrderDo: aBlock excluding: excludes ]
 ]
 
 { #category : #'private-traversing' }

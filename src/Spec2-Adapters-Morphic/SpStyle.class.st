@@ -24,7 +24,7 @@ SpStyle class >> createDefaultStyleSheet [
 	.label [
 		Geometry { #hResizing: true },
 		.shortcut [ 
-			Draw { #color : Color{ #rgb:708480675 } },
+			Draw { #color : Color{ #rgb: 622413393 } },
 			Font { #name : "Lucida Grande", #size: 10 }
 		]
 	],

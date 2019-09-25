@@ -51,8 +51,21 @@ SpAbstractMorphicAdapter >> add: anAdapter [
 ]
 
 { #category : #initialization }
+SpAbstractMorphicAdapter >> addDefaultKeyBindings [
+
+	self 
+		bindKeyCombination: Character tab asKeyCombination 
+		toAction: [ self focusNext ]. 
+	self
+		bindKeyCombination: Character tab shift asKeyCombination 
+		toAction: [ self focusPrevious ]. 
+
+]
+
+{ #category : #initialization }
 SpAbstractMorphicAdapter >> addKeyBindingsTo: aMorph [
 
+	self addDefaultKeyBindings.
 	self presenter contextKeyBindings ifNotNil: [ :aCategory | 
 		aCategory allEntries keymaps do: [ :each |
 			self 
@@ -218,6 +231,28 @@ SpAbstractMorphicAdapter >> enabled: aBoolean [
 SpAbstractMorphicAdapter >> extent [
 
 	^ self widget extent
+]
+
+{ #category : #initialization }
+SpAbstractMorphicAdapter >> focusNext [
+	
+	self presenter withWindowDo: [ :window | | presenters |
+		presenters := window allPresentersInFocusOrder.
+		(presenters 
+			after: self presenter
+			ifAbsent: [ presenters first ])
+			takeKeyboardFocus ]
+]
+
+{ #category : #initialization }
+SpAbstractMorphicAdapter >> focusPrevious [
+	
+	self presenter withWindowDo: [ :window | | presenters |
+		presenters := window allPresentersInFocusOrder.
+		(presenters 
+			before: self presenter
+			ifAbsent: [ presenters last ])
+			takeKeyboardFocus ]
 ]
 
 { #category : #'as yet unclassified' }

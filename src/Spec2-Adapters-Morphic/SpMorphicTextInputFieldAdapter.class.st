@@ -26,6 +26,18 @@ SpMorphicTextInputFieldAdapter >> acceptOnCR [
 	^ self model acceptOnCR
 ]
 
+{ #category : #initialization }
+SpMorphicTextInputFieldAdapter >> addDefaultKeyBindings [
+	"restore this bindings"
+	self flag: #TODO. "This is baaaaad. In fact I need to extract a superclass different"
+	self 
+		bindKeyCombination: Character tab asKeyCombination 
+		toAction: [ self focusNext ]. 
+	self
+		bindKeyCombination: Character tab shift asKeyCombination 
+		toAction: [ self focusPrevious ]. 
+]
+
 { #category : #factory }
 SpMorphicTextInputFieldAdapter >> buildWidget [
 	| newWidget |

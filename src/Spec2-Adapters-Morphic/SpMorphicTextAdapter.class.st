@@ -29,6 +29,11 @@ SpMorphicTextAdapter >> acceptAllowed [
 	^self widget editingMode acceptAllowed
 ]
 
+{ #category : #initialization }
+SpMorphicTextAdapter >> addDefaultKeyBindings [
+	"Text areas needs to be able to process tab. Cancel the binding."
+]
+
 { #category : #accessing }
 SpMorphicTextAdapter >> announcer [
 	^ self model announcer

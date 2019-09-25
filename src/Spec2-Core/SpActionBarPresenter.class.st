@@ -31,6 +31,12 @@ SpActionBarPresenter >> addLast: aButtonPresenter [
 		add: aButtonPresenter
 ]
 
+{ #category : #testing }
+SpActionBarPresenter >> canTakeKeyboardFocus [
+
+	^ false
+]
+
 { #category : #initialization }
 SpActionBarPresenter >> initialize [
 
@@ -42,4 +48,10 @@ SpActionBarPresenter >> initialize [
 SpActionBarPresenter >> items [
 
 	^ items value
+]
+
+{ #category : #'private-traversing' }
+SpActionBarPresenter >> presenters [
+
+	^ self items
 ]

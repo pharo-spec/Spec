@@ -85,6 +85,12 @@ SpToolBarPresenter >> beText [
 	self displayMode: SpToolBarDisplayMode modeLabel
 ]
 
+{ #category : #testing }
+SpToolBarPresenter >> canTakeKeyboardFocus [
+
+	^ false
+]
+
 { #category : #accessing }
 SpToolBarPresenter >> displayMode [
 
@@ -156,6 +162,12 @@ SpToolBarPresenter >> leftItems [
 SpToolBarPresenter >> notEmpty [
 
 	^ self isEmpty not
+]
+
+{ #category : #'private-traversing' }
+SpToolBarPresenter >> presenters [
+
+	^ self items
 ]
 
 { #category : #removing }

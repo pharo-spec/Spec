@@ -280,6 +280,13 @@ SpAbstractWidgetPresenter >> transferFor: passenger from: source [
 ]
 
 { #category : #'private-traversing' }
+SpAbstractWidgetPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
+
+	excludes add: self.
+	aBlock value: self
+]
+
+{ #category : #'private-traversing' }
 SpAbstractWidgetPresenter >> traversePresentersDo: aBlock excluding: excludes [
 	"Terminate"
 
