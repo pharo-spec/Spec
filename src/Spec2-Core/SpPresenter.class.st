@@ -89,7 +89,7 @@ Class {
 	#instVars : [
 		'#application',
 		'#focusOrder',
-		'#additionalKeyBindings',
+		'#contextKeyBindings',
 		'#windowIcon => SpObservableSlot',
 		'#aboutText => SpObservableSlot',
 		'#askOkToClose => SpObservableSlot',
@@ -225,14 +225,6 @@ SpPresenter >> addMenuItemsToWindowMenu: aMenu [
 	"Do nothing"
 ]
 
-{ #category : #'api-shortcuts' }
-SpPresenter >> additionalKeyBindings [
-
-	self flag: #TODO. "Think is... not all presenters can have keybindings. Why are we
-	putting this functionality here and not in a trait?"
-	^ additionalKeyBindings
-]
-
 { #category : #TOREMOVE }
 SpPresenter >> additionalSubpresentersMap [
 
@@ -336,8 +328,10 @@ SpPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 { #category : #'api-shortcuts' }
 SpPresenter >> bindKeyCombination: aShortcut toAction: aBlock [
 
-	additionalKeyBindings ifNil: [ additionalKeyBindings := Dictionary new ].
-	additionalKeyBindings at: aShortcut put: aBlock.
+	contextKeyBindings ifNil: [ contextKeyBindings := KMCategory new ].
+	contextKeyBindings addKeymapEntry: (KMKeymap
+		shortcut: aShortcut
+		action: aBlock).
 	self withAdapterDo: [ :anAdapter | 
 		anAdapter bindKeyCombination: aShortcut toAction: aBlock ]
 ]
@@ -365,6 +359,21 @@ SpPresenter >> centeredRelativeTo: aModel [
 { #category : #initialization }
 SpPresenter >> connectPresenters [
 	"The method connectPresenters defines the interactions between the dif- ferent widgets. By connecting the behaviors of the different widgets it speci- fies the overall presentation, i.e., how the overall UI responds to interactions by the user. Usually this method consists of specifications of actions to per- form when a certain event is received by a widget. The whole interaction flow of the UI then emerges from the propagation of those events."
+]
+
+{ #category : #'api-shortcuts' }
+SpPresenter >> contextKeyBindings [
+	"contextKeyBindings stores a KMCategory with keybindings for this presenter"
+
+	self flag: #TODO. "Think is... not all presenters can have keybindings. Why are we
+	putting this functionality here and not in a trait?"
+	^ contextKeyBindings
+]
+
+{ #category : #'api-shortcuts' }
+SpPresenter >> contextKeyBindings: aKMCategory [
+
+	contextKeyBindings := aKMCategory
 ]
 
 { #category : #private }
@@ -426,7 +435,7 @@ SpPresenter >> ensureKeyBindingsFor: aWidget [
 	self registerKeyStrokesForNextFor: aWidget.
 	self registerKeyStrokesForPreviousFor: aWidget.
 	
-	self additionalKeyBindings associationsDo: [:association | aWidget bindKeyCombination: association key toAction: association value ]
+	self contextKeyBindings associationsDo: [:association | aWidget bindKeyCombination: association key toAction: association value ]
 ]
 
 { #category : #'api-focus' }
@@ -499,13 +508,13 @@ SpPresenter >> giveFocusToPreviousFrom: aModel [
 			true ]
 ]
 
-{ #category : #'api-focus' }
+{ #category : #'GTInspector-Extensions' }
 SpPresenter >> gtInspectorPreviewIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	self adapter ifNotNil: [ :w | w gtInspectorPreviewIn: composite ]
 ]
 
-{ #category : #'api-focus' }
+{ #category : #'GTInspector-Extensions' }
 SpPresenter >> gtInspectorSubPresentersIn: composite [
 	<gtInspectorPresentationOrder: 20>
 	composite tree
@@ -969,7 +978,7 @@ SpPresenter >> registerKeyStrokesForPreviousFor: aWidget [
 { #category : #'api-shortcuts' }
 SpPresenter >> removeKeyCombination: aShortcut [
 
-	self additionalKeyBindings removeKey: aShortcut ifAbsent: [ ^ self ].
+	self contextKeyBindings removeKey: aShortcut ifAbsent: [ ^ self ].
 	self withAdapterDo: [ :anAdapter | 
 		anAdapter removeKeyCombination: aShortcut ]
 ]
@@ -1109,7 +1118,8 @@ SpPresenter >> whenDisplayDo: aBlockClosure [
 SpPresenter >> whenShortcutsChanged: aBlock [
 	"Set a block to value when the shortcuts block has changed"
 	
-	self additionalKeyBindings whenChangedDo: aBlock
+	self deprecated: 'This event does not has sense in Spec2'.
+
 ]
 
 { #category : #'api-events' }
