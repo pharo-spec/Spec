@@ -39,6 +39,7 @@ SpAbstractMorphicAdapter >> adapt: aPresenter [
 
 	super adapt: aPresenter.
 	self addSettingsTo: self widget.
+	self addKeyBindingsTo: self widget.
 	self flag: #TODO. "this should be here, but is interfering with old layouts reason why 
 	 I'm moving it to MorphicLayoutAdapter >> #applyStyle:to:"
 	"self applyStyle: self widget."
@@ -47,6 +48,15 @@ SpAbstractMorphicAdapter >> adapt: aPresenter [
 { #category : #protocol }
 SpAbstractMorphicAdapter >> add: anAdapter [
 	self widgetDo: [ :w | w spEnsureLayoutAndAddMorph: anAdapter widget ]
+]
+
+{ #category : #initialization }
+SpAbstractMorphicAdapter >> addKeyBindingsTo: aMorph [
+
+	self presenter additionalKeyBindings ifNotNil: [ :bindings | 
+		bindings keysAndValuesDo: [ :shortcut :action | 
+			aMorph bindKeyCombination: shortcut toAction: action ] ]
+
 ]
 
 { #category : #initialization }

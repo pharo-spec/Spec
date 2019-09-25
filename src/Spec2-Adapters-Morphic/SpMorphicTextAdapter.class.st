@@ -89,9 +89,6 @@ SpMorphicTextAdapter >> buildWidget [
 	
 	self setEditingModeFor: newWidget.
 	
-	self model additionalKeyBindings ifNotNil: [ :bindings | 
-		bindings keysAndValuesDo: [ :shortcut :action | 
-			newWidget bindKeyCombination: shortcut toAction: action ] ].
 	self presenter whenTextChangedDo: [ :text | newWidget setText: text ].
 	self presenter whenPlaceholderChangedDo: [ :text | newWidget ghostText: text ].
 	
