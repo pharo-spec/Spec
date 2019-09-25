@@ -97,9 +97,7 @@ Class {
 		'#additionalSubpresentersMap',
 		'#layout',
 		'#visible => SpObservableSlot',
-		'#extent => SpObservableSlot',
-		'#keyStrokesForNextFocus => SpObservableSlot',
-		'#keyStrokesForPreviousFocus => SpObservableSlot'
+		'#extent => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Base'
 }
@@ -429,29 +427,6 @@ SpPresenter >> ensureExtentFor: widget [
 	
 ]
 
-{ #category : #'private-focus' }
-SpPresenter >> ensureKeyBindingsFor: aWidget [
-
-	self registerKeyStrokesForNextFor: aWidget.
-	self registerKeyStrokesForPreviousFor: aWidget.
-	
-	self contextKeyBindings associationsDo: [:association | aWidget bindKeyCombination: association key toAction: association value ]
-]
-
-{ #category : #'api-focus' }
-SpPresenter >> eventKeyStrokesForNextFocus [
-	"String describing the keystroke to perform to jump to the next widget"
-
-	^ keyStrokesForNextFocus
-]
-
-{ #category : #'api-focus' }
-SpPresenter >> eventKeyStrokesForPreviousFocus [
-	"String describing the keystroke to perform to jump to the previous widget"
-
-	^ keyStrokesForPreviousFocus
-]
-
 { #category : #TOMOVE }
 SpPresenter >> extent [
 	^ extent
@@ -473,41 +448,6 @@ SpPresenter >> focusOrder: anObject [
 	^ focusOrder := anObject
 ]
 
-{ #category : #'private-focus' }
-SpPresenter >> giveFocusToNextFrom: aModel [
-	| focus |
-	
-	focus := self focusOrder.
-	^ true
-]
-
-{ #category : #'private-focus' }
-SpPresenter >> giveFocusToPreviousFrom: aModel [ 
-	| focus |
-	
-	focus := self focusOrder.
-
-	(focus includes: aModel)
-		ifTrue: [
-			| index previous |
-			index := (focus indexOf: aModel) - 1.
-			(index > 0)
-				ifTrue: [
-					previous := focus at: index.
-					previous takeLastKeyboardFocus.
-					^ true ]].
-
-	^ owner 
-		ifNil: [ " I loop "
-			| next |
-			next := focus at: focus size ifAbsent: [ ^ false ].
-			next takeLastKeyboardFocus.
-			true]
-		ifNotNil: [ 
-			owner giveFocusToPreviousFrom: self.
-			true ]
-]
-
 { #category : #'GTInspector-Extensions' }
 SpPresenter >> gtInspectorPreviewIn: composite [
 	<gtInspectorPresentationOrder: 30>
@@ -523,12 +463,6 @@ SpPresenter >> gtInspectorSubPresentersIn: composite [
 		display: [ :each | {each} ];
 		children: [ :each | each presenters ];
 		when: [ :each | each presenters isNotEmpty ]
-]
-
-{ #category : #'private-focus' }
-SpPresenter >> handlesKeyboard: evt [
-
-	^ true
 ]
 
 { #category : #api }
@@ -590,8 +524,7 @@ SpPresenter >> initializePresenters [
 
 { #category : #'initialization - private' }
 SpPresenter >> initializePrivateAnnouncements [
-	self property: #keyStrokesForNextFocus whenChangedDo: [ self registerKeyStrokesForNextFor: self widget ].
-	self property: #keyStrokesForPreviousFocus whenChangedDo: [ self registerKeyStrokesForPreviousFor: self widget ].
+
 	self property: #titleHolder whenChangedDo: [ self updateTitle ]
 ]
 
@@ -615,8 +548,7 @@ SpPresenter >> initializePrivateHooks [
 
 { #category : #'initialization - private' }
 SpPresenter >> initializePrivateValueHolders [
-	self keyStrokeForNextFocus: KMNoShortcut new.
-	self keyStrokeForPreviousFocus: KMNoShortcut new.
+
 	askOkToClose := false.
 	titleHolder := self class title
 ]
@@ -699,26 +631,6 @@ SpPresenter >> isRoot [
 SpPresenter >> isVisible [
 	
 	^ visible value
-]
-
-{ #category : #'api-focus' }
-SpPresenter >> keyStrokeForNextFocus: aKMShortcut [
-	self keyStrokesForNextFocus: {aKMShortcut}
-]
-
-{ #category : #'api-focus' }
-SpPresenter >> keyStrokeForPreviousFocus: aKMShortcut [
-	self keyStrokesForPreviousFocus: {aKMShortcut}
-]
-
-{ #category : #'api-focus' }
-SpPresenter >> keyStrokesForNextFocus: aCollection [
-	keyStrokesForNextFocus := aCollection
-]
-
-{ #category : #'api-focus' }
-SpPresenter >> keyStrokesForPreviousFocus: aCollection [
-	keyStrokesForPreviousFocus := aCollection
 ]
 
 { #category : #accessing }
@@ -957,24 +869,6 @@ SpPresenter >> presentersDo: aBlock [
 				aBlock value: var ] ]
 ]
 
-{ #category : #'private-focus' }
-SpPresenter >> registerKeyStrokesForNextFor: aWidget [
-
-	aWidget ifNil: [ ^ self ].
-	
-	self eventKeyStrokesForNextFocus do: [:each |
-		aWidget bindKeyCombination: each toAction: [ self giveFocusToNextFrom: self ] ]
-]
-
-{ #category : #'private-focus' }
-SpPresenter >> registerKeyStrokesForPreviousFor: aWidget [
-
-	aWidget ifNil: [ ^ self ].
-	
-	self eventKeyStrokesForPreviousFocus do: [:each |
-		aWidget bindKeyCombination: each toAction: [ self giveFocusToPreviousFrom: self ] ]
-]
-
 { #category : #'api-shortcuts' }
 SpPresenter >> removeKeyCombination: aShortcut [
 
@@ -1031,19 +925,11 @@ SpPresenter >> show [
 	visible := true
 ]
 
-{ #category : #'private-focus' }
+{ #category : #'api-focus' }
 SpPresenter >> takeKeyboardFocus [
 
-	self focusOrder ifNotEmpty:[:focus | ^ focus first takeKeyboardFocus ].
-	^ self changed: #takeKeyboardFocus with: #()
-]
-
-{ #category : #'private-focus' }
-SpPresenter >> takeLastKeyboardFocus [
-
-	self focusOrder
-		ifEmpty: [ self takeKeyboardFocus ]
-		ifNotEmpty: [:focus | focus last takeKeyboardFocus ].
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter takeKeyboardFocus ]
 ]
 
 { #category : #TOREMOVE }

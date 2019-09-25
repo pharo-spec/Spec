@@ -183,12 +183,6 @@ SpWindowPresenter >> giveFocusToNextFrom: aModel [
 	^ self presenter giveFocusToNextFrom: aModel
 ]
 
-{ #category : #focus }
-SpWindowPresenter >> giveFocusToPreviousFrom: aModel [ 
-
-	^ self presenter giveFocusToPreviousFrom: aModel 
-]
-
 { #category : #testing }
 SpWindowPresenter >> hasMenu [ 
 	
