@@ -98,5 +98,5 @@ SpMorphicLayoutAdapter >> layout: aLayout [
 { #category : #protocol }
 SpMorphicLayoutAdapter >> takeKeyboardFocus [
 
-	self presenter presenters first takeKeyboardFocus
+	self presenter presentersInFocusOrder first takeKeyboardFocus
 ]

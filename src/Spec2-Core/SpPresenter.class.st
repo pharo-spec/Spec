@@ -850,12 +850,12 @@ SpPresenter >> presenterAt: aName ifAbsent: aBlock [
 
 { #category : #'private-traversing' }
 SpPresenter >> presenters [
-	| allPresenters |
+	| presenters |
 
-	allPresenters := OrderedCollection new.
+	presenters := OrderedCollection new.
 	self presentersDo: [ :each | 
-		allPresenters add: each ].
-	^ allPresenters
+		presenters add: each ].
+	^ presenters
 ]
 
 { #category : #'private-traversing' }
@@ -867,6 +867,12 @@ SpPresenter >> presentersDo: aBlock [
 			var := self readSlot: each.
 			(var isKindOf: SpAbstractPresenter) ifTrue: [ 
 				aBlock value: var ] ]
+]
+
+{ #category : #private }
+SpPresenter >> presentersInFocusOrder [
+
+	^ focusOrder ifNil: [ self presenters ]
 ]
 
 { #category : #'api-shortcuts' }
