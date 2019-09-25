@@ -30,6 +30,13 @@ SpMorphicLayoutAdapter >> addConstraits: constraints toChild: childMorph [
 ]
 
 { #category : #initialization }
+SpMorphicLayoutAdapter >> addKeyBindingsTo: aMorph [
+	"This is called before the layout actually exists. 
+	 Skipping it."
+	
+]
+
+{ #category : #initialization }
 SpMorphicLayoutAdapter >> applyStyle: aMorph [
 	"layouts do not have style to apply"
 ]

@@ -65,7 +65,7 @@ SpAbstractAdapter >> adapt: aPresenter [
 	model := aPresenter.
 	aPresenter addDependent: self.
 
-	widget := self buildWidget.
+	widget := self buildWidget
 ]
 
 { #category : #protocol }

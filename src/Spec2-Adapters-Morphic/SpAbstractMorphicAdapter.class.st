@@ -56,7 +56,6 @@ SpAbstractMorphicAdapter >> addKeyBindingsTo: aMorph [
 	self presenter additionalKeyBindings ifNotNil: [ :bindings | 
 		bindings keysAndValuesDo: [ :shortcut :action | 
 			aMorph bindKeyCombination: shortcut toAction: action ] ]
-
 ]
 
 { #category : #initialization }
