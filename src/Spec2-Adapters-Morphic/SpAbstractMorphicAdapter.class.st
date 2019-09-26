@@ -53,13 +53,14 @@ SpAbstractMorphicAdapter >> add: anAdapter [
 { #category : #initialization }
 SpAbstractMorphicAdapter >> addDefaultKeyBindings [
 
+	self presenter canTakeKeyboardFocus ifFalse: [ ^ self ].
+
 	self 
 		bindKeyCombination: Character tab asKeyCombination 
 		toAction: [ self focusNext ]. 
 	self
 		bindKeyCombination: Character tab shift asKeyCombination 
-		toAction: [ self focusPrevious ]. 
-
+		toAction: [ self focusPrevious ]
 ]
 
 { #category : #initialization }
@@ -111,7 +112,9 @@ SpAbstractMorphicAdapter >> applyVisibility [
 SpAbstractMorphicAdapter >> bindKeyCombination: aShortcut toAction: aBlock [
 
 	self widgetDo: [ :w | 
-		w bindKeyCombination: aShortcut toAction: aBlock ]
+		w 
+			bindKeyCombination: aShortcut 
+			toAction: aBlock ]
 ]
 
 { #category : #protocol }

@@ -3,7 +3,7 @@ I am the adapter used to bridge a TextInputFieldPresenter and a PluggableTextFie
 "
 Class {
 	#name : #SpMorphicTextInputFieldAdapter,
-	#superclass : #SpMorphicTextAdapter,
+	#superclass : #SpMorphicBaseTextAdapter,
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
@@ -26,23 +26,15 @@ SpMorphicTextInputFieldAdapter >> acceptOnCR [
 	^ self model acceptOnCR
 ]
 
-{ #category : #initialization }
-SpMorphicTextInputFieldAdapter >> addDefaultKeyBindings [
-	"restore this bindings"
-	self flag: #TODO. "This is baaaaad. In fact I need to extract a superclass different"
-	self 
-		bindKeyCombination: Character tab asKeyCombination 
-		toAction: [ self focusNext ]. 
-	self
-		bindKeyCombination: Character tab shift asKeyCombination 
-		toAction: [ self focusPrevious ]. 
-]
-
 { #category : #factory }
 SpMorphicTextInputFieldAdapter >> buildWidget [
 	| newWidget |
+	
 	self flag: #pharo7.	"When support for P7 will be dropped, remove this compatibility hack."
-	newWidget := ((self class environment at: #SpRubTextFieldMorph ifAbsent: [ RubTextFieldMorph ]) on: self)
+	newWidget := ((self class environment 
+			at: #SpRubTextFieldMorph 
+			ifAbsent: [ RubTextFieldMorph ]) 
+			on: self)
 		getTextSelector: #getText;
 		setTextSelector: #accept:notifying:;
 		getSelectionSelector: #readSelection;
