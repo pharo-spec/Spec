@@ -10,6 +10,8 @@ Class {
 { #category : #private }
 SpPresenterFocusOrderTest >> focusedPresenter [
 	
+	ActiveWorld crTrace. 
+	ActiveHand  crTrace.
 	^ mock allPresentersInFocusOrder 
 		detect: [ :each | each adapter widget hasKeyboardFocus ]
 		ifNone: [ nil ]
@@ -83,7 +85,9 @@ SpPresenterFocusOrderTest >> tearDown [
 
 	mock ifNotNil: [ 
 		mock hasWindow ifTrue: [ 
-			mock window close ] ]
+			mock window close ] ].
+	
+	super tearDown
 ]
 
 { #category : #tests }
