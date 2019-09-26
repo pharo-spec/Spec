@@ -1,6 +1,6 @@
 Class {
 	#name : #SpPresenterFocusOrderTest,
-	#superclass : #TestCase,
+	#superclass : #AbstractMorphicUITest,
 	#instVars : [
 		'mock'
 	],
@@ -54,7 +54,8 @@ SpPresenterFocusOrderTest >> pressShiftTab [
 		shift: true
 		meta: false
 		control: false
-		option: false
+		option: false.
+	self waitUntilUIRedrawed		
 ]
 
 { #category : #emulating }
@@ -65,7 +66,15 @@ SpPresenterFocusOrderTest >> pressTab [
 		shift: false
 		meta: false
 		control: false
-		option: false
+		option: false.
+	self waitUntilUIRedrawed		
+]
+
+{ #category : #emulating }
+SpPresenterFocusOrderTest >> takeKeyboardFocus: aPresenter [
+
+	aPresenter takeKeyboardFocus.
+	self waitUntilUIRedrawed
 ]
 
 { #category : #running }
@@ -108,7 +117,7 @@ SpPresenterFocusOrderTest >> testFocusRotationBackwards [
 		yourself.
 		
 	"Focus first"
-	mock takeKeyboardFocus.
+	self takeKeyboardFocus: mock.
 	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter.
 	"Focus third"
 	self pressShiftTab.
@@ -129,7 +138,7 @@ SpPresenterFocusOrderTest >> testFocusRotationForward [
 		yourself.
 		
 	"Focus first"
-	mock takeKeyboardFocus.
+	self takeKeyboardFocus: mock.
 	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter.
 	"Focus second"
 	self pressTab.
@@ -150,15 +159,14 @@ SpPresenterFocusOrderTest >> testTakeKeyboardFocus [
 		yourself.
 		
 	"Focus first"
-	mock takeKeyboardFocus.
-	self assert: (mock presenterAt: #firstPresenter) adapter widget hasKeyboardFocus.
+	self takeKeyboardFocus: mock.
+	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter.
 	"Focus second"
-	(mock presenterAt: #secondPresenter) takeKeyboardFocus.
-	self deny: (mock presenterAt: #firstPresenter) adapter widget hasKeyboardFocus.
-	self assert: (mock presenterAt: #secondPresenter) adapter widget hasKeyboardFocus.
+	self takeKeyboardFocus: (mock presenterAt: #secondPresenter).
+	self deny: (mock presenterAt: #firstPresenter) equals: self focusedPresenter.
+	self assert: (mock presenterAt: #secondPresenter) equals: self focusedPresenter.
 	"Focus first again"
-	(mock presenterAt: #firstPresenter) takeKeyboardFocus.
-	self assert: (mock presenterAt: #firstPresenter) adapter widget hasKeyboardFocus.
-	self deny: (mock presenterAt: #secondPresenter) adapter widget hasKeyboardFocus.
-
+	self takeKeyboardFocus: (mock presenterAt: #firstPresenter).
+	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter.
+	self deny: (mock presenterAt: #secondPresenter)  equals: self focusedPresenter
 ]
