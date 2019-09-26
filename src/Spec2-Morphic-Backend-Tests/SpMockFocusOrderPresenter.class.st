@@ -22,7 +22,7 @@ SpMockFocusOrderPresenter class >> defaultSpec [
 { #category : #initialization }
 SpMockFocusOrderPresenter >> initializePresenters [
 
-	firstPresenter := self newTextInput.
-	secondPresenter := self newTextInput.
-	thirdPresenter := self newTextInput
+	firstPresenter := self newButton label: 'First'.
+	secondPresenter := self newButton label: 'Second'.
+	thirdPresenter := self newButton label: 'Third'
 ]

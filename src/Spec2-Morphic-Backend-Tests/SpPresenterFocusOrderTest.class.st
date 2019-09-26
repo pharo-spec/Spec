@@ -10,7 +10,6 @@ Class {
 { #category : #private }
 SpPresenterFocusOrderTest >> focusedPresenter [
 	
-	Stdio stdout << 'World: ' << ActiveWorld printString << 'Hand: ' << ActiveHand  printString; lf.
 	^ mock allPresentersInFocusOrder 
 		detect: [ :each | each adapter widget hasKeyboardFocus ]
 		ifNone: [ nil ]
