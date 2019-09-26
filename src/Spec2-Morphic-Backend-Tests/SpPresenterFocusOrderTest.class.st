@@ -12,6 +12,7 @@ SpPresenterFocusOrderTest >> focusedPresenter [
 	
 	^ mock allPresentersInFocusOrder 
 		detect: [ :each | each adapter widget hasKeyboardFocus ]
+		ifNone: [ nil ]
 ]
 
 { #category : #emulating }
@@ -96,7 +97,7 @@ SpPresenterFocusOrderTest >> testCustomFocusOrder [
 	mock openWithSpec.
 	
 	"Focus third"
-	mock takeKeyboardFocus.
+	self takeKeyboardFocus: mock.
 	self assert: (mock presenterAt: #thirdPresenter) equals: self focusedPresenter.
 	"Focus first"
 	self pressTab.
