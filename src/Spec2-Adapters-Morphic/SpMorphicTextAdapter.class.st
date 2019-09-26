@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #initialization }
-SpMorphicTextAdapter >> addDefaultKeyBindings [
+SpMorphicTextAdapter >> addFocusRotationKeyBindings [
 	"Text areas needs to be able to process tab. Cancel the binding."
 ]
 

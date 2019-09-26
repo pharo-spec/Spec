@@ -51,7 +51,7 @@ SpAbstractMorphicAdapter >> add: anAdapter [
 ]
 
 { #category : #initialization }
-SpAbstractMorphicAdapter >> addDefaultKeyBindings [
+SpAbstractMorphicAdapter >> addFocusRotationKeyBindings [
 
 	self presenter canTakeKeyboardFocus ifFalse: [ ^ self ].
 
@@ -66,7 +66,7 @@ SpAbstractMorphicAdapter >> addDefaultKeyBindings [
 { #category : #initialization }
 SpAbstractMorphicAdapter >> addKeyBindingsTo: aMorph [
 
-	self addDefaultKeyBindings.
+	self addFocusRotationKeyBindings.
 	self presenter contextKeyBindings ifNotNil: [ :aCategory | 
 		aCategory allEntries keymaps do: [ :each |
 			self 
