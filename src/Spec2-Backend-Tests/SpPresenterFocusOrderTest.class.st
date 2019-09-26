@@ -77,6 +77,30 @@ SpPresenterFocusOrderTest >> tearDown [
 ]
 
 { #category : #tests }
+SpPresenterFocusOrderTest >> testCustomFocusOrder [
+
+	mock := SpMockFocusOrderPresenter new.
+	mock focusOrder 
+		add: (mock presenterAt: #thirdPresenter);
+		add: (mock presenterAt: #firstPresenter);
+		add: (mock presenterAt: #secondPresenter).
+	mock openWithSpec.
+	
+	"Focus third"
+	mock takeKeyboardFocus.
+	self assert: (mock presenterAt: #thirdPresenter) equals: self focusedPresenter.
+	"Focus first"
+	self pressTab.
+	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter.
+	"Focus second"
+	self pressTab.
+	self assert: (mock presenterAt: #secondPresenter) equals: self focusedPresenter.
+	"Focus third again"
+	self pressTab.
+	self assert: (mock presenterAt: #thirdPresenter) equals: self focusedPresenter
+]
+
+{ #category : #tests }
 SpPresenterFocusOrderTest >> testFocusRotationBackwards [
 
 	mock := SpMockFocusOrderPresenter new
