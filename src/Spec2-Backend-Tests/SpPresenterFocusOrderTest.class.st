@@ -7,12 +7,94 @@ Class {
 	#category : #'Spec2-Backend-Tests'
 }
 
+{ #category : #private }
+SpPresenterFocusOrderTest >> focusedPresenter [
+	
+	^ mock allPresentersInFocusOrder 
+		detect: [ :each | each adapter widget hasKeyboardFocus ]
+]
+
+{ #category : #emulating }
+SpPresenterFocusOrderTest >> keyPressed: keyCode shift: shiftBoolean meta: metaBoolean control: controlBoolean option: optionBoolean [
+	| evt modifiers widget |
+	
+	widget := self focusedPresenter adapter widget.
+	
+	modifiers := 0.
+	shiftBoolean ifTrue: [ modifiers := modifiers | 8 ].
+	metaBoolean ifTrue: [ modifiers := modifiers |
+		(Smalltalk os isWin32 | Smalltalk os isUnix
+			ifTrue: [ 2r00010000 ]
+			ifFalse: [ 2r01000000 ]) ].
+	controlBoolean ifTrue: [ modifiers := modifiers | 2r00010000 ].
+	optionBoolean ifTrue: [ modifiers := modifiers |
+		(Smalltalk os isWin32 | Smalltalk os isUnix
+			ifTrue: [ 2r01000000 ]
+			ifFalse: [ 2r00100000 ]) ].
+	
+	evt := KeyboardEvent new
+		setType: #keystroke
+		buttons: modifiers
+		position: widget position + (1 @ 1)
+		keyValue: keyCode
+		charCode: keyCode
+		hand: self currentWorld activeHand
+		stamp: Time millisecondClockValue.
+
+	evt sentTo: widget.
+	"Some time to allow things to happen?"
+	10 milliSeconds wait
+]
+
+{ #category : #emulating }
+SpPresenterFocusOrderTest >> pressShiftTab [
+
+	self 
+		keyPressed: Character tab asciiValue
+		shift: true
+		meta: false
+		control: false
+		option: false
+]
+
+{ #category : #emulating }
+SpPresenterFocusOrderTest >> pressTab [
+
+	self 
+		keyPressed: Character tab asciiValue
+		shift: false
+		meta: false
+		control: false
+		option: false
+]
+
 { #category : #running }
 SpPresenterFocusOrderTest >> tearDown [
 
 	mock ifNotNil: [ 
 		mock hasWindow ifTrue: [ 
 			mock window close ] ]
+]
+
+{ #category : #tests }
+SpPresenterFocusOrderTest >> testFocusRotationBackwards [
+
+	mock := SpMockFocusOrderPresenter new
+		openWithSpec;
+		yourself.
+		
+	"Focus first"
+	mock takeKeyboardFocus.
+	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter.
+	"Focus third"
+	self pressShiftTab.
+	self assert: (mock presenterAt: #thirdPresenter) equals: self focusedPresenter.
+	"Focus second"
+	self pressShiftTab.
+	self assert: (mock presenterAt: #secondPresenter) equals: self focusedPresenter.
+	"Focus first again"
+	self pressShiftTab.
+	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter
 ]
 
 { #category : #tests }
@@ -24,16 +106,16 @@ SpPresenterFocusOrderTest >> testFocusRotationForward [
 		
 	"Focus first"
 	mock takeKeyboardFocus.
-	self assert: (mock presenterAt: #firstPresenter) adapter widget hasKeyboardFocus.
+	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter.
 	"Focus second"
-	mock type: Character tab asString.
-	self assert: (mock presenterAt: #firstPresenter) adapter widget hasKeyboardFocus.
+	self pressTab.
+	self assert: (mock presenterAt: #secondPresenter) equals: self focusedPresenter.
 	"Focus third"
-	mock type: Character tab asString.
-	self assert: (mock presenterAt: #thirdPresenter) adapter widget hasKeyboardFocus.
+	self pressTab.
+	self assert: (mock presenterAt: #thirdPresenter) equals: self focusedPresenter.
 	"Focus first again"
-	mock type: Character tab asString.
-	self assert: (mock presenterAt: #firstPresenter) adapter widget hasKeyboardFocus
+	self pressTab.
+	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter
 ]
 
 { #category : #tests }

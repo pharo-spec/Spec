@@ -3,7 +3,8 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'firstPresenter',
-		'secondPresenter'
+		'secondPresenter',
+		'thirdPresenter'
 	],
 	#category : #'Spec2-Backend-Tests'
 }
@@ -14,6 +15,7 @@ SpMockFocusOrderPresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add: #firstPresenter;
 		add: #secondPresenter;
+		add: #thirdPresenter;
 		yourself
 ]
 
@@ -21,5 +23,6 @@ SpMockFocusOrderPresenter class >> defaultSpec [
 SpMockFocusOrderPresenter >> initializePresenters [
 
 	firstPresenter := self newTextInput.
-	secondPresenter := self newTextInput
+	secondPresenter := self newTextInput.
+	thirdPresenter := self newTextInput
 ]
