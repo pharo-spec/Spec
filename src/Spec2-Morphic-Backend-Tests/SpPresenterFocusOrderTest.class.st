@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'mock'
 	],
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Morphic-Backend-Tests'
 }
 
 { #category : #private }
