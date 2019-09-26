@@ -655,6 +655,15 @@ SpPresenter >> layout [
 	^ layout
 ]
 
+{ #category : #private }
+SpPresenter >> layoutPresenters [
+
+	layout ifNil: [ ^ self presenters ].
+	
+	^ layout deepPresenters 
+		collect: [ :each | self presenterAt: each ]
+]
+
 { #category : #'window menu' }
 SpPresenter >> neglectMenuModel: aMenuModel [
 
@@ -889,8 +898,8 @@ SpPresenter >> presentersDo: aBlock [
 SpPresenter >> presentersInFocusOrder [
 
 	^ focusOrder ifNil: [ 
-		self presenters 
-			select: [ :each | each canTakeKeyboardFocus ] ]
+		self layoutPresenters
+			select: [ :each | each isVisible and: [ each canTakeKeyboardFocus ] ] ]
 ]
 
 { #category : #'api-shortcuts' }
@@ -986,9 +995,9 @@ SpPresenter >> traverseInFocusOrderDo: aBlock [
 { #category : #'private-traversing' }
 SpPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
-	(excludes includes: self) ifTrue: [ ^ self ]. 
+	"(excludes includes: self) ifTrue: [ ^ self ]. 
 	excludes add: self.
-	aBlock value: self.
+	aBlock value: self."
 
 	self presentersInFocusOrder do: [ :each |
 		each traverseInFocusOrderDo: aBlock excluding: excludes ]

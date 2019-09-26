@@ -31,12 +31,6 @@ SpActionBarPresenter >> addLast: aButtonPresenter [
 		add: aButtonPresenter
 ]
 
-{ #category : #testing }
-SpActionBarPresenter >> canTakeKeyboardFocus [
-
-	^ false
-]
-
 { #category : #initialization }
 SpActionBarPresenter >> initialize [
 
@@ -53,5 +47,18 @@ SpActionBarPresenter >> items [
 { #category : #'private-traversing' }
 SpActionBarPresenter >> presenters [
 
-	^ self items
+	^ self items values flattened
+]
+
+{ #category : #'private-traversing' }
+SpActionBarPresenter >> presentersInFocusOrder [
+
+	^ self presenters
+]
+
+{ #category : #'private-traversing' }
+SpActionBarPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
+
+	self presentersInFocusOrder do: [ :each |
+		each traverseInFocusOrderDo: aBlock excluding: excludes ]
 ]

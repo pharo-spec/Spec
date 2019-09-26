@@ -236,7 +236,7 @@ SpAbstractMorphicAdapter >> extent [
 	^ self widget extent
 ]
 
-{ #category : #initialization }
+{ #category : #'focus handling' }
 SpAbstractMorphicAdapter >> focusNext [
 	
 	self presenter withWindowDo: [ :window | | presenters |
@@ -247,7 +247,7 @@ SpAbstractMorphicAdapter >> focusNext [
 			takeKeyboardFocus ]
 ]
 
-{ #category : #initialization }
+{ #category : #'focus handling' }
 SpAbstractMorphicAdapter >> focusPrevious [
 	
 	self presenter withWindowDo: [ :window | | presenters |

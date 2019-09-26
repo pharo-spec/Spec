@@ -85,12 +85,6 @@ SpToolBarPresenter >> beText [
 	self displayMode: SpToolBarDisplayMode modeLabel
 ]
 
-{ #category : #testing }
-SpToolBarPresenter >> canTakeKeyboardFocus [
-
-	^ false
-]
-
 { #category : #accessing }
 SpToolBarPresenter >> displayMode [
 
@@ -170,6 +164,12 @@ SpToolBarPresenter >> presenters [
 	^ self items
 ]
 
+{ #category : #'private-traversing' }
+SpToolBarPresenter >> presentersInFocusOrder [
+
+	^ self items
+]
+
 { #category : #removing }
 SpToolBarPresenter >> removeAllItems [
 
@@ -180,6 +180,13 @@ SpToolBarPresenter >> removeAllItems [
 { #category : #accessing }
 SpToolBarPresenter >> rightItems [
 	^ rightItems
+]
+
+{ #category : #'private-traversing' }
+SpToolBarPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
+
+	self presentersInFocusOrder do: [ :each |
+		each traverseInFocusOrderDo: aBlock excluding: excludes ]
 ]
 
 { #category : #events }
