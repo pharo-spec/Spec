@@ -52,6 +52,7 @@ SpMorphicNotebookAdapter >> addPage: each to: aNotebook [
 SpMorphicNotebookAdapter >> buildContentForPage: aPage [
 
 	^ aPage retrievePresenter ifNotNil: [ :presenter |
+		presenter owner: self presenter.
 		aPage layoutSpec
 			ifNil: [ presenter buildWithSpec ]
 			ifNotNil: [ :spec | presenter buildWithSpec: spec ] ]
