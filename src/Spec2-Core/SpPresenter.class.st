@@ -660,8 +660,9 @@ SpPresenter >> layoutPresenters [
 
 	layout ifNil: [ ^ self presenters ].
 	
-	^ layout deepPresenters 
-		collect: [ :each | self presenterAt: each ]
+	^ layout deepPresenters
+		select: [ :each | each isSymbol ]
+		thenCollect: [ :each | self presenterAt: each ]
 ]
 
 { #category : #'window menu' }
