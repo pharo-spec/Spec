@@ -10,6 +10,12 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-Table'
 }
 
+{ #category : #initialization }
+SpMorphicTreeTableAdapter >> addFocusRotationKeyBindings [
+	
+	^ super addFocusRotationKeyBindings
+]
+
 { #category : #factory }
 SpMorphicTreeTableAdapter >> addModelTo: tableMorph [
 

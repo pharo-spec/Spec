@@ -283,6 +283,7 @@ SpAbstractWidgetPresenter >> transferFor: passenger from: source [
 SpAbstractWidgetPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
 	self canTakeKeyboardFocus ifFalse: [ ^ self ].
+	
 	excludes add: self.
 	aBlock value: self
 ]
