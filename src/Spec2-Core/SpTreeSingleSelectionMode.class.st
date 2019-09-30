@@ -1,6 +1,6 @@
 Class {
 	#name : #SpTreeSingleSelectionMode,
-	#superclass : #SpAbstractTreeSingleSelectionMode,
+	#superclass : #SpAbstractTreeSelectionMode,
 	#category : #'Spec2-Core-Widgets-Tree'
 }
 

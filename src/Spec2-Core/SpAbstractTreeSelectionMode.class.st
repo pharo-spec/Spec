@@ -1,5 +1,5 @@
 Class {
-	#name : #SpAbstractTreeSingleSelectionMode,
+	#name : #SpAbstractTreeSelectionMode,
 	#superclass : #Object,
 	#traits : 'TSpObservable',
 	#classTraits : 'TSpObservable classTrait',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #'accessing method dictionary' }
-SpAbstractTreeSingleSelectionMode class >> on: aPresenter [
+SpAbstractTreeSelectionMode class >> on: aPresenter [
 
 	^ self new
 		presenter: aPresenter;
@@ -19,13 +19,13 @@ SpAbstractTreeSingleSelectionMode class >> on: aPresenter [
 ]
 
 { #category : #selection }
-SpAbstractTreeSingleSelectionMode >> clearSelection [
+SpAbstractTreeSelectionMode >> clearSelection [
 
 	selection := #()
 ]
 
 { #category : #initialization }
-SpAbstractTreeSingleSelectionMode >> initialize [
+SpAbstractTreeSelectionMode >> initialize [
 	self class initializeSlots: self.
 	selection := #().
 	super initialize.
@@ -33,33 +33,33 @@ SpAbstractTreeSingleSelectionMode >> initialize [
 ]
 
 { #category : #testing }
-SpAbstractTreeSingleSelectionMode >> isEmpty [
+SpAbstractTreeSelectionMode >> isEmpty [
 	
 	^ selection isEmpty
 ]
 
 { #category : #accessing }
-SpAbstractTreeSingleSelectionMode >> isMultipleSelection [
+SpAbstractTreeSelectionMode >> isMultipleSelection [
 	^ false
 ]
 
 { #category : #accesing }
-SpAbstractTreeSingleSelectionMode >> presenter: aPresenter [
+SpAbstractTreeSelectionMode >> presenter: aPresenter [
 	presenter := aPresenter
 ]
 
 { #category : #selection }
-SpAbstractTreeSingleSelectionMode >> selectItem: anItem [ 
+SpAbstractTreeSelectionMode >> selectItem: anItem [ 
 	self subclassResponsibility
 ]
 
 { #category : #selection }
-SpAbstractTreeSingleSelectionMode >> selectItems: aListOfItems [
+SpAbstractTreeSelectionMode >> selectItems: aListOfItems [
 	self subclassResponsibility
 ]
 
 { #category : #selection }
-SpAbstractTreeSingleSelectionMode >> selectPath: aPath [
+SpAbstractTreeSelectionMode >> selectPath: aPath [
 	"Select a node in the tree by providing a list of indexes.
 	Example:
 		A
@@ -78,38 +78,38 @@ SpAbstractTreeSingleSelectionMode >> selectPath: aPath [
 ]
 
 { #category : #selection }
-SpAbstractTreeSingleSelectionMode >> selectPaths: pathArray [
+SpAbstractTreeSelectionMode >> selectPaths: pathArray [
 	self subclassResponsibility
 ]
 
 { #category : #accessing }
-SpAbstractTreeSingleSelectionMode >> selectedItem [
+SpAbstractTreeSelectionMode >> selectedItem [
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-SpAbstractTreeSingleSelectionMode >> selectedPaths [
+SpAbstractTreeSelectionMode >> selectedPaths [
 	^ self subclassResponsibility
 ]
 
 { #category : #selecting }
-SpAbstractTreeSingleSelectionMode >> unselectAll [
+SpAbstractTreeSelectionMode >> unselectAll [
 
 	self clearSelection
 ]
 
 { #category : #selecting }
-SpAbstractTreeSingleSelectionMode >> unselectItem: anItem [
+SpAbstractTreeSelectionMode >> unselectItem: anItem [
 	self subclassResponsibility
 ]
 
 { #category : #selecting }
-SpAbstractTreeSingleSelectionMode >> unselectPath: aPath [
+SpAbstractTreeSelectionMode >> unselectPath: aPath [
 	self subclassResponsibility
 ]
 
 { #category : #'api - events' }
-SpAbstractTreeSingleSelectionMode >> whenChangedDo: aBlockClosure [ 
+SpAbstractTreeSelectionMode >> whenChangedDo: aBlockClosure [ 
 	
 	self property: #selection whenChangedDo: aBlockClosure 
 ]
