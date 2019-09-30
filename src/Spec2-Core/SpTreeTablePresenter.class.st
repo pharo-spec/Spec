@@ -230,6 +230,18 @@ SpTreeTablePresenter >> roots: aCollection [
 ]
 
 { #category : #api }
+SpTreeTablePresenter >> selectItem: anItem [
+
+	self selection selectItem: anItem
+]
+
+{ #category : #api }
+SpTreeTablePresenter >> selectItems: aListOfItem [
+
+	self selection selectItems: aListOfItem
+]
+
+{ #category : #api }
 SpTreeTablePresenter >> selectPath: aPath [
 
 	self selection selectPath: aPath
@@ -262,6 +274,18 @@ SpTreeTablePresenter >> showColumnHeaders [
 SpTreeTablePresenter >> unselectAll [ 
 
 	self selection unselectAll
+]
+
+{ #category : #api }
+SpTreeTablePresenter >> unselectItem: anItem [
+
+	self selection unselectItem: anItem
+]
+
+{ #category : #api }
+SpTreeTablePresenter >> unselectPath: aPath [
+
+	self selection unselectPath: aPath
 ]
 
 { #category : #'api-events' }

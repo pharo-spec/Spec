@@ -49,7 +49,31 @@ SpAbstractTreeSingleSelectionMode >> presenter: aPresenter [
 ]
 
 { #category : #selection }
+SpAbstractTreeSingleSelectionMode >> selectItem: anItem [ 
+	self subclassResponsibility
+]
+
+{ #category : #selection }
+SpAbstractTreeSingleSelectionMode >> selectItems: aListOfItems [
+	self subclassResponsibility
+]
+
+{ #category : #selection }
 SpAbstractTreeSingleSelectionMode >> selectPath: aPath [
+	"Select a node in the tree by providing a list of indexes.
+	Example:
+		A
+			B
+			C
+			E
+		D
+			G
+			T
+	selectPath( #(1 2) ) will select the node C
+	selectPath( #(2 1) ) will select the node G
+	selectPath( #(2) ) will select the node D
+	"
+	
 	self subclassResponsibility
 ]
 
@@ -72,6 +96,16 @@ SpAbstractTreeSingleSelectionMode >> selectedPaths [
 SpAbstractTreeSingleSelectionMode >> unselectAll [
 
 	self clearSelection
+]
+
+{ #category : #selecting }
+SpAbstractTreeSingleSelectionMode >> unselectItem: anItem [
+	self subclassResponsibility
+]
+
+{ #category : #selecting }
+SpAbstractTreeSingleSelectionMode >> unselectPath: aPath [
+	self subclassResponsibility
 ]
 
 { #category : #'api - events' }
