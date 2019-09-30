@@ -51,11 +51,27 @@ SpAbstractMorphicAdapter >> add: anAdapter [
 ]
 
 { #category : #initialization }
+SpAbstractMorphicAdapter >> addFocusRotationKeyBindings [
+
+	self presenter canTakeKeyboardFocus ifFalse: [ ^ self ].
+
+	self 
+		bindKeyCombination: Character tab asKeyCombination 
+		toAction: [ self focusNext ]. 
+	self
+		bindKeyCombination: Character tab shift asKeyCombination 
+		toAction: [ self focusPrevious ]
+]
+
+{ #category : #initialization }
 SpAbstractMorphicAdapter >> addKeyBindingsTo: aMorph [
 
-	self presenter additionalKeyBindings ifNotNil: [ :bindings | 
-		bindings keysAndValuesDo: [ :shortcut :action | 
-			aMorph bindKeyCombination: shortcut toAction: action ] ]
+	self addFocusRotationKeyBindings.
+	self presenter contextKeyBindings ifNotNil: [ :aCategory | 
+		aCategory allEntries keymaps do: [ :each |
+			self 
+				bindKeyCombination: each shortcut 
+				toAction: each action ] ]
 ]
 
 { #category : #initialization }
@@ -96,7 +112,9 @@ SpAbstractMorphicAdapter >> applyVisibility [
 SpAbstractMorphicAdapter >> bindKeyCombination: aShortcut toAction: aBlock [
 
 	self widgetDo: [ :w | 
-		w bindKeyCombination: aShortcut toAction: aBlock ]
+		w 
+			bindKeyCombination: aShortcut 
+			toAction: aBlock ]
 ]
 
 { #category : #protocol }
@@ -218,7 +236,29 @@ SpAbstractMorphicAdapter >> extent [
 	^ self widget extent
 ]
 
-{ #category : #'api-focus' }
+{ #category : #'focus handling' }
+SpAbstractMorphicAdapter >> focusNext [
+	
+	self presenter withWindowDo: [ :window | | presenters |
+		presenters := window allPresentersInFocusOrder.
+		(presenters 
+			after: self presenter
+			ifAbsent: [ presenters first ])
+			takeKeyboardFocus ]
+]
+
+{ #category : #'focus handling' }
+SpAbstractMorphicAdapter >> focusPrevious [
+	
+	self presenter withWindowDo: [ :window | | presenters |
+		presenters := window allPresentersInFocusOrder.
+		(presenters 
+			before: self presenter
+			ifAbsent: [ presenters last ])
+			takeKeyboardFocus ]
+]
+
+{ #category : #'as yet unclassified' }
 SpAbstractMorphicAdapter >> gtInspectorPreviewIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	
@@ -366,6 +406,12 @@ SpAbstractMorphicAdapter >> styleSheet [
 	self flag: #TODO. "This needs to be in the application!"
 	^ SpStyle defaultStyleSheet
 	"^ self application styleSheet"
+]
+
+{ #category : #protocol }
+SpAbstractMorphicAdapter >> takeKeyboardFocus [
+	
+	self widget ifNotNil: [ :w | w takeKeyboardFocus ]
 ]
 
 { #category : #'drag and drop' }

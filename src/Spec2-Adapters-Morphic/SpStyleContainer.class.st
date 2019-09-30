@@ -1,3 +1,11 @@
+"
+I'm a style to control the properties of a container. 
+I keep properties like 
+
+- borderColor
+- borderWidth
+- padding
+"
 Class {
 	#name : #SpStyleContainer,
 	#superclass : #SpStyleProperty,

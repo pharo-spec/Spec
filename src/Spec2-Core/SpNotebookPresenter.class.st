@@ -133,6 +133,18 @@ SpNotebookPresenter >> selectedPageIndex: aNumber [
 	self selectedPage: (self pages at: aNumber)
 ]
 
+{ #category : #'private-traversing' }
+SpNotebookPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
+
+	excludes add: self.
+	aBlock value: self.
+	
+	self selectedPage ifNil: [ ^ self ].
+	self selectedPage activePresenter
+		traverseInFocusOrderDo: aBlock 
+		excluding: excludes
+]
+
 { #category : #private }
 SpNotebookPresenter >> updatePageContent: aPage [
 

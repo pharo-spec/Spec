@@ -15,7 +15,8 @@ Class {
 		'#icon => SpObservableSlot',
 		'#layoutSpec => SpObservableSlot',
 		'#presenterProvider',
-		'#retrievedBlock'
+		'#retrievedBlock',
+		'#activePresenter => WeakSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Tab'
 }
@@ -48,6 +49,13 @@ SpNotebookPage class >> title: aString provider: aBlock [
 		title: aString;
 		presenterProvider: aBlock;
 		yourself
+]
+
+{ #category : #accessing }
+SpNotebookPage >> activePresenter [
+	"This is the current active presenter fot this page"
+	
+	^ activePresenter
 ]
 
 { #category : #accessing }
@@ -122,12 +130,12 @@ SpNotebookPage >> resetContent [
 
 { #category : #accessing }
 SpNotebookPage >> retrievePresenter [
-	| contentPresenter |
-	
-	contentPresenter := self presenterProvider value.
+	"refresh all the time, because content may have change"
+
+	activePresenter := self presenterProvider value.
 	retrievedBlock ifNotNil: [ 
-		retrievedBlock cull: contentPresenter ].
-	^ contentPresenter
+		retrievedBlock cull: activePresenter ].
+	^ activePresenter
 ]
 
 { #category : #accessing }

@@ -169,12 +169,6 @@ SpAbstractAdapter >> selector: anObject [
 	selector := anObject
 ]
 
-{ #category : #protocol }
-SpAbstractAdapter >> takeKeyboardFocus [
-	
-	self widget ifNotNil: [:w | w takeKeyboardFocus ]
-]
-
 { #category : #updating }
 SpAbstractAdapter >> update: aSymbol [
 

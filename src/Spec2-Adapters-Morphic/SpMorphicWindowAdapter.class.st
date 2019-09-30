@@ -49,6 +49,12 @@ SpMorphicWindowAdapter >> addContent: aMorph toWindow: aSpecWindow [
 	self add: containerMorph toWindow: aSpecWindow
 ]
 
+{ #category : #initialization }
+SpMorphicWindowAdapter >> addFocusRotationKeyBindings [
+	"Windows should not process keybindings (because then the active widget will not get 
+	 the event"
+]
+
 { #category : #private }
 SpMorphicWindowAdapter >> addMenuTo: aMorph [
 	| menuMorph |

@@ -109,8 +109,6 @@ SpButtonPresenter >> initialize [
 			self registerShortcut: newShortcut.
 			self changed: #label ].
 
-	self bindKeyCombination: Character space toAction: [ self action ].
-
 	self color: nil
 ]
 
@@ -147,9 +145,9 @@ SpButtonPresenter >> performAction [
 { #category : #private }
 SpButtonPresenter >> registerShortcut: newShortcut [
 	| receiver |
+	
 	receiver := self window.
 	(receiver isNil or: [ newShortcut isNil ]) ifTrue: [ ^ self ].
-	
 	receiver presenter
 		bindKeyCombination: newShortcut
 		toAction: [ self performAction ]

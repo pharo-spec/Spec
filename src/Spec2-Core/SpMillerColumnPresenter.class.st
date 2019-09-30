@@ -117,6 +117,15 @@ SpMillerColumnPresenter >> spacing: aNumber [
 	layout spacing: aNumber
 ]
 
+{ #category : #'private-traversing' }
+SpMillerColumnPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
+
+	self pages do: [ :each | 
+		each 
+			traverseInFocusOrderDo: aBlock 
+			excluding: excludes ]
+]
+
 { #category : #accessing }
 SpMillerColumnPresenter >> visiblePages [ 
 

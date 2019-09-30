@@ -64,7 +64,9 @@ SpMorphicListAdapter >> buildWidget [
 	self updateItemFilterBlockWith: self itemFilter.
 
 	self configureScrolling.
-	widget bindKeyCombination: Character space toAction: [ self model clickOnSelectedItem ].
+	widget 
+		bindKeyCombination: Character space 
+		toAction: [ self model clickOnSelectedItem ].
 
 	^ widget
 ]

@@ -22,7 +22,11 @@ SpStyle class >> createDefaultStyleSheet [
 	Font { #name : "Source Sans Pro", #size : 10 },
 	Geometry { #height: 25 },
 	.label [
-		Geometry { #hResizing: true }		
+		Geometry { #hResizing: true },
+		.shortcut [ 
+			Draw { #color : Color{ #rgb: 622413393 } },
+			Font { #name : "Lucida Grande", #size: 10 }
+		]
 	],
 	.link [  
 		Geometry { #hResizing: true }		

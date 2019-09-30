@@ -9,8 +9,7 @@ Class {
 		'#doItContext => SpObservableSlot',
 		'#doItReceiver => SpObservableSlot',
 		'#behavior => SpObservableSlot',
-		'#syntaxHighlight => SpObservableSlot',
-		'#contextKeyBindings'
+		'#syntaxHighlight => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -86,19 +85,6 @@ SpCodePresenter >> codeCommandGroup [
 		group register: (eachClass forSpecContext: self) ].
 
 	^ group
-]
-
-{ #category : #'api-shortcuts' }
-SpCodePresenter >> contextKeyBindings [
-	"contextKeyBindings stores a KMCategory with keybindings for this presenter"
-
-	^ contextKeyBindings
-]
-
-{ #category : #'api-shortcuts' }
-SpCodePresenter >> contextKeyBindings: aKMCategory [
-
-	contextKeyBindings := aKMCategory
 ]
 
 { #category : #'api-doIt' }
