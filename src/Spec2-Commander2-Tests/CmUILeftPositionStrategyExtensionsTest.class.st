@@ -2,20 +2,20 @@
 A SpSetButtonLeftStrategyTest is a test class for testing the behavior of SpSetButtonLeftStrategy
 "
 Class {
-	#name : #SpLeftPositionStrategyTest,
+	#name : #CmUILeftPositionStrategyExtensionsTest,
 	#superclass : #TestCase,
 	#category : #'Spec2-Commander2-Tests'
 }
 
 { #category : #test }
-SpLeftPositionStrategyTest >> testAddButtonToActionBar [
+CmUILeftPositionStrategyExtensionsTest >> testAddButtonToActionBar [
 	| actionBar button |
 	actionBar := SpActionBarPresenter new.
 	button := SpButtonPresenter new.
 	
 	self assertEmpty: actionBar items.
 	
-	SpLeftPositionStrategy new
+	CmUILeftPositionStrategy new
 		addButton: button toActionBar: actionBar.
 		
 	self assert: actionBar items size equals: 1.
@@ -25,14 +25,14 @@ SpLeftPositionStrategyTest >> testAddButtonToActionBar [
 ]
 
 { #category : #test }
-SpLeftPositionStrategyTest >> testAddButtonToToolbar [
+CmUILeftPositionStrategyExtensionsTest >> testAddButtonToToolbar [
 	| toolbar button |
 	toolbar := SpToolBarPresenter new.
 	button := SpToolBarButton new.
 	
 	self assertEmpty: toolbar items.
 	
-	SpLeftPositionStrategy new
+	CmUILeftPositionStrategy new
 		addButton: button toToolbar: toolbar.
 		
 	self assert: toolbar leftItems size equals: 1.
