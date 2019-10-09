@@ -99,7 +99,7 @@ SpMorphicNotebookAdapter >> buildWidget [
 
 { #category : #private }
 SpMorphicNotebookAdapter >> pageChanged: ann [
-	self model selectedPage: ann page model
+	self model selectPage: ann page model
 ]
 
 { #category : #updating }

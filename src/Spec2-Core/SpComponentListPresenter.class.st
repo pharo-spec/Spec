@@ -1,5 +1,5 @@
 "
-I am a list of components ( Widgets :) )
+I am a list of components (Presenters)
 "
 Class {
 	#name : #SpComponentListPresenter,
