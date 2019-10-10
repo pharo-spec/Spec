@@ -147,7 +147,9 @@ SpMorphicMenuItemAdapter >> shortcutText [
 	shortcut isString ifTrue: [ 
 		shortcut := self defaultModifierShortcut ].
 
-	^ KMShortcutPrinter toString: shortcut	
+	^ shortcut 
+		ifNotNil: [ KMShortcutPrinter toString: shortcut ]
+		ifNil: [ '' ]
 ]
 
 { #category : #'widget API' }
