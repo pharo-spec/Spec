@@ -5,7 +5,7 @@ Class {
 	#name : #SpComponentListPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#presenters => SpObservableSlot',
+		'#presenters => ObservableSlot',
 		'#presentersChangedBlock'
 	],
 	#category : #'Spec2-Core-Widgets'

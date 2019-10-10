@@ -6,8 +6,8 @@ Class {
 	#superclass : #SpOkToolbar,
 	#instVars : [
 		'#cancelButton',
-		'#cancelAction => SpObservableSlot',
-		'#cancelled => SpObservableSlot'
+		'#cancelAction => ObservableSlot',
+		'#cancelled => ObservableSlot'
 	],
 	#category : #'Spec2-Deprecated-Obsolete'
 }

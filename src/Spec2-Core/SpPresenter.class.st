@@ -90,14 +90,14 @@ Class {
 		'#application',
 		'#focusOrder',
 		'#contextKeyBindings',
-		'#windowIcon => SpObservableSlot',
-		'#aboutText => SpObservableSlot',
-		'#askOkToClose => SpObservableSlot',
-		'#titleHolder => SpObservableSlot',
+		'#windowIcon => ObservableSlot',
+		'#aboutText => ObservableSlot',
+		'#askOkToClose => ObservableSlot',
+		'#titleHolder => ObservableSlot',
 		'#additionalSubpresentersMap',
 		'#layout',
-		'#visible => SpObservableSlot',
-		'#extent => SpObservableSlot'
+		'#visible => ObservableSlot',
+		'#extent => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Base'
 }

@@ -23,7 +23,7 @@ Class {
 	#traits : 'TSpHaveWrappingScrollBars',
 	#classTraits : 'TSpHaveWrappingScrollBars classTrait',
 	#instVars : [
-		'#scrollValue => SpObservableSlot'
+		'#scrollValue => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }

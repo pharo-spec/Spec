@@ -2,7 +2,7 @@ Class {
 	#name : #SpMorphPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#morph => SpObservableSlot'
+		'#morph => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Morphic'
 }

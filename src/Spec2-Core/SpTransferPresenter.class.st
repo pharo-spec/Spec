@@ -5,8 +5,8 @@ Class {
 	#name : #SpTransferPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#passenger => SpObservableSlot',
-		'#source => SpObservableSlot'
+		'#passenger => ObservableSlot',
+		'#source => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Support'
 }

@@ -5,16 +5,16 @@ Class {
 	#name : #SpWindowPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#presenter => SpObservableSlot',
-		'#initialPosition => SpObservableSlot',
-		'#initialExtent => SpObservableSlot',
-		'#isResizeable => SpObservableSlot',
-		'#menu => SpObservableSlot',
-		'#centered => SpObservableSlot',
-		'#isClosed => SpObservableSlot',
-		'#statusbar => SpObservableSlot',
-		'#toolBar => SpObservableSlot',
-		'#window => SpObservableSlot'
+		'#presenter => ObservableSlot',
+		'#initialPosition => ObservableSlot',
+		'#initialExtent => ObservableSlot',
+		'#isResizeable => ObservableSlot',
+		'#menu => ObservableSlot',
+		'#centered => ObservableSlot',
+		'#isClosed => ObservableSlot',
+		'#statusbar => ObservableSlot',
+		'#toolBar => ObservableSlot',
+		'#window => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Support'
 }

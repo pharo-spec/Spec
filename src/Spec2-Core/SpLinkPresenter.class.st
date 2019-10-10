@@ -33,8 +33,8 @@ Class {
 	#name : #SpLinkPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#label => SpObservableSlot',
-		'#action => SpObservableSlot'
+		'#label => ObservableSlot',
+		'#action => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }

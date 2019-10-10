@@ -23,12 +23,12 @@ Internal Representation and Key Implementation Points.
 Class {
 	#name : #SpProgressBarProgressing,
 	#superclass : #SpProgressBarState,
-	#traits : 'TSpObservable',
-	#classTraits : 'TSpObservable classTrait',
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'#refreshDelay',
 		'#progression',
-		'#currentValue => SpObservableSlot'
+		'#currentValue => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Utils'
 }

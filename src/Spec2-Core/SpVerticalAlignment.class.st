@@ -1,12 +1,12 @@
 Class {
 	#name : #SpVerticalAlignment,
 	#superclass : #SpAbstractPresenter,
-	#traits : 'TSpObservable',
-	#classTraits : 'TSpObservable classTrait',
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'#firstVisibleRowIndex',
 		'#lastVisibleRowIndex',
-		'#desiredVisibleRow => SpObservableSlot'
+		'#desiredVisibleRow => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }

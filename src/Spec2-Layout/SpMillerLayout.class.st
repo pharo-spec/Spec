@@ -5,13 +5,13 @@ Since I am intended to be used dinamically (adding/removing components on demand
 Class {
 	#name : #SpMillerLayout,
 	#superclass : #SpExecutableLayout,
-	#traits : 'TSpObservable',
-	#classTraits : 'TSpObservable classTrait',
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'#direction',
 		'#spacing',
 		'#borderWidth',
-		'#visiblePages => SpObservableSlot'
+		'#visiblePages => ObservableSlot'
 	],
 	#category : #'Spec2-Layout-Miller'
 }

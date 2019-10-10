@@ -30,7 +30,7 @@ Class {
 		'#groups',
 		'#title',
 		'#icon',
-		'#autoRefresh => SpObservableSlot',
+		'#autoRefresh => ObservableSlot',
 		'#shortcutGroup',
 		'#defaultGroup'
 	],

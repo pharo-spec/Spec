@@ -6,7 +6,7 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'#okButton',
-		'#okAction => SpObservableSlot'
+		'#okAction => ObservableSlot'
 	],
 	#category : #'Spec2-Deprecated-Obsolete'
 }

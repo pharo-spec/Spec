@@ -4,16 +4,16 @@ Class {
 	#traits : 'SpTContextMenu',
 	#classTraits : 'SpTContextMenu classTrait',
 	#instVars : [
-		'#hasUnacceptedEdits => SpObservableSlot',
-		'#selection => SpObservableSlot',
-		'#autoAccept => SpObservableSlot',
-		'#wantsVisualFeedback => SpObservableSlot',
-		'#askBeforeDiscardingEdits => SpObservableSlot',
-		'#text => SpObservableSlot',
-		'#actionToPerform => SpObservableSlot',
-		'#readSelection => SpObservableSlot',
-		'#actionPerformed => SpObservableSlot',
-		'#placeholder => SpObservableSlot'
+		'#hasUnacceptedEdits => ObservableSlot',
+		'#selection => ObservableSlot',
+		'#autoAccept => ObservableSlot',
+		'#wantsVisualFeedback => ObservableSlot',
+		'#askBeforeDiscardingEdits => ObservableSlot',
+		'#text => ObservableSlot',
+		'#actionToPerform => ObservableSlot',
+		'#readSelection => ObservableSlot',
+		'#actionPerformed => ObservableSlot',
+		'#placeholder => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }

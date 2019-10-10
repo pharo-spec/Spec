@@ -6,7 +6,7 @@ to be solved in the backend adaptor.
 Trait {
 	#name : #SpTContextMenu,
 	#instVars : [
-		'#contextMenu => SpObservableSlot'
+		'#contextMenu => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Base'
 }
@@ -22,6 +22,13 @@ SpTContextMenu >> contextMenu: aValuable [
 	"Set the block used to define a context menu for the presenter"
 
 	contextMenu := aValuable
+]
+
+{ #category : #initialization }
+SpTContextMenu >> initialize [
+	
+	self class initializeSlots: self.
+	super initialize.
 ]
 
 { #category : #'api-events' }

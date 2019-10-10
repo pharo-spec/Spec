@@ -7,7 +7,7 @@ Class {
 	#name : #SpMenuButtonPresenter,
 	#superclass : #SpAbstractButtonPresenter,
 	#instVars : [
-		'#menu => SpObservableSlot'
+		'#menu => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }

@@ -1,10 +1,10 @@
 Class {
 	#name : #SpAbstractTreeSingleSelectionMode,
 	#superclass : #Object,
-	#traits : 'TSpObservable',
-	#classTraits : 'TSpObservable classTrait',
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#instVars : [
-		'#selection => SpObservableSlot',
+		'#selection => ObservableSlot',
 		'#presenter'
 	],
 	#category : #'Spec2-Core-Widgets-Tree'

@@ -9,13 +9,13 @@ Class {
 	#name : #SpSelectEntity,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'#entity => SpObservableSlot',
+		'#entity => ObservableSlot',
 		'#selectEntity',
-		'#possibleEntities => SpObservableSlot',
+		'#possibleEntities => ObservableSlot',
 		'#displaySymbol',
 		'#entityText',
-		'#selectDialog => SpObservableSlot',
-		'#placeholder => SpObservableSlot'
+		'#selectDialog => ObservableSlot',
+		'#placeholder => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }

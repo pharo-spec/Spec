@@ -12,14 +12,14 @@ Class {
 	#name : #SpDiffPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#showOptions => SpObservableSlot',
-		'#showOnlyDestination => SpObservableSlot',
-		'#showOnlySource => SpObservableSlot',
-		'#contextClass => SpObservableSlot',
-		'#leftLabel => SpObservableSlot',
-		'#leftText => SpObservableSlot',
-		'#rightLabel => SpObservableSlot',
-		'#rightText => SpObservableSlot'
+		'#showOptions => ObservableSlot',
+		'#showOnlyDestination => ObservableSlot',
+		'#showOnlySource => ObservableSlot',
+		'#contextClass => ObservableSlot',
+		'#leftLabel => ObservableSlot',
+		'#leftText => ObservableSlot',
+		'#rightLabel => ObservableSlot',
+		'#rightText => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }

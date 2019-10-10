@@ -1,10 +1,10 @@
 Class {
 	#name : #SpTimeline,
 	#superclass : #Object,
-	#traits : 'TSpObservable',
-	#classTraits : 'TSpObservable classTrait',
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#instVars : [
-		'#ticks => SpObservableSlot',
+		'#ticks => ObservableSlot',
 		'#highestValue',
 		'#lowestValue',
 		'#stepBy'

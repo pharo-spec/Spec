@@ -14,9 +14,9 @@ Class {
 	#name : #SpToolBarPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#displayMode => SpObservableSlot',
-		'#leftItems => SpObservableSlot',
-		'#rightItems => SpObservableSlot'
+		'#displayMode => ObservableSlot',
+		'#leftItems => ObservableSlot',
+		'#rightItems => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Toolbar'
 }

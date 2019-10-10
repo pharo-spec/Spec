@@ -12,11 +12,11 @@ Class {
 	#traits : 'TSpHaveWrappingScrollBars + SpTContextMenu',
 	#classTraits : 'TSpHaveWrappingScrollBars classTrait + SpTContextMenu classTrait',
 	#instVars : [
-		'#columns => SpObservableSlot',
-		'#showColumnHeaders => SpObservableSlot',
-		'#isResizable => SpObservableSlot',
-		'#selection => SpObservableSlot',
-		'#roots => SpObservableSlot',
+		'#columns => ObservableSlot',
+		'#showColumnHeaders => ObservableSlot',
+		'#isResizable => ObservableSlot',
+		'#selection => ObservableSlot',
+		'#roots => ObservableSlot',
 		'#childrenBlock',
 		'#activationBlock',
 		'#activateOnSingleClick'

@@ -7,11 +7,11 @@ Class {
 	#name : #SpNumberInputFieldPresenter,
 	#superclass : #SpTextInputFieldPresenter,
 	#instVars : [
-		'#numberType => SpObservableSlot',
-		'#minimum => SpObservableSlot',
-		'#maximum => SpObservableSlot',
-		'#climbRate => SpObservableSlot',
-		'#digits => SpObservableSlot'
+		'#numberType => ObservableSlot',
+		'#minimum => ObservableSlot',
+		'#maximum => ObservableSlot',
+		'#climbRate => ObservableSlot',
+		'#digits => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }

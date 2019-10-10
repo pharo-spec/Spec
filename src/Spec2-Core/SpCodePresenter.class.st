@@ -6,10 +6,10 @@ Class {
 	#name : #SpCodePresenter,
 	#superclass : #SpTextPresenter,
 	#instVars : [
-		'#doItContext => SpObservableSlot',
-		'#doItReceiver => SpObservableSlot',
-		'#behavior => SpObservableSlot',
-		'#syntaxHighlight => SpObservableSlot'
+		'#doItContext => ObservableSlot',
+		'#doItReceiver => ObservableSlot',
+		'#behavior => ObservableSlot',
+		'#syntaxHighlight => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }

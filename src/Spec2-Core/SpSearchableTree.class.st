@@ -6,7 +6,7 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'#inputField',
-		'#roots => SpObservableSlot',
+		'#roots => ObservableSlot',
 		'#tree',
 		'#button'
 	],

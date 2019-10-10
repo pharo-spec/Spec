@@ -5,12 +5,12 @@ I define common behaviours for widget presenters and also for composable present
 Class {
 	#name : #SpAbstractPresenter,
 	#superclass : #Model,
-	#traits : 'TSpObservable',
-	#classTraits : 'TSpObservable classTrait',
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'#owner',
 		'#adapter',
-		'#needRebuild => SpObservableSlot'
+		'#needRebuild => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Base'
 }

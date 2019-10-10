@@ -28,10 +28,10 @@ Class {
 	#name : #SpTextInputFieldPresenter,
 	#superclass : #SpAbstractTextPresenter,
 	#instVars : [
-		'#acceptOnCR => SpObservableSlot',
-		'#entryCompletion => SpObservableSlot',
-		'#isPassword => SpObservableSlot',
-		'#maxLength => SpObservableSlot'
+		'#acceptOnCR => ObservableSlot',
+		'#entryCompletion => ObservableSlot',
+		'#isPassword => ObservableSlot',
+		'#maxLength => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }

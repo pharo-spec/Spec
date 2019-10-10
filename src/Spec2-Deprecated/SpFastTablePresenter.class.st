@@ -5,9 +5,9 @@ Class {
 	#name : #SpFastTablePresenter,
 	#superclass : #SpTablePresenter,
 	#instVars : [
-		'#handlesDoubleClick => SpObservableSlot',
+		'#handlesDoubleClick => ObservableSlot',
 		'#displayBlock',
-		'#icon => SpObservableSlot'
+		'#icon => ObservableSlot'
 	],
 	#category : #'Spec2-Deprecated-Replaced'
 }

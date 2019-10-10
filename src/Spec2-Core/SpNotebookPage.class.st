@@ -7,13 +7,13 @@ In particular, I contain a presenterProvider, a block who's responsibility is to
 Class {
 	#name : #SpNotebookPage,
 	#superclass : #Object,
-	#traits : 'TSpObservable',
-	#classTraits : 'TSpObservable classTrait',
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'#owner',
-		'#title => SpObservableSlot',
-		'#icon => SpObservableSlot',
-		'#layoutSpec => SpObservableSlot',
+		'#title => ObservableSlot',
+		'#icon => ObservableSlot',
+		'#layoutSpec => ObservableSlot',
 		'#presenterProvider',
 		'#retrievedBlock',
 		'#activePresenter => WeakSlot'

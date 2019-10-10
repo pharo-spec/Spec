@@ -22,14 +22,14 @@ Class {
 	#name : #SpSliderPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#max => SpObservableSlot',
-		'#min => SpObservableSlot',
-		'#quantum => SpObservableSlot',
-		'#value => SpObservableSlot',
-		'#absoluteValue => SpObservableSlot',
+		'#max => ObservableSlot',
+		'#min => ObservableSlot',
+		'#quantum => ObservableSlot',
+		'#value => ObservableSlot',
+		'#absoluteValue => ObservableSlot',
 		'#isHorizontal',
-		'#label => SpObservableSlot',
-		'#marks => SpObservableSlot'
+		'#label => ObservableSlot',
+		'#marks => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }

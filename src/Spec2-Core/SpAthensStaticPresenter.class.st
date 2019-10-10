@@ -4,8 +4,8 @@ Class {
 	#traits : 'SpTContextMenu',
 	#classTraits : 'SpTContextMenu classTrait',
 	#instVars : [
-		'#drawBlock => SpObservableSlot',
-		'#surfaceExtent => SpObservableSlot'
+		'#drawBlock => ObservableSlot',
+		'#surfaceExtent => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Athens'
 }

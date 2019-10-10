@@ -14,7 +14,7 @@ Class {
 		'#dropListModel',
 		'#model',
 		'#usersModel',
-		'#method => SpObservableSlot'
+		'#method => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
