@@ -19,7 +19,7 @@ Class {
 		'lock',
 		'value'
 	],
-	#category : #'Spec2-ObservableSlot'
+	#category : #'Spec2-Deprecated'
 }
 
 { #category : #'instance creation' }

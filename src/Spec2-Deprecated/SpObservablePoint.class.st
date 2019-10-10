@@ -13,7 +13,7 @@ Class {
 		'#x => ObservableSlot',
 		'#y'
 	],
-	#category : #'Spec2-ObservableSlot'
+	#category : #'Spec2-Deprecated'
 }
 
 { #category : #initialization }

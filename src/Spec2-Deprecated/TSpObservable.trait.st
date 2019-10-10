@@ -1,6 +1,6 @@
 Trait {
 	#name : #TSpObservable,
-	#category : #'Spec2-ObservableSlot'
+	#category : #'Spec2-Deprecated'
 }
 
 { #category : #events }

@@ -18,8 +18,7 @@ BaselineOfSpec2 >> baseline: spec [
 				package: 'Spec2-Help';
 				package: 'Spec2-Commands' with: [ spec requires: #('Commander2') ];
 				package: 'Spec2-Deprecated' with: [ spec requires: #('Spec2-Tests' 'Spec2-Adapters-Morphic' 'Spec2-Commander2') ];
-				package: 'Spec2-ObservableSlot';
-				package: 'Spec2-Layout' with: [ spec requires: #('Spec2-ObservableSlot') ];
+				package: 'Spec2-Layout';
 				package: 'Spec2-Transmission';
 				package: 'Spec2-Adapters-Morphic' with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Adapters-Stub' with: [ spec requires: #('Spec2-Core') ];

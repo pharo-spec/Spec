@@ -1,7 +1,7 @@
 Class {
 	#name : #SpObservableSlot,
 	#superclass : #IndexedSlot,
-	#category : #'Spec2-ObservableSlot'
+	#category : #'Spec2-Deprecated'
 }
 
 { #category : #'code generation' }
