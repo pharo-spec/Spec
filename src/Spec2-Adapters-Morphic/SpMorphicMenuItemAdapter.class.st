@@ -149,7 +149,7 @@ SpMorphicMenuItemAdapter >> shortcutText [
 
 	^ shortcut 
 		ifNotNil: [ KMShortcutPrinter toString: shortcut ]
-		ifNil: [ '' ]
+		ifNil: [ nil ]
 ]
 
 { #category : #'widget API' }

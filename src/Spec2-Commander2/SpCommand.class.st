@@ -30,5 +30,9 @@ SpCommand >> asButtonPresenter [
 
 { #category : #displaying }
 SpCommand >> displayIn: aMenuGroupOrPresenter do: aBlock [
-	self displayStrategy display: self in: aMenuGroupOrPresenter do: aBlock
+
+	self displayStrategy 
+		display: self 
+		in: aMenuGroupOrPresenter 
+		do: aBlock
 ]
