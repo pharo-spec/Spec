@@ -307,6 +307,7 @@ SpPresenter >> applyMenuModel: aMenuModel [
 { #category : #converting }
 SpPresenter >> asPresenter [
 	"This allows to use presenter instances inside layouts directly"
+
 	^ self
 ]
 
@@ -698,6 +699,11 @@ SpPresenter >> newCheckBox [
 { #category : #widgets }
 SpPresenter >> newCode [
 	^ self instantiate: SpCodePresenter
+]
+
+{ #category : #widgets }
+SpPresenter >> newComponentList [
+	^ self instantiate: SpComponentListPresenter
 ]
 
 { #category : #widgets }
