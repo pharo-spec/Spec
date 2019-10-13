@@ -36,3 +36,9 @@ SpMorphicComponentListAdapter >> rows [
 	tableContainer := self widget submorphs first.
 	^ tableContainer submorphs
 ]
+
+{ #category : #accessing }
+SpMorphicComponentListAdapter >> selectedIndexes [
+	
+	^ widget selectedIndexes
+]
