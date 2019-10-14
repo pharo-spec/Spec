@@ -18,7 +18,8 @@ Class {
 	#name : #SpMillerColumnPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'newPresenterBlock'
+		'newPresenterBlock',
+		'columnsWillChangeBlock'
 	],
 	#category : #'Spec2-Core-Miller'
 }
@@ -37,6 +38,8 @@ SpMillerColumnPresenter >> changeSelection: selection from: aPresenter [
 	| selectedPresenterIndex |
 
 	selectedPresenterIndex := self presenters indexOf: aPresenter.
+	columnsWillChangeBlock ifNotNil: [ 
+		columnsWillChangeBlock cull: selectedPresenterIndex ].
 	self resetTo: selectedPresenterIndex.
 	self pushModel: selection
 ]
@@ -136,4 +139,10 @@ SpMillerColumnPresenter >> visiblePages [
 SpMillerColumnPresenter >> visiblePages: aNumber [ 
 
 	layout visiblePages: aNumber
+]
+
+{ #category : #'api-events' }
+SpMillerColumnPresenter >> whenColumnsWillChangeDo: aBlock [
+
+	columnsWillChangeBlock := aBlock
 ]
