@@ -13,6 +13,8 @@ SpMorphicComponentListAdapter >> buildWidget [
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		setBalloonText: self help;
+		onAnnouncement: FTSelectionChanged send: #selectionChanged: to: self;
+		onAnnouncement: FTStrongSelectionChanged send: #strongSelectionChanged: to: self;
 		yourself.
 		
 	self presenter whenPresentersChangedDo: [ widget refresh ].
@@ -64,7 +66,40 @@ SpMorphicComponentListAdapter >> rows [
 ]
 
 { #category : #accessing }
+SpMorphicComponentListAdapter >> selectIndex: aNumber [ 
+	
+	(aNumber = 0 and: [ widget selectedIndexes isEmpty ]) ifTrue: [ ^ self ].	
+	(widget selectedIndexes includes: aNumber) ifTrue: [ ^ self ].
+	widget selectIndex: aNumber
+]
+
+{ #category : #accessing }
 SpMorphicComponentListAdapter >> selectedIndexes [
 
 	^ widget selectedIndexes
+]
+
+{ #category : #'event handling' }
+SpMorphicComponentListAdapter >> selectionChanged: ann [
+	| diff |
+	
+	self presenter selection isMultipleSelection ifTrue: [ 
+		self presenter selection selectIndexes: (ann newSelectedIndexes reject: [ :e | e = 0 ]) ].
+	self presenter selection isMultipleSelection ifFalse: [ 
+		self presenter selection selectIndex: (ann newSelectedIndexes
+			ifNotEmpty: [ :indexes | indexes first ]
+			ifEmpty: [ 0 ]) ].
+	diff := ann newSelectedIndexes difference: ann oldSelectedIndexes.
+	(diff notEmpty and: [ self presenter activatesOnSingleClick ])
+		ifTrue: [ self presenter doActivateAtIndex: diff last ].
+	
+	ann newSelectedIndexes ifNotEmpty: [ ^ self ].
+	self presenter selection unselectAll
+]
+
+{ #category : #factory }
+SpMorphicComponentListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
+	
+	self presenter activatesOnDoubleClick ifFalse: [ ^ self ]. 	
+	self presenter doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex
 ]
