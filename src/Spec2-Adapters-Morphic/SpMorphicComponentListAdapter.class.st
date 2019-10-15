@@ -9,6 +9,7 @@ SpMorphicComponentListAdapter >> buildWidget [
 
 	widget := FTTableMorph new
 		dataSource: self newDataSource;
+		setMultipleSelection: self presenter isMultipleSelection;
 		hideColumnHeaders;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
@@ -37,6 +38,13 @@ SpMorphicComponentListAdapter >> children [
 		cell submorphs first ]
 ]
 
+{ #category : #testing }
+SpMorphicComponentListAdapter >> isNonEditableRow: aRow column: aColumn [ 
+	"no rows are directly editable in a component list (they can be 
+	 if defined like that in the inner presenters, but it is handled different)"
+	^ true
+]
+
 { #category : #factory }
 SpMorphicComponentListAdapter >> newDataSource [
 	
@@ -55,6 +63,21 @@ SpMorphicComponentListAdapter >> refreshWidgetSelection [
 		ifTrue: [ self widget basicSelectIndexes: #() ]
 		ifFalse: [ self widget basicSelectIndexes: rowIndexes ].
 	^ self widget refresh
+]
+
+{ #category : #emulating }
+SpMorphicComponentListAdapter >> rightClicked [
+	| evt |
+
+	evt := MouseButtonEvent new 
+		setType: nil 
+		position: widget center 
+		which: MouseButtonEvent yellowButton 
+		buttons: MouseButtonEvent yellowButton 
+		hand: nil 
+		stamp: nil.
+	
+	self widget click: evt
 ]
 
 { #category : #accessing }
