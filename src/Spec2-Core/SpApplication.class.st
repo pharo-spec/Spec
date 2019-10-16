@@ -8,7 +8,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'backend',
-		'windows'
+		'windows',
+		'properties'
 	],
 	#classVars : [
 		'DefaultApplication'
@@ -34,7 +35,7 @@ SpApplication >> adapterBindings [
 	^ self backend adapterBindings
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing backend' }
 SpApplication >> backend [
 
 	^ backend ifNil: [ 
@@ -153,6 +154,68 @@ SpApplication >> openModal: aPresenter withSpecLayout: aSpecLayout [
 		using: SpModalWindowPresenter
 ]
 
+{ #category : #'accessing properties' }
+SpApplication >> properties [
+
+	^ properties
+]
+
+{ #category : #'accessing properties' }
+SpApplication >> propertyAt: aKey [
+
+	^ properties at: aKey
+]
+
+{ #category : #'accessing properties' }
+SpApplication >> propertyAt: aKey ifAbsent: aBlock [
+
+	properties 
+		at: aKey
+		ifAbsent: aBlock
+]
+
+{ #category : #'accessing properties' }
+SpApplication >> propertyAt: aKey ifAbsentPut: aBlock [
+
+	properties 
+		at: aKey
+		ifAbsentPut: aBlock
+]
+
+{ #category : #'accessing properties' }
+SpApplication >> propertyAt: aKey ifPresent: aBlock [
+
+	properties
+		at: aKey 
+		ifPresent: aBlock
+]
+
+{ #category : #'accessing properties' }
+SpApplication >> propertyAt: aKey ifPresent: aBlock ifAbsent: absentBlock [
+
+	properties
+		at: aKey 
+		ifPresent: aBlock
+		ifAbsent: absentBlock
+]
+
+{ #category : #'accessing properties' }
+SpApplication >> propertyAt: aKey ifPresent: aBlock ifAbsentPut: absentBlock [
+
+	properties
+		at: aKey 
+		ifPresent: aBlock
+		ifAbsentPut: absentBlock
+]
+
+{ #category : #'accessing properties' }
+SpApplication >> propertyAt: aKey put: aValue [
+
+	properties 
+		at: aKey
+		put: aValue
+]
+
 { #category : #running }
 SpApplication >> run [ 
 
@@ -176,13 +239,13 @@ SpApplication >> start [
 	"Override this to start your app"
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing backend' }
 SpApplication >> useBackend: aName [
 
 	backend := SpApplicationBackend findBackendNamed: aName
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing backend' }
 SpApplication >> useBackend: aName with: aConfiguration [
 
 	self useBackend: aName.
