@@ -8,8 +8,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'backend',
-		'windows',
-		'properties'
+		'windows'
 	],
 	#classVars : [
 		'DefaultApplication'
@@ -157,19 +156,19 @@ SpApplication >> openModal: aPresenter withSpecLayout: aSpecLayout [
 { #category : #'accessing properties' }
 SpApplication >> properties [
 
-	^ properties
+	^ properties ifNil: [ properties := SmallDictionary new ]
 ]
 
 { #category : #'accessing properties' }
 SpApplication >> propertyAt: aKey [
 
-	^ properties at: aKey
+	^ self properties at: aKey
 ]
 
 { #category : #'accessing properties' }
 SpApplication >> propertyAt: aKey ifAbsent: aBlock [
 
-	properties 
+	^ self properties 
 		at: aKey
 		ifAbsent: aBlock
 ]
@@ -177,7 +176,7 @@ SpApplication >> propertyAt: aKey ifAbsent: aBlock [
 { #category : #'accessing properties' }
 SpApplication >> propertyAt: aKey ifAbsentPut: aBlock [
 
-	properties 
+	^ self properties 
 		at: aKey
 		ifAbsentPut: aBlock
 ]
@@ -185,7 +184,7 @@ SpApplication >> propertyAt: aKey ifAbsentPut: aBlock [
 { #category : #'accessing properties' }
 SpApplication >> propertyAt: aKey ifPresent: aBlock [
 
-	properties
+	^ self properties
 		at: aKey 
 		ifPresent: aBlock
 ]
@@ -193,7 +192,7 @@ SpApplication >> propertyAt: aKey ifPresent: aBlock [
 { #category : #'accessing properties' }
 SpApplication >> propertyAt: aKey ifPresent: aBlock ifAbsent: absentBlock [
 
-	properties
+	^ self properties
 		at: aKey 
 		ifPresent: aBlock
 		ifAbsent: absentBlock
@@ -202,7 +201,7 @@ SpApplication >> propertyAt: aKey ifPresent: aBlock ifAbsent: absentBlock [
 { #category : #'accessing properties' }
 SpApplication >> propertyAt: aKey ifPresent: aBlock ifAbsentPut: absentBlock [
 
-	properties
+	^ self properties
 		at: aKey 
 		ifPresent: aBlock
 		ifAbsentPut: absentBlock
@@ -211,7 +210,7 @@ SpApplication >> propertyAt: aKey ifPresent: aBlock ifAbsentPut: absentBlock [
 { #category : #'accessing properties' }
 SpApplication >> propertyAt: aKey put: aValue [
 
-	properties 
+	^ self properties 
 		at: aKey
 		put: aValue
 ]

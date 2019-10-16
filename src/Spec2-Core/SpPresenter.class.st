@@ -177,7 +177,7 @@ SpPresenter class >> on: aDomainObject [
 		in: #Pharo8."
 		
 	^ self 
-		newApplication: SpNullApplication new 
+		newApplication: SpApplication defaultApplication
 		model: aDomainObject 
 ]
 
@@ -805,6 +805,12 @@ SpPresenter >> newProgressBar [
 { #category : #widgets }
 SpPresenter >> newRadioButton [
 	^ self instantiate: SpRadioButtonPresenter
+]
+
+{ #category : #widgets }
+SpPresenter >> newRichText [
+
+	^ self instantiate: SpRichTextPresenter
 ]
 
 { #category : #widgets }
