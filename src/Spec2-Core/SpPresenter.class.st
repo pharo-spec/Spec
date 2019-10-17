@@ -943,15 +943,6 @@ SpPresenter >> retrieveSpec: aSelector [
 	^ super retrieveSpec: aSelector
 ]
 
-{ #category : #TOMOVE }
-SpPresenter >> setExtentAndBindingTo: widget [
-
-	self flag: #TODO. "This is bad. Extent needs to be 'ensured' at adapter level. 
-	Same for keybindings"
-	self ensureExtentFor: widget.
-	self ensureKeyBindingsFor: widget
-]
-
 { #category : #'accessing model' }
 SpPresenter >> setModel: aDomainObject [
 
