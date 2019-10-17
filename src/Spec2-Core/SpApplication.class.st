@@ -8,7 +8,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'backend',
-		'windows'
+		'windows',
+		'properties'
 	],
 	#classVars : [
 		'DefaultApplication'
