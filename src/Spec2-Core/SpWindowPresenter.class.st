@@ -173,8 +173,10 @@ SpWindowPresenter >> defaultInitialExtent [
 
 { #category : #private }
 SpWindowPresenter >> delete [
+	"DO NOT USE."
 
-	self window delete
+	self window delete.
+	self application windowClosed: self
 ]
 
 { #category : #focus }
