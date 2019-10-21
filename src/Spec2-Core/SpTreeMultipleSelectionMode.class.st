@@ -31,29 +31,6 @@ SpTreeMultipleSelectionMode >> isMultipleSelection [
 ]
 
 { #category : #selection }
-SpTreeMultipleSelectionMode >> pathOf: anItem [
-	^ SpTreeBreadthFirstSearch new
-		tree: presenter;
-		search: anItem
-]
-
-{ #category : #selection }
-SpTreeMultipleSelectionMode >> selectItem: anItem [
-	[ self selectPath: (self pathOf: anItem) ]
-		on: NotFound
-		do: [ "ignore. we do not change the selection" ]
-]
-
-{ #category : #selection }
-SpTreeMultipleSelectionMode >> selectItems: aListOfItems [
-	aListOfItems do: 
-		[ :each |
-			[ self selectPath: (self pathOf: each) ]
-			on: NotFound
-			do: [ "ignore. we do not change the selection" ] ]
-]
-
-{ #category : #selection }
 SpTreeMultipleSelectionMode >> selectPath: aPath [ 
 	"Check comment in my superclass to know how to use selectPath:"
 	
@@ -74,7 +51,9 @@ SpTreeMultipleSelectionMode >> selectPaths: pathArray [
 
 { #category : #accessing }
 SpTreeMultipleSelectionMode >> selectedItem [
-	self shouldNotImplement.
+	^ self selectedPaths 
+		ifEmpty: [ #() ]
+		ifNotEmpty: [ :paths | presenter itemAtPath: paths first  ]
 ]
 
 { #category : #accessing }
@@ -86,13 +65,6 @@ SpTreeMultipleSelectionMode >> selectedItems [
 { #category : #accessing }
 SpTreeMultipleSelectionMode >> selectedPaths [
 	^ selection
-]
-
-{ #category : #selection }
-SpTreeMultipleSelectionMode >> unselectItem: anItem [
-	[ self unselectPath: (self pathOf: anItem) ]
-	on: NotFound 
-	do: [ "ignore. nothing to unselect" ]
 ]
 
 { #category : #selection }

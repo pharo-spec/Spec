@@ -43,19 +43,37 @@ SpAbstractTreeSelectionMode >> isMultipleSelection [
 	^ false
 ]
 
+{ #category : #selection }
+SpAbstractTreeSelectionMode >> itemNotFoundAction [
+	"ignore. we do not change the selection"
+]
+
+{ #category : #selection }
+SpAbstractTreeSelectionMode >> pathOf: anItem [
+	^ SpTreeBreadthFirstSearch new
+		tree: presenter;
+		search: anItem
+]
+
 { #category : #accesing }
 SpAbstractTreeSelectionMode >> presenter: aPresenter [
 	presenter := aPresenter
 ]
 
 { #category : #selection }
-SpAbstractTreeSelectionMode >> selectItem: anItem [ 
-	self subclassResponsibility
+SpAbstractTreeSelectionMode >> selectItem: anItem [
+	[ self selectPath: (self pathOf: anItem) ]
+		on: NotFound
+		do: [ self itemNotFoundAction ]
 ]
 
 { #category : #selection }
 SpAbstractTreeSelectionMode >> selectItems: aListOfItems [
-	self subclassResponsibility
+	aListOfItems do: 
+		[ :each |
+			[ self selectPath: (self pathOf: each) ]
+			on: NotFound
+			do: [ "ignore. we do not change the selection" ] ]
 ]
 
 { #category : #selection }
@@ -98,9 +116,11 @@ SpAbstractTreeSelectionMode >> unselectAll [
 	self clearSelection
 ]
 
-{ #category : #selecting }
+{ #category : #selection }
 SpAbstractTreeSelectionMode >> unselectItem: anItem [
-	self subclassResponsibility
+	[ self unselectPath: (self pathOf: anItem) ]
+	on: NotFound 
+	do: [ "ignore. nothing to unselect" ]
 ]
 
 { #category : #selecting }

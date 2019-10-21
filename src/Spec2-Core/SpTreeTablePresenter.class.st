@@ -80,6 +80,14 @@ SpTreeTablePresenter >> beResizable [
 	self isResizable: true
 ]
 
+{ #category : #'selection mode' }
+SpTreeTablePresenter >> beSingleSelection [
+	| newSelectionMode |
+
+	newSelectionMode := (SpTreeSingleSelectionMode on: self).
+	selection := newSelectionMode.
+]
+
 { #category : #private }
 SpTreeTablePresenter >> children [
 
@@ -256,6 +264,12 @@ SpTreeTablePresenter >> selectPaths: pathArray [
 SpTreeTablePresenter >> selectedItem [
 	
 	^ self selection selectedItem
+]
+
+{ #category : #api }
+SpTreeTablePresenter >> selectedItems [
+	
+	^ self selection selectedItems
 ]
 
 { #category : #accessing }

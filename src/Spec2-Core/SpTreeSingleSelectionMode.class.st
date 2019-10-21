@@ -4,12 +4,25 @@ Class {
 	#category : #'Spec2-Core-Widgets-Tree'
 }
 
+{ #category : #selection }
+SpTreeSingleSelectionMode >> clearSelection [
+
+	selection := #()
+]
+
+{ #category : #selection }
+SpTreeSingleSelectionMode >> itemNotFoundAction [
+	self clearSelection
+]
+
 { #category : #accessing }
 SpTreeSingleSelectionMode >> selectPath: aPath [
 	"Check comment in my superclass to know how to use selectPath:"
 
 	"If the path is out of range, keep the selection."
-	presenter itemAtPath: aPath ifAbsent: [ ^ self ].
+	presenter 
+		itemAtPath: aPath 
+		ifAbsent: [ self clearSelection. ^ self ].
 	selection := aPath.
 
 ]
