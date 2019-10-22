@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'model'
 	],
-	#category : #'Spec2-Adapters-Morphic-ComponentList'
+	#category : #'Spec2-Adapters-Morphic-List'
 }
 
 { #category : #accessing }
