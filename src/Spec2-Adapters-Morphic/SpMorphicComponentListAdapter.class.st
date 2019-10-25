@@ -8,6 +8,7 @@ Class {
 SpMorphicComponentListAdapter >> buildWidget [
 
 	widget := FTTableMorph new
+		beRowNotHomogeneous;
 		dataSource: self newDataSource;
 		setMultipleSelection: self presenter isMultipleSelection;
 		hideColumnHeaders;
@@ -18,24 +19,11 @@ SpMorphicComponentListAdapter >> buildWidget [
 		onAnnouncement: FTStrongSelectionChanged send: #strongSelectionChanged: to: self;
 		yourself.
 		
-	self presenter whenPresentersChangedDo: [ widget refresh ].
+	self presenter whenPresentersChangedDo: [ self refreshList ].
 	self refreshWidgetSelection.
 	self presenter whenSelectionChangedDo: [ self refreshWidgetSelection ].
 	
-	
-	"widget connectSelectedRowsChanged: [ 
-		self backendUpdatingDo: [  
-			self presenter selection selectIndexes: self innerWidget selectedIndexes ] ]."
-	
 	^ widget
-]
-
-{ #category : #accessing }
-SpMorphicComponentListAdapter >> children [
-
-	^ self rows collect: [ :row | | cell | 
-		cell := row submorphs first.
-		cell submorphs first ]
 ]
 
 { #category : #testing }
@@ -53,6 +41,12 @@ SpMorphicComponentListAdapter >> newDataSource [
 		yourself
 ]
 
+{ #category : #updating }
+SpMorphicComponentListAdapter >> refreshList [
+
+	^ self widget refresh
+]
+
 { #category : #factory }
 SpMorphicComponentListAdapter >> refreshWidgetSelection [
 	| rowIndexes |
@@ -62,7 +56,7 @@ SpMorphicComponentListAdapter >> refreshWidgetSelection [
 	rowIndexes isEmpty
 		ifTrue: [ self widget basicSelectIndexes: #() ]
 		ifFalse: [ self widget basicSelectIndexes: rowIndexes ].
-	^ self widget refresh
+	self refreshList
 ]
 
 { #category : #emulating }
@@ -78,14 +72,6 @@ SpMorphicComponentListAdapter >> rightClicked [
 		stamp: nil.
 	
 	self widget click: evt
-]
-
-{ #category : #accessing }
-SpMorphicComponentListAdapter >> rows [
-
-	| tableContainer |
-	tableContainer := self widget submorphs first.
-	^ tableContainer submorphs
 ]
 
 { #category : #accessing }
