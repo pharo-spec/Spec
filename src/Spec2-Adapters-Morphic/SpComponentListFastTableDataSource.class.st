@@ -130,4 +130,6 @@ SpComponentListFastTableDataSource >> widgetFor: aPresenter [
 
 	aPresenter adapter ifNotNil: [ :adapter | ^ adapter widget ].
 	^ aPresenter buildWithSpec
+		vResizing: #shrinkWrap;
+		yourself
 ]
