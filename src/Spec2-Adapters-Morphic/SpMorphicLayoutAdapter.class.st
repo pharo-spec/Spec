@@ -102,12 +102,12 @@ SpMorphicLayoutAdapter >> newPanel [
 		changeTableLayout;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
-		extent: 0@0;
 		color: Color transparent;
 		borderColor: Color transparent;
 		clipSubmorphs: true;
 		beSticky "stop being grabbed";
 		borderWidth: 0;
+		extent: 0@0;
 		yourself
 ]
 

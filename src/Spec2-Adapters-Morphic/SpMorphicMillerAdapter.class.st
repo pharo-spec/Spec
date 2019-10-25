@@ -95,6 +95,14 @@ SpMorphicMillerAdapter >> newHorizontal [
 ]
 
 { #category : #factory }
+SpMorphicMillerAdapter >> newPanel [
+
+	^ super newPanel
+		extent: 1@1;
+		yourself
+]
+
+{ #category : #factory }
 SpMorphicMillerAdapter >> newScrollPaneFor: aWidget [
 	
 	^ MillerScrollPane new 
