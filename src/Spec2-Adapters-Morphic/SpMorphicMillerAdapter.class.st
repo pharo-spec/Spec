@@ -95,19 +95,6 @@ SpMorphicMillerAdapter >> newHorizontal [
 ]
 
 { #category : #factory }
-SpMorphicMillerAdapter >> newPanel [
-
-	^ PanelMorph new 
-		changeTableLayout;
-		hResizing: #spaceFill;
-		vResizing: #spaceFill;
-		extent: 1@1;
-		color: Color transparent;
-		borderColor: Color transparent;
-		yourself
-]
-
-{ #category : #factory }
 SpMorphicMillerAdapter >> newScrollPaneFor: aWidget [
 	
 	^ MillerScrollPane new 
