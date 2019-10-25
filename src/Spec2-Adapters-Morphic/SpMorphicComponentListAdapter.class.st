@@ -26,6 +26,14 @@ SpMorphicComponentListAdapter >> buildWidget [
 	^ widget
 ]
 
+{ #category : #accessing }
+SpMorphicComponentListAdapter >> children [
+
+	^ self rows collect: [ :row | | cell | 
+		cell := row submorphs first.
+		cell submorphs first ]
+]
+
 { #category : #testing }
 SpMorphicComponentListAdapter >> isNonEditableRow: aRow column: aColumn [ 
 	"no rows are directly editable in a component list (they can be 
@@ -72,6 +80,14 @@ SpMorphicComponentListAdapter >> rightClicked [
 		stamp: nil.
 	
 	self widget click: evt
+]
+
+{ #category : #accessing }
+SpMorphicComponentListAdapter >> rows [
+	| tableContainer |
+
+	tableContainer := self widget submorphs first.
+	^ tableContainer submorphs
 ]
 
 { #category : #accessing }
