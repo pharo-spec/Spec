@@ -19,13 +19,16 @@ SpStyle class >> createDefaultStyleSheet [
 
 	^ SpStyleSTONReader fromString: '
 .application [
-	Font { #name : "Source Sans Pro", #size : 10 },
+	Font { #name: "Source Sans Pro", #size: 10 },
 	Geometry { #height: 25 },
 	.label [
 		Geometry { #hResizing: true },
 		.shortcut [ 
-			Draw { #color : Color{ #rgb: 622413393 } },
-			Font { #name : "Lucida Grande", #size: 10 }
+			Draw { #color: Color{ #rgb: 622413393 } },
+			Font { #name: "Lucida Grande", #size: 10 }
+		],
+		.dim [
+			Draw { #color : Color{ #rgb: 708480675 } }
 		]
 	],
 	.link [  
