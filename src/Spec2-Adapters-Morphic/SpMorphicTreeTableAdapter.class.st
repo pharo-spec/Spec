@@ -1,14 +1,20 @@
 "
-I am the adapter used to realise a TreeTablePresenter.
+I am the adapter used to realise a SpTreeTablePresenter.
 I will create a tree table (using FTTableMorph), using the columns TableColumn* as definitions.
 
-Is important notice here that most of the row/cell creation happens on MorphicTreeTableDataSource. Check there for some implementation details.
+Is important notice here that most of the row/cell creation happens on SpMorphicTreeTableDataSource. Check there for some implementation details.
 "
 Class {
 	#name : #SpMorphicTreeTableAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
 	#category : #'Spec2-Adapters-Morphic-Table'
 }
+
+{ #category : #accessing }
+SpMorphicTreeTableAdapter class >> intercellSpacing [
+
+	^ 3@0
+]
 
 { #category : #initialization }
 SpMorphicTreeTableAdapter >> addFocusRotationKeyBindings [
@@ -87,6 +93,7 @@ SpMorphicTreeTableAdapter >> buildWidget [
 	tableMorph := FTTableMorph new
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
+		intercellSpacing: self class intercellSpacing;
 		yourself.
 
 	self addModelTo: tableMorph.

@@ -44,7 +44,7 @@ SpMorphicListAdapter >> buildWidget [
 		dataSource: datasource;
 		hideColumnHeaders;
 		beResizable;
-		columns: {self newListColumn};
+		columns: { self newListColumn };
 		setMultipleSelection: self model isMultipleSelection;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;

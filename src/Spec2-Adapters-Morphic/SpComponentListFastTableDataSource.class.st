@@ -37,7 +37,7 @@ SpComponentListFastTableDataSource >> headerColumn: column [
 
 	column id ifNil: [ ^ nil ]. 
 	^ FTCellMorph new 
-		listCentering: #center;
+		listCentering: #left;
 		addMorph: column id asMorph asReadOnlyMorph;
 		yourself
 ]

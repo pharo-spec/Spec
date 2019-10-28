@@ -10,9 +10,8 @@ Trait {
 TSpMorphicTableDataSourceCommons >> headerColumn: column [
 
 	column id ifNil: [ ^ nil ].
-	^ FTCellMorph new 
-		listCentering: #left;
-		addMorph: column id asMorph;
+	^ SpHeaderCellMorph new 
+		addMorph: column id asMorph asReadOnlyMorph;
 		yourself
 ]
 
