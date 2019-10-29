@@ -13,7 +13,7 @@ Class {
 { #category : #accessing }
 SpMorphicTreeTableAdapter class >> intercellSpacing [
 
-	^ 3@0
+	^ 2@0
 ]
 
 { #category : #initialization }

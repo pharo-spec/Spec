@@ -106,3 +106,10 @@ SpMorphicTreeTableDataSource >> rootItem: anItem [
 	super rootItem: anItem.
 	self addSourceToRootItem
 ]
+
+{ #category : #sorting }
+SpMorphicTreeTableDataSource >> sortElements: aSortFunction [
+
+	unsortedElements ifNil: [ unsortedElements := self rootsItems ].
+	self rootItem data: ((self rootItem children collect: #data) sorted: aSortFunction)
+]

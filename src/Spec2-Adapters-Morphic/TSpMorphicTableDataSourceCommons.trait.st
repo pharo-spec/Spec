@@ -8,11 +8,21 @@ Trait {
 
 { #category : #accessing }
 TSpMorphicTableDataSourceCommons >> headerColumn: column [
+	| headerMorph |
 
 	column id ifNil: [ ^ nil ].
-	^ SpHeaderCellMorph new 
+	headerMorph := SpHeaderCellMorph new 
 		addMorph: column id asMorph asReadOnlyMorph;
-		yourself
+		yourself.
+		
+	column isSortable ifTrue: [ 
+		headerMorph eventHandler: (MorphicEventHandler new 
+			on: #click 
+			send: #sortByColumn:event:morph:
+			to: self
+			withValue: column) ].
+
+	^ headerMorph
 ]
 
 { #category : #accessing }
@@ -36,4 +46,10 @@ TSpMorphicTableDataSourceCommons >> model [
 TSpMorphicTableDataSourceCommons >> model: aTablePresenter [
 
 	model := aTablePresenter
+]
+
+{ #category : #sorting }
+TSpMorphicTableDataSourceCommons >> sortByColumn: aColumn event: anEvent morph: aMorph [
+
+	aColumn sortDataSource: self
 ]

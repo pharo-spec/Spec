@@ -13,7 +13,7 @@ Class {
 { #category : #accessing }
 SpHeaderCellMorph class >> indent [
 
-	^ 3
+	^ 2
 ]
 
 { #category : #initialization }
@@ -22,4 +22,10 @@ SpHeaderCellMorph >> initialize [
 	super initialize.
 	self listCentering: #left.
 	self indentBy: self class indent
+]
+
+{ #category : #'as yet unclassified' }
+SpHeaderCellMorph >> prepareAsSortableColumn: aColumn [
+
+	
 ]
