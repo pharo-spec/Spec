@@ -9,7 +9,8 @@ Class {
 	#instVars : [
 		'backend',
 		'windows',
-		'properties'
+		'properties',
+		'configuration'
 	],
 	#classVars : [
 		'DefaultApplication'
@@ -47,6 +48,12 @@ SpApplication >> backend [
 SpApplication >> close [
 	
 	self windows copy do: #close
+]
+
+{ #category : #'accessing backend' }
+SpApplication >> configuration [
+
+	^ configuration
 ]
 
 { #category : #'as yet unclassified' }
@@ -249,6 +256,7 @@ SpApplication >> useBackend: aName [
 SpApplication >> useBackend: aName with: aConfiguration [
 
 	self useBackend: aName.
+	configuration := aConfiguration.
 	aConfiguration configure: self
 ]
 
