@@ -1,5 +1,5 @@
 Trait {
-	#name : #TSpMorphicTableDataSourceCommons,
+	#name : #SpTMorphicTableDataSourceCommons,
 	#instVars : [
 		'model'
 	],
@@ -7,7 +7,7 @@ Trait {
 }
 
 { #category : #accessing }
-TSpMorphicTableDataSourceCommons >> headerColumn: column [
+SpTMorphicTableDataSourceCommons >> headerColumn: column [
 	| headerMorph |
 
 	column id ifNil: [ ^ nil ].
@@ -26,7 +26,7 @@ TSpMorphicTableDataSourceCommons >> headerColumn: column [
 ]
 
 { #category : #accessing }
-TSpMorphicTableDataSourceCommons >> menuColumn: column row: rowIndex [
+SpTMorphicTableDataSourceCommons >> menuColumn: column row: rowIndex [
 	| menuPresenter |
 
 	menuPresenter := self model contextMenu.
@@ -37,19 +37,19 @@ TSpMorphicTableDataSourceCommons >> menuColumn: column row: rowIndex [
 ]
 
 { #category : #accessing }
-TSpMorphicTableDataSourceCommons >> model [
+SpTMorphicTableDataSourceCommons >> model [
 
 	^ model
 ]
 
 { #category : #accessing }
-TSpMorphicTableDataSourceCommons >> model: aTablePresenter [
+SpTMorphicTableDataSourceCommons >> model: aTablePresenter [
 
 	model := aTablePresenter
 ]
 
 { #category : #sorting }
-TSpMorphicTableDataSourceCommons >> sortByColumn: aColumn event: anEvent morph: aMorph [
+SpTMorphicTableDataSourceCommons >> sortByColumn: aColumn event: anEvent morph: aMorph [
 
 	aColumn sortDataSource: self
 ]

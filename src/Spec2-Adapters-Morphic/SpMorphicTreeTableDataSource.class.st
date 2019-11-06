@@ -6,8 +6,8 @@ I use a builder (MorphicTreeTableCellBuilder) to realise the cell content.
 Class {
 	#name : #SpMorphicTreeTableDataSource,
 	#superclass : #FTTreeDataSource,
-	#traits : 'TSpMorphicTableDataSourceCommons',
-	#classTraits : 'TSpMorphicTableDataSourceCommons classTrait',
+	#traits : 'SpTMorphicTableDataSourceCommons',
+	#classTraits : 'SpTMorphicTableDataSourceCommons classTrait',
 	#category : #'Spec2-Adapters-Morphic-Table'
 }
 
