@@ -42,6 +42,12 @@ SpMorphicTreeTableDataSource >> cellIndentFor: item [
 	^ item depth * 16
 ]
 
+{ #category : #paths }
+SpMorphicTreeTableDataSource >> indexFromPath: anArray [ 
+
+	^ anArray sum
+]
+
 { #category : #accessing }
 SpMorphicTreeTableDataSource >> indexOfItem: anItem [ 
 	

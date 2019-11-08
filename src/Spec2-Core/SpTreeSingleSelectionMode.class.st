@@ -7,6 +7,7 @@ Class {
 { #category : #accessing }
 SpTreeSingleSelectionMode >> selectPath: aPath [
 	"If the path is out of range, keep the selection."
+
 	presenter itemAtPath: aPath ifAbsent: [ ^ self ].
 	selection := aPath.
 
@@ -36,4 +37,11 @@ SpTreeSingleSelectionMode >> selectedPaths [
 	
 	selection ifEmpty: [ ^ #() ].
 	^ { selection }
+]
+
+{ #category : #accessing }
+SpTreeSingleSelectionMode >> unselectPath: aPath [
+	"If the path is out of range, keep the selection."
+	selection = aPath ifFalse: [ ^ self ].
+	self clearSelection
 ]

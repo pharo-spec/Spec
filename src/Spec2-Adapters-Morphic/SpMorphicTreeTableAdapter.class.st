@@ -76,6 +76,7 @@ SpMorphicTreeTableAdapter >> addModelTo: tableMorph [
 { #category : #factory }
 SpMorphicTreeTableAdapter >> basicSelectionChanged: ann [
 	| selection |
+	
 	selection := self presenter selection.
 	ann newSelectedIndexes ifEmpty: [ ^ selection unselectAll ].
 	(ann newSelectedIndexes difference: ann oldSelectedIndexes) ifEmpty: [ ^ self ].
@@ -83,7 +84,25 @@ SpMorphicTreeTableAdapter >> basicSelectionChanged: ann [
 	selection
 		selectPaths:
 			(ann newSelectedIndexes
-				collect: [ :i | self widget dataSource pathFromIndex: i ])
+				collect: [ :i | self widget dataSource pathFromIndex: i ]).
+				
+	"
+	| diff |
+	self presenter selection isMultipleSelection
+		ifTrue: [ self presenter selection
+				selectIndexes: (ann newSelectedIndexes reject: [ :e | e = 0 ]) ].
+	self presenter selection isMultipleSelection
+		ifFalse: [ self presenter selection
+				selectIndex:
+					(ann newSelectedIndexes
+						ifNotEmpty: [ :indexes | indexes first ]
+						ifEmpty: [ 0 ]) ].
+	diff := ann newSelectedIndexes difference: ann oldSelectedIndexes.
+	(diff notEmpty and: [ self presenter activatesOnSingleClick ])
+		ifTrue: [ self presenter doActivateAtIndex: diff last ].
+	ann newSelectedIndexes ifNotEmpty: [ ^ self ].
+	self presenter selection unselectAll	
+	"
 ]
 
 { #category : #factory }
@@ -185,6 +204,20 @@ SpMorphicTreeTableAdapter >> selectInto: aFTTableMorph paths: aCollectionOfPaths
 	indexes := items collect: [:item | aFTTableMorph dataSource indexOfItem: item].
 
 	aFTTableMorph selectIndexes: indexes.
+]
+
+{ #category : #accessing }
+SpMorphicTreeTableAdapter >> selectPath: anArray [
+	| index |
+	
+	((anArray isEmpty or: [ anArray first = 0 ]) 
+		and: [ widget selectedIndexes isEmpty ]) 
+		ifTrue: [ ^ self ].
+	index := anArray 
+		ifNotEmpty: [ widget dataSource indexFromPath: anArray ]
+		ifEmpty: [ 0 ].  
+	(widget selectedIndexes includes: index) ifTrue: [ ^ self ].
+	widget selectIndex: index
 ]
 
 { #category : #accessing }
