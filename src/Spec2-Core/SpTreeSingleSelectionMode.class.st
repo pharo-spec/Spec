@@ -8,6 +8,7 @@ Class {
 SpTreeSingleSelectionMode >> selectPath: aPath [
 	"If the path is out of range, keep the selection."
 
+	aPath ifEmpty: [ ^ self unselectAll ].
 	presenter itemAtPath: aPath ifAbsent: [ ^ self ].
 	selection := aPath.
 
@@ -15,7 +16,8 @@ SpTreeSingleSelectionMode >> selectPath: aPath [
 
 { #category : #accessing }
 SpTreeSingleSelectionMode >> selectPaths: pathArray [
-	self selectPath: pathArray last.
+
+	self selectPath: pathArray last
 ]
 
 { #category : #accessing }

@@ -121,7 +121,7 @@ SpTreeTableAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelectionI
 	| selectedPath |
 	
 	self adapter selectPath: #(1).
-	presenter selection
+	presenter selection 
 		whenChangedDo: [ :selection | selectedPath := selection ].
 	self adapter selectPath: #().
 	self assertEmpty: selectedPath
