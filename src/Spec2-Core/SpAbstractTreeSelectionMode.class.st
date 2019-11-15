@@ -55,7 +55,7 @@ SpAbstractTreeSelectionMode >> pathOf: anItem [
 		search: anItem
 ]
 
-{ #category : #accesing }
+{ #category : #accessing }
 SpAbstractTreeSelectionMode >> presenter: aPresenter [
 	presenter := aPresenter
 ]
@@ -110,6 +110,18 @@ SpAbstractTreeSelectionMode >> selectedPaths [
 	^ self subclassResponsibility
 ]
 
+{ #category : #accessing }
+SpAbstractTreeSelectionMode >> selectionHolder [
+
+	^ self observablePropertyNamed: #selection
+]
+
+{ #category : #transfering }
+SpAbstractTreeSelectionMode >> transferSubscriptionsTo: anotherSelectionMode [
+
+	self selectionHolder transferSubscriptionsTo: anotherSelectionMode selectionHolder
+]
+
 { #category : #selecting }
 SpAbstractTreeSelectionMode >> unselectAll [
 
@@ -129,7 +141,7 @@ SpAbstractTreeSelectionMode >> unselectPath: aPath [
 ]
 
 { #category : #'api - events' }
-SpAbstractTreeSelectionMode >> whenChangedDo: aBlockClosure [ 
+SpAbstractTreeSelectionMode >> whenChangedDo: aBlock [
 	
-	self property: #selection whenChangedDo: aBlockClosure 
+	self property: #selection whenChangedDo: aBlock
 ]
