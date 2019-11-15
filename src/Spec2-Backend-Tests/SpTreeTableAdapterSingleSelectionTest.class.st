@@ -79,6 +79,18 @@ SpTreeTableAdapterSingleSelectionTest >> testUnselectAllInWidgetNotRaisesEmptySe
 ]
 
 { #category : #'tests-model-to-widget' }
+SpTreeTableAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesSelectionIndexChangeEventOnce [
+	| counter |
+	
+	counter := 0.
+	self adapter selectPath: #(1).
+	presenter selection
+		whenChangedDo: [ :selection | counter := counter + 1 ].
+	self adapter selectPath: #().
+	self assert: counter equals: 1
+]
+
+{ #category : #'tests-model-to-widget' }
 SpTreeTableAdapterSingleSelectionTest >> testUnselectAllInWidgetWithoutSelectionDoesNotRaiseEvent [
 	| counter |
 	

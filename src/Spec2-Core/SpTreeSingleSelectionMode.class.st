@@ -10,7 +10,7 @@ SpTreeSingleSelectionMode >> selectPath: aPath [
 
 	aPath ifEmpty: [ ^ self unselectAll ].
 	presenter itemAtPath: aPath ifAbsent: [ ^ self ].
-	selection := aPath.
+	selection := aPath
 
 ]
 

@@ -82,7 +82,7 @@ SpMorphicTreeTableAdapter >> basicSelectionChanged: ann [
 	(ann newSelectedIndexes difference: ann oldSelectedIndexes) ifEmpty: [ ^ self ].
 	
 	selection selectPaths: (ann newSelectedIndexes
-		collect: [ :i | self widget dataSource pathFromIndex: i ])
+		collect: [ :index | self widget dataSource pathFromIndex: index ])
 ]
 
 { #category : #factory }
@@ -116,6 +116,15 @@ SpMorphicTreeTableAdapter >> defaultColumn [
 SpMorphicTreeTableAdapter >> ensureAtLeastOneColumnIn: tableMorph [
 	self model columns ifNotEmpty: [ ^ self ].
 	tableMorph addColumn: (self newColumnFrom: self defaultColumn)
+]
+
+{ #category : #testing }
+SpMorphicTreeTableAdapter >> isNonEditableRow: aRow column: aColumn [
+
+	^ (self widget dataSource
+		cellColumn: (self widget columns at: aColumn)
+		row: aRow) submorphs 
+		allSatisfy: [ :e | e asReadOnlyMorph == e ]
 ]
 
 { #category : #testing }
