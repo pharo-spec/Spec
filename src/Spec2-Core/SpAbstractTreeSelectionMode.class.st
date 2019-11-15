@@ -18,7 +18,7 @@ SpAbstractTreeSelectionMode class >> on: aPresenter [
 		yourself
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpAbstractTreeSelectionMode >> clearSelection [
 
 	selection := #()
@@ -43,16 +43,29 @@ SpAbstractTreeSelectionMode >> isMultipleSelection [
 	^ false
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpAbstractTreeSelectionMode >> itemNotFoundAction [
 	"ignore. we do not change the selection"
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpAbstractTreeSelectionMode >> pathOf: anItem [
-	^ SpTreeBreadthFirstSearch new
-		tree: presenter;
-		search: anItem
+	^ (self pathOf: anItem from: presenter roots)
+		ifNil: [ 	NotFound signalFor: anItem in: presenter roots ]
+]
+
+{ #category : #selecting }
+SpAbstractTreeSelectionMode >> pathOf: anItem from: aCollection [
+    | index |
+
+    index := aCollection indexOf: anItem.
+    index > 0 ifTrue: [ ^ { index } ].
+    
+    aCollection withIndexDo: [ :each :i |
+        (self pathOf: anItem from: (presenter childrenFor: each))
+            ifNotNil: [ :path | ^ { i }, path ] ].
+        
+    ^ nil
 ]
 
 { #category : #accessing }
@@ -60,14 +73,14 @@ SpAbstractTreeSelectionMode >> presenter: aPresenter [
 	presenter := aPresenter
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpAbstractTreeSelectionMode >> selectItem: anItem [
 	[ self selectPath: (self pathOf: anItem) ]
 		on: NotFound
 		do: [ self itemNotFoundAction ]
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpAbstractTreeSelectionMode >> selectItems: aListOfItems [
 	aListOfItems do: 
 		[ :each |
@@ -76,7 +89,7 @@ SpAbstractTreeSelectionMode >> selectItems: aListOfItems [
 			do: [ "ignore. we do not change the selection" ] ]
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpAbstractTreeSelectionMode >> selectPath: aPath [
 	"Select a node in the tree by providing a list of indexes.
 	Example:
@@ -95,7 +108,7 @@ SpAbstractTreeSelectionMode >> selectPath: aPath [
 	self subclassResponsibility
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpAbstractTreeSelectionMode >> selectPaths: pathArray [
 	self subclassResponsibility
 ]
@@ -128,7 +141,7 @@ SpAbstractTreeSelectionMode >> unselectAll [
 	self clearSelection
 ]
 
-{ #category : #selection }
+{ #category : #selecting }
 SpAbstractTreeSelectionMode >> unselectItem: anItem [
 	[ self unselectPath: (self pathOf: anItem) ]
 	on: NotFound 
