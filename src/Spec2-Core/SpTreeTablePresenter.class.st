@@ -15,8 +15,8 @@ Class {
 		'#columns => SpObservableSlot',
 		'#showColumnHeaders => SpObservableSlot',
 		'#isResizable => SpObservableSlot',
-		'#selection => SpObservableSlot',
 		'#roots => SpObservableSlot',
+		'#selectionMode',
 		'#childrenBlock',
 		'#activationBlock',
 		'#activateOnSingleClick'
@@ -59,15 +59,10 @@ SpTreeTablePresenter >> addColumn: aColumn [
 	columns := self columns copyWith: aColumn
 ]
 
-{ #category : #'selection mode' }
+{ #category : #api }
 SpTreeTablePresenter >> beMultipleSelection [
-	| newSelectionMode |
-	
-	newSelectionMode := (SpTreeMultipleSelectionMode on: self)
-		copyFrom: selection;
-		yourself.
-	
-	selection := newSelectionMode.
+
+	self selectionMode: (SpTreeMultipleSelectionMode on: self)
 ]
 
 { #category : #api }
@@ -80,12 +75,10 @@ SpTreeTablePresenter >> beResizable [
 	self isResizable: true
 ]
 
-{ #category : #'selection mode' }
+{ #category : #api }
 SpTreeTablePresenter >> beSingleSelection [
-	| newSelectionMode |
-
-	newSelectionMode := (SpTreeSingleSelectionMode on: self).
-	selection := newSelectionMode.
+	
+	self selectionMode: (SpTreeSingleSelectionMode on: self)
 ]
 
 { #category : #private }
@@ -162,19 +155,20 @@ SpTreeTablePresenter >> initialize [
 	showColumnHeaders := true.
 	columns := #().
 	isResizable := false.
-	selection := SpTreeSingleSelectionMode on: self.
 	childrenBlock := [ :item | #() ].
 	roots := #().
+
+	self beSingleSelection.
 	self activateOnDoubleClick.
 	self registerEvents
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 SpTreeTablePresenter >> isResizable [
 	^ isResizable
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpTreeTablePresenter >> isResizable: aBoolean [
 	isResizable := aBoolean
 ]
@@ -275,7 +269,15 @@ SpTreeTablePresenter >> selectedItems [
 { #category : #accessing }
 SpTreeTablePresenter >> selection [
 	
-	^ selection value
+	^ selectionMode value
+]
+
+{ #category : #private }
+SpTreeTablePresenter >> selectionMode: aMode [
+	
+	selectionMode ifNotNil: [ 
+		selectionMode transferSubscriptionsTo: aMode ].
+	selectionMode := aMode
 ]
 
 { #category : #api }
@@ -303,8 +305,9 @@ SpTreeTablePresenter >> unselectPath: aPath [
 ]
 
 { #category : #'api-events' }
-SpTreeTablePresenter >> whenActivatedDo: aBlockClosure [
-	activationBlock := aBlockClosure
+SpTreeTablePresenter >> whenActivatedDo: aBlock [
+
+	activationBlock := aBlock
 ]
 
 { #category : #'api-events' }
@@ -321,7 +324,7 @@ SpTreeTablePresenter >> whenIsResizableChangedDo: aBlock [
 { #category : #accessing }
 SpTreeTablePresenter >> whenMultiSelectionChangedDo: aBlockClosure [ 
 	
-	selection whenChangedDo: aBlockClosure 
+	selectionMode whenChangedDo: aBlockClosure 
 ]
 
 { #category : #'api-events' }
@@ -345,7 +348,7 @@ SpTreeTablePresenter >> whenSelectedItemChangedDo: aBlockClosure [
 { #category : #'api-events' }
 SpTreeTablePresenter >> whenSelectionChangedDo: aBlock [ 
 	
-	self selection whenChangedDo: [ aBlock cull: selection ]
+	self selection whenChangedDo: [ aBlock cull: selectionMode ]
 ]
 
 { #category : #'api-events' }

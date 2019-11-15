@@ -1,8 +1,20 @@
+"
+I am the adapter used to realise a SpTablePresenter.
+I will create a tree table (using FTTableMorph), using the columns TableColumn* as definitions.
+
+Is important notice here that most of the row/cell creation happens on SpMorphicTableDataSource. Check there for some implementation details.
+"
 Class {
 	#name : #SpMorphicTableAdapter,
 	#superclass : #SpAbstractMorphicListAdapter,
 	#category : #'Spec2-Adapters-Morphic-Table'
 }
+
+{ #category : #accessing }
+SpMorphicTableAdapter class >> intercellSpacing [
+
+	^ 2@0
+]
 
 { #category : #factory }
 SpMorphicTableAdapter >> addModelTo: tableMorph [
@@ -38,7 +50,11 @@ SpMorphicTableAdapter >> addModelTo: tableMorph [
 			send: #strongSelectionChanged:
 			to: self.
 
-	tableMorph dataSource: self newDataSource
+	tableMorph dataSource: self newDataSource.
+	
+	self presenter whenItemFilterBlockChangedDo: [ :block | self 
+		updateItemFilterBlockWith: block ].
+	self updateItemFilterBlockWith: self itemFilter
 ]
 
 { #category : #factory }
@@ -47,6 +63,7 @@ SpMorphicTableAdapter >> buildWidget [
 	widget := FTTableMorph new
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
+		intercellSpacing: self class intercellSpacing;
 		yourself.
 
 	self addModelTo: widget.

@@ -273,7 +273,7 @@ SpAbstractListPresenter >> selectionMode: aMode [
 	
 	selectionMode ifNotNil: [ 
 		selectionMode transferSubscriptionsTo: aMode ].
-	selectionMode := aMode.
+	selectionMode := aMode
 ]
 
 { #category : #api }
@@ -312,7 +312,7 @@ SpAbstractListPresenter >> verticalAlignment [
 { #category : #'api-events' }
 SpAbstractListPresenter >> whenActivatedDo: aBlock [ 
 	
-	activationBlock := aBlock.
+	activationBlock := aBlock
 ]
 
 { #category : #'api-events' }

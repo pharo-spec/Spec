@@ -21,6 +21,12 @@ SpButtonBarPresenter >> add: aButtonPresenter [
 	items add: aButtonPresenter
 ]
 
+{ #category : #testing }
+SpButtonBarPresenter >> canTakeKeyboardFocus [
+
+	^ false
+]
+
 { #category : #initialization }
 SpButtonBarPresenter >> initialize [
 
@@ -48,9 +54,11 @@ SpButtonBarPresenter >> items [
 
 { #category : #api }
 SpButtonBarPresenter >> items: aCollectionOfButtonPresenters [
+
 	items := OrderedCollection new asValueHolder.
-	items addAll: aCollectionOfButtonPresenters .
-^ self
+	aCollectionOfButtonPresenters 
+		do: [ :each | each owner: self ].
+	items addAll: aCollectionOfButtonPresenters
 ]
 
 { #category : #accessing }
@@ -63,4 +71,10 @@ SpButtonBarPresenter >> placeAtEnd [
 SpButtonBarPresenter >> placeAtStart [ 
 
 	placeAtStart := true
+]
+
+{ #category : #'private-traversing' }
+SpButtonBarPresenter >> presenters [
+	
+	^ self items
 ]

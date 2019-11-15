@@ -37,13 +37,14 @@ SpMorphicListAdapter >> backgroundColorFor: anItem at: index [
 { #category : #factory }
 SpMorphicListAdapter >> buildWidget [
 	| datasource |
+	
 	datasource := SpListFastTableDataSource new.
 	datasource model: self model.
 	widget := FTTableMorph new
 		dataSource: datasource;
 		hideColumnHeaders;
 		beResizable;
-		columns: {self newListColumn};
+		columns: { self newListColumn };
 		setMultipleSelection: self model isMultipleSelection;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
@@ -63,7 +64,9 @@ SpMorphicListAdapter >> buildWidget [
 	self updateItemFilterBlockWith: self itemFilter.
 
 	self configureScrolling.
-	widget bindKeyCombination: Character space toAction: [ self model clickOnSelectedItem ].
+	widget 
+		bindKeyCombination: Character space 
+		toAction: [ self model clickOnSelectedItem ].
 
 	^ widget
 ]
@@ -85,11 +88,6 @@ SpMorphicListAdapter >> isNonEditableRow: aRow column: aColumn [
 SpMorphicListAdapter >> isShowColumnHeaders [
 	
 	^ widget isShowColumnHeaders 
-]
-
-{ #category : #'widget API' }
-SpMorphicListAdapter >> itemFilter [
-	^ self model itemFilter
 ]
 
 { #category : #'widget API' }
@@ -193,15 +191,17 @@ SpMorphicListAdapter >> selectedIndexes [
 { #category : #factory }
 SpMorphicListAdapter >> selectionChanged: ann [
 	| diff |
+	
 	self presenter selection isMultipleSelection
-		ifTrue: [ self presenter selection
+		ifTrue: [ 
+			self presenter selection
 				selectIndexes: (ann newSelectedIndexes reject: [ :e | e = 0 ]) ].
 	self presenter selection isMultipleSelection
-		ifFalse: [ self presenter selection
-				selectIndex:
-					(ann newSelectedIndexes
-						ifNotEmpty: [ :indexes | indexes first ]
-						ifEmpty: [ 0 ]) ].
+		ifFalse: [ 
+			self presenter selection
+				selectIndex: (ann newSelectedIndexes
+					ifNotEmpty: [ :indexes | indexes first ]
+					ifEmpty: [ 0 ]) ].
 	diff := ann newSelectedIndexes difference: ann oldSelectedIndexes.
 	(diff notEmpty and: [ self presenter activatesOnSingleClick ])
 		ifTrue: [ self presenter doActivateAtIndex: diff last ].
@@ -214,15 +214,6 @@ SpMorphicListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
 	self presenter activatesOnDoubleClick
 		ifTrue: [ self presenter
 				doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex ]
-]
-
-{ #category : #factory }
-SpMorphicListAdapter >> updateItemFilterBlockWith: block [
-	^ block
-		ifNotNil: [ widget
-				enableFilter: (SpFTSpecFilter block: block);
-				explicitFunction ]
-		ifNil: [ widget disableFunction ]
 ]
 
 { #category : #events }
