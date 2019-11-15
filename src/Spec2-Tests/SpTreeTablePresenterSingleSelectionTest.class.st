@@ -180,7 +180,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectPathOutsideRangeRaisesSe
 		whenSelectionChangedDo: [ :selection | selectedPath := selection selectedPath ].
 	presenter selectPath: #(4).
 	
-	self assert: selectedPath equals: #()
+	self assert: selectedPath equals: nil
 ]
 
 { #category : #'tests-select-index' }
