@@ -201,10 +201,10 @@ SpWindowPresenter >> defaultInitialExtent [
 
 { #category : #private }
 SpWindowPresenter >> delete [
-	"DO NOT USE."
+	"DO NOT USE. This will destroy the window and maybe you do not want that :/
+	 I'm keeping this here because of testing."
 
-	self window delete.
-	self application windowClosed: self
+	self withAdapterDo: #delete
 ]
 
 { #category : #focus }
