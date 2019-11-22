@@ -814,6 +814,12 @@ SpPresenter >> newRichText [
 ]
 
 { #category : #widgets }
+SpPresenter >> newSearchInput [
+
+	^ self instantiate: SpSearchInputFieldPresenter
+]
+
+{ #category : #widgets }
 SpPresenter >> newSlider [
 	^ self instantiate: SpSliderPresenter
 ]
