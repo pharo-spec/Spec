@@ -18,7 +18,7 @@ SpMorphicSearchInputFieldAdapter >> buildWidget [
 		addMorph: (IconicButton new
 			target: self;
 			actionSelector: #clearText;
-			labelGraphic: (self iconNamed: #smallCancel);
+			labelGraphic: (self iconNamed: #glamorousRemove);
 			color: Color transparent;
 			extent: 16 @ 8;
 			borderWidth: 0;
