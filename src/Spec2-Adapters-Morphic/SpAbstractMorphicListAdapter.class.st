@@ -35,6 +35,18 @@ SpAbstractMorphicListAdapter >> scrollingChanged [
 		lastVisibleRowIndex: widget lastVisibleRowIndex
 ]
 
+{ #category : #emulating }
+SpAbstractMorphicListAdapter >> type: aString [
+
+	aString do: [ :each | 
+		self 
+			keyPressed: each asciiValue 
+			shift: each isUppercase
+			meta: false 
+			control: false 
+			option: false ]
+]
+
 { #category : #factory }
 SpAbstractMorphicListAdapter >> updateItemFilterBlockWith: block [
 
