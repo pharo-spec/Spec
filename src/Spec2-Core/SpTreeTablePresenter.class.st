@@ -16,6 +16,7 @@ Class {
 		'#showColumnHeaders => SpObservableSlot',
 		'#isResizable => SpObservableSlot',
 		'#roots => SpObservableSlot',
+		'#searchEnabled => SpObservableSlot',
 		'#selectionMode',
 		'#childrenBlock',
 		'#activationBlock',
@@ -118,6 +119,12 @@ SpTreeTablePresenter >> columns: aCollection [
 	columns := aCollection
 ]
 
+{ #category : #accessing }
+SpTreeTablePresenter >> disableSearch [
+
+	searchEnabled := false
+]
+
 { #category : #simulation }
 SpTreeTablePresenter >> doActivateAtPath: aPath [
 	"Activate only if there is an item at that position"
@@ -136,6 +143,12 @@ SpTreeTablePresenter >> doubleClickAtPath: aPath [
 	
 	activateOnSingleClick ifTrue: [ ^ self ].
 	self doActivateAtPath: aPath
+]
+
+{ #category : #accessing }
+SpTreeTablePresenter >> enableSearch [
+
+	searchEnabled := true
 ]
 
 { #category : #api }
@@ -158,6 +171,7 @@ SpTreeTablePresenter >> initialize [
 	childrenBlock := [ :item | #() ].
 	roots := #().
 
+	self enableSearch.
 	self beSingleSelection.
 	self activateOnDoubleClick.
 	self registerEvents
@@ -171,6 +185,12 @@ SpTreeTablePresenter >> isResizable [
 { #category : #private }
 SpTreeTablePresenter >> isResizable: aBoolean [
 	isResizable := aBoolean
+]
+
+{ #category : #testing }
+SpTreeTablePresenter >> isSearchEnabled [
+
+	^ searchEnabled
 ]
 
 { #category : #testing }
