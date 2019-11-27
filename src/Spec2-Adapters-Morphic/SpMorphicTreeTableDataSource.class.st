@@ -119,3 +119,10 @@ SpMorphicTreeTableDataSource >> sortElements: aSortFunction [
 	unsortedElements ifNil: [ unsortedElements := self rootsItems ].
 	self rootItem data: ((self rootItem children collect: #data) sorted: aSortFunction)
 ]
+
+{ #category : #accessing }
+SpMorphicTreeTableDataSource >> toString: anItem [
+	"Override me if you expect something else."
+
+	^ super toString: anItem data
+]
