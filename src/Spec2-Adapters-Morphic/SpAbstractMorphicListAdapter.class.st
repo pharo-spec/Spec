@@ -56,5 +56,5 @@ SpAbstractMorphicListAdapter >> updateItemFilterBlockWith: block [
 				enableFilter: (SpFTSpecFilter block: block);
 				explicitFunction ]
 		ifNil: [ 
-			widget disableFunction ]
+			widget enableSearch ]
 ]

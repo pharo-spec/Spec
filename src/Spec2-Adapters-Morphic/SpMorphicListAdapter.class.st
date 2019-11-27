@@ -43,6 +43,7 @@ SpMorphicListAdapter >> buildWidget [
 	widget := FTTableMorph new
 		dataSource: datasource;
 		hideColumnHeaders;
+		enableSearch;
 		beResizable;
 		columns: { self newListColumn };
 		setMultipleSelection: self model isMultipleSelection;

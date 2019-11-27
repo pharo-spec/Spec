@@ -102,6 +102,7 @@ SpListFastTableDataSource >> numberOfRows [
 { #category : #accessing }
 SpListFastTableDataSource >> searchText: aString [
 	| search text result |
+
 	aString isEmptyOrNil ifTrue: [ ^ #() ].
 	result := OrderedCollection new.
 	search := aString trimBoth asLowercase.
