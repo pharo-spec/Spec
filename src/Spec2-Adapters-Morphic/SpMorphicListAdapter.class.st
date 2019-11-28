@@ -75,7 +75,8 @@ SpMorphicListAdapter >> buildWidget [
 
 { #category : #emulating }
 SpMorphicListAdapter >> hasFilter [
-	^ self widget submorphs anySatisfy: [ :each | each isKindOf: RubTextFieldMorph	"This morph is the explicit filter of the list" ]
+
+	^ self widget hasFilter
 ]
 
 { #category : #testing }
