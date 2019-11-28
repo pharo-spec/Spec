@@ -25,6 +25,11 @@ SpComponentListPresenter >> includes: aPresenter [
 	^ self presenters includes: aPresenter  
 ]
 
+{ #category : #initialization }
+SpComponentListPresenter >> initializeSearch [
+	"component list presenters do not implement search for now"
+]
+
 { #category : #testing }
 SpComponentListPresenter >> isEmpty [
 
