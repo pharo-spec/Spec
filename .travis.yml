@@ -6,7 +6,7 @@ os:
 #  - osx
 
 smalltalk:
-  - Pharo64-7.0
+#  - Pharo64-7.0
   - Pharo64-8.0
   
 matrix:
