@@ -9,7 +9,6 @@ Class {
 		'#activateOnSingleClick',
 		'#model',
 		'#itemFilter => SpObservableSlot',
-		'#searchEnabled => SpObservableSlot',
 		'#verticalAlignment'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
@@ -70,12 +69,6 @@ SpAbstractListPresenter >> disableFilter [
 	self itemFilter: nil
 ]
 
-{ #category : #accessing }
-SpAbstractListPresenter >> disableSearch [
-
-	searchEnabled := false
-]
-
 { #category : #private }
 SpAbstractListPresenter >> doActivateAtIndex: anIndex [
 
@@ -103,12 +96,6 @@ SpAbstractListPresenter >> enableItemBeginsWithFilter [
 { #category : #api }
 SpAbstractListPresenter >> enableItemSubstringFilter [
 	self itemFilter: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
-]
-
-{ #category : #accessing }
-SpAbstractListPresenter >> enableSearch [
-
-	searchEnabled := true
 ]
 
 { #category : #initialization }
@@ -139,12 +126,6 @@ SpAbstractListPresenter >> initializeSearch [
 SpAbstractListPresenter >> isMultipleSelection [
 	
 	^ selectionMode isMultipleSelection
-]
-
-{ #category : #testing }
-SpAbstractListPresenter >> isSearchEnabled [
-
-	^ searchEnabled 
 ]
 
 { #category : #accessing }
