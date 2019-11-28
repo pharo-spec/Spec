@@ -9,14 +9,13 @@ self example
 Class {
 	#name : #SpTreeTablePresenter,
 	#superclass : #SpAbstractWidgetPresenter,
-	#traits : 'TSpHaveWrappingScrollBars + SpTContextMenu',
-	#classTraits : 'TSpHaveWrappingScrollBars classTrait + SpTContextMenu classTrait',
+	#traits : 'TSpHaveWrappingScrollBars + SpTContextMenu + SpTSearchable',
+	#classTraits : 'TSpHaveWrappingScrollBars classTrait + SpTContextMenu classTrait + SpTSearchable classTrait',
 	#instVars : [
 		'#columns => SpObservableSlot',
 		'#showColumnHeaders => SpObservableSlot',
 		'#isResizable => SpObservableSlot',
 		'#roots => SpObservableSlot',
-		'#searchEnabled => SpObservableSlot',
 		'#selectionMode',
 		'#childrenBlock',
 		'#activationBlock',
@@ -119,12 +118,6 @@ SpTreeTablePresenter >> columns: aCollection [
 	columns := aCollection
 ]
 
-{ #category : #accessing }
-SpTreeTablePresenter >> disableSearch [
-
-	searchEnabled := false
-]
-
 { #category : #simulation }
 SpTreeTablePresenter >> doActivateAtPath: aPath [
 	"Activate only if there is an item at that position"
@@ -143,12 +136,6 @@ SpTreeTablePresenter >> doubleClickAtPath: aPath [
 	
 	activateOnSingleClick ifTrue: [ ^ self ].
 	self doActivateAtPath: aPath
-]
-
-{ #category : #accessing }
-SpTreeTablePresenter >> enableSearch [
-
-	searchEnabled := true
 ]
 
 { #category : #api }
@@ -185,12 +172,6 @@ SpTreeTablePresenter >> isResizable [
 { #category : #private }
 SpTreeTablePresenter >> isResizable: aBoolean [
 	isResizable := aBoolean
-]
-
-{ #category : #testing }
-SpTreeTablePresenter >> isSearchEnabled [
-
-	^ searchEnabled
 ]
 
 { #category : #testing }
