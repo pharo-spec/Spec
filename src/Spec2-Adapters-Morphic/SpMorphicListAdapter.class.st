@@ -38,7 +38,7 @@ SpMorphicListAdapter >> backgroundColorFor: anItem at: index [
 SpMorphicListAdapter >> buildWidget [
 	| datasource |
 	
-	datasource := SpListFastTableDataSource new.
+	datasource := SpMorphicListDataSource new.
 	datasource model: self model.
 	widget := FTTableMorph new
 		dataSource: datasource;
