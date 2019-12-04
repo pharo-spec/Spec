@@ -9,8 +9,8 @@ self example
 Class {
 	#name : #SpTreeTablePresenter,
 	#superclass : #SpAbstractWidgetPresenter,
-	#traits : 'TSpHaveWrappingScrollBars + SpTContextMenu',
-	#classTraits : 'TSpHaveWrappingScrollBars classTrait + SpTContextMenu classTrait',
+	#traits : 'TSpHaveWrappingScrollBars + SpTContextMenu + SpTSearchable',
+	#classTraits : 'TSpHaveWrappingScrollBars classTrait + SpTContextMenu classTrait + SpTSearchable classTrait',
 	#instVars : [
 		'#columns => SpObservableSlot',
 		'#showColumnHeaders => SpObservableSlot',
@@ -158,6 +158,7 @@ SpTreeTablePresenter >> initialize [
 	childrenBlock := [ :item | #() ].
 	roots := #().
 
+	self enableSearch.
 	self beSingleSelection.
 	self activateOnDoubleClick.
 	self registerEvents
@@ -307,6 +308,12 @@ SpTreeTablePresenter >> whenMultiSelectionChangedDo: aBlockClosure [
 SpTreeTablePresenter >> whenRootsChangedDo: aBlockClosure [ 
 
 	self property: #roots whenChangedDo: aBlockClosure
+]
+
+{ #category : #'api-events' }
+SpTreeTablePresenter >> whenSearchChangedDo: aBlock [
+
+	self property: #searchEnabled whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

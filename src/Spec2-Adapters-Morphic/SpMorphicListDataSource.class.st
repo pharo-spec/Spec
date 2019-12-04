@@ -1,5 +1,5 @@
 Class {
-	#name : #SpListFastTableDataSource,
+	#name : #SpMorphicListDataSource,
 	#superclass : #FTDataSource,
 	#instVars : [
 		'model'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #accessing }
-SpListFastTableDataSource >> cellColumn: column row: rowIndex [
+SpMorphicListDataSource >> cellColumn: column row: rowIndex [
 	| displayValue cell item |
 	item := self model itemAt: rowIndex.
 	displayValue := column readObject: item.
@@ -22,19 +22,19 @@ SpListFastTableDataSource >> cellColumn: column row: rowIndex [
 ]
 
 { #category : #accessing }
-SpListFastTableDataSource >> elementAt: rowIndex [
+SpMorphicListDataSource >> elementAt: rowIndex [
 
 	^ self listModel at: rowIndex
 ]
 
 { #category : #accessing }
-SpListFastTableDataSource >> elements [
+SpMorphicListDataSource >> elements [
 
 	^ self model items
 ]
 
 { #category : #accessing }
-SpListFastTableDataSource >> headerColumn: column [
+SpMorphicListDataSource >> headerColumn: column [
 
 	column id ifNil: [ ^ nil ]. 
 	^ FTCellMorph new 
@@ -43,13 +43,21 @@ SpListFastTableDataSource >> headerColumn: column [
 		yourself
 ]
 
+{ #category : #private }
+SpMorphicListDataSource >> isMatch: anObject pattern: aString [
+	| text |
+	
+	text := (self model displayValueOf: anObject) trimBoth asLowercase.
+	^ text beginsWith: aString
+]
+
 { #category : #accessing }
-SpListFastTableDataSource >> listModel [
+SpMorphicListDataSource >> listModel [
 	^ model model
 ]
 
 { #category : #accessing }
-SpListFastTableDataSource >> menuColumn: column row: rowIndex [
+SpMorphicListDataSource >> menuColumn: column row: rowIndex [
 	| menuPresenter |
 
 	menuPresenter := self model contextMenu.
@@ -65,17 +73,17 @@ SpListFastTableDataSource >> menuColumn: column row: rowIndex [
 ]
 
 { #category : #accessing }
-SpListFastTableDataSource >> model [
+SpMorphicListDataSource >> model [
 	^ model
 ]
 
 { #category : #accessing }
-SpListFastTableDataSource >> model: anObject [
+SpMorphicListDataSource >> model: anObject [
 	model := anObject
 ]
 
 { #category : #accessing }
-SpListFastTableDataSource >> newDataSourceMatching: aFTFilter [
+SpMorphicListDataSource >> newDataSourceMatching: aFTFilter [
 	| newElements wrappedItem text newDataSource modelCopy |
 	
 	newElements := self elements select: [ :each | 
@@ -93,26 +101,25 @@ SpListFastTableDataSource >> newDataSourceMatching: aFTFilter [
 ]
 
 { #category : #accessing }
-SpListFastTableDataSource >> numberOfRows [
+SpMorphicListDataSource >> numberOfRows [
 	^ model
 		ifNil: [ 0 ]
 		ifNotNil: [ self listModel size ]
 ]
 
 { #category : #accessing }
-SpListFastTableDataSource >> searchText: aString [
-	| search text result |
+SpMorphicListDataSource >> searchText: aString [
+	| search |
+
 	aString isEmptyOrNil ifTrue: [ ^ #() ].
-	result := OrderedCollection new.
 	search := aString trimBoth asLowercase.
-	1 to: self numberOfRows do: [ :rowIndex | 
-		text := (self model displayValueAt: rowIndex) contents trimBoth asLowercase.
-		(text beginsWith: search)
-			ifTrue: [ result add: rowIndex ] ].
-	^ result asArray
+	^ Array streamContents: [ :stream |
+		self elements withIndexDo: [ :each :rowIndex | 
+			(self isMatch: each pattern: search) 
+				ifTrue: [ stream nextPut: rowIndex ] ] ]
 ]
 
 { #category : #'drag and drop' }
-SpListFastTableDataSource >> transferFor: passenger from: aMorph [
+SpMorphicListDataSource >> transferFor: passenger from: aMorph [
     ^(self model transferFor: passenger from: self table) buildWithSpec
 ]

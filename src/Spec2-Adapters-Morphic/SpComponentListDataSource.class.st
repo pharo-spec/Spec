@@ -1,5 +1,5 @@
 Class {
-	#name : #SpComponentListFastTableDataSource,
+	#name : #SpComponentListDataSource,
 	#superclass : #FTDataSource,
 	#instVars : [
 		'model'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #accessing }
-SpComponentListFastTableDataSource >> cellColumn: column row: rowIndex [
+SpComponentListDataSource >> cellColumn: column row: rowIndex [
 	| cell item |
 	
 	item := self elementAt: rowIndex.
@@ -21,19 +21,19 @@ SpComponentListFastTableDataSource >> cellColumn: column row: rowIndex [
 ]
 
 { #category : #accessing }
-SpComponentListFastTableDataSource >> elementAt: rowIndex [
+SpComponentListDataSource >> elementAt: rowIndex [
 
 	^ self presenters at: rowIndex
 ]
 
 { #category : #accessing }
-SpComponentListFastTableDataSource >> elements [
+SpComponentListDataSource >> elements [
 
 	^ self presenters
 ]
 
 { #category : #accessing }
-SpComponentListFastTableDataSource >> headerColumn: column [
+SpComponentListDataSource >> headerColumn: column [
 
 	column id ifNil: [ ^ nil ]. 
 	^ FTCellMorph new 
@@ -43,7 +43,7 @@ SpComponentListFastTableDataSource >> headerColumn: column [
 ]
 
 { #category : #accessing }
-SpComponentListFastTableDataSource >> menuColumn: column row: rowIndex [
+SpComponentListDataSource >> menuColumn: column row: rowIndex [
 	| menuPresenter |
 
 	menuPresenter := self model contextMenu.
@@ -59,17 +59,17 @@ SpComponentListFastTableDataSource >> menuColumn: column row: rowIndex [
 ]
 
 { #category : #accessing }
-SpComponentListFastTableDataSource >> model [
+SpComponentListDataSource >> model [
 	^ model
 ]
 
 { #category : #accessing }
-SpComponentListFastTableDataSource >> model: anObject [
+SpComponentListDataSource >> model: anObject [
 	model := anObject
 ]
 
 { #category : #accessing }
-SpComponentListFastTableDataSource >> newDataSourceMatching: aFTFilter [
+SpComponentListDataSource >> newDataSourceMatching: aFTFilter [
 	| newElements wrappedItem text newDataSource modelCopy |
 	
 	newElements := self elements select: [ :each | 
@@ -87,7 +87,7 @@ SpComponentListFastTableDataSource >> newDataSourceMatching: aFTFilter [
 ]
 
 { #category : #accessing }
-SpComponentListFastTableDataSource >> numberOfRows [
+SpComponentListDataSource >> numberOfRows [
 
 	^ model
 		ifNil: [ 0 ]
@@ -95,20 +95,20 @@ SpComponentListFastTableDataSource >> numberOfRows [
 ]
 
 { #category : #accessing }
-SpComponentListFastTableDataSource >> presenters [
+SpComponentListDataSource >> presenters [
 
 	^ self model presenters
 ]
 
 { #category : #accessing }
-SpComponentListFastTableDataSource >> rowHeight: rowIndex [
+SpComponentListDataSource >> rowHeight: rowIndex [
 
 	rowIndex = 0 ifTrue: [ ^ super rowHeight: rowIndex ].
 	^ (self widgetFor: (self elementAt: rowIndex)) height
 ]
 
 { #category : #accessing }
-SpComponentListFastTableDataSource >> searchText: aString [
+SpComponentListDataSource >> searchText: aString [
 	| search text result |
 	aString isEmptyOrNil ifTrue: [ ^ #() ].
 	result := OrderedCollection new.
@@ -121,12 +121,12 @@ SpComponentListFastTableDataSource >> searchText: aString [
 ]
 
 { #category : #'drag and drop' }
-SpComponentListFastTableDataSource >> transferFor: passenger from: aMorph [
+SpComponentListDataSource >> transferFor: passenger from: aMorph [
     ^(self model transferFor: passenger from: self table) buildWithSpec
 ]
 
 { #category : #private }
-SpComponentListFastTableDataSource >> widgetFor: aPresenter [
+SpComponentListDataSource >> widgetFor: aPresenter [
 
 	aPresenter adapter ifNotNil: [ :adapter | ^ adapter widget ].
 	^ aPresenter buildWithSpec

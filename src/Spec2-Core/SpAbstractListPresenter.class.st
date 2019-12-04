@@ -102,10 +102,11 @@ SpAbstractListPresenter >> enableItemSubstringFilter [
 SpAbstractListPresenter >> initialize [
 
 	super initialize.
+	self initializeSearch.
 	
 	activationBlock := [ ].
 	verticalAlignment := SpVerticalAlignment new.
-	
+
 	self withScrollBars.
 	self model: 	self newEmptyModel.
 
@@ -113,6 +114,12 @@ SpAbstractListPresenter >> initialize [
 	self activateOnDoubleClick.
 
 	self registerEvents
+]
+
+{ #category : #initialization }
+SpAbstractListPresenter >> initializeSearch [
+
+	self enableSearch
 ]
 
 { #category : #testing }
@@ -317,6 +324,7 @@ SpAbstractListPresenter >> whenActivatedDo: aBlock [
 
 { #category : #'api-events' }
 SpAbstractListPresenter >> whenItemFilterBlockChangedDo: aBlock [
+
 	self property: #itemFilter whenChangedDo: aBlock
 ]
 
@@ -324,6 +332,12 @@ SpAbstractListPresenter >> whenItemFilterBlockChangedDo: aBlock [
 SpAbstractListPresenter >> whenModelChangedDo: aBlock [
 
 	model whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+SpAbstractListPresenter >> whenSearchChangedDo: aBlock [
+
+	self property: #searchEnabled whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
