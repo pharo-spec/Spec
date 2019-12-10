@@ -60,7 +60,7 @@ SpStyleFont >> definedFont [
 ]
 
 { #category : #initialization }
-SpStyleFont >> isBolc [
+SpStyleFont >> isBold [
 	"property may be nil, we verify with strict comparisson"
 	
 	^ bold == true 
