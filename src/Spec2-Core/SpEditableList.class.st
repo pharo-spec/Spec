@@ -23,43 +23,67 @@ Class {
 		'topButton',
 		'bottomButton',
 		'addItemBlock',
-		'okBlock'
+		'okBlock',
+		'label'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
+
+{ #category : #accessing }
+SpEditableList class >> buttonWidth [
+	^ 26
+]
 
 { #category : #spec }
 SpEditableList class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add:
 			(SpBoxLayout newHorizontal
-					add: #addButton;
-					add: #removeButton;
+					add: #label;
+					add: #addButton width: self buttonWidth;
+					add: #removeButton width: self buttonWidth;
 					yourself)
-			expand: false
-			fill: false
-			padding: 0;
+			height: 25;
 		add:
 			(SpBoxLayout newHorizontal
 				add: #list;
 				add:
 					(SpBoxLayout newVertical
-							add: #topButton;
-							add: #upButton;
-							add: #downButton;
-							add: #bottomButton;
+							add: '';
+							add: #topButton height: self orderingButtonHeight;
+							add: #upButton height: self orderingButtonHeight;
+							add: #downButton height: self orderingButtonHeight;
+							add: #bottomButton height: self orderingButtonHeight;
+							add: ' ';
 							yourself)
-					expand: false
-					fill: false
-					padding: 0;
+					width: 20;
 				yourself);
 		yourself
 ]
 
 { #category : #'instance creation' }
 SpEditableList class >> new: aCollection [
-	^ self new list: aCollection copy.
+	^ self new items: aCollection copy.
 		
+]
+
+{ #category : #accessing }
+SpEditableList class >> orderingButtonHeight [
+	^ 40
+]
+
+{ #category : #spec }
+SpEditableList class >> withoutOrderingBar [
+	^ SpBoxLayout newVertical
+		add:
+			(SpBoxLayout newHorizontal
+					add: #label;
+					add: #addButton width: self buttonWidth;
+					add: #removeButton width: self buttonWidth;
+					yourself)
+			height: 25;
+		add: #list;
+		yourself
 ]
 
 { #category : #accessing }
@@ -79,25 +103,40 @@ SpEditableList >> bottomButton [
 
 { #category : #initialization }
 SpEditableList >> connectPresenters [
-	super connectPresenters
-	
-	addButton action: [ | requirement | 
-						requirement := addItemBlock value.
-						requirement ifNotNil: [ 
-							self list: (self list listItems copyWith: requirement) ] ].
-
+	super connectPresenters.
+	addButton
+		action: [ | requirement |
+			requirement := addItemBlock value.
+			requirement
+				ifNotNil: [ self items: (self list model items copyWith: requirement) ] ].
 	removeButton
-		action: [ self list: (list listItems copyWithoutIndex: list selectedIndex) ].
-		
+		action: [ self
+				items: (list model items copyWithoutIndex: list selection selectedIndex) ].
 	topButton
-		action: [ self moveElementAt: list selectedIndex to: 1 ].
+		action: [ self moveElementAt: list selection selectedIndex to: 1 ].
 	bottomButton
-		action: [ self moveElementAt: list selectedIndex to: list listItems size ].
+		action: [ self
+				moveElementAt: list selection selectedIndex
+				to: list model items size ].
 	upButton
-		action: [ self moveElementAt: list selectedIndex to: list selectedIndex - 1].
+		action: [ self
+				moveElementAt: list selection selectedIndex
+				to: list selection selectedIndex - 1 ].
 	downButton
-		action: [ self moveElementAt: list selectedIndex to: list selectedIndex + 1].
+		action: [ self
+				moveElementAt: list selection selectedIndex
+				to: list selection selectedIndex + 1 ]
+]
 
+{ #category : #api }
+SpEditableList >> display: aBlock [
+
+	list display: aBlock
+]
+
+{ #category : #accessing }
+SpEditableList >> displayedItems [
+	^ list model items
 ]
 
 { #category : #accessing }
@@ -124,6 +163,7 @@ SpEditableList >> initializeDialogWindow: aWindow [
 
 { #category : #initialization }
 SpEditableList >> initializePresenters [
+	label := self newLabel.
 	list := self newList.
 	addButton := self newButton.
 	removeButton := self newButton.
@@ -135,7 +175,7 @@ SpEditableList >> initializePresenters [
 		icon: (self iconNamed: #addIcon);
 		help: 'Add a new item to the list'.
 	removeButton
-		icon: (self iconNamed: #deleteIcon);
+		icon: (self iconNamed: #removeIcon);
 		help: 'Remove a item from the list'.
 	upButton
 		icon: (self iconNamed: #upIcon);
@@ -151,14 +191,24 @@ SpEditableList >> initializePresenters [
 		help: 'Move this item on the last position of the list'
 ]
 
-{ #category : #accessing }
-SpEditableList >> list [
-	^ list
+{ #category : #initialization }
+SpEditableList >> initializeWindow: aWindowPresenter [
+	aWindowPresenter title: self title
 ]
 
 { #category : #private }
-SpEditableList >> list: aList [
-	list items: aList.
+SpEditableList >> items: anItemList [
+	list items: anItemList.
+]
+
+{ #category : #accessing }
+SpEditableList >> label: aString [
+	label label: aString 
+]
+
+{ #category : #accessing }
+SpEditableList >> list [
+	^ list
 ]
 
 { #category : #private }
@@ -171,7 +221,7 @@ SpEditableList >> moveElementAt: index to: newIndex [
 		removeAt: index;
 		add: elementToMove beforeIndex: newIndex;
 		yourself.
-	self list: orderedList.
+	self items: orderedList.
 	self list selectIndex: newIndex
 ]
 
@@ -192,6 +242,11 @@ SpEditableList >> removeButton [
 	^ removeButton
 ]
 
+{ #category : #api }
+SpEditableList >> selectItem: anIndex [
+	list selectItem: anIndex
+]
+
 { #category : #accessing }
 SpEditableList >> title [
 	^ title
@@ -210,4 +265,9 @@ SpEditableList >> topButton [
 { #category : #accessing }
 SpEditableList >> upButton [
 	^ upButton
+]
+
+{ #category : #api }
+SpEditableList >> whenSelectionChangedDo: aBlockClosure [ 
+	list whenSelectionChangedDo: aBlockClosure
 ]

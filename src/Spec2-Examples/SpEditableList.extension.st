@@ -5,7 +5,7 @@ SpEditableList class >> example [
 	<sampleInstance>
 	| presenter |
 	presenter := self new
-		list: self selectors;
+		items: self selectors;
 		openWithSpec;
 		yourself.
 
