@@ -37,6 +37,11 @@ SpToolBarButtonMorph >> badgeTextColor [
 	^ self theme badgeTextColor
 ]
 
+{ #category : #'as yet unclassified' }
+SpToolBarButtonMorph >> configureWith: displayModel item: itemPresenter [
+	displayModel configureButton: self item: itemPresenter
+]
+
 { #category : #accessing }
 SpToolBarButtonMorph >> drawBadgeOn: aCanvas [
 	| badgeString badgeBounds textBounds textWidth textHeight width |
