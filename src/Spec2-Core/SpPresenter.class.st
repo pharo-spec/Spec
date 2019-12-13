@@ -412,9 +412,10 @@ SpPresenter >> defaultWindowPresenterClass [
 	^ SpWindowPresenter
 ]
 
-{ #category : #'as yet unclassified' }
-SpPresenter >> defer: aBlockClosure [ 
-	self application defer: aBlockClosure
+{ #category : #accessing }
+SpPresenter >> defer: aBlock [
+
+	self application defer: aBlock
 ]
 
 { #category : #private }
