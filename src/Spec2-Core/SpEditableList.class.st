@@ -29,34 +29,26 @@ Class {
 	#category : #'Spec2-Core-Widgets'
 }
 
-{ #category : #accessing }
-SpEditableList class >> buttonWidth [
-	^ 26
-]
-
 { #category : #spec }
 SpEditableList class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add:
 			(SpBoxLayout newHorizontal
-					add: #label;
-					add: #addButton width: self buttonWidth;
-					add: #removeButton width: self buttonWidth;
+					addLast: #addButton expand: false;
+					addLast: #removeButton expand: false;
 					yourself)
-			height: 25;
+			expand: false;
 		add:
 			(SpBoxLayout newHorizontal
 				add: #list;
 				add:
 					(SpBoxLayout newVertical
-							add: '';
-							add: #topButton height: self orderingButtonHeight;
-							add: #upButton height: self orderingButtonHeight;
-							add: #downButton height: self orderingButtonHeight;
-							add: #bottomButton height: self orderingButtonHeight;
-							add: ' ';
+							add: #topButton expand: false fill: false padding: 0;
+							add: #upButton expand: false fill: false padding: 0;
+							add: #downButton expand: false fill: false padding: 0;
+							add: #bottomButton expand: false fill: false padding: 0;
 							yourself)
-					width: 20;
+					expand: false;
 				yourself);
 		yourself
 ]
@@ -67,21 +59,15 @@ SpEditableList class >> new: aCollection [
 		
 ]
 
-{ #category : #accessing }
-SpEditableList class >> orderingButtonHeight [
-	^ 40
-]
-
 { #category : #spec }
 SpEditableList class >> withoutOrderingBar [
 	^ SpBoxLayout newVertical
 		add:
 			(SpBoxLayout newHorizontal
-					add: #label;
-					add: #addButton width: self buttonWidth;
-					add: #removeButton width: self buttonWidth;
+					addLast: #addButton expand: false;
+					addLast: #removeButton expand: false;
 					yourself)
-			height: 25;
+			expand: false;
 		add: #list;
 		yourself
 ]
@@ -172,21 +158,27 @@ SpEditableList >> initializePresenters [
 	topButton := self newButton.
 	bottomButton := self newButton.
 	addButton
+		addStyle: 'small';
 		icon: (self iconNamed: #addIcon);
 		help: 'Add a new item to the list'.
 	removeButton
+		addStyle: 'small';
 		icon: (self iconNamed: #removeIcon);
 		help: 'Remove a item from the list'.
 	upButton
+		addStyle: 'small';
 		icon: (self iconNamed: #upIcon);
 		help: 'Move this item up from one element'.
 	downButton
+		addStyle: 'small';
 		icon: (self iconNamed: #downIcon);
 		help: 'Move this item down from one element'.
 	topButton
+		addStyle: 'small';
 		icon: (self iconNamed: #topIcon);
 		help: 'Move this item on the first position of the list'.
 	bottomButton
+		addStyle: 'small';
 		icon: (self iconNamed: #bottomIcon);
 		help: 'Move this item on the last position of the list'
 ]
