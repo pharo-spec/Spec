@@ -60,6 +60,12 @@ SpTSearchable >> performSearch: item matching: pattern [
 		value: pattern
 ]
 
+{ #category : #private }
+SpTSearchable >> searchBlock [
+
+	^ searchBlock
+]
+
 { #category : #accessing }
 SpTSearchable >> searchMatching: aBlock [
 	"Defines a block to perform a search on the model objects. 
