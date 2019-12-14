@@ -23,6 +23,12 @@ SpTSearchable >> enableSearch [
 	searchEnabled := true
 ]
 
+{ #category : #testing }
+SpTSearchable >> hasCustomSearch [
+
+	^ searchBlock notNil
+]
+
 { #category : #initialization }
 SpTSearchable >> initialize [
 	
@@ -58,12 +64,6 @@ SpTSearchable >> performSearch: item matching: pattern [
 	^ searchBlock 
 		value: item 
 		value: pattern
-]
-
-{ #category : #private }
-SpTSearchable >> searchBlock [
-
-	^ searchBlock
 ]
 
 { #category : #accessing }
