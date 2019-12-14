@@ -47,6 +47,6 @@ SpMorphicTableDataSource >> searchText: aString [
 	aString isEmptyOrNil ifTrue: [ ^ #() ].
 	^ Array streamContents: [ :stream |
 		self elements withIndexDo: [ :each :index |
-			((self toString: each) beginsWith: aString)
+			(self model performSearch: each matching: aString)
 				ifTrue: [ stream nextPut: index ] ] ]
 ]

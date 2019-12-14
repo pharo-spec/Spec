@@ -17,11 +17,15 @@ SpTreeTableSearchTest >> initializeTestedInstance [
 ]
 
 { #category : #tests }
-SpTreeTableSearchTest >> testTypePerformsSearch [
+SpTreeTableSearchTest >> selectIndex: index [ 
 
-	self presenter selection selectPath: #(1). "10"
-	self adapter type: '2'. 
-	self 
-		assert: self presenter selection selectedPath
-		equals: #(2) "20"
+	self presenter selection selectPath: { index }
+]
+
+{ #category : #tests }
+SpTreeTableSearchTest >> selectedIndex [
+
+	^ self presenter selection selectedPath 
+		ifNotEmpty: #first
+		ifEmpty: [ 0 ]
 ]

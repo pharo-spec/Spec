@@ -43,14 +43,6 @@ SpMorphicListDataSource >> headerColumn: column [
 		yourself
 ]
 
-{ #category : #private }
-SpMorphicListDataSource >> isMatch: anObject pattern: aString [
-	| text |
-	
-	text := (self model displayValueOf: anObject) trimBoth asLowercase.
-	^ text beginsWith: aString
-]
-
 { #category : #accessing }
 SpMorphicListDataSource >> listModel [
 	^ model model
@@ -115,7 +107,7 @@ SpMorphicListDataSource >> searchText: aString [
 	search := aString trimBoth asLowercase.
 	^ Array streamContents: [ :stream |
 		self elements withIndexDo: [ :each :rowIndex | 
-			(self isMatch: each pattern: search) 
+			(self model performSearch: each matching: search) 
 				ifTrue: [ stream nextPut: rowIndex ] ] ]
 ]
 

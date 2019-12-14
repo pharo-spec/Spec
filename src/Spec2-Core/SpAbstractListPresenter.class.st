@@ -102,7 +102,6 @@ SpAbstractListPresenter >> enableItemSubstringFilter [
 SpAbstractListPresenter >> initialize [
 
 	super initialize.
-	self initializeSearch.
 	
 	activationBlock := [ ].
 	verticalAlignment := SpVerticalAlignment new.
@@ -114,12 +113,6 @@ SpAbstractListPresenter >> initialize [
 	self activateOnDoubleClick.
 
 	self registerEvents
-]
-
-{ #category : #initialization }
-SpAbstractListPresenter >> initializeSearch [
-
-	self enableSearch
 ]
 
 { #category : #testing }

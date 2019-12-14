@@ -172,7 +172,7 @@ SpListPresenter >> icons: aBlock [
 SpListPresenter >> initialize [
 
 	super initialize.
-	self enableSearch.
+	self initializeTSearchable.
 	autoDeselect := true.
 	allowToSelect := true.
 	display := [ :object | object asStringOrText ]

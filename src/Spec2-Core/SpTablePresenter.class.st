@@ -68,7 +68,7 @@ SpTablePresenter >> hideColumnHeaders [
 SpTablePresenter >> initialize [ 
 
 	super initialize.
-	self enableSearch.
+	self initializeTSearchable.
 	showColumnHeaders := true.
 	columns := #().
 	isResizable := false
@@ -88,6 +88,12 @@ SpTablePresenter >> isResizable: aBoolean [
 SpTablePresenter >> isShowingColumnHeaders [
 
 	^ showColumnHeaders
+]
+
+{ #category : #private }
+SpTablePresenter >> searchValueOf: anObject [
+	
+	^ anObject asString
 ]
 
 { #category : #api }

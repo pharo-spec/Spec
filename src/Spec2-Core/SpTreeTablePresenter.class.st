@@ -147,6 +147,7 @@ SpTreeTablePresenter >> hideColumnHeaders [
 { #category : #initialization }
 SpTreeTablePresenter >> initialize [
 	super initialize.
+	self initializeTSearchable.
 
 	self withScrollBars.
 	
@@ -158,7 +159,6 @@ SpTreeTablePresenter >> initialize [
 	childrenBlock := [ :item | #() ].
 	roots := #().
 
-	self enableSearch.
 	self beSingleSelection.
 	self activateOnDoubleClick.
 	self registerEvents
@@ -230,6 +230,12 @@ SpTreeTablePresenter >> roots: aCollection [
 
 	roots := aCollection.
 	self selection clearSelection
+]
+
+{ #category : #private }
+SpTreeTablePresenter >> searchValueOf: item [ 
+
+	^ item asString
 ]
 
 { #category : #api }
