@@ -848,6 +848,12 @@ SpPresenter >> newTextInput [
 ]
 
 { #category : #widgets }
+SpPresenter >> newToggleButton [
+
+	^ self instantiate: SpToggleButtonPresenter
+]
+
+{ #category : #widgets }
 SpPresenter >> newToolBar [
 
 	^ self instantiate: SpToolBarPresenter
