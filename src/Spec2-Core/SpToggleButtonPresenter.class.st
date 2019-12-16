@@ -29,7 +29,7 @@ SpToggleButtonPresenter >> action [
 { #category : #initialization }
 SpToggleButtonPresenter >> action: aBlock [
 	
-	^ action := aBlock
+	action := aBlock
 ]
 
 { #category : #accessing }
