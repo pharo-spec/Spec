@@ -48,7 +48,7 @@ SpToggleButtonPresenter >> icon: anIcon [
 SpToggleButtonPresenter >> initialize [
 
 	super initialize.
-	action := [  ]
+	action := [ ]
 ]
 
 { #category : #'api-events' }
