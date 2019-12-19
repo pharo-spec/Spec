@@ -3,7 +3,8 @@ This widget allows you to edit a list of items :
 - add / remove an item to/from the list 
 - order the list by moving elements up/down/top/bottom.
 
-The default behavior is to do a copy of the list. The widget works with its internal copy. It allows the user to accept / reject changes (for example by opening the widget in a DialogWindow) before affecting the original list. It is your responsability to copy EditableList items back to the original list.
+The default behavior is to work directly on the model collection. It means the collection has to support #add:, #remove: methods (e.g. OrderedCollection).
+If you prefer, you can do a copy of the list and give the copy to the EditableList. It will allow the user to accept / reject changes (for example by opening the widget in a DialogWindow) before affecting the original list. If you use a copy of your collection, then it is your responsability to copy EditableList items back to the original list.
 
 The addItemBlock is used to provide a way to give the item to add (e.g. a UIManager default chooseFrom: values:).
 
@@ -55,7 +56,7 @@ SpEditableList class >> defaultSpec [
 
 { #category : #'instance creation' }
 SpEditableList class >> new: aCollection [
-	^ self new items: aCollection copy.
+	^ self new items: aCollection.
 		
 ]
 
@@ -90,39 +91,28 @@ SpEditableList >> bottomButton [
 { #category : #initialization }
 SpEditableList >> connectPresenters [
 	super connectPresenters.
-	addButton
-		action: [ | requirement |
-			requirement := addItemBlock value.
-			requirement
-				ifNotNil: [ self items: (self list model items copyWith: requirement) ] ].
-	removeButton
-		action: [ self
-				items: (list model items copyWithoutIndex: list selection selectedIndex) ].
-	topButton
-		action: [ self moveElementAt: list selection selectedIndex to: 1 ].
-	bottomButton
-		action: [ self
-				moveElementAt: list selection selectedIndex
-				to: list model items size ].
-	upButton
-		action: [ self
-				moveElementAt: list selection selectedIndex
-				to: list selection selectedIndex - 1 ].
-	downButton
-		action: [ self
-				moveElementAt: list selection selectedIndex
-				to: list selection selectedIndex + 1 ]
+	addButton action: [ 
+		| newItem |
+		newItem := addItemBlock value.
+		newItem ifNotNil: [ 
+			self items add: newItem.
+			self refresh. ] ].
+	removeButton 
+		action: [ self items remove: self selectedItem.
+					self refresh. ].
+	topButton action: [ self moveElementAt: self selectedIndex to: 1 ].
+	bottomButton action: [ 
+		self moveElementAt: self selectedIndex to: self items size ].
+	upButton action: [ 
+		self moveElementAt: self selectedIndex to: self selectedIndex - 1 ].
+	downButton action: [ 
+		self moveElementAt: self selectedIndex to: self selectedIndex + 1 ]
 ]
 
 { #category : #api }
 SpEditableList >> display: aBlock [
 
 	list display: aBlock
-]
-
-{ #category : #accessing }
-SpEditableList >> displayedItems [
-	^ list model items
 ]
 
 { #category : #accessing }
@@ -188,6 +178,11 @@ SpEditableList >> initializeWindow: aWindowPresenter [
 	aWindowPresenter title: self title
 ]
 
+{ #category : #accessing }
+SpEditableList >> items [
+	^ list model items
+]
+
 { #category : #private }
 SpEditableList >> items: anItemList [
 	list items: anItemList.
@@ -205,15 +200,18 @@ SpEditableList >> list [
 
 { #category : #private }
 SpEditableList >> moveElementAt: index to: newIndex [
-	| elementToMove orderedList |
-	(newIndex < 1 or: [ newIndex > list items size ])
-		ifTrue: [ ^ self ].
+	"WARNING: this method can only be used if the model is an OrderedCollection"
+	| elementToMove |
+	
+	(newIndex between: 1 and: self items size) 
+		ifFalse: [ ^ self ].
+		
 	elementToMove := list itemAt: index.
-	orderedList := list items copy asOrderedCollection
-		removeAt: index;
-		add: elementToMove beforeIndex: newIndex;
-		yourself.
-	self items: orderedList.
+	self items 
+		remove: elementToMove;
+		add: elementToMove beforeIndex: newIndex.
+	
+	self refresh.
 	self list selectIndex: newIndex
 ]
 
@@ -229,6 +227,11 @@ SpEditableList >> performOkAction [
 	okBlock value
 ]
 
+{ #category : #api }
+SpEditableList >> refresh [
+	self items: self items
+]
+
 { #category : #accessing }
 SpEditableList >> removeButton [
 	^ removeButton
@@ -237,6 +240,16 @@ SpEditableList >> removeButton [
 { #category : #api }
 SpEditableList >> selectItem: anIndex [
 	list selectItem: anIndex
+]
+
+{ #category : #api }
+SpEditableList >> selectedIndex [
+	^ list selection selectedIndex
+]
+
+{ #category : #api }
+SpEditableList >> selectedItem [
+	^ list selection selectedItem
 ]
 
 { #category : #accessing }

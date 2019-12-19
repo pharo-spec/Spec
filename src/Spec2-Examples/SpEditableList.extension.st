@@ -5,7 +5,8 @@ SpEditableList class >> example [
 	<sampleInstance>
 	| presenter |
 	presenter := self new
-		items: self selectors;
+		items: self selectors asOrderedCollection;
+		addItemBlock: [ 1 ];
 		openWithSpec;
 		yourself.
 
