@@ -56,3 +56,22 @@ SpEditableListTest >> testMoveElementAtTo [
 		assert: presenter items asArray
 		equals: {'BBB' . 'CCC' . 'AAA'}
 ]
+
+{ #category : #tests }
+SpEditableListTest >> testRemoveBlockExecutedWhenSelectedItemRemoved [
+	| executed selectedItem |
+	executed := false.
+	presenter 
+		items: #(1 2 3) asOrderedCollection;
+		removeItemBlock: [ :item | executed := true. selectedItem := item ];
+		selectItem: 2.
+	
+	presenter removeButton click.
+	
+	self 
+		assert: executed
+		description: 'removeBlock not exeuted when selected item removed!'.
+	self 
+		assert: selectedItem
+		equals: 2
+]

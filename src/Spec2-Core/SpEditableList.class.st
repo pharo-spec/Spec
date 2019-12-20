@@ -25,7 +25,8 @@ Class {
 		'bottomButton',
 		'addItemBlock',
 		'okBlock',
-		'label'
+		'label',
+		'removeItemBlock'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -98,8 +99,7 @@ SpEditableList >> connectPresenters [
 			self items add: newItem.
 			self refresh. ] ].
 	removeButton 
-		action: [ self items remove: self selectedItem.
-					self refresh. ].
+		action: [ removeItemBlock cull: self selectedItem ].
 	topButton action: [ self moveElementAt: self selectedIndex to: 1 ].
 	bottomButton action: [ 
 		self moveElementAt: self selectedIndex to: self items size ].
@@ -124,7 +124,10 @@ SpEditableList >> downButton [
 SpEditableList >> initialize [
 	super initialize.
 	title := 'Title'.
-	okBlock := [  ]
+	okBlock := [  ].
+	removeItemBlock := [ :item | 
+								self items remove: item.
+								self refresh. ]
 ]
 
 { #category : #initialization }
@@ -235,6 +238,17 @@ SpEditableList >> refresh [
 { #category : #accessing }
 SpEditableList >> removeButton [
 	^ removeButton
+]
+
+{ #category : #api }
+SpEditableList >> removeItem: anObject [
+	self items remove: anObject.
+	list selection unselectAll
+]
+
+{ #category : #api }
+SpEditableList >> removeItemBlock: aBlock [
+	removeItemBlock := aBlock.
 ]
 
 { #category : #api }
