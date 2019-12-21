@@ -18,7 +18,8 @@ BaselineOfSpec2 >> baseline: spec [
 				package: 'Spec2-Help';
 				package: 'Spec2-Commands' with: [ spec requires: #('Commander2') ];
 				package: 'Spec2-Deprecated' with: [ spec requires: #('Spec2-Tests' 'Spec2-Adapters-Morphic' 'Spec2-Commander2') ];
-				package: 'Spec2-Layout';
+				package: 'Spec2-ObservableSlot';
+				package: 'Spec2-Layout' with: [ spec requires: #('Spec2-ObservableSlot') ];
 				package: 'Spec2-Transmission';
 				package: 'Spec2-Adapters-Morphic' with: [ spec requires: #('Spec2-Core') ];
 				package: 'Spec2-Adapters-Stub' with: [ spec requires: #('Spec2-Core') ];
@@ -30,7 +31,8 @@ BaselineOfSpec2 >> baseline: spec [
 				package: 'Spec2-Commander2-ContactBook-Extensions' with: [ spec requires: #('Spec2-Commander2-ContactBook') ];
 				package: 'Spec2-Tests' with: [ spec requires: #('Spec2-Examples') ];
 				package: 'Spec2-Morphic-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
-				package: 'Spec2-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic') ] ].
+				package: 'Spec2-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
+				package: 'Spec2-Adapters-Morphic-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Backend-Tests') ]].
 
 	spec
 		for: #'pharo7.x'
@@ -61,7 +63,7 @@ BaselineOfSpec2 >> baseline: spec [
 BaselineOfSpec2 >> commander2: spec [
 	spec
 		baseline: 'Commander2'
-		with: [ spec repository: 'github://pharo-spec/Commander2:v2.x.x/src' ]
+		with: [ spec repository: 'github://pharo-spec/Commander2:v2.1.x/src' ]
 ]
 
 { #category : #dependencies }

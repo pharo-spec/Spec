@@ -49,6 +49,12 @@ SpMorphicWindowAdapter >> addContent: aMorph toWindow: aSpecWindow [
 	self add: containerMorph toWindow: aSpecWindow
 ]
 
+{ #category : #initialization }
+SpMorphicWindowAdapter >> addFocusRotationKeyBindings [
+	"Windows should not process keybindings (because then the active widget will not get 
+	 the event"
+]
+
 { #category : #private }
 SpMorphicWindowAdapter >> addMenuTo: aMorph [
 	| menuMorph |
@@ -106,6 +112,12 @@ SpMorphicWindowAdapter >> askOkToClose [
 	^ self model askOkToClose
 ]
 
+{ #category : #protocol }
+SpMorphicWindowAdapter >> beep [ 
+	
+	widget flash
+]
+
 { #category : #factory }
 SpMorphicWindowAdapter >> buildWidget [
 
@@ -135,6 +147,14 @@ SpMorphicWindowAdapter >> centered [
 SpMorphicWindowAdapter >> close [
 
 	self widget ifNotNil: [ :w | w close ].
+]
+
+{ #category : #'widget API' }
+SpMorphicWindowAdapter >> delete [
+
+	self widgetDo: [ :w | 
+		w delete. 
+		self application windowClosed: self ]
 ]
 
 { #category : #protocol }

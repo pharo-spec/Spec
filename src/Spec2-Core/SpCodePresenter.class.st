@@ -9,10 +9,9 @@ Class {
 		'#doItContext => SpObservableSlot',
 		'#doItReceiver => SpObservableSlot',
 		'#behavior => SpObservableSlot',
-		'#syntaxHighlight => SpObservableSlot',
-		'#contextKeyBindings'
+		'#syntaxHighlight => SpObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : #'Spec2-Core-Widgets-Text'
 }
 
 { #category : #specs }
@@ -88,19 +87,6 @@ SpCodePresenter >> codeCommandGroup [
 	^ group
 ]
 
-{ #category : #'api-shortcuts' }
-SpCodePresenter >> contextKeyBindings [
-	"contextKeyBindings stores a KMCategory with keybindings for this presenter"
-
-	^ contextKeyBindings
-]
-
-{ #category : #'api-shortcuts' }
-SpCodePresenter >> contextKeyBindings: aDictionary [
-
-	contextKeyBindings := aDictionary
-]
-
 { #category : #'api-doIt' }
 SpCodePresenter >> doItContext [
 
@@ -140,9 +126,6 @@ SpCodePresenter >> initialize [
 
 	super initialize.
 	
-	behavior := nil.
-	doItContext := nil.
-	doItReceiver := nil.
 	self withSyntaxHighlight.
 	
 	self registerEventsForStyling.

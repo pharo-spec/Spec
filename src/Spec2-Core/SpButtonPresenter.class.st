@@ -109,8 +109,6 @@ SpButtonPresenter >> initialize [
 			self registerShortcut: newShortcut.
 			self changed: #label ].
 
-	self bindKeyCombination: Character space toAction: [ self action ].
-
 	self color: nil
 ]
 
@@ -147,9 +145,9 @@ SpButtonPresenter >> performAction [
 { #category : #private }
 SpButtonPresenter >> registerShortcut: newShortcut [
 	| receiver |
+	
 	receiver := self window.
 	(receiver isNil or: [ newShortcut isNil ]) ifTrue: [ ^ self ].
-	
 	receiver presenter
 		bindKeyCombination: newShortcut
 		toAction: [ self performAction ]
@@ -168,7 +166,7 @@ SpButtonPresenter >> shortcut: aShortcut [
 { #category : #private }
 SpButtonPresenter >> shortcutCharacter [
 
-	^ self shortcut ifNotNil: [ :s | s spCurrentCharacter ]
+	^ self shortcut ifNotNil: [ :s | s platformCharacter ]
 ]
 
 { #category : #morphic }
@@ -206,9 +204,9 @@ SpButtonPresenter >> whenActionPerformedDo: aBlock [
 ]
 
 { #category : #'api-events' }
-SpButtonPresenter >> whenActivatedDo: aBlockClosure [ 
+SpButtonPresenter >> whenActivatedDo: aBlock [ 
 	
-	^ self whenActionPerformedDo: aBlockClosure 
+	^ self whenActionPerformedDo: aBlock 
 ]
 
 { #category : #'api-events' }

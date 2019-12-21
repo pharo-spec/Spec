@@ -18,6 +18,7 @@ SpExecutableLayout >> adapterName [
 { #category : #accessing }
 SpExecutableLayout >> add: aName withConstraints: aBlock [
 	| constraints |
+
 	constraints := self constraintsClass new.
 	aBlock value: constraints.
 	children at: aName put: constraints
@@ -74,6 +75,18 @@ SpExecutableLayout >> children [
 SpExecutableLayout >> constraintsClass [
 
 	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+SpExecutableLayout >> deepPresenters [
+	"answer all presenters in the layout hierarchy"
+	
+	^ self presenters
+		inject: #()
+		into: [ :all :each | 
+			all, (each isSpLayout 
+				ifTrue: [ each deepPresenters ]
+				ifFalse: [ { each } ]) ]
 ]
 
 { #category : #initialization }
@@ -134,4 +147,12 @@ SpExecutableLayout >> subpresenterOrLayoutNamed: presenterNameOrLayout of: aPres
 	^ aPresenter additionalSubpresentersMap
 		at: presenterNameOrLayout
 		ifAbsent: [ aPresenter presenterAt: presenterNameOrLayout ifAbsent: [ self error: 'No presenter named "' , presenterNameOrLayout , '" was found in ' , aPresenter printString ] ]
+]
+
+{ #category : #accessing }
+SpExecutableLayout >> traversePresentersDo: aBlock [
+
+	self 
+		traversePresentersDo: aBlock 
+		excluding: Set new
 ]

@@ -128,7 +128,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectItemsAddsPathsToSelectedP
 
 	self 
 		assertCollection: presenter selection selectedPaths 
-		hasSameElements: { #(1 3) . #(2 3) }
+		hasSameElements: { #(1 3) . #(1 1 3) }
 ]
 
 { #category : #'tests-select-item' }
@@ -165,7 +165,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectItemsThenSelectOutsideRan
 	
 	self 
 		assertCollection: presenter selection selectedPaths
-		hasSameElements: { #(2 3) . #(1 3) }
+		hasSameElements: { #(1 1 3) . #(1 3) }
 ]
 
 { #category : #'tests-select-item' }
@@ -176,7 +176,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectMultipleItemAddsAllToSele
 		selectItem: 30.
 	self 
 		assertCollection: presenter selection selectedPaths
-		hasSameElements: { #(1 3) . #(3 3) }
+		hasSameElements: { #(1 3) . #(1 2 3) }
 ]
 
 { #category : #'tests-select-item' }

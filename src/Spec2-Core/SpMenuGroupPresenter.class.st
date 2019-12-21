@@ -48,7 +48,7 @@ SpMenuGroupPresenter >> add: aName target: targetObject selector: aSelector [
 SpMenuGroupPresenter >> addItem: aBlock [
 	| item |
 	
-	item := SpMenuItemPresenter new.
+	item := self instantiate: SpMenuItemPresenter.
 	aBlock value: item.
 	self addMenuItem: item
 ]
@@ -80,6 +80,12 @@ SpMenuGroupPresenter >> buildWithSpecLayout: aSpecLayout [
 	widget := adapter widget.
 	self announce: (SpWidgetBuilt model: self widget: widget).
 	^ widget
+]
+
+{ #category : #testing }
+SpMenuGroupPresenter >> canTakeKeyboardFocus [
+
+	^ false
 ]
 
 { #category : #'api-building' }
