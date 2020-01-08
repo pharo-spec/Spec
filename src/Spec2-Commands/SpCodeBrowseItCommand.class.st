@@ -5,6 +5,11 @@ Class {
 }
 
 { #category : #default }
+SpCodeBrowseItCommand class >> defaultIconName [
+	^#smallSystemBrowser
+]
+
+{ #category : #default }
 SpCodeBrowseItCommand class >> defaultName [
 
 	^ 'Browse it'
