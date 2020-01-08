@@ -64,7 +64,7 @@ SpCodeSelectionCommand >> selectLine [
 { #category : #accessing }
 SpCodeSelectionCommand >> selection [
 	| selection |
-
+	self flag: 'I wonder about the naming of the classes: should actions based on selection not be available also on text presenters?'.
 	selection := context selection.
 	selection ifEmpty: [ ^ '' ].
 	self flag: 'The following code has been commented: it seems wrong and provokes the current context to be restarted in the debugger'.
