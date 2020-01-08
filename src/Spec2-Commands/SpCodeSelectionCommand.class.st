@@ -67,7 +67,8 @@ SpCodeSelectionCommand >> selection [
 
 	selection := context selection.
 	selection ifEmpty: [ ^ '' ].
-	context accept.
+	self flag: 'The following code has been commented: it seems wrong and provokes the current context to be restarted in the debugger'.
+	"context accept."
 	^ context text copyFrom: selection first to: selection last
 ]
 
