@@ -1,6 +1,6 @@
 Class {
 	#name : #SpCodeBrowseItCommand,
-	#superclass : #SpCodeSelectionCommand,
+	#superclass : #SpCodeBrowsingCommand,
 	#category : #'Spec2-Commands-Code'
 }
 
