@@ -1,16 +1,16 @@
 Class {
-	#name : #SpEditableListTest,
+	#name : #SpEditableListPresenterTest,
 	#superclass : #SpSmokeTest,
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
 { #category : #running }
-SpEditableListTest >> classToTest [
-	^ SpEditableList
+SpEditableListPresenterTest >> classToTest [
+	^ SpEditableListPresenter
 ]
 
 { #category : #tests }
-SpEditableListTest >> testCanAddNewItem [
+SpEditableListPresenterTest >> testCanAddNewItem [
 	presenter 
 		items: #(1 2 3) asOrderedCollection;
 		addItemBlock: [ 4 ].
@@ -23,7 +23,7 @@ SpEditableListTest >> testCanAddNewItem [
 ]
 
 { #category : #tests }
-SpEditableListTest >> testCanCancelAddNewItem [
+SpEditableListPresenterTest >> testCanCancelAddNewItem [
 	presenter 
 		items: #(1 2 3) asOrderedCollection;
 		addItemBlock: [ nil ].
@@ -36,7 +36,7 @@ SpEditableListTest >> testCanCancelAddNewItem [
 ]
 
 { #category : #tests }
-SpEditableListTest >> testCanRemoveSelectedItem [
+SpEditableListPresenterTest >> testCanRemoveSelectedItem [
 	presenter 
 		items: #(1 2 3) asOrderedCollection;
 		selectItem: 2.
@@ -49,7 +49,7 @@ SpEditableListTest >> testCanRemoveSelectedItem [
 ]
 
 { #category : #tests }
-SpEditableListTest >> testMoveElementAtTo [
+SpEditableListPresenterTest >> testMoveElementAtTo [
 	presenter items: {'AAA' . 'BBB' . 'CCC'} asOrderedCollection.
 	presenter moveElementAt: 1 to: 3.
 	self
@@ -58,7 +58,7 @@ SpEditableListTest >> testMoveElementAtTo [
 ]
 
 { #category : #tests }
-SpEditableListTest >> testRemoveBlockExecutedWhenSelectedItemRemoved [
+SpEditableListPresenterTest >> testRemoveBlockExecutedWhenSelectedItemRemoved [
 	| executed selectedItem |
 	executed := false.
 	presenter 

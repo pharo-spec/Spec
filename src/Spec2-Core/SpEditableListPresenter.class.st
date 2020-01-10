@@ -12,7 +12,7 @@ Example:
 self example
 "
 Class {
-	#name : #SpEditableList,
+	#name : #SpEditableListPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'title',
@@ -32,7 +32,7 @@ Class {
 }
 
 { #category : #spec }
-SpEditableList class >> defaultSpec [
+SpEditableListPresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add:
 			(SpBoxLayout newHorizontal
@@ -56,13 +56,13 @@ SpEditableList class >> defaultSpec [
 ]
 
 { #category : #'instance creation' }
-SpEditableList class >> new: aCollection [
+SpEditableListPresenter class >> new: aCollection [
 	^ self new items: aCollection.
 		
 ]
 
 { #category : #spec }
-SpEditableList class >> withoutOrderingBar [
+SpEditableListPresenter class >> withoutOrderingBar [
 	^ SpBoxLayout newVertical
 		add:
 			(SpBoxLayout newHorizontal
@@ -75,22 +75,22 @@ SpEditableList class >> withoutOrderingBar [
 ]
 
 { #category : #accessing }
-SpEditableList >> addButton [
+SpEditableListPresenter >> addButton [
 	^ addButton
 ]
 
 { #category : #api }
-SpEditableList >> addItemBlock: aBlock [
+SpEditableListPresenter >> addItemBlock: aBlock [
 	addItemBlock := aBlock.
 ]
 
 { #category : #accessing }
-SpEditableList >> bottomButton [
+SpEditableListPresenter >> bottomButton [
 	^ bottomButton
 ]
 
 { #category : #initialization }
-SpEditableList >> connectPresenters [
+SpEditableListPresenter >> connectPresenters [
 	super connectPresenters.
 	addButton action: [ 
 		| newItem |
@@ -110,18 +110,18 @@ SpEditableList >> connectPresenters [
 ]
 
 { #category : #api }
-SpEditableList >> display: aBlock [
+SpEditableListPresenter >> display: aBlock [
 
 	list display: aBlock
 ]
 
 { #category : #accessing }
-SpEditableList >> downButton [
+SpEditableListPresenter >> downButton [
 	^ downButton
 ]
 
 { #category : #initialization }
-SpEditableList >> initialize [
+SpEditableListPresenter >> initialize [
 	super initialize.
 	title := 'Title'.
 	okBlock := [  ].
@@ -131,7 +131,7 @@ SpEditableList >> initialize [
 ]
 
 { #category : #initialization }
-SpEditableList >> initializeDialogWindow: aWindow [
+SpEditableListPresenter >> initializeDialogWindow: aWindow [
 
 	aWindow 
 		addButton: 'Ok' 
@@ -141,7 +141,7 @@ SpEditableList >> initializeDialogWindow: aWindow [
 ]
 
 { #category : #initialization }
-SpEditableList >> initializePresenters [
+SpEditableListPresenter >> initializePresenters [
 	label := self newLabel.
 	list := self newList.
 	addButton := self newButton.
@@ -177,32 +177,32 @@ SpEditableList >> initializePresenters [
 ]
 
 { #category : #initialization }
-SpEditableList >> initializeWindow: aWindowPresenter [
+SpEditableListPresenter >> initializeWindow: aWindowPresenter [
 	aWindowPresenter title: self title
 ]
 
 { #category : #accessing }
-SpEditableList >> items [
+SpEditableListPresenter >> items [
 	^ list model items
 ]
 
 { #category : #private }
-SpEditableList >> items: anItemList [
+SpEditableListPresenter >> items: anItemList [
 	list items: anItemList.
 ]
 
 { #category : #accessing }
-SpEditableList >> label: aString [
+SpEditableListPresenter >> label: aString [
 	label label: aString 
 ]
 
 { #category : #accessing }
-SpEditableList >> list [
+SpEditableListPresenter >> list [
 	^ list
 ]
 
 { #category : #private }
-SpEditableList >> moveElementAt: index to: newIndex [
+SpEditableListPresenter >> moveElementAt: index to: newIndex [
 	"WARNING: this method can only be used if the model is an OrderedCollection"
 	| elementToMove |
 	
@@ -219,74 +219,74 @@ SpEditableList >> moveElementAt: index to: newIndex [
 ]
 
 { #category : #api }
-SpEditableList >> okAction: aBlock [
+SpEditableListPresenter >> okAction: aBlock [
 
 	okBlock := aBlock
 ]
 
 { #category : #private }
-SpEditableList >> performOkAction [
+SpEditableListPresenter >> performOkAction [
 
 	okBlock value
 ]
 
 { #category : #api }
-SpEditableList >> refresh [
+SpEditableListPresenter >> refresh [
 	self items: self items
 ]
 
 { #category : #accessing }
-SpEditableList >> removeButton [
+SpEditableListPresenter >> removeButton [
 	^ removeButton
 ]
 
 { #category : #api }
-SpEditableList >> removeItem: anObject [
+SpEditableListPresenter >> removeItem: anObject [
 	self items remove: anObject.
 	list selection unselectAll
 ]
 
 { #category : #api }
-SpEditableList >> removeItemBlock: aBlock [
+SpEditableListPresenter >> removeItemBlock: aBlock [
 	removeItemBlock := aBlock.
 ]
 
 { #category : #api }
-SpEditableList >> selectItem: anIndex [
+SpEditableListPresenter >> selectItem: anIndex [
 	list selectItem: anIndex
 ]
 
 { #category : #api }
-SpEditableList >> selectedIndex [
+SpEditableListPresenter >> selectedIndex [
 	^ list selection selectedIndex
 ]
 
 { #category : #api }
-SpEditableList >> selectedItem [
+SpEditableListPresenter >> selectedItem [
 	^ list selection selectedItem
 ]
 
 { #category : #accessing }
-SpEditableList >> title [
+SpEditableListPresenter >> title [
 	^ title
 ]
 
 { #category : #accessing }
-SpEditableList >> title: aTitle [
+SpEditableListPresenter >> title: aTitle [
 	title := aTitle 
 ]
 
 { #category : #accessing }
-SpEditableList >> topButton [
+SpEditableListPresenter >> topButton [
 	^ topButton
 ]
 
 { #category : #accessing }
-SpEditableList >> upButton [
+SpEditableListPresenter >> upButton [
 	^ upButton
 ]
 
 { #category : #api }
-SpEditableList >> whenSelectionChangedDo: aBlockClosure [ 
+SpEditableListPresenter >> whenSelectionChangedDo: aBlockClosure [ 
 	list whenSelectionChangedDo: aBlockClosure
 ]
