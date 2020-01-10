@@ -51,7 +51,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSelectItemSetsSelectedItem [
 SpTreeTablePresenterSingleSelectionTest >> testSelectItemSetsSelectedPath [
 
 	presenter selectItem: 20.
-	self assert: presenter selection selectedPath equals: #(2 3)
+	self assert: presenter selection selectedPath equals: #(1 1 3)
 ]
 
 { #category : #'tests-select-index' }
@@ -140,7 +140,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionChang
 		whenSelectionChangedDo: [ :selection | selectedPath := selection selectedPath ].
 	presenter selectItem: 20.
 	
-	self assert: selectedPath equals: #(2 3)
+	self assert: selectedPath equals: #(1 1 3)
 ]
 
 { #category : #'tests-select-item' }
@@ -180,7 +180,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectPathOutsideRangeRaisesSe
 		whenSelectionChangedDo: [ :selection | selectedPath := selection selectedPath ].
 	presenter selectPath: #(4).
 	
-	self assert: selectedPath equals: #()
+	self assert: selectedPath equals: nil
 ]
 
 { #category : #'tests-select-index' }

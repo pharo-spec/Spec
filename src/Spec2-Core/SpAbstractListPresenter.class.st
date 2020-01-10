@@ -105,7 +105,7 @@ SpAbstractListPresenter >> initialize [
 	
 	activationBlock := [ ].
 	verticalAlignment := SpVerticalAlignment new.
-	
+
 	self withScrollBars.
 	self model: 	self newEmptyModel.
 
@@ -273,7 +273,7 @@ SpAbstractListPresenter >> selectionMode: aMode [
 	
 	selectionMode ifNotNil: [ 
 		selectionMode transferSubscriptionsTo: aMode ].
-	selectionMode := aMode.
+	selectionMode := aMode
 ]
 
 { #category : #api }
@@ -312,11 +312,12 @@ SpAbstractListPresenter >> verticalAlignment [
 { #category : #'api-events' }
 SpAbstractListPresenter >> whenActivatedDo: aBlock [ 
 	
-	activationBlock := aBlock.
+	activationBlock := aBlock
 ]
 
 { #category : #'api-events' }
 SpAbstractListPresenter >> whenItemFilterBlockChangedDo: aBlock [
+
 	self property: #itemFilter whenChangedDo: aBlock
 ]
 
@@ -324,6 +325,12 @@ SpAbstractListPresenter >> whenItemFilterBlockChangedDo: aBlock [
 SpAbstractListPresenter >> whenModelChangedDo: aBlock [
 
 	model whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+SpAbstractListPresenter >> whenSearchChangedDo: aBlock [
+
+	self property: #searchEnabled whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

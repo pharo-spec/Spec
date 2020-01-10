@@ -34,6 +34,7 @@ SpTreeMultipleSelectionMode >> isMultipleSelection [
 SpTreeMultipleSelectionMode >> selectPath: aPath [ 
 	"Check comment in my superclass to know how to use selectPath:"
 	
+	aPath ifEmpty: [ ^ self unselectAll ].
 	(selection includes: aPath) ifTrue: [ ^ self ].
 	presenter itemAtPath: aPath ifAbsent: [ ^ self ].
 	
@@ -42,6 +43,12 @@ SpTreeMultipleSelectionMode >> selectPath: aPath [
 
 { #category : #selection }
 SpTreeMultipleSelectionMode >> selectPaths: pathArray [
+	(pathArray isEmpty 
+		or: [ 
+			pathArray size = 1 
+			and: [ pathArray first isEmpty] ]) 
+		ifTrue: [ ^ self unselectAll ].
+
 	pathArray
 		do: [ :path | presenter itemAtPath: path ifAbsent: [ ^ self ] ].
 	selection = pathArray ifTrue: [ ^ self ].
