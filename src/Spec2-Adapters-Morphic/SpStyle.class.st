@@ -40,7 +40,10 @@ SpStyle class >> createDefaultStyleSheet [
 		Geometry { #hResizing: true }		
 	],
 	.button [  
-		Geometry { #width: 100 }
+		Geometry { #width: 100 },
+		.small [
+		   Geometry { #width: 26 }
+		]
 	],
 	.checkBox [  
 		Geometry { #hResizing: true }
