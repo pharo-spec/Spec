@@ -10,7 +10,7 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-Support'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #configuring }
 SpDropListMorph >> configureWith: displayModel item: itemPresenter [ 
 	displayModel configureDropList: self item: itemPresenter
 ]

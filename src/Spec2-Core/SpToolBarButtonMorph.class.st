@@ -37,7 +37,7 @@ SpToolBarButtonMorph >> badgeTextColor [
 	^ self theme badgeTextColor
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #configuring}
 SpToolBarButtonMorph >> configureWith: displayModel item: itemPresenter [
 	displayModel configureButton: self item: itemPresenter
 ]
