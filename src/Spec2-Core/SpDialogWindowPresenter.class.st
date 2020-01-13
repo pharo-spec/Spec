@@ -48,6 +48,15 @@ SpDialogWindowPresenter >> addDefaultButton: aButtonPresenter [
 ]
 
 { #category : #accessing }
+SpDialogWindowPresenter >> addDefaultButton: aString do: aBlock [
+	"Adds button logic to dialog."
+	
+	defaultButton := self addButton: aString do: aBlock.
+	defaultButton addStyle: 'default'.
+	^ defaultButton
+]
+
+{ #category : #accessing }
 SpDialogWindowPresenter >> beCancel [
 
 	cancelled := true
