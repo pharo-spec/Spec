@@ -300,16 +300,37 @@ SpAbstractTextPresenter >> selectedClassOrMetaClass [
 
 { #category : #api }
 SpAbstractTextPresenter >> selection [
-	"Get the text selection.
+	self
+		deprecated:
+			'#selection was used to return an interval, and did not convey the correct meaning. Use #selectionInterval instead.'
+		transformWith: '`@receiver selection' -> '`@receiver selectionInterval'.
+	^ self selectionInterval
+]
+
+{ #category : #api }
+SpAbstractTextPresenter >> selection: anInterval [
+	self
+		deprecated:
+			'#selection: was used to set an interval, and did not convey the correct meaning. Use #selectionInterval: instead.'
+		transformWith:
+			'`@receiver selection: `@arg`'
+				-> '`@receiver selectionInterval: `@arg`'.
+	self selectionInterval: anInterval
+]
+
+{ #category : #api }
+SpAbstractTextPresenter >> selectionInterval [
+	"Get the text selection interval.
 	 I will update the selection from adapter first"
+	
 	self withAdapterDo: [ :anAdapter | 
 		self rawSelection: anAdapter selection ].
 	^ selection ifNil: [ ^ 1 to: 0 ]
 ]
 
 { #category : #api }
-SpAbstractTextPresenter >> selection: anInterval [
-	"Set the text selection without changing the readSelectionBlock"
+SpAbstractTextPresenter >> selectionInterval: anInterval [
+	"Set the text selection interval without changing the readSelectionBlock"
 
 	selection := anInterval
 ]
