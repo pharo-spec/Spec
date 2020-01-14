@@ -10,17 +10,6 @@ Class {
 }
 
 { #category : #private }
-SpCodeSelectionCommand >> afterSelectionInsertAndSelect: aString [
-	| selection |
-
-	selection := self context selection.
-	self context 
-		insert: aString 
-		at: selection last + 1.
-	self context selection: (selection last + 1 to: selection last + aString size)
-]
-
-{ #category : #private }
 SpCodeSelectionCommand >> evaluate: aString andDo: aBlock [
 	"Treat the current selection as an expression; evaluate it and invoke 
 	 aBlock with the result."
@@ -47,33 +36,19 @@ SpCodeSelectionCommand >> evaluateSelectionAndDo: aBlock [
 	If no selection is present select the current line."
 	| selection |
 
-	selection := self selectionOrLine.
-	selection ifEmpty: [ ^ '' ].
+	selection := self selection ifEmpty: [ ^ '' ].
 	^ self 
 		evaluate: selection 
 		andDo: aBlock
 ]
 
 { #category : #accessing }
-SpCodeSelectionCommand >> selectLine [
-
-	self context selectLine.
-	^ self selection
-]
-
-{ #category : #accessing }
 SpCodeSelectionCommand >> selection [
-	| selection |
-	self flag: 'I wonder about the naming of the classes: should actions based on selection not be available also on text presenters?'.
-	selection := context selection.
-	selection ifEmpty: [ ^ '' ].
-	self flag: 'The following code has been commented: it seems wrong and provokes the current context to be restarted in the debugger'.
-	"context accept."
-	^ context text copyFrom: selection first to: selection last
+	^context selectedText
 ]
 
 { #category : #accessing }
 SpCodeSelectionCommand >> selectionOrLine [
 	
-	^ self selection ifEmpty: [ self selectLine ]
+	^ context selectionOrLine
 ]

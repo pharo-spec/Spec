@@ -129,7 +129,7 @@ SpCodePresenter >> findClassFrom: aString [
 
 { #category : #navigation }
 SpCodePresenter >> findClassFromSelection [
-	^ self findClassFrom: self selectionOrLine trimmed
+	^ self findClassFrom: self selectedText trimmed
 ]
 
 { #category : #testing }
@@ -168,10 +168,10 @@ SpCodePresenter >> selectedBehavior [
 
 { #category : #navigation }
 SpCodePresenter >> selectionOrLine [
-	^ self selection
+	^ self selectedText
 		ifEmpty: [ self
 				selectLine;
-				selection ]
+				selectedText ]
 ]
 
 { #category : #accessing }

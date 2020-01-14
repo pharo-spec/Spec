@@ -33,7 +33,7 @@ SpCodeBrowseItCommand >> execute [
 	"Treat the current text selection as an expression; evaluate it."
 	| classToBrowse |
 	
-	classToBrowse := self findClassOn: self selectionOrLine trimmed.
+	classToBrowse := self findClassOn: self selectionOrLine.
 	classToBrowse ifNil: [ ^ self ].
 
 	self browseClass: classToBrowse
