@@ -1,11 +1,12 @@
-Extension { #name : #SpEditableList }
+Extension { #name : #SpEditableListPresenter }
 
 { #category : #'*Spec2-Examples' }
-SpEditableList class >> example [
+SpEditableListPresenter classSide >> example [
 	<sampleInstance>
 	| presenter |
 	presenter := self new
-		list: self selectors;
+		items: self selectors asOrderedCollection;
+		addItemBlock: [ 1 ];
 		openWithSpec;
 		yourself.
 

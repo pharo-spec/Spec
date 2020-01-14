@@ -97,7 +97,7 @@ SpAbstractTextPresenter >> clearContent [
 SpAbstractTextPresenter >> clearSelection [
 	"Remove selection from the text model"
 
-	self selection: (0 to: 0)
+	self selectionInterval: (0 to: 0)
 ]
 
 { #category : #'undo-redo' }
@@ -286,10 +286,8 @@ SpAbstractTextPresenter >> selectAll [
 
 { #category : #api }
 SpAbstractTextPresenter >> selectLine [
-
-	self withAdapterDo: [ :anAdapter |
-		anAdapter selectLine ].
-	^ self selection
+	self withAdapterDo: [ :anAdapter | anAdapter selectLine ].
+	^ self selectionInterval
 ]
 
 { #category : #NOCompletion }
@@ -312,9 +310,7 @@ SpAbstractTextPresenter >> selection: anInterval [
 	self
 		deprecated:
 			'#selection: was used to set an interval, and did not convey the correct meaning. Use #selectionInterval: instead.'
-		transformWith:
-			'`@receiver selection: `@arg'
-				-> '`@receiver selectionInterval: `@arg'.
+		transformWith: '`@receiver selection: `@arg' -> '`@receiver selectionInterval: `@arg'.
 	self selectionInterval: anInterval
 ]
 
