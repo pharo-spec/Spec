@@ -313,8 +313,8 @@ SpAbstractTextPresenter >> selection: anInterval [
 		deprecated:
 			'#selection: was used to set an interval, and did not convey the correct meaning. Use #selectionInterval: instead.'
 		transformWith:
-			'`@receiver selection: `@arg`'
-				-> '`@receiver selectionInterval: `@arg`'.
+			'`@receiver selection: `@arg'
+				-> '`@receiver selectionInterval: `@arg'.
 	self selectionInterval: anInterval
 ]
 
