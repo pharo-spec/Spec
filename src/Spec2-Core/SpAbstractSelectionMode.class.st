@@ -17,8 +17,8 @@ Also, I can retrieve
 Class {
 	#name : #SpAbstractSelectionMode,
 	#superclass : #Object,
-	#traits : 'TSpObservable',
-	#classTraits : 'TSpObservable classTrait',
+	#traits : 'SpTObservable',
+	#classTraits : 'SpTObservable classTrait',
 	#instVars : [
 		'widget'
 	],
