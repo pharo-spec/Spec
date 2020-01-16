@@ -1,7 +1,7 @@
 Extension { #name : #SpEditableListPresenter }
 
 { #category : #'*Spec2-Examples' }
-SpEditableListPresenter classSide >> example [
+SpEditableListPresenter class >> example [
 	<sampleInstance>
 	| presenter |
 	presenter := self new
