@@ -1,16 +1,16 @@
 Trait {
-	#name : #TSpObservable,
+	#name : #SpTObservable,
 	#category : #'Spec2-ObservableSlot'
 }
 
 { #category : #events }
-TSpObservable >> notifyPropertyChanged: aName [
+SpTObservable >> notifyPropertyChanged: aName [
 	self flag: #todo.	"This is used for collections but collections should be managed in a better way and this method removed."
 	(self observablePropertyNamed: aName) valueChanged
 ]
 
 { #category : #events }
-TSpObservable >> observablePropertyNamed: aName [
+SpTObservable >> observablePropertyNamed: aName [
 	| slot |
 	
 	slot := self class slotNamed: aName.
@@ -23,14 +23,14 @@ TSpObservable >> observablePropertyNamed: aName [
 ]
 
 { #category : #events }
-TSpObservable >> property: aName rawValue: anObject [
+SpTObservable >> property: aName rawValue: anObject [
 	"Write in the slot without announcing it."
 
 	(self observablePropertyNamed: aName) rawValue: anObject
 ]
 
 { #category : #events }
-TSpObservable >> property: aName whenChangedDo: aBlockClosure [ 
+SpTObservable >> property: aName whenChangedDo: aBlockClosure [ 
 	
 	"Obtain the raw value.
 	We need to access the underlying value holder to subscribe to it"
