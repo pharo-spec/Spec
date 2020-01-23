@@ -23,32 +23,7 @@ SpCodeBrowseItCommand class >> defaultShortcutKey [
 		| $b control unix
 ]
 
-{ #category : #private }
-SpCodeBrowseItCommand >> browseClass: aClass [
-	aClass browse
-]
-
 { #category : #execution }
 SpCodeBrowseItCommand >> execute [
-	"Treat the current text selection as an expression; evaluate it."
-	| classToBrowse |
-	
-	classToBrowse := self findClassOn: self selectionOrLine.
-	classToBrowse ifNil: [ ^ self ].
-
-	self browseClass: classToBrowse
-]
-
-{ #category : #private }
-SpCodeBrowseItCommand >> findClassOn: aString [
-	| ast |
-	
-	ast := RBParser parseExpression: aString onError: [ ^ nil ].
-	ast nodesDo: [ :node |
-		(node isVariable and: [ node name first isUppercase ]) 
-			ifTrue: [ 
-				(self class environment classNamed: node name) 
-					ifNotNil: [ :aClass | ^ aClass ] ] ].
-		
-	^ nil
+	context findClassFromSelection ifNotNil: [ :class | class browse ]
 ]
