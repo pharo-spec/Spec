@@ -219,14 +219,15 @@ SpNotebookMorph >> updatePageIndex: index [
 
 	index = 0 ifTrue: [ ^ self ].
 
-	oldPage := self tabSelectorMorph selectedTab.
+	oldPage := self pages at: self selectedPageIndex.
 	self pageMorph
 		ifNil: [ self contentMorph addMorph: (self pageAt: index) ]
 		ifNotNil: [ :page |
 			| pageBounds |
 			pageBounds := self pageMorph bounds.
 			self contentMorph replaceSubmorph: page by: ( self pageAt: index ).
-			self flag: 'Without setting here the bounds the page moves a few pixels when refreshing the inspector'.
+			self flag: 'Without setting here the bounds the page moves a few pixels when 
+			refreshing the inspector'.
 			self pageMorph bounds: pageBounds.
 			self pageMorph layoutChanged ].
 
