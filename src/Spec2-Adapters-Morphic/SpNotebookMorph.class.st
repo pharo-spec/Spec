@@ -170,7 +170,8 @@ SpNotebookMorph >> newToolbarMorph [
 
 { #category : #private }
 SpNotebookMorph >> pageAt: index [
-	^ (self pages at: index ) actualPageMorph
+
+	^ (self pages at: index) actualPageMorph
 ]
 
 { #category : #accessing }
@@ -218,21 +219,23 @@ SpNotebookMorph >> updatePageIndex: index [
 
 	index = 0 ifTrue: [ ^ self ].
 
-	oldPage := self tabSelectorMorph selectedTab.
+	oldPage := self pages at: self selectedPageIndex.
 	self pageMorph
 		ifNil: [ self contentMorph addMorph: (self pageAt: index) ]
 		ifNotNil: [ :page |
 			| pageBounds |
 			pageBounds := self pageMorph bounds.
 			self contentMorph replaceSubmorph: page by: ( self pageAt: index ).
-			self flag: 'Without setting here the bounds the page moves a few pixels when refreshing the inspector'.
+			self flag: 'Without setting here the bounds the page moves a few pixels when 
+			refreshing the inspector'.
 			self pageMorph bounds: pageBounds.
 			self pageMorph layoutChanged ].
 
 	self headerMorph layoutChanged.
 	self pageMorph layoutChanged.
 	self adoptPaneColor: ( self owner ifNil: [ self ] ) paneColor.
-	( self tabSelectorMorph tabs at: index ) font: self tabSelectorMorph font.
+	self tabSelectorMorph font ifNotNil: [ :aFont |
+		(self tabSelectorMorph tabs at: index) font: aFont ].
 
 	self announcer announce: (SpNotebookPageChanged new
 		page: (self pages at: index);
