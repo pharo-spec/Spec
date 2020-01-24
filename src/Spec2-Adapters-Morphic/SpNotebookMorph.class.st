@@ -170,7 +170,8 @@ SpNotebookMorph >> newToolbarMorph [
 
 { #category : #private }
 SpNotebookMorph >> pageAt: index [
-	^ (self pages at: index ) actualPageMorph
+
+	^ (self pages at: index) actualPageMorph
 ]
 
 { #category : #accessing }
@@ -232,7 +233,8 @@ SpNotebookMorph >> updatePageIndex: index [
 	self headerMorph layoutChanged.
 	self pageMorph layoutChanged.
 	self adoptPaneColor: ( self owner ifNil: [ self ] ) paneColor.
-	( self tabSelectorMorph tabs at: index ) font: self tabSelectorMorph font.
+	self tabSelectorMorph font ifNotNil: [ :aFont |
+		(self tabSelectorMorph tabs at: index) font: aFont ].
 
 	self announcer announce: (SpNotebookPageChanged new
 		page: (self pages at: index);
