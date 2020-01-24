@@ -36,7 +36,7 @@ SpCodePresenter class >> codeAcceptCommandsGroupWith: presenter [
 	| group |
 	group := (CmCommandGroup named: 'Accept commands') asSpecGroup.
 	group
-		description: 'Commands to accept or cancel changes.';
+		description: 'Accept or cancel changes.';
 		beDisplayedAsGroup.
 	group register: (SpAcceptChangesCommand forSpecContext: presenter).
 	group register: (SpCancelChangesCommand forSpecContext: presenter).
@@ -48,7 +48,7 @@ SpCodePresenter class >> codeEditionCommandsGroupWith: presenter [
 	| group |
 	group := (CmCommandGroup named: 'Selection edition commands') asSpecGroup.
 	group
-		description: 'Commands to edit the code selection.';
+		description: 'Edit code selection.';
 		beDisplayedAsGroup.
 	SpCodeEditionCommand
 		allSubclassesDo: [ :cmdClass | group register: (cmdClass forSpecContext: presenter) ].
@@ -60,7 +60,7 @@ SpCodePresenter class >> codeSearchCommandsGroupWith: presenter [
 	| group |
 	group := (CmCommandGroup named: 'Selection search commands') asSpecGroup.
 	group
-		description: 'Commands to search the system from the code selection.';
+		description: 'Search the system from code selection.';
 		beDisplayedAsGroup.
 	group register: (SpBrowseClassCommand forSpecContext: [presenter findClassFromSelection]).
 	(SpSystemNavigationCommand
@@ -76,7 +76,7 @@ SpCodePresenter class >> codeSelectionActionCommandsGroupWith: presenter [
 	group := (CmCommandGroup named: 'Selection action commands')
 		asSpecGroup.
 	group
-		description: 'Commands actions on the code selection.';
+		description: 'Actions on code selection.';
 		beDisplayedAsGroup.
 	group register: (RunToSelectionDebugCommand forSpecContext: self).
 	(SpCodeSelectionCommand allSubclasses
