@@ -20,6 +20,75 @@ SpCodePresenter class >> adapterName [
 	^ #CodeAdapter
 ]
 
+{ #category : #commands }
+SpCodePresenter class >> buildCommandsGroupWith: presenter forRoot: aCmCommandsGroup [
+	aCmCommandsGroup beDisplayedAsGroup.
+	aCmCommandsGroup
+		register: (self codeSelectionActionCommandsGroupWith: presenter).
+	aCmCommandsGroup
+		register: (self codeSearchCommandsGroupWith: presenter).
+	aCmCommandsGroup register: (self codeEditionCommandsGroupWith: presenter).
+	aCmCommandsGroup register: (self codeAcceptCommandsGroupWith: presenter)
+]
+
+{ #category : #commands }
+SpCodePresenter class >> codeAcceptCommandsGroupWith: presenter [
+	| group |
+	group := (CmCommandGroup named: 'Accept commands') asSpecGroup.
+	group
+		description: 'Commands to accept or cancel changes.';
+		beDisplayedAsGroup.
+	group register: (SpAcceptChangesCommand forSpecContext: presenter).
+	group register: (SpCancelChangesCommand forSpecContext: presenter).
+	^ group
+]
+
+{ #category : #commands }
+SpCodePresenter class >> codeEditionCommandsGroupWith: presenter [
+	| group |
+	group := (CmCommandGroup named: 'Selection edition commands') asSpecGroup.
+	group
+		description: 'Commands to edit the code selection.';
+		beDisplayedAsGroup.
+	SpCodeEditionCommand
+		allSubclassesDo: [ :cmdClass | group register: (cmdClass forSpecContext: presenter) ].
+	^ group
+]
+
+{ #category : #commands }
+SpCodePresenter class >> codeSearchCommandsGroupWith: presenter [
+	| group |
+	group := (CmCommandGroup named: 'Selection search commands') asSpecGroup.
+	group
+		description: 'Commands to search the system from the code selection.';
+		beDisplayedAsGroup.
+	group register: (SpBrowseClassCommand forSpecContext: [presenter findClassFromSelection]).
+	(SpSystemNavigationCommand
+		allSubclasses reject:[:class| class == SpBrowseClassCommand ])
+		do: [ :cmdClass | group register: (cmdClass forSpecContext: presenter) ].
+	^ group
+]
+
+{ #category : #commands }
+SpCodePresenter class >> codeSelectionActionCommandsGroupWith: presenter [
+	| group |
+	self flag: 'Needs better care about how to recover commands'.
+	group := (CmCommandGroup named: 'Selection action commands')
+		asSpecGroup.
+	group
+		description: 'Commands actions on the code selection.';
+		beDisplayedAsGroup.
+	group register: (RunToSelectionDebugCommand forSpecContext: self).
+	(SpCodeSelectionCommand allSubclasses
+		reject: [ :class | 
+			{SpCodeEditionCommand.
+			SpSystemNavigationCommand}
+				anySatisfy:
+					[ :filter | class == filter or: [ filter allSubclasses includes: class ] ] ])
+		do: [ :cmdClass | group register: (cmdClass forSpecContext: presenter) ].
+	^ group
+]
+
 { #category : #examples }
 SpCodePresenter class >> example [
 	<sampleInstance>
@@ -49,42 +118,6 @@ SpCodePresenter >> behavior: aClass [
 	"Set the class corresponding to the method class of the source code you are editing"
 
 	behavior := aClass
-]
-
-{ #category : #private }
-SpCodePresenter >> buildCodeKeyBindings [
-	
-	^ self codeCommandGroup asKMCategory
-]
-
-{ #category : #private }
-SpCodePresenter >> buildCodeMenu [
-	
-	
-	^ self codeCommandGroup asMenuPresenter
-]
-
-{ #category : #private }
-SpCodePresenter >> codeCommandGroup [
-	| group |
-	
-	group := CmCommandGroup forSpec
-		beDisplayedAsGroup;
-		yourself.
-		
-	self flag: #TODO. "This needs to be discoverable (otherwise is not extensible)
-	ot at least, we need to add a plug for extensions"
-	{ 	
-		SpCodeDoItCommand. 
-		SpCodePrintItCommand. 
-		SpCodeInspectItCommand. 
-		SpCodeDebugItCommand. 
-		SpCodeProfileItCommand.
-		SpBrowseClassCommand.
-	} do: [ :eachClass | 
-		group register: (eachClass forSpecContext: self) ].
-
-	^ group
 ]
 
 { #category : #'api-doIt' }
@@ -147,8 +180,8 @@ SpCodePresenter >> initialize [
 	
 	self registerEventsForStyling.
 	
-	self contextMenu: self buildCodeMenu.
-	self contextKeyBindings: self buildCodeKeyBindings
+	self contextMenu: [self rootCommandsGroup asMenuPresenter].
+	self contextKeyBindings: self rootCommandsGroup asKMCategory
 ]
 
 { #category : #initialization }

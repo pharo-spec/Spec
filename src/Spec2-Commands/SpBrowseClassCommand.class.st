@@ -12,7 +12,7 @@ SpBrowseClassCommand class >> defaultIconName [
 { #category : #default }
 SpBrowseClassCommand class >> defaultName [
 
-	^ 'Browse it'
+	^ 'Browse class'
 ]
 
 { #category : #default }
@@ -25,5 +25,5 @@ SpBrowseClassCommand class >> defaultShortcutKey [
 
 { #category : #execution }
 SpBrowseClassCommand >> execute [
-	context findClassFromSelection ifNotNil: [ :class | class browse ]
+	self context ifNotNil: [ :ctx | ctx browse ]
 ]

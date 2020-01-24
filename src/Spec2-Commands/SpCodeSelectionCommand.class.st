@@ -34,10 +34,8 @@ SpCodeSelectionCommand >> evaluate: aString andDo: aBlock [
 SpCodeSelectionCommand >> evaluateSelectionAndDo: aBlock [
 	"Treat the current selection as an expression; evaluate it and invoke aBlock with the result.
 	If no selection is present select the current line."
-	| selection |
 
-	selection := context selection ifEmpty: [ ^ '' ].
-	^ self 
-		evaluate: selection 
-		andDo: aBlock
+	| selection |
+	selection := context selectionInterval ifEmpty: [ ^ '' ].
+	^ self evaluate: selection andDo: aBlock
 ]
