@@ -2,6 +2,11 @@
 I'm a Spec application entry point. 
 In Spec, each application needs to have a definition that concentrates its flow and resources.
 
+! SpApplication
+A SpApplication is a class that handles many aspectes of a Spec Application (hence it's name) in a convenient fashion. 
+SpApplication handles your application initialisation, configuration and resources. It also keeps the windows you have currently opened. 
+
+
 "
 Class {
 	#name : #SpApplication,
