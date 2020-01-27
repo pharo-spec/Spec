@@ -57,12 +57,12 @@ SpCodePresenter class >> codeEditionCommandsGroupWith: presenter [
 { #category : #commands }
 SpCodePresenter class >> codeSearchCommandsGroupWith: presenter [
 	| group |
-		self flag: 'must be done better'.
 	group := (CmCommandGroup named: 'Selection search commands') asSpecGroup.
 	group
 		description: 'Search the system from code selection.';
 		beDisplayedAsGroup.
 	group register: (SpBrowseClassCommand forSpecContext: [presenter findClassFromSelection]).
+	self flag: 'Not very elegant how we fetch commands, could we do better?'.
 	(SpSystemNavigationCommand
 		allSubclasses reject:[:class| class == SpBrowseClassCommand ])
 		do: [ :cmdClass | group register: (cmdClass forSpecContext: presenter) ].
