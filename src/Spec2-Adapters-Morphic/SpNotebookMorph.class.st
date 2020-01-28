@@ -175,6 +175,11 @@ SpNotebookMorph >> pageWithModel: anObject [
 ]
 
 { #category : #private }
+SpNotebookMorph >> postAddPage: aMorph [ 
+	"a hook to format the page after creation"
+]
+
+{ #category : #private }
 SpNotebookMorph >> removePage: aPage [
 	| removedPageIndex |
 	removedPageIndex := self pages indexOf: aPage.
@@ -230,7 +235,7 @@ SpNotebookMorph >> updatePageIndex: index [
 		ifNil: [ self contentMorph addMorph: (self pageAt: index) ].
 
 	newPage := self pages at: index.
-	self addActions: newPage actions.
+	self postAddPage: newPage.
 
 	self headerMorph layoutChanged.
 	self pageMorph layoutChanged.
