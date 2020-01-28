@@ -62,6 +62,13 @@ SpNotebookMorph >> addLazyPage: aBlock label: aStringOrMorph collapsable: aBoole
 	self addPage: newPage label: label
 ]
 
+{ #category : #adding }
+SpNotebookMorph >> addPage: aMorph label: aStringOrMorph [
+	
+	super addPage: aMorph label: aStringOrMorph.
+	aMorph privateOwner: self
+]
+
 { #category : #private }
 SpNotebookMorph >> buildLabelFrom: aString [ 
 	
