@@ -17,5 +17,5 @@ SpBrowseMethodsContainingStringCommand class >> defaultName [
 
 { #category : #executing }
 SpBrowseMethodsContainingStringCommand >> execute [
-	self systemNavigation browseMethodsWithSourceString: context selectedText matchCase: false
+	self systemNavigation browseMethodsWithSourceString: self context matchCase: false
 ]

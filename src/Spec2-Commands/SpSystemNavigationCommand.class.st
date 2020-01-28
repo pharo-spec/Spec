@@ -9,5 +9,5 @@ Class {
 
 { #category : #accessing }
 SpSystemNavigationCommand >> selector [ 
-	^context selectedText asSymbol
+	^self context asSymbol
 ]

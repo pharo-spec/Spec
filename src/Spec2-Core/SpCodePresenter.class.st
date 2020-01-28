@@ -26,7 +26,7 @@ SpCodePresenter class >> buildCommandsGroupWith: presenter forRoot: aCmCommandsG
 	aCmCommandsGroup
 		register: (self codeSelectionActionCommandsGroupWith: presenter).
 	aCmCommandsGroup
-		register: (self codeSearchCommandsGroupWith: presenter).
+		register: (self codeNavigationCommandsGroupWith: presenter).
 	aCmCommandsGroup register: (self codeEditionCommandsGroupWith: presenter).
 	aCmCommandsGroup register: (self codeAcceptCommandsGroupWith: presenter)
 ]
@@ -55,17 +55,20 @@ SpCodePresenter class >> codeEditionCommandsGroupWith: presenter [
 ]
 
 { #category : #commands }
-SpCodePresenter class >> codeSearchCommandsGroupWith: presenter [
+SpCodePresenter class >> codeNavigationCommandsGroupWith: presenter [
 	| group |
 	group := (CmCommandGroup named: 'Selection search commands') asSpecGroup.
 	group
 		description: 'Search the system from code selection.';
 		beDisplayedAsGroup.
-	group register: (SpBrowseClassCommand forSpecContext: [presenter findClassFromSelection]).
-	self flag: 'Not very elegant how we fetch commands, could we do better?'.
-	(SpSystemNavigationCommand
-		allSubclasses reject:[:class| class == SpBrowseClassCommand ])
-		do: [ :cmdClass | group register: (cmdClass forSpecContext: presenter) ].
+	group register: (SpBrowseClassCommand forSpecContext: [presenter findClassFromSelection]).	
+	{ 
+		SpBrowseImplementorsCommand.
+		SpBrowseSendersCommand.
+		SpBrowseReferencesCommand.	
+		SpBrowseMethodsContainingStringCommand.
+	 } 
+		do:[:navCmdClass|	group register: (navCmdClass forSpecContext: [presenter selectedText])].
 	^ group
 ]
 
