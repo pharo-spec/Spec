@@ -1,3 +1,6 @@
+"
+I browse all references to the computed context that is transformed to a symbol.
+"
 Class {
 	#name : #SpBrowseReferencesCommand,
 	#superclass : #SpSystemNavigationCommand,

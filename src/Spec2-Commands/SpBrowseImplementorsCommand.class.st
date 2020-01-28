@@ -1,3 +1,6 @@
+"
+I browse all implementors of the computed context that is transformed to a selector.
+"
 Class {
 	#name : #SpBrowseImplementorsCommand,
 	#superclass : #SpSystemNavigationCommand,

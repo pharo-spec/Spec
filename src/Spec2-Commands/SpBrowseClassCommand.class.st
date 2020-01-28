@@ -1,3 +1,7 @@
+"
+I browse a class that is returned from the evaluation of my context.
+My context must be a block that returns a class.
+"
 Class {
 	#name : #SpBrowseClassCommand,
 	#superclass : #SpSystemNavigationCommand,

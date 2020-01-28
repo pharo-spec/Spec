@@ -1,3 +1,6 @@
+"
+I browse all senders of the computed context that is transformed to a selector.
+"
 Class {
 	#name : #SpBrowseSendersCommand,
 	#superclass : #SpSystemNavigationCommand,

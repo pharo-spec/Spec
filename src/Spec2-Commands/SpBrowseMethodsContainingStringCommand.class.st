@@ -1,3 +1,6 @@
+"
+I browse all methods containing a string returned by the computed context.
+"
 Class {
 	#name : #SpBrowseMethodsContainingStringCommand,
 	#superclass : #SpSystemNavigationCommand,
