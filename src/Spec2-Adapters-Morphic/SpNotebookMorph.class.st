@@ -1,8 +1,14 @@
+"
+I'm a tab morph used to build spec notebooks.
+I extend my parent by adding special ways to add pages (allowing any widget to be a page).
+I also add a toolbar to add actions.
+"
 Class {
 	#name : #SpNotebookMorph,
 	#superclass : #TabGroupMorph,
 	#instVars : [
-		'headerMorph'
+		'headerMorph',
+		'toolbarMorph'
 	],
 	#category : #'Spec2-Adapters-Morphic-Notebook'
 }
@@ -156,19 +162,6 @@ SpNotebookMorph >> newTabSelectorMorph [
 ]
 
 { #category : #private }
-SpNotebookMorph >> newToolbarMorph [
-	^ SpNotebookPanelMorph new
-		fillStyle: (SolidFillStyle color: Color transparent);
-		borderStyle: (BorderStyle width: 0);
-		vResizing: #spaceFill;
-		hResizing: #shrinkWrap;
-		cellPositioning: #center;
-		changeTableLayout;
-		cellInset: 0;
-		yourself 
-]
-
-{ #category : #private }
 SpNotebookMorph >> pageAt: index [
 
 	^ (self pages at: index) actualPageMorph
@@ -213,32 +206,40 @@ SpNotebookMorph >> suspendAnnouncementsDuring: aBlock [
 ]
 
 { #category : #private }
+SpNotebookMorph >> updateContentMorph: aMorph with: newMorph [
+	| pageBounds |
+
+	pageBounds := self pageMorph bounds.
+	self contentMorph replaceSubmorph: aMorph by: newMorph.
+	self flag: 'Without setting here the bounds the page moves a few pixels when 
+	refreshing the inspector'.
+	self pageMorph bounds: pageBounds.
+	self pageMorph layoutChanged
+]
+
+{ #category : #private }
 SpNotebookMorph >> updatePageIndex: index [
 	"Change to the given page index, update the toolbar and send the announcement"
-	| oldPage |
+	| oldPage newPage |
 
 	index = 0 ifTrue: [ ^ self ].
 
 	oldPage := self pages at: self selectedPageIndex.
 	self pageMorph
-		ifNil: [ self contentMorph addMorph: (self pageAt: index) ]
-		ifNotNil: [ :page |
-			| pageBounds |
-			pageBounds := self pageMorph bounds.
-			self contentMorph replaceSubmorph: page by: ( self pageAt: index ).
-			self flag: 'Without setting here the bounds the page moves a few pixels when 
-			refreshing the inspector'.
-			self pageMorph bounds: pageBounds.
-			self pageMorph layoutChanged ].
+		ifNotNil: [ :aPage | self updateContentMorph: aPage with: (self pageAt: index) ]
+		ifNil: [ self contentMorph addMorph: (self pageAt: index) ].
+
+	newPage := self pages at: index.
+	self addActions: newPage actions.
 
 	self headerMorph layoutChanged.
 	self pageMorph layoutChanged.
-	self adoptPaneColor: ( self owner ifNil: [ self ] ) paneColor.
+	self adoptPaneColor: (self owner ifNil: [ self ]) paneColor.
 	self tabSelectorMorph font ifNotNil: [ :aFont |
 		(self tabSelectorMorph tabs at: index) font: aFont ].
 
 	self announcer announce: (SpNotebookPageChanged new
-		page: (self pages at: index);
+		page: newPage;
 		oldPage: oldPage;
 		pageIndex: index)
 ]
