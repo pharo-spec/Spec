@@ -14,17 +14,17 @@ SpBrowseClassCommand class >> defaultIconName [
 ]
 
 { #category : #default }
-SpBrowseClassCommand class >> defaultName [
-
-	^ 'Browse class'
-]
-
-{ #category : #default }
 SpBrowseClassCommand class >> defaultShortcutKey [
 
 	^ $b command mac 
 		| $b control win
 		| $b control unix
+]
+
+{ #category : #default }
+SpBrowseClassCommand class >> shortName [
+
+	^ 'class'
 ]
 
 { #category : #execution }

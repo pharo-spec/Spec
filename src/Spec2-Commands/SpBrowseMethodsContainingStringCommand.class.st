@@ -13,9 +13,9 @@ SpBrowseMethodsContainingStringCommand class >> defaultIconName [
 ]
 
 { #category : #default }
-SpBrowseMethodsContainingStringCommand class >> defaultName [
+SpBrowseMethodsContainingStringCommand class >> shortName [
 
-	^ 'Browse methods containing string'
+	^ 'methods containing string'
 ]
 
 { #category : #executing }

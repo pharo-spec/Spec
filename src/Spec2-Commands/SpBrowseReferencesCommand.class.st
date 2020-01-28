@@ -13,9 +13,9 @@ SpBrowseReferencesCommand class >> defaultIconName [
 ]
 
 { #category : #default }
-SpBrowseReferencesCommand class >> defaultName [
+SpBrowseReferencesCommand class >> shortName [
 
-	^ 'Browse references'
+	^ 'references'
 ]
 
 { #category : #executing }

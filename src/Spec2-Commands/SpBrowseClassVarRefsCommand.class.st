@@ -1,0 +1,25 @@
+"
+My context is a class, I browse the class var refs of that class.
+The system navigation is in charge of executing, and will ask the user to select a variable.
+"
+Class {
+	#name : #SpBrowseClassVarRefsCommand,
+	#superclass : #SpSystemNavigationCommand,
+	#category : #'Spec2-Commands-Navigation'
+}
+
+{ #category : #defaults }
+SpBrowseClassVarRefsCommand class >> defaultIconName [
+	^#smallSystemBrowser 
+]
+
+{ #category : #default }
+SpBrowseClassVarRefsCommand class >> shortName [
+
+	^ 'class variables reference'
+]
+
+{ #category : #executing }
+SpBrowseClassVarRefsCommand >> execute [	
+	self systemNavigation browseClassVarRefs: self context
+]

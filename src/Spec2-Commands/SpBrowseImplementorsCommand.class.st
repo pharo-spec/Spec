@@ -13,17 +13,17 @@ SpBrowseImplementorsCommand class >> defaultIconName [
 ]
 
 { #category : #default }
-SpBrowseImplementorsCommand class >> defaultName [
-
-	^ 'Browse implementors'
-]
-
-{ #category : #default }
 SpBrowseImplementorsCommand class >> defaultShortcutKey [
 
 	^ $m command mac 
 		| $m control win
 		| $m control unix
+]
+
+{ #category : #default }
+SpBrowseImplementorsCommand class >> shortName [
+
+	^ 'implementors'
 ]
 
 { #category : #executing }

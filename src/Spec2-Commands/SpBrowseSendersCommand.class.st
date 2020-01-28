@@ -13,17 +13,17 @@ SpBrowseSendersCommand class >> defaultIconName [
 ]
 
 { #category : #default }
-SpBrowseSendersCommand class >> defaultName [
-
-	^ 'Browse senders'
-]
-
-{ #category : #default }
 SpBrowseSendersCommand class >> defaultShortcutKey [
 
 	^ $n command mac 
 		| $n control win
 		| $n control unix
+]
+
+{ #category : #default }
+SpBrowseSendersCommand class >> shortName [
+
+	^ 'senders'
 ]
 
 { #category : #executing }

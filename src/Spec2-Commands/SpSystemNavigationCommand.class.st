@@ -10,6 +10,16 @@ Class {
 	#category : #'Spec2-Commands-Navigation'
 }
 
+{ #category : #default }
+SpSystemNavigationCommand class >> defaultName [
+	^'Browse ', self shortName 
+]
+
+{ #category : #accessing }
+SpSystemNavigationCommand class >> shortName [
+	^self subclassResponsibility 
+]
+
 { #category : #accessing }
 SpSystemNavigationCommand >> selector [ 
 	^self context asSymbol
