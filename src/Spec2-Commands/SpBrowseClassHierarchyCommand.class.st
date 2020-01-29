@@ -20,6 +20,5 @@ SpBrowseClassHierarchyCommand class >> shortName [
 
 { #category : #executing }
 SpBrowseClassHierarchyCommand >> execute [
-	self flag: 'Wrong: should be either method inheritance tree or class hierarchy...'.
 	self systemNavigation browseHierarchy: self context
 ]
