@@ -20,5 +20,5 @@ SpBrowsePointersToCommand class >> shortName [
 
 { #category : #executing }
 SpBrowsePointersToCommand >> execute [
-	self context pointersTo
+	self context pointersTo inspect
 ]
