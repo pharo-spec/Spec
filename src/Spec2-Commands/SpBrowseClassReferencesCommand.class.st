@@ -13,11 +13,6 @@ SpBrowseClassReferencesCommand class >> defaultDescription [
 ]
 
 { #category : #default }
-SpBrowseClassReferencesCommand class >> defaultIconName [
-	^#smallSystemBrowser
-]
-
-{ #category : #default }
 SpBrowseClassReferencesCommand class >> shortName [
 
 	^ 'class references'

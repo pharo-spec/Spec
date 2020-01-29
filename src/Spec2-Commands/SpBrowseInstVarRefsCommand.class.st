@@ -13,11 +13,6 @@ SpBrowseInstVarRefsCommand class >> defaultDescription [
 	^ 'Browse the references to instance variables'
 ]
 
-{ #category : #defaults }
-SpBrowseInstVarRefsCommand class >> defaultIconName [
-	^#smallSystemBrowser 
-]
-
 { #category : #default }
 SpBrowseInstVarRefsCommand class >> shortName [
 

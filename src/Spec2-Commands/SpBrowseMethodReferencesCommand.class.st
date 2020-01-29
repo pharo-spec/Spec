@@ -12,11 +12,6 @@ SpBrowseMethodReferencesCommand class >> defaultDescription [
 	^ 'Browse all references to the selected method or selector'
 ]
 
-{ #category : #defaults }
-SpBrowseMethodReferencesCommand class >> defaultIconName [
-	^#smallSystemBrowser 
-]
-
 { #category : #default }
 SpBrowseMethodReferencesCommand class >> shortName [
 

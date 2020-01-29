@@ -12,11 +12,6 @@ SpBrowseMethodVersionsCommand class >> defaultDescription [
 	'Browse history of the method'
 ]
 
-{ #category : #defaults }
-SpBrowseMethodVersionsCommand class >> defaultIconName [
-	^#smallSystemBrowser 
-]
-
 { #category : #default }
 SpBrowseMethodVersionsCommand class >> shortName [
 

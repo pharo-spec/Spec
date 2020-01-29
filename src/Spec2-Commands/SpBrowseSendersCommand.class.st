@@ -12,11 +12,6 @@ SpBrowseSendersCommand class >> defaultDescription [
 	^ 'Browse all senders of the selected method or message'
 ]
 
-{ #category : #defaults }
-SpBrowseSendersCommand class >> defaultIconName [
-	^#smallSystemBrowser 
-]
-
 { #category : #default }
 SpBrowseSendersCommand class >> defaultShortcutKey [
 

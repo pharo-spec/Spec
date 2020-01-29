@@ -12,11 +12,6 @@ SpBrowseMethodInheritanceCommand class >> defaultDescription [
 	^ 'Browse the hierarchy implementors of the selected method'
 ]
 
-{ #category : #defaults }
-SpBrowseMethodInheritanceCommand class >> defaultIconName [
-	^#smallSystemBrowser 
-]
-
 { #category : #default }
 SpBrowseMethodInheritanceCommand class >> shortName [
 

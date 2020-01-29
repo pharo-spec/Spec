@@ -12,11 +12,6 @@ SpBrowseMethodsContainingStringCommand class >> defaultDescription [
 	^ 'Browse all methods containing the selected string'
 ]
 
-{ #category : #defaults }
-SpBrowseMethodsContainingStringCommand class >> defaultIconName [
-	^#smallSystemBrowser 
-]
-
 { #category : #default }
 SpBrowseMethodsContainingStringCommand class >> shortName [
 

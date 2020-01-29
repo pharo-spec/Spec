@@ -14,11 +14,6 @@ SpBrowseClassCommand class >> defaultDescription [
 ]
 
 { #category : #default }
-SpBrowseClassCommand class >> defaultIconName [
-	^#smallSystemBrowser
-]
-
-{ #category : #default }
 SpBrowseClassCommand class >> defaultShortcutKey [
 
 	^ $b command mac 

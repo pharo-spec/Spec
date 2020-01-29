@@ -12,11 +12,6 @@ SpBrowseImplementorsCommand class >> defaultDescription [
 	^ 'Browse all implementors of the selected method or message'
 ]
 
-{ #category : #defaults }
-SpBrowseImplementorsCommand class >> defaultIconName [
-	^#smallSystemBrowser 
-]
-
 { #category : #default }
 SpBrowseImplementorsCommand class >> defaultShortcutKey [
 

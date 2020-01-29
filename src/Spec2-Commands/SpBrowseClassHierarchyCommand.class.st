@@ -12,11 +12,6 @@ SpBrowseClassHierarchyCommand class >> defaultDescription [
 	^ 'Browse the class hierarchy of the selected class'
 ]
 
-{ #category : #defaults }
-SpBrowseClassHierarchyCommand class >> defaultIconName [
-	^#smallSystemBrowser 
-]
-
 { #category : #default }
 SpBrowseClassHierarchyCommand class >> shortName [
 

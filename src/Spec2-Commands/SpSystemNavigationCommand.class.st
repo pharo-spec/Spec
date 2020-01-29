@@ -10,6 +10,11 @@ Class {
 	#category : #'Spec2-Commands-Navigation'
 }
 
+{ #category : #defaults }
+SpSystemNavigationCommand class >> defaultIconName [
+	^#smallSystemBrowser 
+]
+
 { #category : #default }
 SpSystemNavigationCommand class >> defaultName [
 	^'Browse ', self shortName 
