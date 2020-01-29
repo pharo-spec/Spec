@@ -1,3 +1,6 @@
+"
+I browse all instances of the class (and all its subclasses) returned by the evaluation of my context 
+"
 Class {
 	#name : #SpBrowseSubInstancesCommand,
 	#superclass : #SpSystemDiscoveryCommand,

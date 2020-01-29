@@ -1,3 +1,6 @@
+"
+I inspect all pointers to the object returned by the evaluation of my context
+"
 Class {
 	#name : #SpBrowsePointersToCommand,
 	#superclass : #SpSystemDiscoveryCommand,
