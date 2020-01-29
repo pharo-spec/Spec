@@ -7,6 +7,11 @@ Class {
 	#category : #'Spec2-Commands-Navigation'
 }
 
+{ #category : #default }
+SpBrowseClassHierarchyCommand class >> defaultDescription [
+	^ 'Browse the class hierarchy of the selected class'
+]
+
 { #category : #defaults }
 SpBrowseClassHierarchyCommand class >> defaultIconName [
 	^#smallSystemBrowser 

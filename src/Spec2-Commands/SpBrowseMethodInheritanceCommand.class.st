@@ -7,6 +7,11 @@ Class {
 	#category : #'Spec2-Commands-Navigation'
 }
 
+{ #category : #default }
+SpBrowseMethodInheritanceCommand class >> defaultDescription [
+	^ 'Browse the hierarchy implementors of the selected method'
+]
+
 { #category : #defaults }
 SpBrowseMethodInheritanceCommand class >> defaultIconName [
 	^#smallSystemBrowser 

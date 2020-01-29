@@ -2,23 +2,28 @@
 I browse all references to the computed context that is transformed to a symbol.
 "
 Class {
-	#name : #SpBrowseReferencesCommand,
+	#name : #SpBrowseMethodReferencesCommand,
 	#superclass : #SpSystemNavigationCommand,
 	#category : #'Spec2-Commands-Navigation'
 }
 
+{ #category : #default }
+SpBrowseMethodReferencesCommand class >> defaultDescription [
+	^ 'Browse all references to the selected method or selector'
+]
+
 { #category : #defaults }
-SpBrowseReferencesCommand class >> defaultIconName [
+SpBrowseMethodReferencesCommand class >> defaultIconName [
 	^#smallSystemBrowser 
 ]
 
 { #category : #default }
-SpBrowseReferencesCommand class >> shortName [
+SpBrowseMethodReferencesCommand class >> shortName [
 
 	^ 'references'
 ]
 
 { #category : #executing }
-SpBrowseReferencesCommand >> execute [
+SpBrowseMethodReferencesCommand >> execute [
 	self systemNavigation browseAllReferencesTo: self selector
 ]

@@ -65,7 +65,7 @@ SpCodePresenter class >> codeNavigationCommandsGroupWith: presenter [
 	{ 
 		SpBrowseImplementorsCommand.
 		SpBrowseSendersCommand.
-		SpBrowseReferencesCommand.	
+		SpBrowseMethodReferencesCommand.	
 		SpBrowseMethodsContainingStringCommand.
 	 } 
 		do:[:navCmdClass|	group register: (navCmdClass forSpecContext: [presenter selectedText])].
