@@ -7,9 +7,9 @@ Class {
 	#category : #'Spec2-Commands-Navigation'
 }
 
-{ #category : #defaults }
-SpBrowseSendersCommand class >> defaultIconName [
-	^#smallSystemBrowser 
+{ #category : #default }
+SpBrowseSendersCommand class >> defaultDescription [
+	^ 'Browse all senders of the selected method or message'
 ]
 
 { #category : #default }

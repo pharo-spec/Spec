@@ -9,8 +9,8 @@ Class {
 }
 
 { #category : #default }
-SpBrowseClassCommand class >> defaultIconName [
-	^#smallSystemBrowser
+SpBrowseClassCommand class >> defaultDescription [
+	^ 'Browse the selected class'
 ]
 
 { #category : #default }

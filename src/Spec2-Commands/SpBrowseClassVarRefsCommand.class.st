@@ -8,9 +8,9 @@ Class {
 	#category : #'Spec2-Commands-Navigation'
 }
 
-{ #category : #defaults }
-SpBrowseClassVarRefsCommand class >> defaultIconName [
-	^#smallSystemBrowser 
+{ #category : #default }
+SpBrowseClassVarRefsCommand class >> defaultDescription [
+	^ 'Browse the references to class variables'
 ]
 
 { #category : #default }

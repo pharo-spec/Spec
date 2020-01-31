@@ -36,6 +36,6 @@ SpCodeSelectionCommand >> evaluateSelectionAndDo: aBlock [
 	If no selection is present select the current line."
 
 	| selection |
-	selection := context selectionInterval ifEmpty: [ ^ '' ].
+	selection := context selectedText ifEmpty: [ ^ '' ].
 	^ self evaluate: selection andDo: aBlock
 ]

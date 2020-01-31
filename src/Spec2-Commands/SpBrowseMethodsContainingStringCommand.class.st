@@ -7,9 +7,9 @@ Class {
 	#category : #'Spec2-Commands-Navigation'
 }
 
-{ #category : #defaults }
-SpBrowseMethodsContainingStringCommand class >> defaultIconName [
-	^#smallSystemBrowser 
+{ #category : #default }
+SpBrowseMethodsContainingStringCommand class >> defaultDescription [
+	^ 'Browse all methods containing the selected string'
 ]
 
 { #category : #default }

@@ -7,9 +7,9 @@ Class {
 	#category : #'Spec2-Commands-Navigation'
 }
 
-{ #category : #defaults }
-SpBrowseImplementorsCommand class >> defaultIconName [
-	^#smallSystemBrowser 
+{ #category : #default }
+SpBrowseImplementorsCommand class >> defaultDescription [
+	^ 'Browse all implementors of the selected method or message'
 ]
 
 { #category : #default }
