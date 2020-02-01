@@ -100,8 +100,11 @@ SpButtonPresenter >> initialize [
 
 	self whenFontChangedDo: [ self changed: #font ].
 	self whenStateChangedDo: [ self changed: #state ].
-	self whenMenuChangedDo: [ self withAdapterDo: #updateMenu ].
-	self property: #askBeforeChanging whenChangedDo: [ :newValue | self changed: {#askBeforeChanging: . newValue} ].
+	self whenMenuChangedDo: [ 
+		self withAdapterDo: [ :anAdapter | anAdapter updateMenu ] ].
+	self 
+		property: #askBeforeChanging 
+		whenChangedDo: [ :newValue | self changed: {#askBeforeChanging: . newValue} ].
 	self
 		property: #shortcut
 		whenChangedDo: [ :newShortcut :oldShortcut | 

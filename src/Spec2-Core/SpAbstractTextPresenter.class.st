@@ -103,7 +103,7 @@ SpAbstractTextPresenter >> clearSelection [
 { #category : #'undo-redo' }
 SpAbstractTextPresenter >> clearUndoManager [
 
-	self withAdapterDo: #clearUndoManager
+	self withAdapterDo: [ :anAdapter | anAdapter clearUndoManager ]
 ]
 
 { #category : #api }

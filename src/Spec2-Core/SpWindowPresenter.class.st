@@ -210,7 +210,7 @@ SpWindowPresenter >> delete [
 	"DO NOT USE. This will destroy the window and maybe you do not want that :/
 	 I'm keeping this here because of testing."
 
-	self withAdapterDo: #delete
+	self withAdapterDo: [ :anAdapter | anAdapter delete ]
 ]
 
 { #category : #focus }

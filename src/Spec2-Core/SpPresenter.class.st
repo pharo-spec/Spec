@@ -525,7 +525,12 @@ SpPresenter >> initialize [
 SpPresenter >> initializePresenter [
 	"Now, presenters should implement #connectPresenters instead."
 
-	self property: #extent whenChangedDo: [ :ex | self withAdapterDo: [ :widget | (widget respondsTo: #extent:) ifTrue: [ widget extent: ex ] ] ]
+	self 
+		property: #extent 
+		whenChangedDo: [ :ex | 
+			self withAdapterDo: [ :widget | 
+				(widget respondsTo: #extent:) 
+					ifTrue: [ widget extent: ex ] ] ]
 ]
 
 { #category : #initialization }
