@@ -335,7 +335,7 @@ SpWindowPresenter >> isWindowPresenter [
 { #category : #api }
 SpWindowPresenter >> maximize [
 
-	self changed: #maximize with: #()
+	self withAdapterDo: [ :anAdapter | anAdapter maximize ]
 ]
 
 { #category : #api }
@@ -352,7 +352,7 @@ SpWindowPresenter >> menu: aMenuPresenter [
 { #category : #api }
 SpWindowPresenter >> minimize [
 
-	self changed: #minimize with: #()
+	self withAdapterDo: [ :anAdapter | anAdapter minimize ]
 ]
 
 { #category : #notifying }
