@@ -53,7 +53,7 @@ SpCommand >> configureAsButtonOfClass: aButtonClass [
 				help: specCommand description;
 				in: [ :button | 
 					specCommand hasIcon
-						ifTrue: [ button iconName: specCommand iconName ] ];
+						ifTrue: [ button icon: specCommand icon ] ];
 				action: [ specCommand execute ];
 				yourself ]
 ]
