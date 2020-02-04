@@ -102,6 +102,12 @@ Class {
 	#category : #'Spec2-Core-Base'
 }
 
+{ #category : #accessing }
+SpPresenter class >> currentApplication [ 
+
+	^ SpApplication defaultApplication
+]
+
 { #category : #specs }
 SpPresenter class >> defaultSpec [
 
@@ -171,13 +177,8 @@ SpPresenter class >> newApplication: anApplication owner: anOwningPresenter mode
 { #category : #'instance creation' }
 SpPresenter class >> on: aDomainObject [
 
-	"self 
-		deprecated: 'SpPresenters are instantiated in the context of an application!' 
-		on: '2019-02-26' 
-		in: #Pharo8."
-		
 	^ self 
-		newApplication: SpApplication defaultApplication
+		newApplication: self currentApplication
 		model: aDomainObject 
 ]
 
