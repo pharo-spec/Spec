@@ -28,7 +28,7 @@ SpLabelPresenter class >> adapterName [
 SpLabelPresenter class >> example [
 	"This example opens a spec window with a label."
 
-	SpLabelPresenter new
+	^ SpLabelPresenter new
 		label: 'Label example';
 		openWithSpec.
 ]
