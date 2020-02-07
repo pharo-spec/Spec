@@ -327,6 +327,16 @@ SpWindowPresenter >> isResizeable: aBoolean [
 ]
 
 { #category : #testing }
+SpWindowPresenter >> isTopWindow [
+	"answers true if this si the active window (the one that has the focus)"
+	
+	self withAdapterDo: [ :anAdapter | 
+		^ anAdapter isTopWindow ].
+
+	^ false
+]
+
+{ #category : #testing }
 SpWindowPresenter >> isWindowPresenter [
 
 	^ true

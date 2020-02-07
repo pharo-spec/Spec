@@ -301,6 +301,14 @@ SpApplication >> start [
 	"Override this to start your app"
 ]
 
+{ #category : #accessing }
+SpApplication >> topWindow [
+
+	^ self windows 
+		detect: [ :each | each isTopWindow ]
+		ifNone: [ nil ]
+]
+
 { #category : #'accessing backend' }
 SpApplication >> useBackend: aName [
 
