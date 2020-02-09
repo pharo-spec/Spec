@@ -210,7 +210,7 @@ SpWindowPresenter >> delete [
 	"DO NOT USE. This will destroy the window and maybe you do not want that :/
 	 I'm keeping this here because of testing."
 
-	self withAdapterDo: #delete
+	self withAdapterDo: [ :anAdapter | anAdapter delete ]
 ]
 
 { #category : #focus }
@@ -327,6 +327,16 @@ SpWindowPresenter >> isResizeable: aBoolean [
 ]
 
 { #category : #testing }
+SpWindowPresenter >> isTopWindow [
+	"answers true if this si the active window (the one that has the focus)"
+	
+	self withAdapterDo: [ :anAdapter | 
+		^ anAdapter isTopWindow ].
+
+	^ false
+]
+
+{ #category : #testing }
 SpWindowPresenter >> isWindowPresenter [
 
 	^ true
@@ -335,7 +345,7 @@ SpWindowPresenter >> isWindowPresenter [
 { #category : #api }
 SpWindowPresenter >> maximize [
 
-	self changed: #maximize with: #()
+	self withAdapterDo: [ :anAdapter | anAdapter maximize ]
 ]
 
 { #category : #api }
@@ -352,7 +362,7 @@ SpWindowPresenter >> menu: aMenuPresenter [
 { #category : #api }
 SpWindowPresenter >> minimize [
 
-	self changed: #minimize with: #()
+	self withAdapterDo: [ :anAdapter | anAdapter minimize ]
 ]
 
 { #category : #notifying }

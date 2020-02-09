@@ -102,6 +102,12 @@ Class {
 	#category : #'Spec2-Core-Base'
 }
 
+{ #category : #accessing }
+SpPresenter class >> currentApplication [ 
+
+	^ SpApplication defaultApplication
+]
+
 { #category : #specs }
 SpPresenter class >> defaultSpec [
 
@@ -171,13 +177,8 @@ SpPresenter class >> newApplication: anApplication owner: anOwningPresenter mode
 { #category : #'instance creation' }
 SpPresenter class >> on: aDomainObject [
 
-	"self 
-		deprecated: 'SpPresenters are instantiated in the context of an application!' 
-		on: '2019-02-26' 
-		in: #Pharo8."
-		
 	^ self 
-		newApplication: SpApplication defaultApplication
+		newApplication: self currentApplication
 		model: aDomainObject 
 ]
 
@@ -525,7 +526,12 @@ SpPresenter >> initialize [
 SpPresenter >> initializePresenter [
 	"Now, presenters should implement #connectPresenters instead."
 
-	self property: #extent whenChangedDo: [ :ex | self withAdapterDo: [ :widget | (widget respondsTo: #extent:) ifTrue: [ widget extent: ex ] ] ]
+	self 
+		property: #extent 
+		whenChangedDo: [ :ex | 
+			self withAdapterDo: [ :widget | 
+				(widget respondsTo: #extent:) 
+					ifTrue: [ widget extent: ex ] ] ]
 ]
 
 { #category : #initialization }

@@ -1,8 +1,8 @@
 Class {
 	#name : #SpAbstractTreeSelectionMode,
 	#superclass : #Object,
-	#traits : 'TSpObservable',
-	#classTraits : 'TSpObservable classTrait',
+	#traits : 'SpTObservable',
+	#classTraits : 'SpTObservable classTrait',
 	#instVars : [
 		'#selection => SpObservableSlot',
 		'#presenter'
