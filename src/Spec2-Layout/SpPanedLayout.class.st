@@ -41,13 +41,22 @@ SpPanedLayout >> adapterName [
 ]
 
 { #category : #adding }
+SpPanedLayout >> add: aName [
+
+	self 
+		add: aName 
+		withConstraints: [ :constraints | ]
+		position: children size + 1
+]
+
+{ #category : #adding }
 SpPanedLayout >> add: aChild withConstraints: aBlock position: aPosition [
 	"Add a child to the layout following the constraints in the block.
 	The position is an integer index (1 or 2) indicating whether the child is first or last in the pane.
 	For a horizontal layout, index 1 means left, index 2 means right.
 	For a vertical layout, index 1 means top, index 2 means bottom."
-	
 	| constraints |
+
 	aPosition > 2 ifTrue: [ 
 		self error: 'You can not add more than two paned presenters.' ].
 
