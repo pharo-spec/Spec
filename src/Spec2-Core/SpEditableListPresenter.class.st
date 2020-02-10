@@ -252,8 +252,13 @@ SpEditableListPresenter >> removeItemBlock: aBlock [
 ]
 
 { #category : #api }
-SpEditableListPresenter >> selectItem: anIndex [
-	list selectItem: anIndex
+SpEditableListPresenter >> selectIndex: anIndex [
+	list selectIndex: anIndex
+]
+
+{ #category : #api }
+SpEditableListPresenter >> selectItem: anObject [
+	list selectItem: anObject
 ]
 
 { #category : #api }
