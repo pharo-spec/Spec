@@ -1,13 +1,19 @@
 Extension { #name : #SpDropListPresenter }
 
 { #category : #'*Spec2-Transmission' }
-SpDropListPresenter >> defineInputPorts [
+SpDropListPresenter >> defaultInputPort [
 
-	^ { SpListItemsPort new }
+	^ self inputItemsPort
 ]
 
 { #category : #'*Spec2-Transmission' }
 SpDropListPresenter >> defineOutputPorts [
 
 	^ { SpDropListSelectionPort new }
+]
+
+{ #category : #'*Spec2-Transmission' }
+SpDropListPresenter >> inputItemsPort [
+
+	^ SpListItemsPort newPresenter: self
 ]
