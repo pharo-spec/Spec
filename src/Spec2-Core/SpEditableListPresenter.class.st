@@ -241,6 +241,7 @@ SpEditableListPresenter >> performOkAction [
 
 { #category : #api }
 SpEditableListPresenter >> refresh [
+	self resetSelection.
 	self items: self items
 ]
 
@@ -258,6 +259,11 @@ SpEditableListPresenter >> removeItem: anObject [
 { #category : #api }
 SpEditableListPresenter >> removeItemBlock: aBlock [
 	removeItemBlock := aBlock.
+]
+
+{ #category : #api }
+SpEditableListPresenter >> resetSelection [
+	self selectIndex: 0
 ]
 
 { #category : #api }
