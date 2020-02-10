@@ -36,7 +36,7 @@ SpAbstractPresenter >> transmitTo: aPresenter [
 SpAbstractPresenter >> transmitTo: aPresenter transform: aValuable [
 	
 	^ self defaultOutputPort
-		transmitTo: aPresenter 
+		transmitTo: aPresenter defaultInputPort
 		transform: aValuable
 ]
 
@@ -44,7 +44,7 @@ SpAbstractPresenter >> transmitTo: aPresenter transform: aValuable [
 SpAbstractPresenter >> transmitTo: aPresenter transform: aValuable postTransmission: postValuable [
 	
 	^ self defaultOutputPort
-		transmitTo: aPresenter 
+		transmitTo: aPresenter defaultInputPort
 		transform: aValuable 
 		postTransmission: postValuable
 ]
