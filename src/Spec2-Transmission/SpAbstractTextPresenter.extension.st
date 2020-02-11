@@ -7,13 +7,19 @@ SpAbstractTextPresenter >> defaultInputPort [
 ]
 
 { #category : #'*Spec2-Transmission' }
-SpAbstractTextPresenter >> defineOutputPorts [
+SpAbstractTextPresenter >> defaultOutputPort [
 
-	^ { SpTextChangedPort new }
+	^ self outputTextChangedPort
 ]
 
 { #category : #'*Spec2-Transmission' }
 SpAbstractTextPresenter >> inputTextPort [ 
 
 	^ SpTextPort newPresenter: self
+]
+
+{ #category : #'*Spec2-Transmission' }
+SpAbstractTextPresenter >> outputTextChangedPort [
+
+	^ SpTextChangedPort newPresenter: self
 ]
