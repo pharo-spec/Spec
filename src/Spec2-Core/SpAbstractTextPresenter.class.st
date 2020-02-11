@@ -107,6 +107,13 @@ SpAbstractTextPresenter >> clearUndoManager [
 ]
 
 { #category : #api }
+SpAbstractTextPresenter >> cursorPositionIndex [
+	
+	^self withAdapterDo: [ :anAdapter |
+		anAdapter cursorPositionIndex ]
+]
+
+{ #category : #api }
 SpAbstractTextPresenter >> enabled: aBoolean [
 
 	super enabled: aBoolean.
@@ -350,12 +357,12 @@ SpAbstractTextPresenter >> selectionInterval: anInterval [
 SpAbstractTextPresenter >> setSelection: anInterval [
 	"Set the text selection without changing the readSelectionBlock"
 
-	self 
-		deprecated: 'Use #selection: instead.' 
-		transformWith: '`@receiver setSelection: `@statement' 
-		            -> '`@receiver selection: `@statement'.
-
-	self selection: anInterval
+	self
+		deprecated: 'Use #selection: instead.'
+		transformWith:
+			'`@receiver setSelection: `@statement'
+				-> '`@receiver selection: `@statement'.
+	self selectionInterval: anInterval
 ]
 
 { #category : #api }
