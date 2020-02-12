@@ -97,7 +97,9 @@ SpEditableListPresenter >> connectPresenters [
 		newItem := addItemBlock value.
 		newItem ifNotNil: [ 
 			self items add: newItem.
-			self refresh. ] ].
+			self 
+				refresh;
+				selectItem: newItem ] ].
 	removeButton 
 		action: [ removeItemBlock cull: self selectedItem ].
 	topButton action: [ self moveElementAt: self selectedIndex to: 1 ].
