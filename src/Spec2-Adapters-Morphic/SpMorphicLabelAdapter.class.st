@@ -37,7 +37,7 @@ SpMorphicLabelAdapter >> buildWidget [
 { #category : #'model access' }
 SpMorphicLabelAdapter >> getText [
 
-	^ self model label
+	^ self model label valueForPresenter: self model
 ]
 
 { #category : #accessing }

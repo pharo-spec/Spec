@@ -672,6 +672,12 @@ SpPresenter >> layoutPresenters [
 		thenCollect: [ :each | self presenterAt: each ]
 ]
 
+{ #category : #accessing }
+SpPresenter >> locale [ 
+
+	^ self application locale
+]
+
 { #category : #'window menu' }
 SpPresenter >> neglectMenuModel: aMenuModel [
 

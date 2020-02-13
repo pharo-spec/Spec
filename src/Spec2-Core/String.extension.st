@@ -7,3 +7,9 @@ String >> asPresenter [
 		label: self;
 		yourself
 ]
+
+{ #category : #'*Spec2-Core' }
+String >> valueForPresenter: aPresenter [
+
+	^ self
+]

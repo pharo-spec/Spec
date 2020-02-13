@@ -324,6 +324,12 @@ SpAbstractPresenter >> owner: aPresenter [
 	owner := aPresenter
 ]
 
+{ #category : #'private utils' }
+SpAbstractPresenter >> rawValueHolderNamed: aSymbol [
+
+	^ (self class slotNamed: aSymbol) rawRead: self.
+]
+
 { #category : #'private building' }
 SpAbstractPresenter >> retrieveDefaultSpec [
 
@@ -369,6 +375,12 @@ SpAbstractPresenter >> spec: anAdapter [
 SpAbstractPresenter >> update: aParameter [
 
 	self changed: aParameter
+]
+
+{ #category : #'private utils' }
+SpAbstractPresenter >> updateSlot: aSymbol [
+
+	^ (self rawValueHolderNamed: aSymbol) valueChanged
 ]
 
 { #category : #events }
