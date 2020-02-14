@@ -15,10 +15,27 @@ SpTestLocalizedString class >> from: aString [
 ]
 
 { #category : #accessing }
+SpTestLocalizedString >> accentuateCharacter: aCharacter [
+
+
+]
+
+{ #category : #accessing }
+SpTestLocalizedString >> asString [ 
+	self halt
+]
+
+{ #category : #accessing }
 SpTestLocalizedString >> initialize [ 
 
 	super initialize.
 	requestsCount := 0
+]
+
+{ #category : #accessing }
+SpTestLocalizedString >> isEmptyOrNil [
+
+	^ self string isEmpty
 ]
 
 { #category : #accessing }

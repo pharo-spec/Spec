@@ -678,6 +678,13 @@ SpPresenter >> locale [
 	^ self application locale
 ]
 
+{ #category : #localization }
+SpPresenter >> localeChanged [
+
+	"do nothing here. Override me in subclasses to update strings presented to the users"
+	
+]
+
 { #category : #'window menu' }
 SpPresenter >> neglectMenuModel: aMenuModel [
 

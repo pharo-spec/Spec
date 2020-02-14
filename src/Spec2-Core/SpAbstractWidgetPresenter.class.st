@@ -250,6 +250,15 @@ SpAbstractWidgetPresenter >> isEnabled [
 	^ enabled
 ]
 
+{ #category : #localization }
+SpAbstractWidgetPresenter >> localeChanged [
+
+	super localeChanged.
+	self help specLocaleChanged.
+	self updateSlot: #help
+	
+]
+
 { #category : #api }
 SpAbstractWidgetPresenter >> removeStyle: aStyle [
 

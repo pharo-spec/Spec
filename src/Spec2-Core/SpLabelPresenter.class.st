@@ -87,12 +87,13 @@ SpLabelPresenter >> label: aText [
 	label := aText
 ]
 
-{ #category : #events }
+{ #category : #localization }
 SpLabelPresenter >> localeChanged [
 
+	super localeChanged.
 	self label specLocaleChanged.
 	self updateSlot: #label
-	
+		
 ]
 
 { #category : #'api-events' }
