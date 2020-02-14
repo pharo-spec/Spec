@@ -87,6 +87,18 @@ SpMorphicLayoutAdapter >> buildWithSpec: aString [
 	^ self buildWithSpec
 ]
 
+{ #category : #accessing }
+SpMorphicLayoutAdapter >> children [
+
+	^ self subclassResponsibility
+]
+
+{ #category : #testing }
+SpMorphicLayoutAdapter >> isEmpty [
+
+	^ self children isEmpty
+]
+
 { #category : #'as yet unclassified' }
 SpMorphicLayoutAdapter >> layout: aLayout [
 
