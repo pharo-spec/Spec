@@ -190,6 +190,12 @@ SpWindowPresenter >> centeredRelativeTo: aModel [
 ]
 
 { #category : #api }
+SpWindowPresenter >> centeredRelativeToTopWindow [
+
+	self centeredRelativeTo: self application topWindow
+]
+
+{ #category : #api }
 SpWindowPresenter >> close [
 
 	"Only manage closing if the presenter is really open"
