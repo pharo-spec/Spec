@@ -95,7 +95,7 @@ Class {
 		'#askOkToClose => SpObservableSlot',
 		'#titleHolder => SpObservableSlot',
 		'#additionalSubpresentersMap',
-		'#layout',
+		'#layout => SpObservableSlot',
 		'#visible => SpObservableSlot',
 		'#extent => SpObservableSlot'
 	],
@@ -939,6 +939,14 @@ SpPresenter >> removeKeyCombination: aShortcut [
 	self contextKeyBindings removeKey: aShortcut ifAbsent: [ ^ self ].
 	self withAdapterDo: [ :anAdapter | 
 		anAdapter removeKeyCombination: aShortcut ]
+]
+
+{ #category : #api }
+SpPresenter >> replaceLayoutWith: aLayout [
+
+	layout := aLayout.
+	self withAdapterDo: [ :anAdapter |
+		anAdapter replaceLayoutWith: aLayout ]
 ]
 
 { #category : #'api-window' }

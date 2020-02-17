@@ -123,6 +123,20 @@ SpMorphicLayoutAdapter >> newPanel [
 		yourself
 ]
 
+{ #category : #initialization }
+SpMorphicLayoutAdapter >> replaceLayoutWith: aLayout [ 
+	| oldAdapter |
+
+	oldAdapter := self.
+	self model adapter: (aLayout
+		buildAdapterFor: self model
+		bindings: self model application adapterBindings).
+		
+	oldAdapter widget owner 
+		replaceSubmorph: oldAdapter widget  
+		by: self model adapter widget
+]
+
 { #category : #protocol }
 SpMorphicLayoutAdapter >> takeKeyboardFocus [
 

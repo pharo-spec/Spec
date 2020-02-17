@@ -66,7 +66,8 @@ SpAbstractWidgetLayout >> buildAdapterFor: aPresenter bindings: adapterBindings 
 
 	^ aPresenter needRebuild
 		ifTrue: [ self adapt: aPresenter bindings: adapterBindings ]
-		ifFalse: [ aPresenter needRebuild: true.
+		ifFalse: [ 
+			aPresenter needRebuild: true.
 			aPresenter adapter
 				ifNil: [ self adapt: aPresenter bindings: adapterBindings ]
 				ifNotNil: [ :adapter | 
