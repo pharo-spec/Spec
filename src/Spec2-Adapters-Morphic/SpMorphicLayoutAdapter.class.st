@@ -127,6 +127,8 @@ SpMorphicLayoutAdapter >> newPanel [
 SpMorphicLayoutAdapter >> replaceLayoutWith: aLayout [ 
 	| oldAdapter |
 
+	self widget owner ifNil: [ ^ self ].
+
 	oldAdapter := self.
 	self model adapter: (aLayout
 		buildAdapterFor: self model
