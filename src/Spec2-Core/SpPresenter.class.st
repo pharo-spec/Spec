@@ -548,7 +548,8 @@ SpPresenter >> initializePresenters [
 { #category : #'initialization - private' }
 SpPresenter >> initializePrivateAnnouncements [
 
-	self property: #titleHolder whenChangedDo: [ self updateTitle ]
+	self property: #titleHolder whenChangedDo: [ self updateTitle ].
+	self property: #layout whenChangedDo: [ :newLayout | self replaceLayoutWith: newLayout ]
 ]
 
 { #category : #'initialization - private' }
@@ -660,6 +661,12 @@ SpPresenter >> isVisible [
 SpPresenter >> layout [
 
 	^ layout
+]
+
+{ #category : #api }
+SpPresenter >> layout: aLayout [
+
+	layout := aLayout
 ]
 
 { #category : #private }
@@ -941,10 +948,9 @@ SpPresenter >> removeKeyCombination: aShortcut [
 		anAdapter removeKeyCombination: aShortcut ]
 ]
 
-{ #category : #api }
+{ #category : #private }
 SpPresenter >> replaceLayoutWith: aLayout [
 
-	layout := aLayout.
 	self withAdapterDo: [ :anAdapter |
 		anAdapter replaceLayoutWith: aLayout ]
 ]
@@ -1064,7 +1070,7 @@ SpPresenter >> update [
 SpPresenter >> updatePresenter [
 ]
 
-{ #category : #api }
+{ #category : #TOMOVE }
 SpPresenter >> updateTitle [
 
 	self flag: #TODO. "To move to WindowPresenter"
