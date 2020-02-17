@@ -4,7 +4,7 @@ I am a layout used for AbstractWidgetPresenters. I will manage all presenter tha
 Examples
 --------------------
 
-	SpecAbstractWidgetLayout for: #ListAdapter
+	SpAbstractWidgetLayout for: #ListAdapter
  
 Internal Representation and Key Implementation Points.
 --------------------
