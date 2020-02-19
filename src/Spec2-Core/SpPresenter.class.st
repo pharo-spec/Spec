@@ -328,11 +328,9 @@ SpPresenter >> askOkToClose [
 { #category : #'private building' }
 SpPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 
-	self flag: #TODO. "We will keep the layout used to build to allow recalculations 
-	 and other operations. But maybe this should be part of the adapter and not the presenter."
-	layout := aSpecLayout.
-	^ super basicBuildAdapterWithSpecLayout: aSpecLayout.
-
+	layout == aSpecLayout 
+		ifFalse: [ layout := aSpecLayout ].
+	^ super basicBuildAdapterWithSpecLayout: aSpecLayout
 ]
 
 { #category : #'api-shortcuts' }
