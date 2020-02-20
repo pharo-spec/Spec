@@ -20,7 +20,7 @@ SpMorphicToggleButtonAdapter >> buildWidget [
 		label:	 self getLabelText; 
 		hResizing: #spaceFill; 
 		vResizing: #shrinkWrap; 
-		setBalloonText: self getLabelText;
+		setBalloonText: self getHelpText;
 		getEnabledSelector: #enabled;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled.
@@ -37,6 +37,12 @@ SpMorphicToggleButtonAdapter >> clicked [
 	
 	widget performAction.
 	self model state: widget isPressed
+]
+
+{ #category : #'widget API' }
+SpMorphicToggleButtonAdapter >> getHelpText [
+
+	^ self presenter help ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
 ]
 
 { #category : #'widget API' }
