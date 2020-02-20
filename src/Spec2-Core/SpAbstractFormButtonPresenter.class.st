@@ -102,6 +102,15 @@ SpAbstractFormButtonPresenter >> labelClickable: aBoolean [
 	labelClickable := aBoolean
 ]
 
+{ #category : #localization }
+SpAbstractFormButtonPresenter >> localeChanged [
+
+	super localeChanged.
+	self label specLocaleChanged.
+	self updateSlot: #label
+	
+]
+
 { #category : #api }
 SpAbstractFormButtonPresenter >> state [
 	"Return the current state of the form button"
