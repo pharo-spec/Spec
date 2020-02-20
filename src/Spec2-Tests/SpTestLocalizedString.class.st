@@ -22,7 +22,7 @@ SpTestLocalizedString >> accentuateCharacter: aCharacter [
 
 { #category : #accessing }
 SpTestLocalizedString >> asString [ 
-	self halt
+	^ string asString
 ]
 
 { #category : #accessing }

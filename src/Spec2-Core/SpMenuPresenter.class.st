@@ -173,6 +173,15 @@ SpMenuPresenter >> isMenuPresenter [
 	^ true
 ]
 
+{ #category : #localization }
+SpMenuPresenter >> localeChanged [
+
+	super localeChanged.
+	self title specLocaleChanged.
+	self updateSlot: #title
+	
+]
+
 { #category : #api }
 SpMenuPresenter >> menuGroups [
 	^ groups

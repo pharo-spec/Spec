@@ -93,13 +93,13 @@ SpMorphicButtonAdapter >> font [
 { #category : #private }
 SpMorphicButtonAdapter >> getHelpText [
 
-	^ self presenter help valueForPresenter: self presenter
+	^ self presenter help ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
 ]
 
 { #category : #private }
 SpMorphicButtonAdapter >> getLabelText [
 
-	^ self presenter label valueForPresenter: self presenter
+	^ self presenter label ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
 ]
 
 { #category : #accessing }
