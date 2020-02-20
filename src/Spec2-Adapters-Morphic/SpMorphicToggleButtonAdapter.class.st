@@ -39,13 +39,13 @@ SpMorphicToggleButtonAdapter >> clicked [
 	self model state: widget isPressed
 ]
 
-{ #category : #'widget API' }
+{ #category : #private }
 SpMorphicToggleButtonAdapter >> getHelpText [
 
 	^ self presenter help ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
 ]
 
-{ #category : #'widget API' }
+{ #category : #private }
 SpMorphicToggleButtonAdapter >> getLabelText [
 
 	^ self presenter label ifNotNil: [ :aString | aString valueForPresenter: self presenter ]

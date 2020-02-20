@@ -50,7 +50,7 @@ SpMorphicRadioButtonAdapter >> getHelpText [
 	^ self presenter help ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
 ]
 
-{ #category : #updating }
+{ #category : #private }
 SpMorphicRadioButtonAdapter >> getLabelText [
 
 	^ self presenter label ifNotNil: [ :aString | aString valueForPresenter: self presenter ]

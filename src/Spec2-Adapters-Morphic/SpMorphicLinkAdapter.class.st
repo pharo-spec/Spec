@@ -47,7 +47,7 @@ SpMorphicLinkAdapter >> getHelpText [
 	^ self presenter help ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpMorphicLinkAdapter >> getLabelText [
 
 	^ self presenter label ifNotNil: [ :aString | aString valueForPresenter: self presenter ]

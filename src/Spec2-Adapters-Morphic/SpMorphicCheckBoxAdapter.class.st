@@ -37,13 +37,13 @@ SpMorphicCheckBoxAdapter >> clicked [
 	widget toggleSelected
 ]
 
-{ #category : #'widget API' }
+{ #category : #private }
 SpMorphicCheckBoxAdapter >> getHelpText [
 
 	^ self presenter help ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
 ]
 
-{ #category : #'widget API' }
+{ #category : #private }
 SpMorphicCheckBoxAdapter >> getLabelText [
 
 	^ self presenter label ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
