@@ -81,7 +81,7 @@ SpMorphicTextInputFieldAdapter >> entryCompletion [
 	^ self model entryCompletion
 ]
 
-{ #category : #factory }
+{ #category : #private }
 SpMorphicTextInputFieldAdapter >> getPlaceholderText [
 
 	^ self presenter placeholder ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
