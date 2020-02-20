@@ -41,7 +41,7 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		menuProvider: self selector: #codePaneMenu:shifted:;
 		setSelectionSelector: #setSelection:;
 		entryCompletion: self entryCompletion;
-		ghostText: self placeholder;
+		ghostText: self getPlaceholderText;
 		encrypted: self encrypted;
 		enabled: self enabled;
 		askBeforeDiscardingEdits: self askBeforeDiscardingEdits;
@@ -55,7 +55,7 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		yourself.
 
 	self presenter whenTextChangedDo: [ :text | newWidget setText: text ].
-	self presenter whenPlaceholderChangedDo: [ :text | newWidget ghostText: text ].
+	self presenter whenPlaceholderChangedDo: [ :text | newWidget ghostText: (text ifNotNil: [ :aString | aString valueForPresenter: self presenter]) ].
 	self presenter whenPasswordChangedDo: [ :isPassword | newWidget encrypted: isPassword ].
 	self presenter whenMaxLengthChangedDo: [ :length | newWidget maxLength: length ].
 
@@ -79,6 +79,12 @@ SpMorphicTextInputFieldAdapter >> encrypted: aBoolean [
 SpMorphicTextInputFieldAdapter >> entryCompletion [
 
 	^ self model entryCompletion
+]
+
+{ #category : #factory }
+SpMorphicTextInputFieldAdapter >> getPlaceholderText [
+
+	^ self presenter placeholder ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
 ]
 
 { #category : #testing }
