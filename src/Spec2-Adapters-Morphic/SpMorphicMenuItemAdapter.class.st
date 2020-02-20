@@ -115,11 +115,12 @@ SpMorphicMenuItemAdapter >> icon [
 SpMorphicMenuItemAdapter >> name [
 	| name | 
 	
-	name := self model name.
+	name := self presenter name.
 	
 	^ (name isBlock or: [ name isMessageSend ])
 		ifTrue: [ name cull: self model ]
-		ifFalse: [ name ]
+		ifFalse: [ name ifNotNil: [ :aString | aString valueForPresenter: self presenter ] ]
+
 ]
 
 { #category : #'widget API' }

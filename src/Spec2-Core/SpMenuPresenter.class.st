@@ -28,7 +28,7 @@ Class {
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
 		'#groups',
-		'#title',
+		'#title => SpObservableSlot',
 		'#icon',
 		'#autoRefresh => SpObservableSlot',
 		'#shortcutGroup',
