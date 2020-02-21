@@ -18,5 +18,5 @@ Text >> accentuateCharacter: aCharacter [
 { #category : #'*Spec2-Core' }
 Text >> valueForPresenter: aPresenter [
 
-	^ self
+	^ self asString
 ]
