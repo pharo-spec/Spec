@@ -266,6 +266,11 @@ SpAbstractWidgetPresenter >> removeStyle: aStyle [
 	styles := styles copyWithout: aStyle 
 ]
 
+{ #category : #private }
+SpAbstractWidgetPresenter >> replaceLayoutWith: aLayout [
+	"do nothing, widgets do not have updatable layouts"
+]
+
 { #category : #api }
 SpAbstractWidgetPresenter >> styles [ 
 

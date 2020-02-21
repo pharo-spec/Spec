@@ -11,7 +11,7 @@ Class {
 		'presenter',
 		'selector'
 	],
-	#category : #'Spec2-Core-Utilities'
+	#category : #'Spec2-Deprecated'
 }
 
 { #category : #accessing }
@@ -23,6 +23,40 @@ SpInterpreter class >> bindings [
 	"
 	
 	^ SpBindings value
+]
+
+{ #category : #'as yet unclassified' }
+SpInterpreter class >> bindings: anAdapterBinding [
+	self deprecated: 'Never worked.'
+]
+
+{ #category : #'as yet unclassified' }
+SpInterpreter class >> defaultBindings [
+	self deprecated: 'Use #bindings instead.' transformWith: '`@receiver defaultBindings' -> '`@receiver bindings'.
+	^ self bindings
+]
+
+{ #category : #'as yet unclassified' }
+SpInterpreter class >> hardResetBindings [
+	self deprecated: 'Never worked'
+]
+
+{ #category : #'as yet unclassified' }
+SpInterpreter class >> interpretASpec: aSpec model: aPresenter [
+	self
+		deprecated: 'Use `interpretASpec: aSpec presenter: aPresenter` instead'
+		transformWith: '`@receiver interpretASpec: `@statements1 model: `@statements2' -> '`@receiver interpretASpec: `@statements1 presenter: `@statements2'.
+		
+	^ self interpretASpec: aSpec presenter: aPresenter
+]
+
+{ #category : #'as yet unclassified' }
+SpInterpreter class >> interpretASpec: aSpec model: aPresenter selector: aSelector [
+	self
+		deprecated: 'Use `interpretASpec: aSpec presenter: aPresenter` instead'
+		transformWith: '`@receiver interpretASpec: `@statements1 model: `@statements2 selector: `@statements3' -> '`@receiver interpretASpec: `@statements1 presenter: `@statements2'.
+		
+	^ self interpretASpec: aSpec presenter: aPresenter
 ]
 
 { #category : #protocol }
@@ -124,6 +158,15 @@ SpInterpreter >> interpretASpec: aSpec [
 	^ spec
 ]
 
+{ #category : #'as yet unclassified' }
+SpInterpreter >> interpretASpec: aSpec model: aPresenter selector: aSelector [
+	self
+		deprecated: 'Use `interpretASpec: aSpec presenter: aPresenter` instead'
+		transformWith: '`@receiver interpretASpec: `@statements1 model: `@statements2 selector: `@statements3' -> '`@receiver interpretASpec: `@statements1 presenter: `@statements2'.
+
+	^ self interpretASpec: aSpec presenter: aPresenter
+]
+
 { #category : #interpreting }
 SpInterpreter >> interpretASpec: aSpec presenter: aPresenter [
 	self presenter: aPresenter.
@@ -135,6 +178,18 @@ SpInterpreter >> isPresenterSymbol: aSymbol [
 	self flag: #todo. "We keep #model for one version of Pharo then we should only keep #presenter."
 	
 	^ #(#model #presenter) anySatisfy: [ :symbol | symbol = aSymbol ]
+]
+
+{ #category : #'as yet unclassified' }
+SpInterpreter >> model [
+	self deprecated: 'Use #presenter instead' transformWith: '`@receiver model' -> '`@receiver presenter'.
+	^ self presenter
+]
+
+{ #category : #'as yet unclassified' }
+SpInterpreter >> model: anObject [
+	self deprecated: 'Use #presenter: instead' transformWith: '`@receiver model: `@statment1' -> '`@receiver presenter: `@statment1'.
+	self presenter: anObject
 ]
 
 { #category : #'interpreting-private' }
