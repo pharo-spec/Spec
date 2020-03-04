@@ -8,6 +8,23 @@ Class {
 	#category : #'Spec2-Core-Widgets-Table'
 }
 
+{ #category : #example }
+SpGeneratorListModel class >> example [
+	| items generator |
+
+	items := ($a to: $z) asArray.
+	generator := Generator on: [ :g | items do: [ :each | 
+		each crTrace.
+		g yield: each ] ].
+
+	SpListPresenter new 
+		model: (self new 
+			generator: generator;
+			yourself);
+		openWithSpec.
+
+]
+
 { #category : #accessing }
 SpGeneratorListModel >> at: anIndex [
 
