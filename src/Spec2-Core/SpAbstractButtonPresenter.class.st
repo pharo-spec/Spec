@@ -19,7 +19,7 @@ SpAbstractButtonPresenter >> addShortcutTipFor: aString [
 { #category : #private }
 SpAbstractButtonPresenter >> addShortcutTipFor: aCharacter on: aString [
 	
-	^ aString accentuateCharacter: aCharacter
+	^ aString withAccentuatedCharacter: aCharacter
 ]
 
 { #category : #api }

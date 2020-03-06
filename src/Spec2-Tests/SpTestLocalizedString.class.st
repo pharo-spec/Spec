@@ -15,12 +15,6 @@ SpTestLocalizedString class >> from: aString [
 ]
 
 { #category : #accessing }
-SpTestLocalizedString >> accentuateCharacter: aCharacter [
-
-
-]
-
-{ #category : #accessing }
 SpTestLocalizedString >> asString [ 
 	^ string asString
 ]
@@ -54,4 +48,10 @@ SpTestLocalizedString >> valueForPresenter: aPresenter [
 	requestsCount := requestsCount + 1.
 	
 	^ string, '[', aPresenter locale localeID isoString, '](', requestsCount asString, ')'
+]
+
+{ #category : #accessing }
+SpTestLocalizedString >> withAccentuatedCharacter: aCharacter [
+
+
 ]

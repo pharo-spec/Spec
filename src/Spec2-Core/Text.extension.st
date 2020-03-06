@@ -1,7 +1,13 @@
 Extension { #name : #Text }
 
 { #category : #'*Spec2-Core' }
-Text >> accentuateCharacter: aCharacter [
+Text >> valueForPresenter: aPresenter [
+
+	^ self asString
+]
+
+{ #category : #'*Spec2-Core' }
+Text >> withAccentuatedCharacter: aCharacter [
 
 	| text index | 
 	text := self copy.
@@ -13,10 +19,4 @@ Text >> accentuateCharacter: aCharacter [
 	^ text
 		addAttribute: TextEmphasis underlined from: index to: index;
 		yourself
-]
-
-{ #category : #'*Spec2-Core' }
-Text >> valueForPresenter: aPresenter [
-
-	^ self asString
 ]
