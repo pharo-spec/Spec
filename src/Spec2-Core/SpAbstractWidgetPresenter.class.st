@@ -179,13 +179,6 @@ SpAbstractWidgetPresenter >> enable [
 	self enabled: true
 ]
 
-{ #category : #'Spec2-Deprecated' }
-SpAbstractWidgetPresenter >> enabled [
-	self deprecated: 'Please use #isEnabled instead' transformWith: '`@receiver enabled' -> '`@receiver isEnabled'.
-
-	^ self isEnabled
-]
-
 { #category : #api }
 SpAbstractWidgetPresenter >> enabled: aBooleanOrValuable [
 	"Set if the button is enabled (clickable).
@@ -324,23 +317,11 @@ SpAbstractWidgetPresenter >> wantsDroppedMorph: draggedMorph event: anEvent inMo
 	^ self wantDropBlock cull: draggedMorph passenger cull: anEvent cull: source
 ]
 
-{ #category : #'Spec2-Deprecated' }
-SpAbstractWidgetPresenter >> whenBorderColorChanged: aBlock [
-	self deprecated: 'Use #whenBorderColorChangedDo: instead.' transformWith: '`@receiver whenBorderColorChanged: `@statements' -> '`@receiver whenBorderColorChangedDo: `@statements'.
-	self whenBorderColorChangedDo: aBlock
-]
-
 { #category : #'api-events' }
 SpAbstractWidgetPresenter >> whenBorderColorChangedDo: aBlock [
 	"Set a block to be performed when the brder width changed"
 
 	self property: #borderColor whenChangedDo: aBlock
-]
-
-{ #category : #'Spec2-Deprecated' }
-SpAbstractWidgetPresenter >> whenBorderWidthChanged: aBlock [
-	self deprecated: 'Use #whenBorderWidthChangedDo: instead.' transformWith: '`@receiver whenBorderWidthChanged: `@statements' -> '`@receiver whenBorderWidthChangedDo: `@statements'.
-	self whenBorderWidthChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
@@ -350,23 +331,11 @@ SpAbstractWidgetPresenter >> whenBorderWidthChangedDo: aBlock [
 	self property: #borderWidth whenChangedDo: aBlock
 ]
 
-{ #category : #'Spec2-Deprecated' }
-SpAbstractWidgetPresenter >> whenEnabledChanged: aBlock [
-	self deprecated: 'Use #whenEnabledChangedDo: instead.' transformWith: '`@receiver whenEnabledChangedDo: `@statements' -> '`@receiver whenEnabledChangedDo: `@statements'.
-	self whenEnabledChangedDo: aBlock
-]
-
 { #category : #'api-events' }
 SpAbstractWidgetPresenter >> whenEnabledChangedDo: aBlock [
 	"Set a block to performed when the widget is enabled or disabled"
 
 	self property: #enabled whenChangedDo: aBlock
-]
-
-{ #category : #'Spec2-Deprecated' }
-SpAbstractWidgetPresenter >> whenHelpChanged: aBlock [
-	self deprecated: 'Use #whenHelpChangedDo: instead.' transformWith: '`@receiver whenHelpChanged: `@statements' -> '`@receiver whenHelpChangedDo: `@statements'.
-	self whenHelpChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

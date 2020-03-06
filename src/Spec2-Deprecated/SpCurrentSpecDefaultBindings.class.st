@@ -7,7 +7,7 @@ Class {
 	#category : #'Spec2-Deprecated-Obsolete'
 }
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpCurrentSpecDefaultBindings class >> isDeprecated [
 	^ true
 ]

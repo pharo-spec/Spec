@@ -9,19 +9,19 @@ Class {
 	#category : #'Spec2-Deprecated-Adapters'
 }
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter class >> isDeprecated [ 
 
 	^ true
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> argumentBlock [
 
 	^ [ Array with: self model ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> buildWidget [
 	^ SpTreeColumn new
 		resizable: self resizable;
@@ -34,13 +34,13 @@ SpMorphicTreeColumnAdapter >> buildWidget [
 		rowMorphGetSelector: self displayBlock
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> displayBlock [
 
 	^ self model displayBlock
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> displayBlockChanged [
 
 	self widgetDo: [ :w | 
@@ -48,19 +48,19 @@ SpMorphicTreeColumnAdapter >> displayBlockChanged [
 		w container updateList ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> headerAction [
 
 	^ self model headerAction
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> headerFont [
 
 	^ self model headerFont
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> headerFontChanged [
 	
 	self widgetDo: [ :w | 
@@ -68,13 +68,13 @@ SpMorphicTreeColumnAdapter >> headerFontChanged [
 		w container resizerChanged ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> headerIcon [
 
 	^ self model headerIcon
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> headerIconChanged [
 	
 	self widgetDo: [ :w | 
@@ -83,13 +83,13 @@ SpMorphicTreeColumnAdapter >> headerIconChanged [
 			ifNotNil: [ w header icon: (ImageMorph new form: self headerIcon) ] ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> headerLabel [
 
 	^ self model headerLabel
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> headerLabelChanged [
 	
 	self widgetDo: [ :w | 
@@ -97,19 +97,19 @@ SpMorphicTreeColumnAdapter >> headerLabelChanged [
 		w container resizerChanged ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> initialWidth [
 
 	^ self model initialWidth
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> performHeaderAction [
 
 	self headerAction cull: self model cull: self
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> performHeaderActionSelector [
 
 	^ self headerAction
@@ -117,19 +117,19 @@ SpMorphicTreeColumnAdapter >> performHeaderActionSelector [
 		ifNotNil: [ #performHeaderAction ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> resizable [
 
 	^ self model resizable
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> resizableChanged [
 	
 	self widgetDo: [ :w | w resizable: self resizable ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeColumnAdapter >> update: aSymbol [
 
 	aSymbol == #displayBlockChanged ifTrue: [ ^ self displayBlockChanged ].

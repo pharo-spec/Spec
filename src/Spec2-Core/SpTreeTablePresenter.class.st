@@ -131,11 +131,6 @@ SpTreeTablePresenter >> doActivateAtPath: aPath [
 				yourself)
 ]
 
-{ #category : #'Spec2-Deprecated' }
-SpTreeTablePresenter >> doubleClickAction: aBlockClosure [
-	self deprecated: 'Use #whenActivatedDo: and #activateOnDoubleClick instead.'
-]
-
 { #category : #simulation }
 SpTreeTablePresenter >> doubleClickAtPath: aPath [
 	self selectPath: aPath.

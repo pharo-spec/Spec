@@ -87,12 +87,6 @@ SpMenuPresenter >> addMenuGroup: aMenuGroup [
 		ifNotNil: [ aMenuGroup autoRefresh: self autoRefresh ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
-SpMenuPresenter >> addTitle: aString [
-	self deprecated: 'Use #title: instead.' transformWith: '`@receiver addTitle: `@argument' -> '`@receiver title: `@argument'.
-	self title: aString
-]
-
 { #category : #api }
 SpMenuPresenter >> applyTo: aModel [
 

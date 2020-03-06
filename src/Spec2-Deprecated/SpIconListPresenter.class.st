@@ -17,7 +17,7 @@ Class {
 	#category : #'Spec2-Deprecated-Replaced'
 }
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpIconListPresenter class >> example [
 	<sampleInstance>
 	| example |
@@ -29,7 +29,7 @@ SpIconListPresenter class >> example [
 	^ example
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpIconListPresenter class >> isDeprecated [
 	^ true
 ]

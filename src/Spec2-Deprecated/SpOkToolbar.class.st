@@ -11,7 +11,7 @@ Class {
 	#category : #'Spec2-Deprecated-Obsolete'
 }
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkToolbar class >> defaultSpec [
 	<spec>
 	
@@ -21,20 +21,20 @@ SpOkToolbar class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkToolbar class >> isDeprecated [
 	"You should use a ToolBarPresenter"
 
 	^ true
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkToolbar class >> title [
 
 	^ 'Ok Toolbar'
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkToolbar >> cancel [
 	
 	owner 
@@ -42,19 +42,19 @@ SpOkToolbar >> cancel [
 		ifNotNil: [ owner delete ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkToolbar >> connectPresenters [
 
 	okButton action: self okActionBlock
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkToolbar >> initialize [
 	super initialize.
 	okAction := [ true ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkToolbar >> initializePresenters [
 	
 	
@@ -65,29 +65,29 @@ SpOkToolbar >> initializePresenters [
 		add: okButton
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkToolbar >> okAction [
 	^ okAction
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkToolbar >> okAction: aBlock [
 
 	^ okAction := aBlock
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkToolbar >> okActionBlock [
 	^ [ self okAction value == false ifFalse: [ owner ifNil: [ self delete ] ifNotNil: [ owner delete ] ] ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkToolbar >> okButton [
 
 	^ okButton
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkToolbar >> registerOkButtonEvents [
 
 	okButton 
@@ -96,13 +96,13 @@ SpOkToolbar >> registerOkButtonEvents [
 		state: false
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkToolbar >> triggerCancelAction [
 	
 	self cancel
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkToolbar >> triggerOkAction [
 
 	self okActionBlock value

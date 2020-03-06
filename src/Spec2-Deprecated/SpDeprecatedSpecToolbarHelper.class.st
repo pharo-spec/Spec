@@ -14,38 +14,3 @@ Class {
 	],
 	#category : #'Spec2-Deprecated-Obsolete'
 }
-
-{ #category : #'Spec2-Deprecated' }
-SpDeprecatedSpecToolbarHelper class >> for: aWindowPresenter [
-	^ self new
-		windowPresenter: aWindowPresenter;
-		yourself
-]
-
-{ #category : #'Spec2-Deprecated' }
-SpDeprecatedSpecToolbarHelper class >> isDeprecated [
-	^ true
-]
-
-{ #category : #'Spec2-Deprecated' }
-SpDeprecatedSpecToolbarHelper >> cancelButton [
-	^ windowPresenter
-		addButton: 'Cancel'
-		do: [ :presenter | 
-			presenter triggerCancelAction.
-			presenter close ]
-]
-
-{ #category : #'Spec2-Deprecated' }
-SpDeprecatedSpecToolbarHelper >> okButton [
-	^ windowPresenter
-		addButton: 'Ok'
-		do: [ :presenter | 
-			presenter triggerOkAction.
-			presenter close ]
-]
-
-{ #category : #'Spec2-Deprecated' }
-SpDeprecatedSpecToolbarHelper >> windowPresenter: aDialogWindowPresenter [ 
-	windowPresenter := aDialogWindowPresenter
-]

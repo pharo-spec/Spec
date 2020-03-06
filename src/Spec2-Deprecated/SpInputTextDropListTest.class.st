@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Deprecated-Tests'
 }
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropListTest >> classToTest [
 	^ SpInputTextDropList
 ]

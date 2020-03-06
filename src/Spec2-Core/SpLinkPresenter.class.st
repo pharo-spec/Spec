@@ -76,20 +76,10 @@ SpLinkPresenter >> label: aString [
 	^ label := aString
 ]
 
-{ #category : #'Spec2-Deprecated' }
-SpLinkPresenter >> labelHolder [
-	self deprecated: 'Nobody should access directly to internals of Spec. Now this variable is not a value holder anymore.'
-]
-
 { #category : #api }
 SpLinkPresenter >> url: aString [
 	self action: [ WebBrowser openOn: aString ].
 	self label ifNil: [ self label: aString ]
-]
-
-{ #category : #'Spec2-Deprecated' }
-SpLinkPresenter >> urlHolder [
-	self deprecated: 'Nobody should access directly to internals of Spec. Now this variable is not a value holder anymore.'
 ]
 
 { #category : #enumerating }

@@ -12,7 +12,7 @@ Class {
 	#category : #'Spec2-Deprecated-Obsolete'
 }
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar class >> defaultSpec [
 	<spec>
 	
@@ -23,66 +23,66 @@ SpOkCancelToolbar class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar class >> isDeprecated [
 	"You should use a ToolBarPresenter"
 
 	^ true
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar class >> title [
 
 	^ 'Ok Cancel'
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar >> cancel [
 
 	self cancelled: true
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar >> cancelAction [
 	^ cancelAction
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar >> cancelAction: aBlock [
 	^ cancelAction := aBlock
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar >> cancelButton [
 
 	^ cancelButton
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar >> cancelled [
 	^ cancelled
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar >> cancelled: aBoolean [
 	cancelled := aBoolean
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar >> connectPresenters [
 
 	super connectPresenters.
 	cancelButton action: [ self performCancelAction ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar >> initialize [
 	cancelled := false.
 	cancelAction := [ true ].
 	super initialize
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar >> initializePresenters [
 
 	super initializePresenters.
@@ -93,14 +93,14 @@ SpOkCancelToolbar >> initializePresenters [
 		add: cancelButton
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar >> performCancelAction [
 	^ self cancelAction value == false
 		ifFalse: [ cancelled := true.
 			owner ifNil: [ self delete ] ifNotNil: [ owner delete ] ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar >> registerCancelButtonEvents [
 
 	cancelButton 
@@ -109,7 +109,7 @@ SpOkCancelToolbar >> registerCancelButtonEvents [
 		state: false
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpOkCancelToolbar >> triggerCancelAction [
 
 	self performCancelAction

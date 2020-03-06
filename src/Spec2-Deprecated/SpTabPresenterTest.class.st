@@ -7,22 +7,22 @@ Class {
 	#category : #'Spec2-Deprecated-Tests'
 }
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenterTest class >> isDeprecated [
 	^ true
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenterTest >> classToTest [
 	^ SpTabPresenter
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenterTest >> initializeTestedInstance [
 	manager := SpTabManagerPresenter new
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenterTest >> redMorphTab [
 	presenter
 		label: 'Red Morph';
@@ -33,7 +33,7 @@ SpTabPresenterTest >> redMorphTab [
 				yourself).
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenterTest >> testChangeLabel [
 	"issue 14885"
 
@@ -47,7 +47,7 @@ SpTabPresenterTest >> testChangeLabel [
 	self assert: presenter label equals: 'Change After Opening'
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenterTest >> testSetOwner [
 	"issue 16553"
 

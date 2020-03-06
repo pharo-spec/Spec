@@ -133,12 +133,6 @@ SpAbstractFormButtonPresenter >> whenActivatedDo: aBlock [
 	self whenChangedDo: [:bool | bool ifTrue: aBlock ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
-SpAbstractFormButtonPresenter >> whenActivationActionChanged: aBlock [
-	self deprecated: 'Use #whenActivationActionChangedDo: instead.' transformWith: '`@receiver whenActivationActionChanged: `@statements' -> '`@receiver whenActivationActionChangedDo: `@statements'.
-	self whenActivationActionChangedDo: aBlock
-]
-
 { #category : #'api-events' }
 SpAbstractFormButtonPresenter >> whenActivationActionChangedDo: aBlock [
 	"A block performed when the activation action changed"
@@ -160,12 +154,6 @@ SpAbstractFormButtonPresenter >> whenDeactivatedDo: aBlock [
 	self whenChangedDo: [:bool | bool ifFalse: aBlock ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
-SpAbstractFormButtonPresenter >> whenDeactivationActionChanged: aBlock [
-	self deprecated: 'Use #whenDeactivationActionChangedDo: instead.' transformWith: '`@receiver whenDeactivationActionChanged: `@statements' -> '`@receiver whenDeactivationActionChangedDo: `@statements'.
-	self whenDeactivationActionChangedDo: aBlock
-]
-
 { #category : #'api-events' }
 SpAbstractFormButtonPresenter >> whenDeactivationActionChangedDo: aBlock [
 	"A block performed when the deactivation action changed"
@@ -177,12 +165,6 @@ SpAbstractFormButtonPresenter >> whenDeactivationActionChangedDo: aBlock [
 SpAbstractFormButtonPresenter >> whenLabelChangedDo: aBlock [
 
 	self property: #label whenChangedDo: aBlock 
-]
-
-{ #category : #'Spec2-Deprecated' }
-SpAbstractFormButtonPresenter >> whenLabelClickableChanged: aBlock [
-	self deprecated: 'Use #whenLabelClickableChangedDo: instead.' transformWith: '`@receiver whenLabelClickableChanged: `@statements' -> '`@receiver whenLabelClickableChangedDo: `@statements'.
-	self whenLabelClickableChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
