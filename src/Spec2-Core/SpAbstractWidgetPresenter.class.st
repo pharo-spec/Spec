@@ -255,7 +255,7 @@ SpAbstractWidgetPresenter >> localeChanged [
 
 	super localeChanged.
 	self help specLocaleChanged.
-	self updateSlot: #help
+	self forceUpdateSlot: #help
 	
 ]
 

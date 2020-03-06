@@ -131,7 +131,7 @@ SpMenuItemPresenter >> localeChanged [
 
 	super localeChanged.
 	self name specLocaleChanged.
-	self updateSlot: #name
+	self forceUpdateSlot: #name
 	
 ]
 

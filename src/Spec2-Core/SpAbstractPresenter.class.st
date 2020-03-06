@@ -163,6 +163,12 @@ SpAbstractPresenter >> enabled: aBoolean [
 	^ self subclassResponsibility
 ]
 
+{ #category : #'private utils' }
+SpAbstractPresenter >> forceUpdateSlot: aSymbol [
+
+	^ (self rawValueHolderNamed: aSymbol) valueChanged
+]
+
 { #category : #testing }
 SpAbstractPresenter >> hasOwner [
 
@@ -375,12 +381,6 @@ SpAbstractPresenter >> spec: anAdapter [
 SpAbstractPresenter >> update: aParameter [
 
 	self changed: aParameter
-]
-
-{ #category : #'private utils' }
-SpAbstractPresenter >> updateSlot: aSymbol [
-
-	^ (self rawValueHolderNamed: aSymbol) valueChanged
 ]
 
 { #category : #events }

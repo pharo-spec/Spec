@@ -92,7 +92,7 @@ SpLabelPresenter >> localeChanged [
 
 	super localeChanged.
 	self label specLocaleChanged.
-	self updateSlot: #label
+	self forceUpdateSlot: #label
 		
 ]
 

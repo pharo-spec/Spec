@@ -245,7 +245,7 @@ SpAbstractTextPresenter >> localeChanged [
 
 	super localeChanged.
 	self placeholder specLocaleChanged.
-	self updateSlot: #placeholder
+	self forceUpdateSlot: #placeholder
 	
 ]
 
