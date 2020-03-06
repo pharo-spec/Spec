@@ -103,6 +103,12 @@ SpCodePresenter class >> title [
 	^ 'Code'
 ]
 
+{ #category : #'Spec2-Deprecated' }
+SpCodePresenter >> aboutToStyle: aBoolean [
+	self deprecated: 'Use #withSyntaxHighlight, #withoutSyntaxHighlight or #syntaxHighlight: instead.' transformWith: '`@receiver aboutToStyle: `@argument' -> '`@receiver syntaxHighlight: `@argument'.
+	self syntaxHighlight: aBoolean
+]
+
 { #category : #'api-shout' }
 SpCodePresenter >> behavior [
 	"Return the class corresponding to the method class of the source code you are editing"

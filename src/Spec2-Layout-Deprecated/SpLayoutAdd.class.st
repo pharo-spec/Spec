@@ -21,7 +21,7 @@ SpLayoutAdd class >> subwidget: subwidget layoutFrame: aLayoutFrame [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> arguments [
 	"We store the result because it change the state of the layouts and should be called only one time. I do not like this implementation but we'll clean later if we have time."
 
@@ -29,36 +29,36 @@ SpLayoutAdd >> arguments [
 	^ {{subwidgetArguments . #layout: . self generateSpec}}
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> bottomFraction [
 
 	^ layoutFrame bottomFraction
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> bottomFraction: aNumber [
 
 	layoutFrame bottomFraction: aNumber 
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> bottomOffset [
 
 	^ layoutFrame bottomOffset 
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> bottomOffset: aNumber [
 
 	layoutFrame bottomOffset: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> fractions [
 	^ layoutFrame fractionRectangle
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> generateSpec [
 	| str spec |
 	str := layoutFrame asArray readStream.	
@@ -71,7 +71,7 @@ SpLayoutAdd >> generateSpec [
 	^ spec asArray
 ]
 
-{ #category : #initialization }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> initialize [
 
 	super initialize.
@@ -79,44 +79,44 @@ SpLayoutAdd >> initialize [
 	layoutFrame := SpLayoutFrame identity
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> layoutFrame [
 
 	^ layoutFrame
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> layoutFrame: newFrame [
 
 	layoutFrame := newFrame asSpLayoutFrame
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> leftFraction [
 
 	^ layoutFrame leftFraction 
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> leftFraction: aNumber [
 
 	layoutFrame leftFraction: aNumber
 
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> leftOffset [
 
 	^ layoutFrame leftOffset
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> leftOffset: aNumber [
 
 	^ layoutFrame leftOffset: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> offsets [
 	"to deprecate 
 	"
@@ -124,41 +124,41 @@ SpLayoutAdd >> offsets [
 	^ layoutFrame leftOffset  @ layoutFrame topOffset corner:  layoutFrame rightOffset  @ layoutFrame bottomOffset 
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> rightFraction [
 
 	^ layoutFrame rightFraction
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> rightFraction: aNumber [
 
 	^ layoutFrame rightFraction: aNumber
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> rightOffset [
 
 	^ layoutFrame rightOffset
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> rightOffset: aNumber [
 
 	layoutFrame rightOffset: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> subwidget [
 	^ subwidget
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> subwidget: anObject [
 	subwidget := anObject
 ]
 
-{ #category : #'instance creation' }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> subwidget: aSpec layoutFrame: aLayoutFrame [
 	subwidget := aSpec isSymbol
 		ifTrue: [ {#presenter.
@@ -174,30 +174,30 @@ SpLayoutAdd >> subwidget: aSpec layoutFrame: aLayoutFrame [
 	layoutFrame := aLayoutFrame
 ]
 
-{ #category : #'instance creation' }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> subwidgetArguments [
 	^ subwidget asArray
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> topFraction [
 
 	^ layoutFrame topFraction
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> topFraction: aNumber [
 
 	layoutFrame topFraction: aNumber
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> topOffset [
 
 	^ layoutFrame topOffset
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAdd >> topOffset: aNumber [
 
 	layoutFrame topOffset: aNumber

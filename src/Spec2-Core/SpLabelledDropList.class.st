@@ -25,7 +25,7 @@ SpLabelledDropList >> display: aBlock [
 	^ self dropList display: aBlock
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'Spec2-Deprecated' }
 SpLabelledDropList >> displayBlock: aBlock [
 
 	self

@@ -51,6 +51,11 @@ SpDropListItem >> action: aBlock [
 	action := aBlock
 ]
 
+{ #category : #'Spec2-Deprecated' }
+SpDropListItem >> actionHolder [
+	self deprecated: 'Nobody should access directly to internals of Spec. Now the action not a value holder anymore because it was not used.'
+]
+
 { #category : #protocol }
 SpDropListItem >> display: aBlock [
 	"aBlock - 1 optional argument, which is the underlying item; returns the string to be displayed"

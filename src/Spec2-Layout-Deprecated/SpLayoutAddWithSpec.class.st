@@ -20,24 +20,24 @@ SpLayoutAddWithSpec class >> subwidget: subwidget spec: aSpecSelector layoutFram
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAddWithSpec >> specSelector [
 	^ specSelector
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAddWithSpec >> specSelector: aSymbol [
 	specSelector := aSymbol
 ]
 
-{ #category : #'instance creation' }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAddWithSpec >> subwidget: sub spec: aSpecSelector layoutFrame: aFrameLayout [
 	self subwidget: sub.
 	self specSelector: aSpecSelector.
 	self layoutFrame: aFrameLayout
 ]
 
-{ #category : #'instance creation' }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAddWithSpec >> subwidgetArguments [
 	^ self subwidget isArray
 		ifTrue: [ #(presenter) , self subwidget , {#retrieveSpec:. self specSelector} ]

@@ -17,7 +17,7 @@ SpLayoutAddRow class >> block: aBlock layoutFrame: aLayoutFrame [
 			yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAddRow >> block: aBlock layoutFrame: aLayoutFrame [
 	| row |
 	row := SpRowLayout composed.

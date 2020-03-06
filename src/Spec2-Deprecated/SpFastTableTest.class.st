@@ -4,13 +4,13 @@ Class {
 	#category : #'Spec2-Deprecated-Tests'
 }
 
-{ #category : #running }
+{ #category : #'Spec2-Deprecated' }
 SpFastTableTest >> classToTest [
 
 	^ SpFastTablePresenter
 ]
 
-{ #category : #running }
+{ #category : #'Spec2-Deprecated' }
 SpFastTableTest >> initializeTestedInstance [
 
 	presenter
@@ -19,7 +19,7 @@ SpFastTableTest >> initializeTestedInstance [
 		items: { 1 . 2 . 3 }
 ]
 
-{ #category : #running }
+{ #category : #'Spec2-Deprecated' }
 SpFastTableTest >> testColumnsAreExplicitlySetEvenIfDisplayBlockContainsMoreItems [
 
 	self assert: presenter columns size equals: 2

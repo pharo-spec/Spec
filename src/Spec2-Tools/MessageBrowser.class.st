@@ -148,6 +148,12 @@ MessageBrowser >> autoSelect: aSelector [
 						ifTrue: [ self intervalOf: aSelector inCode: text of: msg ] ] ]
 ]
 
+{ #category : #'Spec2-Deprecated' }
+MessageBrowser >> browseClass [
+	self deprecated: 'This method seems never called.'.
+	self currentMethod ifNotNil: [ :method | method methodClass browse ]
+]
+
 { #category : #initialization }
 MessageBrowser >> buildUpdateTitle [
 	"Trying to have a clean subscription, this method is called in #initialize"
@@ -174,6 +180,12 @@ MessageBrowser >> connectPresenters [
 		whenSelectionChangedDo: [ :selection | [ :item | self selectItem: item ] cull: selection selectedItem ];
 		whenModelChangedDo: [ self updateTitle ].
 	textModel acceptBlock: [ :text :notifyer | (self accept: text notifying: notifyer) notNil ]
+]
+
+{ #category : #'Spec2-Deprecated' }
+MessageBrowser >> currentMethod [
+	self deprecated: 'Use #selectedMessage instead' transformWith: '`@receiver currentMethod' -> '`@receiver selectedMessage'.
+	^ self selectedMessage
 ]
 
 { #category : #'text selection' }
@@ -345,6 +357,12 @@ MessageBrowser >> intervalOf: aSelector inCommentText: aText [
 	^ self searchedString: aSelector asString in: aText
 ]
 
+{ #category : #'Spec2-Deprecated' }
+MessageBrowser >> listModel [
+	self deprecated: 'It is not wise to allow external user access the content of a sub presenter. If this is accessed directly, the behavior should probably be moved to the MessageBrowser.'.
+	^ messageList listModel
+]
+
 { #category : #api }
 MessageBrowser >> messages [
 	^ messageList messages
@@ -385,6 +403,12 @@ MessageBrowser >> methodRemoved: anAnnouncement [
 		self handleMethodRemoved: anAnnouncement ]
 ]
 
+{ #category : #'Spec2-Deprecated' }
+MessageBrowser >> model [ 
+	self deprecated: 'User should not use model directly.'.
+	^ messageList model
+]
+
 { #category : #'messageList interface' }
 MessageBrowser >> open [
 
@@ -410,6 +434,11 @@ MessageBrowser >> registerToAnnouncements [
 		when: MethodRecategorized send: #methodRecategorized: to: self;
 		when: MethodRemoved send: #methodRemoved: to: self;
 		when: ClassRenamed send: #classRenamed: to: self
+]
+
+{ #category : #'Spec2-Deprecated' }
+MessageBrowser >> resetSelection [
+	self deprecated: 'I have the impression this method is not use. If it end up been call, please open an issue on pharo-spec/Spec'
 ]
 
 { #category : #'text selection' }
@@ -469,6 +498,12 @@ MessageBrowser >> selectedClass [
 	^ self selectedMethod origin
 ]
 
+{ #category : #'Spec2-Deprecated' }
+MessageBrowser >> selectedItem [
+	self deprecated: 'Use #selectedMessage instead' transformWith: '`@receiver selectedItem' -> '`@receiver selectedMessage'.
+	^ self selectedMessage
+]
+
 { #category : #api }
 MessageBrowser >> selectedMessage: aMessage [
 	messageList selectMessage: aMessage
@@ -477,6 +512,12 @@ MessageBrowser >> selectedMessage: aMessage [
 { #category : #accessing }
 MessageBrowser >> selectedMethod [
 	^ messageList selectedMethod
+]
+
+{ #category : #'Spec2-Deprecated' }
+MessageBrowser >> selectedMethods [
+	self deprecated: 'I have the impression this method is not use. If it end up been call, please open an issue on pharo-spec/Spec'.
+	^ {self selectedMessage} asOrderedCollection
 ]
 
 { #category : #initialization }
@@ -499,6 +540,12 @@ MessageBrowser >> setRefreshingBlockForSendersOf: aSelector [
 	specialIndex := Smalltalk specialSelectorIndexOrNil: aSelector.
 	self refreshingBlock: [:method | 
 		method hasSelector: aSelector specialSelectorIndex: specialIndex ]
+]
+
+{ #category : #'Spec2-Deprecated' }
+MessageBrowser >> setSelectedIndex: anIndex [
+	self deprecated: 'Use #selectIndex: instead' transformWith: '`@receiver setSelectedIndex: `@argument' -> '`@receiver selectIndex: `@argument'.
+	self selectIndex: anIndex
 ]
 
 { #category : #announcements }
@@ -545,6 +592,12 @@ MessageBrowser >> textModel: aModel [
 { #category : #private }
 MessageBrowser >> title [
 	^ self class title , ' [' , messageList numberOfElements printString , ']'
+]
+
+{ #category : #'Spec2-Deprecated' }
+MessageBrowser >> toolbarModel [
+	self deprecated: 'Use #toolbarPresenter instead' transformWith: '`@receiver toolbarModel' -> '`@receiver toolbarPresenter'.
+	^ self toolbarPresenter
 ]
 
 { #category : #accessing }

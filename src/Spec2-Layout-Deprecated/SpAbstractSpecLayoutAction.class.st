@@ -17,22 +17,22 @@ SpAbstractSpecLayoutAction class >> isDeprecated [
 	^ true
 ]
 
-{ #category : #accesing }
+{ #category : #'Spec2-Deprecated' }
 SpAbstractSpecLayoutAction >> arguments [
 	^ self subclassResponsibility
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpAbstractSpecLayoutAction >> asSpecElements [
 	^ {self selector} , self arguments
 ]
 
-{ #category : #accesing }
+{ #category : #'Spec2-Deprecated' }
 SpAbstractSpecLayoutAction >> selector [
 	^ selector
 ]
 
-{ #category : #accesing }
+{ #category : #'Spec2-Deprecated' }
 SpAbstractSpecLayoutAction >> selector: anObject [
 	selector := anObject
 ]

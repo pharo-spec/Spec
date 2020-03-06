@@ -7,7 +7,7 @@ Class {
 	#category : #'Spec2-Deprecated-Tools-Manifest'
 }
 
-{ #category : #deprecation }
+{ #category : #'Spec2-Deprecated' }
 ManifestSpec2DeprecatedTools class >> isDeprecated [
 	^ true
 ]

@@ -11,7 +11,7 @@ SpLegacyLayout class >> isDeprecated [
 	^ true
 ]
 
-{ #category : #building }
+{ #category : #'Spec2-Deprecated' }
 SpLegacyLayout >> buildAdapterFor: aPresenter bindings: adapterBindings [
 	"Provides polymorphism with executable layouts."
 
@@ -20,7 +20,7 @@ SpLegacyLayout >> buildAdapterFor: aPresenter bindings: adapterBindings [
 		presenter: aPresenter
 ]
 
-{ #category : #testing }
+{ #category : #'Spec2-Deprecated' }
 SpLegacyLayout >> isSpLayout [
 
 	^ true

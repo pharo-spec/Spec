@@ -10,19 +10,19 @@ Class {
 	#category : #'Spec2-Layout-Deprecated'
 }
 
-{ #category : #commands }
+{ #category : #'Spec2-Deprecated' }
 SpColumnLayout >> add: aSpec height: aNumber [
 	
 	self add: aSpec origin: 0@0 corner: 1@1 offsetOrigin: 0@0 offsetCorner: 0@aNumber 
 ]
 
-{ #category : #commands }
+{ #category : #'Spec2-Deprecated' }
 SpColumnLayout >> addSplitter [
 
 	self commands add: (SpSplitterHorizontal commands: self commands)
 ]
 
-{ #category : #private }
+{ #category : #'Spec2-Deprecated' }
 SpColumnLayout >> autoFractionComputation [
 	| delta |
 	delta := numberOfProportionals isZero
@@ -35,7 +35,7 @@ SpColumnLayout >> autoFractionComputation [
 				ifFalse: [ self setWidgetLayoutWithOffset: e at: idx ] ]
 ]
 
-{ #category : #private }
+{ #category : #'Spec2-Deprecated' }
 SpColumnLayout >> countNumberOfProportionals [
 
 	self commands	do: [ :e | 
@@ -46,7 +46,7 @@ SpColumnLayout >> countNumberOfProportionals [
 				numberOfProportionals := numberOfProportionals + 1 ] ]
 ]
 
-{ #category : #private }
+{ #category : #'Spec2-Deprecated' }
 SpColumnLayout >> manualFractionComputation [
 	
 	self commands	doWithIndex: [ :e :idx | 
@@ -57,7 +57,7 @@ SpColumnLayout >> manualFractionComputation [
 			ifFalse: [ self setWidgetLayoutWithOffset: e at: idx ] ]
 ]
 
-{ #category : #converting }
+{ #category : #'Spec2-Deprecated' }
 SpColumnLayout >> privateAsArray [
 	self resetArrayComputation.
 	self countNumberOfProportionals.
@@ -71,7 +71,7 @@ SpColumnLayout >> privateAsArray [
 	^ super privateAsArray
 ]
 
-{ #category : #private }
+{ #category : #'Spec2-Deprecated' }
 SpColumnLayout >> resetArrayComputation [
 
 	super resetArrayComputation.
@@ -84,7 +84,7 @@ SpColumnLayout >> resetArrayComputation [
 	currentProportional := 0
 ]
 
-{ #category : #private }
+{ #category : #'Spec2-Deprecated' }
 SpColumnLayout >> setWidgetLayoutWithNoOffset: widget at: index delta: delta [
 
 	widget layoutFrame:
@@ -98,7 +98,7 @@ SpColumnLayout >> setWidgetLayoutWithNoOffset: widget at: index delta: delta [
 	lastFractionIndex := index
 ]
 
-{ #category : #private }
+{ #category : #'Spec2-Deprecated' }
 SpColumnLayout >> setWidgetLayoutWithOffset: widget at: index [
 
 	height := widget bottomOffset - widget topOffset.
@@ -117,7 +117,7 @@ SpColumnLayout >> setWidgetLayoutWithOffset: widget at: index [
 			currentOffset := currentOffset + height ]
 ]
 
-{ #category : #private }
+{ #category : #'Spec2-Deprecated' }
 SpColumnLayout >> shiftLastWidgets [
 	| index ante |	
 	

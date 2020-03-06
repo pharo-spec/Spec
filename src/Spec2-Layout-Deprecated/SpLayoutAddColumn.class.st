@@ -16,7 +16,7 @@ SpLayoutAddColumn class >> block: aBlock layoutFrame: aLayoutFrame [
 			yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : #'Spec2-Deprecated' }
 SpLayoutAddColumn >> block: aBlock layoutFrame: aLayoutFrame [
 	| column |
 	column := SpColumnLayout composed.

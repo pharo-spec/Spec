@@ -56,6 +56,12 @@ SpMorphicCodeAdapter >> hasSyntaxHighlight [
 	^ self model hasSyntaxHighlight
 ]
 
+{ #category : #'Spec2-Deprecated' }
+SpMorphicCodeAdapter >> isAboutToStyle [
+	self deprecated: 'Use #okToStle instead' transformWith: '`@receiver isAboutToStyle' -> '`@receiver okToStyle'.
+	^ self okToStyle
+]
+
 { #category : #NOCompletion }
 SpMorphicCodeAdapter >> receiverClass [
 

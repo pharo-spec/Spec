@@ -106,7 +106,7 @@ SpNotebookPresenter >> selectedPage [
 	^ selectedPage
 ]
 
-{ #category : #private }
+{ #category : #'Spec2-Deprecated' }
 SpNotebookPresenter >> selectedPage: aPage [
 
 	self 
@@ -127,7 +127,7 @@ SpNotebookPresenter >> selectedPageIndex [
 	^ self pages indexOf: page
 ]
 
-{ #category : #private }
+{ #category : #'Spec2-Deprecated' }
 SpNotebookPresenter >> selectedPageIndex: aNumber [
 	self 
 		deprecated: 'Use #selectPageIndex: instead' 
@@ -159,6 +159,12 @@ SpNotebookPresenter >> updatePageContent: aPage [
 SpNotebookPresenter >> whenPagesChangedDo: aBlock [
 
 	pagesHolder whenChangedDo: aBlock
+]
+
+{ #category : #'Spec2-Deprecated' }
+SpNotebookPresenter >> whenSelectedPageChanged: aBlock [
+	self deprecated: 'Use #whenSelectedPageChangedDo: instead.' transformWith: '`@receiver whenSelectedPageChanged: `@statements' -> '`@receiver whenSelectedPageChangedDo: `@statements'.
+	self whenSelectedPageChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

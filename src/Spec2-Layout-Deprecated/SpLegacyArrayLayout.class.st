@@ -7,19 +7,19 @@ Class {
 	#category : #'Spec2-Layout-Deprecated'
 }
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpLegacyArrayLayout >> array: aCollection [ 
 	
 	specArray := aCollection
 ]
 
-{ #category : #converting }
+{ #category : #'Spec2-Deprecated' }
 SpLegacyArrayLayout >> asArray [
 
 	^ specArray
 ]
 
-{ #category : #converting }
+{ #category : #'Spec2-Deprecated' }
 SpLegacyArrayLayout >> selector [
 
 	^ nil

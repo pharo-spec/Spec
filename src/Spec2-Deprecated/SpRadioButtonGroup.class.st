@@ -27,13 +27,13 @@ Class {
 	#category : #'Spec2-Deprecated-Support'
 }
 
-{ #category : #deprecation }
+{ #category : #'Spec2-Deprecated' }
 SpRadioButtonGroup class >> isDeprecated [ 
 
 	^ true
 ]
 
-{ #category : #api }
+{ #category : #'Spec2-Deprecated' }
 SpRadioButtonGroup >> addRadioButton: aButton [
 
 	buttons do: [:b | 
@@ -46,36 +46,36 @@ SpRadioButtonGroup >> addRadioButton: aButton [
 	aButton privateSetState: false
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpRadioButtonGroup >> buttons [
 	^ buttons
 ]
 
-{ #category : #api }
+{ #category : #'Spec2-Deprecated' }
 SpRadioButtonGroup >> canDeselectByClick [
 	"Return true clicking on a selected radio button deselects it"
 
 	^ canDeselectByClick value
 ]
 
-{ #category : #api }
+{ #category : #'Spec2-Deprecated' }
 SpRadioButtonGroup >> canDeselectByClick: aBoolean [
 	"Set if clicking on a selected radio button can deselect it"
 	
 	canDeselectByClick value: aBoolean
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpRadioButtonGroup >> currentlyActivated [
 	^ currentlyActivated
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpRadioButtonGroup >> currentlyActivated: anObject [
 	currentlyActivated := anObject
 ]
 
-{ #category : #api }
+{ #category : #'Spec2-Deprecated' }
 SpRadioButtonGroup >> default: aButton [
 
 	aButton privateSetState: true.
@@ -83,7 +83,7 @@ SpRadioButtonGroup >> default: aButton [
 	aButton whenBuiltDo: [ aButton privateSetState: true ]
 ]
 
-{ #category : #initialization }
+{ #category : #'Spec2-Deprecated' }
 SpRadioButtonGroup >> initialize [
 
 	super initialize.
@@ -93,26 +93,26 @@ SpRadioButtonGroup >> initialize [
 	currentlyActivated := nil asValueHolder
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Spec2-Deprecated' }
 SpRadioButtonGroup >> whenCanDeselectByClickChanged: aBlock [
 	self deprecated: 'Use #whenCanDeselectByClickChangedDo: instead.' transformWith: '`@receiver whenCanDeselectByClickChanged: `@statements' -> '`@receiver whenCanDeselectByClickChangedDo: `@statements'.
 	self whenCanDeselectByClickChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'Spec2-Deprecated' }
 SpRadioButtonGroup >> whenCanDeselectByClickChangedDo: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	
 	canDeselectByClick whenChangedDo: aBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Spec2-Deprecated' }
 SpRadioButtonGroup >> whenCurrentlyActivatedChanged: aBlock [
 	self deprecated: 'Use #whenCurrentlyActivatedChangedDo: instead.' transformWith: '`@receiver whenCurrentlyActivatedChanged: `@statements' -> '`@receiver whenCurrentlyActivatedChangedDo: `@statements'.
 	self whenCurrentlyActivatedChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'Spec2-Deprecated' }
 SpRadioButtonGroup >> whenCurrentlyActivatedChangedDo: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	

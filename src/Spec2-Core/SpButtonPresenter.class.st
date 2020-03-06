@@ -94,6 +94,14 @@ SpButtonPresenter >> font: aFont [
 	font := aFont
 ]
 
+{ #category : #'Spec2-Deprecated' }
+SpButtonPresenter >> getAction [
+	"get the block performed when the button is clicked"
+
+	self deprecated: 'Use #action instead' transformWith: '`@receiver getAction' -> '`@receiver action'.
+	^ self action
+]
+
 { #category : #initialization }
 SpButtonPresenter >> initialize [
 	super initialize.
@@ -119,7 +127,7 @@ SpButtonPresenter >> initialize [
 	self color: nil
 ]
 
-{ #category : #api }
+{ #category : #'Spec2-Deprecated' }
 SpButtonPresenter >> menu [
 
 	self 
@@ -130,7 +138,7 @@ SpButtonPresenter >> menu [
 	^ self contextMenu
 ]
 
-{ #category : #api }
+{ #category : #'Spec2-Deprecated' }
 SpButtonPresenter >> menu: aMenu [
 
 	self 

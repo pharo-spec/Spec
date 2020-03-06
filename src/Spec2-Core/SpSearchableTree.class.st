@@ -110,7 +110,7 @@ SpSearchableTree >> display: aBlock [
 	tree display: aBlock
 ]
 
-{ #category : #'api-compatibility' }
+{ #category : #'Spec2-Deprecated' }
 SpSearchableTree >> displayBlock [
 
 	self
@@ -121,7 +121,7 @@ SpSearchableTree >> displayBlock [
 	^ tree display
 ]
 
-{ #category : #'api-compatibility' }
+{ #category : #'Spec2-Deprecated' }
 SpSearchableTree >> displayBlock: aBlock [
 	
 	self

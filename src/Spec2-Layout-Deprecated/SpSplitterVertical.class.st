@@ -18,24 +18,24 @@ SpSplitterVertical class >> commands: commands [
 		yourself
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpSplitterVertical >> arguments [
 	^ {(self commands identityIndexOf: self)}
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpSplitterVertical >> commands [
 	
 	^ commands
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpSplitterVertical >> commands: anObject [
 	
 	commands := anObject
 ]
 
-{ #category : #initialization }
+{ #category : #'Spec2-Deprecated' }
 SpSplitterVertical >> initialize [
 	super initialize.
 
@@ -43,7 +43,7 @@ SpSplitterVertical >> initialize [
 	layoutFrame := (0 @ 0 corner: 0 @ 0) asSpLayoutFrame rightOffset: 1
 ]
 
-{ #category : #testing }
+{ #category : #'Spec2-Deprecated' }
 SpSplitterVertical >> isSplitter [
 
 	^ true

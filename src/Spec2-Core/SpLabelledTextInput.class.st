@@ -49,6 +49,12 @@ SpLabelledTextInput >> entryCompletion: anEntryCompletion [
 	^self input entryCompletion: anEntryCompletion
 ]
 
+{ #category : #'Spec2-Deprecated' }
+SpLabelledTextInput >> ghostText: aText [
+	self deprecated: 'This API is too tight to Morph. Use #placeholder: instead.' transformWith: '`@receiver ghostText: `@statement' -> '`@receiver placeholder: `@statement'.
+	self placeholder: aText
+]
+
 { #category : #initialization }
 SpLabelledTextInput >> initializePresenters [
 	super initializePresenters.

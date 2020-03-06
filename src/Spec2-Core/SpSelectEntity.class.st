@@ -89,6 +89,18 @@ SpSelectEntity >> entityText: anObject [
 	entityText := anObject
 ]
 
+{ #category : #'Spec2-Deprecated' }
+SpSelectEntity >> ghostText [
+	self deprecated: 'This API is too tight to Morph. Use #placeholder instead.' transformWith: '`@receiver ghostText' -> '`@receiver placeholder'.
+	^ self placeholder
+]
+
+{ #category : #'Spec2-Deprecated' }
+SpSelectEntity >> ghostText: aText [
+	self deprecated: 'This API is too tight to Morph. Use #placeholder: instead.' transformWith: '`@receiver ghostText: `@statement' -> '`@receiver placeholder: `@statement'.
+	self placeholder: aText
+]
+
 { #category : #initialization }
 SpSelectEntity >> initialize [
 	super initialize.
@@ -169,6 +181,12 @@ SpSelectEntity >> whenDisplaySymbolChanged: aBlock [
 { #category : #'api-events' }
 SpSelectEntity >> whenEntityChanged: aBlock [
 	self property: #entity whenChangedDo: aBlock
+]
+
+{ #category : #'Spec2-Deprecated' }
+SpSelectEntity >> whenGhostTextChanged: aBlock [
+	self deprecated: 'This API is too tight to Morph. Use #whenPlaceholderChanged: instead.' transformWith: '`@receiver whenGhostTextChanged: `@statement' -> '`@receiver whenPlaceholderChangedDo: `@statement'.
+	self whenPlaceholderChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

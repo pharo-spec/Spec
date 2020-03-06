@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Deprecated-Tools'
 }
 
-{ #category : #deprecation }
+{ #category : #'Spec2-Deprecated' }
 ChangeSorterApplication class >> isDeprecated [
 	"This class was renamed."
 

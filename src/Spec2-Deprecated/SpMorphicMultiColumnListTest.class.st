@@ -4,13 +4,13 @@ Class {
 	#category : #'Spec2-Deprecated-Tests'
 }
 
-{ #category : #running }
+{ #category : #'Spec2-Deprecated' }
 SpMorphicMultiColumnListTest >> classToTest [
 
 	^ SpMultiColumnListPresenter
 ]
 
-{ #category : #tests }
+{ #category : #'Spec2-Deprecated' }
 SpMorphicMultiColumnListTest >> testColumnsAreDynamicallySetInPresenter [
 
 	self presenter
@@ -19,7 +19,7 @@ SpMorphicMultiColumnListTest >> testColumnsAreDynamicallySetInPresenter [
 	self assert: self presenter columns size equals: 2
 ]
 
-{ #category : #tests }
+{ #category : #'Spec2-Deprecated' }
 SpMorphicMultiColumnListTest >> testColumnsAreDynamicallySetInWidget [
 
 	self presenter

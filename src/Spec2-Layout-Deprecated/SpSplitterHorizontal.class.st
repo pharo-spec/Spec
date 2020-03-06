@@ -18,24 +18,24 @@ SpSplitterHorizontal class >> commands: commands [
 		yourself
 ]
 
-{ #category : #protocol }
+{ #category : #'Spec2-Deprecated' }
 SpSplitterHorizontal >> arguments [
 	^ {(self commands identityIndexOf: self)}
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpSplitterHorizontal >> commands [
 	
 	^ commands
 ]
 
-{ #category : #accessing }
+{ #category : #'Spec2-Deprecated' }
 SpSplitterHorizontal >> commands: anObject [
 	
 	commands := anObject
 ]
 
-{ #category : #initialization }
+{ #category : #'Spec2-Deprecated' }
 SpSplitterHorizontal >> initialize [
 	super initialize.
 
@@ -43,7 +43,7 @@ SpSplitterHorizontal >> initialize [
 	layoutFrame := (0 @ 0 corner: 0 @ 0) asSpLayoutFrame bottomOffset: 1
 ]
 
-{ #category : #testing }
+{ #category : #'Spec2-Deprecated' }
 SpSplitterHorizontal >> isSplitter [
 
 	^ true
