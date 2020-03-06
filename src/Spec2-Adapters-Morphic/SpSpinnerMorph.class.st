@@ -40,14 +40,25 @@ SpSpinnerMorph >> extent [
 ]
 
 { #category : #'stepping and presenter' }
+SpSpinnerMorph >> height: aHeight [
+
+	super height: aHeight.
+	transformationMorph height: aHeight
+]
+
+{ #category : #'stepping and presenter' }
 SpSpinnerMorph >> initialize [
 
 	| wheelImageMorph |
 	super initialize.
 	self color: Color transparent.
 	wheelImageMorph := self newSpinnerMorph.
-	transformationMorph := TransformationMorph new asFlexOf: wheelImageMorph.
 	
+	transformationMorph := TransformationMorph new asFlexOf: wheelImageMorph.
+	transformationMorph 
+		vResizing: #rigid;
+		hResizing: #rigid.
+
 	self addMorph: transformationMorph
 ]
 
@@ -84,4 +95,11 @@ SpSpinnerMorph >> stepTime [
 SpSpinnerMorph >> wantsSteps [
 
 	^ true
+]
+
+{ #category : #'stepping and presenter' }
+SpSpinnerMorph >> width: aWidth [
+
+	super width: aWidth.
+	transformationMorph width: aWidth
 ]
