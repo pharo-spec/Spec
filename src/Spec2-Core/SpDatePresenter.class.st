@@ -26,13 +26,12 @@ Class {
 
 { #category : #specs }
 SpDatePresenter class >> defaultSpec [
-	^ SpLayout composed
-		newRow: [ :row | 
-			row
-				add: #dateModel;
-				add: #chooseDateButton width: 50 ]
-			height: 25;
+
+	^ SpBoxLayout newHorizontal
+		add: #dateModel;
+		add: #chooseDateButton expand: false;
 		yourself
+		
 ]
 
 { #category : #private }
