@@ -128,8 +128,9 @@ SpEditableListPresenter >> initialize [
 	title := 'Title'.
 	okBlock := [  ].
 	removeItemBlock := [ :item | 
-								self items remove: item.
-								self refresh. ]
+								item
+									ifNotNil: [ self items remove: item.
+													self refresh. ] ]
 ]
 
 { #category : #initialization }
