@@ -30,6 +30,12 @@ SpAbstractMorphicListAdapter >> configureScrolling [
 ]
 
 { #category : #'widget API' }
+SpAbstractMorphicListAdapter >> elementAt: index [
+
+	^ self widget dataSource elementAt: index
+]
+
+{ #category : #'widget API' }
 SpAbstractMorphicListAdapter >> itemFilter [
 	^ self model itemFilter
 ]

@@ -10,12 +10,19 @@ Class {
 		'#tree',
 		'#button'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : #'Spec2-Deprecated-Obsolete'
 }
 
 { #category : #specs }
 SpSearchableTree class >> defaultSpec [
 	^ self searchAtBottom
+]
+
+{ #category : #example }
+SpSearchableTree class >> example [
+	<sampleInstance>
+	^ self new
+		openWithSpec
 ]
 
 { #category : #specs }
@@ -110,6 +117,28 @@ SpSearchableTree >> display: aBlock [
 	tree display: aBlock
 ]
 
+{ #category : #'as yet unclassified' }
+SpSearchableTree >> displayBlock [
+
+	self
+		deprecated: 'Please use #display instead'
+		transformWith: '`@receiver displayBlock' 
+						-> '`@receiver display'.
+
+	^ tree display
+]
+
+{ #category : #'as yet unclassified' }
+SpSearchableTree >> displayBlock: aBlock [
+	
+	self
+		deprecated: 'Please use #display: instead'
+		transformWith: '`@receiver displayBlock: `@arg' 
+						-> '`@receiver display: `@arg'.
+	
+	tree display: aBlock
+]
+
 { #category : #api }
 SpSearchableTree >> doubleClick: aBlock [
 
@@ -143,7 +172,8 @@ SpSearchableTree >> initialize [
 
 { #category : #initialization }
 SpSearchableTree >> initializePresenters [
-	tree := self newTree.
+
+	tree := self newTree. 
 	inputField := self newTextInput.
 	button := self newButton.
 	tree
