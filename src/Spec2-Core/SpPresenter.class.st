@@ -673,8 +673,11 @@ SpPresenter >> layoutPresenters [
 	layout ifNil: [ ^ self presenters ].
 	
 	^ layout deepPresenters
-		select: [ :each | each isSymbol ]
-		thenCollect: [ :each | self presenterAt: each ]
+		select: [ :each | each isSymbol or: [ each isPresenter ] ]
+		thenCollect: [ :each | 
+			each isPresenter 
+				ifTrue: [ each ]
+				ifFalse:[ self presenterAt: each ] ]
 ]
 
 { #category : #TOREMOVE }
