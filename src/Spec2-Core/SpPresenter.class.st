@@ -219,7 +219,7 @@ SpPresenter >> addAll: aWindow withSpecLayout: aSpec [
 		frame: (0@0 corner: 1@1).
 ]
 
-{ #category : #'window menu' }
+{ #category : #TOREMOVE }
 SpPresenter >> addMenuItemsToWindowMenu: aMenu [
 	"Do nothing"
 ]
@@ -293,7 +293,7 @@ SpPresenter >> application: anApplication [
 	application := anApplication
 ]
 
-{ #category : #'window menu' }
+{ #category : #TOREMOVE }
 SpPresenter >> applyMenuModel: aMenuModel [
 
 	aMenuModel menuGroups do: [ :group |
@@ -626,7 +626,7 @@ SpPresenter >> instantiatePresenters: aCollectionOfPairs [
 				pairsDo: [ :k :v | self instVarNamed: k asString put: (self createInstanceFor: v) ] ]
 ]
 
-{ #category : #api }
+{ #category : #testing }
 SpPresenter >> isBuilt [
 	^ self isDisplayed
 ]
@@ -677,7 +677,7 @@ SpPresenter >> layoutPresenters [
 		thenCollect: [ :each | self presenterAt: each ]
 ]
 
-{ #category : #'window menu' }
+{ #category : #TOREMOVE }
 SpPresenter >> neglectMenuModel: aMenuModel [
 
 	aMenuModel menuGroups do: [ :group |
