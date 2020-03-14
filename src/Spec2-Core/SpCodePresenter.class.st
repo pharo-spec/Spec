@@ -35,7 +35,6 @@ SpCodePresenter class >> codeNavigationCommandsGroupWith: presenter [
 	
 	group := (CmCommandGroup named: 'Selection search commands') asSpecGroup.
 	group
-		id: #searchCommands;
 		description: 'Search the system from code selection.';
 		beDisplayedAsGroup.
 	group register: (SpBrowseClassCommand forSpecContext: [ presenter findClassFromSelection ]).	
@@ -58,7 +57,6 @@ SpCodePresenter class >> codeSelectionActionCommandsGroupWith: presenter [
 	
 	group := (CmCommandGroup named: 'Selection action commands') asSpecGroup.
 	group
-		id: #actionCommands;
 		description: 'Actions on code selection.';
 		beDisplayedAsGroup.
 	
@@ -191,11 +189,12 @@ SpCodePresenter >> selectedBehavior [
 ]
 
 { #category : #navigation }
-SpCodePresenter >> selectionOrLine [
-	^ self selectedText
-		ifEmpty: [ self
-				selectLine;
-				selectedText ]
+SpCodePresenter >> selectedTextOrLine [
+
+	^ self selectedText ifEmpty: [ 
+		self
+			selectLine;
+			selectedText ]
 ]
 
 { #category : #accessing }

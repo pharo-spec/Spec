@@ -24,7 +24,7 @@ Class {
 	#classTraits : 'SpTHaveWrappingScrollBars classTrait',
 	#instVars : [
 		'#scrollValue => SpObservableSlot',
-		'#editionContextMenu'
+		'#editionContextMenu => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }
@@ -61,7 +61,6 @@ SpTextPresenter class >> codeAcceptCommandsGroupWith: aPresenter [
 	^ (CmCommandGroup named: 'Accept commands') asSpecGroup
 		description: 'Accept or cancel changes.';
 		beDisplayedAsGroup;
-		id: #acceptCommands;
 		register: (SpAcceptChangesCommand forSpecContext: aPresenter);
 		register: (SpCancelChangesCommand forSpecContext: aPresenter);
 		yourself
@@ -72,8 +71,7 @@ SpTextPresenter class >> codeEditionCommandsGroupWith: aPresenter [
 	| group |
 
 	group := (CmCommandGroup named: 'Selection edition commands') asSpecGroup.
-	group	
-		id: #textEditionCommands; 
+	group
 		description: 'Edit code selection.';
 		beDisplayedAsGroup.
 	
