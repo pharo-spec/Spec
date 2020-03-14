@@ -482,6 +482,14 @@ SpPresenter >> gtInspectorSubPresentersIn: composite [
 		when: [ :each | each presenters isNotEmpty ]
 ]
 
+{ #category : #'api-focus' }
+SpPresenter >> hasKeyboardFocus [
+
+	self canTakeKeyboardFocus ifFalse: [ ^ false ].
+	self withAdapterDo: [ :anAdapter | ^ anAdapter hasKeyboardFocus ].
+	^ false
+]
+
 { #category : #api }
 SpPresenter >> hide [
 
