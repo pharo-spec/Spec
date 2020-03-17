@@ -23,7 +23,8 @@ Class {
 	#traits : 'SpTHaveWrappingScrollBars',
 	#classTraits : 'SpTHaveWrappingScrollBars classTrait',
 	#instVars : [
-		'#scrollValue => SpObservableSlot'
+		'#scrollValue => SpObservableSlot',
+		'#editionContextMenu => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }
@@ -34,10 +35,82 @@ SpTextPresenter class >> adapterName [
 	^ #TextAdapter
 ]
 
+{ #category : #commands }
+SpTextPresenter class >> buildEditionCommandsGroupFor: presenterInstance [
+	| rootCommandGroup |
+
+	rootCommandGroup := CmCommandGroup forSpec beRoot.
+	self 
+		buildEditionCommandsGroupWith: presenterInstance 
+		forRoot: rootCommandGroup.
+	
+	^ rootCommandGroup
+]
+
+{ #category : #commands }
+SpTextPresenter class >> buildEditionCommandsGroupWith: presenter forRoot: aCmCommandsGroup [
+
+	aCmCommandsGroup beDisplayedAsGroup.
+	aCmCommandsGroup register: (self codeEditionCommandsGroupWith: presenter).
+	aCmCommandsGroup register: (self codeAcceptCommandsGroupWith: presenter)
+]
+
+{ #category : #commands }
+SpTextPresenter class >> codeAcceptCommandsGroupWith: aPresenter [
+
+	^ (CmCommandGroup named: 'Accept commands') asSpecGroup
+		description: 'Accept or cancel changes.';
+		beDisplayedAsGroup;
+		register: (SpAcceptChangesCommand forSpecContext: aPresenter);
+		register: (SpCancelChangesCommand forSpecContext: aPresenter);
+		yourself
+]
+
+{ #category : #commands }
+SpTextPresenter class >> codeEditionCommandsGroupWith: aPresenter [
+	| group |
+
+	group := (CmCommandGroup named: 'Selection edition commands') asSpecGroup.
+	group
+		description: 'Edit code selection.';
+		beDisplayedAsGroup.
+	
+	SpCodeEditionCommand allSubclassesDo: [ :commandClass | 
+		group register: (commandClass forSpecContext: aPresenter) ].
+	
+	^ group
+]
+
 { #category : #specs }
 SpTextPresenter class >> title [
 
 	^ 'Text'
+]
+
+{ #category : #private }
+SpTextPresenter >> editionCommandsGroup [
+
+	^ SpRecursiveContextSetter 
+		visit: (self class buildEditionCommandsGroupFor: self defaultCommandsContext) 
+		toSetContext: self defaultCommandsContext
+]
+
+{ #category : #accessing }
+SpTextPresenter >> editionContextKeyBindings [
+
+	^ self editionCommandsGroup asKMCategory
+]
+
+{ #category : #accessing }
+SpTextPresenter >> editionContextMenu [
+
+	^ self editionCommandsGroup asMenuPresenter
+]
+
+{ #category : #testing }
+SpTextPresenter >> hasEditionContextMenu [
+
+	^ editionContextMenu
 ]
 
 { #category : #initialization }
@@ -46,7 +119,8 @@ SpTextPresenter >> initialize [
 	super initialize.
 	self flag: #REVIEW. "We really need scrollValue?"
 	scrollValue := 0 @ 0.	
-	self withScrollBars
+	self withScrollBars.
+	self withEditionContextMenu
 ]
 
 { #category : #initialization }
@@ -76,4 +150,16 @@ SpTextPresenter >> whenScrollValueChangedDo: aBlock [
 	"Set a block to perform when the scroll value changed"
 	
 	self property: #scrollValue whenChangedDo: aBlock
+]
+
+{ #category : #accessing }
+SpTextPresenter >> withEditionContextMenu [
+
+	editionContextMenu := true
+]
+
+{ #category : #accessing }
+SpTextPresenter >> withoutEditionContextMenu [
+
+	editionContextMenu := true
 ]
