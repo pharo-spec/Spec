@@ -129,6 +129,12 @@ SpApplication >> isPresenter [
 	^ false
 ]
 
+{ #category : #accessing }
+SpApplication >> locale [
+
+	^ Locale current
+]
+
 { #category : #factory }
 SpApplication >> new: aPresenter [
 	"a synonym for #newPresenter:"

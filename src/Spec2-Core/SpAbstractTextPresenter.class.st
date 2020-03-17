@@ -228,6 +228,14 @@ SpAbstractTextPresenter >> isForSmalltalkCode: aBoolean [
 		in: #Pharo8"
 ]
 
+{ #category : #localization }
+SpAbstractTextPresenter >> localeChanged [
+
+	super localeChanged.
+	self forceUpdateSlot: #placeholder
+	
+]
+
 { #category : #'api-errors' }
 SpAbstractTextPresenter >> notify: errorMessage at: position in: sourceCode [
 

@@ -28,7 +28,7 @@ Class {
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
 		'#groups',
-		'#title',
+		'#title => SpObservableSlot',
 		'#icon',
 		'#autoRefresh => SpObservableSlot',
 		'#shortcutGroup',
@@ -171,6 +171,14 @@ SpMenuPresenter >> initialize [
 SpMenuPresenter >> isMenuPresenter [
 
 	^ true
+]
+
+{ #category : #localization }
+SpMenuPresenter >> localeChanged [
+
+	super localeChanged.
+	self forceUpdateSlot: #title
+	
 ]
 
 { #category : #api }
