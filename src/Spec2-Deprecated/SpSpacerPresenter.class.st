@@ -10,13 +10,13 @@ Class {
 	#category : #'Spec2-Deprecated-Obsolete'
 }
 
-{ #category : #specs }
+{ #category : #'*Spec2-Deprecated' }
 SpSpacerPresenter class >> adapterName [
 
 	^ #SpacerAdapter
 ]
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpSpacerPresenter class >> isDeprecated [
 	"Was needed only for old layouts."
 

@@ -108,9 +108,8 @@ SpWindowPresenter >> addPresenterIn: widget withSpecLayout: aSpec [
 	
 	self presenter ifNil: [ ^ self ].
 	self initializeWindow.
-	self 
-		changed: #addPresenterIn:withSpecLayout:
-		with: { widget. aSpec }
+	self withAdapterDo: [ :anAdapter |
+		anAdapter addPresenterIn: widget withSpecLayout: aSpec ]
 ]
 
 { #category : #api }
@@ -187,6 +186,12 @@ SpWindowPresenter >> centered [
 SpWindowPresenter >> centeredRelativeTo: aModel [
 
 	self changed: #centeredRelativeTo: with: { aModel }
+]
+
+{ #category : #api }
+SpWindowPresenter >> centeredRelativeToTopWindow [
+
+	self centeredRelativeTo: self application topWindow
 ]
 
 { #category : #api }

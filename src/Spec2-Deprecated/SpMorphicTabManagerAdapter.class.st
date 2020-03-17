@@ -7,24 +7,24 @@ Class {
 	#category : #'Spec2-Deprecated-Adapters'
 }
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTabManagerAdapter class >> isDeprecated [
 	^ true
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTabManagerAdapter >> addTab: aTab [
 	self widgetDo: [ :w | w addTab: (self buildTab: aTab) ]
 ]
 
-{ #category : #factory }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTabManagerAdapter >> buildTab: aTab [
 	^ aTab buildWithSpec
 		when: #tabDeleted send: #tabDeleted: to: self;
 		yourself
 ]
 
-{ #category : #factory }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTabManagerAdapter >> buildWidget [
 	^ TabManagerMorph new
 		model: self model;
@@ -35,26 +35,26 @@ SpMorphicTabManagerAdapter >> buildWidget [
 		yourself
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTabManagerAdapter >> getTabs [
 	^ [ self model tabs collect: [ :each | self buildTab: each ] ]
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTabManagerAdapter >> removeTab: aTab [
 	"In Morphic, Tab removal is triggered on Tab, on TabManager."
 
 	aTab adapter delete
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTabManagerAdapter >> tabDeleted: aTab [
 	"Tab removal notification triggered from Morphic world."
 
 	self model basicRemoveTab: aTab model
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTabManagerAdapter >> tabSelected: aTab [
 
 	self model selectedTab: aTab model

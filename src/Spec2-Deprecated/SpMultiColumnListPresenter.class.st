@@ -17,12 +17,12 @@ Class {
 	#category : #'Spec2-Deprecated-Replaced'
 }
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpMultiColumnListPresenter class >> isDeprecated [
 	^ true
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpMultiColumnListPresenter >> items: items [
 	
 	items ifNotEmpty: [ self numberOfColumns: (displayBlock value: items first) size ].

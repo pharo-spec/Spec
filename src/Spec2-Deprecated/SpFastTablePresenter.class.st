@@ -12,7 +12,7 @@ Class {
 	#category : #'Spec2-Deprecated-Replaced'
 }
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter class >> example [
 	<sampleInstance>
 	| example |
@@ -24,7 +24,7 @@ SpFastTablePresenter class >> example [
 	^ example
 ]
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter class >> exampleMultipleSelection [
 	<sampleInstance>
 	| example |
@@ -37,55 +37,55 @@ SpFastTablePresenter class >> exampleMultipleSelection [
 	^ example
 ]
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter class >> isDeprecated [
 	^ true
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter >> displayBlock [
 
 	^ displayBlock
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter >> displayBlock: aBlock [
 
 	displayBlock := aBlock
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter >> getIconFor: anItem [
 	^ self icons cull: anItem cull: self
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter >> handlesDoubleClick [
 	^ handlesDoubleClick
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter >> handlesDoubleClick: aBoolean [
 	"Enable or disable double click on the list."
 
 	handlesDoubleClick := aBoolean
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter >> icons [
 	"Return the block which takes an item as argument and returns the icon to display in the list"
 
 	^ icon
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter >> icons: aBlock [
 	"Set a block which takes an item as argument and returns the icon to display in the list"
 
 	icon := aBlock
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter >> initialize [
 	super initialize.
 	displayBlock := #yourself.
@@ -93,13 +93,13 @@ SpFastTablePresenter >> initialize [
 	handlesDoubleClick := false
 ]
 
-{ #category : #'api-columns' }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter >> numberOfColumns: aNumber [
 	columns := OrderedCollection new.
 	(1 to: aNumber) do: [ :index | self addColumn: (SpStringTableColumn evaluated: [ :entity | (self displayBlock value: entity) at: index ]) ]
 ]
 
-{ #category : #'api-columns' }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter >> numberOfColumns: aNumber withWidths: widths [
 	columns := OrderedCollection new.
 	(1 to: aNumber)
@@ -111,20 +111,20 @@ SpFastTablePresenter >> numberOfColumns: aNumber withWidths: widths [
 						yourself) ]
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter >> registerEvents [
 	super registerEvents.
 	self property: #handlesDoubleClick whenChangedDo: [ :bool | self changed: { #handlesDoubleClick . bool } ].
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter >> whenIconsChanged: aBlock [
 	self deprecated: 'Use #whenIconsChangedDo: instead.' transformWith: '`@receiver whenIconsChanged: `@statements' -> '`@receiver whenIconsChangedDo: `@statements'.
 	self whenIconsChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'*Spec2-Deprecated' }
 SpFastTablePresenter >> whenIconsChangedDo: aBlock [
 	self property: #icon whenChangedDo: aBlock
 ]

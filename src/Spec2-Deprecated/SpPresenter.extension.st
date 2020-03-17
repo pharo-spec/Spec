@@ -138,6 +138,14 @@ SpPresenter >> title: aString [
 ]
 
 { #category : #'*Spec2-Deprecated' }
+SpPresenter >> whenShortcutsChanged: aBlock [
+	"Set a block to value when the shortcuts block has changed"
+	
+	self deprecated: 'This event does not has sense in Spec2'.
+
+]
+
+{ #category : #'*Spec2-Deprecated' }
 SpPresenter >> widget [
 	"I return the adapter responsible of building my widget"
 	

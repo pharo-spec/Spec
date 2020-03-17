@@ -56,6 +56,32 @@ SpListPresenter >> backgroundColorFor: anItem at: index [
 ]
 
 { #category : #'*Spec2-Deprecated' }
+SpListPresenter >> displayBlock [
+	"Return the one argument block used to wrap your domain specific items.
+	The block should return something that can be displayed in a list - like a String or a Text"
+	self
+		deprecated: 'Please use #display instead'
+		transformWith: '`@receiver displayBlock' 
+						-> '`@receiver display'.
+	^ display
+]
+
+{ #category : #'*Spec2-Deprecated' }
+SpListPresenter >> displayBlock: aBlock [
+	"Set the one argument block used to wrap your domain specific items.
+	The block should return something that can be displayed in a list - like a String or a Text"
+
+	"Return the one argument block used to wrap your domain specific items.
+	The block should return something that can be displayed in a list - like a String or a Text"
+	self
+		deprecated: 'Please use #display: instead'
+		transformWith: '`@receiver displayBlock: `@arg' 
+						-> '`@receiver display: `@arg'.
+
+	display := aBlock
+]
+
+{ #category : #'*Spec2-Deprecated' }
 SpListPresenter >> resetFilteringBlock [
 	self
 		deprecated: 'This feature is now removed from Spec 2. If the visible elements of the list need to be changed, it''s the users of the lists that should manage it and update the list of items of the list.'

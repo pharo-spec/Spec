@@ -18,12 +18,12 @@ Class {
 	#category : #'Spec2-Deprecated-Obsolete'
 }
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpAbstractTwoButtons class >> abstractExample [
 	^ self new
 ]
 
-{ #category : #specs }
+{ #category : #'*Spec2-Deprecated' }
 SpAbstractTwoButtons class >> horizontal [
 	<spec>
 	^ SpLayout composed
@@ -34,14 +34,14 @@ SpAbstractTwoButtons class >> horizontal [
 		yourself
 ]
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpAbstractTwoButtons class >> isDeprecated [
 	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
 
 	^ true
 ]
 
-{ #category : #specs }
+{ #category : #'*Spec2-Deprecated' }
 SpAbstractTwoButtons class >> vertical [
 	<spec: #default>
 	^ SpLayout composed
@@ -52,35 +52,35 @@ SpAbstractTwoButtons class >> vertical [
 		yourself
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpAbstractTwoButtons >> firstAction: firstActionBlock secondAction: secondActionBlock [
 	self firstButton action: firstActionBlock.
 	self secondButton action: secondActionBlock
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpAbstractTwoButtons >> firstButton [
 	^ firstButton
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpAbstractTwoButtons >> firstIcon: firstIconName secondIcon: secondIconName [
 	self firstButton icon: (self iconNamed: firstIconName).
 	self secondButton icon: (self iconNamed: secondIconName)
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpAbstractTwoButtons >> firstLabel: firstLabel secondLabel: secondLabel [
 	self firstButton label: firstLabel.
 	self secondButton label: secondLabel
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpAbstractTwoButtons >> initializeButtons [
 self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpAbstractTwoButtons >> initializePresenters [
 	firstButton := self instantiate: SpButtonPresenter.
 	secondButton := self instantiate: SpButtonPresenter.
@@ -90,7 +90,7 @@ SpAbstractTwoButtons >> initializePresenters [
 		add: secondButton
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpAbstractTwoButtons >> secondButton [
 	^ secondButton
 ]

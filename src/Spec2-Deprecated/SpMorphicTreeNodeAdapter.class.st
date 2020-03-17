@@ -7,13 +7,13 @@ Class {
 	#category : #'Spec2-Deprecated-Adapters'
 }
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter class >> isDeprecated [ 
 
 	^ true
 ]
 
-{ #category : #factory }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> buildWidget [
 	^ SpTreeNodeModel new
 		setItemFromBlock: self itemBlock;
@@ -24,17 +24,17 @@ SpMorphicTreeNodeAdapter >> buildWidget [
 		nodeModel: self model
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> childrenBlock [
 	^ [ self model buildChildren ]
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> container [
 	^ self model container
 ]
 
-{ #category : #private }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> deselect [
 
 	self widgetDo: [ :w |
@@ -43,38 +43,38 @@ SpMorphicTreeNodeAdapter >> deselect [
 		w dependents do: [ :e | e changed ] ]
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> hasChildrenBlock [
 	^ self model hasChildren
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> hasContentToShow [
 	^ self model hasContentToShow
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> icon [
 	^ self model icon
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> isExpanded: aBoolean [
 
 	
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> item [
 	^ self model content
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> itemBlock [
 	^ [ self item ]
 ]
 
-{ #category : #private }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> select [
 
 	self widgetDo: [ :w |
@@ -83,12 +83,12 @@ SpMorphicTreeNodeAdapter >> select [
 		w dependents do: [ :e | e changed ] ]
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> selected [
 	^ self model selected
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> selected: aBoolean [
 
 	aBoolean 
@@ -96,13 +96,13 @@ SpMorphicTreeNodeAdapter >> selected: aBoolean [
 		ifFalse: [ self deselect ]
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> takeHighlight [
 
 	self widgetDo: [ :w | w changed: #takeHighlight ]
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeNodeAdapter >> updateAccordingTo: aFilter [
 
 	self widgetDo: [ :w |

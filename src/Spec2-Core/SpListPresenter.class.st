@@ -86,32 +86,6 @@ SpListPresenter >> display: aBlock [
 	display := aBlock
 ]
 
-{ #category : #api }
-SpListPresenter >> displayBlock [
-	"Return the one argument block used to wrap your domain specific items.
-	The block should return something that can be displayed in a list - like a String or a Text"
-	self
-		deprecated: 'Please use #display instead'
-		transformWith: '`@receiver displayBlock' 
-						-> '`@receiver display'.
-	^ display
-]
-
-{ #category : #api }
-SpListPresenter >> displayBlock: aBlock [
-	"Set the one argument block used to wrap your domain specific items.
-	The block should return something that can be displayed in a list - like a String or a Text"
-
-	"Return the one argument block used to wrap your domain specific items.
-	The block should return something that can be displayed in a list - like a String or a Text"
-	self
-		deprecated: 'Please use #display: instead'
-		transformWith: '`@receiver displayBlock: `@arg' 
-						-> '`@receiver display: `@arg'.
-
-	display := aBlock
-]
-
 { #category : #'adapter-api' }
 SpListPresenter >> displayValueAt: anIndex [
 	^ self displayValueOf: (model at: anIndex)

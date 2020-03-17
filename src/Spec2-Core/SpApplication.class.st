@@ -84,7 +84,7 @@ SpApplication class >> example2 [
 	app run
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpApplication >> adapterBindings [
 	
 	^ self backend adapterBindings
@@ -110,9 +110,9 @@ SpApplication >> configuration [
 	^ configuration
 ]
 
-{ #category : #accessing }
+{ #category : #ui }
 SpApplication >> defer: aBlock [
-
+	"doInUIThread: ?"
 	self backend defer: aBlock
 ]
 

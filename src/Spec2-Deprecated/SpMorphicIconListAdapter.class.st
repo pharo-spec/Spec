@@ -7,7 +7,7 @@ Class {
 	#category : #'Spec2-Deprecated-Adapters'
 }
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicIconListAdapter class >> isDeprecated [
 	^ true
 ]

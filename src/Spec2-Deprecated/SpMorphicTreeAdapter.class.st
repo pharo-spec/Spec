@@ -10,13 +10,13 @@ Class {
 	#category : #'Spec2-Deprecated-Adapters'
 }
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter class >> isDeprecated [ 
 
 	^ true
 ]
 
-{ #category : #'drag and drop - private' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> acceptDroppingMorph: draggedMorph event: event inMorph: source [
 	| item |
 	item := self widget ifNotNil: [ :w | w scrollerSubMorphFromPoint: event position ].
@@ -25,19 +25,19 @@ SpMorphicTreeAdapter >> acceptDroppingMorph: draggedMorph event: event inMorph: 
 		valueWithEnoughArguments: { draggedMorph model model. event. source model model model. item model nodeModel}
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> autoDeselection [
 
 	^ self model autoDeselection
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> autoMultiSelection [
 
 	^ self model autoMultiSelection
 ]
 
-{ #category : #factory }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> buildWidget [
 	^ MorphTreeMorph new
 		model: self treeModel;
@@ -64,37 +64,37 @@ SpMorphicTreeAdapter >> buildWidget [
 		yourself
 ]
 
-{ #category : #updating }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> changed: aSymbol [
 
 	treeModel changed: aSymbol
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> childrenFor: aNode [
 
 	^ self model childrenFor: aNode
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> collapseAll [
 
 	self treeModel collapseAll
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> columnInset [
 
 	^ self model columnInset
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> columns [
 
 	^ self model columns collect: [ :each | each buildWithSpec ]
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> columns: newColumns [
 
 	self widgetDo: [ :w || columns |
@@ -104,7 +104,7 @@ SpMorphicTreeAdapter >> columns: newColumns [
 		w updateList ]
 ]
 
-{ #category : #'reflective operations' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> doesNotUnderstand: aMessage [
 
 	(self treeModel respondsTo: aMessage selector) 
@@ -115,37 +115,37 @@ SpMorphicTreeAdapter >> doesNotUnderstand: aMessage [
 		withArguments: aMessage arguments
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> doubleClick [
 
 	^ self model doubleClick
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> evenRowColor [
 
 	^ self model evenRowColor
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> evenRowColor: aColor [
 
 	^ self widget rowColorForEven: aColor
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> expandAll [
 
 	self treeModel expandAll
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> expandRoots [
 
 	self treeModel expandRoots
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> filterWith: aFilter [
 	
 	self widgetDo: [ :w || nodes |
@@ -157,19 +157,19 @@ SpMorphicTreeAdapter >> filterWith: aFilter [
 		self changed: #rootNodes ].
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> iconBlock [
 
 	^ [:each | self iconFor: each ]
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> iconFor: aNode [
 
 	^ self model iconFor: aNode
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> initialize [
 
 	super initialize.
@@ -181,50 +181,50 @@ SpMorphicTreeAdapter >> initialize [
 		to: self.
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> isCheckList [
 
 	^ self model isCheckList
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> isCheckList: aBoolean [
 
 	self widgetDo: [ :w | w isCheckList: aBoolean ]
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> keyStroke: aKeyStroke [
 
 	^ self model keyStroke: aKeyStroke
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> menu: aMenu shifted: aBoolean [
 
 	^ (self model menu: aMenu shifted: aBoolean) 
 		ifNotNil: [ :menuModel | menuModel buildWithSpecAsPopup ]
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> multiSelection [
 
 	^ self model multiSelection
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> oddRowColor [
 
 	^ self model oddRowColor
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> oddRowColor: aColor [
 
 	^ self widget rowColorForOdd: aColor
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> onMorphTreeSelectionChanged: ann [
 	| items |
 	
@@ -237,25 +237,25 @@ SpMorphicTreeAdapter >> onMorphTreeSelectionChanged: ann [
 	self model selectedItems: items
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> preferedPaneColor [
 
 	^ self model preferedPaneColor
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> removeRootsSuchAs: aBlock [
 
 	self widgetDo: [ :w | w model rootNodes removeAllSuchThat: [ :node | aBlock value: node nodeModel ] ]
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> resizerWidth [
 
 	^ self model resizerWidth
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> rootNodeFromItem: item [
 	| node |
 	
@@ -267,55 +267,55 @@ SpMorphicTreeAdapter >> rootNodeFromItem: item [
 	^ node buildWithSpec
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> rootNodeHolder [
 
 	^ self model rootNodeHolder
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> roots [
 
 	^ self model roots
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> rowInset [
 
 	^ self model rowInset
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> selectAdd [
 
 	self widgetDo: [ :w | w selectAll ]
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> selectOnlyLastHighlighted [
 
 	^ self model selectOnlyLastHighlighted
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> setRoots: aCollection [
 
 	treeModel rootItems: aCollection
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> treeModel [
 	^ treeModel
 ]
 
-{ #category : #protocol }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> updateTree [
 
 	self treeModel resetRootNodes.
 	self treeModel changed: #rootNodes.
 ]
 
-{ #category : #'widget API' }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTreeAdapter >> wrapItem: anItem [
 
 	^ self model wrapItem: anItem

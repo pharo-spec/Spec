@@ -95,7 +95,7 @@ Class {
 		'#askOkToClose => SpObservableSlot',
 		'#titleHolder => SpObservableSlot',
 		'#additionalSubpresentersMap',
-		'#layout',
+		'#layout => SpObservableSlot',
 		'#visible => SpObservableSlot',
 		'#extent => SpObservableSlot'
 	],
@@ -219,7 +219,7 @@ SpPresenter >> addAll: aWindow withSpecLayout: aSpec [
 		frame: (0@0 corner: 1@1).
 ]
 
-{ #category : #'window menu' }
+{ #category : #TOREMOVE }
 SpPresenter >> addMenuItemsToWindowMenu: aMenu [
 	"Do nothing"
 ]
@@ -293,7 +293,7 @@ SpPresenter >> application: anApplication [
 	application := anApplication
 ]
 
-{ #category : #'window menu' }
+{ #category : #TOREMOVE }
 SpPresenter >> applyMenuModel: aMenuModel [
 
 	aMenuModel menuGroups do: [ :group |
@@ -328,11 +328,9 @@ SpPresenter >> askOkToClose [
 { #category : #'private building' }
 SpPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 
-	self flag: #TODO. "We will keep the layout used to build to allow recalculations 
-	 and other operations. But maybe this should be part of the adapter and not the presenter."
-	layout := aSpecLayout.
-	^ super basicBuildAdapterWithSpecLayout: aSpecLayout.
-
+	layout == aSpecLayout 
+		ifFalse: [ layout := aSpecLayout ].
+	^ super basicBuildAdapterWithSpecLayout: aSpecLayout
 ]
 
 { #category : #'api-shortcuts' }
@@ -548,7 +546,8 @@ SpPresenter >> initializePresenters [
 { #category : #'initialization - private' }
 SpPresenter >> initializePrivateAnnouncements [
 
-	self property: #titleHolder whenChangedDo: [ self updateTitle ]
+	self property: #titleHolder whenChangedDo: [ self updateTitle ].
+	self property: #layout whenChangedDo: [ :newLayout | self replaceLayoutWith: newLayout ]
 ]
 
 { #category : #'initialization - private' }
@@ -627,7 +626,7 @@ SpPresenter >> instantiatePresenters: aCollectionOfPairs [
 				pairsDo: [ :k :v | self instVarNamed: k asString put: (self createInstanceFor: v) ] ]
 ]
 
-{ #category : #api }
+{ #category : #testing }
 SpPresenter >> isBuilt [
 	^ self isDisplayed
 ]
@@ -662,17 +661,26 @@ SpPresenter >> layout [
 	^ layout
 ]
 
+{ #category : #api }
+SpPresenter >> layout: aLayout [
+
+	layout := aLayout
+]
+
 { #category : #private }
 SpPresenter >> layoutPresenters [
 
 	layout ifNil: [ ^ self presenters ].
 	
 	^ layout deepPresenters
-		select: [ :each | each isSymbol ]
-		thenCollect: [ :each | self presenterAt: each ]
+		select: [ :each | each isSymbol or: [ each isPresenter ] ]
+		thenCollect: [ :each | 
+			each isPresenter 
+				ifTrue: [ each ]
+				ifFalse:[ self presenterAt: each ] ]
 ]
 
-{ #category : #'window menu' }
+{ #category : #TOREMOVE }
 SpPresenter >> neglectMenuModel: aMenuModel [
 
 	aMenuModel menuGroups do: [ :group |
@@ -941,6 +949,13 @@ SpPresenter >> removeKeyCombination: aShortcut [
 		anAdapter removeKeyCombination: aShortcut ]
 ]
 
+{ #category : #private }
+SpPresenter >> replaceLayoutWith: aLayout [
+
+	self withAdapterDo: [ :anAdapter |
+		anAdapter replaceLayoutWith: aLayout ]
+]
+
 { #category : #'api-window' }
 SpPresenter >> requestWindowClose [
 
@@ -1056,7 +1071,7 @@ SpPresenter >> update [
 SpPresenter >> updatePresenter [
 ]
 
-{ #category : #api }
+{ #category : #TOMOVE }
 SpPresenter >> updateTitle [
 
 	self flag: #TODO. "To move to WindowPresenter"
@@ -1072,14 +1087,6 @@ SpPresenter >> visibleIf: aValuable [
 { #category : #'api-events' }
 SpPresenter >> whenDisplayDo: aBlockClosure [
 	self announcer when: SpWidgetDisplayed do: aBlockClosure
-]
-
-{ #category : #'api-events' }
-SpPresenter >> whenShortcutsChanged: aBlock [
-	"Set a block to value when the shortcuts block has changed"
-	
-	self deprecated: 'This event does not has sense in Spec2'.
-
 ]
 
 { #category : #'api-events' }

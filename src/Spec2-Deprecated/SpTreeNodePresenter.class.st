@@ -26,19 +26,19 @@ Class {
 	#category : #'Spec2-Deprecated-Obsolete'
 }
 
-{ #category : #specs }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter class >> adapterName [
 
 	^ #TreeNodeAdapter
 ]
 
-{ #category : #specs }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter class >> isDeprecated [ 
 
 	^ true
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> allSelectedItems [
 	| result |
 	
@@ -49,7 +49,7 @@ SpTreeNodePresenter >> allSelectedItems [
 	^ result
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> allUnselectedItems [
 	| result |
 	
@@ -60,7 +60,7 @@ SpTreeNodePresenter >> allUnselectedItems [
 	^ result
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> buildChildren [
 
 	contents := self children value collect: [ :each || node | 
@@ -75,110 +75,110 @@ SpTreeNodePresenter >> buildChildren [
 	^ contents
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> childNodeClass [
 
 	^ childNodeClass value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> childNodeClass: aBlock [
 
 	childNodeClass value: aBlock
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> childNodeClassFor: anItem [
 
 	^ childNodeClass value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> children [
 
 	^ children value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> children: aBlock [
 
 	children value: aBlock
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> container [
 
 	^ container value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> container: anObject [
 
 	container value: anObject
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> content [
 
 	^ content value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> content: anObject [
 
 	content value: anObject
 ]
 
-{ #category : #filtering }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> contents [
 	^ contents ifNil: [ 
 		self buildChildren.
 		contents ]
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> hasChildren [
 
 	^ hasChildren value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> hasChildren: aBlock [
 
 	hasChildren value: aBlock
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> hasContentToShow [
 
 	^ hasContentToShow value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> hasContentToShow: aBlock [
 
 	hasContentToShow value: aBlock
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> icon [
 
 	^ icon value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> icon: anIcon [
 
 	icon value: anIcon
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> iconName: aSelector [
 
 	icon value: (self iconNamed: aSelector)
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> initialize [
 
 	super initialize.
@@ -201,24 +201,24 @@ SpTreeNodePresenter >> initialize [
 	isExpanded whenChangedDo: [ :aBoolean | self changed: #isExpanded: with: { aBoolean } ].
 ]
 
-{ #category : #filtering }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> isEmpty [
 	^ self contents isEmpty
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> isExpanded [
 	
 	^ isExpanded value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> isExpanded: aBoolean [
 
 	isExpanded value: aBoolean
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> isPartialMatch [
 	| result |
 
@@ -230,61 +230,61 @@ SpTreeNodePresenter >> isPartialMatch [
 	^ result
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> lastClicked [
 	
 	^ lastClicked value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> lastClicked: aBoolean [
 
 	lastClicked value: aBoolean
 ]
 
-{ #category : #filtering }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> matchTokenFilter: aFilter [
 
 	^ self matchTokenFilterBlock value: aFilter
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> matchTokenFilterBlock [
 
 	^ matchTokenFilter value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> matchTokenFilterBlock: aBlock [
 
 	matchTokenFilter value: aBlock
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> mouseDownAction [
 
 	^ mouseDownAction value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> mouseDownAction: aBlock [
 
 	mouseDownAction value: aBlock
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> parentNode [
 
 	^ parentNode value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> parentNode: aNode [
 
 	parentNode value: aNode
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> selectAllChildren [
 
 	self children value do: [ :e | 
@@ -292,25 +292,25 @@ SpTreeNodePresenter >> selectAllChildren [
 		e selectAllChildren ].
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> selected [
 	
 	^ selected value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> selected: aBoolean [
 
 	selected value: aBoolean
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> takeHighlight [
 
 	self changed: #takeHighlight with: #()
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> unselectAllChildren [
 
 	self children value do: [ :e | 
@@ -318,7 +318,7 @@ SpTreeNodePresenter >> unselectAllChildren [
 		e unselectAllChildren ].	
 ]
 
-{ #category : #filtering }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> updateAccordingTo: aFilter [
 
 	(aFilter keepTreeNode: self) 
@@ -326,13 +326,13 @@ SpTreeNodePresenter >> updateAccordingTo: aFilter [
 			self changed: #updateAccordingTo: with: { aFilter } ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> whenContentChanged: aBlock [
 	self deprecated: 'Use #whenContentChangedDo: instead.' transformWith: '`@receiver whenContentChanged: `@statements' -> '`@receiver whenContentChangedDo: `@statements'.
 	self whenContentChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> whenContentChangedDo: aBlock [
 
 	content whenChangedDo: aBlock
@@ -340,7 +340,7 @@ SpTreeNodePresenter >> whenContentChangedDo: aBlock [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> whenIsExpandedChanged: aBlock [
 	self deprecated: 'Use #whenIsExpandedChangedDo: instead.' transformWith: '`@receiver whenIsExpandedChanged: `@statements' -> '`@receiver whenIsExpandedChangedDo: `@statements'.
 	self whenIsExpandedChangedDo: aBlock
@@ -348,7 +348,7 @@ SpTreeNodePresenter >> whenIsExpandedChanged: aBlock [
 	
 ]
 
-{ #category : #'api-events' }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> whenIsExpandedChangedDo: aBlock [
 
 	isExpanded whenChangedDo: aBlock
@@ -356,13 +356,13 @@ SpTreeNodePresenter >> whenIsExpandedChangedDo: aBlock [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> whenSelectedChanged: aBlock [
 	self deprecated: 'Use #whenSelectedChangedDo: instead.' transformWith: '`@receiver whenSelectedChanged: `@statements' -> '`@receiver whenSelectedChangedDo: `@statements'.
 	self whenSelectedChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'*Spec2-Deprecated' }
 SpTreeNodePresenter >> whenSelectedChangedDo: aBlock [
 
 	selected whenChangedDo: aBlock

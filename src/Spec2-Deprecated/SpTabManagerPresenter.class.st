@@ -15,24 +15,24 @@ Class {
 	#category : #'Spec2-Deprecated-Replaced'
 }
 
-{ #category : #specs }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter class >> adapterName [
 
 	^ #TabManagerAdapter
 ]
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter class >> isDeprecated [
 	^ true
 ]
 
-{ #category : #dependents }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter >> addDependent: aMorph [
 
 	self myDependents add: aMorph
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter >> addTab: aTab [
 
 	"BEWARE: this code is an exception. One should never access directly a value holder contents"
@@ -43,7 +43,7 @@ SpTabManagerPresenter >> addTab: aTab [
 	self changed: #addTab: with: { aTab }
 ]
 
-{ #category : #private }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter >> basicRemoveTab: aTab [
 	"BEWARE: this code is an exception. One should never access directly a value holder contents"
 
@@ -54,7 +54,7 @@ SpTabManagerPresenter >> basicRemoveTab: aTab [
 	(tabs value remove: aTab ifAbsent: [ ^ self ]) owner: nil
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter >> initialize [
 	"Initialization code for TabManagerPresenter"
 
@@ -68,55 +68,55 @@ SpTabManagerPresenter >> initialize [
 	selectedTab whenChangedDo: [ :newTab | tabSelectedAction value cull: newTab cull: self ]
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter >> removeTab: aTab [
 	self basicRemoveTab: aTab.
 	self changed: #removeTab: with: {aTab}
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter >> removeTabNumber: anIndex [
 
 	self removeTab: (tabs at: anIndex)
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter >> selectTabModel: tabModel [
 
 	tabSelectedAction value cull: tabModel cull: self
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter >> selectedTab [
 
 	^ selectedTab value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter >> selectedTab: aTab [
 
 	selectedTab value: aTab
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter >> tabSelectedAction [
 
 	^ tabSelectedAction value
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter >> tabs [
 
 	^ tabs value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter >> tabs: aCollection [
 
 	tabs value: aCollection
 ]
 
-{ #category : #'api-events' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabManagerPresenter >> whenTabSelected: aBlock [
 
 	tabSelectedAction value: aBlock

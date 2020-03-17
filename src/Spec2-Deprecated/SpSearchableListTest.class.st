@@ -4,17 +4,17 @@ Class {
 	#category : #'Spec2-Deprecated-Tests'
 }
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpSearchableListTest class >> isDeprecated [
 	^ true
 ]
 
-{ #category : #running }
+{ #category : #'*Spec2-Deprecated' }
 SpSearchableListTest >> classToTest [
 	^ SpSearchableList
 ]
 
-{ #category : #tests }
+{ #category : #'*Spec2-Deprecated' }
 SpSearchableListTest >> testFiltering [
 	presenter items: {'aa' . 'bb' . 'ab' . 'ba'}.
 	presenter searchPresenter text: 'a'.

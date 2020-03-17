@@ -37,7 +37,7 @@ Class {
 	#category : #'Spec2-Deprecated-Obsolete'
 }
 
-{ #category : #specs }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter class >> defaultSpec [
 	<spec: #default>
 	^ SpLayout composed
@@ -45,7 +45,7 @@ SpRadioButtonGroupPresenter class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter class >> example [
 	<sampleInstance>
 	| example |
@@ -59,13 +59,13 @@ SpRadioButtonGroupPresenter class >> example [
 	^ example
 ]
 
-{ #category : #specs }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter class >> isDeprecated [
 
 	^ true
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> addRadioButton: aButton [
 	self linkRadioButton: aButton.
 	buttons add: aButton.
@@ -75,23 +75,23 @@ SpRadioButtonGroupPresenter >> addRadioButton: aButton [
 	self rebuildWidget
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> buttons [
 	^ buttons
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> canDeselectByClick [
 	self deprecated: 'This option is removed in Spec 2'.
 	^ false
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> canDeselectByClick: aBoolean [
 	self deprecated: 'This option is removed in Spec 2'
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> createWidgets [
 	buttons
 		withIndexDo: [ :each :i | 
@@ -99,17 +99,17 @@ SpRadioButtonGroupPresenter >> createWidgets [
 			 ]
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> currentActivated [
 	^ currentActivated value
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> currentActivated: aRadioButton [
 	currentActivated value: aRadioButton
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> default: aButton [
 	aButton privateSetState: true.
 	aButton takeKeyboardFocus.
@@ -119,14 +119,14 @@ SpRadioButtonGroupPresenter >> default: aButton [
 	
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> defaultOnce: aButton [
 	aButton privateSetState: true.
 	self currentActivated: aButton.
 	"This method is used to avoid a problem of default: with a DynamicPresenter but a fix would be better (if possible)"
 ]
 
-{ #category : #specs }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> dynamicLayout [
 	|lay|
 	lay := SpLayout composed
@@ -137,14 +137,14 @@ SpRadioButtonGroupPresenter >> dynamicLayout [
 	^ lay
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> initialize [
 	buttons := OrderedCollection new.
 	currentActivated := nil asValueHolder.
 	super initialize.
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> linkRadioButton: aButton [
 	buttons
 		do: [ :b | 
@@ -153,7 +153,7 @@ SpRadioButtonGroupPresenter >> linkRadioButton: aButton [
 	aButton whenActivatedDo: [ self currentActivated: aButton ].
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> rebuildWidget [
 	self widgets removeAll.
 	self createWidgets.
@@ -161,24 +161,24 @@ SpRadioButtonGroupPresenter >> rebuildWidget [
 	self buildWithSpecLayout: self dynamicLayout
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> whenCanDeselectByClickChanged: aBlock [
 	self deprecated: 'Use #whenCanDeselectByClickChangedDo: instead.' transformWith: '`@receiver whenCanDeselectByClickChanged: `@statements' -> '`@receiver whenCanDeselectByClickChangedDo: `@statements'.
 	self whenCanDeselectByClickChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> whenCanDeselectByClickChangedDo: aBlock [
 	self deprecated: 'This option is removed in Spec 2'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> whenCurrentActivatedChanged: aBlock [
 	self deprecated: 'Use #whenCurrentActivatedChangedDo: instead.' transformWith: '`@receiver whenCurrentActivatedChanged: `@statements' -> '`@receiver whenCurrentActivatedChangedDo: `@statements'.
 	self whenCurrentActivatedChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'*Spec2-Deprecated' }
 SpRadioButtonGroupPresenter >> whenCurrentActivatedChangedDo: aBlock [
 
 	currentActivated whenChangedDo: aBlock
