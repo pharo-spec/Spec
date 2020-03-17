@@ -29,8 +29,9 @@ SpToolBarPresenter class >> adapterName [
 
 { #category : #example }
 SpToolBarPresenter class >> example [ 
-
-
+	| loremIpsumWords |
+	
+	loremIpsumWords := String loremIpsum substrings.
 	^ SpToolBarPresenter new 
 		addItem: (SpToolBarButton new 
 			icon: (self iconNamed: #smallOk);
@@ -39,6 +40,16 @@ SpToolBarPresenter class >> example [
 		addItem: (SpToolBarToggleButton new
 			icon: (self iconNamed: #smallOk);
 			action: [ :value | UIManager default defer: [ self inform: value asString ] ];
+			yourself);
+		addItem: (SpToolBarMenuButton new
+			label: '';
+			menu: [ 
+				SpMenuPresenter new
+					addGroup: [ :group | group
+						addItem: [ :item | item name: '1: ', loremIpsumWords atRandom ];
+						addItem: [ :item | item name: '2: ', loremIpsumWords atRandom ];
+						addItem: [ :item | item name: '3: ', loremIpsumWords atRandom ] ];
+					yourself ];
 			yourself);
 		"addItem: (SpToolBarLabel new
 			contents: 'Label';

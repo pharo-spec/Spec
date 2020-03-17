@@ -104,6 +104,12 @@ SpApplication >> close [
 	self windows copy do: #close
 ]
 
+{ #category : #accessing }
+SpApplication >> closeAllWindows [
+
+	self windows do: [ :each | each close ]
+]
+
 { #category : #'accessing backend' }
 SpApplication >> configuration [
 
