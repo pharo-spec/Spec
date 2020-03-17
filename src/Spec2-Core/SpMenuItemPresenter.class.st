@@ -126,6 +126,14 @@ SpMenuItemPresenter >> keyText: aString [
 	self shortcut: aString first meta
 ]
 
+{ #category : #localization }
+SpMenuItemPresenter >> localeChanged [
+
+	super localeChanged.
+	self forceUpdateSlot: #name
+	
+]
+
 { #category : #api }
 SpMenuItemPresenter >> name [
 	^ name

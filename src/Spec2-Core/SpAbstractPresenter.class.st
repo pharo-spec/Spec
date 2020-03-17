@@ -163,6 +163,12 @@ SpAbstractPresenter >> enabled: aBoolean [
 	^ self subclassResponsibility
 ]
 
+{ #category : #'private utils' }
+SpAbstractPresenter >> forceUpdateSlot: aSymbol [
+
+	^ (self rawValueHolderNamed: aSymbol) valueChanged
+]
+
 { #category : #testing }
 SpAbstractPresenter >> hasOwner [
 
@@ -322,6 +328,12 @@ SpAbstractPresenter >> owner [
 SpAbstractPresenter >> owner: aPresenter [
 
 	owner := aPresenter
+]
+
+{ #category : #'private utils' }
+SpAbstractPresenter >> rawValueHolderNamed: aSymbol [
+
+	^ (self class slotNamed: aSymbol) rawRead: self.
 ]
 
 { #category : #'private building' }

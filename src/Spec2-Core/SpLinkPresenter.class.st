@@ -76,6 +76,14 @@ SpLinkPresenter >> label: aString [
 	^ label := aString
 ]
 
+{ #category : #localization }
+SpLinkPresenter >> localeChanged [
+
+	super localeChanged.
+	self forceUpdateSlot: #label
+		
+]
+
 { #category : #api }
 SpLinkPresenter >> url: aString [
 	self action: [ WebBrowser openOn: aString ].

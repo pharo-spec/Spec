@@ -376,7 +376,10 @@ SpAbstractMorphicAdapter >> rightClicked [
 { #category : #protocol }
 SpAbstractMorphicAdapter >> setBalloonText: aString [
 
-	self widget ifNotNil: [ :w | w setBalloonText: aString ]
+	self widget ifNotNil: [ :w | 
+		w setBalloonText: (
+			aString ifNotNil: [ :theString | theString valueForPresenter: self presenter ] ) ]
+	
 ]
 
 { #category : #protocol }

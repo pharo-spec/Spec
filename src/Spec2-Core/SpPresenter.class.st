@@ -688,6 +688,19 @@ SpPresenter >> layoutPresenters [
 				ifFalse:[ self presenterAt: each ] ]
 ]
 
+{ #category : #accessing }
+SpPresenter >> locale [ 
+
+	^ self application locale
+]
+
+{ #category : #localization }
+SpPresenter >> localeChanged [
+
+	"do nothing here. Override me in subclasses to update strings presented to the users"
+	
+]
+
 { #category : #TOREMOVE }
 SpPresenter >> neglectMenuModel: aMenuModel [
 
