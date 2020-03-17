@@ -12,6 +12,17 @@ SpMorphicTextAdapter >> addFocusRotationKeyBindings [
 	"Text areas needs to be able to process tab. Cancel the binding."
 ]
 
+{ #category : #initialization }
+SpMorphicTextAdapter >> addKeyBindingsTo: aMorph [
+
+	super addKeyBindingsTo: aMorph.
+	self presenter hasEditionContextMenu ifFalse: [ ^ self ].
+	self presenter editionContextKeyBindings allEntries keymaps do: [ :each |
+		self 
+			bindKeyCombination: each shortcut 
+			toAction: each action ]
+]
+
 { #category : #factory }
 SpMorphicTextAdapter >> buildWidget [
 	| widgetClass newWidget |
@@ -46,6 +57,21 @@ SpMorphicTextAdapter >> buildWidget [
 	self presenter whenPlaceholderChangedDo: [ :text | self setGhostText: text to: newWidget ].
 	
 	^ newWidget
+]
+
+{ #category : #'widget API' }
+SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
+	| menuPresenter |
+
+	menuPresenter := self model contextMenu value
+		ifNotNil: [ :contextMenu | contextMenu ]
+		ifNil: [ SpMenuPresenter new ].
+	self presenter hasEditionContextMenu ifTrue: [ 
+		self presenter editionContextMenu menuGroups do: [ :each |
+			menuPresenter addMenuGroup: each ] ].
+	^ SpBindings
+		value: self model application adapterBindings
+		during: [ menuPresenter buildWithSpec ]
 ]
 
 { #category : #private }

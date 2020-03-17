@@ -23,66 +23,46 @@ SpCodePresenter class >> adapterName [
 
 { #category : #commands }
 SpCodePresenter class >> buildCommandsGroupWith: presenter forRoot: aCmCommandsGroup [
+
 	aCmCommandsGroup beDisplayedAsGroup.
-	aCmCommandsGroup
-		register: (self codeSelectionActionCommandsGroupWith: presenter).
-	aCmCommandsGroup
-		register: (self codeNavigationCommandsGroupWith: presenter).
-	aCmCommandsGroup register: (self codeEditionCommandsGroupWith: presenter).
-	aCmCommandsGroup register: (self codeAcceptCommandsGroupWith: presenter)
-]
-
-{ #category : #commands }
-SpCodePresenter class >> codeAcceptCommandsGroupWith: presenter [
-	| group |
-	group := (CmCommandGroup named: 'Accept commands') asSpecGroup.
-	group
-		description: 'Accept or cancel changes.';
-		beDisplayedAsGroup.
-	group register: (SpAcceptChangesCommand forSpecContext: presenter).
-	group register: (SpCancelChangesCommand forSpecContext: presenter).
-	^ group
-]
-
-{ #category : #commands }
-SpCodePresenter class >> codeEditionCommandsGroupWith: presenter [
-	| group |
-	group := (CmCommandGroup named: 'Selection edition commands') asSpecGroup.
-	group	description: 'Edit code selection.';
-		beDisplayedAsGroup.
-	SpCodeEditionCommand
-		allSubclassesDo: [ :cmdClass | group register: (cmdClass forSpecContext: presenter) ].
-	^ group
+	aCmCommandsGroup register: (self codeSelectionActionCommandsGroupWith: presenter).
+	aCmCommandsGroup register: (self codeNavigationCommandsGroupWith: presenter)
 ]
 
 { #category : #commands }
 SpCodePresenter class >> codeNavigationCommandsGroupWith: presenter [
 	| group |
+	
 	group := (CmCommandGroup named: 'Selection search commands') asSpecGroup.
 	group
 		description: 'Search the system from code selection.';
 		beDisplayedAsGroup.
-	group register: (SpBrowseClassCommand forSpecContext: [presenter findClassFromSelection]).	
+	group register: (SpBrowseClassCommand forSpecContext: [ presenter findClassFromSelection ]).	
+
+	self flag: #TODO. "This looks like a very bad way to do this :P"	
 	{ 
 		SpBrowseImplementorsCommand.
 		SpBrowseSendersCommand.
 		SpBrowseMethodReferencesCommand.	
 		SpBrowseMethodsContainingStringCommand.
 	 } 
-		do:[:navCmdClass|	group register: (navCmdClass forSpecContext: [presenter selectedText])].
+	do:[ :cmdClass | group register: (cmdClass forSpecContext: [ presenter selectedText ]) ].
+	
 	^ group
 ]
 
 { #category : #commands }
 SpCodePresenter class >> codeSelectionActionCommandsGroupWith: presenter [
 	| group |
-	group := (CmCommandGroup named: 'Selection action commands')
-		asSpecGroup.
+	
+	group := (CmCommandGroup named: 'Selection action commands') asSpecGroup.
 	group
 		description: 'Actions on code selection.';
 		beDisplayedAsGroup.
-	SpCodeSelectionCommand allSubclasses
-		do: [ :cmdClass | group register: (cmdClass forSpecContext: presenter) ].
+	
+	SpCodeSelectionCommand allSubclassesDo: [ :cmdClass | 
+		group register: (cmdClass forSpecContext: presenter) ].
+	
 	^ group
 ]
 
@@ -189,7 +169,7 @@ SpCodePresenter >> initialize [
 	
 	self registerEventsForStyling.
 	
-	self contextMenu: [self rootCommandsGroup asMenuPresenter].
+	self contextMenu: [ self rootCommandsGroup asMenuPresenter ].
 	self contextKeyBindings: self rootCommandsGroup asKMCategory
 ]
 
@@ -209,11 +189,12 @@ SpCodePresenter >> selectedBehavior [
 ]
 
 { #category : #navigation }
-SpCodePresenter >> selectionOrLine [
-	^ self selectedText
-		ifEmpty: [ self
-				selectLine;
-				selectedText ]
+SpCodePresenter >> selectedTextOrLine [
+
+	^ self selectedText ifEmpty: [ 
+		self
+			selectLine;
+			selectedText ]
 ]
 
 { #category : #accessing }
