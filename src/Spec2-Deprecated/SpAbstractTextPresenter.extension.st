@@ -108,6 +108,18 @@ SpAbstractTextPresenter >> doItReceiver: anObject [
 ]
 
 { #category : #'*Spec2-Deprecated' }
+SpAbstractTextPresenter >> getSelection [
+	"Get the text selection"
+	
+	self 
+		deprecated: 'Use #selection instead.' 
+		transformWith: '`@receiver getSelection' 
+		            -> '`@receiver selection'.
+		
+	^ self selection
+]
+
+{ #category : #'*Spec2-Deprecated' }
 SpAbstractTextPresenter >> getText [
 	self deprecated: 'Use #text instead' transformWith: '`@receiver getText' -> '`@receiver text'.
 	^ self text
@@ -121,6 +133,36 @@ SpAbstractTextPresenter >> isAboutToStyle [
 		deprecated: 'This has been moved to specific presenters' 
 		on: '2019-04-15'
 		in: #Pharo8
+]
+
+{ #category : #'*Spec2-Deprecated' }
+SpAbstractTextPresenter >> selection [
+	self
+		deprecated:
+			'#selection was used to return an interval, and did not convey the correct meaning. Use #selectionInterval instead.'
+		transformWith: '`@receiver selection' -> '`@receiver selectionInterval'.
+	^ self selectionInterval
+]
+
+{ #category : #'*Spec2-Deprecated' }
+SpAbstractTextPresenter >> selection: anInterval [
+	self
+		deprecated:
+			'#selection: was used to set an interval, and did not convey the correct meaning. Use #selectionInterval: instead.'
+		transformWith: '`@receiver selection: `@arg' -> '`@receiver selectionInterval: `@arg'.
+	self selectionInterval: anInterval
+]
+
+{ #category : #'*Spec2-Deprecated' }
+SpAbstractTextPresenter >> setSelection: anInterval [
+	"Set the text selection without changing the readSelectionBlock"
+
+	self
+		deprecated: 'Use #selection: instead.'
+		transformWith:
+			'`@receiver setSelection: `@statement'
+				-> '`@receiver selection: `@statement'.
+	self selectionInterval: anInterval
 ]
 
 { #category : #'*Spec2-Deprecated' }

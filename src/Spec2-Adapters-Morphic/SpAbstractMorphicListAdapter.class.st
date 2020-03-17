@@ -15,18 +15,32 @@ SpAbstractMorphicListAdapter class >> isAbstract [
 
 { #category : #scrolling }
 SpAbstractMorphicListAdapter >> configureScrolling [
+	self presenter verticalAlignment
+		whenChangedDo: [ widget
+				scrollToIndex: self presenter verticalAlignment desiredVisibleRow ].
+			
+	self presenter
+		whenDisplayDo: [ widget
+				scrollToIndex: self presenter verticalAlignment desiredVisibleRow.
+			self scrollingChanged ].
+		
+	widget
+		onAnnouncement: FTScrollingChanged
+		send: #scrollingChanged
+		to: self.
+		
+	self flag: 'This is a fix to correctly update the scrolling when updating selection. I am not certain this is the right way to do it.'.	
+	self presenter selection
+		whenChangedDo: [ widget
+				scrollToIndex: self presenter verticalAlignment desiredVisibleRow.
+			widget selectedIndex > widget lastVisibleRowIndex
+				ifTrue: [ widget moveShowIndexTo: widget selectedIndex ] ]
+]
 
-	self presenter verticalAlignment whenChangedDo: [ 
-			widget scrollToIndex: self presenter verticalAlignment desiredVisibleRow ].
-	
-	self presenter whenDisplayDo: [ 
-		widget scrollToIndex: self presenter verticalAlignment desiredVisibleRow.
-		self scrollingChanged ].
-	
-	widget 
-		onAnnouncement: FTScrollingChanged 
-		send: #scrollingChanged 
-		to: self
+{ #category : #'widget API' }
+SpAbstractMorphicListAdapter >> elementAt: index [
+
+	^ self widget dataSource elementAt: index
 ]
 
 { #category : #'widget API' }

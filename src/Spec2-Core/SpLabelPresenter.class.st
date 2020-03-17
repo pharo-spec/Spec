@@ -52,21 +52,6 @@ SpLabelPresenter >> defaultColor [
 	^ self theme textColor
 ]
 
-{ #category : #api }
-SpLabelPresenter >> emphasis [
-
-	self deprecated: 'You need to use a style to affect enfasis (see #addStyle:).'.
-
-	^ nil
-]
-
-{ #category : #api }
-SpLabelPresenter >> emphasis: anEmphasis [
-	"accepts a symbol or an array of symbols: #bold, #italic, #underline, #narrow, #struck"
-
-	self deprecated: 'You need to use a style to affect enfasis (see #addStyle:).'
-]
-
 { #category : #initialization }
 SpLabelPresenter >> initialize [
 	super initialize.

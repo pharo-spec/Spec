@@ -19,7 +19,7 @@ Class {
 	#category : #'Spec2-Deprecated-Replaced'
 }
 
-{ #category : #specs }
+{ #category : #'*Spec2-Deprecated' }
 SpSearchableList class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add: #searchPresenter withConstraints: [ :constraints | constraints height: self toolbarHeight ];
@@ -27,7 +27,7 @@ SpSearchableList class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #'*Spec2-Deprecated' }
 SpSearchableList class >> example [
 	<sampleInstance>
 	"self example"
@@ -36,14 +36,14 @@ SpSearchableList class >> example [
 		items: #(#aaa #abc #axz #bbb #bfbg #bof #c); openWithSpec
 ]
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpSearchableList class >> isDeprecated [
 	"Now lists have a filter integrated in them."
 
 	^ true
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpSearchableList >> connectPresenters [
 	searchPresenter
 		whenTextChangedDo: [ :newText | 
@@ -55,7 +55,7 @@ SpSearchableList >> connectPresenters [
 							(baseItems select: [ :element | element asLowercase beginsWith: text ]) ] ]
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpSearchableList >> initializePresenters [
 	listPresenter := self newList.
 	searchPresenter := self newTextInput.
@@ -64,18 +64,18 @@ SpSearchableList >> initializePresenters [
 		placeholder: 'Filter'
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpSearchableList >> items: aCollection [
 	baseItems := aCollection.
 	listPresenter items: aCollection
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpSearchableList >> listPresenter [
 	^ listPresenter
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpSearchableList >> searchPresenter [
 	^ searchPresenter
 ]

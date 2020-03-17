@@ -7,12 +7,12 @@ Class {
 	#category : #'Spec2-Deprecated-Obsolete'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'*Spec2-Deprecated' }
 SpTestingAbstractTwoButtons class >> example [
 	<sampleInstance>
 	^ self abstractExample openWithSpec 
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpTestingAbstractTwoButtons >> initializeButtons [
 ]

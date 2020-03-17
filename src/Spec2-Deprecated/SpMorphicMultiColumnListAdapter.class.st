@@ -7,12 +7,12 @@ Class {
 	#category : #'Spec2-Deprecated-Adapters'
 }
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicMultiColumnListAdapter class >> isDeprecated [
 	^ true
 ]
 
-{ #category : #factory }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicMultiColumnListAdapter >> buildWidget [
 	^ PluggableMultiColumnListMorph new
 		wrapSelector: #wrapItem:index:;

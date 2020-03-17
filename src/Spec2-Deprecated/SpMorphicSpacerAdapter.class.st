@@ -4,12 +4,12 @@ Class {
 	#category : #'Spec2-Deprecated-Adapters'
 }
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicSpacerAdapter class >> isDeprecated [
 	^ true
 ]
 
-{ #category : #factory }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicSpacerAdapter >> buildWidget [
 	^ Morph new
 		color: Color transparent;

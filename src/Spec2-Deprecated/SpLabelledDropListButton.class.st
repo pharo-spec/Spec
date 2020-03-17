@@ -14,13 +14,13 @@ Class {
 	#category : #'Spec2-Deprecated-Obsolete'
 }
 
-{ #category : #specs }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton class >> defaultSpec [
 	<spec: #default>
 	^ super labelLeft 
 ]
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton class >> example [
 	<sampleInstance>
 	| example |
@@ -34,7 +34,7 @@ SpLabelledDropListButton class >> example [
 	^ example
 ]
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton class >> exampleUse [
 	<sampleInstance>
 	| example |
@@ -49,92 +49,92 @@ SpLabelledDropListButton class >> exampleUse [
 	^ example
 ]
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton class >> isDeprecated [
 	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
 
 	^ true
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> action: aBlock [
 	^self button action: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> button [
 	^ self dropListButton button
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> displayBlock: aBlock [
 	^ self dropList display: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> dropList [
 	^ self dropListButton dropList
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> dropListButton [
 	^ subwidget
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> emptyList [
 	^self dropList emptyList
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> icon: anIcon [
 ^	self button icon: anIcon
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> initializePresenters [
 super initializePresenters.
 	self content: SpDropListButton.
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> items: aList [
 	^self dropList items: aList
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> listSize [
 	^ self dropList listSize
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> resetSelection [
 ^	self dropList resetSelection
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> selectedItem [
 	^ self dropList selectedItem
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> setIndex: anIndex [
 	^ self dropList setIndex: anIndex
 ]
 
-{ #category : #'events-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> whenSelectedItemChanged: aBlock [
 	self dropList
 		whenSelectedItemChanged: aBlock
 ]
 
-{ #category : #'events-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> whenSelectionChanged: aBlock [
 	self dropList
 		whenSelectionChanged: aBlock
 ]
 
-{ #category : #'events-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpLabelledDropListButton >> whenSelectionIndexChanged: aBlock [
 	self dropList
 		whenSelectionIndexChanged: aBlock

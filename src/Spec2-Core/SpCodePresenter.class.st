@@ -144,7 +144,7 @@ SpCodePresenter >> doItContext: anObject [
 { #category : #'api-doIt' }
 SpCodePresenter >> doItReceiver [
 	| receiver |
-	
+
 	receiver := doItReceiver.
 	receiver isBehavior ifTrue: [ 
 		receiver := receiver instanceSide ].

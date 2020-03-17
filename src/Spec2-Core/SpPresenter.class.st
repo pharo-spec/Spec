@@ -219,7 +219,7 @@ SpPresenter >> addAll: aWindow withSpecLayout: aSpec [
 		frame: (0@0 corner: 1@1).
 ]
 
-{ #category : #'window menu' }
+{ #category : #TOREMOVE }
 SpPresenter >> addMenuItemsToWindowMenu: aMenu [
 	"Do nothing"
 ]
@@ -293,7 +293,7 @@ SpPresenter >> application: anApplication [
 	application := anApplication
 ]
 
-{ #category : #'window menu' }
+{ #category : #TOREMOVE }
 SpPresenter >> applyMenuModel: aMenuModel [
 
 	aMenuModel menuGroups do: [ :group |
@@ -626,7 +626,7 @@ SpPresenter >> instantiatePresenters: aCollectionOfPairs [
 				pairsDo: [ :k :v | self instVarNamed: k asString put: (self createInstanceFor: v) ] ]
 ]
 
-{ #category : #api }
+{ #category : #testing }
 SpPresenter >> isBuilt [
 	^ self isDisplayed
 ]
@@ -673,8 +673,11 @@ SpPresenter >> layoutPresenters [
 	layout ifNil: [ ^ self presenters ].
 	
 	^ layout deepPresenters
-		select: [ :each | each isSymbol ]
-		thenCollect: [ :each | self presenterAt: each ]
+		select: [ :each | each isSymbol or: [ each isPresenter ] ]
+		thenCollect: [ :each | 
+			each isPresenter 
+				ifTrue: [ each ]
+				ifFalse:[ self presenterAt: each ] ]
 ]
 
 { #category : #accessing }
@@ -690,7 +693,7 @@ SpPresenter >> localeChanged [
 	
 ]
 
-{ #category : #'window menu' }
+{ #category : #TOREMOVE }
 SpPresenter >> neglectMenuModel: aMenuModel [
 
 	aMenuModel menuGroups do: [ :group |
@@ -1097,14 +1100,6 @@ SpPresenter >> visibleIf: aValuable [
 { #category : #'api-events' }
 SpPresenter >> whenDisplayDo: aBlockClosure [
 	self announcer when: SpWidgetDisplayed do: aBlockClosure
-]
-
-{ #category : #'api-events' }
-SpPresenter >> whenShortcutsChanged: aBlock [
-	"Set a block to value when the shortcuts block has changed"
-	
-	self deprecated: 'This event does not has sense in Spec2'.
-
 ]
 
 { #category : #'api-events' }

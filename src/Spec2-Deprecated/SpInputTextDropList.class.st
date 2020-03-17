@@ -15,7 +15,7 @@ Class {
 	#category : #'Spec2-Deprecated-Obsolete'
 }
 
-{ #category : #specs }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList class >> defaultSpec [
 	<spec: #default>
 	^ SpLayout composed
@@ -26,7 +26,7 @@ SpInputTextDropList class >> defaultSpec [
 			yourself
 ]
 
-{ #category : #examples }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList class >> example [
 	<sampleInstance>
 	| example |
@@ -41,30 +41,30 @@ SpInputTextDropList class >> example [
 	^ example
 ]
 
-{ #category : #testing }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList class >> isDeprecated [
 	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
 
 	^ true
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> acceptOnCR: aBoolean [
 	self input acceptOnCR: aBoolean
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> beEncrypted [
 	self input beEncrypted
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> display: aBlock [
 
 	self dropList display: aBlock
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> displayBlock: aBlock [
 
 	self
@@ -75,33 +75,33 @@ SpInputTextDropList >> displayBlock: aBlock [
 	self dropList display: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> dropList [
 	^ dropList
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> emptyList [
 	self dropList emptyList
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> encrypted: aBoolean [
 	self input encrypted: aBoolean
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> entryCompletion: anEntryCompletion [
 	self input entryCompletion: anEntryCompletion
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> ghostText: aText [
 	self deprecated: 'This API is too tight to Morph. Use #placeholder: instead.' transformWith: '`@receiver ghostText: `@statement' -> '`@receiver placeholder: `@statement'.
 	self placeholder: aText
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> initializeWidgets [
 	input := self instantiate: SpTextInputFieldPresenter.
 	dropList := self instantiate: SpDropListPresenter.
@@ -110,62 +110,62 @@ SpInputTextDropList >> initializeWidgets [
 		add: dropList
 ]
 
-{ #category : #accessing }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> input [
 	^ input
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> items: aList [
 	self dropList items: aList
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> listSize [
 	self dropList listSize
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> placeholder: aText [
 	self input placeholder: aText
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> resetSelection [
 	self dropList resetSelection
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> selectedItem [
 	self dropList selectedItem
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> setIndex: anIndex [
 	self dropList setIndex: anIndex
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> text [
 	self input text
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> text: aText [
 	self input text: aText
 ]
 
-{ #category : #'events-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> whenSelectedItemChanged: aBlock [
 	self dropList whenSelectedItemChanged: aBlock
 ]
 
-{ #category : #'events-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> whenSelectionChanged: aBlock [
 	self dropList whenSelectionChanged: aBlock
 ]
 
-{ #category : #'events-shortcuts' }
+{ #category : #'*Spec2-Deprecated' }
 SpInputTextDropList >> whenSelectionIndexChanged: aBlock [
 	self dropList whenSelectionIndexChanged: aBlock
 ]

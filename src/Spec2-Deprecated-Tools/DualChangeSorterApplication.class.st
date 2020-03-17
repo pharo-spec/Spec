@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Deprecated-Tools'
 }
 
-{ #category : #deprecation }
+{ #category : #'Spec2-Deprecated' }
 DualChangeSorterApplication class >> isDeprecated [
 	"This class has a new name now."
 

@@ -7,19 +7,19 @@ Class {
 	#category : #'Spec2-Deprecated-Adapters'
 }
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTabAdapter class >> isDeprecated [
 	^ true
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTabAdapter >> adapt: aPresenter [
 	widget := self buildWidgetWith: aPresenter.
 	aPresenter addDependent: widget.
 	self bindModel: aPresenter andWidget: widget
 ]
 
-{ #category : #updating }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTabAdapter >> bindModel: aTabModel andWidget: aWidget [
 	"bind change propagation between Spec TabPresenter and Morphic Tab"
 
@@ -34,7 +34,7 @@ SpMorphicTabAdapter >> bindModel: aTabModel andWidget: aWidget [
 	aTabModel selectedHolder whenChangedDo: [ :new | aWidget selected: new ]
 ]
 
-{ #category : #factory }
+{ #category : #'*Spec2-Deprecated' }
 SpMorphicTabAdapter >> buildWidgetWith: aTabPresenter [
 	^ TabMorph new
 		model: aTabPresenter;

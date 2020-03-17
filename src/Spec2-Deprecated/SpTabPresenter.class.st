@@ -26,102 +26,102 @@ Class {
 	#category : #'Spec2-Deprecated-Replaced'
 }
 
-{ #category : #specs }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter class >> adapterName [
 
 	^ #TabAdapter
 ]
 
-{ #category : #deprecation }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter class >> isDeprecated [
 	^ true
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> actions [
 
 	^ actionsHolder value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> actions: aCollection [
 
 	actionsHolder value: aCollection
 ]
 
-{ #category : #'api-valueHolder' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> actionsHolder [
 
 	^ actionsHolder
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> closeable [
 
 	^ closeableHolder value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> closeable: aBoolean [
 
 	closeableHolder value: aBoolean
 ]
 
-{ #category : #'api-valueHolder' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> closeableHolder [
 
 	^ closeableHolder
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> contents [
 
 	^ morphHolder value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> contents: aMorph [
 
 	morphHolder value: aMorph
 ]
 
-{ #category : #private }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> defaultIcon [
 
 	^ self iconNamed: #blankIcon
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> icon [
 
 	^ iconHolder value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> icon: aForm [
 
 	iconHolder value: aForm
 ]
 
-{ #category : #'api-valueHolder' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> iconHolder [
 
 	^ iconHolder
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> iconName: aSymbol [
 
 	iconHolder value: (self iconNamed: aSymbol)
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> initialExtent [
 
 	^ 200@25
 ]
 
-{ #category : #initialization }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> initialize [
 	"Initialization code for TabPresenter"
 
@@ -138,103 +138,103 @@ SpTabPresenter >> initialize [
 	selectedHolder := false asValueHolder
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> label [
 
 	^ labelHolder value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> label: aString [
 
 	labelHolder value: aString
 ]
 
-{ #category : #'api-valueHolder' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> labelHolder [
 
 	^ labelHolder
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> menu [
 
 	^ menuHolder value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> menu: aBlock [
 
 	menuHolder value: aBlock
 ]
 
-{ #category : #'api-valueHolder' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> menuHolder [
 
 	^ menuHolder
 ]
 
-{ #category : #'api-valueHolder' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> morphHolder [
 
 	^ morphHolder
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> presenter: aPresenter [
 	aPresenter owner: self.
 	self retrievingBlock: [ aPresenter buildWithSpec ]
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> retrievingBlock [
 
 	^ retrievingBlockHolder value
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> retrievingBlock: aBlock [
 
 	retrievingBlockHolder value: aBlock
 ]
 
-{ #category : #'api-valueHolder' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> retrievingBlockHolder [
 
 	^ retrievingBlockHolder
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> selected: aBoolean [
 
 	selectedHolder value: aBoolean
 ]
 
-{ #category : #'api-valueHolder' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> selectedHolder [
 
 	^ selectedHolder
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> tabSelected [ 
 
 	tabSelectedActionHolder value cull: self
 ]
 
-{ #category : #api }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> tabSelectedAction [
 
 	^ tabSelectedActionHolder value
 ]
 
-{ #category : #'api-valueHolder' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> tabSelectedActionHolder [
 
 	^ tabSelectedActionHolder
 ]
 
-{ #category : #'api-events' }
+{ #category : #'*Spec2-Deprecated' }
 SpTabPresenter >> whenTabSelected: aBlock [
 
 	tabSelectedActionHolder value: aBlock
