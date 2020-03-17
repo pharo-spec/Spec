@@ -80,7 +80,6 @@ SpLinkPresenter >> label: aString [
 SpLinkPresenter >> localeChanged [
 
 	super localeChanged.
-	self label specLocaleChanged.
 	self forceUpdateSlot: #label
 		
 ]

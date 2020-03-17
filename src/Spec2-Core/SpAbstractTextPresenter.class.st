@@ -232,7 +232,6 @@ SpAbstractTextPresenter >> isForSmalltalkCode: aBoolean [
 SpAbstractTextPresenter >> localeChanged [
 
 	super localeChanged.
-	self placeholder specLocaleChanged.
 	self forceUpdateSlot: #placeholder
 	
 ]

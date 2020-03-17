@@ -177,7 +177,6 @@ SpMenuPresenter >> isMenuPresenter [
 SpMenuPresenter >> localeChanged [
 
 	super localeChanged.
-	self title specLocaleChanged.
 	self forceUpdateSlot: #title
 	
 ]

@@ -130,7 +130,6 @@ SpMenuItemPresenter >> keyText: aString [
 SpMenuItemPresenter >> localeChanged [
 
 	super localeChanged.
-	self name specLocaleChanged.
 	self forceUpdateSlot: #name
 	
 ]

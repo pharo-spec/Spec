@@ -106,7 +106,6 @@ SpAbstractFormButtonPresenter >> labelClickable: aBoolean [
 SpAbstractFormButtonPresenter >> localeChanged [
 
 	super localeChanged.
-	self label specLocaleChanged.
 	self forceUpdateSlot: #label
 	
 ]

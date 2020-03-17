@@ -76,7 +76,6 @@ SpLabelPresenter >> label: aText [
 SpLabelPresenter >> localeChanged [
 
 	super localeChanged.
-	self label specLocaleChanged.
 	self forceUpdateSlot: #label
 		
 ]

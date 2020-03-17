@@ -23,9 +23,3 @@ Object >> isSpLayout [
 
 	^ false
 ]
-
-{ #category : #'*Spec2-Core' }
-Object >> specLocaleChanged [
-
-	"do nothing here"
-]

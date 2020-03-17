@@ -63,7 +63,6 @@ SpAbstractButtonPresenter >> label: aStringOrImageMorph [
 SpAbstractButtonPresenter >> localeChanged [
 
 	super localeChanged.
-	self label specLocaleChanged.
 	self forceUpdateSlot: #label
 	
 ]

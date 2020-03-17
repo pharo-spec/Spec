@@ -43,7 +43,7 @@ SpMorphicLabelAdapter >> getHelpText [
 { #category : #'model access' }
 SpMorphicLabelAdapter >> getText [
 
-	^ self presenter label valueForPresenter: self presenter
+	^self presenter label ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
 ]
 
 { #category : #accessing }
