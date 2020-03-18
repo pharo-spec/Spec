@@ -65,57 +65,6 @@ SpToolBarPresenter class >> example [
 		openWithSpec
 ]
 
-{ #category : #example }
-SpToolBarPresenter class >> exampleGtk [
-	| app loremIpsumWords menuButton |
-	
-	app := SpApplication new
-		useBackend: #Gtk;
-		yourself.
-	loremIpsumWords := String loremIpsum substrings.
-	^ SpToolBarPresenter new 
-		application: app;
-		beBoth;
-		addItem: (SpToolBarButton new 
-			icon: (self iconNamed: #smallOk);
-			label: 'Simple';
-			action: [ UIManager default defer: [ self inform: 'Pressed' ] ];
-			yourself);
-		addItem: (SpToolBarToggleButton new
-			icon: (self iconNamed: #smallOk);
-			label: 'Toggle';
-			action: [ :value | UIManager default defer: [ self inform: value asString ] ];
-			yourself);
-		addItem: ((menuButton := SpToolBarMenuButton new)
-			label: 'Menu';
-			icon: (self iconNamed: #smallOk);
-			action: [ UIManager default defer: [ self inform: menuButton label ] ];
-			menu: [ 
-				SpMenuPresenter new
-					addGroup: [ :group | group
-						addItem: [ :item | item 
-							name: '1: ', loremIpsumWords atRandom;
-							action: [ 
-								menuButton 
-									label: item name; 
-									icon: ThemeIcons current icons atRandom ] ];
-						addItem: [ :item | item 
-							name: '2: ', loremIpsumWords atRandom;
-							action: [ 
-								menuButton 
-									label: item name; 
-									icon: ThemeIcons current icons atRandom ] ];
-						addItem: [ :item | item 
-							name: '3: ', loremIpsumWords atRandom;
-							action: [ 
-								menuButton 
-									label: item name; 
-									icon: ThemeIcons current icons atRandom ] ] ];
-					yourself ];
-			yourself);
-		openWithSpec
-]
-
 { #category : #convenience }
 SpToolBarPresenter >> addButtonLabel: aLabel iconNamed: anIconName help: aHelpString action: aBlock [
 
