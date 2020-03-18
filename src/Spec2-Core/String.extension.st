@@ -11,7 +11,7 @@ String >> asPresenter [
 { #category : #'*Spec2-Core' }
 String >> valueForPresenter: aPresenter [
 
-	"This message servers for the string modification for the purpose of a given Spec presenter. It may, for example, convert it to a presenter's locale. The implementation here (in the String) serves as fallback for regular strings."
+	"This message serves for the string modification for the purpose of a given Spec presenter. It may, for example, convert it to a presenter's locale. The implementation here (in the String) serves as fallback for regular strings."
 
 	^ self
 ]
