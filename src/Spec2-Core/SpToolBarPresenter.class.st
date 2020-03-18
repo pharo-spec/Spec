@@ -75,7 +75,7 @@ SpToolBarPresenter class >> exampleGtk [
 	loremIpsumWords := String loremIpsum substrings.
 	^ SpToolBarPresenter new 
 		application: app;
-		beIcons;
+		beBoth;
 		addItem: (SpToolBarButton new 
 			icon: (self iconNamed: #smallOk);
 			label: 'Simple';
@@ -88,27 +88,31 @@ SpToolBarPresenter class >> exampleGtk [
 			yourself);
 		addItem: ((menuButton := SpToolBarMenuButton new)
 			label: 'Menu';
+			icon: (self iconNamed: #smallOk);
+			action: [ UIManager default defer: [ self inform: menuButton label ] ];
 			menu: [ 
 				SpMenuPresenter new
 					addGroup: [ :group | group
 						addItem: [ :item | item 
 							name: '1: ', loremIpsumWords atRandom;
-							action: [ menuButton label: item name ] ];
+							action: [ 
+								menuButton 
+									label: item name; 
+									icon: ThemeIcons current icons atRandom ] ];
 						addItem: [ :item | item 
 							name: '2: ', loremIpsumWords atRandom;
-							action: [ menuButton label: item name ] ];
+							action: [ 
+								menuButton 
+									label: item name; 
+									icon: ThemeIcons current icons atRandom ] ];
 						addItem: [ :item | item 
 							name: '3: ', loremIpsumWords atRandom;
-							action: [ menuButton label: item name ] ] ];
+							action: [ 
+								menuButton 
+									label: item name; 
+									icon: ThemeIcons current icons atRandom ] ] ];
 					yourself ];
 			yourself);
-		"addItem: (SpToolBarLabel new
-			contents: 'Label';
-			yourself);
-		addItem: (SpToolBarOptionButton new
-			icon: (self iconNamed: #smallOk);
-			action: [ :value | UIManager default defer: [ self inform: value asString ] ];
-			yourself);"
 		openWithSpec
 ]
 

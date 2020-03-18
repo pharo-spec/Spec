@@ -75,6 +75,7 @@ SpAbstractButtonPresenter >> shortcutCharacter [
 
 { #category : #'api-events' }
 SpAbstractButtonPresenter >> whenIconChangedDo: aBlock [
+
 	self property: #icon whenChangedDo: aBlock
 ]
 

@@ -78,7 +78,7 @@ SpToolBarButton >> label: anObject [
 { #category : #'api-events' }
 SpToolBarButton >> whenIconChangedDo: aBlock [ 
 
-	self property: #label whenChangedDo: aBlock 
+	self property: #icon whenChangedDo: aBlock 
 ]
 
 { #category : #'api-events' }
