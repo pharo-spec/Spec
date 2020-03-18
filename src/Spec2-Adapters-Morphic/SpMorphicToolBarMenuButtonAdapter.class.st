@@ -34,26 +34,6 @@ SpMorphicToolBarMenuButtonAdapter >> badge [
 	^ self presenter badge
 ]
 
-{ #category : #factory }
-SpMorphicToolBarMenuButtonAdapter >> buildWidget [
-	| button |
-	
-	button := (self morphClass
-			on: self
-			getState: nil 
-			action: #action)
-		helpText: self model help;
-		beIconTop;
-		hResizing: #rigid;
-		vResizing: #spaceFill;
-		borderWidth: 0;
-		borderColor: Color transparent;		
-		cellPositioning: #center;
-		yourself.
-		
-	^ button
-]
-
 { #category : #accessing }
 SpMorphicToolBarMenuButtonAdapter >> defaultIcon [
 		
@@ -91,6 +71,24 @@ SpMorphicToolBarMenuButtonAdapter >> isSelected: aBooolean [
 SpMorphicToolBarMenuButtonAdapter >> label [
 	
 	^ self presenter label
+]
+
+{ #category : #factory }
+SpMorphicToolBarMenuButtonAdapter >> newButton [
+
+	^ (self morphClass
+			on: self
+			getState: nil 
+			action: #action)
+		helpText: self model help;
+		beIconTop;
+		hResizing: #rigid;
+		vResizing: #spaceFill;
+		borderWidth: 0;
+		borderColor: Color transparent;		
+		cellPositioning: #center;
+		yourself.
+
 ]
 
 { #category : #'widget API' }

@@ -8,15 +8,15 @@ Class {
 }
 
 { #category : #factory }
-SpMorphicToolBarToggleButtonAdapter >> buildWidget [
-
-	^ super buildWidget
-		action: #execute:
-		yourself
-]
-
-{ #category : #factory }
 SpMorphicToolBarToggleButtonAdapter >> morphClass [ 
 
 	^ SpToolBarToggleButtonMorph
+]
+
+{ #category : #factory }
+SpMorphicToolBarToggleButtonAdapter >> newButton [
+
+	^ super newButton
+		action: #execute:
+		yourself
 ]

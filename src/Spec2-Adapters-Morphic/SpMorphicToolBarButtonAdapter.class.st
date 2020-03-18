@@ -11,7 +11,24 @@ Class {
 SpMorphicToolBarButtonAdapter >> buildWidget [
 	| button |
 	
-	button := (self morphClass
+	button := self newButton.
+	
+	self presenter whenLabelChangedDo: [ self updateLabel ].
+	self presenter whenIconChangedDo: [ self updateIcon ].
+
+	^ button
+]
+
+{ #category : #factory }
+SpMorphicToolBarButtonAdapter >> morphClass [
+
+	^ SpToolBarButtonMorph
+]
+
+{ #category : #factory }
+SpMorphicToolBarButtonAdapter >> newButton [
+	
+	^ (self morphClass
 			on: self presenter
 			getState: nil 
 			action: #execute)
@@ -22,13 +39,17 @@ SpMorphicToolBarButtonAdapter >> buildWidget [
 		borderWidth: 0;
 		borderColor: Color transparent;		
 		cellPositioning: #center;
-		yourself.
-		
-	^ button
+		yourself
 ]
 
-{ #category : #factory }
-SpMorphicToolBarButtonAdapter >> morphClass [
+{ #category : #updating }
+SpMorphicToolBarButtonAdapter >> updateIcon [
 
-	^ SpToolBarButtonMorph
+	widget update: widget getIconSelector
+]
+
+{ #category : #updating }
+SpMorphicToolBarButtonAdapter >> updateLabel [
+
+	widget update: widget getLabelSelector
 ]

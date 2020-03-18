@@ -28,27 +28,36 @@ SpToolBarPresenter class >> adapterName [
 ]
 
 { #category : #example }
-SpToolBarPresenter class >> example [ 
-	| loremIpsumWords |
+SpToolBarPresenter class >> example [
+	| loremIpsumWords menuButton |
 	
 	loremIpsumWords := String loremIpsum substrings.
 	^ SpToolBarPresenter new 
+		beBoth;
 		addItem: (SpToolBarButton new 
 			icon: (self iconNamed: #smallOk);
+			label: 'Simple';
 			action: [ UIManager default defer: [ self inform: 'Pressed' ] ];
 			yourself);
 		addItem: (SpToolBarToggleButton new
 			icon: (self iconNamed: #smallOk);
+			label: 'Toggle';
 			action: [ :value | UIManager default defer: [ self inform: value asString ] ];
 			yourself);
-		addItem: (SpToolBarMenuButton new
-			label: '';
+		addItem: ((menuButton := SpToolBarMenuButton new)
+			label: 'Menu';
 			menu: [ 
 				SpMenuPresenter new
 					addGroup: [ :group | group
-						addItem: [ :item | item name: '1: ', loremIpsumWords atRandom ];
-						addItem: [ :item | item name: '2: ', loremIpsumWords atRandom ];
-						addItem: [ :item | item name: '3: ', loremIpsumWords atRandom ] ];
+						addItem: [ :item | item 
+							name: '1: ', loremIpsumWords atRandom;
+							action: [ menuButton label: item name ] ];
+						addItem: [ :item | item 
+							name: '2: ', loremIpsumWords atRandom;
+							action: [ menuButton label: item name ] ];
+						addItem: [ :item | item 
+							name: '3: ', loremIpsumWords atRandom;
+							action: [ menuButton label: item name ] ] ];
 					yourself ];
 			yourself);
 		"addItem: (SpToolBarLabel new
