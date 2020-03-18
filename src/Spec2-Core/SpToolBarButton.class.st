@@ -5,10 +5,10 @@ Class {
 	#name : #SpToolBarButton,
 	#superclass : #SpToolBarItemPresenter,
 	#instVars : [
-		'label',
-		'icon',
-		'action',
-		'badge'
+		'#label => SpObservableSlot',
+		'#icon => SpObservableSlot',
+		'#action',
+		'#badge'
 	],
 	#category : #'Spec2-Core-Widgets-Toolbar'
 }
@@ -60,6 +60,11 @@ SpToolBarButton >> icon: anObject [
 	icon := anObject
 ]
 
+{ #category : #initialization }
+SpToolBarButton >> initialize [
+	super initialize.
+]
+
 { #category : #accessing }
 SpToolBarButton >> label [
 	^ label
@@ -68,4 +73,16 @@ SpToolBarButton >> label [
 { #category : #accessing }
 SpToolBarButton >> label: anObject [
 	label := anObject
+]
+
+{ #category : #'api-events' }
+SpToolBarButton >> whenIconChangedDo: aBlock [ 
+
+	self property: #label whenChangedDo: aBlock 
+]
+
+{ #category : #'api-events' }
+SpToolBarButton >> whenLabelChangedDo: aBlock [ 
+
+	self property: #label whenChangedDo: aBlock 
 ]
