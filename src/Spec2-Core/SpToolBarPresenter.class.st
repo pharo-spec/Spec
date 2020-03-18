@@ -46,6 +46,8 @@ SpToolBarPresenter class >> example [
 			yourself);
 		addItem: ((menuButton := SpToolBarMenuButton new)
 			label: 'Menu';
+			icon: (self iconNamed: #smallOk);
+			action: [ UIManager default defer: [ self inform: menuButton label ] ];
 			menu: [ 
 				SpMenuPresenter new
 					addGroup: [ :group | group
@@ -60,13 +62,6 @@ SpToolBarPresenter class >> example [
 							action: [ menuButton label: item name ] ] ];
 					yourself ];
 			yourself);
-		"addItem: (SpToolBarLabel new
-			contents: 'Label';
-			yourself);
-		addItem: (SpToolBarOptionButton new
-			icon: (self iconNamed: #smallOk);
-			action: [ :value | UIManager default defer: [ self inform: value asString ] ];
-			yourself);"
 		openWithSpec
 ]
 

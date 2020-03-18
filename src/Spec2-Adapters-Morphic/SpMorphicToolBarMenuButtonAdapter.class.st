@@ -10,34 +10,30 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
-{ #category : #accessing }
-SpMorphicToolBarMenuButtonAdapter >> action [ 
-
-	self presenter menu ifNotNil: [ :aValuable |
-		aValuable value ifNotNil: [ :aMenu |
-			aMenu owner: self presenter.
-			self showSubMenu: aMenu ] ].
-	
-	self widget ifNotNil: [ :m | 
-		m takeKeyboardFocus ] 
-]
-
 { #category : #protocol }
 SpMorphicToolBarMenuButtonAdapter >> askBeforeChanging [
 
 	^ false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SpMorphicToolBarMenuButtonAdapter >> badge [
 	
 	^ self presenter badge
 ]
 
-{ #category : #accessing }
-SpMorphicToolBarMenuButtonAdapter >> defaultIcon [
-		
-	^ self application iconNamed: #arrowDown
+{ #category : #factory }
+SpMorphicToolBarMenuButtonAdapter >> buildWidget [
+	
+	^ SpMorphicToolBarMenuButtonMorph  
+		newButton: super buildWidget
+		menuButton: self newMenuButton
+]
+
+{ #category : #updating }
+SpMorphicToolBarMenuButtonAdapter >> button [
+
+	^ widget submorphs first
 ]
 
 { #category : #control }
@@ -60,7 +56,7 @@ SpMorphicToolBarMenuButtonAdapter >> dropEnabled [
 { #category : #accessing }
 SpMorphicToolBarMenuButtonAdapter >> icon [
 
-	^ self presenter icon ifNil: [ self defaultIcon ]
+	^ self presenter icon
 ]
 
 { #category : #testing }
@@ -73,22 +69,32 @@ SpMorphicToolBarMenuButtonAdapter >> label [
 	^ self presenter label
 ]
 
+{ #category : #accessing }
+SpMorphicToolBarMenuButtonAdapter >> menuIcon [
+
+	^ self application iconNamed: #arrowDown
+]
+
 { #category : #factory }
-SpMorphicToolBarMenuButtonAdapter >> newButton [
+SpMorphicToolBarMenuButtonAdapter >> newMenuButton [
 
-	^ (self morphClass
-			on: self
-			getState: nil 
-			action: #action)
-		helpText: self model help;
-		beIconTop;
-		hResizing: #rigid;
-		vResizing: #spaceFill;
-		borderWidth: 0;
-		borderColor: Color transparent;		
-		cellPositioning: #center;
-		yourself.
+	^ IconicButton new
+		target: self;
+		actionSelector: #showMenu;
+		arguments: {};
+		labelGraphic: self menuIcon;
+		color: Color transparent;
+		borderWidth: 0
+]
 
+{ #category : #accessing }
+SpMorphicToolBarMenuButtonAdapter >> showMenu [
+
+	self presenter menu ifNotNil: [ :aValuable |
+		aValuable value ifNotNil: [ :aMenu |
+			aMenu owner: self presenter.
+			self showSubMenu: aMenu ] ].
+	self widget ifNotNil: [ :m | m takeKeyboardFocus ] 
 ]
 
 { #category : #'widget API' }

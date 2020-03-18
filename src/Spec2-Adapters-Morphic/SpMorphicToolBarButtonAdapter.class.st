@@ -19,6 +19,12 @@ SpMorphicToolBarButtonAdapter >> buildWidget [
 	^ button
 ]
 
+{ #category : #updating }
+SpMorphicToolBarButtonAdapter >> button [
+
+	^ widget
+]
+
 { #category : #factory }
 SpMorphicToolBarButtonAdapter >> morphClass [
 
@@ -45,11 +51,11 @@ SpMorphicToolBarButtonAdapter >> newButton [
 { #category : #updating }
 SpMorphicToolBarButtonAdapter >> updateIcon [
 
-	widget update: widget getIconSelector
+	self button update: self button getIconSelector
 ]
 
 { #category : #updating }
 SpMorphicToolBarButtonAdapter >> updateLabel [
 
-	widget update: widget getLabelSelector
+	self button update: self button getLabelSelector
 ]

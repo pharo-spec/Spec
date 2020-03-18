@@ -65,8 +65,14 @@ SpToolBarToggleButtonMorph >> drawBadgeOn: aCanvas [
 { #category : #accessing }
 SpToolBarToggleButtonMorph >> drawOn: aCanvas [
 	super drawOn: aCanvas.
-	self hasBadge
-		ifTrue: [ self drawBadgeOn: aCanvas ]
+	self hasBadge ifTrue: [
+		self drawBadgeOn: aCanvas ]
+]
+
+{ #category : #accessing }
+SpToolBarToggleButtonMorph >> drawSubmorphsOn: aCanvas [
+	
+	super drawSubmorphsOn: aCanvas
 ]
 
 { #category : #accessing }
