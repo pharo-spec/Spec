@@ -37,13 +37,13 @@ SpMorphicLabelAdapter >> buildWidget [
 { #category : #private }
 SpMorphicLabelAdapter >> getHelpText [
 
-	^ self presenter help ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
+	^ self presenter help ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #'model access' }
 SpMorphicLabelAdapter >> getText [
 
-	^self presenter label ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
+	^self presenter label ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #accessing }

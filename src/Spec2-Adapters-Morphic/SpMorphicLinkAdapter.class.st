@@ -36,7 +36,7 @@ SpMorphicLinkAdapter >> buildWidget [
 		yourself.	";
 		emphasis: (self emphasisCodeFor: self model emphasis)"
 		
-	self presenter whenLabelChangedDo: [ :newLabel | aMorph contents: (newLabel ifNotNil: [ :aString | aString valueForPresenter: self presenter ]) ].
+	self presenter whenLabelChangedDo: [ :newLabel | aMorph contents: (newLabel ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]) ].
 	
 	^ aMorph
 ]
@@ -44,13 +44,13 @@ SpMorphicLinkAdapter >> buildWidget [
 { #category : #private }
 SpMorphicLinkAdapter >> getHelpText [
 
-	^ self presenter help ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
+	^ self presenter help ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #private }
 SpMorphicLinkAdapter >> getLabelText [
 
-	^ self presenter label ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
+	^ self presenter label ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #accessing }

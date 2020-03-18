@@ -1,7 +1,7 @@
 Extension { #name : #Text }
 
 { #category : #'*Spec2-Core' }
-Text >> valueForPresenter: aPresenter [
+Text >> localizedForPresenter: aPresenter [
 
 	^ self asString
 ]

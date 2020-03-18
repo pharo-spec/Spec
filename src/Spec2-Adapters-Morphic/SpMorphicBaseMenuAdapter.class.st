@@ -15,7 +15,7 @@ SpMorphicBaseMenuAdapter >> addKeyBindingsTo: aMorph [
 { #category : #private }
 SpMorphicBaseMenuAdapter >> getTitleText [
 
-	^ self presenter title ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
+	^ self presenter title ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #protocol }

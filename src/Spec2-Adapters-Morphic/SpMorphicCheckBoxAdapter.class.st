@@ -26,7 +26,7 @@ SpMorphicCheckBoxAdapter >> buildWidget [
 			dropEnabled: self dropEnabled;	
 			labelClickable: self labelClickable.
 			
-	self presenter whenLabelChangedDo: [ :newLabel | checkButton label: (newLabel ifNotNil: [ :aString | aString valueForPresenter: self presenter ]) ].
+	self presenter whenLabelChangedDo: [ :newLabel | checkButton label: (newLabel ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]) ].
 	self presenter whenChangedDo: [ checkButton updateSelection ].
 	^ checkButton
 ]
@@ -40,13 +40,13 @@ SpMorphicCheckBoxAdapter >> clicked [
 { #category : #private }
 SpMorphicCheckBoxAdapter >> getHelpText [
 
-	^ self presenter help ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
+	^ self presenter help ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #private }
 SpMorphicCheckBoxAdapter >> getLabelText [
 
-	^ self presenter label ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
+	^ self presenter label ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #accessing }

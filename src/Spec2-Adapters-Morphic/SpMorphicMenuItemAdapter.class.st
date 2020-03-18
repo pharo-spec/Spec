@@ -119,7 +119,7 @@ SpMorphicMenuItemAdapter >> name [
 	
 	^ (name isBlock or: [ name isMessageSend ])
 		ifTrue: [ name cull: self model ]
-		ifFalse: [ name ifNotNil: [ :aString | aString valueForPresenter: self presenter ] ]
+		ifFalse: [ name ifNotNil: [ :aString | aString localizedForPresenter: self presenter ] ]
 
 ]
 

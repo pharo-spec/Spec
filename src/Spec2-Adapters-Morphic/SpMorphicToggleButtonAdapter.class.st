@@ -25,7 +25,7 @@ SpMorphicToggleButtonAdapter >> buildWidget [
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled.
 			
-	self presenter whenLabelChangedDo: [ :newLabel | checkButton label: (newLabel ifNotNil: [ :aString | aString valueForPresenter: self presenter ]) ].
+	self presenter whenLabelChangedDo: [ :newLabel | checkButton label: (newLabel ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]) ].
 	self presenter whenIconChangedDo: [ checkButton icon: self icon ].
 	self presenter whenChangedDo: [ checkButton pressed: self model state ].
 
@@ -42,13 +42,13 @@ SpMorphicToggleButtonAdapter >> clicked [
 { #category : #private }
 SpMorphicToggleButtonAdapter >> getHelpText [
 
-	^ self presenter help ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
+	^ self presenter help ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #private }
 SpMorphicToggleButtonAdapter >> getLabelText [
 
-	^ self presenter label ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
+	^ self presenter label ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #accessing }
