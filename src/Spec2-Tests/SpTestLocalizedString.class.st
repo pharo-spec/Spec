@@ -33,6 +33,14 @@ SpTestLocalizedString >> isEmptyOrNil [
 ]
 
 { #category : #accessing }
+SpTestLocalizedString >> localizedForPresenter: aPresenter [ 
+
+	requestsCount := requestsCount + 1.
+	
+	^ string, '[', aPresenter locale localeID isoString, '](', requestsCount asString, ')'
+]
+
+{ #category : #accessing }
 SpTestLocalizedString >> string [
 	^ string
 ]
@@ -40,14 +48,6 @@ SpTestLocalizedString >> string [
 { #category : #accessing }
 SpTestLocalizedString >> string: anObject [
 	string := anObject
-]
-
-{ #category : #accessing }
-SpTestLocalizedString >> valueForPresenter: aPresenter [ 
-
-	requestsCount := requestsCount + 1.
-	
-	^ string, '[', aPresenter locale localeID isoString, '](', requestsCount asString, ')'
 ]
 
 { #category : #accessing }

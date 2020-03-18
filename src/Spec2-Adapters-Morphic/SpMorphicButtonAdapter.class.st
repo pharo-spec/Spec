@@ -32,7 +32,7 @@ SpMorphicButtonAdapter >> askBeforeChanging [
 { #category : #private }
 SpMorphicButtonAdapter >> buildLabel: text withIcon: icon [
 
-	icon ifNil: [ ^ (text valueForPresenter: self presenter)
+	icon ifNil: [ ^ (text localizedForPresenter: self presenter)
 			ifNil: [ '' ] ].
 	
 	^ IconicListItem 
@@ -93,13 +93,13 @@ SpMorphicButtonAdapter >> font [
 { #category : #private }
 SpMorphicButtonAdapter >> getHelpText [
 
-	^ self presenter help ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
+	^ self presenter help ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #private }
 SpMorphicButtonAdapter >> getLabelText [
 
-	^ self presenter label ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
+	^ self presenter label ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #accessing }

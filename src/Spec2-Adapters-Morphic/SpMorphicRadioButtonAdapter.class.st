@@ -32,7 +32,7 @@ SpMorphicRadioButtonAdapter >> buildWidget [
 		dropEnabled: self dropEnabled;
 		yourself.
 		
-	self presenter whenLabelChangedDo: [ :newLabel | radioButton label: (newLabel ifNotNil: [ :aString | aString valueForPresenter: self presenter ]) ].
+	self presenter whenLabelChangedDo: [ :newLabel | radioButton label: (newLabel ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]) ].
 	self presenter whenChangedDo: [ radioButton updateSelection ].
 
 	^ radioButton
@@ -47,13 +47,13 @@ SpMorphicRadioButtonAdapter >> clicked [
 { #category : #factory }
 SpMorphicRadioButtonAdapter >> getHelpText [
 
-	^ self presenter help ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
+	^ self presenter help ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #private }
 SpMorphicRadioButtonAdapter >> getLabelText [
 
-	^ self presenter label ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
+	^ self presenter label ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #'widget API' }

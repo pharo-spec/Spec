@@ -268,7 +268,7 @@ SpMorphicWindowAdapter >> title [
 { #category : #'widget API' }
 SpMorphicWindowAdapter >> title: aString [
 
-	self widgetDo: [ :w | w setLabel: (aString ifNotNil: [ :theString | theString valueForPresenter: self presenter]) ]
+	self widgetDo: [ :w | w setLabel: (aString ifNotNil: [ :theString | theString localizedForPresenter: self presenter]) ]
 ]
 
 { #category : #updating }

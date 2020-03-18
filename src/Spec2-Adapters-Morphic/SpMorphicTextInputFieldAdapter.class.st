@@ -55,7 +55,7 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		yourself.
 
 	self presenter whenTextChangedDo: [ :text | newWidget setText: text ].
-	self presenter whenPlaceholderChangedDo: [ :text | newWidget ghostText: (text ifNotNil: [ :aString | aString valueForPresenter: self presenter]) ].
+	self presenter whenPlaceholderChangedDo: [ :text | newWidget ghostText: (text ifNotNil: [ :aString | aString localizedForPresenter: self presenter]) ].
 	self presenter whenPasswordChangedDo: [ :isPassword | newWidget encrypted: isPassword ].
 	self presenter whenMaxLengthChangedDo: [ :length | newWidget maxLength: length ].
 
@@ -84,7 +84,7 @@ SpMorphicTextInputFieldAdapter >> entryCompletion [
 { #category : #private }
 SpMorphicTextInputFieldAdapter >> getPlaceholderText [
 
-	^ self presenter placeholder ifNotNil: [ :aString | aString valueForPresenter: self presenter ]
+	^ self presenter placeholder ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #testing }

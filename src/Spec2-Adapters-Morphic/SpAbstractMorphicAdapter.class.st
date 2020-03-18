@@ -378,7 +378,7 @@ SpAbstractMorphicAdapter >> setBalloonText: aString [
 
 	self widget ifNotNil: [ :w | 
 		w setBalloonText: (
-			aString ifNotNil: [ :theString | theString valueForPresenter: self presenter ] ) ]
+			aString ifNotNil: [ :theString | theString localizedForPresenter: self presenter ] ) ]
 	
 ]
 
