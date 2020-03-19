@@ -10,7 +10,7 @@ BaselineOfSpec2 >> baseline: spec [
 	
 	spec for: #common do: [ 
 		self commander2: spec.
-		self complishion: spec.
+		self complishon: spec.
 		
 		spec
 			package: 'Spec2-Core' with: [ 
@@ -61,11 +61,11 @@ BaselineOfSpec2 >> commander2: spec [
 ]
 
 { #category : #dependencies }
-BaselineOfSpec2 >> complishion: spec [
+BaselineOfSpec2 >> complishon: spec [
 	
 	spec
-		baseline: 'Complishion'
-		with: [ spec repository: 'github://guillep/complishion' ]
+		baseline: 'Complishon'
+		with: [ spec repository: 'github://guillep/complishon' ]
 ]
 
 { #category : #dependencies }
