@@ -15,7 +15,7 @@ BaselineOfSpec2 >> baseline: spec [
 		spec
 			package: 'Spec2-Core' with: [ 
 				spec requires: #(
-					'Complishion'
+					'Complishon'
 					'Spec2-Layout' 
 					'Spec2-Transmission' 
 					'Spec2-Commands') ];
