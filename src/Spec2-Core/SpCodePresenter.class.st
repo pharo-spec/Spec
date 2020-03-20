@@ -10,7 +10,8 @@ Class {
 		'#doItReceiver => SpObservableSlot',
 		'#behavior => SpObservableSlot',
 		'#syntaxHighlight => SpObservableSlot',
-		'#completionEngine => SpObservableSlot'
+		'#completionEngine => SpObservableSlot',
+		'#interactionModel'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }
@@ -97,6 +98,12 @@ SpCodePresenter >> behavior: aClass [
 	behavior := aClass
 ]
 
+{ #category : #binding }
+SpCodePresenter >> bindingOf: aString [
+
+	^ interactionModel ifNotNil:  [ interactionModel bindingOf: aString  ]
+]
+
 { #category : #accessing }
 SpCodePresenter >> completionEngine [
 
@@ -109,29 +116,33 @@ SpCodePresenter >> completionEngine: aCompletionEngine [
 	completionEngine := aCompletionEngine
 ]
 
-{ #category : #'api-doIt' }
+{ #category : #binding }
 SpCodePresenter >> doItContext [
 
-	^ doItContext
+	doItContext ifNotNil: [ ^ doItContext ].
+	^ interactionModel ifNotNil: [ :im | im doItContext ]
 ]
 
-{ #category : #'api-doIt' }
+{ #category : #binding }
 SpCodePresenter >> doItContext: anObject [
 
 	doItContext := anObject
 ]
 
-{ #category : #'api-doIt' }
+{ #category : #binding }
 SpCodePresenter >> doItReceiver [
-	| receiver |
-
-	receiver := doItReceiver.
-	receiver isBehavior ifTrue: [ 
-		receiver := receiver instanceSide ].
-	^ receiver
+	
+	doItReceiver ifNotNil: [ 
+		| receiver |
+		receiver := doItReceiver.
+		receiver isBehavior ifTrue: [ 
+			receiver := receiver instanceSide ].
+		^ receiver ].
+	
+	^ interactionModel ifNotNil: [ :im | im doItReceiver ]
 ]
 
-{ #category : #'api-doIt' }
+{ #category : #binding }
 SpCodePresenter >> doItReceiver: anObject [
 
 	doItReceiver := anObject
@@ -154,6 +165,22 @@ SpCodePresenter >> findClassFromSelection [
 	^ self findClassFrom: self selectedText trimmed
 ]
 
+{ #category : #binding }
+SpCodePresenter >> hasBindingOf: aString [
+
+	^ interactionModel 
+		ifNotNil: [ :im | im hasBindingOf: aString ]
+		ifNil: [ false ]
+]
+
+{ #category : #binding }
+SpCodePresenter >> hasBindingThatBeginsWith: aString [ 
+	
+	^ interactionModel
+		ifNotNil: [ :im | im hasBindingThatBeginsWith: aString ] 
+		ifNil: [ false ]
+]
+
 { #category : #testing }
 SpCodePresenter >> hasSyntaxHighlight [
 
@@ -173,6 +200,18 @@ SpCodePresenter >> initialize [
 	self contextKeyBindings: self rootCommandsGroup asKMCategory
 ]
 
+{ #category : #api }
+SpCodePresenter >> interactionModel [
+
+	^ interactionModel
+]
+
+{ #category : #api }
+SpCodePresenter >> interactionModel: anObject [ 	
+
+	interactionModel := anObject
+]
+
 { #category : #initialization }
 SpCodePresenter >> registerEventsForStyling [
 
@@ -186,6 +225,13 @@ SpCodePresenter >> selectedBehavior [
 
 	self flag: #TODO. "What this is need for?"
 	^ self behavior
+]
+
+{ #category : #binding }
+SpCodePresenter >> selectedClassOrMetaClass [
+
+	behavior ifNotNil: [ ^ behavior ].
+	^ interactionModel ifNotNil: [ :im | im selectedClassOrMetaClass ]
 ]
 
 { #category : #navigation }

@@ -27,6 +27,7 @@ SpCodeCompletionEngine >> completionClass [
 
 { #category : #accessing }
 SpCodeCompletionEngine >> completionClass: anObject [
+
 	completionClass := anObject
 ]
 
