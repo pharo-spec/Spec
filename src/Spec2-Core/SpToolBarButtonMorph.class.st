@@ -73,13 +73,6 @@ SpToolBarButtonMorph >> drawOn: aCanvas [
 ]
 
 { #category : #accessing }
-SpToolBarButtonMorph >> drawSubmorphsOn: aCanvas [
-
-	submorphs crTrace.
-	super drawSubmorphsOn: aCanvas	
-]
-
-{ #category : #accessing }
 SpToolBarButtonMorph >> getIconSelector [
 
 	^ getIconSelector
