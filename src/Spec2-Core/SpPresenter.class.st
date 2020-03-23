@@ -733,11 +733,6 @@ SpPresenter >> newCheckBox [
 ]
 
 { #category : #widgets }
-SpPresenter >> newCode [
-	^ self instantiate: SpCodePresenter
-]
-
-{ #category : #widgets }
 SpPresenter >> newComponentList [
 	^ self instantiate: SpComponentListPresenter
 ]
