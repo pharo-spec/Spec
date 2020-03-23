@@ -8,7 +8,7 @@ Class {
 		'badgeFont',
 		'badgeSelector'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : #'Spec2-Adapters-Morphic'
 }
 
 { #category : #accessing }

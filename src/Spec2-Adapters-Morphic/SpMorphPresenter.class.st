@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'#morph => SpObservableSlot'
 	],
-	#category : #'Spec2-Core-Morphic'
+	#category : #'Spec2-Adapters-Morphic'
 }
 
 { #category : #specs }

@@ -12,7 +12,7 @@ Class {
 		'displayMode',
 		'toolbarItemFont'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : #'Spec2-Adapters-Morphic'
 }
 
 { #category : #accessing }
