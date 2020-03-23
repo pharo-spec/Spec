@@ -15,7 +15,6 @@ BaselineOfSpec2 >> baseline: spec [
 		spec
 			package: 'Spec2-Core' with: [ 
 				spec requires: #(
-					'Complishon'
 					'Spec2-Layout' 
 					'Spec2-Transmission' 
 					'Spec2-Commands') ];
@@ -25,6 +24,7 @@ BaselineOfSpec2 >> baseline: spec [
 			package: 'Spec2-Layout' with: [ spec requires: #('Spec2-ObservableSlot') ];
 			package: 'Spec2-Transmission';
 			package: 'Spec2-Adapters-Morphic' with: [ spec requires: #('Spec2-Core') ];
+			package: 'Spec2-CodePresenter' with: [ spec requires: #('Spec2-Adapters-Morphic' 'Complishon') ];
 			package: 'Spec2-Adapters-Stub' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Interactions' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commander2' with: [ 
