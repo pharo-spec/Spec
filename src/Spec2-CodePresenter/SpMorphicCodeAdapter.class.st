@@ -1,7 +1,7 @@
 Class {
 	#name : #SpMorphicCodeAdapter,
 	#superclass : #SpMorphicTextAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#category : #'Spec2-CodePresenter'
 }
 
 { #category : #'widget API' }
