@@ -764,11 +764,6 @@ SpPresenter >> newDynamicPresentersListIn: accessorSymbol usingBuilder: aDynamic
 ]
 
 { #category : #widgets }
-SpPresenter >> newImage [
-	^ self instantiate: SpImagePresenter
-]
-
-{ #category : #widgets }
 SpPresenter >> newLabel [
 	^ self instantiate: SpLabelPresenter
 ]

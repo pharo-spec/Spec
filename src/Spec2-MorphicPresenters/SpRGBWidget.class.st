@@ -19,7 +19,7 @@ Class {
 		'sliders',
 		'extentForPreview'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : #'Spec2-MorphicPresenters'
 }
 
 { #category : #specs }
