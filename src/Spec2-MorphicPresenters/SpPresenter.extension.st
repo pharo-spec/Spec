@@ -6,6 +6,11 @@ SpPresenter >> newImage [
 ]
 
 { #category : #'*Spec2-MorphicPresenters' }
+SpPresenter >> newLink [
+	^ self instantiate: SpLinkPresenter
+]
+
+{ #category : #'*Spec2-MorphicPresenters' }
 SpPresenter >> newMorph [
 
 	^ self instantiate: SpMorphPresenter

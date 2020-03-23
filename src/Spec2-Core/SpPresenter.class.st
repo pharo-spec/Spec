@@ -769,11 +769,6 @@ SpPresenter >> newLabel [
 ]
 
 { #category : #widgets }
-SpPresenter >> newLink [
-	^ self instantiate: SpLinkPresenter
-]
-
-{ #category : #widgets }
 SpPresenter >> newList [
 	^ self instantiate: SpListPresenter
 ]
