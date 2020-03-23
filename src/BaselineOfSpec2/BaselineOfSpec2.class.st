@@ -25,6 +25,7 @@ BaselineOfSpec2 >> baseline: spec [
 			package: 'Spec2-Transmission';
 			package: 'Spec2-Adapters-Morphic' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-CodePresenter' with: [ spec requires: #('Spec2-Adapters-Morphic' 'Complishon') ];
+			package: 'Spec2-CodePresenter-Tests' with: [ spec requires: #('Spec2-CodePresenter') ];
 			package: 'Spec2-Adapters-Stub' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Interactions' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commander2' with: [ 
