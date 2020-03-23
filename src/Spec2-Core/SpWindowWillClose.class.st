@@ -1,9 +1,6 @@
 Class {
 	#name : #SpWindowWillClose,
-	#superclass : #Announcement,
-	#instVars : [
-		'window'
-	],
+	#superclass : #SpWindowAnnouncement,
 	#category : #'Spec2-Core-Support'
 }
 

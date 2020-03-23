@@ -17,7 +17,7 @@ Class {
 		'doItContext',
 		'doItRequestor'
 	],
-	#category : #'Spec2-Core-Widgets-Text'
+	#category : #'Spec2-CodePresenter'
 }
 
 { #category : #accessing }
