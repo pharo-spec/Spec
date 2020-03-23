@@ -18,21 +18,25 @@ SpMorphicTextAdapter >> addKeyBindingsTo: aMorph [
 	super addKeyBindingsTo: aMorph.
 	self presenter hasEditionContextMenu ifFalse: [ ^ self ].
 	self presenter editionContextKeyBindings allEntries keymaps do: [ :each |
-		self 
+		self
 			bindKeyCombination: each shortcut 
 			toAction: each action ]
 ]
 
+{ #category : #'protocol-shortcuts' }
+SpMorphicTextAdapter >> bindKeyCombination: aShortcut toAction: aBlock [ 
+
+	self widgetDo: [ :w | 
+		w textArea
+			bindKeyCombination: aShortcut 
+			toAction: aBlock ]
+]
+
 { #category : #factory }
 SpMorphicTextAdapter >> buildWidget [
-	| widgetClass newWidget |
+	| newWidget |
 	
-	self flag: #pharo7.	"When support for P7 will be dropped, remove this compatibility hack."
-	widgetClass := self class environment 
-		at: #SpRubScrolledTextMorph 
-		ifAbsent: [ RubScrolledTextMorph ].
-	
-	newWidget := (widgetClass on: self)
+	newWidget := (RubScrolledTextMorph on: self)
 		getTextSelector: #getText;
 		setTextSelector: #accept:notifying:;
 		getSelectionSelector: #readSelection;
