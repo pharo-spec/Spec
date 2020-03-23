@@ -32,7 +32,17 @@ SpAbstractPresenter class >> defaultFont [
 
 	self flag: #TODO. "This is so wrong. All this needs to be in the theme and in the 
 	application"
-	^ StandardFonts defaultFont
+		
+	self class environment at: #StandardFonts ifPresent: [ :standardFonts | 
+		^ standardFonts defaultFont ].
+	
+	^ LogicalFont
+		familyName: 'Source Sans Pro'
+		pointSize: 10
+		stretchValue: 5
+		weightValue: 400
+		slantValue: 0
+
 ]
 
 { #category : #TOREMOVE }

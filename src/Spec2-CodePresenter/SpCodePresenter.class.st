@@ -12,7 +12,7 @@ Class {
 		'#syntaxHighlight => SpObservableSlot',
 		'#completionEngine => SpObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets-Text'
+	#category : #'Spec2-CodePresenter'
 }
 
 { #category : #specs }
