@@ -800,12 +800,6 @@ SpPresenter >> newMenuButton [
 ]
 
 { #category : #widgets }
-SpPresenter >> newMorph [
-
-	^ self instantiate: SpMorphPresenter
-]
-
-{ #category : #widgets }
 SpPresenter >> newNotebook [
 
 	^ self instantiate: SpNotebookPresenter
