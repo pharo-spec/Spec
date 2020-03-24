@@ -50,7 +50,8 @@ BaselineOfSpec2 >> baseline: spec [
 			"package: 'Spec2-Help';"		
 		 ].
 	
-	spec group: 'Core' with: #('Spec2-ObservableSlot' 'Spec2-Layout' 'Spec2-Transmission'  'Spec2-Commands' 'Spec2-Core' 'Spec2-CommandLine' 'Spec2-Adapters-Stub' 'Spec2-Interactions' 'Spec2-Commander2' 'Spec2-Commander2-ContactBook' 'Spec2-Commander2-ContactBook-Extensions' ).
+	spec group: 'Support' with: #('Spec2-ObservableSlot' ).
+	spec group: 'Core' with: #('Support' 'Spec2-Layout' 'Spec2-Transmission'  'Spec2-Commands' 'Spec2-Core' 'Spec2-CommandLine' 'Spec2-Adapters-Stub' 'Spec2-Interactions' 'Spec2-Commander2' 'Spec2-Commander2-ContactBook' 'Spec2-Commander2-ContactBook-Extensions' ).
 	spec group: 'Tests' with: #( 'Core' 'Spec2-Tests' 'Spec2-Commander2-Tests' ).
 	spec group: 'MorphicSupport' with: #( 'Tests' 'Spec2-CodePresenter' 'Spec2-Adapters-Morphic' 'Spec2-MorphicPresenters' 'Spec2-Examples'  'Spec2-Tools' ).
 	spec group: 'MorphicSupportTests' with: #( 'MorphicSupport' 'Spec2-CodePresenter-Tests'  'Spec2-Tools-Tests' 'Spec2-Adapters-Morphic-Tests' 'Spec2-MorphicPresenters-Tests' 'Spec2-Morphic-Backend-Tests' 'Spec2-Backend-Tests' ).
@@ -69,7 +70,7 @@ BaselineOfSpec2 >> baseline: spec [
 BaselineOfSpec2 >> commander2: spec [
 	spec
 		baseline: 'Commander2'
-		with: [ spec repository: 'github://pharo-spec/Commander2:v2.1.x/src'; loads: 'core' ]
+		with: [ spec repository: 'github://pharo-spec/Commander2:v2.1.x/src'; loads: #('core' 'ui') ]
 ]
 
 { #category : #dependencies }
