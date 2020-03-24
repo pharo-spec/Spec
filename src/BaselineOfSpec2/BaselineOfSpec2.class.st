@@ -102,7 +102,7 @@ We need to use atomic loading only during update of existing Spec upgrade"
 	^self class environment at: #SpPresenter 
 		ifPresent: [
 			super project
-				loadType: #atomic;
+				loadType: #linear;
 				yourself ] 
 		ifAbsent: [ super project ]
 
