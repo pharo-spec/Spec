@@ -119,6 +119,18 @@ SpTreeTablePresenter >> columns: aCollection [
 	columns := aCollection
 ]
 
+{ #category : #transmission }
+SpTreeTablePresenter >> defaultInputPort [
+
+	^ self inputRootsPort
+]
+
+{ #category : #transmission }
+SpTreeTablePresenter >> defaultOutputPort [
+
+	^ self outputSelectionPort
+]
+
 { #category : #simulation }
 SpTreeTablePresenter >> doActivateAtPath: aPath [
 	"Activate only if there is an item at that position"
@@ -164,6 +176,12 @@ SpTreeTablePresenter >> initialize [
 	self beSingleSelection.
 	self activateOnDoubleClick.
 	self registerEvents
+]
+
+{ #category : #transmission }
+SpTreeTablePresenter >> inputRootsPort [
+
+	^ SpRootsPort newPresenter: self
 ]
 
 { #category : #testing }
@@ -224,6 +242,18 @@ SpTreeTablePresenter >> lazilyComputeChildren [
 { #category : #accessing }
 SpTreeTablePresenter >> lazilyComputeChildren: aBoolean [
 	lazilyComputeChildren := aBoolean
+]
+
+{ #category : #transmission }
+SpTreeTablePresenter >> outputActivationPort [
+	
+	^ SpActivationPort newPresenter: self
+]
+
+{ #category : #transmission }
+SpTreeTablePresenter >> outputSelectionPort [
+	
+	^ SpSelectionPort newPresenter: self
 ]
 
 { #category : #initialization }

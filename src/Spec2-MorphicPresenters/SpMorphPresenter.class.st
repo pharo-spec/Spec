@@ -13,9 +13,21 @@ SpMorphPresenter class >> adapterName [
 	^ #MorphAdapter
 ]
 
+{ #category : #'handling transmission' }
+SpMorphPresenter >> defaultInputPort [
+
+	^ self inputMorphPort
+]
+
 { #category : #initialization }
 SpMorphPresenter >> initialize [
 	super initialize.
+]
+
+{ #category : #'handling transmission' }
+SpMorphPresenter >> inputMorphPort [ 
+
+	^ SpMorphPort newPresenter: self
 ]
 
 { #category : #accessing }

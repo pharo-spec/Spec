@@ -52,12 +52,24 @@ SpLabelPresenter >> defaultColor [
 	^ self theme textColor
 ]
 
+{ #category : #transmission }
+SpLabelPresenter >> defaultInputPort [
+
+	^ self inputLabelPort
+]
+
 { #category : #initialization }
 SpLabelPresenter >> initialize [
 	super initialize.
 
 	label := ''.
 	self whenLabelChangedDo: [ self changed: #getText ]
+]
+
+{ #category : #transmission }
+SpLabelPresenter >> inputLabelPort [
+
+	^ SpLabelPort newPresenter: self
 ]
 
 { #category : #api }

@@ -8,7 +8,7 @@ Class {
 		'methods',
 		'code'
 	],
-	#category : #'Spec2-Transmission-Examples'
+	#category : #'Spec2-Examples-Transmission'
 }
 
 { #category : #specs }

@@ -55,6 +55,12 @@ SpTreeSingleSelectionMode >> selectedPaths [
 	^ { selection }
 ]
 
+{ #category : #transmission }
+SpTreeSingleSelectionMode >> transmission [
+	
+	^ self selectedItem
+]
+
 { #category : #selecting }
 SpTreeSingleSelectionMode >> unselectPath: aPath [
 	"If the path is out of range, keep the selection."
