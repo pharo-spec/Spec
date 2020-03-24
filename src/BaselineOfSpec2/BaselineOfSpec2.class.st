@@ -99,7 +99,7 @@ Then Spec-Deprecated80 is loaded but it does not migrate the subclasses of the o
 
 We need to use atomic loading only during update of existing Spec upgrade"
 
-	^self class environment at: #SpObservableSlot 
+	^self class environment at: #SpPresenter 
 		ifPresent: [
 			super project
 				loadType: #atomic;
