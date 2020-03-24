@@ -95,6 +95,12 @@ SpSingleSelectionMode >> selectionHolder [
 	^ self observablePropertyNamed: #selectedIndex
 ]
 
+{ #category : #transmission }
+SpSingleSelectionMode >> transmission [ 
+	
+	^ self selectedItem
+]
+
 { #category : #selecting }
 SpSingleSelectionMode >> unselectAll [
 	

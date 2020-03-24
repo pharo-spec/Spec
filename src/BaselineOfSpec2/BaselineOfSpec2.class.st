@@ -81,11 +81,6 @@ BaselineOfSpec2 >> complishon: spec [
 		with: [ spec repository: 'github://guillep/complishon' ]
 ]
 
-{ #category : #dependencies }
-BaselineOfSpec2 >> parametrizedTests: spec [
-	spec baseline: 'ParametrizedTests' with: [ spec repository: 'github://tesonep/ParametrizedTests/src' ]
-]
-
 { #category : #acccessing }
 BaselineOfSpec2 >> project [
 	"Atomic loading is needed for Spec because we are moving classes of package and it breaks their subclasses. 

@@ -158,6 +158,18 @@ SpAbstractPresenter >> buildWithSpecLayout: aSpecLayout [
 	^ (self buildAdapterWithSpecLayout: aSpecLayout) widget
 ]
 
+{ #category : #transmission }
+SpAbstractPresenter >> defaultInputPort [
+
+	^ nil
+]
+
+{ #category : #transmission }
+SpAbstractPresenter >> defaultOutputPort [
+
+	^ nil
+]
+
 { #category : #'private building' }
 SpAbstractPresenter >> defaultSpecSelector [
 	(Pragma allNamed: #spec: from: self class class to: SpAbstractPresenter class class) detect: [ :each | (each argumentAt: 1) = #default ] ifFound: [ :pragma | ^ pragma methodSelector ].
@@ -385,6 +397,43 @@ SpAbstractPresenter >> spec: anAdapter [
 	
 	self flag: #TODO. "Same as #spec, it needs to go"
 	self adapter: anAdapter
+]
+
+{ #category : #transmission }
+SpAbstractPresenter >> transmitDo: aBlock [
+
+	^ self defaultOutputPort transmitDo: aBlock
+]
+
+{ #category : #transmission }
+SpAbstractPresenter >> transmitDo: aBlock transform: transformBlock [
+	
+	^ self defaultOutputPort
+		transmitDo: aBlock 
+		transform: transformBlock
+]
+
+{ #category : #abstract }
+SpAbstractPresenter >> transmitTo: aPresenter [
+	
+	^ self defaultOutputPort transmitTo: aPresenter defaultInputPort
+]
+
+{ #category : #transmission }
+SpAbstractPresenter >> transmitTo: aPresenter transform: aValuable [
+	
+	^ self defaultOutputPort
+		transmitTo: aPresenter defaultInputPort
+		transform: aValuable
+]
+
+{ #category : #transmission }
+SpAbstractPresenter >> transmitTo: aPresenter transform: aValuable postTransmission: postValuable [
+	
+	^ self defaultOutputPort
+		transmitTo: aPresenter defaultInputPort
+		transform: aValuable 
+		postTransmission: postValuable
 ]
 
 { #category : #updating }

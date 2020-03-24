@@ -74,6 +74,12 @@ SpTreeMultipleSelectionMode >> selectedPaths [
 	^ selection
 ]
 
+{ #category : #transmission }
+SpTreeMultipleSelectionMode >> transmission [
+	
+	^ self selectedItems
+]
+
 { #category : #selection }
 SpTreeMultipleSelectionMode >> unselectPath: aPath [
 	self selectPaths: (self selectedPaths copyWithout: aPath)

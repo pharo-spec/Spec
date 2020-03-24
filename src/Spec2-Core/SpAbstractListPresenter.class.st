@@ -64,6 +64,18 @@ SpAbstractListPresenter >> clickItem: anInteger [
 	self selectIndex: anInteger
 ]
 
+{ #category : #transmission }
+SpAbstractListPresenter >> defaultInputPort [
+
+	^ self inputItemsPort
+]
+
+{ #category : #transmission }
+SpAbstractListPresenter >> defaultOutputPort [
+
+	^ self outputSelectionPort
+]
+
 { #category : #api }
 SpAbstractListPresenter >> disableFilter [
 	self itemFilter: nil
@@ -113,6 +125,12 @@ SpAbstractListPresenter >> initialize [
 	self activateOnDoubleClick.
 
 	self registerEvents
+]
+
+{ #category : #transmission }
+SpAbstractListPresenter >> inputItemsPort [
+
+	^ SpListItemsPort newPresenter: self
 ]
 
 { #category : #testing }
@@ -200,6 +218,18 @@ SpAbstractListPresenter >> model: aModel [
 SpAbstractListPresenter >> newEmptyModel [
 
 	^ SpCollectionListModel on: #()
+]
+
+{ #category : #transmission }
+SpAbstractListPresenter >> outputActivationPort [
+	
+	^ SpActivationPort newPresenter: self
+]
+
+{ #category : #transmission }
+SpAbstractListPresenter >> outputSelectionPort [
+	
+	^ SpSelectionPort newPresenter: self
 ]
 
 { #category : #initialization }
