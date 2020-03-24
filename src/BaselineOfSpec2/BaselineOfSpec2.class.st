@@ -46,8 +46,7 @@ BaselineOfSpec2 >> baseline: spec [
 			package: 'Spec2-MorphicPresenters-Tests' with: [ spec requires: #('Spec2-MorphicPresenters') ];
 			package: 'Spec2-Examples' with: [ spec requires: #('Spec2-MorphicPresenters') ].
 			"This will extend the help tool, which in boostrap will be loaded a lot later."
-			"package: 'Spec2-Help';"
-			
+			"package: 'Spec2-Help';"		
 		 ].
 	
 	spec group: 'Core' with: #( 'Spec2-Core' 'Spec2-CommandLine' 'Spec2-Commands' 'Spec2-ObservableSlot' 'Spec2-Layout' 'Spec2-Transmission' 'Spec2-Adapters-Stub' 'Spec2-Interactions' 'Spec2-Commander2' 'Spec2-Commander2-ContactBook' 'Spec2-Commander2-ContactBook-Extensions' ).

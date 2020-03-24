@@ -1,7 +1,7 @@
 Class {
 	#name : #SpMethodToolbarTest,
 	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#category : #'Spec2-MorphicPresenters-Tests'
 }
 
 { #category : #running }
