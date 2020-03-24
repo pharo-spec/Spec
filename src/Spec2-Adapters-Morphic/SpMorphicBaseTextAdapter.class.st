@@ -131,12 +131,13 @@ SpMorphicBaseTextAdapter >> insert: aString at: positionIndex [
 	| text |
 
 	text := self getText.
-	text := 
-		(text copyFrom: 1 to: positionIndex), 
-		aString, 
-		(text copyFrom: positionIndex + 1 to: text size).
+	text := String streamContents: [ :stream |
+		stream << (text copyFrom: 1 to: positionIndex).
+		stream << aString.
+		text size > positionIndex ifTrue: [  
+			stream << (text copyFrom: positionIndex + 1 to: text size) ] ].
 
-	self model text: text
+	self presenter text: text
 ]
 
 { #category : #'spec protocol' }

@@ -221,9 +221,10 @@ SpAbstractTextPresenter >> insert: aString at: positionIndex [
 { #category : #api }
 SpAbstractTextPresenter >> insertAndSelectAfterCurrentSelection: aString [
 	| selectionInterval |
+
 	selectionInterval := self selectionInterval.
 	self insert: aString at: selectionInterval last + 1.
-	self selectionInterval: (selectionInterval last + 1 to: selectionInterval last + aString size)
+	self selectionInterval: (selectionInterval last + 1 to: selectionInterval last + aString size + 1)
 ]
 
 { #category : #api }
@@ -333,9 +334,13 @@ SpAbstractTextPresenter >> selectedClassOrMetaClass [
 
 { #category : #api }
 SpAbstractTextPresenter >> selectedText [ 
-	|selectionInterval|
-	selectionInterval := self selectionInterval ifEmpty: [ ^'' ].
-	^self text copyFrom: selectionInterval first to: selectionInterval last
+	| selectionInterval |
+	
+	selectionInterval := self selectionInterval ifEmpty: [ ^ '' ].
+	
+	^ self text 
+		copyFrom: selectionInterval first 
+		to: selectionInterval last
 ]
 
 { #category : #api }
