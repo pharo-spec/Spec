@@ -1,7 +1,7 @@
 Class {
 	#name : #SpVersatileDialogPresenterTest,
 	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#category : #'Spec2-MorphicPresenters-Tests'
 }
 
 { #category : #running }

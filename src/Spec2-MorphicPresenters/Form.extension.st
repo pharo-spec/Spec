@@ -1,6 +1,6 @@
 Extension { #name : #Form }
 
-{ #category : #'*Spec2-Core' }
+{ #category : #'*Spec2-MorphicPresenters' }
 Form >> asPresenter [
 
 	^ SpImagePresenter new 

@@ -1,7 +1,7 @@
 Class {
 	#name : #SpImageAdapterTest,
 	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-MorphicPresenters-Tests'
 }
 
 { #category : #accessing }
