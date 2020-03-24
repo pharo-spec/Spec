@@ -15,9 +15,7 @@ Class {
 { #category : #specs }
 SpWorldPresenter class >> defaultSpec [
 	self setUpWorld.
-	^ SpMorphPresenter new
-		morph: self currentWorld;
-		yourself
+	^ SpAbstractWidgetLayout for: #WorldAdapter
 ]
 
 { #category : #private }
@@ -37,11 +35,10 @@ SpWorldPresenter class >> setUpWorld [
 SpWorldPresenter >> addPresenterIn: container withSpecLayout: aSpec [
 
 	self presenter ifNil: [ ^ self ].
-	widget := self presenter buildWithSpecLayout: aSpec.
-	
-	container
-		addMorph: widget
-		fullFrame: LayoutFrame identity
+	self presenter initializeWindow: self.
+	self 
+		changed: #addPresenterIn:withSpecLayout:
+		with: { container. aSpec }
 ]
 
 { #category : #factory }
