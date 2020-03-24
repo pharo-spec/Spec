@@ -98,7 +98,10 @@ SpMorphicCodeAdapter >> setEditingModeFor: textArea withBehavior: aBehavior [
 
 	aBehavior
 		ifNotNil: [ textArea beForSmalltalkCodeInClass: aBehavior ]		
-		ifNil: [ textArea beForSmalltalkScripting ]
+		ifNil: [ 
+			textArea 
+				model: self;
+				beForSmalltalkScripting ]
 ]
 
 { #category : #private }
