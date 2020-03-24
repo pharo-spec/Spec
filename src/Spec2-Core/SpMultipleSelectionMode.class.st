@@ -102,6 +102,12 @@ SpMultipleSelectionMode >> selectionHolder [
 	^ self observablePropertyNamed: #selectedIndexes
 ]
 
+{ #category : #transmission }
+SpMultipleSelectionMode >> transmission [ 
+	
+	^ self selectedItems
+]
+
 { #category : #selecting }
 SpMultipleSelectionMode >> unselectAll [
 	

@@ -113,6 +113,18 @@ SpAbstractTextPresenter >> cursorPositionIndex [
 		anAdapter cursorPositionIndex ]
 ]
 
+{ #category : #transmission }
+SpAbstractTextPresenter >> defaultInputPort [
+
+	^ self inputTextPort
+]
+
+{ #category : #transmission }
+SpAbstractTextPresenter >> defaultOutputPort [
+
+	^ self outputTextChangedPort
+]
+
 { #category : #api }
 SpAbstractTextPresenter >> enabled: aBoolean [
 
@@ -191,6 +203,12 @@ SpAbstractTextPresenter >> initialize [
 	self registerEvents
 ]
 
+{ #category : #transmission }
+SpAbstractTextPresenter >> inputTextPort [ 
+
+	^ SpTextPort newPresenter: self
+]
+
 { #category : #api }
 SpAbstractTextPresenter >> insert: aString at: positionIndex [
 	"inserts aString into the text string. 
@@ -240,6 +258,12 @@ SpAbstractTextPresenter >> localeChanged [
 SpAbstractTextPresenter >> notify: errorMessage at: position in: sourceCode [
 
 	self changed: #notify:at:in: with: { errorMessage . position . sourceCode }
+]
+
+{ #category : #transmission }
+SpAbstractTextPresenter >> outputTextChangedPort [
+
+	^ SpTextChangedPort newPresenter: self
 ]
 
 { #category : #api }

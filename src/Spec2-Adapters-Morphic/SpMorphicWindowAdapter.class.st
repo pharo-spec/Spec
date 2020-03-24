@@ -251,7 +251,7 @@ SpMorphicWindowAdapter >> subscribeToAnnouncements: aWindow [
 
 	aWindow announcer 
 		when: SpWindowWillClose send: #announce: to: self presenter announcer;
-		when: WindowResizing send: #announce: to: self presenter announcer
+		when: SpWindowResizing send: #announce: to: self presenter announcer
 ]
 
 { #category : #icons }

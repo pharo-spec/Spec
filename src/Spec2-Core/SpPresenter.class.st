@@ -733,11 +733,6 @@ SpPresenter >> newCheckBox [
 ]
 
 { #category : #widgets }
-SpPresenter >> newCode [
-	^ self instantiate: SpCodePresenter
-]
-
-{ #category : #widgets }
 SpPresenter >> newComponentList [
 	^ self instantiate: SpComponentListPresenter
 ]
@@ -769,18 +764,8 @@ SpPresenter >> newDynamicPresentersListIn: accessorSymbol usingBuilder: aDynamic
 ]
 
 { #category : #widgets }
-SpPresenter >> newImage [
-	^ self instantiate: SpImagePresenter
-]
-
-{ #category : #widgets }
 SpPresenter >> newLabel [
 	^ self instantiate: SpLabelPresenter
-]
-
-{ #category : #widgets }
-SpPresenter >> newLink [
-	^ self instantiate: SpLinkPresenter
 ]
 
 { #category : #widgets }
@@ -802,12 +787,6 @@ SpPresenter >> newMenuBar [
 SpPresenter >> newMenuButton [
 
 	^ self instantiate: SpMenuButtonPresenter
-]
-
-{ #category : #widgets }
-SpPresenter >> newMorph [
-
-	^ self instantiate: SpMorphPresenter
 ]
 
 { #category : #widgets }

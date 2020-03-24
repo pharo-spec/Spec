@@ -21,54 +21,7 @@ Class {
 }
 
 { #category : #accessing }
-SpCodeCompletionEngine >> completionClass [
-	^ completionClass
-]
-
-{ #category : #accessing }
 SpCodeCompletionEngine >> completionClass: anObject [
 
 	completionClass := anObject
-]
-
-{ #category : #accessing }
-SpCodeCompletionEngine >> doItContext [
-
-	^ doItContext
-]
-
-{ #category : #accessing }
-SpCodeCompletionEngine >> doItContext: aContext [
-
-	doItContext := aContext
-]
-
-{ #category : #accessing }
-SpCodeCompletionEngine >> doItRequestor [
-
-	^ doItRequestor
-]
-
-{ #category : #accessing }
-SpCodeCompletionEngine >> doItRequestor: aRequestor [
-
-	doItRequestor := aRequestor
-]
-
-{ #category : #testing }
-SpCodeCompletionEngine >> isScripting [
-
-	^ scripting
-]
-
-{ #category : #accessing }
-SpCodeCompletionEngine >> scripting: aBoolean [ 
-
-	scripting := aBoolean
-]
-
-{ #category : #accessing }
-SpCodeCompletionEngine >> variableBindingNames [
-
-	^ self doItRequestor variableBindingNames
 ]

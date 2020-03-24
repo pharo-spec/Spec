@@ -32,7 +32,17 @@ SpAbstractPresenter class >> defaultFont [
 
 	self flag: #TODO. "This is so wrong. All this needs to be in the theme and in the 
 	application"
-	^ StandardFonts defaultFont
+		
+	self class environment at: #StandardFonts ifPresent: [ :standardFonts | 
+		^ standardFonts defaultFont ].
+	
+	^ LogicalFont
+		familyName: 'Source Sans Pro'
+		pointSize: 10
+		stretchValue: 5
+		weightValue: 400
+		slantValue: 0
+
 ]
 
 { #category : #TOREMOVE }
@@ -146,6 +156,18 @@ SpAbstractPresenter >> buildWithSpecLayout: aSpecLayout [
 	"Build the widget using the spec name provided as argument"
 
 	^ (self buildAdapterWithSpecLayout: aSpecLayout) widget
+]
+
+{ #category : #transmission }
+SpAbstractPresenter >> defaultInputPort [
+
+	^ nil
+]
+
+{ #category : #transmission }
+SpAbstractPresenter >> defaultOutputPort [
+
+	^ nil
 ]
 
 { #category : #'private building' }
@@ -375,6 +397,43 @@ SpAbstractPresenter >> spec: anAdapter [
 	
 	self flag: #TODO. "Same as #spec, it needs to go"
 	self adapter: anAdapter
+]
+
+{ #category : #transmission }
+SpAbstractPresenter >> transmitDo: aBlock [
+
+	^ self defaultOutputPort transmitDo: aBlock
+]
+
+{ #category : #transmission }
+SpAbstractPresenter >> transmitDo: aBlock transform: transformBlock [
+	
+	^ self defaultOutputPort
+		transmitDo: aBlock 
+		transform: transformBlock
+]
+
+{ #category : #abstract }
+SpAbstractPresenter >> transmitTo: aPresenter [
+	
+	^ self defaultOutputPort transmitTo: aPresenter defaultInputPort
+]
+
+{ #category : #transmission }
+SpAbstractPresenter >> transmitTo: aPresenter transform: aValuable [
+	
+	^ self defaultOutputPort
+		transmitTo: aPresenter defaultInputPort
+		transform: aValuable
+]
+
+{ #category : #transmission }
+SpAbstractPresenter >> transmitTo: aPresenter transform: aValuable postTransmission: postValuable [
+	
+	^ self defaultOutputPort
+		transmitTo: aPresenter defaultInputPort
+		transform: aValuable 
+		postTransmission: postValuable
 ]
 
 { #category : #updating }
