@@ -13,14 +13,15 @@ BaselineOfSpec2 >> baseline: spec [
 		self complishon: spec.
 		
 		spec
+			package: 'Spec2-ObservableSlot';
 			package: 'Spec2-Core' with: [ 
 				spec requires: #(
+					'Spec2-ObservableSlot'
 					'Spec2-Layout' 
 					'Spec2-Transmission' 
 					'Spec2-Commands') ];
 			package: 'Spec2-CommandLine' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commands' with: [ spec requires: #('Commander2') ];
-			package: 'Spec2-ObservableSlot';
 			package: 'Spec2-Layout' with: [ spec requires: #('Spec2-ObservableSlot') ];
 			package: 'Spec2-Transmission';
 			package: 'Spec2-Adapters-Morphic' with: [ spec requires: #('Spec2-Core') ];
