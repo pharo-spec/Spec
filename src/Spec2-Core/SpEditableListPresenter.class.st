@@ -97,7 +97,9 @@ SpEditableListPresenter >> connectPresenters [
 		newItem := addItemBlock value.
 		newItem ifNotNil: [ 
 			self items add: newItem.
-			self refresh. ] ].
+			self 
+				refresh;
+				selectItem: newItem ] ].
 	removeButton 
 		action: [ removeItemBlock cull: self selectedItem ].
 	topButton action: [ self moveElementAt: self selectedIndex to: 1 ].
@@ -126,8 +128,9 @@ SpEditableListPresenter >> initialize [
 	title := 'Title'.
 	okBlock := [  ].
 	removeItemBlock := [ :item | 
-								self items remove: item.
-								self refresh. ]
+								item
+									ifNotNil: [ self items remove: item.
+													self refresh. ] ]
 ]
 
 { #category : #initialization }
@@ -224,7 +227,7 @@ SpEditableListPresenter >> newList [
 	As this presenter aims to add / remove items from the list, we need a growable collection"
 	^ (self instantiate: SpListPresenter)
 			items: OrderedCollection new;
-			yourself 
+			yourself
 ]
 
 { #category : #api }
@@ -241,6 +244,7 @@ SpEditableListPresenter >> performOkAction [
 
 { #category : #api }
 SpEditableListPresenter >> refresh [
+	self resetSelection.
 	self items: self items
 ]
 
@@ -261,8 +265,18 @@ SpEditableListPresenter >> removeItemBlock: aBlock [
 ]
 
 { #category : #api }
-SpEditableListPresenter >> selectItem: anIndex [
-	list selectItem: anIndex
+SpEditableListPresenter >> resetSelection [
+	self selectIndex: 0
+]
+
+{ #category : #api }
+SpEditableListPresenter >> selectIndex: anIndex [
+	list selectIndex: anIndex
+]
+
+{ #category : #api }
+SpEditableListPresenter >> selectItem: anObject [
+	list selectItem: anObject
 ]
 
 { #category : #api }
