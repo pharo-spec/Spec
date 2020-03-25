@@ -89,3 +89,9 @@ SpMorphicTextAdapter >> setText: text to: aWidget [
 
 	aWidget setText: text
 ]
+
+{ #category : #emulating }
+SpMorphicTextAdapter >> widgetEventReceiver [
+	
+	^ widget textArea
+]

@@ -310,6 +310,7 @@ SpAbstractMorphicAdapter >> isVisible [
 { #category : #emulating }
 SpAbstractMorphicAdapter >> keyPressed: keyCode shift: shiftBoolean meta: metaBoolean control: controlBoolean option: optionBoolean [
 	| evt modifiers |
+	
 	modifiers := 0.
 	shiftBoolean ifTrue: [ modifiers := modifiers | 8 ].
 	metaBoolean ifTrue: [ modifiers := modifiers |
@@ -331,7 +332,7 @@ SpAbstractMorphicAdapter >> keyPressed: keyCode shift: shiftBoolean meta: metaBo
 		hand: self currentWorld activeHand
 		stamp: Time millisecondClockValue.
 
-	evt sentTo: widget.
+	evt sentTo: self widgetEventReceiver.
 	"Some time to allow things to happen?"
 	10 milliSeconds wait
 ]
@@ -479,4 +480,10 @@ SpAbstractMorphicAdapter >> when: anAnnouncement do: aBlock [
 
 	self widgetDo: [ :w | w announcer
 		when: anAnnouncement do: aBlock ]
+]
+
+{ #category : #emulating }
+SpAbstractMorphicAdapter >> widgetEventReceiver [
+	
+	^ widget
 ]
