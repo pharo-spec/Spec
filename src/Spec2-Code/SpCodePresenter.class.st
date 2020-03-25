@@ -31,14 +31,16 @@ SpCodePresenter class >> buildCommandsGroupWith: presenter forRoot: aCmCommandsG
 ]
 
 { #category : #commands }
-SpCodePresenter class >> codeNavigationCommandsGroupWith: presenter [
+SpCodePresenter class >> codeNavigationCommandsGroupWith: aPresenter [
 	| group |
 	
 	group := (CmCommandGroup named: 'Selection search commands') asSpecGroup.
 	group
 		description: 'Search the system from code selection.';
 		beDisplayedAsGroup.
-	group register: (SpBrowseClassCommand forSpecContext: [ presenter findClassFromSelection ]).	
+	group register: (SpBrowseClassCommand new 
+		transform: [ :aContext | aContext findClassFromSelection ];
+		asSpecCommand).	
 
 	self flag: #TODO. "This looks like a very bad way to do this :P"	
 	{ 
@@ -47,7 +49,10 @@ SpCodePresenter class >> codeNavigationCommandsGroupWith: presenter [
 		SpBrowseMethodReferencesCommand.	
 		SpBrowseMethodsContainingStringCommand.
 	 } 
-	do:[ :cmdClass | group register: (cmdClass forSpecContext: [ presenter selectedText ]) ].
+	do:[ :commandClass | 
+		group register: (commandClass new 
+			transform: [ :aContext | aContext selectedTextOrLine ];
+			asSpecCommand) ].
 	
 	^ group
 ]
@@ -162,7 +167,8 @@ SpCodePresenter >> findClassFrom: aString [
 
 { #category : #navigation }
 SpCodePresenter >> findClassFromSelection [
-	^ self findClassFrom: self selectedText trimmed
+
+	^ self findClassFrom: self selectedTextOrLine trimmed
 ]
 
 { #category : #binding }
@@ -237,10 +243,11 @@ SpCodePresenter >> selectedClassOrMetaClass [
 { #category : #navigation }
 SpCodePresenter >> selectedTextOrLine [
 
-	^ self selectedText ifEmpty: [ 
-		self
-			selectLine;
-			selectedText ]
+	self selectedText ifNotEmpty: [ :aString | ^ aString ].
+	
+	^ self
+		selectLine;
+		selectedText
 ]
 
 { #category : #accessing }

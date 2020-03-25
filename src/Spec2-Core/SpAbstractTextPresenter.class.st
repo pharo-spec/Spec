@@ -338,7 +338,7 @@ SpAbstractTextPresenter >> selectedText [
 	
 	selectionInterval := self selectionInterval ifEmpty: [ ^ '' ].
 	
-	^ self text 
+	^ self text asString
 		copyFrom: selectionInterval first 
 		to: selectionInterval last
 ]
