@@ -13,10 +13,10 @@ SpTextInputFieldPresenterTest >> classToTest [
 SpTextInputFieldPresenterTest >> testAcceptOnCr [
 	| accepted |
 
-	presenter acceptOnCR: true.
-	accepted := false.	
-	
 	self openInstance.
+
+	presenter acceptOnCR: true.
+	accepted := false.		
 		
 	presenter whenTextIsAcceptedDo: [ accepted := true ].
 
