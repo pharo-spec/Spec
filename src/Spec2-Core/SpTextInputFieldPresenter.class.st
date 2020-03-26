@@ -42,17 +42,6 @@ SpTextInputFieldPresenter class >> adapterName [
 	^ #TextInputFieldAdapter
 ]
 
-{ #category : #morphic }
-SpTextInputFieldPresenter >> accept: aText [
-
-	self text: aText.
-	self acceptBlock cull: aText.
-	
-	"Raise an announcement"
-	self actionPerformed.
-	self changed: #clearUserEdits.
-]
-
 { #category : #api }
 SpTextInputFieldPresenter >> bePassword [
 	
@@ -166,4 +155,14 @@ SpTextInputFieldPresenter >> whenMaxLengthChangedDo: aBlockClosure [
 SpTextInputFieldPresenter >> whenPasswordChangedDo: aBlockClosure [ 
 	
 	self property: #isPassword whenChangedDo: aBlockClosure
+]
+
+{ #category : #'api-events' }
+SpTextInputFieldPresenter >> whenSubmitDo: aBlock [
+	"This method will add a 'submit' event to the widget. It will react when user presses meta+s 
+	 key (this is for historical reasons) and with enter."
+
+	self 
+		bindKeyCombination: Character cr asKeyCombination | $s meta 
+		toAction: aBlock
 ]

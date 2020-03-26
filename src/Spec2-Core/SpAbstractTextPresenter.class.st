@@ -269,7 +269,6 @@ SpAbstractTextPresenter >> registerEvents [
 	self whenReadSelectionIsChangedDo: [ self changed: #readSelection ].
 	self property: #hasUnacceptedEdits whenChangedDo: [ :bool | self changed: #setHasUnacceptedEdits: with: {bool} ].
 	self property: #selection whenChangedDo: [ :block | self changed: #setSelectionFromModel: with: {block value} ].
-	self whenAutoAcceptChangedDo: [ :bool | self changed: #autoAccept: with: {bool} ].
 	self property: #wantsVisualFeedback whenChangedDo: [ :bool | self changed: #changed with: #() ].
 	self property: #askBeforeDiscardingEdits whenChangedDo: [ :bool | self changed: #askBeforeDiscardingEdits: with: {bool} ]
 ]
@@ -385,15 +384,16 @@ SpAbstractTextPresenter >> whenReadSelectionIsChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
+SpAbstractTextPresenter >> whenSubmitDo: aBlock [
+	"This method will add a 'submit' event to the widget. It will react when user presses meta+s 
+	key (this is for historical reasons) and (in case of text fields) with enter."
+
+	self subclassResponsibility
+]
+
+{ #category : #'api-events' }
 SpAbstractTextPresenter >> whenTextChangedDo: aBlock [
 	"Set a block to perform when the text changed"
 
 	self property: #text whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
-SpAbstractTextPresenter >> whenTextIsAcceptedDo: aBlock [
-	"Set a block to perform when the text is accepted"
-	
-	self property: #actionPerformed whenChangedDo: aBlock
 ]

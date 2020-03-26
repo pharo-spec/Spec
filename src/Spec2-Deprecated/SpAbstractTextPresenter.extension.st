@@ -356,3 +356,18 @@ SpAbstractTextPresenter >> whenTextIsAccepted: aBlock [
 	self deprecated: 'Use #whenTextIsAcceptedDo: instead.' transformWith: '`@receiver whenTextIsAccepted: `@statements' -> '`@receiver whenTextIsAcceptedDo: `@statements'.
 	self whenTextIsAcceptedDo: aBlock
 ]
+
+{ #category : #'*Spec2-Deprecated' }
+SpAbstractTextPresenter >> whenTextIsAcceptedDo: aBlock [
+	"Set a block to perform when the text is accepted"
+	
+	self 
+		deprecated: 'Autoaccept property has been removed because all text presenters are autoaccept 
+		now, and accept actions are not needed anymore. Often, this actions were used to trigger 
+		actions while saving (cmd+s) or while pressing enter. Consider use a key binding to supply 
+		that functionality.'
+		on: '2020-03-26' 
+		in: #Pharo9.
+
+	self property: #actionPerformed whenChangedDo: aBlock
+]

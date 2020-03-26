@@ -8,12 +8,6 @@ Class {
 }
 
 { #category : #'widget API' }
-SpMorphicTextInputFieldAdapter >> accept: aText [
-
-	self presenter accept: aText
-]
-
-{ #category : #'widget API' }
 SpMorphicTextInputFieldAdapter >> accept: aText notifying: aNotifyier [
 	"We use #asString because rubric send Text instead of strings."
 

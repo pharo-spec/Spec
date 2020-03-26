@@ -100,9 +100,9 @@ SpSelectEntity >> initialize [
 
 { #category : #initialization }
 SpSelectEntity >> initializePresenters [
+
 	entityText := self newTextInput
 		placeholder: self placeholder;
-		autoAccept: true;
 		entryCompletion: self entitiesEntryCompletion;
 		yourself.
 	selectEntity := self newButton

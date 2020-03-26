@@ -152,6 +152,16 @@ SpTextPresenter >> whenScrollValueChangedDo: aBlock [
 	self property: #scrollValue whenChangedDo: aBlock
 ]
 
+{ #category : #'api-events' }
+SpTextPresenter >> whenSubmitDo: aBlock [
+	"This method will add a 'submit' event to the widget. It will react when user presses meta+s 
+	 key (this is for historical reasons) and with enter."
+
+	self 
+		bindKeyCombination: $s meta 
+		toAction: [ aBlock value: self text ]
+]
+
 { #category : #accessing }
 SpTextPresenter >> withEditionContextMenu [
 
