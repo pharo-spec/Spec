@@ -295,7 +295,8 @@ SpAbstractTextPresenter >> selectedClassOrMetaClass [
 SpAbstractTextPresenter >> selectedText [ 
 	| selectionInterval |
 	
-	selectionInterval := self selectionInterval ifEmpty: [ ^ '' ].
+	selectionInterval := self selectionInterval.
+	selectionInterval ifEmpty: [ ^ '' ].
 	
 	^ self text asString
 		copyFrom: selectionInterval first 

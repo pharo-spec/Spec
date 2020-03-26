@@ -216,15 +216,6 @@ SpAbstractTextPresenter >> isAboutToStyle [
 ]
 
 { #category : #'*Spec2-Deprecated' }
-SpAbstractTextPresenter >> selection [
-	self
-		deprecated:
-			'#selection was used to return an interval, and did not convey the correct meaning. Use #selectionInterval instead.'
-		transformWith: '`@receiver selection' -> '`@receiver selectionInterval'.
-	^ self selectionInterval
-]
-
-{ #category : #'*Spec2-Deprecated' }
 SpAbstractTextPresenter >> selection: anInterval [
 	self
 		deprecated:
