@@ -30,11 +30,7 @@ SpMorphicTextInputFieldAdapter >> acceptOnCR [
 SpMorphicTextInputFieldAdapter >> buildWidget [
 	| newWidget |
 	
-	self flag: #pharo7.	"When support for P7 will be dropped, remove this compatibility hack."
-	newWidget := ((self class environment 
-			at: #SpRubTextFieldMorph 
-			ifAbsent: [ RubTextFieldMorph ]) 
-			on: self)
+	newWidget := (RubTextFieldMorph on: self)
 		getTextSelector: #getText;
 		setTextSelector: #accept:notifying:;
 		getSelectionSelector: #readSelection;
@@ -52,12 +48,16 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
 		maxLength: self presenter maxLength;
+		acceptOnCR: self presenter acceptOnCR;
 		yourself.
 
 	self presenter whenTextChangedDo: [ :text | newWidget setText: text ].
-	self presenter whenPlaceholderChangedDo: [ :text | newWidget ghostText: (text ifNotNil: [ :aString | aString localizedForPresenter: self presenter]) ].
+	self presenter whenPlaceholderChangedDo: [ :text | 
+		newWidget ghostText: (text ifNotNil: [ :aString | 
+			aString localizedForPresenter: self presenter ]) ].
 	self presenter whenPasswordChangedDo: [ :isPassword | newWidget encrypted: isPassword ].
 	self presenter whenMaxLengthChangedDo: [ :length | newWidget maxLength: length ].
+	self presenter whenAcceptOnCRChangedDo: [ :bool | newWidget acceptOnCR: true ].
 
 	^ newWidget
 ]

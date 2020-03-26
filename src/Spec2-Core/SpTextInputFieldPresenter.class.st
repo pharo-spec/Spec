@@ -118,8 +118,7 @@ SpTextInputFieldPresenter >> initialize [
 
 	maxLength := 0.
 	acceptOnCR := true.
-	isPassword := false.
-	self whenAcceptOnCRChangedDo: [ :bool | self changed: #acceptOnCR: with: {bool} ]
+	isPassword := false
 ]
 
 { #category : #testing }

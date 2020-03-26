@@ -10,6 +10,70 @@ SpTextInputFieldPresenterTest >> classToTest [
 ]
 
 { #category : #tests }
+SpTextInputFieldPresenterTest >> testAcceptOnCr [
+	| accepted |
+
+	presenter acceptOnCR: true.
+	accepted := false.	
+	
+	self openInstance.
+		
+	presenter whenTextIsAcceptedDo: [ accepted := true ].
+
+	"test a single input does not triggers"
+	presenter adapter 
+		keyPressed: $t asciiValue 
+		shift: false
+		meta: false 
+		control: false 
+		option: false.
+		
+	self deny: accepted.		
+	
+	"test a cr triggers"
+	presenter adapter 
+		keyPressed: Character cr asciiValue 
+		shift: false
+		meta: false 
+		control: false 
+		option: false.
+
+	self assert: accepted
+]
+
+{ #category : #tests }
+SpTextInputFieldPresenterTest >> testAcceptOnCrDoesNotAlwaysTriggerEvent [
+	| accepted |
+
+	presenter acceptOnCR: false.
+	accepted := false.	
+	
+	self openInstance.
+		
+	presenter whenTextIsAcceptedDo: [ accepted := true ].
+
+	"test a single input does not triggers"
+	presenter adapter 
+		keyPressed: $t asciiValue 
+		shift: false
+		meta: false 
+		control: false 
+		option: false.
+		
+	self deny: accepted.		
+	
+	"test a cr also does not triggers"
+	presenter adapter 
+		keyPressed: Character cr asciiValue 
+		shift: false
+		meta: false 
+		control: false 
+		option: false.
+
+	self deny: accepted
+]
+
+{ #category : #tests }
 SpTextInputFieldPresenterTest >> testBeNotPasswordIsSet [
 
 	presenter bePassword: false.

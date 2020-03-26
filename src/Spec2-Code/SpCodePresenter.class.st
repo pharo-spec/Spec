@@ -106,7 +106,9 @@ SpCodePresenter >> behavior: aClass [
 { #category : #binding }
 SpCodePresenter >> bindingOf: aString [
 
-	^ interactionModel ifNotNil:  [ interactionModel bindingOf: aString  ]
+	interactionModel ifNotNil:  [ :im | ^ im bindingOf: aString  ].
+	self behavior ifNotNil: [ :aBehavior | ^ aBehavior bindingOf: aString ].
+	^ nil
 ]
 
 { #category : #accessing }
@@ -174,9 +176,9 @@ SpCodePresenter >> findClassFromSelection [
 { #category : #binding }
 SpCodePresenter >> hasBindingOf: aString [
 
-	^ interactionModel 
-		ifNotNil: [ :im | im hasBindingOf: aString ]
-		ifNil: [ false ]
+	interactionModel ifNotNil: [ :im | ^ im hasBindingOf: aString ].
+	self behavior ifNotNil: [ :aBehavior | (aBehavior bindingOf: aString) notNil ].
+	^ false
 ]
 
 { #category : #binding }
