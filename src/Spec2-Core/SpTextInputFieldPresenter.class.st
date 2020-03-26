@@ -54,20 +54,6 @@ SpTextInputFieldPresenter >> accept: aText [
 ]
 
 { #category : #api }
-SpTextInputFieldPresenter >> acceptOnCR [
-	"Return true if the text is accepted when the Enter key is stroked"
-
-	^ acceptOnCR
-]
-
-{ #category : #api }
-SpTextInputFieldPresenter >> acceptOnCR: aBoolean [
-	"Set if the text is accepted when the Enter key is stroked or not"
-
-	acceptOnCR := aBoolean
-]
-
-{ #category : #api }
 SpTextInputFieldPresenter >> bePassword [
 	
 	self bePassword: true
@@ -148,8 +134,8 @@ SpTextInputFieldPresenter >> removeEntryCompletion [
 
 { #category : #accessing }
 SpTextInputFieldPresenter >> text: aText [
-
 	| truncatedText |
+
 	truncatedText := self maxLength = 0
 		ifTrue: [ aText ]
 		ifFalse: [ aText first: (self maxLength min: aText size) ].
@@ -161,13 +147,6 @@ SpTextInputFieldPresenter >> updateText [
 
 	"Update text but applying lenght constraints"
 	self text: self text.
-]
-
-{ #category : #'api-events' }
-SpTextInputFieldPresenter >> whenAcceptOnCRChangedDo: aBlock [
-	"aBlock will be performed when acceptOnCR changed"
-
-	self property: #acceptOnCR whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

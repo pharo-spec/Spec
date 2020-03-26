@@ -10,20 +10,16 @@ Class {
 { #category : #'widget API' }
 SpMorphicTextInputFieldAdapter >> accept: aText [
 
-	self model accept: aText
+	self presenter accept: aText
 ]
 
 { #category : #'widget API' }
 SpMorphicTextInputFieldAdapter >> accept: aText notifying: aNotifyier [
 	"We use #asString because rubric send Text instead of strings."
 
-	super accept: aText asString notifying: aNotifyier
-]
-
-{ #category : #'widget API' }
-SpMorphicTextInputFieldAdapter >> acceptOnCR [
-
-	^ self model acceptOnCR
+	super
+		accept: aText asString 
+		notifying: aNotifyier
 ]
 
 { #category : #factory }
@@ -41,14 +37,13 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		encrypted: self encrypted;
 		enabled: self enabled;
 		askBeforeDiscardingEdits: self askBeforeDiscardingEdits;
-		autoAccept: self autoAccept;
+		autoAccept: true;
 		vResizing: #spaceFill;
 		hResizing: #spaceFill;
 		setBalloonText: self help;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
 		maxLength: self presenter maxLength;
-		acceptOnCR: self presenter acceptOnCR;
 		yourself.
 
 	self presenter whenTextChangedDo: [ :text | newWidget setText: text ].
@@ -57,7 +52,6 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 			aString localizedForPresenter: self presenter ]) ].
 	self presenter whenPasswordChangedDo: [ :isPassword | newWidget encrypted: isPassword ].
 	self presenter whenMaxLengthChangedDo: [ :length | newWidget maxLength: length ].
-	self presenter whenAcceptOnCRChangedDo: [ :bool | newWidget acceptOnCR: true ].
 
 	^ newWidget
 ]
@@ -84,7 +78,8 @@ SpMorphicTextInputFieldAdapter >> entryCompletion [
 { #category : #private }
 SpMorphicTextInputFieldAdapter >> getPlaceholderText [
 
-	^ self presenter placeholder ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
+	^ self presenter placeholder ifNotNil: [ :aString | 
+		aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #testing }

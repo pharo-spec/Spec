@@ -25,11 +25,6 @@ SpLabelledTextInput >> acceptBlock: aBlockWithOneArgument [
 ]
 
 { #category : #'api-shortcuts' }
-SpLabelledTextInput >> acceptOnCR: aBoolean [
-	^ self input acceptOnCR: aBoolean
-]
-
-{ #category : #'api-shortcuts' }
 SpLabelledTextInput >> autoAccept: aBoolean [
 	^ self input autoAccept: aBoolean
 ]

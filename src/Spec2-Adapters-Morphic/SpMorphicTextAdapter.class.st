@@ -46,7 +46,7 @@ SpMorphicTextAdapter >> buildWidget [
 		beWrapped;
 		enabled: self enabled;
 		askBeforeDiscardingEdits: self askBeforeDiscardingEdits;
-		autoAccept: self autoAccept;
+		autoAccept: true;
 		vResizing: #spaceFill;
 		hResizing: #spaceFill;
 		setBalloonText: self help;

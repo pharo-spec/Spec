@@ -34,6 +34,86 @@ SpAbstractTextPresenter >> aboutToStyleBlock: aBlockReturningABoolean [
 ]
 
 { #category : #'*Spec2-Deprecated' }
+SpAbstractTextPresenter >> accept [
+	"Accep the current pendingtext"
+
+	self 
+		deprecated: 'Autoaccept property has been removed because all text presenters are autoaccept 
+		now, and accept actions are not needed anymore. Often, this actions were used to trigger 
+		actions while saving (cmd+s) or while pressing enter. Consider use a key binding to supply 
+		that functionality.'
+		on: '2020-03-26' 
+		in: #Pharo9.
+
+	self changed: #accept with: #().
+	"Raise an announcement"
+	self actionPerformed
+]
+
+{ #category : #'*Spec2-Deprecated' }
+SpAbstractTextPresenter >> acceptBlock [
+	"Return the block to perform when the text is accepted.
+	The block must have one argument, which will be the accepted text"
+
+	self 
+		deprecated: 'Autoaccept property has been removed because all text presenters are autoaccept 
+		now, and accept actions are not needed anymore. Often, this actions were used to trigger 
+		actions while saving (cmd+s) or while pressing enter. Consider use a key binding to supply 
+		that functionality.'
+		on: '2020-03-26' 
+		in: #Pharo9.
+
+	^ actionToPerform
+]
+
+{ #category : #'*Spec2-Deprecated' }
+SpAbstractTextPresenter >> acceptBlock: aBlockWithOneArgument [
+	"Set the block to perform when the text is accepted.
+	The block must have one argument, which will be the accepted text.
+	The block can return false if the candidate text is to be rejected"
+
+	self 
+		deprecated: 'Autoaccept property has been removed because all text presenters are autoaccept 
+		now, and accept actions are not needed anymore. Often, this actions were used to trigger 
+		actions while saving (cmd+s) or while pressing enter. Consider use a key binding to supply 
+		that functionality.'
+		on: '2020-03-26' 
+		in: #Pharo9.
+
+	actionToPerform := aBlockWithOneArgument
+]
+
+{ #category : #'*Spec2-Deprecated' }
+SpAbstractTextPresenter >> autoAccept [
+	"Return true if the text is accepted after ech keystroke"
+	
+	self 
+		deprecated: 'Autoaccept property has been removed because all text presenters are autoaccept 
+		now, and accept actions are not needed anymore. Often, this actions were used to trigger 
+		actions while saving (cmd+s) or while pressing enter. Consider use a key binding to supply 
+		that functionality.'
+		on: '2020-03-26' 
+		in: #Pharo9.
+		
+	^ autoAccept
+]
+
+{ #category : #'*Spec2-Deprecated' }
+SpAbstractTextPresenter >> autoAccept: aBoolean [
+	"Set if the text is accepted after each keystroke or not"
+
+	self 
+		deprecated: 'Autoaccept property has been removed because all text presenters are autoaccept 
+		now, and accept actions are not needed anymore. Often, this actions were used to trigger 
+		actions while saving (cmd+s) or while pressing enter. Consider use a key binding to supply 
+		that functionality.'
+		on: '2020-03-26' 
+		in: #Pharo9.
+		
+	autoAccept := aBoolean
+]
+
+{ #category : #'*Spec2-Deprecated' }
 SpAbstractTextPresenter >> beForCode [
 
 	self 
@@ -197,6 +277,21 @@ SpAbstractTextPresenter >> whenAcceptBlockChanged: aBlock [
 SpAbstractTextPresenter >> whenAutoAcceptChanged: aBlock [
 	self deprecated: 'Use #whenAutoAcceptChangedDo: instead.' transformWith: '`@receiver whenAutoAcceptChanged: `@statements' -> '`@receiver whenAutoAcceptChangedDo: `@statements'.
 	self whenAutoAcceptChangedDo: aBlock
+]
+
+{ #category : #'*Spec2-Deprecated' }
+SpAbstractTextPresenter >> whenAutoAcceptChangedDo: aBlock [
+	"aBlock will be performed when autoAccept changed"
+
+	self 
+		deprecated: 'Autoaccept property has been removed because all text presenters are autoaccept 
+		now, and accept actions are not needed anymore. Often, this actions were used to trigger 
+		actions while saving (cmd+s) or while pressing enter. Consider use a key binding to supply 
+		that functionality.'
+		on: '2020-03-26' 
+		in: #Pharo9.
+
+	self property: #autoAccept whenChangedDo: aBlock
 ]
 
 { #category : #'*Spec2-Deprecated' }

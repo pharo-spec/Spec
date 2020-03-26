@@ -9,32 +9,20 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
-{ #category : #'spec protocol' }
-SpMorphicBaseTextAdapter >> accept [
-	"We use RubScrolledTextMorph>>#acceptContents but we keep accept as method name for compatibility"
-	self widgetDo: [ :w | w acceptContents ]
-]
-
 { #category : #'widget API' }
-SpMorphicBaseTextAdapter >> accept: aText notifying: aNotifyier [
-	| accept |
+SpMorphicBaseTextAdapter >> accept: aString notifying: aNotifyier [
 
-	accept := self presenter acceptBlock 
-		cull: aText 
-		cull: aNotifyier.
-	accept == false ifTrue: [ ^ false ].
-
-	self presenter text: aText copy.
+	self presenter text: aString.
 	"Raise an announcement"
-	self presenter actionPerformed.
 	self presenter changed: #clearUserEdits.
-	
+
 	^ true
 ]
 
 { #category : #accessing }
 SpMorphicBaseTextAdapter >> acceptAllowed [
-	^self widget editingMode acceptAllowed
+
+	^ self widget editingMode acceptAllowed
 ]
 
 { #category : #accessing }
@@ -53,18 +41,6 @@ SpMorphicBaseTextAdapter >> askBeforeDiscardingEdits [
 { #category : #'spec protocol' }
 SpMorphicBaseTextAdapter >> askBeforeDiscardingEdits: aBoolean [
 	self widget askBeforeDiscardingEdits: aBoolean
-]
-
-{ #category : #'widget API' }
-SpMorphicBaseTextAdapter >> autoAccept [
-
-	^ self model autoAccept
-]
-
-{ #category : #'widget API' }
-SpMorphicBaseTextAdapter >> autoAccept: aBoolean [
-
-	^ self model autoAccept: aBoolean
 ]
 
 { #category : #'spec protocol' }

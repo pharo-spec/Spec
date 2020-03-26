@@ -23,33 +23,6 @@ SpAbstractTextPresenter class >> isAbstract [
 	^ self = SpAbstractTextPresenter
 ]
 
-{ #category : #api }
-SpAbstractTextPresenter >> accept [
-	"Accep the current pendingtext"
-
-	self changed: #accept with: #().
-
-	"Raise an announcement"
-	self actionPerformed
-]
-
-{ #category : #api }
-SpAbstractTextPresenter >> acceptBlock [
-	"Return the block to perform when the text is accepted.
-	The block must have one argument, which will be the accepted text"
-
-	^ actionToPerform
-]
-
-{ #category : #api }
-SpAbstractTextPresenter >> acceptBlock: aBlockWithOneArgument [
-	"Set the block to perform when the text is accepted.
-	The block must have one argument, which will be the accepted text.
-	The block can return false if the candidate text is to be rejected"
-
-	actionToPerform := aBlockWithOneArgument
-]
-
 { #category : #private }
 SpAbstractTextPresenter >> acceptText: aString [
 	"Used to set the text value comming from the adapter (we do not want to re-send 
@@ -72,20 +45,6 @@ SpAbstractTextPresenter >> askBeforeDiscardingEdits [
 { #category : #api }
 SpAbstractTextPresenter >> askBeforeDiscardingEdits: aBoolean [
 	askBeforeDiscardingEdits := aBoolean
-]
-
-{ #category : #api }
-SpAbstractTextPresenter >> autoAccept [
-	"Return true if the text is accepted after ech keystroke"
-
-	^ autoAccept
-]
-
-{ #category : #api }
-SpAbstractTextPresenter >> autoAccept: aBoolean [
-	"Set if the text is accepted after each keystroke or not"
-
-	autoAccept := aBoolean
 ]
 
 { #category : #api }
@@ -305,6 +264,7 @@ SpAbstractTextPresenter >> readSelectionBlock: aBlock [
 
 { #category : #initialization }
 SpAbstractTextPresenter >> registerEvents [
+
 	self whenTextChangedDo: [ self changed: #getText ].
 	self whenReadSelectionIsChangedDo: [ self changed: #readSelection ].
 	self property: #hasUnacceptedEdits whenChangedDo: [ :bool | self changed: #setHasUnacceptedEdits: with: {bool} ].
@@ -409,13 +369,6 @@ SpAbstractTextPresenter >> whenAcceptBlockChangedDo: aBlock [
 	"Set a block to perform when the accept block changed"
 	
 	self property: #actionToPerform whenChangedDo: aBlock
-]
-
-{ #category : #'api-events' }
-SpAbstractTextPresenter >> whenAutoAcceptChangedDo: aBlock [
-	"aBlock will be performed when autoAccept changed"
-
-	self property: #autoAccept whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
