@@ -6,13 +6,11 @@ Class {
 	#instVars : [
 		'#hasUnacceptedEdits => SpObservableSlot',
 		'#selection => SpObservableSlot',
-		'#autoAccept => SpObservableSlot',
 		'#wantsVisualFeedback => SpObservableSlot',
 		'#askBeforeDiscardingEdits => SpObservableSlot',
 		'#text => SpObservableSlot',
 		'#actionToPerform => SpObservableSlot',
 		'#readSelection => SpObservableSlot',
-		'#actionPerformed => SpObservableSlot',
 		'#placeholder => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
@@ -29,12 +27,6 @@ SpAbstractTextPresenter >> acceptText: aString [
 	 this value to the adapter, hence we set it 'raw', not triggering events)"
 
 	self property: #text rawValue: aString
-]
-
-{ #category : #private }
-SpAbstractTextPresenter >> actionPerformed [
-
-	actionPerformed := self text
 ]
 
 { #category : #api }
@@ -152,10 +144,8 @@ SpAbstractTextPresenter >> initialize [
 	placeholder := ''.
 	actionToPerform := [ :txt |  ].
 	readSelection := [ selection ].
-	actionPerformed := ''.
 	hasUnacceptedEdits := false.
 	selection := 1 to: 0.
-	autoAccept := false.
 	wantsVisualFeedback := true.
 	askBeforeDiscardingEdits := true.
 
@@ -382,6 +372,16 @@ SpAbstractTextPresenter >> whenReadSelectionIsChangedDo: aBlock [
 	"Set a block to perform when the read selection block changed"
 
 	self property: #readSelection whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+SpAbstractTextPresenter >> whenResetDo: aBlock [
+	"This method will add a 'reset' event to the widget. It will react when user presses meta+l 
+	key (this is for historical reasons)."
+
+	self 
+		bindKeyCombination: $l meta 
+		toAction: aBlock
 ]
 
 { #category : #'api-events' }

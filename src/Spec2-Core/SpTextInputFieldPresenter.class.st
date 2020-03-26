@@ -28,7 +28,6 @@ Class {
 	#name : #SpTextInputFieldPresenter,
 	#superclass : #SpAbstractTextPresenter,
 	#instVars : [
-		'#acceptOnCR => SpObservableSlot',
 		'#entryCompletion => SpObservableSlot',
 		'#isPassword => SpObservableSlot',
 		'#maxLength => SpObservableSlot'
@@ -92,7 +91,6 @@ SpTextInputFieldPresenter >> initialize [
 	super initialize.
 
 	maxLength := 0.
-	acceptOnCR := false.
 	isPassword := false
 ]
 
