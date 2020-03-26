@@ -117,7 +117,7 @@ SpTextInputFieldPresenter >> initialize [
 	super initialize.
 
 	maxLength := 0.
-	acceptOnCR := true.
+	acceptOnCR := false.
 	isPassword := false
 ]
 
