@@ -399,6 +399,14 @@ SpPresenter >> createInstanceFor: aClassSymbol [
 	^ self instantiate: class.
 ]
 
+{ #category : #'api-focus' }
+SpPresenter >> defaultKeyboardFocus [
+	"Override this to allow the presenter to re-define the one that will answer the 
+	 takeKeyboardFocus call in composed presenters"
+
+	^ self
+]
+
 { #category : #specs }
 SpPresenter >> defaultSpec [
 
@@ -997,7 +1005,11 @@ SpPresenter >> show [
 
 { #category : #'api-focus' }
 SpPresenter >> takeKeyboardFocus [
+	| focus |
 
+	focus := self defaultKeyboardFocus.
+	focus == self ifFalse: [ ^ focus takeKeyboardFocus ].
+	
 	self withAdapterDo: [ :anAdapter | 
 		anAdapter takeKeyboardFocus ]
 ]
