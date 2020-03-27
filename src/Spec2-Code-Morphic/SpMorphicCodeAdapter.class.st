@@ -64,7 +64,15 @@ SpMorphicCodeAdapter >> guessTypeForName: aString [
 
 { #category : #private }
 SpMorphicCodeAdapter >> hasSyntaxHighlight [
-	^ self model hasSyntaxHighlight
+
+	^ self presenter hasSyntaxHighlight
+]
+
+{ #category : #private }
+SpMorphicCodeAdapter >> hasSyntaxHighlightEnabled [
+	"this is used just for testing"
+	
+	^ self presenter hasSyntaxHighlight
 ]
 
 { #category : #NOCompletion }
