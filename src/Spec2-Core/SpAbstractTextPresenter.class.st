@@ -172,8 +172,8 @@ SpAbstractTextPresenter >> insertAndSelectAfterCurrentSelection: aString [
 	| selectionInterval |
 
 	selectionInterval := self selectionInterval.
-	self insert: aString at: selectionInterval last + 1.
-	self selectionInterval: (selectionInterval last + 1 to: selectionInterval last + aString size + 1)
+	self insert: aString at: selectionInterval last.
+	self selectionInterval: (selectionInterval last + 1 to: selectionInterval last + aString size)
 ]
 
 { #category : #api }

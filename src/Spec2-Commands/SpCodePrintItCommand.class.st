@@ -51,8 +51,5 @@ SpCodePrintItCommand >> toPrintableString: printString [
 	have a special way to handle this special 'insertion' (to transmit the correct insertion 
 	to the presenter's adapter)."
 	^ String streamContents: [ :stream |
-		stream 
-			<< ' "'
-			<< printString 
-			<< '"' ]
+		stream << ' ' << printString  ]
 ]
