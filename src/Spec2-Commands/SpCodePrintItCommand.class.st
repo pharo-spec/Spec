@@ -35,13 +35,10 @@ SpCodePrintItCommand >> execute [
 
 { #category : #private }
 SpCodePrintItCommand >> printObject: anObject [
-	| printString |
-	
-	printString := [ anObject printString ]
-		on: Error
-		do: [ '<error in printString: try ''Inspect it'' to debug>' ].
-	"self context insertAndSelectAfterCurrentSelection: (self toPrintableString: printString)"
-	self context insertPopoverAfterCurrentSelection: (self toPrintableString: printString) asPresenter
+
+	self context insertPopoverAfterCurrentSelection: (SpCodePrintItPresenter 
+		newCode: context 
+		object: anObject)
 ]
 
 { #category : #private }

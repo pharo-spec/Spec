@@ -9,8 +9,8 @@ Class {
 	#name : #SpPopoverPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'presenter',
-		'position'
+		'#presenter => SpObservableSlot',
+		'#position'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -22,9 +22,9 @@ SpPopoverPresenter class >> adapterName [
 ]
 
 { #category : #api }
-SpPopoverPresenter >> bePositionDown [
+SpPopoverPresenter >> bePositionBottom [
 
-	position := SpPopoverPosition down
+	position := SpPopoverPosition bottom
 ]
 
 { #category : #api }
@@ -40,14 +40,22 @@ SpPopoverPresenter >> bePositionRight [
 ]
 
 { #category : #api }
-SpPopoverPresenter >> bePositionUp [
+SpPopoverPresenter >> bePositionTop [
 
-	position := SpPopoverPosition up
+	position := SpPopoverPosition top
+]
+
+{ #category : #api }
+SpPopoverPresenter >> dismiss [ 
+
+	^ self withAdapterDo: [ :anAdapter | anAdapter dismiss ]
 ]
 
 { #category : #initialization }
 SpPopoverPresenter >> initialize [
+
 	super initialize.
+	self bePositionBottom
 ]
 
 { #category : #api }
@@ -62,6 +70,12 @@ SpPopoverPresenter >> popupPointingTo: aRectangle [
 		
 	self withAdapterDo: [ :anAdapter |
 		anAdapter popupPointingTo: aRectangle ]
+]
+
+{ #category : #api }
+SpPopoverPresenter >> position [
+
+	^ position
 ]
 
 { #category : #api }
