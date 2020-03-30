@@ -31,29 +31,44 @@ SpCodePrintItPresenter >> code: aCodePresenter [
 	code := aCodePresenter
 ]
 
+{ #category : #api }
+SpCodePrintItPresenter >> dismiss [
+
+	super dismiss.
+	self code takeKeyboardFocus
+]
+
 { #category : #actions }
 SpCodePrintItPresenter >> dismissAndInspect [
 
 	self dismiss.
-	self dismissAndPrint
+	object inspect
 ]
 
 { #category : #actions }
 SpCodePrintItPresenter >> dismissAndPrint [
 
 	self dismiss.
-	self code insertAndSelectAfterCurrentSelection: self objectAsString
+	self code insertAndSelectAfterCurrentSelection: self objectAsPrintString
 ]
 
 { #category : #initialization }
 SpCodePrintItPresenter >> initializePresenters [
 
 	layout := SpBoxLayout newHorizontal
-		spacing: 10;
-		add: self objectAsString "expand: false fill: false padding: 5";
-		addLast: (SpButtonPresenter new 
-				icon: (self application iconNamed: #glamorousInspect);
+		spacing: 5;
+		borderWidth: 5;
+		add: (self newLabel
+			label: self objectAsString;
+			yourself);
+		addLast: (self newButton 
+				icon: (self application iconNamed: #smallInspectIt);
 				action: [ self dismissAndInspect ];
+				yourself)
+			expand: false;
+		addLast: (self newButton 
+				icon: (self application iconNamed: #smallPrintIt);
+				action: [ self dismissAndPrint ];
 				yourself)
 			expand: false;
 		yourself.
@@ -61,6 +76,16 @@ SpCodePrintItPresenter >> initializePresenters [
 	self
 		bindKeyCombination: Character cr asKeyCombination toAction: [ self dismissAndPrint ];
 		bindKeyCombination: Character escape asKeyCombination toAction: [ self dismiss ]
+]
+
+{ #category : #accessing }
+SpCodePrintItPresenter >> objectAsPrintString [
+	
+	^ String streamContents: [ :stream |
+		stream 
+			<< ' "'
+			<< self objectAsString
+			<< '"' ]
 ]
 
 { #category : #accessing }

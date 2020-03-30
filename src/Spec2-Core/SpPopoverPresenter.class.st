@@ -4,6 +4,8 @@ I will be relative to my owner, but I can be shown pointing to a particular plac
 Also, I can be show at the top, left, bottom or right of the owner or rectangle to point.
 
 self example
+
+The presenter placed on a popover needs to extent SpPopoverContentPresenter (or implement its api) to gain all properties.
 "
 Class {
 	#name : #SpPopoverPresenter,
