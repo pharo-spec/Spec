@@ -155,20 +155,25 @@ SpCodePresenter >> doItReceiver: anObject [
 	doItReceiver := anObject
 ]
 
-{ #category : #navigation }
+{ #category : #accessing }
 SpCodePresenter >> findClassFrom: aString [
 	| ast |
+	
+	self flag: #TODO. "Does this really has to be part of the code api?"
+
 	ast := RBParser parseExpression: aString onError: [ ^ nil ].
-	ast
-		nodesDo: [ :node | 
-			(node isVariable and: [ node name first isUppercase ])
-				ifTrue: [ (self class environment classNamed: node name)
-						ifNotNil: [ :aClass | ^ aClass ] ] ].
+	ast nodesDo: [ :node | 
+		(node isVariable and: [ node name first isUppercase ])
+			ifTrue: [ 
+				(self class environment classNamed: node name)
+					ifNotNil: [ :aClass | ^ aClass ] ] ].
+
 	^ nil
 ]
 
-{ #category : #navigation }
+{ #category : #accessing }
 SpCodePresenter >> findClassFromSelection [
+	self flag: #TODO. "Does this really has to be part of the text api?"
 
 	^ self findClassFrom: self selectedTextOrLine trimmed
 ]
@@ -209,6 +214,23 @@ SpCodePresenter >> initialize [
 ]
 
 { #category : #api }
+SpCodePresenter >> insertPopoverAfterCurrentSelection: aPresenter [
+	| selectionInterval pop |
+
+	selectionInterval := self selectionInterval.
+
+	pop := (self instantiate: SpPopoverPresenter)
+		presenter: aPresenter;
+		yourself.
+		
+	pop buildWithSpec.
+		
+	pop popupPointingTo: ((selectionInterval first)@10 corner: (selectionInterval last*10)@100).
+	"self insert: aString at: selectionInterval last.
+	self selectionInterval: (selectionInterval last + 1 to: selectionInterval last + aString size)"
+]
+
+{ #category : #api }
 SpCodePresenter >> interactionModel [
 
 	^ interactionModel
@@ -242,7 +264,7 @@ SpCodePresenter >> selectedClassOrMetaClass [
 	^ interactionModel ifNotNil: [ :im | im selectedClassOrMetaClass ]
 ]
 
-{ #category : #navigation }
+{ #category : #api }
 SpCodePresenter >> selectedTextOrLine [
 
 	self selectedText ifNotEmpty: [ :aString | ^ aString ].

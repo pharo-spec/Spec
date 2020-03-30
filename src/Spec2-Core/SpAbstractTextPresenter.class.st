@@ -171,6 +171,7 @@ SpAbstractTextPresenter >> insert: aString at: positionIndex [
 SpAbstractTextPresenter >> insertAndSelectAfterCurrentSelection: aString [
 	| selectionInterval |
 
+	self flag: #TODO. "Does this really has to be part of the text api?"
 	selectionInterval := self selectionInterval.
 	self insert: aString at: selectionInterval last.
 	self selectionInterval: (selectionInterval last + 1 to: selectionInterval last + aString size)

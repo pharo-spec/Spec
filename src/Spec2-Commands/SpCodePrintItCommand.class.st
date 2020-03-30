@@ -40,7 +40,8 @@ SpCodePrintItCommand >> printObject: anObject [
 	printString := [ anObject printString ]
 		on: Error
 		do: [ '<error in printString: try ''Inspect it'' to debug>' ].
-	self context insertAndSelectAfterCurrentSelection: (self toPrintableString: printString)
+	"self context insertAndSelectAfterCurrentSelection: (self toPrintableString: printString)"
+	self context insertPopoverAfterCurrentSelection: (self toPrintableString: printString) asPresenter
 ]
 
 { #category : #private }
