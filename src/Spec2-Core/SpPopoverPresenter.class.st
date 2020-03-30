@@ -1,16 +1,35 @@
+"
+I'm a popover popover. 
+I will be relative to my owner, but I can be shown pointing to a particular place (see popup, and popupPointingTo:)
+Also, I can be show at the top, left, bottom or right of the owner or rectangle to point.
+
+self example
+"
 Class {
 	#name : #SpPopoverPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
 		'#presenter => SpObservableSlot'
 	],
-	#category : #'Spec2-Code'
+	#category : #'Spec2-Core-Widgets'
 }
 
 { #category : #specs }
 SpPopoverPresenter class >> adapterName [
 
 	^ #PopoverAdapter
+]
+
+{ #category : #initialization }
+SpPopoverPresenter >> initialize [
+	super initialize.
+]
+
+{ #category : #api }
+SpPopoverPresenter >> popup [
+		
+	self withAdapterDo: [ :anAdapter |
+		anAdapter popup ]
 ]
 
 { #category : #api }
@@ -20,7 +39,7 @@ SpPopoverPresenter >> popupPointingTo: aRectangle [
 		anAdapter popupPointingTo: aRectangle ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #api }
 SpPopoverPresenter >> presenter [
 	^ presenter
 ]

@@ -215,19 +215,9 @@ SpCodePresenter >> initialize [
 
 { #category : #api }
 SpCodePresenter >> insertPopoverAfterCurrentSelection: aPresenter [
-	| selectionInterval pop |
 
-	selectionInterval := self selectionInterval.
-
-	pop := (self instantiate: SpPopoverPresenter)
-		presenter: aPresenter;
-		yourself.
-		
-	pop buildWithSpec.
-		
-	pop popupPointingTo: ((selectionInterval first)@10 corner: (selectionInterval last*10)@100).
-	"self insert: aString at: selectionInterval last.
-	self selectionInterval: (selectionInterval last + 1 to: selectionInterval last + aString size)"
+	self withAdapterDo: [ :anAdapter |
+		anAdapter insertPopoverAfterCurrentSelection: aPresenter ]
 ]
 
 { #category : #api }

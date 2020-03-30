@@ -103,7 +103,7 @@ SpMenuPresenter >> autoRefresh: aBoolean [
 	autoRefresh := aBoolean
 ]
 
-{ #category : #api }
+{ #category : #'api-building' }
 SpMenuPresenter >> buildWithSpecAsPopup [
 
 	^ self buildWithSpec
@@ -186,7 +186,7 @@ SpMenuPresenter >> menuGroups [
 	^ groups
 ]
 
-{ #category : #api }
+{ #category : #TOREMOVE }
 SpMenuPresenter >> neglect: aModel [
 
 	aModel neglectMenuModel: self
