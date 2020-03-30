@@ -9,7 +9,8 @@ Class {
 	#name : #SpPopoverPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#presenter => SpObservableSlot'
+		'presenter',
+		'position'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -18,6 +19,30 @@ Class {
 SpPopoverPresenter class >> adapterName [
 
 	^ #PopoverAdapter
+]
+
+{ #category : #api }
+SpPopoverPresenter >> bePositionDown [
+
+	position := SpPopoverPosition down
+]
+
+{ #category : #api }
+SpPopoverPresenter >> bePositionLeft [
+
+	position := SpPopoverPosition left
+]
+
+{ #category : #api }
+SpPopoverPresenter >> bePositionRight [
+
+	position := SpPopoverPosition right
+]
+
+{ #category : #api }
+SpPopoverPresenter >> bePositionUp [
+
+	position := SpPopoverPosition up
 ]
 
 { #category : #initialization }
