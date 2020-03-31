@@ -29,7 +29,7 @@ SpCodeSelectionCommand >> evaluate: aString andDo: aBlock [
 		source: stream;
 		context: evaluationContext;
 		receiver: receiver;
-		requestor: receiver;
+		requestor: self context;
 		failBlock:  [ ^ nil ];
 		evaluate.		
 

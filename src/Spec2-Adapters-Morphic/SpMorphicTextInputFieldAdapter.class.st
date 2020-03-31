@@ -8,33 +8,19 @@ Class {
 }
 
 { #category : #'widget API' }
-SpMorphicTextInputFieldAdapter >> accept: aText [
-
-	self model accept: aText
-]
-
-{ #category : #'widget API' }
 SpMorphicTextInputFieldAdapter >> accept: aText notifying: aNotifyier [
 	"We use #asString because rubric send Text instead of strings."
 
-	super accept: aText asString notifying: aNotifyier
-]
-
-{ #category : #'widget API' }
-SpMorphicTextInputFieldAdapter >> acceptOnCR [
-
-	^ self model acceptOnCR
+	super
+		accept: aText asString 
+		notifying: aNotifyier
 ]
 
 { #category : #factory }
 SpMorphicTextInputFieldAdapter >> buildWidget [
 	| newWidget |
 	
-	self flag: #pharo7.	"When support for P7 will be dropped, remove this compatibility hack."
-	newWidget := ((self class environment 
-			at: #SpRubTextFieldMorph 
-			ifAbsent: [ RubTextFieldMorph ]) 
-			on: self)
+	newWidget := (RubTextFieldMorph on: self)
 		getTextSelector: #getText;
 		setTextSelector: #accept:notifying:;
 		getSelectionSelector: #readSelection;
@@ -45,7 +31,7 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		encrypted: self encrypted;
 		enabled: self enabled;
 		askBeforeDiscardingEdits: self askBeforeDiscardingEdits;
-		autoAccept: self autoAccept;
+		autoAccept: true;
 		vResizing: #spaceFill;
 		hResizing: #spaceFill;
 		setBalloonText: self help;
@@ -55,7 +41,9 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		yourself.
 
 	self presenter whenTextChangedDo: [ :text | newWidget setText: text ].
-	self presenter whenPlaceholderChangedDo: [ :text | newWidget ghostText: (text ifNotNil: [ :aString | aString localizedForPresenter: self presenter]) ].
+	self presenter whenPlaceholderChangedDo: [ :text | 
+		newWidget ghostText: (text ifNotNil: [ :aString | 
+			aString localizedForPresenter: self presenter ]) ].
 	self presenter whenPasswordChangedDo: [ :isPassword | newWidget encrypted: isPassword ].
 	self presenter whenMaxLengthChangedDo: [ :length | newWidget maxLength: length ].
 
@@ -84,7 +72,8 @@ SpMorphicTextInputFieldAdapter >> entryCompletion [
 { #category : #private }
 SpMorphicTextInputFieldAdapter >> getPlaceholderText [
 
-	^ self presenter placeholder ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
+	^ self presenter placeholder ifNotNil: [ :aString | 
+		aString localizedForPresenter: self presenter ]
 ]
 
 { #category : #testing }

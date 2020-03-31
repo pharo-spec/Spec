@@ -1,6 +1,51 @@
 Extension { #name : #SpTextInputFieldPresenter }
 
 { #category : #'*Spec2-Deprecated' }
+SpTextInputFieldPresenter >> accept: aText [
+
+	self 
+		deprecated: 'Autoaccept property has been removed because all text presenters are autoaccept 
+		now, and accept actions are not needed anymore. Often, this actions were used to trigger 
+		actions while saving (cmd+s) or while pressing enter. Consider use a key binding to supply 
+		that functionality.'
+		on: '2020-03-26' 
+		in: #Pharo9.
+
+	self text: aText.
+	"Raise an announcement"
+	self changed: #clearUserEdits.
+]
+
+{ #category : #'*Spec2-Deprecated' }
+SpTextInputFieldPresenter >> acceptOnCR [
+	"Return true if the text is accepted when the Enter key is stroked"
+
+	self 
+		deprecated: 'Autoaccept property has been removed because all text presenters are autoaccept 
+		now, and accept actions are not needed anymore. Often, this actions were used to trigger 
+		actions while saving (cmd+s) or while pressing enter. Consider use a key binding to supply 
+		that functionality.'
+		on: '2020-03-26' 
+		in: #Pharo9.
+
+	^ acceptOnCR
+]
+
+{ #category : #'*Spec2-Deprecated' }
+SpTextInputFieldPresenter >> acceptOnCR: aBoolean [
+	"Set if the text is accepted when the Enter key is stroked or not"
+	self 
+		deprecated: 'Autoaccept property has been removed because all text presenters are autoaccept 
+		now, and accept actions are not needed anymore. Often, this actions were used to trigger 
+		actions while saving (cmd+s) or while pressing enter. Consider use a key binding to supply 
+		that functionality.'
+		on: '2020-03-26' 
+		in: #Pharo9.
+
+	acceptOnCR := aBoolean
+]
+
+{ #category : #'*Spec2-Deprecated' }
 SpTextInputFieldPresenter >> actionToPerformHolder [
 	self deprecated: 'Spec should not provide a way to get its internals. actionToPerform is not a value holder anymore but an observable slot, thus, this method cannot return anything anymore.'
 ]
@@ -51,6 +96,21 @@ SpTextInputFieldPresenter >> textHolder [
 SpTextInputFieldPresenter >> whenAcceptOnCRChanged: aBlock [
 	self deprecated: 'Use #whenAcceptOnCRChangedDo: instead.' transformWith: '`@receiver whenAcceptOnCRChanged: `@statements' -> '`@receiver whenAcceptOnCRChangedDo: `@statements'.
 	self whenAcceptOnCRChangedDo: aBlock
+]
+
+{ #category : #'*Spec2-Deprecated' }
+SpTextInputFieldPresenter >> whenAcceptOnCRChangedDo: aBlock [
+	"aBlock will be performed when acceptOnCR changed"
+
+	self 
+		deprecated: 'Autoaccept property has been removed because all text presenters are autoaccept 
+		now, and accept actions are not needed anymore. Often, this actions were used to trigger 
+		actions while saving (cmd+s) or while pressing enter. Consider use a key binding to supply 
+		that functionality.'
+		on: '2020-03-26' 
+		in: #Pharo9.
+
+	self property: #acceptOnCR whenChangedDo: aBlock
 ]
 
 { #category : #'*Spec2-Deprecated' }

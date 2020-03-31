@@ -122,7 +122,7 @@ SpApplication >> defer: aBlock [
 	self backend defer: aBlock
 ]
 
-{ #category : #windows }
+{ #category : #testing }
 SpApplication >> hasWindow: aWindow [
 	
 	^ self windows includes: aWindow
@@ -207,7 +207,7 @@ SpApplication >> openDialog: aPresenter withSpecLayout: aSpecLayout [
 	^ self 
 		open: aPresenter 
 		withSpecLayout: aSpecLayout 
-		using: SpDialogWindowPresenter
+		using: SpModalWindowPresenter
 ]
 
 { #category : #showing }

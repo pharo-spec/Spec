@@ -24,9 +24,13 @@ BaselineOfSpec2 >> baseline: spec [
 			package: 'Spec2-Commands' with: [ spec requires: #('Commander2') ];
 			package: 'Spec2-Layout' with: [ spec requires: #('Spec2-ObservableSlot') ];
 			package: 'Spec2-Transmission';
-			package: 'Spec2-Adapters-Morphic' with: [ spec requires: #('Spec2-Core') ];
-			package: 'Spec2-CodePresenter' with: [ spec requires: #('Spec2-Adapters-Morphic' 'Complishon') ];
-			package: 'Spec2-CodePresenter-Tests' with: [ spec requires: #('Spec2-CodePresenter') ];
+			package: 'Spec2-Code' with: [ spec requires: #('Complishon') ];
+			package: 'Spec2-Code-Tests' with: [ spec requires: #('Spec2-Code') ];
+			package: 'Spec2-Adapters-Morphic' with: [ spec requires: #( 'Spec2-Core' ) ];
+			package: 'Spec2-Code-Morphic' with: [ 
+				spec requires: #(
+					'Spec2-Code' 
+					'Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Adapters-Stub' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Interactions' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commander2' with: [ 
@@ -43,26 +47,61 @@ BaselineOfSpec2 >> baseline: spec [
 			package: 'Spec2-Adapters-Morphic-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Backend-Tests') ];
 			package: 'Spec2-Tools' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Tools-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Tools') ];
-			package: 'Spec2-MorphicPresenters' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
-			package: 'Spec2-MorphicPresenters-Tests' with: [ spec requires: #('Spec2-MorphicPresenters') ];
-			package: 'Spec2-Examples' with: [ spec requires: #('Spec2-MorphicPresenters') ].
+			package: 'Spec2-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
+			package: 'Spec2-Morphic-Tests' with: [ spec requires: #('Spec2-Morphic') ];
+			package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Morphic') ].
 			"This will extend the help tool, which in boostrap will be loaded a lot later."
 			"package: 'Spec2-Help';"		
 		 ].
 	
-	spec group: 'Core' with: #('Spec2-ObservableSlot' 'Spec2-Layout' 'Spec2-Transmission'  'Spec2-Commands' 'Spec2-Core' 'Spec2-CommandLine' 'Spec2-Adapters-Stub' 'Spec2-Interactions' 'Spec2-Commander2' 'Spec2-Commander2-ContactBook' 'Spec2-Commander2-ContactBook-Extensions' ).
-	spec group: 'Tests' with: #( 'Core' 'Spec2-Tests' 'Spec2-Commander2-Tests' ).
-	spec group: 'MorphicSupport' with: #( 'Tests' 'Spec2-CodePresenter' 'Spec2-Adapters-Morphic' 'Spec2-MorphicPresenters' 'Spec2-Examples'  'Spec2-Tools' ).
-	spec group: 'MorphicSupportTests' with: #( 'MorphicSupport' 'Spec2-CodePresenter-Tests'  'Spec2-Tools-Tests' 'Spec2-Adapters-Morphic-Tests' 'Spec2-MorphicPresenters-Tests' 'Spec2-Morphic-Backend-Tests' 'Spec2-Backend-Tests' ).
-	spec group: 'default' with: #( 'MorphicSupportTests' ).
+	spec group: 'Core' with: #(
+		'Spec2-ObservableSlot' 
+		'Spec2-Layout' 
+		'Spec2-Transmission'
+		'Spec2-Commands' 
+		'Spec2-Core' 
+		'Spec2-CommandLine' 
+		'Spec2-Code' 
+		'Spec2-Adapters-Stub' 
+		'Spec2-Interactions' 
+		'Spec2-Commander2' ).
+	spec group: 'Morphic' with: #(
+		'Core' 
+		'Spec2-Morphic'
+		'Spec2-Adapters-Morphic' 
+		'Spec2-Code-Morphic' ).
+	spec group: 'MorphicSupport' with: #( 
+		'Core'
+		'Morphic'
+		'Spec2-Examples'
+		'Spec2-Commander2-ContactBook' 
+		'Spec2-Commander2-ContactBook-Extensions'  
+		'Spec2-Tools' ).
+	spec group: 'Tests' with: #( 
+		'Core' 
+		'Spec2-Tests' 
+		'Spec2-Commander2-Tests').
+	spec group: 'MorphicSupportTests' with: #( 
+		'MorphicSupport' 
+		'Spec2-Code-Tests'  
+		'Spec2-Tools-Tests' 
+		'Spec2-Adapters-Morphic-Tests' 
+		'Spec2-Morphic-Tests' 
+		'Spec2-Morphic-Backend-Tests' 
+		'Spec2-Backend-Tests' ).
+	spec group: 'default' with: #(
+		'Core'
+		'Morphic' 
+		'MorphicSupport'
+		'Spec2-Tests'
+		'Spec2-Morphic-Tests'
+		'MorphicSupportTests' ).
 
 	spec for: #'pharo8.x' do: [
 		spec
 			package: 'Spec2-Tools' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Tools-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Tools') ];
 			package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Tools') ] ].
-		
-	
 ]
 
 { #category : #dependencies }
