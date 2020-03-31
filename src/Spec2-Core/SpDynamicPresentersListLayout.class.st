@@ -4,6 +4,9 @@ I am an abstract layout builder for a DynamicComposablePresenter built using Dyn
 Class {
 	#name : #SpDynamicPresentersListLayout,
 	#superclass : #Object,
+	#instVars : [
+		'constraintsBlock'
+	],
 	#category : #'Spec2-Core-Dynamic-Builder'
 }
 
@@ -17,6 +20,16 @@ SpDynamicPresentersListLayout >> buildFor: aDynamicPresentersListBuilder [
 { #category : #building }
 SpDynamicPresentersListLayout >> buildLayoutFor: aDynamicPresentersListBuilder [
 	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+SpDynamicPresentersListLayout >> constraintsBlock [
+	^ constraintsBlock ifNil: [ constraintsBlock := [ :c |  ] ]
+]
+
+{ #category : #accessing }
+SpDynamicPresentersListLayout >> constraintsBlock: anObject [
+	constraintsBlock := anObject
 ]
 
 { #category : #building }
