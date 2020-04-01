@@ -22,7 +22,19 @@ SpTextPresenterTest >> testEditable [
 		control: false 
 		option: false.
 	
-	self assert: presenter text equals: ''
+	self assert: presenter text equals: ''.
+	
+	presenter beEditable.
+	
+	presenter adapter 
+		keyPressed: $x asciiValue 
+		shift: false 
+		meta: false 
+		control: false 
+		option: false.
+	
+	self assert: presenter text equals: 'x'.
+
 ]
 
 { #category : #tests }

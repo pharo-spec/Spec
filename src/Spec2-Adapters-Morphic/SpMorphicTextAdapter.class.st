@@ -55,12 +55,13 @@ SpMorphicTextAdapter >> buildWidget [
 		registerScrollChanges: #scrollValueChanged:;
 		yourself.
 	
-	newWidget textArea readOnly: self presenter isEditable not.
+	self setEditable: self presenter isEditable to: newWidget.
 	
 	self setEditingModeFor: newWidget.
 	
 	self presenter whenTextChangedDo: [ :text | self setText: text to: newWidget ].
 	self presenter whenPlaceholderChangedDo: [ :text | self setGhostText: text to: newWidget ].
+	self presenter whenEditableChangedDo: [ :value | self setEditable: value to: newWidget ].
 	
 	^ newWidget
 ]
@@ -78,6 +79,12 @@ SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
 	^ SpBindings
 		value: self model application adapterBindings
 		during: [ menuPresenter buildWithSpec ]
+]
+
+{ #category : #private }
+SpMorphicTextAdapter >> setEditable: aBoolean to: aWidget [
+
+	aWidget textArea readOnly: aBoolean not
 ]
 
 { #category : #private }

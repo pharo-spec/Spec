@@ -28,7 +28,7 @@ Class {
 		'#propagateNaturalWidth',
 		'#propagateNaturalHeight',
 		'#scrollBarStyles',
-		'#editable'
+		'#editable => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }
@@ -185,6 +185,12 @@ SpTextPresenter >> scrollValue: aPoint [
 	"Set the scroll position"
 
 	^ scrollValue := aPoint
+]
+
+{ #category : #'api-events' }
+SpTextPresenter >> whenEditableChangedDo: aBlock [
+
+	self property: #editable whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
