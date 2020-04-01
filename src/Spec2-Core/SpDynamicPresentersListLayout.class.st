@@ -5,7 +5,7 @@ Class {
 	#name : #SpDynamicPresentersListLayout,
 	#superclass : #Object,
 	#instVars : [
-		'constraintsBlock'
+		'sublayoutConstraints'
 	],
 	#category : #'Spec2-Core-Dynamic-Builder'
 }
@@ -22,16 +22,6 @@ SpDynamicPresentersListLayout >> buildLayoutFor: aDynamicPresentersListBuilder [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
-SpDynamicPresentersListLayout >> constraintsBlock [
-	^ constraintsBlock ifNil: [ constraintsBlock := [ :c |  ] ]
-]
-
-{ #category : #accessing }
-SpDynamicPresentersListLayout >> constraintsBlock: anObject [
-	constraintsBlock := anObject
-]
-
 { #category : #building }
 SpDynamicPresentersListLayout >> instVarNamesFrom: aDynamicPresentersListBuilder [
 	^ aDynamicPresentersListBuilder instVarNames , aDynamicPresentersListBuilder nullPresentersInstVarNames
@@ -41,4 +31,14 @@ SpDynamicPresentersListLayout >> instVarNamesFrom: aDynamicPresentersListBuilder
 SpDynamicPresentersListLayout >> nullPresentersNeededFor: aDynamicPresentersListBuilder [
 	"Compute the number of empty presenters required to fill additional space if the number of model objects modulo the number of columns/rows is not equals to 0."
 	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+SpDynamicPresentersListLayout >> sublayoutConstraints [
+	^ sublayoutConstraints ifNil: [ sublayoutConstraints := [ :c |  ] ]
+]
+
+{ #category : #accessing }
+SpDynamicPresentersListLayout >> sublayoutConstraints: anObject [
+	sublayoutConstraints := anObject
 ]
