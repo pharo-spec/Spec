@@ -13,6 +13,6 @@ SpNullApplication class >> reset [
 	<script>
 	
 	DefaultApplication ifNotNil: [ 
-		DefaultApplication closeAllWindows ].
+		DefaultApplication reset ].
 	DefaultApplication := nil
 ]

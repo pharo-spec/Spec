@@ -24,7 +24,10 @@ Class {
 	#classTraits : 'SpTHaveWrappingScrollBars classTrait',
 	#instVars : [
 		'#scrollValue => SpObservableSlot',
-		'#editionContextMenu => SpObservableSlot'
+		'#editionContextMenu => SpObservableSlot',
+		'#propagateNaturalWidth',
+		'#propagateNaturalHeight',
+		'#scrollBarStyles'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }
@@ -117,10 +120,23 @@ SpTextPresenter >> hasEditionContextMenu [
 SpTextPresenter >> initialize [ 
 
 	super initialize.
+	self initializeTHaveWrappingScrollBars.
 	self flag: #REVIEW. "We really need scrollValue?"
-	scrollValue := 0 @ 0.	
+	scrollValue := 0@0.	
 	self withScrollBars.
 	self withEditionContextMenu
+]
+
+{ #category : #testing }
+SpTextPresenter >> isPropagateNaturalHeight [
+
+	^ propagateNaturalHeight
+]
+
+{ #category : #testing }
+SpTextPresenter >> isPropagateNaturalWidth [
+
+	^ propagateNaturalWidth
 ]
 
 { #category : #initialization }

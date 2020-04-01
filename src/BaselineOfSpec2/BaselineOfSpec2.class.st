@@ -61,12 +61,12 @@ BaselineOfSpec2 >> baseline: spec [
 		'Spec2-Commands' 
 		'Spec2-Core' 
 		'Spec2-CommandLine' 
+		'Spec2-Code' 
 		'Spec2-Adapters-Stub' 
 		'Spec2-Interactions' 
 		'Spec2-Commander2' ).
 	spec group: 'Morphic' with: #(
 		'Core' 
-		'Spec2-Code' 
 		'Spec2-Morphic'
 		'Spec2-Adapters-Morphic' 
 		'Spec2-Code-Morphic' ).

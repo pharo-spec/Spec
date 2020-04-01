@@ -63,12 +63,12 @@ SpBoxConstraints >> height [
 ]
 
 { #category : #accessing }
-SpBoxConstraints >> height: anObject [
+SpBoxConstraints >> height: aNumber [
 	"height of component.
 	 this just has sense in the case of expand=false"
 
 	self expand: false.
-	height := anObject
+	height := aNumber
 ]
 
 { #category : #initialization }
