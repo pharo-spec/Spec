@@ -12,7 +12,8 @@ Class {
 	#name : #SpCommand,
 	#superclass : #CmUICommand,
 	#instVars : [
-		'buildPresenterBlock'
+		'buildPresenterBlock',
+		'presenter'
 	],
 	#category : #'Spec2-Commander2-Core'
 }
@@ -26,7 +27,7 @@ SpCommand >> asButtonPresenter [
 
 { #category : #'presenter building' }
 SpCommand >> buildPresenter [
-	^ self buildPresenterBlock value: self
+	^ presenter := self buildPresenterBlock value: self
 ]
 
 { #category : #accessing }
@@ -81,4 +82,14 @@ SpCommand >> displayIn: aMenuGroupOrPresenter do: aBlock [
 SpCommand >> initialize [
 	super initialize.
 	self configureAsToolBarButton
+]
+
+{ #category : #accessing }
+SpCommand >> presenter [
+	^ presenter
+]
+
+{ #category : #updating }
+SpCommand >> updateEnableStatus [ 
+    self presenter enabled: self canBeExecuted
 ]
