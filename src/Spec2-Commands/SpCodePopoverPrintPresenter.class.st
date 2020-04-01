@@ -96,7 +96,7 @@ SpCodePopoverPrintPresenter >> initializePresenters [
 				yourself);
 		yourself.
 
-	self
+	text
 		bindKeyCombination: Character cr asKeyCombination | $p meta 
 			toAction: [ self dismissAndPrint ];
 		bindKeyCombination: $i meta 
@@ -111,9 +111,9 @@ SpCodePopoverPrintPresenter >> initializeText [
 
 	string := self objectAsString.
 	numLines := string lines size.	
-	text := "numLines = 1 
-		ifTrue: [ self newTextSingleLine: string ]
-		ifFalse: [ "self newTextMultiLine: string withScrollBars: numLines >= self class linesToShow" ]".
+	text := self 
+		newTextMultiLine: string 
+		withScrollBars: numLines >= self class linesToShow" ]".
 		
 	text 
 		addStyle: 'code';
@@ -126,11 +126,12 @@ SpCodePopoverPrintPresenter >> newTextMultiLine: aString withScrollBars: withScr
 
 	newText := self newText
 		propagateNaturalWidth: true;
-		enabled: false;
+		editable: false;
 		text: aString;
 		yourself.
 
-	withScrollBars ifTrue: [ newText addScrollBarStyle: 'scrollbarPopoverLarge' ].
+	withScrollBars ifTrue: [ 
+		newText addScrollBarStyle: 'scrollbarPopoverLarge' ].
 	
 	^ newText
 ]

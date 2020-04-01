@@ -10,6 +10,22 @@ SpTextPresenterTest >> classToTest [
 ]
 
 { #category : #tests }
+SpTextPresenterTest >> testEditable [
+
+	presenter beNotEditable.
+	self openInstance.
+	
+	presenter adapter 
+		keyPressed: $x asciiValue 
+		shift: false 
+		meta: false 
+		control: false 
+		option: false.
+	
+	self assert: presenter text equals: ''
+]
+
+{ #category : #tests }
 SpTextPresenterTest >> testInsertAt [
 	
 	self initializationText.

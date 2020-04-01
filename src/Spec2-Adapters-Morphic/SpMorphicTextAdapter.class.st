@@ -55,6 +55,8 @@ SpMorphicTextAdapter >> buildWidget [
 		registerScrollChanges: #scrollValueChanged:;
 		yourself.
 	
+	newWidget textArea readOnly: self presenter isEditable not.
+	
 	self setEditingModeFor: newWidget.
 	
 	self presenter whenTextChangedDo: [ :text | self setText: text to: newWidget ].
