@@ -13,6 +13,12 @@ Class {
 }
 
 { #category : #accessing }
+SpCodePopoverPrintPresenter class >> linesToShow [
+
+	^ 15
+]
+
+{ #category : #accessing }
 SpCodePopoverPrintPresenter class >> maxLengthShownInPopover [
 
 	^ 80
@@ -77,19 +83,19 @@ SpCodePopoverPrintPresenter >> initializePresenters [
 		borderWidth: 5;
 		add: text;
 		add: (SpBoxLayout newVertical
-			add: (self newButton 
-					icon: (self application iconNamed: #smallPrintIt);
-					action: [ self dismissAndPrint ];
-					yourself)
-				expand: false;
-			add: (self newButton 
-					icon: (self application iconNamed: #smallInspectIt);
-					action: [ self dismissAndInspect ];
-					yourself)
-				expand: false;
-			yourself);
+				add: (self newButton 
+						icon: (self application iconNamed: #smallPrintIt);
+						action: [ self dismissAndPrint ];
+						yourself)
+					expand: false;
+				add: (self newButton 
+						icon: (self application iconNamed: #smallInspectIt);
+						action: [ self dismissAndInspect ];
+						yourself)
+					expand: false;
+				yourself);
 		yourself.
-		
+
 	self
 		bindKeyCombination: Character cr asKeyCombination | $p meta 
 			toAction: [ self dismissAndPrint ];
@@ -101,20 +107,44 @@ SpCodePopoverPrintPresenter >> initializePresenters [
 
 { #category : #initialization }
 SpCodePopoverPrintPresenter >> initializeText [
-	| string | 
+	| string numLines |
 
 	string := self objectAsString.
-	
-	text := self newText
-		addStyle: 'code';
-		addStyle: 'codePopover';
-		propagateNaturalWidth: true;
-		text: string;
-		enabled: false;
-		yourself.
+	numLines := string lines size.	
+	text := "numLines = 1 
+		ifTrue: [ self newTextSingleLine: string ]
+		ifFalse: [ "self newTextMultiLine: string withScrollBars: numLines >= self class linesToShow" ]".
 		
-	string lines size > 15 
-		ifTrue: [ text addScrollBarStyle: 'scrollbarPopoverLarge' ]
+	text 
+		addStyle: 'code';
+		addStyle: 'codePopover'
+]
+
+{ #category : #initialization }
+SpCodePopoverPrintPresenter >> newTextMultiLine: aString withScrollBars: withScrollBars [
+	| newText |		
+
+	newText := self newText
+		propagateNaturalWidth: true;
+		enabled: false;
+		text: aString;
+		yourself.
+
+	withScrollBars ifTrue: [ newText addScrollBarStyle: 'scrollbarPopoverLarge' ].
+	
+	^ newText
+]
+
+{ #category : #initialization }
+SpCodePopoverPrintPresenter >> newTextSingleLine [
+		
+	^ self newTextInput
+]
+
+{ #category : #initialization }
+SpCodePopoverPrintPresenter >> newTextSingleLine: aString [
+		
+	^ self newLabel label: aString
 ]
 
 { #category : #accessing }
@@ -129,17 +159,20 @@ SpCodePopoverPrintPresenter >> objectAsPrintString [
 
 { #category : #accessing }
 SpCodePopoverPrintPresenter >> objectAsString [
-	| string lines |
+	| string |
 	
 	string := self basicObjectAsString.
-	string size <= self class maxLengthShownInPopover ifTrue: [ ^ string ].
+	string size <= self class maxLengthShownInPopover 
+		ifTrue: [ ^ string ].
 	
-	lines := string withNoLineLongerThan: self class maxLengthShownInPopover.
-	^ String streamContents: [ :stream |
-			lines size > 1 ifTrue: [ 
-				lines := (self basicObjectAsString 
-					groupsOf: self class maxLengthShownInPopover 
-					atATimeCollect: [ :group | group ]) ].
+	(string includesAny: Character separators) 
+		ifTrue: [ ^ string withNoLineLongerThan: self class maxLengthShownInPopover ].
+	
+	^ String streamContents: [ :stream | 
+			| lines |
+			lines := self basicObjectAsString 
+				groupsOf: self class maxLengthShownInPopover 
+				atATimeCollect: [ :group | group ].
 			lines
 				do: [ :each | stream << each ]
 				separatedBy: [ stream cr ] ]

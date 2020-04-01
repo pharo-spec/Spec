@@ -41,17 +41,11 @@ SpCodePopoverPrintPresenterTest >> testObjectAsString [
 	presenter setModelBeforeInitialization: string.
 	self 
 		assert: presenter objectAsString 
-		equals: string.
+		equals: string printString.
 		
 	string := String loremIpsum withNoLineLongerThan: 10.
 	presenter setModelBeforeInitialization: string.
 	self 
 		assert: presenter objectAsString 
-		equals: string.
-		
-	string := String loremIpsum withNoLineLongerThan: 100 factorial.
-	presenter setModelBeforeInitialization: string.
-	self 
-		assert: presenter objectAsString 
-		equals: string	
+		equals: string printString
 ]
