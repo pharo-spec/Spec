@@ -41,13 +41,6 @@ SpWorldPresenter >> addPresenterIn: container withSpecLayout: aSpec [
 		with: { container. aSpec }
 ]
 
-{ #category : #factory }
-SpWorldPresenter >> buildWidget [
-	^ SpMorphPresenter new
-		morph: self currentWorld;
-		yourself
-]
-
 { #category : #private }
 SpWorldPresenter >> defaultInitialExtent [
 	
