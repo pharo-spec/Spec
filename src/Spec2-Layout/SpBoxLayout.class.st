@@ -1,3 +1,13 @@
+"
+I am a layout that will arrange presenters in a box, vertically or horizontally.
+My elements can be added at the begining or at the end of the box (see add: and addLast: method families).
+This layout can be created with certain properties: 
+
+- borderWidth: the border to let empty before placing the presenters. 
+- spacing: the space to let between presenters.
+- homogeneous: if homogeneous, the layout will try to give same space to each presenter included.
+- hAlign/vAlign: how the presenters will be aligned in the layout.
+"
 Class {
 	#name : #SpBoxLayout,
 	#superclass : #SpExecutableLayout,
@@ -5,7 +15,9 @@ Class {
 		'direction',
 		'spacing',
 		'borderWidth',
-		'homogeneous'
+		'homogeneous',
+		'vAlign',
+		'hAlign'
 	],
 	#category : #'Spec2-Layout-Box'
 }
@@ -177,6 +189,46 @@ SpBoxLayout >> direction [
 	^ direction
 ]
 
+{ #category : #accessing }
+SpBoxLayout >> hAlign [
+	"I define the vertical alignment of the widgets in the layout.
+	 aligns can be start, center and end. 
+	 To set this value, you can use vAlignStart, vAlignCenter, vAlignEnd"
+
+	^ hAlign
+]
+
+{ #category : #accessing }
+SpBoxLayout >> hAlign: anAlignment [
+	"Sets the align property. See #hAlign to details"
+	
+	hAlign := anAlignment
+]
+
+{ #category : #accessing }
+SpBoxLayout >> hAlignCenter [
+
+	self hAlign: SpLayoutWidgetAlignment center
+]
+
+{ #category : #accessing }
+SpBoxLayout >> hAlignEnd [
+
+	self hAlign: SpLayoutWidgetAlignment end
+]
+
+{ #category : #accessing }
+SpBoxLayout >> hAlignStart [
+
+	self hAlign: SpLayoutWidgetAlignment start
+]
+
+{ #category : #testing }
+SpBoxLayout >> hasAlignment [
+
+	^ vAlign notNil or: [ hAlign notNil ]
+]
+
 { #category : #private }
 SpBoxLayout >> homogeneous: aBoolean [
 
@@ -233,4 +285,38 @@ SpBoxLayout >> spacing [
 SpBoxLayout >> spacing: aNumber [
 
 	spacing := aNumber
+]
+
+{ #category : #accessing }
+SpBoxLayout >> vAlign [
+	"I define the vertical alignment of the widgets in the layout.
+	 aligns can be start, center and end. 
+	 To set this value, you can use vAlignStart, vAlignCenter, vAlignEnd"
+
+	^ vAlign
+]
+
+{ #category : #accessing }
+SpBoxLayout >> vAlign: anAlignment [
+	"Sets the align property. See #vAlign to details"
+
+	vAlign := anAlignment
+]
+
+{ #category : #accessing }
+SpBoxLayout >> vAlignCenter [
+
+	self vAlign: SpLayoutWidgetAlignment center
+]
+
+{ #category : #accessing }
+SpBoxLayout >> vAlignEnd [
+
+	self vAlign: SpLayoutWidgetAlignment end
+]
+
+{ #category : #accessing }
+SpBoxLayout >> vAlignStart [
+
+	self vAlign: SpLayoutWidgetAlignment start
 ]
