@@ -25,3 +25,10 @@ SpMorphicWorldAdapter >> buildWidget [
 SpMorphicWorldAdapter >> centered [
 	"Do nothing. I will fill the full world"
 ]
+
+{ #category : #accessing }
+SpMorphicWorldAdapter >> title: aString [ 
+	"Update the host window title"
+
+	DisplayScreen hostWindowTitle: aString
+]
