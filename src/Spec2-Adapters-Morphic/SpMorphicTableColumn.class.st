@@ -35,6 +35,12 @@ SpMorphicTableColumn >> isSortable [
 	^ self model isSortable
 ]
 
+{ #category : #testing }
+SpMorphicTableColumn >> isSorted [
+
+	^ self sortingStrategy state isSorted
+]
+
 { #category : #accessing }
 SpMorphicTableColumn >> model [
 	^ model
