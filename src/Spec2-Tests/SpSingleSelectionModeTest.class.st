@@ -19,6 +19,20 @@ SpSingleSelectionModeTest >> testDropListSelectionIsNotAffectedBySorting [
 ]
 
 { #category : #tests }
+SpSingleSelectionModeTest >> testDropListSelectionIsResetAfterItemsAssignment [
+	presenter := SpDropListPresenter new.
+	presenter
+		items: (1 to: 10) asArray;
+		selectIndex: 1.
+
+	presenter items: #(2 5).
+
+	self 
+		assert: presenter selection selectedItem
+		equals: nil
+]
+
+{ #category : #tests }
 SpSingleSelectionModeTest >> testGetRightElementAfterSortingOfElementsChanged [
 	presenter := SpTablePresenter new. "use a TablePresenter since ListPresenter cannot sort"
 	presenter 
@@ -31,6 +45,20 @@ SpSingleSelectionModeTest >> testGetRightElementAfterSortingOfElementsChanged [
 		selectIndex: 3.
 	
 	self assert: presenter selection selectedItem equals: 8
+]
+
+{ #category : #tests }
+SpSingleSelectionModeTest >> testSelectionIsResetAfterItemsAssignment [
+	presenter
+		beSingleSelection;
+		openWithSpec;
+		selectIndex: 1.
+
+	presenter items: #(2 5).
+
+	self 
+		assert: presenter selection selectedItem 
+		equals: nil
 ]
 
 { #category : #tests }

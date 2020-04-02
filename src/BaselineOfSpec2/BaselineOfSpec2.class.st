@@ -24,6 +24,7 @@ BaselineOfSpec2 >> baseline: spec [
 			package: 'Spec2-Commands' with: [ spec requires: #('Commander2') ];
 			package: 'Spec2-Layout' with: [ spec requires: #('Spec2-ObservableSlot') ];
 			package: 'Spec2-Transmission';
+			package: 'Spec2-Transmission-Tests' with: [ spec requires: #('Spec2-Transmission') ];
 			package: 'Spec2-Code' with: [ spec requires: #('Complishon') ];
 			package: 'Spec2-Code-Tests' with: [ spec requires: #('Spec2-Code') ];
 			package: 'Spec2-Adapters-Morphic' with: [ spec requires: #( 'Spec2-Core' ) ];
@@ -80,7 +81,8 @@ BaselineOfSpec2 >> baseline: spec [
 	spec group: 'Tests' with: #( 
 		'Core' 
 		'Spec2-Tests' 
-		'Spec2-Commander2-Tests').
+		'Spec2-Commander2-Tests'
+		'Spec2-Transmission-Tests').
 	spec group: 'MorphicSupportTests' with: #( 
 		'MorphicSupport' 
 		'Spec2-Code-Tests'  
@@ -93,8 +95,7 @@ BaselineOfSpec2 >> baseline: spec [
 		'Core'
 		'Morphic' 
 		'MorphicSupport'
-		'Spec2-Tests'
-		'Spec2-Morphic-Tests'
+		'Tests'
 		'MorphicSupportTests' ).
 
 	spec for: #'pharo8.x' do: [

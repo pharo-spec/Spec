@@ -54,12 +54,17 @@ SpClassMethodBrowser >> classes: aList [
 
 { #category : #initialization }
 SpClassMethodBrowser >> connectPresenters [
-	classListPresenter transmitTo: methodListPresenter transform: [ :class | class methods sort: #selector descending ] postTransmission: [ :destination | destination selectIndex: 1 ].
-
+	classListPresenter
+		transmitTo: methodListPresenter
+		transform: [ :class | class ifNil: [ #() ] ifNotNil: [ class methods sort: #selector descending ] ]
+		postTransmission: [ :destination | destination selectIndex: 1 ].
+		
 	methodListPresenter
 		transmitTo: textPresenter
 		transform: [ :method | method ifNil: [ '' ] ifNotNil: #sourceCode ]
-		postTransmission: [ :destination :origin :transmited | transmited ifNotNil: [ destination behavior: transmited methodClass ] ]
+		postTransmission:
+			[ :destination :origin :transmited | 
+			transmited ifNotNil: [ destination behavior: transmited methodClass ] ]
 ]
 
 { #category : #initialization }
