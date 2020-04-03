@@ -19,9 +19,26 @@ SpMorphicWorldAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
 SpMorphicWorldAdapter >> buildWidget [
 
 	^ self presenter currentWorld 
+		borderColor: self theme backgroundColor;
+		borderWidth: 4;
+		yourself
 ]
 
 { #category : #api }
 SpMorphicWorldAdapter >> centered [
 	"Do nothing. I will fill the full world"
+]
+
+{ #category : #private }
+SpMorphicWorldAdapter >> newContainerMorph [
+	^ super newContainerMorph 
+		adoptPaneColor: self theme backgroundColor;
+		yourself
+]
+
+{ #category : #accessing }
+SpMorphicWorldAdapter >> title: aString [ 
+	"Update the host window title"
+
+	DisplayScreen hostWindowTitle: aString
 ]
