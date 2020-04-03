@@ -50,7 +50,8 @@ BaselineOfSpec2 >> baseline: spec [
 			package: 'Spec2-Tools-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Tools') ];
 			package: 'Spec2-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Morphic-Tests' with: [ spec requires: #('Spec2-Morphic') ];
-			package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Morphic') ].
+			package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Morphic') ];
+			package: 'Spec2-Deprecated'.
 			"This will extend the help tool, which in boostrap will be loaded a lot later."
 			"package: 'Spec2-Help';"		
 		 ].
@@ -97,6 +98,9 @@ BaselineOfSpec2 >> baseline: spec [
 		'MorphicSupport'
 		'Tests'
 		'MorphicSupportTests' ).
+	spec group: 'DefaultWithDeprecated' with: #( 
+		'default' 
+		'Spec2-Deprecated' ).
 
 	spec for: #'pharo8.x' do: [
 		spec
