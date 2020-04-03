@@ -98,9 +98,6 @@ BaselineOfSpec2 >> baseline: spec [
 		'MorphicSupport'
 		'Tests'
 		'MorphicSupportTests' ).
-	spec group: 'DefaultWithDeprecated' with: #( 
-		'default' 
-		'Spec2-Deprecated' ).
 
 	spec for: #'pharo8.x' do: [
 		spec
