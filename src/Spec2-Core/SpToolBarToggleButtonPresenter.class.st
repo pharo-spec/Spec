@@ -2,34 +2,34 @@
 A toggle button which is either selected or unselected
 "
 Class {
-	#name : #SpToolBarToggleButton,
-	#superclass : #SpToolBarButton,
+	#name : #SpToolBarToggleButtonPresenter,
+	#superclass : #SpToolBarButtonPresenter,
 	#instVars : [
-		'selected'
+		'#selected => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Toolbar'
 }
 
 { #category : #specs }
-SpToolBarToggleButton class >> adapterName [
+SpToolBarToggleButtonPresenter class >> adapterName [
 
 	^ #ToolBarToggleButtonAdapter
 ]
 
 { #category : #selection }
-SpToolBarToggleButton >> beSelected [
+SpToolBarToggleButtonPresenter >> beSelected [
 	
 	self setSelection: true
 ]
 
 { #category : #selection }
-SpToolBarToggleButton >> beUnselected [
+SpToolBarToggleButtonPresenter >> beUnselected [
 	
 	self setSelection: false
 ]
 
 { #category : #execution }
-SpToolBarToggleButton >> execute: state [
+SpToolBarToggleButtonPresenter >> execute: state [
 
 	self setSelection: state.
 	self action 
@@ -38,20 +38,20 @@ SpToolBarToggleButton >> execute: state [
 ]
 
 { #category : #initialization }
-SpToolBarToggleButton >> initialize [
+SpToolBarToggleButtonPresenter >> initialize [
 
 	super initialize.
 	selected := false
 ]
 
-{ #category : #execution }
-SpToolBarToggleButton >> isSelected [
+{ #category : #testing }
+SpToolBarToggleButtonPresenter >> isSelected [
 
 	^ selected
 ]
 
 { #category : #selection }
-SpToolBarToggleButton >> setSelection: aBoolean [
+SpToolBarToggleButtonPresenter >> setSelection: aBoolean [
 
 	selected := aBoolean.
 	self changed: #isSelected

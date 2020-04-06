@@ -34,7 +34,7 @@ SpTestPresenterWithToolbar >> initializePresenters [
 SpTestPresenterWithToolbar >> initializeWindow: aWindowPresenter [
 	| toolbar |
 	toolbar := SpToolBarPresenter new
-		addItemLeft: (SpToolBarButton new
+		addItemLeft: (SpToolBarButtonPresenter new
 			label: 'toolbar button';
 			yourself);
 		yourself.
