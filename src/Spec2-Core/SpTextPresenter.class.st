@@ -153,18 +153,6 @@ SpTextPresenter >> isEditable [
 	^ editable
 ]
 
-{ #category : #testing }
-SpTextPresenter >> isPropagateNaturalHeight [
-
-	^ propagateNaturalHeight
-]
-
-{ #category : #testing }
-SpTextPresenter >> isPropagateNaturalWidth [
-
-	^ propagateNaturalWidth
-]
-
 { #category : #initialization }
 SpTextPresenter >> registerEvents [
 

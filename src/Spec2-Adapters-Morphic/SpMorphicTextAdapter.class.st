@@ -56,8 +56,8 @@ SpMorphicTextAdapter >> buildWidget [
 		yourself.
 	
 	self setEditable: self presenter isEditable to: newWidget.
-	
 	self setEditingModeFor: newWidget.
+	self setText: self presenter text to: newWidget.
 	
 	self presenter whenTextChangedDo: [ :text | self setText: text to: newWidget ].
 	self presenter whenPlaceholderChangedDo: [ :text | self setGhostText: text to: newWidget ].
@@ -96,7 +96,34 @@ SpMorphicTextAdapter >> setGhostText: text to: aWidget [
 { #category : #private }
 SpMorphicTextAdapter >> setText: text to: aWidget [
 
-	aWidget setText: text
+	aWidget setText: text.
+	self updateExtentPropagationOf: text on: aWidget
+
+]
+
+{ #category : #private }
+SpMorphicTextAdapter >> updateExtentPropagationOf: string on: aWidget [
+	| stringMorph width height |
+
+	(self presenter isPropagateNaturalWidth 
+		or: [ self presenter isPropagateNaturalHeight ])
+		ifFalse: [ ^ self ].
+
+	stringMorph := RubEditingArea new 
+		font: self theme textFont;
+		updateTextWith: string.
+
+	width := stringMorph width + 12 min: self currentWorld width / 3.
+	self presenter isPropagateNaturalWidth 
+		ifTrue: [ aWidget width: width ].
+
+	self presenter isPropagateNaturalHeight 
+		ifTrue: [ 
+			height := (stringMorph
+				beWrapped;
+				width: width;
+				yourself) height + 2 min: self currentWorld height / 3. 
+			aWidget height: height ]
 ]
 
 { #category : #emulating }

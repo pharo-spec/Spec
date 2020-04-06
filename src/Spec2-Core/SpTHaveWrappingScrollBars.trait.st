@@ -45,6 +45,18 @@ SpTHaveWrappingScrollBars >> initializeTHaveWrappingScrollBars [
 	self propagateNaturalHeight: false
 ]
 
+{ #category : #testing }
+SpTHaveWrappingScrollBars >> isPropagateNaturalHeight [
+
+	^ propagateNaturalHeight
+]
+
+{ #category : #testing }
+SpTHaveWrappingScrollBars >> isPropagateNaturalWidth [
+
+	^ propagateNaturalWidth
+]
+
 { #category : #accessing }
 SpTHaveWrappingScrollBars >> propagateNaturalHeight: aBoolean [
 	"Natural height propagation means that the height of the text presenter will follow the 

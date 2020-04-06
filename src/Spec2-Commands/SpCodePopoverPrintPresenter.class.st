@@ -93,7 +93,8 @@ SpCodePopoverPrintPresenter >> initializePresenters [
 						action: [ self dismissAndInspect ];
 						yourself)
 					expand: false;
-				yourself);
+				yourself)
+			expand: false;
 		yourself.
 
 	text
