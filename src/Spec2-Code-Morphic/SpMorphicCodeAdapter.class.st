@@ -44,6 +44,18 @@ SpMorphicCodeAdapter >> classOrMetaClass: aClass [
 		withBehavior: aClass
 ]
 
+{ #category : #private }
+SpMorphicCodeAdapter >> computeOriginFor: aMorph [
+	| desiredTop desiredLeft |
+
+	aMorph textArea scrollSelectionIntoView: nil.
+	desiredTop := (self originMorphFor: aMorph) positionInWorld y - 6.
+						"unclear why 6 is the magic number"
+	desiredLeft := (self originMorphFor: aMorph) right + aMorph positionInWorld x + 6.
+	
+	^ desiredLeft @ desiredTop
+]
+
 { #category : #'widget API' }
 SpMorphicCodeAdapter >> doItContext [
 
@@ -73,6 +85,32 @@ SpMorphicCodeAdapter >> hasSyntaxHighlightEnabled [
 	"this is used just for testing"
 	
 	^ self presenter hasSyntaxHighlight
+]
+
+{ #category : #'widget API' }
+SpMorphicCodeAdapter >> insertPopoverAfterCurrentSelection: aPresenter [
+	| popover pos |
+
+	self widgetDo: [ :w |
+
+		popover := self presenter newPopover
+			bePositionRight;
+			presenter: aPresenter;
+			buildWithSpec;
+			yourself.
+	
+		pos := self computeOriginFor: w.
+		popover popupPointingTo: (pos corner: (pos + (1@15))).
+		popover takeKeyboardFocus ]
+]
+
+{ #category : #private }
+SpMorphicCodeAdapter >> originMorphFor: aMorph [
+
+	(aMorph textArea hasSelection not and: [ 
+		aMorph textArea hasHighlightSegment ]) ifTrue: [ 
+			^ aMorph textArea getHighlightSegment ].
+	^ aMorph textArea cursor
 ]
 
 { #category : #NOCompletion }

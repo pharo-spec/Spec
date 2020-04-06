@@ -821,6 +821,12 @@ SpPresenter >> newNumberInput [
 ]
 
 { #category : #widgets }
+SpPresenter >> newPopover [
+
+	^ self instantiate: SpPopoverPresenter
+]
+
+{ #category : #widgets }
 SpPresenter >> newProgressBar [
 	^ self instantiate: SpProgressBarPresenter
 ]

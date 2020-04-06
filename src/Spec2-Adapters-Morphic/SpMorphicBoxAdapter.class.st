@@ -130,13 +130,13 @@ SpMorphicBoxAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel 
 	| childMorph |
 
 	childMorph := self buildMorph: aPresenter constraints: constraints.	
+
+	aPanel extent: (aPanel width max: childMorph width)@(aPanel height max: childMorph height).
+
 	constraints isPlacedAtStart
 		ifTrue: [ startPanel addMorphBack: childMorph ]
 		ifFalse: [ endPanel addMorphBack: childMorph ].
-	
-	aPanel height: (aPanel height max: childMorph height).
-	aPanel width: (aPanel width max: childMorph width).
-		
+
 	^ childMorph
 ]
 

@@ -12,7 +12,8 @@ Class {
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
 		'#presenter => SpObservableSlot',
-		'#position'
+		'#position',
+		'#relativeTo'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -26,25 +27,25 @@ SpPopoverPresenter class >> adapterName [
 { #category : #api }
 SpPopoverPresenter >> bePositionBottom [
 
-	position := SpPopoverPosition bottom
+	self position: SpPopoverPosition bottom
 ]
 
 { #category : #api }
 SpPopoverPresenter >> bePositionLeft [
 
-	position := SpPopoverPosition left
+	self position: SpPopoverPosition left
 ]
 
 { #category : #api }
 SpPopoverPresenter >> bePositionRight [
 
-	position := SpPopoverPosition right
+	self position: SpPopoverPosition right
 ]
 
 { #category : #api }
 SpPopoverPresenter >> bePositionTop [
 
-	position := SpPopoverPosition top
+	self position: SpPopoverPosition top
 ]
 
 { #category : #api }
@@ -62,14 +63,18 @@ SpPopoverPresenter >> initialize [
 
 { #category : #api }
 SpPopoverPresenter >> popup [
-		
+	"shows the popup, relative to #relativeTo"
+
+	self adapter ifNil: [ self buildWithSpec ].
 	self withAdapterDo: [ :anAdapter |
 		anAdapter popup ]
 ]
 
 { #category : #api }
 SpPopoverPresenter >> popupPointingTo: aRectangle [
-		
+	"shows the popup, relative to #relativeTo, and pointing to aRectangle"
+
+	self adapter ifNil: [ self buildWithSpec ].
 	self withAdapterDo: [ :anAdapter |
 		anAdapter popupPointingTo: aRectangle ]
 ]
@@ -78,6 +83,12 @@ SpPopoverPresenter >> popupPointingTo: aRectangle [
 SpPopoverPresenter >> position [
 
 	^ position
+]
+
+{ #category : #api }
+SpPopoverPresenter >> position: aPosition [
+
+	position := aPosition
 ]
 
 { #category : #api }
@@ -90,6 +101,18 @@ SpPopoverPresenter >> presenter: aPresenter [
 
 	aPresenter owner: self.
 	presenter := aPresenter
+]
+
+{ #category : #api }
+SpPopoverPresenter >> relativeTo [
+
+	^ relativeTo ifNil: [ self owner ]
+]
+
+{ #category : #api }
+SpPopoverPresenter >> relativeTo: aPresenter [
+
+	relativeTo := aPresenter
 ]
 
 { #category : #'api-events' }

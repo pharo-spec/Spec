@@ -185,6 +185,7 @@ SpMorphicBaseTextAdapter >> selection [
 
 { #category : #'spec protocol' }
 SpMorphicBaseTextAdapter >> selectionInterval [
+
 	^ self widget selectionInterval 
 ]
 

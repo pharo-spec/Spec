@@ -88,7 +88,7 @@ SpStyle class >> createDefaultStyleSheet [
 	],
 	.code [
 		Font { #name : "Source Code Pro", #size : 10 }
-	] 
+	]
 ]
 '
 ]
