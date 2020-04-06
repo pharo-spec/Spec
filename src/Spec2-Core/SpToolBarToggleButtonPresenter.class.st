@@ -56,3 +56,40 @@ SpToolBarToggleButtonPresenter >> setSelection: aBoolean [
 	selected := aBoolean.
 	self changed: #isSelected
 ]
+
+{ #category : #selection }
+SpToolBarToggleButtonPresenter >> toggle [
+	
+	self setSelection: selected not
+]
+
+{ #category : #private }
+SpToolBarToggleButtonPresenter >> whenChangedDo: aBlock [
+	"Only execute aBlock if old value is different from new value"
+
+	self
+		property: #selected
+		whenChangedDo: [ :newSelectedValue :oldSelectedValue | 
+			newSelectedValue = oldSelectedValue
+				ifFalse: [ aBlock cull: newSelectedValue cull: oldSelectedValue ] ]
+]
+
+{ #category : #'api - events' }
+SpToolBarToggleButtonPresenter >> whenSelectedDo: aBlock [
+	self whenChangedDo: [ :newSelectedValue | 
+			newSelectedValue
+				ifTrue: [ aBlock value ] ]
+]
+
+{ #category : #'api - events' }
+SpToolBarToggleButtonPresenter >> whenToggledDo: aBlock [ 
+
+	self property: #selected whenChangedDo: aBlock 
+]
+
+{ #category : #'api - events' }
+SpToolBarToggleButtonPresenter >> whenUnselectedDo: aBlock [
+	self whenChangedDo: [ :newSelectedValue | 
+			newSelectedValue
+				ifFalse: [ aBlock value ] ]
+]
