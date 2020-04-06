@@ -34,17 +34,17 @@ SpToolBarPresenter class >> example [
 	loremIpsumWords := String loremIpsum substrings.
 	^ SpToolBarPresenter new 
 		beBoth;
-		addItem: (SpToolBarButton new 
+		addItem: (SpToolBarButtonPresenter new 
 			icon: (self iconNamed: #smallOk);
 			label: 'Simple';
 			action: [ UIManager default defer: [ self inform: 'Pressed' ] ];
 			yourself);
-		addItem: (SpToolBarToggleButton new
+		addItem: (SpToolBarToggleButtonPresenter new
 			icon: (self iconNamed: #smallOk);
 			label: 'Toggle';
 			action: [ :value | UIManager default defer: [ self inform: value asString ] ];
 			yourself);
-		addItem: ((menuButton := SpToolBarMenuButton new)
+		addItem: ((menuButton := SpToolBarMenuButtonPresenter new)
 			label: 'Menu';
 			icon: (self iconNamed: #smallOk);
 			action: [ UIManager default defer: [ self inform: menuButton label ] ];
@@ -68,7 +68,7 @@ SpToolBarPresenter class >> example [
 { #category : #convenience }
 SpToolBarPresenter >> addButtonLabel: aLabel iconNamed: anIconName help: aHelpString action: aBlock [
 
-	self addItem: (SpToolBarButton new
+	self addItem: (SpToolBarButtonPresenter new
 		label: aLabel;
 		icon: (self application iconNamed: anIconName);
 		help: aHelpString;

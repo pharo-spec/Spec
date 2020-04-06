@@ -61,12 +61,12 @@ SpCommand >> configureAsButtonOfClass: aButtonClass [
 
 { #category : #'presenter building' }
 SpCommand >> configureAsToolBarButton [
-	self configureAsButtonOfClass: SpToolBarButton
+	self configureAsButtonOfClass: SpToolBarButtonPresenter
 ]
 
 { #category : #'presenter building' }
 SpCommand >> configureAsToolBarToggleButton [
-	self configureAsButtonOfClass: SpToolBarToggleButton
+	self configureAsButtonOfClass: SpToolBarToggleButtonPresenter
 ]
 
 { #category : #displaying }
