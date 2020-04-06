@@ -186,6 +186,7 @@ SpApplication >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClas
 	self validateApplicationOfPresenter: aPresenter.
 
 	window := aWindowClass presenter: aPresenter.
+	window application: aPresenter application.
 	self windows add: window.
 	window openWithSpecLayout: aSpecLayout.
 	
