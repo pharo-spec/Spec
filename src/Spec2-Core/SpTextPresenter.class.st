@@ -25,8 +25,6 @@ Class {
 	#instVars : [
 		'#scrollValue => SpObservableSlot',
 		'#editionContextMenu => SpObservableSlot',
-		'#propagateNaturalWidth',
-		'#propagateNaturalHeight',
 		'#scrollBarStyles',
 		'#editable => SpObservableSlot'
 	],
