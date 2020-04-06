@@ -136,7 +136,7 @@ SpCommandTest >> testConfigureAsToolBarButton [
 					configureAsToolBarButton;
 					buildPresenter.
 	
-	self assert: button class equals: SpToolBarButton.
+	self assert: button class equals: SpToolBarButtonPresenter.
 	self assert: button label equals: command name.
 	self assert: button help equals: command description.
 	self assert: button icon isNil.
@@ -156,7 +156,7 @@ SpCommandTest >> testConfigureAsToolBarToggleButton [
 					configureAsToolBarToggleButton;
 					buildPresenter.
 	
-	self assert: button class equals: SpToolBarToggleButton.
+	self assert: button class equals: SpToolBarToggleButtonPresenter.
 	self assert: button label equals: command name.
 	self assert: button help equals: command description.
 	self assert: button icon isNil.
