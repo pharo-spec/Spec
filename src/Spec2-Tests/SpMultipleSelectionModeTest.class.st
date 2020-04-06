@@ -22,6 +22,20 @@ SpMultipleSelectionModeTest >> testGetRightElementAfterSortingOfElementsChanged 
 ]
 
 { #category : #tests }
+SpMultipleSelectionModeTest >> testSelectionIsResetAfterItemsAssignment [
+	presenter
+		beMultipleSelection;
+		openWithSpec;
+		selectIndexes: #(1 2 3).
+
+	presenter items: #(2 5).
+
+	self 
+		assert: presenter selection selectedItems asArray
+		equals: #()
+]
+
+{ #category : #tests }
 SpMultipleSelectionModeTest >> testSelectionIsResetAfterSorting [
 	presenter := SpTablePresenter new.	"use a TablePresenter since ListPresenter cannot sort"
 	presenter

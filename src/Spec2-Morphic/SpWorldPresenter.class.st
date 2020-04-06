@@ -44,13 +44,6 @@ SpWorldPresenter >> addPresenterIn: container withSpecLayout: aSpec [
 		fullFrame: LayoutFrame identity
 ]
 
-{ #category : #factory }
-SpWorldPresenter >> buildWidget [
-	^ SpMorphPresenter new
-		morph: self currentWorld;
-		yourself
-]
-
 { #category : #private }
 SpWorldPresenter >> defaultInitialExtent [
 	
@@ -87,14 +80,14 @@ SpWorldPresenter >> openWithSpecLayout: aSpec [
 { #category : #private }
 SpWorldPresenter >> title: aString [
 
-	^ DisplayScreen hostWindowTitle: aString
+	self adapter ifNotNil: [ :worldAdapter | worldAdapter title: self title ]
 ]
 
 { #category : #private }
 SpWorldPresenter >> updateTitle [
 	"Update the window title"
 
-	DisplayScreen hostWindowTitle: self title
+	self title: self title
 ]
 
 { #category : #api }

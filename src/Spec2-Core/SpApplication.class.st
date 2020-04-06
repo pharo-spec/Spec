@@ -164,10 +164,17 @@ SpApplication >> notify: aSpecNotification [
 { #category : #showing }
 SpApplication >> open: aPresenter [
 
+	^ self open: aPresenter beforeOpenDo: [ :aWindowPresenter | ]
+]
+
+{ #category : #showing }
+SpApplication >> open: aPresenter beforeOpenDo: aBlock [
+
 	^ self 
 		open: aPresenter 
 		withSpecLayout: aPresenter defaultSpec
 		using: aPresenter defaultWindowPresenterClass
+		beforeOpenDo: aBlock
 ]
 
 { #category : #showing }
@@ -179,14 +186,31 @@ SpApplication >> open: aPresenter withSpecLayout: aSpecLayout [
 		using: aPresenter defaultWindowPresenterClass
 ]
 
+{ #category : #showing }
+SpApplication >> open: aPresenter withSpecLayout: aSpecLayout beforeOpenDo: aBlock [
+
+	^ self 
+		open: aPresenter 
+		withSpecLayout: aSpecLayout 
+		using: aPresenter defaultWindowPresenterClass
+		beforeOpenDo: aBlock
+]
+
 { #category : #'private showing' }
 SpApplication >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClass [
+	
+	^ self open: aPresenter withSpecLayout: aSpecLayout using: aWindowClass beforeOpenDo: [ :aWindowPresenter | ]
+]
+
+{ #category : #'private showing' }
+SpApplication >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClass beforeOpenDo: aBlock [
 	| window |
 
 	self validateApplicationOfPresenter: aPresenter.
 
 	window := aWindowClass presenter: aPresenter.
 	self windows add: window.
+	aBlock cull: window.
 	window openWithSpecLayout: aSpecLayout.
 	
 	^ window
@@ -195,37 +219,65 @@ SpApplication >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClas
 { #category : #showing }
 SpApplication >> openDialog: aPresenter [ 
 	
+	^ self openDialog: aPresenter beforeOpenDo: [ :aWindowPresenter | ]
+]
+
+{ #category : #showing }
+SpApplication >> openDialog: aPresenter beforeOpenDo: aBlock [
+	
 	^ self 
 		openDialog: aPresenter 
 		withSpecLayout: aPresenter defaultSpec
+		beforeOpenDo: aBlock
 
 ]
 
 { #category : #showing }
 SpApplication >> openDialog: aPresenter withSpecLayout: aSpecLayout [
 
+	^ self openDialog: aPresenter withSpecLayout: aSpecLayout beforeOpenDo: [ :aWindowPresenter | ]
+]
+
+{ #category : #showing }
+SpApplication >> openDialog: aPresenter withSpecLayout: aSpecLayout beforeOpenDo: aBlock [
+
 	^ self 
 		open: aPresenter 
 		withSpecLayout: aSpecLayout 
 		using: SpModalWindowPresenter
+		beforeOpenDo: aBlock
 ]
 
 { #category : #showing }
 SpApplication >> openModal: aPresenter [ 
 	
+	^ self openModal: aPresenter beforeOpenDo: [ :aWindowPresenter | ]
+]
+
+{ #category : #showing }
+SpApplication >> openModal: aPresenter beforeOpenDo: aBlock [
+	
 	^ self 
 		openModal: aPresenter 
 		withSpecLayout: aPresenter defaultSpec
+		beforeOpenDo: aBlock
 
 ]
 
 { #category : #showing }
 SpApplication >> openModal: aPresenter withSpecLayout: aSpecLayout [
 
+	^ self openModal: aPresenter withSpecLayout: aSpecLayout beforeOpenDo: [ :aWindowPresenter | ]
+]
+
+{ #category : #showing }
+SpApplication >> openModal: aPresenter withSpecLayout: aSpecLayout beforeOpenDo: aBlock [
+
 	^ self 
 		open: aPresenter 
 		withSpecLayout: aSpecLayout 
 		using: SpModalWindowPresenter
+		beforeOpenDo: aBlock
 ]
 
 { #category : #'accessing properties' }

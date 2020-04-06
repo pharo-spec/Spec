@@ -303,9 +303,16 @@ SpAbstractPresenter >> openModalWithSpec [
 { #category : #showing }
 SpAbstractPresenter >> openModalWithSpec: aSelector [
 
+	^ self openModalWithSpec: aSelector beforeOpenDo: [ :aWindowPresenter | ]
+]
+
+{ #category : #showing }
+SpAbstractPresenter >> openModalWithSpec: aSelector beforeOpenDo: aBlock [
+
 	^ self application 
 		openModal: self
 		withSpecLayout: (self retrieveSpec: aSelector)
+		beforeOpenDo: aBlock
 ]
 
 { #category : #showing }

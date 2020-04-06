@@ -167,6 +167,7 @@ SpDropListPresenter >> items: aList [
 		and: [ startsWithSelection 
 		and: [ self selection isEmpty ] ])
 		ifTrue: [ self selectIndex: 1 ]
+		ifFalse: [ self resetSelection ]
 ]
 
 { #category : #api }

@@ -72,6 +72,24 @@ SpCommandTest >> testAsButtonPresenterExecutesOnClick [
 ]
 
 { #category : #test }
+SpCommandTest >> testCanUpdateEnableStatus [
+	| buttonPresenter shouldBeAvailable |
+	shouldBeAvailable := true.
+	command := CmBlockCommand new
+		canBeExecutedBlock: [ :ctx | shouldBeAvailable ];
+		context: #foo; "need a conext for #canBeExecuted to be performed"
+		yourself.
+	command := command asSpecCommand.
+	buttonPresenter := command asButtonPresenter.
+	self assert: buttonPresenter isEnabled.
+	
+	shouldBeAvailable := false.
+	command updateEnableStatus.
+	
+	self deny: buttonPresenter isEnabled
+]
+
+{ #category : #test }
 SpCommandTest >> testConfigureAsButton [
 	| button |
 	command := (CmBlockCommand new

@@ -115,7 +115,7 @@ BaselineOfSpec2 >> commander2: spec [
 BaselineOfSpec2 >> complishon: spec [
 	
 	spec
-		baseline: 'Complishon'
+		baseline: 'HeuristicCompletion'
 		with: [ spec repository: 'github://guillep/complishon' ]
 ]
 
