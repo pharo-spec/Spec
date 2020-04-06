@@ -48,13 +48,13 @@ SpTHaveWrappingScrollBars >> initializeTHaveWrappingScrollBars [
 { #category : #testing }
 SpTHaveWrappingScrollBars >> isPropagateNaturalHeight [
 
-	^ propagateNaturalHeight
+	^ propagateNaturalHeight ifNil: [ false ]
 ]
 
 { #category : #testing }
 SpTHaveWrappingScrollBars >> isPropagateNaturalWidth [
 
-	^ propagateNaturalWidth
+	^ propagateNaturalWidth ifNil: [ false ]
 ]
 
 { #category : #accessing }
