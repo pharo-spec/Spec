@@ -291,6 +291,12 @@ SpApplication >> propertyAt: aKey put: aValue [
 		put: aValue
 ]
 
+{ #category : #accessing }
+SpApplication >> reset [ 
+
+	self closeAllWindows
+]
+
 { #category : #running }
 SpApplication >> run [ 
 

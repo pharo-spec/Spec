@@ -24,7 +24,11 @@ Class {
 	#classTraits : 'SpTHaveWrappingScrollBars classTrait',
 	#instVars : [
 		'#scrollValue => SpObservableSlot',
-		'#editionContextMenu => SpObservableSlot'
+		'#editionContextMenu => SpObservableSlot',
+		'#propagateNaturalWidth',
+		'#propagateNaturalHeight',
+		'#scrollBarStyles',
+		'#editable => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }
@@ -87,6 +91,24 @@ SpTextPresenter class >> title [
 	^ 'Text'
 ]
 
+{ #category : #api }
+SpTextPresenter >> beEditable [
+
+	self editable: true
+]
+
+{ #category : #api }
+SpTextPresenter >> beNotEditable [
+
+	self editable: false
+]
+
+{ #category : #accessing }
+SpTextPresenter >> editable: aBoolean [
+
+	editable := aBoolean
+]
+
 { #category : #private }
 SpTextPresenter >> editionCommandsGroup [
 
@@ -117,10 +139,18 @@ SpTextPresenter >> hasEditionContextMenu [
 SpTextPresenter >> initialize [ 
 
 	super initialize.
+	self initializeTHaveWrappingScrollBars.
 	self flag: #REVIEW. "We really need scrollValue?"
-	scrollValue := 0 @ 0.	
+	scrollValue := 0@0.
+	self beEditable.
 	self withScrollBars.
-	self withEditionContextMenu
+	self withEditionContextMenu.
+]
+
+{ #category : #testing }
+SpTextPresenter >> isEditable [
+
+	^ editable
 ]
 
 { #category : #initialization }
@@ -143,6 +173,12 @@ SpTextPresenter >> scrollValue: aPoint [
 	"Set the scroll position"
 
 	^ scrollValue := aPoint
+]
+
+{ #category : #'api-events' }
+SpTextPresenter >> whenEditableChangedDo: aBlock [
+
+	self property: #editable whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

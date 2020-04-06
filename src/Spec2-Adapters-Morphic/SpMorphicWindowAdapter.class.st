@@ -3,7 +3,7 @@ I am the adapter used to bridge a WindowPresenter and a SystemWindow
 "
 Class {
 	#name : #SpMorphicWindowAdapter,
-	#superclass : #SpAbstractMorphicWindowAdapter,
+	#superclass : #SpAbstractMorphicAdapter,
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
@@ -22,10 +22,48 @@ SpMorphicWindowAdapter >> aboutTitle [
 		ifFalse: [m class name]].
 ]
 
+{ #category : #private }
+SpMorphicWindowAdapter >> add: containerMorph toWindow: aSpecWindow [
+
+	aSpecWindow 
+		addMorph: containerMorph 
+		fullFrame: LayoutFrame identity
+]
+
+{ #category : #private }
+SpMorphicWindowAdapter >> addContent: aMorph toWindow: aSpecWindow [
+	| containerMorph |
+	
+	containerMorph := self newContainerMorph.
+	containerMorph layoutFrame: aMorph layoutFrame.
+
+	"add all decorations (menu, toolbar and statusbar)"
+	self model hasMenu ifTrue: [ self addMenuTo: containerMorph ].
+	self model hasToolbar ifTrue: [ self addToolBarTo: containerMorph ].
+	containerMorph addMorphBack: aMorph.
+	aMorph
+		hResizing: #spaceFill;
+		vResizing: #spaceFill.
+	self model hasStatusBar ifTrue: [ self addStatusBarTo: containerMorph ].
+	
+	self add: containerMorph toWindow: aSpecWindow
+]
+
 { #category : #initialization }
 SpMorphicWindowAdapter >> addFocusRotationKeyBindings [
 	"Windows should not process keybindings (because then the active widget will not get 
 	 the event"
+]
+
+{ #category : #private }
+SpMorphicWindowAdapter >> addMenuTo: aMorph [
+	| menuMorph |
+
+	menuMorph := self model menu buildWithSpec.
+	aMorph addMorphBack: menuMorph.	
+	menuMorph
+		hResizing: #spaceFill;
+		vResizing: #rigid
 ]
 
 { #category : #'widget API' }
@@ -44,6 +82,28 @@ SpMorphicWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
 	self 
 		addContent: (self model presenter buildWithSpecLayout: aSpec) 
 		toWindow: widgetToBuild
+]
+
+{ #category : #private }
+SpMorphicWindowAdapter >> addStatusBarTo: aMorph [
+	| statusBarMorph |
+
+	statusBarMorph := self model statusBar buildWithSpec.
+	aMorph addMorphBack: statusBarMorph.	
+	statusBarMorph
+		hResizing: #spaceFill;
+		vResizing: #rigid
+]
+
+{ #category : #private }
+SpMorphicWindowAdapter >> addToolBarTo: aMorph [
+	| toolbarMorph |
+
+	toolbarMorph := self model toolBar buildWithSpec.
+	aMorph addMorphBack: toolbarMorph.	
+	toolbarMorph
+		hResizing: #spaceFill;
+		vResizing: #rigid
 ]
 
 { #category : #'widget API' }
@@ -144,6 +204,17 @@ SpMorphicWindowAdapter >> maximize [
 SpMorphicWindowAdapter >> minimize [
 
 	self widgetDo: [ :w | w minimize ]
+]
+
+{ #category : #private }
+SpMorphicWindowAdapter >> newContainerMorph [
+		
+	^ PanelMorph new
+		layoutPolicy: TableLayout new; 
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;		
+		listDirection: #topToBottom; 
+		yourself
 ]
 
 { #category : #'widget API' }

@@ -64,18 +64,6 @@ SpAbstractTextPresenter >> cursorPositionIndex [
 		anAdapter cursorPositionIndex ]
 ]
 
-{ #category : #transmission }
-SpAbstractTextPresenter >> defaultInputPort [
-
-	^ self inputTextPort
-]
-
-{ #category : #transmission }
-SpAbstractTextPresenter >> defaultOutputPort [
-
-	^ self outputTextChangedPort
-]
-
 { #category : #api }
 SpAbstractTextPresenter >> enabled: aBoolean [
 
@@ -85,25 +73,17 @@ SpAbstractTextPresenter >> enabled: aBoolean [
 		with: { aBoolean }
 ]
 
-{ #category : #focus }
+{ #category : #TOREMOVE }
 SpAbstractTextPresenter >> eventKeyStrokesForNextFocus [
 	"String describing the keystroke to perform to jump to the next widget"
 	^ { Character arrowRight command ctrl asKeyCombination }
 ]
 
-{ #category : #focus }
+{ #category : #TOREMOVE }
 SpAbstractTextPresenter >> eventKeyStrokesForPreviousFocus [
 	"String describing the keystroke to perform to jump to the previous widget"
 
 	^ { Character arrowLeft command ctrl asKeyCombination }
-]
-
-{ #category : #private }
-SpAbstractTextPresenter >> getMenu [
-	self flag: #TODO.	"move to menu presenters"
-	^ (PragmaMenuBuilder
-		pragmaKeyword: self textArea editingModeClass menuKeyword
-		model: self adapter) menu
 ]
 
 { #category : #api }
@@ -152,12 +132,6 @@ SpAbstractTextPresenter >> initialize [
 	self registerEvents
 ]
 
-{ #category : #transmission }
-SpAbstractTextPresenter >> inputTextPort [ 
-
-	^ SpTextPort newPresenter: self
-]
-
 { #category : #api }
 SpAbstractTextPresenter >> insert: aString at: positionIndex [
 	"inserts aString into the text string. 
@@ -171,9 +145,10 @@ SpAbstractTextPresenter >> insert: aString at: positionIndex [
 SpAbstractTextPresenter >> insertAndSelectAfterCurrentSelection: aString [
 	| selectionInterval |
 
+	self flag: #TODO. "Does this really has to be part of the text api?"
 	selectionInterval := self selectionInterval.
-	self insert: aString at: selectionInterval last + 1.
-	self selectionInterval: (selectionInterval last + 1 to: selectionInterval last + aString size + 1)
+	self insert: aString at: selectionInterval last.
+	self selectionInterval: (selectionInterval last + 1 to: selectionInterval last + aString size)
 ]
 
 { #category : #api }
@@ -210,12 +185,6 @@ SpAbstractTextPresenter >> notify: errorMessage at: position in: sourceCode [
 	self changed: #notify:at:in: with: { errorMessage . position . sourceCode }
 ]
 
-{ #category : #transmission }
-SpAbstractTextPresenter >> outputTextChangedPort [
-
-	^ SpTextChangedPort newPresenter: self
-]
-
 { #category : #api }
 SpAbstractTextPresenter >> placeholder [
 
@@ -230,6 +199,7 @@ SpAbstractTextPresenter >> placeholder: aText [
 
 { #category : #private }
 SpAbstractTextPresenter >> rawSelection: anInterval [
+
 	self property: #selection rawValue: anInterval
 ]
 
@@ -321,13 +291,6 @@ SpAbstractTextPresenter >> text: aText [
 	"Set the text of the text zone"
 
 	text := aText
-]
-
-{ #category : #private }
-SpAbstractTextPresenter >> textArea [
-	
-	self flag: #REMOVEME.
-	^ self adapter widget
 ]
 
 { #category : #simulating }
