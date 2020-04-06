@@ -57,11 +57,24 @@ SpTextPresenterTest >> testPropagateNaturalHeight [
 
 { #category : #tests }
 SpTextPresenterTest >> testPropagateNaturalWidth [
+	| lipsum stringMorph expectedWidth |
 
-	presenter text: String loremIpsum.
+	lipsum := String loremIpsum withNoLineLongerThan: 50.
+
+	presenter text: lipsum.
 	presenter propagateNaturalWidth: true. 
 	self openInstance.
-	self assert: presenter adapter widget width >= String loremIpsum asMorph width.
+	
+	stringMorph := RubEditingArea new 
+		font: presenter adapter widget font;
+		updateTextWith: lipsum.
+
+	expectedWidth := stringMorph width + 12 min: self currentWorld width / 3.
+	
+	
+	self assert: presenter adapter widget width >= expectedWidth.
+	
+	
 ]
 
 { #category : #tests }

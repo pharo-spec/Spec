@@ -110,7 +110,7 @@ SpMorphicTextAdapter >> updateExtentPropagationOf: string on: aWidget [
 		ifFalse: [ ^ self ].
 
 	stringMorph := RubEditingArea new 
-		font: self theme textFont;
+		font: aWidget font;
 		updateTextWith: string.
 
 	width := stringMorph width + 12 min: self currentWorld width / 3.
