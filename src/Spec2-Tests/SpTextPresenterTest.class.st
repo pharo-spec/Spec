@@ -56,6 +56,17 @@ SpTextPresenterTest >> testPropagateNaturalHeight [
 ]
 
 { #category : #tests }
+SpTextPresenterTest >> testPropagateNaturalHeightWithMultipleLines [
+	| string |
+
+	string := String loremIpsum withNoLineLongerThan: 80.
+	presenter text: string.
+	presenter propagateNaturalHeight: true. 
+	self openInstance.
+	self assert: presenter adapter widget height >= (string lines size * string asMorph height).
+]
+
+{ #category : #tests }
 SpTextPresenterTest >> testPropagateNaturalWidth [
 	| lipsum stringMorph expectedWidth |
 

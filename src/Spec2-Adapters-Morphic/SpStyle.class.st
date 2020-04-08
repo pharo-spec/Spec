@@ -88,6 +88,12 @@ SpStyle class >> createDefaultStyleSheet [
 	],
 	.code [
 		Font { #name : "Source Code Pro", #size : 10 }
+	],
+	.codePopover [ 
+		Draw { #color : #transparent },
+		.button [
+			Geometry { #width : 25 }
+		]
 	]
 ]
 '

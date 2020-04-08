@@ -52,6 +52,12 @@ SpCodePopoverPrintPresenter >> code: aCodePresenter [
 	code := aCodePresenter
 ]
 
+{ #category : #'api-focus' }
+SpCodePopoverPrintPresenter >> defaultKeyboardFocus [
+
+	^ text
+]
+
 { #category : #api }
 SpCodePopoverPrintPresenter >> dismiss [
 
@@ -63,7 +69,8 @@ SpCodePopoverPrintPresenter >> dismiss [
 SpCodePopoverPrintPresenter >> dismissAndInspect [
 
 	self dismiss.
-	object inspect
+	object inspect.
+	"(SpCodeInspectItCommand forContext: context) execute"
 ]
 
 { #category : #actions }
@@ -82,27 +89,29 @@ SpCodePopoverPrintPresenter >> initializePresenters [
 		spacing: 5;
 		borderWidth: 5;
 		add: text;
-		add: (SpBoxLayout newVertical
+		"add: (SpBoxLayout newVertical
 				add: (self newButton 
+						addStyle: 'codePopover.button';
 						icon: (self application iconNamed: #smallPrintIt);
 						action: [ self dismissAndPrint ];
 						yourself)
 					expand: false;
-				add: (self newButton 
+				add: (self newButton
+						addStyle: 'codePopover.button'; 
 						icon: (self application iconNamed: #smallInspectIt);
 						action: [ self dismissAndInspect ];
 						yourself)
 					expand: false;
 				yourself)
-			expand: false;
+			expand: false;"
 		yourself.
 
 	text
-		bindKeyCombination: Character cr asKeyCombination | $p meta 
+		bindKeyCombination: Character cr asKeyCombination | PharoShortcuts current printItShortcut
 			toAction: [ self dismissAndPrint ];
-		bindKeyCombination: $i meta 
+		bindKeyCombination: PharoShortcuts current inspectItShortcut 
 			toAction: [ self dismissAndInspect ];
-		bindKeyCombination: Character escape asKeyCombination | Character backspace asKeyCombination
+		bindKeyCombination: PharoShortcuts current escapeShortcut | PharoShortcuts current backspaceShortcut | PharoShortcuts current cancelShortcut
 			toAction: [ self dismiss ]
 ]
 
@@ -114,10 +123,10 @@ SpCodePopoverPrintPresenter >> initializeText [
 	numLines := string lines size.	
 	text := self 
 		newTextMultiLine: string 
-		withScrollBars: numLines >= self class linesToShow" ]".
+		withScrollBars: numLines >= self class linesToShow.
 		
 	text 
-		addStyle: 'code';
+		"addStyle: 'code';"
 		addStyle: 'codePopover'
 ]
 
@@ -127,10 +136,12 @@ SpCodePopoverPrintPresenter >> newTextMultiLine: aString withScrollBars: withScr
 
 	newText := self newText
 		propagateNaturalWidth: true;
+		propagateNaturalHeight: withScrollBars not;
 		editable: false;
 		text: aString;
 		yourself.
 
+	"this is needed just for the gtkbackend"
 	withScrollBars ifTrue: [ 
 		newText addScrollBarStyle: 'scrollbarPopoverLarge' ].
 	

@@ -48,6 +48,12 @@ SpPopoverPresenter >> bePositionTop [
 	self position: SpPopoverPosition top
 ]
 
+{ #category : #'api-focus' }
+SpPopoverPresenter >> defaultKeyboardFocus [
+
+	^ self presenter
+]
+
 { #category : #api }
 SpPopoverPresenter >> dismiss [ 
 
