@@ -59,7 +59,7 @@ SpMorphStyle class >> newStyles: anArray [
 SpMorphStyle >> applyTo: aMorph [ 
 
 	aMorph setProperty: #style toValue: self.
-	self styles do: [ :each |
+	self mergedProperties do: [ :each |
 		each applyTo: aMorph ]
 ]
 
@@ -75,7 +75,7 @@ SpMorphStyle >> calculateMergedProperties [
 	
 	properties := OrderedCollection new.
 	groups := (self styles 
-		flatCollect: [ :each | each flattenProperties ])
+		flatCollect: [ :each | each properties ])
 		groupedBy: [ :each | each class ].
 		
 	groups valuesDo: [ :eachCollection |
