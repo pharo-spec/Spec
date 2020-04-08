@@ -15,9 +15,7 @@ Class {
 { #category : #specs }
 SpWorldPresenter class >> defaultSpec [
 	self setUpWorld.
-	^ SpMorphPresenter new
-		morph: self currentWorld;
-		yourself
+	^ SpAbstractWidgetLayout for: #WorldAdapter
 ]
 
 { #category : #private }
@@ -37,11 +35,17 @@ SpWorldPresenter class >> setUpWorld [
 SpWorldPresenter >> addPresenterIn: container withSpecLayout: aSpec [
 
 	self presenter ifNil: [ ^ self ].
-	widget := self presenter buildWithSpecLayout: aSpec.
-	
-	container
-		addMorph: widget
-		fullFrame: LayoutFrame identity
+	self presenter initializeWindow: self.
+	self 
+		changed: #addPresenterIn:withSpecLayout:
+		with: { container. aSpec }
+]
+
+{ #category : #factory }
+SpWorldPresenter >> buildWidget [
+	^ SpMorphPresenter new
+		morph: self currentWorld;
+		yourself
 ]
 
 { #category : #private }
@@ -80,14 +84,14 @@ SpWorldPresenter >> openWithSpecLayout: aSpec [
 { #category : #private }
 SpWorldPresenter >> title: aString [
 
-	self adapter ifNotNil: [ :worldAdapter | worldAdapter title: self title ]
+	^ DisplayScreen hostWindowTitle: aString
 ]
 
 { #category : #private }
 SpWorldPresenter >> updateTitle [
 	"Update the window title"
 
-	self title: self title
+	DisplayScreen hostWindowTitle: self title
 ]
 
 { #category : #api }
