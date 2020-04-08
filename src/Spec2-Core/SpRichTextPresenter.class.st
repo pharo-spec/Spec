@@ -2,7 +2,8 @@ Class {
 	#name : #SpRichTextPresenter,
 	#superclass : #SpTextPresenter,
 	#instVars : [
-		'#textStyler => SpObservableSlot'
+		'#textStyler => SpObservableSlot',
+		'#contentProvider => IndexedSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }
@@ -30,10 +31,33 @@ SpRichTextPresenter class >> title [
 	^ 'Rich Text'
 ]
 
+{ #category : #accessing }
+SpRichTextPresenter >> contentProvider [
+	^ contentProvider ifNil: [ 
+		contentProvider := self defaultContentProvider ]
+]
+
+{ #category : #accessing }
+SpRichTextPresenter >> defaultContentProvider [
+	^ PillarContentProvider new
+]
+
 { #category : #initialization }
 SpRichTextPresenter >> initialize [ 
 
 	super initialize
+]
+
+{ #category : #rendering }
+SpRichTextPresenter >> renderTree [
+	^  PRRenderTreeBuilderVisitor new 
+			styleProvider: self styleAttributes;
+			render: (PRPillarParser parse: self text)
+]
+
+{ #category : #initialization }
+SpRichTextPresenter >> styleAttributes [
+	^ self contentProvider styles
 ]
 
 { #category : #accessing }
