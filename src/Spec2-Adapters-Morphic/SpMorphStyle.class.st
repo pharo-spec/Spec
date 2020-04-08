@@ -32,8 +32,8 @@ SpMorphStyle class >> fromStylesheet: aStyle adapter: anAdapter [
 	allStyleClasses := aStyle flattenClasses.
 	styles := OrderedCollection new.
 	(({ 'application'. anAdapter styleName }, 
-		anAdapter presenter styles, 
-		(anAdapter presenter styles collect: [ :each | anAdapter styleName, '.', each ])) 
+		anAdapter presenterStyles, 
+		(anAdapter presenterStyles collect: [ :each | anAdapter styleName, '.', each ])) 
 		do: [ :each |
 			"a hack to not do a double dispatch on string :(" 
 			each isString 

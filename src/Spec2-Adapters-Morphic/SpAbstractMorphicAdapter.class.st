@@ -344,6 +344,13 @@ SpAbstractMorphicAdapter >> layout: aLayout [
 	self widgetDo: [ :w | w layoutFrame: layout ].
 ]
 
+{ #category : #styling }
+SpAbstractMorphicAdapter >> presenterStyles [
+	"The presenters in the style"
+
+	^ self presenter styles
+]
+
 { #category : #'protocol-shortcuts' }
 SpAbstractMorphicAdapter >> removeKeyCombination: aShortcut [
 

@@ -82,6 +82,13 @@ SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
 		during: [ menuPresenter buildWithSpec ]
 ]
 
+{ #category : #styling }
+SpMorphicTextAdapter >> presenterStyles [
+	"The presenters in the style"
+
+	^ self presenter scrollBarStyles, self presenter styles 
+]
+
 { #category : #private }
 SpMorphicTextAdapter >> setEditable: aBoolean to: aWidget [
 
@@ -118,7 +125,7 @@ SpMorphicTextAdapter >> updateExtentPropagationOf: string on: aWidget [
 		font: aWidget font;
 		updateTextWith: string asString.
 
-	width := stringMorph width + 12 min: self currentWorld width / 3.
+	width := stringMorph width + 12" min: self currentWorld width / 3".
 	self presenter isPropagateNaturalWidth 
 		ifTrue: [ aWidget width: width ].
 
@@ -127,8 +134,8 @@ SpMorphicTextAdapter >> updateExtentPropagationOf: string on: aWidget [
 			height := ((stringMorph
 				beWrapped;
 				width: width;
-				yourself) height + 2) min: self currentWorld height / 3. 
-			aWidget height: height + 12 ]
+				yourself) height + 2)" min: self currentWorld height / 3". 
+			aWidget height: height ]
 ]
 
 { #category : #emulating }
