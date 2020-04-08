@@ -10,6 +10,12 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-StyleSheet'
 }
 
+{ #category : #copying }
+SpStyleProperty >> , other [
+
+	^ self mergeWith: other
+]
+
 { #category : #operations }
 SpStyleProperty >> applyTo: aMorph [
 	
@@ -29,4 +35,21 @@ SpStyleProperty >> fromSton: stonReader [
 SpStyleProperty >> isStyleProperty [
 
 	^ true
+]
+
+{ #category : #operations }
+SpStyleProperty >> mergeWith: otherProperty [
+	| merged |
+
+	self species = otherProperty species ifFalse: [ 
+		self error: 'Trying to merge two different properties' ].
+ 
+	merged := self species new.
+	self class allSlots do: [ :eachSlot | 
+		"other property will have precedence over this one"
+		merged 
+			writeSlot: eachSlot 
+			value: ((otherProperty readSlot: eachSlot) ifNil:[ self readSlot: eachSlot ]) ].
+		
+	^ merged
 ]

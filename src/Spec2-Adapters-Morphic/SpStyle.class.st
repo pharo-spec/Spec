@@ -86,6 +86,9 @@ SpStyle class >> createDefaultStyleSheet [
 			Geometry { #height: 45 }
 		]
 	],
+	.text [ 
+		Geometry { #height: 0, #minHeight: 75 }
+	],
 	.code [
 		Font { #name : "Source Code Pro", #size : 10 }
 	],
