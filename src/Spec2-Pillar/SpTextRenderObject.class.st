@@ -1,20 +1,20 @@
 Class {
-	#name : #PRTextRenderObject,
-	#superclass : #PRRenderObject,
+	#name : #SpTextRenderObject,
+	#superclass : #SpRenderObject,
 	#category : #'Spec2-Pillar'
 }
 
 { #category : #'as yet unclassified' }
-PRTextRenderObject >> acceptRenderObjectVisitor: aVisitor [ 
+SpTextRenderObject >> acceptRenderObjectVisitor: aVisitor [ 
 	^ aVisitor visitText: self
 ]
 
 { #category : #'as yet unclassified' }
-PRTextRenderObject >> contents [
+SpTextRenderObject >> contents [
 	^ item text 
 ]
 
 { #category : #printing }
-PRTextRenderObject >> printOn: aStream [
+SpTextRenderObject >> printOn: aStream [
 	aStream << 'text object: ' << self contents
 ]

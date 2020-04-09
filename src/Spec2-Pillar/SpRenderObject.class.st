@@ -1,5 +1,5 @@
 Class {
-	#name : #PRRenderObject,
+	#name : #SpRenderObject,
 	#superclass : #Object,
 	#instVars : [
 		'item',
@@ -9,31 +9,31 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PRRenderObject >> extraOffset [
+SpRenderObject >> extraOffset [
 	^ item plaintextOffset 
 ]
 
 { #category : #accessing }
-PRRenderObject >> item [
+SpRenderObject >> item [
 	^ item
 ]
 
 { #category : #accessing }
-PRRenderObject >> item: aDocumentItem [
+SpRenderObject >> item: aDocumentItem [
 	item := aDocumentItem 
 ]
 
 { #category : #accessing }
-PRRenderObject >> node: aPRRenderTreeVisitor [ 
+SpRenderObject >> node: aPRRenderTreeVisitor [ 
 	self shouldBeImplemented.
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderObject >> styles [
+SpRenderObject >> styles [
 	^ styles
 ]
 
 { #category : #accessing }
-PRRenderObject >> styles: aCollection [ 
+SpRenderObject >> styles: aCollection [ 
 	styles := aCollection
 ]

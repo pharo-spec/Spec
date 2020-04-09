@@ -1,22 +1,22 @@
 Class {
-	#name : #PillarContentProvider,
+	#name : #SpContentHandler,
 	#superclass : #Object,
 	#category : #'Spec2-Pillar'
 }
 
 { #category : #parsing }
-PillarContentProvider >> parse: aString [
+SpContentHandler >> parse: aString [
 	^  PRPillarParser parse: aString
 ]
 
 { #category : #'as yet unclassified' }
-PillarContentProvider >> plaintextFor: aString [
+SpContentHandler >> plaintextFor: aString [
 	^  self toPlaintext: (self parse: aString)
 ]
 
 { #category : #accessing }
-PillarContentProvider >> styles [ 
-	^  PRSimpleStyleProvider new 
+SpContentHandler >> styles [ 
+	^  SpSimpleStyleProvider new 
 			"itemAt: #anon put: {  TextEmphasis struckOut . TextColor red };	"
 			itemAt: #bold put: {  (TextEmphasis bold) };
 			itemAt: #italic put: {  (TextEmphasis italic) };
@@ -46,6 +46,6 @@ PillarContentProvider >> styles [
 ]
 
 { #category : #'as yet unclassified' }
-PillarContentProvider >> toPlaintext: aDocument [
+SpContentHandler >> toPlaintext: aDocument [
 	^  SpPillarTextWriter write: aDocument
 ]

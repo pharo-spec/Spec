@@ -39,7 +39,7 @@ SpRichTextPresenter >> contentProvider [
 
 { #category : #accessing }
 SpRichTextPresenter >> defaultContentProvider [
-	^ PillarContentProvider new
+	^ SpContentHandler new
 ]
 
 { #category : #initialization }
@@ -50,7 +50,7 @@ SpRichTextPresenter >> initialize [
 
 { #category : #rendering }
 SpRichTextPresenter >> renderTree [
-	^  PRRenderTreeBuilderVisitor new 
+	^  SpRenderTreeBuilderVisitor new 
 			styleProvider: self styleAttributes;
 			render: (PRPillarParser parse: self text)
 ]

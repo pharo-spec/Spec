@@ -1,6 +1,6 @@
 Class {
-	#name : #PRSimpleStyleProvider,
-	#superclass : #PRStyleProvider,
+	#name : #SpSimpleStyleProvider,
+	#superclass : #SpStyleProvider,
 	#instVars : [
 		'itemStyles'
 	],
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PRSimpleStyleProvider >> computedStylesFor: aPRDocument [ 
+SpSimpleStyleProvider >> computedStylesFor: aPRDocument [ 
 
 	itemStyles 
 		at: (self itemNameFor: aPRDocument)
@@ -17,24 +17,24 @@ PRSimpleStyleProvider >> computedStylesFor: aPRDocument [
 ]
 
 { #category : #initialization }
-PRSimpleStyleProvider >> initialize [ 
+SpSimpleStyleProvider >> initialize [ 
 	super initialize.
 	itemStyles := Dictionary new
 ]
 
 { #category : #accessing }
-PRSimpleStyleProvider >> itemAt: itemName put: aCollection [
+SpSimpleStyleProvider >> itemAt: itemName put: aCollection [
 	itemStyles 
 		at: itemName 
 		put: aCollection 
 ]
 
 { #category : #'as yet unclassified' }
-PRSimpleStyleProvider >> itemNameFor: aDocumentItem [
+SpSimpleStyleProvider >> itemNameFor: aDocumentItem [
 	^ aDocumentItem styleName
 ]
 
 { #category : #'as yet unclassified' }
-PRSimpleStyleProvider >> keysAndValuesDo: aBlock [
+SpSimpleStyleProvider >> keysAndValuesDo: aBlock [
 	itemStyles keysAndValuesDo: aBlock
 ]

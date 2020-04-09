@@ -1,5 +1,5 @@
 Class {
-	#name : #PRRenderTreeBuilderVisitor,
+	#name : #SpRenderTreeBuilderVisitor,
 	#superclass : #PRVisitor,
 	#instVars : [
 		'styleProvider'
@@ -8,51 +8,51 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> processGroup: anObject [
+SpRenderTreeBuilderVisitor >> processGroup: anObject [
 	| children |
 	children := super visitDocumentGroup: anObject.
-	(children allSatisfy: [ :each | each isKindOf: PRRenderObject ]) ifFalse: [ 
+	(children allSatisfy: [ :each | each isKindOf: SpRenderObject ]) ifFalse: [ 
 		self halt ].
-	^ PRCompositeRenderObject new
+	^ SpCompositeRenderObject new
 		item: anObject;
 		styles: (styleProvider computedStylesFor: anObject);
 		children: children
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> render: aPRDocument [ 
+SpRenderTreeBuilderVisitor >> render: aPRDocument [ 
 	^ self visitDocument: aPRDocument 
 ]
 
 { #category : #accessing }
-PRRenderTreeBuilderVisitor >> styleProvider: aPRStyleProvider [ 
+SpRenderTreeBuilderVisitor >> styleProvider: aPRStyleProvider [ 
 	styleProvider := aPRStyleProvider
 ]
 
 { #category : #visiting }
-PRRenderTreeBuilderVisitor >> visitAll: aCollection [
+SpRenderTreeBuilderVisitor >> visitAll: aCollection [
 	^aCollection collect: [ :each | | i |
 		i := self visit: each.
-		(i isKindOf: PRRenderObject) ifFalse: [ 
+		(i isKindOf: SpRenderObject) ifFalse: [ 
 			self halt. ].
 		i ]
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitAnchor: anObject [
+SpRenderTreeBuilderVisitor >> visitAnchor: anObject [
 
 	self flag: #todo.
 	^ self visitDocumentItem: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitAnnotatedParagraph: aDocument [
+SpRenderTreeBuilderVisitor >> visitAnnotatedParagraph: aDocument [
 
 	^ self visitParagraph: aDocument
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitAnnotation: anAnnotation [
+SpRenderTreeBuilderVisitor >> visitAnnotation: anAnnotation [
 	"Visiting an annotation means that we visit the textual representation of an annotation. Such annotations will be transformed into annotation object. The corresponding visit method will be invoked on such object : visitCitationAnnotation vs visitCitation."
 		self halt.
 
@@ -60,7 +60,7 @@ PRRenderTreeBuilderVisitor >> visitAnnotation: anAnnotation [
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitBeginEnvironmentAnnotation: aBeginEnvironmentAnnotation [
+SpRenderTreeBuilderVisitor >> visitBeginEnvironmentAnnotation: aBeginEnvironmentAnnotation [
 	"Visiting an annotation means that we visit the textual representation of an annotation. Such annotations will be transformed into annotation object. The corresponding visit method will be invoked on such object : visitBeginEnvironmentAnnotation vs visitBeginEnvironment."
 		self halt.
 
@@ -68,20 +68,20 @@ PRRenderTreeBuilderVisitor >> visitBeginEnvironmentAnnotation: aBeginEnvironment
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitBoldFormat: anObject [
+SpRenderTreeBuilderVisitor >> visitBoldFormat: anObject [
 
 	^ self processGroup: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitCitation: aCitation [
+SpRenderTreeBuilderVisitor >> visitCitation: aCitation [
 	
 	self halt.
 	^ self visitDocumentItem: aCitation
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitCitationAnnotation: aCitation [
+SpRenderTreeBuilderVisitor >> visitCitationAnnotation: aCitation [
 	"Visiting an annotation means that we visit the textual representation of an annotation. Such annotations will be transformed into annotation object. The corresponding visit method will be invoked on such object : visitCitationAnnotation vs visitCitation."
 		self halt.
 
@@ -89,20 +89,20 @@ PRRenderTreeBuilderVisitor >> visitCitationAnnotation: aCitation [
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitCodeblock: aCodeBlock [ 
+SpRenderTreeBuilderVisitor >> visitCodeblock: aCodeBlock [ 
 
 	^ self visitText: aCodeBlock
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitColumn: aColumn [
+SpRenderTreeBuilderVisitor >> visitColumn: aColumn [
 	self halt.
 
 	^ self visitDocumentGroup: aColumn
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitColumnAnnotation: aColumnAnnotation [
+SpRenderTreeBuilderVisitor >> visitColumnAnnotation: aColumnAnnotation [
 	"Visiting an annotation means that we visit the textual representation of an annotation. Such annotations will be transformed into annotation object. The corresponding visit method will be invoked on such object : visitColumnAnnotation vs visitColumn."
 		self halt.
 
@@ -110,14 +110,14 @@ PRRenderTreeBuilderVisitor >> visitColumnAnnotation: aColumnAnnotation [
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitColumns: aColumns [
+SpRenderTreeBuilderVisitor >> visitColumns: aColumns [
 	self halt.
 
 	^ self visitDocumentGroup: aColumns
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitColumnsAnnotation: aColumnsAnnotation [
+SpRenderTreeBuilderVisitor >> visitColumnsAnnotation: aColumnsAnnotation [
 	"Visiting an annotation means that we visit the textual representation of an annotation. Such annotations will be transformed into annotation object. The corresponding visit method will be invoked on such object : visitColumnsAnnotation vs visitColumns."
 		self halt.
 
@@ -125,70 +125,70 @@ PRRenderTreeBuilderVisitor >> visitColumnsAnnotation: aColumnsAnnotation [
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitCommentedLine: aCommentedLine [
+SpRenderTreeBuilderVisitor >> visitCommentedLine: aCommentedLine [
 		self halt.
 
 
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitDataItem: anObject [
+SpRenderTreeBuilderVisitor >> visitDataItem: anObject [
 
 	^ self visitListItem: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitDefinitionList: anObject [
+SpRenderTreeBuilderVisitor >> visitDefinitionList: anObject [
 
 	^ self visitList: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitDocListAnnotation: aPRDocListAnnotation [ 
+SpRenderTreeBuilderVisitor >> visitDocListAnnotation: aPRDocListAnnotation [ 
 	self halt.
 
 	^ self visitAnnotation: aPRDocListAnnotation
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitDocument: anObject [
+SpRenderTreeBuilderVisitor >> visitDocument: anObject [
 	
 	^ self processGroup: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitDocumentGroup: anObject [
-	^ PRCompositeRenderObject new
+SpRenderTreeBuilderVisitor >> visitDocumentGroup: anObject [
+	^ SpCompositeRenderObject new
 		item: anObject;
 		styles: (styleProvider computedStylesFor: anObject);
 		children: (super visitDocumentGroup: anObject)
 ]
 
 { #category : #'visiting-document' }
-PRRenderTreeBuilderVisitor >> visitDocumentItem: anObject [
-	^ PRTextRenderObject new
+SpRenderTreeBuilderVisitor >> visitDocumentItem: anObject [
+	^ SpTextRenderObject new
 		item: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitEmptyParagraph: anObject [
+SpRenderTreeBuilderVisitor >> visitEmptyParagraph: anObject [
 	^ self processGroup: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitEndColumnsAnnotation: aEndColumnsAnnotation [
+SpRenderTreeBuilderVisitor >> visitEndColumnsAnnotation: aEndColumnsAnnotation [
 	self halt.
 
 	^ self visitAnnotation: aEndColumnsAnnotation
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitEndEnvironmentAnnotation:  anObject [
+SpRenderTreeBuilderVisitor >> visitEndEnvironmentAnnotation:  anObject [
 		self halt
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitEnvironment: anObject [
+SpRenderTreeBuilderVisitor >> visitEnvironment: anObject [
 	"An environment object has been created based on the begin and end annotations.
 	My subclasses may want to introduce a preAction and postAction triggering. By default just visit all children."
 		self halt.
@@ -197,26 +197,26 @@ PRRenderTreeBuilderVisitor >> visitEnvironment: anObject [
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitExternalLink: anObject [
+SpRenderTreeBuilderVisitor >> visitExternalLink: anObject [
 
 	^ self visitLink: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitFigure: anObject [
+SpRenderTreeBuilderVisitor >> visitFigure: anObject [
 
 	^ self visitReference: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitFootnote: aFootnote [
+SpRenderTreeBuilderVisitor >> visitFootnote: aFootnote [
 	self halt.
 
 	^ self visitDocumentItem: aFootnote
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitFootnoteAnnotation: aFootnoteAnnotation [
+SpRenderTreeBuilderVisitor >> visitFootnoteAnnotation: aFootnoteAnnotation [
 	"Visiting an annotation means that we visit the textual representation of an annotation. Such annotations will be transformed into annotation object. The corresponding visit method will be invoked on such object : visitFootnoteAnnotation vs visitFootnote."
 		self halt.
 
@@ -224,154 +224,154 @@ PRRenderTreeBuilderVisitor >> visitFootnoteAnnotation: aFootnoteAnnotation [
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitFormat: anObject [
+SpRenderTreeBuilderVisitor >> visitFormat: anObject [
 
 	^ self visitDocumentGroup: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitHeader: anObject [
+SpRenderTreeBuilderVisitor >> visitHeader: anObject [
 
 	^ self visitDocumentGroup: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitHorizontalRule: anObject [
+SpRenderTreeBuilderVisitor >> visitHorizontalRule: anObject [
 	self halt.
 
 	^ self visitDocumentItem: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitInputFileAnnotation: aNobject [
+SpRenderTreeBuilderVisitor >> visitInputFileAnnotation: aNobject [
 		self halt
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitInternalLink: anObject [
+SpRenderTreeBuilderVisitor >> visitInternalLink: anObject [
 
 	self flag: #todo.
 	^ self visitLink: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitItalicFormat: anObject [
+SpRenderTreeBuilderVisitor >> visitItalicFormat: anObject [
 
 	^ self visitFormat: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitLineBreak: anObject [
+SpRenderTreeBuilderVisitor >> visitLineBreak: anObject [
 
 	self flag: #todo.
-	^ PRTextRenderObject new
+	^ SpTextRenderObject new
 		item: anObject.
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitLink: anObject [
+SpRenderTreeBuilderVisitor >> visitLink: anObject [
 
 	self flag: #todo.
 	^ self visitReference: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitList: anObject [
+SpRenderTreeBuilderVisitor >> visitList: anObject [
 
 	^ self visitDocumentGroup: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitListItem: anObject [
+SpRenderTreeBuilderVisitor >> visitListItem: anObject [
 
 	^ self visitDocumentGroup: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitMailLink: anObject [
+SpRenderTreeBuilderVisitor >> visitMailLink: anObject [
 
 	^ self visitExternalLink: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitMonospaceFormat: anObject [
+SpRenderTreeBuilderVisitor >> visitMonospaceFormat: anObject [
 
 	^ self visitFormat: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitOrderedList: anObject [
+SpRenderTreeBuilderVisitor >> visitOrderedList: anObject [
 
 	^ self visitList: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitParagraph: anObject [
+SpRenderTreeBuilderVisitor >> visitParagraph: anObject [
 
 	^ self processGroup: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitParameter: anObject [
+SpRenderTreeBuilderVisitor >> visitParameter: anObject [
 	self halt.
 
 	^ self visitDocumentGroup: anObject 
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitParameterKey: anObject [
+SpRenderTreeBuilderVisitor >> visitParameterKey: anObject [
 		self halt
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitParameterValue: anObject [
+SpRenderTreeBuilderVisitor >> visitParameterValue: anObject [
 	self halt.
 
 	^ self visitDocumentItem: anObject 
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitParameters: anObject [
+SpRenderTreeBuilderVisitor >> visitParameters: anObject [
 	self halt.
 
 	^ self visitDocumentGroup: anObject 
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitPreformatted: anObject [
+SpRenderTreeBuilderVisitor >> visitPreformatted: anObject [
 
 	^ self visitDocumentGroup: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitRaw: aRaw [
+SpRenderTreeBuilderVisitor >> visitRaw: aRaw [
 	self halt.
 
 	^ self visitText: aRaw
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitReference: anObject [
+SpRenderTreeBuilderVisitor >> visitReference: anObject [
 
 	^ self visitDocumentGroup: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitSection: aSection [
+SpRenderTreeBuilderVisitor >> visitSection: aSection [
 	self halt.
 
 	^ self visitDocumentGroup: aSection
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitSlide: aSlide [
+SpRenderTreeBuilderVisitor >> visitSlide: aSlide [
 	self halt.
 
 	^ self visitDocumentGroup: aSlide
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitSlideTitleAnnotation: aSlideTitleAnnotation [
+SpRenderTreeBuilderVisitor >> visitSlideTitleAnnotation: aSlideTitleAnnotation [
 	"Visiting an annotation means that we visit the textual representation of an annotation. Such annotations will be transformed into annotation object. The corresponding visit method will be invoked on such object : visitSlideTitleAnnotation vs visitSlide."
 		self halt.
 
@@ -379,67 +379,67 @@ PRRenderTreeBuilderVisitor >> visitSlideTitleAnnotation: aSlideTitleAnnotation [
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitStrikethroughFormat: anObject [
+SpRenderTreeBuilderVisitor >> visitStrikethroughFormat: anObject [
 
 	^ self visitFormat: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitSubscriptFormat: anObject [
+SpRenderTreeBuilderVisitor >> visitSubscriptFormat: anObject [
 
 	^ self visitFormat: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitSuperscriptFormat: anObject [
+SpRenderTreeBuilderVisitor >> visitSuperscriptFormat: anObject [
 
 	^ self visitFormat: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitTOCAnnotation: aTOCAnnotation [
+SpRenderTreeBuilderVisitor >> visitTOCAnnotation: aTOCAnnotation [
 	self halt.
 
 	^ self visitAnnotation: aTOCAnnotation
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitTable: anObject [
+SpRenderTreeBuilderVisitor >> visitTable: anObject [
 
 	^ self visitDocumentGroup: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitTableCell: anObject [
+SpRenderTreeBuilderVisitor >> visitTableCell: anObject [
 	self halt.
 
 	^ self visitDocumentGroup: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitTableRow: aRow [
+SpRenderTreeBuilderVisitor >> visitTableRow: aRow [
 
 	self flag: #todo.
-	^ PRTextRenderObject new
+	^ SpTextRenderObject new
 		item: aRow;
 		yourself 
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitTermItem: anObject [
+SpRenderTreeBuilderVisitor >> visitTermItem: anObject [
 
 	^ self visitListItem: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitText: anObject [
-	^ PRTextRenderObject new
+SpRenderTreeBuilderVisitor >> visitText: anObject [
+	^ SpTextRenderObject new
 		item: anObject.
 
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitUndefinedAnnotation: aUndefinedAnnotation [
+SpRenderTreeBuilderVisitor >> visitUndefinedAnnotation: aUndefinedAnnotation [
 	"Visiting an annotation means that we visit the textual representation of an annotation. Such annotations will be transformed into annotation object. The corresponding visit method will be invoked on such object : visitFootnoteAnnotation vs visitFootnote."
 		self halt.
 
@@ -447,12 +447,12 @@ PRRenderTreeBuilderVisitor >> visitUndefinedAnnotation: aUndefinedAnnotation [
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitUnderlineFormat: anObject [
+SpRenderTreeBuilderVisitor >> visitUnderlineFormat: anObject [
 
 	^ self visitFormat: anObject
 ]
 
 { #category : #'as yet unclassified' }
-PRRenderTreeBuilderVisitor >> visitUnorderedList: anObject [
+SpRenderTreeBuilderVisitor >> visitUnorderedList: anObject [
 	^ self visitList: anObject
 ]

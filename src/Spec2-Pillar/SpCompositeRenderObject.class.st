@@ -1,6 +1,6 @@
 Class {
-	#name : #PRCompositeRenderObject,
-	#superclass : #PRRenderObject,
+	#name : #SpCompositeRenderObject,
+	#superclass : #SpRenderObject,
 	#instVars : [
 		'children'
 	],
@@ -8,16 +8,16 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PRCompositeRenderObject >> acceptRenderObjectVisitor: aVisitor [ 
+SpCompositeRenderObject >> acceptRenderObjectVisitor: aVisitor [ 
 	^ aVisitor visitCompositeObject: self
 ]
 
 { #category : #'as yet unclassified' }
-PRCompositeRenderObject >> children [
+SpCompositeRenderObject >> children [
 	^ children
 ]
 
 { #category : #accessing }
-PRCompositeRenderObject >> children: aCollection [ 
+SpCompositeRenderObject >> children: aCollection [ 
 	children := aCollection
 ]
