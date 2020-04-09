@@ -32,8 +32,8 @@ SpEventHandlerTest >> testEventIsInstalledDynamically [
 		whenGotFocusDo: [ got := true ];
 		whenLostFocusDo: [ lost := true ].
 	
-	t1 takeKeyboardFocus.
 	t2 takeKeyboardFocus.
+	t1 takeKeyboardFocus.
 	
 	self assert: got.
 	self assert: lost
@@ -47,6 +47,30 @@ SpEventHandlerTest >> testEventIsInstalledOnBuild [
 		layout: (SpBoxLayout newVertical
 			add: (t1 := presenter newTextInput);
 			add: (t2 := presenter newTextInput);
+			yourself).
+
+	got := lost := false.
+	t1 eventHandler 
+		whenGotFocusDo: [ got := true ];
+		whenLostFocusDo: [ lost := true ].
+		
+	presenter openWithSpec.
+	
+	t1 takeKeyboardFocus.
+	t2 takeKeyboardFocus.
+	
+	self assert: got.
+	self assert: lost
+]
+
+{ #category : #tests }
+SpEventHandlerTest >> testEventIsTransmittedOnText [
+	| t1 t2 lost got |
+
+	(presenter := SpPresenter new) 
+		layout: (SpBoxLayout newVertical
+			add: (t1 := presenter newText);
+			add: (t2 := presenter newText);
 			yourself).
 
 	got := lost := false.

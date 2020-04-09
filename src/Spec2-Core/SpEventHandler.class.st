@@ -63,7 +63,9 @@ SpEventHandler >> installAllEventsTo: anAdapter target: aWidget [
 { #category : #private }
 SpEventHandler >> register: anEvent [
 
-	events add: anEvent
+	events add: anEvent.
+	presenter withAdapterDo: [ :anAdapter | 
+		anAdapter installEvent: anEvent  ]	
 ]
 
 { #category : #'api-events' }

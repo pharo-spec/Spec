@@ -306,6 +306,14 @@ SpAbstractMorphicAdapter >> helpText [
 ]
 
 { #category : #'event installing' }
+SpAbstractMorphicAdapter >> installEvent: anEvent [
+	"Used when installing events into presenters already built"
+
+	self widgetDo: [ :w |
+		anEvent installOn: self target: w ]
+]
+
+{ #category : #'event installing' }
 SpAbstractMorphicAdapter >> installGotFocusEvent: anEvent to: aWidget [
 
 	aWidget announcer 

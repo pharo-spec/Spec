@@ -196,7 +196,7 @@ SpAbstractPresenter >> eventHandler [
 	WARNING: Now all events are available to all presenters (for example, presenters who can't
 	take focus will not respong to focus events even if you register them)."
 	
-	^ eventHandler ifNil: [ eventHandler := SpEventHandler new ]
+	^ eventHandler ifNil: [ eventHandler := SpEventHandler for: self ]
 ]
 
 { #category : #'private utils' }
