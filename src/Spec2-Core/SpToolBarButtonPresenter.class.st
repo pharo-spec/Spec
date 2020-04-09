@@ -2,7 +2,7 @@
 A button with an icon and label associated with an action and a badge 
 "
 Class {
-	#name : #SpToolBarButton,
+	#name : #SpToolBarButtonPresenter,
 	#superclass : #SpToolBarItemPresenter,
 	#instVars : [
 		'#label => SpObservableSlot',
@@ -14,75 +14,75 @@ Class {
 }
 
 { #category : #specs }
-SpToolBarButton class >> adapterName [
+SpToolBarButtonPresenter class >> adapterName [
 
 	^ #ToolBarButtonAdapter
 ]
 
 { #category : #accessing }
-SpToolBarButton >> action [
+SpToolBarButtonPresenter >> action [
 	^ action
 ]
 
 { #category : #accessing }
-SpToolBarButton >> action: anObject [
+SpToolBarButtonPresenter >> action: anObject [
 	action := anObject
 ]
 
 { #category : #accessing }
-SpToolBarButton >> badge [
+SpToolBarButtonPresenter >> badge [
 	^ badge
 ]
 
 { #category : #accessing }
-SpToolBarButton >> badge: aString [
+SpToolBarButtonPresenter >> badge: aString [
 	badge := aString
 ]
 
 { #category : #simulating }
-SpToolBarButton >> click [
+SpToolBarButtonPresenter >> click [
 	
 	self execute
 ]
 
 { #category : #execution }
-SpToolBarButton >> execute [
+SpToolBarButtonPresenter >> execute [
 	self action cull: self
 ]
 
 { #category : #accessing }
-SpToolBarButton >> icon [
+SpToolBarButtonPresenter >> icon [
 	^ icon
 ]
 
 { #category : #accessing }
-SpToolBarButton >> icon: anObject [
+SpToolBarButtonPresenter >> icon: anObject [
 	icon := anObject
 ]
 
 { #category : #initialization }
-SpToolBarButton >> initialize [
+SpToolBarButtonPresenter >> initialize [
 	super initialize.
 ]
 
 { #category : #accessing }
-SpToolBarButton >> label [
+SpToolBarButtonPresenter >> label [
 	^ label
 ]
 
 { #category : #accessing }
-SpToolBarButton >> label: anObject [
+SpToolBarButtonPresenter >> label: anObject [
 	label := anObject
 ]
 
 { #category : #'api-events' }
-SpToolBarButton >> whenIconChangedDo: aBlock [ 
+SpToolBarButtonPresenter >> whenIconChangedDo: aBlock [ 
 
 	self property: #icon whenChangedDo: aBlock 
 ]
 
 { #category : #'api-events' }
-SpToolBarButton >> whenLabelChangedDo: aBlock [ 
+SpToolBarButtonPresenter >> whenLabelChangedDo: aBlock [ 
 
 	self property: #label whenChangedDo: aBlock 
 ]

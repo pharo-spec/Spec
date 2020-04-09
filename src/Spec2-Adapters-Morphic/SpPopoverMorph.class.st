@@ -42,7 +42,7 @@ SpPopoverMorph >> beRelativeTo: aMorph [
 SpPopoverMorph >> calculatePositionBottomFrom: aRect [
 	| x y |
 	
-	y := aRect corner y + 10.
+	y := aRect corner y + self separatatedBy.
 	x := aRect corner x - ((aRect width + self width) // 2).
 
 	^ x @ y
@@ -67,7 +67,7 @@ SpPopoverMorph >> calculatePositionFrom: aRect [
 SpPopoverMorph >> calculatePositionLeftFrom: aRect [
 	| x y |
 	
-	x := aRect origin x - 10 - self width.
+	x := aRect origin x - self separatatedBy - self width.
 	y := aRect origin y.
 
 	^ x @ y	
@@ -77,7 +77,7 @@ SpPopoverMorph >> calculatePositionLeftFrom: aRect [
 SpPopoverMorph >> calculatePositionRightFrom: aRect [
 	| x y |
 	
-	x := aRect corner x + 10.
+	x := aRect corner x + self separatatedBy.
 	y := aRect origin y.
 
 	^ x @ y
@@ -87,7 +87,7 @@ SpPopoverMorph >> calculatePositionRightFrom: aRect [
 SpPopoverMorph >> calculatePositionTopFrom: aRect [
 	| x y |
 	
-	y := aRect origin y - 10 - self height.
+	y := aRect origin y - self separatatedBy - self height.
 	x := aRect corner x - ((aRect width + self width) // 2).
 
 	^ x @ y	
@@ -119,7 +119,7 @@ SpPopoverMorph >> initialize [
 		listDirection: #leftToRight;
 		hResizing: #shrinkWrap;
 		vResizing: #shrinkWrap;
-		onAnnouncement: MorphLostFocus do: [ :ann | ann morph popdown ];
+		"onAnnouncement: MorphLostFocus do: [ :ann | ann morph popdown ];"
 		beSticky.
 	self bePositionBottom
 ]
@@ -148,6 +148,12 @@ SpPopoverMorph >> popupPointingTo: aRectangle [
 SpPopoverMorph >> relativeTo [ 
 
 	^ relativeTo
+]
+
+{ #category : #private }
+SpPopoverMorph >> separatatedBy [
+
+	^ 5
 ]
 
 { #category : #private }

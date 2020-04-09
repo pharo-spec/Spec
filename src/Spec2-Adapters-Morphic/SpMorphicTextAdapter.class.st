@@ -53,6 +53,7 @@ SpMorphicTextAdapter >> buildWidget [
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
 		registerScrollChanges: #scrollValueChanged:;
+		hScrollbarShowWhenNeeded;
 		yourself.
 	
 	self setEditable: self presenter isEditable to: newWidget.
@@ -79,6 +80,13 @@ SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
 	^ SpBindings
 		value: self model application adapterBindings
 		during: [ menuPresenter buildWithSpec ]
+]
+
+{ #category : #styling }
+SpMorphicTextAdapter >> presenterStyles [
+	"The presenters in the style"
+
+	^ self presenter scrollBarStyles, self presenter styles 
 ]
 
 { #category : #private }
@@ -109,20 +117,24 @@ SpMorphicTextAdapter >> updateExtentPropagationOf: string on: aWidget [
 		or: [ self presenter isPropagateNaturalHeight ])
 		ifFalse: [ ^ self ].
 
+	"This is an incredible ugly hack because what should be the correct way of doing it: 
+	 Font>>widthOfString: does not works (because it fails to take into account kerning).
+	 Why it works on the Editing area is a mystery. 
+	 BUT! It does not works for monospaced fonts! (again, no idea why)"
 	stringMorph := RubEditingArea new 
 		font: aWidget font;
-		updateTextWith: string.
+		updateTextWith: string asString.
 
-	width := stringMorph width + 12 min: self currentWorld width / 3.
+	width := stringMorph width + 12" min: self currentWorld width / 3".
 	self presenter isPropagateNaturalWidth 
 		ifTrue: [ aWidget width: width ].
 
 	self presenter isPropagateNaturalHeight 
 		ifTrue: [ 
-			height := (stringMorph
+			height := ((stringMorph
 				beWrapped;
 				width: width;
-				yourself) height + 2 min: self currentWorld height / 3. 
+				yourself) height + 2)" min: self currentWorld height / 3". 
 			aWidget height: height ]
 ]
 

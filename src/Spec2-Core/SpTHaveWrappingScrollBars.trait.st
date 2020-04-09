@@ -68,7 +68,9 @@ SpTHaveWrappingScrollBars >> propagateNaturalHeight: aBoolean [
 { #category : #accessing }
 SpTHaveWrappingScrollBars >> propagateNaturalWidth: aBoolean [
 	"Natural width propagation means that the width of the text presenter will follow the 
-	 width of the text contained"
+	 width of the text contained. 
+	 WARNING: Because of a limitation on how the font rendering works in morphic backend, 
+	 this properly will fail to preserve the correct width if using monospaced fonts."
 
 	propagateNaturalWidth := aBoolean
 ]

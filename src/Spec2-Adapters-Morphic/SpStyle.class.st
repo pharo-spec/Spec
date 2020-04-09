@@ -86,8 +86,20 @@ SpStyle class >> createDefaultStyleSheet [
 			Geometry { #height: 45 }
 		]
 	],
+	.text [ 
+		Geometry { #height: 0 }
+	],
 	.code [
 		Font { #name : "Source Code Pro", #size : 10 }
+	],
+	.codePopover [ 
+		Draw { #color : #transparent },
+		.button [
+			Geometry { #width : 25 }
+		]
+	],
+	.scrollbarPopoverLarge [ 
+		Geometry { #height: 350 } 
 	]
 ]
 '

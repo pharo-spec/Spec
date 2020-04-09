@@ -16,7 +16,8 @@ Class {
 	#name : #SpMorphStyle,
 	#superclass : #Object,
 	#instVars : [
-		'styles'
+		'styles',
+		'mergedProperties'
 	],
 	#category : #'Spec2-Adapters-Morphic-StyleSheet'
 }
@@ -31,8 +32,8 @@ SpMorphStyle class >> fromStylesheet: aStyle adapter: anAdapter [
 	allStyleClasses := aStyle flattenClasses.
 	styles := OrderedCollection new.
 	(({ 'application'. anAdapter styleName }, 
-		anAdapter presenter styles, 
-		(anAdapter presenter styles collect: [ :each | anAdapter styleName, '.', each ])) 
+		anAdapter presenterStyles, 
+		(anAdapter presenterStyles collect: [ :each | anAdapter styleName, '.', each ])) 
 		do: [ :each |
 			"a hack to not do a double dispatch on string :(" 
 			each isString 
@@ -58,7 +59,7 @@ SpMorphStyle class >> newStyles: anArray [
 SpMorphStyle >> applyTo: aMorph [ 
 
 	aMorph setProperty: #style toValue: self.
-	self styles do: [ :each |
+	self mergedProperties do: [ :each |
 		each applyTo: aMorph ]
 ]
 
@@ -66,6 +67,23 @@ SpMorphStyle >> applyTo: aMorph [
 SpMorphStyle >> borderWidth [
 
 	^ self lookupProperty: SpStyleContainer valueOf: #borderWidth
+]
+
+{ #category : #private }
+SpMorphStyle >> calculateMergedProperties [
+	| properties groups |
+	
+	properties := OrderedCollection new.
+	groups := (self styles 
+		flatCollect: [ :each | each properties ])
+		groupedBy: [ :each | each class ].
+		
+	groups valuesDo: [ :eachCollection |
+		properties add: (eachCollection allButFirst 
+			inject: eachCollection first
+			into: [ :all :each | all, each ]) ].
+	
+	^ properties
 ]
 
 { #category : #'accessing geometry' }
@@ -109,6 +127,12 @@ SpMorphStyle >> maxHeight [
 SpMorphStyle >> maxWidth [
 
 	^ self lookupProperty: SpStyleGeometry valueOf: #maxWidth
+]
+
+{ #category : #accessing }
+SpMorphStyle >> mergedProperties [
+
+	^ mergedProperties ifNil: [ mergedProperties := self calculateMergedProperties ]
 ]
 
 { #category : #'accessing geometry' }
