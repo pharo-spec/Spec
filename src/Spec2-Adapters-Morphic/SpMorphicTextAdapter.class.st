@@ -82,14 +82,6 @@ SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
 		during: [ menuPresenter buildWithSpec ]
 ]
 
-{ #category : #'event installing' }
-SpMorphicTextAdapter >> installEvent: anEvent [
-	"Used when installing events into presenters already built"
-
-	self widgetDo: [ :w |
-		anEvent installOn: self target: w ]
-]
-
 { #category : #styling }
 SpMorphicTextAdapter >> presenterStyles [
 	"The presenters in the style"
