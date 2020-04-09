@@ -38,7 +38,7 @@ SpMorphicTableColumn >> isSortable [
 { #category : #testing }
 SpMorphicTableColumn >> isSorted [
 
-	^ self sortingStrategy state isSorted
+	^ self sortingStrategy isSortingEnabled and: [ self sortingStrategy state isSorted ]
 ]
 
 { #category : #accessing }

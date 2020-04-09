@@ -99,10 +99,12 @@ SpMorphicTableAdapter >> ensureAtLeastOneColumnIn: tableMorph [
 SpMorphicTableAdapter >> ifSorted: sortedBlock ifNotSorted: notSortedBlock [ 
 	widget columns 
 		do: [ :column | | state | 
-			state := column sortingStrategy state.
-			state isSorted
-				ifTrue: [ ^ sortedBlock cull: state ] ].
-	^ notSortedBlock value	
+			column isSorted
+				ifTrue: [ 
+					state := column sortingStrategy state.
+					state isSorted
+						ifTrue: [ ^ sortedBlock cull: state ] ] ].
+	^ notSortedBlock value
 ]
 
 { #category : #testing }
