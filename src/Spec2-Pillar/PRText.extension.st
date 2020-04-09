@@ -4,3 +4,8 @@ Extension { #name : #PRText }
 PRText >> plaintextAppendix [ 
 	^  nil
 ]
+
+{ #category : #'*Spec2-Pillar' }
+PRText >> styleName [
+	^  nil
+]

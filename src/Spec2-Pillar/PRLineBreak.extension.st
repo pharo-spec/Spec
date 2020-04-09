@@ -6,6 +6,6 @@ PRLineBreak >> plaintextAppendix [
 ]
 
 { #category : #'*Spec2-Pillar' }
-PRLineBreak >> plaintextNewline [
-	^  String cr
+PRLineBreak >> styleName [
+	^ nil
 ]

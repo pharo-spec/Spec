@@ -4,3 +4,8 @@ Extension { #name : #PRParagraph }
 PRParagraph >> plaintextAppendix [ 
 	^  self plaintextNewline
 ]
+
+{ #category : #'*Spec2-Pillar' }
+PRParagraph >> styleName [
+	^ nil
+]
