@@ -263,13 +263,6 @@ SpBoxLayout >> isVertical [
 ]
 
 { #category : #removing }
-SpBoxLayout >> remove: aPresenter [
-
-	children removeKey: aPresenter.
-	self announceChildRemoved: aPresenter
-]
-
-{ #category : #removing }
 SpBoxLayout >> removeAll [
 
 	children removeAll.
