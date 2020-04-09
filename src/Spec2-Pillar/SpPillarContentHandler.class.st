@@ -26,12 +26,9 @@ SpPillarContentHandler >> styles [
 			itemAt: #preFormatted put: {  (TextColor gray) };
 			itemAt: #table put: {  (TextColor yellow ) };
 			itemAt: #internalLink put: {  (TextColor blue) };
-			
-			
-			
-			"itemAt: #monospace put: { TextFontReference toFont: (LogicalFont 
+			itemAt: #monospace put: { TextFontReference toFont: (LogicalFont 
 				familyName: 'Source Code Pro' 
-				pointSize: 10.0) };"
+				pointSize: 10.0) };
 			itemAt: #header1 put: { TextFontReference toFont: (LogicalFont 
 				familyName: 'Source Sans Pro' 
 				pointSize: 25.0) };
