@@ -1,6 +1,11 @@
 Extension { #name : #PRLineBreak }
 
 { #category : #'*Spec2-Pillar' }
-PRLineBreak >> plainTextOffset [
-	^  1
+PRLineBreak >> plaintextAppendix [ 
+	^  self plaintextNewline
+]
+
+{ #category : #'*Spec2-Pillar' }
+PRLineBreak >> plaintextNewline [
+	^  String cr
 ]

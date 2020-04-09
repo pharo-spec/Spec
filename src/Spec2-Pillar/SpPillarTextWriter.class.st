@@ -1,30 +1,29 @@
 Class {
 	#name : #SpPillarTextWriter,
-	#superclass : #PRDocumentWriter,
+	#superclass : #PRVisitor,
 	#instVars : [
-		'nesting'
+		'nesting',
+		'stream'
 	],
 	#category : #'Spec2-Pillar'
 }
 
-{ #category : #accessing }
-SpPillarTextWriter class >> fileExtension [
-	^ 'txt'
-]
-
-{ #category : #accessing }
-SpPillarTextWriter class >> folderName [
-	^ #text
-]
-
-{ #category : #accessing }
-SpPillarTextWriter class >> writerName [
-	^ #text
+{ #category : #writing }
+SpPillarTextWriter class >> write: aDocument [
+	^ self new 
+		visit: aDocument	
 ]
 
 { #category : #accessing }
 SpPillarTextWriter >> canvasClass [
 	^ PRTextCanvas
+]
+
+{ #category : #initialization }
+SpPillarTextWriter >> initialize [ 
+	super initialize.
+	stream := String new writeStream.
+	nesting := OrderedCollection new.
 ]
 
 { #category : #private }
@@ -33,13 +32,26 @@ SpPillarTextWriter >> nest: aString do: aBlock [
 	aBlock ensure: [ nesting removeLast ]
 ]
 
+{ #category : #'as yet unclassified' }
+SpPillarTextWriter >> newline [
+	stream nextPut: Character cr
+]
+
 { #category : #visiting }
 SpPillarTextWriter >> start: anObject [
 	nesting := OrderedCollection new.
 	super start: anObject.
-	canvas lastIsNewLine
-		ifTrue: [ stream trimLastNewLine ]
+	"canvas lastIsNewLine
+		ifTrue: [ stream trimLastNewLine ]"
 
+]
+
+{ #category : #'visiting-document' }
+SpPillarTextWriter >> visitCodeblock: aCodeBlock [ 
+	| code |
+	code := self visitText: aCodeBlock.
+	self writeAppendix: aCodeBlock.
+	^ code
 ]
 
 { #category : #'visiting-document' }
@@ -55,22 +67,33 @@ SpPillarTextWriter >> visitDefinitionList: anObject [
 ]
 
 { #category : #'visiting-document' }
-SpPillarTextWriter >> visitHeader: anObject [
-	super visitHeader: anObject.
-	canvas newLine
+SpPillarTextWriter >> visitDocument: aDocument [
+	super visitDocument: aDocument.
+	^  stream
+		flush;
+		contents
+]
+
+{ #category : #'visiting-document' }
+SpPillarTextWriter >> visitDocumentGroup: anObject [
+	| group |
+	group := super visitDocumentGroup: anObject.
+	self writeAppendix: anObject.
+	^ group
 ]
 
 { #category : #'visiting-document' }
 SpPillarTextWriter >> visitHorizontalRule: anObject [
 	self halt.
-	canvas
+	stream
 		nextPutAll: ((String new: 40) atAllPut: $-);
 		newLine
 ]
 
 { #category : #'visiting-document' }
-SpPillarTextWriter >> visitLineBreak: aLineBreak [
-	canvas newLine
+SpPillarTextWriter >> visitLineBreak: anObject [
+
+	self newline
 ]
 
 { #category : #'visiting-document' }
@@ -93,15 +116,9 @@ SpPillarTextWriter >> visitOrderedList: anObject [
 ]
 
 { #category : #'visiting-document' }
-SpPillarTextWriter >> visitParagraph: anObject [
-	super visitParagraph: anObject.
-	canvas newLine
-]
-
-{ #category : #'visiting-document' }
 SpPillarTextWriter >> visitPreformatted: anObject [
 	"self halt."
-	anObject children do: [ :each | self visit: each. canvas newLine ]
+	anObject children do: [ :each | self visit: each. self newline ]
 ]
 
 { #category : #'visiting-document' }
@@ -115,7 +132,7 @@ SpPillarTextWriter >> visitRaw: anObject [
 SpPillarTextWriter >> visitReference: anObject [
 	anObject hasAlias
 		ifTrue: [ super visitReference: anObject ]
-		ifFalse: [ canvas nextPutAll: anObject title ]
+		ifFalse: [ stream nextPutAll: anObject title ]
 ]
 
 { #category : #'visiting-document' }
@@ -123,8 +140,8 @@ SpPillarTextWriter >> visitTableRow: anObject [
 	"self halt."
 	anObject children
 		do: [ :each | self visit: each ]
-		separatedBy: [ canvas tab ].
-	canvas newLine
+		separatedBy: [ stream tab ].
+
 ]
 
 { #category : #'visiting-document' }
@@ -135,7 +152,7 @@ SpPillarTextWriter >> visitTermItem: anObject [
 
 { #category : #'visiting-document' }
 SpPillarTextWriter >> visitText: anObject [
-	canvas nextPutAll: anObject text
+	stream nextPutAll: anObject text.
 ]
 
 { #category : #'visiting-document' }
@@ -143,4 +160,10 @@ SpPillarTextWriter >> visitUnorderedList: anObject [
 	"self halt."
 	"canvas potentialNewLine."
 	self nest: '*' do: [ super visitUnorderedList: anObject ]
+]
+
+{ #category : #'visiting-document' }
+SpPillarTextWriter >> writeAppendix: anObject [
+	anObject plaintextAppendix ifNotNil: [ :appendix |
+		stream nextPutAll: appendix ]
 ]

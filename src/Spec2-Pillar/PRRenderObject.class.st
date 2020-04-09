@@ -10,7 +10,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 PRRenderObject >> extraOffset [
-	^ item plainTextOffset 
+	^ item plaintextOffset 
 ]
 
 { #category : #accessing }

@@ -47,5 +47,5 @@ PillarContentProvider >> styles [
 
 { #category : #'as yet unclassified' }
 PillarContentProvider >> toPlaintext: aDocument [
-	^  SpPillarTextWriter new write: aDocument
+	^  SpPillarTextWriter write: aDocument
 ]
