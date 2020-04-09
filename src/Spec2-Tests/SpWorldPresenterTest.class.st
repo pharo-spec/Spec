@@ -38,7 +38,7 @@ SpWorldPresenterTest >> testOpenPresenterInWorldDisplayInFullWorld [
 	
 	self
 		assert: worldMorph submorphs first submorphs first extent
-		equals: worldMorph extent
+		equals: worldMorph extent - 8 "border"
 ]
 
 { #category : #tests }
