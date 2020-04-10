@@ -20,7 +20,8 @@ Class {
 		'#childrenBlock',
 		'#activationBlock',
 		'#activateOnSingleClick',
-		'#lazilyComputeChildren'
+		'#lazilyComputeChildren',
+		'#verticalAlignment'
 	],
 	#category : #'Spec2-Core-Widgets-Tree'
 }
@@ -172,6 +173,8 @@ SpTreeTablePresenter >> initialize [
 	childrenBlock := [ :item | #() ].
 	roots := #().
 	lazilyComputeChildren := false.
+	verticalAlignment := SpVerticalAlignment new.
+
 
 	self beSingleSelection.
 	self activateOnDoubleClick.
@@ -301,6 +304,13 @@ SpTreeTablePresenter >> selectPath: aPath [
 ]
 
 { #category : #api }
+SpTreeTablePresenter >> selectPath: aPath scrollToSelection: shouldScrollToSelection [
+
+	self selectPath: aPath.
+	shouldScrollToSelection ifTrue: [ adapter scrollToSelection ]
+]
+
+{ #category : #api }
 SpTreeTablePresenter >> selectPaths: pathArray [
 	self selection selectPaths: pathArray
 ]
@@ -358,6 +368,11 @@ SpTreeTablePresenter >> unselectItem: anItem [
 SpTreeTablePresenter >> unselectPath: aPath [
 
 	self selection unselectPath: aPath
+]
+
+{ #category : #accessing }
+SpTreeTablePresenter >> verticalAlignment [
+	^ verticalAlignment
 ]
 
 { #category : #'api-events' }
