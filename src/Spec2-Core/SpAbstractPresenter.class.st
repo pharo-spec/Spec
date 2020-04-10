@@ -112,6 +112,10 @@ SpAbstractPresenter >> application [
 	^ self owner application
 ]
 
+{ #category : #accessing }
+SpAbstractPresenter >> autoAccept: aBoolean [
+]
+
 { #category : #'private building' }
 SpAbstractPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	"I assume the SpecBindings is well defined"

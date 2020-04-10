@@ -29,8 +29,8 @@ SpEventHandlerTest >> testEventIsInstalledDynamically [
 
 	got := lost := false.
 	t1 eventHandler 
-		whenGotFocusDo: [ got := true ];
-		whenLostFocusDo: [ lost := true ].
+		whenFocusReceivedDo: [ got := true ];
+		whenFocusLostDo: [ lost := true ].
 	
 	t2 takeKeyboardFocus.
 	t1 takeKeyboardFocus.
@@ -51,8 +51,8 @@ SpEventHandlerTest >> testEventIsInstalledOnBuild [
 
 	got := lost := false.
 	t1 eventHandler 
-		whenGotFocusDo: [ got := true ];
-		whenLostFocusDo: [ lost := true ].
+		whenFocusReceivedDo: [ got := true ];
+		whenFocusLostDo: [ lost := true ].
 		
 	presenter openWithSpec.
 	
@@ -75,8 +75,8 @@ SpEventHandlerTest >> testEventIsTransmittedOnText [
 
 	got := lost := false.
 	t1 eventHandler 
-		whenGotFocusDo: [ got := true ];
-		whenLostFocusDo: [ lost := true ].
+		whenFocusReceivedDo: [ got := true ];
+		whenFocusLostDo: [ lost := true ].
 		
 	presenter openWithSpec.
 	

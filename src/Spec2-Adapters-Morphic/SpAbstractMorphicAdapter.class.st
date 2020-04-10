@@ -305,7 +305,15 @@ SpAbstractMorphicAdapter >> installEvent: anEvent [
 ]
 
 { #category : #'event installing' }
-SpAbstractMorphicAdapter >> installGotFocusEvent: anEvent to: aWidget [
+SpAbstractMorphicAdapter >> installFocusLostEvent: anEvent to: aWidget [
+
+	aWidget announcer 
+		when: MorphLostFocus
+		do: [ anEvent action value ]
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installFocusReceivedEvent: anEvent to: aWidget [
 
 	aWidget announcer 
 		when: MorphGotFocus
@@ -313,11 +321,66 @@ SpAbstractMorphicAdapter >> installGotFocusEvent: anEvent to: aWidget [
 ]
 
 { #category : #'event installing' }
-SpAbstractMorphicAdapter >> installLostFocusEvent: anEvent to: aWidget [
+SpAbstractMorphicAdapter >> installKeyDownEvent: anEvent to: aWidget [
 
-	aWidget announcer 
-		when: MorphLostFocus
-		do: [ anEvent action value ]
+	aWidget 
+		when: #keyDown
+		send: #value:
+		to: anEvent action
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installKeyUpEvent: anEvent to: aWidget [
+
+	aWidget 
+		when: #keyUp
+		send: #value:
+		to: anEvent action
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installMouseDownEvent: anEvent to: aWidget [
+
+	aWidget 
+		when: #mouseDown
+		send: #value:
+		to: anEvent action
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installMouseEnterEvent: anEvent to: aWidget [
+
+	aWidget 
+		when: #mouseEnter
+		send: #value:
+		to: anEvent action
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installMouseLeaveEvent: anEvent to: aWidget [
+
+	aWidget 
+		when: #mouseLeave
+		send: #value:
+		to: anEvent action
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installMouseMoveEvent: anEvent to: aWidget [
+
+	aWidget 
+		when: #mouseMove
+		send: #value:
+		to: anEvent action
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installMouseUpEvent: anEvent to: aWidget [
+
+	aWidget 
+		when: #mouseUp
+		send: #value:
+		to: anEvent action
 ]
 
 { #category : #testing }

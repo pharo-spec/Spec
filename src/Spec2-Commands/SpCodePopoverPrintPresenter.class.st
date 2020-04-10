@@ -91,7 +91,7 @@ SpCodePopoverPrintPresenter >> initializePresenters [
 		add: text;
 		yourself.
 
-	text eventHandler whenLostFocusDo: [ self dismiss ].
+	text eventHandler whenFocusLostDo: [ self dismiss ].
 
 	text
 		bindKeyCombination: Character cr asKeyCombination | PharoShortcuts current printItShortcut
