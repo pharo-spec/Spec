@@ -80,7 +80,7 @@ SpAbstractAdapter >> addEventsTo: aWidget [
 	self presenter hasEventHandler ifFalse: [ ^ self ].
 	self presenter eventHandler 
 		installAllEventsTo: self 
-		target: widget
+		target: aWidget
 ]
 
 { #category : #factory }
