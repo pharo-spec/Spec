@@ -89,22 +89,9 @@ SpCodePopoverPrintPresenter >> initializePresenters [
 		spacing: 5;
 		borderWidth: 5;
 		add: text;
-		"add: (SpBoxLayout newVertical
-				add: (self newButton 
-						addStyle: 'codePopover.button';
-						icon: (self application iconNamed: #smallPrintIt);
-						action: [ self dismissAndPrint ];
-						yourself)
-					expand: false;
-				add: (self newButton
-						addStyle: 'codePopover.button'; 
-						icon: (self application iconNamed: #smallInspectIt);
-						action: [ self dismissAndInspect ];
-						yourself)
-					expand: false;
-				yourself)
-			expand: false;"
 		yourself.
+
+	text eventHandler whenLostFocusDo: [ self dismiss ].
 
 	text
 		bindKeyCombination: Character cr asKeyCombination | PharoShortcuts current printItShortcut

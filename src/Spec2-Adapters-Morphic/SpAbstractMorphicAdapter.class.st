@@ -52,15 +52,6 @@ SpAbstractMorphicAdapter >> add: anAdapter [
 ]
 
 { #category : #initialization }
-SpAbstractMorphicAdapter >> addEventsTo: aWidget [
-	
-	self presenter hasEventHandler ifFalse: [ ^ self ].
-	self presenter eventHandler 
-		installAllEventsTo: self 
-		target: widget
-]
-
-{ #category : #initialization }
 SpAbstractMorphicAdapter >> addFocusRotationKeyBindings [
 
 	self presenter canTakeKeyboardFocus ifFalse: [ ^ self ].
