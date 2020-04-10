@@ -82,12 +82,12 @@ SpAbstractListAdapterSingleSelectionTest >> testSelectPresenterWithoutScrollingD
 	
 	presenter 
 		items: (1 to: 200);
-		selectIndex: 150 scrollToSelection: true;
 		openWithSpec.
-
 	verticalAlignment := presenter verticalAlignment.		
 	visibleItems := verticalAlignment firstVisibleRowIndex to: verticalAlignment lastVisibleRowIndex.
-		
+	
+	presenter selectIndex: 150 scrollToSelection: false.
+			
 	self 
 		assert: (verticalAlignment firstVisibleRowIndex to: verticalAlignment lastVisibleRowIndex) 
 		equals: visibleItems
