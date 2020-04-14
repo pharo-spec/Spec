@@ -11,6 +11,7 @@ BaselineOfSpec2 >> baseline: spec [
 	spec for: #common do: [ 
 		self commander2: spec.
 		self complishon: spec.
+		self pillar: spec.
 		
 		spec
 			package: 'Spec2-ObservableSlot';
@@ -49,7 +50,8 @@ BaselineOfSpec2 >> baseline: spec [
 			package: 'Spec2-Tools-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Tools') ];
 			package: 'Spec2-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Morphic-Tests' with: [ spec requires: #('Spec2-Morphic') ];
-			package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Morphic') ].
+			package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Morphic') ];
+			package: 'Spec2-Pillar' with: [ spec requires: #('Spec2-Core' 'PillarCore') ].
 			"This will extend the help tool, which in boostrap will be loaded a lot later."
 			"package: 'Spec2-Help';"		
 		 ].
@@ -89,6 +91,8 @@ BaselineOfSpec2 >> baseline: spec [
 		'Spec2-Morphic-Tests' 
 		'Spec2-Morphic-Backend-Tests' 
 		'Spec2-Backend-Tests' ).
+	spec group: 'Pillar' with: #(
+		'Spec2-Pillar' ).
 	spec group: 'default' with: #(
 		'Core'
 		'Morphic' 
@@ -117,6 +121,13 @@ BaselineOfSpec2 >> complishon: spec [
 	spec
 		baseline: 'HeuristicCompletion'
 		with: [ spec repository: 'github://guillep/complishon' ]
+]
+
+{ #category : #dependencies }
+BaselineOfSpec2 >> pillar: spec [
+	spec
+		baseline: 'PillarCore'
+		with: [ spec repository: 'github://pillar-markup/pillar:v7.7.5/src' ]
 ]
 
 { #category : #acccessing }
