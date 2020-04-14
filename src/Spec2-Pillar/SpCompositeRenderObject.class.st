@@ -12,6 +12,11 @@ SpCompositeRenderObject >> acceptRenderObjectVisitor: aVisitor [
 	^ aVisitor visitCompositeObject: self
 ]
 
+{ #category : #adding }
+SpCompositeRenderObject >> add: aDocumentItem [
+	children add: aDocumentItem 
+]
+
 { #category : #'as yet unclassified' }
 SpCompositeRenderObject >> children [
 	^ children
@@ -20,4 +25,10 @@ SpCompositeRenderObject >> children [
 { #category : #accessing }
 SpCompositeRenderObject >> children: aCollection [ 
 	children := aCollection
+]
+
+{ #category : #initialization }
+SpCompositeRenderObject >> initialize [
+	super initialize.
+	children := OrderedCollection new
 ]
