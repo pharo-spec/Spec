@@ -1,9 +1,8 @@
 Class {
 	#name : #SpRichTextPresenter,
-	#superclass : #SpTextPresenter,
+	#superclass : #SpAbstractTextPresenter,
 	#instVars : [
-		'#textStyler => SpObservableSlot',
-		'#contentProvider => IndexedSlot'
+		'#textStyler => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }
@@ -32,13 +31,7 @@ SpRichTextPresenter class >> title [
 ]
 
 { #category : #accessing }
-SpRichTextPresenter >> contentProvider [
-	^ contentProvider ifNil: [ 
-		contentProvider := self defaultContentProvider ]
-]
-
-{ #category : #accessing }
-SpRichTextPresenter >> defaultContentProvider [
+SpRichTextPresenter >> defaultTextStyler [
 	self subclassResponsibility 
 ]
 
@@ -62,7 +55,7 @@ SpRichTextPresenter >> renderTree [
 
 { #category : #initialization }
 SpRichTextPresenter >> styleAttributes [
-	^ self contentProvider styles
+	^ self textStyler styles
 ]
 
 { #category : #accessing }

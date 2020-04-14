@@ -11,8 +11,6 @@ Class {
 SpRenderTreeBuilderVisitor >> processGroup: anObject [
 	| children |
 	children := super visitDocumentGroup: anObject.
-	(children allSatisfy: [ :each | each isKindOf: SpRenderObject ]) ifFalse: [ 
-		self halt ].
 	^ SpCompositeRenderObject new
 		item: anObject;
 		styles: (styleProvider computedStylesFor: anObject);
@@ -27,15 +25,6 @@ SpRenderTreeBuilderVisitor >> render: aPRDocument [
 { #category : #accessing }
 SpRenderTreeBuilderVisitor >> styleProvider: aPRStyleProvider [ 
 	styleProvider := aPRStyleProvider
-]
-
-{ #category : #visiting }
-SpRenderTreeBuilderVisitor >> visitAll: aCollection [
-	^aCollection collect: [ :each | | i |
-		i := self visit: each.
-		(i isKindOf: SpRenderObject) ifFalse: [ 
-			self halt. ].
-		i ]
 ]
 
 { #category : #'as yet unclassified' }

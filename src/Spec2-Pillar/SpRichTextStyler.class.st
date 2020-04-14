@@ -1,20 +1,20 @@
 Class {
-	#name : #SpContentHandler,
-	#superclass : #Object,
+	#name : #SpRichTextStyler,
+	#superclass : #SpTextStyler,
 	#category : #'Spec2-Pillar'
 }
 
 { #category : #parsing }
-SpContentHandler >> parse: aString [
+SpRichTextStyler >> parse: aString [
 	self subclassResponsibility 
 ]
 
 { #category : #tests }
-SpContentHandler >> plaintextFor: aFormatString [
+SpRichTextStyler >> plaintextFor: aFormatString [
 	^  self toPlaintext: (self parse: aFormatString)
 ]
 
 { #category : #'as yet unclassified' }
-SpContentHandler >> toPlaintext: aDocument [
+SpRichTextStyler >> toPlaintext: aDocument [
 	self subclassResponsibility 
 ]

@@ -5,8 +5,8 @@ Class {
 }
 
 { #category : #accessing }
-SpPillarTextPresenter >> defaultContentProvider [
-	^ SpPillarContentHandler new
+SpPillarTextPresenter >> defaultTextStyler [
+	^ SpPillarTextStyler new
 ]
 
 { #category : #rendering }

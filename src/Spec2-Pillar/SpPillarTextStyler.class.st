@@ -1,21 +1,21 @@
 Class {
-	#name : #SpPillarContentHandler,
-	#superclass : #SpContentHandler,
+	#name : #SpPillarTextStyler,
+	#superclass : #SpRichTextStyler,
 	#category : #'Spec2-Pillar'
 }
 
 { #category : #parsing }
-SpPillarContentHandler >> parse: aString [
+SpPillarTextStyler >> parse: aString [
 	^  PRPillarParser parse: aString
 ]
 
 { #category : #'as yet unclassified' }
-SpPillarContentHandler >> plaintextFor: aString [
+SpPillarTextStyler >> plaintextFor: aString [
 	^  self toPlaintext: (self parse: aString)
 ]
 
 { #category : #accessing }
-SpPillarContentHandler >> styles [ 
+SpPillarTextStyler >> styles [ 
 	^  SpSimpleStyleProvider new 
 			itemAt: #bold put: {  (TextEmphasis bold) };
 			itemAt: #italic put: {  (TextEmphasis italic) };
@@ -42,6 +42,6 @@ SpPillarContentHandler >> styles [
 ]
 
 { #category : #'as yet unclassified' }
-SpPillarContentHandler >> toPlaintext: aDocument [
+SpPillarTextStyler >> toPlaintext: aDocument [
 	^  SpPillarTextWriter write: aDocument
 ]
