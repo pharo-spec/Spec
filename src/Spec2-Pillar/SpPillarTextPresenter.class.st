@@ -10,6 +10,6 @@ SpPillarTextPresenter >> defaultTextStyler [
 ]
 
 { #category : #rendering }
-SpPillarTextPresenter >> parseRaw: aFormatString [
-	^ PRPillarParser parse: aFormatString 
+SpPillarTextPresenter >> formatString [
+	^ PRTextWriter new write: self model 
 ]

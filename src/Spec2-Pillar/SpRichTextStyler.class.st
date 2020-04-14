@@ -5,16 +5,21 @@ Class {
 }
 
 { #category : #parsing }
-SpRichTextStyler >> parse: aString [
+SpRichTextStyler >> parseFormatString: formatString [
 	self subclassResponsibility 
 ]
 
 { #category : #tests }
 SpRichTextStyler >> plaintextFor: aFormatString [
-	^  self toPlaintext: (self parse: aFormatString)
+	^  self writeFormatString: (self parse: aFormatString)
 ]
 
 { #category : #'as yet unclassified' }
-SpRichTextStyler >> toPlaintext: aDocument [
+SpRichTextStyler >> writeFormatString: aDocument [
+	self subclassResponsibility 
+]
+
+{ #category : #'as yet unclassified' }
+SpRichTextStyler >> writePlaintextString: aDocument [
 	self subclassResponsibility 
 ]

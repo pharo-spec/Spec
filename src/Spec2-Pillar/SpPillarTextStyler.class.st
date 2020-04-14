@@ -5,13 +5,13 @@ Class {
 }
 
 { #category : #parsing }
-SpPillarTextStyler >> parse: aString [
-	^  PRPillarParser parse: aString
+SpPillarTextStyler >> parseFormatString: aFormatString [
+	^  PRPillarParser parse: aFormatString
 ]
 
 { #category : #'as yet unclassified' }
 SpPillarTextStyler >> plaintextFor: aString [
-	^  self toPlaintext: (self parse: aString)
+	^  self writeFormatString: (self parse: aString)
 ]
 
 { #category : #accessing }
@@ -43,5 +43,15 @@ SpPillarTextStyler >> styles [
 
 { #category : #'as yet unclassified' }
 SpPillarTextStyler >> toPlaintext: aDocument [
+	^  SpPillarTextWriter write: aDocument
+]
+
+{ #category : #'as yet unclassified' }
+SpPillarTextStyler >> writeFormatString: aDocument [
+	^  PRTextWriter new write: aDocument
+]
+
+{ #category : #'as yet unclassified' }
+SpPillarTextStyler >> writePlaintextString: aDocument [
 	^  SpPillarTextWriter write: aDocument
 ]

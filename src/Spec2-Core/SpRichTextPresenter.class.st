@@ -1,8 +1,9 @@
 Class {
 	#name : #SpRichTextPresenter,
-	#superclass : #SpAbstractTextPresenter,
+	#superclass : #SpTextPresenter,
 	#instVars : [
-		'#textStyler => SpObservableSlot'
+		'#textStyler => SpObservableSlot',
+		'#model'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }
@@ -35,6 +36,11 @@ SpRichTextPresenter >> defaultTextStyler [
 	self subclassResponsibility 
 ]
 
+{ #category : #rendering }
+SpRichTextPresenter >> formatString: formatString [
+	model := self textStyler value parseFormatString: formatString 
+]
+
 { #category : #initialization }
 SpRichTextPresenter >> initialize [ 
 
@@ -42,26 +48,32 @@ SpRichTextPresenter >> initialize [
 ]
 
 { #category : #rendering }
-SpRichTextPresenter >> parseRaw: aFormatString [
-	self subclassResponsibility 
+SpRichTextPresenter >> model [
+	^  model
+]
+
+{ #category : #'as yet unclassified' }
+SpRichTextPresenter >> plaintext [ 
+	^ self textStyler writePlaintextString: self model
 ]
 
 { #category : #rendering }
 SpRichTextPresenter >> renderTree [
-	^  SpRenderTreeBuilderVisitor new 
+	^ SpRenderTreeBuilderVisitor new 
 			styleProvider: self styleAttributes;
-			render: (self parseRaw: self text)
+			render: self model
 ]
 
 { #category : #initialization }
 SpRichTextPresenter >> styleAttributes [
-	^ self textStyler styles
+	^ self textStyler value styles
 ]
 
 { #category : #accessing }
 SpRichTextPresenter >> textStyler [
 
-	^ textStyler
+	^ textStyler ifNil: [ 
+		textStyler := self defaultTextStyler ]
 ]
 
 { #category : #accessing }
