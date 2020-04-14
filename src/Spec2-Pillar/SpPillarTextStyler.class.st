@@ -9,11 +9,6 @@ SpPillarTextStyler >> parseFormatString: aFormatString [
 	^  PRPillarParser parse: aFormatString
 ]
 
-{ #category : #'as yet unclassified' }
-SpPillarTextStyler >> plaintextFor: aString [
-	^  self writeFormatString: (self parse: aString)
-]
-
 { #category : #accessing }
 SpPillarTextStyler >> styles [ 
 	^  SpSimpleStyleProvider new 
@@ -39,11 +34,6 @@ SpPillarTextStyler >> styles [
 				familyName: 'Source Sans Pro' 
 				pointSize: 16.0) };
 			yourself
-]
-
-{ #category : #'as yet unclassified' }
-SpPillarTextStyler >> toPlaintext: aDocument [
-	^  SpPillarTextWriter write: aDocument
 ]
 
 { #category : #'as yet unclassified' }

@@ -37,6 +37,11 @@ SpRichTextPresenter >> defaultTextStyler [
 ]
 
 { #category : #rendering }
+SpRichTextPresenter >> formatString [
+	^ self textStyler value writeFormatString: self model
+]
+
+{ #category : #rendering }
 SpRichTextPresenter >> formatString: formatString [
 	model := self textStyler value parseFormatString: formatString 
 ]

@@ -14,11 +14,6 @@ SpPillarTextWriter class >> write: aDocument [
 		visit: aDocument	
 ]
 
-{ #category : #accessing }
-SpPillarTextWriter >> canvasClass [
-	^ PRTextCanvas
-]
-
 { #category : #initialization }
 SpPillarTextWriter >> initialize [ 
 	super initialize.
@@ -32,7 +27,7 @@ SpPillarTextWriter >> nest: aString do: aBlock [
 	aBlock ensure: [ nesting removeLast ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 SpPillarTextWriter >> newline [
 	stream nextPut: Character cr
 ]
@@ -84,7 +79,6 @@ SpPillarTextWriter >> visitDocumentGroup: anObject [
 
 { #category : #'visiting-document' }
 SpPillarTextWriter >> visitHorizontalRule: anObject [
-	self halt.
 	stream
 		nextPutAll: ((String new: 40) atAllPut: $-);
 		newLine
@@ -117,15 +111,13 @@ SpPillarTextWriter >> visitOrderedList: anObject [
 
 { #category : #'visiting-document' }
 SpPillarTextWriter >> visitPreformatted: anObject [
-	"self halt."
 	anObject children do: [ :each | self visit: each. self newline ]
 ]
 
 { #category : #'visiting-document' }
 SpPillarTextWriter >> visitRaw: anObject [
-	self halt.
 	(anObject type isNil or: [ anObject type = 'text' ])
-		ifTrue: [ canvas nextPutAll: anObject text ]
+		ifTrue: [ stream nextPutAll: anObject text ]
 ]
 
 { #category : #'visiting-document' }

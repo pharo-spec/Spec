@@ -1,3 +1,6 @@
+"
+I'm a render visitor that combines a pillar document items and computed styles. The render tree consists of all visible document items based on the type in pillar and the associated styles. 
+"
 Class {
 	#name : #SpRenderTreeBuilderVisitor,
 	#superclass : #PRVisitor,
