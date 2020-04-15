@@ -11,7 +11,15 @@ Class {
 { #category : #writing }
 SpPillarTextWriter class >> write: aDocument [
 	^ self new 
-		visit: aDocument	
+		visit: aDocument;
+		contents	
+]
+
+{ #category : #accessing }
+SpPillarTextWriter >> contents [
+	^ stream 
+		flush;
+		contents
 ]
 
 { #category : #initialization }

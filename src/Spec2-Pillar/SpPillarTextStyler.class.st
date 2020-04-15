@@ -6,7 +6,7 @@ Class {
 
 { #category : #parsing }
 SpPillarTextStyler >> parseFormatString: aFormatString [
-	^  PRPillarParser parse: aFormatString
+	^ PRPillarParser parse: aFormatString
 ]
 
 { #category : #accessing }
@@ -38,10 +38,10 @@ SpPillarTextStyler >> styles [
 
 { #category : #writing }
 SpPillarTextStyler >> writeFormatString: aDocument [
-	^  PRTextWriter new write: aDocument
+	^ PRTextWriter new write: aDocument
 ]
 
 { #category : #writing }
 SpPillarTextStyler >> writePlaintextString: aDocument [
-	^  SpPillarTextWriter write: aDocument
+	^ SpPillarTextWriter write: aDocument
 ]

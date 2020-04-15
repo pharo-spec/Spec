@@ -8,8 +8,3 @@ Class {
 SpPillarTextPresenter >> defaultTextStyler [
 	^ SpPillarTextStyler new
 ]
-
-{ #category : #writing }
-SpPillarTextPresenter >> formatString [
-	^ PRTextWriter new write: self model 
-]
