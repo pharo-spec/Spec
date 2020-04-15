@@ -27,6 +27,11 @@ SpMorphicCodeAdapter >> buildWidget [
 	
 	newWidget := super buildWidget.
 	
+	self presenter hasLineNumbers ifTrue: [ 
+		newWidget withLineNumbers ].
+	self presenter whenLineNumbersChangedDo: [ :hasLineNumbers | 
+		self changeLineNumbers: hasLineNumbers to: newWidget ].
+	
 	self presenter whenSyntaxHighlightChangedDo: [ :hasSyntaxHighlight | 
 		self setEditingModeFor: newWidget ].
 	
@@ -36,11 +41,19 @@ SpMorphicCodeAdapter >> buildWidget [
 	^ newWidget
 ]
 
+{ #category : #private }
+SpMorphicCodeAdapter >> changeLineNumbers: hasLineNumbers to: aMorph [ 
+
+	hasLineNumbers 
+		ifTrue: [ aMorph withLineNumbers ]
+		ifFalse: [ aMorph withoutLineNumbers ]
+]
+
 { #category : #'private-shout' }
 SpMorphicCodeAdapter >> classOrMetaClass: aClass [
 
 	self 
-		setEditingModeFor: self widget 
+		setEditingModeFor: self widget textArea 
 		withBehavior: aClass
 ]
 

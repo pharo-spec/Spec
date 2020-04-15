@@ -11,6 +11,7 @@ Class {
 		'#behavior => SpObservableSlot',
 		'#syntaxHighlight => SpObservableSlot',
 		'#completionEngine => SpObservableSlot',
+		'#lineNumbers => SpObservableSlot',
 		'#interactionModel'
 	],
 	#category : #'Spec2-Code'
@@ -195,6 +196,12 @@ SpCodePresenter >> hasBindingThatBeginsWith: aString [
 ]
 
 { #category : #testing }
+SpCodePresenter >> hasLineNumbers [
+
+	^ lineNumbers
+]
+
+{ #category : #testing }
 SpCodePresenter >> hasSyntaxHighlight [
 
 	^ syntaxHighlight
@@ -206,6 +213,7 @@ SpCodePresenter >> initialize [
 	super initialize.
 	
 	self withSyntaxHighlight.
+	self withLineNumbers.
 	
 	self registerEventsForStyling.
 	
@@ -230,6 +238,12 @@ SpCodePresenter >> interactionModel [
 SpCodePresenter >> interactionModel: anObject [ 	
 
 	interactionModel := anObject
+]
+
+{ #category : #accessing }
+SpCodePresenter >> lineNumbers: aBoolean [
+
+	lineNumbers := aBoolean
 ]
 
 { #category : #initialization }
@@ -286,6 +300,13 @@ SpCodePresenter >> whenCompletionEngineChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
+SpCodePresenter >> whenLineNumbersChangedDo: aBlock [
+	"Set a block to perform when the syntax highlight is enabled/disabled"
+
+	self property: #lineNumbers whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
 SpCodePresenter >> whenSyntaxHighlightChangedDo: aBlock [
 	"Set a block to perform when the syntax highlight is enabled/disabled"
 
@@ -293,11 +314,25 @@ SpCodePresenter >> whenSyntaxHighlightChangedDo: aBlock [
 ]
 
 { #category : #api }
+SpCodePresenter >> withLineNumbers [
+
+	self lineNumbers: true
+]
+
+{ #category : #api }
 SpCodePresenter >> withSyntaxHighlight [
+
 	self syntaxHighlight: true
 ]
 
 { #category : #api }
+SpCodePresenter >> withoutLineNumbers [
+
+	self lineNumbers: false
+]
+
+{ #category : #api }
 SpCodePresenter >> withoutSyntaxHighlight [
+
 	self syntaxHighlight: false
 ]
