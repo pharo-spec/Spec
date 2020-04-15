@@ -114,6 +114,7 @@ SpAbstractListPresenter >> enableItemSubstringFilter [
 SpAbstractListPresenter >> initialize [
 
 	super initialize.
+	self initializeTHaveWrappingScrollBars.
 	
 	activationBlock := [ ].
 	verticalAlignment := SpVerticalAlignment new.
