@@ -28,13 +28,6 @@ SpAbstractMorphicListAdapter >> configureScrolling [
 		onAnnouncement: FTScrollingChanged
 		send: #scrollingChanged
 		to: self.
-		
-	self flag: 'This is a fix to correctly update the scrolling when updating selection. I am not certain this is the right way to do it.'.	
-	self presenter selection
-		whenChangedDo: [ widget
-				scrollToIndex: self presenter verticalAlignment desiredVisibleRow.
-			widget selectedIndex > widget lastVisibleRowIndex
-				ifTrue: [ widget moveShowIndexTo: widget selectedIndex ] ]
 ]
 
 { #category : #'widget API' }
