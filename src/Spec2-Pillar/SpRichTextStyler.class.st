@@ -9,12 +9,12 @@ SpRichTextStyler >> parseFormatString: formatString [
 	self subclassResponsibility 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #writing }
 SpRichTextStyler >> writeFormatString: aDocument [
 	self subclassResponsibility 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #writing }
 SpRichTextStyler >> writePlaintextString: aDocument [
 	self subclassResponsibility 
 ]

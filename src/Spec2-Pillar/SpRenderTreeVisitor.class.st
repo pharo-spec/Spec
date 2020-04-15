@@ -4,28 +4,28 @@ Class {
 	#category : #'Spec2-Pillar'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #rendering }
 SpRenderTreeVisitor >> render: aRenderObject [
 
 	^ aRenderObject acceptRenderObjectVisitor: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #visiting }
 SpRenderTreeVisitor >> visit: aPRRenderObject [ 
 	^ aPRRenderObject acceptRenderObjectVisitor: self 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #visiting }
 SpRenderTreeVisitor >> visitAll: aCollection [ 
 	^ aCollection collect: [ :each | self visit: each ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #visiting }
 SpRenderTreeVisitor >> visitCompositeObject: aPRCompositeRenderObject [ 
 	^ self visitAll: aPRCompositeRenderObject children
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #visiting }
 SpRenderTreeVisitor >> visitRenderObject: anItem [ 
 
 ]

@@ -36,12 +36,12 @@ SpPillarTextStyler >> styles [
 			yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #writing }
 SpPillarTextStyler >> writeFormatString: aDocument [
 	^  PRTextWriter new write: aDocument
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #writing }
 SpPillarTextStyler >> writePlaintextString: aDocument [
 	^  SpPillarTextWriter write: aDocument
 ]

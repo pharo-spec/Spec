@@ -9,7 +9,7 @@ SpPillarTextPresenter >> defaultTextStyler [
 	^ SpPillarTextStyler new
 ]
 
-{ #category : #rendering }
+{ #category : #writing }
 SpPillarTextPresenter >> formatString [
 	^ PRTextWriter new write: self model 
 ]

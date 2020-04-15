@@ -8,7 +8,7 @@ Class {
 	#category : #'Spec2-Pillar'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SpRenderObject >> extraOffset [
 	^ item plaintextOffset 
 ]
@@ -28,7 +28,7 @@ SpRenderObject >> node: aPRRenderTreeVisitor [
 	self shouldBeImplemented.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SpRenderObject >> styles [
 	^ styles
 ]

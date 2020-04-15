@@ -7,7 +7,7 @@ Class {
 	#category : #'Spec2-Pillar'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #visiting }
 SpCompositeRenderObject >> acceptRenderObjectVisitor: aVisitor [ 
 	^ aVisitor visitCompositeObject: self
 ]
@@ -17,7 +17,7 @@ SpCompositeRenderObject >> add: aDocumentItem [
 	children add: aDocumentItem 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SpCompositeRenderObject >> children [
 	^ children
 ]

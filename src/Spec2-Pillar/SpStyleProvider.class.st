@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Pillar'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #styling }
 SpStyleProvider >> computedStylesFor: aPRDocument [ 
 	self subclassResponsibility 
 ]

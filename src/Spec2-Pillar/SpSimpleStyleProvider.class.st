@@ -7,7 +7,7 @@ Class {
 	#category : #'Spec2-Pillar'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #styling }
 SpSimpleStyleProvider >> computedStylesFor: aPRDocument [ 
 
 	itemStyles 
@@ -29,12 +29,12 @@ SpSimpleStyleProvider >> itemAt: itemName put: aCollection [
 		put: aCollection 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 SpSimpleStyleProvider >> itemNameFor: aDocumentItem [
 	^ aDocumentItem styleName
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 SpSimpleStyleProvider >> keysAndValuesDo: aBlock [
 	itemStyles keysAndValuesDo: aBlock
 ]

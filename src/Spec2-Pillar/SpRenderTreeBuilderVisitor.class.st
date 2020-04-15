@@ -17,7 +17,7 @@ SpRenderTreeBuilderVisitor >> initialize [
 	current := OrderedCollection new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #rendering }
 SpRenderTreeBuilderVisitor >> render: aPRDocument [ 
 	^ self visitDocument: aPRDocument 
 ]
@@ -34,7 +34,7 @@ SpRenderTreeBuilderVisitor >> visitDocument: aDocument [
 	^ current
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'visiting-document' }
 SpRenderTreeBuilderVisitor >> visitDocumentGroup: anObject [
 	| previous |
 	previous := current.
@@ -53,7 +53,7 @@ SpRenderTreeBuilderVisitor >> visitDocumentItem: anObject [
 	current add: (SpTextRenderObject new item: anObject)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'visiting-document' }
 SpRenderTreeBuilderVisitor >> visitText: anObject [
 	current add: (SpTextRenderObject new
 		item: anObject)

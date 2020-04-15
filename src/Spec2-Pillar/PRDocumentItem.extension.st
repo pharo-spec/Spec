@@ -1,11 +1,6 @@
 Extension { #name : #PRDocumentItem }
 
 { #category : #'*Spec2-Pillar' }
-PRDocumentItem >> plaintextAppendix [
-	^  nil
-]
-
-{ #category : #'*Spec2-Pillar' }
 PRDocumentItem >> plaintextNewline [
 	^  String cr
 ]

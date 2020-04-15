@@ -4,12 +4,12 @@ Class {
 	#category : #'Spec2-Pillar'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #visiting }
 SpTextRenderObject >> acceptRenderObjectVisitor: aVisitor [ 
 	^ aVisitor visitText: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SpTextRenderObject >> contents [
 	^ item text 
 ]
