@@ -82,6 +82,12 @@ SpAbstractMorphicAdapter >> addSettingsTo: aMorph [
 	self applyVisibility
 ]
 
+{ #category : #styling }
+SpAbstractMorphicAdapter >> addStyle: aStyle [
+	"ignore style and just apply it again (the new style will not there)"
+	self applyStyle: self widget
+]
+
 { #category : #accessing }
 SpAbstractMorphicAdapter >> application [ 
 
@@ -444,6 +450,12 @@ SpAbstractMorphicAdapter >> removeKeyCombination: aShortcut [
 
 	self widgetDo: [ :w | 
 		w removeKeyCombination: aShortcut ]
+]
+
+{ #category : #styling }
+SpAbstractMorphicAdapter >> removeStyle: aStyle [
+	"ignore style and just apply it again (the removed style will not be there)"
+	self applyStyle: self widget
 ]
 
 { #category : #protocol }

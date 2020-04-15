@@ -80,7 +80,8 @@ SpAbstractWidgetPresenter >> acceptDroppingMorph: draggedMorph event: event inMo
 { #category : #api }
 SpAbstractWidgetPresenter >> addStyle: aStyle [
 
-	styles := styles copyWith: aStyle
+	styles := styles copyWith: aStyle.
+	self withAdapterDo: [ :anAdapter | anAdapter addStyle: aStyle ]
 ]
 
 { #category : #api }
@@ -262,7 +263,8 @@ SpAbstractWidgetPresenter >> localeChanged [
 SpAbstractWidgetPresenter >> removeStyle: aStyle [
 
 	(styles includes: aStyle) ifFalse: [ aStyle ].
-	styles := styles copyWithout: aStyle 
+	styles := styles copyWithout: aStyle.
+	self withAdapterDo: [ :anAdapter | anAdapter removeStyle: aStyle ]
 ]
 
 { #category : #private }
