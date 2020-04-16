@@ -5,6 +5,8 @@ I have a position and a span.
 Class {
 	#name : #SpGridConstraints,
 	#superclass : #SpLayoutConstraints,
+	#traits : 'SpTAlignable',
+	#classTraits : 'SpTAlignable classTrait',
 	#instVars : [
 		'position',
 		'span'
@@ -51,12 +53,14 @@ SpGridConstraints >> initialize [
 
 { #category : #accessing }
 SpGridConstraints >> position [
+
 	^ position
 ]
 
 { #category : #accessing }
-SpGridConstraints >> position: anObject [
-	position := anObject
+SpGridConstraints >> position: aPoint [
+
+	position := aPoint
 ]
 
 { #category : #accessing }
