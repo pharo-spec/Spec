@@ -34,6 +34,12 @@ SpMorphicComponentListAdapter >> children [
 		cell submorphs first ]
 ]
 
+{ #category : #'as yet unclassified' }
+SpMorphicComponentListAdapter >> elementAt: index [ 
+	
+	^ self widget dataSource elementAt: index
+]
+
 { #category : #testing }
 SpMorphicComponentListAdapter >> isNonEditableRow: aRow column: aColumn [ 
 	"no rows are directly editable in a component list (they can be 
