@@ -113,7 +113,8 @@ SpMorphicCodeAdapter >> insertPopoverAfterCurrentSelection: aPresenter [
 			yourself.
 	
 		pos := self computeOriginFor: w.
-		popover popupPointingTo: (pos corner: (pos + (1@15))).
+		"(16@ -5) is a magic number to position correctly the popover"
+		popover popupPointingTo: (pos corner: (pos + (16@ -5))).
 		popover takeKeyboardFocus ]
 ]
 
