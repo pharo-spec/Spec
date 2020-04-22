@@ -21,6 +21,12 @@ SpMorphicCodeAdapter >> behavior [
 	^ self model behavior
 ]
 
+{ #category : #'private-shout' }
+SpMorphicCodeAdapter >> bindingOf: aString [
+
+	^ self presenter bindingOf: aString
+]
+
 { #category : #factory }
 SpMorphicCodeAdapter >> buildWidget [
 	| newWidget |
@@ -85,6 +91,12 @@ SpMorphicCodeAdapter >> doItReceiver [
 SpMorphicCodeAdapter >> guessTypeForName: aString [
 
 	^nil
+]
+
+{ #category : #'private-shout' }
+SpMorphicCodeAdapter >> hasBindingOf: aString [
+
+	^ self presenter hasBindingOf: aString
 ]
 
 { #category : #private }
