@@ -38,16 +38,17 @@ SpWindow >> deleteDiscardingChanges [
 
 { #category : #'open/close' }
 SpWindow >> extent: aPoint [ 
+	| announcement oldExtent |
 
-	| announcement |
-
+	oldExtent := self extent. 
 	super extent: aPoint.
 	announcement := SpWindowResizing new
 		window: self;
+		oldSize: oldExtent;
+		newSize: aPoint;
 		yourself.
 	self announce: announcement.
-	self currentWorld announcer announce: announcement.	
-
+	self currentWorld announcer announce: announcement
 ]
 
 { #category : #testing }
