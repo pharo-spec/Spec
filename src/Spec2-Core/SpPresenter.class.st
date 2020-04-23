@@ -827,6 +827,12 @@ SpPresenter >> newPopover [
 ]
 
 { #category : #widgets }
+SpPresenter >> newPresenterSelector [
+
+	^ self instantiate: SpPresenterSelectorPresenter
+]
+
+{ #category : #widgets }
 SpPresenter >> newProgressBar [
 	^ self instantiate: SpProgressBarPresenter
 ]
