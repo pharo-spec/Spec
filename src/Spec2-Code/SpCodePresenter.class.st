@@ -112,6 +112,31 @@ SpCodePresenter >> bindingOf: aString [
 	^ nil
 ]
 
+{ #category : #private }
+SpCodePresenter >> buildContextKeyBindingsWith: aCategory [
+	| category |
+	
+	category := self newContextMenuKeyBindings.
+	aCategory ifNotNil: [ 
+		aCategory allEntries keymaps do: [ :each |
+			category addKeymapEntry: each ] ].
+	
+	^ category
+]
+
+{ #category : #private }
+SpCodePresenter >> buildContextMenuWith: aBlock [
+	| menuPresenter |
+
+	menuPresenter := self newContextMenu.
+	aBlock ifNotNil: [ 
+		aBlock value ifNotNil: [ :menu |
+			menu menuGroups do: [ :aGroup |
+				menuPresenter addMenuGroup: aGroup ] ] ].
+
+	^ menuPresenter
+]
+
 { #category : #accessing }
 SpCodePresenter >> completionEngine [
 
@@ -122,6 +147,18 @@ SpCodePresenter >> completionEngine [
 SpCodePresenter >> completionEngine: aCompletionEngine [
 
 	completionEngine := aCompletionEngine
+]
+
+{ #category : #'api-shortcuts' }
+SpCodePresenter >> contextKeyBindings [
+
+	^ self buildContextKeyBindingsWith: super contextKeyBindings
+]
+
+{ #category : #accessing }
+SpCodePresenter >> contextMenu [
+
+	^ [ self buildContextMenuWith: super contextMenu ]
 ]
 
 { #category : #binding }
@@ -215,10 +252,7 @@ SpCodePresenter >> initialize [
 	self withSyntaxHighlight.
 	self withLineNumbers.
 	
-	self registerEventsForStyling.
-	
-	self contextMenu: [ self rootCommandsGroup asMenuPresenter ].
-	self contextKeyBindings: self rootCommandsGroup asKMCategory
+	self registerEventsForStyling
 ]
 
 { #category : #api }
@@ -244,6 +278,18 @@ SpCodePresenter >> interactionModel: anObject [
 SpCodePresenter >> lineNumbers: aBoolean [
 
 	lineNumbers := aBoolean
+]
+
+{ #category : #private }
+SpCodePresenter >> newContextMenu [
+	
+	^ self rootCommandsGroup asMenuPresenter
+]
+
+{ #category : #private }
+SpCodePresenter >> newContextMenuKeyBindings [
+	
+	^ self rootCommandsGroup asKMCategory
 ]
 
 { #category : #initialization }
