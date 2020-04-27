@@ -12,17 +12,6 @@ SpMorphicTextAdapter >> addFocusRotationKeyBindings [
 	"Text areas needs to be able to process tab. Cancel the binding."
 ]
 
-{ #category : #initialization }
-SpMorphicTextAdapter >> addKeyBindingsTo: aMorph [
-
-	super addKeyBindingsTo: aMorph.
-	self presenter hasEditionContextMenu ifFalse: [ ^ self ].
-	self presenter editionContextKeyBindings allEntries keymaps do: [ :each |
-		self
-			bindKeyCombination: each shortcut 
-			toAction: each action ]
-]
-
 { #category : #'protocol-shortcuts' }
 SpMorphicTextAdapter >> bindKeyCombination: aShortcut toAction: aBlock [ 
 

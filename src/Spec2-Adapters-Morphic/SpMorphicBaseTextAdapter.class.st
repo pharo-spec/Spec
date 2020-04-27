@@ -25,6 +25,15 @@ SpMorphicBaseTextAdapter >> acceptAllowed [
 	^ self widget editingMode acceptAllowed
 ]
 
+{ #category : #initialization }
+SpMorphicBaseTextAdapter >> addKeyBindingsTo: aMorph [
+
+	super addKeyBindingsTo: aMorph.
+	self 
+		bindKeyCombination: $t meta
+		toAction: [ self showContextMenu ]
+]
+
 { #category : #accessing }
 SpMorphicBaseTextAdapter >> announcer [
 	^ self model announcer
@@ -221,6 +230,16 @@ SpMorphicBaseTextAdapter >> setSelection: interval [
 SpMorphicBaseTextAdapter >> setSelectionFromModel: aSelection [
 
 	self widget ifNotNil: [ :w | w setSelection: aSelection ]
+]
+
+{ #category : #initialization }
+SpMorphicBaseTextAdapter >> showContextMenu [
+
+	self widgetDo: [ :w |
+		(w textArea getMenu: false) ifNotNil: [ :menu | 
+			menu 
+				invokeAt: w position + w textArea cursor center
+				in: self currentWorld ] ]
 ]
 
 { #category : #'widget API' }
