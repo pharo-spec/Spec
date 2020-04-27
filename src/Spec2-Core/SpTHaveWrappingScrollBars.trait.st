@@ -84,7 +84,7 @@ SpTHaveWrappingScrollBars >> removeScrollBarStyle: aStyle [
 { #category : #accessing }
 SpTHaveWrappingScrollBars >> scrollBarStyles [
 
-	^ scrollBarStyles
+	^ scrollBarStyles ifNil: [ #() ]
 ]
 
 { #category : #accessing }

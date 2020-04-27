@@ -83,6 +83,16 @@ SpMorphicWindowAdapter >> centered [
 			position: Display extent - w extent // 2 ]
 ]
 
+{ #category : #'widget API' }
+SpMorphicWindowAdapter >> centeredRelativeTo: aWindowPresenter [ 
+	| bounds position |	
+	
+	self widgetDo: [ :w |
+		bounds := aWindowPresenter adapter widget bounds.
+		position := bounds origin + ((bounds extent - w extent) // 2).
+		w position: position ]
+]
+
 { #category : #protocol }
 SpMorphicWindowAdapter >> close [
 

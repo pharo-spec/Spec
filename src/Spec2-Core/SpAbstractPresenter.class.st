@@ -8,9 +8,10 @@ Class {
 	#traits : 'SpTObservable',
 	#classTraits : 'SpTObservable classTrait',
 	#instVars : [
-		'#owner',
-		'#adapter',
-		'#needRebuild => SpObservableSlot'
+		'owner',
+		'adapter',
+		'needRebuild',
+		'eventHandler'
 	],
 	#category : #'Spec2-Core-Base'
 }
@@ -111,6 +112,10 @@ SpAbstractPresenter >> application [
 	^ self owner application
 ]
 
+{ #category : #accessing }
+SpAbstractPresenter >> autoAccept: aBoolean [
+]
+
 { #category : #'private building' }
 SpAbstractPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	"I assume the SpecBindings is well defined"
@@ -185,10 +190,29 @@ SpAbstractPresenter >> enabled: aBoolean [
 	^ self subclassResponsibility
 ]
 
+{ #category : #accessing }
+SpAbstractPresenter >> eventHandler [
+	"Answers an generic event handler where you can make your presenter listen to specific 
+	low-level events. 
+	Example of usage: 
+	    myPresenter eventHandler whenLostFocusDo: [ ... ]
+	
+	WARNING: Now all events are available to all presenters (for example, presenters who can't
+	take focus will not respong to focus events even if you register them)."
+	
+	^ eventHandler ifNil: [ eventHandler := SpEventHandler for: self ]
+]
+
 { #category : #'private utils' }
 SpAbstractPresenter >> forceUpdateSlot: aSymbol [
 
 	^ (self rawValueHolderNamed: aSymbol) valueChanged
+]
+
+{ #category : #testing }
+SpAbstractPresenter >> hasEventHandler [
+
+	^ eventHandler notNil and: [ eventHandler hasEvents ]
 ]
 
 { #category : #testing }

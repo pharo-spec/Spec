@@ -74,6 +74,15 @@ SpAbstractAdapter >> add: aWidget [
 	self subclassResponsibility
 ]
 
+{ #category : #initialization }
+SpAbstractAdapter >> addEventsTo: aWidget [
+	
+	self presenter hasEventHandler ifFalse: [ ^ self ].
+	self presenter eventHandler 
+		installAllEventsTo: self 
+		target: aWidget
+]
+
 { #category : #factory }
 SpAbstractAdapter >> buildWidget [
 

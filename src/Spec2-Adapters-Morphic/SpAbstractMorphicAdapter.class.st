@@ -40,6 +40,7 @@ SpAbstractMorphicAdapter >> adapt: aPresenter [
 	super adapt: aPresenter.
 	self addSettingsTo: self widget.
 	self addKeyBindingsTo: self widget.
+	self addEventsTo: self widget.
 	self flag: #TODO. "this should be here, but is interfering with old layouts reason why 
 	 I'm moving it to MorphicLayoutAdapter >> #applyStyle:to:"
 	"self applyStyle: self widget."
@@ -79,6 +80,12 @@ SpAbstractMorphicAdapter >> addSettingsTo: aMorph [
 	
 	self widget ifNil: [ ^ self ].
 	self applyVisibility
+]
+
+{ #category : #styling }
+SpAbstractMorphicAdapter >> addStyle: aStyle [
+	"ignore style and just apply it again (the new style will not there)"
+	self applyStyle: self widget
 ]
 
 { #category : #accessing }
@@ -295,6 +302,93 @@ SpAbstractMorphicAdapter >> helpText [
 	^ self widget balloonText 
 ]
 
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installEvent: anEvent [
+	"Used when installing events into presenters already built"
+
+	self widgetDo: [ :w |
+		anEvent installOn: self target: w ]
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installFocusLostEvent: anEvent to: aWidget [
+
+	aWidget announcer 
+		when: MorphLostFocus
+		do: [ anEvent action value ]
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installFocusReceivedEvent: anEvent to: aWidget [
+
+	aWidget announcer 
+		when: MorphGotFocus
+		do: [ anEvent action value ]
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installKeyDownEvent: anEvent to: aWidget [
+
+	aWidget 
+		when: #keyDown
+		send: #value:
+		to: anEvent action
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installKeyUpEvent: anEvent to: aWidget [
+
+	aWidget 
+		when: #keyUp
+		send: #value:
+		to: anEvent action
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installMouseDownEvent: anEvent to: aWidget [
+
+	aWidget 
+		when: #mouseDown
+		send: #value:
+		to: anEvent action
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installMouseEnterEvent: anEvent to: aWidget [
+
+	aWidget 
+		when: #mouseEnter
+		send: #value:
+		to: anEvent action
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installMouseLeaveEvent: anEvent to: aWidget [
+
+	aWidget 
+		when: #mouseLeave
+		send: #value:
+		to: anEvent action
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installMouseMoveEvent: anEvent to: aWidget [
+
+	aWidget 
+		when: #mouseMove
+		send: #value:
+		to: anEvent action
+]
+
+{ #category : #'event installing' }
+SpAbstractMorphicAdapter >> installMouseUpEvent: anEvent to: aWidget [
+
+	aWidget 
+		when: #mouseUp
+		send: #value:
+		to: anEvent action
+]
+
 { #category : #testing }
 SpAbstractMorphicAdapter >> isMorphicAdapter [
 
@@ -356,6 +450,12 @@ SpAbstractMorphicAdapter >> removeKeyCombination: aShortcut [
 
 	self widgetDo: [ :w | 
 		w removeKeyCombination: aShortcut ]
+]
+
+{ #category : #styling }
+SpAbstractMorphicAdapter >> removeStyle: aStyle [
+	"ignore style and just apply it again (the removed style will not be there)"
+	self applyStyle: self widget
 ]
 
 { #category : #protocol }

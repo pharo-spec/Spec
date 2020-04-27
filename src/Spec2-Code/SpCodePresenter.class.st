@@ -11,6 +11,7 @@ Class {
 		'#behavior => SpObservableSlot',
 		'#syntaxHighlight => SpObservableSlot',
 		'#completionEngine => SpObservableSlot',
+		'#lineNumbers => SpObservableSlot',
 		'#interactionModel'
 	],
 	#category : #'Spec2-Code'
@@ -111,6 +112,31 @@ SpCodePresenter >> bindingOf: aString [
 	^ nil
 ]
 
+{ #category : #private }
+SpCodePresenter >> buildContextKeyBindingsWith: aCategory [
+	| category |
+	
+	category := self newContextMenuKeyBindings.
+	aCategory ifNotNil: [ 
+		aCategory allEntries keymaps do: [ :each |
+			category addKeymapEntry: each ] ].
+	
+	^ category
+]
+
+{ #category : #private }
+SpCodePresenter >> buildContextMenuWith: aBlock [
+	| menuPresenter |
+
+	menuPresenter := self newContextMenu.
+	aBlock ifNotNil: [ 
+		aBlock value ifNotNil: [ :menu |
+			menu menuGroups do: [ :aGroup |
+				menuPresenter addMenuGroup: aGroup ] ] ].
+
+	^ menuPresenter
+]
+
 { #category : #accessing }
 SpCodePresenter >> completionEngine [
 
@@ -121,6 +147,18 @@ SpCodePresenter >> completionEngine [
 SpCodePresenter >> completionEngine: aCompletionEngine [
 
 	completionEngine := aCompletionEngine
+]
+
+{ #category : #'api-shortcuts' }
+SpCodePresenter >> contextKeyBindings [
+
+	^ self buildContextKeyBindingsWith: super contextKeyBindings
+]
+
+{ #category : #accessing }
+SpCodePresenter >> contextMenu [
+
+	^ [ self buildContextMenuWith: super contextMenu ]
 ]
 
 { #category : #binding }
@@ -195,6 +233,12 @@ SpCodePresenter >> hasBindingThatBeginsWith: aString [
 ]
 
 { #category : #testing }
+SpCodePresenter >> hasLineNumbers [
+
+	^ lineNumbers
+]
+
+{ #category : #testing }
 SpCodePresenter >> hasSyntaxHighlight [
 
 	^ syntaxHighlight
@@ -206,11 +250,9 @@ SpCodePresenter >> initialize [
 	super initialize.
 	
 	self withSyntaxHighlight.
+	self withLineNumbers.
 	
-	self registerEventsForStyling.
-	
-	self contextMenu: [ self rootCommandsGroup asMenuPresenter ].
-	self contextKeyBindings: self rootCommandsGroup asKMCategory
+	self registerEventsForStyling
 ]
 
 { #category : #api }
@@ -230,6 +272,24 @@ SpCodePresenter >> interactionModel [
 SpCodePresenter >> interactionModel: anObject [ 	
 
 	interactionModel := anObject
+]
+
+{ #category : #accessing }
+SpCodePresenter >> lineNumbers: aBoolean [
+
+	lineNumbers := aBoolean
+]
+
+{ #category : #private }
+SpCodePresenter >> newContextMenu [
+	
+	^ self rootCommandsGroup asMenuPresenter
+]
+
+{ #category : #private }
+SpCodePresenter >> newContextMenuKeyBindings [
+	
+	^ self rootCommandsGroup asKMCategory
 ]
 
 { #category : #initialization }
@@ -286,6 +346,13 @@ SpCodePresenter >> whenCompletionEngineChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
+SpCodePresenter >> whenLineNumbersChangedDo: aBlock [
+	"Set a block to perform when the syntax highlight is enabled/disabled"
+
+	self property: #lineNumbers whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
 SpCodePresenter >> whenSyntaxHighlightChangedDo: aBlock [
 	"Set a block to perform when the syntax highlight is enabled/disabled"
 
@@ -293,11 +360,25 @@ SpCodePresenter >> whenSyntaxHighlightChangedDo: aBlock [
 ]
 
 { #category : #api }
+SpCodePresenter >> withLineNumbers [
+
+	self lineNumbers: true
+]
+
+{ #category : #api }
 SpCodePresenter >> withSyntaxHighlight [
+
 	self syntaxHighlight: true
 ]
 
 { #category : #api }
+SpCodePresenter >> withoutLineNumbers [
+
+	self lineNumbers: false
+]
+
+{ #category : #api }
 SpCodePresenter >> withoutSyntaxHighlight [
+
 	self syntaxHighlight: false
 ]

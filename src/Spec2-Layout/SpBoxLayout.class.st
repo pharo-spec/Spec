@@ -11,13 +11,13 @@ This layout can be created with certain properties:
 Class {
 	#name : #SpBoxLayout,
 	#superclass : #SpExecutableLayout,
+	#traits : 'SpTAlignable',
+	#classTraits : 'SpTAlignable classTrait',
 	#instVars : [
 		'direction',
 		'spacing',
 		'borderWidth',
-		'homogeneous',
-		'vAlign',
-		'hAlign'
+		'homogeneous'
 	],
 	#category : #'Spec2-Layout-Box'
 }
@@ -189,46 +189,6 @@ SpBoxLayout >> direction [
 	^ direction
 ]
 
-{ #category : #accessing }
-SpBoxLayout >> hAlign [
-	"I define the vertical alignment of the widgets in the layout.
-	 aligns can be start, center and end. 
-	 To set this value, you can use vAlignStart, vAlignCenter, vAlignEnd"
-
-	^ hAlign
-]
-
-{ #category : #accessing }
-SpBoxLayout >> hAlign: anAlignment [
-	"Sets the align property. See #hAlign to details"
-	
-	hAlign := anAlignment
-]
-
-{ #category : #accessing }
-SpBoxLayout >> hAlignCenter [
-
-	self hAlign: SpLayoutWidgetAlignment center
-]
-
-{ #category : #accessing }
-SpBoxLayout >> hAlignEnd [
-
-	self hAlign: SpLayoutWidgetAlignment end
-]
-
-{ #category : #accessing }
-SpBoxLayout >> hAlignStart [
-
-	self hAlign: SpLayoutWidgetAlignment start
-]
-
-{ #category : #testing }
-SpBoxLayout >> hasAlignment [
-
-	^ vAlign notNil or: [ hAlign notNil ]
-]
-
 { #category : #private }
 SpBoxLayout >> homogeneous: aBoolean [
 
@@ -278,38 +238,4 @@ SpBoxLayout >> spacing [
 SpBoxLayout >> spacing: aNumber [
 
 	spacing := aNumber
-]
-
-{ #category : #accessing }
-SpBoxLayout >> vAlign [
-	"I define the vertical alignment of the widgets in the layout.
-	 aligns can be start, center and end. 
-	 To set this value, you can use vAlignStart, vAlignCenter, vAlignEnd"
-
-	^ vAlign
-]
-
-{ #category : #accessing }
-SpBoxLayout >> vAlign: anAlignment [
-	"Sets the align property. See #vAlign to details"
-
-	vAlign := anAlignment
-]
-
-{ #category : #accessing }
-SpBoxLayout >> vAlignCenter [
-
-	self vAlign: SpLayoutWidgetAlignment center
-]
-
-{ #category : #accessing }
-SpBoxLayout >> vAlignEnd [
-
-	self vAlign: SpLayoutWidgetAlignment end
-]
-
-{ #category : #accessing }
-SpBoxLayout >> vAlignStart [
-
-	self vAlign: SpLayoutWidgetAlignment start
 ]

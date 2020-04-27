@@ -114,6 +114,7 @@ SpAbstractListPresenter >> enableItemSubstringFilter [
 SpAbstractListPresenter >> initialize [
 
 	super initialize.
+	self initializeTHaveWrappingScrollBars.
 	
 	activationBlock := [ ].
 	verticalAlignment := SpVerticalAlignment new.
@@ -263,8 +264,22 @@ SpAbstractListPresenter >> selectIndex: anInteger [
 ]
 
 { #category : #api }
+SpAbstractListPresenter >> selectIndex: anIndex scrollToSelection: shouldScrollToSelection [
+    self selectIndex: anIndex.
+    shouldScrollToSelection ifTrue: [ 
+        self verticalAlignment desiredVisibleRow: anIndex ].
+]
+
+{ #category : #api }
 SpAbstractListPresenter >> selectIndexes: aCollection [
 	self selectionMode selectIndexes: aCollection
+]
+
+{ #category : #api }
+SpAbstractListPresenter >> selectIndexes: aListOfIndexes scrollToSelection: shouldScrollToSelection [
+    self selectIndexes: aListOfIndexes.
+    shouldScrollToSelection ifTrue: [ 
+        self verticalAlignment desiredVisibleRow: aListOfIndexes first ].
 ]
 
 { #category : #api }
