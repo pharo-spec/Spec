@@ -151,7 +151,7 @@ SpAbstractTextPresenter >> insertAndSelectAfterCurrentSelection: aString [
 	self selectionInterval: (selectionInterval last + 1 to: selectionInterval last + aString size)
 ]
 
-{ #category : #api }
+{ #category : #TOREMOVE }
 SpAbstractTextPresenter >> isForSmalltalkCode [
 
 	"self 
@@ -162,7 +162,7 @@ SpAbstractTextPresenter >> isForSmalltalkCode [
 	^ false
 ]
 
-{ #category : #api }
+{ #category : #TOREMOVE }
 SpAbstractTextPresenter >> isForSmalltalkCode: aBoolean [
 	
 	"self 
