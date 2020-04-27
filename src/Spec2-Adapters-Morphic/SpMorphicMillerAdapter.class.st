@@ -29,7 +29,7 @@ SpMorphicMillerAdapter >> add: aPresenter constraints: constraints [
 
 	needRecalculatePages := true.
 	self 
-		basicAdd: aPresenter 
+		basicAdd: aPresenter asPresenter
 		constraints: constraints 
 		to: innerWidget.
 	self scrollToShowLastPage
