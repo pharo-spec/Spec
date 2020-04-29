@@ -4,7 +4,7 @@ Propertoes are collected as part of a class, but they behave as a special kind o
 
 My children may want to override #stonName to use a more elegant naming that just a class name.
 
-! Style properties
+! Style properties (SpStyleProperty)
 Style properties define different kind of properties a morphic component can have. There are several types of properties, defined as: 
 
 - *SpStyleContainer*

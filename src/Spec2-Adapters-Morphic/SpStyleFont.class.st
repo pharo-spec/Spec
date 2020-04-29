@@ -1,11 +1,14 @@
 "
 I'm a style to control the font of a widget. 
-I keep properties like 
 
-- name -> The font name 
-- size -> The font size
-- bold -> (boolean) font is bold
-- italic -> (boolean) font is italic
+! Font property (SpStyleFont)
+Font properties control how a component (morph) with font will draw the text.
+I keep this properties: 
+
+- name: The font name (it needs to be available in the list of fonts, e.g. ""Source Code Pro"") 
+- size: The font point size.
+- bold: Font is bold? (boolean, default """"false"""")
+- italic: Font is italic? (boolean, default """"false"""")
 "
 Class {
 	#name : #SpStyleFont,
