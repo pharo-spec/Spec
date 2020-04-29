@@ -11,7 +11,8 @@ SpSimpleExampleConfiguration >> styleSheet [
 .application [
 	.label [
 		.title [
-			Font { #name: "Source Code Pro", #size: 24 }
+			Font { #name: "Source Code Pro", #size: 24 },
+			Draw { #color: #red }
 		]
 	]	
 ]')

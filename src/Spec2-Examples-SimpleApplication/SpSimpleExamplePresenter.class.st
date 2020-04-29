@@ -2,7 +2,9 @@ Class {
 	#name : #SpSimpleExamplePresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'titleLabel'
+		'titleLabel',
+		'messageLabel',
+		'actionButton'
 	],
 	#category : #'Spec2-Examples-SimpleApplication'
 }
@@ -10,23 +12,32 @@ Class {
 { #category : #specs }
 SpSimpleExamplePresenter class >> defaultSpec [
 
-	^ SpBoxLayout newVertical 
+	^ SpBoxLayout newVertical
 		add: #titleLabel;
-		add: #messageLabel;
+		add: #messageLabel expand: false;
 		add: (SpBoxLayout newHorizontal
-			hAlignCenter;
-			add: #button1;
-			yourself)
+				hAlignCenter;
+				add: #actionButton;
+				yourself)
+			expand: false;
+		yourself
 ]
 
 { #category : #initialization }
 SpSimpleExamplePresenter >> initializePresenters [
 
 	titleLabel := self newLabel
+		label: 'A Simple Title';
 		addStyle: 'title';
 		yourself.
-		
-	
+	messageLabel := self newLabel
+		label: 'Some message';
+		yourself.
+
+	actionButton := self newButton 
+		label: 'A button';
+		action: [  ];
+		yourself
 ]
 
 { #category : #initialization }

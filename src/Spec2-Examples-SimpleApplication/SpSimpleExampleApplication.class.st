@@ -1,3 +1,12 @@
+"
+I am a simple example application, to show basic concepts of Spec.
+
+! A (simple) sample application
+This is the starting point of every Spec application. A subclass of *SpApplication* who defines how your application will behave and start.
+
+You will need to override ==initialize== and ==start== methods as a begining.
+
+"
 Class {
 	#name : #SpSimpleExampleApplication,
 	#superclass : #SpApplication,
@@ -7,18 +16,36 @@ Class {
 { #category : #accessing }
 SpSimpleExampleApplication class >> start [
 
-	(self new: SpSimpleExamplePresenter) openWithSpec
+	
 ]
 
 { #category : #initialization }
 SpSimpleExampleApplication >> initialize [
+	"The configuration point for this application can be defined here. 
+	 Sending #useBackend:with: you will declare your application to use a morphic application and 
+	 use a *SpSimpleExampleConfiguration* instance as configuration.
+
+	 [[[lang=Smalltalk
+		self 
+			useBackend: #Morphic 
+			with: SpSimpleExampleConfiguration new.
+	 ]]]
+	"
 
 	super initialize.
 	self useBackend: #Morphic with: SpSimpleExampleConfiguration new
 ]
 
-{ #category : #running }
+{ #category : #accessing }
 SpSimpleExampleApplication >> start [
+	"You will declare your initial window here (spec is, after all, a framework to create desktop 
+	 applications).
+	
+	 [[[lang=Smalltalk
+		self 
+			useBackend: #Morphic 
+			with: SpSimpleExampleConfiguration new.
+	 ]]]"
 
 	(self new: SpSimpleExamplePresenter) openWithSpec
 ]
