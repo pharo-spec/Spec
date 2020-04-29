@@ -25,7 +25,6 @@ Class {
 	#instVars : [
 		'#scrollValue => SpObservableSlot',
 		'#editionContextMenu => SpObservableSlot',
-		'#scrollBarStyles',
 		'#editable => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
