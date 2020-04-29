@@ -1,8 +1,17 @@
 "
-I'm a base styte to be applied to widgets.
-Styles are collected as part of a class, but they behave as a special kind of STON map.
+I'm a base property to be applied to widgets.
+Propertoes are collected as part of a class, but they behave as a special kind of STON map.
 
 My children may want to override #stonName to use a more elegant naming that just a class name.
+
+! Style properties
+Style properties define different kind of properties a morphic component can have. There are several types of properties, defined as: 
+
+- *SpStyleContainer*
+- *SpStyleDraw*
+- *SpStyleFont*
+- *SpStyleGeometry*
+
 "
 Class {
 	#name : #SpStyleProperty,

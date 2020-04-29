@@ -2,15 +2,15 @@
 I'm a Spec application entry point. 
 In Spec, each application needs to have a definition that concentrates its flow and resources.
 
-! SpApplication
-A SpApplication is a class that handles many aspectes of a Spec Application (hence it's name) in a convenient fashion. 
+! Spec Applications
+A SpApplication is a class that handles many aspects of a Spec Application (hence it's name) in a convenient fashion. 
 SpApplication handles your application initialisation, configuration and resources. It also keeps the windows you have currently opened. 
 
 !! Initialisation
 Initialisation of an application includes (non mandatory): configure the backend you want to use, add useful resources and define a start method that will call your initial window.
 
 !!! Configure backend
-Spec2 includes several backens (for the moment, Morphic and Gtk). A SpApplication configures a Morphic backend by default, but you can change it using ==#useBackend:== or ==#useBackend:with:== and sending the backend identifier and optionally a configuration (you may want to do specific backend things to configure your application behavior).
+Spec2 includes several backends (for the moment, Morphic and Gtk). A SpApplication configures a Morphic backend by default, but you can change it using ==#useBackend:== or ==#useBackend:with:== and sending the backend identifier and optionally a configuration (you may want to do specific backend things to configure your application behavior).
 
 @NOTE: Is very important that after you initiate your application, you ==run== it.
 

@@ -79,6 +79,17 @@ SpAbstractWidgetPresenter >> acceptDroppingMorph: draggedMorph event: event inMo
 
 { #category : #api }
 SpAbstractWidgetPresenter >> addStyle: aStyle [
+	"Add a style-class to a presenter. Styles are defined in the application stylesheet and will 
+	 affect presenters by applying the properties the user adds to the class.
+	 - Styles can just be added to widget presenters (the ones that inherits of *SpAbstractWidgetPresenter*).
+	 - Styles can be added and removed dynamically (see also *SpAbstractWidgetPresenter>>removeStyle:*
+	
+	[[[lang=Smalltalk
+	button := self newButton 
+		label: 'Example of style';
+		addStyle: 'myButton';
+		yourself.
+	]]]"
 
 	(styles includes: aStyle) ifTrue: [ ^ self ].
 	styles := styles copyWith: aStyle.

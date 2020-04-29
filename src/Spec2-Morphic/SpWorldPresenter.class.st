@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'widget'
 	],
-	#category : #'Spec2-Morphic'
+	#category : #'Spec2-Morphic-Widgets'
 }
 
 { #category : #specs }

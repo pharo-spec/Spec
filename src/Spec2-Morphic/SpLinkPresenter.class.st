@@ -36,7 +36,7 @@ Class {
 		'#label => SpObservableSlot',
 		'#action => SpObservableSlot'
 	],
-	#category : #'Spec2-Morphic'
+	#category : #'Spec2-Morphic-Widgets'
 }
 
 { #category : #specs }

@@ -16,7 +16,7 @@ Class {
 		'#usersModel',
 		'#method => SpObservableSlot'
 	],
-	#category : #'Spec2-Morphic'
+	#category : #'Spec2-Morphic-Widgets'
 }
 
 { #category : #specs }
