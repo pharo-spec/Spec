@@ -9,6 +9,18 @@ I keep this properties:
 - size: The font point size.
 - bold: Font is bold? (boolean, default """"false"""")
 - italic: Font is italic? (boolean, default """"false"""")
+
+!! Usage
+The identifier of font in the stylesheet is ==Font==.
+
+[[[
+Font { 
+ 	#name: ""Source Sans Pro"",  
+	#size: 12,
+	#bold: false,
+	#italic: false
+}
+]]]
 "
 Class {
 	#name : #SpStyleFont,

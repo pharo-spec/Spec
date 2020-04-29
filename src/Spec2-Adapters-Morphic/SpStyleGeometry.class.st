@@ -12,6 +12,22 @@ Geometry properties controls how the component (morph) will be arranged within i
 - minHeight: minimum height of the component (to use when ==vResizing=true==) 
 - maxWidth: maximum width of the component (to use when ==hResizing=true==) 
 - maxHeight: maximum height of the component (to use when ==vResizing=true==) 
+
+!! Usage
+The identifier of geometry in the stylesheet is ==Geometry==.
+
+[[[
+Geometry { 
+	#hResizing: false,
+	#vResizing: false,
+	#width: 100,
+	#height: 25,
+	#minWidth: 50,
+	#minHeight: 25,
+	#maxWidth: 150,
+	#maxHeight: 25
+}
+]]]
 "
 Class {
 	#name : #SpStyleGeometry,

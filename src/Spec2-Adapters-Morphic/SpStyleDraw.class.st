@@ -9,6 +9,16 @@ I keep this properties:
 - backgroundColor: background color if it applies (if the morph understands #backgroundColor:).
 
 See *SpStyleDraw>>color* and *SpStyleDraw>>backgroundColor*
+
+!! Usage
+The identifier of draw in the stylesheet is ==Draw==.
+
+[[[
+Draw { 
+	#color: #red,
+	#backgroundColor: '00FF00'
+}
+]]]
 "
 Class {
 	#name : #SpStyleDraw,
