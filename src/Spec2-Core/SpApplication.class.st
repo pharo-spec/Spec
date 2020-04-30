@@ -14,9 +14,16 @@ Spec2 includes several backends (for the moment, Morphic and Gtk). A SpApplicati
 
 @NOTE: Is very important that after you initiate your application, you ==run== it.
 
-Examples:
-> self example1.
-> self example2.
+See this example: 
+[[[language=Smalltalk
+	""This example shows how to change the backend of an application"" 
+	| app |
+	
+	""You want to subclass SpApplication to create your app""
+	app := SpApplication new.
+	app useBackend: #Gtk.
+	app run
+]]]
 
 see also: *SpApplicationConfiguration*
 
