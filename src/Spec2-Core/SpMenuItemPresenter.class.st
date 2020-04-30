@@ -26,14 +26,14 @@ Class {
 	#name : #SpMenuItemPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'action',
-		'name',
-		'shortcut',
-		'subMenu',
-		'icon',
-		'description',
-		'state',
-		'autoRefresh'
+		'#name => SpObservableSlot',
+		'#icon => SpObservableSlot',
+		'#description => SpObservableSlot',
+		'#action',
+		'#shortcut',
+		'#subMenu',
+		'#state',
+		'#autoRefresh'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
