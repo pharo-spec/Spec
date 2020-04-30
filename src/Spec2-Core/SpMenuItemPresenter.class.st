@@ -191,3 +191,21 @@ SpMenuItemPresenter >> subMenu: aMenuPresenter [
 	aMenuPresenter ifNotNil: [ aMenuPresenter owner: self ].
 	subMenu := aMenuPresenter
 ]
+
+{ #category : #'api-events' }
+SpMenuItemPresenter >> whenDescriptionChangedDo: aBlock [ 
+
+	self property: #description whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+SpMenuItemPresenter >> whenIconChangedDo: aBlock [ 
+
+	self property: #icon whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+SpMenuItemPresenter >> whenNameChangedDo: aBlock [ 
+
+	self property: #name whenChangedDo: aBlock
+]

@@ -205,3 +205,17 @@ SpMorphicMenuItemAdapter >> subMenu [
 		ifTrue: [ subMenu cull: self model ]
 		ifFalse: [ subMenu buildWithSpecAsPopup ]
 ]
+
+{ #category : #private }
+SpMorphicMenuItemAdapter >> widgetIcon [
+	"for testing purposes"
+	
+	^ self widget icon
+]
+
+{ #category : #private }
+SpMorphicMenuItemAdapter >> widgetName [
+	"for testing purposes"
+	
+	^ self widget contents
+]
