@@ -28,7 +28,7 @@ While you can add your own way to access resources, SpApplication provides a pro
 This is useful to give your application a starting window (in general, this is what you want).
 
 Example: 
-[[[lang=Smalltalk
+[[[language=Smalltalk
 MyApplication>>start
 
    (self new: MyMainPresenter) openWithSpec

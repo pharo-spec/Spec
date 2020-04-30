@@ -24,7 +24,7 @@ the result style for a button with ""smallButton"" style will have a Geometry wi
 !! Style classes are composable
 You can compose class styles (stacking them to form a new style). This is an useful practice to add your own styles to the default definition.  
 
-[[[lang=Smalltalk  
+[[[language=Smalltalk  
 myStyle := SpStyle defaultStyleSheet, myOwnStyleDefinition			
 ]]]
 "

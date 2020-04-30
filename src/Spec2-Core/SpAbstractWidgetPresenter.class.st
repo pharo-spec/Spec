@@ -84,7 +84,7 @@ SpAbstractWidgetPresenter >> addStyle: aStyle [
 	 - Styles can just be added to widget presenters (the ones that inherits of *SpAbstractWidgetPresenter*).
 	 - Styles can be added and removed dynamically (see also *SpAbstractWidgetPresenter>>removeStyle:*
 	
-	[[[lang=Smalltalk
+	[[[language=Smalltalk
 	button := self newButton 
 		label: 'Example of style';
 		addStyle: 'myButton';

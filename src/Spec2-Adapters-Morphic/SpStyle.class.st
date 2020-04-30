@@ -15,7 +15,7 @@ A defined stylesheet has to have always a root element, and this root element ne
 
 See this small example: 
 
-[[[lang=Smalltalk
+[[[language=Smalltalk
 SpStyleSTONReader fromString: '
 .application [  
 	.myButton [
