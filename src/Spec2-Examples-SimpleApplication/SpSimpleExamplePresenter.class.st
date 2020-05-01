@@ -30,7 +30,8 @@ SpSimpleExamplePresenter class >> defaultSpec [
 				add: #actionButton;
 				yourself)
 			expand: false;
-		yourself	]]]"
+		yourself	
+	]]]"
 
 	^ SpBoxLayout newVertical
 		add: #titleLabel;
@@ -58,7 +59,8 @@ SpSimpleExamplePresenter >> initializePresenters [
 	actionButton := self newButton 
 		label: 'A button';
 		action: [  ];
-		yourself	]]]	
+		yourself	
+	]]]	
 	" 
 
 	titleLabel := self newLabel
@@ -80,9 +82,11 @@ SpSimpleExamplePresenter >> initializeWindow: aWindowPresenter [
 	 But it can also be shown as a window. 
 	 Define here the window properties you need (see *SpWindowPresenter*)
 	
+	[[[
 	aWindowPresenter 
 		title: 'Simple Application';
-		initialExtent: 400@400	
+		initialExtent: 400@400
+	]]]
 	"
 
 	aWindowPresenter 

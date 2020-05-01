@@ -27,7 +27,8 @@ SpSimpleExampleConfiguration >> styleSheet [
 					Draw { #color: #red }
 				]
 			]	
-		]')"
+		]')
+	]]]"
 
 	^ super styleSheet, (SpStyleSTONReader fromString: '
 .application [
