@@ -25,12 +25,11 @@ SpSimpleExampleApplication >> initialize [
 	 Sending #useBackend:with: you will declare your application to use a morphic application and 
 	 use a *SpSimpleExampleConfiguration* instance as configuration.
 
-	 [[[language=Smalltalk
+	[[[language=Smalltalk
 		self 
 			useBackend: #Morphic 
 			with: SpSimpleExampleConfiguration new.
-	 ]]]
-	"
+	]]]"
 
 	super initialize.
 	self useBackend: #Morphic with: SpSimpleExampleConfiguration new
@@ -41,9 +40,10 @@ SpSimpleExampleApplication >> start [
 	"You will declare your initial window here (spec is, after all, a framework to create desktop 
 	 applications).
 	
-	 [[[language=Smalltalk
+	[[[language=Smalltalk
 		(self new: SpSimpleExamplePresenter) openWithSpec.
-	 ]]]"
+	]]]
+	"
 
 	(self new: SpSimpleExamplePresenter) openWithSpec
 ]

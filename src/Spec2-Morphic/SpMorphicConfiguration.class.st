@@ -22,7 +22,11 @@ SpMorphicConfiguration >> configure: anApplication [
 { #category : #styling }
 SpMorphicConfiguration >> styleSheet [
 	"Define the default styleSheet to use in your application. You can override this and add your 
-	 own application dependent styles (and you can compose them, see *SpStyle*)."
+	 own application dependent styles (and you can compose them, see *SpStyle*).
+	
+	[[[language=Smalltalk
+	^ SpStyle defaultStyleSheet 
+	]]]"
 	
 	^ SpStyle defaultStyleSheet
 ]

@@ -48,6 +48,7 @@ SpSimpleExamplePresenter class >> defaultSpec [
 SpSimpleExamplePresenter >> initializePresenters [
 	"Initialize presenters: you will add your presenters here.
 	 BEWARE! all your presenters names need to match the name defined in the *SpSimpleExamplePresenter class>>defaultSpec* method.
+
 	[[[language=Smalltalk
 	titleLabel := self newLabel
 		label: 'A Simple Title';
@@ -60,8 +61,7 @@ SpSimpleExamplePresenter >> initializePresenters [
 		label: 'A button';
 		action: [  ];
 		yourself	
-	]]]	
-	" 
+	]]]	" 
 
 	titleLabel := self newLabel
 		label: 'A Simple Title';
@@ -82,7 +82,7 @@ SpSimpleExamplePresenter >> initializeWindow: aWindowPresenter [
 	 But it can also be shown as a window. 
 	 Define here the window properties you need (see *SpWindowPresenter*)
 	
-	[[[
+	[[[language=Smalltalk
 	aWindowPresenter 
 		title: 'Simple Application';
 		initialExtent: 400@400
