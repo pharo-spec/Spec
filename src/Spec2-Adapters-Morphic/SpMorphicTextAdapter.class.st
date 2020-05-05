@@ -71,6 +71,29 @@ SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
 		during: [ menuPresenter buildWithSpec ]
 ]
 
+{ #category : #'widget API' }
+SpMorphicTextAdapter >> cursorPosition [
+
+	^ self widgetDo: [ :w |
+		w textArea selectionStart
+			ifNotNil: [ :sel | self linePositionOf: sel ] ]
+]
+
+{ #category : #private }
+SpMorphicTextAdapter >> eventHandlerReceiver: aWidget [
+
+	^ aWidget textArea
+]
+
+{ #category : #private }
+SpMorphicTextAdapter >> linePositionOf: sel [
+	| textLine linePosition |
+	
+	textLine := sel textLine.
+	linePosition := sel stringIndex - textLine first + 1.
+	^ linePosition @ textLine lineNumber
+]
+
 { #category : #styling }
 SpMorphicTextAdapter >> presenterStyles [
 	"The presenters in the style"
@@ -125,10 +148,4 @@ SpMorphicTextAdapter >> updateExtentPropagationOf: string on: aWidget [
 				width: width;
 				yourself) height + 2)" min: self currentWorld height / 3". 
 			aWidget height: height ]
-]
-
-{ #category : #emulating }
-SpMorphicTextAdapter >> widgetEventReceiver [
-	
-	^ widget textArea
 ]
