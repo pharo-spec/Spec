@@ -330,7 +330,7 @@ SpAbstractMorphicAdapter >> installFocusReceivedEvent: anEvent to: aWidget [
 SpAbstractMorphicAdapter >> installKeyDownEvent: anEvent to: aWidget [
 
 	aWidget 
-		when: #keyDown
+		on: #keyDown
 		send: #value:
 		to: anEvent action
 ]
@@ -339,7 +339,7 @@ SpAbstractMorphicAdapter >> installKeyDownEvent: anEvent to: aWidget [
 SpAbstractMorphicAdapter >> installKeyUpEvent: anEvent to: aWidget [
 
 	aWidget 
-		when: #keyUp
+		on: #keyUp
 		send: #value:
 		to: anEvent action
 ]
@@ -348,7 +348,7 @@ SpAbstractMorphicAdapter >> installKeyUpEvent: anEvent to: aWidget [
 SpAbstractMorphicAdapter >> installMouseDownEvent: anEvent to: aWidget [
 
 	aWidget 
-		when: #mouseDown
+		on: #mouseDown
 		send: #value:
 		to: anEvent action
 ]
@@ -357,7 +357,7 @@ SpAbstractMorphicAdapter >> installMouseDownEvent: anEvent to: aWidget [
 SpAbstractMorphicAdapter >> installMouseEnterEvent: anEvent to: aWidget [
 
 	aWidget 
-		when: #mouseEnter
+		on: #mouseEnter
 		send: #value:
 		to: anEvent action
 ]
@@ -366,7 +366,7 @@ SpAbstractMorphicAdapter >> installMouseEnterEvent: anEvent to: aWidget [
 SpAbstractMorphicAdapter >> installMouseLeaveEvent: anEvent to: aWidget [
 
 	aWidget 
-		when: #mouseLeave
+		on: #mouseLeave
 		send: #value:
 		to: anEvent action
 ]
@@ -375,7 +375,7 @@ SpAbstractMorphicAdapter >> installMouseLeaveEvent: anEvent to: aWidget [
 SpAbstractMorphicAdapter >> installMouseMoveEvent: anEvent to: aWidget [
 
 	aWidget 
-		when: #mouseMove
+		on: #mouseMove
 		send: #value:
 		to: anEvent action
 ]
@@ -384,7 +384,7 @@ SpAbstractMorphicAdapter >> installMouseMoveEvent: anEvent to: aWidget [
 SpAbstractMorphicAdapter >> installMouseUpEvent: anEvent to: aWidget [
 
 	aWidget 
-		when: #mouseUp
+		on: #mouseUp
 		send: #value:
 		to: anEvent action
 ]
@@ -592,5 +592,5 @@ SpAbstractMorphicAdapter >> when: anAnnouncement do: aBlock [
 { #category : #emulating }
 SpAbstractMorphicAdapter >> widgetEventReceiver [
 	
-	^ widget
+	^ self eventHandlerReceiver: widget
 ]

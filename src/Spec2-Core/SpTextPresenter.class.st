@@ -25,7 +25,8 @@ Class {
 	#instVars : [
 		'#scrollValue => SpObservableSlot',
 		'#editionContextMenu => SpObservableSlot',
-		'#editable => SpObservableSlot'
+		'#editable => SpObservableSlot',
+		'#cursorPosition => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }
@@ -100,6 +101,13 @@ SpTextPresenter >> beNotEditable [
 	self editable: false
 ]
 
+{ #category : #api }
+SpTextPresenter >> cursorPosition [
+	"Answer a Point (column, row) with current cursor position"
+
+	^ self withAdapterDo: [ :anAdapter | anAdapter cursorPosition ]
+]
+
 { #category : #accessing }
 SpTextPresenter >> editable: aBoolean [
 
@@ -170,6 +178,12 @@ SpTextPresenter >> scrollValue: aPoint [
 	"Set the scroll position"
 
 	^ scrollValue := aPoint
+]
+
+{ #category : #'api-events' }
+SpTextPresenter >> whenCursorPositionChangedDo: aBlock [
+
+	self property: #cursorPosition whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

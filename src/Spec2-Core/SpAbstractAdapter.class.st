@@ -80,13 +80,19 @@ SpAbstractAdapter >> addEventsTo: aWidget [
 	self presenter hasEventHandler ifFalse: [ ^ self ].
 	self presenter eventHandler 
 		installAllEventsTo: self 
-		target: aWidget
+		target: (self eventHandlerReceiver: aWidget)
 ]
 
 { #category : #factory }
 SpAbstractAdapter >> buildWidget [
 
 	^ self subclassResponsibility
+]
+
+{ #category : #private }
+SpAbstractAdapter >> eventHandlerReceiver: aWidget [
+
+	^ aWidget
 ]
 
 { #category : #protocol }
