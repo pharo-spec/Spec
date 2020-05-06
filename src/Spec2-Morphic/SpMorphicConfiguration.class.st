@@ -1,10 +1,9 @@
 "
-I am a base configuration for a Morphic backend.
-
 ! Morphic configurations
+
 Morphic configurations will prepare your application to run in a Morphic backend. Tipically, you will not change much of what is already provided on a Pharo system, but there are several entry points you may want to extend/override: 
 
-- *SpMorphicConfiguration>styleSheet*
+- *method:SpMorphicConfiguration>>#styleSheet*
 "
 Class {
 	#name : #SpMorphicConfiguration,

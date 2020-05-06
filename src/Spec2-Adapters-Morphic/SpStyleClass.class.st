@@ -1,8 +1,6 @@
 "
-I am a style-class, represented by a name. 
-I contain other styles (properties or classes).
-
 ! Style classes
+
 A style class define a set of properties grouped by a common name. You can think a style class of morphic a little bit as a style class of CSS, but it has several differences.
  
 !! Style classes can be nested

@@ -1,17 +1,12 @@
 "
-I'm a style to be used in morphic adaptors. 
-I can be a class (which is a set of classes and properties) or a property. 
-My children will define concrete implementations of each.
-
-The most important part: a style can be applied (using #applyTo:) to a morph. This morph will be the morph generated in an adapter (and it will contain an instance of SpMorphStyle).
-
 ! Stylesheets for Morphic backend
+
 A style is a property container to ""style"" morphic components, and define (in a certain degree) its behaviour within the different layouts implemented.
 There are two kinds of style elements: style classes and style properties.
 
 !! Stylesheet STON format
-To easy the definition and storage outside an image, a stylesheet may be defined as a STON file, string or stream, that you can later read using *SpStyleSTONReader*.
-A defined stylesheet has to have always a root element, and this root element needs to be called `.application`. 
+To easy the definition and storage outside an image, a stylesheet may be defined as a STON file, string or stream, that you can later read using *class:SpStyleSTONReader*.
+A defined stylesheet has to have always a root element, and this root element needs to be called ==.application==. 
 
 See this small example: 
 
@@ -24,15 +19,14 @@ SpStyleSTONReader fromString: '
 ]'
 ]]]
 
-As a more complex example, see *SpStyle>>createDefaultStyleSheet* who defines the default behaviour of all elements of a Morphic Spec backend.
+As a more complex example, see *method:SpStyle>>#createDefaultStyleSheet* who defines the default behaviour of all elements of a Morphic Spec backend.
 
 !! Referencing style elements in your presenters
-You can add styles to your presenters easily by using *SpAbstractWidgetPresenter>>addStyle:*
+You can add styles to your presenters easily by using *class:SpAbstractWidgetPresenter>>#addStyle:*
 
 @@TODO more examples
 
-See *SpStyleClass*, *SpStyleProperty* 
-See also: *SpMorphStyle*
+See *class:SpStyleClass*, *class:SpStyleProperty*, *class:SpMorphStyle*
 "
 Class {
 	#name : #SpStyle,

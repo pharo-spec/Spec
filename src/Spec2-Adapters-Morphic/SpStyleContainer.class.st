@@ -1,14 +1,13 @@
 "
-I'm a style to control the properties of a container. 
-
 ! Container properties (SpStyleContainer)
+
 A container property can be applied to container elements (buttonbar, toolbar, actionbar), and define several properties: 
 
 - borderColor: The color of the border (in case borderWidth > 0). 
 - borderWidth: The width of the border.
 - padding: The space between elements.
 
-See *SpStyleContainer>>borderColor*
+See *method:SpStyleContainer>>#borderColor*
 
 !! Usage
 The identifier of container in the stylesheet is ==Container==.

@@ -1,9 +1,8 @@
 "
-I am a very simple presenter to illustrate how they fit in a Spec application.
-
 ! A (simple) sample presenter
+
 A simple presenter to show how I can construct and show a window in the context of a Spec application. 
-I will show a simple title, a message and a button.
+It will show a simple title, a message and a button.
 
 "
 Class {

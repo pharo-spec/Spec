@@ -1,7 +1,6 @@
 "
-I'm a style to control the font of a widget. 
-
 ! Font property (SpStyleFont)
+
 Font properties control how a component (morph) with font will draw the text.
 I keep this properties: 
 

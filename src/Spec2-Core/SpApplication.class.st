@@ -1,8 +1,6 @@
 "
-I'm a Spec application entry point. 
-In Spec, each application needs to have a definition that concentrates its flow and resources.
-
 ! Spec Applications
+
 A SpApplication is a class that handles many aspects of a Spec Application (hence it's name) in a convenient fashion. 
 SpApplication handles your application initialisation, configuration and resources. It also keeps the windows you have currently opened. 
 
@@ -16,16 +14,16 @@ Spec2 includes several backends (for the moment, Morphic and Gtk). A SpApplicati
 
 See this example: 
 [[[language=Smalltalk
-	""This example shows how to change the backend of an application"" 
-	| app |
-	
-	""You want to subclass SpApplication to create your app""
-	app := SpApplication new.
-	app useBackend: #Gtk.
-	app run
+""This example shows how to change the backend of an application"" 
+| app |
+
+""You want to subclass SpApplication to create your app""
+app := SpApplication new.
+app useBackend: #Gtk.
+app run
 ]]]
 
-see also: *SpApplicationConfiguration*
+see also: *class:SpApplicationConfiguration*
 
 !!! Add resources
 During initialisation, you may want to add special resources (like icons, themes, etc.).

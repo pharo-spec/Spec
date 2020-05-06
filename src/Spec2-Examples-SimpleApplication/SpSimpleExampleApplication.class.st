@@ -1,11 +1,9 @@
 "
-I am a simple example application, to show basic concepts of Spec.
-
 ! A (simple) sample application
-This is the starting point of every Spec application. A subclass of *SpApplication* who defines how your application will behave and start.
+
+This is the starting point of every Spec application. A subclass of *class:SpApplication* who defines how your application will behave and start.
 
 You will need to override ==initialize== and ==start== methods as a begining.
-
 "
 Class {
 	#name : #SpSimpleExampleApplication,

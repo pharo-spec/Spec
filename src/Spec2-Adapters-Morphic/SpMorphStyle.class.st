@@ -1,9 +1,8 @@
 "
-I'm a style container that can lookup for properties, following the logic of most detailed property first, most generic last.
-
 ! A Style in a Morph (SpMorphStyle)
+
 This is for internal use of the framework, but it is interesting to notice how it works since it may give some insigts on how to declare things.
-At creation of a component, an instance of SpMorphStyle is created and by taking the stylesheet it collects styles from most external to more internal. So, for example, this stylesheet: 
+At creation of a component, an instance of ==SpMorphStyle== is created and by taking the stylesheet it collects styles from most external to more internal. So, for example, this stylesheet: 
 
 [[[
 .application [
@@ -21,8 +20,7 @@ application
 application.button
 ]]] 
 
-This collection will be used to get all properties defined and perform a merge between them (*SpStyleProperty>>mergeWith:*), to get all one single property for each type of them. Which means at the end it will apply a property ==Geometry { #width: 100, #height: 25 }==
-
+This collection will be used to get all properties defined and perform a merge between them (*method:SpStyleProperty>>#mergeWith:*), to get all one single property for each type of them. Which means at the end it will apply a property ==Geometry { #width: 100, #height: 25 }==.
 
 "
 Class {

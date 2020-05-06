@@ -1,14 +1,13 @@
 "
-I'm a style to control how a widget is drawn. 
-
 ! Draw property (SpStyleDraw)
+
 Draw properties control how the component (morph) will be draw.
 I keep this properties: 
 
 - color: foreground color for the morph if it applies (if the morph understands #color:).
 - backgroundColor: background color if it applies (if the morph understands #backgroundColor:).
 
-See *SpStyleDraw>>color* and *SpStyleDraw>>backgroundColor*
+See *method:SpStyleDraw>>#color* and *method:SpStyleDraw>>#backgroundColor*
 
 !! Usage
 The identifier of draw in the stylesheet is ==Draw==.

@@ -1,7 +1,6 @@
 "
-I'm a style to control the geometry of a widget. 
-
 ! Geometry properties (SpStyleGeometry)
+
 Geometry properties controls how the component (morph) will be arranged within its layout.
 
 - hResizing: the component can be resized horizontally? (boolean, default depends on how the morph behaves outside spec)
