@@ -68,7 +68,7 @@ see also: [SpMorphicConfiguration](#SpMorphicConfiguration), [SpGtkConfiguration
 
 Morphic configurations will prepare your application to run in a Morphic backend. Tipically, you will not change much of what is already provided on a Pharo system, but there are several entry points you may want to extend/override: 
 
-- [method:SpMorphicConfiguration](>#styleSheet)
+- [SpMorphicConfiguration>>#styleSheet](#SpMorphicConfiguration_styleSheet)
 
 ## SpMorphicConfiguration >> styleSheet
 Define the default styleSheet to use in your application. You can override this and add your 
@@ -95,7 +95,7 @@ SpStyleSTONReader fromString: '
 ]'
 ```
 
-As a more complex example, see [method:SpStyle](>#createDefaultStyleSheet) who defines the default behaviour of all elements of a Morphic Spec backend.
+As a more complex example, see [SpStyle class>>#createDefaultStyleSheet](#SpStyle class_createDefaultStyleSheet) who defines the default behaviour of all elements of a Morphic Spec backend.
 ## Referencing style elements in your presenters
 You can add styles to your presenters easily by using [class:SpAbstractWidgetPresenter](>#addStyle:)
 **TODO**: more examples
@@ -154,7 +154,7 @@ A container property can be applied to container elements (buttonbar, toolbar, a
 - borderWidth: The width of the border.
 - padding: The space between elements.
 
-See [method:SpStyleContainer](>#borderColor)
+See [SpStyleContainer>>#borderColor](#SpStyleContainer_borderColor)
 ## Usage
 The identifier of container in the stylesheet is `Container`.
 
@@ -179,7 +179,7 @@ I keep this properties:
 - color: foreground color for the morph if it applies (if the morph understands #color:).
 - backgroundColor: background color if it applies (if the morph understands #backgroundColor:).
 
-See [method:SpStyleDraw](>#color) and [method:SpStyleDraw](>#backgroundColor)
+See [SpStyleDraw>>#color](#SpStyleDraw_color) and [SpStyleDraw>>#backgroundColor](#SpStyleDraw_backgroundColor)
 ## Usage
 The identifier of draw in the stylesheet is `Draw`.
 
@@ -255,14 +255,14 @@ At creation of a component, an instance of `SpMorphStyle` is created and by taki
 ]
 ```
 
-Will collect, for a button ([](SpButtonPresenter), who has a style name `button`), the styles
+Will collect, for a button ([SpButtonPresenter](#SpButtonPresenter), who has a style name `button`), the styles
 
 ```
 application
 application.button
 ```
 
-This collection will be used to get all properties defined and perform a merge between them ([method:SpStyleProperty](>#mergeWith:)), to get all one single property for each type of them. Which means at the end it will apply a property `Geometry { #width: 100, #height: 25 }`.
+This collection will be used to get all properties defined and perform a merge between them ([SpStyleProperty>>#mergeWith:](#SpStyleProperty_mergeWith:)), to get all one single property for each type of them. Which means at the end it will apply a property `Geometry { #width: 100, #height: 25 }`.
 
 # A (simple) sample application
 
@@ -288,8 +288,8 @@ You will declare your initial window here (spec is, after all, a framework to cr
 	# A (simple) sample configuration
 
 A configuration is needed to define different elements for each different backend.
-You do this by extending [SpApplicationConfiguration](#SpApplicationConfiguration) or one of its more specific children ([](SpMorphicConfiguration) and [SpGtkConfiguration](#SpGtkConfiguration)).
-See [method:SpSimpleExampleConfiguration](>#styleSheet)
+You do this by extending [SpApplicationConfiguration](#SpApplicationConfiguration) or one of its more specific children ([SpMorphicConfiguration](#SpMorphicConfiguration) and [SpGtkConfiguration](#SpGtkConfiguration)).
+See [SpSimpleExampleConfiguration>>#styleSheet](#SpSimpleExampleConfiguration_styleSheet)
 ## SpSimpleExampleConfiguration >> styleSheet
 This method will answer the default stylesheed (provided by calling `super styleSheed`) and 
  it will add a class called `title` to be used by labels.
