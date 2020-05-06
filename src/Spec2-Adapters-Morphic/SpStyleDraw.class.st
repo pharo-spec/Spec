@@ -7,7 +7,7 @@ I keep this properties:
 - color: foreground color for the morph if it applies (if the morph understands #color:).
 - backgroundColor: background color if it applies (if the morph understands #backgroundColor:).
 
-See *method:SpStyleDraw>>#color* and *method:SpStyleDraw>>#backgroundColor*
+See *method:SpStyleDraw#color* and *method:SpStyleDraw#backgroundColor*
 
 !! Usage
 The identifier of draw in the stylesheet is ==Draw==.

@@ -7,7 +7,7 @@ A container property can be applied to container elements (buttonbar, toolbar, a
 - borderWidth: The width of the border.
 - padding: The space between elements.
 
-See *method:SpStyleContainer>>#borderColor*
+See *method:SpStyleContainer#borderColor*
 
 !! Usage
 The identifier of container in the stylesheet is ==Container==.

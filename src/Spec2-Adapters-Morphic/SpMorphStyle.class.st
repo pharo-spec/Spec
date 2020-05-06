@@ -13,14 +13,14 @@ At creation of a component, an instance of ==SpMorphStyle== is created and by ta
 ]
 ]]]
 
-Will collect, for a button (*SpButtonPresenter*, who has a style name ==button==), the styles
+Will collect, for a button (*class:SpButtonPresenter*, who has a style name ==button==), the styles
 
 [[[
 application
 application.button
 ]]] 
 
-This collection will be used to get all properties defined and perform a merge between them (*method:SpStyleProperty>>#mergeWith:*), to get all one single property for each type of them. Which means at the end it will apply a property ==Geometry { #width: 100, #height: 25 }==.
+This collection will be used to get all properties defined and perform a merge between them (*method:SpStyleProperty#mergeWith:*), to get all one single property for each type of them. Which means at the end it will apply a property ==Geometry { #width: 100, #height: 25 }==.
 
 "
 Class {

@@ -2,9 +2,9 @@
 ! A (simple) sample configuration
 
 A configuration is needed to define different elements for each different backend.
-You do this by extending *class:SpApplicationConfiguration* or one of its more specific children (*SpMorphicConfiguration* and *class:SpGtkConfiguration*).
+You do this by extending *class:SpApplicationConfiguration* or one of its more specific children (*class:SpMorphicConfiguration* and *class:SpGtkConfiguration*).
 
-See *method:SpSimpleExampleConfiguration>>#styleSheet*
+See *method:SpSimpleExampleConfiguration#styleSheet*
 "
 Class {
 	#name : #SpSimpleExampleConfiguration,

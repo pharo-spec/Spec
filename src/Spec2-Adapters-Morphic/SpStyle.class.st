@@ -19,7 +19,7 @@ SpStyleSTONReader fromString: '
 ]'
 ]]]
 
-As a more complex example, see *method:SpStyle>>#createDefaultStyleSheet* who defines the default behaviour of all elements of a Morphic Spec backend.
+As a more complex example, see *method:SpStyle class#createDefaultStyleSheet* who defines the default behaviour of all elements of a Morphic Spec backend.
 
 !! Referencing style elements in your presenters
 You can add styles to your presenters easily by using *class:SpAbstractWidgetPresenter>>#addStyle:*
