@@ -84,8 +84,7 @@ SpMorphicBaseTextAdapter >> codePaneMenu: aMenu shifted: shifted [
 { #category : #'spec protocol' }
 SpMorphicBaseTextAdapter >> cursorPositionIndex [
 
-	self widgetDo: [:w| ^w textArea editor pointIndex]
-
+	self widgetDo: [ :w | ^ w textArea editor pointIndex ]
 ]
 
 { #category : #'widget API' }
