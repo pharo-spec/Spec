@@ -13,6 +13,13 @@ SpAbstractMorphicListAdapter class >> isAbstract [
 	^ self = SpAbstractMorphicListAdapter
 ]
 
+{ #category : #initialization }
+SpAbstractMorphicListAdapter >> addKeyBindingsTo: aWidget [
+
+	super addKeyBindingsTo: aWidget.
+	self addContextMenuKeyBindings: aWidget
+]
+
 { #category : #scrolling }
 SpAbstractMorphicListAdapter >> configureScrolling [
 	self presenter verticalAlignment
@@ -47,6 +54,13 @@ SpAbstractMorphicListAdapter >> scrollingChanged [
 	self presenter verticalAlignment
 		firstVisibleRowIndex: widget firstVisibleRowIndex;
 		lastVisibleRowIndex: widget lastVisibleRowIndex
+]
+
+{ #category : #private }
+SpAbstractMorphicListAdapter >> showContextMenu [
+
+	self widgetDo: [ :w |
+		w showMenuForIndex: { self presenter selection selectedIndex. 1 } ]
 ]
 
 { #category : #factory }

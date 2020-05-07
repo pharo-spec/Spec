@@ -4,6 +4,13 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-List'
 }
 
+{ #category : #initialization }
+SpMorphicComponentListAdapter >> addKeyBindingsTo: aWidget [
+
+	super addKeyBindingsTo: aWidget.
+	self addContextMenuKeyBindings: aWidget
+]
+
 { #category : #factory }
 SpMorphicComponentListAdapter >> buildWidget [
 
@@ -126,6 +133,13 @@ SpMorphicComponentListAdapter >> selectionChanged: ann [
 	
 	ann newSelectedIndexes ifNotEmpty: [ ^ self ].
 	self presenter selection unselectAll
+]
+
+{ #category : #private }
+SpMorphicComponentListAdapter >> showContextMenu [
+
+	self widgetDo: [ :w |
+		w showMenuForIndex: { self presenter selection selectedIndex. 1 } ]
 ]
 
 { #category : #factory }

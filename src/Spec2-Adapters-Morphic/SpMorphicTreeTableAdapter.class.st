@@ -22,6 +22,13 @@ SpMorphicTreeTableAdapter >> addFocusRotationKeyBindings [
 	^ super addFocusRotationKeyBindings
 ]
 
+{ #category : #initialization }
+SpMorphicTreeTableAdapter >> addKeyBindingsTo: aWidget [
+
+	super addKeyBindingsTo: aWidget.
+	self addContextMenuKeyBindings: aWidget
+]
+
 { #category : #factory }
 SpMorphicTreeTableAdapter >> addModelTo: tableMorph [
 
@@ -281,6 +288,13 @@ SpMorphicTreeTableAdapter >> selectionChanged: ann [
 
 	self suspendSelectionEventsDuring: [ 
 		self basicSelectionChanged: ann ]
+]
+
+{ #category : #private }
+SpMorphicTreeTableAdapter >> showContextMenu [
+
+	self widgetDo: [ :w |
+		w showMenuForIndex: { self presenter selection selectedIndex. 1 } ]
 ]
 
 { #category : #factory }

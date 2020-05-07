@@ -51,6 +51,16 @@ SpAbstractMorphicAdapter >> add: anAdapter [
 	self widgetDo: [ :w | w spEnsureLayoutAndAddMorph: anAdapter widget ]
 ]
 
+{ #category : #private }
+SpAbstractMorphicAdapter >> addContextMenuKeyBindings: aWidget [
+	
+	self flag: #TODO. "Take this from a configuration"
+	self 
+		bindKeyCombination: $t command mac | $t control unix | $t control win
+		toAction: [ self showContextMenu ]
+
+]
+
 { #category : #initialization }
 SpAbstractMorphicAdapter >> addFocusRotationKeyBindings [
 
@@ -146,6 +156,14 @@ SpAbstractMorphicAdapter >> borderWidth [
 SpAbstractMorphicAdapter >> borderWidth: width [
 
 	self widget ifNotNil: [ :w | w borderWidth: width ]
+]
+
+{ #category : #private }
+SpAbstractMorphicAdapter >> buildMenu: aMenuPresenter [
+
+	^ aMenuPresenter 
+		owner: self presenter;
+		buildWithSpec
 ]
 
 { #category : #'spec protocol' }
@@ -494,6 +512,21 @@ SpAbstractMorphicAdapter >> setBalloonText: aString [
 SpAbstractMorphicAdapter >> show [ 
 
 	self widgetDo: #show
+]
+
+{ #category : #private }
+SpAbstractMorphicAdapter >> showContextMenu [
+
+	self presenter contextMenu ifNil: [ ^ self ].
+	self showMenu: self presenter contextMenu
+]
+
+{ #category : #private }
+SpAbstractMorphicAdapter >> showMenu: aValuable [
+	| lastShownMenu |
+	
+	lastShownMenu := self buildMenu: aValuable value.
+	lastShownMenu openWithSpec
 ]
 
 { #category : #styling }
