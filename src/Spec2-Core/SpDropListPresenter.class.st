@@ -49,18 +49,6 @@ SpDropListPresenter >> addItemLabeled: aString do: aBlock icon: anIcon [
 		self selection selectItem: item ]
 ]
 
-{ #category : #transmission }
-SpDropListPresenter >> defaultInputPort [
-
-	^ self inputItemsPort
-]
-
-{ #category : #transmission }
-SpDropListPresenter >> defaultOutputPort [
-
-	^ self outputSelectionPort
-]
-
 { #category : #api }
 SpDropListPresenter >> display [
 	
@@ -142,12 +130,6 @@ SpDropListPresenter >> initialize [
 	startsWithSelection := true
 ]
 
-{ #category : #transmission }
-SpDropListPresenter >> inputItemsPort [
-
-	^ SpListItemsPort newPresenter: self
-]
-
 { #category : #api }
 SpDropListPresenter >> items [ 
 
@@ -188,12 +170,6 @@ SpDropListPresenter >> listSize [
 SpDropListPresenter >> model [
 	
 	^ model
-]
-
-{ #category : #transmission }
-SpDropListPresenter >> outputSelectionPort [
-
-	^ SpDropListSelectionPort newPresenter: self
 ]
 
 { #category : #selection }

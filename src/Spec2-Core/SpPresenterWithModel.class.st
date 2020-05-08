@@ -21,18 +21,6 @@ SpPresenterWithModel >> announcingObject [
 	^ announcingObject
 ]
 
-{ #category : #abstract }
-SpPresenterWithModel >> defaultInputPort [
-
-	^ self inputModelPort
-]
-
-{ #category : #abstract }
-SpPresenterWithModel >> inputModelPort [
-
-	^ SpModelPort newPresenter: self
-]
-
 { #category : #accessing }
 SpPresenterWithModel >> model [
 

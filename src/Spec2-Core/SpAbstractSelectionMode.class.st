@@ -126,11 +126,6 @@ SpAbstractSelectionMode >> transferSubscriptionsTo: anotherSelectionMode [
 	self selectionHolder transferSubscriptionsTo: anotherSelectionMode selectionHolder
 ]
 
-{ #category : #transmission }
-SpAbstractSelectionMode >> transmission [ 
-	self subclassResponsibility
-]
-
 { #category : #selecting }
 SpAbstractSelectionMode >> unselectAll [
 	
