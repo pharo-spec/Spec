@@ -54,6 +54,19 @@ SpCodeAdapterTest >> styleTableAt: styleName do: aBlock [
 	attributes do: aBlock
 ]
 
+{ #category : #accessing }
+SpCodeAdapterTest >> testRightClickShowsMenu [
+	| menu |
+
+	presenter 
+		contextMenu: (menu := SpMockMenuPresenter new);
+		overrideContextMenu: true.
+
+	self deny: menu shown.
+	self emulateRightClick.
+	self assert: menu shown
+]
+
 { #category : #tests }
 SpCodeAdapterTest >> testTextWithStyle [
 	| text |

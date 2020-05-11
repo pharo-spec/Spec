@@ -12,7 +12,8 @@ Class {
 		'#syntaxHighlight => SpObservableSlot',
 		'#completionEngine => SpObservableSlot',
 		'#lineNumbers => SpObservableSlot',
-		'#interactionModel'
+		'#interactionModel',
+		'#overrideContextMenu'
 	],
 	#category : #'Spec2-Code'
 }
@@ -125,12 +126,14 @@ SpCodePresenter >> buildContextKeyBindingsWith: aCategory [
 ]
 
 { #category : #private }
-SpCodePresenter >> buildContextMenuWith: aBlock [
+SpCodePresenter >> buildContextMenuWith: aValuable [
 	| menuPresenter |
+	
+	overrideContextMenu ifTrue: [ ^ aValuable ].
 
 	menuPresenter := self newContextMenu.
-	aBlock ifNotNil: [ 
-		aBlock value ifNotNil: [ :menu |
+	aValuable ifNotNil: [ 
+		aValuable value ifNotNil: [ :menu |
 			menu menuGroups do: [ :aGroup |
 				menuPresenter addMenuGroup: aGroup ] ] ].
 
@@ -157,6 +160,12 @@ SpCodePresenter >> contextKeyBindings [
 
 { #category : #accessing }
 SpCodePresenter >> contextMenu [
+	"The code presenter context menu is a compound of two menus: 
+		1) the basic interoperation menu (that includes operations like cut&paste but also do it, 
+		print it, etc.
+		2) the user defined context menu.
+    If you want to override completely this menu you need to set the 'overrideMenu' property 
+	 to true"
 
 	^ [ self buildContextMenuWith: super contextMenu ]
 ]
@@ -248,6 +257,9 @@ SpCodePresenter >> hasSyntaxHighlight [
 SpCodePresenter >> initialize [ 
 
 	super initialize.
+
+	"Use the default menu"
+	overrideContextMenu := false.
 	
 	self withSyntaxHighlight.
 	self withLineNumbers.
@@ -290,6 +302,15 @@ SpCodePresenter >> newContextMenu [
 SpCodePresenter >> newContextMenuKeyBindings [
 	
 	^ self rootCommandsGroup asKMCategory
+]
+
+{ #category : #accessing }
+SpCodePresenter >> overrideContextMenu: aBoolean [
+	"This property set the type of menu to use: if #overrideContextMenu is false (the default), 
+	 the contextMenu will include code presenter default entries. If #overrideContextMenu is true, 
+	 just what is defined in #contextMenu will be displayed"
+
+	overrideContextMenu := aBoolean
 ]
 
 { #category : #initialization }
