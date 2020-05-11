@@ -38,7 +38,6 @@ SpCodePresenterTest >> testContextMenu [
 	presenter whenMenuChangedDo: [ 
 		changed := true. ].
 	presenter contextMenu: menu.
-	self assert: presenter contextMenu equals: menu.
 	self assert: changed
 ]
 
