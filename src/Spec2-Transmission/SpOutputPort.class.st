@@ -50,6 +50,16 @@ SpOutputPort >> transmitTo: aPort [
 ]
 
 { #category : #transmitting }
+SpOutputPort >> transmitTo: aPort postTransmission: postValuable [
+
+	^ SpTransmission new
+		fromPort: self;
+		toPort: aPort;
+		postTransmission: postValuable;
+		apply
+]
+
+{ #category : #transmitting }
 SpOutputPort >> transmitTo: aPort transform: aValuable [
 
 	^ SpTransmission new
