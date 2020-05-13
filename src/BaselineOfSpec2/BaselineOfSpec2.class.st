@@ -18,12 +18,11 @@ BaselineOfSpec2 >> baseline: spec [
 				spec requires: #(
 					'Spec2-ObservableSlot'
 					'Spec2-Layout' 
-					'Spec2-Transmission' 
 					'Spec2-Commands') ];
 			package: 'Spec2-CommandLine' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commands' with: [ spec requires: #('Commander2') ];
 			package: 'Spec2-Layout' with: [ spec requires: #('Spec2-ObservableSlot') ];
-			package: 'Spec2-Transmission';
+			package: 'Spec2-Transmission' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Code' with: [ 
 				spec requires: #(
 					'Spec2-Core' 
@@ -45,13 +44,13 @@ BaselineOfSpec2 >> baseline: spec [
 			package: 'Spec2-Commander2-ContactBook' with: [ spec requires: #('Spec2-Commander2') ];
 			package: 'Spec2-Commander2-ContactBook-Extensions' with: [ spec requires: #('Spec2-Commander2-ContactBook') ];
 			package: 'Spec2-Tests' with: [ spec requires: #('Spec2-Examples') ];
-			package: 'Spec2-Morphic-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
+			package: 'Spec2-Morphic-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic' 'Spec2-Backend-Tests') ];
 			package: 'Spec2-Adapters-Morphic-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Backend-Tests') ];
 			package: 'Spec2-Tools' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Tools-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Tools') ];
 			package: 'Spec2-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
-			package: 'Spec2-Morphic-Tests' with: [ spec requires: #('Spec2-Morphic') ];
+			package: 'Spec2-Morphic-Tests' with: [ spec requires: #('Spec2-Morphic' 'Spec2-Backend-Tests') ];
 			package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Morphic') ];
 			package: 'Spec2-Pillar' with: [ spec requires: #('Spec2-Core' 'PillarCore') ].
 			"This will extend the help tool, which in boostrap will be loaded a lot later."
@@ -65,15 +64,18 @@ BaselineOfSpec2 >> baseline: spec [
 		'Spec2-Commands' 
 		'Spec2-Core' 
 		'Spec2-CommandLine' 
-		'Spec2-Code' 
+		"'Spec2-Code'" 
 		'Spec2-Adapters-Stub' 
 		'Spec2-Interactions' 
 		'Spec2-Commander2' ).
+	spec group: 'Code' with: #(
+		'Spec2-Code'
+		'Spec2-Code-Morphic'
+		'Spec2-Code-Tests').
 	spec group: 'Morphic' with: #(
 		'Core' 
 		'Spec2-Morphic'
-		'Spec2-Adapters-Morphic' 
-		'Spec2-Code-Morphic' ).
+		'Spec2-Adapters-Morphic' ).
 	spec group: 'MorphicSupport' with: #( 
 		'Core'
 		'Morphic'
@@ -86,8 +88,7 @@ BaselineOfSpec2 >> baseline: spec [
 		'Spec2-Tests' 
 		'Spec2-Commander2-Tests').
 	spec group: 'MorphicSupportTests' with: #( 
-		'MorphicSupport' 
-		'Spec2-Code-Tests'  
+		'MorphicSupport'  
 		'Spec2-Tools-Tests' 
 		'Spec2-Adapters-Morphic-Tests' 
 		'Spec2-Morphic-Tests' 
@@ -95,22 +96,24 @@ BaselineOfSpec2 >> baseline: spec [
 		'Spec2-Backend-Tests' ).
 	spec group: 'Pillar' with: #(
 		'Spec2-Pillar' ).
-	spec group: 'default' with: #(
+	spec group: 'Base' with: #(
 		'Core'
 		'Morphic' 
 		'MorphicSupport'
 		'Spec2-Tests'
 		'Spec2-Morphic-Tests'
 		'MorphicSupportTests' ).
+	spec group: 'default' with: #('Base' 'Code').
 
 	spec for: #'pharo8.x' do: [
 		self complishon: spec.
-		
+
 		spec
-			package: 'Spec2-Code' with: [ spec requires: #(
-				'Spec2-Core' 
-				'Spec2-Commands'
-				'HeuristicCompletion') ];
+			package: 'Spec2-Code' with: [ 
+				spec requires: #(
+					'Spec2-Core' 
+					'Spec2-Commands'
+					'HeuristicCompletion') ];
 			package: 'Spec2-Tools' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Tools-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Tools') ];
 			package: 'Spec2-Examples' with: [ spec requires: #('Spec2-Tools') ] ].
