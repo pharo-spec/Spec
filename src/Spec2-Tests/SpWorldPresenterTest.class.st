@@ -8,8 +8,10 @@ Class {
 	#category : #'Spec2-Tests-Core-Support'
 }
 
-{ #category : #setup }
+{ #category : #running }
 SpWorldPresenterTest >> setUp [
+
+	super setUp.
 	worldMorph := SpTestWorldPresenter
 		reset;
 		currentWorld.
@@ -20,9 +22,11 @@ SpWorldPresenterTest >> setUp [
 	application := SpNullApplication new
 ]
 
-{ #category : #setup }
+{ #category : #running }
 SpWorldPresenterTest >> tearDown [
-	worldMorph delete
+
+	worldMorph delete.
+	super tearDown
 ]
 
 { #category : #tests }
