@@ -1,5 +1,5 @@
 "
-! Font property (SpStyleFont)
+! Font property (==SpStyleFont==)
 
 Font properties control how a component (morph) with font will draw the text.
 I keep this properties: 
