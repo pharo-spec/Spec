@@ -10,9 +10,9 @@ self exampleWithIcons
 You can also have a look at ExampleListPresenter >> exampleRegisteredColor and ListSelectionPresenter for more examples.
 
 !! Transmissions
-
-- Input ports: *method:inputItemsPort* (default) 
-- Output ports: *method:outputSelectionPort* (default), *method:outputActivationPort* 
+- #inputItemsPort (default)
+- #outputSelectionPort (default)
+- #outputActivationPort
 "
 Class {
 	#name : #SpListPresenter,

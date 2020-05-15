@@ -1,6 +1,12 @@
 "
 I'm a code (Pharo code) presenter. 
 I will style and provide completion according to the behaviour being edited.
+
+@@TODO
+
+!! Transmissions
+- #inputTextPort (default)
+- #outputTextChangedPort (default)
 "
 Class {
 	#name : #SpCodePresenter,
