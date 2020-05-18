@@ -169,11 +169,7 @@ SpCodePopoverPrintPresenter >> objectAsString [
 		ifTrue: [ ^ string withNoLineLongerThan: self class maxLengthShownInPopover ].
 	
 	^ String streamContents: [ :stream | 
-			| lines |
-			lines := self basicObjectAsString 
-				groupsOf: self class maxLengthShownInPopover 
-				atATimeCollect: [ :group | group ].
-			lines
+			(string groupsOf: self class maxLengthShownInPopover)
 				do: [ :each | stream << each ]
 				separatedBy: [ stream cr ] ]
 ]
