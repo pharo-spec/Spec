@@ -961,6 +961,12 @@ SpPresenter >> presentersInFocusOrder [
 			select: [ :each | each isVisible and: [ each canTakeKeyboardFocus ] ] ]
 ]
 
+{ #category : #private }
+SpPresenter >> rebuildLayout [
+
+	self replaceLayoutWith: self layout
+]
+
 { #category : #'api-shortcuts' }
 SpPresenter >> removeKeyCombination: aShortcut [
 
