@@ -34,8 +34,5 @@ SpCodeInspectItCommand >> execute [
 { #category : #execution }
 SpCodeInspectItCommand >> inspectObject: anObject [
 
-	"anObject inspect"
-	(StInspector onObject: anObject)
-		application: context application;
-		openWithSpec
+	anObject inspect
 ]
