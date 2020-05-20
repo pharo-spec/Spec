@@ -88,7 +88,9 @@ SpMorphicWindowAdapter >> centeredRelativeTo: aWindowPresenter [
 	| bounds position |	
 	
 	self widgetDo: [ :w |
-		bounds := aWindowPresenter adapter widget bounds.
+		bounds := aWindowPresenter 
+			ifNotNil: [ aWindowPresenter adapter widget bounds ]
+			ifNil: [ World bounds ].
 		position := bounds origin + ((bounds extent - w extent) // 2).
 		w position: position ]
 ]
