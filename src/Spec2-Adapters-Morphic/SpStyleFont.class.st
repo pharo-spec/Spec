@@ -47,7 +47,7 @@ SpStyleFont >> applyTo: aMorph [
 	 selector but other way would be to define #font: in Morph and I do not want that)"
 	(aMorph respondsTo: #font:) ifFalse: [ ^ self ].
 	
-	aMorph font: self definedFont
+	aMorph font: self definedFont copy
 ]
 
 { #category : #accessing }
