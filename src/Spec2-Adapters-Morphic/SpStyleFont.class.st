@@ -28,16 +28,36 @@ Class {
 		'name',
 		'size',
 		'italic',
-		'bold',
-		'definedFont'
+		'bold'
+	],
+	#classVars : [
+		'FontCache'
 	],
 	#category : #'Spec2-Adapters-Morphic-StyleSheet'
 }
+
+{ #category : #private }
+SpStyleFont class >> addFontToCache: aFont [
+
+	self fontCache add: aFont
+]
+
+{ #category : #private }
+SpStyleFont class >> fontCache [
+
+	^ FontCache ifNil: [ FontCache := WeakSet new ]
+]
 
 { #category : #'ston-core' }
 SpStyleFont class >> stonName [
 	
 	^ 'Font'
+]
+
+{ #category : #private }
+SpStyleFont >> addFontToCache: aFont [
+
+	self class addFontToCache: aFont
 ]
 
 { #category : #operations }
@@ -47,7 +67,7 @@ SpStyleFont >> applyTo: aMorph [
 	 selector but other way would be to define #font: in Morph and I do not want that)"
 	(aMorph respondsTo: #font:) ifFalse: [ ^ self ].
 	
-	aMorph font: self definedFont copy
+	aMorph font: self definedFont
 ]
 
 { #category : #accessing }
@@ -74,10 +94,15 @@ SpStyleFont >> calculateDefinedFont [
 	^ font
 ]
 
-{ #category : #operations }
+{ #category : #private }
 SpStyleFont >> definedFont [
+	| definedFont |
 
-	^ definedFont ifNil: [ definedFont := self calculateDefinedFont ]
+	self withCachedFontDo: [ :aFont | ^ aFont ].
+	
+	definedFont := self calculateDefinedFont.
+	self addFontToCache: definedFont.
+	^ definedFont
 ]
 
 { #category : #initialization }
@@ -126,4 +151,16 @@ SpStyleFont >> size [
 SpStyleFont >> size: aNumber [
 
 	size := aNumber
+]
+
+{ #category : #private }
+SpStyleFont >> withCachedFontDo: aBlock [
+
+	self class fontCache 
+		detect: [ :each | 
+			each familyName = self name 
+				and: [ each pointSize = self size 
+				and: [ each isBold = self isBold
+				and: [ each isItalic = self isItalic ] ] ] ]
+		ifFound: aBlock
 ]
