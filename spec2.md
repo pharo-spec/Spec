@@ -9,13 +9,26 @@
 
 - [Styles with Morphic backend](#StylesWithMorphicBackend)
   - [Stylesheets for Morphic backend](#SpStyle)
-  - [Style classes](#SpStyleClass)
+  - [Style classes (SpStyleClass)](#SpStyleClass)
   - [Style properties (SpStyleProperty)](#SpStyleProperty)
   - [Container properties (SpStyleContainer)](#SpStyleContainer)
   - [Draw property (SpStyleDraw)](#SpStyleDraw)
   - [Font property (SpStyleFont)](#SpStyleFont)
   - [Geometry properties (SpStyleGeometry)](#SpStyleGeometry)
   - [A Style in a Morph (SpMorphStyle)](#SpMorphStyle)
+
+- [Transmissions](#Transmissions)
+  - [What is a transmission?](#SpTransmission)
+  - [Input ports](#SpInputPort)
+  - [Model Input Port (SpModelPort)](#SpModelPort)
+  - [Text Input Port (SpTextPort)](#SpTextPort)
+  - [List Items Input Port (SpListItemsPort)](#SpListItemsPort)
+  - [Action Input Port (SpActionPort)](#SpActionPort)
+  - [Output ports](#SpOutputPort)
+  - [Selection Output Port (SpSelectionPort)](#SpSelectionPort)
+  - [Activation Output Port (SpActivationPort)](#SpActivationPort)
+  - [Text Changed Output Port (SpTextChangedPort)](#SpTextChangedPort)
+  - [Drop List Selection Output Port (SpDropListSelectionPort)](#SpDropListSelectionPort)
 
 - [Simple example Spec application](#SimpleExampleSpecApplication)
   - [A (simple) sample application](#SpSimpleExampleApplication)
@@ -112,7 +125,7 @@ button := self newButton
 	addStyle: 'myButton';
 	yourself.
 ```
-# Style classes
+# Style classes (SpStyleClass)
 
 A style class define a set of properties grouped by a common name. You can think a style class of morphic a little bit as a style class of CSS, but it has several differences.
  ## Style classes can be nested
@@ -264,6 +277,148 @@ application.button
 
 This collection will be used to get all properties defined and perform a merge between them ([SpStyleProperty>>#mergeWith:](#SpStyleProperty_mergeWith:)), to get all one single property for each type of them. Which means at the end it will apply a property `Geometry { #width: 100, #height: 25 }`.
 
+# What is a transmission?
+Transmissions are a way to connect presenters, thinking on the "flow" of information more than the way it is displayed. For example, think on a master-detail (A->B) relationship, when you navigate the elements in master A, you want to see the detail B. This is tipically solved showing a list with master elements and a form with the detail of each master. 
+In Spec, this will be declared more or less like this: 
+
+```Smalltalk
+layout := SpBoxLayout newHorizontal
+	add: (list := self newList);
+	add: (detail := self newText);
+	yourself.	
+```
+
+But this does not says how `list` and `detail` are linked. 
+The transmission sub-framework solves this in an elegant way: Each presenter defines *output ports* (ports to send information) and *input ports* (ports to receive information). Each presenter defines also a default input port and a default output port.
+## Transmitting from an output port to an input port (#transmitTo:)
+
+A transmission connects a presenter's output port with a presenter's input port. 
+See this example: 
+
+```Smalltalk
+list transmitTo: detail.
+```
+
+This will connect the `list` presenter **default output port** with the `detail` presenter **default input port**. This line is equivallent (but a lot simpler) to this one:  
+
+```Smalltalk
+list defaultOutputPort transmitTo: detail defaultInputPort
+```
+
+Is important to remark that a transmission does not connects two components, it connect two **component ports**. The distinction is important because there can be many ports!  
+Take for example [SpListPresenter](#SpListPresenter), it defines two output ports (selection and activation), this means it is possible to define also this transmission: 
+
+```Smalltalk
+list outputActivationPort transmitTo: detail defaultInputPort
+```
+
+## Transforming a transmission (#transmitTo:transform:)
+The object transmitted from a presenter output port can be inadequate for the input port. To solve this problem a transmission allow transformations.
+This is as simple as using the `#transform:` protocol: 
+
+```Smalltalk
+list 
+	transmitTo: detail 
+	transform: [ :aValue | aValue asString ].
+```
+
+
+```Smalltalk
+list defaultOutputPort 
+	transmitTo: detail defaultInputPort 
+	transform: [ :aValue | aValue asString ].
+```
+
+## Transmitting from an output port to an arbitrary input receiver (#transmitDo:, #transmitDo:transform:)
+It is possible that the user requires to listen an output port, but instead transmitting the value to another presenter, other operation is needed. 
+There is the `#transmitDo:` protocol to handle this situation: 
+
+```Smalltalk
+list transmitDo: [ :aValue | aValue crTrace ].
+```
+
+## Acting after a transmission (#postTransmission:)
+Sometimes after a transmission happens, the user needs to react to modify something given the new status achieved by the presenter (like, pre-selecting something).
+The `#postTransmission:` protocol allows you to handle that situation.
+
+```Smalltalk
+list 
+	transmitTo: detail 
+	postTransmission: [ :fromPresenter :toPresenter :value | 
+		"something to do here"
+		toPresenter enabled: value isEmptyOrNil not ].
+```
+
+See [SpTransmission>>#postTransmission:](#SpTransmission_postTransmission:)
+# Input ports
+Input ports define the transmission destination points of a presenter. 
+They handle an incoming transmissions and transmit them properly to the target presenter.
+This transmission happens in [SpInputPort>>#incomingTransmission:from:](#SpInputPort_incomingTransmission:from:), that concrete implementations of input ports needs to define to populate the destination presenter.
+See: [SpLabelPort](#SpLabelPort),[SpListItemsPort](#SpListItemsPort), [SpModelPort](#SpModelPort), [SpTextPort](#SpTextPort), [SpActionPort](#SpActionPort)
+## SpInputPort >> incomingTransmission:from:
+When a transmission happens, the origin transmission has is triggers a value `anObject` 
+ (already transformed if #transform: is specified) from the outPort [SpOutputPort](#SpOutputPort).
+ This method uses the incoming value to populate the destination presenter, according 
+ with the concrete port definition. 
+ Yes, this sounds abstract, you can check concrete implementations for a better 
+ understanding of it.
+```Smalltalk
+self destinationPresenter setModel: anObject
+```
+# Model Input Port (SpModelPort)
+A **model input port** define an incomming transmission to modify the model of a presenter.
+The presenter exposing a model input port need to define also the method `#setModel:`.
+Presenters exposing this port: [SpPresenterSelectorPresenter](#SpPresenterSelectorPresenter) and [SpPresenterWithModel](#SpPresenterWithModel)
+# Text Input Port (SpTextPort)
+A **text input port** define an incomming transmission to modify the text of a text presenter (input fields or text areas).
+The presenter exposing a text input port need to define also the method `#text:`.
+Presenters exposing this port: [SpAbstractTextPresenter](#SpAbstractTextPresenter) subclasses.
+# List Items Input Port (SpListItemsPort)
+A **list items input port** define an incomming transmission to modify items of a list, tree or table presenter.
+The presenter exposing a list items input port need to define also the method `#items:`.
+Presenters exposing this port: [SpAbstractListPresenter](#SpAbstractListPresenter) subclasses and: [SpDropListPresenter](#SpDropListPresenter).
+# Action Input Port (SpActionPort)
+An **action input port** s a generic action to handle the result of a transmission: Instead transmit to a destination presenter, it will execute an action block. 
+
+```Smalltalk
+aPresenter 
+	transmitDo: [ :aValue | ... ]
+	transform: #asString
+```
+
+**Important:** This port is not meant to be used in the same way other input ports, instead, you will use the `#transmitDo:` mechanism.
+# Output ports
+An output port defines origin actions (and the possible data associated to such action) to transmit to an destination (input) port.
+It also defines the trasformations to apply to the output data before give them to the input port.
+Finally, it can also define some operation to do after the transmission is completed. 
+Transmission are *attached* to a presenter (each concrete output port will override [SpOutputPort>>#attachTransmission:](#SpOutputPort_attachTransmission:)).
+## SpOutputPort >> attachTransmission:
+A transmission is no more than a definition of what to transmit to who. 
+ By overriding this method, concrete output ports can listen the event they need to and 
+ execute the transmission (sending `#transmitTo:value:`).
+```Smalltalk
+self destinationPresenter whenSelectionChangedDo: [ :selection | 
+	self 
+		transmitWith: aTransmission 
+		value: selection transmission ]
+```
+# Selection Output Port (SpSelectionPort)
+A **selection output port** will handle the transmission when a presenter can be selected (e.g. lists).
+The presenter exposing a selection output port need to define also the event `#whenSelectionChangedDo:`.
+Presenters exposing this port: [SpAbstractListPresenter](#SpAbstractListPresenter) subclasses and [SpTreeTablePresenter](#SpTreeTablePresenter)
+# Activation Output Port (SpActivationPort)
+A **selection output port** will handle the transmission when a presenter can be activated (e.g. lists).
+The presenter exposing a selection output port need to define also the event `#whenActivatedDo:`.
+Presenters exposing this port: [SpAbstractListPresenter](#SpAbstractListPresenter) subclasses and [SpTreeTablePresenter](#SpTreeTablePresenter)
+# Text Changed Output Port (SpTextChangedPort)
+A **text changed output port** will handle the transmission when an input presenter content changes.
+The presenter exposing a selection output port need to define also the event `#whenTextChangedDo:`.
+Presenters exposing this port: [SpAbstractTextPresenter](#SpAbstractTextPresenter) subclasses.
+# Drop List Selection Output Port (SpDropListSelectionPort)
+A **drop list selection output port** is the same as [SpSelectionPort](#SpSelectionPort), but to be used exclusively by [SpDropListPresenter](#SpDropListPresenter).
+The presenter exposing a selection output port need to define also the event `#whenSelectionChangedDo:`.
+Presenters exposing this port: [SpDropListPresenter](#SpDropListPresenter)
+**NOTE**: Maybe this needs to be merged with SpSelectionPort?
 # A (simple) sample application
 
 This is the starting point of every Spec application. A subclass of [SpApplication](#SpApplication) who defines how your application will behave and start.
