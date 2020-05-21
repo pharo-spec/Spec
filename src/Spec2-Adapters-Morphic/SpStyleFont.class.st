@@ -28,7 +28,8 @@ Class {
 		'name',
 		'size',
 		'italic',
-		'bold'
+		'bold',
+		'definedFont'
 	],
 	#category : #'Spec2-Adapters-Morphic-StyleSheet'
 }
@@ -59,18 +60,24 @@ SpStyleFont >> bold: anObject [
 	bold := anObject
 ]
 
-{ #category : #operations }
-SpStyleFont >> definedFont [
-	| definedFont |
-
-	definedFont := LogicalFont
+{ #category : #private }
+SpStyleFont >> calculateDefinedFont [
+	| font |
+	
+	font := LogicalFont
 		familyName: self name 
 		pointSize: self size.
-		
-	self isItalic ifTrue: [ definedFont forceItalicOrOblique ].
-	self isBold ifTrue: [ definedFont forceBold ].
 
-	^ definedFont
+	self isItalic ifTrue: [ font forceItalicOrOblique ].
+	self isBold ifTrue: [ font forceBold ].
+
+	^ font
+]
+
+{ #category : #operations }
+SpStyleFont >> definedFont [
+
+	^ definedFont ifNil: [ definedFont := self calculateDefinedFont ]
 ]
 
 { #category : #initialization }
