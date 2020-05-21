@@ -4,7 +4,7 @@ A """"selection output port"""" will handle the transmission when a presenter ca
 
 The presenter exposing a selection output port need to define also the event ==#whenSelectionChangedDo:==.
 
-Presenters exposing this port: *class:SpAbstractListSelector* subclasses and *class:SpTreeTablePresenter*
+Presenters exposing this port: *class:SpAbstractListPresenter* subclasses and *class:SpTreeTablePresenter*
 "
 Class {
 	#name : #SpSelectionPort,

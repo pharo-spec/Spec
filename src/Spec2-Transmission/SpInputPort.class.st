@@ -3,7 +3,7 @@
 Input ports define the transmission destination points of a presenter. 
 They handle an incoming transmissions and transmit them properly to the target presenter.
 
-This transmission happens in *method:SpInputPort#incomingTransmission*, that concrete implementations of input ports needs to define to populate the destination presenter.
+This transmission happens in *method:SpInputPort#incomingTransmission:from:*, that concrete implementations of input ports needs to define to populate the destination presenter.
 
 See: *class:SpLabelPort*,*class:SpListItemsPort*, *class:SpModelPort*, *class:SpTextPort*, *class:SpActionPort*
 "
