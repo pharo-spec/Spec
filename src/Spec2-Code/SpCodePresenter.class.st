@@ -340,7 +340,6 @@ SpCodePresenter >> registerEventsForStyling [
 { #category : #api }
 SpCodePresenter >> selectedBehavior [
 
-	self flag: #TODO. "What this is need for?"
 	^ self behavior
 ]
 
@@ -359,6 +358,21 @@ SpCodePresenter >> selectedTextOrLine [
 	^ self
 		selectLine;
 		selectedText
+]
+
+{ #category : #accessing }
+SpCodePresenter >> setInteractionModel: anInteractionModel [
+
+	self flag: #TODO. "Use this to replace #interactionModel: and other wrong usages later"
+	anInteractionModel owner: self.
+	self interactionModel: anInteractionModel.
+	self completionEngine: (SpCodeCompletionEngine new 
+		scripting: anInteractionModel isForScripting;
+		doItRequestor: anInteractionModel;
+		doItContext: anInteractionModel doItContext;
+		completionClass: anInteractionModel selectedClassOrMetaClass;
+		yourself).
+	self behavior: anInteractionModel behavior
 ]
 
 { #category : #accessing }

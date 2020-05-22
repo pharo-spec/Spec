@@ -18,7 +18,7 @@ SpMorphicCodeAdapter >> addKeyBindingsTo: aMorph [
 { #category : #'widget API' }
 SpMorphicCodeAdapter >> behavior [
 
-	^ self model behavior
+	^ self presenter behavior
 ]
 
 { #category : #'private-shout' }
@@ -168,12 +168,10 @@ SpMorphicCodeAdapter >> setEditingModeFor: textArea [
 { #category : #private }
 SpMorphicCodeAdapter >> setEditingModeFor: textArea withBehavior: aBehavior [
 
+	textArea model: self.
 	aBehavior
 		ifNotNil: [ textArea beForSmalltalkCodeInClass: aBehavior ]		
-		ifNil: [ 
-			textArea 
-				model: self;
-				beForSmalltalkScripting ]
+		ifNil: [ textArea beForSmalltalkScripting ]
 ]
 
 { #category : #private }
