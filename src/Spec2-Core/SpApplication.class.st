@@ -46,7 +46,8 @@ Class {
 		'backend',
 		'windows',
 		'properties',
-		'configuration'
+		'configuration',
+		'iconManager'
 	],
 	#classVars : [
 		'DefaultApplication'
@@ -131,6 +132,26 @@ SpApplication >> defer: aBlock [
 SpApplication >> hasWindow: aWindow [
 	
 	^ self windows includes: aWindow
+]
+
+{ #category : #icons }
+SpApplication >> iconManager [
+
+	^ iconManager ifNil: [ iconManager := ThemeIcons current ].
+	
+]
+
+{ #category : #icons }
+SpApplication >> iconManager: anIconManager [
+
+	iconManager := anIconManager 
+	
+]
+
+{ #category : #icons }
+SpApplication >> iconNamed: aSymbol [
+
+	^ self iconManager iconNamed: aSymbol
 ]
 
 { #category : #testing }
