@@ -14,12 +14,6 @@ SpCodeObjectInteractionModel class >> on: anObject [
 ]
 
 { #category : #accessing }
-SpCodeObjectInteractionModel >> behavior [
-
-	^ self object class
-]
-
-{ #category : #accessing }
 SpCodeObjectInteractionModel >> bindings [
 
 	^ bindings ifNil: [ bindings := self collectBindings ]
