@@ -1,5 +1,5 @@
 Class {
-	#name : #SpCodeBrowseInteractionModel,
+	#name : #SpCodeMethodInteractionModel,
 	#superclass : #SpCodeInteractionModel,
 	#instVars : [
 		'method'
@@ -8,32 +8,38 @@ Class {
 }
 
 { #category : #'instance creation' }
-SpCodeBrowseInteractionModel class >> on: aMethod [
+SpCodeMethodInteractionModel class >> on: aMethod [
 
 	^ self new method: aMethod
 ]
 
 { #category : #accessing }
-SpCodeBrowseInteractionModel >> behavior [
+SpCodeMethodInteractionModel >> behavior [
 
 	^ self method ifNotNil: [ self method methodClass ]
 ]
 
+{ #category : #accessing }
+SpCodeMethodInteractionModel >> doItReceiver [
+
+	^ self behavior instanceSide
+]
+
 { #category : #initialization }
-SpCodeBrowseInteractionModel >> initialize [
+SpCodeMethodInteractionModel >> initialize [
 
 	super initialize.
 	self setBindings: Dictionary new
 ]
 
 { #category : #accessing }
-SpCodeBrowseInteractionModel >> method [
+SpCodeMethodInteractionModel >> method [
 
 	^ method
 ]
 
 { #category : #accessing }
-SpCodeBrowseInteractionModel >> method: aMethod [
+SpCodeMethodInteractionModel >> method: aMethod [
 
 	method := aMethod
 ]

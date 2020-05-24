@@ -24,24 +24,6 @@ Class {
 	#category : #'Spec2-Code'
 }
 
-{ #category : #'instance creation' }
-SpCodeInteractionModel class >> newForBrowse: aMethod [
-
-	^ SpCodeBrowseInteractionModel on: aMethod
-]
-
-{ #category : #'instance creation' }
-SpCodeInteractionModel class >> newForInspection: anObject [
-
-	^ SpCodeInspectorInteractionModel on: anObject
-]
-
-{ #category : #'instance creation' }
-SpCodeInteractionModel class >> newForScripting [
-
-	^ SpCodeScriptingInteractionModel new
-]
-
 { #category : #accessing }
 SpCodeInteractionModel >> behavior [
 
@@ -59,7 +41,7 @@ SpCodeInteractionModel >> bindingOf: aString [
 { #category : #accessing }
 SpCodeInteractionModel >> bindings [
 
-	^ bindings
+	^ bindings ifNil: [ bindings := Dictionary new ]
 ]
 
 { #category : #accessing }
@@ -103,6 +85,18 @@ SpCodeInteractionModel >> owner [
 SpCodeInteractionModel >> owner: aPresenter [
 
 	owner := aPresenter
+]
+
+{ #category : #accessing }
+SpCodeInteractionModel >> selectedBehavior [
+
+	^ self behavior
+]
+
+{ #category : #accessing }
+SpCodeInteractionModel >> selectedClass [
+
+	^ self behavior
 ]
 
 { #category : #accessing }

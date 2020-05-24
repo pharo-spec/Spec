@@ -290,6 +290,6 @@ VersionBrowser >> showSourceWithConverter: aConverter [
 	self buildWithSpec.
 	self textConverter: aConverter.
 	sourcePresenter whenSubmitDo: [ :text :notifyer | (self accept: text notifying: notifyer) notNil ].
-	sourcePresenter behavior: self selectedMessage methodClass.
+	sourcePresenter beForMethod: self selectedMessage.
 	messageList selectIndex: (messageList selectedIndex)
 ]

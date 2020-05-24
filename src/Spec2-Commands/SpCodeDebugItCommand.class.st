@@ -75,7 +75,11 @@ SpCodeDebugItCommand >> debug: aCompiledMethod receiver: anObject in: evalContex
 	debugSession stepIntoUntil: [ :currentContext | 
 		currentContext method == aCompiledMethod ].
 	
-	Smalltalk tools debugger openOn: debugSession withFullView: true.
+	"Smalltalk tools debugger openOn: debugSession withFullView: true."
+	(StDebugger on: debugSession)
+		application: context application;
+		openWithFullView
+		
 ]
 
 { #category : #execution }

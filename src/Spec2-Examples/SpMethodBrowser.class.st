@@ -54,12 +54,12 @@ SpMethodBrowser >> connectPresenters [
 		selection isEmpty
 			ifTrue: [ 
 				textModel text: ''.
-				textModel behavior: nil.
+				textModel beForMethod: nil.
 				toolbarModel method: nil ]
 			ifFalse: [ | m |
 				m := selection selectedItem. 
 				textModel text: m sourceCode.
-				textModel behavior: m methodClass.
+				textModel beForMethod: m.
 				toolbarModel method: m ] ].
 	self whenSubmitDo: [ :t | self listModel selectedItem inspect ].
 	self wrapWith: [ :item | item methodClass name , '>>#' , item selector ]

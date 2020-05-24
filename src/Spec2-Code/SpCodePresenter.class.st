@@ -12,13 +12,10 @@ Class {
 	#name : #SpCodePresenter,
 	#superclass : #SpTextPresenter,
 	#instVars : [
-		'#doItContext => SpObservableSlot',
-		'#doItReceiver => SpObservableSlot',
-		'#behavior => SpObservableSlot',
 		'#syntaxHighlight => SpObservableSlot',
 		'#completionEngine => SpObservableSlot',
 		'#lineNumbers => SpObservableSlot',
-		'#interactionModel',
+		'#interactionModel => SpObservableSlot',
 		'#overrideContextMenu'
 	],
 	#category : #'Spec2-Code'
@@ -97,25 +94,57 @@ SpCodePresenter class >> title [
 	^ 'Code'
 ]
 
-{ #category : #'api-shout' }
+{ #category : #private }
+SpCodePresenter >> basicInteractionModel: anObject [
+
+	interactionModel := anObject
+]
+
+{ #category : #'api-model' }
+SpCodePresenter >> beForBehavior: aBehavior [
+	"used when browsing classes or alike"
+
+	self interactionModel: (SpCodeBehaviorInteractionModel on: aBehavior)
+]
+
+{ #category : #'api-model' }
+SpCodePresenter >> beForMethod: aMethod [
+	"used when browsing methods"
+
+	self interactionModel: (SpCodeMethodInteractionModel on: aMethod)
+]
+
+{ #category : #'api-model' }
+SpCodePresenter >> beForObject: anObject [
+	"Used when inspecting objects"
+
+	self interactionModel: (SpCodeObjectInteractionModel on: anObject)
+]
+
+{ #category : #'api-model' }
+SpCodePresenter >> beForScripting [
+	"Use in playgrounds"
+
+	self interactionModel: SpCodeScriptingInteractionModel new
+]
+
+{ #category : #'private bindings' }
 SpCodePresenter >> behavior [
 	"Return the class corresponding to the method class of the source code you are editing"
 	
-	^ behavior
+	^ self interactionModel ifNotNil: [ :im | im behavior ]
 ]
 
-{ #category : #'api-shout' }
+{ #category : #'private bindings' }
 SpCodePresenter >> behavior: aClass [
 	"Set the class corresponding to the method class of the source code you are editing"
-
-	behavior := aClass
+	
 ]
 
-{ #category : #binding }
+{ #category : #'private bindings' }
 SpCodePresenter >> bindingOf: aString [
 
-	interactionModel ifNotNil:  [ :im | ^ im bindingOf: aString  ].
-	self behavior ifNotNil: [ :aBehavior | ^ aBehavior bindingOf: aString ].
+	self interactionModel ifNotNil:  [ :im | ^ im bindingOf: aString  ].
 	^ nil
 ]
 
@@ -144,6 +173,12 @@ SpCodePresenter >> buildContextMenuWith: aValuable [
 				menuPresenter addMenuGroup: aGroup ] ] ].
 
 	^ menuPresenter
+]
+
+{ #category : #api }
+SpCodePresenter >> clearInteractionModel [
+
+	self interactionModel: SpCodeNullInteractionModel new
 ]
 
 { #category : #accessing }
@@ -176,36 +211,26 @@ SpCodePresenter >> contextMenu [
 	^ [ self buildContextMenuWith: super contextMenu ]
 ]
 
-{ #category : #binding }
+{ #category : #'private bindings' }
 SpCodePresenter >> doItContext [
 
-	doItContext ifNotNil: [ ^ doItContext ].
-	^ interactionModel ifNotNil: [ :im | im doItContext ]
+	^ self interactionModel ifNotNil: [ :im | im doItContext ]
 ]
 
-{ #category : #binding }
+{ #category : #'private bindings' }
 SpCodePresenter >> doItContext: anObject [
 
-	doItContext := anObject
 ]
 
-{ #category : #binding }
+{ #category : #'private bindings' }
 SpCodePresenter >> doItReceiver [
 	
-	doItReceiver ifNotNil: [ 
-		| receiver |
-		receiver := doItReceiver.
-		receiver isBehavior ifTrue: [ 
-			receiver := receiver instanceSide ].
-		^ receiver ].
-	
-	^ interactionModel ifNotNil: [ :im | im doItReceiver ]
+	^ self interactionModel ifNotNil: [ :im | im doItReceiver ]
 ]
 
-{ #category : #binding }
+{ #category : #'private bindings' }
 SpCodePresenter >> doItReceiver: anObject [
 
-	doItReceiver := anObject
 ]
 
 { #category : #accessing }
@@ -231,18 +256,17 @@ SpCodePresenter >> findClassFromSelection [
 	^ self findClassFrom: self selectedTextOrLine trimmed
 ]
 
-{ #category : #binding }
+{ #category : #'private bindings' }
 SpCodePresenter >> hasBindingOf: aString [
 
-	interactionModel ifNotNil: [ :im | ^ im hasBindingOf: aString ].
-	self behavior ifNotNil: [ :aBehavior | (aBehavior bindingOf: aString) notNil ].
+	self interactionModel ifNotNil: [ :im | ^ im hasBindingOf: aString ].
 	^ false
 ]
 
-{ #category : #binding }
+{ #category : #'private bindings' }
 SpCodePresenter >> hasBindingThatBeginsWith: aString [ 
 	
-	^ interactionModel
+	^ self interactionModel
 		ifNotNil: [ :im | im hasBindingThatBeginsWith: aString ] 
 		ifNil: [ false ]
 ]
@@ -297,9 +321,16 @@ SpCodePresenter >> interactionModel [
 ]
 
 { #category : #api }
-SpCodePresenter >> interactionModel: anObject [ 	
+SpCodePresenter >> interactionModel: anInteractionModel [
 
-	interactionModel := anObject
+	anInteractionModel owner: self.
+	self basicInteractionModel: anInteractionModel.
+	self completionEngine: (SpCodeCompletionEngine new 
+		scripting: anInteractionModel isForScripting;
+		doItRequestor: anInteractionModel;
+		doItContext: anInteractionModel doItContext;
+		completionClass: anInteractionModel selectedClassOrMetaClass;
+		yourself)
 ]
 
 { #category : #accessing }
@@ -332,9 +363,9 @@ SpCodePresenter >> overrideContextMenu: aBoolean [
 { #category : #initialization }
 SpCodePresenter >> registerEventsForStyling [
 
-	self whenBehaviorChangedDo: [ :class | 
-		self changed: #classOrMetaClass: with: { class }.
-		self changed: #getText ]
+	self whenInteractionModelChangedDo: [ :im |
+		self withAdapterDo: [ :anAdapter |
+			anAdapter classOrMetaClass: im behavior ] ]
 ]
 
 { #category : #api }
@@ -343,11 +374,10 @@ SpCodePresenter >> selectedBehavior [
 	^ self behavior
 ]
 
-{ #category : #binding }
+{ #category : #'private bindings' }
 SpCodePresenter >> selectedClassOrMetaClass [
 
-	behavior ifNotNil: [ ^ behavior ].
-	^ interactionModel ifNotNil: [ :im | im selectedClassOrMetaClass ]
+	^ self interactionModel ifNotNil: [ :im | im selectedClassOrMetaClass ]
 ]
 
 { #category : #api }
@@ -361,32 +391,8 @@ SpCodePresenter >> selectedTextOrLine [
 ]
 
 { #category : #accessing }
-SpCodePresenter >> setInteractionModel: anInteractionModel [
-
-	self flag: #TODO. "Use this to replace #interactionModel: and other wrong usages later"
-	anInteractionModel owner: self.
-	self interactionModel: anInteractionModel.
-	self completionEngine: (SpCodeCompletionEngine new 
-		scripting: anInteractionModel isForScripting;
-		doItRequestor: anInteractionModel;
-		doItContext: anInteractionModel doItContext;
-		completionClass: anInteractionModel selectedClassOrMetaClass;
-		yourself).
-	self behavior: anInteractionModel behavior
-]
-
-{ #category : #accessing }
 SpCodePresenter >> syntaxHighlight: aBoolean [
 	syntaxHighlight := aBoolean 
-]
-
-{ #category : #'api-events' }
-SpCodePresenter >> whenBehaviorChangedDo: aBlock [
-	"Set a block to perform when the behavior class changed"
-	
-	self 
-		property: #behavior 
-		whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
@@ -394,6 +400,15 @@ SpCodePresenter >> whenCompletionEngineChangedDo: aBlock [
 	"Set a block to perform when the syntax highlight is enabled/disabled"
 	
 	self property: #completionEngine whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+SpCodePresenter >> whenInteractionModelChangedDo: aBlock [
+	"Set a block to perform when the behavior class changed"
+	
+	self 
+		property: #interactionModel
+		whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

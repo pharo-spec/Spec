@@ -1,5 +1,5 @@
 Class {
-	#name : #SpCodeInspectorInteractionModel,
+	#name : #SpCodeObjectInteractionModel,
 	#superclass : #SpCodeInteractionModel,
 	#instVars : [
 		'object'
@@ -8,26 +8,26 @@ Class {
 }
 
 { #category : #'instance creation' }
-SpCodeInspectorInteractionModel class >> on: anObject [
+SpCodeObjectInteractionModel class >> on: anObject [
 
 	^ self new object: anObject
 ]
 
 { #category : #accessing }
-SpCodeInspectorInteractionModel >> behavior [
+SpCodeObjectInteractionModel >> behavior [
 
 	^ self object class
 ]
 
 { #category : #accessing }
-SpCodeInspectorInteractionModel >> bindings [
+SpCodeObjectInteractionModel >> bindings [
 
 	^ bindings ifNil: [ bindings := self collectBindings ]
 	
 ]
 
 { #category : #private }
-SpCodeInspectorInteractionModel >> collectBindings [
+SpCodeObjectInteractionModel >> collectBindings [
 	| newBindings |
 	
 	newBindings := Dictionary new.
@@ -37,25 +37,25 @@ SpCodeInspectorInteractionModel >> collectBindings [
 ]
 
 { #category : #accessing }
-SpCodeInspectorInteractionModel >> doItReceiver [
+SpCodeObjectInteractionModel >> doItReceiver [
 
 	^ self object
 ]
 
 { #category : #testing }
-SpCodeInspectorInteractionModel >> isForScripting [
+SpCodeObjectInteractionModel >> isForScripting [
 
 	^ true
 ]
 
 { #category : #accessing }
-SpCodeInspectorInteractionModel >> object [
+SpCodeObjectInteractionModel >> object [
 
 	^ object
 ]
 
 { #category : #accessing }
-SpCodeInspectorInteractionModel >> object: anObject [
+SpCodeObjectInteractionModel >> object: anObject [
 
 	object := anObject.
 	bindings := nil
