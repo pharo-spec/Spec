@@ -395,6 +395,26 @@ SpCodePresenter >> syntaxHighlight: aBoolean [
 	syntaxHighlight := aBoolean 
 ]
 
+{ #category : #api }
+SpCodePresenter >> userActionDuring: aBlock [
+	"There are a buch of operations that will all trigger a backend update. A tipical case, 
+	 changing text and interactionModel will trigger the text-changed event 3 times and that 
+	 may cause an excesive compute that we want to avoid. 
+	 We use #userActionDuring: to avoid that. 
+	[[[language=Smalltalk
+	aCodePresenter userActionDuring: [ 
+		aCodePresenter
+			beForScription;
+			text: '42 factorial' ]
+	]]]."
+	
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter userActionDuring: aBlock.
+		^ self ].
+	
+	aBlock value
+]
+
 { #category : #'api-events' }
 SpCodePresenter >> whenCompletionEngineChangedDo: aBlock [
 	"Set a block to perform when the syntax highlight is enabled/disabled"

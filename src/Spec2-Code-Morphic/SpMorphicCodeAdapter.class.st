@@ -181,3 +181,9 @@ SpMorphicCodeAdapter >> textWithStyle [
 	
 	^ self widget getText
 ]
+
+{ #category : #'widget API' }
+SpMorphicCodeAdapter >> userActionDuring: aBlock [
+
+	aBlock value
+]
