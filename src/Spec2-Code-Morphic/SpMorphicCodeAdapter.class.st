@@ -78,13 +78,13 @@ SpMorphicCodeAdapter >> computeOriginFor: aMorph [
 { #category : #'widget API' }
 SpMorphicCodeAdapter >> doItContext [
 
-	^ self model doItContext
+	^ self presenter doItContext
 ]
 
 { #category : #'widget API' }
 SpMorphicCodeAdapter >> doItReceiver [
 
-	^ self model doItReceiver
+	^ self presenter doItReceiver
 ]
 
 { #category : #NOCompletion }
@@ -148,7 +148,7 @@ SpMorphicCodeAdapter >> receiverClass [
 { #category : #'widget API' }
 SpMorphicCodeAdapter >> selectedBehavior [
 
-	^ self model selectedBehavior
+	^ self presenter selectedBehavior
 ]
 
 { #category : #NOCompletion }

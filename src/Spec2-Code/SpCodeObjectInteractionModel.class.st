@@ -25,9 +25,21 @@ SpCodeObjectInteractionModel >> collectBindings [
 	| newBindings |
 	
 	newBindings := Dictionary new.
-	self behavior slots do: [ :each |
-		newBindings at: each name put: (each read: self object) ].
+	self behavior ifNotNil: [ :aClass | 
+		self collectBindingsOf: aClass into: newBindings ].
+	self doItReceiver ifNotNil: [ :anObject |
+		self collectBindingsOf: anObject class into: newBindings ].
+
 	^ newBindings
+]
+
+{ #category : #private }
+SpCodeObjectInteractionModel >> collectBindingsOf: aClass into: aDictionary [
+
+	aClass slots do: [ :each |
+		aDictionary 
+			at: each name 
+			put: (each read: self object) ]
 ]
 
 { #category : #accessing }
