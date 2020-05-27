@@ -131,6 +131,21 @@ SpAbstractListPresenterTest >> testSelectAll [
 		equals: #(10 20 30)
 ]
 
+{ #category : #tests }
+SpAbstractListPresenterTest >> testSelectedItemsSortedByIndex [
+
+	presenter beMultipleSelection.
+	presenter 
+		selectIndex: 3;
+		selectIndex: 1.
+	self 
+		assert: presenter selection selectedItems asArray
+		equals: #(30 10). 
+	self 
+		assert: presenter selection selectedItemsSortedByIndex asArray
+		equals: #(10 30)
+]
+
 { #category : #'tests-smoke' }
 SpAbstractListPresenterTest >> testSetSortingBlockBeforeItems [
 	| count |

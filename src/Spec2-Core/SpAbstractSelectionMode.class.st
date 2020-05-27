@@ -157,6 +157,7 @@ SpAbstractSelectionMode >> whenChangedDo: aBlock [
 
 { #category : #accessing }
 SpAbstractSelectionMode >> widget [
+	"Returns the presenter"
 	^ widget
 ]
 

@@ -140,16 +140,22 @@ SpAbstractListPresenter >> isMultipleSelection [
 ]
 
 { #category : #accessing }
-SpAbstractListPresenter >> itemAt: anInteger [ 
-	
-	^ self model at: anInteger
+SpAbstractListPresenter >> itemAt: index [ 
+	"If there is an adapter the widget items indexes can be different thant the model items indexes, 
+	e.g. when the sort by a column is activated. In this case, ask the adapter to get the element displayed at index."
+
+	^ self adapter 
+			ifNotNil: [ :anAdapter | anAdapter elementAt: index ]
+			ifNil: [ self model at: index ].
+				
+	"^ self model at: index"
 ]
 
 { #category : #private }
 SpAbstractListPresenter >> itemAtPath: anArray [
 	"This is to provide polymorphism with SpTreeTablePresentrer"
 
-	^ self listElementAt: anArray first
+	^ self itemAt: anArray first
 ]
 
 { #category : #api }
@@ -181,17 +187,8 @@ SpAbstractListPresenter >> items: aCollection [
 ]
 
 { #category : #private }
-SpAbstractListPresenter >> listElementAt: anIndex [
-	"Return the item at index _anIndex_"
-
-	^ self model at: anIndex ifAbsent: [ nil ]
-]
-
-{ #category : #private }
-SpAbstractListPresenter >> listElementAt: anIndex ifAbsent: aBlock [	
-	"Return the item at index _anIndex_"
-	
-	^ self listItems at: anIndex ifAbsent: aBlock
+SpAbstractListPresenter >> itemsAt: aCollectionOfIndex [
+	^ aCollectionOfIndex collect: [ :anIndex | self itemAt: anIndex ]
 ]
 
 { #category : #api }
@@ -296,19 +293,14 @@ SpAbstractListPresenter >> selectItems: aCollection [
 SpAbstractListPresenter >> selectedItems [
 	"Return all the selected items in the case of a multiple selection list"
 
-	^ self selectedItemsAtIndexes: self selection selectedIndexes
-]
-
-{ #category : #private }
-SpAbstractListPresenter >> selectedItemsAtIndexes: aCollectionOfIndex [
-	^ aCollectionOfIndex collect: [ :anIndex | self listElementAt: anIndex ]
+	^ self selection selectedItems
 ]
 
 { #category : #api }
 SpAbstractListPresenter >> selectedItemsSorted [
 	"return all the selected items sorted by their index"
 
-	^ self selectedItemsAtIndexes: self selection selectedIndexes sort
+	^ self itemsAt: self selection selectedIndexes sort
 ]
 
 { #category : #accessing }
