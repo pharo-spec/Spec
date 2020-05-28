@@ -23,8 +23,8 @@ SpCodeSelectionCommand >> evaluate: aString andDo: aBlock [
 	
 	stream := aString readStream.
 	
-	receiver := self context doItReceiver.
-	evaluationContext := self context doItContext.
+	receiver := self context interactionModel doItReceiver.
+	evaluationContext := self context interactionModel doItContext.
 	result := receiver class compiler
 		source: stream;
 		context: evaluationContext;
