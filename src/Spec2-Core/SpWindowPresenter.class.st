@@ -316,6 +316,20 @@ SpWindowPresenter >> isDisplayed [
 ]
 
 { #category : #testing }
+SpWindowPresenter >> isMaximized [
+
+	self withAdapterDo: [ :anAdapter | ^ anAdapter isMaximized ].
+	^ false
+]
+
+{ #category : #testing }
+SpWindowPresenter >> isMinimized [
+
+	self withAdapterDo: [ :anAdapter | ^ anAdapter isMinimized ].
+	^ false
+]
+
+{ #category : #testing }
 SpWindowPresenter >> isOpen [
 	
 	^ self isClosed not

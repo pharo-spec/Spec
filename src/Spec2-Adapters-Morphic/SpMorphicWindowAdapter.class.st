@@ -128,6 +128,20 @@ SpMorphicWindowAdapter >> isDisplayed [
 ]
 
 { #category : #'widget API' }
+SpMorphicWindowAdapter >> isMaximized [
+
+	self widgetDo: [ :w | ^ w isMaximized ].
+	^ false
+]
+
+{ #category : #'widget API' }
+SpMorphicWindowAdapter >> isMinimized [
+
+	self widgetDo: [ :w | ^ w isMinimized ].
+	^ false
+]
+
+{ #category : #'widget API' }
 SpMorphicWindowAdapter >> isResizeable [
 
 	^ self model isResizeable
