@@ -320,7 +320,8 @@ SpApplication >> propertyAt: aKey put: aValue [
 { #category : #accessing }
 SpApplication >> reset [ 
 
-	self closeAllWindows
+	self closeAllWindows.
+	windows removeAll
 ]
 
 { #category : #running }
