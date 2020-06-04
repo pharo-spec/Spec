@@ -201,7 +201,7 @@ SpWindowPresenter >> close [
 	self isOpen ifFalse: [ ^ self ].
 	
 	self changed: #close with: #().
-	self application windowClosed: self
+	self windowClosed
 ]
 
 { #category : #private }
@@ -551,6 +551,12 @@ SpWindowPresenter >> window [
 { #category : #accessing }
 SpWindowPresenter >> window: aWindow [
 	window := aWindow
+]
+
+{ #category : #private }
+SpWindowPresenter >> windowClosed [ 
+	
+	self application windowClosed: self
 ]
 
 { #category : #private }
