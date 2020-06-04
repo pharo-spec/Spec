@@ -64,11 +64,11 @@ SpListPresenter >> display: aBlock [
 
 { #category : #'adapter-api' }
 SpListPresenter >> displayValueAt: anIndex [
-	^ self displayValueOf: (model at: anIndex)
+	^ self displayValueFor: (model at: anIndex)
 ]
 
 { #category : #'adapter-api' }
-SpListPresenter >> displayValueOf: anObject [
+SpListPresenter >> displayValueFor: anObject [
 
 	^ self display value: anObject
 ]
@@ -158,6 +158,12 @@ SpListPresenter >> resetSortingBlock [
 	"Reset the sortering block with the default value which consists in not sorting"
 
 	self model sortingBlock: nil
+]
+
+{ #category : #private }
+SpListPresenter >> searchValueOf: item [ 
+
+	^ self displayValueFor: item
 ]
 
 { #category : #api }
