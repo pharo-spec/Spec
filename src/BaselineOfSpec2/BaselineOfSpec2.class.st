@@ -69,6 +69,7 @@ BaselineOfSpec2 >> baseline: spec [
 		'Spec2-Interactions' 
 		'Spec2-Commander2' ).
 	spec group: 'Code' with: #(
+		'Core'
 		'Spec2-Code'
 		'Spec2-Code-Morphic'
 		'Spec2-Code-Tests').
@@ -80,6 +81,7 @@ BaselineOfSpec2 >> baseline: spec [
 		'Core'
 		'Morphic'
 		'Spec2-Examples'
+		'Spec2-Morphic-Examples'
 		'Spec2-Commander2-ContactBook' 
 		'Spec2-Commander2-ContactBook-Extensions'  
 		'Spec2-Tools' ).
