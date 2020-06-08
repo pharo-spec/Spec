@@ -1,6 +1,6 @@
 Extension { #name : #SpLinkPresenter }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : #'*Spec2-Morphic-Examples' }
 SpLinkPresenter class >> example [
 	<sampleInstance>
 	| example |

@@ -1,6 +1,6 @@
 Extension { #name : #SpRGBWidget }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : #'*Spec2-Morphic-Examples' }
 SpRGBWidget class >> example [
 	<sampleInstance>
 	| example |

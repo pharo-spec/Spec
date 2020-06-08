@@ -1,6 +1,6 @@
 Extension { #name : #SpRGBSliders }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : #'*Spec2-Morphic-Examples' }
 SpRGBSliders class >> example [
 	<sampleInstance>
 	| example |

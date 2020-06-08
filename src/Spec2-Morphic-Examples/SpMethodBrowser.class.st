@@ -11,7 +11,7 @@ Class {
 		'textModel',
 		'toolbarModel'
 	],
-	#category : #'Spec2-Examples-Standalone'
+	#category : #'Spec2-Morphic-Examples-Standalone'
 }
 
 { #category : #specs }

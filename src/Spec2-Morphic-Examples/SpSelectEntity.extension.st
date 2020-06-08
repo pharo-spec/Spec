@@ -1,6 +1,6 @@
 Extension { #name : #SpSelectEntity }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : #'*Spec2-Morphic-Examples' }
 SpSelectEntity class >> example [
 	self new
 		selectDialog: [ SpListPresenter new

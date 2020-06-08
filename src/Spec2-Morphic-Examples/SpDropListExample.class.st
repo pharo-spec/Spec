@@ -15,7 +15,7 @@ Class {
 		'heterogeneousDropList',
 		'disabledDropList'
 	],
-	#category : #'Spec2-Examples-Morphic'
+	#category : #'Spec2-Morphic-Examples'
 }
 
 { #category : #specs }

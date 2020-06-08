@@ -1,6 +1,6 @@
 Extension { #name : #SpMethodToolbar }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : #'*Spec2-Morphic-Examples' }
 SpMethodToolbar class >> example [
 	<sampleInstance>
 	| example |

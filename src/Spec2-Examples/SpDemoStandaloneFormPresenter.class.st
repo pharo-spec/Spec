@@ -54,8 +54,9 @@ SpDemoStandaloneFormPresenter class >> defaultSpec [
 				add: #passwordInput at: 2 @ 6;
 				add: 'Remember me:' at: 1 @ 7;
 				add: #checkboxInput at: 2 @ 7;
-				add: 'Date:' at: 1 @ 8;
-				add: #dateInput at: 2 @ 8;
+				"SpDatePresenter is exclusive from Morphic backend for the moment"
+				"add: 'Date:' at: 1 @ 8;
+				add: #dateInput at: 2 @ 8;"
 				add: 'Gender:' at: 1 @ 9;
 				add:
 					(SpBoxLayout newHorizontal
@@ -199,9 +200,9 @@ SpDemoStandaloneFormPresenter >> initializePresenters [
 	checkboxLabel := self newLabel label: 'remember me'.
 	checkboxInput := self newCheckBox state: true.
 
-	dateLabel := self newLabel label: 'date:'.
+	"dateLabel := self newLabel label: 'date:'.
 	dateInput := self instantiate: SpDatePresenter.
-	dateInput display: [ :item | item yyyymmdd ].
+	dateInput display: [ :item | item yyyymmdd ]."
 
 	maleButton := self newRadioButton label: 'male'.
 	femaleButton := self newRadioButton label: 'female'.
