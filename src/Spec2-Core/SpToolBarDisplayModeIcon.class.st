@@ -2,26 +2,26 @@
 Display the toolbar with icons only
 "
 Class {
-	#name : #SpToolBarDisplayModeIcon,
-	#superclass : #SpToolBarDisplayMode,
+	#name : #SpToolbarDisplayModeIcon,
+	#superclass : #SpToolbarDisplayMode,
 	#category : #'Spec2-Core-Widgets'
 }
 
 { #category : #configuring }
-SpToolBarDisplayModeIcon >> configureButton: aButton item: aToolbarItem [
+SpToolbarDisplayModeIcon >> configureButton: aButton item: aToolbarItem [
 	"ask for icon (no label)"
 	aButton getIconSelector: #icon.
 	aButton badgeSelector: #badge.
 ]
 
 { #category : #accessing }
-SpToolBarDisplayModeIcon >> extent [
+SpToolbarDisplayModeIcon >> extent [
 
 	^ 30@30
 ]
 
 { #category : #accessing }
-SpToolBarDisplayModeIcon >> styleName [ 
+SpToolbarDisplayModeIcon >> styleName [ 
 
 	^ 'toolBar.icons'
 ]

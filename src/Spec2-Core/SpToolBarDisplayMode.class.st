@@ -2,7 +2,7 @@
 Abstract superclass for different display modes for a toolbar
 "
 Class {
-	#name : #SpToolBarDisplayMode,
+	#name : #SpToolbarDisplayMode,
 	#superclass : #Object,
 	#classInstVars : [
 		'uniqueInstance'
@@ -11,72 +11,72 @@ Class {
 }
 
 { #category : #accessing }
-SpToolBarDisplayMode class >> default [
+SpToolbarDisplayMode class >> default [
 	^ self modeIconAndLabel
 ]
 
 { #category : #accessing }
-SpToolBarDisplayMode class >> modeIcon [
-	^ SpToolBarDisplayModeIcon uniqueInstance
+SpToolbarDisplayMode class >> modeIcon [
+	^ SpToolbarDisplayModeIcon uniqueInstance
 ]
 
 { #category : #accessing }
-SpToolBarDisplayMode class >> modeIconAndLabel [
-	^ SpToolBarDisplayModeIconAndLabel uniqueInstance
+SpToolbarDisplayMode class >> modeIconAndLabel [
+	^ SpToolbarDisplayModeIconAndLabel uniqueInstance
 ]
 
 { #category : #accessing }
-SpToolBarDisplayMode class >> modeLabel [
-	^ SpToolBarDisplayModeLabel uniqueInstance
+SpToolbarDisplayMode class >> modeLabel [
+	^ SpToolbarDisplayModeLabel uniqueInstance
 ]
 
 { #category : #'instance creation' }
-SpToolBarDisplayMode class >> new [
+SpToolbarDisplayMode class >> new [
 	self error: 'Use #uniqueInstance'
 ]
 
 { #category : #'instance creation' }
-SpToolBarDisplayMode class >> uniqueInstance [
+SpToolbarDisplayMode class >> uniqueInstance [
 
-	self = SpToolBarDisplayMode 
+	self = SpToolbarDisplayMode 
 		ifTrue: [ self error: 'I''m abstract. Use one of my children' ].
 	^ uniqueInstance ifNil: [ uniqueInstance := self basicNew initialize ]
 ]
 
 { #category : #configuring }
-SpToolBarDisplayMode >> configureButton: aButton item: aToolbarItem [
+SpToolbarDisplayMode >> configureButton: aButton item: aToolbarItem [
 	self subclassResponsibility
 ]
 
 { #category : #configuring }
-SpToolBarDisplayMode >> configureDropList: aSpDropListMorph item: aSpDropListPresenter [ 
+SpToolbarDisplayMode >> configureDropList: aSpDropListMorph item: aSpDropListPresenter [ 
 	self flag: 'TODO: maybe customize the drop list to have a better look''n feel'.
 ]
 
 { #category : #configuring }
-SpToolBarDisplayMode >> configureMorph: aMorph item: itemPresenter [
+SpToolbarDisplayMode >> configureMorph: aMorph item: itemPresenter [
 	aMorph configureWith: self item: itemPresenter
 ]
 
 { #category : #accessing }
-SpToolBarDisplayMode >> extent [
+SpToolbarDisplayMode >> extent [
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-SpToolBarDisplayMode >> height [
+SpToolbarDisplayMode >> height [
 
 	^ self extent y
 ]
 
 { #category : #accessing }
-SpToolBarDisplayMode >> styleName [ 
+SpToolbarDisplayMode >> styleName [ 
 
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-SpToolBarDisplayMode >> width [
+SpToolbarDisplayMode >> width [
 
 	^ self extent x
 ]

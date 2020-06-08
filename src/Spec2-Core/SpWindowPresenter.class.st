@@ -473,7 +473,7 @@ SpWindowPresenter >> toolBar [
 ]
 
 { #category : #api }
-SpWindowPresenter >> toolBar: aToolbarPresenter [
+SpWindowPresenter >> toolbar: aToolbarPresenter [
 	aToolbarPresenter ifNotNil: [ aToolbarPresenter owner: self ].
 	^ toolBar := aToolbarPresenter
 ]

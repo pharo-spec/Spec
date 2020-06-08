@@ -1,23 +1,23 @@
 Class {
-	#name : #SpToolBarAdapterTest,
+	#name : #SpToolbarAdapterTest,
 	#superclass : #SpAbstractWidgetAdapterTest,
 	#category : #'Spec2-Backend-Tests'
 }
 
 { #category : #accessing }
-SpToolBarAdapterTest >> classToTest [
-	^ SpToolBarPresenter 
+SpToolbarAdapterTest >> classToTest [
+	^ SpToolbarPresenter 
 ]
 
 { #category : #running }
-SpToolBarAdapterTest >> initializeTestedInstance [
+SpToolbarAdapterTest >> initializeTestedInstance [
 	presenter 
 
 ]
 
 { #category : #tests }
-SpToolBarAdapterTest >> testAddLabelledButtonAddTheButton [
-	presenter addItem: (SpToolBarButtonPresenter new
+SpToolbarAdapterTest >> testAddLabelledButtonAddTheButton [
+	presenter addItem: (SpToolbarButtonPresenter new
 				label: 'a label';
 				iconNamed: #abstract;
 				action: [];

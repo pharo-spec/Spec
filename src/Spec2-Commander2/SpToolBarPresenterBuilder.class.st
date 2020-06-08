@@ -4,7 +4,7 @@ I build a ToolBarPresenter from a group of commands.
 To do that, I visit recursively groups of command breadth first and simple add each command encountered to the tool bar.
 "
 Class {
-	#name : #SpToolBarPresenterBuilder,
+	#name : #SpToolbarPresenterBuilder,
 	#superclass : #CmVisitor,
 	#instVars : [
 		'toolbarPresenter'
@@ -13,23 +13,23 @@ Class {
 }
 
 { #category : #initialization }
-SpToolBarPresenterBuilder >> initialize [
+SpToolbarPresenterBuilder >> initialize [
 	super initialize.
-	self toolbarPresenter: SpToolBarPresenter new.
+	self toolbarPresenter: SpToolbarPresenter new.
 ]
 
 { #category : #accessing }
-SpToolBarPresenterBuilder >> toolbarPresenter [
+SpToolbarPresenterBuilder >> toolbarPresenter [
 	^ toolbarPresenter
 ]
 
 { #category : #accessing }
-SpToolBarPresenterBuilder >> toolbarPresenter: anObject [
+SpToolbarPresenterBuilder >> toolbarPresenter: anObject [
 	toolbarPresenter := anObject
 ]
 
 { #category : #visiting }
-SpToolBarPresenterBuilder >> visitCommand: aCmCommandEntry [
+SpToolbarPresenterBuilder >> visitCommand: aCmCommandEntry [
 	aCmCommandEntry positionStrategy
 		addButton: aCmCommandEntry buildPresenter
 		toToolbar: self toolbarPresenter

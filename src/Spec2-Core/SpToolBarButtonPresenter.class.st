@@ -2,8 +2,8 @@
 A button with an icon and label associated with an action and a badge 
 "
 Class {
-	#name : #SpToolBarButtonPresenter,
-	#superclass : #SpToolBarItemPresenter,
+	#name : #SpToolbarButtonPresenter,
+	#superclass : #SpToolbarItemPresenter,
 	#instVars : [
 		'#label => SpObservableSlot',
 		'#icon => SpObservableSlot',
@@ -14,75 +14,75 @@ Class {
 }
 
 { #category : #specs }
-SpToolBarButtonPresenter class >> adapterName [
+SpToolbarButtonPresenter class >> adapterName [
 
-	^ #ToolBarButtonAdapter
+	^ #ToolbarButtonAdapter
 ]
 
 { #category : #accessing }
-SpToolBarButtonPresenter >> action [
+SpToolbarButtonPresenter >> action [
 	^ action
 ]
 
 { #category : #accessing }
-SpToolBarButtonPresenter >> action: anObject [
+SpToolbarButtonPresenter >> action: anObject [
 	action := anObject
 ]
 
 { #category : #accessing }
-SpToolBarButtonPresenter >> badge [
+SpToolbarButtonPresenter >> badge [
 	^ badge
 ]
 
 { #category : #accessing }
-SpToolBarButtonPresenter >> badge: aString [
+SpToolbarButtonPresenter >> badge: aString [
 	badge := aString
 ]
 
 { #category : #simulating }
-SpToolBarButtonPresenter >> click [
+SpToolbarButtonPresenter >> click [
 	
 	self execute
 ]
 
 { #category : #execution }
-SpToolBarButtonPresenter >> execute [
+SpToolbarButtonPresenter >> execute [
 	self action cull: self
 ]
 
 { #category : #accessing }
-SpToolBarButtonPresenter >> icon [
+SpToolbarButtonPresenter >> icon [
 	^ icon
 ]
 
 { #category : #accessing }
-SpToolBarButtonPresenter >> icon: anObject [
+SpToolbarButtonPresenter >> icon: anObject [
 	icon := anObject
 ]
 
 { #category : #initialization }
-SpToolBarButtonPresenter >> initialize [
+SpToolbarButtonPresenter >> initialize [
 	super initialize.
 ]
 
 { #category : #accessing }
-SpToolBarButtonPresenter >> label [
+SpToolbarButtonPresenter >> label [
 	^ label
 ]
 
 { #category : #accessing }
-SpToolBarButtonPresenter >> label: anObject [
+SpToolbarButtonPresenter >> label: anObject [
 	label := anObject
 ]
 
 { #category : #'api-events' }
-SpToolBarButtonPresenter >> whenIconChangedDo: aBlock [ 
+SpToolbarButtonPresenter >> whenIconChangedDo: aBlock [ 
 
 	self property: #icon whenChangedDo: aBlock 
 ]
 
 { #category : #'api-events' }
-SpToolBarButtonPresenter >> whenLabelChangedDo: aBlock [ 
+SpToolbarButtonPresenter >> whenLabelChangedDo: aBlock [ 
 
 	self property: #label whenChangedDo: aBlock 
 ]

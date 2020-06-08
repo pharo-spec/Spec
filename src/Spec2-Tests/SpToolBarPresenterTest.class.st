@@ -1,42 +1,42 @@
 Class {
-	#name : #SpToolBarPresenterTest,
+	#name : #SpToolbarPresenterTest,
 	#superclass : #SpTest,
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
 { #category : #running }
-SpToolBarPresenterTest >> classToTest [
+SpToolbarPresenterTest >> classToTest [
 
-	^ SpToolBarPresenter
+	^ SpToolbarPresenter
 ]
 
 { #category : #private }
-SpToolBarPresenterTest >> newToolbarItem [
+SpToolbarPresenterTest >> newToolbarItem [
 	
-	^ SpToolBarButtonPresenter new
+	^ SpToolbarButtonPresenter new
 ]
 
 { #category : #tests }
-SpToolBarPresenterTest >> testAddItem [
+SpToolbarPresenterTest >> testAddItem [
 
-	presenter addItem: SpToolBarButtonPresenter new.
+	presenter addItem: SpToolbarButtonPresenter new.
 	self assert: presenter items size equals: 1
 ]
 
 { #category : #tests }
-SpToolBarPresenterTest >> testAddItemPosition [
+SpToolbarPresenterTest >> testAddItemPosition [
 	| itemLeft itemRight |
 
 	self assert: presenter items isEmpty.
-	presenter addItem: (itemLeft := self newToolbarItem) position: SpToolBarItemPosition left.
-	presenter addItem: (itemRight := self newToolbarItem) position: SpToolBarItemPosition right.
+	presenter addItem: (itemLeft := self newToolbarItem) position: SpToolbarItemPosition left.
+	presenter addItem: (itemRight := self newToolbarItem) position: SpToolbarItemPosition right.
 
 	self assertCollection: presenter leftItems hasSameElements: { itemLeft }.
 	self assertCollection: presenter rightItems hasSameElements: { itemRight }
 ]
 
 { #category : #tests }
-SpToolBarPresenterTest >> testDisplayMode [
+SpToolbarPresenterTest >> testDisplayMode [
 
 	presenter beBoth.
 	self assert: presenter isDisplayModeBoth.
@@ -48,15 +48,15 @@ SpToolBarPresenterTest >> testDisplayMode [
 ]
 
 { #category : #tests }
-SpToolBarPresenterTest >> testIsEmpty [ 
+SpToolbarPresenterTest >> testIsEmpty [ 
 
 	self assert: presenter isEmpty.
-	presenter addItem: SpToolBarButtonPresenter new.
+	presenter addItem: SpToolbarButtonPresenter new.
 	self deny: presenter isEmpty
 ]
 
 { #category : #tests }
-SpToolBarPresenterTest >> testItems [ 
+SpToolbarPresenterTest >> testItems [ 
 	| item |
 
 	self assert: presenter items isEmpty.

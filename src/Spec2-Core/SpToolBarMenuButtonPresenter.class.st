@@ -1,6 +1,6 @@
 Class {
-	#name : #SpToolBarMenuButtonPresenter,
-	#superclass : #SpToolBarButtonPresenter,
+	#name : #SpToolbarMenuButtonPresenter,
+	#superclass : #SpToolbarButtonPresenter,
 	#instVars : [
 		'menu'
 	],
@@ -8,24 +8,24 @@ Class {
 }
 
 { #category : #specs }
-SpToolBarMenuButtonPresenter class >> adapterName [
+SpToolbarMenuButtonPresenter class >> adapterName [
 
-	^ #ToolBarMenuButtonAdapter
+	^ #ToolbarMenuButtonAdapter
 ]
 
 { #category : #initialization }
-SpToolBarMenuButtonPresenter >> initialize [
+SpToolbarMenuButtonPresenter >> initialize [
 
 	super initialize.
 	self addStyle: 'button'
 ]
 
 { #category : #accessing }
-SpToolBarMenuButtonPresenter >> menu [
+SpToolbarMenuButtonPresenter >> menu [
 	^ menu
 ]
 
 { #category : #accessing }
-SpToolBarMenuButtonPresenter >> menu: anObject [
+SpToolbarMenuButtonPresenter >> menu: anObject [
 	menu := anObject
 ]

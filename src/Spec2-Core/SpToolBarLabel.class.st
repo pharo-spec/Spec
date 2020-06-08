@@ -2,8 +2,8 @@
 A label
 "
 Class {
-	#name : #SpToolBarLabel,
-	#superclass : #SpToolBarItemPresenter,
+	#name : #SpToolbarLabel,
+	#superclass : #SpToolbarItemPresenter,
 	#instVars : [
 		'contents'
 	],
@@ -11,17 +11,17 @@ Class {
 }
 
 { #category : #specs }
-SpToolBarLabel class >> adapterName [
+SpToolbarLabel class >> adapterName [
 
-	^ #ToolBarLabelAdapter
+	^ #ToolbarLabelAdapter
 ]
 
 { #category : #accessing }
-SpToolBarLabel >> contents [
+SpToolbarLabel >> contents [
 	^ contents
 ]
 
 { #category : #accessing }
-SpToolBarLabel >> contents: anObject [
+SpToolbarLabel >> contents: anObject [
 	contents := anObject
 ]

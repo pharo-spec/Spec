@@ -6,12 +6,12 @@ Do not use the class directly, instead use:
 	ITItemPosition right
 "
 Class {
-	#name : #SpToolBarItemPositionRight,
-	#superclass : #SpToolBarItemPosition,
+	#name : #SpToolbarItemPositionRight,
+	#superclass : #SpToolbarItemPosition,
 	#category : #'Spec2-Core-Widgets'
 }
 
 { #category : #accessing }
-SpToolBarItemPositionRight >> addItem: anObject into: aToolbar [
+SpToolbarItemPositionRight >> addItem: anObject into: aToolbar [
 	aToolbar addItemRight: anObject
 ]

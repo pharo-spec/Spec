@@ -2,8 +2,8 @@
 A toggle button which is either selected or unselected
 "
 Class {
-	#name : #SpToolBarToggleButtonPresenter,
-	#superclass : #SpToolBarButtonPresenter,
+	#name : #SpToolbarToggleButtonPresenter,
+	#superclass : #SpToolbarButtonPresenter,
 	#instVars : [
 		'#selected => SpObservableSlot'
 	],
@@ -11,25 +11,25 @@ Class {
 }
 
 { #category : #specs }
-SpToolBarToggleButtonPresenter class >> adapterName [
+SpToolbarToggleButtonPresenter class >> adapterName [
 
-	^ #ToolBarToggleButtonAdapter
+	^ #ToolbarToggleButtonAdapter
 ]
 
 { #category : #selection }
-SpToolBarToggleButtonPresenter >> beSelected [
+SpToolbarToggleButtonPresenter >> beSelected [
 	
 	self setSelection: true
 ]
 
 { #category : #selection }
-SpToolBarToggleButtonPresenter >> beUnselected [
+SpToolbarToggleButtonPresenter >> beUnselected [
 	
 	self setSelection: false
 ]
 
 { #category : #execution }
-SpToolBarToggleButtonPresenter >> execute: state [
+SpToolbarToggleButtonPresenter >> execute: state [
 
 	self setSelection: state.
 	self action 
@@ -38,33 +38,33 @@ SpToolBarToggleButtonPresenter >> execute: state [
 ]
 
 { #category : #initialization }
-SpToolBarToggleButtonPresenter >> initialize [
+SpToolbarToggleButtonPresenter >> initialize [
 
 	super initialize.
 	selected := false
 ]
 
 { #category : #testing }
-SpToolBarToggleButtonPresenter >> isSelected [
+SpToolbarToggleButtonPresenter >> isSelected [
 
 	^ selected
 ]
 
 { #category : #selection }
-SpToolBarToggleButtonPresenter >> setSelection: aBoolean [
+SpToolbarToggleButtonPresenter >> setSelection: aBoolean [
 
 	selected := aBoolean.
 	self changed: #isSelected
 ]
 
 { #category : #selection }
-SpToolBarToggleButtonPresenter >> toggle [
+SpToolbarToggleButtonPresenter >> toggle [
 	
 	self setSelection: selected not
 ]
 
 { #category : #private }
-SpToolBarToggleButtonPresenter >> whenChangedDo: aBlock [
+SpToolbarToggleButtonPresenter >> whenChangedDo: aBlock [
 	"Only execute aBlock if old value is different from new value"
 
 	self
@@ -75,20 +75,20 @@ SpToolBarToggleButtonPresenter >> whenChangedDo: aBlock [
 ]
 
 { #category : #'api - events' }
-SpToolBarToggleButtonPresenter >> whenSelectedDo: aBlock [
+SpToolbarToggleButtonPresenter >> whenSelectedDo: aBlock [
 	self whenChangedDo: [ :newSelectedValue | 
 			newSelectedValue
 				ifTrue: [ aBlock value ] ]
 ]
 
 { #category : #'api - events' }
-SpToolBarToggleButtonPresenter >> whenToggledDo: aBlock [ 
+SpToolbarToggleButtonPresenter >> whenToggledDo: aBlock [ 
 
 	self property: #selected whenChangedDo: aBlock 
 ]
 
 { #category : #'api - events' }
-SpToolBarToggleButtonPresenter >> whenUnselectedDo: aBlock [
+SpToolbarToggleButtonPresenter >> whenUnselectedDo: aBlock [
 	self whenChangedDo: [ :newSelectedValue | 
 			newSelectedValue
 				ifFalse: [ aBlock value ] ]

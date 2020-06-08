@@ -1,17 +1,17 @@
 Class {
-	#name : #SpMorphicToolBarMenuButtonMorph,
+	#name : #SpMorphicToolbarMenuButtonMorph,
 	#superclass : #Morph,
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
 { #category : #'instance creation' }
-SpMorphicToolBarMenuButtonMorph class >> new [
+SpMorphicToolbarMenuButtonMorph class >> new [
 
 	self error: 'Use newButton:menuButton:'
 ]
 
 { #category : #'instance creation' }
-SpMorphicToolBarMenuButtonMorph class >> newButton: aButtonMorph menuButton: aMenuButton [
+SpMorphicToolbarMenuButtonMorph class >> newButton: aButtonMorph menuButton: aMenuButton [
 
 	^ self basicNew
 		initializeButton: aButtonMorph menuButton: aMenuButton;
@@ -19,13 +19,13 @@ SpMorphicToolBarMenuButtonMorph class >> newButton: aButtonMorph menuButton: aMe
 ]
 
 { #category : #accessing }
-SpMorphicToolBarMenuButtonMorph >> button [ 
+SpMorphicToolbarMenuButtonMorph >> button [ 
 
 	^ self submorphs first
 ]
 
 { #category : #configuring }
-SpMorphicToolBarMenuButtonMorph >> configureWith: aMode item: aButton [
+SpMorphicToolbarMenuButtonMorph >> configureWith: aMode item: aButton [
 
 	"transmit to button"
 	self button
@@ -34,7 +34,7 @@ SpMorphicToolBarMenuButtonMorph >> configureWith: aMode item: aButton [
 ]
 
 { #category : #accessing }
-SpMorphicToolBarMenuButtonMorph >> font: aFont [ 
+SpMorphicToolbarMenuButtonMorph >> font: aFont [ 
 	
 	self submorphs do: [ :each |
 		(each respondsTo: #font:) ifTrue: [ 
@@ -42,7 +42,7 @@ SpMorphicToolBarMenuButtonMorph >> font: aFont [
 ]
 
 { #category : #initialization }
-SpMorphicToolBarMenuButtonMorph >> initialize [
+SpMorphicToolbarMenuButtonMorph >> initialize [
 
 	super initialize.
 	self 
@@ -58,7 +58,7 @@ SpMorphicToolBarMenuButtonMorph >> initialize [
 ]
 
 { #category : #initialization }
-SpMorphicToolBarMenuButtonMorph >> initializeButton: aButtonMorph menuButton: aMenuButton [
+SpMorphicToolbarMenuButtonMorph >> initializeButton: aButtonMorph menuButton: aMenuButton [
 
 	self initialize.
 	self addMorphBack: (aButtonMorph 
@@ -68,7 +68,7 @@ SpMorphicToolBarMenuButtonMorph >> initializeButton: aButtonMorph menuButton: aM
 ]
 
 { #category : #accessing }
-SpMorphicToolBarMenuButtonMorph >> menuButton [ 
+SpMorphicToolbarMenuButtonMorph >> menuButton [ 
 
 	^ self submorphs second
 ]

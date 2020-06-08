@@ -2,13 +2,13 @@
 I'm the adapter used to bridge a ToolBarPresenter and its morphic representation.
 "
 Class {
-	#name : #SpMorphicToolBarAdapter,
+	#name : #SpMorphicToolbarAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
 { #category : #factory }
-SpMorphicToolBarAdapter >> addModelTo: toolBarMorph [
+SpMorphicToolbarAdapter >> addModelTo: toolBarMorph [
 
 	toolBarMorph displayMode: self presenter displayMode. 
 	toolBarMorph height: self presenter displayMode height.
@@ -21,17 +21,17 @@ SpMorphicToolBarAdapter >> addModelTo: toolBarMorph [
 ]
 
 { #category : #factory }
-SpMorphicToolBarAdapter >> buildWidget [
+SpMorphicToolbarAdapter >> buildWidget [
 	| toolBarMorph |
 	
-	toolBarMorph := SpToolBarMorph new.
+	toolBarMorph := SpToolbarMorph new.
 	self addModelTo: toolBarMorph.
 	
 	^ toolBarMorph
 ]
 
 { #category : #factory }
-SpMorphicToolBarAdapter >> configureItem: itemModel morph: itemMorph toolBar: toolBarMorph [
+SpMorphicToolbarAdapter >> configureItem: itemModel morph: itemMorph toolBar: toolBarMorph [
 	
 	itemMorph 
 		font: toolBarMorph toolbarItemFont;
@@ -45,22 +45,22 @@ SpMorphicToolBarAdapter >> configureItem: itemModel morph: itemMorph toolBar: to
 ]
 
 { #category : #testing }
-SpMorphicToolBarAdapter >> hasButtonWithLabel: aString [
+SpMorphicToolbarAdapter >> hasButtonWithLabel: aString [
 
 	^ (self widget leftPanel submorphs , self widget rightPanel submorphs)
-		detect: [ :e | (e isKindOf: SpToolBarButtonMorph) and: [ e label = aString ] ]
+		detect: [ :e | (e isKindOf: SpToolbarButtonMorph) and: [ e label = aString ] ]
 		ifFound: [ true ]
 		ifNone: [ false ]
 ]
 
 { #category : #testing }
-SpMorphicToolBarAdapter >> numberOfItems [
+SpMorphicToolbarAdapter >> numberOfItems [
 	
 	^ self widget leftPanel submorphs size + self widget rightPanel submorphs size
 ]
 
 { #category : #factory }
-SpMorphicToolBarAdapter >> updateItems: toolBarMorph [
+SpMorphicToolbarAdapter >> updateItems: toolBarMorph [
 
 	toolBarMorph clearItems.
 
@@ -70,7 +70,7 @@ SpMorphicToolBarAdapter >> updateItems: toolBarMorph [
 				configureItem: each 
 				morph: each buildWithSpec 
 				toolBar: toolBarMorph)
-			position: SpToolBarItemPosition left ].
+			position: SpToolbarItemPosition left ].
 
 	self presenter rightItems do: [ :each | 
 		toolBarMorph 
@@ -78,5 +78,5 @@ SpMorphicToolBarAdapter >> updateItems: toolBarMorph [
 				configureItem: each 
 				morph: each buildWithSpec 
 				toolBar: toolBarMorph)
-			position: SpToolBarItemPosition right ]
+			position: SpToolbarItemPosition right ]
 ]

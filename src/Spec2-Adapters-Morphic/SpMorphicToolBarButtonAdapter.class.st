@@ -2,13 +2,13 @@
 I'm the adapter used to bridge a ToolBarButton and its morphic representation.
 "
 Class {
-	#name : #SpMorphicToolBarButtonAdapter,
+	#name : #SpMorphicToolbarButtonAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
 { #category : #factory }
-SpMorphicToolBarButtonAdapter >> buildWidget [
+SpMorphicToolbarButtonAdapter >> buildWidget [
 	| button |
 	
 	button := self newButton.
@@ -20,19 +20,19 @@ SpMorphicToolBarButtonAdapter >> buildWidget [
 ]
 
 { #category : #updating }
-SpMorphicToolBarButtonAdapter >> button [
+SpMorphicToolbarButtonAdapter >> button [
 
 	^ widget
 ]
 
 { #category : #factory }
-SpMorphicToolBarButtonAdapter >> morphClass [
+SpMorphicToolbarButtonAdapter >> morphClass [
 
-	^ SpToolBarButtonMorph
+	^ SpToolbarButtonMorph
 ]
 
 { #category : #factory }
-SpMorphicToolBarButtonAdapter >> newButton [
+SpMorphicToolbarButtonAdapter >> newButton [
 	
 	^ (self morphClass
 			on: self presenter
@@ -49,13 +49,13 @@ SpMorphicToolBarButtonAdapter >> newButton [
 ]
 
 { #category : #updating }
-SpMorphicToolBarButtonAdapter >> updateIcon [
+SpMorphicToolbarButtonAdapter >> updateIcon [
 
 	self button update: self button getIconSelector
 ]
 
 { #category : #updating }
-SpMorphicToolBarButtonAdapter >> updateLabel [
+SpMorphicToolbarButtonAdapter >> updateLabel [
 
 	self button update: self button getLabelSelector
 ]

@@ -1,5 +1,5 @@
 Class {
-	#name : #SpToolBarToggleButtonMorph,
+	#name : #SpToolbarToggleButtonMorph,
 	#superclass : #PluggableToggleButtonMorph,
 	#instVars : [
 		'badgeFont',
@@ -9,38 +9,38 @@ Class {
 }
 
 { #category : #accessing }
-SpToolBarToggleButtonMorph >> badge [
+SpToolbarToggleButtonMorph >> badge [
 	badgeSelector ifNil: [ ^ nil ].
 	^ self model perform: badgeSelector
 ]
 
 { #category : #accessing }
-SpToolBarToggleButtonMorph >> badgeColor [
+SpToolbarToggleButtonMorph >> badgeColor [
 	^ self theme badgeColor
 ]
 
 { #category : #accessing }
-SpToolBarToggleButtonMorph >> badgeFont [
+SpToolbarToggleButtonMorph >> badgeFont [
 	^ badgeFont ifNil: [ badgeFont := self newBadgeFont ]
 ]
 
 { #category : #accessing }
-SpToolBarToggleButtonMorph >> badgeSelector: aSymbol [
+SpToolbarToggleButtonMorph >> badgeSelector: aSymbol [
 	badgeSelector := aSymbol
 ]
 
 { #category : #accessing }
-SpToolBarToggleButtonMorph >> badgeTextColor [
+SpToolbarToggleButtonMorph >> badgeTextColor [
 	^ self theme badgeTextColor
 ]
 
 { #category : #configuring }
-SpToolBarToggleButtonMorph >> configureWith: displayModel item: itemPresenter [
+SpToolbarToggleButtonMorph >> configureWith: displayModel item: itemPresenter [
 	displayModel configureButton: self item: itemPresenter
 ]
 
 { #category : #accessing }
-SpToolBarToggleButtonMorph >> drawBadgeOn: aCanvas [
+SpToolbarToggleButtonMorph >> drawBadgeOn: aCanvas [
 	| badgeString badgeBounds textBounds textWidth textHeight width |
 	
 	badgeString := self badge asString.
@@ -63,58 +63,58 @@ SpToolBarToggleButtonMorph >> drawBadgeOn: aCanvas [
 ]
 
 { #category : #accessing }
-SpToolBarToggleButtonMorph >> drawOn: aCanvas [
+SpToolbarToggleButtonMorph >> drawOn: aCanvas [
 	super drawOn: aCanvas.
 	self hasBadge ifTrue: [
 		self drawBadgeOn: aCanvas ]
 ]
 
 { #category : #accessing }
-SpToolBarToggleButtonMorph >> drawSubmorphsOn: aCanvas [
+SpToolbarToggleButtonMorph >> drawSubmorphsOn: aCanvas [
 	
 	super drawSubmorphsOn: aCanvas
 ]
 
 { #category : #accessing }
-SpToolBarToggleButtonMorph >> getIconSelector [
+SpToolbarToggleButtonMorph >> getIconSelector [
 
 	^ getIconSelector
 ]
 
 { #category : #accessing }
-SpToolBarToggleButtonMorph >> getIconSelector: aSelector [
+SpToolbarToggleButtonMorph >> getIconSelector: aSelector [
 
 	getIconSelector := aSelector.
 	self update: getIconSelector
 ]
 
 { #category : #accessing }
-SpToolBarToggleButtonMorph >> getLabelSelector [
+SpToolbarToggleButtonMorph >> getLabelSelector [
 
 	^ getLabelSelector
 ]
 
 { #category : #accessing }
-SpToolBarToggleButtonMorph >> getLabelSelector: aSelector [
+SpToolbarToggleButtonMorph >> getLabelSelector: aSelector [
 
 	getLabelSelector := aSelector.
 	self update: getLabelSelector
 ]
 
 { #category : #accessing }
-SpToolBarToggleButtonMorph >> hasBadge [
+SpToolbarToggleButtonMorph >> hasBadge [
 	^ self badge notNil
 ]
 
 { #category : #style }
-SpToolBarToggleButtonMorph >> mouseOverBorderStyle [
+SpToolbarToggleButtonMorph >> mouseOverBorderStyle [
 	^ BorderStyle simple
 		width: 0;
 		baseColor: Color transparent
 ]
 
 { #category : #accessing }
-SpToolBarToggleButtonMorph >> newBadgeFont [
+SpToolbarToggleButtonMorph >> newBadgeFont [
 	| baseBadgeFont |
 	baseBadgeFont := StandardFonts codeFont.
  	^ (LogicalFont 
@@ -124,13 +124,13 @@ SpToolBarToggleButtonMorph >> newBadgeFont [
 ]
 
 { #category : #style }
-SpToolBarToggleButtonMorph >> normalBorderStyle [
+SpToolbarToggleButtonMorph >> normalBorderStyle [
 	^ BorderStyle simple
 		width: 0;
 		baseColor: Color transparent
 ]
 
 { #category : #style }
-SpToolBarToggleButtonMorph >> normalFillStyle [
+SpToolbarToggleButtonMorph >> normalFillStyle [
 	^ Color transparent
 ]

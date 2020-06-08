@@ -2,19 +2,19 @@
 I'm the adapter used to bridge a ToolBarToggleButton and its morphic representation.
 "
 Class {
-	#name : #SpMorphicToolBarToggleButtonAdapter,
-	#superclass : #SpMorphicToolBarButtonAdapter,
+	#name : #SpMorphicToolbarToggleButtonAdapter,
+	#superclass : #SpMorphicToolbarButtonAdapter,
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
 { #category : #factory }
-SpMorphicToolBarToggleButtonAdapter >> morphClass [ 
+SpMorphicToolbarToggleButtonAdapter >> morphClass [ 
 
-	^ SpToolBarToggleButtonMorph
+	^ SpToolbarToggleButtonMorph
 ]
 
 { #category : #factory }
-SpMorphicToolBarToggleButtonAdapter >> newButton [
+SpMorphicToolbarToggleButtonAdapter >> newButton [
 
 	^ super newButton
 		action: #execute:

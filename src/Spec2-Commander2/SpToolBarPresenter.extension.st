@@ -1,10 +1,10 @@
-Extension { #name : #SpToolBarPresenter }
+Extension { #name : #SpToolbarPresenter }
 
 { #category : #'*Spec2-Commander2' }
-SpToolBarPresenter >> fillWith: aCommandGroup [
+SpToolbarPresenter >> fillWith: aCommandGroup [
 
 	self removeAllItems.
-	SpToolBarPresenterBuilder new 
+	SpToolbarPresenterBuilder new 
 		toolbarPresenter: self;
 		visit: aCommandGroup
 ]

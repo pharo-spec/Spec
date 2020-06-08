@@ -2,15 +2,15 @@
 A SpToolBarToggleButtonTest is a test class for testing the behavior of SpToolBarToggleButton
 "
 Class {
-	#name : #SpToolBarToggleButtonPresenterTest,
+	#name : #SpToolbarToggleButtonPresenterTest,
 	#superclass : #TestCase,
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
 { #category : #tests }
-SpToolBarToggleButtonPresenterTest >> testBecomeSelectedWhenToggledAndUnselected [
+SpToolbarToggleButtonPresenterTest >> testBecomeSelectedWhenToggledAndUnselected [
 	| toggleButton |
-	toggleButton := SpToolBarToggleButtonPresenter new.
+	toggleButton := SpToolbarToggleButtonPresenter new.
 	toggleButton beSelected.
 	self assert: toggleButton isSelected.
 	
@@ -20,9 +20,9 @@ SpToolBarToggleButtonPresenterTest >> testBecomeSelectedWhenToggledAndUnselected
 ]
 
 { #category : #tests }
-SpToolBarToggleButtonPresenterTest >> testBecomeUnselectedWhenToggledAndSelected [
+SpToolbarToggleButtonPresenterTest >> testBecomeUnselectedWhenToggledAndSelected [
 	| toggleButton |
-	toggleButton := SpToolBarToggleButtonPresenter new.
+	toggleButton := SpToolbarToggleButtonPresenter new.
 	self deny: toggleButton isSelected.
 		
 	toggleButton toggle.
@@ -32,10 +32,10 @@ SpToolBarToggleButtonPresenterTest >> testBecomeUnselectedWhenToggledAndSelected
 ]
 
 { #category : #tests }
-SpToolBarToggleButtonPresenterTest >> testSelectedBlockExecutedWhenBecomeSelected [
+SpToolbarToggleButtonPresenterTest >> testSelectedBlockExecutedWhenBecomeSelected [
 	| toggleButton selectedBlockExecuted |
 	selectedBlockExecuted := false.
-	toggleButton := SpToolBarToggleButtonPresenter new.
+	toggleButton := SpToolbarToggleButtonPresenter new.
 	toggleButton whenSelectedDo: [ selectedBlockExecuted := true ].
 	
 	toggleButton beSelected.
@@ -44,10 +44,10 @@ SpToolBarToggleButtonPresenterTest >> testSelectedBlockExecutedWhenBecomeSelecte
 ]
 
 { #category : #tests }
-SpToolBarToggleButtonPresenterTest >> testSelectedBlockNotExecutedWhenAlreadySelectedAndUnselectedTriggered [
+SpToolbarToggleButtonPresenterTest >> testSelectedBlockNotExecutedWhenAlreadySelectedAndUnselectedTriggered [
 	| toggleButton selectedBlockExecuted |
 	selectedBlockExecuted := false.
-	toggleButton := SpToolBarToggleButtonPresenter new.
+	toggleButton := SpToolbarToggleButtonPresenter new.
 	toggleButton beSelected.
 	toggleButton whenSelectedDo: [ selectedBlockExecuted := true ].
 	
@@ -57,10 +57,10 @@ SpToolBarToggleButtonPresenterTest >> testSelectedBlockNotExecutedWhenAlreadySel
 ]
 
 { #category : #tests }
-SpToolBarToggleButtonPresenterTest >> testSelectedBlockNotExecutedWhenBecomeUnselected [
+SpToolbarToggleButtonPresenterTest >> testSelectedBlockNotExecutedWhenBecomeUnselected [
 	| toggleButton selectedBlockExecuted |
 	selectedBlockExecuted := false.
-	toggleButton := SpToolBarToggleButtonPresenter new.
+	toggleButton := SpToolbarToggleButtonPresenter new.
 	toggleButton beSelected.
 	toggleButton whenSelectedDo: [ selectedBlockExecuted := true ].
 
@@ -70,10 +70,10 @@ SpToolBarToggleButtonPresenterTest >> testSelectedBlockNotExecutedWhenBecomeUnse
 ]
 
 { #category : #tests }
-SpToolBarToggleButtonPresenterTest >> testToggleBlockExecutedWhenToggled [
+SpToolbarToggleButtonPresenterTest >> testToggleBlockExecutedWhenToggled [
 	| toggleButton toggled |
 	toggled := false.
-	toggleButton := SpToolBarToggleButtonPresenter new.
+	toggleButton := SpToolbarToggleButtonPresenter new.
 	toggleButton whenToggledDo: [ toggled := true ].
 	
 	toggleButton toggle.
@@ -82,10 +82,10 @@ SpToolBarToggleButtonPresenterTest >> testToggleBlockExecutedWhenToggled [
 ]
 
 { #category : #tests }
-SpToolBarToggleButtonPresenterTest >> testUnselectedBlockExecutedWhenBecomeUnselected [
+SpToolbarToggleButtonPresenterTest >> testUnselectedBlockExecutedWhenBecomeUnselected [
 	| toggleButton unselectedBlockExecuted |
 	unselectedBlockExecuted := false.
-	toggleButton := SpToolBarToggleButtonPresenter new.
+	toggleButton := SpToolbarToggleButtonPresenter new.
 	toggleButton beSelected.
 	toggleButton whenUnselectedDo: [ unselectedBlockExecuted := true ].
 	
@@ -95,10 +95,10 @@ SpToolBarToggleButtonPresenterTest >> testUnselectedBlockExecutedWhenBecomeUnsel
 ]
 
 { #category : #tests }
-SpToolBarToggleButtonPresenterTest >> testUnselectedBlockNotExecutedWhenAlreadyUnselectedAndUnselectedTriggered [
+SpToolbarToggleButtonPresenterTest >> testUnselectedBlockNotExecutedWhenAlreadyUnselectedAndUnselectedTriggered [
 	| toggleButton unselectedBlockExecuted |
 	unselectedBlockExecuted := false.
-	toggleButton := SpToolBarToggleButtonPresenter new.
+	toggleButton := SpToolbarToggleButtonPresenter new.
 	toggleButton beUnselected.
 	toggleButton whenUnselectedDo: [ unselectedBlockExecuted := true ].
 	
@@ -108,10 +108,10 @@ SpToolBarToggleButtonPresenterTest >> testUnselectedBlockNotExecutedWhenAlreadyU
 ]
 
 { #category : #tests }
-SpToolBarToggleButtonPresenterTest >> testUnselectedBlockNotExecutedWhenBecomeSelected [
+SpToolbarToggleButtonPresenterTest >> testUnselectedBlockNotExecutedWhenBecomeSelected [
 	| toggleButton unselectedBlockExecuted |
 	unselectedBlockExecuted := false.
-	toggleButton := SpToolBarToggleButtonPresenter new.
+	toggleButton := SpToolbarToggleButtonPresenter new.
 	toggleButton beUnselected.
 	toggleButton whenUnselectedDo: [ unselectedBlockExecuted := true ].
 	

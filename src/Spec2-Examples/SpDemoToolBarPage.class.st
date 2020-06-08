@@ -2,24 +2,24 @@
 Demo page for SpecDemoToolBarPresenter
 "
 Class {
-	#name : #SpDemoToolBarPage,
+	#name : #SpDemoToolbarPage,
 	#superclass : #SpDemoPage,
 	#category : #'Spec2-Examples-Demo-Buttons'
 }
 
 { #category : #specs }
-SpDemoToolBarPage class >> pageName [
+SpDemoToolbarPage class >> pageName [
 
-	^ 'ToolBar'
+	^ 'Toolbar'
 ]
 
 { #category : #specs }
-SpDemoToolBarPage class >> priority [
+SpDemoToolbarPage class >> priority [
 	^ 12
 ]
 
 { #category : #initialization }
-SpDemoToolBarPage >> pageClass [
+SpDemoToolbarPage >> pageClass [
 
-	^ SpDemoToolBarPresenter
+	^ SpDemoToolbarPresenter
 ]

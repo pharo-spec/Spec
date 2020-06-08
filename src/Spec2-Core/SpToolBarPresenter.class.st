@@ -11,7 +11,7 @@ And they can be placed at the left (default) or at the right.
 Not all platforms support left/right alignments for toolbars. In that case they will be presented as simple groups.
 "
 Class {
-	#name : #SpToolBarPresenter,
+	#name : #SpToolbarPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
 		'#displayMode => SpObservableSlot',
@@ -22,29 +22,29 @@ Class {
 }
 
 { #category : #specs }
-SpToolBarPresenter class >> adapterName [
+SpToolbarPresenter class >> adapterName [
 
-	^ #ToolBarAdapter
+	^ #ToolbarAdapter
 ]
 
 { #category : #example }
-SpToolBarPresenter class >> example [
+SpToolbarPresenter class >> example [
 	| loremIpsumWords menuButton |
 	
 	loremIpsumWords := String loremIpsum substrings.
-	^ SpToolBarPresenter new 
+	^ SpToolbarPresenter new 
 		beBoth;
-		addItem: (SpToolBarButtonPresenter new 
+		addItem: (SpToolbarButtonPresenter new 
 			icon: (self iconNamed: #smallOk);
 			label: 'Simple';
 			action: [ UIManager default defer: [ self inform: 'Pressed' ] ];
 			yourself);
-		addItem: (SpToolBarToggleButtonPresenter new
+		addItem: (SpToolbarToggleButtonPresenter new
 			icon: (self iconNamed: #smallOk);
 			label: 'Toggle';
 			action: [ :value | UIManager default defer: [ self inform: value asString ] ];
 			yourself);
-		addItem: ((menuButton := SpToolBarMenuButtonPresenter new)
+		addItem: ((menuButton := SpToolbarMenuButtonPresenter new)
 			label: 'Menu';
 			icon: (self iconNamed: #smallOk);
 			action: [ UIManager default defer: [ self inform: menuButton label ] ];
@@ -66,9 +66,9 @@ SpToolBarPresenter class >> example [
 ]
 
 { #category : #convenience }
-SpToolBarPresenter >> addButtonLabel: aLabel iconNamed: anIconName help: aHelpString action: aBlock [
+SpToolbarPresenter >> addButtonLabel: aLabel iconNamed: anIconName help: aHelpString action: aBlock [
 
-	self addItem: (SpToolBarButtonPresenter new
+	self addItem: (SpToolbarButtonPresenter new
 		label: aLabel;
 		icon: (self application iconNamed: anIconName);
 		help: aHelpString;
@@ -77,60 +77,60 @@ SpToolBarPresenter >> addButtonLabel: aLabel iconNamed: anIconName help: aHelpSt
 ]
 
 { #category : #adding }
-SpToolBarPresenter >> addItem: aToolbarItem [
+SpToolbarPresenter >> addItem: aToolbarItem [
 	
-	self addItem: aToolbarItem position: SpToolBarItemPosition left
+	self addItem: aToolbarItem position: SpToolbarItemPosition left
 ]
 
 { #category : #adding }
-SpToolBarPresenter >> addItem: aToolbarItem position: aPosition [
+SpToolbarPresenter >> addItem: aToolbarItem position: aPosition [
 	
 	aToolbarItem owner: self.
 	aPosition addItem: aToolbarItem into: self
 ]
 
 { #category : #adding }
-SpToolBarPresenter >> addItemLeft: aToolBarItem [ 
+SpToolbarPresenter >> addItemLeft: aToolbarItem [ 
 	
-	aToolBarItem owner: self.
-	leftItems add: aToolBarItem.
+	aToolbarItem owner: self.
+	leftItems add: aToolbarItem.
 	self notifyPropertyChanged: #leftItems.
 ]
 
 { #category : #adding }
-SpToolBarPresenter >> addItemRight: aToolBarItem [ 
+SpToolbarPresenter >> addItemRight: aToolbarItem [ 
 
-	aToolBarItem owner: self.
-	rightItems add: aToolBarItem.
+	aToolbarItem owner: self.
+	rightItems add: aToolbarItem.
 	self notifyPropertyChanged: #rightItems.	
 ]
 
 { #category : #accessing }
-SpToolBarPresenter >> beBoth [
+SpToolbarPresenter >> beBoth [
 
-	self displayMode: SpToolBarDisplayMode modeIconAndLabel
+	self displayMode: SpToolbarDisplayMode modeIconAndLabel
 ]
 
 { #category : #accessing }
-SpToolBarPresenter >> beIcons [
+SpToolbarPresenter >> beIcons [
 
-	self displayMode: SpToolBarDisplayMode modeIcon
+	self displayMode: SpToolbarDisplayMode modeIcon
 ]
 
 { #category : #accessing }
-SpToolBarPresenter >> beText [
+SpToolbarPresenter >> beText [
 
-	self displayMode: SpToolBarDisplayMode modeLabel
+	self displayMode: SpToolbarDisplayMode modeLabel
 ]
 
 { #category : #accessing }
-SpToolBarPresenter >> displayMode [
+SpToolbarPresenter >> displayMode [
 
 	^ displayMode
 ]
 
 { #category : #accessing }
-SpToolBarPresenter >> displayMode: aDisplayMode [
+SpToolbarPresenter >> displayMode: aDisplayMode [
 
 	displayMode ifNotNil: [ 
 		self removeStyle: displayMode styleName ].
@@ -140,7 +140,7 @@ SpToolBarPresenter >> displayMode: aDisplayMode [
 ]
 
 { #category : #initialization }
-SpToolBarPresenter >> initialize [
+SpToolbarPresenter >> initialize [
 
 	super initialize.
 	self beBoth.
@@ -150,85 +150,85 @@ SpToolBarPresenter >> initialize [
 ]
 
 { #category : #testing }
-SpToolBarPresenter >> isDisplayModeBoth [
+SpToolbarPresenter >> isDisplayModeBoth [
 
-	^ self displayMode = SpToolBarDisplayMode modeIconAndLabel
+	^ self displayMode = SpToolbarDisplayMode modeIconAndLabel
 ]
 
 { #category : #testing }
-SpToolBarPresenter >> isDisplayModeIcons [
+SpToolbarPresenter >> isDisplayModeIcons [
 
-	^ self displayMode = SpToolBarDisplayMode modeIcon
+	^ self displayMode = SpToolbarDisplayMode modeIcon
 ]
 
 { #category : #testing }
-SpToolBarPresenter >> isDisplayModeText [
+SpToolbarPresenter >> isDisplayModeText [
 
-	^ self displayMode = SpToolBarDisplayMode modeLabel
+	^ self displayMode = SpToolbarDisplayMode modeLabel
 ]
 
 { #category : #testing }
-SpToolBarPresenter >> isEmpty [
+SpToolbarPresenter >> isEmpty [
 	
 	^ self items isEmpty
 ]
 
 { #category : #accessing }
-SpToolBarPresenter >> itemNamed: aString [ 
+SpToolbarPresenter >> itemNamed: aString [ 
 	
 	^ self items detect: [ :e | e label = aString ]
 ]
 
 { #category : #api }
-SpToolBarPresenter >> items [
+SpToolbarPresenter >> items [
 
 	^ leftItems , rightItems
 ]
 
 { #category : #accessing }
-SpToolBarPresenter >> leftItems [
+SpToolbarPresenter >> leftItems [
 	^ leftItems
 ]
 
 { #category : #testing }
-SpToolBarPresenter >> notEmpty [
+SpToolbarPresenter >> notEmpty [
 
 	^ self isEmpty not
 ]
 
 { #category : #'private-traversing' }
-SpToolBarPresenter >> presenters [
+SpToolbarPresenter >> presenters [
 
 	^ self items
 ]
 
 { #category : #'private-traversing' }
-SpToolBarPresenter >> presentersInFocusOrder [
+SpToolbarPresenter >> presentersInFocusOrder [
 
 	^ self items
 ]
 
 { #category : #removing }
-SpToolBarPresenter >> removeAllItems [
+SpToolbarPresenter >> removeAllItems [
 
 	leftItems := OrderedCollection new.
 	rightItems := OrderedCollection new
 ]
 
 { #category : #accessing }
-SpToolBarPresenter >> rightItems [
+SpToolbarPresenter >> rightItems [
 	^ rightItems
 ]
 
 { #category : #'private-traversing' }
-SpToolBarPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
+SpToolbarPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
 	self presentersInFocusOrder do: [ :each |
 		each traverseInFocusOrderDo: aBlock excluding: excludes ]
 ]
 
 { #category : #events }
-SpToolBarPresenter >> whenItemsChangeDo: aBlockClosure [ 
+SpToolbarPresenter >> whenItemsChangeDo: aBlockClosure [ 
 	
 	self 
 		property: #leftItems whenChangedDo: aBlockClosure;

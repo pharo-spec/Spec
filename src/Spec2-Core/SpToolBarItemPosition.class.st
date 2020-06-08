@@ -8,7 +8,7 @@ The default item positioning is left.
 	ITItemPosition left
 "
 Class {
-	#name : #SpToolBarItemPosition,
+	#name : #SpToolbarItemPosition,
 	#superclass : #Object,
 	#classInstVars : [
 		'uniqueInstance'
@@ -17,34 +17,34 @@ Class {
 }
 
 { #category : #accessing }
-SpToolBarItemPosition class >> default [
+SpToolbarItemPosition class >> default [
 	^ self left	
 ]
 
 { #category : #accessing }
-SpToolBarItemPosition class >> left [
-	^ SpToolBarItemPositionLeft uniqueInstance
+SpToolbarItemPosition class >> left [
+	^ SpToolbarItemPositionLeft uniqueInstance
 	
 ]
 
 { #category : #'instance creation' }
-SpToolBarItemPosition class >> new [
+SpToolbarItemPosition class >> new [
 	self error: 'Use uniqueInstance'
 ]
 
 { #category : #accessing }
-SpToolBarItemPosition class >> right [
-	^ SpToolBarItemPositionRight uniqueInstance
+SpToolbarItemPosition class >> right [
+	^ SpToolbarItemPositionRight uniqueInstance
 	
 ]
 
 { #category : #'instance creation' }
-SpToolBarItemPosition class >> uniqueInstance [
+SpToolbarItemPosition class >> uniqueInstance [
 
 	^ uniqueInstance ifNil: [ uniqueInstance := self basicNew initialize ]
 ]
 
 { #category : #accessing }
-SpToolBarItemPosition >> addItem: anObject into: aToolbar [
+SpToolbarItemPosition >> addItem: anObject into: aToolbar [
 	self subclassResponsibility
 ]

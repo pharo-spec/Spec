@@ -888,27 +888,27 @@ SpPresenter >> newToggleButton [
 ]
 
 { #category : #widgets }
-SpPresenter >> newToolBar [
+SpPresenter >> newToolbar [
 
-	^ self instantiate: SpToolBarPresenter
+	^ self instantiate: SpToolbarPresenter
 ]
 
 { #category : #widgets }
-SpPresenter >> newToolBarButton [
+SpPresenter >> newToolbarButton [
 
-	^ self instantiate: SpToolBarButtonPresenter
+	^ self instantiate: SpToolbarButtonPresenter
 ]
 
 { #category : #widgets }
-SpPresenter >> newToolBarMenuButton [
+SpPresenter >> newToolbarMenuButton [
 
-	^ self instantiate: SpToolBarToggleButtonPresenter
+	^ self instantiate: SpToolbarToggleButtonPresenter
 ]
 
 { #category : #widgets }
-SpPresenter >> newToolBarToggleButton [
+SpPresenter >> newToolbarToggleButton [
 
-	^ self instantiate: SpToolBarToggleButtonPresenter
+	^ self instantiate: SpToolbarToggleButtonPresenter
 ]
 
 { #category : #widgets }

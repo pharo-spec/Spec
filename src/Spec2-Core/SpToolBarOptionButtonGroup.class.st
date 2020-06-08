@@ -2,8 +2,8 @@
 A group of option buttons
 "
 Class {
-	#name : #SpToolBarOptionButtonGroup,
-	#superclass : #SpToolBarItemPresenter,
+	#name : #SpToolbarOptionButtonGroup,
+	#superclass : #SpToolbarItemPresenter,
 	#instVars : [
 		'options'
 	],
@@ -11,13 +11,13 @@ Class {
 }
 
 { #category : #specs }
-SpToolBarOptionButtonGroup class >> adapterName [
+SpToolbarOptionButtonGroup class >> adapterName [
 
-	^ #ToolBarOptionButtonGroupAdapter
+	^ #ToolbarOptionButtonGroupAdapter
 ]
 
 { #category : #accessing }
-SpToolBarOptionButtonGroup >> addOption: anOption [
+SpToolbarOptionButtonGroup >> addOption: anOption [
 
 	(anOption isSelected not and: [ options isEmpty ])
 		ifTrue: [ anOption beSelected ].
@@ -30,28 +30,28 @@ SpToolBarOptionButtonGroup >> addOption: anOption [
 ]
 
 { #category : #initialization }
-SpToolBarOptionButtonGroup >> initialize [
+SpToolbarOptionButtonGroup >> initialize [
 	super initialize.
 	options := OrderedCollection new
 ]
 
 { #category : #accessing }
-SpToolBarOptionButtonGroup >> options [
+SpToolbarOptionButtonGroup >> options [
 	^ options
 ]
 
 { #category : #accessing }
-SpToolBarOptionButtonGroup >> options: anObject [
+SpToolbarOptionButtonGroup >> options: anObject [
 	options := anObject
 ]
 
 { #category : #refreshing }
-SpToolBarOptionButtonGroup >> refresh [
+SpToolbarOptionButtonGroup >> refresh [
 	self shouldBeImplemented.
 ]
 
 { #category : #selection }
-SpToolBarOptionButtonGroup >> unselectAll [
+SpToolbarOptionButtonGroup >> unselectAll [
 	
 	options do: #beUnselected
 ]

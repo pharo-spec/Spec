@@ -2,8 +2,8 @@
 An option button
 "
 Class {
-	#name : #SpToolBarOptionButtonPresenter,
-	#superclass : #SpToolBarToggleButtonPresenter,
+	#name : #SpToolbarOptionButtonPresenter,
+	#superclass : #SpToolbarToggleButtonPresenter,
 	#instVars : [
 		'buttonGroup'
 	],
@@ -11,19 +11,19 @@ Class {
 }
 
 { #category : #specs }
-SpToolBarOptionButtonPresenter class >> adapterName [
+SpToolbarOptionButtonPresenter class >> adapterName [
 
-	^ #ToolBarOptionAdapter
+	^ #ToolbarOptionAdapter
 ]
 
 { #category : #accessing }
-SpToolBarOptionButtonPresenter >> buttonGroup: anITOptionButtonGroup [ 
+SpToolbarOptionButtonPresenter >> buttonGroup: anITOptionButtonGroup [ 
 	
 	buttonGroup := anITOptionButtonGroup
 ]
 
 { #category : #execution }
-SpToolBarOptionButtonPresenter >> execute: state [
+SpToolbarOptionButtonPresenter >> execute: state [
 
 	buttonGroup unselectAll.
 	self beSelected.

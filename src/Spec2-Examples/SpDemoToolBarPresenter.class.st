@@ -2,7 +2,7 @@
 This demo shows a tool bar.
 "
 Class {
-	#name : #SpDemoToolBarPresenter,
+	#name : #SpDemoToolbarPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'toolBar',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #specs }
-SpDemoToolBarPresenter class >> defaultSpec [
+SpDemoToolbarPresenter class >> defaultSpec [
 
 	^ SpBoxLayout newVertical 
 		add: #toolBar expand: false fill: false padding: 0;
@@ -21,16 +21,16 @@ SpDemoToolBarPresenter class >> defaultSpec [
 ]
 
 { #category : #initialization }
-SpDemoToolBarPresenter >> initializePresenters [
+SpDemoToolbarPresenter >> initializePresenters [
 	
-	toolBar := self newToolBar
-		addItem: (SpToolBarButtonPresenter new
+	toolBar := self newToolbar
+		addItem: (SpToolbarButtonPresenter new
 			label: 'Ok';
 			icon: (self iconNamed: #smallOk);
 			help: 'Ok';
 			action: [ self inform: 'Ok' ];
 			yourself);
-		addItem: (SpToolBarButtonPresenter new
+		addItem: (SpToolbarButtonPresenter new
 			label: 'Cancel';
 			icon: (self iconNamed: #smallCancel);
 			help: 'Cancel';
