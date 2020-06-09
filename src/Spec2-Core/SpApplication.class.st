@@ -137,8 +137,7 @@ SpApplication >> hasWindow: aWindow [
 { #category : #icons }
 SpApplication >> iconManager [
 
-	^ iconManager ifNil: [ iconManager := ThemeIcons current ].
-	
+	^ iconManager ifNil: [ iconManager := Smalltalk ui icons ]
 ]
 
 { #category : #icons }
