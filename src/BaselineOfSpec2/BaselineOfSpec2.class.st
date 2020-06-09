@@ -9,7 +9,7 @@ BaselineOfSpec2 >> baseline: spec [
 	<baseline>
 	
 	spec for: #common do: [ 
-		self spec2: spec.
+		self spec: spec.
 		
 		spec
 			"Core"
@@ -68,7 +68,7 @@ We need to use atomic loading only during update of existing Spec upgrade"
 ]
 
 { #category : #'external projects' }
-BaselineOfSpec2 >> spec2: spec [
+BaselineOfSpec2 >> spec: spec [
 
 	spec baseline: 'SpecCore' with: [ 
 		spec repository: (self packageRepositoryURL 
