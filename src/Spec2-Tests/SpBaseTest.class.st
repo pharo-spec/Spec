@@ -1,26 +1,21 @@
 Class {
-	#name : #SpTest,
+	#name : #SpBaseTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'window',
-		'presenter'
+		'presenter',
+		'window'
 	],
 	#category : #'Spec2-Tests-Utils'
 }
 
-{ #category : #testing }
-SpTest class >> isAbstract [
-	^ self = SpTest
-]
-
 { #category : #accessing }
-SpTest >> adapter [
+SpBaseTest >> adapter [
 
 	^ self subclassResponsibility
 ]
 
 { #category : #assertions }
-SpTest >> assertEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlock [
+SpBaseTest >> assertEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlock [
 	
 	self
 		assertWith: [ :times | times > 0 ]
@@ -30,7 +25,7 @@ SpTest >> assertEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aB
 ]
 
 { #category : #assertions }
-SpTest >> assertWith: assertionBlock timesRaisedEvent: anEventName inPresenter: aPresenter whenDoing: actionBlock [
+SpBaseTest >> assertWith: assertionBlock timesRaisedEvent: anEventName inPresenter: aPresenter whenDoing: actionBlock [
 	
 	| timesCalled |
 	timesCalled := 0.
@@ -40,12 +35,12 @@ SpTest >> assertWith: assertionBlock timesRaisedEvent: anEventName inPresenter: 
 ]
 
 { #category : #running }
-SpTest >> classToTest [
+SpBaseTest >> classToTest [
 	self subclassResponsibility
 ]
 
 { #category : #assertions }
-SpTest >> denyEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlock [
+SpBaseTest >> denyEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlock [
 	
 	self
 		assertWith: [ :times | times = 0 ]
@@ -55,49 +50,49 @@ SpTest >> denyEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlo
 ]
 
 { #category : #running }
-SpTest >> initializeTestedInstance [
+SpBaseTest >> initializeTestedInstance [
 ]
 
 { #category : #running }
-SpTest >> openInstance [
+SpBaseTest >> openInstance [
 	window ifNil: [ window := presenter openWithSpec ]
 ]
 
 { #category : #running }
-SpTest >> openInstance: aLayoutSelector [
+SpBaseTest >> openInstance: aLayoutSelector [
 	window := presenter openWithSpec: aLayoutSelector
 ]
 
 { #category : #accessing }
-SpTest >> presenter [
+SpBaseTest >> presenter [
 	^ presenter
 ]
 
 { #category : #running }
-SpTest >> setUp [
+SpBaseTest >> setUp [
 	super setUp.
 	presenter := self classToTest new.
 	self initializeTestedInstance
 ]
 
 { #category : #running }
-SpTest >> tearDown [
+SpBaseTest >> tearDown [
 	window ifNotNil: [ window delete ].
 	super tearDown
 ]
 
 { #category : #tests }
-SpTest >> testNewPresenterIsNotBuilt [
+SpBaseTest >> testNewPresenterIsNotBuilt [
 	self deny: presenter isBuilt
 ]
 
 { #category : #tests }
-SpTest >> testNewPresenterIsNotDisplayed [
+SpBaseTest >> testNewPresenterIsNotDisplayed [
 	self deny: presenter isDisplayed
 ]
 
 { #category : #tests }
-SpTest >> testNonOpenPresenterDoesNotRaiseBuiltEvent [
+SpBaseTest >> testNonOpenPresenterDoesNotRaiseBuiltEvent [
 	| built |
 	built := false.
 	presenter whenBuiltDo: [ built := true ].
@@ -105,7 +100,7 @@ SpTest >> testNonOpenPresenterDoesNotRaiseBuiltEvent [
 ]
 
 { #category : #tests }
-SpTest >> testNonOpenPresenterDoesNotRaiseDisplayedEvent [
+SpBaseTest >> testNonOpenPresenterDoesNotRaiseDisplayedEvent [
 	| displayed |
 	displayed := false.
 	presenter whenDisplayDo: [ displayed := true ].
@@ -113,19 +108,19 @@ SpTest >> testNonOpenPresenterDoesNotRaiseDisplayedEvent [
 ]
 
 { #category : #tests }
-SpTest >> testOpenPresenterIsBuilt [
+SpBaseTest >> testOpenPresenterIsBuilt [
 	self openInstance.
 	self assert: presenter isBuilt
 ]
 
 { #category : #tests }
-SpTest >> testOpenPresenterIsDisplayed [
+SpBaseTest >> testOpenPresenterIsDisplayed [
 	self openInstance.
 	self assert: presenter isDisplayed
 ]
 
 { #category : #tests }
-SpTest >> testOpenPresenterRaisesBuiltEvent [
+SpBaseTest >> testOpenPresenterRaisesBuiltEvent [
 	| built |
 	built := false.
 	presenter whenBuiltDo: [ built := true ].
@@ -134,7 +129,7 @@ SpTest >> testOpenPresenterRaisesBuiltEvent [
 ]
 
 { #category : #tests }
-SpTest >> testOpenPresenterRaisesDisplayEvent [
+SpBaseTest >> testOpenPresenterRaisesDisplayEvent [
 	| displayed |
 	displayed := false.
 	presenter whenDisplayDo: [ displayed := true ].
@@ -143,7 +138,7 @@ SpTest >> testOpenPresenterRaisesDisplayEvent [
 ]
 
 { #category : #accessing }
-SpTest >> widget [
+SpBaseTest >> widget [
 	
 	^ self adapter widget
 ]

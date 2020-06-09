@@ -61,6 +61,13 @@ SpApplication class >> defaultApplication [
 	^ DefaultApplication ifNil: [ DefaultApplication := SpNullApplication new ]
 ]
 
+{ #category : #private }
+SpApplication class >> defaultApplication: anApplication [
+	"To be used for testing purposes"
+
+	DefaultApplication := anApplication
+]
+
 { #category : #accessing }
 SpApplication class >> defaultBackendName [
 
