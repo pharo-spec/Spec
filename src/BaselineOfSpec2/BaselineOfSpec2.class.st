@@ -13,7 +13,7 @@ BaselineOfSpec2 >> baseline: spec [
 		
 		spec
 			"Core"
-			package: 'Spec2-Adapters-Morphic' with: [ spec requires: #('Spec2Core') ];
+			package: 'Spec2-Adapters-Morphic' with: [ spec requires: #('SpecCore') ];
 			package: 'Spec2-Code-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 			"Tests"
