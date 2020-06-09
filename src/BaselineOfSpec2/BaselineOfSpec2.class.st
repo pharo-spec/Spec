@@ -13,39 +13,33 @@ BaselineOfSpec2 >> baseline: spec [
 		self pillar: spec.
 		
 		spec
+			"Core"
 			package: 'Spec2-ObservableSlot';
-			package: 'Spec2-Core' with: [ 
-				spec requires: #(
-					'Spec2-ObservableSlot'
-					'Spec2-Layout' ) ];
+			package: 'Spec2-Layout' with: [ spec requires: #('Spec2-ObservableSlot') ];
+			package: 'Spec2-Core' with: [ spec requires: #('Spec2-ObservableSlot' 'Spec2-Layout') ];
 			package: 'Spec2-CommandLine' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commands' with: [ spec requires: #('Commander2') ];
-			package: 'Spec2-Layout' with: [ spec requires: #('Spec2-ObservableSlot') ];
 			package: 'Spec2-Transmission' with: [ spec requires: #('Spec2-Core') ];
-			package: 'Spec2-Code' with: [ 
-				spec requires: #(
-					'Spec2-Core' 
-					'Spec2-Commands') ];
-			package: 'Spec2-Code-Tests' with: [ spec requires: #('Spec2-Code') ];
-			package: 'Spec2-Adapters-Morphic' with: [ spec requires: #( 'Spec2-Core' ) ];
-			package: 'Spec2-Adapters-Stub' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Interactions' with: [ spec requires: #('Spec2-Core') ];
-			package: 'Spec2-Commander2' with: [ 
-				spec requires: #(
-					'Spec2-Core' 
-					'Spec2-Interactions' 
-					'Commander2') ];
+			package: 'Spec2-Commander2' with: [ spec requires: #('Spec2-Core' 'Spec2-Interactions' 'Commander2') ];
+			"Code"
+			package: 'Spec2-Code' with: [ spec requires: #('Spec2-Core' 'Spec2-Commands') ];
+			package: 'Spec2-Code-Commands' with: [ spec requires: #('Spec2-Core' 'Spec2-Commands') ];
+			"Tests"			
+			package: 'Spec2-Adapters-Stub' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commander2-Tests' with: [ spec requires: #('Spec2-Commander2') ];
-			package: 'Spec2-Commander2-ContactBook' with: [ spec requires: #('Spec2-Commander2') ];
-			package: 'Spec2-Commander2-ContactBook-Extensions' with: [ spec requires: #('Spec2-Commander2-ContactBook') ];
 			package: 'Spec2-Tests' with: [ spec requires: #('Spec2-Examples') ];
+			package: 'Spec2-Code-Tests' with: [ spec requires: #('Spec2-Code') ];
+			"Tools -> This needs to be moved to NewTools"
 			package: 'Spec2-Tools' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Tools-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Tools') ];
+			"Examples"
 			package: 'Spec2-Examples';
-			package: 'Spec2-Pillar' with: [ spec requires: #('Spec2-Core' 'PillarCore') ].
-			"This will extend the help tool, which in boostrap will be loaded a lot later."
-			"package: 'Spec2-Help';"		
-		 ].
+			package: 'Spec2-Commander2-ContactBook' with: [ spec requires: #('Spec2-Commander2') ];
+			package: 'Spec2-Commander2-ContactBook-Extensions' with: [ spec requires: #('Spec2-Commander2-ContactBook') ];
+			"RichText -> Pillar"
+			package: 'Spec2-Pillar' with: [ spec requires: #('Spec2-Core' 'PillarCore') ] 
+	].
 	
 	spec group: 'Core' with: #(
 		'Spec2-ObservableSlot' 
@@ -54,37 +48,18 @@ BaselineOfSpec2 >> baseline: spec [
 		'Spec2-Commands' 
 		'Spec2-Core' 
 		'Spec2-CommandLine' 
-		"'Spec2-Code'" 
 		'Spec2-Adapters-Stub' 
 		'Spec2-Interactions' 
 		'Spec2-Commander2' ).
-	spec group: 'Code' with: #(
-		'Core'
-		'Spec2-Code-Commands'
-		'Spec2-Code').
+	spec group: 'Code' with: #('Core' 'Spec2-Code-Commands' 'Spec2-Code').
 	spec group: 'CodeTests' with: #('Spec2-Code-Tests').
+	spec group: 'Support' with: #('Core' 'Spec2-Examples' 'Spec2-Tools' ).
+	spec group: 'Tests' with: #('Core' 'Spec2-Tests' 	'Spec2-Commander2-Tests').
+	spec group: 'SupportTests' with: #('Support' 'Spec2-Tools-Tests').
+	spec group: 'Pillar' with: #('Spec2-Pillar' ).
+	spec group: 'Base' with: #('Core' 'Support').
+	spec group: 'BaseTests' with: #('Spec2-Tests' 'SupportTests').
 	
-	spec group: 'Support' with: #( 
-		'Core'
-		'Spec2-Examples'
-		'Spec2-Commander2-ContactBook' 
-		'Spec2-Commander2-ContactBook-Extensions'  
-		'Spec2-Tools' ).
-	spec group: 'Tests' with: #( 
-		'Core' 
-		'Spec2-Tests' 
-		'Spec2-Commander2-Tests').
-	spec group: 'SupportTests' with: #( 
-		'Support'  
-		'Spec2-Tools-Tests').
-	spec group: 'Pillar' with: #(
-		'Spec2-Pillar' ).
-	spec group: 'Base' with: #(
-		'Core'
-		'Support').
-	spec group: 'BaseTests' with: #(
-		'Spec2-Tests'
-		'SupportTests').
 	spec group: 'default' with: #('Base' 'BaseTests' 'Code' 'CodeTests').
 ]
 
