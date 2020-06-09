@@ -9,11 +9,11 @@ BaselineOfSpec2Morphic >> baseline: spec [
 	<baseline>
 	
 	spec for: #common do: [ 
-		"self spec2: spec."
+		self spec2: spec.
 		
 		spec
-			"MorphicCore"
-			package: 'Spec2-Adapters-Morphic' with: [ "spec requires: #('Spec2')" ];
+			"Core"
+			package: 'Spec2-Adapters-Morphic' with: [ spec requires: #('Spec2') ];
 			package: 'Spec2-Code-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 			"Tests"
@@ -34,11 +34,11 @@ BaselineOfSpec2Morphic >> baseline: spec [
 		'Spec2-Morphic-Backend-Tests' 
 		'Spec2-Backend-Tests').
 	spec group: 'Base' with: #(
-		"'Spec2'"
+		'Spec2'
 		'Core'
 		'Support').
 		
-	spec group: 'default' with: #('Base' 'Code' 'Tests'). 
+	spec group: 'default' with: #('Base' 'Code' 'Tests').
 ]
 
 { #category : #acccessing }
@@ -71,5 +71,6 @@ We need to use atomic loading only during update of existing Spec upgrade"
 BaselineOfSpec2Morphic >> spec2: spec [
 
 	spec baseline: 'Spec2' with: [ 
-		spec repository: self packageRepositoryURL"'github://pharo-spec/Spec'" ]
+		spec repository: (self packageRepositoryURL 
+			ifEmpty: [ 'github://pharo-spec/Spec' ]) ]
 ]
