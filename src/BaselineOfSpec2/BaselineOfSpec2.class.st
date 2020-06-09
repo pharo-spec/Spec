@@ -34,7 +34,7 @@ BaselineOfSpec2 >> baseline: spec [
 		'Spec2-Morphic-Backend-Tests' 
 		'Spec2-Backend-Tests').
 	spec group: 'Base' with: #(
-		'Spec2Core'
+		'SpecCore'
 		'Core'
 		'Support').
 		
