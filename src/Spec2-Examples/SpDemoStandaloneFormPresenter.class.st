@@ -137,7 +137,7 @@ SpDemoStandaloneFormPresenter >> fillFormWithWorkingModel [
 	self scaleInput value: aModel scale.
 	self passwordInput text: aModel password.
 	self checkboxInput state: aModel rememberMe.
-	self dateInput date: aModel date.
+	"self dateInput date: aModel date."
 	(genderButtons at: aModel gender) state: true.
 
 	self itemsInput selectItems: self workingModel selectedItems

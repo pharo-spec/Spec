@@ -4,7 +4,7 @@ Demo page for SpecDemoFormPresenter
 Class {
 	#name : #SpDemoFormPage,
 	#superclass : #SpDemoPage,
-	#category : #'Spec2-Examples-Demo-Forms'
+	#category : #'Spec2-Morphic-Examples-Demo-Forms'
 }
 
 { #category : #specs }

@@ -36,6 +36,24 @@ SpCodePresenter class >> buildCommandsGroupWith: presenter forRoot: aCmCommandsG
 ]
 
 { #category : #commands }
+SpCodePresenter class >> buildEditionCommandsGroupWith: presenter forRoot: aCmCommandsGroup [
+
+	super buildEditionCommandsGroupWith: presenter forRoot: aCmCommandsGroup.	
+	aCmCommandsGroup register: (self codeAcceptCommandsGroupWith: presenter)
+]
+
+{ #category : #commands }
+SpCodePresenter class >> codeAcceptCommandsGroupWith: aPresenter [
+
+	^ (CmCommandGroup named: 'Accept commands') asSpecGroup
+		description: 'Accept or cancel changes.';
+		beDisplayedAsGroup;
+		register: (SpAcceptChangesCommand forSpecContext: aPresenter);
+		register: (SpCancelChangesCommand forSpecContext: aPresenter);
+		yourself
+]
+
+{ #category : #commands }
 SpCodePresenter class >> codeNavigationCommandsGroupWith: aPresenter [
 	| group |
 	

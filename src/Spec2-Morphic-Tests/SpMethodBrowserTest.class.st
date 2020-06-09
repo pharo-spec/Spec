@@ -1,7 +1,7 @@
 Class {
 	#name : #SpMethodBrowserTest,
 	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Examples'
+	#category : #'Spec2-Morphic-Tests-Examples'
 }
 
 { #category : #running }

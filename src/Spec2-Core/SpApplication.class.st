@@ -61,6 +61,13 @@ SpApplication class >> defaultApplication [
 	^ DefaultApplication ifNil: [ DefaultApplication := SpNullApplication new ]
 ]
 
+{ #category : #private }
+SpApplication class >> defaultApplication: anApplication [
+	"To be used for testing purposes"
+
+	DefaultApplication := anApplication
+]
+
 { #category : #accessing }
 SpApplication class >> defaultBackendName [
 
@@ -137,8 +144,7 @@ SpApplication >> hasWindow: aWindow [
 { #category : #icons }
 SpApplication >> iconManager [
 
-	^ iconManager ifNil: [ iconManager := ThemeIcons current ].
-	
+	^ iconManager ifNil: [ iconManager := Smalltalk ui icons ]
 ]
 
 { #category : #icons }
