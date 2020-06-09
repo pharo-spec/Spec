@@ -11,7 +11,6 @@ BaselineOfSpec2 >> baseline: spec [
 	spec for: #common do: [ 
 		self commander2: spec.
 		self pillar: spec.
-		self morphicBackend: spec.
 		
 		spec
 			"Core"
@@ -61,7 +60,7 @@ BaselineOfSpec2 >> baseline: spec [
 	spec group: 'Base' with: #('Core' 'Support').
 	spec group: 'BaseTests' with: #('Spec2-Tests' 'SupportTests').
 	
-	spec group: 'default' with: #('Base' 'BaseTests' 'Code' 'CodeTests' 'Spec2Morphic').
+	spec group: 'default' with: #('Base' 'BaseTests' 'Code' 'CodeTests').
 ]
 
 { #category : #'external projects' }
@@ -79,15 +78,6 @@ BaselineOfSpec2 >> complishon: spec [
 	spec
 		baseline: 'HeuristicCompletion'
 		with: [ spec repository: 'github://guillep/complishon' ]
-]
-
-{ #category : #'external projects' }
-BaselineOfSpec2 >> morphicBackend: spec [
-
-	spec
-		baseline: 'Spec2Morphic'
-		with: [ 
-			spec repository: self packageRepositoryURL ]
 ]
 
 { #category : #'external projects' }
