@@ -9,22 +9,22 @@ BaselineOfSpec2Morphic >> baseline: spec [
 	<baseline>
 	
 	spec for: #common do: [ 
-		self spec2: spec.
+		"self spec2: spec."
 		
 		spec
 			"MorphicCore"
-			package: 'Spec2-Adapters-Morphic' with: [ spec requires: #('Spec2') ];
-			package: 'Spec2-Code-Morphic' with: [ spec requires: #('Spec2' 'Spec2-Adapters-Morphic') ];
+			package: 'Spec2-Adapters-Morphic' with: [ "spec requires: #('Spec2')" ];
+			package: 'Spec2-Code-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 			"Tests"
 			package: 'Spec2-Morphic-Examples' with: [ spec requires: #('Spec2-Morphic') ];
 			package: 'Spec2-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
-			package: 'Spec2-Morphic-Backend-Tests' with: [ spec requires: #('Spec2' 'Spec2-Adapters-Morphic' 'Spec2-Backend-Tests') ];
+			package: 'Spec2-Morphic-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic' 'Spec2-Backend-Tests') ];
 			package: 'Spec2-Adapters-Morphic-Tests' with: [ spec requires: #('Spec2-Backend-Tests') ];
 			package: 'Spec2-Morphic-Tests' with: [ spec requires: #('Spec2-Morphic' 'Spec2-Backend-Tests') ]
 		 ].
 	
-	spec group: 'Core' with: #('Spec2' 'Spec2-Morphic' 'Spec2-Adapters-Morphic' ).
+	spec group: 'Core' with: #('Spec2-Morphic' 'Spec2-Adapters-Morphic' ).
 	spec group: 'Code' with: #('Core' 'Spec2-Code-Morphic').
 	spec group: 'Support' with: #('Core' 'Spec2-Morphic-Examples').
 	spec group: 'Tests' with: #(
@@ -34,7 +34,7 @@ BaselineOfSpec2Morphic >> baseline: spec [
 		'Spec2-Morphic-Backend-Tests' 
 		'Spec2-Backend-Tests').
 	spec group: 'Base' with: #(
-		'Spec2'
+		"'Spec2'"
 		'Core'
 		'Support').
 		
