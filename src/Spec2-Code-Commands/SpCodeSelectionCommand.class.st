@@ -12,7 +12,7 @@ In case no text is selected, the commands will take the text from cursor positio
 Class {
 	#name : #SpCodeSelectionCommand,
 	#superclass : #SpToolCommand,
-	#category : #'Spec2-Commands-Code'
+	#category : #'Spec2-Code-Commands'
 }
 
 { #category : #private }

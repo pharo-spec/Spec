@@ -46,23 +46,11 @@ SpTextPresenter class >> buildEditionCommandsGroupFor: presenterInstance [
 SpTextPresenter class >> buildEditionCommandsGroupWith: presenter forRoot: aCmCommandsGroup [
 
 	aCmCommandsGroup beDisplayedAsGroup.
-	aCmCommandsGroup register: (self codeEditionCommandsGroupWith: presenter).
-	aCmCommandsGroup register: (self codeAcceptCommandsGroupWith: presenter)
+	aCmCommandsGroup register: (self textEditionCommandsGroupWith: presenter)
 ]
 
 { #category : #commands }
-SpTextPresenter class >> codeAcceptCommandsGroupWith: aPresenter [
-
-	^ (CmCommandGroup named: 'Accept commands') asSpecGroup
-		description: 'Accept or cancel changes.';
-		beDisplayedAsGroup;
-		register: (SpAcceptChangesCommand forSpecContext: aPresenter);
-		register: (SpCancelChangesCommand forSpecContext: aPresenter);
-		yourself
-]
-
-{ #category : #commands }
-SpTextPresenter class >> codeEditionCommandsGroupWith: aPresenter [
+SpTextPresenter class >> textEditionCommandsGroupWith: aPresenter [
 	| group |
 
 	group := (CmCommandGroup named: 'Selection edition commands') asSpecGroup.
@@ -70,7 +58,7 @@ SpTextPresenter class >> codeEditionCommandsGroupWith: aPresenter [
 		description: 'Edit code selection.';
 		beDisplayedAsGroup.
 	
-	SpCodeEditionCommand allSubclassesDo: [ :commandClass | 
+	SpTextEditionCommand allSubclassesDo: [ :commandClass | 
 		group register: (commandClass forSpecContext: aPresenter) ].
 	
 	^ group

@@ -5,7 +5,7 @@ I will execute the selection (or line) of the playground.
 Class {
 	#name : #SpCodeDoItCommand,
 	#superclass : #SpCodeSelectionCommand,
-	#category : #'Spec2-Commands-Code'
+	#category : #'Spec2-Code-Commands'
 }
 
 { #category : #defaults }

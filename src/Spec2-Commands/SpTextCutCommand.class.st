@@ -1,22 +1,22 @@
 Class {
-	#name : #SpCodeCutCommand,
-	#superclass : #SpCodeEditionCommand,
+	#name : #SpTextCutCommand,
+	#superclass : #SpTextEditionCommand,
 	#category : #'Spec2-Commands-Code'
 }
 
 { #category : #defaults }
-SpCodeCutCommand class >> defaultIconName [
+SpTextCutCommand class >> defaultIconName [
 	^#smallCut 
 ]
 
 { #category : #default }
-SpCodeCutCommand class >> defaultName [
+SpTextCutCommand class >> defaultName [
 
 	^ 'Cut'
 ]
 
 { #category : #default }
-SpCodeCutCommand class >> defaultShortcutKey [
+SpTextCutCommand class >> defaultShortcutKey [
 
 	^ $x command mac 
 		| $x control win 
@@ -24,6 +24,6 @@ SpCodeCutCommand class >> defaultShortcutKey [
 ]
 
 { #category : #execution }
-SpCodeCutCommand >> execute [
+SpTextCutCommand >> execute [
 	self editor cut
 ]

@@ -1,22 +1,22 @@
 Class {
-	#name : #SpCodeCopyCommand,
-	#superclass : #SpCodeEditionCommand,
+	#name : #SpTextCopyCommand,
+	#superclass : #SpTextEditionCommand,
 	#category : #'Spec2-Commands-Code'
 }
 
 { #category : #defaults }
-SpCodeCopyCommand class >> defaultIconName [
+SpTextCopyCommand class >> defaultIconName [
 	^#smallCopy
 ]
 
 { #category : #default }
-SpCodeCopyCommand class >> defaultName [
+SpTextCopyCommand class >> defaultName [
 
 	^ 'Copy'
 ]
 
 { #category : #default }
-SpCodeCopyCommand class >> defaultShortcutKey [
+SpTextCopyCommand class >> defaultShortcutKey [
 
 	^ $c command mac 
 		| $c control win 
@@ -24,6 +24,6 @@ SpCodeCopyCommand class >> defaultShortcutKey [
 ]
 
 { #category : #execution }
-SpCodeCopyCommand >> execute [
+SpTextCopyCommand >> execute [
 	self editor copySelection
 ]

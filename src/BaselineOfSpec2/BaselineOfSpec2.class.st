@@ -17,8 +17,7 @@ BaselineOfSpec2 >> baseline: spec [
 			package: 'Spec2-Core' with: [ 
 				spec requires: #(
 					'Spec2-ObservableSlot'
-					'Spec2-Layout' 
-					'Spec2-Commands') ];
+					'Spec2-Layout' ) ];
 			package: 'Spec2-CommandLine' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commands' with: [ spec requires: #('Commander2') ];
 			package: 'Spec2-Layout' with: [ spec requires: #('Spec2-ObservableSlot') ];
@@ -61,6 +60,7 @@ BaselineOfSpec2 >> baseline: spec [
 		'Spec2-Commander2' ).
 	spec group: 'Code' with: #(
 		'Core'
+		'Spec2-Code-Commands'
 		'Spec2-Code').
 	spec group: 'CodeTests' with: #('Spec2-Code-Tests').
 	
