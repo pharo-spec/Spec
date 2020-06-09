@@ -11,6 +11,7 @@ BaselineOfSpec2 >> baseline: spec [
 	spec for: #common do: [ 
 		self commander2: spec.
 		self pillar: spec.
+		self morphicBackend: spec.
 		
 		spec
 			"Core"
@@ -60,10 +61,10 @@ BaselineOfSpec2 >> baseline: spec [
 	spec group: 'Base' with: #('Core' 'Support').
 	spec group: 'BaseTests' with: #('Spec2-Tests' 'SupportTests').
 	
-	spec group: 'default' with: #('Base' 'BaseTests' 'Code' 'CodeTests').
+	spec group: 'default' with: #('Base' 'BaseTests' 'Code' 'CodeTests' 'Spec2Morphic').
 ]
 
-{ #category : #dependencies }
+{ #category : #'external projects' }
 BaselineOfSpec2 >> commander2: spec [
 
 	spec
@@ -72,7 +73,7 @@ BaselineOfSpec2 >> commander2: spec [
 			spec repository: 'github://pharo-spec/Commander2:v2.1.x/src'"; loads: #('core' 'ui')" ]
 ]
 
-{ #category : #dependencies }
+{ #category : #'external projects' }
 BaselineOfSpec2 >> complishon: spec [
 	
 	spec
@@ -80,7 +81,16 @@ BaselineOfSpec2 >> complishon: spec [
 		with: [ spec repository: 'github://guillep/complishon' ]
 ]
 
-{ #category : #dependencies }
+{ #category : #'external projects' }
+BaselineOfSpec2 >> morphicBackend: spec [
+
+	spec
+		baseline: 'Spec2Morphic'
+		with: [ 
+			spec repository: self packageRepositoryURL ]
+]
+
+{ #category : #'external projects' }
 BaselineOfSpec2 >> pillar: spec [
 	spec
 		baseline: 'PillarCore'
