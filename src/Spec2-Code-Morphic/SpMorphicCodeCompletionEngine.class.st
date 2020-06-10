@@ -9,7 +9,7 @@ I can have several configurations:
 
 "
 Class {
-	#name : #SpCodeCompletionEngine,
+	#name : #SpMorphicCodeCompletionEngine,
 	#superclass : #CompletionEngine,
 	#instVars : [
 		'scripting',
@@ -18,78 +18,78 @@ Class {
 		'doItRequestor',
 		'completionBuilder'
 	],
-	#category : #'Spec2-Code'
+	#category : #'Spec2-Code-Morphic'
 }
 
 { #category : #accessing }
-SpCodeCompletionEngine >> completionBuilder [
+SpMorphicCodeCompletionEngine >> completionBuilder [
 
 	^ completionBuilder ifNil: [ CoASTHeuristicsResultSetBuilder new ]
 ]
 
 { #category : #accessing }
-SpCodeCompletionEngine >> completionBuilder: anObject [
+SpMorphicCodeCompletionEngine >> completionBuilder: anObject [
 
 	completionBuilder := anObject
 ]
 
 { #category : #accessing }
-SpCodeCompletionEngine >> completionClass [
+SpMorphicCodeCompletionEngine >> completionClass [
 
 	^ completionClass
 ]
 
 { #category : #accessing }
-SpCodeCompletionEngine >> completionClass: anObject [
+SpMorphicCodeCompletionEngine >> completionClass: anObject [
 
 	completionClass := anObject
 ]
 
 { #category : #accessing }
-SpCodeCompletionEngine >> doItContext [
+SpMorphicCodeCompletionEngine >> doItContext [
 
 	^ doItContext
 ]
 
 { #category : #accessing }
-SpCodeCompletionEngine >> doItContext: aContext [
+SpMorphicCodeCompletionEngine >> doItContext: aContext [
 
 	doItContext := aContext
 ]
 
 { #category : #accessing }
-SpCodeCompletionEngine >> doItRequestor [
+SpMorphicCodeCompletionEngine >> doItRequestor [
 
 	^ doItRequestor
 ]
 
 { #category : #accessing }
-SpCodeCompletionEngine >> doItRequestor: aRequestor [
+SpMorphicCodeCompletionEngine >> doItRequestor: aRequestor [
 
 	doItRequestor := aRequestor
 ]
 
 { #category : #initialization }
-SpCodeCompletionEngine >> initialize [
+SpMorphicCodeCompletionEngine >> initialize [
 
 	super initialize.
 	contextClass := CoCompletionContext
 ]
 
 { #category : #testing }
-SpCodeCompletionEngine >> isScripting [
+SpMorphicCodeCompletionEngine >> isScripting [
 
 	^ scripting
 ]
 
 { #category : #accessing }
-SpCodeCompletionEngine >> scripting: aBoolean [ 
+SpMorphicCodeCompletionEngine >> scripting: aBoolean [ 
 
 	scripting := aBoolean
 ]
 
 { #category : #accessing }
-SpCodeCompletionEngine >> variableBindingNames [
+SpMorphicCodeCompletionEngine >> variableBindingNames [
 
 	^ self doItRequestor variableBindingNames
 ]

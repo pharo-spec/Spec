@@ -13,7 +13,6 @@ Class {
 	#superclass : #SpTextPresenter,
 	#instVars : [
 		'#syntaxHighlight => SpObservableSlot',
-		'#completionEngine => SpObservableSlot',
 		'#lineNumbers => SpObservableSlot',
 		'#interactionModel => SpObservableSlot',
 		'#overrideContextMenu'
@@ -199,18 +198,6 @@ SpCodePresenter >> clearInteractionModel [
 	self interactionModel: SpCodeNullInteractionModel new
 ]
 
-{ #category : #accessing }
-SpCodePresenter >> completionEngine [
-
-	^ completionEngine
-]
-
-{ #category : #accessing }
-SpCodePresenter >> completionEngine: aCompletionEngine [
-
-	completionEngine := aCompletionEngine
-]
-
 { #category : #'api-shortcuts' }
 SpCodePresenter >> contextKeyBindings [
 
@@ -342,13 +329,7 @@ SpCodePresenter >> interactionModel [
 SpCodePresenter >> interactionModel: anInteractionModel [
 
 	anInteractionModel owner: self.
-	self basicInteractionModel: anInteractionModel.
-	self completionEngine: (SpCodeCompletionEngine new 
-		scripting: anInteractionModel isForScripting;
-		doItRequestor: anInteractionModel;
-		doItContext: anInteractionModel doItContext;
-		completionClass: anInteractionModel selectedClassOrMetaClass;
-		yourself)
+	self basicInteractionModel: anInteractionModel
 ]
 
 { #category : #accessing }
@@ -383,7 +364,7 @@ SpCodePresenter >> registerEventsForStyling [
 
 	self whenInteractionModelChangedDo: [ :im |
 		self withAdapterDo: [ :anAdapter |
-			anAdapter classOrMetaClass: im behavior ] ]
+			anAdapter interactionModel: im ] ]
 ]
 
 { #category : #api }
@@ -431,13 +412,6 @@ SpCodePresenter >> userActionDuring: aBlock [
 		^ self ].
 	
 	aBlock value
-]
-
-{ #category : #'api-events' }
-SpCodePresenter >> whenCompletionEngineChangedDo: aBlock [
-	"Set a block to perform when the syntax highlight is enabled/disabled"
-	
-	self property: #completionEngine whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
