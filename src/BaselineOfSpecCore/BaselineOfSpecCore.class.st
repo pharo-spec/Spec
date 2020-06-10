@@ -77,7 +77,10 @@ BaselineOfSpecCore >> complishon: spec [
 	
 	spec
 		baseline: 'HeuristicCompletion'
-		with: [ spec repository: 'github://guillep/complishon' ]
+		with: [ 
+			spec 
+				repository: 'github://guillep/complishon';
+				loads: 'HeuristicCompletion-Model' ]
 ]
 
 { #category : #'external projects' }

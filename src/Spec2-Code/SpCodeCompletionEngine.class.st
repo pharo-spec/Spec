@@ -10,23 +10,38 @@ I can have several configurations:
 "
 Class {
 	#name : #SpCodeCompletionEngine,
-	#superclass : #CoCompletionEngine,
+	#superclass : #CompletionEngine,
 	#instVars : [
 		'scripting',
 		'completionClass',
 		'doItContext',
-		'doItRequestor'
+		'doItRequestor',
+		'completionBuilder'
 	],
 	#category : #'Spec2-Code'
 }
 
 { #category : #accessing }
+SpCodeCompletionEngine >> completionBuilder [
+
+	^ completionBuilder ifNil: [ CoASTHeuristicsResultSetBuilder new ]
+]
+
+{ #category : #accessing }
+SpCodeCompletionEngine >> completionBuilder: anObject [
+
+	completionBuilder := anObject
+]
+
+{ #category : #accessing }
 SpCodeCompletionEngine >> completionClass [
+
 	^ completionClass
 ]
 
 { #category : #accessing }
 SpCodeCompletionEngine >> completionClass: anObject [
+
 	completionClass := anObject
 ]
 
@@ -52,6 +67,13 @@ SpCodeCompletionEngine >> doItRequestor [
 SpCodeCompletionEngine >> doItRequestor: aRequestor [
 
 	doItRequestor := aRequestor
+]
+
+{ #category : #initialization }
+SpCodeCompletionEngine >> initialize [
+
+	super initialize.
+	contextClass := CoCompletionContext
 ]
 
 { #category : #testing }
