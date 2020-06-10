@@ -40,8 +40,8 @@ Class {
 		'#menu => SpObservableSlot',
 		'#centered => SpObservableSlot',
 		'#isClosed => SpObservableSlot',
+		'#toolbar => SpObservableSlot',
 		'#statusbar => SpObservableSlot',
-		'#toolBar => SpObservableSlot',
 		'#window => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Support'
@@ -245,7 +245,7 @@ SpWindowPresenter >> hasStatusBar [
 
 { #category : #testing }
 SpWindowPresenter >> hasToolbar [
-	^ self toolBar notNil and: [ self toolBar notEmpty ]
+	^ self toolbar notNil and: [ self toolbar notEmpty ]
 ]
 
 { #category : #api }
@@ -468,14 +468,16 @@ SpWindowPresenter >> title: aString [
 ]
 
 { #category : #api }
-SpWindowPresenter >> toolBar [
-	^ toolBar
+SpWindowPresenter >> toolbar [
+
+	^ toolbar
 ]
 
 { #category : #api }
 SpWindowPresenter >> toolbar: aToolbarPresenter [
+
 	aToolbarPresenter ifNotNil: [ aToolbarPresenter owner: self ].
-	^ toolBar := aToolbarPresenter
+	^ toolbar := aToolbarPresenter
 ]
 
 { #category : #'private-traversing' }
