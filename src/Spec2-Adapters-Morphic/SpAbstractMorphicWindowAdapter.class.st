@@ -57,7 +57,7 @@ SpAbstractMorphicWindowAdapter >> addStatusBarTo: aMorph [
 SpAbstractMorphicWindowAdapter >> addToolbarTo: aMorph [
 	| toolbarMorph |
 
-	toolbarMorph := self model toolBar buildWithSpec.
+	toolbarMorph := self presenter toolbar buildWithSpec.
 	aMorph addMorphBack: toolbarMorph.	
 	toolbarMorph
 		hResizing: #spaceFill;
