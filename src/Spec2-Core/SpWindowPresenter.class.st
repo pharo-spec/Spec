@@ -194,14 +194,14 @@ SpWindowPresenter >> centeredRelativeToTopWindow [
 	self centeredRelativeTo: self application topWindow
 ]
 
-{ #category : #api }
+{ #category : #updating }
 SpWindowPresenter >> close [
 
 	"Only manage closing if the presenter is really open"
 	self isOpen ifFalse: [ ^ self ].
 	
-	self changed: #close with: #().
-	self windowClosed
+	isClosed := true.
+	self application windowClosed: self
 ]
 
 { #category : #private }
@@ -573,8 +573,8 @@ SpWindowPresenter >> windowIcon: aForm [
 
 { #category : #updating }
 SpWindowPresenter >> windowIsClosing [
-	isClosed := true.
-	self presenter windowIsClosing
+	self close.
+	self presenter windowIsClosing.
 ]
 
 { #category : #updating }
