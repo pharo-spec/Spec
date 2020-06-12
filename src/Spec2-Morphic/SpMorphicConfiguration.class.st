@@ -27,5 +27,5 @@ SpMorphicConfiguration >> styleSheet [
 	^ SpStyle defaultStyleSheet 
 	]]]"
 	
-	^ SpStyle defaultStyleSheet
+	^ SpStyle defaultStyleSheet copy
 ]
