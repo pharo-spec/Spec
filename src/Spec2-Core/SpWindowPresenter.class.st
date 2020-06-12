@@ -201,7 +201,7 @@ SpWindowPresenter >> close [
 	self isOpen ifFalse: [ ^ self ].
 	
 	isClosed := true.
-	self application windowClosed: self
+	self windowClosed
 ]
 
 { #category : #private }
