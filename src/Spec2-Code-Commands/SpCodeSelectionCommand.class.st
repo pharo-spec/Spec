@@ -22,7 +22,7 @@ SpCodeSelectionCommand >> evaluate: aString andDo: aBlock [
 	| stream result model receiver evaluationContext |
 	
 	stream := aString readStream.
-	
+	self flag: 'I replaced requestor here: model -> evaluationContext. We need to see if it is stable. -Steven'.
 	model := self context interactionModel.
 	receiver := model doItReceiver.
 	evaluationContext := model doItContext.
@@ -30,7 +30,7 @@ SpCodeSelectionCommand >> evaluate: aString andDo: aBlock [
 		source: stream;
 		context: evaluationContext;
 		receiver: receiver;
-		requestor: model;
+		requestor: evaluationContext;
 		failBlock:  [ ^ nil ];
 		evaluate.		
 
