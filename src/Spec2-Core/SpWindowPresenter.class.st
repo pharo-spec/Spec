@@ -194,7 +194,7 @@ SpWindowPresenter >> centeredRelativeToTopWindow [
 	self centeredRelativeTo: self application topWindow
 ]
 
-{ #category : #updating }
+{ #category : #api }
 SpWindowPresenter >> close [
 
 	"Only manage closing if the presenter is really open"
