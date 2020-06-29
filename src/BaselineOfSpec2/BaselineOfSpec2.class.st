@@ -35,7 +35,6 @@ BaselineOfSpec2 >> baseline: spec [
 		'Spec2-Backend-Tests').
 	spec group: 'Base' with: #(
 		'SpecCore'
-		'HeuristicCompletion'
 		'Core'
 		'Support').
 		
