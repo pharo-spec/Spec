@@ -10,12 +10,11 @@ BaselineOfSpec2 >> baseline: spec [
 	
 	spec for: #common do: [ 
 		self spec: spec.
-		self complishon: spec.
 		
 		spec
 			"Core"
 			package: 'Spec2-Adapters-Morphic' with: [ spec requires: #('SpecCore') ];
-			package: 'Spec2-Code-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic' 'HeuristicCompletion') ];
+			package: 'Spec2-Code-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 			"Tests"
 			package: 'Spec2-Morphic-Examples' with: [ spec requires: #('Spec2-Morphic') ];
@@ -41,17 +40,6 @@ BaselineOfSpec2 >> baseline: spec [
 		'Support').
 		
 	spec group: 'default' with: #('Base' 'Code' 'Tests').
-]
-
-{ #category : #'external projects' }
-BaselineOfSpec2 >> complishon: spec [
-	
-	spec
-		baseline: 'HeuristicCompletion'
-		with: [ 
-			spec 
-				repository: 'github://guillep/complishon';
-				loads: 'HeuristicCompletion-Morphic' ]
 ]
 
 { #category : #acccessing }
