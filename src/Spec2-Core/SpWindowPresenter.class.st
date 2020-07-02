@@ -517,7 +517,7 @@ SpWindowPresenter >> whenClosedDo: aBlock [
 	
 	self 
 		property: #isClosed 
-		whenChangedDo: [ :value | value ifTrue: [ aBlock value ] ]
+		whenChangedDo: [ :value | value ifTrue: aBlock ]
 ]
 
 { #category : #'api-events' }
@@ -525,7 +525,7 @@ SpWindowPresenter >> whenOpenedDo: aBlock [
 
 	self 
 		property: #isClosed 
-		whenChangedDo: [ :value | value ifFalse: [ aBlock value ] ]
+		whenChangedDo: [ :value | value ifFalse: aBlock ]
 ]
 
 { #category : #'api-events' }
