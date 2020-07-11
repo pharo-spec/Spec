@@ -4,7 +4,7 @@ I am the layout for which you define the number of rows to store you presenters 
 Class {
 	#name : #SpDynamicLeftToRightRowsLayout,
 	#superclass : #SpDynamicTopToBottomRowsLayout,
-	#category : #'Spec2-Core-Dynamic-Builder'
+	#category : #'Spec2-Dynamic-Builder'
 }
 
 { #category : #building }

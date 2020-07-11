@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'builder'
 	],
-	#category : #'Spec2-Tests-Dynamic-Builder'
+	#category : #'Spec2-Dynamic-Tests'
 }
 
 { #category : #running }

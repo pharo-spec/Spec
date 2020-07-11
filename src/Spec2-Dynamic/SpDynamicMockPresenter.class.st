@@ -5,7 +5,7 @@ Class {
 		'dynamicPresenter',
 		'builder'
 	],
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Dynamic-Backend-Tests'
 }
 
 { #category : #specs }

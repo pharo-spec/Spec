@@ -15,7 +15,7 @@ Class {
 		'builder',
 		'differentCardsCountSlider'
 	],
-	#category : #'Spec2-Examples-Demo-Dynamic'
+	#category : #'Spec2-Dynamic-Demo'
 }
 
 { #category : #specs }

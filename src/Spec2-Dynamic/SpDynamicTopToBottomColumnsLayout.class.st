@@ -4,7 +4,7 @@ I am the layout for which you define the number of columns to store you presente
 Class {
 	#name : #SpDynamicTopToBottomColumnsLayout,
 	#superclass : #SpDynamicLeftToRightColumnsLayout,
-	#category : #'Spec2-Core-Dynamic-Builder'
+	#category : #'Spec2-Dynamic-Builder'
 }
 
 { #category : #building }

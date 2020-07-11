@@ -20,7 +20,7 @@ Class {
 		'instVarToModelObject',
 		'presenterBlock'
 	],
-	#category : #'Spec2-Core-Dynamic-Builder'
+	#category : #'Spec2-Dynamic-Builder'
 }
 
 { #category : #example }

@@ -14,7 +14,7 @@ Class {
 		'daysButtons',
 		'whenDaySelectedBlock'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : #'Spec2-Dynamic-Presenter'
 }
 
 { #category : #specs }
