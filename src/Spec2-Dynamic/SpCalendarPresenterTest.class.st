@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'calendar'
 	],
-	#category : #'Spec2-Tests-Core-Widgets'
+	#category : #'Spec2-Dynamic-Tests'
 }
 
 { #category : #running }

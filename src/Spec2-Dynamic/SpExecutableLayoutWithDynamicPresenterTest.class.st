@@ -1,7 +1,7 @@
 Class {
 	#name : #SpExecutableLayoutWithDynamicPresenterTest,
 	#superclass : #SpAbstractLayoutTest,
-	#category : #'Spec2-Backend-Tests-Layout'
+	#category : #'Spec2-Dynamic-Backend-Tests-Layout'
 }
 
 { #category : #accessing }

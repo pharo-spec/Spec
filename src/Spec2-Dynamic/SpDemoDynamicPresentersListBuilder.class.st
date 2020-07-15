@@ -4,7 +4,7 @@ Demo page for SpecDemoDynamicPresentersListBuilder.
 Class {
 	#name : #SpDemoDynamicPresentersListBuilder,
 	#superclass : #SpDemoPage,
-	#category : #'Spec2-Examples-Demo-Dynamic'
+	#category : #'Spec2-Dynamic-Demo'
 }
 
 { #category : #example }

@@ -31,6 +31,30 @@ SpCalendarPresenter class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #examples }
+SpCalendarPresenter class >> exampleInspectClickedDate [
+	SpCalendarPresenter new
+		adaptToDate: Date today;
+		whenDaySelectedBlock: [ :aDate | aDate inspect ];
+		openWithSpec
+]
+
+{ #category : #examples }
+SpCalendarPresenter class >> exampleInspectClickedDateAndClose [
+	SpCalendarPresenter new
+		adaptToDate: Date today;
+		whenDaySelectedBlock: [ :aDate :calendarPresenter | aDate inspect. calendarPresenter window close ];
+		openWithSpec
+]
+
+{ #category : #examples }
+SpCalendarPresenter class >> exampleSimple [
+	SpCalendarPresenter new
+		adaptToDate: Date today;
+		whenDaySelectedBlock: [ UIManager default inform: 'A date was clicked.' ];
+		openWithSpec
+]
+
 { #category : #adapting }
 SpCalendarPresenter >> adaptToDate: aDate [
 	self monthYearLabel label: aDate month asString.
