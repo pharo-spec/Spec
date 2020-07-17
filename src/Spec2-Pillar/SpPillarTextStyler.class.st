@@ -6,7 +6,10 @@ Class {
 
 { #category : #parsing }
 SpPillarTextStyler >> parseFormatString: aFormatString [
-	^ PRPillarParser parse: aFormatString
+	self environment 
+		at: #MicroDownParser
+		ifPresent: [ :cls | ^  (cls parse: aFormatString) asPillar ].
+	^ PRPillarParser parse: aFormatString 
 ]
 
 { #category : #accessing }
