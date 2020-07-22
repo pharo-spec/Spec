@@ -299,7 +299,8 @@ SpCodePresenter >> initialize [
 	self withSyntaxHighlight.
 	self withLineNumbers.
 	
-	self registerEventsForStyling
+	self registerEventsForStyling.
+	self clearInteractionModel
 ]
 
 { #category : #api }
@@ -330,6 +331,14 @@ SpCodePresenter >> interactionModel: anInteractionModel [
 
 	anInteractionModel owner: self.
 	self basicInteractionModel: anInteractionModel
+]
+
+{ #category : #'private bindings' }
+SpCodePresenter >> isForScripting [
+
+	^ self interactionModel 
+		ifNotNil: [ :im | im isForScripting ]
+		ifNil: [ false ]
 ]
 
 { #category : #accessing }
