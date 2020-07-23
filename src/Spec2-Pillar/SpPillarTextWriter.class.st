@@ -86,6 +86,12 @@ SpPillarTextWriter >> visitDocumentGroup: anObject [
 ]
 
 { #category : #'visiting-document' }
+SpPillarTextWriter >> visitHeader: anObject [
+	super visitHeader: anObject.
+	self newline
+]
+
+{ #category : #'visiting-document' }
 SpPillarTextWriter >> visitHorizontalRule: anObject [
 	stream
 		nextPutAll: ((String new: 40) atAllPut: $-);
@@ -115,6 +121,12 @@ SpPillarTextWriter >> visitOrderedList: anObject [
 	"self halt.
 	canvas potentialNewLine."
 	self nest: 0 do: [ super visitOrderedList: anObject ]
+]
+
+{ #category : #'visiting-document' }
+SpPillarTextWriter >> visitParagraph: anObject [
+	super visitDocumentGroup: anObject.
+	self newline
 ]
 
 { #category : #'visiting-document' }
