@@ -198,6 +198,15 @@ SpMorphicBaseTextAdapter >> selectionInterval [
 ]
 
 { #category : #private }
+SpMorphicBaseTextAdapter >> selectionInterval: anInterval [
+
+	self widgetDo: [ :w | 
+		w textArea editor 
+			selectFrom: anInterval first 
+			to: anInterval last ]
+]
+
+{ #category : #private }
 SpMorphicBaseTextAdapter >> setEditingModeFor: textArea [
 	
 	textArea beForPlainText
