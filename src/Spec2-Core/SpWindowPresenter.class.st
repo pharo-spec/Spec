@@ -310,7 +310,7 @@ SpWindowPresenter >> isDialog [
 { #category : #api }
 SpWindowPresenter >> isDisplayed [
 
-	^ self window 
+	^ self adapter
 		ifNotNil: [ :w | w isDisplayed ]
 		ifNil: [ false ] 
 ]
