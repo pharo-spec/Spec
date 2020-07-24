@@ -127,8 +127,8 @@ SpMorphicBaseTextAdapter >> insert: aString at: positionIndex [
 { #category : #'spec protocol' }
 SpMorphicBaseTextAdapter >> notify: errorMessage at: position in: sourceCode [
 
-	self flag: #TOMOVE.
-	self widgetDo: [ :w | w notify: errorMessage at: position in: sourceCode ]
+	self widgetDo: [ :w | 
+		w notify: errorMessage at: position in: sourceCode ]
 ]
 
 { #category : #'spec protocol' }
