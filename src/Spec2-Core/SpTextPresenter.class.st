@@ -102,6 +102,13 @@ SpTextPresenter >> cursorPosition [
 	^ self withAdapterDo: [ :anAdapter | anAdapter cursorPosition ]
 ]
 
+{ #category : #api }
+SpTextPresenter >> cursorPositionIndex: index [
+	"Sets cursor position index"
+
+	^ self withAdapterDo: [ :anAdapter | anAdapter cursorPositionIndex: index ]
+]
+
 { #category : #accessing }
 SpTextPresenter >> editable: aBoolean [
 

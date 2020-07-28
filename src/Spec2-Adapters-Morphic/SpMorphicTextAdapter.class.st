@@ -87,6 +87,12 @@ SpMorphicTextAdapter >> cursorPosition [
 			ifNotNil: [ :sel | self linePositionOf: sel ] ]
 ]
 
+{ #category : #'widget API' }
+SpMorphicTextAdapter >> cursorPositionIndex: index [ 
+
+	self widgetDo: [ :w | ^ w textArea editor pointIndex: index ]
+]
+
 { #category : #private }
 SpMorphicTextAdapter >> eventHandlerReceiver: aWidget [
 
