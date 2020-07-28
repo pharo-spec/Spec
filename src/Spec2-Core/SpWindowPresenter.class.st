@@ -556,8 +556,9 @@ SpWindowPresenter >> window: aWindow [
 ]
 
 { #category : #private }
-SpWindowPresenter >> windowClosed [ 
+SpWindowPresenter >> windowClosed [
 	
+	isClosed := true.
 	self application windowClosed: self
 ]
 
@@ -573,9 +574,8 @@ SpWindowPresenter >> windowIcon: aForm [
 
 { #category : #updating }
 SpWindowPresenter >> windowIsClosing [
-	isClosed := true.
-	self windowClosed.
-	self presenter windowIsClosing.
+
+	self presenter windowIsClosing
 ]
 
 { #category : #updating }
