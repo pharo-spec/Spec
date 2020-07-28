@@ -200,8 +200,8 @@ SpWindowPresenter >> close [
 
 	"Only manage closing if the presenter is really open"
 	self isOpen ifFalse: [ ^ self ].
-	
-	self changed: #close with: #().
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter close ]
 ]
 
 { #category : #private }
