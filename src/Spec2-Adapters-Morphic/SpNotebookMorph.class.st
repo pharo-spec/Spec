@@ -83,15 +83,10 @@ SpNotebookMorph >> buildLabelFrom: aStringOrMorph withAction: aMorph [
 		ifTrue: [ aStringOrMorph ]
 		ifFalse: [ self buildLabelFrom: aStringOrMorph ].
 	
-	^ aMorph
-		ifNotNil: [ 
-			aMorph vResizing: #spaceFill. 
-			PanelMorph new 
-				addMorphBack: innerLabel;			
-				addMorphBack: aMorph; 
-				yourself ]
-		ifNil: [ 
-			innerLabel ]
+	aMorph ifNotNil: [
+		innerLabel addMorphBack: aMorph ].
+
+	^ innerLabel
 ]
 
 { #category : #testing }
@@ -128,10 +123,11 @@ SpNotebookMorph >> initialize [
 { #category : #factory }
 SpNotebookMorph >> newCloseButtonFor: aPage [
 
-	^ SpButtonPresenter new 
-		icon: (self theme windowCloseForm);
-		action: [ self removePage: aPage ];
-		buildWithSpec
+	^ self theme
+		  newCloseControlIn: self
+		  for: self
+		  action: [ self removePage: aPage ]
+		  help: 'Close this page' translated
 ]
 
 { #category : #factory }
