@@ -20,32 +20,7 @@ SpNotebookMorph class >> tabCellInset [
 ]
 
 { #category : #adding }
-SpNotebookMorph >> addLazyPage: aBlock label: aStringOrMorph [
-
-	self 
-		addLazyPage: aBlock 
-		label: aStringOrMorph 
-		collapsable: false
-]
-
-{ #category : #adding }
-SpNotebookMorph >> addLazyPage: aBlock label: aStringOrMorph action: anActionMorphOrNil [
-	| newPage label |
-	
-	newPage := SpNotebookPageMorph new.
-	newPage lazyPageMorphCreation: aBlock.
-		
-	label := self 
-		buildLabelFrom: aStringOrMorph 
-		withAction: anActionMorphOrNil.
-	
-	newPage labelMorph: label.
-	
-	self addPage: newPage label: label
-]
-
-{ #category : #adding }
-SpNotebookMorph >> addLazyPage: aBlock label: aStringOrMorph collapsable: aBoolean [
+SpNotebookMorph >> addLazyPage: aBlock label: aStringOrMorph model: aSpNotebookPage [ 
 	| newPage label |
 	
 	newPage := SpNotebookPageMorph new.
@@ -53,8 +28,8 @@ SpNotebookMorph >> addLazyPage: aBlock label: aStringOrMorph collapsable: aBoole
 
 	label := self 
 		buildLabelFrom: aStringOrMorph 
-		withAction: (aBoolean 
-			ifTrue: [ self newCloseButtonFor: newPage ]
+		withAction: (aSpNotebookPage isCloseable
+			ifTrue: [ self newCloseButtonFor: aSpNotebookPage ]
 			ifFalse: [ nil ]).
 	
 	newPage labelMorph: label.
@@ -121,13 +96,13 @@ SpNotebookMorph >> initialize [
 ]
 
 { #category : #factory }
-SpNotebookMorph >> newCloseButtonFor: aPage [
+SpNotebookMorph >> newCloseButtonFor: aSpNotebookPage [
 
 	^ self theme
-		  newCloseControlIn: self
-		  for: self
-		  action: [ self removePage: aPage ]
-		  help: 'Close this page' translated
+		newCloseControlIn: self
+		for: aSpNotebookPage
+		action: [ aSpNotebookPage removeFromNotebook ]
+		help: 'Close this page' translated
 ]
 
 { #category : #factory }
