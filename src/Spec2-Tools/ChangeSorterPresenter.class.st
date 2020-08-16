@@ -500,7 +500,7 @@ ChangeSorterPresenter >> newSet [
 	aSet := self model createNewSet.
 	aSet
 		ifNotNil: [ self updateChangesList.
-			changesListPresenter setSelectedItem: aSet.
+			changesListPresenter selectItem: aSet.
 			self updateWindowTitle ]
 ]
 
