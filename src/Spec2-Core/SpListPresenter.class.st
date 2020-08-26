@@ -58,12 +58,23 @@ SpListPresenter >> display [
 
 { #category : #api }
 SpListPresenter >> display: aBlock [
+	"aBlock (a one argument block) will be applied on each of the list items and the result of the block will be used to display the item on the screen.
+Here is the typical example:
+
+initializePresenters
+   ...
+   fontFamilyList := self newList.
+fontFamilyList display: [ :fontFamily | fontFamily familyName ]
+   ..."
 
 	display := aBlock
 ]
 
 { #category : #'adapter-api' }
 SpListPresenter >> displayValueAt: anIndex [
+	"Return the effective string that is displayed on the list. 
+	Note that it is different from the item, because often an item is an object whose only a facette (e.g., name) is displayed. In such case displayValueAt: return the string of the displayed facette"
+
 	^ self displayValueFor: (model at: anIndex)
 ]
 
