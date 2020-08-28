@@ -36,10 +36,10 @@
   - [A (simple) sample presenter](#SpSimpleExamplePresenter)
 # Spec Applications
 
-A SpApplication is a class that handles many aspects of a Spec Application (hence it's name) in a convenient fashion. 
-SpApplication handles your application initialisation, configuration and resources. It also keeps the windows you have currently opened. 
-## Initialisation
-Initialisation of an application includes (non mandatory): configure the backend you want to use, add useful resources and define a start method that will call your initial window.
+A SpApplication is a class that handles many aspects of an Spec Application (hence it's name) in a convenient fashion. 
+SpApplication handles your application initialization, configuration and resources. It also keeps the windows you have currently opened. 
+## Initialization
+Initialization of an application includes (non mandatory): configure the backend you want to use, add useful resources and define a start method that will call your initial window.
 ### Configure backend
 Spec2 includes several backends (for the moment, Morphic and Gtk). A SpApplication configures a Morphic backend by default, but you can change it using `#useBackend:` or `#useBackend:with:` and sending the backend identifier and optionally a configuration (you may want to do specific backend things to configure your application behavior).
 
@@ -56,7 +56,7 @@ app run
 
 see also: [SpApplicationConfiguration](#SpApplicationConfiguration)
 ### Add resources
-During initialisation, you may want to add special resources (like icons, themes, etc.).
+During initialization, you may want to add special resources (like icons, themes, etc.).
 While you can add your own way to access resources, SpApplication provides a property registration mechanism (a simple Dictionary and accessors), you may find useful to search at `accessing properties` protocol.
 ### Defining a start method.
 This is useful to give your application a starting window (in general, this is what you want).
@@ -69,7 +69,7 @@ MyApplication>>start
 
 # Application Configurations
 
-Tipically, each Spec application will implement one or several configurations (for example, to run on Morphic or Gtk) by extending this class or one of its children. 
+Typically, each Spec application will implement one or several configurations (for example, to run on Morphic or Gtk) by extending this class or one of its children. 
 A configuration takes the responsibility to prepare an application to run properly. This preparation can be different depending on the platform where it is running, that's why you have several extension points you can extend/override: 
 
 - `configure:` a generic configuration point that normally will dispatch the configuration to a plarform specific method. 
@@ -79,7 +79,7 @@ A configuration takes the responsibility to prepare an application to run proper
 see also: [SpMorphicConfiguration](#SpMorphicConfiguration), [SpGtkConfiguration](#SpGtkConfiguration)
 # Morphic configurations
 
-Morphic configurations will prepare your application to run in a Morphic backend. Tipically, you will not change much of what is already provided on a Pharo system, but there are several entry points you may want to extend/override: 
+Morphic configurations will prepare your application to run in a Morphic backend. Typically, you will not change much of what is already provided on a Pharo system, but there are several entry points you may want to extend/override: 
 
 - [SpMorphicConfiguration>>#styleSheet](#SpMorphicConfiguration_styleSheet)
 
@@ -108,7 +108,7 @@ SpStyleSTONReader fromString: '
 ]'
 ```
 
-As a more complex example, see [SpStyle class>>#createDefaultStyleSheet](#SpStyle class_createDefaultStyleSheet) who defines the default behaviour of all elements of a Morphic Spec backend.
+As a more complex example, see [SpStyle class>>#createDefaultStyleSheet](#SpStyle class_createDefaultStyleSheet) which defines the default behaviour of all elements of a Morphic Spec backend.
 ## Referencing style elements in your presenters
 You can add styles to your presenters easily by using [class:SpAbstractWidgetPresenter](>#addStyle:)
 **TODO**: more examples
