@@ -55,5 +55,5 @@ SpDemoImagePresenter >> initializePresenters [
 	image2 := self newImage.
 
 	image1 image: (self iconNamed: #pharo).
-	image2 image: self currentWorld submorphs last form.
+	image2 image: (self iconNamed: #arrowDown).
 ]
