@@ -912,6 +912,12 @@ SpPresenter >> newToolbarToggleButton [
 ]
 
 { #category : #widgets }
+SpPresenter >> newTree [
+
+	^ self instantiate: SpTreePresenter
+]
+
+{ #category : #widgets }
 SpPresenter >> newTreeTable [
 
 	^ self instantiate: SpTreeTablePresenter
