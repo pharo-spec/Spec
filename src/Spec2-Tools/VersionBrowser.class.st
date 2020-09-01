@@ -184,7 +184,9 @@ VersionBrowser >> installIconStylerFor: anItem [
 
 	((self isMethodDefinition: anItem) or: [ isShowingDiff not ]) ifFalse: [ ^ self ].
 
-	IconStyler styleText: sourcePresenter withAst: anItem ast
+	IconStyler withStaticStylers 
+		styleText: sourcePresenter 
+		withAst: anItem ast
 ]
 
 { #category : #accessing }
