@@ -1,7 +1,7 @@
 "
 A base for button presenters, it defines basic functionality common to all buttons.
 
-## Interesting methods
+## Interesting API methods
 
 - `SpAbstractButtonPresenter>>#icon`
 - `SpAbstractButtonPresenter>>#icon:`
@@ -101,7 +101,7 @@ SpAbstractButtonPresenter >> shortcutCharacter [
 
 { #category : #'api-events' }
 SpAbstractButtonPresenter >> whenIconChangedDo: aBlock [
-	"Informs when an icon has been changed (invoking `SpAbstractButtonPresenter>>#icon:`). 
+	"Inform when an icon has been changed (invoking `SpAbstractButtonPresenter>>#icon:`). 
 	 `aBlock` receives zero arguments."
 
 	self property: #icon whenChangedDo: aBlock
@@ -109,7 +109,7 @@ SpAbstractButtonPresenter >> whenIconChangedDo: aBlock [
 
 { #category : #'api-events' }
 SpAbstractButtonPresenter >> whenLabelChangedDo: aBlock [
-	"Informs when a label has been changed (invoking `SpAbstractButtonPresenter>>#label:`). 
+	"Inform when a label has been changed (invoking `SpAbstractButtonPresenter>>#label:`). 
 	 `aBlock` receives zero arguments."
 
 	self property: #label whenChangedDo: aBlock

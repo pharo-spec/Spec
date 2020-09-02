@@ -70,7 +70,7 @@ fontFamilyList display: [ :fontFamily | fontFamily familyName ]
 	display := aBlock
 ]
 
-{ #category : #'adapter-api' }
+{ #category : #private }
 SpListPresenter >> displayValueAt: anIndex [
 	"Return the effective string that is displayed on the list. 
 	Note that it is different from the item, because often an item is an object whose only a facette (e.g., name) is displayed. In such case displayValueAt: return the string of the displayed facette"
@@ -78,7 +78,7 @@ SpListPresenter >> displayValueAt: anIndex [
 	^ self displayValueFor: (model at: anIndex)
 ]
 
-{ #category : #'adapter-api' }
+{ #category : #private }
 SpListPresenter >> displayValueFor: anObject [
 
 	^ self display value: anObject

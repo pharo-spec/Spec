@@ -1,7 +1,7 @@
 "
 A base for _form control buttons_ (like radiobuttons or checkboxes).
 
-## Interesting methods
+## Interesting API methods
 
 - `SpAbstractFormButtonPresenter>>#enabled:`
 - `SpAbstractFormButtonPresenter>>#label`
