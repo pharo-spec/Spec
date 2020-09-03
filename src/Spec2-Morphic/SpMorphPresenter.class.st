@@ -1,8 +1,6 @@
 "
-@@TODO
-
-!! Transmissions
-- #inputMorphPort (default)
+## Transmissions
+- inputMorphPort (default)
 "
 Class {
 	#name : #SpMorphPresenter,
