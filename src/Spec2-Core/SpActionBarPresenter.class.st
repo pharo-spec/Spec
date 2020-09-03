@@ -17,7 +17,7 @@ SpActionBarPresenter class >> adapterName [
 	^ #ActionBarAdapter
 ]
 
-{ #category : #adding }
+{ #category : #api }
 SpActionBarPresenter >> add: aButtonPresenter [
 	
 	(items 
@@ -26,7 +26,7 @@ SpActionBarPresenter >> add: aButtonPresenter [
 		add: aButtonPresenter
 ]
 
-{ #category : #adding }
+{ #category : #api }
 SpActionBarPresenter >> addLast: aButtonPresenter [
 	
 	(items 
