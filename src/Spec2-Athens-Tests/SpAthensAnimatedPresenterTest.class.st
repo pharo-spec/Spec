@@ -1,7 +1,7 @@
 Class {
 	#name : #SpAthensAnimatedPresenterTest,
 	#superclass : #SpAbstractAdapterTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Athens-Tests'
 }
 
 { #category : #accessing }
