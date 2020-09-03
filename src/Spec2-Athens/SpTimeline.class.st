@@ -9,7 +9,7 @@ Class {
 		'#lowestValue',
 		'#stepBy'
 	],
-	#category : #'Spec2-Core-Widgets-Athens'
+	#category : #'Spec2-Athens'
 }
 
 { #category : #'tick management' }

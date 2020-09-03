@@ -1,11 +1,11 @@
 Class {
 	#name : #SpAthensAnimatedPresenter,
-	#superclass : #SpAthensStaticPresenter,
+	#superclass : #SpAthensPresenter,
 	#instVars : [
 		'timeline',
 		'updateBlock'
 	],
-	#category : #'Spec2-Core-Widgets-Athens'
+	#category : #'Spec2-Athens'
 }
 
 { #category : #specs }

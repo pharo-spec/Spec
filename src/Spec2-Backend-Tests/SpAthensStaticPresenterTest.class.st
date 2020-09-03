@@ -19,7 +19,7 @@ SpAthensStaticPresenterTest >> circle: aSurface [
 
 { #category : #accessing }
 SpAthensStaticPresenterTest >> classToTest [
-	^ SpAthensStaticPresenter
+	^ SpAthensPresenter
 ]
 
 { #category : #accessing }

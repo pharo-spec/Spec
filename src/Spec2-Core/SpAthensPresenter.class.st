@@ -1,5 +1,5 @@
 Class {
-	#name : #SpAthensStaticPresenter,
+	#name : #SpAthensPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#traits : 'SpTContextMenu',
 	#classTraits : 'SpTContextMenu classTrait',
@@ -11,43 +11,43 @@ Class {
 }
 
 { #category : #specs }
-SpAthensStaticPresenter class >> adapterName [
+SpAthensPresenter class >> adapterName [
 	^ #AthensStaticAdapter
 ]
 
 { #category : #initialization }
-SpAthensStaticPresenter >> drawBlock [
+SpAthensPresenter >> drawBlock [
 	^ drawBlock
 ]
 
 { #category : #initialization }
-SpAthensStaticPresenter >> drawBlock: aBlock [
+SpAthensPresenter >> drawBlock: aBlock [
 	drawBlock := aBlock.
 	
 ]
 
 { #category : #initialization }
-SpAthensStaticPresenter >> initialize [
+SpAthensPresenter >> initialize [
 	super initialize.
 ]
 
 { #category : #initialization }
-SpAthensStaticPresenter >> surfaceExtent [
+SpAthensPresenter >> surfaceExtent [
 	^ surfaceExtent
 ]
 
 { #category : #initialization }
-SpAthensStaticPresenter >> surfaceExtent: anExtent [
+SpAthensPresenter >> surfaceExtent: anExtent [
 	surfaceExtent := anExtent.
 	
 ]
 
 { #category : #'API -Events' }
-SpAthensStaticPresenter >> whenDrawBlockChangedDo: aBlockClosure [ 
+SpAthensPresenter >> whenDrawBlockChangedDo: aBlockClosure [ 
 	self property: #drawBlock whenChangedDo: aBlockClosure 
 ]
 
 { #category : #'API -Events' }
-SpAthensStaticPresenter >> whenExtentChangedDo: aBlockClosure [ 
+SpAthensPresenter >> whenExtentChangedDo: aBlockClosure [ 
 	self property: #surfaceExtent whenChangedDo: aBlockClosure 
 ]
