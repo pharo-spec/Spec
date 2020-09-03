@@ -725,6 +725,12 @@ SpPresenter >> newActionBar [
 ]
 
 { #category : #widgets }
+SpPresenter >> newAthens [
+
+	^ self instantiate: SpAthensPresenter
+]
+
+{ #category : #widgets }
 SpPresenter >> newButton [
 	^ self instantiate: SpButtonPresenter
 ]
