@@ -226,6 +226,7 @@ SpTreeTablePresenter >> itemAtPath: anArray ifAbsent: aBlock [
 { #category : #api }
 SpTreeTablePresenter >> items: aCollection [
 	"Set the roots of a tree. This is a convenience method, synonym of `SpTreeTablePresenter>>#roots:`"
+
 	self roots: aCollection
 ]
 
