@@ -5,6 +5,8 @@ SpButtonPresenter class >> example [
 	<sampleInstance>
 	
 	^ self new
-		label: 'Click me';
+		icon: (self iconNamed: #smallOk);
+		label: 'Click me!';
+		action: [ 'Clicked!' crTrace ];
 		openWithSpec
 ]

@@ -1,7 +1,7 @@
 Extension { #name : #SpTreePresenter }
 
 { #category : #'*Spec2-Examples' }
-SpTreePresenter classSide >> example [
+SpTreePresenter class >> example [
 	<sampleInstance>
 	
 	^ self new
@@ -13,7 +13,7 @@ SpTreePresenter classSide >> example [
 ]
 
 { #category : #'*Spec2-Examples' }
-SpTreePresenter classSide >> exampleWithContextMenu [
+SpTreePresenter class >> exampleWithContextMenu [
 	<sampleInstance>
 	| tree |
 	
