@@ -224,6 +224,12 @@ SpTreeTablePresenter >> itemAtPath: anArray ifAbsent: aBlock [
 ]
 
 { #category : #api }
+SpTreeTablePresenter >> items: aCollection [
+	"Set the roots of a tree. This is a convenience method, synonym of `SpTreeTablePresenter>>#roots:`"
+	self roots: aCollection
+]
+
+{ #category : #api }
 SpTreeTablePresenter >> lazilyComputeChildren [
 	"When we compute lazily the children, we will show in all cases the expand arrow even if there is no children until we open this children."
 
@@ -242,13 +248,13 @@ SpTreeTablePresenter >> registerEvents [
 		self withAdapterDo: [ :anAdapter | anAdapter updateMenu ] ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpTreeTablePresenter >> roots [
 
 	^ roots
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpTreeTablePresenter >> roots: aCollection [
 
 	roots := aCollection.
