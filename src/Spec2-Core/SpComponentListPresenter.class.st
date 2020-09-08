@@ -8,8 +8,20 @@ When you do not have a list of elements that can be presented as a single list o
 ## Interesting API methods
 - `SpComponentListPresenter>>#presenters:`
 
-# Events
+## Events
 - `SpComponentListPresenter>>#whenPresentersChangedDo:`
+
+## Method factory
+You create a component list sending `newComponentList`
+
+```
+self newComponentList
+	presenters: { 
+		SpLabelPresenter new label: 'Example 1'. 
+		SpLabelPresenter new label: 'Example 2'. 
+		SpLabelPresenter new label: 'Example 3' };
+	yourself
+```
 
 ## Transmissions
 - #inputItemsPort (default)
