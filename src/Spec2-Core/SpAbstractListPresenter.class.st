@@ -201,8 +201,9 @@ SpAbstractListPresenter >> itemFilter: aBlock [
 	itemFilter := aBlock
 ]
 
-{ #category : #private }
+{ #category : #api }
 SpAbstractListPresenter >> items [
+	"Answer the items of the list"
 	
 	^ self model collection
 ]

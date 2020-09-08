@@ -394,15 +394,16 @@ SpTreeTablePresenter >> whenSelectedIndexChangedDo: aBlockClosure [
 ]
 
 { #category : #'api-events' }
-SpTreeTablePresenter >> whenSelectedItemChangedDo: aBlockClosure [ 
+SpTreeTablePresenter >> whenSelectedItemChangedDo: aBlock [
 	
-	self whenSelectionChangedDo: [ :selection | aBlockClosure cull: selection second ]
+	self whenSelectionChangedDo: [ :selection | 
+		aBlock cull: (selection ifNotNil: [ :anArray | anArray second ]) ]
 ]
 
 { #category : #'api-events' }
 SpTreeTablePresenter >> whenSelectionChangedDo: aBlock [ 
 	
-	self selection whenChangedDo: [ aBlock cull: selectionMode ]
+	self selection whenChangedDo: [ aBlock cull: selectionMode selectedItem ]
 ]
 
 { #category : #'api-events' }
