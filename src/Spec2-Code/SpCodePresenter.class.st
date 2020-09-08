@@ -143,7 +143,7 @@ SpCodePresenter >> allowingContextMenu [
 	 When allowing the code context menu, visible operations will be collected from  `SpPresenter>>#rootCommandsGroup` and `SpTextPresenter>>#editionCommandsGroup`, and what user 
 	 define on `SpAbstractTextPresenter>>contextMenu:` will be appended between those groups."
 	
-	self overrideContextMenu: true
+	self overrideContextMenu: false
 ]
 
 { #category : #private }
