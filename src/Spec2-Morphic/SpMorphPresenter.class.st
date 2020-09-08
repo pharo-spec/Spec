@@ -23,11 +23,6 @@ SpMorphPresenter >> defaultInputPort [
 	^ self inputMorphPort
 ]
 
-{ #category : #initialization }
-SpMorphPresenter >> initialize [
-	super initialize.
-]
-
 { #category : #transmission }
 SpMorphPresenter >> inputMorphPort [ 
 
