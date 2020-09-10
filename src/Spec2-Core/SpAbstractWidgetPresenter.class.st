@@ -1,27 +1,5 @@
 "
-SpAbstractBasicWidget is an abstract class for basic widgets
-
-I collaborate with
-- ValueHolder to managed some of my variables.
-- ComposablePresenter to manage me with other elements.
-
-I provide the following variables and their accessors
-- enabled is a boolean representing if I am usable or not, it is true by default. It  have also shortcut enable and disable.
-- help is the text displayed in the tooltip.
-- borderWidth, its default value is 0, it must be called after have displayed the widget. 
-- borderColor, its default value is transparent, it must be called after have displayed the widget. 
-
-For the two methods borderWidth and borderColor, notice that some of my subclasses don't display my border
-
-Me and my subclasses provide shortcut hook for my valueHolder, they are named ""when"" followed of the event.
-
-My drag and drop system don't work well.
-
-todo
-- defaultColor
-- color
-- eventKeyStrokesForNextFocus
-
+SpAbstractBasicWidget is an abstract class for basic widgets.
 "
 Class {
 	#name : #SpAbstractWidgetPresenter,
@@ -96,40 +74,40 @@ SpAbstractWidgetPresenter >> addStyle: aStyle [
 	self withAdapterDo: [ :anAdapter | anAdapter addStyle: aStyle ]
 ]
 
-{ #category : #api }
+{ #category : #TOREMOVE }
 SpAbstractWidgetPresenter >> borderColor [
 	"Return the border color"
 
 	^ borderColor
 ]
 
-{ #category : #api }
+{ #category : #TOREMOVE }
 SpAbstractWidgetPresenter >> borderColor: aColor [
 	"Set the border width"
 
 	borderColor := aColor
 ]
 
-{ #category : #api }
+{ #category : #TOREMOVE }
 SpAbstractWidgetPresenter >> borderWidth [
 	"Return the border width"
 
 	^ borderWidth
 ]
 
-{ #category : #api }
+{ #category : #TOREMOVE }
 SpAbstractWidgetPresenter >> borderWidth: anInteger [
 	"Set the border width"
 
 	borderWidth := anInteger
 ]
 
-{ #category : #api }
+{ #category : #TOREMOVE }
 SpAbstractWidgetPresenter >> color [
 	^ color
 ]
 
-{ #category : #api }
+{ #category : #TOREMOVE }
 SpAbstractWidgetPresenter >> color: aColor [
 	^ color := aColor
 ]
@@ -200,14 +178,14 @@ SpAbstractWidgetPresenter >> enabled: aBooleanOrValuable [
 	enabled := aBooleanOrValuable
 ]
 
-{ #category : #'api-focus' }
+{ #category : #TOREMOVE }
 SpAbstractWidgetPresenter >> eventKeyStrokesForNextFocus [
 	"String describing the keystroke to perform to jump to the next widget"
 	
 	^ { Character arrowRight asKeyCombination. Character tab asKeyCombination}
 ]
 
-{ #category : #'api-focus' }
+{ #category : #TOREMOVE }
 SpAbstractWidgetPresenter >> eventKeyStrokesForPreviousFocus [
 	"String describing the keystroke to perform to jump to the next widget"
 	
@@ -339,14 +317,14 @@ SpAbstractWidgetPresenter >> wantsDroppedMorph: draggedMorph event: anEvent inMo
 	^ self wantDropBlock cull: draggedMorph passenger cull: anEvent cull: source
 ]
 
-{ #category : #'api-events' }
+{ #category : #TOREMOVE }
 SpAbstractWidgetPresenter >> whenBorderColorChangedDo: aBlock [
 	"Set a block to be performed when the brder width changed"
 
 	self property: #borderColor whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #TOREMOVE }
 SpAbstractWidgetPresenter >> whenBorderWidthChangedDo: aBlock [
 	"Set a block to be performed when the brder width changed"
 
