@@ -1,12 +1,6 @@
 "
 A  Checkbox button that can be activated/deactivated.
 
-## Examples
-- `SpCheckBoxPresenter class>>#example`
--  `SpCheckBoxExample`
-
-See also `AbstractFormButtonPresenter`
-
 "
 Class {
 	#name : #SpCheckBoxPresenter,

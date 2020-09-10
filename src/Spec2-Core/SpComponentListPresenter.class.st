@@ -2,15 +2,6 @@
 A presenter to show a dynamic list of presenters. 
 When you do not have a list of elements that can be presented as a single list or table, it is possible to display a collection of presenters as a list using this component.
 
-## Examples
-- `SpComponentListPresenter class>>#example`
-
-## Interesting API methods
-- `SpComponentListPresenter>>#presenters:`
-
-## Events
-- `SpComponentListPresenter>>#whenPresentersChangedDo:`
-
 ## Method factory
 You create a component list sending `newComponentList`
 
@@ -23,12 +14,6 @@ self newComponentList
 	yourself
 ```
 
-## Transmissions
-- #inputItemsPort (default)
-- #outputSelectionPort (default)
-- #outputActivationPort
-
-See also `SpAbstractListPresenter`
 "
 Class {
 	#name : #SpComponentListPresenter,
