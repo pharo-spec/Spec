@@ -1,20 +1,6 @@
 "
 A button who executes an action when pressed.
 
-## Examples
-- `SpButtonPresenter class>>#example`
-
-## Interesting API methods
-- `SpButtonPresenter>>#action`
-- `SpButtonPresenter>>#action:`
-- `SpButtonPresenter>>#shortcut`
-- `SpButtonPresenter>>#shortcut:`
-
-## Events
-- `SpButtonPresenter>>#whenActionChangedDo:`
-- `SpButtonPresenter>>#whenActionPerformedDo:`
-
-See also `SpAbstractButtonPresenter`
 "
 Class {
 	#name : #SpButtonPresenter,

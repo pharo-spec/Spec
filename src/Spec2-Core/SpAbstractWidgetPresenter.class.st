@@ -27,10 +27,56 @@ SpAbstractWidgetPresenter class >> adapterName [
 	^ self subclassResponsibility
 ]
 
+{ #category : #documentation }
+SpAbstractWidgetPresenter class >> buildMicroDownUsing: aBuilder withComment: aString [
+	
+	"Header"
+	aBuilder 
+		header: [ :builder | 
+				builder text: 'Class: '.
+				builder text: self name] 
+			withLevel: 1;
+		horizontalLine;
+		text: aString.
+
+	"Sections"
+	self documentSections keysAndValuesDo: [ :label :methods |
+		methods ifNotEmpty: [
+			aBuilder newLine.
+			aBuilder header: [ :builder | builder text: label ] withLevel: 2.
+			aBuilder unorderedListDuring: [  
+				(methods sorted: #selector ascending) do: [ :each |
+					aBuilder item: [
+						aBuilder monospace: (each methodClass name, '>>#', each selector) ] ] ] ] ].
+
+	"Hierarchy"
+	aBuilder newLine.
+	aBuilder header: [ :builder | builder text: 'Hierarchy' ] withLevel: 2.
+	SpDocumentHierarchyBuilder new
+		builder: aBuilder;
+		filter: [ :eachClass | eachClass package packageName beginsWith: 'Spec2-' ];
+		buildFor: self
+]
+
 { #category : #specs }
 SpAbstractWidgetPresenter class >> defaultSpec [
 	<spec: #default>
 	^ SpAbstractWidgetLayout for: self adapterName
+]
+
+{ #category : #documentation }
+SpAbstractWidgetPresenter class >> documentHierarchy [
+	"'├ ─ ╰'"
+]
+
+{ #category : #documentation }
+SpAbstractWidgetPresenter class >> documentSections [
+		
+	^ OrderedDictionary newFromPairs: {
+		'Examples'. self class methods select: [ :each | each protocol = #'*Spec2-Examples' ].
+		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
+		'Events'. self methods select: [ :each | each protocol = #'api-events' ].
+	 }
 ]
 
 { #category : #testing }
