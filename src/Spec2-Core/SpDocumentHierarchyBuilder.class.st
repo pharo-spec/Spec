@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'flattenTree',
 		'builder',
-		'filterBlock'
+		'filterBlock',
+		'class'
 	],
 	#category : #'Spec2-Core-Utils'
 }
@@ -32,6 +33,8 @@ SpDocumentHierarchyBuilder >> addLevel: level from: aClass [
 				ifFalse: [ '├─ ' ]) ] ].
 
 	builder monospace: aClass name.
+	aClass = class 
+		ifTrue: [ builder monospace: ' (this is me)' ].
 	builder newLine.
 	(flattenTree at: aClass) do: [ :each |
 		self 
@@ -77,7 +80,7 @@ SpDocumentHierarchyBuilder >> applyFilterTo: aCollection [
 
 { #category : #building }
 SpDocumentHierarchyBuilder >> buildFor: aClass [
-	
+
 	self fillTreeOf: aClass.
 	self 
 		addLevel: 0
@@ -104,6 +107,7 @@ SpDocumentHierarchyBuilder >> builder: aBuilder [
 { #category : #private }
 SpDocumentHierarchyBuilder >> fillTreeOf: aClass [
 
+	class := aClass.
 	flattenTree := OrderedDictionary new.
 	self fillTreeWithSuperclassesOf: aClass.
 	self fillTreeWithSubclassesOf: aClass.
