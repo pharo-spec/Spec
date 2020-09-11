@@ -28,6 +28,86 @@ SpAbstractWidgetPresenter class >> adapterName [
 ]
 
 { #category : #documentation }
+SpAbstractWidgetPresenter class >> addDocumentSection: aBuilder label: label methods: methods [
+	
+	methods ifEmpty: [ ^ self ].
+	
+	aBuilder newLine.
+	aBuilder header: [ :builder | builder text: label ] withLevel: 2.
+	aBuilder unorderedListDuring: [  
+		(methods sorted: #selector ascending) do: [ :each |
+			aBuilder item: [
+				aBuilder monospace: (each methodClass name, '>>#', each selector) ] ] ]
+]
+
+{ #category : #documentation }
+SpAbstractWidgetPresenter class >> addDocumentSectionExampleCode: aBuilder [
+	| exampleCode |
+
+	exampleCode := self documentExampleCode. 
+	exampleCode ifNil: [ ^ self ].
+	
+	aBuilder newLine.
+	aBuilder header: [ :builder | builder text: 'Example code' ] withLevel: 2.
+	aBuilder newLine.
+	aBuilder codeblock: exampleCode
+]
+
+{ #category : #documentation }
+SpAbstractWidgetPresenter class >> addDocumentSectionFactoryMethod: aBuilder [
+	| selector |
+
+	selector := self documentFactoryMethodSelector. 
+	selector ifNil: [ ^ self ].
+	 
+	aBuilder newLine.
+	aBuilder header: [ :builder | builder text: 'Factory method' ] withLevel: 2.
+	aBuilder newLine.
+	aBuilder text: 'You can use '. 
+	aBuilder monospace: self name. 
+	aBuilder text: ' in your presenters by sending '.
+	aBuilder monospace: 'SpPresenter>>#', selector.
+	aBuilder text: '.'
+]
+
+{ #category : #documentation }
+SpAbstractWidgetPresenter class >> addDocumentSectionHierarchy: aBuilder [
+	
+	aBuilder newLine.
+	aBuilder header: [ :builder | builder text: 'Hierarchy' ] withLevel: 2.
+	SpDocumentHierarchyBuilder new
+		builder: aBuilder;
+		filter: [ :eachClass | eachClass package packageName beginsWith: 'Spec2-' ];
+		buildFor: self
+]
+
+{ #category : #documentation }
+SpAbstractWidgetPresenter class >> addDocumentSectionTransmissions: aBuilder [
+	| transmissions defaultInputPort defaultOutputPort |
+	
+	transmissions := self methods select: [ :each | 
+		(each protocol = #'*Spec2-Transmission') 
+		and: [ (each selector beginsWith: 'default') not ] ].
+	transmissions ifEmpty: [ ^ self ].
+	
+	self methods 
+		detect: [ :each | each selector = #defaultInputPort ]
+		ifFound: [ :aMethod | defaultInputPort := aMethod literals first ].
+	self methods 
+		detect: [ :each | each selector = #defaultOutputPort ]
+		ifFound: [ :aMethod | defaultOutputPort := aMethod literals first ].
+	
+	aBuilder newLine.
+	aBuilder header: [ :builder | builder text: 'Transmissions' ] withLevel: 2.
+	aBuilder unorderedListDuring: [  
+		(transmissions sorted: #selector ascending) do: [ :each |
+			aBuilder item: [
+				aBuilder monospace: (each methodClass name, '>>#', each selector).
+				(each selector = defaultInputPort or: [ each selector = defaultOutputPort  ])
+					ifTrue: [ aBuilder monospace: ' (default)' ] ] ] ]
+]
+
+{ #category : #documentation }
 SpAbstractWidgetPresenter class >> buildMicroDownUsing: aBuilder withComment: aString [
 	
 	"Header"
@@ -40,28 +120,16 @@ SpAbstractWidgetPresenter class >> buildMicroDownUsing: aBuilder withComment: aS
 		text: aString.
 
 	"Example code"
-	self documentExampleCode ifNotNil: [ :exampleCode | 
-		aBuilder header: [ :builder | builder text: 'Example code' ] withLevel: 2.
-		aBuilder newLine.
-		aBuilder codeblock: exampleCode ].
-	
+	self addDocumentSectionExampleCode: aBuilder.
+	"Factory method"
+	self addDocumentSectionFactoryMethod: aBuilder.
 	"Sections"
 	self documentSections keysAndValuesDo: [ :label :methods |
-		methods ifNotEmpty: [
-			aBuilder newLine.
-			aBuilder header: [ :builder | builder text: label ] withLevel: 2.
-			aBuilder unorderedListDuring: [  
-				(methods sorted: #selector ascending) do: [ :each |
-					aBuilder item: [
-						aBuilder monospace: (each methodClass name, '>>#', each selector) ] ] ] ] ].
-
+		self addDocumentSection: aBuilder label: label methods: methods ].
 	"Hierarchy"
-	aBuilder newLine.
-	aBuilder header: [ :builder | builder text: 'Hierarchy' ] withLevel: 2.
-	SpDocumentHierarchyBuilder new
-		builder: aBuilder;
-		filter: [ :eachClass | eachClass package packageName beginsWith: 'Spec2-' ];
-		buildFor: self
+	self addDocumentSectionHierarchy: aBuilder.
+	"Transmissions"
+	self addDocumentSectionTransmissions: aBuilder.	
 ]
 
 { #category : #specs }
@@ -91,6 +159,12 @@ SpAbstractWidgetPresenter class >> documentExampleCode [
 SpAbstractWidgetPresenter class >> documentExampleCodeSelector [
 	
 	^ #example
+]
+
+{ #category : #documentation }
+SpAbstractWidgetPresenter class >> documentFactoryMethodSelector [
+
+	^ nil
 ]
 
 { #category : #documentation }

@@ -19,6 +19,12 @@ SpButtonBarPresenter class >> adapterName [
 	^ #ButtonBarAdapter
 ]
 
+{ #category : #documentation }
+SpButtonBarPresenter class >> documentFactoryMethodSelector [
+
+	^ #newButtonBar
+]
+
 { #category : #api }
 SpButtonBarPresenter >> add: aButtonPresenter [
 	"Add `aButtonPresenter` to the button list."

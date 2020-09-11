@@ -24,6 +24,12 @@ SpButtonPresenter class >> adapterName [
 	^ #ButtonAdapter
 ]
 
+{ #category : #documentation }
+SpButtonPresenter class >> documentFactoryMethodSelector [
+
+	^ #newButton
+]
+
 { #category : #specs }
 SpButtonPresenter class >> title [
 

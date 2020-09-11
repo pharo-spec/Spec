@@ -19,6 +19,12 @@ SpActionBarPresenter class >> adapterName [
 	^ #ActionBarAdapter
 ]
 
+{ #category : #documentation }
+SpActionBarPresenter class >> documentFactoryMethodSelector [
+
+	^ #newActionBar
+]
+
 { #category : #api }
 SpActionBarPresenter >> add: aButtonPresenter [
 	"Add a button presenter to be shown at the start of the action bar (at the left)."

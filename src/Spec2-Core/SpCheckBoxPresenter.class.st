@@ -14,6 +14,12 @@ SpCheckBoxPresenter class >> adapterName [
 	^ #CheckBoxAdapter
 ]
 
+{ #category : #documentation }
+SpCheckBoxPresenter class >> documentFactoryMethodSelector [
+
+	^ #newCheckBox
+]
+
 { #category : #specs }
 SpCheckBoxPresenter class >> title [
 

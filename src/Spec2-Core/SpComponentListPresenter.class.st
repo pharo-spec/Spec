@@ -2,18 +2,6 @@
 A presenter to show a dynamic list of presenters. 
 When you do not have a list of elements that can be presented as a single list or table, it is possible to display a collection of presenters as a list using this component.
 
-## Method factory
-You create a component list sending `newComponentList`
-
-```
-self newComponentList
-	presenters: { 
-		SpLabelPresenter new label: 'Example 1'. 
-		SpLabelPresenter new label: 'Example 2'. 
-		SpLabelPresenter new label: 'Example 3' };
-	yourself
-```
-
 "
 Class {
 	#name : #SpComponentListPresenter,
@@ -24,6 +12,12 @@ Class {
 { #category : #specs }
 SpComponentListPresenter class >> adapterName [
 	^ #ComponentListAdapter
+]
+
+{ #category : #documentation }
+SpComponentListPresenter class >> documentFactoryMethodSelector [
+
+	^ #newComponentList
 ]
 
 { #category : #initialization }

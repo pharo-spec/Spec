@@ -20,6 +20,12 @@ SpAthensPresenter class >> adapterName [
 	^ #AthensAdapter
 ]
 
+{ #category : #documentation }
+SpAthensPresenter class >> documentFactoryMethodSelector [
+
+	^ #newAthens
+]
+
 { #category : #api }
 SpAthensPresenter >> drawBlock [
 	"Answer the block used to draw into an athens canvas."
