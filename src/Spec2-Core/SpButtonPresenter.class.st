@@ -131,12 +131,16 @@ SpButtonPresenter >> registerShortcut: newShortcut [
 
 { #category : #api }
 SpButtonPresenter >> shortcut [
+	"Answer the shortcut used to trigger button's action from keyboard."
 
 	^ shortcut
 ]
 
 { #category : #api }
 SpButtonPresenter >> shortcut: aShortcut [
+	"Set the shortcut used to trigger button's action from keyboard.
+	 `aShortcut` needs to be an instance of `KMKeyCombination` (or polymorphic with it), 
+	 usually <meta+some character>"
 
 	shortcut := aShortcut
 ]
