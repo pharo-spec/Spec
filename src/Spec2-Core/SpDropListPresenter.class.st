@@ -131,6 +131,7 @@ SpDropListPresenter >> iconBlock [
 	"Answer the block that will be used to retrieve the icon to be displayed along with the 
 	 elements."
 	
+	self flag: #TODO. "Rename as just #icon"
 	^ iconBlock
 ]
 
@@ -139,6 +140,7 @@ SpDropListPresenter >> iconBlock: aBlock [
 	"Answer a block that will be used to retrieve the icon to be displayed along with the elements.
 	 `aBlock` receives one argument (an element from the list)"
 	
+	self flag: #TODO. "Rename as just #icon:"
 	iconBlock := aBlock
 ]
 
