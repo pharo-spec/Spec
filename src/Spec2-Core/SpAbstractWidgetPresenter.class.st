@@ -39,6 +39,12 @@ SpAbstractWidgetPresenter class >> buildMicroDownUsing: aBuilder withComment: aS
 		horizontalLine;
 		text: aString.
 
+	"Example code"
+	self documentExampleCode ifNotNil: [ :exampleCode | 
+		aBuilder header: [ :builder | builder text: 'Example code' ] withLevel: 2.
+		aBuilder newLine.
+		aBuilder codeblock: exampleCode ].
+	
 	"Sections"
 	self documentSections keysAndValuesDo: [ :label :methods |
 		methods ifNotEmpty: [
@@ -62,6 +68,29 @@ SpAbstractWidgetPresenter class >> buildMicroDownUsing: aBuilder withComment: aS
 SpAbstractWidgetPresenter class >> defaultSpec [
 	<spec: #default>
 	^ SpAbstractWidgetLayout for: self adapterName
+]
+
+{ #category : #documentation }
+SpAbstractWidgetPresenter class >> documentExampleCode [
+	| exampleMethod |
+	
+	exampleMethod := self class methods 
+		detect: [ :each | 
+			(each protocol = #'*Spec2-Examples') 
+			and: [ each selector = self documentExampleCodeSelector ] ]
+		ifNone: [ ^ nil ].
+			
+	^ (exampleMethod sourceCode lines 
+		allButFirst 	"Remove method name"
+		reject: [ :each | each trimLeft beginsWith: '<' ]) "Remove pragmas"
+		asStringWithCr
+		trimmed
+]
+
+{ #category : #documentation }
+SpAbstractWidgetPresenter class >> documentExampleCodeSelector [
+	
+	^ #example
 ]
 
 { #category : #documentation }

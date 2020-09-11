@@ -1,5 +1,5 @@
 "
-A  Checkbox button that can be activated/deactivated.
+A Checkbox Button that can be activated/deactivated.
 
 "
 Class {
