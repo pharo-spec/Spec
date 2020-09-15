@@ -13,6 +13,30 @@ SpTreePresenter class >> example [
 ]
 
 { #category : #'*Spec2-Examples' }
+SpTreePresenter class >> exampleExpandPath [
+	
+	^ self new
+		roots: { Object };
+		children: [ :aClass | aClass subclasses ];
+		icon: [ :aClass | aClass systemIcon ];
+		display: [ :aClass | aClass name ];
+		expandPath: #(1 1 3); "Object/Exception/Notification"
+		openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
+SpTreePresenter class >> exampleExpandRoots [
+	
+	^ self new
+		roots: { Object };
+		children: [ :aClass | aClass subclasses ];
+		icon: [ :aClass | aClass systemIcon ];
+		display: [ :aClass | aClass name ];
+		expandRoots;
+		openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
 SpTreePresenter class >> exampleWithContextMenu [
 	<sampleInstance>
 	| tree |

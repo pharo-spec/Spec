@@ -16,7 +16,8 @@ Class {
 		'#color => SpObservableSlot',
 		'#help => SpObservableSlot',
 		'#enabled => SpObservableSlot',
-		'#styles'
+		'#styles',
+		'#deferredActions'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -204,6 +205,14 @@ SpAbstractWidgetPresenter >> acceptDroppingMorph: draggedMorph event: event inMo
 
 ]
 
+{ #category : #'private-deferring' }
+SpAbstractWidgetPresenter >> addDeferredAction: aBlock [
+	"Deferred actions are one-shot actions, performed during adapter initialization."
+
+	deferredActions ifNil: [ deferredActions := #() ].
+	deferredActions := deferredActions copyWith: aBlock
+]
+
 { #category : #api }
 SpAbstractWidgetPresenter >> addStyle: aStyle [
 	"Add a style-class to a presenter. Styles are defined in the application stylesheet and will 
@@ -221,6 +230,15 @@ SpAbstractWidgetPresenter >> addStyle: aStyle [
 	(styles includes: aStyle) ifTrue: [ ^ self ].
 	styles := styles copyWith: aStyle.
 	self withAdapterDo: [ :anAdapter | anAdapter addStyle: aStyle ]
+]
+
+{ #category : #'private building' }
+SpAbstractWidgetPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
+	| builtAdapter |
+
+	builtAdapter := super basicBuildAdapterWithSpecLayout: aSpecLayout.
+	self processDeferredActions.
+	^ builtAdapter
 ]
 
 { #category : #TOREMOVE }
@@ -398,6 +416,16 @@ SpAbstractWidgetPresenter >> localeChanged [
 	
 ]
 
+{ #category : #'private-deferring' }
+SpAbstractWidgetPresenter >> processDeferredActions [
+
+	deferredActions ifNil: [ ^ self ].
+	[
+		deferredActions do: [ :eachBlock | eachBlock value ] ]
+	ensure: [ 
+		deferredActions := nil ]
+]
+
 { #category : #api }
 SpAbstractWidgetPresenter >> removeStyle: aStyle [
 
@@ -492,4 +520,12 @@ SpAbstractWidgetPresenter >> whenHelpChangedDo: aBlock [
 	"Set a block to be performed when the help changed"
 
 	self property: #help whenChangedDo: aBlock
+]
+
+{ #category : #'private-deferring' }
+SpAbstractWidgetPresenter >> withAdapterPerformOrDefer: aBlock [ 
+
+	self adapter 
+		ifNotNil: [ :anAdapter | aBlock value: anAdapter ]
+		ifNil: [ self addDeferredAction: [ aBlock value: self adapter ] ]
 ]

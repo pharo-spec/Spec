@@ -129,6 +129,20 @@ SpTreePresenter >> doubleClickAtPath: aPath [
 	self doActivateAtPath: aPath
 ]
 
+{ #category : #'as yet unclassified' }
+SpTreePresenter >> expandPath: anArray [
+
+	self withAdapterPerformOrDefer: [ :anAdapter |
+		anAdapter expandPath: anArray ]
+]
+
+{ #category : #api }
+SpTreePresenter >> expandRoots [
+
+	self withAdapterPerformOrDefer: [ :anAdapter | 
+		anAdapter expandRoots ]
+]
+
 { #category : #api }
 SpTreePresenter >> hideColumnHeaders [
 

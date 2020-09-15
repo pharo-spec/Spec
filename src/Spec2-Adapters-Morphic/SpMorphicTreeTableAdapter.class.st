@@ -154,6 +154,28 @@ SpMorphicTreeTableAdapter >> ensureAtLeastOneColumnIn: tableMorph [
 	tableMorph addColumn: (self newColumnFrom: self defaultColumn)
 ]
 
+{ #category : #'as yet unclassified' }
+SpMorphicTreeTableAdapter >> expandPath: anArray [  
+
+	widget dataSource expandPath: anArray
+]
+
+{ #category : #'as yet unclassified' }
+SpMorphicTreeTableAdapter >> expandRoots [
+
+	widget dataSource expandRoots
+]
+
+{ #category : #'as yet unclassified' }
+SpMorphicTreeTableAdapter >> isExpanded: anItem [
+	| path |
+	
+	path := widget dataSource 
+		pathOfItem: anItem 
+		root: widget dataSource rootItem.
+	^ (widget dataSource itemAtPath: path) isExpanded
+]
+
 { #category : #testing }
 SpMorphicTreeTableAdapter >> isNonEditableRow: aRow column: aColumn [
 
