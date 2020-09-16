@@ -147,6 +147,20 @@ SpTreeTablePresenter >> doubleClickAtPath: aPath [
 ]
 
 { #category : #api }
+SpTreeTablePresenter >> expandPath: anArray [
+
+	self withAdapterPerformOrDefer: [ :anAdapter |
+		anAdapter expandPath: anArray ]
+]
+
+{ #category : #api }
+SpTreeTablePresenter >> expandRoots [
+
+	self withAdapterPerformOrDefer: [ :anAdapter | 
+		anAdapter expandRoots ]
+]
+
+{ #category : #api }
 SpTreeTablePresenter >> hideColumnHeaders [
 
 	showColumnHeaders := false
