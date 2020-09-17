@@ -1,15 +1,7 @@
 "
-A TablePresenter is a spec presenter for a table.
-See AbstractWidgetPresenter
+A presenter for a table.
+A table has columns with a type. 
 
-self example
-
-@@TODO
-
-!! Transmissions
-- #inputItemsPort (default)
-- #outputSelectionPort (default)
-- #outputActivationPort
 "
 Class {
 	#name : #SpTablePresenter,
@@ -28,6 +20,29 @@ Class {
 SpTablePresenter class >> adapterName [
 
 	^ #TableAdapter
+]
+
+{ #category : #documentation }
+SpTablePresenter class >> addDocumentExtraSections: aBuilder [
+
+	aBuilder newLine.
+	aBuilder header: [ :builder | builder text: 'Column types' ] withLevel: 2.
+
+	aBuilder unorderedListDuring: [ 
+		(SpTableColumn allSubclasses sorted: #name ascending) do: [ :eachType | 
+			aBuilder item: [
+				aBuilder monospace: eachType name ] ] ]
+]
+
+{ #category : #documentation }
+SpTablePresenter class >> addExtraSections: aBuilder [
+
+	aBuilder newLine.
+	aBuilder header: [ :builder | builder text: 'Column types' ] withLevel: 2.
+	aBuilder unorderedListDuring: [ 
+		(SpTableColumn allSubclasses sorted: #name ascending) do: [ :eachType | 
+			aBuilder item: [
+				aBuilder monospace: eachType name ] ] ]
 ]
 
 { #category : #api }

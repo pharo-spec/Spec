@@ -29,6 +29,12 @@ SpAbstractWidgetPresenter class >> adapterName [
 ]
 
 { #category : #documentation }
+SpAbstractWidgetPresenter class >> addDocumentExtraSections: aBuilder [
+	"a hook to add extra sections when needed"
+	
+]
+
+{ #category : #documentation }
 SpAbstractWidgetPresenter class >> addDocumentSection: aBuilder label: label methods: methods [
 	
 	methods ifEmpty: [ ^ self ].
@@ -127,6 +133,8 @@ SpAbstractWidgetPresenter class >> buildMicroDownUsing: aBuilder withComment: aS
 	"Sections"
 	self documentSections keysAndValuesDo: [ :label :methods |
 		self addDocumentSection: aBuilder label: label methods: methods ].
+	"Hook for extra sections"
+	self addDocumentExtraSections: aBuilder.
 	"Hierarchy"
 	self addDocumentSectionHierarchy: aBuilder.
 	"Transmissions"
