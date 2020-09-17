@@ -87,7 +87,7 @@ SpAbstractWidgetPresenter class >> addDocumentSectionTransmissions: aBuilder [
 	| transmissions defaultInputPort defaultOutputPort |
 	
 	transmissions := self methods select: [ :each | 
-		(each protocol = #'*Spec2-Transmission') 
+		(each protocol = self documentTransmissionsProtocol) 
 		and: [ (each selector beginsWith: 'default') not ] ].
 	transmissions ifEmpty: [ ^ self ].
 	
@@ -145,7 +145,7 @@ SpAbstractWidgetPresenter class >> documentExampleCode [
 	
 	exampleMethod := self class methods 
 		detect: [ :each | 
-			(each protocol = #'*Spec2-Examples') 
+			(each protocol = self documentExamplesProtocol) 
 			and: [ each selector = self documentExampleCodeSelector ] ]
 		ifNone: [ ^ nil ].
 			
@@ -163,24 +163,31 @@ SpAbstractWidgetPresenter class >> documentExampleCodeSelector [
 ]
 
 { #category : #documentation }
+SpAbstractWidgetPresenter class >> documentExamplesProtocol [
+	
+	^ #'*Spec2-Examples'
+]
+
+{ #category : #documentation }
 SpAbstractWidgetPresenter class >> documentFactoryMethodSelector [
 
 	^ nil
 ]
 
 { #category : #documentation }
-SpAbstractWidgetPresenter class >> documentHierarchy [
-	"'├ ─ ╰'"
-]
-
-{ #category : #documentation }
 SpAbstractWidgetPresenter class >> documentSections [
 		
 	^ OrderedDictionary newFromPairs: {
-		'Examples'. self class methods select: [ :each | each protocol = #'*Spec2-Examples' ].
+		'Examples'. self class methods select: [ :each | each protocol = self documentExamplesProtocol ].
 		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
 		'Events'. self methods select: [ :each | each protocol = #'api-events' ].
 	 }
+]
+
+{ #category : #documentation }
+SpAbstractWidgetPresenter class >> documentTransmissionsProtocol [
+
+	^ #'*Spec2-Transmission'
 ]
 
 { #category : #testing }
