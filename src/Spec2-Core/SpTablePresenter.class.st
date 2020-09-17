@@ -1,6 +1,8 @@
 "
 A presenter for a table.
-A table has columns with a type. 
+A table has columns with a type (See column types section).
+ 
+**IMPORTANT:** A table presenter does not contain other presenters. Instead, it maps the model provided (See `SpAbstractListPresenter>>#items:`) with the columns defined. If you need this behavior, you will need to use `SpComponentListPresenter`.
 
 "
 Class {
