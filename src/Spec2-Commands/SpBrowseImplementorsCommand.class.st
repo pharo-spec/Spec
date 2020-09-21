@@ -1,5 +1,5 @@
 "
-I browse all implementors of the computed context that is transformed to a selector.
+Browse all implementors of the selector found in context.
 "
 Class {
 	#name : #SpBrowseImplementorsCommand,
@@ -20,6 +20,12 @@ SpBrowseImplementorsCommand class >> defaultShortcutKey [
 		| $m control unix
 ]
 
+{ #category : #documentation }
+SpBrowseImplementorsCommand class >> documentContextRequiredSelectors [
+
+	^ super documentContextRequiredSelectors, #(selectedTextOrLine)
+]
+
 { #category : #default }
 SpBrowseImplementorsCommand class >> shortName [
 
@@ -29,5 +35,25 @@ SpBrowseImplementorsCommand class >> shortName [
 { #category : #executing }
 SpBrowseImplementorsCommand >> execute [
 
-	self systemNavigation browseAllImplementorsOf: self selector
+	self systemNavigation 
+		environment: self context environment;
+		browseAllImplementorsOf: self selectedSelector
+]
+
+{ #category : #api }
+SpBrowseImplementorsCommand >> selectedSelector [
+	| node selection |
+	
+	selection := self context selectedTextOrLine.
+	node := RBParser parseFaultyExpression: selection.
+	node
+		nodesDo: [ :n | 
+			n isMessage
+				ifTrue: [ ^ n selector ].
+			n isVariable
+				ifTrue: [ ^ n name ].
+			n isLiteralNode
+				ifTrue: [ ^ n value ] ].
+	"fall back"
+	^ selection trimmed asSymbol
 ]

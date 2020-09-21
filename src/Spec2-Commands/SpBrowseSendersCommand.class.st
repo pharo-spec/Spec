@@ -24,7 +24,7 @@ SpBrowseSendersCommand class >> defaultShortcutKey [
 { #category : #documentation }
 SpBrowseSendersCommand class >> documentContextRequiredSelectors [
 
-	^ #(environment selectedTextOrLine)
+	^ super documentContextRequiredSelectors, #(selectedTextOrLine)
 ]
 
 { #category : #default }
