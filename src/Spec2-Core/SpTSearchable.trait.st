@@ -11,14 +11,16 @@ Trait {
 	#category : #'Spec2-Core-Widgets-Table'
 }
 
-{ #category : #accessing }
+{ #category : #api }
 SpTSearchable >> disableSearch [
+	"Disable searching"
 
 	searchEnabled := false
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpTSearchable >> enableSearch [
+	"Enable searching"
 
 	searchEnabled := true
 ]
@@ -66,7 +68,7 @@ SpTSearchable >> performSearch: item matching: pattern [
 		value: pattern
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpTSearchable >> searchMatching: aBlock [
 	"Defines a block to perform a search on the model objects. 
 	 The block receives two parameters: 
@@ -85,7 +87,11 @@ SpTSearchable >> searchValueOf: item [
 
 { #category : #'api-events' }
 SpTSearchable >> whenSearchEnabledChangedDo: aBlock [
-	"Inform when search enabled/disabled has changed."
+	"Inform when search enabled/disabled has changed.
+ 	 `aBlock` has three optional arguments: 
+	 - new value
+	 - old value
+	 - the announcement triggering this action"
 
 	self property: #searchEnabled whenChangedDo: aBlock
 ]
