@@ -17,15 +17,17 @@ SpToolCommand class >> addDocumentContextRequiredSelectors: aBuilder [
 	| requiredSelectors |
 
 	requiredSelectors := self documentContextRequiredSelectors. 
-	requiredSelectors ifEmpty: [ ^ self ].
-	
+
 	aBuilder newLine.
 	aBuilder header: [ :builder | builder text: 'Required Context API' ] withLevel: 2.	
-	aBuilder unorderedListDuring: [  
-		(requiredSelectors sorted) do: [ :each |
-			aBuilder item: [
-				aBuilder monospace: each ] ] ]
-
+	requiredSelectors 
+		ifNotEmpty: [ 
+			aBuilder unorderedListDuring: [  
+				(requiredSelectors sorted) do: [ :each |
+					aBuilder item: [
+						aBuilder monospace: each ] ] ] ]
+		ifEmpty: [ 
+			aBuilder text: '(No required API is defined)' ]
 ]
 
 { #category : #documentation }
