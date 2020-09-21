@@ -1,5 +1,6 @@
 "
-I browse all senders of the computed context that is transformed to a selector.
+Browse all senders.
+
 "
 Class {
 	#name : #SpBrowseSendersCommand,
@@ -20,6 +21,12 @@ SpBrowseSendersCommand class >> defaultShortcutKey [
 		| $n control unix
 ]
 
+{ #category : #documentation }
+SpBrowseSendersCommand class >> documentContextRequiredSelectors [
+
+	^ #(environment selectedTextOrLine)
+]
+
 { #category : #default }
 SpBrowseSendersCommand class >> shortName [
 
@@ -28,6 +35,17 @@ SpBrowseSendersCommand class >> shortName [
 
 { #category : #executing }
 SpBrowseSendersCommand >> execute [
+	| env ref aVariableOrClassName |
 
-	self systemNavigation browseAllSendersOf: self selector
+	aVariableOrClassName := self context selectedTextOrLine trimmed asSymbol.
+	aVariableOrClassName ifEmpty: [ ^ self ].
+	 
+	env := self context environment.
+	env isBehavior ifTrue: [
+		(env hasSlotNamed: aVariableOrClassName) ifTrue: [
+		 ^ self systemNavigation browseAllAccessesTo: aVariableOrClassName from: env ] ].
+
+	ref:= (env bindingOf: aVariableOrClassName) 
+		ifNil: [ ^ self ].
+	self systemNavigation browseAllSendersOf: ref
 ]

@@ -12,7 +12,8 @@ Class {
 		'#interactionModel => SpObservableSlot',
 		'#overrideContextMenu',
 		'#submitBlock',
-		'#resetBlock'
+		'#resetBlock',
+		'#environment'
 	],
 	#category : #'Spec2-Code'
 }
@@ -260,6 +261,19 @@ SpCodePresenter >> doItReceiver [
 { #category : #'private bindings' }
 SpCodePresenter >> doItReceiver: anObject [
 
+]
+
+{ #category : #'command support' }
+SpCodePresenter >> environment [
+
+	^ environment ifNil: [ self class environment ]
+]
+
+{ #category : #'command support' }
+SpCodePresenter >> environment: anEnvironment [
+	"Set system environment to be used in commands"
+	
+	environment := anEnvironment
 ]
 
 { #category : #accessing }
