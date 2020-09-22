@@ -87,11 +87,14 @@ SpListPresenter >> displayValueFor: anObject [
 
 { #category : #testing }
 SpListPresenter >> hasHeaderTitle [
+	"Answer true if the list has a title (See `SpListPresenter>>#headerTitle:`)."
+
 	^ headerTitle isEmptyOrNil not
 ]
 
 { #category : #testing }
 SpListPresenter >> hasIcons [
+	"Answer true if the list has an icon provider (See `SpListPresenter>>#icons:`)."
 
 	^ self icons notNil
 ]

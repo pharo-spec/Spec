@@ -17,6 +17,12 @@ SpMenuButtonPresenter class >> adapterName [
 	^ #MenuButtonAdapter
 ]
 
+{ #category : #documentation }
+SpMenuButtonPresenter class >> documentFactoryMethodSelector [
+
+	^ #newMenuButton
+]
+
 { #category : #specs }
 SpMenuButtonPresenter class >> title [
 

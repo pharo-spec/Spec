@@ -18,3 +18,9 @@ SpMenuBarPresenter class >> adapterName [
 
 	^ #MenuBarAdapter
 ]
+
+{ #category : #documentation }
+SpMenuBarPresenter class >> documentFactoryMethodSelector [
+
+	^ #newMenuBar
+]
