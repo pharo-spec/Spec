@@ -49,15 +49,3 @@ SpCodeSelectionCommand >> evaluateSelectionAndDo: aBlock [
 		evaluate: selection 
 		andDo: aBlock
 ]
-
-{ #category : #accessing }
-SpCodeSelectionCommand >> selectedText [
-	
-	^ self context selectedText
-]
-
-{ #category : #accessing }
-SpCodeSelectionCommand >> selectedTextOrLine [
-	
-	^ self context selectedTextOrLine
-]

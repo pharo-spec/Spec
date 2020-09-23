@@ -37,7 +37,7 @@ SpSystemNavigationCommand >> selector [
 	^ self target trimBoth asSymbol
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SpSystemNavigationCommand >> systemNavigation [
 
 	^ super systemNavigation
