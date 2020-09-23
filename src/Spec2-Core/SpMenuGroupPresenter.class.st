@@ -18,6 +18,12 @@ SpMenuGroupPresenter class >> adapterName [
 	^ #MenuGroupAdapter
 ]
 
+{ #category : #documentation }
+SpMenuGroupPresenter class >> documentExampleCodeSelector [
+
+	^ #exampleMenuGroup
+]
+
 { #category : #private }
 SpMenuGroupPresenter >> add: aName target: targetObject selector: aSelector [
 	
