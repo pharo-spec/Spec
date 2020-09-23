@@ -22,6 +22,8 @@ SpToolCommand class >> addDocumentContextRequiredSelectors: aBuilder [
 	aBuilder header: [ :builder | builder text: 'Required Context API' ] withLevel: 2.	
 	requiredSelectors 
 		ifNotEmpty: [ 
+			aBuilder text: 'To work properly, the context passed to this command has to implement the following vocabulary (See `CmCommand>>#context:`).'.
+			aBuilder newLine.
 			aBuilder unorderedListDuring: [  
 				(requiredSelectors sorted) do: [ :each |
 					aBuilder item: [
