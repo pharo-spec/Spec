@@ -11,30 +11,14 @@ SpMenuBarPresenter class >> example [
 			yourself).
 			
 	submenuFile := SpMenuPresenter new 
-		addGroup: [ :group | group 
-			addItem: [ :item | 
-				item 
-					name: 'Quit'; 
-					icon: (self iconNamed: #smallQuit); 
-					action: [ "Action" ] ] ].
+		addItem: [ :item | item name: 'Quit'; icon: (self iconNamed: #smallQuit); action: [ "Action" ] ];
+		yourself.
 			
 	submenuEdit := SpMenuPresenter new 
-		addGroup: [ :group | group 
-			addItem: [ :item | 
-				item 
-					name: 'Copy'; 
-					icon: (self iconNamed: #smallCopy); 
-					action: [ "Action" ] ];
-			addItem: [ :item | 
-				item 
-					name: 'Cut'; 
-					icon: (self iconNamed: #smallCut); 
-					action: [ "Action" ] ];
-			addItem: [ :item | 
-				item 
-					name: 'Paste'; 
-					icon: (self iconNamed: #smallPaste); 
-					action: [ "Action" ] ] ].
+		addItem: [ :item | item name: 'Copy'; icon: (self iconNamed: #smallCopy); action: [ "Action" ] ];
+		addItem: [ :item | item name: 'Cut'; icon: (self iconNamed: #smallCut); action: [ "Action" ] ];
+		addItem: [ :item | item name: 'Paste'; icon: (self iconNamed: #smallPaste); action: [ "Action" ] ];
+		yourself.
 
 	menuBar addGroup: [ :group | group
 		addItem: [ :item | item name: 'File'; subMenu: submenuFile ];

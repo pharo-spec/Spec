@@ -20,6 +20,11 @@ SpMenuBarPresenter class >> adapterName [
 ]
 
 { #category : #documentation }
+SpMenuBarPresenter class >> addDocumentExtraSections: aBuilder [
+	"It does not applies here"
+]
+
+{ #category : #documentation }
 SpMenuBarPresenter class >> documentFactoryMethodSelector [
 
 	^ #newMenuBar

@@ -29,7 +29,6 @@ SpTablePresenter class >> addDocumentExtraSections: aBuilder [
 
 	aBuilder newLine.
 	aBuilder header: [ :builder | builder text: 'Column types' ] withLevel: 2.
-
 	aBuilder unorderedListDuring: [ 
 		(SpTableColumn allSubclasses sorted: #name ascending) do: [ :eachType | 
 			aBuilder item: [

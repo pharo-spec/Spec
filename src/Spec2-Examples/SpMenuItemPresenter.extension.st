@@ -2,6 +2,33 @@ Extension { #name : #SpMenuItemPresenter }
 
 { #category : #'*Spec2-Examples' }
 SpMenuItemPresenter class >> example [
+
+	^ SpMenuPresenter new
+		addItem: [ :item | item name: 'Test 1'; action: [ "Action" ] ];
+		addItem: [ :item | item name: 'Test 2'; action: [ "action" ] ];
+		addItem: [ :item | item name: 'Test 3'; action: [ "Action" ] ];
+		openWithSpecAt: self currentHand position.
+]
+
+{ #category : #'*Spec2-Examples' }
+SpMenuItemPresenter class >> exampleWithSubMenu [
+
+	^ SpMenuPresenter new
+		addItem: [ :item | item name: 'Test 1'; action: [ "action" ] ];
+		addItem: [ :item | 
+			item 
+				name: 'Test 2'; 
+				subMenu: (SpMenuPresenter new 
+					addItem: [ :subMenuItem | subMenuItem name: 'SubMenu 1'; action: [ ] ];
+					addItem: [ :subMenuItem | subMenuItem name: 'SubMenu 2'; action: [ ] ];
+					addItem: [ :subMenuItem | subMenuItem name: 'SubMenu 3'; action: [ ] ];
+					yourself) ];
+		addItem: [ :item | item name: 'Test 3'; action: [ "Action" ] ];
+		openWithSpecAt: self currentHand position.
+]
+
+{ #category : #'*Spec2-Examples' }
+SpMenuItemPresenter class >> exampleWithinMenuButton [
 	| presenter menuButton loremIpsumWords |
 
 	(presenter := SpPresenter new) 
