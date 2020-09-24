@@ -154,7 +154,7 @@ SpMenuPresenter >> icon: anIcon [
 	icon := anIcon
 ]
 
-{ #category : #api }
+{ #category : #TOREMOVE }
 SpMenuPresenter >> iconName: aSymbol [
 	self icon: (self iconNamed: aSymbol)
 ]

@@ -1,7 +1,7 @@
-Extension { #name : #SpMenuButtonPresenter }
+Extension { #name : #SpMenuItemPresenter }
 
 { #category : #'*Spec2-Examples' }
-SpMenuButtonPresenter class >> example [
+SpMenuItemPresenter class >> example [
 	| presenter menuButton loremIpsumWords |
 
 	(presenter := SpPresenter new) 
