@@ -65,6 +65,12 @@ SpToolbarPresenter class >> example [
 		openWithSpec
 ]
 
+{ #category : #api }
+SpToolbarPresenter >> add: aPresenter [ 
+	
+	self addItem: aPresenter
+]
+
 { #category : #convenience }
 SpToolbarPresenter >> addButtonLabel: aLabel iconNamed: anIconName help: aHelpString action: aBlock [
 
