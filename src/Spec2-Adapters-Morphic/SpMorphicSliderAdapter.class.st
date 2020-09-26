@@ -21,6 +21,7 @@ SpMorphicSliderAdapter >> absoluteValue: aFloat [
 { #category : #factory }
 SpMorphicSliderAdapter >> buildWidget [
 	| preWidget |
+
 	preWidget := PluggableSliderMorph new
 		model: self;
 		getValueSelector: #value;
@@ -81,6 +82,14 @@ SpMorphicSliderAdapter >> value [
 
 { #category : #'widget API' }
 SpMorphicSliderAdapter >> value: aValue [
+	| value | 
+	
+	value := aValue isNumber
+		ifTrue: [ aValue ] 
+		ifFalse: [ 
+			(aValue includes: $/)
+				ifTrue: [ (NumberParser on: aValue) nextFraction ]
+				ifFalse: [ aValue asNumber ] ].
 
-	^ self presenter value: aValue
+	^ self presenter value: value asFloat
 ]
