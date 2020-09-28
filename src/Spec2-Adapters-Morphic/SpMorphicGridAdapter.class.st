@@ -22,29 +22,31 @@ SpMorphicGridAdapter >> addConstraits: constraints toChild: childMorph [
 ]
 
 { #category : #private }
-SpMorphicGridAdapter >> applyAlignmentTo: aWidget constraints: constraints [
-	| alignmentWidget |
-	
-	aWidget 
-		changeTableLayout;
-		hResizing: #shrinkWrap; 
-		vResizing: #shrinkWrap.
-	
-	alignmentWidget := Morph new
-		changeTableLayout; 
-		color: Color transparent;
-		addMorphBack: aWidget.
+SpMorphicGridAdapter >> applyChildrenAlignmentTo: aWidget constraints: constraints [
 
-	constraints vAlign ifNotNil: [ :align |
-		alignmentWidget listCentering: align asMorphicAlign ].
-	constraints hAlign ifNotNil: [ :align |
-		alignmentWidget wrapCentering: align asMorphicAlign ].
-		
-	^ alignmentWidget
+	constraints hasAlignment 
+		ifTrue: [ ^ self basicApplyChildrenAlignmentTo: aWidget constraints: constraints ].
+	(layout columnConstraintsAt: constraints column) ifNotNil: [ :axisConstraints |
+		axisConstraints hasAlignment 
+			ifTrue: [ ^ self basicApplyChildrenAlignmentTo: aWidget constraints: axisConstraints ] ].
+
+	^ aWidget
 ]
 
 { #category : #private }
-SpMorphicGridAdapter >> applyChildrenAlignmentTo: aWidget constraints: constraints [
+SpMorphicGridAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
+	| childMorph |
+
+	childMorph := self 
+		buildMorph: aPresenter 
+		constraints: constraints.
+	aPanel addMorphBack: childMorph.
+		
+	^ childMorph	
+]
+
+{ #category : #private }
+SpMorphicGridAdapter >> basicApplyChildrenAlignmentTo: aWidget constraints: constraints [
 	| alignmentWidget |
 	
 	constraints hasAlignment ifFalse: [ ^ aWidget ].
@@ -65,18 +67,6 @@ SpMorphicGridAdapter >> applyChildrenAlignmentTo: aWidget constraints: constrain
 		alignmentWidget wrapCentering: align asMorphicAlign ].
 		
 	^ alignmentWidget
-]
-
-{ #category : #private }
-SpMorphicGridAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
-	| childMorph |
-
-	childMorph := self 
-		buildMorph: aPresenter 
-		constraints: constraints.
-	aPanel addMorphBack: childMorph.
-		
-	^ childMorph	
 ]
 
 { #category : #accessing }
