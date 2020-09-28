@@ -29,6 +29,9 @@ SpMorphicGridAdapter >> applyChildrenAlignmentTo: aWidget constraints: constrain
 	(layout columnConstraintsAt: constraints column) ifNotNil: [ :axisConstraints |
 		axisConstraints hasAlignment 
 			ifTrue: [ ^ self basicApplyChildrenAlignmentTo: aWidget constraints: axisConstraints ] ].
+	(layout rowConstraintsAt: constraints row) ifNotNil: [ :axisConstraints |
+		axisConstraints hasAlignment 
+			ifTrue: [ ^ self basicApplyChildrenAlignmentTo: aWidget constraints: axisConstraints ] ].
 
 	^ aWidget
 ]
