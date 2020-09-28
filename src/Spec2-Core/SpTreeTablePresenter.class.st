@@ -3,14 +3,6 @@ A TreeTablePresenter handles a tree table.
 Tables defines columns (see #addColumn: and TableColumn hierarchy).
 Tables receive items (see #items:) to feed the table.
 
-self example
-
-@@TODO
-
-!! Transmissions
-- #inputRootsPort (default)
-- #outputSelectionPort (default)
-- #outputActivationPort
 "
 Class {
 	#name : #SpTreeTablePresenter,

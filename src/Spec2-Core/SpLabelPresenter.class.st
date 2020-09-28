@@ -18,13 +18,10 @@ SpLabelPresenter class >> adapterName [
 	^ #LabelAdapter
 ]
 
-{ #category : #example }
-SpLabelPresenter class >> example [
-	"This example opens a spec window with a label."
+{ #category : #documentation }
+SpLabelPresenter class >> documentFactoryMethodSelector [
 
-	^ SpLabelPresenter new
-		label: 'Label example';
-		openWithSpec.
+	^ #newLabel
 ]
 
 { #category : #specs }
