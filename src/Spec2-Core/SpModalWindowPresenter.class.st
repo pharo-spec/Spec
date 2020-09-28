@@ -7,7 +7,8 @@ Usually instances of `SpModalWindowPresenter` are created using the method `SpAb
 If you want to make the user to show a dialog without blocking the execution of other windows, use `SpAbstractPresenter>>#openDialogWithSpec` instead.
 
 ## Usage 
-Tipically, you do not instantiate directly a modal dialog, but you open a presenter as one.
+Tipically, you do not instantiate directly a modal dialog, but you open a presenter as one. Since the program execution will be stopped until dialog is resolved (accepted or cancelled), you can ask for the status after calling it.
+
 ```
 dialog := aPresenter openModalWithSpec.
 dialog isOk 

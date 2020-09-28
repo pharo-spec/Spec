@@ -117,14 +117,7 @@ SpAbstractWidgetPresenter class >> addDocumentSectionTransmissions: aBuilder [
 { #category : #documentation }
 SpAbstractWidgetPresenter class >> buildMicroDownUsing: aBuilder withComment: aString [
 	
-	"Header"
-	aBuilder 
-		header: [ :builder | 
-				builder text: 'Class: '.
-				builder text: self name] 
-			withLevel: 1;
-		horizontalLine;
-		text: aString.
+	super buildMicroDownUsing: aBuilder withComment: aString.
 
 	"Example code"
 	self addDocumentSectionExampleCode: aBuilder.
