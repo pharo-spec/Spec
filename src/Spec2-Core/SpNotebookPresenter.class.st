@@ -17,7 +17,7 @@ SpNotebookPresenter class >> adapterName [
 	^ #NotebookAdapter
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpNotebookPresenter >> addPage: aPage [
 
 	aPage owner: self.
@@ -32,7 +32,7 @@ SpNotebookPresenter >> initialize [
 	pagesHolder whenChangedDo: [ self pagesChanged ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpNotebookPresenter >> pageAt: index [
 
 	^ self pages at: index
@@ -44,13 +44,13 @@ SpNotebookPresenter >> pageTitleChanged: aPage [
 	self changed: #updatePageTitle: with: { aPage }
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpNotebookPresenter >> pages [ 
 
 	^ pagesHolder value
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpNotebookPresenter >> pages: aCollection [
 
 	aCollection do: [ :each | each owner: self ].
@@ -82,31 +82,31 @@ SpNotebookPresenter >> removePageAt: anIndex [
 	pagesHolder removeAt: anIndex
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpNotebookPresenter >> resetAllPageContents [
 
 	self pages do: #resetContent
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpNotebookPresenter >> selectPage: aPage [
 
 	aPage = self selectedPage ifTrue: [ ^ self ].
 	selectedPage := aPage
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpNotebookPresenter >> selectPageIndex: aNumber [
 	self selectPage: (self pages at: aNumber)
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpNotebookPresenter >> selectedPage [
 
 	^ selectedPage
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpNotebookPresenter >> selectedPageIndex [
 	| page |
 	
@@ -134,7 +134,19 @@ SpNotebookPresenter >> updatePageContent: aPage [
 	self changed: #updatePageContent: with: { aPage }
 ]
 
-{ #category : #enumerating }
+{ #category : #'api-events' }
+SpNotebookPresenter >> whenPageAddedDo: aBlock [
+
+	pagesHolder whenAddedDo: aBlock
+]
+
+{ #category : #'api-events' }
+SpNotebookPresenter >> whenPageRemovedDo: aBlock [
+
+	pagesHolder whenRemovedDo: aBlock
+]
+
+{ #category : #'api-events' }
 SpNotebookPresenter >> whenPagesChangedDo: aBlock [
 
 	pagesHolder whenChangedDo: aBlock
