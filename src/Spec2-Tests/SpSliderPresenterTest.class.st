@@ -38,6 +38,27 @@ SpSliderPresenterTest >> testReset [
 ]
 
 { #category : #tests }
+SpSliderPresenterTest >> testValueEqualsScaled [
+
+	self initMinMax.
+	presenter whenValueChangedDo: [ :v | presenter label: v asString ].
+	presenter value: 4.
+	self assert: presenter label equals: '4'.
+	presenter
+		min: -1 / 2;
+		max: 1 / 2. 
+	presenter value: 0.25.
+	self assert: presenter label equals: '0.25'.
+	presenter value: 1.
+	self assert: presenter label equals: '1'.
+	presenter
+		min: -0.257;
+		max: 4096.0.
+	presenter value: 4095.99.
+	self assert: presenter label equals: '4095.99'
+]
+
+{ #category : #tests }
 SpSliderPresenterTest >> testValueToAbsoluteValueScales [
 	self initMinMax.
 	self assert:  (presenter valueToAbsoluteValue: 50) equals: 0.5
