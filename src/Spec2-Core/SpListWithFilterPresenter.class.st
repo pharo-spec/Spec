@@ -1,6 +1,5 @@
 "
 I am a presenter that has a list and a text input for filtering the elements on the list.
-The items on the list must be set using the method `self items:`, not using the accessor `self list` and then passing the message `items:`. This is because an internal variable is needed in order to recover the original list items when the filter text is erased.
 
 The list items are filtered based on what the `display` method of the list returns. In other words, what you see is what is used to filter.
 
@@ -37,7 +36,7 @@ SpListWithFilterPresenter class >> example [
 	<sampleInstance>
 	| example |
 	example := self new.
-	example items: RBBrowserEnvironment default classes asArray.
+	example list items: RBBrowserEnvironment default classes asArray.
 	example openWithSpec.
 	example withWindowDo: [ :window | 
 		window title: self name asString , ' example' ].
@@ -73,6 +72,10 @@ SpListWithFilterPresenter >> filterInput [
 SpListWithFilterPresenter >> filterListItems: pattern [
 
 	| filteredItems |
+	unfilteredItems ifNil: [ unfilteredItems := list items ].
+	pattern ifEmpty: [ 
+		list items: unfilteredItems.
+		^ self ].
 	filteredItems := unfilteredItems select: [ :item | 
 		                 itemFilter
 			                 value: (list display value: item)
@@ -103,21 +106,6 @@ SpListWithFilterPresenter >> itemFilter [
 SpListWithFilterPresenter >> itemFilter: aBlock [
 
 	itemFilter := aBlock
-]
-
-{ #category : #api }
-SpListWithFilterPresenter >> items [
-
-	^ list items
-]
-
-{ #category : #api }
-SpListWithFilterPresenter >> items: aCollection [
-
-	"List items MUST be set using this method, not using `self list items:`. This is because the instace variable unfilteredItems is needed in order to not lose the original items when filtering."
-
-	unfilteredItems := aCollection.
-	list items: aCollection
 ]
 
 { #category : #accessing }
