@@ -322,6 +322,12 @@ SpTreeTablePresenter >> selection [
 	^ selectionMode value
 ]
 
+{ #category : #accessing }
+SpTreeTablePresenter >> selectionMode [ 
+
+	^ selectionMode
+]
+
 { #category : #private }
 SpTreeTablePresenter >> selectionMode: aMode [
 	
