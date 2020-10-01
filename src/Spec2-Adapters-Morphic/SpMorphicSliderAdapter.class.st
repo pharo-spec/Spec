@@ -35,11 +35,11 @@ SpMorphicSliderAdapter >> buildWidget [
 		vResizing: #spaceFill;
 		hResizing: #spaceFill;
 		yourself.
-	preWidget := self presenter isHorizontal
-		ifTrue: [ preWidget ]
-		ifFalse: [ preWidget := TransformationMorph new asFlexOf: preWidget.
-			preWidget transform withAngle: 90 degreesToRadians negated.
-			preWidget ].
+	self presenter isHorizontal
+		ifFalse: [ 
+			preWidget := TransformationMorph new asFlexOf: preWidget.
+			preWidget transform withAngle: 90 degreesToRadians negated  ].
+		
 	self presenter
 		whenMinChangedDo: [ :newValue | preWidget min: newValue ].
 	self presenter
