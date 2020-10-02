@@ -72,7 +72,7 @@ SpTSearchable >> performSearch: item matching: pattern [
 
 { #category : #api }
 SpTSearchable >> searchMatching: aBlock [
-	"Defines a block to perform a search on the model objects. 
+	"Enables search and defines a block to perform a search on the model objects. 
 	 The block receives two parameters: 
 		- item (the model element)
 		- pattern (the string to match)"

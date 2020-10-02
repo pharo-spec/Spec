@@ -12,12 +12,6 @@ SpTablePresenter class >> example [
 ]
 
 { #category : #'*Spec2-Examples' }
-SpTablePresenter class >> exampleEditableCell [
-
-	self flag: #TODO
-]
-
-{ #category : #'*Spec2-Examples' }
 SpTablePresenter class >> exampleWithColumnHeaders [
 	<sampleInstance>
 
