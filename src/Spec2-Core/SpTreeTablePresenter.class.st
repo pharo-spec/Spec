@@ -3,6 +3,14 @@ A TreeTablePresenter handles a tree table.
 Tables defines columns (see #addColumn: and TableColumn hierarchy).
 Tables receive items (see #items:) to feed the table.
 
+self example
+
+@@TODO
+
+!! Transmissions
+- #inputRootsPort (default)
+- #outputSelectionPort (default)
+- #outputActivationPort
 "
 Class {
 	#name : #SpTreeTablePresenter,
@@ -136,20 +144,6 @@ SpTreeTablePresenter >> doubleClickAtPath: aPath [
 	
 	activateOnSingleClick ifTrue: [ ^ self ].
 	self doActivateAtPath: aPath
-]
-
-{ #category : #api }
-SpTreeTablePresenter >> expandPath: anArray [
-
-	self withAdapterPerformOrDefer: [ :anAdapter |
-		anAdapter expandPath: anArray ]
-]
-
-{ #category : #api }
-SpTreeTablePresenter >> expandRoots [
-
-	self withAdapterPerformOrDefer: [ :anAdapter | 
-		anAdapter expandRoots ]
 ]
 
 { #category : #api }

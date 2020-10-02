@@ -40,14 +40,12 @@ SpComponentListPresenter >> doActivateAtIndex: index [
 
 { #category : #testing }
 SpComponentListPresenter >> includes: aPresenter [
-	"Answer true when the presenter includes `aPresenter` as part of its items." 
-
+ 
 	^ self presenters includes: aPresenter  
 ]
 
 { #category : #testing }
 SpComponentListPresenter >> isEmpty [
-	"Answer true if presenter list is empty."	
 
 	^ self presenters isEmpty
 ]

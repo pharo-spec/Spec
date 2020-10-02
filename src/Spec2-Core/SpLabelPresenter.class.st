@@ -1,7 +1,18 @@
 "
+I'm a LabelPresenter, made to add labels to spec components.
+
+! SpLabelPresenter 
 A label presenter displays smalls (or medium) amounts of text.
 
-_NOTE: In the future, it should be possible to attach another widget to a label, but for now it is not implemented._
+Examples:
+> self example
+
+NOTE: In the future, it should be possible to attach another widget to a label, but for now it is not implementes.
+
+@@TODO
+
+!! Transmissions
+- #inputLabelPort (default)
 "
 Class {
 	#name : #SpLabelPresenter,
@@ -18,10 +29,13 @@ SpLabelPresenter class >> adapterName [
 	^ #LabelAdapter
 ]
 
-{ #category : #documentation }
-SpLabelPresenter class >> documentFactoryMethodSelector [
+{ #category : #example }
+SpLabelPresenter class >> example [
+	"This example opens a spec window with a label."
 
-	^ #newLabel
+	^ SpLabelPresenter new
+		label: 'Label example';
+		openWithSpec.
 ]
 
 { #category : #specs }
@@ -53,16 +67,14 @@ SpLabelPresenter >> initialize [
 
 { #category : #api }
 SpLabelPresenter >> label [
-	"Answer the label to be displayed."
-
 	^ label
 ]
 
 { #category : #api }
-SpLabelPresenter >> label: aString [
-	"Set the label to be displayed"
+SpLabelPresenter >> label: aText [
+	"Set the text of the label"
 
-	label := aString
+	label := aText
 ]
 
 { #category : #localization }
@@ -75,11 +87,5 @@ SpLabelPresenter >> localeChanged [
 
 { #category : #'api-events' }
 SpLabelPresenter >> whenLabelChangedDo: aValuable [
-	"Inform when label state has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
 	self property: #label whenChangedDo: aValuable
 ]

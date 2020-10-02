@@ -1,6 +1,10 @@
 "
-A presenter to display  images.
-Images need to be instances of `Form`.  
+An ImagePresenter is a spec presenter for images.
+See AbstractWidgetPresenter
+
+I provide the following variables and their accessors
+- action is the action performed when I am displayed.
+- image is the form i display.
 "
 Class {
 	#name : #SpImagePresenter,
@@ -19,56 +23,42 @@ SpImagePresenter class >> adapterName [
 	^ #ImageAdapter
 ]
 
-{ #category : #documentation }
-SpImagePresenter class >> documentFactoryMethodSelector [
-
-	^ #newImage
-]
-
-{ #category : #TOREMOVE }
+{ #category : #api }
 SpImagePresenter >> action [
 
 	^ action
 ]
 
-{ #category : #TOREMOVE }
+{ #category : #api }
 SpImagePresenter >> action: aBlock [
 	"Set the action of the image"
-
 	action := aBlock
 ]
 
 { #category : #api }
 SpImagePresenter >> autoScale [
-	"Answer if image has autoscale activated."
-
 	^ autoScale
 ]
 
 { #category : #api }
 SpImagePresenter >> autoScale: aBoolean [
-	"Set whether image will autoscale or not."
-
 	autoScale := aBoolean
 ]
 
 { #category : #api }
 SpImagePresenter >> image [
-	"Answer the `Form` instance that will be displayed."
 
 	^ image
 ]
 
 { #category : #api }
 SpImagePresenter >> image: aForm [
-	"Set a `Form` instance to be displayed."
 	
 	image := aForm
 ]
 
 { #category : #initialization }
 SpImagePresenter >> initialize [
-
 	super initialize.
 	action := [  ].
 	autoScale := false
@@ -76,30 +66,17 @@ SpImagePresenter >> initialize [
 
 { #category : #api }
 SpImagePresenter >> switchAutoscale [
-	"Toggles autoscale state."
-	
-	autoScale := autoScale not
+	autoScale := autoScale not.
 
 ]
 
-{ #category : #'api-events' }
+{ #category : #events }
 SpImagePresenter >> whenAutoScaleChangeDo: aBlockClosure [
-	"Inform when autoScale state has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
 	self property: #autoScale whenChangedDo: aBlockClosure
 ]
 
-{ #category : #'api-events' }
-SpImagePresenter >> whenImageChangeDo: aBlock [ 
-	"Inform when image to display has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
+{ #category : #events }
+SpImagePresenter >> whenImageChangeDo: aBlockClosure [ 
 	
-	self property: #image whenChangedDo: aBlock 
+	self property: #image whenChangedDo: aBlockClosure 
 ]

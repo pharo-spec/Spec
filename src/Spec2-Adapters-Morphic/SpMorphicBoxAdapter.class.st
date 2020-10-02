@@ -6,6 +6,7 @@ Class {
 	#name : #SpMorphicBoxAdapter,
 	#superclass : #SpMorphicLayoutAdapter,
 	#instVars : [
+		'layout',
 		'startPanel',
 		'endPanel'
 	],

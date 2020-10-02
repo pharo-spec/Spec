@@ -65,26 +65,25 @@ SpSliderInput class >> sliderTop [
 
 { #category : #initialization }
 SpSliderInput >> connectPresenters [
-
-	slider whenValueChangedDo: [ :sliderValue | 
-		| inputValue |
-		inputValue := input text asNumber.	" ifNotNil: [ :text | text asNumber ]"
-		sliderValue == inputValue
-			ifFalse: [ input text: sliderValue asString ] ].
-	
-	input whenTextChangedDo: [ :text | 
-		| inputValue |
-		inputValue := text asNumber.
-		slider value == inputValue
-			ifFalse: [ slider value: inputValue ] ]
+	slider
+		whenValueChangedDo: [ :sliderValue | 
+			| inputValue |
+			inputValue := input text asNumber.	" ifNotNil: [ :text | text asNumber ]"
+			sliderValue == inputValue
+				ifFalse: [ input text: sliderValue asString ] ].
+	input
+		whenTextChangedDo: [ :text | 
+			| inputValue |
+			inputValue := text asNumber.
+			slider value == inputValue
+				ifFalse: [ slider value: inputValue ] ]
 ]
 
 { #category : #initialization }
 SpSliderInput >> initializePresenters [
-
-	slider := self newSlider.
-	input := self newTextInput
-
+	slider := self instantiate: SpSliderPresenter.
+	input := self instantiate: SpTextInputFieldPresenter.
+	self focusOrder add: input
 ]
 
 { #category : #accessing }

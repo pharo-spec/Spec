@@ -4,7 +4,6 @@ Extension { #name : #SpLinkPresenter }
 SpLinkPresenter class >> example [
 	<sampleInstance>
 	| example |
-
 	example := self new
 		url: 'https://pharo.org';
 		label: 'Pharo website';
@@ -13,6 +12,5 @@ SpLinkPresenter class >> example [
 		yourself.
 
 	example withWindowDo: [ :w | w title: 'Link presenter' ].
-
 	^ example
 ]

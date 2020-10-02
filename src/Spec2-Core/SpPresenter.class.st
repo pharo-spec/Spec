@@ -346,7 +346,6 @@ SpPresenter >> bindKeyCombination: aShortcut toAction: aBlock [
 
 { #category : #testing }
 SpPresenter >> canTakeKeyboardFocus [
-	"Answer when the presenter can take keyboard focus."
 
 	^ true
 ]

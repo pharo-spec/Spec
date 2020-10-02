@@ -16,8 +16,7 @@ Class {
 		'#color => SpObservableSlot',
 		'#help => SpObservableSlot',
 		'#enabled => SpObservableSlot',
-		'#styles',
-		'#deferredActions'
+		'#styles'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -26,12 +25,6 @@ Class {
 SpAbstractWidgetPresenter class >> adapterName [
 
 	^ self subclassResponsibility
-]
-
-{ #category : #documentation }
-SpAbstractWidgetPresenter class >> addDocumentExtraSections: aBuilder [
-	"a hook to add extra sections when needed"
-	
 ]
 
 { #category : #documentation }
@@ -93,7 +86,7 @@ SpAbstractWidgetPresenter class >> addDocumentSectionTransmissions: aBuilder [
 	| transmissions defaultInputPort defaultOutputPort |
 	
 	transmissions := self methods select: [ :each | 
-		(each protocol = self documentTransmissionsProtocol) 
+		(each protocol = #'*Spec2-Transmission') 
 		and: [ (each selector beginsWith: 'default') not ] ].
 	transmissions ifEmpty: [ ^ self ].
 	
@@ -117,7 +110,14 @@ SpAbstractWidgetPresenter class >> addDocumentSectionTransmissions: aBuilder [
 { #category : #documentation }
 SpAbstractWidgetPresenter class >> buildMicroDownUsing: aBuilder withComment: aString [
 	
-	super buildMicroDownUsing: aBuilder withComment: aString.
+	"Header"
+	aBuilder 
+		header: [ :builder | 
+				builder text: 'Class: '.
+				builder text: self name] 
+			withLevel: 1;
+		horizontalLine;
+		text: aString.
 
 	"Example code"
 	self addDocumentSectionExampleCode: aBuilder.
@@ -126,8 +126,6 @@ SpAbstractWidgetPresenter class >> buildMicroDownUsing: aBuilder withComment: aS
 	"Sections"
 	self documentSections keysAndValuesDo: [ :label :methods |
 		self addDocumentSection: aBuilder label: label methods: methods ].
-	"Hook for extra sections"
-	self addDocumentExtraSections: aBuilder.
 	"Hierarchy"
 	self addDocumentSectionHierarchy: aBuilder.
 	"Transmissions"
@@ -146,7 +144,7 @@ SpAbstractWidgetPresenter class >> documentExampleCode [
 	
 	exampleMethod := self class methods 
 		detect: [ :each | 
-			(each protocol = self documentExamplesProtocol) 
+			(each protocol = #'*Spec2-Examples') 
 			and: [ each selector = self documentExampleCodeSelector ] ]
 		ifNone: [ ^ nil ].
 			
@@ -164,32 +162,24 @@ SpAbstractWidgetPresenter class >> documentExampleCodeSelector [
 ]
 
 { #category : #documentation }
-SpAbstractWidgetPresenter class >> documentExamplesProtocol [
-	
-	^ #'*Spec2-Examples'
-]
-
-{ #category : #documentation }
 SpAbstractWidgetPresenter class >> documentFactoryMethodSelector [
 
 	^ nil
 ]
 
 { #category : #documentation }
-SpAbstractWidgetPresenter class >> documentSections [
-		
-	^ OrderedDictionary newFromPairs: {
-		'Examples'. self class methods select: [ :each | each protocol = self documentExamplesProtocol ].
-		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
-		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api-events' ].
-	 }
+SpAbstractWidgetPresenter class >> documentHierarchy [
+	"'├ ─ ╰'"
 ]
 
 { #category : #documentation }
-SpAbstractWidgetPresenter class >> documentTransmissionsProtocol [
-
-	^ #'*Spec2-Transmission'
+SpAbstractWidgetPresenter class >> documentSections [
+		
+	^ OrderedDictionary newFromPairs: {
+		'Examples'. self class methods select: [ :each | each protocol = #'*Spec2-Examples' ].
+		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
+		'Events'. self methods select: [ :each | each protocol = #'api-events' ].
+	 }
 ]
 
 { #category : #testing }
@@ -214,14 +204,6 @@ SpAbstractWidgetPresenter >> acceptDroppingMorph: draggedMorph event: event inMo
 
 ]
 
-{ #category : #'private-deferring' }
-SpAbstractWidgetPresenter >> addDeferredAction: aBlock [
-	"Deferred actions are one-shot actions, performed during adapter initialization."
-
-	deferredActions ifNil: [ deferredActions := #() ].
-	deferredActions := deferredActions copyWith: aBlock
-]
-
 { #category : #api }
 SpAbstractWidgetPresenter >> addStyle: aStyle [
 	"Add a style-class to a presenter. Styles are defined in the application stylesheet and will 
@@ -239,15 +221,6 @@ SpAbstractWidgetPresenter >> addStyle: aStyle [
 	(styles includes: aStyle) ifTrue: [ ^ self ].
 	styles := styles copyWith: aStyle.
 	self withAdapterDo: [ :anAdapter | anAdapter addStyle: aStyle ]
-]
-
-{ #category : #'private building' }
-SpAbstractWidgetPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
-	| builtAdapter |
-
-	builtAdapter := super basicBuildAdapterWithSpecLayout: aSpecLayout.
-	self processDeferredActions.
-	^ builtAdapter
 ]
 
 { #category : #TOREMOVE }
@@ -425,16 +398,6 @@ SpAbstractWidgetPresenter >> localeChanged [
 	
 ]
 
-{ #category : #'private-deferring' }
-SpAbstractWidgetPresenter >> processDeferredActions [
-
-	deferredActions ifNil: [ ^ self ].
-	[
-		deferredActions do: [ :eachBlock | eachBlock value ] ]
-	ensure: [ 
-		deferredActions := nil ]
-]
-
 { #category : #api }
 SpAbstractWidgetPresenter >> removeStyle: aStyle [
 
@@ -529,12 +492,4 @@ SpAbstractWidgetPresenter >> whenHelpChangedDo: aBlock [
 	"Set a block to be performed when the help changed"
 
 	self property: #help whenChangedDo: aBlock
-]
-
-{ #category : #'private-deferring' }
-SpAbstractWidgetPresenter >> withAdapterPerformOrDefer: aBlock [ 
-
-	self adapter 
-		ifNotNil: [ :anAdapter | aBlock value: anAdapter ]
-		ifNil: [ self addDeferredAction: [ aBlock value: self adapter ] ]
 ]

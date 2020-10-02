@@ -221,6 +221,14 @@ SpExecutableLayout >> subpresenterOrLayoutNamed: presenterNameOrLayout of: aPres
 		ifAbsent: [ aPresenter presenterAt: presenterNameOrLayout ifAbsent: [ self error: 'No presenter named "' , presenterNameOrLayout , '" was found in ' , aPresenter printString ] ]
 ]
 
+{ #category : #accessing }
+SpExecutableLayout >> traversePresentersDo: aBlock [
+
+	self 
+		traversePresentersDo: aBlock 
+		excluding: Set new
+]
+
 { #category : #adding }
 SpExecutableLayout >> whenChildrenAddedDo: aBlock [
 

@@ -49,14 +49,12 @@ SpButtonBarPresenter >> initialize [
 
 { #category : #testing }
 SpButtonBarPresenter >> isPlaceAtEnd [
-	"Answer when the button bar will place buttons at the end of the bar"
 
 	^ self isPlaceAtStart not
 ]
 
 { #category : #testing }
 SpButtonBarPresenter >> isPlaceAtStart [
-	"Answer when the button bar will place buttons at the start of the bar"
 
 	^ placeAtStart
 ]
