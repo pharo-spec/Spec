@@ -41,6 +41,12 @@ SpTextPresenter class >> buildEditionCommandsGroupWith: presenter forRoot: aCmCo
 	aCmCommandsGroup register: (self textEditionCommandsGroupWith: presenter)
 ]
 
+{ #category : #documentation }
+SpTextPresenter class >> documentFactoryMethodSelector [
+
+	^ #newText
+]
+
 { #category : #commands }
 SpTextPresenter class >> textEditionCommandsGroupWith: aPresenter [
 	| group |
@@ -254,7 +260,7 @@ SpTextPresenter >> withEditionContextMenu [
 { #category : #api }
 SpTextPresenter >> withoutEditionContextMenu [
 	"Disable default edition context menu. 
-	 See also `SpTextPresenter>>#withEditionContextMenu`"
+	 See also `SpTextPresenter>>#withEditionContextMenu`."
 
 	editionContextMenu := false
 ]
