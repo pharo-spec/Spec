@@ -4,7 +4,7 @@ A `SpToolbarButtonPresenter` can show a badge.
 "
 Class {
 	#name : #SpToolbarButtonPresenter,
-	#superclass : #SpToolbarItemPresenter,
+	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
 		'#label => SpObservableSlot',
 		'#icon => SpObservableSlot',
@@ -18,6 +18,12 @@ Class {
 SpToolbarButtonPresenter class >> adapterName [
 
 	^ #ToolbarButtonAdapter
+]
+
+{ #category : #documentation }
+SpToolbarButtonPresenter class >> documentFactoryMethodSelector [
+
+	^ #newToolbarButton
 ]
 
 { #category : #api }
