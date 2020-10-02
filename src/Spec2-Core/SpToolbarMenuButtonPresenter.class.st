@@ -1,6 +1,5 @@
 "
-presenter to display a toggle button in a `SpToolbarPresenter`.
-A toggle button is a button that can be activated (toggled) or deactivated (untoggled).
+A presenter to create a menu button (a button who exposes a menu instead having an action) in a `SpToolbarPresenter`.
 "
 Class {
 	#name : #SpToolbarMenuButtonPresenter,
