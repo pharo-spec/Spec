@@ -243,12 +243,18 @@ SpTextPresenter >> whenWrapWordChangedDo: aBlock [
 
 { #category : #api }
 SpTextPresenter >> withEditionContextMenu [
+	"Enables edition context menu. When this option is selected, right-clicking in the text area 
+	 will show a standard edition menu (copy, cut, copy&paste). 
+	 Adding your own context menu (See `SpAbstractTextPresenter>>#contextMenu:`) will make both 
+	 menus (edition and your own) to be combined into one single context menu."
 
 	editionContextMenu := true
 ]
 
 { #category : #api }
 SpTextPresenter >> withoutEditionContextMenu [
+	"Disable default edition context menu. 
+	 See also `SpTextPresenter>>#withEditionContextMenu`"
 
 	editionContextMenu := false
 ]
