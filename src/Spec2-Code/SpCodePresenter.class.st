@@ -314,7 +314,7 @@ SpCodePresenter >> hasBindingThatBeginsWith: aString [
 		ifNil: [ false ]
 ]
 
-{ #category : #testing }
+{ #category : #'private testing' }
 SpCodePresenter >> hasEditionContextMenu [
 	"Answer if edition context menu is active. 
 	 Edition context menu is available by default, but it can be disabled by calling `SpTextPresenter>>#withoutEditionContextMenu` or `SpCodePresenter>>#overridingContextMenu`"

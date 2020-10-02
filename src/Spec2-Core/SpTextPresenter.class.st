@@ -1,14 +1,5 @@
 "
-I handle basic multi-line text.
-See AbstractWidgetPresenter
-
-self example
-
-@@TODO
-
-!! Transmissions
-- #inputTextPort (default)
-- #outputTextChangedPort (default)
+A presenter to handle basic multi-line text.
 "
 Class {
 	#name : #SpTextPresenter,
@@ -73,24 +64,29 @@ SpTextPresenter class >> title [
 
 { #category : #api }
 SpTextPresenter >> beEditable [
+	"Allow edition (deny readonly)."
 
 	self editable: true
 ]
 
 { #category : #api }
 SpTextPresenter >> beNotEditable [
+	"Set content text as not editable (readonly)"
 
 	self editable: false
 ]
 
 { #category : #api }
 SpTextPresenter >> beNotWrapWord [
+	"Set component to not wrap words when text does not fit in screen.
+	 Instead, the editor will add an horizontal scrollbar."
 
 	self wrapWord: false
 ]
 
 { #category : #api }
 SpTextPresenter >> beWrapWord [
+	"Set component to wrap words to make the text fit in screen."
 
 	self wrapWord: true
 ]
@@ -104,12 +100,13 @@ SpTextPresenter >> cursorPosition [
 
 { #category : #api }
 SpTextPresenter >> cursorPositionIndex: index [
-	"Sets cursor position index"
+	"Set cursor position index. 
+	 This method will place the cursor in the text index position requested."
 
 	^ self withAdapterDo: [ :anAdapter | anAdapter cursorPositionIndex: index ]
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpTextPresenter >> editable: aBoolean [
 
 	editable := aBoolean
@@ -123,19 +120,19 @@ SpTextPresenter >> editionCommandsGroup [
 		toSetContext: self defaultCommandsContext
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpTextPresenter >> editionContextKeyBindings [
 
 	^ self editionCommandsGroup asKMCategory
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpTextPresenter >> editionContextMenu [
 
 	^ self editionCommandsGroup asMenuPresenter
 ]
 
-{ #category : #testing }
+{ #category : #'private testing' }
 SpTextPresenter >> hasEditionContextMenu [
 
 	^ editionContextMenu
@@ -156,12 +153,14 @@ SpTextPresenter >> initialize [
 
 { #category : #testing }
 SpTextPresenter >> isEditable [
+	"Answer true if edition is allowed (component is NOT readonly)"
 
 	^ editable
 ]
 
 { #category : #testing }
 SpTextPresenter >> isWrapWord [
+	"Answer true if words will be wrapped to make text fit horizontally into component area."
 
 	^ wrapWord
 ]
@@ -190,27 +189,41 @@ SpTextPresenter >> scrollValue: aPoint [
 
 { #category : #'api-events' }
 SpTextPresenter >> whenCursorPositionChangedDo: aBlock [
+	"Inform when cursorPosition property has changed. 
+	 `aBlock` has three optional arguments: 
+	 - new value
+	 - old value
+	 - the announcement triggering this action"
 
 	self property: #cursorPosition whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
 SpTextPresenter >> whenEditableChangedDo: aBlock [
+	"Inform when editable property has changed. 
+	 `aBlock` has three optional arguments: 
+	 - new value
+	 - old value
+	 - the announcement triggering this action"
 
 	self property: #editable whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
 SpTextPresenter >> whenScrollValueChangedDo: aBlock [
-	"Set a block to perform when the scroll value changed"
+	"Inform when scrollValue property has changed. 
+	 `aBlock` has three optional arguments: 
+	 - new value
+	 - old value
+	 - the announcement triggering this action"
 	
 	self property: #scrollValue whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
 SpTextPresenter >> whenSubmitDo: aBlock [
-	"This method will add a 'submit' event to the widget. It will react when user presses meta+s 
-	 key (this is for historical reasons) and with enter."
+	"This method will add a 'submit' event to the widget. It will react when user 
+	 presses <meta+s> key (this is for historical reasons) and with enter (cr)."
 
 	self 
 		bindKeyCombination: $s meta 
@@ -219,6 +232,11 @@ SpTextPresenter >> whenSubmitDo: aBlock [
 
 { #category : #'api-events' }
 SpTextPresenter >> whenWrapWordChangedDo: aBlock [
+	"Inform when wordWrap property has changed. 
+	 `aBlock` has three optional arguments: 
+	 - new value
+	 - old value
+	 - the announcement triggering this action"
 
 	self property: #wrapWord whenChangedDo: aBlock
 ]
@@ -235,7 +253,7 @@ SpTextPresenter >> withoutEditionContextMenu [
 	editionContextMenu := false
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpTextPresenter >> wrapWord: aBoolean [
 
 	wrapWord := aBoolean

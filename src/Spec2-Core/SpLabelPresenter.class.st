@@ -74,12 +74,12 @@ SpLabelPresenter >> localeChanged [
 ]
 
 { #category : #'api-events' }
-SpLabelPresenter >> whenLabelChangedDo: aValuable [
-	"Inform when label state has changed. 
+SpLabelPresenter >> whenLabelChangedDo: aBlock [
+	"Inform when label property has changed. 
 	 `aBlock` has three optional arguments: 
 	 - new value
 	 - old value
 	 - the announcement triggering this action"
 
-	self property: #label whenChangedDo: aValuable
+	self property: #label whenChangedDo: aBlock
 ]
