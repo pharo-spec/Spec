@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'buttonGroup'
 	],
-	#category : #'Spec2-Core-Widgets-Toolbar'
+	#category : #'Spec2-Deprecated-Replaced'
 }
 
 { #category : #specs }
