@@ -46,7 +46,7 @@ SpSliderPresenterTest >> testValueEqualsScaled [
 	self assert: presenter label equals: '4'.
 	presenter
 		min: -1 / 2;
-		max: 1 / 2. 
+		max: 1 / 2.
 	presenter value: 0.25.
 	self assert: presenter label equals: '0.25'.
 	presenter value: 1.
