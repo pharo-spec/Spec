@@ -5,34 +5,29 @@ SpToolbarPresenter class >> example [
 	| loremIpsumWords menuButton |
 	
 	loremIpsumWords := String loremIpsum substrings.
-	^ SpToolbarPresenter new 
+	^ self new 
 		beBoth;
-		addItem: (SpToolbarButtonPresenter new 
+		add: (SpToolbarButtonPresenter new 
 			icon: (self iconNamed: #smallOk);
 			label: 'Simple';
 			action: [ UIManager default defer: [ self inform: 'Pressed' ] ];
 			yourself);
-		addItem: (SpToolbarToggleButtonPresenter new
+		add: (SpToolbarToggleButtonPresenter new
 			icon: (self iconNamed: #smallOk);
 			label: 'Toggle';
 			action: [ :value | UIManager default defer: [ self inform: value asString ] ];
 			yourself);
-		addItem: ((menuButton := SpToolbarMenuButtonPresenter new)
+		add: ((menuButton := SpToolbarMenuButtonPresenter new)
 			label: 'Menu';
 			icon: (self iconNamed: #smallOk);
 			action: [ UIManager default defer: [ self inform: menuButton label ] ];
 			menu: [ 
 				SpMenuPresenter new
-					addGroup: [ :group | group
-						addItem: [ :item | item 
-							name: '1: ', loremIpsumWords atRandom;
-							action: [ menuButton label: item name ] ];
-						addItem: [ :item | item 
-							name: '2: ', loremIpsumWords atRandom;
-							action: [ menuButton label: item name ] ];
-						addItem: [ :item | item 
-							name: '3: ', loremIpsumWords atRandom;
-							action: [ menuButton label: item name ] ] ];
+					addGroup: [ :group | 
+						1 to: 10 do: [ :index |
+							group addItem: [ :item | item 
+								name: ('{1}: {2}' format: { index. loremIpsumWords atRandom });
+								action: [ menuButton label: item name ] ] ] ];
 					yourself ];
 			yourself);
 		openWithSpec
