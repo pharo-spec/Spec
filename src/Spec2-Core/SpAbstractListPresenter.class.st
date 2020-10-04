@@ -255,6 +255,14 @@ SpAbstractListPresenter >> selectAll [
 ]
 
 { #category : #'api-selection' }
+SpAbstractListPresenter >> selectFirst [
+	"Select first element in list. 
+	 Useful to avoid selecting by index."
+	
+	^ self selectIndex: 1
+]
+
+{ #category : #'api-selection' }
 SpAbstractListPresenter >> selectIndex: anInteger [ 
 	"Select item at position `anInteger`.
 	 Selection will not scroll the presenter view to show selected element."
