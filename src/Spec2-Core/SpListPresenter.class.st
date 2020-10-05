@@ -1,5 +1,5 @@
 "
-A `ListPresenter` is an applicative presenter which handles a basic list displaying information about a domain list. 
+A `SpListPresenter` is presenter which handles a basic list displaying information about a domain list. 
 For example a list presenter will display the name of a list of contacts. It refines the API of `SpAbstractListPresenter` that is shared with `SpComponentListPresenter` (which is a list of presenters) and `SpTablePresenter` (which is a list with multiple columns in a sense). 
 
 ### Design point

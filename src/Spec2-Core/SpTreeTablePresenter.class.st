@@ -143,7 +143,6 @@ SpTreeTablePresenter >> children: aBlock [
 	"Set a block to answer the children of a node when it is expanded.
 	 `aBlock` receives one argument, the node element to expand.
 	 If there are no children to answer, `aBlock` needs to answer an empty collection."
-		
 
 	childrenBlock := aBlock
 ]
@@ -201,8 +200,7 @@ SpTreeTablePresenter >> doubleClickAtPath: aPath [
 { #category : #api }
 SpTreeTablePresenter >> expandPath: aPath [
 	"Expand the tree path.
-	`aPath` is the path to expand. A path is an array of node indexes (e.g. #(1 2 3))
-	 "
+	`aPath` is the path to expand. A path is an array of node indexes (e.g. #(1 2 3))"
 
 	self withAdapterPerformOrDefer: [ :anAdapter |
 		anAdapter expandPath: aPath ]
@@ -332,6 +330,8 @@ SpTreeTablePresenter >> roots [
 
 { #category : #api }
 SpTreeTablePresenter >> roots: aCollection [
+	"Set the roots of the tree table.
+	 This is the starting point from where the whole tree will be shown."
 
 	roots := aCollection.
 	self selection clearSelection
@@ -439,7 +439,7 @@ SpTreeTablePresenter >> unselectAll [
 
 { #category : #'api-selection' }
 SpTreeTablePresenter >> unselectItem: anItem [
-	"Remove selection of element `anObject`"
+	"Remove selection of element `anItem`"
 
 	self selection unselectItem: anItem
 ]
@@ -501,7 +501,7 @@ SpTreeTablePresenter >> whenMultiSelectionChangedDo: aBlock [
 
 { #category : #'api-events' }
 SpTreeTablePresenter >> whenRootsChangedDo: aBlock [ 
-	"Inform when roots has changed. 
+	"Inform when roots have changed. 
 	 `aBlock` has three optional arguments: 
 	 - new value
 	 - old value
@@ -511,18 +511,18 @@ SpTreeTablePresenter >> whenRootsChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
-SpTreeTablePresenter >> whenSelectedIndexChangedDo: aBlockClosure [ 
+SpTreeTablePresenter >> whenSelectedIndexChangedDo: aBlock [ 
 	"Inform when selected index has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
+	 `aBlock` receives one optional argument (the new element)."
 	
-	self whenSelectionChangedDo: [ :selection | aBlockClosure cull: selection first ]
+	self whenSelectionChangedDo: [ :selection | 
+		aBlock cull: selection first ]
 ]
 
 { #category : #'api-events' }
 SpTreeTablePresenter >> whenSelectedItemChangedDo: aBlock [
+	"Inform when selected index has changed. 
+	 `aBlock` receives one optional argument (the new element)."
 	
 	self whenSelectionChangedDo: [ :selection | 
 		aBlock cull: (selection ifNotNil: [ :anArray | anArray second ]) ]
@@ -540,12 +540,12 @@ SpTreeTablePresenter >> whenSelectionChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
-SpTreeTablePresenter >> whenShowColumnHeadersChangedDo: aBlockClosure [ 
+SpTreeTablePresenter >> whenShowColumnHeadersChangedDo: aBlock [ 
 	"Inform when showColumnHeaders property has changed. 
 	 `aBlock` has three optional arguments: 
 	 - new value
 	 - old value
 	 - the announcement triggering this action"
 	
-	self property: #showColumnHeaders whenChangedDo: aBlockClosure 
+	self property: #showColumnHeaders whenChangedDo: aBlock 
 ]
