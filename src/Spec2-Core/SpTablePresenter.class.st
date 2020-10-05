@@ -36,14 +36,9 @@ SpTablePresenter class >> addDocumentExtraSections: aBuilder [
 ]
 
 { #category : #documentation }
-SpTablePresenter class >> addExtraSections: aBuilder [
+SpTablePresenter class >> documentFactoryMethodSelector [
 
-	aBuilder newLine.
-	aBuilder header: [ :builder | builder text: 'Column types' ] withLevel: 2.
-	aBuilder unorderedListDuring: [ 
-		(SpTableColumn allSubclasses sorted: #name ascending) do: [ :eachType | 
-			aBuilder item: [
-				aBuilder monospace: eachType name ] ] ]
+	^ #newTable
 ]
 
 { #category : #api }
@@ -83,6 +78,7 @@ SpTablePresenter >> clickOnColumnHeaderAt: anIndex [
 
 { #category : #api }
 SpTablePresenter >> columns [
+	"Answer the columns composing this table."
 
 	^ columns
 ]

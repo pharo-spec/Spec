@@ -70,19 +70,19 @@ SpTreePresenter >> beSingleSelection [
 	self selectionMode: (SpTreeSingleSelectionMode on: self)
 ]
 
-{ #category : #private }
+{ #category : #api }
 SpTreePresenter >> children [
 
 	^ childrenBlock
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpTreePresenter >> children: aBlock [
 
 	childrenBlock := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpTreePresenter >> childrenFor: anObject [ 
 
 	^ self children value: anObject
@@ -129,7 +129,7 @@ SpTreePresenter >> doubleClickAtPath: aPath [
 	self doActivateAtPath: aPath
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #api }
 SpTreePresenter >> expandPath: anArray [
 
 	self withAdapterPerformOrDefer: [ :anAdapter |
@@ -214,7 +214,7 @@ SpTreePresenter >> itemAt: index of: anArray then: path [
 			element ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpTreePresenter >> itemAtPath: anArray [
 
 	^ self 
@@ -223,7 +223,7 @@ SpTreePresenter >> itemAtPath: anArray [
 		then: anArray allButFirst
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpTreePresenter >> itemAtPath: anArray ifAbsent: aBlock [
 	^ [ self itemAtPath: anArray ]
 		on: SubscriptOutOfBounds
@@ -244,13 +244,13 @@ SpTreePresenter >> registerEvents [
 		self withAdapterDo: [ :anAdapter | anAdapter updateMenu ] ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpTreePresenter >> roots [
 
 	^ roots
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpTreePresenter >> roots: aCollection [
 
 	roots := aCollection.
@@ -305,7 +305,7 @@ SpTreePresenter >> selectedItems [
 	^ self selection selectedItems
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpTreePresenter >> selection [
 	
 	^ selectionMode value
@@ -349,7 +349,7 @@ SpTreePresenter >> unselectPath: aPath [
 	self selection unselectPath: aPath
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpTreePresenter >> verticalAlignment [
 	^ verticalAlignment
 ]
@@ -360,7 +360,7 @@ SpTreePresenter >> whenActivatedDo: aBlock [
 	activationBlock := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpTreePresenter >> whenMultiSelectionChangedDo: aBlockClosure [ 
 	
 	selectionMode whenChangedDo: aBlockClosure 

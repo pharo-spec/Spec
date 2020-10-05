@@ -6,13 +6,8 @@ SpTreeTablePresenter class >> example [
 	^ self new
 		addColumn: (SpCompositeTableColumn new
 			title: 'Classes';
-			addColumn: (SpImageTableColumn new
-				width: 20;
-				evaluated: #systemIcon;
-				yourself);
-			addColumn: (SpStringTableColumn new
-				evaluated: #name;
-				yourself);
+			addColumn: ((SpImageTableColumn evaluated: #systemIcon) width: 20);
+			addColumn: (SpStringTableColumn evaluated: #name);
 			yourself);
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
@@ -25,13 +20,8 @@ SpTreeTablePresenter class >> exampleExpandPath [
 	^ self new
 		addColumn: (SpCompositeTableColumn new
 			title: 'Classes';
-			addColumn: (SpImageTableColumn new
-				width: 20;
-				evaluated: #systemIcon;
-				yourself);
-			addColumn: (SpStringTableColumn new
-				evaluated: #name;
-				yourself);
+			addColumn: ((SpImageTableColumn evaluated: #systemIcon) width: 20);
+			addColumn: (SpStringTableColumn evaluated: #name);
 			yourself);
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
@@ -45,13 +35,8 @@ SpTreeTablePresenter class >> exampleExpandRoots [
 	^ self new
 		addColumn: (SpCompositeTableColumn new
 			title: 'Classes';
-			addColumn: (SpImageTableColumn new
-				width: 20;
-				evaluated: #systemIcon;
-				yourself);
-			addColumn: (SpStringTableColumn new
-				evaluated: #name;
-				yourself);
+			addColumn: ((SpImageTableColumn evaluated: #systemIcon) width: 20);
+			addColumn: (SpStringTableColumn evaluated: #name);
 			yourself);
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
