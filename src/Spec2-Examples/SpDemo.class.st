@@ -89,7 +89,7 @@ SpDemo >> connectPresenters [
 							self needRebuild: false.
 							self buildWithSpec.
 							list selectItem: self selectedPage ] ]
-				ifNil: [ "Avoid the user to have no page selected at all." list setSelectedItem: self selectedPage ] ]
+				ifNil: [ "Avoid the user to have no page selected at all." list selectItem: self selectedPage ] ]
 ]
 
 { #category : #accessing }

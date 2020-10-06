@@ -44,7 +44,7 @@ SpChangeSorterPresenter class >> title [
 SpChangeSorterPresenter >> addPreamble [
 	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
 	self model addPreambleTo: self selectedChangeSet.
-	changesListPresenter setSelectedItem: self selectedChangeSet
+	changesListPresenter selectItem: self selectedChangeSet
 ]
 
 { #category : #'menu - change set' }
@@ -327,7 +327,7 @@ SpChangeSorterPresenter >> findChangeSet [
 
 	| set |
 	set := self model findChangeSetIn: self changeSets.
-	changesListPresenter setSelectedItem: set.
+	changesListPresenter selectItem: set.
 ]
 
 { #category : #private }
@@ -336,7 +336,7 @@ SpChangeSorterPresenter >> forceChangesListRefresh [
 	
 	sel := self selectedChangeSet.
 	changesListPresenter items: self model allChanges.
-	changesListPresenter setSelectedItem: sel.
+	changesListPresenter selectItem: sel.
 ]
 
 { #category : #'menu - class' }
@@ -500,7 +500,7 @@ SpChangeSorterPresenter >> newSet [
 	aSet := self model createNewSet.
 	aSet
 		ifNotNil: [ self updateChangesList.
-			changesListPresenter setSelectedItem: aSet.
+			changesListPresenter selectItem: aSet.
 			self updateWindowTitle ]
 ]
 
@@ -615,7 +615,7 @@ SpChangeSorterPresenter >> removeMessage [
 SpChangeSorterPresenter >> removePostscript [
 	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
 	self model removePostscriptFrom: self selectedChangeSet.
-	changesListPresenter setSelectedItem: self selectedChangeSet
+	changesListPresenter selectItem: self selectedChangeSet
 ]
 
 { #category : #'menu - change set' }
@@ -623,7 +623,7 @@ SpChangeSorterPresenter >> removePreamble [
 	self selectedChangeSet ifNil: [ ^ self inform: 'No change set selected' ].
 	self selectedChangeSet hasPreamble ifFalse: [ ^ self inform: 'Change set has no preamble' ].
 	self selectedChangeSet removePreamble.
-	changesListPresenter setSelectedItem: self selectedChangeSet
+	changesListPresenter selectItem: self selectedChangeSet
 ]
 
 { #category : #'menu - change set' }
@@ -634,7 +634,7 @@ SpChangeSorterPresenter >> rename [
 
 	changesListPresenter
 		updateList;
-		setSelectedItem: set.
+		selectItem: set.
 	self updateWindowTitle
 ]
 
@@ -703,7 +703,7 @@ SpChangeSorterPresenter >> setSelectedChangeSetIndex: anIndex [
 { #category : #api }
 SpChangeSorterPresenter >> setSelectedClass: aClass [
 
-	 ^ classesListPresenter setSelectedItem: aClass
+	 ^ classesListPresenter selectItem: aClass
 ]
 
 { #category : #api }
@@ -748,7 +748,7 @@ SpChangeSorterPresenter >> updateClassesListAndMessagesList [
 	| sel |
 	sel := methodsListPresenter selectedItem.
 	self updateClassesList.
-	methodsListPresenter setSelectedItem: sel.
+	methodsListPresenter selectItem: sel.
 	self updateMessagesList
 ]
 
@@ -761,7 +761,7 @@ SpChangeSorterPresenter >> updateMessagesList [
 			ifNil: [ methodsListPresenter items: {} ]
 			ifNotNil: [:class | methodsListPresenter items: (self selectedChangeSet selectorsInClass: class name) sort].
 				
-	methodsListPresenter setSelectedItem: sel
+	methodsListPresenter selectItem: sel
 ]
 
 { #category : #private }
