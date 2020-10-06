@@ -788,6 +788,12 @@ SpPresenter >> newList [
 ]
 
 { #category : #widgets }
+SpPresenter >> newListWithFilter [
+
+	^ self instantiate: SpListWithFilterPresenter
+]
+
+{ #category : #widgets }
 SpPresenter >> newMenu [
 	^ self instantiate: SpMenuPresenter
 ]
