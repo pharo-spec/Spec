@@ -790,7 +790,7 @@ SpPresenter >> newList [
 { #category : #widgets }
 SpPresenter >> newListWithFilter [
 
-	^ self instantiate: SpListWithFilterPresenter
+	^ self instantiate: SpFilteringListPresenter
 ]
 
 { #category : #widgets }
