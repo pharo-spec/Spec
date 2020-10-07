@@ -113,6 +113,15 @@ SpMorphicTableCellBuilder >> visitCheckboxColumn: aTableColumn [
 ]
 
 { #category : #visiting }
+SpMorphicTableCellBuilder >> visitCompositeColumn: aTableColumn [
+
+	super visitCompositeColumn: aTableColumn.
+	aTableColumn isExpandable ifFalse: [ 
+		cell hResizing: #rigid.
+		cell width: aTableColumn width ]
+]
+
+{ #category : #visiting }
 SpMorphicTableCellBuilder >> visitImageColumn: aTableColumn [
 	
 	self addCellColumn: aTableColumn
