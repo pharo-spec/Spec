@@ -304,7 +304,7 @@ SpAbstractWidgetPresenter >> defaultTransferFor: passenger from: source [
 
 { #category : #api }
 SpAbstractWidgetPresenter >> disable [
-	"Disable the label"
+	"Disable the presenter"
 	
 	self enabled: false
 ]
@@ -341,7 +341,7 @@ SpAbstractWidgetPresenter >> dropEnabled: aBoolean [
 
 { #category : #api }
 SpAbstractWidgetPresenter >> enable [
-	"Enable the label"
+	"Enable the presenter"
 	
 	self enabled: true
 ]
@@ -370,14 +370,14 @@ SpAbstractWidgetPresenter >> eventKeyStrokesForPreviousFocus [
 
 { #category : #api }
 SpAbstractWidgetPresenter >> help [
-	"Return the help string to display as help to the user."
+	"Return the help string to display as help (tooltip) to the user."
 
 	^ help
 ]
 
 { #category : #api }
 SpAbstractWidgetPresenter >> help: aString [
-	"Set a help string to display to the user if he let the mouse over the widget."
+	"Set a help string to display to the user if he let the mouse over the widget (a tooltip)."
 
 	help := aString
 ]
@@ -412,8 +412,10 @@ SpAbstractWidgetPresenter >> initializePresenters [
 	"ignore this method since there is no composition in basic widgets"
 ]
 
-{ #category : #api }
+{ #category : #testing }
 SpAbstractWidgetPresenter >> isEnabled [
+	"Answer if presenter is enabled"
+
 	^ enabled
 ]
 
@@ -519,14 +521,22 @@ SpAbstractWidgetPresenter >> whenBorderWidthChangedDo: aBlock [
 
 { #category : #'api-events' }
 SpAbstractWidgetPresenter >> whenEnabledChangedDo: aBlock [
-	"Set a block to performed when the widget is enabled or disabled"
+	"Inform when enabled status has changed. 
+	 `aBlock` has three optional arguments: 
+	 - new value
+	 - old value
+	 - the announcement triggering this action"
 
 	self property: #enabled whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
 SpAbstractWidgetPresenter >> whenHelpChangedDo: aBlock [
-	"Set a block to be performed when the help changed"
+	"Inform when help property has changed. 
+	 `aBlock` has three optional arguments: 
+	 - new value
+	 - old value
+	 - the announcement triggering this action"
 
 	self property: #help whenChangedDo: aBlock
 ]
