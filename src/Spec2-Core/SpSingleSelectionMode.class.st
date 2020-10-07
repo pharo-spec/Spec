@@ -10,7 +10,7 @@ Class {
 	#category : #'Spec2-Core-Widgets-Table'
 }
 
-{ #category : #private }
+{ #category : #selecting }
 SpSingleSelectionMode >> basicSelectIndex: indexToSelect [
 	selectedIndex := indexToSelect
 ]
@@ -38,46 +38,43 @@ SpSingleSelectionMode >> isEmpty [
 	^ self selectedIndex = 0
 ]
 
-{ #category : #'api-selection' }
+{ #category : #selecting }
 SpSingleSelectionMode >> selectAll [
-	"Do nothing, since single selection mode wont allow for selecting all elements."
+
+	"Do nothing"
 ]
 
-{ #category : #'api-selection' }
-SpSingleSelectionMode >> selectIndexes: aCollectionOfIndexes [
-	"Take first index from `aCollectionOfIndexes` and selects it. Ignore all the rest."
+{ #category : #selecting }
+SpSingleSelectionMode >> selectIndexes: aCollection [
 
-	aCollectionOfIndexes ifEmpty: [ ^ self unselectAll ].
-	self selectIndex: aCollectionOfIndexes first.
+	aCollection ifEmpty: [ ^ self unselectAll ].
+	self selectIndex: aCollection first.
 ]
 
-{ #category : #'api-selection' }
+{ #category : #selecting }
 SpSingleSelectionMode >> selectItems: aCollection [
-	"Take first element from `aCollection` and selects it. Ignore all the rest."
 
 	aCollection ifEmpty: [ ^ self unselectAll ].
 	self selectItem: aCollection first.
 ]
 
-{ #category : #'api-selection' }
+{ #category : #selecting }
 SpSingleSelectionMode >> selectedIndex [
-	"Answer index of current selected element"
-
 	^ selectedIndex
 ]
 
-{ #category : #'api-selection' }
+{ #category : #selecting }
 SpSingleSelectionMode >> selectedIndexes [
-	"Answer an array with a single element containing current selected element index."
+	"This provides polymorphism with sibling classes, and answers an array with a single 
+	 element."
 		
 	^ self isEmpty
 		ifTrue: [ #() ]
 		ifFalse: [ { self selectedIndex } ]
 ]
 
-{ #category : #'api-selection' }
+{ #category : #selecting }
 SpSingleSelectionMode >> selectedItem [
-	"Answer selected item"
 
 	self selectedIndex = 0 ifTrue: [ ^ nil ].
 	self widget withAdapterDo: [ :anAdapter |
@@ -85,9 +82,8 @@ SpSingleSelectionMode >> selectedItem [
 	^ self model at: self selectedIndex
 ]
 
-{ #category : #'api-selection' }
+{ #category : #selecting }
 SpSingleSelectionMode >> selectedItems [
-	"Answer an array with a single element, the selected item"
 	
 	^ self selectedItem
 		ifNotNil: [ :anItem | { anItem } ]
@@ -99,21 +95,18 @@ SpSingleSelectionMode >> selectionHolder [
 	^ self observablePropertyNamed: #selectedIndex
 ]
 
-{ #category : #'api-selection' }
+{ #category : #selecting }
 SpSingleSelectionMode >> unselectAll [
-	"Unselect current selected element."
 	
 	self selectIndex: 0
 ]
 
-{ #category : #'api-selection' }
+{ #category : #selecting }
 SpSingleSelectionMode >> unselectIndex: anInteger [
-	"Unselect element at index `anInteger`"
-
 	self selectedIndex = anInteger ifTrue: [ self basicSelectIndex: 0 ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #events }
 SpSingleSelectionMode >> whenChangedDo: aBlock [
 	self property: #selectedIndex whenChangedDo: [ aBlock cull: self ]
 ]

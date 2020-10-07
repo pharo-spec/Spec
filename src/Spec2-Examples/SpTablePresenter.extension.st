@@ -8,34 +8,28 @@ SpTablePresenter class >> example [
 		addColumn: (SpImageTableColumn title: 'Icon' evaluated: #systemIcon);
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
 		items: Smalltalk allClasses;
+		doubleClickAction: [ :aClass | self inform: 'Double click on: ', aClass name ];
 		openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
+SpTablePresenter class >> exampleEditableCell [
+
+	self flag: #TODO
 ]
 
 { #category : #'*Spec2-Examples' }
 SpTablePresenter class >> exampleWithColumnHeaders [
 	<sampleInstance>
-
-	^ self new
+	| example |
+	example := self new.
+	example
 		addColumn: (SpStringTableColumn title: 'Number' evaluated: #yourself);
 		addColumn: (SpStringTableColumn title: 'Hex' evaluated: #hex);
 		showColumnHeaders;
 		items: (1 to: 10) asArray;
-		openWithSpec
-]
-
-{ #category : #'*Spec2-Examples' }
-SpTablePresenter class >> exampleWithCompositeColumn [
-	
-	^ self new
-		showColumnHeaders;
-		addColumn: (SpStringTableColumn title: 'Package' evaluated: [ :aClass | aClass package packageName ]);
-		addColumn: (SpCompositeTableColumn new
-			title: 'Class';
-			addColumn: (SpImageTableColumn evaluated: #systemIcon) beNotExpandable;
-			addColumn: (SpStringTableColumn evaluated: #name);
-			yourself);
-		items: Smalltalk allClasses;
-		openWithSpec
+		openWithSpec.
+	^ example
 ]
 
 { #category : #'*Spec2-Examples' }

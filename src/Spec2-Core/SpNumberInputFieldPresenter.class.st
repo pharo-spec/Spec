@@ -1,6 +1,10 @@
 "
-A presenter  for a  text field specialised on numbers. 
-`SpNumberInputFieldPresenter` accepts a number type (integer or float) and a range (min, max). 
+I'm a text field specialised on numbers. 
+I can accept number type (integer or float) and a range (min, max). 
+
+## Transmissions
+- #inputTextPort (default)
+- #outputTextChangedPort (default)
 
 "
 Class {
@@ -34,50 +38,40 @@ SpNumberInputFieldPresenter class >> defaultDigits [
 	^ 2
 ]
 
-{ #category : #documentation }
-SpNumberInputFieldPresenter class >> documentFactoryMethodSelector [
-
-	^ #newNumberInput
-]
-
-{ #category : #api }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> beFloat [
-	"Set the presenter to display float numbers"
 
 	self numberType: Float
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> beInteger [
-	"Set the presenter to display integer numbers"
 
 	self numberType: Integer
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> climbRate [
-	"Answer the jump rate when a spin is present."
+	"This field indicates the jump rate when a spin is present."
 
 	^ climbRate
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> climbRate: aNumber [
-	"Set the jump rate when a spin is present."
-
 	climbRate := aNumber
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> digits [
-	"Answer digits to show when we have a float number"
+	"digits to show when we have a float number"
 
 	^ digits
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> digits: aNumber [
-	"Set digits to show when we have a float number"
+	"digits to show when we have a float number"
 
 	digits := aNumber
 ]
@@ -93,67 +87,53 @@ SpNumberInputFieldPresenter >> initialize [
 
 { #category : #testing }
 SpNumberInputFieldPresenter >> isFloat [ 
-	"Answer if the number type is a float."
 
 	^ self numberType = Float
 ]
 
 { #category : #testing }
 SpNumberInputFieldPresenter >> isInteger [ 
-	"Answer if the number type is an integer."
 
 	^ self numberType = Integer
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> maximum [
-	"Answer the maximum number to accept (it can be nil, if not maximum is set)"
-
 	^ maximum
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> maximum: aNumber [
-	"Set the maximum number to accept"
-
 	maximum := aNumber
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> minimum [
-	"Answer the minimum number to accept (it can be nil, if not minimum is set)"
-
 	^ minimum
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> minimum: aNumber [
-	"Answer the minimum number to accept."
-
 	minimum := aNumber
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> number [
-	"Answer the number ingressed."
 
 	^ self text trimmed 
 		ifNotEmpty: [ :aString | aString asNumber ]
 		ifEmpty: [ 0 ]
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> number: aNumber [
-	"Set the number to display."
 
 	self text: aNumber asString
 
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> numberType [
-	"Answer the type of number the input field will show (Integer or Float)"
-
 	^ numberType
 ]
 
@@ -164,76 +144,39 @@ SpNumberInputFieldPresenter >> numberType: aClass [
 	numberType := aClass
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> rangeMinimum: minNumber maximum: maxNumber [ 
-	"A convenience method to set the maximum and minimum values to accept."
 
 	self minimum: minNumber.
 	self maximum: maxNumber
 ]
 
-{ #category : #'api-events' }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> whenClimbRateChangedDo: aBlock [
-	"Inform when climbRate property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
 	self property: #climbRate whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> whenDigitsChangedDo: aBlock [
-	"Inform when digits property state has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
 	self property: #digits whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> whenMaximumChangedDo: aBlock [
-	"Inform when maximum property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
 	self property: #maximum whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> whenMinimumChangedDo: aBlock [
-	"Inform when minimum property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
 	self property: #minimum whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> whenNumberChangedDo: aBlock [
-	"Inform when number property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
 	self whenTextChangedDo: [ :txt | aBlock value: self number ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #accessing }
 SpNumberInputFieldPresenter >> whenNumberTypeChangedDo: aBlock [
-	"Inform when numberType property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
 	self property: #numberType whenChangedDo: aBlock
 ]

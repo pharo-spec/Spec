@@ -15,10 +15,10 @@ SpMorphicTreeAdapter >> defaultColumn [
 	| stringColumn |
 
 	stringColumn := SpStringTableColumn evaluated: self presenter display.
-	^ self presenter displayIcon 
-		ifNotNil: [ :iconBlock |
+	^ self presenter icon 
+		ifNotNil: [ 
 			SpCompositeTableColumn new 
-				addColumn: (SpImageTableColumn evaluated: iconBlock) beNotExpandable;
+				addColumn: (SpImageTableColumn evaluated: self presenter icon) beNotExpandable;
 				addColumn: stringColumn;
 				yourself ]
 		ifNil: [ stringColumn ]

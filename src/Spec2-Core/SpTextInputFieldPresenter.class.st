@@ -1,5 +1,11 @@
 "
-A presenter to handle a single line of text.
+I handle one line of text.
+self example
+
+## Transmissions
+- #inputTextPort (default)
+- #outputTextChangedPort (default)
+
 
 "
 Class {
@@ -21,12 +27,11 @@ SpTextInputFieldPresenter class >> adapterName [
 
 { #category : #api }
 SpTextInputFieldPresenter >> bePassword [
-	"Set this input text as a password editor."
 	
 	self bePassword: true
 ]
 
-{ #category : #private }
+{ #category : #api }
 SpTextInputFieldPresenter >> bePassword: aBoolean [
 	
 	isPassword := aBoolean
@@ -34,8 +39,6 @@ SpTextInputFieldPresenter >> bePassword: aBoolean [
 
 { #category : #api }
 SpTextInputFieldPresenter >> beText [
-	"Set this input text as a text editor."
-
 	self bePassword: false
 ]
 
@@ -53,14 +56,14 @@ SpTextInputFieldPresenter >> entryCompletion: anEntryCompletion [
 	entryCompletion := anEntryCompletion
 ]
 
-{ #category : #TOREMOVE }
+{ #category : #focus }
 SpTextInputFieldPresenter >> eventKeyStrokesForNextFocus [
 	"String describing the keystroke to perform to jump to the next widget"	
 		
 	^ { Character tab asKeyCombination }
 ]
 
-{ #category : #TOREMOVE }
+{ #category : #focus }
 SpTextInputFieldPresenter >> eventKeyStrokesForPreviousFocus [
 	"String describing the keystroke to perform to jump to the previous widget"
 	
@@ -77,21 +80,17 @@ SpTextInputFieldPresenter >> initialize [
 
 { #category : #testing }
 SpTextInputFieldPresenter >> isPassword [
-	"Answer true if input field will be shown as a password (hiding characters)."
 	
 	^ isPassword
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpTextInputFieldPresenter >> maxLength [
-	"Answer maximum allowed length (if set)"
-
 	^ maxLength
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpTextInputFieldPresenter >> maxLength: anInteger [ 
-	"Set maximum allowed length."
 	
 	maxLength := anInteger.
 	self updateText.
@@ -104,61 +103,46 @@ SpTextInputFieldPresenter >> removeEntryCompletion [
 	self entryCompletion: nil
 ]
 
-{ #category : #api }
-SpTextInputFieldPresenter >> text: aString [
-	"Set input text contents."
+{ #category : #accessing }
+SpTextInputFieldPresenter >> text: aText [
 	| truncatedText |
 
 	truncatedText := self maxLength = 0
-		ifTrue: [ aString ]
-		ifFalse: [ aString first: (self maxLength min: aString size) ].
+		ifTrue: [ aText ]
+		ifFalse: [ aText first: (self maxLength min: aText size) ].
 	super text: truncatedText
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpTextInputFieldPresenter >> updateText [
+
 	"Update text but applying lenght constraints"
-	
 	self text: self text.
 ]
 
 { #category : #'api-events' }
 SpTextInputFieldPresenter >> whenEntryCompletionChangedDo: aBlock [
-	"Inform when entryCompletion property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
+	"aBlock will be performed when entryCompletion changed"
 
 	self property: #entryCompletion whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
 SpTextInputFieldPresenter >> whenMaxLengthChangedDo: aBlockClosure [ 
-	"Inform when maxLength property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
 	
 	self property: #maxLength whenChangedDo: aBlockClosure
 ]
 
 { #category : #'api-events' }
 SpTextInputFieldPresenter >> whenPasswordChangedDo: aBlockClosure [ 
-	"Inform when password property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
 	
 	self property: #isPassword whenChangedDo: aBlockClosure
 ]
 
 { #category : #'api-events' }
 SpTextInputFieldPresenter >> whenSubmitDo: aBlock [
-	"This method will add a 'submit' event to the widget. It will react when user 
-	 presses <meta+s> key (this is for historical reasons), and with enter (cr)."
+	"This method will add a 'submit' event to the widget. It will react when user presses meta+s 
+	 key (this is for historical reasons) and with enter."
 
 	self 
 		bindKeyCombination: Character cr asKeyCombination | $s meta 

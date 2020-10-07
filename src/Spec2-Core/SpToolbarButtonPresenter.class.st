@@ -1,10 +1,9 @@
 "
-A button to be shown in a `SpToolbarPresenter`.
-A `SpToolbarButtonPresenter` can show a badge.
+A button with an icon and label associated with an action and a badge 
 "
 Class {
 	#name : #SpToolbarButtonPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#superclass : #SpToolbarItemPresenter,
 	#instVars : [
 		'#label => SpObservableSlot',
 		'#icon => SpObservableSlot',
@@ -20,41 +19,23 @@ SpToolbarButtonPresenter class >> adapterName [
 	^ #ToolbarButtonAdapter
 ]
 
-{ #category : #documentation }
-SpToolbarButtonPresenter class >> documentFactoryMethodSelector [
-
-	^ #newToolbarButton
-]
-
-{ #category : #api }
+{ #category : #accessing }
 SpToolbarButtonPresenter >> action [
-	"Answer the block performed when the button is clicked."
-
 	^ action
 ]
 
-{ #category : #api }
-SpToolbarButtonPresenter >> action: aBlock [
-	"Set the block performed when the button is clicked. 
-	 `aBlock` receives zero arguments."
-
-	action := aBlock
+{ #category : #accessing }
+SpToolbarButtonPresenter >> action: anObject [
+	action := anObject
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpToolbarButtonPresenter >> badge [
-	"Answer the badge that will be shown with the button."
-
 	^ badge
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpToolbarButtonPresenter >> badge: aString [
-	"Set the badge to be shown with the button.
-	 A badge is an extra piece of information that can be added to the button. Typically, this 
-	 is used to show some status (for example, number of elements that will be touched if 
-	 the button is pressed)"
-	
 	badge := aString
 ]
 
@@ -69,14 +50,12 @@ SpToolbarButtonPresenter >> execute [
 	self action cull: self
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpToolbarButtonPresenter >> icon [
-	"Answer the icon (an instance of `Form`) defined for this button (it can be nil)"
-
 	^ icon
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpToolbarButtonPresenter >> icon: anObject [
 	icon := anObject
 ]
@@ -86,38 +65,24 @@ SpToolbarButtonPresenter >> initialize [
 	super initialize.
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpToolbarButtonPresenter >> label [
-	"Answer the label to be shown by the button"
-
 	^ label
 ]
 
-{ #category : #api }
-SpToolbarButtonPresenter >> label: aString [
-	"Set the label to be shown by the button."
-
-	label := aString
+{ #category : #accessing }
+SpToolbarButtonPresenter >> label: anObject [
+	label := anObject
 ]
 
 { #category : #'api-events' }
 SpToolbarButtonPresenter >> whenIconChangedDo: aBlock [ 
-	"Inform when icon property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
 
 	self property: #icon whenChangedDo: aBlock 
 ]
 
 { #category : #'api-events' }
 SpToolbarButtonPresenter >> whenLabelChangedDo: aBlock [ 
-	"Inform when label property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
 
 	self property: #label whenChangedDo: aBlock 
 ]

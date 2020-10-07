@@ -21,7 +21,6 @@ SpMorphicSliderAdapter >> absoluteValue: aFloat [
 { #category : #factory }
 SpMorphicSliderAdapter >> buildWidget [
 	| preWidget |
-
 	preWidget := PluggableSliderMorph new
 		model: self;
 		getValueSelector: #value;
@@ -35,11 +34,11 @@ SpMorphicSliderAdapter >> buildWidget [
 		vResizing: #spaceFill;
 		hResizing: #spaceFill;
 		yourself.
-	self presenter isHorizontal
-		ifFalse: [ 
-			preWidget := TransformationMorph new asFlexOf: preWidget.
-			preWidget transform withAngle: 90 degreesToRadians negated  ].
-		
+	preWidget := self presenter isHorizontal
+		ifTrue: [ preWidget ]
+		ifFalse: [ preWidget := TransformationMorph new asFlexOf: preWidget.
+			preWidget transform withAngle: 90 degreesToRadians negated.
+			preWidget ].
 	self presenter
 		whenMinChangedDo: [ :newValue | preWidget min: newValue ].
 	self presenter
@@ -82,14 +81,6 @@ SpMorphicSliderAdapter >> value [
 
 { #category : #'widget API' }
 SpMorphicSliderAdapter >> value: aValue [
-	| value | 
-	
-	value := aValue isNumber
-		ifTrue: [ aValue ] 
-		ifFalse: [ 
-			(aValue includes: $/)
-				ifTrue: [ (NumberParser on: aValue) nextFraction ]
-				ifFalse: [ aValue asNumber ] ].
 
-	^ self presenter value: value asFloat
+	^ self presenter value: aValue
 ]

@@ -153,7 +153,7 @@ SpAbstractFormButtonPresenter >> whenDeactivatedDo: aBlock [
 	"Informs when the control button has been deactivated (see `SpAbstractFormButtonPresenter>>#state:`.
 	 `aBlock` receives zero arguments." 
 	
-	self whenChangedDo: [ :aBoolean | aBoolean ifFalse: aBlock ]
+	self whenChangedDo: [:bool | bool ifFalse: aBlock ]
 ]
 
 { #category : #TOREMOVE }

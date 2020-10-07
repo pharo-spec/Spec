@@ -1,6 +1,14 @@
 "
-A presenter to display a toolbar.
+I'm a presenter to render a toolbar.
+I can receive any kind of ToolBarItemPresenters, even if the most frequent one is ToolBarButton.
 
+Toolbars can be displayed in diferent modes: 
+- icons and labels (default)
+- icons
+- labels
+
+And they can be placed at the left (default) or at the right. 
+Not all platforms support left/right alignments for toolbars. In that case they will be presented as simple groups.
 "
 Class {
 	#name : #SpToolbarPresenter,
@@ -19,35 +27,69 @@ SpToolbarPresenter class >> adapterName [
 	^ #ToolbarAdapter
 ]
 
-{ #category : #documentation }
-SpToolbarPresenter class >> documentFactoryMethodSelector [
-
-	^ #newToolbar
-]
-
-{ #category : #api }
-SpToolbarPresenter >> add: aToolbarButtonPresenter [ 
-	"Add a toolbar button to the toolbar."
+{ #category : #example }
+SpToolbarPresenter class >> example [
+	| loremIpsumWords menuButton |
 	
-	self addItem: aToolbarButtonPresenter
+	loremIpsumWords := String loremIpsum substrings.
+	^ SpToolbarPresenter new 
+		beBoth;
+		addItem: (SpToolbarButtonPresenter new 
+			icon: (self iconNamed: #smallOk);
+			label: 'Simple';
+			action: [ UIManager default defer: [ self inform: 'Pressed' ] ];
+			yourself);
+		addItem: (SpToolbarToggleButtonPresenter new
+			icon: (self iconNamed: #smallOk);
+			label: 'Toggle';
+			action: [ :value | UIManager default defer: [ self inform: value asString ] ];
+			yourself);
+		addItem: ((menuButton := SpToolbarMenuButtonPresenter new)
+			label: 'Menu';
+			icon: (self iconNamed: #smallOk);
+			action: [ UIManager default defer: [ self inform: menuButton label ] ];
+			menu: [ 
+				SpMenuPresenter new
+					addGroup: [ :group | group
+						addItem: [ :item | item 
+							name: '1: ', loremIpsumWords atRandom;
+							action: [ menuButton label: item name ] ];
+						addItem: [ :item | item 
+							name: '2: ', loremIpsumWords atRandom;
+							action: [ menuButton label: item name ] ];
+						addItem: [ :item | item 
+							name: '3: ', loremIpsumWords atRandom;
+							action: [ menuButton label: item name ] ] ];
+					yourself ];
+			yourself);
+		openWithSpec
 ]
 
-{ #category : #api }
+{ #category : #convenience }
+SpToolbarPresenter >> addButtonLabel: aLabel iconNamed: anIconName help: aHelpString action: aBlock [
+
+	self addItem: (SpToolbarButtonPresenter new
+		label: aLabel;
+		icon: (self application iconNamed: anIconName);
+		help: aHelpString;
+		action: aBlock;
+		yourself)
+]
+
+{ #category : #adding }
 SpToolbarPresenter >> addItem: aToolbarItem [
-	"Add a toolbar button to the toolbar.
-	 This is a synonym of `SpToolbarPresenter>>#add:`"
 	
 	self addItem: aToolbarItem position: SpToolbarItemPosition left
 ]
 
-{ #category : #private }
+{ #category : #adding }
 SpToolbarPresenter >> addItem: aToolbarItem position: aPosition [
 	
 	aToolbarItem owner: self.
 	aPosition addItem: aToolbarItem into: self
 ]
 
-{ #category : #private }
+{ #category : #adding }
 SpToolbarPresenter >> addItemLeft: aToolbarItem [ 
 	
 	aToolbarItem owner: self.
@@ -55,7 +97,7 @@ SpToolbarPresenter >> addItemLeft: aToolbarItem [
 	self notifyPropertyChanged: #leftItems.
 ]
 
-{ #category : #private }
+{ #category : #adding }
 SpToolbarPresenter >> addItemRight: aToolbarItem [ 
 
 	aToolbarItem owner: self.
@@ -63,41 +105,32 @@ SpToolbarPresenter >> addItemRight: aToolbarItem [
 	self notifyPropertyChanged: #rightItems.	
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpToolbarPresenter >> beBoth [
-	"Set the toolbar to display both text and icons.
-	 See also `SpToolbarPresenter>>#displayMode:`"
 
 	self displayMode: SpToolbarDisplayMode modeIconAndLabel
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpToolbarPresenter >> beIcons [
-	"Set the toolbar to display just the icons.
-	See also `SpToolbarPresenter>>#displayMode:`"
 
 	self displayMode: SpToolbarDisplayMode modeIcon
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpToolbarPresenter >> beText [
-	"Set the toolbar to display just the labels.
-	 See also `SpToolbarPresenter>>#displayMode:`"
 
 	self displayMode: SpToolbarDisplayMode modeLabel
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpToolbarPresenter >> displayMode [
-	"Answer the display mode of the toolbar (an instance of `SpToolbarDisplayMode`"
 
 	^ displayMode
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpToolbarPresenter >> displayMode: aDisplayMode [
-	"Set the display mode of this toolbar. 
-	 `aDisplayMode` is an instance of `SpToolbarDisplayMode`"
 
 	displayMode ifNotNil: [ 
 		self removeStyle: displayMode styleName ].
@@ -140,7 +173,7 @@ SpToolbarPresenter >> isEmpty [
 	^ self items isEmpty
 ]
 
-{ #category : #private }
+{ #category : #accessing }
 SpToolbarPresenter >> itemNamed: aString [ 
 	
 	^ self items detect: [ :e | e label = aString ]
@@ -148,12 +181,11 @@ SpToolbarPresenter >> itemNamed: aString [
 
 { #category : #api }
 SpToolbarPresenter >> items [
-	"Answer all buttons in the toolbar"
 
 	^ leftItems , rightItems
 ]
 
-{ #category : #private }
+{ #category : #accessing }
 SpToolbarPresenter >> leftItems [
 	^ leftItems
 ]
@@ -176,15 +208,14 @@ SpToolbarPresenter >> presentersInFocusOrder [
 	^ self items
 ]
 
-{ #category : #api }
+{ #category : #removing }
 SpToolbarPresenter >> removeAllItems [
-	"Remove all items in the toolbar"
 
 	leftItems := OrderedCollection new.
 	rightItems := OrderedCollection new
 ]
 
-{ #category : #private }
+{ #category : #accessing }
 SpToolbarPresenter >> rightItems [
 	^ rightItems
 ]

@@ -154,28 +154,6 @@ SpMorphicTreeTableAdapter >> ensureAtLeastOneColumnIn: tableMorph [
 	tableMorph addColumn: (self newColumnFrom: self defaultColumn)
 ]
 
-{ #category : #accessing }
-SpMorphicTreeTableAdapter >> expandPath: anArray [  
-
-	widget dataSource expandPath: anArray
-]
-
-{ #category : #accessing }
-SpMorphicTreeTableAdapter >> expandRoots [
-
-	widget dataSource expandRoots
-]
-
-{ #category : #testing }
-SpMorphicTreeTableAdapter >> isExpanded: anItem [
-	| path |
-	
-	path := widget dataSource 
-		pathOfItem: anItem 
-		root: widget dataSource rootItem.
-	^ (widget dataSource itemAtPath: path) isExpanded
-]
-
 { #category : #testing }
 SpMorphicTreeTableAdapter >> isNonEditableRow: aRow column: aColumn [
 
@@ -254,7 +232,7 @@ SpMorphicTreeTableAdapter >> rootForItems: aCollection [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #'as yet unclassified' }
 SpMorphicTreeTableAdapter >> scrollToSelection [
 	widget ensureVisibleFirstSelection.
 ]

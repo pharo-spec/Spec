@@ -1,8 +1,3 @@
-"
-A presenter to display a toggle button.
-A toggle button is a button that can be activated (toggled) or deactivated (untoggled).
-
-"
 Class {
 	#name : #SpToggleButtonPresenter,
 	#superclass : #SpAbstractFormButtonPresenter,
@@ -19,10 +14,14 @@ SpToggleButtonPresenter class >> adapterName [
 	^ #ToggleButtonAdapter
 ]
 
-{ #category : #documentation }
-SpToggleButtonPresenter class >> documentFactoryMethodSelector [
+{ #category : #example }
+SpToggleButtonPresenter class >> example [
 
-	^ #newToggleButton
+	self new
+		icon: (self iconNamed: #smallOk);
+		whenActivatedDo: [ UIManager default defer: [ self inform: 'Activated' ] ];
+		whenDeactivatedDo: [ UIManager default defer: [ self inform: 'Deactivated' ] ];
+		openWithSpec
 ]
 
 { #category : #specs }
@@ -31,32 +30,26 @@ SpToggleButtonPresenter class >> title [
 	^ 'Toggle Button'
 ]
 
-{ #category : #api }
+{ #category : #initialization }
 SpToggleButtonPresenter >> action [ 
-	"Answer the action to execute when button is pressed.
-	 See `SpToggleButtonPresenter>>#action:`"
 	
 	^ action
 ]
 
-{ #category : #api }
+{ #category : #initialization }
 SpToggleButtonPresenter >> action: aBlock [
-	"Set the action to execute when button is pressed. 
-	 `aBlock` receives zero arguments."
 	
 	action := aBlock
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpToggleButtonPresenter >> icon [
-	"Answer the icon (an instance of `Form`) to be shown with the button."
 
 	^ icon
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpToggleButtonPresenter >> icon: anIcon [
-	"Set the icon (an instance of `Form`) to be shown with the button."
 
 	icon := anIcon
 ]
@@ -70,11 +63,6 @@ SpToggleButtonPresenter >> initialize [
 
 { #category : #'api-events' }
 SpToggleButtonPresenter >> whenIconChangedDo: aBlock [
-	"Inform when icon property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
 
 	self property: #icon whenChangedDo: aBlock
 ]

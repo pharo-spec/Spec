@@ -1,14 +1,5 @@
 "
-A column that displays images.
-
-The user need to set the evaluation block (by sending `SpTableColumn>>#evaluated:`) to answer an image (an instance of `Form`).
-
-## Example
-```
-SpImageTableColumn 
-	title: 'My Image' 
-	evaluated: [ :anObject | anObject systemIcon ]
-```
+I'm a column to display images.
 "
 Class {
 	#name : #SpImageTableColumn,

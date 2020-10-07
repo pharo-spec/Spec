@@ -17,18 +17,6 @@ Class {
 	#category : #'Spec2-Core-Widgets-Table'
 }
 
-{ #category : #documentation }
-SpAbstractListPresenter class >> documentSections [
-		
-	^ OrderedDictionary newFromPairs: {
-		'Examples'. self class methods select: [ :each | each protocol = self documentExamplesProtocol ].
-		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
-		'API Selection Methods'. self methods select: [ :each | each protocol = #'api-selection' ].
-		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api-events' ].
-	 }
-]
-
 { #category : #api }
 SpAbstractListPresenter >> activateOnDoubleClick [
 	"Configure the list to trigger activation on double click.
@@ -252,14 +240,6 @@ SpAbstractListPresenter >> selectAll [
 	 It does not triggers activation event."
 	
 	self selection selectAll
-]
-
-{ #category : #'api-selection' }
-SpAbstractListPresenter >> selectFirst [
-	"Select first element in list. 
-	 Useful to avoid selecting by index."
-	
-	^ self selectIndex: 1
 ]
 
 { #category : #'api-selection' }

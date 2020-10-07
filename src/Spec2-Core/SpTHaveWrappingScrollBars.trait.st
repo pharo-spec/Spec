@@ -88,8 +88,6 @@ SpTHaveWrappingScrollBars >> propagateNaturalWidth: aBoolean [
 
 { #category : #api }
 SpTHaveWrappingScrollBars >> removeScrollBarStyle: aStyle [
-	"Remove `aStyle` from the list of scrollbar styles.
-	 See SpTHaveWrappingScrollBars>>#scrollBarStyles"
 
 	scrollBarStyles := scrollBarStyles copyWithout: aStyle
 ]

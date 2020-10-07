@@ -12,8 +12,7 @@ Class {
 		'#interactionModel => SpObservableSlot',
 		'#overrideContextMenu',
 		'#submitBlock',
-		'#resetBlock',
-		'#environment'
+		'#resetBlock'
 	],
 	#category : #'Spec2-Code'
 }
@@ -263,19 +262,6 @@ SpCodePresenter >> doItReceiver: anObject [
 
 ]
 
-{ #category : #'command support' }
-SpCodePresenter >> environment [
-
-	^ environment ifNil: [ self class environment ]
-]
-
-{ #category : #'command support' }
-SpCodePresenter >> environment: anEnvironment [
-	"Set system environment to be used in commands"
-	
-	environment := anEnvironment
-]
-
 { #category : #accessing }
 SpCodePresenter >> findClassFrom: aString [
 	| ast |
@@ -314,7 +300,7 @@ SpCodePresenter >> hasBindingThatBeginsWith: aString [
 		ifNil: [ false ]
 ]
 
-{ #category : #'private testing' }
+{ #category : #testing }
 SpCodePresenter >> hasEditionContextMenu [
 	"Answer if edition context menu is active. 
 	 Edition context menu is available by default, but it can be disabled by calling `SpTextPresenter>>#withoutEditionContextMenu` or `SpCodePresenter>>#overridingContextMenu`"

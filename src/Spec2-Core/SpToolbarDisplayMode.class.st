@@ -1,5 +1,5 @@
 "
-A base for different display modes for a toolbar
+Abstract superclass for different display modes for a toolbar
 "
 Class {
 	#name : #SpToolbarDisplayMode,

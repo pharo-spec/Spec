@@ -4,9 +4,6 @@ I'm a base adapter for layouts.
 Class {
 	#name : #SpMorphicLayoutAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
-	#instVars : [
-		'layout'
-	],
 	#category : #'Spec2-Adapters-Morphic-Layout'
 }
 
@@ -40,14 +37,6 @@ SpMorphicLayoutAdapter >> addKeyBindingsTo: aMorph [
 	
 ]
 
-{ #category : #private }
-SpMorphicLayoutAdapter >> applyChildrenAlignmentTo: childMorph constraints: constraints [
-	"when it applies (like the case of SpGridLayout), widgets may want to configure alignment 
-	 here."
-	
-	^ childMorph
-]
-
 { #category : #initialization }
 SpMorphicLayoutAdapter >> applyStyle: aMorph [
 	"layouts do not have style to apply"
@@ -76,13 +65,7 @@ SpMorphicLayoutAdapter >> buildMorph: aPresenter constraints: constraints [
 
 	childMorph := aPresenter buildWithSpec: constraints spec.
 	self applyStyle: aPresenter to: childMorph.
-	"Add children alignment constraints (if applies)"
-	childMorph := self 
-		applyChildrenAlignmentTo: childMorph 
-		constraints: constraints. 
-	childMorph := self 
-		addConstraits: constraints 
-		toChild: childMorph.
+	childMorph := self addConstraits: constraints toChild: childMorph.
 	
 	^ childMorph
 ]

@@ -346,7 +346,6 @@ SpPresenter >> bindKeyCombination: aShortcut toAction: aBlock [
 
 { #category : #testing }
 SpPresenter >> canTakeKeyboardFocus [
-	"Answer when the presenter can take keyboard focus."
 
 	^ true
 ]
@@ -786,12 +785,6 @@ SpPresenter >> newLabel [
 { #category : #widgets }
 SpPresenter >> newList [
 	^ self instantiate: SpListPresenter
-]
-
-{ #category : #widgets }
-SpPresenter >> newListWithFilter [
-
-	^ self instantiate: SpListWithFilterPresenter
 ]
 
 { #category : #widgets }

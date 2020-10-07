@@ -27,8 +27,7 @@ SpAbstractButtonPresenter >> addShortcutTipFor: aCharacter on: aString [
 
 { #category : #api }
 SpAbstractButtonPresenter >> icon [
-	"Answer the icon (an instance of `Form`) defined for this button (it can be nil)"
-
+	"Answer the icon defined for this button (it can be nil)"
 	^ icon
 ]
 
@@ -60,14 +59,14 @@ SpAbstractButtonPresenter >> initialize [
 
 { #category : #api }
 SpAbstractButtonPresenter >> label [
-	"Answer the label to be shown by the button"
+	"Answers the label to be shown by the button"
 
 	^ self addShortcutTipFor: label
 ]
 
 { #category : #api }
 SpAbstractButtonPresenter >> label: aString [
-	"Set the label to be shown by the button."
+	"Sets the label to be shown by the button."
 
 	label := aString
 ]
@@ -88,22 +87,16 @@ SpAbstractButtonPresenter >> shortcutCharacter [
 
 { #category : #'api-events' }
 SpAbstractButtonPresenter >> whenIconChangedDo: aBlock [
-	"Inform when icon property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
+	"Inform when an icon has been changed (invoking `SpAbstractButtonPresenter>>#icon:`). 
+	 `aBlock` receives zero arguments."
 
 	self property: #icon whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
 SpAbstractButtonPresenter >> whenLabelChangedDo: aBlock [
-	"Inform when label property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
+	"Inform when a label has been changed (invoking `SpAbstractButtonPresenter>>#label:`). 
+	 `aBlock` receives zero arguments."
 
 	self property: #label whenChangedDo: aBlock
 ]
