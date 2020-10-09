@@ -37,7 +37,10 @@ SpMorphicTreeTableDataSource >> allShownItems [
 
 { #category : #accessing }
 SpMorphicTreeTableDataSource >> buttonFor: item [
-	^ (self shouldDisplayExpandableArrowFor: item) ifTrue: [ item generateButton ] ifFalse: [ self class emptyMorph ]
+
+	^ (self shouldDisplayExpandableArrowFor: item) 
+		ifTrue: [ item generateButton ] 
+		ifFalse: [ self class emptyMorph ]
 ]
 
 { #category : #accessing }

@@ -16,6 +16,19 @@ SpMorphicTreeTableAdapter class >> intercellSpacing [
 	^ 2@0
 ]
 
+{ #category : #factory }
+SpMorphicTreeTableAdapter >> addColumnsFromPresenterTo: tableMorph [
+
+	"I need to ensure first column will have the size required and this is tricky on 
+	 fixed width of column: I need to enlarge that width with the width of the expander."
+	self columns withIndexDo: [ :each :index | | column |
+		column := self newColumnFrom: each.
+		(index = 1 and: [ column width notNil ]) ifTrue: [ 
+			column width: column width + SpMorphicTreeTableDataSource emptyMorph width ]. 
+		tableMorph addColumn: column ].
+			
+]
+
 { #category : #initialization }
 SpMorphicTreeTableAdapter >> addFocusRotationKeyBindings [
 	
@@ -32,8 +45,7 @@ SpMorphicTreeTableAdapter >> addKeyBindingsTo: aWidget [
 { #category : #factory }
 SpMorphicTreeTableAdapter >> addModelTo: tableMorph [
 
-	self columns do: [ :each | 
-		tableMorph addColumn: (self newColumnFrom: each) ].
+	self addColumnsFromPresenterTo: tableMorph.
 	self ensureAtLeastOneColumnIn: tableMorph.
 
 	self presenter selection isMultipleSelection ifTrue: [  
