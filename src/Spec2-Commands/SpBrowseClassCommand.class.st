@@ -21,6 +21,12 @@ SpBrowseClassCommand class >> defaultShortcutKey [
 		| $b control unix
 ]
 
+{ #category : #documentation }
+SpBrowseClassCommand class >> documentContextRequiredSelectors [
+
+	^ super documentContextRequiredSelectors, #(selectedTextOrLine)
+]
+
 { #category : #default }
 SpBrowseClassCommand class >> shortName [
 

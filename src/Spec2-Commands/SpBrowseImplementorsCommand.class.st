@@ -44,7 +44,7 @@ SpBrowseImplementorsCommand >> execute [
 SpBrowseImplementorsCommand >> selectedSelector [
 	| node selection |
 	
-	selection := self context selectedTextOrLine.
+	selection := self selectedTextOrLine.
 	node := RBParser parseFaultyExpression: selection.
 	node
 		nodesDo: [ :n | 
