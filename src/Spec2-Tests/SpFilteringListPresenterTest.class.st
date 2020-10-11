@@ -2,7 +2,7 @@
 A SpListWithFilterPresenterTest is a test class for testing the behavior of SpListWithFilterPresenter
 "
 Class {
-	#name : #SpFilteringPresenterTest,
+	#name : #SpFilteringListPresenterTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'listWithFilter'
@@ -11,14 +11,14 @@ Class {
 }
 
 { #category : #running }
-SpFilteringPresenterTest >> setUp [
+SpFilteringListPresenterTest >> setUp [
 
 	super setUp.
 	listWithFilter := SpFilteringListPresenter new
 ]
 
 { #category : #test }
-SpFilteringPresenterTest >> testFilterListItems [
+SpFilteringListPresenterTest >> testFilterListItems [
 
 	| listItems |
 	listItems := { 
@@ -41,14 +41,35 @@ SpFilteringPresenterTest >> testFilterListItems [
 	listWithFilter filterListItems: ''.
 	self
 		assertCollection: listWithFilter items
+		hasSameElements: listItems.
+	listItems := 1 to: 10.
+	listWithFilter items: listItems.
+	listWithFilter filterListItems: 'collection'.
+	self assertEmpty: listWithFilter items.
+	listWithFilter filterListItems: '5'.
+	self assertCollection: listWithFilter items includesAll: #( 5 ).
+	listWithFilter filterListItems: ''.
+	self
+		assertCollection: listWithFilter items
+		hasSameElements: listItems.
+	listItems := #( 'a' 'e' 'i' 'o' 'u' ).
+	listWithFilter listPresenter items: listItems.
+	listWithFilter filterListItems: '5'.
+	self assertEmpty: listWithFilter items.
+	listWithFilter filterListItems: 'a'.
+	self assertCollection: listWithFilter items includesAll: #( 'a' ).
+	listWithFilter filterListItems: ''.
+	self
+		assertCollection: listWithFilter items
 		hasSameElements: listItems
 ]
 
 { #category : #test }
-SpFilteringPresenterTest >> testFilterListItemsWithDifferentDisplay [
+SpFilteringListPresenterTest >> testFilterListItemsWithDifferentDisplay [
 
 	| listItems |
-	listItems := { OrderedCollection.
+	listItems := { 
+		             OrderedCollection.
 		             Array.
 		             SequenceableCollection.
 		             Set.
@@ -72,15 +93,16 @@ SpFilteringPresenterTest >> testFilterListItemsWithDifferentDisplay [
 ]
 
 { #category : #test }
-SpFilteringPresenterTest >> testInitializePresenters [
+SpFilteringListPresenterTest >> testInitializePresenters [
 
-	self assert: (listWithFilter listPresenter isMemberOf: SpListPresenter).
-	self assert: (listWithFilter filterInputPresenter isMemberOf: SpTextInputFieldPresenter).
-
+	self assert:
+		(listWithFilter listPresenter isMemberOf: SpListPresenter).
+	self assert: (listWithFilter filterInputPresenter isMemberOf:
+			 SpTextInputFieldPresenter)
 ]
 
 { #category : #test }
-SpFilteringPresenterTest >> testItemFilter [
+SpFilteringListPresenterTest >> testItemFilter [
 
 	| filterBlock |
 	filterBlock := [ :item :pattern | 
@@ -91,14 +113,14 @@ SpFilteringPresenterTest >> testItemFilter [
 ]
 
 { #category : #test }
-SpFilteringPresenterTest >> testItems [
+SpFilteringListPresenterTest >> testItems [
 
 	listWithFilter items: { Array }.
 	self assertCollection: listWithFilter items hasSameElements: { Array }
 ]
 
 { #category : #test }
-SpFilteringPresenterTest >> testMatchBeginOfString [
+SpFilteringListPresenterTest >> testMatchBeginOfString [
 
 	listWithFilter matchBeginOfString.
 	listWithFilter items: { 
@@ -123,7 +145,7 @@ SpFilteringPresenterTest >> testMatchBeginOfString [
 ]
 
 { #category : #test }
-SpFilteringPresenterTest >> testMatchSubstring [
+SpFilteringListPresenterTest >> testMatchSubstring [
 
 	listWithFilter matchSubstring.
 	listWithFilter items: { 
@@ -146,7 +168,7 @@ SpFilteringPresenterTest >> testMatchSubstring [
 ]
 
 { #category : #test }
-SpFilteringPresenterTest >> testPrivateMethodFilterListItems [
+SpFilteringListPresenterTest >> testPrivateMethodFilterListItems [
 
 	listWithFilter matchBeginOfString.
 	listWithFilter items: { 
@@ -156,7 +178,6 @@ SpFilteringPresenterTest >> testPrivateMethodFilterListItems [
 			OrderedCollection.
 			HashedCollection.
 			Array }.
-	
 	listWithFilter filterListItems: 'NUM'.
 	self assert: listWithFilter items size equals: 1.
 	listWithFilter filterListItems: 'COLLECTION'.
@@ -172,7 +193,7 @@ SpFilteringPresenterTest >> testPrivateMethodFilterListItems [
 ]
 
 { #category : #test }
-SpFilteringPresenterTest >> testPrivateMethodMatchSubstring [
+SpFilteringListPresenterTest >> testPrivateMethodMatchSubstring [
 
 	listWithFilter matchSubstring.
 	listWithFilter items: { 
