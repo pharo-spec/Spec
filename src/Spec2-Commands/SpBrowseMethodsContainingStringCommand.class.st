@@ -22,6 +22,6 @@ SpBrowseMethodsContainingStringCommand class >> shortName [
 SpBrowseMethodsContainingStringCommand >> execute [
 
 	self systemNavigation 
-		browseMethodsWithSourceString: self target 
+		browseMethodsWithSourceString: self selectedTextOrLine 
 		matchCase: false
 ]

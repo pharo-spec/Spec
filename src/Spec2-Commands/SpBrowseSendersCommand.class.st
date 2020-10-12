@@ -35,17 +35,40 @@ SpBrowseSendersCommand class >> shortName [
 
 { #category : #executing }
 SpBrowseSendersCommand >> execute [
-	| env ref aVariableOrClassName |
+	| env variableOrClassName |
 
-	aVariableOrClassName := self context selectedTextOrLine trimmed asSymbol.
-	aVariableOrClassName ifEmpty: [ ^ self ].
+	variableOrClassName := self context selectedTextOrLine trimmed asSymbol.
+	variableOrClassName ifEmpty: [ ^ self ].
 	 
 	env := self context environment.
 	env isBehavior ifTrue: [
-		(env hasSlotNamed: aVariableOrClassName) ifTrue: [
-		 ^ self systemNavigation browseAllAccessesTo: aVariableOrClassName from: env ] ].
+		(env hasSlotNamed: variableOrClassName) ifTrue: [
+		 ^ self systemNavigation browseAllAccessesTo: variableOrClassName from: env ] ].
 
-	ref:= (env bindingOf: aVariableOrClassName) 
-		ifNil: [ ^ self ].
-	self systemNavigation browseAllSendersOf: ref
+	(env bindingOf: variableOrClassName) 
+		ifNotNil: [ :ref | self systemNavigation browseAllSendersOf: ref ].
+	
+	"If this is not a class, behave as SpBrowseMethodReferencesCommand"
+	self flag: #TODO. "This thingy waits for Guille's refactor"
+	self systemNavigation browseAllReferencesTo: self selectedSelector
+		
+		
+]
+
+{ #category : #executing }
+SpBrowseSendersCommand >> selectedSelector [
+	| node selection |
+	
+	selection := self selectedTextOrLine.
+	node := RBParser parseFaultyExpression: selection.
+	node
+		nodesDo: [ :n | 
+			n isMessage
+				ifTrue: [ ^ n selector ].
+			n isVariable
+				ifTrue: [ ^ n name ].
+			n isLiteralNode
+				ifTrue: [ ^ n value ] ].
+	"fall back"
+	^ selection trimmed asSymbol
 ]

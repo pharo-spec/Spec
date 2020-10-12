@@ -20,6 +20,14 @@ SpBrowseClassHierarchyCommand class >> shortName [
 
 { #category : #executing }
 SpBrowseClassHierarchyCommand >> execute [
+	| result |
 
-	self systemNavigation browseHierarchy: self target
+	result := self class compilerClass new
+		environment: self environment;
+		class: self class;
+		source: self selectedTextOrLine;
+		failBlock: [ ^ self ];
+		evaluate.
+
+	self systemNavigation browseHierarchy: result
 ]

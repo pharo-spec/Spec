@@ -35,6 +35,14 @@ SpBrowseClassCommand class >> shortName [
 
 { #category : #execution }
 SpBrowseClassCommand >> execute [
+	| result |
 
-	self target ifNotNil: [ :aTarget | aTarget browse ]
+	result := self class compilerClass new
+		environment: self environment;
+		class: self class;
+		source: self selectedTextOrLine;
+		failBlock: [ ^ self ];
+		evaluate.
+		
+	result browse
 ]

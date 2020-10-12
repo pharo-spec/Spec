@@ -32,6 +32,12 @@ SpSystemNavigationCommand class >> shortName [
 ]
 
 { #category : #accessing }
+SpSystemNavigationCommand >> environment [
+
+	^ self context environment
+]
+
+{ #category : #accessing }
 SpSystemNavigationCommand >> selector [
 
 	^ self target trimBoth asSymbol
@@ -41,6 +47,6 @@ SpSystemNavigationCommand >> selector [
 SpSystemNavigationCommand >> systemNavigation [
 
 	^ super systemNavigation
-		environment: self context environment;
+		environment: self environment;
 		yourself
 ]
