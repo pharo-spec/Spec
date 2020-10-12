@@ -3,7 +3,7 @@ Browse all implementors of the selector found in context.
 "
 Class {
 	#name : #SpBrowseImplementorsCommand,
-	#superclass : #SpSystemNavigationCommand,
+	#superclass : #SpSystemSelectionCommand,
 	#category : #'Spec2-Commands-Navigation'
 }
 
@@ -18,12 +18,6 @@ SpBrowseImplementorsCommand class >> defaultShortcutKey [
 	^ $m command mac 
 		| $m control win
 		| $m control unix
-]
-
-{ #category : #documentation }
-SpBrowseImplementorsCommand class >> documentContextRequiredSelectors [
-
-	^ super documentContextRequiredSelectors, #(selectedTextOrLine)
 ]
 
 { #category : #default }

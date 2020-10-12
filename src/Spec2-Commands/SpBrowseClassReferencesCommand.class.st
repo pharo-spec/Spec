@@ -3,7 +3,7 @@ Browse all references to the class returned by the evaluation of the context.
 "
 Class {
 	#name : #SpBrowseClassReferencesCommand,
-	#superclass : #SpSystemNavigationCommand,
+	#superclass : #SpSystemSelectionCommand,
 	#category : #'Spec2-Commands-Navigation'
 }
 

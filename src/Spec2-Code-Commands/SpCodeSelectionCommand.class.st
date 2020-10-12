@@ -15,6 +15,12 @@ Class {
 	#category : #'Spec2-Code-Commands'
 }
 
+{ #category : #documentation }
+SpCodeSelectionCommand class >> documentContextRequiredSelectors [
+
+	^ super documentContextRequiredSelectors, #(selectedTextOrLine)
+]
+
 { #category : #private }
 SpCodeSelectionCommand >> evaluate: aString andDo: aBlock [
 	"Treat the current selection as an expression; evaluate it and invoke 
@@ -48,4 +54,10 @@ SpCodeSelectionCommand >> evaluateSelectionAndDo: aBlock [
 	^ self 
 		evaluate: selection 
 		andDo: aBlock
+]
+
+{ #category : #accessing }
+SpCodeSelectionCommand >> selectedTextOrLine [
+
+	^ self context selectedTextOrLine
 ]

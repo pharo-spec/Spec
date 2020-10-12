@@ -4,7 +4,7 @@ Browse all senders.
 "
 Class {
 	#name : #SpBrowseSendersCommand,
-	#superclass : #SpSystemNavigationCommand,
+	#superclass : #SpSystemSelectionCommand,
 	#category : #'Spec2-Commands-Navigation'
 }
 
@@ -19,12 +19,6 @@ SpBrowseSendersCommand class >> defaultShortcutKey [
 	^ $n command mac 
 		| $n control win
 		| $n control unix
-]
-
-{ #category : #documentation }
-SpBrowseSendersCommand class >> documentContextRequiredSelectors [
-
-	^ super documentContextRequiredSelectors, #(selectedTextOrLine)
 ]
 
 { #category : #default }

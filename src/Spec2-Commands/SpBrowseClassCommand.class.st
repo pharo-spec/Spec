@@ -4,7 +4,7 @@ My context must be a block that returns a class.
 "
 Class {
 	#name : #SpBrowseClassCommand,
-	#superclass : #SpSystemNavigationCommand,
+	#superclass : #SpSystemSelectionCommand,
 	#category : #'Spec2-Commands-Navigation'
 }
 
@@ -19,12 +19,6 @@ SpBrowseClassCommand class >> defaultShortcutKey [
 	^ $b command mac 
 		| $b control win
 		| $b control unix
-]
-
-{ #category : #documentation }
-SpBrowseClassCommand class >> documentContextRequiredSelectors [
-
-	^ super documentContextRequiredSelectors, #(selectedTextOrLine)
 ]
 
 { #category : #default }
