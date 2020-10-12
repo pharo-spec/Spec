@@ -32,21 +32,3 @@ SpBrowseImplementorsCommand >> execute [
 	self flag: #TODO. "This thingy waits for Guille's refactor"
 	self systemNavigation browseAllImplementorsOf: self selectedSelector
 ]
-
-{ #category : #api }
-SpBrowseImplementorsCommand >> selectedSelector [
-	| node selection |
-	
-	selection := self selectedTextOrLine.
-	node := RBParser parseFaultyExpression: selection.
-	node
-		nodesDo: [ :n | 
-			n isMessage
-				ifTrue: [ ^ n selector ].
-			n isVariable
-				ifTrue: [ ^ n name ].
-			n isLiteralNode
-				ifTrue: [ ^ n value ] ].
-	"fall back"
-	^ selection trimmed asSymbol
-]

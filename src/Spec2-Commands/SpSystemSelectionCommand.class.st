@@ -27,6 +27,20 @@ SpSystemSelectionCommand >> evaluate: aString ifError: aBlock [
 	
 ]
 
+{ #category : #private }
+SpSystemSelectionCommand >> selectedSelector [
+	| node selection |
+	
+	selection := self selectedTextOrLine.
+	node := RBParser parseFaultyExpression: selection.
+	node nodesDo: [ :n | 
+		n isMessage ifTrue: [ ^ n selector ].
+		n isVariable ifTrue: [ ^ n name ].
+		n isLiteralNode ifTrue: [ ^ n value ] ].
+	"fall back"
+	^ selection trimmed asSymbol
+]
+
 { #category : #accessing }
 SpSystemSelectionCommand >> selectedTextOrLine [
 
