@@ -13,6 +13,20 @@ SpSystemSelectionCommand class >> documentContextRequiredSelectors [
 	^ super documentContextRequiredSelectors, #(selectedTextOrLine)
 ]
 
+{ #category : #private }
+SpSystemSelectionCommand >> evaluate: aString ifError: aBlock [
+
+	^ [
+		self class compilerClass new
+			environment: self environment;
+			class: UndefinedObject;
+			source: self selectedTextOrLine;
+			evaluate ]
+		on: Error 
+		do: aBlock
+	
+]
+
 { #category : #accessing }
 SpSystemSelectionCommand >> selectedTextOrLine [
 

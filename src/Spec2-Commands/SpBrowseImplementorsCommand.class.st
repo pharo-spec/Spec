@@ -30,9 +30,7 @@ SpBrowseImplementorsCommand class >> shortName [
 SpBrowseImplementorsCommand >> execute [
 
 	self flag: #TODO. "This thingy waits for Guille's refactor"
-	self systemNavigation 
-		environment: self context environment;
-		browseAllImplementorsOf: self selectedSelector
+	self systemNavigation browseAllImplementorsOf: self selectedSelector
 ]
 
 { #category : #api }

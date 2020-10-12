@@ -20,15 +20,12 @@ SpBrowseClassReferencesCommand class >> shortName [
 
 { #category : #execution }
 SpBrowseClassReferencesCommand >> execute [
-	| result class  |
+	| result class |
 
-	result := self class compilerClass new
-		environment: self environment;
-		class: self class;
-		source: self selectedTextOrLine;
-		failBlock: [ ^ self ];
-		evaluate.
-
+	result := self 
+		evaluate: self selectedTextOrLine 
+		ifError: [ :e | ^ self ].
+		
 	(result isClass or: [ result isTrait ])
 		ifFalse: [ result := result class ].
 

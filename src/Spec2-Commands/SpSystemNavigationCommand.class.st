@@ -46,7 +46,7 @@ SpSystemNavigationCommand >> selector [
 { #category : #accessing }
 SpSystemNavigationCommand >> systemNavigation [
 
-	^ super systemNavigation
+	^ self context systemNavigation
 		environment: self environment;
 		yourself
 ]

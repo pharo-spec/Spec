@@ -40,7 +40,7 @@ SpBrowseSendersCommand >> execute [
 		 ^ self systemNavigation browseAllAccessesTo: variableOrClassName from: env ] ].
 
 	(env bindingOf: variableOrClassName) 
-		ifNotNil: [ :ref | self systemNavigation browseAllSendersOf: ref ].
+		ifNotNil: [ :ref | ^ self systemNavigation browseAllSendersOf: ref ].
 	
 	"If this is not a class, behave as SpBrowseMethodReferencesCommand"
 	self flag: #TODO. "This thingy waits for Guille's refactor"
