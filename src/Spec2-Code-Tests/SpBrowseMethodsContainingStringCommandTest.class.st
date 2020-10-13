@@ -4,22 +4,22 @@ Class {
 	#category : #'Spec2-Code-Tests'
 }
 
+{ #category : #accessing }
+SpBrowseMethodsContainingStringCommandTest >> commandClass [
+
+	^ SpBrowseMethodsContainingStringCommand
+]
+
 { #category : #tests }
 SpBrowseMethodsContainingStringCommandTest >> testExecute [
-	| command mockContext mockNavigation selectedTextOrLine string |
+	| selectedTextOrLine string |
 
-	mockNavigation := SpToolCommandMock new
-		when: #environment: do: [ :env | "ignore" ];
+	command context systemNavigation
 		when: #browseMethodsWithSourceString:matchCase:  do: [ :ref :env | string := ref ].
-	mockContext := SpToolCommandMock new
-		when: #environment do: [ Smalltalk globals ];
-		when: #selectedTextOrLine do: [ selectedTextOrLine ];
-		when: #systemNavigation do: [ mockNavigation ].
+	command context
+		when: #selectedTextOrLine do: [ selectedTextOrLine ].
 		
-	command := SpBrowseMethodsContainingStringCommand forContext: mockContext.
-	
 	selectedTextOrLine := 'some string'.
 	command execute.
-	self assert: string equals: 'some string'.
-
+	self assert: string equals: 'some string'
 ]

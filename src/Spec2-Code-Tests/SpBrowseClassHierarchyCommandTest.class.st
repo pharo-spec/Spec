@@ -4,38 +4,58 @@ Class {
 	#category : #'Spec2-Code-Tests'
 }
 
+{ #category : #accessing }
+SpBrowseClassHierarchyCommandTest >> commandClass [
+
+	^ SpBrowseClassHierarchyCommand
+]
+
 { #category : #tests }
-SpBrowseClassHierarchyCommandTest >> testExecute [
-	| command mockContext mockNavigation selectedTextOrLine object |
+SpBrowseClassHierarchyCommandTest >> testExecuteEvaluationError [
+	| selectedTextOrLine object |
 
-	mockNavigation := SpToolCommandMock new
-		when: #environment: do: [ :env | "ignore" ];
+	command context systemNavigation
 		when: #browseHierarchy: do: [ :anObject | object := anObject ].
-	mockContext := SpToolCommandMock new
-		when: #environment do: [ Smalltalk globals ];
-		when: #selectedTextOrLine do: [ selectedTextOrLine ];
-		when: #systemNavigation do: [ mockNavigation ].
-		
-	command := SpBrowseClassHierarchyCommand forContext: mockContext.
-	
-	object := nil.
-	selectedTextOrLine := 'Object'.
-	command execute.
-	self assert: object equals: Object.
+	command context
+		when: #selectedTextOrLine do: [ selectedTextOrLine ].
 
-	object := nil.
-	selectedTextOrLine := '42'.
-	command execute.
-	self assert: object equals: SmallInteger.
-	
-	object := nil.
-	selectedTextOrLine := '1000 factorial'.
-	command execute.
-	self assert: object equals: LargePositiveInteger.
-	
 	object := nil.
 	selectedTextOrLine := '1000/0'.
 	command execute.
 	self assert: object equals: nil
+]
 
+{ #category : #tests }
+SpBrowseClassHierarchyCommandTest >> testExecuteEvaluationResult [
+	| selectedTextOrLine class |
+
+	command context systemNavigation
+		when: #browseHierarchy: do: [ :anObject | class := anObject ].
+	command context
+		when: #selectedTextOrLine do: [ selectedTextOrLine ].
+		
+	class := nil.
+	selectedTextOrLine := '42'.
+	command execute.
+	self assert: class equals: SmallInteger.
+	
+	class := nil.
+	selectedTextOrLine := '1000 factorial'.
+	command execute.
+	self assert: class equals: LargePositiveInteger
+]
+
+{ #category : #tests }
+SpBrowseClassHierarchyCommandTest >> testExecuteGlobal [
+	| selectedTextOrLine object |
+
+	command context systemNavigation
+		when: #browseHierarchy: do: [ :anObject | object := anObject ].
+	command context
+		when: #selectedTextOrLine do: [ selectedTextOrLine ].
+		
+	object := nil.
+	selectedTextOrLine := 'Object'.
+	command execute.
+	self assert: object equals: Object
 ]

@@ -4,38 +4,58 @@ Class {
 	#category : #'Spec2-Code-Tests'
 }
 
+{ #category : #accessing }
+SpBrowseClassCommandTest >> commandClass [
+
+	^ SpBrowseClassCommand
+]
+
 { #category : #tests }
-SpBrowseClassCommandTest >> testExecute [
-	| command mockContext mockNavigation selectedTextOrLine object |
+SpBrowseClassCommandTest >> testExecuteEvaluationError [
+	| selectedTextOrLine object |
 
-	mockNavigation := SpToolCommandMock new
-		when: #environment: do: [ :env | "ignore" ];
+	command context systemNavigation
 		when: #browse: do: [ :anObject | object := anObject ].
-	mockContext := SpToolCommandMock new
-		when: #environment do: [ Smalltalk globals ];
-		when: #selectedTextOrLine do: [ selectedTextOrLine ];
-		when: #systemNavigation do: [ mockNavigation ].
-		
-	command := SpBrowseClassCommand forContext: mockContext.
-	
-	object := nil.
-	selectedTextOrLine := 'Object'.
-	command execute.
-	self assert: object equals: Object.
+	command context
+		when: #selectedTextOrLine do: [ selectedTextOrLine ].
 
-	object := nil.
-	selectedTextOrLine := '42'.
-	command execute.
-	self assert: object equals: 42.
-	
-	object := nil.
-	selectedTextOrLine := '1000 factorial'.
-	command execute.
-	self assert: object equals: 1000 factorial.
-	
 	object := nil.
 	selectedTextOrLine := '1000/0'.
 	command execute.
 	self assert: object equals: nil
+]
 
+{ #category : #tests }
+SpBrowseClassCommandTest >> testExecuteEvaluationResult [
+	| selectedTextOrLine object |
+
+	command context systemNavigation
+		when: #browse: do: [ :anObject | object := anObject ].
+	command context
+		when: #selectedTextOrLine do: [ selectedTextOrLine ].
+		
+	object := nil.
+	selectedTextOrLine := '42'.
+	command execute.
+	self assert: object class equals: SmallInteger.
+	
+	object := nil.
+	selectedTextOrLine := '1000 factorial'.
+	command execute.
+	self assert: object class equals: LargePositiveInteger
+]
+
+{ #category : #tests }
+SpBrowseClassCommandTest >> testExecuteGlobal [
+	| selectedTextOrLine object |
+
+	command context systemNavigation
+		when: #browse: do: [ :anObject | object := anObject ].
+	command context
+		when: #selectedTextOrLine do: [ selectedTextOrLine ].
+		
+	object := nil.
+	selectedTextOrLine := 'Object'.
+	command execute.
+	self assert: object equals: Object
 ]

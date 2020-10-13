@@ -4,32 +4,77 @@ Class {
 	#category : #'Spec2-Code-Tests'
 }
 
+{ #category : #accessing }
+SpBrowseMethodReferencesCommandTest >> commandClass [
+
+	^ SpBrowseMethodReferencesCommand
+
+	
+]
+
 { #category : #tests }
-SpBrowseMethodReferencesCommandTest >> testExecute [
-	| command mockContext mockNavigation selectedTextOrLine varRef globalRef selectorRef |
+SpBrowseMethodReferencesCommandTest >> testExecuteKeywordSelector [
+	<expectedFailure>
+	| selectedTextOrLine selectorRef |
 
-	mockNavigation := SpToolCommandMock new
-		when: #environment: do: [ :env | "ignore" ];
+	command context
+		when: #selectedTextOrLine do: [ selectedTextOrLine ].
+	command context systemNavigation 
 		when: #browseAllReferencesTo: do: [ :aSelector | selectorRef := aSelector ].
-	mockContext := SpToolCommandMock new
-		when: #environment do: [ Smalltalk globals ];
-		when: #selectedTextOrLine do: [ selectedTextOrLine ];
-		when: #systemNavigation do: [ mockNavigation ].
-		
-	command := SpBrowseMethodReferencesCommand forContext: mockContext.
-	
-	varRef := globalRef := selectorRef := nil.
-	selectedTextOrLine := 'initialize'.
-	command execute.
-	self assert: selectorRef equals: #initialize.
 
-	varRef := globalRef := selectorRef := nil.
-	selectedTextOrLine := 'self initialize'.
+	selectorRef := nil.
+	selectedTextOrLine := 'addItemLabeled: ''Some string'' do:'.
 	command execute.
-	self assert: selectorRef equals: #initialize.
-	
-	varRef := globalRef := selectorRef := nil.
+	self assert: selectorRef equals: #addItemLabeled:do:.
+]
+
+{ #category : #tests }
+SpBrowseMethodReferencesCommandTest >> testExecuteReceiverPlusKeywordSelector [
+	| selectedTextOrLine selectorRef |
+
+	command context
+		when: #selectedTextOrLine do: [ selectedTextOrLine ].
+	command context systemNavigation 
+		when: #browseAllReferencesTo: do: [ :aSelector | selectorRef := aSelector ].
+
+	selectorRef := nil.
 	selectedTextOrLine := 'self initialize: 42'.
 	command execute.
-	self assert: selectorRef equals: #initialize:
+	self assert: selectorRef equals: #initialize:.
+
+	selectorRef := nil.
+	selectedTextOrLine := 'self initialize: 42 and: other'.
+	command execute.
+	self assert: selectorRef equals: #initialize:and:
+
+]
+
+{ #category : #tests }
+SpBrowseMethodReferencesCommandTest >> testExecuteReceiverPlusUnarySelector [
+	| selectedTextOrLine selectorRef |
+
+	command context
+		when: #selectedTextOrLine do: [ selectedTextOrLine ].
+	command context systemNavigation 
+		when: #browseAllReferencesTo: do: [ :aSelector | selectorRef := aSelector ].
+
+	selectorRef := nil.
+	selectedTextOrLine := 'self initialize'.
+	command execute.
+	self assert: selectorRef equals: #initialize
+]
+
+{ #category : #tests }
+SpBrowseMethodReferencesCommandTest >> testExecuteUnarySelector [
+	| selectedTextOrLine selectorRef |
+
+	command context 
+		when: #selectedTextOrLine do: [ selectedTextOrLine ].
+	command context systemNavigation 
+		when: #browseAllReferencesTo: do: [ :aSelector | selectorRef := aSelector ].
+
+	selectorRef := nil.
+	selectedTextOrLine := 'initialize'.
+	command execute.
+	self assert: selectorRef equals: #initialize
 ]
