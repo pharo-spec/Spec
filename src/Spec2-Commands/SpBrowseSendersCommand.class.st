@@ -4,7 +4,7 @@ Browse all senders.
 "
 Class {
 	#name : #SpBrowseSendersCommand,
-	#superclass : #SpSystemNavigationCommand,
+	#superclass : #SpSystemSelectionCommand,
 	#category : #'Spec2-Commands-Navigation'
 }
 
@@ -21,12 +21,6 @@ SpBrowseSendersCommand class >> defaultShortcutKey [
 		| $n control unix
 ]
 
-{ #category : #documentation }
-SpBrowseSendersCommand class >> documentContextRequiredSelectors [
-
-	^ super documentContextRequiredSelectors, #(selectedTextOrLine)
-]
-
 { #category : #default }
 SpBrowseSendersCommand class >> shortName [
 
@@ -35,17 +29,22 @@ SpBrowseSendersCommand class >> shortName [
 
 { #category : #executing }
 SpBrowseSendersCommand >> execute [
-	| env ref aVariableOrClassName |
+	| env variableOrClassName |
 
-	aVariableOrClassName := self context selectedTextOrLine trimmed asSymbol.
-	aVariableOrClassName ifEmpty: [ ^ self ].
+	variableOrClassName := self context selectedTextOrLine trimmed asSymbol.
+	variableOrClassName ifEmpty: [ ^ self ].
 	 
 	env := self context environment.
 	env isBehavior ifTrue: [
-		(env hasSlotNamed: aVariableOrClassName) ifTrue: [
-		 ^ self systemNavigation browseAllAccessesTo: aVariableOrClassName from: env ] ].
+		(env hasSlotNamed: variableOrClassName) ifTrue: [
+		 ^ self systemNavigation browseAllAccessesTo: variableOrClassName from: env ] ].
 
-	ref:= (env bindingOf: aVariableOrClassName) 
-		ifNil: [ ^ self ].
-	self systemNavigation browseAllSendersOf: ref
+	(env bindingOf: variableOrClassName) 
+		ifNotNil: [ :ref | ^ self systemNavigation browseAllSendersOf: ref ].
+	
+	"If this is not a class, behave as SpBrowseMethodReferencesCommand"
+	self flag: #TODO. "This thingy waits for Guille's refactor"
+	self systemNavigation browseAllReferencesTo: self selectedSelector
+		
+		
 ]

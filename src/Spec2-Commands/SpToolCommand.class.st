@@ -88,18 +88,6 @@ SpToolCommand >> initialize [
 ]
 
 { #category : #accessing }
-SpToolCommand >> selectedText [
-	
-	^ self context selectedText
-]
-
-{ #category : #accessing }
-SpToolCommand >> selectedTextOrLine [
-	
-	^ self context selectedTextOrLine
-]
-
-{ #category : #accessing }
 SpToolCommand >> shortcutKey [
 
 	^ self class defaultShortcutKey
