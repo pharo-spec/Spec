@@ -78,18 +78,6 @@ SpStringTableColumn >> isEditable [
 	^ editable
 ]
 
-{ #category : #testing }
-SpStringTableColumn >> isSortable [
-	"Answer true if column is sortable"
-
-	^ sortable
-]
-
-{ #category : #private }
-SpStringTableColumn >> isSortable: aBoolean [ 
-	sortable := aBoolean
-]
-
 { #category : #api }
 SpStringTableColumn >> onAcceptEdition: aBlock [
 	"Set the block to execute when cell edition is accepted.
