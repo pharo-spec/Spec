@@ -49,20 +49,6 @@ SpStringTableColumn >> beNotEditable [
 	editable := false
 ]
 
-{ #category : #api }
-SpStringTableColumn >> beNotSortable [
-	"Set the colum as not sortable."
-
-	sortable := false
-]
-
-{ #category : #api }
-SpStringTableColumn >> beSortable [
-	"Set the cell as sortable (this is the default)"
-
-	sortable := true
-]
-
 { #category : #initialization }
 SpStringTableColumn >> initialize [ 
 
