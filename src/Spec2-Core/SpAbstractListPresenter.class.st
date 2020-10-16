@@ -204,13 +204,13 @@ SpAbstractListPresenter >> listSize [
 ]
 
 { #category : #TOREMOVE }
-SpAbstractListPresenter >> marchSubstring [
-	self itemFilter: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
+SpAbstractListPresenter >> matchBeginOfString [
+	self itemFilter: [ :each :pattern | each asLowercase beginsWith: pattern asLowercase ]
 ]
 
 { #category : #TOREMOVE }
-SpAbstractListPresenter >> matchBeginOfString [
-	self itemFilter: [ :each :pattern | each asLowercase beginsWith: pattern asLowercase ]
+SpAbstractListPresenter >> matchSubstring [
+	self itemFilter: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
 ]
 
 { #category : #api }

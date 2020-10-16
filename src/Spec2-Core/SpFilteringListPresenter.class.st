@@ -26,7 +26,7 @@ SpFilteringListPresenter class >> bottomLayout [
 
 	^ SpBoxLayout newVertical
 		  add: #list;
-		  add: #filterInput expand: false;
+		  add: #filterInputPresenter expand: false;
 		  yourself
 ]
 
@@ -40,9 +40,15 @@ SpFilteringListPresenter class >> defaultSpec [
 SpFilteringListPresenter class >> topLayout [
 
 	^ SpBoxLayout newVertical
-		  add: #filterInput expand: false;
+		  add: #filterInputPresenter expand: false;
 		  add: #list;
 		  yourself
+]
+
+{ #category : #api }
+SpFilteringListPresenter >> applyFilter: aString [
+
+	self filterInputPresenter text: aString
 ]
 
 { #category : #initialization }
@@ -51,12 +57,25 @@ SpFilteringListPresenter >> connectPresenters [
 	filterInput whenTextChangedDo: [ :text | self filterListItems: text ]
 ]
 
-{ #category : #accessing }
-SpFilteringListPresenter >> filterInput [
+{ #category : #api }
+SpFilteringListPresenter >> display: aBlock [
+
+	self listPresenter display: aBlock
+]
+
+{ #category : #api }
+SpFilteringListPresenter >> displayIcon: aBlock [
+
+	self listPresenter displayIcon: aBlock
+]
+
+{ #category : #api }
+SpFilteringListPresenter >> filterInputPresenter [
+
 	^ filterInput
 ]
 
-{ #category : #actions }
+{ #category : #private }
 SpFilteringListPresenter >> filterListItems: pattern [
 
 	| filteredItems |
@@ -71,20 +90,21 @@ SpFilteringListPresenter >> filterListItems: pattern [
 	list items: filteredItems
 ]
 
+{ #category : #api }
+SpFilteringListPresenter >> filterText [
+
+	^  self filterInputPresenter text
+]
+
 { #category : #initialization }
 SpFilteringListPresenter >> initializePresenters [
 
-	filterInput := self newTextInput
-		               placeholder: 'Filter...';
-		               yourself.
+	filterInput := self newTextInput placeholder: 'Filter...'; yourself.
 	list := self newList.
-	self marchSubstring.
-	self focusOrder
-		add: list;
-		add: filterInput
+	self matchSubstring
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpFilteringListPresenter >> itemFilter [
 
 	^ itemFilter
@@ -96,16 +116,21 @@ SpFilteringListPresenter >> itemFilter: aBlock [
 	itemFilter := aBlock
 ]
 
-{ #category : #accessing }
-SpFilteringListPresenter >> list [
-	^ list
+{ #category : #api }
+SpFilteringListPresenter >> items [
+
+	^ list items
 ]
 
-{ #category : #initialization }
-SpFilteringListPresenter >> marchSubstring [
+{ #category : #api }
+SpFilteringListPresenter >> items: aCollection [
 
-	itemFilter := [ :each :pattern | 
-	              each asLowercase includesSubstring: pattern asLowercase ]
+	list items: aCollection
+]
+
+{ #category : #api }
+SpFilteringListPresenter >> listPresenter [
+	^ list
 ]
 
 { #category : #initialization }
@@ -113,4 +138,13 @@ SpFilteringListPresenter >> matchBeginOfString [
 
 	itemFilter := [ :each :pattern | 
 	              each asLowercase beginsWith: pattern asLowercase ]
+]
+
+{ #category : #initialization }
+SpFilteringListPresenter >> matchSubstring [
+
+	itemFilter := [ :each :pattern | 
+		each 
+			includesSubstring: pattern asLowercase 
+			caseSensitive: false ]
 ]

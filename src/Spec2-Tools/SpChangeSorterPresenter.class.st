@@ -392,9 +392,9 @@ SpChangeSorterPresenter >> initializePresenters [
 	methodsListPresenter contextMenu: self messageMenu.
 	changesListPresenter contextMenu: self changeSetMenu.
 	classesListPresenter contextMenu: self classMenu.
-	methodsListPresenter marchSubstring.
-	classesListPresenter marchSubstring.
-	changesListPresenter marchSubstring.
+	methodsListPresenter matchSubstring.
+	classesListPresenter matchSubstring.
+	changesListPresenter matchSubstring.
 	changesListPresenter items: self model allChanges.
 	changesListPresenter display: [ :item | item name ].
 	classesListPresenter sortingBlock: [ :a :b | a name < b name ]

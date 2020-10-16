@@ -15,7 +15,7 @@ SpFilteringListPresenter class >> example [
 ]
 
 { #category : #'*Spec2-Examples' }
-SpFilteringListPresenter class >> exampleTopLayout [
+SpFilteringListPresenter class >> exampleWithFilterOnTop [
 	<sampleInstance>
 	| example |
 
@@ -24,6 +24,22 @@ SpFilteringListPresenter class >> exampleTopLayout [
 	example openWithSpec: #topLayout.
 	example withWindowDo: [ :window | 
 		window title: self name asString , ' example' ].
+
+	^ example
+]
+
+{ #category : #'*Spec2-Examples' }
+SpFilteringListPresenter class >> exampleWithInitializedFilter [
+	<sampleInstance>
+	| example |
+
+	example := self new.
+	example matchSubstring.
+	example items: RBBrowserEnvironment default classes asArray.
+	example listPresenter icons: [ :aClass | aClass systemIcon ].
+	example applyFilter: 'ZZ'.
+	example openWithSpec 
+		title: self name asString , ' example with filter'.
 
 	^ example
 ]
