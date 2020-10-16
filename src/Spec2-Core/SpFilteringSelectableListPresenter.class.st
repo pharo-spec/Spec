@@ -89,11 +89,11 @@ SpFilteringSelectableListPresenter >> selectedItems: aCollection [
 
 { #category : #private }
 SpFilteringSelectableListPresenter >> toggleSelection [
-	| selected selectedItem |
+	| selectedItem |
 
 	selectedItem := listPresenter selectedItem.
-	selected := selectColumn evaluation value: selectedItem.
-	selected 
-		ifTrue: [ selectColumn onDeactivation value: selectedItem ]
-		ifFalse: [ selectColumn onActivation value: selectedItem ]
+	(selectedItems includes: selectedItem)
+		ifTrue: [ selectedItems remove: selectedItem ]
+		ifFalse: [ selectedItems add: selectedItem ].
+	listPresenter refresh
 ]
