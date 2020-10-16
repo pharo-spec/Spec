@@ -10,12 +10,17 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
+{ #category : #accessing }
+SpFilteringListPresenterTest >> classToTest [
+
+	^ SpFilteringListPresenter
+]
+
 { #category : #running }
 SpFilteringListPresenterTest >> setUp [
 
 	super setUp.
-
-	listWithFilter := SpFilteringListPresenter new
+	listWithFilter := self classToTest new
 ]
 
 { #category : #test }
@@ -118,13 +123,6 @@ SpFilteringListPresenterTest >> testFilterListItemsWithDifferentDisplay [
 	self
 		assertCollection: listWithFilter  items
 		hasSameElements: listItems
-]
-
-{ #category : #test }
-SpFilteringListPresenterTest >> testInitializePresenters [
-
-	self assert: (listWithFilter listPresenter isMemberOf: SpListPresenter).
-	self assert: (listWithFilter filterInputPresenter isMemberOf: SpTextInputFieldPresenter)
 ]
 
 { #category : #test }

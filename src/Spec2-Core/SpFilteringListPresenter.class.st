@@ -15,17 +15,17 @@ Class {
 	#instVars : [
 		'itemFilter',
 		'unfilteredItems',
-		'list',
-		'filterInput'
+		'listPresenter',
+		'filterInputPresenter'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : #'Spec2-Core-Widgets-Advanced'
 }
 
 { #category : #specs }
 SpFilteringListPresenter class >> bottomLayout [
 
 	^ SpBoxLayout newVertical
-		  add: #list;
+		  add: #listPresenter;
 		  add: #filterInputPresenter expand: false;
 		  yourself
 ]
@@ -41,7 +41,7 @@ SpFilteringListPresenter class >> topLayout [
 
 	^ SpBoxLayout newVertical
 		  add: #filterInputPresenter expand: false;
-		  add: #list;
+		  add: #listPresenter;
 		  yourself
 ]
 
@@ -54,7 +54,13 @@ SpFilteringListPresenter >> applyFilter: aString [
 { #category : #initialization }
 SpFilteringListPresenter >> connectPresenters [
 
-	filterInput whenTextChangedDo: [ :text | self filterListItems: text ]
+	filterInputPresenter whenTextChangedDo: [ :text | self filterListItems: text ]
+]
+
+{ #category : #api }
+SpFilteringListPresenter >> display [ 
+
+	^ self listPresenter display
 ]
 
 { #category : #api }
@@ -72,22 +78,24 @@ SpFilteringListPresenter >> displayIcon: aBlock [
 { #category : #api }
 SpFilteringListPresenter >> filterInputPresenter [
 
-	^ filterInput
+	^ filterInputPresenter
 ]
 
 { #category : #private }
 SpFilteringListPresenter >> filterListItems: pattern [
-
 	| filteredItems |
-	unfilteredItems ifNil: [ unfilteredItems := list items ].
+
+	unfilteredItems ifNil: [ unfilteredItems := self items ].
 	pattern ifEmpty: [ 
-		list items: unfilteredItems.
+		self items: unfilteredItems.
 		^ self ].
-	filteredItems := unfilteredItems select: [ :item | 
-		                 itemFilter
-			                 value: (list display value: item)
-			                 value: pattern ].
-	list items: filteredItems
+	
+	filteredItems := unfilteredItems select: [ :item |
+		itemFilter 
+			value: (self display value: item)
+			value: pattern ].
+	
+	self items: filteredItems
 ]
 
 { #category : #api }
@@ -99,8 +107,8 @@ SpFilteringListPresenter >> filterText [
 { #category : #initialization }
 SpFilteringListPresenter >> initializePresenters [
 
-	filterInput := self newTextInput placeholder: 'Filter...'; yourself.
-	list := self newList.
+	filterInputPresenter := self newTextInput placeholder: 'Filter...'; yourself.
+	listPresenter := self newListToFilter.
 	self matchSubstring
 ]
 
@@ -119,18 +127,18 @@ SpFilteringListPresenter >> itemFilter: aBlock [
 { #category : #api }
 SpFilteringListPresenter >> items [
 
-	^ list items
+	^ listPresenter items
 ]
 
 { #category : #api }
 SpFilteringListPresenter >> items: aCollection [
 
-	list items: aCollection
+	listPresenter items: aCollection
 ]
 
 { #category : #api }
 SpFilteringListPresenter >> listPresenter [
-	^ list
+	^ listPresenter
 ]
 
 { #category : #initialization }
@@ -147,4 +155,10 @@ SpFilteringListPresenter >> matchSubstring [
 		each 
 			includesSubstring: pattern asLowercase 
 			caseSensitive: false ]
+]
+
+{ #category : #initialization }
+SpFilteringListPresenter >> newListToFilter [
+	
+	^ self newList
 ]

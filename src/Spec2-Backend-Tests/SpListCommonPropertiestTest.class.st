@@ -28,7 +28,7 @@ SpListCommonPropertiestTest >> testChangingFromSingleToMultipleSelection [
 { #category : #tests }
 SpListCommonPropertiestTest >> testEnablingFilteringUpdateOpenedList [
 	self deny: self adapter hasFilter.
-	presenter marchSubstring.
+	presenter matchSubstring.
 	self assert: self adapter hasFilter.
 	presenter itemFilter: nil.
 	self deny: self adapter hasFilter
