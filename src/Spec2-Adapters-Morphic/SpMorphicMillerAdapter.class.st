@@ -81,7 +81,13 @@ SpMorphicMillerAdapter >> layout: aLayout [
 		
 		layout whenVisiblePagesChangedDo: [ self recalculatePages ].
 		
-		widget := self newScrollPaneFor: innerWidget ].
+		widget := self newScrollPaneFor: innerWidget.
+		self presenter hasHorizontalScrollBar 
+			ifFalse: [ widget hScrollbarShowNever ].
+		self presenter whenHorizontalScrollBarChangedDo: [ :show |
+			show 
+				ifTrue: [ widget hScrollbarShowWhenNeeded ]
+			 	ifFalse: [ widget hScrollbarShowNever ] ] ].
 
 	super layout: aLayout
 ]
@@ -199,4 +205,11 @@ SpMorphicMillerAdapter >> scrollToShowLastPage [
 
 	self widget defer: [ 
 		self widget scrollToShow: (innerWidget submorphs last bounds) ]
+]
+
+{ #category : #private }
+SpMorphicMillerAdapter >> scrollToShowPage: aNumber [
+
+	self widget defer: [ 
+		self widget scrollToShow: ((innerWidget submorphs at: aNumber) bounds) ]
 ]

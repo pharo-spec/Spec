@@ -18,13 +18,14 @@ Class {
 	#name : #SpMillerColumnPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'newPresenterBlock',
-		'columnsWillChangeBlock'
+		'#newPresenterBlock',
+		'#columnsWillChangeBlock',
+		'#horizontalScrollBar => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Miller'
 }
 
-{ #category : #accessing }
+{ #category : #api }
 SpMillerColumnPresenter >> addPresenter: newSubPresenter [
 
 	newSubPresenter whenActivatedDo: [ :selection | 
@@ -44,11 +45,18 @@ SpMillerColumnPresenter >> changeSelection: selection from: aPresenter [
 	self pushModel: selection
 ]
 
+{ #category : #testing }
+SpMillerColumnPresenter >> hasHorizontalScrollBar [
+
+	^ horizontalScrollBar
+]
+
 { #category : #initialization }
 SpMillerColumnPresenter >> initialize [
 
 	super initialize.
-	newPresenterBlock := [ :model | Error signal: 'should provide a new presenter block' ]
+	newPresenterBlock := [ :model | Error signal: 'should provide a new presenter block' ].
+	self withHorizontalScrollBar
 ]
 
 { #category : #initialization }
@@ -63,19 +71,19 @@ SpMillerColumnPresenter >> newPresenterFor: aModel [
 	^ newPresenterBlock value: aModel
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpMillerColumnPresenter >> pages [
 	
 	^ layout presenters
 ]
 
-{ #category : #accessing }
-SpMillerColumnPresenter >> presenterBlock: aBlockClosure [ 
+{ #category : #api }
+SpMillerColumnPresenter >> presenterBlock: aBlock [ 
 	
-	newPresenterBlock := aBlockClosure
+	newPresenterBlock := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpMillerColumnPresenter >> presenters [
 
 	^ layout presenters
@@ -102,19 +110,19 @@ SpMillerColumnPresenter >> setRootModel: aModel [
 	self pushModel: aModel
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpMillerColumnPresenter >> size [
 
 	^ self presenters size
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpMillerColumnPresenter >> spacing [
 
 	^ layout spacing
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpMillerColumnPresenter >> spacing: aNumber [
 
 	layout spacing: aNumber
@@ -129,13 +137,13 @@ SpMillerColumnPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 			excluding: excludes ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpMillerColumnPresenter >> visiblePages [ 
 
 	^ layout visiblePages
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpMillerColumnPresenter >> visiblePages: aNumber [ 
 
 	layout visiblePages: aNumber
@@ -145,4 +153,22 @@ SpMillerColumnPresenter >> visiblePages: aNumber [
 SpMillerColumnPresenter >> whenColumnsWillChangeDo: aBlock [
 
 	columnsWillChangeBlock := aBlock
+]
+
+{ #category : #'api-events' }
+SpMillerColumnPresenter >> whenHorizontalScrollBarChangedDo: aBlock [
+
+	self property: #horizontalScrollBar whenChangedDo: aBlock
+]
+
+{ #category : #api }
+SpMillerColumnPresenter >> withHorizontalScrollBar [
+
+	horizontalScrollBar := true
+]
+
+{ #category : #api }
+SpMillerColumnPresenter >> withoutHorizontalScrollBar [
+
+	horizontalScrollBar := false
 ]
