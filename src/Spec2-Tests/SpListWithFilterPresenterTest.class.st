@@ -15,13 +15,13 @@ SpListWithFilterPresenterTest >> setUp [
 
 	super setUp.
 
-	listWithFilter := SpListWithFilterPresenter new
+	listWithFilter := SpFilteringListPresenter new
 ]
 
 { #category : #test }
 SpListWithFilterPresenterTest >> testEnableItemBeginsWithFilter [
 
-	listWithFilter enableItemBeginsWithFilter.
+	listWithFilter matchBeginOfString.
 	listWithFilter list items: { 
 			Number.
 			Character.
@@ -46,7 +46,7 @@ SpListWithFilterPresenterTest >> testEnableItemBeginsWithFilter [
 { #category : #test }
 SpListWithFilterPresenterTest >> testEnableItemSubstringFilter [
 
-	listWithFilter enableItemSubstringFilter.
+	listWithFilter marchSubstring.
 	listWithFilter list items: { 
 			Number.
 			Character.

@@ -10,7 +10,7 @@ I have two subwidgets:
 - A Text Input Field (`SpTextInputFieldPresenter`) for entering the filter text.
 "
 Class {
-	#name : #SpListWithFilterPresenter,
+	#name : #SpFilteringListPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'itemFilter',
@@ -22,7 +22,7 @@ Class {
 }
 
 { #category : #specs }
-SpListWithFilterPresenter class >> defaultSpec [
+SpFilteringListPresenter class >> bottomLayout [
 
 	^ SpBoxLayout newVertical
 		  add: #list;
@@ -30,46 +30,34 @@ SpListWithFilterPresenter class >> defaultSpec [
 		  yourself
 ]
 
-{ #category : #example }
-SpListWithFilterPresenter class >> example [
+{ #category : #specs }
+SpFilteringListPresenter class >> defaultSpec [
 
-	<sampleInstance>
-	| example |
-	example := self new.
-	example list items: RBBrowserEnvironment default classes asArray.
-	example openWithSpec.
-	example withWindowDo: [ :window | 
-		window title: self name asString , ' example' ].
-	^ example
+	^ self bottomLayout
+]
+
+{ #category : #specs }
+SpFilteringListPresenter class >> topLayout [
+
+	^ SpBoxLayout newVertical
+		  add: #filterInput expand: false;
+		  add: #list;
+		  yourself
 ]
 
 { #category : #initialization }
-SpListWithFilterPresenter >> connectPresenters [
+SpFilteringListPresenter >> connectPresenters [
 
 	filterInput whenTextChangedDo: [ :text | self filterListItems: text ]
 ]
 
-{ #category : #initialization }
-SpListWithFilterPresenter >> enableItemBeginsWithFilter [
-
-	itemFilter := [ :each :pattern | 
-	              each asLowercase beginsWith: pattern asLowercase ]
-]
-
-{ #category : #initialization }
-SpListWithFilterPresenter >> enableItemSubstringFilter [
-
-	itemFilter := [ :each :pattern | 
-	              each asLowercase includesSubstring: pattern asLowercase ]
-]
-
 { #category : #accessing }
-SpListWithFilterPresenter >> filterInput [
+SpFilteringListPresenter >> filterInput [
 	^ filterInput
 ]
 
 { #category : #actions }
-SpListWithFilterPresenter >> filterListItems: pattern [
+SpFilteringListPresenter >> filterListItems: pattern [
 
 	| filteredItems |
 	unfilteredItems ifNil: [ unfilteredItems := list items ].
@@ -84,31 +72,45 @@ SpListWithFilterPresenter >> filterListItems: pattern [
 ]
 
 { #category : #initialization }
-SpListWithFilterPresenter >> initializePresenters [
+SpFilteringListPresenter >> initializePresenters [
 
 	filterInput := self newTextInput
 		               placeholder: 'Filter...';
 		               yourself.
 	list := self newList.
-	self enableItemSubstringFilter.
+	self marchSubstring.
 	self focusOrder
 		add: list;
 		add: filterInput
 ]
 
 { #category : #accessing }
-SpListWithFilterPresenter >> itemFilter [
+SpFilteringListPresenter >> itemFilter [
 
 	^ itemFilter
 ]
 
 { #category : #api }
-SpListWithFilterPresenter >> itemFilter: aBlock [
+SpFilteringListPresenter >> itemFilter: aBlock [
 
 	itemFilter := aBlock
 ]
 
 { #category : #accessing }
-SpListWithFilterPresenter >> list [
+SpFilteringListPresenter >> list [
 	^ list
+]
+
+{ #category : #initialization }
+SpFilteringListPresenter >> marchSubstring [
+
+	itemFilter := [ :each :pattern | 
+	              each asLowercase includesSubstring: pattern asLowercase ]
+]
+
+{ #category : #initialization }
+SpFilteringListPresenter >> matchBeginOfString [
+
+	itemFilter := [ :each :pattern | 
+	              each asLowercase beginsWith: pattern asLowercase ]
 ]

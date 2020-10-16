@@ -118,16 +118,6 @@ SpAbstractListPresenter >> doubleClickAtIndex: anIndex [
 	self doActivateAtIndex: anIndex
 ]
 
-{ #category : #TOREMOVE }
-SpAbstractListPresenter >> enableItemBeginsWithFilter [
-	self itemFilter: [ :each :pattern | each asLowercase beginsWith: pattern asLowercase ]
-]
-
-{ #category : #TOREMOVE }
-SpAbstractListPresenter >> enableItemSubstringFilter [
-	self itemFilter: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
-]
-
 { #category : #initialization }
 SpAbstractListPresenter >> initialize [
 
@@ -211,6 +201,16 @@ SpAbstractListPresenter >> listSize [
 
 	self flag: #TODO. "Maybe this should be called #itemsSize? (since we set #items: and not #list: )"
 	^ self model size
+]
+
+{ #category : #TOREMOVE }
+SpAbstractListPresenter >> marchSubstring [
+	self itemFilter: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
+]
+
+{ #category : #TOREMOVE }
+SpAbstractListPresenter >> matchBeginOfString [
+	self itemFilter: [ :each :pattern | each asLowercase beginsWith: pattern asLowercase ]
 ]
 
 { #category : #api }
