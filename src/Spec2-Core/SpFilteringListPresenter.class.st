@@ -74,10 +74,15 @@ SpFilteringListPresenter >> filterListItems: pattern [
 
 	| filteredItems |
 	unfilteredItems ifNil: [ unfilteredItems := list items ].
+	(unfilteredItems includesAll: list items) ifFalse: [ 
+		unfilteredItems := list items ].
 	pattern ifEmpty: [ 
 		list items: unfilteredItems.
 		^ self ].
-	filteredItems := unfilteredItems select: [ :item | itemFilterBlock value: (list display value: item) value: pattern ].
+	filteredItems := unfilteredItems select: [ :item | 
+		                 itemFilterBlock
+			                 value: (list display value: item)
+			                 value: pattern ].
 	list items: filteredItems
 ]
 
@@ -111,6 +116,7 @@ SpFilteringListPresenter >> items [
 { #category : #api }
 SpFilteringListPresenter >> items: aCollection [
 
+	unfilteredItems := aCollection.
 	list items: aCollection
 ]
 
