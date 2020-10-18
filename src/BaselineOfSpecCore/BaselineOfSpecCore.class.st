@@ -9,7 +9,6 @@ BaselineOfSpecCore >> baseline: spec [
 	<baseline>
 	
 	spec for: #common do: [ 
-		self commander2: spec.
 		self pillar: spec.
 		
 		spec
@@ -61,26 +60,6 @@ BaselineOfSpecCore >> baseline: spec [
 	spec group: 'BaseTests' with: #('Spec2-Tests' 'SupportTests').
 	
 	spec group: 'default' with: #('Base' 'BaseTests' 'Code' 'CodeTests').
-]
-
-{ #category : #'external projects' }
-BaselineOfSpecCore >> commander2: spec [
-
-	spec
-		baseline: 'Commander2'
-		with: [ 
-			spec repository: 'github://pharo-spec/Commander2:v2.1.x/src'"; loads: #('core' 'ui')" ]
-]
-
-{ #category : #'external projects' }
-BaselineOfSpecCore >> complishon: spec [
-	
-	spec
-		baseline: 'HeuristicCompletion'
-		with: [ 
-			spec 
-				repository: 'github://guillep/complishon';
-				loads: 'HeuristicCompletion-Model' ]
 ]
 
 { #category : #'external projects' }
