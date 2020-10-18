@@ -17,10 +17,10 @@ BaselineOfSpecCore >> baseline: spec [
 			package: 'Spec2-Layout' with: [ spec requires: #('Spec2-ObservableSlot') ];
 			package: 'Spec2-Core' with: [ spec requires: #('Spec2-ObservableSlot' 'Spec2-Layout') ];
 			package: 'Spec2-CommandLine' with: [ spec requires: #('Spec2-Core') ];
-			package: 'Spec2-Commands' with: [ spec requires: #('Commander2') ];
+			package: 'Spec2-Commands';
 			package: 'Spec2-Transmission' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Interactions' with: [ spec requires: #('Spec2-Core') ];
-			package: 'Spec2-Commander2' with: [ spec requires: #('Spec2-Core' 'Spec2-Interactions' 'Commander2') ];
+			package: 'Spec2-Commander2' with: [ spec requires: #('Spec2-Core' 'Spec2-Interactions') ];
 			"Code"
 			package: 'Spec2-Code' with: [ spec requires: #('Spec2-Core' 'Spec2-Commands') ];
 			package: 'Spec2-Code-Commands' with: [ spec requires: #('Spec2-Core' 'Spec2-Commands') ];
