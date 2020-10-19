@@ -35,7 +35,7 @@ SpCodeDebugItCommand >> compile: aStream for: anObject in: evalContext [
 		source: aStream;
 		class: methodClass;
 		context: evalContext;
-		requestor: nil;
+		requestor: context; "it should enable a visibility of current tool variables in new debugger"
 		noPattern: true;
 		failBlock: [ ^ nil ];
 		compile
