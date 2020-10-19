@@ -18,12 +18,18 @@ SpPaginatorMorph class >> defaultHeight [
 ]
 
 { #category : #accessing }
-SpPaginatorMorph >> addPageFor: anObject [
+SpPaginatorMorph >> addPage: anObject [
 
 	pagesMorph addMorphBack: (SpPaginatorPageMorph new
 		whenSelectedDo: [ :aMorph | self doSelectPageFromMorph: aMorph ];
 		yourself).
 	self width: pagesMorph submorphs size * self baseWidth
+]
+
+{ #category : #accessing }
+SpPaginatorMorph >> addPages: aCollection [
+
+	aCollection do: [ :each | self addPage: each ]
 ]
 
 { #category : #private }

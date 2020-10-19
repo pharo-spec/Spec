@@ -103,18 +103,18 @@ SpMillerColumnPresenter >> resetTo: anIndex [
 		index <= anIndex ifFalse: [ layout remove: presenter ] ]
 ]
 
-{ #category : #api }
-SpMillerColumnPresenter >> selectColumn: aNumber [
-
-	self withAdapterDo: [ :anAdapter |
-		anAdapter selectColumn: aNumber ]
-]
-
 { #category : #model }
 SpMillerColumnPresenter >> setRootModel: aModel [
 
 	self resetTo: 0.
 	self pushModel: aModel
+]
+
+{ #category : #api }
+SpMillerColumnPresenter >> showPage: aNumber [
+
+	self withAdapterDo: [ :anAdapter |
+		anAdapter showPage: aNumber ]
 ]
 
 { #category : #api }
@@ -145,7 +145,7 @@ SpMillerColumnPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 ]
 
 { #category : #api }
-SpMillerColumnPresenter >> visiblePages [ 
+SpMillerColumnPresenter >> visiblePages [
 
 	^ layout visiblePages
 ]

@@ -17,24 +17,21 @@ SpPaginatorExample >> initializePresenters [
 		add: (millerList := self instantiate: SpMillerColumnPresenter);
 		add: (SpBoxLayout newHorizontal
 				hAlignCenter; 
-				add: (paginator := self newMorph) expand: false;
+				add: (paginator := self instantiate: SpPaginatorPresenter) expand: false;
 				yourself)
 			expand: false;
 		yourself.
 		
 	millerList withoutHorizontalScrollBar.
-	paginator 
-		addStyle: 'paginator';
-		morph: SpPaginatorMorph new.
-		
-	paginator morph 
-		whenSelectedPageChangedDo: [ :pageNumber | 
-			millerList selectColumn: pageNumber ].
-		
+	paginator addStyle: 'paginator'.
+
+	paginator whenSelectedPageChangedDo: [ :pageNumber | 
+		millerList showPage: pageNumber ].
+
 	1 to: 10 do: [ :index | | presenter |
 		presenter := SpListPresenter new
 			items: (1 to: index);
 			yourself.
 		millerList addPresenter: presenter.
-		paginator morph addPageFor: presenter ]
+		paginator addPage: presenter ]
 ]

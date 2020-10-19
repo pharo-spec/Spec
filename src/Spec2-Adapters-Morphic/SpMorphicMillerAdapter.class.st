@@ -208,7 +208,7 @@ SpMorphicMillerAdapter >> scrollToShowLastPage [
 ]
 
 { #category : #accessing }
-SpMorphicMillerAdapter >> selectColumn: aNumber [
+SpMorphicMillerAdapter >> showPage: aNumber [
 
 	self widget defer: [ 
 		self widget 
