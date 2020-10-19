@@ -27,7 +27,7 @@ SpPaginatorSelectionMorph >> baseWidth [
 { #category : #initialization }
 SpPaginatorSelectionMorph >> defaultColor [
 	
-	^ "self theme selectionColor"Color red alpha: 0.8
+	^ self theme menuSelectionColor alpha: 0.8
 ]
 
 { #category : #'event handling' }
