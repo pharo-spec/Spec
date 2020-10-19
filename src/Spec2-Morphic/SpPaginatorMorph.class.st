@@ -20,7 +20,9 @@ SpPaginatorMorph class >> defaultHeight [
 { #category : #accessing }
 SpPaginatorMorph >> addPageFor: anObject [
 
-	pagesMorph addMorphBack: SpPaginatorPageMorph new.
+	pagesMorph addMorphBack: (SpPaginatorPageMorph new
+		whenSelectedDo: [ :aMorph | self doSelectPageFromMorph: aMorph ];
+		yourself).
 	self width: pagesMorph submorphs size * self baseWidth
 ]
 
@@ -61,6 +63,12 @@ SpPaginatorMorph >> defaultColor [
 	^ Color transparent
 ]
 
+{ #category : #private }
+SpPaginatorMorph >> doSelectPageFromMorph: aMorph [
+
+	self selectPage: (pagesMorph submorphs indexOf: aMorph)
+]
+
 { #category : #initialization }
 SpPaginatorMorph >> initialize [
 
@@ -88,7 +96,7 @@ SpPaginatorMorph >> moveNext [
 { #category : #private }
 SpPaginatorMorph >> moveSelectionToPage: aNumber [
 
-	selectionMorph left: self left + (aNumber * self baseWidth)
+	selectionMorph left: self left + ((aNumber - 1) * self baseWidth)
 ]
 
 { #category : #initialization }
@@ -132,7 +140,7 @@ SpPaginatorMorph >> selectPage: aNumber [
 	selectedPage = aNumber ifTrue: [ ^ self ].
 	(aNumber + self numberOfPagesShown - 1 > pagesMorph submorphs size) 
 		ifTrue: [ ^ self selectPage: aNumber - 1 ].
-		
+
 	self moveSelectionToPage: aNumber.
 	self basicSelectPage: aNumber
 ]
