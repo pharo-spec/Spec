@@ -207,9 +207,11 @@ SpMorphicMillerAdapter >> scrollToShowLastPage [
 		self widget scrollToShow: (innerWidget submorphs last bounds) ]
 ]
 
-{ #category : #private }
-SpMorphicMillerAdapter >> scrollToShowPage: aNumber [
+{ #category : #accessing }
+SpMorphicMillerAdapter >> selectColumn: aNumber [
 
 	self widget defer: [ 
-		self widget scrollToShow: ((innerWidget submorphs at: aNumber) bounds) ]
+		self widget 
+			scrollToShow: ((innerWidget submorphs at: aNumber) bounds); 
+			scrollToShow: ((innerWidget submorphs at: (aNumber + self presenter visiblePages - 1)) bounds) ]
 ]

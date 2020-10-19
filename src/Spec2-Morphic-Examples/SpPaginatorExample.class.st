@@ -29,9 +29,7 @@ SpPaginatorExample >> initializePresenters [
 		
 	paginator morph 
 		whenSelectedPageChangedDo: [ :pageNumber | 
-			millerList adapter 
-				scrollToShowPage: pageNumber;
-				scrollToShowPage: pageNumber + millerList visiblePages - 1 ].
+			millerList selectColumn: pageNumber ].
 		
 	1 to: 10 do: [ :index | | presenter |
 		presenter := SpListPresenter new

@@ -103,6 +103,13 @@ SpMillerColumnPresenter >> resetTo: anIndex [
 		index <= anIndex ifFalse: [ layout remove: presenter ] ]
 ]
 
+{ #category : #api }
+SpMillerColumnPresenter >> selectColumn: aNumber [
+
+	self withAdapterDo: [ :anAdapter |
+		anAdapter selectColumn: aNumber ]
+]
+
 { #category : #model }
 SpMillerColumnPresenter >> setRootModel: aModel [
 
