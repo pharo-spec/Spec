@@ -141,6 +141,12 @@ SpPaginatorMorph >> numberOfPagesShown: aNumber [
 ]
 
 { #category : #accessing }
+SpPaginatorMorph >> selectLastPage [
+
+	self selectPage: (pagesMorph submorphs size)
+]
+
+{ #category : #accessing }
 SpPaginatorMorph >> selectPage: aNumber [
 
 	selectedPage = aNumber ifTrue: [ ^ self ].

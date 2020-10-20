@@ -210,8 +210,7 @@ SpMorphicMillerAdapter >> scrollToShowLastPage [
 { #category : #accessing }
 SpMorphicMillerAdapter >> showPage: aNumber [
 
-	self widget defer: [ 
-		self widget 
-			scrollToShow: ((innerWidget submorphs at: aNumber) bounds); 
-			scrollToShow: ((innerWidget submorphs at: (aNumber + self presenter visiblePages - 1)) bounds) ]
+	self widget defer: [
+		(self childrenWidgets at: aNumber ifAbsent: [ nil ])
+			ifNotNil: [ :aMorph | self widget showMorph: aMorph ] ]
 ]
