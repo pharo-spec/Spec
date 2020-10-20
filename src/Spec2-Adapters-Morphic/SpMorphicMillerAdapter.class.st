@@ -203,8 +203,9 @@ SpMorphicMillerAdapter >> removeSubWidgets [
 { #category : #private }
 SpMorphicMillerAdapter >> scrollToShowLastPage [
 
-	self widget defer: [ 
-		self widget scrollToShow: (innerWidget submorphs last bounds) ]
+	self widget defer: [ | firstMorphIndex |
+		firstMorphIndex := innerWidget submorphs size - self presenter visiblePages + 1. 
+		self widget showMorph: (innerWidget submorphs at: firstMorphIndex) ]
 ]
 
 { #category : #accessing }

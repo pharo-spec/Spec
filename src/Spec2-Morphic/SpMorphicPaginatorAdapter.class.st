@@ -30,7 +30,9 @@ SpMorphicPaginatorAdapter >> buildWidget [
 	
 	morph := SpPaginatorMorph new
 		addPages: self presenter pages;
+		selectPage: self presenter pages size;
 		yourself.
+
 	self presenter whenSelectedPageChangedDo: [ :aNumber |
 		self backendDetectCyclesDo: [ 
 				morph selectPage: aNumber ] ].
@@ -40,10 +42,12 @@ SpMorphicPaginatorAdapter >> buildWidget [
 	self presenter whenVisiblePagesChangedDo: [ :aNumber |
 		morph numberOfPagesShown: aNumber ].
 	self presenter whenPageAddedDo: [ :anObject | 
-		morph addPage: anObject; selectLastPage ].
+		morph 
+			addPage: anObject; 
+			selectLastPage ].
 	self presenter whenPageRemovedDo: [ :anObject |
 		self halt ].
-	
+
 	^ morph
 ]
 

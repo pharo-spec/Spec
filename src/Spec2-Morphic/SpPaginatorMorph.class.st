@@ -14,7 +14,7 @@ Class {
 { #category : #accessing }
 SpPaginatorMorph class >> defaultHeight [
 
-	^ 18
+	^ 22
 ]
 
 { #category : #accessing }
@@ -82,8 +82,8 @@ SpPaginatorMorph >> initialize [
 	super initialize.
 	self 
 		vResizing: #rigid;
-		hResizing: #shrinkWrap;
-		height: self class defaultHeight.
+		hResizing: #shrinkWrap";
+		height: self class defaultHeight".
 
 	self addMorphBack: (selectionMorph := self newSelectionMorph).
 	self addMorphBack: (pagesMorph := self newPagesMorph).
