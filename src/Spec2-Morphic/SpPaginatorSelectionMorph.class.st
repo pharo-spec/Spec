@@ -11,6 +11,12 @@ Class {
 	#category : #'Spec2-Morphic-Paginator'
 }
 
+{ #category : #accessing }
+SpPaginatorSelectionMorph class >> defaultNumberOfPagesShown [
+
+	^ 2
+]
+
 { #category : #private }
 SpPaginatorSelectionMorph >> announceDragFinished [
 
@@ -48,10 +54,10 @@ SpPaginatorSelectionMorph >> initialize [
 
 	super initialize.
 	self 
-		changeProportionalLayout;
+		changeTableLayout;
 		hResizing: #rigid;
 		vResizing: #spaceFill.
-	self numberOfPagesShown: 2
+	self numberOfPagesShown: self class defaultNumberOfPagesShown
 ]
 
 { #category : #'event handling' }

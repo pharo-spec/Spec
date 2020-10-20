@@ -7,7 +7,8 @@ Class {
 	#instVars : [
 		'layoutChangeAction',
 		'updating',
-		'firstShowingMorph'
+		'firstShowingMorph',
+		'keepShowingPage'
 	],
 	#category : #'Spec2-Adapters-Morphic-Layout'
 }
@@ -18,11 +19,36 @@ MillerScrollPane >> basicShowMorph: aMorph [
 	scroller offset: aMorph topLeft
 ]
 
+{ #category : #scrollbars }
+MillerScrollPane >> hScrollbarShowNever [
+
+	super hScrollbarShowNever.
+	"Since I am showing a scroll bar, I do not need to keep the page."
+	self keepShowingPage: true
+]
+
+{ #category : #scrollbars }
+MillerScrollPane >> hScrollbarShowWhenNeeded [
+
+	super hScrollbarShowWhenNeeded.
+	"Since I am showing a scroll bar, I do not need to keep the page."
+	self keepShowingPage: false
+]
+
 { #category : #initialization }
 MillerScrollPane >> initialize [
-
+	
+	keepShowingPage := false.
 	updating := false.
 	super initialize
+]
+
+{ #category : #private }
+MillerScrollPane >> keepShowingPage: aBoolean [
+
+	keepShowingPage := aBoolean.
+	keepShowingPage ifFalse: [ 
+		firstShowingMorph := nil ]
 ]
 
 { #category : #events }
@@ -45,12 +71,13 @@ MillerScrollPane >> onLayoutChange: aBlock [
 
 { #category : #accessing }
 MillerScrollPane >> showMorph: aMorph [
-
-	firstShowingMorph := aMorph.
+	
+	keepShowingPage ifTrue: [ 
+		firstShowingMorph := aMorph ].
 	self basicShowMorph: aMorph
 ]
 
-{ #category : #geometry }
+{ #category : #updating }
 MillerScrollPane >> updateScrollbars [
 
 	super updateScrollbars.

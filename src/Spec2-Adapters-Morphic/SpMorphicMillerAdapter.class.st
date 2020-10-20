@@ -61,6 +61,18 @@ SpMorphicMillerAdapter >> childrenWidgets [
 	^ innerWidget submorphs
 ]
 
+{ #category : #factory }
+SpMorphicMillerAdapter >> disableHScrollBar [
+	
+	widget hScrollbarShowNever
+]
+
+{ #category : #factory }
+SpMorphicMillerAdapter >> enableHScrollBar [
+	
+	widget hScrollbarShowWhenNeeded
+]
+
 { #category : #private }
 SpMorphicMillerAdapter >> initialize [
 
@@ -83,10 +95,10 @@ SpMorphicMillerAdapter >> layout: aLayout [
 		
 		widget := self newScrollPaneFor: innerWidget.
 		self presenter hasHorizontalScrollBar 
-			ifFalse: [ widget hScrollbarShowNever ].
+			ifFalse: [ self disableHScrollBar ].
 		self presenter whenHorizontalScrollBarChangedDo: [ :show |
 			show 
-				ifTrue: [ widget hScrollbarShowWhenNeeded ]
+				ifTrue: [ self enableHScrollBar ]
 			 	ifFalse: [ widget hScrollbarShowNever ] ] ].
 
 	super layout: aLayout
@@ -203,9 +215,10 @@ SpMorphicMillerAdapter >> removeSubWidgets [
 { #category : #private }
 SpMorphicMillerAdapter >> scrollToShowLastPage [
 
-	self widget defer: [ | firstMorphIndex |
-		firstMorphIndex := innerWidget submorphs size - self presenter visiblePages + 1. 
-		self widget showMorph: (innerWidget submorphs at: firstMorphIndex) ]
+	self widget defer: [ | size firstMorphIndex |
+		size := innerWidget submorphs size.
+		firstMorphIndex := size - self presenter visiblePages + 1. 
+		self widget showMorph: (innerWidget submorphs at: ((firstMorphIndex max: 1) min: size)) ]
 ]
 
 { #category : #accessing }
