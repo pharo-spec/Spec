@@ -74,6 +74,13 @@ SpMorphicMillerAdapter >> enableHScrollBar [
 ]
 
 { #category : #private }
+SpMorphicMillerAdapter >> forceRecalculatePages [
+
+	needRecalculatePages := true.
+	self recalculatePages
+]
+
+{ #category : #private }
 SpMorphicMillerAdapter >> initialize [
 
 	needRecalculatePages := false.
@@ -91,7 +98,7 @@ SpMorphicMillerAdapter >> layout: aLayout [
 		innerWidget borderWidth: aLayout borderWidth.
 		innerWidget cellInset: aLayout spacing.
 		
-		layout whenVisiblePagesChangedDo: [ self recalculatePages ].
+		layout whenVisiblePagesChangedDo: [ self forceRecalculatePages ].
 		
 		widget := self newScrollPaneFor: innerWidget.
 		self presenter hasHorizontalScrollBar 
