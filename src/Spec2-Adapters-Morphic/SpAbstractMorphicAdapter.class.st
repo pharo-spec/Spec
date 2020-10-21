@@ -325,7 +325,9 @@ SpAbstractMorphicAdapter >> installEvent: anEvent [
 	"Used when installing events into presenters already built"
 
 	self widgetDo: [ :w |
-		anEvent installOn: self target: w ]
+		anEvent 
+			installOn: self 
+			target: (self eventHandlerReceiver: w) ]
 ]
 
 { #category : #'event installing' }
