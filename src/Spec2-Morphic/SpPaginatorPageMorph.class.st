@@ -2,7 +2,8 @@ Class {
 	#name : #SpPaginatorPageMorph,
 	#superclass : #Morph,
 	#instVars : [
-		'selectedBlock'
+		'selectedBlock',
+		'model'
 	],
 	#category : #'Spec2-Morphic-Paginator'
 }
@@ -10,13 +11,13 @@ Class {
 { #category : #accessing }
 SpPaginatorPageMorph class >> baseWidth [
 
-	^ 12
+	^ 15
 ]
 
 { #category : #accessing }
 SpPaginatorPageMorph class >> defaultInset [
 
-	^ 2
+	^ 3
 ]
 
 { #category : #'event handling' }
@@ -40,6 +41,18 @@ SpPaginatorPageMorph >> initialize [
 		width: self class baseWidth.
 
 	self addMorphBack: self newContentMorph.
+]
+
+{ #category : #menus }
+SpPaginatorPageMorph >> model [
+
+	^ model
+]
+
+{ #category : #menus }
+SpPaginatorPageMorph >> model: anObject [
+
+	model := anObject
 ]
 
 { #category : #'event handling' }

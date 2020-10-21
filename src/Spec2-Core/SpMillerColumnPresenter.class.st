@@ -20,7 +20,8 @@ Class {
 	#instVars : [
 		'#newPresenterBlock',
 		'#columnsWillChangeBlock',
-		'#horizontalScrollBar => SpObservableSlot'
+		'#horizontalScrollBar => SpObservableSlot',
+		'#columnsChangedBlock'
 	],
 	#category : #'Spec2-Core-Miller'
 }
@@ -35,14 +36,28 @@ SpMillerColumnPresenter >> addPresenter: newSubPresenter [
 ]
 
 { #category : #private }
+SpMillerColumnPresenter >> announceColumnsChanged: index [
+
+	columnsChangedBlock ifNil: [ ^ self ]. 
+	columnsChangedBlock cull: index
+]
+
+{ #category : #private }
+SpMillerColumnPresenter >> announceColumnsWillChange: index [
+
+	columnsWillChangeBlock ifNil: [ ^ self ]. 
+	columnsWillChangeBlock cull: index
+]
+
+{ #category : #private }
 SpMillerColumnPresenter >> changeSelection: selection from: aPresenter [
 	| selectedPresenterIndex |
 
 	selectedPresenterIndex := self presenters indexOf: aPresenter.
-	columnsWillChangeBlock ifNotNil: [ 
-		columnsWillChangeBlock cull: selectedPresenterIndex ].
+	self announceColumnsWillChange: selectedPresenterIndex.
 	self resetTo: selectedPresenterIndex.
-	self pushModel: selection
+	self pushModel: selection.
+	self announceColumnsChanged: selectedPresenterIndex
 ]
 
 { #category : #testing }
@@ -154,6 +169,12 @@ SpMillerColumnPresenter >> visiblePages [
 SpMillerColumnPresenter >> visiblePages: aNumber [ 
 
 	layout visiblePages: aNumber
+]
+
+{ #category : #'api-events' }
+SpMillerColumnPresenter >> whenColumnsChangedDo: aBlock [
+
+	columnsChangedBlock := aBlock
 ]
 
 { #category : #'api-events' }

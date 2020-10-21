@@ -23,7 +23,6 @@ SpPaginatorExample >> initializePresenters [
 		yourself.
 		
 	millerList withoutHorizontalScrollBar.
-	paginator addStyle: 'paginator'.
 
 	paginator whenSelectedPageChangedDo: [ :pageNumber | 
 		millerList showPage: pageNumber ].

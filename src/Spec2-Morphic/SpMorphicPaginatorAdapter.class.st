@@ -52,7 +52,9 @@ SpMorphicPaginatorAdapter >> buildWidget [
 			addPage: anObject; 
 			selectLastPage ].
 	self presenter whenPageRemovedDo: [ :anObject |
-		self halt ].
+		anObject 
+			ifNotNil: [ morph removePage: anObject ]
+			ifNil: [ morph removeAllPages ] ].
 
 	^ morph
 ]

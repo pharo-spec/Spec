@@ -36,6 +36,14 @@ SpPaginatorPresenter >> pages [
 ]
 
 { #category : #api }
+SpPaginatorPresenter >> pages: aCollection [
+
+	pagesHolder removeAll.
+	aCollection do: [ :each | pagesHolder add: each ].
+	
+]
+
+{ #category : #api }
 SpPaginatorPresenter >> selectPage: aNumber [
 
 	selectedPage := aNumber

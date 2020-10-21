@@ -27,6 +27,7 @@ SpPaginatorMorph class >> defaultNumberOfPagesShown [
 SpPaginatorMorph >> addPage: anObject [
 
 	pagesMorph addMorphBack: (SpPaginatorPageMorph new
+		model: anObject;
 		whenSelectedDo: [ :aMorph | self doSelectPageFromMorph: aMorph ];
 		yourself).
 	self width: pagesMorph submorphs size * self baseWidth
@@ -161,6 +162,19 @@ SpPaginatorMorph >> numberOfPagesShown: aNumber [
 
 	numberOfPagesShown := aNumber.
 	selectionMorph updateSizePages: numberOfPagesShown pageWidth: self baseWidth
+]
+
+{ #category : #accessing }
+SpPaginatorMorph >> removeAllPages [
+
+	pagesMorph removeAllMorphs
+]
+
+{ #category : #accessing }
+SpPaginatorMorph >> removePage: anObject [
+
+	pagesMorph removeMorph: (pagesMorph submorphs 
+		detect: [ :each | each model = anObject ]) 
 ]
 
 { #category : #accessing }
