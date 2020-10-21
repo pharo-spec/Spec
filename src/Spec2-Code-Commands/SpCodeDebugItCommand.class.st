@@ -67,9 +67,9 @@ SpCodeDebugItCommand >> debug: aCompiledMethod receiver: anObject in: evalContex
 	process := [ 
 		aCompiledMethod
 			valueWithReceiver: anObject
-			arguments: (evalContext 
-				ifNotNil: [ { evalContext } ] 
-				ifNil: [ #() ] ) ]
+			arguments: (aCompiledMethod numArgs = 0 
+				ifTrue: [ #() ] 
+				ifFalse: [ { evalContext } ] ) ]
 			newProcess.
 	suspendedContext := process suspendedContext.
 	
