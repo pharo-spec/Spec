@@ -2,11 +2,11 @@ Class {
 	#name : #SpPaginatorMorph,
 	#superclass : #Morph,
 	#traits : 'TObservable',
-	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'#pagesMorph',
 		'#selectionMorph',
-		'#selectedPage => ObservableSlot'
+		'#selectedPage => ObservableSlot',
+		'#numberOfPagesShown => ObservableSlot'
 	],
 	#category : #'Spec2-Morphic-Paginator'
 }
@@ -15,6 +15,12 @@ Class {
 SpPaginatorMorph class >> defaultHeight [
 
 	^ 22
+]
+
+{ #category : #accessing }
+SpPaginatorMorph class >> defaultNumberOfPagesShown [
+
+	^ 2
 ]
 
 { #category : #accessing }
@@ -39,9 +45,24 @@ SpPaginatorMorph >> adjustSelectionToClosestPage [
 	closestPage := ((selectionMorph left - self left) / self baseWidth) rounded + 1.	
 	selectionMorph left: self left + ((closestPage - 1) * self baseWidth).
 	
-	closestPage = self selectedPage ifFalse: [ 
-		self basicSelectPage: closestPage ]
+	closestPage = self selectedPage 
+		ifFalse: [ self basicSelectPage: closestPage ]
+]
 
+{ #category : #private }
+SpPaginatorMorph >> adjustShownPages [
+	| newShownPages |
+
+	newShownPages := (selectionMorph width / self baseWidth) asInteger.
+	self numberOfPagesShown = newShownPages 
+		ifFalse: [ self numberOfPagesShown: newShownPages ]
+]
+
+{ #category : #private }
+SpPaginatorMorph >> adjustValues [
+
+	self adjustSelectionToClosestPage.
+	self adjustShownPages
 ]
 
 { #category : #private }
@@ -82,13 +103,14 @@ SpPaginatorMorph >> initialize [
 	super initialize.
 	self 
 		vResizing: #rigid;
-		hResizing: #shrinkWrap";
-		height: self class defaultHeight".
+		hResizing: #shrinkWrap.
 
 	self addMorphBack: (selectionMorph := self newSelectionMorph).
 	self addMorphBack: (pagesMorph := self newPagesMorph).
 	
-	self basicSelectPage: 1. "We select the first page first"
+	self numberOfPagesShown: self class defaultNumberOfPagesShown.
+	"We select the first page first"
+	self basicSelectPage: 1.
 ]
 
 { #category : #private }
@@ -124,20 +146,21 @@ SpPaginatorMorph >> newSelectionMorph [
 	^ SpPaginatorSelectionMorph new
 		vResizing: #rigid;
 		height: self height;
-		onDragFinishedDo: [ self adjustSelectionToClosestPage ];
+		onDragFinishedDo: [ self adjustValues ];
 		yourself
 ]
 
 { #category : #accessing }
 SpPaginatorMorph >> numberOfPagesShown [
 
-	^ selectionMorph numberOfPagesShown
+	^ numberOfPagesShown
 ]
 
 { #category : #accessing }
 SpPaginatorMorph >> numberOfPagesShown: aNumber [
 
-	selectionMorph numberOfPagesShown: aNumber
+	numberOfPagesShown := aNumber.
+	selectionMorph updateSizePages: numberOfPagesShown pageWidth: self baseWidth
 ]
 
 { #category : #accessing }
@@ -167,6 +190,12 @@ SpPaginatorMorph >> selectedPage [
 SpPaginatorMorph >> selectedPages [
 	
 	^ (self selectedPage to: self selectedPage + self numberOfPagesShown - 1) asArray
+]
+
+{ #category : #events }
+SpPaginatorMorph >> whenNumberOfPagesShownChangedDo: aBlock [ 
+
+	self property: #numberOfPagesShown whenChangedDo: aBlock
 ]
 
 { #category : #events }

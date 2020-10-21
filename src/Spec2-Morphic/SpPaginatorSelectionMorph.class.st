@@ -4,17 +4,33 @@ Class {
 	#instVars : [
 		'lastMouseX',
 		'lastX',
-		'numberOfPagesShown',
 		'onDragFinished',
 		'onDragging'
 	],
 	#category : #'Spec2-Morphic-Paginator'
 }
 
-{ #category : #accessing }
-SpPaginatorSelectionMorph class >> defaultNumberOfPagesShown [
+{ #category : #initialization }
+SpPaginatorSelectionMorph >> addResizingEdges [
 
-	^ 2
+	"left resizer"
+	self addMorphBack: (SpPaginatorEdgeGripMorph new 
+		beLeft;
+		target: self;
+		yourself).
+
+	"A transparent morph to fill the space"
+	self addMorphBack: (Morph new 
+		color: Color transparent;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		yourself).
+
+	"right resizer"
+	self addMorphBack: (SpPaginatorEdgeGripMorph new 
+		beRight;
+		target: self; 
+		yourself)
 ]
 
 { #category : #private }
@@ -22,12 +38,6 @@ SpPaginatorSelectionMorph >> announceDragFinished [
 
 	onDragFinished ifNil: [ ^ self ].
 	onDragFinished cull: self left
-]
-
-{ #category : #private }
-SpPaginatorSelectionMorph >> baseWidth [
-
-	^ SpPaginatorPageMorph baseWidth
 ]
 
 { #category : #initialization }
@@ -55,9 +65,10 @@ SpPaginatorSelectionMorph >> initialize [
 	super initialize.
 	self 
 		changeTableLayout;
+		listDirection: #leftToRight;
 		hResizing: #rigid;
 		vResizing: #spaceFill.
-	self numberOfPagesShown: self class defaultNumberOfPagesShown
+	self addResizingEdges
 ]
 
 { #category : #'event handling' }
@@ -106,26 +117,13 @@ SpPaginatorSelectionMorph >> mouseUp: anEvent [
 	
 ]
 
-{ #category : #accessing }
-SpPaginatorSelectionMorph >> numberOfPagesShown [
-
-	^ numberOfPagesShown
-]
-
-{ #category : #accessing }
-SpPaginatorSelectionMorph >> numberOfPagesShown: aNumber [
-
-	numberOfPagesShown := aNumber.
-	self width: self baseWidth * numberOfPagesShown
-]
-
-{ #category : #accessing }
+{ #category : #events }
 SpPaginatorSelectionMorph >> onDragFinishedDo: aBlock [
 
 	onDragFinished := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #events }
 SpPaginatorSelectionMorph >> onDraggingDo: aBlock [
 
 	onDragging := aBlock
@@ -137,4 +135,10 @@ SpPaginatorSelectionMorph >> resetPosition [
 	lastX ifNil: [ ^ self ].
 	self left: lastX.
 	lastX := nil
+]
+
+{ #category : #accessing }
+SpPaginatorSelectionMorph >> updateSizePages: pages pageWidth: pageWidth [ 
+
+	self width: pages * pageWidth
 ]
