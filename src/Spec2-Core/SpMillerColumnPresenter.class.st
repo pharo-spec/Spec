@@ -118,18 +118,25 @@ SpMillerColumnPresenter >> resetTo: anIndex [
 		index <= anIndex ifFalse: [ layout remove: presenter ] ]
 ]
 
+{ #category : #paginator }
+SpMillerColumnPresenter >> scrollByDeltaPercent: percent [
+	
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter scrollByDeltaPercent: percent ]
+]
+
+{ #category : #api }
+SpMillerColumnPresenter >> selectPage: aNumber [
+
+	self withAdapterDo: [ :anAdapter |
+		anAdapter selectPage: aNumber ]
+]
+
 { #category : #model }
 SpMillerColumnPresenter >> setRootModel: aModel [
 
 	self resetTo: 0.
 	self pushModel: aModel
-]
-
-{ #category : #api }
-SpMillerColumnPresenter >> showPage: aNumber [
-
-	self withAdapterDo: [ :anAdapter |
-		anAdapter showPage: aNumber ]
 ]
 
 { #category : #api }

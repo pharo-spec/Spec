@@ -55,6 +55,9 @@ SpMorphicPaginatorAdapter >> buildWidget [
 		anObject 
 			ifNotNil: [ morph removePage: anObject ]
 			ifNil: [ morph removeAllPages ] ].
+		
+	morph selectionMorph whenDraggingDo: [ :delta | 
+		self presenter dragging: (delta * 100 / widget width) ].
 
 	^ morph
 ]
@@ -70,4 +73,13 @@ SpMorphicPaginatorAdapter >> initialize [
 SpMorphicPaginatorAdapter >> isBackendUpdating [
 
 	^ backendUpdating
+]
+
+{ #category : #paginator }
+SpMorphicPaginatorAdapter >> scrollByDeltaPercent: percent [
+	| millerWidth millerDelta |
+	
+	millerWidth := self widget scroller localSubmorphBounds width.
+	millerDelta := millerWidth * (percent / 100).
+	self widget scroller offset: (self widget scroller offset x + millerDelta)@0
 ]

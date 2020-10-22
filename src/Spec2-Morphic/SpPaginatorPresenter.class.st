@@ -4,6 +4,7 @@ Class {
 	#instVars : [
 		'#visiblePages => SpObservableSlot',
 		'#selectedPage => SpObservableSlot',
+		'#dragging => SpObservableSlot',
 		'#pagesHolder'
 	],
 	#category : #'Spec2-Morphic-Paginator'
@@ -20,6 +21,27 @@ SpPaginatorPresenter >> addPage: aPresenter [
 	
 	pagesHolder add: aPresenter.
 	self selectPage: pagesHolder size
+]
+
+{ #category : #api }
+SpPaginatorPresenter >> chainTo: aPresenter [
+	"It will 'chain' this paginator with `aPresenter`. 
+	 In order to work, `aPresenter` needs to implement this methods: 
+		- `selectPage:` to react to a page change.
+		- `visiblePages:` to react to an amount of pages displayed change.
+		-  `scrollByDeltaPercent:` to react to movement while displacing.
+	 "
+	
+	self 
+		whenSelectedPageChangedDo: [ :pageNumber | aPresenter selectPage: pageNumber ];
+		whenVisiblePagesChangedDo: [ :aNumber | aPresenter visiblePages: aNumber ];
+		whenDraggingDo: [ :deltaPercent | aPresenter scrollByDeltaPercent: deltaPercent ]
+]
+
+{ #category : #private }
+SpPaginatorPresenter >> dragging: aNumber [
+
+	dragging := aNumber
 ]
 
 { #category : #initialization }
@@ -59,6 +81,12 @@ SpPaginatorPresenter >> visiblePages [
 SpPaginatorPresenter >> visiblePages: aNumber [
 
 	visiblePages := aNumber
+]
+
+{ #category : #'api-events' }
+SpPaginatorPresenter >> whenDraggingDo: aBlock [
+
+	self property: #dragging whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }

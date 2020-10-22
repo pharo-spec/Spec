@@ -103,8 +103,9 @@ SpPaginatorMorph >> initialize [
 	self class initializeSlots: self.
 	super initialize.
 	self 
-		vResizing: #rigid;
-		hResizing: #shrinkWrap.
+		vResizing: #shrinkWrap;
+		hResizing: #shrinkWrap;
+		height: self class defaultHeight.
 
 	self addMorphBack: (selectionMorph := self newSelectionMorph).
 	self addMorphBack: (pagesMorph := self newPagesMorph).
@@ -147,7 +148,7 @@ SpPaginatorMorph >> newSelectionMorph [
 	^ SpPaginatorSelectionMorph new
 		vResizing: #rigid;
 		height: self height;
-		onDragFinishedDo: [ self adjustValues ];
+		whenDragFinishedDo: [ self adjustValues ];
 		yourself
 ]
 
@@ -204,6 +205,12 @@ SpPaginatorMorph >> selectedPage [
 SpPaginatorMorph >> selectedPages [
 	
 	^ (self selectedPage to: self selectedPage + self numberOfPagesShown - 1) asArray
+]
+
+{ #category : #accessing }
+SpPaginatorMorph >> selectionMorph [
+
+	^ selectionMorph
 ]
 
 { #category : #events }

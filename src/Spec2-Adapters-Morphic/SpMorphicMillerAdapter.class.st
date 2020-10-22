@@ -219,6 +219,15 @@ SpMorphicMillerAdapter >> removeSubWidgets [
 	innerWidget removeAllMorphs
 ]
 
+{ #category : #paginator }
+SpMorphicMillerAdapter >> scrollByDeltaPercent: percent [
+	| millerWidth millerDelta |
+	
+	millerWidth := self widget scroller localSubmorphBounds width.
+	millerDelta := millerWidth * (percent / 100).
+	self widget scroller offset: (self widget scroller offset x + millerDelta)@0	
+]
+
 { #category : #private }
 SpMorphicMillerAdapter >> scrollToShowLastPage [
 
@@ -229,7 +238,7 @@ SpMorphicMillerAdapter >> scrollToShowLastPage [
 ]
 
 { #category : #accessing }
-SpMorphicMillerAdapter >> showPage: aNumber [
+SpMorphicMillerAdapter >> selectPage: aNumber [
 
 	self widget defer: [
 		(self childrenWidgets at: aNumber ifAbsent: [ nil ])

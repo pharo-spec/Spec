@@ -24,10 +24,7 @@ SpPaginatorExample >> initializePresenters [
 		
 	millerList withoutHorizontalScrollBar.
 
-	paginator whenSelectedPageChangedDo: [ :pageNumber | 
-		millerList showPage: pageNumber ].
-	paginator whenVisiblePagesChangedDo: [ :aNumber |
-		millerList visiblePages: aNumber ].
+	paginator chainTo: millerList.
 
 	1 to: 10 do: [ :index | | presenter |
 		presenter := SpListPresenter new

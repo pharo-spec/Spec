@@ -4,8 +4,8 @@ Class {
 	#instVars : [
 		'lastMouseX',
 		'lastX',
-		'onDragFinished',
-		'onDragging'
+		'dragFinishedAction',
+		'draggingAction'
 	],
 	#category : #'Spec2-Morphic-Paginator'
 }
@@ -36,8 +36,8 @@ SpPaginatorSelectionMorph >> addResizingEdges [
 { #category : #private }
 SpPaginatorSelectionMorph >> announceDragFinished [
 
-	onDragFinished ifNil: [ ^ self ].
-	onDragFinished cull: self left
+	dragFinishedAction ifNil: [ ^ self ].
+	dragFinishedAction cull: self left
 ]
 
 { #category : #initialization }
@@ -102,8 +102,9 @@ SpPaginatorSelectionMorph >> mouseMove: anEvent [
 	oldPosX := self left.
 	self left: posX.
 	lastMouseX := x.
-	onDragging ifNotNil: [ 
-		onDragging 
+	draggingAction ifNotNil: [ 
+		draggingAction
+			cull: posX - oldPosX
 			cull: posX
 			cull: oldPosX ]
 ]
@@ -115,18 +116,6 @@ SpPaginatorSelectionMorph >> mouseUp: anEvent [
 	lastMouseX := nil.
 	self announceDragFinished
 	
-]
-
-{ #category : #events }
-SpPaginatorSelectionMorph >> onDragFinishedDo: aBlock [
-
-	onDragFinished := aBlock
-]
-
-{ #category : #events }
-SpPaginatorSelectionMorph >> onDraggingDo: aBlock [
-
-	onDragging := aBlock
 ]
 
 { #category : #private }
@@ -141,4 +130,16 @@ SpPaginatorSelectionMorph >> resetPosition [
 SpPaginatorSelectionMorph >> updateSizePages: pages pageWidth: pageWidth [ 
 
 	self width: pages * pageWidth
+]
+
+{ #category : #events }
+SpPaginatorSelectionMorph >> whenDragFinishedDo: aBlock [
+
+	dragFinishedAction := aBlock
+]
+
+{ #category : #events }
+SpPaginatorSelectionMorph >> whenDraggingDo: aBlock [
+
+	draggingAction := aBlock
 ]
