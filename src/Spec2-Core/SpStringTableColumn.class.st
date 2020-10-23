@@ -19,7 +19,10 @@ Class {
 		'acceptAction',
 		'sortable',
 		'colorAction',
-		'backgroundColorAction'
+		'backgroundColorAction',
+		'italicAction',
+		'boldAction',
+		'underlineAction'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
@@ -64,6 +67,18 @@ SpStringTableColumn >> displayBackgroundColor: aBlock [
 ]
 
 { #category : #api }
+SpStringTableColumn >> displayBold [
+
+	^ boldAction
+]
+
+{ #category : #api }
+SpStringTableColumn >> displayBold: aBlock [
+
+	boldAction := aBlock
+]
+
+{ #category : #api }
 SpStringTableColumn >> displayColor [
 
 	^ colorAction
@@ -73,6 +88,30 @@ SpStringTableColumn >> displayColor [
 SpStringTableColumn >> displayColor: aBlock [
 
 	colorAction := aBlock
+]
+
+{ #category : #api }
+SpStringTableColumn >> displayItalic [
+
+	^ italicAction
+]
+
+{ #category : #api }
+SpStringTableColumn >> displayItalic: aBlock [
+
+	italicAction := aBlock
+]
+
+{ #category : #api }
+SpStringTableColumn >> displayUnderline [
+
+	^ underlineAction
+]
+
+{ #category : #api }
+SpStringTableColumn >> displayUnderline: aBlock [
+
+	underlineAction := aBlock
 ]
 
 { #category : #initialization }

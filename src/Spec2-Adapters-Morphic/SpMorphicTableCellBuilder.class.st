@@ -19,11 +19,22 @@ SpMorphicTableCellBuilder class >> on: aDataSource [
 ]
 
 { #category : #private }
-SpMorphicTableCellBuilder >> addBackgroundColorColumn: aTableColumn item: item to: content [
+SpMorphicTableCellBuilder >> addBackgroundColorColumn: aTableColumn item: item toMorph: aMorph [
 
 	aTableColumn displayBackgroundColor ifNotNil: [ :block |
 		(block cull: item) ifNotNil: [ :aColor |
-			^ content asText addAttribute: (TextBackgroundColor color: aColor) ]  ].
+			aMorph color: aColor ]  ].
+	
+	^ aMorph
+	
+]
+
+{ #category : #private }
+SpMorphicTableCellBuilder >> addBoldColumn: aTableColumn item: item to: content [
+
+	aTableColumn displayItalic ifNotNil: [ :block |
+		(block cull: item) ifTrue: [ 
+			^ content asText addAttribute: TextEmphasis bold ] ].
 	
 	^ content
 	
@@ -71,6 +82,28 @@ SpMorphicTableCellBuilder >> addColorColumn: aTableColumn item: item to: content
 	aTableColumn displayColor ifNotNil: [ :block |
 		(block cull: item) ifNotNil: [ :aColor |
 			^ content asText addAttribute: (TextColor color: aColor) ]  ].
+	
+	^ content
+	
+]
+
+{ #category : #private }
+SpMorphicTableCellBuilder >> addItalicColumn: aTableColumn item: item to: content [
+
+	aTableColumn displayItalic ifNotNil: [ :block |
+		(block cull: item) ifTrue: [ 
+			^ content asText addAttribute: TextEmphasis italic ] ].
+	
+	^ content
+	
+]
+
+{ #category : #private }
+SpMorphicTableCellBuilder >> addUnderlineColumn: aTableColumn item: item to: content [
+
+	aTableColumn displayUnderline ifNotNil: [ :block |
+		(block cull: item) ifTrue: [ 
+			^ content asText addAttribute: TextEmphasis underlined ] ].
 	
 	^ content
 	
@@ -188,8 +221,12 @@ SpMorphicTableCellBuilder >> visitStringColumn: aTableColumn [
 	content := aTableColumn readObject: item.
 	"add properties"
 	content := self addColorColumn: aTableColumn item: item to: content.
-	content := self addBackgroundColorColumn: aTableColumn item: item  to: content.
+	content := self addItalicColumn: aTableColumn item: item to: content.
+	content := self addBoldColumn: aTableColumn item: item to: content.
+	content := self addUnderlineColumn: aTableColumn item: item to: content.
 	"add cell"
-	self addCell: content column: aTableColumn	
-
+	self addCell: content column: aTableColumn.
+	"add background (this is a special case of properties, since background needs to be 
+	 applied to the cell and not to the text)"
+	self addBackgroundColorColumn: aTableColumn item: item toMorph: cell
 ]
