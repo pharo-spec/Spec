@@ -17,7 +17,9 @@ Class {
 	#instVars : [
 		'editable',
 		'acceptAction',
-		'sortable'
+		'sortable',
+		'colorAction',
+		'backgroundColorAction'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
@@ -47,6 +49,30 @@ SpStringTableColumn >> beNotEditable [
 	"Set the cell as not editable (this is the default)."
 
 	editable := false
+]
+
+{ #category : #api }
+SpStringTableColumn >> displayBackgroundColor [
+
+	^ backgroundColorAction
+]
+
+{ #category : #api }
+SpStringTableColumn >> displayBackgroundColor: aBlock [
+
+	backgroundColorAction := aBlock
+]
+
+{ #category : #api }
+SpStringTableColumn >> displayColor [
+
+	^ colorAction
+]
+
+{ #category : #api }
+SpStringTableColumn >> displayColor: aBlock [
+
+	colorAction := aBlock
 ]
 
 { #category : #initialization }

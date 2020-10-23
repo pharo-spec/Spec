@@ -39,6 +39,21 @@ SpTablePresenter class >> exampleWithCompositeColumn [
 ]
 
 { #category : #'*Spec2-Examples' }
+SpTablePresenter class >> exampleWithDecoratedString [
+	
+	^ self new
+		application: (SpApplication new useBackend: #Gtk);
+		addColumn: (SpImageTableColumn title: 'Icon' evaluated: #systemIcon);
+		addColumn: (SpStringTableColumn new 
+			title: 'Name'; 
+			evaluated: #name;
+			displayColor: [ :aClass | Color green ];
+			displayBackgroundColor: [ :aClass | Color lightGray ]);
+		items: Smalltalk allClasses;
+		openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
 SpTablePresenter class >> exampleWithoutColumnHeaders [
 	<sampleInstance>
 	| example |
