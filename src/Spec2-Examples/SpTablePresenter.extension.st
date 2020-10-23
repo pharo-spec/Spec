@@ -42,7 +42,7 @@ SpTablePresenter class >> exampleWithCompositeColumn [
 SpTablePresenter class >> exampleWithDecoratedString [
 	
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
+		"application: (SpApplication new useBackend: #Gtk);"
 		addColumn: (SpImageTableColumn title: 'Icon' evaluated: #systemIcon);
 		addColumn: (SpStringTableColumn new 
 			title: 'Name'; 

@@ -19,6 +19,17 @@ SpMorphicTableCellBuilder class >> on: aDataSource [
 ]
 
 { #category : #private }
+SpMorphicTableCellBuilder >> addBackgroundColorColumn: aTableColumn item: item to: content [
+
+	aTableColumn displayBackgroundColor ifNotNil: [ :block |
+		(block cull: item) ifNotNil: [ :aColor |
+			^ content asText addAttribute: (TextBackgroundColor color: aColor) ]  ].
+	
+	^ content
+	
+]
+
+{ #category : #private }
 SpMorphicTableCellBuilder >> addCell: anObject column: aTableColumn [
 	| morph |
 
@@ -51,6 +62,17 @@ SpMorphicTableCellBuilder >> addCellMorph: morph column: aTableColumn [
 			width: aTableColumn width ].
 	
 	cell addMorphBack: morph
+	
+]
+
+{ #category : #private }
+SpMorphicTableCellBuilder >> addColorColumn: aTableColumn item: item to: content [
+
+	aTableColumn displayColor ifNotNil: [ :block |
+		(block cull: item) ifNotNil: [ :aColor |
+			^ content asText addAttribute: (TextColor color: aColor) ]  ].
+	
+	^ content
 	
 ]
 
@@ -159,6 +181,15 @@ SpMorphicTableCellBuilder >> visitLinkColumn: aTableColumn [
 
 { #category : #visiting }
 SpMorphicTableCellBuilder >> visitStringColumn: aTableColumn [
+	| content item |
 	
-	self addCellColumn: aTableColumn
+	item := self item.
+
+	content := aTableColumn readObject: item.
+	"add properties"
+	content := self addColorColumn: aTableColumn item: item to: content.
+	content := self addBackgroundColorColumn: aTableColumn item: item  to: content.
+	"add cell"
+	self addCell: content column: aTableColumn	
+
 ]
