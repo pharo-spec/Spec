@@ -84,3 +84,14 @@ MillerScrollPane >> updateScrollbars [
 	firstShowingMorph ifNotNil: [ 
 		scroller offset: firstShowingMorph topLeft ]
 ]
+
+{ #category : #scrollbars }
+MillerScrollPane >> vScrollbarNeeded [
+	"Return whether the vertical scrollbar is needed."
+
+	self vScrollbar showsAlways ifTrue: [ ^ true ].
+	self vScrollbar showsNever ifTrue: [ ^ false ].	
+ 	keepShowingPage ifNil: [ ^ super vScrollbarNeeded ].
+	
+	^ self scrollTarget height > self innerBounds height
+]
