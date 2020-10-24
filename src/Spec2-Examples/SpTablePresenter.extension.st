@@ -42,7 +42,6 @@ SpTablePresenter class >> exampleWithCompositeColumn [
 SpTablePresenter class >> exampleWithDecoratedString [
 	
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
 		addColumn: (SpImageTableColumn title: 'Icon' evaluated: [ :aClass | aClass systemIcon ]);
 		addColumn: (SpStringTableColumn new 
 			title: 'Name'; 
@@ -50,7 +49,7 @@ SpTablePresenter class >> exampleWithDecoratedString [
 			displayColor: [ :aClass | 
 				(aClass name endsWith: 'Test')
 					ifTrue: [ Color green ]
-					ifFalse: [ Color white ] ];
+					ifFalse: [ Smalltalk ui theme textColor ] ];
 			displayItalic: [ :aClass | aClass name includesSubstring: 'abstract' caseSensitive: false ];
 			displayBold: [ :aClass | aClass hasSubclasses ];
 			displayUnderline: [ :aClass | aClass numberOfMethods > 10 ];
