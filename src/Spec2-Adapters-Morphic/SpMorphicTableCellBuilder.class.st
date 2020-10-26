@@ -63,7 +63,7 @@ SpMorphicTableCellBuilder >> addCellColumn: aTableColumn [
 { #category : #private }
 SpMorphicTableCellBuilder >> addCellMorph: morph column: aTableColumn [
 
-	aTableColumn isExpandable ifFalse: [ 
+	aTableColumn isExpandable ifFalse: [
 		aTableColumn width: (aTableColumn width 
 			ifNotNil: [ :width | width max: morph width ]
 			ifNil: [ morph width ]).
