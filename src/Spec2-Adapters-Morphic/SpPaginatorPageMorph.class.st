@@ -1,3 +1,7 @@
+"
+A morph representing a ""page"" inside a `SpPaginatorMorph`.
+Pages can be selected and users can control it with `SpPaginatorPageMorph>>#whenSelectedDo:`.
+"
 Class {
 	#name : #SpPaginatorPageMorph,
 	#superclass : #Morph,
@@ -5,7 +9,7 @@ Class {
 		'selectedBlock',
 		'model'
 	],
-	#category : #'Spec2-Morphic-Paginator'
+	#category : #'Spec2-Adapters-Morphic-Paginator'
 }
 
 { #category : #accessing }

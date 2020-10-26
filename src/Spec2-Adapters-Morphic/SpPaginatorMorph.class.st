@@ -1,3 +1,9 @@
+"
+A morph to show a paginator.
+A paginator is just another way to offer ""scrolling"" of contents: instead having a bar, we have selectable bullers (pages) that represent part of the contents.
+
+Users can add pages by calling `SpPaginatorMorph>>#addPage:` or `SpPaginatorMorph>>#addPages:`. Amount of pages to be part of the selected area (shown) are handled through `SpPaginatorMorph>>#numberOfPagesShown:`.
+"
 Class {
 	#name : #SpPaginatorMorph,
 	#superclass : #Morph,
@@ -8,7 +14,7 @@ Class {
 		'#selectedPage => ObservableSlot',
 		'#numberOfPagesShown => ObservableSlot'
 	],
-	#category : #'Spec2-Morphic-Paginator'
+	#category : #'Spec2-Adapters-Morphic-Paginator'
 }
 
 { #category : #accessing }

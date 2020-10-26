@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'morph'
 	],
-	#category : #'Spec2-Morphic-Paginator'
+	#category : #'Spec2-Morphic-Tests'
 }
 
 { #category : #running }

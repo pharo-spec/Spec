@@ -1,3 +1,7 @@
+"
+A morph to being used as a selection area in a `SpPaginatorMorph`.
+It can be dragged and resized.
+"
 Class {
 	#name : #SpPaginatorSelectionMorph,
 	#superclass : #Morph,
@@ -7,7 +11,7 @@ Class {
 		'dragFinishedAction',
 		'draggingAction'
 	],
-	#category : #'Spec2-Morphic-Paginator'
+	#category : #'Spec2-Adapters-Morphic-Paginator'
 }
 
 { #category : #initialization }

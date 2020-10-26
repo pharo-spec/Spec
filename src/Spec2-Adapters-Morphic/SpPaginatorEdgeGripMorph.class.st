@@ -11,7 +11,7 @@ Class {
 	#instVars : [
 		'containerTarget'
 	],
-	#category : #'Spec2-Morphic-Paginator'
+	#category : #'Spec2-Adapters-Morphic-Paginator'
 }
 
 { #category : #accessing }

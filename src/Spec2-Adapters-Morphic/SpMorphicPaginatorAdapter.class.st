@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'backendUpdating'
 	],
-	#category : #'Spec2-Morphic-Paginator'
+	#category : #'Spec2-Adapters-Morphic-Paginator'
 }
 
 { #category : #private }
