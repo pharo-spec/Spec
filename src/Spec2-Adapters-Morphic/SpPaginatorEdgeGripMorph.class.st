@@ -8,18 +8,8 @@ Since it is designed to be contained in a specific morph (`SpPaginatorSelectionM
 Class {
 	#name : #SpPaginatorEdgeGripMorph,
 	#superclass : #EdgeGripMorph,
-	#instVars : [
-		'containerTarget'
-	],
 	#category : #'Spec2-Adapters-Morphic-Paginator'
 }
-
-{ #category : #accessing }
-SpPaginatorEdgeGripMorph >> adjustToFit: aNumber [
-
-	(aNumber -> self left) crTrace.
-	^ aNumber max: self left
-]
 
 { #category : #accessing }
 SpPaginatorEdgeGripMorph >> beLeft [
@@ -31,17 +21,6 @@ SpPaginatorEdgeGripMorph >> beLeft [
 SpPaginatorEdgeGripMorph >> beRight [
 
 	self edgeName: #right
-]
-
-{ #category : #accessing }
-SpPaginatorEdgeGripMorph >> containerTarget [
-
-	^ containerTarget ifNil: [ self target owner ]
-]
-
-{ #category : #accessing }
-SpPaginatorEdgeGripMorph >> containerTarget: anObject [
-	containerTarget := anObject
 ]
 
 { #category : #initialization }
@@ -57,11 +36,10 @@ SpPaginatorEdgeGripMorph >> initialize [
 SpPaginatorEdgeGripMorph >> mouseMove: anEvent [
 
 	self target ifNil: [ ^ self ].
-	self containerTarget ifNotNil: [ 
-		(anEvent cursorPoint x
-			between: self containerTarget left 
-			and: self containerTarget right)
-			ifFalse: [ ^ self ] ].
+	(self target 
+		canResizeTo: anEvent cursorPoint x 
+		direction: self edgeName) 
+		ifFalse: [ ^ self ].
 
 	^ super mouseMove: anEvent
 

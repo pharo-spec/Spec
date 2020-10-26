@@ -9,7 +9,8 @@ Class {
 		'lastMouseX',
 		'lastX',
 		'dragFinishedAction',
-		'draggingAction'
+		'draggingAction',
+		'minimumWidth'
 	],
 	#category : #'Spec2-Adapters-Morphic-Paginator'
 }
@@ -44,6 +45,17 @@ SpPaginatorSelectionMorph >> announceDragFinished [
 	dragFinishedAction cull: self left
 ]
 
+{ #category : #testing }
+SpPaginatorSelectionMorph >> canResizeTo: xNumber direction: direction [
+
+	(xNumber between: self owner left and: self owner right) ifFalse: [ ^ false ].
+	(xNumber between: self left and: self right) ifTrue: [ 
+		(direction = #left) ifTrue: [ ^ (self right - xNumber) > minimumWidth ]. 		
+		(direction = #right) ifTrue: [ ^ (xNumber - self left) > minimumWidth ] ].
+		
+	^ true
+]
+
 { #category : #initialization }
 SpPaginatorSelectionMorph >> defaultColor [
 	
@@ -73,6 +85,12 @@ SpPaginatorSelectionMorph >> initialize [
 		hResizing: #rigid;
 		vResizing: #spaceFill.
 	self addResizingEdges
+]
+
+{ #category : #accessing }
+SpPaginatorSelectionMorph >> minimumWidth [
+
+	^ minimumWidth
 ]
 
 { #category : #'event handling' }
@@ -132,7 +150,9 @@ SpPaginatorSelectionMorph >> resetPosition [
 
 { #category : #accessing }
 SpPaginatorSelectionMorph >> updateSizePages: pages pageWidth: pageWidth [ 
-
+	
+	(minimumWidth isNil or: [ pageWidth < minimumWidth ])
+		ifTrue: [ minimumWidth := pageWidth ].
 	self width: pages * pageWidth
 ]
 
