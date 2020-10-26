@@ -29,8 +29,7 @@ SpPaginatorPresenter >> chainTo: aPresenter [
 	 In order to work, `aPresenter` needs to implement this methods: 
 		- `selectPage:` to react to a page change.
 		- `visiblePages:` to react to an amount of pages displayed change.
-		-  `scrollByDeltaPercent:` to react to movement while displacing.
-	 "
+		-  `scrollByDeltaPercent:` to react to movement while displacing."
 	
 	self 
 		whenSelectedPageChangedDo: [ :pageNumber | aPresenter selectPage: pageNumber ];

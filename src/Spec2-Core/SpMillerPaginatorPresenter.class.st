@@ -7,7 +7,8 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'millerList',
-		'paginator'
+		'paginator',
+		'paginatorContainerLayout'
 	],
 	#category : #'Spec2-Core-Widgets-Advanced'
 }
@@ -18,16 +19,14 @@ SpMillerPaginatorPresenter >> initializePresenters [
 	self layout: (SpBoxLayout newVertical
 		spacing: 3;
 		add: (millerList := self instantiate: SpMillerColumnPresenter);
-		add: (SpBoxLayout newHorizontal
+		add: ((paginatorContainerLayout := SpBoxLayout newHorizontal)
 				hAlignCenter; 
-				add: (paginator := self instantiate: SpPaginatorPresenter) expand: false;
 				yourself)
 			expand: false;
 		yourself).
 		
 	millerList withoutHorizontalScrollBar.
 	millerList whenColumnsChangedDo: [ :page | self updatePaginator: page ].
-	paginator chainTo: millerList.
 	self updatePaginator: 1
 ]
 
@@ -35,6 +34,12 @@ SpMillerPaginatorPresenter >> initializePresenters [
 SpMillerPaginatorPresenter >> millerListPresenter [
 
 	^ millerList
+]
+
+{ #category : #private }
+SpMillerPaginatorPresenter >> newPaginator [
+		
+	^ self instantiate: SpPaginatorPresenter
 ]
 
 { #category : #api }
@@ -52,10 +57,17 @@ SpMillerPaginatorPresenter >> paginatorPresenter [
 { #category : #private }
 SpMillerPaginatorPresenter >> updatePaginator: pageSelected [
 
-	paginator pages: millerList pages.
-	paginator selectPage: pageSelected.
-	
 	millerList pages size > 1 
-		ifTrue: [ paginator show ]
-		ifFalse: [ paginator hide ]
+		ifTrue: [ 
+			"add a paginator, chained to the miller list"
+			paginator ifNil: [ 
+				paginator := self newPaginator.
+				paginatorContainerLayout add: paginator expand: false.
+				paginator chainTo: millerList ].
+			paginator pages: millerList pages.
+			paginator selectPage: pageSelected ]
+		ifFalse: [
+			"we do not want the paginator, let's remove it"
+			paginatorContainerLayout removeAll. 
+			paginator := nil ]
 ]

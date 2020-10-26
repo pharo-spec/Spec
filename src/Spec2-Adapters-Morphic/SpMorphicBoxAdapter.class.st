@@ -226,11 +226,11 @@ SpMorphicBoxAdapter >> newWrapMorph [
 
 { #category : #accessing }
 SpMorphicBoxAdapter >> remove: aPresenter [
-
 	| morph |
+
 	morph := aPresenter adapter widget.	
 	startPanel removeMorph: morph.
-	endPanel removeMorph: morph.
+	endPanel removeMorph: morph
 ]
 
 { #category : #accessing }
