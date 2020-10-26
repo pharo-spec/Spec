@@ -143,7 +143,7 @@ SpStyle class >> defaultStyleSheetData [
 		Geometry { #height: 350 } 
 	],
 	.paginator [ 
-		Geometry { #height: 22 } 
+		Geometry { #height: 20 }
 	]
 ]
 '	

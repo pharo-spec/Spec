@@ -20,7 +20,7 @@ Class {
 { #category : #accessing }
 SpPaginatorMorph class >> defaultHeight [
 
-	^ 22
+	^ 18
 ]
 
 { #category : #accessing }
@@ -33,6 +33,7 @@ SpPaginatorMorph class >> defaultNumberOfPagesShown [
 SpPaginatorMorph >> addPage: anObject [
 
 	pagesMorph addMorphBack: (SpPaginatorPageMorph new
+		vResizing: #spaceFill;
 		model: anObject;
 		whenSelectedDo: [ :aMorph | self doSelectPageFromMorph: aMorph ];
 		yourself).
@@ -104,14 +105,21 @@ SpPaginatorMorph >> doSelectPageFromMorph: aMorph [
 ]
 
 { #category : #initialization }
+SpPaginatorMorph >> extent: aPoint [
+
+	super extent: aPoint.
+	pagesMorph height: aPoint y.
+	selectionMorph height: aPoint y
+]
+
+{ #category : #initialization }
 SpPaginatorMorph >> initialize [
 
 	self class initializeSlots: self.
 	super initialize.
 	self 
 		vResizing: #shrinkWrap;
-		hResizing: #shrinkWrap;
-		height: self class defaultHeight.
+		hResizing: #shrinkWrap.
 
 	self addMorphBack: (selectionMorph := self newSelectionMorph).
 	self addMorphBack: (pagesMorph := self newPagesMorph).
@@ -143,8 +151,7 @@ SpPaginatorMorph >> newPagesMorph [
 		changeTableLayout; 
 		listDirection: #leftToRight; 
 		hResizing: #shrinkWrap;
-		vResizing: #rigid;
-		height: self class defaultHeight;
+		vResizing: #spaceFill;
 		yourself
 ]
 
@@ -152,8 +159,6 @@ SpPaginatorMorph >> newPagesMorph [
 SpPaginatorMorph >> newSelectionMorph [
 	
 	^ SpPaginatorSelectionMorph new
-		vResizing: #rigid;
-		height: self height;
 		whenDragFinishedDo: [ self adjustValues ];
 		yourself
 ]

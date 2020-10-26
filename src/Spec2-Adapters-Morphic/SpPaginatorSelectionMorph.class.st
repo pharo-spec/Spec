@@ -27,6 +27,7 @@ SpPaginatorSelectionMorph >> addResizingEdges [
 	"A transparent morph to fill the space"
 	self addMorphBack: (Morph new 
 		color: Color transparent;
+		height: 0;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		yourself).

@@ -15,7 +15,7 @@ Class {
 { #category : #accessing }
 SpPaginatorPageMorph class >> baseWidth [
 
-	^ 15
+	^ 14
 ]
 
 { #category : #accessing }
