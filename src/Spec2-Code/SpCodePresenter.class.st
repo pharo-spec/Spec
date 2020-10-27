@@ -237,7 +237,7 @@ SpCodePresenter >> contextMenu [
 	^ [ self buildContextMenuWith: super contextMenu ]
 ]
 
-{ #category : #commands }
+{ #category : #'command support' }
 SpCodePresenter >> doBrowseClass [
 	| result |
 
@@ -284,18 +284,18 @@ SpCodePresenter >> doBrowseImplementors [
 ]
 
 { #category : #commands }
-SpCodePresenter >> doBrowseMethodContainingString [
-	
-	self systemNavigation 
-		browseMethodsWithSourceString: self selectedTextOrLine 
-		matchCase: false
-]
-
-{ #category : #commands }
 SpCodePresenter >> doBrowseMethodReferences [
 
 	self flag: #TODO. "This thingy waits for Guille's refactor"
 	self systemNavigation browseAllReferencesTo: self selectedSelector
+]
+
+{ #category : #commands }
+SpCodePresenter >> doBrowseMethodsContainingString [
+	
+	self systemNavigation 
+		browseMethodsWithSourceString: self selectedTextOrLine 
+		matchCase: false
 ]
 
 { #category : #commands }

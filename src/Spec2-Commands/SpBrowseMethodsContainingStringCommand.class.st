@@ -21,5 +21,5 @@ SpBrowseMethodsContainingStringCommand class >> shortName [
 { #category : #executing }
 SpBrowseMethodsContainingStringCommand >> execute [
 
-	self doBrowseMethodsContainingString
+	self context doBrowseMethodsContainingString
 ]
