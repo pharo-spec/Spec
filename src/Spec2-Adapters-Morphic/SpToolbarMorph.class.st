@@ -72,7 +72,8 @@ SpToolbarMorph >> addItemRight: aMorph [
 
 	rightPanel addMorphBack: (aMorph
 		vResizing: #spaceFill;
-		yourself)
+		yourself).
+	rightPanel width: (rightPanel submorphs sum: #width).
 ]
 
 { #category : #'as yet unclassified' }

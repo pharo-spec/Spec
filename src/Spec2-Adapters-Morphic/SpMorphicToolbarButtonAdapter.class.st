@@ -38,9 +38,9 @@ SpMorphicToolbarButtonAdapter >> newButton [
 			on: self presenter
 			getState: nil 
 			action: #execute)
-		helpText: self model help;
+		helpText: self presenter help;
 		beIconTop;
-		hResizing: #rigid;
+		hResizing: #shrinkWrap;
 		vResizing: #spaceFill;
 		borderWidth: 0;
 		borderColor: Color transparent;		

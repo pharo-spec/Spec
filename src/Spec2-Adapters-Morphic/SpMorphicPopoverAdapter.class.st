@@ -27,6 +27,12 @@ SpMorphicPopoverAdapter >> addModelTo: aMorph [
 		aMorph contentMorph: self presenterWidget ]
 ]
 
+{ #category : #styling }
+SpMorphicPopoverAdapter >> applyStyle: aMorph [ 
+
+	super applyStyle: aMorph
+]
+
 { #category : #factory }
 SpMorphicPopoverAdapter >> buildWidget [
 	| panelMorph |

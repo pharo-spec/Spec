@@ -5,13 +5,92 @@ It will be dismissed if click outside or keyboard focus translate to another pla
 "
 Class {
 	#name : #SpPopoverMorph,
-	#superclass : #PanelMorph,
+	#superclass : #Morph,
 	#instVars : [
 		'position',
-		'relativeTo'
+		'relativeTo',
+		'showArrow',
+		'arrowSize',
+		'relativeToRect'
 	],
 	#category : #'Spec2-Adapters-Morphic-Support'
 }
+
+{ #category : #private }
+SpPopoverMorph >> arrowBottomVertices [
+	| rect |
+	
+	rect := ((self left + (self width / 2)) - self borderWidth)@(self top) extent: self arrowSize@(self borderWidth / 2).
+	^ { 
+		rect bottomLeft. 
+		rect topCenter.
+		rect bottomRight.
+	 }
+]
+
+{ #category : #private }
+SpPopoverMorph >> arrowLeftVertices [
+	| rect |
+	
+	"rect := (self right - (self borderWidth / 2))@((self top + (self height / 2)) - (self arrowSize / 2)) extent: (self borderWidth / 2)@self arrowSize."
+	rect := (self right - (self borderWidth / 2))@(self top + (self borderWidth * 1.5)) extent: (self borderWidth / 2)@self arrowSize.
+	
+	^ { 
+		rect topLeft. 
+		rect rightCenter.
+		rect bottomLeft.
+	 }
+]
+
+{ #category : #private }
+SpPopoverMorph >> arrowRightVertices [
+	| rect |
+	
+	"rect := self left@((self top + (self height / 2)) - (self arrowSize / 2)) extent: (self borderWidth / 2)@self arrowSize."
+	rect := self left@(self top + (self borderWidth * 1.5)) extent: (self borderWidth / 2)@self arrowSize.
+
+	
+	^ { 
+		rect topRight. 
+		rect leftCenter.
+		rect bottomRight.
+	 }
+]
+
+{ #category : #accessing }
+SpPopoverMorph >> arrowSize [
+
+	^ arrowSize ifNil: [ 20 ]
+]
+
+{ #category : #accessing }
+SpPopoverMorph >> arrowSize: aNumber [
+
+	arrowSize := aNumber
+]
+
+{ #category : #private }
+SpPopoverMorph >> arrowTopVertices [
+	| rect |
+	
+	rect := ((self left + (self width / 2)) - self borderWidth)@(self bottom - (self borderWidth / 2)) extent: self arrowSize@(self borderWidth / 2).
+	^ { 
+		rect topLeft. 
+		rect bottomCenter.
+		rect topRight.
+	 }
+]
+
+{ #category : #private }
+SpPopoverMorph >> arrowVertices [
+
+	position = #bottom ifTrue: [ ^ self arrowBottomVertices ].
+	position = #right ifTrue: [ ^ self arrowRightVertices ].
+	position = #top ifTrue: [ ^ self arrowTopVertices ].
+	position = #left ifTrue: [ ^ self arrowLeftVertices ].
+	
+	self error: 'Should not arrive here'
+]
 
 { #category : #accessing }
 SpPopoverMorph >> bePositionBottom [
@@ -73,7 +152,7 @@ SpPopoverMorph >> calculatePositionLeftFrom: aRect [
 	| x y |
 	
 	x := aRect origin x - self separatatedBy - self width.
-	y := aRect origin y.
+	y := aRect origin y - self borderWidth.
 
 	^ x @ y	
 ]
@@ -83,7 +162,7 @@ SpPopoverMorph >> calculatePositionRightFrom: aRect [
 	| x y |
 	
 	x := aRect corner x + self separatatedBy.
-	y := aRect origin y.
+	y := aRect origin y - self borderWidth.
 
 	^ x @ y
 ]
@@ -105,7 +184,8 @@ SpPopoverMorph >> contentMorph: aMorph [
 	self extent: aMorph extent 
 		+ (self borderWidth * 2) 
 		+ (aMorph borderWidth * 2) 
-		+ (self cellInset * 2).
+		+ (self cellInset * 2)
+		+ (5@0).
 	self addMorphBack: aMorph.
 	 "I need this to calculate properly the size (otherwise I cannot position 
 	  the popover correctly"
@@ -125,10 +205,49 @@ SpPopoverMorph >> delete [
 	super delete 
 ]
 
+{ #category : #drawing }
+SpPopoverMorph >> drawArrowOn: canvas [
+		
+	canvas 
+		drawPolygon: self arrowVertices
+		fillStyle: self color
+]
+
+{ #category : #drawing }
+SpPopoverMorph >> drawBorderOn: canvas [
+	
+	canvas 
+		fillRectangle: (self bounds insetBy: self borderWidth / 2) 
+		color: self color
+]
+
+{ #category : #drawing }
+SpPopoverMorph >> drawOn: canvas [
+
+	self drawBorderOn: canvas.
+	super drawOn: canvas.
+	showArrow ifTrue: [ 
+		self drawArrowOn: canvas ]
+]
+
+{ #category : #drawing }
+SpPopoverMorph >> fullDrawOn: canvas [
+
+	super fullDrawOn: canvas.
+	"showArrow ifTrue: [ 
+		self drawArrowOn: canvas ]"
+]
+
 { #category : #'event handling' }
 SpPopoverMorph >> handlesMouseDown: evt [
 	
 	^ true
+]
+
+{ #category : #accessing }
+SpPopoverMorph >> hideArrow [
+
+	showArrow := false
 ]
 
 { #category : #initialization }
@@ -139,11 +258,13 @@ SpPopoverMorph >> initialize [
 		changeTableLayout;
 		listDirection: #leftToRight;
 		hResizing: #shrinkWrap;
-		vResizing: #shrinkWrap;
-		"onAnnouncement: MorphLostFocus do: [ :ann | ann morph popdown ];"
-		"cellInset: 5;"
+		vResizing: #spaceFill;
+		borderWidth: 10;
+		borderColor: Color transparent;
+		listCentering: #center;
 		beSticky.
-	self bePositionBottom
+	self bePositionBottom.
+	self showArrow
 ]
 
 { #category : #'event handling' }
@@ -205,15 +326,22 @@ SpPopoverMorph >> relativeTo [
 { #category : #private }
 SpPopoverMorph >> separatatedBy [
 
-	^ 5
+	^ 0
 ]
 
 { #category : #private }
 SpPopoverMorph >> setPositionFrom: aRect [
 
+	relativeToRect := aRect.
 	self position: (self calculatePositionFrom: aRect)
 
 	
+]
+
+{ #category : #accessing }
+SpPopoverMorph >> showArrow [
+
+	showArrow := true
 ]
 
 { #category : #'event handling' }
