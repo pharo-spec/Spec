@@ -1,3 +1,8 @@
+"
+I am a popover morph, which is a morph who will pop in relation to another morph (or/and in a relative position). 
+It has a position: top, left, bottom and right (default is right).
+It will be dismissed if click outside or keyboard focus translate to another place other than its children.
+"
 Class {
 	#name : #SpPopoverMorph,
 	#superclass : #PanelMorph,
@@ -97,17 +102,33 @@ SpPopoverMorph >> calculatePositionTopFrom: aRect [
 SpPopoverMorph >> contentMorph: aMorph [ 
 
 	self removeAllMorphs.
-	self extent: aMorph extent + (self borderWidth * 2) + (aMorph borderWidth * 2).
+	self extent: aMorph extent 
+		+ (self borderWidth * 2) 
+		+ (aMorph borderWidth * 2) 
+		+ (self cellInset * 2).
 	self addMorphBack: aMorph.
 	 "I need this to calculate properly the size (otherwise I cannot position 
 	  the popover correctly"
 	self computeFullBounds
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpPopoverMorph >> defaultColor [
 
 	^ self theme lightBaseColor
+]
+
+{ #category : #'submorphs-add/remove' }
+SpPopoverMorph >> delete [
+
+	self activeHand ifNotNil: [ :hand | hand removeMouseListener: self ].
+	super delete 
+]
+
+{ #category : #'event handling' }
+SpPopoverMorph >> handlesMouseDown: evt [
+	
+	^ true
 ]
 
 { #category : #initialization }
@@ -120,8 +141,37 @@ SpPopoverMorph >> initialize [
 		hResizing: #shrinkWrap;
 		vResizing: #shrinkWrap;
 		"onAnnouncement: MorphLostFocus do: [ :ann | ann morph popdown ];"
+		"cellInset: 5;"
 		beSticky.
 	self bePositionBottom
+]
+
+{ #category : #'event handling' }
+SpPopoverMorph >> justDroppedInto: aMorph event: evt [
+	
+	super justDroppedInto: aMorph event: evt.
+	self takeMouseFocus
+]
+
+{ #category : #'event handling' }
+SpPopoverMorph >> mouseDown: evt [
+	"Handle a mouse down event."
+	"Overridden to not grab on mouse down"
+	
+	(self fullContainsPoint: evt position) 
+		ifFalse:[ ^ self delete ]. "click outside"
+	self comeToFront.
+	self takeMouseFocus
+]
+
+{ #category : #'event handling' }
+SpPopoverMorph >> mouseUp: evt [
+	"Handle a mouse up event.
+	Note: This might be sent from a modal shell."
+	(self fullContainsPoint: evt position) ifFalse: [
+		"Mouse up outside. Release eventual focus and delete if pop up."
+		evt hand releaseMouseFocus: self.
+		^ self delete ]
 ]
 
 { #category : #api }
@@ -141,7 +191,9 @@ SpPopoverMorph >> popupPointingTo: aRectangle [
 
 	self setPositionFrom: aRectangle.
 	self openInWorld.
-	self takeKeyboardFocus
+	self takeKeyboardFocus.
+	self takeMouseFocus.
+	self activeHand addMouseListener: self
 ]
 
 { #category : #accessing }
@@ -162,4 +214,16 @@ SpPopoverMorph >> setPositionFrom: aRect [
 	self position: (self calculatePositionFrom: aRect)
 
 	
+]
+
+{ #category : #'event handling' }
+SpPopoverMorph >> takeMouseFocus [
+	
+	self activeHand newMouseFocus: self
+]
+
+{ #category : #'event handling' }
+SpPopoverMorph >> takesKeyboardFocus [
+
+	^ true
 ]
