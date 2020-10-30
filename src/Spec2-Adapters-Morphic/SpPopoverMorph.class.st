@@ -133,7 +133,7 @@ SpPopoverMorph >> popdown [
 { #category : #api }
 SpPopoverMorph >> popup [
 
-	self popupPointingTo: self relativeTo bounds
+	self popupPointingTo: self relativeTo boundsInWorld
 ]
 
 { #category : #api }
