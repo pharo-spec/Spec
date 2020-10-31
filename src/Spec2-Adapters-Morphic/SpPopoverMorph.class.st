@@ -10,8 +10,7 @@ Class {
 		'position',
 		'relativeTo',
 		'showArrow',
-		'arrowSize',
-		'relativeToRect'
+		'arrowSize'
 	],
 	#category : #'Spec2-Adapters-Morphic-Support'
 }
@@ -181,15 +180,7 @@ SpPopoverMorph >> calculatePositionTopFrom: aRect [
 SpPopoverMorph >> contentMorph: aMorph [ 
 
 	self removeAllMorphs.
-	self extent: aMorph extent 
-		+ (self borderWidth * 2) 
-		+ (aMorph borderWidth * 2) 
-		+ (self cellInset * 2)
-		+ (5@0).
-	self addMorphBack: aMorph.
-	 "I need this to calculate properly the size (otherwise I cannot position 
-	  the popover correctly"
-	self computeFullBounds
+	self addMorphBack: aMorph
 ]
 
 { #category : #accessing }
@@ -257,8 +248,8 @@ SpPopoverMorph >> initialize [
 	self 
 		changeTableLayout;
 		listDirection: #leftToRight;
-		hResizing: #shrinkWrap;
-		vResizing: #spaceFill;
+		"hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap;"
 		borderWidth: 10;
 		borderColor: Color transparent;
 		listCentering: #center;
@@ -310,6 +301,7 @@ SpPopoverMorph >> popup [
 { #category : #api }
 SpPopoverMorph >> popupPointingTo: aRectangle [
 
+	self setSize.
 	self setPositionFrom: aRectangle.
 	self openInWorld.
 	self takeKeyboardFocus.
@@ -332,10 +324,24 @@ SpPopoverMorph >> separatatedBy [
 { #category : #private }
 SpPopoverMorph >> setPositionFrom: aRect [
 
-	relativeToRect := aRect.
 	self position: (self calculatePositionFrom: aRect)
 
 	
+]
+
+{ #category : #private }
+SpPopoverMorph >> setSize [
+	| morph |
+	
+	morph := self submorphs first.
+	self extent: morph extent 
+		+ (self borderWidth * 2) 
+		+ (morph borderWidth * 2) 
+		+ (self cellInset * 2)
+		+ (3@0).
+	 "I need this to calculate properly the size (otherwise I cannot position 
+	  the popover correctly"
+	self computeFullBounds
 ]
 
 { #category : #accessing }

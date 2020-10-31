@@ -109,7 +109,6 @@ SpStyle class >> defaultStyleSheetData [
 	],
 	.scrollbarPopoverLarge [ Geometry { #height: 350 } ],
 	.popover [ 
-		Geometry { #vResizing: true, #height: 0 },
 		.error [ Draw { #color: #C20000 } ] ] ],
 	.paginator [ Geometry { #height: 20 } ] ]
 '

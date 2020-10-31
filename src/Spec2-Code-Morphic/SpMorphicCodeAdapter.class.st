@@ -126,7 +126,7 @@ SpMorphicCodeAdapter >> insertPopoverAfterCurrentSelection: aPresenter style: st
 		styleName ifNotNil: [ 
 			popover addStyle: styleName ].
 		popover buildWithSpec.
-		"popover adapter applyStyle."
+		popover adapter applyStyle.
 	
 		pos := self computeOriginFor: w.
 		"(20@0) is a magic number to position correctly the popover"
