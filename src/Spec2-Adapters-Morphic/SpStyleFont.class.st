@@ -83,6 +83,15 @@ SpStyleFont >> addFontToCache: aFont [
 	self class addFontToCache: aFont
 ]
 
+{ #category : #private }
+SpStyleFont >> anyFontDecorator [
+	
+	^ color notNil 
+		or: [ size notNil 
+		or: [ bold notNil 
+		or: [ italic notNil ] ] ]
+]
+
 { #category : #operations }
 SpStyleFont >> applyTo: aMorph [
 
@@ -113,13 +122,30 @@ SpStyleFont >> calculateDefinedFont [
 	| font |
 	
 	font := LogicalFont
-		familyName: self name 
-		pointSize: self size.
+		familyName: self calculateFontName
+		pointSize: self calculateFontSize.
 
 	self isItalic ifTrue: [ font forceItalicOrOblique ].
 	self isBold ifTrue: [ font forceBold ].
 
 	^ font
+]
+
+{ #category : #private }
+SpStyleFont >> calculateFontName [
+	
+	^ self hasPredefinedFont 
+			ifTrue: [ self obtainPredefinedFont familyName ] 
+			ifFalse: [ self name ]
+]
+
+{ #category : #private }
+SpStyleFont >> calculateFontSize [
+	
+	self size ifNotNil: [ ^ self size ].
+	self hasPredefinedFont ifTrue: [ ^ self obtainPredefinedFont pointSize ].
+	^ nil
+
 ]
 
 { #category : #accessing }
@@ -143,14 +169,20 @@ SpStyleFont >> color: aColorOrSymbol [
 SpStyleFont >> definedFont [
 	| definedFont |
 
-	self predefinedFont ifNotNil: [ :aSymbol | 
-		^ StandardFonts perform: (aSymbol, 'Font') asSymbol ].
+	(self predefinedFont notNil and: [ self anyFontDecorator not ]) ifTrue: [ 
+		^ self obtainPredefinedFont  ].
 
 	self withCachedFontDo: [ :aFont | ^ aFont ].
 	
 	definedFont := self calculateDefinedFont.
 	self addFontToCache: definedFont.
 	^ definedFont
+]
+
+{ #category : #private }
+SpStyleFont >> hasPredefinedFont [
+
+	^ self predefinedFont notNil
 ]
 
 { #category : #initialization }
@@ -179,11 +211,18 @@ SpStyleFont >> italic: anObject [
 
 { #category : #operations }
 SpStyleFont >> mergeWith: otherProperty [
+	| merged |
 
-	^ (super mergeWith: otherProperty)
-		"Ensure predefined font will be overriden even if nil."
-		predefinedFont: otherProperty predefinedFont;
-		yourself
+	merged := super mergeWith: otherProperty.
+
+	"Ensure predefined font will be overriden even if nil."
+	otherProperty name 
+		ifNotNil: [ :aName |
+			merged 
+				predefinedFont: nil;
+				name: aName ].
+		
+	^ merged
 ]
 
 { #category : #accessing }
@@ -196,6 +235,12 @@ SpStyleFont >> name [
 SpStyleFont >> name: aString [
 
 	name := aString
+]
+
+{ #category : #private }
+SpStyleFont >> obtainPredefinedFont [
+
+	^ StandardFonts perform: (self predefinedFont, 'Font') asSymbol
 ]
 
 { #category : #accessing }
