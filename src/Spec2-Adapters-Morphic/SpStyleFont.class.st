@@ -176,6 +176,15 @@ SpStyleFont >> italic: anObject [
 	italic := anObject
 ]
 
+{ #category : #operations }
+SpStyleFont >> mergeWith: otherProperty [
+
+	^ (super mergeWith: otherProperty)
+		"Ensure predefined font will be overriden even if nil."
+		predefinedFont: otherProperty predefinedFont;
+		yourself
+]
+
 { #category : #accessing }
 SpStyleFont >> name [
 
@@ -197,7 +206,7 @@ SpStyleFont >> predefinedFont [
 { #category : #accessing }
 SpStyleFont >> predefinedFont: aSymbol [
 
-	predefinedFont := (aSymbol, 'Font') asSymbol
+	predefinedFont := 	aSymbol ifNotNil: [ aSymbol, 'Font' ]
 ]
 
 { #category : #accessing }
