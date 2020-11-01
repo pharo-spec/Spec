@@ -143,7 +143,8 @@ SpStyleFont >> color: aColorOrSymbol [
 SpStyleFont >> definedFont [
 	| definedFont |
 
-	self predefinedFont ifNotNil: [ :aSymbol | ^ StandardFonts perform: aSymbol ].
+	self predefinedFont ifNotNil: [ :aSymbol | 
+		^ StandardFonts perform: (aSymbol, 'Font') asSymbol ].
 
 	self withCachedFontDo: [ :aFont | ^ aFont ].
 	
@@ -206,7 +207,7 @@ SpStyleFont >> predefinedFont [
 { #category : #accessing }
 SpStyleFont >> predefinedFont: aSymbol [
 
-	predefinedFont := 	aSymbol ifNotNil: [ aSymbol, 'Font' ]
+	predefinedFont := aSymbol
 ]
 
 { #category : #accessing }
