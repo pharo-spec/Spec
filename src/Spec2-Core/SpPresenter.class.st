@@ -919,6 +919,12 @@ SpPresenter >> newToolbarMenuButton [
 ]
 
 { #category : #widgets }
+SpPresenter >> newToolbarPopoverButton [
+
+	^ self instantiate: SpToolbarPopoverButtonPresenter
+]
+
+{ #category : #widgets }
 SpPresenter >> newToolbarToggleButton [
 
 	^ self instantiate: SpToolbarToggleButtonPresenter
