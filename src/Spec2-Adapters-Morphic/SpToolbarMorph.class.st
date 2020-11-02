@@ -55,7 +55,9 @@ SpToolbarMorph >> addItem: aToolbarItem [
 SpToolbarMorph >> addItem: aToolbarItem position: aPosition [
 
 	aPosition addItem: aToolbarItem into: self.
-	self width: self width + aToolbarItem width.
+	self width: (leftPanel submorphs sum: #width) + (self hasRightPanel 
+		ifTrue: [ rightPanel submorphs sum: #width ]
+		ifFalse: [ 0 ]).
 	self refresh
 ]
 
@@ -70,10 +72,13 @@ SpToolbarMorph >> addItemLeft: aMorph [
 { #category : #accessing }
 SpToolbarMorph >> addItemRight: aMorph [
 
+	self hasRightPanel
+		ifFalse: [ self addMorphBack: rightPanel ]. 
+
 	rightPanel addMorphBack: (aMorph
 		vResizing: #spaceFill;
 		yourself).
-	rightPanel width: (rightPanel submorphs sum: #width).
+	rightPanel width: (rightPanel submorphs sum: #width)
 ]
 
 { #category : #'as yet unclassified' }
@@ -115,6 +120,12 @@ SpToolbarMorph >> displayMode: anObject [
 	displayMode := anObject
 ]
 
+{ #category : #private }
+SpToolbarMorph >> hasRightPanel [
+
+	^ self submorphs includes: rightPanel
+]
+
 { #category : #initialization }
 SpToolbarMorph >> initialize [
 	super initialize.
@@ -122,8 +133,8 @@ SpToolbarMorph >> initialize [
 	self
 		changeTableLayout;
 		listDirection: #leftToRight;
-		hResizing: #spaceFill;
-		vResizing: #spaceFill;
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap;
 		color: self color;
 		extent: 0@0.
 	
@@ -138,18 +149,15 @@ SpToolbarMorph >> initializePanels [
 		listDirection: #rightToLeft;
 		hResizing: #spaceFill.
 
-	self
-		addMorphBack: leftPanel;
-		addMorphBack: rightPanel
-
+	self addMorphBack: leftPanel
 ]
 
-{ #category : #'private accessing' }
+{ #category : #private }
 SpToolbarMorph >> leftPanel [
 	^ leftPanel
 ]
 
-{ #category : #'private accessing' }
+{ #category : #private }
 SpToolbarMorph >> leftPanel: anObject [
 	leftPanel := anObject
 ]
@@ -157,14 +165,14 @@ SpToolbarMorph >> leftPanel: anObject [
 { #category : #'private factory' }
 SpToolbarMorph >> newPanelMorph [
 
-	^ PanelMorph new 
+	^ Morph new
 		changeTableLayout;
 		listDirection: #leftToRight;
-		hResizing: #spaceFill;
-		vResizing: #spaceFill;
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap;
 		cellInset: self class defaultItemSeparation@0;
 		extent: 0@0;
-		color: self color;
+		color: Color transparent;
 		yourself
 ]
 
@@ -184,12 +192,12 @@ SpToolbarMorph >> refresh [
 	self flag: #TODO. "Maybe remove?"
 ]
 
-{ #category : #'private accessing' }
+{ #category : #private }
 SpToolbarMorph >> rightPanel [
 	^ rightPanel
 ]
 
-{ #category : #'private accessing' }
+{ #category : #private }
 SpToolbarMorph >> rightPanel: anObject [
 	rightPanel := anObject
 ]
