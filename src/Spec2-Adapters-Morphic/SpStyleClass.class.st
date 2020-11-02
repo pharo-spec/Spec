@@ -47,10 +47,11 @@ SpStyleClass >> , joinStyle [
 ]
 
 { #category : #adding }
-SpStyleClass >> addClass: aName with: aBlock [ 
+SpStyleClass >> addClass: aName with: aBlock [
 	| class |
 	
-	class := SpStyleClass new 
+	class := self class new
+		parent: self;
 		name: aName;
 		yourself.
 	
