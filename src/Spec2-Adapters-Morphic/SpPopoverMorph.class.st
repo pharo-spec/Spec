@@ -10,7 +10,8 @@ Class {
 		'position',
 		'relativeTo',
 		'showArrow',
-		'arrowSize'
+		'arrowSize',
+		'deleteMorph'
 	],
 	#category : #'Spec2-Adapters-Morphic-Support'
 }
@@ -192,8 +193,10 @@ SpPopoverMorph >> defaultColor [
 { #category : #'submorphs-add/remove' }
 SpPopoverMorph >> delete [
 
-	self activeHand ifNotNil: [ :hand | hand removeMouseListener: self ].
-	super delete 
+	self activeHand ifNotNil: [ :hand | 
+		deleteMorph ifNotNil: [ 
+			hand removeMouseListener: deleteMorph ] ].
+	super delete
 ]
 
 { #category : #drawing }
@@ -221,20 +224,6 @@ SpPopoverMorph >> drawOn: canvas [
 		self drawArrowOn: canvas ]
 ]
 
-{ #category : #drawing }
-SpPopoverMorph >> fullDrawOn: canvas [
-
-	super fullDrawOn: canvas.
-	"showArrow ifTrue: [ 
-		self drawArrowOn: canvas ]"
-]
-
-{ #category : #'event handling' }
-SpPopoverMorph >> handlesMouseDown: evt [
-	
-	^ true
-]
-
 { #category : #accessing }
 SpPopoverMorph >> hideArrow [
 
@@ -248,42 +237,14 @@ SpPopoverMorph >> initialize [
 	self 
 		changeTableLayout;
 		listDirection: #leftToRight;
-		"hResizing: #shrinkWrap;
-		vResizing: #shrinkWrap;"
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap;
 		borderWidth: 10;
 		borderColor: Color transparent;
 		listCentering: #center;
 		beSticky.
 	self bePositionBottom.
 	self showArrow
-]
-
-{ #category : #'event handling' }
-SpPopoverMorph >> justDroppedInto: aMorph event: evt [
-	
-	super justDroppedInto: aMorph event: evt.
-	self takeMouseFocus
-]
-
-{ #category : #'event handling' }
-SpPopoverMorph >> mouseDown: evt [
-	"Handle a mouse down event."
-	"Overridden to not grab on mouse down"
-	
-	(self fullContainsPoint: evt position) 
-		ifFalse:[ ^ self delete ]. "click outside"
-	self comeToFront.
-	self takeMouseFocus
-]
-
-{ #category : #'event handling' }
-SpPopoverMorph >> mouseUp: evt [
-	"Handle a mouse up event.
-	Note: This might be sent from a modal shell."
-	(self fullContainsPoint: evt position) ifFalse: [
-		"Mouse up outside. Release eventual focus and delete if pop up."
-		evt hand releaseMouseFocus: self.
-		^ self delete ]
 ]
 
 { #category : #api }
@@ -305,8 +266,17 @@ SpPopoverMorph >> popupPointingTo: aRectangle [
 	self setPositionFrom: aRectangle.
 	self openInWorld.
 	self takeKeyboardFocus.
-	self takeMouseFocus.
-	self activeHand addMouseListener: self
+	self registerToDeleteEvents
+]
+
+{ #category : #private }
+SpPopoverMorph >> registerToDeleteEvents [
+
+	deleteMorph ifNotNil: [ self activeHand removeMouseListener: deleteMorph ].
+	self activeHand addMouseListener: (deleteMorph := SpPopoverDeleteListenerMorph new 
+		on: #mouseDown send: #validateMousePosition: to: self;
+		on: #mouseUp send: #validateMousePosition: to: self;
+		yourself)
 ]
 
 { #category : #accessing }
@@ -338,7 +308,8 @@ SpPopoverMorph >> setSize [
 		+ (self borderWidth * 2) 
 		+ (morph borderWidth * 2) 
 		+ (self cellInset * 2)
-		+ (3@0).
+		+ (4@0) "a magic to correctly display (otherwise it will add an horizontal 
+		scrollbar to contents)".
 	 "I need this to calculate properly the size (otherwise I cannot position 
 	  the popover correctly"
 	self computeFullBounds
@@ -350,14 +321,12 @@ SpPopoverMorph >> showArrow [
 	showArrow := true
 ]
 
-{ #category : #'event handling' }
-SpPopoverMorph >> takeMouseFocus [
+{ #category : #private }
+SpPopoverMorph >> validateMousePosition: evt [
+	"Handle a mouse up event."
 	
-	self activeHand newMouseFocus: self
-]
-
-{ #category : #'event handling' }
-SpPopoverMorph >> takesKeyboardFocus [
-
-	^ true
+	(self fullContainsPoint: evt position) ifTrue: [ ^ self ].
+	"Mouse up outside. Release eventual focus and delete if pop up."
+	"evt hand releaseMouseFocus: self."
+	self currentWorld defer: [ self delete ]
 ]
