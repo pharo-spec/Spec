@@ -25,6 +25,12 @@ SpMorphicToolbarButtonAdapter >> button [
 	^ widget
 ]
 
+{ #category : #execution }
+SpMorphicToolbarButtonAdapter >> execute [
+
+	self presenter action cull: self
+]
+
 { #category : #factory }
 SpMorphicToolbarButtonAdapter >> morphClass [
 
