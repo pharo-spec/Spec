@@ -38,14 +38,13 @@ SpStyleDraw class >> stonName [
 { #category : #operations }
 SpStyleDraw >> applyTo: aMorph [ 
 
-	self color ifNotNil: [ :aColor | aMorph color: aColor ].
+	self color ifNotNil: [ :aColor | aMorph color: aColor valueAsColor ].
 	self backgroundColor ifNotNil: [ :aColor |
 		"hack to be able to decorate components that does not understand 
 		 backgroundColor" 
 		(aMorph respondsTo: #backgroundColor:)
-			ifTrue: [ aMorph backgroundColor: aColor ]
-			ifFalse: [ aMorph fillStyle: aColor ] ].
-	
+			ifTrue: [ aMorph backgroundColor: aColor valueAsColor ]
+			ifFalse: [ aMorph fillStyle: aColor valueAsColor ] ]
 ]
 
 { #category : #accessing }

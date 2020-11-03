@@ -32,7 +32,7 @@ SpStyleProperty >> fromSton: stonReader [
 	stonReader parseMapDo: [ :message :value |
 		self 
 			perform: message asMutator 
-			with: value ]
+			with: (value ifNotNil: [ value asStyleVariable ]) ]
 ]
 
 { #category : #testing }
@@ -53,7 +53,7 @@ SpStyleProperty >> mergeWith: otherProperty [
 		"other property will have precedence over this one"
 		merged 
 			writeSlot: eachSlot 
-			value: ((otherProperty readSlot: eachSlot) ifNil:[ self readSlot: eachSlot ]) ].
+			value: ((otherProperty readSlot: eachSlot) ifNil: [ self readSlot: eachSlot ]) ].
 		
 	^ merged
 ]

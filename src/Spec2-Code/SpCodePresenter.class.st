@@ -487,9 +487,11 @@ SpCodePresenter >> insertPrintPopoverAfterCurrentSelection: anObject [
 	"Inserts a print-it result popover. 
 	 This is for use of SpCodePrintItCommand"
 	
-	self insertPopoverAfterCurrentSelection: (SpCodePopoverPrintPresenter 
-		newCode: self
-		object: anObject)
+	self 
+		insertPopoverAfterCurrentSelection: (SpCodePopoverPrintPresenter 
+			newCode: self
+			object: anObject)
+		style: 'print'
 ]
 
 { #category : #api }

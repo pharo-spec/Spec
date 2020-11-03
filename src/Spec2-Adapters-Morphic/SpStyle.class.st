@@ -40,7 +40,7 @@ Class {
 { #category : #private }
 SpStyle class >> createDefaultStyleSheet [
 
-	^ SpStyleSTONReader fromString: self defaultStyleSheetData
+	^ SpStyleVariableSTONReader fromString: self defaultStyleSheetData
 	
 ]
 
@@ -59,12 +59,12 @@ SpStyle class >> defaultStyleSheetData [
 
 	^'
 .application [
-	Font { #predefinedFont: #default },
+	Font { #name : EnvironmentFont(#default) },
 	Geometry { #height: 25 },
 	.label [
 		Geometry { #hResizing: true, #height: 18 },
-		.headerError [ Draw { #color:  Color{ #red: 1, #green: 0, #blue: 0, #alpha: 1}}  ],
-		.headerSuccess [ Draw { #color: Color{ #red: 0, #green: 1, #blue: 0, #alpha: 1}}  ],
+		.headerError [ Draw { #color:  #red }  ],
+		.headerSuccess [ Draw { #color: #green } ],
 		.header [ Draw { #color: Color{ #rgb: 622413393 } } ],
 		.shortcut [ Draw { #color: Color{ #rgb: 622413393 } } ],
 		.fixed [ Geometry { #hResizing: false, #width: 100 } ],
@@ -98,7 +98,7 @@ SpStyle class >> defaultStyleSheetData [
 		.iconsAndLabel [ Geometry { #height: 45 } ]
 	],
 	.text [ Geometry { #height: 0 } ],
-	.code [ Font { #predefinedFont: #code } ],
+	.code [ Font { #name: EnvironmentFont(#code) } ],
 	.codePopover [ 
 		Draw { #color : #transparent },
 		.button [ Geometry { #width : 25 } ]
@@ -108,7 +108,8 @@ SpStyle class >> defaultStyleSheetData [
 		Font { #color: #white } 
 	],
 	.scrollbarPopoverLarge [ Geometry { #height: 350 } ],
-	.popover [ 
+	.popover [
+		.print [ Draw { #color: EnvironmentColor(#balloonBackground) } ],
 		.error [ Draw { #color: #C20000 } ] ] ],
 	.paginator [ Geometry { #height: 20 } ] ]
 '

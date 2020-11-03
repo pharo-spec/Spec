@@ -40,9 +40,9 @@ SpStyleContainer class >> stonName [
 { #category : #operations }
 SpStyleContainer >> applyTo: aMorph [ 
 
-	self borderColor ifNotNil: [ :aColor | aMorph borderColor: aColor ].
-	self borderWidth ifNotNil: [ :aNumber | aMorph borderWidth: aNumber ].
-	self padding ifNotNil: [ :aNumber | aMorph cellInset: aNumber ]
+	self borderColor ifNotNil: [ :aColor | aMorph borderColor: aColor valueAsColor ].
+	self borderWidth ifNotNil: [ :aNumber | aMorph borderWidth: aNumber value ].
+	self padding ifNotNil: [ :aNumber | aMorph cellInset: aNumber value ]
 ]
 
 { #category : #accessing }

@@ -54,13 +54,13 @@ SpStyleGeometry class >> stonName [
 SpStyleGeometry >> applyTo: aMorph [
 
 	aMorph
-		width: (self geometryValueBetween: self width and: aMorph width);		
-		height: (self geometryValueBetween: self height and: aMorph height).
+		width: (self width asStyleVariable preferredValueWith: aMorph width);		
+		height: (self height asStyleVariable preferredValueWith: aMorph height).
 		
 	self hResizing ifNotNil: [ :aBoolean | 
-		aMorph hResizing: (self resizingStringFor: aBoolean) ].
+		aMorph hResizing: (self resizingStringFor: aBoolean value) ].
 	self vResizing ifNotNil: [ :aBoolean |
-		aMorph vResizing: (self resizingStringFor: aBoolean) ]
+		aMorph vResizing: (self resizingStringFor: aBoolean value) ]
 ]
 
 { #category : #private }

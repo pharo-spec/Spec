@@ -104,7 +104,7 @@ SpStyleFont >> applyTo: aMorph [
 	self color ifNil: [ ^ self ].
 	"Again, not all morphs understand #textColor: and I need to verify it is there."
 	(aMorph respondsTo: #textColor:) ifFalse: [ ^ self ].
-	aMorph textColor: self color
+	aMorph textColor: self color valueAsColor
 ]
 
 { #category : #accessing }
@@ -134,16 +134,18 @@ SpStyleFont >> calculateDefinedFont [
 { #category : #private }
 SpStyleFont >> calculateFontName [
 	
-	^ self hasPredefinedFont 
-			ifTrue: [ self obtainPredefinedFont familyName ] 
-			ifFalse: [ self name ]
+	^ self name isEnvironmentVariable 
+		ifTrue: [ self name familyName ] 
+		ifFalse: [ self name value ]
 ]
 
 { #category : #private }
 SpStyleFont >> calculateFontSize [
 	
 	self size ifNotNil: [ ^ self size ].
+	self name isEnvironmentVariable ifTrue: [ ^ self name pointSize ].
 	self hasPredefinedFont ifTrue: [ ^ self obtainPredefinedFont pointSize ].
+
 	^ nil
 
 ]
