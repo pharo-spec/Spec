@@ -1,8 +1,25 @@
+"
+A variable to access environment colors (defined in `UITheme` and subclasses) 
+"
 Class {
 	#name : #SpStyleVariableEnvironmentColor,
 	#superclass : #SpStyleVariableEnvironment,
 	#category : #'Spec2-Adapters-Morphic-StyleSheet'
 }
+
+{ #category : #documentation }
+SpStyleVariableEnvironmentColor class >> documentExampleCode [
+
+	^ 'Draw { #color: EnvironmentColor(#background) }'
+]
+
+{ #category : #documentation }
+SpStyleVariableEnvironmentColor class >> documentValidValues [
+
+	^ UITheme selectors
+		select: [ :each | each endsWith: 'Color' ]
+		thenCollect: [ :each | each allButLast: 5 ]
+]
 
 { #category : #'ston-core' }
 SpStyleVariableEnvironmentColor class >> stonName [

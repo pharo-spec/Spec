@@ -1,3 +1,6 @@
+"
+An abstract variable to be used for style properties (values will be expressed in instance of `SpStyleAbstractVariable` children instead its _atomic_ values.
+"
 Class {
 	#name : #SpStyleAbstractVariable,
 	#superclass : #Object,

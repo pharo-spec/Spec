@@ -1,3 +1,7 @@
+"
+A holder for an attribute `atomic` value.
+It holds numbers, strings, symbols.
+"
 Class {
 	#name : #SpStyleVariable,
 	#superclass : #SpStyleAbstractVariable,
