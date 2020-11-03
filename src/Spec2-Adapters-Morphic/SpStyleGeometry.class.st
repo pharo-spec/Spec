@@ -54,13 +54,15 @@ SpStyleGeometry class >> stonName [
 SpStyleGeometry >> applyTo: aMorph [
 
 	aMorph
-		width: (self width asStyleVariable preferredValueWith: aMorph width);		
-		height: (self height asStyleVariable preferredValueWith: aMorph height).
+		width: (self width preferredValueWith: aMorph width);		
+		height: (self height preferredValueWith: aMorph height).
+
+	self flag: #TODO. "I am ignoting min/max values"
 		
-	self hResizing ifNotNil: [ :aBoolean | 
-		aMorph hResizing: (self resizingStringFor: aBoolean value) ].
-	self vResizing ifNotNil: [ :aBoolean |
-		aMorph vResizing: (self resizingStringFor: aBoolean value) ]
+	self hResizing ifNotNil: [ :aBooleanVariable | 
+		aMorph hResizing: (self resizingStringFor: aBooleanVariable value) ].
+	self vResizing ifNotNil: [ :aBooleanVariable |
+		aMorph vResizing: (self resizingStringFor: aBooleanVariable value) ]
 ]
 
 { #category : #private }
@@ -70,19 +72,6 @@ SpStyleGeometry >> calculatedExtent [
 	self minExtent ifNotNil: [ :aPoint | aPoint ].
 	
 	^ 10@10
-]
-
-{ #category : #accessing }
-SpStyleGeometry >> extent [
-
-	^ self width @ self height
-]
-
-{ #category : #accessing }
-SpStyleGeometry >> extent: aPoint [ 
-
-	width := aPoint x.
-	height := aPoint y
 ]
 
 { #category : #private }
@@ -102,101 +91,67 @@ SpStyleGeometry >> hResizing [
 { #category : #accessing }
 SpStyleGeometry >> hResizing: aBoolean [
 
-	hResizing := aBoolean
+	hResizing := aBoolean asStyleVariable
 ]
 
 { #category : #accessing }
 SpStyleGeometry >> height [
 
-	^ height ifNil: [ 0 ]
+	^ height ifNil: [ 0 asStyleVariable ]
 ]
 
 { #category : #accessing }
 SpStyleGeometry >> height: aNumber [
 	
-	height := aNumber
-]
-
-{ #category : #initialization }
-SpStyleGeometry >> initialize [
-
-	super initialize.
-	self hResizing: nil.
-	self vResizing: nil
-]
-
-{ #category : #accessing }
-SpStyleGeometry >> maxExtent [
-
-	^ self maxWidth @ self maxHeight
-]
-
-{ #category : #accessing }
-SpStyleGeometry >> maxExtent: aPoint [
-
-	maxWidth := aPoint x.
-	maxHeight := aPoint y
+	height := aNumber asStyleVariable
 ]
 
 { #category : #accessing }
 SpStyleGeometry >> maxHeight [
 
-	^ maxHeight ifNil: [ 0 ]
+	^ maxHeight ifNil: [ 0 asStyleVariable ]
 ]
 
 { #category : #accessing }
 SpStyleGeometry >> maxHeight: aNumber [
 	
-	maxHeight := aNumber
+	maxHeight := aNumber asStyleVariable
 ]
 
 { #category : #accessing }
 SpStyleGeometry >> maxWidth [
 
-	^ maxWidth ifNil: [ 0 ]
+	^ maxWidth ifNil: [ 0 asStyleVariable ]
 ]
 
 { #category : #accessing }
 SpStyleGeometry >> maxWidth: aNumber [
 
-	maxWidth := aNumber
-]
-
-{ #category : #accessing }
-SpStyleGeometry >> minExtent [
-
-	^ self minWidth @ self minHeight
-]
-
-{ #category : #accessing }
-SpStyleGeometry >> minExtent: aPoint [
-
-	minWidth := aPoint x.
-	minHeight := aPoint y
+	maxWidth := aNumber asStyleVariable
 ]
 
 { #category : #accessing }
 SpStyleGeometry >> minHeight [
 
-	^ minHeight ifNil: [ 0 ]
+	^ minHeight ifNil: [ 0 asStyleVariable ]
 ]
 
 { #category : #accessing }
 SpStyleGeometry >> minHeight: aNumber [
 	
-	minHeight := aNumber
+	minHeight := aNumber asStyleVariable
 ]
 
 { #category : #accessing }
 SpStyleGeometry >> minWidth [
 
-	^ minWidth ifNil: [ 0 ]
+	^ minWidth ifNil: [ 0 asStyleVariable ]
 ]
 
 { #category : #accessing }
 SpStyleGeometry >> minWidth: aNumber [
 
-	minWidth := aNumber
+	minWidth := aNumber asStyleVariable
 ]
 
 { #category : #private }
@@ -216,17 +171,17 @@ SpStyleGeometry >> vResizing [
 { #category : #accessing }
 SpStyleGeometry >> vResizing: aBoolean [
 
-	vResizing := aBoolean
+	vResizing := aBoolean asStyleVariable
 ]
 
 { #category : #accessing }
 SpStyleGeometry >> width [
 
-	^ width ifNil: [ 0 ]
+	^ width ifNil: [ 0 asStyleVariable ]
 ]
 
 { #category : #accessing }
 SpStyleGeometry >> width: aNumber [
 
-	width := aNumber
+	width := aNumber asStyleVariable
 ]

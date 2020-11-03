@@ -58,7 +58,7 @@ SpStyleContainer >> borderColor [
 { #category : #accessing }
 SpStyleContainer >> borderColor: aColor [
 
-	borderColor := aColor
+	borderColor := aColor asStyleVariable
 ]
 
 { #category : #accessing }
@@ -70,7 +70,7 @@ SpStyleContainer >> borderWidth [
 { #category : #accessing }
 SpStyleContainer >> borderWidth: aNumber [
 
-	borderWidth := aNumber
+	borderWidth := aNumber asStyleVariable
 ]
 
 { #category : #accessing }
@@ -82,5 +82,5 @@ SpStyleContainer >> padding [
 { #category : #accessing }
 SpStyleContainer >> padding: aNumber [
 
-	padding := aNumber
+	padding := aNumber asStyleVariable
 ]

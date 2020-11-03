@@ -60,7 +60,7 @@ SpStyleDraw >> backgroundColor [
 { #category : #accessing }
 SpStyleDraw >> backgroundColor: aColorOrSymbol [
 
-	backgroundColor := self toColor: aColorOrSymbol
+	backgroundColor := aColorOrSymbol asStyleVariable
 ]
 
 { #category : #accessing }
@@ -76,5 +76,5 @@ SpStyleDraw >> color [
 { #category : #accessing }
 SpStyleDraw >> color: aColorOrSymbol [
 
-	color := self toColor: aColorOrSymbol
+	color := aColorOrSymbol asStyleVariable
 ]

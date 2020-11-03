@@ -113,8 +113,9 @@ SpStyleFont >> bold [
 ]
 
 { #category : #accessing }
-SpStyleFont >> bold: anObject [
-	bold := anObject
+SpStyleFont >> bold: aBoolean [
+
+	bold := aBoolean asStyleVariable
 ]
 
 { #category : #private }
@@ -164,7 +165,7 @@ SpStyleFont >> color [
 { #category : #accessing }
 SpStyleFont >> color: aColorOrSymbol [
 
-	color := self toColor: aColorOrSymbol
+	color := aColorOrSymbol asStyleVariable
 ]
 
 { #category : #private }
@@ -207,8 +208,9 @@ SpStyleFont >> italic [
 ]
 
 { #category : #accessing }
-SpStyleFont >> italic: anObject [
-	italic := anObject
+SpStyleFont >> italic: aBoolean [
+
+	italic := aBoolean asStyleVariable
 ]
 
 { #category : #operations }
@@ -236,7 +238,7 @@ SpStyleFont >> name [
 { #category : #accessing }
 SpStyleFont >> name: aString [
 
-	name := aString
+	name := aString asStyleVariable
 ]
 
 { #category : #private }
@@ -266,7 +268,7 @@ SpStyleFont >> size [
 { #category : #accessing }
 SpStyleFont >> size: aNumber [
 
-	size := aNumber
+	size := aNumber asStyleVariable
 ]
 
 { #category : #private }
