@@ -52,7 +52,7 @@ SpToolbarPresenterBuilder >> visitCommand: aCmCommandEntry [
 { #category : #visiting }
 SpToolbarPresenterBuilder >> visitCommandGroup: aCmCommandsGroup [
 	
-	aCmCommandsGroup isToolbarPopoverButton 
+	"aCmCommandsGroup isToolbarPopoverButton 
 		ifTrue: [ self addPopoverButtonFrom: aCmCommandsGroup ]
-		ifFalse: [ super visitCommandGroup: aCmCommandsGroup ]
+		ifFalse: [ "super visitCommandGroup: aCmCommandsGroup" ]"
 ]

@@ -54,8 +54,8 @@ SpStyleGeometry class >> stonName [
 SpStyleGeometry >> applyTo: aMorph [
 
 	aMorph
-		width: (self width preferredValueWith: aMorph width);		
-		height: (self height preferredValueWith: aMorph height).
+		width: (self width asStyleVariable preferredValueWith: aMorph width);		
+		height: (self height asStyleVariable  preferredValueWith: aMorph height).
 
 	self flag: #TODO. "I am ignoting min/max values"
 		
