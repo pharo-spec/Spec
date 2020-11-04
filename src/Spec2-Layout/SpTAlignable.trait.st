@@ -48,7 +48,19 @@ SpTAlignable >> hAlignStart [
 { #category : #testing }
 SpTAlignable >> hasAlignment [
 
-	^ vAlign notNil or: [ hAlign notNil ]
+	^ self hasVAlign or: [ self hasHAlign ]
+]
+
+{ #category : #testing }
+SpTAlignable >> hasHAlign [
+
+	^ hAlign notNil
+]
+
+{ #category : #testing }
+SpTAlignable >> hasVAlign [
+
+	^ vAlign notNil
 ]
 
 { #category : #accessing }

@@ -97,35 +97,36 @@ SpMorphicBoxAdapter >> addVerticalPadding: aNumber toMorph: aMorph [
 
 { #category : #private }
 SpMorphicBoxAdapter >> applyAlignmentTo: aWidget [
-	| alignmentWidget |
-	
-	aWidget changeTableLayout.
-	
-	alignmentWidget := Morph new
-		extent: aWidget extent;
-		changeTableLayout; 
-		color: Color transparent;
-		addMorphBack: widget.
-		
+
 	layout isVertical 
 		ifTrue: [
-			aWidget 
-				hResizing: #spaceFill; 
-				vResizing: #shrinkWrap.
 			layout vAlign ifNotNil: [ :align |
-				alignmentWidget wrapCentering: align asMorphicAlign ].
+				startPanel vResizing: #shrinkWrap.
+				aWidget listCentering: align asMorphicAlign ].
 			layout hAlign ifNotNil: [ :align |
-				alignmentWidget listCentering: align asMorphicAlign ] ]
+				startPanel hResizing: #shrinkWrap.
+				aWidget wrapCentering: align asMorphicAlign.
+				aWidget cellPositioning: align asMorphicAlign ] ]
 		ifFalse: [ 
-			aWidget 
-				hResizing: #shrinkWrap; 
-				vResizing: #spaceFill.
 			layout vAlign ifNotNil: [ :align |
-				alignmentWidget listCentering: align asMorphicAlign ].
+				startPanel vResizing: #shrinkWrap.
+				aWidget wrapCentering: align asMorphicAlign.
+				aWidget cellPositioning: align asMorphicAlign ].
 			layout hAlign ifNotNil: [ :align |
-				alignmentWidget wrapCentering: align asMorphicAlign ] ].
-		
-	^ alignmentWidget
+				startPanel hResizing: #shrinkWrap.
+				aWidget listCentering: align asMorphicAlign ] ].
+
+	^ aWidget
+]
+
+{ #category : #private }
+SpMorphicBoxAdapter >> applyAlignmentToChild: aWidget [
+
+	layout vAlign 
+		ifNotNil: [ aWidget vResizing: #rigid ].
+	layout hAlign 
+		ifNotNil: [ aWidget hResizing: #rigid ]
+
 ]
 
 { #category : #private }
@@ -134,6 +135,7 @@ SpMorphicBoxAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel 
 
 	childMorph := self buildMorph: aPresenter constraints: constraints.	
 
+	self applyAlignmentToChild: childMorph.
 	aPanel extent: (aPanel width max: childMorph width)@(aPanel height max: childMorph height).
 
 	constraints isPlacedAtStart
