@@ -73,7 +73,9 @@ SpStyle class >> defaultStyleSheetData [
 	.link [ Geometry { #hResizing: true } ],
 	.button [  
 		Geometry { #width: 100 },
-		.small [ Geometry { #width: 26 } ]
+		.small [ 
+			Geometry { #width: 25 },
+			Container { #borderWidth: 0 } ]
 	],
 	.checkBox [  
 		Geometry { #hResizing: true },
@@ -92,7 +94,7 @@ SpStyle class >> defaultStyleSheetData [
 		Geometry { #width: 60, #hResizing: false },
 		.showIcon [ Geometry { #width: 25 } ]
 	],
-	.toolBar [ 
+	.toolbar [ 
 		Geometry { #hResizing: true },
 		.icons [ Geometry { #height: 30 } ],
 		.iconsAndLabel [ Geometry { #height: 45 } ]

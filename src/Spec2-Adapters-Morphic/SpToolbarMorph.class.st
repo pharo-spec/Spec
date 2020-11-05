@@ -5,7 +5,7 @@ I can display toolbar items in left side or right side panels.
 "
 Class {
 	#name : #SpToolbarMorph,
-	#superclass : #PanelMorph,
+	#superclass : #Morph,
 	#instVars : [
 		'leftPanel',
 		'rightPanel',
@@ -55,9 +55,9 @@ SpToolbarMorph >> addItem: aToolbarItem [
 SpToolbarMorph >> addItem: aToolbarItem position: aPosition [
 
 	aPosition addItem: aToolbarItem into: self.
-	self width: (leftPanel submorphs sum: #width) + (self hasRightPanel 
-		ifTrue: [ rightPanel submorphs sum: #width ]
-		ifFalse: [ 0 ]).
+	self computeFullBounds.
+	self minWidth: self calculateWidth.
+	self width: self minWidth.
 	self refresh
 ]
 
@@ -93,6 +93,13 @@ SpToolbarMorph >> addItemsFromContext: aContext [
 
 ]
 
+{ #category : #private }
+SpToolbarMorph >> calculateWidth [
+
+	^ (leftPanel submorphs sum: #width) 
+		+ (self hasRightPanel ifTrue: [ rightPanel submorphs sum: #width ] ifFalse: [ 0 ])
+]
+
 { #category : #updating }
 SpToolbarMorph >> clearItems [
 	
@@ -101,13 +108,13 @@ SpToolbarMorph >> clearItems [
 ]
 
 { #category : #accessing }
-SpToolbarMorph >> color [
-	^ color ifNil: [ Color transparent ]
+SpToolbarMorph >> color: aColor [
+	color := aColor
 ]
 
 { #category : #accessing }
-SpToolbarMorph >> color: aColor [
-	color := aColor
+SpToolbarMorph >> defaultColor [
+	^ Color transparent
 ]
 
 { #category : #accessing }
@@ -135,7 +142,8 @@ SpToolbarMorph >> initialize [
 		listDirection: #leftToRight;
 		hResizing: #shrinkWrap;
 		vResizing: #shrinkWrap;
-		color: self color;
+		wrapCentering: #center; 
+		color: self defaultColor;
 		extent: 0@0.
 	
 	self initializePanels
