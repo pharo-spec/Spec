@@ -17,7 +17,9 @@ SpStyleVariableEnvironmentColor class >> documentExampleCode [
 SpStyleVariableEnvironmentColor class >> documentValidValues [
 
 	^ UITheme selectors
-		select: [ :each | each endsWith: 'Color' ]
+		select: [ :each | 
+			(each endsWith: 'Color') 
+				and: [ ((UITheme current perform: each) isKindOf: Color) ] ]
 		thenCollect: [ :each | each allButLast: 5 ]
 ]
 

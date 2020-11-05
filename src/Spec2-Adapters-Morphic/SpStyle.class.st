@@ -110,7 +110,8 @@ SpStyle class >> defaultStyleSheetData [
 	.scrollbarPopoverLarge [ Geometry { #height: 350 } ],
 	.popover [
 		.print [ Draw { #color: EnvironmentColor(#balloonBackground) } ],
-		.error [ Draw { #color: #C20000 } ] ] ],
+		.error [ Draw { #color: #C20000 } ],
+		.popoverButton [ Draw { #color: EnvironmentColor(#popoverButton) } ] ],
 	.paginator [ Geometry { #height: 20 } ] ]
 '
 ]

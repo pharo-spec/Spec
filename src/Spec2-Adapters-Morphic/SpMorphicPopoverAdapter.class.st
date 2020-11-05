@@ -52,13 +52,16 @@ SpMorphicPopoverAdapter >> dismiss [
 { #category : #api }
 SpMorphicPopoverAdapter >> popup [
 
-	self widgetDo: [ :w | w popup ]
+	self widgetDo: [ :w | 
+		self applyStyle: w.
+		w popup ]
 ]
 
 { #category : #api }
 SpMorphicPopoverAdapter >> popupPointingTo: aRectangle [
 
-	self widgetDo: [ :w | 
+	self widgetDo: [ :w |
+		self applyStyle: w.
 		w popupPointingTo: aRectangle ]
 ]
 
