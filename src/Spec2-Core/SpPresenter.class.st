@@ -453,12 +453,12 @@ SpPresenter >> ensureExtentFor: widget [
 	
 ]
 
-{ #category : #TOMOVE }
+{ #category : #TOREMOVE }
 SpPresenter >> extent [
 	^ extent
 ]
 
-{ #category : #TOMOVE }
+{ #category : #TOREMOVE }
 SpPresenter >> extent: aPoint [
 	^ extent := aPoint
 ]

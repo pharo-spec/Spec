@@ -68,3 +68,10 @@ SpStyleProperty >> toColor: aColorOrSymbol [
 	"Try by HEX (CSS style)"				
 	^ Color fromHexString: aColorOrSymbol
 ]
+
+{ #category : #private }
+SpStyleProperty >> toVariable: anObject [
+
+	^ anObject ifNotNil: [ anObject asStyleVariable ].
+	
+]

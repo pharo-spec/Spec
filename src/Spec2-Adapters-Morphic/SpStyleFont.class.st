@@ -104,18 +104,25 @@ SpStyleFont >> applyTo: aMorph [
 	self color ifNil: [ ^ self ].
 	"Again, not all morphs understand #textColor: and I need to verify it is there."
 	(aMorph respondsTo: #textColor:) ifFalse: [ ^ self ].
-	aMorph textColor: self color valueAsColor
+	aMorph textColor: self colorVariable valueAsColor
 ]
 
 { #category : #accessing }
 SpStyleFont >> bold [
-	^ bold
+
+	^ self boldVariable value
 ]
 
 { #category : #accessing }
 SpStyleFont >> bold: aBoolean [
 
 	bold := aBoolean asStyleVariable
+]
+
+{ #category : #'accessing variables' }
+SpStyleFont >> boldVariable [
+
+	^ self toVariable: bold
 ]
 
 { #category : #private }
@@ -134,21 +141,22 @@ SpStyleFont >> calculateDefinedFont [
 
 { #category : #private }
 SpStyleFont >> calculateFontName [
+	| var |
 	
-	^ self name isEnvironmentVariable 
-		ifTrue: [ self name familyName ] 
-		ifFalse: [ self name value ]
+	var := self nameVariable.
+	^ var isEnvironmentVariable 
+		ifTrue: [ var familyName ] 
+		ifFalse: [ var value ]
 ]
 
 { #category : #private }
 SpStyleFont >> calculateFontSize [
 	
-	self size ifNotNil: [ ^ self size ].
-	self name isEnvironmentVariable ifTrue: [ ^ self name pointSize ].
+	self sizeVariable ifNotNil: [ ^ self sizeVariable value ].
+	self nameVariable isEnvironmentVariable ifTrue: [ ^ self nameVariable pointSize ].
 	self hasPredefinedFont ifTrue: [ ^ self obtainPredefinedFont pointSize ].
 
 	^ nil
-
 ]
 
 { #category : #accessing }
@@ -166,6 +174,17 @@ SpStyleFont >> color [
 SpStyleFont >> color: aColorOrSymbol [
 
 	color := aColorOrSymbol asStyleVariable
+]
+
+{ #category : #'accessing variables' }
+SpStyleFont >> colorVariable [
+  "This is meant to set the text color.
+	This property can be expressed as 
+	- a STON map: ==Color { #red : 1., #green : 0, #blue : 0, #alpha : 1 }==
+	- a named selector: ==#red==
+	- an hex string: =='FF0000'=="
+
+	^ self toVariable: color
 ]
 
 { #category : #private }
@@ -188,18 +207,18 @@ SpStyleFont >> hasPredefinedFont [
 	^ self predefinedFont notNil
 ]
 
-{ #category : #initialization }
+{ #category : #testing }
 SpStyleFont >> isBold [
 	"property may be nil, we verify with strict comparisson"
 	
-	^ bold == true 
+	^ self boldVariable value == true
 ]
 
-{ #category : #initialization }
+{ #category : #testing }
 SpStyleFont >> isItalic [
 	"property may be nil, we verify with strict comparisson"
 	
-	^ italic == true 
+	^ self italicVariable value == true 
 ]
 
 { #category : #accessing }
@@ -211,6 +230,12 @@ SpStyleFont >> italic [
 SpStyleFont >> italic: aBoolean [
 
 	italic := aBoolean asStyleVariable
+]
+
+{ #category : #'accessing variables' }
+SpStyleFont >> italicVariable [
+
+	^ italic
 ]
 
 { #category : #operations }
@@ -241,10 +266,16 @@ SpStyleFont >> name: aString [
 	name := aString asStyleVariable
 ]
 
+{ #category : #'accessing variables' }
+SpStyleFont >> nameVariable [
+
+	^ name
+]
+
 { #category : #private }
 SpStyleFont >> obtainPredefinedFont [
 
-	^ StandardFonts perform: (self predefinedFont, 'Font') asSymbol
+	^ StandardFonts perform: (self predefinedFont value, 'Font') asSymbol
 ]
 
 { #category : #accessing }
@@ -269,6 +300,12 @@ SpStyleFont >> size [
 SpStyleFont >> size: aNumber [
 
 	size := aNumber asStyleVariable
+]
+
+{ #category : #'accessing variables' }
+SpStyleFont >> sizeVariable [
+
+	^ size
 ]
 
 { #category : #private }
