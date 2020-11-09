@@ -2,7 +2,7 @@
 ! Output ports
 An output port defines origin actions (and the possible data associated to such action) to transmit to an destination (input) port.
 
-It also defines the trasformations to apply to the output data before give them to the input port.
+It also defines the transformations to apply to the output data before give them to the input port.
 
 Finally, it can also define some operation to do after the transmission is completed. 
 
@@ -13,6 +13,12 @@ Class {
 	#superclass : #SpPort,
 	#category : #'Spec2-Transmission-Base'
 }
+
+{ #category : #testing }
+SpOutputPort class >> isAbstract [
+
+	^ self name = #SpOutputPort
+]
 
 { #category : #attaching }
 SpOutputPort >> attachTransmission: aTransmission [
