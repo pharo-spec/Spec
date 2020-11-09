@@ -1,3 +1,6 @@
+"
+Some standard tools implemented in Spec2
+"
 Class {
 	#name : #ManifestSpec2Tools,
 	#superclass : #PackageManifest,
