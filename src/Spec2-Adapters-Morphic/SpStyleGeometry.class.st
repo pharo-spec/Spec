@@ -133,7 +133,7 @@ SpStyleGeometry >> minHeight: aNumber [
 { #category : #'accessing variables' }
 SpStyleGeometry >> minHeightVariable [
 
-	^ self toVariable: (minHeight ifNil: [ 0 ])
+	^ self toVariable: minHeight
 ]
 
 { #category : #accessing }
@@ -151,7 +151,7 @@ SpStyleGeometry >> minWidth: aNumber [
 { #category : #'accessing variables' }
 SpStyleGeometry >> minWidthVariable [
 
-	^ self toVariable: (minWidth ifNil: [ 0 ])
+	^ self toVariable: minWidth
 ]
 
 { #category : #private }
