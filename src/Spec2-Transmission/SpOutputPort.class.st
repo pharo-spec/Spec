@@ -10,7 +10,7 @@ Transmission are ''attached'' to a presenter (each concrete output port will ove
 "
 Class {
 	#name : #SpOutputPort,
-	#superclass : #SpPort,
+	#superclass : #SpAbstractPort,
 	#category : #'Spec2-Transmission-Base'
 }
 
