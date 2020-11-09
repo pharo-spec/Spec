@@ -51,10 +51,10 @@ SpStyleGeometry class >> stonName [
 { #category : #operations }
 SpStyleGeometry >> applyTo: aMorph [
 
-	aMorph
-		width: (self widthVariable preferredValueWith: aMorph width);		
-		height: (self heightVariable asStyleVariable  preferredValueWith: aMorph height).
-
+	(self widthVariable preferredValueWith: aMorph width) 
+		ifNotNil: [ :aNumber | aMorph width: aNumber ].
+	(self heightVariable preferredValueWith: aMorph height) 
+		ifNotNil: [ :aNumber | aMorph height: aNumber ].
 	self minWidthVariable
 		ifNotNil: [ :aVariable | aMorph minWidth: aVariable value ].
 	self minHeightVariable
