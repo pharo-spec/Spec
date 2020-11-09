@@ -73,9 +73,7 @@ SpStyle class >> defaultStyleSheetData [
 	.link [ Geometry { #hResizing: true } ],
 	.button [  
 		Geometry { #width: 100 },
-		.small [ 
-			Geometry { #width: 25 },
-			Container { #borderWidth: 0 } ]
+		.small [ Geometry { #width: 20 } ]
 	],
 	.checkBox [  
 		Geometry { #hResizing: true },
@@ -83,7 +81,7 @@ SpStyle class >> defaultStyleSheetData [
 	],
 	.radioButton [ Geometry { #hResizing: true } ],
 	.dropList [ Geometry { #width: 150, #hResizing: true } ],
-	.list [ Geometry { #width: 150, #hResizing: true, #vResizing: true } ],
+	.list [ Geometry { #width: 150, #minHeight: 125, #hResizing: true, #vResizing: true } ],
 	.slider [ Geometry { #width: 150, #hResizing: true } ],
 	.actionBar [  
 		Container { #borderWidth: 0, #padding: 5 },

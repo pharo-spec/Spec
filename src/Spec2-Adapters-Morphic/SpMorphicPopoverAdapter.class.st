@@ -27,12 +27,6 @@ SpMorphicPopoverAdapter >> addModelTo: aMorph [
 		aMorph contentMorph: self presenterWidget ]
 ]
 
-{ #category : #styling }
-SpMorphicPopoverAdapter >> applyStyle: aMorph [ 
-
-	super applyStyle: aMorph
-]
-
 { #category : #factory }
 SpMorphicPopoverAdapter >> buildWidget [
 	| panelMorph |
@@ -41,6 +35,12 @@ SpMorphicPopoverAdapter >> buildWidget [
 	self addModelTo: panelMorph.
 	
 	^ panelMorph
+]
+
+{ #category : #factory }
+SpMorphicPopoverAdapter >> contentPresenter [
+	
+	^ self presenter presenter
 ]
 
 { #category : #api }
@@ -68,7 +68,9 @@ SpMorphicPopoverAdapter >> popupPointingTo: aRectangle [
 { #category : #factory }
 SpMorphicPopoverAdapter >> presenterWidget [
 
-	^ self presenter presenter buildWithSpec
+	self contentPresenter buildWithSpec.
+	self contentPresenter adapter applyStyle.
+	^ self contentPresenter adapter widget
 ]
 
 { #category : #factory }
