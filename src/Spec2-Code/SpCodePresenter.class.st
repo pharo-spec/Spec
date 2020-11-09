@@ -574,16 +574,8 @@ SpCodePresenter >> selectedClassOrMetaClass [
 
 { #category : #'command support' }
 SpCodePresenter >> selectedSelector [
-	| node textSelection |
 	
-	textSelection := self selectedTextOrLine.
-	node := RBParser parseFaultyExpression: textSelection.
-	node nodesDo: [ :n | 
-		n isMessage ifTrue: [ ^ n selector ].
-		n isVariable ifTrue: [ ^ n name ].
-		n isLiteralNode ifTrue: [ ^ n value ] ].
-	"fall back"
-	^ textSelection trimmed asSymbol
+    ^ CNSelectorExtractor new extractSelectorFromSelection: self selectedTextOrLine
 ]
 
 { #category : #api }
