@@ -232,14 +232,17 @@ SpMorphicBoxAdapter >> remove: aPresenter [
 
 	morph := aPresenter adapter widget.	
 	startPanel removeMorph: morph.
-	endPanel removeMorph: morph
+	endPanel removeMorph: morph.
+	self verifyBoxExtent
+	
 ]
 
 { #category : #accessing }
 SpMorphicBoxAdapter >> removeAll [
 
 	startPanel removeAllMorphs.
-	endPanel removeAllMorphs
+	endPanel removeAllMorphs.
+	self verifyBoxExtent
 ]
 
 { #category : #factory }
@@ -275,4 +278,12 @@ SpMorphicBoxAdapter >> replace: aPresenter with: otherPresenter withConstraints:
 	
 	newMorph := self buildMorph: otherPresenter constraints: constraints.
 	panel replaceSubmorph: oldMorph by: newMorph
+]
+
+{ #category : #private }
+SpMorphicBoxAdapter >> verifyBoxExtent [
+
+	(startPanel hasSubmorphs 
+		and: [ endPanel hasSubmorphs ])
+	ifFalse: [ widget extent: 0@0 ]
 ]
