@@ -73,12 +73,15 @@ SpChooseMethodPresenter class >> defaultSpec [
 { #category : #examples }
 SpChooseMethodPresenter class >> exampleMethodChooser [
 	<example>
-	(self openOnAccept: [ :chooseMethodPresenter | chooseMethodPresenter selectedMethod browse ]) withWindowDo: [ :w | w title: 'Select a method example' ]
+
+	(self openOnAccept: [ :chooseMethodPresenter | chooseMethodPresenter selectedMethod browse ]) 
+				withWindowDo: [ :w | w title: 'Select a method example' ]
 ]
 
 { #category : #examples }
 SpChooseMethodPresenter class >> exampleNavigationSystem [
 	<example>
+	
 	| presenter |
 	presenter := self new.
 	presenter openWithSpec extent: 900 @ 400.
@@ -96,11 +99,13 @@ SpChooseMethodPresenter class >> openOnAccept: aBlock [
 
 { #category : #accessing }
 SpChooseMethodPresenter >> classList [
+
 	^ classList
 ]
 
-{ #category : #'initialization - actions' }
+{ #category : #'private - initialization' }
 SpChooseMethodPresenter >> classListAction [
+
 	classList
 		transmitTo: methodList
 		transform: [ :selectedClass | 
@@ -124,16 +129,19 @@ SpChooseMethodPresenter >> classListAction [
 				selectIndex: ((protcolList items collect: [ :each | each name ]) indexOf: '-- all --') ]
 ]
 
-{ #category : #initialization }
+{ #category : #'private - initialization' }
 SpChooseMethodPresenter >> connectPresenters [
-	self packageListAction.
-	self classListAction.
-	self protocolListAction.
-	self radioButtonsAction.
+
+	self 
+		packageListAction;
+		classListAction;
+		protocolListAction;
+		radioButtonsAction.
+		
 	packageList selectIndex: 1
 ]
 
-{ #category : #'initialization - actions' }
+{ #category : #'private - initialization' }
 SpChooseMethodPresenter >> fillWith: aClass [
 
 	methodList items: aClass methods.
@@ -141,8 +149,64 @@ SpChooseMethodPresenter >> fillWith: aClass [
 		collect: [ :eachSymbol | aClass organization protocolOrganizer protocolNamed: eachSymbol ])
 ]
 
+{ #category : #'private - initialization' }
+SpChooseMethodPresenter >> initClassList [
+
+	classList := self newList.
+	classList
+		sortingBlock: #name ascending;
+		displayIcon: [ :item | self iconNamed: item systemIconName ]
+]
+
+{ #category : #'private - initialization' }
+SpChooseMethodPresenter >> initMethodList [
+
+	methodList := self newList.
+	methodList
+		sortingBlock: #name ascending;
+		display: #selector
+]
+
+{ #category : #'private - initialization' }
+SpChooseMethodPresenter >> initPackageList [
+
+	packageList := self newList.
+	packageList
+		items: RPackageOrganizer default packages;
+		display: #name;
+		sortingBlock: #name ascending;
+		displayIcon: [ :item | self iconNamed: #package ]
+	 
+]
+
+{ #category : #'private - initialization' }
+SpChooseMethodPresenter >> initProtocolList [
+
+	protocolList := self newList.
+	protocolList
+		display: #name;
+		sortingBlock: #name ascending
+]
+
+{ #category : #'private - initialization' }
+SpChooseMethodPresenter >> initRadioButtons [
+
+	radioButtonClassSide := self newRadioButton.
+	radioButtonInstanceSide := self newRadioButton.
+	
+	radioButtonClassSide 
+		label: 'class side'.
+		
+	radioButtonInstanceSide
+		label: 'instance side';
+		state: true;
+		associatedRadioButtons: {radioButtonClassSide}.
+
+]
+
 { #category : #initialization }
 SpChooseMethodPresenter >> initializeDialogWindow: aDialog [
+
 	super initializeDialogWindow: aDialog.
 	aDialog
 		initialExtent: 600 @ 400;
@@ -152,64 +216,56 @@ SpChooseMethodPresenter >> initializeDialogWindow: aDialog [
 
 { #category : #initialization }
 SpChooseMethodPresenter >> initializePresenters [
-	packageList := self newList.
-	classList := self newList.
-	methodList := self newList.
-	radioButtonClassSide := self newRadioButton.
-	radioButtonInstanceSide := self newRadioButton.
-	protocolList := self newList.
-	packageList
-		items: RPackageOrganizer default packages;
-		display: #name;
-		sortingBlock: #name ascending;
-		displayIcon: [ :item | self iconNamed: #package ].
-	classList
-		sortingBlock: #name ascending;
-		displayIcon: [ :item | self iconNamed: item systemIconName ].
-	protocolList
-		display: #name;
-		sortingBlock: #name ascending.
-	methodList
-		sortingBlock: #name ascending;
-		display: #selector.
-	radioButtonClassSide label: 'class side'.
-	radioButtonInstanceSide
-		label: 'instance side';
-		state: true.
-	radioButtonInstanceSide
-		associatedRadioButtons: {radioButtonClassSide}.
+
+	self 
+		initPackageList;
+		initClassList;
+		initProtocolList;
+		initMethodList;
+		initRadioButtons.
+				
 	self focusOrder
 		add: packageList;
 		add: classList;
+		add: protocolList;
 		add: methodList
 ]
 
-{ #category : #testing }
+{ #category : #'private - testing' }
 SpChooseMethodPresenter >> isInstanceSideSelected [
+
 	^ radioButtonInstanceSide state
 ]
 
 { #category : #accessing }
 SpChooseMethodPresenter >> methodList [
+
 	^ methodList
 ]
 
-{ #category : #utilities }
+{ #category : #'private - utilities' }
 SpChooseMethodPresenter >> methodNamed: methodSelector [
-	^ (self isInstanceSideSelected ifTrue: [ self selectedClass ] ifFalse: [ self selectedClass class ]) methodNamed: methodSelector
+
+	^ (self isInstanceSideSelected
+		   ifTrue: [ self selectedClass ]
+		   ifFalse: [ self selectedClass class ]) methodNamed: methodSelector
 ]
 
-{ #category : #utilities }
+{ #category : #'private - utilities' }
 SpChooseMethodPresenter >> methodsFromClass: aClass [
-	^ (self isInstanceSideSelected ifTrue: [ aClass ] ifFalse: [ aClass class ]) methods asOrderedCollection
+
+	^ (self isInstanceSideSelected
+		   ifTrue: [ aClass ]
+		   ifFalse: [ aClass class ]) methods asOrderedCollection
 ]
 
 { #category : #accessing }
 SpChooseMethodPresenter >> packageList [
+
 	^ packageList
 ]
 
-{ #category : #'initialization - actions' }
+{ #category : #'private - initialization' }
 SpChooseMethodPresenter >> packageListAction [
 	packageList
 		transmitTo: classList
@@ -222,10 +278,11 @@ SpChooseMethodPresenter >> packageListAction [
 
 { #category : #accessing }
 SpChooseMethodPresenter >> protocolList [
+
 	^ protocolList
 ]
 
-{ #category : #'initialization - actions' }
+{ #category : #'private - initialization' }
 SpChooseMethodPresenter >> protocolListAction [
 	protocolList
 		transmitTo: methodList
@@ -240,15 +297,17 @@ SpChooseMethodPresenter >> protocolListAction [
 
 { #category : #accessing }
 SpChooseMethodPresenter >> radioButtonClassSide [
+
 	^ radioButtonClassSide
 ]
 
 { #category : #accessing }
 SpChooseMethodPresenter >> radioButtonInstanceSide [
+
 	^ radioButtonInstanceSide
 ]
 
-{ #category : #'initialization - actions' }
+{ #category : #'private - initialization' }
 SpChooseMethodPresenter >> radioButtonsAction [
 	radioButtonClassSide whenActivatedDo: [ self fillWith: self selectedClass class ].
 	radioButtonInstanceSide whenActivatedDo: [ self fillWith: self selectedClass ]
@@ -256,20 +315,24 @@ SpChooseMethodPresenter >> radioButtonsAction [
 
 { #category : #accessing }
 SpChooseMethodPresenter >> selectedClass [
+
 	^ classList selection selectedItem
 ]
 
 { #category : #accessing }
 SpChooseMethodPresenter >> selectedMethod [
+
 	^ methodList selectedItem
 ]
 
 { #category : #accessing }
 SpChooseMethodPresenter >> selectedPackage [
+
 	^ packageList selectedItem
 ]
 
 { #category : #accessing }
 SpChooseMethodPresenter >> selectedProtocol [
+
 	^ protocolList selection selectedItem
 ]
