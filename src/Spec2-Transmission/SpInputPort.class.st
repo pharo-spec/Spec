@@ -13,6 +13,12 @@ Class {
 	#category : #'Spec2-Transmission-Base'
 }
 
+{ #category : #testing }
+SpInputPort class >> isAbstract [
+
+	^ self name = #SpInputPort
+]
+
 { #category : #'handling transmission' }
 SpInputPort >> incomingTransmission: anObject from: outPort [
 	"When a transmission happens, the origin transmission has is triggers a value ==anObject== 
