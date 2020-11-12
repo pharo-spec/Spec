@@ -1,5 +1,5 @@
 "
-I am an abstrct class for browsers centered around messages such as MessageBrowser or VersionBrowser.
+I am an abstract class for browsers centered around messages such as class `MessageBrowser` or class `VersionBrowser`.
 "
 Class {
 	#name : #AbstractMessageCentricBrowser,
@@ -12,10 +12,22 @@ Class {
 	#category : #'Spec2-Tools-VersionBrowser'
 }
 
+{ #category : #specs }
+AbstractMessageCentricBrowser class >> defaultSpec [
+
+	^ self subclassResponsibility
+]
+
+{ #category : #testing }
+AbstractMessageCentricBrowser class >> isAbstract [ 
+	 ^self name = #AbstractMessageCentricBrowser
+]
+
 { #category : #initialization }
 AbstractMessageCentricBrowser >> initialize [
+	super initialize.
 	textConverter := SourceMethodConverter new.
-	super initialize
+	
 ]
 
 { #category : #initialization }
@@ -31,7 +43,7 @@ AbstractMessageCentricBrowser >> initializeWindow: aWindowPresenter [
 	aWindowPresenter initialExtent: RealEstateAgent standardWindowExtent
 ]
 
-{ #category : #private }
+{ #category : #'private - testing' }
 AbstractMessageCentricBrowser >> isMethodDefinition: anItem [
 	"an item can be nil, a compiled method, or a ring object. Whereas a ring object can be a ring method or comment definition.
 	 Some operations are only valid for compiled methods or ring object that are a method definitions"
