@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'clearFilterButton',
 		'filterField',
-		'kmTable'
+		'keymapTable'
 	],
 	#category : #'Spec2-Tools-Keymapping'
 }
@@ -24,31 +24,40 @@ SpKeymapPresenter class >> defaultSpec [
 				add: #clearFilterButton expand: false;
 				yourself)
 			expand: false;
-		add: #kmTable;
+		add: #keymapTable;
 		yourself
 ]
 
 { #category : #'system menu' }
 SpKeymapPresenter class >> keymapBrowserMenuOn: aBuilder [ 
-	"I build a menu"
+	"Build an entry in system world menu"
 	<worldMenu>
+	
 	(aBuilder item: #'Keymap Browser')
 		parent: #System;
 		order: 4;
 		icon: self taskbarIcon;
 		action: [ self new openWithSpec ];
-		help: 'List all know shortcuts and Keymapping categories.'.
+		help: 'List all know shortcuts and Keymapping categories.'
+]
+
+{ #category : #opening }
+SpKeymapPresenter class >> open [
+	<script>
+	
+	self new openWithSpec
 ]
 
 { #category : #accessing }
 SpKeymapPresenter class >> taskbarIconName [
+
 	^ #keymapBrowserIcon
 ]
 
 { #category : #private }
 SpKeymapPresenter >> browseDefinitionOfSelectedShortcut [
 	| selection action class selector |
-	selection := self kmTable selection selectedItem ifNil: [ ^ self ].
+	selection := self keymapTable selection selectedItem ifNil: [ ^ self ].
 	action := selection realValue keymap action ifNil: [ ^ self ].
 	class := action method methodClass.
 	selector := action method selector.
@@ -60,21 +69,25 @@ SpKeymapPresenter >> browseDefinitionOfSelectedShortcut [
 
 { #category : #accessing }
 SpKeymapPresenter >> clearFilterButton [
+
 	^ clearFilterButton
 ]
 
 { #category : #accessing }
 SpKeymapPresenter >> clearFilterButton: anObject [
+
 	clearFilterButton := anObject
 ]
 
 { #category : #private }
 SpKeymapPresenter >> collectAllShortcuts [
-	self kmTable items: self shortcuts
+
+	self keymapTable items: self shortcuts
 ]
 
-{ #category : #initialization }
+{ #category : #'private - initialization' }
 SpKeymapPresenter >> connectPresenters [
+
 	filterField
 		whenTextChangedDo: [ :text | 
 			clearFilterButton enabled: text isNotEmpty.
@@ -86,7 +99,7 @@ SpKeymapPresenter >> connectPresenters [
 SpKeymapPresenter >> contextMenu [
 	| hasSelection |
 	
-	hasSelection := self kmTable selection selectedItem notNil.
+	hasSelection := self keymapTable selection selectedItem notNil.
 	^ SpMenuPresenter new 
 		addGroup: [ :group | group 
 			addItem: [ :item | item 
@@ -109,63 +122,85 @@ SpKeymapPresenter >> contextMenu [
 
 { #category : #accessing }
 SpKeymapPresenter >> filterField [
+
 	^ filterField
 ]
 
 { #category : #accessing }
 SpKeymapPresenter >> filterField: anObject [
+
 	filterField := anObject
 ]
 
-{ #category : #api }
-SpKeymapPresenter >> initialExtent [
-	^ 600@300
-]
+{ #category : #'private - initialization' }
+SpKeymapPresenter >> initFilter [
 
-{ #category : #initialization }
-SpKeymapPresenter >> initializePresenters [
-	kmTable := self newTable.
-	kmTable
-		addColumn: (SpStringTableColumn title: 'Shortcut' evaluated: [ :aKMShortcutDeclaration | aKMShortcutDeclaration realValue shortcut asString ]);
-		addColumn: (SpStringTableColumn title: 'Name' evaluated: #shortcutName);
-		addColumn: (SpStringTableColumn title: 'Category' evaluated: #categoryName);
-		beResizable;
-		contextMenu: [ self contextMenu ].
 	filterField := self newTextInput.
 	filterField
 		removeEntryCompletion;
 		placeholder: 'Filter';
 		autoAccept: true.
+	
+	"Add a button to be able to quickly clear the filter"	
 	clearFilterButton := self newButton.
 	clearFilterButton
 		icon: (self iconNamed: #smallCancelIcon);
-		enabled: false.
+		enabled: false
+]
+
+{ #category : #'private - initialization' }
+SpKeymapPresenter >> initKeyMapTable [
+
+	keymapTable := self newTable.
+	keymapTable
+		addColumn: (SpStringTableColumn title: 'Shortcut' evaluated: [ :aKMShortcutDeclaration | aKMShortcutDeclaration realValue shortcut asString ]);
+		addColumn: (SpStringTableColumn title: 'Name' evaluated: #shortcutName);
+		addColumn: (SpStringTableColumn title: 'Category' evaluated: #categoryName);
+		beResizable;
+		contextMenu: [ self contextMenu ]
+]
+
+{ #category : #api }
+SpKeymapPresenter >> initialExtent [
+
+	^ 600 @ 300
+]
+
+{ #category : #initialization }
+SpKeymapPresenter >> initializePresenters [
+
+	self 
+		initFilter;
+		initKeyMapTable.
+	
 	self collectAllShortcuts
 ]
 
 { #category : #private }
 SpKeymapPresenter >> inspectActionOfSelectedShortcut [
 	| selection action |
-	selection := self kmTable selection selectedItem ifNil: [ ^ self ].
+	selection := self keymapTable selection selectedItem ifNil: [ ^ self ].
 	action := selection realValue keymap ifNil: [ ^ self ].
 	action inspect
 ]
 
 { #category : #accessing }
-SpKeymapPresenter >> kmTable [
-	^ kmTable
+SpKeymapPresenter >> keymapTable [
+
+	^ keymapTable
 ]
 
 { #category : #accessing }
-SpKeymapPresenter >> kmTable: anObject [
-	kmTable := anObject
+SpKeymapPresenter >> keymapTable: anObject [
+
+	keymapTable := anObject
 ]
 
 { #category : #private }
 SpKeymapPresenter >> menu: aMenu shifted: aBoolean [
 	(aMenu add: 'Refresh' target: self selector: #collectAllShortcuts)
 		icon: (self iconNamed: #smallUpdateIcon).
-	self kmTable selection selectedItem ifNil: [ ^ aMenu ].
+	self keymapTable selection selectedItem ifNil: [ ^ aMenu ].
 	(aMenu
 		add: 'Browse Definition'
 		target: self
@@ -184,7 +219,7 @@ SpKeymapPresenter >> setFilter: aFilterText [
 	aFilterText
 		ifEmpty: [ self collectAllShortcuts ]
 		ifNotEmpty: [ :filter | 
-			self kmTable
+			self keymapTable
 				items: (self shortcuts select: [ :shortcut | {shortcut realValue shortcut asString . shortcut shortcutName . shortcut categoryName} anySatisfy: [ :s | s includesSubstring: filter caseSensitive: false ] ]) ]
 ]
 
@@ -205,7 +240,7 @@ SpKeymapPresenter >> shortcuts [
 	^ collection sorted: #categoryName ascending
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpKeymapPresenter >> title [
 	^ 'Keymap Browser'
 ]

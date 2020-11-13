@@ -20,7 +20,7 @@ ChangeSorterModel class >> classDescriptionsMap: anObject [
 	ClassDescriptionsMap := anObject
 ]
 
-{ #category : #default }
+{ #category : #defaults }
 ChangeSorterModel class >> defaultClassDescriptionsMap [
 	^ Dictionary new
 		at: #remove put: 'Entire class was removed.';
@@ -87,6 +87,7 @@ ChangeSorterModel >> buildSelectorDescriptionFor: changeSet class: class selecto
 
 { #category : #accessing }
 ChangeSorterModel >> classDescriptionsMap [
+
 	^ self class classDescriptionsMap
 ]
 
@@ -114,7 +115,7 @@ ChangeSorterModel >> copySelector: selector inClass: class from: source to: dest
 { #category : #'change set' }
 ChangeSorterModel >> createNewSet [
 
-	^ ChangeSet newChangeSet.
+	^ ChangeSet newChangeSet
 ]
 
 { #category : #'change set' }
@@ -224,7 +225,7 @@ now because there is at least one
 window open on that postscript.
 Close that window and try again.'].
 
-	aChange removePostscript.
+	aChange removePostscript
 ]
 
 { #category : #'change set' }
@@ -304,5 +305,5 @@ Do you really want to go ahead with this?') ifFalse: [^ false]].
 { #category : #'change set' }
 ChangeSorterModel >> subtractFrom: source to: destination [
 
-	source forgetAllChangesFoundIn: destination.
+	source forgetAllChangesFoundIn: destination
 ]

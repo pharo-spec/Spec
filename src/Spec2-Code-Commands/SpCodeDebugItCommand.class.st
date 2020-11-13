@@ -1,12 +1,17 @@
+"
+I'm a ""debug it"" command. 
+I will debug the selection (or line) of the playground.
+"
 Class {
 	#name : #SpCodeDebugItCommand,
 	#superclass : #SpCodeSelectionCommand,
-	#category : #'Spec2-Code-Commands'
+	#category : #'Spec2-Code-Commands-Base'
 }
 
 { #category : #defaults }
 SpCodeDebugItCommand class >> defaultIconName [
-	^#smallDebug
+
+	^ #smallDebug
 ]
 
 { #category : #default }

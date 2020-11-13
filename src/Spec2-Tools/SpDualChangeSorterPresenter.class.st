@@ -28,25 +28,29 @@ SpDualChangeSorterPresenter class >> defaultSpec [
 { #category : #menu }
 SpDualChangeSorterPresenter class >> menuCommandOn: aBuilder [
 	<worldMenu>
+	
 	(aBuilder group: #SystemChanges)
 		parent: #Tools;
 		order: 410;
-		with: [ (aBuilder item: #'Change Sorter')
+		with: [ 
+			(aBuilder item: #'Change Sorter')
 				action: [ self open ];
 				help: 'Examine the different change set of the image.';
 				icon: self taskbarIcon ].
 	aBuilder withSeparatorAfter
 ]
 
-{ #category : #specs }
+{ #category : #opening }
 SpDualChangeSorterPresenter class >> open [
+	<script>
+	
 	self new openWithSpec
 ]
 
 { #category : #'tools-registry' }
 SpDualChangeSorterPresenter class >> registerToolsOn: registry [
+	"Add ourselves to registry. See [Smalltalk tools]"
 
-	"Add ourselves to registry. See [Smalltalk tools]" 
 	registry register: self as: #changeSorter
 ]
 
@@ -55,7 +59,7 @@ SpDualChangeSorterPresenter class >> taskbarIconName [
 	^ #changeSorterIcon
 ]
 
-{ #category : #specs }
+{ #category : #accessing }
 SpDualChangeSorterPresenter class >> title [
 	^ 'Dual Change Sorter'
 ]
