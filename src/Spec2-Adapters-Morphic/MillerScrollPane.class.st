@@ -37,10 +37,10 @@ MillerScrollPane >> hScrollbarShowWhenNeeded [
 
 { #category : #initialization }
 MillerScrollPane >> initialize [
-
-	super initialize.
+	
 	keepShowingPage := false.
-	updating := false
+	updating := false.
+	super initialize.
 ]
 
 { #category : #private }
