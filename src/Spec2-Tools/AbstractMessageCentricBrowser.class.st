@@ -25,8 +25,9 @@ AbstractMessageCentricBrowser class >> isAbstract [
 
 { #category : #initialization }
 AbstractMessageCentricBrowser >> initialize [
-	super initialize.
+
 	textConverter := SourceMethodConverter new.
+	super initialize
 	
 ]
 
