@@ -20,6 +20,15 @@ SpOutputPort class >> isAbstract [
 	^ self name = #SpOutputPort
 ]
 
+{ #category : #copying }
+SpOutputPort >> , otherPort [
+
+	^ SpCompositeOutputPort new
+		add: self;
+		add: otherPort;
+		yourself
+]
+
 { #category : #attaching }
 SpOutputPort >> attachTransmission: aTransmission [
 	"A transmission is no more than a definition of what to transmit to who. 

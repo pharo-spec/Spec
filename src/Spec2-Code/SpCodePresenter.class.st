@@ -368,8 +368,10 @@ SpCodePresenter >> evaluate: aString ifError: aBlock [
 	^ [
 		self class compilerClass new
 			environment: self environment;
-			class: UndefinedObject;
-			source: self selectedTextOrLine;
+			source: self selectedTextOrLine readStream;
+			context: self interactionModel doItContext;
+			receiver: self interactionModel doItReceiver;
+			requestor: self interactionModel;
 			evaluate ]
 		on: Error 
 		do: aBlock
