@@ -52,9 +52,9 @@ BaselineOfSpecCore >> baseline: spec [
 		'Spec2-Commander2' ).
 	spec group: 'Code' with: #('Core' 'Spec2-Code-Commands' 'Spec2-Code').
 	spec group: 'CodeTests' with: #('Spec2-Code-Tests').
-	spec group: 'Support' with: #('Core' 'Spec2-Examples' 'Spec2-Tools' ).
+	spec group: 'Support' with: #('Core' 'Spec2-Examples').
 	spec group: 'Tests' with: #('Core' 'Spec2-Tests' 	'Spec2-Commander2-Tests').
-	spec group: 'SupportTests' with: #('Support' 'Spec2-Tools-Tests').
+	spec group: 'SupportTests' with: #('Support').
 	spec group: 'Pillar' with: #('Spec2-Pillar' ).
 	spec group: 'Base' with: #('Core' 'Support').
 	spec group: 'BaseTests' with: #('Spec2-Tests' 'SupportTests').
