@@ -189,11 +189,11 @@ SpMorphicWindowAdapter >> okToChange [
 { #category : #protocol }
 SpMorphicWindowAdapter >> open [
 
-	self model isCentered ifTrue: [ self centered ].
-
 	self widget openInWorld.
-	self model initialPosition ifNotNil: [ 
-		self widget position: self model initialPosition ].
+	self presenter initialPosition 
+		ifNotNil: [ :aPosition | self widget position: aPosition ].
+	self presenter isCentered 
+		ifTrue: [ self centered ].
 
 	self presenter presenter takeKeyboardFocus.
 
