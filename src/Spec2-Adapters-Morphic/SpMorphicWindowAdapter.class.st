@@ -86,19 +86,20 @@ SpMorphicWindowAdapter >> centered [
 
 	self widgetDo: [ :w | 
 		w
-			fullBounds;
-			position: Display extent - w extent // 2 ]
+			computeFullBounds;
+			position: (self currentWorld extent - w extent) // 2 ]
 ]
 
 { #category : #'widget API' }
 SpMorphicWindowAdapter >> centeredRelativeTo: aWindowPresenter [
-
 	| bounds position |
+
 	self widgetDo: [ :w | 
+		w computeFullBounds.
 		bounds := aWindowPresenter
-			          ifNotNil: [ aWindowPresenter adapter widget bounds ]
-			          ifNil: [ self currentWorld bounds ].
-		position := bounds origin + (bounds extent - w extent // 2).
+			ifNotNil: [ aWindowPresenter adapter widget bounds ]
+			ifNil: [ self currentWorld bounds ].
+		position := bounds origin + ((bounds extent - w extent) // 2).
 		w position: position ]
 ]
 
@@ -193,6 +194,8 @@ SpMorphicWindowAdapter >> open [
 	self widget openInWorld.
 	self model initialPosition ifNotNil: [ 
 		self widget position: self model initialPosition ].
+
+	self presenter presenter takeKeyboardFocus.
 
 	self windowIsOpening
 ]

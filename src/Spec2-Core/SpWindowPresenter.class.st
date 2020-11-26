@@ -180,15 +180,17 @@ SpWindowPresenter >> centered [
 SpWindowPresenter >> centeredRelativeTo: aWindowPresenter [
 	"Prepare the window to be centered to another window"
 
-	self changed: #centeredRelativeTo: with: { aWindowPresenter }
+	self withAdapterPerformOrDefer: [ :anAdapter |
+		anAdapter centeredRelativeTo: aWindowPresenter ]
 ]
 
 { #category : #api }
 SpWindowPresenter >> centeredRelativeToTopWindow [
 	"Prepare the window to be centered to top window (the window that is currently active)"
 
-	self application topWindow 
+	self application topWindow
 		ifNotNil: [ :aWindow | self centeredRelativeTo: aWindow ]
+		ifNil: [ self centered ]
 ]
 
 { #category : #api }
