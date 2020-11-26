@@ -35,15 +35,22 @@ SpMorphicWindowAdapter >> addModelItemsToWindowMenu: aMenu [
 ]
 
 { #category : #protocol }
-SpMorphicWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
+SpMorphicWindowAdapter >> addPresenterIn: aWindow withSpecLayout: aSpec [
 
-	self model initialPosition 
-		ifNotNil: [ :position | widgetToBuild position: position ].
-	self model initialExtent 
-		ifNotNil: [ :extent | widgetToBuild extent: extent ].
-	self 
-		addContent: (self model presenter buildWithSpecLayout: aSpec) 
-		toWindow: widgetToBuild
+	self presenter initialPosition 
+		ifNotNil: [ :position | aWindow position: position ].
+	self presenter initialExtent 
+		ifNotNil: [ :extent | aWindow extent: extent ].
+	self presenter hasDecorations 
+		ifFalse: [ aWindow removeLabelArea ].
+	self presenter whenDecorationsChangedDo: [ :aBoolean |
+		aBoolean 
+			ifTrue: [ aWindow initializeLabelArea ]
+			ifFalse: [ aWindow removeLabelArea ] ].
+	
+self 
+		addContent: (self presenter presenter buildWithSpecLayout: aSpec) 
+		toWindow: aWindow
 ]
 
 { #category : #'widget API' }
