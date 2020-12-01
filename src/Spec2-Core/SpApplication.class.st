@@ -219,7 +219,7 @@ SpApplication >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClas
 
 	window := aWindowClass presenter: aPresenter.
 	window application: aPresenter application.
-	self windows add: window.
+	self registerWindow: window.
 	window openWithSpecLayout: aSpecLayout.
 	
 	^ window
@@ -323,6 +323,12 @@ SpApplication >> propertyAt: aKey put: aValue [
 		put: aValue
 ]
 
+{ #category : #private }
+SpApplication >> registerWindow: aWindow [
+
+	self windows add: aWindow
+]
+
 { #category : #accessing }
 SpApplication >> reset [ 
 
@@ -362,6 +368,12 @@ SpApplication >> topWindow [
 		ifNone: [ nil ]
 ]
 
+{ #category : #private }
+SpApplication >> unregisterWindow: aWindow [
+
+	self windows remove: aWindow ifAbsent: [  ]
+]
+
 { #category : #'accessing backend' }
 SpApplication >> useBackend: aName [
 
@@ -386,7 +398,7 @@ SpApplication >> validateApplicationOfPresenter: aPresenter [
 { #category : #windows }
 SpApplication >> windowClosed: aWindowPresenter [
 	
-	self windows remove: aWindowPresenter ifAbsent: [  ]
+	self unregisterWindow: aWindowPresenter
 ]
 
 { #category : #accessing }
