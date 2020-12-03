@@ -74,6 +74,24 @@ SpAbstractMorphicListAdapter >> sendClickEventToRow: aNumber [
 		widget handleMouseUp: evt ]
 ]
 
+{ #category : #emulating }
+SpAbstractMorphicListAdapter >> sendClickWithShiftEventToRow: aNumber [
+	| evt rowWidget |
+
+	rowWidget := widget container submorphs at: aNumber.
+	evt := MouseButtonEvent new 
+		setType: nil 
+		position: rowWidget bounds center 
+		which: MouseButtonEvent redButton 
+		buttons: (MouseButtonEvent redButton | 8 "shift = 8 mask")
+		hand: self currentHand 
+		stamp: nil.
+	
+	(widget handlesMouseDown: evt) ifTrue: [
+		widget handleMouseDown: evt.
+		widget handleMouseUp: evt ]
+]
+
 { #category : #private }
 SpAbstractMorphicListAdapter >> showContextMenu [
 

@@ -8,7 +8,8 @@ Class {
 		'selectColumn',
 		'displayBlock',
 		'displayIconBlock',
-		'selectedItems'
+		'selectedItems',
+		'previousSelectedIndex'
 	],
 	#category : #'Spec2-Core-Widgets-Advanced'
 }
@@ -49,7 +50,17 @@ SpFilteringSelectableListPresenter >> initializePresenters [
 		bindKeyCombination: Character space 
 		toAction: [ self toggleSelection ].
 		
-	listPresenter eventHandler whenMouseDownDo: [ :event | self toggleSelection ]
+	listPresenter selection whenSelectedIndexChangedDo: [ :newIndex :prevIndex | 
+		previousSelectedIndex := prevIndex ]. 
+		
+	listPresenter eventHandler whenMouseDownDo: [ :event | 
+		event shiftPressed
+			ifTrue: [ 
+				self 
+					selectFrom: previousSelectedIndex
+					to: listPresenter selection selectedIndex ]
+			ifFalse: [ 
+				self toggleSelection ] ]
 ]
 
 { #category : #private }
@@ -77,6 +88,22 @@ SpFilteringSelectableListPresenter >> newListToFilter [
 	table hideColumnHeaders.
 	table columns: self listColumns.
 	^ table
+]
+
+{ #category : #private }
+SpFilteringSelectableListPresenter >> selectFrom: fromIndex to: toIndex [
+
+	selectedItems addAll: (fromIndex < toIndex
+		ifTrue: [ listPresenter items copyFrom: fromIndex to: toIndex ]
+		ifFalse:[ listPresenter items copyFrom: toIndex to: fromIndex ]).
+	listPresenter refresh
+]
+
+{ #category : #api }
+SpFilteringSelectableListPresenter >> selectItem: anObject [
+
+	self selectedItems: (self selectedItems copyWith: anObject).
+	listPresenter selectItem: anObject
 ]
 
 { #category : #api }

@@ -30,3 +30,37 @@ SpFilteringListSelectableAdapterTest >> testClickOnRowTogglesSelection [
 	self assert: (presenter selectedItems hasEqualElements: { Array })
 
 ]
+
+{ #category : #tests }
+SpFilteringListSelectableAdapterTest >> testClickOnRowWithShiftSelectsRange [
+
+	presenter items: { 
+		OrderedCollection.
+		Array.
+		SequenceableCollection.
+		Set.
+		Dictionary }.
+	
+	presenter selectItem: Array.
+	self openInstance.
+	self assert: (presenter selectedItems hasEqualElements: { Array }).	
+	presenter listPresenter adapter sendClickWithShiftEventToRow: 4.
+	self assert: (presenter selectedItems hasEqualElements: { Array. SequenceableCollection. Set })
+]
+
+{ #category : #tests }
+SpFilteringListSelectableAdapterTest >> testClickOnRowWithShiftSelectsRangeReversed [
+
+	presenter items: { 
+		OrderedCollection.
+		Array.
+		SequenceableCollection.
+		Set.
+		Dictionary }.
+	
+	presenter selectItem: Set.
+	self openInstance.
+	self assert: (presenter selectedItems hasEqualElements: { Set }).	
+	presenter listPresenter adapter sendClickWithShiftEventToRow: 2.
+	self assert: (presenter selectedItems hasEqualElements: { Array. SequenceableCollection. Set })
+]
