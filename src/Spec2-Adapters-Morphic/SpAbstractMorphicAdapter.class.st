@@ -481,7 +481,24 @@ SpAbstractMorphicAdapter >> removeSubWidgets [
 ]
 
 { #category : #emulating }
-SpAbstractMorphicAdapter >> rightClicked [
+SpAbstractMorphicAdapter >> sendClickEvent [
+	| evt |
+
+	evt := MouseButtonEvent new 
+		setType: nil 
+		position: widget center 
+		which: MouseButtonEvent redButton 
+		buttons: MouseButtonEvent redButton 
+		hand: nil 
+		stamp: nil.
+
+	(widget handlesMouseDown: evt) ifTrue: [
+		widget handleMouseDown: evt.
+		widget handleMouseUp: evt ]
+]
+
+{ #category : #emulating }
+SpAbstractMorphicAdapter >> sendRightClickEvent [
 	| evt |
 
 	evt := MouseButtonEvent new 

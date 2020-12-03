@@ -47,7 +47,9 @@ SpFilteringSelectableListPresenter >> initializePresenters [
 	super initializePresenters.
 	listPresenter 
 		bindKeyCombination: Character space 
-		toAction: [ self toggleSelection ]
+		toAction: [ self toggleSelection ].
+		
+	listPresenter eventHandler whenMouseDownDo: [ :event | self toggleSelection ]
 ]
 
 { #category : #private }
