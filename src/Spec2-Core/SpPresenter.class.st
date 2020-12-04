@@ -89,7 +89,7 @@ Class {
 	#instVars : [
 		'#application',
 		'#focusOrder',
-		'#contextKeyBindings',
+		'#contextKeyBindings => SpObservableSlot',
 		'#windowIcon => SpObservableSlot',
 		'#aboutText => SpObservableSlot',
 		'#askOkToClose => SpObservableSlot',
@@ -1175,8 +1175,15 @@ SpPresenter >> visibleIf: aValuable [
 ]
 
 { #category : #'api-events' }
-SpPresenter >> whenDisplayDo: aBlockClosure [
-	self announcer when: SpWidgetDisplayed do: aBlockClosure
+SpPresenter >> whenContextKeyBindingsChangedDo: aBlock [
+	
+	self property: #contextKeyBindings whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+SpPresenter >> whenDisplayDo: aBlock [
+
+	self announcer when: SpWidgetDisplayed do: aBlock
 ]
 
 { #category : #'api-events' }
