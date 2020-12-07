@@ -121,10 +121,11 @@ SpMenuPresenter >> canTakeKeyboardFocus [
 
 { #category : #accessing }
 SpMenuPresenter >> defaultGroup [
-	^ defaultGroup
-		ifNil: [ defaultGroup := self instantiate: SpMenuGroupPresenter.
-			self addMenuGroup: defaultGroup.
-			defaultGroup ]
+
+	^ defaultGroup ifNil: [ 
+		defaultGroup := self instantiate: SpMenuGroupPresenter.
+		self addMenuGroup: defaultGroup.
+		defaultGroup ]
 ]
 
 { #category : #'api-building' }

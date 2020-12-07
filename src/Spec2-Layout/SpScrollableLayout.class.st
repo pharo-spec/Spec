@@ -11,7 +11,7 @@ Class {
 SpScrollableLayout class >> with: aSymbolOrPresenter [
 
 	^ self new 
-		add: aSymbolOrPresenter;
+		child: aSymbolOrPresenter;
 		yourself
 ]
 
