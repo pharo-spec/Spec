@@ -19,6 +19,7 @@ SpExecutableLayout >> adapterName [
 { #category : #accessing }
 SpExecutableLayout >> add: aName withConstraints: aBlock [
 	| constraints |
+
 	constraints := self constraintsClass new.
 	aBlock value: constraints.
 	children at: aName put: constraints
@@ -31,7 +32,7 @@ SpExecutableLayout >> announceChildAdded: aChildPresenter [
 		self announcer announce: (SpChildrenAdded new
 			parent: self presenter;
 			child: aChildPresenter;
-			yourself)].
+			yourself) ]
 ]
 
 { #category : #private }
