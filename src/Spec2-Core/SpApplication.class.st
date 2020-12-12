@@ -135,6 +135,12 @@ SpApplication >> defer: aBlock [
 	self backend defer: aBlock
 ]
 
+{ #category : #ui }
+SpApplication >> forceDefer: aBlock [
+	"doInUIThread: ?"
+	self backend forceDefer: aBlock
+]
+
 { #category : #testing }
 SpApplication >> hasWindow: aWindow [
 	
