@@ -19,50 +19,62 @@ SpTPresenterBuilder >> instantiate: aPresenterClass on: aModel [
 	^ aPresenterClass owner: self on: aModel
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newActionBar [
 
 	^ self instantiate: SpActionBarPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newAthens [
 
 	^ self instantiate: SpAthensPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting layouts' }
+SpTPresenterBuilder >> newBoxLayoutLeftToRight [
+
+	^ SpBoxLayout newLeftToRight
+]
+
+{ #category : #'scripting layouts' }
+SpTPresenterBuilder >> newBoxLayoutTopToBottom [
+
+	^ SpBoxLayout newTopToBottom
+]
+
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newButton [
 	^ self instantiate: SpButtonPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newButtonBar [
 
 	^ self instantiate: SpButtonBarPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newCheckBox [
 	^ self instantiate: SpCheckBoxPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newComponentList [
 	^ self instantiate: SpComponentListPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newDiff [
 	^ self instantiate: SpDiffPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newDropList [
 	^ self instantiate: SpDropListPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newDynamicPresentersListIn: accessorSymbol usingBuilder: aDynamicPresentersListBuilder [
 	|mutatorSymbol newDynamicPresenter |
 	mutatorSymbol := (accessorSymbol , ':') asSymbol.
@@ -78,165 +90,211 @@ SpTPresenterBuilder >> newDynamicPresentersListIn: accessorSymbol usingBuilder: 
 	self buildWithSpec
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newFilteringList [
 
 	^ self instantiate: SpFilteringListPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting layouts' }
+SpTPresenterBuilder >> newGridLayout [
+
+	^ SpGridLayout new
+]
+
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newLabel [
 	^ self instantiate: SpLabelPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newList [
 	^ self instantiate: SpListPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newMenu [
 	^ self instantiate: SpMenuPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newMenuBar [
 	^ self instantiate: SpMenuBarPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newMenuButton [
 
 	^ self instantiate: SpMenuButtonPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newNotebook [
 
 	^ self instantiate: SpNotebookPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newNotebookPage [
 
 	self flag: #TODO. "NotebookPage needs to be a Presenter?"
 	^ SpNotebookPage new
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newNullPresenter [
 	^ self instantiate: SpNullPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newNumberInput [
 	^ self instantiate: SpNumberInputFieldPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting layouts' }
+SpTPresenterBuilder >> newOverlayLayout [
+
+	^ SpOverlayLayout new
+]
+
+{ #category : #'scripting layouts' }
+SpTPresenterBuilder >> newPanedLayoutLeftToRight [
+
+	^ SpPanedLayout newLeftToRight
+]
+
+{ #category : #'scripting layouts' }
+SpTPresenterBuilder >> newPanedLayoutTopToBottom [
+
+	^ SpPanedLayout newTopToBottom
+]
+
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newPopover [
 
 	^ self instantiate: SpPopoverPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
+SpTPresenterBuilder >> newPresenter [
+
+	^ self instantiate: SpPresenter
+]
+
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newPresenterSelector [
 
 	^ self instantiate: SpPresenterSelectorPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
+SpTPresenterBuilder >> newPresenterWith: aBlock [
+	| presenter |
+
+	presenter := self instantiate: SpPresenter.
+	aBlock value: aBlock.
+
+	^ presenter
+]
+
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newProgressBar [
 	^ self instantiate: SpProgressBarPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newRadioButton [
 	^ self instantiate: SpRadioButtonPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newRichText [
 
 	^ self instantiate: SpRichTextPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting layouts' }
+SpTPresenterBuilder >> newScrollableLayout [
+
+	^ SpScrollableLayout new
+]
+
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newSearchInput [
 
 	^ self instantiate: SpSearchInputFieldPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newSlider [
 	^ self instantiate: SpSliderPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newStatusBar [
 
 	^ self instantiate: SpStatusBarPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newTable [
 
 	^ self instantiate: SpTablePresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newText [
 	^ self instantiate: SpTextPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newTextInput [
 	^ self instantiate: SpTextInputFieldPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newToggleButton [
 
 	^ self instantiate: SpToggleButtonPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newToolbar [
 
 	^ self instantiate: SpToolbarPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newToolbarButton [
 
 	^ self instantiate: SpToolbarButtonPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newToolbarMenuButton [
 
 	^ self instantiate: SpToolbarMenuButtonPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newToolbarPopoverButton [
 
 	^ self instantiate: SpToolbarPopoverButtonPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newToolbarToggleButton [
 
 	^ self instantiate: SpToolbarToggleButtonPresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newTree [
 
 	^ self instantiate: SpTreePresenter
 ]
 
-{ #category : #widgets }
+{ #category : #'scripting widgets' }
 SpTPresenterBuilder >> newTreeTable [
 
 	^ self instantiate: SpTreeTablePresenter

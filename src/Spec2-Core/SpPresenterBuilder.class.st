@@ -1,3 +1,7 @@
+"
+A simple presenter builder class that uses `SpTPresenterBuilder`. 
+It allows users to compose presenters without hardcoding class name.
+"
 Class {
 	#name : #SpPresenterBuilder,
 	#superclass : #Object,
