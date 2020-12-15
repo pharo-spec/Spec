@@ -25,7 +25,7 @@ SpSelectEntity class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add:
 			(SpBoxLayout newHorizontal
-				add: #entityText;
+				add: (SpBoxLayout newVertical add: #entityText expand: false; yourself);
 				add: #selectEntity withConstraints: [ :constraints | constraints width: self toolbarHeight ];
 				yourself)
 			withConstraints: [ :constraints | constraints height: self toolbarHeight ];
