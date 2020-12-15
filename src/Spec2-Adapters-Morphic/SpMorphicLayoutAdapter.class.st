@@ -28,7 +28,7 @@ SpMorphicLayoutAdapter >> add: aPresenter constraints: constraints [
 ]
 
 { #category : #private }
-SpMorphicLayoutAdapter >> addConstraits: constraints toChild: childMorph [
+SpMorphicLayoutAdapter >> addConstraints: constraints toChild: childMorph [
 
 	self subclassResponsibility
 ]
@@ -81,7 +81,7 @@ SpMorphicLayoutAdapter >> buildMorph: aPresenter constraints: constraints [
 		applyChildrenAlignmentTo: childMorph 
 		constraints: constraints. 
 	childMorph := self 
-		addConstraits: constraints 
+		addConstraints: constraints 
 		toChild: childMorph.
 	
 	^ childMorph
