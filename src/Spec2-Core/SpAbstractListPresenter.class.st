@@ -416,6 +416,17 @@ SpAbstractListPresenter >> unselectItem: anObject [
 	self selection unselectItem: anObject
 ]
 
+{ #category : #api }
+SpAbstractListPresenter >> updateItemsKeepingSelection: aCollection [
+	"Updates list items keeping current selection. 
+	 WARNING: aCollection must includes the elements selected."
+	| items |
+	
+	items := self selection selectedItems.
+	self items: aCollection.
+	self selectItems: items
+]
+
 { #category : #accessing }
 SpAbstractListPresenter >> verticalAlignment [
 	^ verticalAlignment
