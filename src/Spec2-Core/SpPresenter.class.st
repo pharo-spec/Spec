@@ -851,7 +851,7 @@ SpPresenter >> show [
 SpPresenter >> takeKeyboardFocus [
 	| focus |
 
-	focus := self defaultKeyboardFocus.
+	focus := self defaultKeyboardFocus ifNil: [ self ].
 	focus == self ifFalse: [ ^ focus takeKeyboardFocus ].
 	
 	self withAdapterDo: [ :anAdapter | 
