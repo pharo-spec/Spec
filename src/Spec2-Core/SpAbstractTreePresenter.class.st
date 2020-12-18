@@ -87,6 +87,35 @@ SpAbstractTreePresenter >> childrenFor: anObject [
 	^ self children value: anObject
 ]
 
+{ #category : #simulation }
+SpAbstractTreePresenter >> clickAtPath: aPath [
+
+	self selectPath: aPath.
+
+	activateOnSingleClick ifFalse: [ ^ self ].
+	self doActivateAtPath: aPath
+]
+
+{ #category : #private }
+SpAbstractTreePresenter >> doActivateAtPath: aPath [
+	"Activate only if there is an item at that position"
+
+	self itemAtPath: aPath ifAbsent: [ ^ self ].
+	activationBlock
+		cull:
+			((SpTreeSingleSelectionMode on: self)
+				selectPath: aPath;
+				yourself)
+]
+
+{ #category : #simulation }
+SpAbstractTreePresenter >> doubleClickAtPath: aPath [
+	self selectPath: aPath.
+	
+	activateOnSingleClick ifTrue: [ ^ self ].
+	self doActivateAtPath: aPath
+]
+
 { #category : #api }
 SpAbstractTreePresenter >> expandAll [
 	"Expand all nodes of the tree. 

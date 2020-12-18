@@ -56,15 +56,6 @@ SpTreePresenter >> beResizable [
 	self isResizable: true
 ]
 
-{ #category : #simulation }
-SpTreePresenter >> clickAtPath: aPath [
-
-	self selectPath: aPath.
-
-	activateOnSingleClick ifFalse: [ ^ self ].
-	self doActivateAtPath: aPath
-]
-
 { #category : #api }
 SpTreePresenter >> display [
 	"Answer the display block that will transform the model nodes into a displayable string."
@@ -102,26 +93,6 @@ SpTreePresenter >> displayIcon: aBlock [
 	 `aBlock` receives one argument"
 	
 	iconBlock := aBlock
-]
-
-{ #category : #simulation }
-SpTreePresenter >> doActivateAtPath: aPath [
-	"Activate only if there is an item at that position"
-
-	self itemAtPath: aPath ifAbsent: [ ^ self ].
-	activationBlock
-		cull:
-			((SpTreeSingleSelectionMode on: self)
-				selectPath: aPath;
-				yourself)
-]
-
-{ #category : #simulation }
-SpTreePresenter >> doubleClickAtPath: aPath [
-	self selectPath: aPath.
-	
-	activateOnSingleClick ifTrue: [ ^ self ].
-	self doActivateAtPath: aPath
 ]
 
 { #category : #api }

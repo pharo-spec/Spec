@@ -74,15 +74,6 @@ SpTreeTablePresenter >> beResizable [
 	self isResizable: true
 ]
 
-{ #category : #simulation }
-SpTreeTablePresenter >> clickAtPath: aPath [
-
-	self selectPath: aPath.
-
-	activateOnSingleClick ifFalse: [ ^ self ].
-	self doActivateAtPath: aPath
-]
-
 { #category : #api }
 SpTreeTablePresenter >> columns [
 	"Answer the columns composing this table."
@@ -96,26 +87,6 @@ SpTreeTablePresenter >> columns: aCollection [
 	 `aCollection` is a list of instances of `SpTableColumn`"
 
 	columns := aCollection
-]
-
-{ #category : #simulation }
-SpTreeTablePresenter >> doActivateAtPath: aPath [
-	"Activate only if there is an item at that position"
-
-	self itemAtPath: aPath ifAbsent: [ ^ self ].
-	activationBlock
-		cull:
-			((SpTreeSingleSelectionMode on: self)
-				selectPath: aPath;
-				yourself)
-]
-
-{ #category : #simulation }
-SpTreeTablePresenter >> doubleClickAtPath: aPath [
-	self selectPath: aPath.
-	
-	activateOnSingleClick ifTrue: [ ^ self ].
-	self doActivateAtPath: aPath
 ]
 
 { #category : #api }
