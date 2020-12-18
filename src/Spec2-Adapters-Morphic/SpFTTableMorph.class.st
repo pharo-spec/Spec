@@ -15,20 +15,20 @@ SpFTTableMorph >> acceptDroppingMorph: aTransferMorph event: anEvent [
 SpFTTableMorph >> transferFrom: aTransferMorph event: anEvent [
 
 	| rowAndColumn |
-	rowAndColumn := (self container rowAndColumnIndexContainingPoint:
-		                 anEvent position) ifNil: [ 0 ].
+	rowAndColumn := self container rowAndColumnIndexContainingPoint:
+		                anEvent position.
 
 	^ dataSource model isTable
 		  ifTrue: [ 
 			  SpDragAndDropTransferToTable new
 				  passenger: aTransferMorph passenger;
-				  row: rowAndColumn first;
-				  column: rowAndColumn second;
+				  row: (rowAndColumn first ifNil: [ 0 ]);
+				  column: (rowAndColumn second ifNil: [ 0 ]);
 				  yourself ]
 		  ifFalse: [ 
 			  SpDragAndDropTransferToList new
 				  passenger: aTransferMorph passenger;
-				  index: rowAndColumn first;
+				  index: (rowAndColumn first ifNil: [ 0 ]);
 				  yourself ]
 ]
 
