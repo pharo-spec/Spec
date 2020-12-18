@@ -94,6 +94,16 @@ SpAbstractListPresenter >> clickItem: anInteger [
 	self selectIndex: anInteger
 ]
 
+{ #category : #private }
+SpAbstractListPresenter >> disableActivationDuring: aBlock [
+	| oldActivate |
+	
+	oldActivate := activationBlock.
+	activationBlock := [ ].
+	aBlock ensure: [ 
+		activationBlock := oldActivate ]
+]
+
 { #category : #TOREMOVE }
 SpAbstractListPresenter >> disableFilter [
 	self itemFilter: nil
@@ -420,11 +430,12 @@ SpAbstractListPresenter >> unselectItem: anObject [
 SpAbstractListPresenter >> updateItemsKeepingSelection: aCollection [
 	"Update list items keeping current selection. 
 	 WARNING: aCollection must includes the elements selected."
-	| items |
 	
-	items := self selection selectedItems.
-	self items: aCollection.
-	self selectItems: items
+	self disableActivationDuring: [ 
+		| items |
+		items := self selection selectedItems.
+		self items: aCollection.
+		self selectItems: items ]
 ]
 
 { #category : #accessing }

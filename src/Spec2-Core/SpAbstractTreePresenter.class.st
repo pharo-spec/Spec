@@ -97,6 +97,16 @@ SpAbstractTreePresenter >> clickAtPath: aPath [
 ]
 
 { #category : #private }
+SpAbstractTreePresenter >> disableActivationDuring: aBlock [
+	| oldActivate |
+	
+	oldActivate := activationBlock.
+	activationBlock := [ ].
+	aBlock ensure: [ 
+		activationBlock := oldActivate ]
+]
+
+{ #category : #private }
 SpAbstractTreePresenter >> doActivateAtPath: aPath [
 	"Activate only if there is an item at that position"
 
@@ -328,12 +338,14 @@ SpAbstractTreePresenter >> unselectPath: aPath [
 SpAbstractTreePresenter >> updateRootsKeepingSelection: aCollection [ 
 	"Update tree roots keeping current selection. 
 	 WARNING: aCollection must includes the elements selected."
-	| selectedPaths |
 
-	selectedPaths := self selection selectedPaths.
-	self roots: aCollection.
-	selectedPaths ifNotEmpty: [ 
-		self selectPaths: selectedPaths ]
+	self disableActivationDuring: [ 
+		| selectedPaths |
+		
+		selectedPaths := self selection selectedPaths.
+		self roots: aCollection.
+		selectedPaths ifNotEmpty: [ 
+			self selectPaths: selectedPaths ] ]
 ]
 
 { #category : #private }
