@@ -18,11 +18,18 @@ SpFTTableMorph >> transferFrom: aTransferMorph event: anEvent [
 	rowAndColumn := (self container rowAndColumnIndexContainingPoint:
 		                 anEvent position) ifNil: [ 0 ].
 
-	^ SpDragAndDropTransferToTable new
-		  passenger: aTransferMorph passenger;
-		  row: rowAndColumn first;
-		  column: rowAndColumn second;
-		  yourself
+	^ dataSource model isTable
+		  ifTrue: [ 
+			  SpDragAndDropTransferToTable new
+				  passenger: aTransferMorph passenger;
+				  row: rowAndColumn first;
+				  column: rowAndColumn second;
+				  yourself ]
+		  ifFalse: [ 
+			  SpDragAndDropTransferToList new
+				  passenger: aTransferMorph passenger;
+				  index: rowAndColumn first;
+				  yourself ]
 ]
 
 { #category : #'drag and drop' }
