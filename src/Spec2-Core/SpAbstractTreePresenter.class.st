@@ -111,11 +111,9 @@ SpAbstractTreePresenter >> doActivateAtPath: aPath [
 	"Activate only if there is an item at that position"
 
 	self itemAtPath: aPath ifAbsent: [ ^ self ].
-	activationBlock
-		cull:
-			((SpTreeSingleSelectionMode on: self)
-				selectPath: aPath;
-				yourself)
+	activationBlock cull: ((SpTreeSingleSelectionMode on: self)
+		selectPath: aPath;
+		yourself)
 ]
 
 { #category : #simulation }
