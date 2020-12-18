@@ -39,7 +39,6 @@ SpWindow >> announceWillClose [
 SpWindow >> close [ 
 
 	self announceWillClose.
-	self isTopWindow ifTrue: [ self privateBePassive ].
 	super close.
 ]
 
