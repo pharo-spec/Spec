@@ -10,14 +10,14 @@ Class {
 		'#dragEnabled => SpObservableSlot',
 		'#dropEnabled => SpObservableSlot',
 		'#dragTransformationBlock => SpObservableSlot',
-		'#wantDropBlock => SpObservableSlot',
-		'#acceptDropBlock => SpObservableSlot',
 		'#transferBlock => SpObservableSlot',
 		'#color => SpObservableSlot',
 		'#help => SpObservableSlot',
 		'#enabled => SpObservableSlot',
 		'#styles',
-		'#deferredActions'
+		'#deferredActions',
+		'#wantsDrop',
+		'#acceptDrop'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -198,13 +198,23 @@ SpAbstractWidgetPresenter class >> isAbstract [
 ]
 
 { #category : #'drag and drop' }
+SpAbstractWidgetPresenter >> acceptDrop [
+	^ acceptDrop
+]
+
+{ #category : #'drag and drop' }
+SpAbstractWidgetPresenter >> acceptDrop: aBlock [
+	acceptDrop := aBlock
+]
+
+{ #category : #'drag and drop' }
 SpAbstractWidgetPresenter >> acceptDropBlock [
-	^ acceptDropBlock
+	^ acceptDrop
 ]
 
 { #category : #'drag and drop' }
 SpAbstractWidgetPresenter >> acceptDropBlock: aBlock [
-	acceptDropBlock := aBlock
+	acceptDrop := aBlock
 ]
 
 { #category : #'drag and drop' }
@@ -392,8 +402,8 @@ SpAbstractWidgetPresenter >> initialize [
 	dragEnabled := false.
 	dropEnabled := false.
 	dragTransformationBlock := [ :item :source | item ].
-	wantDropBlock := [ :draggedItem :event :source | self dropEnabled ].
-	acceptDropBlock := [ :draggedItem :event :source |  ].
+	wantsDrop := [ :transfer | self dropEnabled ].
+	acceptDrop := [ :transfer |  ].
 	transferBlock := [ :passenger :source | self defaultTransferFor: passenger from: source ].
 	color := self defaultColor.
 	self whenHelpChangedDo: [ :string | self withAdapterDo: [ :w | w update: #setBalloonText: with: {string} ] ].
@@ -490,12 +500,22 @@ SpAbstractWidgetPresenter >> traversePresentersDo: aBlock excluding: excludes [
 
 { #category : #'drag and drop' }
 SpAbstractWidgetPresenter >> wantDropBlock [
-	^ wantDropBlock
+	^ wantsDrop
 ]
 
 { #category : #'drag and drop' }
 SpAbstractWidgetPresenter >> wantDropBlock: aBlock [
-	wantDropBlock := aBlock
+	wantsDrop := aBlock
+]
+
+{ #category : #'drag and drop' }
+SpAbstractWidgetPresenter >> wantsDrop [
+	^ wantsDrop
+]
+
+{ #category : #'drag and drop' }
+SpAbstractWidgetPresenter >> wantsDrop: aBlock [
+	wantsDrop := aBlock
 ]
 
 { #category : #'drag and drop' }
