@@ -276,6 +276,11 @@ SpTreePresenter >> isShowingColumnHeaders [
 	^ showColumnHeaders
 ]
 
+{ #category : #testing }
+SpTreePresenter >> isTable [
+	^ false
+]
+
 { #category : #private }
 SpTreePresenter >> itemAt: index of: anArray then: path [
 	"dives into elements of tree to find the one that corresponds to path"
