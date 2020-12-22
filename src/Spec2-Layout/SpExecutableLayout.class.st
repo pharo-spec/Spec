@@ -95,6 +95,8 @@ SpExecutableLayout >> buildAdapterFor: aPresenter bindings: bindings [
 				presenter: aPresenter 
 				bindings: bindings) 
 			constraints: constraints ].
+		
+	adapter adapterWasBuilt.
 
 	^ adapter
 ]

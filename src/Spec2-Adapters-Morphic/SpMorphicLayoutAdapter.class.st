@@ -17,6 +17,11 @@ SpMorphicLayoutAdapter >> adapter [
 ]
 
 { #category : #factory }
+SpMorphicLayoutAdapter >> adapterWasBuilt [
+	"hook to add after-build opeations (for example, initial status, etc.)"
+]
+
+{ #category : #accessing }
 SpMorphicLayoutAdapter >> add: aPresenter constraints: constraints [
  
 	aPresenter owner: self model. 
@@ -53,7 +58,7 @@ SpMorphicLayoutAdapter >> applyStyle: aMorph [
 	"lLayouts do not have style to apply"
 ]
 
-{ #category : #factory }
+{ #category : #styling }
 SpMorphicLayoutAdapter >> applyStyle: aPresenter to: aMorph [
 	self flag: #TODO. "This is a HACK, to apply styles just when I'm using new layouts 
 	(otherwise, it interferes on how the old layout is displayed). 
@@ -87,19 +92,19 @@ SpMorphicLayoutAdapter >> buildMorph: aPresenter constraints: constraints [
 	^ childMorph
 ]
 
-{ #category : #factory }
+{ #category : #building }
 SpMorphicLayoutAdapter >> buildWidget [
 
 	^ nil
 ]
 
-{ #category : #factory }
+{ #category : #building }
 SpMorphicLayoutAdapter >> buildWithSpec [
 	
 	^ self widget
 ]
 
-{ #category : #factory }
+{ #category : #building }
 SpMorphicLayoutAdapter >> buildWithSpec: aString [ 
 
 	^ self buildWithSpec

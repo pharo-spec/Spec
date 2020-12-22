@@ -1,6 +1,9 @@
 Class {
 	#name : #SpTabLayout,
 	#superclass : #SpExecutableLayout,
+	#instVars : [
+		'initialPageIndex'
+	],
 	#category : #'Spec2-Layout-Tab'
 }
 
@@ -30,4 +33,23 @@ SpTabLayout >> add: aPresenter withConstraints: aBlock [
 SpTabLayout >> constraintsClass [
 
 	^ SpTabConstraints
+]
+
+{ #category : #accessing }
+SpTabLayout >> initialPageIndex [
+	
+	^ initialPageIndex
+]
+
+{ #category : #accessing }
+SpTabLayout >> initialPageIndex: aNumber [
+
+	initialPageIndex := aNumber
+]
+
+{ #category : #accessing }
+SpTabLayout >> initialize [
+
+	super initialize.
+	initialPageIndex := 1
 ]
