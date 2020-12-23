@@ -111,7 +111,7 @@ SpTreePresenter >> initialize [
 	activationBlock := [ ].
 	
 	displayBlock := [ :each | each asString ].
-	showColumnHeaders := true.
+	showColumnHeaders := false.
 	isResizable := false.
 	childrenBlock := [ :item | #() ].
 	roots := #().
