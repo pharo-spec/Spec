@@ -44,7 +44,6 @@ SpFilteringListSelectableAdapterTest >> testClickOnRowWithShiftSelectsRange [
 	presenter selectItem: Array.
 	self openInstance.
 	self assert: (presenter selectedItems hasEqualElements: { Array }).	
-	backendForTest waitUntilUIRedrawed.
 	presenter listPresenter adapter sendClickWithShiftEventToRow: 4.
 	self assert: (presenter selectedItems hasEqualElements: { Array. SequenceableCollection. Set })
 ]
