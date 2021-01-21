@@ -17,7 +17,7 @@ Class {
 
 { #category : #specs }
 SpCheckBoxExample class >> defaultSpec [
-	^ SpBoxLayout newVertical
+	^ SpBoxLayout newTopToBottom
 		add:
 			(SpBoxLayout newLeftToRight
 				add: #button1;

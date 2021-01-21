@@ -24,7 +24,7 @@ SpLabelledPresenter class >> defaultSpec [
 	^ SpBoxLayout newLeftToRight
 		add: #labelPresenter withConstraints: [ :constraints | constraints width: self labelWidth ];
 		add:
-			(SpBoxLayout newVertical
+			(SpBoxLayout newTopToBottom
 				add: #input withConstraints: [ :constraints | constraints height: self inputTextHeight ];
 				add: #descriptionPresenter withConstraints: [ :constraints | constraints height: self inputTextHeight ]);
 		yourself

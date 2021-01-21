@@ -44,7 +44,7 @@ SpScrollSyncExample >> currentVerticalScrollPosition [
 SpScrollSyncExample >> defaultSpecLayout [
 	<spec>
 	
-	^ SpBoxLayout newVertical
+	^ SpBoxLayout newTopToBottom
 		add: #sideRuler;
 		add: #text;
 		yourself

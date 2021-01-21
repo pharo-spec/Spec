@@ -16,7 +16,7 @@ Class {
 
 { #category : #specs }
 SpOpenOnIntExample class >> defaultSpec [
-	^ SpBoxLayout newVertical
+	^ SpBoxLayout newTopToBottom
 		add: #text withConstraints: [ :constraints | constraints height: 25 ];
 		add:
 			(SpBoxLayout newLeftToRight

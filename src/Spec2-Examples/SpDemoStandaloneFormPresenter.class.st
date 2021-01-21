@@ -37,7 +37,7 @@ Class {
 { #category : #specs }
 SpDemoStandaloneFormPresenter class >> defaultSpec [
 	
-	^ SpBoxLayout newVertical
+	^ SpBoxLayout newTopToBottom
 		add:
 			(SpGridLayout new
 				add: 'Name:' at: 1 @ 1;

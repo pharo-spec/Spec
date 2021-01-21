@@ -258,7 +258,7 @@ SpVersatileDialogPresenter >> initializePresenters [
 { #category : #accessing }
 SpVersatileDialogPresenter >> layout [
 	| mainLayout row |
-	mainLayout := SpBoxLayout newVertical.
+	mainLayout := SpBoxLayout newTopToBottom.
 
 
 	"if the content area is not defined, place main message next to the main icon"

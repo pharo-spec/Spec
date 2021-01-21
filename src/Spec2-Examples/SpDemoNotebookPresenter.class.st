@@ -17,7 +17,7 @@ Class {
 
 { #category : #specs }
 SpDemoNotebookPresenter class >> defaultSpec [
-	^ SpBoxLayout newVertical
+	^ SpBoxLayout newTopToBottom
 		add: #notebook;
 		add:
 			(SpBoxLayout newLeftToRight

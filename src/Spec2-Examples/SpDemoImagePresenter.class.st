@@ -16,7 +16,7 @@ Class {
 
 { #category : #specs }
 SpDemoImagePresenter class >> defaultSpec [
-	^ SpBoxLayout newVertical
+	^ SpBoxLayout newTopToBottom
 		add: (SpBoxLayout newLeftToRight
 			add: 'Image added through an ImagePresenter:';
 			add: #image1;

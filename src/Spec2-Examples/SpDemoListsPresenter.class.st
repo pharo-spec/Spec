@@ -19,21 +19,21 @@ Class {
 
 { #category : #specs }
 SpDemoListsPresenter class >> defaultSpec [
-	^ SpBoxLayout newVertical
+	^ SpBoxLayout newTopToBottom
 		add:
 			(SpBoxLayout newLeftToRight
 				add:
-					(SpBoxLayout newVertical
+					(SpBoxLayout newTopToBottom
 						add: 'Menu' withConstraints: [ :constraints | constraints height: self labelHeight ];
 						add: #list1;
 						yourself);
 				add:
-					(SpBoxLayout newVertical
+					(SpBoxLayout newTopToBottom
 						add: 'Multi selection/Sorting' withConstraints: [ :constraints | constraints height: self labelHeight ];
 						add: #list2;
 						yourself);
 				add:
-					(SpBoxLayout newVertical
+					(SpBoxLayout newTopToBottom
 						add: 'Icons/Filter' withConstraints: [ :constraints | constraints height: self labelHeight ];
 						add: #list3;
 						yourself);

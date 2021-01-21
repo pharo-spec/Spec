@@ -72,7 +72,7 @@ SpPopoverExample >> showPopover: aPosition relativeTo: aPresenter [
 		relativeTo: aPresenter;
 		position: aPosition;
 		presenter: (SpPresenter new 
-			layout: (SpBoxLayout newVertical
+			layout: (SpBoxLayout newTopToBottom
 				borderWidth: 10; 
 				spacing: 5;
 				add: (self newLabel label: 'A cool popup!');

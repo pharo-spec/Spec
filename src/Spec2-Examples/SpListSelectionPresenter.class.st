@@ -17,7 +17,7 @@ Class {
 
 { #category : #specs }
 SpListSelectionPresenter class >> defaultSpec [
-	^ SpPanedLayout newVertical
+	^ SpPanedLayout newTopToBottom
 		add: #listModel;
 		add:
 			(SpPanedLayout newLeftToRight

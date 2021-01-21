@@ -16,7 +16,7 @@ Class {
 
 { #category : #specs }
 SpClassMethodBrowser class >> defaultSpec [
-	^ SpPanedLayout newVertical
+	^ SpPanedLayout newTopToBottom
 		add:
 			(SpPanedLayout newLeftToRight
 				add: #classListPresenter;

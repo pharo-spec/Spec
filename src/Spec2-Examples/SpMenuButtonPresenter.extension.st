@@ -5,7 +5,7 @@ SpMenuButtonPresenter class >> example [
 	| presenter menuButton loremIpsumWords |
 
 	(presenter := SpPresenter new) 
-		layout: (SpBoxLayout newVertical
+		layout: (SpBoxLayout newTopToBottom
 			add: (SpBoxLayout newLeftToRight
 					addLast: (menuButton := presenter newMenuButton) expand: false;
 					yourself)

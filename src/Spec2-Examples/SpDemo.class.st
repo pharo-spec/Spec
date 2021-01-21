@@ -17,7 +17,7 @@ Class {
 { #category : #specs }
 SpDemo class >> defaultSpec [
 
-	^ SpBoxLayout newVertical
+	^ SpBoxLayout newTopToBottom
 		add: #menu withConstraints: [ :constraints | constraints height: self toolbarHeight ];
 		add:
 			(SpPanedLayout newLeftToRight

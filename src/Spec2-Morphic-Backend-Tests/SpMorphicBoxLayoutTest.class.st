@@ -41,7 +41,7 @@ SpMorphicBoxLayoutTest >> testAddWithPaddingVertical [
 	base := SpBoxLayoutWithTableForTestPresenter new.
 	presenter := SpLabelPresenter new.
 	
-	layout := SpBoxLayout newVertical
+	layout := SpBoxLayout newTopToBottom
 		add: presenter expand: false fill: false padding: 10;
 		yourself.
 		
@@ -77,7 +77,7 @@ SpMorphicBoxLayoutTest >> testLayoutHeightTakesAllSpaceNeeded [
 	textPresenter text: string.
 	textPresenter propagateNaturalHeight: true. 
 
-	layout := SpBoxLayout newVertical 
+	layout := SpBoxLayout newTopToBottom 
 		add: textPresenter;
 		yourself.	
 	
@@ -97,7 +97,7 @@ SpMorphicBoxLayoutTest >> testNestedLayoutModifiesHeightOfTopLayout [
 		label: 'Test';
 		yourself.
 	
-	layout := SpBoxLayout newVertical
+	layout := SpBoxLayout newTopToBottom
 		add: (SpBoxLayout newLeftToRight 
 				add: presenter
 				expand: false

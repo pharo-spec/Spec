@@ -28,7 +28,7 @@ SpSliderInput class >> defaultSpec [
 { #category : #specs }
 SpSliderInput class >> sliderBottom [
 	<spec>
-	^ SpBoxLayout newVertical
+	^ SpBoxLayout newTopToBottom
 		add: #input withConstraints: [ :constraints | constraints height: self buttonHeight ];
 		add: #slider;
 		yourself
@@ -57,7 +57,7 @@ SpSliderInput class >> sliderRight [
 { #category : #specs }
 SpSliderInput class >> sliderTop [
 	<spec>
-	^ SpBoxLayout newVertical
+	^ SpBoxLayout newTopToBottom
 		add: #slider;
 		add: #input withConstraints: [ :constraints | constraints height: self buttonHeight ];
 		yourself

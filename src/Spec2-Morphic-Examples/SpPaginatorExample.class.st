@@ -12,7 +12,7 @@ Class {
 SpPaginatorExample >> initializePresenters [ 
 	<script: 'self new openWithSpec'>
 
-	layout := SpBoxLayout newVertical
+	layout := SpBoxLayout newTopToBottom
 		spacing: 5;
 		add: (millerList := self instantiate: SpMillerColumnPresenter);
 		add: (SpBoxLayout newLeftToRight

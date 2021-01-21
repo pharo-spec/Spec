@@ -19,7 +19,7 @@ Class {
 SpDemoCheckboxesPresenter class >> defaultSpec [
 	^ SpBoxLayout newLeftToRight
 		add:
-			(SpBoxLayout newVertical
+			(SpBoxLayout newTopToBottom
 				add: #checkboxNormal;
 				add: #checkboxDisabled;
 				add: #checkboxWithColor;
