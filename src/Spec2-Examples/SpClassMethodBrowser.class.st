@@ -18,7 +18,7 @@ Class {
 SpClassMethodBrowser class >> defaultSpec [
 	^ SpPanedLayout newVertical
 		add:
-			(SpPanedLayout newHorizontal
+			(SpPanedLayout newLeftToRight
 				add: #classListPresenter;
 				add: #methodListPresenter;
 				yourself);

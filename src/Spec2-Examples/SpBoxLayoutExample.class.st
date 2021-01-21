@@ -97,11 +97,11 @@ SpBoxLayoutExample >> layout [
 	| main content subLayout subLayout2 options |
 	main := SpBoxLayout newVertical.
 
-	subLayout := SpBoxLayout newHorizontal.
+	subLayout := SpBoxLayout newLeftToRight.
 	self add: #element11 to: subLayout.
 	self add: #element12 to: subLayout.
 
-	subLayout2 := SpBoxLayout newHorizontal.
+	subLayout2 := SpBoxLayout newLeftToRight.
 	self add: #element21 to: subLayout2.
 	self add: #element22 to: subLayout2.
 
@@ -141,12 +141,12 @@ SpBoxLayoutExample >> layout [
 					(SpBoxLayout newVertical
 						add: ele capitalized;
 						add:
-							(SpBoxLayout newHorizontal
+							(SpBoxLayout newLeftToRight
 								add: (self presenterAt: ele , 'Expanded');
 								add: (self presenterAt: ele , 'Filled');
 								yourself);
 						add:
-							(SpBoxLayout newHorizontal
+							(SpBoxLayout newLeftToRight
 								add: 'Padding';
 								add: (self presenterAt: ele , 'Padding');
 								yourself);

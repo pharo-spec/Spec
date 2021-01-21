@@ -15,7 +15,7 @@ SpPaginatorExample >> initializePresenters [
 	layout := SpBoxLayout newVertical
 		spacing: 5;
 		add: (millerList := self instantiate: SpMillerColumnPresenter);
-		add: (SpBoxLayout newHorizontal
+		add: (SpBoxLayout newLeftToRight
 				hAlignCenter; 
 				add: (paginator := self instantiate: SpPaginatorPresenter) expand: false;
 				yourself)

@@ -26,7 +26,7 @@ SpProgressBarDemo class >> defaultSpec [
 		add: #withProgressionBlock withConstraints: [ :constraints | constraints height: 20 ];
 		add: 'With progression block';
 		add:
-			(SpBoxLayout newHorizontal
+			(SpBoxLayout newLeftToRight
 				add: #withText;
 				add: #label withConstraints: [ :constraints | constraints width: 40 ];
 				yourself)

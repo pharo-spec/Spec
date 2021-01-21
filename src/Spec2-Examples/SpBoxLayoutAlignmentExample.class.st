@@ -32,15 +32,15 @@ SpBoxLayoutAlignmentExample >> initializePresenters [
 SpBoxLayoutAlignmentExample >> newHorizontalAlignmentLayout [
 
 	^ SpBoxLayout newVertical
-		add: (SpBoxLayout newHorizontal 
+		add: (SpBoxLayout newLeftToRight 
 			hAlignStart;
 			add: (SpLabelPresenter new label: 'hAlignStart') expand: false;
 			yourself);
-		add: (SpBoxLayout newHorizontal 
+		add: (SpBoxLayout newLeftToRight 
 			hAlignCenter;
 			add: (SpLabelPresenter new label: 'hAlignCenter') expand: false;
 			yourself);
-		add: (SpBoxLayout newHorizontal 
+		add: (SpBoxLayout newLeftToRight 
 			hAlignEnd;
 			add: (SpLabelPresenter new label: 'hAlignEnd') expand: false;
 			yourself);
@@ -51,7 +51,7 @@ SpBoxLayoutAlignmentExample >> newHorizontalAlignmentLayout [
 { #category : #initialization }
 SpBoxLayoutAlignmentExample >> newVerticalAlignmentLayout [
 
-	^ SpBoxLayout newHorizontal
+	^ SpBoxLayout newLeftToRight
 		add: (SpBoxLayout newVertical 
 			vAlignStart;
 			add: (SpLabelPresenter new label: 'vAlignStart') expand: false;

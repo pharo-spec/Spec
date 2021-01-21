@@ -23,13 +23,13 @@ SpOpenOnStringExample class >> bottomLayout [
 	<spec>
 	^ SpBoxLayout newVertical
 		add:
-			(SpBoxLayout newHorizontal
+			(SpBoxLayout newLeftToRight
 				add: #input;
 				add: #button;
 				yourself)
 			withConstraints: [ :constraints | constraints height: 25 ];
 		add:
-			(SpBoxLayout newHorizontal
+			(SpBoxLayout newLeftToRight
 				add: #label;
 				add: #check withConstraints: [ :constraints | constraints width: 100 ];
 				yourself)
@@ -41,13 +41,13 @@ SpOpenOnStringExample class >> bottomLayout [
 SpOpenOnStringExample class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add:
-			(SpBoxLayout newHorizontal
+			(SpBoxLayout newLeftToRight
 				add: #label;
 				add: #check withConstraints: [ :constraints | constraints width: 100 ];
 				yourself)
 			withConstraints: [ :constraints | constraints height: 25 ];
 		add:
-			(SpBoxLayout newHorizontal
+			(SpBoxLayout newLeftToRight
 				add: #input;
 				add: #button;
 				yourself)

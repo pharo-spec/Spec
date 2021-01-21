@@ -24,7 +24,7 @@ Class {
 SpSelectEntity class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
-		add: (SpBoxLayout newHorizontal
+		add: (SpBoxLayout newLeftToRight
 				add: #entityText;
 				add: #selectEntity expand: false;
 				yourself)

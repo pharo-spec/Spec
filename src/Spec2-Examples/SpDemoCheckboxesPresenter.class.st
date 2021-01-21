@@ -17,7 +17,7 @@ Class {
 
 { #category : #specs }
 SpDemoCheckboxesPresenter class >> defaultSpec [
-	^ SpBoxLayout newHorizontal
+	^ SpBoxLayout newLeftToRight
 		add:
 			(SpBoxLayout newVertical
 				add: #checkboxNormal;

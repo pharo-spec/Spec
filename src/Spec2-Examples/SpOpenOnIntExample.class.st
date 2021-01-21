@@ -19,7 +19,7 @@ SpOpenOnIntExample class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add: #text withConstraints: [ :constraints | constraints height: 25 ];
 		add:
-			(SpBoxLayout newHorizontal
+			(SpBoxLayout newLeftToRight
 				add: #minus;
 				add: #plus;
 				yourself)

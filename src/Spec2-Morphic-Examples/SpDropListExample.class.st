@@ -22,7 +22,7 @@ Class {
 SpDropListExample class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add:
-			(SpBoxLayout newHorizontal
+			(SpBoxLayout newLeftToRight
 				add: #uniformDropList;
 				add: #heterogeneousDropList;
 				yourself)

@@ -21,7 +21,7 @@ Class {
 SpDemoListsPresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add:
-			(SpBoxLayout newHorizontal
+			(SpBoxLayout newLeftToRight
 				add:
 					(SpBoxLayout newVertical
 						add: 'Menu' withConstraints: [ :constraints | constraints height: self labelHeight ];
@@ -39,7 +39,7 @@ SpDemoListsPresenter class >> defaultSpec [
 						yourself);
 				yourself);
 		add:
-			(SpBoxLayout newHorizontal
+			(SpBoxLayout newLeftToRight
 				add: #multiLabel;
 				add: #label;
 				yourself)

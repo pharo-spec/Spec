@@ -18,7 +18,7 @@ SpMillerPaginatorPresenter >> initializePresenters [
 
 	self layout: (SpBoxLayout newVertical
 		add: (millerList := self instantiate: SpMillerColumnPresenter);
-		add: ((paginatorContainerLayout := SpBoxLayout newHorizontal)
+		add: ((paginatorContainerLayout := SpBoxLayout newLeftToRight)
 				hAlignCenter; 
 				yourself)
 			expand: false;

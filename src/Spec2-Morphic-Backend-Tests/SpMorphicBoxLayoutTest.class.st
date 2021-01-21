@@ -22,7 +22,7 @@ SpMorphicBoxLayoutTest >> testAddWithPaddingHorizontal [
 	base := SpBoxLayoutWithTableForTestPresenter new.
 	presenter := SpLabelPresenter new.
 	
-	layout := SpBoxLayout newHorizontal
+	layout := SpBoxLayout newLeftToRight
 		add: presenter expand: false fill: false padding: 10;
 		yourself.
 		
@@ -98,7 +98,7 @@ SpMorphicBoxLayoutTest >> testNestedLayoutModifiesHeightOfTopLayout [
 		yourself.
 	
 	layout := SpBoxLayout newVertical
-		add: (SpBoxLayout newHorizontal 
+		add: (SpBoxLayout newLeftToRight 
 				add: presenter
 				expand: false
 				fill: false

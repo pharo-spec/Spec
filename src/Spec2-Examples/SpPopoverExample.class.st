@@ -22,7 +22,7 @@ Class {
 { #category : #initialization }
 SpPopoverExample class >> defaultSpec [
 
-	^ SpBoxLayout newHorizontal
+	^ SpBoxLayout newLeftToRight
 		hAlignCenter;
 		vAlignCenter; 
 		add: #top expand: false;

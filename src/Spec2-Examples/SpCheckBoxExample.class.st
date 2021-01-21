@@ -19,7 +19,7 @@ Class {
 SpCheckBoxExample class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add:
-			(SpBoxLayout newHorizontal
+			(SpBoxLayout newLeftToRight
 				add: #button1;
 				add: #button2;
 				add: #button3;

@@ -39,7 +39,7 @@ SpLabelledContainer class >> labelBottom [
 { #category : #specs }
 SpLabelledContainer class >> labelLeft [
 	<spec>
-	^ SpBoxLayout newHorizontal
+	^ SpBoxLayout newLeftToRight
 		add: #label
 			expand: false
 			fill: false
@@ -51,7 +51,7 @@ SpLabelledContainer class >> labelLeft [
 { #category : #specs }
 SpLabelledContainer class >> labelRight [
 	<spec>
-	^ SpBoxLayout newHorizontal
+	^ SpBoxLayout newLeftToRight
 		add: #subwidget;
 		add: #label
 			expand: false

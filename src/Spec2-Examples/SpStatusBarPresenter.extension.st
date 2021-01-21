@@ -6,7 +6,7 @@ SpStatusBarPresenter class >> example [
 	
 	(presenter := SpPresenter new)
 		layout: (SpBoxLayout newVertical 
-			add: (SpBoxLayout newHorizontal 
+			add: (SpBoxLayout newLeftToRight 
 				add: (pushButton := presenter newButton);
 				add: (popButton := presenter newButton);
 				yourself);

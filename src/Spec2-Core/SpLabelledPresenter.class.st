@@ -21,7 +21,7 @@ Class {
 
 { #category : #specs }
 SpLabelledPresenter class >> defaultSpec [
-	^ SpBoxLayout newHorizontal
+	^ SpBoxLayout newLeftToRight
 		add: #labelPresenter withConstraints: [ :constraints | constraints width: self labelWidth ];
 		add:
 			(SpBoxLayout newVertical

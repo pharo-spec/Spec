@@ -33,7 +33,7 @@ SpMenuItemPresenter class >> exampleWithinMenuButton [
 
 	(presenter := SpPresenter new) 
 		layout: (SpBoxLayout newVertical
-			add: (SpBoxLayout newHorizontal
+			add: (SpBoxLayout newLeftToRight
 					addLast: (menuButton := presenter newMenuButton) expand: false;
 					yourself)
 				expand: false;

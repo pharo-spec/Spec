@@ -15,7 +15,7 @@ Class {
 SpTransmissionExample class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
-		add: (SpBoxLayout newHorizontal 
+		add: (SpBoxLayout newLeftToRight 
 			add: #packages;
 			add: #classes;
 			add: #protocols;
