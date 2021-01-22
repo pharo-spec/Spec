@@ -77,6 +77,12 @@ padding 	- extra space in pixels to put between this child and its neighbors, ov
 
 { #category : #adding }
 SpBoxLayout >> add: aPresenter height: anInteger [ 
+	"Add a presenter and assign a specific height. 
+	 This constraint is applied just when using a Vertical (Top to Bottom) layout, 
+	 otherwise is ignored.
+	 Please notice that 99% of the time you DO NOT NEED (and you do not want) to use 
+	 a fixed constraint like this one. 
+	 Instead, consider using `SpBoxLayout>>#add:expand:` method. "
 
 	self 
 		add: aPresenter 
@@ -85,6 +91,13 @@ SpBoxLayout >> add: aPresenter height: anInteger [
 
 { #category : #adding }
 SpBoxLayout >> add: aPresenter width: anInteger [
+	"Add a presenter and assign a specific width. 
+	 This constraint is applied just when using an Horizontal (Left to Right) layout, 
+	 otherwise is ignored.
+	 Please notice that 99% of the time you DO NOT NEED (and you do not want) to use 
+	 a fixed constraint like this one. 
+	 Instead, consider using `SpBoxLayout>>#add:expand:` method. "
+
 	self
 		add: aPresenter
 		withConstraints: [ :constraints | constraints width: anInteger ].

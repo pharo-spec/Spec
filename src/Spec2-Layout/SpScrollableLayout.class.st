@@ -1,6 +1,8 @@
 Class {
 	#name : #SpScrollableLayout,
 	#superclass : #SpExecutableLayout,
+	#traits : 'SpTAlignable',
+	#classTraits : 'SpTAlignable classTrait',
 	#instVars : [
 		'singleChild'
 	],
@@ -21,13 +23,13 @@ SpScrollableLayout >> adapterName [
 	^ #ScrollableAdapter
 ]
 
-{ #category : #adding }
+{ #category : #accessing }
 SpScrollableLayout >> child [
 
 	^ singleChild
 ]
 
-{ #category : #adding }
+{ #category : #accessing }
 SpScrollableLayout >> child: aPresenter [
 
 	singleChild ifNotNil: [ self remove: singleChild ].
@@ -44,10 +46,17 @@ SpScrollableLayout >> constraintsClass [
 	^ SpBoxConstraints
 ]
 
-{ #category : #adding }
+{ #category : #accessing }
 SpScrollableLayout >> remove: aPresenter [
 
 	singleChild := nil.
 	super remove: aPresenter
 	
+]
+
+{ #category : #accessing }
+SpScrollableLayout >> scrollTo: aPoint [
+
+	self withAdapterDo: [ :anAdapter |
+		anAdapter scrollTo: aPoint ]
 ]

@@ -232,25 +232,6 @@ SpAbstractWidgetPresenter >> addDeferredAction: aBlock [
 	deferredActions := deferredActions copyWith: aBlock
 ]
 
-{ #category : #api }
-SpAbstractWidgetPresenter >> addStyle: aStyle [
-	"Add a style-class to a presenter. Styles are defined in the application stylesheet and will 
-	 affect presenters by applying the properties the user adds to the class.
-	 - Styles can just be added to widget presenters (the ones that inherits of *SpAbstractWidgetPresenter*).
-	 - Styles can be added and removed dynamically (see also *SpAbstractWidgetPresenter>>removeStyle:*
-	
-	[[[language=Smalltalk
-	button := self newButton 
-		label: 'Example of style';
-		addStyle: 'myButton';
-		yourself.
-	]]]"
-
-	(styles includes: aStyle) ifTrue: [ ^ self ].
-	styles := styles copyWith: aStyle.
-	self withAdapterDo: [ :anAdapter | anAdapter addStyle: aStyle ]
-]
-
 { #category : #'private building' }
 SpAbstractWidgetPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	| builtAdapter |
@@ -396,8 +377,6 @@ SpAbstractWidgetPresenter >> help: aString [
 SpAbstractWidgetPresenter >> initialize [
 	super initialize.
 
-	borderWidth := 0.
-	borderColor := Color transparent.
 	enabled := true.
 	dragEnabled := false.
 	dropEnabled := false.
@@ -405,16 +384,12 @@ SpAbstractWidgetPresenter >> initialize [
 	wantsDrop := [ :transfer | self dropEnabled ].
 	acceptDrop := [ :transfer |  ].
 	transferBlock := [ :passenger :source | self defaultTransferFor: passenger from: source ].
-	color := self defaultColor.
-	self whenHelpChangedDo: [ :string | self withAdapterDo: [ :w | w update: #setBalloonText: with: {string} ] ].
-	self whenBorderWidthChangedDo: [ :int | self withWidgetDo: [ :w | w update: #borderWidth: with: {int} ] ].
-	self whenBorderColorChangedDo: [ :newColor | self withWidgetDo: [ :w | w update: #borderColor: with: {newColor} ] ].
-	self property: #color whenChangedDo: [ :newColor | self withAdapterDo: [ :w | w update: #color: with: {newColor} ] ].
-	self whenEnabledChangedDo: [ :b | self withAdapterDo: [ :w | w update: #enabled: with: {b} ] ].
-	self property: #dragEnabled whenChangedDo: [ :b | self withWidgetDo: [ :w | w update: #dragEnabled: with: {b} ] ].
-	self property: #dropEnabled whenChangedDo: [ :b | self withWidgetDo: [ :w | w update: #dropEnabled: with: {b} ] ].
-
-	styles := #()
+	self whenEnabledChangedDo: [ :b | 
+		self withAdapterDo: [ :w | w update: #enabled: with: {b} ] ].
+	self property: #dragEnabled whenChangedDo: [ :b | 
+		self withWidgetDo: [ :w | w update: #dragEnabled: with: {b} ] ].
+	self property: #dropEnabled whenChangedDo: [ :b | 
+		self withWidgetDo: [ :w | w update: #dropEnabled: with: {b} ] ]
 ]
 
 { #category : #initialization }
@@ -447,23 +422,9 @@ SpAbstractWidgetPresenter >> processDeferredActions [
 		deferredActions := nil ]
 ]
 
-{ #category : #api }
-SpAbstractWidgetPresenter >> removeStyle: aStyle [
-
-	(styles includes: aStyle) ifFalse: [ ^ self ].
-	styles := styles copyWithout: aStyle.
-	self withAdapterDo: [ :anAdapter | anAdapter removeStyle: aStyle ]
-]
-
 { #category : #private }
 SpAbstractWidgetPresenter >> replaceLayoutWith: aLayout [
 	"do nothing, widgets do not have updatable layouts"
-]
-
-{ #category : #api }
-SpAbstractWidgetPresenter >> styles [ 
-
-	^ styles
 ]
 
 { #category : #'drag and drop' }

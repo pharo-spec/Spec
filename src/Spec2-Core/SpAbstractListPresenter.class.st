@@ -94,6 +94,16 @@ SpAbstractListPresenter >> clickItem: anInteger [
 	self selectIndex: anInteger
 ]
 
+{ #category : #private }
+SpAbstractListPresenter >> disableActivationDuring: aBlock [
+	| oldActivate |
+	
+	oldActivate := activationBlock.
+	activationBlock := [ ].
+	aBlock ensure: [ 
+		activationBlock := oldActivate ]
+]
+
 { #category : #TOREMOVE }
 SpAbstractListPresenter >> disableFilter [
 	self itemFilter: nil
@@ -423,17 +433,19 @@ SpAbstractListPresenter >> unselectItem: anObject [
 
 { #category : #api }
 SpAbstractListPresenter >> updateItemsKeepingSelection: aCollection [
-	"Updates list items keeping current selection. 
+	"Update list items keeping current selection. 
 	 WARNING: aCollection must includes the elements selected."
-	| items |
 	
-	items := self selection selectedItems.
-	self items: aCollection.
-	self selectItems: items
+	self disableActivationDuring: [ 
+		| items |
+		items := self selection selectedItems.
+		self items: aCollection.
+		self selectItems: items ]
 ]
 
 { #category : #accessing }
 SpAbstractListPresenter >> verticalAlignment [
+
 	^ verticalAlignment
 ]
 
@@ -463,11 +475,31 @@ SpAbstractListPresenter >> whenModelChangedDo: aBlock [
 ]
 
 { #category : #'api-events' }
+SpAbstractListPresenter >> whenNoneSelectedDo: aBlock [
+	"Inform when the list has clean selection (there are no items selected).
+	 `aBlock` receives zero arguments"
+
+	self whenSelectionChangedDo: [ :selection | 
+		selection selectedItem 
+			ifNil: [ aBlock value ] ]
+]
+
+{ #category : #'api-events' }
 SpAbstractListPresenter >> whenSearchEnabledChangedDo: aBlock [
 	"Inform when search enabled/disabled has changed.
 	`aBlock` receives zero arguments."
 	
 	self property: #searchEnabled whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+SpAbstractListPresenter >> whenSelectedDo: aBlock [
+	"Inform when an item was selected (a real object in the items list).
+	 `aBlock` receives one argument (the new selected element)"
+
+	self whenSelectionChangedDo: [ :selection | 
+		selection selectedItem 
+			ifNotNil: [ :item | aBlock value: item ] ]
 ]
 
 { #category : #'api-events' }
