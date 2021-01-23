@@ -14,10 +14,9 @@ Class {
 		'#color => SpObservableSlot',
 		'#help => SpObservableSlot',
 		'#enabled => SpObservableSlot',
-		'#styles',
-		'#deferredActions',
-		'#wantsDrop',
-		'#acceptDrop'
+		'#wantsDrop => SpObservableSlot',
+		'#acceptDrop => SpObservableSlot',
+		'#deferredActions'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
