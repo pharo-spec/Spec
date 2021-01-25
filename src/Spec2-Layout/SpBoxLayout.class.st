@@ -1,12 +1,6 @@
 "
-I am a layout that will arrange presenters in a box, vertically or horizontally.
-My elements can be added at the begining or at the end of the box (see add: and addLast: method families).
-This layout can be created with certain properties: 
-
-- borderWidth: the border to let empty before placing the presenters. 
-- spacing: the space to let between presenters.
-- homogeneous: if homogeneous, the layout will try to give same space to each presenter included.
-- hAlign/vAlign: how the presenters will be aligned in the layout.
+A layout that will arrange presenters in a box, vertically (top to bottom) or horizontally (left to right).
+Elements can be added at the begining or at the end of the box (see `SpBoxLayout>>#add:` and `SpBoxLayout>>#addLast:` method families).
 "
 Class {
 	#name : #SpBoxLayout,
