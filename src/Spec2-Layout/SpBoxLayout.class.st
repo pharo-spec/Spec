@@ -1,6 +1,112 @@
 "
 A layout that will arrange presenters in a box, vertically (top to bottom) or horizontally (left to right).
 Elements can be added at the begining or at the end of the box (see `SpBoxLayout>>#add:` and `SpBoxLayout>>#addLast:` method families).
+
+## Discussion
+
+The box layout is the main layout in Spec, because its versatility and easy to use. While one may think its functionality is limited, the fact that it can be composed with other types of layouts or other instances of itself (other boxes), will let users do almost everything they need.
+The basic usage is, however, very simple: 
+
+```Smalltalk
+SpBoxLayout newTopToBottom
+	add: aPresenter;
+	add: otherPresenter;
+	yourself.
+```
+
+This will arrange `aPresenter` and `otherPresenter` vertically, assigning to each presenter as much `height` as they can receive (usually 50% of the box).  
+Of course, being able to do _just that_ would be very limiting, but then is where layout properties start to be important.
+
+### The expand property (`SpBoxLayout>>#add:expand:`)
+
+With the previous example, let's define a some real presenters: 
+
+```Smalltalk
+| presenter |
+
+presenter := SpPresenter new.
+presenter layout: (SpBoxLayout newTopToBottom
+	add: presenter newTextInput;
+	add: presenter newText;
+	yourself).
+		
+presenter openWithSpec
+```
+
+What happened when we opened it? Well, the box layout was filled with an input text and a text area, but the height assigned to the first presenter is not what we would have expected, since even if text input is smaller, area height assigned is still half.
+The property expand fixes this problem, by telling the layout not to assign more height than what is explicitly needed by the contained presenter: 
+
+```Smalltalk
+| presenter |
+
+presenter := SpPresenter new.
+presenter layout: (SpBoxLayout newTopToBottom
+	add: presenter newTextInput expand: false;
+	add: presenter newText;
+	yourself).
+		
+presenter openWithSpec
+```
+
+Now the presenter will behave as one would expect (This code is in `SpBoxLayout class>>#exampleExpand`).
+
+### adding presenters **last**.
+
+Now, consider this problem: You want to add something *at the end* of your presenter (for example, you want to add a button, making a dialog): 
+
+```Smalltalk
+| presenter |
+
+presenter := SpPresenter new.
+presenter layout: (SpBoxLayout newTopToBottom
+	add: 'Enter text' expand: false;
+	add: presenter newTextInput expand: false;
+	add: (presenter newButton label: 'Ok') expand: false;
+	yourself).
+		
+presenter openWithSpec
+```
+
+But you want that button to be shown at the end. This is why we use the `addLast:` method, who will instruct the layout to add this presenter at the end.
+
+```Smalltalk
+| presenter |
+
+presenter := SpPresenter new.
+presenter layout: (SpBoxLayout newTopToBottom
+	add: 'Enter text' expand: false;
+	add: presenter newTextInput expand: false;
+	addLast: (presenter newButton label: 'Ok') expand: false;
+	yourself).
+		
+presenter openWithSpec
+```
+
+That makes the presenter work as expected  (This code is in SpBoxLayout class>>#exampleAddLast).
+
+### Composing layouts
+
+The real power of a layout comes when you understand they can be composed (with other instances of themselves or any other kind, children of `SpExecutableLayout`).
+For example, taking the previous example, let's say you want to add two buttons (Ok, Cancel), aligned horizontaly. To accomplish that, you add a new layout with the buttons: 
+
+```Smalltalk
+| presenter |
+
+presenter := SpPresenter new.
+presenter layout: (SpBoxLayout newTopToBottom
+	add: 'Enter text' expand: false;
+	add: presenter newTextInput expand: false;
+	addLast: (SpBoxLayout newLeftToRight
+			addLast: (presenter newButton label: 'Ok') expand: false;
+			addLast: (presenter newButton label: 'Cancel') expand: false;
+			yourself)
+		expand: false;
+	yourself).
+		
+presenter openWithSpec
+```
+
+Now, the presenter will show buttons at bottom-right corner (This code is in `SpBoxLayout class>>#exampleComposite`).
 "
 Class {
 	#name : #SpBoxLayout,
@@ -21,24 +127,37 @@ SpBoxLayout >> adapterName [
 	^ #BoxAdapter
 ]
 
-{ #category : #adding }
-SpBoxLayout >> add: aName [
+{ #category : #'api-adding' }
+SpBoxLayout >> add: aPresenterLayoutOrSymbol [
+	"Adds `aPresenterLayoutOrSymbol` to the list of presenters to be arranged in the layout. 
+	 `aPresenterLayoutOrSymboll` can be
+		- any instance of `SpPresenter` hierarchy, 
+		- another layout or 
+		- a Symbol, matching the name of the instance variable who will contain the element to add."
 
 	self 
-		add: aName 
+		add: aPresenterLayoutOrSymbol 
 		withConstraints: [ :constraints | ]
 ]
 
-{ #category : #adding }
-SpBoxLayout >> add: aName expand: shouldExpand [
+{ #category : #'api-adding' }
+SpBoxLayout >> add: aPresenterLayoutOrSymbol expand: shouldExpand [
+	"Adds `aPresenterLayoutOrSymbol` to the list of presenters to be arranged in the layout, setting 
+	 also the expand property. 
+	 `aPresenterLayoutOrSymboll` can be
+		- any instance of `SpPresenter` hierarchy, 
+		- another layout or 
+		- a Symbol, matching the name of the instance variable who will contain the element to add.
+	`shouldExpand` is a boolean indicating whether the new child is to be given extra space allocated 
+	to the box."
 
 	^ self 
-		add: aName 
+		add: aPresenterLayoutOrSymbol 
 		withConstraints: [ :constraints | 
 			constraints expand: shouldExpand ]
 ]
 
-{ #category : #adding }
+{ #category : #private }
 SpBoxLayout >> add: aName expand: shouldExpand fill: shouldFill [
 
 	self add: aName withConstraints: [ :constraints | 
@@ -47,7 +166,7 @@ SpBoxLayout >> add: aName expand: shouldExpand fill: shouldFill [
 			fill: shouldFill ]
 ]
 
-{ #category : #adding }
+{ #category : #private }
 SpBoxLayout >> add: aName expand: shouldExpand fill: shouldFill padding: aNumber [
 "
 aName 		- the presenter to be added to box
@@ -69,8 +188,8 @@ padding 	- extra space in pixels to put between this child and its neighbors, ov
 				padding: aNumber ]
 ]
 
-{ #category : #adding }
-SpBoxLayout >> add: aPresenter height: anInteger [ 
+{ #category : #'api-adding' }
+SpBoxLayout >> add: aPresenterLayoutOrSymbol height: anInteger [ 
 	"Add a presenter and assign a specific height. 
 	 This constraint is applied just when using a Vertical (Top to Bottom) layout, 
 	 otherwise is ignored.
@@ -79,12 +198,12 @@ SpBoxLayout >> add: aPresenter height: anInteger [
 	 Instead, consider using `SpBoxLayout>>#add:expand:` method. "
 
 	self 
-		add: aPresenter 
+		add: aPresenterLayoutOrSymbol 
 		withConstraints: [ :constraints | constraints height: anInteger ].
 ]
 
-{ #category : #adding }
-SpBoxLayout >> add: aPresenter width: anInteger [
+{ #category : #'api-adding' }
+SpBoxLayout >> add: aPresenterLayoutOrSymbol width: anInteger [
 	"Add a presenter and assign a specific width. 
 	 This constraint is applied just when using an Horizontal (Left to Right) layout, 
 	 otherwise is ignored.
@@ -93,27 +212,51 @@ SpBoxLayout >> add: aPresenter width: anInteger [
 	 Instead, consider using `SpBoxLayout>>#add:expand:` method. "
 
 	self
-		add: aPresenter
+		add: aPresenterLayoutOrSymbol
 		withConstraints: [ :constraints | constraints width: anInteger ].
 ]
 
-{ #category : #adding }
-SpBoxLayout >> add: aPresenter withConstraints: aBlock [
+{ #category : #'api-adding' }
+SpBoxLayout >> add: aPresenterLayoutOrSymbol withConstraints: aBlock [
+	"Adds `aPresenterLayoutOrSymbol` to the list of presenters to be arranged in the layout, updating 
+	 the constraints directly. 
+	 `aPresenterLayoutOrSymboll` can be
+		- any instance of `SpPresenter` hierarchy, 
+		- another layout or 
+		- a Symbol, matching the name of the instance variable who will contain the element to add.
+	`aBlock` receives one argument (an instance of `SpBoxConstraints`), to be modified directly.
 	
-	super add: aPresenter withConstraints: aBlock.
-	self announceChildAdded: aPresenter.
+	NOTICE that the direct usage of this method is NOT recommended. Consider using add:/add:expand: 
+	instead"
+	
+	super add: aPresenterLayoutOrSymbol withConstraints: aBlock.
+	self announceChildAdded: aPresenterLayoutOrSymbol.
 ]
 
-{ #category : #adding }
+{ #category : #'api-adding' }
 SpBoxLayout >> addLast: aName [
+	"Adds `aPresenterLayoutOrSymbol` to the **end of the list** of presenters to be arranged 
+	 in the layout. 
+	 `aPresenterLayoutOrSymboll` can be
+		- any instance of `SpPresenter` hierarchy, 
+		- another layout or 
+		- a Symbol, matching the name of the instance variable who will contain the element to add."
 
 	self 
 		addLast: aName 
 		withConstraints: [ :constraints | ]
 ]
 
-{ #category : #adding }
+{ #category : #'api-adding' }
 SpBoxLayout >> addLast: aName expand: shouldExpand [
+	"Adds `aPresenterLayoutOrSymbol` to the **end of the list** of presenters to be arranged 
+	 in the layout, setting also the expand property. 
+	 `aPresenterLayoutOrSymboll` can be
+		- any instance of `SpPresenter` hierarchy, 
+		- another layout or 
+		- a Symbol, matching the name of the instance variable who will contain the element to add.
+	`shouldExpand` is a boolean indicating whether the new child is to be given extra space allocated 
+	to the box."
 
 	self 
 		addLast: aName 
@@ -121,7 +264,7 @@ SpBoxLayout >> addLast: aName expand: shouldExpand [
 			constraints expand: shouldExpand ]
 ]
 
-{ #category : #adding }
+{ #category : #private }
 SpBoxLayout >> addLast: aName expand: shouldExpand fill: shouldFill [
 
 	self 
@@ -132,7 +275,7 @@ SpBoxLayout >> addLast: aName expand: shouldExpand fill: shouldFill [
 				fill: shouldFill ]
 ]
 
-{ #category : #adding }
+{ #category : #private }
 SpBoxLayout >> addLast: aName expand: shouldExpand fill: shouldFill padding: aNumber [
 
 	self 
@@ -144,8 +287,18 @@ SpBoxLayout >> addLast: aName expand: shouldExpand fill: shouldFill padding: aNu
 				padding: aNumber ]
 ]
 
-{ #category : #adding }
+{ #category : #'api-adding' }
 SpBoxLayout >> addLast: aName withConstraints: aBlock [
+	"Adds `aPresenterLayoutOrSymbol` to the **end of the list** of presenters to be arranged 
+	in the layout, updating the constraints directly. 
+	 `aPresenterLayoutOrSymboll` can be
+		- any instance of `SpPresenter` hierarchy, 
+		- another layout or 
+		- a Symbol, matching the name of the instance variable who will contain the element to add.
+	`aBlock` receives one argument (an instance of `SpBoxConstraints`), to be modified directly.
+	
+	NOTICE that the direct usage of this method is NOT recommended. Consider using add:/add:expand: 
+	instead"
 
 	self 
 		add: aName 
@@ -156,6 +309,7 @@ SpBoxLayout >> addLast: aName withConstraints: aBlock [
 
 { #category : #accessing }
 SpBoxLayout >> beHomogeneous [
+	"When a layout us set as homogeneous, "
 
 	self homogeneous: true
 ]
@@ -166,14 +320,18 @@ SpBoxLayout >> beNotHomogeneous [
 	self homogeneous: false
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpBoxLayout >> borderWidth [
+	"Answer the border width defined for the layout (default is zero)"
+
 	^ borderWidth
 ]
 
-{ #category : #accessing }
-SpBoxLayout >> borderWidth: anObject [
-	borderWidth := anObject
+{ #category : #api }
+SpBoxLayout >> borderWidth: aNumber [
+	"Set the border width to be used by the layout"
+
+	borderWidth := aNumber
 ]
 
 { #category : #private }
@@ -205,30 +363,33 @@ SpBoxLayout >> initialize [
 
 { #category : #testing }
 SpBoxLayout >> isHomogeneous [
+	"Answer whether the layout should distribute children homogeneous or not"
 
 	^ homogeneous
 ]
 
 { #category : #testing }
 SpBoxLayout >> isHorizontal [ 
+	"Answer true if the layout direction is horizontal"
 
 	^ self direction = SpLayoutDirection horizontal
 ]
 
 { #category : #testing }
 SpBoxLayout >> isVertical [ 
+	"Answer true if the layout direction is vertical"
 
 	^ self direction = SpLayoutDirection vertical
 ]
 
-{ #category : #removing }
+{ #category : #'api-adding' }
 SpBoxLayout >> removeAll [
 
 	children removeAll.
 	adapter ifNotNil: [ :anAdapter | anAdapter removeAll ]
 ]
 
-{ #category : #adding }
+{ #category : #'api-adding' }
 SpBoxLayout >> replace: aPresenter with: otherPresenter [
 	"Replace aPresenter with otherPresenter. 
 	 Original constraints will be preserved."
@@ -239,7 +400,7 @@ SpBoxLayout >> replace: aPresenter with: otherPresenter [
 		withConstraints: (self constraintsFor: aPresenter)
 ]
 
-{ #category : #adding }
+{ #category : #'api-adding' }
 SpBoxLayout >> replace: aPresenter with: otherPresenter withConstraints: constraints [
 	"Replace aPresenter with otherPresenter"
 	
@@ -254,13 +415,16 @@ SpBoxLayout >> replace: aPresenter with: otherPresenter withConstraints: constra
 			withConstraints: constraints ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpBoxLayout >> spacing [
+	"Answer the spacing between elements of the layout (default is zero)"
+
 	^ spacing
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpBoxLayout >> spacing: aNumber [
+	"Set the spacing between elements of the layout"
 
 	spacing := aNumber
 ]
