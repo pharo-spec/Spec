@@ -311,6 +311,13 @@ SpMorphicBoxAdapter >> replace: aPresenter with: otherPresenter withConstraints:
 	panel replaceSubmorph: oldMorph by: newMorph
 ]
 
+{ #category : #updating }
+SpMorphicBoxAdapter >> updateSpacing [
+
+	{ startPanel. endPanel } 
+			do: [ :each | each cellInset: layout spacing ]
+]
+
 { #category : #private }
 SpMorphicBoxAdapter >> verifyBoxExtent [
 

@@ -230,7 +230,7 @@ SpBoxLayout >> add: aPresenterLayoutOrSymbol withConstraints: aBlock [
 	instead"
 	
 	super add: aPresenterLayoutOrSymbol withConstraints: aBlock.
-	self announceChildAdded: aPresenterLayoutOrSymbol.
+	self announceChildAdded: aPresenterLayoutOrSymbol
 ]
 
 { #category : #'api-adding' }
@@ -307,15 +307,19 @@ SpBoxLayout >> addLast: aName withConstraints: aBlock [
 			aBlock value: constraints ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpBoxLayout >> beHomogeneous [
-	"When a layout us set as homogeneous, "
+	"When a layout us set as homogeneous, all its components have assigned same space, regardless 
+	 their own expand or size settings."
 
 	self homogeneous: true
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpBoxLayout >> beNotHomogeneous [
+	"When a layout us set as not homogeneous, components are ordered respecting their own 
+	 properties about expand and/or size assignment. 
+	 This is the default."
 
 	self homogeneous: false
 ]
@@ -331,7 +335,8 @@ SpBoxLayout >> borderWidth [
 SpBoxLayout >> borderWidth: aNumber [
 	"Set the border width to be used by the layout"
 
-	borderWidth := aNumber
+	borderWidth := aNumber.
+	self withAdapterDo: [ :anAdapter | anAdapter updateBorderWidth ]
 ]
 
 { #category : #private }
@@ -426,5 +431,6 @@ SpBoxLayout >> spacing [
 SpBoxLayout >> spacing: aNumber [
 	"Set the spacing between elements of the layout"
 
-	spacing := aNumber
+	spacing := aNumber.
+	self withAdapterDo: [ :anAdapter | anAdapter updateSpacing ]	
 ]

@@ -158,3 +158,9 @@ SpMorphicLayoutAdapter >> takeKeyboardFocus [
 	self presenter presentersInFocusOrder 
 		ifNotEmpty: [ :presenters | presenters first takeKeyboardFocus ]
 ]
+
+{ #category : #updating }
+SpMorphicLayoutAdapter >> updateBorderWidth [
+
+	widget borderWidth: layout borderWidth
+]
