@@ -17,13 +17,20 @@ SpMorphicMorphAdapter >> buildWidget [
 		ifNil: [ Morph new color: Color transparent ].
 	currentMorph presenter: self presenter.
 
-	self presenter whenMorphChangedDo: [ :morph | 
-		self applyStyle: morph.
-		morph presenter: self presenter.
-		currentMorph owner ifNotNil: [ :ownerMorph | 
-			ownerMorph 
-				replaceSubmorph: currentMorph 
-				by: morph ] ].
+	self presenter whenMorphChangedDo: [ :aMorph | 
+		self updateMorph: aMorph ].
 	
 	^ currentMorph
+]
+
+{ #category : #factory }
+SpMorphicMorphAdapter >> updateMorph: aMorph [
+
+	self applyStyle: aMorph.
+	aMorph presenter: self presenter.
+	currentMorph owner ifNotNil: [ :ownerMorph | 
+		ownerMorph 
+			replaceSubmorph: currentMorph 
+			by: aMorph ].
+	currentMorph := aMorph
 ]
