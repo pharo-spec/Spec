@@ -361,6 +361,15 @@ SpAbstractMorphicAdapter >> installKeyUpEvent: anEvent to: aWidget [
 ]
 
 { #category : #'event installing' }
+SpAbstractMorphicAdapter >> installMouseDoubleClickEvent: anEvent to: aWidget [
+
+	aWidget 
+		on: #doubleClick
+		send: #value:
+		to: anEvent action
+]
+
+{ #category : #'event installing' }
 SpAbstractMorphicAdapter >> installMouseDownEvent: anEvent to: aWidget [
 
 	aWidget 
