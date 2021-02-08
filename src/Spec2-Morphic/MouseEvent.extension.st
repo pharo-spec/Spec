@@ -9,11 +9,11 @@ MouseEvent >> isMiddleButton [
 { #category : #'*Spec2-Morphic' }
 MouseEvent >> isPrimaryButton [
 
-	^ self yellowButtonPressed
+	^ self redButtonPressed
 ]
 
 { #category : #'*Spec2-Morphic' }
 MouseEvent >> isSecondaryButton [
 
-	^ self redButtonPressed
+	^ self yellowButtonPressed
 ]
