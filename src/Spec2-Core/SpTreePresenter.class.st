@@ -141,6 +141,11 @@ SpTreePresenter >> isShowingColumnHeaders [
 	^ showColumnHeaders
 ]
 
+{ #category : #testing }
+SpTreePresenter >> isTable [
+	^ false
+]
+
 { #category : #private }
 SpTreePresenter >> shouldLazilyComputeChildren [
 
