@@ -121,7 +121,7 @@ SpMorphicTreeTableAdapter >> basicSelectionChanged: ann [
 SpMorphicTreeTableAdapter >> buildWidget [
 	| tableMorph |
 
-	tableMorph := FTTableMorph new
+	tableMorph := SpFTTableMorph new
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		intercellSpacing: self class intercellSpacing;

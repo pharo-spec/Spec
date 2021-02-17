@@ -69,7 +69,7 @@ SpMorphicTableAdapter >> addModelTo: tableMorph [
 { #category : #factory }
 SpMorphicTableAdapter >> buildWidget [
 
-	widget := FTTableMorph new
+	widget := SpFTTableMorph new
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		intercellSpacing: self class intercellSpacing;
