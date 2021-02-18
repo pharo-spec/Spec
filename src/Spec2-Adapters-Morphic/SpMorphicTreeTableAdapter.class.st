@@ -230,6 +230,14 @@ SpMorphicTreeTableAdapter >> isShowingColumnHeaders [
 	^ self presenter isShowingColumnHeaders
 ]
 
+{ #category : #accessing }
+SpMorphicTreeTableAdapter >> itemAtPath: anArray [
+
+	self widgetDo: [ :w | 
+		^ (w dataSource itemAtPath: anArray) ifNotNil: [ :item | item data ] ].
+	^ nil
+]
+
 { #category : #'private factory' }
 SpMorphicTreeTableAdapter >> newColumnFrom: aTableColumn [
 
@@ -366,6 +374,14 @@ SpMorphicTreeTableAdapter >> showContextMenu [
 
 	self widgetDo: [ :w |
 		w showMenuForIndex: { self presenter selection selectedIndex. 1 } ]
+]
+
+{ #category : #accessing }
+SpMorphicTreeTableAdapter >> sortByColumn: aColumn [ 
+	
+	self widgetDo: [ :w | 
+		w dataSource sortByColumn: (w columns 
+			detect: [ :each | each model = aColumn ]) ]
 ]
 
 { #category : #factory }

@@ -68,13 +68,13 @@ SpMorphicTreeTableDataSource >> cellIndentFor: item [
 	^ item depth * 16
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SpMorphicTreeTableDataSource >> expandPath: anArray [
 
 	self expandPath: anArray root: self rootItem children
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SpMorphicTreeTableDataSource >> expandPath: anArray root: nodes [ 
 	| node |
 	
