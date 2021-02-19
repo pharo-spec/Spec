@@ -206,23 +206,6 @@ SpAbstractWidgetPresenter >> acceptDrop: aBlock [
 	acceptDrop := aBlock
 ]
 
-{ #category : #'drag and drop' }
-SpAbstractWidgetPresenter >> acceptDropBlock [
-	^ acceptDrop
-]
-
-{ #category : #'drag and drop' }
-SpAbstractWidgetPresenter >> acceptDropBlock: aBlock [
-	acceptDrop := aBlock
-]
-
-{ #category : #'drag and drop' }
-SpAbstractWidgetPresenter >> acceptDroppingMorph: draggedMorph event: event inMorph: source [
-
-	^ self acceptDropBlock cull: draggedMorph model model cull: event cull: source cull: source model 
-
-]
-
 { #category : #'private-deferring' }
 SpAbstractWidgetPresenter >> addDeferredAction: aBlock [
 	"Deferred actions are one-shot actions, performed during adapter initialization."

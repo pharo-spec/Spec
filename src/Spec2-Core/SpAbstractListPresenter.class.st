@@ -153,11 +153,6 @@ SpAbstractListPresenter >> isMultipleSelection [
 	^ selectionMode isMultipleSelection
 ]
 
-{ #category : #testing }
-SpAbstractListPresenter >> isTable [
-	^ false
-]
-
 { #category : #private }
 SpAbstractListPresenter >> itemAt: index [ 
 	"If there is an adapter the widget items indexes can be different thant the model items indexes, 

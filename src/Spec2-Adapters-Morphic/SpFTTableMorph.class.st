@@ -7,35 +7,16 @@ Class {
 { #category : #'drag and drop' }
 SpFTTableMorph >> acceptDroppingMorph: aTransferMorph event: anEvent [
 
-	^ self dataSource model acceptDrop cull:
-		  (self transferFrom: aTransferMorph event: anEvent)
+	^ self dataSource model adapter
+		acceptDroppingMorph: aTransferMorph 
+		event: anEvent
 ]
 
-{ #category : #private }
-SpFTTableMorph >> transferFrom: aTransferMorph event: anEvent [
-
-	| rowAndColumn |
-	rowAndColumn := self container rowAndColumnIndexContainingPoint:
-		                anEvent position.
-
-	^ dataSource model isTable
-		  ifTrue: [ 
-			  SpDragAndDropTransferToTable new
-				  passenger: aTransferMorph passenger;
-				  row: (rowAndColumn first ifNil: [ 0 ]);
-				  column: (rowAndColumn second ifNil: [ 0 ]);
-				  yourself ]
-		  ifFalse: [ 
-			  SpDragAndDropTransferToList new
-				  passenger: aTransferMorph passenger;
-				  index: (rowAndColumn first ifNil: [ 0 ]);
-				  yourself ]
-]
-
-{ #category : #'drag and drop' }
+{ #category : #'as yet unclassified' }
 SpFTTableMorph >> wantsDroppedMorph: aTransferMorph event: anEvent [
 
 	aTransferMorph isTransferable ifFalse: [ ^ false ].
-	^ self dataSource model wantsDrop cull:
-		  (self transferFrom: aTransferMorph event: anEvent)
+	^ self dataSource model adapter 
+		wantsDroppedMorph: aTransferMorph 
+		event: anEvent
 ]

@@ -127,11 +127,6 @@ SpTablePresenter >> isShowingColumnHeaders [
 	^ showColumnHeaders
 ]
 
-{ #category : #testing }
-SpTablePresenter >> isTable [
-	^ true
-]
-
 { #category : #private }
 SpTablePresenter >> searchValueOf: anObject [
 	
