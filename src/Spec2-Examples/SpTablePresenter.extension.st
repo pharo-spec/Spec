@@ -59,6 +59,17 @@ SpTablePresenter class >> exampleWithDecoratedString [
 ]
 
 { #category : #'*Spec2-Examples' }
+SpTablePresenter class >> exampleWithSortableColumnHeaders [
+
+	^ self new
+		application: (SpApplication new useBackend: #Gtk);
+		showColumnHeaders;
+		addColumn: (SpStringTableColumn title: 'Letter' evaluated: [ :a | a asString ]) beSortable;
+		items: ($a to: $z) asArray;
+		openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
 SpTablePresenter class >> exampleWithoutColumnHeaders [
 	<sampleInstance>
 	| example |
