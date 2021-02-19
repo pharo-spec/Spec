@@ -9,8 +9,6 @@ Class {
 		'#borderColor => SpObservableSlot',
 		'#dragEnabled => SpObservableSlot',
 		'#dropEnabled => SpObservableSlot',
-		'#dragTransformationBlock => SpObservableSlot',
-		'#transferBlock => SpObservableSlot',
 		'#color => SpObservableSlot',
 		'#help => SpObservableSlot',
 		'#enabled => SpObservableSlot',
@@ -266,15 +264,6 @@ SpAbstractWidgetPresenter >> defaultColor [
 	^ self theme backgroundColor
 ]
 
-{ #category : #'drag and drop' }
-SpAbstractWidgetPresenter >> defaultTransferFor: passenger from: source [
-
-	^ SpTransferPresenter new
-		transfer: passenger;
-		from: source;
-		yourself
-]
-
 { #category : #api }
 SpAbstractWidgetPresenter >> disable [
 	"Disable the presenter"
@@ -290,16 +279,6 @@ SpAbstractWidgetPresenter >> dragEnabled [
 { #category : #'drag and drop' }
 SpAbstractWidgetPresenter >> dragEnabled: aBoolean [
 	dragEnabled := aBoolean
-]
-
-{ #category : #'drag and drop' }
-SpAbstractWidgetPresenter >> dragTransformationBlock [
-	^ dragTransformationBlock
-]
-
-{ #category : #'drag and drop' }
-SpAbstractWidgetPresenter >> dragTransformationBlock: aBlock [
-	dragTransformationBlock := aBlock
 ]
 
 { #category : #'drag and drop' }
@@ -362,16 +341,14 @@ SpAbstractWidgetPresenter >> initialize [
 	enabled := true.
 	dragEnabled := false.
 	dropEnabled := false.
-	dragTransformationBlock := [ :item :source | item ].
 	wantsDrop := [ :transfer | self dropEnabled ].
-	acceptDrop := [ :transfer |  ].
-	transferBlock := [ :passenger :source | self defaultTransferFor: passenger from: source ].
-	self whenEnabledChangedDo: [ :b | 
-		self withAdapterDo: [ :w | w update: #enabled: with: {b} ] ].
-	self property: #dragEnabled whenChangedDo: [ :b | 
-		self withWidgetDo: [ :w | w update: #dragEnabled: with: {b} ] ].
-	self property: #dropEnabled whenChangedDo: [ :b | 
-		self withWidgetDo: [ :w | w update: #dropEnabled: with: {b} ] ]
+	acceptDrop := [ :transfer | ].
+	self whenEnabledChangedDo: [ :value | 
+		self withAdapterDo: [ :w | w update: #enabled: with: { value } ] ].
+	self property: #dragEnabled whenChangedDo: [ :value | 
+		self withWidgetDo: [ :w | w update: #dragEnabled: with: { value } ] ].
+	self property: #dropEnabled whenChangedDo: [ :value | 
+		self withWidgetDo: [ :w | w update: #dropEnabled: with: { value } ] ]
 ]
 
 { #category : #initialization }
@@ -409,21 +386,6 @@ SpAbstractWidgetPresenter >> replaceLayoutWith: aLayout [
 	"do nothing, widgets do not have updatable layouts"
 ]
 
-{ #category : #'drag and drop' }
-SpAbstractWidgetPresenter >> transferBlock [
-	^ transferBlock
-]
-
-{ #category : #'drag and drop' }
-SpAbstractWidgetPresenter >> transferBlock: aBlock [
-	transferBlock := aBlock
-]
-
-{ #category : #'drag and drop' }
-SpAbstractWidgetPresenter >> transferFor: passenger from: source [
-	^ self transferBlock value: passenger value: source
-]
-
 { #category : #'private-traversing' }
 SpAbstractWidgetPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
@@ -442,16 +404,6 @@ SpAbstractWidgetPresenter >> traversePresentersDo: aBlock excluding: excludes [
 ]
 
 { #category : #'drag and drop' }
-SpAbstractWidgetPresenter >> wantDropBlock [
-	^ wantsDrop
-]
-
-{ #category : #'drag and drop' }
-SpAbstractWidgetPresenter >> wantDropBlock: aBlock [
-	wantsDrop := aBlock
-]
-
-{ #category : #'drag and drop' }
 SpAbstractWidgetPresenter >> wantsDrop [
 	^ wantsDrop
 ]
@@ -459,13 +411,6 @@ SpAbstractWidgetPresenter >> wantsDrop [
 { #category : #'drag and drop' }
 SpAbstractWidgetPresenter >> wantsDrop: aBlock [
 	wantsDrop := aBlock
-]
-
-{ #category : #'drag and drop' }
-SpAbstractWidgetPresenter >> wantsDroppedMorph: draggedMorph event: anEvent inMorph: source [
-	draggedMorph isTransferable ifFalse: [ ^ false ].
-
-	^ self wantDropBlock cull: draggedMorph passenger cull: anEvent cull: source
 ]
 
 { #category : #TOREMOVE }

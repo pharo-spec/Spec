@@ -123,7 +123,10 @@ SpMorphicListDataSource >> searchText: aString [
 { #category : #'drag and drop' }
 SpMorphicListDataSource >> transferFor: passenger from: aMorph [
 
-	^ (self model transferFor: passenger from: self table) buildWithSpec
+	^ (self model adapter 
+		transferFor: passenger 
+		from: self table) 
+		buildWithSpec
 		  dragHand: aMorph currentHand;
 		  yourself
 ]
