@@ -62,10 +62,10 @@ SpTablePresenter class >> exampleWithDecoratedString [
 SpTablePresenter class >> exampleWithSortableColumnHeaders [
 
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
 		showColumnHeaders;
-		addColumn: (SpStringTableColumn title: 'Letter' evaluated: [ :a | a asString ]) beSortable;
-		items: ($a to: $z) asArray;
+		addColumn: (SpStringTableColumn title: 'Number' evaluated: #yourself) beSortable;
+		addColumn: (SpStringTableColumn title: 'Hex' evaluated: #hex) beSortable;
+		items: (1 to: 16) asArray;
 		openWithSpec
 ]
 
