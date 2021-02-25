@@ -61,7 +61,6 @@ SpMorphicBoxAdapter >> addHorizontalHomogeneousToMorph: aMorph [
 	| size |
 	
 	self children ifEmpty: [ ^ self ].
-
 	size := (widget width - (layout borderWidth * 2) - (layout spacing * (self children size - 1))) // self children size.
 	aMorph 
 		width: size;
