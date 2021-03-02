@@ -15,6 +15,13 @@ SpFTTableMorph >> acceptDroppingMorph: aTransferMorph event: anEvent [
 		event: anEvent
 ]
 
+{ #category : #drawing }
+SpFTTableMorph >> drawKeyboardFocusOn: aCanvas [
+
+	self color = Color transparent ifTrue: [ ^ self ].
+	^ super drawKeyboardFocusOn: aCanvas
+]
+
 { #category : #'events-processing' }
 SpFTTableMorph >> handleKeyDown: anEvent [
 	"System level event handling."
