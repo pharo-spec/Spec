@@ -218,16 +218,16 @@ SpMorphicBoxAdapter >> layout: aLayout [
 SpMorphicBoxAdapter >> newHorizontal [
 
 	^ self newPanel
-		  listDirection: #leftToRight;
-		  addMorphBack: ((startPanel := self newPanel)
-				   listDirection: #leftToRight;
-				   yourself);
-		  addMorphBack: ((endPanel := self newPanel)
-				   listDirection: #leftToRight;
-				   hResizing: #shrinkWrap;
-				   width: 0;
-				   yourself);
-		  yourself
+		listDirection: #leftToRight;
+		addMorphBack: ((startPanel := self newPanel)
+			listDirection: #leftToRight;
+			yourself);
+		addMorphBack: ((endPanel := self newPanel)
+			listDirection: #leftToRight;
+			hResizing: #shrinkWrap;
+			width: 0;
+			yourself);
+	  yourself
 ]
 
 { #category : #factory }
