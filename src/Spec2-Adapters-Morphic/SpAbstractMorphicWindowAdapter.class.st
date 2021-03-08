@@ -4,6 +4,9 @@ I am the adapter used to bridge window presenters and windows or worlds
 Class {
 	#name : #SpAbstractMorphicWindowAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
+	#instVars : [
+		'toolbarMorph'
+	],
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
@@ -30,7 +33,11 @@ SpAbstractMorphicWindowAdapter >> addContent: aMorph toWindow: aSpecWindow [
 
 	"add all decorations (menu, toolbar and statusbar)"
 	self model hasMenu ifTrue: [ self addMenuTo: containerMorph ].
-	self model hasToolbar ifTrue: [ self addToolbarTo: containerMorph ].
+	self model hasToolbar ifTrue: [ self setToolbarTo: containerMorph ].
+
+	"Register for changes in the toolbar"
+	self model whenToolbarChangedDo: [ self setToolbarTo: containerMorph ].
+
 	containerMorph addMorphBack: aMorph.
 	aMorph
 		hResizing: #spaceFill;
@@ -63,17 +70,6 @@ SpAbstractMorphicWindowAdapter >> addStatusBarTo: aMorph [
 ]
 
 { #category : #private }
-SpAbstractMorphicWindowAdapter >> addToolbarTo: aMorph [
-
-	| toolbarMorph |
-	toolbarMorph := self presenter toolbar buildWithSpec.
-	aMorph addMorphBack: toolbarMorph.
-	toolbarMorph
-		hResizing: #spaceFill;
-		vResizing: #rigid
-]
-
-{ #category : #private }
 SpAbstractMorphicWindowAdapter >> newContainerMorph [
 
 	^ PanelMorph new
@@ -82,4 +78,22 @@ SpAbstractMorphicWindowAdapter >> newContainerMorph [
 		  vResizing: #spaceFill;
 		  listDirection: #topToBottom;
 		  yourself
+]
+
+{ #category : #private }
+SpAbstractMorphicWindowAdapter >> setToolbarTo: aMorph [
+
+	| newToolbarMorph |
+	newToolbarMorph := self presenter toolbar buildWithSpec.
+	newToolbarMorph
+		hResizing: #spaceFill;
+		vResizing: #rigid.
+	
+	"If we have a toolbar morph, we replace with the new one"
+	toolbarMorph 
+		ifNil: [	aMorph addMorphBack: newToolbarMorph ]
+		ifNotNil: [ aMorph replaceSubmorph: toolbarMorph by: newToolbarMorph ].
+		
+	toolbarMorph := newToolbarMorph
+
 ]
