@@ -100,7 +100,7 @@ SpAbstractMorphicWindowAdapter >> setToolbarTo: aMorph [
 	
 	"If we have a toolbar morph, we replace with the new one"
 	toolbarMorph 
-		ifNil: [	aMorph addMorphBack: newToolbarMorph ]
+		ifNil: [	aMorph addMorph: newToolbarMorph ]
 		ifNotNil: [ aMorph replaceSubmorph: toolbarMorph by: newToolbarMorph ].
 		
 	toolbarMorph := newToolbarMorph
