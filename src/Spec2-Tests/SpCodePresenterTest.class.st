@@ -47,6 +47,22 @@ SpCodePresenterTest >> testContextMenu [
 ]
 
 { #category : #tests }
+SpCodePresenterTest >> testEvaluateOnCompileErrorOnError [
+
+	self 
+		assert: (presenter evaluate: 'Obj { }}' onCompileError: [ #compile ] onError: [ :e | #error ])
+		equals: #compile.
+		
+	self 
+		assert: (presenter evaluate: 'nil text' onCompileError: [ #compile ] onError: [ :e | #error ])
+		equals: #error.	
+		
+	self 
+		assert: (presenter evaluate: '42' onCompileError: [ #compile ] onError: [ :e | #error ])
+		equals: 42.		
+]
+
+{ #category : #tests }
 SpCodePresenterTest >> testFindClassFrom [
 
 	self assert: (presenter findClassFrom: '') equals: nil.

@@ -261,7 +261,8 @@ SpCodePresenter >> doBrowseClass [
 
 	result := self 
 		evaluate: self selectedTextOrLine
-		ifError: [ :e | ^ self ].
+		onCompileError: [ ^ self ]
+		onError: [ :e | ^ self ].
 	self systemNavigation browse: result
 ]
 
@@ -270,8 +271,9 @@ SpCodePresenter >> doBrowseClassReferences [
 	| result class |
 
 	result := self 
-		evaluate: self selectedTextOrLine 
-		ifError: [ :e | ^ self ].
+		evaluate: self selectedTextOrLine
+		onCompileError: [ ^ self ]
+		onError: [ :e | ^ self ].
 		
 	(result isClass or: [ result isTrait ])
 		ifFalse: [ result := result class ].
@@ -287,8 +289,9 @@ SpCodePresenter >> doBrowseHierarchy [
 	| result |
 
 	result := self 
-		evaluate: self selectedTextOrLine 
-		ifError: [ :e | ^ self ].
+		evaluate: self selectedTextOrLine
+		onCompileError: [ ^ self ]
+		onError: [ :e | ^ self ].
 	(result isClass or: [ result isTrait ])
 		ifFalse: [ result := result class ].
 	self systemNavigation browseHierarchy: result
@@ -369,18 +372,22 @@ SpCodePresenter >> environment: anEnvironment [
 ]
 
 { #category : #'command support' }
-SpCodePresenter >> evaluate: aString ifError: aBlock [
-
+SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: errorBlock [ 
+	"Treat the current selection as an expression; evaluate it and invoke 
+	 aBlock with the result."
+	| receiver |
+	
 	^ [
-		self class compilerClass new
-			environment: self environment;
-			source: self selectedTextOrLine readStream;
+		receiver := self interactionModel doItReceiver.
+		receiver class compiler
+			source: aString readStream;
 			context: self interactionModel doItContext;
 			receiver: self interactionModel doItReceiver;
 			requestor: self interactionModel;
+			failBlock:  [ ^ compileErrorBlock value ];
 			evaluate ]
-		on: Error 
-		do: aBlock
+	on: Error 
+	do: errorBlock
 ]
 
 { #category : #accessing }
