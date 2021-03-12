@@ -373,8 +373,18 @@ SpCodePresenter >> environment: anEnvironment [
 
 { #category : #'command support' }
 SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: errorBlock [ 
-	"Treat the current selection as an expression; evaluate it and invoke 
-	 aBlock with the result."
+	"evaluate aString. 
+	 evaluate compileErrorBlock if there are compilation errors. 
+	 evaluate errorBlock is anything happens *during* evaluation (code compiled, but it does not 
+	 executes.). 
+	 NOTE for future me. This is how I understand the evaluation works and why we need to catch 
+	 differently the error: If there is a syntax error (avoiding compilation), it will evaluate 
+	 requestor>>#notify:at:in: to notify the error and then it will call failBlock: *which is not 
+	 intended to be used to throw an error*, since that should be handled (and it is) in the 
+	 notification. Instead, most users of failBlock: use it to return execution without doing 
+	 anything. 
+	 Instread, the on:do: will catch all errors happening while executing the code once it is 
+	 compiled. "
 	| receiver |
 	
 	^ [
@@ -510,7 +520,7 @@ SpCodePresenter >> insertPopoverAfterCurrentSelection: aPresenter style: styleNa
 SpCodePresenter >> insertPrintPopoverAfterCurrentSelection: anObject [
 	"Inserts a print-it result popover. 
 	 This is for use of SpCodePrintItCommand"
-	
+
 	self 
 		insertPopoverAfterCurrentSelection: (SpCodePopoverPrintPresenter 
 			newCode: self
