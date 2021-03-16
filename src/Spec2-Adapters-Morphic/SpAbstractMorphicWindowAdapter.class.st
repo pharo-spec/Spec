@@ -73,12 +73,13 @@ SpAbstractMorphicWindowAdapter >> addStatusBarTo: aMorph [
 { #category : #private }
 SpAbstractMorphicWindowAdapter >> newContainerMorph [
 
-	^ PanelMorph new
-		  layoutPolicy: TableLayout new;
-		  hResizing: #spaceFill;
-		  vResizing: #spaceFill;
-		  listDirection: #topToBottom;
-		  yourself
+	^ Morph new
+		color: Color transparent;
+		layoutPolicy: TableLayout new;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		listDirection: #topToBottom;
+		yourself
 ]
 
 { #category : #private }
