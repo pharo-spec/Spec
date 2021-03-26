@@ -8,6 +8,7 @@ Class {
 	#instVars : [
 		'#entryCompletion => SpObservableSlot',
 		'#isPassword => SpObservableSlot',
+		'#editable => SpObservableSlot',
 		'#maxLength => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
@@ -17,6 +18,20 @@ Class {
 SpTextInputFieldPresenter class >> adapterName [
 
 	^ #TextInputFieldAdapter
+]
+
+{ #category : #api }
+SpTextInputFieldPresenter >> beEditable [
+	"Allow edition (deny readonly)."
+
+	self editable: true
+]
+
+{ #category : #api }
+SpTextInputFieldPresenter >> beNotEditable [
+	"Set content text as not editable (readonly)"
+
+	self editable: false
 ]
 
 { #category : #api }
@@ -37,6 +52,12 @@ SpTextInputFieldPresenter >> beText [
 	"Set this input text as a text editor."
 
 	self bePassword: false
+]
+
+{ #category : #private }
+SpTextInputFieldPresenter >> editable: aBoolean [
+
+	editable := aBoolean
 ]
 
 { #category : #api }
@@ -73,6 +94,13 @@ SpTextInputFieldPresenter >> initialize [
 
 	maxLength := 0.
 	isPassword := false
+]
+
+{ #category : #testing }
+SpTextInputFieldPresenter >> isEditable [
+	"Answer true if edition is allowed (component is NOT readonly)"
+
+	^ editable
 ]
 
 { #category : #testing }
@@ -120,6 +148,17 @@ SpTextInputFieldPresenter >> updateText [
 	"Update text but applying lenght constraints"
 	
 	self text: self text.
+]
+
+{ #category : #testing }
+SpTextInputFieldPresenter >> whenEditableChangedDo: aBlock [
+	"Inform when editable property has changed. 
+	 `aBlock` has three optional arguments: 
+	 - new value
+	 - old value
+	 - the announcement triggering this action"
+
+	self property: #editable whenChangedDo: aBlock
 ]
 
 { #category : #'api-events' }
