@@ -150,7 +150,7 @@ SpTextInputFieldPresenter >> updateText [
 	self text: self text.
 ]
 
-{ #category : #testing }
+{ #category : #'api-events' }
 SpTextInputFieldPresenter >> whenEditableChangedDo: aBlock [
 	"Inform when editable property has changed. 
 	 `aBlock` has three optional arguments: 
