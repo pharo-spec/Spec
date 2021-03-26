@@ -93,7 +93,9 @@ SpTextInputFieldPresenter >> initialize [
 	super initialize.
 
 	maxLength := 0.
-	isPassword := false
+	isPassword := false.
+	self beEditable.
+
 ]
 
 { #category : #testing }
