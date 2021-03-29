@@ -62,8 +62,10 @@ SpFilteringSelectableListPresenter >> initializePresenters [
 			ifFalse: [ 
 				self toggleSelection ] ].
 		
-	listPresenter
-  		bindKeyCombination: $a meta toAction: [ self selectItems: self items ]
+	"listPresenter
+  		bindKeyCombination: $a meta toAction: [
+    		self selectItems: self items ]"
+
 ]
 
 { #category : #private }
@@ -105,14 +107,14 @@ SpFilteringSelectableListPresenter >> selectFrom: fromIndex to: toIndex [
 { #category : #api }
 SpFilteringSelectableListPresenter >> selectItem: anObject [
 
-	self selectItems: (self selectedItems copyWith: anObject)
+	self selectItems: (self selectedItems copyWith: anObject).
+	listPresenter selectItem: anObject
 ]
 
 { #category : #api }
 SpFilteringSelectableListPresenter >> selectItems: aCollection [
 
-	selectedItems := aCollection asSet.
-	listPresenter selectItems: selectedItems asOrderedCollection
+	selectedItems := aCollection asSet
 ]
 
 { #category : #api }
