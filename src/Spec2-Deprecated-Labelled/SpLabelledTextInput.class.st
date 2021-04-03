@@ -19,6 +19,18 @@ SpLabelledTextInput class >> defaultSpec [
 	^ self labelLeft
 ]
 
+{ #category : #examples }
+SpLabelledTextInput class >> example [
+	<sampleInstance>
+	^ super example
+]
+
+{ #category : #examples }
+SpLabelledTextInput class >> setUpExample: example [
+	example input placeholder: 'Tilt'.
+	example extent: 400 @ 50
+]
+
 { #category : #'api-shortcuts' }
 SpLabelledTextInput >> beEncrypted [
 	^ self input beEncrypted

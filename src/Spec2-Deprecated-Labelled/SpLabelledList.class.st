@@ -14,6 +14,17 @@ Class {
 	#category : #'Spec2-Deprecated-Labelled'
 }
 
+{ #category : #examples }
+SpLabelledList class >> example [
+	<sampleInstance>
+	^ super example
+]
+
+{ #category : #examples }
+SpLabelledList class >> setUpExample: example [
+	example items: {'item 1' . 'item 2'}
+]
+
 { #category : #'api-shortcuts' }
 SpLabelledList >> beMultipleSelection [
 	^ self list beMultipleSelection

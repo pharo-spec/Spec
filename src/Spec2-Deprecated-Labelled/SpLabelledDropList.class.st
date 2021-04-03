@@ -19,6 +19,20 @@ SpLabelledDropList class >> defaultSpec [
 	^ self labelLeft
 ]
 
+{ #category : #examples }
+SpLabelledDropList class >> example [
+	<sampleInstance>
+	^ super example
+]
+
+{ #category : #examples }
+SpLabelledDropList class >> setUpExample: example [
+	example
+		items: {'item 1' . 'item 2'};
+		display: [ :item | item asString ];
+		extent: 400 @ 50
+]
+
 { #category : #'api-shortcuts' }
 SpLabelledDropList >> display: aBlock [
 	"aBlock (a one argument block) will be applied on each of the list items and the result of the block will be used to display the item on the screen."

@@ -14,6 +14,22 @@ Class {
 	#category : #'Spec2-Deprecated-Labelled'
 }
 
+{ #category : #examples }
+SpLabelledSliderInput class >> example [
+	<sampleInstance>
+	^ super example
+]
+
+{ #category : #examples }
+SpLabelledSliderInput class >> setUpExample: example [
+	
+	example
+		min: 0;
+		max: 250;
+		value: 120;
+		extent: 400 @ 50
+]
+
 { #category : #'api-shortcuts' }
 SpLabelledSliderInput >> absoluteValue [
 	^ self sliderInput absoluteValue

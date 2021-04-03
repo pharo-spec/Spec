@@ -19,9 +19,28 @@ Class {
 	#category : #'Spec2-Deprecated-Labelled'
 }
 
+{ #category : #examples }
+SpLabelledContainer class >> abstractExample [
+	| example |
+	example := self new.
+	example label: 'I am a label'.
+	^ example
+]
+
 { #category : #specs }
 SpLabelledContainer class >> defaultSpec [
 	^ self labelTop
+]
+
+{ #category : #examples }
+SpLabelledContainer class >> example [
+	<sampleInstance>
+	| example |
+	example := self abstractExample.
+	self setUpExample: example.
+	example openWithSpec.
+	example withWindowDo: [ :window | window title: self name asString , ' example' ].
+	^ example
 ]
 
 { #category : #specs }
@@ -70,6 +89,12 @@ SpLabelledContainer class >> labelTop [
 			padding: 0;
 		add: #subwidget;
 		yourself
+]
+
+{ #category : #examples }
+SpLabelledContainer class >> setUpExample: example [
+	example content: SpButtonPresenter.
+	example subwidget label: 'I am a button'
 ]
 
 { #category : #initialization }
