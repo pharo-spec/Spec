@@ -1,6 +1,9 @@
 Class {
 	#name : #SpRubTextFieldMorph,
 	#superclass : #RubTextFieldMorph,
+	#instVars : [
+		'drawKeyboardFocus'
+	],
 	#category : #'Spec2-Adapters-Morphic-Support'
 }
 

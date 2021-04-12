@@ -1,13 +1,13 @@
 Extension { #name : #SpLabelledSliderInput }
 
 { #category : #'*Spec2-Examples' }
-SpLabelledSliderInput class >> example [
+SpLabelledSliderInput classSide >> example [
 	<sampleInstance>
 	^ super example
 ]
 
 { #category : #'*Spec2-Examples' }
-SpLabelledSliderInput class >> setUpExample: example [
+SpLabelledSliderInput classSide >> setUpExample: example [
 	
 	example
 		min: 0;

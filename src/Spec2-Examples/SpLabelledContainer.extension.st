@@ -1,7 +1,7 @@
 Extension { #name : #SpLabelledContainer }
 
 { #category : #'*Spec2-Examples' }
-SpLabelledContainer class >> abstractExample [
+SpLabelledContainer classSide >> abstractExample [
 	| example |
 	example := self new.
 	example label: 'I am a label'.
@@ -9,7 +9,7 @@ SpLabelledContainer class >> abstractExample [
 ]
 
 { #category : #'*Spec2-Examples' }
-SpLabelledContainer class >> example [
+SpLabelledContainer classSide >> example [
 	<sampleInstance>
 	| example |
 	example := self abstractExample.
@@ -20,7 +20,7 @@ SpLabelledContainer class >> example [
 ]
 
 { #category : #'*Spec2-Examples' }
-SpLabelledContainer class >> setUpExample: example [
+SpLabelledContainer classSide >> setUpExample: example [
 	example content: SpButtonPresenter.
 	example subwidget label: 'I am a button'
 ]

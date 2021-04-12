@@ -1,13 +1,13 @@
 Extension { #name : #SpLabelledDropList }
 
 { #category : #'*Spec2-Examples' }
-SpLabelledDropList class >> example [
+SpLabelledDropList classSide >> example [
 	<sampleInstance>
 	^ super example
 ]
 
 { #category : #'*Spec2-Examples' }
-SpLabelledDropList class >> setUpExample: example [
+SpLabelledDropList classSide >> setUpExample: example [
 	example
 		items: {'item 1' . 'item 2'};
 		display: [ :item | item asString ];

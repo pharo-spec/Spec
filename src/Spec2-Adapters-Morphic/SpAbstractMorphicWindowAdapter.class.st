@@ -4,6 +4,10 @@ I am the adapter used to bridge window presenters and windows or worlds
 Class {
 	#name : #SpAbstractMorphicWindowAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
+	#instVars : [
+		'toolbarMorph',
+		'menuMorph'
+	],
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 

@@ -2,9 +2,7 @@ Class {
 	#name : #SpDemoMenuButtonPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'actionBar',
 		'text',
-		'menu',
 		'button'
 	],
 	#category : #'Spec2-Examples-Demo-Buttons'
