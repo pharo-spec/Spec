@@ -38,7 +38,7 @@ SpSliderInput class >> sliderBottom [
 SpSliderInput class >> sliderLeft [
 	<spec>
 	^ SpPanedLayout newLeftToRight
-		position: 85 percent;
+		positionOfSlider: 85 percent;
 		add: #slider withConstraints: [ :constraints | constraints beNotResizable ];
 		add: #input;
 		yourself
@@ -48,7 +48,7 @@ SpSliderInput class >> sliderLeft [
 SpSliderInput class >> sliderRight [
 	<spec>
 	^ SpPanedLayout newLeftToRight
-		position: 15 percent;
+		positionOfSlider: 15 percent;
 		add: #input;
 		add: #slider;
 		yourself
