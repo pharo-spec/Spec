@@ -1,7 +1,7 @@
-Extension { #name : #SpInvalidUserInput }
+Extension { #name : #SpInvalidUserInputError }
 
 { #category : #'*Spec2-Commander2' }
-SpInvalidUserInput >> actForSpec [
+SpInvalidUserInputError >> actForSpec [
 	"Does nothing on purpose."
 	UIManager default
 		inform: self messageText.
