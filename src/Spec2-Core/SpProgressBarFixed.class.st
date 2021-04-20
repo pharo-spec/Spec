@@ -18,41 +18,11 @@ Internal Representation and Key Implementation Points.
 "
 Class {
 	#name : #SpProgressBarFixed,
-	#superclass : #SpProgressBarState,
-	#traits : 'SpTObservable',
-	#classTraits : 'SpTObservable classTrait',
-	#instVars : [
-		'#value => SpObservableSlot'
-	],
+	#superclass : #SpFixedProgressBarState,
 	#category : #'Spec2-Core-Utils'
 }
 
-{ #category : #'instance creation' }
-SpProgressBarFixed class >> value: aNumber [
-	^ self new
-		value: aNumber;
-		yourself
-]
-
-{ #category : #initialization }
-SpProgressBarFixed >> initialize [
-	
-	self class initializeSlots: self.
-	super initialize.
-	value := 0
-]
-
-{ #category : #accessing }
-SpProgressBarFixed >> value [
-	^ value
-]
-
-{ #category : #accessing }
-SpProgressBarFixed >> value: aNumber [
-	value := aNumber
-]
-
-{ #category : #'api-events' }
-SpProgressBarFixed >> whenValueChangedDo: aBlock [
-	self property: #value whenChangedDo: aBlock
+{ #category : #testing }
+SpProgressBarFixed class >> isDeprecated [ 
+	^ true
 ]
