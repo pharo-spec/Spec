@@ -71,7 +71,8 @@ SpMorphicTreeTableDataSource >> cellIndentFor: item [
 { #category : #accessing }
 SpMorphicTreeTableDataSource >> expandPath: anArray [
 
-	self expandPath: anArray root: self rootItem children
+	self expandPath: anArray root: self rootItem children.
+	self tableRefresh
 ]
 
 { #category : #accessing }

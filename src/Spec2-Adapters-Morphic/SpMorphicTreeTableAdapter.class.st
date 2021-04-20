@@ -210,6 +210,9 @@ SpMorphicTreeTableAdapter >> isExpanded: anItem [
 	path := widget dataSource 
 		pathOfItem: anItem 
 		root: widget dataSource rootItem.
+	
+	path ifEmpty: [ ^ false ].
+	
 	^ (widget dataSource itemAtPath: path) isExpanded
 ]
 
