@@ -15,7 +15,7 @@ SpPresenter >> request: request initialAnswer: initialAnwser title: title [
 					title: title.
 					
 	answer "If this is nil, it means that user cancelled the UI."
-		ifNil: [ SpInteractionCancelled signal ].
+		ifNil: [ SpCancelledInteractionError signal ].
 	
 	^ answer
 ]
