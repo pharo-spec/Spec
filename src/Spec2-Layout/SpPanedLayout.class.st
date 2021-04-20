@@ -8,8 +8,6 @@ Class {
 	#superclass : #SpDirectionableLayout,
 	#instVars : [
 		'position',
-		'firstChild',
-		'secondChild',
 		'childrenByPosition'
 	],
 	#category : #'Spec2-Layout-Paned'
