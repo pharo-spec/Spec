@@ -77,7 +77,7 @@ SpMorphStyle >> applyTo: aMorph [
 { #category : #'accessing container' }
 SpMorphStyle >> borderWidth [
 
-	^ self lookupProperty: SpStyleContainer valueOf: #borderWidth
+	^ self lookupProperty: SpContainerStyle valueOf: #borderWidth
 ]
 
 { #category : #private }
@@ -100,19 +100,19 @@ SpMorphStyle >> calculateMergedProperties [
 { #category : #'accessing geometry' }
 SpMorphStyle >> extent [
 
-	^ self lookupProperty: SpStyleGeometry valueOf: #extent
+	^ self lookupProperty: SpGeometryStyle valueOf: #extent
 ]
 
 { #category : #'accessing font' }
 SpMorphStyle >> font [
 
-	^ self lookupProperty: SpStyleFont valueOf: #definedFont
+	^ self lookupProperty: SpFontStyle valueOf: #definedFont
 ]
 
 { #category : #'accessing geometry' }
 SpMorphStyle >> height [
 
-	^ self lookupProperty: SpStyleGeometry valueOf: #height
+	^ self lookupProperty: SpGeometryStyle valueOf: #height
 ]
 
 { #category : #accessing }
@@ -131,13 +131,13 @@ SpMorphStyle >> lookupProperty: aPropertyClass valueOf: aSymbol [
 { #category : #'accessing geometry' }
 SpMorphStyle >> maxHeight [
 
-	^ self lookupProperty: SpStyleGeometry valueOf: #maxHeight
+	^ self lookupProperty: SpGeometryStyle valueOf: #maxHeight
 ]
 
 { #category : #'accessing geometry' }
 SpMorphStyle >> maxWidth [
 
-	^ self lookupProperty: SpStyleGeometry valueOf: #maxWidth
+	^ self lookupProperty: SpGeometryStyle valueOf: #maxWidth
 ]
 
 { #category : #accessing }
@@ -149,19 +149,19 @@ SpMorphStyle >> mergedProperties [
 { #category : #'accessing geometry' }
 SpMorphStyle >> minHeight [
 
-	^ self lookupProperty: SpStyleGeometry valueOf: #minHeight
+	^ self lookupProperty: SpGeometryStyle valueOf: #minHeight
 ]
 
 { #category : #'accessing geometry' }
 SpMorphStyle >> minWidth [
 
-	^ self lookupProperty: SpStyleGeometry valueOf: #minWidth
+	^ self lookupProperty: SpGeometryStyle valueOf: #minWidth
 ]
 
 { #category : #'accessing container' }
 SpMorphStyle >> padding [ 
 
-	^ self lookupProperty: SpStyleContainer valueOf: #padding
+	^ self lookupProperty: SpContainerStyle valueOf: #padding
 ]
 
 { #category : #private }
@@ -190,5 +190,5 @@ SpMorphStyle >> styles: anObject [
 { #category : #'accessing geometry' }
 SpMorphStyle >> width [
 
-	^ self lookupProperty: SpStyleGeometry valueOf: #width
+	^ self lookupProperty: SpGeometryStyle valueOf: #width
 ]

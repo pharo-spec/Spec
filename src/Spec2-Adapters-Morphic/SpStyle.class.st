@@ -120,7 +120,7 @@ SpStyle class >> defaultStyleSheetData [
 { #category : #'instance creation' }
 SpStyle class >> newApplication [
 
-	^ SpStyleClass new 
+	^ SpClassStyle new 
 		name: 'application';
 		yourself
 ]
