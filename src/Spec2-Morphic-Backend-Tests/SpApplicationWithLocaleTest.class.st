@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 SpApplicationWithLocaleTest >> testLabel [
 	| app label string |
-	app := SpTestApplicationWithLocale new.
+	app := SpWithLocaleTestApplication new.
 	app locale: (Locale isoLanguage: 'en' isoCountry: 'US').
 	app useBackend: #Morphic.
 	string := SpTestLocalizedString from: 'string'.
