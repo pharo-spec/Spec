@@ -49,9 +49,9 @@ SpRGBSliders >> greenSlider [
 
 { #category : #initialization }
 SpRGBSliders >> initializePresenters [
-	redSlider := self instantiate: SpSliderInput.
-	greenSlider := self instantiate: SpSliderInput.
-	blueSlider := self instantiate: SpSliderInput.
+	redSlider := self instantiate: SpSliderInputPresenter.
+	greenSlider := self instantiate: SpSliderInputPresenter.
+	blueSlider := self instantiate: SpSliderInputPresenter.
 	redSlider
 		min: 0;
 		max: 255; label: 'Red' translated.
