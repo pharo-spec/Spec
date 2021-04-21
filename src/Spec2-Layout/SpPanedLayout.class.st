@@ -7,8 +7,8 @@ Class {
 	#name : #SpPanedLayout,
 	#superclass : #SpDirectionableLayout,
 	#instVars : [
-		'position',
-		'childrenByPosition'
+		'childrenByPosition',
+		'positionOfSlider'
 	],
 	#category : #'Spec2-Layout-Paned'
 }
@@ -120,7 +120,7 @@ SpPanedLayout >> position [
 		deprecated: 'Use #positionOfSlider instead'
 		transformWith: '`@receiver position' -> '`@receiver positionOfSlider'.
 
-	^ position
+	^ positionOfSlider
 ]
 
 { #category : #accessing }
@@ -136,7 +136,7 @@ SpPanedLayout >> position: aNumber [
 		deprecated: 'Use #positionOfSlider: instead'
 		transformWith: '`@receiver position: `@arg' -> '`@receiver positionOfSlider: `@arg'.
 	
-	position := aNumber
+	positionOfSlider := aNumber
 ]
 
 { #category : #accessing }
@@ -145,7 +145,7 @@ SpPanedLayout >> positionOfSlider [
 	 It can be nil (then it defaults to 50%).
 	 It can be a percentage (e.g. 30 percent)"
 
-	^ position
+	^ positionOfSlider
 ]
 
 { #category : #accessing }
@@ -157,7 +157,7 @@ SpPanedLayout >> positionOfSlider: aNumber [
 	 of the slider. E.g. 30 percent (0.3) indicates the slider will be place at 1/3 of the 
 	 panel."
 	
-	position := aNumber
+	positionOfSlider := aNumber
 ]
 
 { #category : #accessing }
