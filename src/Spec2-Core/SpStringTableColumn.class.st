@@ -204,6 +204,11 @@ SpStringTableColumn >> sortFunction: aBlockOrSortFunction [
 	 `aBlockOrSortFunction` is a block that receives two arguments to compare or an instace of 
 	 `SortFunction`. "
 
+	 aBlockOrSortFunction ifNil: [ 
+		super sortFunction: nil.
+		self isSortable: false.
+		^ self ].
+	
 	super sortFunction: aBlockOrSortFunction asSortFunction.
 	self isSortable: aBlockOrSortFunction notNil
 ]
