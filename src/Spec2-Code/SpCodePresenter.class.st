@@ -696,6 +696,9 @@ SpCodePresenter >> whenResetDo: aBlock [
 
 { #category : #'api-events' }
 SpCodePresenter >> whenSubmitDo: aBlock [
+	"This method will add a 'submit' event to the widget. It will react when user 
+	 presses <meta+s> key (this is for historical reasons) and with enter (cr).
+	 `aBlock` receives one argument (the submited text)"
 
 	submitBlock := aBlock.
 	super whenSubmitDo: aBlock
