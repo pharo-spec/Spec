@@ -29,13 +29,6 @@ SpDialogPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 		ifNil: [ aDialogWindowPresenter centered ]
 ]
 
-{ #category : #initialization }
-SpDialogPresenter >> initializeWindow: aWindowPresenter [
-
-	self traversePresentersDo: [ :each |
-		each addGlobalShortcutsTo: aWindowPresenter ]
-]
-
 { #category : #api }
 SpDialogPresenter >> openDialogWithSpecParent: aWindow [
 	
