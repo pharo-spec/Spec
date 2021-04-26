@@ -25,7 +25,5 @@ SpRequestTextDialog class >> defaultSpec [
 SpRequestTextDialog >> initializePresenters [
 
 	label := self newLabel.
-	textInput := (self newText
-		addStyle: 'monospaceFont';
-		yourself)
+	textInput := self newText
 ]

@@ -1,5 +1,5 @@
 "
-I am a simple dialog to request some information (a text)
+A simple dialog to request some information (a text)
 "
 Class {
 	#name : #SpRequestDialog,
@@ -16,21 +16,9 @@ Class {
 }
 
 { #category : #accessing }
-SpRequestDialog class >> defaultAcceptLabel [
-
-	^ 'Accept'
-]
-
-{ #category : #accessing }
-SpRequestDialog class >> defaultCancelLabel [
-
-	^ 'Cancel'
-]
-
-{ #category : #accessing }
 SpRequestDialog class >> defaultExtent [
 
-	^ 400@100
+	^ 400@140
 ]
 
 { #category : #specs }
@@ -42,6 +30,27 @@ SpRequestDialog class >> defaultSpec [
 		add: #label expand: false;
 		add: #textInput expand: false;
 		yourself
+]
+
+{ #category : #example }
+SpRequestDialog class >> example [
+
+	self new
+		label: 'You are seeing an inform dialog!';
+		onAccept: [ :dialog | self inform: dialog presenter text ];
+		openDialogWithSpec
+]
+
+{ #category : #example }
+SpRequestDialog class >> exampleModal [
+	| dialog |
+
+	dialog := self new
+		label: 'You are seeing an inform dialog!';
+		openModalWithSpec.
+		
+	dialog isOk ifTrue: [ 
+		self inform: dialog presenter text ]
 ]
 
 { #category : #accessing }
@@ -92,8 +101,8 @@ SpRequestDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.
 	aDialogWindowPresenter
-		addButton: self cancelLabel do: [ :presenter | presenter beCancel; close ];
-		addDefaultButton: self acceptLabel do: [ :presenter | presenter beOk; close ]
+		addButton: self cancelLabel do: [ :presenter | self cancel ];
+		addDefaultButton: self acceptLabel do: [ :presenter | self accept ]
 ]
 
 { #category : #initialization }

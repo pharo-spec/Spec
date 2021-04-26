@@ -38,6 +38,22 @@ SpInformDialog class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #example }
+SpInformDialog class >> example [
+
+	self new
+		label: 'You are seeing an inform dialog!';
+		openDialogWithSpec
+]
+
+{ #category : #example }
+SpInformDialog class >> exampleModal [
+
+	self new
+		label: 'You are seeing an inform dialog!';
+		openModalWithSpec
+]
+
 { #category : #accessing }
 SpInformDialog >> acceptLabel [
 
@@ -74,7 +90,8 @@ SpInformDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.
 	aDialogWindowPresenter
-		addDefaultButton: self acceptLabel do: [ :presenter | presenter beOk; close ]
+		addDefaultButton: self acceptLabel 
+		do: [ :presenter | self accept ]
 		
 ]
 
@@ -82,8 +99,7 @@ SpInformDialog >> initializeDialogWindow: aDialogWindowPresenter [
 SpInformDialog >> initializePresenters [
 
 	image := self newImage.
-	label := self newLabel.
-	
+	label := self newLabel
 ]
 
 { #category : #initialization }

@@ -13,18 +13,6 @@ Class {
 }
 
 { #category : #accessing }
-SpSelectDialog class >> defaultAcceptLabel [
-
-	^ 'Accept'
-]
-
-{ #category : #accessing }
-SpSelectDialog class >> defaultCancelLabel [
-
-	^ 'Cancel'
-]
-
-{ #category : #accessing }
 SpSelectDialog class >> defaultExtent [
 
 	^ 400@300
@@ -39,6 +27,33 @@ SpSelectDialog class >> defaultSpec [
 		add: #label expand: false;
 		add: #list;
 		yourself
+]
+
+{ #category : #example }
+SpSelectDialog class >> example [
+
+	self new
+		label: 'Select a class';
+		items: Smalltalk allClassesAndTraits;
+		display: [ :each | each name ];
+		displayIcon: [ :each | each systemIcon ];
+		onAccept: [ :dialog | self inform: dialog presenter selectedItem asString ];
+		openDialogWithSpec
+]
+
+{ #category : #example }
+SpSelectDialog class >> exampleModal [
+	| dialog |
+
+	dialog := self new
+		label: 'Select a class';
+		items: Smalltalk allClassesAndTraits;
+		display: [ :each | each name ];
+		displayIcon: [ :each | each systemIcon ];
+		openModalWithSpec.
+		
+	dialog isOk
+		ifTrue: [ self inform: dialog presenter selectedItem asString ]
 ]
 
 { #category : #accessing }
@@ -101,8 +116,8 @@ SpSelectDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.
 	aDialogWindowPresenter
-		addButton: self cancelLabel do: [ :presenter | presenter beCancel; close ];
-		addDefaultButton: self acceptLabel do: [ :presenter | presenter beOk; close ]
+		addButton: self cancelLabel do: [ :presenter | self cancel ];
+		addDefaultButton: self acceptLabel do: [ :presenter | self accept ]
 ]
 
 { #category : #initialization }
@@ -111,8 +126,8 @@ SpSelectDialog >> initializePresenters [
 	label := self newLabel.
 	list := self newList.
 	
-	list addStyle: 'sgaSelectList'.
-	list whenActivatedDo: [ self window triggerOkAction ]
+	list addStyle: 'spSelectList'.
+	list whenActivatedDo: [ self accept ]
 ]
 
 { #category : #initialization }
@@ -150,6 +165,12 @@ SpSelectDialog >> openDialogWithSpec [
 	^ dialog isOk
 		ifTrue: [ list selectedItem ]
 		ifFalse: [ nil ]
+]
+
+{ #category : #accessing }
+SpSelectDialog >> selectedItem [
+
+	^ list selectedItem
 ]
 
 { #category : #accessing }

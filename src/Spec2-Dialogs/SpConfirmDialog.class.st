@@ -1,3 +1,8 @@
+"
+A simple confirm dialog. 
+By default, it will show the `label` message and ask for a conformation with `Yes` and `No` as default button options.
+
+"
 Class {
 	#name : #SpConfirmDialog,
 	#superclass : #SpDialogPresenter,
@@ -42,6 +47,29 @@ SpConfirmDialog class >> defaultSpec [
 			add: #label;
 			yourself);
 		yourself
+]
+
+{ #category : #example }
+SpConfirmDialog class >> example [
+
+	^ self new
+		label: 'Are you sure?';
+		onAccept: [ self inform: 'Yes!' ];
+		onCancel: [ self inform: 'No!' ];
+		openDialogWithSpec
+]
+
+{ #category : #example }
+SpConfirmDialog class >> exampleModal [
+	| dialog |
+
+	dialog := self new
+		label: 'Are you sure?';
+		openModalWithSpec.
+	
+	self inform: (dialog isOk 
+		ifTrue: [ 'Yes!' ]
+		ifFalse: [ 'No!' ])
 ]
 
 { #category : #accessing }
@@ -92,8 +120,8 @@ SpConfirmDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.
 	aDialogWindowPresenter
-		addButton: self cancelLabel do: [ :presenter | presenter beCancel; close ];
-		addDefaultButton: self acceptLabel do: [ :presenter | presenter beOk; close ]
+		addButton: self cancelLabel do: [ :presenter | self cancel ];
+		addDefaultButton: self acceptLabel do: [ :presenter | self accept ]
 		
 ]
 
@@ -101,7 +129,7 @@ SpConfirmDialog >> initializeDialogWindow: aDialogWindowPresenter [
 SpConfirmDialog >> initializePresenters [
 
 	image := self newImage.
-	label := self newLabel.
+	label := self newLabel
 	
 ]
 
