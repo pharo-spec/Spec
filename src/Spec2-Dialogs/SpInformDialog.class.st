@@ -51,7 +51,9 @@ SpInformDialog class >> documentFactoryMethodSelector [
 SpInformDialog class >> example [
 
 	self new
+		title: 'Inform example';
 		label: 'You are seeing an inform dialog!';
+		acceptLabel: 'Close this!';
 		openDialogWithSpec
 ]
 
@@ -59,7 +61,9 @@ SpInformDialog class >> example [
 SpInformDialog class >> exampleModal [
 
 	self new
+		title: 'Inform modal example';
 		label: 'You are seeing an inform dialog!';
+		acceptLabel: 'Close this!';
 		openModalWithSpec
 ]
 

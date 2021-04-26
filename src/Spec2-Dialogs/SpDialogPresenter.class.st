@@ -91,7 +91,7 @@ SpDialogPresenter class >> documentExampleCode [
 	exampleMethod := self class methods 
 		detect: [ :each | 
 			(each protocol = #example) 
-			and: [ each selector = #example ] ]
+			and: [ each selector = #exampleModal ] ]
 		ifNone: [ ^ nil ].
 			
 	^ (exampleMethod sourceCode lines 
@@ -180,12 +180,14 @@ SpDialogPresenter >> onCancel: aBlock [
 
 { #category : #'api-showing' }
 SpDialogPresenter >> openDialogWithSpec [
+	"Open dialog in a non-modal way."
 
 	^ super openDialogWithSpec
 ]
 
 { #category : #'api-showing' }
 SpDialogPresenter >> openDialogWithSpecParent: aWindow [
+	"Open dialog in a non-modal way, centering on parent window. "
 	
 	parentWindow := aWindow.
 	^ self openDialogWithSpec
@@ -193,12 +195,14 @@ SpDialogPresenter >> openDialogWithSpecParent: aWindow [
 
 { #category : #'api-showing' }
 SpDialogPresenter >> openModalWithSpec [
+	"Open dialog in a modal way. "
 
 	^ super openModalWithSpec
 ]
 
 { #category : #'api-showing' }
 SpDialogPresenter >> openModalWithSpecParent: aWindow [
+	"Open dialog in a modal way, centering on parent window. "
 
 	parentWindow := aWindow.
 	^ self openModalWithSpec

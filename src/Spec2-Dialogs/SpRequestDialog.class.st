@@ -42,7 +42,11 @@ SpRequestDialog class >> documentFactoryMethodSelector [
 SpRequestDialog class >> example [
 
 	self new
-		label: 'You are seeing an inform dialog!';
+		title: 'Request example';
+		label: 'The meaning of life?';
+		text: 'I am tempted to say 42...';
+		acceptLabel: 'I know!';
+		cancelLabel: 'Cancel';
 		onAccept: [ :dialog | self inform: dialog presenter text ];
 		openDialogWithSpec
 ]
@@ -52,7 +56,11 @@ SpRequestDialog class >> exampleModal [
 	| dialog |
 
 	dialog := self new
-		label: 'You are seeing an inform dialog!';
+		title: 'Request modal example';
+		label: 'The meaning of life?';
+		text: 'I am tempted to say 42...';
+		acceptLabel: 'I know!';
+		cancelLabel: 'Cancel';
 		openModalWithSpec.
 		
 	dialog isOk ifTrue: [ 

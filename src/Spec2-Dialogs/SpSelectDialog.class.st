@@ -42,6 +42,7 @@ SpSelectDialog class >> documentFactoryMethodSelector [
 SpSelectDialog class >> example [
 
 	self new
+		title: 'Select example';
 		label: 'Select a class';
 		items: Smalltalk allClassesAndTraits;
 		display: [ :each | each name ];
@@ -55,6 +56,7 @@ SpSelectDialog class >> exampleModal [
 	| dialog |
 
 	dialog := self new
+		title: 'Select modal example';
 		label: 'Select a class';
 		items: Smalltalk allClassesAndTraits;
 		display: [ :each | each name ];

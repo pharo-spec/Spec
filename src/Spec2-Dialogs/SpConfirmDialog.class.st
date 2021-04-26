@@ -59,6 +59,10 @@ SpConfirmDialog class >> documentFactoryMethodSelector [
 SpConfirmDialog class >> example [
 
 	^ self new
+		title: 'Confirm example';
+		label: 'Are you sure?';
+		acceptLabel: 'Sure!';
+		cancelLabel: 'No, forget it';
 		label: 'Are you sure?';
 		onAccept: [ self inform: 'Yes!' ];
 		onCancel: [ self inform: 'No!' ];
@@ -70,7 +74,10 @@ SpConfirmDialog class >> exampleModal [
 	| dialog |
 
 	dialog := self new
+		title: 'Confirm modal example';
 		label: 'Are you sure?';
+		acceptLabel: 'Sure!';
+		cancelLabel: 'No, forget it';
 		openModalWithSpec.
 	
 	self inform: (dialog isOk 
