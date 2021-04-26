@@ -32,6 +32,12 @@ SpRequestDialog class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #documentation }
+SpRequestDialog class >> documentFactoryMethodSelector [
+	
+	^ #newRequest
+]
+
 { #category : #example }
 SpRequestDialog class >> example [
 
@@ -53,37 +59,37 @@ SpRequestDialog class >> exampleModal [
 		self inform: dialog presenter text ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpRequestDialog >> acceptLabel [
 
 	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpRequestDialog >> acceptLabel: aString [
 
 	acceptLabel := aString
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpRequestDialog >> cancelLabel [
 
 	^ cancelLabel ifNil: [ self class defaultCancelLabel ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpRequestDialog >> cancelLabel: aString [
 
 	cancelLabel := aString
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpRequestDialog >> extent [
 
 	^ initialExtent ifNil: [ self class defaultExtent ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpRequestDialog >> extent: aPoint [
 
 	initialExtent := aPoint
@@ -121,13 +127,13 @@ SpRequestDialog >> initializeWindow: aWindowPresenter [
 		whenOpenedDo: [ textInput takeKeyboardFocus ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpRequestDialog >> label: aString [
 
 	label label: aString
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 SpRequestDialog >> openDialogWithSpec [
 	| dialog |
 	
@@ -137,25 +143,25 @@ SpRequestDialog >> openDialogWithSpec [
 		ifFalse: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpRequestDialog >> text [ 
 	
 	^ textInput text trimmed
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpRequestDialog >> text: aString [
 
 	textInput text: aString
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpRequestDialog >> title [
 
 	^ title
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpRequestDialog >> title: aString [
 
 	title := aString

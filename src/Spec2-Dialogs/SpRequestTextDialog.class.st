@@ -1,3 +1,6 @@
+"
+A dialog to request multiple lines of text to users.
+"
 Class {
 	#name : #SpRequestTextDialog,
 	#superclass : #SpRequestDialog,
@@ -19,6 +22,12 @@ SpRequestTextDialog class >> defaultSpec [
 		add: #label expand: false;
 		add: #textInput;
 		yourself
+]
+
+{ #category : #documentation }
+SpRequestTextDialog class >> documentFactoryMethodSelector [
+	
+	^ #newRequestText
 ]
 
 { #category : #initialization }

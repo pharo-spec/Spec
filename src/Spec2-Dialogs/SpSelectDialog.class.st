@@ -1,3 +1,6 @@
+"
+A dialog that allow the users to select from a list of `items`
+"
 Class {
 	#name : #SpSelectDialog,
 	#superclass : #SpDialogPresenter,
@@ -29,6 +32,12 @@ SpSelectDialog class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #documentation }
+SpSelectDialog class >> documentFactoryMethodSelector [
+	
+	^ #newSelect
+]
+
 { #category : #example }
 SpSelectDialog class >> example [
 
@@ -56,49 +65,49 @@ SpSelectDialog class >> exampleModal [
 		ifTrue: [ self inform: dialog presenter selectedItem asString ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpSelectDialog >> acceptLabel [
 
 	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpSelectDialog >> acceptLabel: aString [
 
 	acceptLabel := aString
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpSelectDialog >> cancelLabel [
 
 	^ cancelLabel ifNil: [ self class defaultCancelLabel ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpSelectDialog >> cancelLabel: aString [
 
 	cancelLabel := aString
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpSelectDialog >> display: aBlock [
 
 	list display: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpSelectDialog >> displayIcon: aBlock [
 
 	list displayIcon: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpSelectDialog >> extent [
 
 	^ initialExtent ifNil: [ self class defaultExtent ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpSelectDialog >> extent: aPoint [
 
 	initialExtent := aPoint
@@ -139,25 +148,25 @@ SpSelectDialog >> initializeWindow: aWindowPresenter [
 		whenOpenedDo: [ list takeKeyboardFocus ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpSelectDialog >> items [
 
 	^ list items
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpSelectDialog >> items: aCollection [
 
 	list items: aCollection
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpSelectDialog >> label: aString [
 
 	label label: aString
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 SpSelectDialog >> openDialogWithSpec [
 	| dialog |
 	
@@ -167,19 +176,19 @@ SpSelectDialog >> openDialogWithSpec [
 		ifFalse: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpSelectDialog >> selectedItem [
 
 	^ list selectedItem
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpSelectDialog >> title [
 
 	^ title
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpSelectDialog >> title: aString [
 
 	title := aString

@@ -49,6 +49,12 @@ SpConfirmDialog class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #documentation }
+SpConfirmDialog class >> documentFactoryMethodSelector [
+	
+	^ #newConfirm
+]
+
 { #category : #example }
 SpConfirmDialog class >> example [
 
@@ -72,37 +78,37 @@ SpConfirmDialog class >> exampleModal [
 		ifFalse: [ 'No!' ])
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpConfirmDialog >> acceptLabel [
 
 	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpConfirmDialog >> acceptLabel: aString [
 
 	acceptLabel := aString
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpConfirmDialog >> cancelLabel [
 
 	^ cancelLabel ifNil: [ self class defaultCancelLabel ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpConfirmDialog >> cancelLabel: aString [
 
 	cancelLabel := aString
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpConfirmDialog >> extent [
 
 	^ initialExtent ifNil: [ self class defaultExtent ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpConfirmDialog >> extent: aPoint [
 
 	initialExtent := aPoint
@@ -141,13 +147,13 @@ SpConfirmDialog >> initializeWindow: aWindowPresenter [
 		initialExtent: self extent
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpConfirmDialog >> label: aString [
 
 	label label: aString
 ]
 
-{ #category : #api }
+{ #category : #'api-showing' }
 SpConfirmDialog >> openDialogWithSpec [
 	| dialog |
 	
@@ -155,13 +161,13 @@ SpConfirmDialog >> openDialogWithSpec [
 	^ dialog isOk
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpConfirmDialog >> title [
 
 	^ title
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpConfirmDialog >> title: aString [
 
 	title := aString

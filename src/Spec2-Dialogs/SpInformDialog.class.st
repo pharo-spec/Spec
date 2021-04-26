@@ -1,3 +1,6 @@
+"
+A dialog to present some simple information to users.
+"
 Class {
 	#name : #SpInformDialog,
 	#superclass : #SpDialogPresenter,
@@ -38,6 +41,12 @@ SpInformDialog class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #documentation }
+SpInformDialog class >> documentFactoryMethodSelector [
+	
+	^ #newInform
+]
+
 { #category : #example }
 SpInformDialog class >> example [
 
@@ -54,25 +63,25 @@ SpInformDialog class >> exampleModal [
 		openModalWithSpec
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpInformDialog >> acceptLabel [
 
 	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpInformDialog >> acceptLabel: aString [
 
 	acceptLabel := aString
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpInformDialog >> extent [
 
 	^ initialExtent ifNil: [ self class defaultExtent ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpInformDialog >> extent: aPoint [
 
 	initialExtent := aPoint
@@ -110,19 +119,19 @@ SpInformDialog >> initializeWindow: aWindowPresenter [
 		initialExtent: self extent
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpInformDialog >> label: aString [
 
 	label label: aString
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpInformDialog >> title [
 
 	^ title
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpInformDialog >> title: aString [
 
 	title := aString
