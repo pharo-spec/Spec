@@ -42,7 +42,6 @@ SpDemo class >> open [
 	<example>
 	
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
 		openWithSpec
 ]
 
