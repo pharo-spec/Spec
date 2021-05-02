@@ -9,8 +9,7 @@ Class {
 		'image',
 		'title',
 		'initialExtent',
-		'acceptLabel',
-		'cancelLabel'
+		'acceptLabel'
 	],
 	#category : #'Spec2-Dialogs'
 }
