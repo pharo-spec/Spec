@@ -23,7 +23,7 @@ SpListPresenter class >> exampleDragAndDrop [
 		acceptDrop: [ :transfer | list2 items: (list2 items, transfer passenger) ].
 				
 	SpPresenter new 
-		layout: (SpBoxLayout newHorizontal
+		layout: (SpBoxLayout newLeftToRight
 			add: list1;
 			add: list2;
 			yourself);

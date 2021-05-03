@@ -29,10 +29,10 @@ SpInformDialog class >> defaultExtent [
 { #category : #specs }
 SpInformDialog class >> defaultSpec [
 
-	^ SpBoxLayout newVertical
+	^ SpBoxLayout newTopToBottom
 		borderWidth: 5;
 		spacing: 5;
-		add: (SpBoxLayout newHorizontal
+		add: (SpBoxLayout newLeftToRight
 			spacing: 5;
 			add: #image expand: false;
 			add: #label;

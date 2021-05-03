@@ -24,7 +24,7 @@ SpRequestDialog class >> defaultExtent [
 { #category : #specs }
 SpRequestDialog class >> defaultSpec [
 
-	^ SpBoxLayout newVertical
+	^ SpBoxLayout newTopToBottom
 		borderWidth: 5;
 		spacing: 5;
 		add: #label expand: false;
