@@ -57,6 +57,22 @@ SpAbstractTextPresenterTest >> testContextMenu [
 ]
 
 { #category : #tests }
+SpAbstractTextPresenterTest >> testCursorPositionIndex [
+
+	presenter text: (String loremIpsum: 80).
+	self openInstance. "cursor position does not works if instance is not opened"
+	"If not defined, cursor is at begining"	
+	self assert: presenter cursorPositionIndex equals: 1.
+	"middle"
+	presenter cursorPositionIndex: 20.
+	self assert: presenter cursorPositionIndex equals: 20.
+	"end"
+	presenter cursorPositionIndex: 81.
+	self assert: presenter cursorPositionIndex equals: 81
+
+]
+
+{ #category : #tests }
 SpAbstractTextPresenterTest >> testPlaceholderIsSet [
 
 	presenter placeholder: 'enter something...'.
