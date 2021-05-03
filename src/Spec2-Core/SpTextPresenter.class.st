@@ -214,6 +214,13 @@ SpTextPresenter >> isWrapWord [
 	^ wrapWord
 ]
 
+{ #category : #api }
+SpTextPresenter >> lineAtCursorPosition [
+
+	self withAdapterDo: [ :anAdapter | ^ anAdapter lineAtCursorPosition ].
+	^ nil
+]
+
 { #category : #initialization }
 SpTextPresenter >> registerEvents [
 

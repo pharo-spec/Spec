@@ -610,19 +610,18 @@ SpCodePresenter >> selectedClassOrMetaClass [
 
 { #category : #'command support' }
 SpCodePresenter >> selectedSelector [
-
 	"If text is selected, extract the selectors from the selected text. If there is no selection, try to extract the selectors under the caret position."
-
 	| extractor selectedText fullSource |
+
 	fullSource := self text.
 	fullSource ifNil: [ ^ nil ].
 	extractor := CNSelectorExtractor new.
 	selectedText := self selectedText.
 	^ selectedText
 		  ifNotEmpty: [ 
-		  extractor extractSelectorFromSelection: selectedText ]
-		  ifEmpty: [ 
-			  extractor
+				extractor extractSelectorFromSelection: selectedText ]
+		  ifEmpty: [
+				extractor
 				  extractSelectorFromSource: fullSource
 				  atPosition: self selectionInterval first ]
 ]
@@ -631,10 +630,7 @@ SpCodePresenter >> selectedSelector [
 SpCodePresenter >> selectedTextOrLine [
 
 	self selectedText ifNotEmpty: [ :aString | ^ aString ].
-	
-	^ self
-		selectLine;
-		selectedText
+	^ self lineAtCursorPosition
 ]
 
 { #category : #private }
