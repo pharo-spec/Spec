@@ -72,7 +72,7 @@ SpNotebookPresenter >> pages: aCollection [
 	 `aCollection` contains instances of `SpNotebookPage`."
 
 	aCollection do: [ :each | each owner: self ].
-	pagesHolder rawValue: aCollection.
+	pagesHolder rawValue: aCollection asOrderedCollection.
 	pagesHolder valueChanged: nil
 ]
 
