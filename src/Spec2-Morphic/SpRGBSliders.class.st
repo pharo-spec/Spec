@@ -10,71 +10,11 @@ I provide the methods color that calculate the Color obtains with the current va
 "
 Class {
 	#name : #SpRGBSliders,
-	#superclass : #SpPresenter,
-	#instVars : [
-		'redSlider',
-		'greenSlider',
-		'blueSlider'
-	],
+	#superclass : #SpRGBSlidersPresenter,
 	#category : #'Spec2-Morphic-Widgets'
 }
 
-{ #category : #specs }
-SpRGBSliders class >> defaultSpec [
-	^ SpBoxLayout newTopToBottom
-		add: #redSlider;
-		add: #greenSlider;
-		add: #blueSlider;
-		yourself
-]
-
-{ #category : #accessing }
-SpRGBSliders >> blueSlider [
-	^ blueSlider
-]
-
-{ #category : #accessing }
-SpRGBSliders >> color [
-	^ (Color
-				r: redSlider value
-				g: greenSlider value
-				b: blueSlider value
-				range: 255)
-]
-
-{ #category : #accessing }
-SpRGBSliders >> greenSlider [
-	^ greenSlider
-]
-
-{ #category : #initialization }
-SpRGBSliders >> initializePresenters [
-	redSlider := self instantiate: SpSliderInput.
-	greenSlider := self instantiate: SpSliderInput.
-	blueSlider := self instantiate: SpSliderInput.
-	redSlider
-		min: 0;
-		max: 255; label: 'Red' translated.
-	greenSlider
-		min: 0;
-		max: 255; label: 'Green' translated.
-	blueSlider
-		min: 0;
-		max: 255; label: 'Blue' translated.
-	self focusOrder
-		add: redSlider;
-		add: greenSlider;
-		add: blueSlider
-]
-
-{ #category : #accessing }
-SpRGBSliders >> redSlider [
-	^ redSlider
-]
-
-{ #category : #initialization }
-SpRGBSliders >> whenChangedDo: aBlock [
-	redSlider whenValueChangedDo: aBlock.
-	greenSlider whenValueChangedDo: aBlock.
-	blueSlider whenValueChangedDo: aBlock
+{ #category : #testing }
+SpRGBSliders class >> isDeprecated [ 
+	^ true
 ]
