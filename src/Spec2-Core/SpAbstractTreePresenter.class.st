@@ -175,6 +175,15 @@ SpAbstractTreePresenter >> initialize [
 	self initializeTHaveWrappingScrollBars
 ]
 
+{ #category : #testing }
+SpAbstractTreePresenter >> isExpanded: aPath [ 
+
+	self withAdapterDo: [ :anAdapter |  
+		^ anAdapter isExpanded: (anAdapter itemAtPath: aPath) ].
+
+	^ false
+]
+
 { #category : #private }
 SpAbstractTreePresenter >> itemAt: index of: anArray then: path [
 	"dives into elements of tree to find the one that corresponds to path"

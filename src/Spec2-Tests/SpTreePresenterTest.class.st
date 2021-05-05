@@ -85,6 +85,23 @@ SpTreePresenterTest >> testContextMenu [
 ]
 
 { #category : #tests }
+SpTreePresenterTest >> testExpandAtPathExpandsTheNode [
+
+	self openInstance.
+	
+	self deny: (presenter isExpanded: #(1)). 
+	self deny: (presenter isExpanded: #(1 2)). 
+	self deny: (presenter isExpanded: #(1 2 1)). 
+
+	presenter expandPath: #(1 2 1).
+
+	self assert: (presenter isExpanded: #(1)). 
+	self assert: (presenter isExpanded: #(1 2)). 
+	self assert: (presenter isExpanded: #(1 2 1)). 
+
+]
+
+{ #category : #tests }
 SpTreePresenterTest >> testUnselectAll [
 
 	presenter beMultipleSelection.
