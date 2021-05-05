@@ -1,17 +1,10 @@
 Class {
 	#name : #SpLayoutDirectionHorizontal,
-	#superclass : #SpLayoutDirection,
+	#superclass : #SpHorizontalLayoutDirection,
 	#category : #'Spec2-Layout-Base'
 }
 
 { #category : #testing }
-SpLayoutDirectionHorizontal >> isHorizontal [
-
+SpLayoutDirectionHorizontal class >> isDeprecated [ 
 	^ true
-]
-
-{ #category : #factory }
-SpLayoutDirectionHorizontal >> newWidgetOn: anAdapter [
-
-	^ anAdapter newHorizontal
 ]
