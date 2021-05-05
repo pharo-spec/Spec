@@ -3,7 +3,7 @@ A variable to access environment colors (defined in `UITheme` and subclasses)
 "
 Class {
 	#name : #SpStyleVariableEnvironmentColor,
-	#superclass : #SpStyleVariableEnvironment,
+	#superclass : #SpStyleEnvironmentVariable,
 	#category : #'Spec2-Adapters-Morphic-StyleSheet'
 }
 

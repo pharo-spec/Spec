@@ -4,7 +4,7 @@ This variable must be used to assign the attribute `name` of a `SpStyleFont` pro
 "
 Class {
 	#name : #SpStyleVariableEnvironmentFont,
-	#superclass : #SpStyleVariableEnvironment,
+	#superclass : #SpStyleEnvironmentVariable,
 	#category : #'Spec2-Adapters-Morphic-StyleSheet'
 }
 
