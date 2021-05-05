@@ -13,6 +13,12 @@ SpLayoutTest class >> isAbstract [
 	^ self == SpLayoutTest
 ]
 
+{ #category : #testing }
+SpLayoutTest class >> shouldInheritSelectors [
+
+	^ true
+]
+
 { #category : #running }
 SpLayoutTest >> classToTest [
 

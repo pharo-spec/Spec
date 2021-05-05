@@ -46,6 +46,154 @@ SpCodePresenterTest >> testContextMenu [
 	self assert: changed
 ]
 
+{ #category : #'tests commands' }
+SpCodePresenterTest >> testDoBrowseClass [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	self openInstance.
+	
+	presenter text: 'SpCodePresenterTest'.
+	"Selection"
+	presenter selectionInterval: (1 to: 19).
+	presenter doBrowseClass.
+	
+	self assert: navigation browseClass equals: SpCodePresenterTest.
+	
+	navigation reset.
+	"Line"
+	presenter cursorPositionIndex: 1.
+	presenter selectionInterval: (1 to: 0).
+	presenter doBrowseClass.
+	self assert: navigation browseClass equals: SpCodePresenterTest.
+	
+	"Middle of line"
+	presenter cursorPositionIndex: 5.
+	presenter selectionInterval: (5 to: 4).
+	presenter doBrowseClass.
+	self assert: navigation browseClass equals: SpCodePresenterTest.
+
+	"End of line"
+	presenter cursorPositionIndex: 14.
+	presenter selectionInterval: (14 to: 13).
+	presenter doBrowseClass.
+	self assert: navigation browseClass equals: SpCodePresenterTest.
+]
+
+{ #category : #'tests commands' }
+SpCodePresenterTest >> testDoBrowseClassNotFound [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	self openInstance.
+	
+	presenter text: 'ClassThatDoesNotExits'.
+	presenter cursorPositionIndex: 1.
+	presenter doBrowseClass
+]
+
+{ #category : #'tests commands' }
+SpCodePresenterTest >> testDoBrowseClassReferences [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	self openInstance.
+	
+	presenter text: 'SpCodePresenterTest'.
+	"Selection"
+	presenter selectionInterval: (1 to: 19).
+	presenter doBrowseClassReferences.
+	
+	self assert: navigation messageList notNil.
+	self assert: navigation messageList notEmpty
+]
+
+{ #category : #'tests commands' }
+SpCodePresenterTest >> testDoBrowseHierarchy [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	self openInstance.
+	
+	presenter text: 'SpCodePresenterTest'.
+	"Selection"
+	presenter selectionInterval: (1 to: 19).
+	presenter doBrowseHierarchy.
+	
+	self assert: navigation browseClass equals: SpCodePresenterTest
+]
+
+{ #category : #'tests commands' }
+SpCodePresenterTest >> testDoBrowseImplementors [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	self openInstance.
+	
+	presenter text: 'testDoBrowseImplementors'.
+	presenter doBrowseImplementors.
+	
+	self 
+		assert: navigation messageList asArray
+		equals: { SpCodePresenterTest>>#testDoBrowseImplementors }
+]
+
+{ #category : #'tests commands' }
+SpCodePresenterTest >> testDoBrowseMethodReferences [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	self openInstance.
+	
+	presenter text: 'testDoBrowseMethodReferencesX'.
+	presenter doBrowseMethodReferences.
+	
+	self assert: navigation messageList isEmpty.
+	
+	navigation reset.
+	presenter text: 'doBrowseMethodReferences'.
+	presenter doBrowseMethodReferences.
+	
+	self assert: navigation messageList notEmpty.
+	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseMethodReferences)
+]
+
+{ #category : #'tests commands' }
+SpCodePresenterTest >> testDoBrowseMethodsContainingString [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	self openInstance.
+	
+	presenter text: 'testDoBrowseMethodsContainingString'.
+	presenter doBrowseMethodsContainingString.
+	
+	self assert: navigation messageList notEmpty.
+	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseMethodsContainingString)
+]
+
+{ #category : #'tests commands' }
+SpCodePresenterTest >> testDoBrowseSenders [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	self openInstance.
+	
+	presenter text: 'doBrowseSenders'.
+	presenter doBrowseSenders.
+	
+	self assert: navigation messageList notEmpty.
+	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseSenders)
+]
+
 { #category : #tests }
 SpCodePresenterTest >> testEvaluateOnCompileErrorOnError [
 

@@ -13,7 +13,8 @@ Class {
 		'#overrideContextMenu',
 		'#submitBlock',
 		'#resetBlock',
-		'#environment'
+		'#environment',
+		'#systemNavigation'
 	],
 	#category : #'Spec2-Code'
 }
@@ -641,9 +642,15 @@ SpCodePresenter >> syntaxHighlight: aBoolean [
 { #category : #'command support' }
 SpCodePresenter >> systemNavigation [
 
-	^ super systemNavigation
+	^ (systemNavigation ifNil: [ super systemNavigation ])
 		environment: self environment;
 		yourself
+]
+
+{ #category : #'command support' }
+SpCodePresenter >> systemNavigation: aSystemNavigation [
+
+	systemNavigation := aSystemNavigation
 ]
 
 { #category : #'api-events' }
