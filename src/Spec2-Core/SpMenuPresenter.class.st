@@ -199,6 +199,8 @@ SpMenuPresenter >> neglect: aModel [
 
 { #category : #api }
 SpMenuPresenter >> openWithSpecAt: aPosition [
+	"Open this menu at `aPosition`. 
+	 `aPosition` os a instance of `Point`"
 
 	self buildWithSpecAsPopup.
 	self withAdapterDo: [ :anAdapter | anAdapter openAt: aPosition ]
@@ -206,6 +208,7 @@ SpMenuPresenter >> openWithSpecAt: aPosition [
 
 { #category : #api }
 SpMenuPresenter >> openWithSpecAtPointer [
+	"Open this menu at cursor position"
 
 	self buildWithSpecAsPopup.
 	self withAdapterDo: [ :anAdapter | anAdapter openAtPointer ]
