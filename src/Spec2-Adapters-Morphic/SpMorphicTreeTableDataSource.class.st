@@ -49,8 +49,8 @@ SpMorphicTreeTableDataSource >> cellColumn: column row: rowIndex [
 	
 	item := self elementAt: rowIndex.
 	cell := FTIndentedCellMorph new.
-	cell indentBy: (self cellIndentFor: item).
 	(self isFirstColumn: column) ifTrue: [
+		cell indentBy: (self cellIndentFor: item).
 		cell addMorphBack: (self buttonFor: item) ].
 
 	builder := SpMorphicTreeTableCellBuilder on: self.
@@ -66,6 +66,14 @@ SpMorphicTreeTableDataSource >> cellColumn: column row: rowIndex [
 SpMorphicTreeTableDataSource >> cellIndentFor: item [ 
 
 	^ item depth * 16
+]
+
+{ #category : #private }
+SpMorphicTreeTableDataSource >> collapsePath: aPath [
+
+	(self itemAtPath: aPath) ifNotNil:[ :aNode | 
+		aNode collapseAll.
+		self tableRefresh ]
 ]
 
 { #category : #accessing }

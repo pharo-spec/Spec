@@ -149,6 +149,16 @@ SpTreeTablePresenter >> lazilyComputeChildren: aBoolean [
 	lazilyComputeChildren := aBoolean
 ]
 
+{ #category : #api }
+SpTreeTablePresenter >> selectionMode [
+	"Answer the selection object (an instance of `SpSingleSelectionMode` or `SpMultipleSelectionMode`).
+	 This is not the item selected, but the selection container (it may contain one or many selected 
+	 items).
+	 This is the same as `SpAbstractListPresenter>>#selection`"
+
+	^ selectionMode
+]
+
 { #category : #private }
 SpTreeTablePresenter >> shouldLazilyComputeChildren [
 	^ lazilyComputeChildren

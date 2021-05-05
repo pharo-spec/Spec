@@ -35,6 +35,19 @@ SpNotebookPresenterTest >> testPageAt [
 ]
 
 { #category : #tests }
+SpNotebookPresenterTest >> testRemoveAfterSettingPagesWithAnArray [
+	| page |
+	
+	page := SpNotebookPage title: 'test' provider: [ SpButtonPresenter new ].
+	presenter pages: { 
+	 	self mockPage.
+		page } .
+	self assert: presenter pages size equals: 2.
+	presenter removePageAt: 1.
+	self assertCollection: presenter pages hasSameElements: {page}
+]
+
+{ #category : #tests }
 SpNotebookPresenterTest >> testRemovePage [
 	| page |
 	presenter addPage: self mockPage.

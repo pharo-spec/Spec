@@ -1,19 +1,19 @@
 "
-! Spec Applications
+# Spec Applications
 
 A SpApplication is a class that handles many aspects of a Spec Application (hence it's name) in a convenient fashion. 
 SpApplication handles your application initialisation, configuration and resources. It also keeps the windows you have currently opened. 
 
-!! Initialisation
+## Initialisation
 Initialisation of an application includes (non mandatory): configure the backend you want to use, add useful resources and define a start method that will call your initial window.
 
-!!! Configure backend
+### Configure backend
 Spec2 includes several backends (for the moment, Morphic and Gtk). A SpApplication configures a Morphic backend by default, but you can change it using ==#useBackend:== or ==#useBackend:with:== and sending the backend identifier and optionally a configuration (you may want to do specific backend things to configure your application behavior).
 
 @NOTE: Is very important that after you initiate your application, you ==run== it.
 
 See this example: 
-[[[language=Smalltalk
+```
 ""This example shows how to change the backend of an application"" 
 | app |
 
@@ -21,23 +21,25 @@ See this example:
 app := SpApplication new.
 app useBackend: #Gtk.
 app run
-]]]
+```
 
-see also: *class:SpApplicationConfiguration*
+see also: `SpApplicationConfiguration`
 
-!!! Add resources
+### Add resources
 During initialisation, you may want to add special resources (like icons, themes, etc.).
 While you can add your own way to access resources, SpApplication provides a property registration mechanism (a simple Dictionary and accessors), you may find useful to search at ==accessing properties== protocol.
 
-!!! Defining a start method.
+### Defining a start method.
 This is useful to give your application a starting window (in general, this is what you want).
 
 Example: 
-[[[language=Smalltalk
+```
 MyApplication>>start
 
    (self new: MyMainPresenter) openWithSpec
-]]]
+```
+
+
 "
 Class {
 	#name : #SpApplication,

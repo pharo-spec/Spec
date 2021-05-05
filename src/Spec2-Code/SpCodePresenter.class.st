@@ -610,18 +610,27 @@ SpCodePresenter >> selectedClassOrMetaClass [
 
 { #category : #'command support' }
 SpCodePresenter >> selectedSelector [
-	
-    ^ CNSelectorExtractor new extractSelectorFromSelection: self selectedTextOrLine
+	"If text is selected, extract the selectors from the selected text. If there is no selection, try to extract the selectors under the caret position."
+	| extractor selectedText fullSource |
+
+	fullSource := self text.
+	fullSource ifNil: [ ^ nil ].
+	extractor := CNSelectorExtractor new.
+	selectedText := self selectedText.
+	^ selectedText
+		  ifNotEmpty: [ 
+				extractor extractSelectorFromSelection: selectedText ]
+		  ifEmpty: [
+				extractor
+				  extractSelectorFromSource: fullSource
+				  atPosition: self selectionInterval first ]
 ]
 
 { #category : #api }
 SpCodePresenter >> selectedTextOrLine [
 
 	self selectedText ifNotEmpty: [ :aString | ^ aString ].
-	
-	^ self
-		selectLine;
-		selectedText
+	^ self lineAtCursorPosition
 ]
 
 { #category : #private }
@@ -696,6 +705,9 @@ SpCodePresenter >> whenResetDo: aBlock [
 
 { #category : #'api-events' }
 SpCodePresenter >> whenSubmitDo: aBlock [
+	"This method will add a 'submit' event to the widget. It will react when user 
+	 presses <meta+s> key (this is for historical reasons) and with enter (cr).
+	 `aBlock` receives one argument (the submited text)"
 
 	submitBlock := aBlock.
 	super whenSubmitDo: aBlock

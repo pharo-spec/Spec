@@ -8,8 +8,6 @@ SpTextPresenter class >> example [
 			'This is a test.
 If this had been an actual emergency...';
 		openWithSpec
-
-
 ]
 
 { #category : #'*Spec2-Examples' }
