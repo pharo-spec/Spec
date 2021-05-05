@@ -8,28 +8,11 @@ This variable has to be used when user want to override the value of a parent pr
 "
 Class {
 	#name : #SpStyleVariableReset,
-	#superclass : #SpStyleAbstractVariable,
+	#superclass : #SpStyleResetVariable,
 	#category : #'Spec2-Adapters-Morphic-StyleSheet'
 }
 
-{ #category : #'ston-core' }
-SpStyleVariableReset class >> stonName [
-
-	^ 'Reset'
-]
-
-{ #category : #'instance creation' }
-SpStyleVariableReset >> fromSton: stonReader [
-]
-
-{ #category : #evaluating }
-SpStyleVariableReset >> preferredValueWith: anObject [
-
-	^ nil
-]
-
-{ #category : #evaluating }
-SpStyleVariableReset >> value [
-
-	^ nil
+{ #category : #testing }
+SpStyleVariableReset class >> isDeprecated [ 
+	^ true
 ]
