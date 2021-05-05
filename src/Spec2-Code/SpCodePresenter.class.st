@@ -623,7 +623,7 @@ SpCodePresenter >> selectedSelector [
 		  ifEmpty: [
 				extractor
 				  extractSelectorFromSource: fullSource
-				  atPosition: self selectionInterval first ]
+				  atPosition: (self cursorPositionIndex ifNil: [ 1 ]) ]
 ]
 
 { #category : #api }

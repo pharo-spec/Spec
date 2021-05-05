@@ -76,6 +76,22 @@ SpAbstractListPresenterTest >> testActivationOnSingleClickShouldNotActivateOnCli
 	self assert: activatedItem equals: nil
 ]
 
+{ #category : #tests }
+SpAbstractListPresenterTest >> testActivationWithTransformation [
+	| activatedItem |
+
+	activatedItem := nil.
+	presenter
+		activateOnSingleClick;
+		whenActivatedDo: (SpActivationTransform
+			activateDo: [ :selection | activatedItem := selection selectedItem ]
+			transform: [ :selection | selection selectedItem * 10 ]).
+	
+	presenter clickAtIndex: 1.
+	
+	self assert: activatedItem equals: 100
+]
+
 { #category : #'tests-activation' }
 SpAbstractListPresenterTest >> testActivationWithoutActivationBlockDoesNothing [
 

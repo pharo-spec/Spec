@@ -38,6 +38,22 @@ SpComponentListPresenterTest >> testActivationOnSingleClickShouldActivateOnClick
 ]
 
 { #category : #tests }
+SpComponentListPresenterTest >> testActivationWithTransformation [
+	| activatedItem |
+
+	activatedItem := nil.
+	presenter
+		activateOnSingleClick;
+		whenActivatedDo: (SpActivationTransform
+			activateDo: [ :selection | activatedItem := selection selectedItem ]
+			transform: [ :selection | selection selectedItem label asInteger * 10 ]).
+	
+	presenter clickAtIndex: 1.
+	
+	self assert: activatedItem equals: 100
+]
+
+{ #category : #tests }
 SpComponentListPresenterTest >> testAddNoPresenterToComponentListDoesNotRaiseEvent [
 	| raised |
 	

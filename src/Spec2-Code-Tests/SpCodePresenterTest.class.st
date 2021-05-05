@@ -1,7 +1,7 @@
 Class {
 	#name : #SpCodePresenterTest,
 	#superclass : #SpTextPresenterTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#category : #'Spec2-Code-Tests'
 }
 
 { #category : #running }
@@ -113,6 +113,41 @@ SpCodePresenterTest >> testSelectedSelector [
 	selector := presenter text: 'anObjectdo : 2'.
 	selector := presenter selectedSelector.
 	self assert: selector equals: #noMethod
+]
+
+{ #category : #tests }
+SpCodePresenterTest >> testSelectedSelectorWithPointerAtEnd [
+	"Testing border cases to avoid breaking execution. The selector extraction logic should be tested in the extractor class"
+	| selector string |
+
+	self openInstance.
+
+	"end of text with several posibilities"
+	string := 'Smalltalk allClassesAndTraits reject: #hasComment'.
+	presenter text: string.
+	"move cursor to end"
+	presenter cursorPositionIndex: string size + 1.
+	"ensure there is no selection"
+	presenter clearSelection.
+	"for some reason, clear selection also moved the pointer back to first position. 
+	 IMO trhat should not happen, but seems to be a rubric problem. I hacke the selection by 
+	 respecting the position wiyh next line."
+	presenter selectionInterval: ((string size + 1) to: string size).
+	selector := presenter selectedSelector.
+	self assert: selector equals: #hasComment.
+
+	"end of text with several lines"	
+	string := '42 factorial.
+Smalltalk allClassesAndTraits reject: #hasComment'.
+	presenter text: string.
+	"move cursor to end"
+	presenter cursorPositionIndex: string size + 1.
+	"ensure there is no selection"
+	"ensure there is no selection"
+	presenter clearSelection.
+	presenter selectionInterval: ((string size + 1) to: string size).
+	selector := presenter selectedSelector.
+	self assert: selector equals: #hasComment
 ]
 
 { #category : #tests }
