@@ -397,6 +397,7 @@ SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: 
 			context: self interactionModel doItContext;
 			receiver: self interactionModel doItReceiver;
 			requestor: self interactionModel;
+			environment: self environment;
 			failBlock:  [ ^ compileErrorBlock value ];
 			evaluate ]
 	on: Error 

@@ -89,6 +89,25 @@ SpAbstractTextPresenterTest >> testSelectAll [
 ]
 
 { #category : #tests }
+SpAbstractTextPresenterTest >> testWhenResetDo [
+	| reseted |
+
+	reseted := false.
+	presenter whenResetDo: [ :aString | reseted := true ].
+	
+	self openInstance.
+	
+	self textInputAdapter
+		keyDown: $l 
+		shift: false
+		meta: true 
+		control: false 
+		option: false.
+		
+	self assert: reseted
+]
+
+{ #category : #tests }
 SpAbstractTextPresenterTest >> testWhenSubmitDo [
 	| submitted |
 

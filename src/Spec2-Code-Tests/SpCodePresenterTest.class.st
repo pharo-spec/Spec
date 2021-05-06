@@ -172,6 +172,10 @@ SpCodePresenterTest >> testDoBrowseMethodsContainingString [
 	presenter systemNavigation: navigation.
 	self openInstance.
 	
+	"Restrict environment to make things faster"
+	presenter environment: (SystemDictionary new 
+		at: #SpCodePresenterTest put: SpCodePresenterTest;
+		yourself).
 	presenter text: 'testDoBrowseMethodsContainingString'.
 	presenter doBrowseMethodsContainingString.
 	
@@ -194,7 +198,7 @@ SpCodePresenterTest >> testDoBrowseSenders [
 	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseSenders)
 ]
 
-{ #category : #tests }
+{ #category : #'tests command support' }
 SpCodePresenterTest >> testEvaluateOnCompileErrorOnError [
 
 	self 
@@ -230,7 +234,7 @@ SpCodePresenterTest >> testFindClassFrom [
 		equals: Object
 ]
 
-{ #category : #tests }
+{ #category : #'tests command support' }
 SpCodePresenterTest >> testSelectedSelector [
 
 	"Testing border cases to avoid breaking execution. The selector extraction logic should be tested in the extractor class"
@@ -263,7 +267,7 @@ SpCodePresenterTest >> testSelectedSelector [
 	self assert: selector equals: #noMethod
 ]
 
-{ #category : #tests }
+{ #category : #'tests command support' }
 SpCodePresenterTest >> testSelectedSelectorWithPointerAtEnd [
 	"Testing border cases to avoid breaking execution. The selector extraction logic should be tested in the extractor class"
 	| selector string |
