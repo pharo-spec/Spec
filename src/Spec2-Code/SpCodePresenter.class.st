@@ -198,7 +198,8 @@ SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonG
 	| variableOrClassName env |
 
 	variableOrClassName := self selectedSelector.
-
+	variableOrClassName ifNil: [ ^ nil ].
+	
 	env := self environment.
 	
 	self flag: #bug.
@@ -308,11 +309,14 @@ SpCodePresenter >> doBrowseHierarchy [
 
 { #category : #commands }
 SpCodePresenter >> doBrowseImplementors [
+	| result |
 	
-	self
+	result := self
 		browseSelectedSelectorIfGlobal: [ :global | global browse ]
-		ifNotGlobal:  [ :selector |
+		ifNotGlobal:  [ :selector | 
 			self systemNavigation browseAllImplementorsOf: selector ].
+	result ifNil: [ 
+		self application inform: 'No selectors found.' ]
 ]
 
 { #category : #commands }
@@ -331,12 +335,15 @@ SpCodePresenter >> doBrowseMethodsContainingString [
 
 { #category : #commands }
 SpCodePresenter >> doBrowseSenders [
+	| result |
 
-	self
+	result := self
 		browseSelectedSelectorIfGlobal: [ :global | 
 			self systemNavigation browseAllSendersOf: global ]
 		ifNotGlobal:  [ :selector |
-			self systemNavigation browseAllReferencesTo: selector ]
+			self systemNavigation browseAllReferencesTo: selector ].
+	result ifNil: [ 
+		self application inform: 'No selectors found.' ]	
 ]
 
 { #category : #'private bindings' }
