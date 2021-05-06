@@ -199,6 +199,37 @@ SpCodePresenterTest >> testDoBrowseSenders [
 ]
 
 { #category : #'tests command support' }
+SpCodePresenterTest >> testEnvironment [
+	| environment navigation |
+	
+	"Since the environment is not actually working, this is hard to test for now"
+	self skip.
+
+	environment := SystemDictionary new.
+	self class withAllSuperclassesDo: [ :each |
+		environment at: each name put: each ].
+	navigation := SpCodeSystemNavigationMock new.
+	
+	presenter environment: environment.
+	presenter systemNavigation: navigation.
+	
+	self openInstance.
+	
+	"we will find Object but not OrderedCollection"
+	presenter text: 'Object'.
+	presenter doBrowseClass.
+	
+	self assert: navigation browseClass equals: Object.
+	
+	navigation reset.
+ 	presenter text: 'OrderedCollection'.
+	presenter doBrowseClass.
+	
+	self assert: navigation browseClass isNil
+
+]
+
+{ #category : #'tests command support' }
 SpCodePresenterTest >> testEvaluateOnCompileErrorOnError [
 
 	self 
