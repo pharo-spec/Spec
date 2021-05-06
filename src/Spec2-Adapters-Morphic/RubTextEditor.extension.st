@@ -1,6 +1,6 @@
 Extension { #name : #RubTextEditor }
 
-{ #category : #'*Spec2-Morphic' }
+{ #category : #'*Spec2-Adapters-Morphic' }
 RubTextEditor >> lineAtCursorPosition [
 	| string lastEnd index lastStart |
 	
