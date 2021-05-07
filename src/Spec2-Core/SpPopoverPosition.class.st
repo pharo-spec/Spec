@@ -14,13 +14,13 @@ Class {
 { #category : #accessing }
 SpPopoverPosition class >> bottom [
 
-	^ SpPopoverPositionBottom uniqueInstance
+	^ SpPopoverBottomPosition uniqueInstance
 ]
 
 { #category : #accessing }
 SpPopoverPosition class >> left [
 
-	^ SpPopoverPositionLeft uniqueInstance
+	^ SpPopoverLeftPosition uniqueInstance
 ]
 
 { #category : #'instance creation' }
@@ -32,13 +32,13 @@ SpPopoverPosition class >> new [
 { #category : #accessing }
 SpPopoverPosition class >> right [
 
-	^ SpPopoverPositionRight uniqueInstance
+	^ SpPopoverRightPosition uniqueInstance
 ]
 
 { #category : #accessing }
 SpPopoverPosition class >> top [
 
-	^ SpPopoverPositionTop uniqueInstance
+	^ SpPopoverTopPosition uniqueInstance
 ]
 
 { #category : #'instance creation' }

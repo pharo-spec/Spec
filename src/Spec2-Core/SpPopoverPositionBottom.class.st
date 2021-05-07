@@ -3,12 +3,12 @@ I define a popover needs to be shown at the bottom of its owner.
 "
 Class {
 	#name : #SpPopoverPositionBottom,
-	#superclass : #SpPopoverPosition,
+	#superclass : #SpPopoverBottomPosition,
 	#category : #'Spec2-Core-Support'
 }
 
-{ #category : #operations }
-SpPopoverPositionBottom >> applyTo: aWidget [
+{ #category : #testing }
+SpPopoverPositionBottom class >> isDeprecated [ 
 
-	aWidget bePositionBottom
+	^ true
 ]
