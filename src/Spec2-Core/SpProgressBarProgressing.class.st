@@ -22,63 +22,11 @@ Internal Representation and Key Implementation Points.
 "
 Class {
 	#name : #SpProgressBarProgressing,
-	#superclass : #SpProgressBarState,
-	#traits : 'SpTObservable',
-	#classTraits : 'SpTObservable classTrait',
-	#instVars : [
-		'#refreshDelay',
-		'#progression',
-		'#currentValue => SpObservableSlot'
-	],
+	#superclass : #SpProgressingProgressBarState,
 	#category : #'Spec2-Core-Utils'
 }
 
-{ #category : #'instance creation' }
-SpProgressBarProgressing class >> progression: aBlock every: aDelay [
-	^ self new
-		progression: aBlock;
-		refreshDelay: aDelay;
-		yourself
-]
-
-{ #category : #accessing }
-SpProgressBarProgressing >> currentValue [
-	^ currentValue
-]
-
-{ #category : #accessing }
-SpProgressBarProgressing >> currentValue: aNumber [
-	currentValue := aNumber
-]
-
-{ #category : #initialization }
-SpProgressBarProgressing >> initialize [
-	self class initializeSlots: self.
-	super initialize.
-	currentValue := 0
-]
-
-{ #category : #accessing }
-SpProgressBarProgressing >> progression [
-	^ progression
-]
-
-{ #category : #accessing }
-SpProgressBarProgressing >> progression: aValuable [
-	progression := aValuable
-]
-
-{ #category : #accessing }
-SpProgressBarProgressing >> refreshDelay [
-	^ refreshDelay
-]
-
-{ #category : #accessing }
-SpProgressBarProgressing >> refreshDelay: aDelay [
-	refreshDelay := aDelay
-]
-
-{ #category : #'api-events' }
-SpProgressBarProgressing >> whenValueChangedDo: aBlock [
-	self property: #currentValue whenChangedDo: aBlock
+{ #category : #testing }
+SpProgressBarProgressing class >> isDeprecated [ 
+	^ true
 ]

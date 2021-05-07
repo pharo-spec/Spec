@@ -29,7 +29,7 @@ SpProgressBarPresenter >> fixedAt: aNumber [
 	"Declare that the progress bar will be fixed at a certain value. 
 	 The value should be the completed ratio between 0 and 1."
 	
-	self state: (SpProgressBarFixed value: aNumber)
+	self state: (SpFixedProgressBarState value: aNumber)
 ]
 
 { #category : #api }
@@ -45,7 +45,7 @@ SpProgressBarPresenter >> indeterminate [
 	"If selected, the progress bar will go back and forth without any clear progression. 
 	 Use it do show a progress bar with indeterminate progression."
 
-	self state: SpProgressBarIndeterminated new
+	self state: SpIndeterminatedProgressBarState new
 ]
 
 { #category : #api }
@@ -62,7 +62,7 @@ SpProgressBarPresenter >> progress: aBlock every: aDelay [
 	 The progression block should return the progression between 0 and 1 and 
 	 the delay will be used to know the delay between two refresh."
 
-	self state: (SpProgressBarProgressing progression: aBlock every: aDelay)
+	self state: (SpProgressingProgressBarState progression: aBlock every: aDelay)
 ]
 
 { #category : #private }

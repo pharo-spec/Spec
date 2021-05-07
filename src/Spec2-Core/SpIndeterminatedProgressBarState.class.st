@@ -10,12 +10,12 @@ Examples
 	ProgressBarIndeterminated new
 "
 Class {
-	#name : #SpProgressBarIndeterminated,
-	#superclass : #SpIndeterminatedProgressBarState,
+	#name : #SpIndeterminatedProgressBarState,
+	#superclass : #SpProgressBarState,
 	#category : #'Spec2-Core-Utils'
 }
 
-{ #category : #testing }
-SpProgressBarIndeterminated class >> isDeprecated [ 
-	^ true
+{ #category : #'api-events' }
+SpIndeterminatedProgressBarState >> whenValueChangedDo: aBlock [
+	"Value cannot change in indeterminate state"
 ]
