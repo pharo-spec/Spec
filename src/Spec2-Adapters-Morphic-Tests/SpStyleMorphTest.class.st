@@ -24,7 +24,7 @@ SpStyleMorphTest >> testTwoClassWithSameName [
 	property := morphStyle mergedProperties anyOne.
 	
 	self assert: morphStyle mergedProperties size equals: 1.
-	self assert: property class equals: SpStyleFont.
+	self assert: property class equals: SpFontStyle.
 	self assert: property name equals: 'Source Sans Pro'.
 	self deny: property isBold.
 
@@ -32,7 +32,7 @@ SpStyleMorphTest >> testTwoClassWithSameName [
 	property := morphStyle mergedProperties anyOne.
 	
 	self assert: morphStyle mergedProperties size equals: 1.
-	self assert: property class equals: SpStyleFont.
+	self assert: property class equals: SpFontStyle.
 	self assert: property name equals: 'Source Sans Pro'.
 	self assert: property isBold
 ]
