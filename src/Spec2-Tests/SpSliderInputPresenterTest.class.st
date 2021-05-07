@@ -1,10 +1,10 @@
 Class {
-	#name : #SpSliderInputTest,
+	#name : #SpSliderInputPresenterTest,
 	#superclass : #SpSmokeTest,
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
 { #category : #running }
-SpSliderInputTest >> classToTest [
-	^ SpSliderInput
+SpSliderInputPresenterTest >> classToTest [
+	^ SpSliderInputPresenter
 ]

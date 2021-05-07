@@ -11,7 +11,7 @@ Note
 - if autoAccept is true, the character '-' could create problems
 "
 Class {
-	#name : #SpSliderInput,
+	#name : #SpSliderInputPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'slider',
@@ -21,12 +21,12 @@ Class {
 }
 
 { #category : #specs }
-SpSliderInput class >> defaultSpec [
+SpSliderInputPresenter class >> defaultSpec [
 	^ self sliderLeft
 ]
 
 { #category : #specs }
-SpSliderInput class >> sliderBottom [
+SpSliderInputPresenter class >> sliderBottom [
 	<spec>
 	^ SpBoxLayout newTopToBottom
 		add: #input withConstraints: [ :constraints | constraints height: self buttonHeight ];
@@ -35,7 +35,7 @@ SpSliderInput class >> sliderBottom [
 ]
 
 { #category : #specs }
-SpSliderInput class >> sliderLeft [
+SpSliderInputPresenter class >> sliderLeft [
 	<spec>
 	^ SpPanedLayout newLeftToRight
 		positionOfSlider: 85 percent;
@@ -45,7 +45,7 @@ SpSliderInput class >> sliderLeft [
 ]
 
 { #category : #specs }
-SpSliderInput class >> sliderRight [
+SpSliderInputPresenter class >> sliderRight [
 	<spec>
 	^ SpPanedLayout newLeftToRight
 		positionOfSlider: 15 percent;
@@ -55,7 +55,7 @@ SpSliderInput class >> sliderRight [
 ]
 
 { #category : #specs }
-SpSliderInput class >> sliderTop [
+SpSliderInputPresenter class >> sliderTop [
 	<spec>
 	^ SpBoxLayout newTopToBottom
 		add: #slider;
@@ -64,7 +64,7 @@ SpSliderInput class >> sliderTop [
 ]
 
 { #category : #initialization }
-SpSliderInput >> connectPresenters [
+SpSliderInputPresenter >> connectPresenters [
 
 	slider whenValueChangedDo: [ :sliderValue | 
 		input text: sliderValue asString ].
@@ -75,7 +75,7 @@ SpSliderInput >> connectPresenters [
 ]
 
 { #category : #initialization }
-SpSliderInput >> initializePresenters [
+SpSliderInputPresenter >> initializePresenters [
 
 	slider := self newSlider.
 	input := self newTextInput
@@ -83,47 +83,47 @@ SpSliderInput >> initializePresenters [
 ]
 
 { #category : #accessing }
-SpSliderInput >> input [
+SpSliderInputPresenter >> input [
 	^ input
 ]
 
 { #category : #accessing }
-SpSliderInput >> label [
+SpSliderInputPresenter >> label [
 	^ slider label
 ]
 
 { #category : #accessing }
-SpSliderInput >> label: aString [
+SpSliderInputPresenter >> label: aString [
 	slider label: aString
 ]
 
 { #category : #accessing }
-SpSliderInput >> max: aNumber [
+SpSliderInputPresenter >> max: aNumber [
 	slider max: aNumber
 ]
 
 { #category : #accessing }
-SpSliderInput >> min: aNumber [
+SpSliderInputPresenter >> min: aNumber [
 	slider min: aNumber.
 	input text: aNumber asString 
 ]
 
 { #category : #accessing }
-SpSliderInput >> slider [
+SpSliderInputPresenter >> slider [
 	^ slider
 ]
 
 { #category : #accessing }
-SpSliderInput >> value [
+SpSliderInputPresenter >> value [
 	^ slider value
 ]
 
 { #category : #accessing }
-SpSliderInput >> value: aNumber [
+SpSliderInputPresenter >> value: aNumber [
 	slider value: aNumber 
 ]
 
 { #category : #'api-events' }
-SpSliderInput >> whenValueChangedDo: aBlock [
+SpSliderInputPresenter >> whenValueChangedDo: aBlock [
 	slider whenValueChangedDo: aBlock
 ]

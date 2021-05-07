@@ -1,7 +1,7 @@
-Extension { #name : #SpSliderInput }
+Extension { #name : #SpSliderInputPresenter }
 
 { #category : #'*Spec2-Examples' }
-SpSliderInput class >> example [
+SpSliderInputPresenter class >> example [
 	<sampleInstance>
 	| example |
 	example := self new
