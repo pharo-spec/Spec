@@ -5,9 +5,6 @@ Class {
 	#name : #SpTestingPresenterWithAdditionalPresenters,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'subpresenter1',
-		'subpresenter2',
-		'subpresenter3',
 		'subpresenter4'
 	],
 	#classInstVars : [
