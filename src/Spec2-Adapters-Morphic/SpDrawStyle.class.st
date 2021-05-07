@@ -21,7 +21,7 @@ Draw {
 "
 Class {
 	#name : #SpDrawStyle,
-	#superclass : #SpStyleProperty,
+	#superclass : #SpPropertyStyle,
 	#instVars : [
 		'color',
 		'backgroundColor'

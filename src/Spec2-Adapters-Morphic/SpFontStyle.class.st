@@ -44,7 +44,7 @@ Font {
 "
 Class {
 	#name : #SpFontStyle,
-	#superclass : #SpStyleProperty,
+	#superclass : #SpPropertyStyle,
 	#instVars : [
 		'predefinedFont',
 		'name',

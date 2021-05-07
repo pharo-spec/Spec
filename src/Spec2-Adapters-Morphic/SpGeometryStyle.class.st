@@ -30,7 +30,7 @@ Geometry {
 "
 Class {
 	#name : #SpGeometryStyle,
-	#superclass : #SpStyleProperty,
+	#superclass : #SpPropertyStyle,
 	#instVars : [
 		'width',
 		'height',

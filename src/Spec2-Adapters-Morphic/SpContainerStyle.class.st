@@ -22,7 +22,7 @@ Container {
 "
 Class {
 	#name : #SpContainerStyle,
-	#superclass : #SpStyleProperty,
+	#superclass : #SpPropertyStyle,
 	#instVars : [
 		'borderWidth',
 		'padding',

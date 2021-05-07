@@ -3,7 +3,7 @@ Text property controls how the ""input text"" fields (*SpTextInputFieldPresenter
 "
 Class {
 	#name : #SpTextStyle,
-	#superclass : #SpStyleProperty,
+	#superclass : #SpPropertyStyle,
 	#instVars : [
 		'drawKeyboardFocus'
 	],
