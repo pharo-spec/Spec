@@ -23,7 +23,7 @@ SpToolbarItemPosition class >> default [
 
 { #category : #accessing }
 SpToolbarItemPosition class >> left [
-	^ SpToolbarItemPositionLeft uniqueInstance
+	^ SpToolbarItemLeftPosition uniqueInstance
 	
 ]
 
@@ -34,7 +34,7 @@ SpToolbarItemPosition class >> new [
 
 { #category : #accessing }
 SpToolbarItemPosition class >> right [
-	^ SpToolbarItemPositionRight uniqueInstance
+	^ SpToolbarItemRightPosition uniqueInstance
 	
 ]
 

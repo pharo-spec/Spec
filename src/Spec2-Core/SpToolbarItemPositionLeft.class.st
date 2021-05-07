@@ -7,11 +7,11 @@ Do not use the class directly, instead use:
 "
 Class {
 	#name : #SpToolbarItemPositionLeft,
-	#superclass : #SpToolbarItemPosition,
+	#superclass : #SpToolbarItemLeftPosition,
 	#category : #'Spec2-Core-Widgets'
 }
 
-{ #category : #accessing }
-SpToolbarItemPositionLeft >> addItem: anObject into: aToolbar [
-	aToolbar addItemLeft: anObject
+{ #category : #testing }
+SpToolbarItemPositionLeft class >> isDeprecated [ 
+	^ true
 ]
