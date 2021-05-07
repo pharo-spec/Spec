@@ -17,17 +17,17 @@ SpToolbarDisplayMode class >> default [
 
 { #category : #accessing }
 SpToolbarDisplayMode class >> modeIcon [
-	^ SpToolbarDisplayModeIcon uniqueInstance
+	^ SpIconToolbarDisplayMode uniqueInstance
 ]
 
 { #category : #accessing }
 SpToolbarDisplayMode class >> modeIconAndLabel [
-	^ SpToolbarDisplayModeIconAndLabel uniqueInstance
+	^ SpIconAndLabelToolbarDisplayMode uniqueInstance
 ]
 
 { #category : #accessing }
 SpToolbarDisplayMode class >> modeLabel [
-	^ SpToolbarDisplayModeLabel uniqueInstance
+	^ SpLabelToolbarDisplayMode uniqueInstance
 ]
 
 { #category : #'instance creation' }
