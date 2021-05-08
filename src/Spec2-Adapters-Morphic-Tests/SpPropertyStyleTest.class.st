@@ -1,11 +1,11 @@
 Class {
-	#name : #SpStylePropertyTest,
+	#name : #SpPropertyStyleTest,
 	#superclass : #TestCase,
 	#category : #'Spec2-Adapters-Morphic-Tests'
 }
 
 { #category : #tests }
-SpStylePropertyTest >> testMergeWith [
+SpPropertyStyleTest >> testMergeWith [
 	| p1 p2 p3 |
 	
 	p1 := SpGeometryStyle new
@@ -24,7 +24,7 @@ SpStylePropertyTest >> testMergeWith [
 ]
 
 { #category : #tests }
-SpStylePropertyTest >> testMergeWithFontDoNotRemovePredefinedFontWhenNoFontIsDefined [
+SpPropertyStyleTest >> testMergeWithFontDoNotRemovePredefinedFontWhenNoFontIsDefined [
 	| p1 p2 p3 |
 	
 	p1 := SpFontStyle new
@@ -42,7 +42,7 @@ SpStylePropertyTest >> testMergeWithFontDoNotRemovePredefinedFontWhenNoFontIsDef
 ]
 
 { #category : #tests }
-SpStylePropertyTest >> testMergeWithFontRemovePredefinedFont [
+SpPropertyStyleTest >> testMergeWithFontRemovePredefinedFont [
 	| p1 p2 p3 |
 	
 	p1 := SpFontStyle new
@@ -60,7 +60,7 @@ SpStylePropertyTest >> testMergeWithFontRemovePredefinedFont [
 ]
 
 { #category : #tests }
-SpStylePropertyTest >> testMergeWithPredefinedFontCanBeDecorated [
+SpPropertyStyleTest >> testMergeWithPredefinedFontCanBeDecorated [
 	| p1 p2 p3 |
 	
 	p1 := SpFontStyle new

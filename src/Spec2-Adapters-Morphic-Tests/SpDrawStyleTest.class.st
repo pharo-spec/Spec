@@ -1,11 +1,11 @@
 Class {
-	#name : #SpStyleDrawTest,
+	#name : #SpDrawStyleTest,
 	#superclass : #TestCase,
 	#category : #'Spec2-Adapters-Morphic-Tests'
 }
 
 { #category : #tests }
-SpStyleDrawTest >> testToColor [
+SpDrawStyleTest >> testToColor [
 	| style |
 	
 	style := SpDrawStyle new.
