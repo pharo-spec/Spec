@@ -2,7 +2,8 @@
 
 Spec is a framework in Pharo for describing user interfaces.
 
-[![Build Status](https://travis-ci.com/pharo-spec/Spec.svg?branch=master)](https://travis-ci.com/pharo-spec/Spec)
+![https://github.com/pharo-containers/Containers-Array2D/workflows/Spec/badge.svg](https://github.com/pharo-containers/Containers-Array2D/workflows/Spec/badge.svg)
+
 
 ## Install Spec
 
