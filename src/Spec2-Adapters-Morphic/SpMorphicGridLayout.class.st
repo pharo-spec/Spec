@@ -44,7 +44,7 @@ SpMorphicGridLayout >> basicLayout: aMorph in: aRect [
 { #category : #private }
 SpMorphicGridLayout >> calculateExtentFor: aMorph constraint: constraint computation: computation [
 	| cellExtent height width |
-	
+
 	cellExtent := computation cellExtentAt: constraint position.
 	width := self calculateWidthFor: aMorph base: cellExtent x.
 	height := self calculateHeightFor: aMorph base: cellExtent y.
@@ -64,9 +64,6 @@ SpMorphicGridLayout >> calculateHeightFor: aMorph base: aNumber [
 { #category : #private }
 SpMorphicGridLayout >> calculateWidthFor: aMorph base: aNumber [
 
-	"self isColumnHomogeneous ifTrue: [ ^ aNumber ].
-	aMorph hResizing = #spaceFill ifTrue: [ ^ aNumber ].
-	^ aMorph width"
 	^ aNumber
 ]
 
@@ -114,13 +111,13 @@ SpMorphicGridLayout >> layout: aGridLayout [
 
 { #category : #layout }
 SpMorphicGridLayout >> layout: aMorph in: aRect [
-	
+
 	calculating ifTrue: [ ^ self ].
 	[
 		calculating := true. 
 		self basicLayout: aMorph in: aRect ]
 	ensure: [
-		calculating := false ].
+		calculating := false ]
 ]
 
 { #category : #private }

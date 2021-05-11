@@ -116,7 +116,7 @@ SpMorphicGridLayoutComputation >> calculateNotHomogeneousColumnWidths [
 		(self isColumnExpandable: column) ifFalse: [ 
 			newColumnWidths 
 				at: column
-				put: ((newColumnWidths at: column) max: ((self styleOf: each) width)) ] ].
+				put: ((newColumnWidths at: column) max: (self widthOf: each))] ].
 		
 	"now I count the zeroes, if there are remaining means we need to assign the remaining 
 	 width (divided between the remaining)"
@@ -146,7 +146,7 @@ SpMorphicGridLayoutComputation >> calculateNotHomogeneousRowHeights [
 		row := (each valueOfProperty: #gridConstraints) row.
 		newRowHeights 
 			at: row 
-			put: ((newRowHeights at: row) max: each height) ].
+			put: ((newRowHeights at: row) max: (self heightOf: each)) ].
 		
 	^ newRowHeights
 ]
@@ -264,6 +264,16 @@ SpMorphicGridLayoutComputation >> extent [
 	^ self columnWidths sum @ self rowHeights sum
 ]
 
+{ #category : #private }
+SpMorphicGridLayoutComputation >> heightOf: aMorph [ 
+	| height |
+
+	height := (self styleOf: aMorph) height.
+	^ height = 0 
+		ifTrue: [ aMorph height ]
+		ifFalse: [ height ]
+]
+
 { #category : #initialization }
 SpMorphicGridLayoutComputation >> initializeLayout: aLayout [
 
@@ -291,13 +301,6 @@ SpMorphicGridLayoutComputation >> isRowExpandable: rowNumber [
 SpMorphicGridLayoutComputation >> layout [
 
 	^ layout
-]
-
-{ #category : #TOREMOVE }
-SpMorphicGridLayoutComputation >> maxWidthOf: aCollection [
-
-	self flag: #REMOVE. "I think noone uses it?"
-	^ (aCollection collect: [ :each | (each valueOfProperty: #style) width ]) max
 ]
 
 { #category : #'private computation' }
@@ -348,4 +351,14 @@ SpMorphicGridLayoutComputation >> styleOf: aMorph [
 	^ aMorph 
 		valueOfProperty: #style
 		ifAbsent: [ SpMorphStyle newStyles: #() ]
+]
+
+{ #category : #private }
+SpMorphicGridLayoutComputation >> widthOf: aMorph [ 
+	| width |
+
+	width := (self styleOf: aMorph) width.
+	^ width = 0 
+		ifTrue: [ aMorph width ]
+		ifFalse: [ width ]
 ]

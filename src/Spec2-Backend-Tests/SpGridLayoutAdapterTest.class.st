@@ -45,6 +45,36 @@ SpGridLayoutAdapterTest >> testAddElementAfterOpenAddsToAdapter [
 ]
 
 { #category : #tests }
+SpGridLayoutAdapterTest >> testBeColumnHomogeneous [
+
+	layout 
+		beColumnHomogeneous;
+		add: 'Test' at: 1@1; 
+		add: 'Other label test' at: 2@1.
+		
+	self openInstance.
+	
+	self 
+		assert: presenter adapter widget submorphs first width 
+		equals: presenter adapter widget submorphs second width
+]
+
+{ #category : #tests }
+SpGridLayoutAdapterTest >> testBeColumnNotHomogeneous [
+
+	layout 
+		beColumnNotHomogeneous;
+		add: 'Test' at: 1@1; 
+		add: 'Other label test' at: 2@1.
+		
+	self openInstance.
+	
+	self 
+		deny: presenter adapter widget submorphs first width 
+		equals: presenter adapter widget submorphs second width
+]
+
+{ #category : #tests }
 SpGridLayoutAdapterTest >> testRemoveElementAddedAfterOpenRemovesFromAdapter [
 
 	| element |
