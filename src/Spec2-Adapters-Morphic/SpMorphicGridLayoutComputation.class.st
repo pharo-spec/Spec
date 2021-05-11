@@ -269,7 +269,7 @@ SpMorphicGridLayoutComputation >> heightOf: aMorph [
 	| height |
 
 	height := (self styleOf: aMorph) height.
-	^ height = 0 
+	^ (height isNil or: [ height = 0 ])
 		ifTrue: [ aMorph height ]
 		ifFalse: [ height ]
 ]
@@ -358,7 +358,7 @@ SpMorphicGridLayoutComputation >> widthOf: aMorph [
 	| width |
 
 	width := (self styleOf: aMorph) width.
-	^ width = 0 
+	^ (width isNil or: [ width = 0 ])
 		ifTrue: [ aMorph width ]
 		ifFalse: [ width ]
 ]
