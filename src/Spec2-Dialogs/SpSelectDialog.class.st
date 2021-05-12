@@ -169,10 +169,10 @@ SpSelectDialog >> label: aString [
 ]
 
 { #category : #'api-showing' }
-SpSelectDialog >> openDialogWithSpec [
+SpSelectDialog >> openModalWithSpec [
 	| dialog |
 	
-	dialog := super openDialogWithSpec.
+	dialog := super openModalWithSpec.
 	^ dialog isOk
 		ifTrue: [ list selectedItem ]
 		ifFalse: [ nil ]

@@ -10,7 +10,8 @@ Class {
 		'title',
 		'initialExtent',
 		'acceptLabel',
-		'cancelLabel'
+		'cancelLabel',
+		'validateBlock'
 	],
 	#category : #'Spec2-Dialogs'
 }
@@ -65,6 +66,13 @@ SpRequestDialog class >> exampleModal [
 		
 	dialog isOk ifTrue: [ 
 		self inform: dialog presenter text ]
+]
+
+{ #category : #visiting }
+SpRequestDialog >> accept [
+
+	self validateAnswer ifFalse: [ ^ self ].
+	super accept
 ]
 
 { #category : #api }
@@ -142,10 +150,10 @@ SpRequestDialog >> label: aString [
 ]
 
 { #category : #'api-showing' }
-SpRequestDialog >> openDialogWithSpec [
+SpRequestDialog >> openModalWithSpec [
 	| dialog |
 	
-	dialog := super openDialogWithSpec.
+	dialog := super openModalWithSpec.
 	^ dialog isOk
 		ifTrue: [ self text trimmed ]
 		ifFalse: [ nil ]
@@ -173,4 +181,19 @@ SpRequestDialog >> title [
 SpRequestDialog >> title: aString [
 
 	title := aString
+]
+
+{ #category : #private }
+SpRequestDialog >> validateAnswer [
+	
+	validateBlock ifNotNil: [ 
+		^ validateBlock value: textInput text].
+	
+	^ true
+]
+
+{ #category : #api }
+SpRequestDialog >> validateAnswer: aBlock [
+
+	validateBlock := aBlock
 ]
