@@ -141,9 +141,26 @@ SpMorphStyle >> maxWidth [
 ]
 
 { #category : #accessing }
+SpMorphStyle >> mergedLookupProperty: aPropertyClass valueOf: aSymbol [
+	"I perform the lookup of a property, for which I need a class and a property name.
+	 I will traverse all collected properties from last to first, to ensure most detailed 
+	 property is answered"
+
+	^ (self mergedPropertiesLike: aPropertyClass) first
+		
+]
+
+{ #category : #accessing }
 SpMorphStyle >> mergedProperties [
 
 	^ mergedProperties ifNil: [ mergedProperties := self calculateMergedProperties ]
+]
+
+{ #category : #private }
+SpMorphStyle >> mergedPropertiesLike: aClass [
+
+	^ self mergedProperties select: [ :eachProperty | eachProperty class = aClass ]
+		
 ]
 
 { #category : #'accessing geometry' }

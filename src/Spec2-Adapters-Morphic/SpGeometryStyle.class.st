@@ -109,6 +109,12 @@ SpGeometryStyle >> heightVariable [
 	^ self toVariable: (height ifNil: [ 0 ])
 ]
 
+{ #category : #testing }
+SpGeometryStyle >> isGeometry [
+
+	^ true
+]
+
 { #category : #accessing }
 SpGeometryStyle >> minHeight [
 

@@ -91,8 +91,8 @@ SpMorphicGridLayoutComputation >> calculateHomogeneousRowHeights [
 	   than that number
 	 - if min height > bounds height/numRows, then all rows become height = min height (to 
 		make them homogeneous)"
+	| rowHeight |
 
-	| rowHeight |	
 	rowHeight := 0.
 	morphs do: [ :each | 
 		rowHeight := rowHeight max: (self minHeightOf: each) ].
@@ -140,7 +140,7 @@ SpMorphicGridLayoutComputation >> calculateNotHomogeneousRowHeights [
 	 - the max height of cells of that row
 	"
 	| newRowHeights |	
-	
+
 	newRowHeights := Array new: numRows withAll: 0.
 	morphs do: [ :each | | row |
 		row := (each valueOfProperty: #gridConstraints) row.
@@ -265,10 +265,19 @@ SpMorphicGridLayoutComputation >> extent [
 ]
 
 { #category : #private }
+SpMorphicGridLayoutComputation >> geometryPropertyOf: aMorph [ 
+		
+	^ (self styleOf: aMorph) mergedProperties
+		detect: [ :each | each class = SpGeometryStyle ]
+		ifNone: [ nil ]
+]
+
+{ #category : #private }
 SpMorphicGridLayoutComputation >> heightOf: aMorph [ 
 	| height |
 
-	height := (self styleOf: aMorph) height.
+	
+	height := (self geometryPropertyOf: aMorph) ifNotNil: [ :geometry | geometry height ].
 	^ (height isNil or: [ height = 0 ])
 		ifTrue: [ aMorph height ]
 		ifFalse: [ height ]
@@ -303,16 +312,20 @@ SpMorphicGridLayoutComputation >> layout [
 	^ layout
 ]
 
-{ #category : #'private computation' }
+{ #category : #private }
 SpMorphicGridLayoutComputation >> minHeightOf: aMorph [ 
+	| minHeight |
 
-	^ (self styleOf: aMorph) minHeight ifNil: [ 0 ]
+	minHeight := (self geometryPropertyOf: aMorph) ifNotNil: [ :geometry | geometry minHeight ]. 
+	^ minHeight ifNil: [ 0 ]
 ]
 
-{ #category : #'private computation' }
+{ #category : #private }
 SpMorphicGridLayoutComputation >> minWidthOf: aMorph [ 
+	| minWidth |
 
-	^ (self styleOf: aMorph) minWidth ifNil: [ 0 ]
+	minWidth := (self geometryPropertyOf: aMorph) ifNotNil: [ :geometry | geometry minWidth ]. 
+	^ minWidth ifNil: [ 0 ]
 ]
 
 { #category : #private }
@@ -357,7 +370,7 @@ SpMorphicGridLayoutComputation >> styleOf: aMorph [
 SpMorphicGridLayoutComputation >> widthOf: aMorph [ 
 	| width |
 
-	width := (self styleOf: aMorph) width.
+	width := (self geometryPropertyOf: aMorph) ifNotNil: [ :geometry | geometry width ].
 	^ (width isNil or: [ width = 0 ])
 		ifTrue: [ aMorph width ]
 		ifFalse: [ width ]

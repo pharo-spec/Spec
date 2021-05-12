@@ -75,6 +75,42 @@ SpGridLayoutAdapterTest >> testBeColumnNotHomogeneous [
 ]
 
 { #category : #tests }
+SpGridLayoutAdapterTest >> testBeRowHomogeneous [
+
+	layout 
+		beRowHomogeneous;
+		add: 'Test' at: 1@1; 
+		add: (presenter newMorph morph: (Morph new extent: 40@40)) at: 1@2.
+		
+	self openInstance.
+	
+	self 
+		assert: presenter adapter widget submorphs first height 
+		equals: presenter adapter widget submorphs second height
+]
+
+{ #category : #tests }
+SpGridLayoutAdapterTest >> testBeRowNotHomogeneous [
+	| testMorph |
+	
+	testMorph := Morph new
+		vResizing: #rigid;
+		extent: 40@40;
+		yourself.
+	
+	layout 
+		beRowNotHomogeneous;
+		add: 'Test' at: 1@1; 
+		add: (presenter newMorph morph: testMorph) at: 1@2.
+		
+	self openInstance.
+	
+	self 
+		deny: presenter adapter widget submorphs first height 
+		equals: presenter adapter widget submorphs second height
+]
+
+{ #category : #tests }
 SpGridLayoutAdapterTest >> testRemoveElementAddedAfterOpenRemovesFromAdapter [
 
 	| element |

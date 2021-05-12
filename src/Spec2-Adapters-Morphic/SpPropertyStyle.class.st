@@ -36,6 +36,12 @@ SpPropertyStyle >> fromSton: stonReader [
 ]
 
 { #category : #testing }
+SpPropertyStyle >> isGeometry [
+
+	^ false
+]
+
+{ #category : #testing }
 SpPropertyStyle >> isStyleProperty [
 
 	^ true

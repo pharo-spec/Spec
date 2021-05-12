@@ -113,7 +113,8 @@ SpStyle class >> defaultStyleSheetData [
 		.print [ Draw { #color: EnvironmentColor(#balloonBackground) } ],
 		.error [ Draw { #color: #C20000 } ],
 		.popoverButton [ Draw { #color: EnvironmentColor(#popoverButton) } ] ],
-	.paginator [ Geometry { #height: 20 } ] ]
+	.paginator [ Geometry { #height: 20 } ],
+	.morph [ Geometry { #width: Reset, #height: Reset, #vResizing: true, #hResizing: true } ] ]
 '
 ]
 
