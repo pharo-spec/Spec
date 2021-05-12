@@ -1,5 +1,5 @@
 "
-! Geometry properties (==SpStyleGeometry==)
+# Geometry properties (`SpGeometryStyle`)
 
 Geometry properties controls how the component (morph) will be arranged within its layout.
 
@@ -7,15 +7,15 @@ Geometry properties controls how the component (morph) will be arranged within i
 - vResizing: the component can be resized vertically? (boolean, default depends on how the morph behaves outside spec)
 - width: fixed width of the component.
 - height: fixed height of the component.
-- minWidth: minimum width of the component (to use when ==hResizing=true==) 
-- minHeight: minimum height of the component (to use when ==vResizing=true==) 
-- maxWidth: maximum width of the component (to use when ==hResizing=true==) 
-- maxHeight: maximum height of the component (to use when ==vResizing=true==) 
+- minWidth: minimum width of the component (to use when `hResizing=true`) 
+- minHeight: minimum height of the component (to use when `vResizing=true`) 
+- maxWidth: maximum width of the component (to use when `hResizing=true`) 
+- maxHeight: maximum height of the component (to use when `vResizing=true`) 
 
-!! Usage
-The identifier of geometry in the stylesheet is ==Geometry==.
+## Usage
+The identifier of geometry in the stylesheet is `Geometry`.
 
-[[[
+```
 Geometry { 
 	#hResizing: false,
 	#vResizing: false,
@@ -26,7 +26,7 @@ Geometry {
 	#maxWidth: 150,
 	#maxHeight: 25
 }
-]]]
+```
 "
 Class {
 	#name : #SpGeometryStyle,

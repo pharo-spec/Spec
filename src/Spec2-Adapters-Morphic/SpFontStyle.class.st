@@ -1,5 +1,5 @@
 "
-Font property (`SpStyleFont`)
+# Font property (`SpFontStyle`)
 
 Font properties control how a component (morph) with font will draw the text.
 I keep this properties: 
@@ -10,7 +10,7 @@ I keep this properties:
 - italic: Font is italic? (boolean, default """"false"""")
 
 ## Usage
-The identifier of font in the stylesheet is _Font_.
+The identifier of font in the stylesheet is `Font`.
 
 ```language=Javascript
 Font { 

@@ -1,5 +1,5 @@
 "
-! Container properties (==SpStyleContainer==)
+# Container properties (`SpContainerStyle`)
 
 A container property can be applied to container elements (buttonbar, toolbar, actionbar), and define several properties: 
 
@@ -7,18 +7,18 @@ A container property can be applied to container elements (buttonbar, toolbar, a
 - borderWidth: The width of the border.
 - padding: The space between elements.
 
-See *method:SpStyleContainer#borderColor*
+See `SpContainerStyle>>#borderColor`
 
-!! Usage
-The identifier of container in the stylesheet is ==Container==.
+## Usage
+The identifier of container in the stylesheet is`Container`.
 
-[[[
+```
 Container { 
 	#borderColor: #blue, 
 	#borderWidth: 2,
 	#padding: 5
 }
-]]]
+```
 "
 Class {
 	#name : #SpContainerStyle,

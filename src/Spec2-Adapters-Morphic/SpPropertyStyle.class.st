@@ -1,12 +1,12 @@
 "
-! Style properties (==SpStyleProperty==)
+# Style properties (`SpPropertyStyle`)
 
 Style properties define different kind of properties a morphic component can have. There are several types of properties, defined as: 
 
-- *class:SpStyleContainer*
-- *class:SpStyleDraw*
-- *class:SpStyleFont*
-- *class:SpStyleGeometry*
+- `SpContainerStyle`
+- `SpDrawStyle`
+- `SpFontStyle`
+- `SpGeometryStyle`
 "
 Class {
 	#name : #SpPropertyStyle,

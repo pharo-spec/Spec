@@ -1,5 +1,5 @@
 "
-Text property controls how the ""input text"" fields (*SpTextInputFieldPresenter* hierarchy for now)
+Text property controls how the ""input text"" fields (`SpTextInputFieldPresenter` hierarchy for now)
 "
 Class {
 	#name : #SpTextStyle,
