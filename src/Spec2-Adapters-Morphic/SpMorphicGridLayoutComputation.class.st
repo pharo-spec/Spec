@@ -75,8 +75,8 @@ SpMorphicGridLayoutComputation >> calculateHomogeneousColumnWidths [
 	   than that number.
 	 - if min width > bounds width/numColumns, then all columns becomw width = min width (to 
 		make them homogeneous)"
-
 	| columnWidth |	
+
 	columnWidth := 0.
 	morphs do: [ :each | 
 		columnWidth := columnWidth max: (self minWidthOf: each) ].
@@ -106,17 +106,20 @@ SpMorphicGridLayoutComputation >> calculateNotHomogeneousColumnWidths [
 	 - the max width of cells of that column. EXCEPT if
 	 - the column is expandable, in which case, they will receive the remaining width 
 	   after assigning the others (a minimum if there is no remaining place)"
+	| newColumnWidths expandables |
 
-	| newColumnWidths expandables |	
 	newColumnWidths := Array new: numColumns withAll: 0.
 	
-	"Assign non expandable values"
-	morphs do: [ :each | | column |
-		column := (each valueOfProperty: #gridConstraints) column.
-		(self isColumnExpandable: column) ifFalse: [ 
-			newColumnWidths 
-				at: column
-				put: ((newColumnWidths at: column) max: (self widthOf: each))] ].
+	"Assign non expandable values, 
+	 skip spanned columns (otherwise column will take an spanned width)"
+	morphs 
+		select: [ :each | (each valueOfProperty: #gridConstraints) columnSpan = 1 ]
+		thenDo: [ :each | | column |
+			column := (each valueOfProperty: #gridConstraints) column.
+			(self isColumnExpandable: column) ifFalse: [ 
+				newColumnWidths 
+					at: column
+					put: ((newColumnWidths at: column) max: (self widthOf: each))] ].
 		
 	"now I count the zeroes, if there are remaining means we need to assign the remaining 
 	 width (divided between the remaining)"
@@ -142,11 +145,14 @@ SpMorphicGridLayoutComputation >> calculateNotHomogeneousRowHeights [
 	| newRowHeights |	
 
 	newRowHeights := Array new: numRows withAll: 0.
-	morphs do: [ :each | | row |
-		row := (each valueOfProperty: #gridConstraints) row.
-		newRowHeights 
-			at: row 
-			put: ((newRowHeights at: row) max: (self heightOf: each)) ].
+	"skip spanned rows (otherwise row will take an spanned row)"
+	morphs 
+		select: [ :each | (each valueOfProperty: #gridConstraints) rowSpan = 1 ]
+		thenDo: [ :each | | row |
+			row := (each valueOfProperty: #gridConstraints) row.
+			newRowHeights 
+				at: row 
+				put: ((newRowHeights at: row) max: (self heightOf: each)) ].
 		
 	^ newRowHeights
 ]
