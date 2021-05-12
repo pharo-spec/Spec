@@ -97,3 +97,14 @@ SpTreeTablePresenterTest >> testUnselectAll [
 	
 
 ]
+
+{ #category : #tests }
+SpTreeTablePresenterTest >> testWhenSelectedItemChangedDo [
+	| selectedItem |
+
+	presenter whenSelectedItemChangedDo: [ :item | selectedItem := item ].
+
+	presenter clickAtPath: #(1).
+
+	self assert: selectedItem equals: 1
+]

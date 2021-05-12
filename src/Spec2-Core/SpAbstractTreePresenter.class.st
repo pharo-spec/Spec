@@ -467,12 +467,13 @@ SpAbstractTreePresenter >> whenSelectedIndexChangedDo: aBlock [
 		aBlock cull: selection first ]
 ]
 
-{ #category : #'api-events' }
-SpAbstractTreePresenter >> whenSelectedItemChangedDo: aBlockClosure [ 
+{ #category : #'api - events' }
+SpAbstractTreePresenter >> whenSelectedItemChangedDo: aBlock [
 	"Inform when selected index has changed. 
 	 `aBlock` receives one optional argument (the new element)."
 	
-	self whenSelectionChangedDo: [ :selection | aBlockClosure cull: selection second ]
+	self whenSelectionChangedDo: [ :selection | 
+		aBlock cull: (selection ifNotNil: [ selection selectedItem ]) ]
 ]
 
 { #category : #'api-events' }

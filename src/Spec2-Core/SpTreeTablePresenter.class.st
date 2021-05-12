@@ -193,12 +193,3 @@ SpTreeTablePresenter >> whenIsResizableChangedDo: aBlock [
 
 	self property: #isResizable whenChangedDo: aBlock
 ]
-
-{ #category : #'api-events' }
-SpTreeTablePresenter >> whenSelectedItemChangedDo: aBlock [
-	"Inform when selected index has changed. 
-	 `aBlock` receives one optional argument (the new element)."
-	
-	self whenSelectionChangedDo: [ :selection | 
-		aBlock cull: (selection ifNotNil: [ :anArray | anArray second ]) ]
-]
