@@ -2,20 +2,26 @@ Extension { #name : #SpPresenter }
 
 { #category : #'*Spec2-Interactions' }
 SpPresenter >> confirm: queryString label: titleString [
-	^ UIManager default 
-		confirm: queryString label: titleString
+	
+	^ (self application newConfirm 
+		title: titleString;
+		message: queryString;
+		openModalWithSpec)
+		isOk
 ]
 
 { #category : #'*Spec2-Interactions' }
 SpPresenter >> request: request initialAnswer: initialAnwser title: title [
 	| answer |
-	answer := UIManager default 
-					request: request
-					initialAnswer: initialAnwser
-					title: title.
+	
+	answer := (self application newRequest
+		title: title;
+		message: request;
+		text: initialAnwser;
+		openModalWithSpec)
+		isOk.
 					
-	answer "If this is nil, it means that user cancelled the UI."
-		ifNil: [ SpCancelledInteractionError signal ].
+	answer ifFalse: [ SpCancelledInteractionError signal ].
 	
 	^ answer
 ]
