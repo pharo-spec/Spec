@@ -58,15 +58,24 @@ SpTreeMultipleSelectionMode >> selectPaths: pathArray [
 
 { #category : #accessing }
 SpTreeMultipleSelectionMode >> selectedItem [
+
 	^ self selectedPaths 
-		ifEmpty: [ #() ]
 		ifNotEmpty: [ :paths | presenter itemAtPath: paths first  ]
+		ifEmpty: [ nil ]
 ]
 
 { #category : #accessing }
 SpTreeMultipleSelectionMode >> selectedItems [
 	selection ifEmpty: [ ^ #() ].
 	^ selection collect: [ :path | presenter itemAtPath: path ]
+]
+
+{ #category : #accessing }
+SpTreeMultipleSelectionMode >> selectedPath [
+	
+	^ self selectedPaths 
+		ifNotEmpty: [ :paths | paths last ]
+		ifEmpty: [ nil ]
 ]
 
 { #category : #accessing }

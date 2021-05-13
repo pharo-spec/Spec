@@ -345,6 +345,26 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectPathsTwiceAddsPathssToSel
 		hasSameElements: paths
 ]
 
+{ #category : #'tests-select-item' }
+SpTreeTablePresenterMultipleSelectionTest >> testSelectedItemIsNilIfNothingIsSelected [
+
+	self assert: presenter selection selectedItem isNil.
+	presenter selectItems: {10 . 20}.
+	self deny: presenter selection selectedItem isNil.
+	presenter unselectAll.
+	self assert: presenter selection selectedItem isNil
+]
+
+{ #category : #'tests-select-item' }
+SpTreeTablePresenterMultipleSelectionTest >> testSelectedPathIsNilIfNothingIsSelected [
+
+	self assert: presenter selection selectedPath isNil.
+	presenter selectPath: #(1).
+	self deny: presenter selection selectedPath isNil.
+	presenter unselectAll.
+	self assert: presenter selection selectedPath isNil
+]
+
 { #category : #'tests-select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSetSelectInvalidPathDoesNotModifySelection [
 
