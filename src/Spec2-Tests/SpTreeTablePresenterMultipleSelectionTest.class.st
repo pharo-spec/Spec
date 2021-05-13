@@ -356,6 +356,16 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectedItemIsNilIfNothingIsSel
 ]
 
 { #category : #'tests-select-item' }
+SpTreeTablePresenterMultipleSelectionTest >> testSelectedItemsIsEmptyIfNothingIsSelected [
+
+	self assert: presenter selection selectedItems isEmpty.
+	presenter selectItems: {10 . 20}.
+	self deny: presenter selection selectedItems isNil.
+	presenter unselectAll.
+	self assert: presenter selection selectedItems isEmpty
+]
+
+{ #category : #'tests-select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectedPathIsNilIfNothingIsSelected [
 
 	self assert: presenter selection selectedPath isNil.
@@ -363,6 +373,16 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectedPathIsNilIfNothingIsSel
 	self deny: presenter selection selectedPath isNil.
 	presenter unselectAll.
 	self assert: presenter selection selectedPath isNil
+]
+
+{ #category : #'tests-select-item' }
+SpTreeTablePresenterMultipleSelectionTest >> testSelectedPathsIsEmptyIfNothingIsSelected [
+
+	self assert: presenter selection selectedPaths isEmpty.
+	presenter selectPath: #(1).
+	self deny: presenter selection selectedPaths isEmpty.
+	presenter unselectAll.
+	self assert: presenter selection selectedPaths isEmpty
 ]
 
 { #category : #'tests-select-index' }
