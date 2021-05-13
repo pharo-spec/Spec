@@ -50,6 +50,7 @@ SpTreePresenterTest >> testActivationOnDoubleClickShouldNotActivateOnClick [
 { #category : #tests }
 SpTreePresenterTest >> testActivationOnSingleClickShouldActivateOnClick [
 	| activatedItem |
+	
 	presenter
 		activateOnSingleClick;
 		whenActivatedDo: [ :selection | activatedItem := selection selectedItem ].

@@ -90,7 +90,7 @@ SpAbstractTreePresenter >> childrenFor: anObject [
 { #category : #simulation }
 SpAbstractTreePresenter >> clickAtPath: aPath [
 
-	self selectPath: aPath.
+	self selectPaths: { aPath }.
 
 	activateOnSingleClick ifFalse: [ ^ self ].
 	self doActivateAtPath: aPath
