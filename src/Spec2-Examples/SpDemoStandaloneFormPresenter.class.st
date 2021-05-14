@@ -199,9 +199,9 @@ SpDemoStandaloneFormPresenter >> initializePresenters [
 	checkboxLabel := self newLabel label: 'remember me'.
 	checkboxInput := self newCheckBox state: true.
 
-	"dateLabel := self newLabel label: 'date:'.
+	dateLabel := self newLabel label: 'date:'.
 	dateInput := self instantiate: SpDatePresenter.
-	dateInput display: [ :item | item yyyymmdd ]."
+	dateInput display: [ :item | item yyyymmdd ].
 
 	maleButton := self newRadioButton label: 'male'.
 	femaleButton := self newRadioButton label: 'female'.
