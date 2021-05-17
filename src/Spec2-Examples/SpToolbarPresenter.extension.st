@@ -12,6 +12,12 @@ SpToolbarPresenter class >> example [
 			label: 'Simple';
 			action: [ UIManager default defer: [ self inform: 'Pressed' ] ];
 			yourself);
+		add: (SpToolbarButtonPresenter new 
+			enabled: false;
+			icon: (self iconNamed: #smallOk);
+			label: 'Disabled';
+			action: [ UIManager default defer: [ self inform: 'Pressed' ] ];
+			yourself);
 		add: (SpToolbarToggleButtonPresenter new
 			icon: (self iconNamed: #smallOk);
 			label: 'Toggle';

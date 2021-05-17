@@ -10,3 +10,14 @@ SpButtonPresenter class >> example [
 		action: [ 'Clicked!' crTrace ];
 		openWithSpec
 ]
+
+{ #category : #'*Spec2-Examples' }
+SpButtonPresenter class >> exampleDisabled [
+	
+	^ self new
+		icon: (self iconNamed: #smallCancel);
+		label: 'Click me!';
+		action: [ 'Clicked!' crTrace ];
+		disable;
+		openWithSpec
+]
