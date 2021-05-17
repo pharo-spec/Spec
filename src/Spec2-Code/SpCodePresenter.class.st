@@ -14,7 +14,8 @@ Class {
 		'#submitBlock',
 		'#resetBlock',
 		'#environment',
-		'#systemNavigation'
+		'#systemNavigation',
+		'#syntaxHighlightTheme => SpObservableSlot'
 	],
 	#category : #'Spec2-Code'
 }
@@ -647,6 +648,21 @@ SpCodePresenter >> syntaxHighlight: aBoolean [
 	syntaxHighlight := aBoolean 
 ]
 
+{ #category : #api }
+SpCodePresenter >> syntaxHighlightTheme [
+	"The name of the syntax highlight theme to use (e.g. 'Blue', 'Vintage', 'Solarized', 'Tango'). 
+	 If not defined, the component will take the default value from the system."
+
+	^ syntaxHighlightTheme
+]
+
+{ #category : #api }
+SpCodePresenter >> syntaxHighlightTheme: aSymbol [
+	"The name of the syntax highlight theme to use (e.g. 'Blue', 'Vintage', 'Solarized', 'Tango')"
+
+	syntaxHighlightTheme := aSymbol
+]
+
 { #category : #'command support' }
 SpCodePresenter >> systemNavigation [
 
@@ -733,6 +749,13 @@ SpCodePresenter >> whenSyntaxHighlightChangedDo: aBlock [
 	"Set a block to perform when the syntax highlight is enabled/disabled"
 
 	self property: #syntaxHighlight whenChangedDo: aBlock
+]
+
+{ #category : #'api-events' }
+SpCodePresenter >> whenSyntaxHighlightThemeChangedDo: aBlock [
+	"Set a block to perform when the syntax highlight theme is changed"
+
+	self property: #syntaxHighlightTheme whenChangedDo: aBlock
 ]
 
 { #category : #api }

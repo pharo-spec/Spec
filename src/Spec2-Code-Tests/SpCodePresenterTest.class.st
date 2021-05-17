@@ -367,3 +367,18 @@ SpCodePresenterTest >> testWhenSyntaxHighlightChangedDo [
 	self assert: count equals: 1.
 	self deny: result
 ]
+
+{ #category : #tests }
+SpCodePresenterTest >> testWhenSyntaxHighlightThemeChangedDo [
+	| count result |
+	
+	count := 0.
+	result := nil.
+	presenter whenSyntaxHighlightThemeChangedDo: [ :syntaxHighlight | 
+		count := count + 1.
+		result := syntaxHighlight ].
+	presenter syntaxHighlightTheme: 'Other'.
+	
+	self assert: count equals: 1.
+	self assert: result equals: 'Other'
+]
