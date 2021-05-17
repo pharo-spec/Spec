@@ -10,9 +10,11 @@ Class {
 	#instVars : [
 		'notebook',
 		'checkbox',
-		'dynamicPage'
+		'dynamicPage',
+		'messageList',
+		'sourceText'
 	],
-	#category : #'Spec2-Examples-Demo-Other'
+	#category : #'Spec2-Examples-Demo-Notebook'
 }
 
 { #category : #specs }
@@ -34,10 +36,12 @@ SpDemoNotebookPresenter class >> example [
 
 { #category : #pages }
 SpDemoNotebookPresenter >> browserPage [
+
 	^ SpNotebookPage
 		title: 'Browser'
 		icon: (self iconNamed: #nautilusIcon)
-		provider: [ SpClassMethodBrowser new
+		provider: [ 
+			SpClassMethodBrowser new
 				classes: self class environment allClasses;
 				yourself ]
 ]
@@ -62,6 +66,7 @@ SpDemoNotebookPresenter >> dynamicPage [
 
 { #category : #initialization }
 SpDemoNotebookPresenter >> initializePresenters [
+
 	notebook := self newNotebook.
 	checkbox := self newCheckBox.
 
@@ -77,12 +82,7 @@ SpDemoNotebookPresenter >> objectClassPage [
 	^ (SpNotebookPage 
 		title: 'Object class' 
 		icon: (self iconNamed: #nautilusIcon) 
-		provider: [
-			self flag: #TODO. "Using reference to suspend a dependency, but is not cool since 
-			it makes a hidden depenency. Instead, we better think another example" 
-			(self class environment at: #MessageBrowser) new 
-				messages: Object methods;
-				yourself ])
+		provider: [ SpMessageBrowserPageDemo new ])
 		beCloseable;
 		yourself
 ]
