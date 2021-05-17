@@ -85,3 +85,9 @@ SpApplicationBackend >> selectFileTitle: aString [
 
 	self subclassResponsibility
 ]
+
+{ #category : #ui }
+SpApplicationBackend >> showWaitCursorWhile: aBlock inApplication: anApplication [
+
+	self subclassResponsibility
+]

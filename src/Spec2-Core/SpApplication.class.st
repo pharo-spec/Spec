@@ -376,6 +376,14 @@ SpApplication >> selectFileTitle: aString [
 	^ self backend selectFileTitle: aString
 ]
 
+{ #category : #ui }
+SpApplication >> showWaitCursorWhile: aBlock [
+
+	self backend 
+		showWaitCursorWhile: aBlock 
+		inApplication: self
+]
+
 { #category : #running }
 SpApplication >> start [ 
 	"Override this to start your app"
