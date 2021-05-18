@@ -34,7 +34,8 @@ SpMorphicToolbarButtonAdapter >> button [
 { #category : #accessing }
 SpMorphicToolbarButtonAdapter >> enabled: aBoolean [
 
-	super enabled: aBoolean
+	super enabled: aBoolean.
+	self updateIcon
 ]
 
 { #category : #execution }
