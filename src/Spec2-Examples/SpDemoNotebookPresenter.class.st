@@ -82,7 +82,10 @@ SpDemoNotebookPresenter >> objectClassPage [
 	^ (SpNotebookPage 
 		title: 'Object class' 
 		icon: (self iconNamed: #nautilusIcon) 
-		provider: [ SpMessageBrowserPageDemo new ])
+		provider: [ 
+			SpDemoMessageBrowser new
+				messages: Object methods;
+				yourself ])
 		beCloseable;
 		yourself
 ]

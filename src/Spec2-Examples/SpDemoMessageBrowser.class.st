@@ -2,17 +2,18 @@
 A small example to be used in the notebook demo.
 "
 Class {
-	#name : #SpMessageBrowserPageDemo,
+	#name : #SpDemoMessageBrowser,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'messageList',
-		'sourceText'
+		'sourceText',
+		'messages'
 	],
-	#category : #'Spec2-Examples-Demo-Notebook'
+	#category : #'Spec2-Examples-Demo-Other'
 }
 
 { #category : #initialization }
-SpMessageBrowserPageDemo >> connectPresenters [
+SpDemoMessageBrowser >> connectPresenters [
 
 	messageList 
 		transmitTo: sourceText  
@@ -23,7 +24,7 @@ SpMessageBrowserPageDemo >> connectPresenters [
 ]
 
 { #category : #initialization }
-SpMessageBrowserPageDemo >> initializePresenters [
+SpDemoMessageBrowser >> initializePresenters [
 
 	self layout: (SpBoxLayout newTopToBottom
 		add: (messageList := self newTable);
@@ -38,13 +39,20 @@ SpMessageBrowserPageDemo >> initializePresenters [
 ]
 
 { #category : #accessing }
-SpMessageBrowserPageDemo >> messages [
+SpDemoMessageBrowser >> messages [
 
-	^ Object methods
+	^ messages ifNil: [ #() ]
+]
+
+{ #category : #accessing }
+SpDemoMessageBrowser >> messages: anOrderedCollection [
+
+	messages := anOrderedCollection asOrderedCollection.
+	self updatePresenter
 ]
 
 { #category : #initialization }
-SpMessageBrowserPageDemo >> updatePresenter [
+SpDemoMessageBrowser >> updatePresenter [
 
 	messageList items: self messages
 ]

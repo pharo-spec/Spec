@@ -7,7 +7,7 @@ Demo page for SpecDemoNotebookPresenter
 Class {
 	#name : #SpDemoNotebookPage,
 	#superclass : #SpDemoPage,
-	#category : #'Spec2-Examples-Demo-Other'
+	#category : #'Spec2-Examples-Demo-Notebook'
 }
 
 { #category : #specs }

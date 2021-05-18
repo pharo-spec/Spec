@@ -49,16 +49,12 @@ SpTextFieldExample >> initialExtent [
 { #category : #initialization }
 SpTextFieldExample >> initializePresenters [
 
-	self flag: #TODO. "Using reference to suspend a dependency, but is not cool since 
-	it makes a hidden depenency. Instead, we better think another example" 
-	methodBrowser := self instantiate: (self class environment at: #MessageBrowser).
+	methodBrowser := self instantiate: SpDemoMessageBrowser.
 
 	textField := self newTextInput.
 	textField
 		placeholder: 'Enter a class name';
-		removeEntryCompletion.
-
-	methodBrowser sortingBlock: [ :a :b | a selector < b selector ]
+		removeEntryCompletion
 ]
 
 { #category : #accessing }
