@@ -103,5 +103,6 @@ BaselineOfSpec2 >> specCoreCode: spec [
 	spec baseline: 'SpecCoreCode' with: [ 
 		spec 
 			repository: (self packageRepositoryURL ifEmpty: [ 'github://pharo-spec/Spec' ]);
+			className: 'BaselineOfSpecCore';
 			loads: #('Code' 'CodeTests') ]
 ]
