@@ -58,7 +58,7 @@ BaselineOfSpecCore >> baseline: spec [
 	spec group: 'Base' with: #('Core' 'Support').
 	spec group: 'BaseTests' with: #('Spec2-Tests' 'SupportTests').
 	
-	spec group: 'default' with: #('Base' 'BaseTests' 'Code' 'CodeTests').
+	spec group: 'default' with: #('Base' 'BaseTests').
 ]
 
 { #category : #'external projects' }
