@@ -27,8 +27,8 @@ CmUIRightPositionStrategyExtensionsTest >> testAddButtonToActionBar [
 { #category : #test }
 CmUIRightPositionStrategyExtensionsTest >> testAddButtonToToolbar [
 	| toolbar button |
-	toolbar := SpToolBarPresenter new.
-	button := SpToolBarButtonPresenter new.
+	toolbar := SpToolbarPresenter new.
+	button := SpToolbarButtonPresenter new.
 	
 	self assertEmpty: toolbar items.
 	
