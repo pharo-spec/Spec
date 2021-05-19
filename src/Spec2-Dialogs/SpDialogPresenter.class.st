@@ -132,6 +132,13 @@ SpDialogPresenter class >> openDialog [
 	^ self new openDialogWithSpec
 ]
 
+{ #category : #'instance creation' }
+SpDialogPresenter class >> openModal [
+	<script>
+
+	^ self new openModalWithSpec
+]
+
 { #category : #private }
 SpDialogPresenter >> accept [
 
@@ -212,4 +219,10 @@ SpDialogPresenter >> openModalWithSpecParent: aWindow [
 SpDialogPresenter >> parentWindow [
 
 	^ parentWindow
+]
+
+{ #category : #accessing }
+SpDialogPresenter >> parentWindow: aWindowPresenter [
+
+	parentWindow := aWindowPresenter
 ]

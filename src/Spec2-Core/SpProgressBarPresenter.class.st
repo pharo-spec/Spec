@@ -72,9 +72,10 @@ SpProgressBarPresenter >> state [
 ]
 
 { #category : #private }
-SpProgressBarPresenter >> state: aNumber [
+SpProgressBarPresenter >> state: aState [
 
-	state := aNumber
+	state := aState.
+	self withAdapterPerformOrDefer: [ :anAdapter | anAdapter updateState ]
 ]
 
 { #category : #'api-events' }
@@ -85,5 +86,5 @@ SpProgressBarPresenter >> whenValueChangedDo: aBlock [
 	 - old value
 	 - the announcement triggering this action"
 
-	self state whenValueChangedDo: aBlock
+	self property: #state whenChangedDo: aBlock
 ]
