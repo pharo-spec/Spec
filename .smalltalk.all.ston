@@ -9,9 +9,11 @@ SmalltalkCISpec {
     }
   ],
   #testing : { 
-  	#packages: [ '.*' ],
-  	#exclude {
-  		#packages : [ "GT-Tests.*", "Glamour-Tests.*" ] 
+  	#packages : [ '.*' ],
+  	#exclude : {
+  		#packages : [ 
+  			'GT-Tests.*', 
+  			'Glamour-Tests.*' ] 
   	}
   }  
 }
