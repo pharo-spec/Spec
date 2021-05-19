@@ -15,7 +15,11 @@ SmalltalkCISpec {
   	#exclude : {
   		#packages : [ 
   			'GT-Tests.*', 
-  			'Glamour-Tests.*' ] 
+  			'Glamour-Tests.*',
+  			'UnifiedFFI.*',
+  			'ThreadedFFI.*',
+  			'Monticello.*'
+  			'Metacello.*' ] 
   	}
   }  
 }
