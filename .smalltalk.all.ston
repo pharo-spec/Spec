@@ -11,7 +11,7 @@ SmalltalkCISpec {
   #testing : { 
   	#packages: [ '.*' ],
   	#exclude {
-  		#packages : [ 'GT-Tests.*', 'Glamour-Tests.*' ] 
-  		}
+  		#packages : [ "GT-Tests.*", "Glamour-Tests.*" ] 
+  	}
   }  
 }
