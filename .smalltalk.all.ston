@@ -8,8 +8,10 @@ SmalltalkCISpec {
       #ignoreImage : true
     }
   ],
-  #testing : { 
-  	#packages : [ '.*' ],
+  #testing : {
+  	#include : { 
+  		#packages : [ '.*' ] 
+  	},
   	#exclude : {
   		#packages : [ 
   			'GT-Tests.*', 
