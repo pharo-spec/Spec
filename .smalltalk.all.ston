@@ -18,7 +18,7 @@ SmalltalkCISpec {
   			'Glamour-Tests.*',
   			'UnifiedFFI.*',
   			'ThreadedFFI.*',
-  			'Monticello.*'
+  			'Monticello.*',
   			'Metacello.*' ] 
   	}
   }  
