@@ -7,7 +7,7 @@ Class {
 	#name : #SpProgressBarPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'state'
+		'#state => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
