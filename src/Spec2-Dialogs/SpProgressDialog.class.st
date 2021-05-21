@@ -8,7 +8,9 @@ Class {
 		'title',
 		'label',
 		'progressBar',
-		'maxValue'
+		'maxValue',
+		'whenOpenAction',
+		'openAction'
 	],
 	#category : #'Spec2-Dialogs'
 }
@@ -58,6 +60,20 @@ SpProgressDialog class >> extent [
 	^ 600@100
 ]
 
+{ #category : #'private actions' }
+SpProgressDialog >> afterOpenAction [
+		
+	[ 
+		[ 
+			openAction value: self.
+			self accept ]
+		on: Error 
+		fork: [ :e | 
+			self cancel.
+			e pass ].
+	] fork
+]
+
 { #category : #api }
 SpProgressDialog >> informUser: aString during: aBlock [ 
 
@@ -68,17 +84,11 @@ SpProgressDialog >> informUser: aString during: aBlock [
 
 { #category : #api }
 SpProgressDialog >> informUserDuring: aBlock [
-	| sem |
-
-	sem := Semaphore new.
-	[ 
-		sem signal.
-		aBlock value: self.
-		self window close 
-	] fork.
 	
-	sem wait.
-	self openModalWithSpec
+	openAction := aBlock.
+	self openModalWithSpec.
+	parentWindow ifNotNil: [ 
+		parentWindow takeKeyboardFocus ]
 ]
 
 { #category : #initialization }
@@ -92,6 +102,8 @@ SpProgressDialog >> initialize [
 { #category : #initialization }
 SpProgressDialog >> initializeDialogWindow: aDialogWindowPresenter [
 	
+	aDialogWindowPresenter whenOpenedDo: [ self afterOpenAction ].
+	
 	self parentWindow 
 		ifNotNil: [ :w | aDialogWindowPresenter centeredRelativeTo: w ] 
 		ifNil: [ aDialogWindowPresenter centered ]
@@ -102,7 +114,6 @@ SpProgressDialog >> initializePresenters [
 
 	self layout: (SpBoxLayout newTopToBottom
 		borderWidth: 5;
-		spacing: 5;
 		add: (label := self newLabel) expand: false;
 		add: (progressBar := self newProgressBar) expand: false;
 		yourself)
