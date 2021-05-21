@@ -32,10 +32,3 @@ Class {
 	],
 	#category : #'Spec2-Core-Utils'
 }
-
-{ #category : #initialization }
-SpProgressBarProgressing >> initialize [
-	
-	self class initializeSlots: self.
-	super initialize.
-]

@@ -10,22 +10,17 @@ Class {
 	#instVars : [
 		'notebook',
 		'checkbox',
-		'dynamicPage',
-		'messageList',
-		'sourceText'
+		'dynamicPage'
 	],
 	#category : #'Spec2-Examples-Demo-Notebook'
 }
 
 { #category : #specs }
 SpDemoNotebookPresenter class >> defaultSpec [
+
 	^ SpBoxLayout newTopToBottom
 		add: #notebook;
-		add:
-			(SpBoxLayout newLeftToRight
-				add: #checkbox withConstraints: [ :constraints | constraints width: 20 ];
-				add: 'Show dynamic presenter')
-			withConstraints: [ :constraints | constraints height: self labelHeight ];
+		add: #checkbox expand: false;
 		yourself
 ]
 
@@ -69,6 +64,7 @@ SpDemoNotebookPresenter >> initializePresenters [
 
 	notebook := self newNotebook.
 	checkbox := self newCheckBox.
+	checkbox label: 'Show dynamic presenter'.
 
 	notebook
 		addPage: self objectClassPage;

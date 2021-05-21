@@ -2,7 +2,6 @@ Class {
 	#name : #SpActivatedSelection,
 	#superclass : #Object,
 	#instVars : [
-		'selection',
 		'value'
 	],
 	#category : #'Spec2-Core-Support'

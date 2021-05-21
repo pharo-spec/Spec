@@ -26,10 +26,3 @@ Class {
 	],
 	#category : #'Spec2-Core-Utils'
 }
-
-{ #category : #initialization }
-SpProgressBarFixed >> initialize [
-	
-	self class initializeSlots: self.
-	super initialize.
-]

@@ -9,7 +9,6 @@ Class {
 		'label',
 		'progressBar',
 		'maxValue',
-		'whenOpenAction',
 		'openAction'
 	],
 	#category : #'Spec2-Dialogs'
@@ -144,7 +143,7 @@ SpProgressDialog >> max: aNumber [
 	"sets the maximum value. 
 	 Affects how #value: is calculated"
 
-	maxValue := aNumber
+	maxValue := aNumber asFloat
 ]
 
 { #category : #api }
@@ -156,7 +155,7 @@ SpProgressDialog >> progress: aFraction [
 { #category : #api }
 SpProgressDialog >> progressPercent: aNumber [
 
-	progressBar fixedPercentage: aNumber
+	progressBar fixedPercentage: aNumber asFloat floor
 ]
 
 { #category : #api }
