@@ -48,6 +48,13 @@ SpProgressBarPresenter >> indeterminate [
 	self state: SpIndeterminatedProgressBarState new
 ]
 
+{ #category : #initialization }
+SpProgressBarPresenter >> initialize [
+
+	super initialize.
+	self fixedAt: 0
+]
+
 { #category : #api }
 SpProgressBarPresenter >> progress: aBlock [
 	"Using this option, the progress bar will increase with time. 
