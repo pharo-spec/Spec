@@ -1,6 +1,9 @@
 Class {
 	#name : #BaselineOfSpec2,
 	#superclass : #BaselineOf,
+	#instVars : [
+		'initializersEnabled'
+	],
 	#category : #BaselineOfSpec2
 }
 
@@ -9,6 +12,7 @@ BaselineOfSpec2 >> baseline: spec [
 	<baseline>
 	
 	spec for: #common do: [ 		
+		spec preLoadDoIt: #preLoad.
 		spec postLoadDoIt: #postLoad.
 		
 		self specCore: spec.
@@ -51,9 +55,18 @@ BaselineOfSpec2 >> baseline: spec [
 { #category : #script }
 BaselineOfSpec2 >> postLoad [
 
+	MCMethodDefinition initializersEnabled: initializersEnabled.
+	
 	self flag: #REMOVE. "This is a temporal hack to ensure the style is taken the new variables way."
 	(self class environment at: #SpStyle) reset.
-		
+
+]
+
+{ #category : #script }
+BaselineOfSpec2 >> preLoad [
+
+	initializersEnabled := MCMethodDefinition initializersEnabled.
+	MCMethodDefinition initializersEnabled: true
 ]
 
 { #category : #acccessing }
@@ -69,8 +82,7 @@ Then Spec-Deprecated80 is loaded but it does not migrate the subclasses of the o
 
 We need to use atomic loading only during update of existing Spec upgrade"
 
-	^ super project
-	"^self class environment at: #SpPresenter 
+	^self class environment at: #SpPresenter 
 		ifPresent: [
 			super project
 				loadType: #atomic;
@@ -78,7 +90,9 @@ We need to use atomic loading only during update of existing Spec upgrade"
 		ifAbsent: [ 		
 			super project
 				loadType: #linear;
-				yourself ]"
+				yourself  ]
+
+	 
 ]
 
 { #category : #'external projects' }
