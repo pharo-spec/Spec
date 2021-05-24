@@ -61,6 +61,7 @@ SpAthensAdapterTest >> testResizeMakesCanvasResize [
 	self presenter drawBlock: [ :canvas |
 		extent := canvas surface extent ].
 	self openInstance.
+	self presenter window resize: 500@500.
 	backendForTest waitUntilUIRedrawed.
 	self assert: extent x > 100. 
 	self assert: extent y > 100.	
