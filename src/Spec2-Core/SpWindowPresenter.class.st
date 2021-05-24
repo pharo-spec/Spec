@@ -486,7 +486,8 @@ SpWindowPresenter >> requestWindowClose [
 { #category : #api }
 SpWindowPresenter >> resize: anExtent [
 
-	self withAdapterDo: [ :anAdapter | anAdapter resize: anExtent ]
+	self withAdapterPerformOrDefer: [ :anAdapter | 
+		anAdapter resize: anExtent ]
 ]
 
 { #category : #api }
