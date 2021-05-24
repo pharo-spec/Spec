@@ -484,6 +484,12 @@ SpWindowPresenter >> requestWindowClose [
 ]
 
 { #category : #api }
+SpWindowPresenter >> resize: anExtent [
+
+	self withAdapterDo: [ :anAdapter | anAdapter resize: anExtent ]
+]
+
+{ #category : #api }
 SpWindowPresenter >> statusBar [
 	"Answer the status bar associated with this window (if defined)"
 
