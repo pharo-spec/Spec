@@ -247,6 +247,24 @@ SpApplication >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClas
 ]
 
 { #category : #showing }
+SpApplication >> openBlockedDialog: aPresenter [ 
+	
+	^ self 
+		openBlockedDialog: aPresenter 
+		withSpecLayout: aPresenter defaultSpec
+
+]
+
+{ #category : #showing }
+SpApplication >> openBlockedDialog: aPresenter withSpecLayout: aSpecLayout [
+
+	^ self 
+		open: aPresenter 
+		withSpecLayout: aSpecLayout 
+		using: SpBlockedDialogWindowPresenter
+]
+
+{ #category : #showing }
 SpApplication >> openDialog: aPresenter [ 
 	
 	^ self 
