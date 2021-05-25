@@ -8,6 +8,12 @@ Class {
 	#category : #'Spec2-Code-Commands-Base'
 }
 
+{ #category : #accessing }
+SpCodePrintItCommand class >> defaultDescription [
+
+	^ 'Evaluate selection and print the result.'
+]
+
 { #category : #defaults }
 SpCodePrintItCommand class >> defaultIconName [
 
