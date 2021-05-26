@@ -19,7 +19,7 @@ SmalltalkCISpec {
   			'UnifiedFFI.*',
   			'ThreadedFFI.*',
   			'Monticello.*',
-  			'Metacello.*'
+  			'Metacello.*',
   			'ReleaseTests.*' ] 
   	}
   }  
