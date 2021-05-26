@@ -1,6 +1,7 @@
 name: Spec-Pharo9.0
 
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   PHARO_CI_TESTING_ENVIRONMENT: 1
 
 on:
@@ -29,11 +30,8 @@ jobs:
           smalltalk-version: ${{ matrix.smalltalk }}
       - name: Load Image and Run Tests
         run: smalltalkci -s ${{ matrix.smalltalk }} .smalltalk.all.ston
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 30
       - name: Load Image and Run Release Tests
+      	run: rm -Rf _builds
         run: smalltalkci -s ${{ matrix.smalltalk }} .smalltalk.release.ston
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 10        
