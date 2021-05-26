@@ -62,7 +62,7 @@ BaselineOfSpec2 >> packageRepository [
 		reject: [:each | each = MCCacheRepository uniqueInstance]) 
 		ifNotEmpty: [ :repositories | 
 				repositories 
-					detect: [ :each | each beginsWith: 'tonel://' ]
+					detect: [ :each | each description beginsWith: 'tonel://' ]
 					ifNone: [ repositories anyOne ] ]
 		ifEmpty: [ nil ]
 ]
