@@ -1,9 +1,6 @@
 Class {
 	#name : #BaselineOfSpec2,
 	#superclass : #BaselineOf,
-	#instVars : [
-		'initializersEnabled'
-	],
 	#category : #BaselineOfSpec2
 }
 
@@ -11,9 +8,7 @@ Class {
 BaselineOfSpec2 >> baseline: spec [
 	<baseline>
 	
-	spec for: #common do: [ 		
-		spec preLoadDoIt: #preLoad.
-		spec postLoadDoIt: #postLoad.
+	spec for: #common do: [
 		
 		self specCore: spec.
 		self specCoreCode: spec.
@@ -53,6 +48,15 @@ BaselineOfSpec2 >> baseline: spec [
 ]
 
 { #category : #'external projects' }
+BaselineOfSpec2 >> defaultRepositoryURL [
+		
+	^ self class environment 
+		at: #BaselineOfPharo
+		ifPresent: [ :aClass | aClass specRepository ]
+		ifAbsent: [ 'github://pharo-spec/Spec' ]
+]
+
+{ #category : #'external projects' }
 BaselineOfSpec2 >> packageRepository [
 
 	" Tries to determine a repository from which the baseline is being loaded. Useful for 
@@ -65,23 +69,6 @@ BaselineOfSpec2 >> packageRepository [
 					detect: [ :each | each description beginsWith: 'tonel://' ]
 					ifNone: [ repositories anyOne ] ]
 		ifEmpty: [ nil ]
-]
-
-{ #category : #script }
-BaselineOfSpec2 >> postLoad [
-
-	MCMethodDefinition initializersEnabled: initializersEnabled.
-	
-	self flag: #REMOVE. "This is a temporal hack to ensure the style is taken the new variables way."
-	(self class environment at: #SpStyle) reset.
-
-]
-
-{ #category : #script }
-BaselineOfSpec2 >> preLoad [
-
-	initializersEnabled := MCMethodDefinition initializersEnabled.
-	MCMethodDefinition initializersEnabled: true
 ]
 
 { #category : #acccessing }
@@ -115,7 +102,7 @@ BaselineOfSpec2 >> specCore: spec [
 
 	spec baseline: 'SpecCore' with: [ 
 		spec 
-			repository: (self packageRepositoryURL ifEmpty: [ 'github://pharo-spec/Spec' ]);
+			repository: (self packageRepositoryURL ifEmpty: [ self defaultRepositoryURL ]);
 			loads: #('Base' 'Tests') ]
 ]
 
@@ -124,7 +111,7 @@ BaselineOfSpec2 >> specCoreCode: spec [
 
 	spec baseline: 'SpecCoreCode' with: [ 
 		spec 
-			repository: (self packageRepositoryURL ifEmpty: [ 'github://pharo-spec/Spec' ]);
+			repository: (self packageRepositoryURL ifEmpty: [ self defaultRepositoryURL ]);
 			className: 'BaselineOfSpecCore';
 			loads: #('Code' 'CodeTests') ]
 ]
