@@ -27,6 +27,7 @@ SpAthensPresenter class >> exampleResizing [
 	
 	extent := 350@300.
 	self new
+		application: (SpApplication new useBackend: #Gtk);
 		surfaceExtent: extent;
 		drawBlock: [ :aCanvas | | paint surface |
 			surface := aCanvas surface.
