@@ -20,7 +20,7 @@ SmalltalkCISpec {
   			'ThreadedFFI.*',
   			'Monticello.*',
   			'Metacello.*',
-  			'System-Settings-Tests.*'
+  			'System-Settings-Tests.*',
   			'ReleaseTests.*' ],
   		#classes : [
   			#OutOfMemoryTest,
