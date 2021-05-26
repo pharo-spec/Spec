@@ -52,6 +52,20 @@ BaselineOfSpec2 >> baseline: spec [
 	spec group: 'default' with: #('Base' 'Tests' 'Code' 'CodeTests').
 ]
 
+{ #category : #'external projects' }
+BaselineOfSpec2 >> packageRepositoryURL [
+	| url |
+	
+	url := super packageRepositoryURL.
+	url ifEmpty: [ ^ url ].
+	"Verify if I am running in CI"
+	"travis or github actions"
+	((url includesSubstring: 'pharo-spec') 
+		or: [ url beginsWith: 'tonel:///home/runner/' ]) ifTrue: [ ^ '' ].
+	
+	^ url
+]
+
 { #category : #script }
 BaselineOfSpec2 >> postLoad [
 
