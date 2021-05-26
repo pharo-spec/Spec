@@ -53,17 +53,18 @@ BaselineOfSpec2 >> baseline: spec [
 ]
 
 { #category : #'external projects' }
-BaselineOfSpec2 >> packageRepositoryURL [
-	| url |
+BaselineOfSpec2 >> packageRepository [
+
+	" Tries to determine a repository from which the baseline is being loaded. Useful for 
+	refering other baselines in the same repository. "
 	
-	url := super packageRepositoryURL.
-	url ifEmpty: [ ^ url ].
-	"Verify if I am running in CI"
-	"travis or github actions"
-	((url includesSubstring: 'pharo-spec') 
-		or: [ url beginsWith: 'tonel:///home/' ]) ifTrue: [ ^ '' ].
-	
-	^ url
+	^ (self class package mcWorkingCopy repositoryGroup repositories 
+		reject: [:each | each = MCCacheRepository uniqueInstance]) 
+		ifNotEmpty: [ :repositories | 
+				repositories 
+					detect: [ :each | each beginsWith: 'tonel://' ]
+					ifNone: [ repositories anyOne ] ]
+		ifEmpty: [ nil ]
 ]
 
 { #category : #script }
@@ -114,7 +115,7 @@ BaselineOfSpec2 >> specCore: spec [
 
 	spec baseline: 'SpecCore' with: [ 
 		spec 
-			repository: self packageRepositoryURL;
+			repository: (self packageRepositoryURL ifEmpty: [ 'github://pharo-spec/Spec' ]);
 			loads: #('Base' 'Tests') ]
 ]
 
@@ -123,7 +124,7 @@ BaselineOfSpec2 >> specCoreCode: spec [
 
 	spec baseline: 'SpecCoreCode' with: [ 
 		spec 
-			repository: self packageRepositoryURL;
+			repository: (self packageRepositoryURL ifEmpty: [ 'github://pharo-spec/Spec' ]);
 			className: 'BaselineOfSpecCore';
 			loads: #('Code' 'CodeTests') ]
 ]
