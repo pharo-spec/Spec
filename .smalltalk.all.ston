@@ -25,7 +25,8 @@ SmalltalkCISpec {
   		#classes : [
   			#OutOfMemoryTest,
   			#TraitFileOutTest,
-  			#PlatformResolverTest
+  			#PlatformResolverTest,
+  			#ProcessSpecificTest
   		] 
   	}
   }  
