@@ -30,7 +30,10 @@ SpAthensMorph >> drawOn: aMorphicCanvas [
 { #category : #drawing }
 SpAthensMorph >> redraw [
 
-	self surface drawDuring: [ :canvas | drawBlock cull: canvas ]
+	self surface drawDuring: [ :canvas | 
+		drawBlock 
+			cull: canvas
+			cull: (0@0 extent: self extent) ]
 ]
 
 { #category : #accessing }

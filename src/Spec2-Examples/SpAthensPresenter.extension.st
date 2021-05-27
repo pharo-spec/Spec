@@ -27,18 +27,19 @@ SpAthensPresenter class >> exampleResizing [
 	
 	extent := 350@300.
 	self new
-		application: (SpApplication new useBackend: #Gtk);
 		surfaceExtent: extent;
-		drawBlock: [ :aCanvas | | paint surface |
+		drawBlock: [ :aCanvas :boundingBox | | paint surface |
+			"Since sometimes a cairo surface does not brings the correct extent (in X11 or Windows, 
+			 for example), we use the bounding box of the component."
 			surface := aCanvas surface.
 			paint := surface 
 				createLinearGradient: { 
 					0->Color red. 
 					1->Color green } 
 				start: 0@0 
-				stop: surface extent.
+				stop: boundingBox extent.
 			surface clear.
 			aCanvas setPaint: paint.
-			aCanvas drawShape: (0@0 corner: surface extent) ]; 
+			aCanvas drawShape: (0@0 extent: boundingBox extent) ]; 
 		openWithSpec
 ]
