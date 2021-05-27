@@ -28,11 +28,11 @@ jobs:
         uses: hpi-swa/setup-smalltalkCI@v1
         with:
           smalltalk-version: ${{ matrix.smalltalk }}
-      - name: Load Image and Run Tests
-        run: smalltalkci -s ${{ matrix.smalltalk }} .smalltalk.all.ston
-        timeout-minutes: 30
-      - name: Clean Up
-        run: rm -Rf ${{ env.SMALLTALK_CI_BUILD }}
       - name: Load Image and Run Release Tests
         run: smalltalkci -s ${{ matrix.smalltalk }} .smalltalk.release.ston
         timeout-minutes: 10
+      - name: Clean Up
+        run: rm -Rf ${{ env.SMALLTALK_CI_BUILD }}
+      - name: Load Image and Run Tests
+        run: smalltalkci -s ${{ matrix.smalltalk }} .smalltalk.all.ston
+        timeout-minutes: 30
