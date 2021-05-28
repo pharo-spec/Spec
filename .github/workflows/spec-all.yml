@@ -1,5 +1,9 @@
 name: Spec-Pharo9.0
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  PHARO_CI_TESTING_ENVIRONMENT: 1
+
 on:
   push:
     branches: [ Pharo9.0 ]
@@ -24,8 +28,11 @@ jobs:
         uses: hpi-swa/setup-smalltalkCI@v1
         with:
           smalltalk-version: ${{ matrix.smalltalk }}
+      - name: Load Image and Run Release Tests
+        run: smalltalkci -s ${{ matrix.smalltalk }} .smalltalk.release.ston
+        timeout-minutes: 10
+      - name: Clean Up
+        run: rm -Rf ${{ env.SMALLTALK_CI_BUILD }}
       - name: Load Image and Run Tests
         run: smalltalkci -s ${{ matrix.smalltalk }} .smalltalk.all.ston
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 30

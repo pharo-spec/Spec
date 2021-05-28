@@ -48,6 +48,20 @@ SpWindowPresenterTest >> testIsTopWindow [
 ]
 
 { #category : #tests }
+SpWindowPresenterTest >> testResize [
+	
+	self openInstance.
+
+	self 
+		deny: presenter adapter windowSize 
+		equals: 600@600.
+	presenter resize: 600@600.
+	self 
+		assert: presenter adapter windowSize
+		equals: 600@600
+]
+
+{ #category : #tests }
 SpWindowPresenterTest >> testWhenClosedDo [
 	| closed |
 	closed := false.

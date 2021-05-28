@@ -8,6 +8,12 @@ Class {
 	#category : #'Spec2-Code-Commands-Base'
 }
 
+{ #category : #accessing }
+SpCodeInspectItCommand class >> defaultDescription [
+
+	^ 'Evaluate selection and inspect the result.'
+]
+
 { #category : #defaults }
 SpCodeInspectItCommand class >> defaultIconName [
 

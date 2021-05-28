@@ -19,7 +19,15 @@ SmalltalkCISpec {
   			'UnifiedFFI.*',
   			'ThreadedFFI.*',
   			'Monticello.*',
-  			'Metacello.*' ] 
+  			'Metacello.*',
+  			'System-Settings-Tests.*',
+  			'ReleaseTests.*' ],
+  		#classes : [
+  			#OutOfMemoryTest,
+  			#TraitFileOutTest,
+  			#PlatformResolverTest,
+  			#ProcessSpecificTest
+  		] 
   	}
   }  
 }

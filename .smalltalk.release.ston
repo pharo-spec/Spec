@@ -7,5 +7,11 @@ SmalltalkCISpec {
       #onUpgrade : #useIncoming,
       #ignoreImage : true
     }
-  ]
+  ],
+  #preTesting : [ '.github/scripts/preTesting.st' ],
+  #testing : {
+  	#packages : [ 
+  		'System-Settings-Tests.*',
+  		'ReleaseTests.*' ] 
+  }  
 }
