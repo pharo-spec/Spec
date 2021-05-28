@@ -8,7 +8,6 @@ SmalltalkCISpec {
       #ignoreImage : true
     }
   ],
-  #preTesting : [ '.github/scripts/preTesting.st' ],
   #testing : {
   	#include : { 
   		#packages : [ '.*' ] 
