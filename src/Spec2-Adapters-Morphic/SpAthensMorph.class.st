@@ -6,41 +6,32 @@ Class {
 	#superclass : #Morph,
 	#instVars : [
 		'surface',
-		'drawBlock',
-		'lastExtent'
+		'drawBlock'
 	],
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
 { #category : #accessing }
-SpAthensMorph >> drawBlock: aBlock [
+SpAthensMorph >> drawBlock: aBlockClosure [
 
-	drawBlock := aBlock
+	drawBlock := aBlockClosure
 ]
 
 { #category : #drawing }
 SpAthensMorph >> drawOn: aMorphicCanvas [
 
 	self redraw.
-	self surface 
-		displayOnMorphicCanvas: aMorphicCanvas 
-		at: bounds origin
+	self surface displayOnMorphicCanvas: aMorphicCanvas at: bounds origin
 ]
 
 { #category : #drawing }
 SpAthensMorph >> redraw [
 
-	self surface drawDuring: [ :canvas | 
-		drawBlock 
-			cull: canvas
-			cull: (0@0 extent: self extent) ]
+	self surface drawDuring: [ :canvas | drawBlock cull: canvas ]
 ]
 
 { #category : #accessing }
 SpAthensMorph >> surface [
- 
-	lastExtent = self extent ifFalse: [ surface := nil ].
-	^ surface ifNil: [ 
-		lastExtent := self extent.
-		surface := AthensCairoSurface extent: self extent ]
+	^ surface
+		ifNil: [ surface := AthensCairoSurface extent: self extent ]
 ]
