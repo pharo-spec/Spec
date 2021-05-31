@@ -71,7 +71,7 @@ BaselineOfSpec2 >> packageRepository [
 		ifEmpty: [ nil ]
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 BaselineOfSpec2 >> project [
 	"Atomic loading is needed for Spec because we are moving classes of package and it breaks their subclasses. 
 	
