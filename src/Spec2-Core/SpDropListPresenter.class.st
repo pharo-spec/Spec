@@ -61,6 +61,17 @@ SpDropListPresenter >> addItemLabeled: aString do: aBlock icon: anIcon [
 		self selection selectItem: item ]
 ]
 
+{ #category : #private }
+SpDropListPresenter >> disableSelectionDuring: aBlock [
+	| oldSubscriptions holder |
+	
+	holder := selection observablePropertyNamed: #selectedIndex.
+	oldSubscriptions := holder subscriptions.
+	holder subscriptions: #().
+	aBlock ensure: [ 
+		holder subscriptions: oldSubscriptions ]
+]
+
 { #category : #api }
 SpDropListPresenter >> display [
 	"Answer the formatting block to transform how the elements will be displayed. 
@@ -279,6 +290,18 @@ SpDropListPresenter >> startWithoutSelection [
 	"Indicate when droplist will start without an element selected."
 
 	startsWithSelection := false
+]
+
+{ #category : #api }
+SpDropListPresenter >> updateItemsKeepingSelection: aCollection [
+	"Update list items keeping current selection. 
+	 WARNING: aCollection must includes the elements selected."
+	
+	self disableSelectionDuring: [ 
+		| item |
+		item := self selectedItem.
+		self items: aCollection.
+		self selectItem: item ]
 ]
 
 { #category : #'api-events' }
