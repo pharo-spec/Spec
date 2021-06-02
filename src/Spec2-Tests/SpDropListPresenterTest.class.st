@@ -9,7 +9,7 @@ SpDropListPresenterTest >> classToTest [
 	^ SpDropListPresenter
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 SpDropListPresenterTest >> testDisableSelectionDuring [ 
 	| changed |
 
@@ -36,7 +36,7 @@ SpDropListPresenterTest >> testSortingBlock [
 	self assert: (presenter model at: 1) model equals: 0
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 SpDropListPresenterTest >> testUpdateItemsKeepingSelection [ 
 
 	presenter items: #($a $b $c).
