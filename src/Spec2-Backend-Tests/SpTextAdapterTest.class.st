@@ -44,7 +44,13 @@ three'.
 	self assert: presenter lineAtCursorPosition equals: 'two'.	
 	
 	presenter cursorPositionIndex: 14.
-	self assert: presenter lineAtCursorPosition equals: 'three'
+	self assert: presenter lineAtCursorPosition equals: 'three'.
+	
+	presenter text: ''.
+	presenter cursorPositionIndex: 1.
+	self assert: presenter lineAtCursorPosition equals: ''.
+	
+	
 ]
 
 { #category : #accessing }

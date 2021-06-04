@@ -5,7 +5,7 @@ RubTextEditor >> lineAtCursorPosition [
 	| string lastEnd index lastStart |
 	
 	index := self pointIndex.
-	string := self text asString.
+	string := self text asString ifEmpty: [^''].
 	string lineIndicesDo: [ :start :endWithoutDelimiters :end | 
 		index <= end ifTrue: [ 
 			^ string copyFrom: start to: endWithoutDelimiters ].
