@@ -9,6 +9,7 @@ Class {
 
 { #category : #default }
 SpBrowseMethodsContainingStringCommand class >> defaultDescription [
+
 	^ 'Browse all methods containing the selected string'
 ]
 

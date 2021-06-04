@@ -8,6 +8,12 @@ Class {
 }
 
 { #category : #default }
+SpBrowseMethodsMatchingStringInsensitiveCommand class >> defaultDescription [
+
+	^ 'Browse all methods containing a string matchign the selected string (case-sensitive)'
+]
+
+{ #category : #default }
 SpBrowseMethodsMatchingStringInsensitiveCommand class >> shortName [
 
 	^ 'methods literal strings (case-insensitive)'
