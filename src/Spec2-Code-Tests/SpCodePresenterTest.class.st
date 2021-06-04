@@ -207,6 +207,67 @@ SpCodePresenterTest >> testDoBrowseMethodsContainingString [
 ]
 
 { #category : #'tests commands' }
+SpCodePresenterTest >> testDoBrowseMethodsMatchingStringInsensitive [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	self openInstance.
+	
+	"Restrict environment to make things faster"
+	presenter environment: (SystemDictionary new 
+		at: #SpCodePresenterTest put: SpCodePresenterTest;
+		yourself).
+		
+	"no matter what I put, it will find it in this method"
+	"First find it even if is not same case (case insensitive)"
+	presenter text: 'MatchTextToFind' asLowercase. 
+	presenter doBrowseMethodsMatchingStringInsensitive.
+	
+	self assert: navigation messageList notEmpty.
+	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseMethodsMatchingStringSensitive).
+	
+	"Now find it matching if sensitive"
+	navigation reset.
+	presenter text: 'MatchTextToFind'. 
+	presenter doBrowseMethodsMatchingStringSensitive.
+	
+	self assert: navigation messageList notEmpty.
+	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseMethodsMatchingStringSensitive).
+	
+]
+
+{ #category : #'tests commands' }
+SpCodePresenterTest >> testDoBrowseMethodsMatchingStringSensitive [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	self openInstance.
+	
+	"Restrict environment to make things faster"
+	presenter environment: (SystemDictionary new 
+		at: #SpCodePresenterTest put: SpCodePresenterTest;
+		yourself).
+		
+	"no matter what I put, it will find it in this method"
+	"First do not find it (case sensitive)"
+	presenter text: 'MatchTextToFind' asLowercase. 
+	presenter doBrowseMethodsMatchingStringSensitive.
+	
+	self assert: navigation messageList isEmpty.
+	
+	"Now find it"
+	navigation reset.
+	presenter text: 'MatchTextToFind'. 
+	presenter doBrowseMethodsMatchingStringSensitive.
+	
+	self assert: navigation messageList notEmpty.
+	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseMethodsMatchingStringSensitive).
+	
+]
+
+{ #category : #'tests commands' }
 SpCodePresenterTest >> testDoBrowseSenders [
 	| navigation |
 	
