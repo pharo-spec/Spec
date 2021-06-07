@@ -13,9 +13,15 @@ SpBrowseMethodsMatchingStringSensitiveCommand class >> defaultDescription [
 ]
 
 { #category : #default }
+SpBrowseMethodsMatchingStringSensitiveCommand class >> defaultName [
+
+	^ 'Case sensitive method literal strings with it'
+]
+
+{ #category : #default }
 SpBrowseMethodsMatchingStringSensitiveCommand class >> shortName [
 
-	^ 'methods literal strings (case-sensitive)'
+	^ nil
 ]
 
 { #category : #executing }

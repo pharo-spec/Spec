@@ -14,6 +14,12 @@ SpBrowseSendersCommand class >> defaultDescription [
 ]
 
 { #category : #default }
+SpBrowseSendersCommand class >> defaultName [
+
+	^ 'Senders of it'
+]
+
+{ #category : #default }
 SpBrowseSendersCommand class >> defaultShortcutKey [
 
 	^ $n command mac 
@@ -24,7 +30,7 @@ SpBrowseSendersCommand class >> defaultShortcutKey [
 { #category : #default }
 SpBrowseSendersCommand class >> shortName [
 
-	^ 'senders'
+	^ nil
 ]
 
 { #category : #executing }

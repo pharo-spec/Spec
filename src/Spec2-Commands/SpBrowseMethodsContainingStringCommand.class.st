@@ -14,9 +14,15 @@ SpBrowseMethodsContainingStringCommand class >> defaultDescription [
 ]
 
 { #category : #default }
+SpBrowseMethodsContainingStringCommand class >> defaultName [
+
+	^ 'Method source with it'
+]
+
+{ #category : #default }
 SpBrowseMethodsContainingStringCommand class >> shortName [
 
-	^ 'methods containing string'
+	^ nil
 ]
 
 { #category : #executing }
