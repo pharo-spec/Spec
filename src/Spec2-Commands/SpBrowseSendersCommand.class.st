@@ -30,7 +30,7 @@ SpBrowseSendersCommand class >> defaultShortcutKey [
 { #category : #default }
 SpBrowseSendersCommand class >> shortName [
 
-	^ nil
+	^ 'senders'
 ]
 
 { #category : #executing }

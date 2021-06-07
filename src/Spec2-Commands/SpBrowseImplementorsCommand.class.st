@@ -29,7 +29,7 @@ SpBrowseImplementorsCommand class >> defaultShortcutKey [
 { #category : #default }
 SpBrowseImplementorsCommand class >> shortName [
 
-	^ nil
+	^ 'implementors'
 ]
 
 { #category : #executing }

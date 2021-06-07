@@ -15,7 +15,7 @@ SpBrowseMethodReferencesCommand class >> defaultDescription [
 { #category : #default }
 SpBrowseMethodReferencesCommand class >> defaultName [ 
 
-	^ 'References of it'
+	^ 'References to it'
 ]
 
 { #category : #default }
@@ -29,7 +29,7 @@ SpBrowseMethodReferencesCommand class >> defaultShortcutKey [
 { #category : #default }
 SpBrowseMethodReferencesCommand class >> shortName [
 
-	^ nil
+	^ 'references'
 ]
 
 { #category : #executing }

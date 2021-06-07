@@ -10,7 +10,7 @@ Class {
 	#category : #'Spec2-Commands-Navigation'
 }
 
-{ #category : #defaults }
+{ #category : #default }
 SpSystemNavigationCommand class >> defaultIconName [
 	^#smallSystemBrowser 
 ]
@@ -28,7 +28,7 @@ SpSystemNavigationCommand class >> documentContextRequiredSelectors [
 	^ #('environment')
 ]
 
-{ #category : #accessing }
+{ #category : #default }
 SpSystemNavigationCommand class >> shortName [
 	^self subclassResponsibility 
 ]

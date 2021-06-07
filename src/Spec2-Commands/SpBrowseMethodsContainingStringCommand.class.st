@@ -22,7 +22,7 @@ SpBrowseMethodsContainingStringCommand class >> defaultName [
 { #category : #default }
 SpBrowseMethodsContainingStringCommand class >> shortName [
 
-	^ nil
+	^ 'methods containing string'
 ]
 
 { #category : #executing }

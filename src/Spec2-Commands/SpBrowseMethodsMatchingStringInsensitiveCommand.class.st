@@ -19,10 +19,10 @@ SpBrowseMethodsMatchingStringInsensitiveCommand class >> defaultName [
 	^ 'Case insensitive method literal strings with it'
 ]
 
-{ #category : #accessing }
+{ #category : #default }
 SpBrowseMethodsMatchingStringInsensitiveCommand class >> shortName [
 
-	^ nil
+	^ nil "Do not use"
 ]
 
 { #category : #executing }

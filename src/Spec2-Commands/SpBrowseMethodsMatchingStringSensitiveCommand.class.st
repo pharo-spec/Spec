@@ -21,7 +21,7 @@ SpBrowseMethodsMatchingStringSensitiveCommand class >> defaultName [
 { #category : #default }
 SpBrowseMethodsMatchingStringSensitiveCommand class >> shortName [
 
-	^ nil
+	^ 'methods literal strings (case-sensitive)'
 ]
 
 { #category : #executing }
