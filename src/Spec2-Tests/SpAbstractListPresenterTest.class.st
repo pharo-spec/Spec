@@ -119,6 +119,19 @@ SpAbstractListPresenterTest >> testContextMenu [
 ]
 
 { #category : #tests }
+SpAbstractListPresenterTest >> testDisableActivationDuring [ 
+	| activated |
+
+	activated := false.
+	presenter whenActivatedDo: [ activated := true ].
+	
+	self deny: activated.
+	presenter disableActivationDuring: [ presenter clickAtIndex: 2 ].
+	self deny: activated. "still not change"
+	self assert: presenter selectedItem equals: 20 "but the selection changed!"
+]
+
+{ #category : #tests }
 SpAbstractListPresenterTest >> testReplaceItemList [
 	| changed |
 
@@ -208,4 +221,13 @@ SpAbstractListPresenterTest >> testUnselectAll [
 		equals: #(10 20 30).
 	presenter unselectAll.
 	self assertEmpty: presenter selection selectedItems
+]
+
+{ #category : #tests }
+SpAbstractListPresenterTest >> testUpdateItemsKeepingSelection [ 
+
+	presenter items: #($a $b $c).
+	presenter selectItem: $c.
+	presenter updateItemsKeepingSelection: #($c $d $e $f).
+	self assert: presenter selectedItem equals: $c
 ]

@@ -247,6 +247,29 @@ SpAbstractTreePresenter >> pathIndexOf: pathArray in: aCollection [
 
 ]
 
+{ #category : #private }
+SpAbstractTreePresenter >> pathItemOf: aPath [
+	"answer an array of items following a path. 
+	 e.g. #(1 2 3) = { item1. item2. item3 }"
+
+	^ self 
+		pathItemOf: aPath 
+		in: self roots
+]
+
+{ #category : #private }
+SpAbstractTreePresenter >> pathItemOf: pathArray in: aCollection [ 
+	| pathElement |
+	
+	pathElement := aCollection at: pathArray first.
+	pathArray size = 1 ifTrue: [ ^ { pathElement } ].
+	
+	^ { pathElement }, (self 
+		pathItemOf: pathArray allButFirst
+		in: (self childrenFor: pathElement))
+
+]
+
 { #category : #api }
 SpAbstractTreePresenter >> refresh [
 	"Forces a refresh of the tree. 
@@ -417,10 +440,10 @@ SpAbstractTreePresenter >> updateRootsKeepingSelection: aCollection [
 	self disableActivationDuring: [ 
 		| selectedPaths |
 		
-		selectedPaths := self selection selectedPaths.
+		selectedPaths := (self selection selectedPaths collect: [ :each | self pathItemOf: each ]).
 		self roots: aCollection.
 		selectedPaths ifNotEmpty: [ 
-			self selectPaths: selectedPaths ] ]
+			self selectPaths: (selectedPaths collect: [ :each | self pathIndexOf: each ]) ] ]
 ]
 
 { #category : #private }

@@ -62,9 +62,9 @@ SpCodePresenter class >> codeAcceptCommandsGroupWith: aPresenter [
 SpCodePresenter class >> codeNavigationCommandsGroupWith: aPresenter [
 	| group |
 	
-	group := (CmCommandGroup named: 'Selection search commands') asSpecGroup
+	group := (CmCommandGroup named: 'Code search') asSpecGroup
 		description: 'Search the system from code selection.';
-		beDisplayedAsGroup;
+		beDisplayedAsSubMenu;
 		yourself.
 		
 	self flag: #TODO. "This looks like a very bad way to do this :P"	
@@ -73,6 +73,8 @@ SpCodePresenter class >> codeNavigationCommandsGroupWith: aPresenter [
 		SpBrowseImplementorsCommand.
 		SpBrowseSendersCommand.
 		SpBrowseMethodReferencesCommand.	
+		SpBrowseMethodsMatchingStringInsensitiveCommand.
+		SpBrowseMethodsMatchingStringSensitiveCommand.
 		SpBrowseMethodsContainingStringCommand.
 	 } 
 	do:[ :commandClass | 
@@ -332,6 +334,22 @@ SpCodePresenter >> doBrowseMethodsContainingString [
 	self systemNavigation 
 		browseMethodsWithSourceString: self selectedTextOrLine 
 		matchCase: false
+]
+
+{ #category : #commands }
+SpCodePresenter >> doBrowseMethodsMatchingStringInsensitive [
+	
+	self systemNavigation 
+		browseMethodsWithString: self selectedTextOrLine 
+		matchCase: false
+]
+
+{ #category : #commands }
+SpCodePresenter >> doBrowseMethodsMatchingStringSensitive [
+	
+	self systemNavigation 
+		browseMethodsWithString: self selectedTextOrLine 
+		matchCase: true
 ]
 
 { #category : #commands }

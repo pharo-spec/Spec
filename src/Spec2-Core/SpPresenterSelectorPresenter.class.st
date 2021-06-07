@@ -1,16 +1,14 @@
 "
-I am a ""show if condition is true"" presenter.
-My purpose is to allow users to choose different outputs depending on the result of a condition  defined.
+A selector presenter that chooses what to show (when condition is satisfied).
+The purpose is to allow users to choose different outputs depending on the result of a condition  defined.
 The basic usage would be:
 
-[[[language=Smalltalk
+```
 choose := self newPresenterSelector
 	when: [ aCondition ] show: [ aPresenter ];
 	when: [ anotherCondition ] show: [ anotherPresenter ];
 	defaultShow: [ defaultPresenter ]
-]]]
-
-> self example
+```
 "
 Class {
 	#name : #SpPresenterSelectorPresenter,
@@ -73,6 +71,14 @@ SpPresenterSelectorPresenter >> setModel: anObject [
 SpPresenterSelectorPresenter >> setModelBeforeInitialization: anObject [
 
 	model := anObject
+]
+
+{ #category : #api }
+SpPresenterSelectorPresenter >> showingPresenter [
+
+	^ self layout children
+		ifNotEmpty: [ :presenters | presenters first ] 
+		ifEmpty: [ nil ]
 ]
 
 { #category : #initialization }

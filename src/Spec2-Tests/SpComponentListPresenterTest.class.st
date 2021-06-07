@@ -102,6 +102,19 @@ SpComponentListPresenterTest >> testAddPresenterToComponentListShouldNotBeEmpty 
 ]
 
 { #category : #tests }
+SpComponentListPresenterTest >> testDisableActivationDuring [ 
+	| activated |
+
+	activated := false.
+	presenter whenActivatedDo: [ activated := true ].
+	
+	self deny: activated.
+	presenter disableActivationDuring: [ presenter clickAtIndex: 2 ].
+	self deny: activated. "still not change"
+	self assert: presenter selectedItem label equals: '20' "but the selection changed!"
+]
+
+{ #category : #tests }
 SpComponentListPresenterTest >> testNewComponentListIsEmpty [
 
 	self assertEmpty: self classToTest new
@@ -185,4 +198,15 @@ SpComponentListPresenterTest >> testUnselectAll [
 		equals: #('10' '20' '30').
 	presenter unselectAll.
 	self assertEmpty: presenter selection selectedItems
+]
+
+{ #category : #tests }
+SpComponentListPresenterTest >> testUpdateItemsKeepingSelection [ 
+	| presenters |
+
+	presenters := #($a $b $c) collect: #asPresenter.
+	presenter items: presenters.
+	presenter selectIndex: 3.
+	presenter updateItemsKeepingSelection: (presenters copyWith: $d asPresenter).
+	self assert: presenter selectedItem label equals: 'c'
 ]
