@@ -85,6 +85,12 @@ SpProgressBarPresenter >> state: aState [
 	self withAdapterPerformOrDefer: [ :anAdapter | anAdapter updateState ]
 ]
 
+{ #category : #api }
+SpProgressBarPresenter >> value [
+
+	^ self state value
+]
+
 { #category : #'api-events' }
 SpProgressBarPresenter >> whenValueChangedDo: aBlock [
 	"Inform when progress value has changed. 

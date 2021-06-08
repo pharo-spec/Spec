@@ -73,7 +73,7 @@ SpStyle class >> defaultStyleSheetData [
 	],
 	.link [ Geometry { #hResizing: true } ],
 	.button [  
-		Geometry { #width: 100 },
+		Geometry { #width: 100, #height: 30 },
 		.small [ Geometry { #width: 25, #height: 25 } ]
 	],
 	.checkBox [  
@@ -114,7 +114,8 @@ SpStyle class >> defaultStyleSheetData [
 		.error [ Draw { #color: #C20000 } ],
 		.popoverButton [ Draw { #color: EnvironmentColor(#popoverButton) } ] ],
 	.paginator [ Geometry { #height: 20 } ],
-	.morph [ Geometry { #width: Reset, #height: Reset, #vResizing: true, #hResizing: true } ] ]
+	.morph [ Geometry { #width: Reset, #height: Reset, #vResizing: true, #hResizing: true } ],
+	.image [ Geometry { #width: Reset, #height: Reset, #vResizing: true, #hResizing: true } ] ]
 '
 ]
 

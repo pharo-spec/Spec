@@ -63,3 +63,13 @@ SpTextAdapterTest >> testRightClickShowsMenu [
 	self emulateRightClick.
 	self assert: menu shown
 ]
+
+{ #category : #'as yet unclassified' }
+SpTextAdapterTest >> testTextIsAlwaysString [
+
+	presenter text: 'one'.
+	self openInstance.
+	
+	self assert: (presenter text isKindOf: String)
+
+]

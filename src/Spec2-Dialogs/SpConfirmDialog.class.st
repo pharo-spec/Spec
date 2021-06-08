@@ -32,7 +32,7 @@ SpConfirmDialog class >> defaultCancelLabel [
 { #category : #accessing }
 SpConfirmDialog class >> defaultExtent [
 
-	^ 400@100
+	^ 400@120
 ]
 
 { #category : #specs }
@@ -43,6 +43,7 @@ SpConfirmDialog class >> defaultSpec [
 		spacing: 5;
 		add: (SpBoxLayout newLeftToRight
 			spacing: 5;
+			vAlignCenter;
 			add: #image expand: false;
 			add: #label;
 			yourself);
@@ -71,16 +72,16 @@ SpConfirmDialog class >> example [
 
 { #category : #example }
 SpConfirmDialog class >> exampleModal [
-	| dialog |
+	| ok |
 
-	dialog := self new
+	ok := self new
 		title: 'Confirm modal example';
 		label: 'Are you sure?';
 		acceptLabel: 'Sure!';
 		cancelLabel: 'No, forget it';
 		openModalWithSpec.
 	
-	self inform: (dialog isOk 
+	self inform: (ok 
 		ifTrue: [ 'Yes!' ]
 		ifFalse: [ 'No!' ])
 ]
@@ -141,7 +142,7 @@ SpConfirmDialog >> initializeDialogWindow: aDialogWindowPresenter [
 { #category : #initialization }
 SpConfirmDialog >> initializePresenters [
 
-	image := self newImage.
+	image := self newImage image: (self application iconNamed: #question).
 	label := self newLabel
 	
 ]
