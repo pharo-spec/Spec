@@ -54,9 +54,9 @@ SpRequestDialog class >> example [
 
 { #category : #example }
 SpRequestDialog class >> exampleModal [
-	| dialog |
+	| string |
 
-	dialog := self new
+	string := self new
 		title: 'Request modal example';
 		label: 'The meaning of life?';
 		text: 'I am tempted to say 42...';
@@ -64,8 +64,8 @@ SpRequestDialog class >> exampleModal [
 		cancelLabel: 'Cancel';
 		openModalWithSpec.
 		
-	dialog isOk ifTrue: [ 
-		self inform: dialog presenter text ]
+	string ifNotNil: [ 
+		self inform: string ]
 ]
 
 { #category : #visiting }
