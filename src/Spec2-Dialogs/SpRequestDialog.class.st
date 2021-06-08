@@ -11,7 +11,8 @@ Class {
 		'initialExtent',
 		'acceptLabel',
 		'cancelLabel',
-		'validateBlock'
+		'validateBlock',
+		'image'
 	],
 	#category : #'Spec2-Dialogs'
 }
@@ -19,7 +20,7 @@ Class {
 { #category : #accessing }
 SpRequestDialog class >> defaultExtent [
 
-	^ 400@140
+	^ 400@160
 ]
 
 { #category : #specs }
@@ -28,7 +29,13 @@ SpRequestDialog class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		borderWidth: 5;
 		spacing: 5;
-		add: #label expand: false;
+		add: (SpBoxLayout newLeftToRight
+				vAlignCenter;
+				spacing: 5;
+				add: #image expand: false; 
+				add: #label;
+				yourself) 
+			expand: false;
 		add: #textInput expand: false;
 		yourself
 ]
@@ -130,6 +137,7 @@ SpRequestDialog >> initializeDialogWindow: aDialogWindowPresenter [
 { #category : #initialization }
 SpRequestDialog >> initializePresenters [
 
+	image := self newImage image: (self application iconNamed: #question).
 	label := self newLabel.
 	textInput := self newTextInput
 ]
