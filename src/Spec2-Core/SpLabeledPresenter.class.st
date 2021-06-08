@@ -9,7 +9,7 @@ Example:
 	self instantiate: (LabelledPresenter label: 'Email' input: self newTextInput description: 'Email adress to use to send activation and informations emails.')
 "
 Class {
-	#name : #SpLabelledPresenter,
+	#name : #SpLabeledPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'input',
@@ -20,7 +20,7 @@ Class {
 }
 
 { #category : #specs }
-SpLabelledPresenter class >> defaultSpec [
+SpLabeledPresenter class >> defaultSpec [
 	^ SpBoxLayout newLeftToRight
 		add: #labelPresenter withConstraints: [ :constraints | constraints width: self labelWidth ];
 		add:
@@ -31,12 +31,12 @@ SpLabelledPresenter class >> defaultSpec [
 ]
 
 { #category : #'instance creation' }
-SpLabelledPresenter class >> label: aString input: aPresenter [
+SpLabeledPresenter class >> label: aString input: aPresenter [
 	^ self label: aString input: aPresenter description: nil
 ]
 
 { #category : #'instance creation' }
-SpLabelledPresenter class >> label: aString input: aPresenter description: anotherString [
+SpLabeledPresenter class >> label: aString input: aPresenter description: anotherString [
 	^ self new
 		label: aString;
 		input: aPresenter;
@@ -45,7 +45,7 @@ SpLabelledPresenter class >> label: aString input: aPresenter description: anoth
 ]
 
 { #category : #accessing }
-SpLabelledPresenter >> description: aString [
+SpLabeledPresenter >> description: aString [
 	aString ifNil: [ ^ self ].
 	
 	descriptionPresenter := self newLabel
@@ -55,43 +55,43 @@ SpLabelledPresenter >> description: aString [
 ]
 
 { #category : #accessing }
-SpLabelledPresenter >> descriptionPresenter [
+SpLabeledPresenter >> descriptionPresenter [
 	^ descriptionPresenter
 ]
 
 { #category : #accessing }
-SpLabelledPresenter >> descriptionPresenter: anObject [
+SpLabeledPresenter >> descriptionPresenter: anObject [
 	descriptionPresenter := anObject
 ]
 
 { #category : #initialization }
-SpLabelledPresenter >> initializePresenters [
+SpLabeledPresenter >> initializePresenters [
 	labelPresenter := self newLabel.
 	descriptionPresenter :=  self newNullPresenter. "By default it is null"
 ]
 
 { #category : #accessing }
-SpLabelledPresenter >> input [
+SpLabeledPresenter >> input [
 	^ input
 ]
 
 { #category : #accessing }
-SpLabelledPresenter >> input: anObject [
+SpLabeledPresenter >> input: anObject [
 	input := anObject.
 	self focusOrder add: input
 ]
 
 { #category : #accessing }
-SpLabelledPresenter >> label: aString [
+SpLabeledPresenter >> label: aString [
 	labelPresenter label: aString
 ]
 
 { #category : #accessing }
-SpLabelledPresenter >> labelPresenter [
+SpLabeledPresenter >> labelPresenter [
 	^ labelPresenter
 ]
 
 { #category : #accessing }
-SpLabelledPresenter >> labelPresenter: anObject [
+SpLabeledPresenter >> labelPresenter: anObject [
 	labelPresenter := anObject
 ]

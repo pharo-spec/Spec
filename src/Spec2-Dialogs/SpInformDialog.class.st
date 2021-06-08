@@ -23,7 +23,7 @@ SpInformDialog class >> defaultAcceptLabel [
 { #category : #accessing }
 SpInformDialog class >> defaultExtent [
 
-	^ 400@100
+	^ 450@120
 ]
 
 { #category : #specs }
@@ -33,6 +33,7 @@ SpInformDialog class >> defaultSpec [
 		borderWidth: 5;
 		spacing: 5;
 		add: (SpBoxLayout newLeftToRight
+			vAlignCenter;
 			spacing: 5;
 			add: #image expand: false;
 			add: #label;
@@ -110,7 +111,7 @@ SpInformDialog >> initializeDialogWindow: aDialogWindowPresenter [
 { #category : #initialization }
 SpInformDialog >> initializePresenters [
 
-	image := self newImage.
+	image := self newImage image: (self application iconNamed: #info).
 	label := self newLabel
 ]
 

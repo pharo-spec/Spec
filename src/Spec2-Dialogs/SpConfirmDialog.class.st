@@ -32,7 +32,7 @@ SpConfirmDialog class >> defaultCancelLabel [
 { #category : #accessing }
 SpConfirmDialog class >> defaultExtent [
 
-	^ 400@120
+	^ 450@120
 ]
 
 { #category : #specs }
