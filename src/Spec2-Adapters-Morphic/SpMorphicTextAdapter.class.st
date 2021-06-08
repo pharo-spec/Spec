@@ -7,6 +7,14 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
+{ #category : #visiting }
+SpMorphicTextAdapter >> accept: aString notifying: aNotifyier [
+
+	^ super 
+		accept: (aString ifNotNil: [ aString asString ])
+		notifying: aNotifyier
+]
+
 { #category : #initialization }
 SpMorphicTextAdapter >> addFocusRotationKeyBindings [
 	"Text areas needs to be able to process tab. Cancel the binding."
