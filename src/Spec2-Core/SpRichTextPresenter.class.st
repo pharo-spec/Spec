@@ -64,7 +64,7 @@ SpRichTextPresenter >> model [
 	^  model
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SpRichTextPresenter >> plaintext [ 
 
 	^ nil
@@ -98,7 +98,7 @@ SpRichTextPresenter >> textStyler: aTextStyler [
 	textStyler := aTextStyler
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpRichTextPresenter >> whenTextStylerChangedDo: aBlock [
 
 	self property: #textStyler whenChangedDo: aBlock

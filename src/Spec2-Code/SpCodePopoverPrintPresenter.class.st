@@ -52,7 +52,7 @@ SpCodePopoverPrintPresenter >> code: aCodePresenter [
 	code := aCodePresenter
 ]
 
-{ #category : #'api-focus' }
+{ #category : #'api - focus' }
 SpCodePopoverPrintPresenter >> defaultKeyboardFocus [
 
 	^ text

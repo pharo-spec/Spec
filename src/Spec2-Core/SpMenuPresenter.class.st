@@ -54,7 +54,7 @@ SpMenuPresenter class >> popup [
 		adaptAsPopup: #(presenter))
 ]
 
-{ #category : #'api-building' }
+{ #category : #'api - building' }
 SpMenuPresenter >> addAllFromPragma: pragma target: target [
 
 	self fromSpec: (PragmaMenuBuilder 
@@ -107,7 +107,7 @@ SpMenuPresenter >> autoRefresh: aBoolean [
 	autoRefresh := aBoolean
 ]
 
-{ #category : #'api-building' }
+{ #category : #'api - building' }
 SpMenuPresenter >> buildWithSpecAsPopup [
 
 	^ self buildWithSpec
@@ -128,7 +128,7 @@ SpMenuPresenter >> defaultGroup [
 		defaultGroup ]
 ]
 
-{ #category : #'api-building' }
+{ #category : #'api - building' }
 SpMenuPresenter >> fromSpec: aSpec [
 	| grps subgroup |
 	

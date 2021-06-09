@@ -4,18 +4,18 @@ Class {
 	#category : #'Spec2-Tests-Core'
 }
 
-{ #category : #running }
+{ #category : #accessing }
 SpWindowPresenterTest >> classToTest [
 
 	^ SpWindowPresenter
 ]
 
-{ #category : #running }
+{ #category : #initialization }
 SpWindowPresenterTest >> initializeTestedInstance [
 	presenter presenter: SpLabelPresenter new
 ]
 
-{ #category : #running }
+{ #category : #utilities }
 SpWindowPresenterTest >> openInstance [
 	window ifNil: [ window := presenter openWithSpecLayout: SpLabelPresenter defaultSpec ]
 ]

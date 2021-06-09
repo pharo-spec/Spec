@@ -1,7 +1,7 @@
 Class {
 	#name : #SpListSearchTest,
 	#superclass : #SpAbstractSearchTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
 { #category : #accessing }

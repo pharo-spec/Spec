@@ -74,7 +74,7 @@ SpMorphStyle >> applyTo: aMorph [
 		do: [ :each | each applyTo: aMorph ]
 ]
 
-{ #category : #'accessing container' }
+{ #category : #'accessing - container' }
 SpMorphStyle >> borderWidth [
 
 	^ self lookupProperty: SpContainerStyle valueOf: #borderWidth
@@ -97,19 +97,19 @@ SpMorphStyle >> calculateMergedProperties [
 	^ properties
 ]
 
-{ #category : #'accessing geometry' }
+{ #category : #'accessing - geometry' }
 SpMorphStyle >> extent [
 
 	^ self lookupProperty: SpGeometryStyle valueOf: #extent
 ]
 
-{ #category : #'accessing font' }
+{ #category : #'accessing - font' }
 SpMorphStyle >> font [
 
 	^ self lookupProperty: SpFontStyle valueOf: #definedFont
 ]
 
-{ #category : #'accessing geometry' }
+{ #category : #'accessing - geometry' }
 SpMorphStyle >> height [
 
 	^ self lookupProperty: SpGeometryStyle valueOf: #height
@@ -128,13 +128,13 @@ SpMorphStyle >> lookupProperty: aPropertyClass valueOf: aSymbol [
 	^ nil
 ]
 
-{ #category : #'accessing geometry' }
+{ #category : #'accessing - geometry' }
 SpMorphStyle >> maxHeight [
 
 	^ self lookupProperty: SpGeometryStyle valueOf: #maxHeight
 ]
 
-{ #category : #'accessing geometry' }
+{ #category : #'accessing - geometry' }
 SpMorphStyle >> maxWidth [
 
 	^ self lookupProperty: SpGeometryStyle valueOf: #maxWidth
@@ -163,19 +163,19 @@ SpMorphStyle >> mergedPropertiesLike: aClass [
 		
 ]
 
-{ #category : #'accessing geometry' }
+{ #category : #'accessing - geometry' }
 SpMorphStyle >> minHeight [
 
 	^ self lookupProperty: SpGeometryStyle valueOf: #minHeight
 ]
 
-{ #category : #'accessing geometry' }
+{ #category : #'accessing - geometry' }
 SpMorphStyle >> minWidth [
 
 	^ self lookupProperty: SpGeometryStyle valueOf: #minWidth
 ]
 
-{ #category : #'accessing container' }
+{ #category : #'accessing - container' }
 SpMorphStyle >> padding [ 
 
 	^ self lookupProperty: SpContainerStyle valueOf: #padding
@@ -204,7 +204,7 @@ SpMorphStyle >> styles: anObject [
 	styles := anObject
 ]
 
-{ #category : #'accessing geometry' }
+{ #category : #'accessing - geometry' }
 SpMorphStyle >> width [
 
 	^ self lookupProperty: SpGeometryStyle valueOf: #width

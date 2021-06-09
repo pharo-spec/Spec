@@ -20,7 +20,7 @@ SpProgressDialog class >> documentFactoryMethodSelector [
 	^ #newProgress
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpProgressDialog class >> example [
 
 	self new
@@ -30,7 +30,7 @@ SpProgressDialog class >> example [
 		openDialogWithSpec
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpProgressDialog class >> exampleInformUserDuring [
 
 	self new
@@ -43,7 +43,7 @@ SpProgressDialog class >> exampleInformUserDuring [
 				1 second wait ] ]
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpProgressDialog class >> exampleModal [
 
 	self new

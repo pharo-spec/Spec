@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-Support'
 }
 
-{ #category : #'drawing-private' }
+{ #category : #'private - drawing' }
 SpToggleMenuItemMorph >> itemShortcut [
 
 	"In Spec, this is always already normalised"

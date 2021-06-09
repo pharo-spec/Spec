@@ -91,7 +91,7 @@ SpToolbarToggleButtonPresenter >> whenChangedDo: aBlock [
 				ifFalse: [ aBlock cull: newSelectedValue cull: oldSelectedValue ] ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpToolbarToggleButtonPresenter >> whenSelectedDo: aBlock [
 	"Inform when the button has been selected. 
 	 `aBlock` receives zero arguments."
@@ -100,7 +100,7 @@ SpToolbarToggleButtonPresenter >> whenSelectedDo: aBlock [
 		newSelectedValue ifTrue: [ aBlock value ] ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpToolbarToggleButtonPresenter >> whenToggledDo: aBlock [ 
 	"Inform when the button has been toggles. 
 	 `aBlock` has three optional arguments: 
@@ -111,7 +111,7 @@ SpToolbarToggleButtonPresenter >> whenToggledDo: aBlock [
 	self property: #selected whenChangedDo: aBlock 
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpToolbarToggleButtonPresenter >> whenUnselectedDo: aBlock [
 	"Inform when the button has been unselected. 
 	 `aBlock` receives zero arguments."

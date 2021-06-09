@@ -234,7 +234,7 @@ SpNotebookPage >> title: aString [
 	title := aString
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpNotebookPage >> whenRetrievedDo: aBlock [ 
 	"Inform when a page has been retrived, allowing extra settings.
 	 `aBlock` is a block with one orgument (the presenter retrieved)"

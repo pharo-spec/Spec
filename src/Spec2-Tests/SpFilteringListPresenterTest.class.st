@@ -23,7 +23,7 @@ SpFilteringListPresenterTest >> setUp [
 	listWithFilter := self classToTest new
 ]
 
-{ #category : #test }
+{ #category : #tests }
 SpFilteringListPresenterTest >> testEnableItemBeginsWithFilter [
 
 	listWithFilter matchBeginOfString.
@@ -48,7 +48,7 @@ SpFilteringListPresenterTest >> testEnableItemBeginsWithFilter [
 	self assert: listWithFilter items size equals: 6
 ]
 
-{ #category : #test }
+{ #category : #tests }
 SpFilteringListPresenterTest >> testEnableItemSubstringFilter [
 
 	listWithFilter matchSubstring.
@@ -71,7 +71,7 @@ SpFilteringListPresenterTest >> testEnableItemSubstringFilter [
 	self assert: listWithFilter items size equals: 6
 ]
 
-{ #category : #test }
+{ #category : #tests }
 SpFilteringListPresenterTest >> testFilterListItems [
 
 	| listItems |
@@ -118,7 +118,7 @@ SpFilteringListPresenterTest >> testFilterListItems [
 		hasSameElements: listItems
 ]
 
-{ #category : #test }
+{ #category : #tests }
 SpFilteringListPresenterTest >> testFilterListItemsWithDifferentDisplay [
 
 	| listItems |
@@ -145,7 +145,7 @@ SpFilteringListPresenterTest >> testFilterListItemsWithDifferentDisplay [
 		hasSameElements: listItems
 ]
 
-{ #category : #test }
+{ #category : #tests }
 SpFilteringListPresenterTest >> testItemFilter [
 
 	| filterBlock |
@@ -156,7 +156,7 @@ SpFilteringListPresenterTest >> testItemFilter [
 	self assert: listWithFilter itemFilter equals: filterBlock
 ]
 
-{ #category : #test }
+{ #category : #tests }
 SpFilteringListPresenterTest >> testItems [
 
 	listWithFilter items: { Array }.

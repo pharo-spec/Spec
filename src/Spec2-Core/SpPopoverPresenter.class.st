@@ -64,7 +64,7 @@ SpPopoverPresenter >> bePositionTop [
 	self position: SpPopoverPosition top
 ]
 
-{ #category : #'api-focus' }
+{ #category : #'api - focus' }
 SpPopoverPresenter >> defaultKeyboardFocus [
 
 	^ self presenter
@@ -146,7 +146,7 @@ SpPopoverPresenter >> relativeTo: aPresenter [
 	relativeTo := aPresenter
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpPopoverPresenter >> whenPresenterChangedDo: aBlock [
 	"Inform when content presenter has changed. 
 	 `aBlock` has three optional arguments: 

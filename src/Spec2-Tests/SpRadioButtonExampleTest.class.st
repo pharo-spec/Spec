@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Tests-Examples'
 }
 
-{ #category : #running }
+{ #category : #accessing }
 SpRadioButtonExampleTest >> classToTest [
 	^ SpRadioButtonExample
 ]

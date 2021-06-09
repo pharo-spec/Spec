@@ -48,19 +48,19 @@ SpMorphicGridLayoutComputation >> allGridConstraints [
 			ifAbsent: [ self error: 'Constraints not defined for ', each asString ] ]
 ]
 
-{ #category : #'private computation' }
+{ #category : #'private - computation' }
 SpMorphicGridLayoutComputation >> baseColumnWidth [
 
 	^ (bounds width / numColumns) asInteger
 ]
 
-{ #category : #'private computation' }
+{ #category : #'private - computation' }
 SpMorphicGridLayoutComputation >> baseRowHeight [
 
 	^ (bounds height / numRows) asInteger
 ]
 
-{ #category : #'private computation' }
+{ #category : #'private - computation' }
 SpMorphicGridLayoutComputation >> calculateColumnWidths [
 
 	^ layout isColumnHomogeneous
@@ -68,7 +68,7 @@ SpMorphicGridLayoutComputation >> calculateColumnWidths [
 		  ifFalse: [ self calculateNotHomogeneousColumnWidths ]
 ]
 
-{ #category : #'private computation' }
+{ #category : #'private - computation' }
 SpMorphicGridLayoutComputation >> calculateHomogeneousColumnWidths [
 	"Columns are homogeneous. 
 	 - width will be bounds width/numColumns UNLESS there is a column with a min width bigger 
@@ -84,7 +84,7 @@ SpMorphicGridLayoutComputation >> calculateHomogeneousColumnWidths [
 	^ Array new: numColumns withAll: (self baseColumnWidth max: columnWidth)
 ]
 
-{ #category : #'private computation' }
+{ #category : #'private - computation' }
 SpMorphicGridLayoutComputation >> calculateHomogeneousRowHeights [
 	"Rows are homogeneous. 
 	 - height will be bounds height/numRows UNLESS there is a row with a min height bigger 
@@ -100,7 +100,7 @@ SpMorphicGridLayoutComputation >> calculateHomogeneousRowHeights [
 	^ Array new: numRows withAll: (self baseRowHeight max: rowHeight)
 ]
 
-{ #category : #'private computation' }
+{ #category : #'private - computation' }
 SpMorphicGridLayoutComputation >> calculateNotHomogeneousColumnWidths [
 	"Column widths are 
 	 - the max width of cells of that column. EXCEPT if
@@ -137,7 +137,7 @@ SpMorphicGridLayoutComputation >> calculateNotHomogeneousColumnWidths [
 	^ newColumnWidths
 ]
 
-{ #category : #'private computation' }
+{ #category : #'private - computation' }
 SpMorphicGridLayoutComputation >> calculateNotHomogeneousRowHeights [
 	"Column heights are 
 	 - the max height of cells of that row
@@ -157,7 +157,7 @@ SpMorphicGridLayoutComputation >> calculateNotHomogeneousRowHeights [
 	^ newRowHeights
 ]
 
-{ #category : #'private computation' }
+{ #category : #'private - computation' }
 SpMorphicGridLayoutComputation >> calculateRowHeights [
 
 	^ layout isRowHomogeneous
@@ -189,7 +189,7 @@ SpMorphicGridLayoutComputation >> columnWidths [
 	^ columnWidths
 ]
 
-{ #category : #'private computation' }
+{ #category : #'private - computation' }
 SpMorphicGridLayoutComputation >> computeCellExtents [
 	"Calculate cell extents"
 
@@ -208,7 +208,7 @@ SpMorphicGridLayoutComputation >> computeCellExtents [
 			put: width@height ]
 ]
 
-{ #category : #'private computation' }
+{ #category : #'private - computation' }
 SpMorphicGridLayoutComputation >> computeColumnPositions [
 	"Calculate columns positions"
 	
@@ -234,7 +234,7 @@ SpMorphicGridLayoutComputation >> computeMorphs: anArray bounds: aRect [
 		computeCellExtents
 ]
 
-{ #category : #'private computation' }
+{ #category : #'private - computation' }
 SpMorphicGridLayoutComputation >> computeNumberOfRowsAndColumns [
 	
 	numRows := 0.
@@ -244,7 +244,7 @@ SpMorphicGridLayoutComputation >> computeNumberOfRowsAndColumns [
 		numColumns := numColumns max: (each column + each columnSpan - 1) ]
 ]
 
-{ #category : #'private computation' }
+{ #category : #'private - computation' }
 SpMorphicGridLayoutComputation >> computeRowPositions [
 	"Calculate row positions"
 
@@ -256,7 +256,7 @@ SpMorphicGridLayoutComputation >> computeRowPositions [
 			put: (rowPositions at: index - 1) + (rowHeights at: index - 1) + self layout rowSpacing ]
 ]
 
-{ #category : #'private computation' }
+{ #category : #'private - computation' }
 SpMorphicGridLayoutComputation >> computeWidgetSizes [
 	"Collect actual widget sizes"
 

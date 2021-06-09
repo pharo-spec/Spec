@@ -68,7 +68,7 @@ SpToggleButtonPresenter >> initialize [
 	action := [ ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpToggleButtonPresenter >> whenIconChangedDo: aBlock [
 	"Inform when icon property has changed. 
 	 `aBlock` has three optional arguments: 

@@ -17,20 +17,20 @@ Class {
 	#category : #'Spec2-Examples-Wrapper'
 }
 
-{ #category : #example }
+{ #category : #examples }
 SpDynamicSpecExample class >> exampleInt [
 	<sampleInstance>
 	^ self new open: 42
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpDynamicSpecExample class >> exampleNil [
 	<sampleInstance>
 	^ self new
 		open: nil
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpDynamicSpecExample class >> exampleString [
 	<sampleInstance>
 	^ self new

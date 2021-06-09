@@ -36,13 +36,13 @@ SpRequestTextDialog class >> documentFactoryMethodSelector [
 	^ #newRequestText
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpRequestTextDialog class >> example [
 
 	^ super example
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpRequestTextDialog class >> exampleModal [
 
 	^ super exampleModal

@@ -24,7 +24,7 @@ SpPharoStyler >> parseAST: aString [
 	^ RBParser parseFaultyExpression: aString	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 SpPharoStyler >> prepareWithinContext: anObject [
 
 	behavior := anObject behavior

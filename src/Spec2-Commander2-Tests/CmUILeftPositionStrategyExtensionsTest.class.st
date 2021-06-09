@@ -7,7 +7,7 @@ Class {
 	#category : #'Spec2-Commander2-Tests'
 }
 
-{ #category : #test }
+{ #category : #tests }
 CmUILeftPositionStrategyExtensionsTest >> testAddButtonToActionBar [
 	| actionBar button |
 	actionBar := SpActionBarPresenter new.
@@ -24,7 +24,7 @@ CmUILeftPositionStrategyExtensionsTest >> testAddButtonToActionBar [
 	self assert: (actionBar items at: #start) anyOne equals: button
 ]
 
-{ #category : #test }
+{ #category : #tests }
 CmUILeftPositionStrategyExtensionsTest >> testAddButtonToToolbar [
 	| toolbar button |
 	toolbar := SpToolbarPresenter new.

@@ -15,7 +15,7 @@ Class {
 	#category : #'Spec2-Core-Utils'
 }
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpIndeterminatedProgressBarState >> whenValueChangedDo: aBlock [
 	"Value cannot change in indeterminate state"
 ]

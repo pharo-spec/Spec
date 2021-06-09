@@ -5,7 +5,7 @@ I'm used on MorphPresenter.
 Class {
 	#name : #SpMorphPort,
 	#superclass : #SpInputPort,
-	#category : #'Spec2-Transmission'
+	#category : #'Spec2-Transmission-Base'
 }
 
 { #category : #accessing }

@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Backend-Tests-Layout'
 }
 
-{ #category : #running }
+{ #category : #accessing }
 SpHorizontalBoxLayoutAdapterTest >> newLayout [
 
 	^ SpBoxLayout newLeftToRight

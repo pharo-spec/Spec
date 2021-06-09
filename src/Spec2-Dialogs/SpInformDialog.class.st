@@ -46,7 +46,7 @@ SpInformDialog class >> documentFactoryMethodSelector [
 	^ #newInform
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpInformDialog class >> example [
 
 	self new
@@ -56,7 +56,7 @@ SpInformDialog class >> example [
 		openDialogWithSpec
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpInformDialog class >> exampleModal [
 
 	self new

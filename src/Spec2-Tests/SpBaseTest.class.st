@@ -40,7 +40,7 @@ SpBaseTest >> assertWith: assertionBlock timesRaisedEvent: anEventName inPresent
 	assertionBlock value: timesCalled
 ]
 
-{ #category : #running }
+{ #category : #accessing }
 SpBaseTest >> classToTest [
 	self subclassResponsibility
 ]
@@ -55,16 +55,16 @@ SpBaseTest >> denyEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: 
 		whenDoing: aBlock
 ]
 
-{ #category : #running }
+{ #category : #initialization }
 SpBaseTest >> initializeTestedInstance [
 ]
 
-{ #category : #running }
+{ #category : #utilities }
 SpBaseTest >> openInstance [
 	window ifNil: [ window := presenter openWithSpec ]
 ]
 
-{ #category : #running }
+{ #category : #utilities }
 SpBaseTest >> openInstance: aLayoutSelector [
 	window := presenter openWithSpec: aLayoutSelector
 ]
