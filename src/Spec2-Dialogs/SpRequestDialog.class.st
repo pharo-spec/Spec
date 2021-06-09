@@ -11,8 +11,7 @@ Class {
 		'initialExtent',
 		'acceptLabel',
 		'cancelLabel',
-		'validateBlock',
-		'image'
+		'validateBlock'
 	],
 	#category : #'Spec2-Dialogs'
 }
@@ -137,7 +136,7 @@ SpRequestDialog >> initializeDialogWindow: aDialogWindowPresenter [
 { #category : #initialization }
 SpRequestDialog >> initializePresenters [
 
-	image := self newImage image: self icon.
+	image := self newImage image: self defaultIcon.
 	label := self newLabel.
 	textInput := self newTextInput
 ]

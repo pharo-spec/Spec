@@ -9,7 +9,7 @@ Class {
 		'#parentWindow => WeakSlot',
 		'#acceptAction',
 		'#cancelAction',
-		'#icon'
+		'#image'
 	],
 	#category : #'Spec2-Dialogs'
 }
@@ -165,15 +165,9 @@ SpDialogPresenter >> defaultIcon [
 ]
 
 { #category : #accessing }
-SpDialogPresenter >> icon [
-
-	^ icon ifNil: [ self defaultIcon ]
-]
-
-{ #category : #accessing }
 SpDialogPresenter >> icon: aForm [
 
-	icon := aForm
+	image ifNotNil: [ image image: aForm ]
 ]
 
 { #category : #initialization }
