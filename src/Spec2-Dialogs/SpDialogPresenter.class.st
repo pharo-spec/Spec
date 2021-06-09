@@ -8,7 +8,8 @@ Class {
 	#instVars : [
 		'#parentWindow => WeakSlot',
 		'#acceptAction',
-		'#cancelAction'
+		'#cancelAction',
+		'#icon'
 	],
 	#category : #'Spec2-Dialogs'
 }
@@ -155,6 +156,24 @@ SpDialogPresenter >> cancel [
 		beCancel; 
 		triggerCancelAction;
 		close
+]
+
+{ #category : #private }
+SpDialogPresenter >> defaultIcon [
+
+	^ self application iconNamed: #question
+]
+
+{ #category : #accessing }
+SpDialogPresenter >> icon [
+
+	^ icon ifNil: [ self defaultIcon ]
+]
+
+{ #category : #accessing }
+SpDialogPresenter >> icon: aForm [
+
+	icon := aForm
 ]
 
 { #category : #initialization }

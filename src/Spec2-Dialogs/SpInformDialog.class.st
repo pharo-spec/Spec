@@ -79,6 +79,12 @@ SpInformDialog >> acceptLabel: aString [
 	acceptLabel := aString
 ]
 
+{ #category : #accessing }
+SpInformDialog >> defaultIcon [
+
+	^ self application iconNamed: #info
+]
+
 { #category : #api }
 SpInformDialog >> extent [
 
@@ -111,7 +117,7 @@ SpInformDialog >> initializeDialogWindow: aDialogWindowPresenter [
 { #category : #initialization }
 SpInformDialog >> initializePresenters [
 
-	image := self newImage image: (self application iconNamed: #info).
+	image := self newImage image: self icon.
 	label := self newLabel
 ]
 

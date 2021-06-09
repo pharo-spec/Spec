@@ -142,7 +142,7 @@ SpConfirmDialog >> initializeDialogWindow: aDialogWindowPresenter [
 { #category : #initialization }
 SpConfirmDialog >> initializePresenters [
 
-	image := self newImage image: (self application iconNamed: #question).
+	image := self newImage image: self icon.
 	label := self newLabel
 	
 ]

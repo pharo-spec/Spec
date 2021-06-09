@@ -137,7 +137,7 @@ SpRequestDialog >> initializeDialogWindow: aDialogWindowPresenter [
 { #category : #initialization }
 SpRequestDialog >> initializePresenters [
 
-	image := self newImage image: (self application iconNamed: #question).
+	image := self newImage image: self icon.
 	label := self newLabel.
 	textInput := self newTextInput
 ]
