@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Tests-Layout'
 }
 
-{ #category : #running }
+{ #category : #initialization }
 SpHorizontalPanedLayoutTest >> initializeTestedInstance [
 
 	layout := SpPanedLayout newLeftToRight.

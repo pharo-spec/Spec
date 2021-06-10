@@ -49,7 +49,7 @@ SpMenuButtonPresenter >> menu: aValuable [
 	menu := aValuable
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpMenuButtonPresenter >> whenMenuChangedDo: aBlock [
 	"Inform when menu  property has changed. 
 	 `aBlock` has three optional arguments: 

@@ -255,14 +255,14 @@ SpAbstractTextPresenter >> registerEvents [
 	self property: #askBeforeDiscardingEdits whenChangedDo: [ :bool | self changed: #askBeforeDiscardingEdits: with: {bool} ]
 ]
 
-{ #category : #'api-selection' }
+{ #category : #'api - selection' }
 SpAbstractTextPresenter >> selectAll [
 	"Select all text"
 	
 	self changed: #selectAll with: #()
 ]
 
-{ #category : #'api-selection' }
+{ #category : #'api - selection' }
 SpAbstractTextPresenter >> selectLine [
 	"Select line where the cursor is placed at this moment and answer the resulting selection 
 	(See `SpAbstractTextPresenter>>#selectionInterval`). "
@@ -277,7 +277,7 @@ SpAbstractTextPresenter >> selectedClassOrMetaClass [
 	^ self behavior
 ]
 
-{ #category : #'api-selection' }
+{ #category : #'api - selection' }
 SpAbstractTextPresenter >> selectedText [ 
 	"Answer the text contained in selection interval 
 	(See `SpAbstractTextPresenter>>#selectionInterval`)"
@@ -291,7 +291,7 @@ SpAbstractTextPresenter >> selectedText [
 		to: selectionInterval last
 ]
 
-{ #category : #'api-selection' }
+{ #category : #'api - selection' }
 SpAbstractTextPresenter >> selectionInterval [
 	"Answer the text selection interval (an interval from start to end)."
 	
@@ -300,7 +300,7 @@ SpAbstractTextPresenter >> selectionInterval [
 	^ selection ifNil: [ ^ 1 to: 0 ]
 ]
 
-{ #category : #'api-selection' }
+{ #category : #'api - selection' }
 SpAbstractTextPresenter >> selectionInterval: anInterval [
 	"Set the text selection interval.
 	 `anInterval` is an `Interval` from the first character selected to the end."
@@ -354,7 +354,7 @@ SpAbstractTextPresenter >> whenAcceptBlockChangedDo: aBlock [
 	self property: #actionToPerform whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpAbstractTextPresenter >> whenPlaceholderChangedDo: aBlock [
 	"Inform when placeholder has been changed (See `SpAbstractTextPresenter>>#placeholder:`).
 	 `aBlock` receives two optional arguments 
@@ -371,7 +371,7 @@ SpAbstractTextPresenter >> whenReadSelectionIsChangedDo: aBlock [
 	self property: #readSelection whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpAbstractTextPresenter >> whenResetDo: aBlock [
 	"Inform when a 'reset' event is triggered.
 	 It will react when user presses <meta+l> key (this is for historical reasons)."
@@ -381,7 +381,7 @@ SpAbstractTextPresenter >> whenResetDo: aBlock [
 		toAction: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpAbstractTextPresenter >> whenSelectionChangedDo: aBlock [
 	"Inform when selection changed. 
 	 `aBlock` receives two optional arguments 
@@ -391,7 +391,7 @@ SpAbstractTextPresenter >> whenSelectionChangedDo: aBlock [
 	self property: #selection whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpAbstractTextPresenter >> whenSubmitDo: aBlock [
 	"Inform a 'submit' event has been triggered. 
 	 It will react when user presses <meta+s> key (this is for historical reasons) and (in case of text fields) with <cr>.
@@ -400,7 +400,7 @@ SpAbstractTextPresenter >> whenSubmitDo: aBlock [
 	self subclassResponsibility
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpAbstractTextPresenter >> whenTextChangedDo: aBlock [
 	"Inform when text has been changed (a character has been enter or `SpAbstractTextPresenter>>text:` has been called)
 	 `aBlock` receives two optional arguments 

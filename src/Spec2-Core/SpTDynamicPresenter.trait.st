@@ -10,7 +10,7 @@ Trait {
 	#category : #'Spec2-Core-Base'
 }
 
-{ #category : #'private accessing' }
+{ #category : #'private - accessing' }
 SpTDynamicPresenter >> basicPresenters [
 
 	^ presenters ifNil: [ presenters := OrderedDictionary new ]

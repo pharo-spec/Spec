@@ -55,7 +55,7 @@ SpConfirmDialog class >> documentFactoryMethodSelector [
 	^ #newConfirm
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpConfirmDialog class >> example [
 
 	^ self new
@@ -69,7 +69,7 @@ SpConfirmDialog class >> example [
 		openDialogWithSpec
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpConfirmDialog class >> exampleModal [
 	| ok |
 
@@ -160,7 +160,7 @@ SpConfirmDialog >> label: aString [
 	label label: aString
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api - showing' }
 SpConfirmDialog >> openModalWithSpec [
 	| dialog |
 	

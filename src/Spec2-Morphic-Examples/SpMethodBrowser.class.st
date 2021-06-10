@@ -26,7 +26,7 @@ SpMethodBrowser class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpMethodBrowser class >> example [
 	<sampleInstance>
 	| example |

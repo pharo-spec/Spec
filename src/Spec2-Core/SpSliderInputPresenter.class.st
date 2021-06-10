@@ -123,7 +123,7 @@ SpSliderInputPresenter >> value: aNumber [
 	slider value: aNumber 
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpSliderInputPresenter >> whenValueChangedDo: aBlock [
 	slider whenValueChangedDo: aBlock
 ]

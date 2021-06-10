@@ -219,7 +219,7 @@ SpDialogWindowPresenter >> okAction: aBlock [
 	okAction := aBlock
 ]
 
-{ #category : #'private-traversing' }
+{ #category : #'private - traversing' }
 SpDialogWindowPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
 	super traverseInFocusOrderDo: aBlock excluding: excludes.

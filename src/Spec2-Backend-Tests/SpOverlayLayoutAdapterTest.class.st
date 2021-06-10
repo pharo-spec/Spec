@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Backend-Tests-Layout'
 }
 
-{ #category : #tests }
+{ #category : #accessing }
 SpOverlayLayoutAdapterTest >> newLayout [
 
 	^ SpOverlayLayout new

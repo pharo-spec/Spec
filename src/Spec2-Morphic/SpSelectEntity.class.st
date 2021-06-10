@@ -161,29 +161,29 @@ SpSelectEntity >> selectEntity: anObject [
 	selectEntity := anObject
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpSelectEntity >> whenDisplaySymbolChanged: aBlock [
 	self property: #displaySymbol whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpSelectEntity >> whenEntityChanged: aBlock [
 	self property: #entity whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpSelectEntity >> whenPlaceholderChanged: aBlock [
 	"aBlock will be performed when ghostText changed"
 
 	self property: #placeholder whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpSelectEntity >> whenPossibleEntitiesChanged: aBlock [
 	self property: #possibleEntities whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpSelectEntity >> whenSelectDialogChanged: aBlock [
 	self property: #selectDialog whenChangedDo: aBlock
 ]

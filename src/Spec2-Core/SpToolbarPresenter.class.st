@@ -164,13 +164,13 @@ SpToolbarPresenter >> notEmpty [
 	^ self isEmpty not
 ]
 
-{ #category : #'private-traversing' }
+{ #category : #'private - traversing' }
 SpToolbarPresenter >> presenters [
 
 	^ self items
 ]
 
-{ #category : #'private-traversing' }
+{ #category : #'private - traversing' }
 SpToolbarPresenter >> presentersInFocusOrder [
 
 	^ self items
@@ -189,7 +189,7 @@ SpToolbarPresenter >> rightItems [
 	^ rightItems
 ]
 
-{ #category : #'private-traversing' }
+{ #category : #'private - traversing' }
 SpToolbarPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
 	self presentersInFocusOrder do: [ :each |

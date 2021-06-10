@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Tests-Layout'
 }
 
-{ #category : #running }
+{ #category : #initialization }
 SpVerticalPanedLayoutTest >> initializeTestedInstance [
 
 	layout := SpPanedLayout newTopToBottom.

@@ -32,7 +32,7 @@ SpDropListExample class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpDropListExample class >> example [
 	<sampleInstance>
 	

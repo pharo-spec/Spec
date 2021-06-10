@@ -304,7 +304,7 @@ SpDropListPresenter >> updateItemsKeepingSelection: aCollection [
 		self selectItem: item ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpDropListPresenter >> whenSelectedItemChangedDo: aBlock [
 	"Inform when the selected item is changed.
 	 `aBlock` receive 3 optional arguments: 
@@ -315,7 +315,7 @@ SpDropListPresenter >> whenSelectedItemChangedDo: aBlock [
 	selection whenChangedDo: [	aBlock cull: self selectedItem ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpDropListPresenter >> whenSelectionChangedDo: aBlock [
 	"Inform when the selection is changed.
 	 The method should be used only if you are interested in the fact that there was 
@@ -331,7 +331,7 @@ SpDropListPresenter >> whenSelectionChangedDo: aBlock [
 	selection whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpDropListPresenter >> whenSortingBlockChangedDo: aBlock [
 	"Inform when sorting block has changed.
 	 `aBlock` receive 3 optional arguments: 

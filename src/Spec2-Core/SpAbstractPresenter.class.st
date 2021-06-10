@@ -116,7 +116,7 @@ SpAbstractPresenter >> application [
 SpAbstractPresenter >> autoAccept: aBoolean [
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpAbstractPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	"I assume the SpecBindings is well defined"
 	
@@ -133,7 +133,7 @@ SpAbstractPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	^ adapter
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpAbstractPresenter >> buildAdapterWithSpecLayout: aSpecLayout [
 	"Build the adapter using the spec name provided as argument"
 	
@@ -163,7 +163,7 @@ SpAbstractPresenter >> buildWithSpecLayout: aSpecLayout [
 	^ (self buildAdapterWithSpecLayout: aSpecLayout) widget
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpAbstractPresenter >> defaultSpecSelector [
 	(Pragma allNamed: #spec: from: self class class to: SpAbstractPresenter class class) detect: [ :each | (each argumentAt: 1) = #default ] ifFound: [ :pragma | ^ pragma methodSelector ].
 
@@ -191,7 +191,7 @@ SpAbstractPresenter >> eventHandler [
 	^ eventHandler ifNil: [ eventHandler := SpEventHandler for: self ]
 ]
 
-{ #category : #'private utils' }
+{ #category : #'private - utilities' }
 SpAbstractPresenter >> forceUpdateSlot: aSymbol [
 
 	^ (self rawValueHolderNamed: aSymbol) valueChanged
@@ -409,19 +409,19 @@ SpAbstractPresenter >> owner: aPresenter [
 	owner := aPresenter
 ]
 
-{ #category : #'private utils' }
+{ #category : #'private - utilities' }
 SpAbstractPresenter >> rawValueHolderNamed: aSymbol [
 
 	^ (self class slotNamed: aSymbol) rawRead: self.
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpAbstractPresenter >> retrieveDefaultSpec [
 
 	^ self retrieveSpec: self defaultSpecSelector
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpAbstractPresenter >> retrieveSpec: aSelector [
 	| layout |
 
@@ -487,21 +487,21 @@ SpAbstractPresenter >> window [
 		ifFalse: [ nil ]
 ]
 
-{ #category : #'private utils' }
+{ #category : #'private - utilities' }
 SpAbstractPresenter >> withAdapterDo: aValuable [
 	"a convenience method to avoid verify by nil all the time"
 	
 	^ self adapter ifNotNil: aValuable
 ]
 
-{ #category : #'private utils' }
+{ #category : #'private - utilities' }
 SpAbstractPresenter >> withWidgetDo: aValuable [
 	"a convenience method to avoid verify by nil all the time"
 
 	^ self adapter ifNotNil: aValuable
 ]
 
-{ #category : #'private utils' }
+{ #category : #'private - utilities' }
 SpAbstractPresenter >> withWindowDo: aValuable [
 
 	self hasWindow ifFalse: [ ^ self ].

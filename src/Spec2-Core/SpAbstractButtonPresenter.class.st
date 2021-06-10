@@ -86,7 +86,7 @@ SpAbstractButtonPresenter >> shortcutCharacter [
 	^ nil
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpAbstractButtonPresenter >> whenIconChangedDo: aBlock [
 	"Inform when icon property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -97,7 +97,7 @@ SpAbstractButtonPresenter >> whenIconChangedDo: aBlock [
 	self property: #icon whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpAbstractButtonPresenter >> whenLabelChangedDo: aBlock [
 	"Inform when label property has changed. 
 	 `aBlock` has three optional arguments: 

@@ -50,7 +50,7 @@ SpFixedProgressBarState >> value: aNumber [
 	value := aNumber
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpFixedProgressBarState >> whenValueChangedDo: aBlock [
 	self property: #value whenChangedDo: aBlock
 ]

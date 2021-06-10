@@ -1,7 +1,7 @@
 Class {
 	#name : #SpTextAdapterTest,
 	#superclass : #SpAbstractTextAdapterTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
 { #category : #accessing }
@@ -44,7 +44,13 @@ three'.
 	self assert: presenter lineAtCursorPosition equals: 'two'.	
 	
 	presenter cursorPositionIndex: 14.
-	self assert: presenter lineAtCursorPosition equals: 'three'
+	self assert: presenter lineAtCursorPosition equals: 'three'.
+	
+	presenter text: ''.
+	presenter cursorPositionIndex: 1.
+	self assert: presenter lineAtCursorPosition equals: ''.
+	
+	
 ]
 
 { #category : #accessing }
@@ -58,7 +64,7 @@ SpTextAdapterTest >> testRightClickShowsMenu [
 	self assert: menu shown
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 SpTextAdapterTest >> testTextIsAlwaysString [
 
 	presenter text: 'one'.

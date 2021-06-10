@@ -155,7 +155,7 @@ SpMillerLayout >> visiblePages: aNumber [
 	visiblePages := aNumber
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpMillerLayout >> whenVisiblePagesChangedDo: aBlock [
 
 	self property: #visiblePages whenChangedDo: aBlock

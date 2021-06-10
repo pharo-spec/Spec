@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
-{ #category : #running }
+{ #category : #accessing }
 SpMenuButtonPresenterTest >> classToTest [
 
 	^ SpMenuButtonPresenter

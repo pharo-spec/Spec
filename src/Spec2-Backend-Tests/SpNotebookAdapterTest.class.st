@@ -1,7 +1,7 @@
 Class {
 	#name : #SpNotebookAdapterTest,
 	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
 { #category : #accessing }
@@ -9,7 +9,7 @@ SpNotebookAdapterTest >> classToTest [
 	^ SpNotebookPresenter
 ]
 
-{ #category : #running }
+{ #category : #initialization }
 SpNotebookAdapterTest >> initializeTestedInstance [
 	presenter
 		addPage: (SpNotebookPage title: 'Mock' icon: (self iconNamed: #changeUpdate) provider: [ SpButtonPresenter new ]);

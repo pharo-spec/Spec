@@ -7,7 +7,7 @@ Class {
 	#category : #'Spec2-Code-Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #utilities }
 SpCodePopoverPrintPresenterTest >> naturalSizeOf: string [
 	| stringMorph width height |
 

@@ -156,7 +156,7 @@ SpBoxLayoutExample >> layout [
 	^ main
 ]
 
-{ #category : #'private accessing' }
+{ #category : #'private - accessing' }
 SpBoxLayoutExample >> refresh [
 	self needRebuild: false.
 	self buildWithSpec

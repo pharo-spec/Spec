@@ -1,15 +1,15 @@
 Class {
 	#name : #SpTableCommonPropertiestTest,
 	#superclass : #SpAbstractListCommonPropertiestTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
-{ #category : #running }
+{ #category : #accessing }
 SpTableCommonPropertiestTest >> classToTest [
 	^ SpTablePresenter
 ]
 
-{ #category : #running }
+{ #category : #initialization }
 SpTableCommonPropertiestTest >> initializeTestedInstance [
 
 	super initializeTestedInstance.

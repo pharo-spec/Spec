@@ -7,7 +7,7 @@ Class {
 		'#realMenu',
 		'#shown => SpObservableSlot'
 	],
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
 { #category : #initialization }

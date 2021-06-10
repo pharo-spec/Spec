@@ -46,7 +46,7 @@ SpDatePresenter >> chooseDate [
 		onChoiceSend: #onDateChosen: to: self.
 ]
 
-{ #category : #'accessing-widgets' }
+{ #category : #'accessing - widgets' }
 SpDatePresenter >> chooseDateButton [
 
 	^ chooseDateButton.
@@ -67,7 +67,7 @@ SpDatePresenter >> date: aDate [
 	self dateModel text: dateString.
 ]
 
-{ #category : #'accessing-widgets' }
+{ #category : #'accessing - widgets' }
 SpDatePresenter >> dateModel [
 
 	^ dateModel.
@@ -126,7 +126,7 @@ SpDatePresenter >> onDateChosen: aChoseDate [
 	self date: aChoseDate date
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpDatePresenter >> whenDateChanged: aBlock [
 
 	dateModel whenTextChanged: [ :newText :oldText :announcement :anAnnouncer |

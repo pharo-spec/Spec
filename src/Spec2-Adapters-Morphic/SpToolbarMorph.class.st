@@ -81,7 +81,7 @@ SpToolbarMorph >> addItemRight: aMorph [
 	rightPanel width: (rightPanel submorphs sum: #width)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SpToolbarMorph >> addItemsFromContext: aContext [
 	
 	self flag: #TODO.

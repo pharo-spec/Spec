@@ -40,7 +40,7 @@ SpTContextMenu >> initialize [
 	super initialize.
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpTContextMenu >> whenMenuChangedDo: aBlock [
 	"Inform when menu definition changed. 
 	 `aBlock` receives zero arguments."

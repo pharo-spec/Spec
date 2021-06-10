@@ -54,7 +54,7 @@ SpApplicationBackend >> name [
 	^ self class backendName
 ]
 
-{ #category : #'ui notifying' }
+{ #category : #'ui - notifying' }
 SpApplicationBackend >> notify: aSpecNotification [
 
 	aSpecNotification type 
@@ -62,13 +62,13 @@ SpApplicationBackend >> notify: aSpecNotification [
 		on: self
 ]
 
-{ #category : #'ui notifying' }
+{ #category : #'ui - notifying' }
 SpApplicationBackend >> notifyError: aSpecNotification [
 
 	self subclassResponsibility
 ]
 
-{ #category : #'ui notifying' }
+{ #category : #'ui - notifying' }
 SpApplicationBackend >> notifyInfo: aSpecNotification [
 
 	self subclassResponsibility
@@ -80,7 +80,7 @@ SpApplicationBackend >> resetAdapterBindings [
 	adapterBindings := self adapterBindingsClass new
 ]
 
-{ #category : #'ui dialogs' }
+{ #category : #'ui - dialogs' }
 SpApplicationBackend >> selectFileTitle: aString [
 
 	self subclassResponsibility
