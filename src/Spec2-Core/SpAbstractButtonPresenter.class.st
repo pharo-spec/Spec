@@ -5,8 +5,8 @@ Class {
 	#name : #SpAbstractButtonPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#icon => SpObservableSlot',
-		'#label => SpObservableSlot'
+		'#icon => ObservableSlot',
+		'#label => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }

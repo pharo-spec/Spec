@@ -16,11 +16,11 @@ Class {
 	#traits : 'SpTSearchable',
 	#classTraits : 'SpTSearchable classTrait',
 	#instVars : [
-		'#allowToSelect => SpObservableSlot',
-		'#autoDeselect => SpObservableSlot',
-		'#headerTitle => SpObservableSlot',
-		'#display => SpObservableSlot',
-		'#icon => SpObservableSlot'
+		'#allowToSelect => ObservableSlot',
+		'#autoDeselect => ObservableSlot',
+		'#headerTitle => ObservableSlot',
+		'#display => ObservableSlot',
+		'#icon => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }

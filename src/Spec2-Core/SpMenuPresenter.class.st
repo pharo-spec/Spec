@@ -8,9 +8,9 @@ Class {
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
 		'#groups',
-		'#title => SpObservableSlot',
+		'#title => ObservableSlot',
 		'#icon',
-		'#autoRefresh => SpObservableSlot',
+		'#autoRefresh => ObservableSlot',
 		'#shortcutGroup',
 		'#defaultGroup'
 	],

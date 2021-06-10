@@ -6,9 +6,9 @@ Class {
 	#name : #SpImagePresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#image => SpObservableSlot',
-		'#action => SpObservableSlot',
-		'#autoScale => SpObservableSlot'
+		'#image => ObservableSlot',
+		'#action => ObservableSlot',
+		'#autoScale => ObservableSlot'
 	],
 	#category : #'Spec2-Morphic-Widgets'
 }

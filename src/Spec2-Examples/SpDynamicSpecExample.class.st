@@ -8,11 +8,11 @@ self exampleString
 Class {
 	#name : #SpDynamicSpecExample,
 	#superclass : #Object,
-	#traits : 'SpTObservable',
-	#classTraits : 'SpTObservable classTrait',
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'#ui',
-		'#object => SpObservableSlot'
+		'#object => ObservableSlot'
 	],
 	#category : #'Spec2-Examples-Wrapper'
 }

@@ -6,11 +6,11 @@ Class {
 	#name : #SpAbstractFormButtonPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#state => SpObservableSlot',
-		'#label => SpObservableSlot',
-		'#actionWhenActivated => SpObservableSlot',
-		'#actionWhenDeactivated => SpObservableSlot',
-		'#labelClickable => SpObservableSlot'
+		'#state => ObservableSlot',
+		'#label => ObservableSlot',
+		'#actionWhenActivated => ObservableSlot',
+		'#actionWhenDeactivated => ObservableSlot',
+		'#labelClickable => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }

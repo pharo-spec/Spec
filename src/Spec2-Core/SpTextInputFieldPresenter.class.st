@@ -6,10 +6,10 @@ Class {
 	#name : #SpTextInputFieldPresenter,
 	#superclass : #SpAbstractTextPresenter,
 	#instVars : [
-		'#entryCompletion => SpObservableSlot',
-		'#isPassword => SpObservableSlot',
-		'#editable => SpObservableSlot',
-		'#maxLength => SpObservableSlot'
+		'#entryCompletion => ObservableSlot',
+		'#isPassword => ObservableSlot',
+		'#editable => ObservableSlot',
+		'#maxLength => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }

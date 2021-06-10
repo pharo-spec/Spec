@@ -8,12 +8,12 @@ Class {
 	#traits : 'SpTContextMenu',
 	#classTraits : 'SpTContextMenu classTrait',
 	#instVars : [
-		'#action => SpObservableSlot',
-		'#actionPerformed => SpObservableSlot',
-		'#askBeforeChanging => SpObservableSlot',
-		'#font => SpObservableSlot',
-		'#shortcut => SpObservableSlot',
-		'#state => SpObservableSlot'
+		'#action => ObservableSlot',
+		'#actionPerformed => ObservableSlot',
+		'#askBeforeChanging => ObservableSlot',
+		'#font => ObservableSlot',
+		'#shortcut => ObservableSlot',
+		'#state => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }

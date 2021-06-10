@@ -7,7 +7,7 @@ Class {
 	#name : #SpToolbarToggleButtonPresenter,
 	#superclass : #SpToolbarButtonPresenter,
 	#instVars : [
-		'#selected => SpObservableSlot'
+		'#selected => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Toolbar'
 }

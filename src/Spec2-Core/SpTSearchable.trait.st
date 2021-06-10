@@ -5,7 +5,7 @@ I implement basic common API but real implementation (as always) needs to be don
 Trait {
 	#name : #SpTSearchable,
 	#instVars : [
-		'#searchEnabled => SpObservableSlot',
+		'#searchEnabled => ObservableSlot',
 		'#searchBlock'
 	],
 	#category : #'Spec2-Core-Widgets-Table'

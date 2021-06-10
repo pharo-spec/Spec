@@ -6,7 +6,7 @@ to be solved in the backend adaptor.
 Trait {
 	#name : #SpTContextMenu,
 	#instVars : [
-		'#contextMenu => SpObservableSlot'
+		'#contextMenu => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Base'
 }

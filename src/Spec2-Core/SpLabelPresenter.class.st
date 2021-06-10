@@ -7,7 +7,7 @@ Class {
 	#name : #SpLabelPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#label => SpObservableSlot'
+		'#label => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }

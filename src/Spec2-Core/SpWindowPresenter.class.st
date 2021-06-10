@@ -23,17 +23,17 @@ Class {
 	#name : #SpWindowPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#presenter => SpObservableSlot',
-		'#initialPosition => SpObservableSlot',
-		'#initialExtent => SpObservableSlot',
-		'#isResizeable => SpObservableSlot',
-		'#menu => SpObservableSlot',
-		'#centered => SpObservableSlot',
-		'#isClosed => SpObservableSlot',
-		'#toolbar => SpObservableSlot',
-		'#statusbar => SpObservableSlot',
-		'#window => SpObservableSlot',
-		'#decorations => SpObservableSlot'
+		'#presenter => ObservableSlot',
+		'#initialPosition => ObservableSlot',
+		'#initialExtent => ObservableSlot',
+		'#isResizeable => ObservableSlot',
+		'#menu => ObservableSlot',
+		'#centered => ObservableSlot',
+		'#isClosed => ObservableSlot',
+		'#toolbar => ObservableSlot',
+		'#statusbar => ObservableSlot',
+		'#window => ObservableSlot',
+		'#decorations => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Support'
 }

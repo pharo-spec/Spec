@@ -9,8 +9,8 @@ Class {
 	#name : #SpTreePresenter,
 	#superclass : #SpAbstractTreePresenter,
 	#instVars : [
-		'#showColumnHeaders => SpObservableSlot',
-		'#isResizable => SpObservableSlot',
+		'#showColumnHeaders => ObservableSlot',
+		'#isResizable => ObservableSlot',
 		'#iconBlock',
 		'#displayBlock'
 	],

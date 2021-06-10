@@ -10,9 +10,9 @@ Class {
 	#name : #SpMenuItemPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#name => SpObservableSlot',
-		'#icon => SpObservableSlot',
-		'#description => SpObservableSlot',
+		'#name => ObservableSlot',
+		'#icon => ObservableSlot',
+		'#description => ObservableSlot',
 		'#action',
 		'#shortcut',
 		'#subMenu',

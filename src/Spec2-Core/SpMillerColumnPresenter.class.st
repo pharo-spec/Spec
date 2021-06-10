@@ -20,7 +20,7 @@ Class {
 	#instVars : [
 		'#newPresenterBlock',
 		'#columnsWillChangeBlock',
-		'#horizontalScrollBar => SpObservableSlot',
+		'#horizontalScrollBar => ObservableSlot',
 		'#columnsChangedBlock'
 	],
 	#category : #'Spec2-Core-Miller'
