@@ -91,7 +91,7 @@ SpProgressBarPresenter >> value [
 	^ self state value
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpProgressBarPresenter >> whenValueChangedDo: aBlock [
 	"Inform when progress value has changed. 
 	 `aBlock` has three optional arguments: 

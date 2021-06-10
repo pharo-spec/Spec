@@ -32,7 +32,7 @@ SpInitializeWindowExample class >> show [
 	self new openWithSpec
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpInitializeWindowExample >> buildFileMenu [
 
 	^ self newMenu
@@ -41,7 +41,7 @@ SpInitializeWindowExample >> buildFileMenu [
 		yourself
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpInitializeWindowExample >> buildMenuBar [
 
 	^ self newMenuBar
@@ -49,7 +49,7 @@ SpInitializeWindowExample >> buildMenuBar [
 			addItem: [ :item | item name: 'File'; subMenu: self buildFileMenu ] ]
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpInitializeWindowExample >> buildPopMessageToolBarItem [
 		
 	^ SpToolbarButtonPresenter new
@@ -60,7 +60,7 @@ SpInitializeWindowExample >> buildPopMessageToolBarItem [
 		yourself
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpInitializeWindowExample >> buildPushMessageToolBarItem [
 		
 	^ SpToolbarButtonPresenter new
@@ -71,13 +71,13 @@ SpInitializeWindowExample >> buildPushMessageToolBarItem [
 		yourself
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpInitializeWindowExample >> buildStatusBar [
 
 	^ SpStatusBarPresenter new
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpInitializeWindowExample >> buildToolbar [
 	
 	^ self newToolbar 

@@ -87,7 +87,7 @@ SpTSearchable >> searchValueOf: item [
 	^ self displayValueFor: item
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpTSearchable >> whenSearchEnabledChangedDo: aBlock [
 	"Inform when search enabled/disabled has changed.
  	 `aBlock` has three optional arguments: 

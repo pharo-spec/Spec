@@ -138,7 +138,7 @@ SpMorphicTableAdapter >> isShowingColumnHeaders [
 	^ self model isShowingColumnHeaders
 ]
 
-{ #category : #'private factory' }
+{ #category : #'private - factory' }
 SpMorphicTableAdapter >> newColumnFrom: aTableColumn [
 
 	^ (SpMorphicTableColumn on: aTableColumn)
@@ -146,7 +146,7 @@ SpMorphicTableAdapter >> newColumnFrom: aTableColumn [
 		yourself
 ]
 
-{ #category : #'private factory' }
+{ #category : #'private - factory' }
 SpMorphicTableAdapter >> newDataSource [ 
 
 	^ SpMorphicTableDataSource new

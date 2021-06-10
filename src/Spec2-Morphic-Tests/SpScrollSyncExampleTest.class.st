@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Morphic-Tests-Examples'
 }
 
-{ #category : #running }
+{ #category : #accessing }
 SpScrollSyncExampleTest >> classToTest [
 	^ SpScrollSyncExample
 ]

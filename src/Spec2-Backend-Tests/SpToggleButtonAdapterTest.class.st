@@ -1,10 +1,10 @@
 Class {
 	#name : #SpToggleButtonAdapterTest,
 	#superclass : #SpCheckboxAdapterTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
-{ #category : #running }
+{ #category : #accessing }
 SpToggleButtonAdapterTest >> classToTest [
 
 	^ SpToggleButtonPresenter 

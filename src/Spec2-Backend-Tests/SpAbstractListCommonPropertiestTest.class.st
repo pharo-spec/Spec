@@ -1,7 +1,7 @@
 Class {
 	#name : #SpAbstractListCommonPropertiestTest,
 	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
 { #category : #testing }
@@ -9,13 +9,13 @@ SpAbstractListCommonPropertiestTest class >> isAbstract [
 	^ self == SpAbstractListCommonPropertiestTest
 ]
 
-{ #category : #running }
+{ #category : #initialization }
 SpAbstractListCommonPropertiestTest >> initializeTestedInstance [ 
 
 	presenter items: #(10 20 30).
 ]
 
-{ #category : #running }
+{ #category : #tests }
 SpAbstractListCommonPropertiestTest >> testChangeListInPresenterUpdatesWidget [
 
 	self presenter items: #( '1' '2' '3').
@@ -23,7 +23,7 @@ SpAbstractListCommonPropertiestTest >> testChangeListInPresenterUpdatesWidget [
 	backendForTest assertList: self adapter displayItems: #('1' '2' '3')
 ]
 
-{ #category : #running }
+{ #category : #tests }
 SpAbstractListCommonPropertiestTest >> testDoubleClickActivatesRowInDoubleClickActivationMode [
 
 	| activated |
@@ -53,7 +53,7 @@ SpAbstractListCommonPropertiestTest >> testRightClickShowsMenu [
 	self assert: menu shown
 ]
 
-{ #category : #running }
+{ #category : #tests }
 SpAbstractListCommonPropertiestTest >> testSingleClickActivatesRowInSingleClickActivationMode [
 
 	| activated |

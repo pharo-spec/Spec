@@ -19,13 +19,13 @@ SpLayoutTest class >> shouldInheritSelectors [
 	^ true
 ]
 
-{ #category : #running }
+{ #category : #accessing }
 SpLayoutTest >> classToTest [
 
 	^ SpEmptyPresenter
 ]
 
-{ #category : #running }
+{ #category : #tests }
 SpLayoutTest >> testInitialLayoutIsEmpty [
 
 	self assert: layout isEmpty

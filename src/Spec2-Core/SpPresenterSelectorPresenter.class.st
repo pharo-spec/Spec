@@ -27,7 +27,7 @@ SpPresenterSelectorPresenter >> defaultInputPort [
 	^ self inputModelPort
 ]
 
-{ #category : #'api-focus' }
+{ #category : #'api - focus' }
 SpPresenterSelectorPresenter >> defaultKeyboardFocus [
 
 	^ layout children 

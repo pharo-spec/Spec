@@ -171,7 +171,7 @@ SpAbstractAdapter >> removeSubWidgets [
 	self subclassResponsibility
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 SpAbstractAdapter >> replaceLayoutWith: aLayout [
 	
 	

@@ -20,7 +20,7 @@ SpMorphicTextAdapter >> addFocusRotationKeyBindings [
 	"Text areas needs to be able to process tab. Cancel the binding."
 ]
 
-{ #category : #'protocol-shortcuts' }
+{ #category : #'protocol - shortcuts' }
 SpMorphicTextAdapter >> bindKeyCombination: aShortcut toAction: aBlock [ 
 
 	self widgetDo: [ :w | 

@@ -46,7 +46,7 @@ SpRequestDialog class >> documentFactoryMethodSelector [
 	^ #newRequest
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpRequestDialog class >> example [
 
 	self new
@@ -59,7 +59,7 @@ SpRequestDialog class >> example [
 		openDialogWithSpec
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpRequestDialog class >> exampleModal [
 	| string |
 
@@ -157,7 +157,7 @@ SpRequestDialog >> label: aString [
 	label label: aString
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api - showing' }
 SpRequestDialog >> openModalWithSpec [
 	| dialog |
 	

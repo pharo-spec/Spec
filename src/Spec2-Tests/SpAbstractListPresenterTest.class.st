@@ -20,7 +20,7 @@ SpAbstractListPresenterTest >> setUp [
 	presenter items: #(10 20 30).
 ]
 
-{ #category : #'tests-activation' }
+{ #category : #'tests - activation' }
 SpAbstractListPresenterTest >> testActivationOnDoubleClickShouldActivateOnDoubleClick [
 
 	| activatedItem |
@@ -34,7 +34,7 @@ SpAbstractListPresenterTest >> testActivationOnDoubleClickShouldActivateOnDouble
 	self assert: activatedItem equals: 10.
 ]
 
-{ #category : #'tests-activation' }
+{ #category : #'tests - activation' }
 SpAbstractListPresenterTest >> testActivationOnDoubleClickShouldNotActivateOnClick [
 
 	| activatedItem |
@@ -48,7 +48,7 @@ SpAbstractListPresenterTest >> testActivationOnDoubleClickShouldNotActivateOnCli
 	self assert: activatedItem equals: nil.
 ]
 
-{ #category : #'tests-activation' }
+{ #category : #'tests - activation' }
 SpAbstractListPresenterTest >> testActivationOnSingleClickShouldActivateOnClick [
 
 	| activatedItem |
@@ -62,7 +62,7 @@ SpAbstractListPresenterTest >> testActivationOnSingleClickShouldActivateOnClick 
 	self assert: activatedItem equals: 10.
 ]
 
-{ #category : #'tests-activation' }
+{ #category : #'tests - activation' }
 SpAbstractListPresenterTest >> testActivationOnSingleClickShouldNotActivateOnClickOutside [
 
 	| activatedItem |
@@ -92,7 +92,7 @@ SpAbstractListPresenterTest >> testActivationWithTransformation [
 	self assert: activatedItem equals: 100
 ]
 
-{ #category : #'tests-activation' }
+{ #category : #'tests - activation' }
 SpAbstractListPresenterTest >> testActivationWithoutActivationBlockDoesNothing [
 
 	| activatedItem |
@@ -175,7 +175,7 @@ SpAbstractListPresenterTest >> testSelectedItemsSortedByIndex [
 		equals: #(10 30)
 ]
 
-{ #category : #'tests-smoke' }
+{ #category : #'tests - smoke' }
 SpAbstractListPresenterTest >> testSetSortingBlockBeforeItems [
 	| count |
 	count := 0.
@@ -186,13 +186,13 @@ SpAbstractListPresenterTest >> testSetSortingBlockBeforeItems [
 	self assert: (presenter model at: 1) equals: 0
 ]
 
-{ #category : #'tests-smoke' }
+{ #category : #'tests - smoke' }
 SpAbstractListPresenterTest >> testSmokeOpenEmptyPresenter [
 
 	window := presenter openWithSpec
 ]
 
-{ #category : #'tests-smoke' }
+{ #category : #'tests - smoke' }
 SpAbstractListPresenterTest >> testSmokeOpenPresenterWithItems [
 
 	window := presenter
@@ -200,7 +200,7 @@ SpAbstractListPresenterTest >> testSmokeOpenPresenterWithItems [
 		openWithSpec.
 ]
 
-{ #category : #'tests-smoke' }
+{ #category : #'tests - smoke' }
 SpAbstractListPresenterTest >> testSortingBlock [
 	| count |
 	count := 0.

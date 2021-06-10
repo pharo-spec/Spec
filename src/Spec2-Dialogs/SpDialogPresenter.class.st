@@ -188,7 +188,7 @@ SpDialogPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 		ifNil: [ aDialogWindowPresenter centered ].
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpDialogPresenter >> onAccept: aBlock [
 	"When the dialog is accepted, it executes this action before close.
 	 `aBlock` receives one argument (this dialog)"
@@ -196,7 +196,7 @@ SpDialogPresenter >> onAccept: aBlock [
 	acceptAction := aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpDialogPresenter >> onCancel: aBlock [
 	"When the dialog is cancelled, it executes this action before close.
 	 `aBlock` receives one argument (this dialog)"
@@ -204,14 +204,14 @@ SpDialogPresenter >> onCancel: aBlock [
 	cancelAction := aBlock
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api - showing' }
 SpDialogPresenter >> openDialogWithSpec [
 	"Open dialog in a non-modal way."
 
 	^ super openDialogWithSpec
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api - showing' }
 SpDialogPresenter >> openDialogWithSpecParent: aWindow [
 	"Open dialog in a non-modal way, centering on parent window. "
 	
@@ -219,14 +219,14 @@ SpDialogPresenter >> openDialogWithSpecParent: aWindow [
 	^ self openDialogWithSpec
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api - showing' }
 SpDialogPresenter >> openModalWithSpec [
 	"Open dialog in a modal way. "
 
 	^ super openModalWithSpec
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api - showing' }
 SpDialogPresenter >> openModalWithSpecParent: aWindow [
 	"Open dialog in a modal way, centering on parent window. "
 

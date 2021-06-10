@@ -14,7 +14,7 @@ SpCodeProfileItCommand class >> defaultIconName [
 	^ #smallProfile
 ]
 
-{ #category : #default }
+{ #category : #defaults }
 SpCodeProfileItCommand class >> defaultName [
 
 	^ 'Profile it'

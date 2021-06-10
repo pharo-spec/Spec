@@ -14,7 +14,7 @@ SpCodeDebugItCommand class >> defaultDescription [
 	^ 'Debug selection.'
 ]
 
-{ #category : #defaults }
+{ #category : #default }
 SpCodeDebugItCommand class >> defaultIconName [
 
 	^ #smallDebug

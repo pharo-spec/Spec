@@ -1,10 +1,10 @@
 Class {
 	#name : #SpListCommonPropertiestTest,
 	#superclass : #SpAbstractListCommonPropertiestTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
-{ #category : #running }
+{ #category : #accessing }
 SpListCommonPropertiestTest >> classToTest [
 	^ SpListPresenter
 ]

@@ -1,10 +1,10 @@
 Class {
 	#name : #SpDropListWithoutInitialSelectionAdapterTest,
 	#superclass : #SpDropListAdapterTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
-{ #category : #accessing }
+{ #category : #initialization }
 SpDropListWithoutInitialSelectionAdapterTest >> initializeTestedInstance [ 
 
 	presenter startWithoutSelection.	
@@ -12,7 +12,7 @@ SpDropListWithoutInitialSelectionAdapterTest >> initializeTestedInstance [
 
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 SpDropListWithoutInitialSelectionAdapterTest >> testAddingAnItemSelectsItIfThereIsNone [
 
 	self presenter addItemLabeled: 40 do: [].
@@ -22,7 +22,7 @@ SpDropListWithoutInitialSelectionAdapterTest >> testAddingAnItemSelectsItIfThere
 	
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 SpDropListWithoutInitialSelectionAdapterTest >> testSelectionStartsEmptyIfStartWithoutSelectionIsSet [
 
 	self assert: self presenter selectedItem equals: nil.

@@ -27,7 +27,7 @@ SpRadioButtonExample class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpRadioButtonExample class >> example [
 
 	^ self new openWithSpec

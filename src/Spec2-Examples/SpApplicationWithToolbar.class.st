@@ -21,7 +21,7 @@ SpApplicationWithToolbar class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpApplicationWithToolbar class >> example [
 	<sampleInstance>
 	^ self new openWithSpec

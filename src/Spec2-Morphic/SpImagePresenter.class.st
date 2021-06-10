@@ -82,7 +82,7 @@ SpImagePresenter >> switchAutoscale [
 
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpImagePresenter >> whenAutoScaleChangeDo: aBlockClosure [
 	"Inform when autoScale state has changed. 
 	 `aBlock` has three optional arguments: 
@@ -93,7 +93,7 @@ SpImagePresenter >> whenAutoScaleChangeDo: aBlockClosure [
 	self property: #autoScale whenChangedDo: aBlockClosure
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpImagePresenter >> whenImageChangeDo: aBlock [ 
 	"Inform when image to display has changed. 
 	 `aBlock` has three optional arguments: 

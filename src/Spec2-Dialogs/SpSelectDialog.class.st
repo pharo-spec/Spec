@@ -38,7 +38,7 @@ SpSelectDialog class >> documentFactoryMethodSelector [
 	^ #newSelect
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpSelectDialog class >> example [
 
 	self new
@@ -51,7 +51,7 @@ SpSelectDialog class >> example [
 		openDialogWithSpec
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpSelectDialog class >> exampleModal [
 	| dialog |
 
@@ -168,7 +168,7 @@ SpSelectDialog >> label: aString [
 	label label: aString
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api - showing' }
 SpSelectDialog >> openModalWithSpec [
 	| dialog |
 	

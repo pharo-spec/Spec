@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Adapters-Stub-Adapters'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #factory }
 SpStubModalWindowAdapter >> buildWidget [
 
 	^ SpStubDialogWindowView new

@@ -63,7 +63,7 @@ SpDrawStyle >> backgroundColor: aColorOrSymbol [
 	backgroundColor := aColorOrSymbol asStyleVariable
 ]
 
-{ #category : #'accessing variables' }
+{ #category : #'accessing - variables' }
 SpDrawStyle >> backgroundColorVariable [
   "This property can be expressed as 
 	- a STON map: ==Color { #red : 1., #green : 0, #blue : 0, #alpha : 1 }==
@@ -89,7 +89,7 @@ SpDrawStyle >> color: aColorOrSymbol [
 	color := aColorOrSymbol asStyleVariable
 ]
 
-{ #category : #'accessing variables' }
+{ #category : #'accessing - variables' }
 SpDrawStyle >> colorVariable [
   "This property can be expressed as 
 	- a STON map: ==Color { #red : 1., #green : 0, #blue : 0, #alpha : 1 }==

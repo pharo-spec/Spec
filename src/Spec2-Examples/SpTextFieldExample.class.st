@@ -19,7 +19,7 @@ SpTextFieldExample class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpTextFieldExample class >> example [
 	<sampleInstance>
 	^ self new openWithSpec

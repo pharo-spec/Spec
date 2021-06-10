@@ -20,7 +20,7 @@ SpActivationWrapper >> transform: aBlock [
 	transformBlock := aBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'api - events' }
 SpActivationWrapper >> whenActivatedDo: aBlock [
 
 	presenter whenActivatedDo: aBlock
