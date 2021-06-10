@@ -5,17 +5,18 @@ Description
 I am a page for a labelled presenter demo
 "
 Class {
-	#name : #SpDemoLabelledPage,
+	#name : #SpDemoLabeledPage,
 	#superclass : #SpDemoPage,
 	#category : #'Spec2-Examples-Demo-Forms'
 }
 
 { #category : #initialization }
-SpDemoLabelledPage class >> pageName [
-	^ 'Labelled presenter'
+SpDemoLabeledPage class >> pageName [
+
+	^ 'Labeled presenter'
 ]
 
 { #category : #initialization }
-SpDemoLabelledPage >> pageClass [
-	^ SpDemoLabelledPresenter
+SpDemoLabeledPage >> pageClass [
+	^ SpDemoLabeledPresenter
 ]

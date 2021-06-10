@@ -10,7 +10,7 @@ Class {
 { #category : #accessing }
 SpRequestTextDialog class >> defaultExtent [
 
-	^ 400@400
+	^ 450@300
 ]
 
 { #category : #specs }

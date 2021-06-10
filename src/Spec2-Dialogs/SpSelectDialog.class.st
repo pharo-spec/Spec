@@ -18,7 +18,7 @@ Class {
 { #category : #accessing }
 SpSelectDialog class >> defaultExtent [
 
-	^ 400@300
+	^ 450@300
 ]
 
 { #category : #specs }

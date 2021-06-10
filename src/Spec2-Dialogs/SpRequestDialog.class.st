@@ -20,7 +20,7 @@ Class {
 { #category : #accessing }
 SpRequestDialog class >> defaultExtent [
 
-	^ 400@160
+	^ 450@160
 ]
 
 { #category : #specs }
@@ -137,7 +137,7 @@ SpRequestDialog >> initializeDialogWindow: aDialogWindowPresenter [
 { #category : #initialization }
 SpRequestDialog >> initializePresenters [
 
-	image := self newImage image: (self application iconNamed: #question).
+	image := self newImage image: self icon.
 	label := self newLabel.
 	textInput := self newTextInput
 ]
