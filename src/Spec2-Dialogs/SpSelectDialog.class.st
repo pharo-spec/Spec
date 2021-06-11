@@ -53,9 +53,9 @@ SpSelectDialog class >> example [
 
 { #category : #examples }
 SpSelectDialog class >> exampleModal [
-	| dialog |
+	| selection |
 
-	dialog := self new
+	selection := self new
 		title: 'Select modal example';
 		label: 'Select a class';
 		items: Smalltalk allClassesAndTraits;
@@ -63,8 +63,8 @@ SpSelectDialog class >> exampleModal [
 		displayIcon: [ :each | each systemIcon ];
 		openModalWithSpec.
 		
-	dialog isOk
-		ifTrue: [ self inform: dialog presenter selectedItem asString ]
+	selection ifNotNil: [ 
+		self inform: selection asString ]
 ]
 
 { #category : #api }

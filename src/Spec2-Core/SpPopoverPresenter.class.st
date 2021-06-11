@@ -9,7 +9,7 @@ Class {
 	#name : #SpPopoverPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#presenter => SpObservableSlot',
+		'#presenter => ObservableSlot',
 		'#position',
 		'#relativeTo'
 	],

@@ -5,8 +5,9 @@ Class {
 	#name : #SpAbstractTreePresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#traits : 'SpTHaveWrappingScrollBars + SpTContextMenu + SpTSearchable',
+	#classTraits : 'SpTHaveWrappingScrollBars classTrait + SpTContextMenu classTrait + SpTSearchable classTrait',
 	#instVars : [
-		'#roots => SpObservableSlot',
+		'#roots => ObservableSlot',
 		'#childrenBlock',
 		'#activateOnSingleClick',
 		'#activationBlock',

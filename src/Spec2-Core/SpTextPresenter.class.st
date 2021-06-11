@@ -7,10 +7,10 @@ Class {
 	#traits : 'SpTHaveWrappingScrollBars',
 	#classTraits : 'SpTHaveWrappingScrollBars classTrait',
 	#instVars : [
-		'#scrollValue => SpObservableSlot',
-		'#editionContextMenu => SpObservableSlot',
-		'#editable => SpObservableSlot',
-		'#wrapWord => SpObservableSlot'
+		'#scrollValue => ObservableSlot',
+		'#editionContextMenu => ObservableSlot',
+		'#editable => ObservableSlot',
+		'#wrapWord => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }

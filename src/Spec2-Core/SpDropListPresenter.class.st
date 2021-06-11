@@ -8,11 +8,11 @@ Class {
 	#name : #SpDropListPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#model => SpObservableSlot',
+		'#model => ObservableSlot',
 		'#startsWithSelection',
 		'#selection',
-		'#displayBlock => SpObservableSlot',
-		'#iconBlock => SpObservableSlot'
+		'#displayBlock => ObservableSlot',
+		'#iconBlock => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }

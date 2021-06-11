@@ -9,7 +9,7 @@ Class {
 	#name : #SpRichTextPresenter,
 	#superclass : #SpTextPresenter,
 	#instVars : [
-		'#textStyler => SpObservableSlot',
+		'#textStyler => ObservableSlot',
 		'#model'
 	],
 	#category : #'Spec2-Core-Widgets-Text'

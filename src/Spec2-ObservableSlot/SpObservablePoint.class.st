@@ -7,10 +7,10 @@ I use TObservable that has methods to ease the usage of my observable properties
 Class {
 	#name : #SpObservablePoint,
 	#superclass : #Object,
-	#traits : 'SpTObservable',
-	#classTraits : 'SpTObservable classTrait',
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#instVars : [
-		'#x => SpObservableSlot',
+		'#x => ObservableSlot',
 		'#y'
 	],
 	#category : #'Spec2-ObservableSlot'

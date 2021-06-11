@@ -19,7 +19,7 @@ Class {
 		'#chooseDateButton',
 		'#dateModel',
 		'#date',
-		'#displayBlock => SpObservableSlot'
+		'#displayBlock => ObservableSlot'
 	],
 	#category : #'Spec2-Morphic-Widgets'
 }

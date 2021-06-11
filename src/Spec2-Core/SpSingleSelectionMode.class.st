@@ -5,7 +5,7 @@ Class {
 	#name : #SpSingleSelectionMode,
 	#superclass : #SpAbstractSelectionMode,
 	#instVars : [
-		'#selectedIndex => SpObservableSlot'
+		'#selectedIndex => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }

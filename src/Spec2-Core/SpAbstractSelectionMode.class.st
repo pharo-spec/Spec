@@ -6,8 +6,8 @@ A base for selection modes.
 Class {
 	#name : #SpAbstractSelectionMode,
 	#superclass : #Object,
-	#traits : 'SpTObservable',
-	#classTraits : 'SpTObservable classTrait',
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'widget'
 	],

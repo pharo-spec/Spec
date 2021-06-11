@@ -6,7 +6,6 @@ Class {
 	#superclass : #SpDialogPresenter,
 	#instVars : [
 		'label',
-		'image',
 		'title',
 		'initialExtent',
 		'acceptLabel'
@@ -117,7 +116,7 @@ SpInformDialog >> initializeDialogWindow: aDialogWindowPresenter [
 { #category : #initialization }
 SpInformDialog >> initializePresenters [
 
-	image := self newImage image: self icon.
+	image := self newImage image: self defaultIcon.
 	label := self newLabel
 ]
 

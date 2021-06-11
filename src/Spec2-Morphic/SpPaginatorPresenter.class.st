@@ -6,9 +6,9 @@ Class {
 	#name : #SpPaginatorPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#visiblePages => SpObservableSlot',
-		'#selectedPage => SpObservableSlot',
-		'#dragging => SpObservableSlot',
+		'#visiblePages => ObservableSlot',
+		'#selectedPage => ObservableSlot',
+		'#dragging => ObservableSlot',
 		'#pagesHolder'
 	],
 	#category : #'Spec2-Morphic-Paginator'

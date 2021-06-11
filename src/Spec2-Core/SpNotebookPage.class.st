@@ -7,13 +7,13 @@ An important member is `SpNotebookPage>>#presenterProvider`, which contains a bl
 Class {
 	#name : #SpNotebookPage,
 	#superclass : #Object,
-	#traits : 'SpTObservable',
-	#classTraits : 'SpTObservable classTrait',
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'#owner',
-		'#title => SpObservableSlot',
-		'#icon => SpObservableSlot',
-		'#layoutSpec => SpObservableSlot',
+		'#title => ObservableSlot',
+		'#icon => ObservableSlot',
+		'#layoutSpec => ObservableSlot',
 		'#closeable',
 		'#presenterProvider',
 		'#retrievedBlock',

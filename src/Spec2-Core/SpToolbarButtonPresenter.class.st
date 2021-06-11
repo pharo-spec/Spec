@@ -6,8 +6,8 @@ Class {
 	#name : #SpToolbarButtonPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#label => SpObservableSlot',
-		'#icon => SpObservableSlot',
+		'#label => ObservableSlot',
+		'#icon => ObservableSlot',
 		'#action',
 		'#badge'
 	],

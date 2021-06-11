@@ -99,7 +99,7 @@ SpObservableSlotTest >> testSubscribeToExistentNonObservablePropertyRaisesError 
 			point
 				property: #y
 				whenChangedDo: [ self fail: 'This event shouldnt have been subscribed at all' ] ]
-		raise: SpNonObservableSlotError
+		raise: NonObservableSlotError
 ]
 
 { #category : #tests }

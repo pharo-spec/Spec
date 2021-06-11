@@ -9,9 +9,9 @@ Class {
 	#name : #SpTreeTablePresenter,
 	#superclass : #SpAbstractTreePresenter,
 	#instVars : [
-		'#columns => SpObservableSlot',
-		'#showColumnHeaders => SpObservableSlot',
-		'#isResizable => SpObservableSlot',
+		'#columns => ObservableSlot',
+		'#showColumnHeaders => ObservableSlot',
+		'#isResizable => ObservableSlot',
 		'#lazilyComputeChildren'
 	],
 	#category : #'Spec2-Core-Widgets-Tree'

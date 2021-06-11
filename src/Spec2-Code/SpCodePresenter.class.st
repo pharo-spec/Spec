@@ -7,15 +7,15 @@ Class {
 	#name : #SpCodePresenter,
 	#superclass : #SpTextPresenter,
 	#instVars : [
-		'#syntaxHighlight => SpObservableSlot',
-		'#lineNumbers => SpObservableSlot',
-		'#interactionModel => SpObservableSlot',
+		'#syntaxHighlight => ObservableSlot',
+		'#lineNumbers => ObservableSlot',
+		'#interactionModel => ObservableSlot',
 		'#overrideContextMenu',
 		'#submitBlock',
 		'#resetBlock',
 		'#environment',
 		'#systemNavigation',
-		'#syntaxHighlightTheme => SpObservableSlot'
+		'#syntaxHighlightTheme => ObservableSlot'
 	],
 	#category : #'Spec2-Code'
 }
