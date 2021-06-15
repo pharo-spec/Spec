@@ -20,6 +20,12 @@ SpLabelToolbarDisplayMode >> extent [
 ]
 
 { #category : #accessing }
+SpLabelToolbarDisplayMode >> label [
+
+	^ 'Label'
+]
+
+{ #category : #accessing }
 SpLabelToolbarDisplayMode >> styleName [
 
 	^ 'toolBar.label'
