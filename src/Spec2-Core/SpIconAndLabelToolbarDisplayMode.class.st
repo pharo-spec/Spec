@@ -20,6 +20,12 @@ SpIconAndLabelToolbarDisplayMode >> extent [
 	^ 45@45
 ]
 
+{ #category : #printing }
+SpIconAndLabelToolbarDisplayMode >> label [
+
+	^ 'Icon and Label'
+]
+
 { #category : #accessing }
 SpIconAndLabelToolbarDisplayMode >> styleName [ 
 

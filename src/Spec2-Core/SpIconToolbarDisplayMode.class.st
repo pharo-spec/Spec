@@ -21,6 +21,12 @@ SpIconToolbarDisplayMode >> extent [
 ]
 
 { #category : #accessing }
+SpIconToolbarDisplayMode >> label [
+
+	^ 'Icon'
+]
+
+{ #category : #accessing }
 SpIconToolbarDisplayMode >> styleName [ 
 
 	^ 'toolBar.icons'
