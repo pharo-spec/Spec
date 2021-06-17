@@ -57,6 +57,12 @@ SpExecutableLayout class >> documentSections [
 	}
 ]
 
+{ #category : #accessing }
+SpExecutableLayout >> adapter [ 
+
+	^ adapter
+]
+
 { #category : #private }
 SpExecutableLayout >> adapterName [
 
@@ -120,6 +126,8 @@ SpExecutableLayout >> asSpLayout [
 { #category : #building }
 SpExecutableLayout >> buildAdapterFor: aPresenter bindings: bindings [
 
+	adapter ifNotNil: [ adapter unsubscribe ].
+	
 	adapter := (aPresenter needRebuild or: [ aPresenter adapter isNil ])
 		ifTrue: [ 
 			(bindings adapterClass: self adapterName) adapt: aPresenter ]
@@ -146,6 +154,13 @@ SpExecutableLayout >> buildAdapterFor: aPresenter bindings: bindings [
 	adapter adapterWasBuilt.
 
 	^ adapter
+]
+
+{ #category : #accessing }
+SpExecutableLayout >> childLayouts [
+
+	^ children keys select: [ :child |
+		child isSpLayout ]
 ]
 
 { #category : #accessing }
@@ -298,6 +313,15 @@ SpExecutableLayout >> subpresenterOrLayoutNamed: presenterNameOrLayout of: aPres
 				presenterAt: presenterNameOrLayout 
 				ifAbsent: [ 
 					self error: 'No presenter named "' , presenterNameOrLayout , '" was found in ' , aPresenter printString ] ]
+]
+
+{ #category : #releasing }
+SpExecutableLayout >> unsubscribe [ 
+
+	self announcer unsubscribe: adapter.
+	self childLayouts do: [ :childLayout |
+		childLayout adapter unsubscribe. 
+		childLayout unsubscribe ]
 ]
 
 { #category : #events }

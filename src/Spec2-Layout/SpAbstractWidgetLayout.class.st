@@ -33,6 +33,7 @@ SpAbstractWidgetLayout class >> for: aSymbol [
 SpAbstractWidgetLayout >> adapt: aPresenter bindings: adapterBindings [
 	| adapter |
 	adapter := self adapterFor: aPresenter bindings: adapterBindings.
+	aPresenter adapter ifNotNil: [ :oldAdapter | oldAdapter unsubscribe ].
 	adapter adapt: aPresenter.
 	^ adapter
 ]

@@ -128,7 +128,9 @@ SpMillerLayout >> remove: aPresenter [
 SpMillerLayout >> removeAll [
 
 	children removeAll.
-	adapter ifNotNil: [ :anAdapter | anAdapter removeAll ]
+	adapter ifNotNil: [ :anAdapter | 
+		anAdapter unsubscribe.
+		anAdapter removeAll ]
 ]
 
 { #category : #accessing }

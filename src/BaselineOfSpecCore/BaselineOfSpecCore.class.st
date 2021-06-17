@@ -68,7 +68,7 @@ BaselineOfSpecCore >> pillar: spec [
 		with: [ spec repository: 'github://pillar-markup/pillar:dev-8/src' ]
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 BaselineOfSpecCore >> project [
 	"Atomic loading is needed for Spec because we are moving classes of package and it breaks their subclasses. 
 	
