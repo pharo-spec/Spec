@@ -207,12 +207,6 @@ SpTPresenterBuilder >> newRadioButton [
 	^ self instantiate: SpRadioButtonPresenter
 ]
 
-{ #category : #'scripting - widgets' }
-SpTPresenterBuilder >> newRichText [
-
-	^ self instantiate: SpRichTextPresenter
-]
-
 { #category : #'scripting - layouts' }
 SpTPresenterBuilder >> newScrollableLayout [
 

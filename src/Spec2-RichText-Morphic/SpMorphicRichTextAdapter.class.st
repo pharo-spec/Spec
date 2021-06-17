@@ -4,7 +4,7 @@ I am the adapter used to bridge a TextPresenter and a RubScrolledTextMorph for r
 Class {
 	#name : #SpMorphicRichTextAdapter,
 	#superclass : #SpMorphicTextAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#category : #'Spec2-RichText-Morphic'
 }
 
 { #category : #private }
