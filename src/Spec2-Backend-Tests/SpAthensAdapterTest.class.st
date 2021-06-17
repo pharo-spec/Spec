@@ -70,9 +70,3 @@ SpAthensAdapterTest >> testResizeMakesCanvasResize [
 	self assert: extent x < 100. 
 	self assert: extent y < 100.
 ]
-
-{ #category : #tests }
-SpAthensAdapterTest >> testSmokeCreates [
-	self presenter .
-	
-]
