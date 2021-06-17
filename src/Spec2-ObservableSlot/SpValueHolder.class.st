@@ -67,6 +67,12 @@ SpValueHolder >> transferSubscriptionsTo: aSpValueHolder [
 	aSpValueHolder subscriptions: subscriptions
 ]
 
+{ #category : #subscription }
+SpValueHolder >> unsubscribe: anObject [ 
+
+	subscriptions := subscriptions reject: [ :each | each receiver = anObject ].
+]
+
 { #category : #evaluating }
 SpValueHolder >> value [
 	^ value
