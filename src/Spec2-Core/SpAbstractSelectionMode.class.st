@@ -203,6 +203,13 @@ SpAbstractSelectionMode >> unselectItem: anObject [
 	self unselectIndex: (self indexOfItem: anObject)
 ]
 
+{ #category : #subscription }
+SpAbstractSelectionMode >> unsubscribe: anObject [ 
+
+	(self observablePropertyNamed: #selectedIndexes) unsubscribe: anObject.
+
+]
+
 { #category : #'api - events' }
 SpAbstractSelectionMode >> whenChangedDo: aBlock [ 
 	"Inform when selection has changed. 
