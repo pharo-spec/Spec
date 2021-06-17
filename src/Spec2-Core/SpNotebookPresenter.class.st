@@ -107,7 +107,7 @@ SpNotebookPresenter >> removePageAt: anIndex [
 SpNotebookPresenter >> resetAllPageContents [
 	"Resets all page contents, forcing a refresh next time a page is selected."
 
-	self pages do: #resetContent
+	self pages do: [ :each | each resetContent ]
 ]
 
 { #category : #api }
