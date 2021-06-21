@@ -92,12 +92,6 @@ SpMenuPresenter >> addMenuGroup: aMenuGroup [
 ]
 
 { #category : #TOREMOVE }
-SpMenuPresenter >> applyTo: aModel [
-
-	aModel applyMenuModel: self
-]
-
-{ #category : #TOREMOVE }
 SpMenuPresenter >> autoRefresh [
 	^ autoRefresh
 ]

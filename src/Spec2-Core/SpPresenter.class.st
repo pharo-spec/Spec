@@ -315,7 +315,7 @@ SpPresenter >> application: anApplication [
 	application := anApplication
 ]
 
-{ #category : #TOREMOVE }
+{ #category : #'as yet unclassified' }
 SpPresenter >> applyMenuModel: aMenuModel [
 
 	aMenuModel menuGroups do: [ :group |
