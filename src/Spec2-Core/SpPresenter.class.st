@@ -315,18 +315,6 @@ SpPresenter >> application: anApplication [
 	application := anApplication
 ]
 
-{ #category : #'as yet unclassified' }
-SpPresenter >> applyMenuModel: aMenuModel [
-
-	aMenuModel menuGroups do: [ :group |
-		group menuItems do: [ :item |
-			item shortcut ifNotNil: [ :shortcut | 
-				self 
-					bindKeyCombination: shortcut 
-					toAction: [ item performMenuActionWith: #() ] ].
-			item subMenu ifNotNil: [ :subMenu | subMenu applyTo: self	] ] ]
-]
-
 { #category : #converting }
 SpPresenter >> asPresenter [
 	"This allows to use presenter instances inside layouts directly"
