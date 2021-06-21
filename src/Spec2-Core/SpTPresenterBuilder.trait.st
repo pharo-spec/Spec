@@ -10,12 +10,14 @@ Trait {
 { #category : #'instance creation' }
 SpTPresenterBuilder >> instantiate: aPresenterClass [
 	"Instantiate a SpPresenter subclass and set its instance owner"
+
 	^ aPresenterClass owner: self
 ]
 
 { #category : #'instance creation' }
 SpTPresenterBuilder >> instantiate: aPresenterClass on: aModel [
 	"Instantiate a SpPresenter subclass and set its instance owner and model"
+
 	^ aPresenterClass owner: self on: aModel
 ]
 
