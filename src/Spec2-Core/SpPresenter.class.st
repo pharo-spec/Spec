@@ -714,15 +714,6 @@ SpPresenter >> localeChanged [
 	
 ]
 
-{ #category : #TOREMOVE }
-SpPresenter >> neglectMenuModel: aMenuModel [
-
-	aMenuModel menuGroups do: [ :group |
-		group menuItems do: [ :item |
-			item shortcut ifNotNil: [ :shortcut | self removeKeyCombination: shortcut ].
-			item subMenu ifNotNil: [ :subMenu | subMenu neglect: self	] ] ]
-]
-
 { #category : #private }
 SpPresenter >> okToChange [
 
