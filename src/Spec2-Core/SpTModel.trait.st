@@ -21,13 +21,13 @@ SpTModel >> inputModelPort [
 	^ SpModelPort newPresenter: self
 ]
 
-{ #category : #'accessing model' }
+{ #category : #'accessing - model' }
 SpTModel >> model [
 
 	^ model
 ]
 
-{ #category : #'accessing model' }
+{ #category : #'accessing - model' }
 SpTModel >> model: aModel [
 
 	model := aModel.
@@ -40,7 +40,7 @@ SpTModel >> setModel: aModel [
 	self model: aModel
 ]
 
-{ #category : #'accessing model' }
+{ #category : #'accessing - model' }
 SpTModel >> setModelBeforeInitialization: aModel [
 
 	model := aModel

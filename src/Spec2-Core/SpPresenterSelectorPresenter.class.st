@@ -60,14 +60,14 @@ SpPresenterSelectorPresenter >> inputModelPort [
 	^ SpModelPort newPresenter: self
 ]
 
-{ #category : #'accessing model' }
+{ #category : #'accessing - model' }
 SpPresenterSelectorPresenter >> setModel: anObject [
 
 	model := anObject.
 	self updatePresenter
 ]
 
-{ #category : #'accessing model' }
+{ #category : #'accessing - model' }
 SpPresenterSelectorPresenter >> setModelBeforeInitialization: anObject [
 
 	model := anObject
