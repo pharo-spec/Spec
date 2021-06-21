@@ -170,7 +170,7 @@ SpToolbarMorph >> leftPanel: anObject [
 	leftPanel := anObject
 ]
 
-{ #category : #'private factory' }
+{ #category : #'private - factory' }
 SpToolbarMorph >> newPanelMorph [
 
 	^ Morph new
@@ -184,7 +184,7 @@ SpToolbarMorph >> newPanelMorph [
 		yourself
 ]
 
-{ #category : #'private factory' }
+{ #category : #'private - factory' }
 SpToolbarMorph >> newToolbarItemFont [
 	| buttonFont |
 

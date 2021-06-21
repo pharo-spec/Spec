@@ -59,7 +59,7 @@ SpProgressDialog class >> extent [
 	^ 600@100
 ]
 
-{ #category : #'private actions' }
+{ #category : #'private - actions' }
 SpProgressDialog >> afterOpenAction [
 		
 	openAction ifNil: [ ^ self ].
