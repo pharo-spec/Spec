@@ -5,6 +5,8 @@ It allows users to compose presenters without hardcoding class name.
 Class {
 	#name : #SpPresenterBuilder,
 	#superclass : #Object,
+	#traits : 'SpTPresenterBuilder',
+	#classTraits : 'SpTPresenterBuilder classTrait',
 	#category : #'Spec2-Core-Base'
 }
 
