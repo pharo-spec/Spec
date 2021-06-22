@@ -13,13 +13,11 @@ Class {
 { #category : #'instance creation' }
 SpPresenterBuilder >> instantiate: aPresenterClass [
 	"Instantiate a SpPresenter subclass and set its instance owner"
-
 	^ aPresenterClass new
 ]
 
 { #category : #'instance creation' }
 SpPresenterBuilder >> instantiate: aPresenterClass on: aModel [
 	"Instantiate a SpPresenter subclass and set its instance owner and model"
-
 	^ aPresenterClass on: aModel
 ]
