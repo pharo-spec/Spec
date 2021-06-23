@@ -82,6 +82,13 @@ SpMenuPresenter >> addItem: aBlock [
 	self defaultGroup addItem: aBlock
 ]
 
+{ #category : #api }
+SpMenuPresenter >> addKeybindingsTo: aPresenter [
+	"bind keybindings (shortcuts) defined in this menu to aPresenter"
+
+	aPresenter applyKeyBindingsFromMenu: self
+]
+
 { #category : #private }
 SpMenuPresenter >> addMenuGroup: aMenuGroup [
 

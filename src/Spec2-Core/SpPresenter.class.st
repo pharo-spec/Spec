@@ -315,6 +315,19 @@ SpPresenter >> application: anApplication [
 	application := anApplication
 ]
 
+{ #category : #private }
+SpPresenter >> applyKeyBindingsFromMenu: aMenuPresenter [
+	"traverses aMenuPresenter and bind shortcuts associated "
+
+	aMenuPresenter menuGroups do: [ :group |
+		group menuItems do: [ :item |
+			item shortcut ifNotNil: [ :shortcut | 
+				self 
+					bindKeyCombination: shortcut 
+					toAction: [ item performMenuActionWith: #() ] ].
+			item subMenu ifNotNil: [ :subMenu | subMenu addKeybindingsTo: self	] ] ]
+]
+
 { #category : #converting }
 SpPresenter >> asPresenter [
 	"This allows to use presenter instances inside layouts directly"
