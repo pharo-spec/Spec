@@ -315,16 +315,17 @@ SpPresenter >> application: anApplication [
 	application := anApplication
 ]
 
-{ #category : #TOREMOVE }
-SpPresenter >> applyMenuModel: aMenuModel [
+{ #category : #private }
+SpPresenter >> applyKeyBindingsFromMenu: aMenuPresenter [
+	"traverses aMenuPresenter and bind shortcuts associated "
 
-	aMenuModel menuGroups do: [ :group |
+	aMenuPresenter menuGroups do: [ :group |
 		group menuItems do: [ :item |
 			item shortcut ifNotNil: [ :shortcut | 
 				self 
 					bindKeyCombination: shortcut 
 					toAction: [ item performMenuActionWith: #() ] ].
-			item subMenu ifNotNil: [ :subMenu | subMenu applyTo: self	] ] ]
+			item subMenu ifNotNil: [ :subMenu | subMenu addKeybindingsTo: self	] ] ]
 ]
 
 { #category : #converting }
@@ -712,15 +713,6 @@ SpPresenter >> localeChanged [
 
 	"do nothing here. Override me in subclasses to update strings presented to the users"
 	
-]
-
-{ #category : #TOREMOVE }
-SpPresenter >> neglectMenuModel: aMenuModel [
-
-	aMenuModel menuGroups do: [ :group |
-		group menuItems do: [ :item |
-			item shortcut ifNotNil: [ :shortcut | self removeKeyCombination: shortcut ].
-			item subMenu ifNotNil: [ :subMenu | subMenu neglect: self	] ] ]
 ]
 
 { #category : #private }

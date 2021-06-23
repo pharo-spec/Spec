@@ -391,7 +391,9 @@ SpBoxLayout >> isVertical [
 SpBoxLayout >> removeAll [
 
 	children removeAll.
-	adapter ifNotNil: [ :anAdapter | anAdapter removeAll ]
+	adapter ifNotNil: [ :anAdapter | 
+		anAdapter unsubscribe.
+		anAdapter removeAll ]
 ]
 
 { #category : #'api - adding' }

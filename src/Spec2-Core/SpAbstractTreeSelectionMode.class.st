@@ -153,6 +153,12 @@ SpAbstractTreeSelectionMode >> unselectPath: aPath [
 	self subclassResponsibility
 ]
 
+{ #category : #subscription }
+SpAbstractTreeSelectionMode >> unsubscribe: anObject [ 
+
+	(self observablePropertyNamed: #selection) unsubscribe: anObject
+]
+
 { #category : #'api - events' }
 SpAbstractTreeSelectionMode >> whenChangedDo: aBlock [
 	
