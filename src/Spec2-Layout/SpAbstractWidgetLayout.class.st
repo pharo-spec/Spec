@@ -31,10 +31,11 @@ SpAbstractWidgetLayout class >> for: aSymbol [
 
 { #category : #building }
 SpAbstractWidgetLayout >> adapt: aPresenter bindings: adapterBindings [
-	| adapter |
+	| adapter oldAdapter |
 	adapter := self adapterFor: aPresenter bindings: adapterBindings.
-	aPresenter adapter ifNotNil: [ :oldAdapter | oldAdapter unsubscribe ].
+	oldAdapter := aPresenter adapter. 
 	adapter adapt: aPresenter.
+	oldAdapter ifNotNil: [ :anAdapter | anAdapter unsubscribe ].
 	^ adapter
 ]
 

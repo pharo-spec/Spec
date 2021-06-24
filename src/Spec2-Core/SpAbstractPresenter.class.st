@@ -100,11 +100,17 @@ SpAbstractPresenter >> adapter [
 { #category : #accessing }
 SpAbstractPresenter >> adapter: anAdapter [
 
+	| oldAdapter |
+
 	"if there existed an adapter already, we need to unsubscribe it to avoid memory leaks"
-	adapter ifNotNil: [
-		adapter unsubscribe ].
+
+	oldAdapter := adapter.
 	
-	adapter := anAdapter
+	adapter := anAdapter.
+	
+	oldAdapter ifNotNil: [
+		oldAdapter unsubscribe ].
+
 ]
 
 { #category : #accessing }
