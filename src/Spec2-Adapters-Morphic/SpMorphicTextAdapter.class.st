@@ -58,6 +58,7 @@ SpMorphicTextAdapter >> buildWidget [
 	self setText: self presenter text to: newWidget.
 
 	self setWrapWord: self presenter isWrapWord to: newWidget.	
+	self setUndoRedo: self presenter hasUndoRedoHistory to: newWidget. 
 	self presenter whenTextChangedDo: [ :text | 
 		self setText: text to: newWidget ].
 	self presenter whenSelectionChangedDo: [ :selectionInterval | 
@@ -187,9 +188,19 @@ SpMorphicTextAdapter >> setGhostText: text to: aWidget [
 { #category : #private }
 SpMorphicTextAdapter >> setText: text to: aWidget [
 
+	updating ifTrue: [ ^ self ].
+
+	aWidget textArea editingState clearUndoManager: nil.
 	aWidget setText: text.
 	self updateExtentPropagationOf: text on: aWidget
+]
 
+{ #category : #factory }
+SpMorphicTextAdapter >> setUndoRedo: aBoolean to: newWidget [
+
+	newWidget textArea editingState undoManager: (aBoolean 
+		ifTrue: [ HistoryIterator new ]
+		ifFalse: [ SpNullHistoryIterator new ])
 ]
 
 { #category : #private }

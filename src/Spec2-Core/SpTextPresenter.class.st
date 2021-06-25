@@ -10,7 +10,8 @@ Class {
 		'#scrollValue => ObservableSlot',
 		'#editionContextMenu => ObservableSlot',
 		'#editable => ObservableSlot',
-		'#wrapWord => ObservableSlot'
+		'#wrapWord => ObservableSlot',
+		'#undoRedoHistory'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }
@@ -187,6 +188,12 @@ SpTextPresenter >> hasEditionContextMenu [
 	^ editionContextMenu
 ]
 
+{ #category : #testing }
+SpTextPresenter >> hasUndoRedoHistory [
+
+	^ undoRedoHistory
+]
+
 { #category : #initialization }
 SpTextPresenter >> initialize [ 
 
@@ -198,6 +205,7 @@ SpTextPresenter >> initialize [
 	self beWrapWord.
 	self withScrollBars.
 	self withEditionContextMenu.
+	self withUndoRedoHistory
 ]
 
 { #category : #testing }
@@ -309,11 +317,23 @@ SpTextPresenter >> withEditionContextMenu [
 ]
 
 { #category : #api }
+SpTextPresenter >> withUndoRedoHistory [
+
+	undoRedoHistory := true
+]
+
+{ #category : #api }
 SpTextPresenter >> withoutEditionContextMenu [
 	"Disable default edition context menu. 
 	 See also `SpTextPresenter>>#withEditionContextMenu`."
 
 	editionContextMenu := false
+]
+
+{ #category : #api }
+SpTextPresenter >> withoutUndoRedoHistory [
+
+	undoRedoHistory := false
 ]
 
 { #category : #private }

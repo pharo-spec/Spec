@@ -326,7 +326,7 @@ SpAbstractTextPresenter >> text: aString [
 { #category : #simulating }
 SpAbstractTextPresenter >> type: aString [ 
 	"For simulation: Do as if we type the given string"
-	self text: aString
+	self withAdapterDo: [ :anAdapter | anAdapter type: aString ]
 ]
 
 { #category : #TOREMOVE }
