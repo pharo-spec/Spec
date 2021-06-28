@@ -1,6 +1,8 @@
 "
 I'm a trait that add ""dynamic"" behavior to presenters. 
 I can be used to create components that may have variable number of children.
+
+DEPRECATED: This trait should not be used, since all presenters are dynamic now.
 "
 Trait {
 	#name : #SpTDynamicPresenter,
@@ -9,6 +11,12 @@ Trait {
 	],
 	#category : #'Spec2-Core-Base'
 }
+
+{ #category : #testing }
+SpTDynamicPresenter classSide >> isDeprecated [
+
+	^ true
+]
 
 { #category : #'private - accessing' }
 SpTDynamicPresenter >> basicPresenters [
