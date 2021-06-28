@@ -297,7 +297,7 @@ SpAbstractTextPresenter >> selectionInterval [
 	
 	self withAdapterDo: [ :anAdapter | 
 		self rawSelection: anAdapter selection ].
-	^ selection ifNil: [ ^ 1 to: 0 ]
+	^ selection ifNil: [ 1 to: 0 ]
 ]
 
 { #category : #'api - selection' }
