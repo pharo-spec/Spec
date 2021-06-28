@@ -258,22 +258,18 @@ SpPresenter >> additionalSubpresentersMap [
 
 { #category : #'private - traversing' }
 SpPresenter >> allPresenters [
-	| allPresenters |
 
-	allPresenters := OrderedCollection new.
-	self traversePresentersDo: [ :each | 
-		allPresenters add: each ].
-	^ allPresenters
+	^ Array streamContents: [ :stream |
+		self traversePresentersDo: [ :each | 
+			stream << each ] ]
 ]
 
 { #category : #private }
 SpPresenter >> allPresentersInFocusOrder [
-	| allPresenters |
 
-	allPresenters := OrderedCollection new.
-	self traverseInFocusOrderDo: [ :each |
-		allPresenters add: each  ].
-	^ allPresenters
+	^ Array streamContents: [ :stream |
+		self traverseInFocusOrderDo: [ :each |
+			stream << each  ] ]
 ]
 
 { #category : #api }
@@ -330,6 +326,13 @@ SpPresenter >> applyKeyBindingsFromMenu: aMenuPresenter [
 
 { #category : #converting }
 SpPresenter >> asPresenter [
+	"This allows to use presenter instances inside layouts directly"
+
+	^ self
+]
+
+{ #category : #converting }
+SpPresenter >> asPresenterOn: aPresenter [
 	"This allows to use presenter instances inside layouts directly"
 
 	^ self
@@ -750,23 +753,18 @@ SpPresenter >> presenterAt: aName ifAbsent: aBlock [
 
 { #category : #'private - traversing' }
 SpPresenter >> presenters [
-	| presenters |
 
-	presenters := OrderedCollection new.
-	self presentersDo: [ :each | 
-		presenters add: each ].
-	^ presenters
+	^ Array streamContents: [ :stream |
+		self presentersDo: [ :each | 
+			stream << each ] ]
 ]
 
 { #category : #'private - traversing' }
 SpPresenter >> presentersDo: aBlock [
 
-	self class allSlots 
-		reject: [ :each | each name = #owner ] 
-		thenDo: [ :each | | var |
-			var := self readSlot: each.
-			(var isKindOf: SpAbstractPresenter) ifTrue: [ 
-				aBlock value: var ] ]
+	self layout ifNil: [ ^ self ].
+	self layout deepPresenters do: [ :each |
+		aBlock value: (each asPresenterOn: self) ]
 ]
 
 { #category : #private }
@@ -895,7 +893,6 @@ SpPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 	"(excludes includes: self) ifTrue: [ ^ self ]. 
 	excludes add: self.
 	aBlock value: self."
-
 	self presentersInFocusOrder do: [ :each |
 		each traverseInFocusOrderDo: aBlock excluding: excludes ]
 ]
@@ -915,10 +912,10 @@ SpPresenter >> traversePresentersDo: aBlock excluding: excludes [
 	excludes add: self.
 	aBlock value: self.
 
-	self class allSlots do: [ :each | | var |
-		var := self readSlot: each.
-		(var isKindOf: SpAbstractPresenter) ifTrue: [ 
-			var traversePresentersDo: aBlock excluding: excludes ] ]
+	self layout ifNil: [ ^ self ].
+	self layout deepPresenters do: [ :each | | var |
+		var := each asPresenterOn: self. 
+		var traversePresentersDo: aBlock excluding: excludes ]
 ]
 
 { #category : #updating }

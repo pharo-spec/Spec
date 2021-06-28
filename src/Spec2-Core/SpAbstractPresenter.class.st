@@ -102,6 +102,7 @@ SpAbstractPresenter >> adapter: anAdapter [
 
 	"if there existed an adapter already, we need to unsubscribe it to avoid memory leaks"
 	adapter ifNotNil: [
+		self removeDependent: adapter.
 		adapter unsubscribe ].
 	
 	adapter := anAdapter
