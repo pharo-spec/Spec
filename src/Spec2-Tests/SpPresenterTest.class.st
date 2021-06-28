@@ -5,6 +5,21 @@ Class {
 }
 
 { #category : #tests }
+SpPresenterTest >> testAdapterDoesNotRemainsAsDependencyWhenReplacingIt [
+	| presenter |
+
+	presenter := SpPresenter new.
+	presenter layout: (SpBoxLayout new add:  SpListPresenter  new; add: SpTextPresenter new; yourself).
+	
+	3 timesRepeat: [ 
+		presenter openWithSpec.
+		presenter window close ].
+	
+	self assert: presenter dependents size equals: 1.
+
+]
+
+{ #category : #tests }
 SpPresenterTest >> testPresentersIncludesPresentersAddedToTheLayout [
 	| presenter p1 p2 |
 	
