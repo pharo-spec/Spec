@@ -102,7 +102,7 @@ BaselineOfSpec2 >> specCore: spec [
 
 	spec baseline: 'SpecCore' with: [ 
 		spec 
-			repository: (self packageRepositoryURL ifEmpty: [ self defaultRepositoryURL ]);
+			repository: 'github://pavel-krivanek/Spec:unsubscribeAdapters');
 			loads: #('Base' 'Tests') ]
 ]
 
@@ -111,7 +111,7 @@ BaselineOfSpec2 >> specCoreCode: spec [
 
 	spec baseline: 'SpecCoreCode' with: [ 
 		spec 
-			repository: (self packageRepositoryURL ifEmpty: [ self defaultRepositoryURL ]);
+			repository: 'github://pavel-krivanek/Spec:unsubscribeAdapters');
 			className: 'BaselineOfSpecCore';
 			loads: #('Code' 'CodeTests') ]
 ]
