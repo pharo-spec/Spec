@@ -19,7 +19,9 @@ SpTDynamicPresenter >> basicPresenters [
 { #category : #accessing }
 SpTDynamicPresenter >> presenterAt: aName [
 
-	^ self basicPresenters at: aName 
+	^ self basicPresenters 
+		at: aName 
+		ifAbsent: [ self readSlotNamed: aName  ]
 ]
 
 { #category : #accessing }
