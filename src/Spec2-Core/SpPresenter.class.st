@@ -331,6 +331,13 @@ SpPresenter >> asPresenter [
 	^ self
 ]
 
+{ #category : #converting }
+SpPresenter >> asPresenterOn: aPresenter [
+	"This allows to use presenter instances inside layouts directly"
+
+	^ self
+]
+
 { #category : #TOREMOVE }
 SpPresenter >> askOkToClose [
 	"DO NOT USE
@@ -756,11 +763,8 @@ SpPresenter >> presenters [
 SpPresenter >> presentersDo: aBlock [
 
 	self layout ifNil: [ ^ self ].
-	self layout deepPresenters do: [ :each | | var |
-		var := each isSymbol 
-			ifTrue: [ self presenterAt: each ]
-			ifFalse: [ each ].
-		aBlock value: var ]
+	self layout deepPresenters do: [ :each |
+		aBlock value: (each asPresenterOn: self) ]
 ]
 
 { #category : #private }
@@ -910,9 +914,7 @@ SpPresenter >> traversePresentersDo: aBlock excluding: excludes [
 
 	self layout ifNil: [ ^ self ].
 	self layout deepPresenters do: [ :each | | var |
-		var := each isSymbol
-			ifTrue: [ self presenterAt: each ]
-			ifFalse: [ each ]. 
+		var := each asPresenterOn: self. 
 		var traversePresentersDo: aBlock excluding: excludes ]
 ]
 
