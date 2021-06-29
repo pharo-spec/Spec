@@ -20,7 +20,7 @@ SpPresenter >> request: request initialAnswer: initialAnwser title: title [
 		text: initialAnwser;
 		openModalWithSpec.
 					
-	answer ifFalse: [ SpCancelledInteractionError signal ].
+	answer ifNil: [ SpCancelledInteractionError signal ].
 	
 	^ answer
 ]

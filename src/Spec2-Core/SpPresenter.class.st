@@ -569,8 +569,12 @@ SpPresenter >> initializePresenters [
 { #category : #'private - initialization' }
 SpPresenter >> initializePrivateAnnouncements [
 
-	self property: #titleHolder whenChangedDo: [ self updateTitle ].
-	self property: #layout whenChangedDo: [ :newLayout | self replaceLayoutWith: newLayout ]
+	self 
+		property: #titleHolder 
+		whenChangedDo: [ self withWindowDo: [ :w | w title: titleHolder ] ].
+	self 
+		property: #layout 
+		whenChangedDo: [ :newLayout | self replaceLayoutWith: newLayout ]
 ]
 
 { #category : #'private - initialization' }

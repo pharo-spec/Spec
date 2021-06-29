@@ -22,6 +22,12 @@ Class {
 	#category : #'Spec2-ObservableSlot'
 }
 
+{ #category : #testing }
+SpValueHolder class >> isDeprecated [
+
+	^ true
+]
+
 { #category : #'instance creation' }
 SpValueHolder class >> value: contents [
 
