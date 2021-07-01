@@ -118,17 +118,14 @@ SpWindowPresenter >> askOkToClose: aBoolean [
 { #category : #'private - building' }
 SpWindowPresenter >> basicBuildWithSpecLayout: presenterSpecLayout [
 	"Build the widget using the spec name provided as argument"
-	| widget |
 
-	(self spec isNil or: [ self needRebuild ])
+	^(self spec isNil or: [ self needRebuild ])
 		ifTrue: [ 
 			self 
 				buildWindowWithLayout: self retrieveDefaultSpec 
 				presenterLayout: presenterSpecLayout ]
 		ifFalse: [
-			widget := self widget ].
-	
-	^ widget
+			self adapter widget ]
 ]
 
 { #category : #api }
@@ -146,6 +143,7 @@ SpWindowPresenter >> buildWindowWithLayout: windowSpecLayout presenterLayout: pr
 		buildAdapterFor: self 
 		bindings: SpBindings value).
 	self window: self adapter widget.
+	self processDeferredActions.
 	"add presenter"
 	self addPresenterIn: self window withSpecLayout: presenterSpecLayout.
 	"announce its result"
@@ -293,6 +291,7 @@ SpWindowPresenter >> initialPosition: aPoint [
 
 { #category : #initialization }
 SpWindowPresenter >> initialize [
+
 	super initialize.
 
 	titleHolder := self class defaultTitle.
@@ -303,8 +302,14 @@ SpWindowPresenter >> initialize [
 	decorations := true.
 
 	"presenter whenChangedDo: [ :m | self updateTitle ]."
-	self property: #titleHolder whenChangedDo: [ :m | self changed: #title: with: {m} ].
-	self property: #centered whenChangedDo: [ :m | self changed: #centered with: #() ]
+	self 
+		property: #titleHolder 
+		whenChangedDo: [ :aString | 
+			self withAdapterDo: [ :anAdapter | anAdapter title: aString ] ].
+	self 
+		property: #centered 
+		whenChangedDo: [ :aBoolean | 
+			self withAdapterDo: [ :anAdapter | anAdapter centered ] ]
 ]
 
 { #category : #initialization }
@@ -446,10 +451,24 @@ SpWindowPresenter >> okToChange [
 	^ self canDiscardEdits
 ]
 
-{ #category : #private }
+{ #category : #'api - showing' }
+SpWindowPresenter >> open [
+
+	self openWith: self presenter retrieveDefaultSpec
+]
+
+{ #category : #'api - showing' }
+SpWindowPresenter >> openWith: aSpecLayout [
+
+	self openWithSpecLayout: aSpecLayout
+]
+
+{ #category : #'private - showing' }
 SpWindowPresenter >> openWithSpecLayout: aSpec [
+
 	self buildWithSpecLayout: aSpec.
-	self changed: #open with: #().
+	self application registerWindow: self.
+	self withAdapterDo: [ :anAdapter | anAdapter open ].
 	self allPresenters do: [ :each | each announceDisplayed ].
 	self updateTitle
 ]

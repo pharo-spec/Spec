@@ -215,70 +215,11 @@ SpApplication >> notify: aSpecNotification [
 ]
 
 { #category : #showing }
-SpApplication >> open: aPresenter [
-
-	^ self 
-		open: aPresenter 
-		withSpecLayout: aPresenter defaultSpec
-		using: aPresenter defaultWindowPresenterClass
-]
-
-{ #category : #showing }
-SpApplication >> open: aPresenter withSpecLayout: aSpecLayout [
-
-	^ self 
-		open: aPresenter 
-		withSpecLayout: aSpecLayout 
-		using: aPresenter defaultWindowPresenterClass
-]
-
-{ #category : #'private - showing' }
-SpApplication >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClass [
-	| window |
-
-	self validateApplicationOfPresenter: aPresenter.
-
-	window := aWindowClass presenter: aPresenter.
-	window application: aPresenter application.
-	self registerWindow: window.
-	window openWithSpecLayout: aSpecLayout.
-	
-	^ window
-]
-
-{ #category : #showing }
 SpApplication >> openBlockedDialog: aPresenter [
 
 	^ self 
 		openBlockedDialog: aPresenter 
 		withSpecLayout: aPresenter defaultSpec
-]
-
-{ #category : #showing }
-SpApplication >> openBlockedDialog: aPresenter withSpecLayout: aSpecLayout [
-
-	^ self 
-		open: aPresenter 
-		withSpecLayout: aSpecLayout 
-		using: SpBlockedDialogWindowPresenter
-]
-
-{ #category : #showing }
-SpApplication >> openDialog: aPresenter [ 
-	
-	^ self 
-		openDialog: aPresenter 
-		withSpecLayout: aPresenter defaultSpec
-
-]
-
-{ #category : #showing }
-SpApplication >> openDialog: aPresenter withSpecLayout: aSpecLayout [
-
-	^ self 
-		open: aPresenter 
-		withSpecLayout: aSpecLayout 
-		using: SpDialogWindowPresenter
 ]
 
 { #category : #showing }
@@ -288,15 +229,6 @@ SpApplication >> openModal: aPresenter [
 		openModal: aPresenter 
 		withSpecLayout: aPresenter defaultSpec
 
-]
-
-{ #category : #showing }
-SpApplication >> openModal: aPresenter withSpecLayout: aSpecLayout [
-
-	^ self 
-		open: aPresenter 
-		withSpecLayout: aSpecLayout 
-		using: SpModalWindowPresenter
 ]
 
 { #category : #'accessing - properties' }
@@ -432,13 +364,6 @@ SpApplication >> useBackend: aName with: aConfiguration [
 	self useBackend: aName.
 	configuration := aConfiguration.
 	aConfiguration configure: self
-]
-
-{ #category : #'private - showing' }
-SpApplication >> validateApplicationOfPresenter: aPresenter [
-
-	aPresenter application == self ifFalse: [ 
-		SpInvalidApplicationError signal: 'The requested presenter has a different application' ]
 ]
 
 { #category : #windows }

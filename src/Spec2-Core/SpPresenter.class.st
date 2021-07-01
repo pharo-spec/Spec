@@ -433,12 +433,6 @@ SpPresenter >> defaultSpec [
 	^ self class perform: self defaultSpecSelector
 ]
 
-{ #category : #'api - showing' }
-SpPresenter >> defaultWindowPresenterClass [
-
-	^ SpWindowPresenter
-]
-
 { #category : #accessing }
 SpPresenter >> defer: aBlock [
 
