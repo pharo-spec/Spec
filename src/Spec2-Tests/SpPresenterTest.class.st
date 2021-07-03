@@ -1,6 +1,9 @@
 Class {
 	#name : #SpPresenterTest,
 	#superclass : #TestCase,
+	#instVars : [
+		'presenter'
+	],
 	#category : #'Spec2-Tests-Core'
 }
 
@@ -17,6 +20,33 @@ SpPresenterTest >> testAdapterDoesNotRemainsAsDependencyWhenReplacingIt [
 	
 	self assert: presenter dependents size equals: 1.
 
+]
+
+{ #category : #tests }
+SpPresenterTest >> testAsDialogWindow [
+
+	presenter := SpPresenter new.
+	self 
+		assert: presenter asDialogWindow class
+		equals: presenter application defaultDialogWindowPresenterClass
+]
+
+{ #category : #tests }
+SpPresenterTest >> testAsModalWindow [
+
+	presenter := SpPresenter new.
+	self 
+		assert: presenter asModalWindow class
+		equals: presenter application defaultModalWindowPresenterClass
+]
+
+{ #category : #tests }
+SpPresenterTest >> testAsWindow [
+
+	presenter := SpPresenter new.
+	self 
+		assert: presenter asWindow class
+		equals: presenter application defaultWindowPresenterClass
 ]
 
 { #category : #tests }
