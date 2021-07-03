@@ -192,22 +192,22 @@ SpAbstractPresenter >> buildWithSpecLayout: aSpecLayout [
 	^ (self buildAdapterWithSpecLayout: aSpecLayout) widget
 ]
 
-{ #category : #showing }
+{ #category : #'private - showing' }
 SpAbstractPresenter >> defaultBlockedDialogWindowPresenterClass [
 
-	^ SpBlockedDialogWindowPresenter
+	^ self application defaultBlockedDialogWindowPresenterClass
 ]
 
-{ #category : #showing }
+{ #category : #'private - showing' }
 SpAbstractPresenter >> defaultDialogWindowPresenterClass [
 		
-	^ SpDialogWindowPresenter
+	^ self application defaultDialogWindowPresenterClass
 ]
 
-{ #category : #showing }
+{ #category : #'private - showing' }
 SpAbstractPresenter >> defaultModalWindowPresenterClass [
 		
-	^ SpModalWindowPresenter
+	^ self application defaultModalWindowPresenterClass
 ]
 
 { #category : #'private - building' }
@@ -219,10 +219,10 @@ SpAbstractPresenter >> defaultSpecSelector [
 		ifNotEmpty: [ :pragmas | pragmas size = 1 ifTrue: [ pragmas first methodSelector ] ifFalse: [ #defaultSpec ] ]
 ]
 
-{ #category : #accessing }
-SpAbstractPresenter >> defaultWindowPresenterClass [
+{ #category : #'private - showing' }
+SpAbstractPresenter >> defaultWindowPresenterClass [ 
 
-	^ SpWindowPresenter
+	^ self application defaultWindowPresenterClass
 ]
 
 { #category : #accessing }

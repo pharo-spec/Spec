@@ -117,7 +117,7 @@ SpApplication >> backend [
 { #category : #showing }
 SpApplication >> close [
 	
-	self windows copy do: #close
+	self windows copy do: [ :each | each close ]
 ]
 
 { #category : #accessing }
@@ -130,6 +130,30 @@ SpApplication >> closeAllWindows [
 SpApplication >> configuration [
 
 	^ configuration
+]
+
+{ #category : #showing }
+SpApplication >> defaultBlockedDialogWindowPresenterClass [
+
+	^ SpBlockedDialogWindowPresenter
+]
+
+{ #category : #showing }
+SpApplication >> defaultDialogWindowPresenterClass [
+		
+	^ SpDialogWindowPresenter
+]
+
+{ #category : #showing }
+SpApplication >> defaultModalWindowPresenterClass [
+		
+	^ SpModalWindowPresenter
+]
+
+{ #category : #showing }
+SpApplication >> defaultWindowPresenterClass [
+		
+	^ SpWindowPresenter
 ]
 
 { #category : #ui }
@@ -212,23 +236,6 @@ SpApplication >> notify: aSpecNotification [
 	"how notifications are handled depends on the backend"
 
 	aSpecNotification dispatchTo: self backend
-]
-
-{ #category : #showing }
-SpApplication >> openBlockedDialog: aPresenter [
-
-	^ self 
-		openBlockedDialog: aPresenter 
-		withSpecLayout: aPresenter defaultSpec
-]
-
-{ #category : #showing }
-SpApplication >> openModal: aPresenter [ 
-	
-	^ self 
-		openModal: aPresenter 
-		withSpecLayout: aPresenter defaultSpec
-
 ]
 
 { #category : #'accessing - properties' }
