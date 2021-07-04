@@ -695,7 +695,7 @@ SpPresenter >> layoutPresenters [
 
 	layout ifNil: [ ^ self presenters ].
 	
-	^ layout deepPresenters
+	^ layout allPresenters
 		select: [ :each | each isSymbol or: [ each isPresenter ] ]
 		thenCollect: [ :each | 
 			each isPresenter 
@@ -761,7 +761,7 @@ SpPresenter >> presenters [
 SpPresenter >> presentersDo: aBlock [
 
 	self layout ifNil: [ ^ self ].
-	self layout deepPresenters do: [ :each |
+	self layout allPresenters do: [ :each |
 		aBlock value: (each asPresenterOn: self) ]
 ]
 
@@ -911,7 +911,7 @@ SpPresenter >> traversePresentersDo: aBlock excluding: excludes [
 	aBlock value: self.
 
 	self layout ifNil: [ ^ self ].
-	self layout deepPresenters do: [ :each | | var |
+	self layout allPresenters do: [ :each | | var |
 		var := each asPresenterOn: self. 
 		var traversePresentersDo: aBlock excluding: excludes ]
 ]

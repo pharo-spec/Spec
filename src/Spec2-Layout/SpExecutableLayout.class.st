@@ -78,6 +78,18 @@ SpExecutableLayout >> add: aName withConstraints: aBlock [
 	children at: aName put: constraints
 ]
 
+{ #category : #accessing }
+SpExecutableLayout >> allPresenters [
+	"answer all presenters in the layout hierarchy"
+	
+	^ self presenters
+		inject: #()
+		into: [ :all :each | 
+			all, (each isSpLayout 
+				ifTrue: [ each allPresenters ]
+				ifFalse: [ { each } ]) ]
+]
+
 { #category : #announcing }
 SpExecutableLayout >> announce: anAnnouncement [
 
@@ -179,18 +191,6 @@ SpExecutableLayout >> constraintsClass [
 SpExecutableLayout >> constraintsFor: aPresenter [
 
 	^ children at: aPresenter
-]
-
-{ #category : #accessing }
-SpExecutableLayout >> deepPresenters [
-	"answer all presenters in the layout hierarchy"
-	
-	^ self presenters
-		inject: #()
-		into: [ :all :each | 
-			all, (each isSpLayout 
-				ifTrue: [ each deepPresenters ]
-				ifFalse: [ { each } ]) ]
 ]
 
 { #category : #initialization }
