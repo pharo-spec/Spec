@@ -182,6 +182,13 @@ SpMorphicCodeAdapter >> receiverClass [
 ]
 
 { #category : #'widget API' }
+SpMorphicCodeAdapter >> refreshStyling [
+
+	self presenter hasSyntaxHighlight ifFalse: [ ^ self ].
+	self widgetDo: [ :w | w textArea shoutStyler refreshStyling ]
+]
+
+{ #category : #'widget API' }
 SpMorphicCodeAdapter >> selectedBehavior [
 
 	^ self presenter selectedBehavior
