@@ -9,7 +9,6 @@ Class {
 
 { #category : #tests }
 SpPresenterTest >> testAdapterDoesNotRemainsAsDependencyWhenReplacingIt [
-	| presenter |
 
 	presenter := SpPresenter new.
 	presenter layout: (SpBoxLayout new add:  SpListPresenter  new; add: SpTextPresenter new; yourself).
