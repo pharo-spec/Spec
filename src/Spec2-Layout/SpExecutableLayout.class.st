@@ -57,6 +57,12 @@ SpExecutableLayout class >> documentSections [
 	}
 ]
 
+{ #category : #accessing }
+SpExecutableLayout >> adapter [ 
+
+	^ adapter
+]
+
 { #category : #private }
 SpExecutableLayout >> adapterName [
 
@@ -70,6 +76,18 @@ SpExecutableLayout >> add: aName withConstraints: aBlock [
 	constraints := self constraintsClass new.
 	aBlock value: constraints.
 	children at: aName put: constraints
+]
+
+{ #category : #accessing }
+SpExecutableLayout >> allPresenters [
+	"answer all presenters in the layout hierarchy"
+	
+	^ self presenters
+		inject: #()
+		into: [ :all :each | 
+			all, (each isSpLayout 
+				ifTrue: [ each allPresenters ]
+				ifFalse: [ { each } ]) ]
 ]
 
 { #category : #announcing }
@@ -120,6 +138,8 @@ SpExecutableLayout >> asSpLayout [
 { #category : #building }
 SpExecutableLayout >> buildAdapterFor: aPresenter bindings: bindings [
 
+	adapter ifNotNil: [ adapter unsubscribe ].
+	
 	adapter := (aPresenter needRebuild or: [ aPresenter adapter isNil ])
 		ifTrue: [ 
 			(bindings adapterClass: self adapterName) adapt: aPresenter ]
@@ -149,6 +169,13 @@ SpExecutableLayout >> buildAdapterFor: aPresenter bindings: bindings [
 ]
 
 { #category : #accessing }
+SpExecutableLayout >> childLayouts [
+
+	^ children keys select: [ :child |
+		child isSpLayout ]
+]
+
+{ #category : #accessing }
 SpExecutableLayout >> children [
 
 	^ children keys
@@ -164,18 +191,6 @@ SpExecutableLayout >> constraintsClass [
 SpExecutableLayout >> constraintsFor: aPresenter [
 
 	^ children at: aPresenter
-]
-
-{ #category : #accessing }
-SpExecutableLayout >> deepPresenters [
-	"answer all presenters in the layout hierarchy"
-	
-	^ self presenters
-		inject: #()
-		into: [ :all :each | 
-			all, (each isSpLayout 
-				ifTrue: [ each deepPresenters ]
-				ifFalse: [ { each } ]) ]
 ]
 
 { #category : #initialization }
@@ -298,6 +313,15 @@ SpExecutableLayout >> subpresenterOrLayoutNamed: presenterNameOrLayout of: aPres
 				presenterAt: presenterNameOrLayout 
 				ifAbsent: [ 
 					self error: 'No presenter named "' , presenterNameOrLayout , '" was found in ' , aPresenter printString ] ]
+]
+
+{ #category : #releasing }
+SpExecutableLayout >> unsubscribe [ 
+
+	self announcer unsubscribe: adapter.
+	self childLayouts do: [ :childLayout |
+		childLayout adapter unsubscribe. 
+		childLayout unsubscribe ]
 ]
 
 { #category : #events }

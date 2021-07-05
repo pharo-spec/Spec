@@ -119,7 +119,7 @@ SpFontStyle >> bold: aBoolean [
 	bold := aBoolean asStyleVariable
 ]
 
-{ #category : #'accessing variables' }
+{ #category : #'accessing - variables' }
 SpFontStyle >> boldVariable [
 
 	^ self toVariable: bold
@@ -178,7 +178,7 @@ SpFontStyle >> color: aColorOrSymbol [
 	color := aColorOrSymbol asStyleVariable
 ]
 
-{ #category : #'accessing variables' }
+{ #category : #'accessing - variables' }
 SpFontStyle >> colorVariable [
   "This is meant to set the text color.
 	This property can be expressed as 
@@ -235,7 +235,7 @@ SpFontStyle >> italic: aBoolean [
 	italic := aBoolean asStyleVariable
 ]
 
-{ #category : #'accessing variables' }
+{ #category : #'accessing - variables' }
 SpFontStyle >> italicVariable [
 
 	^ italic
@@ -269,7 +269,7 @@ SpFontStyle >> name: aString [
 	name := aString asStyleVariable
 ]
 
-{ #category : #'accessing variables' }
+{ #category : #'accessing - variables' }
 SpFontStyle >> nameVariable [
 
 	^ self toVariable: name
@@ -305,7 +305,7 @@ SpFontStyle >> size: aNumber [
 	size := aNumber asStyleVariable
 ]
 
-{ #category : #'accessing variables' }
+{ #category : #'accessing - variables' }
 SpFontStyle >> sizeVariable [
 
 	^ size

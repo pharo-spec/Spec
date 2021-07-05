@@ -8,29 +8,29 @@ self exampleString
 Class {
 	#name : #SpDynamicSpecExample,
 	#superclass : #Object,
-	#traits : 'SpTObservable',
-	#classTraits : 'SpTObservable classTrait',
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'#ui',
-		'#object => SpObservableSlot'
+		'#object => ObservableSlot'
 	],
 	#category : #'Spec2-Examples-Wrapper'
 }
 
-{ #category : #example }
+{ #category : #examples }
 SpDynamicSpecExample class >> exampleInt [
 	<sampleInstance>
 	^ self new open: 42
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpDynamicSpecExample class >> exampleNil [
 	<sampleInstance>
 	^ self new
 		open: nil
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpDynamicSpecExample class >> exampleString [
 	<sampleInstance>
 	^ self new

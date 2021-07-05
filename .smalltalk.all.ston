@@ -1,0 +1,33 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'Spec2',
+      #directory : 'src',
+      #onConflict : #useIncoming,
+      #onUpgrade : #useIncoming,
+      #ignoreImage : true
+    }
+  ],
+  #testing : {
+  	#include : { 
+  		#packages : [ '.*' ] 
+  	},
+  	#exclude : {
+  		#packages : [ 
+  			'GT-Tests.*', 
+  			'Glamour-Tests.*',
+  			'UnifiedFFI.*',
+  			'ThreadedFFI.*',
+  			'Monticello.*',
+  			'Metacello.*',
+  			'System-Settings-Tests.*',
+  			'ReleaseTests.*' ],
+  		#classes : [
+  			#OutOfMemoryTest,
+  			#TraitFileOutTest,
+  			#PlatformResolverTest,
+  			#ProcessSpecificTest
+  		] 
+  	}
+  }  
+}

@@ -7,12 +7,20 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
+{ #category : #visiting }
+SpMorphicTextAdapter >> accept: aString notifying: aNotifyier [
+
+	^ super 
+		accept: (aString ifNotNil: [ aString asString ])
+		notifying: aNotifyier
+]
+
 { #category : #initialization }
 SpMorphicTextAdapter >> addFocusRotationKeyBindings [
 	"Text areas needs to be able to process tab. Cancel the binding."
 ]
 
-{ #category : #'protocol-shortcuts' }
+{ #category : #'protocol - shortcuts' }
 SpMorphicTextAdapter >> bindKeyCombination: aShortcut toAction: aBlock [ 
 
 	self widgetDo: [ :w | 
@@ -50,6 +58,7 @@ SpMorphicTextAdapter >> buildWidget [
 	self setText: self presenter text to: newWidget.
 
 	self setWrapWord: self presenter isWrapWord to: newWidget.	
+	self setUndoRedo: self presenter hasUndoRedoHistory to: newWidget. 
 	self presenter whenTextChangedDo: [ :text | 
 		self setText: text to: newWidget ].
 	self presenter whenSelectionChangedDo: [ :selectionInterval | 
@@ -179,9 +188,19 @@ SpMorphicTextAdapter >> setGhostText: text to: aWidget [
 { #category : #private }
 SpMorphicTextAdapter >> setText: text to: aWidget [
 
+	updating ifTrue: [ ^ self ].
+
+	aWidget textArea editingState clearUndoManager: nil.
 	aWidget setText: text.
 	self updateExtentPropagationOf: text on: aWidget
+]
 
+{ #category : #factory }
+SpMorphicTextAdapter >> setUndoRedo: aBoolean to: newWidget [
+
+	newWidget textArea editingState undoManager: (aBoolean 
+		ifTrue: [ HistoryIterator new ]
+		ifFalse: [ SpNullHistoryIterator new ])
 ]
 
 { #category : #private }

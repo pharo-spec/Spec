@@ -12,6 +12,40 @@ SpTablePresenter class >> example [
 ]
 
 { #category : #'*Spec2-Examples' }
+SpTablePresenter class >> exampleFixedWidth [
+	
+	^ self new
+		addColumn: ((SpImageTableColumn title: 'Icon' evaluated: #systemIcon) width: 30);
+		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
+		items: Smalltalk allClasses;
+		openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
+SpTablePresenter class >> exampleFixedWidthResizable [
+	"A fixed width cannot be changed even if the table is resizable"
+	
+	^ self new
+		beResizable;
+		addColumn: ((SpImageTableColumn title: 'Icon' evaluated: #systemIcon) width: 30);
+		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
+		addColumn: (SpStringTableColumn title: 'Methods' evaluated: [ :each | each methods size ]);
+		items: Smalltalk allClasses;
+		openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
+SpTablePresenter class >> exampleResizableColumns [
+	
+	^ self new
+		beResizable;
+		addColumn: (SpImageTableColumn title: 'Icon' evaluated: #systemIcon);
+		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
+		items: Smalltalk allClasses;
+		openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
 SpTablePresenter class >> exampleSorting [
 	"Example shows the two kinds of sorting, using a boolean compare, or a threeway sorting"
 	| classNameCompare methodCountSorter |

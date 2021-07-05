@@ -10,7 +10,7 @@ Class {
 { #category : #accessing }
 SpRequestTextDialog class >> defaultExtent [
 
-	^ 400@400
+	^ 450@300
 ]
 
 { #category : #specs }
@@ -19,7 +19,13 @@ SpRequestTextDialog class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		borderWidth: 5;
 		spacing: 5;
-		add: #label expand: false;
+		add: (SpBoxLayout newLeftToRight
+				vAlignCenter;
+				spacing: 5;
+				add: #image expand: false;
+				add: #label;
+				yourself)
+			expand: false;
 		add: #textInput;
 		yourself
 ]
@@ -30,9 +36,22 @@ SpRequestTextDialog class >> documentFactoryMethodSelector [
 	^ #newRequestText
 ]
 
+{ #category : #examples }
+SpRequestTextDialog class >> example [
+
+	^ super example
+]
+
+{ #category : #examples }
+SpRequestTextDialog class >> exampleModal [
+
+	^ super exampleModal
+]
+
 { #category : #initialization }
 SpRequestTextDialog >> initializePresenters [
 
+	image := self newImage image: (self application iconNamed: #question).
 	label := self newLabel.
 	textInput := self newText
 ]

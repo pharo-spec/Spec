@@ -128,7 +128,7 @@ SpAbstractMorphicAdapter >> applyVisibility [
 			ifFalse: [ self widget hide ] ]
 ]
 
-{ #category : #'protocol-shortcuts' }
+{ #category : #'protocol - shortcuts' }
 SpAbstractMorphicAdapter >> bindKeyCombination: aShortcut toAction: aBlock [
 
 	self widgetDo: [ :w | 
@@ -477,7 +477,7 @@ SpAbstractMorphicAdapter >> presenterStyles [
 	^ self presenter styles
 ]
 
-{ #category : #'protocol-shortcuts' }
+{ #category : #'protocol - shortcuts' }
 SpAbstractMorphicAdapter >> removeKeyCombination: aShortcut [
 
 	self widgetDo: [ :w | 

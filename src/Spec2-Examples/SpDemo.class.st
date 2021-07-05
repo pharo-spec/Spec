@@ -118,7 +118,7 @@ SpDemo >> initializePresenters [
 			yourself);
 		yourself).
 
-	menu applyTo: self.
+	menu addKeybindingsTo: self.
 
 	list
 		items: self availablePages;

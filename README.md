@@ -2,6 +2,7 @@
 
 Spec is a framework in Pharo for describing user interfaces.
 
+[![Spec-Pharo9.0](https://github.com/pharo-spec/Spec/actions/workflows/spec-all.yml/badge.svg)](https://github.com/pharo-spec/Spec/actions/workflows/spec-all.yml)  
 ![https://github.com/pharo-spec/Spec/workflows/Spec/badge.svg](https://github.com/pharo-spec/Spec/workflows/Spec/badge.svg)
 
 
@@ -17,7 +18,7 @@ usage of this code in Pharo 8 is highly discouraged.
 
 ```Smalltalk
     Metacello new
-        githubUser: 'pharo-spec' project: 'Spec' commitish: 'master' path: 'src';
+        githubUser: 'pharo-spec' project: 'Spec' commitish: 'Pharo9.0' path: 'src';
         baseline: 'Spec2';
         onConflict: [ :e | e useIncoming ];
         onUpgrade: [ :e | e useIncoming ];

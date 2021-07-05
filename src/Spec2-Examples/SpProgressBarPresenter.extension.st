@@ -14,6 +14,7 @@ SpProgressBarPresenter class >> example [
 SpProgressBarPresenter class >> exampleFixedAt [
 
 	^ self new 
+		application: (SpApplication new useBackend: #Gtk);
 		fixedAt: 0.3;
 		openWithSpec
 ]
@@ -22,6 +23,16 @@ SpProgressBarPresenter class >> exampleFixedAt [
 SpProgressBarPresenter class >> exampleFixedPercentage [
 
 	^ self new 
+		application: (SpApplication new useBackend: #Gtk);
 		fixedPercentage: 30;
+		openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
+SpProgressBarPresenter class >> exampleIndeterminate [
+
+	^ self new 
+		application: (SpApplication new useBackend: #Gtk);
+		indeterminate;
 		openWithSpec
 ]

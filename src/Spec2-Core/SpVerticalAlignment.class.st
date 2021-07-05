@@ -6,12 +6,12 @@ I can move the scrolling to make an element visible with the #desiredVisibleRow:
 Class {
 	#name : #SpVerticalAlignment,
 	#superclass : #Object,
-	#traits : 'SpTObservable',
-	#classTraits : 'SpTObservable classTrait',
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'#firstVisibleRowIndex',
 		'#lastVisibleRowIndex',
-		'#desiredVisibleRow => SpObservableSlot'
+		'#desiredVisibleRow => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }

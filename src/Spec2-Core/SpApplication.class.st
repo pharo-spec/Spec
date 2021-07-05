@@ -106,7 +106,7 @@ SpApplication >> adapterBindings [
 	^ self backend adapterBindings
 ]
 
-{ #category : #'accessing backend' }
+{ #category : #'accessing - backend' }
 SpApplication >> backend [
 
 	^ backend ifNil: [ 
@@ -117,7 +117,7 @@ SpApplication >> backend [
 { #category : #showing }
 SpApplication >> close [
 	
-	self windows copy do: #close
+	self windows copy do: [ :each | each close ]
 ]
 
 { #category : #accessing }
@@ -126,10 +126,34 @@ SpApplication >> closeAllWindows [
 	self windows do: [ :each | each close ]
 ]
 
-{ #category : #'accessing backend' }
+{ #category : #'accessing - backend' }
 SpApplication >> configuration [
 
 	^ configuration
+]
+
+{ #category : #showing }
+SpApplication >> defaultBlockedDialogWindowPresenterClass [
+
+	^ SpBlockedDialogWindowPresenter
+]
+
+{ #category : #showing }
+SpApplication >> defaultDialogWindowPresenterClass [
+		
+	^ SpDialogWindowPresenter
+]
+
+{ #category : #showing }
+SpApplication >> defaultModalWindowPresenterClass [
+		
+	^ SpModalWindowPresenter
+]
+
+{ #category : #showing }
+SpApplication >> defaultWindowPresenterClass [
+		
+	^ SpWindowPresenter
 ]
 
 { #category : #ui }
@@ -163,13 +187,13 @@ SpApplication >> iconManager: anIconManager [
 	
 ]
 
-{ #category : #'accessing resources' }
+{ #category : #'accessing - resources' }
 SpApplication >> iconNamed: aString [
 
 	^ self iconProvider iconNamed: aString
 ]
 
-{ #category : #'accessing resources' }
+{ #category : #'accessing - resources' }
 SpApplication >> iconProvider [
 
 	^ iconProvider ifNil: [ iconProvider := self newIconProvider ]
@@ -195,7 +219,7 @@ SpApplication >> new: aPresenter [
 	^ self newPresenter: aPresenter
 ]
 
-{ #category : #'private factory' }
+{ #category : #'private - factory' }
 SpApplication >> newIconProvider [
 	
 	^ SpPharoThemeIconProvider new
@@ -207,94 +231,26 @@ SpApplication >> newPresenter: aPresenterClass [
 	^ aPresenterClass newApplication: self
 ]
 
-{ #category : #'ui notifying' }
+{ #category : #'ui - notifying' }
 SpApplication >> notify: aSpecNotification [
 	"how notifications are handled depends on the backend"
 
 	aSpecNotification dispatchTo: self backend
 ]
 
-{ #category : #showing }
-SpApplication >> open: aPresenter [
-
-	^ self 
-		open: aPresenter 
-		withSpecLayout: aPresenter defaultSpec
-		using: aPresenter defaultWindowPresenterClass
-]
-
-{ #category : #showing }
-SpApplication >> open: aPresenter withSpecLayout: aSpecLayout [
-
-	^ self 
-		open: aPresenter 
-		withSpecLayout: aSpecLayout 
-		using: aPresenter defaultWindowPresenterClass
-]
-
-{ #category : #'private showing' }
-SpApplication >> open: aPresenter withSpecLayout: aSpecLayout using: aWindowClass [
-	| window |
-
-	self validateApplicationOfPresenter: aPresenter.
-
-	window := aWindowClass presenter: aPresenter.
-	window application: aPresenter application.
-	self registerWindow: window.
-	window openWithSpecLayout: aSpecLayout.
-	
-	^ window
-]
-
-{ #category : #showing }
-SpApplication >> openDialog: aPresenter [ 
-	
-	^ self 
-		openDialog: aPresenter 
-		withSpecLayout: aPresenter defaultSpec
-
-]
-
-{ #category : #showing }
-SpApplication >> openDialog: aPresenter withSpecLayout: aSpecLayout [
-
-	^ self 
-		open: aPresenter 
-		withSpecLayout: aSpecLayout 
-		using: SpDialogWindowPresenter
-]
-
-{ #category : #showing }
-SpApplication >> openModal: aPresenter [ 
-	
-	^ self 
-		openModal: aPresenter 
-		withSpecLayout: aPresenter defaultSpec
-
-]
-
-{ #category : #showing }
-SpApplication >> openModal: aPresenter withSpecLayout: aSpecLayout [
-
-	^ self 
-		open: aPresenter 
-		withSpecLayout: aSpecLayout 
-		using: SpModalWindowPresenter
-]
-
-{ #category : #'accessing properties' }
+{ #category : #'accessing - properties' }
 SpApplication >> properties [
 
 	^ properties ifNil: [ properties := SmallDictionary new ]
 ]
 
-{ #category : #'accessing properties' }
+{ #category : #'accessing - properties' }
 SpApplication >> propertyAt: aKey [
 
 	^ self properties at: aKey
 ]
 
-{ #category : #'accessing properties' }
+{ #category : #'accessing - properties' }
 SpApplication >> propertyAt: aKey ifAbsent: aBlock [
 
 	^ self properties 
@@ -302,7 +258,7 @@ SpApplication >> propertyAt: aKey ifAbsent: aBlock [
 		ifAbsent: aBlock
 ]
 
-{ #category : #'accessing properties' }
+{ #category : #'accessing - properties' }
 SpApplication >> propertyAt: aKey ifAbsentPut: aBlock [
 
 	^ self properties 
@@ -310,7 +266,7 @@ SpApplication >> propertyAt: aKey ifAbsentPut: aBlock [
 		ifAbsentPut: aBlock
 ]
 
-{ #category : #'accessing properties' }
+{ #category : #'accessing - properties' }
 SpApplication >> propertyAt: aKey ifPresent: aBlock [
 
 	^ self properties
@@ -318,7 +274,7 @@ SpApplication >> propertyAt: aKey ifPresent: aBlock [
 		ifPresent: aBlock
 ]
 
-{ #category : #'accessing properties' }
+{ #category : #'accessing - properties' }
 SpApplication >> propertyAt: aKey ifPresent: aBlock ifAbsent: absentBlock [
 
 	^ self properties
@@ -327,7 +283,7 @@ SpApplication >> propertyAt: aKey ifPresent: aBlock ifAbsent: absentBlock [
 		ifAbsent: absentBlock
 ]
 
-{ #category : #'accessing properties' }
+{ #category : #'accessing - properties' }
 SpApplication >> propertyAt: aKey ifPresent: aBlock ifAbsentPut: absentBlock [
 
 	^ self properties
@@ -336,7 +292,7 @@ SpApplication >> propertyAt: aKey ifPresent: aBlock ifAbsentPut: absentBlock [
 		ifAbsentPut: absentBlock
 ]
 
-{ #category : #'accessing properties' }
+{ #category : #'accessing - properties' }
 SpApplication >> propertyAt: aKey put: aValue [
 
 	^ self properties 
@@ -364,13 +320,13 @@ SpApplication >> run [
 	self start
 ]
 
-{ #category : #'ui dialogs' }
+{ #category : #'ui - dialogs' }
 SpApplication >> selectDirectoryTitle: aString [
 
 	^ self backend selectDirectoryTitle: aString
 ]
 
-{ #category : #'ui dialogs' }
+{ #category : #'ui - dialogs' }
 SpApplication >> selectFileTitle: aString [
 
 	^ self backend selectFileTitle: aString
@@ -403,25 +359,18 @@ SpApplication >> unregisterWindow: aWindow [
 	self windows remove: aWindow ifAbsent: [  ]
 ]
 
-{ #category : #'accessing backend' }
+{ #category : #'accessing - backend' }
 SpApplication >> useBackend: aName [
 
 	backend := SpApplicationBackend findBackendNamed: aName
 ]
 
-{ #category : #'accessing backend' }
+{ #category : #'accessing - backend' }
 SpApplication >> useBackend: aName with: aConfiguration [
 
 	self useBackend: aName.
 	configuration := aConfiguration.
 	aConfiguration configure: self
-]
-
-{ #category : #'private showing' }
-SpApplication >> validateApplicationOfPresenter: aPresenter [
-
-	aPresenter application == self ifFalse: [ 
-		SpInvalidApplicationError signal: 'The requested presenter has a different application' ]
 ]
 
 { #category : #windows }

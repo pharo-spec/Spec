@@ -4,18 +4,18 @@ Class {
 	#category : #'Spec2-Tests-Core'
 }
 
-{ #category : #running }
+{ #category : #accessing }
 SpWindowPresenterTest >> classToTest [
 
 	^ SpWindowPresenter
 ]
 
-{ #category : #running }
+{ #category : #initialization }
 SpWindowPresenterTest >> initializeTestedInstance [
 	presenter presenter: SpLabelPresenter new
 ]
 
-{ #category : #running }
+{ #category : #utilities }
 SpWindowPresenterTest >> openInstance [
 	window ifNil: [ window := presenter openWithSpecLayout: SpLabelPresenter defaultSpec ]
 ]
@@ -45,6 +45,20 @@ SpWindowPresenterTest >> testIsTopWindow [
 	self assert: presenter isTopWindow.
 	presenter close.
 	self deny: presenter isTopWindow
+]
+
+{ #category : #tests }
+SpWindowPresenterTest >> testResize [
+	
+	self openInstance.
+
+	self 
+		deny: presenter adapter windowSize 
+		equals: 600@600.
+	presenter resize: 600@600.
+	self 
+		assert: presenter adapter windowSize
+		equals: 600@600
 ]
 
 { #category : #tests }

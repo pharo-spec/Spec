@@ -5,15 +5,15 @@ Class {
 	#name : #SpAbstractWidgetPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'#borderWidth => SpObservableSlot',
-		'#borderColor => SpObservableSlot',
-		'#dragEnabled => SpObservableSlot',
-		'#dropEnabled => SpObservableSlot',
-		'#color => SpObservableSlot',
-		'#help => SpObservableSlot',
-		'#enabled => SpObservableSlot',
-		'#wantsDrop => SpObservableSlot',
-		'#acceptDrop => SpObservableSlot',
+		'#borderWidth => ObservableSlot',
+		'#borderColor => ObservableSlot',
+		'#dragEnabled => ObservableSlot',
+		'#dropEnabled => ObservableSlot',
+		'#color => ObservableSlot',
+		'#help => ObservableSlot',
+		'#enabled => ObservableSlot',
+		'#wantsDrop => ObservableSlot',
+		'#acceptDrop => ObservableSlot',
 		'#deferredActions'
 	],
 	#category : #'Spec2-Core-Widgets'
@@ -204,7 +204,7 @@ SpAbstractWidgetPresenter >> acceptDrop: aBlock [
 	acceptDrop := aBlock
 ]
 
-{ #category : #'private-deferring' }
+{ #category : #'private - deferring' }
 SpAbstractWidgetPresenter >> addDeferredAction: aBlock [
 	"Deferred actions are one-shot actions, performed during adapter initialization."
 
@@ -212,7 +212,7 @@ SpAbstractWidgetPresenter >> addDeferredAction: aBlock [
 	deferredActions := deferredActions copyWith: aBlock
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpAbstractWidgetPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	| builtAdapter |
 
@@ -371,7 +371,7 @@ SpAbstractWidgetPresenter >> localeChanged [
 	
 ]
 
-{ #category : #'private-deferring' }
+{ #category : #'private - deferring' }
 SpAbstractWidgetPresenter >> processDeferredActions [
 
 	deferredActions ifNil: [ ^ self ].
@@ -386,7 +386,7 @@ SpAbstractWidgetPresenter >> replaceLayoutWith: aLayout [
 	"do nothing, widgets do not have updatable layouts"
 ]
 
-{ #category : #'private-traversing' }
+{ #category : #'private - traversing' }
 SpAbstractWidgetPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
 	self canTakeKeyboardFocus ifFalse: [ ^ self ].
@@ -395,7 +395,7 @@ SpAbstractWidgetPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes 
 	aBlock value: self
 ]
 
-{ #category : #'private-traversing' }
+{ #category : #'private - traversing' }
 SpAbstractWidgetPresenter >> traversePresentersDo: aBlock excluding: excludes [
 	"Terminate"
 
@@ -427,7 +427,7 @@ SpAbstractWidgetPresenter >> whenBorderWidthChangedDo: aBlock [
 	self property: #borderWidth whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpAbstractWidgetPresenter >> whenEnabledChangedDo: aBlock [
 	"Inform when enabled status has changed. 
 	 `aBlock` has three optional arguments: 
@@ -438,7 +438,7 @@ SpAbstractWidgetPresenter >> whenEnabledChangedDo: aBlock [
 	self property: #enabled whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpAbstractWidgetPresenter >> whenHelpChangedDo: aBlock [
 	"Inform when help property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -449,7 +449,7 @@ SpAbstractWidgetPresenter >> whenHelpChangedDo: aBlock [
 	self property: #help whenChangedDo: aBlock
 ]
 
-{ #category : #'private-deferring' }
+{ #category : #'private - deferring' }
 SpAbstractWidgetPresenter >> withAdapterPerformOrDefer: aBlock [ 
 
 	self adapter 

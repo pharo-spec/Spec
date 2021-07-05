@@ -16,7 +16,7 @@ SpCodeScriptingInteractionModelTest >> classToTest [
 	^ SpCodeScriptingInteractionModel
 ]
 
-{ #category : #running }
+{ #category : #initialization }
 SpCodeScriptingInteractionModelTest >> initializeInstance: anInteractionModel [
 
 	anInteractionModel addBinding: (WorkspaceVariable  key: #testVar value: 42)

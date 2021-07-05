@@ -6,10 +6,10 @@ Class {
 	#name : #SpTextInputFieldPresenter,
 	#superclass : #SpAbstractTextPresenter,
 	#instVars : [
-		'#entryCompletion => SpObservableSlot',
-		'#isPassword => SpObservableSlot',
-		'#editable => SpObservableSlot',
-		'#maxLength => SpObservableSlot'
+		'#entryCompletion => ObservableSlot',
+		'#isPassword => ObservableSlot',
+		'#editable => ObservableSlot',
+		'#maxLength => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -152,7 +152,7 @@ SpTextInputFieldPresenter >> updateText [
 	self text: self text.
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpTextInputFieldPresenter >> whenEditableChangedDo: aBlock [
 	"Inform when editable property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -163,7 +163,7 @@ SpTextInputFieldPresenter >> whenEditableChangedDo: aBlock [
 	self property: #editable whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpTextInputFieldPresenter >> whenEntryCompletionChangedDo: aBlock [
 	"Inform when entryCompletion property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -174,7 +174,7 @@ SpTextInputFieldPresenter >> whenEntryCompletionChangedDo: aBlock [
 	self property: #entryCompletion whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpTextInputFieldPresenter >> whenMaxLengthChangedDo: aBlockClosure [ 
 	"Inform when maxLength property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -185,7 +185,7 @@ SpTextInputFieldPresenter >> whenMaxLengthChangedDo: aBlockClosure [
 	self property: #maxLength whenChangedDo: aBlockClosure
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpTextInputFieldPresenter >> whenPasswordChangedDo: aBlockClosure [ 
 	"Inform when password property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -196,7 +196,7 @@ SpTextInputFieldPresenter >> whenPasswordChangedDo: aBlockClosure [
 	self property: #isPassword whenChangedDo: aBlockClosure
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpTextInputFieldPresenter >> whenSubmitDo: aBlock [
 	"This method will add a 'submit' event to the widget. It will react when user 
 	 presses <meta+s> key (this is for historical reasons), and with enter (cr).

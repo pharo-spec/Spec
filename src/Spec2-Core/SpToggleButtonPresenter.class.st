@@ -7,8 +7,8 @@ Class {
 	#name : #SpToggleButtonPresenter,
 	#superclass : #SpAbstractFormButtonPresenter,
 	#instVars : [
-		'#action => SpObservableSlot',
-		'#icon => SpObservableSlot'
+		'#action => ObservableSlot',
+		'#icon => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -68,7 +68,7 @@ SpToggleButtonPresenter >> initialize [
 	action := [ ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpToggleButtonPresenter >> whenIconChangedDo: aBlock [
 	"Inform when icon property has changed. 
 	 `aBlock` has three optional arguments: 

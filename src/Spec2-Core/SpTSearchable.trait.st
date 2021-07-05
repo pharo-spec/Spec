@@ -5,7 +5,7 @@ I implement basic common API but real implementation (as always) needs to be don
 Trait {
 	#name : #SpTSearchable,
 	#instVars : [
-		'#searchEnabled => SpObservableSlot',
+		'#searchEnabled => ObservableSlot',
 		'#searchBlock'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
@@ -87,7 +87,7 @@ SpTSearchable >> searchValueOf: item [
 	^ self displayValueFor: item
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpTSearchable >> whenSearchEnabledChangedDo: aBlock [
 	"Inform when search enabled/disabled has changed.
  	 `aBlock` has three optional arguments: 

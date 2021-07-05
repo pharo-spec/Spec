@@ -7,7 +7,8 @@ Class {
 	#traits : 'TViewModel',
 	#classTraits : 'TViewModel classTrait',
 	#instVars : [
-		'selection'
+		'selection',
+		'updating'
 	],
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
@@ -21,9 +22,13 @@ SpMorphicBaseTextAdapter class >> isAbstract [
 { #category : #'widget API' }
 SpMorphicBaseTextAdapter >> accept: aString notifying: aNotifyier [
 
-	self presenter text: aString.
-	"Raise an announcement"
-	self presenter changed: #clearUserEdits.
+	updating := true.
+	[
+		self presenter text: aString.
+		"Raise an announcement"
+		self presenter changed: #clearUserEdits]
+	ensure: [ 
+		updating := false ].
 
 	^ true
 ]
@@ -134,6 +139,13 @@ SpMorphicBaseTextAdapter >> hasEditingConflicts: aBoolean [
 SpMorphicBaseTextAdapter >> hasUnacceptedEdits: aBoolean [
 
 	self model hasUnacceptedEdits: aBoolean
+]
+
+{ #category : #initialization }
+SpMorphicBaseTextAdapter >> initialize [
+
+	super initialize.
+	updating := false
 ]
 
 { #category : #'spec protocol' }
@@ -275,6 +287,12 @@ SpMorphicBaseTextAdapter >> showContextMenu [
 			menu
 				invokeAt: w position + w textArea cursor center
 				in: self currentWorld ] ]
+]
+
+{ #category : #'accessing - structure variables' }
+SpMorphicBaseTextAdapter >> type: aString [
+
+	self widget setText: aString
 ]
 
 { #category : #'widget API' }

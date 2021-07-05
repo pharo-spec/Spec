@@ -45,6 +45,24 @@ SpTreeTablePresenter class >> exampleExpandRoots [
 ]
 
 { #category : #'*Spec2-Examples' }
+SpTreeTablePresenter class >> exampleResizableColumns [
+
+	^ self  new
+		beResizable;
+		addColumn: (SpCompositeTableColumn new
+			title: 'Classes';
+			addColumn: ((SpImageTableColumn evaluated: [:c| c systemIcon]) );
+			addColumn: (SpStringTableColumn evaluated: #name);
+			yourself);
+		addColumn: (SpStringTableColumn new
+			title: 'Methods';
+			evaluated: [:class | class methodDictionary size asString]);
+		roots: { Object };
+		children: [ :aClass | aClass subclasses ];
+		openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
 SpTreeTablePresenter class >> exampleWithTwoColumns [ 
 
 	^ self  new
@@ -55,7 +73,7 @@ SpTreeTablePresenter class >> exampleWithTwoColumns [
 			yourself);
 		addColumn: (SpStringTableColumn new
 			title: 'Methods';
-			evaluated: [:class |  class methodDictionary size asString]);
+			evaluated: [:class | class methodDictionary size asString]);
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
 		openWithSpec

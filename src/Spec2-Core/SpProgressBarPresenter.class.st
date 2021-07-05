@@ -7,7 +7,7 @@ Class {
 	#name : #SpProgressBarPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'state'
+		'#state => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -48,6 +48,13 @@ SpProgressBarPresenter >> indeterminate [
 	self state: SpIndeterminatedProgressBarState new
 ]
 
+{ #category : #initialization }
+SpProgressBarPresenter >> initialize [
+
+	super initialize.
+	self fixedAt: 0
+]
+
 { #category : #api }
 SpProgressBarPresenter >> progress: aBlock [
 	"Using this option, the progress bar will increase with time. 
@@ -72,12 +79,19 @@ SpProgressBarPresenter >> state [
 ]
 
 { #category : #private }
-SpProgressBarPresenter >> state: aNumber [
+SpProgressBarPresenter >> state: aState [
 
-	state := aNumber
+	state := aState.
+	self withAdapterPerformOrDefer: [ :anAdapter | anAdapter updateState ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #api }
+SpProgressBarPresenter >> value [
+
+	^ self state value
+]
+
+{ #category : #'api - events' }
 SpProgressBarPresenter >> whenValueChangedDo: aBlock [
 	"Inform when progress value has changed. 
 	 `aBlock` has three optional arguments: 
@@ -85,5 +99,5 @@ SpProgressBarPresenter >> whenValueChangedDo: aBlock [
 	 - old value
 	 - the announcement triggering this action"
 
-	self state whenValueChangedDo: aBlock
+	self property: #state whenChangedDo: aBlock
 ]

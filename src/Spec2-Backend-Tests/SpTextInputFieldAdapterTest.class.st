@@ -1,10 +1,10 @@
 Class {
 	#name : #SpTextInputFieldAdapterTest,
 	#superclass : #SpAbstractTextAdapterTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
-{ #category : #running }
+{ #category : #accessing }
 SpTextInputFieldAdapterTest >> classToTest [
 	^ SpTextInputFieldPresenter
 ]

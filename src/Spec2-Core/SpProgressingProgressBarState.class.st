@@ -23,12 +23,10 @@ Internal Representation and Key Implementation Points.
 Class {
 	#name : #SpProgressingProgressBarState,
 	#superclass : #SpProgressBarState,
-	#traits : 'SpTObservable',
-	#classTraits : 'SpTObservable classTrait',
 	#instVars : [
-		'#refreshDelay',
-		'#progression',
-		'#currentValue => SpObservableSlot'
+		'refreshDelay',
+		'progression',
+		'currentValue'
 	],
 	#category : #'Spec2-Core-Utils'
 }
@@ -76,9 +74,4 @@ SpProgressingProgressBarState >> refreshDelay [
 { #category : #accessing }
 SpProgressingProgressBarState >> refreshDelay: aDelay [
 	refreshDelay := aDelay
-]
-
-{ #category : #'api-events' }
-SpProgressingProgressBarState >> whenValueChangedDo: aBlock [
-	self property: #currentValue whenChangedDo: aBlock
 ]

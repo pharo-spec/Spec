@@ -7,11 +7,11 @@ Class {
 	#name : #SpNumberInputFieldPresenter,
 	#superclass : #SpTextInputFieldPresenter,
 	#instVars : [
-		'#numberType => SpObservableSlot',
-		'#minimum => SpObservableSlot',
-		'#maximum => SpObservableSlot',
-		'#climbRate => SpObservableSlot',
-		'#digits => SpObservableSlot'
+		'#numberType => ObservableSlot',
+		'#minimum => ObservableSlot',
+		'#maximum => ObservableSlot',
+		'#climbRate => ObservableSlot',
+		'#digits => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -172,7 +172,7 @@ SpNumberInputFieldPresenter >> rangeMinimum: minNumber maximum: maxNumber [
 	self maximum: maxNumber
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpNumberInputFieldPresenter >> whenClimbRateChangedDo: aBlock [
 	"Inform when climbRate property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -183,7 +183,7 @@ SpNumberInputFieldPresenter >> whenClimbRateChangedDo: aBlock [
 	self property: #climbRate whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpNumberInputFieldPresenter >> whenDigitsChangedDo: aBlock [
 	"Inform when digits property state has changed. 
 	 `aBlock` has three optional arguments: 
@@ -194,7 +194,7 @@ SpNumberInputFieldPresenter >> whenDigitsChangedDo: aBlock [
 	self property: #digits whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpNumberInputFieldPresenter >> whenMaximumChangedDo: aBlock [
 	"Inform when maximum property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -205,7 +205,7 @@ SpNumberInputFieldPresenter >> whenMaximumChangedDo: aBlock [
 	self property: #maximum whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpNumberInputFieldPresenter >> whenMinimumChangedDo: aBlock [
 	"Inform when minimum property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -216,7 +216,7 @@ SpNumberInputFieldPresenter >> whenMinimumChangedDo: aBlock [
 	self property: #minimum whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpNumberInputFieldPresenter >> whenNumberChangedDo: aBlock [
 	"Inform when number property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -227,7 +227,7 @@ SpNumberInputFieldPresenter >> whenNumberChangedDo: aBlock [
 	self whenTextChangedDo: [ :txt | aBlock value: self number ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpNumberInputFieldPresenter >> whenNumberTypeChangedDo: aBlock [
 	"Inform when numberType property has changed. 
 	 `aBlock` has three optional arguments: 

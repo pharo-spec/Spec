@@ -19,10 +19,8 @@ Internal Representation and Key Implementation Points.
 Class {
 	#name : #SpFixedProgressBarState,
 	#superclass : #SpProgressBarState,
-	#traits : 'SpTObservable',
-	#classTraits : 'SpTObservable classTrait',
 	#instVars : [
-		'#value => SpObservableSlot'
+		'value'
 	],
 	#category : #'Spec2-Core-Utils'
 }
@@ -52,7 +50,7 @@ SpFixedProgressBarState >> value: aNumber [
 	value := aNumber
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpFixedProgressBarState >> whenValueChangedDo: aBlock [
 	self property: #value whenChangedDo: aBlock
 ]

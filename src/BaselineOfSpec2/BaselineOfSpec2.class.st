@@ -4,20 +4,11 @@ Class {
 	#category : #BaselineOfSpec2
 }
 
-{ #category : #accessing }
-BaselineOfSpec2 class >> releaseCommit [
-	"The commit corresponding to current release (to be used on bootstrap process)"
-
-	"v0.8.12"
-	^ '37f3e01b42c22615d20b791655c4b411ed2bad10'
-]
-
 { #category : #baseline }
 BaselineOfSpec2 >> baseline: spec [
 	<baseline>
 	
-	spec for: #common do: [ 		
-		spec postLoadDoIt: #postLoad.
+	spec for: #common do: [
 		
 		self specCore: spec.
 		self specCoreCode: spec.
@@ -29,11 +20,13 @@ BaselineOfSpec2 >> baseline: spec [
 			package: 'Spec2-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 			"Tests"
 			package: 'Spec2-Morphic-Examples' with: [ spec requires: #('Spec2-Morphic') ];
-			package: 'Spec2-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
+			package: 'Spec2-Backend-Tests' with: [ spec requires: #('SpecCore' 'Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Morphic-Backend-Tests' with: [ spec requires: #('Spec2-Adapters-Morphic' 'Spec2-Backend-Tests') ];
 			package: 'Spec2-Adapters-Morphic-Tests' with: [ spec requires: #('Spec2-Backend-Tests') ];
 			package: 'Spec2-Morphic-Tests' with: [ spec requires: #('Spec2-Morphic' 'Spec2-Backend-Tests') ];
-			package: 'Spec2-Code-Backend-Tests' with: [ spec requires: #('Spec2-Backend-Tests') ] ].
+			package: 'Spec2-Code-Backend-Tests' with: [ spec requires: #('Spec2-Backend-Tests') ];
+			"others"
+			package: 'Spec2-Help' ].
 	
 	spec group: 'Core' with: #('SpecCore' 'Spec2-Morphic' 'Spec2-Adapters-Morphic').
 	spec group: 'Code' with: #('Core' 'SpecCoreCode' 'Spec2-Code-Morphic').
@@ -54,15 +47,31 @@ BaselineOfSpec2 >> baseline: spec [
 	spec group: 'default' with: #('Base' 'Tests' 'Code' 'CodeTests').
 ]
 
-{ #category : #script }
-BaselineOfSpec2 >> postLoad [
-
-	self flag: #REMOVE. "This is a temporal hack to ensure the style is taken the new variables way."
-	(self class environment at: #SpStyle) reset.
+{ #category : #'external projects' }
+BaselineOfSpec2 >> defaultRepositoryURL [
 		
+	^ self class environment 
+		at: #BaselineOfPharo
+		ifPresent: [ :aClass | aClass specRepository ]
+		ifAbsent: [ 'github://pharo-spec/Spec' ]
 ]
 
-{ #category : #acccessing }
+{ #category : #'external projects' }
+BaselineOfSpec2 >> packageRepository [
+
+	" Tries to determine a repository from which the baseline is being loaded. Useful for 
+	refering other baselines in the same repository. "
+	
+	^ (self class package mcWorkingCopy repositoryGroup repositories 
+		reject: [:each | each = MCCacheRepository uniqueInstance]) 
+		ifNotEmpty: [ :repositories | 
+				repositories 
+					detect: [ :each | each description beginsWith: 'tonel://' ]
+					ifNone: [ repositories anyOne ] ]
+		ifEmpty: [ nil ]
+]
+
+{ #category : #accessing }
 BaselineOfSpec2 >> project [
 	"Atomic loading is needed for Spec because we are moving classes of package and it breaks their subclasses. 
 	
@@ -93,7 +102,7 @@ BaselineOfSpec2 >> specCore: spec [
 
 	spec baseline: 'SpecCore' with: [ 
 		spec 
-			repository: (self packageRepositoryURL ifEmpty: [ 'github://pharo-spec/Spec' ]);
+			repository: (self packageRepositoryURL ifEmpty: [ self defaultRepositoryURL ]);
 			loads: #('Base' 'Tests') ]
 ]
 
@@ -102,7 +111,7 @@ BaselineOfSpec2 >> specCoreCode: spec [
 
 	spec baseline: 'SpecCoreCode' with: [ 
 		spec 
-			repository: (self packageRepositoryURL ifEmpty: [ 'github://pharo-spec/Spec' ]);
+			repository: (self packageRepositoryURL ifEmpty: [ self defaultRepositoryURL ]);
 			className: 'BaselineOfSpecCore';
 			loads: #('Code' 'CodeTests') ]
 ]

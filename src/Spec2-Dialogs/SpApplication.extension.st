@@ -13,6 +13,12 @@ SpApplication >> newInform [
 ]
 
 { #category : #'*Spec2-Dialogs' }
+SpApplication >> newProgress [
+
+	^ SpProgressDialog newApplication: self
+]
+
+{ #category : #'*Spec2-Dialogs' }
 SpApplication >> newRequest [
 
 	^ SpRequestDialog newApplication: self

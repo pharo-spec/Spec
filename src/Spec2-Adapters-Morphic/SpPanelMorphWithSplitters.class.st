@@ -10,14 +10,14 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-Support'
 }
 
-{ #category : #'submorphs-add/remove' }
+{ #category : #'submorphs - add/remove' }
 SpPanelMorphWithSplitters >> addMorph: aMorph [
 
 	paneMorphs add: aMorph.
 	^ super addMorph: aMorph
 ]
 
-{ #category : #'submorphs-add/remove' }
+{ #category : #'submorphs - add/remove' }
 SpPanelMorphWithSplitters >> addMorph: aMorph fullFrame: aLayout [
 
 	paneMorphs add: aMorph.
@@ -172,7 +172,7 @@ SpPanelMorphWithSplitters >> initialize [
 	paneMorphs := OrderedCollection new.
 ]
 
-{ #category : #'layout-properties' }
+{ #category : #'layout - properties' }
 SpPanelMorphWithSplitters >> layoutFrame: aFrame [
 
 	self activate.

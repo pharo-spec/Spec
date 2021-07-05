@@ -28,7 +28,7 @@ BaselineOfSpecCore >> baseline: spec [
 			"Tests"			
 			package: 'Spec2-Adapters-Stub' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commander2-Tests' with: [ spec requires: #('Spec2-Commander2') ];
-			package: 'Spec2-Tests' with: [ spec requires: #('Spec2-Examples') ];
+			package: 'Spec2-Tests' with: [ spec requires: #('Spec2-Core' 'Spec2-Examples') ];
 			package: 'Spec2-Code-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Code') ];
 			"Examples"
 			package: 'Spec2-Examples';
@@ -58,7 +58,7 @@ BaselineOfSpecCore >> baseline: spec [
 	spec group: 'Base' with: #('Core' 'Support').
 	spec group: 'BaseTests' with: #('Spec2-Tests' 'SupportTests').
 	
-	spec group: 'default' with: #('Base' 'BaseTests').
+	spec group: 'default' with: #('Base' 'BaseTests' 'Code' 'CodeTests').
 ]
 
 { #category : #'external projects' }
@@ -68,7 +68,7 @@ BaselineOfSpecCore >> pillar: spec [
 		with: [ spec repository: 'github://pillar-markup/pillar:dev-8/src' ]
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 BaselineOfSpecCore >> project [
 	"Atomic loading is needed for Spec because we are moving classes of package and it breaks their subclasses. 
 	

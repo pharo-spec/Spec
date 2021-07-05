@@ -14,12 +14,12 @@ SpAbstractTextPresenterTest class >> shouldInheritSelectors [
 	^ true
 ]
 
-{ #category : #running }
+{ #category : #accessing }
 SpAbstractTextPresenterTest >> classToTest [
 	^ self subclassResponsibility
 ]
 
-{ #category : #running }
+{ #category : #initialization }
 SpAbstractTextPresenterTest >> initializationText [
 	presenter text: 'Text for tests.'
 ]

@@ -10,9 +10,9 @@ Class {
 	#name : #SpMenuItemPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#name => SpObservableSlot',
-		'#icon => SpObservableSlot',
-		'#description => SpObservableSlot',
+		'#name => ObservableSlot',
+		'#icon => ObservableSlot',
+		'#description => ObservableSlot',
 		'#action',
 		'#shortcut',
 		'#subMenu',
@@ -228,7 +228,7 @@ SpMenuItemPresenter >> subMenu: aMenuPresenter [
 	subMenu := aMenuPresenter
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpMenuItemPresenter >> whenDescriptionChangedDo: aBlock [ 
 	"Inform when description has changed. 
 	 `aBlock` has three optional arguments: 
@@ -239,7 +239,7 @@ SpMenuItemPresenter >> whenDescriptionChangedDo: aBlock [
 	self property: #description whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpMenuItemPresenter >> whenIconChangedDo: aBlock [ 
 	"Inform when icon has changed. 
 	 `aBlock` has three optional arguments: 
@@ -250,7 +250,7 @@ SpMenuItemPresenter >> whenIconChangedDo: aBlock [
 	self property: #icon whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpMenuItemPresenter >> whenNameChangedDo: aBlock [ 
 	"Inform when name  has changed. 
 	 `aBlock` has three optional arguments: 

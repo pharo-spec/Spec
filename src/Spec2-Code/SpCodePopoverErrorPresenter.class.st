@@ -32,7 +32,7 @@ SpCodePopoverErrorPresenter >> code: aPresenter [
 	code := aPresenter
 ]
 
-{ #category : #'api-focus' }
+{ #category : #'api - focus' }
 SpCodePopoverErrorPresenter >> defaultKeyboardFocus [
 
 	^ text
@@ -89,7 +89,7 @@ SpCodePopoverErrorPresenter >> message: aString [
 	message := aString
 ]
 
-{ #category : #'accessing model' }
+{ #category : #'accessing - model' }
 SpCodePopoverErrorPresenter >> setModelBeforeInitialization: aString [
 
 	message := aString

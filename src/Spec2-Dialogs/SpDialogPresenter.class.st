@@ -8,7 +8,8 @@ Class {
 	#instVars : [
 		'#parentWindow => WeakSlot',
 		'#acceptAction',
-		'#cancelAction'
+		'#cancelAction',
+		'#image'
 	],
 	#category : #'Spec2-Dialogs'
 }
@@ -132,6 +133,13 @@ SpDialogPresenter class >> openDialog [
 	^ self new openDialogWithSpec
 ]
 
+{ #category : #'instance creation' }
+SpDialogPresenter class >> openModal [
+	<script>
+
+	^ self new openModalWithSpec
+]
+
 { #category : #private }
 SpDialogPresenter >> accept [
 
@@ -150,6 +158,18 @@ SpDialogPresenter >> cancel [
 		close
 ]
 
+{ #category : #private }
+SpDialogPresenter >> defaultIcon [
+
+	^ self application iconNamed: #question
+]
+
+{ #category : #accessing }
+SpDialogPresenter >> icon: aForm [
+
+	image ifNotNil: [ image image: aForm ]
+]
+
 { #category : #initialization }
 SpDialogPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 
@@ -162,7 +182,7 @@ SpDialogPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 		ifNil: [ aDialogWindowPresenter centered ].
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpDialogPresenter >> onAccept: aBlock [
 	"When the dialog is accepted, it executes this action before close.
 	 `aBlock` receives one argument (this dialog)"
@@ -170,7 +190,7 @@ SpDialogPresenter >> onAccept: aBlock [
 	acceptAction := aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpDialogPresenter >> onCancel: aBlock [
 	"When the dialog is cancelled, it executes this action before close.
 	 `aBlock` receives one argument (this dialog)"
@@ -178,14 +198,14 @@ SpDialogPresenter >> onCancel: aBlock [
 	cancelAction := aBlock
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api - showing' }
 SpDialogPresenter >> openDialogWithSpec [
 	"Open dialog in a non-modal way."
 
 	^ super openDialogWithSpec
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api - showing' }
 SpDialogPresenter >> openDialogWithSpecParent: aWindow [
 	"Open dialog in a non-modal way, centering on parent window. "
 	
@@ -193,14 +213,14 @@ SpDialogPresenter >> openDialogWithSpecParent: aWindow [
 	^ self openDialogWithSpec
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api - showing' }
 SpDialogPresenter >> openModalWithSpec [
 	"Open dialog in a modal way. "
 
 	^ super openModalWithSpec
 ]
 
-{ #category : #'api-showing' }
+{ #category : #'api - showing' }
 SpDialogPresenter >> openModalWithSpecParent: aWindow [
 	"Open dialog in a modal way, centering on parent window. "
 
@@ -212,4 +232,10 @@ SpDialogPresenter >> openModalWithSpecParent: aWindow [
 SpDialogPresenter >> parentWindow [
 
 	^ parentWindow
+]
+
+{ #category : #accessing }
+SpDialogPresenter >> parentWindow: aWindowPresenter [
+
+	parentWindow := aWindowPresenter
 ]

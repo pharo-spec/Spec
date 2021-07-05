@@ -1,7 +1,7 @@
 Class {
 	#name : #SpRootsPort,
 	#superclass : #SpInputPort,
-	#category : #'Spec2-Transmission'
+	#category : #'Spec2-Transmission-Base'
 }
 
 { #category : #'handling transmission' }

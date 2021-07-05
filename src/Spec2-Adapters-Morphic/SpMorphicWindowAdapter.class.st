@@ -218,6 +218,12 @@ SpMorphicWindowAdapter >> rebuildWithSpecLayout: aSpec [
 	self widget model: self
 ]
 
+{ #category : #'widget API' }
+SpMorphicWindowAdapter >> resize: aPoint [
+
+	widget extent: aPoint
+]
+
 { #category : #factory }
 SpMorphicWindowAdapter >> subscribeToAnnouncements: aWindow [
 

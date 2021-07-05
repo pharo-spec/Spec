@@ -52,7 +52,7 @@ SpCodePopoverPrintPresenter >> code: aCodePresenter [
 	code := aCodePresenter
 ]
 
-{ #category : #'api-focus' }
+{ #category : #'api - focus' }
 SpCodePopoverPrintPresenter >> defaultKeyboardFocus [
 
 	^ text
@@ -160,7 +160,7 @@ SpCodePopoverPrintPresenter >> objectAsString [
 				separatedBy: [ stream cr ] ]
 ]
 
-{ #category : #'accessing model' }
+{ #category : #'accessing - model' }
 SpCodePopoverPrintPresenter >> setModelBeforeInitialization: anObject [
 
 	object := anObject

@@ -5,10 +5,10 @@ Then, all stimuli is run on an open presenter that should been correctly configu
 Class {
 	#name : #SpBeforeTestInitializationStrategy,
 	#superclass : #SpInitializationStrategy,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpBeforeTestInitializationStrategy >> beforeTest: aSpecTest [
 
 	aSpecTest openInstance

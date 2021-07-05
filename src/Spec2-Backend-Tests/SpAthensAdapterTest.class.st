@@ -1,11 +1,11 @@
 Class {
-	#name : #SpAthensPresenterTest,
+	#name : #SpAthensAdapterTest,
 	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
 { #category : #accessing }
-SpAthensPresenterTest >> circle: aSurface [
+SpAthensAdapterTest >> circle: aSurface [
 	^ aSurface
 		createPath: [ :builder | 
 			builder
@@ -18,18 +18,18 @@ SpAthensPresenterTest >> circle: aSurface [
 ]
 
 { #category : #accessing }
-SpAthensPresenterTest >> classToTest [
+SpAthensAdapterTest >> classToTest [
 	^ SpAthensPresenter
 ]
 
-{ #category : #accessing }
-SpAthensPresenterTest >> initializeTestedInstance [
+{ #category : #initialization }
+SpAthensAdapterTest >> initializeTestedInstance [
 	presenter drawBlock: [ "nothing to do" ].
 	presenter surfaceExtent: 800@600
 ]
 
-{ #category : #accessing }
-SpAthensPresenterTest >> testContextMenu [
+{ #category : #tests }
+SpAthensAdapterTest >> testContextMenu [
 	| menu changed |
 	
 	self assert: presenter contextMenu isNil.
@@ -42,8 +42,8 @@ SpAthensPresenterTest >> testContextMenu [
 	self assert: changed
 ]
 
-{ #category : #accessing }
-SpAthensPresenterTest >> testPresentersBlockReceivesAthensCanvas [
+{ #category : #tests }
+SpAthensAdapterTest >> testPresentersBlockReceivesAthensCanvas [
 	| receivedCanvas |
 	self presenter drawBlock: [ :canvas | receivedCanvas := canvas ].
 	self adapter redraw.
@@ -54,8 +54,19 @@ SpAthensPresenterTest >> testPresentersBlockReceivesAthensCanvas [
 	self assert: (receivedCanvas isKindOf: AthensCanvas)
 ]
 
-{ #category : #accessing }
-SpAthensPresenterTest >> testSmokeCreates [
-	self presenter .
+{ #category : #tests }
+SpAthensAdapterTest >> testResizeMakesCanvasResize [
+	| extent |
 	
+	self presenter drawBlock: [ :canvas |
+		extent := canvas surface extent ].
+	self openInstance.
+	self presenter window resize: 500@500.
+	backendForTest waitUntilUIRedrawed.
+	self assert: extent x > 100. 
+	self assert: extent y > 100.	
+	self presenter window resize: 100@100.
+	backendForTest waitUntilUIRedrawed.
+	self assert: extent x < 100. 
+	self assert: extent y < 100.
 ]

@@ -21,7 +21,7 @@ SpApplicationWithToolbar class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpApplicationWithToolbar class >> example [
 	<sampleInstance>
 	^ self new openWithSpec
@@ -95,7 +95,7 @@ SpApplicationWithToolbar >> initializePresenters [
 						description: 'Add menu item';
 						icon: (self iconNamed: #add);
 						action: [ self addItemTo: group ] ] ].
-	menu applyTo: self.
+	menu addKeybindingsTo: self.
 	text := self newText.
 	self focusOrder add: text
 ]

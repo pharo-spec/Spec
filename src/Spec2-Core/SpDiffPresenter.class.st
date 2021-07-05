@@ -12,14 +12,15 @@ Class {
 	#name : #SpDiffPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#showOptions => SpObservableSlot',
-		'#showOnlyDestination => SpObservableSlot',
-		'#showOnlySource => SpObservableSlot',
-		'#contextClass => SpObservableSlot',
-		'#leftLabel => SpObservableSlot',
-		'#leftText => SpObservableSlot',
-		'#rightLabel => SpObservableSlot',
-		'#rightText => SpObservableSlot'
+		'#showOptions => ObservableSlot',
+		'#showOnlyDestination => ObservableSlot',
+		'#showOnlySource => ObservableSlot',
+		'#contextClass => ObservableSlot',
+		'#leftLabel => ObservableSlot',
+		'#leftText => ObservableSlot',
+		'#rightLabel => ObservableSlot',
+		'#rightText => ObservableSlot',
+		'#beWrapped => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -28,6 +29,18 @@ Class {
 SpDiffPresenter class >> adapterName [
 
 	^ #DiffAdapter
+]
+
+{ #category : #api }
+SpDiffPresenter >> beWrapped [
+
+	^ beWrapped
+]
+
+{ #category : #api }
+SpDiffPresenter >> beWrapped: aBoolean [
+
+	beWrapped := aBoolean
 ]
 
 { #category : #'undo-redo' }
@@ -54,7 +67,9 @@ SpDiffPresenter >> initialize [
 	showOptions := true.
 	showOnlyDestination := false.
 	showOnlySource := false.
+	beWrapped := true.
 
+	self property: #beWrapped whenChangedDo: [ :aBoolean | self changed: #beWrapped: with: {aBoolean} ].
 	self property: #leftText whenChangedDo: [ :newText | self changed: #leftText: with: {newText} ].
 	self property: #rightText whenChangedDo: [ :newText | self changed: #rightText: with: {newText} ].
 	self property: #contextClass whenChangedDo: [ :newClass | self changed: #contextClass: with: {newClass} ].

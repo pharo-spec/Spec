@@ -41,7 +41,7 @@ SpMenuPresenterBuilderTest >> setUp [
 		yourself
 ]
 
-{ #category : #test }
+{ #category : #tests }
 SpMenuPresenterBuilderTest >> testVisitCommand [
 	| menuItem evaluationResult |
 	evaluationResult := nil.
@@ -64,7 +64,7 @@ SpMenuPresenterBuilderTest >> testVisitCommand [
 	self assert: evaluationResult equals: 42
 ]
 
-{ #category : #test }
+{ #category : #tests }
 SpMenuPresenterBuilderTest >> testVisitCommandThatCantBeRunWithDisableStrategy [
 	self assert: menuBuilder menuPresenter defaultGroup menuItems isEmpty.
 	(CmBlockCommand new
@@ -79,7 +79,7 @@ SpMenuPresenterBuilderTest >> testVisitCommandThatCantBeRunWithDisableStrategy [
 		equals: 1
 ]
 
-{ #category : #test }
+{ #category : #tests }
 SpMenuPresenterBuilderTest >> testVisitCommandThatCantBeRunWithHideStrategy [
 	self assert: menuBuilder menuPresenter defaultGroup menuItems isEmpty.
 	(CmBlockCommand new
@@ -93,7 +93,7 @@ SpMenuPresenterBuilderTest >> testVisitCommandThatCantBeRunWithHideStrategy [
 	self assert: menuBuilder menuPresenter defaultGroup menuItems isEmpty
 ]
 
-{ #category : #test }
+{ #category : #tests }
 SpMenuPresenterBuilderTest >> testVisitCommandsGroup [
 	| menuItems |
 	self assert: menuBuilder menuPresenter defaultGroup menuItems isEmpty.

@@ -27,7 +27,7 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-Support'
 }
 
-{ #category : #example }
+{ #category : #examples }
 SpIndeterminatedProgressBarMorph class >> example [
 	<script>
 	self new

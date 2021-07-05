@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Morphic-Tests'
 }
 
-{ #category : #running }
+{ #category : #accessing }
 SpRGBWidgetTest >> classToTest [
 	^ SpRGBWidget
 ]
