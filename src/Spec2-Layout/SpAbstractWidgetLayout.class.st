@@ -57,6 +57,12 @@ SpAbstractWidgetLayout >> adapterName: anObject [
 ]
 
 { #category : #accessing }
+SpAbstractWidgetLayout >> allPresenters [
+	
+	^ #()
+]
+
+{ #category : #accessing }
 SpAbstractWidgetLayout >> asSpLayout [
 	^ self
 ]

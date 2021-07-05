@@ -1,12 +1,14 @@
 Class {
 	#name : #SpPresenterTest,
 	#superclass : #TestCase,
+	#instVars : [
+		'presenter'
+	],
 	#category : #'Spec2-Tests-Core'
 }
 
 { #category : #tests }
 SpPresenterTest >> testAdapterDoesNotRemainsAsDependencyWhenReplacingIt [
-	| presenter |
 
 	presenter := SpPresenter new.
 	presenter layout: (SpBoxLayout new add:  SpListPresenter  new; add: SpTextPresenter new; yourself).
@@ -20,8 +22,35 @@ SpPresenterTest >> testAdapterDoesNotRemainsAsDependencyWhenReplacingIt [
 ]
 
 { #category : #tests }
+SpPresenterTest >> testAsDialogWindow [
+
+	presenter := SpPresenter new.
+	self 
+		assert: presenter asDialogWindow class
+		equals: presenter application defaultDialogWindowPresenterClass
+]
+
+{ #category : #tests }
+SpPresenterTest >> testAsModalWindow [
+
+	presenter := SpPresenter new.
+	self 
+		assert: presenter asModalWindow class
+		equals: presenter application defaultModalWindowPresenterClass
+]
+
+{ #category : #tests }
+SpPresenterTest >> testAsWindow [
+
+	presenter := SpPresenter new.
+	self 
+		assert: presenter asWindow class
+		equals: presenter application defaultWindowPresenterClass
+]
+
+{ #category : #tests }
 SpPresenterTest >> testPresentersIncludesPresentersAddedToTheLayout [
-	| presenter p1 p2 |
+	| p1 p2 |
 	
 	presenter := SpPresenter new.
 	presenter layout: (SpBoxLayout newTopToBottom
@@ -34,7 +63,7 @@ SpPresenterTest >> testPresentersIncludesPresentersAddedToTheLayout [
 
 { #category : #tests }
 SpPresenterTest >> testTraversePresentersDoIncludesPresentersAddedToTheLayout [
-	| presenter p1 p2 result |
+	| p1 p2 result |
 	
 	presenter := SpPresenter new.
 	presenter layout: (SpBoxLayout newTopToBottom

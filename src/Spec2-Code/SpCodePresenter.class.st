@@ -412,20 +412,24 @@ SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: 
 	 intended to be used to throw an error*, since that should be handled (and it is) in the 
 	 notification. Instead, most users of failBlock: use it to return execution without doing 
 	 anything. 
-	 Instread, the on:do: will catch all errors happening while executing the code once it is 
+	 Instead, the on:do: will catch all errors happening while executing the code once it is 
 	 compiled. "
-	| receiver |
+	| receiver result oldBindings |
 	
 	^ [
+		oldBindings := self interactionModel bindings copy.
 		receiver := self interactionModel doItReceiver.
-		receiver class compiler
+		result := receiver class compiler
 			source: aString readStream;
 			context: self interactionModel doItContext;
 			receiver: self interactionModel doItReceiver;
 			requestor: self interactionModel;
 			environment: self environment;
 			failBlock:  [ ^ compileErrorBlock value ];
-			evaluate ]
+			evaluate.
+		oldBindings size = self interactionModel bindings size 
+			ifFalse: [ self withAdapterDo: [ :anAdapter | anAdapter refreshStyling ] ].
+		result ]
 	on: Error 
 	do: errorBlock
 ]
