@@ -51,7 +51,7 @@ SpPresenterTest >> testAsWindow [
 
 { #category : #tests }
 SpPresenterTest >> testPresentersIncludesPresentersAddedToTheLayout [
-	| presenter p1 p2 |
+	| p1 p2 |
 	
 	presenter := SpPresenter new.
 	presenter layout: (SpBoxLayout newTopToBottom
@@ -64,7 +64,7 @@ SpPresenterTest >> testPresentersIncludesPresentersAddedToTheLayout [
 
 { #category : #tests }
 SpPresenterTest >> testTraversePresentersDoIncludesPresentersAddedToTheLayout [
-	| presenter p1 p2 result |
+	| p1 p2 result |
 	
 	presenter := SpPresenter new.
 	presenter layout: (SpBoxLayout newTopToBottom
