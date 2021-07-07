@@ -223,7 +223,8 @@ SpMorphicBaseTextAdapter >> selectFrom: nodeStart to: nodeStop [
 { #category : #'spec protocol' }
 SpMorphicBaseTextAdapter >> selectLine [
 
-	self widgetDo: [ :w | w textArea editor selectLine ]
+	self widgetDo: [ :w |
+		self selectionInterval: w textArea editor lineIntervalAtCursorPosition ]
 ]
 
 { #category : #accessing }
