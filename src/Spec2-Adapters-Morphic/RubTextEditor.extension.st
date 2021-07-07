@@ -6,7 +6,7 @@ RubTextEditor >> lineAtCursorPosition [
 	
 	string := self text asString ifEmpty: [ ^ '' ].
 	^ self lineIntervalAtCursorPosition
-		ifNotNil: [ :anInterval | string copyFrom: anInterval start to: anInterval start ]
+		ifNotNil: [ :anInterval | string copyFrom: anInterval first to: anInterval last ]
 		ifNil: [ '' ]
 ]
 
