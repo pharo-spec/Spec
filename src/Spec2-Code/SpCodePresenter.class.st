@@ -662,7 +662,8 @@ SpCodePresenter >> selectedSelector [
 SpCodePresenter >> selectedTextOrLine [
 
 	self selectedText ifNotEmpty: [ :aString | ^ aString ].
-	^ self lineAtCursorPosition
+	self selectLine.
+	^ self selectedText
 ]
 
 { #category : #private }
