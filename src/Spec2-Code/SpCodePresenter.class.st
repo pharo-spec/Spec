@@ -198,22 +198,38 @@ SpCodePresenter >> bindingOf: aString [
 
 { #category : #'private - commands' }
 SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonGlobalBlock [
-	| variableOrClassName env |
 
+	| variableOrClassName env position astNode |
 	variableOrClassName := self selectedSelector.
 	variableOrClassName ifNil: [ ^ nil ].
-	
+
+
+  "Fix for showing Pool Vars references"
+	position := self selectionInterval first.
+	astNode:= interactionModel context method ast variableNodes
+		detect: [ :node | node start = position ]
+		ifNone: [ nil ].
+
+	(astNode isNotNil and: [ astNode binding isPoolVariable ]) ifTrue: [ 
+		self systemNavigation openBrowserFor:  astNode binding withMethods: astNode  binding usingMethods.
+		^self
+	].
+	"End of: Fix for showing Pool Vars references"
+
+
 	env := self environment.
-	
+
 	self flag: #bug.
 	"If we are looking for implementors of a class variable, this does not work right..."
-	env isBehavior ifTrue: [
-		(env hasSlotNamed: variableOrClassName) ifTrue: [
-		 ^ self systemNavigation browseAllAccessesTo: variableOrClassName from: env ] ].
+	env isBehavior ifTrue: [ 
+		(env hasSlotNamed: variableOrClassName) ifTrue: [ 
+			^ self systemNavigation
+				  browseAllAccessesTo: variableOrClassName
+				  from: env ] ].
 
-	(env bindingOf: variableOrClassName) 
-		ifNotNil: [ :ref | ^ globalBlock value: ref ].
-	
+	(env bindingOf: variableOrClassName) ifNotNil: [ :ref | 
+		^ globalBlock value: ref ].
+
 	nonGlobalBlock value: variableOrClassName
 ]
 
