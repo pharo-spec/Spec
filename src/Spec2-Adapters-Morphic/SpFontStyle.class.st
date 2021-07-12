@@ -154,9 +154,11 @@ SpFontStyle >> calculateFontSize [
 	
 	self sizeVariable ifNotNil: [ :aVariable |
 		aVariable value ifNotNil: [ 
-			^ self sizeVariable value ] ].
-	self nameVariable isEnvironmentVariable ifTrue: [ ^ self nameVariable pointSize ].
-	self hasPredefinedFont ifTrue: [ ^ self obtainPredefinedFont pointSize ].
+			^ self sizeVariable scaledValue ] ].
+	self nameVariable isEnvironmentVariable ifTrue: [ 
+		^ self nameVariable pointSize * self currentWorld displayScaleFactor ].
+	self hasPredefinedFont ifTrue: [ 
+		^ self obtainPredefinedFont pointSize * self currentWorld displayScaleFactor ].
 
 	^ nil
 ]
@@ -294,6 +296,12 @@ SpFontStyle >> predefinedFont: aSymbol [
 ]
 
 { #category : #accessing }
+SpFontStyle >> scaledSize [
+
+	^ self sizeVariable scaledValue
+]
+
+{ #category : #accessing }
 SpFontStyle >> size [
 
 	^ self sizeVariable value
@@ -317,7 +325,7 @@ SpFontStyle >> withCachedFontDo: aBlock [
 	self class fontCache 
 		detect: [ :each | 
 			each familyName = self name 
-				and: [ each pointSize = self size 
+				and: [ each pointSize = self scaledSize 
 				and: [ each isBold = self isBold
 				and: [ each isItalic = self isItalic ] ] ] ]
 		ifFound: aBlock
