@@ -19,10 +19,14 @@ Class {
 { #category : #private }
 SpFilteringSelectableListPresenter >> activateAll [
 
+	| itemsToSelect |
+	itemsToSelect := self items \ selectedItems.
+	itemsToSelect ifEmpty: [ ^ self ].
+
 	self selectItems: self items.
-	
+
 	self onActivation ifNotNil: [ :valuable | 
-		self items \ selectedItems do: [ :item | valuable cull: item ] ]
+		itemsToSelect do: [ :item | valuable cull: item ] ]
 ]
 
 { #category : #private }
