@@ -206,10 +206,10 @@ SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonG
 
   "Fix for showing Pool Vars references"
 	position := self selectionInterval first.
-	astNode:= interactionModel context method ast variableNodes
+	(interactionModel hasBindingOf:variableOrClassName) ifTrue:[ astNode:= interactionModel context method ast variableNodes
 		detect: [ :node | node start = position ]
-		ifNone: [ nil ].
-
+		ifNone: [ nil ]].
+ 
 	(astNode isNotNil and: [ astNode binding isPoolVariable ]) ifTrue: [ 
 		self systemNavigation openBrowserFor:  astNode binding withMethods: astNode  binding usingMethods.
 		^self
