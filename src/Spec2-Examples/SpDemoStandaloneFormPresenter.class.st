@@ -64,8 +64,6 @@ SpDemoStandaloneFormPresenter class >> defaultSpec [
 						add: #femaleButton;
 						yourself)
 					at: 2 @ 9;
-				add: 'Items:' at: 1 @ 10;
-				add: #itemsInput at: 2 @ 10;
 				yourself);
 		add: (SpBoxLayout newLeftToRight
 				add: #submitButton;
