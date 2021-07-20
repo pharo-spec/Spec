@@ -118,7 +118,9 @@ SpGeometryStyle >> isGeometry [
 { #category : #accessing }
 SpGeometryStyle >> minHeight [
 
-	^ self minHeightVariable scaledValue
+	^ self minHeightVariable
+		ifNotNil: [ :aVariable | aVariable scaledValue ]
+		ifNil: [ 0 ]	
 ]
 
 { #category : #accessing }
@@ -136,7 +138,9 @@ SpGeometryStyle >> minHeightVariable [
 { #category : #accessing }
 SpGeometryStyle >> minWidth [
 
-	^ self minWidthVariable scaledValue
+	^ self minWidthVariable 
+		ifNotNil: [ :aVariable | aVariable scaledValue ]
+		ifNil: [ 0 ]
 ]
 
 { #category : #accessing }
