@@ -20,7 +20,19 @@ SpStyleAbstractVariable >> isEnvironmentVariable [
 ]
 
 { #category : #evaluating }
+SpStyleAbstractVariable >> preferredScaledValueWith: anObject [
+
+	^ self value
+]
+
+{ #category : #evaluating }
 SpStyleAbstractVariable >> preferredValueWith: anObject [
+
+	^ self value
+]
+
+{ #category : #evaluating }
+SpStyleAbstractVariable >> scaledValue [
 
 	^ self value
 ]
