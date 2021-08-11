@@ -41,8 +41,16 @@ SpPaginatorEdgeGripMorph >> mouseMove: anEvent [
 		direction: self edgeName) 
 		ifFalse: [ ^ self ].
 
-	^ super mouseMove: anEvent
+	target ifNil: [^self].
 
+	"We cannot delegate to the implementation in the superclass.
+	The implementation of the superclass handles fast dragging. 
+	In a paginator morph there is not such thing as fast dragging.
+	Calling it breaks the paginator."
+	
+	lastMouse at: 1 put: anEvent cursorPoint.
+	self targetPoint: lastMouse first - lastMouse last.
+	self positionPoint: (lastMouse first - lastMouse second).
 ]
 
 { #category : #'event handling' }
