@@ -1,6 +1,6 @@
 "
 I am a presenter that is used to choose items from a list. `SpChooserPresenter>>#chosenItems` returns the chosen items. View the examples on the class side.
-Note that all the items are sorted according to the displayBlock that is provided by my users. If non block is provided, the default displayBlock of `SpListPresenter` is used.
+Note that all the items are sorted according to the displayBlock that is provided by my users. If non block is provided, the default displayBlock of `SpListPresenter` is used. This widget is in work in progress so it will improved to be more fast and not sort the items everytime.
 "
 Class {
 	#name : #SpChooserPresenter,
