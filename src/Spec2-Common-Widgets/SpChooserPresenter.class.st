@@ -18,7 +18,7 @@ Class {
 { #category : #examples }
 SpChooserPresenter class >> example [
 
-	^ (self sourceItems: RBBrowserEnvironment default allClasses)
+	^ (self sourceItems: self package definedClasses asOrderedCollection)
 		  openWithSpec
 ]
 
@@ -26,10 +26,8 @@ SpChooserPresenter class >> example [
 SpChooserPresenter class >> exampleClasses [
 
 	^ (self
-		   sourceItems: RBBrowserEnvironment default allClasses
-		   chosenItems: { 
-				   OrderedCollection.
-				   RefactoringSettings }
+		   sourceItems: { SpChooserPresenter . SpFilteringListPresenter }
+		   chosenItems: { SpFilteringSelectableListPresenter }
 		   displayBlock: #name) openWithSpec
 ]
 
@@ -39,7 +37,7 @@ SpChooserPresenter class >> examplePackages [
 	^ (self
 		   sourceItems: RPackageOrganizer default packages
 		   chosenItems:
-		   { (RPackageOrganizer default packageNamed: 'Refactoring-Core') }
+		   { (RPackageOrganizer default packageNamed: 'Spec2-Common-Widgets') }
 		   displayBlock: #packageName) openWithSpec
 ]
 

@@ -18,7 +18,7 @@ Class {
 		'filterInputPresenter',
 		'itemFilterBlock'
 	],
-	#category : #'Spec2-Core-Widgets-Advanced'
+	#category : #'Spec2-Common-Widgets'
 }
 
 { #category : #specs }
@@ -182,4 +182,10 @@ SpFilteringListPresenter >> selectItem: anObject [
 SpFilteringListPresenter >> selectedItem [
 	
 	^ listPresenter selectedItem
+]
+
+{ #category : #accessing }
+SpFilteringListPresenter >> unfilteredItems [
+
+	^ unfilteredItems ifNil: [ unfilteredItems := self items ]
 ]
