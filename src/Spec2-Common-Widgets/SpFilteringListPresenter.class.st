@@ -63,6 +63,18 @@ SpFilteringListPresenter >> contextMenu: aValuable [
 	self listPresenter contextMenu: aValuable
 ]
 
+{ #category : #transmission }
+SpFilteringListPresenter >> defaultInputPort [
+
+	^ listPresenter defaultInputPort
+]
+
+{ #category : #transmission }
+SpFilteringListPresenter >> defaultOutputPort [
+
+	^ listPresenter defaultOutputPort
+]
+
 { #category : #api }
 SpFilteringListPresenter >> display [ 
 
@@ -122,6 +134,12 @@ SpFilteringListPresenter >> initializePresenters [
 	self matchSubstring
 ]
 
+{ #category : #transmission }
+SpFilteringListPresenter >> inputItemsPort [
+	
+	^ listPresenter inputItemsPort
+]
+
 { #category : #private }
 SpFilteringListPresenter >> itemFilter [
 
@@ -170,6 +188,18 @@ SpFilteringListPresenter >> matchSubstring [
 SpFilteringListPresenter >> newListToFilter [
 	
 	^ self newList
+]
+
+{ #category : #transmission }
+SpFilteringListPresenter >> outputActivationPort [
+	
+	^ listPresenter outputActivationPort
+]
+
+{ #category : #transmission }
+SpFilteringListPresenter >> outputSelectionPort [
+	
+	^ listPresenter outputSelectionPort
 ]
 
 { #category : #api }
