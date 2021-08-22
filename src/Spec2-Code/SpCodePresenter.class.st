@@ -201,6 +201,15 @@ SpCodePresenter >> browseImplementorOfPoolVar [
 
 	"If the selected text is a pool var, list all references and return true. Return false otherwise."
 
+	^ self browsePoolVarNode: [ :astNode | 
+		  self systemNavigation browseHierarchy: astNode binding owningClass ]
+]
+
+{ #category : #'private - commands' }
+SpCodePresenter >> browsePoolVarNode: aBlock [
+
+	"If the selected text is a pool var, list all references  using the block and return true. Return afalse otherwise."
+
 	| astNode selectedText |
 	selectedText := self selectedSelector.
 	selectedText ifNil: [ ^ false ].
@@ -212,7 +221,7 @@ SpCodePresenter >> browseImplementorOfPoolVar [
 			           ifNone: [ nil ] ].
 
 	(astNode isNotNil and: [ astNode binding isPoolVariable ]) ifTrue: [ 
-		self systemNavigation browseHierarchy: astNode binding owningClass.
+		aBlock value: astNode.
 		^ true ].
 	^ false
 ]
@@ -222,22 +231,10 @@ SpCodePresenter >> browseReferencesToPoolVar [
 
 	"If the selected text is a pool var, list all references and return true. Return false otherwise."
 
-	| astNode selectedText |
-	selectedText := self selectedSelector.
-	selectedText ifNil: [ ^ false ].
-	(interactionModel hasBindingOf: selectedText) ifTrue: [ 
-		astNode := interactionModel ast variableNodes
-			           detect: [ :node | "this way also works without selecting the variable, setting the cursor inside is enogugh"
-				           node start <= self selectionInterval first and: [ 
-					           self selectionInterval last <= node stop ] ]
-			           ifNone: [ nil ] ].
-
-	(astNode isNotNil and: [ astNode binding isPoolVariable ]) ifTrue: [ 
-		self systemNavigation
-			openBrowserFor: astNode binding
-			withMethods: astNode binding usingMethods.
-		^ true ].
-	^ false
+	^ self browsePoolVarNode: [ :astNode | 
+		  self systemNavigation
+			  openBrowserFor: astNode binding
+			  withMethods: astNode binding usingMethods ]
 ]
 
 { #category : #'private - commands' }
