@@ -197,6 +197,27 @@ SpCodePresenter >> bindingOf: aString [
 ]
 
 { #category : #'private - commands' }
+SpCodePresenter >> browseImplementorOfPoolVar [
+
+	"If the selected text is a pool var, list all references and return true. Return false otherwise."
+
+	| astNode selectedText |
+	selectedText := self selectedSelector.
+	selectedText ifNil: [ ^ false ].
+	(interactionModel hasBindingOf: selectedText) ifTrue: [ 
+		astNode := interactionModel ast variableNodes
+			           detect: [ :node | "this way also works without selecting the variable, setting the cursor inside is enogugh"
+				           node start <= self selectionInterval first and: [ 
+					           self selectionInterval last <= node stop ] ]
+			           ifNone: [ nil ] ].
+
+	(astNode isNotNil and: [ astNode binding isPoolVariable ]) ifTrue: [ 
+		self systemNavigation browseHierarchy: astNode binding owningClass.
+		^ true ].
+	^ false
+]
+
+{ #category : #'private - commands' }
 SpCodePresenter >> browseReferencesToPoolVar [
 
 	"If the selected text is a pool var, list all references and return true. Return false otherwise."
@@ -337,14 +358,17 @@ SpCodePresenter >> doBrowseHierarchy [
 
 { #category : #commands }
 SpCodePresenter >> doBrowseImplementors [
-	| result |
-	
-	result := self
-		browseSelectedSelectorIfGlobal: [ :global | global browse ]
-		ifNotGlobal:  [ :selector | 
-			self systemNavigation browseAllImplementorsOf: selector ].
-	result ifNil: [ 
-		self application inform: 'No selectors found.' ]
+
+	| result selectionIsPoolVar |
+	selectionIsPoolVar := self browseImplementorOfPoolVar.
+
+	selectionIsPoolVar ifFalse: [ 
+		result := self
+			          browseSelectedSelectorIfGlobal: [ :global | 
+			          global browse ]
+			          ifNotGlobal: [ :selector | 
+			          self systemNavigation browseAllImplementorsOf: selector ].
+		result ifNil: [ self application inform: 'No selectors found.' ] ]
 ]
 
 { #category : #commands }
