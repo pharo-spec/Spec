@@ -199,21 +199,25 @@ SpCodePresenter >> bindingOf: aString [
 { #category : #'private - commands' }
 SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonGlobalBlock [
 
-	| variableOrClassName env position astNode |
+	| variableOrClassName env astNode |
 	variableOrClassName := self selectedSelector.
 	variableOrClassName ifNil: [ ^ nil ].
 
 
-  "Fix for showing Pool Vars references"
-	position := self selectionInterval first.
-	(interactionModel hasBindingOf:variableOrClassName) ifTrue:[ astNode:= interactionModel context method ast variableNodes
-		detect: [ :node | node start = position ]
-		ifNone: [ nil ]].
- 
+	"Fix for showing Pool Vars references"
+	(interactionModel hasBindingOf: variableOrClassName) ifTrue: [ 
+		astNode := interactionModel context method ast variableNodes
+			           detect: [ :node | 
+							 "this way also works without selecting the variable, setting the cursor inside is enogugh"
+				           node start <= self selectionInterval first and: [ 
+					           self selectionInterval last <= node stop ] ]
+			           ifNone: [ nil ] ].
+
 	(astNode isNotNil and: [ astNode binding isPoolVariable ]) ifTrue: [ 
-		self systemNavigation openBrowserFor:  astNode binding withMethods: astNode  binding usingMethods.
-		^self
-	].
+		self systemNavigation
+			openBrowserFor: astNode binding
+			withMethods: astNode binding usingMethods.
+		^ self ].
 	"End of: Fix for showing Pool Vars references"
 
 
