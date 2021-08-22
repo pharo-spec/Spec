@@ -197,18 +197,16 @@ SpCodePresenter >> bindingOf: aString [
 ]
 
 { #category : #'private - commands' }
-SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonGlobalBlock [
+SpCodePresenter >> browseReferencesToPoolVar [
 
-	| variableOrClassName env astNode |
-	variableOrClassName := self selectedSelector.
-	variableOrClassName ifNil: [ ^ nil ].
+	"If the selected text is a pool var, list all references and return true. Return false otherwise."
 
-
-	"Fix for showing Pool Vars references"
-	(interactionModel hasBindingOf: variableOrClassName) ifTrue: [ 
-		astNode := interactionModel context method ast variableNodes
-			           detect: [ :node | 
-							 "this way also works without selecting the variable, setting the cursor inside is enogugh"
+	| astNode selectedText |
+	selectedText := self selectedSelector.
+	selectedText ifNil: [ ^ false ].
+	(interactionModel hasBindingOf: selectedText) ifTrue: [ 
+		astNode := interactionModel ast variableNodes
+			           detect: [ :node | "this way also works without selecting the variable, setting the cursor inside is enogugh"
 				           node start <= self selectionInterval first and: [ 
 					           self selectionInterval last <= node stop ] ]
 			           ifNone: [ nil ] ].
@@ -217,9 +215,16 @@ SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonG
 		self systemNavigation
 			openBrowserFor: astNode binding
 			withMethods: astNode binding usingMethods.
-		^ self ].
-	"End of: Fix for showing Pool Vars references"
+		^ true ].
+	^ false
+]
 
+{ #category : #'private - commands' }
+SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonGlobalBlock [
+
+	| variableOrClassName env |
+	variableOrClassName := self selectedSelector.
+	variableOrClassName ifNil: [ ^ nil ].
 
 	env := self environment.
 
@@ -374,15 +379,17 @@ SpCodePresenter >> doBrowseMethodsMatchingStringSensitive [
 
 { #category : #commands }
 SpCodePresenter >> doBrowseSenders [
-	| result |
 
-	result := self
-		browseSelectedSelectorIfGlobal: [ :global | 
-			self systemNavigation browseAllSendersOf: global ]
-		ifNotGlobal:  [ :selector |
-			self systemNavigation browseAllReferencesTo: selector ].
-	result ifNil: [ 
-		self application inform: 'No selectors found.' ]	
+	| result selectionIsPoolVar |
+	selectionIsPoolVar := self browseReferencesToPoolVar.
+
+	selectionIsPoolVar ifFalse: [ 
+		result := self
+			          browseSelectedSelectorIfGlobal: [ :global | 
+			          self systemNavigation browseAllSendersOf: global ]
+			          ifNotGlobal: [ :selector | 
+			          self systemNavigation browseAllReferencesTo: selector ].
+		result ifNil: [ self application inform: 'No selectors found.' ] ]
 ]
 
 { #category : #'private - bindings' }
