@@ -312,10 +312,10 @@ SpCodePresenter >> doBrowseHierarchy [
 
 { #category : #commands }
 SpCodePresenter >> doBrowseImplementors [
+
 	| result |
-	
 	result := self
-		browseSelectedSelectorIfGlobal: [ :global | global browse ]
+		browseSelectedSelectorIfGlobal: [ :global | global value browse ]
 		ifNotGlobal:  [ :selector | 
 			self systemNavigation browseAllImplementorsOf: selector ].
 	result ifNil: [ 
