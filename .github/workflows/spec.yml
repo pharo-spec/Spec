@@ -29,13 +29,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 15
-      - name: List files
-        run: find /home/runner/.smalltalkCI/_builds
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build resulting artifact
+        run: zip /home/runner/.smalltalkCI/_builds/built-image.zip /home/runner/.smalltalkCI/_builds/TravisCI.* /home/runner/.smalltalkCI/_builds/Pharo*.sources
+        timeout-minutes: 15
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
         with:
-          name: image
-          path: Pharo.*
+          name: build-image
+          path: /home/runner/.smalltalkCI/_builds/built-image.zip
           retention-days: 1
