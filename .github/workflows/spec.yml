@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: built-image
-          path: |
+          path:
             /home/runner/.smalltalkCI/_builds/TravisCI.*
             /home/runner/.smalltalkCI/_builds/Pharo*.sources
           retention-days: 1
