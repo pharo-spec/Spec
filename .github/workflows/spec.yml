@@ -32,11 +32,11 @@ jobs:
       - name: Build resulting artifact
         run: zip /home/runner/.smalltalkCI/_builds/built-image.zip /home/runner/.smalltalkCI/_builds/TravisCI.* /home/runner/.smalltalkCI/_builds/Pharo*.sources
         timeout-minutes: 15
-      - name: 'Upload Artifact'
+      - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: built-image
-          path:
+          path: |
             /home/runner/.smalltalkCI/_builds/TravisCI.*
             /home/runner/.smalltalkCI/_builds/Pharo*.sources
           retention-days: 1
