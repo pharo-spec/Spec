@@ -29,3 +29,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 15
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v2
+        with:
+          name: image
+          path: Pharo.*
+          retention-days: 1
