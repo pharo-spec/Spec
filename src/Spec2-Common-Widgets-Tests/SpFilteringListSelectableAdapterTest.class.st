@@ -1,7 +1,7 @@
 Class {
 	#name : #SpFilteringListSelectableAdapterTest,
 	#superclass : #SpAbstractAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Common-Widgets-Tests'
 }
 
 { #category : #accessing }
