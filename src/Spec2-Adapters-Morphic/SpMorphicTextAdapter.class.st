@@ -56,6 +56,8 @@ SpMorphicTextAdapter >> buildWidget [
 	self setEditable: self presenter isEditable to: newWidget.
 	self setEditingModeFor: newWidget.
 	self setText: self presenter text to: newWidget.
+	self presenter selectionInterval 
+		ifNotNil: [  :anInterval | self selectionInterval: anInterval on: newWidget ].
 
 	self setWrapWord: self presenter isWrapWord to: newWidget.	
 	self setUndoRedo: self presenter hasUndoRedoHistory to: newWidget. 
