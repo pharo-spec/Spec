@@ -14,7 +14,7 @@ SpTPresenterBuilder >> instantiate: aPresenterClass [
 	^ aPresenterClass owner: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 SpTPresenterBuilder >> instantiate: aPresenterClass on: aModel [
 	"Instantiate a SpPresenter subclass and set its instance owner and model"
 
