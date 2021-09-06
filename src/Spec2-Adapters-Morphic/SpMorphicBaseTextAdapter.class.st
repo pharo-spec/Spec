@@ -248,10 +248,13 @@ SpMorphicBaseTextAdapter >> selectionInterval: anInterval [
 
 { #category : #private }
 SpMorphicBaseTextAdapter >> selectionInterval: anInterval on: aWidget [
+	| interval |
+		
+	interval := anInterval ifNil: [ 1 to: 0 ].
 
 	aWidget textArea editor 
-		selectFrom: anInterval first 
-		to: anInterval last
+		selectFrom: interval first 
+		to: interval last
 ]
 
 { #category : #private }
