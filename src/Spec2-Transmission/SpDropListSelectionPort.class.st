@@ -21,10 +21,10 @@ SpDropListSelectionPort class >> portName [
 ]
 
 { #category : #attaching }
-SpDropListSelectionPort >> attachTransmission: aTransmission [
+SpDropListSelectionPort >> attachTransmission: aTransmission to: aPresenter [
 	
-	self destinationPresenter whenSelectionChangedDo: [ :selection | 
+	aPresenter whenSelectionChangedDo: [ :selection | 
 		self 
 			transmitWith: aTransmission 
-			value: selection selectedItem ]
+			value: (self applyTransform: selection selectedItem) ]
 ]

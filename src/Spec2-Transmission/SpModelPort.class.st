@@ -19,8 +19,8 @@ SpModelPort class >> portName [
 ]
 
 { #category : #'handling transmission' }
-SpModelPort >> incomingTransmission: anObject from: aTransmission [
+SpModelPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
 	"sets model to destination presenter"
 
-	self destinationPresenter setModel: anObject
+	aPresenter setModel: anObject
 ]
