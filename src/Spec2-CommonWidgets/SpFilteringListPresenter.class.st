@@ -18,7 +18,7 @@ Class {
 		'filterInputPresenter',
 		'itemFilterBlock'
 	],
-	#category : #'Spec2-Common-Widgets'
+	#category : #'Spec2-CommonWidgets'
 }
 
 { #category : #specs }

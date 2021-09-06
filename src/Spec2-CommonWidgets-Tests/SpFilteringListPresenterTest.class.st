@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'listWithFilter'
 	],
-	#category : #'Spec2-Common-Widgets-Tests'
+	#category : #'Spec2-CommonWidgets-Tests'
 }
 
 { #category : #accessing }

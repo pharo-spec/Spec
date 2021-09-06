@@ -12,7 +12,7 @@ Class {
 		'displayBlock',
 		'sourceItems'
 	],
-	#category : #'Spec2-Common-Widgets'
+	#category : #'Spec2-CommonWidgets'
 }
 
 { #category : #examples }
@@ -37,7 +37,7 @@ SpChooserPresenter class >> examplePackages [
 	^ (self
 		   sourceItems: RPackageOrganizer default packages
 		   chosenItems:
-		   { (RPackageOrganizer default packageNamed: 'Spec2-Common-Widgets') }
+		   { (RPackageOrganizer default packageNamed: 'Spec2-CommonWidgets') }
 		   displayBlock: #packageName) openWithSpec
 ]
 
