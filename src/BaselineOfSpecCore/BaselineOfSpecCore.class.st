@@ -34,7 +34,7 @@ BaselineOfSpecCore >> baseline: spec [
 			package: 'Spec2-Tests' with: [ spec requires: #('Spec2-Core' 'Spec2-Examples') ];
 			package: 'Spec2-Code-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Code') ];
 			"Examples"
-			package: 'Spec2-Examples' with: [ spec requires: #('Spec2-CommonWidgets' )];
+			package: 'Spec2-Examples' with: [ spec requires: #('Spec2-CommonWidgets') ];
 			package: 'Spec2-Commander2-ContactBook' with: [ spec requires: #('Spec2-Commander2') ];
 			package: 'Spec2-Commander2-ContactBook-Extensions' with: [ spec requires: #('Spec2-Commander2-ContactBook') ];
 			"RichText -> Pillar"
@@ -55,7 +55,7 @@ BaselineOfSpecCore >> baseline: spec [
 	spec group: 'Code' with: #('Core' 'Spec2-Code-Commands' 'Spec2-Code').
 	spec group: 'CodeTests' with: #('Spec2-Code-Tests').
 	spec group: 'Support' with: #('Core' 'Spec2-Examples').
-	spec group: 'Tests' with: #('Core' 'Spec2-Tests' 	'Spec2-Commander2-Tests').
+	spec group: 'Tests' with: #('Core' 'Spec2-Tests' 'Spec2-Commander2-Tests').
 	spec group: 'SupportTests' with: #('Support').
 	spec group: 'Pillar' with: #('Spec2-Pillar' ).
 	spec group: 'Base' with: #('Core' 'Support').
