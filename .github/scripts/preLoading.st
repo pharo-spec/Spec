@@ -1,4 +1,3 @@
-#(BaselineOfSpecCore BaselineOfSpec2) do: [ :each | 
-	Smalltalk globals 
-		at: each 
-		ifPresent: [ :aClass | aClass removeFromSystem ] ]
+#( BaselineOfSpec2 BaselineOfSpecCore ) do: [ :each | 
+	(Smalltalk classNamed: each) 
+		ifNotNil: [ :aClass | aClass removeFromSystem ] ]
