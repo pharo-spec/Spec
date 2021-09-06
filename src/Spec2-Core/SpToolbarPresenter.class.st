@@ -6,9 +6,9 @@ Class {
 	#name : #SpToolbarPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#displayMode => ObservableSlot',
-		'#leftItems => ObservableSlot',
-		'#rightItems => ObservableSlot'
+		'#displayMode => SpObservableSlot',
+		'#leftItems => SpObservableSlot',
+		'#rightItems => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Toolbar'
 }
@@ -164,13 +164,13 @@ SpToolbarPresenter >> notEmpty [
 	^ self isEmpty not
 ]
 
-{ #category : #'private - traversing' }
+{ #category : #'private-traversing' }
 SpToolbarPresenter >> presenters [
 
 	^ self items
 ]
 
-{ #category : #'private - traversing' }
+{ #category : #'private-traversing' }
 SpToolbarPresenter >> presentersInFocusOrder [
 
 	^ self items
@@ -189,7 +189,7 @@ SpToolbarPresenter >> rightItems [
 	^ rightItems
 ]
 
-{ #category : #'private - traversing' }
+{ #category : #'private-traversing' }
 SpToolbarPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
 	self presentersInFocusOrder do: [ :each |

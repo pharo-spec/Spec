@@ -41,8 +41,8 @@ SpContainerStyle class >> stonName [
 SpContainerStyle >> applyTo: aMorph [ 
 
 	self borderColorVariable ifNotNil: [ :aVariable | aMorph borderColor: aVariable valueAsColor ].
-	self borderWidthVariable ifNotNil: [ :aVariable | aMorph borderWidth: aVariable scaledValue ].
-	self paddingVariable ifNotNil: [ :aVariable | aMorph cellInset: aVariable scaledValue ]
+	self borderWidthVariable ifNotNil: [ :aVariable | aMorph borderWidth: aVariable value ].
+	self paddingVariable ifNotNil: [ :aVariable | aMorph cellInset: aVariable value ]
 ]
 
 { #category : #accessing }
@@ -61,7 +61,7 @@ SpContainerStyle >> borderColor: aColor [
 	borderColor := aColor asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : #'accessing variables' }
 SpContainerStyle >> borderColorVariable [
   "This property can be expressed as 
 	- a STON map: ==Color { #red : 1., #green : 0, #blue : 0, #alpha : 1 }==
@@ -74,7 +74,7 @@ SpContainerStyle >> borderColorVariable [
 { #category : #accessing }
 SpContainerStyle >> borderWidth [
 
-	^ self borderWidthVariable scaledValue
+	^ self borderWidthVariable value
 ]
 
 { #category : #accessing }
@@ -83,7 +83,7 @@ SpContainerStyle >> borderWidth: aNumber [
 	borderWidth := aNumber asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : #'accessing variables' }
 SpContainerStyle >> borderWidthVariable [
 
 	^ self toVariable: borderWidth
@@ -92,7 +92,7 @@ SpContainerStyle >> borderWidthVariable [
 { #category : #accessing }
 SpContainerStyle >> padding [
 
-	^ self paddingVariable scaledValue
+	^ self paddingVariable value
 ]
 
 { #category : #accessing }
@@ -101,7 +101,7 @@ SpContainerStyle >> padding: aNumber [
 	padding := aNumber asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : #'accessing variables' }
 SpContainerStyle >> paddingVariable [
 
 	^ self toVariable: padding

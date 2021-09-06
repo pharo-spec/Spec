@@ -66,7 +66,7 @@ SpLocationIconProvider >> inspectionIcons [
 		yourself
 ]
 
-{ #category : #utilities }
+{ #category : #utils }
 SpLocationIconProvider >> loadAllIcons [
 
 	self locations do: [ :eachLocation |
@@ -76,7 +76,7 @@ SpLocationIconProvider >> loadAllIcons [
 				put: (self loadIcon: each) ] ]
 ]
 
-{ #category : #utilities }
+{ #category : #utils }
 SpLocationIconProvider >> loadIcon: fileRef [
 
 	fileRef exists ifFalse: [ 
@@ -86,7 +86,7 @@ SpLocationIconProvider >> loadIcon: fileRef [
 		 Form fromBinaryStream: stream ]
 ]
 
-{ #category : #utilities }
+{ #category : #utils }
 SpLocationIconProvider >> loadIconNamed: aSymbol [
 
 	self locations do: [ :each | | ref |

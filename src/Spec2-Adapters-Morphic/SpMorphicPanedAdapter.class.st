@@ -14,8 +14,8 @@ Class {
 { #category : #'adding/removing' }
 SpMorphicPanedAdapter >> addConstraints: constraints toChild: childMorph [
 	"Adds constraits by child"
-	| theMorph |	
 	
+	| theMorph |	
 	theMorph := childMorph.
 	"Keep constraints to layout usage"
 	theMorph setProperty: #constraints toValue: constraints. 

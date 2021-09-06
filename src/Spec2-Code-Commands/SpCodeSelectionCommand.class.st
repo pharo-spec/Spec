@@ -33,12 +33,6 @@ SpCodeSelectionCommand class >> order [
 	^ 999
 ]
 
-{ #category : #converting }
-SpCodeSelectionCommand >> asSpecCommand [
-
-	^ SpToolCurrentApplicationCommand decorate: super asSpecCommand
-]
-
 { #category : #private }
 SpCodeSelectionCommand >> evaluate: aString andDo: aBlock [
 	"Treat the current selection as an expression; evaluate it and invoke 

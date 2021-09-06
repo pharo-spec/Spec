@@ -92,7 +92,7 @@ SpButtonBarPresenter >> placeAtStart [
 	placeAtStart := true
 ]
 
-{ #category : #'private - traversing' }
+{ #category : #'private-traversing' }
 SpButtonBarPresenter >> presenters [
 	
 	^ self items

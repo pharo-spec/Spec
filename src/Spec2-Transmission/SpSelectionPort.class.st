@@ -19,10 +19,10 @@ SpSelectionPort class >> portName [
 ]
 
 { #category : #attaching }
-SpSelectionPort >> attachTransmission: aTransmission to: aPresenter [
-		
-	aPresenter whenSelectionChangedDo: [ :selection | 
+SpSelectionPort >> attachTransmission: aTransmission [
+
+	self destinationPresenter whenSelectionChangedDo: [ :selection | 
 		self 
 			transmitWith: aTransmission 
-			value: (self applyTransform: selection transmission) ]
+			value: selection transmission ]
 ]

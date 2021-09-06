@@ -6,8 +6,8 @@ Class {
 	#name : #SpToolbarButtonPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#label => ObservableSlot',
-		'#icon => ObservableSlot',
+		'#label => SpObservableSlot',
+		'#icon => SpObservableSlot',
 		'#action',
 		'#badge'
 	],
@@ -101,7 +101,7 @@ SpToolbarButtonPresenter >> label: aString [
 	label := aString
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpToolbarButtonPresenter >> whenIconChangedDo: aBlock [ 
 	"Inform when icon property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -112,7 +112,7 @@ SpToolbarButtonPresenter >> whenIconChangedDo: aBlock [
 	self property: #icon whenChangedDo: aBlock 
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpToolbarButtonPresenter >> whenLabelChangedDo: aBlock [ 
 	"Inform when label property has changed. 
 	 `aBlock` has three optional arguments: 

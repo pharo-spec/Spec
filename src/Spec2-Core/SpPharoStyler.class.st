@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'behavior'
 	],
-	#category : #'Spec2-RichText'
+	#category : #'Spec2-Core-Widgets-Text'
 }
 
 { #category : #applying }
@@ -24,7 +24,7 @@ SpPharoStyler >> parseAST: aString [
 	^ RBParser parseFaultyExpression: aString	
 ]
 
-{ #category : #private }
+{ #category : #'as yet unclassified' }
 SpPharoStyler >> prepareWithinContext: anObject [
 
 	behavior := anObject behavior

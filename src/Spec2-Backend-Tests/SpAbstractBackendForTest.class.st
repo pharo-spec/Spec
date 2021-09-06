@@ -1,7 +1,7 @@
 Class {
 	#name : #SpAbstractBackendForTest,
 	#superclass : #Object,
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
 { #category : #testing }

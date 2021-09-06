@@ -7,20 +7,14 @@ I use TObservable that has methods to ease the usage of my observable properties
 Class {
 	#name : #SpObservablePoint,
 	#superclass : #Object,
-	#traits : 'TObservable',
-	#classTraits : 'TObservable classTrait',
+	#traits : 'SpTObservable',
+	#classTraits : 'SpTObservable classTrait',
 	#instVars : [
-		'#x => ObservableSlot',
+		'#x => SpObservableSlot',
 		'#y'
 	],
 	#category : #'Spec2-ObservableSlot'
 }
-
-{ #category : #testing }
-SpObservablePoint class >> isDeprecated [
-
-	^ true
-]
 
 { #category : #initialization }
 SpObservablePoint >> initialize [

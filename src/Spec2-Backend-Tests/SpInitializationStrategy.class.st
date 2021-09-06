@@ -1,7 +1,7 @@
 Class {
 	#name : #SpInitializationStrategy,
 	#superclass : #Object,
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
 { #category : #accessing }

@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Tests-Examples-Wrapper'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpOpenOnIntExampleTest >> classToTest [
 	^ SpOpenOnIntExample
 ]

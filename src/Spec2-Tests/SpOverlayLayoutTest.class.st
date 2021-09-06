@@ -4,28 +4,28 @@ Class {
 	#category : #'Spec2-Tests-Layout'
 }
 
-{ #category : #initialization }
+{ #category : #running }
 SpOverlayLayoutTest >> initializeTestedInstance [
 
 	layout := SpOverlayLayout new.
 	presenter layout: layout
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpOverlayLayoutTest >> testLayoutWithOneElementIsNotEmpty [
 
 	layout child: SpButtonPresenter new.
 	self deny: layout isEmpty
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpOverlayLayoutTest >> testLayoutWithOverlayWidgetIsNotEmpty [
 
 	layout addOverlay: SpButtonPresenter new.
 	self deny: layout isEmpty
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpOverlayLayoutTest >> testRemoveElementFromLayoutTakesItOut [
 
 	| element |
@@ -34,7 +34,7 @@ SpOverlayLayoutTest >> testRemoveElementFromLayoutTakesItOut [
 	self assert: layout isEmpty
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpOverlayLayoutTest >> testRemoveOverlayFromLayoutTakesItOut [
 
 	| element |
@@ -43,7 +43,7 @@ SpOverlayLayoutTest >> testRemoveOverlayFromLayoutTakesItOut [
 	self assert: layout isEmpty
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpOverlayLayoutTest >> testReplaceElementKeepsSingleElement [
 
 	| replacement |

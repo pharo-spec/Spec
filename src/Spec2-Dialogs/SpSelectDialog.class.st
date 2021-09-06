@@ -18,7 +18,7 @@ Class {
 { #category : #accessing }
 SpSelectDialog class >> defaultExtent [
 
-	^ 450@300
+	^ 400@300
 ]
 
 { #category : #specs }
@@ -38,7 +38,7 @@ SpSelectDialog class >> documentFactoryMethodSelector [
 	^ #newSelect
 ]
 
-{ #category : #examples }
+{ #category : #example }
 SpSelectDialog class >> example [
 
 	self new
@@ -51,11 +51,11 @@ SpSelectDialog class >> example [
 		openDialogWithSpec
 ]
 
-{ #category : #examples }
+{ #category : #example }
 SpSelectDialog class >> exampleModal [
-	| selection |
+	| dialog |
 
-	selection := self new
+	dialog := self new
 		title: 'Select modal example';
 		label: 'Select a class';
 		items: Smalltalk allClassesAndTraits;
@@ -63,8 +63,8 @@ SpSelectDialog class >> exampleModal [
 		displayIcon: [ :each | each systemIcon ];
 		openModalWithSpec.
 		
-	selection ifNotNil: [ 
-		self inform: selection asString ]
+	dialog isOk
+		ifTrue: [ self inform: dialog presenter selectedItem asString ]
 ]
 
 { #category : #api }
@@ -168,7 +168,7 @@ SpSelectDialog >> label: aString [
 	label label: aString
 ]
 
-{ #category : #'api - showing' }
+{ #category : #'api-showing' }
 SpSelectDialog >> openModalWithSpec [
 	| dialog |
 	

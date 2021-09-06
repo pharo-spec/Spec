@@ -19,7 +19,7 @@ SpTextPort class >> portName [
 ]
 
 { #category : #'handling transmission' }
-SpTextPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
+SpTextPort >> incomingTransmission: anObject from: outPort [
 
-	aPresenter text: anObject
+	self destinationPresenter text: anObject
 ]

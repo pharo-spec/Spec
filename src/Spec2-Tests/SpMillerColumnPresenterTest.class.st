@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Tests-Miller'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpMillerColumnPresenterTest >> classToTest [
 	
 	^ SpMillerColumnPresenter

@@ -24,7 +24,7 @@ SpHeaderCellMorph >> initialize [
 	self indentBy: self class indent
 ]
 
-{ #category : #utilities }
+{ #category : #'as yet unclassified' }
 SpHeaderCellMorph >> prepareAsSortableColumn: aColumn [
 
 	

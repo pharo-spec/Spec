@@ -13,12 +13,6 @@ Class {
 	#category : #'Spec2-ObservableSlot'
 }
 
-{ #category : #testing }
-SpValueSubscription class >> isDeprecated [
-
-	^ true
-]
-
 { #category : #'instance creation' }
 SpValueSubscription class >> with: aBlock [
 

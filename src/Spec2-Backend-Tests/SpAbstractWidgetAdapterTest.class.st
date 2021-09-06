@@ -1,7 +1,7 @@
 Class {
 	#name : #SpAbstractWidgetAdapterTest,
 	#superclass : #SpAbstractAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
 { #category : #testing }
@@ -10,14 +10,14 @@ SpAbstractWidgetAdapterTest class >> isAbstract [
 	^ self name = #SpAbstractWidgetAdapterTest 
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractWidgetAdapterTest >> testChangingHelpAffectTheWidget [
 	
 	presenter help: 'ALabel'.
 	self assert: self adapter helpText equals: 'ALabel'
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractWidgetAdapterTest >> testEnabledAffectWidget [
 	
 	presenter enabled: false.

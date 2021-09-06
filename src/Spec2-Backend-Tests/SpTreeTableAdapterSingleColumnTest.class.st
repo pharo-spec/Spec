@@ -1,5 +1,5 @@
 Class {
 	#name : #SpTreeTableAdapterSingleColumnTest,
 	#superclass : #SpAbstractTreeTableAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }

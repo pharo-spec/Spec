@@ -9,8 +9,8 @@ Class {
 	#traits : 'SpTContextMenu',
 	#classTraits : 'SpTContextMenu classTrait',
 	#instVars : [
-		'#drawBlock => ObservableSlot',
-		'#surfaceExtent => ObservableSlot'
+		'#drawBlock => SpObservableSlot',
+		'#surfaceExtent => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Athens'
 }
@@ -61,7 +61,7 @@ SpAthensPresenter >> surfaceExtent: anExtent [
 	surfaceExtent := anExtent
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpAthensPresenter >> whenDrawBlockChangedDo: aBlock [
 	"Inform when drawBlock has changed. 
 	 `aBlock` has three optional arguments: 
@@ -72,7 +72,7 @@ SpAthensPresenter >> whenDrawBlockChangedDo: aBlock [
 	self property: #drawBlock whenChangedDo: aBlock 
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpAthensPresenter >> whenExtentChangedDo: aBlock [
 	"Inform when the Athens surface extent has changed. 
 	 `aBlock` has three optional arguments: 

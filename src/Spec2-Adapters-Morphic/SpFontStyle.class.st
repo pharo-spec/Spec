@@ -119,7 +119,7 @@ SpFontStyle >> bold: aBoolean [
 	bold := aBoolean asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : #'accessing variables' }
 SpFontStyle >> boldVariable [
 
 	^ self toVariable: bold
@@ -154,11 +154,9 @@ SpFontStyle >> calculateFontSize [
 	
 	self sizeVariable ifNotNil: [ :aVariable |
 		aVariable value ifNotNil: [ 
-			^ self sizeVariable scaledValue ] ].
-	self nameVariable isEnvironmentVariable ifTrue: [ 
-		^ self nameVariable pointSize * self currentWorld displayScaleFactor ].
-	self hasPredefinedFont ifTrue: [ 
-		^ self obtainPredefinedFont pointSize * self currentWorld displayScaleFactor ].
+			^ self sizeVariable value ] ].
+	self nameVariable isEnvironmentVariable ifTrue: [ ^ self nameVariable pointSize ].
+	self hasPredefinedFont ifTrue: [ ^ self obtainPredefinedFont pointSize ].
 
 	^ nil
 ]
@@ -180,7 +178,7 @@ SpFontStyle >> color: aColorOrSymbol [
 	color := aColorOrSymbol asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : #'accessing variables' }
 SpFontStyle >> colorVariable [
   "This is meant to set the text color.
 	This property can be expressed as 
@@ -237,7 +235,7 @@ SpFontStyle >> italic: aBoolean [
 	italic := aBoolean asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : #'accessing variables' }
 SpFontStyle >> italicVariable [
 
 	^ italic
@@ -271,7 +269,7 @@ SpFontStyle >> name: aString [
 	name := aString asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : #'accessing variables' }
 SpFontStyle >> nameVariable [
 
 	^ self toVariable: name
@@ -296,12 +294,6 @@ SpFontStyle >> predefinedFont: aSymbol [
 ]
 
 { #category : #accessing }
-SpFontStyle >> scaledSize [
-
-	^ self sizeVariable scaledValue
-]
-
-{ #category : #accessing }
 SpFontStyle >> size [
 
 	^ self sizeVariable value
@@ -313,7 +305,7 @@ SpFontStyle >> size: aNumber [
 	size := aNumber asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : #'accessing variables' }
 SpFontStyle >> sizeVariable [
 
 	^ size
@@ -325,7 +317,7 @@ SpFontStyle >> withCachedFontDo: aBlock [
 	self class fontCache 
 		detect: [ :each | 
 			each familyName = self name 
-				and: [ each pointSize = self scaledSize 
+				and: [ each pointSize = self size 
 				and: [ each isBold = self isBold
 				and: [ each isItalic = self isItalic ] ] ] ]
 		ifFound: aBlock

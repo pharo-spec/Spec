@@ -19,7 +19,7 @@ Class {
 { #category : #accessing }
 SpRequestDialog class >> defaultExtent [
 
-	^ 450@160
+	^ 400@140
 ]
 
 { #category : #specs }
@@ -28,13 +28,7 @@ SpRequestDialog class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		borderWidth: 5;
 		spacing: 5;
-		add: (SpBoxLayout newLeftToRight
-				vAlignCenter;
-				spacing: 5;
-				add: #image expand: false; 
-				add: #label;
-				yourself) 
-			expand: false;
+		add: #label expand: false;
 		add: #textInput expand: false;
 		yourself
 ]
@@ -45,7 +39,7 @@ SpRequestDialog class >> documentFactoryMethodSelector [
 	^ #newRequest
 ]
 
-{ #category : #examples }
+{ #category : #example }
 SpRequestDialog class >> example [
 
 	self new
@@ -58,11 +52,11 @@ SpRequestDialog class >> example [
 		openDialogWithSpec
 ]
 
-{ #category : #examples }
+{ #category : #example }
 SpRequestDialog class >> exampleModal [
-	| string |
+	| dialog |
 
-	string := self new
+	dialog := self new
 		title: 'Request modal example';
 		label: 'The meaning of life?';
 		text: 'I am tempted to say 42...';
@@ -70,8 +64,8 @@ SpRequestDialog class >> exampleModal [
 		cancelLabel: 'Cancel';
 		openModalWithSpec.
 		
-	string ifNotNil: [ 
-		self inform: string ]
+	dialog isOk ifTrue: [ 
+		self inform: dialog presenter text ]
 ]
 
 { #category : #visiting }
@@ -136,7 +130,6 @@ SpRequestDialog >> initializeDialogWindow: aDialogWindowPresenter [
 { #category : #initialization }
 SpRequestDialog >> initializePresenters [
 
-	image := self newImage image: self defaultIcon.
 	label := self newLabel.
 	textInput := self newTextInput
 ]
@@ -156,7 +149,7 @@ SpRequestDialog >> label: aString [
 	label label: aString
 ]
 
-{ #category : #'api - showing' }
+{ #category : #'api-showing' }
 SpRequestDialog >> openModalWithSpec [
 	| dialog |
 	

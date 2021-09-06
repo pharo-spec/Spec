@@ -1,10 +1,10 @@
 Class {
 	#name : #SpListAdapterMultipleSelectionTest,
 	#superclass : #SpAbstractListAdapterMultipleSelectionTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpListAdapterMultipleSelectionTest >> classToTest [
 	^ SpListPresenter
 ]

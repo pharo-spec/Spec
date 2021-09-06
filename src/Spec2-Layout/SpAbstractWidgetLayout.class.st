@@ -33,7 +33,6 @@ SpAbstractWidgetLayout class >> for: aSymbol [
 SpAbstractWidgetLayout >> adapt: aPresenter bindings: adapterBindings [
 	| adapter |
 	adapter := self adapterFor: aPresenter bindings: adapterBindings.
-	aPresenter adapter ifNotNil: [ :oldAdapter | oldAdapter unsubscribe ].
 	adapter adapt: aPresenter.
 	^ adapter
 ]
@@ -54,12 +53,6 @@ SpAbstractWidgetLayout >> adapterName [
 { #category : #accessing }
 SpAbstractWidgetLayout >> adapterName: anObject [
 	adapterName := anObject
-]
-
-{ #category : #accessing }
-SpAbstractWidgetLayout >> allPresenters [
-	
-	^ #()
 ]
 
 { #category : #accessing }

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'foreground'
 	],
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
 { #category : #comparing }

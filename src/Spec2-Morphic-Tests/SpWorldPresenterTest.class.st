@@ -32,12 +32,12 @@ SpWorldPresenterTest >> tearDown [
 { #category : #tests }
 SpWorldPresenterTest >> testOpenPresenterInWorldDisplayInFullWorld [
 	| buttonPresenter |
-	
 	buttonPresenter := (application newPresenter: SpButtonPresenter)
 		label: 'test'.
-	
-	(SpTestWorldPresenter presenter: buttonPresenter) open.
-	
+	application
+		open: buttonPresenter
+		withSpecLayout: buttonPresenter defaultSpec
+		using: SpTestWorldPresenter.
 	self currentWorld addMorph: worldMorph.
 	
 	self
@@ -51,7 +51,10 @@ SpWorldPresenterTest >> testOpenPresenterInWorldDisplayToolbarDoesNotHidePresent
 	windowPresenter := application
 		newPresenter: SpTestPresenterWithToolbar.
 		
-	(SpTestWorldPresenter presenter: windowPresenter) open.
+	application
+		open: windowPresenter
+		withSpecLayout: windowPresenter defaultSpec
+		using: SpTestWorldPresenter.
 		
 	worldPanel := worldMorph submorphs first.
 	self
@@ -68,8 +71,10 @@ SpWorldPresenterTest >> testOpenPresenterInWorldRemoveExisitingMorphsInWorld [
 	worldMorph addMorph: CircleMorph new.
 	buttonPresenter := (application newPresenter: SpButtonPresenter)
 		label: 'testOpenPresenterInWorldRemoveExisitingMorphsInWorld'. 
-	
-	(SpTestWorldPresenter presenter: buttonPresenter) open.
+	application
+		open: buttonPresenter
+		withSpecLayout: buttonPresenter defaultSpec
+		using: SpTestWorldPresenter.
 
 	self deny: (worldMorph submorphs anySatisfy: [ :morph | morph class = CircleMorph ]).
 	self assert: worldMorph submorphs size equals: 1.

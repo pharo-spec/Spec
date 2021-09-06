@@ -12,7 +12,7 @@ SpBrowseSubInstancesCommand class >> defaultDescription [
 	^ 'Browse all instances of the selected class and all its subclasses'
 ]
 
-{ #category : #default }
+{ #category : #accessing }
 SpBrowseSubInstancesCommand class >> shortName [
 
 	^ 'all subinstances'

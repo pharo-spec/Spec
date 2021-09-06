@@ -6,6 +6,7 @@ Class {
 	#superclass : #SpDialogPresenter,
 	#instVars : [
 		'label',
+		'image',
 		'title',
 		'initialExtent',
 		'acceptLabel'
@@ -22,7 +23,7 @@ SpInformDialog class >> defaultAcceptLabel [
 { #category : #accessing }
 SpInformDialog class >> defaultExtent [
 
-	^ 450@120
+	^ 400@100
 ]
 
 { #category : #specs }
@@ -32,7 +33,6 @@ SpInformDialog class >> defaultSpec [
 		borderWidth: 5;
 		spacing: 5;
 		add: (SpBoxLayout newLeftToRight
-			vAlignCenter;
 			spacing: 5;
 			add: #image expand: false;
 			add: #label;
@@ -46,7 +46,7 @@ SpInformDialog class >> documentFactoryMethodSelector [
 	^ #newInform
 ]
 
-{ #category : #examples }
+{ #category : #example }
 SpInformDialog class >> example [
 
 	self new
@@ -56,7 +56,7 @@ SpInformDialog class >> example [
 		openDialogWithSpec
 ]
 
-{ #category : #examples }
+{ #category : #example }
 SpInformDialog class >> exampleModal [
 
 	self new
@@ -76,12 +76,6 @@ SpInformDialog >> acceptLabel [
 SpInformDialog >> acceptLabel: aString [
 
 	acceptLabel := aString
-]
-
-{ #category : #accessing }
-SpInformDialog >> defaultIcon [
-
-	^ self application iconNamed: #info
 ]
 
 { #category : #api }
@@ -116,7 +110,7 @@ SpInformDialog >> initializeDialogWindow: aDialogWindowPresenter [
 { #category : #initialization }
 SpInformDialog >> initializePresenters [
 
-	image := self newImage image: self defaultIcon.
+	image := self newImage.
 	label := self newLabel
 ]
 

@@ -47,12 +47,6 @@ SpActionPort >> action: aBlock [
 ]
 
 { #category : #'handling transmission' }
-SpActionPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
-
-	self error: 'Should not arrive here'
-]
-
-{ #category : #'handling transmission' }
 SpActionPort >> incomingTransmission: anObject from: outPort [
 
 	self action 

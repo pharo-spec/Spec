@@ -19,7 +19,7 @@ SpLabelPort class >> portName [
 ]
 
 { #category : #'handling transmission' }
-SpLabelPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
+SpLabelPort >> incomingTransmission: anObject from: outPort [
 
-	aPresenter label: anObject
+	self destinationPresenter label: anObject
 ]

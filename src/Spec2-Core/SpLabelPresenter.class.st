@@ -7,7 +7,7 @@ Class {
 	#name : #SpLabelPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#label => ObservableSlot'
+		'#label => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -73,7 +73,7 @@ SpLabelPresenter >> localeChanged [
 		
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpLabelPresenter >> whenLabelChangedDo: aBlock [
 	"Inform when label property has changed. 
 	 `aBlock` has three optional arguments: 

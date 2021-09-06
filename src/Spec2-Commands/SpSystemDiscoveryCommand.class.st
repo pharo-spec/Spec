@@ -7,7 +7,7 @@ Class {
 	#category : #'Spec2-Commands-Navigation'
 }
 
-{ #category : #default }
+{ #category : #defaults }
 SpSystemDiscoveryCommand class >> defaultIconName [
 	^ #smallObjects
 ]

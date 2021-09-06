@@ -64,11 +64,68 @@ SpApplicationTest >> testOpenDialogWindowAddsItToWindowCollection [
 ]
 
 { #category : #tests }
+SpApplicationTest >> testOpenDialogWindowWithDifferentApplicationDoesNotAddItToWindowCollection [
+	| secondApplication presenterInSecondApplication windowsBefore |
+
+	secondApplication := SpApplication new.
+	presenterInSecondApplication := secondApplication newPresenter: SpButtonPresenter.
+
+	windowsBefore := application windows copy.
+
+	self
+		should: [ application openDialog: presenterInSecondApplication ]
+		raise: SpInvalidApplicationError.
+		
+	self assert: application windows equals: windowsBefore
+]
+
+{ #category : #tests }
+SpApplicationTest >> testOpenDialogWindowWithDifferentApplicationShouldFail [
+	| secondApplication presenterInSecondApplication |
+
+	secondApplication := SpApplication new.
+	presenterInSecondApplication := secondApplication newPresenter: SpButtonPresenter.
+
+	self
+		should: [ application openDialog: presenterInSecondApplication ]
+		raise: SpInvalidApplicationError
+]
+
+{ #category : #tests }
 SpApplicationTest >> testOpenWindowAddsItToWindowCollection [
 	| window |
 	window := (application newPresenter: SpButtonPresenter) openWithSpec.
 	
 	self assert: (application windows includes: window)
+]
+
+{ #category : #tests }
+SpApplicationTest >> testOpenWindowWithDifferentApplicationDoesNotAddItToWindowCollection [
+	| secondApplication presenterInSecondApplication windowsBefore |
+
+	secondApplication := SpApplication new.
+	presenterInSecondApplication := secondApplication newPresenter: SpButtonPresenter.
+
+	windowsBefore := application windows copy.
+
+	self should: [
+		application 
+			open: presenterInSecondApplication
+			withSpecLayout: SpButtonPresenter defaultSpec ] raise: SpInvalidApplicationError.
+		
+	self assert: application windows equals: windowsBefore
+]
+
+{ #category : #tests }
+SpApplicationTest >> testOpenWindowWithDifferentApplicationShouldFail [
+	| secondApplication presenterInSecondApplication |
+
+	secondApplication := SpApplication new.
+	presenterInSecondApplication := secondApplication newPresenter: SpButtonPresenter.
+
+	self
+		should: [ application open: presenterInSecondApplication ]
+		raise: SpInvalidApplicationError
 ]
 
 { #category : #tests }

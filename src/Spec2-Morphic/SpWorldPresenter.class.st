@@ -67,7 +67,7 @@ SpWorldPresenter >> openWithSpec: aSpec [
 	self updateTitle
 ]
 
-{ #category : #'private - showing' }
+{ #category : #private }
 SpWorldPresenter >> openWithSpecLayout: aSpec [
 
 	self buildWithSpecLayout: aSpec.

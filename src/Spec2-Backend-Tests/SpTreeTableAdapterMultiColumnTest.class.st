@@ -1,16 +1,16 @@
 Class {
 	#name : #SpTreeTableAdapterMultiColumnTest,
 	#superclass : #SpAbstractTreeTableAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
-{ #category : #initialization }
+{ #category : #running }
 SpTreeTableAdapterMultiColumnTest >> initializeTestedInstance [
 	super initializeTestedInstance.
 	presenter addColumn: (SpImageTableColumn title: 'Icon' evaluated: [ :x | self iconNamed: #add ])
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpTreeTableAdapterMultiColumnTest >> testAddingColumnUpdatesWidget [
 
 	self presenter addColumn: (SpStringTableColumn title: 'Value' evaluated: #printString).

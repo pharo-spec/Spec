@@ -1,13 +1,13 @@
 Class {
 	#name : #SpMockMenu,
 	#superclass : #Object,
-	#traits : 'TObservable',
-	#classTraits : 'TObservable classTrait',
+	#traits : 'SpTObservable',
+	#classTraits : 'SpTObservable classTrait',
 	#instVars : [
 		'#realMenu',
-		'#shown => ObservableSlot'
+		'#shown => SpObservableSlot'
 	],
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
 { #category : #initialization }

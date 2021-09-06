@@ -22,17 +22,17 @@ SpMorphicAdapterTest class >> testParameters [
 		addOptions: { [ SpInitializationStrategy beforeTest ]. [ SpInitializationStrategy afterTest ] }
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 SpMorphicAdapterTest >> adapter [
 
 	^ presenter adapter
 ]
 
-{ #category : #initialization }
+{ #category : #running }
 SpMorphicAdapterTest >> initializeTestedInstance [
 ]
 
-{ #category : #utilities }
+{ #category : #running }
 SpMorphicAdapterTest >> openInstance [
 
 	window ifNil: [ window := presenter openWithSpec ].
@@ -70,7 +70,7 @@ SpMorphicAdapterTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 SpMorphicAdapterTest >> widget [
 
 	"Force opening the spec instance here.

@@ -18,10 +18,10 @@ SpTextChangedPort class >> portName [
 ]
 
 { #category : #attaching }
-SpTextChangedPort >> attachTransmission: aTransmission to: aPresenter [
+SpTextChangedPort >> attachTransmission: aTransmission [
 
-	aPresenter whenTextChangedDo: [ :aString | 
+	self destinationPresenter whenTextChangedDo: [ :aString | 
 		self 
 			transmitWith: aTransmission 
-			value: (self applyTransform: aString) ]
+			value: aString ]
 ]

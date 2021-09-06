@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Code-Tests'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpCodePresenterTest >> classToTest [
 
 	^ SpCodePresenter
@@ -64,7 +64,7 @@ SpCodePresenterTest >> testContextMenu [
 	self assert: changed
 ]
 
-{ #category : #'tests - commands' }
+{ #category : #'tests commands' }
 SpCodePresenterTest >> testDoBrowseClass [
 	| navigation |
 	
@@ -99,7 +99,7 @@ SpCodePresenterTest >> testDoBrowseClass [
 	self assert: navigation browseClass equals: SpCodePresenterTest.
 ]
 
-{ #category : #'tests - commands' }
+{ #category : #'tests commands' }
 SpCodePresenterTest >> testDoBrowseClassNotFound [
 	| navigation |
 	
@@ -117,7 +117,7 @@ SpCodePresenterTest >> testDoBrowseClassNotFound [
 	self assert: navigation messageList isNil
 ]
 
-{ #category : #'tests - commands' }
+{ #category : #'tests commands' }
 SpCodePresenterTest >> testDoBrowseClassReferences [
 	| navigation |
 	
@@ -134,7 +134,7 @@ SpCodePresenterTest >> testDoBrowseClassReferences [
 	self assert: navigation messageList notEmpty
 ]
 
-{ #category : #'tests - commands' }
+{ #category : #'tests commands' }
 SpCodePresenterTest >> testDoBrowseHierarchy [
 	| navigation |
 	
@@ -150,7 +150,7 @@ SpCodePresenterTest >> testDoBrowseHierarchy [
 	self assert: navigation browseClass equals: SpCodePresenterTest
 ]
 
-{ #category : #'tests - commands' }
+{ #category : #'tests commands' }
 SpCodePresenterTest >> testDoBrowseImplementors [
 	| navigation |
 	
@@ -166,7 +166,7 @@ SpCodePresenterTest >> testDoBrowseImplementors [
 		equals: { SpCodePresenterTest>>#testDoBrowseImplementors }
 ]
 
-{ #category : #'tests - commands' }
+{ #category : #'tests commands' }
 SpCodePresenterTest >> testDoBrowseMethodReferences [
 	| navigation |
 	
@@ -187,7 +187,7 @@ SpCodePresenterTest >> testDoBrowseMethodReferences [
 	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseMethodReferences)
 ]
 
-{ #category : #'tests - commands' }
+{ #category : #'tests commands' }
 SpCodePresenterTest >> testDoBrowseMethodsContainingString [
 	| navigation |
 	
@@ -206,68 +206,7 @@ SpCodePresenterTest >> testDoBrowseMethodsContainingString [
 	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseMethodsContainingString)
 ]
 
-{ #category : #'tests - commands' }
-SpCodePresenterTest >> testDoBrowseMethodsMatchingStringInsensitive [
-	| navigation |
-	
-	navigation := SpCodeSystemNavigationMock new.
-	presenter systemNavigation: navigation.
-	self openInstance.
-	
-	"Restrict environment to make things faster"
-	presenter environment: (SystemDictionary new 
-		at: #SpCodePresenterTest put: SpCodePresenterTest;
-		yourself).
-		
-	"no matter what I put, it will find it in this method"
-	"First find it even if is not same case (case insensitive)"
-	presenter text: 'MatchTextToFind' asLowercase. 
-	presenter doBrowseMethodsMatchingStringInsensitive.
-	
-	self assert: navigation messageList notEmpty.
-	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseMethodsMatchingStringSensitive).
-	
-	"Now find it matching if sensitive"
-	navigation reset.
-	presenter text: 'MatchTextToFind'. 
-	presenter doBrowseMethodsMatchingStringSensitive.
-	
-	self assert: navigation messageList notEmpty.
-	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseMethodsMatchingStringSensitive).
-	
-]
-
-{ #category : #'tests - commands' }
-SpCodePresenterTest >> testDoBrowseMethodsMatchingStringSensitive [
-	| navigation |
-	
-	navigation := SpCodeSystemNavigationMock new.
-	presenter systemNavigation: navigation.
-	self openInstance.
-	
-	"Restrict environment to make things faster"
-	presenter environment: (SystemDictionary new 
-		at: #SpCodePresenterTest put: SpCodePresenterTest;
-		yourself).
-		
-	"no matter what I put, it will find it in this method"
-	"First do not find it (case sensitive)"
-	presenter text: 'MatchTextToFind' asLowercase. 
-	presenter doBrowseMethodsMatchingStringSensitive.
-	
-	self assert: navigation messageList isEmpty.
-	
-	"Now find it"
-	navigation reset.
-	presenter text: 'MatchTextToFind'. 
-	presenter doBrowseMethodsMatchingStringSensitive.
-	
-	self assert: navigation messageList notEmpty.
-	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseMethodsMatchingStringSensitive).
-	
-]
-
-{ #category : #'tests - commands' }
+{ #category : #'tests commands' }
 SpCodePresenterTest >> testDoBrowseSenders [
 	| navigation |
 	
@@ -282,7 +221,7 @@ SpCodePresenterTest >> testDoBrowseSenders [
 	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseSenders)
 ]
 
-{ #category : #'tests - command support' }
+{ #category : #'tests command support' }
 SpCodePresenterTest >> testEnvironment [
 	| environment navigation |
 	
@@ -311,7 +250,7 @@ SpCodePresenterTest >> testEnvironment [
 
 ]
 
-{ #category : #'tests - command support' }
+{ #category : #'tests command support' }
 SpCodePresenterTest >> testEvaluateOnCompileErrorOnError [
 
 	self 
@@ -357,7 +296,7 @@ SpCodePresenterTest >> testNilTestSelectedSelectorDoesNotBreakExecution [
 	self assert: selector isNil.
 ]
 
-{ #category : #'tests - command support' }
+{ #category : #'tests command support' }
 SpCodePresenterTest >> testSelectedSelector [
 
 	"Testing border cases to avoid breaking execution. The selector extraction logic should be tested in the extractor class"
@@ -390,7 +329,7 @@ SpCodePresenterTest >> testSelectedSelector [
 	self assert: selector equals: #noMethod"
 ]
 
-{ #category : #'tests - command support' }
+{ #category : #'tests command support' }
 SpCodePresenterTest >> testSelectedSelectorWithPointerAtEnd [
 	"Testing border cases to avoid breaking execution. The selector extraction logic should be tested in the extractor class"
 	| selector string |

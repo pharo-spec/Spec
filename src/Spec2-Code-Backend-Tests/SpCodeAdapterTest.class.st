@@ -73,7 +73,7 @@ SpCodeAdapterTest >> testTextWithStyle [
 
 	presenter 
 		beForObject: Object;
-		text: 'self asString.'.
+		type: 'self asString.'.
 	
 	text := self adapter textWithStyle.
 	self assertText: text atInterval: "self" (1 to: 4) isStyle: #self.

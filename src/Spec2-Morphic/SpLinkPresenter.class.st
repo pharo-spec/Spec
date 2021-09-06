@@ -8,8 +8,8 @@ Class {
 	#name : #SpLinkPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#label => ObservableSlot',
-		'#action => ObservableSlot'
+		'#label => SpObservableSlot',
+		'#action => SpObservableSlot'
 	],
 	#category : #'Spec2-Morphic-Widgets'
 }
@@ -91,7 +91,7 @@ SpLinkPresenter >> url: aString [
 	self label ifNil: [ self label: aString ]
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpLinkPresenter >> whenActionChangedDo: aBlock [
 	"Inform when action has changed. 
 	 `aBlock` has three optional arguments: 
@@ -102,7 +102,7 @@ SpLinkPresenter >> whenActionChangedDo: aBlock [
 	self property: #action whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpLinkPresenter >> whenLabelChangedDo: aBlock [
 	"Inform when label state has changed. 
 	 `aBlock` has three optional arguments: 
@@ -113,7 +113,7 @@ SpLinkPresenter >> whenLabelChangedDo: aBlock [
 	self property: #label whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpLinkPresenter >> whenUrlChangedDo: aBlock [
 	"Inform when label state has changed. 
 	 `aBlock` has three optional arguments: 

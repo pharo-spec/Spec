@@ -9,10 +9,10 @@ Class {
 	#name : #SpRichTextPresenter,
 	#superclass : #SpTextPresenter,
 	#instVars : [
-		'#textStyler => ObservableSlot',
+		'#textStyler => SpObservableSlot',
 		'#model'
 	],
-	#category : #'Spec2-RichText'
+	#category : #'Spec2-Core-Widgets-Text'
 }
 
 { #category : #specs }
@@ -64,7 +64,7 @@ SpRichTextPresenter >> model [
 	^  model
 ]
 
-{ #category : #accessing }
+{ #category : #'as yet unclassified' }
 SpRichTextPresenter >> plaintext [ 
 
 	^ nil
@@ -98,7 +98,7 @@ SpRichTextPresenter >> textStyler: aTextStyler [
 	textStyler := aTextStyler
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpRichTextPresenter >> whenTextStylerChangedDo: aBlock [
 
 	self property: #textStyler whenChangedDo: aBlock

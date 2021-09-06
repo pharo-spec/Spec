@@ -8,6 +8,7 @@ Class {
 	#superclass : #SpDialogPresenter,
 	#instVars : [
 		'label',
+		'image',
 		'title',
 		'initialExtent',
 		'acceptLabel',
@@ -31,7 +32,7 @@ SpConfirmDialog class >> defaultCancelLabel [
 { #category : #accessing }
 SpConfirmDialog class >> defaultExtent [
 
-	^ 450@120
+	^ 400@100
 ]
 
 { #category : #specs }
@@ -42,7 +43,6 @@ SpConfirmDialog class >> defaultSpec [
 		spacing: 5;
 		add: (SpBoxLayout newLeftToRight
 			spacing: 5;
-			vAlignCenter;
 			add: #image expand: false;
 			add: #label;
 			yourself);
@@ -55,7 +55,7 @@ SpConfirmDialog class >> documentFactoryMethodSelector [
 	^ #newConfirm
 ]
 
-{ #category : #examples }
+{ #category : #example }
 SpConfirmDialog class >> example [
 
 	^ self new
@@ -69,18 +69,18 @@ SpConfirmDialog class >> example [
 		openDialogWithSpec
 ]
 
-{ #category : #examples }
+{ #category : #example }
 SpConfirmDialog class >> exampleModal [
-	| ok |
+	| dialog |
 
-	ok := self new
+	dialog := self new
 		title: 'Confirm modal example';
 		label: 'Are you sure?';
 		acceptLabel: 'Sure!';
 		cancelLabel: 'No, forget it';
 		openModalWithSpec.
 	
-	self inform: (ok 
+	self inform: (dialog isOk 
 		ifTrue: [ 'Yes!' ]
 		ifFalse: [ 'No!' ])
 ]
@@ -141,7 +141,7 @@ SpConfirmDialog >> initializeDialogWindow: aDialogWindowPresenter [
 { #category : #initialization }
 SpConfirmDialog >> initializePresenters [
 
-	image := self newImage image: self defaultIcon.
+	image := self newImage.
 	label := self newLabel
 	
 ]
@@ -160,7 +160,7 @@ SpConfirmDialog >> label: aString [
 	label label: aString
 ]
 
-{ #category : #'api - showing' }
+{ #category : #'api-showing' }
 SpConfirmDialog >> openModalWithSpec [
 	| dialog |
 	

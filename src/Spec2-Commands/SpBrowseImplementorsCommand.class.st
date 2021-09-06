@@ -12,12 +12,6 @@ SpBrowseImplementorsCommand class >> defaultDescription [
 	^ 'Browse all implementors of the selected method or message'
 ]
 
-{ #category : #accessing }
-SpBrowseImplementorsCommand class >> defaultName [
-
-	^ 'Implementors of it'
-]
-
 { #category : #default }
 SpBrowseImplementorsCommand class >> defaultShortcutKey [
 

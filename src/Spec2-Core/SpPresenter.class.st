@@ -87,19 +87,18 @@ Class {
 	#name : #SpPresenter,
 	#superclass : #SpAbstractPresenter,
 	#traits : 'SpTPresenterBuilder',
-	#classTraits : 'SpTPresenterBuilder classTrait',
 	#instVars : [
 		'#application',
 		'#focusOrder',
-		'#contextKeyBindings => ObservableSlot',
-		'#windowIcon => ObservableSlot',
-		'#aboutText => ObservableSlot',
-		'#askOkToClose => ObservableSlot',
-		'#titleHolder => ObservableSlot',
+		'#contextKeyBindings => SpObservableSlot',
+		'#windowIcon => SpObservableSlot',
+		'#aboutText => SpObservableSlot',
+		'#askOkToClose => SpObservableSlot',
+		'#titleHolder => SpObservableSlot',
 		'#additionalSubpresentersMap',
-		'#layout => ObservableSlot',
-		'#visible => ObservableSlot',
-		'#extent => ObservableSlot',
+		'#layout => SpObservableSlot',
+		'#visible => SpObservableSlot',
+		'#extent => SpObservableSlot',
 		'#styles'
 	],
 	#category : #'Spec2-Core-Base'
@@ -122,7 +121,7 @@ SpPresenter class >> iconNamed: aSymbol [
 	^ Smalltalk ui icons iconNamed: aSymbol
 ]
 
-{ #category : #'labeled-presenters' }
+{ #category : #'labelled-presenters' }
 SpPresenter class >> iconWidth [
 	^ 24
 ]
@@ -132,7 +131,7 @@ SpPresenter class >> isAbstract [
 	^ self = SpPresenter
 ]
 
-{ #category : #'labeled-presenters' }
+{ #category : #'labelled-presenters' }
 SpPresenter class >> labelWidth [
 	^ 100
 ]
@@ -256,20 +255,24 @@ SpPresenter >> additionalSubpresentersMap [
 	^ additionalSubpresentersMap ifNil: [ additionalSubpresentersMap := Dictionary new ]
 ]
 
-{ #category : #'private - traversing' }
+{ #category : #'private-traversing' }
 SpPresenter >> allPresenters [
+	| allPresenters |
 
-	^ Array streamContents: [ :stream |
-		self traversePresentersDo: [ :each | 
-			stream << each ] ]
+	allPresenters := OrderedCollection new.
+	self traversePresentersDo: [ :each | 
+		allPresenters add: each ].
+	^ allPresenters
 ]
 
 { #category : #private }
 SpPresenter >> allPresentersInFocusOrder [
+	| allPresenters |
 
-	^ Array streamContents: [ :stream |
-		self traverseInFocusOrderDo: [ :each |
-			stream << each  ] ]
+	allPresenters := OrderedCollection new.
+	self traverseInFocusOrderDo: [ :each |
+		allPresenters add: each  ].
+	^ allPresenters
 ]
 
 { #category : #api }
@@ -278,7 +281,7 @@ SpPresenter >> announce: anAnnouncement [
 	self announcer announce: anAnnouncement
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpPresenter >> announceDisplayed [
 	"When using a VersatileDialogPresenter the adapter is nil.
 	We do not know if that is a correct behaviour"
@@ -311,28 +314,20 @@ SpPresenter >> application: anApplication [
 	application := anApplication
 ]
 
-{ #category : #private }
-SpPresenter >> applyKeyBindingsFromMenu: aMenuPresenter [
-	"traverses aMenuPresenter and bind shortcuts associated "
+{ #category : #TOREMOVE }
+SpPresenter >> applyMenuModel: aMenuModel [
 
-	aMenuPresenter menuGroups do: [ :group |
+	aMenuModel menuGroups do: [ :group |
 		group menuItems do: [ :item |
 			item shortcut ifNotNil: [ :shortcut | 
 				self 
 					bindKeyCombination: shortcut 
 					toAction: [ item performMenuActionWith: #() ] ].
-			item subMenu ifNotNil: [ :subMenu | subMenu addKeybindingsTo: self	] ] ]
+			item subMenu ifNotNil: [ :subMenu | subMenu applyTo: self	] ] ]
 ]
 
 { #category : #converting }
 SpPresenter >> asPresenter [
-	"This allows to use presenter instances inside layouts directly"
-
-	^ self
-]
-
-{ #category : #converting }
-SpPresenter >> asPresenterOn: aPresenter [
 	"This allows to use presenter instances inside layouts directly"
 
 	^ self
@@ -351,7 +346,7 @@ SpPresenter >> askOkToClose [
 	^ askOkToClose
 ]
 
-{ #category : #'private - building' }
+{ #category : #'private building' }
 SpPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 
 	layout == aSpecLayout 
@@ -359,7 +354,7 @@ SpPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	^ super basicBuildAdapterWithSpecLayout: aSpecLayout
 ]
 
-{ #category : #'api - shortcuts' }
+{ #category : #'api-shortcuts' }
 SpPresenter >> bindKeyCombination: aShortcut toAction: aBlock [
 
 	contextKeyBindings ifNil: [ contextKeyBindings := KMCategory new ].
@@ -377,14 +372,14 @@ SpPresenter >> canTakeKeyboardFocus [
 	^ true
 ]
 
-{ #category : #'api - window' }
+{ #category : #'api-window' }
 SpPresenter >> cancelled [
 	self flag: #TODO. "just for dialogs... I wonder if we need it here?"
 
 	self withWindowDo: #cancelled
 ]
 
-{ #category : #'api - window' }
+{ #category : #'api-window' }
 SpPresenter >> centered [
 
 	self withWindowDo: #centered
@@ -395,7 +390,7 @@ SpPresenter >> connectPresenters [
 	"The method connectPresenters defines the interactions between the dif- ferent widgets. By connecting the behaviors of the different widgets it speci- fies the overall presentation, i.e., how the overall UI responds to interactions by the user. Usually this method consists of specifications of actions to per- form when a certain event is received by a widget. The whole interaction flow of the UI then emerges from the propagation of those events."
 ]
 
-{ #category : #'api - shortcuts' }
+{ #category : #'api-shortcuts' }
 SpPresenter >> contextKeyBindings [
 	"contextKeyBindings stores a KMCategory with keybindings for this presenter"
 
@@ -404,7 +399,7 @@ SpPresenter >> contextKeyBindings [
 	^ contextKeyBindings
 ]
 
-{ #category : #'api - shortcuts' }
+{ #category : #'api-shortcuts' }
 SpPresenter >> contextKeyBindings: aKMCategory [
 
 	contextKeyBindings := aKMCategory
@@ -419,7 +414,7 @@ SpPresenter >> createInstanceFor: aClassSymbol [
 	^ self instantiate: class.
 ]
 
-{ #category : #'api - focus' }
+{ #category : #'api-focus' }
 SpPresenter >> defaultKeyboardFocus [
 	"Override this to allow the presenter to re-define the one that will answer the 
 	 takeKeyboardFocus call in composed presenters"
@@ -431,6 +426,12 @@ SpPresenter >> defaultKeyboardFocus [
 SpPresenter >> defaultSpec [
 
 	^ self class perform: self defaultSpecSelector
+]
+
+{ #category : #'api-showing' }
+SpPresenter >> defaultWindowPresenterClass [
+
+	^ SpWindowPresenter
 ]
 
 { #category : #accessing }
@@ -473,13 +474,13 @@ SpPresenter >> focusOrder: anObject [
 	^ focusOrder := anObject
 ]
 
-{ #category : #'inspector-extensions' }
+{ #category : #'inspector-Extensions' }
 SpPresenter >> gtInspectorPreviewIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	self adapter ifNotNil: [ :w | w gtInspectorPreviewIn: composite ]
 ]
 
-{ #category : #'inspector-extensions' }
+{ #category : #'inspector-Extensions' }
 SpPresenter >> gtInspectorSubPresentersIn: composite [
 	<gtInspectorPresentationOrder: 20>
 	composite tree
@@ -490,7 +491,7 @@ SpPresenter >> gtInspectorSubPresentersIn: composite [
 		when: [ :each | each presenters isNotEmpty ]
 ]
 
-{ #category : #'api - focus' }
+{ #category : #'api-focus' }
 SpPresenter >> hasKeyboardFocus [
 
 	self canTakeKeyboardFocus ifFalse: [ ^ false ].
@@ -560,24 +561,20 @@ SpPresenter >> initializePresenters [
 	"self subclassResponsibility"
 ]
 
-{ #category : #'private - initialization' }
+{ #category : #'initialization - private' }
 SpPresenter >> initializePrivateAnnouncements [
 
-	self 
-		property: #titleHolder 
-		whenChangedDo: [ self withWindowDo: [ :w | w title: titleHolder ] ].
-	self 
-		property: #layout 
-		whenChangedDo: [ :newLayout | self replaceLayoutWith: newLayout ]
+	self property: #titleHolder whenChangedDo: [ self updateTitle ].
+	self property: #layout whenChangedDo: [ :newLayout | self replaceLayoutWith: newLayout ]
 ]
 
-{ #category : #'private - initialization' }
+{ #category : #'initialization - private' }
 SpPresenter >> initializePrivateAnnouncer [
 
   announcer := Announcer new
 ]
 
-{ #category : #'private - initialization' }
+{ #category : #'initialization - private' }
 SpPresenter >> initializePrivateHooks [
 	self flag: #todo. "We should remove later #initializeWidgets and #initializePresenter."
 	self initializeWidgets.
@@ -588,7 +585,7 @@ SpPresenter >> initializePrivateHooks [
 
 ]
 
-{ #category : #'private - initialization' }
+{ #category : #'initialization - private' }
 SpPresenter >> initializePrivateValueHolders [
 
 	askOkToClose := false.
@@ -615,7 +612,7 @@ SpPresenter >> initializeWindow: aWindowPresenter [
 		windowIcon: self windowIcon
 ]
 
-{ #category : #'inspector-extensions' }
+{ #category : #'inspector-Extensions' }
 SpPresenter >> inspectionSubPresenters [
 	<inspectorPresentationOrder: 910 title: 'Subpresenters'>
 	
@@ -626,7 +623,7 @@ SpPresenter >> inspectionSubPresenters [
 		yourself
 ]
 
-{ #category : #'inspector-extensions' }
+{ #category : #'inspector-Extensions' }
 SpPresenter >> inspectionSubPresentersContext: aContext [
 	
 	aContext active: self presenters notEmpty
@@ -695,7 +692,7 @@ SpPresenter >> layoutPresenters [
 
 	layout ifNil: [ ^ self presenters ].
 	
-	^ layout allPresenters
+	^ layout deepPresenters
 		select: [ :each | each isSymbol or: [ each isPresenter ] ]
 		thenCollect: [ :each | 
 			each isPresenter 
@@ -716,6 +713,15 @@ SpPresenter >> localeChanged [
 	
 ]
 
+{ #category : #TOREMOVE }
+SpPresenter >> neglectMenuModel: aMenuModel [
+
+	aMenuModel menuGroups do: [ :group |
+		group menuItems do: [ :item |
+			item shortcut ifNotNil: [ :shortcut | self removeKeyCombination: shortcut ].
+			item subMenu ifNotNil: [ :subMenu | subMenu neglect: self	] ] ]
+]
+
 { #category : #private }
 SpPresenter >> okToChange [
 
@@ -724,7 +730,7 @@ SpPresenter >> okToChange [
 		ifFalse: [ true ] 
 ]
 
-{ #category : #'api - announcements' }
+{ #category : #'api-announcements' }
 SpPresenter >> on: anAnnouncement send: aSelector to: aTarget [
 
 	self announcer
@@ -749,20 +755,25 @@ SpPresenter >> presenterAt: aName ifAbsent: aBlock [
 		do: aBlock
 ]
 
-{ #category : #'private - traversing' }
+{ #category : #'private-traversing' }
 SpPresenter >> presenters [
+	| presenters |
 
-	^ Array streamContents: [ :stream |
-		self presentersDo: [ :each | 
-			stream << each ] ]
+	presenters := OrderedCollection new.
+	self presentersDo: [ :each | 
+		presenters add: each ].
+	^ presenters
 ]
 
-{ #category : #'private - traversing' }
+{ #category : #'private-traversing' }
 SpPresenter >> presentersDo: aBlock [
 
-	self layout ifNil: [ ^ self ].
-	self layout allPresenters do: [ :each |
-		aBlock value: (each asPresenterOn: self) ]
+	self class allSlots 
+		reject: [ :each | each name = #owner ] 
+		thenDo: [ :each | | var |
+			var := self readSlot: each.
+			(var isKindOf: SpAbstractPresenter) ifTrue: [ 
+				aBlock value: var ] ]
 ]
 
 { #category : #private }
@@ -779,7 +790,7 @@ SpPresenter >> rebuildLayout [
 	self replaceLayoutWith: self layout
 ]
 
-{ #category : #'api - shortcuts' }
+{ #category : #'api-shortcuts' }
 SpPresenter >> removeKeyCombination: aShortcut [
 
 	self contextKeyBindings removeKey: aShortcut ifAbsent: [ ^ self ].
@@ -802,7 +813,7 @@ SpPresenter >> replaceLayoutWith: aLayout [
 		anAdapter replaceLayoutWith: aLayout ]
 ]
 
-{ #category : #'api - window' }
+{ #category : #'api-window' }
 SpPresenter >> requestWindowClose [
 
 	"returns <true> if the user is allowed to close the window. Useful if you want to ask user if he wants to save the changed content etc."
@@ -823,13 +834,13 @@ SpPresenter >> retrieveSpec: aSelector [
 	^ super retrieveSpec: aSelector
 ]
 
-{ #category : #'accessing - model' }
+{ #category : #'accessing model' }
 SpPresenter >> setModel: aDomainObject [
 
 
 ]
 
-{ #category : #'accessing - model' }
+{ #category : #'accessing model' }
 SpPresenter >> setModelBeforeInitialization: aDomainObject [
 
 
@@ -847,7 +858,7 @@ SpPresenter >> styles [
 	^ styles
 ]
 
-{ #category : #'api - focus' }
+{ #category : #'api-focus' }
 SpPresenter >> takeKeyboardFocus [
 	| focus |
 
@@ -877,7 +888,7 @@ SpPresenter >> toolName [
 	^ self class toolName
 ]
 
-{ #category : #'private - traversing' }
+{ #category : #'private-traversing' }
 SpPresenter >> traverseInFocusOrderDo: aBlock [
 
 	self 
@@ -885,17 +896,18 @@ SpPresenter >> traverseInFocusOrderDo: aBlock [
 		excluding: Set new
 ]
 
-{ #category : #'private - traversing' }
+{ #category : #'private-traversing' }
 SpPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
 	"(excludes includes: self) ifTrue: [ ^ self ]. 
 	excludes add: self.
 	aBlock value: self."
+
 	self presentersInFocusOrder do: [ :each |
 		each traverseInFocusOrderDo: aBlock excluding: excludes ]
 ]
 
-{ #category : #'private - traversing' }
+{ #category : #'private-traversing' }
 SpPresenter >> traversePresentersDo: aBlock [
 
 	self 
@@ -903,17 +915,17 @@ SpPresenter >> traversePresentersDo: aBlock [
 		excluding: Set new
 ]
 
-{ #category : #'private - traversing' }
+{ #category : #'private-traversing' }
 SpPresenter >> traversePresentersDo: aBlock excluding: excludes [
 
 	(excludes includes: self) ifTrue: [ ^ self ]. 
 	excludes add: self.
 	aBlock value: self.
 
-	self layout ifNil: [ ^ self ].
-	self layout allPresenters do: [ :each | | var |
-		var := each asPresenterOn: self. 
-		var traversePresentersDo: aBlock excluding: excludes ]
+	self class allSlots do: [ :each | | var |
+		var := self readSlot: each.
+		(var isKindOf: SpAbstractPresenter) ifTrue: [ 
+			var traversePresentersDo: aBlock excluding: excludes ] ]
 ]
 
 { #category : #updating }
@@ -931,25 +943,25 @@ SpPresenter >> visibleIf: aValuable [
 	visible := aValuable
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpPresenter >> whenContextKeyBindingsChangedDo: aBlock [
 	
 	self property: #contextKeyBindings whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpPresenter >> whenDisplayDo: aBlock [
 
 	self announcer when: SpWidgetDisplayed do: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpPresenter >> whenVisibleChangedDo: aBlock [
 	
 	self property: #visible whenChangedDo: aBlock
 ]
 
-{ #category : #'api - window' }
+{ #category : #'api-window' }
 SpPresenter >> whenWindowChanged: aBlock [
 
 	self flag: #TODO. "This is here for backwards compatibility (you can have same 

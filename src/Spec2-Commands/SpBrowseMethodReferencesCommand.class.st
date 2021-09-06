@@ -13,20 +13,6 @@ SpBrowseMethodReferencesCommand class >> defaultDescription [
 ]
 
 { #category : #default }
-SpBrowseMethodReferencesCommand class >> defaultName [ 
-
-	^ 'References to it'
-]
-
-{ #category : #default }
-SpBrowseMethodReferencesCommand class >> defaultShortcutKey [
-
-	^ $n command shift mac 
-		| $n control shift win
-		| $n control shift unix
-]
-
-{ #category : #default }
 SpBrowseMethodReferencesCommand class >> shortName [
 
 	^ 'references'

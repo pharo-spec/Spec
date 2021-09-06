@@ -8,7 +8,7 @@ Class {
 	#category : #'Spec2-Core-Widgets-Table'
 }
 
-{ #category : #examples }
+{ #category : #example }
 SpGeneratorListModel class >> example [
 	| items generator |
 

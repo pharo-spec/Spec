@@ -7,13 +7,13 @@ An important member is `SpNotebookPage>>#presenterProvider`, which contains a bl
 Class {
 	#name : #SpNotebookPage,
 	#superclass : #Object,
-	#traits : 'TObservable',
-	#classTraits : 'TObservable classTrait',
+	#traits : 'SpTObservable',
+	#classTraits : 'SpTObservable classTrait',
 	#instVars : [
 		'#owner',
-		'#title => ObservableSlot',
-		'#icon => ObservableSlot',
-		'#layoutSpec => ObservableSlot',
+		'#title => SpObservableSlot',
+		'#icon => SpObservableSlot',
+		'#layoutSpec => SpObservableSlot',
 		'#closeable',
 		'#presenterProvider',
 		'#retrievedBlock',
@@ -234,7 +234,7 @@ SpNotebookPage >> title: aString [
 	title := aString
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpNotebookPage >> whenRetrievedDo: aBlock [ 
 	"Inform when a page has been retrived, allowing extra settings.
 	 `aBlock` is a block with one orgument (the presenter retrieved)"

@@ -6,7 +6,7 @@ Class {
 	#instVars : [
 		'app'
 	],
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
 { #category : #asserting }

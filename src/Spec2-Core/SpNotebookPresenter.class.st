@@ -7,7 +7,7 @@ Class {
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
 		'#pagesHolder',
-		'#selectedPage => ObservableSlot'
+		'#selectedPage => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Tab'
 }
@@ -107,7 +107,7 @@ SpNotebookPresenter >> removePageAt: anIndex [
 SpNotebookPresenter >> resetAllPageContents [
 	"Resets all page contents, forcing a refresh next time a page is selected."
 
-	self pages do: [ :each | each resetContent ]
+	self pages do: #resetContent
 ]
 
 { #category : #api }
@@ -143,7 +143,7 @@ SpNotebookPresenter >> selectedPageIndex [
 	^ self pages indexOf: page
 ]
 
-{ #category : #'private - traversing' }
+{ #category : #'private-traversing' }
 SpNotebookPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
 	excludes add: self.
@@ -161,7 +161,7 @@ SpNotebookPresenter >> updatePageContent: aPage [
 	self changed: #updatePageContent: with: { aPage }
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpNotebookPresenter >> whenPageAddedDo: aBlock [
 	"Inform when a page has been added.
 	 `aBlock` receives one argument (the added page)"
@@ -169,7 +169,7 @@ SpNotebookPresenter >> whenPageAddedDo: aBlock [
 	pagesHolder whenAddedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpNotebookPresenter >> whenPageRemovedDo: aBlock [
 	"Inform when a page has been removed.
 	 `aBlock` receives one argument (the removed page)"
@@ -177,7 +177,7 @@ SpNotebookPresenter >> whenPageRemovedDo: aBlock [
 	pagesHolder whenRemovedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpNotebookPresenter >> whenPagesChangedDo: aBlock [
 	"Inform when pages has been changed.
 	 `aBlock` has three optional arguments: 
@@ -188,7 +188,7 @@ SpNotebookPresenter >> whenPagesChangedDo: aBlock [
 	pagesHolder whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpNotebookPresenter >> whenSelectedPageChangedDo: aBlock [
 	"Inform when selected page has changed.
 	 `aBlock` has three optional arguments: 

@@ -1,7 +1,7 @@
 Class {
 	#name : #SpNullTextStyler,
 	#superclass : #SpTextStyler,
-	#category : #'Spec2-RichText'
+	#category : #'Spec2-Core-Widgets-Text'
 }
 
 { #category : #applying }

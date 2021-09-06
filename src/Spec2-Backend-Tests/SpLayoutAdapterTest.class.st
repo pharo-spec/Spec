@@ -19,7 +19,7 @@ SpLayoutAdapterTest >> classToTest [
 	^ SpEmptyPresenter
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 SpLayoutAdapterTest >> initializeTestedInstance [
 
 	layout := self newLayout.

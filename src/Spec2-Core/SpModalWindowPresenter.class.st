@@ -30,7 +30,7 @@ Class {
 	#name : #SpModalWindowPresenter,
 	#superclass : #SpDialogWindowPresenter,
 	#instVars : [
-		'#closeOnBackdropClick => ObservableSlot'
+		'#closeOnBackdropClick => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Support'
 }

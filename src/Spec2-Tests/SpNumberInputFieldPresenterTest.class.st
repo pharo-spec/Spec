@@ -4,12 +4,12 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpNumberInputFieldPresenterTest >> classToTest [
 	^ SpNumberInputFieldPresenter
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpNumberInputFieldPresenterTest >> testWhenClimbRateChangedDo [
 	| count result |
 	count := 0.
@@ -22,7 +22,7 @@ SpNumberInputFieldPresenterTest >> testWhenClimbRateChangedDo [
 	self assert: result equals: 1
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpNumberInputFieldPresenterTest >> testWhenDigitsChangedDo [
 	| count result |
 	count := 0.
@@ -35,7 +35,7 @@ SpNumberInputFieldPresenterTest >> testWhenDigitsChangedDo [
 	self assert: result equals: 2
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpNumberInputFieldPresenterTest >> testWhenMaximumChangedDo [
 	| count result |
 	count := 0.
@@ -48,7 +48,7 @@ SpNumberInputFieldPresenterTest >> testWhenMaximumChangedDo [
 	self assert: result equals: 10
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpNumberInputFieldPresenterTest >> testWhenMinimumChangedDo [
 	| count result |
 	count := 0.
@@ -61,7 +61,7 @@ SpNumberInputFieldPresenterTest >> testWhenMinimumChangedDo [
 	self assert: result equals: 10
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpNumberInputFieldPresenterTest >> testWhenNumberChangedDo [
 	| count result |
 	count := 0.
@@ -74,7 +74,7 @@ SpNumberInputFieldPresenterTest >> testWhenNumberChangedDo [
 	self assert: result equals: 10
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpNumberInputFieldPresenterTest >> testWhenNumberTypeChangedDo [
 	| count result |
 	count := 0.

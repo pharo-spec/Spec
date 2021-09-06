@@ -20,7 +20,7 @@ Class {
 	#instVars : [
 		'#newPresenterBlock',
 		'#columnsWillChangeBlock',
-		'#horizontalScrollBar => ObservableSlot',
+		'#horizontalScrollBar => SpObservableSlot',
 		'#columnsChangedBlock'
 	],
 	#category : #'Spec2-Core-Miller'
@@ -167,7 +167,7 @@ SpMillerColumnPresenter >> spacing: aNumber [
 	layout spacing: aNumber
 ]
 
-{ #category : #'private - traversing' }
+{ #category : #'private-traversing' }
 SpMillerColumnPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
 	self pages do: [ :each | 
@@ -188,19 +188,19 @@ SpMillerColumnPresenter >> visiblePages: aNumber [
 	layout visiblePages: aNumber
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpMillerColumnPresenter >> whenColumnsChangedDo: aBlock [
 
 	columnsChangedBlock := aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpMillerColumnPresenter >> whenColumnsWillChangeDo: aBlock [
 
 	columnsWillChangeBlock := aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpMillerColumnPresenter >> whenHorizontalScrollBarChangedDo: aBlock [
 
 	self property: #horizontalScrollBar whenChangedDo: aBlock

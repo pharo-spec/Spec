@@ -9,41 +9,10 @@ Class {
 		'displayBlock',
 		'displayIconBlock',
 		'selectedItems',
-		'previousSelectedIndex',
-		'onActivation',
-		'onDeactivation'
+		'previousSelectedIndex'
 	],
-	#category : #'Spec2-Common-Widgets'
+	#category : #'Spec2-Core-Widgets-Advanced'
 }
-
-{ #category : #private }
-SpFilteringSelectableListPresenter >> activateAll [
-
-	| itemsToSelect |
-	itemsToSelect := self items \ selectedItems.
-	itemsToSelect ifEmpty: [ ^ self ].
-
-	self selectItems: self items.
-
-	self onActivation ifNotNil: [ :valuable | 
-		itemsToSelect do: [ :item | valuable cull: item ] ]
-]
-
-{ #category : #private }
-SpFilteringSelectableListPresenter >> activateItem: anObject [
-
-	selectedItems add: anObject.
-	
-	self onActivation ifNotNil: [ :valuable | valuable cull: anObject ]
-]
-
-{ #category : #private }
-SpFilteringSelectableListPresenter >> deactivateItem: anObject [
-
-	selectedItems remove: anObject.
-	
-	self onDeactivation ifNotNil: [ :valuable | valuable cull: anObject ]
-]
 
 { #category : #api }
 SpFilteringSelectableListPresenter >> display [
@@ -77,25 +46,24 @@ SpFilteringSelectableListPresenter >> initialize [
 SpFilteringSelectableListPresenter >> initializePresenters [
 
 	super initializePresenters.
-	listPresenter
-		bindKeyCombination: Character space
+	listPresenter 
+		bindKeyCombination: Character space 
 		toAction: [ self toggleSelection ].
-
-	listPresenter selection whenSelectedIndexChangedDo: [ 
-		:newIndex 
-		:prevIndex | previousSelectedIndex := prevIndex ].
-
+		
+	listPresenter selection whenSelectedIndexChangedDo: [ :newIndex :prevIndex | 
+		previousSelectedIndex := prevIndex ]. 
+		
 	listPresenter eventHandler whenMouseDownDo: [ :event | 
 		event shiftPressed
 			ifTrue: [ 
-				self
+				self 
 					selectFrom: previousSelectedIndex
 					to: listPresenter selection selectedIndex ]
-			ifFalse: [ self toggleSelection ] ].
-
+			ifFalse: [ 
+				self toggleSelection ] ].
+		
 	listPresenter
-		bindKeyCombination: $a meta
-		toAction: [ self activateAll ]
+  		bindKeyCombination: $a meta toAction: [ self selectItems: self items ]
 ]
 
 { #category : #private }
@@ -103,16 +71,13 @@ SpFilteringSelectableListPresenter >> listColumns [
 	| column |
 
 	column := SpCompositeTableColumn new.
-	
 	column addColumn: (selectColumn := (SpCheckBoxTableColumn new
 		evaluated: [ :anObject | selectedItems includes: anObject ];
-		onActivation: [ :anObject | self activateItem: anObject ];
-		onDeactivation: [ :anObject |self deactivateItem: anObject ];
+		onActivation: [ :anObject | selectedItems add: anObject ];
+		onDeactivation: [ :anObject | selectedItems remove: anObject ];
 		beNotExpandable)).
-		
 	displayIconBlock ifNotNil: [
 		column addColumn: (SpImageTableColumn evaluated: displayIconBlock) beNotExpandable ].
-	
 	column addColumn: (SpStringTableColumn evaluated: self display).
 
 	^ { column }
@@ -128,43 +93,12 @@ SpFilteringSelectableListPresenter >> newListToFilter [
 	^ table
 ]
 
-{ #category : #api }
-SpFilteringSelectableListPresenter >> onActivation [
-
-	^ onActivation
-]
-
-{ #category : #api }
-SpFilteringSelectableListPresenter >> onActivation: aBlock [
-
-	onActivation := aBlock
-]
-
-{ #category : #api }
-SpFilteringSelectableListPresenter >> onDeactivation [
-
-	^ onDeactivation
-]
-
-{ #category : #api }
-SpFilteringSelectableListPresenter >> onDeactivation: aBlock [
-
-	onDeactivation := aBlock
-]
-
 { #category : #private }
 SpFilteringSelectableListPresenter >> selectFrom: fromIndex to: toIndex [
 
-	| newItems |
-	newItems := fromIndex < toIndex
+	selectedItems addAll: (fromIndex < toIndex
 		ifTrue: [ listPresenter items copyFrom: fromIndex to: toIndex ]
-		ifFalse: [ listPresenter items copyFrom: toIndex to: fromIndex ].
-	
-	selectedItems addAll: newItems.
-	
-	self onActivation ifNotNil: [ :valuable | 
-		newItems do: [ :item | valuable cull: item ] ].
-	
+		ifFalse:[ listPresenter items copyFrom: toIndex to: fromIndex ]).
 	listPresenter refresh
 ]
 
@@ -189,11 +123,11 @@ SpFilteringSelectableListPresenter >> selectedItems [
 
 { #category : #private }
 SpFilteringSelectableListPresenter >> toggleSelection [
-
 	| selectedItem |
+
 	selectedItem := listPresenter selectedItem.
 	(selectedItems includes: selectedItem)
-		ifTrue: [ self deactivateItem: selectedItem ]
-		ifFalse: [ self activateItem: selectedItem ].
+		ifTrue: [ selectedItems remove: selectedItem ]
+		ifFalse: [ selectedItems add: selectedItem ].
 	listPresenter refresh
 ]

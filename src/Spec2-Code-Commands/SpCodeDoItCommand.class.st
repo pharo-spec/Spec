@@ -14,7 +14,7 @@ SpCodeDoItCommand class >> defaultDescription [
 	^ 'Evaluate selection.'
 ]
 
-{ #category : #default }
+{ #category : #defaults }
 SpCodeDoItCommand class >> defaultIconName [
 
 	^ #smallDoIt

@@ -1,7 +1,7 @@
 Class {
 	#name : #SpAbstractSearchTest,
 	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
 { #category : #testing }
@@ -10,7 +10,7 @@ SpAbstractSearchTest class >> isAbstract [
 	^ self = SpAbstractSearchTest
 ]
 
-{ #category : #initialization }
+{ #category : #running }
 SpAbstractSearchTest >> initializeTestedInstance [ 
 
 	presenter items: #(10 20 30).

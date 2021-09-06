@@ -6,7 +6,7 @@ Class {
 	#name : #SpMorphPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#morph => ObservableSlot'
+		'#morph => SpObservableSlot'
 	],
 	#category : #'Spec2-Morphic-Widgets'
 }
@@ -64,7 +64,7 @@ SpMorphPresenter >> morph: aMorph [
 	morph := aMorph
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpMorphPresenter >> whenMorphChangedDo: aBlock [ 
 	"Inform when morph has changed. 
 	 `aBlock` has three optional arguments: 

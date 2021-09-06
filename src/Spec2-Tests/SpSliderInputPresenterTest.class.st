@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpSliderInputPresenterTest >> classToTest [
 	^ SpSliderInputPresenter
 ]

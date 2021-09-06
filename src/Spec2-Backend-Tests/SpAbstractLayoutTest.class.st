@@ -6,7 +6,7 @@ Class {
 		'window',
 		'backendForTest'
 	],
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
 { #category : #testing }
@@ -21,7 +21,7 @@ SpAbstractLayoutTest class >> testParameters [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 SpAbstractLayoutTest >> adapter [
 
 	"Force opening the spec instance here.
@@ -43,7 +43,7 @@ SpAbstractLayoutTest >> classToTest [
 	^ self subclassResponsibility
 ]
 
-{ #category : #utilities }
+{ #category : #running }
 SpAbstractLayoutTest >> openInstance [
 
 	backendForTest openInstanceOf: self 
@@ -87,7 +87,7 @@ SpAbstractLayoutTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 SpAbstractLayoutTest >> widget [
 
 	^ self adapter widget

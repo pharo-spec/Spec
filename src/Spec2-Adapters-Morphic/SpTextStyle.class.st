@@ -30,7 +30,7 @@ SpTextStyle >> drawKeyboardFocus: aBoolean [
 	drawKeyboardFocus := aBoolean asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : #'accessing variables' }
 SpTextStyle >> drawKeyboardFocusVariable [
 
 	^ self toVariable: drawKeyboardFocus

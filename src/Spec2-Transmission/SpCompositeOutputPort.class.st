@@ -23,12 +23,6 @@ SpCompositeOutputPort >> attachTransmission: aTransmission [
 		each attachTransmission: aTransmission ]
 ]
 
-{ #category : #attaching }
-SpCompositeOutputPort >> attachTransmission: aTransmission to: aPresenter [
-	
-	self error: 'Should not arrive here.'
-]
-
 { #category : #initialization }
 SpCompositeOutputPort >> initialize [
 

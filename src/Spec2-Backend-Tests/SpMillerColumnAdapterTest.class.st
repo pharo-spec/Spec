@@ -1,7 +1,7 @@
 Class {
 	#name : #SpMillerColumnAdapterTest,
 	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
 { #category : #accessing }
@@ -10,7 +10,7 @@ SpMillerColumnAdapterTest >> classToTest [
 	^ SpMillerColumnPresenter
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpMillerColumnAdapterTest >> testChangingHelpAffectTheWidget [
 
 	"This test is not valid for non-widget presenters"
@@ -23,7 +23,7 @@ SpMillerColumnAdapterTest >> testEmptyMillerListHasNoWidgets [
 	self assert: self adapter childrenWidgets isEmpty
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpMillerColumnAdapterTest >> testEnabledAffectWidget [
 
 	"This test is not valid for non-widget presenters"

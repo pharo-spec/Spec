@@ -9,13 +9,13 @@ Class {
 	#name : #SpSelectEntity,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'#entity => ObservableSlot',
+		'#entity => SpObservableSlot',
 		'#selectEntity',
-		'#possibleEntities => ObservableSlot',
+		'#possibleEntities => SpObservableSlot',
 		'#displaySymbol',
 		'#entityText',
-		'#selectDialog => ObservableSlot',
-		'#placeholder => ObservableSlot'
+		'#selectDialog => SpObservableSlot',
+		'#placeholder => SpObservableSlot'
 	],
 	#category : #'Spec2-Morphic-Widgets'
 }
@@ -161,29 +161,29 @@ SpSelectEntity >> selectEntity: anObject [
 	selectEntity := anObject
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpSelectEntity >> whenDisplaySymbolChanged: aBlock [
 	self property: #displaySymbol whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpSelectEntity >> whenEntityChanged: aBlock [
 	self property: #entity whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpSelectEntity >> whenPlaceholderChanged: aBlock [
 	"aBlock will be performed when ghostText changed"
 
 	self property: #placeholder whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpSelectEntity >> whenPossibleEntitiesChanged: aBlock [
 	self property: #possibleEntities whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpSelectEntity >> whenSelectDialogChanged: aBlock [
 	self property: #selectDialog whenChangedDo: aBlock
 ]

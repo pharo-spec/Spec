@@ -7,13 +7,13 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpButtonPresenterTest >> classToTest [
 
 	^ SpButtonPresenter
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 SpButtonPresenterTest >> morph [
 
 	^ presenter adapter widget

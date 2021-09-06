@@ -8,12 +8,12 @@ Class {
 	#traits : 'SpTContextMenu',
 	#classTraits : 'SpTContextMenu classTrait',
 	#instVars : [
-		'#action => ObservableSlot',
-		'#actionPerformed => ObservableSlot',
-		'#askBeforeChanging => ObservableSlot',
-		'#font => ObservableSlot',
-		'#shortcut => ObservableSlot',
-		'#state => ObservableSlot'
+		'#action => SpObservableSlot',
+		'#actionPerformed => SpObservableSlot',
+		'#askBeforeChanging => SpObservableSlot',
+		'#font => SpObservableSlot',
+		'#shortcut => SpObservableSlot',
+		'#state => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -72,7 +72,7 @@ SpButtonPresenter >> click [
 	^ self performAction
 ]
 
-{ #category : #'private - focus' }
+{ #category : #'private-focus' }
 SpButtonPresenter >> ensureKeyBindingsFor: widget [
 
 	super ensureKeyBindingsFor: widget.
@@ -179,7 +179,7 @@ SpButtonPresenter >> unregisterShortcut: oldShortcut [
 		removeKeyCombination: oldShortcut 
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpButtonPresenter >> whenActionChangedDo: aBlock [
 	"Inform when action block has been changed. 
 	 `aBlock` receives two optional arguments: 
@@ -189,7 +189,7 @@ SpButtonPresenter >> whenActionChangedDo: aBlock [
 	self property: #action whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpButtonPresenter >> whenActionPerformedDo: aBlock [
 	"Inform that the button has been aclicked, and its action has been performed.
 	 `aBlock` receive zero arguments."
@@ -197,7 +197,7 @@ SpButtonPresenter >> whenActionPerformedDo: aBlock [
 	self property: #actionPerformed whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpButtonPresenter >> whenActivatedDo: aBlock [
 	"Inform that the button has been aclicked, and its action has been performed.
 	 `aBlock` receive zero arguments.

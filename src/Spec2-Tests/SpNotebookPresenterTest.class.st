@@ -4,12 +4,12 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpNotebookPresenterTest >> classToTest [
 	^ SpNotebookPresenter
 ]
 
-{ #category : #accessing }
+{ #category : #'as yet unclassified' }
 SpNotebookPresenterTest >> mockPage [
 	^ SpNotebookPage
 		title: 'Mock'

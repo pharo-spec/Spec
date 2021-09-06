@@ -68,13 +68,13 @@ SpEventHandler >> register: anEvent [
 		anAdapter installEvent: anEvent  ]	
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpEventHandler >> whenDoubleClickDo: aBlock [
 
 	 self register: (SpMouseDoubleClickDefinition do: aBlock)
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpEventHandler >> whenFocusLostDo: aBlock [
 	"register a focus lost event. 
 	 aBlock does not has parameters"
@@ -82,7 +82,7 @@ SpEventHandler >> whenFocusLostDo: aBlock [
 	 self register: (SpFocusLostEventDefinition do: aBlock)
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpEventHandler >> whenFocusReceivedDo: aBlock [
 	"register a focus received event. 
 	 aBlock does not has parameters"
@@ -90,7 +90,7 @@ SpEventHandler >> whenFocusReceivedDo: aBlock [
 	 self register: (SpFocusReceivedEventDefinition do: aBlock)
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpEventHandler >> whenKeyDownDo: aBlock [
 	"register a key down event. 
 	 aBlock receives 'event' as parameter"
@@ -98,7 +98,7 @@ SpEventHandler >> whenKeyDownDo: aBlock [
 	 self register: (SpKeyDownEventDefinition do: aBlock)
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpEventHandler >> whenKeyUpDo: aBlock [
 	"register a key up event. 
 	 aBlock receives 'event' as parameter"
@@ -106,7 +106,7 @@ SpEventHandler >> whenKeyUpDo: aBlock [
 	 self register: (SpKeyUpEventDefinition do: aBlock)
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpEventHandler >> whenMouseDownDo: aBlock [
 	"register a mouse down event. 
 	 aBlock receives 'event' as parameter"
@@ -114,7 +114,7 @@ SpEventHandler >> whenMouseDownDo: aBlock [
 	 self register: (SpMouseDownEventDefinition do: aBlock)
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpEventHandler >> whenMouseEnterDo: aBlock [
 	"register a mouse enter event. 
 	 aBlock receives 'event' as parameter"
@@ -122,7 +122,7 @@ SpEventHandler >> whenMouseEnterDo: aBlock [
 	 self register: (SpMouseEnterEventDefinition do: aBlock)
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpEventHandler >> whenMouseLeaveDo: aBlock [
 	"register a mouse leave event. 
 	 aBlock receives 'event' as parameter"
@@ -130,7 +130,7 @@ SpEventHandler >> whenMouseLeaveDo: aBlock [
 	 self register: (SpMouseLeaveEventDefinition do: aBlock)
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpEventHandler >> whenMouseMoveDo: aBlock [
 	"register a mouse move event. 
 	 aBlock receives 'event' as parameter"
@@ -138,7 +138,7 @@ SpEventHandler >> whenMouseMoveDo: aBlock [
 	 self register: (SpMouseMoveEventDefinition do: aBlock)
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpEventHandler >> whenMouseUpDo: aBlock [
 
 	 self register: (SpMouseUpEventDefinition do: aBlock)

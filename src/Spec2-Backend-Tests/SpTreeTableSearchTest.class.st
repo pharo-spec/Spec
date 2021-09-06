@@ -1,7 +1,7 @@
 Class {
 	#name : #SpTreeTableSearchTest,
 	#superclass : #SpAbstractSearchTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
 { #category : #accessing }
@@ -10,7 +10,7 @@ SpTreeTableSearchTest >> classToTest [
 	^ SpTreeTablePresenter
 ]
 
-{ #category : #initialization }
+{ #category : #running }
 SpTreeTableSearchTest >> initializeTestedInstance [ 
 
 	presenter roots: #(10 20 30).

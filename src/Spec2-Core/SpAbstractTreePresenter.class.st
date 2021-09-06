@@ -5,9 +5,8 @@ Class {
 	#name : #SpAbstractTreePresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#traits : 'SpTHaveWrappingScrollBars + SpTContextMenu + SpTSearchable',
-	#classTraits : 'SpTHaveWrappingScrollBars classTrait + SpTContextMenu classTrait + SpTSearchable classTrait',
 	#instVars : [
-		'#roots => ObservableSlot',
+		'#roots => SpObservableSlot',
 		'#childrenBlock',
 		'#activateOnSingleClick',
 		'#activationBlock',
@@ -248,29 +247,6 @@ SpAbstractTreePresenter >> pathIndexOf: pathArray in: aCollection [
 
 ]
 
-{ #category : #private }
-SpAbstractTreePresenter >> pathItemOf: aPath [
-	"answer an array of items following a path. 
-	 e.g. #(1 2 3) = { item1. item2. item3 }"
-
-	^ self 
-		pathItemOf: aPath 
-		in: self roots
-]
-
-{ #category : #private }
-SpAbstractTreePresenter >> pathItemOf: pathArray in: aCollection [ 
-	| pathElement |
-	
-	pathElement := aCollection at: pathArray first.
-	pathArray size = 1 ifTrue: [ ^ { pathElement } ].
-	
-	^ { pathElement }, (self 
-		pathItemOf: pathArray allButFirst
-		in: (self childrenFor: pathElement))
-
-]
-
 { #category : #api }
 SpAbstractTreePresenter >> refresh [
 	"Forces a refresh of the tree. 
@@ -309,7 +285,7 @@ SpAbstractTreePresenter >> searchValueOf: item [
 	^ item asString
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractTreePresenter >> selectItem: anItem [
 	"Select `anItem` if it is included in model list.
 	 It does not scrolls to selected element."
@@ -317,7 +293,7 @@ SpAbstractTreePresenter >> selectItem: anItem [
 	self selection selectItem: anItem
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractTreePresenter >> selectItems: aListOfItem [
 	"Select items included in `aCollection` if they are included in model list.
 	 NOTE: In single selection mode it will select the first element of `aCollection` 
@@ -326,7 +302,7 @@ SpAbstractTreePresenter >> selectItems: aListOfItem [
 	self selection selectItems: aListOfItem
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractTreePresenter >> selectPath: aPath [
 	"Selects element in `aPath`
 	`aPath` is the path to select. A path is an array of node indexes (e.g. #(1 2 3)).
@@ -335,7 +311,7 @@ SpAbstractTreePresenter >> selectPath: aPath [
 	self selection selectPath: aPath
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractTreePresenter >> selectPath: aPath scrollToSelection: shouldScrollToSelection [
 	"Selects element in `aPath`
 	`aPath` is the path to select. A path is an array of node indexes (e.g. #(1 2 3)).
@@ -350,13 +326,13 @@ SpAbstractTreePresenter >> selectPath: aPath scrollToSelection: shouldScrollToSe
 		shouldScrollToSelection ifTrue: [ adapter scrollToSelection ] ]
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractTreePresenter >> selectPathByItems: pathArray [
 
 	self selectPathByItems: pathArray scrollToSelection: false
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractTreePresenter >> selectPathByItems: pathArray scrollToSelection: aBoolean [
 	"IMPORTANT: Scrolling to selection just has sense when the widget is already shown, because before it 
 	 is displayed it does not has real bounds. In morphic (and gtk) it has a minimal extent assigned, 
@@ -372,7 +348,7 @@ SpAbstractTreePresenter >> selectPathByItems: pathArray scrollToSelection: aBool
 		scrollToSelection: aBoolean
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractTreePresenter >> selectPaths: pathArray [
 	"Selects all elements in `pathsArray``
 	`pathsArray` is an array of paths. A path is an array of node indexes (e.g. #(1 2 3))"
@@ -380,21 +356,21 @@ SpAbstractTreePresenter >> selectPaths: pathArray [
 	self selection selectPaths: pathArray
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractTreePresenter >> selectedItem [
 	"Return selected item."
 	
 	^ self selection selectedItem
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractTreePresenter >> selectedItems [
 	"Return all the selected items in the case of a multiple selection list"
 	
 	^ self selection selectedItems
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractTreePresenter >> selection [
 	"Answer the selection object (an instance of `SpSingleSelectionMode` or `SpMultipleSelectionMode`).
 	 This is not the item selected, but the selection container (it may contain one or many selected 
@@ -411,21 +387,21 @@ SpAbstractTreePresenter >> selectionMode: aMode [
 	selectionMode := aMode
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractTreePresenter >> unselectAll [ 
 	"Remove all selections"
 
 	self selection unselectAll
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractTreePresenter >> unselectItem: anItem [
 	"Remove selection of element `anItem`"
 
 	self selection unselectItem: anItem
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractTreePresenter >> unselectPath: aPath [
 	"Unselects element in `aPath`
 	`aPath` is the path to select. A path is an array of node indexes (e.g. #(1 2 3))"
@@ -441,10 +417,10 @@ SpAbstractTreePresenter >> updateRootsKeepingSelection: aCollection [
 	self disableActivationDuring: [ 
 		| selectedPaths |
 		
-		selectedPaths := (self selection selectedPaths collect: [ :each | self pathItemOf: each ]).
+		selectedPaths := self selection selectedPaths.
 		self roots: aCollection.
 		selectedPaths ifNotEmpty: [ 
-			self selectPaths: (selectedPaths collect: [ :each | self pathIndexOf: each ]) ] ]
+			self selectPaths: selectedPaths ] ]
 ]
 
 { #category : #private }
@@ -452,7 +428,7 @@ SpAbstractTreePresenter >> verticalAlignment [
 	^ verticalAlignment
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpAbstractTreePresenter >> whenActivatedDo: aBlock [
 	"Inform when an element has been 'activated'. 
 	 `aBlock` receives one argument (a selection object, see `SpAbstractSelectionMode`)"
@@ -460,7 +436,7 @@ SpAbstractTreePresenter >> whenActivatedDo: aBlock [
 	activationBlock := aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpAbstractTreePresenter >> whenMultiSelectionChangedDo: aBlockClosure [ 
 	"Inform when selection mode has changed. 
 	 `aBlock` has three optional arguments: 
@@ -471,7 +447,7 @@ SpAbstractTreePresenter >> whenMultiSelectionChangedDo: aBlockClosure [
 	selectionMode whenChangedDo: aBlockClosure 
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpAbstractTreePresenter >> whenRootsChangedDo: aBlockClosure [ 
 	"Inform when roots have changed. 
 	 `aBlock` has three optional arguments: 
@@ -482,7 +458,7 @@ SpAbstractTreePresenter >> whenRootsChangedDo: aBlockClosure [
 	self property: #roots whenChangedDo: aBlockClosure
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpAbstractTreePresenter >> whenSelectedIndexChangedDo: aBlock [ 
 	"Inform when selected index has changed. 
 	 `aBlock` receives one optional argument (the new element)."
@@ -500,7 +476,7 @@ SpAbstractTreePresenter >> whenSelectedItemChangedDo: aBlock [
 		aBlock cull: (selection ifNotNil: [ selection selectedItem ]) ]
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpAbstractTreePresenter >> whenSelectionChangedDo: aBlock [ 
 	"Inform when selection has changed. 
 	 `aBlock` has three optional arguments: 
@@ -511,7 +487,7 @@ SpAbstractTreePresenter >> whenSelectionChangedDo: aBlock [
 	self selection whenChangedDo: [ aBlock cull: selectionMode ]
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpAbstractTreePresenter >> whenShowColumnHeadersChangedDo: aBlock [ 
 	"Inform when showColumnHeaders property has changed. 
 	 `aBlock` has three optional arguments: 

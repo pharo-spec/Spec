@@ -12,7 +12,7 @@ SpBrowsePointersToCommand class >> defaultDescription [
 	^ 'Browse all objects referencing the selected object'
 ]
 
-{ #category : #default }
+{ #category : #accessing }
 SpBrowsePointersToCommand class >> shortName [
 
 	^ 'pointers to'

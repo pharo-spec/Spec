@@ -40,9 +40,6 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		maxLength: self presenter maxLength;
 		yourself.
 
-	self presenter selectionInterval 
-		ifNotNil: [  :anInterval | self selectionInterval: anInterval on: newWidget ].
-
 	self presenter whenTextChangedDo: [ :text | newWidget setText: text ].
 	self presenter whenSelectionChangedDo: [ :selectionInterval | 
 		self selectionInterval: selectionInterval ].

@@ -265,7 +265,7 @@ SpMorphicTreeTableAdapter >> itemAtPath: anArray [
 	^ nil
 ]
 
-{ #category : #'private - factory' }
+{ #category : #'private factory' }
 SpMorphicTreeTableAdapter >> newColumnFrom: aTableColumn [
 
 	^ (SpMorphicTableColumn on: aTableColumn)
@@ -273,7 +273,7 @@ SpMorphicTreeTableAdapter >> newColumnFrom: aTableColumn [
 		yourself
 ]
 
-{ #category : #'private - factory' }
+{ #category : #'private factory' }
 SpMorphicTreeTableAdapter >> newDataSource [ 
 
 	^ SpMorphicTreeTableDataSource new

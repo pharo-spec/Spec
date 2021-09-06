@@ -7,7 +7,7 @@ Class {
 		'window',
 		'backendForTest'
 	],
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
 { #category : #testing }
@@ -26,7 +26,7 @@ SpAbstractAdapterTest class >> testParameters [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 SpAbstractAdapterTest >> adapter [
 
 	"Force opening the spec instance here.
@@ -54,35 +54,35 @@ SpAbstractAdapterTest >> classToTest [
 	^ self subclassResponsibility
 ]
 
-{ #category : #'utilities - emulation' }
+{ #category : #utils }
 SpAbstractAdapterTest >> emulateCenterClick [
 
 	self emulateClick: MouseButtonEvent blueButton
 ]
 
-{ #category : #'utilities - emulation' }
+{ #category : #utils }
 SpAbstractAdapterTest >> emulateClick: mouseButtonCode [
 
-	backendForTest emulateClick: mouseButtonCode onTest: self
+	backendForTest emulateClick: mouseButtonCode onTest: self.
 ]
 
-{ #category : #'utilities - emulation' }
+{ #category : #utils }
 SpAbstractAdapterTest >> emulateLeftClick [
 
 	self emulateClick: MouseButtonEvent redButton
 ]
 
-{ #category : #'utilities - emulation' }
+{ #category : #utils }
 SpAbstractAdapterTest >> emulateRightClick [
 
 	self emulateClick: MouseButtonEvent yellowButton
 ]
 
-{ #category : #initialization }
+{ #category : #running }
 SpAbstractAdapterTest >> initializeTestedInstance [
 ]
 
-{ #category : #utilities }
+{ #category : #running }
 SpAbstractAdapterTest >> openInstance [
 
 	backendForTest openInstanceOf: self 
@@ -137,33 +137,33 @@ SpAbstractAdapterTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractAdapterTest >> testHidePresenterHidesWidget [
 	
 	self presenter hide.
 	self deny: self adapter isVisible
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractAdapterTest >> testShowPresenterShowsWidget [
 	
 	self presenter show.
 	self assert: self adapter isVisible
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractAdapterTest >> testVisibilityWithBlock [
 	presenter visibleIf: [ true ].
 	self assert: self adapter isVisible
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractAdapterTest >> testVisibilityWithBlockThatReturnsFalse [
 	presenter visibleIf: [ false ].
 	self deny: self adapter isVisible
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 SpAbstractAdapterTest >> widget [
 
 	^ self adapter widget

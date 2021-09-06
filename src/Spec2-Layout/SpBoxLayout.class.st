@@ -127,7 +127,7 @@ SpBoxLayout >> adapterName [
 	^ #BoxAdapter
 ]
 
-{ #category : #'api - adding' }
+{ #category : #'api-adding' }
 SpBoxLayout >> add: aPresenterLayoutOrSymbol [
 	"Adds `aPresenterLayoutOrSymbol` to the list of presenters to be arranged in the layout. 
 	 `aPresenterLayoutOrSymboll` can be
@@ -140,7 +140,7 @@ SpBoxLayout >> add: aPresenterLayoutOrSymbol [
 		withConstraints: [ :constraints | ]
 ]
 
-{ #category : #'api - adding' }
+{ #category : #'api-adding' }
 SpBoxLayout >> add: aPresenterLayoutOrSymbol expand: shouldExpand [
 	"Adds `aPresenterLayoutOrSymbol` to the list of presenters to be arranged in the layout, setting 
 	 also the expand property. 
@@ -188,7 +188,7 @@ padding 	- extra space in pixels to put between this child and its neighbors, ov
 				padding: aNumber ]
 ]
 
-{ #category : #'api - adding' }
+{ #category : #'api-adding' }
 SpBoxLayout >> add: aPresenterLayoutOrSymbol height: anInteger [ 
 	"Add a presenter and assign a specific height. 
 	 This constraint is applied just when using a Vertical (Top to Bottom) layout, 
@@ -202,7 +202,7 @@ SpBoxLayout >> add: aPresenterLayoutOrSymbol height: anInteger [
 		withConstraints: [ :constraints | constraints height: anInteger ].
 ]
 
-{ #category : #'api - adding' }
+{ #category : #'api-adding' }
 SpBoxLayout >> add: aPresenterLayoutOrSymbol width: anInteger [
 	"Add a presenter and assign a specific width. 
 	 This constraint is applied just when using an Horizontal (Left to Right) layout, 
@@ -216,7 +216,7 @@ SpBoxLayout >> add: aPresenterLayoutOrSymbol width: anInteger [
 		withConstraints: [ :constraints | constraints width: anInteger ].
 ]
 
-{ #category : #'api - adding' }
+{ #category : #'api-adding' }
 SpBoxLayout >> add: aPresenterLayoutOrSymbol withConstraints: aBlock [
 	"Adds `aPresenterLayoutOrSymbol` to the list of presenters to be arranged in the layout, updating 
 	 the constraints directly. 
@@ -233,7 +233,7 @@ SpBoxLayout >> add: aPresenterLayoutOrSymbol withConstraints: aBlock [
 	self announceChildAdded: aPresenterLayoutOrSymbol
 ]
 
-{ #category : #'api - adding' }
+{ #category : #'api-adding' }
 SpBoxLayout >> addLast: aName [
 	"Adds `aPresenterLayoutOrSymbol` to the **end of the list** of presenters to be arranged 
 	 in the layout. 
@@ -247,7 +247,7 @@ SpBoxLayout >> addLast: aName [
 		withConstraints: [ :constraints | ]
 ]
 
-{ #category : #'api - adding' }
+{ #category : #'api-adding' }
 SpBoxLayout >> addLast: aName expand: shouldExpand [
 	"Adds `aPresenterLayoutOrSymbol` to the **end of the list** of presenters to be arranged 
 	 in the layout, setting also the expand property. 
@@ -287,7 +287,7 @@ SpBoxLayout >> addLast: aName expand: shouldExpand fill: shouldFill padding: aNu
 				padding: aNumber ]
 ]
 
-{ #category : #'api - adding' }
+{ #category : #'api-adding' }
 SpBoxLayout >> addLast: aName withConstraints: aBlock [
 	"Adds `aPresenterLayoutOrSymbol` to the **end of the list** of presenters to be arranged 
 	in the layout, updating the constraints directly. 
@@ -387,16 +387,14 @@ SpBoxLayout >> isVertical [
 	^ self direction = SpLayoutDirection vertical
 ]
 
-{ #category : #'api - adding' }
+{ #category : #'api-adding' }
 SpBoxLayout >> removeAll [
 
 	children removeAll.
-	adapter ifNotNil: [ :anAdapter | 
-		anAdapter unsubscribe.
-		anAdapter removeAll ]
+	adapter ifNotNil: [ :anAdapter | anAdapter removeAll ]
 ]
 
-{ #category : #'api - adding' }
+{ #category : #'api-adding' }
 SpBoxLayout >> replace: aPresenter with: otherPresenter [
 	"Replace aPresenter with otherPresenter. 
 	 Original constraints will be preserved."
@@ -407,7 +405,7 @@ SpBoxLayout >> replace: aPresenter with: otherPresenter [
 		withConstraints: (self constraintsFor: aPresenter)
 ]
 
-{ #category : #'api - adding' }
+{ #category : #'api-adding' }
 SpBoxLayout >> replace: aPresenter with: otherPresenter withConstraints: constraints [
 	"Replace aPresenter with otherPresenter"
 	

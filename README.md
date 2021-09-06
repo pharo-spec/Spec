@@ -18,7 +18,7 @@ usage of this code in Pharo 8 is highly discouraged.
 
 ```Smalltalk
     Metacello new
-        githubUser: 'pharo-spec' project: 'Spec' commitish: 'Pharo9.0' path: 'src';
+        githubUser: 'pharo-spec' project: 'Spec' commitish: 'master' path: 'src';
         baseline: 'Spec2';
         onConflict: [ :e | e useIncoming ];
         onUpgrade: [ :e | e useIncoming ];

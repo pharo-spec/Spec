@@ -7,7 +7,7 @@ Class {
 	#category : #'Spec2-Commander2-Tests'
 }
 
-{ #category : #tests }
+{ #category : #test }
 SpRecursiveContextSetterTest >> testVisitCommand [
 	| commandsGroup |
 	commandsGroup := (CmCommandGroup named: 'root') asSpecGroup beRoot

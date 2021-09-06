@@ -1,7 +1,7 @@
 Class {
 	#name : #SpListPresenterHeaderTest,
 	#superclass : #TestCase,
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
 { #category : #tests }

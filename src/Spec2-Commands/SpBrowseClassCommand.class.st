@@ -27,7 +27,7 @@ SpBrowseClassCommand class >> defaultShortcutKey [
 { #category : #default }
 SpBrowseClassCommand class >> shortName [
 
-	^ 'full class'
+	^ 'class'
 ]
 
 { #category : #execution }

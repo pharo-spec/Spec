@@ -5,7 +5,7 @@ I'm used on MorphPresenter.
 Class {
 	#name : #SpMorphPort,
 	#superclass : #SpInputPort,
-	#category : #'Spec2-Transmission-Base'
+	#category : #'Spec2-Transmission'
 }
 
 { #category : #accessing }
@@ -15,7 +15,7 @@ SpMorphPort class >> portName [
 ]
 
 { #category : #'handling transmission' }
-SpMorphPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
+SpMorphPort >> incomingTransmission: anObject from: aTransmission [
 
-	aPresenter morph: anObject
+	self destinationPresenter morph: anObject
 ]

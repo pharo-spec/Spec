@@ -9,9 +9,9 @@ Class {
 	#name : #SpTreeTablePresenter,
 	#superclass : #SpAbstractTreePresenter,
 	#instVars : [
-		'#columns => ObservableSlot',
-		'#showColumnHeaders => ObservableSlot',
-		'#isResizable => ObservableSlot',
+		'#columns => SpObservableSlot',
+		'#showColumnHeaders => SpObservableSlot',
+		'#isResizable => SpObservableSlot',
 		'#lazilyComputeChildren'
 	],
 	#category : #'Spec2-Core-Widgets-Tree'
@@ -171,7 +171,7 @@ SpTreeTablePresenter >> showColumnHeaders [
 	showColumnHeaders := true
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpTreeTablePresenter >> whenColumnsChangedDo: aBlock [
 	"Inform when columns have changed. 
 	 `aBlock` has three optional arguments: 
@@ -183,7 +183,7 @@ SpTreeTablePresenter >> whenColumnsChangedDo: aBlock [
 	self property: #columns whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpTreeTablePresenter >> whenIsResizableChangedDo: aBlock [
 	"Inform when resizable property has changed. 
 	 `aBlock` has three optional arguments: 

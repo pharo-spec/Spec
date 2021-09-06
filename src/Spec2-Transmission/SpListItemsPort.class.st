@@ -19,7 +19,7 @@ SpListItemsPort class >> portName [
 ]
 
 { #category : #'handling transmission' }
-SpListItemsPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
-	
-	aPresenter items: anObject
+SpListItemsPort >> incomingTransmission: anObject from: outPort [
+
+	self destinationPresenter items: anObject
 ]

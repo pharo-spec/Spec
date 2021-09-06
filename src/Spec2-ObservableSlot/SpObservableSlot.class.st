@@ -1,17 +1,8 @@
-"
-DEPRECATED: Do not use this slot. Use `ObservableSlot` instead.
-"
 Class {
 	#name : #SpObservableSlot,
 	#superclass : #IndexedSlot,
 	#category : #'Spec2-ObservableSlot'
 }
-
-{ #category : #testing }
-SpObservableSlot class >> isDeprecated [
-
-	^ true
-]
 
 { #category : #'code generation' }
 SpObservableSlot >> emitStore: aMethodBuilder [

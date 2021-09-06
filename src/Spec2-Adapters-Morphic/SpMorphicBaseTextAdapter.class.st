@@ -7,8 +7,7 @@ Class {
 	#traits : 'TViewModel',
 	#classTraits : 'TViewModel classTrait',
 	#instVars : [
-		'selection',
-		'updating'
+		'selection'
 	],
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
@@ -22,13 +21,9 @@ SpMorphicBaseTextAdapter class >> isAbstract [
 { #category : #'widget API' }
 SpMorphicBaseTextAdapter >> accept: aString notifying: aNotifyier [
 
-	updating := true.
-	[
-		self presenter text: aString.
-		"Raise an announcement"
-		self presenter changed: #clearUserEdits]
-	ensure: [ 
-		updating := false ].
+	self presenter text: aString.
+	"Raise an announcement"
+	self presenter changed: #clearUserEdits.
 
 	^ true
 ]
@@ -141,13 +136,6 @@ SpMorphicBaseTextAdapter >> hasUnacceptedEdits: aBoolean [
 	self model hasUnacceptedEdits: aBoolean
 ]
 
-{ #category : #initialization }
-SpMorphicBaseTextAdapter >> initialize [
-
-	super initialize.
-	updating := false
-]
-
 { #category : #'spec protocol' }
 SpMorphicBaseTextAdapter >> insert: aString at: positionIndex [
 
@@ -223,8 +211,7 @@ SpMorphicBaseTextAdapter >> selectFrom: nodeStart to: nodeStop [
 { #category : #'spec protocol' }
 SpMorphicBaseTextAdapter >> selectLine [
 
-	self widgetDo: [ :w |
-		self selectionInterval: w textArea editor lineIntervalAtCursorPosition ]
+	self widgetDo: [ :w | w textArea editor selectLine ]
 ]
 
 { #category : #accessing }
@@ -243,15 +230,7 @@ SpMorphicBaseTextAdapter >> selectionInterval [
 SpMorphicBaseTextAdapter >> selectionInterval: anInterval [
 
 	self widgetDo: [ :w | 
-		self selectionInterval: anInterval on: w ]
-]
-
-{ #category : #private }
-SpMorphicBaseTextAdapter >> selectionInterval: anInterval on: aWidget [
-
-	aWidget textArea editor 
-		selectFrom: anInterval first 
-		to: anInterval last
+		w textArea editor selectFrom: anInterval first to: anInterval last ]
 ]
 
 { #category : #private }
@@ -296,12 +275,6 @@ SpMorphicBaseTextAdapter >> showContextMenu [
 			menu
 				invokeAt: w position + w textArea cursor center
 				in: self currentWorld ] ]
-]
-
-{ #category : #'accessing - structure variables' }
-SpMorphicBaseTextAdapter >> type: aString [
-
-	self widget setText: aString
 ]
 
 { #category : #'widget API' }

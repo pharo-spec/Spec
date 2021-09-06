@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Morphic-Tests'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpImagePresenterTest >> classToTest [
 	^ SpImagePresenter
 ]

@@ -5,8 +5,8 @@ I define common behaviours for widget presenters and also for composable present
 Class {
 	#name : #SpAbstractPresenter,
 	#superclass : #Model,
-	#traits : 'TObservable',
-	#classTraits : 'TObservable classTrait',
+	#traits : 'SpTObservable',
+	#classTraits : 'SpTObservable classTrait',
 	#instVars : [
 		'owner',
 		'adapter',
@@ -100,11 +100,6 @@ SpAbstractPresenter >> adapter [
 { #category : #accessing }
 SpAbstractPresenter >> adapter: anAdapter [
 
-	"if there existed an adapter already, we need to unsubscribe it to avoid memory leaks"
-	adapter ifNotNil: [
-		self removeDependent: adapter.
-		adapter unsubscribe ].
-	
 	adapter := anAdapter
 ]
 
@@ -117,35 +112,11 @@ SpAbstractPresenter >> application [
 	^ self owner application
 ]
 
-{ #category : #showing }
-SpAbstractPresenter >> asBlockedDialogWindow [
-
-	^ self defaultBlockedDialogWindowPresenterClass presenter: self
-]
-
-{ #category : #showing }
-SpAbstractPresenter >> asDialogWindow [
-
-	^ self defaultDialogWindowPresenterClass presenter: self
-]
-
-{ #category : #showing }
-SpAbstractPresenter >> asModalWindow [
-
-	^ self defaultModalWindowPresenterClass presenter: self
-]
-
-{ #category : #showing }
-SpAbstractPresenter >> asWindow [
-
-	^ self defaultWindowPresenterClass presenter: self
-]
-
 { #category : #TOREMOVE }
 SpAbstractPresenter >> autoAccept: aBoolean [
 ]
 
-{ #category : #'private - building' }
+{ #category : #'private building' }
 SpAbstractPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	"I assume the SpecBindings is well defined"
 	
@@ -162,7 +133,7 @@ SpAbstractPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	^ adapter
 ]
 
-{ #category : #'private - building' }
+{ #category : #'private building' }
 SpAbstractPresenter >> buildAdapterWithSpecLayout: aSpecLayout [
 	"Build the adapter using the spec name provided as argument"
 	
@@ -192,37 +163,13 @@ SpAbstractPresenter >> buildWithSpecLayout: aSpecLayout [
 	^ (self buildAdapterWithSpecLayout: aSpecLayout) widget
 ]
 
-{ #category : #'private - showing' }
-SpAbstractPresenter >> defaultBlockedDialogWindowPresenterClass [
-
-	^ self application defaultBlockedDialogWindowPresenterClass
-]
-
-{ #category : #'private - showing' }
-SpAbstractPresenter >> defaultDialogWindowPresenterClass [
-		
-	^ self application defaultDialogWindowPresenterClass
-]
-
-{ #category : #'private - showing' }
-SpAbstractPresenter >> defaultModalWindowPresenterClass [
-		
-	^ self application defaultModalWindowPresenterClass
-]
-
-{ #category : #'private - building' }
+{ #category : #'private building' }
 SpAbstractPresenter >> defaultSpecSelector [
 	(Pragma allNamed: #spec: from: self class class to: SpAbstractPresenter class class) detect: [ :each | (each argumentAt: 1) = #default ] ifFound: [ :pragma | ^ pragma methodSelector ].
 
 	^ (Pragma allNamed: #spec from: self class class to: SpAbstractPresenter class class)
 		ifEmpty: [ #defaultSpec ]
 		ifNotEmpty: [ :pragmas | pragmas size = 1 ifTrue: [ pragmas first methodSelector ] ifFalse: [ #defaultSpec ] ]
-]
-
-{ #category : #'private - showing' }
-SpAbstractPresenter >> defaultWindowPresenterClass [ 
-
-	^ self application defaultWindowPresenterClass
 ]
 
 { #category : #accessing }
@@ -244,7 +191,7 @@ SpAbstractPresenter >> eventHandler [
 	^ eventHandler ifNil: [ eventHandler := SpEventHandler for: self ]
 ]
 
-{ #category : #'private - utilities' }
+{ #category : #'private utils' }
 SpAbstractPresenter >> forceUpdateSlot: aSymbol [
 
 	^ (self rawValueHolderNamed: aSymbol) valueChanged
@@ -348,7 +295,10 @@ open
 		yourself
 "
 
-	^ self asBlockedDialogWindow open
+
+	^ self application 
+		openBlockedDialog: self
+		withSpecLayout: self retrieveDefaultSpec
 ]
 
 { #category : #showing }
@@ -356,7 +306,9 @@ SpAbstractPresenter >> openBlockedDialogWithSpec: aSelector [
 	"Build the widget using the default spec and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openDialogAsModalWithSpec: instead."
 
-	^ self asBlockedDialogWindow openWith: (self retrieveSpec: aSelector)
+	^ self application 
+		openBlockedDialog: self
+		withSpecLayout: (self retrieveSpec: aSelector)
 ]
 
 { #category : #showing }
@@ -372,48 +324,77 @@ open
 		cancelAction: [ self cancel ];
 		yourself
 "
-
-	^ self asDialogWindow open
+	
+	
+	^ self application 
+		openDialog: self
+		withSpecLayout: self retrieveDefaultSpec
 ]
 
 { #category : #showing }
 SpAbstractPresenter >> openDialogWithSpec: aSelector [
 	"Build the widget using the default spec and display it into a dialog. 
-	 Beware: this way will not create a real modal in the sense that the user will 
-	 keep the focus on other windows. If you want to make the user focus on your 
-	 dialog only you should use #openModalWithSpec: instead."
+	 Beware: this way will not create a real modal in the sense that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openModalWithSpec: instead."
 	
-	^ self asDialogWindow openWith: (self retrieveSpec: aSelector)
+	^ self application 
+		openDialog: self
+		withSpecLayout: (self retrieveSpec: aSelector)
+]
+
+{ #category : #showing }
+SpAbstractPresenter >> openDialogWithSpecLayout: aSpecLayout [
+
+	^ self application 
+		openDialog: self
+		withSpecLayout: aSpecLayout
 ]
 
 { #category : #showing }
 SpAbstractPresenter >> openModalWithSpec [
 
-	^ self asModalWindow open
+	^ self application 
+		openModal: self
+		withSpecLayout: self retrieveDefaultSpec
 ]
 
 { #category : #showing }
 SpAbstractPresenter >> openModalWithSpec: aSelector [
 
-	^ self asModalWindow openWith: (self retrieveSpec: aSelector)
+	^ self application 
+		openModal: self
+		withSpecLayout: (self retrieveSpec: aSelector)
+]
+
+{ #category : #showing }
+SpAbstractPresenter >> openModalWithSpecLayout: aSpecLayout [
+
+	^ self application 
+		openModal: self
+		withSpecLayout: aSpecLayout
 ]
 
 { #category : #showing }
 SpAbstractPresenter >> openWithSpec [
 
-	^ self asWindow open
+	^ self application 
+		open: self
+		withSpecLayout: self retrieveDefaultSpec
 ]
 
 { #category : #showing }
 SpAbstractPresenter >> openWithSpec: aSelector [
 
-	^ self asWindow openWith: (self retrieveSpec: aSelector)
+	^ self application 
+		open: self
+		withSpecLayout: (self retrieveSpec: aSelector)
 ]
 
-{ #category : #'private - showing' }
+{ #category : #showing }
 SpAbstractPresenter >> openWithSpecLayout: aSpecLayout [
 
-	^ self asWindow openWith: aSpecLayout
+	^ self application 
+		open: self
+		withSpecLayout: aSpecLayout
 ]
 
 { #category : #accessing }
@@ -428,19 +409,19 @@ SpAbstractPresenter >> owner: aPresenter [
 	owner := aPresenter
 ]
 
-{ #category : #'private - utilities' }
+{ #category : #'private utils' }
 SpAbstractPresenter >> rawValueHolderNamed: aSymbol [
 
 	^ (self class slotNamed: aSymbol) rawRead: self.
 ]
 
-{ #category : #'private - building' }
+{ #category : #'private building' }
 SpAbstractPresenter >> retrieveDefaultSpec [
 
 	^ self retrieveSpec: self defaultSpecSelector
 ]
 
-{ #category : #'private - building' }
+{ #category : #'private building' }
 SpAbstractPresenter >> retrieveSpec: aSelector [
 	| layout |
 
@@ -506,21 +487,21 @@ SpAbstractPresenter >> window [
 		ifFalse: [ nil ]
 ]
 
-{ #category : #'private - utilities' }
+{ #category : #'private utils' }
 SpAbstractPresenter >> withAdapterDo: aValuable [
 	"a convenience method to avoid verify by nil all the time"
 	
 	^ self adapter ifNotNil: aValuable
 ]
 
-{ #category : #'private - utilities' }
+{ #category : #'private utils' }
 SpAbstractPresenter >> withWidgetDo: aValuable [
 	"a convenience method to avoid verify by nil all the time"
 
 	^ self adapter ifNotNil: aValuable
 ]
 
-{ #category : #'private - utilities' }
+{ #category : #'private utils' }
 SpAbstractPresenter >> withWindowDo: aValuable [
 
 	self hasWindow ifFalse: [ ^ self ].

@@ -2,9 +2,9 @@ name: Spec
 
 on:
   push:
-    branches: [ Pharo9.0, Pharo10, dev-1.0 ]
+    branches: [ Pharo9.0, master ]
   pull_request:
-    branches: [ Pharo9.0, Pharo10, dev-1.0 ]
+    branches: [ Pharo9.0, master ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest ]
-        smalltalk: [ Pharo64-9.0, Pharo64-10 ]
+        smalltalk: [ Pharo64-9.0 ]
     runs-on: ${{ matrix.os }}
     name: ${{ matrix.smalltalk }} on ${{ matrix.os }}
     steps:
@@ -29,11 +29,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 15
-#      - name: Upload Artifact
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: built-image
-#          path: |
-#            /home/runner/.smalltalkCI/_builds/TravisCI.*
-#            /home/runner/.smalltalkCI/_builds/Pharo*.sources
-#          retention-days: 1

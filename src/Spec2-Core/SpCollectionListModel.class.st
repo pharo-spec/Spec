@@ -1,12 +1,12 @@
 Class {
 	#name : #SpCollectionListModel,
 	#superclass : #Object,
-	#traits : 'TObservable',
-	#classTraits : 'TObservable classTrait',
+	#traits : 'SpTObservable',
+	#classTraits : 'SpTObservable classTrait',
 	#instVars : [
 		'#announcer',
 		'#collection',
-		'#sorting => ObservableSlot'
+		'#sorting => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }

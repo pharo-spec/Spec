@@ -4,12 +4,12 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpComponentListPresenterTest >> classToTest [
 	^ SpComponentListPresenter
 ]
 
-{ #category : #'tests - activation' }
+{ #category : #'tests-activation' }
 SpComponentListPresenterTest >> testActivationOnDoubleClickShouldActivateOnDoubleClick [
 
 	| activatedItem |
@@ -23,7 +23,7 @@ SpComponentListPresenterTest >> testActivationOnDoubleClickShouldActivateOnDoubl
 	self assert: activatedItem label equals: '10'.
 ]
 
-{ #category : #'tests - activation' }
+{ #category : #'tests-activation' }
 SpComponentListPresenterTest >> testActivationOnSingleClickShouldActivateOnClick [
 
 	| activatedItem |
@@ -102,19 +102,6 @@ SpComponentListPresenterTest >> testAddPresenterToComponentListShouldNotBeEmpty 
 ]
 
 { #category : #tests }
-SpComponentListPresenterTest >> testDisableActivationDuring [ 
-	| activated |
-
-	activated := false.
-	presenter whenActivatedDo: [ activated := true ].
-	
-	self deny: activated.
-	presenter disableActivationDuring: [ presenter clickAtIndex: 2 ].
-	self deny: activated. "still not change"
-	self assert: presenter selectedItem label equals: '20' "but the selection changed!"
-]
-
-{ #category : #tests }
 SpComponentListPresenterTest >> testNewComponentListIsEmpty [
 
 	self assertEmpty: self classToTest new
@@ -164,7 +151,7 @@ SpComponentListPresenterTest >> testSelectedItemsSortedByIndex [
 		equals: #('10' '30')
 ]
 
-{ #category : #'tests - smoke' }
+{ #category : #'tests-smoke' }
 SpComponentListPresenterTest >> testSetSortingBlockBeforeItems [
 	| count |
 	
@@ -176,7 +163,7 @@ SpComponentListPresenterTest >> testSetSortingBlockBeforeItems [
 	self assert: (presenter model at: 1) label equals: '0'
 ]
 
-{ #category : #'tests - smoke' }
+{ #category : #'tests-smoke' }
 SpComponentListPresenterTest >> testSortingBlock [
 	| count |
 	
@@ -198,15 +185,4 @@ SpComponentListPresenterTest >> testUnselectAll [
 		equals: #('10' '20' '30').
 	presenter unselectAll.
 	self assertEmpty: presenter selection selectedItems
-]
-
-{ #category : #tests }
-SpComponentListPresenterTest >> testUpdateItemsKeepingSelection [ 
-	| presenters |
-
-	presenters := #($a $b $c) collect: #asPresenter.
-	presenter items: presenters.
-	presenter selectIndex: 3.
-	presenter updateItemsKeepingSelection: (presenters copyWith: $d asPresenter).
-	self assert: presenter selectedItem label equals: 'c'
 ]

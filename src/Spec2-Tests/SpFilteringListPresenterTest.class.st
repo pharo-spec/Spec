@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'listWithFilter'
 	],
-	#category : #'Spec2-Common-Widgets-Tests'
+	#category : #'Spec2-Tests-Core-Widgets'
 }
 
 { #category : #accessing }
@@ -23,7 +23,7 @@ SpFilteringListPresenterTest >> setUp [
 	listWithFilter := self classToTest new
 ]
 
-{ #category : #tests }
+{ #category : #test }
 SpFilteringListPresenterTest >> testEnableItemBeginsWithFilter [
 
 	listWithFilter matchBeginOfString.
@@ -48,7 +48,7 @@ SpFilteringListPresenterTest >> testEnableItemBeginsWithFilter [
 	self assert: listWithFilter items size equals: 6
 ]
 
-{ #category : #tests }
+{ #category : #test }
 SpFilteringListPresenterTest >> testEnableItemSubstringFilter [
 
 	listWithFilter matchSubstring.
@@ -71,7 +71,7 @@ SpFilteringListPresenterTest >> testEnableItemSubstringFilter [
 	self assert: listWithFilter items size equals: 6
 ]
 
-{ #category : #tests }
+{ #category : #test }
 SpFilteringListPresenterTest >> testFilterListItems [
 
 	| listItems |
@@ -118,7 +118,7 @@ SpFilteringListPresenterTest >> testFilterListItems [
 		hasSameElements: listItems
 ]
 
-{ #category : #tests }
+{ #category : #test }
 SpFilteringListPresenterTest >> testFilterListItemsWithDifferentDisplay [
 
 	| listItems |
@@ -145,7 +145,7 @@ SpFilteringListPresenterTest >> testFilterListItemsWithDifferentDisplay [
 		hasSameElements: listItems
 ]
 
-{ #category : #tests }
+{ #category : #test }
 SpFilteringListPresenterTest >> testItemFilter [
 
 	| filterBlock |
@@ -156,7 +156,7 @@ SpFilteringListPresenterTest >> testItemFilter [
 	self assert: listWithFilter itemFilter equals: filterBlock
 ]
 
-{ #category : #tests }
+{ #category : #test }
 SpFilteringListPresenterTest >> testItems [
 
 	listWithFilter items: { Array }.

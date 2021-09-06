@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Tests-Examples'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpDynamicWidgetChangeTest >> classToTest [
 	^ SpDynamicWidgetChange
 ]

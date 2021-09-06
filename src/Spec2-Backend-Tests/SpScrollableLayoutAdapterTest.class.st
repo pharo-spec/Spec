@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Backend-Tests-Layout'
 }
 
-{ #category : #accessing }
+{ #category : #tests }
 SpScrollableLayoutAdapterTest >> newLayout [
 
 	^ SpScrollableLayout new

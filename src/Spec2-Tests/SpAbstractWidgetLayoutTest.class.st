@@ -7,28 +7,28 @@ Class {
 	#category : #'Spec2-Tests-Layout'
 }
 
-{ #category : #tests }
+{ #category : #test }
 SpAbstractWidgetLayoutTest >> testAdapterForBindings [
 	| layout |
 	layout := SpAbstractWidgetLayout for: #ListAdapter.
 	self assert: (layout adapterFor: SpListPresenter new bindings: SpStubAdapterBindings new) class equals: SpStubListAdapter
 ]
 
-{ #category : #tests }
+{ #category : #test }
 SpAbstractWidgetLayoutTest >> testAdapterForBindingsRaiseErrorIfNoBinding [
 	| layout |
 	layout := SpAbstractWidgetLayout for: #NonExistingAdapter.
 	self should: [ layout adapterFor: SpListPresenter new bindings: SpStubAdapterBindings new ] raise: Error
 ]
 
-{ #category : #tests }
+{ #category : #test }
 SpAbstractWidgetLayoutTest >> testBuildAdapterForBindings [
 	| layout |
 	layout := SpAbstractWidgetLayout for: #ListAdapter.
 	self assert: (layout buildAdapterFor: SpListPresenter new bindings: SpStubAdapterBindings new) widget class equals: SpStubListView
 ]
 
-{ #category : #tests }
+{ #category : #test }
 SpAbstractWidgetLayoutTest >> testDynamicBuild [
 	"Cyril: This is currently a duplicated of a test in SpecInterpreter, but this test is useful for more that the SpecInterpreter and since we plan to remove the interpreter I want to ensure we do not lose this test. This comment can be removed once the SpecInterpreter will be removed."
 

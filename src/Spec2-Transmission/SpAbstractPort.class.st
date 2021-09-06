@@ -63,7 +63,7 @@ SpAbstractPort >> delegateTo: aPresenter [
 ]
 
 { #category : #accessing }
-SpAbstractPort >> destinationPresenterOrPort [
+SpAbstractPort >> destinationPresenter [
 
 	^ delegation 
 		ifNotNil: [ delegation value ]

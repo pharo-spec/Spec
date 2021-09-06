@@ -11,9 +11,9 @@ Class {
 	#traits : 'SpTSearchable',
 	#classTraits : 'SpTSearchable classTrait',
 	#instVars : [
-		'#columns => ObservableSlot',
-		'#showColumnHeaders => ObservableSlot',
-		'#isResizable => ObservableSlot'
+		'#columns => SpObservableSlot',
+		'#showColumnHeaders => SpObservableSlot',
+		'#isResizable => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
@@ -146,7 +146,7 @@ SpTablePresenter >> valueAtColumn: aColumn row: aRow [
 	^ (columns at: aColumn) readObject: (self model items at: aRow)
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpTablePresenter >> whenColumnsChangedDo: aBlock [
 	"Inform when columns have changed. 
 	 `aBlock` has three optional arguments: 
@@ -157,7 +157,7 @@ SpTablePresenter >> whenColumnsChangedDo: aBlock [
 	self property: #columns whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpTablePresenter >> whenIsResizableChangedDo: aBlock [
 	"Inform when resizable property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -168,7 +168,7 @@ SpTablePresenter >> whenIsResizableChangedDo: aBlock [
 	self property: #isResizable whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpTablePresenter >> whenShowColumnHeadersChangedDo: aBlock [
 	"Inform when showColumnHeaders property has changed. 
 	 `aBlock` has three optional arguments: 

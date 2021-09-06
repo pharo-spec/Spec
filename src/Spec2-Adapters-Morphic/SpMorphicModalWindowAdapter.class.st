@@ -52,11 +52,5 @@ SpMorphicModalWindowAdapter >> open [
 	self widget openInWorld.
 	self presenter isCentered 
 		ifTrue: [ self centered ].
-	self waitWhile: [ self widget isInWorld ]
-]
-
-{ #category : #private }
-SpMorphicModalWindowAdapter >> waitWhile: aBlock [
-	
-	MorphicRenderLoop new doOneCycleWhile: aBlock
+	MorphicRenderLoop new doOneCycleWhile: [ self widget isInWorld ]
 ]

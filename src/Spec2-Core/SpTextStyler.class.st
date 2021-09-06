@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'adapter'
 	],
-	#category : #'Spec2-RichText'
+	#category : #'Spec2-Core-Widgets-Text'
 }
 
 { #category : #applying }

@@ -4,14 +4,14 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpPopoverPresenterTest >> classToTest [
 	
 	
 	^ SpPopoverPresenter
 ]
 
-{ #category : #initialization }
+{ #category : #running }
 SpPopoverPresenterTest >> initializeTestedInstance [
 
 	presenter presenter: (SpPresenter new 

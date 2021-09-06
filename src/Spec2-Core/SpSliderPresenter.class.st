@@ -6,14 +6,14 @@ Class {
 	#name : #SpSliderPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#max => ObservableSlot',
-		'#min => ObservableSlot',
-		'#quantum => ObservableSlot',
-		'#value => ObservableSlot',
-		'#absoluteValue => ObservableSlot',
+		'#max => SpObservableSlot',
+		'#min => SpObservableSlot',
+		'#quantum => SpObservableSlot',
+		'#value => SpObservableSlot',
+		'#absoluteValue => SpObservableSlot',
 		'#isHorizontal',
-		'#label => ObservableSlot',
-		'#marks => ObservableSlot'
+		'#label => SpObservableSlot',
+		'#marks => SpObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -222,7 +222,7 @@ SpSliderPresenter >> valueToAbsoluteValue: v [
 	^ ((v - self min) / (self max - self min)) asFloat
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpSliderPresenter >> whenAbsoluteValueChangedDo: aBlock [
 	"Inform when absolute value has changed. 
 	 `aBlock` has three optional arguments: 
@@ -233,7 +233,7 @@ SpSliderPresenter >> whenAbsoluteValueChangedDo: aBlock [
 	self property: #absoluteValue whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpSliderPresenter >> whenLabelChangedDo: aBlock [
 	"Inform when label has changed. 
 	 `aBlock` has three optional arguments: 
@@ -244,7 +244,7 @@ SpSliderPresenter >> whenLabelChangedDo: aBlock [
 	self property: #label whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpSliderPresenter >> whenMarksChangedDo: aBlock [
 	"Inform when marks property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -255,7 +255,7 @@ SpSliderPresenter >> whenMarksChangedDo: aBlock [
 	self property: #marks whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpSliderPresenter >> whenMaxChangedDo: aBlock [ 
 	"Inform when maximum property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -266,7 +266,7 @@ SpSliderPresenter >> whenMaxChangedDo: aBlock [
 	self property: #max whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpSliderPresenter >> whenMinChangedDo: aBlock [ 
 	"Inform when minimum property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -277,14 +277,14 @@ SpSliderPresenter >> whenMinChangedDo: aBlock [
 	self property: #min whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpSliderPresenter >> whenQuantumChangedDo: aBlock [ 
 	"Block performed when the quantum value changed"
 
 	self property: #quantum whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpSliderPresenter >> whenValueChangedDo: aBlock [ 
 	"Block performed when the value changed"
 

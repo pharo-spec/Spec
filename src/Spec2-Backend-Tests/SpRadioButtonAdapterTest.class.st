@@ -1,16 +1,16 @@
 Class {
 	#name : #SpRadioButtonAdapterTest,
 	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpRadioButtonAdapterTest >> classToTest [
 
 	^ SpRadioButtonPresenter 
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpRadioButtonAdapterTest >> testChangingLabelAffectTheWidget [
 	
 	presenter label: 'ALabel'.

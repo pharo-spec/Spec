@@ -5,13 +5,13 @@ Since I am intended to be used dynamically (adding/removing components on demand
 Class {
 	#name : #SpMillerLayout,
 	#superclass : #SpExecutableLayout,
-	#traits : 'TObservable',
-	#classTraits : 'TObservable classTrait',
+	#traits : 'SpTObservable',
+	#classTraits : 'SpTObservable classTrait',
 	#instVars : [
 		'#direction',
 		'#spacing',
 		'#borderWidth',
-		'#visiblePages => ObservableSlot'
+		'#visiblePages => SpObservableSlot'
 	],
 	#category : #'Spec2-Layout-Miller'
 }
@@ -128,9 +128,7 @@ SpMillerLayout >> remove: aPresenter [
 SpMillerLayout >> removeAll [
 
 	children removeAll.
-	adapter ifNotNil: [ :anAdapter | 
-		anAdapter unsubscribe.
-		anAdapter removeAll ]
+	adapter ifNotNil: [ :anAdapter | anAdapter removeAll ]
 ]
 
 { #category : #accessing }
@@ -157,7 +155,7 @@ SpMillerLayout >> visiblePages: aNumber [
 	visiblePages := aNumber
 ]
 
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpMillerLayout >> whenVisiblePagesChangedDo: aBlock [
 
 	self property: #visiblePages whenChangedDo: aBlock

@@ -11,7 +11,7 @@ Class {
 	#category : #'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #accessing }
+{ #category : #private }
 SpMorphicGridLayoutTest >> newLayout [
 	
 	^ SpMorphicGridLayout new
@@ -25,7 +25,7 @@ SpMorphicGridLayoutTest >> newLayout [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpMorphicGridLayoutTest >> place: aMorph at: aPoint [ 
 
 	aMorph 
@@ -33,7 +33,7 @@ SpMorphicGridLayoutTest >> place: aMorph at: aPoint [
 		toValue: (SpGridConstraints at: aPoint)
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpMorphicGridLayoutTest >> place: aMorph at: aPoint span: spanPoint [
 
 	aMorph 
@@ -59,13 +59,13 @@ SpMorphicGridLayoutTest >> setUp [
 		self style applyTo: each ]
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpMorphicGridLayoutTest >> style [ 
 
 	^ self styleExtent: 50@20
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpMorphicGridLayoutTest >> styleExtent: aPoint [
 	| rootStyle |
 
@@ -81,7 +81,7 @@ SpMorphicGridLayoutTest >> styleExtent: aPoint [
 	^ SpMorphStyle newStyles: rootStyle flattenClasses
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpMorphicGridLayoutTest >> styleMinExtent: aPoint [
 	| rootStyle |
 

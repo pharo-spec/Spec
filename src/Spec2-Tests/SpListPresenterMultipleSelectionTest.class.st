@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpListPresenterMultipleSelectionTest >> classToTest [
 	^ SpListPresenter
 ]
@@ -17,7 +17,7 @@ SpListPresenterMultipleSelectionTest >> setUp [
 		items: #(10 20 30)
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectAllRaisesSelectionEventOnce [
 	"Because it does nothing in single selection mode"
 	| events |
@@ -29,49 +29,49 @@ SpListPresenterMultipleSelectionTest >> testSelectAllRaisesSelectionEventOnce [
 	self assert: events equals: 1
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectAllSelectsAllItems [
 
 	presenter selectAll.
 	self assert: presenter selection selectedItems asSet equals: presenter model items asSet
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexAddsIndexToSelectedIndexList [
 
 	presenter selectIndex: 1.
 	self assert: (presenter selection includesIndex: 1)
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexAddsItemToSelectedItemList [
 
 	presenter selectIndex: 1.
 	self assert: (presenter selection includesItem: 10)
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexOutsideRangeHasNoSelectedIndexes [
 
 	presenter selectIndex: 4.
 	self assert: presenter selection selectedIndexes isEmpty
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexOutsideRangeHasNoSelectedItems [
 
 	presenter selectIndex: 4.
 	self assert: presenter selection selectedItems isEmpty
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexOutsideRangeIsEmpty [
 
 	presenter selectIndex: 4.
 	self assert: presenter selection isEmpty
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexThenSelectOutsideRangeKeepsFirstElement [
 
 	presenter selectIndex: 1.
@@ -79,7 +79,7 @@ SpListPresenterMultipleSelectionTest >> testSelectIndexThenSelectOutsideRangeKee
 	self assert: (presenter selection includesItem: 10)
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexThenSelectOutsideRangeKeepsFirstIndex [
 
 	presenter selectIndex: 1.
@@ -87,7 +87,7 @@ SpListPresenterMultipleSelectionTest >> testSelectIndexThenSelectOutsideRangeKee
 	self assert: (presenter selection includesIndex: 1)
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexThenSelectOutsideRangeKeepsSingleSelectedItem [
 
 	presenter selectIndex: 1.
@@ -95,7 +95,7 @@ SpListPresenterMultipleSelectionTest >> testSelectIndexThenSelectOutsideRangeKee
 	self assert: presenter selection selectedItems size equals: 1
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexTwiceAddsIndexToSelectedIndexListOnlyOnce [
 
 	presenter
@@ -104,51 +104,51 @@ SpListPresenterMultipleSelectionTest >> testSelectIndexTwiceAddsIndexToSelectedI
 	self assert: presenter selection selectedIndexes asArray equals: #(1)
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexesAddsIndexesToSelectedIndexList [
 	presenter selectIndexes: {1 . 2}.
 	self assert: (presenter selection includesIndexes: {1 . 2})
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexesAddsItemsToSelectedItemList [
 	presenter selectIndexes: {1 . 2}.
 	self assert: (presenter selection includesItems: {10 . 20})
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexesOutsideRangeHasNoSelectedIndexes [
 	presenter selectIndexes: {4 . 5}.
 	self assert: presenter selection selectedIndexes isEmpty
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexesOutsideRangeHasNoSelectedItems [
 	presenter selectIndexes: {4 . 5}.
 	self assert: presenter selection selectedItems isEmpty
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexesOutsideRangeIsEmpty [
 	presenter selectIndexes: {4 . 5}.
 	self assert: presenter selection isEmpty
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexesThenSelectOutsideRangeKeepsElements [
 	presenter selectIndexes: {1 . 2}.
 	presenter selectIndexes: {50 . 60}.
 	self assert: (presenter selection includesItems: {10 . 20})
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexesThenSelectOutsideRangeKeepsIndexes [
 	presenter selectIndexes: {1 . 2}.
 	presenter selectIndexes: {50 . 60}.
 	self assert: (presenter selection includesIndexes: {1 . 2})
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectIndexesTwiceAddsIndexesToSelectedIndexListOnlyOnce [
 	presenter
 		selectIndexes: {1 . 2};
@@ -156,42 +156,42 @@ SpListPresenterMultipleSelectionTest >> testSelectIndexesTwiceAddsIndexesToSelec
 	self assertCollection: presenter selection selectedIndexes hasSameElements: {1 . 2}
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemAddsIndexToSelectedIndexList [
 
 	presenter selectItem: 10.
 	self assert: (presenter selection includesIndex: 1)
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemAddsItemToSelectedItemList [
 
 	presenter selectItem: 10.
 	self assert: (presenter selection includesItem: 10)
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemOutsideRangeHasNoSelectedIndexes [
 
 	presenter selectItem: 400.
 	self assert: presenter selection selectedIndexes isEmpty
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemOutsideRangeHasNoSelectedItems [
 
 	presenter selectItem: 400.
 	self assert: presenter selection selectedItems isEmpty
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemOutsideRangeIsEmpty [
 
 	presenter selectItem: 4000.
 	self assert: presenter selection isEmpty
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeepsFirstElement [
 
 	presenter selectItem: 10.
@@ -199,7 +199,7 @@ SpListPresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeep
 	self assert: (presenter selection includesItem: 10)
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeepsFirstIndex [
 
 	presenter selectItem: 10.
@@ -207,7 +207,7 @@ SpListPresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeep
 	self assert: (presenter selection includesIndex: 1)
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeepsSingleSelectedItem [
 
 	presenter selectItem: 10.
@@ -215,51 +215,51 @@ SpListPresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeep
 	self assert: presenter selection selectedItems size equals: 1
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemsAddsIndexesToSelectedIndexList [
 	presenter selectItems: {10 . 20}.
 	self assert: (presenter selection includesIndexes: #(1 2))
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemsAddsItemsToSelectedItemList [
 	presenter selectItems: {10 . 20}.
 	self assert: (presenter selection includesItems: {10 . 20})
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemsOutsideRangeHasNoSelectedIndexes [
 	presenter selectItems: {300 . 400}.
 	self assert: presenter selection selectedIndexes isEmpty
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemsOutsideRangeHasNoSelectedItems [
 	presenter selectItems: {300 . 400}.
 	self assert: presenter selection selectedItems isEmpty
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemsOutsideRangeIsEmpty [
 	presenter selectItems: {4000 . 5000}.
 	self assert: presenter selection isEmpty
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemsThenSelectOutsideRangeKeepsElements [
 	presenter selectItems: {10 . 20}.
 	presenter selectItems: {4000 . 5000}.
 	self assert: (presenter selection includesItems: {10 . 20})
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectItemsThenSelectOutsideRangeKeepsIndexes [
 	presenter selectItems: {10 . 20}.
 	presenter selectItems: {500 . 600}.
 	self assert: (presenter selection includesIndexes: {1 . 2})
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectMultipleIndexesAddsAllToSelectedIndexList [
 
 	presenter selectIndex: 1.
@@ -268,7 +268,7 @@ SpListPresenterMultipleSelectionTest >> testSelectMultipleIndexesAddsAllToSelect
 	self assert: (presenter selection includesIndex: 3).
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectMultipleIndexesAddsAllToSelectedItemList [
 
 	presenter selectIndex: 1.
@@ -277,7 +277,7 @@ SpListPresenterMultipleSelectionTest >> testSelectMultipleIndexesAddsAllToSelect
 	self assert: (presenter selection includesItem: 30).
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSelectMultipleIndexesRaisesSelectionChangeEventMultipleTimes [
 	| events |
 	events := 0.
@@ -289,7 +289,7 @@ SpListPresenterMultipleSelectionTest >> testSelectMultipleIndexesRaisesSelection
 	self assert: events equals: 2
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectMultipleItemAddsAllToSelectedIndexList [
 
 	presenter selectItem: 10.
@@ -298,7 +298,7 @@ SpListPresenterMultipleSelectionTest >> testSelectMultipleItemAddsAllToSelectedI
 	self assert: (presenter selection includesIndex: 3).
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectMultipleItemsAddsAllToSelectedItemList [
 
 	presenter selectItem: 10.
@@ -307,7 +307,7 @@ SpListPresenterMultipleSelectionTest >> testSelectMultipleItemsAddsAllToSelected
 	self assert: (presenter selection includesItem: 30).
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSelectMultipleItemsRaisesSelectionChangeEventMultipleTimes [
 	| events |
 	events := 0.
@@ -319,7 +319,7 @@ SpListPresenterMultipleSelectionTest >> testSelectMultipleItemsRaisesSelectionCh
 	self assert: events equals: 2
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSetSelectIndexOutsideRangeDoesNotModifySelection [
 
 	presenter whenSelectionChangedDo: [ :selection | self fail ].
@@ -328,7 +328,7 @@ SpListPresenterMultipleSelectionTest >> testSetSelectIndexOutsideRangeDoesNotMod
 	"If we arrive here and the test did not fail, we succeeded"
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedIndex [
 	| selectedIndexes |
 	presenter
@@ -337,7 +337,7 @@ SpListPresenterMultipleSelectionTest >> testSetSelectIndexRaisesSelectionChangeE
 	self assert: (selectedIndexes includes: 1)
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : #'tests-select-index' }
 SpListPresenterMultipleSelectionTest >> testSetSelectIndexRaisesSelectionChangeEventWithSelectedItem [
 	| selectedItems |
 	presenter
@@ -346,7 +346,7 @@ SpListPresenterMultipleSelectionTest >> testSetSelectIndexRaisesSelectionChangeE
 	self assert: (selectedItems includes: 10)
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : #'tests-select-item' }
 SpListPresenterMultipleSelectionTest >> testSetSelectItemOutsideRangeDoesNotModifySelection [
 
 	presenter whenSelectionChangedDo: [ :selection | self fail ].
@@ -355,7 +355,7 @@ SpListPresenterMultipleSelectionTest >> testSetSelectItemOutsideRangeDoesNotModi
 	"If we arrive here and the test did not fail, we succeeded"
 ]
 
-{ #category : #'tests - unselect-index' }
+{ #category : #'tests-unselect-index' }
 SpListPresenterMultipleSelectionTest >> testUnselectAllRaisesSelectionEventOnce [
 	"Because it does nothing in single selection mode"
 
@@ -370,7 +370,7 @@ SpListPresenterMultipleSelectionTest >> testUnselectAllRaisesSelectionEventOnce 
 	self assert: events equals: 1
 ]
 
-{ #category : #'tests - unselect-index' }
+{ #category : #'tests-unselect-index' }
 SpListPresenterMultipleSelectionTest >> testUnselectAllUnselectsall [
 
 	presenter
@@ -379,7 +379,7 @@ SpListPresenterMultipleSelectionTest >> testUnselectAllUnselectsall [
 	self assert: presenter selection isEmpty
 ]
 
-{ #category : #'tests - unselect-index' }
+{ #category : #'tests-unselect-index' }
 SpListPresenterMultipleSelectionTest >> testUnselectSelectedIndexRaisesSelectionEventOnce [
 	
 	| counter |
@@ -391,7 +391,7 @@ SpListPresenterMultipleSelectionTest >> testUnselectSelectedIndexRaisesSelection
 	self assert: counter equals: 1
 ]
 
-{ #category : #'tests - unselect-index' }
+{ #category : #'tests-unselect-index' }
 SpListPresenterMultipleSelectionTest >> testUnselectSelectedIndexRemovesItFromSelectionList [
 
 	presenter
@@ -400,7 +400,7 @@ SpListPresenterMultipleSelectionTest >> testUnselectSelectedIndexRemovesItFromSe
 	self assert: (presenter selection isEmpty)
 ]
 
-{ #category : #'tests - unselect-item' }
+{ #category : #'tests-unselect-item' }
 SpListPresenterMultipleSelectionTest >> testUnselectSelectedItemRaisesSelectionEventOnce [
 	
 	| counter |
@@ -412,7 +412,7 @@ SpListPresenterMultipleSelectionTest >> testUnselectSelectedItemRaisesSelectionE
 	self assert: counter equals: 1
 ]
 
-{ #category : #'tests - unselect-item' }
+{ #category : #'tests-unselect-item' }
 SpListPresenterMultipleSelectionTest >> testUnselectSelectedItemRemovesItFromSelectionList [
 
 	presenter
@@ -421,7 +421,7 @@ SpListPresenterMultipleSelectionTest >> testUnselectSelectedItemRemovesItFromSel
 	self assert: (presenter selection isEmpty)
 ]
 
-{ #category : #'tests - unselect-index' }
+{ #category : #'tests-unselect-index' }
 SpListPresenterMultipleSelectionTest >> testUnselectUnselectedIndexKeepsSelectionList [
 
 	presenter
@@ -430,7 +430,7 @@ SpListPresenterMultipleSelectionTest >> testUnselectUnselectedIndexKeepsSelectio
 	self assert: presenter selection selectedIndexes asArray equals: #(1)
 ]
 
-{ #category : #'tests - unselect-index' }
+{ #category : #'tests-unselect-index' }
 SpListPresenterMultipleSelectionTest >> testUnselectUnselectedIndexRaisesNoSelectionEvent [
 	
 	| counter |
@@ -442,7 +442,7 @@ SpListPresenterMultipleSelectionTest >> testUnselectUnselectedIndexRaisesNoSelec
 	self assert: counter equals: 0
 ]
 
-{ #category : #'tests - unselect-item' }
+{ #category : #'tests-unselect-item' }
 SpListPresenterMultipleSelectionTest >> testUnselectUnselectedItemKeepsSelectionList [
 
 	presenter
@@ -451,7 +451,7 @@ SpListPresenterMultipleSelectionTest >> testUnselectUnselectedItemKeepsSelection
 	self assert: presenter selection selectedItems asArray equals: #(10)
 ]
 
-{ #category : #'tests - unselect-item' }
+{ #category : #'tests-unselect-item' }
 SpListPresenterMultipleSelectionTest >> testUnselectUnselectedItemRaisesNoSelectionEvent [
 	
 	| counter |

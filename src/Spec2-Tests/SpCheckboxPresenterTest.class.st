@@ -4,13 +4,13 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpCheckboxPresenterTest >> classToTest [
 
 	^ SpCheckBoxPresenter
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 SpCheckboxPresenterTest >> morph [
 
 	^ presenter adapter widget

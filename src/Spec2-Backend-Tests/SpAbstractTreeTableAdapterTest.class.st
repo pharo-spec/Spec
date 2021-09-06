@@ -1,7 +1,7 @@
 Class {
 	#name : #SpAbstractTreeTableAdapterTest,
 	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
 { #category : #testing }
@@ -16,7 +16,7 @@ SpAbstractTreeTableAdapterTest >> classToTest [
 	^ SpTreeTablePresenter 
 ]
 
-{ #category : #initialization }
+{ #category : #running }
 SpAbstractTreeTableAdapterTest >> initializeTestedInstance [
 	presenter
 		addColumn: (SpStringTableColumn title: 'Value' evaluated: #printString);
@@ -40,7 +40,7 @@ SpAbstractTreeTableAdapterTest >> testAfterOpeningEmptyLazyChildrenExpandIconVan
 	self deny: (self adapter isRowMorphExpandableAt: 2)
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractTreeTableAdapterTest >> testChangingRootsResetsSelection [
 
 	self presenter selection selectPath: #(2 3).
@@ -50,7 +50,7 @@ SpAbstractTreeTableAdapterTest >> testChangingRootsResetsSelection [
 
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractTreeTableAdapterTest >> testChangingRootsUpdateWidget [
 
 	self presenter roots: #(10 11 12).
@@ -82,7 +82,7 @@ SpAbstractTreeTableAdapterTest >> testLazilyComputeChildrenDoesNotComputeChildre
 	self assert: (self adapter isRowMorphExpandableAt: 3)
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractTreeTableAdapterTest >> testRightClickShowsMenu [
 	| menu |
 
@@ -92,7 +92,7 @@ SpAbstractTreeTableAdapterTest >> testRightClickShowsMenu [
 	self assert: menu shown
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractTreeTableAdapterTest >> testSelectItemRaiseEvent [
 
 	| called |
@@ -103,28 +103,28 @@ SpAbstractTreeTableAdapterTest >> testSelectItemRaiseEvent [
 	self assert: called equals: true
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractTreeTableAdapterTest >> testSelectItemSelectsTheGivenElement [
 
 	self presenter selection selectPath: #(2).
 	self assert: self adapter selectedItem equals: 2.
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractTreeTableAdapterTest >> testSelectItemSelectsTheGivenElementAndExpandsTheBranches [
 
 	self presenter selection selectPath: #(2 3).
 	self assert: self adapter selectedItem equals: 20.
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractTreeTableAdapterTest >> testSelectingAPathUpdatesSelectionInPresenter [
 
 	self presenter selection selectPath: #(2 3).
 	self assert: self presenter selectedItem equals: 20.
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractTreeTableAdapterTest >> testSelectingOutOfRangeKeepOldSelection [
 	
 	self presenter selection selectPath: #(2 3).
@@ -133,7 +133,7 @@ SpAbstractTreeTableAdapterTest >> testSelectingOutOfRangeKeepOldSelection [
 
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractTreeTableAdapterTest >> testShowingColumnDisplayColumn [
 
 	self presenter showColumnHeaders.
@@ -141,7 +141,7 @@ SpAbstractTreeTableAdapterTest >> testShowingColumnDisplayColumn [
 	backendForTest assertHasHeader: self adapter
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpAbstractTreeTableAdapterTest >> testStartsWithoutSelection [
 
 	self assert: self adapter selectedItem equals: nil.

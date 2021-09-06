@@ -51,7 +51,7 @@ SpTMorphicTableDataSourceCommons >> model: aTablePresenter [
 	model := aTablePresenter
 ]
 
-{ #category : #'private - factory' }
+{ #category : #'private factory' }
 SpTMorphicTableDataSourceCommons >> newHeaderColumn: column [
 	| headerMorph |
 	

@@ -190,7 +190,7 @@ SpPopoverMorph >> defaultColor [
 	^ self theme lightBaseColor
 ]
 
-{ #category : #'submorphs - add/remove' }
+{ #category : #'submorphs-add/remove' }
 SpPopoverMorph >> delete [
 
 	self activeHand ifNotNil: [ :hand | 

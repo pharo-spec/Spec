@@ -1,16 +1,16 @@
 Class {
 	#name : #SpButtonAdapterTest,
 	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : #'Spec2-Backend-Tests'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 SpButtonAdapterTest >> classToTest [
 
 	^ SpButtonPresenter
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpButtonAdapterTest >> testChangingIconAffectTheWidget [
 	
 	presenter iconName: #pharo.
@@ -18,14 +18,14 @@ SpButtonAdapterTest >> testChangingIconAffectTheWidget [
 	self assertIcon: self adapter icon equals: (self iconNamed: #pharo)
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpButtonAdapterTest >> testChangingLabelAffectTheWidget [
 	
 	presenter label: 'ALabel'.
 	self assert: self widget label equals: 'ALabel'
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpButtonAdapterTest >> testClickExecuteAction [
 	| actionExecuted |	
 
@@ -36,7 +36,7 @@ SpButtonAdapterTest >> testClickExecuteAction [
 	self assert: actionExecuted
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpButtonAdapterTest >> testFontAffectsTheWidget [
 
 	backendForTest canChangeFonts ifFalse: [ self skip ].
@@ -49,7 +49,7 @@ SpButtonAdapterTest >> testFontAffectsTheWidget [
 
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpButtonAdapterTest >> testNoClickDoesNotExecuteAction [
 	| actionExecuted |
 	actionExecuted := false.
@@ -58,7 +58,7 @@ SpButtonAdapterTest >> testNoClickDoesNotExecuteAction [
 	self deny: actionExecuted
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpButtonAdapterTest >> testRightClickShouldNotExecuteAction [
 	| actionExecuted |
 
@@ -69,7 +69,7 @@ SpButtonAdapterTest >> testRightClickShouldNotExecuteAction [
 	self deny: actionExecuted
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpButtonAdapterTest >> testRightClickShowsMenu [
 	| menu |
 
@@ -79,7 +79,7 @@ SpButtonAdapterTest >> testRightClickShowsMenu [
 	self assert: menu shown
 ]
 
-{ #category : #tests }
+{ #category : #running }
 SpButtonAdapterTest >> testWhenActivatedDo [
 
 	| actionExecuted |	

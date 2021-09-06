@@ -6,8 +6,8 @@ A base for selection modes.
 Class {
 	#name : #SpAbstractSelectionMode,
 	#superclass : #Object,
-	#traits : 'TObservable',
-	#classTraits : 'TObservable classTrait',
+	#traits : 'SpTObservable',
+	#classTraits : 'SpTObservable classTrait',
 	#instVars : [
 		'widget'
 	],
@@ -116,56 +116,56 @@ SpAbstractSelectionMode >> model [
 	^ widget model
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractSelectionMode >> selectAll [
 	"Select all items."
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractSelectionMode >> selectIndex: anIndex [
 	"Select item at position `anInteger`."
 	
 	self basicSelectIndex: (self withinRangeIndex: anIndex)
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractSelectionMode >> selectIndexes: aCollectionOfIndexes [
 	"Select items at positions included in `aCollectionOfIndexes`."
 
 	self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractSelectionMode >> selectItem: anItem [
 	"Select `anItem` if it is included in model list."
 	
 	self basicSelectIndex: (self indexOfItem: anItem)
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractSelectionMode >> selectItems: aCollection [
 	"Select items included in `aCollection` if they are included in model list."
 	
 	self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractSelectionMode >> selectedIndexes [
 	"Answer a collection with indexes of all selected items."
 
 	self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractSelectionMode >> selectedItem [
 	"Answer selected item"
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractSelectionMode >> selectedItems [
 	"Answer a collection with all selected items."
 
@@ -182,35 +182,28 @@ SpAbstractSelectionMode >> transferSubscriptionsTo: anotherSelectionMode [
 	self selectionHolder transferSubscriptionsTo: anotherSelectionMode selectionHolder
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractSelectionMode >> unselectAll [
 	"Remove all selections."
 	
 	self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractSelectionMode >> unselectIndex: anInteger [ 
 	"Unselect item at position `anInteger`."
 	
 	self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : #'api-selection' }
 SpAbstractSelectionMode >> unselectItem: anObject [
 	"Unselect item `anObject`."
 	
 	self unselectIndex: (self indexOfItem: anObject)
 ]
 
-{ #category : #subscription }
-SpAbstractSelectionMode >> unsubscribe: anObject [ 
-
-	(self observablePropertyNamed: #selectedIndexes) unsubscribe: anObject.
-
-]
-
-{ #category : #'api - events' }
+{ #category : #'api-events' }
 SpAbstractSelectionMode >> whenChangedDo: aBlock [ 
 	"Inform when selection has changed. 
 	 `aBlock` has three optional arguments: 

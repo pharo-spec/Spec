@@ -18,7 +18,7 @@ Class {
 		'filterInputPresenter',
 		'itemFilterBlock'
 	],
-	#category : #'Spec2-Common-Widgets'
+	#category : #'Spec2-Core-Widgets-Advanced'
 }
 
 { #category : #specs }
@@ -61,18 +61,6 @@ SpFilteringListPresenter >> connectPresenters [
 SpFilteringListPresenter >> contextMenu: aValuable [
  
 	self listPresenter contextMenu: aValuable
-]
-
-{ #category : #transmission }
-SpFilteringListPresenter >> defaultInputPort [
-
-	^ listPresenter defaultInputPort
-]
-
-{ #category : #transmission }
-SpFilteringListPresenter >> defaultOutputPort [
-
-	^ listPresenter defaultOutputPort
 ]
 
 { #category : #api }
@@ -134,12 +122,6 @@ SpFilteringListPresenter >> initializePresenters [
 	self matchSubstring
 ]
 
-{ #category : #transmission }
-SpFilteringListPresenter >> inputItemsPort [
-	
-	^ listPresenter inputItemsPort
-]
-
 { #category : #private }
 SpFilteringListPresenter >> itemFilter [
 
@@ -190,18 +172,6 @@ SpFilteringListPresenter >> newListToFilter [
 	^ self newList
 ]
 
-{ #category : #transmission }
-SpFilteringListPresenter >> outputActivationPort [
-	
-	^ listPresenter outputActivationPort
-]
-
-{ #category : #transmission }
-SpFilteringListPresenter >> outputSelectionPort [
-	
-	^ listPresenter outputSelectionPort
-]
-
 { #category : #api }
 SpFilteringListPresenter >> selectItem: anObject [
 	
@@ -212,10 +182,4 @@ SpFilteringListPresenter >> selectItem: anObject [
 SpFilteringListPresenter >> selectedItem [
 	
 	^ listPresenter selectedItem
-]
-
-{ #category : #accessing }
-SpFilteringListPresenter >> unfilteredItems [
-
-	^ unfilteredItems ifNil: [ unfilteredItems := self items ]
 ]

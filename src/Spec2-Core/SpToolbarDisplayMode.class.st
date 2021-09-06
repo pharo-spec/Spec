@@ -11,16 +11,6 @@ Class {
 }
 
 { #category : #accessing }
-SpToolbarDisplayMode class >> all [
-
-	^ { 
-	self modeIcon.
-	self modeIconAndLabel.
-	self modeLabel.
-	 }
-]
-
-{ #category : #accessing }
 SpToolbarDisplayMode class >> default [
 	^ self modeIconAndLabel
 ]
