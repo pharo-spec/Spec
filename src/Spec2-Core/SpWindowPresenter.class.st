@@ -23,17 +23,17 @@ Class {
 	#name : #SpWindowPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#presenter => SpObservableSlot',
-		'#initialPosition => SpObservableSlot',
-		'#initialExtent => SpObservableSlot',
-		'#isResizeable => SpObservableSlot',
-		'#menu => SpObservableSlot',
-		'#centered => SpObservableSlot',
-		'#isClosed => SpObservableSlot',
-		'#toolbar => SpObservableSlot',
-		'#statusbar => SpObservableSlot',
-		'#window => SpObservableSlot',
-		'#decorations => SpObservableSlot'
+		'#presenter => ObservableSlot',
+		'#initialPosition => ObservableSlot',
+		'#initialExtent => ObservableSlot',
+		'#isResizeable => ObservableSlot',
+		'#menu => ObservableSlot',
+		'#centered => ObservableSlot',
+		'#isClosed => ObservableSlot',
+		'#toolbar => ObservableSlot',
+		'#statusbar => ObservableSlot',
+		'#window => ObservableSlot',
+		'#decorations => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Support'
 }
@@ -94,7 +94,7 @@ SpWindowPresenter >> addModelItemsToWindowMenu: aMenu [
 	self presenter addModelItemsToWindowMenu: aMenu
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpWindowPresenter >> addPresenterIn: widget withSpecLayout: aSpec [
 	
 	self presenter ifNil: [ ^ self ].
@@ -115,20 +115,17 @@ SpWindowPresenter >> askOkToClose: aBoolean [
 	askOkToClose := aBoolean
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpWindowPresenter >> basicBuildWithSpecLayout: presenterSpecLayout [
 	"Build the widget using the spec name provided as argument"
-	| widget |
 
-	(self spec isNil or: [ self needRebuild ])
+	^(self spec isNil or: [ self needRebuild ])
 		ifTrue: [ 
 			self 
 				buildWindowWithLayout: self retrieveDefaultSpec 
 				presenterLayout: presenterSpecLayout ]
 		ifFalse: [
-			widget := self widget ].
-	
-	^ widget
+			self adapter widget ]
 ]
 
 { #category : #api }
@@ -138,7 +135,7 @@ SpWindowPresenter >> beep [
 	self adapter beep
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpWindowPresenter >> buildWindowWithLayout: windowSpecLayout presenterLayout: presenterSpecLayout [
 
 	"set adapter of the window"
@@ -146,6 +143,7 @@ SpWindowPresenter >> buildWindowWithLayout: windowSpecLayout presenterLayout: pr
 		buildAdapterFor: self 
 		bindings: SpBindings value).
 	self window: self adapter widget.
+	self processDeferredActions.
 	"add presenter"
 	self addPresenterIn: self window withSpecLayout: presenterSpecLayout.
 	"announce its result"
@@ -155,7 +153,7 @@ SpWindowPresenter >> buildWindowWithLayout: windowSpecLayout presenterLayout: pr
 	^ self window
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpWindowPresenter >> buildWithSpecLayout: aSpecLayout [
 	
 	^ SpBindings 
@@ -293,6 +291,7 @@ SpWindowPresenter >> initialPosition: aPoint [
 
 { #category : #initialization }
 SpWindowPresenter >> initialize [
+
 	super initialize.
 
 	titleHolder := self class defaultTitle.
@@ -303,8 +302,14 @@ SpWindowPresenter >> initialize [
 	decorations := true.
 
 	"presenter whenChangedDo: [ :m | self updateTitle ]."
-	self property: #titleHolder whenChangedDo: [ :m | self changed: #title: with: {m} ].
-	self property: #centered whenChangedDo: [ :m | self changed: #centered with: #() ]
+	self 
+		property: #titleHolder 
+		whenChangedDo: [ :aString | 
+			self withAdapterDo: [ :anAdapter | anAdapter title: aString ] ].
+	self 
+		property: #centered 
+		whenChangedDo: [ :aBoolean | 
+			self withAdapterDo: [ :anAdapter | anAdapter centered ] ]
 ]
 
 { #category : #initialization }
@@ -446,10 +451,24 @@ SpWindowPresenter >> okToChange [
 	^ self canDiscardEdits
 ]
 
-{ #category : #private }
+{ #category : #'api - showing' }
+SpWindowPresenter >> open [
+
+	self openWith: self presenter retrieveDefaultSpec
+]
+
+{ #category : #'api - showing' }
+SpWindowPresenter >> openWith: aSpecLayout [
+
+	self openWithSpecLayout: aSpecLayout
+]
+
+{ #category : #'private - showing' }
 SpWindowPresenter >> openWithSpecLayout: aSpec [
+
 	self buildWithSpecLayout: aSpec.
-	self changed: #open with: #().
+	self application registerWindow: self.
+	self withAdapterDo: [ :anAdapter | anAdapter open ].
 	self allPresenters do: [ :each | each announceDisplayed ].
 	self updateTitle
 ]
@@ -469,7 +488,7 @@ SpWindowPresenter >> presenter: aPresenter [
 	presenter := aPresenter
 ]
 
-{ #category : #'private building' }
+{ #category : #'private - building' }
 SpWindowPresenter >> rebuildWithSpecLayout: aSpec [
 
 	self changed: #rebuildWithSpecLayout: with: { aSpec }
@@ -541,7 +560,7 @@ SpWindowPresenter >> toolbar: aToolbarPresenter [
 	^ toolbar := aToolbarPresenter
 ]
 
-{ #category : #'private-traversing' }
+{ #category : #'private - traversing' }
 SpWindowPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
 	"I am not focusable (not with tab)"
@@ -550,7 +569,7 @@ SpWindowPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 		excluding: excludes
 ]
 
-{ #category : #'private-traversing' }
+{ #category : #'private - traversing' }
 SpWindowPresenter >> traversePresentersDo: aBlock excluding: excludes [
 	
 	super traversePresentersDo: aBlock excluding: excludes.
@@ -574,7 +593,7 @@ SpWindowPresenter >> updateTitle [
 	self changed: #title: with: { self title }
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpWindowPresenter >> whenClosedDo: aBlock [
 	"Inform when window is closed.
 	 `aBlock` receives zero arguments."
@@ -584,7 +603,7 @@ SpWindowPresenter >> whenClosedDo: aBlock [
 		whenChangedDo: [ :value | value ifTrue: aBlock ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpWindowPresenter >> whenDecorationsChangedDo: aBlock [
 	"Inform when decorations property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -595,7 +614,7 @@ SpWindowPresenter >> whenDecorationsChangedDo: aBlock [
 	self property: #decorations whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpWindowPresenter >> whenFocusLostDo: aBlock [
 	"Inform when window lost focus. 
 	 This is a convenience method that exposes a functionality of the event handler 
@@ -605,7 +624,7 @@ SpWindowPresenter >> whenFocusLostDo: aBlock [
 	self eventHandler whenFocusLostDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpWindowPresenter >> whenFocusReceivedDo: aBlock [
 	"Inform when window receives focus. 
 	 This is a convenience method that exposes a functionality of the event handler 
@@ -615,7 +634,7 @@ SpWindowPresenter >> whenFocusReceivedDo: aBlock [
 	self eventHandler whenFocusReceivedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpWindowPresenter >> whenOpenedDo: aBlock [
 	"Inform when window is opened. 
 	 `aBlock` receives zero arguments."
@@ -625,7 +644,7 @@ SpWindowPresenter >> whenOpenedDo: aBlock [
 		whenChangedDo: [ :value | value ifFalse: aBlock ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpWindowPresenter >> whenResizingDo: aBlock [
 	"Inform when window is resizing. 
 	 `aBlock` receives one optional argument (an instance of the announcement `SpWindowResizing`)"
@@ -635,7 +654,7 @@ SpWindowPresenter >> whenResizingDo: aBlock [
 		do: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpWindowPresenter >> whenToolbarChangedDo: aBlock [
 	"Inform when the toolbar has been changed.
 	
@@ -646,7 +665,7 @@ SpWindowPresenter >> whenToolbarChangedDo: aBlock [
 	self property: #toolbar whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpWindowPresenter >> whenWillCloseDo: aBlock [
 	"Inform when window will close, allowing process before the close happen. 
 	 Note that user cannot cancel the close operation using this event. 

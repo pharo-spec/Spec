@@ -18,13 +18,13 @@ SpAdapterBindings class >> isAbstract [
 	^ self name = #SpAdapterBindings
 ]
 
-{ #category : #initialize }
+{ #category : #accessing }
 SpAdapterBindings >> abstractAdapterClass [
 	
 	^ self subclassResponsibility
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #utilities }
 SpAdapterBindings >> adapterClass: aSymbol [ 
 	
 	^ Smalltalk 
@@ -32,7 +32,7 @@ SpAdapterBindings >> adapterClass: aSymbol [
 		ifAbsent: [ aSymbol ]
 ]
 
-{ #category : #initialize }
+{ #category : #accessing }
 SpAdapterBindings >> allAdapters [
 	^ self abstractAdapterClass allAdapters
 ]
@@ -46,7 +46,7 @@ SpAdapterBindings >> initialize [
 	self initializeBindings
 ]
 
-{ #category : #initialize }
+{ #category : #initialization }
 SpAdapterBindings >> initializeBindings [
 	
 	self allAdapters do: [ :each |

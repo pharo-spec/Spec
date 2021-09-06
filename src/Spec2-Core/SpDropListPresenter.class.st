@@ -8,11 +8,11 @@ Class {
 	#name : #SpDropListPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#model => SpObservableSlot',
+		'#model => ObservableSlot',
 		'#startsWithSelection',
 		'#selection',
-		'#displayBlock => SpObservableSlot',
-		'#iconBlock => SpObservableSlot'
+		'#displayBlock => ObservableSlot',
+		'#iconBlock => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -59,6 +59,17 @@ SpDropListPresenter >> addItemLabeled: aString do: aBlock icon: anIcon [
 	"Adding an item adds it to the selection if there is none".
 	self selection isEmpty ifTrue: [ 
 		self selection selectItem: item ]
+]
+
+{ #category : #private }
+SpDropListPresenter >> disableSelectionDuring: aBlock [
+	| oldSubscriptions holder |
+	
+	holder := selection observablePropertyNamed: #selectedIndex.
+	oldSubscriptions := holder subscriptions.
+	holder subscriptions: #().
+	aBlock ensure: [ 
+		holder subscriptions: oldSubscriptions ]
 ]
 
 { #category : #api }
@@ -281,7 +292,19 @@ SpDropListPresenter >> startWithoutSelection [
 	startsWithSelection := false
 ]
 
-{ #category : #'api-events' }
+{ #category : #api }
+SpDropListPresenter >> updateItemsKeepingSelection: aCollection [
+	"Update list items keeping current selection. 
+	 WARNING: aCollection must includes the elements selected."
+	
+	self disableSelectionDuring: [ 
+		| item |
+		item := self selectedItem.
+		self items: aCollection.
+		self selectItem: item ]
+]
+
+{ #category : #'api - events' }
 SpDropListPresenter >> whenSelectedItemChangedDo: aBlock [
 	"Inform when the selected item is changed.
 	 `aBlock` receive 3 optional arguments: 
@@ -292,7 +315,7 @@ SpDropListPresenter >> whenSelectedItemChangedDo: aBlock [
 	selection whenChangedDo: [	aBlock cull: self selectedItem ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpDropListPresenter >> whenSelectionChangedDo: aBlock [
 	"Inform when the selection is changed.
 	 The method should be used only if you are interested in the fact that there was 
@@ -308,7 +331,7 @@ SpDropListPresenter >> whenSelectionChangedDo: aBlock [
 	selection whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpDropListPresenter >> whenSortingBlockChangedDo: aBlock [
 	"Inform when sorting block has changed.
 	 `aBlock` receive 3 optional arguments: 

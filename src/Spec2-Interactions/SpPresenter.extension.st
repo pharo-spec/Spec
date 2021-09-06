@@ -14,14 +14,13 @@ SpPresenter >> confirm: queryString label: titleString [
 SpPresenter >> request: request initialAnswer: initialAnwser title: title [
 	| answer |
 	
-	answer := (self application newRequest
+	answer := self application newRequest
 		title: title;
-		message: request;
+		label: request;
 		text: initialAnwser;
-		openModalWithSpec)
-		isOk.
+		openModalWithSpec.
 					
-	answer ifFalse: [ SpCancelledInteractionError signal ].
+	answer ifNil: [ SpCancelledInteractionError signal ].
 	
 	^ answer
 ]

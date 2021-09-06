@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
-{ #category : #running }
+{ #category : #accessing }
 SpTreeTablePresenterSingleSelectionTest >> classToTest [
 	^ SpTreeTablePresenter
 ]
@@ -25,14 +25,14 @@ SpTreeTablePresenterSingleSelectionTest >> setUp [
 		yourself.
 ]
 
-{ #category : #'tests-select-item' }
+{ #category : #'tests - select-item' }
 SpTreeTablePresenterSingleSelectionTest >> testSelectItemOutsideRangeUnsetsSelectedItem [
 
 	presenter selectItem: 4000.
 	self assert: presenter selection selectedItem equals: nil
 ]
 
-{ #category : #'tests-select-item' }
+{ #category : #'tests - select-item' }
 SpTreeTablePresenterSingleSelectionTest >> testSelectItemOutsideRangeUnsetsSelectedPath [
 	
 	presenter selectItem: 4000.
@@ -41,20 +41,20 @@ SpTreeTablePresenterSingleSelectionTest >> testSelectItemOutsideRangeUnsetsSelec
 		assert: presenter selection selectedPath equals: #()
 ]
 
-{ #category : #'tests-select-item' }
+{ #category : #'tests - select-item' }
 SpTreeTablePresenterSingleSelectionTest >> testSelectItemSetsSelectedItem [
 	presenter selectItem: 20.
 	self assert: presenter selection selectedItem equals: 20
 ]
 
-{ #category : #'tests-select-item' }
+{ #category : #'tests - select-item' }
 SpTreeTablePresenterSingleSelectionTest >> testSelectItemSetsSelectedPath [
 
 	presenter selectItem: 20.
 	self assert: presenter selection selectedPath equals: #(1 1 3)
 ]
 
-{ #category : #'tests-select-index' }
+{ #category : #'tests - select-index' }
 SpTreeTablePresenterSingleSelectionTest >> testSelectMultiplePathsRaisesSelectionChangeEventMultipleTimes [
 	| events |
 	events := 0.
@@ -66,7 +66,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSelectMultiplePathsRaisesSelectio
 	self assert: events equals: 2
 ]
 
-{ #category : #'tests-select-index' }
+{ #category : #'tests - select-index' }
 SpTreeTablePresenterSingleSelectionTest >> testSelectPathOutsideRangeUnsetsSelectedItem [
 	presenter selectPath: { 4 }.
 	
@@ -75,7 +75,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSelectPathOutsideRangeUnsetsSelec
 		equals: nil
 ]
 
-{ #category : #'tests-select-index' }
+{ #category : #'tests - select-index' }
 SpTreeTablePresenterSingleSelectionTest >> testSelectPathOutsideRangeUnsetsSelectedPath [
 	presenter selectPath: #(4).
 
@@ -84,7 +84,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSelectPathOutsideRangeUnsetsSelec
 	 	equals: #()
 ]
 
-{ #category : #'tests-select-index' }
+{ #category : #'tests - select-index' }
 SpTreeTablePresenterSingleSelectionTest >> testSelectPathSetsSelectedItem [
 
 	presenter selectPath: #(1 3).
@@ -94,7 +94,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSelectPathSetsSelectedItem [
 		equals: 10
 ]
 
-{ #category : #'tests-select-index' }
+{ #category : #'tests - select-index' }
 SpTreeTablePresenterSingleSelectionTest >> testSelectPathSetsSelectedPath [
 
 	presenter selectPath: #(1 1).
@@ -104,7 +104,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSelectPathSetsSelectedPath [
 		equals: #(1 1)
 ]
 
-{ #category : #'tests-select-item' }
+{ #category : #'tests - select-item' }
 SpTreeTablePresenterSingleSelectionTest >> testSetSelectItemOutsideRangeRaisesSelectionChangeEventWithUnsetItem [
 	| selectedItem |
 	presenter
@@ -113,7 +113,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectItemOutsideRangeRaisesSe
 	self assert: selectedItem equals: nil
 ]
 
-{ #category : #'tests-select-item' }
+{ #category : #'tests - select-item' }
 SpTreeTablePresenterSingleSelectionTest >> testSetSelectItemOutsideRangeRaisesSelectionChangeEventWithUnsetPath [
 	| selectedPath |
 
@@ -123,7 +123,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectItemOutsideRangeRaisesSe
 	self assert: selectedPath equals: #()
 ]
 
-{ #category : #'tests-select-item' }
+{ #category : #'tests - select-item' }
 SpTreeTablePresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionChangeEventWithSelectedItem [
 	| selectedElement |
 	presenter
@@ -132,7 +132,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionChang
 	self assert: selectedElement equals: 20
 ]
 
-{ #category : #'tests-select-item' }
+{ #category : #'tests - select-item' }
 SpTreeTablePresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionChangeEventWithSelectedPath [
 	| selectedPath |
 
@@ -143,7 +143,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionChang
 	self assert: selectedPath equals: #(1 1 3)
 ]
 
-{ #category : #'tests-select-item' }
+{ #category : #'tests - select-item' }
 SpTreeTablePresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionItemChangeEventWithSelectedItem [
 	| selectedItem |
 	presenter
@@ -152,7 +152,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionItemC
 	self assert: selectedItem equals: 10
 ]
 
-{ #category : #'tests-select-item' }
+{ #category : #'tests - select-item' }
 SpTreeTablePresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionPathChangeEventWithSelectedPath [
 	| selectedPath |
 	
@@ -163,7 +163,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectItemRaisesSelectionPathC
 	self assert: selectedPath equals: #(1 3)
 ]
 
-{ #category : #'tests-select-index' }
+{ #category : #'tests - select-index' }
 SpTreeTablePresenterSingleSelectionTest >> testSetSelectPathOutsideRangeRaisesSelectionChangeEventWithUnsetItem [
 	| selectedItem |
 	presenter
@@ -173,7 +173,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectPathOutsideRangeRaisesSe
 	self assert: selectedItem equals: nil
 ]
 
-{ #category : #'tests-select-index' }
+{ #category : #'tests - select-index' }
 SpTreeTablePresenterSingleSelectionTest >> testSetSelectPathOutsideRangeRaisesSelectionChangeEventWithUnsetPath [
 	| selectedPath |
 	presenter
@@ -183,7 +183,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectPathOutsideRangeRaisesSe
 	self assert: selectedPath equals: nil
 ]
 
-{ #category : #'tests-select-index' }
+{ #category : #'tests - select-index' }
 SpTreeTablePresenterSingleSelectionTest >> testSetSelectPathRaisesSelectionChangeEventWithSelectedItem [
 	| selectedElement |
 
@@ -194,7 +194,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectPathRaisesSelectionChang
 	self assert: selectedElement equals: 10
 ]
 
-{ #category : #'tests-select-index' }
+{ #category : #'tests - select-index' }
 SpTreeTablePresenterSingleSelectionTest >> testSetSelectPathRaisesSelectionChangeEventWithSelectedPath [
 	| selectedPath |
 	presenter
@@ -204,7 +204,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectPathRaisesSelectionChang
 	self assert: selectedPath equals: #(1 2).
 ]
 
-{ #category : #'tests-select-index' }
+{ #category : #'tests - select-index' }
 SpTreeTablePresenterSingleSelectionTest >> testSetSelectPathRaisesSelectionItemChangeEventWithSelectedItem [
 	| selectedItem |
 	presenter
@@ -216,7 +216,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectPathRaisesSelectionItemC
 		equals: 10
 ]
 
-{ #category : #'tests-select-index' }
+{ #category : #'tests - select-index' }
 SpTreeTablePresenterSingleSelectionTest >> testSetSelectPathRaisesSelectionPathChangeEventWithSelectedPath [
 	| selectedPath |
 	presenter selection
@@ -226,7 +226,7 @@ SpTreeTablePresenterSingleSelectionTest >> testSetSelectPathRaisesSelectionPathC
 	self assert: selectedPath equals: #(1 2)
 ]
 
-{ #category : #'tests-unselect-index' }
+{ #category : #'tests - unselect-index' }
 SpTreeTablePresenterSingleSelectionTest >> testUnselectAllRaisesSelectionEventOnce [
 	"Because it does nothing in single selection mode"
 	| events |
@@ -238,7 +238,7 @@ SpTreeTablePresenterSingleSelectionTest >> testUnselectAllRaisesSelectionEventOn
 	self assert: events equals: 1
 ]
 
-{ #category : #'tests-unselect-index' }
+{ #category : #'tests - unselect-index' }
 SpTreeTablePresenterSingleSelectionTest >> testUnselectAllUnselectsSingleSelection [
 
 	presenter
@@ -247,7 +247,7 @@ SpTreeTablePresenterSingleSelectionTest >> testUnselectAllUnselectsSingleSelecti
 	self assert: presenter selection isEmpty
 ]
 
-{ #category : #'tests-unselect-item' }
+{ #category : #'tests - unselect-item' }
 SpTreeTablePresenterSingleSelectionTest >> testUnselectNonSelectedItemDoesNotRemovesSelection [
 	presenter
 		selectItem: 10;
@@ -258,7 +258,7 @@ SpTreeTablePresenterSingleSelectionTest >> testUnselectNonSelectedItemDoesNotRem
 		equals: 10
 ]
 
-{ #category : #'tests-unselect-item' }
+{ #category : #'tests - unselect-item' }
 SpTreeTablePresenterSingleSelectionTest >> testUnselectNonSelectedItemRaisesNoEvent [
 	
 	| counter |
@@ -271,7 +271,7 @@ SpTreeTablePresenterSingleSelectionTest >> testUnselectNonSelectedItemRaisesNoEv
 	self assert: counter equals: 0
 ]
 
-{ #category : #'tests-unselect-index' }
+{ #category : #'tests - unselect-index' }
 SpTreeTablePresenterSingleSelectionTest >> testUnselectNonSelectedPathDoesNotRemovesSelection [
 	presenter
 		selectPath: #(1 1);
@@ -282,7 +282,7 @@ SpTreeTablePresenterSingleSelectionTest >> testUnselectNonSelectedPathDoesNotRem
 		equals: #(1 1)
 ]
 
-{ #category : #'tests-unselect-index' }
+{ #category : #'tests - unselect-index' }
 SpTreeTablePresenterSingleSelectionTest >> testUnselectNonSelectedPathRaisesNoEvent [
 	
 	| counter |
@@ -295,7 +295,7 @@ SpTreeTablePresenterSingleSelectionTest >> testUnselectNonSelectedPathRaisesNoEv
 	self assert: counter equals: 0
 ]
 
-{ #category : #'tests-unselect-item' }
+{ #category : #'tests - unselect-item' }
 SpTreeTablePresenterSingleSelectionTest >> testUnselectSelectedItemRaisesSingleEvent [
 	
 	| counter |
@@ -308,7 +308,7 @@ SpTreeTablePresenterSingleSelectionTest >> testUnselectSelectedItemRaisesSingleE
 	self assert: counter equals: 1
 ]
 
-{ #category : #'tests-unselect-item' }
+{ #category : #'tests - unselect-item' }
 SpTreeTablePresenterSingleSelectionTest >> testUnselectSelectedItemRemovesSelection [
 
 	presenter
@@ -318,7 +318,7 @@ SpTreeTablePresenterSingleSelectionTest >> testUnselectSelectedItemRemovesSelect
 	self assert: presenter selection isEmpty
 ]
 
-{ #category : #'tests-unselect-index' }
+{ #category : #'tests - unselect-index' }
 SpTreeTablePresenterSingleSelectionTest >> testUnselectSelectedPathRaisesSingleEvent [
 	
 	| counter |
@@ -331,7 +331,7 @@ SpTreeTablePresenterSingleSelectionTest >> testUnselectSelectedPathRaisesSingleE
 	self assert: counter equals: 1
 ]
 
-{ #category : #'tests-unselect-index' }
+{ #category : #'tests - unselect-index' }
 SpTreeTablePresenterSingleSelectionTest >> testUnselectSelectedPathRemovesSelection [
 	presenter
 		selectPath: #(1 1);
@@ -340,7 +340,7 @@ SpTreeTablePresenterSingleSelectionTest >> testUnselectSelectedPathRemovesSelect
 	self assert: presenter selection isEmpty
 ]
 
-{ #category : #'tests-select-index' }
+{ #category : #'tests - select-index' }
 SpTreeTablePresenterSingleSelectionTest >> testWhenSelectPathTwiceThenIsListedOnceInSelectedPaths [
 	presenter
 		selectPath: #(3 1);

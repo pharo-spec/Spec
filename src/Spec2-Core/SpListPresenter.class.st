@@ -16,11 +16,11 @@ Class {
 	#traits : 'SpTSearchable',
 	#classTraits : 'SpTSearchable classTrait',
 	#instVars : [
-		'#allowToSelect => SpObservableSlot',
-		'#autoDeselect => SpObservableSlot',
-		'#headerTitle => SpObservableSlot',
-		'#display => SpObservableSlot',
-		'#icon => SpObservableSlot'
+		'#allowToSelect => ObservableSlot',
+		'#autoDeselect => ObservableSlot',
+		'#headerTitle => ObservableSlot',
+		'#display => ObservableSlot',
+		'#icon => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
@@ -216,7 +216,7 @@ SpListPresenter >> updateList [
 	self unselectAll
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpListPresenter >> whenDisplayChangedDo: aBlock [
 	"Inform when the display block has changed.
  	 `aBlock` has three optional arguments: 
@@ -227,7 +227,7 @@ SpListPresenter >> whenDisplayChangedDo: aBlock [
 	self property: #display whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpListPresenter >> whenIconsChangedDo: aBlock [
 	"Inform when the icons block has changed.
  	 `aBlock` has three optional arguments: 

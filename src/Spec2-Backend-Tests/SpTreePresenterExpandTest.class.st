@@ -1,7 +1,7 @@
 Class {
 	#name : #SpTreePresenterExpandTest,
 	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
 { #category : #accessing }
@@ -10,7 +10,7 @@ SpTreePresenterExpandTest >> classToTest [
 	^ SpTreePresenter
 ]
 
-{ #category : #running }
+{ #category : #initialization }
 SpTreePresenterExpandTest >> initializeTestedInstance [ 
 
 	presenter 

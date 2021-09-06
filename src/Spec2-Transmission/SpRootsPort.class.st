@@ -1,11 +1,11 @@
 Class {
 	#name : #SpRootsPort,
 	#superclass : #SpInputPort,
-	#category : #'Spec2-Transmission'
+	#category : #'Spec2-Transmission-Base'
 }
 
 { #category : #'handling transmission' }
-SpRootsPort >> incomingTransmission: anObject from: outPort [
+SpRootsPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
 
-	self presenter roots: anObject
+	aPresenter roots: anObject
 ]

@@ -20,7 +20,7 @@ SpProgressDialog class >> documentFactoryMethodSelector [
 	^ #newProgress
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpProgressDialog class >> example [
 
 	self new
@@ -30,7 +30,7 @@ SpProgressDialog class >> example [
 		openDialogWithSpec
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpProgressDialog class >> exampleInformUserDuring [
 
 	self new
@@ -43,7 +43,7 @@ SpProgressDialog class >> exampleInformUserDuring [
 				1 second wait ] ]
 ]
 
-{ #category : #example }
+{ #category : #examples }
 SpProgressDialog class >> exampleModal [
 
 	self new
@@ -59,9 +59,11 @@ SpProgressDialog class >> extent [
 	^ 600@100
 ]
 
-{ #category : #'private actions' }
+{ #category : #'private - actions' }
 SpProgressDialog >> afterOpenAction [
 		
+	openAction ifNil: [ ^ self ].
+
 	[ 
 		[ 
 			openAction value: self.
@@ -86,7 +88,7 @@ SpProgressDialog >> informUserDuring: aBlock [
 	
 	openAction := aBlock.
 	self openModalWithSpec.
-	parentWindow ifNotNil: [ 
+	parentWindow ifNotNil: [
 		parentWindow takeKeyboardFocus ]
 ]
 
@@ -138,12 +140,18 @@ SpProgressDialog >> label: aString [
 	label label: aString
 ]
 
-{ #category : #api }
+{ #category : #compatibility }
 SpProgressDialog >> max: aNumber [
 	"sets the maximum value. 
 	 Affects how #value: is calculated"
 
 	maxValue := aNumber asFloat
+]
+
+{ #category : #api }
+SpProgressDialog >> progress [
+
+	^ progressBar value
 ]
 
 { #category : #api }
@@ -158,6 +166,15 @@ SpProgressDialog >> progressPercent: aNumber [
 	progressBar fixedPercentage: aNumber asFloat floor
 ]
 
+{ #category : #initialization }
+SpProgressDialog >> reset [
+
+	self label: ''.
+	self max: 1.0.
+	self progress: 0.0.
+	
+]
+
 { #category : #api }
 SpProgressDialog >> title [
 
@@ -170,7 +187,13 @@ SpProgressDialog >> title: aString [
 	title := aString
 ]
 
-{ #category : #api }
+{ #category : #compatibility }
+SpProgressDialog >> value [
+
+	^ self progress
+]
+
+{ #category : #compatibility }
 SpProgressDialog >> value: aFraction [
 
 	self progress: (aFraction / maxValue) asFloat

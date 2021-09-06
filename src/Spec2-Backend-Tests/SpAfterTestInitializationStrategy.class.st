@@ -5,7 +5,7 @@ Then, assertions are run on an open presenter that should have been correctly co
 Class {
 	#name : #SpAfterTestInitializationStrategy,
 	#superclass : #SpInitializationStrategy,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
 { #category : #running }

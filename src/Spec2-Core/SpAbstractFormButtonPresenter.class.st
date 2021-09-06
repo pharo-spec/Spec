@@ -6,11 +6,11 @@ Class {
 	#name : #SpAbstractFormButtonPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#state => SpObservableSlot',
-		'#label => SpObservableSlot',
-		'#actionWhenActivated => SpObservableSlot',
-		'#actionWhenDeactivated => SpObservableSlot',
-		'#labelClickable => SpObservableSlot'
+		'#state => ObservableSlot',
+		'#label => ObservableSlot',
+		'#actionWhenActivated => ObservableSlot',
+		'#actionWhenDeactivated => ObservableSlot',
+		'#labelClickable => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -124,7 +124,7 @@ SpAbstractFormButtonPresenter >> toggleState [
 	self state: self state not
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpAbstractFormButtonPresenter >> whenActivatedDo: aBlock [
 	"Informs when the control button has been activated (see `SpAbstractFormButtonPresenter>>#state:`.
 	 `aBlock` receives zero arguments." 
@@ -139,7 +139,7 @@ SpAbstractFormButtonPresenter >> whenActivationActionChangedDo: aBlock [
 	self property: #actionWhenActivated whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpAbstractFormButtonPresenter >> whenChangedDo: aBlock [
 	"Informs when the control button state has been changed (see `SpAbstractFormButtonPresenter>>#state:`.
 	 `aBlock` receives one argument: 
@@ -148,7 +148,7 @@ SpAbstractFormButtonPresenter >> whenChangedDo: aBlock [
 	self property: #state whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpAbstractFormButtonPresenter >> whenDeactivatedDo: aBlock [
 	"Informs when the control button has been deactivated (see `SpAbstractFormButtonPresenter>>#state:`.
 	 `aBlock` receives zero arguments." 
@@ -163,7 +163,7 @@ SpAbstractFormButtonPresenter >> whenDeactivationActionChangedDo: aBlock [
 	self property: #actionWhenDeactivated whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpAbstractFormButtonPresenter >> whenLabelChangedDo: aBlock [
 	"Informs when the control button label been changed (see `SpAbstractFormButtonPresenter>>#label:`.
 	 `aBlock` receives zero arguments." 
@@ -171,7 +171,7 @@ SpAbstractFormButtonPresenter >> whenLabelChangedDo: aBlock [
 	self property: #label whenChangedDo: aBlock 
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpAbstractFormButtonPresenter >> whenLabelClickableChangedDo: aBlock [
 	"Informs when the control button label clickable state has been changed (see `SpAbstractFormButtonPresenter>>#labelClickable:`.
 	 `aBlock` receives zero arguments." 

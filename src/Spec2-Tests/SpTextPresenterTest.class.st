@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
-{ #category : #running }
+{ #category : #accessing }
 SpTextPresenterTest >> classToTest [
 	^ SpTextPresenter
 ]
@@ -106,8 +106,23 @@ SpTextPresenterTest >> testPropagateNaturalWidth [
 
 { #category : #tests }
 SpTextPresenterTest >> testSelectLine [
-	self initializationText.
+
+	presenter text: 'Text for tests.
+with multiple
+lines'.
 	self openInstance.
 	presenter selectLine.
 	self assert: presenter selectionInterval equals: (1 to: 15)
+]
+
+{ #category : #tests }
+SpTextPresenterTest >> testSelectLineSecondLine [
+
+	presenter text: 'Text for tests.
+with multiple
+lines'.
+	self openInstance.
+	presenter cursorPositionIndex: 17.
+	presenter selectLine.
+	self assert: presenter selectionInterval equals: (17 to: 29)
 ]

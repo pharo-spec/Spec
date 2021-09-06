@@ -14,7 +14,7 @@ SpCodeDebugItCommand class >> defaultDescription [
 	^ 'Debug selection.'
 ]
 
-{ #category : #defaults }
+{ #category : #default }
 SpCodeDebugItCommand class >> defaultIconName [
 
 	^ #smallDebug
@@ -64,16 +64,16 @@ SpCodeDebugItCommand >> debug: aStream [
 			doItReceiver := doItContext := nil ].
 		
 	method := self compile: aStream for: doItReceiver in: doItContext.
-	method isReturnSpecial
-		ifTrue: [ self inform: 'Nothing to debug, the expression is optimized'.
-			^ self ].
-	method notNil
-		ifTrue: [ self debug: method receiver: doItReceiver in: doItContext ]
+	method isReturnSpecial ifTrue: [ 
+		self inform: 'Nothing to debug, the expression is optimized'.
+		^ self ].
+	method ifNotNil: [
+		self debug: method receiver: doItReceiver in: doItContext ]
 ]
 
 { #category : #private }
 SpCodeDebugItCommand >> debug: aCompiledMethod receiver: anObject in: evalContext [
-	| process suspendedContext |
+	| process suspendedContext debugRequest |
 
 	process := [ 
 		aCompiledMethod
@@ -83,20 +83,22 @@ SpCodeDebugItCommand >> debug: aCompiledMethod receiver: anObject in: evalContex
 				ifFalse: [ { evalContext } ] ) ]
 			newProcess.
 	suspendedContext := process suspendedContext.
-	
-	(OupsDebugRequest newForContext: suspendedContext)
+
+	debugRequest := (OupsDebugRequest newForContext: suspendedContext)
 		process: process;
 		compiledMethod: aCompiledMethod;
 		label: 'debug it';
-		submit
+		yourself.
+	debugRequest debugSession application: context application.
+	debugRequest submit
 ]
 
 { #category : #execution }
 SpCodeDebugItCommand >> execute [
 	| selection |
-	
+
 	selection := self selectedTextOrLine.
 	selection ifEmpty: [ ^ '' ].
 	
-	self debug: selection readStream	
+	self debug: selection readStream
 ]

@@ -4,14 +4,16 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
-{ #category : #running }
+{ #category : #accessing }
 SpSliderPresenterTest >> classToTest [
 	^ SpSliderPresenter
 ]
 
-{ #category : #running }
+{ #category : #initialization }
 SpSliderPresenterTest >> initMinMax [
- presenter min: 0;
+
+	presenter
+		min: 0;
 		max: 100
 ]
 

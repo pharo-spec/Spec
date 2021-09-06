@@ -62,9 +62,9 @@ SpCodePresenter class >> codeAcceptCommandsGroupWith: aPresenter [
 SpCodePresenter class >> codeNavigationCommandsGroupWith: aPresenter [
 	| group |
 	
-	group := (CmCommandGroup named: 'Selection search commands') asSpecGroup
+	group := (CmCommandGroup named: 'Code search') asSpecGroup
 		description: 'Search the system from code selection.';
-		beDisplayedAsGroup;
+		beDisplayedAsSubMenu;
 		yourself.
 		
 	self flag: #TODO. "This looks like a very bad way to do this :P"	
@@ -73,6 +73,8 @@ SpCodePresenter class >> codeNavigationCommandsGroupWith: aPresenter [
 		SpBrowseImplementorsCommand.
 		SpBrowseSendersCommand.
 		SpBrowseMethodReferencesCommand.	
+		SpBrowseMethodsMatchingStringInsensitiveCommand.
+		SpBrowseMethodsMatchingStringSensitiveCommand.
 		SpBrowseMethodsContainingStringCommand.
 	 } 
 	do:[ :commandClass | 
@@ -146,48 +148,48 @@ SpCodePresenter >> basicInteractionModel: anObject [
 	interactionModel := anObject
 ]
 
-{ #category : #'api-model' }
+{ #category : #'api - model' }
 SpCodePresenter >> beForBehavior: aBehavior [
 	"used when browsing classes or alike"
 
 	self interactionModel: (SpCodeBehaviorInteractionModel on: aBehavior)
 ]
 
-{ #category : #'api-model' }
+{ #category : #'api - model' }
 SpCodePresenter >> beForMethod: aMethod [
 	"used when browsing methods"
 
 	self interactionModel: (SpCodeMethodInteractionModel on: aMethod)
 ]
 
-{ #category : #'api-model' }
+{ #category : #'api - model' }
 SpCodePresenter >> beForObject: anObject [
 	"Used when inspecting objects"
 
 	self interactionModel: (SpCodeObjectInteractionModel on: anObject)
 ]
 
-{ #category : #'api-model' }
+{ #category : #'api - model' }
 SpCodePresenter >> beForScripting [
 	"Use in playgrounds"
 
 	self interactionModel: SpCodeScriptingInteractionModel new
 ]
 
-{ #category : #'private bindings' }
+{ #category : #'private - bindings' }
 SpCodePresenter >> behavior [
 	"Return the class corresponding to the method class of the source code you are editing"
 	
 	^ self interactionModel ifNotNil: [ :im | im behavior ]
 ]
 
-{ #category : #'private bindings' }
+{ #category : #'private - bindings' }
 SpCodePresenter >> behavior: aClass [
 	"Set the class corresponding to the method class of the source code you are editing"
 	
 ]
 
-{ #category : #'private bindings' }
+{ #category : #'private - bindings' }
 SpCodePresenter >> bindingOf: aString [
 
 	self interactionModel ifNotNil:  [ :im | ^ im bindingOf: aString  ].
@@ -291,7 +293,7 @@ SpCodePresenter >> clearInteractionModel [
 	self interactionModel: SpCodeNullInteractionModel new
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : #'api - shortcuts' }
 SpCodePresenter >> contextKeyBindings [
 
 	^ self buildContextKeyBindingsWith: super contextKeyBindings
@@ -381,6 +383,22 @@ SpCodePresenter >> doBrowseMethodsContainingString [
 ]
 
 { #category : #commands }
+SpCodePresenter >> doBrowseMethodsMatchingStringInsensitive [
+	
+	self systemNavigation 
+		browseMethodsWithString: self selectedTextOrLine 
+		matchCase: false
+]
+
+{ #category : #commands }
+SpCodePresenter >> doBrowseMethodsMatchingStringSensitive [
+	
+	self systemNavigation 
+		browseMethodsWithString: self selectedTextOrLine 
+		matchCase: true
+]
+
+{ #category : #commands }
 SpCodePresenter >> doBrowseSenders [
 
 	| result selectionIsPoolVar |
@@ -395,24 +413,24 @@ SpCodePresenter >> doBrowseSenders [
 		result ifNil: [ self application inform: 'No selectors found.' ] ]
 ]
 
-{ #category : #'private bindings' }
+{ #category : #'private - bindings' }
 SpCodePresenter >> doItContext [
 
 	^ self interactionModel ifNotNil: [ :im | im doItContext ]
 ]
 
-{ #category : #'private bindings' }
+{ #category : #'private - bindings' }
 SpCodePresenter >> doItContext: anObject [
 
 ]
 
-{ #category : #'private bindings' }
+{ #category : #'private - bindings' }
 SpCodePresenter >> doItReceiver [
 	
 	^ self interactionModel ifNotNil: [ :im | im doItReceiver ]
 ]
 
-{ #category : #'private bindings' }
+{ #category : #'private - bindings' }
 SpCodePresenter >> doItReceiver: anObject [
 
 ]
@@ -442,20 +460,24 @@ SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: 
 	 intended to be used to throw an error*, since that should be handled (and it is) in the 
 	 notification. Instead, most users of failBlock: use it to return execution without doing 
 	 anything. 
-	 Instread, the on:do: will catch all errors happening while executing the code once it is 
+	 Instead, the on:do: will catch all errors happening while executing the code once it is 
 	 compiled. "
-	| receiver |
+	| receiver result oldBindings |
 	
 	^ [
+		oldBindings := self interactionModel bindings copy.
 		receiver := self interactionModel doItReceiver.
-		receiver class compiler
+		result := receiver class compiler
 			source: aString readStream;
 			context: self interactionModel doItContext;
 			receiver: self interactionModel doItReceiver;
 			requestor: self interactionModel;
 			environment: self environment;
 			failBlock:  [ ^ compileErrorBlock value ];
-			evaluate ]
+			evaluate.
+		oldBindings size = self interactionModel bindings size 
+			ifFalse: [ self withAdapterDo: [ :anAdapter | anAdapter refreshStyling ] ].
+		result ]
 	on: Error 
 	do: errorBlock
 ]
@@ -483,14 +505,14 @@ SpCodePresenter >> findClassFromSelection [
 	^ self findClassFrom: self selectedTextOrLine trimmed
 ]
 
-{ #category : #'private bindings' }
+{ #category : #'private - bindings' }
 SpCodePresenter >> hasBindingOf: aString [
 
 	self interactionModel ifNotNil: [ :im | ^ im hasBindingOf: aString ].
 	^ false
 ]
 
-{ #category : #'private bindings' }
+{ #category : #'private - bindings' }
 SpCodePresenter >> hasBindingThatBeginsWith: aString [ 
 	
 	^ self interactionModel
@@ -498,7 +520,7 @@ SpCodePresenter >> hasBindingThatBeginsWith: aString [
 		ifNil: [ false ]
 ]
 
-{ #category : #'private testing' }
+{ #category : #'private - testing' }
 SpCodePresenter >> hasEditionContextMenu [
 	"Answer if edition context menu is active. 
 	 Edition context menu is available by default, but it can be disabled by calling `SpTextPresenter>>#withoutEditionContextMenu` or `SpCodePresenter>>#overridingContextMenu`"
@@ -601,7 +623,7 @@ SpCodePresenter >> interactionModel: anInteractionModel [
 	self basicInteractionModel: anInteractionModel
 ]
 
-{ #category : #'private bindings' }
+{ #category : #'private - bindings' }
 SpCodePresenter >> isForScripting [
 
 	^ self interactionModel 
@@ -660,7 +682,7 @@ SpCodePresenter >> selectedBehavior [
 	^ self behavior
 ]
 
-{ #category : #'private bindings' }
+{ #category : #'private - bindings' }
 SpCodePresenter >> selectedClassOrMetaClass [
 
 	^ self interactionModel ifNotNil: [ :im | im selectedClassOrMetaClass ]
@@ -688,7 +710,8 @@ SpCodePresenter >> selectedSelector [
 SpCodePresenter >> selectedTextOrLine [
 
 	self selectedText ifNotEmpty: [ :aString | ^ aString ].
-	^ self lineAtCursorPosition
+	self selectLine.
+	^ self selectedText
 ]
 
 { #category : #private }
@@ -725,14 +748,14 @@ SpCodePresenter >> systemNavigation: aSystemNavigation [
 	systemNavigation := aSystemNavigation
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpCodePresenter >> triggerResetAction [
 
 	resetBlock ifNil: [ ^ self ].
 	resetBlock value
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpCodePresenter >> triggerSubmitAction [
 
 	submitBlock ifNil: [ ^ self ].
@@ -759,7 +782,7 @@ SpCodePresenter >> userActionDuring: aBlock [
 	aBlock value
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpCodePresenter >> whenInteractionModelChangedDo: aBlock [
 	"Set a block to perform when the behavior class changed"
 	
@@ -768,21 +791,21 @@ SpCodePresenter >> whenInteractionModelChangedDo: aBlock [
 		whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpCodePresenter >> whenLineNumbersChangedDo: aBlock [
 	"Set a block to perform when the syntax highlight is enabled/disabled"
 
 	self property: #lineNumbers whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpCodePresenter >> whenResetDo: aBlock [
 
 	resetBlock := aBlock.
 	super whenResetDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpCodePresenter >> whenSubmitDo: aBlock [
 	"This method will add a 'submit' event to the widget. It will react when user 
 	 presses <meta+s> key (this is for historical reasons) and with enter (cr).
@@ -792,14 +815,14 @@ SpCodePresenter >> whenSubmitDo: aBlock [
 	super whenSubmitDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpCodePresenter >> whenSyntaxHighlightChangedDo: aBlock [
 	"Set a block to perform when the syntax highlight is enabled/disabled"
 
 	self property: #syntaxHighlight whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpCodePresenter >> whenSyntaxHighlightThemeChangedDo: aBlock [
 	"Set a block to perform when the syntax highlight theme is changed"
 

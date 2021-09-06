@@ -13,7 +13,7 @@ Class {
 	#category : #'Spec2-Core-Utils'
 }
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpProgressBarState >> whenValueChangedDo: aBlock [
 	"My subclasses should fire the block when the current value changes."
 

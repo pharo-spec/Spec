@@ -1,7 +1,7 @@
 Class {
 	#name : #SpToolbarAdapterTest,
 	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
 { #category : #accessing }
@@ -9,7 +9,7 @@ SpToolbarAdapterTest >> classToTest [
 	^ SpToolbarPresenter 
 ]
 
-{ #category : #running }
+{ #category : #initialization }
 SpToolbarAdapterTest >> initializeTestedInstance [
 	presenter 
 

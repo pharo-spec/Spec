@@ -64,7 +64,7 @@ SpRGBWidget >> sliders [
 	^ sliders
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpRGBWidget >> whenExtentForPreviewChanged: aBlock [
  extentForPreview whenChangedDo: aBlock 
 ]

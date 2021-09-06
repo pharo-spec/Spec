@@ -6,9 +6,9 @@ Class {
 	#name : #SpPaginatorPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#visiblePages => SpObservableSlot',
-		'#selectedPage => SpObservableSlot',
-		'#dragging => SpObservableSlot',
+		'#visiblePages => ObservableSlot',
+		'#selectedPage => ObservableSlot',
+		'#dragging => ObservableSlot',
 		'#pagesHolder'
 	],
 	#category : #'Spec2-Morphic-Paginator'
@@ -97,7 +97,7 @@ SpPaginatorPresenter >> visiblePages: aNumber [
 	visiblePages := aNumber
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpPaginatorPresenter >> whenDraggingDo: aBlock [
 	"Inform when selected area is being dragged (to change selected page).
 	 `aBlock` has three optional arguments: 
@@ -108,7 +108,7 @@ SpPaginatorPresenter >> whenDraggingDo: aBlock [
 	self property: #dragging whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpPaginatorPresenter >> whenPageAddedDo: aBlock [
 	"Inform when a page has been added.
 	 `aBlock` receives one argument, the new page added."
@@ -116,7 +116,7 @@ SpPaginatorPresenter >> whenPageAddedDo: aBlock [
 	pagesHolder whenAddedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpPaginatorPresenter >> whenPageRemovedDo: aBlock [
 	"Inform when a page has been added.
 	 `aBlock` receives one argument, the page removed."
@@ -124,7 +124,7 @@ SpPaginatorPresenter >> whenPageRemovedDo: aBlock [
 	pagesHolder whenRemovedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpPaginatorPresenter >> whenSelectedPageChangedDo: aBlock [
 	"Inform when a page selection has been changed.
 	 `aBlock` has three optional arguments: 
@@ -135,7 +135,7 @@ SpPaginatorPresenter >> whenSelectedPageChangedDo: aBlock [
 	self property: #selectedPage whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpPaginatorPresenter >> whenVisiblePagesChangedDo: aBlock [
 	"Inform when a visible pages has been changed.
 	 `aBlock` has three optional arguments: 

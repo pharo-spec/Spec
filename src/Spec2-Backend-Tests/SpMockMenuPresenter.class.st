@@ -4,10 +4,10 @@ Class {
 	#instVars : [
 		'shown'
 	],
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #building }
 SpMockMenuPresenter >> buildWithSpec [
 
 	^ SpMockMenu new

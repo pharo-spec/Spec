@@ -51,14 +51,14 @@ SpGeometryStyle class >> stonName [
 { #category : #operations }
 SpGeometryStyle >> applyTo: aMorph [
 
-	(self widthVariable preferredValueWith: aMorph width) 
+	(self widthVariable preferredScaledValueWith: aMorph width) 
 		ifNotNil: [ :aNumber | aMorph width: aNumber ].
-	(self heightVariable preferredValueWith: aMorph height) 
+	(self heightVariable preferredScaledValueWith: aMorph height) 
 		ifNotNil: [ :aNumber | aMorph height: aNumber ].
 	self minWidthVariable
-		ifNotNil: [ :aVariable | aMorph minWidth: aVariable value ].
+		ifNotNil: [ :aVariable | aMorph minWidth: aVariable scaledValue ].
 	self minHeightVariable
-		ifNotNil: [ :aVariable | aMorph minHeight: aVariable value ].
+		ifNotNil: [ :aVariable | aMorph minHeight: aVariable scaledValue ].
 	self hResizingVariable 
 		ifNotNil: [ :aVariable | aMorph hResizing: (self resizingStringFor: aVariable value) ].
 	self vResizingVariable 
@@ -85,7 +85,7 @@ SpGeometryStyle >> hResizing: aBoolean [
 	hResizing := aBoolean asStyleVariable
 ]
 
-{ #category : #'accessing variables' }
+{ #category : #'accessing - variables' }
 SpGeometryStyle >> hResizingVariable [
 
 	^ self toVariable: hResizing
@@ -94,7 +94,7 @@ SpGeometryStyle >> hResizingVariable [
 { #category : #accessing }
 SpGeometryStyle >> height [
 
-	^ self heightVariable value
+	^ self heightVariable scaledValue
 ]
 
 { #category : #accessing }
@@ -103,7 +103,7 @@ SpGeometryStyle >> height: aNumber [
 	height := aNumber asStyleVariable
 ]
 
-{ #category : #'accessing variables' }
+{ #category : #'accessing - variables' }
 SpGeometryStyle >> heightVariable [
 
 	^ self toVariable: (height ifNil: [ 0 ])
@@ -118,7 +118,9 @@ SpGeometryStyle >> isGeometry [
 { #category : #accessing }
 SpGeometryStyle >> minHeight [
 
-	^ self minHeightVariable value
+	^ self minHeightVariable
+		ifNotNil: [ :aVariable | aVariable scaledValue ]
+		ifNil: [ 0 ]	
 ]
 
 { #category : #accessing }
@@ -127,7 +129,7 @@ SpGeometryStyle >> minHeight: aNumber [
 	minHeight := aNumber asStyleVariable
 ]
 
-{ #category : #'accessing variables' }
+{ #category : #'accessing - variables' }
 SpGeometryStyle >> minHeightVariable [
 
 	^ self toVariable: minHeight
@@ -136,7 +138,9 @@ SpGeometryStyle >> minHeightVariable [
 { #category : #accessing }
 SpGeometryStyle >> minWidth [
 
-	^ self minWidthVariable value
+	^ self minWidthVariable 
+		ifNotNil: [ :aVariable | aVariable scaledValue ]
+		ifNil: [ 0 ]
 ]
 
 { #category : #accessing }
@@ -145,7 +149,7 @@ SpGeometryStyle >> minWidth: aNumber [
 	minWidth := aNumber asStyleVariable
 ]
 
-{ #category : #'accessing variables' }
+{ #category : #'accessing - variables' }
 SpGeometryStyle >> minWidthVariable [
 
 	^ self toVariable: minWidth
@@ -171,7 +175,7 @@ SpGeometryStyle >> vResizing: aBoolean [
 	vResizing := aBoolean asStyleVariable
 ]
 
-{ #category : #'accessing variables' }
+{ #category : #'accessing - variables' }
 SpGeometryStyle >> vResizingVariable [
 
 	^ self toVariable: vResizing
@@ -180,7 +184,7 @@ SpGeometryStyle >> vResizingVariable [
 { #category : #accessing }
 SpGeometryStyle >> width [
 
-	^ self widthVariable value
+	^ self widthVariable scaledValue
 ]
 
 { #category : #accessing }
@@ -189,7 +193,7 @@ SpGeometryStyle >> width: aNumber [
 	width := aNumber asStyleVariable
 ]
 
-{ #category : #'accessing variables' }
+{ #category : #'accessing - variables' }
 SpGeometryStyle >> widthVariable [
 
 	^ self toVariable: (width ifNil: [ 0 ])

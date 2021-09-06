@@ -66,7 +66,7 @@ SpStringTableColumn >> beSortable [
 	self isSortable: true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #comparing }
 SpStringTableColumn >> compareFunction: aBlock [
 	"sets the sorting of this column to use the two argument aBlock for comparing (aBlock should return a boolean). 
 	it is often simpler to use a boolean compare than the threeway compare required by sortFunction: "

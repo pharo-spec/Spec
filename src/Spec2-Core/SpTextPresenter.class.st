@@ -7,10 +7,11 @@ Class {
 	#traits : 'SpTHaveWrappingScrollBars',
 	#classTraits : 'SpTHaveWrappingScrollBars classTrait',
 	#instVars : [
-		'#scrollValue => SpObservableSlot',
-		'#editionContextMenu => SpObservableSlot',
-		'#editable => SpObservableSlot',
-		'#wrapWord => SpObservableSlot'
+		'#scrollValue => ObservableSlot',
+		'#editionContextMenu => ObservableSlot',
+		'#editable => ObservableSlot',
+		'#wrapWord => ObservableSlot',
+		'#undoRedoHistory'
 	],
 	#category : #'Spec2-Core-Widgets-Text'
 }
@@ -181,10 +182,16 @@ SpTextPresenter >> editionContextMenu [
 	^ self editionCommandsGroup asMenuPresenter
 ]
 
-{ #category : #'private testing' }
+{ #category : #'private - testing' }
 SpTextPresenter >> hasEditionContextMenu [
 
 	^ editionContextMenu
+]
+
+{ #category : #testing }
+SpTextPresenter >> hasUndoRedoHistory [
+
+	^ undoRedoHistory
 ]
 
 { #category : #initialization }
@@ -198,6 +205,7 @@ SpTextPresenter >> initialize [
 	self beWrapWord.
 	self withScrollBars.
 	self withEditionContextMenu.
+	self withUndoRedoHistory
 ]
 
 { #category : #testing }
@@ -243,7 +251,7 @@ SpTextPresenter >> scrollValue: aPoint [
 	^ scrollValue := aPoint
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpTextPresenter >> whenCursorPositionChangedDo: aBlock [
 	"Inform when cursorPosition property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -254,7 +262,7 @@ SpTextPresenter >> whenCursorPositionChangedDo: aBlock [
 	self property: #cursorPosition whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpTextPresenter >> whenEditableChangedDo: aBlock [
 	"Inform when editable property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -265,7 +273,7 @@ SpTextPresenter >> whenEditableChangedDo: aBlock [
 	self property: #editable whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpTextPresenter >> whenScrollValueChangedDo: aBlock [
 	"Inform when scrollValue property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -276,7 +284,7 @@ SpTextPresenter >> whenScrollValueChangedDo: aBlock [
 	self property: #scrollValue whenChangedDo: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpTextPresenter >> whenSubmitDo: aBlock [
 	"This method will add a 'submit' event to the widget. It will react when user 
 	 presses <meta+s> key (this is for historical reasons) and with enter (cr).
@@ -287,7 +295,7 @@ SpTextPresenter >> whenSubmitDo: aBlock [
 		toAction: [ aBlock value: self text ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpTextPresenter >> whenWrapWordChangedDo: aBlock [
 	"Inform when wordWrap property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -309,11 +317,23 @@ SpTextPresenter >> withEditionContextMenu [
 ]
 
 { #category : #api }
+SpTextPresenter >> withUndoRedoHistory [
+
+	undoRedoHistory := true
+]
+
+{ #category : #api }
 SpTextPresenter >> withoutEditionContextMenu [
 	"Disable default edition context menu. 
 	 See also `SpTextPresenter>>#withEditionContextMenu`."
 
 	editionContextMenu := false
+]
+
+{ #category : #api }
+SpTextPresenter >> withoutUndoRedoHistory [
+
+	undoRedoHistory := false
 ]
 
 { #category : #private }

@@ -22,6 +22,12 @@ Class {
 	#category : #'Spec2-ObservableSlot'
 }
 
+{ #category : #testing }
+SpValueHolder class >> isDeprecated [
+
+	^ true
+]
+
 { #category : #'instance creation' }
 SpValueHolder class >> value: contents [
 
@@ -65,6 +71,12 @@ SpValueHolder >> subscriptions: anObject [
 { #category : #transfert }
 SpValueHolder >> transferSubscriptionsTo: aSpValueHolder [
 	aSpValueHolder subscriptions: subscriptions
+]
+
+{ #category : #subscription }
+SpValueHolder >> unsubscribe: anObject [ 
+
+	subscriptions := subscriptions reject: [ :each | each receiver = anObject ].
 ]
 
 { #category : #evaluating }

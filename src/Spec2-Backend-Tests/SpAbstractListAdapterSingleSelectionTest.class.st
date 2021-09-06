@@ -1,7 +1,7 @@
 Class {
 	#name : #SpAbstractListAdapterSingleSelectionTest,
 	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
 { #category : #testing }
@@ -9,7 +9,7 @@ SpAbstractListAdapterSingleSelectionTest class >> isAbstract [
 	^ self == SpAbstractListAdapterSingleSelectionTest
 ]
 
-{ #category : #running }
+{ #category : #initialization }
 SpAbstractListAdapterSingleSelectionTest >> initializeTestedInstance [
 
 	super initializeTestedInstance.
@@ -27,32 +27,32 @@ SpAbstractListAdapterSingleSelectionTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #'tests-model-to-widget' }
+{ #category : #'tests - model-to-widget' }
 SpAbstractListAdapterSingleSelectionTest >> testSelectManyIndexesKeepsLastSelectionInWidget [
 	presenter selectIndex: 1.
 	presenter selectIndex: 2.
 	self assert: self adapter selectedIndexes equals: #(2)
 ]
 
-{ #category : #'tests-model-to-widget' }
+{ #category : #'tests - model-to-widget' }
 SpAbstractListAdapterSingleSelectionTest >> testSelectPresenterIndexOutsideRangeUnsetsSelectedIndexInWidget [
 	presenter selectIndex: 100.
 	self assert: self adapter selectedIndexes isEmpty
 ]
 
-{ #category : #'tests-model-to-widget' }
+{ #category : #'tests - model-to-widget' }
 SpAbstractListAdapterSingleSelectionTest >> testSelectPresenterIndexSetsSelectedIndexInWidget [
 	presenter selectIndex: 1.
 	self assert: (self adapter selectedIndexes includes: 1)
 ]
 
-{ #category : #'tests-model-to-widget' }
+{ #category : #'tests - model-to-widget' }
 SpAbstractListAdapterSingleSelectionTest >> testSelectPresenterItemSetsSelectedIndexInWidget [
 	presenter selectItem: 20.
 	self assert: (self adapter selectedIndexes includes: 2)
 ]
 
-{ #category : #'tests-model-to-widget' }
+{ #category : #'tests - model-to-widget' }
 SpAbstractListAdapterSingleSelectionTest >> testSelectPresenterWithScrollingMakeSelectedItemVisible [
 	| visibleItems |
 
@@ -72,7 +72,7 @@ SpAbstractListAdapterSingleSelectionTest >> testSelectPresenterWithScrollingMake
 	self assert: (visibleItems includes: presenter selection selectedIndex)
 ]
 
-{ #category : #'tests-model-to-widget' }
+{ #category : #'tests - model-to-widget' }
 SpAbstractListAdapterSingleSelectionTest >> testSelectPresenterWithoutScrollingDoesNotScroll [
 	| visibleItems verticalAlignment |
 	
@@ -95,7 +95,7 @@ SpAbstractListAdapterSingleSelectionTest >> testSelectPresenterWithoutScrollingD
 		equals: visibleItems
 ]
 
-{ #category : #'tests-widget-to-model' }
+{ #category : #'tests - widget-to-model' }
 SpAbstractListAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	counter := 0.
@@ -105,7 +105,7 @@ SpAbstractListAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelection
 	self assert: counter equals: 1
 ]
 
-{ #category : #'tests-widget-to-model' }
+{ #category : #'tests - widget-to-model' }
 SpAbstractListAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedIndex |
 	presenter selection
@@ -114,14 +114,14 @@ SpAbstractListAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelection
 	self assert: selectedIndex equals: 1
 ]
 
-{ #category : #'tests-widget-to-model' }
+{ #category : #'tests - widget-to-model' }
 SpAbstractListAdapterSingleSelectionTest >> testSubscribeToEventDoesNotRaiseEvent [
 
 	presenter selection
 		whenChangedDo: [ :selection | self fail ].
 ]
 
-{ #category : #'tests-widget-to-model' }
+{ #category : #'tests - widget-to-model' }
 SpAbstractListAdapterSingleSelectionTest >> testUnselectAllInWidgetNotRaisesEmptySelectionChangeEvent [
 	| gotSelection |
 	presenter selection
@@ -130,7 +130,7 @@ SpAbstractListAdapterSingleSelectionTest >> testUnselectAllInWidgetNotRaisesEmpt
 	self assert: gotSelection isNil
 ]
 
-{ #category : #'tests-widget-to-model' }
+{ #category : #'tests - widget-to-model' }
 SpAbstractListAdapterSingleSelectionTest >> testUnselectAllInWidgetWithoutSelectionDoesNotRaiseEvent [
 	| counter |
 	counter := 0.
@@ -140,7 +140,7 @@ SpAbstractListAdapterSingleSelectionTest >> testUnselectAllInWidgetWithoutSelect
 	self assert: counter equals: 0
 ]
 
-{ #category : #'tests-model-to-widget' }
+{ #category : #'tests - model-to-widget' }
 SpAbstractListAdapterSingleSelectionTest >> testUnselectPresenterIndexUnselectsIndexInWidget [
 	presenter
 		selectIndex: 1;
@@ -148,7 +148,7 @@ SpAbstractListAdapterSingleSelectionTest >> testUnselectPresenterIndexUnselectsI
 	self assert: self adapter selectedIndexes isEmpty
 ]
 
-{ #category : #'tests-model-to-widget' }
+{ #category : #'tests - model-to-widget' }
 SpAbstractListAdapterSingleSelectionTest >> testUnselectPresenterItemUnselectsIndexInWidget [
 	presenter
 		selectItem: 20;
@@ -156,7 +156,7 @@ SpAbstractListAdapterSingleSelectionTest >> testUnselectPresenterItemUnselectsIn
 	self assert: self adapter selectedIndexes isEmpty
 ]
 
-{ #category : #'tests-widget-to-model' }
+{ #category : #'tests - widget-to-model' }
 SpAbstractListAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	counter := 0.
@@ -167,7 +167,7 @@ SpAbstractListAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelecti
 	self assert: counter equals: 1
 ]
 
-{ #category : #'tests-widget-to-model' }
+{ #category : #'tests - widget-to-model' }
 SpAbstractListAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedIndex |
 	self adapter selectIndex: 1.

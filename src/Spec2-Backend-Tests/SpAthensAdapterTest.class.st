@@ -1,7 +1,7 @@
 Class {
 	#name : #SpAthensAdapterTest,
 	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests'
+	#category : #'Spec2-Backend-Tests-Base'
 }
 
 { #category : #accessing }
@@ -22,13 +22,13 @@ SpAthensAdapterTest >> classToTest [
 	^ SpAthensPresenter
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 SpAthensAdapterTest >> initializeTestedInstance [
 	presenter drawBlock: [ "nothing to do" ].
 	presenter surfaceExtent: 800@600
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 SpAthensAdapterTest >> testContextMenu [
 	| menu changed |
 	
@@ -42,7 +42,7 @@ SpAthensAdapterTest >> testContextMenu [
 	self assert: changed
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 SpAthensAdapterTest >> testPresentersBlockReceivesAthensCanvas [
 	| receivedCanvas |
 	self presenter drawBlock: [ :canvas | receivedCanvas := canvas ].
@@ -54,7 +54,7 @@ SpAthensAdapterTest >> testPresentersBlockReceivesAthensCanvas [
 	self assert: (receivedCanvas isKindOf: AthensCanvas)
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 SpAthensAdapterTest >> testResizeMakesCanvasResize [
 	| extent |
 	
@@ -69,10 +69,4 @@ SpAthensAdapterTest >> testResizeMakesCanvasResize [
 	backendForTest waitUntilUIRedrawed.
 	self assert: extent x < 100. 
 	self assert: extent y < 100.
-]
-
-{ #category : #accessing }
-SpAthensAdapterTest >> testSmokeCreates [
-	self presenter .
-	
 ]

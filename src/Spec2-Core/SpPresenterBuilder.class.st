@@ -6,17 +6,20 @@ Class {
 	#name : #SpPresenterBuilder,
 	#superclass : #Object,
 	#traits : 'SpTPresenterBuilder',
+	#classTraits : 'SpTPresenterBuilder classTrait',
 	#category : #'Spec2-Core-Base'
 }
 
 { #category : #'instance creation' }
 SpPresenterBuilder >> instantiate: aPresenterClass [
 	"Instantiate a SpPresenter subclass and set its instance owner"
+	
 	^ aPresenterClass new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 SpPresenterBuilder >> instantiate: aPresenterClass on: aModel [
 	"Instantiate a SpPresenter subclass and set its instance owner and model"
+
 	^ aPresenterClass on: aModel
 ]

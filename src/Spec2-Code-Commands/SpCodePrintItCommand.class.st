@@ -14,7 +14,7 @@ SpCodePrintItCommand class >> defaultDescription [
 	^ 'Evaluate selection and print the result.'
 ]
 
-{ #category : #defaults }
+{ #category : #default }
 SpCodePrintItCommand class >> defaultIconName [
 
 	^ #smallPrintIt

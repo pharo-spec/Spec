@@ -1,10 +1,10 @@
 Class {
 	#name : #SpAbstractTreeSelectionMode,
 	#superclass : #Object,
-	#traits : 'SpTObservable',
-	#classTraits : 'SpTObservable classTrait',
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#instVars : [
-		'#selection => SpObservableSlot',
+		'#selection => ObservableSlot',
 		'#presenter'
 	],
 	#category : #'Spec2-Core-Widgets-Tree'
@@ -151,6 +151,12 @@ SpAbstractTreeSelectionMode >> unselectItem: anItem [
 { #category : #selecting }
 SpAbstractTreeSelectionMode >> unselectPath: aPath [
 	self subclassResponsibility
+]
+
+{ #category : #subscription }
+SpAbstractTreeSelectionMode >> unsubscribe: anObject [ 
+
+	(self observablePropertyNamed: #selection) unsubscribe: anObject
 ]
 
 { #category : #'api - events' }

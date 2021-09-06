@@ -81,5 +81,5 @@ SpMorphicTableColumn >> sortableUsing: aSortFunction [
 { #category : #accessing }
 SpMorphicTableColumn >> width [
 
-	^ self model width
+	^ self model width ifNil: [ super width ]
 ]

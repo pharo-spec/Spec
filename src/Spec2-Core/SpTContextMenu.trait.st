@@ -6,7 +6,7 @@ to be solved in the backend adaptor.
 Trait {
 	#name : #SpTContextMenu,
 	#instVars : [
-		'#contextMenu => SpObservableSlot'
+		'#contextMenu => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Base'
 }
@@ -40,7 +40,7 @@ SpTContextMenu >> initialize [
 	super initialize.
 ]
 
-{ #category : #'api-events' }
+{ #category : #'api - events' }
 SpTContextMenu >> whenMenuChangedDo: aBlock [
 	"Inform when menu definition changed. 
 	 `aBlock` receives zero arguments."

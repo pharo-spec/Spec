@@ -20,6 +20,12 @@ SpInputPort class >> isAbstract [
 ]
 
 { #category : #'handling transmission' }
+SpInputPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
+	
+	self subclassResponsibility
+]
+
+{ #category : #'handling transmission' }
 SpInputPort >> incomingTransmission: anObject from: outPort [
 	"When a transmission happens, the origin transmission has is triggers a value ==anObject== 
 	 (already transformed if #transform: is specified) from the outPort *class:SpOutputPort*.
@@ -30,8 +36,13 @@ SpInputPort >> incomingTransmission: anObject from: outPort [
 	[[[language=Smalltalk
 	self destinationPresenter setModel: anObject
 	]]]"
-
-	self subclassResponsibility
+	| presenterOrPort |
+	
+	presenterOrPort := self destinationPresenterOrPort.
+	presenterOrPort isPresenter
+		ifTrue: [ self applyIncomingTransmission: anObject from: outPort to: presenterOrPort ]
+		ifFalse: [ presenterOrPort incomingTransmission: anObject from: outPort ]
+	
 ]
 
 { #category : #testing }

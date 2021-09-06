@@ -8,9 +8,9 @@ Class {
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
 		'#groups',
-		'#title => SpObservableSlot',
+		'#title => ObservableSlot',
 		'#icon',
-		'#autoRefresh => SpObservableSlot',
+		'#autoRefresh => ObservableSlot',
 		'#shortcutGroup',
 		'#defaultGroup'
 	],
@@ -54,7 +54,7 @@ SpMenuPresenter class >> popup [
 		adaptAsPopup: #(presenter))
 ]
 
-{ #category : #'api-building' }
+{ #category : #'api - building' }
 SpMenuPresenter >> addAllFromPragma: pragma target: target [
 
 	self fromSpec: (PragmaMenuBuilder 
@@ -82,6 +82,13 @@ SpMenuPresenter >> addItem: aBlock [
 	self defaultGroup addItem: aBlock
 ]
 
+{ #category : #api }
+SpMenuPresenter >> addKeybindingsTo: aPresenter [
+	"bind keybindings (shortcuts) defined in this menu to aPresenter"
+
+	aPresenter applyKeyBindingsFromMenu: self
+]
+
 { #category : #private }
 SpMenuPresenter >> addMenuGroup: aMenuGroup [
 
@@ -89,12 +96,6 @@ SpMenuPresenter >> addMenuGroup: aMenuGroup [
 	groups add: aMenuGroup.
 	self autoRefresh 
 		ifNotNil: [ aMenuGroup autoRefresh: self autoRefresh ]
-]
-
-{ #category : #TOREMOVE }
-SpMenuPresenter >> applyTo: aModel [
-
-	aModel applyMenuModel: self
 ]
 
 { #category : #TOREMOVE }
@@ -107,7 +108,7 @@ SpMenuPresenter >> autoRefresh: aBoolean [
 	autoRefresh := aBoolean
 ]
 
-{ #category : #'api-building' }
+{ #category : #'api - building' }
 SpMenuPresenter >> buildWithSpecAsPopup [
 
 	^ self buildWithSpec
@@ -128,7 +129,7 @@ SpMenuPresenter >> defaultGroup [
 		defaultGroup ]
 ]
 
-{ #category : #'api-building' }
+{ #category : #'api - building' }
 SpMenuPresenter >> fromSpec: aSpec [
 	| grps subgroup |
 	

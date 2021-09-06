@@ -7,7 +7,7 @@ Class {
 	#name : #SpProgressBarPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
 	#instVars : [
-		'#state => SpObservableSlot'
+		'#state => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -85,7 +85,13 @@ SpProgressBarPresenter >> state: aState [
 	self withAdapterPerformOrDefer: [ :anAdapter | anAdapter updateState ]
 ]
 
-{ #category : #'api-events' }
+{ #category : #api }
+SpProgressBarPresenter >> value [
+
+	^ self state value
+]
+
+{ #category : #'api - events' }
 SpProgressBarPresenter >> whenValueChangedDo: aBlock [
 	"Inform when progress value has changed. 
 	 `aBlock` has three optional arguments: 

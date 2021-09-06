@@ -21,7 +21,7 @@ SpMorphicCodeAdapter >> behavior [
 	^ self presenter behavior
 ]
 
-{ #category : #'private-shout' }
+{ #category : #'private - shout' }
 SpMorphicCodeAdapter >> bindingOf: aString [
 
 	^ self presenter bindingOf: aString
@@ -59,7 +59,7 @@ SpMorphicCodeAdapter >> changeLineNumbers: hasLineNumbers to: aMorph [
 		ifFalse: [ aMorph withoutLineNumbers ]
 ]
 
-{ #category : #'private-shout' }
+{ #category : #'private - shout' }
 SpMorphicCodeAdapter >> classOrMetaClass: aClass [
 
 	self 
@@ -98,7 +98,7 @@ SpMorphicCodeAdapter >> guessTypeForName: aString [
 	^nil
 ]
 
-{ #category : #'private-shout' }
+{ #category : #'private - shout' }
 SpMorphicCodeAdapter >> hasBindingOf: aString [
 
 	^ self presenter hasBindingOf: aString
@@ -179,6 +179,13 @@ SpMorphicCodeAdapter >> originMorphFor: aMorph [
 SpMorphicCodeAdapter >> receiverClass [
 
 	^ self behavior
+]
+
+{ #category : #'widget API' }
+SpMorphicCodeAdapter >> refreshStyling [
+
+	self presenter hasSyntaxHighlight ifFalse: [ ^ self ].
+	self widgetDo: [ :w | w textArea shoutStyler refreshStyling ]
 ]
 
 { #category : #'widget API' }
