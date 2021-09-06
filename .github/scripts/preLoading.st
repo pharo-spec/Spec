@@ -1,3 +1,3 @@
 #( BaselineOfSpec2 BaselineOfSpecCore ) do: [ :each | 
-	(Smalltalk classNamed: each) 
-		ifNotNil: [ :aClass | aClass removeFromSystem ] ]
+	(RPackageOrganiser default packageNamed: each ifAbsent: [ nil ]) 
+		ifNotNil: [ :aPackage | aPackage removeFromSystem ] ]
