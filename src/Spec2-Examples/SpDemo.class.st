@@ -139,7 +139,7 @@ SpDemo >> initializePresenters [
 
 	self focusOrder
 		add: list;
-		add: page
+		addAll: page presenters 
 ]
 
 { #category : #accessing }
