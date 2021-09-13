@@ -1,10 +1,10 @@
 "
-! Selection Output Port (==SpSelectionPort==)
-A """"selection output port"""" will handle the transmission when a presenter can be selected (e.g. lists).
+# Selection Output Port (`SpSelectionPort`)
+A *selection output port* will handle the transmission when a presenter can be selected (e.g. lists).
 
-The presenter exposing a selection output port need to define also the event ==#whenSelectionChangedDo:==.
+The presenter exposing a selection output port need to define also the event `#whenSelectionChangedDo:`.
 
-Presenters exposing this port: *class:SpAbstractListPresenter* subclasses and *class:SpTreeTablePresenter*
+Presenters exposing this port: `SpAbstractListPresenter` subclasses and `SpTreeTablePresenter`
 "
 Class {
 	#name : #SpSelectionPort,
