@@ -1,4 +1,5 @@
 SmalltalkCISpec {
+  #preLoading : '.github/scripts/preLoading.st',
   #loading : [
     SCIMetacelloLoadSpec {
       #baseline : 'Spec2',
