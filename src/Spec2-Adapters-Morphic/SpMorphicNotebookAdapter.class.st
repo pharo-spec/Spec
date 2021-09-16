@@ -118,7 +118,7 @@ SpMorphicNotebookAdapter >> updatePageContent: aPage [
 	self widgetDo: [ :w |
 		(w pageWithModel: aPage) reset.
 		"if we are updating the page being displayed, we need to trigger a refresh"
-		aPage = self model selectedPage ifTrue: [ 
+		aPage = self presenter selectedPage ifTrue: [ 
 			w updatePageIndex: (self model selectedPageIndex) ] ]
 ]
 

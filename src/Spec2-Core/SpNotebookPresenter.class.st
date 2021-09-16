@@ -158,7 +158,8 @@ SpNotebookPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 { #category : #private }
 SpNotebookPresenter >> updatePageContent: aPage [
 
-	self changed: #updatePageContent: with: { aPage }
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter updatePageContent: aPage ]
 ]
 
 { #category : #'api - events' }
