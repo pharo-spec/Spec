@@ -312,14 +312,17 @@ SpCodePresenter >> doBrowseHierarchy [
 
 { #category : #commands }
 SpCodePresenter >> doBrowseImplementors [
-	| result |
-	
-	result := self
-		browseSelectedSelectorIfGlobal: [ :global | global browse ]
-		ifNotGlobal:  [ :selector | 
-			self systemNavigation browseAllImplementorsOf: selector ].
-	result ifNil: [ 
-		self application inform: 'No selectors found.' ]
+
+	| result selectionIsPoolVar |
+	selectionIsPoolVar := self browseImplementorOfPoolVar.
+
+	selectionIsPoolVar ifFalse: [
+		result := self
+			          browseSelectedSelectorIfGlobal: [ :global | 
+			          global read browse ]
+			          ifNotGlobal: [ :selector | 
+			          self systemNavigation browseAllImplementorsOf: selector ].
+		result ifNil: [ self application inform: 'No selectors found.' ] ]
 ]
 
 { #category : #commands }
