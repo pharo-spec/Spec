@@ -213,6 +213,15 @@ SpMorphicTextAdapter >> setWrapWord: aBoolean to: aWidget [
 		ifFalse: [ aWidget beNotWrapped ]
 ]
 
+{ #category : #releasing }
+SpMorphicTextAdapter >> unsubscribe [
+
+	super unsubscribe.
+	self presenter announcer 
+		unsubscribe: self widget;
+		unsubscribe: self
+]
+
 { #category : #private }
 SpMorphicTextAdapter >> updateExtentPropagationOf: string on: aWidget [
 	| stringMorph width height |

@@ -51,10 +51,8 @@ SpMorphicNotebookAdapter >> addPage: aNotebookPage to: aNotebook [
 SpMorphicNotebookAdapter >> buildContentForPage: aPage [
 
 	^ aPage retrievePresenter ifNotNil: [ :presenter |
-		presenter owner: self presenter.
-		aPage layoutSpec
-			ifNil: [ presenter buildWithSpec ]
-			ifNotNil: [ :spec | presenter buildWithSpec: spec ] ]
+		self ensurePage: aPage isBuiltWithPresenter: presenter.
+		presenter adapter widget ]
 ]
 
 { #category : #factory }
@@ -94,6 +92,21 @@ SpMorphicNotebookAdapter >> buildWidget [
 	self model whenSelectedPageChangedDo: [ :page | self selectPage: page ].
 
 	^ notebookMorph
+]
+
+{ #category : #factory }
+SpMorphicNotebookAdapter >> ensurePage: aPage isBuiltWithPresenter: presenter [
+
+	"is already built *for this notebook (owner)*"
+	(presenter hasAdapter 
+		and: [ presenter owner = self presenter ])
+		ifTrue: [ ^ self ].
+
+	"if not built or not same owner, I need to rebuild"		
+	presenter owner: self presenter. 
+	aPage layoutSpec
+		ifNil: [ presenter buildWithSpec ]
+		ifNotNil: [ :spec | presenter buildWithSpec: spec ]
 ]
 
 { #category : #private }

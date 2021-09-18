@@ -608,15 +608,6 @@ SpAbstractMorphicAdapter >> type: aString [
 			option: false ]
 ]
 
-{ #category : #releasing }
-SpAbstractMorphicAdapter >> unsubscribe [
-
-	super unsubscribe.
-	self presenter announcer 
-		unsubscribe: self widget;
-		unsubscribe: self
-]
-
 { #category : #protocol }
 SpAbstractMorphicAdapter >> useProportionalLayout [
 
