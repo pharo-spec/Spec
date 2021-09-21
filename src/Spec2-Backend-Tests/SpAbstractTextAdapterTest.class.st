@@ -25,3 +25,16 @@ SpAbstractTextAdapterTest >> testPresenterPlaceholderIsSetInWidget [
 	presenter placeholder: 'something'.
 	self assert: self adapter placeHolderText equals: 'something'
 ]
+
+{ #category : #tests }
+SpAbstractTextAdapterTest >> testSelectionInterval [
+
+	presenter text: 'test'.
+	presenter selectionInterval: (1 to: 4).
+	
+	self openInstance.
+	
+	self 
+		assert: presenter adapter selectionInterval
+		equals: (1 to: 4)
+]

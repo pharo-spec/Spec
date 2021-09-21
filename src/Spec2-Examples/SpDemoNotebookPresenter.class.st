@@ -92,9 +92,7 @@ SpDemoNotebookPresenter >> objectInspectorPage [
 		title: 'Object inspector'
 		icon: (self iconNamed: #nautilusIcon)
 		provider: [ 
-			self flag: #TODO. "Using reference to suspend a dependency, but is not cool since 
-			it makes a hidden depenency. Instead, we better think another example" 
-			(self class environment at: #EyeInspector) new
+			SpObjectInspector new
 				inspect: Object;
 				yourself ]
 		layoutSpec: #inspectorSpec

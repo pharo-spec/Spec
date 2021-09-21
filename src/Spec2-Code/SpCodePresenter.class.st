@@ -197,23 +197,66 @@ SpCodePresenter >> bindingOf: aString [
 ]
 
 { #category : #'private - commands' }
-SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonGlobalBlock [
-	| variableOrClassName env |
+SpCodePresenter >> browseImplementorOfPoolVar [
 
+	"If the selected text is a pool var, list all references and return true. Return false otherwise."
+
+	^ self browsePoolVarNode: [ :astNode | 
+		  self systemNavigation browseHierarchy: astNode binding owningClass ]
+]
+
+{ #category : #'private - commands' }
+SpCodePresenter >> browsePoolVarNode: aBlock [
+
+	"If the selected text is a pool var, list all references  using the block and return true. Return afalse otherwise."
+
+	| astNode selectedText |
+	selectedText := self selectedSelector.
+	selectedText ifNil: [ ^ false ].
+	(interactionModel hasBindingOf: selectedText) ifTrue: [ 
+		astNode := interactionModel ast variableNodes
+			           detect: [ :node | "this way also works without selecting the variable, setting the cursor inside is enogugh"
+				           node start <= self selectionInterval first and: [ 
+					           self selectionInterval last <= node stop ] ]
+			           ifNone: [ nil ] ].
+
+	(astNode isNotNil and: [ astNode binding isPoolVariable ]) ifTrue: [ 
+		aBlock value: astNode.
+		^ true ].
+	^ false
+]
+
+{ #category : #'private - commands' }
+SpCodePresenter >> browseReferencesToPoolVar [
+
+	"If the selected text is a pool var, list all references and return true. Return false otherwise."
+
+	^ self browsePoolVarNode: [ :astNode | 
+		  self systemNavigation
+			  openBrowserFor: astNode binding
+			  withMethods: astNode binding usingMethods ]
+]
+
+{ #category : #'private - commands' }
+SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonGlobalBlock [
+
+	| variableOrClassName env |
 	variableOrClassName := self selectedSelector.
 	variableOrClassName ifNil: [ ^ nil ].
-	
+
 	env := self environment.
-	
+
 	self flag: #bug.
 	"If we are looking for implementors of a class variable, this does not work right..."
-	env isBehavior ifTrue: [
-		(env hasSlotNamed: variableOrClassName) ifTrue: [
-		 ^ self systemNavigation browseAllAccessesTo: variableOrClassName from: env ] ].
+	env isBehavior ifTrue: [ 
+		(env hasSlotNamed: variableOrClassName) ifTrue: [ 
+			^ self systemNavigation
+				  browseAllAccessesTo: variableOrClassName
+				  from: env ] ].
 
-	(env bindingOf: variableOrClassName) 
-		ifNotNil: [ :ref | ^ globalBlock value: ref ].
-	
+	(env bindingOf: variableOrClassName) ifNotNil: [ :ref | 
+		^ globalBlock value: ref ].
+
 	nonGlobalBlock value: variableOrClassName
 ]
 
@@ -318,7 +361,7 @@ SpCodePresenter >> doBrowseImplementors [
 			          global read browse ]
 			          ifNotGlobal: [ :selector | 
 			          self systemNavigation browseAllImplementorsOf: selector ].
-	result ifNil: [ self application inform: 'No selectors found.' ]
+                result ifNil: [ self application inform: 'No selectors found.' ]
 ]
 
 { #category : #commands }
@@ -353,7 +396,6 @@ SpCodePresenter >> doBrowseMethodsMatchingStringSensitive [
 
 { #category : #commands }
 SpCodePresenter >> doBrowseSenders [
-
 	| result  |
 	
 	result := self browseSelectedSelectorIfGlobal: [ :global | 

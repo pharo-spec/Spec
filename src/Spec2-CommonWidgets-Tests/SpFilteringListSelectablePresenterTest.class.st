@@ -1,7 +1,7 @@
 Class {
 	#name : #SpFilteringListSelectablePresenterTest,
 	#superclass : #SpFilteringListPresenterTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#category : #'Spec2-CommonWidgets-Tests'
 }
 
 { #category : #accessing }

@@ -1,4 +1,4 @@
-name: Spec-Pharo-Integration
+name: Spec-Pharo9.0
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
