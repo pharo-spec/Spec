@@ -27,7 +27,7 @@ SpTestWorldPresenter class >> newWorld [
 		yourself
 ]
 
-{ #category : #'ui requests' }
+{ #category : #'class initialization' }
 SpTestWorldPresenter class >> reset [
 	TestWorld := nil
 ]
