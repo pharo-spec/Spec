@@ -38,3 +38,16 @@ SpAbstractTextAdapterTest >> testSelectionInterval [
 		assert: presenter adapter selectionInterval
 		equals: (1 to: 4)
 ]
+
+{ #category : #tests }
+SpAbstractTextAdapterTest >> testSelectionIntervalNilUnselectsEverything [
+
+	presenter text: 'test'.
+	presenter selectionInterval: nil.
+	
+	self openInstance.
+	
+	self 
+		assert: presenter adapter selectionInterval
+		equals: (1 to: 0)
+]

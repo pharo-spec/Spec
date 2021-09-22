@@ -1,6 +1,9 @@
 Class {
 	#name : #SpPopoverPresenterTest,
 	#superclass : #SpSmokeTest,
+	#instVars : [
+		'ownerPresenter'
+	],
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
@@ -14,6 +17,13 @@ SpPopoverPresenterTest >> classToTest [
 { #category : #initialization }
 SpPopoverPresenterTest >> initializeTestedInstance [
 
+	"Adding an owner to be sure it some functions (relative to its owner/referenced object) 
+	 will be correctly tested"
+	presenter owner: ((ownerPresenter := SpPresenter new)
+		layout: SpBoxLayout newTopToBottom;
+		buildWithSpec;
+		yourself).
+		
 	presenter presenter: (SpPresenter new 
 		layout: (SpBoxLayout newTopToBottom
 			add: 'Test Popover';

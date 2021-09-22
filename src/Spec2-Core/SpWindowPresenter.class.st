@@ -491,7 +491,8 @@ SpWindowPresenter >> presenter: aPresenter [
 { #category : #'private - building' }
 SpWindowPresenter >> rebuildWithSpecLayout: aSpec [
 
-	self changed: #rebuildWithSpecLayout: with: { aSpec }
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter rebuildWithSpecLayout: aSpec ]
 ]
 
 { #category : #private }
