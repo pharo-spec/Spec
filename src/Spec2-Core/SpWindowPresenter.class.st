@@ -215,12 +215,6 @@ SpWindowPresenter >> delete [
 	self withAdapterDo: [ :anAdapter | anAdapter delete ]
 ]
 
-{ #category : #TOREMOVE }
-SpWindowPresenter >> giveFocusToNextFrom: aModel [ 
-
-	^ self presenter giveFocusToNextFrom: aModel
-]
-
 { #category : #testing }
 SpWindowPresenter >> hasDecorations [
 	"Answer if window has decorations (header bar and buttons)"
