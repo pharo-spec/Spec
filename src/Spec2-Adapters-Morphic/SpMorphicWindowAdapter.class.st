@@ -21,12 +21,6 @@ SpMorphicWindowAdapter >> addFocusRotationKeyBindings [
 	 the event)"
 ]
 
-{ #category : #'widget API' }
-SpMorphicWindowAdapter >> addModelItemsToWindowMenu: aMenu [
-
-	self model addMenuItemsToWindowMenu: aMenu
-]
-
 { #category : #protocol }
 SpMorphicWindowAdapter >> addPresenterIn: aWindow withSpecLayout: aSpec [
 

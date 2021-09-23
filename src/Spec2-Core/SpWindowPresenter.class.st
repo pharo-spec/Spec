@@ -83,17 +83,6 @@ SpWindowPresenter >> aboutTitle [
 	^ self presenter toolName
 ]
 
-{ #category : #TOREMOVE }
-SpWindowPresenter >> addMenuItemsToWindowMenu: aMenu [
-
-	self presenter addMenuItemsToWindowMenu: aMenu
-]
-
-{ #category : #TOREMOVE }
-SpWindowPresenter >> addModelItemsToWindowMenu: aMenu [
-	self presenter addModelItemsToWindowMenu: aMenu
-]
-
 { #category : #'private - building' }
 SpWindowPresenter >> addPresenterIn: widget withSpecLayout: aSpec [
 	
