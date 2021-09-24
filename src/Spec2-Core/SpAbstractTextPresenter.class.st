@@ -381,7 +381,7 @@ SpAbstractTextPresenter >> whenResetDo: aBlock [
 	 It will react when user presses <meta+l> key (this is for historical reasons)."
 
 	self 
-		bindKeyCombination: $l meta 
+		bindKeyCombination: SpCancelChangesCommand defaultShortcutKey
 		toAction: aBlock
 ]
 

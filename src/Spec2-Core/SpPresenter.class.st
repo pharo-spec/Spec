@@ -473,23 +473,6 @@ SpPresenter >> focusOrder: anObject [
 	^ focusOrder := anObject
 ]
 
-{ #category : #'inspector-extensions' }
-SpPresenter >> gtInspectorPreviewIn: composite [
-	<gtInspectorPresentationOrder: 30>
-	self adapter ifNotNil: [ :w | w gtInspectorPreviewIn: composite ]
-]
-
-{ #category : #'inspector-extensions' }
-SpPresenter >> gtInspectorSubPresentersIn: composite [
-	<gtInspectorPresentationOrder: 20>
-	composite tree
-		title: 'Sub presenters';
-		rootsExpanded;
-		display: [ :each | {each} ];
-		children: [ :each | each presenters ];
-		when: [ :each | each presenters isNotEmpty ]
-]
-
 { #category : #'api - focus' }
 SpPresenter >> hasKeyboardFocus [
 

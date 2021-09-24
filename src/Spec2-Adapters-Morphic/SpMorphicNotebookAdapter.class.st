@@ -51,10 +51,8 @@ SpMorphicNotebookAdapter >> addPage: aNotebookPage to: aNotebook [
 SpMorphicNotebookAdapter >> buildContentForPage: aPage [
 
 	^ aPage retrievePresenter ifNotNil: [ :presenter |
-		presenter owner: self presenter.
-		aPage layoutSpec
-			ifNil: [ presenter buildWithSpec ]
-			ifNotNil: [ :spec | presenter buildWithSpec: spec ] ]
+		self ensurePage: aPage isBuiltWithPresenter: presenter.
+		presenter adapter widget ]
 ]
 
 { #category : #factory }
@@ -96,6 +94,21 @@ SpMorphicNotebookAdapter >> buildWidget [
 	^ notebookMorph
 ]
 
+{ #category : #factory }
+SpMorphicNotebookAdapter >> ensurePage: aPage isBuiltWithPresenter: presenter [
+
+	"is already built *for this notebook (owner)*"
+	(presenter hasAdapter 
+		and: [ presenter owner = self presenter ])
+		ifTrue: [ ^ self ].
+
+	"if not built or not same owner, I need to rebuild"		
+	presenter owner: self presenter. 
+	aPage layoutSpec
+		ifNil: [ presenter buildWithSpec ]
+		ifNotNil: [ :spec | presenter buildWithSpec: spec ]
+]
+
 { #category : #private }
 SpMorphicNotebookAdapter >> pageChanged: ann [
 	self model selectPage: ann page model
@@ -118,7 +131,7 @@ SpMorphicNotebookAdapter >> updatePageContent: aPage [
 	self widgetDo: [ :w |
 		(w pageWithModel: aPage) reset.
 		"if we are updating the page being displayed, we need to trigger a refresh"
-		aPage = self model selectedPage ifTrue: [ 
+		aPage = self presenter selectedPage ifTrue: [ 
 			w updatePageIndex: (self model selectedPageIndex) ] ]
 ]
 

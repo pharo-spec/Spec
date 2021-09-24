@@ -12,6 +12,7 @@ SpWindowPresenterTest >> classToTest [
 
 { #category : #initialization }
 SpWindowPresenterTest >> initializeTestedInstance [
+
 	presenter presenter: SpLabelPresenter new
 ]
 
@@ -45,6 +46,19 @@ SpWindowPresenterTest >> testIsTopWindow [
 	self assert: presenter isTopWindow.
 	presenter close.
 	self deny: presenter isTopWindow
+]
+
+{ #category : #tests }
+SpWindowPresenterTest >> testRebuildPresenterDoNotLetReferencesInAnnouncer [
+	| oldSize newSize |
+	
+	presenter buildWithSpecLayout: SpLabelPresenter defaultSpec.
+	oldSize := presenter announcer subscriptions subscriptions size.
+	"rebuild"
+	presenter rebuildWithSpecLayout: SpLabelPresenter defaultSpec.
+	newSize := presenter announcer subscriptions subscriptions size.
+	
+	self assert: oldSize equals: newSize
 ]
 
 { #category : #tests }
