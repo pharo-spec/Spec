@@ -69,7 +69,6 @@ SpTreePresenter class >> exampleWithContextMenu [
 SpTreePresenter class >> exampleWithDecoratedString [
 	
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
 		displayIcon: [ :aClass | aClass systemIcon ];
 		displayColor: [ :aClass | 
 			(aClass name endsWith: 'Test')
