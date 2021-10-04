@@ -51,7 +51,7 @@ SpMorphicModalWindowAdapter >> open [
 	self widget openInWorld.
 	self presenter isCentered 
 		ifTrue: [ self centered ].
-	self presenter windowIsOpening.
+	self presenter windowIsOpened.
 	self waitWhile: [ self widget isInWorld ]
 ]
 

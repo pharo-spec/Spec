@@ -198,7 +198,7 @@ SpMorphicWindowAdapter >> open [
 	self presenter isCentered 
 		ifTrue: [ self centered ].
 	self presenter presenter takeKeyboardFocus.
-	self windowIsOpening
+	self windowIsOpened
 ]
 
 { #category : #protocol }
@@ -261,7 +261,7 @@ SpMorphicWindowAdapter >> windowIsClosing [
 ]
 
 { #category : #updating }
-SpMorphicWindowAdapter >> windowIsOpening [
+SpMorphicWindowAdapter >> windowIsOpened [
 
-	self presenter windowIsOpening
+	self presenter windowIsOpened
 ]

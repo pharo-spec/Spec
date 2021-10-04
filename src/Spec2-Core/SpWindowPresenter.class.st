@@ -694,7 +694,7 @@ SpWindowPresenter >> windowIsClosing [
 ]
 
 { #category : #updating }
-SpWindowPresenter >> windowIsOpening [
+SpWindowPresenter >> windowIsOpened [
 
 	isClosed := false
 ]
