@@ -9,7 +9,7 @@ Class {
 		'code',
 		'text'
 	],
-	#category : #'Spec2-Code'
+	#category : #'Spec2-Code-Base'
 }
 
 { #category : #accessing }

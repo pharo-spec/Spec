@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'attributeTable'
 	],
-	#category : #'Spec2-Code-Morphic'
+	#category : #'Spec2-Code-Morphic-Base'
 }
 
 { #category : #'instance creation' }
