@@ -44,6 +44,13 @@ SpMorphicToolbarButtonAdapter >> execute [
 	self presenter action cull: self presenter
 ]
 
+{ #category : #execution }
+SpMorphicToolbarButtonAdapter >> execute: isPressed [ 
+
+	self presenter selected: isPressed.
+	self presenter action ifNotNil: [ :action | action cull: self presenter ]
+]
+
 { #category : #accessing }
 SpMorphicToolbarButtonAdapter >> icon [
 	| icon |
