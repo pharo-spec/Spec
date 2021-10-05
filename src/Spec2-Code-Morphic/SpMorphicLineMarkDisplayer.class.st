@@ -132,7 +132,8 @@ SpMorphicLineMarkDisplayer >> drawOnAthensCanvas: aCanvas [
 
 { #category : #accessing }
 SpMorphicLineMarkDisplayer >> fontToUse [
-	^ RubAbstractTextArea lineNumbersFont 
+
+	^ self textArea font
 ]
 
 { #category : #menus }
