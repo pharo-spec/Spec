@@ -10,19 +10,19 @@ Class {
 	#category : #'Spec2-Code-Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #mock }
 SpNavigationMockClass >> referenceToTheClassPoolVariable [
 
 	^ SomeClassPoolVariable
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #mock }
 SpNavigationMockClass >> referenceToTheClassVariable [
 
 	^ SomeClassVariable
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #mock }
 SpNavigationMockClass >> referenceToYourself [
 
 	^ SpNavigationMockClass
