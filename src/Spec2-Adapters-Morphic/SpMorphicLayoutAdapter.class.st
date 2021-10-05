@@ -70,7 +70,8 @@ SpMorphicLayoutAdapter >> buildMorph: aPresenter constraints: constraints [
 	| childMorph |
 	
 	childMorph := aPresenter buildWithSpec: constraints spec.
-	aPresenter adapter applyStyle.
+	aPresenter adapter 
+		ifNotNil: [ :anAdapter | anAdapter applyStyle ].
 
 	"Add children alignment constraints (if applies)"
 	childMorph := self 
