@@ -8,8 +8,6 @@ Class {
 	#instVars : [
 		'#state => ObservableSlot',
 		'#label => ObservableSlot',
-		'#actionWhenActivated => ObservableSlot',
-		'#actionWhenDeactivated => ObservableSlot',
 		'#labelClickable => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
@@ -20,26 +18,12 @@ SpAbstractFormButtonPresenter class >> isAbstract [
 	^ self = SpAbstractFormButtonPresenter
 ]
 
-{ #category : #TOREMOVE }
-SpAbstractFormButtonPresenter >> activationAction: aBlock [
-	"This method is used to set the action to perform when I am activated"
-
-	actionWhenActivated := aBlock
-]
-
 { #category : #simulating }
 SpAbstractFormButtonPresenter >> click [
 	"Simulate a click on the checkbox
 	Used when the checkbox is a list item"
 
 	self toggleState
-]
-
-{ #category : #TOREMOVE }
-SpAbstractFormButtonPresenter >> deactivationAction: aBlock [
-	"This method is used to set the action to perform when I am deactivated"
-
-	actionWhenDeactivated := aBlock
 ]
 
 { #category : #api }
@@ -55,8 +39,6 @@ SpAbstractFormButtonPresenter >> enabled: aBoolean [
 SpAbstractFormButtonPresenter >> initialize [
 	super initialize.
 
-	actionWhenActivated := [  ].
-	actionWhenDeactivated := [  ].
 	state := false.
 
 	labelClickable := true.
@@ -132,13 +114,6 @@ SpAbstractFormButtonPresenter >> whenActivatedDo: aBlock [
 	self whenChangedDo: [ :aBoolean | aBoolean ifTrue: aBlock ]
 ]
 
-{ #category : #TOREMOVE }
-SpAbstractFormButtonPresenter >> whenActivationActionChangedDo: aBlock [
-	"A block performed when the activation action changed"
-
-	self property: #actionWhenActivated whenChangedDo: aBlock
-]
-
 { #category : #'api - events' }
 SpAbstractFormButtonPresenter >> whenChangedDo: aBlock [
 	"Informs when the control button state has been changed (see `SpAbstractFormButtonPresenter>>#state:`.
@@ -154,13 +129,6 @@ SpAbstractFormButtonPresenter >> whenDeactivatedDo: aBlock [
 	 `aBlock` receives zero arguments." 
 	
 	self whenChangedDo: [ :aBoolean | aBoolean ifFalse: aBlock ]
-]
-
-{ #category : #TOREMOVE }
-SpAbstractFormButtonPresenter >> whenDeactivationActionChangedDo: aBlock [
-	"A block performed when the deactivation action changed"
-
-	self property: #actionWhenDeactivated whenChangedDo: aBlock
 ]
 
 { #category : #'api - events' }

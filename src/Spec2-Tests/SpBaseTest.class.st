@@ -143,6 +143,19 @@ SpBaseTest >> testOpenPresenterRaisesDisplayEvent [
 	self assert: displayed
 ]
 
+{ #category : #tests }
+SpBaseTest >> testRebuildPresenterDoNotLetReferencesInAnnouncer [
+	| oldSize newSize |
+	
+	presenter buildWithSpec.
+	oldSize := presenter announcer subscriptions subscriptions size.
+	"rebuild"
+	presenter buildWithSpec.
+	newSize := presenter announcer subscriptions subscriptions size.
+	
+	self assert: oldSize equals: newSize
+]
+
 { #category : #accessing }
 SpBaseTest >> widget [
 	

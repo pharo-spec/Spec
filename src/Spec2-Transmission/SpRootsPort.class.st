@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #'handling transmission' }
-SpRootsPort >> incomingTransmission: anObject from: outPort [
+SpRootsPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
 
-	self presenter roots: anObject
+	aPresenter roots: anObject
 ]

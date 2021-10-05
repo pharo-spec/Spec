@@ -92,12 +92,6 @@ SpTPresenterBuilder >> newDynamicPresentersListIn: accessorSymbol usingBuilder: 
 	self buildWithSpec
 ]
 
-{ #category : #'scripting - widgets' }
-SpTPresenterBuilder >> newFilteringList [
-
-	^ self instantiate: SpFilteringListPresenter
-]
-
 { #category : #'scripting - layouts' }
 SpTPresenterBuilder >> newGridLayout [
 

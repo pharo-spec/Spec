@@ -291,7 +291,7 @@ SpTextPresenter >> whenSubmitDo: aBlock [
 	 `aBlock` receives one argument (the submited text)"
 
 	self 
-		bindKeyCombination: $s meta 
+		bindKeyCombination: SpAcceptChangesCommand defaultShortcutKey 
 		toAction: [ aBlock value: self text ]
 ]
 
