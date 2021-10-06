@@ -21,6 +21,7 @@ SpToolbarToggleButtonMorphTest >> testClickDeactivatedCheckboxActivatesIt [
 	self openInstance.
 	self waitUntilUIRedrawed.
 	presenter adapter widget simulateClick.
-		
+	self waitUntilUIRedrawed.
+
 	self assert: presenter isSelected equals: state not
 ]
