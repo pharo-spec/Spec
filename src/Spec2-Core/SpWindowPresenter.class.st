@@ -699,6 +699,12 @@ SpWindowPresenter >> windowIsOpened [
 	isClosed := false
 ]
 
+{ #category : #TOREMOVE }
+SpWindowPresenter >> windowIsOpening [
+
+	self windowIsOpened
+]
+
 { #category : #api }
 SpWindowPresenter >> withDecorations [
 	"Add decorations on window (header bar and buttons)"
