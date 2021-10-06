@@ -1,7 +1,7 @@
 Class {
 	#name : #SpMorphicCodeAdapter,
 	#superclass : #SpMorphicTextAdapter,
-	#category : #'Spec2-Code-Morphic-Base'
+	#category : #'Spec2-Code-Morphic'
 }
 
 { #category : #initialization }

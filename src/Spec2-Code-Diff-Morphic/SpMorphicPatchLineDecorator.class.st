@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'adapter'
 	],
-	#category : #'Spec2-Code-Morphic-Diff'
+	#category : #'Spec2-Code-Diff-Morphic'
 }
 
 { #category : #querying }

@@ -18,7 +18,7 @@ Class {
 		'doItRequestor',
 		'completionBuilder'
 	],
-	#category : #'Spec2-Code-Morphic-Base'
+	#category : #'Spec2-Code-Morphic'
 }
 
 { #category : #accessing }
