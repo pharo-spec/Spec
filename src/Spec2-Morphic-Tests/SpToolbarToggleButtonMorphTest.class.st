@@ -12,6 +12,13 @@ SpToolbarToggleButtonMorphTest >> classToTest [
 	^ SpToolbarToggleButtonPresenter 
 ]
 
+{ #category : #initialization }
+SpToolbarToggleButtonMorphTest >> initialize [
+
+	super initialize.
+	self initializeSemaphore
+]
+
 { #category : #tests }
 SpToolbarToggleButtonMorphTest >> testClickDeactivatedCheckboxActivatesIt [
 	| state |
