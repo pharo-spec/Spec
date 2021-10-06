@@ -2,7 +2,6 @@ Class {
 	#name : #SpMorphicPatchLineVisitor,
 	#superclass : #DiffVisitor,
 	#instVars : [
-		'colorPalette',
 		'lineNumber',
 		'stream',
 		'lineMarks'

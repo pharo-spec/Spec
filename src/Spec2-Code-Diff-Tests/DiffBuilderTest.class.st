@@ -4,30 +4,6 @@ Class {
 	#category : #'Spec2-Code-Diff-Tests'
 }
 
-{ #category : #'as yet unclassified' }
-DiffBuilderTest >> mockAST1 [
-
-	^ 42 - 1
-]
-
-{ #category : #'as yet unclassified' }
-DiffBuilderTest >> mockAST2 [
-
-	^ 42 + 1
-]
-
-{ #category : #tests }
-DiffBuilderTest >> testDiffAST [
-	| diff |
-
-	diff := DiffBuilder new 
-		comparator: [ :node1 :node2 | node1 = node2 ];
-		buildPatchFrom: (self class>>#mockAST1) ast allChildren allButFirst
-			to: (self class>>#mockAST2) ast allChildren allButFirst.
-		
-	self halt
-]
-
 { #category : #tests }
 DiffBuilderTest >> testDiffFromTo [
 	| fileA fileB patch |
