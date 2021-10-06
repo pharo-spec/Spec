@@ -42,13 +42,10 @@ that will change
 		diffFrom: fileA lines
 		to: fileB lines.
 	
-	self assert: patch size equals: 5. 
+	self assert: patch size equals: 2. 
 	self 
-		assert: (patch collect: #first as: Array)  
-		equals: #('delete' 'insert' 'delete' 'delete' 'insert').
-	self 
-		assert: (patch collect: #second as: Array) 
-		equals: {'old'->1. 'old'->2. 'old'->3. 'old'->6. 'old'->8}.
-	self assert: (patch at: 2) third equals: 'new'->1.
-	self assert: (patch at: 5) third equals: 'new'->6.
+		assert: (patch collect: #class) 
+		equals: { DiffDelete. DiffInsert }.
+	self assert: (patch collect: #oldPosition as: Array) equals: #(2 3).
+	self assert: (patch at: 2) newPosition equals: 2
 ]
