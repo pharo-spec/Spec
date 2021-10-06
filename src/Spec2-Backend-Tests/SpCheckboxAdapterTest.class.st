@@ -64,6 +64,7 @@ SpCheckboxAdapterTest >> testClickDeactivatedCheckboxActivatesIt [
 
 	presenter state: false.
 	self openInstance.
+	backendForTest waitUntilUIRedrawed.
 	self emulateLeftClick.
 	self assert: presenter state
 ]
