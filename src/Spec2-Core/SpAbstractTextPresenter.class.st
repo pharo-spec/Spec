@@ -336,8 +336,19 @@ SpAbstractTextPresenter >> type: aString [
 		anAdapter type: aString.
 		^ self ].
 
-	self isEditable ifFalse: [ ^ self ].
 	self text: aString
+]
+
+{ #category : #simulating }
+SpAbstractTextPresenter >> typeByChar: aString [ 
+	"For simulation: Do as if we type the given string"
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter typeByChar: aString.
+		^ self ].
+
+	self isEditable ifFalse: [ ^ self ].
+	aString do: [ :each | 
+		self text: (self text ifNil: [ '' ]), (each asString) ]
 ]
 
 { #category : #TOREMOVE }

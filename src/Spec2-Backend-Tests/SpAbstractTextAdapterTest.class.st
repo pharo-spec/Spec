@@ -20,7 +20,7 @@ SpAbstractTextAdapterTest >> testBeNotEditableAfterOpenWorks [
 	self openInstance.
 	presenter beNotEditable.
 	self assert: presenter text isEmpty.
-	presenter type: 'x'.
+	presenter typeByChar: 'x'.
 	self assert: presenter text isEmpty	
 ]
 
@@ -30,14 +30,13 @@ SpAbstractTextAdapterTest >> testBeNotEditableWorks [
 	presenter beNotEditable.
 	
 	self assert: presenter text isEmpty.
-	presenter type: 'x'.
+	presenter typeByChar: 'x'.
 	self assert: presenter text isEmpty.
 	
 	"now open and try to type (since is different)"
 	self openInstance.
-	presenter type: 'x'.
+	presenter typeByChar: 'x'.
 	self assert: presenter text isEmpty
-	
 ]
 
 { #category : #tests }

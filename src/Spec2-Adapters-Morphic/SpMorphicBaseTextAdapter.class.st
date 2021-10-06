@@ -301,8 +301,14 @@ SpMorphicBaseTextAdapter >> showContextMenu [
 				in: self currentWorld ] ]
 ]
 
-{ #category : #'accessing - structure variables' }
+{ #category : #emulating }
 SpMorphicBaseTextAdapter >> type: aString [
+
+	self widget setText: aString
+]
+
+{ #category : #emulating }
+SpMorphicBaseTextAdapter >> typeByChar: aString [
 
 	aString do: [ :each | 
 		self 
