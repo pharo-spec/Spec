@@ -37,19 +37,6 @@ SpButtonAdapterTest >> testClickExecuteAction [
 ]
 
 { #category : #tests }
-SpButtonAdapterTest >> testFontAffectsTheWidget [
-
-	backendForTest canChangeFonts ifFalse: [ self skip ].
-
-	presenter label: 'ALabel'.
-	presenter font: StandardFonts codeFont.
-
-	self assert: self widget label equals: 'ALabel'.
-	self assert: self widget font equals: StandardFonts codeFont.
-
-]
-
-{ #category : #tests }
 SpButtonAdapterTest >> testNoClickDoesNotExecuteAction [
 	| actionExecuted |
 	actionExecuted := false.
