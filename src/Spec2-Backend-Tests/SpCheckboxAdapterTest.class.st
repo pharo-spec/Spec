@@ -62,9 +62,6 @@ SpCheckboxAdapterTest >> testClickActivatedCheckboxDectivatesIt [
 { #category : #tests }
 SpCheckboxAdapterTest >> testClickDeactivatedCheckboxActivatesIt [
 
-	"For some reason, I cannot get it to run in CI, when running all tests) :("
-	self skipOnPharoCITestingEnvironment.
-
 	presenter state: false.
 	
 	self emulateLeftClick.
