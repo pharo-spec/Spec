@@ -4,6 +4,9 @@ I'm the adapter used to bridge a ToggleButton and its morphic representation.
 Class {
 	#name : #SpMorphicToggleButtonAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
+	#instVars : [
+		'styleName'
+	],
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
@@ -85,6 +88,18 @@ SpMorphicToggleButtonAdapter >> state [
 SpMorphicToggleButtonAdapter >> state: aBoolean [
 	
 	^ self presenter state: aBoolean
+]
+
+{ #category : #accessing }
+SpMorphicToggleButtonAdapter >> styleName [
+
+	^ styleName ifNil: [ super styleName ]
+]
+
+{ #category : #accessing }
+SpMorphicToggleButtonAdapter >> styleName: aString [ 
+
+	styleName := aString
 ]
 
 { #category : #events }
