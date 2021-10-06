@@ -304,7 +304,13 @@ SpMorphicBaseTextAdapter >> showContextMenu [
 { #category : #'accessing - structure variables' }
 SpMorphicBaseTextAdapter >> type: aString [
 
-	self widget setText: aString
+	aString do: [ :each | 
+		self 
+			keyPressed: each 
+			shift: each isUppercase
+			meta: false 
+			control: false 
+			option: false ]
 ]
 
 { #category : #'widget API' }

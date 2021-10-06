@@ -15,6 +15,32 @@ SpAbstractTextAdapterTest class >> shouldInheritSelectors [
 ]
 
 { #category : #tests }
+SpAbstractTextAdapterTest >> testBeNotEditableAfterOpenWorks [
+
+	self openInstance.
+	presenter beNotEditable.
+	self assert: presenter text isEmpty.
+	presenter type: 'x'.
+	self assert: presenter text isEmpty	
+]
+
+{ #category : #tests }
+SpAbstractTextAdapterTest >> testBeNotEditableWorks [
+
+	presenter beNotEditable.
+	
+	self assert: presenter text isEmpty.
+	presenter type: 'x'.
+	self assert: presenter text isEmpty.
+	
+	"now open and try to type (since is different)"
+	self openInstance.
+	presenter type: 'x'.
+	self assert: presenter text isEmpty
+	
+]
+
+{ #category : #tests }
 SpAbstractTextAdapterTest >> testChangePlaceholderTextUpdatesPresenter [
 	presenter placeholder: 'some text'.
 	self assert: self adapter placeHolderText equals: 'some text'

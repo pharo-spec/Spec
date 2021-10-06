@@ -168,6 +168,12 @@ SpAbstractTextPresenter >> insertAndSelectAfterCurrentSelection: aString [
 	self selectionInterval: (selectionInterval last + 1 to: selectionInterval last + aString size)
 ]
 
+{ #category : #testing }
+SpAbstractTextPresenter >> isEditable [
+
+	^ self subclassResponsibility
+]
+
 { #category : #TOREMOVE }
 SpAbstractTextPresenter >> isForSmalltalkCode [
 
@@ -330,6 +336,7 @@ SpAbstractTextPresenter >> type: aString [
 		anAdapter type: aString.
 		^ self ].
 
+	self isEditable ifFalse: [ ^ self ].
 	self text: aString
 ]
 
