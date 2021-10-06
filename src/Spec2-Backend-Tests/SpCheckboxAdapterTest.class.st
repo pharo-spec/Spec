@@ -63,7 +63,7 @@ SpCheckboxAdapterTest >> testClickActivatedCheckboxDectivatesIt [
 SpCheckboxAdapterTest >> testClickDeactivatedCheckboxActivatesIt [
 
 	presenter state: false.
-	
+	self openInstance.
 	self emulateLeftClick.
 	self assert: presenter state
 ]
