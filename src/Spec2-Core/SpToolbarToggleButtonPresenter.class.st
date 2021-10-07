@@ -7,7 +7,8 @@ Class {
 	#name : #SpToolbarToggleButtonPresenter,
 	#superclass : #SpToolbarButtonPresenter,
 	#instVars : [
-		'#selected => ObservableSlot'
+		'#selected => ObservableSlot',
+		'#associatedToggleButtons'
 	],
 	#category : #'Spec2-Core-Widgets-Toolbar'
 }
@@ -22,6 +23,35 @@ SpToolbarToggleButtonPresenter class >> adapterName [
 SpToolbarToggleButtonPresenter class >> documentFactoryMethodSelector [
 
 	^ #newToolbarToggleButton
+]
+
+{ #category : #api }
+SpToolbarToggleButtonPresenter >> associatedToggleButtons [
+
+	^ associatedToggleButtons
+]
+
+{ #category : #api }
+SpToolbarToggleButtonPresenter >> associatedToggleButtons: aCollection [ 
+	"Set the list of toggle buttons associated with this one.
+	 By using this, you will be grouping together this toggle button along with the ones contained 
+	 in `aCollection`.
+	 You should NOT send this message to all associated toggle buttons, the first of them is enough."
+	| allElements |
+	
+	"pass group to all members"	
+	allElements := { self }, aCollection.
+	allElements do: [ :each | 
+		each basicAssociatedToggleButtons: allElements ].
+	
+	"self state: true."
+	aCollection do: [ :each | each state: false ]
+]
+
+{ #category : #private }
+SpToolbarToggleButtonPresenter >> basicAssociatedToggleButtons: aCollection [ 
+	
+	associatedToggleButtons := aCollection copyWithout: self
 ]
 
 { #category : #api }
@@ -57,12 +87,15 @@ SpToolbarToggleButtonPresenter >> initialize [
 { #category : #testing }
 SpToolbarToggleButtonPresenter >> isSelected [
 
-	^ selected
+	^ self state
 ]
 
 { #category : #api }
 SpToolbarToggleButtonPresenter >> selected: aBoolean [
 
+	self 
+		deprecated: 'Use #state: instead.' 
+		transformWith: '`@receiver selected: `@arg' -> '`@receiver state: `@arg'.  
 	self setSelection: aBoolean
 ]
 
@@ -74,10 +107,31 @@ SpToolbarToggleButtonPresenter >> setSelection: aBoolean [
 ]
 
 { #category : #api }
+SpToolbarToggleButtonPresenter >> state [
+
+	^ selected
+]
+
+{ #category : #api }
+SpToolbarToggleButtonPresenter >> state: aBoolean [
+
+	self setSelection: aBoolean
+]
+
+{ #category : #api }
 SpToolbarToggleButtonPresenter >> toggle [
 	"Toggles the status of the button"
 	
 	self setSelection: selected not
+]
+
+{ #category : #'api - events' }
+SpToolbarToggleButtonPresenter >> whenActivatedDo: aBlock [
+	"Inform when the button has been selected. 
+	 `aBlock` receives zero arguments."
+
+	self whenChangedDo: [ :newSelectedValue | 
+		newSelectedValue ifTrue: [ aBlock value ] ]
 ]
 
 { #category : #private }
@@ -92,9 +146,22 @@ SpToolbarToggleButtonPresenter >> whenChangedDo: aBlock [
 ]
 
 { #category : #'api - events' }
+SpToolbarToggleButtonPresenter >> whenDeactivatedDo: aBlock [
+	"Inform when the button has been selected. 
+	 `aBlock` receives zero arguments."
+
+	self whenChangedDo: [ :newSelectedValue | 
+		newSelectedValue ifTrue: [ aBlock value ] ]
+]
+
+{ #category : #'api - events' }
 SpToolbarToggleButtonPresenter >> whenSelectedDo: aBlock [
 	"Inform when the button has been selected. 
 	 `aBlock` receives zero arguments."
+
+	self 
+		deprecated: 'Use #whenActivatedDo: instead.' 
+		transformWith: '`@receiver whenSelectedDo: `@arg' -> '`@receiver whenActivatedDo: `@arg'.  
 
 	self whenChangedDo: [ :newSelectedValue | 
 		newSelectedValue ifTrue: [ aBlock value ] ]
@@ -115,6 +182,10 @@ SpToolbarToggleButtonPresenter >> whenToggledDo: aBlock [
 SpToolbarToggleButtonPresenter >> whenUnselectedDo: aBlock [
 	"Inform when the button has been unselected. 
 	 `aBlock` receives zero arguments."
+
+	self 
+		deprecated: 'Use #whenDeactivatedDo: instead.' 
+		transformWith: '`@receiver whenUnselectedDo: `@arg' -> '`@receiver whenDeactivatedDo: `@arg'.  
 
 	self whenChangedDo: [ :newSelectedValue | 
 		newSelectedValue ifFalse: [ aBlock value ] ]

@@ -8,6 +8,28 @@ Class {
 }
 
 { #category : #factory }
+SpMorphicToolbarToggleButtonAdapter >> buildWidget [
+	| newWidget |
+
+	newWidget := super buildWidget.
+	self presenter whenToggledDo: [ 
+		self buttonChanged ].
+	
+	^ newWidget
+]
+
+{ #category : #private }
+SpMorphicToolbarToggleButtonAdapter >> buttonChanged [
+	| state |
+	
+	state := self state.
+	state ifTrue: [ 
+		self presenter associatedToggleButtons 
+			do: [ :each | each state: false ] ].
+	widget pressed: state
+]
+
+{ #category : #factory }
 SpMorphicToolbarToggleButtonAdapter >> morphClass [ 
 
 	^ SpToolbarToggleButtonMorph
@@ -19,4 +41,10 @@ SpMorphicToolbarToggleButtonAdapter >> newButton [
 	^ super newButton
 		action: #execute:
 		yourself
+]
+
+{ #category : #'accessing - structure variables' }
+SpMorphicToolbarToggleButtonAdapter >> state [
+
+	^ self presenter isSelected
 ]

@@ -13,6 +13,8 @@ SpIconAndLabelToolbarDisplayMode >> configureButton: aButton item: aToolbarItem 
 	aButton getLabelSelector: #label.
 	aButton getIconSelector: #icon.
 	aButton badgeSelector: #badge.
+	aButton getStateSelector: #state
+	
 ]
 
 { #category : #accessing }

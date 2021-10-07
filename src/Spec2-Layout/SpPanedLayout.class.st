@@ -156,7 +156,7 @@ SpPanedLayout >> positionOfSlider: aNumber [
 	 - `aNumber` can also be a fraction or a percentage, indicating the percentage position 
 	 of the slider. E.g. 30 percent (0.3) indicates the slider will be place at 1/3 of the 
 	 panel."
-	
+
 	positionOfSlider := aNumber
 ]
 

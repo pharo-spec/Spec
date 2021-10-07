@@ -93,6 +93,8 @@ SpStyle class >> defaultStyleSheetData [
 		Geometry { #width: 70, #hResizing: false },
 		.showIcon [ Geometry { #width: 25 } ]
 	],
+	.selected [ Container { #borderWidth: 1 } ],
+	.unselected [ Container { #borderWidth: 0 } ],
 	.toolbar [ 
 		Geometry { #height: Reset, #hResizing: true },
 		.icons [ Geometry { #height: 30 } ],
