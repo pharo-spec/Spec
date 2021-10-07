@@ -239,25 +239,18 @@ SpCodePresenter >> browseReferencesToPoolVar [
 
 { #category : #'private - commands' }
 SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonGlobalBlock [
-
-	| variableOrClassName env |
+	| variableOrClassName variable |
 	variableOrClassName := self selectedSelector.
 	variableOrClassName ifNil: [ ^ nil ].
 
-	env := self environment.
+	variable := ((interactionModel doItContext
+		ifNil: [ interactionModel behavior ])
+			ifNil: [ environment
+				ifNil: [ self class environment ] ])
+					lookupVar: variableOrClassName.
 
-	self flag: #bug.
-	"If we are looking for implementors of a class variable, this does not work right..."
-	env isBehavior ifTrue: [ 
-		(env hasSlotNamed: variableOrClassName) ifTrue: [ 
-			^ self systemNavigation
-				  browseAllAccessesTo: variableOrClassName
-				  from: env ] ].
-
-	(env bindingOf: variableOrClassName) ifNotNil: [ :ref | 
-		^ globalBlock value: ref ].
-
-	nonGlobalBlock value: variableOrClassName
+	variable ifNil: [ ^ nonGlobalBlock value: variableOrClassName ].
+	self systemNavigation openBrowserFor: variableOrClassName withMethods: variable usingMethods
 ]
 
 { #category : #private }
