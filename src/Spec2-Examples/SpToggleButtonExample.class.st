@@ -36,7 +36,7 @@ SpToggleButtonExample class >> example [
 { #category : #specs }
 SpToggleButtonExample class >> title [
 
-	^ 'Radio Button Example'
+	^ 'Toggle Button Example'
 ]
 
 { #category : #initialization }

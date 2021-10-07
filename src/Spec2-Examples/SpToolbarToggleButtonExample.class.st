@@ -36,7 +36,7 @@ SpToolbarToggleButtonExample class >> example [
 { #category : #specs }
 SpToolbarToggleButtonExample class >> title [
 
-	^ 'Radio Button Example'
+	^ 'Toolbar Toggle Button Example'
 ]
 
 { #category : #initialization }
@@ -64,9 +64,9 @@ SpToolbarToggleButtonExample >> initializePresenters [
 	label := self newLabel.
 	button1 associatedToggleButtons: { button2. button3 }.
 
-	button1 label: 'Button 1'.
-	button2 label: 'Button 2'.
-	button3 label: 'Button 3'.
+	button1 label: 'Button 1'; icon: (self application iconNamed: #smallOk).
+	button2 label: 'Button 2'; icon: (self application iconNamed: #smallOk).
+	button3 label: 'Button 3'; icon: (self application iconNamed: #smallOk).
 
 	self updateLabel
 ]
