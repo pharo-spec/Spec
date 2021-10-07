@@ -128,7 +128,7 @@ SpStyle class >> newApplication [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #'class initialization' }
 SpStyle class >> reset [ 
 	<script>
 
