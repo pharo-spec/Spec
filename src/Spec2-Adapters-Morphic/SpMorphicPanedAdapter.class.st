@@ -83,7 +83,7 @@ SpMorphicPanedAdapter >> layout: aLayout [
 			to: widget ].
 
 	layout whenChildrenRemovedDo: [ :ann | self removeChild: ann child ].
-
+	
 	super layout: aLayout
 ]
 
