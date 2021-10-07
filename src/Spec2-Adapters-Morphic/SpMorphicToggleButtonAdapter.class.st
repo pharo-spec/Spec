@@ -12,14 +12,14 @@ Class {
 
 { #category : #factory }
 SpMorphicToggleButtonAdapter >> buildWidget [
-
 	| checkButton |
+
 	checkButton := PluggableToggleButtonMorph
-		               on: self
-		               getState: #state
-		               action: #toggleAction:
-		               label: #label
-		               menu: nil.
+		on: self
+		getState: #state
+		action: #toggleAction:
+		label: #label
+ 		menu: nil.
 
 	checkButton
 		icon: self icon;
@@ -33,10 +33,10 @@ SpMorphicToggleButtonAdapter >> buildWidget [
 
 	self presenter whenLabelChangedDo: [ :newLabel | 
 		checkButton label: (newLabel ifNotNil: [ :aString | 
-				 aString localizedForPresenter: self presenter ]) ].
+			aString localizedForPresenter: self presenter ]) ].
 	self presenter whenIconChangedDo: [ checkButton icon: self icon ].
 	self presenter whenChangedDo: [ 
-		checkButton pressed: self model state ].
+		checkButton pressed: self presenter state ].
 
 	^ checkButton
 ]
