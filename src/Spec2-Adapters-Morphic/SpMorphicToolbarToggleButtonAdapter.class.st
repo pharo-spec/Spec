@@ -20,12 +20,13 @@ SpMorphicToolbarToggleButtonAdapter >> buildWidget [
 
 { #category : #private }
 SpMorphicToolbarToggleButtonAdapter >> buttonChanged [
-	| state |
+	| state associated |
 	
 	state := self state.
+	associated := self presenter associatedToggleButtons.
 	state ifTrue: [ 
-		self presenter associatedToggleButtons 
-			do: [ :each | each state: false ] ].
+		associated do: [ :each | each state: false ] ].
+	
 	widget pressed: state
 ]
 
