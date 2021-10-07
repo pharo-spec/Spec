@@ -17,7 +17,7 @@ Class {
 		'#systemNavigation',
 		'#syntaxHighlightTheme => ObservableSlot'
 	],
-	#category : #'Spec2-Code'
+	#category : #'Spec2-Code-Base'
 }
 
 { #category : #specs }
@@ -143,9 +143,9 @@ SpCodePresenter >> allowingContextMenu [
 ]
 
 { #category : #private }
-SpCodePresenter >> basicInteractionModel: anObject [
+SpCodePresenter >> basicInteractionModel: anInteractionModel [
 
-	interactionModel := anObject
+	interactionModel := anInteractionModel
 ]
 
 { #category : #'api - model' }

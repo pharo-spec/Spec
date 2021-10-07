@@ -292,7 +292,8 @@ SpMorphicBoxAdapter >> replace: aPresenter with: otherPresenter [
 	
 	newMorph := self 
 		buildMorph: otherPresenter 
-		constraints: (layout constraintsFor: otherPresenter).	
+		constraints: (layout constraintsFor: otherPresenter).
+
 	panel replaceSubmorph: oldMorph by: newMorph
 ]
 
@@ -305,7 +306,10 @@ SpMorphicBoxAdapter >> replace: aPresenter with: otherPresenter withConstraints:
 		ifTrue: [ startPanel ] 
 		ifFalse: [ endPanel ].
 	
-	newMorph := self buildMorph: otherPresenter constraints: constraints.
+	newMorph := self 
+		buildMorph: otherPresenter 
+		constraints: constraints.
+
 	panel replaceSubmorph: oldMorph by: newMorph
 ]
 

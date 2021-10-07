@@ -168,6 +168,12 @@ SpAbstractTextPresenter >> insertAndSelectAfterCurrentSelection: aString [
 	self selectionInterval: (selectionInterval last + 1 to: selectionInterval last + aString size)
 ]
 
+{ #category : #testing }
+SpAbstractTextPresenter >> isEditable [
+
+	^ self subclassResponsibility
+]
+
 { #category : #TOREMOVE }
 SpAbstractTextPresenter >> isForSmalltalkCode [
 
@@ -331,6 +337,18 @@ SpAbstractTextPresenter >> type: aString [
 		^ self ].
 
 	self text: aString
+]
+
+{ #category : #simulating }
+SpAbstractTextPresenter >> typeByChar: aString [ 
+	"For simulation: Do as if we type the given string"
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter typeByChar: aString.
+		^ self ].
+
+	self isEditable ifFalse: [ ^ self ].
+	aString do: [ :each | 
+		self text: (self text ifNil: [ '' ]), (each asString) ]
 ]
 
 { #category : #TOREMOVE }

@@ -41,7 +41,7 @@ SpStubWindowAdapter >> delete [
 { #category : #factory }
 SpStubWindowAdapter >> open [
 
-	self presenter windowIsOpening
+	self presenter windowIsOpened
 ]
 
 { #category : #factory }

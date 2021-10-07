@@ -53,6 +53,7 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		newWidget encrypted: isPassword ].
 	self presenter whenMaxLengthChangedDo: [ :length | 
 		newWidget maxLength: length ].
+	self setEditable: self presenter isEditable to: newWidget. 
 	self presenter whenEditableChangedDo: [ :value | 
 		self setEditable: value to: newWidget ].
 

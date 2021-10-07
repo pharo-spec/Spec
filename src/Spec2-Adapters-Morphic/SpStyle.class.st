@@ -100,6 +100,7 @@ SpStyle class >> defaultStyleSheetData [
 	],
 	.text [ Geometry { #height: Reset } ],
 	.code [ Font { #name: EnvironmentFont(#code) } ],
+	.patch [ Font { #name: EnvironmentFont(#code) } ],
 	.codePopover [ 
 		Draw { #color : #transparent },
 		.button [ Geometry { #width : 25 } ]

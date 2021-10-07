@@ -113,11 +113,25 @@ SpMorphicListAdapter >> listSize [
 
 { #category : #factory }
 SpMorphicListAdapter >> newListColumn [
+	| column |
+	
+	column := SpStringTableColumn
+		title: self presenter headerTitle
+		evaluated: self presenter display.	
+	
+	self presenter displayColor 
+		ifNotNil: [ :aBlock | column displayColor: aBlock ].
+	self presenter displayBold
+		ifNotNil: [ :aBlock | column displayBold: aBlock ].
+	self presenter displayItalic
+		ifNotNil: [ :aBlock | column displayItalic: aBlock ].
+	self presenter displayUnderline
+		ifNotNil: [ :aBlock | column displayUnderline: aBlock ].
+	self presenter displayBackgroundColor 
+		ifNotNil: [ :aBlock | column displayBackgroundColor: aBlock ].
 	
 	^ SpMorphicTableColumn new 
-		model: (SpStringTableColumn
-			title: self presenter headerTitle
-			evaluated: self presenter display);
+		model: column;
 		yourself
 ]
 

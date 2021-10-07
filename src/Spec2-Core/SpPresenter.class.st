@@ -222,11 +222,6 @@ SpPresenter >> addAll: aWindow withSpecLayout: aSpec [
 		frame: (0@0 corner: 1@1).
 ]
 
-{ #category : #TOREMOVE }
-SpPresenter >> addMenuItemsToWindowMenu: aMenu [
-	"Do nothing"
-]
-
 { #category : #api }
 SpPresenter >> addStyle: aStyle [
 	"Add a style-class to a presenter. Styles are defined in the application stylesheet and will 
@@ -901,6 +896,10 @@ SpPresenter >> traversePresentersDo: aBlock excluding: excludes [
 
 { #category : #updating }
 SpPresenter >> update [
+
+	"self deprecated: 'This method is a remaining from ancient times and should not be used, 
+	while it works on morphic backend in certain cases, it will not translate correctly and 
+	it will cause memory leaks'.  "
 	self needRebuild: false.
 	self buildWithSpec
 ]

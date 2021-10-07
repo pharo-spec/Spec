@@ -3,7 +3,7 @@
 Spec is a framework in Pharo for describing user interfaces.
 
 [![Spec-Pharo-Integration](https://github.com/pharo-spec/Spec/actions/workflows/spec-all.yml/badge.svg)](https://github.com/pharo-spec/Spec/actions/workflows/spec-all.yml)  
-[![Spec](https://github.com/pharo-spec/Spec/actions/workflows/spec.yml/badge.svg)](https://github.com/pharo-spec/Spec/actions/workflows/spec.yml)
+[![Spec-dev](https://github.com/pharo-spec/Spec/actions/workflows/spec.yml/badge.svg)](https://github.com/pharo-spec/Spec/actions/workflows/spec.yml)
 
 
 ## Install Spec

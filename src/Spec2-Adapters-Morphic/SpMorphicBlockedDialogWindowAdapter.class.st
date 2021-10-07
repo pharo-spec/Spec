@@ -25,12 +25,12 @@ SpMorphicBlockedDialogWindowAdapter >> mouseClick: evt onBackdrop: aMorph [
 
 { #category : #api }
 SpMorphicBlockedDialogWindowAdapter >> open [
-	self presenter windowIsOpening.
 	"I am copying here what is defined in SystemWindow>>#openModal (but introducing the centered 
 	 check inbetween because #openInWorld will use the RealEstateAgent to position the window 
 	 and we want to (maybe) center it before showing it."
 	self widget openInWorld.
 	self presenter isCentered 
 		ifTrue: [ self centered ].
+	self presenter windowIsOpened.
 	MorphicRenderLoop new doOneCycleWhile: [ self widget isInWorld ]
 ]

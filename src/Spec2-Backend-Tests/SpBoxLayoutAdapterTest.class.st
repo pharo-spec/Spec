@@ -87,3 +87,42 @@ SpBoxLayoutAdapterTest >> testReplaceElementAfterOpen [
 			replacement adapter widget. 
 			p2 adapter widget }
 ]
+
+{ #category : #tests }
+SpBoxLayoutAdapterTest >> testReplaceElementAppliesStyle [
+	| p1 toReplace p2 replacement |
+	
+	layout add: (p1 := SpLabelPresenter new).
+	layout add: (toReplace := SpLabelPresenter new).
+	layout add: (p2 := SpLabelPresenter new).
+	self openInstance.
+	
+	replacement := SpLabelPresenter new.
+	replacement addStyle: 'code'. "code assigns code fonts"
+	layout replace: toReplace with: replacement.
+	
+	self assert: self adapter children size equals: 3.
+	self 
+		assert: replacement adapter widget font
+		equals: StandardFonts codeFont
+]
+
+{ #category : #tests }
+SpBoxLayoutAdapterTest >> testReplaceElementBeforeOpenAppliesStyle [
+	| p1 toReplace p2 replacement |
+	
+	layout add: (p1 := SpLabelPresenter new).
+	layout add: (toReplace := SpLabelPresenter new).
+	layout add: (p2 := SpLabelPresenter new).
+	
+	replacement := SpLabelPresenter new.
+	replacement addStyle: 'code'. "code assigns code fonts"
+	layout replace: toReplace with: replacement.
+
+	self openInstance.
+	
+	self assert: self adapter children size equals: 3.
+	self 
+		assert: replacement adapter widget font
+		equals: StandardFonts codeFont
+]
