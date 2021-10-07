@@ -72,6 +72,7 @@ SpToolbarToggleButtonPresenter >> beUnselected [
 SpToolbarToggleButtonPresenter >> execute: state [
 
 	self setSelection: state.
+	self action ifNil: [ ^ self ].
 	self action 
 		cull: state 
 		cull: self
