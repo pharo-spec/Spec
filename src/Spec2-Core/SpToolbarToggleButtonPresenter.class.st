@@ -28,7 +28,7 @@ SpToolbarToggleButtonPresenter class >> documentFactoryMethodSelector [
 { #category : #api }
 SpToolbarToggleButtonPresenter >> associatedToggleButtons [
 
-	^ associatedToggleButtons
+	^ associatedToggleButtons ifNil: [ #() ]
 ]
 
 { #category : #api }
