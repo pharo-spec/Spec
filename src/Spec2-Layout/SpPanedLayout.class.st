@@ -165,3 +165,12 @@ SpPanedLayout >> presenter [
 
 	^ adapter ifNotNil: [ adapter presenter ]
 ]
+
+{ #category : #accessing }
+SpPanedLayout >> remove: aPresenter ifAbsent: aBlock [
+
+	super remove: aPresenter ifAbsent: aBlock.
+	childrenByPosition 
+		at: (childrenByPosition indexOf: aPresenter)
+		put: nil
+]

@@ -36,7 +36,9 @@ SpMorphicPanedAdapter >> basicAdd: aPresenter constraints: constraints to: aPane
 
 	childMorph := self buildMorph: aPresenter constraints: constraints.	
 	children add: childMorph.
-	aPanel addMorphBack: childMorph.
+	((self layout children indexOf: aPresenter) = 1)
+		ifTrue: [ aPanel addMorphFront: childMorph ]
+		ifFalse: [ aPanel addMorphBack: childMorph ].
 	self addSplitterIn: aPanel for: childMorph.
 	
 	^ childMorph
