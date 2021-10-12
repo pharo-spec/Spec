@@ -45,8 +45,12 @@ SpMorphicPanedAdapter >> basicAdd: aPresenter constraints: constraints to: aPane
 		layout children withIndexDo: [ :each :index | 
 			(each isSymbol and: [ (layout presenter presenterAt: each) = aPresenter ]) 
 				ifTrue: [ position := index ] ].
-		"If I still do not find it, there is an error"
-		position = 0 ifTrue: [ self error: 'Can''t find a child.' ] ]. 
+		"If I still do not find it, I may be adding dynamically. Check if there is room and add it"
+		position = 0 ifTrue: [ 
+			layout children size < 2 ifTrue: [
+				position := layout children size + 1 ].
+			position = 0 ifTrue: [  
+				self error: 'Can''t find a child.' ] ] ]. 
 	
 	(position = 1)
 		ifTrue: [ aPanel addMorphFront: childMorph ]
