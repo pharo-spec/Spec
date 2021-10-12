@@ -32,11 +32,23 @@ SpMorphicPanedAdapter >> addSplitterIn: aPanel for: childMorph [
 
 { #category : #'adding/removing' }
 SpMorphicPanedAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
-	| childMorph |
+	| childMorph position |
 
 	childMorph := self buildMorph: aPresenter constraints: constraints.	
 	children add: childMorph.
-	((self layout children indexOf: aPresenter) = 1)
+
+	position := layout children indexOf: (aPresenter isSpLayout
+		ifTrue: [ aPresenter layout ]
+		ifFalse: [ aPresenter ]).
+	position = 0 ifTrue: [ 
+		"Not found, check for symbols. If is symbol, I need to get the presenter"
+		layout children withIndexDo: [ :each :index | 
+			(each isSymbol and: [ (layout presenter presenterAt: each) = aPresenter ]) 
+				ifTrue: [ position := index ] ].
+		"If I still do not find it, there is an error"
+		position = 0 ifTrue: [ self error: 'Can''t find a child.' ] ]. 
+	
+	(position = 1)
 		ifTrue: [ aPanel addMorphFront: childMorph ]
 		ifFalse: [ aPanel addMorphBack: childMorph ].
 	self addSplitterIn: aPanel for: childMorph.
@@ -61,12 +73,6 @@ SpMorphicPanedAdapter >> initialize [
 
 	super initialize.
 	children := OrderedCollection new
-]
-
-{ #category : #accessing }
-SpMorphicPanedAdapter >> layout [
-
-	^ layout
 ]
 
 { #category : #factory }

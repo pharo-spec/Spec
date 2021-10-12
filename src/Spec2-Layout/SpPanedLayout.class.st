@@ -39,8 +39,8 @@ SpPanedLayout >> add: aChild withConstraints: aBlock place: aPosition [
 	aPosition > 2 ifTrue: [ 
 		self error: 'You can not add more than two paned presenters.' ].
 
-	(childrenByPosition at: aPosition) ifNotNil: [ :element |
-		self remove: element ].
+	(childrenByPosition at: aPosition) 
+		ifNotNil: [ :element | self remove: element ].
 
 	constraints := self constraintsClass new.
 	aBlock value: constraints.

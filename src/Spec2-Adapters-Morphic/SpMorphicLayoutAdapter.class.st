@@ -114,6 +114,18 @@ SpMorphicLayoutAdapter >> isEmpty [
 	^ self children isEmpty
 ]
 
+{ #category : #testing }
+SpMorphicLayoutAdapter >> isSpLayout [
+
+	^ true
+]
+
+{ #category : #accessing }
+SpMorphicLayoutAdapter >> layout [
+
+	^ layout
+]
+
 { #category : #protocol }
 SpMorphicLayoutAdapter >> layout: aLayout [
 
