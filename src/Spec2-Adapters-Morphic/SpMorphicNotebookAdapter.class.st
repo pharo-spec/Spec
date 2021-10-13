@@ -4,6 +4,8 @@ I'm an adapter to show a notebook (a tab manager)
 Class {
 	#name : #SpMorphicNotebookAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
+	#traits : 'SpTBackendUpdating',
+	#classTraits : 'SpTBackendUpdating classTrait',
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
@@ -25,10 +27,12 @@ SpMorphicNotebookAdapter >> addFocusRotationKeyBindings [
 
 { #category : #factory }
 SpMorphicNotebookAdapter >> addModelTo: aNotebook [
-	self model pages ifEmpty: [ ^ self ].
-	self model pages
-		do: [ :each | "Since I do not have the page added, I need to take it from the list. 
-		 But I know this will be the last added :)" self addPage: each to: aNotebook ].
+	
+	self presenter pages ifEmpty: [ ^ self ].
+	self presenter pages do: [ :each | 
+		"Since I do not have the page added, I need to take it from the list. 
+		 But I know this will be the last added :)" 
+		self addPage: each to: aNotebook ].
 	"force first page to be drawn"
 	self model selectedPage ifNil: [ self model selectPageIndex: 1 ].
 	aNotebook selectedPageIndex: self model selectedPageIndex.
@@ -88,8 +92,9 @@ SpMorphicNotebookAdapter >> buildWidget [
 		yourself.
 	self addModelTo: notebookMorph.
 
-	self model whenPagesChangedDo: [ :pages | self updatePagesWith: pages ].
-	self model whenSelectedPageChangedDo: [ :page | self selectPage: page ].
+	self presenter 
+		whenPagesChangedDo: [ :pages | self updatePagesWith: pages ];
+		whenSelectedPageChangedDo: [ :page | self selectPage: page ].
 
 	^ notebookMorph
 ]
@@ -109,13 +114,23 @@ SpMorphicNotebookAdapter >> ensurePage: aPage isBuiltWithPresenter: presenter [
 		ifNotNil: [ :spec | presenter buildWithSpec: spec ]
 ]
 
+{ #category : #initialization }
+SpMorphicNotebookAdapter >> initialize [
+
+	super initialize.
+	self initializeTBackendUpdating
+]
+
 { #category : #private }
 SpMorphicNotebookAdapter >> pageChanged: ann [
-	self model selectPage: ann page model
+
+	self backendUpdatingDo: [ self presenter selectPage: ann page model ]
+	
 ]
 
 { #category : #updating }
 SpMorphicNotebookAdapter >> selectPage: aPage [
+
 	self widgetDo: [ :w | w page: (w pageWithModel: aPage) ]
 ]
 
