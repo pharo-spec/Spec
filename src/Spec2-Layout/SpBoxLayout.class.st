@@ -389,6 +389,7 @@ SpBoxLayout >> isVertical [
 
 { #category : #'api - adding' }
 SpBoxLayout >> removeAll [
+	"Remove all presenters added to this layout."
 
 	children removeAll.
 	adapter ifNotNil: [ :anAdapter | 
