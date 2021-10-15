@@ -34,9 +34,12 @@ SpMorphicNotebookAdapter >> addModelTo: aNotebook [
 		 But I know this will be the last added :)" 
 		self addPage: each to: aNotebook ].
 	"force first page to be drawn"
-	self model selectedPage ifNil: [ self model selectPageIndex: 1 ].
-	aNotebook selectedPageIndex: self model selectedPageIndex.
-	aNotebook announcer when: SpNotebookPageChanged send: #pageChanged: to: self
+	self presenter selectedPage ifNil: [ self presenter selectPageIndex: 1 ].
+	aNotebook selectedPageIndex: self presenter selectedPageIndex.
+	aNotebook announcer 
+		when: SpNotebookPageChanged 
+		send: #pageChanged: 
+		to: self
 ]
 
 { #category : #factory }
@@ -131,7 +134,8 @@ SpMorphicNotebookAdapter >> pageChanged: ann [
 { #category : #updating }
 SpMorphicNotebookAdapter >> selectPage: aPage [
 
-	self widgetDo: [ :w | w page: (w pageWithModel: aPage) ]
+	self widgetDo: [ :w | 
+		w page: (aPage ifNotNil: [ (w pageWithModel: aPage) ]) ]
 ]
 
 { #category : #protocol }

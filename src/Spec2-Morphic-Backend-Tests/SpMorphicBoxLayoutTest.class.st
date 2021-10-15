@@ -54,6 +54,29 @@ SpMorphicBoxLayoutTest >> testAddWithPaddingVertical [
 ]
 
 { #category : #tests }
+SpMorphicBoxLayoutTest >> testBeHomogeneous [
+	| presenter p1 p2 p3 |
+
+	presenter := SpPresenter new.
+	presenter layout: (SpBoxLayout newHorizontal 
+		beHomogeneous;
+		add: (p1 := presenter newList);
+		add: (p2 := presenter newLabel);
+		add: (p3 := presenter newText);
+		yourself).
+
+	[ presenter openWithSpec ]
+	ensure: [ presenter window close ].		
+
+	self assert: presenter adapter widget width 
+		>= (p1 adapter widget width 
+			+ p2 adapter widget width
+			+ p3 adapter widget width).
+	self assert: p1 adapter widget width equals: p2 adapter widget width.
+	self assert: p2 adapter widget width equals: p3 adapter widget width.	
+]
+
+{ #category : #tests }
 SpMorphicBoxLayoutTest >> testClassIsDisplayedWithCorrectAlignment [
 	| presenter table |
 

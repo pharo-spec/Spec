@@ -48,6 +48,54 @@ SpNotebookPresenterTest >> testRemoveAfterSettingPagesWithAnArray [
 ]
 
 { #category : #tests }
+SpNotebookPresenterTest >> testRemoveAll [
+	| page |
+	
+	presenter addPage: self mockPage.
+	page := SpNotebookPage title: 'test' provider: [ SpButtonPresenter new ].
+	presenter addPage: page.
+	self assert: presenter pages size equals: 2.
+	presenter removeAll.
+	self assert: presenter pages size equals: 0
+]
+
+{ #category : #tests }
+SpNotebookPresenterTest >> testRemoveAllCleansSelection [
+	| page |
+	
+	presenter addPage: self mockPage.
+	page := SpNotebookPage title: 'test' provider: [ SpButtonPresenter new ].
+	presenter addPage: page.
+	self assert: presenter pages size equals: 2.
+	presenter selectPage: page.
+	presenter removeAll.
+	self assert: presenter pages size equals: 0.
+	self assert: presenter selectedPage isNil
+	
+]
+
+{ #category : #tests }
+SpNotebookPresenterTest >> testRemoveAllDoesNotSelectsAnyPage [
+	| page1 page2 selected |
+	
+	page1 := SpNotebookPage title: 'test 1' provider: [ selected := 1. SpButtonPresenter new ].
+	presenter addPage: page1.
+	page2 := SpNotebookPage title: 'test 2' provider: [ selected := 2. SpButtonPresenter new ].
+	presenter addPage: page2.
+	self assert: presenter pages size equals: 2.
+	
+	"it needs to be open"
+	[ presenter openWithSpec ]
+	ensure: [ presenter withWindowDo: #close ].
+	
+	presenter selectPage: page1.
+	presenter removeAll.
+	self assert: presenter pages size equals: 0.
+	self assert: presenter selectedPage isNil.
+	self assert: selected equals: 1
+]
+
+{ #category : #tests }
 SpNotebookPresenterTest >> testRemovePage [
 	| page |
 	presenter addPage: self mockPage.
