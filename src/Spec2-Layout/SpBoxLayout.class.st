@@ -387,6 +387,12 @@ SpBoxLayout >> isVertical [
 	^ self direction = SpLayoutDirection vertical
 ]
 
+{ #category : #private }
+SpBoxLayout >> presenterAt: index [
+
+	^ children keyAtIndex: index
+]
+
 { #category : #'api - adding' }
 SpBoxLayout >> removeAll [
 	"Remove all presenters added to this layout."
@@ -421,6 +427,16 @@ SpBoxLayout >> replace: aPresenter with: otherPresenter withConstraints: constra
 			replace: aPresenter 
 			with: otherPresenter
 			withConstraints: constraints ]
+]
+
+{ #category : #'api - adding' }
+SpBoxLayout >> replaceAtIndex: index with: aPresenter [
+	"Replace the presenter in `index` with otherPresenter. 
+	 Original constraints will be preserved."
+	
+	self 
+		replace: (self presenterAt: index) 
+		with: aPresenter
 ]
 
 { #category : #api }

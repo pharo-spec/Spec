@@ -19,11 +19,18 @@ SpPanedLayout >> adapterName [
 	^ #PanedAdapter
 ]
 
-{ #category : #adding }
-SpPanedLayout >> add: aName [
+{ #category : #'api - adding' }
+SpPanedLayout >> add: aPresenterLayoutOrSymbol [
+	"Adds `aPresenterLayoutOrSymbol` as one of the elements to put in the paned layout. 
+	 Te position of the element will be calculated in order of addition (and there cannot 
+	 be more than two). 
+	 `aPresenterLayoutOrSymbol` can be
+		- any instance of `SpPresenter` hierarchy, 
+		- another layout or 
+		- a Symbol, matching the name of the instance variable who will contain the element to add."
 
 	self 
-		add: aName 
+		add: aPresenterLayoutOrSymbol 
 		withConstraints: [ :constraints | ]
 		place: children size + 1
 ]
@@ -31,7 +38,8 @@ SpPanedLayout >> add: aName [
 { #category : #private }
 SpPanedLayout >> add: aChild withConstraints: aBlock place: aPosition [
 	"Add a child to the layout following the constraints in the block.
-	The position is an integer index (1 or 2) indicating whether the child is first or last in the pane.
+	The position is an integer index (1 or 2) indicating whether the child is first or last in 
+	the pane.
 	For a horizontal layout, index 1 means left, index 2 means right.
 	For a vertical layout, index 1 means top, index 2 means bottom."
 	| constraints |
@@ -54,17 +62,19 @@ SpPanedLayout >> add: aChild withConstraints: aBlock place: aPosition [
 	self announceChildAdded: aChild.
 ]
 
-{ #category : #adding }
-SpPanedLayout >> addFirst: aName [
-
+{ #category : #'api - adding' }
+SpPanedLayout >> addFirst: aPresenter [
+	"Add aPresenter as first element of the paned layout."
+	
 	self 
-		add: aName 
+		add: aPresenter 
 		withConstraints: [ :constraints | ]
 		place: 1
 ]
 
-{ #category : #adding }
+{ #category : #'api - adding' }
 SpPanedLayout >> addSecond: aName [
+	"Add aPresenter as second element of the paned layout."
 
 	self 
 		add: aName 
@@ -72,7 +82,7 @@ SpPanedLayout >> addSecond: aName [
 		place: 2
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpPanedLayout >> children [
 
 	^ childrenByPosition reject: #isNil
@@ -84,7 +94,7 @@ SpPanedLayout >> constraintsClass [
 	^ SpPanedConstraints
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpPanedLayout >> direction [ 
 
 	^ direction
@@ -110,7 +120,7 @@ SpPanedLayout >> isVertical [
 	^ self direction = SpLayoutDirection vertical
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpPanedLayout >> position [
 	"Indicates original position of splitter. 
 	 It can be nil (then it defaults to 50%).
@@ -123,7 +133,7 @@ SpPanedLayout >> position [
 	^ positionOfSlider
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpPanedLayout >> position: aNumber [
 	"Position of the slider. 
 	 - `aNumber` can be a fixed number indicating the exact position where the slider will 
@@ -139,7 +149,7 @@ SpPanedLayout >> position: aNumber [
 	positionOfSlider := aNumber
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpPanedLayout >> positionOfSlider [
 	"Indicates original position of splitter. 
 	 It can be nil (then it defaults to 50%).
@@ -148,7 +158,7 @@ SpPanedLayout >> positionOfSlider [
 	^ positionOfSlider
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpPanedLayout >> positionOfSlider: aNumber [
 	"Position of the slider. 
 	 - `aNumber` can be a fixed number indicating the exact position where the slider will 
@@ -160,17 +170,31 @@ SpPanedLayout >> positionOfSlider: aNumber [
 	positionOfSlider := aNumber
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpPanedLayout >> presenter [
 
 	^ adapter ifNotNil: [ adapter presenter ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpPanedLayout >> remove: aPresenter ifAbsent: aBlock [
 
 	super remove: aPresenter ifAbsent: aBlock.
 	childrenByPosition 
 		at: (childrenByPosition indexOf: aPresenter)
 		put: nil
+]
+
+{ #category : #'api - adding' }
+SpPanedLayout >> replaceFirst: aPresenter [
+	"This is just a synonym of `SpPanedLayout>>#addFirst:`, added for clarity"
+	
+	self addFirst: aPresenter 
+]
+
+{ #category : #'api - adding' }
+SpPanedLayout >> replaceSecond: aPresenter [
+	"This is just a synonym of `SpPanedLayout>>#addSecond:`, added for clarity"
+	
+	self addSecond: aPresenter 
 ]

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'direction'
 	],
-	#category : #'Spec2-Layout-Paned'
+	#category : #'Spec2-Layout-Base'
 }
 
 { #category : #'instance creation' }
