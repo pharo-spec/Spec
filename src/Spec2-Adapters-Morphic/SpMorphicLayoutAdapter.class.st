@@ -140,17 +140,23 @@ SpMorphicLayoutAdapter >> layout: aLayout [
 { #category : #factory }
 SpMorphicLayoutAdapter >> newPanel [
 
+	^ self newPanelWith: TableLayout new
+]
+
+{ #category : #factory }
+SpMorphicLayoutAdapter >> newPanelWith: aLayout [ 
+
 	^ Morph new
-		  changeTableLayout;
-		  hResizing: #spaceFill;
-		  vResizing: #spaceFill;
-		  color: Color transparent;
-		  borderColor: Color transparent;
-		  clipSubmorphs: true;
-		  "stop being grabbed"beSticky;
-		  borderWidth: 0;
-		  extent: 0 @ 0;
-		  yourself
+	  layoutPolicy: aLayout;
+	  hResizing: #spaceFill;
+	  vResizing: #spaceFill;
+	  color: Color transparent;
+	  borderColor: Color transparent;
+	  clipSubmorphs: true;
+	  "stop being grabbed"beSticky;
+	  borderWidth: 0;
+	  extent: 0 @ 0;
+	  yourself
 ]
 
 { #category : #initialization }

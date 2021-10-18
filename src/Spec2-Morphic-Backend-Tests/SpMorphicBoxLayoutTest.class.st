@@ -60,20 +60,24 @@ SpMorphicBoxLayoutTest >> testBeHomogeneous [
 	presenter := SpPresenter new.
 	presenter layout: (SpBoxLayout newHorizontal 
 		beHomogeneous;
-		add: (p1 := presenter newList);
+		add: (p1 := presenter newButton);
 		add: (p2 := presenter newLabel);
-		add: (p3 := presenter newText);
+		add: (p3 := presenter newList);
 		yourself).
 
+	p1 label: 'Button'.
+	p2 label: 'Label'.
+	p3 items: #(one two three).
+
 	[ presenter openWithSpec ]
-	ensure: [ presenter window close ].		
+	ensure: [ presenter withWindowDo: #close ].		
 
 	self assert: presenter adapter widget width 
 		>= (p1 adapter widget width 
 			+ p2 adapter widget width
 			+ p3 adapter widget width).
-	self assert: p1 adapter widget width equals: p2 adapter widget width.
 	self assert: p2 adapter widget width equals: p3 adapter widget width.	
+	self assert: p1 adapter widget width equals: p2 adapter widget width
 ]
 
 { #category : #tests }
