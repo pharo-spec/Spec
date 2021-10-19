@@ -2,13 +2,13 @@
 In the current spec status (19/10/2021), I am a documented example of how to use SpScrollableLayouts.
 "
 Class {
-	#name : #SpExecutableLayoutExamplePage,
+	#name : #SpScrollableLayoutExamplePresenter,
 	#superclass : #SpPresenter,
 	#category : #'Spec2-Examples-Layouts'
 }
 
 { #category : #building }
-SpExecutableLayoutExamplePage >> addTextFieldTo: aLayout [
+SpScrollableLayoutExamplePresenter >> addTextFieldTo: aLayout [
 
 	aLayout
 		add: (self newLabel
@@ -21,7 +21,7 @@ SpExecutableLayoutExamplePage >> addTextFieldTo: aLayout [
 ]
 
 { #category : #initialization }
-SpExecutableLayoutExamplePage >> initializePresenters [
+SpScrollableLayoutExamplePresenter >> initializePresenters [
 	<script: 'self new openWithSpec'>
 	|scrollablePresenter|
 	super initializePresenters.

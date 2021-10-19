@@ -2,21 +2,21 @@
 I am a demo page for the spec examples demo app to exemplify the use of SpScrollablePresenters
 "
 Class {
-	#name : #SpExecutableLayoutPresenterExample,
+	#name : #SpScrollableLayoutExamplePage,
 	#superclass : #SpDemoPage,
 	#category : #'Spec2-Examples-Layouts'
 }
 
 { #category : #initialization }
-SpExecutableLayoutPresenterExample class >> pageName [
+SpScrollableLayoutExamplePage class >> pageName [
 
 	^'Scrollable layout'
 
 ]
 
 { #category : #initialization }
-SpExecutableLayoutPresenterExample >> pageClass [
+SpScrollableLayoutExamplePage >> pageClass [
 
-	^SpExecutableLayoutExamplePage 
+	^SpScrollableLayoutExamplePresenter 
 
 ]
