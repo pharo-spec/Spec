@@ -32,7 +32,9 @@ SpMorphicRadioButtonAdapter >> buildWidget [
 		dropEnabled: self dropEnabled;
 		yourself.
 		
-	self presenter whenLabelChangedDo: [ :newLabel | radioButton label: (newLabel ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]) ].
+	self presenter whenLabelChangedDo: [ :newLabel | 
+		radioButton label: (newLabel ifNotNil: [ :aString | 
+			aString localizedForPresenter: self presenter ]) ].
 	self presenter whenChangedDo: [ radioButton updateSelection ].
 
 	^ radioButton

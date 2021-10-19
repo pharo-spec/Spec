@@ -35,10 +35,21 @@ SpMorphicToggleButtonAdapter >> buildWidget [
 		checkButton label: (newLabel ifNotNil: [ :aString | 
 			aString localizedForPresenter: self presenter ]) ].
 	self presenter whenIconChangedDo: [ checkButton icon: self icon ].
-	self presenter whenChangedDo: [ 
-		checkButton pressed: self presenter state ].
+	self presenter whenChangedDo: [ self buttonChanged ].
 
 	^ checkButton
+]
+
+{ #category : #private }
+SpMorphicToggleButtonAdapter >> buttonChanged [
+	| state associated |
+	
+	state := self state.
+	associated := self presenter associatedToggleButtons.	
+	state ifTrue: [ 
+		associated do: [ :each | each state: false ] ].
+	
+	widget pressed: state
 ]
 
 { #category : #emulating }

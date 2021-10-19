@@ -160,17 +160,19 @@ SpNotebookMorph >> postAddPage: aMorph [
 { #category : #private }
 SpNotebookMorph >> removePage: aPage [
 	| removedPageIndex |
+	
 	removedPageIndex := self pages indexOf: aPage.
 
-	self suspendAnnouncementsDuring: [ super removePage: aPage ].
+	self suspendAnnouncementsDuring: [ 
+		self pages remove: aPage.
+		self tabSelectorMorph removeTabIndex: removedPageIndex ].
 
-	self announcer
-		announce:
-			(SpNotebookPageRemoved new
-				tabs: self;
-				page: aPage;
-				pageIndex: removedPageIndex;
-				newIndex: self tabSelectorMorph selectedIndex).
+	self announcer announce: (SpNotebookPageRemoved new
+			tabs: self;
+			page: aPage;
+			pageIndex: removedPageIndex;
+			newIndex: self tabSelectorMorph selectedIndex).
+
 	self pages ifEmpty: [ self contentMorph removeAllMorphs ]
 ]
 

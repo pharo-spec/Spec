@@ -8,7 +8,7 @@ Class {
 	#category : #'Spec2-Core-Base'
 }
 
-{ #category : #initialization }
+{ #category : #'class initialization' }
 SpNullApplication class >> reset [
 	<script>
 	

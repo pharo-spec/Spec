@@ -114,6 +114,18 @@ SpMorphicLayoutAdapter >> isEmpty [
 	^ self children isEmpty
 ]
 
+{ #category : #testing }
+SpMorphicLayoutAdapter >> isSpLayout [
+
+	^ true
+]
+
+{ #category : #accessing }
+SpMorphicLayoutAdapter >> layout [
+
+	^ layout
+]
+
 { #category : #protocol }
 SpMorphicLayoutAdapter >> layout: aLayout [
 
@@ -128,17 +140,23 @@ SpMorphicLayoutAdapter >> layout: aLayout [
 { #category : #factory }
 SpMorphicLayoutAdapter >> newPanel [
 
+	^ self newPanelWith: TableLayout new
+]
+
+{ #category : #factory }
+SpMorphicLayoutAdapter >> newPanelWith: aLayout [ 
+
 	^ Morph new
-		  changeTableLayout;
-		  hResizing: #spaceFill;
-		  vResizing: #spaceFill;
-		  color: Color transparent;
-		  borderColor: Color transparent;
-		  clipSubmorphs: true;
-		  "stop being grabbed"beSticky;
-		  borderWidth: 0;
-		  extent: 0 @ 0;
-		  yourself
+	  layoutPolicy: aLayout;
+	  hResizing: #spaceFill;
+	  vResizing: #spaceFill;
+	  color: Color transparent;
+	  borderColor: Color transparent;
+	  clipSubmorphs: true;
+	  "stop being grabbed"beSticky;
+	  borderWidth: 0;
+	  extent: 0 @ 0;
+	  yourself
 ]
 
 { #category : #initialization }

@@ -12,6 +12,7 @@ SpIconToolbarDisplayMode >> configureButton: aButton item: aToolbarItem [
 	"ask for icon (no label)"
 	aButton getIconSelector: #icon.
 	aButton badgeSelector: #badge.
+	aButton getStateSelector: #state
 ]
 
 { #category : #accessing }

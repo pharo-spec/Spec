@@ -45,10 +45,11 @@ SpMorphicToolbarButtonAdapter >> execute [
 ]
 
 { #category : #execution }
-SpMorphicToolbarButtonAdapter >> execute: isPressed [ 
+SpMorphicToolbarButtonAdapter >> execute: isPressed [
 
-	self presenter selected: isPressed.
-	self presenter action ifNotNil: [ :action | action cull: self presenter ]
+	self presenter state: isPressed.
+	self presenter action ifNotNil: [ :action | 
+		action cull: self presenter ]
 ]
 
 { #category : #accessing }
@@ -90,6 +91,12 @@ SpMorphicToolbarButtonAdapter >> newButton [
 		borderColor: Color transparent;		
 		cellPositioning: #center;
 		yourself
+]
+
+{ #category : #'accessing - structure variables' }
+SpMorphicToolbarButtonAdapter >> state [
+
+	^ false
 ]
 
 { #category : #updating }
