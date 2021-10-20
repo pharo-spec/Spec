@@ -91,6 +91,15 @@ SpMultipleSelectionMode >> selectItems: aCollection [
 ]
 
 { #category : #'api - selection' }
+SpMultipleSelectionMode >> selectedIndex [
+	"Answer the first selected index."
+
+	^ self selectedIndexes 
+		ifNotEmpty: [ :indexes | indexes first ] 
+		ifEmpty: [ 0 ]
+]
+
+{ #category : #'api - selection' }
 SpMultipleSelectionMode >> selectedIndexes [
 	"Answer a collection with indexes of all selected items."
 
