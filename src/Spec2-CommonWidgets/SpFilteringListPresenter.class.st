@@ -219,3 +219,9 @@ SpFilteringListPresenter >> unfilteredItems [
 
 	^ unfilteredItems ifNil: [ unfilteredItems := self items ]
 ]
+
+{ #category : #'api - events' }
+SpFilteringListPresenter >> whenSelectionChangedDo: aBlock [
+ 
+	listPresenter whenSelectionChangedDo: aBlock
+]
