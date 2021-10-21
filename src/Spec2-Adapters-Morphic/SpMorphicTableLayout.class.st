@@ -17,16 +17,9 @@ SpMorphicTableLayout >> applyHorizontalHomogeneousLayout: aMorph in: aRect [
 	
 	allMorphs := aMorph submorphs flatCollect: [ :each | each submorphs ].
 	elementWidth := (aRect width - (self borderWidth * 2) - (self spacing * (allMorphs size - 1)) / (allMorphs size max: 1)) floor.
-	aMorph submorphs do: [ :each | | totalSize | 
-		totalSize := elementWidth * each submorphs size.
-		each 
-			minWidth: totalSize;
-			width: totalSize ].
+
 	allMorphs do: [ :each | 
-		each 
-			minWidth: elementWidth;
-			width: elementWidth ].
-	
+		each minWidth: elementWidth ]
 ]
 
 { #category : #layout }
@@ -38,16 +31,9 @@ SpMorphicTableLayout >> applyVerticalHomogeneousLayout: aMorph in: aRect [
 	
 	allMorphs := aMorph submorphs flatCollect: [ :each | each submorphs ].
 	elementHeight := (aRect height - (self borderWidth * 2) - (self spacing * (allMorphs size - 1)) / (allMorphs size max: 1)) floor.
-	aMorph submorphs do: [ :each | | totalSize | 
-		totalSize := elementHeight * each submorphs size.
-		each 
-			minHeight: totalSize;
-			height: totalSize ].
+
 	allMorphs do: [ :each | 
-		each 
-			minHeight: elementHeight;
-			height: elementHeight ].
-	
+		each minHeight: elementHeight ]
 ]
 
 { #category : #accessing }
@@ -78,24 +64,23 @@ SpMorphicTableLayout >> isHomogeneous [
 { #category : #layout }
 SpMorphicTableLayout >> layout: aMorph in: aRect [
 
-	self isHomogeneous ifTrue: [ 
-		self layoutHomogeneous: aMorph in: aRect ].
-	
-	super layout: aMorph in: aRect
+	calculating ifTrue: [ ^ self ].
+	[
+		calculating := true. 
+		self isHomogeneous 
+			ifTrue: [ self layoutHomogeneous: aMorph in: aRect ].
+		super layout: aMorph in: aRect ]
+	ensure: [
+		calculating := false ]
 ]
 
 { #category : #layout }
 SpMorphicTableLayout >> layoutHomogeneous: aMorph in: aRect [
 
-	calculating ifTrue: [ ^ self ].
-	[
-		calculating := true. 
-		self direction 
-			applyHomogeneousLayoutOn: self 
-			to: aMorph 
-			in: aRect ]
-	ensure: [
-		calculating := false ]
+	self direction 
+		applyHomogeneousLayoutOn: self 
+		to: aMorph 
+		in: aRect
 ]
 
 { #category : #accessing }
