@@ -101,7 +101,7 @@ SpDemoListsPresenter >> initializePresenters [
 
 	list1 := self newList.
 	list2 := self newList.
-	list3 := self newList.
+	list3 := self instantiate: SpFilteringListPresenter.
 	label := self newLabel.
 	multiLabel := self newLabel.
 

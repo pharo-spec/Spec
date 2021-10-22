@@ -162,3 +162,18 @@ SpFilteringListPresenterTest >> testItems [
 	listWithFilter items: { Array }.
 	self assertCollection: listWithFilter items hasSameElements: { Array }
 ]
+
+{ #category : #tests }
+SpFilteringListPresenterTest >> testWhenSelectionChangedDo [ 
+	| changed |
+
+	changed := false.
+	listWithFilter whenSelectionChangedDo: [ :selection | 
+		changed := true ].
+
+	listWithFilter items: #(a b c).
+	
+	listWithFilter listPresenter selectIndex: 2.
+	
+	self assert: changed
+]
