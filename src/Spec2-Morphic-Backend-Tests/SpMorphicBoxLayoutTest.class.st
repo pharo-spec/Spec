@@ -2,10 +2,18 @@ Class {
 	#name : #SpMorphicBoxLayoutTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'instance'
+		'instance',
+		'backend'
 	],
 	#category : #'Spec2-Morphic-Backend-Tests'
 }
+
+{ #category : #initialization }
+SpMorphicBoxLayoutTest >> initialize [
+
+	super initialize.
+	backend := SpMorphicBackendForTest new
+]
 
 { #category : #running }
 SpMorphicBoxLayoutTest >> tearDown [
@@ -78,6 +86,79 @@ SpMorphicBoxLayoutTest >> testBeHomogeneous [
 			+ p3 adapter widget width).
 	self assert: p2 adapter widget width equals: p3 adapter widget width.	
 	self assert: p1 adapter widget width equals: p2 adapter widget width
+]
+
+{ #category : #tests }
+SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
+	| presenter p1 p2 p3 windowWidth presenterWidth width1 width2 width3 |
+
+	presenter := SpPresenter new.
+	presenter layout: (SpBoxLayout newHorizontal 
+		beHomogeneous;
+		add: (p1 := presenter newButton);
+		add: (p2 := presenter newLabel);
+		add: (p3 := presenter newList);
+		yourself).
+
+	p1 label: 'Button'.
+	p2 label: 'Label'.
+	p3 items: #(one two three).
+
+	[ 
+		presenter openWithSpec.
+		backend waitUntilUIRedrawed.
+		presenter withWindowDo: [ :window |
+			window adapter widgetDo: [ :widget |
+				widget extent: widget extent - (50@50) ] ].
+		backend waitUntilUIRedrawed.
+	]
+	ensure: [ presenter withWindowDo: #close ].		
+
+	windowWidth := presenter window adapter widget width.
+	presenterWidth := presenter adapter widget width.
+	width1 := p1 adapter widget width.
+	width2 := p2 adapter widget width.
+	width3 := p3 adapter widget width.
+	self assert: presenterWidth >= (width1 + width2 + width3).
+	self assert: width1 equals: width2.	
+	self assert: width2 equals: width3.
+	self assert: windowWidth >= presenterWidth
+]
+
+{ #category : #tests }
+SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenExpandingWindow [
+	| presenter p1 p2 p3 |
+
+	presenter := SpPresenter new.
+	presenter layout: (SpBoxLayout newHorizontal 
+		beHomogeneous;
+		add: (p1 := presenter newButton);
+		add: (p2 := presenter newLabel);
+		add: (p3 := presenter newList);
+		yourself).
+
+	p1 label: 'Button'.
+	p2 label: 'Label'.
+	p3 items: #(one two three).
+
+	[ 
+		presenter openWithSpec.
+		backend waitUntilUIRedrawed.
+		presenter withWindowDo: [ :window |
+			window adapter widgetDo: [ :widget |
+				widget extent: widget extent + (200@10) ] ].
+		backend waitUntilUIRedrawed.
+	]
+	ensure: [ presenter withWindowDo: #close ].		
+
+	self assert: presenter adapter widget width 
+		>= (p1 adapter widget width 
+			+ p2 adapter widget width
+			+ p3 adapter widget width).
+	self assert: p2 adapter widget width equals: p3 adapter widget width.	
+	self assert: p1 adapter widget width equals: p2 adapter widget width.
+	self assert: presenter window adapter widget width 
+		>= presenter adapter widget width
 ]
 
 { #category : #tests }

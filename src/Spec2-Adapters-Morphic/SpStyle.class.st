@@ -71,6 +71,9 @@ SpStyle class >> defaultStyleSheetData [
 		.fixed [ Geometry { #hResizing: false, #width: 100 } ],
 		.dim [ Draw { #color : Color{ #rgb: 708480675 } } ]
 	],
+	.notebookLabel [ 
+		Geometry { #minWidth: 90 } 
+	],
 	.link [ Geometry { #hResizing: true } ],
 	.button [  
 		Geometry { #width: 100, #height: 30 },

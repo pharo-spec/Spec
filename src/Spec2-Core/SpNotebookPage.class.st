@@ -132,15 +132,11 @@ SpNotebookPage >> icon: anIcon [
 ]
 
 { #category : #initialization }
-SpNotebookPage >> initialize [ 
-
+SpNotebookPage >> initialize [
+	
 	self class initializeSlots: self.
 	super initialize.
-	
-	closeable := false.
-	
-	self property: #title whenChangedDo: [ self pageTitleChanged ].
-	self property: #icon whenChangedDo: [ self pageTitleChanged ]
+	closeable := false
 ]
 
 { #category : #testing }
@@ -160,6 +156,43 @@ SpNotebookPage >> layoutSpec [
 SpNotebookPage >> layoutSpec: aSymbol [
 
 	layoutSpec := aSymbol
+]
+
+{ #category : #factory }
+SpNotebookPage >> newLabelPresenterFor: ownerPresenter [
+	| newLabelPresenter titlePresenter |
+	
+	newLabelPresenter := ownerPresenter newPresenter
+		layout: (SpBoxLayout newLeftToRight
+			spacing: 3;
+			yourself);
+		yourself.
+		
+	self icon ifNotNil: [
+		newLabelPresenter layout 
+			add: (newLabelPresenter newImage image: self icon) 
+			expand: false ].
+
+	newLabelPresenter layout 
+		vAlignCenter;
+		add: (titlePresenter := newLabelPresenter newLabel 
+			label: self title asString;
+			yourself)
+		expand: false.
+
+	self isCloseable ifTrue: [
+		newLabelPresenter layout 
+			addLast: (newLabelPresenter newButton 
+				addStyle: 'small';
+				addStyle: 'flat';
+				icon: (ownerPresenter application iconNamed: #windowCloseInactive);
+				action: [ self removeFromNotebook ];
+				yourself)
+			expand: false ].
+		
+	"labelPresenter eventHandler whenDoubleClickDo: [ :event | 'ok' crTrace  ]."
+	
+	^ newLabelPresenter
 ]
 
 { #category : #accessing }
