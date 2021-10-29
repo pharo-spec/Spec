@@ -139,7 +139,6 @@ SpExecutableLayout >> asSpLayout [
 SpExecutableLayout >> buildAdapterFor: aPresenter bindings: bindings [
 
 	adapter ifNotNil: [ adapter unsubscribe ].
-	
 	adapter := (aPresenter needRebuild or: [ aPresenter adapter isNil ])
 		ifTrue: [ 
 			(bindings adapterClass: self adapterName) adapt: aPresenter ]

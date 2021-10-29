@@ -160,39 +160,11 @@ SpNotebookPage >> layoutSpec: aSymbol [
 
 { #category : #factory }
 SpNotebookPage >> newLabelPresenterFor: ownerPresenter [
-	| newLabelPresenter titlePresenter |
-	
-	newLabelPresenter := ownerPresenter newPresenter
-		layout: (SpBoxLayout newLeftToRight
-			spacing: 3;
-			yourself);
-		yourself.
-		
-	self icon ifNotNil: [
-		newLabelPresenter layout 
-			add: (newLabelPresenter newImage image: self icon) 
-			expand: false ].
+	"override this to implement custom labels"
 
-	newLabelPresenter layout 
-		vAlignCenter;
-		add: (titlePresenter := newLabelPresenter newLabel 
-			label: self title asString;
-			yourself)
-		expand: false.
-
-	self isCloseable ifTrue: [
-		newLabelPresenter layout 
-			addLast: (newLabelPresenter newButton 
-				addStyle: 'small';
-				addStyle: 'flat';
-				icon: (ownerPresenter application iconNamed: #windowCloseInactive);
-				action: [ self removeFromNotebook ];
-				yourself)
-			expand: false ].
-		
-	"labelPresenter eventHandler whenDoubleClickDo: [ :event | 'ok' crTrace  ]."
-	
-	^ newLabelPresenter
+	^ ownerPresenter 
+		instantiate: SpNotebookPageLabelPresenter 
+		on: self
 ]
 
 { #category : #accessing }
