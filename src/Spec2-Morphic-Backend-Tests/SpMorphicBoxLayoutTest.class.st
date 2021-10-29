@@ -77,7 +77,9 @@ SpMorphicBoxLayoutTest >> testBeHomogeneous [
 	p2 label: 'Label'.
 	p3 items: #(one two three).
 
-	[ presenter openWithSpec ]
+	[ 
+		presenter openWithSpec.
+	 	backend waitUntilUIRedrawed ]
 	ensure: [ presenter withWindowDo: #close ].		
 
 	self assert: presenter adapter widget width 
@@ -111,6 +113,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
 			window adapter widgetDo: [ :widget |
 				widget extent: widget extent - (50@50) ] ].
 		backend waitUntilUIRedrawed.
+		backend waitUntilUIRedrawed
 	]
 	ensure: [ presenter withWindowDo: #close ].		
 
