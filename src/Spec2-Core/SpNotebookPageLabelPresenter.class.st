@@ -51,3 +51,40 @@ SpNotebookPageLabelPresenter >> label [
 
 	^ labelPresenter label
 ]
+
+{ #category : #'accessing - model' }
+SpNotebookPageLabelPresenter >> model: aModel [
+
+	(model notNil 
+		and: [ model ~= aModel ])
+		ifTrue: [ self unsubscribe: model ].
+
+	model := aModel.
+	self updatePresenter
+]
+
+{ #category : #'accessing - model' }
+SpNotebookPageLabelPresenter >> unsubscribe: aPage [
+
+	aPage unsubscribe: self
+]
+
+{ #category : #'private - updating' }
+SpNotebookPageLabelPresenter >> updateIcon [
+
+	iconPresenter image: self model icon
+]
+
+{ #category : #initialization }
+SpNotebookPageLabelPresenter >> updatePresenter [
+
+	self model 
+		whenTitleChangedDo: [ self updateTitle ];
+		whenIconChangedDo: [ self updateIcon ]
+]
+
+{ #category : #'private - updating' }
+SpNotebookPageLabelPresenter >> updateTitle [
+
+	labelPresenter label: self model title
+]

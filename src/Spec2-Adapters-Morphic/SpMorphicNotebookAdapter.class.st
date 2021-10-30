@@ -66,7 +66,7 @@ SpMorphicNotebookAdapter >> buildContentForPage: aPage [
 SpMorphicNotebookAdapter >> buildLabelForPage: aPage [
 	| labelPresenter labelMorph |
 
-	labelPresenter := aPage newLabelPresenterFor: self presenter.
+	labelPresenter := aPage labelPresenterFor: self presenter.
 	labelMorph := labelPresenter buildWithSpec.
 	labelPresenter adapter applyStyle.
 	

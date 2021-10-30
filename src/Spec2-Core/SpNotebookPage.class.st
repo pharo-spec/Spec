@@ -17,7 +17,8 @@ Class {
 		'#closeable',
 		'#presenterProvider',
 		'#retrievedBlock',
-		'#activePresenter => WeakSlot'
+		'#activePresenter => WeakSlot',
+		'#labelPresenter'
 	],
 	#category : #'Spec2-Core-Widgets-Tab'
 }
@@ -146,6 +147,20 @@ SpNotebookPage >> isCloseable [
 	^ closeable
 ]
 
+{ #category : #accessing }
+SpNotebookPage >> labelPresenterFor: ownerPresenter [
+	"There is one, and *just one* active label presenter for each page.
+	 The only case I can think that can be changed is if owner changed (if we move the page from 
+	 one notebook to another?)"
+	
+	labelPresenter ifNil: [ ^ labelPresenter := self newLabelPresenterFor: ownerPresenter ].
+	labelPresenter owner = ownerPresenter ifTrue: [ ^ labelPresenter ].
+	
+	self unsubscribe: labelPresenter.
+	labelPresenter := self newLabelPresenterFor: ownerPresenter.
+	^ labelPresenter
+]
+
 { #category : #api }
 SpNotebookPage >> layoutSpec [
 
@@ -158,7 +173,7 @@ SpNotebookPage >> layoutSpec: aSymbol [
 	layoutSpec := aSymbol
 ]
 
-{ #category : #factory }
+{ #category : #'private - factory' }
 SpNotebookPage >> newLabelPresenterFor: ownerPresenter [
 	"override this to implement custom labels"
 
@@ -239,10 +254,35 @@ SpNotebookPage >> title: aString [
 	title := aString
 ]
 
+{ #category : #private }
+SpNotebookPage >> unsubscribe: anObject [
+	| observableSlots |
+	
+	observableSlots := self class allSlots 
+		select: [ :aSlot | aSlot isObservableSlot ]
+		thenDo: [ :aSlot |
+			| slotValue | 
+			slotValue := aSlot rawRead: self.
+			slotValue ifNotNil: [ 
+				slotValue unsubscribe: anObject ] ].
+]
+
+{ #category : #'api - events' }
+SpNotebookPage >> whenIconChangedDo: aBlock [
+
+	self property: #icon whenChangedDo: aBlock
+]
+
 { #category : #'api - events' }
 SpNotebookPage >> whenRetrievedDo: aBlock [ 
 	"Inform when a page has been retrived, allowing extra settings.
 	 `aBlock` is a block with one orgument (the presenter retrieved)"
 	
 	retrievedBlock := aBlock
+]
+
+{ #category : #'api - events' }
+SpNotebookPage >> whenTitleChangedDo: aBlock [
+
+	self property: #title whenChangedDo: aBlock
 ]
