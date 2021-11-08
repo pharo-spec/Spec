@@ -115,6 +115,8 @@ SpPresenter class >> currentApplication [
 SpPresenter class >> defaultSpec [
 
 	"Override to initialize the layout in a non-dynamic way"
+
+	^ nil
 ]
 
 { #category : #accessing }
