@@ -114,7 +114,9 @@ SpPresenter class >> currentApplication [
 { #category : #specs }
 SpPresenter class >> defaultSpec [
 
-	^ self subclassResponsibility
+	"Override to initialize the layout in a non-dynamic way"
+
+	^ nil
 ]
 
 { #category : #accessing }
