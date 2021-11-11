@@ -83,17 +83,6 @@ SpWindowPresenter >> aboutTitle [
 	^ self presenter toolName
 ]
 
-{ #category : #TOREMOVE }
-SpWindowPresenter >> addMenuItemsToWindowMenu: aMenu [
-
-	self presenter addMenuItemsToWindowMenu: aMenu
-]
-
-{ #category : #TOREMOVE }
-SpWindowPresenter >> addModelItemsToWindowMenu: aMenu [
-	self presenter addModelItemsToWindowMenu: aMenu
-]
-
 { #category : #'private - building' }
 SpWindowPresenter >> addPresenterIn: widget withSpecLayout: aSpec [
 	
@@ -118,17 +107,14 @@ SpWindowPresenter >> askOkToClose: aBoolean [
 { #category : #'private - building' }
 SpWindowPresenter >> basicBuildWithSpecLayout: presenterSpecLayout [
 	"Build the widget using the spec name provided as argument"
-	| widget |
 
-	(self spec isNil or: [ self needRebuild ])
+	^(self spec isNil or: [ self needRebuild ])
 		ifTrue: [ 
 			self 
 				buildWindowWithLayout: self retrieveDefaultSpec 
 				presenterLayout: presenterSpecLayout ]
 		ifFalse: [
-			widget := self widget ].
-	
-	^ widget
+			self adapter widget ]
 ]
 
 { #category : #api }
@@ -146,6 +132,7 @@ SpWindowPresenter >> buildWindowWithLayout: windowSpecLayout presenterLayout: pr
 		buildAdapterFor: self 
 		bindings: SpBindings value).
 	self window: self adapter widget.
+	self processDeferredActions.
 	"add presenter"
 	self addPresenterIn: self window withSpecLayout: presenterSpecLayout.
 	"announce its result"
@@ -215,12 +202,6 @@ SpWindowPresenter >> delete [
 	 I'm keeping this here because of testing."
 
 	self withAdapterDo: [ :anAdapter | anAdapter delete ]
-]
-
-{ #category : #TOREMOVE }
-SpWindowPresenter >> giveFocusToNextFrom: aModel [ 
-
-	^ self presenter giveFocusToNextFrom: aModel
 ]
 
 { #category : #testing }
@@ -293,6 +274,7 @@ SpWindowPresenter >> initialPosition: aPoint [
 
 { #category : #initialization }
 SpWindowPresenter >> initialize [
+
 	super initialize.
 
 	titleHolder := self class defaultTitle.
@@ -303,8 +285,14 @@ SpWindowPresenter >> initialize [
 	decorations := true.
 
 	"presenter whenChangedDo: [ :m | self updateTitle ]."
-	self property: #titleHolder whenChangedDo: [ :m | self changed: #title: with: {m} ].
-	self property: #centered whenChangedDo: [ :m | self changed: #centered with: #() ]
+	self 
+		property: #titleHolder 
+		whenChangedDo: [ :aString | 
+			self withAdapterDo: [ :anAdapter | anAdapter title: aString ] ].
+	self 
+		property: #centered 
+		whenChangedDo: [ :aBoolean | 
+			self withAdapterDo: [ :anAdapter | anAdapter centered ] ]
 ]
 
 { #category : #initialization }
@@ -446,10 +434,24 @@ SpWindowPresenter >> okToChange [
 	^ self canDiscardEdits
 ]
 
-{ #category : #private }
+{ #category : #'api - showing' }
+SpWindowPresenter >> open [
+
+	self openWith: self presenter retrieveDefaultSpec
+]
+
+{ #category : #'api - showing' }
+SpWindowPresenter >> openWith: aSpecLayout [
+
+	self openWithSpecLayout: aSpecLayout
+]
+
+{ #category : #'private - showing' }
 SpWindowPresenter >> openWithSpecLayout: aSpec [
+
 	self buildWithSpecLayout: aSpec.
-	self changed: #open with: #().
+	self application registerWindow: self.
+	self withAdapterDo: [ :anAdapter | anAdapter open ].
 	self allPresenters do: [ :each | each announceDisplayed ].
 	self updateTitle
 ]
@@ -472,7 +474,8 @@ SpWindowPresenter >> presenter: aPresenter [
 { #category : #'private - building' }
 SpWindowPresenter >> rebuildWithSpecLayout: aSpec [
 
-	self changed: #rebuildWithSpecLayout: with: { aSpec }
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter rebuildWithSpecLayout: aSpec ]
 ]
 
 { #category : #private }
@@ -691,9 +694,15 @@ SpWindowPresenter >> windowIsClosing [
 ]
 
 { #category : #updating }
-SpWindowPresenter >> windowIsOpening [
+SpWindowPresenter >> windowIsOpened [
 
 	isClosed := false
+]
+
+{ #category : #TOREMOVE }
+SpWindowPresenter >> windowIsOpening [
+
+	self windowIsOpened
 ]
 
 { #category : #api }

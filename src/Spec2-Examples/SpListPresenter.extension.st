@@ -41,6 +41,22 @@ SpListPresenter class >> exampleMultipleSelection [
 ]
 
 { #category : #'*Spec2-Examples' }
+SpListPresenter class >> exampleWithDecoratedString [
+	
+	^ self new
+		items: self environment allClasses;
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName  ];
+		displayColor: [ :aClass | 
+			(aClass name endsWith: 'Test')
+				ifTrue: [ Color green ]
+				ifFalse: [ Smalltalk ui theme textColor ] ];
+		displayItalic: [ :aClass | aClass name includesSubstring: 'abstract' caseSensitive: false ];
+		displayBold: [ :aClass | aClass hasSubclasses ];
+		displayUnderline: [ :aClass | aClass numberOfMethods > 10 ];
+		openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
 SpListPresenter class >> exampleWithHeaderTitle [
 	<sampleInstance>
 	^ self new

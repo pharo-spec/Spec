@@ -9,7 +9,7 @@ Class {
 		'code',
 		'text'
 	],
-	#category : #'Spec2-Code'
+	#category : #'Spec2-Code-Base'
 }
 
 { #category : #accessing }
@@ -160,7 +160,7 @@ SpCodePopoverPrintPresenter >> objectAsString [
 				separatedBy: [ stream cr ] ]
 ]
 
-{ #category : #'accessing model' }
+{ #category : #'accessing - model' }
 SpCodePopoverPrintPresenter >> setModelBeforeInitialization: anObject [
 
 	object := anObject

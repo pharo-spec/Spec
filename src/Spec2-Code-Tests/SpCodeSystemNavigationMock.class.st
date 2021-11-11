@@ -21,7 +21,7 @@ SpCodeSystemNavigationMock >> browseClass [
 	^ browseClass
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SpCodeSystemNavigationMock >> browseHierarchy: aClass selector: aSelector [
 
 	browseClass := aClass.

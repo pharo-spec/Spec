@@ -48,6 +48,24 @@ SpBoxLayoutTest >> testRemoveElementFromLayoutTakesItOut [
 ]
 
 { #category : #running }
+SpBoxLayoutTest >> testReplaceAtindexWith [
+	| p1 toReplace p3 replacement |
+
+	layout add: (p1 := SpLabelPresenter new).
+	layout add: (toReplace := SpLabelPresenter new).
+	layout add: (p3 := SpLabelPresenter new).
+	
+	self assert: layout children second equals: toReplace.
+	
+	replacement := SpButtonPresenter new.
+	layout replaceAtIndex: 2 with: replacement.
+	
+	self assert: layout children second equals: replacement.
+	self assert: layout children size equals: 3.
+	self assert: layout children equals: { p1. replacement. p3 }
+]
+
+{ #category : #running }
 SpBoxLayoutTest >> testReplaceWith [
 	| p1 toReplace p3 replacement |
 

@@ -9,17 +9,19 @@ Class {
 
 { #category : #accessing }
 SpMorphicListDataSource >> cellColumn: column row: rowIndex [
-	| displayValue cell item |
-	
+	| cell item builder |
+
+	cell := FTCellMorph new.
 	item := self model itemAt: rowIndex.
-	displayValue := column readObject: item.
-	cell := FTCellMorph new
-		cellInset: 5;
-		yourself.
 	self model hasIcons ifTrue: [ 
-		(self model iconFor: item) ifNotNil: [ :icon | cell addMorphBack: icon asMorph ] ].
-	cell addMorphBack: displayValue asMorph asReadOnlyMorph.
-	
+		(self model iconFor: item) ifNotNil: [ :icon | 
+			cell addMorphBack: icon asMorph ] ].
+	builder := SpMorphicTableCellBuilder on: self.
+	builder 
+		cell: cell;
+		rowIndex: rowIndex;
+		visit: column model.
+
 	^ cell
 ]
 

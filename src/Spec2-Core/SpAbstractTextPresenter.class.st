@@ -168,6 +168,12 @@ SpAbstractTextPresenter >> insertAndSelectAfterCurrentSelection: aString [
 	self selectionInterval: (selectionInterval last + 1 to: selectionInterval last + aString size)
 ]
 
+{ #category : #testing }
+SpAbstractTextPresenter >> isEditable [
+
+	^ self subclassResponsibility
+]
+
 { #category : #TOREMOVE }
 SpAbstractTextPresenter >> isForSmalltalkCode [
 
@@ -297,7 +303,7 @@ SpAbstractTextPresenter >> selectionInterval [
 	
 	self withAdapterDo: [ :anAdapter | 
 		self rawSelection: anAdapter selection ].
-	^ selection ifNil: [ ^ 1 to: 0 ]
+	^ selection ifNil: [ 1 to: 0 ]
 ]
 
 { #category : #'api - selection' }
@@ -326,7 +332,23 @@ SpAbstractTextPresenter >> text: aString [
 { #category : #simulating }
 SpAbstractTextPresenter >> type: aString [ 
 	"For simulation: Do as if we type the given string"
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter type: aString.
+		^ self ].
+
 	self text: aString
+]
+
+{ #category : #simulating }
+SpAbstractTextPresenter >> typeByChar: aString [ 
+	"For simulation: Do as if we type the given string"
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter typeByChar: aString.
+		^ self ].
+
+	self isEditable ifFalse: [ ^ self ].
+	aString do: [ :each | 
+		self text: (self text ifNil: [ '' ]), (each asString) ]
 ]
 
 { #category : #TOREMOVE }
@@ -377,7 +399,7 @@ SpAbstractTextPresenter >> whenResetDo: aBlock [
 	 It will react when user presses <meta+l> key (this is for historical reasons)."
 
 	self 
-		bindKeyCombination: $l meta 
+		bindKeyCombination: SpCancelChangesCommand defaultShortcutKey
 		toAction: aBlock
 ]
 

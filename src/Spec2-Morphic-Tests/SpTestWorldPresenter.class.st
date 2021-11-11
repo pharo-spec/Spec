@@ -27,7 +27,7 @@ SpTestWorldPresenter class >> newWorld [
 		yourself
 ]
 
-{ #category : #'ui requests' }
+{ #category : #'class initialization' }
 SpTestWorldPresenter class >> reset [
 	TestWorld := nil
 ]
@@ -37,7 +37,7 @@ SpTestWorldPresenter >> currentWorld [
 	^ self class currentWorld
 ]
 
-{ #category : #'private showing' }
+{ #category : #'private - showing' }
 SpTestWorldPresenter >> openWithSpecLayout: aLayout [
 	super openWithSpecLayout: aLayout.
 	isClosed := false

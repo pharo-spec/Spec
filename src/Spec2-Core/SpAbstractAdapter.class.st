@@ -200,20 +200,20 @@ SpAbstractAdapter >> sendRightClickEvent [
 ]
 
 { #category : #releasing }
-SpAbstractAdapter >> unsubscribe [ 
-    "During initialization, adapters usually subscribe to various observable slots in the presenter. When the adapters are replaced by another during dynamic layouts switching, they need to be unsubscribed because it may cause a memory leaks and, in case of Gtk, even VM crashes.
-    
-    This is a generic slow and ugly fallback implementation of the unsubscription"
-    | observableSlots |
-    
-    observableSlots := model class allSlots 
-        select: [ :aSlot | aSlot isObservableSlot ].
+SpAbstractAdapter >> unsubscribe [
+	"During initialization, adapters usually subscribe to various observable slots in the presenter. When the adapters are replaced by another during dynamic layouts switching, they need to be unsubscribed because it may cause a memory leaks and, in case of Gtk, even VM crashes.
 
-    observableSlots do: [ :aSlot |
-        | slotValue | 
-        slotValue := aSlot rawRead: model.
-        slotValue ifNotNil: [ 
-            slotValue unsubscribe: self ] ]
+	This is a generic slow and ugly fallback implementation of the unsubscription"
+	| observableSlots |
+
+	observableSlots := model class allSlots
+		select: [ :aSlot | aSlot isObservableSlot ].
+
+	observableSlots do: [ :aSlot |
+		| slotValue |
+		slotValue := aSlot rawRead: model.
+		slotValue ifNotNil: [
+			slotValue unsubscribe: self ] ]
 ]
 
 { #category : #updating }

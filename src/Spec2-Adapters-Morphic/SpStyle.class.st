@@ -93,6 +93,8 @@ SpStyle class >> defaultStyleSheetData [
 		Geometry { #width: 70, #hResizing: false },
 		.showIcon [ Geometry { #width: 25 } ]
 	],
+	.selected [ Container { #borderWidth: 1 } ],
+	.unselected [ Container { #borderWidth: 0 } ],
 	.toolbar [ 
 		Geometry { #height: Reset, #hResizing: true },
 		.icons [ Geometry { #height: 30 } ],
@@ -100,6 +102,7 @@ SpStyle class >> defaultStyleSheetData [
 	],
 	.text [ Geometry { #height: Reset } ],
 	.code [ Font { #name: EnvironmentFont(#code) } ],
+	.patch [ Font { #name: EnvironmentFont(#code) } ],
 	.codePopover [ 
 		Draw { #color : #transparent },
 		.button [ Geometry { #width : 25 } ]
@@ -127,7 +130,7 @@ SpStyle class >> newApplication [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #'class initialization' }
 SpStyle class >> reset [ 
 	<script>
 

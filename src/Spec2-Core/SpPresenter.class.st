@@ -114,7 +114,9 @@ SpPresenter class >> currentApplication [
 { #category : #specs }
 SpPresenter class >> defaultSpec [
 
-	^ self subclassResponsibility
+	"Override to initialize the layout in a non-dynamic way"
+
+	^ nil
 ]
 
 { #category : #accessing }
@@ -222,11 +224,6 @@ SpPresenter >> addAll: aWindow withSpecLayout: aSpec [
 		frame: (0@0 corner: 1@1).
 ]
 
-{ #category : #TOREMOVE }
-SpPresenter >> addMenuItemsToWindowMenu: aMenu [
-	"Do nothing"
-]
-
 { #category : #api }
 SpPresenter >> addStyle: aStyle [
 	"Add a style-class to a presenter. Styles are defined in the application stylesheet and will 
@@ -258,22 +255,18 @@ SpPresenter >> additionalSubpresentersMap [
 
 { #category : #'private - traversing' }
 SpPresenter >> allPresenters [
-	| allPresenters |
 
-	allPresenters := OrderedCollection new.
-	self traversePresentersDo: [ :each | 
-		allPresenters add: each ].
-	^ allPresenters
+	^ Array streamContents: [ :stream |
+		self traversePresentersDo: [ :each | 
+			stream << each ] ]
 ]
 
 { #category : #private }
 SpPresenter >> allPresentersInFocusOrder [
-	| allPresenters |
 
-	allPresenters := OrderedCollection new.
-	self traverseInFocusOrderDo: [ :each |
-		allPresenters add: each  ].
-	^ allPresenters
+	^ Array streamContents: [ :stream |
+		self traverseInFocusOrderDo: [ :each |
+			stream << each  ] ]
 ]
 
 { #category : #api }
@@ -315,20 +308,28 @@ SpPresenter >> application: anApplication [
 	application := anApplication
 ]
 
-{ #category : #TOREMOVE }
-SpPresenter >> applyMenuModel: aMenuModel [
+{ #category : #private }
+SpPresenter >> applyKeyBindingsFromMenu: aMenuPresenter [
+	"traverses aMenuPresenter and bind shortcuts associated "
 
-	aMenuModel menuGroups do: [ :group |
+	aMenuPresenter menuGroups do: [ :group |
 		group menuItems do: [ :item |
 			item shortcut ifNotNil: [ :shortcut | 
 				self 
 					bindKeyCombination: shortcut 
 					toAction: [ item performMenuActionWith: #() ] ].
-			item subMenu ifNotNil: [ :subMenu | subMenu applyTo: self	] ] ]
+			item subMenu ifNotNil: [ :subMenu | subMenu addKeybindingsTo: self	] ] ]
 ]
 
 { #category : #converting }
 SpPresenter >> asPresenter [
+	"This allows to use presenter instances inside layouts directly"
+
+	^ self
+]
+
+{ #category : #converting }
+SpPresenter >> asPresenterOn: aPresenter [
 	"This allows to use presenter instances inside layouts directly"
 
 	^ self
@@ -429,12 +430,6 @@ SpPresenter >> defaultSpec [
 	^ self class perform: self defaultSpecSelector
 ]
 
-{ #category : #'api - showing' }
-SpPresenter >> defaultWindowPresenterClass [
-
-	^ SpWindowPresenter
-]
-
 { #category : #accessing }
 SpPresenter >> defer: aBlock [
 
@@ -473,23 +468,6 @@ SpPresenter >> focusOrder [
 { #category : #accessing }
 SpPresenter >> focusOrder: anObject [
 	^ focusOrder := anObject
-]
-
-{ #category : #'inspector-extensions' }
-SpPresenter >> gtInspectorPreviewIn: composite [
-	<gtInspectorPresentationOrder: 30>
-	self adapter ifNotNil: [ :w | w gtInspectorPreviewIn: composite ]
-]
-
-{ #category : #'inspector-extensions' }
-SpPresenter >> gtInspectorSubPresentersIn: composite [
-	<gtInspectorPresentationOrder: 20>
-	composite tree
-		title: 'Sub presenters';
-		rootsExpanded;
-		display: [ :each | {each} ];
-		children: [ :each | each presenters ];
-		when: [ :each | each presenters isNotEmpty ]
 ]
 
 { #category : #'api - focus' }
@@ -565,8 +543,12 @@ SpPresenter >> initializePresenters [
 { #category : #'private - initialization' }
 SpPresenter >> initializePrivateAnnouncements [
 
-	self property: #titleHolder whenChangedDo: [ self updateTitle ].
-	self property: #layout whenChangedDo: [ :newLayout | self replaceLayoutWith: newLayout ]
+	self 
+		property: #titleHolder 
+		whenChangedDo: [ self withWindowDo: [ :w | w title: titleHolder ] ].
+	self 
+		property: #layout 
+		whenChangedDo: [ :newLayout | self replaceLayoutWith: newLayout ]
 ]
 
 { #category : #'private - initialization' }
@@ -693,7 +675,7 @@ SpPresenter >> layoutPresenters [
 
 	layout ifNil: [ ^ self presenters ].
 	
-	^ layout deepPresenters
+	^ layout allPresenters
 		select: [ :each | each isSymbol or: [ each isPresenter ] ]
 		thenCollect: [ :each | 
 			each isPresenter 
@@ -712,15 +694,6 @@ SpPresenter >> localeChanged [
 
 	"do nothing here. Override me in subclasses to update strings presented to the users"
 	
-]
-
-{ #category : #TOREMOVE }
-SpPresenter >> neglectMenuModel: aMenuModel [
-
-	aMenuModel menuGroups do: [ :group |
-		group menuItems do: [ :item |
-			item shortcut ifNotNil: [ :shortcut | self removeKeyCombination: shortcut ].
-			item subMenu ifNotNil: [ :subMenu | subMenu neglect: self	] ] ]
 ]
 
 { #category : #private }
@@ -758,23 +731,18 @@ SpPresenter >> presenterAt: aName ifAbsent: aBlock [
 
 { #category : #'private - traversing' }
 SpPresenter >> presenters [
-	| presenters |
 
-	presenters := OrderedCollection new.
-	self presentersDo: [ :each | 
-		presenters add: each ].
-	^ presenters
+	^ Array streamContents: [ :stream |
+		self presentersDo: [ :each | 
+			stream << each ] ]
 ]
 
 { #category : #'private - traversing' }
 SpPresenter >> presentersDo: aBlock [
 
-	self class allSlots 
-		reject: [ :each | each name = #owner ] 
-		thenDo: [ :each | | var |
-			var := self readSlot: each.
-			(var isKindOf: SpAbstractPresenter) ifTrue: [ 
-				aBlock value: var ] ]
+	self layout ifNil: [ ^ self ].
+	self layout allPresenters do: [ :each |
+		aBlock value: (each asPresenterOn: self) ]
 ]
 
 { #category : #private }
@@ -903,7 +871,6 @@ SpPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 	"(excludes includes: self) ifTrue: [ ^ self ]. 
 	excludes add: self.
 	aBlock value: self."
-
 	self presentersInFocusOrder do: [ :each |
 		each traverseInFocusOrderDo: aBlock excluding: excludes ]
 ]
@@ -923,14 +890,18 @@ SpPresenter >> traversePresentersDo: aBlock excluding: excludes [
 	excludes add: self.
 	aBlock value: self.
 
-	self class allSlots do: [ :each | | var |
-		var := self readSlot: each.
-		(var isKindOf: SpAbstractPresenter) ifTrue: [ 
-			var traversePresentersDo: aBlock excluding: excludes ] ]
+	self layout ifNil: [ ^ self ].
+	self layout allPresenters do: [ :each | | var |
+		var := each asPresenterOn: self. 
+		var traversePresentersDo: aBlock excluding: excludes ]
 ]
 
 { #category : #updating }
 SpPresenter >> update [
+
+	"self deprecated: 'This method is a remaining from ancient times and should not be used, 
+	while it works on morphic backend in certain cases, it will not translate correctly and 
+	it will cause memory leaks'.  "
 	self needRebuild: false.
 	self buildWithSpec
 ]

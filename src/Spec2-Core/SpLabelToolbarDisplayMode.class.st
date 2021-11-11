@@ -12,6 +12,7 @@ SpLabelToolbarDisplayMode >> configureButton: aButton item: aToolbarItem [
 	"ask for label (no icon)"
 	aButton getLabelSelector: #label.
 	aButton badgeSelector: #badge.
+	aButton getStateSelector: #state	
 ]
 
 { #category : #accessing }

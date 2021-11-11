@@ -1,17 +1,17 @@
 Extension { #name : #SpHorizontalLayoutDirection }
 
 { #category : #'*Spec2-Adapters-Morphic' }
-SpHorizontalLayoutDirection >> addHomogeneousToMorph: aMorph into: anAdapter [
-	
-	^ anAdapter addHorizontalHomogeneousToMorph: aMorph
-]
-
-{ #category : #'*Spec2-Adapters-Morphic' }
 SpHorizontalLayoutDirection >> addPadding: aNumber toMorph: aMorph into: anAdapter [
 
 	^ anAdapter 
 		addHorizontalPadding: aNumber 
 		toMorph: aMorph
+]
+
+{ #category : #'*Spec2-Adapters-Morphic' }
+SpHorizontalLayoutDirection >> applyHomogeneousLayoutOn: aLayout to: aMorph in: aRect [
+
+	aLayout applyHorizontalHomogeneousLayout: aMorph in: aRect
 ]
 
 { #category : #'*Spec2-Adapters-Morphic' }

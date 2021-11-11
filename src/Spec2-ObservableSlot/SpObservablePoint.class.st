@@ -16,6 +16,12 @@ Class {
 	#category : #'Spec2-ObservableSlot'
 }
 
+{ #category : #testing }
+SpObservablePoint class >> isDeprecated [
+
+	^ true
+]
+
 { #category : #initialization }
 SpObservablePoint >> initialize [
 	super initialize.

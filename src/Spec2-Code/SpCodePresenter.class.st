@@ -17,7 +17,7 @@ Class {
 		'#systemNavigation',
 		'#syntaxHighlightTheme => ObservableSlot'
 	],
-	#category : #'Spec2-Code'
+	#category : #'Spec2-Code-Base'
 }
 
 { #category : #specs }
@@ -143,9 +143,9 @@ SpCodePresenter >> allowingContextMenu [
 ]
 
 { #category : #private }
-SpCodePresenter >> basicInteractionModel: anObject [
+SpCodePresenter >> basicInteractionModel: anInteractionModel [
 
-	interactionModel := anObject
+	interactionModel := anInteractionModel
 ]
 
 { #category : #'api - model' }
@@ -198,23 +198,18 @@ SpCodePresenter >> bindingOf: aString [
 
 { #category : #'private - commands' }
 SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonGlobalBlock [
-	| variableOrClassName env |
-
+	| variableOrClassName variable |
 	variableOrClassName := self selectedSelector.
 	variableOrClassName ifNil: [ ^ nil ].
-	
-	env := self environment.
-	
-	self flag: #bug.
-	"If we are looking for implementors of a class variable, this does not work right..."
-	env isBehavior ifTrue: [
-		(env hasSlotNamed: variableOrClassName) ifTrue: [
-		 ^ self systemNavigation browseAllAccessesTo: variableOrClassName from: env ] ].
 
-	(env bindingOf: variableOrClassName) 
-		ifNotNil: [ :ref | ^ globalBlock value: ref ].
-	
-	nonGlobalBlock value: variableOrClassName
+	variable := ((interactionModel doItContext
+		ifNil: [ interactionModel behavior ])
+			ifNil: [ environment
+				ifNil: [ self class environment ] ])
+					lookupVar: variableOrClassName.
+
+	variable ifNil: [ ^ nonGlobalBlock value: variableOrClassName ].
+	self systemNavigation openBrowserFor: variableOrClassName withMethods: variable usingMethods
 ]
 
 { #category : #private }
@@ -312,14 +307,13 @@ SpCodePresenter >> doBrowseHierarchy [
 
 { #category : #commands }
 SpCodePresenter >> doBrowseImplementors [
+
 	| result |
-	
 	result := self
-		browseSelectedSelectorIfGlobal: [ :global | global browse ]
-		ifNotGlobal:  [ :selector | 
-			self systemNavigation browseAllImplementorsOf: selector ].
-	result ifNil: [ 
-		self application inform: 'No selectors found.' ]
+		          browseSelectedSelectorIfGlobal: [ :global | global browse ]
+		          ifNotGlobal: [ :selector | 
+		          	self systemNavigation browseAllImplementorsOf: selector ].
+	result ifNil: [ self application inform: 'No selectors found.' ]
 ]
 
 { #category : #commands }
@@ -354,15 +348,13 @@ SpCodePresenter >> doBrowseMethodsMatchingStringSensitive [
 
 { #category : #commands }
 SpCodePresenter >> doBrowseSenders [
-	| result |
-
-	result := self
-		browseSelectedSelectorIfGlobal: [ :global | 
-			self systemNavigation browseAllSendersOf: global ]
-		ifNotGlobal:  [ :selector |
-			self systemNavigation browseAllReferencesTo: selector ].
-	result ifNil: [ 
-		self application inform: 'No selectors found.' ]	
+	| result  |
+	
+	result := self browseSelectedSelectorIfGlobal: [ :global | 
+			          self systemNavigation browseAllSendersOf: global ]
+			          ifNotGlobal: [ :selector | 
+			          self systemNavigation browseAllReferencesTo: selector ].
+	result ifNil: [ self application inform: 'No selectors found.' ]
 ]
 
 { #category : #'private - bindings' }
@@ -412,20 +404,24 @@ SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: 
 	 intended to be used to throw an error*, since that should be handled (and it is) in the 
 	 notification. Instead, most users of failBlock: use it to return execution without doing 
 	 anything. 
-	 Instread, the on:do: will catch all errors happening while executing the code once it is 
+	 Instead, the on:do: will catch all errors happening while executing the code once it is 
 	 compiled. "
-	| receiver |
+	| receiver result oldBindings |
 	
 	^ [
+		oldBindings := self interactionModel bindings copy.
 		receiver := self interactionModel doItReceiver.
-		receiver class compiler
+		result := receiver class compiler
 			source: aString readStream;
 			context: self interactionModel doItContext;
 			receiver: self interactionModel doItReceiver;
 			requestor: self interactionModel;
 			environment: self environment;
 			failBlock:  [ ^ compileErrorBlock value ];
-			evaluate ]
+			evaluate.
+		oldBindings size = self interactionModel bindings size 
+			ifFalse: [ self withAdapterDo: [ :anAdapter | anAdapter refreshStyling ] ].
+		result ]
 	on: Error 
 	do: errorBlock
 ]
@@ -658,7 +654,8 @@ SpCodePresenter >> selectedSelector [
 SpCodePresenter >> selectedTextOrLine [
 
 	self selectedText ifNotEmpty: [ :aString | ^ aString ].
-	^ self lineAtCursorPosition
+	self selectLine.
+	^ self selectedText
 ]
 
 { #category : #private }

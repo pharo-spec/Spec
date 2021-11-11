@@ -1,7 +1,7 @@
 Class {
 	#name : #SpCodeNullInteractionModel,
 	#superclass : #SpCodeInteractionModel,
-	#category : #'Spec2-Code'
+	#category : #'Spec2-Code-Base'
 }
 
 { #category : #binding }

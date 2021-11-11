@@ -76,18 +76,14 @@ SpDynamicPresenter >> needFullRebuild: aBoolean [
 SpDynamicPresenter >> openModalWithSpec [
 
 	self layout ifNil: [ ^ super openWithSpec ].
-	^ self application 
-		openModal: self
-		withSpecLayout: self layout
+	^ self asModalWindow openWith: self layout
 ]
 
 { #category : #api }
 SpDynamicPresenter >> openWithSpec [
 
 	self layout ifNil: [ ^ super openWithSpec ].
-	^ self application 
-		open: self
-		withSpecLayout: self layout
+	^ self asWindow openWith: self layout
 ]
 
 { #category : #api }

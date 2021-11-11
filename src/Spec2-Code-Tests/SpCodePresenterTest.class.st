@@ -282,6 +282,232 @@ SpCodePresenterTest >> testDoBrowseSenders [
 	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseSenders)
 ]
 
+{ #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseSendersOfClassNameShouldNotFindIfNotInEnvironment [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	self openInstance.
+	
+	presenter text: 'NonExistingClassPleaseFindNothingXXXXXX'.
+	presenter doBrowseSenders.
+	
+	self assert: navigation messageList isEmpty
+]
+
+{ #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseSendersOfClassNameShouldSelectClassUsers [
+	| navigation theClass |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	self openInstance.
+	
+	"Add the binding to the testing environment so we can look for users of it"
+	presenter environment add: SpNavigationMockClass binding.
+	presenter text: 'SpNavigationMockClass'.
+	presenter doBrowseSenders.
+	
+	theClass := self class environment at: #SpNavigationMockClass.
+	
+	self assert: (navigation messageList includes: theClass >> #referenceToYourself)
+]
+
+{ #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseSendersOfClassNameWhenInPlayground [
+	| navigation theClass |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	
+	"Add the binding to the testing environment so we can look for users of it"
+	presenter environment add: SpNavigationMockClass binding.
+	presenter interactionModel: SpCodeScriptingInteractionModel new.
+	self openInstance.
+	
+	presenter text: 'SpNavigationMockClass'.
+	presenter doBrowseSenders.
+	
+	theClass := self class environment at: #SpNavigationMockClass.
+	
+	self assert: (navigation messageList includes: theClass >> #referenceToYourself)
+]
+
+{ #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseSendersOfClassNameWhenInPlaygroundAndEnvironmentIsNil [
+	| navigation theClass |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	
+	"Reproduce the case of the playground when the environment is nil. We should check on the environment of the tools?"
+	presenter environment: nil.
+	
+	presenter interactionModel: SpCodeScriptingInteractionModel new.
+	self openInstance.
+	
+	presenter text: 'SpNavigationMockClass'.
+	presenter doBrowseSenders.
+	
+	theClass := self class environment at: #SpNavigationMockClass.
+	
+	self assert: (navigation messageList includes: theClass >> #referenceToYourself)
+]
+
+{ #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseSendersOfClassNameWhenInPlaygroundButNotAvailable [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	presenter interactionModel: SpCodeScriptingInteractionModel new.
+	self openInstance.
+	
+	presenter text: 'NonExistingClassPleaseFindNothingXXXXXX'.
+	presenter doBrowseSenders.
+	
+	self assert: navigation messageList isEmpty
+]
+
+{ #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseSendersOfClassPoolVariableShouldSelectClassPoolVariableUsersWhenInDebugger [
+	| navigation theClass methodInContext evaluationContext |
+
+	theClass := self class environment at: #SpNavigationMockClass.
+	methodInContext := theClass >> #referenceToTheClassVariable.
+	evaluationContext := (Context newForMethod: methodInContext)
+		pc: methodInContext initialPC;
+		privRefreshWith: methodInContext;
+		yourself.
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	presenter interactionModel: (SpContextInteractionModel
+		on: evaluationContext).
+	self openInstance.
+	
+	"Add the binding to the testing environment so we can look for users of it"
+	presenter text: 'SomeClassPoolVariable'.
+	presenter doBrowseSenders.
+
+	
+	self assert: (navigation messageList includes: theClass >> #referenceToTheClassPoolVariable)
+]
+
+{ #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseSendersOfClassPoolVariableShouldSelectClassPoolVariableUsersWhenInDebuggerButNotAvailable [
+	| navigation theClass methodInContext evaluationContext |
+
+	theClass := self class environment at: #SpNavigationMockClass.
+	methodInContext := Object >> #yourself.
+	evaluationContext := (Context newForMethod: methodInContext)
+		pc: methodInContext initialPC;
+		privRefreshWith: methodInContext;
+		yourself.
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	presenter interactionModel: (SpContextInteractionModel
+		on: evaluationContext).
+	self openInstance.
+	
+	"Add the binding to the testing environment so we can look for users of it"
+	presenter text: 'SomeClassPoolVariable'.
+	presenter doBrowseSenders.
+
+	
+	self assert: navigation messageList isEmpty
+]
+
+{ #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseSendersOfClassVariableShouldSelectClassVariableUsersWhenInDebugger [
+	| navigation theClass methodInContext evaluationContext |
+
+	theClass := self class environment at: #SpNavigationMockClass.
+	methodInContext := theClass >> #referenceToTheClassVariable.
+	evaluationContext := (Context newForMethod: methodInContext)
+		pc: methodInContext initialPC;
+		privRefreshWith: methodInContext;
+		yourself.
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	presenter interactionModel: (SpContextInteractionModel
+		on: evaluationContext).
+	self openInstance.
+	
+	"Add the binding to the testing environment so we can look for users of it"
+	presenter text: 'SomeClassVariable'.
+	presenter doBrowseSenders.
+
+	
+	self assert: (navigation messageList includes: theClass >> #referenceToTheClassVariable)
+]
+
+{ #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseSendersOfClassVariableShouldSelectClassVariableUsersWhenInDebuggerButNotAvailable [
+	| navigation theClass methodInContext evaluationContext |
+
+	theClass := self class environment at: #SpNavigationMockClass.
+	methodInContext := Object >> #yourself.
+	evaluationContext := (Context newForMethod: methodInContext)
+		pc: methodInContext initialPC;
+		privRefreshWith: methodInContext;
+		yourself.
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	presenter interactionModel: (SpContextInteractionModel
+		on: evaluationContext).
+	self openInstance.
+	
+	"Add the binding to the testing environment so we can look for users of it"
+	presenter text: 'SomeClassVariable'.
+	presenter doBrowseSenders.
+
+	
+	self assert: navigation messageList isEmpty
+]
+
+{ #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseSendersOfClassVariableShouldSelectClassVariableUsersWhenInStaticContext [
+	| navigation theClass |
+	
+	theClass := self class environment at: #SpNavigationMockClass.
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	presenter interactionModel: (SpCodeBehaviorInteractionModel
+		on: theClass).
+	self openInstance.
+	
+	"Add the binding to the testing environment so we can look for users of it"
+	presenter text: 'SomeClassVariable'.
+	presenter doBrowseSenders.
+
+	
+	self assert: (navigation messageList includes: theClass >> #referenceToTheClassVariable)
+]
+
+{ #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseSendersOfClassVariableShouldSelectClassVariableUsersWhenInStaticContextButNotAvailable [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	presenter interactionModel: (SpCodeBehaviorInteractionModel
+		on: Object).
+	self openInstance.
+	
+	"Add the binding to the testing environment so we can look for users of it"
+	presenter text: 'SomeClassVariable'.
+	presenter doBrowseSenders.
+
+	
+	self assert: navigation messageList isEmpty
+]
+
 { #category : #'tests - command support' }
 SpCodePresenterTest >> testEnvironment [
 	| environment navigation |

@@ -12,6 +12,12 @@ SpRubScrolledTextMorph >> acceptDroppingMorph: aTransferMorph event: anEvent [
 			   yourself)
 ]
 
+{ #category : #accessing }
+SpRubScrolledTextMorph >> drawKeyboardFocus: aBoolean [ 
+	
+	self drawFocusBorder: aBoolean
+]
+
 { #category : #'drag and drop' }
 SpRubScrolledTextMorph >> wantsDroppedMorph: aTransferMorph event: anEvent [
 

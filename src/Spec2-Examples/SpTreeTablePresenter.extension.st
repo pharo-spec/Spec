@@ -63,6 +63,27 @@ SpTreeTablePresenter class >> exampleResizableColumns [
 ]
 
 { #category : #'*Spec2-Examples' }
+SpTreeTablePresenter class >> exampleWithDecoratedString [
+	
+	^ self new
+		addColumn: (SpImageTableColumn title: 'Icon' evaluated: [ :aClass | aClass systemIcon ]);
+		addColumn: (SpStringTableColumn new 
+			title: 'Name'; 
+			evaluated: [ :aClass | aClass name ];
+			displayColor: [ :aClass | 
+				(aClass name endsWith: 'Test')
+					ifTrue: [ Color green ]
+					ifFalse: [ Smalltalk ui theme textColor ] ];
+			displayItalic: [ :aClass | aClass name includesSubstring: 'abstract' caseSensitive: false ];
+			displayBold: [ :aClass | aClass hasSubclasses ];
+			displayUnderline: [ :aClass | aClass numberOfMethods > 10 ];
+			yourself);
+		roots: { Object };
+		children: [ :aClass | aClass subclasses ];
+		openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
 SpTreeTablePresenter class >> exampleWithTwoColumns [ 
 
 	^ self  new

@@ -118,7 +118,7 @@ SpDemo >> initializePresenters [
 			yourself);
 		yourself).
 
-	menu applyTo: self.
+	menu addKeybindingsTo: self.
 
 	list
 		items: self availablePages;
@@ -139,7 +139,7 @@ SpDemo >> initializePresenters [
 
 	self focusOrder
 		add: list;
-		add: page
+		addAll: page presenters 
 ]
 
 { #category : #accessing }

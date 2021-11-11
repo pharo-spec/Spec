@@ -19,10 +19,10 @@ SpActivationPort class >> portName [
 ]
 
 { #category : #attaching }
-SpActivationPort >> attachTransmission: aTransmission [
+SpActivationPort >> attachTransmission: aTransmission to: aPresenter [
 
-	self destinationPresenter whenActivatedDo: [ :selection | 
+	aPresenter whenActivatedDo: [ :selection | 
 		self 
 			transmitWith: aTransmission 
-			value: selection ]
+			value: (self applyTransform: selection) ]
 ]
