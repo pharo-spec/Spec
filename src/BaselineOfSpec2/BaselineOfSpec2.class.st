@@ -103,7 +103,7 @@ BaselineOfSpec2 >> specCore: spec [
 
 	spec baseline: 'SpecCore' with: [ 
 		spec 
-			repository: 'github://pavel-krivanek/Spec:unsubscribeAdapters';
+			repository: 'github://pavel-krivanek/Spec:production10';
 			loads: #('Base' 'Tests') ]
 ]
 
@@ -112,7 +112,7 @@ BaselineOfSpec2 >> specCoreCode: spec [
 
 	spec baseline: 'SpecCoreCode' with: [ 
 		spec 
-			repository: 'github://pavel-krivanek/Spec:unsubscribeAdapters';
+			repository: 'github://pavel-krivanek/Spec:production10';
 			className: 'BaselineOfSpecCore';
 			loads: #('Code' 'CodeTests') ]
 ]
