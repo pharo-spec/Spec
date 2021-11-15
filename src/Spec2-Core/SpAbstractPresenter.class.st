@@ -104,7 +104,7 @@ SpAbstractPresenter >> adapter: anAdapter [
 	adapter ifNotNil: [
 		self removeDependent: adapter.
 		adapter unsubscribe ].
-
+	
 	adapter := anAdapter
 ]
 
