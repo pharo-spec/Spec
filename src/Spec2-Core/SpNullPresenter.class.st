@@ -14,8 +14,3 @@ SpNullPresenter class >> defaultSpec [
 
 	^ SpBoxLayout newTopToBottom
 ]
-
-{ #category : #initialization }
-SpNullPresenter >> initializePresenters [
-	"Does nothing. That's the point of null presenter."
-]

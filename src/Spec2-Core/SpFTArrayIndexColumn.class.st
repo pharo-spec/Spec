@@ -20,13 +20,6 @@ Class {
 }
 
 { #category : #'instance creation' }
-SpFTArrayIndexColumn class >> id: anObject [
-	^ self new
-		id: anObject;
-		yourself
-]
-
-{ #category : #'instance creation' }
 SpFTArrayIndexColumn class >> index: aNumber [
 	^ self new 
 		index: aNumber
@@ -36,13 +29,6 @@ SpFTArrayIndexColumn class >> index: aNumber [
 SpFTArrayIndexColumn class >> index: aNumber width: aNumber2 [
 	^ (self index: aNumber) 
 		width: aNumber2
-]
-
-{ #category : #accessing }
-SpFTArrayIndexColumn class >> undefinedColumnWidth [
-	"This is a contant that defines a column width is undefined, then the layout will try to arrange 
-	 it by itself."
-	^ 0
 ]
 
 { #category : #accessing }

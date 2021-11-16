@@ -357,11 +357,6 @@ SpAbstractWidgetPresenter >> initialize [
 		self withWidgetDo: [ :w | w update: #dropEnabled: with: { value } ] ]
 ]
 
-{ #category : #initialization }
-SpAbstractWidgetPresenter >> initializePresenters [ 
-	"ignore this method since there is no composition in basic widgets"
-]
-
 { #category : #testing }
 SpAbstractWidgetPresenter >> isEnabled [
 	"Answer if presenter is enabled"

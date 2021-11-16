@@ -14,12 +14,6 @@ SpMockMillerPresenter >> activate [
 ]
 
 { #category : #initialization }
-SpMockMillerPresenter >> initializePresenters [
-	
-	"Nothing"
-]
-
-{ #category : #initialization }
 SpMockMillerPresenter >> whenActivatedDo: aBlock [
 
 	activationBlock := aBlock

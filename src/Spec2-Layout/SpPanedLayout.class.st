@@ -171,12 +171,6 @@ SpPanedLayout >> positionOfSlider: aNumber [
 ]
 
 { #category : #api }
-SpPanedLayout >> presenter [
-
-	^ adapter ifNotNil: [ adapter presenter ]
-]
-
-{ #category : #api }
 SpPanedLayout >> remove: aPresenter ifAbsent: aBlock [
 
 	super remove: aPresenter ifAbsent: aBlock.
