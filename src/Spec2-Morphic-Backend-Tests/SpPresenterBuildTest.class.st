@@ -1,9 +1,6 @@
 Class {
 	#name : #SpPresenterBuildTest,
 	#superclass : #TestCase,
-	#instVars : [
-		'mock'
-	],
 	#category : #'Spec2-Morphic-Backend-Tests'
 }
 
