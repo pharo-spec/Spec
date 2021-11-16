@@ -75,3 +75,41 @@ SpPresenterTest >> testTraversePresentersDoIncludesPresentersAddedToTheLayout [
 		presenter traversePresentersDo: [ :each | stream << each ] ].	
 	self assert: result equals: { presenter. p1. p2 }
 ]
+
+{ #category : #tests }
+SpPresenterTest >> testUnsubscribeLayoutTraversesAllLayout [
+	"This is a hacky way to test that changing layouts execute the right amount 
+	 of times the unsubscribe method"
+	| label button method counter |
+	
+	presenter := SpPresenter new.
+	label := presenter newLabel.
+	button := presenter newButton.
+	presenter layout: (SpBoxLayout newVertical
+		borderWidth: 10;
+		add: label;
+		add: (SpBoxLayout newHorizontal 
+			add: (SpBoxLayout newVertical 
+				add: button;
+				yourself);
+			yourself);
+		yourself).
+	[
+		method := SpAbstractPresenter>>#unsubscribe:.
+		counter := ExecutionCounter installOn: method ast.
+		presenter openWithSpec.
+		presenter layout: (SpBoxLayout newHorizontal
+			borderWidth: 10;
+			add: label;
+			add: (SpBoxLayout newHorizontal 
+				add: (SpBoxLayout newVertical 
+					add: button;
+					yourself);
+				yourself);
+			yourself).
+		self assert: counter count equals: 3 ]
+	ensure: [ 
+		ExecutionCounter removeAll.
+		method recompile.
+		presenter withWindowDo: #close ]
+]

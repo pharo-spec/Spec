@@ -14,7 +14,8 @@ Class {
 		'model',
 		'widget',
 		'selector',
-		'owner'
+		'owner',
+		'unsubscribed'
 	],
 	#category : #'Spec2-Core-Base'
 }
@@ -62,6 +63,7 @@ SpAbstractAdapter class >> owner: anOwner [
 { #category : #initialization }
 SpAbstractAdapter >> adapt: aPresenter [
 
+	unsubscribed := false.
 	"Check if the presenter already had an adapter. If yes, we must first notify it to give it a chance
 	to cancel its subscriptions to avoid memory leaks and potential VM crashes"
 	aPresenter adapter ifNotNil: [ :oldAdapter | oldAdapter unsubscribe ].
@@ -205,7 +207,9 @@ SpAbstractAdapter >> unsubscribe [
 	
 	This is a generic slow and ugly fallback implementation of the unsubscription"
 
-	self presenter unsubscribe: self
+	unsubscribed == true ifTrue: [ ^ self ].
+	self presenter unsubscribe: self.
+	unsubscribed := true
 ]
 
 { #category : #updating }
