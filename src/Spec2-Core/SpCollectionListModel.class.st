@@ -132,6 +132,7 @@ SpCollectionListModel >> whenChangedDo: aBlock [
 				cull: ann newValue 
 				cull: ann oldValue
 				cull: ann ]
+		for: self
 ]
 
 { #category : #events }
