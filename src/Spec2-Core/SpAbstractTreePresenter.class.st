@@ -17,6 +17,12 @@ Class {
 	#category : #'Spec2-Core-Widgets-Tree'
 }
 
+{ #category : #testing }
+SpAbstractTreePresenter class >> isAbstract [
+
+	^ super isAbstract or: [ self = SpAbstractTreePresenter ]
+]
+
 { #category : #api }
 SpAbstractTreePresenter >> activateOnDoubleClick [
 	"Configure the list to trigger activation on double click.

@@ -137,7 +137,6 @@ SpExecutableLayout >> asSpLayout [
 
 { #category : #building }
 SpExecutableLayout >> buildAdapterFor: aPresenter bindings: bindings [
-
 	| oldAdapter |
 	
 	oldAdapter := adapter.

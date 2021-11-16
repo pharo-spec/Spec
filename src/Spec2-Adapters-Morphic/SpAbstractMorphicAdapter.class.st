@@ -86,6 +86,11 @@ SpAbstractMorphicAdapter >> addKeyBindingsTo: aMorph [
 SpAbstractMorphicAdapter >> addSettingsTo: aMorph [
 	
 	self widget ifNil: [ ^ self ].
+	"For some reason, some times (it seems to be in with menu groups) you do not have a 
+	 Morph here (instead, you have a collection of morphs). This have to be an error 
+	 somehow, but no time to dig at it."
+	self widget isMorph
+		ifTrue: [ self widget presenter: self presenter ].
 	self applyVisibility
 ]
 

@@ -16,6 +16,24 @@ SpBoxLayout class >> exampleAddLast [
 ]
 
 { #category : #'*Spec2-Examples' }
+SpBoxLayout class >> exampleBeHomogeneous [
+	"This example will show 3 presenters shown homogeneously (equaly distributed in space)"
+	| presenter |
+
+	presenter := SpPresenter new.
+	presenter layout: (self newLeftToRight
+		beHomogeneous;
+		add: 'Enter text';
+		add: presenter newTextInput;
+		add: (presenter newButton 
+			label: 'Press me';
+			yourself);
+		yourself).
+			
+	presenter openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
 SpBoxLayout class >> exampleBorderWidth [
 	| presenter |
 

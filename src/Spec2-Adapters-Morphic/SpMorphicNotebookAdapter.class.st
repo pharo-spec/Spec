@@ -64,22 +64,11 @@ SpMorphicNotebookAdapter >> buildContentForPage: aPage [
 
 { #category : #factory }
 SpMorphicNotebookAdapter >> buildLabelForPage: aPage [
-	"I cannot use a PanelMorph here (as I would like) because Panels have bg colors setted 
-	 from theme (and then... they look always same in the tab)"
-	| labelMorph |
-	
-	labelMorph := Morph new 
-		changeTableLayout;
-		vResizing: #spaceFill;
-		hResizing: #shrinkWrap;
-		cellInset: self class cellInset;
-		color: Color transparent;
-		listDirection: #leftToRight;
-		yourself.
-		
-	aPage icon ifNotNil: [ :icon |
-		labelMorph addMorphBack: (icon asMorph) ].
-	labelMorph addMorphBack: aPage title asMorph.
+	| labelPresenter labelMorph |
+
+	labelPresenter := aPage labelPresenterFor: self presenter.
+	labelMorph := labelPresenter buildWithSpec.
+	labelPresenter adapter applyStyle.
 	
 	^ labelMorph
 ]

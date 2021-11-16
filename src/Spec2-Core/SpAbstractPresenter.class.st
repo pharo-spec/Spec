@@ -481,6 +481,21 @@ SpAbstractPresenter >> spec: anAdapter [
 	self adapter: anAdapter
 ]
 
+{ #category : #subscription }
+SpAbstractPresenter >> unsubscribe: anObject [
+	"Observable slots keep subscriptions to them that can leak if not removed in certain cases."
+	| observableSlots |
+	
+	observableSlots := self class allSlots 
+		select: [ :aSlot | aSlot isObservableSlot ].
+
+	observableSlots do: [ :aSlot |
+		| slotValue | 
+		slotValue := aSlot rawRead: self.
+		slotValue ifNotNil: [ 
+			slotValue unsubscribe: anObject ] ]
+]
+
 { #category : #updating }
 SpAbstractPresenter >> update: aParameter [
 

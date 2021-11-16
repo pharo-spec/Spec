@@ -26,11 +26,11 @@ SpNotebookMorph >> addLazyPage: aBlock label: aStringOrMorph model: aSpNotebookP
 	newPage := SpNotebookPageMorph new.
 	newPage lazyPageMorphCreation: aBlock.
 
+	"not adding actions here, for our notebook it will be 
+	coded in the label widget (since I may want to control when close, etc.)"
 	label := self 
 		buildLabelFrom: aStringOrMorph 
-		withAction: (aSpNotebookPage isCloseable
-			ifTrue: [ self newCloseButtonFor: aSpNotebookPage ]
-			ifFalse: [ nil ]).
+		withAction: nil. 
 	
 	newPage labelMorph: label.
 	

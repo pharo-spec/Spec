@@ -29,6 +29,12 @@ SpAbstractListPresenter class >> documentSections [
 	 }
 ]
 
+{ #category : #testing }
+SpAbstractListPresenter class >> isAbstract [
+
+	^ super isAbstract or: [ self = SpAbstractListPresenter ]	
+]
+
 { #category : #api }
 SpAbstractListPresenter >> activateOnDoubleClick [
 	"Configure the list to trigger activation on double click.

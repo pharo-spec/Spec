@@ -57,6 +57,12 @@ SpWindowPresenter class >> defaultTitle [
 	^ 'Untitled window'
 ]
 
+{ #category : #testing }
+SpWindowPresenter class >> isWindow [
+
+	^ true
+]
+
 { #category : #'instance creation' }
 SpWindowPresenter class >> presenter: aPresenter [
 	^ (self application: aPresenter application)
