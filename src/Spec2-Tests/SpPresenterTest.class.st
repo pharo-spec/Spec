@@ -80,7 +80,12 @@ SpPresenterTest >> testTraversePresentersDoIncludesPresentersAddedToTheLayout [
 SpPresenterTest >> testUnsubscribeLayoutTraversesAllLayout [
 	"This is a hacky way to test that changing layouts execute the right amount 
 	 of times the unsubscribe method"
-	| label button method counter |
+	
+	"This test includes a dependency with reflectivity package and it does not worths 
+	 for what is bringing us So I am disabling it (but letting it commented to not lose 
+	 the code, even if I am going to forget it exists ;)"
+	
+	"| label button method counter |
 	
 	presenter := SpPresenter new.
 	label := presenter newLabel.
@@ -111,5 +116,5 @@ SpPresenterTest >> testUnsubscribeLayoutTraversesAllLayout [
 	ensure: [ 
 		ExecutionCounter removeAll.
 		method recompile.
-		presenter withWindowDo: #close ]
+		presenter withWindowDo: #close ]"
 ]
