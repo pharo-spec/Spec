@@ -1,15 +1,14 @@
 "
-SpPresenter is an abstract class which represent a applicative presenter made to be composed with other SpPresenter
+`SpPresenter` is an abstract class which represents an applicative presenter made to be composed with other `SpPresenter`.
 
-Most often, I am used to display other subclasses of SpPresenter or subclasses of SpAbstractWidgetPresenter.
+Often, I am used to display other subclasses of `SpPresenter` or subclasses of `SpAbstractWidgetPresenter`.
 
 I collaborate with 
-- ValueHolder to managed some of my variables.
-- SpecFocusOrder when no focusOrder are specified.
-- SpecLayout
-- WindowPresenter or DialogWindowPresenter to display myself.
+- `ObservableSlot` to manage some of my variables.
+- `SpLayout`
+- `SpWindowPresenter` or `SpDialogWindowPresenter` to display myself.
 
-A new subclass of SpPresenter must at least define initializeWidgets and defaultSpec on the class side.
+A new subclass of `SpPresenter` must at least define `initializeWidgets` and `defaultSpec` on the class side.
 
 I provide the following methods
 - aboutText: set the text displayed in the About.
@@ -22,66 +21,65 @@ I provide the following methods
 
 On my class side, I provide methods returning standard height and width for some elements.
 
-todo
-- announce:
-- applyMenuModel: and neglectMenuModel:
-- keyStrokeForNextFocus:, giveFocusToNextFrom: and takeKeyboardFocus
-- ensureExtentFor:
-- hide
-- needRebuild
-- on:do:
-- update:
-- widget
+## Window
 
-Window
-=======
-
-- openWithSpec instantiates a WindowPresenter using the lookup to found the layout to use.
-- openDialogWithSpec instanciates a DialogWindowPresenter using the lookup to found the layout to use.
-Their variants openWithSpec: and openDialogWithSpec:  use the layout parameter.
+- `SpPresenter>>#openWithSpec` instantiates a `SpWindowPresenter` using the lookup to found the layout to use.
+- `SpPresenter>>#openDialogWithSpec` instanciates a `SpDialogWindowPresenter` using the lookup to found the layout to use.
+Their variants `openWithSpec:` and `openDialogWithSpec:` use the layout parameter.
 
 These methods can be useful to manage the window
-- isDisplayed returns true if the window of the widget is displayed
-- hasWindow returns true if the widget have a window
-- centered to center the window in the world.
-- delete to delete the window.
+- `SpPresenter>>#isDisplayed` returns true if the window of the widget is displayed
+- `SpPresenter>>#hasWindow` returns true if the widget have a window
+- `SpPresenter>>#centered` to center the window in the world.
+- `SpPresenter>>#delete` to delete the window.
 
-todo
-- cancelled
-- setModal:
-- windowIcon:
+## Instantiation
 
-
-Instantiation
-===========
-
-* initializeWidgets is called by the initialize method, it should contain initialization of subwidgets and of the focusorder.
+`SpPresenter>>#initializePresenters` is called by the initialize method, it should contain initialization of subwidgets.
 
 The instantiation of a subwidget should use one of that way
-- instantiate: take a class in parameter and return the created instance.
-- methods named 'new' followed by a widget name are shortcut working with instatiate:
+- `instantiate:` take a presenter class as parameter and return the created instance.
+- methods named 'new' followed by a widget name are shortcut working with `instantiate:`
+
+```
+	list := self newList.
+	list2 := self instantiate: SpListPresenter
+```
 
 Usually, the subwidgets must be added in the focusOrder using something like 'self focusOrder add: accessor of  the  subwidget'
 
-Note that instantiateModels: is legacy code in ComposablePresenter and must not be used. It will be deprecated and removed.
-
-* initializePresenter is called by the initialize method after initializeWidgets, it should manage interaction of subwidgets.
+`SpPresenter>>#connectPresenters` is called by the initialize method after initializePresenters, it should manage interaction of subwidgets.
 
 Methods named 'when' followed by an event provide hook to perform the action in parameter.
 
-Note
--------
+### Note
 Be careful about code order if you are overriding initialize method.
-Normally in Spec initializing instance variables should be done BEFORE calling super initialize (so the opposite of the normal approach), because super initialize calls initalizeWidgets and initializePresenter that normally would make use of those variables.
+Normally in Spec initializing instance variables should be done BEFORE calling `super initialize` (so the opposite of the normal approach), because super initialize calls `initalizePresenters` and `connectPresenters` that normally would make use of those variables.
 
-Layout
-======
+## Layout
 
-See SpecLayout
+As a general principle refer to the subclasses of`SpExecutableLayout`.
 
-defaultSpec or a method containing the pragma <spec: #default> must be defined in the class side of my subclasses.
-It contains informations about how place its elements.
-It possible to define more than one method to give the possibility to use another layout, by default the one containing the pragma will be used if it exists, if not defaultSpec will be used.
+`defaultSpec` or a method containing the pragma `<spec: #default>` must be defined in the class side of my subclasses.
+It contains information about how visually position its elements.
+It possible to define more than one method to give the possibility to use another layout, by default the one containing the pragma will be used if it exists, if not `defaultSpec` will be used.
+
+Developer may also want to define instance level layouts. A good idiom is the following one:
+
+```
+SpMyPresenter >> initializePresenters
+	... instantiate presenters ...
+	self initializeLayout
+```
+
+```
+SpMyPresenter >> initializeLayout
+	self layout: (SpXXLayout new add: ...; yourself)
+```
+
+
+
+
 "
 Class {
 	#name : #SpPresenter,
@@ -392,7 +390,7 @@ SpPresenter >> centered [
 
 { #category : #initialization }
 SpPresenter >> connectPresenters [
-	"The method connectPresenters defines the interactions between the dif- ferent widgets. By connecting the behaviors of the different widgets it speci- fies the overall presentation, i.e., how the overall UI responds to interactions by the user. Usually this method consists of specifications of actions to per- form when a certain event is received by a widget. The whole interaction flow of the UI then emerges from the propagation of those events."
+	"The method connectPresenters defines the interactions between the different widgets. By connecting the behaviors of the different widgets it specifies the overall presentation, i.e., how the overall UI responds to interactions by the user. Usually this method consists of specifications of actions to perform when a certain event is received by a widget. The whole interaction flow of the UI then emerges from the propagation of those events."
 ]
 
 { #category : #'api - shortcuts' }
@@ -412,9 +410,9 @@ SpPresenter >> contextKeyBindings: aKMCategory [
 
 { #category : #private }
 SpPresenter >> createInstanceFor: aClassSymbol [
-	"Retrieve the class corresponding to aClassSymbol using the bindings, then create a new instance of theis class"
+	"Retrieve the class corresponding to aClassSymbol using the bindings, then create a new instance of this class"
+
 	| class |
-	
 	class := self resolveSymbol: aClassSymbol.
 	^ self instantiate: class.
 ]
@@ -537,10 +535,10 @@ SpPresenter >> initialize [
 	self initializePrivateAnnouncements
 ]
 
-{ #category : #initialization }
+{ #category : #'initialization - deprecated' }
 SpPresenter >> initializePresenter [
 	"Now, presenters should implement #connectPresenters instead."
-
+	"Obsolete. Do not use me, use connectPresenters"
 	self 
 		property: #extent 
 		whenChangedDo: [ :ex | 
@@ -595,7 +593,7 @@ SpPresenter >> initializePrivateValueHolders [
 	titleHolder := self class title
 ]
 
-{ #category : #initialization }
+{ #category : #'initialization - deprecated' }
 SpPresenter >> initializeWidgets [
 	"Now, presenters should implement #initializePresenters instead."
 ]

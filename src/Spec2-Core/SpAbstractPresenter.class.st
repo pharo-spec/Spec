@@ -1,6 +1,13 @@
 "
 I'm a base for all presenters. 
 I define common behaviours for widget presenters and also for composable presenters (the ones an user regularly uses).
+
+From a Spec2 users, my key methods are 
+- `SpAbstractPresenter>>#application` to get access to the application into which I play.
+- `SpAbstractPresenter>>#initializeDialogWindow:` defines the default buttons that decorated a dialog. Subclasses can override it to be able to customize how dialog get decorated.
+- `SpAbstractPresenter>>#initializeWindow:` is a hook to define the window title and extend.
+- `SpAbstractPresenter>>#openWithSpec` to open the receiver with the default layout. 
+- `SpAbstractPresenter>>#openWithSpec: aSelector` to open the receiver with the specified layout.
 "
 Class {
 	#name : #SpAbstractPresenter,
@@ -284,7 +291,7 @@ SpAbstractPresenter >> initialize [
 
 { #category : #initialization }
 SpAbstractPresenter >> initializeDialogWindow: aDialogWindowPresenter [
-	"used to initialize the model in the case of the use into a dialog window.
+	"Used to initialize the model in the case of the use into a dialog window.
 	 Override this to set buttons other than the default (Ok, Cancel)."
 	
 	aDialogWindowPresenter
@@ -298,7 +305,7 @@ SpAbstractPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 
 { #category : #initialization }
 SpAbstractPresenter >> initializeWindow: aWindowPresenter [
-	"override this to set window values before opening. 
+	"Override this to set window values before opening. 
 	 You may want to add a menu, a toolbar or a statusbar"
 
 	self flag: #TODO. "Does presenters needs to understand this? (they do if we 
