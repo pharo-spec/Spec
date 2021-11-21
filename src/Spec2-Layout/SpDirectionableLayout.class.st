@@ -1,3 +1,6 @@
+"
+I'm just an intermediary class offering handy initialization methods such as `beTopToBottom` and `beLeftToRight`.
+"
 Class {
 	#name : #SpDirectionableLayout,
 	#superclass : #SpExecutableLayout,
@@ -37,9 +40,9 @@ SpDirectionableLayout class >> newVertical [
 	^ self newTopToBottom 
 ]
 
-{ #category : #initialization }
+{ #category : #'initialization - deprecated' }
 SpDirectionableLayout >> beHorizontal [
-
+	"Avoid to use me and favor beLeftToRight and is a lot cooler."
 	direction := SpLayoutDirection horizontal
 ]
 
@@ -55,8 +58,9 @@ SpDirectionableLayout >> beTopToBottom [
 	direction := SpLayoutDirection vertical
 ]
 
-{ #category : #initialization }
+{ #category : #'initialization - deprecated' }
 SpDirectionableLayout >> beVertical [
-
+	"Avoid to use me and favor beTopToBottom and is a lot cooler."
+	
 	direction := SpLayoutDirection vertical
 ]

@@ -1,10 +1,10 @@
 "
-A layout that will arrange presenters in a box, vertically (top to bottom) or horizontally (left to right).
+I'm a layout that will arrange presenters in a box, vertically (top to bottom) or horizontally (left to right).
 Elements can be added at the begining or at the end of the box (see `SpBoxLayout>>#add:` and `SpBoxLayout>>#addLast:` method families).
 
 ## Discussion
 
-The box layout is the main layout in Spec, because its versatility and easy to use. While one may think its functionality is limited, the fact that it can be composed with other types of layouts or other instances of itself (other boxes), will let users do almost everything they need.
+The box layout is the main layout in Spec, because its versatility and ease to use. While one may think its functionality is limited, the fact that it can be composed with other types of layouts or other instances of itself (other boxes), will let users do almost everything they need.
 The basic usage is, however, very simple: 
 
 ```Smalltalk
@@ -33,7 +33,7 @@ presenter layout: (SpBoxLayout newTopToBottom
 presenter openWithSpec
 ```
 
-What happened when we opened it? Well, the box layout was filled with an input text and a text area, but the height assigned to the first presenter is not what we would have expected, since even if text input is smaller, area height assigned is still half.
+What's happened when we opened it? Well, the box layout was filled with an input text and a text area, but the height assigned to the first presenter is not what we would have expected, since even if text input is smaller, area height assigned is still half.
 The property expand fixes this problem, by telling the layout not to assign more height than what is explicitly needed by the contained presenter: 
 
 ```Smalltalk
@@ -50,7 +50,7 @@ presenter openWithSpec
 
 Now the presenter will behave as one would expect (This code is in `SpBoxLayout class>>#exampleExpand`).
 
-### adding presenters **last**.
+### Adding presenters **last**.
 
 Now, consider this problem: You want to add something *at the end* of your presenter (for example, you want to add a button, making a dialog): 
 

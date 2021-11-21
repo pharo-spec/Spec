@@ -1,3 +1,15 @@
+"
+I'm the common root of layout. 
+My subclasses are responsible to define the logic and the API developer will use.
+Since the layouts require different specifications most of my code is more internal than to be used directly.
+
+From my methods, the ones that may interested Spec application developers are:
+
+- `add:withConstraints:` to add a presenter as subcomponents
+- `remove` to remove an existing presenter from a layout.
+
+Note that adding and removing presenters are raising corresponding announcement `SpChildrenAdded` and `SpChildrenRemoved`. 
+"
 Class {
 	#name : #SpExecutableLayout,
 	#superclass : #Object,
@@ -71,8 +83,8 @@ SpExecutableLayout >> adapterName [
 
 { #category : #accessing }
 SpExecutableLayout >> add: aName withConstraints: aBlock [
-	| constraints |
 
+	| constraints |
 	constraints := self constraintsClass new.
 	aBlock value: constraints.
 	children at: aName put: constraints
