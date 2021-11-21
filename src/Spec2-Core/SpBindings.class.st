@@ -1,12 +1,10 @@
 "
-Dynamic variable for Spec on which of the bindings (Morphic or other) should be used as default.
-
+I'm a dynamic variable for presenters on which a bindings (Morphic or other) should be used as default.
 
 Example: 
-------------
 
 ```
-	SpecBindings value: #MorphicAdapterBindings during: [ monUI openWithSpec ].
+	SpecBindings value: #MorphicAdapterBindings during: [ myPresenter openWithSpec ].
 ```
 "
 Class {

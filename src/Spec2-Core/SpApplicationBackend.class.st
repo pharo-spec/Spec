@@ -2,7 +2,7 @@
 I'm a backend for a Spec applications. 
 Backends define different things from an application: 
 - which UI backend will use (Morphic by default), 
-- access to system resources
+- access to system resources (such as icons),
 - access to standard dialogs usually residing in the operating system (but also simulated)
 - ...
 "
