@@ -1,5 +1,5 @@
 "
-I am raised when a window has been built
+I am an announcement raised when a window has been built.
 "
 Class {
 	#name : #SpWindowBuilt,
