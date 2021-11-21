@@ -1,6 +1,13 @@
 "
 A simple presenter builder class that uses `SpTPresenterBuilder`. 
 It allows users to compose presenters without hardcoding class name.
+
+The following two lines are equivalent and the second one is preferred for common presenters.
+
+```
+list := self instantiate: SpListPresenter
+list := self newList.
+```
 "
 Class {
 	#name : #SpPresenterBuilder,

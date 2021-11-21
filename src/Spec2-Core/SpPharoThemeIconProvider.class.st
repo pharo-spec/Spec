@@ -1,5 +1,5 @@
 "
-This icon provider redirects to the default Pharo icon provider
+I'm a provider that redirects to the default Pharo icon provider.
 "
 Class {
 	#name : #SpPharoThemeIconProvider,

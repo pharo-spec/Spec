@@ -1,6 +1,13 @@
 "
 A builder to define presenters through method factory pattern. 
 This allow users to compose presenters without needed to have hardcoded the name of them (which could or not change/be present/etc.)
+
+The following two lines are equivalent and the second one is preferred for common presenters.
+
+```
+list := self instantiate: SpListPresenter
+list := self newList.
+```
 "
 Trait {
 	#name : #SpTPresenterBuilder,
@@ -90,12 +97,6 @@ SpTPresenterBuilder >> newDynamicPresentersListIn: accessorSymbol usingBuilder: 
 	
 	self needRebuild: false.
 	self buildWithSpec
-]
-
-{ #category : #'scripting - widgets' }
-SpTPresenterBuilder >> newFilteringList [
-
-	^ self instantiate: SpFilteringListPresenter
 ]
 
 { #category : #'scripting - layouts' }
