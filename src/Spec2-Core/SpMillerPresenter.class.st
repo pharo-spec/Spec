@@ -1,5 +1,5 @@
 "
-Basic API that a Miller Presenter should implement
+I'm a kind of API that a `SpMillerPresenter` should implement: basically one single method `whenActivedDo:`.
 "
 Class {
 	#name : #SpMillerPresenter,

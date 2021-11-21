@@ -1,5 +1,5 @@
 "
-A basic miller presenter that wraps a non-miller presenter and does nothing on activation.
+I'm a basic miller presenter that wraps a non-miller presenter and does nothing on activation.
 Useful to wrap elements that do not need to flow to the right.
 "
 Class {
@@ -21,7 +21,6 @@ SpNullMillerPresenter class >> defaultSpec [
 
 { #category : #initialization }
 SpNullMillerPresenter >> initializePresenters [
-	
 	"Do nothing"
 ]
 
@@ -34,7 +33,6 @@ SpNullMillerPresenter >> setModelBeforeInitialization: aModel [
 
 { #category : #initialization }
 SpNullMillerPresenter >> whenActivatedDo: aBlock [
-
 	"Do nothing"
 ]
 
