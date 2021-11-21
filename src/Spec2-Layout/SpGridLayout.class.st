@@ -1,35 +1,62 @@
 "
 I am a grid layout. 
-As my name sais, I can place my elements in a grid, following some constraints: 
+As my name tells, I can place my elements in a grid, following some constraints: 
 
 - a position is mandatory
 - a span can be added if desired
 
-A grid layout is tipically used while doing ""form-like"" presenters, for example, we can 
+A grid layout is typically used while doing ""form-like"" presenters, for example, we can 
 do something like this: 
 
-	--------------------------
-	| Name:      | ######### |
-	--------------------------
-	| Password:  | ######### |
-	--------------------------
-	|       [Accept] [Cancel]| 
-	--------------------------
+```
+--------------------------
+| Name:      | ######### |
+--------------------------
+| Password:  | ######### |
+--------------------------
+|       [Accept] [Cancel]| 
+--------------------------
+```
 
-You can achieve this in several ways, but a simple one would be: 
+You can achieve this in several ways, but a simple one would be where `#nameText` refer to a getter method.
 
-SpecGridLayout new 
+
+```
+SpGridLayout new 
 	add: 'Name:' 			at: 1@1;
 	add: #nameText 			at: 2@1
 	add: 'Password:' 		at: 1@2;
 	add: #passwordText 	at: 2@2;
-	add: (SpecBoxLayout newHorizontal
+	add: (SpBoxLayout newHorizontal
 			addLast: #acceptButton;
 			addLast: #cancelButton;
 			yourself)
 		at: 1@3 
 		span: 2@1;
 	yourself
+```
+
+Note that using a string as in 
+```
+SpecGridLayout new 
+	add: 'Name:' 			at: 1@1;
+```
+automatically add a label. 
+
+
+In addition as you can see that we can have other layouts taking several cell elements as in the following where the SpBoxLayout is taking two cells of the grid.
+```
+add: (SpBoxLayout newHorizontal
+			addLast: #acceptButton;
+			addLast: #cancelButton;
+			yourself)
+		at: 1@3 
+		span: 2@1;
+```
+
+
+
+
 "
 Class {
 	#name : #SpGridLayout,
