@@ -202,13 +202,6 @@ SpApplication >> iconProvider [
 	^ iconProvider ifNil: [ iconProvider := self newIconProvider ]
 ]
 
-{ #category : #testing }
-SpApplication >> isPresenter [ 
-	"Presenters use this to track application/rootPresenter."
-
-	^ false
-]
-
 { #category : #accessing }
 SpApplication >> locale [
 

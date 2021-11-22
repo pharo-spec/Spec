@@ -9,11 +9,6 @@ SpAbstractTextPresenterTest class >> isAbstract [
 	^ self = SpAbstractTextPresenterTest
 ]
 
-{ #category : #testing }
-SpAbstractTextPresenterTest class >> shouldInheritSelectors [
-	^ true
-]
-
 { #category : #accessing }
 SpAbstractTextPresenterTest >> classToTest [
 	^ self subclassResponsibility

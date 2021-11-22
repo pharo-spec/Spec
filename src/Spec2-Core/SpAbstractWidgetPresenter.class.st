@@ -194,6 +194,12 @@ SpAbstractWidgetPresenter class >> isAbstract [
 	^ self = SpAbstractWidgetPresenter
 ]
 
+{ #category : #testing }
+SpAbstractWidgetPresenter class >> isWindow [
+
+	^ false
+]
+
 { #category : #'drag and drop' }
 SpAbstractWidgetPresenter >> acceptDrop [
 	^ acceptDrop
@@ -349,11 +355,6 @@ SpAbstractWidgetPresenter >> initialize [
 		self withWidgetDo: [ :w | w update: #dragEnabled: with: { value } ] ].
 	self property: #dropEnabled whenChangedDo: [ :value | 
 		self withWidgetDo: [ :w | w update: #dropEnabled: with: { value } ] ]
-]
-
-{ #category : #initialization }
-SpAbstractWidgetPresenter >> initializePresenters [ 
-	"ignore this method since there is no composition in basic widgets"
 ]
 
 { #category : #testing }

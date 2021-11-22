@@ -20,6 +20,12 @@ SpAthensPresenter class >> adapterName [
 	^ #AthensAdapter
 ]
 
+{ #category : #defaults }
+SpAthensPresenter class >> defaultSurfaceExtent [
+
+	^ 300@300
+]
+
 { #category : #documentation }
 SpAthensPresenter class >> documentFactoryMethodSelector [
 
@@ -44,7 +50,9 @@ SpAthensPresenter >> drawBlock: aBlock [
 
 { #category : #initialization }
 SpAthensPresenter >> initialize [
+
 	super initialize.
+	self surfaceExtent: self class defaultSurfaceExtent
 ]
 
 { #category : #api }

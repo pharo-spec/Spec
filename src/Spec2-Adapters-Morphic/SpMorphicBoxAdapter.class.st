@@ -205,10 +205,10 @@ SpMorphicBoxAdapter >> newHorizontal [
 
 	^ (self newPanelWith: self newPanelLayout)
 		listDirection: #leftToRight;
-		addMorphBack: ((startPanel := self newPanel)
+		addMorphBack: ((startPanel := (self newPanelWith: SpMorphicBoxChildLayout new))
 			listDirection: #leftToRight;
 			yourself);
-		addMorphBack: ((endPanel := self newPanel)
+		addMorphBack: ((endPanel := (self newPanelWith: SpMorphicBoxChildLayout new))
 			listDirection: #leftToRight;
 			hResizing: #shrinkWrap;
 			width: 0;
@@ -219,7 +219,7 @@ SpMorphicBoxAdapter >> newHorizontal [
 { #category : #factory }
 SpMorphicBoxAdapter >> newPanelLayout [
 
-	^ SpMorphicTableLayout new
+	^ SpMorphicBoxLayout new
 		specLayout: layout;
 		yourself
 ]

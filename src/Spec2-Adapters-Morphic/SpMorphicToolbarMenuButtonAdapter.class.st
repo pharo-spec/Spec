@@ -16,12 +16,6 @@ SpMorphicToolbarMenuButtonAdapter >> askBeforeChanging [
 	^ false
 ]
 
-{ #category : #accessing }
-SpMorphicToolbarMenuButtonAdapter >> badge [
-	
-	^ self presenter badge
-]
-
 { #category : #factory }
 SpMorphicToolbarMenuButtonAdapter >> buildWidget [
 
@@ -61,12 +55,6 @@ SpMorphicToolbarMenuButtonAdapter >> icon [
 
 { #category : #testing }
 SpMorphicToolbarMenuButtonAdapter >> isSelected: aBooolean [
-]
-
-{ #category : #accessing }
-SpMorphicToolbarMenuButtonAdapter >> label [
-	
-	^ self presenter label
 ]
 
 { #category : #accessing }

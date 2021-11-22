@@ -14,7 +14,8 @@ Class {
 		'model',
 		'widget',
 		'selector',
-		'owner'
+		'owner',
+		'unsubscribed'
 	],
 	#category : #'Spec2-Core-Base'
 }
@@ -62,6 +63,7 @@ SpAbstractAdapter class >> owner: anOwner [
 { #category : #initialization }
 SpAbstractAdapter >> adapt: aPresenter [
 
+	unsubscribed := false.
 	"Check if the presenter already had an adapter. If yes, we must first notify it to give it a chance
 	to cancel its subscriptions to avoid memory leaks and potential VM crashes"
 	aPresenter adapter ifNotNil: [ :oldAdapter | oldAdapter unsubscribe ].
@@ -204,16 +206,10 @@ SpAbstractAdapter >> unsubscribe [
 	"During initialization, adapters usually subscribe to various observable slots in the presenter. When the adapters are replaced by another during dynamic layouts switching, they need to be unsubscribed because it may cause a memory leaks and, in case of Gtk, even VM crashes.
 	
 	This is a generic slow and ugly fallback implementation of the unsubscription"
-	| observableSlots |
-	
-	observableSlots := model class allSlots 
-		select: [ :aSlot | aSlot isObservableSlot ].
 
-	observableSlots do: [ :aSlot |
-		| slotValue | 
-		slotValue := aSlot rawRead: model.
-		slotValue ifNotNil: [ 
-			slotValue unsubscribe: self ] ]
+	unsubscribed == true ifTrue: [ ^ self ].
+	self presenter unsubscribe: self.
+	unsubscribed := true
 ]
 
 { #category : #updating }

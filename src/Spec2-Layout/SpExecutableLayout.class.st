@@ -137,8 +137,9 @@ SpExecutableLayout >> asSpLayout [
 
 { #category : #building }
 SpExecutableLayout >> buildAdapterFor: aPresenter bindings: bindings [
-
-	adapter ifNotNil: [ adapter unsubscribe ].
+	| oldAdapter |
+	
+	oldAdapter := adapter.
 	
 	adapter := (aPresenter needRebuild or: [ aPresenter adapter isNil ])
 		ifTrue: [ 
@@ -164,6 +165,8 @@ SpExecutableLayout >> buildAdapterFor: aPresenter bindings: bindings [
 			constraints: constraints ].
 		
 	adapter adapterWasBuilt.
+	
+	oldAdapter ifNotNil: [ oldAdapter unsubscribe ].
 
 	^ adapter
 ]

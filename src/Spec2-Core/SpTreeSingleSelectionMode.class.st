@@ -5,12 +5,6 @@ Class {
 }
 
 { #category : #selection }
-SpTreeSingleSelectionMode >> clearSelection [
-
-	selection := #()
-]
-
-{ #category : #selection }
 SpTreeSingleSelectionMode >> itemNotFoundAction [
 	self clearSelection
 ]

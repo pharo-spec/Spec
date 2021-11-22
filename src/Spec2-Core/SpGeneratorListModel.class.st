@@ -1,3 +1,10 @@
+"
+A list model to be used with a generator.
+
+See `SpGeneratorListModel class>>#example`
+See `Generator` class.
+
+"
 Class {
 	#name : #SpGeneratorListModel,
 	#superclass : #SpCollectionListModel,

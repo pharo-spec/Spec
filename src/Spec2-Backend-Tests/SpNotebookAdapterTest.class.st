@@ -24,6 +24,16 @@ SpNotebookAdapterTest >> testAddPage [
 ]
 
 { #category : #tests }
+SpNotebookAdapterTest >> testChangeTitleUpdatesTab [
+
+	presenter selectPageIndex: 2.
+	self assert: self adapter selectedPageName equals: 'Mock2'.
+	
+	presenter selectedPage title: 'Changed'.
+	self assert: self adapter selectedPageName equals: 'Changed'
+]
+
+{ #category : #tests }
 SpNotebookAdapterTest >> testClickOnPage [
 
 	self adapter clickTab: 2.

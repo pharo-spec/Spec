@@ -25,8 +25,9 @@ SpMorphicNotebookAdapter >> numberOfTabs [
 
 { #category : #'*Spec2-Morphic-Backend-Tests' }
 SpMorphicNotebookAdapter >> selectedPageName [
-
-	^ (self widget tabSelectorMorph selectedTab label submorphs
-		detect: [ :each | each isKindOf: StringMorph ]) 
-		contents
+	"I am assuming I am testing the standard. Hence, the presenter will be an 
+	 instance of `SpNotebookPageLabelPresenter`. 
+	 Yes, this is weak :("
+	
+	^ self widget tabSelectorMorph selectedTab submorphs first presenter label
 ]
