@@ -1,18 +1,16 @@
 "
-I am a miller columns widget, aka cascading lists.
+I am a miller columns widget, a.k.a. cascading lists.
 I am composed of presenters flowing to the right.
 Every time that one of my inner presenters is activated, I ""dive in"" that element, showing a new presenter for the activated element to the right of the current selection.
 
 You have to set me:
- - presenterBlock: aBlock that receives a model as argument and returns a SpecMillerPresenter or compatible (read below)
- - a first presenter using either
-    - setModel: with a model  that calculates the initial presenter using the presenter block if already available
-    - setPresenter: with a SpecMillerPresenter or compatible (read below)
+- `presenterBlock:` aBlock that receives a model as argument and returns a `SpMillerPresenter` or compatible (read below)
+- a first presenter using either
+  - `setModel:` with a model  that calculates the initial presenter using the presenter block if already available.
+  - `setPresenter:` with a `SpMillerPresenter` or compatible (read below)
 
-
-SpecMillerColumnPresenter works on SpecMillerPresenter or compatible objects.
-All presenters inside this one should be polymorphic, defining:
- - whenActivatedDo:, an event that will invoke a valuable with a selection object (understanding #selectedObject)
+`SpMillerColumnPresenter` works on `SpMillerPresenter` or compatible objects.
+All presenters inside this one should be polymorphic, defining: `whenActivatedDo:`, an event that will invoke a valuable with a selection object (understanding the message `selectedObject`).
 "
 Class {
 	#name : #SpMillerColumnPresenter,

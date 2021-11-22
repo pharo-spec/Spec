@@ -1,6 +1,7 @@
 "
-Provide access to icons from the system. 
-It receive locations (directory references) where to find them. 
+I provide access to icons in png from the file system. 
+It receive locations (directory references) where to find them.
+
 Alternatively, it can also look for gtk theme icons (stored by name in the gtk theme).
 "
 Class {
@@ -29,8 +30,8 @@ SpLocationIconProvider >> addLocation: aReference [
 
 { #category : #accessing }
 SpLocationIconProvider >> iconNamed: aName ifAbsent: aBlock [
-	| icon |
 
+	| icon |
 	icon := icons at: aName ifAbsent: [ nil ].
 	icon ifNil: [ 
 		icon := self loadIconNamed: aName.
@@ -47,12 +48,18 @@ SpLocationIconProvider >> icons [
 ]
 
 { #category : #initialization }
-SpLocationIconProvider >> initialize [ 
+SpLocationIconProvider >> initialize [
 
 	super initialize.
 	locations := #().
 	icons := Dictionary new.
-	icons at: #blank put: (Form extent: 16@16 depth: 8)
+	self initializeBlankIcon
+]
+
+{ #category : #initialization }
+SpLocationIconProvider >> initializeBlankIcon [
+
+	self setBlankIcon: (Form extent: 16@16 depth: 8)
 ]
 
 { #category : #inspecting }
@@ -77,12 +84,12 @@ SpLocationIconProvider >> loadAllIcons [
 ]
 
 { #category : #utilities }
-SpLocationIconProvider >> loadIcon: fileRef [
+SpLocationIconProvider >> loadIcon: fileReference [
 
-	fileRef exists ifFalse: [ 
-		self error: ('Icon {1} does not exit' format: { fileRef fullName }) ].
+	fileReference exists ifFalse: [ 
+		self error: ('Icon {1} does not exit' format: { fileReference fullName }) ].
 
-	^ fileRef binaryReadStreamDo: [ :stream |
+	^ fileReference binaryReadStreamDo: [ :stream |
 		 Form fromBinaryStream: stream ]
 ]
 
@@ -106,4 +113,11 @@ SpLocationIconProvider >> locations [
 SpLocationIconProvider >> menuIconNamed: aName [ 
 
 	^ self iconNamed: aName
+]
+
+{ #category : #accessing }
+SpLocationIconProvider >> setBlankIcon: aForm [
+	"To be able to specify the form that represents a missing icon."
+	
+	icons at: #blank put: aForm
 ]

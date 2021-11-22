@@ -1,13 +1,13 @@
 "
-A `SpModalWindowPresenter` is presenter used to describe a **modal** DialogWindow. 
-On the contrary of the `SpDialogWindowPresenter`, it will block the user to focus any other window.
+I'm a window presenter used to describe a **modal** DialogWindow. 
+On the contrary of the `SpDialogWindowPresenter`, I will block the user to focus any other window.
 
 Usually instances of `SpModalWindowPresenter` are created using the method `SpAbstractPresenter>>#openModalWithSpec`.
 
 If you want to make the user to show a dialog without blocking the execution of other windows, use `SpAbstractPresenter>>#openDialogWithSpec` instead.
 
-## Usage 
-Tipically, you do not instantiate directly a modal dialog, but you open a presenter as one. Since the program execution will be stopped until dialog is resolved (accepted or cancelled), you can ask for the status after calling it.
+## Usage
+Typically, you do not instantiate directly a modal dialog, but you open a presenter as one. Since the program execution will be stopped until dialog is resolved (accepted or cancelled), you can ask for the status after calling it.
 
 ```
 dialog := aPresenter openModalWithSpec.
@@ -16,9 +16,12 @@ dialog isOk
 	ifFalse: [ ""dialof cancelled action "" ]
 ```
 
+The method `SpModalWindowPresenter>>#closeOnBackdropClick:` controls whether the user is able to close or not the modal dialog.
+
 And to control how the dialog should behave, you define the method `initializeDialogWindow:` in your presenters.
+
 ```
-SomePresenter>>#initializeDialogWindow: aDialogPresenter 
+SomePresenter >> initializeDialogWindow: aDialogPresenter 
 	super initializeDialogWindow: aDialogPresenter.
 	aDialogPresenter
 		initialExtent: 600@400;

@@ -1,9 +1,9 @@
 "
-I am a composable presenter that  keeps reference to its domain model (announcingObject) optionally wrapped in a value holder and subscribes yourself to it.
+I am a composable presenter that keeps reference to its domain model (announcingObject) optionally wrapped in a value holder and subscribes yourself to it. The model (announcingObject) can be instance of a subclass of Model, a value holder or a regular object.
 
-As the model (announcingObject) we can set a subclass of Model or a value holder (NewValueHolder). In that case such models are stored directly into announcingObject.
+The difference is that if an announcing object is given as model, it is stored directly into announcingObject. For regular objects, they got wrapped automatically in a value holder.
 
-You should implement the method #modelChanged in my subclasses
+You should implement the method `modelChanged` in my subclasses.
 
 "
 Class {
@@ -29,8 +29,7 @@ SpPresenterWithModel >> model [
 
 { #category : #accessing }
 SpPresenterWithModel >> model: aDomainObject [
-
-	"aDomainObject can be regular object, a value holder (NewValueHolder) or an instance of Model"
+	"aDomainObject can be regular object, a value holder or an instance of Model"
 	
 	(aDomainObject isSpAnnouncingObject not and: [ self announcingObject isValueHolder ])
 		ifTrue: [ self announcingObject value: aDomainObject ]

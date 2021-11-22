@@ -1,6 +1,7 @@
 "
 I'm a layout to implement miller lists. 
 Since I am intended to be used dynamically (adding/removing components on demand), I implement just `add:` and `remove:` related methods.
+You can also control borderWith and spacing between elements.
 "
 Class {
 	#name : #SpMillerLayout,
@@ -26,6 +27,18 @@ SpMillerLayout class >> new [
 SpMillerLayout class >> newHorizontal [ 
 
 	^ super new beHorizontal
+]
+
+{ #category : #'instance creation' }
+SpMillerLayout class >> newLeftToRight [
+
+	^ super new beHorizontal
+]
+
+{ #category : #'instance creation' }
+SpMillerLayout class >> newTopToBottom [
+
+	^ super new beVertical
 ]
 
 { #category : #'instance creation' }
@@ -56,13 +69,25 @@ SpMillerLayout >> add: aPresenter withConstraints: aBlock [
 		theAdapter add: aPresenter constraints: (children at: aPresenter) ]
 ]
 
-{ #category : #initialization }
+{ #category : #'initialization - deprecated' }
 SpMillerLayout >> beHorizontal [
 
 	direction := SpLayoutDirection horizontal
 ]
 
 { #category : #initialization }
+SpMillerLayout >> beLeftToRight [
+
+	direction := SpLayoutDirection horizontal
+]
+
+{ #category : #initialization }
+SpMillerLayout >> beTopToBottom [
+
+	direction := SpLayoutDirection vertical
+]
+
+{ #category : #'initialization - deprecated' }
 SpMillerLayout >> beVertical [
 
 	direction := SpLayoutDirection vertical

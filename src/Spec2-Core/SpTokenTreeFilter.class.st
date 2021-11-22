@@ -24,7 +24,6 @@ SpTokenTreeFilter class >> token: token [
 SpTokenTreeFilter >> initialize [
 
 	super initialize.
-
 	token := ''.
 ]
 
@@ -36,6 +35,7 @@ SpTokenTreeFilter >> keepTreeNode: aNode [
 
 { #category : #accessing }
 SpTokenTreeFilter >> token [
+
 	^ token
 ]
 

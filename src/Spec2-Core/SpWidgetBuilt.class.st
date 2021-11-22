@@ -1,5 +1,5 @@
 "
-I am raised when a widget has been built with all its children, but not yet shown
+I am an announcement raised when a widget has been built with all its children, but not yet shown.
 "
 Class {
 	#name : #SpWidgetBuilt,

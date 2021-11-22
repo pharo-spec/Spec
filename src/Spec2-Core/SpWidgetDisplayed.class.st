@@ -1,5 +1,5 @@
 "
-I am raised when a widget has been already shown in the screen
+I am an announcement raised when a widget has been already shown in the screen.
 "
 Class {
 	#name : #SpWidgetDisplayed,

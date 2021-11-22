@@ -1,15 +1,13 @@
 "
-! Application Configurations
+I'm responsible to handle application configurations for different back-ends. 
 
-Tipically, each Spec application will implement one or several configurations (for example, to run on Morphic or Gtk) by extending this class or one of its children. 
+Typically, each Spec application will implement one or several configurations (for example, to run on Morphic or Gtk) by extending this class or one of its children. 
 A configuration takes the responsibility to prepare an application to run properly. This preparation can be different depending on the platform where it is running, that's why you have several extension points you can extend/override: 
 
-- ==configure:== a generic configuration point that normally will dispatch the configuration to a plarform specific method. 
-- ==configureOSX:==/==configureUnix:==/==configureWindows:== platform specific entry points.
+- `configure:` a generic configuration point that normally will dispatch the configuration to a plarform specific method. 
+- `configureOSX:`/`configureUnix:`/`configureWindows:` platform specific entry points.
 
-@@TODO: Examples of configurations.
-
-see also: *class:SpMorphicConfiguration*, *class:SpGtkConfiguration*
+See also: `SpMorphicConfiguration` and `SpGtkConfiguration`
 "
 Class {
 	#name : #SpApplicationConfiguration,

@@ -1,16 +1,16 @@
 "
-A presenter defining a Window.
-`SpWindowPresenter` define common behaviour for windows (like title, extent, position). 
-It can also hold a menuBar, a toolBar and a statusBar.
+I'm a presenter defining a Window.
+`SpWindowPresenter` defines common behavior for windows (such as title, extent, position). 
+It can also hold a menuBar, a toolBar, and a statusBar.
 
-Tipically you do not use this presenter directly but through a presenter you want to show. 
+Typically you do not use this presenter directly but through a presenter you want to show. 
 When you execute `aPresenter openWithSpec`, what happens is that a `SpWindowPresenter` is created. Then the `SpPresenter>>#initializeWindow:` message is sent and an user can configure its window there.
 
 You can also access your window when your presenter is active by using `SpAbstractPresenter>>#withWindowDo:`.
 
 ## Usage 
 
-Tipically, you do not instantiate directly a window, but you open a presenter as one.
+Typically, you do not instantiate directly a window, but you open a presenter as one.
 
 ```
 SpTextPresenter new

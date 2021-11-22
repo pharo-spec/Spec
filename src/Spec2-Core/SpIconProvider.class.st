@@ -1,5 +1,5 @@
 "
-A base icon provider. 
+I'm base icon provider. 
 Children of `SpIconProvider` will define concrete ways to access icons.
 "
 Class {

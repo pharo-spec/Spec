@@ -1,7 +1,7 @@
 "
-A composite icon provider.
-Users can compose icon providers to define different ways to find icons.
-A typical usage would be: 
+I'm a composite icon provider.
+Users can compose (using `,` message) icon providers to define different ways to find icons.
+A typical usage is: 
 
 ```
 (SpLocationIconProvider newLocation: './icons' asFileReference), SpPharoThemeIconProvider new
