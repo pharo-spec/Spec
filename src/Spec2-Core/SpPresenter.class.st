@@ -117,11 +117,6 @@ SpPresenter class >> defaultSpec [
 	^ nil
 ]
 
-{ #category : #accessing }
-SpPresenter class >> iconNamed: aSymbol [
-	^ Smalltalk ui icons iconNamed: aSymbol
-]
-
 { #category : #'labeled-presenters' }
 SpPresenter class >> iconWidth [
 	^ 24

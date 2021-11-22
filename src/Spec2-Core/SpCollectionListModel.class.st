@@ -1,3 +1,8 @@
+"
+A collection model to be used with list presenters (`SpAbstractListPresenter` and children).
+
+This model receives a `collection` of elements to be served to the list.
+"
 Class {
 	#name : #SpCollectionListModel,
 	#superclass : #Object,
@@ -132,6 +137,7 @@ SpCollectionListModel >> whenChangedDo: aBlock [
 				cull: ann newValue 
 				cull: ann oldValue
 				cull: ann ]
+		for: self
 ]
 
 { #category : #events }

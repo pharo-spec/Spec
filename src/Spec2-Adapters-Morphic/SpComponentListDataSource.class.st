@@ -107,12 +107,6 @@ SpComponentListDataSource >> rowHeight: rowIndex [
 	^ (self widgetFor: (self elementAt: rowIndex)) height
 ]
 
-{ #category : #accessing }
-SpComponentListDataSource >> searchText: aString [
-	"do nothing for the moment"
-	^ #()
-]
-
 { #category : #'drag and drop' }
 SpComponentListDataSource >> transferFor: passenger from: aMorph [
 

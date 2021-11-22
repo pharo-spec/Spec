@@ -74,14 +74,6 @@ SpFTTableMorph >> initializeKeyBindings [
 ]
 
 { #category : #accessing }
-SpFTTableMorph >> minHeight [
-	"answer the receiver's minHeight"
-	^ self
-		valueOfProperty: #minHeight
-		ifAbsent: [ self class defaultRowHeight ceiling ]
-]
-
-{ #category : #accessing }
 SpFTTableMorph >> minWidth [
 	"answer the receiver's minHeight"
 	^ self

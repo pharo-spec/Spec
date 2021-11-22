@@ -46,23 +46,9 @@ SpDynamicPresenter >> doesNotUnderstand: aMessage [
 	^ self presenterAt: aMessage selector ifAbsent: [ super doesNotUnderstand: aMessage ]
 ]
 
-{ #category : #initialization }
-SpDynamicPresenter >> initializePresenters [
-]
-
 { #category : #'instance creation' }
 SpDynamicPresenter >> instantiatePresenters: aCollectionOfPairs [
 	aCollectionOfPairs pairsDo: [ :k :v | self presenterAt: k asSymbol put: (self createInstanceFor: v) ]
-]
-
-{ #category : #accessing }
-SpDynamicPresenter >> layout [
-	^ layout
-]
-
-{ #category : #accessing }
-SpDynamicPresenter >> layout: aLayout [
-	layout := aLayout
 ]
 
 { #category : #api }

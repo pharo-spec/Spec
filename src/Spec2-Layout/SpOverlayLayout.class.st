@@ -66,12 +66,6 @@ SpOverlayLayout >> initialize [
 ]
 
 { #category : #accessing }
-SpOverlayLayout >> presenter [
-
-	^ adapter ifNotNil: [ adapter presenter ]
-]
-
-{ #category : #accessing }
 SpOverlayLayout >> remove: aPresenter [
 	
 	singleChild := nil.

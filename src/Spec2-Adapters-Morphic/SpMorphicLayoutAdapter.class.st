@@ -131,10 +131,11 @@ SpMorphicLayoutAdapter >> layout: aLayout [
 
 	"Basic apply visibility to the widget.
 	This call is here because layouts and widgets work differently"
+	self widget presenter: self presenter.
 	self applyVisibility.
 	self applyStyle.
 	self addKeyBindingsTo: self widget.
-	self addEventsTo: self widget	
+	self addEventsTo: self widget.
 ]
 
 { #category : #factory }

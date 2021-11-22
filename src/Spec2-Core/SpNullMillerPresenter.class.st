@@ -20,11 +20,6 @@ SpNullMillerPresenter class >> defaultSpec [
 ]
 
 { #category : #initialization }
-SpNullMillerPresenter >> initializePresenters [
-	"Do nothing"
-]
-
-{ #category : #initialization }
 SpNullMillerPresenter >> setModelBeforeInitialization: aModel [
 
 	wrappedPresenter := aModel.

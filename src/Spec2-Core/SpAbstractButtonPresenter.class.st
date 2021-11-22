@@ -11,6 +11,12 @@ Class {
 	#category : #'Spec2-Core-Widgets'
 }
 
+{ #category : #testing }
+SpAbstractButtonPresenter class >> isAbstract [
+
+	^ super isAbstract or: [ self = SpAbstractButtonPresenter ]
+]
+
 { #category : #private }
 SpAbstractButtonPresenter >> addShortcutTipFor: aString [
 
