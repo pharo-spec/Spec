@@ -53,7 +53,8 @@ SpDropListItem >> action: aBlock [
 
 { #category : #protocol }
 SpDropListItem >> display: aBlock [
-	"aBlock - 1 optional argument, which is the underlying item; Returns the string to be displayed"
+	"Set the block whose execution should return the string to be displayed. 
+	aBlock will be executed with an optional argument, which is the underlying item."
 
 	displayBlock := aBlock.
 ]
@@ -77,6 +78,7 @@ SpDropListItem >> icon: anObject [
 
 { #category : #initialization }
 SpDropListItem >> initialize [
+
 	super initialize.
 	action := [  ].
 	displayBlock := [ :e | e asString ]
@@ -85,26 +87,26 @@ SpDropListItem >> initialize [
 { #category : #accessing }
 SpDropListItem >> label [
 	
-	^ displayBlock cull: model.
+	^ displayBlock cull: model
 ]
 
 { #category : #accessing }
 SpDropListItem >> label: anObject [
 	"For compatibility with old raw-string usage. Send #display: instead"
 	
-	displayBlock := [ anObject ].
+	displayBlock := [ anObject ]
 ]
 
 { #category : #accessing }
 SpDropListItem >> model [
 
-	^ model.
+	^ model
 ]
 
 { #category : #private }
 SpDropListItem >> model: anObject [
 
-	model := anObject.
+	model := anObject
 ]
 
 { #category : #execution }

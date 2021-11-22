@@ -1,5 +1,5 @@
 "
-I am raised when a widget will be built. 
+I am an announcement  raised when a widget will be built. 
 
 I may be used in situations when you need to change the content of the context menu before it will be displayed and so on.
 "

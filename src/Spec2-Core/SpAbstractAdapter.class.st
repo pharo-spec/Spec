@@ -3,9 +3,11 @@ I am an abstract class.
 
 I'm the superclass of all the adapters used to link a Spec widget presenter to a framework specific widget (by example ButtonPresenter <-> PluggableButtonMorph).
 
-The current implementation installs my instances as dependent of the presenter and my changed: method propagates updates to the widget I create (via my buildWidget method). This implementation is not optimal. 
+The current implementation installs my instances as dependent of the presenter and my `changed:` method propagates updates to the widget I create (via my `buildWidget` method). This implementation is not optimal. 
 
 In the future my instances should just be responsible to create a widget and install all the communication between the presenter and the widget. I should not be a middle man. 
+
+I'm only interesting for back-ends developers. As a developer, using Spec to define application, you should not care and have to deal with me. 
 "
 Class {
 	#name : #SpAbstractAdapter,

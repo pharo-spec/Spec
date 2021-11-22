@@ -1,3 +1,6 @@
+"
+I'm a simple object to wrap a selected item for an `SpActivationTransform`.
+"
 Class {
 	#name : #SpActivatedSelection,
 	#superclass : #Object,

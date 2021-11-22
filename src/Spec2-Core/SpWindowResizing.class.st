@@ -1,5 +1,5 @@
 "
-I am emitted when a window is resized.
+I am an announcement emitted when a window is resized.
 Collapsing and expanding a window changes the size and therefore it may 
 trigger this announcement.
 

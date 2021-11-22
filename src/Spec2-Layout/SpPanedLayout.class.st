@@ -1,7 +1,15 @@
 "
-I'm a Paned Layout.
-A paned layout is like a Box Layout (it places childen in vertical or horizontal fashion), but it will add a splitter in between, that user can drag to resize the panel.
-In exchange, a paned layout can have just two children.
+I'm a Paned Layout as if you would not how to read my name. I manage two and only two children, a first and a second one.
+
+From that perspective, a paned layout is like a `SpBoxLayout`: it places childen in vertical or horizontal fashion, but it will add a splitter in between, that user can drag to resize the panel.
+
+Nice methods to consider are:
+- `SpPanedLayout>>#addFirst:` and `SpPanedLayout>>#addFirst:` to add my two children.
+- `SpPanedLayout>>#positionOfSlider:`. It controls the position of the slider. 
+-- `aNumber` can be a fixed number indicating the exact position where the slider will be placed in the pane.
+-- `aFloat or percent` can also be a fraction or a percentage, indicating the percentage position 
+	 of the slider. e.g. `30 percent` or (0.3) indicates the slider will be place at 1/3 of the 
+	 panel.""
 "
 Class {
 	#name : #SpPanedLayout,
@@ -42,8 +50,8 @@ SpPanedLayout >> add: aChild withConstraints: aBlock place: aPosition [
 	the pane.
 	For a horizontal layout, index 1 means left, index 2 means right.
 	For a vertical layout, index 1 means top, index 2 means bottom."
+	
 	| constraints |
-
 	aPosition > 2 ifTrue: [ 
 		self error: 'You can not add more than two paned presenters.' ].
 
@@ -163,11 +171,10 @@ SpPanedLayout >> positionOfSlider: aNumber [
 	"Position of the slider. 
 	 - `aNumber` can be a fixed number indicating the exact position where the slider will 
 	 be placed in the pane.
-	 - `aNumber` can also be a fraction or a percentage, indicating the percentage position 
-	 of the slider. E.g. 30 percent (0.3) indicates the slider will be place at 1/3 of the 
-	 panel."
+	 - `aFloat` can also be a fraction or a percentage, indicating the percentage position 
+	 of the slider, e.g. 30 percent (0.3) indicates the slider will be place at 1/3 of the panel."
 
-	positionOfSlider := aNumber
+  positionOfSlider := aNumber
 ]
 
 { #category : #api }
