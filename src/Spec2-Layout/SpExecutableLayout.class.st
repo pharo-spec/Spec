@@ -288,19 +288,21 @@ SpExecutableLayout >> removeBySymbol: aPresenter [
 ]
 
 { #category : #private }
-SpExecutableLayout >> resolvePresenter: presenterNameOrLayout presenter: aPresenter bindings: bindings [
+SpExecutableLayout >> resolvePresenter: aPresenterOrLayout presenter: aPresenter bindings: bindings [
 
 	"most common case: I receive a symbol that I need to convert into a presenter"
-	presenterNameOrLayout isSymbol ifTrue: [ 
-		^ (self subpresenterOrLayoutNamed: presenterNameOrLayout of: aPresenter)
-			ifNil: [ self error: 'You presenter named "', presenterNameOrLayout , '" from ', aPresenter printString ,' was not initialized.' ] ].
+	aPresenterOrLayout isSymbol ifTrue: [ 
+		^ (self subpresenterOrLayoutNamed: aPresenterOrLayout of: aPresenter)
+			ifNil: [ self error: 'You presenter named "', aPresenterOrLayout , '" from ', aPresenter printString ,' was not initialized.' ] ].
 	
 	"I receive a layout: dig inside."
-	presenterNameOrLayout isSpLayout ifTrue: [ 
-		^ presenterNameOrLayout buildAdapterFor: aPresenter bindings: bindings ].
+	aPresenterOrLayout isSpLayout ifTrue: [ 
+		^ aPresenterOrLayout 
+			buildAdapterFor: aPresenter 
+			bindings: bindings ].
 	
 	"I receive an arbitrary object (needs to understand #asPresenter)"
-	^ presenterNameOrLayout asPresenter
+	^ aPresenterOrLayout asPresenter
 		owner: aPresenter;
 		yourself
 ]

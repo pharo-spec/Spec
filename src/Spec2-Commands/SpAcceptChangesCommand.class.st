@@ -9,10 +9,16 @@ SpAcceptChangesCommand class >> defaultIconName [
 	^#smallOk 
 ]
 
-{ #category : #default }
+{ #category : #defaults }
 SpAcceptChangesCommand class >> defaultName [
 
 	^ 'Accept'
+]
+
+{ #category : #defaults }
+SpAcceptChangesCommand class >> defaultShortcutKey [
+
+	^ $s command mac | $s ctrl win | $s ctrl unix
 ]
 
 { #category : #execution }

@@ -9,3 +9,9 @@ SpToggleButtonPresenter class >> example [
 		whenDeactivatedDo: [ UIManager default defer: [ self inform: 'Deactivated' ] ];
 		openWithSpec
 ]
+
+{ #category : #'*Spec2-Examples' }
+SpToggleButtonPresenter class >> exampleWithAssociatedButtons [
+
+	^ SpToggleButtonExample new openWithSpec
+]

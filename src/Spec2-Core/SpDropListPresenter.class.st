@@ -108,6 +108,7 @@ SpDropListPresenter >> dropListItems: dropListItems [
 SpDropListPresenter >> emptyList [
 	"Empty the list of elements used to populate the drop down list."
 	
+	self resetSelection.
 	model collection: OrderedCollection new.
 
 ]
@@ -179,6 +180,11 @@ SpDropListPresenter >> items: aList [
 	"`aList` is a list of domain specific objects. If you want to specify more precisely the item actions, see `SpDropListPresenter>>#addItemLabeled:do:`"
 	| dropListItems |
 
+	"This is a guard, because I need to reset the selection *before* the list is set"
+	(aList isEmpty 
+		or: [ aList size < self selectedIndex ]) 
+		ifTrue: [ self resetSelection ].
+	
 	dropListItems := aList collect: [ :each | SpDropListItem on: each do: [ ] ].
 	model collection: dropListItems.
 	(dropListItems isNotEmpty

@@ -427,12 +427,12 @@ SpAbstractMorphicAdapter >> keyEvent: type code: keyCode shift: shiftBoolean met
 	modifiers := 0.
 	shiftBoolean ifTrue: [ modifiers := modifiers | 8 ].
 	metaBoolean ifTrue: [ modifiers := modifiers |
-		(Smalltalk os isWin32 | Smalltalk os isUnix
+		(Smalltalk os isWindows | Smalltalk os isUnix
 			ifTrue: [ 2r00010000 ]
 			ifFalse: [ 2r01000000 ]) ].
 	controlBoolean ifTrue: [ modifiers := modifiers | 2r00010000 ].
 	optionBoolean ifTrue: [ modifiers := modifiers |
-		(Smalltalk os isWin32 | Smalltalk os isUnix
+		(Smalltalk os isWindows | Smalltalk os isUnix
 			ifTrue: [ 2r01000000 ]
 			ifFalse: [ 2r00100000 ]) ].
 		
@@ -606,6 +606,17 @@ SpAbstractMorphicAdapter >> type: aString [
 			meta: false 
 			control: false 
 			option: false ]
+]
+
+{ #category : #releasing }
+SpAbstractMorphicAdapter >> unsubscribe [
+
+	super unsubscribe.
+	
+	self presenter hasAnnouncer ifFalse: [ ^ self ].
+	self presenter announcer 
+		unsubscribe: self widget;
+		unsubscribe: self
 ]
 
 { #category : #protocol }

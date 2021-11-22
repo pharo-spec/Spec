@@ -168,6 +168,12 @@ SpAbstractTextPresenter >> insertAndSelectAfterCurrentSelection: aString [
 	self selectionInterval: (selectionInterval last + 1 to: selectionInterval last + aString size)
 ]
 
+{ #category : #testing }
+SpAbstractTextPresenter >> isEditable [
+
+	^ self subclassResponsibility
+]
+
 { #category : #TOREMOVE }
 SpAbstractTextPresenter >> isForSmalltalkCode [
 
@@ -333,6 +339,18 @@ SpAbstractTextPresenter >> type: aString [
 	self text: aString
 ]
 
+{ #category : #simulating }
+SpAbstractTextPresenter >> typeByChar: aString [ 
+	"For simulation: Do as if we type the given string"
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter typeByChar: aString.
+		^ self ].
+
+	self isEditable ifFalse: [ ^ self ].
+	aString do: [ :each | 
+		self text: (self text ifNil: [ '' ]), (each asString) ]
+]
+
 { #category : #TOREMOVE }
 SpAbstractTextPresenter >> wantsVisualFeedback [
 	^ wantsVisualFeedback
@@ -381,7 +399,7 @@ SpAbstractTextPresenter >> whenResetDo: aBlock [
 	 It will react when user presses <meta+l> key (this is for historical reasons)."
 
 	self 
-		bindKeyCombination: $l meta 
+		bindKeyCombination: SpCancelChangesCommand defaultShortcutKey
 		toAction: aBlock
 ]
 

@@ -112,7 +112,9 @@ SpPresenter class >> currentApplication [
 { #category : #specs }
 SpPresenter class >> defaultSpec [
 
-	^ self subclassResponsibility
+	"Override to initialize the layout in a non-dynamic way"
+
+	^ nil
 ]
 
 { #category : #accessing }
@@ -218,11 +220,6 @@ SpPresenter >> addAll: aWindow withSpecLayout: aSpec [
 	aWindow
 		addMorph: (self buildWithSpecLayout: aSpec)
 		frame: (0@0 corner: 1@1).
-]
-
-{ #category : #TOREMOVE }
-SpPresenter >> addMenuItemsToWindowMenu: aMenu [
-	"Do nothing"
 ]
 
 { #category : #api }
@@ -469,23 +466,6 @@ SpPresenter >> focusOrder [
 { #category : #accessing }
 SpPresenter >> focusOrder: anObject [
 	^ focusOrder := anObject
-]
-
-{ #category : #'inspector-extensions' }
-SpPresenter >> gtInspectorPreviewIn: composite [
-	<gtInspectorPresentationOrder: 30>
-	self adapter ifNotNil: [ :w | w gtInspectorPreviewIn: composite ]
-]
-
-{ #category : #'inspector-extensions' }
-SpPresenter >> gtInspectorSubPresentersIn: composite [
-	<gtInspectorPresentationOrder: 20>
-	composite tree
-		title: 'Sub presenters';
-		rootsExpanded;
-		display: [ :each | {each} ];
-		children: [ :each | each presenters ];
-		when: [ :each | each presenters isNotEmpty ]
 ]
 
 { #category : #'api - focus' }
@@ -916,6 +896,10 @@ SpPresenter >> traversePresentersDo: aBlock excluding: excludes [
 
 { #category : #updating }
 SpPresenter >> update [
+
+	"self deprecated: 'This method is a remaining from ancient times and should not be used, 
+	while it works on morphic backend in certain cases, it will not translate correctly and 
+	it will cause memory leaks'.  "
 	self needRebuild: false.
 	self buildWithSpec
 ]

@@ -243,7 +243,18 @@ SpMorphicBaseTextAdapter >> selectionInterval [
 SpMorphicBaseTextAdapter >> selectionInterval: anInterval [
 
 	self widgetDo: [ :w | 
-		w textArea editor selectFrom: anInterval first to: anInterval last ]
+		self selectionInterval: anInterval on: w ]
+]
+
+{ #category : #private }
+SpMorphicBaseTextAdapter >> selectionInterval: anInterval on: aWidget [
+	| interval |
+		
+	interval := anInterval ifNil: [ 1 to: 0 ].
+
+	aWidget textArea editor 
+		selectFrom: interval first 
+		to: interval last
 ]
 
 { #category : #private }
@@ -290,10 +301,22 @@ SpMorphicBaseTextAdapter >> showContextMenu [
 				in: self currentWorld ] ]
 ]
 
-{ #category : #'accessing - structure variables' }
+{ #category : #emulating }
 SpMorphicBaseTextAdapter >> type: aString [
 
 	self widget setText: aString
+]
+
+{ #category : #emulating }
+SpMorphicBaseTextAdapter >> typeByChar: aString [
+
+	aString do: [ :each | 
+		self 
+			keyPressed: each 
+			shift: each isUppercase
+			meta: false 
+			control: false 
+			option: false ]
 ]
 
 { #category : #'widget API' }

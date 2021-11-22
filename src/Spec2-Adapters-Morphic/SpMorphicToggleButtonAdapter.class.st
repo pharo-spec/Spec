@@ -4,19 +4,22 @@ I'm the adapter used to bridge a ToggleButton and its morphic representation.
 Class {
 	#name : #SpMorphicToggleButtonAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
+	#instVars : [
+		'styleName'
+	],
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
 { #category : #factory }
 SpMorphicToggleButtonAdapter >> buildWidget [
-
 	| checkButton |
+
 	checkButton := PluggableToggleButtonMorph
-		               on: self
-		               getState: #state
-		               action: #toggleAction:
-		               label: #label
-		               menu: nil.
+		on: self
+		getState: #state
+		action: #toggleAction:
+		label: #label
+ 		menu: nil.
 
 	checkButton
 		icon: self icon;
@@ -30,12 +33,23 @@ SpMorphicToggleButtonAdapter >> buildWidget [
 
 	self presenter whenLabelChangedDo: [ :newLabel | 
 		checkButton label: (newLabel ifNotNil: [ :aString | 
-				 aString localizedForPresenter: self presenter ]) ].
+			aString localizedForPresenter: self presenter ]) ].
 	self presenter whenIconChangedDo: [ checkButton icon: self icon ].
-	self presenter whenChangedDo: [ 
-		checkButton pressed: self model state ].
+	self presenter whenChangedDo: [ self buttonChanged ].
 
 	^ checkButton
+]
+
+{ #category : #private }
+SpMorphicToggleButtonAdapter >> buttonChanged [
+	| state associated |
+	
+	state := self state.
+	associated := self presenter associatedToggleButtons.	
+	state ifTrue: [ 
+		associated do: [ :each | each state: false ] ].
+	
+	widget pressed: state
 ]
 
 { #category : #emulating }
@@ -85,6 +99,18 @@ SpMorphicToggleButtonAdapter >> state [
 SpMorphicToggleButtonAdapter >> state: aBoolean [
 	
 	^ self presenter state: aBoolean
+]
+
+{ #category : #accessing }
+SpMorphicToggleButtonAdapter >> styleName [
+
+	^ styleName ifNil: [ super styleName ]
+]
+
+{ #category : #accessing }
+SpMorphicToggleButtonAdapter >> styleName: aString [ 
+
+	styleName := aString
 ]
 
 { #category : #events }

@@ -61,6 +61,15 @@ SpPanedLayoutTest >> testRemoveSecondElementFromLayoutTakesItOut [
 ]
 
 { #category : #running }
+SpPanedLayoutTest >> testReplaceFirst [
+	| replacement |
+
+	layout addFirst: SpButtonPresenter new.
+	layout replaceFirst: (replacement := SpButtonPresenter new).
+	self assert: layout children first equals: replacement
+]
+
+{ #category : #running }
 SpPanedLayoutTest >> testReplaceFirstElementKeepsSingleElement [
 
 	| replacement |
@@ -71,11 +80,21 @@ SpPanedLayoutTest >> testReplaceFirstElementKeepsSingleElement [
 
 { #category : #running }
 SpPanedLayoutTest >> testReplaceFirstElementReplacesIt [
-
 	| replacement |
+
 	layout addFirst: SpButtonPresenter new.
 	layout addFirst: (replacement := SpButtonPresenter new).
 	self assert: layout children first equals: replacement
+]
+
+{ #category : #running }
+SpPanedLayoutTest >> testReplaceSecond [
+	| replacement |
+
+	layout addFirst: SpButtonPresenter new.
+	layout addSecond: SpButtonPresenter new.
+	layout replaceSecond: (replacement := SpButtonPresenter new).
+	self assert: layout children second equals: replacement
 ]
 
 { #category : #running }

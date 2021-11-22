@@ -20,7 +20,7 @@ Class {
 { #category : #'instance creation' }
 SpPresenterBuilder >> instantiate: aPresenterClass [
 	"Instantiate a SpPresenter subclass and set its instance owner"
-
+	
 	^ aPresenterClass new
 ]
 

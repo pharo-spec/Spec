@@ -64,3 +64,20 @@ SpTreePresenter class >> exampleWithContextMenu [
 					addItem: [ :item | item name: tree selectedItem asString ] ] ];
 		openWithSpec
 ]
+
+{ #category : #'*Spec2-Examples' }
+SpTreePresenter class >> exampleWithDecoratedString [
+	
+	^ self new
+		displayIcon: [ :aClass | aClass systemIcon ];
+		displayColor: [ :aClass | 
+			(aClass name endsWith: 'Test')
+				ifTrue: [ Color green ]
+				ifFalse: [ Smalltalk ui theme textColor ] ];
+		displayItalic: [ :aClass | aClass name includesSubstring: 'abstract' caseSensitive: false ];
+		displayBold: [ :aClass | aClass hasSubclasses ];
+		displayUnderline: [ :aClass | aClass numberOfMethods > 10 ];
+		roots: { Object };
+		children: [ :aClass | aClass subclasses ];
+		openWithSpec
+]

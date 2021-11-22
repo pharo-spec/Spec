@@ -36,6 +36,7 @@ SpToolbarToggleButtonMorph >> badgeTextColor [
 
 { #category : #configuring }
 SpToolbarToggleButtonMorph >> configureWith: displayModel item: itemPresenter [
+	
 	displayModel configureButton: self item: itemPresenter
 ]
 

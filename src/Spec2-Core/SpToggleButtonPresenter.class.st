@@ -7,6 +7,7 @@ Class {
 	#name : #SpToggleButtonPresenter,
 	#superclass : #SpAbstractFormButtonPresenter,
 	#instVars : [
+		'#associatedToggleButtons',
 		'#action => ObservableSlot',
 		'#icon => ObservableSlot'
 	],
@@ -45,6 +46,35 @@ SpToggleButtonPresenter >> action: aBlock [
 	 `aBlock` receives zero arguments."
 	
 	action := aBlock
+]
+
+{ #category : #api }
+SpToggleButtonPresenter >> associatedToggleButtons [
+
+	^ associatedToggleButtons ifNil: [ #() ]
+]
+
+{ #category : #api }
+SpToggleButtonPresenter >> associatedToggleButtons: aCollection [ 
+	"Set the list of toggle buttons associated with this one.
+	 By using this, you will be grouping together this toggle button along with the ones contained 
+	 in `aCollection`.
+	 You should NOT send this message to all associated toggle buttons, the first of them is enough."
+	| allElements |
+	
+	"pass group to all members"	
+	allElements := { self }, aCollection.
+	allElements do: [ :each | 
+		each basicAssociatedToggleButtons: allElements ].
+	
+	"self state: true."
+	aCollection do: [ :each | each state: false ]
+]
+
+{ #category : #private }
+SpToggleButtonPresenter >> basicAssociatedToggleButtons: aCollection [ 
+	
+	associatedToggleButtons := aCollection copyWithout: self
 ]
 
 { #category : #api }

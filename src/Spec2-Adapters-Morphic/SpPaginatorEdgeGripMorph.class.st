@@ -50,7 +50,7 @@ SpPaginatorEdgeGripMorph >> mouseMove: anEvent [
 	
 	lastMouse at: 1 put: anEvent cursorPoint.
 	self targetPoint: lastMouse first - lastMouse last.
-	self positionPoint: (lastMouse first - lastMouse second)
+	self positionPoint: (lastMouse first - lastMouse second).
 ]
 
 { #category : #'event handling' }

@@ -40,6 +40,9 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		maxLength: self presenter maxLength;
 		yourself.
 
+	self presenter selectionInterval 
+		ifNotNil: [  :anInterval | self selectionInterval: anInterval on: newWidget ].
+
 	self presenter whenTextChangedDo: [ :text | newWidget setText: text ].
 	self presenter whenSelectionChangedDo: [ :selectionInterval | 
 		self selectionInterval: selectionInterval ].
@@ -50,6 +53,7 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		newWidget encrypted: isPassword ].
 	self presenter whenMaxLengthChangedDo: [ :length | 
 		newWidget maxLength: length ].
+	self setEditable: self presenter isEditable to: newWidget. 
 	self presenter whenEditableChangedDo: [ :value | 
 		self setEditable: value to: newWidget ].
 

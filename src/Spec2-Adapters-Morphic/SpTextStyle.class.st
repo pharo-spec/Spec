@@ -10,6 +10,12 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-StyleSheet'
 }
 
+{ #category : #'ston-core' }
+SpTextStyle class >> stonName [
+	
+	^ 'Text'
+]
+
 { #category : #operations }
 SpTextStyle >> applyTo: aMorph [
 

@@ -14,15 +14,12 @@ SpStringTableColumn
 Class {
 	#name : #SpStringTableColumn,
 	#superclass : #SpTableColumn,
+	#traits : 'SpTDecoratedColumn',
+	#classTraits : 'SpTDecoratedColumn classTrait',
 	#instVars : [
 		'editable',
 		'acceptAction',
-		'sortable',
-		'colorAction',
-		'backgroundColorAction',
-		'italicAction',
-		'boldAction',
-		'underlineAction'
+		'sortable'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
@@ -82,77 +79,6 @@ SpStringTableColumn >> compareFunction: aBlock [
 			ifFalse:[ 1 ] ] 
 		asSortFunction .
 	self isSortable: true
-]
-
-{ #category : #api }
-SpStringTableColumn >> displayBackgroundColor [
-
-	^ backgroundColorAction
-]
-
-{ #category : #api }
-SpStringTableColumn >> displayBackgroundColor: aBlock [
-	"Changes the background color of cells of the column. 
-	 `aBlock` receives an argument (the model element) and should answer an instance of Color. 
-	 NOTE: This may be not working at the moment :("
-
-	backgroundColorAction := aBlock
-]
-
-{ #category : #api }
-SpStringTableColumn >> displayBold [
-
-	^ boldAction
-]
-
-{ #category : #api }
-SpStringTableColumn >> displayBold: aBlock [
-	"If `aBlock` answer true, the cell will be displayed in bold.
-	 `aBlock` receives one argument (the model element)."
-
-	boldAction := aBlock
-]
-
-{ #category : #api }
-SpStringTableColumn >> displayColor [
-
-	^ colorAction
-]
-
-{ #category : #api }
-SpStringTableColumn >> displayColor: aBlock [
-	"Changes the background color of cells of the column. 
-	 `aBlock` receives an argument (the model element) and should answer an instance of Color."
-
-	colorAction := aBlock
-]
-
-{ #category : #api }
-SpStringTableColumn >> displayItalic [
-
-	^ italicAction
-]
-
-{ #category : #api }
-SpStringTableColumn >> displayItalic: aBlock [
-	"If `aBlock` answer true, the cell will be displayed in italic.
-	 `aBlock` receives one argument (the model element)."
-
-	italicAction := aBlock
-]
-
-{ #category : #api }
-SpStringTableColumn >> displayUnderline [
-
-	^ underlineAction
-]
-
-{ #category : #api }
-SpStringTableColumn >> displayUnderline: aBlock [
-	"If `aBlock` answer true, the cell will be displayed underlined.
-	 `aBlock` receives one argument (the model element)."
-
-	underlineAction := aBlock
 ]
 
 { #category : #initialization }

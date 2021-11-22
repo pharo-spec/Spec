@@ -41,9 +41,9 @@ SpNotebookPresenter >> addPageTitle: aString provider: aBlock [
 
 { #category : #initialization }
 SpNotebookPresenter >> initialize [
+
 	super initialize.
 	pagesHolder := OrderedCollection new asValueHolder.
-
 	pagesHolder whenChangedDo: [ self pagesChanged ]
 ]
 
@@ -85,7 +85,8 @@ SpNotebookPresenter >> pagesChanged [
 { #category : #api }
 SpNotebookPresenter >> removeAll [
 	"Remove all pages in notebook"
-
+	
+	selectedPage := nil.
 	pagesHolder removeAll
 ]
 
@@ -158,7 +159,8 @@ SpNotebookPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 { #category : #private }
 SpNotebookPresenter >> updatePageContent: aPage [
 
-	self changed: #updatePageContent: with: { aPage }
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter updatePageContent: aPage ]
 ]
 
 { #category : #'api - events' }

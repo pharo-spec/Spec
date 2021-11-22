@@ -73,6 +73,22 @@ SpFTTableMorph >> initializeKeyBindings [
 		toAction: [ self selectAll ]
 ]
 
+{ #category : #accessing }
+SpFTTableMorph >> minHeight [
+	"answer the receiver's minHeight"
+	^ self
+		valueOfProperty: #minHeight
+		ifAbsent: [ self class defaultRowHeight ceiling ]
+]
+
+{ #category : #accessing }
+SpFTTableMorph >> minWidth [
+	"answer the receiver's minHeight"
+	^ self
+		valueOfProperty: #minWidth
+		ifAbsent: [ 100 ]
+]
+
 { #category : #'drag and drop' }
 SpFTTableMorph >> wantsDroppedMorph: aTransferMorph event: anEvent [
 

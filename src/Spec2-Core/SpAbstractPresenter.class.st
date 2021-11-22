@@ -264,6 +264,12 @@ SpAbstractPresenter >> hasAdapter [
 ]
 
 { #category : #testing }
+SpAbstractPresenter >> hasAnnouncer [
+
+	^ announcer notNil
+]
+
+{ #category : #testing }
 SpAbstractPresenter >> hasEventHandler [
 
 	^ eventHandler notNil and: [ eventHandler hasEvents ]

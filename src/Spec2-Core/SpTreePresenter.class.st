@@ -8,6 +8,8 @@ A `SpTreePresenter` can be seen as a simplified `SpTreeTablePresenter`.
 Class {
 	#name : #SpTreePresenter,
 	#superclass : #SpAbstractTreePresenter,
+	#traits : 'SpTDecoratedColumn',
+	#classTraits : 'SpTDecoratedColumn classTrait',
 	#instVars : [
 		'#showColumnHeaders => ObservableSlot',
 		'#isResizable => ObservableSlot',

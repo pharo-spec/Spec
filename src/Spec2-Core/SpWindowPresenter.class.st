@@ -83,17 +83,6 @@ SpWindowPresenter >> aboutTitle [
 	^ self presenter toolName
 ]
 
-{ #category : #TOREMOVE }
-SpWindowPresenter >> addMenuItemsToWindowMenu: aMenu [
-
-	self presenter addMenuItemsToWindowMenu: aMenu
-]
-
-{ #category : #TOREMOVE }
-SpWindowPresenter >> addModelItemsToWindowMenu: aMenu [
-	self presenter addModelItemsToWindowMenu: aMenu
-]
-
 { #category : #'private - building' }
 SpWindowPresenter >> addPresenterIn: widget withSpecLayout: aSpec [
 	
@@ -213,12 +202,6 @@ SpWindowPresenter >> delete [
 	 I'm keeping this here because of testing."
 
 	self withAdapterDo: [ :anAdapter | anAdapter delete ]
-]
-
-{ #category : #TOREMOVE }
-SpWindowPresenter >> giveFocusToNextFrom: aModel [ 
-
-	^ self presenter giveFocusToNextFrom: aModel
 ]
 
 { #category : #testing }
@@ -491,7 +474,8 @@ SpWindowPresenter >> presenter: aPresenter [
 { #category : #'private - building' }
 SpWindowPresenter >> rebuildWithSpecLayout: aSpec [
 
-	self changed: #rebuildWithSpecLayout: with: { aSpec }
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter rebuildWithSpecLayout: aSpec ]
 ]
 
 { #category : #private }
@@ -710,9 +694,15 @@ SpWindowPresenter >> windowIsClosing [
 ]
 
 { #category : #updating }
-SpWindowPresenter >> windowIsOpening [
+SpWindowPresenter >> windowIsOpened [
 
 	isClosed := false
+]
+
+{ #category : #TOREMOVE }
+SpWindowPresenter >> windowIsOpening [
+
+	self windowIsOpened
 ]
 
 { #category : #api }

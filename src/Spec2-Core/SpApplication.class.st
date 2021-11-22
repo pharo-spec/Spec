@@ -117,7 +117,10 @@ SpApplication >> backend [
 { #category : #showing }
 SpApplication >> close [
 	
-	self windows copy do: [ :each | each close ]
+	self 
+		deprecated: 'Use #closeAllWindows instead' 
+		transformWith: '`@receiver close' -> '`@receiver closeAllWindows'.
+	self closeAllWindows
 ]
 
 { #category : #accessing }

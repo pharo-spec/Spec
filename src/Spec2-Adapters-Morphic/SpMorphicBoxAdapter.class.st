@@ -9,8 +9,18 @@ Class {
 		'startPanel',
 		'endPanel'
 	],
+	#classVars : [
+		'Experimental'
+	],
 	#category : #'Spec2-Adapters-Morphic-Layout'
 }
+
+{ #category : #'as yet unclassified' }
+SpMorphicBoxAdapter class >> useExperimentalWhile: aBlock [
+
+	Experimental := true.
+	aBlock ensure: [ Experimental := false ]
+]
 
 { #category : #factory }
 SpMorphicBoxAdapter >> add: aPresenter [
@@ -18,13 +28,17 @@ SpMorphicBoxAdapter >> add: aPresenter [
 	self add: aPresenter constraints: SpBoxConstraints new
 ]
 
+{ #category : #adding }
+SpMorphicBoxAdapter >> add: aPresenter constraints: constraints [
+
+	super add: aPresenter constraints: constraints
+]
+
 { #category : #private }
 SpMorphicBoxAdapter >> addConstraints: constraints toChild: childMorph [
 	"Adds constraits by child"
 	| theMorph |
 	
-	layout isHomogeneous 
-		ifTrue: [ self addHomogeneousToMorph: childMorph ].
 	theMorph := self addPadding: constraints padding toMorph: childMorph.
 	constraints isExpand 
 		ifTrue: [ 
@@ -48,23 +62,6 @@ SpMorphicBoxAdapter >> addConstraints: constraints toChild: childMorph [
 			constraints height ifNotNil: [ :h | theMorph height: h ] ].
 	
 	^ theMorph 
-]
-
-{ #category : #private }
-SpMorphicBoxAdapter >> addHomogeneousToMorph: aMorph [
-	
-	^ layout direction addHomogeneousToMorph: aMorph into: self
-]
-
-{ #category : #private }
-SpMorphicBoxAdapter >> addHorizontalHomogeneousToMorph: aMorph [
-	| size |
-	
-	self children ifEmpty: [ ^ self ].
-	size := (widget width - (layout borderWidth * 2) - (layout spacing * (self children size - 1))) // self children size.
-	aMorph 
-		width: size;
-		minWidth: size
 ]
 
 { #category : #private }
@@ -94,17 +91,6 @@ SpMorphicBoxAdapter >> addPadding: aNumber toMorph: aMorph [
 		addPadding: aNumber 
 		toMorph: aMorph
 		into: self
-]
-
-{ #category : #private }
-SpMorphicBoxAdapter >> addVerticalHomogeneousToMorph: aMorph [
-	| size |
-
-	self children ifEmpty: [ ^ self ].
-
-	size := (widget height - (layout borderWidth * 2) - (layout spacing * (self children size - 1))) // self children size.
-	aMorph height: size.
-	aMorph vResizing: #spaceFill.
 ]
 
 { #category : #private }
@@ -217,7 +203,7 @@ SpMorphicBoxAdapter >> layout: aLayout [
 { #category : #factory }
 SpMorphicBoxAdapter >> newHorizontal [
 
-	^ self newPanel
+	^ (self newPanelWith: self newPanelLayout)
 		listDirection: #leftToRight;
 		addMorphBack: ((startPanel := self newPanel)
 			listDirection: #leftToRight;
@@ -231,9 +217,17 @@ SpMorphicBoxAdapter >> newHorizontal [
 ]
 
 { #category : #factory }
+SpMorphicBoxAdapter >> newPanelLayout [
+
+	^ SpMorphicTableLayout new
+		specLayout: layout;
+		yourself
+]
+
+{ #category : #factory }
 SpMorphicBoxAdapter >> newVertical [
 
-	^ self newPanel
+	^ (self newPanelWith: self newPanelLayout)
 		listDirection: #topToBottom;
 		addMorphBack: ((startPanel := self newPanel)
 			listDirection: #topToBottom;
@@ -246,7 +240,7 @@ SpMorphicBoxAdapter >> newVertical [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : #factory }
 SpMorphicBoxAdapter >> newWrapMorph [
 
 	^ Morph new
@@ -292,7 +286,8 @@ SpMorphicBoxAdapter >> replace: aPresenter with: otherPresenter [
 	
 	newMorph := self 
 		buildMorph: otherPresenter 
-		constraints: (layout constraintsFor: otherPresenter).	
+		constraints: (layout constraintsFor: otherPresenter).
+
 	panel replaceSubmorph: oldMorph by: newMorph
 ]
 
@@ -305,7 +300,10 @@ SpMorphicBoxAdapter >> replace: aPresenter with: otherPresenter withConstraints:
 		ifTrue: [ startPanel ] 
 		ifFalse: [ endPanel ].
 	
-	newMorph := self buildMorph: otherPresenter constraints: constraints.
+	newMorph := self 
+		buildMorph: otherPresenter 
+		constraints: constraints.
+
 	panel replaceSubmorph: oldMorph by: newMorph
 ]
 

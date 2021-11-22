@@ -15,7 +15,7 @@ SpMorphPort class >> portName [
 ]
 
 { #category : #'handling transmission' }
-SpMorphPort >> incomingTransmission: anObject from: aTransmission [
+SpMorphPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
 
-	self destinationPresenter morph: anObject
+	aPresenter morph: anObject
 ]

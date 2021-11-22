@@ -21,14 +21,9 @@ SpMorphicWindowAdapter >> addFocusRotationKeyBindings [
 	 the event)"
 ]
 
-{ #category : #'widget API' }
-SpMorphicWindowAdapter >> addModelItemsToWindowMenu: aMenu [
-
-	self model addMenuItemsToWindowMenu: aMenu
-]
-
 { #category : #protocol }
 SpMorphicWindowAdapter >> addPresenterIn: aWindow withSpecLayout: aSpec [
+	| contentWidget |
 
 	self presenter initialPosition 
 		ifNotNil: [ :position | aWindow position: position ].
@@ -40,9 +35,11 @@ SpMorphicWindowAdapter >> addPresenterIn: aWindow withSpecLayout: aSpec [
 		aBoolean 
 			ifTrue: [ aWindow initializeLabelArea ]
 			ifFalse: [ aWindow removeLabelArea ] ].
-	
+
+	contentWidget := self presenter presenter buildWithSpecLayout: aSpec.	
+	self presenter presenter adapter applyStyle.
 	self 
-		addContent: (self presenter presenter buildWithSpecLayout: aSpec) 
+		addContent: contentWidget 
 		toWindow: aWindow
 ]
 
@@ -204,7 +201,7 @@ SpMorphicWindowAdapter >> open [
 	self presenter isCentered 
 		ifTrue: [ self centered ].
 	self presenter presenter takeKeyboardFocus.
-	self windowIsOpening
+	self windowIsOpened
 ]
 
 { #category : #protocol }
@@ -267,7 +264,7 @@ SpMorphicWindowAdapter >> windowIsClosing [
 ]
 
 { #category : #updating }
-SpMorphicWindowAdapter >> windowIsOpening [
+SpMorphicWindowAdapter >> windowIsOpened [
 
-	self presenter windowIsOpening
+	self presenter windowIsOpened
 ]

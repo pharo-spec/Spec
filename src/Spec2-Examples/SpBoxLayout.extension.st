@@ -84,3 +84,109 @@ SpBoxLayout class >> exampleExpand [
 		yourself).
 	presenter openWithSpec
 ]
+
+{ #category : #'*Spec2-Examples' }
+SpBoxLayout class >> exampleHAlignCenter [
+	| presenter |
+
+	presenter := SpPresenter new.
+	presenter layout: (self newTopToBottom
+		hAlignCenter;
+		add: (presenter newButton
+			icon: (presenter application iconNamed: #smallOk);
+			label: 'Press me!';
+			action: [ presenter application inform: 'Pressed!' ]) 
+		yourself).
+	presenter openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
+SpBoxLayout class >> exampleHAlignEnd [
+	| presenter |
+
+	presenter := SpPresenter new.
+	presenter layout: (self newTopToBottom
+		hAlignEnd;
+		add: (presenter newButton
+			icon: (presenter application iconNamed: #smallOk);
+			label: 'Press me!';
+			action: [ presenter application inform: 'Pressed!' ]) 
+		yourself).
+	presenter openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
+SpBoxLayout class >> exampleHAlignStart [
+	| presenter |
+
+	presenter := SpPresenter new.
+	presenter layout: (self newTopToBottom
+		hAlignStart;
+		add: (presenter newButton
+			icon: (presenter application iconNamed: #smallOk);
+			label: 'Press me!';
+			action: [ presenter application inform: 'Pressed!' ]) 
+		yourself).
+	presenter openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
+SpBoxLayout class >> exampleVAlignAndHAlign [
+	| presenter |
+
+	presenter := SpPresenter new.
+	presenter layout: (self newTopToBottom
+		vAlignCenter;
+		hAlignCenter;
+		add: (presenter newButton
+			icon: (presenter application iconNamed: #smallOk);
+			label: 'Press me!';
+			action: [ presenter application inform: 'Pressed!' ]) 
+		yourself).
+	presenter openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
+SpBoxLayout class >> exampleVAlignCenter [
+	| presenter |
+
+	presenter := SpPresenter new.
+	presenter layout: (self newTopToBottom
+		vAlignCenter;
+		add: (presenter newButton
+			icon: (presenter application iconNamed: #smallOk);
+			label: 'Press me!';
+			action: [ presenter application inform: 'Pressed!' ]) 
+		yourself).
+	presenter openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
+SpBoxLayout class >> exampleVAlignEnd [
+	| presenter |
+
+	presenter := SpPresenter new.
+	presenter layout: (self newTopToBottom
+		vAlignEnd;
+		add: (presenter newButton
+			icon: (presenter application iconNamed: #smallOk);
+			label: 'Press me!';
+			action: [ presenter application inform: 'Pressed!' ]) 
+		yourself).
+	presenter openWithSpec
+]
+
+{ #category : #'*Spec2-Examples' }
+SpBoxLayout class >> exampleVAlignStart [
+	| presenter |
+
+	presenter := SpPresenter new.
+	presenter layout: (self newTopToBottom
+		vAlignStart;
+		add: (presenter newButton
+			icon: (presenter application iconNamed: #smallOk);
+			label: 'Press me!';
+			action: [ presenter application inform: 'Pressed!' ]) 
+		yourself).
+	presenter openWithSpec
+]

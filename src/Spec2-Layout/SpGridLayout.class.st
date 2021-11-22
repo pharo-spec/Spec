@@ -98,7 +98,7 @@ SpGridLayout >> adapterName [
 	^ #GridAdapter
 ]
 
-{ #category : #adding }
+{ #category : #'api - adding' }
 SpGridLayout >> add: aName at: aPoint [
 
 	^ self 
@@ -107,7 +107,7 @@ SpGridLayout >> add: aName at: aPoint [
 		span: 1@1
 ]
 
-{ #category : #adding }
+{ #category : #'api - adding' }
 SpGridLayout >> add: aName at: aPoint span: spanPoint [
 
 	childrenByPosition at: aPoint ifPresent: [ :e |
@@ -122,7 +122,7 @@ SpGridLayout >> add: aName at: aPoint span: spanPoint [
 				span: spanPoint ]
 ]
 
-{ #category : #adding }
+{ #category : #'api - adding' }
 SpGridLayout >> add: aChild withConstraints: aBlock [
 
 	super add: aChild withConstraints: aBlock.
@@ -130,48 +130,48 @@ SpGridLayout >> add: aChild withConstraints: aBlock [
 	self announceChildAdded: aChild.
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpGridLayout >> beColumnHomogeneous [
 
 	self columnHomogeneous: true
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpGridLayout >> beColumnNotHomogeneous [
 
 	self columnHomogeneous: false
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpGridLayout >> beRowHomogeneous [
 
 	self rowHomogeneous: true
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpGridLayout >> beRowNotHomogeneous [
 
 	self rowHomogeneous: false
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpGridLayout >> borderWidth [
 
 	^ borderWidth ifNil: [ self class defaultBorderWidth ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpGridLayout >> borderWidth: anObject [
 	borderWidth := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpGridLayout >> children [
 
 	^ children
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpGridLayout >> column: aNumber withConstraints: aBlock [
 	| constraints |
 
@@ -182,7 +182,7 @@ SpGridLayout >> column: aNumber withConstraints: aBlock [
 		put: constraints
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpGridLayout >> columnConstraintsAt: columnNumber [
 
 	^ columnConstraints 
@@ -195,13 +195,13 @@ SpGridLayout >> columnHomogeneous: anObject [
 	columnHomogeneous := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpGridLayout >> columnSpacing [
 
 	^ columnSpacing ifNil: [ self class defaultColumnSpacing ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpGridLayout >> columnSpacing: anObject [
 	columnSpacing := anObject
 ]
@@ -233,7 +233,16 @@ SpGridLayout >> isRowHomogeneous [
 	^ rowHomogeneous
 ]
 
-{ #category : #accessing }
+{ #category : #'api - adding' }
+SpGridLayout >> replaceAt: aPoint with: aPresenter [
+	"This is just a synonym of SpGridLayout>>#add:at:, added for clarity"
+	
+	^ self 
+		add: aPresenter
+		at: aPoint
+]
+
+{ #category : #api }
 SpGridLayout >> row: aNumber withConstraints: aBlock [
 	| constraints |
 
@@ -244,7 +253,7 @@ SpGridLayout >> row: aNumber withConstraints: aBlock [
 		put: constraints
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpGridLayout >> rowConstraintsAt: rowNumber [
 
 	^ rowConstraints 
@@ -257,13 +266,13 @@ SpGridLayout >> rowHomogeneous: anObject [
 	rowHomogeneous := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpGridLayout >> rowSpacing [
 
 	^ rowSpacing ifNil: [ self class defaultRowSpacing ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 SpGridLayout >> rowSpacing: anObject [
 	rowSpacing := anObject
 ]

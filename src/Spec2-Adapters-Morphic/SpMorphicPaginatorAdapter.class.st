@@ -1,28 +1,10 @@
 Class {
 	#name : #SpMorphicPaginatorAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
-	#instVars : [
-		'backendUpdating'
-	],
+	#traits : 'SpTBackendUpdating',
+	#classTraits : 'SpTBackendUpdating classTrait',
 	#category : #'Spec2-Adapters-Morphic-Paginator'
 }
-
-{ #category : #private }
-SpMorphicPaginatorAdapter >> backendDetectCyclesDo: aBlock [ 
-
-	self isBackendUpdating ifTrue: [ ^ self ].
-	^ aBlock value
-]
-
-{ #category : #private }
-SpMorphicPaginatorAdapter >> backendUpdatingDo: aBlock [ 
-	| oldStatus |
-
-	oldStatus := backendUpdating.
-	backendUpdating := true.
-	aBlock ensure: [ 
-		backendUpdating := oldStatus ]
-]
 
 { #category : #factory }
 SpMorphicPaginatorAdapter >> buildWidget [
@@ -66,13 +48,7 @@ SpMorphicPaginatorAdapter >> buildWidget [
 SpMorphicPaginatorAdapter >> initialize [
 
 	super initialize.
-	backendUpdating := false
-]
-
-{ #category : #private }
-SpMorphicPaginatorAdapter >> isBackendUpdating [
-
-	^ backendUpdating
+	self initializeTBackendUpdating
 ]
 
 { #category : #paginator }

@@ -25,6 +25,53 @@ SpDropListPresenterTest >> testDisableSelectionDuring [
 ]
 
 { #category : #tests }
+SpDropListPresenterTest >> testEmptyList [
+	| changed |
+
+	changed := false.
+	presenter items: #($a $b $c).
+	presenter selectItem: $a.
+	
+	[ presenter openWithSpec ] 
+	ensure: [ presenter withWindowDo: #close ].
+	presenter emptyList.
+	
+	self assert: presenter items isEmpty.
+	self assert: presenter selectedIndex equals: 0	
+]
+
+{ #category : #tests }
+SpDropListPresenterTest >> testSetItemsWithCollectionSmallerThanSelection [
+	| changed |
+
+	changed := false.
+	presenter items: #($a $b $c).
+	presenter selectItem: $c.
+	
+	[ presenter openWithSpec ] 
+	ensure: [ presenter withWindowDo: #close ].
+	presenter items: #($a).
+
+	self assert: presenter selectedIndex equals: 1
+]
+
+{ #category : #tests }
+SpDropListPresenterTest >> testSetItemsWithEmptyCollection [
+	| changed |
+
+	changed := false.
+	presenter items: #($a $b $c).
+	presenter selectItem: $a.
+	
+	[ presenter openWithSpec ] 
+	ensure: [ presenter withWindowDo: #close ].
+	presenter items: #().
+	
+	self assert: presenter items isEmpty.
+	self assert: presenter selectedIndex equals: 0
+]
+
+{ #category : #tests }
 SpDropListPresenterTest >> testSortingBlock [
 	| count |
 	count := 0.

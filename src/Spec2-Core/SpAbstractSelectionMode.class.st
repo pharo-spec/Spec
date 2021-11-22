@@ -152,6 +152,12 @@ SpAbstractSelectionMode >> selectItems: aCollection [
 ]
 
 { #category : #'api - selection' }
+SpAbstractSelectionMode >> selectedIndex [
+
+	^ self subclassResponsibility
+]
+
+{ #category : #'api - selection' }
 SpAbstractSelectionMode >> selectedIndexes [
 	"Answer a collection with indexes of all selected items."
 
