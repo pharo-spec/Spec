@@ -4,7 +4,7 @@ In addition to my superclass, I provide an API to execute the `step` method ever
 Class {
 	#name : #SpTickingWindowPresenter,
 	#superclass : #SpWindowPresenter,
-	#category : #'Spec2-Core-Support'
+	#category : #'Spec2-Core-Windows'
 }
 
 { #category : #specs }
