@@ -147,7 +147,7 @@ SpMorphicButtonAdapter >> keyStroke: anEvent fromMorph: aMorph [
 SpMorphicButtonAdapter >> label [
 	
 	^ self 
-		buildLabel: self presenter label 
+		buildLabel: (self presenter label withAccentuatedCharacter: self presenter shortcutCharacter) 
 		withIcon: self presenter icon
 ]
 
