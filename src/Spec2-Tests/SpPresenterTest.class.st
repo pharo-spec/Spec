@@ -48,8 +48,8 @@ SpPresenterTest >> testAsWindow [
 		equals: presenter application defaultWindowPresenterClass
 ]
 
-{ #category : #tests }
-SpPresenterTest >> testLayoutIsClassDefaultSpecIfNoDefaultLayoutDefined [
+{ #category : #'tests - layout' }
+SpPresenterTest >> testLayoutIsClassDefaultSpecWhenNoDefaultLayoutDefined [
 	| presenterClass |
 	
 	presenterClass := SpPresenter newAnonymousSubclass.
@@ -57,8 +57,36 @@ SpPresenterTest >> testLayoutIsClassDefaultSpecIfNoDefaultLayoutDefined [
 	presenter := presenterClass new.
 	
 	self 
-		assert: presenter layout
-		equals: SpBoxLayout newLeftToRight
+		assert: presenter layout class 
+		equals: SpBoxLayout
+]
+
+{ #category : #'tests - layout' }
+SpPresenterTest >> testLayoutIsDefaultLayoutWhenDefaultLayoutAndDefaultSpecDefined [
+	| presenterClass |
+	
+	presenterClass := SpPresenter newAnonymousSubclass.
+	presenterClass class compile: 'defaultSpec ^ SpBoxLayout newLeftToRight'.
+	presenterClass compile: 'defaultLayout ^ SpGridLayout new'.
+	presenter := presenterClass new.
+	
+	self 
+		assert: presenter layout class 
+		equals: SpGridLayout
+]
+
+{ #category : #'tests - layout' }
+SpPresenterTest >> testLayoutIsNotSetWhenAlreadyInitialized [
+	| presenterClass |
+	
+	presenterClass := SpPresenter newAnonymousSubclass.
+	presenterClass compile: 'defaultLayout ^ SpGridLayout new'.
+	presenterClass compile: 'initializePresenters self layout: SpBoxLayout newLeftToRight'.
+	presenter := presenterClass new.
+	
+	self 
+		assert: presenter layout class 
+		equals: SpBoxLayout
 ]
 
 { #category : #tests }

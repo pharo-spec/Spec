@@ -125,6 +125,17 @@ SpChooserPresenter >> defaultChosenItems: aCollection [
 	self sortLists
 ]
 
+{ #category : #initialization }
+SpChooserPresenter >> defaultLayout [
+
+	^ SpBoxLayout newLeftToRight
+			 spacing: 5;
+			 add: #sourceList;
+			 add: buttonBarLayout expand: false;
+			 add: #targetList;
+			 yourself
+]
+
 { #category : #accessing }
 SpChooserPresenter >> displayBlock: aBlock [
 
@@ -175,17 +186,6 @@ SpChooserPresenter >> initializeButtonBarLayout [
 ]
 
 { #category : #initialization }
-SpChooserPresenter >> initializeLayout [
-
-	self layout: (SpBoxLayout newLeftToRight
-			 spacing: 5;
-			 add: #sourceList;
-			 add: buttonBarLayout expand: false;
-			 add: #targetList;
-			 yourself)
-]
-
-{ #category : #initialization }
 SpChooserPresenter >> initializeLists [
 
 	sourceList := self instantiate: SpFilteringSelectableListPresenter.
@@ -198,7 +198,6 @@ SpChooserPresenter >> initializePresenters [
 
 	self initializeLists.
 	self initializeButtonBarLayout.
-	self initializeLayout
 ]
 
 { #category : #actions }

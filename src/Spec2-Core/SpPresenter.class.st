@@ -419,7 +419,7 @@ SpPresenter >> defaultKeyboardFocus [
 
 { #category : #initialization }
 SpPresenter >> defaultLayout [ 
-	^ self class defaultSpec
+	^ self defaultSpec
 ]
 
 { #category : #specs }
@@ -517,6 +517,9 @@ SpPresenter >> initialize [
 
 { #category : #initialization }
 SpPresenter >> initializeLayout [
+	"do not initialize if already initialized"
+	layout ifNotNil: [ ^ self ].
+	
 	self layout: self defaultLayout.
 ]
 
