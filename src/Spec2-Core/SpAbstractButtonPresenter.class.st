@@ -17,20 +17,6 @@ SpAbstractButtonPresenter class >> isAbstract [
 	^ super isAbstract or: [ self = SpAbstractButtonPresenter ]
 ]
 
-{ #category : #private }
-SpAbstractButtonPresenter >> addShortcutTipFor: aString [
-
-	^ self 
-		addShortcutTipFor: self shortcutCharacter
-		on: aString
-]
-
-{ #category : #private }
-SpAbstractButtonPresenter >> addShortcutTipFor: aCharacter on: aString [
-	
-	^ aString withAccentuatedCharacter: aCharacter
-]
-
 { #category : #api }
 SpAbstractButtonPresenter >> icon [
 	"Answer the icon (an instance of `Form`) defined for this button (it can be nil)"
@@ -68,7 +54,7 @@ SpAbstractButtonPresenter >> initialize [
 SpAbstractButtonPresenter >> label [
 	"Answer the label to be shown by the button"
 
-	^ self addShortcutTipFor: label
+	^ label
 ]
 
 { #category : #api }
