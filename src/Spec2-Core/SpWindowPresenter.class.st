@@ -443,7 +443,7 @@ SpWindowPresenter >> okToChange [
 { #category : #'api - showing' }
 SpWindowPresenter >> open [
 
-	self openWith: self presenter retrieveDefaultSpec
+	self openWith: self presenter layout
 ]
 
 { #category : #'api - showing' }
@@ -453,9 +453,9 @@ SpWindowPresenter >> openWith: aSpecLayout [
 ]
 
 { #category : #'private - showing' }
-SpWindowPresenter >> openWithSpecLayout: aSpec [
+SpWindowPresenter >> openWithSpecLayout: aSpecLayout [
 
-	self buildWithSpecLayout: aSpec.
+	self buildWithSpecLayout: aSpecLayout.
 	self application registerWindow: self.
 	self withAdapterDo: [ :anAdapter | anAdapter open ].
 	self allPresenters do: [ :each | each announceDisplayed ].
@@ -478,10 +478,10 @@ SpWindowPresenter >> presenter: aPresenter [
 ]
 
 { #category : #'private - building' }
-SpWindowPresenter >> rebuildWithSpecLayout: aSpec [
+SpWindowPresenter >> rebuildWithSpecLayout: aSpecLayout [
 
 	self withAdapterDo: [ :anAdapter | 
-		anAdapter rebuildWithSpecLayout: aSpec ]
+		anAdapter rebuildWithSpecLayout: aSpecLayout ]
 ]
 
 { #category : #private }

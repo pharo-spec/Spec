@@ -7,7 +7,7 @@ From a Spec2 users, my key methods are
 - `SpAbstractPresenter>>#initializeDialogWindow:` defines the default buttons that decorated a dialog. Subclasses can override it to be able to customize how dialog get decorated.
 - `SpAbstractPresenter>>#initializeWindow:` is a hook to define the window title and extend.
 - `SpAbstractPresenter>>#openWithSpec` to open the receiver with the default layout. 
-- `SpAbstractPresenter>>#openWithSpec: aSelector` to open the receiver with the specified layout.
+- `SpAbstractPresenter>>#openWithSpec: aSpecLayout` to open the receiver with the specified layout.
 "
 Class {
 	#name : #SpAbstractPresenter,
@@ -390,13 +390,13 @@ open
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openDialogWithSpec: aSelector [
-	"Build the widget using the default spec and display it into a dialog. 
+SpAbstractPresenter >> openDialogWithSpec: aSpecLayout [
+	"Build the widget using the provided spec layout and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will 
 	 keep the focus on other windows. If you want to make the user focus on your 
 	 dialog only you should use #openModalWithSpec: instead."
 	
-	^ self asDialogWindow openWith: (self retrieveSpec: aSelector)
+	^ self asDialogWindow openWith: aSpecLayout
 ]
 
 { #category : #showing }
@@ -406,9 +406,9 @@ SpAbstractPresenter >> openModalWithSpec [
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openModalWithSpec: aSelector [
+SpAbstractPresenter >> openModalWithSpec: aSpecLayout [
 
-	^ self asModalWindow openWith: (self retrieveSpec: aSelector)
+	^ self asModalWindow openWith: aSpecLayout
 ]
 
 { #category : #showing }
@@ -418,9 +418,9 @@ SpAbstractPresenter >> openWithSpec [
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openWithSpec: aSelector [
+SpAbstractPresenter >> openWithSpec: aSpecLayout [
 
-	^ self asWindow openWith: (self retrieveSpec: aSelector)
+	^ self asWindow openWith: aSpecLayout
 ]
 
 { #category : #'private - showing' }
