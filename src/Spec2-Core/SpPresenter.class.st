@@ -417,6 +417,11 @@ SpPresenter >> defaultKeyboardFocus [
 	^ self
 ]
 
+{ #category : #initialization }
+SpPresenter >> defaultLayout [ 
+	^ self class defaultSpec
+]
+
 { #category : #specs }
 SpPresenter >> defaultSpec [
 
@@ -510,6 +515,11 @@ SpPresenter >> initialize [
 	self initializePrivateAnnouncements
 ]
 
+{ #category : #initialization }
+SpPresenter >> initializeLayout [
+	self layout: self defaultLayout.
+]
+
 { #category : #'initialization - deprecated' }
 SpPresenter >> initializePresenter [
 	"Now, presenters should implement #connectPresenters instead."
@@ -557,6 +567,7 @@ SpPresenter >> initializePrivateHooks [
 	self initializePresenters.
 	self initializePresenter.
 	self connectPresenters.
+	self initializeLayout.
 	self updatePresenter.
 
 ]
