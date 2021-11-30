@@ -12,7 +12,7 @@ Class {
 		'newSize',
 		'oldSize'
 	],
-	#category : #'Spec2-Core-Support'
+	#category : #'Spec2-Core-Windows'
 }
 
 { #category : #testing }

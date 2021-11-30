@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'model'
 	],
-	#category : #'Spec2-Core-Support'
+	#category : #'Spec2-Core-Windows'
 }
 
 { #category : #'instance creation' }

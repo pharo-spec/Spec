@@ -27,6 +27,37 @@ DiffBuilderTest >> testDiffFromTo [
 ]
 
 { #category : #tests }
+DiffBuilderTest >> testDiffIRecordsLastLineWhenMatching [
+	| patch fileA fileB |
+
+	fileA := 'newSourceView
+			
+	^ GtkSourceView new
+		beWrapWord;
+		showLineNumbers: true;
+		autoIndent: true;
+		yourself'.
+
+	fileB := 'newSourceView
+
+	^ GtkSourceView new
+		beWrapWord;
+		monospace: true;
+		showLineNumbers: "self presenter hasLineNumbers" false;
+		showLineMarks: true;
+		autoIndent: true;
+		indentOnTab: true;
+		tabWidth: 4;
+		yourself'.
+
+	patch := DiffBuilder 
+		buildPatchFrom: fileA lines
+		to: fileB lines.
+	
+	self assert: patch elements last element equals: '		yourself'
+]
+
+{ #category : #tests }
 DiffBuilderTest >> testDiffWithLines [
 	| fileA fileB patch |
 	
@@ -48,4 +79,27 @@ that will change
 		equals: { DiffDelete. DiffInsert }.
 	self assert: (patch collect: #oldPosition as: Array) equals: #(2 3).
 	self assert: (patch at: 2) newPosition equals: 2
+]
+
+{ #category : #tests }
+DiffBuilderTest >> testDiffWithLinesRecordsDelete [
+	| fileA fileB patch |
+	
+	fileA := 'a
+b
+c'.
+	fileB := 'a
+b
+d'.
+	
+	patch := DiffBuilder new 
+		diffFrom: fileA lines
+		to: fileB lines.
+	
+	self assert: patch size equals: 2. 
+	self 
+		assert: (patch collect: #class) 
+		equals: { DiffDelete. DiffInsert }.
+	self assert: (patch collect: #oldPosition as: Array) equals: #(3 4).
+	self assert: (patch at: 2) newPosition equals: 3
 ]

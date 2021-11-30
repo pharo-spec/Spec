@@ -29,7 +29,7 @@ SomePresenter >> initializeDialogWindow: aDialogPresenter
 Class {
 	#name : #SpBlockedDialogWindowPresenter,
 	#superclass : #SpDialogWindowPresenter,
-	#category : #'Spec2-Core-Support'
+	#category : #'Spec2-Core-Windows'
 }
 
 { #category : #specs }

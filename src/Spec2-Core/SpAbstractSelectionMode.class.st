@@ -185,6 +185,7 @@ SpAbstractSelectionMode >> selectionHolder [
 
 { #category : #private }
 SpAbstractSelectionMode >> transferSubscriptionsTo: anotherSelectionMode [
+
 	self selectionHolder transferSubscriptionsTo: anotherSelectionMode selectionHolder
 ]
 
