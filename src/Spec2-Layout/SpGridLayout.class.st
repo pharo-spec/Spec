@@ -69,7 +69,9 @@ Class {
 		'columnConstraints',
 		'columnHomogeneous',
 		'rowHomogeneous',
-		'childrenByPosition'
+		'childrenByPosition',
+		'currentColumn',
+		'currentRow'
 	],
 	#category : #'Spec2-Layout-Grid'
 }
@@ -96,6 +98,11 @@ SpGridLayout class >> defaultRowSpacing [
 SpGridLayout >> adapterName [
 
 	^ #GridAdapter
+]
+
+{ #category : #'api - adding' }
+SpGridLayout >> add: aChild [
+	self add: aChild at: self nextColumn @ self currentRow.
 ]
 
 { #category : #'api - adding' }
@@ -212,6 +219,11 @@ SpGridLayout >> constraintsClass [
 	^ SpGridConstraints
 ]
 
+{ #category : #private }
+SpGridLayout >> currentRow [
+	^ currentRow
+]
+
 { #category : #initialization }
 SpGridLayout >> initialize [ 
 
@@ -221,6 +233,8 @@ SpGridLayout >> initialize [
 	columnConstraints := Dictionary new.
 	rowConstraints := Dictionary new.
 	childrenByPosition := Dictionary new.
+	currentRow := 1.
+	self resetCurrentColumn.
 ]
 
 { #category : #testing }
@@ -240,6 +254,22 @@ SpGridLayout >> replaceAt: aPoint with: aPresenter [
 	^ self 
 		add: aPresenter
 		at: aPoint
+]
+
+{ #category : #private }
+SpGridLayout >> nextColumn [
+	^ currentColumn := currentColumn + 1
+]
+
+{ #category : #'api - adding' }
+SpGridLayout >> nextRow [
+	currentRow := currentRow + 1.
+	self resetCurrentColumn.
+]
+
+{ #category : #private }
+SpGridLayout >> resetCurrentColumn [
+	currentColumn := 0.
 ]
 
 { #category : #api }
