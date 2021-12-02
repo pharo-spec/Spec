@@ -480,7 +480,7 @@ SpPresenter >> hide [
 { #category : #accessing }
 SpPresenter >> iconNamed: aSymbol [
 
-	^ self class iconNamed: aSymbol
+	^ self application iconNamed: aSymbol
 ]
 
 { #category : #TOREMOVE }
