@@ -32,13 +32,6 @@ SpToolCommand class >> addDocumentContextRequiredSelectors: aBuilder [
 			aBuilder text: '(No required API is defined)' ]
 ]
 
-{ #category : #documentation }
-SpToolCommand class >> buildMicroDownUsing: aBuilder withComment: aString [
-	
-	super buildMicroDownUsing: aBuilder withComment: aString.
-	self addDocumentContextRequiredSelectors: aBuilder
-]
-
 { #category : #defaults }
 SpToolCommand class >> defaultIconName [
 	^nil
