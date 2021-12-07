@@ -39,39 +39,39 @@ SpDemoStandaloneFormPresenter class >> defaultSpec [
 	
 	^ SpBoxLayout newTopToBottom
 		add:
-			(SpGridLayout new
-				add: 'Name:';
-				add: #nameTextInput;
-				nextRow;
-				add: 'Surname:';
-				add: #surnameTextInput;
-				nextRow;
-				add: 'Number 1:';
-				add: #number1Input;
-				nextRow;
-				add: 'Number 2:';
-				add: #number2Input;
-				nextRow;
-				add: 'Scale:';
-				add: #scaleInput;
-				nextRow;
-				add: 'Password:';
-				add: #passwordInput;
-				nextRow;
-				add: 'Remember me:';
-				add: #checkboxInput;
-				nextRow;
-				"SpDatePresenter is exclusive from Morphic backend for the moment"
-				"add: 'Date:';
-				add: #dateInput;
-				nextRow;"
-				add: 'Gender:';
-				add:
-					(SpBoxLayout newLeftToRight
-						add: #maleButton;
-						add: #femaleButton;
-						yourself);
-				yourself);
+			(SpGridLayout build: [ :builder |
+				builder
+					add: 'Name:';
+					add: #nameTextInput;
+					nextRow;
+					add: 'Surname:';
+					add: #surnameTextInput;
+					nextRow;
+					add: 'Number 1:';
+					add: #number1Input;
+					nextRow;
+					add: 'Number 2:';
+					add: #number2Input;
+					nextRow;
+					add: 'Scale:';
+					add: #scaleInput;
+					nextRow;
+					add: 'Password:';
+					add: #passwordInput;
+					nextRow;
+					add: 'Remember me:';
+					add: #checkboxInput;
+					nextRow;
+					"SpDatePresenter is exclusive from Morphic backend for the moment"
+					"add: 'Date:';
+					add: #dateInput;
+					nextRow;"
+					add: 'Gender:';
+					add:
+						(SpBoxLayout newLeftToRight
+							add: #maleButton;
+							add: #femaleButton;
+							yourself) ]);
 		add: (SpBoxLayout newLeftToRight
 				add: #submitButton;
 				add: #restoreButton;
