@@ -28,21 +28,6 @@ SpTableColumn class >> addDocumentSectionHierarchy: aBuilder [
 ]
 
 { #category : #documentation }
-SpTableColumn class >> buildMicroDownUsing: aBuilder withComment: aString [
-	
-	super buildMicroDownUsing: aBuilder withComment: aString.
-	"Sections"
-	self documentSections keysAndValuesDo: [ :label :methods |
-		SpAbstractWidgetPresenter 
-			addDocumentSection: aBuilder 
-			label: label 
-			methods: methods ].
-	"Hierarchy"
-	self addDocumentSectionHierarchy: aBuilder.
-
-]
-
-{ #category : #documentation }
 SpTableColumn class >> documentSections [
 		
 	^ OrderedDictionary newFromPairs: {

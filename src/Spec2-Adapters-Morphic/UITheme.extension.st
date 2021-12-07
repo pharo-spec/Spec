@@ -8,6 +8,12 @@ UITheme >> modalBackdropColor [
 ]
 
 { #category : #'*Spec2-Adapters-Morphic' }
+UITheme >> paginatorSelectionColor [
+
+	^ self darkBaseColor alpha: 0.8
+]
+
+{ #category : #'*Spec2-Adapters-Morphic' }
 UITheme >> popoverButtonColor [
 
 	^ self darkBaseColor

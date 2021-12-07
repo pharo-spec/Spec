@@ -45,20 +45,6 @@ SpNotebookPage class >> addDocumentSectionFactoryMethod: aBuilder [
 ]
 
 { #category : #documentation }
-SpNotebookPage class >> buildMicroDownUsing: aBuilder withComment: aString [
-	
-	super buildMicroDownUsing: aBuilder withComment: aString.
-	"Factory method"
-	self addDocumentSectionFactoryMethod: aBuilder.
-	"Sections"
-	self documentSections keysAndValuesDo: [ :label :methods |
-		SpAbstractWidgetPresenter 
-			addDocumentSection: aBuilder 
-			label: label 
-			methods: methods ]
-]
-
-{ #category : #documentation }
 SpNotebookPage class >> documentFactoryMethodSelector [
 
 	^ #newNotebookPage
