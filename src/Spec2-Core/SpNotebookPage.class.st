@@ -31,6 +31,8 @@ SpNotebookPage class >> addDocumentExtraSections: aBuilder [
 SpNotebookPage class >> addDocumentSectionFactoryMethod: aBuilder [
 	| selector |
 
+	self = SpNotebookPage ifFalse: [ ^ self ]. 
+
 	selector := self documentFactoryMethodSelector. 
 	selector ifNil: [ ^ self ].
 	 
