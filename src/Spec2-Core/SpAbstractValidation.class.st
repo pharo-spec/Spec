@@ -10,6 +10,12 @@ Class {
 }
 
 { #category : #testing }
+SpAbstractValidation class >> isAbstract [
+		
+	^ self == SpAbstractValidation
+]
+
+{ #category : #testing }
 SpAbstractValidation >> isValid: aPresenter [
 	self subclassResponsibility
 ]
