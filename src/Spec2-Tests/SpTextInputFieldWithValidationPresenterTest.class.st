@@ -4,6 +4,11 @@ Class {
 	#category : #'Spec2-Tests-Core-Widgets'
 }
 
+{ #category : #testing }
+SpTextInputFieldWithValidationPresenterTest class >> shouldInheritSelectors [
+	^ false
+]
+
 { #category : #accessing }
 SpTextInputFieldWithValidationPresenterTest >> classToTest [
 	^ SpTextInputFieldWithValidationPresenter
