@@ -80,7 +80,7 @@ SpTextInputFieldWithValidationPresenter >> icon: aForm [
 { #category : #initialization }
 SpTextInputFieldWithValidationPresenter >> initializePresenters [ 
 	textInput := self newTextInput
-		whenSubmitDo: [ self validate ];
+		whenSubmitDo: [ self submit ];
 		yourself.
 	statusIcon := self newImage.
 	
@@ -119,8 +119,7 @@ SpTextInputFieldWithValidationPresenter >> statusIcon [
 
 { #category : #simulating }
 SpTextInputFieldWithValidationPresenter >> submit [
-	self flag: 'TODO simulate a real submit event'.
- 
+	
 	self validate.
 ]
 

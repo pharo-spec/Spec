@@ -9,6 +9,11 @@ Class {
 	#category : #'Spec2-Core-Widgets'
 }
 
+{ #category : #testing }
+SpAbstractValidation >> isValid: aPresenter [
+	self subclassResponsibility
+]
+
 { #category : #accessing }
 SpAbstractValidation >> message [
 	"The subclasses should return a message to format and show to the user.
