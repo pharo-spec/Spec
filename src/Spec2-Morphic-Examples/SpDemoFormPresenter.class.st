@@ -81,6 +81,17 @@ SpDemoFormPresenter >> modelChanged [
 	table items: self model elements
 ]
 
+{ #category : #'option list presenter' }
+SpDemoFormPresenter >> optionIcon [
+	
+	^ self iconNamed: #smallWindow
+]
+
+{ #category : #'option list presenter' }
+SpDemoFormPresenter >> optionTitle [
+	^ 'Form Presenter'
+]
+
 { #category : #accessing }
 SpDemoFormPresenter >> resultPane [
 	^ resultPane
