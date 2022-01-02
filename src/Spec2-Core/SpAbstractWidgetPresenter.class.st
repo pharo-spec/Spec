@@ -159,7 +159,7 @@ SpAbstractWidgetPresenter class >> documentSections [
 		'Examples'. self class methods select: [ :each | each protocol = self documentExamplesProtocol ].
 		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
 		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api-events' ].
+		'Events'. self methods select: [ :each | each protocol = #'api - events' ].
 	 }
 ]
 

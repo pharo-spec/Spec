@@ -56,7 +56,7 @@ The three last methods to define on ModelList are a getter, a method to display 
 	ModelList>>title
 		^ ''Widgets''
 
-	"api-events"
+	"api - events"
 	ModelList>>whenSelectedItemChanged: aBlock
 		list whenSelectedItemChanged: aBlock
 
@@ -172,7 +172,7 @@ The remaining methods are getters, sub widget delegation methods, a method to di
 	ProtocolList>>title
 		^ ''Protocol widget''
 
-	"api-events"
+	"api - events"
 	ProtocolList>>whenSelectedItemChanged: aBlock
 		protocols whenSelectedItemChanged: aBlock
 
