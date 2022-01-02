@@ -496,12 +496,6 @@ SpCodePresenter >> hasSyntaxHighlight [
 	^ syntaxHighlight
 ]
 
-{ #category : #'api - search' }
-SpCodePresenter >> highlightSearchText: aBoolean [
-
-	self withAdapterDo: [ :anAdapter | anAdapter highlightSearchText: aBoolean ]
-]
-
 { #category : #initialization }
 SpCodePresenter >> initialize [ 
 
@@ -624,24 +618,6 @@ SpCodePresenter >> registerEventsForStyling [
 	self whenInteractionModelChangedDo: [ :im |
 		self withAdapterDo: [ :anAdapter |
 			anAdapter interactionModel: im ] ]
-]
-
-{ #category : #'api - search' }
-SpCodePresenter >> searchBackward [
-
-	self withAdapterDo: [ :anAdapter | anAdapter searchBackward ]
-]
-
-{ #category : #'api - search' }
-SpCodePresenter >> searchForward [
-
-	self withAdapterDo: [ :anAdapter | anAdapter searchForward ]
-]
-
-{ #category : #'api - search' }
-SpCodePresenter >> searchText: aString [
-
-	self withAdapterDo: [ :anAdapter | anAdapter searchText: aString ]
 ]
 
 { #category : #api }
