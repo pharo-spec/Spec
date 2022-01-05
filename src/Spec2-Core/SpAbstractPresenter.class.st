@@ -1,6 +1,6 @@
 "
-I'm a base for all presenters. 
-I define common behaviours for widget presenters and also for composable presenters (the ones an user regularly uses).
+A base for all presenters. 
+I define common behaviors for widget presenters and also for composable presenters (the ones an user regularly uses).
 
 From a Spec2 users, my key methods are 
 - `SpAbstractPresenter>>#application` to get access to the application into which I play.
