@@ -180,9 +180,9 @@ SpAbstractPresenter >> buildAdapterWithSpecLayout: aSpecLayout [
 
 { #category : #building }
 SpAbstractPresenter >> buildWithSpec [
-	"Build the widget using the default spec"
+	"Build the widget using the default layout"
 	
-	^ self buildWithSpecLayout: self retrieveDefaultSpec
+	^ self buildWithSpecLayout: self layout
 ]
 
 { #category : #building }
@@ -209,6 +209,12 @@ SpAbstractPresenter >> defaultBlockedDialogWindowPresenterClass [
 SpAbstractPresenter >> defaultDialogWindowPresenterClass [
 		
 	^ self application defaultDialogWindowPresenterClass
+]
+
+{ #category : #initialization }
+SpAbstractPresenter >> defaultLayout [
+	
+	^ self retrieveSpec: self defaultSpecSelector
 ]
 
 { #category : #'private - showing' }
@@ -445,12 +451,6 @@ SpAbstractPresenter >> owner: aPresenter [
 SpAbstractPresenter >> rawValueHolderNamed: aSymbol [
 
 	^ (self class slotNamed: aSymbol) rawRead: self.
-]
-
-{ #category : #'private - building' }
-SpAbstractPresenter >> retrieveDefaultSpec [
-
-	^ self retrieveSpec: self defaultSpecSelector
 ]
 
 { #category : #'private - building' }

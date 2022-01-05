@@ -417,11 +417,6 @@ SpPresenter >> defaultKeyboardFocus [
 	^ self
 ]
 
-{ #category : #initialization }
-SpPresenter >> defaultLayout [ 
-	^ self defaultSpec
-]
-
 { #category : #specs }
 SpPresenter >> defaultSpec [
 
@@ -798,8 +793,7 @@ SpPresenter >> resolveSymbol: aSymbol [
 { #category : #api }
 SpPresenter >> retrieveSpec: aSelector [
 
-	self layout ifNotNil: [ ^ self layout ].
-	^ super retrieveSpec: aSelector
+	^ layout ifNil: [ super retrieveSpec: aSelector ]
 ]
 
 { #category : #'accessing - model' }

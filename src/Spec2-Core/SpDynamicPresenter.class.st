@@ -71,11 +71,3 @@ SpDynamicPresenter >> openWithSpec [
 	self layout ifNil: [ ^ super openWithSpec ].
 	^ self asWindow openWith: self layout
 ]
-
-{ #category : #api }
-SpDynamicPresenter >> retrieveSpec: aSelector [
-
-	self layout ifNil: [ ^ super retrieveSpec: aSelector ].
-
-	^ self layout
-]

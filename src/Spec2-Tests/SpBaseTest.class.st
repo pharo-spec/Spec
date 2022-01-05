@@ -64,11 +64,6 @@ SpBaseTest >> openInstance [
 	window ifNil: [ window := presenter openWithSpec ]
 ]
 
-{ #category : #utilities }
-SpBaseTest >> openInstance: aLayoutSelector [
-	window := presenter openWithSpec: aLayoutSelector
-]
-
 { #category : #accessing }
 SpBaseTest >> presenter [
 	^ presenter
