@@ -671,7 +671,7 @@ SpPresenter >> isVisible [
 	"Answer when the presenter is visible. 
 	 See `SpPresenter>>#show` and `SpPresenter>>#hide`."
 	
-	^ visible
+	^ visible value
 ]
 
 { #category : #accessing }
@@ -937,6 +937,7 @@ SpPresenter >> updatePresenter [
 
 { #category : #TOREMOVE }
 SpPresenter >> visibleIf: aValuable [
+
 	visible := aValuable
 ]
 
