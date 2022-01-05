@@ -470,6 +470,15 @@ SpPresenter >> focusOrder: anObject [
 ]
 
 { #category : #'api - focus' }
+SpPresenter >> focusedPresenter [
+	"Answer the focused presenter if any (nil if no presenter is focused)"
+
+	^ self allPresentersInFocusOrder
+		detect: [ :each | each hasKeyboardFocus ]
+		ifNone: [ nil ]
+]
+
+{ #category : #'api - focus' }
 SpPresenter >> hasKeyboardFocus [
 	"Answer true if this presenter has the active keyboard focus."
 
