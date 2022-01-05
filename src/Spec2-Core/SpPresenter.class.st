@@ -1,5 +1,5 @@
 "
-`SpPresenter` is an abstract class which represents an applicative presenter made to be composed with other `SpPresenter`.
+`SpPresenter` is an abstract class which represents an applicative presenter made to be composed with other `SpPresenter` instances.
 
 Often, I am used to display other subclasses of `SpPresenter` or subclasses of `SpAbstractWidgetPresenter`.
 
@@ -268,7 +268,7 @@ SpPresenter >> announce: anAnnouncement [
 	self announcer announce: anAnnouncement
 ]
 
-{ #category : #'api - events' }
+{ #category : #private }
 SpPresenter >> announceDisplayed [
 	"When using a VersatileDialogPresenter the adapter is nil.
 	We do not know if that is a correct behaviour"
