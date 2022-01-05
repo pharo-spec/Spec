@@ -515,14 +515,6 @@ SpPresenter >> initialize [
 	self initializePrivateAnnouncements
 ]
 
-{ #category : #initialization }
-SpPresenter >> initializeLayout [
-	"do not initialize if already initialized"
-	layout ifNotNil: [ ^ self ].
-	
-	self layout: self defaultLayout.
-]
-
 { #category : #'initialization - deprecated' }
 SpPresenter >> initializePresenter [
 	"Now, presenters should implement #connectPresenters instead."
@@ -570,7 +562,6 @@ SpPresenter >> initializePrivateHooks [
 	self initializePresenters.
 	self initializePresenter.
 	self connectPresenters.
-	self initializeLayout.
 	self updatePresenter.
 
 ]
@@ -668,13 +659,14 @@ SpPresenter >> isVisible [
 { #category : #accessing }
 SpPresenter >> layout [
 
-	^ layout
+	^ layout ifNil: [ self layout: self defaultLayout ]
 ]
 
 { #category : #api }
 SpPresenter >> layout: aLayout [
 
-	layout := aLayout
+	layout := aLayout.
+	^ layout
 ]
 
 { #category : #private }
