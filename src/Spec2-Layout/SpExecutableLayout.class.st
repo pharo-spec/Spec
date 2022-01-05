@@ -52,7 +52,7 @@ SpExecutableLayout class >> documentSections [
 		
 	^ OrderedDictionary newFromPairs: {
 		'Examples'. self class methods select: [ :each | each protocol = '*Spec2-Examples' ].	
-		'Adding Methods'. self methods select: [ :each | each protocol = #'api-adding' ].
+		'Adding Methods'. self methods select: [ :each | each protocol = #'api - adding' ].
 		'API Methods'. self methods select: [ :each | each protocol = #'api' ]
 	}
 ]

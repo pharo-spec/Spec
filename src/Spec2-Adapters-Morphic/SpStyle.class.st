@@ -120,7 +120,9 @@ SpStyle class >> defaultStyleSheetData [
 		.error [ Draw { #color: #C20000 } ],
 		.popoverButton [ Draw { #color: EnvironmentColor(#popoverButton) } ] ],
 	.paginator [ Geometry { #height: 20 } ],
-	.morph [ Geometry { #width: Reset, #height: Reset, #vResizing: true, #hResizing: true } ],
+	.morph [ 
+		Geometry { #width: Reset, #height: Reset, #vResizing: true, #hResizing: true },
+		Font { #name: Reset } ],
 	.image [ Geometry { #width: Reset, #height: Reset, #vResizing: true, #hResizing: true } ] ]
 '
 ]

@@ -96,10 +96,10 @@ SpDialogPresenter class >> documentFactoryMethodSelector [
 SpDialogPresenter class >> documentSections [
 		
 	^ OrderedDictionary newFromPairs: {
-		'API Show Methods'. self methods select: [ :each | each protocol = #'api-showing' ].
+		'API Show Methods'. self methods select: [ :each | each protocol = #'api - showing' ].
 		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
 		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api-events' ].
+		'Events'. self methods select: [ :each | each protocol = #'api - events' ].
 	}
 ]
 

@@ -48,9 +48,7 @@ SpMenuGroupPresenter >> addItem: aBlock [
 SpMenuGroupPresenter >> addMenuItem: aMenuItem [
 
 	aMenuItem owner: self.
-	items add: aMenuItem.
-	self autoRefresh 
-		ifNotNil: [ aMenuItem autoRefresh: self autoRefresh ]
+	items add: aMenuItem
 ]
 
 { #category : #TOREMOVE }
@@ -89,8 +87,7 @@ SpMenuGroupPresenter >> fromSpec: aSpec [
 SpMenuGroupPresenter >> initialize [
 	super initialize.
 
-	items := OrderedCollection new asValueHolder.
-	self property: #autoRefresh whenChangedDo: [ :aBoolean | self menuItems do: [ :each | each autoRefresh: aBoolean ] ]
+	items := OrderedCollection new asValueHolder
 ]
 
 { #category : #testing }

@@ -76,10 +76,10 @@ Class {
 
 { #category : #'instance creation' }
 SpGridLayout class >> build: aBlock [
-	| builder |
-	
-	aBlock value: (builder := SpGridLayoutBuilder new). 
-	^ builder layout	
+
+	^ self new 
+		build: aBlock;
+		yourself
 ]
 
 { #category : #initialization }
@@ -171,6 +171,12 @@ SpGridLayout >> borderWidth [
 { #category : #api }
 SpGridLayout >> borderWidth: anObject [
 	borderWidth := anObject
+]
+
+{ #category : #api }
+SpGridLayout >> build: aBlock [
+
+	aBlock value: (SpGridLayoutBuilder on: self)
 ]
 
 { #category : #api }

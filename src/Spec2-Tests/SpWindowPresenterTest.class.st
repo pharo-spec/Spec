@@ -22,6 +22,17 @@ SpWindowPresenterTest >> openInstance [
 ]
 
 { #category : #tests }
+SpWindowPresenterTest >> testBeNotResizeable [
+	
+	self openInstance.
+
+	self assert: presenter adapter windowIsResizable.
+	presenter beNotResizable.
+	self deny: presenter adapter windowIsResizable.
+
+]
+
+{ #category : #tests }
 SpWindowPresenterTest >> testInitialPosition [
 	presenter initialPosition: 100 @ 100.
 	self openInstance.

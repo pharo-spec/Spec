@@ -23,6 +23,14 @@ Class {
 	#category : #'Spec2-Layout-Grid'
 }
 
+{ #category : #'instance creation' }
+SpGridLayoutBuilder class >> on: aGridLayout [
+
+	^ self basicNew
+		initializeLayout: aGridLayout;
+		yourself
+]
+
 { #category : #api }
 SpGridLayoutBuilder >> add: aChild [
 	layout add: aChild at: self nextColumn @ self currentRow.
@@ -37,9 +45,15 @@ SpGridLayoutBuilder >> currentRow [
 SpGridLayoutBuilder >> initialize [ 
 
 	super initialize.
-	layout := SpGridLayout new.
 	currentRow := 1.
 	self resetCurrentColumn.
+]
+
+{ #category : #initialization }
+SpGridLayoutBuilder >> initializeLayout: aGridLayout [
+
+	layout := aGridLayout.
+	self initialize
 ]
 
 { #category : #accessing }

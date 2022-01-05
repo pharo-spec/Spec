@@ -1,5 +1,5 @@
 "
-`SpPresenter` is an abstract class which represents an applicative presenter made to be composed with other `SpPresenter`.
+`SpPresenter` is an abstract class which represents an presenter made to be composed with other `SpPresenter` instances.
 
 Often, I am used to display other subclasses of `SpPresenter` or subclasses of `SpAbstractWidgetPresenter`.
 
@@ -218,22 +218,21 @@ SpPresenter >> addAll: aWindow withSpecLayout: aSpec [
 ]
 
 { #category : #api }
-SpPresenter >> addStyle: aStyle [
+SpPresenter >> addStyle: aName [
 	"Add a style-class to a presenter. Styles are defined in the application stylesheet and will 
 	 affect presenters by applying the properties the user adds to the class.
-	 - Styles can just be added to widget presenters (the ones that inherits of *SpAbstractWidgetPresenter*).
-	 - Styles can be added and removed dynamically (see also *SpAbstractWidgetPresenter>>removeStyle:*
+	 Styles can be added and removed dynamically (see `SpPresenter>>#removeStyle:`)
 	
-	[[[language=Smalltalk
+	```language=Smalltalk
 	button := self newButton 
 		label: 'Example of style';
 		addStyle: 'myButton';
 		yourself.
-	]]]"
+	```"
 
-	(styles includes: aStyle) ifTrue: [ ^ self ].
-	styles := styles copyWith: aStyle.
-	self withAdapterDo: [ :anAdapter | anAdapter addStyle: aStyle ]
+	(styles includes: aName) ifTrue: [ ^ self ].
+	styles := styles copyWith: aName.
+	self withAdapterDo: [ :anAdapter | anAdapter addStyle: aName ]
 ]
 
 { #category : #TOREMOVE }
@@ -262,13 +261,13 @@ SpPresenter >> allPresentersInFocusOrder [
 			stream << each  ] ]
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 SpPresenter >> announce: anAnnouncement [
 
 	self announcer announce: anAnnouncement
 ]
 
-{ #category : #'api - events' }
+{ #category : #private }
 SpPresenter >> announceDisplayed [
 	"When using a VersatileDialogPresenter the adapter is nil.
 	We do not know if that is a correct behaviour"
@@ -351,6 +350,10 @@ SpPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 
 { #category : #'api - shortcuts' }
 SpPresenter >> bindKeyCombination: aShortcut toAction: aBlock [
+	"Adds a single shortcut to the list of `SpPresenter>>#contextKeyBindings`. Action `aBlock` 
+	 will be executed when presenter the key combination is presseed.
+	 - `aShortcut` is an instance of `KMKeyCombination`
+	 - `aBlock` receive zero arguments."
 
 	contextKeyBindings ifNil: [ contextKeyBindings := KMCategory new ].
 	contextKeyBindings addKeymapEntry: (KMKeymap
@@ -367,14 +370,14 @@ SpPresenter >> canTakeKeyboardFocus [
 	^ true
 ]
 
-{ #category : #'api - window' }
+{ #category : #TOREMOVE }
 SpPresenter >> cancelled [
 	self flag: #TODO. "just for dialogs... I wonder if we need it here?"
 
 	self withWindowDo: #cancelled
 ]
 
-{ #category : #'api - window' }
+{ #category : #TOREMOVE }
 SpPresenter >> centered [
 
 	self withWindowDo: #centered
@@ -387,16 +390,18 @@ SpPresenter >> connectPresenters [
 
 { #category : #'api - shortcuts' }
 SpPresenter >> contextKeyBindings [
-	"contextKeyBindings stores a KMCategory with keybindings for this presenter"
+	"Answer contextKeyBindings stores a KMCategory with keybindings for this presenter. 
+	 Note that not all presenters can have key bindings, just the ones that can take the 
+	 keyboard focus. 
+	 Also, all user defined presenters can have context key bindings."
 
-	self flag: #TODO. "Think is... not all presenters can have keybindings. Why are we
-	putting this functionality here and not in a trait?"
 	^ contextKeyBindings
 ]
 
 { #category : #'api - shortcuts' }
 SpPresenter >> contextKeyBindings: aKMCategory [
-
+	"Set the context keybindings for this presenter."
+	
 	contextKeyBindings := aKMCategory
 ]
 
@@ -411,8 +416,9 @@ SpPresenter >> createInstanceFor: aClassSymbol [
 
 { #category : #'api - focus' }
 SpPresenter >> defaultKeyboardFocus [
-	"Override this to allow the presenter to re-define the one that will answer the 
-	 takeKeyboardFocus call in composed presenters"
+	"Answer the presentar that will act as default responder when showing this presenter or 
+	 receive the `SpPresenter>>#takeKeyboardFocus` message. By default, this answers self, 
+	 but it can be overriden to place the focus somewhere else"
 
 	^ self
 ]
@@ -464,7 +470,17 @@ SpPresenter >> focusOrder: anObject [
 ]
 
 { #category : #'api - focus' }
+SpPresenter >> focusedPresenter [
+	"Answer the focused presenter if any (nil if no presenter is focused)"
+
+	^ self allPresentersInFocusOrder
+		detect: [ :each | each hasKeyboardFocus ]
+		ifNone: [ nil ]
+]
+
+{ #category : #'api - focus' }
 SpPresenter >> hasKeyboardFocus [
+	"Answer true if this presenter has the active keyboard focus."
 
 	self canTakeKeyboardFocus ifFalse: [ ^ false ].
 	self withAdapterDo: [ :anAdapter | ^ anAdapter hasKeyboardFocus ].
@@ -473,6 +489,7 @@ SpPresenter >> hasKeyboardFocus [
 
 { #category : #api }
 SpPresenter >> hide [
+	"hide current presenter making it invisible for the user"
 
 	visible := false
 ]
@@ -624,14 +641,15 @@ SpPresenter >> instantiatePresenters: aCollectionOfPairs [
 
 { #category : #testing }
 SpPresenter >> isBuilt [
+	"Answer if this presenter has been built."
+
 	^ self isDisplayed
 ]
 
 { #category : #testing }
 SpPresenter >> isDisplayed [
-	"Return true if the widget is currently displayed on screen"
+	"Answer if the widget is currently displayed on screen"
 	
-	self flag: #TODO. "To move to WindowPresenter exclusive?"
 	^ self hasWindow 
 		ifTrue: [ self root isDisplayed ]
 		ifFalse: [ false ]
@@ -639,14 +657,19 @@ SpPresenter >> isDisplayed [
 
 { #category : #testing }
 SpPresenter >> isRoot [
+	"Answer if this presenter is the root of the presenter hierarchy.
+	 To be root, the presenter has to be contained in a window"
 
 	self withWindowDo: [ :w |
 		^ w presenter = self ].
+
 	^ false
 ]
 
 { #category : #testing }
 SpPresenter >> isVisible [
+	"Answer when the presenter is visible. 
+	 See `SpPresenter>>#show` and `SpPresenter>>#hide`."
 	
 	^ visible value
 ]
@@ -659,6 +682,8 @@ SpPresenter >> layout [
 
 { #category : #api }
 SpPresenter >> layout: aLayout [
+	"Set the layout for current presenter. 
+	 See `SpExecutableLayout` hierarchy for details on what can be set as layout."
 
 	layout := aLayout
 ]
@@ -697,7 +722,7 @@ SpPresenter >> okToChange [
 		ifFalse: [ true ] 
 ]
 
-{ #category : #'api - announcements' }
+{ #category : #TOREMOVE }
 SpPresenter >> on: anAnnouncement send: aSelector to: aTarget [
 
 	self announcer
@@ -754,6 +779,7 @@ SpPresenter >> rebuildLayout [
 
 { #category : #'api - shortcuts' }
 SpPresenter >> removeKeyCombination: aShortcut [
+	"Remove the action associated to `aShortcut`"
 
 	self contextKeyBindings removeKey: aShortcut ifAbsent: [ ^ self ].
 	self withAdapterDo: [ :anAdapter | 
@@ -761,11 +787,13 @@ SpPresenter >> removeKeyCombination: aShortcut [
 ]
 
 { #category : #api }
-SpPresenter >> removeStyle: aStyle [
+SpPresenter >> removeStyle: aName [
+	"Remove style from presenter.
+	 See `SpPresenter>>#removeStyle:`"
 
-	(styles includes: aStyle) ifFalse: [ ^ self ].
-	styles := styles copyWithout: aStyle.
-	self withAdapterDo: [ :anAdapter | anAdapter removeStyle: aStyle ]
+	(styles includes: aName) ifFalse: [ ^ self ].
+	styles := styles copyWithout: aName.
+	self withAdapterDo: [ :anAdapter | anAdapter removeStyle: aName ]
 ]
 
 { #category : #private }
@@ -775,7 +803,7 @@ SpPresenter >> replaceLayoutWith: aLayout [
 		anAdapter replaceLayoutWith: aLayout ]
 ]
 
-{ #category : #'api - window' }
+{ #category : #TOREMOVE }
 SpPresenter >> requestWindowClose [
 
 	"returns <true> if the user is allowed to close the window. Useful if you want to ask user if he wants to save the changed content etc."
@@ -789,7 +817,7 @@ SpPresenter >> resolveSymbol: aSymbol [
 	^ Smalltalk at: aSymbol
 ]
 
-{ #category : #api }
+{ #category : #'private - building' }
 SpPresenter >> retrieveSpec: aSelector [
 
 	self layout ifNotNil: [ ^ self layout ].
@@ -810,18 +838,22 @@ SpPresenter >> setModelBeforeInitialization: aDomainObject [
 
 { #category : #api }
 SpPresenter >> show [
+	"show current presenter making it visible for the user"
 
 	visible := true
 ]
 
 { #category : #api }
 SpPresenter >> styles [ 
+	"Answer the collection of styles to be applied to this presenter"
 
 	^ styles
 ]
 
 { #category : #'api - focus' }
 SpPresenter >> takeKeyboardFocus [
+	"Causes this presenter to have the keyboard focus for the window it's inside. The presenter must 
+	 be focusable (it has to answer true to `SpPresenter>>#canTakeKeyboardFocus`."
 	| focus |
 
 	focus := self defaultKeyboardFocus ifNil: [ self ].
@@ -889,7 +921,7 @@ SpPresenter >> traversePresentersDo: aBlock excluding: excludes [
 		var traversePresentersDo: aBlock excluding: excludes ]
 ]
 
-{ #category : #updating }
+{ #category : #TOREMOVE }
 SpPresenter >> update [
 
 	"self deprecated: 'This method is a remaining from ancient times and should not be used, 
@@ -903,30 +935,42 @@ SpPresenter >> update [
 SpPresenter >> updatePresenter [
 ]
 
-{ #category : #api }
+{ #category : #TOREMOVE }
 SpPresenter >> visibleIf: aValuable [
+
 	visible := aValuable
 ]
 
 { #category : #'api - events' }
 SpPresenter >> whenContextKeyBindingsChangedDo: aBlock [
+	"Inform when context keybindings have been changed (See `SpPresenter>>#contextKeyBindings:`).
+	 `aBlock` receives two optional arguments 
+	 - new keybinginds KMCategory
+	 - old keybinginds KMCategory"
 	
 	self property: #contextKeyBindings whenChangedDo: aBlock
 ]
 
 { #category : #'api - events' }
 SpPresenter >> whenDisplayDo: aBlock [
+	"Inform when presenter has been displayed.
+	 `aBlock` receives one argument 
+	 - an announcement (instance of `SpWidgetDisplayed`)"
 
 	self announcer when: SpWidgetDisplayed do: aBlock
 ]
 
 { #category : #'api - events' }
 SpPresenter >> whenVisibleChangedDo: aBlock [
+	"Inform when visible property have been changed (See `SpPresenter>>#show` and `SpPresenter>>#hide`).
+	 `aBlock` receives two optional arguments 
+	 - new visible status (a Boolean)
+	 - old visible status (a Boolean)"
 	
 	self property: #visible whenChangedDo: aBlock
 ]
 
-{ #category : #'api - window' }
+{ #category : #TOREMOVE }
 SpPresenter >> whenWindowChanged: aBlock [
 
 	self flag: #TODO. "This is here for backwards compatibility (you can have same 

@@ -23,9 +23,9 @@ SpAbstractListPresenter class >> documentSections [
 	^ OrderedDictionary newFromPairs: {
 		'Examples'. self class methods select: [ :each | each protocol = self documentExamplesProtocol ].
 		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
-		'API Selection Methods'. self methods select: [ :each | each protocol = #'api-selection' ].
+		'API Selection Methods'. self methods select: [ :each | each protocol = #'api - selection' ].
 		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api-events' ].
+		'Events'. self methods select: [ :each | each protocol = #'api - events' ].
 	 }
 ]
 
