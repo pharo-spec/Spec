@@ -1,15 +1,8 @@
 "
-I'm a Paned Layout as if you would not how to read my name. I manage two and only two children, a first and a second one.
+A layout with two **adjustable** panels. 
+A paned layout manages two and only two children, a first and a second one.
 
 From that perspective, a paned layout is like a `SpBoxLayout`: it places childen in vertical or horizontal fashion, but it will add a splitter in between, that user can drag to resize the panel.
-
-Nice methods to consider are:
-- `SpPanedLayout>>#addFirst:` and `SpPanedLayout>>#addFirst:` to add my two children.
-- `SpPanedLayout>>#positionOfSlider:`. It controls the position of the slider. 
--- `aNumber` can be a fixed number indicating the exact position where the slider will be placed in the pane.
--- `aFloat or percent` can also be a fraction or a percentage, indicating the percentage position 
-	 of the slider. e.g. `30 percent` or (0.3) indicates the slider will be place at 1/3 of the 
-	 panel.""
 "
 Class {
 	#name : #SpPanedLayout,
@@ -74,20 +67,24 @@ SpPanedLayout >> add: aChild withConstraints: aBlock place: aPosition [
 SpPanedLayout >> addFirst: aPresenter [
 	"Add aPresenter as first element of the paned layout."
 	
-	self 
-		add: aPresenter 
-		withConstraints: [ :constraints | ]
-		place: 1
+	self
+		deprecated: 'Use #first: instead'
+		transformWith: '`@receiver addFirst: `@arg' 
+						-> '`@receiver first: `@arg'.
+	
+	self first: aPresenter
 ]
 
 { #category : #'api - adding' }
-SpPanedLayout >> addSecond: aName [
-	"Add aPresenter as second element of the paned layout."
+SpPanedLayout >> addSecond: aPresenterOrName [
+	"Add aPresenterOrName as second element of the paned layout."
 
-	self 
-		add: aName 
-		withConstraints: [ :constraints | ]
-		place: 2
+	self
+		deprecated: 'Use #second: instead'
+		transformWith: '`@receiver addSecond: `@arg' 
+						-> '`@receiver second: `@arg'.
+
+	self second: aPresenterOrName
 ]
 
 { #category : #api }
@@ -106,6 +103,16 @@ SpPanedLayout >> constraintsClass [
 SpPanedLayout >> direction [ 
 
 	^ direction
+]
+
+{ #category : #'api - adding' }
+SpPanedLayout >> first: aPresenterOrName [
+	"Add aPresenterOrName as first element of the paned layout."
+	
+	self 
+		add: aPresenterOrName 
+		withConstraints: [ :constraints | ]
+		place: 1
 ]
 
 { #category : #initialization }
@@ -188,14 +195,24 @@ SpPanedLayout >> remove: aPresenter ifAbsent: aBlock [
 
 { #category : #'api - adding' }
 SpPanedLayout >> replaceFirst: aPresenter [
-	"This is just a synonym of `SpPanedLayout>>#addFirst:`, added for clarity"
+	"This is just a synonym of `SpPanedLayout>>#first:`, added for clarity"
 	
-	self addFirst: aPresenter 
+	self first: aPresenter 
 ]
 
 { #category : #'api - adding' }
 SpPanedLayout >> replaceSecond: aPresenter [
-	"This is just a synonym of `SpPanedLayout>>#addSecond:`, added for clarity"
+	"This is just a synonym of `SpPanedLayout>>#second:`, added for clarity"
 	
-	self addSecond: aPresenter 
+	self second: aPresenter 
+]
+
+{ #category : #'api - adding' }
+SpPanedLayout >> second: aPresenterOrName [
+	"Add aPresenterOrName as second element of the paned layout."
+
+	self 
+		add: aPresenterOrName 
+		withConstraints: [ :constraints | ]
+		place: 2
 ]
