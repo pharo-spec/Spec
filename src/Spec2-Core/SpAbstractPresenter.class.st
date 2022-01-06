@@ -188,7 +188,7 @@ SpAbstractPresenter >> buildWithSpec [
 { #category : #building }
 SpAbstractPresenter >> buildWithSpec: aSpec [
 	"Build the widget using the spec name provided as argument"
-	
+
 	^ self buildWithSpecLayout: (self retrieveSpec: aSpec)
 ]
 
@@ -340,6 +340,11 @@ SpAbstractPresenter >> isPresenter [
 SpAbstractPresenter >> isWindowPresenter [
 
 	^ false
+]
+
+{ #category : #accessing }
+SpAbstractPresenter >> layout [
+	self subclassResponsibility 
 ]
 
 { #category : #accessing }
