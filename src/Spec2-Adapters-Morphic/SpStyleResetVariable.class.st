@@ -22,6 +22,12 @@ SpStyleResetVariable class >> stonName [
 SpStyleResetVariable >> fromSton: stonReader [
 ]
 
+{ #category : #testing }
+SpStyleResetVariable >> isResetVariable [
+
+	^ true
+]
+
 { #category : #evaluating }
 SpStyleResetVariable >> preferredValueWith: anObject [
 

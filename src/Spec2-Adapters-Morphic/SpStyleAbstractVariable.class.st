@@ -19,6 +19,12 @@ SpStyleAbstractVariable >> isEnvironmentVariable [
 	^ false
 ]
 
+{ #category : #testing }
+SpStyleAbstractVariable >> isResetVariable [
+
+	^ false
+]
+
 { #category : #evaluating }
 SpStyleAbstractVariable >> preferredScaledValueWith: anObject [
 
