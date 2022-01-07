@@ -453,7 +453,7 @@ SpWindowPresenter >> openWith: aSpecLayout [
 ]
 
 { #category : #'private - showing' }
-SpWindowPresenter >> openWithSpecLayout: aSpecLayout [
+SpWindowPresenter >> openWithLayout: aSpecLayout [
 
 	self buildWithSpecLayout: aSpecLayout.
 	self application registerWindow: self.

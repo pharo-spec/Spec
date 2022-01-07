@@ -61,7 +61,7 @@ SpWorldPresenter >> isDisplayed [
 ]
 
 { #category : #private }
-SpWorldPresenter >> openWithSpecLayout: aSpecLayout [
+SpWorldPresenter >> openWithLayout: aSpecLayout [
 
 	self flag: 'Is it really neeed to redefine this method in World presenter?'.
 	
