@@ -169,13 +169,23 @@ SpSelectDialog >> label: aString [
 ]
 
 { #category : #'api - showing' }
-SpSelectDialog >> openModalWithSpec [
+SpSelectDialog >> openModal [
 	| dialog |
 	
-	dialog := super openModalWithSpec.
+	dialog := super openModal.
 	^ dialog isOk
 		ifTrue: [ list selectedItem ]
 		ifFalse: [ nil ]
+]
+
+{ #category : #'api - showing' }
+SpSelectDialog >> openModalWithSpec [
+	self 
+		deprecated: 'Please use #openModal instead' 
+		transformWith:  '`@receiver openModalWithSpec' 
+						-> '`@receiver openModal'. 
+						
+	^ self openModal
 ]
 
 { #category : #api }

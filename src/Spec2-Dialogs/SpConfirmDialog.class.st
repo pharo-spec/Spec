@@ -161,11 +161,21 @@ SpConfirmDialog >> label: aString [
 ]
 
 { #category : #'api - showing' }
-SpConfirmDialog >> openModalWithSpec [
+SpConfirmDialog >> openModal [
 	| dialog |
 	
-	dialog := super openModalWithSpec.
+	dialog := super openModal.
 	^ dialog isOk
+]
+
+{ #category : #'api - showing' }
+SpConfirmDialog >> openModalWithSpec [
+	self 
+		deprecated: 'Please use #openModal instead' 
+		transformWith:  '`@receiver openModalWithSpec' 
+						-> '`@receiver openModal'. 
+
+	^ self openModal
 ]
 
 { #category : #api }
