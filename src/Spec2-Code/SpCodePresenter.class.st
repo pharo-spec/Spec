@@ -206,7 +206,7 @@ SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonG
 		ifNil: [ interactionModel behavior ])
 			ifNil: [ environment
 				ifNil: [ self class environment ] ])
-					lookupVar: variableOrClassName.
+					lookupVar: variableOrClassName declare: false.
 
 	variable ifNil: [ ^ nonGlobalBlock value: variableOrClassName ].
 	self systemNavigation openBrowserFor: variableOrClassName withMethods: variable usingMethods
