@@ -12,10 +12,10 @@ SpPanedLayoutAdapterTest class >> isAbstract [
 
 { #category : #tests }
 SpPanedLayoutAdapterTest >> testAdapterElementsAreInExplicitOrder [
-
 	| first second |
-	layout addFirst: (first := SpButtonPresenter new).
-	layout addSecond: (second := SpButtonPresenter new).
+	
+	layout first: (first := SpButtonPresenter new).
+	layout second: (second := SpButtonPresenter new).
 	self assert: self adapter children first equals: first adapter widget.
 	self assert: self adapter children second equals: second adapter widget.
 ]
@@ -23,38 +23,38 @@ SpPanedLayoutAdapterTest >> testAdapterElementsAreInExplicitOrder [
 { #category : #tests }
 SpPanedLayoutAdapterTest >> testAddFirstElementAfterOpenAddsToAdapter [
 
-	layout addSecond: SpButtonPresenter new.
+	layout second: SpButtonPresenter new.
 	self openInstance.
 	
-	layout addFirst: SpButtonPresenter new.
+	layout first: SpButtonPresenter new.
 	self assert: self adapter children size equals: 2
 ]
 
 { #category : #tests }
 SpPanedLayoutAdapterTest >> testAddFirstTwiceReplacesChild [
-
 	| first second |
-	layout addFirst: (first := SpButtonPresenter new).
-	layout addFirst: (second := SpButtonPresenter new).
+
+	layout first: (first := SpButtonPresenter new).
+	layout first: (second := SpButtonPresenter new).
 	self assert: self adapter children first equals: second adapter widget
 ]
 
 { #category : #tests }
 SpPanedLayoutAdapterTest >> testAddFirstTwiceSetsChildrenSingleTime [
-
 	| first second |
-	layout addFirst: (first := SpButtonPresenter new).
-	layout addFirst: (second := SpButtonPresenter new).
+	
+	layout first: (first := SpButtonPresenter new).
+	layout first: (second := SpButtonPresenter new).
 	self assert: self adapter children size equals: 1
 ]
 
 { #category : #tests }
 SpPanedLayoutAdapterTest >> testAddSecondElementAfterOpenAddsToAdapter [
 
-	layout addFirst: SpButtonPresenter new.
+	layout first: SpButtonPresenter new.
 	self openInstance.
 	
-	layout addSecond: SpButtonPresenter new.
+	layout second: SpButtonPresenter new.
 	self assert: self adapter children size equals: 2
 ]
 
@@ -62,31 +62,33 @@ SpPanedLayoutAdapterTest >> testAddSecondElementAfterOpenAddsToAdapter [
 SpPanedLayoutAdapterTest >> testAddSecondTwiceReplacesChild [
 
 	| first second |
-	layout addSecond: (first := SpButtonPresenter new).
-	layout addSecond: (second := SpButtonPresenter new).
-	self assert: self adapter children first equals: second adapter widget
+	layout second: (first := SpButtonPresenter new).
+	layout second: (second := SpButtonPresenter new).
+	self
+		assert: self adapter children first
+		equals: second adapter widget
 ]
 
 { #category : #tests }
 SpPanedLayoutAdapterTest >> testAddSecondTwiceSetsChildrenSingleTime [
 
 	| first second |
-	layout addSecond: (first := SpButtonPresenter new).
-	layout addSecond: (second := SpButtonPresenter new).
+	layout second: (first := SpButtonPresenter new).
+	layout second: (second := SpButtonPresenter new).
 	self assert: self adapter children size equals: 1
 ]
 
 { #category : #tests }
 SpPanedLayoutAdapterTest >> testLayoutWithFirstElementIsNotEmpty [
 
-	layout addFirst: SpButtonPresenter new.
+	layout first: SpButtonPresenter new.
 	self deny: self adapter isEmpty
 ]
 
 { #category : #tests }
 SpPanedLayoutAdapterTest >> testLayoutWithSecondElementIsNotEmpty [
 
-	layout addSecond: SpButtonPresenter new.
+	layout second: SpButtonPresenter new.
 	self deny: self adapter isEmpty
 ]
 
@@ -94,9 +96,9 @@ SpPanedLayoutAdapterTest >> testLayoutWithSecondElementIsNotEmpty [
 SpPanedLayoutAdapterTest >> testRemoveFirstElementAddedAfterOpenRemovesFromAdapter [
 
 	| element |
-	layout addFirst: (element := SpButtonPresenter new).
+	layout first: (element := SpButtonPresenter new).
 	self openInstance.
-	
+
 	layout remove: element.
 	self assert: self adapter isEmpty
 ]
@@ -105,7 +107,7 @@ SpPanedLayoutAdapterTest >> testRemoveFirstElementAddedAfterOpenRemovesFromAdapt
 SpPanedLayoutAdapterTest >> testRemoveFirstElementRemovesFromAdapter [
 
 	| element |
-	layout addFirst: (element := SpButtonPresenter new).
+	layout first: (element := SpButtonPresenter new).
 	layout remove: element.
 	self assert: self adapter isEmpty
 ]
@@ -114,9 +116,9 @@ SpPanedLayoutAdapterTest >> testRemoveFirstElementRemovesFromAdapter [
 SpPanedLayoutAdapterTest >> testRemoveSecondElementAddedAfterOpenRemovesFromAdapter [
 
 	| element |
-	layout addSecond: (element := SpButtonPresenter new).
+	layout second: (element := SpButtonPresenter new).
 	self openInstance.
-	
+
 	layout remove: element.
 	self assert: self adapter isEmpty
 ]
@@ -125,7 +127,7 @@ SpPanedLayoutAdapterTest >> testRemoveSecondElementAddedAfterOpenRemovesFromAdap
 SpPanedLayoutAdapterTest >> testRemoveSecondElementRemovesFromAdapter [
 
 	| element |
-	layout addSecond: (element := SpButtonPresenter new).
+	layout second: (element := SpButtonPresenter new).
 	layout remove: element.
 	self assert: self adapter isEmpty
 ]
