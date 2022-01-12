@@ -43,6 +43,41 @@ SpAbstractPresenter >> buildWithSpecLayout: aSpecLayout [
 ]
 
 { #category : #'*Spec2-Deprecated10' }
+SpAbstractPresenter >> openBlockedDialogWithSpec [
+	self 
+		deprecated: 'Please use #openBlockedDialog instead' 
+		transformWith:  '`@receiver openBlockedDialogWithSpec' 
+						-> '`@receiver openBlockedDialog'.
+						
+	^ self openBlockedDialog
+]
+
+{ #category : #'*Spec2-Deprecated10' }
+SpAbstractPresenter >> openBlockedDialogWithSpec: aSelector [
+	self deprecated: 'Please use #openBlockedDialogWithLayout: instead. You should provide a valid instance of a layout and not a selector name'.
+]
+
+{ #category : #'*Spec2-Deprecated10' }
+SpAbstractPresenter >> openDialogWithSpec [
+	self 
+		deprecated: 'Please use #openDialog instead' 
+		transformWith:  '`@receiver openDialogWithSpec' 
+						-> '`@receiver openDialog'.
+						
+	^ self openDialog
+]
+
+{ #category : #'*Spec2-Deprecated10' }
+SpAbstractPresenter >> openDialogWithSpec: aSpecLayout [
+	self 
+		deprecated: 'Please use #openDialogWithLayout: instead' 
+		transformWith:  '`@receiver openDialogWithSpec: `@arg' 
+						-> '`@receiver openDialogWithLayout: `@arg'. 
+						
+	^ self openDialogWithLayout: aSpecLayout
+]
+
+{ #category : #'*Spec2-Deprecated10' }
 SpAbstractPresenter >> openModalWithSpec [
 
 	self 
@@ -62,4 +97,37 @@ SpAbstractPresenter >> openModalWithSpec: aSpecLayout [
 						-> '`@receiver openModalWithLayout: `@arg'.
 
 	^ self openModalWithLayout: aSpecLayout
+]
+
+{ #category : #'*Spec2-Deprecated10' }
+SpAbstractPresenter >> openWithSpec [
+
+	self 
+		deprecated: 'Please use #open instead' 
+		transformWith:  '`@receiver openWithSpec' 
+						-> '`@receiver open'. 
+
+	^ self open
+]
+
+{ #category : #'*Spec2-Deprecated10' }
+SpAbstractPresenter >> openWithSpec: aSpecLayout [
+
+	self 
+		deprecated: 'Please use #openWithLayout: instead' 
+		transformWith:  '`@receiver openWithSpec: `@arg' 
+						-> '`@receiver openWithLayout: `@arg'. 
+						
+	^ self openWithLayout: aSpecLayout
+]
+
+{ #category : #'*Spec2-Deprecated10' }
+SpAbstractPresenter >> openWithSpecLayout: aSpecLayout [
+
+	self 
+		deprecated: 'Please use #openWithLayout: instead' 
+		transformWith:  '`@receiver openWithSpecLayout: `@arg' 
+						-> '`@receiver openWithLayout: `@arg'. 
+						
+	^ self openWithLayout: aSpecLayout
 ]

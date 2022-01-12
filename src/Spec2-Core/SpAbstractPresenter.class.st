@@ -361,8 +361,14 @@ SpAbstractPresenter >> needRebuild: aBoolean [
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openBlockedDialogWithSpec [
-	"Build the widget using the default spec and display it into a dialog. 
+SpAbstractPresenter >> open [
+
+	^ self asWindow open
+]
+
+{ #category : #showing }
+SpAbstractPresenter >> openBlockedDialog [
+	"Build the widget using the default layout and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openModalWithSpec instead."
 
 	"A typical use of openBlockedDialogWithSpec is to configure it with callbackscallbacks: 
@@ -377,16 +383,16 @@ open
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openBlockedDialogWithSpec: aSelector [
-	"Build the widget using the default spec and display it into a dialog. 
+SpAbstractPresenter >> openBlockedDialogWithLayout: aSpecLayout [
+	"Build the widget using the given layout and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openDialogAsModalWithSpec: instead."
 
-	^ self asBlockedDialogWindow openWith: (self retrieveSpec: aSelector)
+	^ self asBlockedDialogWindow openWith: aSpecLayout
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openDialogWithSpec [
-	"Build the widget using the default spec and display it into a dialog. 
+SpAbstractPresenter >> openDialog [
+	"Build the widget using the default layout and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openModalWithSpec instead."
 	
 	"A typical use of openDialogWithSpec is to configure it with callbackscallbacks: 
@@ -402,7 +408,7 @@ open
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openDialogWithSpec: aSpecLayout [
+SpAbstractPresenter >> openDialogWithLayout: aSpecLayout [
 	"Build the widget using the provided spec layout and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will 
 	 keep the focus on other windows. If you want to make the user focus on your 
@@ -424,19 +430,7 @@ SpAbstractPresenter >> openModalWithLayout: aSpecLayout [
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openWithSpec [
-
-	^ self asWindow open
-]
-
-{ #category : #showing }
-SpAbstractPresenter >> openWithSpec: aSpecLayout [
-
-	^ self asWindow openWith: aSpecLayout
-]
-
-{ #category : #'private - showing' }
-SpAbstractPresenter >> openWithSpecLayout: aSpecLayout [
+SpAbstractPresenter >> openWithLayout: aSpecLayout [
 
 	^ self asWindow openWith: aSpecLayout
 ]
