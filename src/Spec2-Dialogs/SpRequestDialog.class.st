@@ -166,17 +166,6 @@ SpRequestDialog >> openModal [
 		ifFalse: [ nil ]
 ]
 
-{ #category : #'api - showing' }
-SpRequestDialog >> openModalWithSpec [
-	
-	self 
-		deprecated: 'Please use #openModal instead' 
-		transformWith:  '`@receiver openModalWithSpec' 
-						-> '`@receiver openModal'. 
-						
-	^ self openModal
-]
-
 { #category : #api }
 SpRequestDialog >> text [ 
 	

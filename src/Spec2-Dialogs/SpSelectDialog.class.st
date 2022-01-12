@@ -178,16 +178,6 @@ SpSelectDialog >> openModal [
 		ifFalse: [ nil ]
 ]
 
-{ #category : #'api - showing' }
-SpSelectDialog >> openModalWithSpec [
-	self 
-		deprecated: 'Please use #openModal instead' 
-		transformWith:  '`@receiver openModalWithSpec' 
-						-> '`@receiver openModal'. 
-						
-	^ self openModal
-]
-
 { #category : #api }
 SpSelectDialog >> selectedItem [
 
