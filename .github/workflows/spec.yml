@@ -1,5 +1,9 @@
 name: Spec-dev
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  PHARO_CI_TESTING_ENVIRONMENT: 1
+
 on:
   push:
     branches: [ Pharo10, dev-1.0 ]
@@ -26,6 +30,4 @@ jobs:
           smalltalk-version: ${{ matrix.smalltalk }}
       - name: Load Image and Run Tests
         run: smalltalkci -s ${{ matrix.smalltalk }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 15

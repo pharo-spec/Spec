@@ -40,25 +40,23 @@ SpMorphicPanedLayoutTest >> testListTakesAssignedSpace [
 
 { #category : #tests }
 SpMorphicPanedLayoutTest >> testReplacePresenter [
+
 	| presenter p1 p2 p3 widget |
-	
 	presenter := SpPresenter new.
 	presenter application: SpApplication new.
 
-	presenter layout: (SpPanedLayout newLeftToRight 
-		addFirst: (p1 := presenter newButton label: '1');
-		addSecond: (p2 := presenter newButton label: '2');
-		yourself).
-	
-	[ presenter openWithSpec ]
-	ensure: [ presenter window close ].
+	presenter layout: (SpPanedLayout newLeftToRight
+			 first: (p1 := presenter newButton label: '1');
+			 second: (p2 := presenter newButton label: '2');
+			 yourself).
+
+	[ presenter openWithSpec ] ensure: [ presenter window close ].
 
 	p3 := presenter newLabel label: 'Test'.
 
-	presenter layout addFirst: p3.
-	
+	presenter layout first: p3.
+
 	widget := presenter adapter widget.
-	self assert: widget submorphs size equals: 3 "one plus for the slider".
+	self assert: widget submorphs size equals: 3. "one plus for the slider"
 	self assert: widget submorphs first equals: p3 adapter widget
-	
 ]

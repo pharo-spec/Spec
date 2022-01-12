@@ -1,5 +1,5 @@
 "
-I'm a layout that will arrange presenters in a box, vertically (top to bottom) or horizontally (left to right).
+A layout that will arrange presenters in a box, vertically (top to bottom) or horizontally (left to right).
 Elements can be added at the begining or at the end of the box (see `SpBoxLayout>>#add:` and `SpBoxLayout>>#addLast:` method families).
 
 ## Discussion

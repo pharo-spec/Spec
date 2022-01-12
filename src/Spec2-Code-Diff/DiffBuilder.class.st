@@ -75,13 +75,12 @@ DiffBuilder >> applyDiff: diff origin: source dest: dest [
 			ifFalse: [ 
 				self error: 'Should not happen.' ] ].
 		
-	[ i < source size 	]
+	[ i <= source size ]
 	whileTrue: [ 
 		sequence add: (DiffMatch newOldPosition: i element: (source at: i)).
 		i := i + 1 ].
 	
 	^ sequence
-	
 ]
 
 { #category : #'creating patches' }

@@ -34,6 +34,8 @@ SpMorphicWindowAdapter >> addPresenterIn: aWindow withSpecLayout: aSpec [
 		aBoolean
 			ifTrue: [ aWindow initializeLabelArea ]
 			ifFalse: [ aWindow removeLabelArea ] ].
+	self presenter whenResizableChangedDo: [ :aBoolean | 
+		aWindow isResizeable: aBoolean ].
 
 	contentWidget := self presenter presenter buildWithLayout: aSpec.
 	self presenter presenter adapter applyStyle.
@@ -57,7 +59,7 @@ SpMorphicWindowAdapter >> buildWidget [
 
 	^ SpWindow new
 		model: model;
-		isResizeable: self isResizeable;
+		isResizeable: self isResizable;
 		in: [ :this | self subscribeToAnnouncements: this ];
 		yourself
 ]
@@ -153,15 +155,9 @@ SpMorphicWindowAdapter >> isMinimized [
 ]
 
 { #category : #'widget API' }
-SpMorphicWindowAdapter >> isResizeable [
+SpMorphicWindowAdapter >> isResizable [
 
-	^ self model isResizeable
-]
-
-{ #category : #'spec protocol' }
-SpMorphicWindowAdapter >> isResizeable: aBoolean [
-
-	^ self widgetDo: [ :w | w isResizeable: aBoolean ]
+	^ self model isResizable
 ]
 
 { #category : #'spec protocol' }

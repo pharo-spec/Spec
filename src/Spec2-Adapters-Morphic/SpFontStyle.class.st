@@ -99,7 +99,8 @@ SpFontStyle >> applyTo: aMorph [
 	 selector but other way would be to define #font: in Morph and I do not want that)"
 	(aMorph respondsTo: #font:) ifFalse: [ ^ self ].
 	
-	aMorph font: self definedFont.
+	self isReset 
+		ifFalse: [ aMorph font: self definedFont ].
 	
 	self color ifNil: [ ^ self ].
 	"Again, not all morphs understand #textColor: and I need to verify it is there."
@@ -223,6 +224,12 @@ SpFontStyle >> isItalic [
 	"property may be nil, we verify with strict comparisson"
 	
 	^ self italicVariable value == true 
+]
+
+{ #category : #testing }
+SpFontStyle >> isReset [
+
+	^ name notNil and: [ name isResetVariable ]
 ]
 
 { #category : #accessing }

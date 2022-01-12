@@ -48,23 +48,11 @@ SpExecutableLayout class >> addDocumentSectionHierarchy: aBuilder [
 ]
 
 { #category : #documentation }
-SpExecutableLayout class >> buildMicroDownUsing: aBuilder withComment: aString [
-	
-	super buildMicroDownUsing: aBuilder withComment: aString.
-	"Sections"
-	self documentSections keysAndValuesDo: [ :label :methods |
-		self addDocumentSection: aBuilder label: label methods: methods ].
-	"Hierarchy"
-	self addDocumentSectionHierarchy: aBuilder.
-	
-]
-
-{ #category : #documentation }
 SpExecutableLayout class >> documentSections [
 		
 	^ OrderedDictionary newFromPairs: {
 		'Examples'. self class methods select: [ :each | each protocol = '*Spec2-Examples' ].	
-		'Adding Methods'. self methods select: [ :each | each protocol = #'api-adding' ].
+		'Adding Methods'. self methods select: [ :each | each protocol = #'api - adding' ].
 		'API Methods'. self methods select: [ :each | each protocol = #'api' ]
 	}
 ]

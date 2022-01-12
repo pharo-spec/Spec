@@ -38,7 +38,7 @@ Class {
 		'cancelled',
 		'defaultButton'
 	],
-	#category : #'Spec2-Core-Support'
+	#category : #'Spec2-Core-Windows'
 }
 
 { #category : #specs }

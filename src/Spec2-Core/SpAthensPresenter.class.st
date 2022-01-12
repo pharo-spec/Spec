@@ -56,6 +56,12 @@ SpAthensPresenter >> initialize [
 ]
 
 { #category : #api }
+SpAthensPresenter >> redraw [
+
+	self withAdapterDo: [ :anAdapter | anAdapter redraw ]
+]
+
+{ #category : #api }
 SpAthensPresenter >> surfaceExtent [
 	"Anwer the surface extent (the size the surface will have)"
 

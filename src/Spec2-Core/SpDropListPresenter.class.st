@@ -97,6 +97,22 @@ SpDropListPresenter >> displayForItem: anItem [
 	^ self display cull: anItem model cull: anItem
 ]
 
+{ #category : #api }
+SpDropListPresenter >> displayIcon [
+	"Answer the block that will be used to retrieve the icon to be displayed along with the 
+	 elements."
+
+	^ iconBlock
+]
+
+{ #category : #api }
+SpDropListPresenter >> displayIcon: aBlock [	
+	"Answer a block that will be used to retrieve the icon to be displayed along with the elements.
+	 `aBlock` receives one argument (an element from the list)"
+	
+	iconBlock := aBlock
+]
+
 { #category : #private }
 SpDropListPresenter >> dropListItems: dropListItems [
 	"Populate the drop list with a list DropListItems"
@@ -116,7 +132,7 @@ SpDropListPresenter >> emptyList [
 { #category : #private }
 SpDropListPresenter >> getIconFor: anItem [
 
-	^ self iconBlock cull: anItem model cull: anItem
+	^ self displayIcon cull: anItem model cull: anItem
 ]
 
 { #category : #private }
@@ -143,7 +159,11 @@ SpDropListPresenter >> iconBlock [
 	"Answer the block that will be used to retrieve the icon to be displayed along with the 
 	 elements."
 	
-	self flag: #TODO. "Rename as just #icon"
+	self 
+		deprecated: 'Please use #displayIcon instead' 
+		transformWith:  '`@receiver iconBlock' 
+						-> '`@receiver displayIcon'.
+
 	^ iconBlock
 ]
 
@@ -152,7 +172,11 @@ SpDropListPresenter >> iconBlock: aBlock [
 	"Answer a block that will be used to retrieve the icon to be displayed along with the elements.
 	 `aBlock` receives one argument (an element from the list)"
 	
-	self flag: #TODO. "Rename as just #icon:"
+	self 
+		deprecated: 'Please use #displayIcon: instead' 
+		transformWith:  '`@receiver iconBlock: `@arg' 
+						-> '`@receiver displayIcon: `@arg'.
+
 	iconBlock := aBlock
 ]
 

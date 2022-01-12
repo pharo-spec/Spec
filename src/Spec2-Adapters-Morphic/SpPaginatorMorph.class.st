@@ -219,6 +219,12 @@ SpPaginatorMorph >> selectedPages [
 ]
 
 { #category : #accessing }
+SpPaginatorMorph >> selectionColor: aColor [ 
+
+	selectionMorph color: aColor
+]
+
+{ #category : #accessing }
 SpPaginatorMorph >> selectionMorph [
 
 	^ selectionMorph

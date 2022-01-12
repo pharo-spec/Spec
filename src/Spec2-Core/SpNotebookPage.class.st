@@ -45,20 +45,6 @@ SpNotebookPage class >> addDocumentSectionFactoryMethod: aBuilder [
 ]
 
 { #category : #documentation }
-SpNotebookPage class >> buildMicroDownUsing: aBuilder withComment: aString [
-	
-	super buildMicroDownUsing: aBuilder withComment: aString.
-	"Factory method"
-	self addDocumentSectionFactoryMethod: aBuilder.
-	"Sections"
-	self documentSections keysAndValuesDo: [ :label :methods |
-		SpAbstractWidgetPresenter 
-			addDocumentSection: aBuilder 
-			label: label 
-			methods: methods ]
-]
-
-{ #category : #documentation }
 SpNotebookPage class >> documentFactoryMethodSelector [
 
 	^ #newNotebookPage
@@ -70,7 +56,7 @@ SpNotebookPage class >> documentSections [
 	^ OrderedDictionary newFromPairs: {
 		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
 		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api-events' ].
+		'Events'. self methods select: [ :each | each protocol = #'api - events' ].
 	 }
 ]
 

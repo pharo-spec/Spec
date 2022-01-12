@@ -14,31 +14,31 @@ SpPanedLayoutTest class >> isAbstract [
 SpPanedLayoutTest >> testElementsAreAddedInOrder [
 
 	| second |
-	layout addFirst: SpButtonPresenter new.
-	layout addSecond: (second := SpButtonPresenter new).
+	layout first: SpButtonPresenter new.
+	layout second: (second := SpButtonPresenter new).
 	self assert: layout children last equals: second
 ]
 
 { #category : #running }
 SpPanedLayoutTest >> testElementsAreAddedInOrderIndependentlyOfTheConfigurationOrder [
-
 	| second |
-	layout addSecond: (second := SpButtonPresenter new).
-	layout addFirst: SpButtonPresenter new.
+	
+	layout second: (second := SpButtonPresenter new).
+	layout first: SpButtonPresenter new.
 	self assert: layout children last equals: second
 ]
 
 { #category : #running }
 SpPanedLayoutTest >> testLayoutWithOneFirstElementIsNotEmpty [
 
-	layout addFirst: SpButtonPresenter new.
+	layout first: SpButtonPresenter new.
 	self deny: layout isEmpty
 ]
 
 { #category : #running }
 SpPanedLayoutTest >> testLayoutWithOneSecondElementIsNotEmpty [
 
-	layout addSecond: SpButtonPresenter new.
+	layout second: SpButtonPresenter new.
 	self deny: layout isEmpty
 ]
 
@@ -46,7 +46,7 @@ SpPanedLayoutTest >> testLayoutWithOneSecondElementIsNotEmpty [
 SpPanedLayoutTest >> testRemoveFirstElementFromLayoutTakesItOut [
 
 	| element |
-	layout addFirst: (element := SpButtonPresenter new).
+	layout first: (element := SpButtonPresenter new).
 	layout remove: element.
 	self assert: layout isEmpty
 ]
@@ -55,16 +55,16 @@ SpPanedLayoutTest >> testRemoveFirstElementFromLayoutTakesItOut [
 SpPanedLayoutTest >> testRemoveSecondElementFromLayoutTakesItOut [
 
 	| element |
-	layout addSecond: (element := SpButtonPresenter new).
+	layout second: (element := SpButtonPresenter new).
 	layout remove: element.
 	self assert: layout isEmpty
 ]
 
 { #category : #running }
 SpPanedLayoutTest >> testReplaceFirst [
-	| replacement |
 
-	layout addFirst: SpButtonPresenter new.
+	| replacement |
+	layout first: SpButtonPresenter new.
 	layout replaceFirst: (replacement := SpButtonPresenter new).
 	self assert: layout children first equals: replacement
 ]
@@ -73,26 +73,26 @@ SpPanedLayoutTest >> testReplaceFirst [
 SpPanedLayoutTest >> testReplaceFirstElementKeepsSingleElement [
 
 	| replacement |
-	layout addFirst: SpButtonPresenter new.
-	layout addFirst: (replacement := SpButtonPresenter new).
+	layout first: SpButtonPresenter new.
+	layout first: (replacement := SpButtonPresenter new).
 	self assert: layout children size equals: 1
 ]
 
 { #category : #running }
 SpPanedLayoutTest >> testReplaceFirstElementReplacesIt [
-	| replacement |
 
-	layout addFirst: SpButtonPresenter new.
-	layout addFirst: (replacement := SpButtonPresenter new).
+	| replacement |
+	layout first: SpButtonPresenter new.
+	layout first: (replacement := SpButtonPresenter new).
 	self assert: layout children first equals: replacement
 ]
 
 { #category : #running }
 SpPanedLayoutTest >> testReplaceSecond [
-	| replacement |
 
-	layout addFirst: SpButtonPresenter new.
-	layout addSecond: SpButtonPresenter new.
+	| replacement |
+	layout first: SpButtonPresenter new.
+	layout second: SpButtonPresenter new.
 	layout replaceSecond: (replacement := SpButtonPresenter new).
 	self assert: layout children second equals: replacement
 ]
@@ -101,8 +101,8 @@ SpPanedLayoutTest >> testReplaceSecond [
 SpPanedLayoutTest >> testReplaceSecondElementKeepsSingleElement [
 
 	| replacement |
-	layout addSecond: SpButtonPresenter new.
-	layout addSecond: (replacement := SpButtonPresenter new).
+	layout second: SpButtonPresenter new.
+	layout second: (replacement := SpButtonPresenter new).
 	self assert: layout children size equals: 1
 ]
 
@@ -110,7 +110,7 @@ SpPanedLayoutTest >> testReplaceSecondElementKeepsSingleElement [
 SpPanedLayoutTest >> testReplaceSecondElementReplacesIt [
 
 	| replacement |
-	layout addSecond: SpButtonPresenter new.
-	layout addSecond: (replacement := SpButtonPresenter new).
+	layout second: SpButtonPresenter new.
+	layout second: (replacement := SpButtonPresenter new).
 	self assert: layout children first equals: replacement
 ]

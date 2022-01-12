@@ -27,28 +27,13 @@ SpAbstractSelectionMode class >> addDocumentSectionHierarchy: aBuilder [
 ]
 
 { #category : #documentation }
-SpAbstractSelectionMode class >> buildMicroDownUsing: aBuilder withComment: aString [
-	
-	super buildMicroDownUsing: aBuilder withComment: aString.
-	"Sections"
-	self documentSections keysAndValuesDo: [ :label :methods |
-		SpAbstractWidgetPresenter 
-			addDocumentSection: aBuilder 
-			label: label 
-			methods: methods ].
-	"Hierarchy"
-	self addDocumentSectionHierarchy: aBuilder.
-
-]
-
-{ #category : #documentation }
 SpAbstractSelectionMode class >> documentSections [
 		
 	^ OrderedDictionary newFromPairs: {
 		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
-		'API Selection Methods'. self methods select: [ :each | each protocol = #'api-selection' ].
+		'API Selection Methods'. self methods select: [ :each | each protocol = #'api - selection' ].
 		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api-events' ].
+		'Events'. self methods select: [ :each | each protocol = #'api - events' ].
 	}
 ]
 
@@ -185,6 +170,7 @@ SpAbstractSelectionMode >> selectionHolder [
 
 { #category : #private }
 SpAbstractSelectionMode >> transferSubscriptionsTo: anotherSelectionMode [
+
 	self selectionHolder transferSubscriptionsTo: anotherSelectionMode selectionHolder
 ]
 

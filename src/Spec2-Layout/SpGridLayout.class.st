@@ -74,6 +74,14 @@ Class {
 	#category : #'Spec2-Layout-Grid'
 }
 
+{ #category : #'instance creation' }
+SpGridLayout class >> build: aBlock [
+
+	^ self new 
+		build: aBlock;
+		yourself
+]
+
 { #category : #initialization }
 SpGridLayout class >> defaultBorderWidth [
 
@@ -163,6 +171,12 @@ SpGridLayout >> borderWidth [
 { #category : #api }
 SpGridLayout >> borderWidth: anObject [
 	borderWidth := anObject
+]
+
+{ #category : #api }
+SpGridLayout >> build: aBlock [
+
+	aBlock value: (SpGridLayoutBuilder on: self)
 ]
 
 { #category : #api }

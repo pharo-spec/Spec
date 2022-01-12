@@ -32,15 +32,6 @@ SpStyleEnvironmentVariable class >> addDocumentValidValues: aBuilder [
 ]
 
 { #category : #documentation }
-SpStyleEnvironmentVariable class >> buildMicroDownUsing: aBuilder withComment: aString [
-	
-	super buildMicroDownUsing: aBuilder withComment: aString.
-	self addDocumentExample: aBuilder.
-	self addDocumentValidValues: aBuilder	
-
-]
-
-{ #category : #documentation }
 SpStyleEnvironmentVariable class >> documentExampleCode [
 
 	^ '(none)'

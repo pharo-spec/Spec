@@ -93,9 +93,7 @@ SpMenuPresenter >> addKeybindingsTo: aPresenter [
 SpMenuPresenter >> addMenuGroup: aMenuGroup [
 
 	aMenuGroup owner: self.
-	groups add: aMenuGroup.
-	self autoRefresh 
-		ifNotNil: [ aMenuGroup autoRefresh: self autoRefresh ]
+	groups add: aMenuGroup
 ]
 
 { #category : #TOREMOVE }
@@ -167,10 +165,9 @@ SpMenuPresenter >> iconName: aSymbol [
 
 { #category : #initialization }
 SpMenuPresenter >> initialize [
-	super initialize.
 
-	groups := OrderedCollection new.
-	self property: #autoRefresh whenChangedDo: [ :aBoolean | self menuGroups do: [ :each | each autoRefresh: aBoolean ] ]
+	super initialize.
+	groups := OrderedCollection new
 ]
 
 { #category : #testing }

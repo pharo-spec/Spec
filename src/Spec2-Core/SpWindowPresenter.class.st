@@ -26,16 +26,16 @@ Class {
 		'#presenter => ObservableSlot',
 		'#initialPosition => ObservableSlot',
 		'#initialExtent => ObservableSlot',
-		'#isResizeable => ObservableSlot',
 		'#menu => ObservableSlot',
 		'#centered => ObservableSlot',
 		'#isClosed => ObservableSlot',
 		'#toolbar => ObservableSlot',
 		'#statusbar => ObservableSlot',
 		'#window => ObservableSlot',
-		'#decorations => ObservableSlot'
+		'#decorations => ObservableSlot',
+		'#resizable => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Support'
+	#category : #'Spec2-Core-Windows'
 }
 
 { #category : #specs }
@@ -121,6 +121,21 @@ SpWindowPresenter >> basicBuildWithSpecLayout: presenterSpecLayout [
 				presenterLayout: presenterSpecLayout ]
 		ifFalse: [
 			self adapter widget ]
+]
+
+{ #category : #api }
+SpWindowPresenter >> beNotResizable [
+	"Make the window NOT resizable (borders will be undraggable). 
+	 Window can still be resized progamatically."
+
+	self resizable: false
+]
+
+{ #category : #api }
+SpWindowPresenter >> beResizable [
+	"Make the window resizable (borders will be draggable)"
+
+	self resizable: true
 ]
 
 { #category : #api }
@@ -285,7 +300,7 @@ SpWindowPresenter >> initialize [
 
 	titleHolder := self class defaultTitle.
 	isClosed := true.
-	isResizeable := true.
+	resizable := true.
 	centered := false.
 	askOkToClose := true.
 	decorations := true.
@@ -361,15 +376,21 @@ SpWindowPresenter >> isOpen [
 ]
 
 { #category : #testing }
-SpWindowPresenter >> isResizeable [
+SpWindowPresenter >> isResizable [
 	"Answer if window is resizeable"
 
-	^ isResizeable
+	^ resizable
 ]
 
-{ #category : #private }
-SpWindowPresenter >> isResizeable: aBoolean [
-	isResizeable := aBoolean
+{ #category : #testing }
+SpWindowPresenter >> isResizeable [
+	"Answer if window is resizeable"
+	
+	self 
+		deprecated: 'Use #isResizable instead'  
+		transformWith: '`@receiver isResizeable' -> '`@receiver isResizable'.
+
+	^ self isResizable
 ]
 
 { #category : #testing }
@@ -490,6 +511,12 @@ SpWindowPresenter >> requestWindowClose [
 	^ self presenter
 		ifNotNil: [ :aPresenter | aPresenter requestWindowClose ]
 		ifNil: [ true ]
+]
+
+{ #category : #private }
+SpWindowPresenter >> resizable: aBoolean [
+
+	resizable := aBoolean
 ]
 
 { #category : #api }
@@ -632,6 +659,12 @@ SpWindowPresenter >> whenOpenedDo: aBlock [
 	self 
 		property: #isClosed 
 		whenChangedDo: [ :value | value ifFalse: aBlock ]
+]
+
+{ #category : #'api - events' }
+SpWindowPresenter >> whenResizableChangedDo: aBlock [
+
+	self property: #resizable whenChangedDo: aBlock
 ]
 
 { #category : #'api - events' }

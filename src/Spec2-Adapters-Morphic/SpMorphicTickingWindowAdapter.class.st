@@ -12,7 +12,7 @@ SpMorphicTickingWindowAdapter >> buildWidget [
 
 	^ SpTickingSpecWindow new
 		  model: self;
-		  isResizeable: self isResizeable;
+		  isResizeable: self isResizable;
 		  yourself
 ]
 

@@ -39,38 +39,51 @@ SpDemoStandaloneFormPresenter class >> defaultSpec [
 	
 	^ SpBoxLayout newTopToBottom
 		add:
-			(SpGridLayout new
-				add: 'Name:' at: 1 @ 1;
-				add: #nameTextInput at: 2 @ 1;
-				add: 'Surname:' at: 1 @ 2;
-				add: #surnameTextInput at: 2 @ 2;
-				add: 'Number 1:' at: 1 @ 3;
-				add: #number1Input at: 2 @ 3;
-				add: 'Number 2:' at: 1 @ 4;
-				add: #number2Input at: 2 @ 4;
-				add: 'Scale:' at: 1 @ 5;
-				add: #scaleInput at: 2 @ 5;
-				add: 'Password:' at: 1 @ 6;
-				add: #passwordInput at: 2 @ 6;
-				add: 'Remember me:' at: 1 @ 7;
-				add: #checkboxInput at: 2 @ 7;
-				"SpDatePresenter is exclusive from Morphic backend for the moment"
-				"add: 'Date:' at: 1 @ 8;
-				add: #dateInput at: 2 @ 8;"
-				add: 'Gender:' at: 1 @ 9;
-				add:
-					(SpBoxLayout newLeftToRight
-						add: #maleButton;
-						add: #femaleButton;
-						yourself)
-					at: 2 @ 9;
-				yourself);
+			(SpGridLayout build: [ :builder |
+				builder
+					add: 'Name:';
+					add: #nameTextInput;
+					nextRow;
+					add: 'Surname:';
+					add: #surnameTextInput;
+					nextRow;
+					add: 'Number 1:';
+					add: #number1Input;
+					nextRow;
+					add: 'Number 2:';
+					add: #number2Input;
+					nextRow;
+					add: 'Scale:';
+					add: #scaleInput;
+					nextRow;
+					add: 'Password:';
+					add: #passwordInput;
+					nextRow;
+					add: 'Remember me:';
+					add: #checkboxInput;
+					nextRow;
+					"SpDatePresenter is exclusive from Morphic backend for the moment"
+					"add: 'Date:';
+					add: #dateInput;
+					nextRow;"
+					add: 'Gender:';
+					add:
+						(SpBoxLayout newLeftToRight
+							add: #maleButton;
+							add: #femaleButton;
+							yourself) ]);
 		add: (SpBoxLayout newLeftToRight
 				add: #submitButton;
 				add: #restoreButton;
 				yourself)
 			expand: false;
 		yourself
+]
+
+{ #category : #'instance creation' }
+SpDemoStandaloneFormPresenter class >> open [
+	<example>
+	(self on: SpDemoFormModel new) openWithSpec
 ]
 
 { #category : #accessing }

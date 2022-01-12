@@ -25,7 +25,9 @@ SpTreeSingleSelectionMode >> selectPath: aPath [
 { #category : #accessing }
 SpTreeSingleSelectionMode >> selectPaths: pathArray [
 
-	self selectPath: pathArray last
+	self selectPath: (pathArray 
+		ifNotEmpty: [ pathArray last ]
+		ifEmpty: [ pathArray ])
 ]
 
 { #category : #accessing }

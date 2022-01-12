@@ -68,7 +68,7 @@ SpLocationIconProvider >> inspectionIcons [
 
 	^ SpListPresenter new
 		items: (icons associations sorted: [ :a :b | a key < b key ]);
-		icon: [ :each | each value ];
+		displayIcon: [ :each | each value ];
 		display: [ :each | each key ];
 		yourself
 ]

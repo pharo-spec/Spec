@@ -57,22 +57,6 @@ SpDialogPresenter class >> addDocumentSectionFactoryMethod: aBuilder [
 	aBuilder text: '.'
 ]
 
-{ #category : #documentation }
-SpDialogPresenter class >> buildMicroDownUsing: aBuilder withComment: aString [
-	
-	super buildMicroDownUsing: aBuilder withComment: aString.
-	"Example code"
-	self addDocumentSectionExampleCode: aBuilder.
-	"Factory method"
-	self addDocumentSectionFactoryMethod: aBuilder.
-	"Sections"
-	self documentSections keysAndValuesDo: [ :label :methods |
-		self addDocumentSection: aBuilder label: label methods: methods ].
-	"Hierarchy"
-	"self addDocumentSectionHierarchy: aBuilder."
-
-]
-
 { #category : #accessing }
 SpDialogPresenter class >> defaultAcceptLabel [
 
@@ -112,10 +96,10 @@ SpDialogPresenter class >> documentFactoryMethodSelector [
 SpDialogPresenter class >> documentSections [
 		
 	^ OrderedDictionary newFromPairs: {
-		'API Show Methods'. self methods select: [ :each | each protocol = #'api-showing' ].
+		'API Show Methods'. self methods select: [ :each | each protocol = #'api - showing' ].
 		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
 		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api-events' ].
+		'Events'. self methods select: [ :each | each protocol = #'api - events' ].
 	}
 ]
 

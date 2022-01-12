@@ -10,6 +10,8 @@ My subclasses are used by the ProgressBarPresenter.
 Class {
 	#name : #SpProgressBarState,
 	#superclass : #Object,
+	#traits : 'TObservable',
+	#classTraits : 'TObservable classTrait',
 	#category : #'Spec2-Core-Utils'
 }
 
