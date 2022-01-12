@@ -16,8 +16,8 @@ SpApplicationTest >> setUp [
 
 { #category : #running }
 SpApplicationTest >> tearDown [
-	
-	application close.
+
+	application closeAllWindows.
 	super tearDown
 ]
 

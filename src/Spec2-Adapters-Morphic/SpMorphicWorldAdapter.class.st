@@ -41,5 +41,5 @@ SpMorphicWorldAdapter >> newContainerMorph [
 SpMorphicWorldAdapter >> title: aString [
 	"Update the host window title"
 
-	DisplayScreen hostWindowTitle: aString
+	self currentWorld worldState worldRenderer windowTitle: aString
 ]
