@@ -66,18 +66,6 @@ SpDynamicPresenter >> openModal [
 ]
 
 { #category : #api }
-SpDynamicPresenter >> openModalWithSpec [
-
-	
-	self 
-		deprecated: 'Please use #openModal instead' 
-		transformWith:  '`@receiver openModalWithSpec' 
-						-> '`@receiver openModal'. 
-						
-	self openModal
-]
-
-{ #category : #api }
 SpDynamicPresenter >> openWithSpec [
 
 	self layout ifNil: [ ^ super openWithSpec ].
