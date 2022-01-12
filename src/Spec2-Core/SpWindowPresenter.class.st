@@ -449,7 +449,7 @@ SpWindowPresenter >> open [
 { #category : #'api - showing' }
 SpWindowPresenter >> openWith: aSpecLayout [
 
-	self openWithSpecLayout: aSpecLayout
+	self openWithLayout: aSpecLayout
 ]
 
 { #category : #'private - showing' }

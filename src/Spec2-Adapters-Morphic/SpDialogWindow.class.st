@@ -64,7 +64,7 @@ SpDialogWindow >> initialize [
 { #category : #accessing }
 SpDialogWindow >> newButtonRow [
 
-	^ self toolbar ifNotNil: [ : t | t buildWithSpec ]
+	^ self toolbar ifNotNil: [ :t | t build ]
 ]
 
 { #category : #protocol }

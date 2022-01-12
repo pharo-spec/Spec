@@ -91,10 +91,10 @@ SpAbstractMorphicWindowAdapter >> setToolbarTo: aMorph [
 			toolbarMorph ifNotNil: [ 
 				aMorph removeMorph: toolbarMorph.
 				toolbarMorph := nil.  ].
-			^ self. ].
+			^ self ].
 	
 	toolbarPresenter := self presenter toolbar.
-	newToolbarMorph := toolbarPresenter buildWithSpec.
+	newToolbarMorph := toolbarPresenter build.
 	toolbarPresenter adapter applyStyle.
 	newToolbarMorph
 		hResizing: #spaceFill;

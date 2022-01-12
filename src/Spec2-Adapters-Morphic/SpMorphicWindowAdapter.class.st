@@ -23,24 +23,21 @@ SpMorphicWindowAdapter >> addFocusRotationKeyBindings [
 
 { #category : #protocol }
 SpMorphicWindowAdapter >> addPresenterIn: aWindow withSpecLayout: aSpec [
-	| contentWidget |
 
-	self presenter initialPosition 
-		ifNotNil: [ :position | aWindow position: position ].
-	self presenter initialExtent 
-		ifNotNil: [ :extent | aWindow extent: extent ].
-	self presenter hasDecorations 
-		ifFalse: [ aWindow removeLabelArea ].
-	self presenter whenDecorationsChangedDo: [ :aBoolean |
-		aBoolean 
+	| contentWidget |
+	self presenter initialPosition ifNotNil: [ :position | 
+		aWindow position: position ].
+	self presenter initialExtent ifNotNil: [ :extent | 
+		aWindow extent: extent ].
+	self presenter hasDecorations ifFalse: [ aWindow removeLabelArea ].
+	self presenter whenDecorationsChangedDo: [ :aBoolean | 
+		aBoolean
 			ifTrue: [ aWindow initializeLabelArea ]
 			ifFalse: [ aWindow removeLabelArea ] ].
 
-	contentWidget := self presenter presenter buildWithSpecLayout: aSpec.	
+	contentWidget := self presenter presenter buildWithLayout: aSpec.
 	self presenter presenter adapter applyStyle.
-	self 
-		addContent: contentWidget 
-		toWindow: aWindow
+	self addContent: contentWidget toWindow: aWindow
 ]
 
 { #category : #'widget API' }

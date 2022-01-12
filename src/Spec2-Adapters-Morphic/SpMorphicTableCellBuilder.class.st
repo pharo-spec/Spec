@@ -158,7 +158,7 @@ SpMorphicTableCellBuilder >> visitCheckboxColumn: aTableColumn [
 	aTableColumn onDeactivation ifNotNil: [ :valuable | 
 		presenter whenDeactivatedDo: [ valuable cull: self item ] ].
 
-	morph := presenter buildWithSpec.
+	morph := presenter build.
 	presenter adapter applyStyle: morph.
 
 	self 

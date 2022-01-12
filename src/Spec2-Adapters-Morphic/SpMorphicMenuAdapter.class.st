@@ -33,12 +33,12 @@ SpMorphicMenuAdapter >> basicMenuPopUp [
 
 { #category : #private }
 SpMorphicMenuAdapter >> buildWidget [
-	
+
 	widget := self basicMenuPopUp.
 	self menuGroups
 		do: [ :group | 
 			| items |
-			items := group buildWithSpec.
+			items := group build.
 			items do: [ :item | widget addMorphBack: item ] ]
 		separatedBy: [ widget addLine ].
 
