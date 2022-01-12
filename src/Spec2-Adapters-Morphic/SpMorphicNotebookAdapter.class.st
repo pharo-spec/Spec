@@ -64,12 +64,12 @@ SpMorphicNotebookAdapter >> buildContentForPage: aPage [
 
 { #category : #factory }
 SpMorphicNotebookAdapter >> buildLabelForPage: aPage [
-	| labelPresenter labelMorph |
 
+	| labelPresenter labelMorph |
 	labelPresenter := aPage labelPresenterFor: self presenter.
-	labelMorph := labelPresenter buildWithSpec.
+	labelMorph := labelPresenter build.
 	labelPresenter adapter applyStyle.
-	
+
 	^ labelMorph
 ]
 
@@ -95,15 +95,16 @@ SpMorphicNotebookAdapter >> buildWidget [
 SpMorphicNotebookAdapter >> ensurePage: aPage isBuiltWithPresenter: presenter [
 
 	"is already built *for this notebook (owner)*"
-	(presenter hasAdapter 
-		and: [ presenter owner = self presenter ])
+
+	(presenter hasAdapter and: [ presenter owner = self presenter ]) 
 		ifTrue: [ ^ self ].
 
-	"if not built or not same owner, I need to rebuild"		
-	presenter owner: self presenter. 
+	"if not built or not same owner, I need to rebuild"
+	presenter owner: self presenter.
 	aPage layoutSpec
-		ifNil: [ presenter buildWithSpec ]
-		ifNotNil: [ :spec | presenter buildWithSpecLayout: (self perform: spec) ]
+		ifNil: [ presenter build ]
+		ifNotNil: [ :spec | 
+		presenter buildWithSpecLayout: (self perform: spec) ]
 ]
 
 { #category : #initialization }
