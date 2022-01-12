@@ -6,23 +6,20 @@ Class {
 
 { #category : #tests }
 SpMorphicWindowAdapterTest >> testOpenWidgetPresenterAppliesStyle [
-	| presenter window |
 
+	| presenter window |
 	presenter := SpTextPresenter new.
-	[ window := presenter openWithSpec ]
-	ensure: [ window close ].
-	
-	self 
-		assert: presenter adapter widget font 
+	[ window := presenter open ] ensure: [ window close ].
+
+	self
+		assert: presenter adapter widget font
 		equals: StandardFonts defaultFont.
-	
+
 	presenter := SpTextPresenter new.
 	presenter addStyle: 'code'.
-	[ window := presenter openWithSpec ]
-	ensure: [ window close ].
+	[ window := presenter openWithSpec ] ensure: [ window close ].
 
-	self 
-		assert: presenter adapter widget font 
-		equals: StandardFonts codeFont.
-
+	self
+		assert: presenter adapter widget font
+		equals: StandardFonts codeFont
 ]

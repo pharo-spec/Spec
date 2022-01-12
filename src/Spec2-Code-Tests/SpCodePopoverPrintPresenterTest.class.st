@@ -73,23 +73,22 @@ SpCodePopoverPrintPresenterTest >> testObjectAsString [
 
 { #category : #tests }
 SpCodePopoverPrintPresenterTest >> testPopoverPopupTextTakesExtentFromPresenter [
+
 	| window popover string naturalSize |
+	[ 
+	window := SpLabelPresenter new open.
+	string := String loremIpsum withNoLineLongerThan: 80.
+	presenter := SpCodePopoverPrintPresenter on: string.
+	popover := window presenter newPopover
+		           bePositionRight;
+		           presenter: presenter;
+		           popup.
+	MorphicRenderLoop new doOneCycle.
 
-	[
-		window := SpLabelPresenter new openWithSpec.
-		string := String loremIpsum withNoLineLongerThan: 80.
-		presenter := SpCodePopoverPrintPresenter on: string.
-		popover := window presenter newPopover
-			bePositionRight;
-			presenter: presenter;
-			popup.
-		MorphicRenderLoop new doOneCycle.	
-
-		naturalSize := self naturalSizeOf: string.
-		self 
-			assert: popover adapter widget width >= naturalSize x;
-			assert: popover adapter widget height >= naturalSize y ]
-	ensure: [ 
+	naturalSize := self naturalSizeOf: string.
+	self
+		assert: popover adapter widget width >= naturalSize x;
+		assert: popover adapter widget height >= naturalSize y ] ensure: [ 
 		popover dismiss.
 		window close ]
 ]

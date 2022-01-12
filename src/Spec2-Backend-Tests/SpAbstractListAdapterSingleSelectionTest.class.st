@@ -54,44 +54,50 @@ SpAbstractListAdapterSingleSelectionTest >> testSelectPresenterItemSetsSelectedI
 
 { #category : #'tests - model-to-widget' }
 SpAbstractListAdapterSingleSelectionTest >> testSelectPresenterWithScrollingMakeSelectedItemVisible [
-	| visibleItems |
 
+	| visibleItems |
 	"TreeTable presenter does not have the same API, do not run the test"
 	presenter class adapterName = #TreeTableAdapter ifTrue: [ ^ self ].
-	
-	self flag: 'TODO: remove the following guard clause once scrolling is implemented on SpComponentListPresenter'.
+
+	self flag:
+		'TODO: remove the following guard clause once scrolling is implemented on SpComponentListPresenter'.
 	presenter class adapterName = #ComponentListAdapter ifTrue: [ ^ self ].
-	
+
 	presenter
 		items: (1 to: 200);
 		selectIndex: 150 scrollToSelection: true;
-		openWithSpec.
-		
-	visibleItems := presenter verticalAlignment firstVisibleRowIndex to: presenter verticalAlignment lastVisibleRowIndex.
-		
-	self assert: (visibleItems includes: presenter selection selectedIndex)
+		open.
+
+	visibleItems := presenter verticalAlignment firstVisibleRowIndex to:
+	                presenter verticalAlignment lastVisibleRowIndex.
+
+	self assert:
+		(visibleItems includes: presenter selection selectedIndex)
 ]
 
 { #category : #'tests - model-to-widget' }
 SpAbstractListAdapterSingleSelectionTest >> testSelectPresenterWithoutScrollingDoesNotScroll [
+
 	| visibleItems verticalAlignment |
-	
 	"TreeTable presenter does not have the same API, do not run the test"
 	presenter class adapterName = #TreeTableAdapter ifTrue: [ ^ self ].
-	
-	self flag: 'TODO: remove the following guard clause once scrolling is implemented on SpComponentListPresenter'.
+
+	self flag:
+		'TODO: remove the following guard clause once scrolling is implemented on SpComponentListPresenter'.
 	presenter class adapterName = #ComponentListAdapter ifTrue: [ ^ self ].
-	
-	presenter 
+
+	presenter
 		items: (1 to: 200);
-		openWithSpec.
-	verticalAlignment := presenter verticalAlignment.		
-	visibleItems := verticalAlignment firstVisibleRowIndex to: verticalAlignment lastVisibleRowIndex.
-	
+		open.
+	verticalAlignment := presenter verticalAlignment.
+	visibleItems := verticalAlignment firstVisibleRowIndex to:
+	                verticalAlignment lastVisibleRowIndex.
+
 	presenter selectIndex: 150 scrollToSelection: false.
-			
-	self 
-		assert: (verticalAlignment firstVisibleRowIndex to: verticalAlignment lastVisibleRowIndex) 
+
+	self
+		assert: (verticalAlignment firstVisibleRowIndex to:
+			 verticalAlignment lastVisibleRowIndex)
 		equals: visibleItems
 ]
 

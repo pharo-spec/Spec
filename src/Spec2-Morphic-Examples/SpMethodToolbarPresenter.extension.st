@@ -2,6 +2,7 @@ Extension { #name : #SpMethodToolbarPresenter }
 
 { #category : #'*Spec2-Morphic-Examples' }
 SpMethodToolbarPresenter class >> example [
+
 	<sampleInstance>
 	| example |
 	example := SpMethodToolbarPresenter new.
@@ -9,6 +10,6 @@ SpMethodToolbarPresenter class >> example [
 		method: SpButtonPresenter >> #state:;
 		method: nil;
 		extent: 550 @ 100;
-		openWithSpec.
-		^example 
+		open.
+	^ example
 ]

@@ -71,7 +71,7 @@ SpMorphicPopoverAdapter >> popupPointingTo: aRectangle [
 { #category : #factory }
 SpMorphicPopoverAdapter >> presenterWidget [
 
-	self contentPresenter buildWithSpec.
+	self contentPresenter build.
 	self contentPresenter adapter applyStyle.
 	^ self contentPresenter adapter widget
 ]

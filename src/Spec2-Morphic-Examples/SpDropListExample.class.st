@@ -34,9 +34,9 @@ SpDropListExample class >> defaultSpec [
 
 { #category : #examples }
 SpDropListExample class >> example [
+
 	<sampleInstance>
-	
-	^ self new openWithSpec
+	^ self new open
 ]
 
 { #category : #specs }

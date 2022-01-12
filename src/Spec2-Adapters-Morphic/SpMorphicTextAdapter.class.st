@@ -87,7 +87,7 @@ SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
 			menuPresenter addMenuGroup: each ] ].
 	^ SpBindings
 		  value: self model application adapterBindings
-		  during: [ menuPresenter value buildWithSpec ]
+		  during: [ menuPresenter value build ]
 ]
 
 { #category : #commands }

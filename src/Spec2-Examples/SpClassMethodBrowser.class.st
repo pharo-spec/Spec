@@ -28,12 +28,13 @@ SpClassMethodBrowser class >> defaultSpec [
 
 { #category : #examples }
 SpClassMethodBrowser class >> example [
+
 	<sampleInstance>
 	| example |
 	example := SpClassMethodBrowser new.
 	example
 		classes: self environment allClasses;
-		openWithSpec.
+		open.
 	^ example
 ]
 

@@ -31,16 +31,16 @@ SpMorphicActionBarAdapter >> addModelTo: aMorph [
 
 { #category : #factory }
 SpMorphicActionBarAdapter >> buildActionButton: aButtonPresenter [
+
 	| morph |
-	
 	self flag: #TODO. "This should not be here once we implement bubble up styles with the 
 	new style mechanism (because then we will have a style '.actionBar.button' instead 
 	'actionButton'"
-	morph := aButtonPresenter buildWithSpec.
-	aButtonPresenter adapter 
+	morph := aButtonPresenter build.
+	aButtonPresenter adapter
 		styleName: 'actionButton';
 		applyStyle: morph.
-		
+
 	^ morph
 ]
 

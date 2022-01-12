@@ -16,27 +16,27 @@ SpApplicationTest >> setUp [
 
 { #category : #running }
 SpApplicationTest >> tearDown [
-	
-	application close.
+
+	application closeAllWindows.
 	super tearDown
 ]
 
 { #category : #tests }
 SpApplicationTest >> testCloseDialogWindowRemovesItFromWindowCollection [
-	| window |
 
+	| window |
 	application := SpApplication new.
-	window := (application newPresenter: SpButtonPresenter) openDialogWithSpec.
+	window := (application newPresenter: SpButtonPresenter) openDialog.
 	window close.
 	self deny: (application windows includes: window)
 ]
 
 { #category : #tests }
 SpApplicationTest >> testCloseWindowRemovesItFromWindowCollection [
+
 	| window |
-	
 	application := SpApplication new.
-	window := (application newPresenter: SpButtonPresenter) openWithSpec.
+	window := (application newPresenter: SpButtonPresenter) open.
 	window close.
 	self deny: (application windows includes: window)
 ]
@@ -57,17 +57,19 @@ SpApplicationTest >> testNewPresenter [
 
 { #category : #tests }
 SpApplicationTest >> testOpenDialogWindowAddsItToWindowCollection [
+
 	| window |
-	window := (application newPresenter: SpButtonPresenter) openDialogWithSpec.
-	
+	window := (application newPresenter: SpButtonPresenter) openDialog.
+
 	self assert: (application windows includes: window)
 ]
 
 { #category : #tests }
 SpApplicationTest >> testOpenWindowAddsItToWindowCollection [
+
 	| window |
-	window := (application newPresenter: SpButtonPresenter) openWithSpec.
-	
+	window := (application newPresenter: SpButtonPresenter) open.
+
 	self assert: (application windows includes: window)
 ]
 

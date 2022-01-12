@@ -57,11 +57,12 @@ SpOpenOnStringExample class >> defaultSpec [
 
 { #category : #examples }
 SpOpenOnStringExample class >> example [
+
 	<sampleInstance>
 	^ (self new: 'Hello world')
-		extent: 300 @ 200;
-		openWithSpec;
-		yourself
+		  extent: 300 @ 200;
+		  open;
+		  yourself
 ]
 
 { #category : #instantiation }

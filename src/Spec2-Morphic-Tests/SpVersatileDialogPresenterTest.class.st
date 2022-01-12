@@ -11,12 +11,13 @@ SpVersatileDialogPresenterTest >> classToTest [
 
 { #category : #tests }
 SpVersatileDialogPresenterTest >> testListBox [
+
 	| dialog app listPresenter |
 	app := SpMockApplication new.
 
 	dialog := SpVersatileDialogPresenter newApplication: app.
 	listPresenter := dialog newList.
-	listPresenter items: #(one two three).
+	listPresenter items: #( one two three ).
 	dialog contentArea: listPresenter.
 	dialog
 		addButton: #ok
@@ -26,7 +27,7 @@ SpVersatileDialogPresenterTest >> testListBox [
 	dialog addButton: #cancel text: 'Cancel' value: nil.
 	dialog mainIcon: (self iconNamed: #question).
 
-	dialog openModalWithSpec.
+	dialog openModal.
 	dialog withWindowDo: [ :w | w title: 'Confirmation' ].
 
 	dialog contentArea selection selectIndex: 2.
@@ -38,12 +39,11 @@ SpVersatileDialogPresenterTest >> testListBox [
 ]
 
 { #category : #tests }
-SpVersatileDialogPresenterTest >> testResult [ 
+SpVersatileDialogPresenterTest >> testResult [
 
 	| dialog app |
-	
 	app := SpMockApplication new.
-	
+
 	dialog := SpVersatileDialogPresenter newApplication: app.
 	dialog mainMessage: 'Save content' asText allBold.
 	dialog addButton: #save text: 'Save' value: true.
@@ -51,11 +51,11 @@ SpVersatileDialogPresenterTest >> testResult [
 	dialog mainIcon: (self iconNamed: #question).
 	dialog moreOptionsArea: (dialog newCheckBox label: 'Save header').
 
-	dialog openModalWithSpec. 
+	dialog openModal.
 	dialog withWindowDo: [ :w | w title: 'Confirmation' ].
 	(dialog buttons at: #save) performAction.
 	dialog moreOptionsArea click.
 
-	self assert: dialog result.	
-	self assert: dialog moreOptionsArea state.
+	self assert: dialog result.
+	self assert: dialog moreOptionsArea state
 ]

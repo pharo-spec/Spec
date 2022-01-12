@@ -108,9 +108,8 @@ SpCodePresenter class >> documentFactoryMethodSelector [
 SpCodePresenter class >> example [
 
 	^ self new
-		text: 'some method: 42';
-		openWithSpec
-
+		  text: 'some method: 42';
+		  open
 ]
 
 { #category : #examples }

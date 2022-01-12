@@ -86,11 +86,11 @@ SpPopoverPresenter >> initialize [
 
 { #category : #api }
 SpPopoverPresenter >> popup [
+
 	"Shows the popover, relative to `SpPopoverPresenter>>#relativeTo`."
 
-	self adapter ifNil: [ self buildWithSpec ].
-	self withAdapterDo: [ :anAdapter |
-		anAdapter popup ]
+	self adapter ifNil: [ self build ].
+	self withAdapterDo: [ :anAdapter | anAdapter popup ]
 ]
 
 { #category : #api }

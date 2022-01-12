@@ -10,8 +10,8 @@ Class {
 { #category : #adding }
 SpMorphicWorldAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
 
-	self 
-		addContent: (self model presenter buildWithSpecLayout: aSpec) 
+	self
+		addContent: (self model presenter buildWithLayout: aSpec)
 		toWindow: widgetToBuild
 ]
 
@@ -39,7 +39,8 @@ SpMorphicWorldAdapter >> newContainerMorph [
 
 { #category : #private }
 SpMorphicWorldAdapter >> title: aString [
+
 	"Update the host window title"
 
-	DisplayScreen hostWindowTitle: aString
+	self currentWorld worldState worldRenderer windowTitle: aString
 ]

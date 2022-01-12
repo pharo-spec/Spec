@@ -23,11 +23,12 @@ SpOpenOnNilExample class >> defaultSpec [
 
 { #category : #examples }
 SpOpenOnNilExample class >> example [
+
 	<sampleInstance>
 	^ self new
-		extent: 200 @ 100;
-		openWithSpec;
-		yourself
+		  extent: 200 @ 100;
+		  open;
+		  yourself
 ]
 
 { #category : #initialization }
