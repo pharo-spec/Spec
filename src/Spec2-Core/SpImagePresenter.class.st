@@ -10,7 +10,7 @@ Class {
 		'#action => ObservableSlot',
 		'#autoScale => ObservableSlot'
 	],
-	#category : #'Spec2-Morphic-Widgets'
+	#category : #'Spec2-Core-Widgets'
 }
 
 { #category : #specs }
