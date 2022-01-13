@@ -341,11 +341,10 @@ SpPresenter >> askOkToClose [
 ]
 
 { #category : #'private - building' }
-SpPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
+SpPresenter >> basicBuildAdapterWithLayout: aSpecLayout [
 
-	layout == aSpecLayout 
-		ifFalse: [ layout := aSpecLayout ].
-	^ super basicBuildAdapterWithSpecLayout: aSpecLayout
+	layout == aSpecLayout ifFalse: [ layout := aSpecLayout ].
+	^ super basicBuildAdapterWithLayout: aSpecLayout
 ]
 
 { #category : #'api - shortcuts' }

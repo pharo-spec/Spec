@@ -153,7 +153,7 @@ SpAbstractPresenter >> autoAccept: aBoolean [
 ]
 
 { #category : #'private - building' }
-SpAbstractPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
+SpAbstractPresenter >> basicBuildAdapterWithLayout: aSpecLayout [
 	"I assume the SpecBindings is well defined"
 	aSpecLayout ifNil: [ Error signal: 'You must define a layout either by defining #defaulLayout on your presenter or setting explicitly a layout with #layout:' ].
 	self announcer announce: (SpWidgetWillBeBuilt model: self).
@@ -177,19 +177,20 @@ SpAbstractPresenter >> build [
 ]
 
 { #category : #'private - building' }
-SpAbstractPresenter >> buildAdapterWithSpecLayout: aSpecLayout [
+SpAbstractPresenter >> buildAdapterWithLayout: aSpecLayout [
 	"Build the adapter using the spec name provided as argument"
 	
 	^ SpBindings 
 		value: self application adapterBindings
-		during: [ self basicBuildAdapterWithSpecLayout: aSpecLayout ]
+		during: [ self basicBuildAdapterWithLayout: aSpecLayout ]
 ]
 
 { #category : #building }
 SpAbstractPresenter >> buildWithLayout: aSpecLayout [
+
 	"Build the widget using the layout provided as argument"
 
-	^ (self buildAdapterWithSpecLayout: aSpecLayout) widget
+	^ (self buildAdapterWithLayout: aSpecLayout) widget
 ]
 
 { #category : #building }
