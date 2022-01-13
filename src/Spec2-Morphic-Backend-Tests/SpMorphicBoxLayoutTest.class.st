@@ -63,64 +63,62 @@ SpMorphicBoxLayoutTest >> testAddWithPaddingVertical [
 
 { #category : #tests }
 SpMorphicBoxLayoutTest >> testBeHomogeneous [
-	| presenter p1 p2 p3 |
 
+	| presenter p1 p2 p3 |
 	"not working on CI :("
 	self skipOnPharoCITestingEnvironment.
 
 	presenter := SpPresenter new.
-	presenter layout: (SpBoxLayout newHorizontal 
-		beHomogeneous;
-		add: (p1 := presenter newButton);
-		add: (p2 := presenter newLabel);
-		add: (p3 := presenter newList);
-		yourself).
+	presenter layout: (SpBoxLayout newHorizontal
+			 beHomogeneous;
+			 add: (p1 := presenter newButton);
+			 add: (p2 := presenter newLabel);
+			 add: (p3 := presenter newList);
+			 yourself).
 
 	p1 label: 'Button'.
 	p2 label: 'Label'.
-	p3 items: #(one two three).
+	p3 items: #( one two three ).
 
 	[ 
-		presenter openWithSpec.
-	 	backend waitUntilUIRedrawed ]
-	ensure: [ presenter withWindowDo: #close ].		
+	presenter open.
+	backend waitUntilUIRedrawed ] ensure: [ 
+		presenter withWindowDo: #close ].
 
-	self assert: presenter adapter widget width 
-		>= (p1 adapter widget width 
-			+ p2 adapter widget width
-			+ p3 adapter widget width).
-	self assert: p2 adapter widget width equals: p3 adapter widget width.	
+	self assert: presenter adapter widget width
+		>= (p1 adapter widget width + p2 adapter widget width
+			 + p3 adapter widget width).
+	self assert: p2 adapter widget width equals: p3 adapter widget width.
 	self assert: p1 adapter widget width equals: p2 adapter widget width
 ]
 
 { #category : #tests }
 SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
-	| presenter p1 p2 p3 windowWidth presenterWidth width1 width2 width3 |
 
+	| presenter p1 p2 p3 windowWidth presenterWidth width1 width2 width3 |
 	"not working on CI :("
 	self skipOnPharoCITestingEnvironment.
 
 	presenter := SpPresenter new.
-	presenter layout: (SpBoxLayout newHorizontal 
-		beHomogeneous;
-		add: (p1 := presenter newButton);
-		add: (p2 := presenter newLabel);
-		add: (p3 := presenter newList);
-		yourself).
+	presenter layout: (SpBoxLayout newHorizontal
+			 beHomogeneous;
+			 add: (p1 := presenter newButton);
+			 add: (p2 := presenter newLabel);
+			 add: (p3 := presenter newList);
+			 yourself).
 
 	p1 label: 'Button'.
 	p2 label: 'Label'.
-	p3 items: #(one two three).
+	p3 items: #( one two three ).
 
 	[ 
-		presenter openWithSpec.
-		backend waitUntilUIRedrawed.
-		presenter withWindowDo: [ :window |
-			window adapter widgetDo: [ :widget |
-				widget extent: widget extent - (50@50) ] ].
-		backend waitUntilUIRedrawed
-	]
-	ensure: [ presenter withWindowDo: #close ].		
+	presenter open.
+	backend waitUntilUIRedrawed.
+	presenter withWindowDo: [ :window | 
+		window adapter widgetDo: [ :widget | 
+			widget extent: widget extent - (50 @ 50) ] ].
+	backend waitUntilUIRedrawed ] ensure: [ 
+		presenter withWindowDo: #close ].
 
 	windowWidth := presenter window adapter widget width.
 	presenterWidth := presenter adapter widget width.
@@ -128,53 +126,51 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
 	width2 := p2 adapter widget width.
 	width3 := p3 adapter widget width.
 	self assert: presenterWidth >= (width1 + width2 + width3).
-	self assert: width1 equals: width2.	
+	self assert: width1 equals: width2.
 	self assert: width2 equals: width3.
 	self assert: windowWidth >= presenterWidth
 ]
 
 { #category : #tests }
 SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenExpandingWindow [
-	| presenter p1 p2 p3 |
 
+	| presenter p1 p2 p3 |
 	presenter := SpPresenter new.
-	presenter layout: (SpBoxLayout newHorizontal 
-		beHomogeneous;
-		add: (p1 := presenter newButton);
-		add: (p2 := presenter newLabel);
-		add: (p3 := presenter newList);
-		yourself).
+	presenter layout: (SpBoxLayout newHorizontal
+			 beHomogeneous;
+			 add: (p1 := presenter newButton);
+			 add: (p2 := presenter newLabel);
+			 add: (p3 := presenter newList);
+			 yourself).
 
 	p1 label: 'Button'.
 	p2 label: 'Label'.
-	p3 items: #(one two three).
+	p3 items: #( one two three ).
 
 	[ 
-		presenter openWithSpec.
-		backend waitUntilUIRedrawed.
-		presenter withWindowDo: [ :window |
-			window adapter widgetDo: [ :widget |
-				widget extent: widget extent + (200@10) ] ].
-		backend waitUntilUIRedrawed.
-	]
-	ensure: [ presenter withWindowDo: #close ].		
+	presenter open.
+	backend waitUntilUIRedrawed.
+	presenter withWindowDo: [ :window | 
+		window adapter widgetDo: [ :widget | 
+			widget extent: widget extent + (200 @ 10) ] ].
+	backend waitUntilUIRedrawed ] ensure: [ 
+		presenter withWindowDo: #close ].
 
-	self assert: presenter adapter widget width 
-		>= (p1 adapter widget width 
-			+ p2 adapter widget width
-			+ p3 adapter widget width).
-	self assert: p2 adapter widget width equals: p3 adapter widget width.	
+	self assert: presenter adapter widget width
+		>= (p1 adapter widget width + p2 adapter widget width
+			 + p3 adapter widget width).
+	self assert: p2 adapter widget width equals: p3 adapter widget width.
 	self assert: p1 adapter widget width equals: p2 adapter widget width.
-	self assert: presenter window adapter widget width 
+	self assert: presenter window adapter widget width
 		>= presenter adapter widget width
 ]
 
 { #category : #tests }
 SpMorphicBoxLayoutTest >> testClassIsDisplayedWithCorrectAlignment [
-	| presenter table |
 
+	| presenter table |
 	presenter := SpBoxLayoutWithTableForTestPresenter new.
-	instance := presenter openWithSpec.
+	instance := presenter open.
 
 	table := presenter table adapter widget.
 	self assert: instance window left <= table left.
@@ -183,25 +179,26 @@ SpMorphicBoxLayoutTest >> testClassIsDisplayedWithCorrectAlignment [
 
 { #category : #tests }
 SpMorphicBoxLayoutTest >> testLayoutHeightTakesAllSpaceNeeded [
-	| string presenter textPresenter layout |
 
+	| string presenter textPresenter layout |
 	string := String loremIpsum withNoLineLongerThan: 80.
 
 	presenter := SpPresenter new.
 
 	textPresenter := SpTextPresenter new.
 	textPresenter text: string.
-	textPresenter propagateNaturalHeight: true. 
+	textPresenter propagateNaturalHeight: true.
 
-	layout := SpBoxLayout newTopToBottom 
-		add: textPresenter;
-		yourself.	
-	
-	presenter 
+	layout := SpBoxLayout newTopToBottom
+		          add: textPresenter;
+		          yourself.
+
+	presenter
 		layout: layout;
-		buildWithSpec.
-	
-	self assert: presenter adapter widget height >= (string lines size * string asMorph height).
+		build.
+
+	self assert: presenter adapter widget height
+		>= (string lines size * string asMorph height)
 ]
 
 { #category : #tests }
@@ -231,16 +228,15 @@ SpMorphicBoxLayoutTest >> testNestedLayoutModifiesHeightOfTopLayout [
 
 { #category : #tests }
 SpMorphicBoxLayoutTest >> testPresenterTakesRightHeight [
+
 	| presenter l1 l2 |
-	
-	(presenter := SpPresenter new) 
-		layout: (SpBoxLayout newTopToBottom 
-			add: (l1 := (presenter newLabel label: 'Line 1')) expand: false;
-			add: (l2 := (presenter newLabel label: 'Line 2')) expand: false).
-	
-	presenter buildWithSpec.	
-	
-	self 
-		assert: presenter adapter widget height 
+	(presenter := SpPresenter new) layout: (SpBoxLayout newTopToBottom
+			 add: (l1 := presenter newLabel label: 'Line 1') expand: false;
+			 add: (l2 := presenter newLabel label: 'Line 2') expand: false).
+
+	presenter build.
+
+	self
+		assert: presenter adapter widget height
 		equals: l1 adapter widget height + l2 adapter widget height
 ]

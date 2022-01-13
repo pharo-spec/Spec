@@ -26,47 +26,44 @@ SpDropListPresenterTest >> testDisableSelectionDuring [
 
 { #category : #tests }
 SpDropListPresenterTest >> testEmptyList [
-	| changed |
 
+	| changed |
 	changed := false.
-	presenter items: #($a $b $c).
+	presenter items: #( $a $b $c ).
 	presenter selectItem: $a.
-	
-	[ presenter openWithSpec ] 
-	ensure: [ presenter withWindowDo: #close ].
+
+	[ presenter open ] ensure: [ presenter withWindowDo: #close ].
 	presenter emptyList.
-	
+
 	self assert: presenter items isEmpty.
-	self assert: presenter selectedIndex equals: 0	
+	self assert: presenter selectedIndex equals: 0
 ]
 
 { #category : #tests }
 SpDropListPresenterTest >> testSetItemsWithCollectionSmallerThanSelection [
-	| changed |
 
+	| changed |
 	changed := false.
-	presenter items: #($a $b $c).
+	presenter items: #( $a $b $c ).
 	presenter selectItem: $c.
-	
-	[ presenter openWithSpec ] 
-	ensure: [ presenter withWindowDo: #close ].
-	presenter items: #($a).
+
+	[ presenter open ] ensure: [ presenter withWindowDo: #close ].
+	presenter items: #( $a ).
 
 	self assert: presenter selectedIndex equals: 1
 ]
 
 { #category : #tests }
 SpDropListPresenterTest >> testSetItemsWithEmptyCollection [
-	| changed |
 
+	| changed |
 	changed := false.
-	presenter items: #($a $b $c).
+	presenter items: #( $a $b $c ).
 	presenter selectItem: $a.
-	
-	[ presenter openWithSpec ] 
-	ensure: [ presenter withWindowDo: #close ].
-	presenter items: #().
-	
+
+	[ presenter open ] ensure: [ presenter withWindowDo: #close ].
+	presenter items: #(  ).
+
 	self assert: presenter items isEmpty.
 	self assert: presenter selectedIndex equals: 0
 ]

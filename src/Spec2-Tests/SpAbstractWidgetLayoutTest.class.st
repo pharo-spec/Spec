@@ -30,18 +30,19 @@ SpAbstractWidgetLayoutTest >> testBuildAdapterForBindings [
 
 { #category : #tests }
 SpAbstractWidgetLayoutTest >> testDynamicBuild [
+
 	"Cyril: This is currently a duplicated of a test in SpecInterpreter, but this test is useful for more that the SpecInterpreter and since we plan to remove the interpreter I want to ensure we do not lose this test. This comment can be removed once the SpecInterpreter will be removed."
 
 	| model widget1 widget2 widget3 |
 	model := SpTestingPresenter new.
-	model openWithSpec close.
+	model open close.
 	widget1 := model list adapter.
-	model openWithSpec close.
+	model open close.
 	widget2 := model list adapter.
 	self deny: widget1 identicalTo: widget2.
 	model list needRebuild: false.
 	model needRebuild: false.
-	model openWithSpec close.
+	model open close.
 	widget3 := model list adapter.
 	self assert: widget2 identicalTo: widget3.
 	self assert: model needRebuild

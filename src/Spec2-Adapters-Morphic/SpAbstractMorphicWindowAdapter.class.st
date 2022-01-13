@@ -63,8 +63,8 @@ SpAbstractMorphicWindowAdapter >> addMenuTo: aMorph [
 SpAbstractMorphicWindowAdapter >> addStatusBarTo: aMorph [
 
 	| statusBarMorph |
-	statusBarMorph := self model statusBar buildWithSpec.
-	aMorph addMorphBack: statusBarMorph.	
+	statusBarMorph := self model statusBar build.
+	aMorph addMorphBack: statusBarMorph.
 	statusBarMorph
 		hResizing: #spaceFill;
 		vResizing: #rigid
@@ -91,10 +91,10 @@ SpAbstractMorphicWindowAdapter >> setToolbarTo: aMorph [
 			toolbarMorph ifNotNil: [ 
 				aMorph removeMorph: toolbarMorph.
 				toolbarMorph := nil.  ].
-			^ self. ].
+			^ self ].
 	
 	toolbarPresenter := self presenter toolbar.
-	newToolbarMorph := toolbarPresenter buildWithSpec.
+	newToolbarMorph := toolbarPresenter build.
 	toolbarPresenter adapter applyStyle.
 	newToolbarMorph
 		hResizing: #spaceFill;

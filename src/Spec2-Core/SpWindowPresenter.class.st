@@ -112,12 +112,12 @@ SpWindowPresenter >> askOkToClose: aBoolean [
 
 { #category : #'private - building' }
 SpWindowPresenter >> basicBuildWithSpecLayout: presenterSpecLayout [
-	"Build the widget using the spec name provided as argument"
+	"Build the widget using the layout provided as argument"
 
 	^(self spec isNil or: [ self needRebuild ])
 		ifTrue: [ 
 			self 
-				buildWindowWithLayout: self retrieveDefaultSpec 
+				buildWindowWithLayout: self defaultLayout  
 				presenterLayout: presenterSpecLayout ]
 		ifFalse: [
 			self adapter widget ]
@@ -464,19 +464,19 @@ SpWindowPresenter >> okToChange [
 { #category : #'api - showing' }
 SpWindowPresenter >> open [
 
-	self openWith: self presenter retrieveDefaultSpec
+	self openWith: self presenter layout
 ]
 
 { #category : #'api - showing' }
 SpWindowPresenter >> openWith: aSpecLayout [
 
-	self openWithSpecLayout: aSpecLayout
+	self openWithLayout: aSpecLayout
 ]
 
 { #category : #'private - showing' }
-SpWindowPresenter >> openWithSpecLayout: aSpec [
+SpWindowPresenter >> openWithLayout: aSpecLayout [
 
-	self buildWithSpecLayout: aSpec.
+	self buildWithSpecLayout: aSpecLayout.
 	self application registerWindow: self.
 	self withAdapterDo: [ :anAdapter | anAdapter open ].
 	self allPresenters do: [ :each | each announceDisplayed ].
@@ -499,10 +499,10 @@ SpWindowPresenter >> presenter: aPresenter [
 ]
 
 { #category : #'private - building' }
-SpWindowPresenter >> rebuildWithSpecLayout: aSpec [
+SpWindowPresenter >> rebuildWithSpecLayout: aSpecLayout [
 
 	self withAdapterDo: [ :anAdapter | 
-		anAdapter rebuildWithSpecLayout: aSpec ]
+		anAdapter rebuildWithSpecLayout: aSpecLayout ]
 ]
 
 { #category : #private }

@@ -36,20 +36,24 @@ SpTablePresenterTest >> testAddColumnRaisesOneEventOnly [
 
 { #category : #tests }
 SpTablePresenterTest >> testGivenSortingIsActiveWhenAffectingNewItemsThenNewItemsAreSorted [
-	[ presenter
+
+	[ 
+	presenter
 		addColumn: (SpStringTableColumn title: ' i ' evaluated: #value);
-		addColumn: (SpStringTableColumn title: ' 1 / i ' evaluated: [ :item | (1 / item) value ]) beSortable;
-		openWithSpec;
+		addColumn: (SpStringTableColumn
+				 title: ' 1 / i '
+				 evaluated: [ :item | (1 / item) value ]) beSortable;
+		open;
 		selectIndex: 1.
 
 	"sort by 1/i ascending"
 	presenter clickOnColumnHeaderAt: 2.
 
 	presenter
-		items: #(40 50); 
+		items: #( 40 50 );
 		selectIndex: 1.
-	
-	self assert: presenter selection selectedItem equals: 50 "items are still sorted by 1/i ascending value" ]
+
+	self assert: presenter selection selectedItem equals: 50 "items are still sorted by 1/i ascending value" ] 
 		ensure: [ presenter delete ]
 ]
 
@@ -74,18 +78,22 @@ SpTablePresenterTest >> testHideColumnHeadersRaisesOneEventOnly [
 
 { #category : #tests }
 SpTablePresenterTest >> testSelectedItemsReturnsRightElementAfterSortingOfElementsChanged [
-	[ presenter
+
+	[ 
+	presenter
 		addColumn: (SpStringTableColumn title: ' i ' evaluated: #value);
-		addColumn: (SpStringTableColumn title: ' 1 / i ' evaluated: [ :item | (1 / item) value ]) beSortable;
-		openWithSpec;
+		addColumn: (SpStringTableColumn
+				 title: ' 1 / i '
+				 evaluated: [ :item | (1 / item) value ]) beSortable;
+		open;
 		selectIndex: 1. "10"
-		
+
 	"sort by 1/i ascending"
 	presenter clickOnColumnHeaderAt: 2.
 
 	presenter selectIndex: 1.
-	
-	self assert: presenter selectedItems first equals: 30 "items are still sorted by 1/i ascending value" ]
+
+	self assert: presenter selectedItems first equals: 30 "items are still sorted by 1/i ascending value" ] 
 		ensure: [ presenter delete ]
 ]
 

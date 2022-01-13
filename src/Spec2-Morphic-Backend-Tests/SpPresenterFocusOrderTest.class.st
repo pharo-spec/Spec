@@ -124,84 +124,110 @@ SpPresenterFocusOrderTest >> tearDown [
 SpPresenterFocusOrderTest >> testCustomFocusOrder [
 
 	mock := SpMockFocusOrderPresenter new.
-	mock focusOrder 
-		add: (mock thirdPresenter);
-		add: (mock firstPresenter);
-		add: (mock secondPresenter).
-	mock openWithSpec.
-	
+	mock focusOrder
+		add: mock thirdPresenter;
+		add: mock firstPresenter;
+		add: mock secondPresenter.
+	mock open.
+
 	"Focus third"
 	self takeKeyboardFocus: mock.
-	self assert: (mock thirdPresenter) equals: self focusedPresenter.
+	self assert: mock thirdPresenter equals: self focusedPresenter.
 	"Focus first"
 	self pressTab.
-	self assert: (mock firstPresenter) equals: self focusedPresenter.
+	self assert: mock firstPresenter equals: self focusedPresenter.
 	"Focus second"
 	self pressTab.
-	self assert: (mock secondPresenter) equals: self focusedPresenter.
+	self assert: mock secondPresenter equals: self focusedPresenter.
 	"Focus third again"
 	self pressTab.
-	self assert: (mock thirdPresenter) equals: self focusedPresenter
+	self assert: mock thirdPresenter equals: self focusedPresenter
 ]
 
 { #category : #tests }
 SpPresenterFocusOrderTest >> testFocusRotationBackwards [
 
 	mock := SpMockFocusOrderPresenter new
-		openWithSpec;
-		yourself.
-	
+		        open;
+		        yourself.
+
 	"Focus first"
 	self takeKeyboardFocus: mock.
-	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter.
+	self
+		assert: (mock presenterAt: #firstPresenter)
+		equals: self focusedPresenter.
 	"Focus third"
 	self pressShiftTab.
-	self assert: (mock presenterAt: #thirdPresenter) equals: self focusedPresenter.
+	self
+		assert: (mock presenterAt: #thirdPresenter)
+		equals: self focusedPresenter.
 	"Focus second"
 	self pressShiftTab.
-	self assert: (mock presenterAt: #secondPresenter) equals: self focusedPresenter.
+	self
+		assert: (mock presenterAt: #secondPresenter)
+		equals: self focusedPresenter.
 	"Focus first again"
 	self pressShiftTab.
-	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter
+	self
+		assert: (mock presenterAt: #firstPresenter)
+		equals: self focusedPresenter
 ]
 
 { #category : #tests }
 SpPresenterFocusOrderTest >> testFocusRotationForward [
 
 	mock := SpMockFocusOrderPresenter new
-		openWithSpec;
-		yourself.
-		
+		        open;
+		        yourself.
+
 	"Focus first"
 	self takeKeyboardFocus: mock.
-	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter.
+	self
+		assert: (mock presenterAt: #firstPresenter)
+		equals: self focusedPresenter.
 	"Focus second"
 	self pressTab.
-	self assert: (mock presenterAt: #secondPresenter) equals: self focusedPresenter.
+	self
+		assert: (mock presenterAt: #secondPresenter)
+		equals: self focusedPresenter.
 	"Focus third"
 	self pressTab.
-	self assert: (mock presenterAt: #thirdPresenter) equals: self focusedPresenter.
+	self
+		assert: (mock presenterAt: #thirdPresenter)
+		equals: self focusedPresenter.
 	"Focus first again"
 	self pressTab.
-	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter
+	self
+		assert: (mock presenterAt: #firstPresenter)
+		equals: self focusedPresenter
 ]
 
 { #category : #tests }
 SpPresenterFocusOrderTest >> testTakeKeyboardFocus [
 
 	mock := SpMockFocusOrderPresenter new
-		openWithSpec;
-		yourself.
-		
+		        open;
+		        yourself.
+
 	"Focus first"
 	self takeKeyboardFocus: mock.
-	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter.
+	self
+		assert: (mock presenterAt: #firstPresenter)
+		equals: self focusedPresenter.
 	"Focus second"
 	self takeKeyboardFocus: (mock presenterAt: #secondPresenter).
-	self deny: (mock presenterAt: #firstPresenter) equals: self focusedPresenter.
-	self assert: (mock presenterAt: #secondPresenter) equals: self focusedPresenter.
+	self
+		deny: (mock presenterAt: #firstPresenter)
+		equals: self focusedPresenter.
+	self
+		assert: (mock presenterAt: #secondPresenter)
+		equals: self focusedPresenter.
 	"Focus first again"
 	self takeKeyboardFocus: (mock presenterAt: #firstPresenter).
-	self assert: (mock presenterAt: #firstPresenter) equals: self focusedPresenter.
-	self deny: (mock presenterAt: #secondPresenter)  equals: self focusedPresenter
+	self
+		assert: (mock presenterAt: #firstPresenter)
+		equals: self focusedPresenter.
+	self
+		deny: (mock presenterAt: #secondPresenter)
+		equals: self focusedPresenter
 ]

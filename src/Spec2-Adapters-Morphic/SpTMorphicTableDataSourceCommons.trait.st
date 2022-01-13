@@ -30,13 +30,13 @@ SpTMorphicTableDataSourceCommons >> headersByColumn [
 
 { #category : #accessing }
 SpTMorphicTableDataSourceCommons >> menuColumn: column row: rowIndex [
-	| menuPresenter |
 
+	| menuPresenter |
 	menuPresenter := self model contextMenu.
 	menuPresenter ifNil: [ ^ nil ].
 	^ SpBindings
-		value: self model application adapterBindings
-		during: [ menuPresenter value buildWithSpec ]
+		  value: self model application adapterBindings
+		  during: [ menuPresenter value build ]
 ]
 
 { #category : #accessing }

@@ -68,7 +68,7 @@ SpMorphicToolbarAdapter >> updateItems: toolBarMorph [
 		toolBarMorph 
 			addItem: (self 
 				configureItem: each 
-				morph: each buildWithSpec 
+				morph: each build
 				toolBar: toolBarMorph)
 			position: SpToolbarItemPosition left ].
 
@@ -76,7 +76,7 @@ SpMorphicToolbarAdapter >> updateItems: toolBarMorph [
 		toolBarMorph 
 			addItem: (self 
 				configureItem: each 
-				morph: each buildWithSpec 
+				morph: each build 
 				toolBar: toolBarMorph)
 			position: SpToolbarItemPosition right ]
 ]

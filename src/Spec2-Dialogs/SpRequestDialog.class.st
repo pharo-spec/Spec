@@ -157,10 +157,10 @@ SpRequestDialog >> label: aString [
 ]
 
 { #category : #'api - showing' }
-SpRequestDialog >> openModalWithSpec [
+SpRequestDialog >> openModal [
 	| dialog |
 	
-	dialog := super openModalWithSpec.
+	dialog := super openModal.
 	^ dialog isOk
 		ifTrue: [ self text trimmed ]
 		ifFalse: [ nil ]

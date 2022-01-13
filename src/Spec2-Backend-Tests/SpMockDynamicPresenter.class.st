@@ -32,12 +32,12 @@ SpMockDynamicPresenter class >> openWithRebuildBeforeOpening [
 
 { #category : #initialization }
 SpMockDynamicPresenter >> connectPresenters [
-	list
-		whenSelectionChangedDo: [ :sel | 
-			label := self newLabel.
-			label label: sel selectedItem asString.
-			self needRebuild: false.
-			self buildWithSpec ]
+
+	list whenSelectionChangedDo: [ :sel | 
+		label := self newLabel.
+		label label: sel selectedItem asString.
+		self needRebuild: false.
+		self build ]
 ]
 
 { #category : #initialization }

@@ -161,10 +161,10 @@ SpConfirmDialog >> label: aString [
 ]
 
 { #category : #'api - showing' }
-SpConfirmDialog >> openModalWithSpec [
+SpConfirmDialog >> openModal [
 	| dialog |
 	
-	dialog := super openModalWithSpec.
+	dialog := super openModal.
 	^ dialog isOk
 ]
 

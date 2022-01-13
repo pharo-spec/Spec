@@ -38,8 +38,9 @@ SpTestWorldPresenter >> currentWorld [
 ]
 
 { #category : #'private - showing' }
-SpTestWorldPresenter >> openWithSpecLayout: aLayout [
-	super openWithSpecLayout: aLayout.
+SpTestWorldPresenter >> openWithLayout: aLayout [
+
+	super openWithLayout: aLayout.
 	isClosed := false
 ]
 

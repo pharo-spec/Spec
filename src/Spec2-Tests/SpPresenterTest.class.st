@@ -11,14 +11,16 @@ Class {
 SpPresenterTest >> testAdapterDoesNotRemainsAsDependencyWhenReplacingIt [
 
 	presenter := SpPresenter new.
-	presenter layout: (SpBoxLayout new add:  SpListPresenter  new; add: SpTextPresenter new; yourself).
-	
-	3 timesRepeat: [ 
-		presenter openWithSpec.
-		presenter window close ].
-	
-	self assert: presenter dependents size equals: 1.
+	presenter layout: (SpBoxLayout new
+			 add: SpListPresenter new;
+			 add: SpTextPresenter new;
+			 yourself).
 
+	3 timesRepeat: [ 
+		presenter open.
+		presenter window close ].
+
+	self assert: presenter dependents size equals: 1
 ]
 
 { #category : #tests }
@@ -46,6 +48,47 @@ SpPresenterTest >> testAsWindow [
 	self 
 		assert: presenter asWindow class
 		equals: presenter application defaultWindowPresenterClass
+]
+
+{ #category : #'tests - layout' }
+SpPresenterTest >> testLayoutIsClassDefaultSpecWhenNoDefaultLayoutDefined [
+	| presenterClass |
+	
+	presenterClass := SpPresenter newAnonymousSubclass.
+	presenterClass class compile: 'defaultSpec ^ SpBoxLayout newLeftToRight'.
+	presenter := presenterClass new.
+	
+	self 
+		assert: presenter layout class 
+		equals: SpBoxLayout
+]
+
+{ #category : #'tests - layout' }
+SpPresenterTest >> testLayoutIsDefaultLayoutWhenDefaultLayoutAndDefaultSpecDefined [
+	| presenterClass |
+	
+	presenterClass := SpPresenter newAnonymousSubclass.
+	presenterClass class compile: 'defaultSpec ^ SpBoxLayout newLeftToRight'.
+	presenterClass compile: 'defaultLayout ^ SpGridLayout new'.
+	presenter := presenterClass new.
+	
+	self 
+		assert: presenter layout class 
+		equals: SpGridLayout
+]
+
+{ #category : #'tests - layout' }
+SpPresenterTest >> testLayoutIsNotSetWhenAlreadyInitialized [
+	| presenterClass |
+	
+	presenterClass := SpPresenter newAnonymousSubclass.
+	presenterClass compile: 'defaultLayout ^ SpGridLayout new'.
+	presenterClass compile: 'initializePresenters self layout: SpBoxLayout newLeftToRight'.
+	presenter := presenterClass new.
+	
+	self 
+		assert: presenter layout class 
+		equals: SpBoxLayout
 ]
 
 { #category : #tests }

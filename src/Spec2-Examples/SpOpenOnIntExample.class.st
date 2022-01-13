@@ -29,11 +29,12 @@ SpOpenOnIntExample class >> defaultSpec [
 
 { #category : #examples }
 SpOpenOnIntExample class >> example [
+
 	<sampleInstance>
 	^ (self new: 42)
-		extent: 100 @ 100;
-		openWithSpec;
-		yourself
+		  extent: 100 @ 100;
+		  open;
+		  yourself
 ]
 
 { #category : #instantiation }

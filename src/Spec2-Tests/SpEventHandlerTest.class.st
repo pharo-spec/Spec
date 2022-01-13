@@ -19,72 +19,69 @@ SpEventHandlerTest >> tearDown [
 
 { #category : #tests }
 SpEventHandlerTest >> testEventIsInstalledDynamically [
+
 	| t1 t2 lost got |
+	(presenter := SpPresenter new) layout: (SpBoxLayout newTopToBottom
+			 add: (t1 := presenter newTextInput);
+			 add: (t2 := presenter newTextInput);
+			 yourself).
 
-	(presenter := SpPresenter new) 
-		layout: (SpBoxLayout newTopToBottom
-			add: (t1 := presenter newTextInput);
-			add: (t2 := presenter newTextInput);
-			yourself).
-
-	presenter openWithSpec.
+	presenter open.
 
 	got := lost := false.
-	t1 eventHandler 
+	t1 eventHandler
 		whenFocusReceivedDo: [ got := true ];
 		whenFocusLostDo: [ lost := true ].
-	
+
 	t2 takeKeyboardFocus.
 	t1 takeKeyboardFocus.
-	
+
 	self assert: got.
 	self assert: lost
 ]
 
 { #category : #tests }
 SpEventHandlerTest >> testEventIsInstalledOnBuild [
-	| t1 t2 lost got |
 
-	(presenter := SpPresenter new) 
-		layout: (SpBoxLayout newTopToBottom
-			add: (t1 := presenter newTextInput);
-			add: (t2 := presenter newTextInput);
-			yourself).
+	| t1 t2 lost got |
+	(presenter := SpPresenter new) layout: (SpBoxLayout newTopToBottom
+			 add: (t1 := presenter newTextInput);
+			 add: (t2 := presenter newTextInput);
+			 yourself).
 
 	got := lost := false.
-	t1 eventHandler 
+	t1 eventHandler
 		whenFocusReceivedDo: [ got := true ];
 		whenFocusLostDo: [ lost := true ].
-		
-	presenter openWithSpec.
-	
+
+	presenter open.
+
 	t1 takeKeyboardFocus.
 	t2 takeKeyboardFocus.
-	
+
 	self assert: got.
 	self assert: lost
 ]
 
 { #category : #tests }
 SpEventHandlerTest >> testEventIsTransmittedOnText [
-	| t1 t2 lost got |
 
-	(presenter := SpPresenter new) 
-		layout: (SpBoxLayout newTopToBottom
-			add: (t1 := presenter newText);
-			add: (t2 := presenter newText);
-			yourself).
+	| t1 t2 lost got |
+	(presenter := SpPresenter new) layout: (SpBoxLayout newTopToBottom
+			 add: (t1 := presenter newText);
+			 add: (t2 := presenter newText);
+			 yourself).
 
 	got := lost := false.
-	t1 eventHandler 
+	t1 eventHandler
 		whenFocusReceivedDo: [ got := true ];
 		whenFocusLostDo: [ lost := true ].
-		
-	presenter openWithSpec.
-	
+
+	presenter open.
+
 	t1 takeKeyboardFocus.
 	t2 takeKeyboardFocus.
-	
+
 	self assert: got.
 	self assert: lost
 ]

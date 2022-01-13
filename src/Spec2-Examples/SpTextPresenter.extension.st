@@ -4,10 +4,9 @@ Extension { #name : #SpTextPresenter }
 SpTextPresenter class >> example [
 
 	^ self new
-		text:
-			'This is a test.
+		  text: 'This is a test.
 If this had been an actual emergency...';
-		openWithSpec
+		  open
 ]
 
 { #category : #'*Spec2-Examples' }
