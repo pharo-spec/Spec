@@ -21,7 +21,7 @@ Class {
 
 { #category : #specs }
 SpMethodToolbarPresenter class >> defaultSpec [
-	<spec>
+
 	^ SpBoxLayout newLeftToRight
 		add: #browseModel;
 		add: #usersModel;

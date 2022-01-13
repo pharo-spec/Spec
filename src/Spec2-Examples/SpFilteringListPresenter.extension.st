@@ -2,12 +2,12 @@ Extension { #name : #SpFilteringListPresenter }
 
 { #category : #'*Spec2-Examples' }
 SpFilteringListPresenter class >> example [
+
 	<sampleInstance>
 	| example |
-
 	example := self new.
 	example items: RBBrowserEnvironment default classes asArray.
-	example openWithSpec.
+	example open.
 	example withWindowDo: [ :window | 
 		window title: self name asString , ' example' ].
 

@@ -20,7 +20,7 @@ Class {
 
 { #category : #specs }
 SpOpenOnStringExample class >> bottomLayout [
-	<spec>
+
 	^ SpBoxLayout newTopToBottom
 		add:
 			(SpBoxLayout newLeftToRight
