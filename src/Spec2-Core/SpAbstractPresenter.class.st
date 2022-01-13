@@ -155,7 +155,7 @@ SpAbstractPresenter >> autoAccept: aBoolean [
 { #category : #'private - building' }
 SpAbstractPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	"I assume the SpecBindings is well defined"
-	
+	aSpecLayout ifNil: [ Error signal: 'You must define a layout either by defining #defaulLayout on your presenter or setting explicitly a layout with #layout:' ].
 	self announcer announce: (SpWidgetWillBeBuilt model: self).
 
 	self adapter: (aSpecLayout asSpLayout 
