@@ -113,7 +113,7 @@ SpAbstractWidgetPresenter class >> addDocumentSectionTransmissions: aBuilder [
 
 { #category : #specs }
 SpAbstractWidgetPresenter class >> defaultSpec [
-	<spec: #default>
+
 	^ SpAbstractWidgetLayout for: self adapterName
 ]
 
