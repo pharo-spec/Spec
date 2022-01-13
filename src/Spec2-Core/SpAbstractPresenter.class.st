@@ -477,22 +477,6 @@ SpAbstractPresenter >> root [
 		ifNil: [ self ]
 ]
 
-{ #category : #accessing }
-SpAbstractPresenter >> spec [
-	self flag: #TODO. "This needs to be removed, but there is a problem with the interpreter.
-	(it will be solved as soon as the interpreter is removed :P)"
-	
-	^ self adapter
-]
-
-{ #category : #accessing }
-SpAbstractPresenter >> spec: anAdapter [
-	"This is a remaining of other times... spec accesor in fact contains an adapter"
-	
-	self flag: #TODO. "Same as #spec, it needs to go"
-	self adapter: anAdapter
-]
-
 { #category : #subscription }
 SpAbstractPresenter >> unsubscribe: anObject [
 	"Observable slots keep subscriptions to them that can leak if not removed in certain cases."

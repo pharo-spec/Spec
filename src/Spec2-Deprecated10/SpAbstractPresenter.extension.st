@@ -142,3 +142,13 @@ SpAbstractPresenter >> retrieveSpec: aSelector [
 
 	^ self retrieveLayout: aSelector
 ]
+
+{ #category : #'*Spec2-Deprecated10' }
+SpAbstractPresenter >> spec [
+	self 
+		deprecated: 'Please use #adapter instead' 
+		transformWith:  '`@receiver spec' 
+						-> '`@receiver adapter'. 
+						
+	^ self adapter
+]
