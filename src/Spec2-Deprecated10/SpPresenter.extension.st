@@ -7,5 +7,5 @@ SpPresenter >> defaultSpec [
 		transformWith:  '`@receiver defaultSpec' 
 						-> '`@receiver defaultLayout'.
 
-	^ self class perform: self defaultSpecSelector
+	^ self defaultLayout
 ]

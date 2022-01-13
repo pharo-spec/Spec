@@ -214,23 +214,27 @@ SpAbstractPresenter >> defaultDialogWindowPresenterClass [
 
 { #category : #initialization }
 SpAbstractPresenter >> defaultLayout [
+	"This method is there for compatibility purposes with Spec 1 
+	where the layout (was named Spec) was defined on class side in a method #defaultSpec.
+	
+	In a near future, it should be replaced by self subclassResponsibility.
+	"
 
-	^ self retrieveLayout: self defaultSpecSelector
+	^ self retrieveLayout: self defaultLayoutSelector
+]
+
+{ #category : #'private - building' }
+SpAbstractPresenter >> defaultLayoutSelector [
+	"This method is used by #defaultLayout default implementation for compatibility purposes with Spec 1 
+	where the layout (was named Spec) was defined on class side in a method #defaultSpec."
+	
+	^ #defaultSpec
 ]
 
 { #category : #'private - showing' }
 SpAbstractPresenter >> defaultModalWindowPresenterClass [
 		
 	^ self application defaultModalWindowPresenterClass
-]
-
-{ #category : #'private - building' }
-SpAbstractPresenter >> defaultSpecSelector [
-	(Pragma allNamed: #spec: from: self class class to: SpAbstractPresenter class class) detect: [ :each | (each argumentAt: 1) = #default ] ifFound: [ :pragma | ^ pragma methodSelector ].
-
-	^ (Pragma allNamed: #spec from: self class class to: SpAbstractPresenter class class)
-		ifEmpty: [ #defaultSpec ]
-		ifNotEmpty: [ :pragmas | pragmas size = 1 ifTrue: [ pragmas first methodSelector ] ifFalse: [ #defaultSpec ] ]
 ]
 
 { #category : #'private - showing' }
