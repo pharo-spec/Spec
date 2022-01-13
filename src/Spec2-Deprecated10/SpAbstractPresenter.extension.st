@@ -131,3 +131,14 @@ SpAbstractPresenter >> openWithSpecLayout: aSpecLayout [
 						
 	^ self openWithLayout: aSpecLayout
 ]
+
+{ #category : #'*Spec2-Deprecated10' }
+SpAbstractPresenter >> retrieveSpec: aSelector [
+
+	self 
+		deprecated: 'Please use #retrieveLayout: instead' 
+		transformWith:  '`@receiver retrieveSpec: `@arg' 
+						-> '`@receiver retrieveLayout: `@arg'. 
+
+	^ self retrieveLayout: aSelector
+]

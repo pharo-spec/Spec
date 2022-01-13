@@ -197,7 +197,7 @@ SpAbstractPresenter >> buildWithSelector: aSelector [
 
 	"Build the widget using the layout selector name provided as argument"
 
-	^ self buildWithLayout: (self retrieveSpec: aSelector)
+	^ self buildWithLayout: (self retrieveLayout: aSelector)
 ]
 
 { #category : #'private - showing' }
@@ -214,8 +214,8 @@ SpAbstractPresenter >> defaultDialogWindowPresenterClass [
 
 { #category : #initialization }
 SpAbstractPresenter >> defaultLayout [
-	
-	^ self retrieveSpec: self defaultSpecSelector
+
+	^ self retrieveLayout: self defaultSpecSelector
 ]
 
 { #category : #'private - showing' }
@@ -454,7 +454,7 @@ SpAbstractPresenter >> rawValueHolderNamed: aSymbol [
 ]
 
 { #category : #'private - building' }
-SpAbstractPresenter >> retrieveSpec: aSelector [
+SpAbstractPresenter >> retrieveLayout: aSelector [
 	| layout |
 
 	layout := self class perform: aSelector.
