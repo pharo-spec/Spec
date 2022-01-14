@@ -15,19 +15,20 @@ Class {
 { #category : #specs }
 SpPresenterSelectorExample class >> defaultSpec [
 
-	^ SpPanedLayout newLeftToRight
-		add: #list;
-		add: #choice;
-		yourself.
-
+	^ nil
 ]
 
 { #category : #initialization }
 SpPresenterSelectorExample >> initializePresenters [
 	"self new openWithSpec"
 
-	list := self newList items: #(1 2 3).
-	choice := self newPresenterSelector
+	self layout: (SpPanedLayout newLeftToRight
+		add: (list := self newList);
+		add: (choice := self newPresenterSelector);
+		yourself).
+
+	list items: #(1 2 3).
+	choice
 		when: [ :aNumber | aNumber = 1 ] show: [ self newLabel label: 'One' ];
 		when: [ :aNumber | aNumber = 2 ] show: [ self newLabel label: 'Two' ];
 		when: [ :aNumber | aNumber = 3 ] show: [ self newLabel label: 'Three' ];

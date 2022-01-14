@@ -1,7 +1,7 @@
 Extension { #name : #SpFilteringListPresenter }
 
 { #category : #'*Spec2-Examples' }
-SpFilteringListPresenter class >> example [
+SpFilteringListPresenter classSide >> example [
 	<sampleInstance>
 	| example |
 
@@ -15,7 +15,7 @@ SpFilteringListPresenter class >> example [
 ]
 
 { #category : #'*Spec2-Examples' }
-SpFilteringListPresenter class >> exampleWithFilterOnTop [
+SpFilteringListPresenter classSide >> exampleWithFilterOnTop [
 	<sampleInstance>
 	| example |
 
@@ -29,7 +29,7 @@ SpFilteringListPresenter class >> exampleWithFilterOnTop [
 ]
 
 { #category : #'*Spec2-Examples' }
-SpFilteringListPresenter class >> exampleWithInitializedFilter [
+SpFilteringListPresenter classSide >> exampleWithInitializedFilter [
 
 	<sampleInstance>
 	| example |
