@@ -12,8 +12,9 @@ Class {
 	#name : #SpOptionListPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'options',
-		'contentLayout'
+		'contentLayout',
+		'optionsPresenter',
+		'options'
 	],
 	#category : #'Spec2-Core-Widgets-Advanced'
 }
@@ -25,9 +26,15 @@ SpOptionListPresenter class >> isAbstract [
 ]
 
 { #category : #initialization }
+SpOptionListPresenter >> addOption: anOptionPresenter [
+
+	options addLast: anOptionPresenter
+]
+
+{ #category : #initialization }
 SpOptionListPresenter >> allOptions [
 
-	^ self subclassResponsibility
+	^ options
 ]
 
 { #category : #accessing }
@@ -40,15 +47,37 @@ SpOptionListPresenter >> defaultLayout [
 	
 	^ SpPanedLayout newLeftToRight 
 		positionOfSlider: 0.3;
-		add: options;
+		add: optionsPresenter;
 		add: contentLayout;
 		yourself
+]
+
+{ #category : #action }
+SpOptionListPresenter >> doAccept [
+
+	self selectedOption doAccept
+]
+
+{ #category : #initialization }
+SpOptionListPresenter >> initialize [
+	
+	options := OrderedCollection new.
+	
+	"options need to be initialized before Spec initialization"
+	super initialize.
+]
+
+{ #category : #initialization }
+SpOptionListPresenter >> initializeDialogWindow: aWindowPresenter [
+
+	super initializeDialogWindow: aWindowPresenter.
+	aWindowPresenter okAction: [ self doAccept ].
 ]
 
 { #category : #initialization }
 SpOptionListPresenter >> initializePresenters [
 
-	options := self newTable
+	optionsPresenter := self newTable
 		hideColumnHeaders;
 		addColumn: ((SpImageTableColumn evaluated: #optionIcon) width: 20);
 		addColumn: (SpStringTableColumn evaluated: #optionTitle);
@@ -58,23 +87,30 @@ SpOptionListPresenter >> initializePresenters [
 		yourself.
 	contentLayout := SpBoxLayout newTopToBottom.
 		
+	self whenBuiltDo: [ optionsPresenter selectFirst ].
+		
 	self flag: 'TODO To remove when initializeLayout will be part of Spec2'.
 	self layout: self defaultLayout.
 ]
 
 { #category : #'private - testing' }
 SpOptionListPresenter >> optionAt: anIndex [
-	^ options at: anIndex
+	^ optionsPresenter itemAt: anIndex
 ]
 
 { #category : #'private - testing' }
-SpOptionListPresenter >> options [
-	^ options
+SpOptionListPresenter >> optionsPresenter [
+	^ optionsPresenter
 ]
 
 { #category : #api }
 SpOptionListPresenter >> selectIndex: anIndex [
-	^ options selectIndex: anIndex 
+	^ optionsPresenter selectIndex: anIndex 
+]
+
+{ #category : #accessing }
+SpOptionListPresenter >> selectedOption [
+	^ optionsPresenter selectedItem
 ]
 
 { #category : #'event handling' }

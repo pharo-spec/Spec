@@ -21,7 +21,7 @@ SpOptionListExample class >> exampleDialog [
 { #category : #initialization }
 SpOptionListExample >> allOptions [
 
-	^ { SpDemoFormPresenter . SpDemoImagePresenter . SpOptionPresenterExample }
+	^ { SpProgressBarDemo . SpOptionPresenterExample . SpDemoFormPresenter }
 		collect: [ :class | class new ]
 ]
 
