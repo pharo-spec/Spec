@@ -61,7 +61,7 @@ SpAbstractPresenter class >> defaultLayout [
 	self inform: 'SpPresenter class>>#defaultSpec is now deprecated. Please define #defaultLayout on instance or class side'.
 	(RBRenameMethodRefactoring
 		model: (RBNamespace new 
-			environment: (RBClassEnvironment class: self class);
+			environment: (RBClassHierarchyEnvironment class: self class);
 			yourself)
 		renameMethod: #defaultSpec
 		in: self class
