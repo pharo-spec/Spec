@@ -109,14 +109,6 @@ SpPresenter class >> currentApplication [
 	^ SpApplication defaultApplication
 ]
 
-{ #category : #specs }
-SpPresenter class >> defaultSpec [
-
-	"Override to initialize the layout in a non-dynamic way"
-
-	^ nil
-]
-
 { #category : #'labeled-presenters' }
 SpPresenter class >> iconWidth [
 	^ 24

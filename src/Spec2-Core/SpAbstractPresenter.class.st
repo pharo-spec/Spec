@@ -55,8 +55,10 @@ SpAbstractPresenter class >> defaultFont [
 
 { #category : #layout }
 SpAbstractPresenter class >> defaultLayout [
-	self inform: 'SpPresenter class>>#defaultSpec is now deprecated. Please define #defaultLayout on instance or class side'.
+	(self respondsTo: #defaultSpec) 
+		ifFalse: [ Error signal: 'You must define a layout either by defining #defaulLayout on your presenter or setting explicitly a layout with #layout:' ].
 
+	self inform: 'SpPresenter class>>#defaultSpec is now deprecated. Please define #defaultLayout on instance or class side'.
 	(RBRenameMethodRefactoring
 		model: (RBNamespace new 
 			environment: (RBClassEnvironment class: self class);
