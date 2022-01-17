@@ -53,6 +53,24 @@ SpAbstractPresenter class >> defaultFont [
 
 ]
 
+{ #category : #layout }
+SpAbstractPresenter class >> defaultLayout [
+	self inform: 'SpPresenter class>>#defaultSpec is now deprecated. Please define #defaultLayout on instance or class side'.
+
+	(RBRenameMethodRefactoring
+		model: (RBNamespace new 
+			environment: (RBClassEnvironment class: self class);
+			yourself)
+		renameMethod: #defaultSpec
+		in: self class
+		to: #defaultLayout 
+		permutation: #())
+	execute.
+	
+	"#defaultSpec is rewritten as #defaultLayout. Let's call it. Will only be used one time since bar is now overrided."
+	^ self defaultLayout
+]
+
 { #category : #TOREMOVE }
 SpAbstractPresenter class >> inputTextHeight [
 
