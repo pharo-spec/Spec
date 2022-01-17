@@ -79,7 +79,7 @@ SpAbstractPresenter class >> owner: anOwningPresenter [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SpAbstractPresenter class >> systemIconName [
 
 	^ #smallWindow
