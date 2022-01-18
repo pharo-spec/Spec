@@ -44,18 +44,18 @@ SpComponentListDataSource >> headerColumn: column [
 
 { #category : #accessing }
 SpComponentListDataSource >> menuColumn: column row: rowIndex [
-	| menuPresenter |
 
+	| menuPresenter |
 	menuPresenter := self model contextMenu.
 	menuPresenter ifNil: [ ^ nil ].
 	^ SpBindings
-		value: self model application adapterBindings
-		during: [ 
-			| m |
-			m := menuPresenter value.
-			m isMorph 
-				ifTrue: [ m ]
-				ifFalse: [ m buildWithSpec ] ]
+		  value: self model application adapterBindings
+		  during: [ 
+			  | m |
+			  m := menuPresenter value.
+			  m isMorph
+				  ifTrue: [ m ]
+				  ifFalse: [ m build ] ]
 ]
 
 { #category : #accessing }
@@ -118,13 +118,13 @@ SpComponentListDataSource >> transferFor: passenger from: aMorph [
 
 { #category : #private }
 SpComponentListDataSource >> widgetFor: aPresenter [
-	| widget |
 
+	| widget |
 	aPresenter adapter ifNotNil: [ :adapter | ^ adapter widget ].
-	widget := aPresenter buildWithSpec
-		vResizing: #shrinkWrap;
-		yourself.
-	aPresenter adapter applyStyle: widget. 
-		
+	widget := aPresenter build
+		          vResizing: #shrinkWrap;
+		          yourself.
+	aPresenter adapter applyStyle: widget.
+
 	^ widget
 ]

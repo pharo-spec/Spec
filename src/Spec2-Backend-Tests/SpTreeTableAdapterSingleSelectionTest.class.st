@@ -50,32 +50,36 @@ SpTreeTableAdapterSingleSelectionTest >> testSelectPresenterItemSetsSelectedInde
 
 { #category : #'tests - model-to-widget' }
 SpTreeTableAdapterSingleSelectionTest >> testSelectPresenterWithScrollingMakeSelectedItemVisible [
-	| visibleItems |
 
+	| visibleItems |
 	presenter
 		roots: (1 to: 200);
-		openWithSpec.
-		
+		open.
+
 	presenter selectPath: { 150 } scrollToSelection: true.
-	visibleItems := presenter verticalAlignment firstVisibleRowIndex to: presenter verticalAlignment lastVisibleRowIndex.
-		
-	self assert: (visibleItems includes: presenter selection selectedPath first)
+	visibleItems := presenter verticalAlignment firstVisibleRowIndex to:
+	                presenter verticalAlignment lastVisibleRowIndex.
+
+	self assert:
+		(visibleItems includes: presenter selection selectedPath first)
 ]
 
 { #category : #'tests - model-to-widget' }
 SpTreeTableAdapterSingleSelectionTest >> testSelectPresenterWithoutScrollingDoesNotScroll [
+
 	| visibleItems verticalAlignment |
-	
-	presenter 
+	presenter
 		roots: (1 to: 200);
-		openWithSpec.
-	verticalAlignment := presenter verticalAlignment.		
-	visibleItems := verticalAlignment firstVisibleRowIndex to: verticalAlignment lastVisibleRowIndex.
-	
+		open.
+	verticalAlignment := presenter verticalAlignment.
+	visibleItems := verticalAlignment firstVisibleRowIndex to:
+	                verticalAlignment lastVisibleRowIndex.
+
 	presenter selectPath: { 150 } scrollToSelection: false.
-		
-	self 
-		assert: (verticalAlignment firstVisibleRowIndex to: verticalAlignment lastVisibleRowIndex) 
+
+	self
+		assert: (verticalAlignment firstVisibleRowIndex to:
+			 verticalAlignment lastVisibleRowIndex)
 		equals: visibleItems
 ]
 

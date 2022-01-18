@@ -4,9 +4,9 @@ Extension { #name : #SpPopoverPresenter }
 SpPopoverPresenter class >> sampleInstanceForTest [
 
 	^ super sampleInstanceForTest
-		relativeTo: (SpButtonPresenter new
-			buildWithSpec; 
-			yourself);
-		presenter: SpLabelPresenter new;
-		yourself
+		  relativeTo: (SpButtonPresenter new
+				   build;
+				   yourself);
+		  presenter: SpLabelPresenter new;
+		  yourself
 ]

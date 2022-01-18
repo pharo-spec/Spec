@@ -75,35 +75,35 @@ SpMorphStyleTest >> testDeepMultipleLookup [
 
 { #category : #tests }
 SpMorphStyleTest >> testFromStylesheetAdapter [
-	| lookup labelAdapter |
 
-	labelAdapter := SpLabelPresenter new 
-		buildWithSpec;
-		adapter.
+	| lookup labelAdapter |
+	labelAdapter := SpLabelPresenter new
+		                build;
+		                adapter.
 
 	lookup := SpMorphStyle
-		fromStylesheet: (SpStyleSTONReader fromString: '
+		          fromStylesheet: (SpStyleSTONReader fromString: '
 .application [
 	.label [
 		Geometry { #width: 42 }
 		]
 	]')
-		adapter: labelAdapter.
-		
+		          adapter: labelAdapter.
+
 	self assert: lookup width equals: 42.
-	
+
 	lookup := SpMorphStyle
-		fromStylesheet: (SpStyleSTONReader fromString: '
+		          fromStylesheet: (SpStyleSTONReader fromString: '
 .application [
 	Geometry { #width: 42 },
 	.label [ ]
 	]')
-		adapter: labelAdapter.
+		          adapter: labelAdapter.
 	self assert: lookup width equals: 42.
-	
+
 	"it refuses deeper class (because is not part of the tree)"
 	lookup := SpMorphStyle
-		fromStylesheet: (SpStyleSTONReader fromString: '
+		          fromStylesheet: (SpStyleSTONReader fromString: '
 .application [
 	.label [
 		Geometry { #width: 42 }
@@ -114,44 +114,49 @@ SpMorphStyleTest >> testFromStylesheetAdapter [
 		] 
 	]
 ]')
-		adapter: labelAdapter.
-
+		          adapter: labelAdapter
 ]
 
 { #category : #tests }
 SpMorphStyleTest >> testNestedStyles [
-	| lookup labelAdapter styleSheet |
 
-	styleSheet := (SpStyleSTONReader fromString: '
+	| lookup labelAdapter styleSheet |
+	styleSheet := SpStyleSTONReader fromString: '
 .application [
 	.label [
 		Geometry { #width: 21 },
 		.nested [ 
 			Geometry { #width: 42 },
 			.deepNested [ 
-				Geometry { #width: 84 } ] ] ] ]').
+				Geometry { #width: 84 } ] ] ] ]'.
 
 	"No nesting"
-	labelAdapter := SpLabelPresenter new 
-		buildWithSpec;
-		adapter.
-	lookup := SpMorphStyle fromStylesheet: styleSheet adapter: labelAdapter.
+	labelAdapter := SpLabelPresenter new
+		                build;
+		                adapter.
+	lookup := SpMorphStyle
+		          fromStylesheet: styleSheet
+		          adapter: labelAdapter.
 	self assert: lookup width equals: 21.
 
-	"nesting"			
-	labelAdapter := SpLabelPresenter new 
-		addStyle: 'nested';
-		buildWithSpec;
-		adapter.
-	lookup := SpMorphStyle fromStylesheet: styleSheet adapter: labelAdapter.
+	"nesting"
+	labelAdapter := SpLabelPresenter new
+		                addStyle: 'nested';
+		                build;
+		                adapter.
+	lookup := SpMorphStyle
+		          fromStylesheet: styleSheet
+		          adapter: labelAdapter.
 	self assert: lookup width equals: 42.
-	
-	"deep-nesting"			
-	labelAdapter := SpLabelPresenter new 
-		addStyle: 'nested.deepNested';
-		buildWithSpec;
-		adapter.
-	lookup := SpMorphStyle fromStylesheet: styleSheet adapter: labelAdapter.
+
+	"deep-nesting"
+	labelAdapter := SpLabelPresenter new
+		                addStyle: 'nested.deepNested';
+		                build;
+		                adapter.
+	lookup := SpMorphStyle
+		          fromStylesheet: styleSheet
+		          adapter: labelAdapter.
 	self assert: lookup width equals: 84
 ]
 
@@ -169,31 +174,37 @@ SpMorphStyleTest >> testSimpleLookup [
 
 { #category : #tests }
 SpMorphStyleTest >> testTwoClassWithSameName [
-	| morphStyle style1 style2 property label |
 
+	| morphStyle style1 style2 property label |
 	style1 := SpStyleSTONReader fromString: '
 .application [
 	.label [ 
 		Font { #name: "Source Sans Pro", #size: 10  } ] ]'.
-	
+
 	style2 := SpStyleSTONReader fromString: '
 .application [
 	.label [ 
 		Font { #bold: true } ] ]'.
 
-	label := SpLabelPresenter new buildWithSpec; yourself.
-	
-	morphStyle := SpMorphStyle fromStylesheet: style1 adapter: label adapter.
+	label := SpLabelPresenter new
+		         build;
+		         yourself.
+
+	morphStyle := SpMorphStyle
+		              fromStylesheet: style1
+		              adapter: label adapter.
 	property := morphStyle mergedProperties anyOne.
-	
+
 	self assert: morphStyle mergedProperties size equals: 1.
 	self assert: property class equals: SpFontStyle.
 	self assert: property name equals: 'Source Sans Pro'.
 	self deny: property isBold.
 
-	morphStyle := SpMorphStyle fromStylesheet: style1, style2 adapter: label adapter.
+	morphStyle := SpMorphStyle
+		              fromStylesheet: style1 , style2
+		              adapter: label adapter.
 	property := morphStyle mergedProperties anyOne.
-	
+
 	self assert: morphStyle mergedProperties size equals: 1.
 	self assert: property class equals: SpFontStyle.
 	self assert: property name equals: 'Source Sans Pro'.

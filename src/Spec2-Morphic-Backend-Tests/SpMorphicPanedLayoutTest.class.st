@@ -18,23 +18,22 @@ SpMorphicPanedLayoutTest >> tearDown [
 
 { #category : #tests }
 SpMorphicPanedLayoutTest >> testListTakesAssignedSpace [
+
 	| list |
+	(instance := SpPresenter new) layout: (SpPanedLayout newTopToBottom
+			 add: (SpPanedLayout newLeftToRight
+					  add: (list := instance newTree);
+					  add: instance newLabel;
+					  yourself);
+			 add: instance newText;
+			 yourself).
 
-	(instance := SpPresenter new) 
-		layout: (SpPanedLayout newTopToBottom 
-			add: (SpPanedLayout newLeftToRight
-				add: (list := instance newTree);
-				add: (instance newLabel);
-				yourself);
-			add: instance newText;
-			yourself).
-		
-	list items: #(a).
-	
-	instance openWithSpec.
+	list items: #( a ).
 
-	self 
-		assert: list adapter widget container width 
+	instance open.
+
+	self
+		assert: list adapter widget container width
 		equals: list adapter widget width
 ]
 
@@ -50,7 +49,7 @@ SpMorphicPanedLayoutTest >> testReplacePresenter [
 			 second: (p2 := presenter newButton label: '2');
 			 yourself).
 
-	[ presenter openWithSpec ] ensure: [ presenter window close ].
+	[ presenter open ] ensure: [ presenter window close ].
 
 	p3 := presenter newLabel label: 'Test'.
 

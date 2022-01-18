@@ -2,13 +2,13 @@ Extension { #name : #SpTextInputFieldPresenter }
 
 { #category : #'*Spec2-Examples' }
 SpTextInputFieldPresenter class >> example [
-	<sampleInstance>
 
+	<sampleInstance>
 	^ self new
-		extent: 300 @ 25;
-		placeholder: 'This is a ghost';
-		text: 'This is a text';
-		openWithSpec
+		  extent: 300 @ 25;
+		  placeholder: 'This is a ghost';
+		  text: 'This is a text';
+		  open
 ]
 
 { #category : #'*Spec2-Examples' }

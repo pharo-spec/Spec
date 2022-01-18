@@ -159,7 +159,7 @@ SpMorphicButtonAdapter >> menu: aMenu [
 	menuPresenter ifNil: [ ^ nil ].
 	^ SpBindings
 		  value: self model application adapterBindings
-		  during: [ menuPresenter buildWithSpec ]
+		  during: [ menuPresenter build ]
 ]
 
 { #category : #factory }

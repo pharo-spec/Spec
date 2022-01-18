@@ -29,8 +29,9 @@ SpListSelectionPresenter class >> defaultSpec [
 
 { #category : #examples }
 SpListSelectionPresenter class >> example [
+
 	<sampleInstance>
-	^ self new openWithSpec
+	^ self new open
 ]
 
 { #category : #initialization }

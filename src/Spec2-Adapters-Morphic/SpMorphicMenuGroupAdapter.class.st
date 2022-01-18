@@ -21,7 +21,7 @@ SpMorphicMenuGroupAdapter >> applyVisibility [
 { #category : #private }
 SpMorphicMenuGroupAdapter >> buildWidget [
 
-	^ self menuItems select: #isVisible thenCollect: #buildWithSpec
+	^ self menuItems select: #isVisible thenCollect: #build
 ]
 
 { #category : #protocol }

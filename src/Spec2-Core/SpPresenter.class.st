@@ -677,7 +677,7 @@ SpPresenter >> isVisible [
 { #category : #accessing }
 SpPresenter >> layout [
 
-	^ layout
+	^ layout ifNil: [ self layout: self defaultLayout ]
 ]
 
 { #category : #api }
@@ -685,7 +685,8 @@ SpPresenter >> layout: aLayout [
 	"Set the layout for current presenter. 
 	 See `SpExecutableLayout` hierarchy for details on what can be set as layout."
 
-	layout := aLayout
+	layout := aLayout.
+	^ layout
 ]
 
 { #category : #private }
@@ -820,8 +821,7 @@ SpPresenter >> resolveSymbol: aSymbol [
 { #category : #'private - building' }
 SpPresenter >> retrieveSpec: aSelector [
 
-	self layout ifNotNil: [ ^ self layout ].
-	^ super retrieveSpec: aSelector
+	^ layout ifNil: [ super retrieveSpec: aSelector ]
 ]
 
 { #category : #'accessing - model' }
@@ -927,8 +927,9 @@ SpPresenter >> update [
 	"self deprecated: 'This method is a remaining from ancient times and should not be used, 
 	while it works on morphic backend in certain cases, it will not translate correctly and 
 	it will cause memory leaks'.  "
+
 	self needRebuild: false.
-	self buildWithSpec
+	self build
 ]
 
 { #category : #initialization }

@@ -7,7 +7,7 @@ From a Spec2 users, my key methods are
 - `SpAbstractPresenter>>#initializeDialogWindow:` defines the default buttons that decorated a dialog. Subclasses can override it to be able to customize how dialog get decorated.
 - `SpAbstractPresenter>>#initializeWindow:` is a hook to define the window title and extend.
 - `SpAbstractPresenter>>#openWithSpec` to open the receiver with the default layout. 
-- `SpAbstractPresenter>>#openWithSpec: aSelector` to open the receiver with the specified layout.
+- `SpAbstractPresenter>>#openWithSpec: aSpecLayout` to open the receiver with the specified layout.
 "
 Class {
 	#name : #SpAbstractPresenter,
@@ -169,6 +169,13 @@ SpAbstractPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
 	^ adapter
 ]
 
+{ #category : #building }
+SpAbstractPresenter >> build [
+	"Build the widget using the default layout"
+	
+	^ self buildWithLayout: self layout
+]
+
 { #category : #'private - building' }
 SpAbstractPresenter >> buildAdapterWithSpecLayout: aSpecLayout [
 	"Build the adapter using the spec name provided as argument"
@@ -179,24 +186,18 @@ SpAbstractPresenter >> buildAdapterWithSpecLayout: aSpecLayout [
 ]
 
 { #category : #building }
-SpAbstractPresenter >> buildWithSpec [
-	"Build the widget using the default spec"
-	
-	^ self buildWithSpecLayout: self retrieveDefaultSpec
-]
-
-{ #category : #building }
-SpAbstractPresenter >> buildWithSpec: aSpec [
-	"Build the widget using the spec name provided as argument"
-	
-	^ self buildWithSpecLayout: (self retrieveSpec: aSpec)
-]
-
-{ #category : #building }
-SpAbstractPresenter >> buildWithSpecLayout: aSpecLayout [
-	"Build the widget using the spec name provided as argument"
+SpAbstractPresenter >> buildWithLayout: aSpecLayout [
+	"Build the widget using the layout provided as argument"
 
 	^ (self buildAdapterWithSpecLayout: aSpecLayout) widget
+]
+
+{ #category : #building }
+SpAbstractPresenter >> buildWithSelector: aSelector [
+
+	"Build the widget using the layout selector name provided as argument"
+
+	^ self buildWithLayout: (self retrieveSpec: aSelector)
 ]
 
 { #category : #'private - showing' }
@@ -209,6 +210,12 @@ SpAbstractPresenter >> defaultBlockedDialogWindowPresenterClass [
 SpAbstractPresenter >> defaultDialogWindowPresenterClass [
 		
 	^ self application defaultDialogWindowPresenterClass
+]
+
+{ #category : #initialization }
+SpAbstractPresenter >> defaultLayout [
+	
+	^ self retrieveSpec: self defaultSpecSelector
 ]
 
 { #category : #'private - showing' }
@@ -337,6 +344,11 @@ SpAbstractPresenter >> isWindowPresenter [
 ]
 
 { #category : #accessing }
+SpAbstractPresenter >> layout [
+	self subclassResponsibility 
+]
+
+{ #category : #accessing }
 SpAbstractPresenter >> needRebuild [
 
 	^ needRebuild
@@ -349,8 +361,14 @@ SpAbstractPresenter >> needRebuild: aBoolean [
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openBlockedDialogWithSpec [
-	"Build the widget using the default spec and display it into a dialog. 
+SpAbstractPresenter >> open [
+
+	^ self asWindow open
+]
+
+{ #category : #showing }
+SpAbstractPresenter >> openBlockedDialog [
+	"Build the widget using the default layout and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openModalWithSpec instead."
 
 	"A typical use of openBlockedDialogWithSpec is to configure it with callbackscallbacks: 
@@ -365,16 +383,16 @@ open
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openBlockedDialogWithSpec: aSelector [
-	"Build the widget using the default spec and display it into a dialog. 
+SpAbstractPresenter >> openBlockedDialogWithLayout: aSpecLayout [
+	"Build the widget using the given layout and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openDialogAsModalWithSpec: instead."
 
-	^ self asBlockedDialogWindow openWith: (self retrieveSpec: aSelector)
+	^ self asBlockedDialogWindow openWith: aSpecLayout
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openDialogWithSpec [
-	"Build the widget using the default spec and display it into a dialog. 
+SpAbstractPresenter >> openDialog [
+	"Build the widget using the default layout and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openModalWithSpec instead."
 	
 	"A typical use of openDialogWithSpec is to configure it with callbackscallbacks: 
@@ -390,41 +408,29 @@ open
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openDialogWithSpec: aSelector [
-	"Build the widget using the default spec and display it into a dialog. 
+SpAbstractPresenter >> openDialogWithLayout: aSpecLayout [
+	"Build the widget using the provided spec layout and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will 
 	 keep the focus on other windows. If you want to make the user focus on your 
 	 dialog only you should use #openModalWithSpec: instead."
 	
-	^ self asDialogWindow openWith: (self retrieveSpec: aSelector)
+	^ self asDialogWindow openWith: aSpecLayout
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openModalWithSpec [
+SpAbstractPresenter >> openModal [
 
 	^ self asModalWindow open
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openModalWithSpec: aSelector [
+SpAbstractPresenter >> openModalWithLayout: aSpecLayout [
 
-	^ self asModalWindow openWith: (self retrieveSpec: aSelector)
+	^ self asModalWindow openWith: aSpecLayout
 ]
 
 { #category : #showing }
-SpAbstractPresenter >> openWithSpec [
-
-	^ self asWindow open
-]
-
-{ #category : #showing }
-SpAbstractPresenter >> openWithSpec: aSelector [
-
-	^ self asWindow openWith: (self retrieveSpec: aSelector)
-]
-
-{ #category : #'private - showing' }
-SpAbstractPresenter >> openWithSpecLayout: aSpecLayout [
+SpAbstractPresenter >> openWithLayout: aSpecLayout [
 
 	^ self asWindow openWith: aSpecLayout
 ]
@@ -445,12 +451,6 @@ SpAbstractPresenter >> owner: aPresenter [
 SpAbstractPresenter >> rawValueHolderNamed: aSymbol [
 
 	^ (self class slotNamed: aSymbol) rawRead: self.
-]
-
-{ #category : #'private - building' }
-SpAbstractPresenter >> retrieveDefaultSpec [
-
-	^ self retrieveSpec: self defaultSpecSelector
 ]
 
 { #category : #'private - building' }

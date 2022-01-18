@@ -15,8 +15,9 @@ SpStubWindowAdapter >> addContent: aView toWindow: aSpecWindow [
 
 { #category : #factory }
 SpStubWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
+
 	self
-		addContent: (self model presenter buildWithSpecLayout: aSpec)
+		addContent: (self model presenter buildWithLayout: aSpec)
 		toWindow: widgetToBuild
 ]
 

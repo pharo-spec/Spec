@@ -65,22 +65,25 @@ SpMorphicLayoutAdapter >> basicAdd: aPresenter constraints: constraints to: aPan
 	self subclassResponsibility
 ]
 
-{ #category : #private }
-SpMorphicLayoutAdapter >> buildMorph: aPresenter constraints: constraints [ 
-	| childMorph |
+{ #category : #building }
+SpMorphicLayoutAdapter >> build [
 	
-	childMorph := aPresenter buildWithSpec: constraints spec.
-	aPresenter adapter 
-		ifNotNil: [ :anAdapter | anAdapter applyStyle ].
+	^ self widget
+]
+
+{ #category : #private }
+SpMorphicLayoutAdapter >> buildMorph: aPresenter constraints: constraints [
+
+	| childMorph |
+	childMorph := aPresenter buildWithSelector: constraints spec.
+	aPresenter adapter ifNotNil: [ :anAdapter | anAdapter applyStyle ].
 
 	"Add children alignment constraints (if applies)"
-	childMorph := self 
-		applyChildrenAlignmentTo: childMorph 
-		constraints: constraints. 
-	childMorph := self 
-		addConstraints: constraints 
-		toChild: childMorph.
-		
+	childMorph := self
+		              applyChildrenAlignmentTo: childMorph
+		              constraints: constraints.
+	childMorph := self addConstraints: constraints toChild: childMorph.
+
 	^ childMorph
 ]
 
@@ -91,15 +94,15 @@ SpMorphicLayoutAdapter >> buildWidget [
 ]
 
 { #category : #building }
-SpMorphicLayoutAdapter >> buildWithSpec [
-	
-	^ self widget
+SpMorphicLayoutAdapter >> buildWithLayout: aSpecLayout [
+
+	^ self build
 ]
 
 { #category : #building }
-SpMorphicLayoutAdapter >> buildWithSpec: aString [ 
+SpMorphicLayoutAdapter >> buildWithSelector: aSelector [
 
-	^ self buildWithSpec
+	^ self build
 ]
 
 { #category : #accessing }

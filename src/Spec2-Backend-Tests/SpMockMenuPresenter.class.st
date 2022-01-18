@@ -8,10 +8,10 @@ Class {
 }
 
 { #category : #building }
-SpMockMenuPresenter >> buildWithSpec [
+SpMockMenuPresenter >> build [
 
 	^ SpMockMenu new
-		realMenu: super buildWithSpec;
+		realMenu: super build;
 		whenShownDo: [ shown := true ];
 		yourself
 ]

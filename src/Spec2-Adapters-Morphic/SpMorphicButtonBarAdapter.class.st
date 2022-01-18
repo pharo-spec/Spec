@@ -24,7 +24,7 @@ SpMorphicButtonBarAdapter >> addModelTo: panelMorph [
 
 	self model items do: [ :each |
 		self model focusOrder add: each.
-		panelMorph addMorph: (each buildWithSpec
+		panelMorph addMorph: (each build
 			width: 100;
 			hResizing: #rigid;
 			yourself) ]

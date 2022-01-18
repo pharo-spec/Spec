@@ -76,18 +76,21 @@ SpNotebookPresenterTest >> testRemoveAllCleansSelection [
 
 { #category : #tests }
 SpNotebookPresenterTest >> testRemoveAllDoesNotSelectsAnyPage [
+
 	| page1 page2 selected |
-	
-	page1 := SpNotebookPage title: 'test 1' provider: [ selected := 1. SpButtonPresenter new ].
+	page1 := SpNotebookPage title: 'test 1' provider: [ 
+		         selected := 1.
+		         SpButtonPresenter new ].
 	presenter addPage: page1.
-	page2 := SpNotebookPage title: 'test 2' provider: [ selected := 2. SpButtonPresenter new ].
+	page2 := SpNotebookPage title: 'test 2' provider: [ 
+		         selected := 2.
+		         SpButtonPresenter new ].
 	presenter addPage: page2.
 	self assert: presenter pages size equals: 2.
-	
+
 	"it needs to be open"
-	[ presenter openWithSpec ]
-	ensure: [ presenter withWindowDo: #close ].
-	
+	[ presenter open ] ensure: [ presenter withWindowDo: #close ].
+
 	presenter selectPage: page1.
 	presenter removeAll.
 	self assert: presenter pages size equals: 0.

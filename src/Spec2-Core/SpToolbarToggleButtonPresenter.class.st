@@ -152,7 +152,7 @@ SpToolbarToggleButtonPresenter >> whenDeactivatedDo: aBlock [
 	 `aBlock` receives zero arguments."
 
 	self whenChangedDo: [ :newSelectedValue | 
-		newSelectedValue ifTrue: [ aBlock value ] ]
+		newSelectedValue ifFalse: [ aBlock value ] ]
 ]
 
 { #category : #'api - events' }

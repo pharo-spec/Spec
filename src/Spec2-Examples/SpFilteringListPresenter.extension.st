@@ -1,7 +1,7 @@
 Extension { #name : #SpFilteringListPresenter }
 
 { #category : #'*Spec2-Examples' }
-SpFilteringListPresenter classSide >> example [
+SpFilteringListPresenter class >> example [
 	<sampleInstance>
 	| example |
 
@@ -15,13 +15,13 @@ SpFilteringListPresenter classSide >> example [
 ]
 
 { #category : #'*Spec2-Examples' }
-SpFilteringListPresenter classSide >> exampleWithFilterOnTop [
+SpFilteringListPresenter class >> exampleWithFilterOnTop [
 	<sampleInstance>
 	| example |
 
 	example := self new.
 	example items: RBBrowserEnvironment default classes asArray.
-	example openWithSpec: #topLayout.
+	example openWithSpecLayout: self topLayout.
 	example withWindowDo: [ :window | 
 		window title: self name asString , ' example' ].
 
@@ -29,7 +29,7 @@ SpFilteringListPresenter classSide >> exampleWithFilterOnTop [
 ]
 
 { #category : #'*Spec2-Examples' }
-SpFilteringListPresenter classSide >> exampleWithInitializedFilter [
+SpFilteringListPresenter class >> exampleWithInitializedFilter [
 
 	<sampleInstance>
 	| example |

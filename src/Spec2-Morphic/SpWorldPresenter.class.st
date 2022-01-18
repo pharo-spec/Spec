@@ -61,16 +61,11 @@ SpWorldPresenter >> isDisplayed [
 ]
 
 { #category : #private }
-SpWorldPresenter >> openWithSpec: aSpec [
+SpWorldPresenter >> openWithLayout: aSpecLayout [
 
-	self buildWithSpec: aSpec.
-	self updateTitle
-]
-
-{ #category : #'private - showing' }
-SpWorldPresenter >> openWithSpecLayout: aSpec [
-
-	self buildWithSpecLayout: aSpec.
+	self flag: 'Is it really neeed to redefine this method in World presenter?'.
+	
+	self buildWithSpecLayout: aSpecLayout.
 	self updateTitle
 ]
 

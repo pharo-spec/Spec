@@ -61,12 +61,8 @@ SpBaseTest >> initializeTestedInstance [
 
 { #category : #utilities }
 SpBaseTest >> openInstance [
-	window ifNil: [ window := presenter openWithSpec ]
-]
 
-{ #category : #utilities }
-SpBaseTest >> openInstance: aLayoutSelector [
-	window := presenter openWithSpec: aLayoutSelector
+	window ifNil: [ window := presenter open ]
 ]
 
 { #category : #accessing }
@@ -145,14 +141,14 @@ SpBaseTest >> testOpenPresenterRaisesDisplayEvent [
 
 { #category : #tests }
 SpBaseTest >> testRebuildPresenterDoNotLetReferencesInAnnouncer [
+
 	| oldSize newSize |
-	
-	presenter buildWithSpec.
+	presenter build.
 	oldSize := presenter announcer subscriptions subscriptions size.
 	"rebuild"
-	presenter buildWithSpec.
+	presenter build.
 	newSize := presenter announcer subscriptions subscriptions size.
-	
+
 	self assert: oldSize equals: newSize
 ]
 

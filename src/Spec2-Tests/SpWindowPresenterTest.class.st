@@ -18,7 +18,9 @@ SpWindowPresenterTest >> initializeTestedInstance [
 
 { #category : #utilities }
 SpWindowPresenterTest >> openInstance [
-	window ifNil: [ window := presenter openWithSpecLayout: SpLabelPresenter defaultSpec ]
+
+	window ifNil: [ 
+		window := presenter openWithLayout: SpLabelPresenter defaultSpec ]
 ]
 
 { #category : #tests }
