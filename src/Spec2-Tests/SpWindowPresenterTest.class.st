@@ -89,6 +89,23 @@ SpWindowPresenterTest >> testResize [
 ]
 
 { #category : #tests }
+SpWindowPresenterTest >> testUsingAsWindowCanOverrideTitle [
+	| windowPresenter |
+	
+	windowPresenter := SpLabelPresenter new asWindow.
+	[ windowPresenter open ]
+	ensure: [ windowPresenter close ].
+	self deny: windowPresenter title equals: 'Title Test'.
+	
+	windowPresenter := SpLabelPresenter new asWindow.
+	windowPresenter title: 'Title Test'.
+	[ windowPresenter open ]
+	ensure: [ windowPresenter close ].
+	
+	self assert: windowPresenter title equals: 'Title Test'
+]
+
+{ #category : #tests }
 SpWindowPresenterTest >> testWhenClosedDo [
 	| closed |
 	closed := false.

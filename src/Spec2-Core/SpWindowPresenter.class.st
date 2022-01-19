@@ -93,7 +93,6 @@ SpWindowPresenter >> aboutTitle [
 SpWindowPresenter >> addPresenterIn: widget withSpecLayout: aSpec [
 	
 	self presenter ifNil: [ ^ self ].
-	self initializeWindow.
 	self withAdapterDo: [ :anAdapter |
 		anAdapter addPresenterIn: widget withSpecLayout: aSpec ]
 ]
@@ -495,7 +494,8 @@ SpWindowPresenter >> presenter: aPresenter [
 	"Set the presenter to show as content of the window."
 
 	aPresenter owner: self.
-	presenter := aPresenter
+	presenter := aPresenter.
+	self initializeWindow
 ]
 
 { #category : #'private - building' }
