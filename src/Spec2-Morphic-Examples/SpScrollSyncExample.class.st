@@ -14,8 +14,8 @@ Class {
 	#category : #'Spec2-Morphic-Examples'
 }
 
-{ #category : #specs }
-SpScrollSyncExample class >> defaultSpec [
+{ #category : #layout }
+SpScrollSyncExample class >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
 		add: #sideRuler withConstraints: [ :constraints | constraints width: 50 ];

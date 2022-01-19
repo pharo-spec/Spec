@@ -37,8 +37,8 @@ SpOpenOnStringExample class >> bottomLayout [
 		yourself
 ]
 
-{ #category : #specs }
-SpOpenOnStringExample class >> defaultSpec [
+{ #category : #layout }
+SpOpenOnStringExample class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add:
 			(SpBoxLayout newLeftToRight

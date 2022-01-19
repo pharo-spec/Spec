@@ -20,8 +20,8 @@ Class {
 	#category : #'Spec2-Core-Widgets'
 }
 
-{ #category : #specs }
-SpSliderInputPresenter class >> defaultSpec [
+{ #category : #layout }
+SpSliderInputPresenter class >> defaultLayout [
 	^ self sliderLeft
 ]
 

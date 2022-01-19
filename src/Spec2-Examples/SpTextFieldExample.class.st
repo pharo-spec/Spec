@@ -11,8 +11,8 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #specs }
-SpTextFieldExample class >> defaultSpec [
+{ #category : #layout }
+SpTextFieldExample class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: #textField withConstraints: [ :constraints | constraints height: StandardFonts defaultFont height + 15 ];
 		add: #methodBrowser;

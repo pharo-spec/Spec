@@ -10,8 +10,8 @@ Class {
 	#category : #'Spec2-Tests-Utils'
 }
 
-{ #category : #accessing }
-SpTestingPresenterWithAdditionalPresenters class >> defaultSpec [
+{ #category : #layout }
+SpTestingPresenterWithAdditionalPresenters class >> defaultLayout [
 	| aLayout |
 
 	aLayout := SpBoxLayout newTopToBottom.

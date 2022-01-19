@@ -9,8 +9,8 @@ Class {
 	#category : #'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #specs }
-SpMockFocusOrderPresenter class >> defaultSpec [
+{ #category : #layout }
+SpMockFocusOrderPresenter class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		add: #firstPresenter;
