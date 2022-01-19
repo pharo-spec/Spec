@@ -240,14 +240,6 @@ SpAbstractPresenter >> defaultLayout [
 	^ self class defaultLayout
 ]
 
-{ #category : #'private - building' }
-SpAbstractPresenter >> defaultLayoutSelector [
-	"This method is used by #defaultLayout default implementation for compatibility purposes with Spec 1 
-	where the layout (was named Spec) was defined on class side in a method #defaultSpec."
-	
-	^ #defaultSpec
-]
-
 { #category : #'private - showing' }
 SpAbstractPresenter >> defaultModalWindowPresenterClass [
 		

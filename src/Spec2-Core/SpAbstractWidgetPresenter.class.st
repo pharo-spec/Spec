@@ -111,8 +111,8 @@ SpAbstractWidgetPresenter class >> addDocumentSectionTransmissions: aBuilder [
 					ifTrue: [ aBuilder monospace: ' (default)' ] ] ] ]
 ]
 
-{ #category : #specs }
-SpAbstractWidgetPresenter class >> defaultSpec [
+{ #category : #layout }
+SpAbstractWidgetPresenter class >> defaultLayout [
 
 	^ SpAbstractWidgetLayout for: self adapterName
 ]
