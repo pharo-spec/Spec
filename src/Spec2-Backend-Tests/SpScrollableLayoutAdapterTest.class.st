@@ -1,13 +1,31 @@
 Class {
 	#name : #SpScrollableLayoutAdapterTest,
 	#superclass : #SpLayoutAdapterTest,
+	#instVars : [
+		'classFactory'
+	],
 	#category : #'Spec2-Backend-Tests-Layout'
 }
+
+{ #category : #accessing }
+SpScrollableLayoutAdapterTest >> newClassFactory [
+
+	^ ClassFactoryForTestCase new
+]
 
 { #category : #accessing }
 SpScrollableLayoutAdapterTest >> newLayout [
 
 	^ SpScrollableLayout new
+]
+
+{ #category : #running }
+SpScrollableLayoutAdapterTest >> tearDown [
+
+	classFactory ifNotNil: [ 
+		classFactory cleanUp.
+		classFactory := nil ].
+	super tearDown
 ]
 
 { #category : #tests }
@@ -26,6 +44,28 @@ SpScrollableLayoutAdapterTest >> testAddTwiceSetsChildrenSingleTime [
 	layout child: (first := SpButtonPresenter new).
 	layout child: (second := SpButtonPresenter new).
 	self assert: self adapter children size equals: 1
+]
+
+{ #category : #tests }
+SpScrollableLayoutAdapterTest >> testAddWithSymbolWorks [
+	| presenterClass |
+	
+	classFactory := self newClassFactory.
+	presenterClass := classFactory 
+		newSubclassOf: SpPresenter 
+		instanceVariableNames: 'textInput' 
+		classVariableNames: '' 
+		category: self class package name.
+		
+	presenter := presenterClass new.
+	presenter layout: (SpScrollableLayout with: #textInput).
+	presenter writeSlotNamed: #textInput value: presenter newTextInput.
+	
+	self openInstance.
+	
+	self 
+		assert: presenter adapter childWidget
+		equals: (presenter readSlotNamed: #textInput) adapter widget
 ]
 
 { #category : #tests }
