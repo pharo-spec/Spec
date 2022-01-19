@@ -55,20 +55,16 @@ SpAbstractPresenter class >> defaultFont [
 
 { #category : #layout }
 SpAbstractPresenter class >> defaultLayout [
+	"Overrides me to define a layout in a static way"
+
+	| specDefinition |
 	(self respondsTo: #defaultSpec) 
 		ifFalse: [ Error signal: 'You must define a layout either by defining #defaulLayout on your presenter or setting explicitly a layout with #layout:' ].
 
 	self inform: 'SpPresenter class>>#defaultSpec is now deprecated. Please define #defaultLayout on instance or class side'.
-	(RBRenameMethodRefactoring
-		model: (RBNamespace new 
-			environment: (RBClassHierarchyEnvironment class: self class);
-			yourself)
-		renameMethod: #defaultSpec
-		in: self class
-		to: #defaultLayout 
-		permutation: #())
-	execute.
-	
+	specDefinition := self class lookupSelector: #defaultSpec.
+	(SpRenameDefaultSpecToDefaultLayoutRefactoring onPresenter: specDefinition methodClass) execute.
+		
 	"#defaultSpec is rewritten as #defaultLayout. Let's call it. Will only be used one time since bar is now overrided."
 	^ self defaultLayout
 ]
@@ -241,7 +237,7 @@ SpAbstractPresenter >> defaultLayout [
 	In a near future, it should be replaced by self subclassResponsibility.
 	"
 
-	^ self retrieveLayout: self defaultLayoutSelector
+	^ self class defaultLayout
 ]
 
 { #category : #'private - building' }
