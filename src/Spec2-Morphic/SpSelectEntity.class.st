@@ -20,8 +20,8 @@ Class {
 	#category : #'Spec2-Morphic-Widgets'
 }
 
-{ #category : #specs }
-SpSelectEntity class >> defaultSpec [
+{ #category : #layout }
+SpSelectEntity class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		add: (SpBoxLayout newLeftToRight

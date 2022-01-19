@@ -22,8 +22,8 @@ SpRequestDialog class >> defaultExtent [
 	^ 450@160
 ]
 
-{ #category : #specs }
-SpRequestDialog class >> defaultSpec [
+{ #category : #layout }
+SpRequestDialog class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		borderWidth: 5;
