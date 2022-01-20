@@ -43,6 +43,16 @@ SpAbstractPresenter >> buildWithSpecLayout: aSpecLayout [
 ]
 
 { #category : #'*Spec2-Deprecated10' }
+SpAbstractPresenter class >> defaultSpec [
+	self 
+		deprecated: 'SpPresenter class>>#defaultSpec is now deprecated. Please define #defaultLayout on instance or class side' 
+		transformWith:  '`@receiver defaultSpec' 
+						-> '`@receiver defaultLayout'.
+						
+	^ self defaultLayout 
+]
+
+{ #category : #'*Spec2-Deprecated10' }
 SpAbstractPresenter >> openBlockedDialogWithSpec [
 	self 
 		deprecated: 'Please use #openBlockedDialog instead' 
