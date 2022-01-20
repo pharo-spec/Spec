@@ -59,7 +59,7 @@ SpAbstractPresenter class >> defaultLayout [
 	| specDefinition |
 	
 	specDefinition := self class lookupSelector: #defaultSpec.
-	(specDefinition isNil or: [ specDefinition methodClass = SpAbstractAdapter class ])
+	(specDefinition isNil or: [ specDefinition methodClass = SpAbstractPresenter class ])
 		ifTrue: [ Error signal: 'You must define a layout either by defining #defaulLayout on your presenter or setting explicitly a layout with #layout:' ].
 
 	(SpRenameDefaultSpecToDefaultLayoutRefactoring onPresenter: specDefinition methodClass) execute.
