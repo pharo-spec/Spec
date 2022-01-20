@@ -469,7 +469,9 @@ SpAbstractPresenter >> rawValueHolderNamed: aSymbol [
 SpAbstractPresenter >> retrieveLayout: aSelector [
 	| layout |
 
-	layout := self class perform: aSelector.
+	layout := (self respondsTo: aSelector) 
+		ifTrue: [ self perform: aSelector ] 
+		ifFalse: [ self class perform: aSelector ].
 	layout isSpLayout ifTrue: [ 
 		layout selector: aSelector ].
 	^ layout
