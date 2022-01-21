@@ -41,7 +41,7 @@ SpBoxLayoutWithTableForTestPresenter >> initializePresenters [
 			addColumn: (SpStringTableColumn evaluated: [ :each | each name ])).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SpBoxLayoutWithTableForTestPresenter >> table [
 
 	^ table
