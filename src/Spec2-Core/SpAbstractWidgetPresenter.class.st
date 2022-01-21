@@ -111,9 +111,9 @@ SpAbstractWidgetPresenter class >> addDocumentSectionTransmissions: aBuilder [
 					ifTrue: [ aBuilder monospace: ' (default)' ] ] ] ]
 ]
 
-{ #category : #specs }
-SpAbstractWidgetPresenter class >> defaultSpec [
-	<spec: #default>
+{ #category : #layout }
+SpAbstractWidgetPresenter class >> defaultLayout [
+
 	^ SpAbstractWidgetLayout for: self adapterName
 ]
 
@@ -199,10 +199,10 @@ SpAbstractWidgetPresenter >> addDeferredAction: aBlock [
 ]
 
 { #category : #'private - building' }
-SpAbstractWidgetPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
+SpAbstractWidgetPresenter >> basicBuildAdapterWithLayout: aSpecLayout [
 	| builtAdapter |
 
-	builtAdapter := super basicBuildAdapterWithSpecLayout: aSpecLayout.
+	builtAdapter := super basicBuildAdapterWithLayout: aSpecLayout.
 	self processDeferredActions.
 	^ builtAdapter
 ]

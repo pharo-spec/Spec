@@ -12,8 +12,8 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #specs }
-SpPresenterSelectorExample class >> defaultSpec [
+{ #category : #layout }
+SpPresenterSelectorExample class >> defaultLayout [
 
 	^ SpPanedLayout newLeftToRight
 		add: #list;

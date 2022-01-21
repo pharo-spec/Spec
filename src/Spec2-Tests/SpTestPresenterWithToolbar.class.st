@@ -10,8 +10,8 @@ Class {
 	#category : #'Spec2-Tests-Core-Support'
 }
 
-{ #category : #specs }
-SpTestPresenterWithToolbar class >> defaultSpec [
+{ #category : #layout }
+SpTestPresenterWithToolbar class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		add: (SpPanedLayout newTopToBottom

@@ -112,15 +112,15 @@ SpWindowPresenter >> askOkToClose: aBoolean [
 
 { #category : #'private - building' }
 SpWindowPresenter >> basicBuildWithSpecLayout: presenterSpecLayout [
+
 	"Build the widget using the layout provided as argument"
 
-	^(self spec isNil or: [ self needRebuild ])
-		ifTrue: [ 
-			self 
-				buildWindowWithLayout: self defaultLayout  
-				presenterLayout: presenterSpecLayout ]
-		ifFalse: [
-			self adapter widget ]
+	^ (self adapter isNil or: [ self needRebuild ])
+		  ifTrue: [ 
+			  self
+				  buildWindowWithLayout: self defaultLayout
+				  presenterLayout: presenterSpecLayout ]
+		  ifFalse: [ self adapter widget ]
 ]
 
 { #category : #api }
