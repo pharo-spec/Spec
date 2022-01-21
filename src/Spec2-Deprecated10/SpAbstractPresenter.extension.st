@@ -112,7 +112,12 @@ SpAbstractPresenter >> openModalWithSpec: aSpecLayout [
 { #category : #'*Spec2-Deprecated10' }
 SpAbstractPresenter >> openWithSpec [
 
-	^ self asWindow open
+	self 
+		deprecated: 'Please use #open instead' 
+		transformWith:  '`@receiver openWithSpec' 
+						-> '`@receiver open'. 
+
+	^ self open
 ]
 
 { #category : #'*Spec2-Deprecated10' }
