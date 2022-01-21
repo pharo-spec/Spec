@@ -8,8 +8,8 @@ Class {
 	#category : #'Spec2-Core-Widgets'
 }
 
-{ #category : #specs }
-SpNullPresenter class >> defaultSpec [
+{ #category : #layout }
+SpNullPresenter class >> defaultLayout [
 	"Returns empty layout. That's the point of null presenter."
 
 	^ SpBoxLayout newTopToBottom

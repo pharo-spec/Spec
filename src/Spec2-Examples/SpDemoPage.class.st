@@ -15,8 +15,8 @@ SpDemoPage class >> availablePages [
 	^ self allSubclasses sort: #priority ascending
 ]
 
-{ #category : #specs }
-SpDemoPage class >> defaultSpec [
+{ #category : #layout }
+SpDemoPage class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: #tabManager;
 		yourself

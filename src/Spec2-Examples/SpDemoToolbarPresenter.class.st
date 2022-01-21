@@ -11,8 +11,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Buttons'
 }
 
-{ #category : #specs }
-SpDemoToolbarPresenter class >> defaultSpec [
+{ #category : #layout }
+SpDemoToolbarPresenter class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom 
 		add: #toolBar expand: false;

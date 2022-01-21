@@ -43,3 +43,17 @@ SpPresenterBuildTest >> testBuildWidgetPresenterWillSetPresenterProperty [
 			presenter adapter widget isMorph ifTrue: [ 
 				self assert: presenter adapter widget presenter equals: presenter ] ]
 ]
+
+{ #category : #tests }
+SpPresenterBuildTest >> testBuildWithoutLayoutRaiseError [
+	| presenter |
+	
+	presenter := SpPresenter new.
+	
+	self 
+		should: [ presenter build ]
+		raise: Error
+		whoseDescriptionIncludes: '#defaulLayout'
+		description: 'Build does not raise Missing layout!'
+		
+]

@@ -53,6 +53,21 @@ SpAbstractPresenter class >> defaultFont [
 
 ]
 
+{ #category : #layout }
+SpAbstractPresenter class >> defaultLayout [
+	"Overrides me to define a layout in a static way"
+	| specDefinition |
+	
+	specDefinition := self class lookupSelector: #defaultSpec.
+	(specDefinition isNil or: [ specDefinition methodClass = SpAbstractPresenter class ])
+		ifTrue: [ Error signal: 'You must define a layout either by defining #defaulLayout on your presenter or setting explicitly a layout with #layout:' ].
+
+	(SpRenameDefaultSpecToDefaultLayoutRefactoring onPresenter: specDefinition methodClass) execute.
+		
+	"#defaultSpec is rewritten as #defaultLayout. Let's call it. Will only be used one time since bar is now overrided."
+	^ self defaultLayout
+]
+
 { #category : #TOREMOVE }
 SpAbstractPresenter class >> inputTextHeight [
 
@@ -79,7 +94,7 @@ SpAbstractPresenter class >> owner: anOwningPresenter [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SpAbstractPresenter class >> systemIconName [
 
 	^ #smallWindow
@@ -153,9 +168,9 @@ SpAbstractPresenter >> autoAccept: aBoolean [
 ]
 
 { #category : #'private - building' }
-SpAbstractPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
+SpAbstractPresenter >> basicBuildAdapterWithLayout: aSpecLayout [
 	"I assume the SpecBindings is well defined"
-	
+	aSpecLayout ifNil: [ Error signal: 'You must define a layout either by defining #defaulLayout on your presenter or setting explicitly a layout with #layout:' ].
 	self announcer announce: (SpWidgetWillBeBuilt model: self).
 
 	self adapter: (aSpecLayout asSpLayout 
@@ -177,19 +192,20 @@ SpAbstractPresenter >> build [
 ]
 
 { #category : #'private - building' }
-SpAbstractPresenter >> buildAdapterWithSpecLayout: aSpecLayout [
+SpAbstractPresenter >> buildAdapterWithLayout: aSpecLayout [
 	"Build the adapter using the spec name provided as argument"
 	
 	^ SpBindings 
 		value: self application adapterBindings
-		during: [ self basicBuildAdapterWithSpecLayout: aSpecLayout ]
+		during: [ self basicBuildAdapterWithLayout: aSpecLayout ]
 ]
 
 { #category : #building }
 SpAbstractPresenter >> buildWithLayout: aSpecLayout [
+
 	"Build the widget using the layout provided as argument"
 
-	^ (self buildAdapterWithSpecLayout: aSpecLayout) widget
+	^ (self buildAdapterWithLayout: aSpecLayout) widget
 ]
 
 { #category : #building }
@@ -197,7 +213,7 @@ SpAbstractPresenter >> buildWithSelector: aSelector [
 
 	"Build the widget using the layout selector name provided as argument"
 
-	^ self buildWithLayout: (self retrieveSpec: aSelector)
+	^ self buildWithLayout: (self retrieveLayout: aSelector)
 ]
 
 { #category : #'private - showing' }
@@ -214,23 +230,19 @@ SpAbstractPresenter >> defaultDialogWindowPresenterClass [
 
 { #category : #initialization }
 SpAbstractPresenter >> defaultLayout [
+	"This method is there for compatibility purposes with Spec 1 
+	where the layout (was named Spec) was defined on class side in a method #defaultSpec.
 	
-	^ self retrieveSpec: self defaultSpecSelector
+	In a near future, it should be replaced by self subclassResponsibility.
+	"
+
+	^ self class defaultLayout
 ]
 
 { #category : #'private - showing' }
 SpAbstractPresenter >> defaultModalWindowPresenterClass [
 		
 	^ self application defaultModalWindowPresenterClass
-]
-
-{ #category : #'private - building' }
-SpAbstractPresenter >> defaultSpecSelector [
-	(Pragma allNamed: #spec: from: self class class to: SpAbstractPresenter class class) detect: [ :each | (each argumentAt: 1) = #default ] ifFound: [ :pragma | ^ pragma methodSelector ].
-
-	^ (Pragma allNamed: #spec from: self class class to: SpAbstractPresenter class class)
-		ifEmpty: [ #defaultSpec ]
-		ifNotEmpty: [ :pragmas | pragmas size = 1 ifTrue: [ pragmas first methodSelector ] ifFalse: [ #defaultSpec ] ]
 ]
 
 { #category : #'private - showing' }
@@ -454,10 +466,12 @@ SpAbstractPresenter >> rawValueHolderNamed: aSymbol [
 ]
 
 { #category : #'private - building' }
-SpAbstractPresenter >> retrieveSpec: aSelector [
+SpAbstractPresenter >> retrieveLayout: aSelector [
 	| layout |
 
-	layout := self class perform: aSelector.
+	layout := (self respondsTo: aSelector) 
+		ifTrue: [ self perform: aSelector ] 
+		ifFalse: [ self class perform: aSelector ].
 	layout isSpLayout ifTrue: [ 
 		layout selector: aSelector ].
 	^ layout
@@ -470,22 +484,6 @@ SpAbstractPresenter >> root [
 	^ self owner 
 		ifNotNil: [ :presenter | presenter root ]
 		ifNil: [ self ]
-]
-
-{ #category : #accessing }
-SpAbstractPresenter >> spec [
-	self flag: #TODO. "This needs to be removed, but there is a problem with the interpreter.
-	(it will be solved as soon as the interpreter is removed :P)"
-	
-	^ self adapter
-]
-
-{ #category : #accessing }
-SpAbstractPresenter >> spec: anAdapter [
-	"This is a remaining of other times... spec accesor in fact contains an adapter"
-	
-	self flag: #TODO. "Same as #spec, it needs to go"
-	self adapter: anAdapter
 ]
 
 { #category : #subscription }

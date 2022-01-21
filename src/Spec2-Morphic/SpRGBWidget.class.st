@@ -22,8 +22,8 @@ Class {
 	#category : #'Spec2-Morphic-Widgets'
 }
 
-{ #category : #specs }
-SpRGBWidget class >> defaultSpec [
+{ #category : #layout }
+SpRGBWidget class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: #preview;
 		add: #sliders;
