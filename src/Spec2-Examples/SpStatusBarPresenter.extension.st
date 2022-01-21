@@ -24,5 +24,5 @@ SpStatusBarPresenter class >> example [
 		action: [ 
 			statusBar popMessage ].
 		
-	^ presenter openWithSpec
+	^ presenter open
 ]

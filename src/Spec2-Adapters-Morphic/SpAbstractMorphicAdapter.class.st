@@ -562,7 +562,7 @@ SpAbstractMorphicAdapter >> showMenu: aValuable [
 	| lastShownMenu |
 	
 	lastShownMenu := self buildMenu: aValuable value.
-	lastShownMenu openWithSpec
+	lastShownMenu open
 ]
 
 { #category : #styling }

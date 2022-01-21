@@ -107,7 +107,7 @@ SpDialogPresenter class >> documentSections [
 SpDialogPresenter class >> open [
 	<script>
 	
-	^ self new openWithSpec
+	^ self new open
 ]
 
 { #category : #'instance creation' }

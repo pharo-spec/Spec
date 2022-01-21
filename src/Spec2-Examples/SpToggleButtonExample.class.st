@@ -30,7 +30,7 @@ SpToggleButtonExample class >> defaultLayout [
 { #category : #examples }
 SpToggleButtonExample class >> example [
 
-	^ self new openWithSpec
+	^ self new open
 ]
 
 { #category : #specs }

@@ -7,7 +7,7 @@ SpProgressBarPresenter class >> example [
 	progress := 0.
 	^ self new 
 		progress: [ progress:= progress + 0.1 ] every: 0.5 seconds;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -16,7 +16,7 @@ SpProgressBarPresenter class >> exampleFixedAt [
 	^ self new 
 		application: (SpApplication new useBackend: #Gtk);
 		fixedAt: 0.3;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -25,7 +25,7 @@ SpProgressBarPresenter class >> exampleFixedPercentage [
 	^ self new 
 		application: (SpApplication new useBackend: #Gtk);
 		fixedPercentage: 30;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -34,5 +34,5 @@ SpProgressBarPresenter class >> exampleIndeterminate [
 	^ self new 
 		application: (SpApplication new useBackend: #Gtk);
 		indeterminate;
-		openWithSpec
+		open
 ]

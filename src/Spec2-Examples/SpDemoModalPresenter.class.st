@@ -29,7 +29,7 @@ SpDemoModalPresenter class >> defaultLayout [
 { #category : #'instance creation' }
 SpDemoModalPresenter class >> open [
 	<script>
-	self new openWithSpec
+	self new open
 ]
 
 { #category : #specs }

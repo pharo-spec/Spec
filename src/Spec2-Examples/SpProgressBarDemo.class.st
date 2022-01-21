@@ -39,7 +39,7 @@ SpProgressBarDemo class >> defaultLayout [
 SpProgressBarDemo class >> example [
 	<sampleInstance>
 	
-	^ self new openWithSpec
+	^ self new open
 ]
 
 { #category : #initialization }

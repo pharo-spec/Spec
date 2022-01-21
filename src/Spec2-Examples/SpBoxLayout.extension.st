@@ -11,7 +11,7 @@ SpBoxLayout class >> exampleAddLast [
 		addLast: (presenter newButton label: 'Ok') expand: false;
 		yourself).
 			
-	presenter openWithSpec
+	presenter open
 
 ]
 
@@ -30,7 +30,7 @@ SpBoxLayout class >> exampleBeHomogeneous [
 			yourself);
 		yourself).
 			
-	presenter openWithSpec
+	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -49,7 +49,7 @@ SpBoxLayout class >> exampleBorderWidth [
 			expand: false;
 		yourself).
 			
-	presenter openWithSpec
+	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -70,7 +70,7 @@ SpBoxLayout class >> exampleBorderWidthAndSpacing [
 			expand: false;
 		yourself).
 			
-	presenter openWithSpec
+	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -88,7 +88,7 @@ SpBoxLayout class >> exampleComposite [
 			expand: false;
 		yourself).
 			
-	presenter openWithSpec
+	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -100,7 +100,7 @@ SpBoxLayout class >> exampleExpand [
 		add: presenter newTextInput expand: false;
 		add: presenter newText;
 		yourself).
-	presenter openWithSpec
+	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -115,7 +115,7 @@ SpBoxLayout class >> exampleHAlignCenter [
 			label: 'Press me!';
 			action: [ presenter application inform: 'Pressed!' ]) 
 		yourself).
-	presenter openWithSpec
+	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -130,7 +130,7 @@ SpBoxLayout class >> exampleHAlignEnd [
 			label: 'Press me!';
 			action: [ presenter application inform: 'Pressed!' ]) 
 		yourself).
-	presenter openWithSpec
+	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -145,7 +145,7 @@ SpBoxLayout class >> exampleHAlignStart [
 			label: 'Press me!';
 			action: [ presenter application inform: 'Pressed!' ]) 
 		yourself).
-	presenter openWithSpec
+	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -161,7 +161,7 @@ SpBoxLayout class >> exampleVAlignAndHAlign [
 			label: 'Press me!';
 			action: [ presenter application inform: 'Pressed!' ]) 
 		yourself).
-	presenter openWithSpec
+	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -176,7 +176,7 @@ SpBoxLayout class >> exampleVAlignCenter [
 			label: 'Press me!';
 			action: [ presenter application inform: 'Pressed!' ]) 
 		yourself).
-	presenter openWithSpec
+	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -191,7 +191,7 @@ SpBoxLayout class >> exampleVAlignEnd [
 			label: 'Press me!';
 			action: [ presenter application inform: 'Pressed!' ]) 
 		yourself).
-	presenter openWithSpec
+	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -206,5 +206,5 @@ SpBoxLayout class >> exampleVAlignStart [
 			label: 'Press me!';
 			action: [ presenter application inform: 'Pressed!' ]) 
 		yourself).
-	presenter openWithSpec
+	presenter open
 ]

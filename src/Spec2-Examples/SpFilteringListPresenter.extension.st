@@ -38,7 +38,7 @@ SpFilteringListPresenter class >> exampleWithInitializedFilter [
 	example items: RBBrowserEnvironment default classes asArray.
 	example displayIcon: [ :aClass | aClass systemIcon ].
 	example applyFilter: 'ZZ'.
-	example openWithSpec title:
+	example open title:
 		self name asString , ' example with filter'.
 
 	^ example

@@ -14,5 +14,5 @@ SpMenuGroupPresenter class >> exampleMenuGroup [
 	
 	SpMenuButtonPresenter new 
 		menu: menu;
-		openWithSpec
+		open
 ]

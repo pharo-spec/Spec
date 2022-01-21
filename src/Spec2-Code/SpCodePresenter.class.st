@@ -123,7 +123,7 @@ SpCodePresenter class >> exampleOverridingContextMenu [
 			addGroup: [ :group | group addItem: [ :item | 
 				item name: 'Testing' ] ]);
 		text: 'some method: 42';
-		openWithSpec
+		open
 ]
 
 { #category : #specs }

@@ -83,7 +83,7 @@ SpDemoStandaloneFormPresenter class >> defaultLayout [
 { #category : #'instance creation' }
 SpDemoStandaloneFormPresenter class >> open [
 	<example>
-	(self on: SpDemoFormModel new) openWithSpec
+	(self on: SpDemoFormModel new) open
 ]
 
 { #category : #accessing }

@@ -29,7 +29,7 @@ SpTestingPresenterWithModel class >> open [
 
 	<example>
 	
-	(self on: 1@2) openWithSpec
+	(self on: 1@2) open
 ]
 
 { #category : #initialization }
