@@ -30,8 +30,8 @@ SpFilteringListPresenter class >> bottomLayout [
 		  yourself
 ]
 
-{ #category : #layout }
-SpFilteringListPresenter class >> defaultLayout [
+{ #category : #specs }
+SpFilteringListPresenter class >> defaultSpec [
 
 	^ self bottomLayout
 ]

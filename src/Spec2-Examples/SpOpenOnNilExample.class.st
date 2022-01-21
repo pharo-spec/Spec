@@ -14,8 +14,8 @@ Class {
 	#category : #'Spec2-Examples-Wrapper'
 }
 
-{ #category : #layout }
-SpOpenOnNilExample class >> defaultLayout [
+{ #category : #specs }
+SpOpenOnNilExample class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		add: #text withConstraints: [ :constraints | constraints height: 25 ];
 		yourself

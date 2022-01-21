@@ -15,8 +15,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Checkboxes'
 }
 
-{ #category : #layout }
-SpRadioButtonExample class >> defaultLayout [
+{ #category : #specs }
+SpRadioButtonExample class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		add: (SpBoxLayout newTopToBottom
 				add: #button1 expand: false;

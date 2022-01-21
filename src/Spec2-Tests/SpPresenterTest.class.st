@@ -51,6 +51,19 @@ SpPresenterTest >> testAsWindow [
 ]
 
 { #category : #'tests - layout' }
+SpPresenterTest >> testLayoutIsClassDefaultSpecWhenNoDefaultLayoutDefined [
+	| presenterClass |
+	
+	presenterClass := SpPresenter newAnonymousSubclass.
+	presenterClass class compile: 'defaultSpec ^ SpBoxLayout newLeftToRight'.
+	presenter := presenterClass new.
+	
+	self 
+		assert: presenter layout class 
+		equals: SpBoxLayout
+]
+
+{ #category : #'tests - layout' }
 SpPresenterTest >> testLayoutIsDefaultLayoutWhenDefaultLayoutAndDefaultSpecDefined [
 	| presenterClass |
 	

@@ -11,8 +11,8 @@ Class {
 	#category : #'Spec2-Core-Miller'
 }
 
-{ #category : #layout }
-SpNullMillerPresenter class >> defaultLayout [
+{ #category : #specs }
+SpNullMillerPresenter class >> defaultSpec [
 	
 	^ SpBoxLayout newLeftToRight
 		add: #wrappedPresenter;

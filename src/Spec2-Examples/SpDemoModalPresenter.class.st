@@ -14,8 +14,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Modals'
 }
 
-{ #category : #layout }
-SpDemoModalPresenter class >> defaultLayout [
+{ #category : #specs }
+SpDemoModalPresenter class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		add:
 			(SpBoxLayout newLeftToRight

@@ -25,8 +25,8 @@ SpInformDialog class >> defaultExtent [
 	^ 450@120
 ]
 
-{ #category : #layout }
-SpInformDialog class >> defaultLayout [
+{ #category : #specs }
+SpInformDialog class >> defaultSpec [
 
 	^ SpBoxLayout newTopToBottom
 		borderWidth: 5;

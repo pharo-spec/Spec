@@ -19,8 +19,8 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #layout }
-SpPopoverExample class >> defaultLayout [
+{ #category : #initialization }
+SpPopoverExample class >> defaultSpec [
 
 	^ SpBoxLayout newLeftToRight
 		hAlignCenter;

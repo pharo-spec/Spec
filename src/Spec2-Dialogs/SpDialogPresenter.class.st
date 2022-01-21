@@ -183,11 +183,18 @@ SpDialogPresenter >> onCancel: aBlock [
 ]
 
 { #category : #'api - showing' }
-SpDialogPresenter >> openDialogWithParent: aWindow [
+SpDialogPresenter >> openDialogWithSpec [
+	"Open dialog in a non-modal way."
+
+	^ super openDialogWithSpec
+]
+
+{ #category : #'api - showing' }
+SpDialogPresenter >> openDialogWithSpecParent: aWindow [
 	"Open dialog in a non-modal way, centering on parent window. "
 	
 	parentWindow := aWindow.
-	^ self openDialog
+	^ self openDialogWithSpec
 ]
 
 { #category : #'api - showing' }

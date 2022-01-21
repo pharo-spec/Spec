@@ -14,8 +14,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Forms'
 }
 
-{ #category : #layout }
-SpDemoLabeledPresenter class >> defaultLayout [
+{ #category : #initialization }
+SpDemoLabeledPresenter class >> defaultSpec [
 
 	^ SpBoxLayout newTopToBottom
 		add: #email expand: false;

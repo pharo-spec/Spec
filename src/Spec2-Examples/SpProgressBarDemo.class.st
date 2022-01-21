@@ -16,8 +16,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Loading'
 }
 
-{ #category : #layout }
-SpProgressBarDemo class >> defaultLayout [
+{ #category : #specs }
+SpProgressBarDemo class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		add: #indeterminated withConstraints: [ :constraints | constraints height: 6 ];
 		add: 'Indeterminated';

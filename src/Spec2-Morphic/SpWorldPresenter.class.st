@@ -12,8 +12,8 @@ Class {
 	#category : #'Spec2-Morphic-Widgets'
 }
 
-{ #category : #layout }
-SpWorldPresenter class >> defaultLayout [
+{ #category : #specs }
+SpWorldPresenter class >> defaultSpec [
 	self setUpWorld.
 	^ SpAbstractWidgetLayout for: #WorldAdapter
 ]

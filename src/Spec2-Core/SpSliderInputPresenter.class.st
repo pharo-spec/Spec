@@ -20,14 +20,14 @@ Class {
 	#category : #'Spec2-Core-Widgets'
 }
 
-{ #category : #layout }
-SpSliderInputPresenter class >> defaultLayout [
+{ #category : #specs }
+SpSliderInputPresenter class >> defaultSpec [
 	^ self sliderLeft
 ]
 
 { #category : #specs }
 SpSliderInputPresenter class >> sliderBottom [
-
+	<spec>
 	^ SpBoxLayout newTopToBottom
 		add: #input withConstraints: [ :constraints | constraints height: self buttonHeight ];
 		add: #slider;
@@ -36,7 +36,7 @@ SpSliderInputPresenter class >> sliderBottom [
 
 { #category : #specs }
 SpSliderInputPresenter class >> sliderLeft [
-
+	<spec>
 	^ SpPanedLayout newLeftToRight
 		positionOfSlider: 85 percent;
 		add: #slider withConstraints: [ :constraints | constraints beNotResizable ];
@@ -46,7 +46,7 @@ SpSliderInputPresenter class >> sliderLeft [
 
 { #category : #specs }
 SpSliderInputPresenter class >> sliderRight [
-
+	<spec>
 	^ SpPanedLayout newLeftToRight
 		positionOfSlider: 15 percent;
 		add: #input;
@@ -56,7 +56,7 @@ SpSliderInputPresenter class >> sliderRight [
 
 { #category : #specs }
 SpSliderInputPresenter class >> sliderTop [
-
+	<spec>
 	^ SpBoxLayout newTopToBottom
 		add: #slider;
 		add: #input withConstraints: [ :constraints | constraints height: self buttonHeight ];

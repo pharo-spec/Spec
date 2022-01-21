@@ -19,8 +19,8 @@ Class {
 	#category : #'Spec2-Morphic-Widgets'
 }
 
-{ #category : #layout }
-SpRGBSlidersPresenter class >> defaultLayout [
+{ #category : #specs }
+SpRGBSlidersPresenter class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		add: #redSlider;
 		add: #greenSlider;

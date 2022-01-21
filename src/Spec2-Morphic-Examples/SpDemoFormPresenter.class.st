@@ -27,8 +27,8 @@ Class {
 	#category : #'Spec2-Morphic-Examples-Demo-Forms'
 }
 
-{ #category : #layout }
-SpDemoFormPresenter class >> defaultLayout [
+{ #category : #specs }
+SpDemoFormPresenter class >> defaultSpec [
 	^ SpPanedLayout newLeftToRight
 		positionOfSlider: (StandardFonts defaultFont widthOfString: 'M') * 35;
 		add: #form;

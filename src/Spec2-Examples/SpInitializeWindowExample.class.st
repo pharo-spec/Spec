@@ -18,8 +18,8 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #layout }
-SpInitializeWindowExample class >> defaultLayout [
+{ #category : #specs }
+SpInitializeWindowExample class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		add: #text;
 		yourself

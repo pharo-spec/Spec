@@ -20,7 +20,7 @@ Class {
 }
 
 { #category : #specs }
-SpDemoButtonsPresenter class >> defaultLayout [
+SpDemoButtonsPresenter class >> defaultSpec [
 	^ SpGridLayout new
 		beColumnHomogeneous;
 		borderWidth: 0;

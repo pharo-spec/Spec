@@ -11,8 +11,8 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #layout }
-SpTransmissionExample class >> defaultLayout [
+{ #category : #specs }
+SpTransmissionExample class >> defaultSpec [
 
 	^ SpBoxLayout newTopToBottom
 		add: (SpBoxLayout newLeftToRight 

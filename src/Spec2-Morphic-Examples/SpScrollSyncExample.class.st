@@ -14,9 +14,9 @@ Class {
 	#category : #'Spec2-Morphic-Examples'
 }
 
-{ #category : #layout }
-SpScrollSyncExample class >> defaultLayout [
-
+{ #category : #specs }
+SpScrollSyncExample class >> defaultSpec [
+	<spec>
 	^ SpBoxLayout newLeftToRight
 		add: #sideRuler withConstraints: [ :constraints | constraints width: 50 ];
 		add: #text;
@@ -43,7 +43,7 @@ SpScrollSyncExample >> currentVerticalScrollPosition [
 
 { #category : #layouts }
 SpScrollSyncExample >> defaultSpecLayout [
-
+	<spec>
 	
 	^ SpBoxLayout newTopToBottom
 		add: #sideRuler;
