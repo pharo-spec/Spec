@@ -207,8 +207,9 @@ SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonG
 				ifNil: [ self class environment ] ])
 					lookupVar: variableOrClassName declare: false.
 
-	variable ifNil: [ ^ nonGlobalBlock value: variableOrClassName ].
-	self systemNavigation openBrowserFor: variableOrClassName withMethods: variable usingMethods
+	variable ifNil: [^nonGlobalBlock value: variableOrClassName ].
+	variable isLiteralVariable ifFalse: [^nonGlobalBlock value: variable name  ].
+	^globalBlock value: variable 
 ]
 
 { #category : #private }
@@ -309,7 +310,7 @@ SpCodePresenter >> doBrowseImplementors [
 
 	| result |
 	result := self
-		          browseSelectedSelectorIfGlobal: [ :global | global browse ]
+		          browseSelectedSelectorIfGlobal: [ :global | global value browse ]
 		          ifNotGlobal: [ :selector | 
 		          	self systemNavigation browseAllImplementorsOf: selector ].
 	result ifNil: [ self application inform: 'No selectors found.' ]
@@ -349,8 +350,8 @@ SpCodePresenter >> doBrowseMethodsMatchingStringSensitive [
 SpCodePresenter >> doBrowseSenders [
 	| result  |
 	
-	result := self browseSelectedSelectorIfGlobal: [ :global | 
-			          self systemNavigation browseAllSendersOf: global ]
+	result := self browseSelectedSelectorIfGlobal: [ :global |
+			          self systemNavigation openBrowserFor: global name withMethods: global usingMethods ]
 			          ifNotGlobal: [ :selector | 
 			          self systemNavigation browseAllReferencesTo: selector ].
 	result ifNil: [ self application inform: 'No selectors found.' ]
