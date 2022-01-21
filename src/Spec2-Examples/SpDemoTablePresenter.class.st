@@ -15,8 +15,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Tables'
 }
 
-{ #category : #specs }
-SpDemoTablePresenter class >> defaultSpec [
+{ #category : #layout }
+SpDemoTablePresenter class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: #table1;
 		add: #label withConstraints: [ :c | c height: self labelHeight ];

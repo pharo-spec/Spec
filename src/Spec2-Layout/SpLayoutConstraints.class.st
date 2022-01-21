@@ -11,7 +11,7 @@ Class {
 SpLayoutConstraints >> initialize [ 
 
 	super initialize.
-	self spec: #defaultSpec
+	self spec: #defaultLayout
 ]
 
 { #category : #accessing }

@@ -43,6 +43,16 @@ SpAbstractPresenter >> buildWithSpecLayout: aSpecLayout [
 ]
 
 { #category : #'*Spec2-Deprecated10' }
+SpAbstractPresenter class >> defaultSpec [
+	self 
+		deprecated: 'SpPresenter class>>#defaultSpec is now deprecated. Please define #defaultLayout on instance or class side' 
+		transformWith:  '`@receiver defaultSpec' 
+						-> '`@receiver defaultLayout'.
+						
+	^ self defaultLayout 
+]
+
+{ #category : #'*Spec2-Deprecated10' }
 SpAbstractPresenter >> openBlockedDialogWithSpec [
 	self 
 		deprecated: 'Please use #openBlockedDialog instead' 
@@ -130,4 +140,25 @@ SpAbstractPresenter >> openWithSpecLayout: aSpecLayout [
 						-> '`@receiver openWithLayout: `@arg'. 
 						
 	^ self openWithLayout: aSpecLayout
+]
+
+{ #category : #'*Spec2-Deprecated10' }
+SpAbstractPresenter >> retrieveSpec: aSelector [
+
+	self 
+		deprecated: 'Please use #retrieveLayout: instead' 
+		transformWith:  '`@receiver retrieveSpec: `@arg' 
+						-> '`@receiver retrieveLayout: `@arg'. 
+
+	^ self retrieveLayout: aSelector
+]
+
+{ #category : #'*Spec2-Deprecated10' }
+SpAbstractPresenter >> spec [
+	self 
+		deprecated: 'Please use #adapter instead' 
+		transformWith:  '`@receiver spec' 
+						-> '`@receiver adapter'. 
+						
+	^ self adapter
 ]

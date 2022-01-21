@@ -13,8 +13,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-TextInput'
 }
 
-{ #category : #specs }
-SpDemoTextInputPresenter class >> defaultSpec [
+{ #category : #layout }
+SpDemoTextInputPresenter class >> defaultLayout [
 	^ SpGridLayout new
 		beColumnNotHomogeneous;
 		add: 'Normal:' at: 1 @ 1;

@@ -19,9 +19,9 @@ Class {
 	#category : #'Spec2-Morphic-Widgets'
 }
 
-{ #category : #specs }
-SpMethodToolbarPresenter class >> defaultSpec [
-	<spec>
+{ #category : #layout }
+SpMethodToolbarPresenter class >> defaultLayout [
+
 	^ SpBoxLayout newLeftToRight
 		add: #browseModel;
 		add: #usersModel;

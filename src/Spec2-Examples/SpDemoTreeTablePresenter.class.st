@@ -13,8 +13,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Tables'
 }
 
-{ #category : #specs }
-SpDemoTreeTablePresenter class >> defaultSpec [
+{ #category : #layout }
+SpDemoTreeTablePresenter class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: #table1;
 		add: 'Double click to browse.'

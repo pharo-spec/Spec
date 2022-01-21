@@ -10,8 +10,8 @@ Class {
 	#category : #'Spec2-Tests-Utils'
 }
 
-{ #category : #specs }
-SpTestingPresenter class >> defaultSpec [
+{ #category : #layout }
+SpTestingPresenter class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: #list;
 		yourself

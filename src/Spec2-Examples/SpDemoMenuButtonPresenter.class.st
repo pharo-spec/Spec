@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : #specs }
-SpDemoMenuButtonPresenter class >> defaultSpec [
+SpDemoMenuButtonPresenter class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom 
 		add: (SpBoxLayout newLeftToRight

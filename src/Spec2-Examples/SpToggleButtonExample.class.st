@@ -15,8 +15,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Checkboxes'
 }
 
-{ #category : #specs }
-SpToggleButtonExample class >> defaultSpec [
+{ #category : #layout }
+SpToggleButtonExample class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: (SpBoxLayout newTopToBottom
 				add: #button1 expand: false;

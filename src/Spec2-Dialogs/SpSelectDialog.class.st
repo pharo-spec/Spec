@@ -21,8 +21,8 @@ SpSelectDialog class >> defaultExtent [
 	^ 450@300
 ]
 
-{ #category : #specs }
-SpSelectDialog class >> defaultSpec [
+{ #category : #layout }
+SpSelectDialog class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		borderWidth: 5;

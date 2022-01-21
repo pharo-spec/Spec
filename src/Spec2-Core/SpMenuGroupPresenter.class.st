@@ -62,10 +62,10 @@ SpMenuGroupPresenter >> autoRefresh: aBoolean [
 ]
 
 { #category : #private }
-SpMenuGroupPresenter >> buildWithSpecLayout: aSpecLayout [
+SpMenuGroupPresenter >> buildWithLayout: aSpecLayout [
 	"Build the widget using the spec name provided as argument"
 	| widget|
-	adapter := self basicBuildAdapterWithSpecLayout: aSpecLayout.
+	adapter := self basicBuildAdapterWithLayout: aSpecLayout.
 	widget := adapter widget.
 	self announce: (SpWidgetBuilt model: self widget: widget).
 	^ widget

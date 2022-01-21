@@ -14,8 +14,8 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #specs }
-SpClassMethodBrowser class >> defaultSpec [
+{ #category : #layout }
+SpClassMethodBrowser class >> defaultLayout [
 	^ SpPanedLayout newTopToBottom
 		add:
 			(SpPanedLayout newLeftToRight

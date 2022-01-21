@@ -24,8 +24,8 @@ Class {
 	#category : #'Spec2-Morphic-Widgets'
 }
 
-{ #category : #specs }
-SpDatePresenter class >> defaultSpec [
+{ #category : #layout }
+SpDatePresenter class >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
 		add: #dateModel;

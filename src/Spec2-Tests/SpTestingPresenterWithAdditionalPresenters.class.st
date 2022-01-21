@@ -10,16 +10,13 @@ Class {
 	#category : #'Spec2-Tests-Utils'
 }
 
-{ #category : #accessing }
-SpTestingPresenterWithAdditionalPresenters class >> defaultSpec [
-	<spec>
+{ #category : #layout }
+SpTestingPresenterWithAdditionalPresenters class >> defaultLayout [
 	| aLayout |
+
 	aLayout := SpBoxLayout newTopToBottom.
-
 	self keys do: [ :aKey | aLayout add: aKey ].
-
 	aLayout add: #subpresenter4.
-
 	^ aLayout
 ]
 
