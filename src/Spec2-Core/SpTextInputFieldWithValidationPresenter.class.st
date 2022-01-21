@@ -40,7 +40,8 @@ SpTextInputFieldWithValidationPresenter >> addValidation: aSpValidation [
 
 { #category : #validation }
 SpTextInputFieldWithValidationPresenter >> addValidationError: aSpValidation [ 
-	validationErrors add: aSpValidation
+	aSpValidation target: self.
+	validationErrors add: aSpValidation.
 ]
 
 { #category : #api }
@@ -152,6 +153,12 @@ SpTextInputFieldWithValidationPresenter >> validate [
 	validationErrors := OrderedCollection new.
 	self validations do: [ :validation | validation validate: self ].
 	self updateStatus.
+]
+
+{ #category : #validation }
+SpTextInputFieldWithValidationPresenter >> validateInto: aValidationReport [
+	self validate.
+	aValidationReport addAll: validationErrors
 ]
 
 { #category : #accessing }

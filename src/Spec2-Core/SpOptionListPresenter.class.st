@@ -108,6 +108,12 @@ SpOptionListPresenter >> selectIndex: anIndex [
 	^ optionsPresenter selectIndex: anIndex 
 ]
 
+{ #category : #selecting }
+SpOptionListPresenter >> selectOptionAt: anIndex [
+
+	^ optionsPresenter selectIndex: anIndex
+]
+
 { #category : #accessing }
 SpOptionListPresenter >> selectedOption [
 	^ optionsPresenter selectedItem

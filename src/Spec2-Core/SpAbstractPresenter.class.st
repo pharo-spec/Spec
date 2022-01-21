@@ -508,6 +508,22 @@ SpAbstractPresenter >> update: aParameter [
 	self changed: aParameter
 ]
 
+{ #category : #validation }
+SpAbstractPresenter >> validate [ 
+	" Validate inputs of the presenter are valid.
+	You should override me in a subclass if you need validation. 
+	"
+]
+
+{ #category : #validation }
+SpAbstractPresenter >> validateInto: aValidationReport [
+	" Validate inputs of the presenter are valid.
+	You should override me in a subclass if you need to add validation failures
+	to the validation report. 
+	"
+	self validate.
+]
+
 { #category : #events }
 SpAbstractPresenter >> whenBuiltDo: aBlock [
 

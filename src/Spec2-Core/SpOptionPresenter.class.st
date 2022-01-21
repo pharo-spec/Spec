@@ -8,6 +8,11 @@ Class {
 	#category : #'Spec2-Core-Widgets-Advanced'
 }
 
+{ #category : #actions }
+SpOptionPresenter >> doAccept [ 
+	self validate.
+]
+
 { #category : #initialization }
 SpOptionPresenter >> optionIcon [
 	"Answer a Form to be used to display the option"
@@ -20,4 +25,13 @@ SpOptionPresenter >> optionTitle [
 	"Answer the title to be displayed in the option choices."
 
 	^ self subclassResponsibility
+]
+
+{ #category : #validation }
+SpOptionPresenter >> validate [
+	
+	| report |
+	report := SpValidationReport new.
+	self layout children do: [ :presenter | presenter validateInto: report ].
+	^ report
 ]
