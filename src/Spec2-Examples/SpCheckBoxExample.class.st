@@ -15,8 +15,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Checkboxes'
 }
 
-{ #category : #layout }
-SpCheckBoxExample class >> defaultLayout [
+{ #category : #specs }
+SpCheckBoxExample class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		add:
 			(SpBoxLayout newLeftToRight

@@ -34,8 +34,8 @@ SpConfirmDialog class >> defaultExtent [
 	^ 450@120
 ]
 
-{ #category : #layout }
-SpConfirmDialog class >> defaultLayout [
+{ #category : #specs }
+SpConfirmDialog class >> defaultSpec [
 
 	^ SpBoxLayout newTopToBottom
 		borderWidth: 5;

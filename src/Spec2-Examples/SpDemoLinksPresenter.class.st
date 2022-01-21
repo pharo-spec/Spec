@@ -16,8 +16,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Other'
 }
 
-{ #category : #layout }
-SpDemoLinksPresenter class >> defaultLayout [
+{ #category : #specs }
+SpDemoLinksPresenter class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		add: #link1;
 		add: #link2;

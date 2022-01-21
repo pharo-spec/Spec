@@ -119,23 +119,25 @@ SpMorphicCodeAdapter >> hasSyntaxHighlightEnabled [
 
 { #category : #'widget API' }
 SpMorphicCodeAdapter >> insertPopoverAfterCurrentSelection: aPresenter style: styleName [
-
 	| popover pos |
-	self widgetDo: [ :w | 
-		popover := self presenter newPopover
-			           bePositionRight;
-			           presenter: aPresenter;
-			           yourself.
 
-		styleName ifNotNil: [ popover addStyle: styleName ].
-		popover build.
+	self widgetDo: [ :w |
+
+		popover := self presenter newPopover
+			bePositionRight;
+			presenter: aPresenter;
+			yourself.
+			
+		styleName ifNotNil: [ 
+			popover addStyle: styleName ].
+		popover buildWithSpec.
 		"popover style needs to be applied when poping up. 
 		 Do not apply it here! (I am letting it here as documentation)"
 		"popover adapter applyStyle."
-
+	
 		pos := self computeOriginFor: w.
 		"(20@0) is a magic number to position correctly the popover"
-		popover popupPointingTo: (pos corner: pos + (20 @ 0)).
+		popover popupPointingTo: (pos corner: (pos + (20@0))).
 		popover takeKeyboardFocus ]
 ]
 

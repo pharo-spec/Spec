@@ -16,8 +16,8 @@ Class {
 	#category : #'Spec2-Tests-Utils'
 }
 
-{ #category : #layout }
-SpTestingPresenterWithModel class >> defaultLayout [
+{ #category : #specs }
+SpTestingPresenterWithModel class >> defaultSpec [
 	^ SpBoxLayout newLeftToRight
 		add: #x;
 		add: #y;

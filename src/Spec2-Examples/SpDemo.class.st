@@ -41,7 +41,8 @@ SpDemo class >> on: aModel [
 SpDemo class >> open [
 	<example>
 	
-	^ self new open
+	^ self new
+		openWithSpec
 ]
 
 { #category : #accessing }
@@ -55,7 +56,7 @@ SpDemo >> addItemTo: aGroup [
 					self needRebuild: false.
 					self buildWithSpec ] ].
 	self needRebuild: false.
-	self build
+	self buildWithSpec
 ]
 
 { #category : #accessing }

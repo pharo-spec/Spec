@@ -14,8 +14,8 @@ Class {
 	#category : #'Spec2-Morphic-Examples-Standalone'
 }
 
-{ #category : #layout }
-SpMethodBrowser class >> defaultLayout [
+{ #category : #specs }
+SpMethodBrowser class >> defaultSpec [
 	^ SpPanedLayout newTopToBottom
 		add: #listModel;
 		add:

@@ -19,8 +19,8 @@ Class {
 	#category : #'Spec2-Core-Widgets'
 }
 
-{ #category : #layout }
-SpLabeledPresenter class >> defaultLayout [
+{ #category : #specs }
+SpLabeledPresenter class >> defaultSpec [
 	^ SpBoxLayout newLeftToRight
 		add: #labelPresenter withConstraints: [ :constraints | constraints width: self labelWidth ];
 		add:

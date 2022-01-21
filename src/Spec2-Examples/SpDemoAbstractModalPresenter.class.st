@@ -13,8 +13,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Modals'
 }
 
-{ #category : #layout }
-SpDemoAbstractModalPresenter class >> defaultLayout [
+{ #category : #specs }
+SpDemoAbstractModalPresenter class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		add: #explanation;
 		yourself

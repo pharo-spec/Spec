@@ -15,8 +15,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Notebook'
 }
 
-{ #category : #layout }
-SpDemoNotebookPresenter class >> defaultLayout [
+{ #category : #specs }
+SpDemoNotebookPresenter class >> defaultSpec [
 
 	^ SpBoxLayout newTopToBottom
 		add: #notebook;

@@ -34,7 +34,7 @@ SpMorphicBoxLayoutTest >> testAddWithPaddingHorizontal [
 		add: presenter expand: false fill: false padding: 10;
 		yourself.
 		
-	base buildAdapterWithLayout: layout.
+	base buildAdapterWithSpecLayout: layout.
 
 	"validate the widget is within a parent that keeps the widget with a padding"	
 	self 
@@ -53,7 +53,7 @@ SpMorphicBoxLayoutTest >> testAddWithPaddingVertical [
 		add: presenter expand: false fill: false padding: 10;
 		yourself.
 		
-	base buildAdapterWithLayout: layout.
+	base buildAdapterWithSpecLayout: layout.
 
 	"validate the widget is within a parent that keeps the widget with a padding"	
 	self 
@@ -218,7 +218,7 @@ SpMorphicBoxLayoutTest >> testNestedLayoutModifiesHeightOfTopLayout [
 			expand: false;
 		yourself.
 		
-	base buildAdapterWithLayout: layout.
+	base buildAdapterWithSpecLayout: layout.
 
 	"validate the widget is within a parent that keeps the widget with a padding"	
 	self 

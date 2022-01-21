@@ -7,8 +7,8 @@ Class {
 	#category : #'Spec2-Tests-Utils'
 }
 
-{ #category : #layout }
-SpMockPesenterWithoutGetter class >> defaultLayout [
+{ #category : #specs }
+SpMockPesenterWithoutGetter class >> defaultSpec [
 	^ SpBoxLayout newLeftToRight
 		add: #buttonPresenter;
 		yourself

@@ -18,8 +18,8 @@ Class {
 	#category : #'Spec2-Morphic-Examples'
 }
 
-{ #category : #layout }
-SpDropListExample class >> defaultLayout [
+{ #category : #specs }
+SpDropListExample class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		add:
 			(SpBoxLayout newLeftToRight

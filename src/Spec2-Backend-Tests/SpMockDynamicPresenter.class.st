@@ -8,8 +8,8 @@ Class {
 	#category : #'Spec2-Backend-Tests-Layout'
 }
 
-{ #category : #layout }
-SpMockDynamicPresenter class >> defaultLayout [
+{ #category : #specs }
+SpMockDynamicPresenter class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		add: #list;
 		add: #label;

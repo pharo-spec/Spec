@@ -34,8 +34,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Forms'
 }
 
-{ #category : #layout }
-SpDemoStandaloneFormPresenter class >> defaultLayout [
+{ #category : #specs }
+SpDemoStandaloneFormPresenter class >> defaultSpec [
 	
 	^ SpBoxLayout newTopToBottom
 		add:

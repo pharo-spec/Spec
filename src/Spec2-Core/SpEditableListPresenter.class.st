@@ -31,8 +31,8 @@ Class {
 	#category : #'Spec2-Core-Widgets'
 }
 
-{ #category : #layout }
-SpEditableListPresenter class >> defaultLayout [
+{ #category : #spec }
+SpEditableListPresenter class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		add:
 			(SpBoxLayout newLeftToRight

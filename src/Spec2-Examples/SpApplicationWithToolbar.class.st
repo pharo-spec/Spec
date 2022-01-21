@@ -13,8 +13,8 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #layout }
-SpApplicationWithToolbar class >> defaultLayout [
+{ #category : #specs }
+SpApplicationWithToolbar class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		add: #menu withConstraints: [ :constraints | constraints height: self toolbarHeight ];
 		add: #text;
