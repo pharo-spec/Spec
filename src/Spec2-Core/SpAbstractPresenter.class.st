@@ -56,13 +56,14 @@ SpAbstractPresenter class >> defaultFont [
 { #category : #layout }
 SpAbstractPresenter class >> defaultLayout [
 	"Overrides me to define a layout in a static way"
-	| specDefinition |
+	| specDefinition refactoringClass |
 	
 	specDefinition := self class lookupSelector: #defaultSpec.
 	(specDefinition isNil or: [ specDefinition methodClass = SpAbstractPresenter class ])
 		ifTrue: [ Error signal: 'You must define a layout either by defining #defaulLayout on your presenter or setting explicitly a layout with #layout:' ].
 
-	(SpRenameDefaultSpecToDefaultLayoutRefactoring onPresenter: specDefinition methodClass) execute.
+	refactoringClass := self class environment at: #SpRenameDefaultSpecToDefaultLayoutRefactoring.
+	(refactoringClass onPresenter: specDefinition methodClass) execute.
 		
 	"#defaultSpec is rewritten as #defaultLayout. Let's call it. Will only be used one time since bar is now overrided."
 	^ self defaultLayout
