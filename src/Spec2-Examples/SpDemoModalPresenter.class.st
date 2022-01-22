@@ -54,7 +54,7 @@ SpDemoModalPresenter >> initializePresenters [
 	
 	button1
 		label: 'Open 1';
-		action: [ SpDemoModal1Presenter new openModalWithSpec ].
+		action: [ SpDemoModal1Presenter new openModal ].
 	button2 label: 'Open 2';
-		action: [ SpDemoModal2Presenter new openModalWithSpec ]
+		action: [ SpDemoModal2Presenter new openModal ]
 ]

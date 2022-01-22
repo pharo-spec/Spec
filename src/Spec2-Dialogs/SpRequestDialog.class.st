@@ -68,7 +68,7 @@ SpRequestDialog class >> exampleModal [
 		text: 'I am tempted to say 42...';
 		acceptLabel: 'I know!';
 		cancelLabel: 'Cancel';
-		openModalWithSpec.
+		openModal.
 		
 	string ifNotNil: [ 
 		self inform: string ]

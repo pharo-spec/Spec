@@ -61,7 +61,7 @@ SpSelectDialog class >> exampleModal [
 		items: Smalltalk allClassesAndTraits;
 		display: [ :each | each name ];
 		displayIcon: [ :each | each systemIcon ];
-		openModalWithSpec.
+		openModal.
 		
 	selection ifNotNil: [ 
 		self inform: selection asString ]

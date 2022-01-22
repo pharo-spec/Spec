@@ -58,7 +58,7 @@ SpVersatileDialogPresenter class >> example1 [
 		addButton: #cancel text: 'cancel' value: #cancel;
 		footnoteIcon: (self iconNamed: #error);
 		footnoteArea: 'This operation can be very dangerous.';
-		openModalWithSpec.
+		openModal.
 	dialog withWindowDo: [ :w | w title: 'Confirmation' ].
 	dialog result traceCr.
 
@@ -74,7 +74,7 @@ SpVersatileDialogPresenter class >> example2 [
 		addButton: #save text: 'Save' value: true;
 		addButton: #cancel text: 'Cancel' value: false;
 		mainIcon: (self iconNamed: #question);
-		openModalWithSpec;
+		openModal;
 		yourself.
 
 	dialog withWindowDo: [ :w | w title: 'Confirmation' ].
@@ -96,7 +96,7 @@ SpVersatileDialogPresenter class >> example3 [
 
 	(dialog buttonAt: #save) icon: (self iconNamed: #smallSave).
 
-	dialog openModalWithSpec.
+	dialog openModal.
 
 	dialog withWindowDo: [ :w | w title: 'Confirmation' ].
 	dialog result traceCr
@@ -112,7 +112,7 @@ SpVersatileDialogPresenter class >> example4 [
 
 	dialog defaultButtonId: #button2.
 
-	dialog openModalWithSpec.
+	dialog openModal.
 
 	dialog withWindowDo: [ :w | w title: 'Select number' ].
 	dialog result traceCr
@@ -134,7 +134,7 @@ SpVersatileDialogPresenter class >> example5 [
 	dialog addButton: #cancel text: 'Cancel' value: false.
 	dialog mainIcon: (self iconNamed: #question).
 
-	dialog openModalWithSpec.
+	dialog openModal.
 
 	dialog withWindowDo: [ :w | w title: 'Confirmation' ].
 	dialog result traceCr

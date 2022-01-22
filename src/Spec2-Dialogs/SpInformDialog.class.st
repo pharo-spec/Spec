@@ -63,7 +63,7 @@ SpInformDialog class >> exampleModal [
 		title: 'Inform modal example';
 		label: 'You are seeing an inform dialog!';
 		acceptLabel: 'Close this!';
-		openModalWithSpec
+		openModal
 ]
 
 { #category : #api }

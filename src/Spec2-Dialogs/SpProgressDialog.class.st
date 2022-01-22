@@ -50,7 +50,7 @@ SpProgressDialog class >> exampleModal [
 		title: 'Example Progress';
 		label: 'You are seeing a progress dialog!';
 		progressPercent: 30;
-		openModalWithSpec
+		openModal
 ]
 
 { #category : #accessing }
@@ -87,7 +87,7 @@ SpProgressDialog >> informUser: aString during: aBlock [
 SpProgressDialog >> informUserDuring: aBlock [
 	
 	openAction := aBlock.
-	self openModalWithSpec.
+	self openModal.
 	parentWindow ifNotNil: [
 		parentWindow takeKeyboardFocus ]
 ]

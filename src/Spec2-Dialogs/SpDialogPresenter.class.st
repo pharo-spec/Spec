@@ -121,7 +121,7 @@ SpDialogPresenter class >> openDialog [
 SpDialogPresenter class >> openModal [
 	<script>
 
-	^ self new openModalWithSpec
+	^ self new openModal
 ]
 
 { #category : #private }

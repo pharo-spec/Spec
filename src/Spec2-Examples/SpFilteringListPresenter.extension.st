@@ -21,7 +21,7 @@ SpFilteringListPresenter class >> exampleWithFilterOnTop [
 
 	example := self new.
 	example items: RBBrowserEnvironment default classes asArray.
-	example openWithSpecLayout: self topLayout.
+	example openWithLayout: self topLayout.
 	example withWindowDo: [ :window | 
 		window title: self name asString , ' example' ].
 
