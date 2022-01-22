@@ -53,7 +53,7 @@ SpDemo >> addItemTo: aGroup [
 				icon: (self iconNamed: #delete);
 				action: [ aGroup menuItems remove: item.
 					self needRebuild: false.
-					self buildWithSpec ] ].
+					self build ] ].
 	self needRebuild: false.
 	self build
 ]

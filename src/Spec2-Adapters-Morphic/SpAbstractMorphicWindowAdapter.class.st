@@ -52,7 +52,7 @@ SpAbstractMorphicWindowAdapter >> addContent: aMorph toWindow: aSpecWindow [
 { #category : #private }
 SpAbstractMorphicWindowAdapter >> addMenuTo: aMorph [
 	
-	menuMorph := self model menu buildWithSpec.
+	menuMorph := self model menu build.
 	aMorph addMorphBack: menuMorph.	
 	menuMorph
 		hResizing: #spaceFill;

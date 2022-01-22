@@ -177,7 +177,7 @@ SpVersatileDialogPresenter >> connectPresenters [
 	moreOptionsButton action: [ 
 		moreOptionsVisible := moreOptionsVisible not.
 		self needRebuild: false.
-		self buildWithSpec ].
+		self build ].
 	
 
 ]

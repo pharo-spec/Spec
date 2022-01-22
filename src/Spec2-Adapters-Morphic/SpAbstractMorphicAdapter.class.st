@@ -171,7 +171,7 @@ SpAbstractMorphicAdapter >> buildMenu: aMenuPresenter [
 
 	^ aMenuPresenter 
 		owner: self presenter;
-		buildWithSpec
+		build
 ]
 
 { #category : #'spec protocol' }

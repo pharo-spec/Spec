@@ -51,7 +51,7 @@ SpDynamicWidgetChange >> change [
 	self needRebuild: false.
 	button needRebuild: false.
 	
-	self buildWithSpec
+	self build
 ]
 
 { #category : #private }
