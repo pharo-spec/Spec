@@ -53,7 +53,7 @@ SpInformDialog class >> example [
 		title: 'Inform example';
 		label: 'You are seeing an inform dialog!';
 		acceptLabel: 'Close this!';
-		openDialogWithSpec
+		openDialog
 ]
 
 { #category : #examples }

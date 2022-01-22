@@ -48,7 +48,7 @@ SpSelectDialog class >> example [
 		display: [ :each | each name ];
 		displayIcon: [ :each | each systemIcon ];
 		onAccept: [ :dialog | self inform: dialog presenter selectedItem asString ];
-		openDialogWithSpec
+		openDialog
 ]
 
 { #category : #examples }

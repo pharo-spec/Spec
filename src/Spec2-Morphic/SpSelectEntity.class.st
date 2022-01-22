@@ -37,7 +37,7 @@ SpSelectEntity >> connectPresenters [
 	selectEntity 
 		action: [  |select|
 			select := self selectDialog value.
-			select openDialogWithSpec
+			select openDialog
 				okAction: [  
 					self entity: select selectedItem ]]
 

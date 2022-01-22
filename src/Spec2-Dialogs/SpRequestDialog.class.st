@@ -55,7 +55,7 @@ SpRequestDialog class >> example [
 		acceptLabel: 'I know!';
 		cancelLabel: 'Cancel';
 		onAccept: [ :dialog | self inform: dialog presenter text ];
-		openDialogWithSpec
+		openDialog
 ]
 
 { #category : #examples }

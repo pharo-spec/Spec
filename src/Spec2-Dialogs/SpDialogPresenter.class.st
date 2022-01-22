@@ -114,7 +114,7 @@ SpDialogPresenter class >> open [
 SpDialogPresenter class >> openDialog [
 	<script>
 	
-	^ self new openDialogWithSpec
+	^ self new openDialog
 ]
 
 { #category : #'instance creation' }

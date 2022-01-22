@@ -66,7 +66,7 @@ SpConfirmDialog class >> example [
 		label: 'Are you sure?';
 		onAccept: [ self inform: 'Yes!' ];
 		onCancel: [ self inform: 'No!' ];
-		openDialogWithSpec
+		openDialog
 ]
 
 { #category : #examples }

@@ -27,7 +27,7 @@ SpProgressDialog class >> example [
 		title: 'Example Progress';
 		label: 'You are seeing a progress dialog!';
 		progressPercent: 30;
-		openDialogWithSpec
+		openDialog
 ]
 
 { #category : #examples }
