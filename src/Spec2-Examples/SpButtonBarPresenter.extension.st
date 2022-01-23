@@ -35,5 +35,5 @@ SpButtonBarPresenter class >> example [
 			label: 'Copy';
 			yourself).
 			
-	presenter openWithSpec
+	presenter open
 ]

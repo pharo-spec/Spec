@@ -36,5 +36,5 @@ SpToolbarPresenter class >> example [
 								action: [ menuButton label: item name ] ] ] ];
 					yourself ];
 			yourself);
-		openWithSpec
+		open
 ]

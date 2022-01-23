@@ -18,7 +18,7 @@ SpAthensPresenter class >> example [
 			surface clear.
 			aCanvas setPaint: paint.
 			aCanvas drawShape: (0@0 corner: extent) ]; 
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -41,5 +41,5 @@ SpAthensPresenter class >> exampleResizing [
 			surface clear.
 			aCanvas setPaint: paint.
 			aCanvas drawShape: (0@0 extent: boundingBox extent) ]; 
-		openWithSpec
+		open
 ]

@@ -98,7 +98,7 @@ SpPopoverPresenter >> popupPointingTo: aRectangle [
 	"Shows the popover, relative to `SpPopoverPresenter>>#relativeTo`, and 
 	 pointing to `aRectangle`"
 
-	self adapter ifNil: [ self buildWithSpec ].
+	self adapter ifNil: [ self build ].
 	self withAdapterDo: [ :anAdapter |
 		anAdapter popupPointingTo: aRectangle ]
 ]

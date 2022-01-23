@@ -171,7 +171,7 @@ SpAbstractMorphicAdapter >> buildMenu: aMenuPresenter [
 
 	^ aMenuPresenter 
 		owner: self presenter;
-		buildWithSpec
+		build
 ]
 
 { #category : #'spec protocol' }
@@ -562,7 +562,7 @@ SpAbstractMorphicAdapter >> showMenu: aValuable [
 	| lastShownMenu |
 	
 	lastShownMenu := self buildMenu: aValuable value.
-	lastShownMenu openWithSpec
+	lastShownMenu open
 ]
 
 { #category : #styling }

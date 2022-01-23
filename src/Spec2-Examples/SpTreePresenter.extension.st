@@ -9,7 +9,7 @@ SpTreePresenter class >> example [
 		children: [ :aClass | aClass subclasses ];
 		displayIcon: [ :aClass | aClass systemIcon ];
 		display: [ :aClass | aClass name ];
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -21,7 +21,7 @@ SpTreePresenter class >> exampleExpandPath [
 		displayIcon: [ :aClass | aClass systemIcon ];
 		display: [ :aClass | aClass name ];
 		expandPath: #(1 1 3); "Object/Exception/Notification"
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -33,7 +33,7 @@ SpTreePresenter class >> exampleExpandRoots [
 		displayIcon: [ :aClass | aClass systemIcon ];
 		display: [ :aClass | aClass name ];
 		expandRoots;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -44,7 +44,7 @@ SpTreePresenter class >> exampleSelectPathByItems [
 		children: [ :aClass | aClass subclasses ];
 		displayIcon: [ :aClass | aClass systemIcon ];
 		display: [ :aClass | aClass name ];
-		openWithSpec;
+		open;
 		selectPathByItems: self withAllSuperclasses reversed allButFirst scrollToSelection: true
 ]
 
@@ -62,7 +62,7 @@ SpTreePresenter class >> exampleWithContextMenu [
 			SpMenuPresenter new 
 				addGroup: [ :group | group 
 					addItem: [ :item | item name: tree selectedItem asString ] ] ];
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -79,5 +79,5 @@ SpTreePresenter class >> exampleWithDecoratedString [
 		displayUnderline: [ :aClass | aClass numberOfMethods > 10 ];
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
-		openWithSpec
+		open
 ]

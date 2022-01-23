@@ -11,7 +11,7 @@ SpTreeTablePresenter class >> example [
 			yourself);
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -26,7 +26,7 @@ SpTreeTablePresenter class >> exampleExpandPath [
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
 		expandPath: #(1 1 3); "Object/Exception/Notification"
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -41,7 +41,7 @@ SpTreeTablePresenter class >> exampleExpandRoots [
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
 		expandRoots;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -59,7 +59,7 @@ SpTreeTablePresenter class >> exampleResizableColumns [
 			evaluated: [:class | class methodDictionary size asString]);
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -80,7 +80,7 @@ SpTreeTablePresenter class >> exampleWithDecoratedString [
 			yourself);
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -97,5 +97,5 @@ SpTreeTablePresenter class >> exampleWithTwoColumns [
 			evaluated: [:class | class methodDictionary size asString]);
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
-		openWithSpec
+		open
 ]

@@ -6,5 +6,5 @@ SpSearchInputFieldPresenter class >> example [
 	
 	^ self new
 		placeholder: 'Search...';
-		openWithSpec
+		open
 ]

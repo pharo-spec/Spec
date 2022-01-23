@@ -5,7 +5,7 @@ SpListPresenter class >> example [
 	<sampleInstance>
 	^ self new
 		items: self environment allClasses;
-		openWithSpec;
+		open;
 		yourself
 ]
 
@@ -27,7 +27,7 @@ SpListPresenter class >> exampleDragAndDrop [
 			add: list1;
 			add: list2;
 			yourself);
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -36,7 +36,7 @@ SpListPresenter class >> exampleMultipleSelection [
 	^ self new
 		items: self environment allClasses;
 		beMultipleSelection;
-		openWithSpec;
+		open;
 		yourself
 ]
 
@@ -53,7 +53,7 @@ SpListPresenter class >> exampleWithDecoratedString [
 		displayItalic: [ :aClass | aClass name includesSubstring: 'abstract' caseSensitive: false ];
 		displayBold: [ :aClass | aClass hasSubclasses ];
 		displayUnderline: [ :aClass | aClass numberOfMethods > 10 ];
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -62,7 +62,7 @@ SpListPresenter class >> exampleWithHeaderTitle [
 	^ self new
 		items: self environment allClasses;
 		headerTitle: 'Title';
-		openWithSpec;
+		open;
 		yourself
 ]
 
@@ -72,6 +72,6 @@ SpListPresenter class >> exampleWithIcons [
 	^ self new
 		displayIcon: [ :e | self iconNamed: #forwardIcon ];
 		items: (1 to: 10) asArray;
-		openWithSpec;
+		open;
 		yourself
 ]

@@ -7,5 +7,5 @@ SpMorphPresenter class >> example [
 		morph: (Morph new
 			color: Color random;
 			yourself);
-		openWithSpec
+		open
 ]

@@ -11,5 +11,5 @@ SpDatePresenter class >> example [
 SpDatePresenter class >> exampleModal [
 	<sampleInstance>
 	
-	^ self new openModalWithSpec
+	^ self new openModal
 ]

@@ -19,7 +19,7 @@ Class {
 SpChooserPresenter class >> example [
 
 	^ (self sourceItems: self package definedClasses asOrderedCollection)
-		  openWithSpec
+		  open
 ]
 
 { #category : #examples }
@@ -28,7 +28,7 @@ SpChooserPresenter class >> exampleClasses [
 	^ (self
 		   sourceItems: { SpChooserPresenter . SpFilteringListPresenter }
 		   chosenItems: { SpFilteringSelectableListPresenter }
-		   displayBlock: #name) openWithSpec
+		   displayBlock: #name) open
 ]
 
 { #category : #examples }
@@ -38,7 +38,7 @@ SpChooserPresenter class >> examplePackages [
 		   sourceItems: RPackageOrganizer default packages
 		   chosenItems:
 		   { (RPackageOrganizer default packageNamed: 'Spec2-CommonWidgets') }
-		   displayBlock: #packageName) openWithSpec
+		   displayBlock: #packageName) open
 ]
 
 { #category : #'instance creation' }

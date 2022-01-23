@@ -11,5 +11,5 @@ SpComponentListPresenter class >> example [
 
 	^ self new 
 		presenters: list;
-		openWithSpec
+		open
 ]

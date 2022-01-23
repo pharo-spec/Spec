@@ -8,5 +8,5 @@ SpCheckBoxPresenter class >> example [
 		state: false;
 		whenActivatedDo: [ 'Activated' crTrace ];
 		whenDeactivatedDo: [ 'Deactivated' crTrace ];
-		openWithSpec
+		open
 ]

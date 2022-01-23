@@ -28,7 +28,7 @@ SpTransmissionExample class >> defaultLayout [
 SpTransmissionExample class >> open [ 
 	<script>
 	
-	^ self new openWithSpec
+	^ self new open
 ]
 
 { #category : #initialization }

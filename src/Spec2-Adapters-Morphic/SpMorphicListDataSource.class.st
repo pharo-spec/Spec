@@ -128,7 +128,7 @@ SpMorphicListDataSource >> transferFor: passenger from: aMorph [
 	^ (self model adapter 
 		transferFor: passenger 
 		from: self table) 
-		buildWithSpec
+		build
 		  dragHand: aMorph currentHand;
 		  yourself
 ]

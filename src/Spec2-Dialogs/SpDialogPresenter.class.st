@@ -107,21 +107,21 @@ SpDialogPresenter class >> documentSections [
 SpDialogPresenter class >> open [
 	<script>
 	
-	^ self new openWithSpec
+	^ self new open
 ]
 
 { #category : #'instance creation' }
 SpDialogPresenter class >> openDialog [
 	<script>
 	
-	^ self new openDialogWithSpec
+	^ self new openDialog
 ]
 
 { #category : #'instance creation' }
 SpDialogPresenter class >> openModal [
 	<script>
 
-	^ self new openModalWithSpec
+	^ self new openModal
 ]
 
 { #category : #private }

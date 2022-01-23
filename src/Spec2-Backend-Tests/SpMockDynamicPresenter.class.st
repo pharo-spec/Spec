@@ -19,7 +19,7 @@ SpMockDynamicPresenter class >> defaultLayout [
 { #category : #'instance creation' }
 SpMockDynamicPresenter class >> open [
 	<script>
-	^ self new openWithSpec
+	^ self new open
 ]
 
 { #category : #'instance creation' }
@@ -27,7 +27,7 @@ SpMockDynamicPresenter class >> openWithRebuildBeforeOpening [
 	<script>
 	^ self new
 		selectFirstElement;
-		openWithSpec
+		open
 ]
 
 { #category : #initialization }

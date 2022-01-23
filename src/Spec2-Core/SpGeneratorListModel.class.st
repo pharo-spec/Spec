@@ -28,7 +28,7 @@ SpGeneratorListModel class >> example [
 		model: (self new 
 			generator: generator;
 			yourself);
-		openWithSpec.
+		open.
 
 ]
 
