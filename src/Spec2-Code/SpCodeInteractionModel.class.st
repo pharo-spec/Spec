@@ -55,10 +55,10 @@ SpCodeInteractionModel >> doItReceiver [
 	^ nil
 ]
 
-{ #category : #testing }
+{ #category : #binding }
 SpCodeInteractionModel >> hasBindingOf: aString [
 
-	^ self subclassResponsibility
+	^ false
 ]
 
 { #category : #testing }
