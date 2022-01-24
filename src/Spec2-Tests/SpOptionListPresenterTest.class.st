@@ -58,7 +58,7 @@ SpOptionListPresenterTest >> testContentPanelIsEmptyWhenNoSelection [
 	presenterClass := SpOptionListPresenter newAnonymousSubclass.
 	presenterClass compile: 'allOptions ^ #()'.
 	presenter := presenterClass new
-		buildWithSpec;
+		build;
 		yourself.
 	
 	self assertEmpty: presenter contentLayout.
@@ -87,7 +87,7 @@ SpOptionListPresenterTest >> testDoAcceptIsExecutedWhenAcceptingDialog [
 	presenter := self newOptionsPresenterWithOneOption.
 	optionPresenter := presenter allOptions first.
 	optionPresenter class compile: 'doAccept self class propertyAt: #executed put: true'.
-	dialog := presenter openDialogWithSpec.
+	dialog := presenter openDialog.
 	
 	dialog triggerOkAction.
 	
@@ -102,7 +102,7 @@ SpOptionListPresenterTest >> testDoAcceptIsNotExecutedWhenCancelingDialog [
 	presenter := self newOptionsPresenterWithOneOption.
 	optionPresenter := presenter allOptions first.
 	optionPresenter class compile: 'doAccept self class propertyAt: #executed put: true'.
-	dialog := presenter openDialogWithSpec.
+	dialog := presenter openDialog.
 
 	dialog triggerCancelAction.
 	
@@ -114,7 +114,7 @@ SpOptionListPresenterTest >> testDoAcceptIsNotExecutedWhenCancelingDialog [
 SpOptionListPresenterTest >> testFirstOptionIsSelectedWhenOpening [
 	| presenter |
 	presenter := SpOptionListExample new.
-	presenter buildWithSpec.
+	presenter build.
 
 	self 
 		assert: presenter selectedOption
@@ -156,7 +156,7 @@ SpOptionListPresenterTest >> testValidationIsCalledOnSelectedOptionPresenter [
 	presenter := self newOptionsPresenterWithTwoOptions.
 	optionPresenter := presenter allOptions second.
 	optionPresenter class compile: 'validate self class propertyAt: #validated put: true'.
-	dialog := presenter openDialogWithSpec.
+	dialog := presenter openDialog.
 	presenter selectOptionAt: 2.
 
 	dialog triggerOkAction.
@@ -171,7 +171,7 @@ SpOptionListPresenterTest >> testValidationIsNotCalledOnNotSelectedOptionPresent
 	presenter := self newOptionsPresenterWithTwoOptions.
 	optionPresenter := presenter allOptions first.
 	optionPresenter class compile: 'validate self class propertyAt: #validated put: true'.
-	dialog := presenter openDialogWithSpec.
+	dialog := presenter openDialog.
 	presenter selectOptionAt: 2.
 
 	dialog triggerOkAction.

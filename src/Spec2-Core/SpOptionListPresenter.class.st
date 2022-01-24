@@ -6,7 +6,7 @@ I'm kind of a ""tabbed"" dialog, but my options are ""mac style"": lateral and n
 
 This is useful to keep a variable number of options.
 You can evaluate this to have an example:
-	SpOptionListExample example
+	self example
 "
 Class {
 	#name : #SpOptionListPresenter,
@@ -18,6 +18,11 @@ Class {
 	],
 	#category : #'Spec2-Core-Widgets-Advanced'
 }
+
+{ #category : #examples }
+SpOptionListPresenter class >> example [
+	^ SpOptionListExample example
+]
 
 { #category : #testing }
 SpOptionListPresenter class >> isAbstract [
@@ -88,9 +93,6 @@ SpOptionListPresenter >> initializePresenters [
 	contentLayout := SpBoxLayout newTopToBottom.
 		
 	self whenBuiltDo: [ optionsPresenter selectFirst ].
-		
-	self flag: 'TODO To remove when initializeLayout will be part of Spec2'.
-	self layout: self defaultLayout.
 ]
 
 { #category : #'private - testing' }

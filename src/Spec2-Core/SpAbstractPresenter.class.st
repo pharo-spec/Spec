@@ -229,7 +229,7 @@ SpAbstractPresenter >> defaultDialogWindowPresenterClass [
 	^ self application defaultDialogWindowPresenterClass
 ]
 
-{ #category : #initialization }
+{ #category : #layout }
 SpAbstractPresenter >> defaultLayout [
 	"This method is there for compatibility purposes with Spec 1 
 	where the layout (was named Spec) was defined on class side in a method #defaultSpec.

@@ -10,12 +10,13 @@ Class {
 
 { #category : #examples }
 SpOptionListExample class >> example [
-	self new openWithSpec
+
+	self new open
 ]
 
 { #category : #examples }
 SpOptionListExample class >> exampleDialog [
-	self new openDialogWithSpec
+	self new openDialog
 ]
 
 { #category : #initialization }
