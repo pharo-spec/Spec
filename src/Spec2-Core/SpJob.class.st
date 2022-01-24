@@ -60,6 +60,15 @@ SpJob class >> newBlock: aBlock [
 		yourself
 ]
 
+{ #category : #'instance creation' }
+SpJob class >> newTitle: aString block: aBlock [ 
+
+	^ self new 
+		title: aString;
+		block: aBlock;
+		yourself
+]
+
 { #category : #private }
 SpJob >> addChild: aJob [
 
@@ -75,7 +84,7 @@ SpJob >> announce: anAnnouncementClass [
 	self announcer announce: announcement
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 SpJob >> announceChange [
 
 	isRunning ifFalse: [ ^ self ].
@@ -245,8 +254,7 @@ SpJob >> prepareForRunning [
 
 	isRunning := true.
 	process := Processor activeProcess.
-	CurrentJob value ifNotNil: [ :job | job addChild: self].
-	self announce: JobStart.
+	self announce: JobStart
 ]
 
 { #category : #progress }
@@ -266,6 +274,12 @@ SpJob >> progress: aNormalizedFloat [
 	self announceChange
 ]
 
+{ #category : #compatibility }
+SpJob >> progressPercent: aNumber [ 
+	
+	self currentValue: aNumber
+]
+
 { #category : #private }
 SpJob >> removeChild: aJob [ 
 
@@ -277,9 +291,7 @@ SpJob >> run [
 
 	[ 
 		self prepareForRunning.
-	 	SpCurrentJob 
-			value: self 
-			during: [ ^ block cull: self ] ]
+	 	^ block cull: self ]
 	ensure: [ self cleanupAfterRunning ]
 ]
 
@@ -306,4 +318,22 @@ SpJob >> value [
 SpJob >> value: aNumber [
 
 	self currentValue: aNumber
+]
+
+{ #category : #events }
+SpJob >> whenChangedDo: aBlock [
+
+	self announcer when: JobChange do: aBlock
+]
+
+{ #category : #events }
+SpJob >> whenEndDo: aBlock [
+
+	self announcer when: JobEnd do: aBlock
+]
+
+{ #category : #events }
+SpJob >> whenStartDo: aBlock [
+
+	self announcer when: JobStart do: aBlock
 ]
