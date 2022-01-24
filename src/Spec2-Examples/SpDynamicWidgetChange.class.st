@@ -14,8 +14,8 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #specs }
-SpDynamicWidgetChange class >> defaultSpec [
+{ #category : #layout }
+SpDynamicWidgetChange class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: #button withConstraints: [ :constraints | constraints height: 25 ];
 		add: #bottom;
@@ -51,7 +51,7 @@ SpDynamicWidgetChange >> change [
 	self needRebuild: false.
 	button needRebuild: false.
 	
-	self buildWithSpec
+	self build
 ]
 
 { #category : #private }

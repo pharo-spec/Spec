@@ -258,7 +258,7 @@ SpMorphicTableCellBuilder >> visitStringColumnEditable: aTableColumn on: content
 			valuable cull: self item cull: aString ] ].
 	
 	"add cell"
-	morph := presenter buildWithSpec.
+	morph := presenter build.
 	presenter adapter applyStyle.
 	self addCellMorph: morph column: aTableColumn
 ]

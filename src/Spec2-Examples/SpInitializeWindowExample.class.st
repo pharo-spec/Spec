@@ -18,8 +18,8 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #specs }
-SpInitializeWindowExample class >> defaultSpec [
+{ #category : #layout }
+SpInitializeWindowExample class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: #text;
 		yourself
@@ -29,7 +29,7 @@ SpInitializeWindowExample class >> defaultSpec [
 SpInitializeWindowExample class >> show [
 	<script>
 
-	self new openWithSpec
+	self new open
 ]
 
 { #category : #'private - building' }

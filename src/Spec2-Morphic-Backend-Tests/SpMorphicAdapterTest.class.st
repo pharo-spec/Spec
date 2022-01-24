@@ -35,7 +35,7 @@ SpMorphicAdapterTest >> initializeTestedInstance [
 { #category : #utilities }
 SpMorphicAdapterTest >> openInstance [
 
-	window ifNil: [ window := presenter openWithSpec ].
+	window ifNil: [ window := presenter open ].
 	MorphicRenderLoop new doOneCycle.
 ]
 

@@ -8,7 +8,7 @@ SpTablePresenter class >> example [
 		addColumn: (SpImageTableColumn title: 'Icon' evaluated: #systemIcon);
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
 		items: Smalltalk allClasses;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -18,7 +18,7 @@ SpTablePresenter class >> exampleFixedWidth [
 		addColumn: ((SpImageTableColumn title: 'Icon' evaluated: #systemIcon) width: 30);
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
 		items: Smalltalk allClasses;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -31,7 +31,7 @@ SpTablePresenter class >> exampleFixedWidthResizable [
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
 		addColumn: (SpStringTableColumn title: 'Methods' evaluated: [ :each | each methods size ]);
 		items: Smalltalk allClasses;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -42,7 +42,7 @@ SpTablePresenter class >> exampleResizableColumns [
 		addColumn: (SpImageTableColumn title: 'Icon' evaluated: #systemIcon);
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
 		items: Smalltalk allClasses;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -62,7 +62,7 @@ SpTablePresenter class >> exampleSorting [
 				  title: 'Methods' evaluated: [ :c | c methodDictionary size ]) 
 				sortFunction: methodCountSorter);
 		items: Smalltalk globals allClasses;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -74,7 +74,7 @@ SpTablePresenter class >> exampleWithColumnHeaders [
 		addColumn: (SpStringTableColumn title: 'Hex' evaluated: #hex);
 		showColumnHeaders;
 		items: (1 to: 10) asArray;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -89,7 +89,7 @@ SpTablePresenter class >> exampleWithCompositeColumn [
 			addColumn: (SpStringTableColumn evaluated: #name);
 			yourself);
 		items: Smalltalk allClasses;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -109,7 +109,7 @@ SpTablePresenter class >> exampleWithDecoratedString [
 			displayUnderline: [ :aClass | aClass numberOfMethods > 10 ];
 			yourself);
 		items: Smalltalk allClasses;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -120,7 +120,7 @@ SpTablePresenter class >> exampleWithSortableColumnHeaders [
 		addColumn: (SpStringTableColumn title: 'Number' evaluated: #yourself) beSortable;
 		addColumn: (SpStringTableColumn title: 'Hex' evaluated: #hex) beSortable;
 		items: (1 to: 16) asArray;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -133,7 +133,7 @@ SpTablePresenter class >> exampleWithoutColumnHeaders [
 		addColumn: (SpStringTableColumn title: 'Hex' evaluated: #hex);
 		items: (1 to: 10) asArray;
 		hideColumnHeaders;
-		openWithSpec.
+		open.
 	^ example
 ]
 
@@ -154,5 +154,5 @@ SpTablePresenter class >> exampleWriteableTable [
 		addColumn: (SpStringTableColumn title: 'Size' evaluated: #size) beSortable;
 		showColumnHeaders;
 		items: items;
-		openWithSpec
+		open
 ]

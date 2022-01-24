@@ -14,8 +14,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Modals'
 }
 
-{ #category : #specs }
-SpDemoModalPresenter class >> defaultSpec [
+{ #category : #layout }
+SpDemoModalPresenter class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add:
 			(SpBoxLayout newLeftToRight
@@ -29,7 +29,7 @@ SpDemoModalPresenter class >> defaultSpec [
 { #category : #'instance creation' }
 SpDemoModalPresenter class >> open [
 	<script>
-	self new openWithSpec
+	self new open
 ]
 
 { #category : #specs }
@@ -54,7 +54,7 @@ SpDemoModalPresenter >> initializePresenters [
 	
 	button1
 		label: 'Open 1';
-		action: [ SpDemoModal1Presenter new openModalWithSpec ].
+		action: [ SpDemoModal1Presenter new openModal ].
 	button2 label: 'Open 2';
-		action: [ SpDemoModal2Presenter new openModalWithSpec ]
+		action: [ SpDemoModal2Presenter new openModal ]
 ]

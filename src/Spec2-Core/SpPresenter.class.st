@@ -109,14 +109,6 @@ SpPresenter class >> currentApplication [
 	^ SpApplication defaultApplication
 ]
 
-{ #category : #specs }
-SpPresenter class >> defaultSpec [
-
-	"Override to initialize the layout in a non-dynamic way"
-
-	^ nil
-]
-
 { #category : #'labeled-presenters' }
 SpPresenter class >> iconWidth [
 	^ 24
@@ -341,11 +333,10 @@ SpPresenter >> askOkToClose [
 ]
 
 { #category : #'private - building' }
-SpPresenter >> basicBuildAdapterWithSpecLayout: aSpecLayout [
+SpPresenter >> basicBuildAdapterWithLayout: aSpecLayout [
 
-	layout == aSpecLayout 
-		ifFalse: [ layout := aSpecLayout ].
-	^ super basicBuildAdapterWithSpecLayout: aSpecLayout
+	layout == aSpecLayout ifFalse: [ layout := aSpecLayout ].
+	^ super basicBuildAdapterWithLayout: aSpecLayout
 ]
 
 { #category : #'api - shortcuts' }
@@ -421,12 +412,6 @@ SpPresenter >> defaultKeyboardFocus [
 	 but it can be overriden to place the focus somewhere else"
 
 	^ self
-]
-
-{ #category : #specs }
-SpPresenter >> defaultSpec [
-
-	^ self class perform: self defaultSpecSelector
 ]
 
 { #category : #accessing }
@@ -819,9 +804,9 @@ SpPresenter >> resolveSymbol: aSymbol [
 ]
 
 { #category : #'private - building' }
-SpPresenter >> retrieveSpec: aSelector [
+SpPresenter >> retrieveLayout: aSelector [
 
-	^ layout ifNil: [ super retrieveSpec: aSelector ]
+	^ layout ifNil: [ super retrieveLayout: aSelector ]
 ]
 
 { #category : #'accessing - model' }

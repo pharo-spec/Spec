@@ -16,8 +16,8 @@ Class {
 	#category : #'Spec2-Tests-Utils'
 }
 
-{ #category : #specs }
-SpTestingPresenterWithModel class >> defaultSpec [
+{ #category : #layout }
+SpTestingPresenterWithModel class >> defaultLayout [
 	^ SpBoxLayout newLeftToRight
 		add: #x;
 		add: #y;
@@ -29,7 +29,7 @@ SpTestingPresenterWithModel class >> open [
 
 	<example>
 	
-	(self on: 1@2) openWithSpec
+	(self on: 1@2) open
 ]
 
 { #category : #initialization }

@@ -34,8 +34,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Forms'
 }
 
-{ #category : #specs }
-SpDemoStandaloneFormPresenter class >> defaultSpec [
+{ #category : #layout }
+SpDemoStandaloneFormPresenter class >> defaultLayout [
 	
 	^ SpBoxLayout newTopToBottom
 		add:
@@ -83,7 +83,7 @@ SpDemoStandaloneFormPresenter class >> defaultSpec [
 { #category : #'instance creation' }
 SpDemoStandaloneFormPresenter class >> open [
 	<example>
-	(self on: SpDemoFormModel new) openWithSpec
+	(self on: SpDemoFormModel new) open
 ]
 
 { #category : #accessing }

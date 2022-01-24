@@ -9,8 +9,8 @@ Class {
 	#category : #'Spec2-Backend-Tests-TestClasses'
 }
 
-{ #category : #specs }
-SpTestPresenterWithThreeRadioButtons class >> defaultSpec [
+{ #category : #layout }
+SpTestPresenterWithThreeRadioButtons class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom 
 		add: #radio1;

@@ -2,12 +2,12 @@ Extension { #name : #SpFilteringListPresenter }
 
 { #category : #'*Spec2-Examples' }
 SpFilteringListPresenter class >> example [
+
 	<sampleInstance>
 	| example |
-
 	example := self new.
 	example items: RBBrowserEnvironment default classes asArray.
-	example openWithSpec.
+	example open.
 	example withWindowDo: [ :window | 
 		window title: self name asString , ' example' ].
 
@@ -21,7 +21,7 @@ SpFilteringListPresenter class >> exampleWithFilterOnTop [
 
 	example := self new.
 	example items: RBBrowserEnvironment default classes asArray.
-	example openWithSpecLayout: self topLayout.
+	example openWithLayout: self topLayout.
 	example withWindowDo: [ :window | 
 		window title: self name asString , ' example' ].
 
@@ -38,7 +38,7 @@ SpFilteringListPresenter class >> exampleWithInitializedFilter [
 	example items: RBBrowserEnvironment default classes asArray.
 	example displayIcon: [ :aClass | aClass systemIcon ].
 	example applyFilter: 'ZZ'.
-	example openWithSpec title:
+	example open title:
 		self name asString , ' example with filter'.
 
 	^ example

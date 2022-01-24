@@ -11,8 +11,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Buttons'
 }
 
-{ #category : #specs }
-SpDemoActionBarPresenter class >> defaultSpec [
+{ #category : #layout }
+SpDemoActionBarPresenter class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom 
 		add: #text;

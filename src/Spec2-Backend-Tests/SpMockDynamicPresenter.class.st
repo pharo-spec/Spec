@@ -8,8 +8,8 @@ Class {
 	#category : #'Spec2-Backend-Tests-Layout'
 }
 
-{ #category : #specs }
-SpMockDynamicPresenter class >> defaultSpec [
+{ #category : #layout }
+SpMockDynamicPresenter class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: #list;
 		add: #label;
@@ -19,7 +19,7 @@ SpMockDynamicPresenter class >> defaultSpec [
 { #category : #'instance creation' }
 SpMockDynamicPresenter class >> open [
 	<script>
-	^ self new openWithSpec
+	^ self new open
 ]
 
 { #category : #'instance creation' }
@@ -27,7 +27,7 @@ SpMockDynamicPresenter class >> openWithRebuildBeforeOpening [
 	<script>
 	^ self new
 		selectFirstElement;
-		openWithSpec
+		open
 ]
 
 { #category : #initialization }

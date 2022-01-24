@@ -48,5 +48,5 @@ SpMenuItemPresenter class >> exampleWithinMenuButton [
 				addItem: [ :item | item name: '3: ', loremIpsumWords atRandom ] ];
 			yourself ].
 		
-	^ presenter openWithSpec
+	^ presenter open
 ]

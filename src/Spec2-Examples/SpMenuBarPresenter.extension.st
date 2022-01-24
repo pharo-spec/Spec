@@ -24,5 +24,5 @@ SpMenuBarPresenter class >> example [
 		addItem: [ :item | item name: 'File'; subMenu: submenuFile ];
 		addItem: [ :item | item name: 'Edit'; subMenu: submenuEdit ] ].
 
-	^ presenter openWithSpec
+	^ presenter open
 ]

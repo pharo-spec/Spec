@@ -7,8 +7,8 @@ Class {
 	#category : #'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #specs }
-SpBoxLayoutWithTableForTestPresenter class >> defaultSpec [
+{ #category : #layout }
+SpBoxLayoutWithTableForTestPresenter class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		add: #table;
@@ -19,7 +19,7 @@ SpBoxLayoutWithTableForTestPresenter class >> defaultSpec [
 SpBoxLayoutWithTableForTestPresenter class >> open [ 
 	<script>
 	
-	self new openWithSpec
+	self new open
 ]
 
 { #category : #specs }

@@ -79,21 +79,21 @@ SpDynamicSpecExample >> openOnInteger: anInteger [
 	ui := SpOpenOnIntExample new: anInteger.
 	ui
 		extent: 100 @ 100;
-		openWithSpec
+		open
 ]
 
 { #category : #protocol }
 SpDynamicSpecExample >> openOnNil [
 	ui := SpOpenOnNilExample new.
 	ui 
-		extent: 200 @ 100; openWithSpec
+		extent: 200 @ 100; open
 ]
 
 { #category : #protocol }
 SpDynamicSpecExample >> openOnString: aString [
 	ui := SpOpenOnStringExample new:aString.
 	ui 
-		extent: 300 @ 200;openWithSpec
+		extent: 300 @ 200;open
 ]
 
 { #category : #accessing }

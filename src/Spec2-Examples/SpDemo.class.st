@@ -41,8 +41,7 @@ SpDemo class >> on: aModel [
 SpDemo class >> open [
 	<example>
 	
-	^ self new
-		openWithSpec
+	^ self new open
 ]
 
 { #category : #accessing }
@@ -54,9 +53,9 @@ SpDemo >> addItemTo: aGroup [
 				icon: (self iconNamed: #delete);
 				action: [ aGroup menuItems remove: item.
 					self needRebuild: false.
-					self buildWithSpec ] ].
+					self build ] ].
 	self needRebuild: false.
-	self buildWithSpec
+	self build
 ]
 
 { #category : #accessing }

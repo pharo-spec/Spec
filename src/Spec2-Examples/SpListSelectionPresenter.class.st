@@ -15,8 +15,8 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #specs }
-SpListSelectionPresenter class >> defaultSpec [
+{ #category : #layout }
+SpListSelectionPresenter class >> defaultLayout [
 	^ SpPanedLayout newTopToBottom
 		add: #listModel;
 		add:

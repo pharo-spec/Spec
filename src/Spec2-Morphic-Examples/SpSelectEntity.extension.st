@@ -9,5 +9,5 @@ SpSelectEntity class >> example [
 		displaySymbol: #asString;
 		placeholder: 'Names';
 		possibleEntities: [ #(Diego Stephan Norbert Stephane Marcus Torsten Sven Sean) sorted ];
-		openDialogWithSpec
+		openDialog
 ]

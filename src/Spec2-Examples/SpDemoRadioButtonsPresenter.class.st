@@ -10,8 +10,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Checkboxes'
 }
 
-{ #category : #specs }
-SpDemoRadioButtonsPresenter class >> defaultSpec [
+{ #category : #layout }
+SpDemoRadioButtonsPresenter class >> defaultLayout [
 	^ SpBoxLayout newLeftToRight
 		add: #radioButtonExample;
 		yourself

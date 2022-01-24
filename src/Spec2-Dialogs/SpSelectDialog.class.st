@@ -21,8 +21,8 @@ SpSelectDialog class >> defaultExtent [
 	^ 450@300
 ]
 
-{ #category : #specs }
-SpSelectDialog class >> defaultSpec [
+{ #category : #layout }
+SpSelectDialog class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		borderWidth: 5;
@@ -48,7 +48,7 @@ SpSelectDialog class >> example [
 		display: [ :each | each name ];
 		displayIcon: [ :each | each systemIcon ];
 		onAccept: [ :dialog | self inform: dialog presenter selectedItem asString ];
-		openDialogWithSpec
+		openDialog
 ]
 
 { #category : #examples }
@@ -61,7 +61,7 @@ SpSelectDialog class >> exampleModal [
 		items: Smalltalk allClassesAndTraits;
 		display: [ :each | each name ];
 		displayIcon: [ :each | each systemIcon ];
-		openModalWithSpec.
+		openModal.
 		
 	selection ifNotNil: [ 
 		self inform: selection asString ]

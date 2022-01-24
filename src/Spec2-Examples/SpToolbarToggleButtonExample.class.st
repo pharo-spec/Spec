@@ -16,8 +16,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Checkboxes'
 }
 
-{ #category : #specs }
-SpToolbarToggleButtonExample class >> defaultSpec [
+{ #category : #layout }
+SpToolbarToggleButtonExample class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: (SpBoxLayout newTopToBottom
 			vAlignStart;
@@ -30,7 +30,7 @@ SpToolbarToggleButtonExample class >> defaultSpec [
 { #category : #examples }
 SpToolbarToggleButtonExample class >> example [
 
-	^ self new openWithSpec
+	^ self new open
 ]
 
 { #category : #specs }

@@ -20,8 +20,8 @@ Class {
 	#category : #'Spec2-Morphic-Widgets'
 }
 
-{ #category : #specs }
-SpSelectEntity class >> defaultSpec [
+{ #category : #layout }
+SpSelectEntity class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		add: (SpBoxLayout newLeftToRight
@@ -37,7 +37,7 @@ SpSelectEntity >> connectPresenters [
 	selectEntity 
 		action: [  |select|
 			select := self selectDialog value.
-			select openDialogWithSpec
+			select openDialog
 				okAction: [  
 					self entity: select selectedItem ]]
 

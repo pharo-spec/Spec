@@ -96,7 +96,7 @@ SpTPresenterBuilder >> newDynamicPresentersListIn: accessorSymbol usingBuilder: 
 	newDynamicPresenter owner: self.
 	
 	self needRebuild: false.
-	self buildWithSpec
+	self build
 ]
 
 { #category : #'scripting - layouts' }

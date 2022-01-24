@@ -6,7 +6,7 @@ SpPresenter >> confirm: queryString label: titleString [
 	^ (self application newConfirm 
 		title: titleString;
 		message: queryString;
-		openModalWithSpec)
+		openModal)
 		isOk
 ]
 
@@ -18,7 +18,7 @@ SpPresenter >> request: request initialAnswer: initialAnwser title: title [
 		title: title;
 		label: request;
 		text: initialAnwser;
-		openModalWithSpec.
+		openModal.
 					
 	answer ifNil: [ SpCancelledInteractionError signal ].
 	

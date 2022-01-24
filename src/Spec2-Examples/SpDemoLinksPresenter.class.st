@@ -16,8 +16,8 @@ Class {
 	#category : #'Spec2-Examples-Demo-Other'
 }
 
-{ #category : #specs }
-SpDemoLinksPresenter class >> defaultSpec [
+{ #category : #layout }
+SpDemoLinksPresenter class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: #link1;
 		add: #link2;
@@ -29,7 +29,7 @@ SpDemoLinksPresenter class >> defaultSpec [
 { #category : #'instance creation' }
 SpDemoLinksPresenter class >> open [
 	<script>
-	self new openWithSpec
+	self new open
 ]
 
 { #category : #initialization }

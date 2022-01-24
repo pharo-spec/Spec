@@ -4,5 +4,5 @@ Extension { #name : #SpSpinnerPresenter }
 SpSpinnerPresenter class >> example [
 
 	^ self new 
-		openWithSpec
+		open
 ]

@@ -34,8 +34,8 @@ SpConfirmDialog class >> defaultExtent [
 	^ 450@120
 ]
 
-{ #category : #specs }
-SpConfirmDialog class >> defaultSpec [
+{ #category : #layout }
+SpConfirmDialog class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		borderWidth: 5;
@@ -66,7 +66,7 @@ SpConfirmDialog class >> example [
 		label: 'Are you sure?';
 		onAccept: [ self inform: 'Yes!' ];
 		onCancel: [ self inform: 'No!' ];
-		openDialogWithSpec
+		openDialog
 ]
 
 { #category : #examples }
@@ -78,7 +78,7 @@ SpConfirmDialog class >> exampleModal [
 		label: 'Are you sure?';
 		acceptLabel: 'Sure!';
 		cancelLabel: 'No, forget it';
-		openModalWithSpec.
+		openModal.
 	
 	self inform: (ok 
 		ifTrue: [ 'Yes!' ]

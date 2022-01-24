@@ -20,7 +20,7 @@ Class {
 
 { #category : #specs }
 SpOpenOnStringExample class >> bottomLayout [
-	<spec>
+
 	^ SpBoxLayout newTopToBottom
 		add:
 			(SpBoxLayout newLeftToRight
@@ -37,8 +37,8 @@ SpOpenOnStringExample class >> bottomLayout [
 		yourself
 ]
 
-{ #category : #specs }
-SpOpenOnStringExample class >> defaultSpec [
+{ #category : #layout }
+SpOpenOnStringExample class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add:
 			(SpBoxLayout newLeftToRight
@@ -86,7 +86,7 @@ SpOpenOnStringExample >> connectPresenters [
 	input whenTextChangedDo: [ :text | label label: text ].
 	check
 		whenActivatedDo: [ self needRebuild: false.
-			self buildWithSpecLayout: self class defaultSpec ];
+			self buildWithSpecLayout: self class defaultLayout ];
 		whenDeactivatedDo: [ self needRebuild: false.
 			self buildWithSpecLayout: self class bottomLayout ]
 ]

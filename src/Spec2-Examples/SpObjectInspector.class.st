@@ -28,7 +28,7 @@ SpObjectInspector class >> inspect: anObject [
 
 	^ self new 
 		inspect: anObject;
-		openWithSpec
+		open
 ]
 
 { #category : #initialization }

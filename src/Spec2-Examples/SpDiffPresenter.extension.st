@@ -11,7 +11,7 @@ SpDiffPresenter class >> exampleWithOptions [
 		leftText: (True >> #and:) sourceCode;
 		rightText: (True >> #or:) sourceCode;
 		contextClass: True;
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
@@ -25,6 +25,6 @@ SpDiffPresenter class >> exampleWithoutOptions [
 		showOptions: false;
 		leftText: 'Old text';
 		rightText: 'New text';
-		openWithSpec
+		open
 
 ]

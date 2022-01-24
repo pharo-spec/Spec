@@ -43,7 +43,7 @@ SpSmokeTest >> testExample [
 ]
 
 { #category : #tests }
-SpSmokeTest >> testOpenWithSpec [
+SpSmokeTest >> testOpen [
 	"We do not use #shouldnt:raise: to get feedback on the CI"
 
 	[ self openInstance ]

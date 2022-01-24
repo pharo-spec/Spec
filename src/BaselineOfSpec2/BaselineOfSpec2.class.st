@@ -29,7 +29,8 @@ BaselineOfSpec2 >> baseline: spec [
 			"others"
 			package: 'Spec2-Deprecated10' with: [ spec requires: #('SpecCore' 'Spec2-Morphic' 'Spec2-Morphic-Tests' 'Spec2-Backend-Tests' 'Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Microdown' with: [ spec requires: #('SpecCore' 'Spec2-Adapters-Morphic') ];
-			package: 'Spec2-Help' ].
+			package: 'Spec2-Help';
+			package: 'Spec2-Transformations' ].
 	
 	spec group: 'Core' with: #('SpecCore' 'Spec2-Microdown' 'Spec2-Morphic' 'Spec2-Adapters-Morphic').
 	spec group: 'Code' with: #('Core' 'SpecCoreCode' 'Spec2-Code-Morphic' 'Spec2-Code-Diff-Morphic').

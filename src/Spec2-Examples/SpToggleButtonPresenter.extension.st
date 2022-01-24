@@ -7,11 +7,11 @@ SpToggleButtonPresenter class >> example [
 		icon: (self iconNamed: #smallOk);
 		whenActivatedDo: [ UIManager default defer: [ self inform: 'Activated' ] ];
 		whenDeactivatedDo: [ UIManager default defer: [ self inform: 'Deactivated' ] ];
-		openWithSpec
+		open
 ]
 
 { #category : #'*Spec2-Examples' }
 SpToggleButtonPresenter class >> exampleWithAssociatedButtons [
 
-	^ SpToggleButtonExample new openWithSpec
+	^ SpToggleButtonExample new open
 ]

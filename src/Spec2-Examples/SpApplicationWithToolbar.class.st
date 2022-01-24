@@ -13,8 +13,8 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #specs }
-SpApplicationWithToolbar class >> defaultSpec [
+{ #category : #layout }
+SpApplicationWithToolbar class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: #menu withConstraints: [ :constraints | constraints height: self toolbarHeight ];
 		add: #text;
@@ -37,9 +37,9 @@ SpApplicationWithToolbar >> addItemTo: aGroup [
 				icon: (self iconNamed: #delete);
 				action: [ aGroup menuItems remove: item.
 					self needRebuild: false.
-					self buildWithSpec ] ].
+					self build ] ].
 	self needRebuild: false.
-	self buildWithSpec
+	self build
 ]
 
 { #category : #initialization }
