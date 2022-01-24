@@ -32,7 +32,7 @@ SpCodeInteractionModel >> behavior [
 { #category : #binding }
 SpCodeInteractionModel >> bindingOf: aString [
 
-	^ self subclassResponsibility
+	^ nil
 ]
 
 { #category : #accessing }
