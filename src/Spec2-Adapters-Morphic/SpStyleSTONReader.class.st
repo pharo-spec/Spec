@@ -24,6 +24,12 @@ SpStyleSTONReader class >> fromString: aString [
 	^ self fromStream: aString readStream
 ]
 
+{ #category : #testing }
+SpStyleSTONReader >> isClassChar: char [
+	
+	^ (super isClassChar: char) or: [ char = $: ]
+]
+
 { #category : #private }
 SpStyleSTONReader >> isStyleClassChar: char [ 
 

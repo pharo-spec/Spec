@@ -8,3 +8,9 @@ SpProgressingProgressBarState >> customizeMorphicBar: aProgressBarMorph [
 			aProgressBarMorph value: self currentValue.
 			self refreshDelay wait ] ] fork
 ]
+
+{ #category : #'*Spec2-Adapters-Morphic' }
+SpProgressingProgressBarState >> customizeMorphicLabel: aLabelMorph [
+
+	aLabelMorph contents: self progression asString
+]

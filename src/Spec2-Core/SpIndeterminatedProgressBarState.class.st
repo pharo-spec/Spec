@@ -15,6 +15,12 @@ Class {
 	#category : #'Spec2-Core-Utils'
 }
 
+{ #category : #'as yet unclassified' }
+SpIndeterminatedProgressBarState >> customizeMorphicLabel: aLabelMorph [
+
+	aLabelMorph contents: 'Processing...'
+]
+
 { #category : #'api - events' }
 SpIndeterminatedProgressBarState >> whenValueChangedDo: aBlock [
 	"Value cannot change in indeterminate state"

@@ -110,7 +110,7 @@ SpApplication >> adapterBindings [
 SpApplication >> backend [
 
 	^ backend ifNil: [ 
-		self useBackend: self class defaultBackendName.
+		self ensureBackend.
 		backend ]
 ]
 
@@ -132,7 +132,9 @@ SpApplication >> closeAllWindows [
 { #category : #'accessing - backend' }
 SpApplication >> configuration [
 
-	^ configuration
+	^ configuration ifNil: [ 
+		self ensureConfiguration.
+		configuration ]
 ]
 
 { #category : #showing }
@@ -163,6 +165,20 @@ SpApplication >> defaultWindowPresenterClass [
 SpApplication >> defer: aBlock [
 	"doInUIThread: ?"
 	self backend defer: aBlock
+]
+
+{ #category : #private }
+SpApplication >> ensureBackend [
+
+	backend ifNotNil: [ ^ self ].
+	self useBackend: self class defaultBackendName.
+]
+
+{ #category : #private }
+SpApplication >> ensureConfiguration [
+
+	configuration ifNotNil: [ ^ self ].
+	self ensureBackend.
 ]
 
 { #category : #ui }
@@ -358,15 +374,15 @@ SpApplication >> unregisterWindow: aWindow [
 { #category : #'accessing - backend' }
 SpApplication >> useBackend: aName [
 
-	backend := SpApplicationBackend findBackendNamed: aName
+	self useBackend: aName with: nil
 ]
 
 { #category : #'accessing - backend' }
 SpApplication >> useBackend: aName with: aConfiguration [
 
-	self useBackend: aName.
-	configuration := aConfiguration.
-	aConfiguration configure: self
+	backend := SpApplicationBackend findBackendNamed: aName.
+	configuration := aConfiguration ifNil: [ backend newDefaultConfiguration ].
+	configuration configure: self
 ]
 
 { #category : #windows }

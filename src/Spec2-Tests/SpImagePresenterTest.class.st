@@ -1,7 +1,7 @@
 Class {
 	#name : #SpImagePresenterTest,
 	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Morphic-Tests'
+	#category : #'Spec2-Tests-Core-Widgets'
 }
 
 { #category : #accessing }

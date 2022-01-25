@@ -123,7 +123,12 @@ SpStyle class >> defaultStyleSheetData [
 	.morph [ 
 		Geometry { #width: Reset, #height: Reset, #vResizing: true, #hResizing: true },
 		Font { #name: Reset } ],
-	.image [ Geometry { #width: Reset, #height: Reset, #vResizing: true, #hResizing: true } ] ]
+	.image [ Geometry { #width: Reset, #height: Reset, #vResizing: true, #hResizing: true } ],
+	.progressBar:label [ Draw { #color : EnvironmentColor(#selectionText) } ], 
+	.progressBar:bar [ 
+		Draw { #color: EnvironmentColor(#selection) }, 
+		Geometry { #height: 5 } ] 
+]
 '
 ]
 

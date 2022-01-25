@@ -40,6 +40,14 @@ SpMorphicScrollableAdapter >> basicAdd: aPresenter constraints: constraints to: 
 	^ childMorph
 ]
 
+{ #category : #'test support' }
+SpMorphicScrollableAdapter >> childWidget [
+
+	^ self children 
+		ifNotEmpty: [ :aCollection | aCollection first ]
+		ifEmpty: [ nil ]
+]
+
 { #category : #accessing }
 SpMorphicScrollableAdapter >> children [
 
@@ -51,6 +59,8 @@ SpMorphicScrollableAdapter >> children [
 { #category : #protocol }
 SpMorphicScrollableAdapter >> layout: aLayout [
 
+	layout := aLayout.
+	
 	emptyLayoutMarker := PanelMorph new
 		                     hResizing: #spaceFill;
 		                     vResizing: #spaceFill;
@@ -64,9 +74,6 @@ SpMorphicScrollableAdapter >> layout: aLayout [
 			          borderColor: Color transparent;
 			          scrollTarget: emptyLayoutMarker;
 			          yourself ].
-
-	aLayout child ifNotNil: [ 
-		self basicAdd: aLayout child constraints: (aLayout constraintsFor: aLayout child) to: widget ].
 
 	aLayout whenChildrenAddedDo: [ :ann | 
 		self basicAdd: ann child constraints: (aLayout constraintsFor: ann child) to: widget ].

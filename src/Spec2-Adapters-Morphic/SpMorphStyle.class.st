@@ -38,13 +38,25 @@ SpMorphStyle class >> fromStylesheet: aStyle adapter: anAdapter [
 	"I collect all styles that apply to an adapter.
 	 I traverse all styles in a very precise order: from more generic to more specific, this way 
 	 the order of the collected elements will be in reverse order of execution."
+
+	^ self 
+		fromStylesheet: aStyle 
+		baseStyleName: anAdapter styleName 
+		otherStyles: anAdapter presenterStyles
+]
+
+{ #category : #'instance creation' }
+SpMorphStyle class >> fromStylesheet: aStyle baseStyleName: aName otherStyles: otherStyleNames [
+	"I collect all styles that apply to an adapter.
+	 I traverse all styles in a very precise order: from more generic to more specific, this way 
+	 the order of the collected elements will be in reverse order of execution."
 	| allStyleClasses styles |
 		
 	allStyleClasses := aStyle flattenClasses.
 	styles := OrderedCollection new.
-	(({ 'application'. anAdapter styleName }, 
-		anAdapter presenterStyles, 
-		(anAdapter presenterStyles collect: [ :each | anAdapter styleName, '.', each ])) 
+	(({ 'application'. aName }, 
+		otherStyleNames, 
+		(otherStyleNames collect: [ :each | aName, '.', each ])) 
 		do: [ :each |
 			"a hack to not do a double dispatch on string :(" 
 			each isString 
