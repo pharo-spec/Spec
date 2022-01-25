@@ -54,6 +54,12 @@ SpApplicationBackend >> name [
 	^ self class backendName
 ]
 
+{ #category : #factory }
+SpApplicationBackend >> newDefaultConfiguration [
+
+	^ self subclassResponsibility
+]
+
 { #category : #'ui - notifying' }
 SpApplicationBackend >> notify: aSpecNotification [
 

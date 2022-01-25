@@ -3,6 +3,7 @@ Extension { #name : #SpApplication }
 { #category : #'*Spec2-Adapters-Morphic' }
 SpApplication >> addStylesheet: aStylesheet [
 
+	self ensureConfiguration.
 	 self styleSheet: self styleSheet, aStylesheet
 ]
 
