@@ -21,7 +21,6 @@ Class {
 	#classTraits : 'SpTModel classTrait',
 	#instVars : [
 		'progressBar',
-		'label',
 		'progressLabel'
 	],
 	#category : #'Spec2-Core-Job'
@@ -50,7 +49,7 @@ SpJobPresenter >> initializePresenters [
 	self layout: (SpBoxLayout newTopToBottom
 		borderWidth: 10;
 		spacing: 5;
-		add: (label := self newLabel) expand: false;
+		add: (progressLabel := self newLabel) expand: false;
 		add: (progressBar := self newProgressBar) expand: false;
 		yourself)
 ]
@@ -112,7 +111,7 @@ SpJobPresenter >> updatePresenter [
 
 	currentJob := model ifNil: [ ^ SpJob empty ].
 	
-	label label: model title.
+	progressLabel label: model title.
 	progressBar fixedAt: model progress
 ]
 
