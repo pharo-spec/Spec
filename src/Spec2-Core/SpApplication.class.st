@@ -170,15 +170,19 @@ SpApplication >> defer: aBlock [
 { #category : #private }
 SpApplication >> ensureBackend [
 
-	backend ifNotNil: [ ^ self ].
+	backend ifNotNil: [ ^ backend ].
 	self useBackend: self class defaultBackendName.
+	^ backend
 ]
 
 { #category : #private }
 SpApplication >> ensureConfiguration [
 
-	configuration ifNotNil: [ ^ self ].
+	configuration ifNotNil: [ ^ configuration ].
 	self ensureBackend.
+	configuration ifNil: [ configuration := backend newDefaultConfiguration ].
+
+	^ configuration
 ]
 
 { #category : #ui }
