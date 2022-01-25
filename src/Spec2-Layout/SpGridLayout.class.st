@@ -186,6 +186,12 @@ SpGridLayout >> children [
 ]
 
 { #category : #api }
+SpGridLayout >> column: aNumber expand: aBoolean [
+
+	self column: aNumber withConstraints: [ :c | c expand: aBoolean ]
+]
+
+{ #category : #api }
 SpGridLayout >> column: aNumber withConstraints: aBlock [
 	| constraints |
 
@@ -254,6 +260,12 @@ SpGridLayout >> replaceAt: aPoint with: aPresenter [
 	^ self 
 		add: aPresenter
 		at: aPoint
+]
+
+{ #category : #api }
+SpGridLayout >> row: aNumber expand: aBoolean [
+
+	self row: aNumber withConstraints: [ :c | c expand: aBoolean ]
 ]
 
 { #category : #api }
