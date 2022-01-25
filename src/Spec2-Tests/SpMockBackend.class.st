@@ -15,3 +15,9 @@ SpMockBackend >> adapterBindingsClass [
 
 	^ SpStubAdapterBindings
 ]
+
+{ #category : #factory }
+SpMockBackend >> newDefaultConfiguration [
+
+	^ SpMockConfiguration new
+]
