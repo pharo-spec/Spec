@@ -4,7 +4,7 @@ Class {
 	#category : #'Spec2-Code-Diff-Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #mock }
 DiffPatchTest >> mockAST2 [
 
 	^ 42 - 1

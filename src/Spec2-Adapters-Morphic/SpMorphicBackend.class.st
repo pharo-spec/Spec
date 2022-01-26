@@ -31,6 +31,12 @@ SpMorphicBackend >> forceDefer: aBlock [
 	UIManager default defer: aBlock
 ]
 
+{ #category : #factory }
+SpMorphicBackend >> newDefaultConfiguration [
+
+	^ SpMorphicConfiguration new
+]
+
 { #category : #'private - notifying' }
 SpMorphicBackend >> notifyError: aSpecNotification [
 

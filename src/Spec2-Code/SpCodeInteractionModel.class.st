@@ -32,7 +32,7 @@ SpCodeInteractionModel >> behavior [
 { #category : #binding }
 SpCodeInteractionModel >> bindingOf: aString [
 
-	^ self subclassResponsibility
+	^ nil
 ]
 
 { #category : #accessing }
@@ -55,10 +55,10 @@ SpCodeInteractionModel >> doItReceiver [
 	^ nil
 ]
 
-{ #category : #testing }
+{ #category : #binding }
 SpCodeInteractionModel >> hasBindingOf: aString [
 
-	^ self subclassResponsibility
+	^ false
 ]
 
 { #category : #testing }

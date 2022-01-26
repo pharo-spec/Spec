@@ -35,7 +35,6 @@ SpWorldPresenter class >> setUpWorld [
 SpWorldPresenter >> addPresenterIn: container withSpecLayout: aSpec [
 
 	self presenter ifNil: [ ^ self ].
-	self presenter initializeWindow: self.
 	self 
 		changed: #addPresenterIn:withSpecLayout:
 		with: { container. aSpec }

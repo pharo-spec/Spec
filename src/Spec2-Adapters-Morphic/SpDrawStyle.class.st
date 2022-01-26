@@ -38,7 +38,10 @@ SpDrawStyle class >> stonName [
 { #category : #operations }
 SpDrawStyle >> applyTo: aMorph [ 
 
-	self color ifNotNil: [ :aColor | aMorph color: aColor asStyleVariable valueAsColor ].
+	self color ifNotNil: [ :aColor | 
+		(aMorph respondsTo: #barFillStyle:)
+			ifTrue: [ aMorph barFillStyle: aColor asStyleVariable valueAsColor ]
+			ifFalse: [ aMorph color: aColor asStyleVariable valueAsColor ] ].
 	self backgroundColor ifNotNil: [ :aColor |
 		"hack to be able to decorate components that does not understand 
 		 backgroundColor" 

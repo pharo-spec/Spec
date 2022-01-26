@@ -397,10 +397,11 @@ SpBoxLayout >> presenterAt: index [
 SpBoxLayout >> removeAll [
 	"Remove all presenters added to this layout."
 
+	children ifEmpty: [ ^ self ].
+	children keysDo: [ :each | 
+		each withAdapterDo: [ :anAdapter | anAdapter unsubscribe ] ].
 	children removeAll.
-	adapter ifNotNil: [ :anAdapter | 
-		anAdapter unsubscribe.
-		anAdapter removeAll ]
+	self withAdapterDo: [ :anAdapter | anAdapter removeAll ]
 ]
 
 { #category : #'api - adding' }

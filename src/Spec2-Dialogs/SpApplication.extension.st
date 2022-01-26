@@ -13,9 +13,19 @@ SpApplication >> newInform [
 ]
 
 { #category : #'*Spec2-Dialogs' }
+SpApplication >> newJobList [
+
+	^ SpJobListPresenter newApplication: self
+]
+
+{ #category : #'*Spec2-Dialogs' }
 SpApplication >> newProgress [
 
-	^ SpProgressDialog newApplication: self
+	self 
+		deprecated: 'Use #newJobList' 
+		transformWith:  '`@receiver newProgress' 
+						-> '`@receiver newJobList'.
+	^ SpJobListPresenter newApplication: self
 ]
 
 { #category : #'*Spec2-Dialogs' }

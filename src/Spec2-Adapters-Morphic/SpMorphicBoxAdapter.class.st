@@ -15,7 +15,7 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-Layout'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'experiment-toggle' }
 SpMorphicBoxAdapter class >> useExperimentalWhile: aBlock [
 
 	Experimental := true.

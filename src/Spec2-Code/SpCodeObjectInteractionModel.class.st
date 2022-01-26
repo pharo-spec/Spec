@@ -19,22 +19,10 @@ SpCodeObjectInteractionModel >> behavior [
 	^ self object class
 ]
 
-{ #category : #binding }
-SpCodeObjectInteractionModel >> bindingOf: aString [
-
-	^ self doItReceiver bindingOf: aString
-]
-
 { #category : #accessing }
 SpCodeObjectInteractionModel >> doItReceiver [
 
 	^ self object
-]
-
-{ #category : #testing }
-SpCodeObjectInteractionModel >> hasBindingOf: aString [
-
-	^ self doItReceiver hasBindingOf: aString
 ]
 
 { #category : #testing }
