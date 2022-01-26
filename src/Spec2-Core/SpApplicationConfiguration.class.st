@@ -35,3 +35,8 @@ SpApplicationConfiguration >> configureUnix: anApplication [
 { #category : #configuring }
 SpApplicationConfiguration >> configureWindows: anApplication [
 ]
+
+{ #category : #initialization }
+SpApplicationConfiguration >> reset [
+	"a hook to allow users to reset its configuration"
+]

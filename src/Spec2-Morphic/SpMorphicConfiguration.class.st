@@ -15,20 +15,45 @@ Class {
 }
 
 { #category : #styling }
+SpMorphicConfiguration >> addStyleSheet: aStylesheet [
+
+	styleSheet := self styleSheet, aStylesheet
+]
+
+{ #category : #styling }
+SpMorphicConfiguration >> addStyleSheetFromString: aString [
+
+	self addStyleSheet: (SpStyleVariableSTONReader fromString: aString)
+]
+
+{ #category : #configuring }
 SpMorphicConfiguration >> configure: anApplication [
 
 	super configure: anApplication.
-	anApplication styleSheet: self styleSheet
+	self styleSheet "Initialize stylesheet"
+]
+
+{ #category : #'private - factory' }
+SpMorphicConfiguration >> newStyleSheet [
+
+	^ SpStyle defaultStyleSheet copy
 ]
 
 { #category : #styling }
 SpMorphicConfiguration >> styleSheet [
 	"Define the default styleSheet to use in your application. You can override this and add your 
-	 own application dependent styles (and you can compose them, see *SpStyle*).
+	 own application dependent styles (and you can compose them, see `SpStyle`).
 	
-	[[[language=Smalltalk
+	```Smalltalk
 	^ SpStyle defaultStyleSheet copy
-	]]]"
+	```
+	"
 	
-	^ styleSheet ifNil: [ styleSheet := SpStyle defaultStyleSheet copy ]
+	^ styleSheet ifNil: [ styleSheet := self newStyleSheet ]
+]
+
+{ #category : #styling }
+SpMorphicConfiguration >> styleSheet: aStyleSheet [
+
+	styleSheet := aStyleSheet
 ]
