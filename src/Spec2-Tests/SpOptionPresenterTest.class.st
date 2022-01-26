@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'optionPresenterClass'
 	],
-	#category : #'Spec2-Tests-Core-Widgets'
+	#category : #'Spec2-Tests-Common-Widgets'
 }
 
 { #category : #running }

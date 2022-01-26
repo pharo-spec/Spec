@@ -10,7 +10,7 @@ Class {
 	#instVars : [
 		'target'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : #'Spec2-CommonWidgets-Validation'
 }
 
 { #category : #testing }

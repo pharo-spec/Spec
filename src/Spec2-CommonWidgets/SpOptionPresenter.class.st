@@ -5,7 +5,7 @@ You can subclass me or implement the messages I define in your own presenter.
 Class {
 	#name : #SpOptionPresenter,
 	#superclass : #SpPresenter,
-	#category : #'Spec2-Core-Widgets-Advanced'
+	#category : #'Spec2-CommonWidgets-Core'
 }
 
 { #category : #actions }

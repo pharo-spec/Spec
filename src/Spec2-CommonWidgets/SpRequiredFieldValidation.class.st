@@ -4,7 +4,7 @@ I ensure the presenter I will validate has data and is not blank!
 Class {
 	#name : #SpRequiredFieldValidation,
 	#superclass : #SpAbstractValidation,
-	#category : #'Spec2-Core-Widgets'
+	#category : #'Spec2-CommonWidgets-Validation'
 }
 
 { #category : #testing }

@@ -16,7 +16,7 @@ Class {
 		'optionsPresenter',
 		'options'
 	],
-	#category : #'Spec2-Core-Widgets-Advanced'
+	#category : #'Spec2-CommonWidgets-Core'
 }
 
 { #category : #examples }

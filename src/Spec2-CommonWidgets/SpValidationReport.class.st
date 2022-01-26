@@ -8,7 +8,7 @@ Class {
 	#instVars : [
 		'errors'
 	],
-	#category : #'Spec2-Core-Utils'
+	#category : #'Spec2-CommonWidgets-Validation'
 }
 
 { #category : #adding }

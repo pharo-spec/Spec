@@ -18,7 +18,7 @@ Class {
 		'validationErrors',
 		'name'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : #'Spec2-CommonWidgets-Core'
 }
 
 { #category : #examples }
