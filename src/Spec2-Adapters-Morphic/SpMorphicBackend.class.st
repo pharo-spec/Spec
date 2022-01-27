@@ -22,7 +22,7 @@ SpMorphicBackend >> adapterBindingsClass [
 { #category : #accessing }
 SpMorphicBackend >> defaultConfigurationFor: anApplication [
 
-	^ anApplication defaultConfigurationForMorphic.
+	^ anApplication defaultConfigurationForMorphic
 ]
 
 { #category : #'deferred message' }

@@ -3,14 +3,13 @@ Extension { #name : #SpApplication }
 { #category : #'*Spec2-Adapters-Morphic' }
 SpApplication >> addStyleSheet: aStylesheet [
 
-	self ensureConfiguration.
-	 self styleSheet: self styleSheet, aStylesheet
+	 self ensureConfiguration addStyleSheet: aStylesheet
 ]
 
 { #category : #'*Spec2-Adapters-Morphic' }
 SpApplication >> addStyleSheetFromString: aString [
 
-	self addStyleSheet: (SpStyleVariableSTONReader fromString: aString)
+	self ensureConfiguration addStyleSheetFromString: aString
 ]
 
 { #category : #'*Spec2-Adapters-Morphic' }

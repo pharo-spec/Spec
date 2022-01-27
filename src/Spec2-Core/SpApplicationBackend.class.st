@@ -41,6 +41,12 @@ SpApplicationBackend >> adapterBindingsClass [
 	self subclassResponsibility
 ]
 
+{ #category : #accessing }
+SpApplicationBackend >> defaultConfigurationFor: anApplication [
+
+	^ self subclassResponsibility
+]
+
 { #category : #initialization }
 SpApplicationBackend >> initialize [
 
@@ -52,12 +58,6 @@ SpApplicationBackend >> initialize [
 SpApplicationBackend >> name [
 
 	^ self class backendName
-]
-
-{ #category : #factory }
-SpApplicationBackend >> newDefaultConfiguration [
-
-	^ self subclassResponsibility
 ]
 
 { #category : #'ui - notifying' }
