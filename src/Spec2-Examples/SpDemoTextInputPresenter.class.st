@@ -13,18 +13,27 @@ Class {
 	#category : #'Spec2-Examples-Demo-TextInput'
 }
 
+{ #category : #examples }
+SpDemoTextInputPresenter class >> example [
+	^ self new open
+]
+
 { #category : #layout }
-SpDemoTextInputPresenter class >> defaultLayout [
-	^ SpGridLayout new
+SpDemoTextInputPresenter >> defaultLayout [
+	^ (SpGridLayout build: [ :builder |
+		builder 
+			add: 'Normal:';
+			add: fieldNormal;
+			nextRow;
+			add: 'Disabled:';
+			add: fieldDisabled;
+			nextRow;
+			add: 'Placeholder:';
+			add: fieldPlaceholderText;
+			nextRow;
+			add: 'Password:';
+			add: fieldEncrypted ])
 		beColumnNotHomogeneous;
-		add: 'Normal:' at: 1 @ 1;
-		add: #fieldNormal at: 2 @ 1;
-		add: 'Disabled:' at: 1 @ 2;
-		add: #fieldDisabled at: 2 @ 2;
-		add: 'Placeholder:' at: 1 @ 3;
-		add: #fieldPlaceholderText at: 2 @ 3;
-		add: 'Password:' at: 1 @ 4;
-		add: #fieldEncrypted at: 2 @ 4;
 		yourself
 ]
 

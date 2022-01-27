@@ -13,7 +13,7 @@ Class {
 		'onActivation',
 		'onDeactivation'
 	],
-	#category : #'Spec2-CommonWidgets'
+	#category : #'Spec2-CommonWidgets-Core'
 }
 
 { #category : #private }

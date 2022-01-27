@@ -93,6 +93,18 @@ SpProgressBarDemo >> label [
 	^ label
 ]
 
+{ #category : #'option list presenter' }
+SpProgressBarDemo >> optionIcon [
+
+	^ self iconNamed: #image
+]
+
+{ #category : #'option list presenter' }
+SpProgressBarDemo >> optionTitle [
+
+	^ 'Progress bar Presenter'
+]
+
 { #category : #accessing }
 SpProgressBarDemo >> withProgressionBlock [
 	^ withProgressionBlock

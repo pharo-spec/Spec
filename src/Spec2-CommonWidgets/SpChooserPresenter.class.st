@@ -12,7 +12,7 @@ Class {
 		'displayBlock',
 		'sourceItems'
 	],
-	#category : #'Spec2-CommonWidgets'
+	#category : #'Spec2-CommonWidgets-Core'
 }
 
 { #category : #examples }

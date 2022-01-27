@@ -180,6 +180,14 @@ SpDialogWindowPresenter >> initializeWindow [
 ]
 
 { #category : #testing }
+SpDialogWindowPresenter >> isButtonEnabled: aButtonName [
+	| button |
+	button := self buttons detect: [ :aButton | aButton label = aButtonName ].
+	^ button isEnabled
+		
+]
+
+{ #category : #testing }
 SpDialogWindowPresenter >> isCancelled [
 	"Answer true if dialog has been cancelled."
 
