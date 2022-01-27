@@ -12,19 +12,19 @@ Class {
 	#category : #'Spec2-Layout-Paned'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 SpPanedConstraints class >> defaultExpand [
 
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 SpPanedConstraints class >> defaultFill [
 
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 SpPanedConstraints class >> defaultPadding [ 
 
 	^ 0

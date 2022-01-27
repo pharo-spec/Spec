@@ -16,7 +16,7 @@ SpPatchPresenter class >> adapterName [
 	^ #PatchAdapter
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 SpPatchPresenter class >> defaultMarks [
 
 	^ {  
