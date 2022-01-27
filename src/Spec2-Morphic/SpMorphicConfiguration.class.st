@@ -14,11 +14,16 @@ Class {
 	#category : #'Spec2-Morphic-Application'
 }
 
+{ #category : #testing }
+SpMorphicConfiguration class >> isAvailableFor: aBackend inApplication: anApplication [
+
+	^ aBackend name = #Morphic
+]
+
 { #category : #styling }
 SpMorphicConfiguration >> configure: anApplication [
 
-	super configure: anApplication.
-	anApplication styleSheet: self styleSheet
+	super configure: anApplication
 ]
 
 { #category : #styling }
