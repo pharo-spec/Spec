@@ -19,6 +19,12 @@ SpMorphicBackend >> adapterBindingsClass [
 	^ SpMorphicAdapterBindings
 ]
 
+{ #category : #accessing }
+SpMorphicBackend >> defaultConfigurationFor: anApplication [
+
+	^ anApplication defaultConfigurationForMorphic
+]
+
 { #category : #'deferred message' }
 SpMorphicBackend >> defer: aBlock [
 
@@ -29,12 +35,6 @@ SpMorphicBackend >> defer: aBlock [
 SpMorphicBackend >> forceDefer: aBlock [
 
 	UIManager default defer: aBlock
-]
-
-{ #category : #factory }
-SpMorphicBackend >> newDefaultConfiguration [
-
-	^ SpMorphicConfiguration new
 ]
 
 { #category : #'private - notifying' }

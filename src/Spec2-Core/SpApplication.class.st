@@ -385,7 +385,7 @@ SpApplication >> useBackend: aName [
 SpApplication >> useBackend: aName with: aConfiguration [
 
 	backend := SpApplicationBackend findBackendNamed: aName.
-	configuration := aConfiguration ifNil: [ backend newDefaultConfiguration ].
+	configuration := aConfiguration ifNil: [ backend defaultConfigurationFor: self ].
 	configuration configure: self
 ]
 

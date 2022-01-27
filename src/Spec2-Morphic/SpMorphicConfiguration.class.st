@@ -14,6 +14,12 @@ Class {
 	#category : #'Spec2-Morphic-Application'
 }
 
+{ #category : #testing }
+SpMorphicConfiguration class >> isAvailableFor: aBackend inApplication: anApplication [
+
+	^ aBackend name = #Morphic
+]
+
 { #category : #styling }
 SpMorphicConfiguration >> addStyleSheet: aStylesheet [
 
