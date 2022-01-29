@@ -12,6 +12,29 @@ SpTablePresenter class >> example [
 ]
 
 { #category : #'*Spec2-Examples' }
+SpTablePresenter class >> exampleDragAndDrop [
+	| table1 table2 |
+
+	(table1 := self new)
+		items: #( 'abc' 'def' 'xyz' );
+		addColumn: (SpStringTableColumn title: 'Drag' evaluated: #yourself);
+		dragEnabled: true.
+		
+	(table2 := self new)
+		dropEnabled: true;
+		addColumn: (SpStringTableColumn title: 'Drop' evaluated: #yourself);
+		wantsDrop: [ :transfer | transfer passenger allSatisfy: #isString ];
+		acceptDrop: [ :transfer | table2 items: (table2 items, transfer passenger) ].
+				
+	SpPresenter new 
+		layout: (SpBoxLayout newLeftToRight
+			add: table1;
+			add: table2;
+			yourself);
+		open
+]
+
+{ #category : #'*Spec2-Examples' }
 SpTablePresenter class >> exampleFixedWidth [
 	
 	^ self new
