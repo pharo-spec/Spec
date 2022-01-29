@@ -19,7 +19,7 @@ SpTextInputFieldPresenter class >> exampleEntryCompletion [
 		streamContents: [ :strm | 
 			Symbol allSymbolTablesDo: [ :each | 
 				(each notEmpty 
-					and: [ each first canBeGlobalVarInitial 
+					and: [ each isValidGlobalName 
 					and: [ Smalltalk globals includesKey: each ] ])
 					ifTrue: [ strm nextPut: each ] ] ]) sort.
 	
