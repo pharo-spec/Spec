@@ -133,7 +133,7 @@ SpInitializeWindowExample >> pushMessage [
 	statusBar pushMessage: ('StatusBar message {1}...' format: { count })
 ]
 
-{ #category : #'accessing ui' }
+{ #category : #'accessing - ui' }
 SpInitializeWindowExample >> text [ 
 
 	^ text
