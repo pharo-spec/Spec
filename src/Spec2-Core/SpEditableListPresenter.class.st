@@ -33,6 +33,27 @@ Class {
 
 { #category : #layout }
 SpEditableListPresenter class >> defaultLayout [
+	^ self layoutWithOrdering: true
+]
+
+{ #category : #layout }
+SpEditableListPresenter class >> layoutWithOrdering: useOrdering [
+	| listLayout |
+	listLayout := SpBoxLayout newLeftToRight
+				add: #list;
+				yourself.
+				
+	useOrdering 
+		ifTrue: [ listLayout 
+					add:
+						(SpBoxLayout newTopToBottom
+							add: #topButton expand: false fill: false padding: 0;
+							add: #upButton expand: false fill: false padding: 0;
+							add: #downButton expand: false fill: false padding: 0;
+							add: #bottomButton expand: false fill: false padding: 0;
+							yourself)
+					expand: false ].
+
 	^ SpBoxLayout newTopToBottom
 		add:
 			(SpBoxLayout newLeftToRight
@@ -40,18 +61,7 @@ SpEditableListPresenter class >> defaultLayout [
 					addLast: #removeButton expand: false;
 					yourself)
 			expand: false;
-		add:
-			(SpBoxLayout newLeftToRight
-				add: #list;
-				add:
-					(SpBoxLayout newTopToBottom
-							add: #topButton expand: false fill: false padding: 0;
-							add: #upButton expand: false fill: false padding: 0;
-							add: #downButton expand: false fill: false padding: 0;
-							add: #bottomButton expand: false fill: false padding: 0;
-							yourself)
-					expand: false;
-				yourself);
+		add: listLayout;
 		yourself
 ]
 
@@ -61,17 +71,9 @@ SpEditableListPresenter class >> new: aCollection [
 		
 ]
 
-{ #category : #spec }
+{ #category : #layout }
 SpEditableListPresenter class >> withoutOrderingBar [
-	^ SpBoxLayout newTopToBottom
-		add:
-			(SpBoxLayout newLeftToRight
-					addLast: #addButton expand: false;
-					addLast: #removeButton expand: false;
-					yourself)
-			expand: false;
-		add: #list;
-		yourself
+	^ self layoutWithOrdering: false
 ]
 
 { #category : #accessing }
