@@ -13,7 +13,7 @@ Class {
 { #category : #examples }
 SpOptionPresenterExample class >> open [
 	<example>
-	self new openWithSpec.
+	self new open.
 ]
 
 { #category : #initialization }

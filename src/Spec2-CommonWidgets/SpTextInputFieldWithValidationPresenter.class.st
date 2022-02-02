@@ -29,7 +29,7 @@ SpTextInputFieldWithValidationPresenter class >> example [
 		text: '';
 		placeholder: 'A placeholder';
 		beRequired;
-		openWithSpec;
+		open;
 		yourself
 ]
 
