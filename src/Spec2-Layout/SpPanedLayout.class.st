@@ -37,6 +37,11 @@ SpPanedLayout >> add: aPresenterLayoutOrSymbol [
 ]
 
 { #category : #private }
+SpPanedLayout >> add: aChild withConstraints: aBlock [
+	self add: aChild withConstraints: aBlock place: children size + 1
+]
+
+{ #category : #private }
 SpPanedLayout >> add: aChild withConstraints: aBlock place: aPosition [
 	"Add a child to the layout following the constraints in the block.
 	The position is an integer index (1 or 2) indicating whether the child is first or last in 

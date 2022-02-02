@@ -29,6 +29,24 @@ SpPanedLayoutTest >> testElementsAreAddedInOrderIndependentlyOfTheConfigurationO
 ]
 
 { #category : #running }
+SpPanedLayoutTest >> testElementsAreAddedInOrderWhenUsingAdd [
+
+	| second |
+	layout add: SpButtonPresenter new.
+	layout add: (second := SpButtonPresenter new).
+	self assert: layout children last equals: second
+]
+
+{ #category : #running }
+SpPanedLayoutTest >> testElementsAreAddedInOrderWhenUsingAddWithConstraints [
+
+	| second |
+	layout add: SpButtonPresenter new withConstraints: [ :c ].
+	layout add: (second := SpButtonPresenter new) withConstraints: [ :c ].
+	self assert: layout children last equals: second
+]
+
+{ #category : #running }
 SpPanedLayoutTest >> testLayoutWithOneFirstElementIsNotEmpty [
 
 	layout first: SpButtonPresenter new.
