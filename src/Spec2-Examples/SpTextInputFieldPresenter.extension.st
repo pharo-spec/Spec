@@ -15,13 +15,7 @@ SpTextInputFieldPresenter class >> example [
 SpTextInputFieldPresenter class >> exampleEntryCompletion [
 	| applicants entryCompletion |
 
-	applicants := (Array
-		streamContents: [ :strm | 
-			Symbol allSymbolTablesDo: [ :each | 
-				(each notEmpty 
-					and: [ each first canBeGlobalVarInitial 
-					and: [ Smalltalk globals includesKey: each ] ])
-					ifTrue: [ strm nextPut: each ] ] ]) sort.
+	applicants := Smalltalk globals classNames sorted.
 	
 	entryCompletion := EntryCompletion new
 		dataSourceBlock: [ :currText | applicants ];
