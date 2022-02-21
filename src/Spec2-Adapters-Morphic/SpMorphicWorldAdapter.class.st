@@ -34,6 +34,7 @@ SpMorphicWorldAdapter >> newContainerMorph [
 
 	^ super newContainerMorph
 		  adoptPaneColor: self theme backgroundColor;
+		  beSticky;
 		  yourself
 ]
 

@@ -15,3 +15,19 @@ SpEditableListPresenter class >> example [
 
 	^ presenter
 ]
+
+{ #category : #'*Spec2-Examples' }
+SpEditableListPresenter class >> exampleWithoutOrderingBars [
+
+	<sampleInstance>
+	| presenter |
+	presenter := self new
+		             items: self selectors asOrderedCollection;
+		             addItemBlock: [ 1 ];
+		             openWithLayout: self withoutOrderingBar;
+		             yourself.
+
+	presenter withWindowDo: [ :w | w title: 'Selectors list' ].
+
+	^ presenter
+]

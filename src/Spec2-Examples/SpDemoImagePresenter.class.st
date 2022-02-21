@@ -57,3 +57,15 @@ SpDemoImagePresenter >> initializePresenters [
 	image1 image: (self iconNamed: #pharo).
 	image2 image: self currentWorld submorphs last form.
 ]
+
+{ #category : #'option list presenter' }
+SpDemoImagePresenter >> optionIcon [
+
+	^ self iconNamed: #image
+]
+
+{ #category : #'option list presenter' }
+SpDemoImagePresenter >> optionTitle [
+
+	^ 'Image Presenter'
+]

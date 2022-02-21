@@ -6,6 +6,12 @@ SpIndeterminatedProgressBarState >> customizeMorphicBar: aProgressBarMorph [
 ]
 
 { #category : #'*Spec2-Adapters-Morphic' }
+SpIndeterminatedProgressBarState >> customizeMorphicLabel: aLabelMorph [
+
+	aLabelMorph contents: 'Processing...'
+]
+
+{ #category : #'*Spec2-Adapters-Morphic' }
 SpIndeterminatedProgressBarState >> progressBarMorph [
 	^ SpIndeterminatedProgressBarMorph
 ]
