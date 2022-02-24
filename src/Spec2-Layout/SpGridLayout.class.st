@@ -169,8 +169,8 @@ SpGridLayout >> borderWidth [
 ]
 
 { #category : #api }
-SpGridLayout >> borderWidth: anObject [
-	borderWidth := anObject
+SpGridLayout >> borderWidth: aNumber [
+	borderWidth := aNumber
 ]
 
 { #category : #api }
@@ -222,8 +222,8 @@ SpGridLayout >> columnSpacing [
 ]
 
 { #category : #api }
-SpGridLayout >> columnSpacing: anObject [
-	columnSpacing := anObject
+SpGridLayout >> columnSpacing: aNumber [
+	columnSpacing := aNumber
 ]
 
 { #category : #private }
@@ -299,6 +299,6 @@ SpGridLayout >> rowSpacing [
 ]
 
 { #category : #api }
-SpGridLayout >> rowSpacing: anObject [
-	rowSpacing := anObject
+SpGridLayout >> rowSpacing: aNumber [
+	rowSpacing := aNumber
 ]
