@@ -20,6 +20,5 @@ SpBrowsePointersToCommand class >> shortName [
 
 { #category : #executing }
 SpBrowsePointersToCommand >> execute [
-
-	self target pointersTo inspect
+	self target selectedItem value pointersTo inspect
 ]
