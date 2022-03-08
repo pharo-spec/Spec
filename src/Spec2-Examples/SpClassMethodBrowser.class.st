@@ -14,18 +14,6 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #layout }
-SpClassMethodBrowser class >> defaultLayout [
-	^ SpPanedLayout newTopToBottom
-		add:
-			(SpPanedLayout newLeftToRight
-				add: #classListPresenter;
-				add: #methodListPresenter;
-				yourself);
-		add: #textPresenter;
-		yourself
-]
-
 { #category : #examples }
 SpClassMethodBrowser class >> example [
 
@@ -65,6 +53,18 @@ SpClassMethodBrowser >> connectPresenters [
 		transform: [ :method | method ifNil: [ '' ] ifNotNil: #sourceCode ]
 		postTransmission: [ :destination :origin :transmited | 
 			transmited ifNotNil: [ destination beForMethod: transmited ] ]
+]
+
+{ #category : #layout }
+SpClassMethodBrowser >> defaultLayout [
+
+	^ SpPanedLayout newTopToBottom
+		add: (SpPanedLayout newLeftToRight
+			add: classListPresenter;
+			add: methodListPresenter;
+			yourself);
+		add: textPresenter;
+		yourself
 ]
 
 { #category : #initialization }

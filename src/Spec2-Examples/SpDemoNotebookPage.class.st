@@ -15,9 +15,10 @@ SpDemoNotebookPage class >> pageName [
 	^ 'Notebook'
 ]
 
-{ #category : #specs }
+{ #category : #initialization }
 SpDemoNotebookPage class >> priority [
-	^ 13
+
+	^ 1100
 ]
 
 { #category : #initialization }

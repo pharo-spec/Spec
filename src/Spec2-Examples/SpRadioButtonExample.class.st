@@ -12,20 +12,8 @@ Class {
 		'button3',
 		'label'
 	],
-	#category : #'Spec2-Examples-Demo-Checkboxes'
+	#category : #'Spec2-Examples-Demo-Buttons'
 }
-
-{ #category : #layout }
-SpRadioButtonExample class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add: (SpBoxLayout newTopToBottom
-				add: #button1 expand: false;
-				add: #button2 expand: false;
-				add: #button3 expand: false;
-				yourself);
-		add: #label expand: false;
-		yourself
-]
 
 { #category : #examples }
 SpRadioButtonExample class >> example [
@@ -47,6 +35,19 @@ SpRadioButtonExample >> connectPresenters [
 	button2 whenChangedDo: [ self updateLabel ].
 
 	button3 whenChangedDo: [ self updateLabel ]
+]
+
+{ #category : #layout }
+SpRadioButtonExample >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		add: (SpBoxLayout newTopToBottom
+				add: button1 expand: false;
+				add: button2 expand: false;
+				add: button3 expand: false;
+				yourself);
+		add: label expand: false;
+		yourself
 ]
 
 { #category : #initialization }

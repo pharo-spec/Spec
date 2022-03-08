@@ -14,13 +14,6 @@ Class {
 	#category : #'Spec2-Examples-Wrapper'
 }
 
-{ #category : #layout }
-SpOpenOnNilExample class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add: #text withConstraints: [ :constraints | constraints height: 25 ];
-		yourself
-]
-
 { #category : #examples }
 SpOpenOnNilExample class >> example [
 
@@ -28,6 +21,14 @@ SpOpenOnNilExample class >> example [
 	^ self new
 		  extent: 200 @ 100;
 		  open;
+		  yourself
+]
+
+{ #category : #layout }
+SpOpenOnNilExample >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  add: text withConstraints: [ :constraints | constraints height: 25 ];
 		  yourself
 ]
 

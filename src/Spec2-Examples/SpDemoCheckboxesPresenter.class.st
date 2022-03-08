@@ -7,27 +7,12 @@ Class {
 	#instVars : [
 		'checkboxNormal',
 		'checkboxDisabled',
-		'checkboxWithColor',
 		'checkboxWithHelp',
 		'checkboxWithLabelOnLeft',
 		'checkboxExample'
 	],
 	#category : #'Spec2-Examples-Demo-Checkboxes'
 }
-
-{ #category : #layout }
-SpDemoCheckboxesPresenter class >> defaultLayout [
-	^ SpBoxLayout newLeftToRight
-		add:
-			(SpBoxLayout newTopToBottom
-				add: #checkboxNormal;
-				add: #checkboxDisabled;
-				add: #checkboxWithColor;
-				add: #checkboxWithHelp;
-				yourself);
-		add: #checkboxExample;
-		yourself
-]
 
 { #category : #accessing }
 SpDemoCheckboxesPresenter >> checkboxDisabled [
@@ -50,16 +35,6 @@ SpDemoCheckboxesPresenter >> checkboxNormal: anObject [
 ]
 
 { #category : #accessing }
-SpDemoCheckboxesPresenter >> checkboxWithColor [
-	^ checkboxWithColor
-]
-
-{ #category : #accessing }
-SpDemoCheckboxesPresenter >> checkboxWithColor: anObject [
-	checkboxWithColor := anObject
-]
-
-{ #category : #accessing }
 SpDemoCheckboxesPresenter >> checkboxWithHelp [
 	^ checkboxWithHelp
 ]
@@ -79,6 +54,19 @@ SpDemoCheckboxesPresenter >> checkboxWithLabelOnLeft: anObject [
 	checkboxWithLabelOnLeft := anObject
 ]
 
+{ #category : #layout }
+SpDemoCheckboxesPresenter >> defaultLayout [
+
+	^ SpBoxLayout newLeftToRight
+		add: (SpBoxLayout newTopToBottom
+			add: checkboxNormal;
+			add: checkboxDisabled;
+			add: checkboxWithHelp;
+			yourself);
+		add: checkboxExample;
+		yourself
+]
+
 { #category : #initialization }
 SpDemoCheckboxesPresenter >> initializePresenters [
 
@@ -87,10 +75,6 @@ SpDemoCheckboxesPresenter >> initializePresenters [
 	checkboxDisabled := self newCheckBox 
 		label: 'disabled';
 		disable;
-		yourself.
-	checkboxWithColor := self newCheckBox 
-		label: 'red';
-		color: Color red;
 		yourself.
 	checkboxWithHelp := self newCheckBox 
 		label: 'with help';

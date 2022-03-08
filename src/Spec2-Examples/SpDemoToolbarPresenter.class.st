@@ -12,11 +12,11 @@ Class {
 }
 
 { #category : #layout }
-SpDemoToolbarPresenter class >> defaultLayout [
+SpDemoToolbarPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom 
-		add: #toolBar expand: false;
-		add: #text;
+		add: toolBar expand: false;
+		add: text;
 		yourself
 ]
 

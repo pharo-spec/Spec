@@ -16,10 +16,11 @@ Class {
 }
 
 { #category : #layout }
-SpDemoTablePresenter class >> defaultLayout [
+SpDemoTablePresenter >> defaultLayout [
+
 	^ SpBoxLayout newTopToBottom
-		add: #table1;
-		add: #label withConstraints: [ :c | c height: self labelHeight ];
+		add: table1;
+		add: label withConstraints: [ :c | c height: self class labelHeight ];
 		yourself
 ]
 

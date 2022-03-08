@@ -14,29 +14,30 @@ Class {
 	#category : #'Spec2-Examples-Demo-Other'
 }
 
+{ #category : #'instance creation' }
+SpDemoImagePresenter class >> open [
+	<script>
+	self new open
+]
+
 { #category : #layout }
-SpDemoImagePresenter class >> defaultLayout [
+SpDemoImagePresenter >> defaultLayout [
+
 	^ SpBoxLayout newTopToBottom
 		add: (SpBoxLayout newLeftToRight
 			add: 'Image added through an ImagePresenter:';
-			add: #image1;
+			add: image1;
 			yourself)
 		height: 50;
 		add: (SpBoxLayout newLeftToRight
 			add: 'Image added through an ImagePresenter:';
-			add: #image2;
+			add: image2;
 			yourself);
 		add: (SpBoxLayout newLeftToRight
 			add: 'Image added directly from the layout definition:';
 			add: (self iconNamed: #pharoBig);
 			yourself);
 		yourself
-]
-
-{ #category : #'instance creation' }
-SpDemoImagePresenter class >> open [
-	<script>
-	self new open
 ]
 
 { #category : #accessing }

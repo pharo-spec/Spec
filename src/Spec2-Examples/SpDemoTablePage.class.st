@@ -16,6 +16,12 @@ SpDemoTablePage class >> pageName [
 ]
 
 { #category : #initialization }
+SpDemoTablePage class >> priority [
+
+	^ 200
+]
+
+{ #category : #initialization }
 SpDemoTablePage >> pageClass [
 	^ SpDemoTablePresenter
 ]

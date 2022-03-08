@@ -19,23 +19,6 @@ Class {
 	#category : #'Spec2-Examples-Demo-Buttons'
 }
 
-{ #category : #specs }
-SpDemoButtonsPresenter class >> defaultLayout [
-	^ SpGridLayout new
-		beColumnHomogeneous;
-		borderWidth: 0;
-		add: #buttonNormal at: 1 @ 1;
-		add: #buttonDisabled at: 2 @ 1;
-		add: #buttonWithIcon at: 3 @ 1;
-		add: #buttonWithIconOnly at: 4 @ 1;
-		add: #buttonHighlighted at: 5 @ 1;
-		add: #buttonWithColor at: 1 @ 2;
-		add: #buttonWithMenu at: 2 @ 2;
-		add: #buttonWithShortcut at: 3 @ 2;
-		add: #buttonWithHelp at: 4 @ 2;
-		add: #buttonWithDifferentFont at: 5 @ 2
-]
-
 { #category : #accessing }
 SpDemoButtonsPresenter >> buttonDisabled [
 	^ buttonDisabled
@@ -141,6 +124,24 @@ SpDemoButtonsPresenter >> buttonWithShortcut: anObject [
 SpDemoButtonsPresenter >> connectPresenters [
 
 	buttonWithShortcut action: [ self inform: 'button with shortcut pressed' ]																																														
+]
+
+{ #category : #layout }
+SpDemoButtonsPresenter >> defaultLayout [
+
+	^ SpGridLayout new
+		  beColumnHomogeneous;
+		  borderWidth: 0;
+		  add: buttonNormal at: 1 @ 1;
+		  add: buttonDisabled at: 2 @ 1;
+		  add: buttonWithIcon at: 3 @ 1;
+		  add: buttonWithIconOnly at: 4 @ 1;
+		  add: buttonHighlighted at: 5 @ 1;
+		  add: buttonWithColor at: 1 @ 2;
+		  add: buttonWithMenu at: 2 @ 2;
+		  add: buttonWithShortcut at: 3 @ 2;
+		  add: buttonWithHelp at: 4 @ 2;
+		  add: buttonWithDifferentFont at: 5 @ 2
 ]
 
 { #category : #initialization }

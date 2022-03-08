@@ -24,7 +24,7 @@ Class {
 		'resultPane',
 		'table'
 	],
-	#category : #'Spec2-Morphic-Examples-Demo-Forms'
+	#category : #'Spec2-Examples-Demo-Forms'
 }
 
 { #category : #layout }
@@ -74,11 +74,6 @@ SpDemoFormPresenter >> initializePresenters [
 		addColumn: (SpStringTableColumn title: 'Value' evaluated: #value);
 		items: self model elements;
 		beResizable
-]
-
-{ #category : #accessing }
-SpDemoFormPresenter >> modelChanged [
-	table items: self model elements
 ]
 
 { #category : #'option list presenter' }

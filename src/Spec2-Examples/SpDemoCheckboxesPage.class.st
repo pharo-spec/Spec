@@ -13,10 +13,10 @@ SpDemoCheckboxesPage class >> pageName [
 	^ 'Checkboxes'
 ]
 
-{ #category : #specs }
+{ #category : #initialization }
 SpDemoCheckboxesPage class >> priority [
 
-	^ 30
+	^ 1000
 ]
 
 { #category : #initialization }

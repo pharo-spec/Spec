@@ -12,11 +12,11 @@ Class {
 }
 
 { #category : #layout }
-SpDemoActionBarPresenter class >> defaultLayout [
+SpDemoActionBarPresenter >> defaultLayout [
 
-	^ SpBoxLayout newTopToBottom 
-		add: #text;
-		addLast: #actionBar expand: false fill: false padding: 0;
+	^ SpBoxLayout newTopToBottom
+		add: text;
+		addLast: actionBar expand: false fill: false padding: 0;
 		yourself
 ]
 

@@ -7,14 +7,15 @@ Class {
 	#instVars : [
 		'radioButtonExample'
 	],
-	#category : #'Spec2-Examples-Demo-Checkboxes'
+	#category : #'Spec2-Examples-Demo-Buttons'
 }
 
 { #category : #layout }
-SpDemoRadioButtonsPresenter class >> defaultLayout [
+SpDemoRadioButtonsPresenter >> defaultLayout [
+
 	^ SpBoxLayout newLeftToRight
-		add: #radioButtonExample;
-		yourself
+		  add: radioButtonExample;
+		  yourself
 ]
 
 { #category : #initialization }

@@ -15,15 +15,6 @@ Class {
 	#category : #'Spec2-Examples-Demo-Notebook'
 }
 
-{ #category : #layout }
-SpDemoNotebookPresenter class >> defaultLayout [
-
-	^ SpBoxLayout newTopToBottom
-		add: #notebook;
-		add: #checkbox expand: false;
-		yourself
-]
-
 { #category : #examples }
 SpDemoNotebookPresenter class >> example [
 	^ self new open
@@ -52,6 +43,15 @@ SpDemoNotebookPresenter >> connectPresenters [
 				ifNotNil: [ :page | 
 					notebook removePage: page.
 					dynamicPage := nil ] ]
+]
+
+{ #category : #layout }
+SpDemoNotebookPresenter >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  add: notebook;
+		  add: checkbox expand: false;
+		  yourself
 ]
 
 { #category : #pages }

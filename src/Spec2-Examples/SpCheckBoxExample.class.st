@@ -15,20 +15,6 @@ Class {
 	#category : #'Spec2-Examples-Demo-Checkboxes'
 }
 
-{ #category : #layout }
-SpCheckBoxExample class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add:
-			(SpBoxLayout newLeftToRight
-				add: #button1;
-				add: #button2;
-				add: #button3;
-				yourself)
-			withConstraints: [ :c | c height: self toolbarHeight ];
-		add: #label withConstraints: [ :c | c height: self labelHeight ];
-		yourself
-]
-
 { #category : #examples }
 SpCheckBoxExample class >> example [
 
@@ -50,6 +36,20 @@ SpCheckBoxExample >> connectPresenters [
 	button2 whenChangedDo: [ self updateLabel ].
 
 	button3 whenChangedDo: [ self updateLabel ]
+]
+
+{ #category : #layout }
+SpCheckBoxExample >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		add: (SpBoxLayout newLeftToRight
+			add: button1;
+			add: button2;
+			add: button3;
+			yourself)
+		withConstraints: [ :c | c height: self class toolbarHeight ];
+		add: label withConstraints: [ :c | c height: self class labelHeight ];
+		yourself
 ]
 
 { #category : #initialization }

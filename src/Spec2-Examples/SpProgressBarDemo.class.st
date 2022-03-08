@@ -16,25 +16,6 @@ Class {
 	#category : #'Spec2-Examples-Demo-Loading'
 }
 
-{ #category : #layout }
-SpProgressBarDemo class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add: #indeterminated withConstraints: [ :constraints | constraints height: 6 ];
-		add: 'Indeterminated';
-		add: #fixed withConstraints: [ :constraints | constraints height: 10 ];
-		add: 'Fixed';
-		add: #withProgressionBlock withConstraints: [ :constraints | constraints height: 20 ];
-		add: 'With progression block';
-		add:
-			(SpBoxLayout newLeftToRight
-				add: #withText;
-				add: #label withConstraints: [ :constraints | constraints width: 40 ];
-				yourself)
-			withConstraints: [ :constraints | constraints height: 40 ];
-		add: 'With label';
-		yourself
-]
-
 { #category : #examples }
 SpProgressBarDemo class >> example [
 	<sampleInstance>
@@ -45,6 +26,23 @@ SpProgressBarDemo class >> example [
 { #category : #initialization }
 SpProgressBarDemo >> connectPresenters [
 	withText whenValueChangedDo: [ :value | label label: (value * 100) asInteger asString , '%' ]
+]
+
+{ #category : #layout }
+SpProgressBarDemo >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  add: 'Indeterminated';
+		  add: indeterminated;
+		  add: 'Fixed';
+		  add: fixed;
+		  add: 'With progression block';
+		  add: withProgressionBlock;
+		  add: 'With text';
+		  add: withText;
+		  add: 'With label';
+		  add: label;
+		  yourself
 ]
 
 { #category : #accessing }
@@ -69,6 +67,7 @@ SpProgressBarDemo >> indeterminated: anObject [
 
 { #category : #initialization }
 SpProgressBarDemo >> initializePresenters [
+
 	| progress progress2 |
 	indeterminated := self newProgressBar.
 	fixed := self newProgressBar.
@@ -77,14 +76,18 @@ SpProgressBarDemo >> initializePresenters [
 	label := self newLabel.
 
 	indeterminated indeterminate.
-	
+
 	fixed fixedPercentage: 30.
 
 	progress := 0.
-	withProgressionBlock progress: [ progress := progress + 0.01 ] every: 0.5 second.
-	
+	withProgressionBlock
+		progress: [ progress := progress + 0.01 ]
+		every: 0.5 second.
+
 	progress2 := 0.
-	withText progress: [ progress2 := progress2 + 0.01 ] every: 0.1 second.
+	withText
+		progress: [ progress2 := progress2 + 0.01 ]
+		every: 0.1 second.
 	label label: 'This is a progress bar'
 ]
 

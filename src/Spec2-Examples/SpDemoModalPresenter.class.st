@@ -14,18 +14,6 @@ Class {
 	#category : #'Spec2-Examples-Demo-Modals'
 }
 
-{ #category : #layout }
-SpDemoModalPresenter class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add:
-			(SpBoxLayout newLeftToRight
-				add: #button1;
-				add: #button2;
-				yourself)
-			withConstraints: [ :constraints | constraints height: self buttonHeight ];
-		yourself
-]
-
 { #category : #'instance creation' }
 SpDemoModalPresenter class >> open [
 	<script>
@@ -45,6 +33,18 @@ SpDemoModalPresenter >> button1 [
 { #category : #accessing }
 SpDemoModalPresenter >> button2 [
 	^ button2
+]
+
+{ #category : #layout }
+SpDemoModalPresenter >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		add: (SpBoxLayout newLeftToRight
+			add: button1;
+			add: button2;
+			yourself)
+		withConstraints: [ :constraints | constraints height: self class buttonHeight ];
+		yourself
 ]
 
 { #category : #initialization }

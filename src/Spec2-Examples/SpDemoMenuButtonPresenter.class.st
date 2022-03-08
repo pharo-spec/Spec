@@ -9,24 +9,24 @@ Class {
 	#category : #'Spec2-Examples-Demo-Buttons'
 }
 
-{ #category : #specs }
-SpDemoMenuButtonPresenter class >> defaultLayout [
+{ #category : #layout }
+SpDemoMenuButtonPresenter >> defaultLayout [
 
-	^ SpBoxLayout newTopToBottom 
+	^ SpBoxLayout newTopToBottom
 		add: (SpBoxLayout newLeftToRight
-			add: #button;
-			add: #menu expand: false fill: false padding: 0;
-			yourself) 
-			expand: false 
-			fill: false 
-			padding: 0;
-		add: #text;
-		yourself
+			add: button;
+			add: menu expand: false fill: false padding: 0;
+			yourself)
+		 expand: false
+		 fill: false
+		 padding: 0;
+		 add: text;
+		 yourself
 ]
 
 { #category : #initialization }
 SpDemoMenuButtonPresenter >> initializePresenters [
-	<script: 'self new openWithSpec'>
+	<script: 'self new open'>
 
 	(button := self newButton)
 		label: 'Choice';

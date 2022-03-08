@@ -20,21 +20,18 @@ SpDemoTextInputPresenter class >> example [
 
 { #category : #layout }
 SpDemoTextInputPresenter >> defaultLayout [
-	^ (SpGridLayout build: [ :builder |
-		builder 
-			add: 'Normal:';
-			add: fieldNormal;
-			nextRow;
-			add: 'Disabled:';
-			add: fieldDisabled;
-			nextRow;
-			add: 'Placeholder:';
-			add: fieldPlaceholderText;
-			nextRow;
-			add: 'Password:';
-			add: fieldEncrypted ])
-		beColumnNotHomogeneous;
-		yourself
+
+	^ SpGridLayout new
+		  add: 'Normal:' at: 1 @ 1;
+		  add: fieldNormal at: 2 @ 1 span: 2 @ 1;
+		  add: 'Disabled:' at: 1 @ 2;
+		  add: fieldDisabled at: 2 @ 2 span: 2 @ 1;
+		  add: 'Placeholder:' at: 1 @ 3;
+		  add: fieldPlaceholderText at: 2 @ 3 span: 2 @ 1;
+		  add: 'Password:' at: 1 @ 4;
+		  add: fieldEncrypted at: 2 @ 4 span: 2 @ 1;
+		  beColumnNotHomogeneous;
+		  yourself
 ]
 
 { #category : #accessing }
@@ -79,13 +76,19 @@ SpDemoTextInputPresenter >> fieldPlaceholderText: anObject [
 
 { #category : #initialization }
 SpDemoTextInputPresenter >> initializePresenters [
+
 	fieldNormal := self newTextInput.
-	
-	fieldDisabled := self newTextInput enabled: false.
-	
-	fieldPlaceholderText := self newTextInput placeholder: 'Placeholder text'.
-	
+
+	fieldDisabled := self newTextInput
+		editable: false;
+		yourself.
+
+	fieldPlaceholderText := self newTextInput
+		placeholder: 'Placeholder text';
+		yourself.
+
 	fieldEncrypted := self newTextInput
 		text: 'Password';
-		bePassword
+		bePassword;
+		yourself
 ]

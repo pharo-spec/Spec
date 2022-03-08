@@ -18,13 +18,6 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #layout }
-SpInitializeWindowExample class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add: #text;
-		yourself
-]
-
 { #category : #showing }
 SpInitializeWindowExample class >> show [
 	<script>
@@ -85,6 +78,14 @@ SpInitializeWindowExample >> buildToolbar [
 		addItem: self buildPopMessageToolBarItem;
 		addItem: self buildPopMessageToolBarItem position: SpToolbarItemPosition right;
 		yourself
+]
+
+{ #category : #layout }
+SpInitializeWindowExample >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  add: text;
+		  yourself
 ]
 
 { #category : #api }

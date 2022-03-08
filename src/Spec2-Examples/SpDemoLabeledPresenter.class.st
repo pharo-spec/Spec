@@ -11,15 +11,15 @@ Class {
 		'email',
 		'password'
 	],
-	#category : #'Spec2-Examples-Demo-Forms'
+	#category : #'Spec2-Examples-Demo-Labeled'
 }
 
 { #category : #layout }
-SpDemoLabeledPresenter class >> defaultLayout [
+SpDemoLabeledPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		add: #email expand: false;
-		add: #password expand: false;
+		add: email expand: false;
+		add: password expand: false;
 		yourself
 ]
 

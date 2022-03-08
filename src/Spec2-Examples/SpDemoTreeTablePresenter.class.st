@@ -14,13 +14,11 @@ Class {
 }
 
 { #category : #layout }
-SpDemoTreeTablePresenter class >> defaultLayout [
+SpDemoTreeTablePresenter >> defaultLayout [
+
 	^ SpBoxLayout newTopToBottom
-		add: #table1;
-		add: 'Double click to browse.'
-			expand: false
-			fill: false
-			padding: 0;
+		add: table1;
+		add: 'Double click to browse.' expand: false fill: false padding: 0;
 		yourself
 ]
 

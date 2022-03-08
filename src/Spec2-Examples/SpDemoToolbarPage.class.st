@@ -13,9 +13,10 @@ SpDemoToolbarPage class >> pageName [
 	^ 'Toolbar'
 ]
 
-{ #category : #specs }
+{ #category : #initialization }
 SpDemoToolbarPage class >> priority [
-	^ 12
+
+	^ 700
 ]
 
 { #category : #initialization }

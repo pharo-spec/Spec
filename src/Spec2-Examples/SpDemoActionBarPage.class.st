@@ -13,9 +13,10 @@ SpDemoActionBarPage class >> pageName [
 	^ 'ActionBar'
 ]
 
-{ #category : #specs }
+{ #category : #initialization }
 SpDemoActionBarPage class >> priority [
-	^ 13
+
+	^ 800
 ]
 
 { #category : #initialization }
