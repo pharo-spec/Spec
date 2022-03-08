@@ -76,6 +76,11 @@ SpDemoFormPresenter >> initializePresenters [
 		beResizable
 ]
 
+{ #category : #initialization }
+SpDemoFormPresenter >> modelChanged [
+	table items: self model elements
+]
+
 { #category : #'option list presenter' }
 SpDemoFormPresenter >> optionIcon [
 	

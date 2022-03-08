@@ -8,6 +8,12 @@ Class {
 }
 
 { #category : #initialization }
+SpDemoFormPage class >> pageName [
+
+	^ 'Forms'
+]
+
+{ #category : #initialization }
 SpDemoFormPage class >> priority [
 
 	^ 100
