@@ -203,6 +203,6 @@ SpTextInputFieldPresenter >> whenSubmitDo: aBlock [
 	 `aBlock` receives one argument (the submited text)"
 
 	self 
-		bindKeyCombination: Character cr asKeyCombination | $s meta 
+		bindKeyCombination: SpAcceptChangesCommand defaultShortcutKey | Character cr asKeyCombination 
 		toAction: aBlock
 ]
