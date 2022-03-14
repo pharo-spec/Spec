@@ -143,27 +143,6 @@ SpListPresenter >> iconFor: anItem [
 		cull: self
 ]
 
-{ #category : #api }
-SpListPresenter >> icons [
-	"Return the block used to return an icon that will be displayed in the list"
-	self 
-		deprecated: 'Use #displayIcon' 
-		transformWith: '`@receiver icons' -> '`@receiver displayIcon'.
-
-	^ icon
-]
-
-{ #category : #api }
-SpListPresenter >> icons: aBlock [
-	"Set a block which takes an item as argument and returns the icon to display in the list. 
-	 `aBlock` receives one argument"
-	self 
-		deprecated: 'Use #displayIcon:' 
-		transformWith: '`@receiver icons: `@arg' -> '`@receiver displayIcon: `@arg'.
-
-	icon := aBlock
-]
-
 { #category : #initialization }
 SpListPresenter >> initialize [
 
