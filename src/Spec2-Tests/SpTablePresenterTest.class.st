@@ -10,6 +10,12 @@ SpTablePresenterTest >> classToTest [
 	^ SpTablePresenter
 ]
 
+{ #category : #running }
+SpTablePresenterTest >> tearDown [ 
+	presenter delete.
+	super tearDown.
+]
+
 { #category : #'tests - activation' }
 SpTablePresenterTest >> testAddColumnRaisesColumnChangedEvent [
 
@@ -32,6 +38,19 @@ SpTablePresenterTest >> testAddColumnRaisesOneEventOnly [
 	presenter addColumn: (SpStringTableColumn new evaluated: #yourself).
 	
 	self assert: count equals: 1
+]
+
+{ #category : #tests }
+SpTablePresenterTest >> testCanAlternateRowColors [
+
+	presenter
+		hideColumnHeaders;
+		alternateRowsColor.
+		
+	self openInstance.
+	
+	presenter withAdapterPerformOrDefer: [ :adapter | 
+		self assert: (adapter instVarNamed: #alternateRowColors) equals: true ]
 ]
 
 { #category : #tests }

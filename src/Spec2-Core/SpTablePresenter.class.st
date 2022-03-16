@@ -57,6 +57,12 @@ SpTablePresenter >> addColumns: aCollection [
 ]
 
 { #category : #api }
+SpTablePresenter >> alternateRowsColor [
+	" Will alternate Rows color for a better reading: one row lighter, the next row darker"
+	self withAdapterPerformOrDefer: [ :tableAdapter | tableAdapter alternateRowsColor ].
+]
+
+{ #category : #api }
 SpTablePresenter >> beNotResizable [
 	"Mark the table as 'not resizable', which means there will be not possibility to resize the 
 	 columns of it."
