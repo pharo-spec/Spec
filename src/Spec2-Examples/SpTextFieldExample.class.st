@@ -36,10 +36,11 @@ SpTextFieldExample >> connectPresenters [
 
 { #category : #layout }
 SpTextFieldExample >> defaultLayout [
+
 	^ SpBoxLayout newTopToBottom
-		add: textField withConstraints: [ :constraints | constraints height: StandardFonts defaultFont height + 15 ];
-		add: methodBrowser;
-		yourself
+		  add: textField expand: false;
+		  add: methodBrowser;
+		  yourself
 ]
 
 { #category : #api }

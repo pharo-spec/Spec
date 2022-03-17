@@ -56,27 +56,3 @@ SpDemoFilteringListsPresenter >> initializePresenters [
 	selectableList listPresenter
 		sortingBlock: [ :a :b | a name > b name ]
 ]
-
-{ #category : #accessing }
-SpDemoFilteringListsPresenter >> listWithMethodsAlreadyFiltered [
-
-	^ listWithMethodsAlreadyFiltered
-]
-
-{ #category : #accessing }
-SpDemoFilteringListsPresenter >> listWithMethodsAlreadyFiltered: anObject [
-
-	listWithMethodsAlreadyFiltered := anObject
-]
-
-{ #category : #accessing }
-SpDemoFilteringListsPresenter >> listWithPackages [
-
-	^ listWithPackages
-]
-
-{ #category : #accessing }
-SpDemoFilteringListsPresenter >> listWithPackages: anObject [
-
-	listWithPackages := anObject
-]

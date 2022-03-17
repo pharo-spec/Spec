@@ -20,7 +20,7 @@ SpDemoTablePresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		add: table1;
-		add: label withConstraints: [ :c | c height: self class labelHeight ];
+		add: label expand: false;
 		yourself
 ]
 

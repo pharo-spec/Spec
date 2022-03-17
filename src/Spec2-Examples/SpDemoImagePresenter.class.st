@@ -40,23 +40,14 @@ SpDemoImagePresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #accessing }
-SpDemoImagePresenter >> image1 [
-	^ image1
-]
-
-{ #category : #accessing }
-SpDemoImagePresenter >> image2 [
-	^ image2
-]
-
 { #category : #initialization }
 SpDemoImagePresenter >> initializePresenters [
+
 	image1 := self newImage.
 	image2 := self newImage.
 
 	image1 image: (self iconNamed: #pharo).
-	image2 image: self currentWorld submorphs last form.
+	image2 image: self currentWorld submorphs last form
 ]
 
 { #category : #'option list presenter' }

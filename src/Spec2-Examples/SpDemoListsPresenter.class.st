@@ -47,21 +47,15 @@ SpDemoListsPresenter >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		  add: (SpBoxLayout newLeftToRight
 				   add: (SpBoxLayout newTopToBottom
-						    add: 'Menu'
-						    withConstraints: [ :constraints | 
-							    constraints height: self class labelHeight ];
+						    add: 'Menu' expand: false;
 						    add: list1;
 						    yourself);
 				   add: (SpBoxLayout newTopToBottom
-						    add: 'Multi selection/Sorting'
-						    withConstraints: [ :constraints | 
-							    constraints height: self class labelHeight ];
+						    add: 'Multi selection/Sorting' expand: false;
 						    add: list2;
 						    yourself);
 				   add: (SpBoxLayout newTopToBottom
-						    add: 'Icons/Filter'
-						    withConstraints: [ :constraints | 
-							    constraints height: self class labelHeight ];
+						    add: 'Icons/Filter' expand: false;
 						    add: list3;
 						    yourself);
 				   yourself);
@@ -69,8 +63,7 @@ SpDemoListsPresenter >> defaultLayout [
 				   add: multiLabel;
 				   add: label;
 				   yourself)
-		  withConstraints: [ :constraints | 
-		  constraints height: self class labelHeight ];
+		  expand: false;
 		  yourself
 ]
 

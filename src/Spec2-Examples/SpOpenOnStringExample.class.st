@@ -18,25 +18,6 @@ Class {
 	#category : #'Spec2-Examples-Wrapper'
 }
 
-{ #category : #specs }
-SpOpenOnStringExample class >> bottomLayout [
-
-	^ SpBoxLayout newTopToBottom
-		add:
-			(SpBoxLayout newLeftToRight
-				add: #input;
-				add: #button;
-				yourself)
-			withConstraints: [ :constraints | constraints height: 25 ];
-		add:
-			(SpBoxLayout newLeftToRight
-				add: #label;
-				add: #check withConstraints: [ :constraints | constraints width: 100 ];
-				yourself)
-			withConstraints: [ :constraints | constraints height: 25 ];
-		yourself
-]
-
 { #category : #examples }
 SpOpenOnStringExample class >> example [
 

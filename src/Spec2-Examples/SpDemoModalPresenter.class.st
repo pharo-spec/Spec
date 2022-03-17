@@ -43,7 +43,7 @@ SpDemoModalPresenter >> defaultLayout [
 			add: button1;
 			add: button2;
 			yourself)
-		withConstraints: [ :constraints | constraints height: self class buttonHeight ];
+		expand: false;
 		yourself
 ]
 

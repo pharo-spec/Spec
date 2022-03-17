@@ -23,11 +23,6 @@ SpDemoLabeledPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #accessing }
-SpDemoLabeledPresenter >> email [
-	^ email
-]
-
 { #category : #initialization }
 SpDemoLabeledPresenter >> initializePresenters [
 	| passwordInput |
@@ -44,9 +39,4 @@ SpDemoLabeledPresenter >> initializePresenters [
 		label: 'Password' 
 		input: passwordInput 
 		description: 'Password of the email account used.')
-]
-
-{ #category : #accessing }
-SpDemoLabeledPresenter >> password [
-	^ password
 ]

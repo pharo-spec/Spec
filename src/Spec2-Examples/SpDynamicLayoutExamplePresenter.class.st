@@ -42,8 +42,7 @@ SpDynamicLayoutExamplePresenter >> defaultLayout [
 		add: addPresenterButton expand: false;
 		add: removePreseterButton expand: false;
 		add: textPresenter;
-		yourself 
-		
+		yourself		
 ]
 
 { #category : #initialization }

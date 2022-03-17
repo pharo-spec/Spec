@@ -28,7 +28,7 @@ SpOpenOnNilExample class >> example [
 SpOpenOnNilExample >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		  add: text withConstraints: [ :constraints | constraints height: 25 ];
+		  add: text expand: false;
 		  yourself
 ]
 

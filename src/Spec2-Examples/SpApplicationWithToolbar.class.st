@@ -38,7 +38,7 @@ SpApplicationWithToolbar >> addItemTo: aGroup [
 SpApplicationWithToolbar >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		add: menu withConstraints: [ :constraints | constraints height: self class toolbarHeight ];
+		add: menu expand: false;
 		add: text;
 		yourself
 ]

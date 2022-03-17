@@ -71,7 +71,7 @@ SpDynamicWidgetChange >> changeToList [
 SpDynamicWidgetChange >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		add: button withConstraints: [ :constraints | constraints height: 25 ];
+		add: button expand: false;
 		add: bottom;
 		yourself
 ]

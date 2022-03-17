@@ -28,22 +28,13 @@ Class {
 }
 
 { #category : #layout }
-SpDemoFormPresenter class >> defaultLayout [
+SpDemoFormPresenter >> defaultLayout [
+
 	^ SpPanedLayout newLeftToRight
-		positionOfSlider: (StandardFonts defaultFont widthOfString: 'M') * 35;
-		add: #form;
-		add: #resultPane;
-		yourself
-]
-
-{ #category : #accessing }
-SpDemoFormPresenter >> form [
-	^ form
-]
-
-{ #category : #accessing }
-SpDemoFormPresenter >> form: anObject [
-	form := anObject
+		  positionOfSlider: (StandardFonts defaultFont widthOfString: 'M') * 35;
+		  add: form;
+		  add: resultPane;
+		  yourself
 ]
 
 { #category : #initialization }
@@ -78,6 +69,7 @@ SpDemoFormPresenter >> initializePresenters [
 
 { #category : #initialization }
 SpDemoFormPresenter >> modelChanged [
+
 	table items: self model elements
 ]
 
@@ -89,17 +81,8 @@ SpDemoFormPresenter >> optionIcon [
 
 { #category : #'option list presenter' }
 SpDemoFormPresenter >> optionTitle [
+
 	^ 'Form Presenter'
-]
-
-{ #category : #accessing }
-SpDemoFormPresenter >> resultPane [
-	^ resultPane
-]
-
-{ #category : #accessing }
-SpDemoFormPresenter >> resultPane: anObject [
-	resultPane := anObject
 ]
 
 { #category : #accessing }

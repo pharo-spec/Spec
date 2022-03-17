@@ -42,14 +42,14 @@ SpCheckBoxExample >> connectPresenters [
 SpCheckBoxExample >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		add: (SpBoxLayout newLeftToRight
-			add: button1;
-			add: button2;
-			add: button3;
-			yourself)
-		withConstraints: [ :c | c height: self class toolbarHeight ];
-		add: label withConstraints: [ :c | c height: self class labelHeight ];
-		yourself
+		  add: (SpBoxLayout newLeftToRight
+				   add: button1;
+				   add: button2;
+				   add: button3;
+				   yourself)
+		  expand: false;
+		  add: label expand: false;
+		  yourself
 ]
 
 { #category : #initialization }
@@ -78,15 +78,12 @@ SpCheckBoxExample >> setFocus [
 
 { #category : #updating }
 SpCheckBoxExample >> updateLabel [
-	label
-		label:
-			(String
-				streamContents: [ :s | 
-					{button1 . button2 . button3}
-						do: [ :button | 
-							s
-								<< button label;
-								<< ' : ';
-								<< (button state ifTrue: [ 'V' ] ifFalse: [ 'X' ]) ]
-						separatedBy: [ s << ' - ' ] ])
+
+	label label: (String streamContents: [ :s | 
+		{button1 . button2 . button3}
+		do: [ :button | 
+			s  << button label;
+				<< ' : ';
+				<< (button state ifTrue: [ 'V' ] ifFalse: [ 'X' ]) ]
+		separatedBy: [ s << ' - ' ] ])
 ]

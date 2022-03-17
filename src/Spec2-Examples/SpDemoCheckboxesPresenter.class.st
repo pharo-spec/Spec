@@ -14,57 +14,15 @@ Class {
 	#category : #'Spec2-Examples-Demo-Checkboxes'
 }
 
-{ #category : #accessing }
-SpDemoCheckboxesPresenter >> checkboxDisabled [
-	^ checkboxDisabled
-]
-
-{ #category : #accessing }
-SpDemoCheckboxesPresenter >> checkboxDisabled: anObject [
-	checkboxDisabled := anObject
-]
-
-{ #category : #accessing }
-SpDemoCheckboxesPresenter >> checkboxNormal [
-	^ checkboxNormal
-]
-
-{ #category : #accessing }
-SpDemoCheckboxesPresenter >> checkboxNormal: anObject [
-	checkboxNormal := anObject
-]
-
-{ #category : #accessing }
-SpDemoCheckboxesPresenter >> checkboxWithHelp [
-	^ checkboxWithHelp
-]
-
-{ #category : #accessing }
-SpDemoCheckboxesPresenter >> checkboxWithHelp: anObject [
-	checkboxWithHelp := anObject
-]
-
-{ #category : #accessing }
-SpDemoCheckboxesPresenter >> checkboxWithLabelOnLeft [
-	^ checkboxWithLabelOnLeft
-]
-
-{ #category : #accessing }
-SpDemoCheckboxesPresenter >> checkboxWithLabelOnLeft: anObject [
-	checkboxWithLabelOnLeft := anObject
-]
-
 { #category : #layout }
 SpDemoCheckboxesPresenter >> defaultLayout [
 
-	^ SpBoxLayout newLeftToRight
-		add: (SpBoxLayout newTopToBottom
-			add: checkboxNormal;
-			add: checkboxDisabled;
-			add: checkboxWithHelp;
-			yourself);
-		add: checkboxExample;
-		yourself
+	^ SpBoxLayout newTopToBottom
+		  add: checkboxExample expand: false;
+		  add: checkboxNormal;
+		  add: checkboxDisabled;
+		  add: checkboxWithHelp;
+		  yourself
 ]
 
 { #category : #initialization }

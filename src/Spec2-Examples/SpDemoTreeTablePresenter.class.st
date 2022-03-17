@@ -18,7 +18,7 @@ SpDemoTreeTablePresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		add: table1;
-		add: 'Double click to browse.' expand: false fill: false padding: 0;
+		add: 'Double click to browse.' expand: false;
 		yourself
 ]
 

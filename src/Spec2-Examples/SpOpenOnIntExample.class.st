@@ -45,12 +45,12 @@ SpOpenOnIntExample >> connectPresenters [
 SpOpenOnIntExample >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		add: text withConstraints: [ :constraints | constraints height: 25 ];
+		add: text expand: false;
 		add: (SpBoxLayout newLeftToRight
 			add: minus;
 			add: plus;
 			yourself)
-		withConstraints: [ :constraints | constraints height: 25 ];
+		expand: false;
 		yourself
 ]
 
