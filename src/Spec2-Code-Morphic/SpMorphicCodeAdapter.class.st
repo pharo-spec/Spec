@@ -62,10 +62,11 @@ SpMorphicCodeAdapter >> changeLineNumbers: hasLineNumbers to: aMorph [
 { #category : #'private - shout' }
 SpMorphicCodeAdapter >> classOrMetaClass: aClass [
 
-	self 
-		setEditingModeFor: self widget textArea 
-		withBehavior: aClass
-		forScripting: self isForScripting
+	self suspendObservedPropertiesWhile: [ 
+		self 
+			setEditingModeFor: self widget textArea 
+			withBehavior: aClass
+			forScripting: self isForScripting ]
 ]
 
 { #category : #private }
@@ -203,10 +204,11 @@ SpMorphicCodeAdapter >> setEditingModeFor: textArea [
 
 	self hasSyntaxHighlight
 		ifTrue: [ 
-			self 
-				setEditingModeFor: textArea 
-				withBehavior: self behavior 
-				forScripting: self isForScripting ]
+			self suspendObservedPropertiesWhile: [  
+				self 
+					setEditingModeFor: textArea 
+					withBehavior: self behavior 
+					forScripting: self isForScripting ] ]
 		ifFalse: [ 
 			super setEditingModeFor: textArea ]
 ]
@@ -245,6 +247,17 @@ SpMorphicCodeAdapter >> setSyntaxHighlightThemeFor: textArea [
 	textArea shoutStyler 
 		styler: (SpMorphicCodeTextStyler newWithAttributeTableNamed: theme);
 		refreshStyling
+]
+
+{ #category : #private }
+SpMorphicCodeAdapter >> suspendObservedPropertiesWhile: aBlock [ 
+	| textHolder textSubscriptions |
+
+	textHolder := self presenter observablePropertyNamed: #text.
+	textSubscriptions := textHolder subscriptions.
+	textHolder subscriptions: #().
+	aBlock ensure: [ 
+		textHolder subscriptions: textSubscriptions ]
 ]
 
 { #category : #private }

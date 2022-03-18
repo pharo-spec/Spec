@@ -106,6 +106,11 @@ SpTPresenterBuilder >> newGridLayout [
 ]
 
 { #category : #'scripting - widgets' }
+SpTPresenterBuilder >> newImage [
+	^ self instantiate: SpImagePresenter
+]
+
+{ #category : #'scripting - widgets' }
 SpTPresenterBuilder >> newLabel [
 	^ self instantiate: SpLabelPresenter
 ]

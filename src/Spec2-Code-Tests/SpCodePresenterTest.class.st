@@ -42,6 +42,16 @@ SpCodePresenterTest >> newEnvironment [
 ]
 
 { #category : #tests }
+SpCodePresenterTest >> testChangingEditingModeDoesNotTriggersTextChanged [
+	| changed |
+	
+	changed := false.
+	presenter whenTextChangedDo: [ changed := true ].
+	presenter beForBehavior: Object.
+	self deny: changed	
+]
+
+{ #category : #tests }
 SpCodePresenterTest >> testContextKeyBindings [
 	| contextKeyBindings |
 	
