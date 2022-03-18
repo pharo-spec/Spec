@@ -8,7 +8,6 @@ Class {
 		'checkboxNormal',
 		'checkboxDisabled',
 		'checkboxWithHelp',
-		'checkboxWithLabelOnLeft',
 		'checkboxExample'
 	],
 	#category : #'Spec2-Examples-Demo-Checkboxes'
