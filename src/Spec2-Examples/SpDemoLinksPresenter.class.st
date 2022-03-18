@@ -16,20 +16,21 @@ Class {
 	#category : #'Spec2-Examples-Demo-Other'
 }
 
-{ #category : #layout }
-SpDemoLinksPresenter class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add: #link1;
-		add: #link2;
-		add: #link3;
-		add: #link4;
-		yourself
-]
-
 { #category : #'instance creation' }
 SpDemoLinksPresenter class >> open [
 	<script>
 	self new open
+]
+
+{ #category : #layout }
+SpDemoLinksPresenter >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  add: link1;
+		  add: link2;
+		  add: link3;
+		  add: link4;
+		  yourself
 ]
 
 { #category : #initialization }

@@ -15,18 +15,6 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #layout }
-SpListSelectionPresenter class >> defaultLayout [
-	^ SpPanedLayout newTopToBottom
-		add: #listModel;
-		add:
-			(SpPanedLayout newLeftToRight
-				add: #textModel1;
-				add: #textModel2;
-				yourself);
-		yourself
-]
-
 { #category : #examples }
 SpListSelectionPresenter class >> example [
 
@@ -37,6 +25,18 @@ SpListSelectionPresenter class >> example [
 { #category : #initialization }
 SpListSelectionPresenter >> connectPresenters [
 	listModel whenSelectionChangedDo: [ self updateText ]
+]
+
+{ #category : #layout }
+SpListSelectionPresenter >> defaultLayout [
+
+	^ SpPanedLayout newTopToBottom
+		  add: listModel;
+		  add: (SpPanedLayout newLeftToRight
+				   add: textModel1;
+				   add: textModel2;
+				   yourself);
+		  yourself
 ]
 
 { #category : #initialization }

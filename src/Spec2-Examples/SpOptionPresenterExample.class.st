@@ -16,11 +16,12 @@ SpOptionPresenterExample class >> open [
 	self new open.
 ]
 
-{ #category : #initialization }
-SpOptionPresenterExample >> defaultLayout [ 
-	^ SpBoxLayout newTopToBottom 
-		add: radioPresenter;
-		yourself.
+{ #category : #layout }
+SpOptionPresenterExample >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  add: radioPresenter;
+		  yourself
 ]
 
 { #category : #initialization }

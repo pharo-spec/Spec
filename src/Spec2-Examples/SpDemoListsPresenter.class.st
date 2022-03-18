@@ -17,66 +17,54 @@ Class {
 	#category : #'Spec2-Examples-Demo-Lists'
 }
 
-{ #category : #layout }
-SpDemoListsPresenter class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add:
-			(SpBoxLayout newLeftToRight
-				add:
-					(SpBoxLayout newTopToBottom
-						add: 'Menu' withConstraints: [ :constraints | constraints height: self labelHeight ];
-						add: #list1;
-						yourself);
-				add:
-					(SpBoxLayout newTopToBottom
-						add: 'Multi selection/Sorting' withConstraints: [ :constraints | constraints height: self labelHeight ];
-						add: #list2;
-						yourself);
-				add:
-					(SpBoxLayout newTopToBottom
-						add: 'Icons/Filter' withConstraints: [ :constraints | constraints height: self labelHeight ];
-						add: #list3;
-						yourself);
-				yourself);
-		add:
-			(SpBoxLayout newLeftToRight
-				add: #multiLabel;
-				add: #label;
-				yourself)
-			withConstraints: [ :constraints | constraints height: self labelHeight ];
-		yourself
-]
-
 { #category : #initialization }
 SpDemoListsPresenter >> connectPresenters [
-	list1
-		whenSelectionChangedDo: [ :selection | 
-			[ :elem | 
-			label
-				label:
-					(elem
-						ifNil: [ 'Deselection from list 1' ]
-						ifNotNil: [ 'Selection from list 1: ' , elem asString ]) ]
-				cull: selection selectedItem ].
 
-	list2
-		whenSelectionChangedDo: [ :selection | 
-			[ :elems | 
-			multiLabel
-				label:
-					(elems
-						ifEmpty: [ 'Not multi selection (from list 2 only)' ]
-						ifNotEmpty: [ 'Multi-selection from list 2: ' , elems asString ]) ]
-				cull: selection selectedItems ].
-	list3
-		whenSelectionChangedDo: [ :selection | 
-			[ :elem | 
-			label
-				label:
-					(elem
-						ifNil: [ 'Deselection from list 3' ]
-						ifNotNil: [ 'Selection from list 3: ' , elem asString ]) ]
-				cull: selection selectedItem ]
+	list1 whenSelectionChangedDo: [ :selection | 
+		[ :elem | 
+		label label: (elem
+				 ifNil: [ 'Deselection from list 1' ]
+				 ifNotNil: [ 'Selection from list 1: ' , elem asString ]) ] cull:
+			selection selectedItem ].
+
+	list2 whenSelectionChangedDo: [ :selection | 
+		[ :elems | 
+		multiLabel label: (elems
+				 ifEmpty: [ 'Not multi selection (from list 2 only)' ]
+				 ifNotEmpty: [ 'Multi-selection from list 2: ' , elems asString ]) ] 
+			cull: selection selectedItems ].
+	list3 whenSelectionChangedDo: [ :selection | 
+		[ :elem | 
+		label label: (elem
+				 ifNil: [ 'Deselection from list 3' ]
+				 ifNotNil: [ 'Selection from list 3: ' , elem asString ]) ] cull:
+			selection selectedItem ]
+]
+
+{ #category : #layout }
+SpDemoListsPresenter >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  add: (SpBoxLayout newLeftToRight
+				   add: (SpBoxLayout newTopToBottom
+						    add: 'Menu' expand: false;
+						    add: list1;
+						    yourself);
+				   add: (SpBoxLayout newTopToBottom
+						    add: 'Multi selection/Sorting' expand: false;
+						    add: list2;
+						    yourself);
+				   add: (SpBoxLayout newTopToBottom
+						    add: 'Icons/Filter' expand: false;
+						    add: list3;
+						    yourself);
+				   yourself);
+		  add: (SpBoxLayout newLeftToRight
+				   add: multiLabel;
+				   add: label;
+				   yourself)
+		  expand: false;
+		  yourself
 ]
 
 { #category : #defaults }

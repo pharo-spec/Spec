@@ -16,6 +16,12 @@ SpProgressBarDemoPage class >> pageName [
 ]
 
 { #category : #initialization }
+SpProgressBarDemoPage class >> priority [
+
+	^ 1400
+]
+
+{ #category : #initialization }
 SpProgressBarDemoPage >> pageClass [
 	^ SpProgressBarDemo
 ]

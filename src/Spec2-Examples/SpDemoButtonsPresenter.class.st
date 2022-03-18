@@ -19,128 +19,33 @@ Class {
 	#category : #'Spec2-Examples-Demo-Buttons'
 }
 
-{ #category : #specs }
-SpDemoButtonsPresenter class >> defaultLayout [
-	^ SpGridLayout new
-		beColumnHomogeneous;
-		borderWidth: 0;
-		add: #buttonNormal at: 1 @ 1;
-		add: #buttonDisabled at: 2 @ 1;
-		add: #buttonWithIcon at: 3 @ 1;
-		add: #buttonWithIconOnly at: 4 @ 1;
-		add: #buttonHighlighted at: 5 @ 1;
-		add: #buttonWithColor at: 1 @ 2;
-		add: #buttonWithMenu at: 2 @ 2;
-		add: #buttonWithShortcut at: 3 @ 2;
-		add: #buttonWithHelp at: 4 @ 2;
-		add: #buttonWithDifferentFont at: 5 @ 2
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonDisabled [
-	^ buttonDisabled
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonDisabled: anObject [
-	buttonDisabled := anObject
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonHighlighted [
-	^ buttonHighlighted
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonHighlighted: anObject [
-	buttonHighlighted := anObject
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonNormal [
-	^ buttonNormal
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonNormal: anObject [
-	buttonNormal := anObject
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonWithColor [
-	^ buttonWithColor
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonWithColor: anObject [
-	buttonWithColor := anObject
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonWithDifferentFont [
-	^ buttonWithDifferentFont
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonWithDifferentFont: anObject [
-	buttonWithDifferentFont := anObject
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonWithHelp [
-	^ buttonWithHelp
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonWithHelp: anObject [
-
-	buttonWithHelp := anObject
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonWithIcon [
-	^ buttonWithIcon
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonWithIcon: anObject [
-	buttonWithIcon := anObject
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonWithIconOnly [
-	^ buttonWithIconOnly
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonWithIconOnly: anObject [
-	buttonWithIconOnly := anObject
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonWithMenu [
-	^ buttonWithMenu
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonWithMenu: anObject [
-	buttonWithMenu := anObject
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonWithShortcut [
-	^ buttonWithShortcut
-]
-
-{ #category : #accessing }
-SpDemoButtonsPresenter >> buttonWithShortcut: anObject [
-	buttonWithShortcut := anObject
-]
-
 { #category : #initialization }
 SpDemoButtonsPresenter >> connectPresenters [
 
 	buttonWithShortcut action: [ self inform: 'button with shortcut pressed' ]																																														
+]
+
+{ #category : #layout }
+SpDemoButtonsPresenter >> defaultLayout [
+
+	^ SpGridLayout build: [ :builder | 
+		builder
+			beColumnHomogeneous;
+			beRowHomogeneous;
+			borderWidth: 0;
+			add: buttonNormal;
+			add: buttonDisabled;
+			add: buttonWithIcon;
+			nextRow;
+			add: buttonWithIconOnly;
+			add: buttonHighlighted;
+			add: buttonWithColor;
+			nextRow;
+			add: buttonWithMenu;
+			add: buttonWithShortcut;
+			add: buttonWithHelp;
+			nextRow;
+			add: buttonWithDifferentFont ]
 ]
 
 { #category : #initialization }
@@ -184,6 +89,7 @@ a multiline help';
 		label: 'different font';
 		font: StandardFonts codeFont;
 		yourself.
+	
 	self focusOrder
 		add: buttonNormal;
 		add: buttonDisabled;

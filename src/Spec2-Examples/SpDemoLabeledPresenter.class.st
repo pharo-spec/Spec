@@ -11,21 +11,16 @@ Class {
 		'email',
 		'password'
 	],
-	#category : #'Spec2-Examples-Demo-Forms'
+	#category : #'Spec2-Examples-Demo-Labeled'
 }
 
 { #category : #layout }
-SpDemoLabeledPresenter class >> defaultLayout [
+SpDemoLabeledPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		add: #email expand: false;
-		add: #password expand: false;
+		add: email expand: false;
+		add: password expand: false;
 		yourself
-]
-
-{ #category : #accessing }
-SpDemoLabeledPresenter >> email [
-	^ email
 ]
 
 { #category : #initialization }
@@ -44,9 +39,4 @@ SpDemoLabeledPresenter >> initializePresenters [
 		label: 'Password' 
 		input: passwordInput 
 		description: 'Password of the email account used.')
-]
-
-{ #category : #accessing }
-SpDemoLabeledPresenter >> password [
-	^ password
 ]

@@ -16,10 +16,10 @@ SpDemoLinksPage class >> pageName [
 	^ 'Links'
 ]
 
-{ #category : #specs }
+{ #category : #initialization }
 SpDemoLinksPage class >> priority [
 
-	^ 15
+	^ 1500
 ]
 
 { #category : #initialization }

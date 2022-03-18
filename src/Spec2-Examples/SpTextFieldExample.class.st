@@ -11,14 +11,6 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #layout }
-SpTextFieldExample class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add: #textField withConstraints: [ :constraints | constraints height: StandardFonts defaultFont height + 15 ];
-		add: #methodBrowser;
-		yourself
-]
-
 { #category : #examples }
 SpTextFieldExample class >> example [
 
@@ -40,6 +32,15 @@ SpTextFieldExample >> connectPresenters [
 			at: text asSymbol
 			ifPresent: [ :class | methodBrowser messages: class methods ]
 			ifAbsent: [ methodBrowser messages: #() ] ]
+]
+
+{ #category : #layout }
+SpTextFieldExample >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  add: textField expand: false;
+		  add: methodBrowser;
+		  yourself
 ]
 
 { #category : #api }

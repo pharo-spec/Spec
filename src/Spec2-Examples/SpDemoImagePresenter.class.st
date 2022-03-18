@@ -14,17 +14,24 @@ Class {
 	#category : #'Spec2-Examples-Demo-Other'
 }
 
+{ #category : #'instance creation' }
+SpDemoImagePresenter class >> open [
+	<script>
+	self new open
+]
+
 { #category : #layout }
-SpDemoImagePresenter class >> defaultLayout [
+SpDemoImagePresenter >> defaultLayout [
+
 	^ SpBoxLayout newTopToBottom
 		add: (SpBoxLayout newLeftToRight
 			add: 'Image added through an ImagePresenter:';
-			add: #image1;
+			add: image1;
 			yourself)
 		height: 50;
 		add: (SpBoxLayout newLeftToRight
 			add: 'Image added through an ImagePresenter:';
-			add: #image2;
+			add: image2;
 			yourself);
 		add: (SpBoxLayout newLeftToRight
 			add: 'Image added directly from the layout definition:';
@@ -33,29 +40,14 @@ SpDemoImagePresenter class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #'instance creation' }
-SpDemoImagePresenter class >> open [
-	<script>
-	self new open
-]
-
-{ #category : #accessing }
-SpDemoImagePresenter >> image1 [
-	^ image1
-]
-
-{ #category : #accessing }
-SpDemoImagePresenter >> image2 [
-	^ image2
-]
-
 { #category : #initialization }
 SpDemoImagePresenter >> initializePresenters [
+
 	image1 := self newImage.
 	image2 := self newImage.
 
 	image1 image: (self iconNamed: #pharo).
-	image2 image: self currentWorld submorphs last form.
+	image2 image: self currentWorld submorphs last form
 ]
 
 { #category : #'option list presenter' }

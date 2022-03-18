@@ -14,19 +14,6 @@ Class {
 	#category : #'Spec2-Examples-Wrapper'
 }
 
-{ #category : #layout }
-SpOpenOnIntExample class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add: #text withConstraints: [ :constraints | constraints height: 25 ];
-		add:
-			(SpBoxLayout newLeftToRight
-				add: #minus;
-				add: #plus;
-				yourself)
-			withConstraints: [ :constraints | constraints height: 25 ];
-		yourself
-]
-
 { #category : #examples }
 SpOpenOnIntExample class >> example [
 
@@ -52,6 +39,19 @@ SpOpenOnIntExample >> connectPresenters [
 		action: [ | currentValue |
 			currentValue := text label asInteger.
 			text label: (currentValue + 1) asString ]
+]
+
+{ #category : #layout }
+SpOpenOnIntExample >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		add: text expand: false;
+		add: (SpBoxLayout newLeftToRight
+			add: minus;
+			add: plus;
+			yourself)
+		expand: false;
+		yourself
 ]
 
 { #category : #initialization }

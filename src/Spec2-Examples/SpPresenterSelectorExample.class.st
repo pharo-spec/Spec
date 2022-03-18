@@ -12,20 +12,20 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #layout }
-SpPresenterSelectorExample class >> defaultLayout [
-
-	^ SpPanedLayout newLeftToRight
-		add: #list;
-		add: #choice;
-		yourself.
-
-]
-
 { #category : #specs }
 SpPresenterSelectorExample class >> defaultSpec [
 
 	^ nil
+]
+
+{ #category : #layout }
+SpPresenterSelectorExample >> defaultLayout [
+
+	^ SpPanedLayout newLeftToRight
+		add: list;
+		add: choice;
+		yourself.
+
 ]
 
 { #category : #initialization }

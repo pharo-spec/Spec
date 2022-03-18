@@ -13,19 +13,8 @@ Class {
 		'label',
 		'toolbar'
 	],
-	#category : #'Spec2-Examples-Demo-Checkboxes'
+	#category : #'Spec2-Examples-Demo-Buttons'
 }
-
-{ #category : #layout }
-SpToolbarToggleButtonExample class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add: (SpBoxLayout newTopToBottom
-			vAlignStart;
-			add: #toolbar expand: false;
-			yourself);
-		add: #label expand: false;
-		yourself
-]
 
 { #category : #examples }
 SpToolbarToggleButtonExample class >> example [
@@ -46,6 +35,18 @@ SpToolbarToggleButtonExample >> connectPresenters [
 	button1 whenDeactivatedDo: [ self updateLabel ].
 	button2 whenChangedDo: [ self updateLabel ].
 	button3 whenChangedDo: [ self updateLabel ]
+]
+
+{ #category : #layout }
+SpToolbarToggleButtonExample >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  add: (SpBoxLayout newTopToBottom
+				   vAlignStart;
+				   add: toolbar expand: false;
+				   yourself);
+		  add: label expand: false;
+		  yourself
 ]
 
 { #category : #initialization }

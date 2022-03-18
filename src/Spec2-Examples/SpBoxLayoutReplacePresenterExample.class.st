@@ -1,7 +1,7 @@
 Class {
 	#name : #SpBoxLayoutReplacePresenterExample,
 	#superclass : #SpPresenter,
-	#category : #'Spec2-Examples-Layouts'
+	#category : #'Spec2-Examples-Demo-Layouts'
 }
 
 { #category : #initialization }

@@ -13,14 +13,6 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #layout }
-SpApplicationWithToolbar class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add: #menu withConstraints: [ :constraints | constraints height: self toolbarHeight ];
-		add: #text;
-		yourself
-]
-
 { #category : #examples }
 SpApplicationWithToolbar class >> example [
 
@@ -40,6 +32,15 @@ SpApplicationWithToolbar >> addItemTo: aGroup [
 					self build ] ].
 	self needRebuild: false.
 	self build
+]
+
+{ #category : #layout }
+SpApplicationWithToolbar >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		add: menu expand: false;
+		add: text;
+		yourself
 ]
 
 { #category : #initialization }

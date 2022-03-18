@@ -15,13 +15,6 @@ SpDemoPage class >> availablePages [
 	^ self allSubclasses sort: #priority ascending
 ]
 
-{ #category : #layout }
-SpDemoPage class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add: #tabManager;
-		yourself
-]
-
 { #category : #initialization }
 SpDemoPage class >> pageName [
 
@@ -48,6 +41,14 @@ SpDemoPage >> codeTab [
 		provider: [ self newText
 				text: (self codeFor: self pageClass);
 				yourself ]
+]
+
+{ #category : #layout }
+SpDemoPage >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  add: tabManager;
+		  yourself
 ]
 
 { #category : #initialization }
