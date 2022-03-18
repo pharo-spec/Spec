@@ -18,11 +18,11 @@ Class {
 SpDemoCheckboxesPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		  add: checkboxExample expand: false;
-		  add: checkboxNormal;
-		  add: checkboxDisabled;
-		  add: checkboxWithHelp;
-		  yourself
+		add: checkboxExample expand: false;
+		add: checkboxNormal;
+		add: checkboxDisabled;
+		add: checkboxWithHelp;
+		yourself
 ]
 
 { #category : #initialization }
