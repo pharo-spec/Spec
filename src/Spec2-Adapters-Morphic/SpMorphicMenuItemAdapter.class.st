@@ -45,26 +45,7 @@ SpMorphicMenuItemAdapter >> balloonText [
 { #category : #factory }
 SpMorphicMenuItemAdapter >> buildWidget [
 
-	^ self autoRefresh
-		  ifTrue: [ self buildWidgetAutoRefresh ]
-		  ifFalse: [ self buildWidgetNoRefresh ]
-]
-
-{ #category : #factory }
-SpMorphicMenuItemAdapter >> buildWidgetAutoRefresh [
-
-	^ UpdatingMenuItemMorph new
-		  target: self;
-		  balloonTextSelector: #balloonText;
-		  subMenuSelector: #subMenu;
-		  nameSelector: #name;
-		  selector: #performMenuActionWith:;
-		  argumentsBlock: self actionArguments;
-		  getStateSelector: #state;
-		  iconSelector: #icon;
-		  enablementSelector: #enabled;
-		  keyText: self shortcutText;
-		  yourself
+	^ self buildWidgetNoRefresh
 ]
 
 { #category : #factory }
