@@ -34,52 +34,6 @@ Class {
 	#category : #'Spec2-Examples-Demo-Forms'
 }
 
-{ #category : #layout }
-SpDemoStandaloneFormPresenter class >> defaultLayout [
-	
-	^ SpBoxLayout newTopToBottom
-		add:
-			(SpGridLayout build: [ :builder |
-				builder
-					add: 'Name:';
-					add: #nameTextInput;
-					nextRow;
-					add: 'Surname:';
-					add: #surnameTextInput;
-					nextRow;
-					add: 'Number 1:';
-					add: #number1Input;
-					nextRow;
-					add: 'Number 2:';
-					add: #number2Input;
-					nextRow;
-					add: 'Scale:';
-					add: #scaleInput;
-					nextRow;
-					add: 'Password:';
-					add: #passwordInput;
-					nextRow;
-					add: 'Remember me:';
-					add: #checkboxInput;
-					nextRow;
-					"SpDatePresenter is exclusive from Morphic backend for the moment"
-					"add: 'Date:';
-					add: #dateInput;
-					nextRow;"
-					add: 'Gender:';
-					add:
-						(SpBoxLayout newLeftToRight
-							add: #maleButton;
-							add: #femaleButton;
-							yourself) ]);
-		add: (SpBoxLayout newLeftToRight
-				add: #submitButton;
-				add: #restoreButton;
-				yourself)
-			expand: false;
-		yourself
-]
-
 { #category : #'instance creation' }
 SpDemoStandaloneFormPresenter class >> open [
 	<example>
@@ -130,6 +84,50 @@ SpDemoStandaloneFormPresenter >> dateLabel [
 { #category : #accessing }
 SpDemoStandaloneFormPresenter >> dateLabel: anObject [
 	dateLabel := anObject
+]
+
+{ #category : #layout }
+SpDemoStandaloneFormPresenter >> defaultLayout [
+	
+	^ SpBoxLayout newTopToBottom
+		add: (SpGridLayout build: [ :builder |
+			builder
+				add: 'Name:';
+				add: nameTextInput;
+				nextRow;
+				add: 'Surname:';
+				add: surnameTextInput;
+				nextRow;
+				add: 'Number 1:';
+				add: number1Input;
+				nextRow;
+				add: 'Number 2:';
+				add: number2Input;
+				nextRow;
+				add: 'Scale:';
+				add: scaleInput;
+				nextRow;
+				add: 'Password:';
+				add: passwordInput;
+				nextRow;
+				add: 'Remember me:';
+				add: checkboxInput;
+				nextRow;
+				"SpDatePresenter is exclusive from Morphic backend for the moment"
+				"add: 'Date:';
+				add: #dateInput;
+				nextRow;"
+				add: 'Gender:';
+				add: (SpBoxLayout newLeftToRight
+					add: maleButton;
+					add: femaleButton;
+					yourself) ]);
+		add: (SpBoxLayout newLeftToRight
+			add: submitButton;
+			add: restoreButton;
+			yourself)
+		expand: false;
+		yourself
 ]
 
 { #category : #accessing }

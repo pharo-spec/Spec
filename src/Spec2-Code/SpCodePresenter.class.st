@@ -198,14 +198,9 @@ SpCodePresenter >> bindingOf: aString [
 { #category : #'private - commands' }
 SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonGlobalBlock [
 	| variableOrClassName variable |
-	variableOrClassName := self selectedSelector.
-	variableOrClassName ifNil: [ ^ nil ].
+	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
 
-	variable := ((interactionModel doItContext
-		ifNil: [ interactionModel behavior ])
-			ifNil: [ environment
-				ifNil: [ self class environment ] ])
-					lookupVar: variableOrClassName.
+	variable := self lookupEnvironment lookupVar: variableOrClassName.
 
 	variable ifNil: [^nonGlobalBlock value: variableOrClassName ].
 	variable isLiteralVariable ifFalse: [^nonGlobalBlock value: variable name  ].
@@ -318,8 +313,17 @@ SpCodePresenter >> doBrowseImplementors [
 
 { #category : #commands }
 SpCodePresenter >> doBrowseMethodReferences [
+	"Browse references to Variables (Cmd-shift-n)"
+	| variableOrClassName variable usingMethods |
+	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
 
-	self doBrowseSenders
+	variable := self lookupEnvironment lookupVar: variableOrClassName.
+	variable ifNil: [ ^ nil ].
+	usingMethods := variable usingMethods ifEmpty: [ ^ application inform: 'No users found.'].
+
+	"the dialog sadly hard-codes 'senders'"
+	^ self systemNavigation openBrowserFor: variable name withMethods: usingMethods
+
 ]
 
 { #category : #commands }
@@ -579,6 +583,15 @@ SpCodePresenter >> isForScripting [
 SpCodePresenter >> lineNumbers: aBoolean [
 
 	lineNumbers := aBoolean
+]
+
+{ #category : #'command support' }
+SpCodePresenter >> lookupEnvironment [
+	"when searching for variables, start here"
+	^((interactionModel doItContext
+		ifNil: [ interactionModel behavior ])
+			ifNil: [ environment
+				ifNil: [ self class environment ] ])
 ]
 
 { #category : #private }

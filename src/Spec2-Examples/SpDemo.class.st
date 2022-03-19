@@ -82,6 +82,19 @@ SpDemo >> connectPresenters [
 				list setSelectedItem: self selectedPage ] ]
 ]
 
+{ #category : #layout }
+SpDemo >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  add: menu expand: false;
+		  add: (SpPanedLayout newLeftToRight
+				   positionOfSlider: 200;
+				   add: list;
+				   add: page;
+				   yourself);
+		  yourself
+]
+
 { #category : #accessing }
 SpDemo >> defaultPage [
 
@@ -102,39 +115,29 @@ SpDemo >> initialExtent [
 { #category : #initialization }
 SpDemo >> initializePresenters [
 
-	menu := self mainMenu.
-	list := self newList.
 	page := SpBoxLayout newTopToBottom 
 		add: (self instantiate: (selectedPage := self availablePages first));
 		yourself.
-
-	self layout: (SpBoxLayout newTopToBottom
-		add: menu expand: false;
-		add: (SpPanedLayout newLeftToRight
-			positionOfSlider: 200;
-			add: list;
-			add: page;
-			yourself);
-		yourself).
-
+	
+	menu := self mainMenu.
 	menu addKeybindingsTo: self.
-
+	
+	list := self newList.
 	list
 		items: self availablePages;
 		display: [ :item | item pageName ];
-		contextMenu:
-			(self newMenu
-				addItem: [ :item | 
-					item
-						name: 'Browse';
-						icon: (self iconNamed: #smallHelp);
-						action: [ list selectedItem browse ] ];
-				addItem: [ :item | 
-					item
-						name: 'Browse presenter';
-						icon: (self iconNamed: #smallHelp);
-						action: [ list selectedItem new pageClass browse ] ];
-				yourself).
+		contextMenu: (self newMenu
+			addItem: [ :item | 
+				item
+					name: 'Browse';
+					icon: (self iconNamed: #smallHelp);
+					action: [ list selectedItem browse ] ];
+			addItem: [ :item | 
+				item
+					name: 'Browse presenter';
+					icon: (self iconNamed: #smallHelp);
+					action: [ list selectedItem new pageClass browse ] ];
+			yourself).
 
 	self focusOrder
 		add: list;

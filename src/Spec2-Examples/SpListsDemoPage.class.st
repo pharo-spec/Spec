@@ -16,6 +16,12 @@ SpListsDemoPage class >> pageName [
 ]
 
 { #category : #initialization }
+SpListsDemoPage class >> priority [
+
+	^ 400
+]
+
+{ #category : #initialization }
 SpListsDemoPage >> pageClass [
 	^ SpDemoListsPresenter
 ]

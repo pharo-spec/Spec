@@ -13,10 +13,10 @@ SpDemoButtonsPage class >> pageName [
 	^ 'Buttons'
 ]
 
-{ #category : #specs }
+{ #category : #initialization }
 SpDemoButtonsPage class >> priority [
 
-	^ 20
+	^ 600
 ]
 
 { #category : #initialization }

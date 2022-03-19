@@ -10,30 +10,10 @@ Class {
 		'indeterminated',
 		'fixed',
 		'withProgressionBlock',
-		'withText',
-		'label'
+		'withText'
 	],
 	#category : #'Spec2-Examples-Demo-Loading'
 }
-
-{ #category : #layout }
-SpProgressBarDemo class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add: #indeterminated withConstraints: [ :constraints | constraints height: 6 ];
-		add: 'Indeterminated';
-		add: #fixed withConstraints: [ :constraints | constraints height: 10 ];
-		add: 'Fixed';
-		add: #withProgressionBlock withConstraints: [ :constraints | constraints height: 20 ];
-		add: 'With progression block';
-		add:
-			(SpBoxLayout newLeftToRight
-				add: #withText;
-				add: #label withConstraints: [ :constraints | constraints width: 40 ];
-				yourself)
-			withConstraints: [ :constraints | constraints height: 40 ];
-		add: 'With label';
-		yourself
-]
 
 { #category : #examples }
 SpProgressBarDemo class >> example [
@@ -42,55 +22,42 @@ SpProgressBarDemo class >> example [
 	^ self new open
 ]
 
-{ #category : #initialization }
-SpProgressBarDemo >> connectPresenters [
-	withText whenValueChangedDo: [ :value | label label: (value * 100) asInteger asString , '%' ]
-]
+{ #category : #layout }
+SpProgressBarDemo >> defaultLayout [
 
-{ #category : #accessing }
-SpProgressBarDemo >> fixed [
-	^ fixed
-]
-
-{ #category : #accessing }
-SpProgressBarDemo >> fixed: anObject [
-	fixed := anObject
-]
-
-{ #category : #accessing }
-SpProgressBarDemo >> indeterminated [
-	^ indeterminated
-]
-
-{ #category : #accessing }
-SpProgressBarDemo >> indeterminated: anObject [
-	indeterminated := anObject
+	^ SpBoxLayout newTopToBottom
+		  add: 'Indeterminated';
+		  add: indeterminated;
+		  add: 'Fixed';
+		  add: fixed;
+		  add: 'With progression block';
+		  add: withProgressionBlock;
+		  add: 'With text';
+		  add: withText;
+		  yourself
 ]
 
 { #category : #initialization }
 SpProgressBarDemo >> initializePresenters [
+
 	| progress progress2 |
 	indeterminated := self newProgressBar.
-	fixed := self newProgressBar.
-	withProgressionBlock := self newProgressBar.
-	withText := self newProgressBar.
-	label := self newLabel.
-
 	indeterminated indeterminate.
 	
+	fixed := self newProgressBar.
 	fixed fixedPercentage: 30.
 
+	withProgressionBlock := self newProgressBar.
 	progress := 0.
-	withProgressionBlock progress: [ progress := progress + 0.01 ] every: 0.5 second.
-	
-	progress2 := 0.
-	withText progress: [ progress2 := progress2 + 0.01 ] every: 0.1 second.
-	label label: 'This is a progress bar'
-]
+	withProgressionBlock
+		progress: [ progress := progress + 0.01 ]
+		every: 0.5 second.
 
-{ #category : #accessing }
-SpProgressBarDemo >> label [
-	^ label
+	withText := self newProgressBar.
+	progress2 := 0.
+	withText
+		progress: [ progress2 := progress2 + 0.01 ]
+		every: 1 second
 ]
 
 { #category : #'option list presenter' }
@@ -103,24 +70,4 @@ SpProgressBarDemo >> optionIcon [
 SpProgressBarDemo >> optionTitle [
 
 	^ 'Progress bar Presenter'
-]
-
-{ #category : #accessing }
-SpProgressBarDemo >> withProgressionBlock [
-	^ withProgressionBlock
-]
-
-{ #category : #accessing }
-SpProgressBarDemo >> withProgressionBlock: anObject [
-	withProgressionBlock := anObject
-]
-
-{ #category : #accessing }
-SpProgressBarDemo >> withText [
-	^ withText
-]
-
-{ #category : #accessing }
-SpProgressBarDemo >> withText: anObject [
-	withText := anObject
 ]

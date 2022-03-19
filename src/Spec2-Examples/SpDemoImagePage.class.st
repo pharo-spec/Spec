@@ -19,7 +19,7 @@ SpDemoImagePage class >> pageName [
 { #category : #initialization }
 SpDemoImagePage class >> priority [
 
-	^ 16
+	^ 1600
 ]
 
 { #category : #initialization }

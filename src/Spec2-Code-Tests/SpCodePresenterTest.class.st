@@ -182,15 +182,17 @@ SpCodePresenterTest >> testDoBrowseMethodReferences [
 	
 	navigation := SpCodeSystemNavigationMock new.
 	presenter systemNavigation: navigation.
+	presenter environment add: SpCodePresenterTest binding.
+	presenter environment add: SpCodeSystemNavigationMock binding.
 	self openInstance.
 	
-	presenter text: 'testDoBrowseMethodReferencesX'.
+	presenter text: 'Object'.
 	presenter doBrowseMethodReferences.
 	
-	self assert: navigation messageList isEmpty.
+	self assert: navigation messageList isNil.
 	
 	navigation reset.
-	presenter text: 'doBrowseMethodReferences'.
+	presenter text: 'SpCodeSystemNavigationMock'.
 	presenter doBrowseMethodReferences.
 	
 	self assert: navigation messageList notEmpty.

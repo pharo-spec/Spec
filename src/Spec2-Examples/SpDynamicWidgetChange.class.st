@@ -14,14 +14,6 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #layout }
-SpDynamicWidgetChange class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add: #button withConstraints: [ :constraints | constraints height: 25 ];
-		add: #bottom;
-		yourself
-]
-
 { #category : #examples }
 SpDynamicWidgetChange class >> example [
 
@@ -73,6 +65,15 @@ SpDynamicWidgetChange >> changeToList [
 	button font: (LogicalFont familyName: 'Source Sans Pro' pointSize: 10).
 		
 	bottom items: (1 to: 100) asOrderedCollection.
+]
+
+{ #category : #layout }
+SpDynamicWidgetChange >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		add: button expand: false;
+		add: bottom;
+		yourself
 ]
 
 { #category : #initialization }

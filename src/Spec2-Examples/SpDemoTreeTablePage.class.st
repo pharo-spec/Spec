@@ -16,6 +16,12 @@ SpDemoTreeTablePage class >> pageName [
 ]
 
 { #category : #initialization }
+SpDemoTreeTablePage class >> priority [
+
+	^ 300
+]
+
+{ #category : #initialization }
 SpDemoTreeTablePage >> pageClass [
 	^ SpDemoTreeTablePresenter
 ]

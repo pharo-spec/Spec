@@ -13,10 +13,10 @@ SpDemoTextInputPage class >> pageName [
 	^ 'Text input'
 ]
 
-{ #category : #specs }
+{ #category : #initialization }
 SpDemoTextInputPage class >> priority [
 
-	^ 20
+	^ 1200
 ]
 
 { #category : #initialization }

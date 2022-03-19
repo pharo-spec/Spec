@@ -13,16 +13,17 @@ Class {
 	#category : #'Spec2-Examples-Demo-Modals'
 }
 
-{ #category : #layout }
-SpDemoAbstractModalPresenter class >> defaultLayout [
-	^ SpBoxLayout newTopToBottom
-		add: #explanation;
-		yourself
-]
-
 { #category : #accessing }
 SpDemoAbstractModalPresenter >> content [
 	^ self subclassResponsibility
+]
+
+{ #category : #layout }
+SpDemoAbstractModalPresenter >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  add: explanation;
+		  yourself
 ]
 
 { #category : #accessing }

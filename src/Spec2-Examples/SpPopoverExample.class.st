@@ -19,24 +19,24 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #layout }
-SpPopoverExample class >> defaultLayout [
-
-	^ SpBoxLayout newLeftToRight
-		hAlignCenter;
-		vAlignCenter; 
-		add: #top expand: false;
-		add: #left  expand: false;
-		add: #bottom expand: false;
-		add: #right expand: false;
-		yourself
-]
-
 { #category : #showing }
 SpPopoverExample class >> open [
 	<script>
 
 	^ self new open
+]
+
+{ #category : #layout }
+SpPopoverExample >> defaultLayout [
+
+	^ SpBoxLayout newLeftToRight
+		  hAlignCenter;
+		  vAlignCenter;
+		  add: top expand: false;
+		  add: left expand: false;
+		  add: bottom expand: false;
+		  add: right expand: false;
+		  yourself
 ]
 
 { #category : #initialization }

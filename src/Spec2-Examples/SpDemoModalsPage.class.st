@@ -16,10 +16,10 @@ SpDemoModalsPage class >> pageName [
 	^ 'Modals'
 ]
 
-{ #category : #specs }
+{ #category : #initialization }
 SpDemoModalsPage class >> priority [
 
-	^ 30
+	^ 1700
 ]
 
 { #category : #initialization }
