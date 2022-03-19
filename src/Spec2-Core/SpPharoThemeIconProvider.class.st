@@ -18,6 +18,8 @@ SpPharoThemeIconProvider >> iconNamed: aName [
 { #category : #accessing }
 SpPharoThemeIconProvider >> iconNamed: aName ifAbsent: aBlock [
 
+	aName ifNil: [ ^ aBlock value ].
+
 	^ ThemeIcons current 
 		iconNamed: aName 
 		ifNone: aBlock
