@@ -121,6 +121,27 @@ SpAbstractTextPresenterTest >> testWhenSubmitDo [
 	self assert: submitted
 ]
 
+{ #category : #tests }
+SpAbstractTextPresenterTest >> testWhenSubmitDoReceivesAString [
+	| submitted |
+
+	submitted := false.
+	presenter whenSubmitDo: [ :aString | submitted := aString ].
+	
+	self openInstance.
+	
+	presenter type: 'abc'.
+	
+	self textInputAdapter
+		keyDown: $s 
+		shift: false
+		meta: true 
+		control: false 
+		option: false.
+		
+	self assert: submitted equals: 'abc'
+]
+
 { #category : #private }
 SpAbstractTextPresenterTest >> textInputAdapter [
 	

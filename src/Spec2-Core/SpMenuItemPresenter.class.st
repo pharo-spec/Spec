@@ -83,6 +83,12 @@ SpMenuItemPresenter >> icon: anIcon [
 	icon := anIcon
 ]
 
+{ #category : #TOREMOVE }
+SpMenuItemPresenter >> iconName: aString [ 
+	
+	self icon: (self iconNamed: aString)
+]
+
 { #category : #initialization }
 SpMenuItemPresenter >> initialize [
 	super initialize.

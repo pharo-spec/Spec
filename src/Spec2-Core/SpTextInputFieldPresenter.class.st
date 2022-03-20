@@ -204,5 +204,5 @@ SpTextInputFieldPresenter >> whenSubmitDo: aBlock [
 
 	self 
 		bindKeyCombination: SpAcceptChangesCommand defaultShortcutKey | Character cr asKeyCombination 
-		toAction: aBlock
+		toAction: [ aBlock value: self text ]
 ]
