@@ -197,13 +197,13 @@ SpApplication >> hasWindow: aWindow [
 	^ self windows includes: aWindow
 ]
 
-{ #category : #icons }
+{ #category : #TOREMOVE }
 SpApplication >> iconManager [
-
+	"we have icon providers for this"
 	^ iconManager ifNil: [ iconManager := Smalltalk ui icons ]
 ]
 
-{ #category : #icons }
+{ #category : #TOREMOVE }
 SpApplication >> iconManager: anIconManager [
 
 	iconManager := anIconManager 
