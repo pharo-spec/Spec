@@ -41,19 +41,6 @@ SpTablePresenterTest >> testAddColumnRaisesOneEventOnly [
 ]
 
 { #category : #tests }
-SpTablePresenterTest >> testCanAlternateRowColors [
-
-	presenter
-		hideColumnHeaders;
-		alternateRowsColor.
-		
-	self openInstance.
-	
-	presenter withAdapterPerformOrDefer: [ :adapter | 
-		self assert: (adapter instVarNamed: #alternateRowColors) equals: true ]
-]
-
-{ #category : #tests }
 SpTablePresenterTest >> testGivenSortingIsActiveWhenAffectingNewItemsThenNewItemsAreSorted [
 
 	[ 
