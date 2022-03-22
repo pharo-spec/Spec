@@ -7,9 +7,6 @@ Is important notice here that most of the row/cell creation happens on SpMorphic
 Class {
 	#name : #SpMorphicTableAdapter,
 	#superclass : #SpAbstractMorphicListAdapter,
-	#instVars : [
-		'alternateRowColors'
-	],
 	#category : #'Spec2-Adapters-Morphic-Table'
 }
 
@@ -71,7 +68,7 @@ SpMorphicTableAdapter >> addModelTo: tableMorph [
 
 { #category : #configuring }
 SpMorphicTableAdapter >> alternateRowsColor [
-	alternateRowColors := true.
+	self widgetDo: [ :w | w alternateRowsColor: true ]
 ]
 
 { #category : #factory }
@@ -83,7 +80,6 @@ SpMorphicTableAdapter >> buildWidget [
 		intercellSpacing: self class intercellSpacing;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
-		alternateRowsColor: alternateRowColors;
 		yourself.
 
 	self addModelTo: widget.
@@ -123,12 +119,6 @@ SpMorphicTableAdapter >> ifSorted: sortedBlock ifNotSorted: notSortedBlock [
 					state isSorted
 						ifTrue: [ ^ sortedBlock cull: state ] ] ].
 	^ notSortedBlock value
-]
-
-{ #category : #initialization }
-SpMorphicTableAdapter >> initialize [ 
-	super initialize.
-	alternateRowColors := false.
 ]
 
 { #category : #testing }
