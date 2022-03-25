@@ -31,8 +31,8 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateCellFor: m [
 		ifTrue:[sizeY := minY]
 		ifFalse:[sizeY > maxY ifTrue:[sizeY := maxY]].
 	cell cellSize: sizeY.
-	first ifNil:[first := cell] ifNotNil:[last nextCell: cell].
-	last := cell.
+	firstCell ifNil:[firstCell := cell] ifNotNil:[lastCell nextCell: cell].
+	lastCell := cell.
 	height := height + sizeY.
 	sizeX > width ifTrue:[width := sizeX].
 
@@ -42,7 +42,7 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateCellFor: m [
 { #category : #calculating }
 SpMorphicBoxLayoutCalculatorTopToBottom >> calculateFor: aMorph in: newBounds [
 	"An optimized top-to-bottom list layout"
-	| inset extent posX posY centering extraPerCell cell amount |
+	| inset extent posX posY centering extraPerCell cell amount last |
 
 	size := properties minCellSize asPoint. minX := size x. minY := size y.
 	size := properties maxCellSize asPoint. maxX := size x. maxY := size y.
@@ -50,7 +50,7 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateFor: aMorph in: newBounds [
 	extent := newBounds extent.
 	number := 0. vFill := false. sum := 0.
 	width := height := 0.
-	first := last := nil.
+	firstCell := lastCell := nil.
 
 	properties reverseTableCells
 		ifTrue:[aMorph submorphsReverseDo: [ :each | self calculateCellFor: each]]
@@ -94,7 +94,7 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateFor: aMorph in: newBounds [
 
 	number := 0.
 	extra := last := 0.
-	cell := first.
+	cell := firstCell.
 	[cell == nil] whileFalse:[
 		number := number + 1.
 		height := cell cellSize.
