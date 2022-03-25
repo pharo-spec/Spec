@@ -36,7 +36,7 @@ SpMorphicModalWindowAdapter >> mouseClick: evt onBackdrop: aMorph [
 ]
 
 { #category : #protocol }
-SpMorphicModalWindowAdapter >> open [
+SpMorphicModalWindowAdapter >> openWithDeferredAction: aBlock [
 
 	backdropMorph := FullscreenMorph new
 		color: self theme modalBackdropColor;
@@ -52,6 +52,7 @@ SpMorphicModalWindowAdapter >> open [
 	self presenter isCentered 
 		ifTrue: [ self centered ].
 	self presenter windowIsOpened.
+	aBlock value.
 	self waitWhile: [ self widget isInWorld ]
 ]
 

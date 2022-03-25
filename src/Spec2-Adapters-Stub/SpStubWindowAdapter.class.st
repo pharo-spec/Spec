@@ -46,5 +46,11 @@ SpStubWindowAdapter >> open [
 ]
 
 { #category : #factory }
+SpStubWindowAdapter >> openWithDeferredAction: aBlock [
+
+	self presenter windowIsOpened
+]
+
+{ #category : #factory }
 SpStubWindowAdapter >> title: aString [
 ]

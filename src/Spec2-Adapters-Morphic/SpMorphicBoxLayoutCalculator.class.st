@@ -14,12 +14,12 @@ Class {
 		'maxX',
 		'minY',
 		'maxY',
-		'last',
-		'first',
 		'width',
 		'height',
 		'properties',
-		'number'
+		'number',
+		'firstCell',
+		'lastCell'
 	],
 	#category : #'Spec2-Adapters-Morphic-Layout'
 }

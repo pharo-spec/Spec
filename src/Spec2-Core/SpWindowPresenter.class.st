@@ -477,9 +477,10 @@ SpWindowPresenter >> openWithLayout: aSpecLayout [
 
 	self buildWithSpecLayout: aSpecLayout.
 	self application registerWindow: self.
-	self withAdapterDo: [ :anAdapter | anAdapter open ].
-	self allPresenters do: [ :each | each announceDisplayed ].
-	self updateTitle
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter openWithDeferredAction: [ 
+			self allPresenters do: [ :each | each announceDisplayed ].
+			self updateTitle ] ]
 ]
 
 { #category : #api }

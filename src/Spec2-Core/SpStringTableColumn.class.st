@@ -112,7 +112,7 @@ SpStringTableColumn >> isSortable: aBoolean [
 SpStringTableColumn >> onAcceptEdition: aBlock [
 	"Set the block to execute when cell edition is accepted.
 	 `aBlock` receives two arguments: 
-		- the element of the table (See `SpAbstractListPresenter>>#items:`
+		- the element of the table (See `SpAbstractListPresenter>>#items:`)
 		- the string entered while editing"
 
 	acceptAction := aBlock

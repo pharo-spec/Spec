@@ -188,13 +188,22 @@ SpMorphicWindowAdapter >> okToChange [
 { #category : #protocol }
 SpMorphicWindowAdapter >> open [
 
+	self openWithDeferredAction: [  ]
+]
+
+{ #category : #protocol }
+SpMorphicWindowAdapter >> openWithDeferredAction: aBlock [
+
+	self flag: #TODO. "This and its children are more or less the same, it needs to be 
+	revisited looking oportunities to improve the code reuse :("
 	self widget openInWorld.
 	self presenter initialPosition 
 		ifNotNil: [ :aPosition | self widget position: aPosition ].
 	self presenter isCentered 
 		ifTrue: [ self centered ].
 	self presenter presenter takeKeyboardFocus.
-	self windowIsOpened
+	self windowIsOpened.
+	aBlock value
 ]
 
 { #category : #protocol }

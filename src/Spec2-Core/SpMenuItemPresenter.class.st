@@ -16,8 +16,7 @@ Class {
 		'#action',
 		'#shortcut',
 		'#subMenu',
-		'#state',
-		'#autoRefresh'
+		'#state'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -49,16 +48,6 @@ SpMenuItemPresenter >> action: aBlock [
 	action := aBlock
 ]
 
-{ #category : #TOREMOVE }
-SpMenuItemPresenter >> autoRefresh [
-	^ autoRefresh
-]
-
-{ #category : #TOREMOVE }
-SpMenuItemPresenter >> autoRefresh: aBlock [
-	autoRefresh := aBlock
-]
-
 { #category : #api }
 SpMenuItemPresenter >> description [
 	"Answer the description for the menu item."
@@ -72,21 +61,6 @@ SpMenuItemPresenter >> description: aString [
 	 tooltip text."
 
 	description := aString
-]
-
-{ #category : #TOREMOVE }
-SpMenuItemPresenter >> fromSpec: aSpec [
-	| en newSubMenu |
-	en := aSpec enabledBlock ifNil: [ aSpec enabled ].
-	newSubMenu := aSpec subMenu ifNotNil: [ :sub | SpMenuPresenter new fromSpec: sub ].
-	self
-		name: aSpec label;
-		state: aSpec checked;
-		enabled: en;
-		icon: aSpec icon;
-		shortcut: aSpec keyText;
-		subMenu: newSubMenu;
-		action: aSpec action
 ]
 
 { #category : #testing }
@@ -110,11 +84,9 @@ SpMenuItemPresenter >> icon: anIcon [
 ]
 
 { #category : #TOREMOVE }
-SpMenuItemPresenter >> iconName: aSymbol [
-	"This will need to be removed because #iconNamed: will be depending on application, hence it 
-	 does not has sense."
-
-	self icon: (self iconNamed: aSymbol)
+SpMenuItemPresenter >> iconName: aString [ 
+	
+	self icon: (self iconNamed: aString)
 ]
 
 { #category : #initialization }
@@ -122,21 +94,13 @@ SpMenuItemPresenter >> initialize [
 	super initialize.
 
 	action := [  ].
-	name := ''.
-	autoRefresh := false
+	name := ''
 ]
 
 { #category : #testing }
 SpMenuItemPresenter >> isMenuPresenter [
 
 	^ true
-]
-
-{ #category : #TOREMOVE }
-SpMenuItemPresenter >> keyText: aString [
-
-	self flag: #TODO. "This is for backward compatibility and needs to be removed!"
-	self shortcut: aString first meta
 ]
 
 { #category : #localization }
