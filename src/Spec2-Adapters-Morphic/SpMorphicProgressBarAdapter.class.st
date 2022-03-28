@@ -9,7 +9,9 @@ Class {
 	#superclass : #SpAbstractMorphicAdapter,
 	#instVars : [
 		'progressBar',
-		'progressLabel'
+		'progressLabel',
+		'lastRefresh',
+		'refreshRateInMs'
 	],
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
@@ -62,6 +64,16 @@ SpMorphicProgressBarAdapter >> buildWidget [
 	^ panel
 ]
 
+{ #category : #initialization }
+SpMorphicProgressBarAdapter >> initialize [ 
+	
+	super initialize.
+	lastRefresh := 0.
+	"If we refresh the UI too often, it will slow down heavily the job being executed.
+	A good default is to refresh 4 times per second. It can be configured by #refreshRateInMs: if needed"
+	refreshRateInMs := 250.
+]
+
 { #category : #styling }
 SpMorphicProgressBarAdapter >> labelStyle [
 
@@ -77,12 +89,25 @@ SpMorphicProgressBarAdapter >> progressBarState [
 	^ self model state
 ]
 
+{ #category : #accessing }
+SpMorphicProgressBarAdapter >> refreshRateInMs: nbMilliSeconds [
+	"The progress  bar will only be updated if the time between 2 refresh is > nbMilliSeconds"
+	refreshRateInMs := nbMilliSeconds.
+]
+
 { #category : #updating }
 SpMorphicProgressBarAdapter >> updateState [
 
+	| isTimeForRefresh |
 	self progressBarState 
 		customizeMorphicLabel: progressLabel;
 		customizeMorphicBar: progressBar.
+	
+	isTimeForRefresh := Time millisecondClockValue - lastRefresh >= refreshRateInMs.
+	isTimeForRefresh 
+		ifFalse: [ ^ self ].
+		
+	lastRefresh := Time millisecondClockValue.		
 	(Processor activeProcess = UIManager default uiProcess) 
 		ifTrue: [  
 			self widgetDo: [ :w |
