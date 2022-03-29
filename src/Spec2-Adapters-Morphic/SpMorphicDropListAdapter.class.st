@@ -90,7 +90,7 @@ SpMorphicDropListAdapter >> setIndex: anIndex [
 SpMorphicDropListAdapter >> verifyInitialStatus [
 
 	"Verify if I start with a selection or not"
-	self presenter isStartsWithSelection 
+	self presenter isStartWithSelection 
 		ifTrue: [ 
 			(self presenter model isEmpty not 
 				and: [ self presenter selectedIndex = 0 ])

@@ -191,7 +191,7 @@ SpDropListPresenter >> initialize [
 ]
 
 { #category : #testing }
-SpDropListPresenter >> isStartsWithSelection [
+SpDropListPresenter >> isStartWithSelection [
 
 	^ startsWithSelection
 ]
