@@ -10,10 +10,12 @@ Class {
 { #category : #factory }
 SpMorphicDropListAdapter >> buildWidget [
 
-	self model model whenChangedDo: [ 
+	self verifyInitialStatus.
+	
+	self presenter model whenChangedDo: [ 
 		self changed: #getList.
 		self changed: #getIndex ].
-	self model selection whenChangedDo: [ self changed: #getIndex ].
+	self presenter selection whenChangedDo: [ self changed: #getIndex ].
 
 	^ SpDropListMorph new
 		  wrapSelector: #wrap:withIndex:;
@@ -82,6 +84,20 @@ SpMorphicDropListAdapter >> setIndex: anIndex [
 
 	self model selectedIndex = anIndex ifTrue: [ ^ self ].
 	self model selectIndex: anIndex
+]
+
+{ #category : #factory }
+SpMorphicDropListAdapter >> verifyInitialStatus [
+
+	"Verify if I start with a selection or not"
+	self presenter isStartsWithSelection 
+		ifTrue: [ 
+			(self presenter model isEmpty not 
+				and: [ self presenter selectedIndex = 0 ])
+				ifTrue: [ self presenter selectIndex: 1 ] ]
+		ifFalse: [ 
+			self presenter selectedIndex = 0 
+				ifFalse: [ self presenter resetSelection ] ]
 ]
 
 { #category : #'widget API' }

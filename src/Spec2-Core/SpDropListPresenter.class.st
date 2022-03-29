@@ -193,6 +193,12 @@ SpDropListPresenter >> initialize [
 	startsWithSelection := true
 ]
 
+{ #category : #testing }
+SpDropListPresenter >> isStartsWithSelection [
+
+	^ startsWithSelection
+]
+
 { #category : #api }
 SpDropListPresenter >> items [ 
 	"Return the list used to populate the drop list"
@@ -212,12 +218,7 @@ SpDropListPresenter >> items: aList [
 		ifTrue: [ self resetSelection ].
 	
 	dropListItems := aList collect: [ :each | SpDropListItem on: each do: [ ] ].
-	model collection: dropListItems.
-	(dropListItems isNotEmpty
-		and: [ startsWithSelection 
-		and: [ self selection isEmpty ] ])
-		ifTrue: [ self selectIndex: 1 ]
-		ifFalse: [ self resetSelection ]
+	model collection: dropListItems
 ]
 
 { #category : #api }

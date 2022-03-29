@@ -29,3 +29,23 @@ SpDropListWithoutInitialSelectionAdapterTest >> testSelectionStartsEmptyIfStartW
 	self assert: self adapter selectedIndexes equals: #().
 	
 ]
+
+{ #category : #tests }
+SpDropListWithoutInitialSelectionAdapterTest >> testStartWithoutSelectionDoesNotTriggersChange [
+	| count |
+
+	count := 0.
+
+	self presenter
+		startWithoutSelection;
+		items: #(10 20 30);
+		whenSelectionChangedDo: [ count := count + 1 ].
+		
+	self openInstance.
+
+	self assert: count equals: 0.	
+	self presenter selectItem: 10.
+	self assert: count equals: 1.
+	self presenter selectItem: 20.
+	self assert: count equals: 2
+]
