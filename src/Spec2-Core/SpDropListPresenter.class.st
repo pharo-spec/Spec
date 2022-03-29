@@ -55,7 +55,15 @@ SpDropListPresenter >> addItemLabeled: aString do: aBlock icon: anIcon [
 	item := SpDropListItem on: aString do: aBlock.
 	item icon: anIcon.
 
-	self setCollection: (model collection copyWith: item)
+	model isEmpty 
+		ifTrue: [ self setCollection: { item } ]
+		ifFalse: [self appendCollection: { item } ]
+]
+
+{ #category : #private }
+SpDropListPresenter >> appendCollection: items [
+
+	model collection: (model collection, items)
 ]
 
 { #category : #private }
@@ -250,6 +258,9 @@ SpDropListPresenter >> resetSelection [
 { #category : #api }
 SpDropListPresenter >> selectIndex: anInteger [ 
 	"Select the element at position `anInteger` and executes the action associated with it."
+	
+	self selection selectedIndex crTrace.
+	self selection selectedIndex = anInteger ifTrue: [ ^ self ].
 	
 	self selection selectIndex: anInteger.
 	"I execute the block associated with the item"

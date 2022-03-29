@@ -82,8 +82,8 @@ SpMorphicDropListAdapter >> selectedIndexes [
 { #category : #'widget API' }
 SpMorphicDropListAdapter >> setIndex: anIndex [
 
-	self model selectedIndex = anIndex ifTrue: [ ^ self ].
-	self model selectIndex: anIndex
+	self presenter selectedIndex = anIndex ifTrue: [ ^ self ].
+	self presenter selectIndex: anIndex
 ]
 
 { #category : #factory }
