@@ -55,10 +55,8 @@ SpDropListPresenter >> addItemLabeled: aString do: aBlock icon: anIcon [
 	item := SpDropListItem on: aString do: aBlock.
 	item icon: anIcon.
 
-	model add: item.
-	"Adding an item adds it to the selection if there is none".
-	self selection isEmpty ifTrue: [ 
-		self selection selectItem: item ]
+	self setCollection: (model collection copyWith: item)
+	
 ]
 
 { #category : #private }
@@ -218,7 +216,8 @@ SpDropListPresenter >> items: aList [
 		ifTrue: [ self resetSelection ].
 	
 	dropListItems := aList collect: [ :each | SpDropListItem on: each do: [ ] ].
-	model collection: dropListItems
+
+	self setCollection: dropListItems
 ]
 
 { #category : #api }
@@ -295,6 +294,17 @@ SpDropListPresenter >> selection [
 	"Answer selection model, an instance of `SpSingleSelectionMode`."
 	
 	^ selection
+]
+
+{ #category : #private }
+SpDropListPresenter >> setCollection: items [
+
+	model collection: items.
+	(items isNotEmpty
+		and: [ startsWithSelection 
+		and: [ self selection isEmpty ] ])
+		ifTrue: [ self selectIndex: 1 ]
+		ifFalse: [ self resetSelection ]
 ]
 
 { #category : #api }
