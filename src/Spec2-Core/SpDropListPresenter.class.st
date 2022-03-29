@@ -56,7 +56,6 @@ SpDropListPresenter >> addItemLabeled: aString do: aBlock icon: anIcon [
 	item icon: anIcon.
 
 	self setCollection: (model collection copyWith: item)
-	
 ]
 
 { #category : #private }
