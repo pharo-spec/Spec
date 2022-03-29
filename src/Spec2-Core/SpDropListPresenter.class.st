@@ -259,7 +259,6 @@ SpDropListPresenter >> resetSelection [
 SpDropListPresenter >> selectIndex: anInteger [ 
 	"Select the element at position `anInteger` and executes the action associated with it."
 	
-	self selection selectedIndex crTrace.
 	self selection selectedIndex = anInteger ifTrue: [ ^ self ].
 	
 	self selection selectIndex: anInteger.
