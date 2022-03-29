@@ -47,7 +47,7 @@ SpJobListPresenterTest >> testJobIsNotFinishedWhenWaitingLessThanWorkBlockDurati
 SpJobListPresenterTest >> testProgressDoesNotRefreshMoreThanRefreshRate [
 
 	"Ensure progress presenter will not slow down the workblock by calling too many UI refresh"
-	| job waitBetweenJobUpdate counter refreshRateInMs nbUpdates |
+	| job waitBetweenJobUpdate counter refreshRateInMs nbUpdates maxExpected actual |
 
 	waitBetweenJobUpdate := 30 milliSeconds.
 	refreshRateInMs := 150.
@@ -64,5 +64,9 @@ SpJobListPresenterTest >> testProgressDoesNotRefreshMoreThanRefreshRate [
 	presenter model run. ] 
 	ensure: [ counter uninstall. presenter withWindowDo: [ :w | w close ] ].
 	
-	self assert: counter count <= ((waitBetweenJobUpdate asMilliSeconds * nbUpdates / refreshRateInMs) + 2). "Sometimes there is one more UI cycle"
+	maxExpected := (waitBetweenJobUpdate asMilliSeconds * nbUpdates / refreshRateInMs) + 2. "Sometimes there is one more UI cycle"
+	actual := counter count.
+	self 
+		assert: actual <= maxExpected
+		description: ('Expecting max {1} UI draw cycles, got {2}!' format: { maxExpected . actual })
 ]
