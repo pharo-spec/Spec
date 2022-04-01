@@ -6,7 +6,7 @@ SpProgressBarPresenter class >> example [
 
 	progress := 0.
 	^ self new 
-		progress: [ progress:= progress + 0.1 ] every: 0.5 seconds;
+		progress: [ progress:= progress + 0.004 ] every: 0.1 seconds;
 		open
 ]
 
@@ -14,7 +14,7 @@ SpProgressBarPresenter class >> example [
 SpProgressBarPresenter class >> exampleFixedAt [
 
 	^ self new 
-		application: (SpApplication new useBackend: #Gtk);
+		application: (SpApplication new);
 		fixedAt: 0.3;
 		open
 ]

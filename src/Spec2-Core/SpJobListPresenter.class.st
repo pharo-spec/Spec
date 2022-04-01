@@ -4,6 +4,9 @@ A presenter to stack jobs.
 Class {
 	#name : #SpJobListPresenter,
 	#superclass : #SpPresenter,
+	#instVars : [
+		'refreshRateInMs'
+	],
 	#category : #'Spec2-Core-Job'
 }
 
@@ -25,7 +28,9 @@ SpJobListPresenter class >> example [
 						250 milliSeconds wait ] ]).
 		] fork.
 		200 milliSeconds wait ]  
-	] fork
+	] fork.
+
+	^ nil
 ]
 
 { #category : #private }
@@ -33,6 +38,7 @@ SpJobListPresenter >> addJobPresenter: aJob [
 	| presenter |
 	
 	presenter := self instantiate: SpJobPresenter on: aJob.
+	presenter refreshRateInMs: refreshRateInMs.
 	self layout add: presenter expand: false.
 	
 	self layout children size = 1 
@@ -71,6 +77,11 @@ SpJobListPresenter >> pushJob: aJob [
 	aJob whenEndDo: [ :ann | self removeJobPresenter: ann job ]. 
 	
 	aJob run	
+]
+
+{ #category : #api }
+SpJobListPresenter >> refreshRateInMs: anInteger [ 
+	refreshRateInMs := anInteger.
 ]
 
 { #category : #private }
