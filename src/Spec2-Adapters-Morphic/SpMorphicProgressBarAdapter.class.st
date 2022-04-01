@@ -11,7 +11,8 @@ Class {
 		'progressBar',
 		'progressLabel',
 		'lastRefresh',
-		'refreshRateInMs'
+		'refreshRateInMs',
+		'refreshBlock'
 	],
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
@@ -106,10 +107,19 @@ SpMorphicProgressBarAdapter >> updateState [
 	isTimeForRefresh := Time millisecondClockValue - lastRefresh >= refreshRateInMs.
 	isTimeForRefresh 
 		ifFalse: [ ^ self ].
-		
+	
 	lastRefresh := Time millisecondClockValue.		
 	(Processor activeProcess = UIManager default uiProcess) 
 		ifTrue: [  
 			self widgetDo: [ :w |
-				w currentWorld doOneCycle ] ]
+				w currentWorld doOneCycle ] ].
+	refreshBlock ifNotNil: [ refreshBlock value ].
+]
+
+{ #category : #enumerating }
+SpMorphicProgressBarAdapter >> whenRefreshedDo: aBlock [
+	"When the widget will be refreshed, aBlock will be executed.
+	By example, it can be used to test the redraw rate of the presenter."
+	
+	refreshBlock := aBlock
 ]
