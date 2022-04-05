@@ -17,7 +17,7 @@ SpJobListPresenterTest >> testJobIsFinishedWhenWaitingMoreThanWorkBlockDuration 
 	progress := 0.
 	job := SpJob
 			newTitle: 'some job'
-			block: [ : myjob | 1 to: 25 do: [ :i | myjob value: i*4. 30 milliSeconds wait. ] ].
+			block: [ : myjob | 1 to: 25 do: [ :i | myjob value: i*4. 20 milliSeconds wait. ] ].
 	[ presenter := SpJobListPresenter new 
 		pushJob: job;
 		yourself. ] fork. 
