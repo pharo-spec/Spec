@@ -24,5 +24,5 @@ SpActivationPort >> attachTransmission: aTransmission to: aPresenter [
 	aPresenter whenActivatedDo: [ :selection | 
 		self 
 			transmitWith: aTransmission 
-			value: (self applyTransform: selection) ]
+			value: (self applyTransform: selection transmission) ]
 ]
