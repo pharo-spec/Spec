@@ -6,9 +6,9 @@ env:
 
 on:
   push:
-    branches: [ Pharo10 ]
+    branches: [ Pharo11 ]
   pull_request:
-    branches: [ Pharo10 ]
+    branches: [ Pharo11 ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest ]
-        smalltalk: [ Pharo64-10 ]
+        smalltalk: [ Pharo64-11 ]
     runs-on: ${{ matrix.os }}
     name: ${{ matrix.smalltalk }} on ${{ matrix.os }}
     steps:
