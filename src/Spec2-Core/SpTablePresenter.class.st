@@ -133,6 +133,13 @@ SpTablePresenter >> isShowingColumnHeaders [
 	^ showColumnHeaders
 ]
 
+{ #category : #api }
+SpTablePresenter >> removeColumn: aColumn [
+	"Remove a column from the table. A column should be an instance of `SpTableColumn`"
+
+	columns := columns copyWithout: aColumn
+]
+
 { #category : #private }
 SpTablePresenter >> searchValueOf: anObject [
 	

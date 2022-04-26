@@ -82,6 +82,20 @@ SpTablePresenterTest >> testHideColumnHeadersRaisesOneEventOnly [
 	self assert: count equals: 1
 ]
 
+{ #category : #'tests - activation' }
+SpTablePresenterTest >> testRemoveColumnRaisesColumnChangedEvent [
+	| column columnsChanged |
+
+	presenter addColumn: (column := SpStringTableColumn evaluated: #yourself).
+
+	columnsChanged := false.
+	presenter whenColumnsChangedDo: [ columnsChanged := true ].
+
+	presenter removeColumn: column.
+
+	self assert: columnsChanged
+]
+
 { #category : #tests }
 SpTablePresenterTest >> testSelectedItemsReturnsRightElementAfterSortingOfElementsChanged [
 
