@@ -9,7 +9,10 @@ Class {
 	#superclass : #SpAbstractMorphicAdapter,
 	#instVars : [
 		'progressBar',
-		'progressLabel'
+		'progressLabel',
+		'lastRefresh',
+		'refreshRateInMs',
+		'refreshBlock'
 	],
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
@@ -62,6 +65,16 @@ SpMorphicProgressBarAdapter >> buildWidget [
 	^ panel
 ]
 
+{ #category : #initialization }
+SpMorphicProgressBarAdapter >> initialize [ 
+	
+	super initialize.
+	lastRefresh := 0.
+	"If we refresh the UI too often, it will slow down heavily the job being executed.
+	A good default is to refresh 4 times per second. It can be configured by #refreshRateInMs: if needed"
+	refreshRateInMs := 250.
+]
+
 { #category : #styling }
 SpMorphicProgressBarAdapter >> labelStyle [
 
@@ -77,14 +90,36 @@ SpMorphicProgressBarAdapter >> progressBarState [
 	^ self model state
 ]
 
+{ #category : #accessing }
+SpMorphicProgressBarAdapter >> refreshRateInMs: nbMilliSeconds [
+	"The progress  bar will only be updated if the time between 2 refresh is > nbMilliSeconds"
+	refreshRateInMs := nbMilliSeconds.
+]
+
 { #category : #updating }
 SpMorphicProgressBarAdapter >> updateState [
 
+	| isTimeForRefresh |
 	self progressBarState 
 		customizeMorphicLabel: progressLabel;
 		customizeMorphicBar: progressBar.
+	
+	isTimeForRefresh := Time millisecondClockValue - lastRefresh >= refreshRateInMs.
+	isTimeForRefresh 
+		ifFalse: [ ^ self ].
+	
+	lastRefresh := Time millisecondClockValue.		
 	(Processor activeProcess = UIManager default uiProcess) 
 		ifTrue: [  
 			self widgetDo: [ :w |
-				w currentWorld doOneCycle ] ]
+				w currentWorld doOneCycle ] ].
+	refreshBlock ifNotNil: [ refreshBlock value ].
+]
+
+{ #category : #enumerating }
+SpMorphicProgressBarAdapter >> whenRefreshedDo: aBlock [
+	"When the widget will be refreshed, aBlock will be executed.
+	By example, it can be used to test the redraw rate of the presenter."
+	
+	refreshBlock := aBlock
 ]

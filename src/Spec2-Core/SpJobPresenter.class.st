@@ -90,6 +90,12 @@ SpJobPresenter >> model: aModel [
 	self updatePresenter
 ]
 
+{ #category : #private }
+SpJobPresenter >> refreshRateInMs: anInteger [
+
+	progressBar withAdapterDo: [ :progressAdapter | progressAdapter refreshRateInMs: anInteger ]
+]
+
 { #category : #running }
 SpJobPresenter >> run [
 
