@@ -115,7 +115,7 @@ SpDemoButtonsPresenter >> subMenu [
 		addItem: [ :item | 
 			item
 				name: 'Save';
-				icon: (self iconNamed: #smallSaveIcon);
+				icon: (self iconNamed: #smallSave);
 				shortcut: $s meta;
 				action: [ self inform: 'Save' ] ];
 		addItem: [ :item | 
@@ -128,7 +128,7 @@ SpDemoButtonsPresenter >> subMenu [
 			item
 				name: 'Kill';
 				shortcut: $k meta;
-				icon: (self iconNamed: #smallCancelIcon);
+				icon: (self iconNamed: #smallCancel);
 				action: [ self inform: 'Kill' ] ];
 		yourself
 ]

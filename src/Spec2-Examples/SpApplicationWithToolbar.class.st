@@ -65,7 +65,7 @@ SpApplicationWithToolbar >> initializePresenters [
 					item
 						name: '';
 						description: 'Save File';
-						icon: (self iconNamed: #smallSaveIcon);
+						icon: (self iconNamed: #smallSave);
 						action: [ self inform: 'Save File' ] ].
 			group
 				addItem: [ :item | 
@@ -119,7 +119,7 @@ SpApplicationWithToolbar >> subMenu [
 		addItem: [ :item | 
 			item
 				name: 'Save';
-				icon: (self iconNamed: #smallSaveIcon);
+				icon: (self iconNamed: #smallSave);
 				shortcut: $s meta;
 				action: [ self inform: 'Save' ] ];
 		addItem: [ :item | 
@@ -132,7 +132,7 @@ SpApplicationWithToolbar >> subMenu [
 			item
 				name: 'Kill';
 				shortcut: $k meta;
-				icon: (self iconNamed: #smallCancelIcon);
+				icon: (self iconNamed: #smallCancel);
 				action: [ self inform: 'Kill' ] ];
 		yourself
 ]

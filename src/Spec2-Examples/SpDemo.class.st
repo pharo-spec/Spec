@@ -20,7 +20,7 @@ SpDemo class >> menuExamplesOn: aBuilder [
 
 	<worldMenu>
 	(aBuilder item: #'Spec2 examples')
-		iconName: #smallHelpIcon;
+		iconName: #smallHelp;
 		parent: #Help;
 		order: 3.5;
 		help: 'Open Spec2 demo browser.';
@@ -177,7 +177,7 @@ SpDemo >> mainMenu [
 					item
 						name: nil;
 						description: 'Save File';
-						icon: (self iconNamed: #smallSaveIcon);
+						icon: (self iconNamed: #smallSave);
 						action: [ self inform: 'Save File' ] ].
 			group
 				addItem: [ :item | 
@@ -254,7 +254,7 @@ SpDemo >> subMenu [
 		addItem: [ :item | 
 			item
 				name: 'Save';
-				icon: (self iconNamed: #smallSaveIcon);
+				icon: (self iconNamed: #smallSave);
 				shortcut: $s meta;
 				action: [ self inform: 'Save' ] ];
 		addItem: [ :item | 
@@ -267,7 +267,7 @@ SpDemo >> subMenu [
 			item
 				name: 'Close';
 				shortcut: $c meta;
-				icon: (self iconNamed: #smallCancelIcon);
+				icon: (self iconNamed: #smallCancel);
 				action: [ self inform: 'Kill' ] ];
 		yourself
 ]
