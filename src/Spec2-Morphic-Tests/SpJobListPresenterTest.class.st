@@ -28,8 +28,9 @@ SpJobListPresenterTest >> testJobIsFinishedWhenWaitingMoreThanWorkBlockDuration 
 
 { #category : #tests }
 SpJobListPresenterTest >> testJobIsNotFinishedWhenWaitingLessThanWorkBlockDuration [
-
 	| progress job |
+
+	self skipOnPharoCITestingEnvironment.
 
 	progress := 0.
 	job := SpJob
@@ -45,10 +46,11 @@ SpJobListPresenterTest >> testJobIsNotFinishedWhenWaitingLessThanWorkBlockDurati
 
 { #category : #tests }
 SpJobListPresenterTest >> testProgressDoesNotRefreshMoreThanRefreshRate [
-
 	"Ensure progress presenter will not slow down the workblock by calling too many UI refresh"
 	| job waitBetweenJobUpdate counter refreshRateInMs nbUpdates maxExpected |
 
+	self skipOnPharoCITestingEnvironment.
+	
 	waitBetweenJobUpdate := 30 milliSeconds.
 	refreshRateInMs := 150.
 	nbUpdates := 25.
