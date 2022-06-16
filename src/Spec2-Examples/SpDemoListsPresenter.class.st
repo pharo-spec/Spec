@@ -73,13 +73,13 @@ SpDemoListsPresenter >> iconFor: class [
 		ifTrue: [ class hasPassedTest ifTrue: [ ^ self iconNamed: #testGreenIcon ].
 			class hasFailedTest ifTrue: [ ^ self iconNamed: #testYellowIcon ].
 			class hasErrorTest ifTrue: [ ^ self iconNamed: #testRedIcon ].
-			^ self iconNamed: #testNotRunIcon ].
-	class organization classComment ifEmpty: [ ^ self iconNamed: #uncommentedClassIcon ].
+			^ self iconNamed: #testNotRun ].
+	class organization classComment ifEmpty: [ ^ self iconNamed: #uncommentedClass ].
 	((class includesBehavior: (Smalltalk globals at: #TestCase ifAbsent: [ false ])) and: [ class isAbstract not ])
 		ifTrue: [ class hasPassedTest ifTrue: [ ^ self iconNamed: #testGreenIcon ].
 			class hasFailedTest ifTrue: [ ^ self iconNamed: #testYellowIcon ].
 			class hasErrorTest ifTrue: [ ^ self iconNamed: #testRedIcon ].
-			^ self iconNamed: #testNotRunIcon ].
+			^ self iconNamed: #testNotRun ].
 	class organization classComment ifEmpty: [ ^ self iconNamed: #uncommentedClassIcon ].
 	^ class systemIcon
 ]
