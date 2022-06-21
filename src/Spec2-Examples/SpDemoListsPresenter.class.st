@@ -70,17 +70,17 @@ SpDemoListsPresenter >> defaultLayout [
 { #category : #defaults }
 SpDemoListsPresenter >> iconFor: class [
 	((class includesBehavior: (Smalltalk globals at: #TestCase ifAbsent: [ false ])) and: [ class isAbstract not ])
-		ifTrue: [ class hasPassedTest ifTrue: [ ^ self iconNamed: #testGreenIcon ].
-			class hasFailedTest ifTrue: [ ^ self iconNamed: #testYellowIcon ].
-			class hasErrorTest ifTrue: [ ^ self iconNamed: #testRedIcon ].
+		ifTrue: [ class hasPassedTest ifTrue: [ ^ self iconNamed: #testGreen ].
+			class hasFailedTest ifTrue: [ ^ self iconNamed: #testYellow ].
+			class hasErrorTest ifTrue: [ ^ self iconNamed: #testRed ].
 			^ self iconNamed: #testNotRun ].
 	class organization classComment ifEmpty: [ ^ self iconNamed: #uncommentedClass ].
 	((class includesBehavior: (Smalltalk globals at: #TestCase ifAbsent: [ false ])) and: [ class isAbstract not ])
-		ifTrue: [ class hasPassedTest ifTrue: [ ^ self iconNamed: #testGreenIcon ].
-			class hasFailedTest ifTrue: [ ^ self iconNamed: #testYellowIcon ].
-			class hasErrorTest ifTrue: [ ^ self iconNamed: #testRedIcon ].
+		ifTrue: [ class hasPassedTest ifTrue: [ ^ self iconNamed: #testGreen ].
+			class hasFailedTest ifTrue: [ ^ self iconNamed: #testYellow ].
+			class hasErrorTest ifTrue: [ ^ self iconNamed: #testRed ].
 			^ self iconNamed: #testNotRun ].
-	class organization classComment ifEmpty: [ ^ self iconNamed: #uncommentedClassIcon ].
+	class organization classComment ifEmpty: [ ^ self iconNamed: #uncommentedClass ].
 	^ class systemIcon
 ]
 

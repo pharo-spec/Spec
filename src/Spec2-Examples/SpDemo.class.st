@@ -163,14 +163,14 @@ SpDemo >> mainMenu [
 				addItem: [ :item | 
 					item
 						name: 'File';
-						icon: (self iconNamed: #openIcon);
+						icon: (self iconNamed: #open);
 						subMenu: self subMenu ].
 			group
 				addItem: [ :item | 
 					item
 						name: nil;
 						description: 'Open file';
-						icon: (self iconNamed: #openIcon);
+						icon: (self iconNamed: #open);
 						action: [ self inform: 'Open File' ] ].
 			group
 				addItem: [ :item | 
@@ -184,7 +184,7 @@ SpDemo >> mainMenu [
 					item
 						name: nil;
 						description: 'Print file';
-						icon: (self iconNamed: #smallPrintIcon);
+						icon: (self iconNamed: #smallPrint);
 						action: [ self inform: 'Print file' ] ] ];
 		addGroup: [ :group | 
 			group
@@ -192,14 +192,14 @@ SpDemo >> mainMenu [
 					item
 						name: nil;
 						description: 'Undo';
-						icon: (self iconNamed: #smallUndoIcon);
+						icon: (self iconNamed: #smallUndo);
 						action: [ self inform: 'Undo' ] ].
 			group
 				addItem: [ :item | 
 					item
 						name: nil;
 						description: 'Redo';
-						icon: (self iconNamed: #smallRedoIcon);
+						icon: (self iconNamed: #smallRedo);
 						action: [ self inform: 'Redo' ] ] ];
 		addGroup: [ :group | 
 			group
@@ -248,7 +248,7 @@ SpDemo >> subMenu [
 		addItem: [ :item | 
 			item
 				name: 'Open';
-				icon: (self iconNamed: #openIcon);
+				icon: (self iconNamed: #open);
 				shortcut: $o meta;
 				action: [ self inform: 'Open' ] ];
 		addItem: [ :item | 
@@ -261,7 +261,7 @@ SpDemo >> subMenu [
 			item
 				name: 'Print';
 				shortcut: $p meta;
-				icon: (self iconNamed: #smallPrintIcon);
+				icon: (self iconNamed: #smallPrint);
 				action: [ self inform: 'Print' ] ];
 		addItem: [ :item | 
 			item
