@@ -61,18 +61,18 @@ SpMorphicListDataSource >> listModel [
 
 { #category : #accessing }
 SpMorphicListDataSource >> menuColumn: column row: rowIndex [
-
 	| menuPresenter |
+
 	menuPresenter := self model contextMenu.
 	menuPresenter ifNil: [ ^ nil ].
 	^ SpBindings
 		  value: self model application adapterBindings
 		  during: [ 
-			  | m |
-			  m := menuPresenter value.
-			  m isMorph
-				  ifTrue: [ m ]
-				  ifFalse: [ m build ] ]
+			  | concreteMenuPresenter |
+			  concreteMenuPresenter := menuPresenter value.
+			  concreteMenuPresenter isMorph
+				  ifTrue: [ concreteMenuPresenter ]
+				  ifFalse: [ concreteMenuPresenter build ] ]
 ]
 
 { #category : #accessing }
