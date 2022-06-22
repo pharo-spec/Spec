@@ -109,26 +109,26 @@ SpDemoButtonsPresenter >> subMenu [
 		addItem: [ :item | 
 			item
 				name: 'Open';
-				icon: (self iconNamed: #openIcon);
+				icon: (self iconNamed: #opens);
 				shortcut: $o meta;
 				action: [ self inform: 'Open' ] ];
 		addItem: [ :item | 
 			item
 				name: 'Save';
-				icon: (self iconNamed: #smallSaveIcon);
+				icon: (self iconNamed: #smallSave);
 				shortcut: $s meta;
 				action: [ self inform: 'Save' ] ];
 		addItem: [ :item | 
 			item
 				name: 'Print';
 				shortcut: $p meta;
-				icon: (self iconNamed: #smallPrintIcon);
+				icon: (self iconNamed: #smallPrint);
 				action: [ self inform: 'Print' ] ];
 		addItem: [ :item | 
 			item
 				name: 'Kill';
 				shortcut: $k meta;
-				icon: (self iconNamed: #smallCancelIcon);
+				icon: (self iconNamed: #smallCancel);
 				action: [ self inform: 'Kill' ] ];
 		yourself
 ]

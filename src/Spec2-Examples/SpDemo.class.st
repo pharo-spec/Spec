@@ -20,7 +20,7 @@ SpDemo class >> menuExamplesOn: aBuilder [
 
 	<worldMenu>
 	(aBuilder item: #'Spec2 examples')
-		iconName: #smallHelpIcon;
+		iconName: #smallHelp;
 		parent: #Help;
 		order: 3.5;
 		help: 'Open Spec2 demo browser.';
@@ -163,28 +163,28 @@ SpDemo >> mainMenu [
 				addItem: [ :item | 
 					item
 						name: 'File';
-						icon: (self iconNamed: #openIcon);
+						icon: (self iconNamed: #open);
 						subMenu: self subMenu ].
 			group
 				addItem: [ :item | 
 					item
 						name: nil;
 						description: 'Open file';
-						icon: (self iconNamed: #openIcon);
+						icon: (self iconNamed: #open);
 						action: [ self inform: 'Open File' ] ].
 			group
 				addItem: [ :item | 
 					item
 						name: nil;
 						description: 'Save File';
-						icon: (self iconNamed: #smallSaveIcon);
+						icon: (self iconNamed: #smallSave);
 						action: [ self inform: 'Save File' ] ].
 			group
 				addItem: [ :item | 
 					item
 						name: nil;
 						description: 'Print file';
-						icon: (self iconNamed: #smallPrintIcon);
+						icon: (self iconNamed: #smallPrint);
 						action: [ self inform: 'Print file' ] ] ];
 		addGroup: [ :group | 
 			group
@@ -192,14 +192,14 @@ SpDemo >> mainMenu [
 					item
 						name: nil;
 						description: 'Undo';
-						icon: (self iconNamed: #smallUndoIcon);
+						icon: (self iconNamed: #smallUndo);
 						action: [ self inform: 'Undo' ] ].
 			group
 				addItem: [ :item | 
 					item
 						name: nil;
 						description: 'Redo';
-						icon: (self iconNamed: #smallRedoIcon);
+						icon: (self iconNamed: #smallRedo);
 						action: [ self inform: 'Redo' ] ] ];
 		addGroup: [ :group | 
 			group
@@ -248,26 +248,26 @@ SpDemo >> subMenu [
 		addItem: [ :item | 
 			item
 				name: 'Open';
-				icon: (self iconNamed: #openIcon);
+				icon: (self iconNamed: #open);
 				shortcut: $o meta;
 				action: [ self inform: 'Open' ] ];
 		addItem: [ :item | 
 			item
 				name: 'Save';
-				icon: (self iconNamed: #smallSaveIcon);
+				icon: (self iconNamed: #smallSave);
 				shortcut: $s meta;
 				action: [ self inform: 'Save' ] ];
 		addItem: [ :item | 
 			item
 				name: 'Print';
 				shortcut: $p meta;
-				icon: (self iconNamed: #smallPrintIcon);
+				icon: (self iconNamed: #smallPrint);
 				action: [ self inform: 'Print' ] ];
 		addItem: [ :item | 
 			item
 				name: 'Close';
 				shortcut: $c meta;
-				icon: (self iconNamed: #smallCancelIcon);
+				icon: (self iconNamed: #smallCancel);
 				action: [ self inform: 'Kill' ] ];
 		yourself
 ]

@@ -51,28 +51,28 @@ SpApplicationWithToolbar >> initializePresenters [
 				addItem: [ :item | 
 					item
 						name: 'File';
-						icon: (self iconNamed: #openIcon);
+						icon: (self iconNamed: #open);
 						subMenu: self subMenu ].
 			group
 				addItem: [ :item | 
 					item
 						name: '';
 						description: 'Open file';
-						icon: (self iconNamed: #openIcon);
+						icon: (self iconNamed: #open);
 						action: [ self inform: 'Open File' ] ].
 			group
 				addItem: [ :item | 
 					item
 						name: '';
 						description: 'Save File';
-						icon: (self iconNamed: #smallSaveIcon);
+						icon: (self iconNamed: #smallSave);
 						action: [ self inform: 'Save File' ] ].
 			group
 				addItem: [ :item | 
 					item
 						name: '';
 						description: 'Print file';
-						icon: (self iconNamed: #smallPrintIcon);
+						icon: (self iconNamed: #smallPrint);
 						action: [ self inform: 'Print file' ] ] ];
 		addGroup: [ :group | 
 			group
@@ -80,14 +80,14 @@ SpApplicationWithToolbar >> initializePresenters [
 					item
 						name: '';
 						description: 'Undo';
-						icon: (self iconNamed: #smallUndoIcon);
+						icon: (self iconNamed: #smallUndo);
 						action: [ self inform: 'Undo' ] ].
 			group
 				addItem: [ :item | 
 					item
 						name: '';
 						description: 'Redo';
-						icon: (self iconNamed: #smallRedoIcon);
+						icon: (self iconNamed: #smallRedo);
 						action: [ self inform: 'Redo' ] ] ];
 		addGroup: [ :group | 
 			group
@@ -113,26 +113,26 @@ SpApplicationWithToolbar >> subMenu [
 		addItem: [ :item | 
 			item
 				name: 'Open';
-				icon: (self iconNamed: #openIcon);
+				icon: (self iconNamed: #open);
 				shortcut: $o meta;
 				action: [ self inform: 'Open' ] ];
 		addItem: [ :item | 
 			item
 				name: 'Save';
-				icon: (self iconNamed: #smallSaveIcon);
+				icon: (self iconNamed: #smallSave);
 				shortcut: $s meta;
 				action: [ self inform: 'Save' ] ];
 		addItem: [ :item | 
 			item
 				name: 'Print';
 				shortcut: $p meta;
-				icon: (self iconNamed: #smallPrintIcon);
+				icon: (self iconNamed: #smallPrint);
 				action: [ self inform: 'Print' ] ];
 		addItem: [ :item | 
 			item
 				name: 'Kill';
 				shortcut: $k meta;
-				icon: (self iconNamed: #smallCancelIcon);
+				icon: (self iconNamed: #smallCancel);
 				action: [ self inform: 'Kill' ] ];
 		yourself
 ]
