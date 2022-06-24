@@ -532,7 +532,6 @@ SpAbstractMorphicAdapter >> sendMouseDownEvent: aMouseButtonEvent [
 
 	(widget handlesMouseDown: evt) 
 		ifTrue: [ widget handleMouseDown: evt ]
-	
 ]
 
 { #category : #emulating }

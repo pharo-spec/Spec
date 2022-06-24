@@ -60,9 +60,9 @@ SpAbstractListCommonPropertiestTest >> testRightClickShowsMenuWhenThereAreNoItem
 	presenter
 		items: #();
 		contextMenu: (menu := SpMockMenuPresenter new).
-	self openInstance.
-	presenter adapter sendMouseDownEvent: MouseButtonEvent yellowButton.
+
 	self deny: menu shown.
+	self emulateRightClick.
 	self assert: menu shown
 ]
 
