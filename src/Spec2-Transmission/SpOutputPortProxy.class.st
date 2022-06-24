@@ -50,12 +50,6 @@ SpOutputPortProxy class >> on: aPresenter [
 	^ self new presenter: aPresenter
 ]
 
-{ #category : #converting }
-SpOutputPortProxy >> asInspection [
-
-	^ StPresenterInspection for: self
-]
-
 { #category : #'reflective operations' }
 SpOutputPortProxy >> doesNotUnderstand: aMessage [
 	| result |
