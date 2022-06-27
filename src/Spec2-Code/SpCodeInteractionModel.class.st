@@ -80,6 +80,12 @@ SpCodeInteractionModel >> isForScripting [
 	^ false
 ]
 
+{ #category : #testing }
+SpCodeInteractionModel >> isScripting [
+
+	^ false
+]
+
 { #category : #'interactive error protocol' }
 SpCodeInteractionModel >> notify: message at: location in: code [
 	| currentSelection stripMessage |

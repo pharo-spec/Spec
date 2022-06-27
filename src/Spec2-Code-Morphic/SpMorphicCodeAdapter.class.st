@@ -154,6 +154,12 @@ SpMorphicCodeAdapter >> isForScripting [
 	^ self presenter isForScripting
 ]
 
+{ #category : #'widget API' }
+SpMorphicCodeAdapter >> isScripting [
+
+	^ self presenter isScripting
+]
+
 { #category : #private }
 SpMorphicCodeAdapter >> newCompletionEngine: anInteractionModel [
 

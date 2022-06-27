@@ -31,6 +31,12 @@ SpCodeObjectInteractionModel >> isForScripting [
 	^ true
 ]
 
+{ #category : #testing }
+SpCodeObjectInteractionModel >> isScripting [
+
+	^ true
+]
+
 { #category : #accessing }
 SpCodeObjectInteractionModel >> object [
 
