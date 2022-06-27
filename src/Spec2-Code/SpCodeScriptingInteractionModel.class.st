@@ -40,6 +40,12 @@ SpCodeScriptingInteractionModel >> isForScripting [
 	^ true
 ]
 
+{ #category : #testing }
+SpCodeScriptingInteractionModel >> isScripting [
+
+	^ true
+]
+
 { #category : #accessing }
 SpCodeScriptingInteractionModel >> removeBinding: aBinding [
  

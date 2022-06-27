@@ -579,6 +579,14 @@ SpCodePresenter >> isForScripting [
 		ifNil: [ false ]
 ]
 
+{ #category : #'private - bindings' }
+SpCodePresenter >> isScripting [
+
+	^ self interactionModel 
+		ifNotNil: [ :im | im isScripting ]
+		ifNil: [ false ]
+]
+
 { #category : #accessing }
 SpCodePresenter >> lineNumbers: aBoolean [
 

@@ -68,14 +68,14 @@ SpCodeInteractionModel >> hasBindingThatBeginsWith: aString [
 		anySatisfy: [ :each | each beginsWith: aString ]
 ]
 
-{ #category : #'interactive error protocol' }
-SpCodeInteractionModel >> interactive [
+{ #category : #testing }
+SpCodeInteractionModel >> isForScripting [
 
-	^ true
+	^ false
 ]
 
 { #category : #testing }
-SpCodeInteractionModel >> isForScripting [
+SpCodeInteractionModel >> isScripting [
 
 	^ false
 ]
