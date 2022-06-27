@@ -38,6 +38,10 @@ SpStringTableColumn >> acceptColumnVisitor: aBuilder [
 ]
 
 { #category : #api }
+SpStringTableColumn >> alignment [
+]
+
+{ #category : #api }
 SpStringTableColumn >> beEditable [ 
 	"Set the cell as editable."
 

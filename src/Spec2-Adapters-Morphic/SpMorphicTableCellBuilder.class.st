@@ -19,6 +19,16 @@ SpMorphicTableCellBuilder class >> on: aDataSource [
 ]
 
 { #category : #private }
+SpMorphicTableCellBuilder >> addAlignmentColumn: aTableColumn item: item to: content [
+
+	aTableColumn displayAlignment ifNotNil: [ :block |
+		^ content asText addAttribute: (block cull: item) asTextAlignment ].
+	
+	^ content
+	
+]
+
+{ #category : #private }
 SpMorphicTableCellBuilder >> addBackgroundColorColumn: aTableColumn item: item toMorph: aMorph [
 
 	aTableColumn displayBackgroundColor ifNotNil: [ :block |
@@ -230,6 +240,7 @@ SpMorphicTableCellBuilder >> visitStringColumn: aTableColumn [
 
 	content := aTableColumn readObject: item.
 	"add properties"
+	content := self addAlignmentColumn: aTableColumn item: item to: content.
 	content := self addColorColumn: aTableColumn item: item to: content.
 	content := self addItalicColumn: aTableColumn item: item to: content.
 	content := self addBoldColumn: aTableColumn item: item to: content.
