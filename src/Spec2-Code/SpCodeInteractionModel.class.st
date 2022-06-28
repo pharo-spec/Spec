@@ -69,12 +69,6 @@ SpCodeInteractionModel >> hasBindingThatBeginsWith: aString [
 ]
 
 { #category : #testing }
-SpCodeInteractionModel >> isForScripting [
-
-	^ false
-]
-
-{ #category : #testing }
 SpCodeInteractionModel >> isScripting [
 
 	^ false

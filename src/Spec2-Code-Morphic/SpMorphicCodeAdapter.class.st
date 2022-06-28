@@ -66,7 +66,7 @@ SpMorphicCodeAdapter >> classOrMetaClass: aClass [
 		self 
 			setEditingModeFor: self widget textArea 
 			withBehavior: aClass
-			forScripting: self isForScripting ]
+			forScripting: self isScripting ]
 ]
 
 { #category : #private }
@@ -149,12 +149,6 @@ SpMorphicCodeAdapter >> interactionModel: anInteractionModel [
 ]
 
 { #category : #'widget API' }
-SpMorphicCodeAdapter >> isForScripting [
-
-	^ self presenter isForScripting
-]
-
-{ #category : #'widget API' }
 SpMorphicCodeAdapter >> isScripting [
 
 	^ self presenter isScripting
@@ -164,7 +158,7 @@ SpMorphicCodeAdapter >> isScripting [
 SpMorphicCodeAdapter >> newCompletionEngine: anInteractionModel [
 
 	^ SpMorphicCodeCompletionEngine new 
-		scripting: anInteractionModel isForScripting;
+		scripting: anInteractionModel isScripting;
 		doItRequestor: anInteractionModel;
 		doItContext: anInteractionModel doItContext;
 		completionClass: anInteractionModel selectedClassOrMetaClass;
@@ -214,7 +208,7 @@ SpMorphicCodeAdapter >> setEditingModeFor: textArea [
 				self 
 					setEditingModeFor: textArea 
 					withBehavior: self behavior 
-					forScripting: self isForScripting ] ]
+					forScripting: self isScripting ] ]
 		ifFalse: [ 
 			super setEditingModeFor: textArea ]
 ]

@@ -26,12 +26,6 @@ SpCodeObjectInteractionModel >> doItReceiver [
 ]
 
 { #category : #testing }
-SpCodeObjectInteractionModel >> isForScripting [
-
-	^ true
-]
-
-{ #category : #testing }
 SpCodeObjectInteractionModel >> isScripting [
 
 	^ true
