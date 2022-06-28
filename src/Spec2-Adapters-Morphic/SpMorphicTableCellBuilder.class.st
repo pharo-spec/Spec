@@ -183,9 +183,11 @@ SpMorphicTableCellBuilder >> visitDropListColumn: aDropListTableColumn [
 		             addStyle: 'table';
 		             items: (aDropListTableColumn readObject: self item);
 		             yourself.
- 
+		
+ 	aDropListTableColumn shouldStartWithSelection 
+		ifFalse: [ presenter startWithoutSelection ].
 	aDropListTableColumn display ifNotNil: [ 
-		presenter display: (aDropListTableColumn display) ].
+		presenter display: aDropListTableColumn display ].
 	aDropListTableColumn selectedItemChangedAction ifNotNil: [ 
 		presenter selection whenChangedDo: [ :selection | 
 			aDropListTableColumn selectedItemChangedAction

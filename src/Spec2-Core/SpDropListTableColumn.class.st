@@ -13,7 +13,8 @@ Class {
 	#superclass : #SpTableColumn,
 	#instVars : [
 		'display',
-		'selectedItemChangedAction'
+		'selectedItemChangedAction',
+		'startWithSelection'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
@@ -50,6 +51,11 @@ SpDropListTableColumn >> display: aBlock [
 	display := aBlock
 ]
 
+{ #category : #initialization }
+SpDropListTableColumn >> initialize [ 
+	startWithSelection := true
+]
+
 { #category : #accessing }
 SpDropListTableColumn >> selectedItemChangedAction [
 		
@@ -60,4 +66,19 @@ SpDropListTableColumn >> selectedItemChangedAction [
 SpDropListTableColumn >> selectedItemChangedAction: aBlock [
 
 	selectedItemChangedAction := aBlock
+]
+
+{ #category : #accessing }
+SpDropListTableColumn >> shouldStartWithSelection [ 
+	^ startWithSelection
+]
+
+{ #category : #accessing }
+SpDropListTableColumn >> startWithSelection [ 
+	startWithSelection := true
+]
+
+{ #category : #accessing }
+SpDropListTableColumn >> startWithoutSelection [ 
+	startWithSelection := false
 ]
