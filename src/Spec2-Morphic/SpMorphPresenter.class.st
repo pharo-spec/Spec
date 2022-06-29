@@ -5,6 +5,8 @@ Sometimes, an user may want to plug a custom morph into Spec2.
 Class {
 	#name : #SpMorphPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
+	#traits : 'SpTContextMenu',
+	#classTraits : 'SpTContextMenu classTrait',
 	#instVars : [
 		'#morph => ObservableSlot'
 	],

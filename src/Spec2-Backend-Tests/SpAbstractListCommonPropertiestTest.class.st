@@ -54,6 +54,19 @@ SpAbstractListCommonPropertiestTest >> testRightClickShowsMenu [
 ]
 
 { #category : #tests }
+SpAbstractListCommonPropertiestTest >> testRightClickShowsMenuWhenThereAreNoItems [
+	| menu |
+
+	presenter
+		items: #();
+		contextMenu: (menu := SpMockMenuPresenter new).
+
+	self deny: menu shown.
+	self emulateRightClick.
+	self assert: menu shown
+]
+
+{ #category : #tests }
 SpAbstractListCommonPropertiestTest >> testSingleClickActivatesRowInSingleClickActivationMode [
 
 	| activated |

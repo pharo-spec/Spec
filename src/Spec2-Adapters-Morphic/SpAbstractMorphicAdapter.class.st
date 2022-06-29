@@ -519,6 +519,40 @@ SpAbstractMorphicAdapter >> sendClickEvent [
 ]
 
 { #category : #emulating }
+SpAbstractMorphicAdapter >> sendMouseDownEvent: aMouseButtonEvent [
+	| evt |
+
+	evt := MouseButtonEvent new 
+		setType: nil 
+		position: widget center 
+		which: aMouseButtonEvent 
+		buttons: aMouseButtonEvent 
+		hand: self currentHand
+		stamp: nil.
+
+	(widget handlesMouseDown: evt) 
+		ifTrue: [ widget handleMouseDown: evt ]
+]
+
+{ #category : #emulating }
+SpAbstractMorphicAdapter >> sendMouseUpEvent: aMouseButtonEvent [
+	| evt |
+
+	evt := MouseButtonEvent new 
+		setType: nil 
+		position: widget center 
+		which: aMouseButtonEvent 
+		buttons: aMouseButtonEvent 
+		hand: nil 
+		stamp: nil.
+
+	"Yes, is handlesMouseDown: :P"
+	(widget handlesMouseDown: evt) 
+		ifTrue: [ widget handleMouseUp: evt ]
+	
+]
+
+{ #category : #emulating }
 SpAbstractMorphicAdapter >> sendRightClickEvent [
 	| evt |
 

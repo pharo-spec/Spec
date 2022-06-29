@@ -35,7 +35,7 @@ SpDemoImagePresenter >> defaultLayout [
 			yourself);
 		add: (SpBoxLayout newLeftToRight
 			add: 'Image added directly from the layout definition:';
-			add: (self iconNamed: #pharoBig);
+			add: (self newImage image: (self iconNamed: #pharoBig));
 			yourself);
 		yourself
 ]

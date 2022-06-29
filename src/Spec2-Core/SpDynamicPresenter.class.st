@@ -1,5 +1,6 @@
 "
-IMPORTANT: This presenter is obsolete since all layouts now are dynaamic. 
+IMPORTANT: This presenter is obsolete since all layouts now are dynamic. 
+
 This presenter just adds as value the capability to store widgets in a dictionary, which is not really an important need, so we are considering remove it.
 Also, it is currently broken.
 

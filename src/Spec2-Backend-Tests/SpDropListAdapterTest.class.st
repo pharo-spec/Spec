@@ -48,6 +48,11 @@ SpDropListAdapterTest >> testRemovingIconsAfterAddingThem [
 
 { #category : #tests }
 SpDropListAdapterTest >> testResetingSelectionResetsSelection [
+
+	"reseting selection before start does not has sense if we set startWithSelection 
+	(the default) because a selection will be forced."
+	self presenter startWithoutSelection.
+
 	self presenter selectItem: 10.
 
 	self presenter resetSelection.
@@ -117,6 +122,11 @@ SpDropListAdapterTest >> testSettingNilResetsGeneratesEvent [
 
 { #category : #tests }
 SpDropListAdapterTest >> testSettingNilResetsSelection [
+
+	"reseting selection before start does not has sense if we set startWithSelection 
+	(the default) because a selection will be forced."
+	self presenter startWithoutSelection.
+
 	self presenter selectItem: 10.
 	self presenter selectItem: nil.
 

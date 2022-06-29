@@ -88,6 +88,12 @@ SpCollectionListModel >> initialize [
 	super initialize
 ]
 
+{ #category : #testing }
+SpCollectionListModel >> isEmpty [
+
+	^ collection isEmpty
+]
+
 { #category : #accessing }
 SpCollectionListModel >> items [
 

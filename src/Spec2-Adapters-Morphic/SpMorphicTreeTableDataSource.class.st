@@ -30,6 +30,12 @@ SpMorphicTreeTableDataSource class >> rootsOnlyStrategy [
 ]
 
 { #category : #accessing }
+SpMorphicTreeTableDataSource >> allShownItems [
+
+	^ rootItem children flatCollect: [ :e | e withExpandedChildren ].
+]
+
+{ #category : #accessing }
 SpMorphicTreeTableDataSource >> buttonFor: item [
 
 	^ (self shouldDisplayExpandableArrowFor: item) 

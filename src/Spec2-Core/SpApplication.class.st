@@ -223,6 +223,12 @@ SpApplication >> iconProvider [
 ]
 
 { #category : #accessing }
+SpApplication >> iconProvider: anIconProvider [
+
+	iconProvider := anIconProvider
+]
+
+{ #category : #accessing }
 SpApplication >> locale [
 
 	^ Locale current

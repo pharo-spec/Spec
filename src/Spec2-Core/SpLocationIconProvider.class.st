@@ -30,8 +30,9 @@ SpLocationIconProvider >> addLocation: aReference [
 
 { #category : #accessing }
 SpLocationIconProvider >> iconNamed: aName ifAbsent: aBlock [
-
 	| icon |
+	
+	aName ifNil: [ ^ aBlock value ].
 	icon := icons at: aName ifAbsent: [ nil ].
 	icon ifNil: [ 
 		icon := self loadIconNamed: aName.

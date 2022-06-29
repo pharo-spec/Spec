@@ -4,8 +4,8 @@ A base for tree presenters, it defines basic functionality common to all trees.
 Class {
 	#name : #SpAbstractTreePresenter,
 	#superclass : #SpAbstractWidgetPresenter,
-	#traits : 'SpTHaveWrappingScrollBars + SpTContextMenu + SpTSearchable',
-	#classTraits : 'SpTHaveWrappingScrollBars classTrait + SpTContextMenu classTrait + SpTSearchable classTrait',
+	#traits : 'SpTHaveWrappingScrollBars + SpTContextMenu + SpTSearchable + SpTAlignableColumn',
+	#classTraits : 'SpTHaveWrappingScrollBars classTrait + SpTContextMenu classTrait + SpTSearchable classTrait + SpTAlignableColumn classTrait',
 	#instVars : [
 		'#roots => ObservableSlot',
 		'#childrenBlock',

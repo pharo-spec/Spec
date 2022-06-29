@@ -8,7 +8,7 @@ Spec is a framework in Pharo for describing user interfaces.
 
 ## Install Spec
 
-It is possible to load the latest version of Spec in Pharo 9 or Pharo 10 with following script:
+It is possible to load the latest version of Spec in Pharo 10 with following script:
 
 
 ```Smalltalk

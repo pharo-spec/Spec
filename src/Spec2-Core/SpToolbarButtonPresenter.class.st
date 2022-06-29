@@ -5,6 +5,8 @@ A `SpToolbarButtonPresenter` can show a badge.
 Class {
 	#name : #SpToolbarButtonPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
+	#traits : 'SpTContextMenu',
+	#classTraits : 'SpTContextMenu classTrait',
 	#instVars : [
 		'#label => ObservableSlot',
 		'#icon => ObservableSlot',

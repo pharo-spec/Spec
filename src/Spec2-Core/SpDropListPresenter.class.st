@@ -55,10 +55,15 @@ SpDropListPresenter >> addItemLabeled: aString do: aBlock icon: anIcon [
 	item := SpDropListItem on: aString do: aBlock.
 	item icon: anIcon.
 
-	model add: item.
-	"Adding an item adds it to the selection if there is none".
-	self selection isEmpty ifTrue: [ 
-		self selection selectItem: item ]
+	model isEmpty 
+		ifTrue: [ self setCollection: { item } ]
+		ifFalse: [self appendCollection: { item } ]
+]
+
+{ #category : #private }
+SpDropListPresenter >> appendCollection: items [
+
+	model collection: (model collection, items)
 ]
 
 { #category : #private }
@@ -193,6 +198,12 @@ SpDropListPresenter >> initialize [
 	startsWithSelection := true
 ]
 
+{ #category : #testing }
+SpDropListPresenter >> isStartWithSelection [
+
+	^ startsWithSelection
+]
+
 { #category : #api }
 SpDropListPresenter >> items [ 
 	"Return the list used to populate the drop list"
@@ -212,12 +223,8 @@ SpDropListPresenter >> items: aList [
 		ifTrue: [ self resetSelection ].
 	
 	dropListItems := aList collect: [ :each | SpDropListItem on: each do: [ ] ].
-	model collection: dropListItems.
-	(dropListItems isNotEmpty
-		and: [ startsWithSelection 
-		and: [ self selection isEmpty ] ])
-		ifTrue: [ self selectIndex: 1 ]
-		ifFalse: [ self resetSelection ]
+
+	self setCollection: dropListItems
 ]
 
 { #category : #api }
@@ -251,6 +258,8 @@ SpDropListPresenter >> resetSelection [
 { #category : #api }
 SpDropListPresenter >> selectIndex: anInteger [ 
 	"Select the element at position `anInteger` and executes the action associated with it."
+	
+	self selection selectedIndex = anInteger ifTrue: [ ^ self ].
 	
 	self selection selectIndex: anInteger.
 	"I execute the block associated with the item"
@@ -294,6 +303,17 @@ SpDropListPresenter >> selection [
 	"Answer selection model, an instance of `SpSingleSelectionMode`."
 	
 	^ selection
+]
+
+{ #category : #private }
+SpDropListPresenter >> setCollection: items [
+
+	model collection: items.
+	(items isNotEmpty
+		and: [ startsWithSelection 
+		and: [ self selection isEmpty ] ])
+		ifTrue: [ self selectIndex: 1 ]
+		ifFalse: [ self resetSelection ]
 ]
 
 { #category : #api }

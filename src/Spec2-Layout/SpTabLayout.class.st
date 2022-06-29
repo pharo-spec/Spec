@@ -1,3 +1,7 @@
+"
+A tab layout that receives pages with labels.
+It is the layout version of `SpNotebookPresenter`
+"
 Class {
 	#name : #SpTabLayout,
 	#superclass : #SpExecutableLayout,
