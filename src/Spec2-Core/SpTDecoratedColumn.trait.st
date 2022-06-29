@@ -11,24 +11,10 @@ Trait {
 		'backgroundColorAction',
 		'italicAction',
 		'boldAction',
-		'underlineAction',
-		'alignmentAction'
+		'underlineAction'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
-
-{ #category : #api }
-SpTDecoratedColumn >> displayAlignment [
-
-	^ alignmentAction
-]
-
-{ #category : #api }
-SpTDecoratedColumn >> displayAlignment: aBlock [
-	"aBlock must return an instance of `SpColumnAlignment`"
-
-	alignmentAction := aBlock
-]
 
 { #category : #api }
 SpTDecoratedColumn >> displayBackgroundColor [

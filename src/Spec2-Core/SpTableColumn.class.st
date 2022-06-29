@@ -5,6 +5,8 @@ A `SpTableColumn` define the common behavior of a column.
 Class {
 	#name : #SpTableColumn,
 	#superclass : #Object,
+	#traits : 'SpTAlignableColumn',
+	#classTraits : 'SpTAlignableColumn classTrait',
 	#instVars : [
 		'title',
 		'evaluation',
