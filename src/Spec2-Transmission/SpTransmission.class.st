@@ -1,6 +1,6 @@
 "
 # What is a transmission?
-Transmissions are a way to connect presenters, thinking on the ""flow"" of information more than the way it is displayed. For example, think on a master-detail (A->B) relationship, when you navigate the elements in master A, you want to see the detail B. This is tipically solved showing a list with master elements and a form with the detail of each master. 
+Transmissions are a way to connect presenters, thinking on the ""flow"" of information more than the way it is displayed. For example, think on a master-detail (A->B) relationship, when you navigate the elements in master A, you want to see the detail B. This is typically solved showing a list with master elements and a form with the detail of each master. 
 In Spec, this will be declared more or less like this: 
 
 ```
@@ -29,8 +29,8 @@ This will connect the `list` presenter **default output port** with the `detail`
 list defaultOutputPort transmitTo: detail defaultInputPort
 ```
 
-Is important to remark that a transmission does not connects two components, it connect two **component ports**. The distinction is important because there can be many ports!  
-Take for example `SpListPresenter`, it defines two output ports (selection and activation), this means it is possible to define also this transmission: 
+It is important to remark that a transmission does not connect two components, it connects two **component ports**. The distinction is important because there can be many ports!  
+Take for example `SpListPresenter`, it defines two output ports (selection and activation), this means it is possible to define also this transmission (not default): 
 
 ```
 list outputActivationPort transmitTo: detail defaultInputPort
