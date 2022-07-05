@@ -119,6 +119,19 @@ SpAbstractTreeSelectionMode >> selectedItem [
 ]
 
 { #category : #accessing }
+SpAbstractTreeSelectionMode >> selectedItemsInPath [
+	"Answer the items on a path, not just the indexes."
+	| path |
+
+	self isEmpty ifTrue: [ ^ #() ].
+	path := self selectedPaths first.
+	^ Array streamContents: [ :stream |
+		1 to: path size do: [ :index | 
+			stream nextPut: (presenter itemAtPath: (path first: index)) ] ]
+
+]
+
+{ #category : #accessing }
 SpAbstractTreeSelectionMode >> selectedPaths [
 	^ self subclassResponsibility
 ]
