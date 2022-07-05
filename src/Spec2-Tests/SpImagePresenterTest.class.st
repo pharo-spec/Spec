@@ -9,6 +9,13 @@ SpImagePresenterTest >> classToTest [
 	^ SpImagePresenter
 ]
 
+{ #category : #running }
+SpImagePresenterTest >> tearDown [ 
+
+	presenter ifNotNil: [ presenter delete ].
+	super tearDown
+]
+
 { #category : #tests }
 SpImagePresenterTest >> testAutoScale [
 	| count result |
@@ -20,6 +27,23 @@ SpImagePresenterTest >> testAutoScale [
 	presenter autoScale: true.
 	self assert: count equals: 1.
 	self assert: result
+]
+
+{ #category : #tests }
+SpImagePresenterTest >> testCanDefineImagePresenterFromAForm [
+	| title form windowPresenter presenterItems |
+	
+	presenter := windowPresenter := SpPresenter new
+		layout: (SpBoxLayout newLeftToRight
+			add: (title := 'Image added directly from the layout definition:');
+			add: (form := self iconNamed: #pharoBig);
+			yourself);
+		open.
+	
+	presenterItems := windowPresenter presenter layout children.
+	self assert: presenterItems first equals: title.
+	self assert: presenterItems second equals: form.
+	
 ]
 
 { #category : #tests }
