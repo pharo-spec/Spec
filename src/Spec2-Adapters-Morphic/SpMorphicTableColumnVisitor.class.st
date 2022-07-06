@@ -25,6 +25,10 @@ SpMorphicTableColumnVisitor >> visitCompositeColumn: aTableColumn [
 ]
 
 { #category : #visiting }
+SpMorphicTableColumnVisitor >> visitDropListColumn: aDropListTableColumn [
+]
+
+{ #category : #visiting }
 SpMorphicTableColumnVisitor >> visitImageColumn: aTableColumn [
 ]
 

@@ -35,12 +35,6 @@ SpCodeScriptingInteractionModel >> hasBindingOf: aString [
 ]
 
 { #category : #testing }
-SpCodeScriptingInteractionModel >> isForScripting [
-
-	^ true
-]
-
-{ #category : #testing }
 SpCodeScriptingInteractionModel >> isScripting [
 
 	^ true
