@@ -53,9 +53,9 @@ SpMorphicTableColumn >> model [
 ]
 
 { #category : #accessing }
-SpMorphicTableColumn >> model: anObject [
+SpMorphicTableColumn >> model: aTableColumn [
 
-	model := anObject.
+	model := aTableColumn.
 	model isSortable ifTrue: [ 
 		self sortableUsing: model sortFunction ]
 ]
@@ -82,4 +82,12 @@ SpMorphicTableColumn >> sortableUsing: aSortFunction [
 SpMorphicTableColumn >> width [
 
 	^ self model width ifNil: [ super width ]
+]
+
+{ #category : #accessing }
+SpMorphicTableColumn >> width: aNumber [
+
+	(self model isExpandable and: [ aNumber notNil ])
+		ifTrue: [ self model width: aNumber ].
+	super width: aNumber
 ]

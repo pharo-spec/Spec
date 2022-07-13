@@ -63,6 +63,26 @@ SpTreeTablePresenter class >> exampleResizableColumns [
 ]
 
 { #category : #'*Spec2-Examples' }
+SpTreeTablePresenter class >> exampleResizableColumnsFixedWidth [
+
+	^ self  new
+		beResizable;
+		addColumn: (SpCompositeTableColumn new
+			title: 'Classes';
+			addColumn: ((SpImageTableColumn evaluated: [:c| c systemIcon]) );
+			addColumn: (SpStringTableColumn evaluated: #name);
+			width: 150;
+			beExpandable;
+			yourself);
+		addColumn: (SpStringTableColumn new
+			title: 'Methods';
+			evaluated: [:class | class methodDictionary size asString]);
+		roots: { Object };
+		children: [ :aClass | aClass subclasses ];
+		open
+]
+
+{ #category : #'*Spec2-Examples' }
 SpTreeTablePresenter class >> exampleWithDecoratedString [
 	
 	^ self new

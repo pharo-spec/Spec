@@ -131,8 +131,7 @@ SpTableColumn >> isEditable [
 SpTableColumn >> isExpandable [
 	"Answer if this column is expandable"
 
-	"if width is defined, it cannot be expandable (because column with take the defined width)"
-	^ expandable and: [ self width isNil ]
+	^ expandable
 ]
 
 { #category : #testing }
@@ -192,8 +191,8 @@ SpTableColumn >> width [
 { #category : #api }
 SpTableColumn >> width: aNumber [
 	"Set the width of a column to `aNumber`. 
-	 Note that setting width to a value will make this column not expandable. 
-	 (See `SpTableColumn>>#beNotExpandable`"
+	 Note that setting width to a value will NOT make this column not expandable. 
+	 You need to set that explicitly (See `SpTableColumn>>#beNotExpandable`"
 
 	width := aNumber
 ]
