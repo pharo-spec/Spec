@@ -52,7 +52,9 @@ SpDropListTableColumn >> display: aBlock [
 ]
 
 { #category : #initialization }
-SpDropListTableColumn >> initialize [ 
+SpDropListTableColumn >> initialize [
+
+	super initialize.
 	startWithSelection := true
 ]
 

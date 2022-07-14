@@ -393,7 +393,9 @@ SpPresenter >> contextKeyBindings [
 SpPresenter >> contextKeyBindings: aKMCategory [
 	"Set the context keybindings for this presenter."
 	
-	contextKeyBindings := aKMCategory
+	contextKeyBindings := contextKeyBindings 
+		ifNotNil: [ contextKeyBindings, aKMCategory ]
+		ifNil: [ aKMCategory ]
 ]
 
 { #category : #private }

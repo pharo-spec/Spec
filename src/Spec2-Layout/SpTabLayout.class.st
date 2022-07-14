@@ -57,3 +57,10 @@ SpTabLayout >> initialize [
 	super initialize.
 	initialPageIndex := 1
 ]
+
+{ #category : #accessing }
+SpTabLayout >> select: aWindowPresenter [
+
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter selectIndex: (self children indexOf: aWindowPresenter) ]
+]
