@@ -7,9 +7,6 @@ Is important notice here that most of the row/cell creation happens on SpMorphic
 Class {
 	#name : #SpMorphicTreeTableAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
-	#instVars : [
-		'firstPass'
-	],
 	#category : #'Spec2-Adapters-Morphic-Table'
 }
 
