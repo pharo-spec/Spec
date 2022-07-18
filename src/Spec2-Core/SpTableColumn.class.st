@@ -11,8 +11,8 @@ Class {
 		'title',
 		'evaluation',
 		'expandable',
-		'width',
-		'sortFunction'
+		'sortFunction',
+		'width'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }

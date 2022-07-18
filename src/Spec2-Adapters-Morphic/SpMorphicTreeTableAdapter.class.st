@@ -7,6 +7,9 @@ Is important notice here that most of the row/cell creation happens on SpMorphic
 Class {
 	#name : #SpMorphicTreeTableAdapter,
 	#superclass : #SpAbstractMorphicAdapter,
+	#instVars : [
+		'firstPass'
+	],
 	#category : #'Spec2-Adapters-Morphic-Table'
 }
 
@@ -40,7 +43,8 @@ SpMorphicTreeTableAdapter >> addColumnsFromPresenterTo: tableMorph [
 	self columns withIndexDo: [ :each :index | | column |
 		column := self newColumnFrom: each.
 		(index = 1 and: [ column width notNil ]) ifTrue: [ 
-			column width: column width + SpMorphicTreeTableDataSource emptyMorph width ]. 
+			column addEmptySpace.
+			"column width: column width + SpMorphicTreeTableDataSource emptyMorph width" ]. 
 		tableMorph addColumn: column ].
 			
 ]
