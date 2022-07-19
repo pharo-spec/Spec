@@ -45,3 +45,7 @@ SpMorphicTableColumnVisitor >> visitLinkColumn: aTableColumn [
 { #category : #visiting }
 SpMorphicTableColumnVisitor >> visitStringColumn: aTableColumn [
 ]
+
+{ #category : #visiting }
+SpMorphicTableColumnVisitor >> visitTextInputFieldColumn: aTableColumn [
+]

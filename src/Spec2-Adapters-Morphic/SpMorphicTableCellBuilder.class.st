@@ -298,3 +298,38 @@ SpMorphicTableCellBuilder >> visitStringColumnEditable: aTableColumn on: content
 	presenter adapter applyStyle.
 	self addCellMorph: morph column: aTableColumn
 ]
+
+{ #category : #visiting }
+SpMorphicTableCellBuilder >> visitTextInputFieldColumn: aTextInputFieldColumn [
+
+	| presenter morph |
+	presenter := SpTextInputFieldPresenter new
+		addStyle: 'table';
+		yourself.
+	
+ 	aTextInputFieldColumn isEditable 
+		ifFalse: [ presenter beNotEditable ].
+
+	aTextInputFieldColumn placeholder
+		ifNotNil: [ presenter placeholder: aTextInputFieldColumn placeholder ].
+	
+	aTextInputFieldColumn maxLength
+		ifNotNil: [ presenter maxLength: aTextInputFieldColumn maxLength ].
+		
+	aTextInputFieldColumn text
+		ifNotNil: [ presenter text: aTextInputFieldColumn text ].
+	
+	aTextInputFieldColumn whenEditableChangedDo
+		ifNotNil: [ presenter whenEditableChangedDo: aTextInputFieldColumn whenEditableChangedDo ].
+		
+	aTextInputFieldColumn whenTextChangedDo
+		ifNotNil: [ presenter whenTextChangedDo: aTextInputFieldColumn whenTextChangedDo ].
+		
+	aTextInputFieldColumn whenSubmitDo
+		ifNotNil: [ presenter whenSubmitDo: aTextInputFieldColumn whenSubmitDo ].
+
+	morph := presenter build.
+	presenter adapter applyStyle: morph.
+
+	self addCellMorph: morph column: aTextInputFieldColumn.
+]
