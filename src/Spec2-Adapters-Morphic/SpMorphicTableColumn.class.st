@@ -6,7 +6,8 @@ Class {
 	#name : #SpMorphicTableColumn,
 	#superclass : #FTColumn,
 	#instVars : [
-		'model'
+		'model',
+		'addEmptySpace'
 	],
 	#category : #'Spec2-Adapters-Morphic-Table'
 }
@@ -17,16 +18,35 @@ SpMorphicTableColumn class >> on: anObject [
 	^ self new model: anObject
 ]
 
+{ #category : #accessing }
+SpMorphicTableColumn >> addEmptySpace [
+
+	addEmptySpace := true
+]
+
 { #category : #private }
 SpMorphicTableColumn >> defaultSortFunction [
 
 	^ [ :each | (self readObject: each) ] ascending
 ]
 
+{ #category : #private }
+SpMorphicTableColumn >> emptySpace [
+
+	^ SpMorphicTreeTableDataSource emptyMorph width
+]
+
 { #category : #accessing }
 SpMorphicTableColumn >> id [ 
 
 	^ self model title
+]
+
+{ #category : #initialization }
+SpMorphicTableColumn >> initialize [
+
+	super initialize.
+	addEmptySpace := false
 ]
 
 { #category : #testing }
@@ -80,14 +100,23 @@ SpMorphicTableColumn >> sortableUsing: aSortFunction [
 
 { #category : #accessing }
 SpMorphicTableColumn >> width [
+	| resultWidth |
 
-	^ self model width ifNil: [ super width ]
+	resultWidth := self model width ifNil: [ super width ].
+	^ addEmptySpace 
+		ifTrue: [ resultWidth + self emptySpace ]
+		ifFalse: [ resultWidth ]
 ]
 
 { #category : #accessing }
 SpMorphicTableColumn >> width: aNumber [
+	| widthToAdd |
 
-	(self model isExpandable and: [ aNumber notNil ])
-		ifTrue: [ self model width: aNumber ].
-	super width: aNumber
+	aNumber ifNotNil: [ 
+		widthToAdd := addEmptySpace 
+			ifTrue: [ aNumber - self emptySpace ]
+			ifFalse: [ aNumber ].
+		(self model isExpandable and: [ aNumber notNil ])
+			ifTrue: [ self model width: widthToAdd ] ].
+	super width: widthToAdd
 ]

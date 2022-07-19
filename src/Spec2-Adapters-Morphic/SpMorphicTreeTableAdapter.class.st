@@ -40,7 +40,8 @@ SpMorphicTreeTableAdapter >> addColumnsFromPresenterTo: tableMorph [
 	self columns withIndexDo: [ :each :index | | column |
 		column := self newColumnFrom: each.
 		(index = 1 and: [ column width notNil ]) ifTrue: [ 
-			column width: column width + SpMorphicTreeTableDataSource emptyMorph width ]. 
+			column addEmptySpace.
+			"column width: column width + SpMorphicTreeTableDataSource emptyMorph width" ]. 
 		tableMorph addColumn: column ].
 			
 ]
