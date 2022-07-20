@@ -64,6 +64,11 @@ SpContextInteractionModel >> hasUnsavedCodeChanges [
 	^ context notNil and: [ context sourceCode ~= owner text asString ]
 ]
 
+{ #category : #testing }
+SpContextInteractionModel >> isScripting [ 
+	^context method isDoIt 
+]
+
 { #category : #accessing }
 SpContextInteractionModel >> object [
 

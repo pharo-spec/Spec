@@ -37,6 +37,12 @@ SpCodeMethodInteractionModel >> hasBindingOf: aString [
 	^ self behavior hasBindingOf: aString
 ]
 
+{ #category : #testing }
+SpCodeMethodInteractionModel >> isScripting [ 
+
+	^method isDoIt
+]
+
 { #category : #accessing }
 SpCodeMethodInteractionModel >> method [
 
