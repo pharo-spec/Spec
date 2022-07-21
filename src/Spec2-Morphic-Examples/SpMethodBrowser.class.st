@@ -56,7 +56,7 @@ SpMethodBrowser >> connectPresenters [
 		selection isEmpty
 			ifTrue: [ 
 				textModel text: ''.
-				textModel beForMethod: nil.
+				textModel clearInteractionModel.
 				toolbarModel method: nil ]
 			ifFalse: [ | m |
 				m := selection selectedItem. 
