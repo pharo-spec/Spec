@@ -66,7 +66,7 @@ SpContextInteractionModel >> hasUnsavedCodeChanges [
 
 { #category : #testing }
 SpContextInteractionModel >> isScripting [ 
-	^context method isDoIt 
+	^context belongsToDoIt
 ]
 
 { #category : #accessing }
