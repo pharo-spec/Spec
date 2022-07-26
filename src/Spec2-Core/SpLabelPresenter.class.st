@@ -6,6 +6,8 @@ _NOTE: In the future, it should be possible to attach another widget to a label,
 Class {
 	#name : #SpLabelPresenter,
 	#superclass : #SpAbstractWidgetPresenter,
+	#traits : 'SpTDecoratedText',
+	#classTraits : 'SpTDecoratedText classTrait',
 	#instVars : [
 		'#label => ObservableSlot'
 	],

@@ -408,10 +408,10 @@ SpAbstractPresenter >> openDialog [
 	"Build the widget using the default layout and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openModalWithSpec instead."
 	
-	"A typical use of openDialogWithSpec is to configure it with callbackscallbacks: 
+	"A typical use of openDialog is to configure it with callbacks: 
 
 open
-	^ self openDialogWithSpec
+	^ self openDialog
 		okAction: [ self accept ];
 		cancelAction: [ self cancel ];
 		yourself

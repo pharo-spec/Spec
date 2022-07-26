@@ -13,8 +13,8 @@ A list presenter does not offer the possibility to add one item in isolation ins
 Class {
 	#name : #SpListPresenter,
 	#superclass : #SpAbstractListPresenter,
-	#traits : 'SpTSearchable + SpTDecoratedColumn',
-	#classTraits : 'SpTSearchable classTrait + SpTDecoratedColumn classTrait',
+	#traits : 'SpTSearchable + SpTDecoratedText',
+	#classTraits : 'SpTSearchable classTrait + SpTDecoratedText classTrait',
 	#instVars : [
 		'#allowToSelect => ObservableSlot',
 		'#autoDeselect => ObservableSlot',
