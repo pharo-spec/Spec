@@ -622,6 +622,11 @@ SpCodePresenterTest >> testSelectedSelectorForMethodEditing [
 	selector := presenter selectedSelector.
 	self assert: selector equals: #aMethod.
 
+	"Code depends on contextual information"
+	selector := presenter text: 'aMethodName: anArg anArg aMessageSend: anotherArg'.
+	selector := presenter selectedSelector.
+	self assert: selector equals: #aMethodName:.
+
 	"Code has invalid code (no selectors at all)"
 	"selector := presenter text: 'anObjectdo : 2'.
 	selector := presenter selectedSelector.
@@ -655,6 +660,11 @@ SpCodePresenterTest >> testSelectedSelectorForScripting [
 	selector := presenter text: 'anObject do : 1 with: 2'.
 	selector := presenter selectedSelector.
 	self assert: selector equals: #do.
+
+	"Code depends on contextual information"
+	selector := presenter text: 'aMethodName: anArg anArg aMessageSend: anotherArg'.
+	selector := presenter selectedSelector.
+	self assert: selector equals: #aMethodName:aMessageSend:.
 
 	"Code has invalid code (no selectors at all)"
 	"selector := presenter text: 'anObjectdo : 2'.
@@ -694,7 +704,17 @@ Smalltalk allClassesAndTraits reject: #hasComment'.
 	presenter clearSelection.
 	presenter selectionInterval: ((string size + 1) to: string size).
 	selector := presenter selectedSelector.
-	self assert: selector equals: #hasComment
+	self assert: selector equals: #hasComment.
+	
+
+	"Code depends on contextual information"
+	selector := presenter text: 'aMethodName: anArg anArg aMessageSend: anotherArg'.
+	presenter cursorPositionIndex: string size + 1.
+	"ensure there is no selection"
+	presenter clearSelection.
+	presenter selectionInterval: ((string size + 1) to: string size).
+	selector := presenter selectedSelector.
+	self assert: selector equals: #aMessageSend:.
 ]
 
 { #category : #tests }
