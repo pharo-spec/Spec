@@ -596,7 +596,7 @@ SpCodePresenterTest >> testNilTestSelectedSelectorDoesNotBreakExecution [
 ]
 
 { #category : #'tests - command support' }
-SpCodePresenterTest >> testSelectedSelector [
+SpCodePresenterTest >> testSelectedSelectorForMethodEditing [
 
 	"Testing border cases to avoid breaking execution. The selector extraction logic should be tested in the extractor class"
 
@@ -604,6 +604,40 @@ SpCodePresenterTest >> testSelectedSelector [
 
 	| selector |
 	presenter text: nil.
+	selector := presenter selectedSelector.
+	self assert: selector isNil.
+
+	"Code presenter is empty"
+	presenter text: ''.
+	selector := presenter selectedSelector.
+	self assert: selector isNil.
+
+	"Code has valid code"
+	selector := presenter text: 'aMethod do: 1 with: 2'.
+	selector := presenter selectedSelector.
+	self assert: selector equals: #aMethod.
+
+	"Code has faulty code"
+	selector := presenter text: 'aMethod do : 1 with: 2'.
+	selector := presenter selectedSelector.
+	self assert: selector equals: #aMethod.
+
+	"Code has invalid code (no selectors at all)"
+	"selector := presenter text: 'anObjectdo : 2'.
+	selector := presenter selectedSelector.
+	self assert: selector equals: #noMethod"
+]
+
+{ #category : #'tests - command support' }
+SpCodePresenterTest >> testSelectedSelectorForScripting [
+
+	"Testing border cases to avoid breaking execution. The selector extraction logic should be tested in the extractor class"
+
+	"Code presenter has nil text for some reason"
+
+	| selector |
+	presenter text: nil.
+	presenter beForScripting.
 	selector := presenter selectedSelector.
 	self assert: selector isNil.
 
