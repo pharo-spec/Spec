@@ -43,13 +43,12 @@ SpCodeDebugItCommand >> compile: aStream for: anObject in: evalContext [
 		ifNotNil: [ evalContext methodClass ].
 
 	^ context class compiler
-		source: aStream;
 		class: methodClass;
 		context: evalContext;
 		requestor: context; "it should enable a visibility of current tool variables in new debugger"
 		noPattern: true;
 		failBlock: [ ^ nil ];
-		compile
+		compile: aStream
 ]
 
 { #category : #private }
@@ -100,5 +99,5 @@ SpCodeDebugItCommand >> execute [
 	selection := self selectedTextOrLine.
 	selection ifEmpty: [ ^ '' ].
 	
-	self debug: selection readStream
+	self debug: selection
 ]
