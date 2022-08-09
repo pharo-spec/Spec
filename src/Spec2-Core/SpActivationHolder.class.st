@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'subscriptions'
 	],
-	#category : #'Spec2-Transmission-Custom'
+	#category : #'Spec2-Core-Support'
 }
 
 { #category : #adding }
