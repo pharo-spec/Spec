@@ -46,5 +46,6 @@ SpTSelectable >> whenSelectionChangedDo: aBlock [
 	 `aBlock` receives an optional argument, that needs to be an instance of `SpActivatedObject`.
 	 see `SpTSelectable>>#activate"
 
-	selectionAction := aBlock
+	selectionAction ifNil: [ selectionAction := SpActivationHolder new ].
+	selectionAction add: aBlock
 ]

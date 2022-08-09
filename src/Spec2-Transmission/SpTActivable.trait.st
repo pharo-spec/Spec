@@ -56,5 +56,6 @@ SpTActivable >> whenActivatedDo: aBlock [
 	 `aBlock` receives an optional argument, that needs to be an instance of `SpActivatedObject`.
 	 see `SpTActivable>>#activate"
 
-	activationAction := aBlock
+	activationAction ifNil: [ activationAction := SpActivationHolder new ].
+	activationAction add: aBlock
 ]
