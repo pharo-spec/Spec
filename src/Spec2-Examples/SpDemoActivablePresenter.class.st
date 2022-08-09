@@ -30,7 +30,7 @@ SpDemoActivablePresenter class >> open [
 SpDemoActivablePresenter >> activate [
 
 	self activationAction ifNil: [ ^ self ].
-	self activationAction cull: (SpActivatedObject newValue: 42)
+	self activationAction cull: (SpActivatedSelection newValue: 42)
 ]
 
 { #category : #initialization }

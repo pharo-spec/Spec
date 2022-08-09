@@ -10,6 +10,14 @@ Class {
 	#category : #'Spec2-Core-Support'
 }
 
+{ #category : #'instance creation' }
+SpActivatedSelection class >> newValue: anObject [
+
+	^ self new 
+		value: anObject;
+		yourself
+]
+
 { #category : #accessing }
 SpActivatedSelection >> selectedItem [
 

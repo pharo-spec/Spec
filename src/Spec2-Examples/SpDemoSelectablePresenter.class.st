@@ -35,5 +35,5 @@ SpDemoSelectablePresenter >> initializePresenters [
 SpDemoSelectablePresenter >> select [
 
 	self selectionAction ifNil: [ ^ self ].
-	self selectionAction cull: (SpActivatedObject newValue: 42)
+	self selectionAction cull: (SpActivatedSelection newValue: 42)
 ]
