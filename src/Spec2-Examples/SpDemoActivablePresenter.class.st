@@ -26,7 +26,7 @@ SpDemoActivablePresenter class >> open [
 	self inspect
 ]
 
-{ #category : #actions }
+{ #category : #'private - actions' }
 SpDemoActivablePresenter >> activate [
 
 	self activationAction ifNil: [ ^ self ].

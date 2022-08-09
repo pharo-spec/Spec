@@ -12,7 +12,7 @@ Trait {
 	#category : #'Spec2-Transmission-Custom'
 }
 
-{ #category : #actions }
+{ #category : #'private - actions' }
 SpTActivable >> activate [
 	"Perform here the activation. A common usage would be something like: 
 	
