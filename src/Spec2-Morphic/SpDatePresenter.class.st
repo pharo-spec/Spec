@@ -129,11 +129,11 @@ SpDatePresenter >> onDateChosen: aChoseDate [
 { #category : #'api - events' }
 SpDatePresenter >> whenDateChanged: aBlock [
 
-	dateModel whenTextChanged: [ :newText :oldText :announcement :anAnnouncer |
+	dateModel whenTextChangedDo: [ :newText :oldText | 
 		| oldDate |
 		oldDate := date.
 		date := newText
-			ifNotEmpty: [ Date readFrom: newText readStream ]
-			ifEmpty: [ nil ].
-		aBlock cull: date cull: oldDate cull: announcement cull: anAnnouncer ]
+			        ifNotEmpty: [ Date readFrom: newText readStream ]
+			        ifEmpty: [ nil ].
+		aBlock cull: date cull: oldDate ]
 ]
