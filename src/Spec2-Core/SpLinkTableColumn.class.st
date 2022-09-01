@@ -51,8 +51,8 @@ SpLinkTableColumn >> action [
 ]
 
 { #category : #accessing }
-SpLinkTableColumn >> action: anObject [
-	action := anObject
+SpLinkTableColumn >> action: aBlock [
+	action := aBlock
 ]
 
 { #category : #accessing }
