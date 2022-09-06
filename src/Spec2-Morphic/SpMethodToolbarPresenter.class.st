@@ -47,7 +47,7 @@ SpMethodToolbarPresenter >> addItemLabeled: aString do: aBlock [
 { #category : #private }
 SpMethodToolbarPresenter >> browseMethod [
 
-	self method ifNotNil: [ :aMethod | aMethod browse ]
+	self method ifNotNil: [ :aMethod | self systemNavigation browse: aMethod ]
 ]
 
 { #category : #accessing }
