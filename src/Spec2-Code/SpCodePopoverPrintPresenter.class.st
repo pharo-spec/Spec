@@ -69,7 +69,7 @@ SpCodePopoverPrintPresenter >> dismiss [
 SpCodePopoverPrintPresenter >> dismissAndInspect [
 
 	self dismiss.
-	object inspect.
+	self systemNavigation inspect: object.
 	"(SpCodeInspectItCommand forContext: context) execute"
 ]
 
