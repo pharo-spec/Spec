@@ -76,7 +76,7 @@ SpStyle class >> defaultStyleSheetData [
 	],
 	.link [ Geometry { #hResizing: true } ],
 	.button [  
-		Geometry { #width: 100, #height: 34 },
+		Geometry { #width: 100, #height: 28 },
 		.small [ Geometry { #width: 24, #height: 24 } ]
 	],
 	.checkBox [  
