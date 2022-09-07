@@ -76,7 +76,7 @@ SpStyle class >> defaultStyleSheetData [
 	],
 	.link [ Geometry { #hResizing: true } ],
 	.button [  
-		Geometry { #width: 100, #height: 30 },
+		Geometry { #width: 100, #height: 34 },
 		.small [ Geometry { #width: 24, #height: 24 } ]
 	],
 	.checkBox [  
@@ -92,8 +92,8 @@ SpStyle class >> defaultStyleSheetData [
 		Geometry { #width: 150, #height: 29, #hResizing: true, #vResizing: false }
 	],
 	.menuBar [ Geometry { #width: 150, #hResizing: true } ],
-	.actionButton [  
-		Geometry { #width: 70, #hResizing: false },
+	.actionButton [
+		Geometry { #width: 70, #height: 24, #hResizing: false },
 		.showIcon [ Geometry { #width: 25 } ]
 	],
 	.selected [ Container { #borderWidth: 1 } ],
