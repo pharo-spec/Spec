@@ -41,6 +41,12 @@ SpCodeScriptingInteractionModel >> isScripting [
 ]
 
 { #category : #accessing }
+SpCodeScriptingInteractionModel >> removeAllBindings [
+ 
+	self bindings removeAll
+]
+
+{ #category : #accessing }
 SpCodeScriptingInteractionModel >> removeBinding: aBinding [
  
 	self bindings removeKey: aBinding key
