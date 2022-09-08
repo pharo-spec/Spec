@@ -34,6 +34,12 @@ SpCodeInspectItCommand class >> defaultShortcutKey [
 		| $i control unix
 ]
 
+{ #category : #documentation }
+SpCodeInspectItCommand class >> documentContextRequiredSelectors [
+
+	^ super documentContextRequiredSelectors, #(systemNavigation)
+]
+
 { #category : #execution }
 SpCodeInspectItCommand >> execute [
 	"Treat the current text selection as an expression; evaluate it."
@@ -45,8 +51,5 @@ SpCodeInspectItCommand >> execute [
 { #category : #'private - actions' }
 SpCodeInspectItCommand >> inspectObject: anObject [
 
-	Smalltalk tools inspector openOn: anObject
-	"(StInspector onObject: anObject)
-		application: context application;
-		openWithSpec"
+	self context systemNavigation inspect: anObject
 ]

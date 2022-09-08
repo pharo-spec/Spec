@@ -97,7 +97,7 @@ SpDropListExample >> initializePresenters [
 		do: [ Smalltalk tools workspace open ]
 		icon: (self iconNamed: #smallOk);
 		addItemLabeled: 'Inspect current morph'
-		do: [ uniformDropList selectedItem inspect ]
+		do: [ self systemNavigation inspect: uniformDropList selectedItem ]
 		icon: (self iconNamed: #testRed).
 
 	"If this is uncommented, it will fire the action of the first item, which is not what we want:

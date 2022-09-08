@@ -14,8 +14,8 @@ SpStringTableColumn
 Class {
 	#name : #SpStringTableColumn,
 	#superclass : #SpTableColumn,
-	#traits : 'SpTDecoratedColumn',
-	#classTraits : 'SpTDecoratedColumn classTrait',
+	#traits : 'SpTDecoratedText',
+	#classTraits : 'SpTDecoratedText classTrait',
 	#instVars : [
 		'editable',
 		'acceptAction',
