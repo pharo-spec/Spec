@@ -3,9 +3,6 @@ Class {
 	#superclass : #SpPresenter,
 	#traits : 'SpTSelectable',
 	#classTraits : 'SpTSelectable classTrait',
-	#instVars : [
-		'activationAction'
-	],
 	#category : #'Spec2-Examples-Demo-Transmission'
 }
 
