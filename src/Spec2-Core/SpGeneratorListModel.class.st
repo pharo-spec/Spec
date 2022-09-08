@@ -22,7 +22,7 @@ SpGeneratorListModel class >> example [
 	items := ($a to: $z) asArray.
 	generator := Generator on: [ :g | items do: [ :each | 
 		each crTrace.
-		g yield: each ] ].
+		g yield: each asUppercase ] ].
 
 	SpListPresenter new 
 		model: (self new 
@@ -30,6 +30,14 @@ SpGeneratorListModel class >> example [
 			yourself);
 		open.
 
+]
+
+{ #category : #'instance creation' }
+SpGeneratorListModel class >> on: aBlock [ 
+
+	^ self new 
+		generator: (Generator on: aBlock);
+		yourself
 ]
 
 { #category : #accessing }
@@ -47,7 +55,9 @@ SpGeneratorListModel >> at: anIndex ifAbsent: aBlock [
 	whileTrue: [ 
 		self generator atEnd ifTrue: [ ^ aBlock value ].
 		collection add: self generator next.
+		size < collection size ifTrue: [ size := collection size ].
 		self generator atEnd ifTrue: [ size := collection size ] ].
+	
 	^ collection at: anIndex
 ]
 

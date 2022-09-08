@@ -315,10 +315,12 @@ SpCodePresenter >> doBrowseImplementors [
 SpCodePresenter >> doBrowseMethodReferences [
 	"Browse references to Variables (Cmd-shift-n)"
 	| variableOrClassName variable usingMethods |
+
 	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
 
 	variable := self lookupEnvironment lookupVar: variableOrClassName.
-	variable ifNil: [ ^ nil ].
+	variable ifNil: [ 
+		^ self doBrowseSenders ].
 	usingMethods := variable usingMethods ifEmpty: [ ^ application inform: 'No users found.'].
 
 	"the dialog sadly hard-codes 'senders'"
@@ -413,6 +415,7 @@ SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: 
 	| receiver result oldBindings |
 	
 	^ [
+		self announcer announce: (SpCodeWillBeEvaluatedAnnouncement newContent: aString).
 		oldBindings := self interactionModel bindings copy.
 		receiver := self interactionModel doItReceiver.
 		result := receiver class compiler
@@ -424,9 +427,14 @@ SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: 
 			evaluate: aString.
 		oldBindings size = self interactionModel bindings size 
 			ifFalse: [ self withAdapterDo: [ :anAdapter | anAdapter refreshStyling ] ].
+		self announcer announce: (SpCodeEvaluationSucceedAnnouncement newContent: aString).
 		result ]
 	on: Error 
-	do: errorBlock
+	do: [ :e |
+		self announcer announce: (SpCodeEvaluationFailedAnnouncement 
+			newContent: aString
+			error: e).
+		errorBlock value: e ]
 ]
 
 { #category : #accessing }

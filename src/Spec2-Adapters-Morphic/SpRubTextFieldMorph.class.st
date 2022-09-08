@@ -15,6 +15,12 @@ SpRubTextFieldMorph >> acceptDroppingMorph: aTransferMorph event: anEvent [
 			   yourself)
 ]
 
+{ #category : #initialization }
+SpRubTextFieldMorph >> defaultBounds [
+"answer the default bounds for the receiver"
+	^ 0 @ 0 corner: 4 @ 4
+]
+
 { #category : #accessing }
 SpRubTextFieldMorph >> drawKeyboardFocus: aBoolean [
 
@@ -29,11 +35,30 @@ SpRubTextFieldMorph >> drawKeyboardFocusOn: aCanvas [
 	^ super drawKeyboardFocusOn: aCanvas
 ]
 
+{ #category : #geometry }
+SpRubTextFieldMorph >> extent: aPoint [
+
+	self updateTextAreaMarginsWith: aPoint y.
+	super extent: aPoint	
+]
+
 { #category : #initialization }
 SpRubTextFieldMorph >> initialize [
 
 	super initialize. 
 	drawKeyboardFocus := true
+]
+
+{ #category : #initialization }
+SpRubTextFieldMorph >> textAreaClass [
+
+	^ SpRubTextFieldArea
+]
+
+{ #category : #geometry }
+SpRubTextFieldMorph >> updateTextAreaMarginsWith: height [
+
+	self textArea updateMarginsWithHeight: (height - 1) asInteger
 ]
 
 { #category : #'drag and drop' }

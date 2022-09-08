@@ -565,6 +565,41 @@ SpCodePresenterTest >> testEvaluateOnCompileErrorOnError [
 		equals: 42.		
 ]
 
+{ #category : #'tests - command support' }
+SpCodePresenterTest >> testEvaluateSendAnnouncements [
+	| willBeEvaluated succeed failed |
+
+	presenter announcer 
+		when: SpCodeWillBeEvaluatedAnnouncement do: [ :ann | willBeEvaluated := true ];
+		when: SpCodeEvaluationSucceedAnnouncement do: [ :ann | succeed := true ];
+		when: SpCodeEvaluationFailedAnnouncement do: [ :ann | failed := true ].
+		
+	willBeEvaluated := false. 
+	succeed := false.
+	failed := false.
+	presenter evaluate: '42 factorial' onCompileError: [ #compileError ] onError: [ :e | #error ].	
+	self assert: willBeEvaluated.
+	self assert: succeed.
+	self deny: failed.
+	
+	willBeEvaluated := false. 
+	succeed := false.
+	failed := false.
+	presenter evaluate: 'Obj { }}' onCompileError: [ #compile ] onError: [ :e | #error ].
+	self assert: willBeEvaluated.
+	self deny: succeed.
+	self assert: failed.
+
+	willBeEvaluated := false. 
+	succeed := false.
+	failed := false.
+	presenter evaluate: 'nil text' onCompileError: [ #compile ] onError: [ :e | #error ].
+	self assert: willBeEvaluated.
+	self deny: succeed.
+	self assert: failed.
+
+]
+
 { #category : #tests }
 SpCodePresenterTest >> testFindClassFrom [
 

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'context'
 	],
-	#category : #'Spec2-Code'
+	#category : #'Spec2-Code-Base'
 }
 
 { #category : #'instance creation' }
@@ -66,7 +66,7 @@ SpContextInteractionModel >> hasUnsavedCodeChanges [
 
 { #category : #testing }
 SpContextInteractionModel >> isScripting [ 
-	^context method isDoIt 
+	^context belongsToDoIt
 ]
 
 { #category : #accessing }

@@ -7,6 +7,30 @@ Class {
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
+{ #category : #private }
+SpMorphicLabelAdapter >> applyDecorationsTo: aString [
+	| text |
+
+	text := aString asText.
+	self presenter displayColor ifNotNil: [ :block |
+		(block cull: aString) ifNotNil: [ :aColor |
+		  	text addAttribute: (TextColor color: aColor) ] ].
+	self presenter displayBold ifNotNil: [ :block |
+		(block cull: aString) ifTrue: [ 
+			text addAttribute: TextEmphasis bold ] ].
+	self presenter displayItalic ifNotNil: [ :block |
+		(block cull: aString) ifTrue: [ 
+			text addAttribute: TextEmphasis italic ] ].
+	self presenter displayUnderline ifNotNil: [ :block |
+		(block cull: aString) ifTrue: [ 
+			text addAttribute: TextEmphasis underlined ] ].
+	self presenter displayBackgroundColor ifNotNil: [ :block |
+		(block cull: aString) ifNotNil: [ :aColor |
+		  	text addAttribute: (TextBackgroundColor color: aColor) ] ].
+	
+	^ text
+]
+
 { #category : #styling }
 SpMorphicLabelAdapter >> applyStyle: aMorph [
 
@@ -41,7 +65,9 @@ SpMorphicLabelAdapter >> getHelpText [
 { #category : #'model access' }
 SpMorphicLabelAdapter >> getText [
 
-	^self presenter label ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
+	^ self presenter label
+		ifNotNil: [ :aString | 
+			self applyDecorationsTo: (aString localizedForPresenter: self presenter) ]
 ]
 
 { #category : #accessing }
