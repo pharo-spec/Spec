@@ -424,7 +424,9 @@ SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: 
 			receiver: self interactionModel doItReceiver;
 			requestor: self interactionModel;
 			environment: self environment;
-			failBlock:  [ ^ compileErrorBlock value ];
+			failBlock:  [ 
+				self announcer announce: (SpCodeEvaluationFailedAnnouncement newContent: aString).
+				^ compileErrorBlock value ];
 			evaluate.
 		oldBindings size = self interactionModel bindings size 
 			ifFalse: [ self withAdapterDo: [ :anAdapter | anAdapter refreshStyling ] ].
