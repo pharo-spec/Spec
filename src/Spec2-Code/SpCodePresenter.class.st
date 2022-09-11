@@ -223,7 +223,8 @@ SpCodePresenter >> buildContextKeyBindingsWith: aCategory [
 SpCodePresenter >> buildContextMenuWith: aValuable [
 	| menuPresenter |
 	
-	overrideContextMenu ifTrue: [ ^ aValuable ].
+	overrideContextMenu ifTrue: [
+		^ aValuable ].
 
 	menuPresenter := self newContextMenu.
 	aValuable ifNotNil: [ 

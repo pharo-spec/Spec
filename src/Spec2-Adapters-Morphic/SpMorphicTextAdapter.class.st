@@ -20,6 +20,12 @@ SpMorphicTextAdapter >> addFocusRotationKeyBindings [
 	"Text areas needs to be able to process tab. Cancel the binding."
 ]
 
+{ #category : #api }
+SpMorphicTextAdapter >> backendIncludesEditionMenu [
+
+	^ false
+]
+
 { #category : #'protocol - shortcuts' }
 SpMorphicTextAdapter >> bindKeyCombination: aShortcut toAction: aBlock [ 
 
@@ -77,14 +83,16 @@ SpMorphicTextAdapter >> buildWidget [
 
 { #category : #'widget API' }
 SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
-
 	| menuPresenter |
+	
 	menuPresenter := self model contextMenu value
-		                 ifNotNil: [ :contextMenu | contextMenu ]
-		                 ifNil: [ SpMenuPresenter new ].
+		ifNotNil: [ :contextMenu | contextMenu ]
+		ifNil: [ SpMenuPresenter new ].
+	
 	self presenter hasEditionContextMenu ifTrue: [ 
 		self presenter editionContextMenu menuGroups do: [ :each | 
 			menuPresenter addMenuGroup: each ] ].
+	
 	^ SpBindings
 		  value: self model application adapterBindings
 		  during: [ menuPresenter value build ]

@@ -84,6 +84,16 @@ SpTextPresenter class >> title [
 	^ 'Text'
 ]
 
+{ #category : #testing }
+SpTextPresenter >> backendIncludesEditionMenu [
+	"Some backends can contain bundled by default edition context menu (copy, cut, paste), 
+	 users may want to use it instead of Pharo's"
+
+	self withAdapterDo: [ :anAdapter | 
+		^ anAdapter backendIncludesEditionMenu ].
+	^ false
+]
+
 { #category : #api }
 SpTextPresenter >> beEditable [
 	"Allow edition (deny readonly)."
