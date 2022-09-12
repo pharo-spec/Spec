@@ -89,7 +89,11 @@ SpStyle class >> defaultStyleSheetData [
 	.slider [ Geometry { #width: 150, #hResizing: true } ],
 	.actionBar [  
 		Container { #borderWidth: 0, #padding: 5 },
-		Geometry { #width: 150, #height: 29, #hResizing: true, #vResizing: false }
+		Geometry { #width: 150, #height: 30, #hResizing: true, #vResizing: false }
+	],
+	.buttonBar [  
+		Container { #borderWidth: 0, #padding: 0 },
+		Geometry { #width: 150, #height: 30, #hResizing: true, #vResizing: false }
 	],
 	.menuBar [ Geometry { #width: 150, #hResizing: true } ],
 	.actionButton [
