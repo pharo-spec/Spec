@@ -14,6 +14,7 @@ SpJobListPresenterTest >> testJobIsFinishedWhenWaitingMoreThanWorkBlockDuration 
 
 	| progress job |
 
+	self skipOnPharoCITestingEnvironment.
 	progress := 0.
 	job := SpJob
 			newTitle: 'some job'
