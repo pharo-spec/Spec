@@ -239,6 +239,16 @@ SpPresenter >> additionalSubpresentersMap [
 
 { #category : #'private - traversing' }
 SpPresenter >> allPresenters [
+	"This answers ALL presenters included in this presenter, the ones that are in the layout 
+	 BUT ALSO the presenters in other embeded presenters
+	 e.g. 
+	 1. presenter A includes presenters B and C.
+	 2. presenter B includes presenters B1 and B2
+	 3. presenter C includes presenter C1
+	 then `A allPresenters` = { B. B1. B2. C. C1 }
+	
+	See also `SpPresenter>>#presenters`.
+	"
 
 	^ Array streamContents: [ :stream |
 		self traversePresentersDo: [ :each | 
@@ -247,6 +257,10 @@ SpPresenter >> allPresenters [
 
 { #category : #private }
 SpPresenter >> allPresentersInFocusOrder [
+	"This answers ALL presenters included in this presenter, the ones that are in the layout 
+	 BUT ALSO the presenters in other embeded presenters. 
+	 And it answers the list *in focus order*. 
+	 See also `SpPresenter>>#allPresenters`"
 
 	^ Array streamContents: [ :stream |
 		self traverseInFocusOrderDo: [ :each |
@@ -737,6 +751,15 @@ SpPresenter >> presenterAt: aName ifAbsent: aBlock [
 
 { #category : #'private - traversing' }
 SpPresenter >> presenters [
+	"This answers ALL presenters included in this layout (including nested layouts). 
+	 BUT IT DOES NOT INCLUDES presenters of embeded presenters.
+	 e.g. 
+	 1. presenter A includes presenters B and C.
+	 2. presenter B includes presenters B1 and B2
+	 3. presenter C includes presenter C1
+	 then `A presenters` = { B. C }
+	
+	See also `SpPresenter>>#allPresenters`"
 
 	^ Array streamContents: [ :stream |
 		self presentersDo: [ :each | 
