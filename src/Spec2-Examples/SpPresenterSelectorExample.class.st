@@ -12,12 +12,6 @@ Class {
 	#category : #'Spec2-Examples-Standalone'
 }
 
-{ #category : #specs }
-SpPresenterSelectorExample class >> defaultSpec [
-
-	^ nil
-]
-
 { #category : #layout }
 SpPresenterSelectorExample >> defaultLayout [
 
