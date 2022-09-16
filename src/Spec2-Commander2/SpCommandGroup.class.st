@@ -9,7 +9,8 @@ Class {
 	#name : #SpCommandGroup,
 	#superclass : #CmUICommandGroup,
 	#instVars : [
-		'toolbarPopoverButton'
+		'toolbarPopoverButton',
+		'iconProvider'
 	],
 	#category : #'Spec2-Commander2-Core'
 }
@@ -59,24 +60,6 @@ SpCommandGroup >> asMenuPresenterWith: aBlock [
 		menuPresenter
 ]
 
-{ #category : #converting }
-SpCommandGroup >> asToolbarPresenter [
-	^ SpToolbarPresenterBuilder new
-		visit: self;
-		toolbarPresenter
-]
-
-{ #category : #converting }
-SpCommandGroup >> asToolbarPresenterWith: aBlock [
-	| builder |
-	
-	builder := SpToolbarPresenterBuilder new.
-	aBlock value: builder toolbarPresenter.
-	^ builder
-		visit: self;
-		toolbarPresenter
-]
-
 { #category : #configuring }
 SpCommandGroup >> beToolbarGroup [
 
@@ -96,6 +79,39 @@ SpCommandGroup >> displayIn: aMenuPresenter do: aBlock [
 		display: self 
 		in: aMenuPresenter 
 		do: aBlock
+]
+
+{ #category : #accessing }
+SpCommandGroup >> icon [
+
+	^ icon ifNil: [ 
+		self iconName 
+			ifNotNil: [ self iconProvider iconNamed: self iconName ]
+			ifNil: [ super icon ] ]
+]
+
+{ #category : #accessing }
+SpCommandGroup >> iconName [
+
+	^ iconName
+]
+
+{ #category : #accessing }
+SpCommandGroup >> iconName: aName [
+
+	iconName := aName
+]
+
+{ #category : #accessing }
+SpCommandGroup >> iconProvider [
+
+	^ iconProvider
+]
+
+{ #category : #accessing }
+SpCommandGroup >> iconProvider: anIconProvider [
+
+	iconProvider := anIconProvider
 ]
 
 { #category : #initialization }
