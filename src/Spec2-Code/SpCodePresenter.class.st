@@ -78,7 +78,7 @@ SpCodePresenter class >> codeNavigationCommandsGroupWith: aPresenter [
 		SpBrowseMethodsContainingStringCommand.
 	 } 
 	do:[ :commandClass | 
-		group register: commandClass forSpec ].
+		group register: (commandClass forSpecContext: aPresenter) ].
 	
 	^ group
 ]
