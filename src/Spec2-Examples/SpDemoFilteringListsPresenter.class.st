@@ -39,7 +39,7 @@ SpDemoFilteringListsPresenter >> initializePresenters [
 	listWithPackages listPresenter
 		display: [ :class | class name ];
 		sortingBlock: [ :a : b | a name < b name ];
-		displayIcon: [ :aClass | aClass systemIcon ].
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ].
 	
 	listWithMethodsAlreadyFiltered := self newFilteringList.
 	listWithMethodsAlreadyFiltered
@@ -49,7 +49,7 @@ SpDemoFilteringListsPresenter >> initializePresenters [
 	listWithMethodsAlreadyFiltered listPresenter
 		display: [ :class | class name ];
 		sortingBlock: [ :a :b | a name < b name ];
-		displayIcon: [ :aClass | aClass systemIcon ].
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ].
 	
 	selectableList :=  self instantiate: SpFilteringSelectableListPresenter.
 	selectableList items: self class environment allClasses.

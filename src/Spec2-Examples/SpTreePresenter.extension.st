@@ -7,7 +7,7 @@ SpTreePresenter class >> example [
 	^ self new
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
-		displayIcon: [ :aClass | aClass systemIcon ];
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
 		display: [ :aClass | aClass name ];
 		open
 ]
@@ -18,7 +18,7 @@ SpTreePresenter class >> exampleExpandPath [
 	^ self new
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
-		displayIcon: [ :aClass | aClass systemIcon ];
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
 		display: [ :aClass | aClass name ];
 		expandPath: #(1 1 3); "Object/Exception/Notification"
 		open
@@ -30,7 +30,7 @@ SpTreePresenter class >> exampleExpandRoots [
 	^ self new
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
-		displayIcon: [ :aClass | aClass systemIcon ];
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
 		display: [ :aClass | aClass name ];
 		expandRoots;
 		open
@@ -42,7 +42,7 @@ SpTreePresenter class >> exampleSelectPathByItems [
 	^ self new
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
-		displayIcon: [ :aClass | aClass systemIcon ];
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
 		display: [ :aClass | aClass name ];
 		open;
 		selectPathByItems: self withAllSuperclasses reversed allButFirst scrollToSelection: true
@@ -56,7 +56,7 @@ SpTreePresenter class >> exampleWithContextMenu [
 	^ (tree := self new)
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
-		displayIcon: [ :aClass | aClass systemIcon ];
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
 		display: [ :aClass | aClass name ];
 		contextMenu: [
 			SpMenuPresenter new 
@@ -69,7 +69,7 @@ SpTreePresenter class >> exampleWithContextMenu [
 SpTreePresenter class >> exampleWithDecoratedString [
 	
 	^ self new
-		displayIcon: [ :aClass | aClass systemIcon ];
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
 		displayColor: [ :aClass | 
 			(aClass name endsWith: 'Test')
 				ifTrue: [ Color green ]

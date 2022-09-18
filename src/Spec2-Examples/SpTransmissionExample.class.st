@@ -144,7 +144,7 @@ SpTransmissionExample >> initializeClassesPresenter [
 	classes := self newList.
 	classes
 		display: [ :class | class name];
-		displayIcon: [ :class | class systemIcon ];
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
 		sortingBlock: [ :a :b | a name < b name ]
 ]
 

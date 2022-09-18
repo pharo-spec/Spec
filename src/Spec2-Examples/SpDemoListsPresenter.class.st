@@ -81,7 +81,7 @@ SpDemoListsPresenter >> iconFor: class [
 			class hasErrorTest ifTrue: [ ^ self iconNamed: #testRed ].
 			^ self iconNamed: #testNotRun ].
 	class organization classComment ifEmpty: [ ^ self iconNamed: #uncommentedClass ].
-	^ class systemIcon
+	^ self iconNamed: class systemIconName
 ]
 
 { #category : #initialization }

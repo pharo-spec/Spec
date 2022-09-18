@@ -15,7 +15,7 @@ SpButtonBarPresenter class >> example [
 	"some settings to the list (to not have the presenter empty)"
 	list 
 		items: Smalltalk allClassesAndTraits;
-		displayIcon: [ :aClass | aClass systemIcon ];
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
 		display: [ :aClass | aClass name ].
 		
 	"now, we add some buttons to our button bar"

@@ -5,7 +5,9 @@ SpTablePresenter class >> example [
 	<sampleInstance>
 	
 	^ self new
-		addColumn: (SpImageTableColumn title: 'Icon' evaluated: #systemIcon);
+		addColumn: (SpImageTableColumn 
+			title: 'Icon' 
+			evaluated: [ :aClass | self iconNamed: aClass systemIconName ]);
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
 		items: Smalltalk allClasses;
 		open
@@ -38,7 +40,9 @@ SpTablePresenter class >> exampleDragAndDrop [
 SpTablePresenter class >> exampleFixedWidth [
 	
 	^ self new
-		addColumn: ((SpImageTableColumn title: 'Icon' evaluated: #systemIcon) width: 30);
+		addColumn: ((SpImageTableColumn title: 'Icon' 
+			evaluated: [ :aClass | self iconNamed: aClass systemIconName ]) 
+			width: 30);
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
 		items: Smalltalk allClasses;
 		open
@@ -50,7 +54,9 @@ SpTablePresenter class >> exampleFixedWidthResizable [
 	
 	^ self new
 		beResizable;
-		addColumn: ((SpImageTableColumn title: 'Icon' evaluated: #systemIcon) width: 30);
+		addColumn: ((SpImageTableColumn title: 'Icon' 
+			evaluated: [ :aClass | self iconNamed: aClass systemIconName ]) 
+			width: 30);
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
 		addColumn: (SpStringTableColumn title: 'Methods' evaluated: [ :each | each methods size ]);
 		items: Smalltalk allClasses;
@@ -62,7 +68,9 @@ SpTablePresenter class >> exampleResizableColumns [
 	
 	^ self new
 		beResizable;
-		addColumn: (SpImageTableColumn title: 'Icon' evaluated: #systemIcon);
+		addColumn: (SpImageTableColumn 
+			title: 'Icon' 
+			evaluated: [ :aClass | self iconNamed: aClass systemIconName ]);
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name);
 		items: Smalltalk allClasses;
 		open
@@ -108,7 +116,10 @@ SpTablePresenter class >> exampleWithCompositeColumn [
 		addColumn: (SpStringTableColumn title: 'Package' evaluated: [ :aClass | aClass package packageName ]);
 		addColumn: (SpCompositeTableColumn new
 			title: 'Class';
-			addColumn: (SpImageTableColumn evaluated: #systemIcon) beNotExpandable;
+			addColumn: (SpImageTableColumn new 
+				evaluated: [ :aClass | self iconNamed: aClass systemIconName ];
+				beNotExpandable;
+				yourself);
 			addColumn: (SpStringTableColumn evaluated: #name);
 			yourself);
 		items: Smalltalk allClasses;
@@ -119,7 +130,9 @@ SpTablePresenter class >> exampleWithCompositeColumn [
 SpTablePresenter class >> exampleWithDecoratedString [
 	
 	^ self new
-		addColumn: (SpImageTableColumn title: 'Icon' evaluated: [ :aClass | aClass systemIcon ]);
+		addColumn: (SpImageTableColumn 
+			title: 'Icon' 
+			evaluated: [ :aClass | self iconNamed: aClass systemIconName ]);
 		addColumn: (SpStringTableColumn new 
 			title: 'Name'; 
 			evaluated: [ :aClass | aClass name ];

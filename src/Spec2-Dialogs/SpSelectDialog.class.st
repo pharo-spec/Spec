@@ -46,7 +46,7 @@ SpSelectDialog class >> example [
 		label: 'Select a class';
 		items: Smalltalk allClassesAndTraits;
 		display: [ :each | each name ];
-		displayIcon: [ :each | each systemIcon ];
+		displayIcon: [ :each | self iconNamed: each systemIconName ];
 		onAccept: [ :dialog | self inform: dialog presenter selectedItem asString ];
 		openDialog
 ]
@@ -60,7 +60,7 @@ SpSelectDialog class >> exampleModal [
 		label: 'Select a class';
 		items: Smalltalk allClassesAndTraits;
 		display: [ :each | each name ];
-		displayIcon: [ :each | each systemIcon ];
+		displayIcon: [ :each | self iconNamed: each systemIconName ];
 		openModal.
 		
 	selection ifNotNil: [ 
