@@ -77,7 +77,9 @@ SpStyle class >> defaultStyleSheetData [
 	.link [ Geometry { #hResizing: true } ],
 	.button [  
 		Geometry { #width: 100, #height: 28 },
-		.small [ Geometry { #width: 24, #height: 24 } ]
+		.small [ Geometry { #width: 24, #height: 24 } ],
+		.large [ Geometry { #width: 150, #height: 28 } ],
+		.veryLarge [ Geometry { #width: 200, #height: 28 } ]
 	],
 	.checkBox [  
 		Geometry { #hResizing: true },
@@ -107,7 +109,10 @@ SpStyle class >> defaultStyleSheetData [
 		.icons [ Geometry { #height: 30 } ],
 		.iconsAndLabel [ Geometry { #height: 45 } ]
 	],
-	.text [ Geometry { #height: Reset } ],
+	.text [ 
+		Geometry { #height: Reset },
+		.lines4 [ Geometry { #minHeight: 80, #height: 80 } ],
+		.lines8 [ Geometry { #minHeight: 160, #height: 160 } ] ],
 	.textInputField [ Geometry { #height: 24, #minHeight: 24 } ],
 	.code [ Font { #name: EnvironmentFont(#code) } ],
 	.patch [ Font { #name: EnvironmentFont(#code) } ],
