@@ -10,6 +10,7 @@ Class {
 	#superclass : #CmUICommandGroup,
 	#instVars : [
 		'toolbarPopoverButton',
+		'iconName',
 		'iconProvider'
 	],
 	#category : #'Spec2-Commander2-Core'
