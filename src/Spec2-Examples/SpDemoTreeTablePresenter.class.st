@@ -29,7 +29,8 @@ SpDemoTreeTablePresenter >> initializePresenters [
 	table1
 		addColumn: (SpCompositeTableColumn new
 			title: 'Classes';
-			addColumn: ((SpImageTableColumn evaluated: #systemIcon)
+			addColumn: ((SpImageTableColumn 
+				evaluated: [ :aClass | self iconNamed: aClass systemIconName ])
 				width: 20;
 				yourself);
 			addColumn: (SpStringTableColumn evaluated: #name);

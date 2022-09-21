@@ -78,6 +78,12 @@ SpCommand >> displayIn: aMenuGroupOrPresenter do: aBlock [
 		do: aBlock
 ]
 
+{ #category : #accessing }
+SpCommand >> iconProvider [
+
+	^ iconProvider
+]
+
 { #category : #initialization }
 SpCommand >> initialize [
 

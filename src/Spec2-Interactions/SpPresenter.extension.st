@@ -5,7 +5,7 @@ SpPresenter >> confirm: queryString label: titleString [
 	
 	^ (self application newConfirm 
 		title: titleString;
-		message: queryString;
+		label: queryString;
 		openModal)
 		isOk
 ]

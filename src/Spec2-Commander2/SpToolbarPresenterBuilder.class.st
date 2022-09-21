@@ -21,6 +21,7 @@ SpToolbarPresenterBuilder >> addPopoverButtonFrom: aCommandsGroup [
 		icon: aCommandsGroup icon;
 		content: [ 
 			self class new
+				toolbarPresenter: self toolbarPresenter newToolbar;
 				visit: aCommandsGroup copy beToolbarGroup;
 				toolbarPresenter ];
 		yourself)	
@@ -43,16 +44,23 @@ SpToolbarPresenterBuilder >> toolbarPresenter: anObject [
 ]
 
 { #category : #visiting }
-SpToolbarPresenterBuilder >> visitCommand: aCmCommandEntry [
-	aCmCommandEntry positionStrategy
-		addButton: aCmCommandEntry buildPresenter
+SpToolbarPresenterBuilder >> visitCommand: anEntry [
+
+	"initialize icon provider if it is not there."
+	anEntry iconProvider ifNil: [ 
+		anEntry iconProvider: self toolbarPresenter application ].
+	anEntry positionStrategy
+		addButton: anEntry buildPresenter
 		toToolbar: self toolbarPresenter
 ]
 
 { #category : #visiting }
-SpToolbarPresenterBuilder >> visitCommandGroup: aCmCommandsGroup [
+SpToolbarPresenterBuilder >> visitCommandGroup: aGroup [
 	
-	aCmCommandsGroup isToolbarPopoverButton 
-		ifTrue: [ self addPopoverButtonFrom: aCmCommandsGroup ]
-		ifFalse: [ super visitCommandGroup: aCmCommandsGroup ]
+	"initialize icon provider if it is not there."
+	aGroup iconProvider ifNil: [ 
+		aGroup iconProvider: self toolbarPresenter application ].
+	aGroup isToolbarPopoverButton 
+		ifTrue: [ self addPopoverButtonFrom: aGroup ]
+		ifFalse: [ super visitCommandGroup: aGroup ]
 ]

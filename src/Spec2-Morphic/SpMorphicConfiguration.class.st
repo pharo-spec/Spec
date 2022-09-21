@@ -39,6 +39,13 @@ SpMorphicConfiguration >> configure: anApplication [
 	self styleSheet "Initialize stylesheet"
 ]
 
+{ #category : #testing }
+SpMorphicConfiguration >> isDarkTheme [
+	
+	"hacky, but works"
+	^ UITheme current isKindOf: PharoDarkTheme
+]
+
 { #category : #'private - factory' }
 SpMorphicConfiguration >> newStyleSheet [
 

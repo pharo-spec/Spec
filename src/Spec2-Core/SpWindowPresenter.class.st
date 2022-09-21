@@ -545,11 +545,12 @@ SpWindowPresenter >> statusBar: aStatusBarPresenter [
 
 { #category : #TOREMOVE }
 SpWindowPresenter >> taskbarIcon [
+
 	^ self windowIcon
 		ifNil: [
-			self presenter
-				ifNil: [ super taskbarIcon ]
-				ifNotNil: #taskbarIcon ]
+			self iconNamed:  (self presenter
+				ifNotNil: [ :aPresenter | aPresenter taskbarIconName ]
+				ifNil: [ (self taskbarIconName) ]) ]
 ]
 
 { #category : #private }

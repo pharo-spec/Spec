@@ -64,8 +64,10 @@ SpToolCommand >> asSpecCommand [
 	
 	command := super asSpecCommand.
 	self shortcutKey ifNotNil: [ :key | command shortcutKey: key ].
-	self defaultIconName
-		ifNotNil: [ :iconName | command iconName: iconName ].
+	self defaultIconName ifNotNil: [ :iconName | 
+			command 
+				iconName: iconName; 
+				iconProvider: context application ].
 	
 	^ SpToolCurrentApplicationCommand decorate: command
 ]

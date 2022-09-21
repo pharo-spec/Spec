@@ -36,7 +36,7 @@ SpFilteringListPresenter class >> exampleWithInitializedFilter [
 	example := self new.
 	example matchSubstring.
 	example items: RBBrowserEnvironment default classes asArray.
-	example displayIcon: [ :aClass | aClass systemIcon ].
+	example displayIcon:[ :aClass | self iconNamed: aClass systemIconName ].
 	example applyFilter: 'ZZ'.
 	example open title:
 		self name asString , ' example with filter'.

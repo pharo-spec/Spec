@@ -37,7 +37,9 @@ SpBoxLayoutWithTableForTestPresenter >> initializePresenters [
 		items: Smalltalk allClassesAndTraits;
 		addColumn: (SpCompositeTableColumn new
 			title: 'Test'; 
-			addColumn: ((SpImageTableColumn evaluated: [ :each | each systemIcon ]) width: 20);
+			addColumn: ((SpImageTableColumn 
+				evaluated: [ :aClass | self iconNamed: aClass systemIconName ]) 
+				width: 20);
 			addColumn: (SpStringTableColumn evaluated: [ :each | each name ])).
 ]
 

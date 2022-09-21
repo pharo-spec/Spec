@@ -6,7 +6,9 @@ SpTreeTablePresenter class >> example [
 	^ self new
 		addColumn: (SpCompositeTableColumn new
 			title: 'Classes';
-			addColumn: ((SpImageTableColumn evaluated: #systemIcon) width: 20);
+			addColumn: (SpImageTableColumn new 
+				evaluated: [ :aClass | self iconNamed: aClass systemIconName]; 
+				width: 20);
 			addColumn: (SpStringTableColumn evaluated: #name);
 			yourself);
 		roots: { Object };
@@ -20,7 +22,9 @@ SpTreeTablePresenter class >> exampleExpandPath [
 	^ self new
 		addColumn: (SpCompositeTableColumn new
 			title: 'Classes';
-			addColumn: ((SpImageTableColumn evaluated: #systemIcon) width: 20);
+			addColumn: (SpImageTableColumn new
+				evaluated: [ :aClass | self iconNamed: aClass systemIconName ]; 
+				width: 20);
 			addColumn: (SpStringTableColumn evaluated: #name);
 			yourself);
 		roots: { Object };
@@ -35,7 +39,9 @@ SpTreeTablePresenter class >> exampleExpandRoots [
 	^ self new
 		addColumn: (SpCompositeTableColumn new
 			title: 'Classes';
-			addColumn: ((SpImageTableColumn evaluated: #systemIcon) width: 20);
+			addColumn: (SpImageTableColumn new
+				evaluated: [ :aClass | self iconNamed: aClass systemIconName ]; 
+				width: 20);
 			addColumn: (SpStringTableColumn evaluated: #name);
 			yourself);
 		roots: { Object };
@@ -51,7 +57,7 @@ SpTreeTablePresenter class >> exampleResizableColumns [
 		beResizable;
 		addColumn: (SpCompositeTableColumn new
 			title: 'Classes';
-			addColumn: ((SpImageTableColumn evaluated: [:c| c systemIcon]) );
+			addColumn: ((SpImageTableColumn evaluated: [ :aClass | self iconNamed: aClass systemIconName ]) );
 			addColumn: (SpStringTableColumn evaluated: #name);
 			yourself);
 		addColumn: (SpStringTableColumn new
@@ -69,7 +75,7 @@ SpTreeTablePresenter class >> exampleResizableColumnsFixedWidth [
 		beResizable;
 		addColumn: (SpCompositeTableColumn new
 			title: 'Classes';
-			addColumn: ((SpImageTableColumn evaluated: [:c| c systemIcon]) );
+			addColumn: ((SpImageTableColumn evaluated: [ :aClass | self iconNamed: aClass systemIconName ]) );
 			addColumn: (SpStringTableColumn evaluated: #name);
 			width: 150;
 			beExpandable;
@@ -86,7 +92,9 @@ SpTreeTablePresenter class >> exampleResizableColumnsFixedWidth [
 SpTreeTablePresenter class >> exampleWithDecoratedString [
 	
 	^ self new
-		addColumn: (SpImageTableColumn title: 'Icon' evaluated: [ :aClass | aClass systemIcon ]);
+		addColumn: (SpImageTableColumn 
+			title: 'Icon' 
+			evaluated: [ :aClass | self iconNamed: aClass systemIconName ]);
 		addColumn: (SpStringTableColumn new 
 			title: 'Name'; 
 			evaluated: [ :aClass | aClass name ];
@@ -109,7 +117,7 @@ SpTreeTablePresenter class >> exampleWithTwoColumns [
 	^ self  new
 		addColumn: (SpCompositeTableColumn new
 			title: 'Classes';
-			addColumn: ((SpImageTableColumn evaluated: [:c| c systemIcon]) );
+			addColumn: ((SpImageTableColumn evaluated: [ :aClass | self iconNamed: aClass systemIconName ]) );
 			addColumn: (SpStringTableColumn evaluated: #name);
 			yourself);
 		addColumn: (SpStringTableColumn new
