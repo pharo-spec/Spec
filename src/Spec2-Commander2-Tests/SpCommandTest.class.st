@@ -203,7 +203,7 @@ SpCommandTest >> testIconName [
 
 { #category : #tests }
 SpCommandTest >> testIconNameFrom [
-	self assert: command iconProvider equals: Smalltalk ui icons.
+
 	
 	command iconName: #banana from: self.
 	
