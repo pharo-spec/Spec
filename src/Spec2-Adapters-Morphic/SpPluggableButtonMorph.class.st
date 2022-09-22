@@ -21,10 +21,25 @@ SpPluggableButtonMorph >> backgroundColor: aColor [
 ]
 
 { #category : #accessing }
+SpPluggableButtonMorph >> borderStyleToUse [
+
+	^ self borderWidth = 0 
+		ifTrue: [ BorderStyle width: 0 color: Color transparent ]
+		ifFalse: [ super borderStyleToUse ]
+]
+
+{ #category : #accessing }
 SpPluggableButtonMorph >> borderWidth: aNumber [
 
 	super borderWidth: aNumber.
 	self borderStyle: (BorderStyle 
 		width: aNumber 
 		color: self theme borderColor)
+]
+
+{ #category : #accessing }
+SpPluggableButtonMorph >> fillStyleToUse [
+
+	self backgroundColor ifNil: [ ^ super fillStyleToUse ].
+	^ SolidFillStyle color: self backgroundColor
 ]
