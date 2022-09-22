@@ -165,7 +165,7 @@ SpMorphicButtonAdapter >> menu: aMenu [
 { #category : #factory }
 SpMorphicButtonAdapter >> newButton [
 
-	^ PluggableButtonMorph
+	^ SpPluggableButtonMorph
 		  on: self
 		  getState: #state
 		  action: #action
