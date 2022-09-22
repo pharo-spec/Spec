@@ -25,9 +25,11 @@ SpMorphicOverlayAdapter >> addConstraints: constraints toChild: childMorph [
 { #category : #protocol }
 SpMorphicOverlayAdapter >> basicAdd: aPresenter constraints: constraints to: aWidget [
 	| childMorph |
-	
+
 	childMorph := self buildMorph: aPresenter constraints: constraints.	
-	aWidget addMorph: childMorph.
+	constraints isOverlay 
+		ifTrue: [ aWidget addMorphFront: childMorph ]
+		ifFalse: [ aWidget addMorphBack: childMorph ].
 	
 	^ childMorph
 ]
