@@ -14,7 +14,8 @@ Class {
 	#instVars : [
 		'contentLayout',
 		'optionsPresenter',
-		'options'
+		'options',
+		'acceptCallback'
 	],
 	#category : #'Spec2-CommonWidgets-Core'
 }
@@ -30,10 +31,22 @@ SpOptionListPresenter class >> isAbstract [
 	^ self == SpOptionListPresenter
 ]
 
+{ #category : #accessing }
+SpOptionListPresenter >> acceptCallback: aBlock [
+
+	acceptCallback := aBlock
+]
+
 { #category : #initialization }
 SpOptionListPresenter >> addOption: anOptionPresenter [
 
 	options addLast: anOptionPresenter
+]
+
+{ #category : #initialization }
+SpOptionListPresenter >> addOptions: aListOfOptionPresenter [
+
+	aListOfOptionPresenter do: [ :each | self addOption: each ]
 ]
 
 { #category : #initialization }
@@ -60,13 +73,14 @@ SpOptionListPresenter >> defaultLayout [
 { #category : #action }
 SpOptionListPresenter >> doAccept [
 
-	self selectedOption doAccept
+	acceptCallback value: self selectedOption
 ]
 
 { #category : #initialization }
 SpOptionListPresenter >> initialize [
 	
 	options := OrderedCollection new.
+	acceptCallback := [ :selectedOption | selectedOption doAccept ].
 	
 	"options need to be initialized before Spec initialization"
 	super initialize.

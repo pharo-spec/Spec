@@ -53,6 +53,36 @@ SpOptionListPresenterTest >> tearDown [
 ]
 
 { #category : #tests }
+SpOptionListPresenterTest >> testAcceptCallbackIsExecutedWhenAcceptingDialog [
+	| presenter executed |
+	
+	executed := false.
+	presenter := self newOptionsPresenterWithOneOption.
+	presenter acceptCallback: [ :selectedOption | executed := true ].
+	dialog := presenter openDialog.
+	
+	dialog triggerOkAction.
+	
+	self assert: executed.
+	
+]
+
+{ #category : #tests }
+SpOptionListPresenterTest >> testAcceptCallbackIsNotExecutedWhenCancelingDialog [
+	| presenter executed |
+	
+	executed := false.
+	presenter := self newOptionsPresenterWithOneOption.
+	presenter acceptCallback: [ :selectedOption | executed := true ].
+	dialog := presenter openDialog.
+	
+	dialog triggerCancelAction.
+	
+	self deny: executed.
+	
+]
+
+{ #category : #tests }
 SpOptionListPresenterTest >> testContentPanelIsEmptyWhenNoSelection [
 	| presenterClass presenter |
 	presenterClass := SpOptionListPresenter newAnonymousSubclass.
@@ -81,7 +111,7 @@ SpOptionListPresenterTest >> testContentPanelIsUpdatedWhenSelectionChanges [
 ]
 
 { #category : #tests }
-SpOptionListPresenterTest >> testDoAcceptIsExecutedWhenAcceptingDialog [
+SpOptionListPresenterTest >> testDoAcceptIsExecutedOnSelectedOptionWhenAcceptingDialog [
 	| presenter optionPresenter |
 	
 	presenter := self newOptionsPresenterWithOneOption.
@@ -96,7 +126,7 @@ SpOptionListPresenterTest >> testDoAcceptIsExecutedWhenAcceptingDialog [
 ]
 
 { #category : #tests }
-SpOptionListPresenterTest >> testDoAcceptIsNotExecutedWhenCancelingDialog [
+SpOptionListPresenterTest >> testDoAcceptIsNotExecutedOnSelectedOptionWhenCancelingDialog [
 	| presenter optionPresenter |
 	
 	presenter := self newOptionsPresenterWithOneOption.
