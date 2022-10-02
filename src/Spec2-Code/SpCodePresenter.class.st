@@ -8,6 +8,7 @@ Class {
 	#superclass : #SpTextPresenter,
 	#instVars : [
 		'#syntaxHighlight => ObservableSlot',
+		'#smartCharacters => ObservableSlot',
 		'#lineNumbers => ObservableSlot',
 		'#interactionModel => ObservableSlot',
 		'#overrideContextMenu',
@@ -500,6 +501,12 @@ SpCodePresenter >> hasResetAction [
 ]
 
 { #category : #testing }
+SpCodePresenter >> hasSmartCharacters [
+
+	^ smartCharacters
+]
+
+{ #category : #testing }
 SpCodePresenter >> hasSubmitAction [
 
 	^ submitBlock notNil
@@ -520,6 +527,7 @@ SpCodePresenter >> initialize [
 	overrideContextMenu := false.
 	
 	self withSyntaxHighlight.
+	self withSmartCharacters.
 	self withLineNumbers.
 	
 	self registerEventsForStyling.
@@ -683,7 +691,14 @@ SpCodePresenter >> selectedTextOrLine [
 ]
 
 { #category : #private }
+SpCodePresenter >> smartCharacters: aBoolean [
+
+	smartCharacters := aBoolean
+]
+
+{ #category : #private }
 SpCodePresenter >> syntaxHighlight: aBoolean [
+
 	syntaxHighlight := aBoolean 
 ]
 
@@ -774,6 +789,13 @@ SpCodePresenter >> whenResetDo: aBlock [
 ]
 
 { #category : #'api - events' }
+SpCodePresenter >> whenSmartCharactersChangedDo: aBlock [
+	"Set a block to perform when the smart characters is enabled/disabled"
+
+	self property: #smartCharacters whenChangedDo: aBlock
+]
+
+{ #category : #'api - events' }
 SpCodePresenter >> whenSubmitDo: aBlock [
 	"This method will add a 'submit' event to the widget. It will react when user 
 	 presses <meta+s> key (this is for historical reasons) and with enter (cr).
@@ -804,6 +826,12 @@ SpCodePresenter >> withLineNumbers [
 ]
 
 { #category : #api }
+SpCodePresenter >> withSmartCharacters [
+
+	self smartCharacters: true
+]
+
+{ #category : #api }
 SpCodePresenter >> withSyntaxHighlight [
 
 	self syntaxHighlight: true
@@ -813,6 +841,12 @@ SpCodePresenter >> withSyntaxHighlight [
 SpCodePresenter >> withoutLineNumbers [
 
 	self lineNumbers: false
+]
+
+{ #category : #api }
+SpCodePresenter >> withoutSmartCharacters [
+
+	self smartCharacters: false
 ]
 
 { #category : #api }

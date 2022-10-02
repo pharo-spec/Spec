@@ -37,11 +37,12 @@ SpMorphicCodeAdapter >> buildWidget [
 		newWidget withLineNumbers ].
 	self presenter interactionModel ifNotNil: [ :im | 
 		self setInteractionModel: im to: newWidget ].
- 
 	self presenter whenLineNumbersChangedDo: [ :hasLineNumbers | 
 		self changeLineNumbers: hasLineNumbers to: newWidget ].
 	self presenter whenSyntaxHighlightChangedDo: [ :hasSyntaxHighlight | 
 		self setEditingModeFor: newWidget ].
+	self presenter whenSmartCharactersChangedDo: [ :hasSmartCharacters | 
+		self setSmartCharactersFor: newWidget ].
 	
 	self presenter syntaxHighlightTheme ifNotNil: [ 
 		self setSyntaxHighlightThemeFor: newWidget ].
@@ -105,6 +106,12 @@ SpMorphicCodeAdapter >> hasBindingOf: aString [
 	^ self presenter hasBindingOf: aString
 ]
 
+{ #category : #testing }
+SpMorphicCodeAdapter >> hasSmartCharacters [
+
+	^ self presenter hasSmartCharacters
+]
+
 { #category : #private }
 SpMorphicCodeAdapter >> hasSyntaxHighlight [
 
@@ -158,6 +165,7 @@ SpMorphicCodeAdapter >> isScripting [
 SpMorphicCodeAdapter >> newCompletionEngine: anInteractionModel [
 
 	^ SpMorphicCodeCompletionEngine new 
+		smartCharacters: self presenter hasSmartCharacters;
 		scripting: anInteractionModel isScripting;
 		doItRequestor: anInteractionModel;
 		doItContext: anInteractionModel doItContext;
@@ -235,6 +243,13 @@ SpMorphicCodeAdapter >> setInteractionModel: anInteractionModel to: w [
 
 	w textArea editor isSmalltalkEditor ifFalse: [ ^ self ].
 	w completionEngine: (self newCompletionEngine: anInteractionModel)
+]
+
+{ #category : #private }
+SpMorphicCodeAdapter >> setSmartCharactersFor: aWidget [
+
+	self suspendObservedPropertiesWhile: [  
+		aWidget textArea editor completionEngine smartCharacters: self hasSmartCharacters ]
 ]
 
 { #category : #private }
