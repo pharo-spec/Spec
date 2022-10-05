@@ -550,7 +550,7 @@ SpWindowPresenter >> taskbarIcon [
 		ifNil: [
 			self iconNamed:  (self presenter
 				ifNotNil: [ :aPresenter | aPresenter taskbarIconName ]
-				ifNil: [ (self taskbarIconName) ]) ]
+				ifNil: [ self taskbarIconName ]) ]
 ]
 
 { #category : #private }
