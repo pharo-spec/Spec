@@ -75,3 +75,18 @@ SpWindow >> okToChange [
 
 	^ self model okToChange
 ]
+
+{ #category : #accessing }
+SpWindow >> taskbarTask [
+	"Answer a taskbar task for the receiver.
+	 Answer nil if not required."
+
+	(self valueOfProperty: #noTaskbarTask ifAbsent: [false]) ifTrue: [^nil].
+	taskbarTask := TaskbarTask
+		morph: self
+		state: self taskbarState
+		icon: self model taskbarIcon
+		label: self taskbarLabel.
+
+	^ taskbarTask
+]
