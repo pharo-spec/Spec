@@ -16,7 +16,8 @@ Class {
 		'completionClass',
 		'doItContext',
 		'doItRequestor',
-		'completionBuilder'
+		'completionBuilder',
+		'smartCharacters'
 	],
 	#category : #'Spec2-Code-Morphic'
 }
@@ -86,6 +87,18 @@ SpMorphicCodeCompletionEngine >> isScripting [
 SpMorphicCodeCompletionEngine >> scripting: aBoolean [ 
 
 	scripting := aBoolean
+]
+
+{ #category : #accessing }
+SpMorphicCodeCompletionEngine >> smartCharacters [
+
+	^ smartCharacters ifNil: [ super smartCharacters ]
+]
+
+{ #category : #accessing }
+SpMorphicCodeCompletionEngine >> smartCharacters: aBoolean [
+
+	smartCharacters := aBoolean
 ]
 
 { #category : #accessing }

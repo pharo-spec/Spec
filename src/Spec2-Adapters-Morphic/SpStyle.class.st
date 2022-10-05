@@ -77,6 +77,9 @@ SpStyle class >> defaultStyleSheetData [
 	.link [ Geometry { #hResizing: true } ],
 	.button [  
 		Geometry { #width: 100, #height: 28 },
+		.flat [ 
+			Container { #borderWidth: 0 }, 
+			Draw { #backgroundColor: #transparent } ],
 		.small [ Geometry { #width: 24, #height: 24 } ],
 		.large [ Geometry { #width: 150 } ],
 		.veryLarge [ Geometry { #width: 200 } ]
@@ -121,7 +124,7 @@ SpStyle class >> defaultStyleSheetData [
 	.code [ Font { #name: EnvironmentFont(#code) } ],
 	.patch [ Font { #name: EnvironmentFont(#code) } ],
 	.codePopover [ 
-		Draw { #color : #transparent },
+		Draw { #color: #transparent },
 		.button [ Geometry { #width : 25 } ]
 	],
 	.codePopoverError [ 

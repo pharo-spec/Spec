@@ -38,22 +38,59 @@ Class {
 }
 
 { #category : #layout }
-SpMorphicOverlayLayout >> layout: aMorph in: layoutBounds [
-	aMorph submorphsDo: [ :m | | constraints |
-		constraints := m valueOfProperty: #constraints.
-		(m visible and: [ constraints isOverlay not ])
-			ifTrue: [ m bounds: layoutBounds ].
-		(m visible and: [ constraints isOverlay ])
-			ifTrue: [ | morphBounds left top newBounds |
-				morphBounds := layoutBounds area > (0@0 corner: m extent) area
-					ifTrue: [ layoutBounds origin corner: (layoutBounds origin + m extent) ]
-					ifFalse: [ layoutBounds ].
-				
-				left := (layoutBounds width / 2) - (morphBounds width / 2).
-				top := (layoutBounds height / 2) - (morphBounds height / 2).
-				newBounds := (layoutBounds origin + (left@top) corner: layoutBounds corner + (left@top)).
+SpMorphicOverlayLayout >> calculatePosXOf: extent in: layoutBounds hAlign: hAlign [
+	
+	(hAlign = SpLayoutWidgetAlignment center)
+		ifTrue: [ ^ ((layoutBounds width - extent x) / 2) asInteger ]. 
+	(hAlign = SpLayoutWidgetAlignment start)
+		ifTrue: [ ^ 0 ]. 
+	(hAlign = SpLayoutWidgetAlignment end)
+		ifTrue: [ ^ layoutBounds width - extent x ]. 
 
-				m bounds: newBounds ].
-		m visible
-			ifFalse: [ m bounds: (0@0 corner: 0@0) ] ]
+	self error: 'Should not arrive here'
+]
+
+{ #category : #layout }
+SpMorphicOverlayLayout >> calculatePosYOf: extent in: layoutBounds vAlign: vAlign [
+	
+	(vAlign = SpLayoutWidgetAlignment center)
+		ifTrue: [ ^ ((layoutBounds height - extent y) / 2) asInteger ]. 
+	(vAlign = SpLayoutWidgetAlignment start)
+		ifTrue: [ ^ 0 ]. 
+	(vAlign = SpLayoutWidgetAlignment end)
+		ifTrue: [ ^ layoutBounds height - extent y ]. 
+
+	self error: 'Should not arrive here'
+]
+
+{ #category : #layout }
+SpMorphicOverlayLayout >> layout: aMorph in: layoutBounds [
+
+	aMorph submorphsDo: [ :eachMorph | | constraints |
+		constraints := eachMorph valueOfProperty: #constraints.
+		eachMorph visible 
+			ifTrue: [ 
+				constraints isOverlay
+					ifTrue: [ self layoutOverlay: eachMorph in: layoutBounds ]
+					ifFalse: [ eachMorph bounds: layoutBounds ] ]
+			ifFalse: [ 
+				eachMorph bounds: (0@0 corner: 0@0) ] ]
+]
+
+{ #category : #layout }
+SpMorphicOverlayLayout >> layoutOverlay: overlayMorph in: layoutBounds [
+	| constraints newExtent newBounds vAlign hAlign x y w h |
+	
+	constraints := overlayMorph valueOfProperty: #constraints.
+
+	vAlign := constraints vAlign ifNil: [ SpLayoutWidgetAlignment center ].
+	hAlign := constraints hAlign ifNil: [ SpLayoutWidgetAlignment center ].
+	w := overlayMorph width.
+	h := overlayMorph height.
+	newExtent := w @ h.
+	x := (self calculatePosXOf: newExtent in: layoutBounds hAlign: hAlign). 
+	y := (self calculatePosYOf: newExtent in: layoutBounds vAlign: vAlign). 
+	
+	newBounds := (layoutBounds origin + (x@y)) extent: newExtent.		
+	overlayMorph bounds: newBounds
 ]
