@@ -144,7 +144,7 @@ SpOptionListPresenter >> whenAcceptedDo: aBlock [
 	"aBlock will be executed when this presenter is open as a Dialog 
 	AND when the Ok button of the dialog is clicked.
 	aBlock must have one argument that will be the selected option in the option list presenter.
-	WARNING: it will override the default behavior that is to senf #doAccept on the selected option."
+	WARNING: it will override the default behavior that is to send #doAccept on the selected option."
 
 	acceptBlock := aBlock
 ]
