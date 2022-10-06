@@ -81,7 +81,7 @@ SpOptionListPresenterTest >> testContentPanelIsUpdatedWhenSelectionChanges [
 ]
 
 { #category : #tests }
-SpOptionListPresenterTest >> testDoAcceptIsExecutedWhenAcceptingDialog [
+SpOptionListPresenterTest >> testDoAcceptIsExecutedOnSelectedOptionWhenAcceptingDialog [
 	| presenter optionPresenter |
 	
 	presenter := self newOptionsPresenterWithOneOption.
@@ -96,7 +96,7 @@ SpOptionListPresenterTest >> testDoAcceptIsExecutedWhenAcceptingDialog [
 ]
 
 { #category : #tests }
-SpOptionListPresenterTest >> testDoAcceptIsNotExecutedWhenCancelingDialog [
+SpOptionListPresenterTest >> testDoAcceptIsNotExecutedOnSelectedOptionWhenCancelingDialog [
 	| presenter optionPresenter |
 	
 	presenter := self newOptionsPresenterWithOneOption.
@@ -177,4 +177,34 @@ SpOptionListPresenterTest >> testValidationIsNotCalledOnNotSelectedOptionPresent
 	dialog triggerOkAction.
 	
 	self assert: (optionPresenter class propertyAt: #validated) equals: nil.
+]
+
+{ #category : #tests }
+SpOptionListPresenterTest >> testWhenAcceptedDoIsExecutedWhenAcceptingDialog [
+	| presenter executed |
+	
+	executed := false.
+	presenter := self newOptionsPresenterWithOneOption.
+	presenter whenAcceptedDo: [ :selectedOption | executed := true ].
+	dialog := presenter openDialog.
+	
+	dialog triggerOkAction.
+	
+	self assert: executed.
+	
+]
+
+{ #category : #tests }
+SpOptionListPresenterTest >> testWhenAcceptedDoIsNotExecutedWhenCancelingDialog [
+	| presenter executed |
+	
+	executed := false.
+	presenter := self newOptionsPresenterWithOneOption.
+	presenter whenAcceptedDo: [ :selectedOption | executed := true ].
+	dialog := presenter openDialog.
+	
+	dialog triggerCancelAction.
+	
+	self deny: executed.
+	
 ]

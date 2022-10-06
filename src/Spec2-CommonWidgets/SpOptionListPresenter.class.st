@@ -14,7 +14,8 @@ Class {
 	#instVars : [
 		'contentLayout',
 		'optionsPresenter',
-		'options'
+		'options',
+		'acceptBlock'
 	],
 	#category : #'Spec2-CommonWidgets-Core'
 }
@@ -34,6 +35,12 @@ SpOptionListPresenter class >> isAbstract [
 SpOptionListPresenter >> addOption: anOptionPresenter [
 
 	options addLast: anOptionPresenter
+]
+
+{ #category : #initialization }
+SpOptionListPresenter >> addOptions: aListOfOptionPresenter [
+
+	aListOfOptionPresenter do: [ :each | self addOption: each ]
 ]
 
 { #category : #initialization }
@@ -60,13 +67,14 @@ SpOptionListPresenter >> defaultLayout [
 { #category : #action }
 SpOptionListPresenter >> doAccept [
 
-	self selectedOption doAccept
+	acceptBlock value: self selectedOption
 ]
 
 { #category : #initialization }
 SpOptionListPresenter >> initialize [
 	
 	options := OrderedCollection new.
+	acceptBlock := [ :selectedOption | selectedOption doAccept ].
 	
 	"options need to be initialized before Spec initialization"
 	super initialize.
@@ -129,4 +137,14 @@ SpOptionListPresenter >> selectionChanged: anOption [
 	contentLayout
 		removeAll;
 		add: anOption.
+]
+
+{ #category : #'api - events' }
+SpOptionListPresenter >> whenAcceptedDo: aBlock [
+	"aBlock will be executed when this presenter is open as a Dialog 
+	AND when the Ok button of the dialog is clicked.
+	aBlock must have one argument that will be the selected option in the option list presenter.
+	WARNING: it will override the default behavior that is to send #doAccept on the selected option."
+
+	acceptBlock := aBlock
 ]
