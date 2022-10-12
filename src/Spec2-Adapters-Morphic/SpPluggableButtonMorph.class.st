@@ -40,6 +40,8 @@ SpPluggableButtonMorph >> borderWidth: aNumber [
 { #category : #accessing }
 SpPluggableButtonMorph >> fillStyleToUse [
 
-	self backgroundColor ifNil: [ ^ super fillStyleToUse ].
+	(self backgroundColor isNil or: [ self interactionState ~= #normal ])  
+		ifTrue: [ ^ super fillStyleToUse ].
+
 	^ SolidFillStyle color: self backgroundColor
 ]
