@@ -165,3 +165,9 @@ SpTextInputFieldWithValidationPresenter >> validateInto: aValidationReport [
 SpTextInputFieldWithValidationPresenter >> validations [ 
 	^ validations ifNil: [ validations := OrderedCollection new ]
 ]
+
+{ #category : #enumerating }
+SpTextInputFieldWithValidationPresenter >> whenTextChangedDo: aBlock [
+
+	textInput whenTextChangedDo: aBlock
+]
