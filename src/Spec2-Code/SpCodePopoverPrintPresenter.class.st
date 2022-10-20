@@ -80,6 +80,13 @@ SpCodePopoverPrintPresenter >> dismissAndPrint [
 	self code insertAndSelectAfterCurrentSelection: self objectAsPrintString
 ]
 
+{ #category : #actions }
+SpCodePopoverPrintPresenter >> dismissAndPrintWithoutColons [
+
+	self dismiss.
+	self code insertAndSelectAfterCurrentSelection: (' ', self basicObjectAsString)
+]
+
 { #category : #initialization }
 SpCodePopoverPrintPresenter >> initializePresenters [
 
@@ -91,8 +98,10 @@ SpCodePopoverPrintPresenter >> initializePresenters [
 
 	self flag: #TODO. "This is uber bad. Keybindings needs to come from application configuration"
 	text
-		bindKeyCombination: Character cr asKeyCombination | $p meta 
+		bindKeyCombination: Character cr asKeyCombination
 			toAction: [ self dismissAndPrint ];
+		bindKeyCombination: $p meta
+			toAction: [ self dismissAndPrintWithoutColons ];
 		bindKeyCombination: $i meta 
 			toAction: [ self dismissAndInspect ];
 		bindKeyCombination: Character escape asKeyCombination | Character backspace asKeyCombination | $l meta
