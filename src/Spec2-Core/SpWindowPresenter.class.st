@@ -524,7 +524,7 @@ SpWindowPresenter >> resizable: aBoolean [
 SpWindowPresenter >> resize: anExtent [
 
 	self withAdapterPerformOrDefer: [ :anAdapter | 
-		anAdapter defaultSize: anExtent ]
+		anAdapter resize: anExtent ]
 ]
 
 { #category : #api }
