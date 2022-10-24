@@ -90,7 +90,10 @@ SpStyle class >> defaultStyleSheetData [
 	],
 	.radioButton [ Geometry { #hResizing: true } ],
 	.dropList [ Geometry { #width: 150, #hResizing: true } ],
-	.list [ Geometry { #width: 150, #minHeight: 125, #hResizing: true, #vResizing: true } ],
+	.list [ 
+		Geometry { #width: 150, #minHeight: 125, #hResizing: true, #vResizing: true },
+		.rows4 [ Geometry { #minHeight: 80, #height: 80 } ],
+		.rows8 [ Geometry { #minHeight: 160, #height: 160 } ] ],
 	.slider [ Geometry { #width: 150, #hResizing: true } ],
 	.actionBar [  
 		Container { #borderWidth: 0, #padding: 5 },

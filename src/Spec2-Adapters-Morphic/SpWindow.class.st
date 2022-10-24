@@ -32,13 +32,14 @@ SpWindow >> announceWillClose [
 		window: self;
 		yourself.
 	self announce: announcement.
-	self currentWorld announcer announce: announcement
+	self currentWorld announcer announce: announcement.
+	^ announcement canClose 
 ]
 
 { #category : #'open/close' }
 SpWindow >> close [ 
 
-	self announceWillClose.
+	self announceWillClose ifFalse: [ ^ self ].
 	super close.
 ]
 
