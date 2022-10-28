@@ -28,7 +28,7 @@ Class {
 SpMillerColumnPresenter >> addPresenter: newSubPresenter [
 
 	newSubPresenter whenActivatedDo: [ :selection | 
-		self changeSelection: selection from: newSubPresenter ].
+		self changeSelection: selection objectToSelectOnSelection from: newSubPresenter ].
 	newSubPresenter owner: self.
 	layout add: newSubPresenter
 ]

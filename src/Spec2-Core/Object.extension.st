@@ -23,3 +23,8 @@ Object >> isSpLayout [
 
 	^ false
 ]
+
+{ #category : #'*Spec2-Core' }
+Object >> objectToSelectOnSelection [
+	^ self
+]
