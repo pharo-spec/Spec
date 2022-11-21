@@ -29,11 +29,10 @@ SpRadioButtonExample class >> title [
 
 { #category : #initialization }
 SpRadioButtonExample >> connectPresenters [
+
 	button1 whenActivatedDo: [ self updateLabel ].
 	button1 whenDeactivatedDo: [ self updateLabel ].
-
 	button2 whenChangedDo: [ self updateLabel ].
-
 	button3 whenChangedDo: [ self updateLabel ]
 ]
 
