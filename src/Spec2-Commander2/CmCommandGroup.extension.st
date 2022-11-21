@@ -19,6 +19,14 @@ CmCommandGroup class >> forSpec [
 ]
 
 { #category : #'*Spec2-Commander2' }
+CmCommandGroup class >> forSpecNamed: aString [ 
+
+	^ self forSpec
+		name: aString;
+		yourself
+]
+
+{ #category : #'*Spec2-Commander2' }
 CmCommandGroup class >> forSpecWithIconNamed: aSymbol [
 	^ self new asSpecGroupWithIconNamed: aSymbol
 ]
