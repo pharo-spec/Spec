@@ -19,7 +19,7 @@ SpTestLocalizedString >> asString [
 	^ string asString
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 SpTestLocalizedString >> initialize [ 
 
 	super initialize.

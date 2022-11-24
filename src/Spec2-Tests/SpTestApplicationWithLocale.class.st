@@ -7,7 +7,7 @@ Class {
 	#category : #'Spec2-Tests-Localization'
 }
 
-{ #category : #accessing }
+{ #category : #initialization }
 SpTestApplicationWithLocale >> initialize [ 
 
 	super initialize.

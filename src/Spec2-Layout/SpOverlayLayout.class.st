@@ -59,7 +59,7 @@ SpOverlayLayout >> constraintsClass [
 	^ SpOverlayConstraints
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 SpOverlayLayout >> initialize [
 	super initialize.
 	overlays := OrderedCollection new
