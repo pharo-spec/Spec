@@ -51,7 +51,7 @@ SpTabLayout >> initialPageIndex: aNumber [
 	initialPageIndex := aNumber
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 SpTabLayout >> initialize [
 
 	super initialize.

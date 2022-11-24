@@ -80,7 +80,7 @@ SpMorphicMillerAdapter >> forceRecalculatePages [
 	self recalculatePages
 ]
 
-{ #category : #private }
+{ #category : #initialization }
 SpMorphicMillerAdapter >> initialize [
 
 	super initialize.
