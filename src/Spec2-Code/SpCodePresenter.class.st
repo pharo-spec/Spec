@@ -676,10 +676,17 @@ SpCodePresenter >> selectedSelector [
 	^ selectedText
 		  ifNotEmpty: [ 
 				extractor extractSelectorFromSelection: selectedText ]
-		  ifEmpty: [
-				extractor
-				  extractSelectorFromSource: fullSource
-				  atPosition: (self cursorPositionIndex ifNil: [ 1 ]) ]
+		  ifEmpty: [ | index |
+				index := (self cursorPositionIndex ifNil: [ 1 ]).
+				self isScripting 
+					ifTrue: [ 
+						extractor
+						  extractSelectorFromSource: fullSource
+						  atPosition: index ]
+					ifFalse: [ 
+						extractor extractSelectorFromAST: (RBParser parseFaultyMethod: fullSource)
+		  					atPosition: index ]
+					]
 ]
 
 { #category : #api }
