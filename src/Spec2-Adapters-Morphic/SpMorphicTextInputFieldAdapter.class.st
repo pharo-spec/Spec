@@ -29,7 +29,6 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		entryCompletion: self entryCompletion;
 		ghostText: self getPlaceholderText;
 		encrypted: self encrypted;
-		enabled: self enabled;
 		askBeforeDiscardingEdits: self askBeforeDiscardingEdits;
 		autoAccept: true;
 		vResizing: #spaceFill;
@@ -42,7 +41,6 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 
 	self presenter selectionInterval 
 		ifNotNil: [  :anInterval | self selectionInterval: anInterval on: newWidget ].
-
 	self presenter whenTextChangedDo: [ :text | newWidget setText: text ].
 	self presenter whenSelectionChangedDo: [ :selectionInterval | 
 		self selectionInterval: selectionInterval ].
@@ -53,6 +51,7 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		newWidget encrypted: isPassword ].
 	self presenter whenMaxLengthChangedDo: [ :length | 
 		newWidget maxLength: length ].
+	self setEnabled: self presenter isEnabled to: newWidget. 
 	self setEditable: self presenter isEditable to: newWidget. 
 	self presenter whenEditableChangedDo: [ :value | 
 		self setEditable: value to: newWidget ].
