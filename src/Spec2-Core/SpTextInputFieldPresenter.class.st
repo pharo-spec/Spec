@@ -74,20 +74,6 @@ SpTextInputFieldPresenter >> entryCompletion: anEntryCompletion [
 	entryCompletion := anEntryCompletion
 ]
 
-{ #category : #TOREMOVE }
-SpTextInputFieldPresenter >> eventKeyStrokesForNextFocus [
-	"String describing the keystroke to perform to jump to the next widget"	
-		
-	^ { Character tab asKeyCombination }
-]
-
-{ #category : #TOREMOVE }
-SpTextInputFieldPresenter >> eventKeyStrokesForPreviousFocus [
-	"String describing the keystroke to perform to jump to the previous widget"
-	
-	^ { Character tab shift asKeyCombination }
-]
-
 { #category : #initialization }
 SpTextInputFieldPresenter >> initialize [
 	super initialize.
