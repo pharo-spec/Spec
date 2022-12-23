@@ -108,3 +108,27 @@ SpChooserPresenterTest >> testRemoveSelected [
 		assert: chooserPresenter targetList unfilteredItems size
 		equals: self items size - 1
 ]
+
+{ #category : #tests }
+SpChooserPresenterTest >> testSourceLabel [
+
+	self
+		assert: chooserPresenter sourceLabel
+		equals: chooserPresenter class defaultSourceLabel.
+
+	chooserPresenter sourceLabel: 'new source label'.
+
+	self assert: chooserPresenter sourceLabel equals: 'new source label'
+]
+
+{ #category : #tests }
+SpChooserPresenterTest >> testTargetLabel [
+
+	self
+		assert: chooserPresenter targetLabel
+		equals: chooserPresenter class defaultTargetLabel.
+
+	chooserPresenter targetLabel: 'new target label'.
+
+	self assert: chooserPresenter targetLabel equals: 'new target label'
+]
