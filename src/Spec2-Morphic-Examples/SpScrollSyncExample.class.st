@@ -76,7 +76,7 @@ SpScrollSyncExample >> initializePresenters [
 		self traceCr: 'scroll position: ' , newPosition asString. 
 		self syncMorphPosition ].
 	text text: self loremIpsum.
-	text registerEvents.
+
 ]
 
 { #category : #private }
@@ -94,12 +94,7 @@ SpScrollSyncExample >> syncMorphPosition [
 
 	currentVerticalScrollPosition = text scrollValue y
 		ifTrue: [ ^ self ].
-	currentVerticalScrollPosition := text scrollValue y.
-	self needRebuild: false.
-	text needRebuild: false.
-
-
-	
+	currentVerticalScrollPosition := text scrollValue y
 ]
 
 { #category : #accessing }
