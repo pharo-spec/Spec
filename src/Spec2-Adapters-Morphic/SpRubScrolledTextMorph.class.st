@@ -18,6 +18,27 @@ SpRubScrolledTextMorph >> drawKeyboardFocus: aBoolean [
 	self drawFocusBorder: aBoolean
 ]
 
+{ #category : #'accessing - scrollbars' }
+SpRubScrolledTextMorph >> registerScrollChanges: aSelector [
+
+	self announcer 
+		when: PaneScrolling 
+		send: aSelector
+		to: self model
+]
+
+{ #category : #'accessing - scrollbars' }
+SpRubScrolledTextMorph >> scrollerOffsetChanged [
+
+	super scrollerOffsetChanged.
+	self announcer
+		announce:
+			(PaneScrolling new
+				step: self scrollPane hScrollbarValue @ self scrollPane vScrollbarValue;
+				scrollPane: self scrollPane;
+				yourself)
+]
+
 { #category : #'drag and drop' }
 SpRubScrolledTextMorph >> wantsDroppedMorph: aTransferMorph event: anEvent [
 
