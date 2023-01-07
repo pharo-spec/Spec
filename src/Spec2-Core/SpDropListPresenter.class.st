@@ -359,10 +359,7 @@ SpDropListPresenter >> updateItemsKeepingSelection: aCollection [
 { #category : #'api - events' }
 SpDropListPresenter >> whenSelectedItemChangedDo: aBlock [
 	"Inform when the selected item is changed.
-	 `aBlock` receive 3 optional arguments: 
-	 - new value 
-	 - old value 
-	 - announcement triggered"
+	 `aBlock` receive one optional argument: the selected item (can be nil)"
 
 	selection whenChangedDo: [	aBlock cull: self selectedItem ]
 ]

@@ -504,6 +504,14 @@ SpAbstractListPresenter >> whenSelectedDo: aBlock [
 ]
 
 { #category : #'api - events' }
+SpAbstractListPresenter >> whenSelectedItemChangedDo: aBlock [
+	"Inform when the selected item is changed.
+	 `aBlock` receive one optional argument: the selected item (can be nil)"
+
+	self selection whenChangedDo: [ aBlock cull: self selectedItem ]
+]
+
+{ #category : #'api - events' }
 SpAbstractListPresenter >> whenSelectionChangedDo: aBlock [
 	"Inform when there are changes in selection.
 	This method works for all selection modes (single, multiple and no selection).
