@@ -7,13 +7,27 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'buttonBarLayout',
+		'sourceLabel',
 		'sourceList',
+		'targetLabel',
 		'targetList',
 		'displayBlock',
 		'sourceItems'
 	],
 	#category : #'Spec2-CommonWidgets-Core'
 }
+
+{ #category : #'default values' }
+SpChooserPresenter class >> defaultSourceLabel [
+
+	^ 'Available items' translated
+]
+
+{ #category : #'default values' }
+SpChooserPresenter class >> defaultTargetLabel [
+
+	^ 'Selected items' translated
+]
 
 { #category : #examples }
 SpChooserPresenter class >> example [
@@ -125,15 +139,23 @@ SpChooserPresenter >> defaultChosenItems: aCollection [
 	self sortLists
 ]
 
-{ #category : #initialization }
+{ #category : #layout }
 SpChooserPresenter >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
-			 spacing: 5;
-			 add: #sourceList;
-			 add: buttonBarLayout expand: false;
-			 add: #targetList;
-			 yourself
+		  spacing: 5;
+		  add: (SpBoxLayout newTopToBottom
+				   spacing: 1;
+				   add: #sourceLabel expand: false;
+				   add: #sourceList;
+				   yourself);
+		  add: buttonBarLayout expand: false;
+		  add: (SpBoxLayout newTopToBottom
+				   spacing: 1;
+				   add: #targetLabel expand: false;
+				   add: #targetList;
+				   yourself);
+		  yourself
 ]
 
 { #category : #accessing }
@@ -196,8 +218,10 @@ SpChooserPresenter >> initializeLists [
 { #category : #initialization }
 SpChooserPresenter >> initializePresenters [
 
+	sourceLabel := self newLabel label: self class defaultSourceLabel.
+	targetLabel := self newLabel label: self class defaultTargetLabel.
 	self initializeLists.
-	self initializeButtonBarLayout.
+	self initializeButtonBarLayout
 ]
 
 { #category : #actions }
@@ -260,9 +284,33 @@ SpChooserPresenter >> sourceItems: aCollection [
 ]
 
 { #category : #accessing }
+SpChooserPresenter >> sourceLabel [
+
+	^ sourceLabel label
+]
+
+{ #category : #accessing }
+SpChooserPresenter >> sourceLabel: aString [
+
+	sourceLabel label: aString
+]
+
+{ #category : #accessing }
 SpChooserPresenter >> sourceList [
 
 	^ sourceList
+]
+
+{ #category : #accessing }
+SpChooserPresenter >> targetLabel [
+
+	^ targetLabel label
+]
+
+{ #category : #accessing }
+SpChooserPresenter >> targetLabel: aString [
+
+	targetLabel label: aString
 ]
 
 { #category : #accessing }
