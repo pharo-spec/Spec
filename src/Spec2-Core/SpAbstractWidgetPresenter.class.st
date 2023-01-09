@@ -292,20 +292,6 @@ SpAbstractWidgetPresenter >> enabled: aBooleanOrValuable [
 	enabled := aBooleanOrValuable
 ]
 
-{ #category : #TOREMOVE }
-SpAbstractWidgetPresenter >> eventKeyStrokesForNextFocus [
-	"String describing the keystroke to perform to jump to the next widget"
-	
-	^ { Character arrowRight asKeyCombination. Character tab asKeyCombination}
-]
-
-{ #category : #TOREMOVE }
-SpAbstractWidgetPresenter >> eventKeyStrokesForPreviousFocus [
-	"String describing the keystroke to perform to jump to the next widget"
-	
-	^ { Character arrowLeft asKeyCombination. Character tab shift asKeyCombination}
-]
-
 { #category : #api }
 SpAbstractWidgetPresenter >> help [
 	"Return the help string to display as help (tooltip) to the user."

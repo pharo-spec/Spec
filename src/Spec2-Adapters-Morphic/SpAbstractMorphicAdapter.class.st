@@ -242,7 +242,7 @@ SpAbstractMorphicAdapter >> enabled [
 { #category : #protocol }
 SpAbstractMorphicAdapter >> enabled: aBoolean [
 
-	self widget ifNotNil: [ :w | w enabled: aBoolean ]
+	self widgetDo: [ :w | w enabled: aBoolean ]
 ]
 
 { #category : #protocol }

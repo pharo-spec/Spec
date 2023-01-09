@@ -117,6 +117,13 @@ SpMorphicBaseTextAdapter >> cursorPositionIndex: index [
 	self subclassResponsibility
 ]
 
+{ #category : #factory }
+SpMorphicBaseTextAdapter >> enabled: aBoolean [
+
+	self widgetDo: [ :w |
+		self setEnabled: aBoolean to: w ]
+]
+
 { #category : #'widget API' }
 SpMorphicBaseTextAdapter >> font: aFont [
 
@@ -261,6 +268,12 @@ SpMorphicBaseTextAdapter >> selectionInterval: anInterval on: aWidget [
 SpMorphicBaseTextAdapter >> setEditingModeFor: textArea [
 
 	textArea beForPlainText
+]
+
+{ #category : #factory }
+SpMorphicBaseTextAdapter >> setEnabled: aBoolean to: aWidget [
+
+	aWidget enabled: aBoolean
 ]
 
 { #category : #'spec protocol' }

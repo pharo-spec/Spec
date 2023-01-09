@@ -91,19 +91,6 @@ SpAbstractTextPresenter >> enabled: aBoolean [
 ]
 
 { #category : #TOREMOVE }
-SpAbstractTextPresenter >> eventKeyStrokesForNextFocus [
-	"String describing the keystroke to perform to jump to the next widget"
-	^ { Character arrowRight command ctrl asKeyCombination }
-]
-
-{ #category : #TOREMOVE }
-SpAbstractTextPresenter >> eventKeyStrokesForPreviousFocus [
-	"String describing the keystroke to perform to jump to the previous widget"
-
-	^ { Character arrowLeft command ctrl asKeyCombination }
-]
-
-{ #category : #TOREMOVE }
 SpAbstractTextPresenter >> hasEditingConflicts [
 	"Return if the text zone has editing conflicts"
 

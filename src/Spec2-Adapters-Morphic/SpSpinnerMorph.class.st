@@ -46,23 +46,23 @@ SpSpinnerMorph >> height: aHeight [
 	transformationMorph height: aHeight
 ]
 
-{ #category : #'stepping and presenter' }
+{ #category : #initialization }
 SpSpinnerMorph >> initialize [
 
 	| wheelImageMorph |
 	super initialize.
 	self color: Color transparent.
 	wheelImageMorph := self newSpinnerMorph.
-	
+
 	transformationMorph := TransformationMorph new asFlexOf: wheelImageMorph.
-	transformationMorph 
+	transformationMorph
 		vResizing: #rigid;
 		hResizing: #rigid.
 
 	self addMorph: transformationMorph
 ]
 
-{ #category : #'stepping and presenter' }
+{ #category : #initialization }
 SpSpinnerMorph >> newSpinnerMorph [
 
 	^ self spinnerForm asMorph

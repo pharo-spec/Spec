@@ -47,7 +47,6 @@ SpMorphicTextAdapter >> buildWidget [
 		setSelectionSelector: #setSelection:;
 		ghostText: self placeholder;
 		beWrapped;
-		enabled: self enabled;
 		askBeforeDiscardingEdits: self askBeforeDiscardingEdits;
 		autoAccept: true;
 		vResizing: #spaceFill;
@@ -58,7 +57,8 @@ SpMorphicTextAdapter >> buildWidget [
 		registerScrollChanges: #scrollValueChanged:;
 		hScrollbarShowWhenNeeded;
 		yourself.
-	
+
+	self setEnabled: self presenter isEnabled to: newWidget.	
 	self setEditable: self presenter isEditable to: newWidget.
 	self setEditingModeFor: newWidget.
 	self setText: self presenter text to: newWidget.
