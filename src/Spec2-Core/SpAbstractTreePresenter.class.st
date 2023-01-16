@@ -48,13 +48,21 @@ SpAbstractTreePresenter >> activateOnSingleClick [
 { #category : #testing }
 SpAbstractTreePresenter >> activatesOnDoubleClick [
 	"Answer true if activation event is triggered on double click"
-	
+
+	self
+		deprecated: 'Use isActiveOnDoubleClick'
+		transformWith: '`@receiver activatesOnDoubleClick' -> '`@receiver isActiveOnDoubleClick'.
+
 	^ activateOnSingleClick not
 ]
 
 { #category : #testing }
 SpAbstractTreePresenter >> activatesOnSingleClick [
 	"Answer true if activation event is triggered on single click"
+
+	self
+		deprecated: 'Use isActiveOnSingleClick'
+		transformWith: '`@receiver activatesOnSingleClick' -> '`@receiver isActiveOnSingleClick'.
 
 	^ activateOnSingleClick
 ]
@@ -180,6 +188,20 @@ SpAbstractTreePresenter >> initialize [
 	super initialize.
 	self initializeTSearchable.
 	self initializeTHaveWrappingScrollBars
+]
+
+{ #category : #testing }
+SpAbstractTreePresenter >> isActiveOnDoubleClick [
+	"Answer true if activation event is triggered on double click"
+
+	^ activateOnSingleClick not
+]
+
+{ #category : #testing }
+SpAbstractTreePresenter >> isActiveOnSingleClick [
+	"Answer true if activation event is triggered on single click"
+
+	^ activateOnSingleClick
 ]
 
 { #category : #testing }

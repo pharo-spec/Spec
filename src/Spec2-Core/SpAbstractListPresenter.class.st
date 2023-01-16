@@ -76,7 +76,6 @@ SpAbstractListPresenter >> activatesOnSingleClick [
 		deprecated: 'Use isActiveOnSingleClick'
 		transformWith: '`@receiver activatesOnSingleClick' -> '`@receiver isActiveOnSingleClick'.
 
-
 	^ activateOnSingleClick
 ]
 
