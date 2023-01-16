@@ -60,14 +60,23 @@ SpAbstractListPresenter >> activateOnSingleClick [
 { #category : #testing }
 SpAbstractListPresenter >> activatesOnDoubleClick [
 	"Answer true if activation event is triggered on double click"
-	
+
+	self
+		deprecated: 'Use isActiveOnDoubleClick'
+		transformWith: '`@receiver activatesOnDoubleClick' -> '`@receiver isActiveOnDoubleClick'.
+
 	^ activateOnSingleClick not
 ]
 
 { #category : #testing }
 SpAbstractListPresenter >> activatesOnSingleClick [
 	"Answer true if activation event is triggered on single click"
-	
+
+	self
+		deprecated: 'Use isActiveOnSingleClick'
+		transformWith: '`@receiver activatesOnSingleClick' -> '`@receiver isActiveOnSingleClick'.
+
+
 	^ activateOnSingleClick
 ]
 
@@ -150,6 +159,20 @@ SpAbstractListPresenter >> initialize [
 	self activateOnDoubleClick.
 
 	self registerEvents
+]
+
+{ #category : #testing }
+SpAbstractListPresenter >> isActiveOnDoubleClick [
+	"Answer true if activation event is triggered on double click"
+
+	^ activateOnSingleClick not
+]
+
+{ #category : #testing }
+SpAbstractListPresenter >> isActiveOnSingleClick [
+	"Answer true if activation event is triggered on single click"
+
+	^ activateOnSingleClick
 ]
 
 { #category : #testing }

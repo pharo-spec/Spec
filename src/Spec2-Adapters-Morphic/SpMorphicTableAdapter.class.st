@@ -230,17 +230,17 @@ SpMorphicTableAdapter >> selectionChanged: ann [
 
 	selection := self presenter selection.
 	selection selectIndexes: (selection isMultipleSelection
-		ifTrue: [ 
+		ifTrue: [
 			 (ann newSelectedIndexes reject: [ :e | e = 0 ]) ]
-		ifFalse: [ 
+		ifFalse: [
 			{ ann newSelectedIndexes
 				ifNotEmpty: [ :indexes | indexes first ]
 				ifEmpty: [ 0 ] } ]).
 
 	diff := ann newSelectedIndexes difference: ann oldSelectedIndexes.
-	(diff notEmpty and: [ self presenter activatesOnSingleClick ])
+	(diff notEmpty and: [ self presenter isActiveOnSingleClick ])
 		ifTrue: [ self presenter doActivateAtIndex: diff last ].
-		
+
 	ann newSelectedIndexes ifEmpty: [ selection unselectAll ]
 ]
 
@@ -262,7 +262,7 @@ SpMorphicTableAdapter >> sendRightClickEvent [
 { #category : #factory }
 SpMorphicTableAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
 
-	self presenter activatesOnDoubleClick ifFalse: [ ^ self ].	
+	self presenter isActiveOnDoubleClick ifFalse: [ ^ self ].
 	self presenter doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex
 ]
 

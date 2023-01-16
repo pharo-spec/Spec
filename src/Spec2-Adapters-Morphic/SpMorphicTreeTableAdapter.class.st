@@ -114,15 +114,15 @@ SpMorphicTreeTableAdapter >> addModelTo: tableMorph [
 { #category : #factory }
 SpMorphicTreeTableAdapter >> basicSelectionChanged: ann [
 	| selection |
-	
+
 	selection := self presenter selection.
 	ann newSelectedIndexes ifEmpty: [ ^ selection unselectAll ].
 	(ann newSelectedIndexes difference: ann oldSelectedIndexes) ifEmpty: [ ^ self ].
-	
+
 	selection selectPaths: (ann newSelectedIndexes
 		collect: [ :index | self widget dataSource pathFromIndex: index ]).
-		
-	self presenter activatesOnSingleClick ifTrue: [ 
+
+	self presenter isActiveOnSingleClick ifTrue: [
 		self presenter doActivateAtPath: selection selectedPath ]
 ]
 
@@ -452,8 +452,8 @@ SpMorphicTreeTableAdapter >> sortByColumn: aColumn [
 
 { #category : #factory }
 SpMorphicTreeTableAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
-	self presenter activatesOnDoubleClick
-		ifFalse: [ ^ self ].
+
+	self presenter isActiveOnDoubleClick ifFalse: [ ^ self ].
 	self presenter doubleClickAtPath: self selectedPath
 ]
 
