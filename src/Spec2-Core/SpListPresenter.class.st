@@ -135,11 +135,11 @@ SpListPresenter >> hideHeaderTitle [
 	headerTitle := nil
 ]
 
-{ #category : #'widget API' }
+{ #category : #private }
 SpListPresenter >> iconFor: anItem [
 
-	^ self displayIcon 
-		cull: anItem 
+	^ self displayIcon
+		cull: anItem
 		cull: self
 ]
 
