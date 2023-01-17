@@ -203,6 +203,22 @@ SpBoxLayout >> add: aPresenterLayoutOrSymbol height: anInteger [
 ]
 
 { #category : #'api - adding' }
+SpBoxLayout >> add: aPresenterLayoutOrSymbol layout: aSelector [
+	"Adds `aPresenterLayoutOrSymbol` to the list of presenters to be arranged in the layout, setting
+	 also the layout to use with the added presenter.
+	 `aPresenterLayoutOrSymbol` can be
+		- any instance of `SpPresenter` hierarchy,
+		- another layout or
+		- a Symbol, matching the name of the instance variable who will contain the element to add.
+	`aSelector` is a selector that has to be in the class side of `aPresenterLayoutOrSymbol` instance, and it will answer the layout to use."
+
+	^ self
+		add: aPresenterLayoutOrSymbol
+		withConstraints: [ :constraints |
+			constraints spec: aSelector ]
+]
+
+{ #category : #'api - adding' }
 SpBoxLayout >> add: aPresenterLayoutOrSymbol width: anInteger [
 	"Add a presenter and assign a specific width. 
 	 This constraint is applied just when using an Horizontal (Left to Right) layout, 
