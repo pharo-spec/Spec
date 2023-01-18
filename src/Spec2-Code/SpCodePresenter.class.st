@@ -200,12 +200,12 @@ SpCodePresenter >> bindingOf: aString [
 SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonGlobalBlock [
 	| variableOrClassName variable |
 	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
-
 	variable := self lookupEnvironment lookupVar: variableOrClassName.
 
 	variable ifNil: [^nonGlobalBlock value: variableOrClassName ].
-	variable isLiteralVariable ifFalse: [^nonGlobalBlock value: variable name  ].
-	^globalBlock value: variable 
+	^(variable isGlobalVariable or: [variable isClassVariable]) 
+		ifTrue: [globalBlock value: variable ]
+		ifFalse: [nonGlobalBlock value: variable name ]
 ]
 
 { #category : #private }
@@ -676,10 +676,17 @@ SpCodePresenter >> selectedSelector [
 	^ selectedText
 		  ifNotEmpty: [ 
 				extractor extractSelectorFromSelection: selectedText ]
-		  ifEmpty: [
-				extractor
-				  extractSelectorFromSource: fullSource
-				  atPosition: (self cursorPositionIndex ifNil: [ 1 ]) ]
+		  ifEmpty: [ | index |
+				index := (self cursorPositionIndex ifNil: [ 1 ]).
+				self isScripting 
+					ifTrue: [ 
+						extractor
+						  extractSelectorFromSource: fullSource
+						  atPosition: index ]
+					ifFalse: [ 
+						extractor extractSelectorFromAST: (RBParser parseFaultyMethod: fullSource)
+		  					atPosition: index ]
+					]
 ]
 
 { #category : #api }

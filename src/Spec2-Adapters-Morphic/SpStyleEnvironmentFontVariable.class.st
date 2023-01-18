@@ -48,6 +48,7 @@ SpStyleEnvironmentFontVariable >> pointSize [
 
 { #category : #evaluating }
 SpStyleEnvironmentFontVariable >> value [
-
-	^ StandardFonts perform: (self name, 'Font') asSymbol
+	^ self name = 'default' 
+		ifTrue: [ StandardFonts defaultFont ]
+		ifFalse: [ StandardFonts perform: (self name, 'Font') asSymbol ]
 ]

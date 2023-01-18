@@ -72,8 +72,11 @@ SpScrollSyncExample >> initializePresenters [
 				vResizing: #spaceFill;
 				yourself).
 
-	text whenScrollValueChangedDo: [ :newPosition | self syncMorphPosition ].
-	text text: self loremIpsum
+	text whenScrollValueChangedDo: [ :newPosition | 
+		self traceCr: 'scroll position: ' , newPosition asString. 
+		self syncMorphPosition ].
+	text text: self loremIpsum.
+
 ]
 
 { #category : #private }
@@ -88,14 +91,10 @@ SpScrollSyncExample >> sideRuler [
 
 { #category : #private }
 SpScrollSyncExample >> syncMorphPosition [
+
 	currentVerticalScrollPosition = text scrollValue y
 		ifTrue: [ ^ self ].
-	currentVerticalScrollPosition := text scrollValue y.
-	self needRebuild: false.
-	text needRebuild: false.
-	self buildWithSpecLayout: self defaultSpecLayout
-
-	
+	currentVerticalScrollPosition := text scrollValue y
 ]
 
 { #category : #accessing }

@@ -56,17 +56,8 @@ SpAbstractPresenter class >> defaultFont [
 { #category : #layout }
 SpAbstractPresenter class >> defaultLayout [
 	"Overrides me to define a layout in a static way"
-	| specDefinition refactoringClass |
 	
-	specDefinition := self class lookupSelector: #defaultSpec.
-	(specDefinition isNil or: [ specDefinition methodClass = SpAbstractPresenter class ])
-		ifTrue: [ Error signal: 'You must define a layout either by defining #defaulLayout on your presenter or setting explicitly a layout with #layout:' ].
-
-	refactoringClass := self class environment at: #SpRenameDefaultSpecToDefaultLayoutRefactoring.
-	(refactoringClass onPresenter: specDefinition methodClass) execute.
-		
-	"#defaultSpec is rewritten as #defaultLayout. Let's call it. Will only be used one time since bar is now overrided."
-	^ self defaultLayout
+	Error signal: 'You must define a layout either by defining #defaulLayout on your presenter or setting explicitly a layout with #layout:'.
 ]
 
 { #category : #TOREMOVE }
@@ -231,11 +222,9 @@ SpAbstractPresenter >> defaultDialogWindowPresenterClass [
 
 { #category : #layout }
 SpAbstractPresenter >> defaultLayout [
-	"This method is there for compatibility purposes with Spec 1 
-	where the layout (was named Spec) was defined on class side in a method #defaultSpec.
-	
-	In a near future, it should be replaced by self subclassResponsibility.
-	"
+	" You should define a #defaulLayout method returning a Spec layout for your presenter.
+	See SpExecutableLayout hierarchy class comments for more information on how to use / define layouts.
+	The default implementation calls #defaultLayout on the class but we recommand you to define it on instance side."
 
 	^ self class defaultLayout
 ]

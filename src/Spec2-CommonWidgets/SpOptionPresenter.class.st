@@ -32,6 +32,6 @@ SpOptionPresenter >> validate [
 	
 	| report |
 	report := SpValidationReport new.
-	self layout children do: [ :presenter | presenter validateInto: report ].
+	self presenters do: [ :presenter | presenter validateInto: report ].
 	^ report
 ]
