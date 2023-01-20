@@ -33,16 +33,18 @@ SpMorphicTabAdapter >> children [
 	^ widget pages
 ]
 
-{ #category : #accessing }
+{ #category : #protocol }
 SpMorphicTabAdapter >> layout: aLayout [
 
-	widget ifNil: [ 
+	layout := aLayout.
+
+	widget ifNil: [
 		widget := SpNotebookMorph new
 			vResizing: #spaceFill;
 			hResizing: #spaceFill;
 			yourself ].
 
-	aLayout whenChildrenAddedDo: [ :ann | 
+	aLayout whenChildrenAddedDo: [ :ann |
 		self
 			basicAdd: ann child
 			constraints: (aLayout constraintsFor: ann child)
@@ -50,9 +52,9 @@ SpMorphicTabAdapter >> layout: aLayout [
 
 	aLayout whenChildrenRemovedDo: [ :ann | self remove: ann child ].
 
-	self presenter whenDisplayDo: [ 
+	self presenter whenDisplayDo: [
 		widget pages ifNotEmpty: [ widget selectedPageIndex: 1 ] ].
-	
+
 	super layout: aLayout
 ]
 
