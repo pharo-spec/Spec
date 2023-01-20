@@ -149,6 +149,26 @@ SpTablePresenter class >> exampleWithDecoratedString [
 ]
 
 { #category : #'*Spec2-Examples' }
+SpTablePresenter class >> exampleWithIndexTableColumn [
+	"Shows the classes adding a column with the row number as column (because when you have a
+	 model, you don't know its position (row index) in the table, and sometimes you want to
+	 add a hint of where you are placed"
+
+	^ self new
+		addColumn: (SpIndexTableColumn title: 'Row Number');
+		addColumn: (SpCompositeTableColumn new
+			title: 'Class';
+			sortFunction: #name ascending;
+			addColumn: (SpImageTableColumn new
+				evaluated: [ :aClass | self iconNamed: aClass systemIconName ];
+				beNotExpandable);
+			addColumn: (SpStringTableColumn evaluated: #name);
+			yourself);
+		items: Smalltalk allClasses;
+		open
+]
+
+{ #category : #'*Spec2-Examples' }
 SpTablePresenter class >> exampleWithSortableColumnHeaders [
 
 	^ self new
