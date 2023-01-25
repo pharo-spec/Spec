@@ -2,22 +2,23 @@ Extension { #name : #SpButtonBarPresenter }
 
 { #category : #'*Spec2-Examples' }
 SpButtonBarPresenter class >> example [
+	"Show a button bar"
 	| presenter list buttonBar |
 
-	"A generic presenter with a list and an action bar"	
-	(presenter := SpPresenter new) 
+	"A generic presenter with a list and an action bar"
+	(presenter := SpPresenter new)
 		layout: (SpBoxLayout newTopToBottom
-			spacing: 5; 
+			spacing: 5;
 			add: (list := presenter newList);
 			add: (buttonBar := presenter newButtonBar) expand: false;
-			yourself).	
-		
+			yourself).
+
 	"some settings to the list (to not have the presenter empty)"
-	list 
+	list
 		items: Smalltalk allClassesAndTraits;
 		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
 		display: [ :aClass | aClass name ].
-		
+
 	"now, we add some buttons to our button bar"
 	buttonBar
 		"We want to place them at the end (as is often used in dialogs)"
@@ -26,7 +27,7 @@ SpButtonBarPresenter class >> example [
 			icon: (presenter application iconNamed: #smallAdd);
 			label: 'Add';
 			yourself);
-		add: (presenter newButton 
+		add: (presenter newButton
 			icon: (presenter application iconNamed: #smallDelete);
 			label: 'Delete';
 			yourself);
@@ -34,6 +35,6 @@ SpButtonBarPresenter class >> example [
 			icon: (presenter application iconNamed: #smallCopy);
 			label: 'Copy';
 			yourself).
-			
+
 	presenter open
 ]
