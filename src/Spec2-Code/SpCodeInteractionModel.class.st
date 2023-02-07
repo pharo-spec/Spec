@@ -29,12 +29,6 @@ SpCodeInteractionModel >> behavior [
 	^ nil
 ]
 
-{ #category : #binding }
-SpCodeInteractionModel >> bindingOf: aString [
-
-	^ nil
-]
-
 { #category : #accessing }
 SpCodeInteractionModel >> bindings [
 
@@ -53,12 +47,6 @@ SpCodeInteractionModel >> doItContext [
 SpCodeInteractionModel >> doItReceiver [
 
 	^ nil
-]
-
-{ #category : #binding }
-SpCodeInteractionModel >> hasBindingOf: aString [
-
-	^ false
 ]
 
 { #category : #testing }

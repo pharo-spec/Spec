@@ -98,12 +98,6 @@ SpWindowPresenter >> addPresenterIn: widget withSpecLayout: aSpec [
 ]
 
 { #category : #TOREMOVE }
-SpWindowPresenter >> askOkToClose [
-
-	^ askOkToClose
-]
-
-{ #category : #TOREMOVE }
 SpWindowPresenter >> askOkToClose: aBoolean [
 
 	askOkToClose := aBoolean
