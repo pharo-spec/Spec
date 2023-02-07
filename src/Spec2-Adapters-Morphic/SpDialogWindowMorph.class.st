@@ -3,8 +3,8 @@ A SpecDialogWindow is a window made for embedding Spec models into dialog window
 
 "
 Class {
-	#name : #SpDialogWindow,
-	#superclass : #DialogWindow,
+	#name : #SpDialogWindowMorph,
+	#superclass : #DialogWindowMorph,
 	#instVars : [
 		'toolbar'
 	],
@@ -12,42 +12,42 @@ Class {
 }
 
 { #category : #actions }
-SpDialogWindow >> addInitialPanel [
+SpDialogWindowMorph >> addInitialPanel [
 	"Do nothing here because Spec will take care of adding the content"
 ]
 
 { #category : #protocol }
-SpDialogWindow >> cancelAction: aBlock [
+SpDialogWindowMorph >> cancelAction: aBlock [
 
 	self toolbar cancelAction: aBlock 
 ]
 
 { #category : #protocol }
-SpDialogWindow >> cancelled [
+SpDialogWindowMorph >> cancelled [
 
 	^ self toolbar cancelled
 ]
 
 { #category : #actions }
-SpDialogWindow >> escapePressed [
+SpDialogWindowMorph >> escapePressed [
 
 	self model triggerCancelAction
 ]
 
 { #category : #focus }
-SpDialogWindow >> giveFocusToNextFrom: aModel [ 
+SpDialogWindowMorph >> giveFocusToNextFrom: aModel [ 
 
 	^ self model giveFocusToNextFrom: aModel 
 ]
 
 { #category : #focus }
-SpDialogWindow >> giveFocusToPreviousFrom: aModel [ 
+SpDialogWindowMorph >> giveFocusToPreviousFrom: aModel [ 
 
 	^ self model giveFocusToPreviousFrom: aModel
 ]
 
 { #category : #'open/close' }
-SpDialogWindow >> initialExtent [ 
+SpDialogWindowMorph >> initialExtent [ 
 
 	^ self model
 		ifNil: [ super initialExtent ]
@@ -56,25 +56,25 @@ SpDialogWindow >> initialExtent [
 ]
 
 { #category : #initialization }
-SpDialogWindow >> initialize [
+SpDialogWindowMorph >> initialize [
 	super initialize.
 	self beResizeable
 ]
 
 { #category : #accessing }
-SpDialogWindow >> newButtonRow [
+SpDialogWindowMorph >> newButtonRow [
 
 	^ self toolbar ifNotNil: [ :t | t build ]
 ]
 
 { #category : #protocol }
-SpDialogWindow >> okAction: aBlock [
+SpDialogWindowMorph >> okAction: aBlock [
 
 	self toolbar okAction: aBlock 
 ]
 
 { #category : #protocol }
-SpDialogWindow >> setToolbarFrom: aBlock [
+SpDialogWindowMorph >> setToolbarFrom: aBlock [
 	| newToolbar |
 	
 	newToolbar := aBlock value.
@@ -82,14 +82,14 @@ SpDialogWindow >> setToolbarFrom: aBlock [
 ]
 
 { #category : #accessing }
-SpDialogWindow >> toolbar [
+SpDialogWindowMorph >> toolbar [
 	"Lazy initialization because this method is called efore the initialize method"
 	
 	^ toolbar
 ]
 
 { #category : #accessing }
-SpDialogWindow >> toolbar: anObject [
+SpDialogWindowMorph >> toolbar: anObject [
 	| content |
 	
 	toolbar := anObject.

@@ -66,7 +66,7 @@ SpMorphicToolbarMenuButtonAdapter >> menuIcon [
 { #category : #factory }
 SpMorphicToolbarMenuButtonAdapter >> newMenuButton [
 
-	^ IconicButton new
+	^ IconicButtonMorph new
 		  target: self;
 		  actionSelector: #showMenu;
 		  arguments: {  };
