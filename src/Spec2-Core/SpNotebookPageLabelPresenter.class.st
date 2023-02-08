@@ -16,33 +16,33 @@ Class {
 
 { #category : #initialization }
 SpNotebookPageLabelPresenter >> initializePresenters [
-	
+
 	self layout: (SpBoxLayout newLeftToRight
 		spacing: 3;
 		yourself).
-		
+
 	self model icon ifNotNil: [
-		self layout 
-			add: (iconPresenter := (self newImage image: self model icon)) 
+		self layout
+			add: (iconPresenter := (self newImage image: self model icon))
 			expand: false ].
 
-	self layout 
+	self layout
 		vAlignCenter;
-		add: (labelPresenter := self newLabel 
+		add: (labelPresenter := self newLabel
 			label: self model title asString;
 			yourself)
 		expand: false.
 
 	self model isCloseable ifTrue: [
-		self layout 
-			addLast: (self newButton 
+		self layout
+			addLast: (self newButton
 				addStyle: 'small';
 				addStyle: 'flat';
-				icon: (self application iconNamed: #windowCloseInactive);
+				icon: (self iconNamed: #windowCloseInactive);
 				action: [ self model removeFromNotebook ];
 				yourself)
 			expand: false ].
-		
+
 	"self eventHandler whenDoubleClickDo: [ :event | 'ok' crTrace  ]."
 ]
 

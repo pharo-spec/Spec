@@ -114,17 +114,17 @@ SpMorphicComponentListAdapter >> selectedIndexes [
 { #category : #'event handling' }
 SpMorphicComponentListAdapter >> selectionChanged: ann [
 	| diff |
-	
-	self presenter selection isMultipleSelection ifTrue: [ 
+
+	self presenter selection isMultipleSelection ifTrue: [
 		self presenter selection selectIndexes: (ann newSelectedIndexes reject: [ :e | e = 0 ]) ].
-	self presenter selection isMultipleSelection ifFalse: [ 
+	self presenter selection isMultipleSelection ifFalse: [
 		self presenter selection selectIndex: (ann newSelectedIndexes
 			ifNotEmpty: [ :indexes | indexes first ]
 			ifEmpty: [ 0 ]) ].
 	diff := ann newSelectedIndexes difference: ann oldSelectedIndexes.
-	(diff notEmpty and: [ self presenter activatesOnSingleClick ])
+	(diff notEmpty and: [ self presenter isActiveOnSingleClick ])
 		ifTrue: [ self presenter doActivateAtIndex: diff last ].
-	
+
 	ann newSelectedIndexes ifNotEmpty: [ ^ self ].
 	self presenter selection unselectAll
 ]
@@ -153,8 +153,8 @@ SpMorphicComponentListAdapter >> showContextMenu [
 
 { #category : #factory }
 SpMorphicComponentListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
-	
-	self presenter activatesOnDoubleClick ifFalse: [ ^ self ]. 	
+
+	self presenter isActiveOnDoubleClick ifFalse: [ ^ self ].
 	self presenter doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex
 ]
 

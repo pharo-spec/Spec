@@ -17,15 +17,14 @@ Class {
 { #category : #'user interface' }
 SpDemo class >> menuExamplesOn: aBuilder [
 	"Add a custom menu item to the world menu"
-
 	<worldMenu>
-	(aBuilder item: #'Spec2 examples')
+
+	(aBuilder item: #'Spec2 demo')
 		iconName: #smallHelp;
 		parent: #Help;
 		order: 3.5;
 		help: 'Open Spec2 demo browser.';
-		action: [ self open ].
-	aBuilder withSeparatorAfter	
+		action: [ self open ]
 ]
 
 { #category : #'instance creation' }

@@ -36,6 +36,22 @@ SpPanedLayout >> add: aPresenterLayoutOrSymbol [
 		place: children size + 1
 ]
 
+{ #category : #'api - adding' }
+SpPanedLayout >> add: aPresenterLayoutOrSymbol layout: aSelector [
+	"Adds `aPresenterLayoutOrSymbol` to the list of presenters to be arranged in the layout, setting
+	 also the layout to use with the added presenter.
+	 `aPresenterLayoutOrSymbol` can be
+		- any instance of `SpPresenter` hierarchy,
+		- another layout or
+		- a Symbol, matching the name of the instance variable who will contain the element to add.
+	`aSelector` is a selector that has to be in the class side of `aPresenterLayoutOrSymbol` instance, and it will answer the layout to use."
+
+	^ self
+		add: aPresenterLayoutOrSymbol
+		withConstraints: [ :constraints |
+			constraints spec: aSelector ]
+]
+
 { #category : #private }
 SpPanedLayout >> add: aChild withConstraints: aBlock [
 	self add: aChild withConstraints: aBlock place: children size + 1

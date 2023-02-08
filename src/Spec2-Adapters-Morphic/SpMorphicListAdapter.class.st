@@ -201,19 +201,19 @@ SpMorphicListAdapter >> selectedIndexes [
 { #category : #factory }
 SpMorphicListAdapter >> selectionChanged: ann [
 	| diff |
-	
+
 	self presenter selection isMultipleSelection
-		ifTrue: [ 
+		ifTrue: [
 			self presenter selection
 				selectIndexes: (ann newSelectedIndexes reject: [ :e | e = 0 ]) ].
 	self presenter selection isMultipleSelection
-		ifFalse: [ 
+		ifFalse: [
 			self presenter selection
 				selectIndex: (ann newSelectedIndexes
 					ifNotEmpty: [ :indexes | indexes first ]
 					ifEmpty: [ 0 ]) ].
 	diff := ann newSelectedIndexes difference: ann oldSelectedIndexes.
-	(diff notEmpty and: [ self presenter activatesOnSingleClick ])
+	(diff notEmpty and: [ self presenter isActiveOnSingleClick ])
 		ifTrue: [ self presenter doActivateAtIndex: diff last ].
 	ann newSelectedIndexes ifNotEmpty: [ ^ self ].
 	self presenter selection unselectAll
@@ -241,9 +241,9 @@ SpMorphicListAdapter >> sendRightClickEvent [
 
 { #category : #events }
 SpMorphicListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
-	self presenter activatesOnDoubleClick
-		ifTrue: [ self presenter
-				doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex ]
+
+	self presenter isActiveOnDoubleClick ifFalse: [ ^ self ].
+	self presenter doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex
 ]
 
 { #category : #events }
