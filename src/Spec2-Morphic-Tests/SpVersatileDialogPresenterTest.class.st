@@ -4,6 +4,12 @@ Class {
 	#category : #'Spec2-Morphic-Tests'
 }
 
+{ #category : #testing }
+SpVersatileDialogPresenterTest class >> isDeprecated [
+
+	^ true
+]
+
 { #category : #accessing }
 SpVersatileDialogPresenterTest >> classToTest [
 	^ SpVersatileDialogPresenter

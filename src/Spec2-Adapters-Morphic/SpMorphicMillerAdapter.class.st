@@ -131,7 +131,7 @@ SpMorphicMillerAdapter >> newPanel [
 { #category : #factory }
 SpMorphicMillerAdapter >> newScrollPaneFor: aWidget [
 
-	^ MillerScrollPane new
+	^ MillerScrollPaneMorph new
 		  changeScrollerTableLayout;
 		  hResizing: #spaceFill;
 		  vResizing: #spaceFill;

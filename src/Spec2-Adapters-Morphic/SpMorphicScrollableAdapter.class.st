@@ -66,7 +66,7 @@ SpMorphicScrollableAdapter >> layout: aLayout [
 		                     vResizing: #spaceFill;
 		                     yourself.
 	widget ifNil: [ 
-		widget := GeneralScrollPane new
+		widget := GeneralScrollPaneMorph new
 			          changeScrollerTableLayout;
 			          hResizing: #spaceFill;
 			          vResizing: #spaceFill;
