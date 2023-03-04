@@ -290,10 +290,13 @@ SpMorphicTableCellBuilder >> visitStringColumnEditable: aTableColumn on: content
   		text: content;
 		yourself.
 
-	aTableColumn acceptAction ifNotNil: [ :valuable | 
+	aTableColumn acceptAction ifNotNil: [ :valuable |
 		presenter whenSubmitDo: [ :aString |
 			valuable cull: self item cull: aString ] ].
-	
+
+		aTableColumn textChanged ifNotNil: [ :valuable |
+		presenter whenTextChangedDo: [ :aString |
+			valuable cull: self item cull: aString ] ].
 	"add cell"
 	morph := presenter build.
 	presenter adapter applyStyle.
