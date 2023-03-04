@@ -195,17 +195,18 @@ SpTablePresenter class >> exampleWithoutColumnHeaders [
 
 { #category : #'*Spec2-Examples' }
 SpTablePresenter class >> exampleWriteableTable [
-	"The selector names are NOT stored, but serves merely to have something one can edit"
+	"The selector names are NOT stored, but serves merely to have something one can edit.  this will also test text changes"
 	| items |
-	
+
 	items := String methods.
 	^ self new
-		addColumn: (SpStringTableColumn new 
+		addColumn: (SpStringTableColumn new
 			title: 'Editable selector name';
 			evaluated: [ :m | m selector ];
 			displayBold: [ :m | m selector isKeyword ];
 			beEditable ;
 			onAcceptEdition: [ :m :t | Transcript nextPutAll: t;cr;endEntry ];
+			onTextChanged: [ :m :t | Transcript nextPutAll: t;cr;endEntry ];
 			yourself);
 		addColumn: (SpStringTableColumn title: 'Size' evaluated: #size) beSortable;
 		showColumnHeaders;
