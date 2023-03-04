@@ -19,7 +19,8 @@ Class {
 	#instVars : [
 		'editable',
 		'acceptAction',
-		'sortable'
+		'sortable',
+		'textChanged'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
@@ -141,4 +142,10 @@ SpStringTableColumn >> sortFunction: aBlockOrSortFunction [
 	
 	super sortFunction: aBlockOrSortFunction asSortFunction.
 	self isSortable: aBlockOrSortFunction notNil
+]
+
+{ #category : #accessing }
+SpStringTableColumn >> textChanged [
+
+	^ textChanged
 ]
