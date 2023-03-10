@@ -69,29 +69,29 @@ SpCodeAdapterTest >> testRightClickShowsMenu [
 
 { #category : #tests }
 SpCodeAdapterTest >> testTextWithStyle [
-	| text |
 
-	presenter 
+	| text |
+	presenter
 		beForObject: Object;
 		text: 'self asString.'.
-	
+
 	text := self adapter textWithStyle.
-	self assertText: text atInterval: "self" (1 to: 4) isStyle: #self.
-	self assertText: text atInterval: "asString" (6 to: 13) isStyle: #unary.
+	self assertText: text atInterval: (1 to: 4) isStyle: #self. "self"
+	self assertText: text atInterval: (6 to: 13) isStyle: #selector. "asString"
 
 	presenter type: '10 + 42.0'.
 	text := self adapter textWithStyle.
-	self assertText: text atInterval: "10" (1 to: 2) isStyle: #integer.
-	self assertText: text atInterval: "+" (4 to: 4) isStyle: #binary.
-	self assertText: text atInterval: "42.0" (6 to: 9) isStyle: #number.
+	self assertText: text atInterval: (1 to: 2) isStyle: #number. "10"
+	self assertText: text atInterval: (4 to: 4) isStyle: #selector. "+"
+	self assertText: text atInterval: (6 to: 9) isStyle: #number. "42.0"
 
 	presenter beForBehavior: Object.
 	presenter type: 'm1 ^ "test" 42'.
 	text := self adapter textWithStyle.
-	self assertText: text atInterval: "m1" (1 to: 2) isStyle: #patternKeyword.
-	self assertText: text atInterval: "^" (4 to: 4) isStyle: #return.
-	self assertText: text atInterval: "test" (6 to: 11) isStyle: #comment.	
-	self assertText: text atInterval: "42" (13 to: 14) isStyle: #number.
+	self assertText: text atInterval: (1 to: 2) isStyle: #patternSelector. "m1"
+	self assertText: text atInterval: (4 to: 4) isStyle: #return. "^"
+	self assertText: text atInterval: (6 to: 11) isStyle: #comment. "test"
+	self assertText: text atInterval: (13 to: 14) isStyle: #number "42"
 ]
 
 { #category : #tests }
