@@ -12,8 +12,7 @@ Class {
 		'morph2',
 		'morph3',
 		'uniformDropList',
-		'heterogeneousDropList',
-		'disabledDropList'
+		'heterogeneousDropList'
 	],
 	#category : #'Spec2-Morphic-Examples'
 }
@@ -27,7 +26,6 @@ SpDropListExample class >> defaultLayout [
 				add: #heterogeneousDropList;
 				yourself)
 			height: self toolbarHeight;
-		add: #disabledDropList height: self toolbarHeight;
 		add: #container;
 		yourself
 ]
@@ -56,11 +54,6 @@ SpDropListExample >> containerMorph [
 ]
 
 { #category : #accessing }
-SpDropListExample >> disabledDropList [
-	^ disabledDropList
-]
-
-{ #category : #accessing }
 SpDropListExample >> heterogeneousDropList [
 	^ heterogeneousDropList
 ]
@@ -71,30 +64,25 @@ SpDropListExample >> initializePresenters [
 	uniformDropList := self newDropList.
 	heterogeneousDropList := self newDropList.
 	container := self newMorph.
-	disabledDropList := self newDropList.
 	container morph: PanelMorph new.
 	self instantiateMorphs.
 	self containerMorph
 		changeTableLayout;
 		listDirection: #bottomToLeft.
-	disabledDropList
-		items: #( 'Disabled' 'Two' 'Three' );
-		display: [ :each | each ];
-		disable.
 	uniformDropList
-		items: { 
+		items: {
 				morph1.
 				morph2.
 				morph3 };
 		display: [ :m | m color name capitalized , ' morph' ];
 		displayIcon: [ :e | self iconNamed: #testGreen ];
-		whenSelectedItemChangedDo: [ :m | 
+		whenSelectedItemChangedDo: [ :m |
 			self containerMorph
 				removeAllMorphs;
 				addMorph: m ].
 	heterogeneousDropList
-		addItemLabeled: 'Open workspace'
-		do: [ Smalltalk tools workspace open ]
+		addItemLabeled: 'Option one'
+		do: [  ]
 		icon: (self iconNamed: #smallOk);
 		addItemLabeled: 'Inspect current morph'
 		do: [ self systemNavigation inspect: uniformDropList selectedItem ]
@@ -122,17 +110,15 @@ SpDropListExample >> instantiateMorphs [
 	morph3 := Morph new
 					color: Color green;
 					width: 50;
-					height: 50.
+					height: 50
 ]
 
 { #category : #initialization }
 SpDropListExample >> setFocus [
-	
+
 	self focusOrder
 		add: uniformDropList;
-		add: heterogeneousDropList;
-		add: disabledDropList.
-	
+		add: heterogeneousDropList
 ]
 
 { #category : #accessing }
