@@ -66,23 +66,23 @@ SpCodeInteractionModel >> isScripting [
 SpCodeInteractionModel >> notify: message at: location in: code [
 	| currentSelection stripMessage |
 
-	"self owner withAdapterDo: [ :anAdapter | 
+	"self owner withAdapterDo: [ :anAdapter |
 		anAdapter notify: message at: location in: code ]"
 
-	stripMessage := (message endsWith: '->')
+	stripMessage := (message endsWith: ' ->')
 		ifTrue: [ message allButLast: 3 ]
 		ifFalse: [ message ].
 
 	currentSelection := self owner selectionInterval.
-	self owner 
-		insertErrorPopover: (SpCodePopoverErrorPresenter 
-			newCode: self owner 
-			message: stripMessage) 
+	self owner
+		insertErrorPopover: (SpCodePopoverErrorPresenter
+			newCode: self owner
+			message: stripMessage)
 		atIndex: (currentSelection isEmptyOrNil
 			ifTrue: [ location ]
-			ifFalse: [ 
-				"both selection and location are 1-based, but position will be zero-based 
-				 (zero=first element), to actually arrive to the position I want I need to 
+			ifFalse: [
+				"both selection and location are 1-based, but position will be zero-based
+				 (zero=first element), to actually arrive to the position I want I need to
 				 substract two elements"
 				currentSelection first + location - 2 ])
 ]
