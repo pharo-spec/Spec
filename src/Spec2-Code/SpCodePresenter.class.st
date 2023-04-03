@@ -421,7 +421,7 @@ SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: 
 		oldBindings := self interactionModel bindings copy.
 		receiver := self interactionModel doItReceiver.
 		result := receiver class compiler
-			source: aString readStream;
+			source: aString;
 			context: self interactionModel doItContext;
 			receiver: self interactionModel doItReceiver;
 			requestor: self interactionModel;
