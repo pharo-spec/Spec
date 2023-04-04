@@ -671,6 +671,7 @@ SpWindowPresenter >> whenResizingDo: aBlock [
 	self announcer 
 		when: SpWindowResizing
 		do: aBlock
+		 for: self
 ]
 
 { #category : #'api - events' }
@@ -693,6 +694,7 @@ SpWindowPresenter >> whenWillCloseDo: aBlock [
 	self announcer 
 		when: SpWindowWillClose
 		do: aBlock
+		 for: self
 ]
 
 { #category : #private }

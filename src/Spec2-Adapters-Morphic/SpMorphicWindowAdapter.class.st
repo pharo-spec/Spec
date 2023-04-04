@@ -124,6 +124,7 @@ SpMorphicWindowAdapter >> installFocusLostEvent: anEvent to: aWidget [
 	aWidget announcer
 		when: WindowDeActivated
 		do: [ anEvent action value ]
+		 for: self
 ]
 
 { #category : #'event installing' }
@@ -132,6 +133,7 @@ SpMorphicWindowAdapter >> installFocusReceivedEvent: anEvent to: aWidget [
 	aWidget announcer
 		when: WindowActivated
 		do: [ anEvent action value ]
+		 for: self
 ]
 
 { #category : #protocol }

@@ -323,17 +323,17 @@ SpJob >> value: aNumber [
 { #category : #events }
 SpJob >> whenChangedDo: aBlock [
 
-	self announcer when: JobChange do: aBlock
+	self announcer when: JobChange do: aBlock  for: self
 ]
 
 { #category : #events }
 SpJob >> whenEndDo: aBlock [
 
-	self announcer when: JobEnd do: aBlock
+	self announcer when: JobEnd do: aBlock  for: self
 ]
 
 { #category : #events }
 SpJob >> whenStartDo: aBlock [
 
-	self announcer when: JobStart do: aBlock
+	self announcer when: JobStart do: aBlock for: self
 ]

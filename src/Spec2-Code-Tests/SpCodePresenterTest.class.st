@@ -570,9 +570,9 @@ SpCodePresenterTest >> testEvaluateSendAnnouncements [
 	| willBeEvaluated succeed failed |
 
 	presenter announcer 
-		when: SpCodeWillBeEvaluatedAnnouncement do: [ :ann | willBeEvaluated := true ];
-		when: SpCodeEvaluationSucceedAnnouncement do: [ :ann | succeed := true ];
-		when: SpCodeEvaluationFailedAnnouncement do: [ :ann | failed := true ].
+		when: SpCodeWillBeEvaluatedAnnouncement do: [ :ann | willBeEvaluated := true ] for: self;
+		when: SpCodeEvaluationSucceedAnnouncement do: [ :ann | succeed := true ] for: self;
+		when: SpCodeEvaluationFailedAnnouncement do: [ :ann | failed := true ] for: self.
 		
 	willBeEvaluated := false. 
 	succeed := false.

@@ -58,7 +58,7 @@ SpTSearchable >> isSearchEnabled [
 SpTSearchable >> performDefaultSearch: item matching: pattern [
 	| text |
 	
-	text := (self searchValueOf: item) asString trimBoth asLowercase.
+	text := (self searchValueOf: item) trimBoth asLowercase.
 	^ text beginsWith: pattern
 ]
 

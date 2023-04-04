@@ -105,7 +105,7 @@ SpBaseTest >> testNonOpenPresenterDoesNotRaiseBuiltEvent [
 SpBaseTest >> testNonOpenPresenterDoesNotRaiseDisplayedEvent [
 	| displayed |
 	displayed := false.
-	presenter whenDisplayDo: [ displayed := true ].
+	presenter whenDisplayDo: [ displayed := true ] for: self.
 	self deny: displayed
 ]
 
@@ -134,7 +134,7 @@ SpBaseTest >> testOpenPresenterRaisesBuiltEvent [
 SpBaseTest >> testOpenPresenterRaisesDisplayEvent [
 	| displayed |
 	displayed := false.
-	presenter whenDisplayDo: [ displayed := true ].
+	presenter whenDisplayDo: [ displayed := true ] for: self.
 	self openInstance.
 	self assert: displayed
 ]

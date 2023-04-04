@@ -318,7 +318,7 @@ SpAbstractMorphicAdapter >> installFocusLostEvent: anEvent to: aWidget [
 
 	aWidget announcer 
 		when: MorphLostFocus
-		do: [ anEvent action value ]
+		do: [ anEvent action value ] for: self
 ]
 
 { #category : #'event installing' }
@@ -327,6 +327,7 @@ SpAbstractMorphicAdapter >> installFocusReceivedEvent: anEvent to: aWidget [
 	aWidget announcer 
 		when: MorphGotFocus
 		do: [ anEvent action value ]
+		 for: self
 ]
 
 { #category : #'event installing' }
@@ -685,8 +686,9 @@ SpAbstractMorphicAdapter >> vSpaceFill [
 { #category : #protocol }
 SpAbstractMorphicAdapter >> when: anAnnouncement do: aBlock [
 
+	self flag: #TOCHECK. "Use self or get receiver by param?"
 	self widgetDo: [ :w | w announcer
-		when: anAnnouncement do: aBlock ]
+		when: anAnnouncement do: aBlock for: self ]
 ]
 
 { #category : #emulating }

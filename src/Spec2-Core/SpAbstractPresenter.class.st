@@ -519,6 +519,7 @@ SpAbstractPresenter >> whenBuiltDo: aBlock [
 	self announcer 
 		when: SpWidgetBuilt
 		do: aBlock
+		 for: self
 ]
 
 { #category : #events }
@@ -527,6 +528,7 @@ SpAbstractPresenter >> whenWillBeBuiltDo: aBlock [
 	self announcer 
 		when: SpWidgetWillBeBuilt
 		do: aBlock
+		 for: self
 ]
 
 { #category : #accessing }

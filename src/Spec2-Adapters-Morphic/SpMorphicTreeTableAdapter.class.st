@@ -178,7 +178,8 @@ SpMorphicTreeTableAdapter >> configureScrolling [
 	self presenter
 		whenDisplayDo: [ widget
 				scrollToIndex: self presenter verticalAlignment desiredVisibleRow.
-			self scrollingChanged ].
+			self scrollingChanged ]
+		 for: self.
 		
 	widget
 		onAnnouncement: FTScrollingChanged

@@ -92,7 +92,7 @@ SpNotebookAdapterTest >> testSelectingPageShouldAnnounceChangeEvent [
 	| change |
 
 	self adapter widget tabSelectorMorph selectedIndex: 1.
-	self adapter widget announcer when: SpNotebookPageChanged do: [ :ann | change := ann ].
+	self adapter widget announcer when: SpNotebookPageChanged do: [ :ann | change := ann ] for: self.
 	
 	self adapter widget tabSelectorMorph selectedIndex: 2.
 	

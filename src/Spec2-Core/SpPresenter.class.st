@@ -963,12 +963,12 @@ SpPresenter >> whenContextKeyBindingsChangedDo: aBlock [
 ]
 
 { #category : #'api - events' }
-SpPresenter >> whenDisplayDo: aBlock [
+SpPresenter >> whenDisplayDo: aBlock for: anObject [
 	"Inform when presenter has been displayed.
 	 `aBlock` receives one argument 
 	 - an announcement (instance of `SpWidgetDisplayed`)"
 
-	self announcer when: SpWidgetDisplayed do: aBlock
+	self announcer when: SpWidgetDisplayed do: aBlock for: anObject
 ]
 
 { #category : #'api - events' }
@@ -989,6 +989,7 @@ SpPresenter >> whenWindowChanged: aBlock [
 	self announcer 
 		when: SpWindowBuilt 
 		do: [ :ann | aBlock cull: ann model ]
+		 for: self
 ]
 
 { #category : #TOREMOVE }

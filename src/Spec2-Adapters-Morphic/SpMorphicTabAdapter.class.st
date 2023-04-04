@@ -52,8 +52,10 @@ SpMorphicTabAdapter >> layout: aLayout [
 
 	aLayout whenChildrenRemovedDo: [ :ann | self remove: ann child ].
 
-	self presenter whenDisplayDo: [
-		widget pages ifNotEmpty: [ widget selectedPageIndex: 1 ] ].
+	self presenter 
+		whenDisplayDo: [
+			widget pages ifNotEmpty: [ widget selectedPageIndex: 1 ] ]
+	 	for: self.
 
 	super layout: aLayout
 ]
