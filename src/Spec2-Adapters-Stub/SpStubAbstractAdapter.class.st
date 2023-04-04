@@ -115,5 +115,5 @@ SpStubAbstractAdapter >> vSpaceFill [
 ]
 
 { #category : #protocol }
-SpStubAbstractAdapter >> when: anAnnouncement do: aBlock [
+SpStubAbstractAdapter >> when: anAnnouncement do: aBlock for: aSubscriber [
 ]

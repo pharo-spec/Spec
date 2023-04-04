@@ -251,7 +251,7 @@ SpAbstractAdapter >> vSpaceFill [
 ]
 
 { #category : #protocol }
-SpAbstractAdapter >> when: anAnnouncement do: aBlock [
+SpAbstractAdapter >> when: anAnnouncement do: aBlock for: aSubscriber [
 
 	self subclassResponsibility
 ]

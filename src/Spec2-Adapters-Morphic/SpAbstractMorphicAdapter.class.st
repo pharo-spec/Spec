@@ -684,11 +684,10 @@ SpAbstractMorphicAdapter >> vSpaceFill [
 ]
 
 { #category : #protocol }
-SpAbstractMorphicAdapter >> when: anAnnouncement do: aBlock [
+SpAbstractMorphicAdapter >> when: anAnnouncement do: aBlock for: aSubscriber [
 
-	self flag: #TOCHECK. "Use self or get receiver by param?"
 	self widgetDo: [ :w | w announcer
-		when: anAnnouncement do: aBlock for: self ]
+		when: anAnnouncement do: aBlock for: aSubscriber ]
 ]
 
 { #category : #emulating }
