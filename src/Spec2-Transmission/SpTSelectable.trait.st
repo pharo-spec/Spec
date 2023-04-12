@@ -24,14 +24,13 @@ SpTSelectable >> outputSelectionPort [
 
 { #category : #'private - actions' }
 SpTSelectable >> select [
-	"Perform here the activation. A common usage would be something like: 
-	
+	"Perform here the activation. A common usage would be something like:
+
 	self activationAction ifNil: [ ^ self ].
-	self activationAction cull: (SpActivatedObject newValue: 42)
+	self activationAction cull: (SpActivatedSelection newValue: 42)
 	"
-	
+
 	self shouldBeImplemented
-	
 ]
 
 { #category : #private }
