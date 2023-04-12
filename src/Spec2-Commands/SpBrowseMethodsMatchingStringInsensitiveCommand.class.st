@@ -19,6 +19,14 @@ SpBrowseMethodsMatchingStringInsensitiveCommand class >> defaultName [
 	^ 'Case insensitive method literal strings with it'
 ]
 
+{ #category : #defaults }
+SpBrowseMethodsMatchingStringInsensitiveCommand class >> defaultShortcutKey [
+
+	^ $e command shift mac
+		| $e control shift win
+		| $e control shift unix
+]
+
 { #category : #default }
 SpBrowseMethodsMatchingStringInsensitiveCommand class >> shortName [
 
@@ -28,5 +36,5 @@ SpBrowseMethodsMatchingStringInsensitiveCommand class >> shortName [
 { #category : #executing }
 SpBrowseMethodsMatchingStringInsensitiveCommand >> execute [
 
-	self context doBrowseMethodsMatchingStringSensitive
+	self context doBrowseMethodsMatchingStringInsensitive
 ]

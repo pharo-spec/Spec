@@ -40,7 +40,7 @@ SpTransmissionExample >> connectClassesPresenter [
 		transform: [ :aClass | 
 			aClass
 				ifNotNil: [ 
-					aClass organization allProtocols
+					aClass organization protocols
 						collect: [ :each | aClass -> each ]
 						as: OrderedCollection ]
 				ifNil: [ #(  ) ] ]

@@ -18,6 +18,14 @@ SpBrowseMethodsMatchingStringSensitiveCommand class >> defaultName [
 	^ 'Case sensitive method literal strings with it'
 ]
 
+{ #category : #defaults }
+SpBrowseMethodsMatchingStringSensitiveCommand class >> defaultShortcutKey [
+
+	^ $u command shift mac
+		| $u control shift win
+		| $u control shift unix
+]
+
 { #category : #default }
 SpBrowseMethodsMatchingStringSensitiveCommand class >> shortName [
 
