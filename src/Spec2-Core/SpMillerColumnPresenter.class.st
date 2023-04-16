@@ -27,8 +27,8 @@ Class {
 { #category : #api }
 SpMillerColumnPresenter >> addPresenter: newSubPresenter [
 
-	newSubPresenter whenActivatedDo: [ :selection | 
-		self changeSelection: selection from: newSubPresenter ].
+	newSubPresenter whenActivatedDo: [ :selection |
+		self changeSelection: selection selectedItem from: newSubPresenter ].
 	newSubPresenter owner: self.
 	layout add: newSubPresenter
 ]
