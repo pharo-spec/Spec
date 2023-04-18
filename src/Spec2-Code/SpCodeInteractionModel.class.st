@@ -62,6 +62,11 @@ SpCodeInteractionModel >> isScripting [
 	^ false
 ]
 
+{ #category : #testing }
+SpCodeInteractionModel >> needRequestorScope [
+	^false
+]
+
 { #category : #'interactive error protocol' }
 SpCodeInteractionModel >> notify: message at: location in: code [
 	| currentSelection stripMessage |

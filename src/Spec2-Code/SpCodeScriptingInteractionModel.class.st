@@ -29,6 +29,14 @@ SpCodeScriptingInteractionModel >> bindings [
 ]
 
 { #category : #testing }
+SpCodeScriptingInteractionModel >> canAddBindingOf: name [
+
+	"Check is a special variable named `name` can be declared but without declaring it."
+	^ name first isUppercase not.
+
+]
+
+{ #category : #testing }
 SpCodeScriptingInteractionModel >> hasBindingOf: aString [
 
 	^ self bindings includesKey: aString asSymbol
