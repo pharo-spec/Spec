@@ -48,6 +48,11 @@ SpCodeScriptingInteractionModel >> isScripting [
 	^ true
 ]
 
+{ #category : #testing }
+SpCodeScriptingInteractionModel >> needRequestorScope [
+	^true
+]
+
 { #category : #accessing }
 SpCodeScriptingInteractionModel >> removeAllBindings [
  
