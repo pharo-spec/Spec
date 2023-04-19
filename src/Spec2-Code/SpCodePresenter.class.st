@@ -236,6 +236,14 @@ SpCodePresenter >> buildContextMenuWith: aValuable [
 	^ menuPresenter
 ]
 
+{ #category : #testing }
+SpCodePresenter >> canAddBindingOf: name [
+
+	^ self interactionModel
+		  ifNotNil: [ :sp | sp canAddBindingOf: name ]
+		  ifNil: [ false ]
+]
+
 { #category : #api }
 SpCodePresenter >> clearInteractionModel [
 
@@ -611,6 +619,14 @@ SpCodePresenter >> lookupEnvironment [
 		ifNil: [ interactionModel behavior ])
 			ifNil: [ environment
 				ifNil: [ self class environment ] ])
+]
+
+{ #category : #testing }
+SpCodePresenter >> needRequestorScope [
+
+	^ self interactionModel
+		  ifNotNil: [ :sp | sp needRequestorScope ]
+		  ifNil: [ false ]
 ]
 
 { #category : #private }
