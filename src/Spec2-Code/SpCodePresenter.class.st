@@ -422,17 +422,13 @@ SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: 
 	 anything. 
 	 Instead, the on:do: will catch all errors happening while executing the code once it is 
 	 compiled. "
-	| receiver result oldBindings |
+	| result oldBindings |
 	
 	^ [
 		self announcer announce: (SpCodeWillBeEvaluatedAnnouncement newContent: aString).
 		oldBindings := self interactionModel bindings copy.
-		receiver := self interactionModel doItReceiver.
-		result := receiver class compiler
+		result := self interactionModel compiler
 			source: aString;
-			context: self interactionModel doItContext;
-			receiver: self interactionModel doItReceiver;
-			requestor: self interactionModel;
 			environment: self environment;
 			failBlock:  [ 
 				self announcer announce: (SpCodeEvaluationFailedAnnouncement newContent: aString).
