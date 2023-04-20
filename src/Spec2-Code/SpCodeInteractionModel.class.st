@@ -37,6 +37,11 @@ SpCodeInteractionModel >> bindings [
 	^ #() asDictionary
 ]
 
+{ #category : #testing }
+SpCodeInteractionModel >> canAddBindingOf: name [
+	^ false
+]
+
 { #category : #accessing }
 SpCodeInteractionModel >> doItContext [
 
