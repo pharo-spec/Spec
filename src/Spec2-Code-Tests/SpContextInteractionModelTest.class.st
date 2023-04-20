@@ -2,7 +2,6 @@ Class {
 	#name : #SpContextInteractionModelTest,
 	#superclass : #SpCodeInteractionModelTest,
 	#instVars : [
-		'objectToTest',
 		'instanceVariableForTest'
 	],
 	#category : #'Spec2-Code-Tests'
