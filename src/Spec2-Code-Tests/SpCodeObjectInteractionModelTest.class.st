@@ -47,6 +47,21 @@ SpCodeObjectInteractionModelTest >> testBindingOf [
 ]
 
 { #category : #tests }
+SpCodeObjectInteractionModelTest >> testCompiler [
+
+	| result |
+	result := interactionModel compiler evaluate: 'self'.
+	self assert: result equals: self.
+
+	instanceVariableForTest := 42.
+	result := interactionModel compiler evaluate: 'instanceVariableForTest'.
+	self assert: result equals: 42.
+
+	result := interactionModel compiler evaluate: 'instanceVariableForTest := 43'.
+	self assert: instanceVariableForTest equals: 43
+]
+
+{ #category : #tests }
 SpCodeObjectInteractionModelTest >> testDoItReceiver [
 
 	self assert: interactionModel doItReceiver equals: objectToTest
