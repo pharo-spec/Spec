@@ -2,7 +2,8 @@ Class {
 	#name : #SpCodeObjectInteractionModelTest,
 	#superclass : #SpCodeInteractionModelTest,
 	#instVars : [
-		'objectToTest'
+		'objectToTest',
+		'instanceVariableForTest'
 	],
 	#category : #'Spec2-Code-Tests'
 }
@@ -16,13 +17,13 @@ SpCodeObjectInteractionModelTest >> classToTest [
 { #category : #running }
 SpCodeObjectInteractionModelTest >> initializeInstance: anInteractionModel [
 
-	anInteractionModel object: objectToTest
+	anInteractionModel object: self objectToTest
 ]
 
 { #category : #accessing }
 SpCodeObjectInteractionModelTest >> objectToTest [
 
-	^ objectToTest ifNil: [ objectToTest := SpCodePresenter new ]
+	^ objectToTest ifNil: [ objectToTest := self ]
 ]
 
 { #category : #running }
