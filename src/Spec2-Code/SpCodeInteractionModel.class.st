@@ -37,6 +37,21 @@ SpCodeInteractionModel >> bindings [
 	^ #() asDictionary
 ]
 
+{ #category : #testing }
+SpCodeInteractionModel >> canAddBindingOf: name [
+	^ false
+]
+
+{ #category : #accessing }
+SpCodeInteractionModel >> compiler [
+	"Provide a compiler set up on the current context/class/receiver"
+
+	^ self doItReceiver class compiler
+		  context: self doItContext;
+		  receiver: self doItReceiver;
+		  requestor: self
+]
+
 { #category : #accessing }
 SpCodeInteractionModel >> doItContext [
 

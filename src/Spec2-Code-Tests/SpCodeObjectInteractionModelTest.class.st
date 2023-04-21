@@ -2,7 +2,8 @@ Class {
 	#name : #SpCodeObjectInteractionModelTest,
 	#superclass : #SpCodeInteractionModelTest,
 	#instVars : [
-		'objectToTest'
+		'objectToTest',
+		'instanceVariableForTest'
 	],
 	#category : #'Spec2-Code-Tests'
 }
@@ -16,13 +17,13 @@ SpCodeObjectInteractionModelTest >> classToTest [
 { #category : #running }
 SpCodeObjectInteractionModelTest >> initializeInstance: anInteractionModel [
 
-	anInteractionModel object: objectToTest
+	anInteractionModel object: self objectToTest
 ]
 
 { #category : #accessing }
 SpCodeObjectInteractionModelTest >> objectToTest [
 
-	^ objectToTest ifNil: [ objectToTest := SpCodePresenter new ]
+	^ objectToTest ifNil: [ objectToTest := self ]
 ]
 
 { #category : #running }
@@ -43,6 +44,21 @@ SpCodeObjectInteractionModelTest >> testBindingOf [
 
 	self assert: (interactionModel bindingOf: #somethingNotExistent) isNil.
 	self assert: (interactionModel bindingOf: #Object) isNil
+]
+
+{ #category : #tests }
+SpCodeObjectInteractionModelTest >> testCompiler [
+
+	| result |
+	result := interactionModel compiler evaluate: 'self'.
+	self assert: result equals: self.
+
+	instanceVariableForTest := 42.
+	result := interactionModel compiler evaluate: 'instanceVariableForTest'.
+	self assert: result equals: 42.
+
+	result := interactionModel compiler evaluate: 'instanceVariableForTest := 43'.
+	self assert: instanceVariableForTest equals: 43
 ]
 
 { #category : #tests }
