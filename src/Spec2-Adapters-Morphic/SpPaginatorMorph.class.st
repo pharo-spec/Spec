@@ -173,7 +173,9 @@ SpPaginatorMorph >> numberOfPagesShown [
 SpPaginatorMorph >> numberOfPagesShown: aNumber [
 
 	numberOfPagesShown := aNumber.
-	selectionMorph updateSizePages: numberOfPagesShown pageWidth: self baseWidth
+	selectionMorph 
+		updateSizePages: numberOfPagesShown 
+		pageWidth: self baseWidth
 ]
 
 { #category : #accessing }
@@ -197,13 +199,17 @@ SpPaginatorMorph >> selectLastPage [
 
 { #category : #accessing }
 SpPaginatorMorph >> selectPage: aNumber [
+	| effectivePageNumber numPages |
 
 	selectedPage = aNumber ifTrue: [ ^ self ].
-	(aNumber + self numberOfPagesShown - 1 > pagesMorph submorphs size) 
-		ifTrue: [ ^ self selectPage: aNumber - 1 ].
+	numPages := pagesMorph submorphs size.
 
-	self moveSelectionToPage: aNumber.
-	self basicSelectPage: aNumber
+	effectivePageNumber := aNumber > (numPages - self numberOfPagesShown)
+		ifTrue: [ numPages - self numberOfPagesShown + 1 ]
+		ifFalse: [ aNumber ].
+		
+	self moveSelectionToPage: effectivePageNumber.
+	self basicSelectPage: effectivePageNumber
 ]
 
 { #category : #accessing }

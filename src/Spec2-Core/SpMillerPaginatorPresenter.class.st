@@ -13,6 +13,12 @@ Class {
 	#category : #'Spec2-Core-Widgets-Advanced'
 }
 
+{ #category : #api }
+SpMillerPaginatorPresenter >> addPresenter: aPresenter [
+
+	self millerListPresenter addPresenter: aPresenter
+]
+
 { #category : #initialization }
 SpMillerPaginatorPresenter >> initializePresenters [
 
@@ -23,7 +29,7 @@ SpMillerPaginatorPresenter >> initializePresenters [
 				yourself)
 			expand: false;
 		yourself).
-		
+
 	millerList withoutHorizontalScrollBar.
 	millerList whenColumnsChangedDo: [ :page | self updatePaginator: page ].
 	self updatePaginator: 1
@@ -60,6 +66,18 @@ SpMillerPaginatorPresenter >> removeAllFrom: aPresenter [
 	self updatePaginator: ((millerList pages size - millerList visiblePages + 1) max: 1)
 ]
 
+{ #category : #api }
+SpMillerPaginatorPresenter >> selectPage: aNumber [ 
+
+	self millerListPresenter selectPage: aNumber
+]
+
+{ #category : #api }
+SpMillerPaginatorPresenter >> spacing: aNumber [
+
+	self millerListPresenter spacing: aNumber
+]
+
 { #category : #private }
 SpMillerPaginatorPresenter >> updatePaginator: pageSelected [
 
@@ -68,6 +86,7 @@ SpMillerPaginatorPresenter >> updatePaginator: pageSelected [
 			"add a paginator, chained to the miller list"
 			paginator ifNil: [ 
 				paginator := self newPaginator.
+				paginator visiblePages: millerList visiblePages.
 				paginatorContainerLayout add: paginator expand: false.
 				paginator chainTo: millerList ].
 			paginator pages: millerList pages.
@@ -76,4 +95,11 @@ SpMillerPaginatorPresenter >> updatePaginator: pageSelected [
 			"we do not want the paginator, let's remove it"
 			paginatorContainerLayout removeAll. 
 			paginator := nil ]
+]
+
+{ #category : #api }
+SpMillerPaginatorPresenter >> visiblePages: aNumber [
+
+	self millerListPresenter visiblePages: 1.
+	self paginatorPresenter ifNotNil: [ :aPaginator | aPaginator visiblePages: 1 ]
 ]

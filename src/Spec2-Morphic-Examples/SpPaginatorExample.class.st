@@ -8,28 +8,42 @@ Class {
 	#category : #'Spec2-Morphic-Examples'
 }
 
-{ #category : #initialization }
-SpPaginatorExample >> initializePresenters [ 
-	<script: 'self new openWithSpec'>
+{ #category : #layout }
+SpPaginatorExample >> defaultLayout [
 
-	layout := SpBoxLayout newTopToBottom
+	^ SpBoxLayout newTopToBottom
 		spacing: 5;
-		add: (millerList := self instantiate: SpMillerColumnPresenter);
+		add: millerList;
 		add: (SpBoxLayout newLeftToRight
 				hAlignCenter; 
-				add: (paginator := self instantiate: SpPaginatorPresenter) expand: false;
+				add: paginator expand: false;
 				yourself)
 			expand: false;
-		yourself.
-		
+		yourself
+]
+
+{ #category : #initialization }
+SpPaginatorExample >> initializePresenters [ 
+	<script: 'self new open'>
+
+	millerList := self instantiate: SpMillerColumnPresenter.
 	millerList withoutHorizontalScrollBar.
 
+	paginator := self instantiate: SpPaginatorPresenter.		
 	paginator chainTo: millerList.
+	paginator visiblePages: 2
+]
+
+{ #category : #initialization }
+SpPaginatorExample >> updatePresenter [
 
 	1 to: 10 do: [ :index | | presenter |
 		presenter := SpListPresenter new
 			items: (1 to: index);
 			yourself.
 		millerList addPresenter: presenter.
-		paginator addPage: presenter ]
+		paginator addPage: presenter ].
+	
+	paginator selectPage: 1.
+	millerList selectPage: 1
 ]

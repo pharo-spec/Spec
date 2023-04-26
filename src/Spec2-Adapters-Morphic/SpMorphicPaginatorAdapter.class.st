@@ -8,27 +8,27 @@ Class {
 
 { #category : #factory }
 SpMorphicPaginatorAdapter >> buildWidget [
-	| morph |
+	| morph page |
 	
 	morph := SpPaginatorMorph new
 		addPages: self presenter pages;
-		selectPage: self presenter pages size;
 		yourself.
 
 	self presenter whenSelectedPageChangedDo: [ :aNumber |
 		self backendDetectCyclesDo: [ 
-				morph selectPage: aNumber ] ].
+			morph selectPage: aNumber ] ].
 	morph whenSelectedPageChangedDo: [ :aNumber |
 		self backendUpdatingDo: [ 
 			self presenter selectPage: aNumber ] ].
-	
+
+	morph numberOfPagesShown: self presenter visiblePages.
 	self presenter whenVisiblePagesChangedDo: [ :aNumber |
 		self backendDetectCyclesDo: [ 
 			morph numberOfPagesShown: aNumber ] ].
 	morph whenNumberOfPagesShownChangedDo: [ :aNumber |
 		self backendUpdatingDo: [
 			self presenter visiblePages: aNumber ] ].
-	
+
 	self presenter whenPageAddedDo: [ :anObject | 
 		morph 
 			addPage: anObject; 
@@ -40,6 +40,13 @@ SpMorphicPaginatorAdapter >> buildWidget [
 		
 	morph selectionMorph whenDraggingDo: [ :delta | 
 		self presenter dragging: (delta * 100 / widget width) ].
+
+	"select last because the real selection may change with the visible pages"
+	page := (self presenter selectedPage
+		ifNil: [ self presenter pages size ]).
+	morph 	selectPage: page.	
+	self backendUpdatingDo: [ 
+		self presenter selectPage: page ]. 
 
 	^ morph
 ]
