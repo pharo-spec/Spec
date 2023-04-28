@@ -71,7 +71,7 @@ SpStyle class >> defaultStyleSheetData [
 		.fixed [ Geometry { #hResizing: false, #width: 100 } ],
 		.dim [ Draw { #color : Color{ #rgb: 708480675 } } ],
 		.title [ Font { #name : EnvironmentFont(#default), #size : 14 } ],
-		.subtitle [ Font { #name : EnvironmentFont(#default), #size : 12 } ] ]
+		.subtitle [ Font { #name : EnvironmentFont(#default), #size : 12 } ]
 	],
 	.notebookLabel [ 
 		Geometry { #minWidth: 90 } 
