@@ -70,7 +70,8 @@ SpStyle class >> defaultStyleSheetData [
 		.shortcut [ Draw { #color: Color{ #rgb: 622413393 } } ],
 		.fixed [ Geometry { #hResizing: false, #width: 100 } ],
 		.dim [ Draw { #color : Color{ #rgb: 708480675 } } ],
-		.title [ Font { #name : EnvironmentFont(#default), #size : 14 }  ]
+		.title [ Font { #name : EnvironmentFont(#default), #size : 14 } ],
+		.subtitle [ Font { #name : EnvironmentFont(#default), #size : 12 } ] ]
 	],
 	.notebookLabel [ 
 		Geometry { #minWidth: 90 } 
