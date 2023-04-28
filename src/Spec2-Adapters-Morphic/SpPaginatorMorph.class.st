@@ -192,6 +192,12 @@ SpPaginatorMorph >> removePage: anObject [
 ]
 
 { #category : #accessing }
+SpPaginatorMorph >> removeResizingEdges [
+
+	selectionMorph removeResizingEdges
+]
+
+{ #category : #accessing }
 SpPaginatorMorph >> selectLastPage [
 
 	self selectPage: (pagesMorph submorphs size)

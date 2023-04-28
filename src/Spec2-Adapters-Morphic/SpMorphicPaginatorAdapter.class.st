@@ -66,3 +66,9 @@ SpMorphicPaginatorAdapter >> scrollByDeltaPercent: percent [
 	millerDelta := millerWidth * (percent / 100).
 	self widget scroller offset: (self widget scroller offset x + millerDelta)@0
 ]
+
+{ #category : #paginator }
+SpMorphicPaginatorAdapter >> withoutResizingEdges [
+
+	self widgetDo: [ :w | w removeResizingEdges ]
+]

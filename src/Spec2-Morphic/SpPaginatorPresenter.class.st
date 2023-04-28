@@ -158,3 +158,9 @@ SpPaginatorPresenter >> whenVisiblePagesChangedDo: aBlock [
 
 	self property: #visiblePages whenChangedDo: aBlock
 ]
+
+{ #category : #api }
+SpPaginatorPresenter >> withoutResizingEdges [
+
+	self withAdapterPerformOrDefer: [ :anAdapter | anAdapter withoutResizingEdges ]
+]
