@@ -39,11 +39,10 @@ SpListPresenter class >> title [
 
 { #category : #private }
 SpListPresenter >> clickOnSelectedItem [
+
 	| item |
 	item := self selection selectedItem.
-	(item notNil and: [ item respondsTo: #click ])
-		ifTrue: [ ^ item click ]
-		ifFalse: [ ^ false ]
+	^ item notNil and: [ (item respondsTo: #click) and: [ item click ] ]
 ]
 
 { #category : #api }
