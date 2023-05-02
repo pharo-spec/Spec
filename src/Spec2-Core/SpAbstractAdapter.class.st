@@ -90,6 +90,7 @@ SpAbstractAdapter >> add: aWidget [
 { #category : #initialization }
 SpAbstractAdapter >> addEventsTo: aWidget [
 	
+	aWidget ifNil: [ ^ self ].
 	self presenter hasEventHandler ifFalse: [ ^ self ].
 	self presenter eventHandler 
 		installAllEventsTo: self 

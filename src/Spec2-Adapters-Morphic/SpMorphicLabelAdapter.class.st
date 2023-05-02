@@ -35,7 +35,12 @@ SpMorphicLabelAdapter >> applyDecorationsTo: aString [
 SpMorphicLabelAdapter >> applyStyle: aMorph [
 
 	aMorph fitContents.
-	super applyStyle: aMorph
+	super applyStyle: aMorph.
+	"when changing a font and affecting his size, it may happen than the result font 
+	 height is smaller than current height of morph, we need to take care about this 
+	 even if this means we cannot have a label smaller than the font :("
+	aMorph height < aMorph font height
+		ifTrue: [ aMorph height: aMorph font height ]
 ]
 
 { #category : #factory }

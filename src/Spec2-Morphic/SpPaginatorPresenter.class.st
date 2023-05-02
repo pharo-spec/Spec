@@ -20,6 +20,12 @@ SpPaginatorPresenter class >> adapterName [
 	^ #PaginatorAdapter
 ]
 
+{ #category : #defaults }
+SpPaginatorPresenter class >> defaultVisiblePages [
+
+	^ 2
+]
+
 { #category : #documentation }
 SpPaginatorPresenter class >> documentExamplesProtocol [
 	
@@ -59,6 +65,7 @@ SpPaginatorPresenter >> initialize [
 
 	super initialize.
 	pagesHolder := OrderedCollection new asValueHolder.
+	visiblePages := self class defaultVisiblePages
 ]
 
 { #category : #api }
@@ -81,6 +88,12 @@ SpPaginatorPresenter >> selectPage: aNumber [
 	"Select (make the selection area be placed at) the page at index `aNumber`."
 
 	selectedPage := aNumber
+]
+
+{ #category : #accessing }
+SpPaginatorPresenter >> selectedPage [
+
+	^ selectedPage
 ]
 
 { #category : #api }
@@ -144,4 +157,10 @@ SpPaginatorPresenter >> whenVisiblePagesChangedDo: aBlock [
 	 - the announcement triggering this action"
 
 	self property: #visiblePages whenChangedDo: aBlock
+]
+
+{ #category : #api }
+SpPaginatorPresenter >> withoutResizingEdges [
+
+	self withAdapterPerformOrDefer: [ :anAdapter | anAdapter withoutResizingEdges ]
 ]
