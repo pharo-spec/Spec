@@ -29,7 +29,6 @@ SpStyleEnvironmentColorProxy >> colorSelector: aSelector [
 { #category : #'reflective operations' }
 SpStyleEnvironmentColorProxy >> doesNotUnderstand: aMessage [
 
-	aMessage crTrace. 
 	^ aMessage sendTo: (Smalltalk ui theme perform: colorSelector)
 ]
 
