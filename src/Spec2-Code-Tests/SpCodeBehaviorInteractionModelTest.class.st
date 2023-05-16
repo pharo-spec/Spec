@@ -41,5 +41,5 @@ SpCodeBehaviorInteractionModelTest >> testBindingOf [
 SpCodeBehaviorInteractionModelTest >> testHasBindingOf [
 
 	self deny: (interactionModel hasBindingOf: #somethingNotExistent).
-	self deny: (interactionModel hasBindingOf: #Object)
+	self assert: (interactionModel hasBindingOf: #Object)
 ]

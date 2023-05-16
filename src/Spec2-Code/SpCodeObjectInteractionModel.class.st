@@ -19,10 +19,20 @@ SpCodeObjectInteractionModel >> behavior [
 	^ self object class
 ]
 
+{ #category : #binding }
+SpCodeObjectInteractionModel >> bindingOf: aString [
+	^ nil
+]
+
 { #category : #accessing }
 SpCodeObjectInteractionModel >> doItReceiver [
 
 	^ self object
+]
+
+{ #category : #binding }
+SpCodeObjectInteractionModel >> hasBindingOf: aString [
+	^ false
 ]
 
 { #category : #testing }
