@@ -54,8 +54,7 @@ SpContextInteractionModel >> doItReceiver [
 
 { #category : #testing }
 SpContextInteractionModel >> hasBindingOf: aString [
-	"we lookup the name without creating a new variable"
-	^ (context lookupVar: aString declare: false) notNil
+	^ (context lookupVar: aString) notNil
 ]
 
 { #category : #testing }
