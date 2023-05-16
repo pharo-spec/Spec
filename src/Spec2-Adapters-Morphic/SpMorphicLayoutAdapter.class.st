@@ -138,7 +138,7 @@ SpMorphicLayoutAdapter >> layout: aLayout [
 	self applyVisibility.
 	self applyStyle.
 	self addKeyBindingsTo: self widget.
-	self addEventsTo: self widget.
+	self addEventsTo: self widget
 ]
 
 { #category : #factory }

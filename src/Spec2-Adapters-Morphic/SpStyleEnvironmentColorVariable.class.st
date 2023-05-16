@@ -33,7 +33,10 @@ SpStyleEnvironmentColorVariable class >> stonName [
 SpStyleEnvironmentColorVariable >> value [
 
 	self name ifNil: [ ^ nil ].
-	^ Smalltalk ui theme perform: (self name, 'Color') asSymbol
+	"because they can change when we change the theme"
+	^ SpStyleEnvironmentColorProxy new 
+		colorSelector: (self name, 'Color') asSymbol;
+		yourself
 ]
 
 { #category : #evaluating }

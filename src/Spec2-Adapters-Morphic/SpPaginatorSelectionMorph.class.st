@@ -141,6 +141,14 @@ SpPaginatorSelectionMorph >> mouseUp: anEvent [
 	
 ]
 
+{ #category : #accessing }
+SpPaginatorSelectionMorph >> removeResizingEdges [
+	| edgeMorphs |
+	
+	edgeMorphs := self submorphs select: [ :each | each class = SpPaginatorEdgeGripMorph ].
+	self removeAllMorphsIn: edgeMorphs
+]
+
 { #category : #private }
 SpPaginatorSelectionMorph >> resetPosition [
 

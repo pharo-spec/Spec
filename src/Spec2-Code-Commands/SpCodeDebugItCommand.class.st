@@ -54,21 +54,17 @@ SpCodeDebugItCommand >> compile: aStream for: anObject in: evalContext [
 
 { #category : #private }
 SpCodeDebugItCommand >> debug: aStream [
-	| method doItReceiver doItContext |
 
+	| method doItReceiver doItContext |
 	(self context respondsTo: #doItReceiver)
-		ifTrue: [ 
+		ifTrue: [
 			doItReceiver := self context doItReceiver.
 			doItContext := self context doItContext ]
-		ifFalse: [ 
-			doItReceiver := doItContext := nil ].
-		
+		ifFalse: [ doItReceiver := doItContext := nil ].
+
 	method := self compile: aStream for: doItReceiver in: doItContext.
-	method isReturnSpecial ifTrue: [ 
-		self inform: 'Nothing to debug, the expression is optimized'.
-		^ self ].
-	method ifNotNil: [
-		self debug: method receiver: doItReceiver in: doItContext ]
+	method isNil ifTrue: [ ^ self ].
+	self debug: method receiver: doItReceiver in: doItContext
 ]
 
 { #category : #private }

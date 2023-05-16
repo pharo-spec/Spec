@@ -8,12 +8,13 @@ Spec is a framework in Pharo for describing user interfaces.
 
 ## Install Spec
 
-It is possible to load the latest version of Spec in Pharo 10 with following script:
+Spec is included in any regular Pharo image.  
+It is possible to load the latest version executing following script:
 
 
 ```Smalltalk
     Metacello new
-        repository: 'github://pharo-spec/Spec:Pharo10';
+        repository: 'github://pharo-spec/Spec';
         baseline: 'Spec2';
         onConflict: [ :e | e useIncoming ];
         onUpgrade: [ :e | e useIncoming ];
