@@ -121,6 +121,12 @@ SpTPresenterBuilder >> newList [
 ]
 
 { #category : #'scripting - widgets' }
+SpTPresenterBuilder >> newListView [
+
+	^ self instantiate: SpListViewPresenter
+]
+
+{ #category : #'scripting - widgets' }
 SpTPresenterBuilder >> newMenu [
 	^ self instantiate: SpMenuPresenter
 ]

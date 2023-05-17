@@ -178,13 +178,6 @@ SpListPresenter >> resetListSelection [
 	self selectIndex: 0
 ]
 
-{ #category : #TOREMOVE }
-SpListPresenter >> resetSortingBlock [
-	"Reset the sortering block with the default value which consists in not sorting"
-
-	self model sortingBlock: nil
-]
-
 { #category : #api }
 SpListPresenter >> updateList [
 	"Update the list re taking the list defined in `SpAbstractListPresenter>>#model` and filling the list with 

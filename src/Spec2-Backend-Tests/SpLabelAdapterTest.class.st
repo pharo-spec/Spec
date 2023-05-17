@@ -14,6 +14,7 @@ SpLabelAdapterTest >> classToTest [
 
 { #category : #tests }
 SpLabelAdapterTest >> testSetLabelInPresenterSetsInInMorph [
+
 	presenter label: 'something'.
 	self assert: self adapter label equals: 'something'
 ]

@@ -62,8 +62,6 @@ SpMorphicListAdapter >> buildWidget [
 	self presenter whenSearchEnabledChangedDo: [ self updateSearch ].
 	self refreshWidgetHeaderTitle.
 	self refreshWidgetSelection.
-	self presenter whenItemFilterBlockChangedDo: [ :block | self updateItemFilterBlockWith: block ].
-	self updateItemFilterBlockWith: self itemFilter.
 
 	self configureScrolling.
 	widget 

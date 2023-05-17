@@ -118,11 +118,6 @@ SpAbstractListPresenter >> disableActivationDuring: aBlock [
 		activationBlock := oldActivate ]
 ]
 
-{ #category : #TOREMOVE }
-SpAbstractListPresenter >> disableFilter [
-	self itemFilter: nil
-]
-
 { #category : #private }
 SpAbstractListPresenter >> doActivateAtIndex: anIndex [
 
@@ -199,18 +194,6 @@ SpAbstractListPresenter >> itemAtPath: anArray [
 	^ self itemAt: anArray first
 ]
 
-{ #category : #TOREMOVE }
-SpAbstractListPresenter >> itemFilter [
-	^ itemFilter
-]
-
-{ #category : #TOREMOVE }
-SpAbstractListPresenter >> itemFilter: aBlock [
-	"This block will be used with the search field of the list to filter it with the user input dynamically."
-
-	itemFilter := aBlock
-]
-
 { #category : #api }
 SpAbstractListPresenter >> items [
 	"Answer the items of the list"
@@ -239,16 +222,6 @@ SpAbstractListPresenter >> listSize [
 
 	self flag: #TODO. "Maybe this should be called #itemsSize? (since we set #items: and not #list: )"
 	^ self model size
-]
-
-{ #category : #TOREMOVE }
-SpAbstractListPresenter >> matchBeginOfString [
-	self itemFilter: [ :each :pattern | each asLowercase beginsWith: pattern asLowercase ]
-]
-
-{ #category : #TOREMOVE }
-SpAbstractListPresenter >> matchSubstring [
-	self itemFilter: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
 ]
 
 { #category : #api }
@@ -478,12 +451,6 @@ SpAbstractListPresenter >> whenActivatedDo: aBlock [
 	 `aBlock` receives one argument (a selection object, see `SpAbstractSelectionMode`)"
 	
 	activationBlock := aBlock
-]
-
-{ #category : #TOREMOVE }
-SpAbstractListPresenter >> whenItemFilterBlockChangedDo: aBlock [
-
-	self property: #itemFilter whenChangedDo: aBlock
 ]
 
 { #category : #'api - events' }
