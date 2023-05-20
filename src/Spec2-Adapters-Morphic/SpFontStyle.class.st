@@ -54,6 +54,7 @@ Class {
 		'color'
 	],
 	#classVars : [
+		'ApplyDisplayScaleFactor',
 		'FontCache'
 	],
 	#category : #'Spec2-Adapters-Morphic-StyleSheet'
@@ -63,6 +64,18 @@ Class {
 SpFontStyle class >> addFontToCache: aFont [
 
 	self fontCache add: aFont
+]
+
+{ #category : #accessing }
+SpFontStyle class >> applyDisplayScaleFactor [
+
+	^ ApplyDisplayScaleFactor ifNil: [ true ]
+]
+
+{ #category : #accessing }
+SpFontStyle class >> applyDisplayScaleFactor: aBoolean [
+
+	ApplyDisplayScaleFactor := aBoolean
 ]
 
 { #category : #private }
@@ -90,6 +103,12 @@ SpFontStyle >> anyFontDecorator [
 		or: [ size notNil 
 		or: [ bold notNil 
 		or: [ italic notNil ] ] ]
+]
+
+{ #category : #private }
+SpFontStyle >> applyDisplayScaleFactor [
+
+	^ self class applyDisplayScaleFactor
 ]
 
 { #category : #operations }
@@ -157,9 +176,9 @@ SpFontStyle >> calculateFontSize [
 		aVariable value ifNotNil: [ 
 			^ self scaledSize ] ].
 	self nameVariable isEnvironmentVariable ifTrue: [ 
-		^ self nameVariable pointSize * self currentWorld displayScaleFactor ].
+		^ self nameVariable pointSize * self displayScaleFactor ].
 	self hasPredefinedFont ifTrue: [ 
-		^ self obtainPredefinedFont pointSize * self currentWorld displayScaleFactor ].
+		^ self obtainPredefinedFont pointSize * self displayScaleFactor ].
 
 	^ nil
 ]
@@ -204,6 +223,14 @@ SpFontStyle >> definedFont [
 	definedFont := self calculateDefinedFont.
 	self addFontToCache: definedFont.
 	^ definedFont
+]
+
+{ #category : #private }
+SpFontStyle >> displayScaleFactor [
+
+	^ self applyDisplayScaleFactor
+		ifTrue: [ self currentWorld displayScaleFactor ]
+		ifFalse: [ 1 ]
 ]
 
 { #category : #private }
@@ -305,7 +332,9 @@ SpFontStyle >> predefinedFont: aSymbol [
 { #category : #accessing }
 SpFontStyle >> scaledSize [
 
-	^ self sizeVariable scaledValue
+	^ self applyDisplayScaleFactor
+		ifTrue: [ self sizeVariable scaledValue ]
+		ifFalse: [ self sizeVariable nonscaledValue ]
 ]
 
 { #category : #accessing }
