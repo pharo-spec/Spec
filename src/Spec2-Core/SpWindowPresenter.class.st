@@ -667,10 +667,8 @@ SpWindowPresenter >> whenResizableChangedDo: aBlock [
 SpWindowPresenter >> whenResizingDo: aBlock [
 	"Inform when window is resizing. 
 	 `aBlock` receives one optional argument (an instance of the announcement `SpWindowResizing`)"
-	
-	self announcer 
-		when: SpWindowResizing
-		do: aBlock
+
+	self announcer when: SpWindowResizing do: aBlock for: aBlock receiver
 ]
 
 { #category : #'api - events' }

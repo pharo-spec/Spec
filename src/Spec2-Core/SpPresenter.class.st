@@ -966,7 +966,10 @@ SpPresenter >> whenDisplayDo: aBlock [
 	 `aBlock` receives one argument 
 	 - an announcement (instance of `SpWidgetDisplayed`)"
 
-	self announcer when: SpWidgetDisplayed do: aBlock
+	self announcer
+		when: SpWidgetDisplayed
+		do: aBlock
+		for: aBlock receiver
 ]
 
 { #category : #'api - events' }
