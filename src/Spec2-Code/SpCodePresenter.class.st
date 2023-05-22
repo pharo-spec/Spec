@@ -446,29 +446,6 @@ SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: 
 		errorBlock value: e ]
 ]
 
-{ #category : #accessing }
-SpCodePresenter >> findClassFrom: aString [
-	| ast |
-	
-	self flag: #TODO. "Does this really has to be part of the code api?"
-
-	ast := RBParser parseExpression: aString onError: [ ^ nil ].
-	ast nodesDo: [ :node | 
-		(node isVariable and: [ node name first isUppercase ])
-			ifTrue: [ 
-				(self class environment classNamed: node name)
-					ifNotNil: [ :aClass | ^ aClass ] ] ].
-
-	^ nil
-]
-
-{ #category : #accessing }
-SpCodePresenter >> findClassFromSelection [
-	self flag: #TODO. "Does this really has to be part of the text api?"
-
-	^ self findClassFrom: self selectedTextOrLine trimmed
-]
-
 { #category : #'private - bindings' }
 SpCodePresenter >> hasBindingOf: aString [
 
