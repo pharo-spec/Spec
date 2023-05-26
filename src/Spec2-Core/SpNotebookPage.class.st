@@ -13,7 +13,6 @@ Class {
 		'#owner',
 		'#title => ObservableSlot',
 		'#icon => ObservableSlot',
-		'#layoutSpec => ObservableSlot',
 		'#closeable',
 		'#presenterProvider',
 		'#retrievedBlock',
@@ -67,17 +66,6 @@ SpNotebookPage class >> title: aString icon: anIcon provider: aBlock [
 		title: aString;
 		icon: anIcon;
 		presenterProvider: aBlock;
-		yourself
-]
-
-{ #category : #'instance creation' }
-SpNotebookPage class >> title: aString icon: anIcon provider: aBlock layoutSpec: aSymbol [
-
-	^ self new 
-		title: aString;
-		icon: anIcon;
-		presenterProvider: aBlock;
-		layoutSpec: aSymbol;
 		yourself
 ]
 
@@ -145,18 +133,6 @@ SpNotebookPage >> labelPresenterFor: ownerPresenter [
 	self unsubscribe: labelPresenter.
 	labelPresenter := self newLabelPresenterFor: ownerPresenter.
 	^ labelPresenter
-]
-
-{ #category : #api }
-SpNotebookPage >> layoutSpec [
-
-	^ layoutSpec
-]
-
-{ #category : #api }
-SpNotebookPage >> layoutSpec: aSymbol [
-
-	layoutSpec := aSymbol
 ]
 
 { #category : #'private - factory' }
