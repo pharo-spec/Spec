@@ -32,7 +32,7 @@ SpCodeScriptingInteractionModel >> bindings [
 SpCodeScriptingInteractionModel >> canAddBindingOf: name [
 
 	"Check is a special variable named `name` can be declared but without declaring it."
-	^ name first isUppercase not.
+	^ name first isUppercase not and: [ name startsWithDigit not ]
 
 ]
 
