@@ -879,7 +879,7 @@ SpPresenter >> title [
 	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
 	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
 	
-	This method cannot be deprecated because during a transition phase we keep this mecanism. "
+	This method cannot be deprecated because during a transition phase we keep this mechanism. "
 
 	^ titleHolder
 ]

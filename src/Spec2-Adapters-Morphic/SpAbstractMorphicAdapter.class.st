@@ -22,6 +22,12 @@ SpAbstractMorphicAdapter class >> allAdapters [
 	^ self allSubclasses
 ]
 
+{ #category : #testing }
+SpAbstractMorphicAdapter class >> isAbstract [
+
+	^ self == SpAbstractMorphicAdapter
+]
+
 { #category : #'drag and drop' }
 SpAbstractMorphicAdapter >> acceptDropBlock [
 
