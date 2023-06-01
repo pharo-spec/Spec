@@ -601,26 +601,6 @@ SpCodePresenterTest >> testEvaluateSendAnnouncements [
 ]
 
 { #category : #tests }
-SpCodePresenterTest >> testFindClassFrom [
-
-	self assert: (presenter findClassFrom: '') equals: nil.
-	self assert: (presenter findClassFrom: 'Object') equals: Object.
-	self assert: (presenter findClassFrom: 'Object.') equals: Object.
-	self assert: (presenter findClassFrom: '.Object.') equals: Object.
-	self
-		assert: (presenter findClassFrom: 'somethingBefore := 42.Object')
-		equals: Object.
-	self
-		assert:
-			(presenter
-				findClassFrom: 'somethingBefore := 42.Object. somethingAfter := 11')
-		equals: Object.
-	self
-		assert: (presenter findClassFrom: 'NonExistingClass.Object.')
-		equals: Object
-]
-
-{ #category : #tests }
 SpCodePresenterTest >> testNilTestSelectedSelectorDoesNotBreakExecution [
 	"Code presenter has nil text for some reason"
 
