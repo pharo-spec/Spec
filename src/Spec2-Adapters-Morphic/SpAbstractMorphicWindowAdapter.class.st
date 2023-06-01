@@ -14,7 +14,7 @@ Class {
 { #category : #testing }
 SpAbstractMorphicWindowAdapter class >> isAbstract [ 
 
-	^self name = #SpAbstractMorphicWindowAdapter
+	^self == SpAbstractMorphicWindowAdapter
 ]
 
 { #category : #private }
