@@ -101,10 +101,8 @@ SpMorphicNotebookAdapter >> ensurePage: aPage isBuiltWithPresenter: presenter [
 
 	"if not built or not same owner, I need to rebuild"
 	presenter owner: self presenter.
-	aPage layoutSpec
-		ifNil: [ presenter build ]
-		ifNotNil: [ :spec | 
-		presenter buildWithSpecLayout: (self perform: spec) ]
+	presenter build
+
 ]
 
 { #category : #initialization }
