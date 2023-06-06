@@ -51,12 +51,14 @@ SpNotebookPage class >> documentFactoryMethodSelector [
 
 { #category : #documentation }
 SpNotebookPage class >> documentSections [
-		
+
 	^ OrderedDictionary newFromPairs: {
-		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
-		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api - events' ].
-	 }
+			  'API Methods'.
+			  (self methods select: [ :method | method protocolName = #api ]).
+			  'Testing Methods'.
+			  (self methods select: [ :method | method protocolName = #testing ]).
+			  'Events'.
+			  (self methods select: [ :method | method protocolName = #'api - events' ]) }
 ]
 
 { #category : #'instance creation' }

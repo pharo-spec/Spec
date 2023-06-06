@@ -71,19 +71,13 @@ SpDialogPresenter class >> defaultCancelLabel [
 
 { #category : #documentation }
 SpDialogPresenter class >> documentExampleCode [
+
 	| exampleMethod |
-	
-	exampleMethod := self class methods 
-		detect: [ :each | 
-			(each protocol = #example) 
-			and: [ each selector = #exampleModal ] ]
-		ifNone: [ ^ nil ].
-			
-	^ (exampleMethod sourceCode lines 
-		allButFirst 	"Remove method name"
-		reject: [ :each | each trimLeft beginsWith: '<' ]) "Remove pragmas"
-		asStringWithCr
-		trimmed
+	exampleMethod := self class methods
+		                 detect: [ :method | method protocolName = #example and: [ method selector = #exampleModal ] ]
+		                 ifNone: [ ^ nil ].
+
+	^ (exampleMethod sourceCode lines allButFirst reject: [ :each | each trimLeft beginsWith: '<' ]) asStringWithCr trimmed "Remove method name" "Remove pragmas"
 ]
 
 { #category : #documentation }
@@ -94,13 +88,16 @@ SpDialogPresenter class >> documentFactoryMethodSelector [
 
 { #category : #documentation }
 SpDialogPresenter class >> documentSections [
-		
+
 	^ OrderedDictionary newFromPairs: {
-		'API Show Methods'. self methods select: [ :each | each protocol = #'api - showing' ].
-		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
-		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api - events' ].
-	}
+			  'API Show Methods'.
+			  (self methods select: [ :method | method protocolName = #'api - showing' ]).
+			  'API Methods'.
+			  (self methods select: [ :method | method protocolName = #api ]).
+			  'Testing Methods'.
+			  (self methods select: [ :method | method protocolName = #testing ]).
+			  'Events'.
+			  (self methods select: [ :method | method protocolName = #'api - events' ]) }
 ]
 
 { #category : #'instance creation' }

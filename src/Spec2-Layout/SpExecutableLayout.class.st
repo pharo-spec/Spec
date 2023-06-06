@@ -49,12 +49,14 @@ SpExecutableLayout class >> addDocumentSectionHierarchy: aBuilder [
 
 { #category : #documentation }
 SpExecutableLayout class >> documentSections [
-		
+
 	^ OrderedDictionary newFromPairs: {
-		'Examples'. self class methods select: [ :each | each protocol = '*Spec2-Examples' ].	
-		'Adding Methods'. self methods select: [ :each | each protocol = #'api - adding' ].
-		'API Methods'. self methods select: [ :each | each protocol = #'api' ]
-	}
+			  'Examples'.
+			  (self class methods select: [ :method | method protocolName = '*Spec2-Examples' ]).
+			  'Adding Methods'.
+			  (self methods select: [ :method | method protocolName = #'api - adding' ]).
+			  'API Methods'.
+			  (self methods select: [ :method | method protocolName = #api ]) }
 ]
 
 { #category : #accessing }

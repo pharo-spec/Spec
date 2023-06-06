@@ -31,11 +31,12 @@ SpTableColumn class >> addDocumentSectionHierarchy: aBuilder [
 
 { #category : #documentation }
 SpTableColumn class >> documentSections [
-		
+
 	^ OrderedDictionary newFromPairs: {
-		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
-		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-	 }
+			  'API Methods'.
+			  (self methods select: [ :method | method protocolName = #api ]).
+			  'Testing Methods'.
+			  (self methods select: [ :method | method protocolName = #testing ]) }
 ]
 
 { #category : #'instance creation' }

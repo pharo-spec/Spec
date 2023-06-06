@@ -19,14 +19,18 @@ Class {
 
 { #category : #documentation }
 SpAbstractListPresenter class >> documentSections [
-		
+
 	^ OrderedDictionary newFromPairs: {
-		'Examples'. self class methods select: [ :each | each protocol = self documentExamplesProtocol ].
-		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
-		'API Selection Methods'. self methods select: [ :each | each protocol = #'api - selection' ].
-		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api - events' ].
-	 }
+			  'Examples'.
+			  (self class methods select: [ :method | method protocolName = self documentExamplesProtocol ]).
+			  'API Methods'.
+			  (self methods select: [ :method | method protocolName = #api ]).
+			  'API Selection Methods'.
+			  (self methods select: [ :method | method protocolName = #'api - selection' ]).
+			  'Testing Methods'.
+			  (self methods select: [ :method | method protocolName = #testing ]).
+			  'Events'.
+			  (self methods select: [ :method | method protocolName = #'api - events' ]) }
 ]
 
 { #category : #testing }
