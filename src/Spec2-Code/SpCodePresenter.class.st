@@ -308,9 +308,8 @@ SpCodePresenter >> doBrowseImplementors [
 	"For global and class variables, implementors-of browses the class of the value of the variable, 
 	for classes this means it browses the class"
 	(variable isNotNil and: [variable isGlobalVariable or: [variable isClassVariable]]) 
-		ifTrue: [ variable value browse ].
-	
-	self systemNavigation browseAllImplementorsOf: variableOrClassName
+		ifTrue: [ variable value browse ]
+		ifFalse: [ self systemNavigation browseAllImplementorsOf: variableOrClassName ]
 ]
 
 { #category : #commands }
