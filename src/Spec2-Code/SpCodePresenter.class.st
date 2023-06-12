@@ -363,9 +363,10 @@ SpCodePresenter >> doBrowseSenders [
 
 	"For global and class variables, sender-of shows intead the using methods"
 	(variable notNil and: [(variable isGlobalVariable or: [variable isClassVariable])]) 
-		ifTrue: [self systemNavigation openBrowserFor: variable name withMethods: variable usingMethods  ].
+		ifTrue: [ self systemNavigation openBrowserFor: variable name withMethods: variable usingMethods  ]
+		ifFalse: [ self systemNavigation browseAllReferencesTo: variableOrClassName  ]
 		
-	self systemNavigation browseAllReferencesTo: variableOrClassName
+	
 ]
 
 { #category : #'private - bindings' }
