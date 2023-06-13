@@ -50,7 +50,7 @@ SpCodeAdapterTest >> style: aSymbol [
 SpCodeAdapterTest >> styleTableAt: styleName do: aBlock [ 
 	| attributes |	
 
-	attributes := (SHRBTextStyler initialTextAttributesForPixelHeight: 1) at: styleName.
+	attributes := SHRBTextStyler initialTextAttributes at: styleName.
 	attributes do: aBlock
 ]
 
