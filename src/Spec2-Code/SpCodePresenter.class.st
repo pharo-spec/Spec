@@ -196,18 +196,6 @@ SpCodePresenter >> bindingOf: aString [
 	^ nil
 ]
 
-{ #category : #'private - commands' }
-SpCodePresenter >> browseSelectedSelectorIfGlobal: globalBlock ifNotGlobal: nonGlobalBlock [
-	| variableOrClassName variable |
-	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
-	variable := self lookupEnvironment lookupVar: variableOrClassName.
-
-	variable ifNil: [^nonGlobalBlock value: variableOrClassName ].
-	^(variable isGlobalVariable or: [variable isClassVariable]) 
-		ifTrue: [globalBlock value: variable ]
-		ifFalse: [nonGlobalBlock value: variable name ]
-]
-
 { #category : #private }
 SpCodePresenter >> buildContextKeyBindingsWith: aCategory [
 	| category |
@@ -312,13 +300,16 @@ SpCodePresenter >> doBrowseHierarchy [
 
 { #category : #commands }
 SpCodePresenter >> doBrowseImplementors [
-
-	| result |
-	result := self
-		          browseSelectedSelectorIfGlobal: [ :global | global value browse ]
-		          ifNotGlobal: [ :selector | 
-		          	self systemNavigation browseAllImplementorsOf: selector ].
-	result ifNil: [ self application inform: 'No selectors found.' ]
+	| variableOrClassName variable |
+	
+	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
+	variable := self lookupEnvironment lookupVar: variableOrClassName.
+	
+	"For global and class variables, implementors-of browses the class of the value of the variable, 
+	for classes this means it browses the class"
+	(variable isNotNil and: [variable isGlobalVariable or: [variable isClassVariable]]) 
+		ifTrue: [ variable value browse ]
+		ifFalse: [ self systemNavigation browseAllImplementorsOf: variableOrClassName ]
 ]
 
 { #category : #commands }
@@ -364,13 +355,17 @@ SpCodePresenter >> doBrowseMethodsMatchingStringSensitive [
 
 { #category : #commands }
 SpCodePresenter >> doBrowseSenders [
-	| result  |
+	| variableOrClassName variable |
 	
-	result := self browseSelectedSelectorIfGlobal: [ :global |
-			          self systemNavigation openBrowserFor: global name withMethods: global usingMethods ]
-			          ifNotGlobal: [ :selector | 
-			          self systemNavigation browseAllReferencesTo: selector ].
-	result ifNil: [ self application inform: 'No selectors found.' ]
+	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
+	variable := self lookupEnvironment lookupVar: variableOrClassName.
+
+	"For global and class variables, sender-of shows intead the using methods"
+	(variable notNil and: [(variable isGlobalVariable or: [variable isClassVariable])]) 
+		ifTrue: [ self systemNavigation openBrowserFor: variable name withMethods: variable usingMethods  ]
+		ifFalse: [ self systemNavigation browseAllReferencesTo: variableOrClassName  ]
+		
+	
 ]
 
 { #category : #'private - bindings' }
