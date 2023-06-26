@@ -56,18 +56,6 @@ SpMorphicBaseTextAdapter >> announcer [
 	^ self model announcer
 ]
 
-{ #category : #'widget API' }
-SpMorphicBaseTextAdapter >> askBeforeDiscardingEdits [
-
-	^ self model askBeforeDiscardingEdits
-]
-
-{ #category : #'spec protocol' }
-SpMorphicBaseTextAdapter >> askBeforeDiscardingEdits: aBoolean [
-
-	self widget askBeforeDiscardingEdits: aBoolean
-]
-
 { #category : #private }
 SpMorphicBaseTextAdapter >> bubbleUpEvent: anEvent [
 
@@ -136,16 +124,9 @@ SpMorphicBaseTextAdapter >> getText [
 	^ self model text
 ]
 
-{ #category : #'spec protocol' }
-SpMorphicBaseTextAdapter >> hasEditingConflicts: aBoolean [
- 
-	self widgetDo: [ :w | w hasEditingConflicts: aBoolean ]
-]
-
-{ #category : #'spec protocol' }
+{ #category : #private }
 SpMorphicBaseTextAdapter >> hasUnacceptedEdits: aBoolean [
-
-	self model hasUnacceptedEdits: aBoolean
+	"not used"
 ]
 
 { #category : #initialization }
@@ -186,9 +167,7 @@ SpMorphicBaseTextAdapter >> pendingText [
 SpMorphicBaseTextAdapter >> pendingText: aText [
 
 	self widgetDo: [ :w | 
-		w 
-			setText: aText;
-			hasUnacceptedEdits: true ]
+		w setText: aText ]
 ]
 
 { #category : #'widget API' }
@@ -215,19 +194,19 @@ SpMorphicBaseTextAdapter >> scrollValueChanged: aValue [
 	self model scrollValue: aValue step
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #selection }
 SpMorphicBaseTextAdapter >> selectAll [
 
 	self widgetDo: [ :w | w selectAll ]
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #selection }
 SpMorphicBaseTextAdapter >> selectFrom: nodeStart to: nodeStop [
 
 	self widget selectFrom: nodeStart to: nodeStop
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #selection }
 SpMorphicBaseTextAdapter >> selectLine [
 
 	self widgetDo: [ :w |
@@ -240,7 +219,7 @@ SpMorphicBaseTextAdapter >> selection [
 	^ selection
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #selection }
 SpMorphicBaseTextAdapter >> selectionInterval [
 
 	^ self widget selectionInterval
@@ -276,12 +255,6 @@ SpMorphicBaseTextAdapter >> setEnabled: aBoolean to: aWidget [
 	aWidget enabled: aBoolean
 ]
 
-{ #category : #'spec protocol' }
-SpMorphicBaseTextAdapter >> setHasUnacceptedEdits: aBoolean [
-
-	self widgetDo: [ :w | w basicHasUnacceptedEdits: aBoolean ]
-]
-
 { #category : #'widget API' }
 SpMorphicBaseTextAdapter >> setScrollValue: aValue [
 
@@ -298,7 +271,7 @@ SpMorphicBaseTextAdapter >> setSelection: interval [
 	selection := interval
 ]
 
-{ #category : #'spec protocol' }
+{ #category : #selection }
 SpMorphicBaseTextAdapter >> setSelectionFromModel: aSelection [
 
 	self widget ifNotNil: [ :w | w setSelection: aSelection ]
@@ -330,10 +303,4 @@ SpMorphicBaseTextAdapter >> typeByChar: aString [
 			meta: false 
 			control: false 
 			option: false ]
-]
-
-{ #category : #'widget API' }
-SpMorphicBaseTextAdapter >> wantsVisualFeedback [
-
-	^ self model wantsVisualFeedback
 ]

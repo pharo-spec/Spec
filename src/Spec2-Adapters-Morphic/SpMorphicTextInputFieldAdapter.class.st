@@ -29,7 +29,7 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		entryCompletion: self entryCompletion;
 		ghostText: self getPlaceholderText;
 		encrypted: self encrypted;
-		askBeforeDiscardingEdits: self askBeforeDiscardingEdits;
+		askBeforeDiscardingEdits: false;
 		autoAccept: true;
 		vResizing: #spaceFill;
 		hResizing: #spaceFill;
