@@ -9,7 +9,6 @@ Class {
 	#instVars : [
 		'#scrollValue => ObservableSlot',
 		'#editionContextMenu => ObservableSlot',
-		'#editable => ObservableSlot',
 		'#wrapWord => ObservableSlot',
 		'#undoRedoHistory'
 	],
@@ -95,20 +94,6 @@ SpTextPresenter >> backendIncludesEditionMenu [
 ]
 
 { #category : #api }
-SpTextPresenter >> beEditable [
-	"Allow edition (deny readonly)."
-
-	self editable: true
-]
-
-{ #category : #api }
-SpTextPresenter >> beNotEditable [
-	"Set content text as not editable (readonly)"
-
-	self editable: false
-]
-
-{ #category : #api }
 SpTextPresenter >> beNotWrapWord [
 	"Set component to not wrap words when text does not fit in screen.
 	 Instead, the editor will add an horizontal scrollbar."
@@ -164,12 +149,6 @@ SpTextPresenter >> doTextPaste [
 SpTextPresenter >> doTextSelectAndPaste [
 
 	self withAdapterDo: [ :anAdapter | anAdapter selectAndPasteText ]
-]
-
-{ #category : #private }
-SpTextPresenter >> editable: aBoolean [
-
-	editable := aBoolean
 ]
 
 { #category : #private }
@@ -270,17 +249,6 @@ SpTextPresenter >> whenCursorPositionChangedDo: aBlock [
 	 - the announcement triggering this action"
 
 	self property: #cursorPosition whenChangedDo: aBlock
-]
-
-{ #category : #'api - events' }
-SpTextPresenter >> whenEditableChangedDo: aBlock [
-	"Inform when editable property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
-	self property: #editable whenChangedDo: aBlock
 ]
 
 { #category : #'api - events' }
