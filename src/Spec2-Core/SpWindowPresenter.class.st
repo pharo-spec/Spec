@@ -603,7 +603,7 @@ SpWindowPresenter >> triggerOkAction [
 SpWindowPresenter >> updateTitle [
 	"Update the window title"
 
-	self changed: #title: with: { self title }
+	self withAdapterDo: [ :anAdapter | anAdapter title: self title ]
 ]
 
 { #category : #'api - events' }

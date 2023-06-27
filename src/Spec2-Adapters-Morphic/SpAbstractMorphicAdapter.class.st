@@ -685,8 +685,10 @@ SpAbstractMorphicAdapter >> vSpaceFill [
 { #category : #protocol }
 SpAbstractMorphicAdapter >> when: anAnnouncement do: aBlock [
 
-	self widgetDo: [ :w | w announcer
-		when: anAnnouncement do: aBlock ]
+	self widgetDo: [ :w | 
+		w announcer
+			when: anAnnouncement 
+			do: aBlock ]
 ]
 
 { #category : #emulating }

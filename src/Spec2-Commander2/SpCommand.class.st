@@ -27,6 +27,7 @@ SpCommand >> asButtonPresenter [
 
 { #category : #'presenter building' }
 SpCommand >> buildPresenter [
+
 	^ presenter := self buildPresenterBlock value: self
 ]
 
@@ -84,6 +85,16 @@ SpCommand >> iconProvider [
 	^ iconProvider
 ]
 
+{ #category : #accessing }
+SpCommand >> id [
+
+	^ String streamContents: [ :stream |
+		| parts |
+		parts := (self name ifNil: [ 'unknown' ]) substrings.
+		stream << parts first asLowercase.
+		parts allButFirstDo: [ :each | stream << each capitalized ] ]
+]
+
 { #category : #initialization }
 SpCommand >> initialize [
 
@@ -102,13 +113,26 @@ SpCommand >> innerCommand [
 	^ innerCommand
 ]
 
+{ #category : #testing }
+SpCommand >> isEnabled [
+
+	^ self canBeExecuted
+]
+
+{ #category : #testing }
+SpCommand >> isVisible [
+
+	^ true
+]
+
 { #category : #accessing }
 SpCommand >> presenter [
 	^ presenter
 ]
 
 { #category : #updating }
-SpCommand >> updateEnableStatus [ 
+SpCommand >> updateEnableStatus [
+
  	self presenter ifNil: [ ^ self ].   
 	self presenter enabled: self canBeExecuted
 ]

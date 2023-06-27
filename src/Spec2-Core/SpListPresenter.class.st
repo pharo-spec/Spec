@@ -158,7 +158,7 @@ SpListPresenter >> prepareForFilteredDataSourceWith: items [
 	model := items
 ]
 
-{ #category : #private }
+{ #category : #initialization }
 SpListPresenter >> registerEvents [
 	super registerEvents.
 	"Do not use whenAutoDeselectChangedDo: to avoid the deprecation warning."

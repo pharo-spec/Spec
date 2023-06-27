@@ -99,6 +99,12 @@ SpTPresenterBuilder >> newDynamicPresentersListIn: accessorSymbol usingBuilder: 
 	self build
 ]
 
+{ #category : #'scripting - lists' }
+SpTPresenterBuilder >> newEasyListView [
+
+	^ self instantiate: SpEasyListViewPresenter
+]
+
 { #category : #'scripting - layouts' }
 SpTPresenterBuilder >> newGridLayout [
 
@@ -115,12 +121,12 @@ SpTPresenterBuilder >> newLabel [
 	^ self instantiate: SpLabelPresenter
 ]
 
-{ #category : #'scripting - widgets' }
+{ #category : #'scripting - lists' }
 SpTPresenterBuilder >> newList [
 	^ self instantiate: SpListPresenter
 ]
 
-{ #category : #'scripting - widgets' }
+{ #category : #'scripting - lists' }
 SpTPresenterBuilder >> newListView [
 
 	^ self instantiate: SpListViewPresenter
@@ -250,7 +256,7 @@ SpTPresenterBuilder >> newStatusBar [
 	^ self instantiate: SpStatusBarPresenter
 ]
 
-{ #category : #'scripting - widgets' }
+{ #category : #'scripting - lists' }
 SpTPresenterBuilder >> newTable [
 
 	^ self instantiate: SpTablePresenter
@@ -302,13 +308,13 @@ SpTPresenterBuilder >> newToolbarToggleButton [
 	^ self instantiate: SpToolbarToggleButtonPresenter
 ]
 
-{ #category : #'scripting - widgets' }
+{ #category : #'scripting - lists' }
 SpTPresenterBuilder >> newTree [
 
 	^ self instantiate: SpTreePresenter
 ]
 
-{ #category : #'scripting - widgets' }
+{ #category : #'scripting - lists' }
 SpTPresenterBuilder >> newTreeTable [
 
 	^ self instantiate: SpTreeTablePresenter
