@@ -189,12 +189,6 @@ SpMenuPresenter >> menuGroups [
 	^ groups
 ]
 
-{ #category : #TOREMOVE }
-SpMenuPresenter >> neglect: aModel [
-
-	aModel neglectMenuModel: self
-]
-
 { #category : #api }
 SpMenuPresenter >> openWithSpecAt: aPosition [
 	"Open this menu at `aPosition`. 
