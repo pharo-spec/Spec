@@ -13,7 +13,7 @@ SpLabelAdapterTest >> classToTest [
 ]
 
 { #category : #tests }
-SpLabelAdapterTest >> testSetLabelInPresenterSetsInInMorph [
+SpLabelAdapterTest >> testSetLabelInPresenterAffectsWidget [
 	presenter label: 'something'.
 	self assert: self adapter label equals: 'something'
 ]
