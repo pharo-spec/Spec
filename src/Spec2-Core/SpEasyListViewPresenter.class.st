@@ -32,6 +32,17 @@ SpEasyListViewPresenter class >> example [
 ]
 
 { #category : #examples }
+SpEasyListViewPresenter class >> exampleMultipleSelection [
+
+	^ self new
+		application: (SpApplication new useBackend: #Gtk);
+		items: self environment allClasses;
+		beMultipleSelection;
+		open;
+		yourself
+]
+
+{ #category : #examples }
 SpEasyListViewPresenter class >> exampleWithHeaderTitle [
 
 	^ self new
@@ -82,6 +93,18 @@ SpEasyListViewPresenter >> activateSearchWith: aString [
 SpEasyListViewPresenter >> addAction: aSpCommand [
 
 	listView addAction: aSpCommand
+]
+
+{ #category : #api }
+SpEasyListViewPresenter >> beMultipleSelection [
+
+	listView beMultipleSelection
+]
+
+{ #category : #api }
+SpEasyListViewPresenter >> beSingleSelection [
+
+	listView beSingleSelection
 ]
 
 { #category : #initialization }
