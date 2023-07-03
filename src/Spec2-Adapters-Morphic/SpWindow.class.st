@@ -19,6 +19,7 @@ SpWindow >> aboutText [
 SpWindow >> allowedToClose [
 
 	super allowedToClose ifFalse: [ ^ false ].
+	self model ifNil: [ ^ true ].
 	^ self model askOkToClose 
 		ifTrue: [ self model requestWindowClose ]
 		ifFalse: [ true ].
