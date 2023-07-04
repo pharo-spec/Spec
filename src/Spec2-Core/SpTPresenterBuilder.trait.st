@@ -101,7 +101,7 @@ SpTPresenterBuilder >> newDynamicPresentersListIn: accessorSymbol usingBuilder: 
 
 { #category : #'scripting - lists' }
 SpTPresenterBuilder >> newEasyListView [
-
+	self flag: #TODO. "replace newList with this"
 	^ self instantiate: SpEasyListViewPresenter
 ]
 
