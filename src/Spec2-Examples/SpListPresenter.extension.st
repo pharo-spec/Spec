@@ -75,3 +75,14 @@ SpListPresenter class >> exampleWithIcons [
 		open;
 		yourself
 ]
+
+{ #category : #'*Spec2-Examples' }
+SpListPresenter class >> exampleWithIconsAndSelectedItem [
+
+	^ self new
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
+		items: Smalltalk allClasses;
+		selectItem: Object scrollToSelection: true;
+		open;
+		yourself
+]

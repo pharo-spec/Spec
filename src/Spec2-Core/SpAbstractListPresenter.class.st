@@ -331,6 +331,17 @@ SpAbstractListPresenter >> selectItem: anItem [
 ]
 
 { #category : #'api - selection' }
+SpAbstractListPresenter >> selectItem: anItem scrollToSelection: shouldScrollToSelection [
+	"Select item `anItem`.
+	 If `shouldScrollToSelection` is true, selection will scroll the presenter view 
+	 to show selected element."
+
+	self 
+		selectIndex: (self items indexOf: anItem) 
+		scrollToSelection: shouldScrollToSelection
+]
+
+{ #category : #'api - selection' }
 SpAbstractListPresenter >> selectItems: aCollection [
 	"Select items included in `aCollection` if they are included in model list.
 	 NOTE: In single selection mode it will select the first element of `aCollection` 
