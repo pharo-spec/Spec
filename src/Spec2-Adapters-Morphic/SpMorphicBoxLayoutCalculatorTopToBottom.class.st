@@ -23,7 +23,7 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateCellFor: aMorph [
 		sum := sum + extra.
 	] ifFalse:[cell vSpaceFill: false].
 	(props hResizing == #spaceFill) ifTrue:[vFill := true].
-	size := aMorph minExtentWithVisibility. sizeX := size x. sizeY := size y.
+	size := aMorph minExtent. sizeX := size x. sizeY := size y.
 	sizeX < minX
 		ifTrue:[sizeX := minX]
 		ifFalse:[sizeX > maxX ifTrue:[sizeX := maxX]].
