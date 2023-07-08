@@ -39,7 +39,7 @@ SpRubTextFieldMorph >> drawKeyboardFocusOn: aCanvas [
 SpRubTextFieldMorph >> extent: aPoint [
 
 	self updateTextAreaMarginsWith: aPoint y.
-	super extent: aPoint	
+	super extent: aPoint
 ]
 
 { #category : #initialization }
