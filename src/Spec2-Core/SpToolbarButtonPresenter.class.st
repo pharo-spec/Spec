@@ -103,6 +103,12 @@ SpToolbarButtonPresenter >> label: aString [
 	label := aString
 ]
 
+{ #category : #private }
+SpToolbarButtonPresenter >> performAction [
+
+	self action value
+]
+
 { #category : #'api - events' }
 SpToolbarButtonPresenter >> whenIconChangedDo: aBlock [ 
 	"Inform when icon property has changed. 
