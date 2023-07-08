@@ -144,7 +144,7 @@ SpEasyListViewPresenter >> defaultLayout [
 			add: headerPanel expand: false;
 			add: listView;
 			yourself);
-		addOverlay: searchInput withConstraints: [ :c | c vAlignEnd; hAlignEnd ];
+		addOverlay: searchInput withConstraints: [ :c | c vAlignStart; hAlignEnd ];
 		yourself
 ]
 
@@ -292,10 +292,10 @@ SpEasyListViewPresenter >> maybeActivateSearchOn: event [
 		
 	self isSearchEnabled ifFalse: [ ^ self ].
 	"any modifier other than shift?"
-	(event modifiers any 
+	(event anyModifierKeyPressed 
 		or: [ (event keyValue between: 32 and: 127) not ])
 		ifTrue: [ ^ self ].
-	self activateSearchWith: event character asString
+	self activateSearchWith: event keyCharacter asString
 ]
 
 { #category : #initialization }
@@ -313,7 +313,7 @@ SpEasyListViewPresenter >> selectFirst: aString [
 	index := self findFirst: aString.
 	index = 0 ifTrue: [ ^ self ].
 	
-	listView selectIndex: index
+	listView selectIndex: index scrollToSelection: true
 ]
 
 { #category : #'api - events' }
