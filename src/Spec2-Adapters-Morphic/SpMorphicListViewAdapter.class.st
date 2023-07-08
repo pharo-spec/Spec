@@ -22,10 +22,6 @@ SpMorphicListViewAdapter >> buildWidget [
 	self refreshWidgetSelection.
 	self configureScrolling.
 
-	widget 
-		bindKeyCombination: Character space 
-		toAction: [ self model clickOnSelectedItem ].
-
 	^ widget
 ]
 
