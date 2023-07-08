@@ -4,6 +4,9 @@ I am an abstract class providing all the properties shared amongs all the morphi
 Class {
 	#name : #SpAbstractMorphicAdapter,
 	#superclass : #SpAbstractAdapter,
+	#instVars : [
+		'savedExtentBeforeHide'
+	],
 	#category : #'Spec2-Adapters-Morphic-Base'
 }
 
@@ -122,8 +125,8 @@ SpAbstractMorphicAdapter >> applyStyle: morph [
 { #category : #initialization }
 SpAbstractMorphicAdapter >> applyVisibility [
 	
-	"It may happen that some presenters use generic adapters and they do not have an associated presenter.
-	In that case, do not manage visibility..."
+	"It may happen that some presenters use generic adapters and they do not have an 
+	associated presenter. In that case, do not manage visibility..."
 	self presenter ifNil: [ ^ self ].
 
 	self widget visible: self presenter isVisible.
@@ -326,7 +329,7 @@ SpAbstractMorphicAdapter >> installFocusReceivedEvent: anEvent to: aWidget [
 
 	aWidget announcer 
 		when: MorphGotFocus
-		do: [ anEvent action value ]
+		do: [ anEvent action cull: anEvent ]
 ]
 
 { #category : #'event installing' }
