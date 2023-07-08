@@ -35,9 +35,9 @@ SpMorphicListViewAdapter >> newDataSource [
 SpMorphicListViewAdapter >> newTableWith: datasource [
 	
 	^ SpFTTableMorph new
+		disableFunction;
 		dataSource: datasource;
 		hideColumnHeaders;
-		enableSearch;
 		beResizable;
 		setMultipleSelection: self model isMultipleSelection;
 		dragEnabled: self dragEnabled;
