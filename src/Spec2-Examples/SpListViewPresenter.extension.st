@@ -19,7 +19,7 @@ SpListViewPresenter class >> exampleReplaceItems [
 
 	items := #().
 
-	presenter := SpPresenter newApplication: (SpApplication new useBackend: #Gtk).
+	presenter := SpPresenter newApplication: (SpApplication new "useBackend: #Gtk").
 	presenter layout: (SpBoxLayout newVertical
 		add: (listView := presenter newListView);
 		add: (button := presenter newButton) expand: false;
@@ -85,7 +85,7 @@ SpListViewPresenter class >> exampleWithIcons [
 	 to your lists."
 
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
+		"application: (SpApplication new useBackend: #Gtk);"
 		items: self environment allClasses;
 		setup: [ :aPresenter |
 			| presenter |
@@ -112,9 +112,9 @@ SpListViewPresenter class >> exampleWithIconsAndSelectedItem [
 	 to your lists."
 
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
+		"application: (SpApplication new useBackend: #Gtk);"
 		items: self environment allClasses;
-		selectItem: Object;
+		selectItem: Object scrollToSelection: true;
 		setup: [ :aPresenter |
 			| presenter |
 			(presenter := aPresenter newPresenter)
@@ -140,7 +140,7 @@ SpListViewPresenter class >> exampleWithIconsMultipleSelection [
 	 to your lists."
 
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
+		"application: (SpApplication new useBackend: #Gtk);"
 		beMultipleSelection;
 		items: self environment allClasses;
 		setup: [ :aPresenter |

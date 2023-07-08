@@ -151,16 +151,16 @@ SpMorphicLayoutAdapter >> newPanel [
 SpMorphicLayoutAdapter >> newPanelWith: aLayout [ 
 
 	^ Morph new
-	  layoutPolicy: aLayout;
-	  hResizing: #spaceFill;
-	  vResizing: #spaceFill;
-	  color: Color transparent;
-	  borderColor: Color transparent;
-	  clipSubmorphs: true;
-	  "stop being grabbed"beSticky;
-	  borderWidth: 0;
-	  extent: 0 @ 0;
-	  yourself
+		layoutPolicy: aLayout;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		color: Color transparent;
+		borderColor: Color transparent;
+		clipSubmorphs: true;
+		"stop being grabbed"beSticky;
+		borderWidth: 0;
+		extent: 0 @ 0;
+		yourself
 ]
 
 { #category : #initialization }
