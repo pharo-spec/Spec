@@ -70,7 +70,7 @@ SpListViewPresenter >> initializeItemFactory [
 SpListViewPresenter >> registerActions [
 
 	self addActionWith: [ :action | action 
-		beOnlyShortcut;
+		beShortcutOnly;
 		shortcut: $t ctrl unix | $t ctrl win | $t command mac;
 		action: [ self showContextMenu ] ]
 ]

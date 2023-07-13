@@ -39,6 +39,12 @@ SpTActionContainer >> addActionWith: aBlock [
 	self ensureActionGroup addActionWith: aBlock
 ]
 
+{ #category : #'api - actions' }
+SpTActionContainer >> addShortcutWith: aBlock [
+
+	self ensureActionGroup addShortcutWith: aBlock
+]
+
 { #category : #private }
 SpTActionContainer >> ensureActionGroup [
 

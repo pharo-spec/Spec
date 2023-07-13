@@ -89,8 +89,14 @@ SpCommand >> iconProvider [
 SpCommand >> id [
 
 	^ String streamContents: [ :stream |
-		| parts |
-		parts := (self name ifNil: [ 'unknown' ]) substrings.
+		| parts name |
+		
+		name := self name 
+			ifNil: [ 
+				self shortcutKey
+					ifNotNil: [ 'shortcut ', self shortcutKey asString ]
+					ifNil: [ 'unknown' ] ].
+		parts := name substrings.
 		stream << parts first asLowercase.
 		parts allButFirstDo: [ :each | stream << each capitalized ] ]
 ]

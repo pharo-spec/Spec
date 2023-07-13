@@ -40,7 +40,7 @@ SpAction class >> newShortcut: aShortcut action: aBlock [
 		name: aShortcut asString;
 		shortcutKey: aShortcut;
 		action: aBlock;
-		beOnlyShortcut;
+		beShortcutOnly;
 		yourself
 ]
 
@@ -63,7 +63,7 @@ SpAction >> actionVisible: aBlock [
 ]
 
 { #category : #accessing }
-SpAction >> beOnlyShortcut [
+SpAction >> beShortcutOnly [
 
 	visible := false
 ]
@@ -99,6 +99,17 @@ SpAction >> isVisible [
 
 	^ visible 
 		and: [ actionVisible isNil or: [ actionVisible value ] ]
+]
+
+{ #category : #printing }
+SpAction >> printOn: stream [
+
+	stream << 'a SpAction('.
+	stream << 'Name: ' << (self name ifNil: [ 'No name' ]).
+	stream << ' Shortcut: ' << (self shortcutKey 
+		ifNotNil: [ :key | key asString ] 
+		ifNil: [ 'No shortcut' ]).
+	stream << ')'
 ]
 
 { #category : #accessing }

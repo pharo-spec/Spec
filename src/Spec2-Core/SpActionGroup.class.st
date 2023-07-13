@@ -48,6 +48,16 @@ SpActionGroup >> addGroupWith: aBlock [
 		
 ]
 
+{ #category : #accessing }
+SpActionGroup >> addShortcutWith: aBlock [
+	| action |
+	
+	action := SpAction new.
+	action beShortcutOnly.
+	aBlock value: action.
+	self add: action
+]
+
 { #category : #initialization }
 SpActionGroup >> initialize [
 
