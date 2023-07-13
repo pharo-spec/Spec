@@ -78,7 +78,7 @@ SpDemo >> connectPresenters [
 							yourself ] ]
 			ifNil: [ 
 				"Avoid the user to have no page selected at all." 
-				list setSelectedItem: self selectedPage ] ]
+				list selectItem: self selectedPage ] ]
 ]
 
 { #category : #layout }
