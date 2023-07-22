@@ -97,7 +97,7 @@ SpMorphicBackendForTest >> doubleClickFirstRowAndColumn: anAdapter [
 
 	self waitUntilUIRedrawed.
 
-	anAdapter widget doubleClick: (MouseEvent new
+	anAdapter widget doubleClick: (MouseButtonEvent new
 		setPosition: anAdapter widget submorphs first submorphs first bounds center;
 		yourself).
 
