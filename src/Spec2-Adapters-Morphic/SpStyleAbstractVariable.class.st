@@ -26,6 +26,12 @@ SpStyleAbstractVariable >> isResetVariable [
 ]
 
 { #category : #evaluating }
+SpStyleAbstractVariable >> nonscaledValue [
+
+	^ self value
+]
+
+{ #category : #evaluating }
 SpStyleAbstractVariable >> preferredScaledValueWith: anObject [
 
 	^ self value
@@ -40,7 +46,7 @@ SpStyleAbstractVariable >> preferredValueWith: anObject [
 { #category : #evaluating }
 SpStyleAbstractVariable >> scaledValue [
 
-	^ self value
+	^ self nonscaledValue
 ]
 
 { #category : #evaluating }
