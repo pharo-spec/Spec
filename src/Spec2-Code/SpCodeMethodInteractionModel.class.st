@@ -38,9 +38,9 @@ SpCodeMethodInteractionModel >> hasBindingOf: aString [
 ]
 
 { #category : #testing }
-SpCodeMethodInteractionModel >> isScripting [ 
+SpCodeMethodInteractionModel >> isScripting [
 
-	^method isDoIt
+	^ method ifNotNil: [ method isDoIt ] ifNil: [ false ] 
 ]
 
 { #category : #accessing }
