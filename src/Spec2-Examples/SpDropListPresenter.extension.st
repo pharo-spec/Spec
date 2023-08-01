@@ -5,7 +5,6 @@ SpDropListPresenter class >> example [
 	"Show a simple dropdown list."
 
 	^ (self new
-			application: (SpApplication new useBackend: #Gtk);
 		   help: 'Select the presenter.';
 		   items: SpPresenter withAllSubclasses;
 		   display: [ :aClass | aClass name ];
@@ -20,7 +19,6 @@ SpDropListPresenter class >> exampleWithActions [
 	"This example shows how to add icons to a dropdown list."
 
 	^ (self new
-			application: (SpApplication new useBackend: #Gtk);
 		   help: 'Select the presenter.';
 			addItemLabeled: 'Action 1' do: [ 'Action 1' crTrace ];
 			addItemLabeled: 'Action 2' do: [ 'Action 2' crTrace ];
@@ -35,7 +33,6 @@ SpDropListPresenter class >> exampleWithIcons [
 	"This example shows how to add icons to a dropdown list."
 
 	^ (self new
-			application: (SpApplication new useBackend: #Gtk);
 		   help: 'Select the presenter.';
 		   items: SpPresenter withAllSubclasses;
 		   display: [ :aClass | aClass name ];
