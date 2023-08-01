@@ -104,25 +104,3 @@ SpListViewPresenter >> showContextMenu [
 
 	self withAdapterDo: [ :anAdapter | anAdapter showContextMenu ]
 ]
-
-{ #category : #'api - events' }
-SpListViewPresenter >> whenDisplayChangedDo: aBlock [
-	"Inform when the display block has changed.
- 	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
-	self property: #display whenChangedDo: aBlock
-]
-
-{ #category : #'api - events' }
-SpListViewPresenter >> whenIconsChangedDo: aBlock [
-	"Inform when the icons block has changed.
- 	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
-	self property: #icon whenChangedDo: aBlock
-]

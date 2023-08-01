@@ -25,7 +25,7 @@ SpEasyListViewPresenter class >> example [
 	"This example show a simple list with all classes, using all the default settings."
 
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
+		"application: (SpApplication new useBackend: #Gtk);"
 		items: self environment allClasses;
 		open;
 		yourself
