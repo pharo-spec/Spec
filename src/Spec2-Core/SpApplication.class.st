@@ -364,7 +364,18 @@ SpApplication >> showWaitCursorWhile: aBlock [
 
 { #category : #running }
 SpApplication >> start [ 
-	"Override this to start your app"
+	"This method is a hook automatically invoked. Override this method to start your application.
+	Pay attention that this is your responsibility to configure the presenter you are opening
+   using the message #application: so that it knows its application.
+	Without such information some functionalities may not work correctly.
+	
+	Here is a possible definition
+        start 
+             MyPresenter new 
+                  application: self;
+                  open
+      "
+	
 ]
 
 { #category : #accessing }
