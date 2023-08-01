@@ -48,24 +48,22 @@ SpScrollableLayoutAdapterTest >> testAddTwiceSetsChildrenSingleTime [
 
 { #category : #tests }
 SpScrollableLayoutAdapterTest >> testAddWithSymbolWorks [
+
 	| presenterClass |
-	
 	classFactory := self newClassFactory.
-	presenterClass := classFactory 
-		newSubclassOf: SpPresenter 
-		instanceVariableNames: 'textInput' 
-		classVariableNames: '' 
-		category: self class package name.
-		
+	presenterClass := classFactory make: [ :aBuilder |
+		                  aBuilder
+			                  superclass: SpPresenter;
+			                  slotsFromString: 'textInput';
+			                  package: self class package name ].
+
 	presenter := presenterClass new.
 	presenter layout: (SpScrollableLayout with: #textInput).
 	presenter writeSlotNamed: #textInput value: presenter newTextInput.
-	
+
 	self openInstance.
-	
-	self 
-		assert: presenter adapter childWidget
-		equals: (presenter readSlotNamed: #textInput) adapter widget
+
+	self assert: presenter adapter childWidget equals: (presenter readSlotNamed: #textInput) adapter widget
 ]
 
 { #category : #tests }
