@@ -7,9 +7,3 @@ Class {
 	#superclass : #Object,
 	#category : #'Spec2-Core-Support'
 }
-
-{ #category : #filtering }
-SpAbstractTreeFilter >> keepTreeNode: aNode [
-
-	^ false
-]

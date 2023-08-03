@@ -27,12 +27,6 @@ SpTokenTreeFilter >> initialize [
 	token := ''.
 ]
 
-{ #category : #filtering }
-SpTokenTreeFilter >> keepTreeNode: aNode [
-
-	^ aNode matchTokenFilter: self
-]
-
 { #category : #accessing }
 SpTokenTreeFilter >> token [
 

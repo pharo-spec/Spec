@@ -47,13 +47,6 @@ SpWorldPresenter >> defaultInitialExtent [
 ]
 
 { #category : #api }
-SpWorldPresenter >> ensureExtentFor: aWidget [
-
-	self extent ifNotNil: [ :ext | DisplayScreen hostWindowSize: ext ].
-	self initialExtent ifNotNil: [ :ext | DisplayScreen hostWindowSize: ext ].
-]
-
-{ #category : #api }
 SpWorldPresenter >> isDisplayed [
 
 	^ true
