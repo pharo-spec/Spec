@@ -18,7 +18,7 @@ SpIconToolbarDisplayMode >> configureButton: aButton item: aToolbarItem [
 { #category : #accessing }
 SpIconToolbarDisplayMode >> extent [
 
-	^ 30@30
+	^ (30@30) scaledByDisplayScaleFactor
 ]
 
 { #category : #accessing }

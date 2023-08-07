@@ -17,7 +17,7 @@ SpLabelToolbarDisplayMode >> configureButton: aButton item: aToolbarItem [
 
 { #category : #accessing }
 SpLabelToolbarDisplayMode >> extent [
-	^ 45@25
+	^ (45@25) scaledByDisplayScaleFactor
 ]
 
 { #category : #accessing }

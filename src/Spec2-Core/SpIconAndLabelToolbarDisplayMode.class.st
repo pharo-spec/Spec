@@ -19,7 +19,7 @@ SpIconAndLabelToolbarDisplayMode >> configureButton: aButton item: aToolbarItem 
 
 { #category : #accessing }
 SpIconAndLabelToolbarDisplayMode >> extent [
-	^ 45@45
+	^ (45@45) scaledByDisplayScaleFactor
 ]
 
 { #category : #printing }

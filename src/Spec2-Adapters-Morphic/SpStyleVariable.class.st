@@ -26,6 +26,12 @@ SpStyleVariable class >> stonName [
 ]
 
 { #category : #evaluating }
+SpStyleVariable >> nonscaledValue [
+
+	^ self value ifNil: [ 0 ]
+]
+
+{ #category : #evaluating }
 SpStyleVariable >> preferredScaledValueWith: anObject [
 
 	^ self value = 0 
@@ -44,7 +50,7 @@ SpStyleVariable >> preferredValueWith: anObject [
 { #category : #evaluating }
 SpStyleVariable >> scaledValue [
 
-	^ (self value ifNil: [ 0 ]) * self currentWorld displayScaleFactor
+	^ self nonscaledValue * self currentWorld displayScaleFactor
 ]
 
 { #category : #private }
