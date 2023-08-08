@@ -15,4 +15,10 @@ SpAbstractBackendForTest >> emulateClick: mouseButtonCode onTest: anAdapterTest 
 	MouseButtonEvent redButton = mouseButtonCode 
 		ifTrue: [ anAdapterTest adapter clicked ].
 
+	self waitUntilUIRedrawed
+]
+
+{ #category : #testing }
+SpAbstractBackendForTest >> waitUntilUIRedrawed [
+	"Hook. I wait until the UI has been redrawn and events have been handled."
 ]
