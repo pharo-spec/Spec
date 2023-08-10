@@ -22,7 +22,7 @@ SpButtonAdapterTest >> testChangingIconAffectTheWidget [
 SpButtonAdapterTest >> testChangingLabelAffectTheWidget [
 	
 	presenter label: 'ALabel'.
-	self assert: self widget label equals: 'ALabel'
+	self assert: self adapter label equals: 'ALabel'
 ]
 
 { #category : #tests }
