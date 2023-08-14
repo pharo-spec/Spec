@@ -264,7 +264,12 @@ SpCodePresenter >> doBrowseClass [
 		evaluate: self selectedTextOrLine
 		onCompileError: [ ^ self ]
 		onError: [ :e | ^ self ].
-	self systemNavigation browse: result
+	(result isKindOf: Symbol)
+		ifTrue: [ 
+				| classToBrowse |
+				classToBrowse := self class environment at: result ifAbsent: [ nil ].	
+					classToBrowse ifNotNil: [ ^ self systemNavigation browse: classToBrowse ] ].
+	self systemNavigation browse: result 
 ]
 
 { #category : #commands }
