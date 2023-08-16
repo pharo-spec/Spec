@@ -259,7 +259,6 @@ SpCodePresenter >> contextMenu [
 { #category : #commands }
 SpCodePresenter >> doBrowseClass [
 	| result |
-
 	result := self 
 		evaluate: self selectedTextOrLine
 		onCompileError: [ ^ self ]
@@ -268,8 +267,10 @@ SpCodePresenter >> doBrowseClass [
 		ifTrue: [ 
 				| classToBrowse |
 				classToBrowse := self class environment at: result ifAbsent: [ nil ].	
-					classToBrowse ifNotNil: [ ^ self systemNavigation browse: classToBrowse ] ].
-	self systemNavigation browse: result 
+				classToBrowse ifNotNil: [ ^ self systemNavigation browse: classToBrowse ].
+				^ self systemNavigation browseAllImplementorsOf: result ].
+			
+	^ self systemNavigation browse: result 
 ]
 
 { #category : #commands }
