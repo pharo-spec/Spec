@@ -177,6 +177,40 @@ SpCodePresenterTest >> testDoBrowseImplementors [
 ]
 
 { #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseImplementorsOnBrokenSelectorDoesNotOpenAClassBrowser [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	presenter beForScripting.
+	self openInstance.
+	
+	presenter text: '#degressThatDoesNotExist'.
+	presenter doBrowseImplementors.
+	
+	self 
+		assert: navigation browseClass 
+		equals: nil
+]
+
+{ #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseImplementorsOnBrokenSelectorRepresentingAClassOpensAClassBrowser [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	presenter beForScripting.
+	self openInstance.
+	
+	presenter text: '#Point23456'.
+	presenter doBrowseImplementors.
+	
+	self 
+		assert: navigation browseClass 
+		equals: nil
+]
+
+{ #category : #'tests - commands' }
 SpCodePresenterTest >> testDoBrowseImplementorsOnSelectorRepresentingAClassOpensAClassBrowser [
 	| navigation |
 	
@@ -294,6 +328,76 @@ SpCodePresenterTest >> testDoBrowseMethodsMatchingStringSensitive [
 	self assert: navigation messageList notEmpty.
 	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseMethodsMatchingStringSensitive).
 	
+]
+
+{ #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseOnBrokenSelectorDoesNotBrowseTheClass [
+
+	| navigation |
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	self openInstance.
+	
+	presenter text: '#degressThatDoesNotExist'.
+	"Selection"
+	presenter selectionInterval: (1 to: 6).
+	presenter doBrowseClass.
+	
+	self assert: navigation browseClass equals: nil.
+	
+	navigation reset.
+	"Line"
+	presenter cursorPositionIndex: 1.
+	presenter selectionInterval: (1 to: 0).
+	presenter doBrowseClass.
+	self assert: navigation browseClass equals: nil.
+	
+	"Middle of line"
+	presenter cursorPositionIndex: 5.
+	presenter selectionInterval: (5 to: 4).
+	presenter doBrowseClass.
+	self assert: navigation browseClass equals: nil.
+
+	"End of line"
+	presenter cursorPositionIndex: 14.
+	presenter selectionInterval: (14 to: 13).
+	presenter doBrowseClass.
+	self assert: navigation browseClass equals: nil.
+]
+
+{ #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseOnBrokenSymbolRepresentingAClassDoesNotBrowseTheClass [
+
+	| navigation |
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	self openInstance.
+	
+	presenter text: '#Point234'.
+	"Selection"
+	presenter selectionInterval: (1 to: 6).
+	presenter doBrowseClass.
+	
+	self assert: navigation browseClass equals: Point.
+	
+	navigation reset.
+	"Line"
+	presenter cursorPositionIndex: 1.
+	presenter selectionInterval: (1 to: 0).
+	presenter doBrowseClass.
+	self assert: navigation browseClass equals: nil.
+	
+	"Middle of line"
+	presenter cursorPositionIndex: 5.
+	presenter selectionInterval: (5 to: 4).
+	presenter doBrowseClass.
+	self assert: navigation browseClass equals: nil.
+
+	"End of line"
+	presenter cursorPositionIndex: 14.
+	presenter selectionInterval: (14 to: 13).
+	presenter doBrowseClass.
+	self assert: navigation browseClass equals: nil.
 ]
 
 { #category : #'tests - commands' }
