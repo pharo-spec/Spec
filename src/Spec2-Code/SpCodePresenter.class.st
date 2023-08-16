@@ -258,18 +258,23 @@ SpCodePresenter >> contextMenu [
 
 { #category : #commands }
 SpCodePresenter >> doBrowseClass [
-	| result |
+	| result selector |
 	result := self 
 		evaluate: self selectedTextOrLine
 		onCompileError: [ ^ self ]
 		onError: [ :e | ^ self ].
+	
 	(result isKindOf: Symbol)
 		ifTrue: [ 
-				| classToBrowse |
+				| classToBrowse  |
 				classToBrowse := self class environment at: result ifAbsent: [ nil ].	
 				classToBrowse ifNotNil: [ ^ self systemNavigation browse: classToBrowse ].
 				^ self systemNavigation browseAllImplementorsOf: result ].
-			
+	self selectedTextOrLine first isUppercase 
+		ifTrue: [ ^ self systemNavigation browse: result ]. 
+	selector := self selectedSelector ifNil: [ ^ nil ].
+	selector ifNotNil: [ 
+			^ self systemNavigation browseAllImplementorsOf: selector ].
 	^ self systemNavigation browse: result 
 ]
 
