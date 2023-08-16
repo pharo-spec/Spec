@@ -280,38 +280,38 @@ SpCodePresenterTest >> testDoBrowseMethodsMatchingStringSensitive [
 ]
 
 { #category : #'tests - commands' }
-SpCodePresenterTest >> testDoBrowseOnAMethodSelectorOpensAnImplementor [
+SpCodePresenterTest >> testDoBrowseOnSelectorOpensAnImplementor [
 	
 	| navigation |
 	navigation := SpCodeSystemNavigationMock new.
 	presenter systemNavigation: navigation.
 	self openInstance.
 	
-	presenter text: '#Point'.
+	presenter text: '#~~>'.
 	"Selection"
-	presenter selectionInterval: (1 to: 6).
+	presenter selectionInterval: (1 to: 4).
 	presenter doBrowseClass.
 	
-	self assert: navigation browseClass equals: Point.
+	self assert: navigation messageList first selector equals: #'~~>'.
 	
 	navigation reset.
 	"Line"
 	presenter cursorPositionIndex: 1.
 	presenter selectionInterval: (1 to: 0).
 	presenter doBrowseClass.
-	self assert: navigation browseClass equals: Point.
+	self assert: navigation messageList first selector equals: #'~~>'.
 	
 	"Middle of line"
 	presenter cursorPositionIndex: 5.
 	presenter selectionInterval: (5 to: 4).
 	presenter doBrowseClass.
-	self assert: navigation browseClass equals: Point.
+	self assert: navigation messageList first selector equals: #'~~>'.
 
 	"End of line"
 	presenter cursorPositionIndex: 14.
 	presenter selectionInterval: (14 to: 13).
 	presenter doBrowseClass.
-	self assert: navigation browseClass equals: Point.
+	self assert: navigation messageList first selector equals: #'~~>'.
 ]
 
 { #category : #'tests - commands' }
