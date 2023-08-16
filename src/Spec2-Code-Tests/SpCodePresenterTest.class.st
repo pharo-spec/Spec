@@ -177,6 +177,23 @@ SpCodePresenterTest >> testDoBrowseImplementors [
 ]
 
 { #category : #'tests - commands' }
+SpCodePresenterTest >> testDoBrowseImplementorsOnSelectorRepresentingAClassOpensAClassBrowser [
+	| navigation |
+	
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	presenter beForScripting.
+	self openInstance.
+	
+	presenter text: '#Point'.
+	presenter doBrowseImplementors.
+	
+	self 
+		assert: navigation browseClass 
+		equals: Point
+]
+
+{ #category : #'tests - commands' }
 SpCodePresenterTest >> testDoBrowseMethodReferences [
 	| navigation |
 	
@@ -769,6 +786,25 @@ SpCodePresenterTest >> testSelectedSelectorForScripting [
 	"selector := presenter text: 'anObjectdo : 2'.
 	selector := presenter selectedSelector.
 	self assert: selector equals: #noMethod"
+]
+
+{ #category : #'tests - command support' }
+SpCodePresenterTest >> testSelectedSelectorForScripting2 [
+	"Testing border cases to avoid breaking execution. The selector extraction logic should be tested in the extractor class"
+
+	"Code presenter has nil text for some reason"
+
+	| selector |
+	presenter text: nil.
+	presenter beForScripting.
+	selector := presenter selectedSelector.
+	self assert: selector isNil.
+	presenter text: '#Point'.
+	selector := presenter selectedSelector.
+	self assert: selector equals: #Point.
+
+
+
 ]
 
 { #category : #'tests - command support' }
