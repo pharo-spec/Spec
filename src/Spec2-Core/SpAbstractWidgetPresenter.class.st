@@ -245,7 +245,7 @@ SpAbstractWidgetPresenter >> color: aColor [
 	^ color := aColor
 ]
 
-{ #category : #initialization }
+{ #category : #TOREMOVE }
 SpAbstractWidgetPresenter >> defaultColor [
 	^ self theme backgroundColor
 ]
