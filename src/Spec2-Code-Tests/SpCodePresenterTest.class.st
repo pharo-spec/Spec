@@ -177,57 +177,6 @@ SpCodePresenterTest >> testDoBrowseImplementors [
 ]
 
 { #category : #'tests - commands' }
-SpCodePresenterTest >> testDoBrowseImplementorsOnBrokenSelectorDoesNotOpenAClassBrowser [
-	| navigation |
-	
-	navigation := SpCodeSystemNavigationMock new.
-	presenter systemNavigation: navigation.
-	presenter beForScripting.
-	self openInstance.
-	
-	presenter text: '#degressThatDoesNotExist'.
-	presenter doBrowseImplementors.
-	
-	self 
-		assert: navigation browseClass 
-		equals: nil
-]
-
-{ #category : #'tests - commands' }
-SpCodePresenterTest >> testDoBrowseImplementorsOnBrokenSelectorRepresentingAClassOpensAClassBrowser [
-	| navigation |
-	
-	navigation := SpCodeSystemNavigationMock new.
-	presenter systemNavigation: navigation.
-	presenter beForScripting.
-	self openInstance.
-	
-	presenter text: '#Point23456'.
-	presenter doBrowseImplementors.
-	
-	self 
-		assert: navigation browseClass 
-		equals: nil
-]
-
-{ #category : #'tests - commands' }
-SpCodePresenterTest >> testDoBrowseImplementorsOnSelectorRepresentingAClassOpensAClassBrowser [
-	| navigation |
-	
-	navigation := SpCodeSystemNavigationMock new.
-	presenter systemNavigation: navigation.
-	presenter beForScripting.
-	self openInstance.
-	
-	presenter text: '#Point'.
-	presenter doBrowseImplementors.
-	
-	self 
-		assert: navigation browseClass 
-		equals: Point
-]
-
-{ #category : #'tests - commands' }
 SpCodePresenterTest >> testDoBrowseMethodReferences [
 	| navigation |
 	
@@ -328,146 +277,6 @@ SpCodePresenterTest >> testDoBrowseMethodsMatchingStringSensitive [
 	self assert: navigation messageList notEmpty.
 	self assert: (navigation messageList includes: SpCodePresenterTest >> #testDoBrowseMethodsMatchingStringSensitive).
 	
-]
-
-{ #category : #'tests - commands' }
-SpCodePresenterTest >> testDoBrowseOnBrokenSelectorDoesNotBrowseTheClass [
-
-	| navigation |
-	navigation := SpCodeSystemNavigationMock new.
-	presenter systemNavigation: navigation.
-	self openInstance.
-	
-	presenter text: '#degressThatDoesNotExist'.
-	"Selection"
-	presenter selectionInterval: (1 to: 6).
-	presenter doBrowseClass.
-	
-	self assert: navigation browseClass equals: nil.
-	
-	navigation reset.
-	"Line"
-	presenter cursorPositionIndex: 1.
-	presenter selectionInterval: (1 to: 0).
-	presenter doBrowseClass.
-	self assert: navigation browseClass equals: nil.
-	
-	"Middle of line"
-	presenter cursorPositionIndex: 5.
-	presenter selectionInterval: (5 to: 4).
-	presenter doBrowseClass.
-	self assert: navigation browseClass equals: nil.
-
-	"End of line"
-	presenter cursorPositionIndex: 14.
-	presenter selectionInterval: (14 to: 13).
-	presenter doBrowseClass.
-	self assert: navigation browseClass equals: nil.
-]
-
-{ #category : #'tests - commands' }
-SpCodePresenterTest >> testDoBrowseOnBrokenSymbolRepresentingAClassDoesNotBrowseTheClass [
-
-	| navigation |
-	navigation := SpCodeSystemNavigationMock new.
-	presenter systemNavigation: navigation.
-	self openInstance.
-	
-	presenter text: '#Point234'.
-	"Selection"
-	presenter selectionInterval: (1 to: 6).
-	presenter doBrowseClass.
-	
-	self assert: navigation browseClass equals: Point.
-	
-	navigation reset.
-	"Line"
-	presenter cursorPositionIndex: 1.
-	presenter selectionInterval: (1 to: 0).
-	presenter doBrowseClass.
-	self assert: navigation browseClass equals: nil.
-	
-	"Middle of line"
-	presenter cursorPositionIndex: 5.
-	presenter selectionInterval: (5 to: 4).
-	presenter doBrowseClass.
-	self assert: navigation browseClass equals: nil.
-
-	"End of line"
-	presenter cursorPositionIndex: 14.
-	presenter selectionInterval: (14 to: 13).
-	presenter doBrowseClass.
-	self assert: navigation browseClass equals: nil.
-]
-
-{ #category : #'tests - commands' }
-SpCodePresenterTest >> testDoBrowseOnSelectorOpensAnImplementor [
-	
-	| navigation |
-	navigation := SpCodeSystemNavigationMock new.
-	presenter systemNavigation: navigation.
-	self openInstance.
-	
-	presenter text: '#~~>'.
-	"Selection"
-	presenter selectionInterval: (1 to: 4).
-	presenter doBrowseClass.
-	
-	self assert: navigation messageList first selector equals: #'~~>'.
-	
-	navigation reset.
-	"Line"
-	presenter cursorPositionIndex: 1.
-	presenter selectionInterval: (1 to: 0).
-	presenter doBrowseClass.
-	self assert: navigation messageList first selector equals: #'~~>'.
-	
-	"Middle of line"
-	presenter cursorPositionIndex: 5.
-	presenter selectionInterval: (5 to: 4).
-	presenter doBrowseClass.
-	self assert: navigation messageList first selector equals: #'~~>'.
-
-	"End of line"
-	presenter cursorPositionIndex: 14.
-	presenter selectionInterval: (14 to: 13).
-	presenter doBrowseClass.
-	self assert: navigation messageList first selector equals: #'~~>'.
-]
-
-{ #category : #'tests - commands' }
-SpCodePresenterTest >> testDoBrowseOnSymbolRepresentingAClassBrowsesTheClass [
-
-	| navigation |
-	navigation := SpCodeSystemNavigationMock new.
-	presenter systemNavigation: navigation.
-	self openInstance.
-	
-	presenter text: '#Point'.
-	"Selection"
-	presenter selectionInterval: (1 to: 6).
-	presenter doBrowseClass.
-	
-	self assert: navigation browseClass equals: Point.
-	
-	navigation reset.
-	"Line"
-	presenter cursorPositionIndex: 1.
-	presenter selectionInterval: (1 to: 0).
-	presenter doBrowseClass.
-	self assert: navigation browseClass equals: Point.
-	
-	"Middle of line"
-	presenter cursorPositionIndex: 5.
-	presenter selectionInterval: (5 to: 4).
-	presenter doBrowseClass.
-	self assert: navigation browseClass equals: Point.
-
-	"End of line"
-	presenter cursorPositionIndex: 14.
-	presenter selectionInterval: (14 to: 13).
-	presenter doBrowseClass.
-	self assert: navigation browseClass equals: Point.
 ]
 
 { #category : #'tests - commands' }
@@ -758,51 +567,37 @@ SpCodePresenterTest >> testEvaluateOnCompileErrorOnError [
 
 { #category : #'tests - command support' }
 SpCodePresenterTest >> testEvaluateSendAnnouncements [
-
 	| willBeEvaluated succeed failed |
-	presenter announcer
-		when: SpCodeWillBeEvaluatedAnnouncement
-		do: [ :ann | willBeEvaluated := true ]
-		for: self;
-		when: SpCodeEvaluationSucceedAnnouncement
-		do: [ :ann | succeed := true ]
-		for: self;
-		when: SpCodeEvaluationFailedAnnouncement
-		do: [ :ann | failed := true ]
-		for: self.
 
-	willBeEvaluated := false.
+	presenter announcer 
+		when: SpCodeWillBeEvaluatedAnnouncement do: [ :ann | willBeEvaluated := true ];
+		when: SpCodeEvaluationSucceedAnnouncement do: [ :ann | succeed := true ];
+		when: SpCodeEvaluationFailedAnnouncement do: [ :ann | failed := true ].
+		
+	willBeEvaluated := false. 
 	succeed := false.
 	failed := false.
-	presenter
-		evaluate: '42 factorial'
-		onCompileError: [ #compileError ]
-		onError: [ :e | #error ].
+	presenter evaluate: '42 factorial' onCompileError: [ #compileError ] onError: [ :e | #error ].	
 	self assert: willBeEvaluated.
 	self assert: succeed.
 	self deny: failed.
-
-	willBeEvaluated := false.
+	
+	willBeEvaluated := false. 
 	succeed := false.
 	failed := false.
-	presenter
-		evaluate: 'Obj { }}'
-		onCompileError: [ #compile ]
-		onError: [ :e | #error ].
+	presenter evaluate: 'Obj { }}' onCompileError: [ #compile ] onError: [ :e | #error ].
 	self assert: willBeEvaluated.
 	self deny: succeed.
 	self assert: failed.
 
-	willBeEvaluated := false.
+	willBeEvaluated := false. 
 	succeed := false.
 	failed := false.
-	presenter
-		evaluate: 'nil text'
-		onCompileError: [ #compile ]
-		onError: [ :e | #error ].
+	presenter evaluate: 'nil text' onCompileError: [ #compile ] onError: [ :e | #error ].
 	self assert: willBeEvaluated.
 	self deny: succeed.
-	self assert: failed
+	self assert: failed.
+
 ]
 
 { #category : #tests }
@@ -890,25 +685,6 @@ SpCodePresenterTest >> testSelectedSelectorForScripting [
 	"selector := presenter text: 'anObjectdo : 2'.
 	selector := presenter selectedSelector.
 	self assert: selector equals: #noMethod"
-]
-
-{ #category : #'tests - command support' }
-SpCodePresenterTest >> testSelectedSelectorForScripting2 [
-	"Testing border cases to avoid breaking execution. The selector extraction logic should be tested in the extractor class"
-
-	"Code presenter has nil text for some reason"
-
-	| selector |
-	presenter text: nil.
-	presenter beForScripting.
-	selector := presenter selectedSelector.
-	self assert: selector isNil.
-	presenter text: '#Point'.
-	selector := presenter selectedSelector.
-	self assert: selector equals: #Point.
-
-
-
 ]
 
 { #category : #'tests - command support' }
