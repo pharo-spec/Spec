@@ -105,106 +105,99 @@ SpBoxLayout class >> exampleExpand [
 
 { #category : #'*Spec2-Examples' }
 SpBoxLayout class >> exampleHAlignCenter [
-	| presenter |
 
+	| presenter |
 	presenter := SpPresenter new.
 	presenter layout: (self newTopToBottom
-		hAlignCenter;
-		add: (presenter newButton
-			icon: (presenter application iconNamed: #smallOk);
-			label: 'Press me!';
-			action: [ presenter application inform: 'Pressed!' ]) 
-		yourself).
+			 hAlignCenter;
+			 add: (presenter newButton
+					  icon: (presenter application iconNamed: #smallOk);
+					  label: 'Press me!';
+					  action: [ presenter inform: 'Pressed!' ]) yourself).
 	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
 SpBoxLayout class >> exampleHAlignEnd [
-	| presenter |
 
+	| presenter |
 	presenter := SpPresenter new.
 	presenter layout: (self newTopToBottom
-		hAlignEnd;
-		add: (presenter newButton
-			icon: (presenter application iconNamed: #smallOk);
-			label: 'Press me!';
-			action: [ presenter application inform: 'Pressed!' ]) 
-		yourself).
+			 hAlignEnd;
+			 add: (presenter newButton
+					  icon: (presenter application iconNamed: #smallOk);
+					  label: 'Press me!';
+					  action: [ presenter inform: 'Pressed!' ]) yourself).
 	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
 SpBoxLayout class >> exampleHAlignStart [
-	| presenter |
 
+	| presenter |
 	presenter := SpPresenter new.
 	presenter layout: (self newTopToBottom
-		hAlignStart;
-		add: (presenter newButton
-			icon: (presenter application iconNamed: #smallOk);
-			label: 'Press me!';
-			action: [ presenter application inform: 'Pressed!' ]) 
-		yourself).
+			 hAlignStart;
+			 add: (presenter newButton
+					  icon: (presenter application iconNamed: #smallOk);
+					  label: 'Press me!';
+					  action: [ presenter inform: 'Pressed!' ]) yourself).
 	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
 SpBoxLayout class >> exampleVAlignAndHAlign [
-	| presenter |
 
+	| presenter |
 	presenter := SpPresenter new.
 	presenter layout: (self newTopToBottom
-		vAlignCenter;
-		hAlignCenter;
-		add: (presenter newButton
-			icon: (presenter application iconNamed: #smallOk);
-			label: 'Press me!';
-			action: [ presenter application inform: 'Pressed!' ]) 
-		yourself).
+			 vAlignCenter;
+			 hAlignCenter;
+			 add: (presenter newButton
+					  icon: (presenter application iconNamed: #smallOk);
+					  label: 'Press me!';
+					  action: [ presenter inform: 'Pressed!' ]) yourself).
 	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
 SpBoxLayout class >> exampleVAlignCenter [
-	| presenter |
 
+	| presenter |
 	presenter := SpPresenter new.
 	presenter layout: (self newTopToBottom
-		vAlignCenter;
-		add: (presenter newButton
-			icon: (presenter application iconNamed: #smallOk);
-			label: 'Press me!';
-			action: [ presenter application inform: 'Pressed!' ]) 
-		yourself).
+			 vAlignCenter;
+			 add: (presenter newButton
+					  icon: (presenter application iconNamed: #smallOk);
+					  label: 'Press me!';
+					  action: [ presenter inform: 'Pressed!' ]) yourself).
 	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
 SpBoxLayout class >> exampleVAlignEnd [
-	| presenter |
 
+	| presenter |
 	presenter := SpPresenter new.
 	presenter layout: (self newTopToBottom
-		vAlignEnd;
-		add: (presenter newButton
-			icon: (presenter application iconNamed: #smallOk);
-			label: 'Press me!';
-			action: [ presenter application inform: 'Pressed!' ]) 
-		yourself).
+			 vAlignEnd;
+			 add: (presenter newButton
+					  icon: (presenter application iconNamed: #smallOk);
+					  label: 'Press me!';
+					  action: [ presenter inform: 'Pressed!' ]) yourself).
 	presenter open
 ]
 
 { #category : #'*Spec2-Examples' }
 SpBoxLayout class >> exampleVAlignStart [
-	| presenter |
 
+	| presenter |
 	presenter := SpPresenter new.
 	presenter layout: (self newTopToBottom
-		vAlignStart;
-		add: (presenter newButton
-			icon: (presenter application iconNamed: #smallOk);
-			label: 'Press me!';
-			action: [ presenter application inform: 'Pressed!' ]) 
-		yourself).
+			 vAlignStart;
+			 add: (presenter newButton
+					  icon: (presenter application iconNamed: #smallOk);
+					  label: 'Press me!';
+					  action: [ presenter inform: 'Pressed!' ]) yourself).
 	presenter open
 ]

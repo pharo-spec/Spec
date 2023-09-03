@@ -41,30 +41,34 @@ SpSelectDialog class >> documentFactoryMethodSelector [
 { #category : #examples }
 SpSelectDialog class >> example [
 
-	self new
+	| presenter |
+	presenter := self new.
+	presenter
 		title: 'Select example';
 		label: 'Select a class';
 		items: Smalltalk allClassesAndTraits;
 		display: [ :each | each name ];
 		displayIcon: [ :each | self iconNamed: each systemIconName ];
-		onAccept: [ :dialog | self inform: dialog presenter selectedItem asString ];
+		onAccept: [ :dialog |
+			dialog presenter inform: dialog presenter selectedItem asString ];
 		openDialog
 ]
 
 { #category : #examples }
 SpSelectDialog class >> exampleModal [
-	| selection |
 
-	selection := self new
-		title: 'Select modal example';
-		label: 'Select a class';
-		items: Smalltalk allClassesAndTraits;
-		display: [ :each | each name ];
-		displayIcon: [ :each | self iconNamed: each systemIconName ];
-		openModal.
-		
-	selection ifNotNil: [ 
-		self inform: selection asString ]
+	| dialog selection |
+	dialog := self new. 
+	selection := dialog
+		             title: 'Select modal example';
+		             label: 'Select a class';
+		             items: Smalltalk allClassesAndTraits;
+		             display: [ :each | each name ];
+		             displayIcon: [ :each |
+			             self iconNamed: each systemIconName ];
+		             openModal.
+
+	selection ifNotNil: [ dialog inform: selection asString ]
 ]
 
 { #category : #api }
