@@ -320,18 +320,19 @@ SpCodePresenter >> doBrowseImplementors [
 { #category : #commands }
 SpCodePresenter >> doBrowseMethodReferences [
 	"Browse references to Variables (Cmd-shift-n)"
-	| variableOrClassName variable usingMethods |
 
+	| variableOrClassName variable usingMethods |
 	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
 
 	variable := self lookupEnvironment lookupVar: variableOrClassName.
-	variable ifNil: [ 
-		^ self doBrowseSenders ].
-	usingMethods := variable usingMethods ifEmpty: [ ^ application inform: 'No users found.'].
+	variable ifNil: [ ^ self doBrowseSenders ].
+	usingMethods := variable usingMethods ifEmpty: [
+		                ^ self inform: 'No users found.' ].
 
 	"the dialog sadly hard-codes 'senders'"
-	^ self systemNavigation openBrowserFor: variable name withMethods: usingMethods
-
+	^ self systemNavigation
+		  openBrowserFor: variable name
+		  withMethods: usingMethods
 ]
 
 { #category : #commands }

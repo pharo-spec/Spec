@@ -22,20 +22,20 @@ SpDemoToolbarPresenter >> defaultLayout [
 
 { #category : #initialization }
 SpDemoToolbarPresenter >> initializePresenters [
-	
+
 	toolBar := self newToolbar
-		addItem: (SpToolbarButtonPresenter new
-			label: 'Ok';
-			icon: (self iconNamed: #smallOk);
-			help: 'Ok';
-			action: [ self inform: 'Ok' ];
-			yourself);
-		addItem: (SpToolbarButtonPresenter new
-			label: 'Cancel';
-			icon: (self iconNamed: #smallCancel);
-			help: 'Cancel';
-			action: [ self inform: 'Cancel' ];
-			yourself);
-		yourself.
+		           addItem: (SpToolbarButtonPresenter new
+				            label: 'Ok';
+				            icon: (self iconNamed: #smallOk);
+				            help: 'Ok';
+				            action: [ toolBar inform: 'Ok' ];
+				            yourself);
+		           addItem: (SpToolbarButtonPresenter new
+				            label: 'Cancel';
+				            icon: (self iconNamed: #smallCancel);
+				            help: 'Cancel';
+				            action: [ toolBar inform: 'Cancel' ];
+				            yourself);
+		           yourself.
 	text := self newText
 ]

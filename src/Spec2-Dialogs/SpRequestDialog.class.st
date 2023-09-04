@@ -48,30 +48,32 @@ SpRequestDialog class >> documentFactoryMethodSelector [
 { #category : #examples }
 SpRequestDialog class >> example [
 
-	self new
+	| presenter |
+	presenter := self new.
+	presenter
 		title: 'Request example';
 		label: 'The meaning of life?';
 		text: 'I am tempted to say 42...';
 		acceptLabel: 'I know!';
 		cancelLabel: 'Cancel';
-		onAccept: [ :dialog | self inform: dialog presenter text ];
+		onAccept: [ :dialog | dialog presenter inform: dialog presenter text ];
 		openDialog
 ]
 
 { #category : #examples }
 SpRequestDialog class >> exampleModal [
-	| string |
 
-	string := self new
-		title: 'Request modal example';
-		label: 'The meaning of life?';
-		text: 'I am tempted to say 42...';
-		acceptLabel: 'I know!';
-		cancelLabel: 'Cancel';
-		openModal.
-		
-	string ifNotNil: [ 
-		self inform: string ]
+	| string presenter |
+	presenter := self new.
+	string := presenter
+		          title: 'Request modal example';
+		          label: 'The meaning of life?';
+		          text: 'I am tempted to say 42...';
+		          acceptLabel: 'I know!';
+		          cancelLabel: 'Cancel';
+		          openModal.
+
+	string ifNotNil: [ presenter inform: string ]
 ]
 
 { #category : #visiting }

@@ -58,31 +58,36 @@ SpConfirmDialog class >> documentFactoryMethodSelector [
 { #category : #examples }
 SpConfirmDialog class >> example [
 
-	^ self new
-		title: 'Confirm example';
-		label: 'Are you sure?';
-		acceptLabel: 'Sure!';
-		cancelLabel: 'No, forget it';
-		label: 'Are you sure?';
-		onAccept: [ self inform: 'Yes!' ];
-		onCancel: [ self inform: 'No!' ];
-		openDialog
+	| dialog |
+	dialog := self new.
+	^ dialog
+		  title: 'Confirm example';
+		  label: 'Are you sure?';
+		  acceptLabel: 'Sure!';
+		  cancelLabel: 'No, forget it';
+		  label: 'Are you sure?';
+		  onAccept: [
+			  dialog inform: 'Yes!' ];
+		  onCancel: [
+			  dialog inform: 'No!' ];
+		  openDialog
 ]
 
 { #category : #examples }
 SpConfirmDialog class >> exampleModal [
-	| ok |
 
-	ok := self new
-		title: 'Confirm modal example';
-		label: 'Are you sure?';
-		acceptLabel: 'Sure!';
-		cancelLabel: 'No, forget it';
-		openModal.
-	
-	self inform: (ok 
-		ifTrue: [ 'Yes!' ]
-		ifFalse: [ 'No!' ])
+	| ok dialog |
+	dialog := self new.
+	ok := dialog
+		      title: 'Confirm modal example';
+		      label: 'Are you sure?';
+		      acceptLabel: 'Sure!';
+		      cancelLabel: 'No, forget it';
+		      openModal.
+
+	dialog inform: (ok
+				 ifTrue: [ 'Yes!' ]
+				 ifFalse: [ 'No!' ])
 ]
 
 { #category : #api }

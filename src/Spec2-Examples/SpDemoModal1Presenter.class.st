@@ -17,6 +17,7 @@ SpDemoModal1Presenter >> content [
 
 { #category : #initialization }
 SpDemoModal1Presenter >> initializeDialogWindow: aDialog [
+
 	super initializeDialogWindow: aDialog.
 	aDialog
 		closeOnBackdropClick: true;

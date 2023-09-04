@@ -388,6 +388,14 @@ SpPresenter >> centered [
 	self withWindowDo: #centered
 ]
 
+{ #category : #'simple dialog helpers' }
+SpPresenter >> confirm: aString [
+	"Displays a simple confirm dialog, for more configurable version please use `self application newConfirm title: ....`."
+
+      ^  self application confirm: aString
+
+]
+
 { #category : #initialization }
 SpPresenter >> connectPresenters [
 	"The method connectPresenters defines the interactions between the different widgets. By connecting the behaviors of the different widgets it specifies the overall presentation, i.e., how the overall UI responds to interactions by the user. Usually this method consists of specifications of actions to perform when a certain event is received by a widget. The whole interaction flow of the UI then emerges from the propagation of those events."
@@ -499,6 +507,13 @@ SpPresenter >> hide [
 SpPresenter >> iconNamed: aSymbol [
 
 	^ self application iconNamed: aSymbol
+]
+
+{ #category : #'simple dialog helpers' }
+SpPresenter >> inform: aString [
+	"Displays a simple inform dialog, for more configurable version please use `self application newInform title: ....`."
+
+	^ self application inform: aString
 ]
 
 { #category : #TOREMOVE }

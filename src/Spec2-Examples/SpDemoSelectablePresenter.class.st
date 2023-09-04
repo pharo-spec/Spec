@@ -7,13 +7,13 @@ Class {
 }
 
 { #category : #'instance creation' }
-SpDemoSelectablePresenter class >> open [ 
+SpDemoSelectablePresenter class >> open [
+
 	<script>
 	| presenter |
-	
 	presenter := self new.
-	presenter outputSelectionPort 
-		transmitDo: [ :aValue | self inform: 'Selected ', aValue asString ].
+	presenter outputSelectionPort transmitDo: [ :aValue |
+		presenter inform: 'Selected ' , aValue asString ].
 	presenter open
 ]
 

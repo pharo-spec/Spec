@@ -137,6 +137,16 @@ SpApplication >> configuration [
 		configuration ]
 ]
 
+{ #category : #'ui - dialogs' }
+SpApplication >> confirm: aString [
+	"Displays a confirm dialog, for more configurable version please use `self application newConfirm title: ....`."
+
+	^ self newConfirm
+		  title: 'Alert';
+		  label: aString;
+		  openModal
+]
+
 { #category : #showing }
 SpApplication >> defaultBlockedDialogWindowPresenterClass [
 
@@ -226,6 +236,16 @@ SpApplication >> iconProvider [
 SpApplication >> iconProvider: anIconProvider [
 
 	iconProvider := anIconProvider
+]
+
+{ #category : #'ui - dialogs' }
+SpApplication >> inform: aString [
+	"Displays an inform dialog, for more configurable version please use `self application newInform title: ....`."
+
+	^ self newInform
+		  title: 'Alert';
+		  label: aString;
+		  openModal
 ]
 
 { #category : #accessing }
