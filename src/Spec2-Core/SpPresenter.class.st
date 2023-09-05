@@ -1002,9 +1002,10 @@ SpPresenter >> whenWindowChanged: aBlock [
 
 	self flag: #TODO. "This is here for backwards compatibility (you can have same 
 	functionality in #initializeWindow:"
-	self announcer 
-		when: SpWindowBuilt 
+	self announcer
+		when: SpWindowBuilt
 		do: [ :ann | aBlock cull: ann model ]
+		for: self
 ]
 
 { #category : #TOREMOVE }

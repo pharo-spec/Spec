@@ -81,7 +81,7 @@ SpListSelectionPresenter >> updateText [
 	indexes := indexes joinUsing: '; '.
 	items := listModel selectedItems collect: [ :i | i printString ].
 	items := items sort joinUsing: '; '.
-	UIManager default
+	self
 		defer: [ textModel1 text: indexes.
 			textModel2 text: items ] ] fork
 ]
