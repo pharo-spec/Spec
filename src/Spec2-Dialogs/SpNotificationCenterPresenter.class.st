@@ -14,8 +14,7 @@ SpNotificationCenterPresenter class >> example2 [
 	
 	| app notificationPresenter |
 	app := SpApplication new. 
-	notificationPresenter := SpNotificationCenterPresenter 
-					newApplication: app model: app notificationCenter.
+	notificationPresenter := self newApplication: app model: app notificationCenter.
 	notificationPresenter open.
 	^ app inspect
 	
@@ -25,7 +24,10 @@ SpNotificationCenterPresenter class >> example2 [
 { #category : #initialization }
 SpNotificationCenterPresenter >> connectPresenters [
 
-	itemList whenSelectedItemChangedDo: [ :each | descriptionText text: each text]. 
+	"Why this is not working 
+	itemList whenSelectedItemChangedDo: [ :each | descriptionText text: each text]."
+	
+	itemList whenSelectedItemChangedDo: [ :each | each ifNotNil: [descriptionText text: each text]]
 	
 ]
 
@@ -42,7 +44,7 @@ SpNotificationCenterPresenter >> defaultLayout [
 SpNotificationCenterPresenter >> initializePresenters [
 
 	itemList := self newList.
-	descriptionText := self newText
+	itemList display: [ :each | each text contractTo: 20 ]
 ]
 
 { #category : #initialization }
@@ -54,7 +56,7 @@ SpNotificationCenterPresenter >> initializeWindow: aWindowPresenter [
 { #category : #initialization }
 SpNotificationCenterPresenter >> modelChanged [
 
-	 itemList items: announcingObject items
+	 itemList items: announcingObject value items
 ]
 
 { #category : #initialization }
