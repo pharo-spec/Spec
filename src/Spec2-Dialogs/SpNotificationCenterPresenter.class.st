@@ -27,7 +27,7 @@ SpNotificationCenterPresenter >> connectPresenters [
 	"Why this is not working 
 	itemList whenSelectedItemChangedDo: [ :each | descriptionText text: each text]."
 	
-	itemList whenSelectedItemChangedDo: [ :each | each ifNotNil: [descriptionText text: each text]]
+	itemList whenSelectedDo: [ :each | each ifNotNil: [descriptionText text: each text]]
 	
 ]
 
