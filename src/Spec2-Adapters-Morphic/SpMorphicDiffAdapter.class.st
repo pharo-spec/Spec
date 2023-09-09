@@ -8,6 +8,18 @@ Class {
 }
 
 { #category : #'widget API' }
+SpMorphicDiffAdapter >> beNavigable [
+
+	^ self model beNavigable
+]
+
+{ #category : #'spec protocol' }
+SpMorphicDiffAdapter >> beNavigable: aBoolean [
+
+	self widgetDo: [ :w | w beNavigable: aBoolean ]
+]
+
+{ #category : #'widget API' }
 SpMorphicDiffAdapter >> beWrapped [
 
 	^ self model beWrapped
@@ -31,6 +43,8 @@ SpMorphicDiffAdapter >> buildWidget [
 		  vResizing: #spaceFill;
 		  setBalloonText: self help;
 		  showOptions: self showOptions;
+		  beNavigable: self beNavigable;
+		  beWrapped: self beWrapped;
 		  leftLabel: self leftLabel rightLabel: self rightLabel;
 		  showOnlyDestination: self showOnlyDestination;
 		  yourself

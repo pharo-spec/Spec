@@ -20,7 +20,8 @@ Class {
 		'#leftText => ObservableSlot',
 		'#rightLabel => ObservableSlot',
 		'#rightText => ObservableSlot',
-		'#beWrapped => ObservableSlot'
+		'#beWrapped => ObservableSlot',
+		'#beNavigable => ObservableSlot'
 	],
 	#category : #'Spec2-Core-Widgets'
 }
@@ -29,6 +30,18 @@ Class {
 SpDiffPresenter class >> adapterName [
 
 	^ #DiffAdapter
+]
+
+{ #category : #api }
+SpDiffPresenter >> beNavigable [
+
+	^ beNavigable
+]
+
+{ #category : #api }
+SpDiffPresenter >> beNavigable: aBoolean [
+
+	beNavigable := aBoolean
 ]
 
 { #category : #api }
@@ -60,6 +73,7 @@ SpDiffPresenter >> contextClass: anObject [
 
 { #category : #initialization }
 SpDiffPresenter >> initialize [
+
 	super initialize.
 
 	leftText := ''.
@@ -68,16 +82,48 @@ SpDiffPresenter >> initialize [
 	showOnlyDestination := false.
 	showOnlySource := false.
 	beWrapped := true.
+	beNavigable := false.
 
-	self property: #beWrapped whenChangedDo: [ :aBoolean | self changed: #beWrapped: with: {aBoolean} ].
-	self property: #leftText whenChangedDo: [ :newText | self changed: #leftText: with: {newText} ].
-	self property: #rightText whenChangedDo: [ :newText | self changed: #rightText: with: {newText} ].
-	self property: #contextClass whenChangedDo: [ :newClass | self changed: #contextClass: with: {newClass} ].
-	self property: #showOptions whenChangedDo: [ :aBoolean | self changed: #showOptions: with: {aBoolean} ].
-	self property: #showOnlyDestination whenChangedDo: [ :aBoolean | self changed: #showOnlyDestination: with: {aBoolean} ].
-	self property: #showOnlySource whenChangedDo: [ :aBoolean | self changed: #showOnlySource: with: {aBoolean} ].
-	self property: #leftLabel whenChangedDo: [ :newText | self changed: #leftLabel: with: {newText} ].
-	self property: #rightLabel whenChangedDo: [ :newText | self changed: #rightLabel: with: {newText} ]
+	self
+		property: #beWrapped
+		whenChangedDo: [ :aBoolean | 
+		self changed: #beWrapped: with: { aBoolean } ].
+	self
+		property: #beNavigable
+		whenChangedDo: [ :aBoolean | 
+		self changed: #beNavigable: with: { aBoolean } ].
+	self
+		property: #leftText
+		whenChangedDo: [ :newText | 
+		self changed: #leftText: with: { newText } ].
+	self
+		property: #rightText
+		whenChangedDo: [ :newText | 
+		self changed: #rightText: with: { newText } ].
+	self
+		property: #contextClass
+		whenChangedDo: [ :newClass | 
+		self changed: #contextClass: with: { newClass } ].
+	self
+		property: #showOptions
+		whenChangedDo: [ :aBoolean | 
+		self changed: #showOptions: with: { aBoolean } ].
+	self
+		property: #showOnlyDestination
+		whenChangedDo: [ :aBoolean | 
+		self changed: #showOnlyDestination: with: { aBoolean } ].
+	self
+		property: #showOnlySource
+		whenChangedDo: [ :aBoolean | 
+		self changed: #showOnlySource: with: { aBoolean } ].
+	self
+		property: #leftLabel
+		whenChangedDo: [ :newText | 
+		self changed: #leftLabel: with: { newText } ].
+	self
+		property: #rightLabel
+		whenChangedDo: [ :newText | 
+		self changed: #rightLabel: with: { newText } ]
 ]
 
 { #category : #accessing }
