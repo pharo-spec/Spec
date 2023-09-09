@@ -6,7 +6,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'items',
-		'limit'
+		'limit',
+		'application'
 	],
 	#category : #'Spec2-Core-Notification'
 }
@@ -15,7 +16,13 @@ Class {
 SpNotificationCenter >> add: aSpNotificationItem [ 
 	items size > limit
 		ifTrue: [ items removeLast: self bulkSize ].
-	items addFirst: aSpNotificationItem
+	items addFirst: aSpNotificationItem.
+	self updateIfNecessary.
+]
+
+{ #category : #accessing }
+SpNotificationCenter >> application [
+	^ application
 ]
 
 { #category : #adding }
@@ -24,6 +31,12 @@ SpNotificationCenter >> bulkSize [
 	Pay attention that the limit MUST always be larger than bulkSize"
 	
 	^ 5
+]
+
+{ #category : #adding }
+SpNotificationCenter >> forApplication: app [
+
+	application := app
 ]
 
 { #category : #initialization }
@@ -44,4 +57,12 @@ SpNotificationCenter >> items [
 { #category : #accessing }
 SpNotificationCenter >> limit [
 	^ limit
+]
+
+{ #category : #adding }
+SpNotificationCenter >> updateIfNecessary [
+
+	| notifs |
+	notifs := self application windows select: [ :each | each title = 'Notifications' ].
+	notifs do: [ :each | each updatePresenter ]
 ]
