@@ -50,7 +50,8 @@ Class {
 		'properties',
 		'configuration',
 		'iconManager',
-		'iconProvider'
+		'iconProvider',
+		'notificationCenter'
 	],
 	#classVars : [
 		'DefaultApplication'
@@ -273,11 +274,16 @@ SpApplication >> newPresenter: aPresenterClass [
 	^ aPresenterClass newApplication: self
 ]
 
-{ #category : #'ui - notifying' }
-SpApplication >> notify: aSpecNotification [
-	"how notifications are handled depends on the backend"
+{ #category : #'ui - dialogs' }
+SpApplication >> notificationClass [ 
 
-	aSpecNotification dispatchTo: self backend
+	^ SpNotificationItem
+]
+
+{ #category : #'ui - dialogs' }
+SpApplication >> notify: aString [
+	self halt.
+	notificationCenter add: (self notificationClass with: aString)
 ]
 
 { #category : #'accessing - properties' }
