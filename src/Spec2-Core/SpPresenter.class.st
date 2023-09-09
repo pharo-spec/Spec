@@ -237,6 +237,13 @@ SpPresenter >> additionalSubpresentersMap [
 	^ additionalSubpresentersMap ifNil: [ additionalSubpresentersMap := Dictionary new ]
 ]
 
+{ #category : #'simple dialog helpers' }
+SpPresenter >> alert: aString [
+	"Displays a simple inform dialog, for more configurable version please use `self application newInform title: ....`."
+
+	^ self application alert: aString
+]
+
 { #category : #'private - traversing' }
 SpPresenter >> allPresenters [
 	"This answers ALL presenters included in this presenter, the ones that are in the layout 

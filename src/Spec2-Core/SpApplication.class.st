@@ -106,6 +106,16 @@ SpApplication >> adapterBindings [
 	^ self backend adapterBindings
 ]
 
+{ #category : #'ui - dialogs' }
+SpApplication >> alert: aString [
+	"Displays an inform dialog, for more configurable version please use `self application newInform title: ....`."
+
+	^ self newAlert
+		  title: 'Alert';
+		  label: aString;
+		  openModal
+]
+
 { #category : #'accessing - backend' }
 SpApplication >> backend [
 
@@ -142,7 +152,7 @@ SpApplication >> confirm: aString [
 	"Displays a confirm dialog, for more configurable version please use `self application newConfirm title: ....`."
 
 	^ self newConfirm
-		  title: 'Alert';
+		  title: 'Please confirm';
 		  label: aString;
 		  openModal
 ]
