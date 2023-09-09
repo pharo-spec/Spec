@@ -40,3 +40,8 @@ SpNotificationCenter >> initialize [
 SpNotificationCenter >> items [
 	^ items
 ]
+
+{ #category : #accessing }
+SpNotificationCenter >> limit [
+	^ limit
+]

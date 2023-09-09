@@ -15,6 +15,31 @@ SpNotificationCenterTest >> testAddAnItemAddsIt [
 ]
 
 { #category : #tests }
+SpNotificationCenterTest >> testAddingOverTheLimitCutFirst [
+
+	| f center |
+	center := SpNotificationCenter new.
+	1 to: 35 do: [ :each | 
+		f := SpNotificationItem with: each printString.
+		center add: f ] .
+
+	self assert: center items size equals: center limit
+]
+
+{ #category : #tests }
+SpNotificationCenterTest >> testAddingOverTheLimitRemoveBuldElements [
+
+	| f center |
+	center := SpNotificationCenter new.
+	1 to: 32 do: [ :each | 
+		f := SpNotificationItem with: each printString.
+		center add: f ] .
+
+	"when we added 31 we removed buld elements (5)  and added 31 and 32 so we have 27 elements"
+	self assert: center items size equals: center limit - center bulkSize + (32 - center limit)
+]
+
+{ #category : #tests }
 SpNotificationCenterTest >> testItemsAreOrderedLIFO [
 
 	| f center f2 |
