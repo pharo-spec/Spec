@@ -89,6 +89,12 @@ SpWindowPresenter >> aboutTitle [
 	^ self presenter toolName
 ]
 
+{ #category : #api }
+SpWindowPresenter >> activate [
+
+	self withAdapterDo: [ :anAdapter | anAdapter activate ]
+]
+
 { #category : #'private - building' }
 SpWindowPresenter >> addPresenterIn: widget withSpecLayout: aSpec [
 	
