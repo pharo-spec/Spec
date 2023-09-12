@@ -14,8 +14,7 @@ SpNotificationCenterPresenter class >> example2 [
 	
 	| app notificationPresenter |
 	app := SpApplication new. 
-	notificationPresenter := self newApplication: app model: app notificationCenter.
-	notificationPresenter open.
+	notificationPresenter := self newApplication: app model: app notificationCenter. notificationPresenter open.
 	^ app inspect
 	
 	"1 to: 10 do: [ :each | app notify: each printString ]"
@@ -44,7 +43,8 @@ SpNotificationCenterPresenter >> defaultLayout [
 SpNotificationCenterPresenter >> initializePresenters [
 
 	itemList := self newList.
-	itemList display: [ :each | each text contractTo: 20 ]
+	itemList display: [ :each | each text contractTo: 20 ].
+	descriptionText := self newText
 ]
 
 { #category : #initialization }

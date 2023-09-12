@@ -289,7 +289,7 @@ SpApplication >> notificationClass [
 { #category : #'ui - dialogs' }
 SpApplication >> notify: aString [
 
-	notificationCenter add: (self notificationClass with: aString)
+	self notificationCenter add: (self notificationClass with: aString)
 ]
 
 { #category : #'accessing - properties' }
