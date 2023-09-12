@@ -127,7 +127,9 @@ SpStyle class >> defaultStyleSheetData [
 		.lines8 [ Geometry { #minHeight: 160, #height: 160 } ] ],
 	.textInputField [ Geometry { #height: 24, #minHeight: 24 } ],
 	.textSearchField [ Geometry { #height: 24, #minHeight: 24 } ],
-	.code [ Font { #name: EnvironmentFont(#code) } ],
+	.code [ Font { #name: EnvironmentFont(#code) } ], 
+	.codeLight [ Draw { #backgroundColor: #white } ],
+	.codeDark [ Draw { #backgroundColor: #212121 } ],
 	.patch [ Font { #name: EnvironmentFont(#code) } ],
 	.codePopover [ 
 		Draw { #color: #transparent },

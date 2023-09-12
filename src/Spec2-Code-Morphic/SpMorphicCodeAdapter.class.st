@@ -182,6 +182,16 @@ SpMorphicCodeAdapter >> originMorphFor: aMorph [
 	^ aMorph textArea cursor
 ]
 
+{ #category : #styling }
+SpMorphicCodeAdapter >> presenterStyles [
+	"The presenters in the style. 
+	 styleScheme is taken as just another style (not ideal, but it does the work, )"
+
+	^ self presenter styleScheme
+		ifNotNil: [ :aScheme | self presenter styles copyWith: aScheme ]
+		ifNil: [ self presenter styles ]
+]
+
 { #category : #NOCompletion }
 SpMorphicCodeAdapter >> receiverClass [
 
@@ -259,7 +269,7 @@ SpMorphicCodeAdapter >> setSyntaxHighlightThemeFor: textArea [
 	theme := self presenter syntaxHighlightTheme.
 	theme ifNil: [ ^ self ].
 
-	textArea shoutStyler 
+	textArea shoutStyler
 		styler: (SpMorphicCodeTextStyler newWithAttributeTableNamed: theme);
 		refreshStyling
 ]
