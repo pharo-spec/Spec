@@ -3,21 +3,29 @@ Class {
 	#superclass : #SpPresenterWithModel,
 	#instVars : [
 		'itemList',
-		'descriptionText'
+		'descriptionText',
+		'clearButton'
 	],
 	#category : #'Spec2-Dialogs'
 }
 
 { #category : #examples }
 SpNotificationCenterPresenter class >> example2 [
+
 	<example>
-	
 	| app notificationPresenter |
-	app := SpApplication new. 
-	notificationPresenter := self newApplication: app model: app notificationCenter. notificationPresenter open.
+	app := SpApplication new.
+	notificationPresenter := self newApplication: app model: app notificationCenter.
+	notificationPresenter open.
 	^ app inspect
-	
 	"1 to: 10 do: [ :each | app notify: each printString ]"
+]
+
+{ #category : #initialization }
+SpNotificationCenterPresenter >> clearNotificationsAction [
+
+	itemList items: OrderedCollection new.
+	descriptionText text: '   No notification   '
 ]
 
 { #category : #initialization }
@@ -30,21 +38,35 @@ SpNotificationCenterPresenter >> connectPresenters [
 	
 ]
 
-{ #category : #initialization }
+{ #category : #layout }
 SpNotificationCenterPresenter >> defaultLayout [
-	 
-	^ SpBoxLayout newTopToBottom
+
+	| upperLayout lowerLayout |
+	upperLayout := SpBoxLayout newLeftToRight
+		addLast: clearButton;
+		yourself.
+	lowerLayout := SpPanedLayout newTopToBottom
+		positionOfSlider: 0.8;
 		add: itemList;
 		add: descriptionText;
-      yourself
+		yourself.
+	^ SpBoxLayout newTopToBottom
+		  add: upperLayout expand: false;
+		  add: lowerLayout;
+		  yourself
 ]
 
 { #category : #initialization }
 SpNotificationCenterPresenter >> initializePresenters [
 
-	itemList := self newList.
-	itemList display: [ :each | each text contractTo: 20 ].
-	descriptionText := self newText
+	itemList := self newList
+		display: [ :each | '  ' , each text contractTo: 20 ];
+		yourself.
+	descriptionText := self newText.
+	clearButton := self newButton
+		icon: (self iconNamed: #smallUpdate);
+		action: [ self clearNotificationsAction ];
+		yourself
 ]
 
 { #category : #initialization }
@@ -55,12 +77,13 @@ SpNotificationCenterPresenter >> initializeWindow: aWindowPresenter [
 
 { #category : #initialization }
 SpNotificationCenterPresenter >> modelChanged [
-
-	 itemList items: announcingObject value items
+	
+	itemList items: announcingObject value items.
+	itemList selectFirst
 ]
 
-{ #category : #initialization }
+{ #category : #updating }
 SpNotificationCenterPresenter >> updatePresenter [
 	
-	itemList items: announcingObject value items
+	self modelChanged
 ]
