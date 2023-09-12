@@ -63,6 +63,6 @@ SpNotificationCenter >> limit [
 SpNotificationCenter >> updateIfNecessary [
 
 	| notifs |
-	notifs := self application windows select: [ :each | each title = 'Notifications' ].
-	notifs do: [ :each | each updatePresenter ]
+	notifs := self application windows select: [ :each | each presenter class = SpNotificationCenterPresenter ].
+	notifs do: [ :each | each presenter updatePresenter ]
 ]

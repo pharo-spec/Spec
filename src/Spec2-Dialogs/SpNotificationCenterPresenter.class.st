@@ -61,6 +61,6 @@ SpNotificationCenterPresenter >> modelChanged [
 
 { #category : #initialization }
 SpNotificationCenterPresenter >> updatePresenter [
-
+	
 	itemList items: announcingObject value items
 ]
