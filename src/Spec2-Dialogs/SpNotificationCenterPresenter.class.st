@@ -65,6 +65,7 @@ SpNotificationCenterPresenter >> initializePresenters [
 	descriptionText := self newText.
 	clearButton := self newButton
 		icon: (self iconNamed: #smallUpdate);
+		label: 'Clear notifications';
 		action: [ self clearNotificationsAction ];
 		yourself
 ]
