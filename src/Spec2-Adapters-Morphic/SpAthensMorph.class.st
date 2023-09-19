@@ -2,23 +2,25 @@
 It exposes an athens surface in a morph
 "
 Class {
-	#name : #SpAthensMorph,
-	#superclass : #Morph,
+	#name : 'SpAthensMorph',
+	#superclass : 'Morph',
 	#instVars : [
 		'surface',
 		'drawBlock',
 		'lastExtent'
 	],
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAthensMorph >> drawBlock: aBlock [
 
 	drawBlock := aBlock
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpAthensMorph >> drawOn: aMorphicCanvas [
 
 	self redraw.
@@ -27,7 +29,7 @@ SpAthensMorph >> drawOn: aMorphicCanvas [
 		at: bounds origin
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpAthensMorph >> redraw [
 
 	self surface drawDuring: [ :canvas | 
@@ -36,7 +38,7 @@ SpAthensMorph >> redraw [
 			cull: (0@0 extent: self extent) ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAthensMorph >> surface [
  
 	lastExtent = self extent ifFalse: [ surface := nil ].

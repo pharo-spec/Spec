@@ -27,23 +27,25 @@ myStyle := SpStyle defaultStyleSheet, myOwnStyleDefinition
 ]]]
 "
 Class {
-	#name : #SpClassStyle,
-	#superclass : #SpStyle,
+	#name : 'SpClassStyle',
+	#superclass : 'SpStyle',
 	#instVars : [
 		'parent',
 		'name',
 		'styles'
 	],
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #copying }
+{ #category : 'copying' }
 SpClassStyle >> , joinStyle [
 
 	^ self mergeWith: joinStyle
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpClassStyle >> addClass: aName with: aBlock [
 	| class |
 	
@@ -56,7 +58,7 @@ SpClassStyle >> addClass: aName with: aBlock [
 	self addStyle: class
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpClassStyle >> addProperty: aClass with: aBlock [ 
 	| property |
 	
@@ -65,51 +67,51 @@ SpClassStyle >> addProperty: aClass with: aBlock [
 	self addStyle: property
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpClassStyle >> addPropertyContainerWith: aBlock [ 
 	
 	self addProperty: SpContainerStyle with: aBlock
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpClassStyle >> addPropertyDrawWith: aBlock [ 
 	
 	self addProperty: SpDrawStyle with: aBlock
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpClassStyle >> addPropertyFontWith: aBlock [ 
 	
 	self addProperty: SpFontStyle with: aBlock
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpClassStyle >> addPropertyGeometryWith: aBlock [ 
 	
 	self addProperty: SpGeometryStyle with: aBlock
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpClassStyle >> addPropertyTextWith: aBlock [ 
 	
 	self addProperty: SpTextStyle with: aBlock
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpClassStyle >> addStyle: aStyle [
 
 	styles ifNil: [ styles := #() ].
 	styles := styles copyWith: aStyle
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 SpClassStyle >> applyTo: aMorph [
 
 	self properties do: [ :each | 
 		each applyTo: aMorph ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpClassStyle >> flattenClasses [
 
 	^ (self styles
@@ -120,7 +122,7 @@ SpClassStyle >> flattenClasses [
 		flattened
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpClassStyle >> flattenProperties [
 
 	^ (self flattenClasses
@@ -129,13 +131,13 @@ SpClassStyle >> flattenProperties [
 		flattened
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpClassStyle >> fromSton: stonReader [
 	
 	styles := stonReader parseList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpClassStyle >> fullName [
 
 	^ (self parent 
@@ -148,20 +150,20 @@ SpClassStyle >> fullName [
 		ifNil: [ self name ])
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpClassStyle >> initialize [
 
 	super initialize.
 	styles := #()
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpClassStyle >> isStyleClass [
 
 	^ true
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 SpClassStyle >> mergeWith: joinStyle [
 
 	^ self class new
@@ -170,7 +172,7 @@ SpClassStyle >> mergeWith: joinStyle [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpClassStyle >> mergedStylesWith: anotherStyle [
 
 	| allStyles results|
@@ -186,50 +188,50 @@ SpClassStyle >> mergedStylesWith: anotherStyle [
 	^ results asArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpClassStyle >> name [
 
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpClassStyle >> name: aString [ 
 	
 	name := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpClassStyle >> parent [ 
 
 	^ parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpClassStyle >> parent: aStyle [
 
 	parent := aStyle
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 SpClassStyle >> printOn: stream [ 
 
 	super printOn: stream.
 	stream << '(' << self fullName << ')'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpClassStyle >> properties [
 
 	^ self styles select: [ :each | each isStyleProperty ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpClassStyle >> styles [
 
 	^ styles
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpClassStyle >> styles: aCollection [
 
 	styles := aCollection asArray

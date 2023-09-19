@@ -3,34 +3,36 @@ A morph representing a ""page"" inside a `SpPaginatorMorph`.
 Pages can be selected and users can control it with `SpPaginatorPageMorph>>#whenSelectedDo:`.
 "
 Class {
-	#name : #SpPaginatorPageMorph,
-	#superclass : #Morph,
+	#name : 'SpPaginatorPageMorph',
+	#superclass : 'Morph',
 	#instVars : [
 		'selectedBlock',
 		'model'
 	],
-	#category : #'Spec2-Adapters-Morphic-Paginator'
+	#category : 'Spec2-Adapters-Morphic-Paginator',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Paginator'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorPageMorph class >> baseWidth [
 
 	^ 14
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorPageMorph class >> defaultInset [
 
 	^ 3
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpPaginatorPageMorph >> handlesMouseDown: event [
 
 	^ true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPaginatorPageMorph >> initialize [
 
 	super initialize.
@@ -47,19 +49,19 @@ SpPaginatorPageMorph >> initialize [
 	self addMorphBack: self newContentMorph.
 ]
 
-{ #category : #menus }
+{ #category : 'menus' }
 SpPaginatorPageMorph >> model [
 
 	^ model
 ]
 
-{ #category : #menus }
+{ #category : 'menus' }
 SpPaginatorPageMorph >> model: anObject [
 
 	model := anObject
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpPaginatorPageMorph >> mouseDown: event [
 
 	super mouseDown: event.
@@ -67,7 +69,7 @@ SpPaginatorPageMorph >> mouseDown: event [
 		selectedBlock value: self ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPaginatorPageMorph >> newContentMorph [
 
 	^ Morph new
@@ -79,7 +81,7 @@ SpPaginatorPageMorph >> newContentMorph [
 		yourself
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpPaginatorPageMorph >> whenSelectedDo: aBlock [
 
 	selectedBlock := aBlock

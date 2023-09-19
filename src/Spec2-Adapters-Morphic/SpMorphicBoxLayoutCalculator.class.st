@@ -3,8 +3,8 @@ A base for the calculator of sizes of morphs on a box layout.
 This is an **ONGOING** refactor of what is found in `TableLayout`, trying to get a better (and more understandable) design.
 "
 Class {
-	#name : #SpMorphicBoxLayoutCalculator,
-	#superclass : #Object,
+	#name : 'SpMorphicBoxLayoutCalculator',
+	#superclass : 'Object',
 	#instVars : [
 		'extra',
 		'sum',
@@ -21,10 +21,12 @@ Class {
 		'firstCell',
 		'lastCell'
 	],
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMorphicBoxLayoutCalculator class >> newProperties: anObject [
 
 	^ self basicNew 
@@ -32,13 +34,13 @@ SpMorphicBoxLayoutCalculator class >> newProperties: anObject [
 		yourself
 ]
 
-{ #category : #calculating }
+{ #category : 'calculating' }
 SpMorphicBoxLayoutCalculator >> calculateFor: aMorph in: newBounds [
 
 	self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicBoxLayoutCalculator >> initializeProperties: anObject [
 
 	self initialize.

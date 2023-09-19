@@ -2,45 +2,47 @@
 I am a special DropList with icons
 "
 Class {
-	#name : #SpDropListMorph,
-	#superclass : #DropListMorph,
+	#name : 'SpDropListMorph',
+	#superclass : 'DropListMorph',
 	#instVars : [
 		'currentIcon'
 	],
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpDropListMorph >> configureWith: displayModel item: itemPresenter [
 	displayModel configureDropList: self item: itemPresenter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropListMorph >> currentIcon [
 
 	^ currentIcon
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpDropListMorph >> getIconFor: anItem [
 
 	^ self model getIconFor: anItem
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropListMorph >> listHeight [
 	"Answer the height for the list."
 
 	^ super listHeight + 12
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropListMorph >> listMorphClass [
 
 	^ PluggableIconListMorph
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpDropListMorph >> newListMorph [
 	"Answer a new list morph"
 
@@ -61,7 +63,7 @@ SpDropListMorph >> newListMorph [
 			yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropListMorph >> updateListSelectionIndex [
 
 	currentIcon ifNotNil: [ self removeMorph: currentIcon ].
@@ -74,7 +76,7 @@ SpDropListMorph >> updateListSelectionIndex [
 			self addMorphFront: currentIcon ] ] 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropListMorph >> wrapItem: anItem index: anIndex [
 
 	^ self model wrapItem: anItem index: anIndex

@@ -4,39 +4,41 @@ I am a STON reader specialised on reading an SpStyle.
 Contrary to my parent, I accept .class [ ... ] constructions.
 "
 Class {
-	#name : #SpStyleSTONReader,
-	#superclass : #STONReader,
+	#name : 'SpStyleSTONReader',
+	#superclass : 'STONReader',
 	#instVars : [
 		'currentStyle'
 	],
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpStyleSTONReader class >> fromStream: readStream [
 
 	^ (self on: readStream) next
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpStyleSTONReader class >> fromString: aString [
 
 	^ self fromStream: aString readStream
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpStyleSTONReader >> isClassChar: char [
 	
 	^ (super isClassChar: char) or: [ char = $: ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpStyleSTONReader >> isStyleClassChar: char [ 
 
 	^ char = $.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpStyleSTONReader >> lookupClass: name [
 
 	"The SpStyleSTONReader only looks for ston names in the hierarchy of SpStyle"
@@ -49,7 +51,7 @@ SpStyleSTONReader >> lookupClass: name [
 				ifNone: [ NotFound signalFor: name ] ]
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SpStyleSTONReader >> parseSimpleValue [
 	| char |
 
@@ -61,7 +63,7 @@ SpStyleSTONReader >> parseSimpleValue [
 	^ super parseSimpleValue
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SpStyleSTONReader >> parseStyleClass [
 	| name reference style |
 
@@ -90,7 +92,7 @@ SpStyleSTONReader >> parseStyleClass [
 	^ style
 ]
 
-{ #category : #'private parsing' }
+{ #category : 'private parsing' }
 SpStyleSTONReader >> parseStyleName [
 	| styleName |
 
@@ -102,7 +104,7 @@ SpStyleSTONReader >> parseStyleName [
 	^ styleName asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpStyleSTONReader >> pushStyle: aStyle during: aBlock [
 	| oldStyle |
 	
@@ -112,13 +114,13 @@ SpStyleSTONReader >> pushStyle: aStyle during: aBlock [
 		currentStyle := oldStyle ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpStyleSTONReader >> styleClass [
 
 	^ SpClassStyle
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpStyleSTONReader >> styleClasses [
 
 	^ SpStyle allSubclasses, Color withAllSubclasses

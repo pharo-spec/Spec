@@ -2,12 +2,14 @@
 I am the adapter used to bridge a TickingWindowPresenter and a TickingSpecWindow
 "
 Class {
-	#name : #SpMorphicTickingWindowAdapter,
-	#superclass : #SpMorphicWindowAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicTickingWindowAdapter',
+	#superclass : 'SpMorphicWindowAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTickingWindowAdapter >> buildWidget [
 
 	^ SpTickingSpecWindow new
@@ -16,7 +18,7 @@ SpMorphicTickingWindowAdapter >> buildWidget [
 		  yourself
 ]
 
-{ #category : #stepping }
+{ #category : 'stepping' }
 SpMorphicTickingWindowAdapter >> step [
 
 	self model step

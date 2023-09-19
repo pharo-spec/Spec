@@ -1,10 +1,12 @@
 Class {
-	#name : #SpRubScrolledTextMorph,
-	#superclass : #RubScrolledTextMorph,
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#name : 'SpRubScrolledTextMorph',
+	#superclass : 'RubScrolledTextMorph',
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpRubScrolledTextMorph >> acceptDroppingMorph: aTransferMorph event: anEvent [
 
 	^ self model model acceptDrop cull: (SpDragAndDropTransfer new
@@ -12,13 +14,13 @@ SpRubScrolledTextMorph >> acceptDroppingMorph: aTransferMorph event: anEvent [
 			   yourself)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRubScrolledTextMorph >> drawKeyboardFocus: aBoolean [ 
 	
 	self drawFocusBorder: aBoolean
 ]
 
-{ #category : #'accessing - scrollbars' }
+{ #category : 'accessing - scrollbars' }
 SpRubScrolledTextMorph >> registerScrollChanges: aSelector [
 
 	self announcer 
@@ -27,7 +29,7 @@ SpRubScrolledTextMorph >> registerScrollChanges: aSelector [
 		to: self model
 ]
 
-{ #category : #'accessing - scrollbars' }
+{ #category : 'accessing - scrollbars' }
 SpRubScrolledTextMorph >> scrollerOffsetChanged [
 
 	super scrollerOffsetChanged.
@@ -39,7 +41,7 @@ SpRubScrolledTextMorph >> scrollerOffsetChanged [
 				yourself)
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpRubScrolledTextMorph >> wantsDroppedMorph: aTransferMorph event: anEvent [
 
 	^ aTransferMorph isTransferable and: [ 

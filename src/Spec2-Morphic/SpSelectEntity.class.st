@@ -6,8 +6,8 @@ See my class side for an example
 
 "
 Class {
-	#name : #SpSelectEntity,
-	#superclass : #SpPresenter,
+	#name : 'SpSelectEntity',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'#entity => ObservableSlot',
 		'#selectEntity',
@@ -17,10 +17,12 @@ Class {
 		'#selectDialog => ObservableSlot',
 		'#placeholder => ObservableSlot'
 	],
-	#category : #'Spec2-Morphic-Widgets'
+	#category : 'Spec2-Morphic-Widgets',
+	#package : 'Spec2-Morphic',
+	#tag : 'Widgets'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpSelectEntity class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -32,7 +34,7 @@ SpSelectEntity class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSelectEntity >> connectPresenters [
 	selectEntity 
 		action: [  |select|
@@ -43,20 +45,20 @@ SpSelectEntity >> connectPresenters [
 
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectEntity >> displaySymbol [
 	"return the method selector used to get the label of the entity that is for entry completion"
 
 	^ displaySymbol ifNil: [ #printString ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectEntity >> displaySymbol: anObject [
 	displaySymbol := anObject.
 	entityText entryCompletion: self entitiesEntryCompletion
 ]
 
-{ #category : #entryCompletion }
+{ #category : 'entryCompletion' }
 SpSelectEntity >> entitiesEntryCompletion [
 	^ EntryCompletion new
 				dataSourceBlock: [:currText | self possibleEntities collect: [:each | 
@@ -68,28 +70,28 @@ SpSelectEntity >> entitiesEntryCompletion [
 					currEntity asUppercase includesSubstring: currText asString asUppercase].
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectEntity >> entity [
 	^ entity
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectEntity >> entity: anObject [
 	entity := anObject.
 	anObject ifNotNil: [ self entityText text: (anObject perform: self displaySymbol) ] ifNil: [ self entityText text: '' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSelectEntity >> entityText [
 	^ entityText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSelectEntity >> entityText: anObject [
 	entityText := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSelectEntity >> initialize [
 	super initialize.
 	displaySymbol := #displayString.
@@ -98,7 +100,7 @@ SpSelectEntity >> initialize [
 	selectDialog := [  ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSelectEntity >> initializePresenters [
 
 	entityText := self newTextInput
@@ -113,23 +115,23 @@ SpSelectEntity >> initializePresenters [
 		add: selectEntity
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectEntity >> placeholder [
 	^ placeholder ifNil: [ '' ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectEntity >> placeholder: aString [
 	placeholder := aString.
 	entityText placeholder: aString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectEntity >> possibleEntities [
 	^ possibleEntities ifNil: [ #() ] ifNotNil: [ possibleEntities value ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectEntity >> possibleEntities: aBlock [
 	"Set the block used to return a collection of all possible entity choices"
 
@@ -137,12 +139,12 @@ SpSelectEntity >> possibleEntities: aBlock [
 	entityText entryCompletion: self entitiesEntryCompletion
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectEntity >> selectDialog [
 	^ selectDialog
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectEntity >> selectDialog: anObject [
 	"Set a block that returns an object that will 
 	first be sent #openDialogWithSpec
@@ -151,39 +153,39 @@ SpSelectEntity >> selectDialog: anObject [
 	selectDialog := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSelectEntity >> selectEntity [
 	^ selectEntity
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSelectEntity >> selectEntity: anObject [
 	selectEntity := anObject
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpSelectEntity >> whenDisplaySymbolChanged: aBlock [
 	self property: #displaySymbol whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpSelectEntity >> whenEntityChanged: aBlock [
 	self property: #entity whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpSelectEntity >> whenPlaceholderChanged: aBlock [
 	"aBlock will be performed when ghostText changed"
 
 	self property: #placeholder whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpSelectEntity >> whenPossibleEntitiesChanged: aBlock [
 	self property: #possibleEntities whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpSelectEntity >> whenSelectDialogChanged: aBlock [
 	self property: #selectDialog whenChangedDo: aBlock
 ]

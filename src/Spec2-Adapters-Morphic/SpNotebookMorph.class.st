@@ -4,22 +4,24 @@ I extend my parent by adding special ways to add pages (allowing any widget to b
 I also add a toolbar to add actions.
 "
 Class {
-	#name : #SpNotebookMorph,
-	#superclass : #TabGroupMorph,
+	#name : 'SpNotebookMorph',
+	#superclass : 'TabGroupMorph',
 	#instVars : [
 		'headerMorph',
 		'toolbarMorph'
 	],
-	#category : #'Spec2-Adapters-Morphic-Notebook'
+	#category : 'Spec2-Adapters-Morphic-Notebook',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Notebook'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookMorph class >> tabCellInset [
 
 	^ 2
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpNotebookMorph >> addLazyPage: aBlock label: aStringOrMorph model: aSpNotebookPage [ 
 	| newPage label |
 	
@@ -37,20 +39,20 @@ SpNotebookMorph >> addLazyPage: aBlock label: aStringOrMorph model: aSpNotebookP
 	self addPage: newPage label: label
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpNotebookMorph >> addPage: aMorph label: aStringOrMorph [
 	
 	super addPage: aMorph label: aStringOrMorph.
 	aMorph privateOwner: self
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpNotebookMorph >> buildLabelFrom: aString [ 
 	
 	^ LabelMorph newLabel: aString
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpNotebookMorph >> buildLabelFrom: aStringOrMorph withAction: aMorph [
 	| innerLabel |
 
@@ -64,26 +66,26 @@ SpNotebookMorph >> buildLabelFrom: aStringOrMorph withAction: aMorph [
 	^ innerLabel
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpNotebookMorph >> hasPageWithModel: anObject [
 	"an utility to easy know if the notebook has a page for a model"
 
 	^ self pages anySatisfy: [ :each | each model = anObject ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookMorph >> headerMorph [
 	^ headerMorph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookMorph >> headerMorph: anObject [
 	headerMorph := anObject.
 	
 	headerMorph clipSubmorphs: true.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNotebookMorph >> initialize [
 
 	super initialize.
@@ -95,7 +97,7 @@ SpNotebookMorph >> initialize [
 		addMorph: self contentMorph
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpNotebookMorph >> newCloseButtonFor: aSpNotebookPage [
 
 	^ self theme
@@ -105,7 +107,7 @@ SpNotebookMorph >> newCloseButtonFor: aSpNotebookPage [
 		help: 'Close this page' translated
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpNotebookMorph >> newContentMorph [
 	"Answer a new content morph"
 
@@ -120,7 +122,7 @@ SpNotebookMorph >> newContentMorph [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpNotebookMorph >> newHeaderMorph [
 
 	^ (self theme newRowIn: self theme for: { self tabSelectorMorph }) 
@@ -129,7 +131,7 @@ SpNotebookMorph >> newHeaderMorph [
 		borderWidth: 0
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpNotebookMorph >> newTabSelectorMorph [ 
 
 	^ SpNotebookTabSelectorMorph new
@@ -139,25 +141,25 @@ SpNotebookMorph >> newTabSelectorMorph [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpNotebookMorph >> pageAt: index [
 
 	^ (self pages at: index) actualPageMorph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookMorph >> pageWithModel: anObject [
 	"an utility to easy find pages with a model"
 
 	^ self pages detect: [ :each | each model = anObject ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpNotebookMorph >> postAddPage: aMorph [ 
 	"a hook to format the page after creation"
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpNotebookMorph >> removePage: aPage [
 	| removedPageIndex |
 	
@@ -176,12 +178,12 @@ SpNotebookMorph >> removePage: aPage [
 	self pages ifEmpty: [ self contentMorph removeAllMorphs ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpNotebookMorph >> removePageIndex: anInteger [
 	self removePage: (self pages at: anInteger)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpNotebookMorph >> suspendAnnouncementsDuring: aBlock [
 	| subscriptions |
 	subscriptions := self announcer subscriptions subscriptions.
@@ -190,7 +192,7 @@ SpNotebookMorph >> suspendAnnouncementsDuring: aBlock [
 	subscriptions do: [ :sub | self announcer basicSubscribe: sub ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpNotebookMorph >> updateContentMorph: aMorph with: newMorph [
 	| pageBounds |
 
@@ -202,7 +204,7 @@ SpNotebookMorph >> updateContentMorph: aMorph with: newMorph [
 	self pageMorph layoutChanged
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpNotebookMorph >> updatePageIndex: index [
 	"Change to the given page index, update the toolbar and send the announcement"
 	| oldPage newPage |
@@ -229,7 +231,7 @@ SpNotebookMorph >> updatePageIndex: index [
 		pageIndex: index)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpNotebookMorph >> updatePageIndex: index oldIndex: oldSelectedIndex [
 	"Change to the given page index, update the toolbar and send the announcement"
 	| oldPage newPage |

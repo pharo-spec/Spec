@@ -10,32 +10,34 @@ Example
 	FTSpecFilter block: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
 "
 Class {
-	#name : #SpFTSpecFilter,
-	#superclass : #FTFilter,
+	#name : 'SpFTSpecFilter',
+	#superclass : 'FTFilter',
 	#instVars : [
 		'block'
 	],
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpFTSpecFilter class >> block: aBlockClosure [
 	^ self new
 		block: aBlockClosure;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFTSpecFilter >> block [
 	^ block
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFTSpecFilter >> block: anObject [
 	block := anObject
 ]
 
-{ #category : #matching }
+{ #category : 'matching' }
 SpFTSpecFilter >> matches: anObject [
 	^ self block cull: anObject cull: pattern
 ]

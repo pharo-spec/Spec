@@ -3,12 +3,14 @@ I'm an adapter for Grid Layouts.
 A grid layout will arrange components according to its coordinates and span information.
 "
 Class {
-	#name : #SpMorphicGridAdapter,
-	#superclass : #SpMorphicLayoutAdapter,
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#name : 'SpMorphicGridAdapter',
+	#superclass : 'SpMorphicLayoutAdapter',
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicGridAdapter >> addConstraints: constraints toChild: childMorph [
 	"Adds constraits by child"
 	
@@ -21,7 +23,7 @@ SpMorphicGridAdapter >> addConstraints: constraints toChild: childMorph [
 	^ childMorph
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicGridAdapter >> applyChildrenAlignmentTo: aWidget constraints: constraints [
 
 	constraints hasAlignment 
@@ -36,7 +38,7 @@ SpMorphicGridAdapter >> applyChildrenAlignmentTo: aWidget constraints: constrain
 	^ aWidget
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicGridAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
 	| childMorph |
 
@@ -49,7 +51,7 @@ SpMorphicGridAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel
 	^ childMorph	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicGridAdapter >> basicApplyChildrenAlignmentTo: aWidget constraints: constraints [
 
 	| alignmentWidget |	
@@ -73,13 +75,13 @@ SpMorphicGridAdapter >> basicApplyChildrenAlignmentTo: aWidget constraints: cons
 	^ alignmentWidget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicGridAdapter >> children [
 	
 	^ widget submorphs
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicGridAdapter >> layout: aLayout [
 	"Build of widget was differed up to here (to know what is the direction)"
 
@@ -100,7 +102,7 @@ SpMorphicGridAdapter >> layout: aLayout [
 	super layout: aLayout
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicGridAdapter >> newPanel [
 
 	^ super newPanel
@@ -108,7 +110,7 @@ SpMorphicGridAdapter >> newPanel [
 		yourself
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 SpMorphicGridAdapter >> remove: aPresenter [
 
 	| morph |

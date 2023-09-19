@@ -2,36 +2,38 @@
 I am an adpater to bridge a DiffPresenter and a DiffMorph
 "
 Class {
-	#name : #SpMorphicDiffAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicDiffAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicDiffAdapter >> beNavigable [
 
 	^ self model beNavigable
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicDiffAdapter >> beNavigable: aBoolean [
 
 	self widgetDo: [ :w | w beNavigable: aBoolean ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicDiffAdapter >> beWrapped [
 
 	^ self model beWrapped
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicDiffAdapter >> beWrapped: aBoolean [
 
 	self widgetDo: [ :w | w beWrapped: aBoolean ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicDiffAdapter >> buildWidget [
 
 	^ DiffMorph new
@@ -50,13 +52,13 @@ SpMorphicDiffAdapter >> buildWidget [
 		  yourself
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicDiffAdapter >> contextClass [
 
 	^ self model contextClass
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicDiffAdapter >> contextClass: aClass [
 
 	self widgetDo: [ :w | 
@@ -65,26 +67,26 @@ SpMorphicDiffAdapter >> contextClass: aClass [
 			updateText ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicDiffAdapter >> leftLabel [
 
 	^ self model leftLabel
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicDiffAdapter >> leftLabel: aText [
 
 	self widgetDo: [ :w | 
 		w leftLabel: aText rightLabel: self rightLabel ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicDiffAdapter >> leftText [
 
 	^ self model leftText
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicDiffAdapter >> leftText: aText [
 
 	self widgetDo: [ :w | 
@@ -92,26 +94,26 @@ SpMorphicDiffAdapter >> leftText: aText [
 		w updateText ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicDiffAdapter >> rightLabel [
 
 	^ self model rightLabel
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicDiffAdapter >> rightLabel: aText [
 
 	self widgetDo: [ :w | 
 		w leftLabel: self leftLabel rightLabel: aText ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicDiffAdapter >> rightText [
 
 	^ self model rightText
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicDiffAdapter >> rightText: aText [
 
 	self widgetDo: [ :w | 
@@ -119,43 +121,43 @@ SpMorphicDiffAdapter >> rightText: aText [
 		w updateText ]
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicDiffAdapter >> showBoth [
 
 	self widgetDo: [ :w | w showBoth ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicDiffAdapter >> showOnlyDestination [
 
 	^ self model showOnlyDestination
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicDiffAdapter >> showOnlyDestination: aBoolean [
 
 	self widgetDo: [ :w | w showOnlyDestination: aBoolean ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicDiffAdapter >> showOnlySource [
 
 	^ self model showOnlySource
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicDiffAdapter >> showOnlySource: aBoolean [
 
 	self widgetDo: [ :w | w showOnlySource: aBoolean ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicDiffAdapter >> showOptions [
 
 	^ self model showOptions
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicDiffAdapter >> showOptions: aBoolean [
 
 	self widgetDo: [ :w | w showOptions: aBoolean ]

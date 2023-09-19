@@ -1,6 +1,6 @@
-Extension { #name : #SpLayoutWidgetAlignment }
+Extension { #name : 'SpLayoutWidgetAlignment' }
 
-{ #category : #'*Spec2-Morphic' }
+{ #category : '*Spec2-Morphic' }
 SpLayoutWidgetAlignment >> asMorphicAlign [
 
 	^ self subclassResponsibility

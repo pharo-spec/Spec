@@ -2,16 +2,18 @@
 A MorphWrapper is used to wrap a morph with a layout in the goal to be easily added to another morph
 "
 Class {
-	#name : #SpMorphWrapper,
-	#superclass : #Object,
+	#name : 'SpMorphWrapper',
+	#superclass : 'Object',
 	#instVars : [
 		'layout',
 		'morph'
 	],
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMorphWrapper class >> morph: morph layout: aLayout [ 
 
 	^ self new
@@ -20,7 +22,7 @@ SpMorphWrapper class >> morph: morph layout: aLayout [
 		yourself
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpMorphWrapper >> addIn: aContainer [
 		
 	aContainer
@@ -28,19 +30,19 @@ SpMorphWrapper >> addIn: aContainer [
 		fullFrame: layout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphWrapper >> frame: rectangle [
 	
 	layout := rectangle asSpLayoutFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphWrapper >> fullFrame: anObject [
 	
 	layout := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphWrapper >> morph: anObject [
 	
 	morph := anObject

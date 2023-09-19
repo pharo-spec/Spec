@@ -2,12 +2,14 @@
 A refactor of `TableLayout>>layoutLeftToRight:in:`
 "
 Class {
-	#name : #SpMorphicBoxLayoutCalculatorLeftToRight,
-	#superclass : #SpMorphicBoxLayoutCalculator,
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#name : 'SpMorphicBoxLayoutCalculatorLeftToRight',
+	#superclass : 'SpMorphicBoxLayoutCalculator',
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #calculating }
+{ #category : 'calculating' }
 SpMorphicBoxLayoutCalculatorLeftToRight >> calculateCellFor: aMorph [
  	| sizeY sizeX props cell minExtent homogeneousWidth |
 
@@ -48,7 +50,7 @@ SpMorphicBoxLayoutCalculatorLeftToRight >> calculateCellFor: aMorph [
 		ifTrue: [ height := sizeY ]
 ]
 
-{ #category : #calculating }
+{ #category : 'calculating' }
 SpMorphicBoxLayoutCalculatorLeftToRight >> calculateFor: aMorph in: newBounds [
 	"An optimized left-to-right list layout"	
 	| inset extent posX posY centering extraPerCell cell amount last |

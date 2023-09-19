@@ -2,12 +2,14 @@
 I'm a morphic adapter to provide a search input field
 "
 Class {
-	#name : #SpMorphicSearchInputFieldAdapter,
-	#superclass : #SpMorphicTextInputFieldAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicSearchInputFieldAdapter',
+	#superclass : 'SpMorphicTextInputFieldAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicSearchInputFieldAdapter >> buildWidget [
 	| textMorph iconsContainer |
 	
@@ -44,7 +46,7 @@ SpMorphicSearchInputFieldAdapter >> buildWidget [
 	^ textMorph
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpMorphicSearchInputFieldAdapter >> clearText [
 
 	self widgetDo: [ :w | w setTextWith: '' ] 
