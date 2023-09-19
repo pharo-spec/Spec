@@ -1,15 +1,17 @@
 Class {
-	#name : #SpComponentListPresenterTest,
-	#superclass : #SpAbstractListPresenterTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpComponentListPresenterTest',
+	#superclass : 'SpAbstractListPresenterTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpComponentListPresenterTest >> classToTest [
 	^ SpComponentListPresenter
 ]
 
-{ #category : #'tests - activation' }
+{ #category : 'tests - activation' }
 SpComponentListPresenterTest >> testActivationOnDoubleClickShouldActivateOnDoubleClick [
 
 	| activatedItem |
@@ -23,7 +25,7 @@ SpComponentListPresenterTest >> testActivationOnDoubleClickShouldActivateOnDoubl
 	self assert: activatedItem label equals: '10'.
 ]
 
-{ #category : #'tests - activation' }
+{ #category : 'tests - activation' }
 SpComponentListPresenterTest >> testActivationOnSingleClickShouldActivateOnClick [
 
 	| activatedItem |
@@ -37,7 +39,7 @@ SpComponentListPresenterTest >> testActivationOnSingleClickShouldActivateOnClick
 	self assert: activatedItem label equals: '10'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListPresenterTest >> testActivationWithTransformation [
 	| activatedItem |
 
@@ -53,7 +55,7 @@ SpComponentListPresenterTest >> testActivationWithTransformation [
 	self assert: activatedItem equals: 100
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListPresenterTest >> testAddNoPresenterToComponentListDoesNotRaiseEvent [
 	| raised |
 	
@@ -62,7 +64,7 @@ SpComponentListPresenterTest >> testAddNoPresenterToComponentListDoesNotRaiseEve
 	self deny: raised
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListPresenterTest >> testAddPresenterToComponentListIsInPresenterCollection [
 	| button |
 
@@ -71,7 +73,7 @@ SpComponentListPresenterTest >> testAddPresenterToComponentListIsInPresenterColl
 	self assert: (presenter includes: button)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListPresenterTest >> testAddPresenterToComponentListRaisesEvent [
 	| button raised |
 	raised := false.
@@ -83,7 +85,7 @@ SpComponentListPresenterTest >> testAddPresenterToComponentListRaisesEvent [
 	self assert: raised
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListPresenterTest >> testAddPresenterToComponentListRaisesSingleEvent [
 	| button raised |
 	raised := 0.
@@ -95,13 +97,13 @@ SpComponentListPresenterTest >> testAddPresenterToComponentListRaisesSingleEvent
 	self assert: raised equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListPresenterTest >> testAddPresenterToComponentListShouldNotBeEmpty [
 	presenter addPresenter: SpButtonPresenter new.
 	self deny: presenter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListPresenterTest >> testDisableActivationDuring [ 
 	| activated |
 
@@ -114,13 +116,13 @@ SpComponentListPresenterTest >> testDisableActivationDuring [
 	self assert: presenter selectedItem label equals: '20' "but the selection changed!"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListPresenterTest >> testNewComponentListIsEmpty [
 
 	self assertEmpty: self classToTest new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListPresenterTest >> testReplaceItemList [
 	| changed |
 
@@ -134,7 +136,7 @@ SpComponentListPresenterTest >> testReplaceItemList [
 	self assert: changed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListPresenterTest >> testSelectAll [
 
 	presenter beSingleSelection.
@@ -149,7 +151,7 @@ SpComponentListPresenterTest >> testSelectAll [
 		equals: #('10' '20' '30')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListPresenterTest >> testSelectedItemsSortedByIndex [
 
 	presenter beMultipleSelection.
@@ -164,7 +166,7 @@ SpComponentListPresenterTest >> testSelectedItemsSortedByIndex [
 		equals: #('10' '30')
 ]
 
-{ #category : #'tests - smoke' }
+{ #category : 'tests - smoke' }
 SpComponentListPresenterTest >> testSetSortingBlockBeforeItems [
 	| count |
 	
@@ -176,7 +178,7 @@ SpComponentListPresenterTest >> testSetSortingBlockBeforeItems [
 	self assert: (presenter model at: 1) label equals: '0'
 ]
 
-{ #category : #'tests - smoke' }
+{ #category : 'tests - smoke' }
 SpComponentListPresenterTest >> testSortingBlock [
 	| count |
 	
@@ -188,7 +190,7 @@ SpComponentListPresenterTest >> testSortingBlock [
 	self assert: (presenter model at: 1) label equals: '0'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListPresenterTest >> testUnselectAll [
 
 	presenter beMultipleSelection.
@@ -200,7 +202,7 @@ SpComponentListPresenterTest >> testUnselectAll [
 	self assertEmpty: presenter selection selectedItems
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListPresenterTest >> testUpdateItemsKeepingSelection [ 
 	| presenters |
 

@@ -1,20 +1,22 @@
 Class {
-	#name : #SpTextInputFieldWithValidationPresenterTest,
-	#superclass : #SpAbstractTextPresenterTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpTextInputFieldWithValidationPresenterTest',
+	#superclass : 'SpAbstractTextPresenterTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTextInputFieldWithValidationPresenterTest class >> shouldInheritSelectors [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextInputFieldWithValidationPresenterTest >> classToTest [
 	^ SpTextInputFieldWithValidationPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldWithValidationPresenterTest >> testErrorIconIsPresentWhenValidationFails [	
 	presenter 
 		beRequired;
@@ -24,7 +26,7 @@ SpTextInputFieldWithValidationPresenterTest >> testErrorIconIsPresentWhenValidat
 	self assert: presenter statusIcon image equals: presenter errorIcon.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldWithValidationPresenterTest >> testErrorMessageIsPresentWhenValidationFails [	
 	presenter
 		name: 'city';
@@ -35,7 +37,7 @@ SpTextInputFieldWithValidationPresenterTest >> testErrorMessageIsPresentWhenVali
 	self assert: presenter statusIcon help equals: 'city is required'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldWithValidationPresenterTest >> testOkIconIsPresentWhenValidationIsOk [
 	presenter 
 		beRequired;

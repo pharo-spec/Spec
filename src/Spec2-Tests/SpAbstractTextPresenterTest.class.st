@@ -1,25 +1,27 @@
 Class {
-	#name : #SpAbstractTextPresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpAbstractTextPresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractTextPresenterTest class >> isAbstract [
 	^ self = SpAbstractTextPresenterTest
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractTextPresenterTest >> classToTest [
 	^ self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractTextPresenterTest >> initializationText [
 	presenter text: 'Text for tests.'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextPresenterTest >> testClearContent [
 	self initializationText.
 	self denyEmpty: presenter text.
@@ -27,7 +29,7 @@ SpAbstractTextPresenterTest >> testClearContent [
 	self assertEmpty: presenter text
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextPresenterTest >> testClearSelection [
 	self initializationText.
 	self openInstance.
@@ -37,7 +39,7 @@ SpAbstractTextPresenterTest >> testClearSelection [
 	self assert: presenter selectionInterval isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextPresenterTest >> testContextMenu [
 	| menu changed |
 	
@@ -51,7 +53,7 @@ SpAbstractTextPresenterTest >> testContextMenu [
 	self assert: changed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextPresenterTest >> testCursorPositionIndex [
 
 	presenter text: (String loremIpsum: 80).
@@ -67,7 +69,7 @@ SpAbstractTextPresenterTest >> testCursorPositionIndex [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextPresenterTest >> testPlaceholderIsSet [
 
 	presenter placeholder: 'enter something...'.
@@ -75,7 +77,7 @@ SpAbstractTextPresenterTest >> testPlaceholderIsSet [
 	self assert: presenter placeholder equals: 'enter something...'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextPresenterTest >> testSelectAll [
 	self initializationText.
 	self openInstance.
@@ -83,7 +85,7 @@ SpAbstractTextPresenterTest >> testSelectAll [
 	self assert: presenter selectionInterval equals: (1 to: 15)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextPresenterTest >> testWhenResetDo [
 	| reseted |
 
@@ -102,7 +104,7 @@ SpAbstractTextPresenterTest >> testWhenResetDo [
 	self assert: reseted
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextPresenterTest >> testWhenSubmitDo [
 	| submitted |
 
@@ -121,7 +123,7 @@ SpAbstractTextPresenterTest >> testWhenSubmitDo [
 	self assert: submitted
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextPresenterTest >> testWhenSubmitDoReceivesAString [
 	| submitted |
 
@@ -142,7 +144,7 @@ SpAbstractTextPresenterTest >> testWhenSubmitDoReceivesAString [
 	self assert: submitted equals: 'abc'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTextPresenterTest >> textInputAdapter [
 	
 	^ presenter adapter

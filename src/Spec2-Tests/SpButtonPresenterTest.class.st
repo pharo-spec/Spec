@@ -2,24 +2,26 @@
 SUnit tests for Button model
 "
 Class {
-	#name : #SpButtonPresenterTest,
-	#superclass : #SpAbstractButtonPresenterTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpButtonPresenterTest',
+	#superclass : 'SpAbstractButtonPresenterTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpButtonPresenterTest >> classToTest [
 
 	^ SpButtonPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpButtonPresenterTest >> morph [
 
 	^ presenter adapter widget
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonPresenterTest >> testAction [
 	| actionExecuted |
 
@@ -34,7 +36,7 @@ SpButtonPresenterTest >> testAction [
 	self assert: actionExecuted equals: true
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonPresenterTest >> testAskBeforeChanging [
 
 	| state |
@@ -48,7 +50,7 @@ SpButtonPresenterTest >> testAskBeforeChanging [
 	self assert: state
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonPresenterTest >> testContextMenu [
 	| menu changed |
 	
@@ -62,7 +64,7 @@ SpButtonPresenterTest >> testContextMenu [
 	self assert: changed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonPresenterTest >> testEnabled [
 	self assert: presenter isEnabled.
 	self openInstance.
@@ -71,7 +73,7 @@ SpButtonPresenterTest >> testEnabled [
 	self deny: self morph enabled
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonPresenterTest >> testWhenActionChangedDo [
 
 	| actionModified newBlock oldBlock |
@@ -96,7 +98,7 @@ SpButtonPresenterTest >> testWhenActionChangedDo [
 	self assert: actionModified equals: true
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonPresenterTest >> testWhenActionPerformedDo [
 
 	| actionExecuted actionPerformed |
@@ -122,7 +124,7 @@ SpButtonPresenterTest >> testWhenActionPerformedDo [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonPresenterTest >> testWhenActionPerformedDoAfterAction [
 
 	| actionExecuted actionPerformed |
@@ -146,7 +148,7 @@ SpButtonPresenterTest >> testWhenActionPerformedDoAfterAction [
 	self assert: actionExecuted < actionPerformed.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonPresenterTest >> testWhenStateChangedDo [
 
 	presenter whenStateChangedDo: [ :new :old | self deny: old. self assert: new ].

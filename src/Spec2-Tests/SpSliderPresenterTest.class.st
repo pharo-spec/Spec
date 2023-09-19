@@ -1,15 +1,17 @@
 Class {
-	#name : #SpSliderPresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpSliderPresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSliderPresenterTest >> classToTest [
 	^ SpSliderPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSliderPresenterTest >> initMinMax [
 
 	presenter
@@ -17,20 +19,20 @@ SpSliderPresenterTest >> initMinMax [
 		max: 100
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpSliderPresenterTest >> testAbsoluteValue [
 	self initMinMax.
 	presenter absoluteValue: 0.5.
 	self assert: presenter value == 50
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpSliderPresenterTest >> testAbsoluteValueToValueScales [
 	self initMinMax.
 	self assert:  (presenter absoluteValueToValue: 0.5) equals: 50
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpSliderPresenterTest >> testReset [
 	self initMinMax.
 	presenter
@@ -39,7 +41,7 @@ SpSliderPresenterTest >> testReset [
 	self assert: presenter value == 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpSliderPresenterTest >> testValueToAbsoluteValueScales [
 	self initMinMax.
 	self assert:  (presenter valueToAbsoluteValue: 50) equals: 0.5

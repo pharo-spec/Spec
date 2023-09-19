@@ -1,13 +1,15 @@
 Class {
-	#name : #SpPresenterTest,
-	#superclass : #TestCase,
+	#name : 'SpPresenterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'presenter'
 	],
-	#category : #'Spec2-Tests-Core'
+	#category : 'Spec2-Tests-Core',
+	#package : 'Spec2-Tests',
+	#tag : 'Core'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPresenterTest >> testAdapterDoesNotRemainsAsDependencyWhenReplacingIt [
 
 	presenter := SpPresenter new.
@@ -23,7 +25,7 @@ SpPresenterTest >> testAdapterDoesNotRemainsAsDependencyWhenReplacingIt [
 	self assert: presenter dependents size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPresenterTest >> testAsDialogWindow [
 
 	presenter := SpPresenter new.
@@ -32,7 +34,7 @@ SpPresenterTest >> testAsDialogWindow [
 		equals: presenter application defaultDialogWindowPresenterClass
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPresenterTest >> testAsModalWindow [
 
 	presenter := SpPresenter new.
@@ -41,7 +43,7 @@ SpPresenterTest >> testAsModalWindow [
 		equals: presenter application defaultModalWindowPresenterClass
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPresenterTest >> testAsWindow [
 
 	presenter := SpPresenter new.
@@ -50,7 +52,7 @@ SpPresenterTest >> testAsWindow [
 		equals: presenter application defaultWindowPresenterClass
 ]
 
-{ #category : #'tests - layout' }
+{ #category : 'tests - layout' }
 SpPresenterTest >> testLayoutIsDefaultLayoutWhenDefaultLayoutAndDefaultSpecDefined [
 	| presenterClass |
 	
@@ -64,7 +66,7 @@ SpPresenterTest >> testLayoutIsDefaultLayoutWhenDefaultLayoutAndDefaultSpecDefin
 		equals: SpGridLayout
 ]
 
-{ #category : #'tests - layout' }
+{ #category : 'tests - layout' }
 SpPresenterTest >> testLayoutIsNotSetWhenAlreadyInitialized [
 	| presenterClass |
 	
@@ -78,7 +80,7 @@ SpPresenterTest >> testLayoutIsNotSetWhenAlreadyInitialized [
 		equals: SpBoxLayout
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPresenterTest >> testPresentersIncludesPresentersAddedToTheLayout [
 	| p1 p2 |
 	
@@ -91,7 +93,7 @@ SpPresenterTest >> testPresentersIncludesPresentersAddedToTheLayout [
 	self assert: presenter presenters equals: { p1. p2 }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPresenterTest >> testTraversePresentersDoIncludesPresentersAddedToTheLayout [
 	| p1 p2 result |
 	

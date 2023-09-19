@@ -1,13 +1,15 @@
 Class {
-	#name : #SpOptionListPresenterTest,
-	#superclass : #TestCase,
+	#name : 'SpOptionListPresenterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'dialog'
 	],
-	#category : #'Spec2-Tests-Common-Widgets'
+	#category : 'Spec2-Tests-Common-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Common-Widgets'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpOptionListPresenterTest >> newOptionsPresenterWithOneOption [
 	| optionPresenterClass optionPresenter presenter |
 	
@@ -23,7 +25,7 @@ SpOptionListPresenterTest >> newOptionsPresenterWithOneOption [
 	^ presenter
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpOptionListPresenterTest >> newOptionsPresenterWithTwoOptions [
 	| optionPresenterClass optionPresenter presenter |
 	
@@ -46,13 +48,13 @@ SpOptionListPresenterTest >> newOptionsPresenterWithTwoOptions [
 	^ presenter
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpOptionListPresenterTest >> tearDown [ 
 	dialog ifNotNil: [ :d | d delete].
 	super tearDown .
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOptionListPresenterTest >> testContentPanelIsEmptyWhenNoSelection [
 	| presenterClass presenter |
 	presenterClass := SpOptionListPresenter newAnonymousSubclass.
@@ -64,7 +66,7 @@ SpOptionListPresenterTest >> testContentPanelIsEmptyWhenNoSelection [
 	self assertEmpty: presenter contentLayout.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOptionListPresenterTest >> testContentPanelIsUpdatedWhenSelectionChanges [
 	| presenter optionPanel |
 	presenter := SpOptionListExample new.
@@ -80,7 +82,7 @@ SpOptionListPresenterTest >> testContentPanelIsUpdatedWhenSelectionChanges [
 		equals: presenter allOptions second class.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOptionListPresenterTest >> testDoAcceptIsExecutedOnSelectedOptionWhenAcceptingDialog [
 	| presenter optionPresenter |
 	
@@ -95,7 +97,7 @@ SpOptionListPresenterTest >> testDoAcceptIsExecutedOnSelectedOptionWhenAccepting
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOptionListPresenterTest >> testDoAcceptIsNotExecutedOnSelectedOptionWhenCancelingDialog [
 	| presenter optionPresenter |
 	
@@ -110,7 +112,7 @@ SpOptionListPresenterTest >> testDoAcceptIsNotExecutedOnSelectedOptionWhenCancel
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOptionListPresenterTest >> testFirstOptionIsSelectedWhenOpening [
 	| presenter |
 	presenter := SpOptionListExample new.
@@ -121,7 +123,7 @@ SpOptionListPresenterTest >> testFirstOptionIsSelectedWhenOpening [
 		equals: (presenter optionAt: 1)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOptionListPresenterTest >> testOptionListItemHasIcon [
 	| presenter optionIndex iconColumn icon |
 	presenter := SpOptionListExample new.
@@ -135,7 +137,7 @@ SpOptionListPresenterTest >> testOptionListItemHasIcon [
 		equals: presenter allOptions first optionIcon
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOptionListPresenterTest >> testOptionListItemHasTitle [
 	| presenter optionIndex titleColumn icon |
 	presenter := SpOptionListExample new.
@@ -149,7 +151,7 @@ SpOptionListPresenterTest >> testOptionListItemHasTitle [
 		equals: presenter allOptions first optionTitle
 ]
 
-{ #category : #'tests - validation' }
+{ #category : 'tests - validation' }
 SpOptionListPresenterTest >> testValidationIsCalledOnSelectedOptionPresenter [
 	| presenter optionPresenter |
 	
@@ -164,7 +166,7 @@ SpOptionListPresenterTest >> testValidationIsCalledOnSelectedOptionPresenter [
 	self assert: (optionPresenter class propertyAt: #validated) equals: true.
 ]
 
-{ #category : #'tests - validation' }
+{ #category : 'tests - validation' }
 SpOptionListPresenterTest >> testValidationIsNotCalledOnNotSelectedOptionPresenters [
 	| presenter optionPresenter |
 	
@@ -179,7 +181,7 @@ SpOptionListPresenterTest >> testValidationIsNotCalledOnNotSelectedOptionPresent
 	self assert: (optionPresenter class propertyAt: #validated) equals: nil.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOptionListPresenterTest >> testWhenAcceptedDoIsExecutedWhenAcceptingDialog [
 	| presenter executed |
 	
@@ -194,7 +196,7 @@ SpOptionListPresenterTest >> testWhenAcceptedDoIsExecutedWhenAcceptingDialog [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOptionListPresenterTest >> testWhenAcceptedDoIsNotExecutedWhenCancelingDialog [
 	| presenter executed |
 	

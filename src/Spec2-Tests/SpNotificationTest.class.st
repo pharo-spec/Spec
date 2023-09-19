@@ -1,10 +1,12 @@
 Class {
-	#name : #SpNotificationTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Tests-Notifications'
+	#name : 'SpNotificationTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Tests-Notifications',
+	#package : 'Spec2-Tests',
+	#tag : 'Notifications'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotificationTest >> testNotificationIsKeptAround [
 
 	| pres app |
