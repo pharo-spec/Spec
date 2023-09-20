@@ -1,16 +1,18 @@
 Class {
-	#name : #SpStyleVariableSTONReader,
-	#superclass : #SpStyleSTONReader,
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#name : 'SpStyleVariableSTONReader',
+	#superclass : 'SpStyleSTONReader',
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SpStyleVariableSTONReader >> isContainedValueChar: char [
 
 	^ char = $(
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SpStyleVariableSTONReader >> parseContainedValue [
 	| result | 
 
@@ -20,7 +22,7 @@ SpStyleVariableSTONReader >> parseContainedValue [
 
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SpStyleVariableSTONReader >> parseContainedValueDo: block [
 
 	self expectChar: $(.
@@ -32,7 +34,7 @@ SpStyleVariableSTONReader >> parseContainedValueDo: block [
 	self error: 'end of contained value expected'
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SpStyleVariableSTONReader >> parseNamedInstVarsFor: anObject [
 
 	self parseMapDo: [ :instVarName :value |
@@ -41,7 +43,7 @@ SpStyleVariableSTONReader >> parseNamedInstVarsFor: anObject [
 			put: value asStyleVariable ]
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SpStyleVariableSTONReader >> parseSimpleValue [
 	| char |
 
@@ -53,7 +55,7 @@ SpStyleVariableSTONReader >> parseSimpleValue [
 	^ super parseSimpleValue
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpStyleVariableSTONReader >> styleClasses [
 
 	^ super styleClasses, SpStyleAbstractVariable allSubclasses

@@ -2,22 +2,24 @@
 I am the adapter used to bridge window presenters and windows or worlds
 "
 Class {
-	#name : #SpAbstractMorphicWindowAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
+	#name : 'SpAbstractMorphicWindowAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
 	#instVars : [
 		'toolbarMorph',
 		'menuMorph'
 	],
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractMorphicWindowAdapter class >> isAbstract [ 
 
 	^self == SpAbstractMorphicWindowAdapter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractMorphicWindowAdapter >> add: containerMorph toWindow: aSpecWindow [
 
 	aSpecWindow 
@@ -25,7 +27,7 @@ SpAbstractMorphicWindowAdapter >> add: containerMorph toWindow: aSpecWindow [
 		fullFrame: LayoutFrame identity
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractMorphicWindowAdapter >> addContent: aMorph toWindow: aSpecWindow [
 	| containerMorph |
 	
@@ -49,7 +51,7 @@ SpAbstractMorphicWindowAdapter >> addContent: aMorph toWindow: aSpecWindow [
 	self add: containerMorph toWindow: aSpecWindow
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractMorphicWindowAdapter >> addMenuTo: aMorph [
 	
 	menuMorph := self model menu build.
@@ -59,7 +61,7 @@ SpAbstractMorphicWindowAdapter >> addMenuTo: aMorph [
 		vResizing: #rigid
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractMorphicWindowAdapter >> addStatusBarTo: aMorph [
 
 	| statusBarMorph |
@@ -70,7 +72,7 @@ SpAbstractMorphicWindowAdapter >> addStatusBarTo: aMorph [
 		vResizing: #rigid
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractMorphicWindowAdapter >> newContainerMorph [
 
 	^ Morph new
@@ -82,7 +84,7 @@ SpAbstractMorphicWindowAdapter >> newContainerMorph [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractMorphicWindowAdapter >> setToolbarTo: aMorph [
 	| newToolbarMorph toolbarPresenter |
 	

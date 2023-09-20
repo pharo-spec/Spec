@@ -11,16 +11,18 @@ I can arrange submorphs in a grid according to its properties (position and span
 WARNING: I'm designed to work for Spec. While any other morph could benefit from this layout, tipic properties of morphic (like vResizing and hResizing) can not behave as expected. 
 "
 Class {
-	#name : #SpMorphicGridLayout,
-	#superclass : #LayoutPolicy,
+	#name : 'SpMorphicGridLayout',
+	#superclass : 'LayoutPolicy',
 	#instVars : [
 		'calculating',
 		'layout'
 	],
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpMorphicGridLayout >> basicLayout: aMorph in: aRect [
 	| computation morphs innerBounds origin |
 	
@@ -41,7 +43,7 @@ SpMorphicGridLayout >> basicLayout: aMorph in: aRect [
 	"aMorph bounds: ((origin - self padding) corner: (computation extent + self padding))"
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicGridLayout >> calculateExtentFor: aMorph constraint: constraint computation: computation [
 	| cellExtent height width |
 
@@ -52,61 +54,61 @@ SpMorphicGridLayout >> calculateExtentFor: aMorph constraint: constraint computa
 	^ width @ height
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicGridLayout >> calculateHeightFor: aMorph base: aNumber [
 
 	^ aNumber
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicGridLayout >> calculateWidthFor: aMorph base: aNumber [
 
 	^ aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicGridLayout >> columnConstraintsAt: aNumber [
  
 	^ layout columnConstraintsAt: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicGridLayout >> columnSpacing [
 
 	^ self layout columnSpacing
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicGridLayout >> initialize [
 
 	super initialize.
 	calculating := false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicGridLayout >> isColumnHomogeneous [
 
 	^ self layout isColumnHomogeneous
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicGridLayout >> isRowHomogeneous [
 
 	^ self layout isRowHomogeneous
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicGridLayout >> layout [
 	^ layout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicGridLayout >> layout: aGridLayout [
 
 	layout := aGridLayout
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpMorphicGridLayout >> layout: aMorph in: aRect [
 
 	calculating ifTrue: [ ^ self ].
@@ -117,7 +119,7 @@ SpMorphicGridLayout >> layout: aMorph in: aRect [
 		calculating := false ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicGridLayout >> layoutMorph: aMorph staringAt: originPoint withComputation: computation [
 	| constraints pos extent |
 	
@@ -143,13 +145,13 @@ SpMorphicGridLayout >> layoutMorph: aMorph staringAt: originPoint withComputatio
 	aMorph bounds: (pos extent: extent)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicGridLayout >> padding [
 
 	^ self layout borderWidth
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicGridLayout >> resizingSyle: expand [
 	
 	^ expand 
@@ -157,7 +159,7 @@ SpMorphicGridLayout >> resizingSyle: expand [
 		ifFalse: [ #rigid ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicGridLayout >> rowSpacing [
 
 	^ self layout rowSpacing

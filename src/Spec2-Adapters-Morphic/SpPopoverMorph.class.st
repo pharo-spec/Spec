@@ -4,8 +4,8 @@ It has a position: top, left, bottom and right (default is right).
 It will be dismissed if click outside or keyboard focus translate to another place other than its children.
 "
 Class {
-	#name : #SpPopoverMorph,
-	#superclass : #Morph,
+	#name : 'SpPopoverMorph',
+	#superclass : 'Morph',
 	#instVars : [
 		'position',
 		'relativeTo',
@@ -13,10 +13,12 @@ Class {
 		'arrowSize',
 		'deleteMorph'
 	],
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> arrowBottomVertices [
 	| rect |
 	
@@ -28,7 +30,7 @@ SpPopoverMorph >> arrowBottomVertices [
 	 }
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> arrowLeftVertices [
 	| rect |
 	
@@ -42,7 +44,7 @@ SpPopoverMorph >> arrowLeftVertices [
 	 }
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> arrowRightVertices [
 	| rect |
 	
@@ -57,19 +59,19 @@ SpPopoverMorph >> arrowRightVertices [
 	 }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPopoverMorph >> arrowSize [
 
 	^ arrowSize ifNil: [ 20 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPopoverMorph >> arrowSize: aNumber [
 
 	arrowSize := aNumber
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> arrowTopVertices [
 	| rect |
 	
@@ -81,7 +83,7 @@ SpPopoverMorph >> arrowTopVertices [
 	 }
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> arrowVertices [
 
 	position = #bottom ifTrue: [ ^ self arrowBottomVertices ].
@@ -92,37 +94,37 @@ SpPopoverMorph >> arrowVertices [
 	self error: 'Should not arrive here'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPopoverMorph >> bePositionBottom [
 
 	position := #bottom
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPopoverMorph >> bePositionLeft [
 
 	position := #left
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPopoverMorph >> bePositionRight [
 
 	position := #right
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPopoverMorph >> bePositionTop [
 
 	position := #top
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPopoverMorph >> beRelativeTo: aMorph [
 
 	relativeTo := aMorph
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> calculatePositionBottomFrom: aRect [
 	| x y |
 	
@@ -133,7 +135,7 @@ SpPopoverMorph >> calculatePositionBottomFrom: aRect [
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> calculatePositionFrom: aRect [
 
 	position = #top ifTrue: [ ^ self calculatePositionTopFrom: aRect ].
@@ -147,7 +149,7 @@ SpPopoverMorph >> calculatePositionFrom: aRect [
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> calculatePositionLeftFrom: aRect [
 	| x y |
 	
@@ -157,7 +159,7 @@ SpPopoverMorph >> calculatePositionLeftFrom: aRect [
 	^ x @ y	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> calculatePositionRightFrom: aRect [
 	| x y |
 	
@@ -167,7 +169,7 @@ SpPopoverMorph >> calculatePositionRightFrom: aRect [
 	^ x @ y
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> calculatePositionTopFrom: aRect [
 	| x y |
 	
@@ -177,20 +179,20 @@ SpPopoverMorph >> calculatePositionTopFrom: aRect [
 	^ x @ y	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPopoverMorph >> contentMorph: aMorph [ 
 
 	self removeAllMorphs.
 	self addMorphBack: aMorph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPopoverMorph >> defaultColor [
 
 	^ self theme lightBaseColor
 ]
 
-{ #category : #'submorphs - add/remove' }
+{ #category : 'submorphs - add/remove' }
 SpPopoverMorph >> delete [
 
 	self activeHand ifNotNil: [ :hand | 
@@ -199,7 +201,7 @@ SpPopoverMorph >> delete [
 	super delete
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpPopoverMorph >> drawArrowOn: canvas [
 		
 	canvas 
@@ -207,7 +209,7 @@ SpPopoverMorph >> drawArrowOn: canvas [
 		fillStyle: self color
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpPopoverMorph >> drawBorderOn: canvas [
 	
 	canvas 
@@ -215,7 +217,7 @@ SpPopoverMorph >> drawBorderOn: canvas [
 		color: self color
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpPopoverMorph >> drawOn: canvas [
 
 	self drawBorderOn: canvas.
@@ -224,13 +226,13 @@ SpPopoverMorph >> drawOn: canvas [
 		self drawArrowOn: canvas ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPopoverMorph >> hideArrow [
 
 	showArrow := false
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPopoverMorph >> initialize [
 
 	super initialize.
@@ -247,19 +249,19 @@ SpPopoverMorph >> initialize [
 	self showArrow
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverMorph >> popdown [
 	
 	self delete
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverMorph >> popup [
 
 	self popupPointingTo: self relativeTo boundsInWorld
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverMorph >> popupPointingTo: aRectangle [
 
 	self setSize.
@@ -269,7 +271,7 @@ SpPopoverMorph >> popupPointingTo: aRectangle [
 	self registerToDeleteEvents
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> registerToDeleteEvents [
 
 	deleteMorph ifNotNil: [ self activeHand removeMouseListener: deleteMorph ].
@@ -279,19 +281,19 @@ SpPopoverMorph >> registerToDeleteEvents [
 		yourself)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPopoverMorph >> relativeTo [ 
 
 	^ relativeTo
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> separatatedBy [
 
 	^ 0
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> setPositionFrom: aRect [
 
 	self position: (self calculatePositionFrom: aRect)
@@ -299,7 +301,7 @@ SpPopoverMorph >> setPositionFrom: aRect [
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> setSize [
 	| morph |
 	
@@ -315,13 +317,13 @@ SpPopoverMorph >> setSize [
 	self computeFullBounds
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPopoverMorph >> showArrow [
 
 	showArrow := true
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPopoverMorph >> validateMousePosition: evt [
 	"Handle a mouse up event."
 	

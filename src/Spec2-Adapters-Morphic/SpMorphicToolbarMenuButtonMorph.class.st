@@ -2,18 +2,20 @@
 Morphic implementation of a ToolBarMenuButton
 "
 Class {
-	#name : #SpMorphicToolbarMenuButtonMorph,
-	#superclass : #Morph,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicToolbarMenuButtonMorph',
+	#superclass : 'Morph',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMorphicToolbarMenuButtonMorph class >> new [
 
 	self error: 'Use newButton:menuButton:'
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMorphicToolbarMenuButtonMorph class >> newButton: aButtonMorph menuButton: aMenuButton [
 
 	^ self basicNew
@@ -21,13 +23,13 @@ SpMorphicToolbarMenuButtonMorph class >> newButton: aButtonMorph menuButton: aMe
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicToolbarMenuButtonMorph >> button [ 
 
 	^ self submorphs first
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpMorphicToolbarMenuButtonMorph >> configureWith: aMode item: aButton [
 
 	"Transmit to button"
@@ -36,14 +38,14 @@ SpMorphicToolbarMenuButtonMorph >> configureWith: aMode item: aButton [
 		item: aButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicToolbarMenuButtonMorph >> font: aFont [
 
 	self submorphs do: [ :each | 
 		(each respondsTo: #font:) ifTrue: [ each font: aFont ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicToolbarMenuButtonMorph >> initialize [
 
 	super initialize.
@@ -59,7 +61,7 @@ SpMorphicToolbarMenuButtonMorph >> initialize [
 		extent: 0@0
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicToolbarMenuButtonMorph >> initializeButton: aButtonMorph menuButton: aMenuButton [
 
 	self initialize.
@@ -69,7 +71,7 @@ SpMorphicToolbarMenuButtonMorph >> initializeButton: aButtonMorph menuButton: aM
 	self addMorphBack: aMenuButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicToolbarMenuButtonMorph >> menuButton [ 
 
 	^ self submorphs second

@@ -29,22 +29,24 @@ You can add styles to your presenters easily by using *class:SpAbstractWidgetPre
 See *class:SpStyleClass*, *class:SpStyleProperty*, *class:SpMorphStyle*
 "
 Class {
-	#name : #SpStyle,
-	#superclass : #Object,
+	#name : 'SpStyle',
+	#superclass : 'Object',
 	#classVars : [
 		'DefaultStyleSheet'
 	],
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpStyle class >> createDefaultStyleSheet [
 
 	^ SpStyleVariableSTONReader fromString: self defaultStyleSheetData
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpStyle class >> defaultStyleSheet [
 
 	self flag: #TODO. "This is wrong. Default style sheet should reside in the Pharo application, 
@@ -54,7 +56,7 @@ SpStyle class >> defaultStyleSheet [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpStyle class >> defaultStyleSheetData [ 
 
 	^ '
@@ -155,7 +157,7 @@ SpStyle class >> defaultStyleSheetData [
 '
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpStyle class >> newApplication [
 
 	^ SpClassStyle new 
@@ -163,26 +165,26 @@ SpStyle class >> newApplication [
 		yourself
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 SpStyle class >> reset [ 
 	<script>
 
 	DefaultStyleSheet := nil
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 SpStyle >> applyTo: aMorph [
 
 	self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpStyle >> isStyleClass [
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpStyle >> isStyleProperty [
 
 	^ false

@@ -2,15 +2,17 @@
 I am a morphic adapter used to show a modal for a ModalWindowPresenter in Morphic.
 "
 Class {
-	#name : #SpMorphicModalWindowAdapter,
-	#superclass : #SpMorphicDialogWindowAdapter,
+	#name : 'SpMorphicModalWindowAdapter',
+	#superclass : 'SpMorphicDialogWindowAdapter',
 	#instVars : [
 		'backdropMorph'
 	],
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicModalWindowAdapter >> close [
  
 	backdropMorph ifNotNil: [ 
@@ -19,13 +21,13 @@ SpMorphicModalWindowAdapter >> close [
 	super close
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicModalWindowAdapter >> closeOnBackdropClick [
 
 	^ self model closeOnBackdropClick
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpMorphicModalWindowAdapter >> mouseClick: evt onBackdrop: aMorph [
 
 	self closeOnBackdropClick ifFalse: [ ^ self ].
@@ -35,7 +37,7 @@ SpMorphicModalWindowAdapter >> mouseClick: evt onBackdrop: aMorph [
 	aMorph delete
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicModalWindowAdapter >> openWithDeferredAction: aBlock [
 
 	backdropMorph := FullscreenMorph new
@@ -56,7 +58,7 @@ SpMorphicModalWindowAdapter >> openWithDeferredAction: aBlock [
 	self waitWhile: [ self widget isInWorld ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicModalWindowAdapter >> waitWhile: aBlock [
 	
 	MorphicRenderLoop new doOneCycleWhile: aBlock

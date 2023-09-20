@@ -1,13 +1,15 @@
 Class {
-	#name : #SpComponentListDataSource,
-	#superclass : #FTDataSource,
+	#name : 'SpComponentListDataSource',
+	#superclass : 'FTDataSource',
 	#instVars : [
 		'model'
 	],
-	#category : #'Spec2-Adapters-Morphic-List'
+	#category : 'Spec2-Adapters-Morphic-List',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'List'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpComponentListDataSource >> cellColumn: column row: rowIndex [
 	| cell item |
 	
@@ -20,19 +22,19 @@ SpComponentListDataSource >> cellColumn: column row: rowIndex [
 	^ cell
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpComponentListDataSource >> elementAt: rowIndex [
 
 	^ self presenters at: rowIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpComponentListDataSource >> elements [
 
 	^ self presenters
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpComponentListDataSource >> headerColumn: column [
 
 	column id ifNil: [ ^ nil ]. 
@@ -42,7 +44,7 @@ SpComponentListDataSource >> headerColumn: column [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpComponentListDataSource >> menuColumn: column row: rowIndex [
 
 	| menuPresenter |
@@ -58,17 +60,17 @@ SpComponentListDataSource >> menuColumn: column row: rowIndex [
 				  ifFalse: [ m build ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpComponentListDataSource >> model [
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpComponentListDataSource >> model: anObject [
 	model := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpComponentListDataSource >> newDataSourceMatching: aFTFilter [
 	| newElements wrappedItem text newDataSource modelCopy |
 	
@@ -86,7 +88,7 @@ SpComponentListDataSource >> newDataSourceMatching: aFTFilter [
 	^newDataSource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpComponentListDataSource >> numberOfRows [
 
 	^ model
@@ -94,20 +96,20 @@ SpComponentListDataSource >> numberOfRows [
 		ifNotNil: [ self presenters size ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpComponentListDataSource >> presenters [
 
 	^ self model presenters
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpComponentListDataSource >> rowHeight: rowIndex [
 
 	rowIndex = 0 ifTrue: [ ^ super rowHeight: rowIndex ].
 	^ (self widgetFor: (self elementAt: rowIndex)) height
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpComponentListDataSource >> transferFor: passenger from: aMorph [
 
 	^ (self model adapter 
@@ -116,7 +118,7 @@ SpComponentListDataSource >> transferFor: passenger from: aMorph [
 		build
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpComponentListDataSource >> widgetFor: aPresenter [
 
 	| widget |

@@ -2,12 +2,14 @@
 I am a morphic specific adapter used to build a transfer object during a drang and drop operation
 "
 Class {
-	#name : #SpMorphicTransferAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicTransferAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTransferAdapter >> buildWidget [
 
 	^ SpTransferMorph new
@@ -17,13 +19,13 @@ SpMorphicTransferAdapter >> buildWidget [
 		  yourself
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicTransferAdapter >> passenger [
 
 	^ [ self model passenger ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicTransferAdapter >> source [
 
 	^ [ self model source ]

@@ -5,15 +5,17 @@ Internally, I create a GeneralScrollPane.
 When I'm empty, I set the GeneralScrollPane's to an empty panel morph which I keep around to know if I'm empty or not.
 "
 Class {
-	#name : #SpMorphicScrollableAdapter,
-	#superclass : #SpMorphicLayoutAdapter,
+	#name : 'SpMorphicScrollableAdapter',
+	#superclass : 'SpMorphicLayoutAdapter',
 	#instVars : [
 		'emptyLayoutMarker'
 	],
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicScrollableAdapter >> addConstraints: constraints toChild: childMorph [
 	"Adds constraits by child"
 	
@@ -25,7 +27,7 @@ SpMorphicScrollableAdapter >> addConstraints: constraints toChild: childMorph [
 	^ theMorph 
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicScrollableAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
 
 	| childMorph |
@@ -40,7 +42,7 @@ SpMorphicScrollableAdapter >> basicAdd: aPresenter constraints: constraints to: 
 	^ childMorph
 ]
 
-{ #category : #'test support' }
+{ #category : 'test support' }
 SpMorphicScrollableAdapter >> childWidget [
 
 	^ self children 
@@ -48,7 +50,7 @@ SpMorphicScrollableAdapter >> childWidget [
 		ifEmpty: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicScrollableAdapter >> children [
 
 	widget scrollTarget == emptyLayoutMarker
@@ -56,7 +58,7 @@ SpMorphicScrollableAdapter >> children [
 	^ { widget scrollTarget }
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicScrollableAdapter >> layout: aLayout [
 
 	layout := aLayout.
@@ -83,7 +85,7 @@ SpMorphicScrollableAdapter >> layout: aLayout [
 	super layout: aLayout
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 SpMorphicScrollableAdapter >> removeChild: aPresenter [
 
 	self assert: aPresenter adapter widget == widget scrollTarget.

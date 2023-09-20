@@ -2,24 +2,26 @@
 I'm the adapter used to bridge a Popover and its morphic representation.
 "
 Class {
-	#name : #SpMorphicPopoverAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicPopoverAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPopoverAdapter class >> defaultHeight [
 
 	^ 30
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPopoverAdapter class >> defaultItemSeparation [
 	
 	^ 3@0
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicPopoverAdapter >> addModelTo: aMorph [
 
 	aMorph contentMorph: self presenterWidget.	
@@ -30,7 +32,7 @@ SpMorphicPopoverAdapter >> addModelTo: aMorph [
 		aMorph contentMorph: self presenterWidget ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicPopoverAdapter >> buildWidget [
 	| panelMorph |
 	
@@ -40,19 +42,19 @@ SpMorphicPopoverAdapter >> buildWidget [
 	^ panelMorph
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicPopoverAdapter >> contentPresenter [
 	
 	^ self presenter presenter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMorphicPopoverAdapter >> dismiss [ 
 
 	self widgetDo: [ :w | w popdown ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMorphicPopoverAdapter >> popup [
 
 	self widgetDo: [ :w | 
@@ -60,7 +62,7 @@ SpMorphicPopoverAdapter >> popup [
 		w popup ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMorphicPopoverAdapter >> popupPointingTo: aRectangle [
 
 	self widgetDo: [ :w |
@@ -68,7 +70,7 @@ SpMorphicPopoverAdapter >> popupPointingTo: aRectangle [
 		w popupPointingTo: aRectangle ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicPopoverAdapter >> presenterWidget [
 
 	self contentPresenter build.
@@ -76,7 +78,7 @@ SpMorphicPopoverAdapter >> presenterWidget [
 	^ self contentPresenter adapter widget
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicPopoverAdapter >> setPopoverPositionTo: gtkPopover [
 		
 	^ self presenter position applyTo: gtkPopover

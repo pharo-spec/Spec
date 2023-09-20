@@ -2,12 +2,14 @@
 I'm a spec adapter for a morph
 "
 Class {
-	#name : #SpMorphicMorphAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicMorphAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicMorphAdapter >> buildWidget [
 	| newWidget |
 
@@ -21,7 +23,7 @@ SpMorphicMorphAdapter >> buildWidget [
 	^ newWidget
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicMorphAdapter >> updateMorph: aMorph [
 
 	self applyStyle: aMorph.

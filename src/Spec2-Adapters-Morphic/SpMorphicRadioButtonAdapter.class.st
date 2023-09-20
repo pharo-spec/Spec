@@ -2,12 +2,14 @@
 I am the adapter used to link a RadioButtonPresenter with a CheckboxMorph (which can also act as a radio button)
 "
 Class {
-	#name : #SpMorphicRadioButtonAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicRadioButtonAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicRadioButtonAdapter >> buildWidget [
 
 	| radioButton |
@@ -40,43 +42,43 @@ SpMorphicRadioButtonAdapter >> buildWidget [
 	^ radioButton
 ]
 
-{ #category : #simulating }
+{ #category : 'simulating' }
 SpMorphicRadioButtonAdapter >> clicked [
 	
 	widget toggleSelected
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicRadioButtonAdapter >> getHelpText [
 
 	^ self presenter help ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicRadioButtonAdapter >> getLabelText [
 
 	^ self presenter label ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicRadioButtonAdapter >> label [
 
 	^ self getLabelText
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicRadioButtonAdapter >> labelClickable [
 
 	^ self presenter labelClickable
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicRadioButtonAdapter >> state [
 
 	^ self presenter state
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicRadioButtonAdapter >> state: aBoolean [
 
 	^ self presenter state: aBoolean

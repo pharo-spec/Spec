@@ -2,12 +2,14 @@
 Adapter for a menu button
 "
 Class {
-	#name : #SpMorphicMenuButtonAdapter,
-	#superclass : #SpMorphicButtonAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicMenuButtonAdapter',
+	#superclass : 'SpMorphicButtonAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuButtonAdapter >> action [ 
 
 	self presenter menu ifNotNil: [ :aValuable |
@@ -19,44 +21,44 @@ SpMorphicMenuButtonAdapter >> action [
 		m takeKeyboardFocus ] 
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicMenuButtonAdapter >> askBeforeChanging [
 
 	^ false
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicMenuButtonAdapter >> defaultIcon [
 		
 	^ self application iconNamed: #arrowDown
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpMorphicMenuButtonAdapter >> dragEnabled [
 
 	^ false
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpMorphicMenuButtonAdapter >> dropEnabled [
 
 	^ false
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuButtonAdapter >> font [
 	
 	self flag: #REMOVE. "Not used anymore. Font is set with styles"
 	^ nil 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicMenuButtonAdapter >> icon [
 
 	^ self presenter icon ifNil: [ self defaultIcon ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicMenuButtonAdapter >> newButton [
 
 	^ PluggableButtonMorph

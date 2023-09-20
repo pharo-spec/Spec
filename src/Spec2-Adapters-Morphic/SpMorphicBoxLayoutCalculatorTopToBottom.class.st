@@ -2,12 +2,14 @@
 A refactor of `TableLayout>>layoutTopToBottom:in:`
 "
 Class {
-	#name : #SpMorphicBoxLayoutCalculatorTopToBottom,
-	#superclass : #SpMorphicBoxLayoutCalculator,
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#name : 'SpMorphicBoxLayoutCalculatorTopToBottom',
+	#superclass : 'SpMorphicBoxLayoutCalculator',
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #calculating }
+{ #category : 'calculating' }
 SpMorphicBoxLayoutCalculatorTopToBottom >> calculateCellFor: m [
  	| sizeX props sizeY cell |
 	
@@ -39,7 +41,7 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateCellFor: m [
 
 ]
 
-{ #category : #calculating }
+{ #category : 'calculating' }
 SpMorphicBoxLayoutCalculatorTopToBottom >> calculateFor: aMorph in: newBounds [
 	"An optimized top-to-bottom list layout"
 	| inset extent posX posY centering extraPerCell cell amount last |

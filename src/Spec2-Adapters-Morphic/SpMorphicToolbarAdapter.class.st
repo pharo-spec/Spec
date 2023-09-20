@@ -2,12 +2,14 @@
 I'm the adapter used to bridge a ToolBarPresenter and its morphic representation.
 "
 Class {
-	#name : #SpMorphicToolbarAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicToolbarAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicToolbarAdapter >> addModelTo: toolBarMorph [
 
 	toolBarMorph
@@ -20,7 +22,7 @@ SpMorphicToolbarAdapter >> addModelTo: toolBarMorph [
 	self updateItems: toolBarMorph
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicToolbarAdapter >> buildWidget [
 
 	| toolBarMorph |
@@ -30,7 +32,7 @@ SpMorphicToolbarAdapter >> buildWidget [
 	^ toolBarMorph
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicToolbarAdapter >> configureItem: itemModel morph: itemMorph toolBar: toolBarMorph [
 	
 	itemMorph 
@@ -44,7 +46,7 @@ SpMorphicToolbarAdapter >> configureItem: itemModel morph: itemMorph toolBar: to
 	^ itemMorph
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicToolbarAdapter >> hasButtonWithLabel: aString [
 
 	^ (self widget leftPanel submorphs , self widget rightPanel submorphs)
@@ -53,13 +55,13 @@ SpMorphicToolbarAdapter >> hasButtonWithLabel: aString [
 		ifNone: [ false ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicToolbarAdapter >> numberOfItems [
 	
 	^ self widget leftPanel submorphs size + self widget rightPanel submorphs size
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicToolbarAdapter >> updateItems: toolBarMorph [
 
 	toolBarMorph clearItems.
