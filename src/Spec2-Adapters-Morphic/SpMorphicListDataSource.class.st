@@ -1,13 +1,15 @@
 Class {
-	#name : #SpMorphicListDataSource,
-	#superclass : #FTDataSource,
+	#name : 'SpMorphicListDataSource',
+	#superclass : 'FTDataSource',
 	#instVars : [
 		'model'
 	],
-	#category : #'Spec2-Adapters-Morphic-List'
+	#category : 'Spec2-Adapters-Morphic-List',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'List'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicListDataSource >> cellColumn: column row: rowIndex [
 	| cell item builder |
 
@@ -25,25 +27,25 @@ SpMorphicListDataSource >> cellColumn: column row: rowIndex [
 	^ cell
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicListDataSource >> elementAt: rowIndex [
 
 	^ self listModel at: rowIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicListDataSource >> elements [
 
 	^ self model items
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicListDataSource >> hasElementAt: index [ 
 	
 	^ self model model hasElementAt: index
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicListDataSource >> headerColumn: column [
 
 	column id ifNil: [ ^ nil ]. 
@@ -53,13 +55,13 @@ SpMorphicListDataSource >> headerColumn: column [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicListDataSource >> listModel [
 
 	^ model model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicListDataSource >> menuColumn: column row: rowIndex [
 	| menuPresenter |
 
@@ -75,17 +77,17 @@ SpMorphicListDataSource >> menuColumn: column row: rowIndex [
 				  ifFalse: [ concreteMenuPresenter build ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicListDataSource >> model [
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicListDataSource >> model: anObject [
 	model := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicListDataSource >> newDataSourceMatching: aFTFilter [
 	| newElements wrappedItem text newDataSource modelCopy |
 	
@@ -103,14 +105,14 @@ SpMorphicListDataSource >> newDataSourceMatching: aFTFilter [
 	^newDataSource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicListDataSource >> numberOfRows [
 	^ model
 		ifNil: [ 0 ]
 		ifNotNil: [ self listModel size ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicListDataSource >> searchText: aString [
 	| search |
 
@@ -122,7 +124,7 @@ SpMorphicListDataSource >> searchText: aString [
 				ifTrue: [ stream nextPut: rowIndex ] ] ]
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpMorphicListDataSource >> transferFor: passenger from: aMorph [
 
 	^ (self model adapter 

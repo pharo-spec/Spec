@@ -1,6 +1,6 @@
-Extension { #name : #FTStaticBasicItem }
+Extension { #name : 'FTStaticBasicItem' }
 
-{ #category : #'*Spec2-Adapters-Morphic' }
+{ #category : '*Spec2-Adapters-Morphic' }
 FTStaticBasicItem >> hasComputedChildren [
 	^ self hasChildren
 ]

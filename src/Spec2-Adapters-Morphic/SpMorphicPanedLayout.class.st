@@ -13,15 +13,17 @@ instead a fixed number I may change in other places.
  
 "
 Class {
-	#name : #SpMorphicPanedLayout,
-	#superclass : #TableLayout,
+	#name : 'SpMorphicPanedLayout',
+	#superclass : 'TableLayout',
 	#instVars : [
 		'position'
 	],
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicPanedLayout >> ensureHeightPosition: aMorph in: aRect [
 	| firstMorph height |
 
@@ -35,7 +37,7 @@ SpMorphicPanedLayout >> ensureHeightPosition: aMorph in: aRect [
 		ifFalse: [ firstMorph height: height ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicPanedLayout >> ensureWidthPosition: aMorph in: aRect [
 	| firstMorph width |
 
@@ -50,7 +52,7 @@ SpMorphicPanedLayout >> ensureWidthPosition: aMorph in: aRect [
 	 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicPanedLayout >> heightPositionIn: aPoint [ 
 
 	^ self position < 1 
@@ -58,38 +60,38 @@ SpMorphicPanedLayout >> heightPositionIn: aPoint [
 		ifFalse: [ self position ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicPanedLayout >> isHorizontal [
 
 	^ (properties listDirection == #topToBottom 
 		or: [ properties listDirection == #bottomToTop ]) not
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicPanedLayout >> layoutLeftToRight: aMorph in: newBounds [
 
 	self ensureWidthPosition: aMorph in: newBounds.
 	super layoutLeftToRight: aMorph in: newBounds
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicPanedLayout >> layoutTopToBottom: aMorph in: newBounds [
 
 	self ensureHeightPosition: aMorph in: newBounds.
 	super layoutTopToBottom: aMorph in: newBounds
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPanedLayout >> position [
 	^ position
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPanedLayout >> position: anObject [
 	position := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPanedLayout >> preservePositionProportionOn: layoutedMorph [
 
 	| referenceMorph |
@@ -99,13 +101,13 @@ SpMorphicPanedLayout >> preservePositionProportionOn: layoutedMorph [
 		            ifFalse: [ (referenceMorph height * 100 / layoutedMorph height) asInteger percent ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPanedLayout >> resetPosition [
 
 	position := nil
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicPanedLayout >> widthPositionIn: aPoint [
 
 	^ self position < 1

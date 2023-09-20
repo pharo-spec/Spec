@@ -2,12 +2,14 @@
 I am the adapter used to bridge a TextPresenter and a RubScrolledTextMorph for regular text
 "
 Class {
-	#name : #SpMorphicTextAdapter,
-	#superclass : #SpMorphicBaseTextAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicTextAdapter',
+	#superclass : 'SpMorphicBaseTextAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTextAdapter >> accept: aString notifying: aNotifyier [
 
 	^ super 
@@ -15,18 +17,18 @@ SpMorphicTextAdapter >> accept: aString notifying: aNotifyier [
 		notifying: aNotifyier
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicTextAdapter >> addFocusRotationKeyBindings [
 	"Text areas needs to be able to process tab. Cancel the binding."
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMorphicTextAdapter >> backendIncludesEditionMenu [
 
 	^ false
 ]
 
-{ #category : #'protocol - shortcuts' }
+{ #category : 'protocol - shortcuts' }
 SpMorphicTextAdapter >> bindKeyCombination: aShortcut toAction: aBlock [ 
 
 	self widgetDo: [ :w | 
@@ -35,7 +37,7 @@ SpMorphicTextAdapter >> bindKeyCombination: aShortcut toAction: aBlock [
 			toAction: aBlock ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTextAdapter >> buildWidget [
 	| newWidget |
 	
@@ -81,7 +83,7 @@ SpMorphicTextAdapter >> buildWidget [
 	^ newWidget
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
 	| menuPresenter |
 	
@@ -98,13 +100,13 @@ SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
 		  during: [ menuPresenter value build ]
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpMorphicTextAdapter >> copyText [
 
 	self editor copySelection
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicTextAdapter >> cursorPosition [
 
 	^ self widgetDo: [ :w |
@@ -112,50 +114,50 @@ SpMorphicTextAdapter >> cursorPosition [
 			ifNotNil: [ :sel | self linePositionOf: sel ] ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicTextAdapter >> cursorPositionIndex: index [ 
 
 	self widgetDo: [ :w | w textArea pointBlock: (w textArea paragraph characterBlockForIndex: index) ]
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpMorphicTextAdapter >> cutText [
 
 	self editor cut
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTextAdapter >> editor [
 
 	^ widget textArea editor
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTextAdapter >> eventHandlerReceiver: aWidget [
 
 	^ aWidget textArea
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpMorphicTextAdapter >> findNextText [
 
 	self editor findAgain
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpMorphicTextAdapter >> findText [
 
 	self editor find
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMorphicTextAdapter >> lineAtCursorPosition [
 
 	^ self widgetDo: [ :w | 
 		w textArea editor lineAtCursorPosition ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTextAdapter >> linePositionOf: sel [
 
 	| textLine linePosition |
@@ -164,38 +166,38 @@ SpMorphicTextAdapter >> linePositionOf: sel [
 	^ linePosition @ textLine lineNumber
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpMorphicTextAdapter >> pasteText [
 
 	self editor paste
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpMorphicTextAdapter >> presenterStyles [
 	"The presenters in the style"
 
 	^ self presenter scrollBarStyles, self presenter styles 
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpMorphicTextAdapter >> selectAndPasteText [
 
 	self editor pasteRecent
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTextAdapter >> setEditable: aBoolean to: aWidget [
 
 	aWidget textArea readOnly: aBoolean not
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTextAdapter >> setGhostText: text to: aWidget [
 
 	aWidget ghostText: text
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTextAdapter >> setText: text to: aWidget [
 
 	updating ifTrue: [ ^ self ].
@@ -205,7 +207,7 @@ SpMorphicTextAdapter >> setText: text to: aWidget [
 	self updateExtentPropagationOf: text on: aWidget
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTextAdapter >> setUndoRedo: aBoolean to: newWidget [
 
 	newWidget textArea editingState undoManager: (aBoolean 
@@ -213,7 +215,7 @@ SpMorphicTextAdapter >> setUndoRedo: aBoolean to: newWidget [
 		ifFalse: [ SpNullHistoryIterator new ])
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTextAdapter >> setWrapWord: aBoolean to: aWidget [
 
 	aBoolean 
@@ -221,7 +223,7 @@ SpMorphicTextAdapter >> setWrapWord: aBoolean to: aWidget [
 		ifFalse: [ aWidget beNotWrapped ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTextAdapter >> updateExtentPropagationOf: string on: aWidget [
 	| stringMorph width height |
 

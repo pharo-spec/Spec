@@ -2,15 +2,17 @@
 I'm the adapter used to bridge a ToggleButton and its morphic representation.
 "
 Class {
-	#name : #SpMorphicToggleButtonAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
+	#name : 'SpMorphicToggleButtonAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
 	#instVars : [
 		'styleName'
 	],
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicToggleButtonAdapter >> buildWidget [
 	| checkButton |
 
@@ -40,7 +42,7 @@ SpMorphicToggleButtonAdapter >> buildWidget [
 	^ checkButton
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicToggleButtonAdapter >> buttonChanged [
 	| state associated |
 	
@@ -52,68 +54,68 @@ SpMorphicToggleButtonAdapter >> buttonChanged [
 	widget pressed: state
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpMorphicToggleButtonAdapter >> clicked [
 	
 	widget performAction.
 	self model state: widget isPressed
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicToggleButtonAdapter >> getHelpText [
 
 	^ self presenter help ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicToggleButtonAdapter >> getLabelText [
 
 	^ self presenter label ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicToggleButtonAdapter >> helpText [
 	
 	^ widget balloonText
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicToggleButtonAdapter >> icon [
 	
 	^ self presenter icon
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicToggleButtonAdapter >> label [
 	
 	^ self getLabelText
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicToggleButtonAdapter >> state [
 	
 	^ self presenter state
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicToggleButtonAdapter >> state: aBoolean [
 	
 	^ self presenter state: aBoolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicToggleButtonAdapter >> styleName [
 
 	^ styleName ifNil: [ super styleName ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicToggleButtonAdapter >> styleName: aString [ 
 
 	styleName := aString
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpMorphicToggleButtonAdapter >> toggleAction: aBoolean [ 
 	
 	self model state: aBoolean.

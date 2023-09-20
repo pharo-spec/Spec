@@ -1,6 +1,6 @@
-Extension { #name : #FTTableMorph }
+Extension { #name : 'FTTableMorph' }
 
-{ #category : #'*Spec2-Adapters-Morphic' }
+{ #category : '*Spec2-Adapters-Morphic' }
 FTTableMorph >> clickOnColumnHeaderAt: anIndex [
 	| header |
 	header := self container headerRow submorphs at: anIndex.
@@ -10,7 +10,7 @@ FTTableMorph >> clickOnColumnHeaderAt: anIndex [
 		
 ]
 
-{ #category : #'*Spec2-Adapters-Morphic' }
+{ #category : '*Spec2-Adapters-Morphic' }
 FTTableMorph >> hasFilter [
 
 	function ifNil: [ ^ false ].

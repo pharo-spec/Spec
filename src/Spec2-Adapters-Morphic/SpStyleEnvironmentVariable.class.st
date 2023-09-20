@@ -2,15 +2,17 @@
 A base for environment variables (values that point to values in the environment).
 "
 Class {
-	#name : #SpStyleEnvironmentVariable,
-	#superclass : #SpStyleAbstractVariable,
+	#name : 'SpStyleEnvironmentVariable',
+	#superclass : 'SpStyleAbstractVariable',
 	#instVars : [
 		'name'
 	],
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpStyleEnvironmentVariable class >> addDocumentExample: aBuilder [
 
 	aBuilder newLine.
@@ -19,7 +21,7 @@ SpStyleEnvironmentVariable class >> addDocumentExample: aBuilder [
 	aBuilder monospace: self documentExampleCode
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpStyleEnvironmentVariable class >> addDocumentValidValues: aBuilder [	
 
 	aBuilder newLine.
@@ -31,42 +33,42 @@ SpStyleEnvironmentVariable class >> addDocumentValidValues: aBuilder [
 				aBuilder monospace: '#', each asString ] ] ]	
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpStyleEnvironmentVariable class >> documentExampleCode [
 
 	^ '(none)'
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpStyleEnvironmentVariable class >> documentValidValues [
 	
 	^ #()
 ]
 
-{ #category : #'ston-core' }
+{ #category : 'ston-core' }
 SpStyleEnvironmentVariable class >> stonName [
 
 	^ 'Environment'
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpStyleEnvironmentVariable >> fromSton: stonReader [
 
 	self name: stonReader parseContainedValue
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpStyleEnvironmentVariable >> isEnvironmentVariable [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpStyleEnvironmentVariable >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpStyleEnvironmentVariable >> name: anObject [
 	name := anObject
 ]

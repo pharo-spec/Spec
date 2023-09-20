@@ -1,12 +1,14 @@
 Class {
-	#name : #SpMorphicPaginatorAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
+	#name : 'SpMorphicPaginatorAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
 	#traits : 'SpTBackendUpdating',
 	#classTraits : 'SpTBackendUpdating classTrait',
-	#category : #'Spec2-Adapters-Morphic-Paginator'
+	#category : 'Spec2-Adapters-Morphic-Paginator',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Paginator'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicPaginatorAdapter >> buildWidget [
 	| morph page |
 	
@@ -51,14 +53,14 @@ SpMorphicPaginatorAdapter >> buildWidget [
 	^ morph
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicPaginatorAdapter >> initialize [
 
 	super initialize.
 	self initializeTBackendUpdating
 ]
 
-{ #category : #paginator }
+{ #category : 'paginator' }
 SpMorphicPaginatorAdapter >> scrollByDeltaPercent: percent [
 	| millerWidth millerDelta |
 	
@@ -67,7 +69,7 @@ SpMorphicPaginatorAdapter >> scrollByDeltaPercent: percent [
 	self widget scroller offset: (self widget scroller offset x + millerDelta)@0
 ]
 
-{ #category : #paginator }
+{ #category : 'paginator' }
 SpMorphicPaginatorAdapter >> withoutResizingEdges [
 
 	self widgetDo: [ :w | w removeResizingEdges ]

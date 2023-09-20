@@ -1,16 +1,18 @@
 Class {
-	#name : #SpNotebookPageMorph,
-	#superclass : #Morph,
+	#name : 'SpNotebookPageMorph',
+	#superclass : 'Morph',
 	#instVars : [
 		'actualPageMorph',
 		'lazyPageMorphCreation',
 		'labelMorph',
 		'model'
 	],
-	#category : #'Spec2-Adapters-Morphic-Notebook'
+	#category : 'Spec2-Adapters-Morphic-Notebook',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Notebook'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageMorph >> actualPageMorph [
 
 	^ actualPageMorph ifNil: [
@@ -20,61 +22,61 @@ SpNotebookPageMorph >> actualPageMorph [
 			yourself ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageMorph >> actualPageMorph: anObject [
 
 	actualPageMorph := anObject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpNotebookPageMorph >> isRendered [
 
 	^ actualPageMorph notNil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageMorph >> labelMorph [
 
 	^ labelMorph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageMorph >> labelMorph: anObject [
 
 	labelMorph := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageMorph >> lazyPageMorphCreation [
 
 	^ lazyPageMorphCreation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageMorph >> lazyPageMorphCreation: anObject [
 
 	lazyPageMorphCreation := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageMorph >> model [
 
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageMorph >> model: anObject [
 
 	model := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNotebookPageMorph >> reset [
 
 	self actualPageMorph: nil
 ]
 
-{ #category : #theme }
+{ #category : 'theme' }
 SpNotebookPageMorph >> themeChanged [
 
 	super themeChanged.

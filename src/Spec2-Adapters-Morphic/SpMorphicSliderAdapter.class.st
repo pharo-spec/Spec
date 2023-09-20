@@ -2,24 +2,26 @@
 I am the adapter used to bridget a SliderPresenter and a PluggableSliderMorph
 "
 Class {
-	#name : #SpMorphicSliderAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicSliderAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicSliderAdapter >> absoluteValue [
 
 	^ self presenter absoluteValue
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicSliderAdapter >> absoluteValue: aFloat [
 
 	^ self presenter absoluteValue: aFloat
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicSliderAdapter >> buildWidget [
 
 	| preWidget |
@@ -52,36 +54,36 @@ SpMorphicSliderAdapter >> buildWidget [
 	^ preWidget
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicSliderAdapter >> label [
 
 	^ self presenter label
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicSliderAdapter >> max [
 
 	^ self presenter max
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicSliderAdapter >> min [
 
 	^ self presenter min
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicSliderAdapter >> quantum [
 
 	^ self model quantum
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicSliderAdapter >> value [
 	^ self presenter value
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicSliderAdapter >> value: aValue [
 
 	| value |	

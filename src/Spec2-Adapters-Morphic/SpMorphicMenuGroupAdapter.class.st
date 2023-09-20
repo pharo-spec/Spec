@@ -3,28 +3,30 @@ I am used to compute a MenuGroupPresenter.
 There is not Morphic represenation of a MenuGroup, that is why I do not have a coresponding morph.
 "
 Class {
-	#name : #SpMorphicMenuGroupAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicMenuGroupAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicMenuGroupAdapter >> addKeyBindingsTo: aMorph [
 	"This does not has keybindings"
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicMenuGroupAdapter >> applyVisibility [
 	"Do nothing. Morphs implement #visible but the widget of this adapter is an ordered collection."
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicMenuGroupAdapter >> buildWidget [
 
 	^ self menuItems select: #isVisible thenCollect: #build
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicMenuGroupAdapter >> menuItems [
 	
 	^ self model menuItems

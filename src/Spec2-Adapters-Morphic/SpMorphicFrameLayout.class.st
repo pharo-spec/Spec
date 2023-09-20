@@ -1,26 +1,28 @@
 Class {
-	#name : #SpMorphicFrameLayout,
-	#superclass : #SpMorphicBaseBoxLayout,
+	#name : 'SpMorphicFrameLayout',
+	#superclass : 'SpMorphicBaseBoxLayout',
 	#instVars : [
 		'calculating'
 	],
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicFrameLayout >> initialize [
 
 	super initialize.
 	calculating := false
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicFrameLayout >> isHomogeneous [
 
 	^ false
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpMorphicFrameLayout >> layout: aMorph in: aRect [
 
 	calculating ifTrue: [ ^ self ].

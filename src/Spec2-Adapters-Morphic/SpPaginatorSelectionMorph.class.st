@@ -3,8 +3,8 @@ A morph to being used as a selection area in a `SpPaginatorMorph`.
 It can be dragged and resized.
 "
 Class {
-	#name : #SpPaginatorSelectionMorph,
-	#superclass : #Morph,
+	#name : 'SpPaginatorSelectionMorph',
+	#superclass : 'Morph',
 	#instVars : [
 		'lastMouseX',
 		'lastX',
@@ -12,10 +12,12 @@ Class {
 		'draggingAction',
 		'minimumWidth'
 	],
-	#category : #'Spec2-Adapters-Morphic-Paginator'
+	#category : 'Spec2-Adapters-Morphic-Paginator',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Paginator'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPaginatorSelectionMorph >> addResizingEdges [
 
 	"left resizer"
@@ -39,14 +41,14 @@ SpPaginatorSelectionMorph >> addResizingEdges [
 		yourself)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPaginatorSelectionMorph >> announceDragFinished [
 
 	dragFinishedAction ifNil: [ ^ self ].
 	dragFinishedAction cull: self left
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpPaginatorSelectionMorph >> canResizeTo: xNumber direction: direction [
 
 	(xNumber between: self owner left and: self owner right) ifFalse: [ ^ false ].
@@ -57,26 +59,26 @@ SpPaginatorSelectionMorph >> canResizeTo: xNumber direction: direction [
 	^ true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPaginatorSelectionMorph >> defaultColor [
 	
 	^ self theme paginatorSelectionColor
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpPaginatorSelectionMorph >> handlesMouseDown: anEvent [
 
 	^ true
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpPaginatorSelectionMorph >> handlesMouseOver: anEvent [
 
 	^ true
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPaginatorSelectionMorph >> initialize [
 
 	super initialize.
@@ -88,13 +90,13 @@ SpPaginatorSelectionMorph >> initialize [
 	self addResizingEdges
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorSelectionMorph >> minimumWidth [
 
 	^ minimumWidth
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpPaginatorSelectionMorph >> mouseDown: anEvent [ 
 
 	super mouseDown: anEvent.
@@ -102,7 +104,7 @@ SpPaginatorSelectionMorph >> mouseDown: anEvent [
 	lastMouseX := anEvent cursorPoint x
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpPaginatorSelectionMorph >> mouseLeave: anEvent [
 
 	super mouseLeave: anEvent.
@@ -111,7 +113,7 @@ SpPaginatorSelectionMorph >> mouseLeave: anEvent [
 	self resetPosition
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpPaginatorSelectionMorph >> mouseMove: anEvent [ 
 	| x posX oldPosX |
 
@@ -132,7 +134,7 @@ SpPaginatorSelectionMorph >> mouseMove: anEvent [
 			cull: oldPosX ]
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpPaginatorSelectionMorph >> mouseUp: anEvent [ 
 
 	super mouseMove: anEvent.
@@ -141,7 +143,7 @@ SpPaginatorSelectionMorph >> mouseUp: anEvent [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorSelectionMorph >> removeResizingEdges [
 	| edgeMorphs |
 	
@@ -149,7 +151,7 @@ SpPaginatorSelectionMorph >> removeResizingEdges [
 	self removeAllMorphsIn: edgeMorphs
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPaginatorSelectionMorph >> resetPosition [
 
 	lastX ifNil: [ ^ self ].
@@ -157,7 +159,7 @@ SpPaginatorSelectionMorph >> resetPosition [
 	lastX := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorSelectionMorph >> updateSizePages: pages pageWidth: pageWidth [ 
 	
 	(minimumWidth isNil or: [ pageWidth < minimumWidth ])
@@ -165,13 +167,13 @@ SpPaginatorSelectionMorph >> updateSizePages: pages pageWidth: pageWidth [
 	self width: pages * pageWidth
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpPaginatorSelectionMorph >> whenDragFinishedDo: aBlock [
 
 	dragFinishedAction := aBlock
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpPaginatorSelectionMorph >> whenDraggingDo: aBlock [
 
 	draggingAction := aBlock

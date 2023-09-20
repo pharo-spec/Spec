@@ -2,39 +2,41 @@
 I'm an adapter for Frame Layouts.
 "
 Class {
-	#name : #SpMorphicFrameLayoutAdapter,
-	#superclass : #SpMorphicLayoutAdapter,
+	#name : 'SpMorphicFrameLayoutAdapter',
+	#superclass : 'SpMorphicLayoutAdapter',
 	#instVars : [
 		'framePanel'
 	],
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #'experiment-toggle' }
+{ #category : 'experiment-toggle' }
 SpMorphicFrameLayoutAdapter class >> adaptingName [
 
 	^ #FrameLayoutAdapter
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicFrameLayoutAdapter >> add: aPresenter [
  
 	self add: aPresenter constraints: SpBoxConstraints new
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpMorphicFrameLayoutAdapter >> add: aPresenter constraints: constraints [
 
 	super add: aPresenter constraints: constraints
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicFrameLayoutAdapter >> addConstraints: constraints toChild: childMorph [
 
 	^ childMorph
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicFrameLayoutAdapter >> addPadding: aNumber toMorph: aMorph [
 	
 	aNumber = 0 ifTrue: [ ^ aMorph ].
@@ -45,7 +47,7 @@ SpMorphicFrameLayoutAdapter >> addPadding: aNumber toMorph: aMorph [
 		into: self
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicFrameLayoutAdapter >> applyAlignmentTo: aWidget [
 
 	layout vAlign ifNotNil: [ :align | 
@@ -59,7 +61,7 @@ SpMorphicFrameLayoutAdapter >> applyAlignmentTo: aWidget [
 	^ aWidget
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicFrameLayoutAdapter >> applyAlignmentToChild: aWidget [
 
 	"layout vAlign 
@@ -69,7 +71,7 @@ SpMorphicFrameLayoutAdapter >> applyAlignmentToChild: aWidget [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicFrameLayoutAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
 	| childMorph |
 
@@ -83,19 +85,19 @@ SpMorphicFrameLayoutAdapter >> basicAdd: aPresenter constraints: constraints to:
 	^ childMorph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicFrameLayoutAdapter >> children [
 
 	^ framePanel submorphs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicFrameLayoutAdapter >> childrenWidgets [
 	
 	^ self children
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicFrameLayoutAdapter >> layout: aLayout [
 
 	layout := aLayout.
@@ -123,7 +125,7 @@ SpMorphicFrameLayoutAdapter >> layout: aLayout [
 	super layout: aLayout
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicFrameLayoutAdapter >> newLabel: aLabel [
 
 	^ (framePanel := self newPanelWith: self newPanelLayout label: aLabel)
@@ -131,7 +133,7 @@ SpMorphicFrameLayoutAdapter >> newLabel: aLabel [
 		yourself
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicFrameLayoutAdapter >> newPanelLayout [
 
 	^ SpMorphicFrameLayout new
@@ -139,7 +141,7 @@ SpMorphicFrameLayoutAdapter >> newPanelLayout [
 		yourself
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicFrameLayoutAdapter >> newPanelWith: aLayout label: aLabel [
 
 	^ SpMorphicFrameLayoutMorph new
@@ -156,7 +158,7 @@ SpMorphicFrameLayoutAdapter >> newPanelWith: aLayout label: aLabel [
 	  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicFrameLayoutAdapter >> remove: aPresenter [
 
 	| morph |
@@ -166,20 +168,20 @@ SpMorphicFrameLayoutAdapter >> remove: aPresenter [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicFrameLayoutAdapter >> removeAll [
 
 	framePanel removeAllMorphs.
 	self verifyBoxExtent
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicFrameLayoutAdapter >> removeSubWidgets [
 
 	framePanel removeAllMorphs.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicFrameLayoutAdapter >> replace: aPresenter with: otherPresenter [
 
 	| oldMorph newMorph |	
@@ -192,7 +194,7 @@ SpMorphicFrameLayoutAdapter >> replace: aPresenter with: otherPresenter [
 	framePanel replaceSubmorph: oldMorph by: newMorph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicFrameLayoutAdapter >> replace: aPresenter with: otherPresenter withConstraints: constraints [
 
 	| oldMorph newMorph |	
@@ -205,20 +207,20 @@ SpMorphicFrameLayoutAdapter >> replace: aPresenter with: otherPresenter withCons
 	framePanel replaceSubmorph: oldMorph by: newMorph
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicFrameLayoutAdapter >> updateSpacing [
 
 	framePanel cellInset: layout spacing
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicFrameLayoutAdapter >> verifyBoxExtent [
 
 	framePanel hasSubmorphs
 		ifFalse: [ widget extent: 0@0 ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicFrameLayoutAdapter >> verifyBoxExtentOf: aPanel withChild: childMorph [
 	| width height |
 

@@ -3,23 +3,25 @@ Add functionality to verify if there is a backend updating in course.
 This is used to prevent cycles when announcing changes from-to the backend.
 "
 Trait {
-	#name : #SpTBackendUpdating,
+	#name : 'SpTBackendUpdating',
 	#instVars : [
 		'backendUpdating'
 	],
 	#traits : 'TEmpty',
 	#classTraits : 'TEmpty classTrait',
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpTBackendUpdating >> backendDetectCyclesDo: aBlock [ 
 
 	self isBackendUpdating ifTrue: [ ^ self ].
 	^ aBlock value
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTBackendUpdating >> backendUpdatingDo: aBlock [ 
 	| oldStatus |
 
@@ -29,13 +31,13 @@ SpTBackendUpdating >> backendUpdatingDo: aBlock [
 		backendUpdating := oldStatus ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTBackendUpdating >> initializeTBackendUpdating [
 
 	backendUpdating := false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTBackendUpdating >> isBackendUpdating [
 
 	^ backendUpdating

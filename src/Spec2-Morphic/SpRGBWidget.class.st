@@ -12,17 +12,19 @@ I provide the following methods
 I provide extentForPreview, a point used to define the size of the preview.
 "
 Class {
-	#name : #SpRGBWidget,
-	#superclass : #SpPresenter,
+	#name : 'SpRGBWidget',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'preview',
 		'sliders',
 		'extentForPreview'
 	],
-	#category : #'Spec2-Morphic-Widgets'
+	#category : 'Spec2-Morphic-Widgets',
+	#package : 'Spec2-Morphic',
+	#tag : 'Widgets'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpRGBWidget class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: #preview;
@@ -30,17 +32,17 @@ SpRGBWidget class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRGBWidget >> color [
  ^ sliders color
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRGBWidget >> connectPresenters [
 	sliders whenChangedDo: [ preview image: self makeNewForm ].
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRGBWidget >> initializePresenters [
 	preview := self instantiate: SpImagePresenter.
 	sliders := self instantiate: SpRGBSlidersPresenter.
@@ -49,22 +51,22 @@ SpRGBWidget >> initializePresenters [
 	self focusOrder add: sliders
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRGBWidget >> makeNewForm [
 	^ (Form extent: 30 @ 30 depth: 32) fillColor: self color
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRGBWidget >> preview [
 	^ preview
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRGBWidget >> sliders [
 	^ sliders
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpRGBWidget >> whenExtentForPreviewChanged: aBlock [
  extentForPreview whenChangedDo: aBlock 
 ]

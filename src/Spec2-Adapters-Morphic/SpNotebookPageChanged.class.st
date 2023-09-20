@@ -1,18 +1,20 @@
 Class {
-	#name : #SpNotebookPageChanged,
-	#superclass : #SpNotebookPageAnnouncement,
+	#name : 'SpNotebookPageChanged',
+	#superclass : 'SpNotebookPageAnnouncement',
 	#instVars : [
 		'oldPage'
 	],
-	#category : #'Spec2-Adapters-Morphic-Notebook'
+	#category : 'Spec2-Adapters-Morphic-Notebook',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Notebook'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageChanged >> oldPage [
 	^ oldPage
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageChanged >> oldPage: anObject [
 	oldPage := anObject
 ]

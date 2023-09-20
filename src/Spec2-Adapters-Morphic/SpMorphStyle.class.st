@@ -24,16 +24,18 @@ This collection will be used to get all properties defined and perform a merge b
 
 "
 Class {
-	#name : #SpMorphStyle,
-	#superclass : #Object,
+	#name : 'SpMorphStyle',
+	#superclass : 'Object',
 	#instVars : [
 		'styles',
 		'mergedProperties'
 	],
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMorphStyle class >> fromStylesheet: aStyle adapter: anAdapter [
 	"I collect all styles that apply to an adapter.
 	 I traverse all styles in a very precise order: from more generic to more specific, this way 
@@ -45,7 +47,7 @@ SpMorphStyle class >> fromStylesheet: aStyle adapter: anAdapter [
 		otherStyles: anAdapter presenterStyles
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMorphStyle class >> fromStylesheet: aStyle baseStyleName: aName otherStyles: otherStyleNames [
 	"I collect all styles that apply to an adapter.
 	 I traverse all styles in a very precise order: from more generic to more specific, this way 
@@ -70,7 +72,7 @@ SpMorphStyle class >> fromStylesheet: aStyle baseStyleName: aName otherStyles: o
 	^ self newStyles: styles asArray
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMorphStyle class >> newStyles: anArray [
 
 	^ self new 
@@ -78,7 +80,7 @@ SpMorphStyle class >> newStyles: anArray [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphStyle >> applyTo: aMorph [ 
 
 	aMorph setProperty: #style toValue: self.
@@ -86,13 +88,13 @@ SpMorphStyle >> applyTo: aMorph [
 		do: [ :each | each applyTo: aMorph ]
 ]
 
-{ #category : #'accessing - container' }
+{ #category : 'accessing - container' }
 SpMorphStyle >> borderWidth [
 
 	^ self lookupProperty: SpContainerStyle valueOf: #borderWidth
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphStyle >> calculateMergedProperties [
 	| properties groups |
 	
@@ -109,25 +111,25 @@ SpMorphStyle >> calculateMergedProperties [
 	^ properties
 ]
 
-{ #category : #'accessing - geometry' }
+{ #category : 'accessing - geometry' }
 SpMorphStyle >> extent [
 
 	^ self lookupProperty: SpGeometryStyle valueOf: #extent
 ]
 
-{ #category : #'accessing - font' }
+{ #category : 'accessing - font' }
 SpMorphStyle >> font [
 
 	^ self lookupProperty: SpFontStyle valueOf: #definedFont
 ]
 
-{ #category : #'accessing - geometry' }
+{ #category : 'accessing - geometry' }
 SpMorphStyle >> height [
 
 	^ self lookupProperty: SpGeometryStyle valueOf: #height
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphStyle >> lookupProperty: aPropertyClass valueOf: aSymbol [
 	"I perform the lookup of a property, for which I need a class and a property name.
 	 I will traverse all collected properties from last to first, to ensure most detailed 
@@ -140,19 +142,19 @@ SpMorphStyle >> lookupProperty: aPropertyClass valueOf: aSymbol [
 	^ nil
 ]
 
-{ #category : #'accessing - geometry' }
+{ #category : 'accessing - geometry' }
 SpMorphStyle >> maxHeight [
 
 	^ self lookupProperty: SpGeometryStyle valueOf: #maxHeight
 ]
 
-{ #category : #'accessing - geometry' }
+{ #category : 'accessing - geometry' }
 SpMorphStyle >> maxWidth [
 
 	^ self lookupProperty: SpGeometryStyle valueOf: #maxWidth
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphStyle >> mergedLookupProperty: aPropertyClass valueOf: aSymbol [
 	"I perform the lookup of a property, for which I need a class and a property name.
 	 I will traverse all collected properties from last to first, to ensure most detailed 
@@ -162,38 +164,38 @@ SpMorphStyle >> mergedLookupProperty: aPropertyClass valueOf: aSymbol [
 		
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphStyle >> mergedProperties [
 
 	^ mergedProperties ifNil: [ mergedProperties := self calculateMergedProperties ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphStyle >> mergedPropertiesLike: aClass [
 
 	^ self mergedProperties select: [ :eachProperty | eachProperty class = aClass ]
 		
 ]
 
-{ #category : #'accessing - geometry' }
+{ #category : 'accessing - geometry' }
 SpMorphStyle >> minHeight [
 
 	^ self lookupProperty: SpGeometryStyle valueOf: #minHeight
 ]
 
-{ #category : #'accessing - geometry' }
+{ #category : 'accessing - geometry' }
 SpMorphStyle >> minWidth [
 
 	^ self lookupProperty: SpGeometryStyle valueOf: #minWidth
 ]
 
-{ #category : #'accessing - container' }
+{ #category : 'accessing - container' }
 SpMorphStyle >> padding [ 
 
 	^ self lookupProperty: SpContainerStyle valueOf: #padding
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphStyle >> propertiesLike: aClass [
 
 	^ (self styles 
@@ -206,17 +208,17 @@ SpMorphStyle >> propertiesLike: aClass [
 		flattened
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphStyle >> styles [
 	^ styles
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphStyle >> styles: anObject [
 	styles := anObject
 ]
 
-{ #category : #'accessing - geometry' }
+{ #category : 'accessing - geometry' }
 SpMorphStyle >> width [
 
 	^ self lookupProperty: SpGeometryStyle valueOf: #width

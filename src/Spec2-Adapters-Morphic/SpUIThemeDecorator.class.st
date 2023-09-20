@@ -4,16 +4,18 @@ I decorate a UITheme allowing to override desired properties.
 See #example on class side.
 "
 Class {
-	#name : #SpUIThemeDecorator,
-	#superclass : #Object,
+	#name : 'SpUIThemeDecorator',
+	#superclass : 'Object',
 	#instVars : [
 		'theme',
 		'themeOverrideDict'
 	],
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpUIThemeDecorator class >> exampleDecoratorToMakePluggableButtonRed [
 	| normalColorBlock clickedColorBlock |
 	normalColorBlock := [ :aButton |
@@ -28,14 +30,14 @@ SpUIThemeDecorator class >> exampleDecoratorToMakePluggableButtonRed [
 			yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpUIThemeDecorator class >> theme: aUITheme [
 	^ self new
 		theme: aUITheme;
 		yourself
 ]
 
-{ #category : #'reflective operations' }
+{ #category : 'reflective operations' }
 SpUIThemeDecorator >> doesNotUnderstand: aMessage [
 	(self hasProperty: aMessage selector)
 		ifTrue: [ |objOrBlock|
@@ -50,34 +52,34 @@ SpUIThemeDecorator >> doesNotUnderstand: aMessage [
 	^ super doesNotUnderstand: aMessage
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpUIThemeDecorator >> hasProperty: aSymbol [
 	^ themeOverrideDict includesKey: aSymbol
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpUIThemeDecorator >> initialize [
 	super initialize.
 	themeOverrideDict := Dictionary new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpUIThemeDecorator >> objectAtProperty: aSymbol [
 	^ themeOverrideDict at: aSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpUIThemeDecorator >> property: aSymbol returnsValueOf: anObject [
 	themeOverrideDict
 		at: aSymbol put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpUIThemeDecorator >> theme [
 	^ theme
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpUIThemeDecorator >> theme: anObject [
 	theme := anObject
 ]

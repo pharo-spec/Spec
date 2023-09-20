@@ -3,15 +3,17 @@ I'm an adapter for Paned Layouts.
 A paned layout will split (horizontally or vertically) a panel and allow its resize. 
 "
 Class {
-	#name : #SpMorphicPanedAdapter,
-	#superclass : #SpMorphicLayoutAdapter,
+	#name : 'SpMorphicPanedAdapter',
+	#superclass : 'SpMorphicLayoutAdapter',
 	#instVars : [
 		'children'
 	],
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #'adding/removing' }
+{ #category : 'adding/removing' }
 SpMorphicPanedAdapter >> addConstraints: constraints toChild: childMorph [
 	"Adds constraits by child"
 	| theMorph |	
@@ -23,14 +25,14 @@ SpMorphicPanedAdapter >> addConstraints: constraints toChild: childMorph [
 	^ theMorph 
 ]
 
-{ #category : #'adding/removing' }
+{ #category : 'adding/removing' }
 SpMorphicPanedAdapter >> addSplitterIn: aPanel for: childMorph [
 
 	aPanel submorphs size = 1 ifFalse: [ ^ self ].
 	aPanel addMorphBack: self direction newSplitter
 ]
 
-{ #category : #'adding/removing' }
+{ #category : 'adding/removing' }
 SpMorphicPanedAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
 	| childMorph position |
 
@@ -60,26 +62,26 @@ SpMorphicPanedAdapter >> basicAdd: aPresenter constraints: constraints to: aPane
 	^ childMorph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPanedAdapter >> children [
 
 	^ children
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPanedAdapter >> direction [
 
 	^ self layout direction
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicPanedAdapter >> initialize [
 
 	super initialize.
 	children := OrderedCollection new
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicPanedAdapter >> layout: aLayout [
 
 	layout := aLayout.
@@ -99,7 +101,7 @@ SpMorphicPanedAdapter >> layout: aLayout [
 	super layout: aLayout
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicPanedAdapter >> newHorizontal [
 
 	^ self newPanel 
@@ -107,7 +109,7 @@ SpMorphicPanedAdapter >> newHorizontal [
 		yourself
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicPanedAdapter >> newPanel [
 
 	^ super newPanel
@@ -115,7 +117,7 @@ SpMorphicPanedAdapter >> newPanel [
 		yourself
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicPanedAdapter >> newVertical [
 
 	^ self newPanel 
@@ -123,7 +125,7 @@ SpMorphicPanedAdapter >> newVertical [
 		yourself	
 ]
 
-{ #category : #'adding/removing' }
+{ #category : 'adding/removing' }
 SpMorphicPanedAdapter >> removeChild: aPresenter [
 	
 	| morph |
@@ -132,7 +134,7 @@ SpMorphicPanedAdapter >> removeChild: aPresenter [
 	widget removeMorph: morph
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicPanedAdapter >> resizingSetSelector [
 
 	^ layout isHorizontal
@@ -140,7 +142,7 @@ SpMorphicPanedAdapter >> resizingSetSelector [
 		  ifFalse: [ #vResizing: ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicPanedAdapter >> splitterNewSelector [
 
 	^ layout isHorizontal

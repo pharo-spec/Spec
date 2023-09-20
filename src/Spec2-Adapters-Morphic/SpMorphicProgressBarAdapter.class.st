@@ -5,8 +5,8 @@ Description
 I am a Morphic adapter to bridge the ProgressBarPresenter and the ProgressBarMorph.
 "
 Class {
-	#name : #SpMorphicProgressBarAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
+	#name : 'SpMorphicProgressBarAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
 	#instVars : [
 		'progressBar',
 		'progressLabel',
@@ -14,10 +14,12 @@ Class {
 		'refreshRateInMs',
 		'refreshBlock'
 	],
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpMorphicProgressBarAdapter >> applyStyle: morph [
 	"this will apply general properties to the built morph"
 
@@ -26,7 +28,7 @@ SpMorphicProgressBarAdapter >> applyStyle: morph [
 	self barStyle applyTo: progressBar
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpMorphicProgressBarAdapter >> barStyle [
 
 	^ SpMorphStyle 
@@ -35,7 +37,7 @@ SpMorphicProgressBarAdapter >> barStyle [
 		otherStyles: self presenterStyles
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicProgressBarAdapter >> buildWidget [
 	| panel |
 	
@@ -65,7 +67,7 @@ SpMorphicProgressBarAdapter >> buildWidget [
 	^ panel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicProgressBarAdapter >> initialize [ 
 	
 	super initialize.
@@ -75,7 +77,7 @@ SpMorphicProgressBarAdapter >> initialize [
 	refreshRateInMs := 250.
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpMorphicProgressBarAdapter >> labelStyle [
 
 	^ SpMorphStyle
@@ -84,19 +86,19 @@ SpMorphicProgressBarAdapter >> labelStyle [
 		otherStyles: self presenterStyles
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicProgressBarAdapter >> progressBarState [
 
 	^ self model state
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicProgressBarAdapter >> refreshRateInMs: nbMilliSeconds [
 	"The progress  bar will only be updated if the time between 2 refresh is > nbMilliSeconds"
 	refreshRateInMs := nbMilliSeconds.
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicProgressBarAdapter >> updateState [
 
 	| isTimeForRefresh |
@@ -116,7 +118,7 @@ SpMorphicProgressBarAdapter >> updateState [
 	refreshBlock ifNotNil: [ refreshBlock value ].
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 SpMorphicProgressBarAdapter >> whenRefreshedDo: aBlock [
 	"When the widget will be refreshed, aBlock will be executed.
 	By example, it can be used to test the redraw rate of the presenter."

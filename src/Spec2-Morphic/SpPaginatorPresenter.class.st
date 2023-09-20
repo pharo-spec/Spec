@@ -3,36 +3,38 @@ A presenter to show a paginator.
 Tipically, a paginator is associated to a miller list (See `SpMillerPaginatorPresenter`).
 "
 Class {
-	#name : #SpPaginatorPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpPaginatorPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'#visiblePages => ObservableSlot',
 		'#selectedPage => ObservableSlot',
 		'#dragging => ObservableSlot',
 		'#pagesHolder'
 	],
-	#category : #'Spec2-Morphic-Paginator'
+	#category : 'Spec2-Morphic-Paginator',
+	#package : 'Spec2-Morphic',
+	#tag : 'Paginator'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpPaginatorPresenter class >> adapterName [
 
 	^ #PaginatorAdapter
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpPaginatorPresenter class >> defaultVisiblePages [
 
 	^ 2
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpPaginatorPresenter class >> documentExamplesProtocol [
 	
 	^ #'*Spec2-Morphic-Examples'
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPaginatorPresenter >> addPage: aPresenter [
 	"Add a page related to `aPresenter`."
 	
@@ -40,7 +42,7 @@ SpPaginatorPresenter >> addPage: aPresenter [
 	self selectPage: pagesHolder size
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPaginatorPresenter >> chainTo: aPresenter [
 	"It will 'chain' this paginator with `aPresenter`. 
 	 In order to work, `aPresenter` needs to implement this methods: 
@@ -54,13 +56,13 @@ SpPaginatorPresenter >> chainTo: aPresenter [
 		whenDraggingDo: [ :deltaPercent | aPresenter scrollByDeltaPercent: deltaPercent ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPaginatorPresenter >> dragging: aNumber [
 
 	dragging := aNumber
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPaginatorPresenter >> initialize [
 
 	super initialize.
@@ -68,14 +70,14 @@ SpPaginatorPresenter >> initialize [
 	visiblePages := self class defaultVisiblePages
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPaginatorPresenter >> pages [
 	"Answer a collection of all pages added to paginator."	
 
 	^ pagesHolder value
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPaginatorPresenter >> pages: aCollection [
 	"Set pages of paginator taken elements from `aCollection`."
 
@@ -83,34 +85,34 @@ SpPaginatorPresenter >> pages: aCollection [
 	aCollection do: [ :each | pagesHolder add: each ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPaginatorPresenter >> selectPage: aNumber [
 	"Select (make the selection area be placed at) the page at index `aNumber`."
 
 	selectedPage := aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorPresenter >> selectedPage [
 
 	^ selectedPage
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPaginatorPresenter >> visiblePages [
 	"Answer the paginator visible pages (visible pages are the pages marked as selected)."
 
 	^ visiblePages
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPaginatorPresenter >> visiblePages: aNumber [
 	"Set the amount of visible pages to be shown the selected area."
 
 	visiblePages := aNumber
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpPaginatorPresenter >> whenDraggingDo: aBlock [
 	"Inform when selected area is being dragged (to change selected page).
 	 `aBlock` has three optional arguments: 
@@ -121,7 +123,7 @@ SpPaginatorPresenter >> whenDraggingDo: aBlock [
 	self property: #dragging whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpPaginatorPresenter >> whenPageAddedDo: aBlock [
 	"Inform when a page has been added.
 	 `aBlock` receives one argument, the new page added."
@@ -129,7 +131,7 @@ SpPaginatorPresenter >> whenPageAddedDo: aBlock [
 	pagesHolder whenAddedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpPaginatorPresenter >> whenPageRemovedDo: aBlock [
 	"Inform when a page has been added.
 	 `aBlock` receives one argument, the page removed."
@@ -137,7 +139,7 @@ SpPaginatorPresenter >> whenPageRemovedDo: aBlock [
 	pagesHolder whenRemovedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpPaginatorPresenter >> whenSelectedPageChangedDo: aBlock [
 	"Inform when a page selection has been changed.
 	 `aBlock` has three optional arguments: 
@@ -148,7 +150,7 @@ SpPaginatorPresenter >> whenSelectedPageChangedDo: aBlock [
 	self property: #selectedPage whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpPaginatorPresenter >> whenVisiblePagesChangedDo: aBlock [
 	"Inform when a visible pages has been changed.
 	 `aBlock` has three optional arguments: 
@@ -159,7 +161,7 @@ SpPaginatorPresenter >> whenVisiblePagesChangedDo: aBlock [
 	self property: #visiblePages whenChangedDo: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPaginatorPresenter >> withoutResizingEdges [
 
 	self withAdapterPerformOrDefer: [ :anAdapter | anAdapter withoutResizingEdges ]

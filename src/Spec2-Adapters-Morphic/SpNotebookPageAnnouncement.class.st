@@ -1,29 +1,31 @@
 Class {
-	#name : #SpNotebookPageAnnouncement,
-	#superclass : #Announcement,
+	#name : 'SpNotebookPageAnnouncement',
+	#superclass : 'Announcement',
 	#instVars : [
 		'page',
 		'pageIndex'
 	],
-	#category : #'Spec2-Adapters-Morphic-Notebook'
+	#category : 'Spec2-Adapters-Morphic-Notebook',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Notebook'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageAnnouncement >> page [
 	^ page
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageAnnouncement >> page: anObject [
 	page := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageAnnouncement >> pageIndex [
 	^ pageIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageAnnouncement >> pageIndex: anObject [
 	pageIndex := anObject
 ]
