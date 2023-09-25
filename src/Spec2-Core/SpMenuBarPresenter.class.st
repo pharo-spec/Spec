@@ -8,29 +8,31 @@ I'm different from a simple menu in:
 Tipically, this menu will be presented at the top of a window.
 "
 Class {
-	#name : #SpMenuBarPresenter,
-	#superclass : #SpMenuPresenter,
-	#category : #'Spec2-Core-Widgets'
+	#name : 'SpMenuBarPresenter',
+	#superclass : 'SpMenuPresenter',
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpMenuBarPresenter class >> adapterName [
 
 	^ #MenuBarAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpMenuBarPresenter class >> addDocumentExtraSections: aBuilder [
 	"It does not applies here"
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpMenuBarPresenter class >> documentExampleCodeSelector [
 
 	^ #example
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpMenuBarPresenter class >> documentFactoryMethodSelector [
 
 	^ #newMenuBar

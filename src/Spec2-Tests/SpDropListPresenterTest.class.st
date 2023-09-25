@@ -1,15 +1,17 @@
 Class {
-	#name : #SpDropListPresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpDropListPresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDropListPresenterTest >> classToTest [
 	^ SpDropListPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListPresenterTest >> testDisableSelectionDuring [ 
 	| changed |
 
@@ -24,7 +26,7 @@ SpDropListPresenterTest >> testDisableSelectionDuring [
 	self assert: presenter selectedItem equals: $b "but the selection changed!"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListPresenterTest >> testEmptyList [
 
 	| changed |
@@ -39,7 +41,7 @@ SpDropListPresenterTest >> testEmptyList [
 	self assert: presenter selectedIndex equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListPresenterTest >> testSetItemsWithCollectionSmallerThanSelection [
 
 	| changed |
@@ -53,7 +55,7 @@ SpDropListPresenterTest >> testSetItemsWithCollectionSmallerThanSelection [
 	self assert: presenter selectedIndex equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListPresenterTest >> testSetItemsWithEmptyCollection [
 
 	| changed |
@@ -68,7 +70,7 @@ SpDropListPresenterTest >> testSetItemsWithEmptyCollection [
 	self assert: presenter selectedIndex equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListPresenterTest >> testSortingBlock [
 	| count |
 	count := 0.
@@ -80,7 +82,7 @@ SpDropListPresenterTest >> testSortingBlock [
 	self assert: (presenter model at: 1) model equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListPresenterTest >> testUpdateItemsKeepingSelection [ 
 
 	presenter items: #($a $b $c).

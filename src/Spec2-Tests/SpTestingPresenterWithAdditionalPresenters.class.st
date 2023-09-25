@@ -2,15 +2,17 @@
 This presenter contains several subpresenters that are stored in additionalSubpresentersMap plus one presenter that is stored in instance variable but does not have any public accessors.
 "
 Class {
-	#name : #SpTestingPresenterWithAdditionalPresenters,
-	#superclass : #SpPresenter,
+	#name : 'SpTestingPresenterWithAdditionalPresenters',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'subpresenter4'
 	],
-	#category : #'Spec2-Tests-Utils'
+	#category : 'Spec2-Tests-Utils',
+	#package : 'Spec2-Tests',
+	#tag : 'Utils'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpTestingPresenterWithAdditionalPresenters class >> defaultLayout [
 	| aLayout |
 
@@ -20,13 +22,13 @@ SpTestingPresenterWithAdditionalPresenters class >> defaultLayout [
 	^ aLayout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestingPresenterWithAdditionalPresenters class >> keys [ 
 
 	^ #(subpresenter1 subpresenter2 subpresenter3)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTestingPresenterWithAdditionalPresenters >> initializePresenters [
  
 	self class keys do: [ :aKey |

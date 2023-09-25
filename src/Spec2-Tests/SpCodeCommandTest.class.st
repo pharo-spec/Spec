@@ -1,28 +1,30 @@
 Class {
-	#name : #SpCodeCommandTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Tests-Commands'
+	#name : 'SpCodeCommandTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Tests-Commands',
+	#package : 'Spec2-Tests',
+	#tag : 'Commands'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCodeCommandTest class >> isAbstract [
 
 	^ self = SpCodeCommandTest
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCodeCommandTest class >> shouldInheritSelectors [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeCommandTest >> commandClass [
 		
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeCommandTest >> commandToTest [
 
 	^ self commandClass new 
@@ -30,13 +32,13 @@ SpCodeCommandTest >> commandToTest [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpCodeCommandTest >> newMockContext [
 	
 	^ SpCodeCommandContextMock new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeCommandTest >> testExecute [ 
 
 	self flag: #TODO. "How to intercept messages to prevent execution?"

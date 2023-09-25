@@ -6,8 +6,8 @@ A table has columns with a type (See column types section).
 
 "
 Class {
-	#name : #SpTablePresenter,
-	#superclass : #SpAbstractListPresenter,
+	#name : 'SpTablePresenter',
+	#superclass : 'SpAbstractListPresenter',
 	#traits : 'SpTSearchable',
 	#classTraits : 'SpTSearchable classTrait',
 	#instVars : [
@@ -15,16 +15,18 @@ Class {
 		'#showColumnHeaders => ObservableSlot',
 		'#isResizable => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpTablePresenter class >> adapterName [
 
 	^ #TableAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpTablePresenter class >> addDocumentExtraSections: aBuilder [
 
 	aBuilder newLine.
@@ -35,20 +37,20 @@ SpTablePresenter class >> addDocumentExtraSections: aBuilder [
 				aBuilder monospace: eachType name ] ] ]
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpTablePresenter class >> documentFactoryMethodSelector [
 
 	^ #newTable
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTablePresenter >> addColumn: aColumn [
 	"Add a column to the table. A column should be an instance of `SpTableColumn`"
 
 	columns := columns copyWith: aColumn
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTablePresenter >> addColumns: aCollection [
 	"Add a list of columns.
 	 `aCollection` is a list of instances of `SpTableColumn`"
@@ -56,13 +58,13 @@ SpTablePresenter >> addColumns: aCollection [
 	aCollection do: [ :each | self addColumn: each ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTablePresenter >> alternateRowsColor [
 	" Will alternate Rows color for a better reading: one row lighter, the next row darker"
 	self withAdapterPerformOrDefer: [ :tableAdapter | tableAdapter alternateRowsColor ].
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTablePresenter >> beNotResizable [
 	"Mark the table as 'not resizable', which means there will be not possibility to resize the 
 	 columns of it."
@@ -70,26 +72,26 @@ SpTablePresenter >> beNotResizable [
 	self isResizable: false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTablePresenter >> beResizable [
 	"Mark the table as 'resizable', which means there will be a slider to resize the columns."
 
 	self isResizable: true
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpTablePresenter >> clickOnColumnHeaderAt: anIndex [
 	self withAdapterDo: [ :tableAdapter | tableAdapter clickOnColumnHeaderAt: anIndex ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTablePresenter >> columns [
 	"Answer the columns composing this table."
 
 	^ columns
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTablePresenter >> columns: aCollection [
 	"Set all columns at once. 
 	 `aCollection` is a list of instances of `SpTableColumn`"
@@ -97,14 +99,14 @@ SpTablePresenter >> columns: aCollection [
 	columns := aCollection
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTablePresenter >> hideColumnHeaders [
 	"Hide the column headers"
 
 	showColumnHeaders := false
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTablePresenter >> initialize [ 
 
 	super initialize.
@@ -114,52 +116,52 @@ SpTablePresenter >> initialize [
 	isResizable := false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTablePresenter >> isResizable [
 	"Answer true if table allows resizing of its columns."
 
 	^ isResizable
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTablePresenter >> isResizable: aBoolean [
 	isResizable := aBoolean
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTablePresenter >> isShowingColumnHeaders [
 	"Answer true if the table is configured to show column headers."
 
 	^ showColumnHeaders
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTablePresenter >> removeColumn: aColumn [
 	"Remove a column from the table. A column should be an instance of `SpTableColumn`"
 
 	columns := columns copyWithout: aColumn
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTablePresenter >> searchValueOf: anObject [
 	
 	^ anObject asString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTablePresenter >> showColumnHeaders [
 	"Show column headers"
 
 	showColumnHeaders := true
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTablePresenter >> valueAtColumn: aColumn row: aRow [
 
 	^ (columns at: aColumn) readObject: (self model items at: aRow)
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTablePresenter >> whenColumnsChangedDo: aBlock [
 	"Inform when columns have changed. 
 	 `aBlock` has three optional arguments: 
@@ -170,7 +172,7 @@ SpTablePresenter >> whenColumnsChangedDo: aBlock [
 	self property: #columns whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTablePresenter >> whenIsResizableChangedDo: aBlock [
 	"Inform when resizable property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -181,7 +183,7 @@ SpTablePresenter >> whenIsResizableChangedDo: aBlock [
 	self property: #isResizable whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTablePresenter >> whenShowColumnHeadersChangedDo: aBlock [
 	"Inform when showColumnHeaders property has changed. 
 	 `aBlock` has three optional arguments: 

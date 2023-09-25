@@ -1,10 +1,12 @@
 Class {
-	#name : #SpGridLayoutBuilderTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Tests-Layout'
+	#name : 'SpGridLayoutBuilderTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Tests-Layout',
+	#package : 'Spec2-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpGridLayoutBuilderTest >> newPresenters: nbPresesenters [
 
 	^ (1 to: nbPresesenters)
@@ -12,7 +14,7 @@ SpGridLayoutBuilderTest >> newPresenters: nbPresesenters [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutBuilderTest >> testBuilderAddsElementsOnRaw [
 	| layout presenters |
 	
@@ -34,7 +36,7 @@ SpGridLayoutBuilderTest >> testBuilderAddsElementsOnRaw [
 		equals: presenters third.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutBuilderTest >> testBuilderCanAddElementsOnMultipleRaws [
 	| layout presenters |
 	
@@ -66,7 +68,7 @@ SpGridLayoutBuilderTest >> testBuilderCanAddElementsOnMultipleRaws [
 		equals: presenters fifth.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutBuilderTest >> testNewBuilderReturnsGridLayout [
 	| layout |
 	layout := SpGridLayout build: [ :builder | ].

@@ -11,21 +11,23 @@ Note
 - if autoAccept is true, the character '-' could create problems
 "
 Class {
-	#name : #SpSliderInputPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpSliderInputPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'slider',
 		'input'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpSliderInputPresenter class >> defaultLayout [
 	^ self sliderLeft
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpSliderInputPresenter class >> sliderBottom [
 
 	^ SpBoxLayout newTopToBottom
@@ -34,7 +36,7 @@ SpSliderInputPresenter class >> sliderBottom [
 		yourself
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpSliderInputPresenter class >> sliderLeft [
 
 	^ SpPanedLayout newLeftToRight
@@ -44,7 +46,7 @@ SpSliderInputPresenter class >> sliderLeft [
 		yourself
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpSliderInputPresenter class >> sliderRight [
 
 	^ SpPanedLayout newLeftToRight
@@ -54,7 +56,7 @@ SpSliderInputPresenter class >> sliderRight [
 		yourself
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpSliderInputPresenter class >> sliderTop [
 
 	^ SpBoxLayout newTopToBottom
@@ -63,7 +65,7 @@ SpSliderInputPresenter class >> sliderTop [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSliderInputPresenter >> connectPresenters [
 
 	slider whenValueChangedDo: [ :sliderValue | 
@@ -74,7 +76,7 @@ SpSliderInputPresenter >> connectPresenters [
 			slider value: text asNumber ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSliderInputPresenter >> initializePresenters [
 
 	slider := self newSlider.
@@ -82,48 +84,48 @@ SpSliderInputPresenter >> initializePresenters [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSliderInputPresenter >> input [
 	^ input
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSliderInputPresenter >> label [
 	^ slider label
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSliderInputPresenter >> label: aString [
 	slider label: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSliderInputPresenter >> max: aNumber [
 	slider max: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSliderInputPresenter >> min: aNumber [
 	slider min: aNumber.
 	input text: aNumber asString 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSliderInputPresenter >> slider [
 	^ slider
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSliderInputPresenter >> value [
 	^ slider value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSliderInputPresenter >> value: aNumber [
 	slider value: aNumber 
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpSliderInputPresenter >> whenValueChangedDo: aBlock [
 	slider whenValueChangedDo: aBlock
 ]

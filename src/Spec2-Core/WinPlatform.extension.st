@@ -1,6 +1,6 @@
-Extension { #name : #WinPlatform }
+Extension { #name : 'WinPlatform' }
 
-{ #category : #'*Spec2-Core' }
+{ #category : '*Spec2-Core' }
 WinPlatform >> configureApplication: anApplication configuration: aConfiguration [
 	
 	aConfiguration configureWindows: anApplication

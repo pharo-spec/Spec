@@ -1,15 +1,17 @@
 Class {
-	#name : #SpTreeSingleSelectionMode,
-	#superclass : #SpAbstractTreeSelectionMode,
-	#category : #'Spec2-Core-Widgets-Tree'
+	#name : 'SpTreeSingleSelectionMode',
+	#superclass : 'SpAbstractTreeSelectionMode',
+	#category : 'Spec2-Core-Widgets-Tree',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Tree'
 }
 
-{ #category : #selection }
+{ #category : 'selection' }
 SpTreeSingleSelectionMode >> itemNotFoundAction [
 	self clearSelection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTreeSingleSelectionMode >> selectPath: aPath [
 	"Check comment in my superclass to know how to use selectPath:"
 
@@ -22,7 +24,7 @@ SpTreeSingleSelectionMode >> selectPath: aPath [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTreeSingleSelectionMode >> selectPaths: pathArray [
 
 	self selectPath: (pathArray 
@@ -30,7 +32,7 @@ SpTreeSingleSelectionMode >> selectPaths: pathArray [
 		ifEmpty: [ pathArray ])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTreeSingleSelectionMode >> selectedItem [
 	
 	selection ifEmpty: [ ^ nil ].
@@ -38,20 +40,20 @@ SpTreeSingleSelectionMode >> selectedItem [
 	^ presenter itemAtPath: selection.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTreeSingleSelectionMode >> selectedPath [
 	
 	^ selection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTreeSingleSelectionMode >> selectedPaths [
 	
 	selection ifEmpty: [ ^ #() ].
 	^ { selection }
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpTreeSingleSelectionMode >> unselectPath: aPath [
 	"If the path is out of range, keep the selection."
 	selection = aPath ifFalse: [ ^ self ].

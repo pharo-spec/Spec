@@ -1,16 +1,18 @@
 Class {
-	#name : #SpMenuItemPresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpMenuItemPresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMenuItemPresenterTest >> classToTest [
 
 	^ SpMenuItemPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMenuItemPresenterTest >> testIcon [
 
 	presenter icon: (Smalltalk ui icons iconNamed: 'smallCancel').
@@ -21,7 +23,7 @@ SpMenuItemPresenterTest >> testIcon [
 		equals: (Smalltalk ui icons iconNamed: 'smallOk')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMenuItemPresenterTest >> testName [
 
 	presenter name: 'Test'.

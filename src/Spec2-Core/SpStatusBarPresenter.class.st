@@ -7,27 +7,29 @@ A status bar acts as a stack of messages that will be shown to the user.
 The messages can be pushed (See `SpStatusBarPresenter>>#pushMessage:`) and then popped (See `SpStatusBarPresenter>>#popMessage`). 
 "
 Class {
-	#name : #SpStatusBarPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpStatusBarPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'message'
 	],
-	#category : #'Spec2-Core-Widgets-Toolbar'
+	#category : 'Spec2-Core-Widgets-Toolbar',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Toolbar'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpStatusBarPresenter class >> adapterName [
 
 	^ #StatusBarAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpStatusBarPresenter class >> documentFactoryMethodSelector [
 
 	^ #newStatusBar
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpStatusBarPresenter >> canTakeKeyboardFocus [
 	"Answer whether the presenter can be focused or not. 
 	 In case of `SpStatusBarPresenter`, this message will answer always false."
@@ -35,19 +37,19 @@ SpStatusBarPresenter >> canTakeKeyboardFocus [
 	^ false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpStatusBarPresenter >> message [
 	"Answer current shown message."
 
 	^ message
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpStatusBarPresenter >> message: aString [
 	message := aString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpStatusBarPresenter >> popMessage [ 
 	"Pop current message (it will dismiss current message and restore previous one)"
 	
@@ -55,7 +57,7 @@ SpStatusBarPresenter >> popMessage [
 	self changed: #popMessage
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpStatusBarPresenter >> pushMessage: aString [ 
 	"Push a new message to the stack (replacing current message with a new one)."
 	

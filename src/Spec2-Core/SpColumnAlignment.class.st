@@ -1,37 +1,39 @@
 Class {
-	#name : #SpColumnAlignment,
-	#superclass : #Object,
+	#name : 'SpColumnAlignment',
+	#superclass : 'Object',
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpColumnAlignment class >> center [
 
 	^ SpColumnAlignmentCenter uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpColumnAlignment class >> left [
 
 	^ SpColumnAlignmentLeft uniqueInstance
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpColumnAlignment class >> new [
 
 	self error: 'Use #uniqueInstance'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpColumnAlignment class >> right [
 
 	^ SpColumnAlignmentRight uniqueInstance
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpColumnAlignment class >> uniqueInstance [
 
 	self = SpColumnAlignment 

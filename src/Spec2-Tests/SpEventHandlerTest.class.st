@@ -1,13 +1,15 @@
 Class {
-	#name : #SpEventHandlerTest,
-	#superclass : #TestCase,
+	#name : 'SpEventHandlerTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'presenter'
 	],
-	#category : #'Spec2-Tests-Core-Base'
+	#category : 'Spec2-Tests-Core-Base',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Base'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpEventHandlerTest >> tearDown [
 
 	presenter ifNil: [ ^ self ].
@@ -17,7 +19,7 @@ SpEventHandlerTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpEventHandlerTest >> testEventIsInstalledDynamically [
 
 	| t1 t2 lost got |
@@ -40,7 +42,7 @@ SpEventHandlerTest >> testEventIsInstalledDynamically [
 	self assert: lost
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpEventHandlerTest >> testEventIsInstalledOnBuild [
 
 	| t1 t2 lost got |
@@ -63,7 +65,7 @@ SpEventHandlerTest >> testEventIsInstalledOnBuild [
 	self assert: lost
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpEventHandlerTest >> testEventIsTransmittedOnText [
 
 	| t1 t2 lost got |

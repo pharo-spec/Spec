@@ -11,29 +11,31 @@ SpCheckBoxTableColumn
 ```
 "
 Class {
-	#name : #SpCheckBoxTableColumn,
-	#superclass : #SpTableColumn,
+	#name : 'SpCheckBoxTableColumn',
+	#superclass : 'SpTableColumn',
 	#instVars : [
 		'onActivation',
 		'onDeactivation'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpCheckBoxTableColumn >> acceptColumnVisitor: aBuilder [
 
 	^ aBuilder visitCheckboxColumn: self
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpCheckBoxTableColumn >> onActivation [
 	"Answer the block to be executed when a checkbox is activated (marked)"
 
 	^ onActivation
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpCheckBoxTableColumn >> onActivation: aBlock [
 	"Set the block to be executed when a checkbox is activated (marked). 
 	 `aBlock` receives one argument, the element in which the checkbox acts."
@@ -41,14 +43,14 @@ SpCheckBoxTableColumn >> onActivation: aBlock [
 	onActivation := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpCheckBoxTableColumn >> onDeactivation [
 	"Answer the block to be executed when a checkbox is deactivated (unmarked)"
 
 	^ onDeactivation
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpCheckBoxTableColumn >> onDeactivation: aBlock [
 	"Set the block to be executed when a checkbox is deactivated (unmarked). 
 	 `aBlock` receives one argument, the element in which the checkbox acts."

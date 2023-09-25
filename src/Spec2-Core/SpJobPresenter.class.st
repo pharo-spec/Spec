@@ -15,18 +15,20 @@ SpJobPresenter new
 ```
 "
 Class {
-	#name : #SpJobPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpJobPresenter',
+	#superclass : 'SpPresenter',
 	#traits : 'SpTModel',
 	#classTraits : 'SpTModel classTrait',
 	#instVars : [
 		'progressBar',
 		'progressLabel'
 	],
-	#category : #'Spec2-Core-Job'
+	#category : 'Spec2-Core-Job',
+	#package : 'Spec2-Core',
+	#tag : 'Job'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpJobPresenter class >> example [
 	| job |
 
@@ -43,7 +45,7 @@ SpJobPresenter class >> example [
 		run
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpJobPresenter >> initializePresenters [
 
 	self layout: (SpBoxLayout newTopToBottom
@@ -54,7 +56,7 @@ SpJobPresenter >> initializePresenters [
 		yourself)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpJobPresenter >> initializeWindow: aWindowPresenter [ 
 
 	aWindowPresenter 
@@ -64,25 +66,25 @@ SpJobPresenter >> initializeWindow: aWindowPresenter [
 		centered
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJobPresenter >> jobChanged: ann [ 
 
 	self updatePresenter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJobPresenter >> jobEnd: ann [ 
 
 	self updatePresenter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJobPresenter >> jobStart: ann [ 
 
 	self updatePresenter
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 SpJobPresenter >> model: aModel [
 
 	model := aModel.
@@ -90,13 +92,13 @@ SpJobPresenter >> model: aModel [
 	self updatePresenter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJobPresenter >> refreshRateInMs: anInteger [
 
 	progressBar withAdapterDo: [ :progressAdapter | progressAdapter refreshRateInMs: anInteger ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpJobPresenter >> run [
 
 	self open.
@@ -104,14 +106,14 @@ SpJobPresenter >> run [
 	self withWindowDo: [ :window | window close ]
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 SpJobPresenter >> setModelBeforeInitialization: aModel [
 
 	model := aModel.
 	self updateSubscriptions
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpJobPresenter >> updatePresenter [
 	| currentJob |
 
@@ -121,7 +123,7 @@ SpJobPresenter >> updatePresenter [
 	progressBar fixedAt: model progress
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJobPresenter >> updateSubscriptions [
 	
 	model announcer weak 

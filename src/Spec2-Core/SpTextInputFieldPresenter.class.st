@@ -3,78 +3,80 @@ A presenter to handle a single line of text.
 
 "
 Class {
-	#name : #SpTextInputFieldPresenter,
-	#superclass : #SpAbstractTextPresenter,
+	#name : 'SpTextInputFieldPresenter',
+	#superclass : 'SpAbstractTextPresenter',
 	#instVars : [
 		'#entryCompletion => ObservableSlot',
 		'#isPassword => ObservableSlot',
 		'#editable => ObservableSlot',
 		'#maxLength => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpTextInputFieldPresenter class >> adapterName [
 
 	^ #TextInputFieldAdapter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldPresenter >> beEditable [
 	"Allow edition (deny readonly)."
 
 	self editable: true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldPresenter >> beNotEditable [
 	"Set content text as not editable (readonly)"
 
 	self editable: false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldPresenter >> bePassword [
 	"Set this input text as a password editor."
 	
 	self bePassword: true
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTextInputFieldPresenter >> bePassword: aBoolean [
 	
 	isPassword := aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldPresenter >> beText [
 	"Set this input text as a text editor."
 
 	self bePassword: false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTextInputFieldPresenter >> editable: aBoolean [
 
 	editable := aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldPresenter >> entryCompletion [
 	"Return an entry completion used to suggest text while typing"
 
 	^ entryCompletion
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldPresenter >> entryCompletion: anEntryCompletion [
 	"Set an entry completion used to suggest text while typing"
 
 	entryCompletion := anEntryCompletion
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTextInputFieldPresenter >> initialize [
 	super initialize.
 
@@ -84,28 +86,28 @@ SpTextInputFieldPresenter >> initialize [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTextInputFieldPresenter >> isEditable [
 	"Answer true if edition is allowed (component is NOT readonly)"
 
 	^ editable
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTextInputFieldPresenter >> isPassword [
 	"Answer true if input field will be shown as a password (hiding characters)."
 	
 	^ isPassword
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldPresenter >> maxLength [
 	"Answer maximum allowed length (if set)"
 
 	^ maxLength
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldPresenter >> maxLength: anInteger [ 
 	"Set maximum allowed length."
 	
@@ -113,14 +115,14 @@ SpTextInputFieldPresenter >> maxLength: anInteger [
 	self updateText.
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldPresenter >> removeEntryCompletion [
 	"Remove the entry completion"
 	
 	self entryCompletion: nil
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldPresenter >> text: aString [
 	"Set input text contents."
 	| truncatedText |
@@ -131,14 +133,14 @@ SpTextInputFieldPresenter >> text: aString [
 	super text: truncatedText
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldPresenter >> updateText [
 	"Update text but applying lenght constraints"
 	
 	self text: self text.
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTextInputFieldPresenter >> whenEditableChangedDo: aBlock [
 	"Inform when editable property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -149,7 +151,7 @@ SpTextInputFieldPresenter >> whenEditableChangedDo: aBlock [
 	self property: #editable whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTextInputFieldPresenter >> whenEntryCompletionChangedDo: aBlock [
 	"Inform when entryCompletion property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -160,7 +162,7 @@ SpTextInputFieldPresenter >> whenEntryCompletionChangedDo: aBlock [
 	self property: #entryCompletion whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTextInputFieldPresenter >> whenMaxLengthChangedDo: aBlockClosure [ 
 	"Inform when maxLength property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -171,7 +173,7 @@ SpTextInputFieldPresenter >> whenMaxLengthChangedDo: aBlockClosure [
 	self property: #maxLength whenChangedDo: aBlockClosure
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTextInputFieldPresenter >> whenPasswordChangedDo: aBlockClosure [ 
 	"Inform when password property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -182,7 +184,7 @@ SpTextInputFieldPresenter >> whenPasswordChangedDo: aBlockClosure [
 	self property: #isPassword whenChangedDo: aBlockClosure
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTextInputFieldPresenter >> whenSubmitDo: aBlock [
 	"This method will add a 'submit' event to the widget. It will react when user 
 	 presses <meta+s> key (this is for historical reasons), and with enter (cr).

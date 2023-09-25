@@ -3,12 +3,14 @@ A null presenter that contains nothing.
 Used by DynamicPresentersListBuilder to fill empty space when required for the layout.
 "
 Class {
-	#name : #SpNullPresenter,
-	#superclass : #SpPresenter,
-	#category : #'Spec2-Core-Widgets'
+	#name : 'SpNullPresenter',
+	#superclass : 'SpPresenter',
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpNullPresenter class >> defaultLayout [
 	"Returns empty layout. That's the point of null presenter."
 

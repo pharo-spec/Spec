@@ -1,10 +1,12 @@
 Class {
-	#name : #SpHorizontalPanedLayoutTest,
-	#superclass : #SpPanedLayoutTest,
-	#category : #'Spec2-Tests-Layout'
+	#name : 'SpHorizontalPanedLayoutTest',
+	#superclass : 'SpPanedLayoutTest',
+	#category : 'Spec2-Tests-Layout',
+	#package : 'Spec2-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpHorizontalPanedLayoutTest >> initializeTestedInstance [
 
 	layout := SpPanedLayout newLeftToRight.

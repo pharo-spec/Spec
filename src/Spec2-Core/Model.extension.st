@@ -1,6 +1,6 @@
-Extension { #name : #Model }
+Extension { #name : 'Model' }
 
-{ #category : #'*Spec2-Core' }
+{ #category : '*Spec2-Core' }
 Model >> isSpAnnouncingObject [
 
 	^ true

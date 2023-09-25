@@ -1,22 +1,24 @@
 Class {
-	#name : #SpCheckboxPresenterTest,
-	#superclass : #SpSpecTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpCheckboxPresenterTest',
+	#superclass : 'SpSpecTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCheckboxPresenterTest >> classToTest [
 
 	^ SpCheckBoxPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCheckboxPresenterTest >> morph [
 
 	^ presenter adapter widget
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxPresenterTest >> testActivateDoesNotRaiseDeactivateEvent [
 
 	presenter state: false.
@@ -27,14 +29,14 @@ SpCheckboxPresenterTest >> testActivateDoesNotRaiseDeactivateEvent [
 		whenDoing: [ presenter state: true ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxPresenterTest >> testActivatePresenterIsActive [
 
 	presenter state: true.
 	self assert: presenter state
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxPresenterTest >> testActivateRaisesActivatedEvent [
 
 	presenter state: false.
@@ -44,7 +46,7 @@ SpCheckboxPresenterTest >> testActivateRaisesActivatedEvent [
 		whenDoing: [ presenter state: true ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxPresenterTest >> testActivateRaisesChangedEvent [
 
 	presenter state: false.
@@ -54,7 +56,7 @@ SpCheckboxPresenterTest >> testActivateRaisesChangedEvent [
 		whenDoing: [ presenter state: true ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxPresenterTest >> testActivateRaisesChangedEventOnce [
 
 	presenter state: false.
@@ -65,7 +67,7 @@ SpCheckboxPresenterTest >> testActivateRaisesChangedEventOnce [
 		whenDoing: [ presenter state: true ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxPresenterTest >> testDeactivateDoesNotRaiseActivateEvent [
 
 	presenter state: true.
@@ -76,14 +78,14 @@ SpCheckboxPresenterTest >> testDeactivateDoesNotRaiseActivateEvent [
 		whenDoing: [ presenter state: false ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxPresenterTest >> testDeactivatePresenterIsNotActive [
 
 	presenter state: false.
 	self deny: presenter state
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxPresenterTest >> testDeactivateRaisesChangedEvent [
 
 	presenter state: true.
@@ -93,7 +95,7 @@ SpCheckboxPresenterTest >> testDeactivateRaisesChangedEvent [
 		whenDoing: [ presenter state: false ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxPresenterTest >> testDeactivateRaisesChangedEventOnce [
 
 	presenter state: true.
@@ -104,7 +106,7 @@ SpCheckboxPresenterTest >> testDeactivateRaisesChangedEventOnce [
 		whenDoing: [ presenter state: false ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxPresenterTest >> testDeactivateRaisesDeactivatedEvent [
 
 	presenter state: true.
@@ -114,14 +116,14 @@ SpCheckboxPresenterTest >> testDeactivateRaisesDeactivatedEvent [
 		whenDoing: [ presenter state: false ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxPresenterTest >> testLabelIsSet [
 
 	presenter label: 'test'.
 	self assert: presenter label equals: 'test'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxPresenterTest >> testStayingActiveDoesNotRaiseChangedEvent [
 
 	presenter state: true.
@@ -131,7 +133,7 @@ SpCheckboxPresenterTest >> testStayingActiveDoesNotRaiseChangedEvent [
 		whenDoing: [ presenter state: true ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxPresenterTest >> testStayingInactiveDoesNotRaiseChangedEvent [
 
 	presenter state: false.

@@ -1,10 +1,12 @@
 Class {
-	#name : #SpGridLayoutTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Tests-Layout'
+	#name : 'SpGridLayoutTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Tests-Layout',
+	#package : 'Spec2-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutTest >> testInitialStatus [
 	| layout |
 
