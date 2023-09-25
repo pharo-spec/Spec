@@ -1,29 +1,31 @@
 Class {
-	#name : #SpToolbarPresenterTest,
-	#superclass : #SpSpecTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpToolbarPresenterTest',
+	#superclass : 'SpSpecTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarPresenterTest >> classToTest [
 
 	^ SpToolbarPresenter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpToolbarPresenterTest >> newToolbarItem [
 	
 	^ SpToolbarButtonPresenter new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpToolbarPresenterTest >> testAddItem [
 
 	presenter addItem: SpToolbarButtonPresenter new.
 	self assert: presenter items size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpToolbarPresenterTest >> testAddItemPosition [
 	| itemLeft itemRight |
 
@@ -35,7 +37,7 @@ SpToolbarPresenterTest >> testAddItemPosition [
 	self assertCollection: presenter rightItems hasSameElements: { itemRight }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpToolbarPresenterTest >> testDisplayMode [
 
 	presenter beBoth.
@@ -47,7 +49,7 @@ SpToolbarPresenterTest >> testDisplayMode [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpToolbarPresenterTest >> testIsEmpty [ 
 
 	self assert: presenter isEmpty.
@@ -55,7 +57,7 @@ SpToolbarPresenterTest >> testIsEmpty [
 	self deny: presenter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpToolbarPresenterTest >> testItems [ 
 	| item |
 

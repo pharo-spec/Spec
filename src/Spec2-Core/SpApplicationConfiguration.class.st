@@ -10,12 +10,14 @@ A configuration takes the responsibility to prepare an application to run proper
 See also: `SpMorphicConfiguration` and `SpGtkConfiguration`
 "
 Class {
-	#name : #SpApplicationConfiguration,
-	#superclass : #Object,
-	#category : #'Spec2-Core-Base'
+	#name : 'SpApplicationConfiguration',
+	#superclass : 'Object',
+	#category : 'Spec2-Core-Base',
+	#package : 'Spec2-Core',
+	#tag : 'Base'
 }
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpApplicationConfiguration >> configure: anApplication [
 	"Override this to add your application configuration"
 	
@@ -24,19 +26,19 @@ SpApplicationConfiguration >> configure: anApplication [
 		configuration: self
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpApplicationConfiguration >> configureOSX: anApplication [
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpApplicationConfiguration >> configureUnix: anApplication [
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpApplicationConfiguration >> configureWindows: anApplication [
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpApplicationConfiguration >> reset [
 	"a hook to allow users to reset its configuration"
 ]

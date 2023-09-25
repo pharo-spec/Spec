@@ -1,16 +1,18 @@
 Class {
-	#name : #SpAbstractButtonPresenterTest,
-	#superclass : #SpSpecTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpAbstractButtonPresenterTest',
+	#superclass : 'SpSpecTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractButtonPresenterTest class >> isAbstract [
 
 	^ super isAbstract or: [ self = SpAbstractButtonPresenterTest ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractButtonPresenterTest >> testWhenHelpChanged [
 	presenter help: 'label1'.
 	presenter
@@ -23,7 +25,7 @@ SpAbstractButtonPresenterTest >> testWhenHelpChanged [
 	self assert: presenter help equals: 'label2'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractButtonPresenterTest >> testWhenIconChangedDo [
 
 	presenter iconName: #glamorousCancel.
@@ -41,7 +43,7 @@ SpAbstractButtonPresenterTest >> testWhenIconChangedDo [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractButtonPresenterTest >> testWhenLabelChangedDo [
 
 	presenter label: 'label1'.

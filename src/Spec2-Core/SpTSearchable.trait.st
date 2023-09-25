@@ -3,36 +3,38 @@ I add search capability to lists/tables and trees.
 I implement basic common API but real implementation (as always) needs to be done in the backend adapters. 
 "
 Trait {
-	#name : #SpTSearchable,
+	#name : 'SpTSearchable',
 	#instVars : [
 		'#searchEnabled => ObservableSlot',
 		'#searchBlock'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #api }
+{ #category : 'api' }
 SpTSearchable >> disableSearch [
 	"Disable searching"
 
 	searchEnabled := false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTSearchable >> enableSearch [
 	"Enable searching"
 
 	searchEnabled := true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTSearchable >> hasCustomSearch [
 	"Answer true if the list has a custom search defined (See `SpListPresenter>>#searchMatching:`"
 
 	^ searchBlock notNil
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTSearchable >> initialize [
 	
 	self class initializeSlots: self.
@@ -40,21 +42,21 @@ SpTSearchable >> initialize [
 	self initializeTSearchable
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTSearchable >> initializeTSearchable [
 	
 	self searchMatching: [ :item :pattern | 
 		self performDefaultSearch: item matching: pattern ].
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTSearchable >> isSearchEnabled [
 	"Answer true if search is enabled (See `SpTSearchable>>#enableSearch`)"
 
 	^ searchEnabled
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTSearchable >> performDefaultSearch: item matching: pattern [
 	| text |
 	
@@ -62,7 +64,7 @@ SpTSearchable >> performDefaultSearch: item matching: pattern [
 	^ text beginsWith: pattern
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTSearchable >> performSearch: item matching: pattern [
 
 	^ searchBlock 
@@ -70,7 +72,7 @@ SpTSearchable >> performSearch: item matching: pattern [
 		value: pattern
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTSearchable >> searchMatching: aBlock [
 	"Enables search and defines a block to perform a search on the model objects. 
 	 The block receives two parameters: 
@@ -81,13 +83,13 @@ SpTSearchable >> searchMatching: aBlock [
 	self enableSearch
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTSearchable >> searchValueOf: item [ 
 
 	^ self displayValueFor: item
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTSearchable >> whenSearchEnabledChangedDo: aBlock [
 	"Inform when search enabled/disabled has changed.
  	 `aBlock` has three optional arguments: 

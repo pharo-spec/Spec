@@ -16,8 +16,8 @@ SpDocumentHierarchyBuilder new
 ```
 "
 Class {
-	#name : #SpDocumentHierarchyBuilder,
-	#superclass : #Object,
+	#name : 'SpDocumentHierarchyBuilder',
+	#superclass : 'Object',
 	#instVars : [
 		'topClass',
 		'flattenTree',
@@ -26,10 +26,12 @@ Class {
 		'class',
 		'fromClass'
 	],
-	#category : #'Spec2-Core-Utils'
+	#category : 'Spec2-Core-Utils',
+	#package : 'Spec2-Core',
+	#tag : 'Utils'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpDocumentHierarchyBuilder >> addLevel: level from: aClass [
 	"'├ ─ ╰ │'"
 	| path |
@@ -61,7 +63,7 @@ SpDocumentHierarchyBuilder >> addLevel: level from: aClass [
 			from: each ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDocumentHierarchyBuilder >> addLevel: level from: aClass to: stream [
 	"'├ ─ ╰ │'"
 	| path |
@@ -90,14 +92,14 @@ SpDocumentHierarchyBuilder >> addLevel: level from: aClass to: stream [
 			to: stream ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDocumentHierarchyBuilder >> applyFilterTo: aCollection [
 
 	filterBlock ifNil: [ ^ aCollection ].
 	^ aCollection select: filterBlock
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpDocumentHierarchyBuilder >> buildFor: aClass [
 
 	self fillTreeOf: aClass.
@@ -106,7 +108,7 @@ SpDocumentHierarchyBuilder >> buildFor: aClass [
 		from: self fromClass
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpDocumentHierarchyBuilder >> buildStringFor: aClass [
 	
 	self fillTreeOf: aClass.
@@ -117,13 +119,13 @@ SpDocumentHierarchyBuilder >> buildStringFor: aClass [
 			to: (ZnNewLineWriterStream on: stream) ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDocumentHierarchyBuilder >> builder: aBuilder [
 
 	builder := aBuilder
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDocumentHierarchyBuilder >> fillTreeOf: aClass [
 
 	class := aClass.
@@ -134,7 +136,7 @@ SpDocumentHierarchyBuilder >> fillTreeOf: aClass [
 	^ flattenTree
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDocumentHierarchyBuilder >> fillTreeWithSubclassesOf: aClass [
 		
 	flattenTree at: aClass put: (self applyFilterTo: aClass subclasses).
@@ -142,7 +144,7 @@ SpDocumentHierarchyBuilder >> fillTreeWithSubclassesOf: aClass [
 		self fillTreeWithSubclassesOf: each ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDocumentHierarchyBuilder >> fillTreeWithSuperclassesOf: aClass [
 	| superclasses |
 
@@ -156,25 +158,25 @@ SpDocumentHierarchyBuilder >> fillTreeWithSuperclassesOf: aClass [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDocumentHierarchyBuilder >> filter: aBlock [
 
 	filterBlock := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDocumentHierarchyBuilder >> fromClass [
 
 	 ^  fromClass ifNil: [ SpAbstractPresenter ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDocumentHierarchyBuilder >> fromClass: aClass [
 
 	fromClass := aClass
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpDocumentHierarchyBuilder >> isPassingThrough: aClass topLevel: aTopClass [
 	| superclasses |
 	
@@ -185,13 +187,13 @@ SpDocumentHierarchyBuilder >> isPassingThrough: aClass topLevel: aTopClass [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDocumentHierarchyBuilder >> topClass [
 
 	^ topClass ifNil: [ self fromClass superclass ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDocumentHierarchyBuilder >> topClass: aClass [
 
 	topClass := aClass

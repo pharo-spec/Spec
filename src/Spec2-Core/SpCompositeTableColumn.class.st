@@ -24,15 +24,17 @@ SpCompositeTableColumn new
 ```
 "
 Class {
-	#name : #SpCompositeTableColumn,
-	#superclass : #SpTableColumn,
+	#name : 'SpCompositeTableColumn',
+	#superclass : 'SpTableColumn',
 	#instVars : [
 		'columns'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpCompositeTableColumn class >> title: aString withAll: aCollection [
 
 	^ self new
@@ -41,7 +43,7 @@ SpCompositeTableColumn class >> title: aString withAll: aCollection [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpCompositeTableColumn class >> with: column [
 
 	^ self new
@@ -49,7 +51,7 @@ SpCompositeTableColumn class >> with: column [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpCompositeTableColumn class >> with: column1 with: column2 [ 
 
 	^ self new
@@ -58,7 +60,7 @@ SpCompositeTableColumn class >> with: column1 with: column2 [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpCompositeTableColumn class >> with: column1 with: column2 with: column3 [
 
 	^ self new
@@ -68,7 +70,7 @@ SpCompositeTableColumn class >> with: column1 with: column2 with: column3 [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpCompositeTableColumn class >> withAll: aCollection [
 
 	^ self new
@@ -76,34 +78,34 @@ SpCompositeTableColumn class >> withAll: aCollection [
 		yourself
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpCompositeTableColumn >> acceptColumnVisitor: aBuilder [
 
 	^ aBuilder visitCompositeColumn: self
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpCompositeTableColumn >> addAllColumns: aCollection [ 
 	"Add all columns contained in `aCollection` to the composed columns."
 	
 	aCollection do: [ :each | self addColumn: each ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpCompositeTableColumn >> addColumn: aTableColumn [ 
 	"Add a column to the composed columns."
 	
 	columns add: aTableColumn
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpCompositeTableColumn >> columns [
 	"Answer the columns composing this composite."
 
 	^ columns
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCompositeTableColumn >> initialize [
 	
 	super initialize.
@@ -111,7 +113,7 @@ SpCompositeTableColumn >> initialize [
 	columns := OrderedCollection new: 2
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCompositeTableColumn >> isComposite [
 	"Answer if this is a composite column. 
 	 For this class, answer will always be true."

@@ -4,30 +4,32 @@ When you do not have a list of elements that can be presented as a single list o
 
 "
 Class {
-	#name : #SpComponentListPresenter,
-	#superclass : #SpAbstractListPresenter,
-	#category : #'Spec2-Core-Widgets-Table'
+	#name : 'SpComponentListPresenter',
+	#superclass : 'SpAbstractListPresenter',
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpComponentListPresenter class >> adapterName [
 	^ #ComponentListAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpComponentListPresenter class >> documentFactoryMethodSelector [
 
 	^ #newComponentList
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpComponentListPresenter >> addPresenter: aPresenter [
 	
 	aPresenter owner: self.
 	self model add: aPresenter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpComponentListPresenter >> doActivateAtIndex: index [
 	
 	"Activate only if there is an item at that position"
@@ -38,21 +40,21 @@ SpComponentListPresenter >> doActivateAtIndex: index [
 		yourself)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpComponentListPresenter >> includes: aPresenter [
 	"Answer true when the presenter includes `aPresenter` as part of its items." 
 
 	^ self presenters includes: aPresenter  
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpComponentListPresenter >> isEmpty [
 	"Answer true if presenter list is empty."	
 
 	^ self presenters isEmpty
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpComponentListPresenter >> items: aSequenceableCollection [ 
 	"Set the items of the list. 
 	 `aSequenceableCollection` is a list of presenters OR a list of elements that understand 
@@ -64,7 +66,7 @@ SpComponentListPresenter >> items: aSequenceableCollection [
 			yourself ])
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpComponentListPresenter >> presenters [
 	"Answer the presenters of the list.
 	 This is a synonym of `SpAbstractListPresenter>>#items`"
@@ -72,7 +74,7 @@ SpComponentListPresenter >> presenters [
 	^ self items
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpComponentListPresenter >> presenters: aSequenceableCollection [ 
 	"Set the list of presenters that will be the items to show in the component list.
 	 This is a synonym of `SpAbstractListPresenter>>#items:`
@@ -81,7 +83,7 @@ SpComponentListPresenter >> presenters: aSequenceableCollection [
 	^ self items: aSequenceableCollection
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpComponentListPresenter >> whenPresentersChangedDo: aBlock [
 	"Inform when the presenter list changed (See `SpComponentListPresenter>>#presenters:`.
 	 `aBlock` receive 3 optional arguments: 

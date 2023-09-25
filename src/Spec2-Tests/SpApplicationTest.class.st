@@ -1,27 +1,29 @@
 Class {
-	#name : #SpApplicationTest,
-	#superclass : #TestCase,
+	#name : 'SpApplicationTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'application'
 	],
-	#category : #'Spec2-Tests-Core-Base'
+	#category : 'Spec2-Tests-Core-Base',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Base'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpApplicationTest >> setUp [
 	
 	super setUp.
 	application := SpMockApplication new
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpApplicationTest >> tearDown [
 
 	application closeAllWindows.
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpApplicationTest >> testCloseDialogWindowRemovesItFromWindowCollection [
 
 	| window |
@@ -31,7 +33,7 @@ SpApplicationTest >> testCloseDialogWindowRemovesItFromWindowCollection [
 	self deny: (application windows includes: window)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpApplicationTest >> testCloseWindowRemovesItFromWindowCollection [
 
 	| window |
@@ -41,13 +43,13 @@ SpApplicationTest >> testCloseWindowRemovesItFromWindowCollection [
 	self deny: (application windows includes: window)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpApplicationTest >> testIsPresenter [
 
 	self deny: application isPresenter 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpApplicationTest >> testNewPresenter [
 	| presenter |
 
@@ -55,7 +57,7 @@ SpApplicationTest >> testNewPresenter [
 	self assert: presenter application equals: application
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpApplicationTest >> testOpenDialogWindowAddsItToWindowCollection [
 
 	| window |
@@ -64,7 +66,7 @@ SpApplicationTest >> testOpenDialogWindowAddsItToWindowCollection [
 	self assert: (application windows includes: window)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpApplicationTest >> testOpenWindowAddsItToWindowCollection [
 
 	| window |
@@ -73,7 +75,7 @@ SpApplicationTest >> testOpenWindowAddsItToWindowCollection [
 	self assert: (application windows includes: window)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpApplicationTest >> testUseBackend [
 
 	self assert: application backend name equals: #Mock.

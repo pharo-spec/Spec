@@ -1,13 +1,15 @@
 Class {
-	#name : #SpMillerActivation,
-	#superclass : #Object,
+	#name : 'SpMillerActivation',
+	#superclass : 'Object',
 	#instVars : [
 		'value'
 	],
-	#category : #'Spec2-Core-Miller'
+	#category : 'Spec2-Core-Miller',
+	#package : 'Spec2-Core',
+	#tag : 'Miller'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMillerActivation class >> on: anInteger [ 
 	
 	^ self new
@@ -15,13 +17,13 @@ SpMillerActivation class >> on: anInteger [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMillerActivation >> selectedItem [
 	
 	^ value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMillerActivation >> value: anInteger [ 
 	value := anInteger
 ]

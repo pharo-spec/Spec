@@ -9,8 +9,8 @@ self exampleWithoutOptions.
 self exampleWithOptions.
 "
 Class {
-	#name : #SpDiffPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpDiffPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'#showOptions => ObservableSlot',
 		'#showOnlyDestination => ObservableSlot',
@@ -22,43 +22,45 @@ Class {
 		'#rightText => ObservableSlot',
 		'#beWrapped => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDiffPresenter class >> adapterName [
 
 	^ #DiffAdapter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> beWrapped [
 
 	^ beWrapped
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> beWrapped: aBoolean [
 
 	beWrapped := aBoolean
 ]
 
-{ #category : #'undo-redo' }
+{ #category : 'undo-redo' }
 SpDiffPresenter >> clearUndoManager [
 	"The diff presenter does not allow edition, it does not have undo history. But this message is added to have polimorphism in the Message Browser"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> contextClass [
 	^ contextClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> contextClass: anObject [
 	contextClass := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDiffPresenter >> initialize [
 	super initialize.
 
@@ -80,79 +82,79 @@ SpDiffPresenter >> initialize [
 	self property: #rightLabel whenChangedDo: [ :newText | self changed: #rightLabel: with: {newText} ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> leftLabel [
 	^ leftLabel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> leftLabel: anObject [
 	leftLabel := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> leftText [
 	^ leftText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> leftText: anObject [
 	leftText := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> rightLabel [
 	^ rightLabel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> rightLabel: anObject [
 	rightLabel := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> rightText [
 	^ rightText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> rightText: anObject [
 	rightText := anObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> showBoth [
 	self property: #showOnlySource rawValue: false.
 	self property: #showOnlyDestination rawValue: false.
 	self changed: #showBoth with: {}
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> showOnlyDestination [
 	^ showOnlyDestination
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> showOnlyDestination: aBoolean [
 	showOnlyDestination := aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> showOnlySource [
 	^ showOnlySource
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> showOnlySource: aBoolean [
 	showOnlySource := aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> showOptions [
 	^ showOptions
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> showOptions: aBoolean [
 	showOptions := aBoolean
 ]

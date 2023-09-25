@@ -2,18 +2,20 @@
 A simple spinner.
 "
 Class {
-	#name : #SpSpinnerPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
-	#category : #'Spec2-Core-Widgets'
+	#name : 'SpSpinnerPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpSpinnerPresenter class >> adapterName [
 	
 	^ #SpinnerAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpSpinnerPresenter class >> documentFactoryMethodSelector [
 
 	^ #newSpinner

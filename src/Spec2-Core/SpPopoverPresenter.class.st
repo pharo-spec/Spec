@@ -6,29 +6,31 @@ Also, it can be show at the top, left, bottom or right of the owner or rectangle
 The presenter placed on a popover needs to extend `SpPopoverContentPresenter` (or implement its API) to gain all properties.
 "
 Class {
-	#name : #SpPopoverPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpPopoverPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'#presenter => ObservableSlot',
 		'#position',
 		'#relativeTo'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpPopoverPresenter class >> adapterName [
 
 	^ #PopoverAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpPopoverPresenter class >> documentFactoryMethodSelector [
 
 	^ #newPopover
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverPresenter >> bePositionBottom [
 	"Set the popover to appear at the bottom of the owner (or the presenter set 
 	 by `SpPopoverPresenter>>#relativeTo:`). 
@@ -37,7 +39,7 @@ SpPopoverPresenter >> bePositionBottom [
 	self position: SpPopoverPosition bottom
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverPresenter >> bePositionLeft [
 	"Set the popover to appear at the left of the owner (or the presenter set 
 	 by `SpPopoverPresenter>>#relativeTo:`)
@@ -46,7 +48,7 @@ SpPopoverPresenter >> bePositionLeft [
 	self position: SpPopoverPosition left
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverPresenter >> bePositionRight [
 	"Set the popover to appear at the right of the owner (or the presenter set 
 	 by `SpPopoverPresenter>>#relativeTo:`)
@@ -55,7 +57,7 @@ SpPopoverPresenter >> bePositionRight [
 	self position: SpPopoverPosition right
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverPresenter >> bePositionTop [
 	"Set the popover to appear at the top of the owner (or the presenter set 
 	 by `SpPopoverPresenter>>#relativeTo:`)
@@ -64,27 +66,27 @@ SpPopoverPresenter >> bePositionTop [
 	self position: SpPopoverPosition top
 ]
 
-{ #category : #'api - focus' }
+{ #category : 'api - focus' }
 SpPopoverPresenter >> defaultKeyboardFocus [
 
 	^ self presenter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverPresenter >> dismiss [ 
 	"Dismiss this popover"
 
 	^ self withAdapterDo: [ :anAdapter | anAdapter dismiss ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPopoverPresenter >> initialize [
 
 	super initialize.
 	self bePositionBottom
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverPresenter >> popup [
 
 	"Shows the popover, relative to `SpPopoverPresenter>>#relativeTo`."
@@ -93,7 +95,7 @@ SpPopoverPresenter >> popup [
 	self withAdapterDo: [ :anAdapter | anAdapter popup ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverPresenter >> popupPointingTo: aRectangle [
 	"Shows the popover, relative to `SpPopoverPresenter>>#relativeTo`, and 
 	 pointing to `aRectangle`"
@@ -103,28 +105,28 @@ SpPopoverPresenter >> popupPointingTo: aRectangle [
 		anAdapter popupPointingTo: aRectangle ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverPresenter >> position [
 	"Answer the position (top, left, bottom, right) of the presenter."
 
 	^ position
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverPresenter >> position: aPosition [
 	"Set the position (top, left, bottom, right) of the presenter."
 
 	position := aPosition
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverPresenter >> presenter [
 	"Answer the presenter that will be shown by the popover."
 
 	^ presenter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverPresenter >> presenter: aPresenter [
 	"Set the presenter that will be shown by the popover."
 
@@ -132,21 +134,21 @@ SpPopoverPresenter >> presenter: aPresenter [
 	presenter := aPresenter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverPresenter >> relativeTo [
 	"Answer the presenter that will show the popover (and the popover will be shown relative to it)."
 
 	^ relativeTo ifNil: [ self owner ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPopoverPresenter >> relativeTo: aPresenter [
 	"Set the presenter that will show the popover (and the popover will be shown relative to it)."
 
 	relativeTo := aPresenter
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpPopoverPresenter >> whenPresenterChangedDo: aBlock [
 	"Inform when content presenter has changed. 
 	 `aBlock` has three optional arguments: 

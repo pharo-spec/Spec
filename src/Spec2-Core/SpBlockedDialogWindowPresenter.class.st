@@ -27,12 +27,14 @@ SomePresenter >> initializeDialogWindow: aDialogPresenter
 ```
 "
 Class {
-	#name : #SpBlockedDialogWindowPresenter,
-	#superclass : #SpDialogWindowPresenter,
-	#category : #'Spec2-Core-Windows'
+	#name : 'SpBlockedDialogWindowPresenter',
+	#superclass : 'SpDialogWindowPresenter',
+	#category : 'Spec2-Core-Windows',
+	#package : 'Spec2-Core',
+	#tag : 'Windows'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpBlockedDialogWindowPresenter class >> adapterName [
 	^ #BlockedDialogWindowAdapter
 ]

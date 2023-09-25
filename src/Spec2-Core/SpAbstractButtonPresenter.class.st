@@ -2,29 +2,31 @@
 A base for button presenters, it defines basic functionality common to all buttons.
 "
 Class {
-	#name : #SpAbstractButtonPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpAbstractButtonPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'#icon => ObservableSlot',
 		'#label => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractButtonPresenter class >> isAbstract [
 
 	^ super isAbstract or: [ self = SpAbstractButtonPresenter ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractButtonPresenter >> icon [
 	"Answer the icon (an instance of `Form`) defined for this button (it can be nil)"
 
 	^ icon
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractButtonPresenter >> icon: anIcon [
 	"Sets the icon to be displayed by the button. 
 	 The icon must be a `Form`"
@@ -32,13 +34,13 @@ SpAbstractButtonPresenter >> icon: anIcon [
 	icon := anIcon
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractButtonPresenter >> iconName: aSymbol [
 
 	self icon: (self iconNamed: aSymbol)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractButtonPresenter >> initialize [
 
 	super initialize.
@@ -50,21 +52,21 @@ SpAbstractButtonPresenter >> initialize [
 
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractButtonPresenter >> label [
 	"Answer the label to be shown by the button"
 
 	^ label
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractButtonPresenter >> label: aString [
 	"Set the label to be shown by the button."
 
 	label := aString
 ]
 
-{ #category : #localization }
+{ #category : 'localization' }
 SpAbstractButtonPresenter >> localeChanged [
 
 	super localeChanged.
@@ -72,13 +74,13 @@ SpAbstractButtonPresenter >> localeChanged [
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractButtonPresenter >> shortcutCharacter [
 
 	^ nil
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAbstractButtonPresenter >> whenIconChangedDo: aBlock [
 	"Inform when icon property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -89,7 +91,7 @@ SpAbstractButtonPresenter >> whenIconChangedDo: aBlock [
 	self property: #icon whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAbstractButtonPresenter >> whenLabelChangedDo: aBlock [
 	"Inform when label property has changed. 
 	 `aBlock` has three optional arguments: 

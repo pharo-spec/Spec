@@ -4,17 +4,19 @@ A base for selection modes.
 
 "
 Class {
-	#name : #SpAbstractSelectionMode,
-	#superclass : #Object,
+	#name : 'SpAbstractSelectionMode',
+	#superclass : 'Object',
 	#traits : 'TObservable',
 	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'widget'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAbstractSelectionMode class >> addDocumentSectionHierarchy: aBuilder [
 	
 	aBuilder newLine.
@@ -26,7 +28,7 @@ SpAbstractSelectionMode class >> addDocumentSectionHierarchy: aBuilder [
 		buildFor: self
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAbstractSelectionMode class >> documentSections [
 
 	^ OrderedDictionary newFromPairs: {
@@ -40,7 +42,7 @@ SpAbstractSelectionMode class >> documentSections [
 			  (self methods select: [ :method | method protocolName = #'api - events' ]) }
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpAbstractSelectionMode class >> on: aWidget [
 
 	^ self new
@@ -48,27 +50,27 @@ SpAbstractSelectionMode class >> on: aWidget [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractSelectionMode >> basicSelectIndex: indexToSelect [
 
 	self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractSelectionMode >> includesIndex: anIndex [
 	"Answer true if selection includes element at index `anIndex`."
 
 	self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractSelectionMode >> includesItem: anItem [
 	"Answer true if selection includes element `anItem`."
 
 	self subclassResponsibility
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractSelectionMode >> indexOfItem: anItem [
 	
 	^ self model
@@ -76,27 +78,27 @@ SpAbstractSelectionMode >> indexOfItem: anItem [
 		ifAbsent: [ 0 ].
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractSelectionMode >> initialize [
 	self class initializeSlots: self.
 	super initialize
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractSelectionMode >> isEmpty [
 	"Answer true if there are no selections"
 	
 	^ self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractSelectionMode >> isMultipleSelection [
 	"Answer true if this is a multiple selection mode."
 	
 	^ false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractSelectionMode >> model [
 	"Answer the model used to act the selection.
 	 See also `SpAbstractListPresenter>>#model`."
@@ -104,108 +106,108 @@ SpAbstractSelectionMode >> model [
 	^ widget model
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractSelectionMode >> selectAll [
 	"Select all items."
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractSelectionMode >> selectIndex: anIndex [
 	"Select item at position `anInteger`."
 	
 	self basicSelectIndex: (self withinRangeIndex: anIndex)
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractSelectionMode >> selectIndexes: aCollectionOfIndexes [
 	"Select items at positions included in `aCollectionOfIndexes`."
 
 	self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractSelectionMode >> selectItem: anItem [
 	"Select `anItem` if it is included in model list."
 	
 	self basicSelectIndex: (self indexOfItem: anItem)
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractSelectionMode >> selectItems: aCollection [
 	"Select items included in `aCollection` if they are included in model list."
 	
 	self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractSelectionMode >> selectedIndex [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractSelectionMode >> selectedIndexes [
 	"Answer a collection with indexes of all selected items."
 
 	self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractSelectionMode >> selectedItem [
 	"Answer selected item"
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractSelectionMode >> selectedItems [
 	"Answer a collection with all selected items."
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractSelectionMode >> selectionHolder [
 	^ self subclassResponsibility
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractSelectionMode >> transferSubscriptionsTo: anotherSelectionMode [
 
 	self selectionHolder transferSubscriptionsTo: anotherSelectionMode selectionHolder
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractSelectionMode >> unselectAll [
 	"Remove all selections."
 	
 	self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractSelectionMode >> unselectIndex: anInteger [ 
 	"Unselect item at position `anInteger`."
 	
 	self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractSelectionMode >> unselectItem: anObject [
 	"Unselect item `anObject`."
 	
 	self unselectIndex: (self indexOfItem: anObject)
 ]
 
-{ #category : #subscription }
+{ #category : 'subscription' }
 SpAbstractSelectionMode >> unsubscribe: anObject [ 
 
 	(self observablePropertyNamed: #selectedIndexes) unsubscribe: anObject.
 
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAbstractSelectionMode >> whenChangedDo: aBlock [ 
 	"Inform when selection has changed. 
 	 `aBlock` has three optional arguments: 
@@ -216,18 +218,18 @@ SpAbstractSelectionMode >> whenChangedDo: aBlock [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractSelectionMode >> widget [
 	"Returns the presenter"
 	^ widget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractSelectionMode >> widget: anObject [
 	widget := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractSelectionMode >> withinRangeIndex: anIndex [
 	
 	| indexToSelect |

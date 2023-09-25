@@ -1,16 +1,18 @@
 Class {
-	#name : #SpMenuButtonPresenterTest,
-	#superclass : #SpAbstractButtonPresenterTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpMenuButtonPresenterTest',
+	#superclass : 'SpAbstractButtonPresenterTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMenuButtonPresenterTest >> classToTest [
 
 	^ SpMenuButtonPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMenuButtonPresenterTest >> testSmokeMenu [
 	
 	presenter menu: (SpMenuPresenter new

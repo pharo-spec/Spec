@@ -1,16 +1,18 @@
 Class {
-	#name : #SpAbstractTreePresenterTest,
-	#superclass : #SpSpecTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpAbstractTreePresenterTest',
+	#superclass : 'SpSpecTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractTreePresenterTest class >> isAbstract [
 
 	^ super isAbstract or: [ self = SpAbstractTreePresenterTest ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpAbstractTreePresenterTest >> setUp [
 
 	super setUp.
@@ -23,7 +25,7 @@ SpAbstractTreePresenterTest >> setUp [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreePresenterTest >> testActivationOnDoubleClickShouldActivateOnDoubleClick [
 	| activatedItem |
 	presenter
@@ -35,7 +37,7 @@ SpAbstractTreePresenterTest >> testActivationOnDoubleClickShouldActivateOnDouble
 	self assert: activatedItem equals: 110
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreePresenterTest >> testActivationOnDoubleClickShouldNotActivateOnClick [
 	| activatedItem |
 	presenter
@@ -47,7 +49,7 @@ SpAbstractTreePresenterTest >> testActivationOnDoubleClickShouldNotActivateOnCli
 	self assert: activatedItem isNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreePresenterTest >> testActivationOnSingleClickShouldActivateOnClick [
 	| activatedItem |
 	presenter
@@ -59,7 +61,7 @@ SpAbstractTreePresenterTest >> testActivationOnSingleClickShouldActivateOnClick 
 	self assert: activatedItem equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreePresenterTest >> testActivationOnSingleClickShouldNotActivateOnClickOutside [
 	| activatedItem |
 	presenter
@@ -71,7 +73,7 @@ SpAbstractTreePresenterTest >> testActivationOnSingleClickShouldNotActivateOnCli
 	self assert: activatedItem isNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreePresenterTest >> testContextMenu [
 	| menu changed |
 	self assert: presenter contextMenu isNil.
@@ -84,7 +86,7 @@ SpAbstractTreePresenterTest >> testContextMenu [
 	self assert: changed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreePresenterTest >> testDisableActivationDuring [ 
 	| activated |
 
@@ -97,7 +99,7 @@ SpAbstractTreePresenterTest >> testDisableActivationDuring [
 	self assert: presenter selectedItem equals: 2 "but the selection changed!"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreePresenterTest >> testExpandAtPathExpandsTheNode [
 
 	self openInstance.
@@ -114,7 +116,7 @@ SpAbstractTreePresenterTest >> testExpandAtPathExpandsTheNode [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreePresenterTest >> testPathIndexOf [
 
 	presenter 
@@ -128,7 +130,7 @@ SpAbstractTreePresenterTest >> testPathIndexOf [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreePresenterTest >> testPathItemOf [
 
 	presenter 
@@ -142,7 +144,7 @@ SpAbstractTreePresenterTest >> testPathItemOf [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreePresenterTest >> testUnselectAll [
 
 	presenter beMultipleSelection.
@@ -156,7 +158,7 @@ SpAbstractTreePresenterTest >> testUnselectAll [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreePresenterTest >> testUpdateRootsKeepingSelection [ 
 
 	presenter roots: #($a $b $c).
@@ -165,7 +167,7 @@ SpAbstractTreePresenterTest >> testUpdateRootsKeepingSelection [
 	self assert: presenter selectedItem equals: $c
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreePresenterTest >> testWhenSelectedItemChangedDo [
 	| selectedItem |
 

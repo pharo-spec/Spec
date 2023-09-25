@@ -9,22 +9,24 @@ I provide openInstance and openInstance: to open it. These methods make me keep 
 - testExample tests the class side method example if exist, example should be a representative use.
 "
 Class {
-	#name : #SpSmokeTest,
-	#superclass : #SpSpecTest,
-	#category : #'Spec2-Tests-Utils'
+	#name : 'SpSmokeTest',
+	#superclass : 'SpSpecTest',
+	#category : 'Spec2-Tests-Utils',
+	#package : 'Spec2-Tests',
+	#tag : 'Utils'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpSmokeTest class >> isAbstract [
 	^ self name = #SpSmokeTest
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpSmokeTest class >> shouldInheritSelectors [
 	^ true
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpSmokeTest >> testExample [
 	"We do not use #shouldnt:raise: to get feedback on the CI"
 
@@ -42,7 +44,7 @@ SpSmokeTest >> testExample [
 ' , e signalerContext shortStack ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpSmokeTest >> testOpen [
 	"We do not use #shouldnt:raise: to get feedback on the CI"
 
