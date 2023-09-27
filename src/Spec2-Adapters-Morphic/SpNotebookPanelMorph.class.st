@@ -1,10 +1,12 @@
 Class {
-	#name : #SpNotebookPanelMorph,
-	#superclass : #PanelMorph,
-	#category : #'Spec2-Adapters-Morphic-Notebook'
+	#name : 'SpNotebookPanelMorph',
+	#superclass : 'PanelMorph',
+	#category : 'Spec2-Adapters-Morphic-Notebook',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Notebook'
 }
 
-{ #category : #'change reporting' }
+{ #category : 'change reporting' }
 SpNotebookPanelMorph >> adoptPaneColor: paneColor [
 	"Change our color too."
 
@@ -17,7 +19,7 @@ SpNotebookPanelMorph >> adoptPaneColor: paneColor [
 	self submorphsDo: [ :m | m adoptPaneColor: paneColor ]
 ]
 
-{ #category : #'change reporting' }
+{ #category : 'change reporting' }
 SpNotebookPanelMorph >> changed [
 	"Report that the area occupied by this morph should be redrawn.
 	Fixed to include submorphs outside the outerBounds."
@@ -30,7 +32,7 @@ SpNotebookPanelMorph >> changed [
 		ifNotNil: [ self invalidRect: fullBounds ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPanelMorph >> extent: aPoint [
 	| newExtent |	
 	newExtent := aPoint rounded.

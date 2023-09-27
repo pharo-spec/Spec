@@ -2,12 +2,14 @@
 I am the adapter used to bridge a WindowPresenter and a SystemWindow
 "
 Class {
-	#name : #SpMorphicWindowAdapter,
-	#superclass : #SpAbstractMorphicWindowAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicWindowAdapter',
+	#superclass : 'SpAbstractMorphicWindowAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicWindowAdapter >> aboutTitle [
     ^ self model model
          ifNotNil: [ :m | (m respondsTo: #aboutTitle)
@@ -15,13 +17,13 @@ SpMorphicWindowAdapter >> aboutTitle [
 		ifFalse: [m class name]].
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicWindowAdapter >> addFocusRotationKeyBindings [
 	"Windows should not process keybindings (because then the active widget will not get 
 	 the event)"
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicWindowAdapter >> addPresenterIn: aWindow withSpecLayout: aSpec [
 
 	| contentWidget |
@@ -42,19 +44,19 @@ SpMorphicWindowAdapter >> addPresenterIn: aWindow withSpecLayout: aSpec [
 	self addContent: contentWidget toWindow: aWindow
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicWindowAdapter >> askOkToClose [
 
 	^ self model askOkToClose
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicWindowAdapter >> beep [ 
 	
 	widget flash
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicWindowAdapter >> buildWidget [
 
 	^ SpWindow new
@@ -64,13 +66,13 @@ SpMorphicWindowAdapter >> buildWidget [
 		yourself
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicWindowAdapter >> cancelled [
 
 	^ false
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicWindowAdapter >> centered [
 
 	self widgetDo: [ :w | 
@@ -79,7 +81,7 @@ SpMorphicWindowAdapter >> centered [
 			position: (self currentWorld extent - w extent) // 2 ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicWindowAdapter >> centeredRelativeTo: aWindowPresenter [
 	| bounds position |
 
@@ -92,13 +94,13 @@ SpMorphicWindowAdapter >> centeredRelativeTo: aWindowPresenter [
 		w position: position ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicWindowAdapter >> close [
 
 	self widget ifNotNil: [ :w | w close ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicWindowAdapter >> delete [
 
 	self widgetDo: [ :w | 
@@ -106,19 +108,19 @@ SpMorphicWindowAdapter >> delete [
 		self application windowClosed: self ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicWindowAdapter >> extent: aPoint [
 
 	^ self widget extent: aPoint
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicWindowAdapter >> initialExtent [
 
 	^ self model initialExtent
 ]
 
-{ #category : #'event installing' }
+{ #category : 'event installing' }
 SpMorphicWindowAdapter >> installFocusLostEvent: anEvent to: aWidget [
 
 	aWidget announcer
@@ -127,7 +129,7 @@ SpMorphicWindowAdapter >> installFocusLostEvent: anEvent to: aWidget [
 		for: self
 ]
 
-{ #category : #'event installing' }
+{ #category : 'event installing' }
 SpMorphicWindowAdapter >> installFocusReceivedEvent: anEvent to: aWidget [
 
 	aWidget announcer
@@ -136,64 +138,64 @@ SpMorphicWindowAdapter >> installFocusReceivedEvent: anEvent to: aWidget [
 		for: self
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicWindowAdapter >> isDisplayed [
 
 	^ self widget isDisplayed
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicWindowAdapter >> isMaximized [
 
 	self widgetDo: [ :w | ^ w isMaximized ].
 	^ false
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicWindowAdapter >> isMinimized [
 
 	self widgetDo: [ :w | ^ w isMinimized ].
 	^ false
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicWindowAdapter >> isResizable [
 
 	^ self model isResizable
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicWindowAdapter >> isTopWindow [
 
 	self widgetDo: [ :w | ^ w isTopWindow ].
 	^ false
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicWindowAdapter >> maximize [
 
 	self widgetDo: [ :w | w maximize ]
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicWindowAdapter >> minimize [
 
 	self widgetDo: [ :w | w minimize ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicWindowAdapter >> okToChange [
 
 	^ self model okToChange
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicWindowAdapter >> open [
 
 	self openWithDeferredAction: [  ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicWindowAdapter >> openWithDeferredAction: aBlock [
 
 	self flag: #TODO. "This and its children are more or less the same, it needs to be 
@@ -208,7 +210,7 @@ SpMorphicWindowAdapter >> openWithDeferredAction: aBlock [
 	aBlock value
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicWindowAdapter >> rebuildWithSpecLayout: aSpec [
 
 	| sub |
@@ -219,13 +221,13 @@ SpMorphicWindowAdapter >> rebuildWithSpecLayout: aSpec [
 	self widget model: self
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicWindowAdapter >> resize: aPoint [
 
 	widget extent: aPoint
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicWindowAdapter >> subscribeToAnnouncements: aWindow [
 
 	aWindow announcer 
@@ -234,19 +236,19 @@ SpMorphicWindowAdapter >> subscribeToAnnouncements: aWindow [
 		when: WindowClosed send: #windowClosed to: self
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 SpMorphicWindowAdapter >> taskbarIcon [
 
 	^ self model taskbarIcon
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicWindowAdapter >> title [
 
 	^ self model title
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicWindowAdapter >> title: aString [
 
 	self widgetDo: [ :w | 
@@ -254,20 +256,20 @@ SpMorphicWindowAdapter >> title: aString [
 				 theString localizedForPresenter: self presenter ]) ]
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicWindowAdapter >> windowClosed [
 
 	self windowIsClosing.
 	self presenter windowClosed
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicWindowAdapter >> windowIsClosing [
 
 	self model windowIsClosing
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicWindowAdapter >> windowIsOpened [
 
 	self presenter windowIsOpened

@@ -2,12 +2,14 @@
 I am the adapter used to bridge a DialogWindowPresenter and a DialogWindow
 "
 Class {
-	#name : #SpMorphicDialogWindowAdapter,
-	#superclass : #SpMorphicWindowAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicDialogWindowAdapter',
+	#superclass : 'SpMorphicWindowAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicDialogWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
 	"I replace the mainPanel (which contains contents and button bar) because like that I get the 
 	 status bar at the end (where it belongs)"
@@ -17,7 +19,7 @@ SpMorphicDialogWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aS
 		widgetToBuild setToolbarFrom: [ self buildButtonBar ] ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicDialogWindowAdapter >> buildButtonBar [
 
 	| buttonBar |
@@ -28,7 +30,7 @@ SpMorphicDialogWindowAdapter >> buildButtonBar [
 	^ buttonBar
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicDialogWindowAdapter >> buildWidget [
 
 	^ SpDialogWindowMorph new

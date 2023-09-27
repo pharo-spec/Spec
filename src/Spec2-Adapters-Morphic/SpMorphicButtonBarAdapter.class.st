@@ -2,24 +2,26 @@
 Spec Adapter to Morphic for a ButtonBarPresenter using a PanelMorph
 "
 Class {
-	#name : #SpMorphicButtonBarAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicButtonBarAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicButtonBarAdapter class >> defaultHeight [
 
 	^ 30 scaledByDisplayScaleFactor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicButtonBarAdapter class >> defaultItemSeparation [
 	
 	^ (3@0) scaledByDisplayScaleFactor
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicButtonBarAdapter >> addModelTo: panelMorph [
 
 	self model items do: [ :each |
@@ -30,7 +32,7 @@ SpMorphicButtonBarAdapter >> addModelTo: panelMorph [
 			yourself) ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicButtonBarAdapter >> buildWidget [
 	| panelMorph |
 	
@@ -48,7 +50,7 @@ SpMorphicButtonBarAdapter >> buildWidget [
 	^ panelMorph
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicButtonBarAdapter >> listDirection [
 	
 	self model isPlaceAtEnd ifTrue: [ ^ #rightToLeft ].

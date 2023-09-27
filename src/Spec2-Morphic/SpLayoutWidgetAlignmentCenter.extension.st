@@ -1,6 +1,6 @@
-Extension { #name : #SpLayoutWidgetAlignmentCenter }
+Extension { #name : 'SpLayoutWidgetAlignmentCenter' }
 
-{ #category : #'*Spec2-Morphic' }
+{ #category : '*Spec2-Morphic' }
 SpLayoutWidgetAlignmentCenter >> asMorphicAlign [
 
 	^ #center

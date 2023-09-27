@@ -4,14 +4,16 @@ Note that I just add some behaviour at presenter level, the right implementation
 to be solved in the backend adaptor.
 "
 Trait {
-	#name : #SpTContextMenu,
+	#name : 'SpTContextMenu',
 	#instVars : [
 		'#contextMenu => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Base'
+	#category : 'Spec2-Core-Base',
+	#package : 'Spec2-Core',
+	#tag : 'Base'
 }
 
-{ #category : #api }
+{ #category : 'api' }
 SpTContextMenu >> contextMenu [
 	"Answer context menu or nil if there is none defined.
 	 Context menu can be an instace of `SpMenuPresenter` or a block (that will answer eventually an 
@@ -22,7 +24,7 @@ SpTContextMenu >> contextMenu [
 	^ contextMenu
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTContextMenu >> contextMenu: aValuableOrMenuPresenter [
 	"Set the context menu.
 	 Context menu can be an instace of `SpMenuPresenter` or a block (that will answer eventually an 
@@ -33,14 +35,14 @@ SpTContextMenu >> contextMenu: aValuableOrMenuPresenter [
 	contextMenu := aValuableOrMenuPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTContextMenu >> initialize [
 	
 	self class initializeSlots: self.
 	super initialize.
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTContextMenu >> whenMenuChangedDo: aBlock [
 	"Inform when menu definition changed. 
 	 `aBlock` receives zero arguments."

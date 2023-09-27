@@ -1,6 +1,6 @@
-Extension { #name : #RubEditingState }
+Extension { #name : 'RubEditingState' }
 
-{ #category : #'*Spec2-Adapters-Morphic' }
+{ #category : '*Spec2-Adapters-Morphic' }
 RubEditingState >> undoManager: aHistoryIterator [
 
 	undoManager := aHistoryIterator

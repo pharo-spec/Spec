@@ -1,14 +1,16 @@
 Class {
-	#name : #SpActivationTransform,
-	#superclass : #Object,
+	#name : 'SpActivationTransform',
+	#superclass : 'Object',
 	#instVars : [
 		'block',
 		'transformBlock'
 	],
-	#category : #'Spec2-Core-Support'
+	#category : 'Spec2-Core-Support',
+	#package : 'Spec2-Core',
+	#tag : 'Support'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpActivationTransform class >> activateDo: aBlock transform: transformBlock [
 
 	^ self new
@@ -17,13 +19,13 @@ SpActivationTransform class >> activateDo: aBlock transform: transformBlock [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpActivationTransform >> block: aBlock [
 
 	block := aBlock
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 SpActivationTransform >> cull: aSelection [
 
 	^ block cull: (SpActivatedSelection new 
@@ -31,13 +33,13 @@ SpActivationTransform >> cull: aSelection [
 		yourself).
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpActivationTransform >> transformBlock: aBlock [
 
 	transformBlock := aBlock
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 SpActivationTransform >> value: aSelection [
 
 	^ self cull: aSelection

@@ -17,22 +17,24 @@ Internal Representation and Key Implementation Points.
 
 "
 Class {
-	#name : #SpFixedProgressBarState,
-	#superclass : #SpProgressBarState,
+	#name : 'SpFixedProgressBarState',
+	#superclass : 'SpProgressBarState',
 	#instVars : [
 		'value'
 	],
-	#category : #'Spec2-Core-Utils'
+	#category : 'Spec2-Core-Utils',
+	#package : 'Spec2-Core',
+	#tag : 'Utils'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpFixedProgressBarState class >> value: aNumber [
 	^ self new
 		value: aNumber;
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpFixedProgressBarState >> initialize [
 	
 	self class initializeSlots: self.
@@ -40,17 +42,17 @@ SpFixedProgressBarState >> initialize [
 	value := 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFixedProgressBarState >> value [
 	^ value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFixedProgressBarState >> value: aNumber [
 	value := aNumber
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpFixedProgressBarState >> whenValueChangedDo: aBlock [
 	self property: #value whenChangedDo: aBlock
 ]

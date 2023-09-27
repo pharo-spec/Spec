@@ -1,10 +1,12 @@
 Class {
-	#name : #SpMorphicTabAdapter,
-	#superclass : #SpMorphicLayoutAdapter,
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#name : 'SpMorphicTabAdapter',
+	#superclass : 'SpMorphicLayoutAdapter',
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTabAdapter >> addConstraints: constraints toChild: childMorph [
 	"Adds constraits by child"
 	| theMorph |	
@@ -16,7 +18,7 @@ SpMorphicTabAdapter >> addConstraints: constraints toChild: childMorph [
 	^ theMorph 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTabAdapter >> basicAdd: aPresenter constraints: constraints to: aNotebook [ 
 	| page |
 
@@ -27,13 +29,13 @@ SpMorphicTabAdapter >> basicAdd: aPresenter constraints: constraints to: aNotebo
 	aNotebook addPage: page label: constraints label
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTabAdapter >> children [
 
 	^ widget pages
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicTabAdapter >> layout: aLayout [
 
 	layout := aLayout.
@@ -58,7 +60,7 @@ SpMorphicTabAdapter >> layout: aLayout [
 	super layout: aLayout
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 SpMorphicTabAdapter >> remove: aPresenter [
 
 	widget removePage: (widget pages 

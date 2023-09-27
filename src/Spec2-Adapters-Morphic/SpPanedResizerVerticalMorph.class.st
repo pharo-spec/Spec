@@ -5,33 +5,35 @@ I'm called ""vertical"" (even if my draw is horizontal) because I split vertical
 self exampleVertical.
 "
 Class {
-	#name : #SpPanedResizerVerticalMorph,
-	#superclass : #SpPanedResizerMorph,
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#name : 'SpPanedResizerVerticalMorph',
+	#superclass : 'SpPanedResizerMorph',
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPanedResizerVerticalMorph >> edgeName [
 	"Answer the value of edgeName"
 
 	^ #bottom
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpPanedResizerVerticalMorph >> isHorizontal [
 	"Answer true if the receiver has a horizontal layout."
 	
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPanedResizerVerticalMorph >> positionPoint: aPoint [
 	"Reposition based on ptName."
 	
 	^ self position: self left @ aPoint y
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPanedResizerVerticalMorph >> setLayoutSizing [
 	
 	self 
@@ -39,7 +41,7 @@ SpPanedResizerVerticalMorph >> setLayoutSizing [
 		vResizing: #rigid
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPanedResizerVerticalMorph >> setTargetBounds [
 
 	| target |
@@ -47,7 +49,7 @@ SpPanedResizerVerticalMorph >> setTargetBounds [
 	target bounds: (target position corner: (target right @ (self top - 1)))
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPanedResizerVerticalMorph >> setTargetLayoutSizing [
 
 	(self target vResizing = #rigid) ifTrue: [ ^ self ].

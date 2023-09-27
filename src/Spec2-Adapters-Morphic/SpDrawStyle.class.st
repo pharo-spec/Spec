@@ -20,22 +20,24 @@ Draw {
 ```
 "
 Class {
-	#name : #SpDrawStyle,
-	#superclass : #SpPropertyStyle,
+	#name : 'SpDrawStyle',
+	#superclass : 'SpPropertyStyle',
 	#instVars : [
 		'color',
 		'backgroundColor'
 	],
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #'ston-core' }
+{ #category : 'ston-core' }
 SpDrawStyle class >> stonName [
 
 	^ 'Draw'
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 SpDrawStyle >> applyTo: aMorph [ 
 
 	self color ifNotNil: [ :aColor | 
@@ -50,7 +52,7 @@ SpDrawStyle >> applyTo: aMorph [
 			ifFalse: [ aMorph fillStyle: aColor asStyleVariable valueAsColor ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDrawStyle >> backgroundColor [
   "This property can be expressed as 
 	- a STON map: ==Color { #red : 1., #green : 0, #blue : 0, #alpha : 1 }==
@@ -60,13 +62,13 @@ SpDrawStyle >> backgroundColor [
 	^ self backgroundColorVariable value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDrawStyle >> backgroundColor: aColorOrSymbol [
 
 	backgroundColor := aColorOrSymbol asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : 'accessing - variables' }
 SpDrawStyle >> backgroundColorVariable [
   "This property can be expressed as 
 	- a STON map: ==Color { #red : 1., #green : 0, #blue : 0, #alpha : 1 }==
@@ -76,7 +78,7 @@ SpDrawStyle >> backgroundColorVariable [
 	^ self toVariable: backgroundColor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDrawStyle >> color [
   "This property can be expressed as 
 	- a STON map: ==Color { #red : 1., #green : 0, #blue : 0, #alpha : 1 }==
@@ -86,13 +88,13 @@ SpDrawStyle >> color [
 	^ self colorVariable value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDrawStyle >> color: aColorOrSymbol [
 
 	color := aColorOrSymbol asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : 'accessing - variables' }
 SpDrawStyle >> colorVariable [
   "This property can be expressed as 
 	- a STON map: ==Color { #red : 1., #green : 0, #blue : 0, #alpha : 1 }==

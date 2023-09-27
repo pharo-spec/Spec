@@ -1,6 +1,12 @@
 Extension { #name : #SpApplication }
 
 { #category : #'*Spec2-Dialogs' }
+SpApplication >> newAlert [
+
+	^ SpAlertDialog newApplication: self
+]
+
+{ #category : #'*Spec2-Dialogs' }
 SpApplication >> newConfirm [
 
 	^ SpConfirmDialog newApplication: self

@@ -4,12 +4,14 @@ I am the adapter used to display a NumberInputFieldPresenter with Morphic.
 I will display a text morph accepting only number from the user. The up and down keys will increase or decrease the value of the input. On top of that I also have two icons. One with an arrow up and one with an arrow down.
 "
 Class {
-	#name : #SpMorphicNumberInputFieldAdapter,
-	#superclass : #SpMorphicTextInputFieldAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicNumberInputFieldAdapter',
+	#superclass : 'SpMorphicTextInputFieldAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicNumberInputFieldAdapter >> buildWidget [
 
 	| textMorph iconsContainer |	
@@ -41,13 +43,13 @@ SpMorphicNumberInputFieldAdapter >> buildWidget [
 	^ textMorph
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpMorphicNumberInputFieldAdapter >> decreaseValueOf: aTextMorph [
 
 	aTextMorph setText: (self decreasedValueFrom: aTextMorph getText)
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpMorphicNumberInputFieldAdapter >> decreasedValueFrom: aString [
 	"I get the current value from a string and decrease it by the step.
 	
@@ -62,7 +64,7 @@ SpMorphicNumberInputFieldAdapter >> decreasedValueFrom: aString [
 		ifFalse: [ newValue printShowingDecimalPlaces: self model digits ]
 ]
 
-{ #category : #'ensure bounds' }
+{ #category : 'ensure bounds' }
 SpMorphicNumberInputFieldAdapter >> inBounds: aNumber [
 	"I return a the closest number from my input that is inside the bounds defined by the user.
 	
@@ -75,13 +77,13 @@ SpMorphicNumberInputFieldAdapter >> inBounds: aNumber [
 	^ self inferiorToMaximum: (self superiorToMinimum: aNumber)
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpMorphicNumberInputFieldAdapter >> increaseValueOf: aTextMorph [
 
 	aTextMorph setText: (self increasedValueFrom: aTextMorph getText)
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpMorphicNumberInputFieldAdapter >> increasedValueFrom: aString [
 	"I get the current value from a aString and increase it by the step.
 	
@@ -96,13 +98,13 @@ SpMorphicNumberInputFieldAdapter >> increasedValueFrom: aString [
 		ifFalse: [ newValue printShowingDecimalPlaces: self model digits ]
 ]
 
-{ #category : #'ensure bounds' }
+{ #category : 'ensure bounds' }
 SpMorphicNumberInputFieldAdapter >> inferiorToMaximum: aNumber [
 
 	^ self model maximum ifNil: [ aNumber ] ifNotNil: [ :max | aNumber min: max ]
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpMorphicNumberInputFieldAdapter >> keystroke: aRubricEvent [
 
 	aRubricEvent event keyCharacter = Character arrowUp
@@ -116,7 +118,7 @@ SpMorphicNumberInputFieldAdapter >> keystroke: aRubricEvent [
 	^ false
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicNumberInputFieldAdapter >> newIconButtonAction: aSymbol with: textMorph iconSelector: anIconSymbol [
 
 	^ IconicButtonMorph new
@@ -130,7 +132,7 @@ SpMorphicNumberInputFieldAdapter >> newIconButtonAction: aSymbol with: textMorph
 		  yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicNumberInputFieldAdapter >> shouldAccept: aText [
 	| regex value |
 	aText ifEmpty: [ ^ true ].
@@ -151,7 +153,7 @@ SpMorphicNumberInputFieldAdapter >> shouldAccept: aText [
 	
 ]
 
-{ #category : #'ensure bounds' }
+{ #category : 'ensure bounds' }
 SpMorphicNumberInputFieldAdapter >> superiorToMinimum: aNumber [
 
 	^ self model minimum

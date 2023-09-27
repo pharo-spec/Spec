@@ -27,46 +27,48 @@ todo
 - retrieveSpec:
 "
 Class {
-	#name : #SpDynamicPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDynamicPresenter',
+	#superclass : 'SpPresenter',
 	#traits : 'SpTDynamicPresenter',
 	#classTraits : 'SpTDynamicPresenter classTrait',
-	#category : #'Spec2-Core-Base'
+	#category : 'Spec2-Core-Base',
+	#package : 'Spec2-Core',
+	#tag : 'Base'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpDynamicPresenter >> assign: aPresenter to: anInstVarName [
 	self presenterAt: anInstVarName put: aPresenter.
 	aPresenter owner: self
 ]
 
-{ #category : #'error handling' }
+{ #category : 'error handling' }
 SpDynamicPresenter >> doesNotUnderstand: aMessage [
 	"To make sure that we can use accessors to access the dynamically managed subcomponents."
 
 	^ self presenterAt: aMessage selector ifAbsent: [ super doesNotUnderstand: aMessage ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpDynamicPresenter >> instantiatePresenters: aCollectionOfPairs [
 	aCollectionOfPairs pairsDo: [ :k :v | self presenterAt: k asSymbol put: (self createInstanceFor: v) ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDynamicPresenter >> needFullRebuild: aBoolean [
 
 	self needRebuild: aBoolean.
 	self presentersDo: [ :w | w needRebuild: aBoolean ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDynamicPresenter >> open [
 
 	self layout ifNil: [ ^ super open ].
 	^ self asWindow openWith: self layout
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDynamicPresenter >> openModal [
 
 	self layout ifNil: [ ^ super open ].

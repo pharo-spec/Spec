@@ -1,6 +1,6 @@
-Extension { #name : #SpAbstractTextPresenter }
+Extension { #name : 'SpAbstractTextPresenter' }
 
-{ #category : #'*Spec2-Adapters-Morphic' }
+{ #category : '*Spec2-Adapters-Morphic' }
 SpAbstractTextPresenter >> pendingText [
 	"Return the current pending text"
 
@@ -10,7 +10,7 @@ SpAbstractTextPresenter >> pendingText [
 	^ self getText
 ]
 
-{ #category : #'*Spec2-Adapters-Morphic' }
+{ #category : '*Spec2-Adapters-Morphic' }
 SpAbstractTextPresenter >> pendingText: aText [
 	"Set the pending text. Do no accept it"
 

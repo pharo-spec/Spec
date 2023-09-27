@@ -2,16 +2,18 @@
 I am an announcement raised when a widget has been built with all its children, but not yet shown.
 "
 Class {
-	#name : #SpWidgetBuilt,
-	#superclass : #Announcement,
+	#name : 'SpWidgetBuilt',
+	#superclass : 'Announcement',
 	#instVars : [
 		'model',
 		'widget'
 	],
-	#category : #'Spec2-Core-Support'
+	#category : 'Spec2-Core-Support',
+	#package : 'Spec2-Core',
+	#tag : 'Support'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpWidgetBuilt class >> model: model widget: widget [
 
 	^ self new
@@ -20,22 +22,22 @@ SpWidgetBuilt class >> model: model widget: widget [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWidgetBuilt >> model [
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWidgetBuilt >> model: anObject [
 	model := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWidgetBuilt >> widget [
 	^ widget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWidgetBuilt >> widget: anObject [
 	widget := anObject
 ]

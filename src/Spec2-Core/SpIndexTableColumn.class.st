@@ -12,12 +12,14 @@ SpIndexTableColumn title: 'My index'
 ```
 "
 Class {
-	#name : #SpIndexTableColumn,
-	#superclass : #SpTableColumn,
-	#category : #'Spec2-Core-Widgets-Table'
+	#name : 'SpIndexTableColumn',
+	#superclass : 'SpTableColumn',
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpIndexTableColumn >> acceptColumnVisitor: aBuilder [
 
 	^ aBuilder visitIndexColumn: self

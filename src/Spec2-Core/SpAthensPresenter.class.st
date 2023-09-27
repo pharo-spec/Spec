@@ -4,42 +4,44 @@ Users can draw their own vectorial images  and render them as part of a Spec bas
 
 "
 Class {
-	#name : #SpAthensPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpAthensPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#traits : 'SpTContextMenu',
 	#classTraits : 'SpTContextMenu classTrait',
 	#instVars : [
 		'#drawBlock => ObservableSlot',
 		'#surfaceExtent => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets-Athens'
+	#category : 'Spec2-Core-Widgets-Athens',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Athens'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpAthensPresenter class >> adapterName [
 	^ #AthensAdapter
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpAthensPresenter class >> defaultSurfaceExtent [
 
 	^ 300@300
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAthensPresenter class >> documentFactoryMethodSelector [
 
 	^ #newAthens
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAthensPresenter >> drawBlock [
 	"Answer the block used to draw into an athens canvas."
 
 	^ drawBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAthensPresenter >> drawBlock: aBlock [
 	"Set the block used to draw into the athens canvas.
 	 `aBlock` receives one argument, the `AthensCanvas` instance used to draw the surface.
@@ -48,34 +50,34 @@ SpAthensPresenter >> drawBlock: aBlock [
 	drawBlock := aBlock
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAthensPresenter >> initialize [
 
 	super initialize.
 	self surfaceExtent: self class defaultSurfaceExtent
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAthensPresenter >> redraw [
 
 	self withAdapterDo: [ :anAdapter | anAdapter redraw ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAthensPresenter >> surfaceExtent [
 	"Anwer the surface extent (the size the surface will have)"
 
 	^ surfaceExtent
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAthensPresenter >> surfaceExtent: anExtent [
 	"Set surface extent (a point) to contain the athens drawing."
 
 	surfaceExtent := anExtent
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAthensPresenter >> whenDrawBlockChangedDo: aBlock [
 	"Inform when drawBlock has changed. 
 	 `aBlock` has three optional arguments: 
@@ -86,7 +88,7 @@ SpAthensPresenter >> whenDrawBlockChangedDo: aBlock [
 	self property: #drawBlock whenChangedDo: aBlock 
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAthensPresenter >> whenExtentChangedDo: aBlock [
 	"Inform when the Athens surface extent has changed. 
 	 `aBlock` has three optional arguments: 

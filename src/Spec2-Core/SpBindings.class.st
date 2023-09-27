@@ -8,12 +8,14 @@ Example:
 ```
 "
 Class {
-	#name : #SpBindings,
-	#superclass : #DynamicVariable,
-	#category : #'Spec2-Core-Support'
+	#name : 'SpBindings',
+	#superclass : 'DynamicVariable',
+	#category : 'Spec2-Core-Support',
+	#package : 'Spec2-Core',
+	#tag : 'Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBindings >> default [
 	^ (self class environment at: #SpMorphicAdapterBindings) new
 ]

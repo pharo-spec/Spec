@@ -2,21 +2,23 @@
 Text property controls how the ""input text"" fields (`SpTextInputFieldPresenter` hierarchy for now)
 "
 Class {
-	#name : #SpTextStyle,
-	#superclass : #SpPropertyStyle,
+	#name : 'SpTextStyle',
+	#superclass : 'SpPropertyStyle',
 	#instVars : [
 		'drawKeyboardFocus'
 	],
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #'ston-core' }
+{ #category : 'ston-core' }
 SpTextStyle class >> stonName [
 	
 	^ 'Text'
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 SpTextStyle >> applyTo: aMorph [
 
 
@@ -24,19 +26,19 @@ SpTextStyle >> applyTo: aMorph [
 		ifNotNil: [ :aVariable | aMorph drawKeyboardFocus: aVariable value ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextStyle >> drawKeyboardFocus [
 
 	^ self drawKeyboardFocusVariable value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextStyle >> drawKeyboardFocus: aBoolean [
 
 	drawKeyboardFocus := aBoolean asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : 'accessing - variables' }
 SpTextStyle >> drawKeyboardFocusVariable [
 
 	^ self toVariable: drawKeyboardFocus
