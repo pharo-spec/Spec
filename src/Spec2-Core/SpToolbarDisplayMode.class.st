@@ -73,6 +73,18 @@ SpToolbarDisplayMode >> extent [
 	^ self subclassResponsibility
 ]
 
+{ #category : #testing }
+SpToolbarDisplayMode >> hasIcon [
+
+	^ false
+]
+
+{ #category : #testing }
+SpToolbarDisplayMode >> hasLabel [
+
+	^ false
+]
+
 { #category : #accessing }
 SpToolbarDisplayMode >> height [
 

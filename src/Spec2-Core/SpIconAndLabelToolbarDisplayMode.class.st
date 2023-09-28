@@ -22,6 +22,18 @@ SpIconAndLabelToolbarDisplayMode >> extent [
 	^ 45@45
 ]
 
+{ #category : #testing }
+SpIconAndLabelToolbarDisplayMode >> hasIcon [
+
+	^ true
+]
+
+{ #category : #testing }
+SpIconAndLabelToolbarDisplayMode >> hasLabel [
+
+	^ true
+]
+
 { #category : #printing }
 SpIconAndLabelToolbarDisplayMode >> label [
 

@@ -21,6 +21,12 @@ SpIconToolbarDisplayMode >> extent [
 	^ 30@30
 ]
 
+{ #category : #testing }
+SpIconToolbarDisplayMode >> hasIcon [
+
+	^ true
+]
+
 { #category : #accessing }
 SpIconToolbarDisplayMode >> label [
 
