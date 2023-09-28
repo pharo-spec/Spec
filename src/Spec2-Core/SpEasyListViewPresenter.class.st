@@ -77,6 +77,18 @@ SpEasyListViewPresenter >> actionGroup: aSpCommandGroup [
 	listView actionGroup: aSpCommandGroup
 ]
 
+{ #category : #api }
+SpEasyListViewPresenter >> activateOnDoubleClick [
+
+	listView activateOnDoubleClick
+]
+
+{ #category : #api }
+SpEasyListViewPresenter >> activateOnSingleClick [
+
+	listView activateOnSingleClick
+]
+
 { #category : #private }
 SpEasyListViewPresenter >> activateSearchWith: aString [
 
@@ -93,6 +105,12 @@ SpEasyListViewPresenter >> activateSearchWith: aString [
 SpEasyListViewPresenter >> addAction: aSpCommand [
 
 	listView addAction: aSpCommand
+]
+
+{ #category : #api }
+SpEasyListViewPresenter >> addScrollBarStyle: aStyle [
+
+	listView addScrollBarStyle: aStyle
 ]
 
 { #category : #api }
@@ -149,6 +167,12 @@ SpEasyListViewPresenter >> defaultLayout [
 ]
 
 { #category : #api }
+SpEasyListViewPresenter >> disable [
+
+	self enabled: false
+]
+
+{ #category : #api }
 SpEasyListViewPresenter >> display [
 	"Answer the display block that will transform the objects from `SpAbstractListPresenter>>#model` into a
 	 displayable string."
@@ -192,6 +216,12 @@ SpEasyListViewPresenter >> displayIcon: aBlock [
 SpEasyListViewPresenter >> displayValueFor: anObject [
 
 	^ self display value: anObject
+]
+
+{ #category : #api }
+SpEasyListViewPresenter >> enable [
+
+	self enabled: true
 ]
 
 { #category : #private }
@@ -282,6 +312,12 @@ SpEasyListViewPresenter >> initializePresenters [
 ]
 
 { #category : #api }
+SpEasyListViewPresenter >> items [
+
+	^ listView items
+]
+
+{ #category : #api }
 SpEasyListViewPresenter >> items: anOrderedCollection [
 
 	listView items: anOrderedCollection
@@ -298,12 +334,30 @@ SpEasyListViewPresenter >> maybeActivateSearchOn: event [
 	self activateSearchWith: event keyCharacter asString
 ]
 
+{ #category : #api }
+SpEasyListViewPresenter >> model [
+
+	^ listView model
+]
+
 { #category : #initialization }
 SpEasyListViewPresenter >> registerEvents [
 
 	super registerEvents.
 
 	self whenDisplayChangedDo: [ listView refresh ]
+]
+
+{ #category : #api }
+SpEasyListViewPresenter >> removeScrollBarStyle: aStyle [
+
+	^ listView removeScrollBarStyle: aStyle
+]
+
+{ #category : #api }
+SpEasyListViewPresenter >> scrollBarStyles [
+
+	^ listView scrollBarStyles
 ]
 
 { #category : #private }
@@ -314,6 +368,18 @@ SpEasyListViewPresenter >> selectFirst: aString [
 	index = 0 ifTrue: [ ^ self ].
 	
 	listView selectIndex: index scrollToSelection: true
+]
+
+{ #category : #'api - selection' }
+SpEasyListViewPresenter >> selectedItem [
+	
+	^ listView selectedItem
+]
+
+{ #category : #api }
+SpEasyListViewPresenter >> updateItemsKeepingSelection: aCollection [
+	
+	listView updateItemsKeepingSelection: aCollection
 ]
 
 { #category : #'api - events' }
@@ -336,4 +402,16 @@ SpEasyListViewPresenter >> whenIconsChangedDo: aBlock [
 	 - the announcement triggering this action"
 
 	self property: #displayIcon whenChangedDo: aBlock
+]
+
+{ #category : #api }
+SpEasyListViewPresenter >> withScrollBars [
+
+	listView withScrollBars
+]
+
+{ #category : #api }
+SpEasyListViewPresenter >> withoutScrollBars [
+
+	listView withoutScrollBars
 ]
