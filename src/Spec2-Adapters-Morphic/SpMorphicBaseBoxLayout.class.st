@@ -36,7 +36,9 @@ SpMorphicBaseBoxLayout >> applyVerticalHomogeneousLayout: aMorph in: aRect [
 		self error: 'It does not looks like a spec box panel' ].
 	
 	allMorphs := aMorph submorphs flatCollect: [ :each | each submorphs ].
-	elementHeight := (aRect height - (self borderWidth * 2) - (self spacing * (allMorphs size - 1)) / (allMorphs size max: 1)) floor.
+	elementHeight := (aRect height 
+		- (self borderWidth * 2) 
+		- (self spacing * (allMorphs size - 1)) / (allMorphs size max: 1)) floor.
 
 	allMorphs do: [ :each | 
 		each minHeight: elementHeight ]

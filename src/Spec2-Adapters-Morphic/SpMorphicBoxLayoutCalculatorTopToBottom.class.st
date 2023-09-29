@@ -36,7 +36,9 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateCellFor: aMorph [
 	lastCell := cell.
 	height := height + sizeY.
 
-	sizeX > width ifTrue:[ width := sizeX ]
+	sizeX > width ifTrue:[ width := sizeX ].
+	
+	^ sizeX@sizeY
 ]
 
 { #category : #calculating }
@@ -54,10 +56,11 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateFor: aMorph in: newBounds [
 
 	submorphs := aMorph submorphs.
 	properties reverseTableCells ifTrue:[ submorphs := submorphs reversed ].
-	submorphs do: [ :each |
-		each visible 
+	submorphs do: [ :each | | cellExtent |
+		cellExtent := each visible 
 			ifTrue: [ self calculateCellFor: each ]
-			ifFalse: [ each privateBounds: (each bounds topLeft extent: 0@0) ] ].
+			ifFalse: [ 0@0 ].
+		each privateBounds: (each bounds topLeft extent: cellExtent) ].
 
 	number > 1 ifTrue:[height := height + (number-1 * inset) ].
 

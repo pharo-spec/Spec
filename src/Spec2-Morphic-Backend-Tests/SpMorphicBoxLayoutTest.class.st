@@ -178,6 +178,51 @@ SpMorphicBoxLayoutTest >> testClassIsDisplayedWithCorrectAlignment [
 ]
 
 { #category : #tests }
+SpMorphicBoxLayoutTest >> testHiddenPresenterTakesAnyHeight [
+	| presenter l1 l2 |
+	
+	(presenter := SpPresenter new) 
+		layout: (SpBoxLayout newTopToBottom
+			add: (l1 := presenter newLabel label: 'Line 1') expand: false;
+			add: (l2 := presenter newLabel label: 'Line 2');
+			yourself).
+
+	l1 hide.
+
+	[ presenter open ]
+	ensure: [ presenter window close ].
+	
+	self
+		assert: presenter adapter widget height
+		equals: (l2 adapter widget height + 2) "This is the space left by the layout between cells to start laying the next (is 1, but we have 2 components hence 2 :)"
+]
+
+{ #category : #tests }
+SpMorphicBoxLayoutTest >> testHiddenPresenterThenShownResizesContentCorrectly [
+	| presenter l1 l2 height |
+	
+	(presenter := SpPresenter new) 
+		layout: (SpBoxLayout newTopToBottom
+			add: (l1 := presenter newLabel label: 'Line 1') expand: false;
+			add: (l2 := presenter newLabel label: 'Line 2');
+			yourself).
+
+	[ 
+		presenter open.
+		height := l1 adapter widget height.
+		l1 hide.
+		MorphicRenderLoop new doOneCycle.
+		self assert: l1 adapter widget height equals: 0.
+		l1 show. 
+		MorphicRenderLoop new doOneCycle.
+		self assert: l1 adapter widget height equals: height ]
+	ensure: [ 
+		presenter window close ].
+	
+	
+]
+
+{ #category : #tests }
 SpMorphicBoxLayoutTest >> testLayoutHeightTakesAllSpaceNeeded [
 
 	| string presenter textPresenter layout |
@@ -228,11 +273,13 @@ SpMorphicBoxLayoutTest >> testNestedLayoutModifiesHeightOfTopLayout [
 
 { #category : #tests }
 SpMorphicBoxLayoutTest >> testPresenterTakesRightHeight [
-
 	| presenter l1 l2 |
-	(presenter := SpPresenter new) layout: (SpBoxLayout newTopToBottom
-			 add: (l1 := presenter newLabel label: 'Line 1') expand: false;
-			 add: (l2 := presenter newLabel label: 'Line 2') expand: false).
+	
+	(presenter := SpPresenter new) 
+		layout: (SpBoxLayout newTopToBottom
+			add: (l1 := presenter newLabel label: 'Line 1') expand: false;
+			add: (l2 := presenter newLabel label: 'Line 2') expand: false;
+			yourself).
 
 	presenter build.
 
