@@ -23,7 +23,7 @@ SpBaseTest >> adapter [
 { #category : #running }
 SpBaseTest >> application [
 	
-	^ SpApplication new useBackend: #Gtk
+	^ SpApplication new
 ]
 
 { #category : #assertions }
