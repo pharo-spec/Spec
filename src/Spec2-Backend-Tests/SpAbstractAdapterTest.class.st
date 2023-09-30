@@ -113,7 +113,6 @@ SpAbstractAdapterTest >> presenter [
 { #category : #running }
 SpAbstractAdapterTest >> runCase [
 	self resources do: [ :each | each availableFor: self ].
-	testSelector printToStdout.
 	[ super setUp.
 	self performTest ]
 		ensure: [ self tearDown.
