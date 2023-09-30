@@ -56,11 +56,15 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateFor: aMorph in: newBounds [
 
 	submorphs := aMorph submorphs.
 	properties reverseTableCells ifTrue:[ submorphs := submorphs reversed ].
-	submorphs do: [ :each | | cellExtent |
+	submorphs do: [ :each | 
+		| cellExtent oldExtent |
+		oldExtent := each extent.
 		cellExtent := each visible 
 			ifTrue: [ self calculateCellFor: each ]
 			ifFalse: [ 0@0 ].
-		each privateBounds: (each bounds topLeft extent: cellExtent) ].
+		"decide if restore or not"
+		((oldExtent y = 0) or: [ cellExtent y = 0 ]) ifTrue: [ 
+			each privateBounds: (each bounds topLeft extent: cellExtent) ] ].
 
 	number > 1 ifTrue:[height := height + (number-1 * inset) ].
 
