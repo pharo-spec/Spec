@@ -1,19 +1,20 @@
 Class {
-	#name : #SpMorphicCodeTextStyler,
-	#superclass : #SHRBTextStyler,
+	#name : 'SpMorphicCodeTextStyler',
+	#superclass : 'SHRBTextStyler',
 	#instVars : [
 		'attributeTable'
 	],
-	#category : #'Spec2-Code-Morphic'
+	#category : 'Spec2-Code-Morphic',
+	#package : 'Spec2-Code-Morphic'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMorphicCodeTextStyler class >> new [
 
 	^ self newWithAttributeTable: self styleTable
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMorphicCodeTextStyler class >> newWithAttributeTable: attrTable [
 
 	^ self basicNew
@@ -21,19 +22,19 @@ SpMorphicCodeTextStyler class >> newWithAttributeTable: attrTable [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMorphicCodeTextStyler class >> newWithAttributeTableNamed: aString [
 
 	^ self newWithAttributeTable: (self newAttributesForStyleTableNamed: aString)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicCodeTextStyler >> attributesFor: aSymbol [ 
 	
 	^ attributeTable at: aSymbol ifAbsent: [ #() ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicCodeTextStyler >> initializeAttributeTable: attrTable [
 
 	attributeTable := attrTable.
