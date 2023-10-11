@@ -2,18 +2,20 @@
 Adapt the presenter on a stub view that displays no real UI elements.
 "
 Class {
-	#name : #SpStubWindowAdapter,
-	#superclass : #SpStubAbstractAdapter,
-	#category : #'Spec2-Adapters-Stub-Adapters'
+	#name : 'SpStubWindowAdapter',
+	#superclass : 'SpStubAbstractAdapter',
+	#category : 'Spec2-Adapters-Stub-Adapters',
+	#package : 'Spec2-Adapters-Stub',
+	#tag : 'Adapters'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubWindowAdapter >> addContent: aView toWindow: aSpecWindow [
 
 
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
 
 	self
@@ -21,36 +23,36 @@ SpStubWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
 		toWindow: widgetToBuild
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubWindowAdapter >> beep [
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubWindowAdapter >> buildWidget [
 
 	^ SpStubWindowView new
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubWindowAdapter >> close [
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubWindowAdapter >> delete [
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubWindowAdapter >> open [
 
 	self presenter windowIsOpened
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubWindowAdapter >> openWithDeferredAction: aBlock [
 
 	self presenter windowIsOpened
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubWindowAdapter >> title: aString [
 ]

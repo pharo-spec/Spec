@@ -1,6 +1,6 @@
-Extension { #name : #SpButtonBarPresenter }
+Extension { #name : 'SpButtonBarPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpButtonBarPresenter class >> example [
 	"Show a button bar"
 	| presenter list buttonBar |

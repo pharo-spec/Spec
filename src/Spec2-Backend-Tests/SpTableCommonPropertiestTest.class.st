@@ -1,15 +1,17 @@
 Class {
-	#name : #SpTableCommonPropertiestTest,
-	#superclass : #SpAbstractListCommonPropertiestTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpTableCommonPropertiestTest',
+	#superclass : 'SpAbstractListCommonPropertiestTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTableCommonPropertiestTest >> classToTest [
 	^ SpTablePresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTableCommonPropertiestTest >> initializeTestedInstance [
 
 	super initializeTestedInstance.
@@ -19,7 +21,7 @@ SpTableCommonPropertiestTest >> initializeTestedInstance [
 	presenter hideColumnHeaders.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTableCommonPropertiestTest >> testAddColumnInPresenterAddsItToWidget [
 
 	| newColumn |
@@ -30,7 +32,7 @@ SpTableCommonPropertiestTest >> testAddColumnInPresenterAddsItToWidget [
 	self assert: self adapter columns last id equals: newColumn title
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTableCommonPropertiestTest >> testHideColumnHeadersInPresenterHidesThemInWidget [
 
 	self presenter hideColumnHeaders.
@@ -38,13 +40,13 @@ SpTableCommonPropertiestTest >> testHideColumnHeadersInPresenterHidesThemInWidge
 	self deny: self adapter isShowColumnHeaders  
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTableCommonPropertiestTest >> testListWithoutColumnsHasSingleColumn [
 
 	self assert: self adapter columns size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTableCommonPropertiestTest >> testShowColumnHeadersInPresenterShowsThemInWidget [
 
 	SystemVersion current major = 7

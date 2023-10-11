@@ -6,18 +6,19 @@ This is the starting point of every Spec application. A subclass of *class:SpApp
 You will need to override ==initialize== and ==start== methods as a begining.
 "
 Class {
-	#name : #SpSimpleExampleApplication,
-	#superclass : #SpApplication,
-	#category : #'Spec2-Examples-SimpleApplication'
+	#name : 'SpSimpleExampleApplication',
+	#superclass : 'SpApplication',
+	#category : 'Spec2-Examples-SimpleApplication',
+	#package : 'Spec2-Examples-SimpleApplication'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSimpleExampleApplication class >> start [
 
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSimpleExampleApplication >> initialize [
 	"The configuration point for this application can be defined here. 
 	 Sending #useBackend:with: you will declare your application to use a morphic application and 
@@ -33,7 +34,7 @@ SpSimpleExampleApplication >> initialize [
 	self useBackend: #Morphic with: SpSimpleExampleConfiguration new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSimpleExampleApplication >> start [
 	"You will declare your initial window here (spec is, after all, a framework to create desktop 
 	 applications).

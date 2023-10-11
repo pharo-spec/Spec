@@ -4,29 +4,31 @@ I am a class giving the user the hability to wait for an UI redraw in Morphic.
 I am useful for tests when they need to be executed in a CI in non interactive mode.
 "
 Trait {
-	#name : #SpTMorphicUIRedrawer,
+	#name : 'SpTMorphicUIRedrawer',
 	#instVars : [
 		'uiWaitingSemaphore'
 	],
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpTMorphicUIRedrawer >> defaultWaitDuration [
 	^ 500 milliSecond
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTMorphicUIRedrawer >> initializeSemaphore [
 	uiWaitingSemaphore := Semaphore new
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTMorphicUIRedrawer >> isRunningInUIProcess [
 	^ UIManager default uiProcess == Processor activeProcess
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 SpTMorphicUIRedrawer >> waitUntilUIRedrawed [
 	"I wait until the UI has been redrawn. 
 	I take care of selecting how to do it. 

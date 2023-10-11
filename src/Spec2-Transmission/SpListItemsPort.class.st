@@ -7,18 +7,20 @@ The presenter exposing a list items input port need to define also the method ==
 Presenters exposing this port: *class:SpAbstractListPresenter* subclasses and: *class:SpDropListPresenter*.
 "
 Class {
-	#name : #SpListItemsPort,
-	#superclass : #SpInputPort,
-	#category : #'Spec2-Transmission-Base'
+	#name : 'SpListItemsPort',
+	#superclass : 'SpInputPort',
+	#category : 'Spec2-Transmission-Base',
+	#package : 'Spec2-Transmission',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpListItemsPort class >> portName [
 
 	^ #items
 ]
 
-{ #category : #'handling transmission' }
+{ #category : 'handling transmission' }
 SpListItemsPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
 	
 	aPresenter items: anObject

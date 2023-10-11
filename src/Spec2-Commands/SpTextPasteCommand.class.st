@@ -1,21 +1,23 @@
 Class {
-	#name : #SpTextPasteCommand,
-	#superclass : #SpTextEditionCommand,
-	#category : #'Spec2-Commands-Code'
+	#name : 'SpTextPasteCommand',
+	#superclass : 'SpTextEditionCommand',
+	#category : 'Spec2-Commands-Code',
+	#package : 'Spec2-Commands',
+	#tag : 'Code'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpTextPasteCommand class >> defaultIconName [
 	^#smallPaste
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpTextPasteCommand class >> defaultName [
 
 	^ 'Paste'
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpTextPasteCommand class >> defaultShortcutKey [
 
 	^ $v command mac 
@@ -23,7 +25,7 @@ SpTextPasteCommand class >> defaultShortcutKey [
 		| $v control unix
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 SpTextPasteCommand >> execute [
 
 	context doTextPaste

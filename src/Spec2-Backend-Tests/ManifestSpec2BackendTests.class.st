@@ -6,7 +6,9 @@ Spec is a framework in Pharo for describing user interfaces. It allows for the c
 I contain backend specific tests for Spec2.
 "
 Class {
-	#name : #ManifestSpec2BackendTests,
-	#superclass : #PackageManifest,
-	#category : #'Spec2-Backend-Tests-Manifest'
+	#name : 'ManifestSpec2BackendTests',
+	#superclass : 'PackageManifest',
+	#category : 'Spec2-Backend-Tests-Manifest',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Manifest'
 }

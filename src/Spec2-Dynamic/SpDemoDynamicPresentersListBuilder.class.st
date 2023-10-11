@@ -2,29 +2,31 @@
 Demo page for SpecDemoDynamicPresentersListBuilder.
 "
 Class {
-	#name : #SpDemoDynamicPresentersListBuilder,
-	#superclass : #SpDemoPage,
-	#category : #'Spec2-Dynamic-Demo'
+	#name : 'SpDemoDynamicPresentersListBuilder',
+	#superclass : 'SpDemoPage',
+	#category : 'Spec2-Dynamic-Demo',
+	#package : 'Spec2-Dynamic',
+	#tag : 'Demo'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 SpDemoDynamicPresentersListBuilder class >> example [
 	^ self new openWithSpec
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDemoDynamicPresentersListBuilder class >> pageName [
 
 	^ 'Dynamic presenters list builder'
 
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDemoDynamicPresentersListBuilder class >> priority [
 	^ 40
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoDynamicPresentersListBuilder >> pageClass [
 
 	^ SpDemoDynamicMemoryGamePresenter

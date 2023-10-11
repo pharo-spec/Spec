@@ -10,18 +10,20 @@ I have two subwidgets:
 - A Text Input Field (`SpTextInputFieldPresenter`) for entering the filter text.
 "
 Class {
-	#name : #SpFilteringListPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpFilteringListPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'unfilteredItems',
 		'listPresenter',
 		'filterInputPresenter',
 		'itemFilterBlock'
 	],
-	#category : #'Spec2-CommonWidgets-Core'
+	#category : 'Spec2-CommonWidgets-Core',
+	#package : 'Spec2-CommonWidgets',
+	#tag : 'Core'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpFilteringListPresenter class >> bottomLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -30,13 +32,13 @@ SpFilteringListPresenter class >> bottomLayout [
 		  yourself
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpFilteringListPresenter class >> defaultLayout [
 
 	^ self bottomLayout
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpFilteringListPresenter class >> topLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -45,61 +47,61 @@ SpFilteringListPresenter class >> topLayout [
 		  yourself
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringListPresenter >> applyFilter: aString [
 
 	self filterInputPresenter text: aString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpFilteringListPresenter >> connectPresenters [
 
 	filterInputPresenter whenTextChangedDo: [ :text | self filterListItems: text ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringListPresenter >> contextMenu: aValuable [
  
 	self listPresenter contextMenu: aValuable
 ]
 
-{ #category : #transmission }
+{ #category : 'transmission' }
 SpFilteringListPresenter >> defaultInputPort [
 
 	^ listPresenter defaultInputPort
 ]
 
-{ #category : #transmission }
+{ #category : 'transmission' }
 SpFilteringListPresenter >> defaultOutputPort [
 
 	^ listPresenter defaultOutputPort
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringListPresenter >> display [ 
 
 	^ self listPresenter display
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringListPresenter >> display: aBlock [
 
 	self listPresenter display: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringListPresenter >> displayIcon: aBlock [
 
 	self listPresenter displayIcon: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFilteringListPresenter >> filterInputPresenter [
 
 	^ filterInputPresenter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFilteringListPresenter >> filterListItems: pattern [
 	| filteredItems |
 	
@@ -118,13 +120,13 @@ SpFilteringListPresenter >> filterListItems: pattern [
 	listPresenter items: filteredItems
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringListPresenter >> filterText [
 
 	^  self filterInputPresenter text
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpFilteringListPresenter >> initializePresenters [
 
 	filterInputPresenter := self newTextInput
@@ -134,93 +136,93 @@ SpFilteringListPresenter >> initializePresenters [
 	self matchSubstring
 ]
 
-{ #category : #transmission }
+{ #category : 'transmission' }
 SpFilteringListPresenter >> inputItemsPort [
 	
 	^ listPresenter inputItemsPort
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFilteringListPresenter >> itemFilter [
 
 	^ itemFilterBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringListPresenter >> itemFilter: aBlock [
 
 	itemFilterBlock := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringListPresenter >> items [
 
 	^ listPresenter items
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringListPresenter >> items: aCollection [
 
 	listPresenter items: aCollection.
 	unfilteredItems := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFilteringListPresenter >> listPresenter [
 	^ listPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpFilteringListPresenter >> matchBeginOfString [
 
 	itemFilterBlock := [ :each :pattern | 
 	              each asLowercase beginsWith: pattern asLowercase ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpFilteringListPresenter >> matchSubstring [
 
 	itemFilterBlock := [ :each :pattern | 
 	              each asLowercase includesSubstring: pattern asLowercase ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpFilteringListPresenter >> newListToFilter [
 	
 	^ self newList
 ]
 
-{ #category : #transmission }
+{ #category : 'transmission' }
 SpFilteringListPresenter >> outputActivationPort [
 	
 	^ listPresenter outputActivationPort
 ]
 
-{ #category : #transmission }
+{ #category : 'transmission' }
 SpFilteringListPresenter >> outputSelectionPort [
 	
 	^ listPresenter outputSelectionPort
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringListPresenter >> selectItem: anObject [
 	
 	listPresenter selectItem: anObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringListPresenter >> selectedItem [
 	
 	^ listPresenter selectedItem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFilteringListPresenter >> unfilteredItems [
 
 	^ unfilteredItems ifNil: [ unfilteredItems := self items ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpFilteringListPresenter >> whenSelectionChangedDo: aBlock [
  
 	listPresenter whenSelectionChangedDo: aBlock

@@ -1,13 +1,15 @@
 Class {
-	#name : #SpTabAnnouncement,
-	#superclass : #Announcement,
+	#name : 'SpTabAnnouncement',
+	#superclass : 'Announcement',
 	#instVars : [
 		'presenter'
 	],
-	#category : #'Spec2-Layout-Tab'
+	#category : 'Spec2-Layout-Tab',
+	#package : 'Spec2-Layout',
+	#tag : 'Tab'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpTabAnnouncement class >> newPresenter: aPresenter [
 
 	^ self new
@@ -15,13 +17,13 @@ SpTabAnnouncement class >> newPresenter: aPresenter [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTabAnnouncement >> presenter [
 
 	^ presenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTabAnnouncement >> presenter: anObject [
 
 	presenter := anObject

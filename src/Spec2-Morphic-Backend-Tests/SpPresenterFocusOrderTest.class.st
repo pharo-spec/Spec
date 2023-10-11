@@ -1,15 +1,16 @@
 Class {
-	#name : #SpPresenterFocusOrderTest,
-	#superclass : #TestCase,
+	#name : 'SpPresenterFocusOrderTest',
+	#superclass : 'TestCase',
 	#traits : 'SpTMorphicUIRedrawer',
 	#classTraits : 'SpTMorphicUIRedrawer classTrait',
 	#instVars : [
 		'mock'
 	],
-	#category : #'Spec2-Morphic-Backend-Tests'
+	#category : 'Spec2-Morphic-Backend-Tests',
+	#package : 'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpPresenterFocusOrderTest >> focusedPresenter [
 	
 	^ mock allPresentersInFocusOrder 
@@ -17,7 +18,7 @@ SpPresenterFocusOrderTest >> focusedPresenter [
 		ifNone: [ nil ]
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpPresenterFocusOrderTest >> keyDown: keyCode shift: shiftBoolean meta: metaBoolean control: controlBoolean option: optionBoolean [
 	
 	^ self 
@@ -29,7 +30,7 @@ SpPresenterFocusOrderTest >> keyDown: keyCode shift: shiftBoolean meta: metaBool
 		option: optionBoolean
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpPresenterFocusOrderTest >> keyEvent: type code: keyCode shift: shiftBoolean meta: metaBoolean control: controlBoolean option: optionBoolean [
 	| evt modifiers widget |
 	
@@ -61,7 +62,7 @@ SpPresenterFocusOrderTest >> keyEvent: type code: keyCode shift: shiftBoolean me
 	10 milliSeconds wait
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpPresenterFocusOrderTest >> keyPressed: keyCode shift: shiftBoolean meta: metaBoolean control: controlBoolean option: optionBoolean [
 	
 	^ self 
@@ -73,7 +74,7 @@ SpPresenterFocusOrderTest >> keyPressed: keyCode shift: shiftBoolean meta: metaB
 		option: optionBoolean
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpPresenterFocusOrderTest >> pressShiftTab [
 
 	self 
@@ -85,7 +86,7 @@ SpPresenterFocusOrderTest >> pressShiftTab [
 	self waitUntilUIRedrawed		
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpPresenterFocusOrderTest >> pressTab [
 
 	self 
@@ -97,20 +98,20 @@ SpPresenterFocusOrderTest >> pressTab [
 	self waitUntilUIRedrawed		
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPresenterFocusOrderTest >> setUp [
 	super setUp.
 	self initializeSemaphore
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpPresenterFocusOrderTest >> takeKeyboardFocus: aPresenter [
 
 	aPresenter takeKeyboardFocus.
 	self waitUntilUIRedrawed
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPresenterFocusOrderTest >> tearDown [
 
 	mock ifNotNil: [ 
@@ -120,7 +121,7 @@ SpPresenterFocusOrderTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPresenterFocusOrderTest >> testCustomFocusOrder [
 
 	mock := SpMockFocusOrderPresenter new.
@@ -144,7 +145,7 @@ SpPresenterFocusOrderTest >> testCustomFocusOrder [
 	self assert: mock thirdPresenter equals: self focusedPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPresenterFocusOrderTest >> testFocusRotationBackwards [
 
 	mock := SpMockFocusOrderPresenter new
@@ -173,7 +174,7 @@ SpPresenterFocusOrderTest >> testFocusRotationBackwards [
 		equals: self focusedPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPresenterFocusOrderTest >> testFocusRotationForward [
 
 	mock := SpMockFocusOrderPresenter new
@@ -202,7 +203,7 @@ SpPresenterFocusOrderTest >> testFocusRotationForward [
 		equals: self focusedPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPresenterFocusOrderTest >> testTakeKeyboardFocus [
 
 	mock := SpMockFocusOrderPresenter new

@@ -2,21 +2,23 @@
 A simple example of a presenter that can be used as an Option in an Option List presenter.
 "
 Class {
-	#name : #SpOptionPresenterExample,
-	#superclass : #SpOptionPresenter,
+	#name : 'SpOptionPresenterExample',
+	#superclass : 'SpOptionPresenter',
 	#instVars : [
 		'radioPresenter'
 	],
-	#category : #'Spec2-Examples-Standalone'
+	#category : 'Spec2-Examples-Standalone',
+	#package : 'Spec2-Examples',
+	#tag : 'Standalone'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpOptionPresenterExample class >> open [
 	<example>
 	self new open.
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpOptionPresenterExample >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -24,19 +26,19 @@ SpOptionPresenterExample >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOptionPresenterExample >> initializePresenters [ 
 	radioPresenter := self instantiate: SpDemoRadioButtonsPresenter.
 	self layout: self defaultLayout.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOptionPresenterExample >> optionIcon [
 
 	^ self iconNamed: #radioButtonSelected
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOptionPresenterExample >> optionTitle [
 
 	^ 'Radio Button Presenter'

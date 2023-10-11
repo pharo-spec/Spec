@@ -1,6 +1,6 @@
-Extension { #name : #SpTreeSingleSelectionMode }
+Extension { #name : 'SpTreeSingleSelectionMode' }
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpTreeSingleSelectionMode >> transmission [
 	
 	^ self selectedItem

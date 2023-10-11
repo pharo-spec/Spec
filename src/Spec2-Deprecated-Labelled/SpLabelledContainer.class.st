@@ -10,16 +10,17 @@ I provide accessors for the label and the subwidget, but I specialize doesNotUnd
 I provide four layouts on my class side, to chose the position of the label.
 "
 Class {
-	#name : #SpLabelledContainer,
-	#superclass : #SpPresenter,
+	#name : 'SpLabelledContainer',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'label',
 		'subwidget'
 	],
-	#category : #'Spec2-Deprecated-Labelled'
+	#category : 'Spec2-Deprecated-Labelled',
+	#package : 'Spec2-Deprecated-Labelled'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpLabelledContainer class >> abstractExample [
 	| example |
 	example := self new.
@@ -27,12 +28,12 @@ SpLabelledContainer class >> abstractExample [
 	^ example
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpLabelledContainer class >> defaultSpec [
 	^ self labelTop
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpLabelledContainer class >> example [
 	<sampleInstance>
 	| example |
@@ -43,7 +44,7 @@ SpLabelledContainer class >> example [
 	^ example
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpLabelledContainer class >> labelBottom [
 	<spec>
 	^ SpBoxLayout newTopToBottom
@@ -55,7 +56,7 @@ SpLabelledContainer class >> labelBottom [
 		yourself
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpLabelledContainer class >> labelLeft [
 	<spec>
 	^ SpBoxLayout newLeftToRight
@@ -67,7 +68,7 @@ SpLabelledContainer class >> labelLeft [
 		yourself
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpLabelledContainer class >> labelRight [
 	<spec>
 	^ SpBoxLayout newLeftToRight
@@ -79,7 +80,7 @@ SpLabelledContainer class >> labelRight [
 		yourself
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpLabelledContainer class >> labelTop [
 	<spec>
 	^ SpBoxLayout newTopToBottom
@@ -91,44 +92,44 @@ SpLabelledContainer class >> labelTop [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpLabelledContainer class >> setUpExample: example [
 	example content: SpButtonPresenter.
 	example subwidget label: 'I am a button'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpLabelledContainer >> content: aWidgetClass [
 	subwidget := self instantiate: aWidgetClass.
 	self focusOrder add: subwidget
 ]
 
-{ #category : #'error handling' }
+{ #category : 'error handling' }
 SpLabelledContainer >> doesNotUnderstand: aMessage [
 	^ aMessage sendTo: subwidget
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpLabelledContainer >> initializePresenters [
 	label := self instantiate: SpLabelPresenter.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLabelledContainer >> label [
 	^ label
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLabelledContainer >> label: aString [
 	label label: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLabelledContainer >> subwidget [
 	^ subwidget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLabelledContainer >> subwidget: anObject [
 	subwidget := anObject
 ]

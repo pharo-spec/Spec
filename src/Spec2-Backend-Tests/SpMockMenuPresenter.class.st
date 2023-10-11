@@ -1,13 +1,15 @@
 Class {
-	#name : #SpMockMenuPresenter,
-	#superclass : #SpMenuPresenter,
+	#name : 'SpMockMenuPresenter',
+	#superclass : 'SpMenuPresenter',
 	#instVars : [
 		'shown'
 	],
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 SpMockMenuPresenter >> build [
 
 	^ SpMockMenu new
@@ -16,19 +18,19 @@ SpMockMenuPresenter >> build [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMockMenuPresenter >> initialize [ 
 
 	super initialize.
 	shown := false.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMockMenuPresenter >> shown [
 	^ shown
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMockMenuPresenter >> shown: anObject [
 	^ shown := anObject
 ]

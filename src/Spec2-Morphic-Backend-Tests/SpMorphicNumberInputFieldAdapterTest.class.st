@@ -2,28 +2,29 @@
 I am a test class for the MorphicNumberInputFieldAdapter.
 "
 Class {
-	#name : #SpMorphicNumberInputFieldAdapterTest,
-	#superclass : #TestCase,
+	#name : 'SpMorphicNumberInputFieldAdapterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'presenter',
 		'adapter'
 	],
-	#category : #'Spec2-Morphic-Backend-Tests'
+	#category : 'Spec2-Morphic-Backend-Tests',
+	#package : 'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SpMorphicNumberInputFieldAdapterTest >> actualClass [
 	^ SpMorphicNumberInputFieldAdapter
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpMorphicNumberInputFieldAdapterTest >> setUp [
 	super setUp.
 	presenter := SpNumberInputFieldPresenter new.
 	adapter := self actualClass adapt: presenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicNumberInputFieldAdapterTest >> testDecreasedValueFrom [
 	presenter
 		beInteger;
@@ -43,7 +44,7 @@ SpMorphicNumberInputFieldAdapterTest >> testDecreasedValueFrom [
 	self assert: (adapter decreasedValueFrom: '81') equals: '80.0'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicNumberInputFieldAdapterTest >> testInBounds [
 	presenter maximum: nil.
 	presenter minimum: nil.
@@ -57,7 +58,7 @@ SpMorphicNumberInputFieldAdapterTest >> testInBounds [
 	self assert: (adapter inBounds: 80) equals: 90
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicNumberInputFieldAdapterTest >> testIncreasedValueFrom [
 	presenter
 		beInteger;
@@ -77,7 +78,7 @@ SpMorphicNumberInputFieldAdapterTest >> testIncreasedValueFrom [
 	self assert: (adapter increasedValueFrom: '99') equals: '100.0'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicNumberInputFieldAdapterTest >> testInferiorToMaximum [
 	presenter maximum: nil.
 	self assert: (adapter inferiorToMaximum: 100) equals: 100.
@@ -87,7 +88,7 @@ SpMorphicNumberInputFieldAdapterTest >> testInferiorToMaximum [
 	self assert: (adapter inferiorToMaximum: 100) equals: 90
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicNumberInputFieldAdapterTest >> testShouldAccept [
 	presenter
 		beInteger;
@@ -100,7 +101,7 @@ SpMorphicNumberInputFieldAdapterTest >> testShouldAccept [
 	self deny: (adapter shouldAccept: '10string')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicNumberInputFieldAdapterTest >> testShouldAcceptFloat [
 	presenter
 		beFloat;
@@ -118,7 +119,7 @@ SpMorphicNumberInputFieldAdapterTest >> testShouldAcceptFloat [
 	self deny: (adapter shouldAccept: '100.1111')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicNumberInputFieldAdapterTest >> testShouldAcceptFloatWithMaxDigits [
 	presenter
 		beFloat;
@@ -131,7 +132,7 @@ SpMorphicNumberInputFieldAdapterTest >> testShouldAcceptFloatWithMaxDigits [
 	self deny: (adapter shouldAccept: '1.111111')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicNumberInputFieldAdapterTest >> testShouldAcceptFloatWithoutMinMax [
 	presenter
 		beFloat;
@@ -148,7 +149,7 @@ SpMorphicNumberInputFieldAdapterTest >> testShouldAcceptFloatWithoutMinMax [
 	self deny: (adapter shouldAccept: '10string')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicNumberInputFieldAdapterTest >> testShouldAcceptInteger [
 	presenter
 		beInteger;
@@ -164,7 +165,7 @@ SpMorphicNumberInputFieldAdapterTest >> testShouldAcceptInteger [
 	self deny: (adapter shouldAccept: '10string')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicNumberInputFieldAdapterTest >> testShouldAcceptIntegerWithoutMinMax [
 	presenter
 		beInteger;
@@ -180,7 +181,7 @@ SpMorphicNumberInputFieldAdapterTest >> testShouldAcceptIntegerWithoutMinMax [
 	self deny: (adapter shouldAccept: '10string')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicNumberInputFieldAdapterTest >> testShouldAcceptNegativeFloat [
 	presenter
 		beFloat;
@@ -192,7 +193,7 @@ SpMorphicNumberInputFieldAdapterTest >> testShouldAcceptNegativeFloat [
 	self deny: (adapter shouldAccept: '-200.1')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicNumberInputFieldAdapterTest >> testShouldAcceptNegativeInteger [
 	presenter
 		beInteger;
@@ -203,7 +204,7 @@ SpMorphicNumberInputFieldAdapterTest >> testShouldAcceptNegativeInteger [
 	self deny: (adapter shouldAccept: '-200')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicNumberInputFieldAdapterTest >> testSuperiorToMinimum [
 	presenter minimum: nil.
 	self assert: (adapter superiorToMinimum: 100) equals: 100.

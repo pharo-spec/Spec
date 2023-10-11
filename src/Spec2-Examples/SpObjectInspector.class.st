@@ -6,24 +6,26 @@ self example
 ```
 "
 Class {
-	#name : #SpObjectInspector,
-	#superclass : #SpPresenter,
+	#name : 'SpObjectInspector',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'variablesList',
 		'variableValueCode',
 		'evaluatorCode',
 		'inspectedObject'
 	],
-	#category : #'Spec2-Examples-Standalone'
+	#category : 'Spec2-Examples-Standalone',
+	#package : 'Spec2-Examples',
+	#tag : 'Standalone'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpObjectInspector class >> example [
 
 	self inspect: self new
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpObjectInspector class >> inspect: anObject [
 
 	^ self new 
@@ -31,7 +33,7 @@ SpObjectInspector class >> inspect: anObject [
 		open
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpObjectInspector >> initializePresenters [
 
 	self layout: (SpPanedLayout newTopToBottom
@@ -46,14 +48,14 @@ SpObjectInspector >> initializePresenters [
 	variablesList display: [ :aSlot | aSlot name ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpObjectInspector >> inspect: anObject [
 
 	inspectedObject := anObject.
 	self updatePresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpObjectInspector >> updatePresenter [
 
 	variablesList items: inspectedObject class allSlots

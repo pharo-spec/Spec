@@ -1,14 +1,15 @@
 Class {
-	#name : #SpPaginatorExample,
-	#superclass : #SpPresenter,
+	#name : 'SpPaginatorExample',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'millerList',
 		'paginator'
 	],
-	#category : #'Spec2-Morphic-Examples'
+	#category : 'Spec2-Morphic-Examples',
+	#package : 'Spec2-Morphic-Examples'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpPaginatorExample >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -22,7 +23,7 @@ SpPaginatorExample >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPaginatorExample >> initializePresenters [ 
 	<script: 'self new open'>
 
@@ -34,7 +35,7 @@ SpPaginatorExample >> initializePresenters [
 	paginator visiblePages: 2
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPaginatorExample >> updatePresenter [
 
 	1 to: 10 do: [ :index | | presenter |

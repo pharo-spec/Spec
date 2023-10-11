@@ -1,1 +1,1 @@
-Package { #name : #'Spec2-ObservableSlot' }
+Package { #name : 'Spec2-ObservableSlot' }

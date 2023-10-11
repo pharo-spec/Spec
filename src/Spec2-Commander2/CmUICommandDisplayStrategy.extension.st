@@ -1,6 +1,6 @@
-Extension { #name : #CmUICommandDisplayStrategy }
+Extension { #name : 'CmUICommandDisplayStrategy' }
 
-{ #category : #'*Spec2-Commander2' }
+{ #category : '*Spec2-Commander2' }
 CmUICommandDisplayStrategy >> display: aCmSpecCommand in: aMenuOrGroupPresenter do: aBlock [
 	aMenuOrGroupPresenter
 		addItem: [ :item |

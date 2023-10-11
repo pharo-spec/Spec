@@ -2,12 +2,13 @@
 A SpSetButtonRightStrategyTest is a test class for testing the behavior of SpSetButtonRightStrategy
 "
 Class {
-	#name : #CmUIRightPositionStrategyExtensionsTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Commander2-Tests'
+	#name : 'CmUIRightPositionStrategyExtensionsTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Commander2-Tests',
+	#package : 'Spec2-Commander2-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 CmUIRightPositionStrategyExtensionsTest >> testAddButtonToActionBar [
 	| actionBar button |
 	actionBar := SpActionBarPresenter new.
@@ -24,7 +25,7 @@ CmUIRightPositionStrategyExtensionsTest >> testAddButtonToActionBar [
 	self assert: (actionBar items at: #end) anyOne equals: button
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CmUIRightPositionStrategyExtensionsTest >> testAddButtonToToolbar [
 	| toolbar button |
 	toolbar := SpToolbarPresenter new.

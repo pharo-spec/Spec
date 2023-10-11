@@ -1,6 +1,6 @@
-Extension { #name : #SpPresenterSelectorPresenter }
+Extension { #name : 'SpPresenterSelectorPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpPresenterSelectorPresenter class >> example [
 
 	SpPresenterSelectorExample new open

@@ -2,12 +2,13 @@
 A SpRecursiveContextSetterTest is a test class for testing the behavior of SpRecursiveContextSetter
 "
 Class {
-	#name : #SpRecursiveContextSetterTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Commander2-Tests'
+	#name : 'SpRecursiveContextSetterTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Commander2-Tests',
+	#package : 'Spec2-Commander2-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpRecursiveContextSetterTest >> testVisitCommand [
 	| commandsGroup |
 	commandsGroup := (CmCommandGroup named: 'root') asSpecGroup beRoot

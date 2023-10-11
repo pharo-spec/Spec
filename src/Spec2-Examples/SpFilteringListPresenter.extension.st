@@ -1,6 +1,6 @@
-Extension { #name : #SpFilteringListPresenter }
+Extension { #name : 'SpFilteringListPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpFilteringListPresenter class >> example [
 
 	<sampleInstance>
@@ -14,7 +14,7 @@ SpFilteringListPresenter class >> example [
 	^ example
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpFilteringListPresenter class >> exampleWithFilterOnTop [
 	<sampleInstance>
 	| example |
@@ -28,7 +28,7 @@ SpFilteringListPresenter class >> exampleWithFilterOnTop [
 	^ example
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpFilteringListPresenter class >> exampleWithInitializedFilter [
 
 	<sampleInstance>

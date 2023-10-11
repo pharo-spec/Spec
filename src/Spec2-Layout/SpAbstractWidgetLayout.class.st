@@ -14,22 +14,24 @@ Internal Representation and Key Implementation Points.
 
 "
 Class {
-	#name : #SpAbstractWidgetLayout,
-	#superclass : #Object,
+	#name : 'SpAbstractWidgetLayout',
+	#superclass : 'Object',
 	#instVars : [
 		'adapterName'
 	],
-	#category : #'Spec2-Layout-Base'
+	#category : 'Spec2-Layout-Base',
+	#package : 'Spec2-Layout',
+	#tag : 'Base'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpAbstractWidgetLayout class >> for: aSymbol [
 	^ self new
 		adapterName: aSymbol;
 		yourself
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpAbstractWidgetLayout >> adapt: aPresenter bindings: adapterBindings [
 	| adapter oldAdapter |
 	adapter := self adapterFor: aPresenter bindings: adapterBindings.
@@ -39,7 +41,7 @@ SpAbstractWidgetLayout >> adapt: aPresenter bindings: adapterBindings [
 	^ adapter
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpAbstractWidgetLayout >> adapterFor: aPresenter bindings: adapterBindings [
 	^ self class environment
 		at: (adapterBindings translateSymbol: self adapterName)
@@ -47,28 +49,28 @@ SpAbstractWidgetLayout >> adapterFor: aPresenter bindings: adapterBindings [
 		ifAbsent: [ self error: 'No binding for ' , self adapterName , ' found.' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractWidgetLayout >> adapterName [
 	^ adapterName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractWidgetLayout >> adapterName: anObject [
 	adapterName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractWidgetLayout >> allPresenters [
 	
 	^ #()
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractWidgetLayout >> asSpLayout [
 	^ self
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpAbstractWidgetLayout >> buildAdapterFor: aPresenter bindings: adapterBindings [
 	"In case we are building an adapter, we need to get the actual adapter class for a specific binding and make it adapt the presenter."
 

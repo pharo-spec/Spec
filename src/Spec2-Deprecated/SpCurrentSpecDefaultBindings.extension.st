@@ -1,6 +1,6 @@
-Extension { #name : #SpCurrentSpecDefaultBindings }
+Extension { #name : 'SpCurrentSpecDefaultBindings' }
 
-{ #category : #'*Spec2-Deprecated' }
-SpCurrentSpecDefaultBindings class >> isDeprecated [
+{ #category : '*Spec2-Deprecated' }
+SpCurrentSpecDefaultBindings classSide >> isDeprecated [
 	^ true
 ]

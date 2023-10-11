@@ -1,39 +1,40 @@
 Class {
-	#name : #SpRenderObject,
-	#superclass : #Object,
+	#name : 'SpRenderObject',
+	#superclass : 'Object',
 	#instVars : [
 		'item',
 		'styles'
 	],
-	#category : #'Spec2-Pillar'
+	#category : 'Spec2-Pillar',
+	#package : 'Spec2-Pillar'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRenderObject >> extraOffset [
 	^ item plaintextOffset 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRenderObject >> item [
 	^ item
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRenderObject >> item: aDocumentItem [
 	item := aDocumentItem 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRenderObject >> node: aPRRenderTreeVisitor [ 
 	self shouldBeImplemented.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRenderObject >> styles [
 	^ styles
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRenderObject >> styles: aCollection [ 
 	styles := aCollection
 ]

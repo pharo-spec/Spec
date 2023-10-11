@@ -1,1 +1,1 @@
-Package { #name : #'Spec2-Dialogs' }
+Package { #name : 'Spec2-Dialogs' }

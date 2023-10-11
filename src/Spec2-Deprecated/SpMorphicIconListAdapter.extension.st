@@ -1,6 +1,6 @@
-Extension { #name : #SpMorphicIconListAdapter }
+Extension { #name : 'SpMorphicIconListAdapter' }
 
-{ #category : #'*Spec2-Deprecated' }
-SpMorphicIconListAdapter class >> isDeprecated [
+{ #category : '*Spec2-Deprecated' }
+SpMorphicIconListAdapter classSide >> isDeprecated [
 	^ true
 ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #SpLabelledListTest,
-	#superclass : #SpAbstractListPresenterTest,
-	#category : #'Spec2-Deprecated-Labelled-Core-Widgets'
+	#name : 'SpLabelledListTest',
+	#superclass : 'SpAbstractListPresenterTest',
+	#category : 'Spec2-Deprecated-Labelled-Core-Widgets',
+	#package : 'Spec2-Deprecated-Labelled',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpLabelledListTest >> classToTest [
 	^ SpLabelledList
 ]

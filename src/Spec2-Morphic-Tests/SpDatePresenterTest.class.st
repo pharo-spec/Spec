@@ -1,15 +1,16 @@
 Class {
-	#name : #SpDatePresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Morphic-Tests'
+	#name : 'SpDatePresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Morphic-Tests',
+	#package : 'Spec2-Morphic-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDatePresenterTest >> classToTest [
 	^ SpDatePresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDatePresenterTest >> testOnDateChosen [
 	| mookChoseDate |
 	mookChoseDate := ChoseDate new.

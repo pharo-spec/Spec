@@ -1,13 +1,14 @@
 Class {
-	#name : #ScSpec03ChooseRemotesPresenter,
-	#superclass : #ScPagePresenter,
+	#name : 'ScSpec03ChooseRemotesPresenter',
+	#superclass : 'ScPagePresenter',
 	#instVars : [
 		'helpText'
 	],
-	#category : #'Spec2-Contributor'
+	#category : 'Spec2-Contributor',
+	#package : 'Spec2-Contributor'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ScSpec03ChooseRemotesPresenter class >> helpText [
 
 	^ 'Choosing main (base) repository and your working repository. 
@@ -17,7 +18,7 @@ You will need two repositories:
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ScSpec03ChooseRemotesPresenter >> initializePresenters [
 
 	self layout: (SpBoxLayout newTopToBottom

@@ -1,6 +1,6 @@
-Extension { #name : #SequenceableCollection }
+Extension { #name : 'SequenceableCollection' }
 
-{ #category : #'*Spec2-Code' }
+{ #category : '*Spec2-Code' }
 SequenceableCollection >> groupsOf: n [
 	| groups pos |
 

@@ -4,30 +4,32 @@ A demo to show how to use associated toggle buttons with Spec.
 self example
 "
 Class {
-	#name : #SpToggleButtonExample,
-	#superclass : #SpPresenter,
+	#name : 'SpToggleButtonExample',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'button1',
 		'button2',
 		'button3',
 		'label'
 	],
-	#category : #'Spec2-Examples-Demo-Buttons'
+	#category : 'Spec2-Examples-Demo-Buttons',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Buttons'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpToggleButtonExample class >> example [
 
 	^ self new open
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpToggleButtonExample class >> title [
 
 	^ 'Toggle Button Example'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpToggleButtonExample >> connectPresenters [
 
 	button1 whenActivatedDo: [ self updateLabel ].
@@ -36,7 +38,7 @@ SpToggleButtonExample >> connectPresenters [
 	button3 whenChangedDo: [ self updateLabel ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpToggleButtonExample >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -49,7 +51,7 @@ SpToggleButtonExample >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpToggleButtonExample >> initializePresenters [
 
 	button1 := self newToggleButton.
@@ -65,7 +67,7 @@ SpToggleButtonExample >> initializePresenters [
 	self updateLabel
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpToggleButtonExample >> updateLabel [
 	label
 		label:

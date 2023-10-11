@@ -4,34 +4,36 @@ I am a dummy proto to see how easy it is to replace a subwidget with another one
 slef example
 "
 Class {
-	#name : #SpDynamicWidgetChange,
-	#superclass : #SpPresenter,
+	#name : 'SpDynamicWidgetChange',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'boolean',
 		'button',
 		'bottom'
 	],
-	#category : #'Spec2-Examples-Standalone'
+	#category : 'Spec2-Examples-Standalone',
+	#package : 'Spec2-Examples',
+	#tag : 'Standalone'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpDynamicWidgetChange class >> example [
 
 	<sampleInstance>
 	^ self new open
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicWidgetChange >> bottom [
 	^ bottom
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicWidgetChange >> button [
 	^ button
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDynamicWidgetChange >> change [
 
 	boolean := boolean not.
@@ -46,7 +48,7 @@ SpDynamicWidgetChange >> change [
 	self build
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDynamicWidgetChange >> changeToButton [
 
 	self instantiatePresenters: 
@@ -56,7 +58,7 @@ SpDynamicWidgetChange >> changeToButton [
 	bottom label: 'I am useless'.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDynamicWidgetChange >> changeToList [
 
 	self instantiatePresenters: 
@@ -67,7 +69,7 @@ SpDynamicWidgetChange >> changeToList [
 	bottom items: (1 to: 100) asOrderedCollection.
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDynamicWidgetChange >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -76,7 +78,7 @@ SpDynamicWidgetChange >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDynamicWidgetChange >> initialize [
 
 	super initialize.
@@ -84,7 +86,7 @@ SpDynamicWidgetChange >> initialize [
 	boolean := true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDynamicWidgetChange >> initializePresenters [
 
 	button := self newButton.

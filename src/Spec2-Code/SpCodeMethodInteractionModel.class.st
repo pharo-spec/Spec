@@ -1,55 +1,57 @@
 Class {
-	#name : #SpCodeMethodInteractionModel,
-	#superclass : #SpCodeInteractionModel,
+	#name : 'SpCodeMethodInteractionModel',
+	#superclass : 'SpCodeInteractionModel',
 	#instVars : [
 		'method'
 	],
-	#category : #'Spec2-Code-Base'
+	#category : 'Spec2-Code-Base',
+	#package : 'Spec2-Code',
+	#tag : 'Base'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpCodeMethodInteractionModel class >> on: aMethod [
 
 	^ self new method: aMethod
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeMethodInteractionModel >> behavior [
 
 	^ self method ifNotNil: [ self method methodClass ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeMethodInteractionModel >> bindingOf: aString [
 
 	^ self behavior bindingOf: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeMethodInteractionModel >> doItReceiver [
 
 	^ self behavior instanceSide
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCodeMethodInteractionModel >> hasBindingOf: aString [
 
 	^ self behavior hasBindingOf: aString
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCodeMethodInteractionModel >> isScripting [
 
 	^ method ifNotNil: [ method isDoIt ] ifNil: [ false ] 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeMethodInteractionModel >> method [
 
 	^ method
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeMethodInteractionModel >> method: aMethod [
 
 	method := aMethod

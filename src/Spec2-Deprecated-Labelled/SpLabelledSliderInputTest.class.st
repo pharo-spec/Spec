@@ -1,10 +1,12 @@
 Class {
-	#name : #SpLabelledSliderInputTest,
-	#superclass : #SpSliderInputTest,
-	#category : #'Spec2-Deprecated-Labelled-Core-Widgets'
+	#name : 'SpLabelledSliderInputTest',
+	#superclass : 'SpSliderInputTest',
+	#category : 'Spec2-Deprecated-Labelled-Core-Widgets',
+	#package : 'Spec2-Deprecated-Labelled',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpLabelledSliderInputTest >> classToTest [
 	^ SpLabelledSliderInput
 ]

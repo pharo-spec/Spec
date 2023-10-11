@@ -15,21 +15,23 @@ SpCodeInteractionMode newForMethod: aMethod.
  
 "
 Class {
-	#name : #SpCodeInteractionModel,
-	#superclass : #Object,
+	#name : 'SpCodeInteractionModel',
+	#superclass : 'Object',
 	#instVars : [
 		'owner'
 	],
-	#category : #'Spec2-Code-Base'
+	#category : 'Spec2-Code-Base',
+	#package : 'Spec2-Code',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> behavior [
 
 	^ nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> bindings [
 
 	"no additional bindings provided by the Requestor"
@@ -37,12 +39,12 @@ SpCodeInteractionModel >> bindings [
 	^ #() asDictionary
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCodeInteractionModel >> canAddBindingOf: name [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> compiler [
 	"Provide a compiler set up on the current context/class/receiver"
 
@@ -52,37 +54,37 @@ SpCodeInteractionModel >> compiler [
 		  requestor: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> doItContext [
 
 	^ nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> doItReceiver [
 
 	^ nil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCodeInteractionModel >> hasBindingThatBeginsWith: aString [
 
 	^ self variableBindingNames 
 		anySatisfy: [ :each | each beginsWith: aString ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCodeInteractionModel >> isScripting [
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCodeInteractionModel >> needRequestorScope [
 	^false
 ]
 
-{ #category : #'interactive error protocol' }
+{ #category : 'interactive error protocol' }
 SpCodeInteractionModel >> notify: message at: location in: code [
 	| currentSelection stripMessage |
 
@@ -107,49 +109,49 @@ SpCodeInteractionModel >> notify: message at: location in: code [
 				currentSelection first + location - 2 ])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> owner [
 
 	^ owner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> owner: aPresenter [
 
 	owner := aPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> selectedBehavior [
 
 	^ self behavior
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> selectedClass [
 
 	^ self behavior
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> selectedClassOrMetaClass [
 
 	^ self behavior
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> text [
 
 	^ self owner text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> variableBindingNames [
 	
 	^ self variableBindings keys
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> variableBindings [
 
 	^ Dictionary new

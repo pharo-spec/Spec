@@ -1,6 +1,6 @@
-Extension { #name : #SpDropListPresenter }
+Extension { #name : 'SpDropListPresenter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpDropListPresenter >> displayBlock [
 	
 	self
@@ -11,7 +11,7 @@ SpDropListPresenter >> displayBlock [
 	^ displayBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpDropListPresenter >> displayBlock: aBlock [
 	
 	self
@@ -23,7 +23,7 @@ SpDropListPresenter >> displayBlock: aBlock [
 
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpDropListPresenter >> iconHolder [
 	
 	self 
@@ -33,7 +33,7 @@ SpDropListPresenter >> iconHolder [
 	^ self iconBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpDropListPresenter >> iconHolder: aBlock [	
 	self 
 		deprecated: 'Use iconBlock: instead' 
@@ -42,7 +42,7 @@ SpDropListPresenter >> iconHolder: aBlock [
 	self iconBlock: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpDropListPresenter >> selectedIndex: anIndex [
 
 	"Set the index of the item you want to be selected"
@@ -54,7 +54,7 @@ SpDropListPresenter >> selectedIndex: anIndex [
 	self selectIndex: anIndex
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpDropListPresenter >> selectedItem: anItem [
 	"Set the item you want to be selected"
 
@@ -66,7 +66,7 @@ SpDropListPresenter >> selectedItem: anItem [
 	self selectItem: anItem
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpDropListPresenter >> setSelectedIndex: anIndex [
 	self
 		deprecated: 'Use #selectedIndex: instead'
@@ -77,7 +77,7 @@ SpDropListPresenter >> setSelectedIndex: anIndex [
 
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpDropListPresenter >> setSelectedItem: anItem [
 	self
 		deprecated: 'Use #selectedItem: instead'
@@ -88,25 +88,25 @@ SpDropListPresenter >> setSelectedItem: anItem [
 
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpDropListPresenter >> whenSelectedItemChanged: aBlock [
 	self deprecated: 'Use #whenSelectedItemChangedDo: instead.' transformWith: '`@receiver whenSelectedItemChanged: `@statements' -> '`@receiver whenSelectedItemChangedDo: `@statements'.
 	self whenSelectedItemChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpDropListPresenter >> whenSelectionChanged: aBlock [
 	self deprecated: 'Use #whenSelectionChangedDo: instead.' transformWith: '`@receiver whenSelectionChanged: `@statements' -> '`@receiver whenSelectionChangedDo: `@statements'.
 	self whenSelectionChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpDropListPresenter >> whenSelectionIndexChanged: aBlock [
 	self deprecated: 'Use #whenSelectionIndexChangedDo: instead.' transformWith: '`@receiver whenSelectionIndexChanged: `@statements' -> '`@receiver whenSelectionIndexChangedDo: `@statements'.
 	self whenSelectionIndexChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpDropListPresenter >> whenSelectionIndexChangedDo: aBlock [
 	"Set a block to perform when the selected index is changed"
 

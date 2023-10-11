@@ -1,10 +1,12 @@
 Class {
-	#name : #SpBoxLayoutReplacePresenterExample,
-	#superclass : #SpPresenter,
-	#category : #'Spec2-Examples-Demo-Layouts'
+	#name : 'SpBoxLayoutReplacePresenterExample',
+	#superclass : 'SpPresenter',
+	#category : 'Spec2-Examples-Demo-Layouts',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Layouts'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpBoxLayoutReplacePresenterExample >> initializePresenters [
 	| p1 p2 p3 button |
 	<script: 'self new openWithSpec'>

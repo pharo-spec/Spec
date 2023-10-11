@@ -1,6 +1,6 @@
-Extension { #name : #SpTreePresenter }
+Extension { #name : 'SpTreePresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTreePresenter class >> example [
 	<sampleInstance>
 	
@@ -12,7 +12,7 @@ SpTreePresenter class >> example [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTreePresenter class >> exampleExpandPath [
 	
 	^ self new
@@ -24,7 +24,7 @@ SpTreePresenter class >> exampleExpandPath [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTreePresenter class >> exampleExpandRoots [
 	
 	^ self new
@@ -36,7 +36,7 @@ SpTreePresenter class >> exampleExpandRoots [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTreePresenter class >> exampleSelectPathByItems [
 	
 	^ self new
@@ -48,7 +48,7 @@ SpTreePresenter class >> exampleSelectPathByItems [
 		selectPathByItems: self withAllSuperclasses reversed allButFirst scrollToSelection: true
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTreePresenter class >> exampleWithContextMenu [
 	<sampleInstance>
 	| tree |
@@ -65,7 +65,7 @@ SpTreePresenter class >> exampleWithContextMenu [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTreePresenter class >> exampleWithDecoratedString [
 	
 	^ self new

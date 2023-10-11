@@ -1,6 +1,6 @@
-Extension { #name : #SpToggleButtonPresenter }
+Extension { #name : 'SpToggleButtonPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpToggleButtonPresenter class >> example [
 
 	<script>
@@ -14,7 +14,7 @@ SpToggleButtonPresenter class >> example [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpToggleButtonPresenter class >> exampleWithAssociatedButtons [
 
 	^ SpToggleButtonExample new open

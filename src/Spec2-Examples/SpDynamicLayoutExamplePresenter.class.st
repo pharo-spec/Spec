@@ -2,18 +2,20 @@
 I am a dynamic layout example
 "
 Class {
-	#name : #SpDynamicLayoutExamplePresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDynamicLayoutExamplePresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'addPresenterButton',
 		'removePreseterButton',
 		'textPresenter',
 		'canRemovePresenter'
 	],
-	#category : #'Spec2-Examples-Demo-Layouts'
+	#category : 'Spec2-Examples-Demo-Layouts',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Layouts'
 }
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpDynamicLayoutExamplePresenter >> addToLayout [
 
 	canRemovePresenter := true.
@@ -22,7 +24,7 @@ SpDynamicLayoutExamplePresenter >> addToLayout [
 	self layout add: self createButton expand: false
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpDynamicLayoutExamplePresenter >> createButton [
 
 	| randomButtonName newButton |
@@ -35,7 +37,7 @@ SpDynamicLayoutExamplePresenter >> createButton [
 	^ newButton
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDynamicLayoutExamplePresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -45,14 +47,14 @@ SpDynamicLayoutExamplePresenter >> defaultLayout [
 		yourself		
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDynamicLayoutExamplePresenter >> initialize [
 
 	super initialize.
 	canRemovePresenter := false
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDynamicLayoutExamplePresenter >> initializePresenters [
 
 	addPresenterButton := self newButton.
@@ -75,7 +77,7 @@ SpDynamicLayoutExamplePresenter >> initializePresenters [
 		beNotEditable
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpDynamicLayoutExamplePresenter >> removeFromLayout [
 
 	self layout remove: self layout presenters last.

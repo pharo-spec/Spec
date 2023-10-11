@@ -9,18 +9,19 @@ I provide the accessors sliderInput to be more intuitive than subwidget, and the
 I provide shortcuts for the most common methods to avoid the use of the DoesNotUnderstand or the writing of long chain of accessors.
 "
 Class {
-	#name : #SpLabelledSliderInput,
-	#superclass : #SpLabelledContainer,
-	#category : #'Spec2-Deprecated-Labelled'
+	#name : 'SpLabelledSliderInput',
+	#superclass : 'SpLabelledContainer',
+	#category : 'Spec2-Deprecated-Labelled',
+	#package : 'Spec2-Deprecated-Labelled'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpLabelledSliderInput class >> example [
 	<sampleInstance>
 	^ super example
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpLabelledSliderInput class >> setUpExample: example [
 	
 	example
@@ -30,58 +31,58 @@ SpLabelledSliderInput class >> setUpExample: example [
 		extent: 400 @ 50
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : 'api-shortcuts' }
 SpLabelledSliderInput >> absoluteValue [
 	^ self sliderInput absoluteValue
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : 'api-shortcuts' }
 SpLabelledSliderInput >> absoluteValue: aBoolean [
 	^ self sliderInput absoluteValue: aBoolean
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpLabelledSliderInput >> initializePresenters [
 	super initializePresenters.
 	self content: SpSliderInput 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLabelledSliderInput >> input [
 	^ subwidget input
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : 'api-shortcuts' }
 SpLabelledSliderInput >> max: aNumber [
 	^ self sliderInput max: aNumber
 ]
 
-{ #category : #'api-shortcuts' }
+{ #category : 'api-shortcuts' }
 SpLabelledSliderInput >> min: aNumber [
 	^ self sliderInput min: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLabelledSliderInput >> slider [
 	^ subwidget slider
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLabelledSliderInput >> sliderInput [
 	^ subwidget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLabelledSliderInput >> value [
 	^ self sliderInput value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLabelledSliderInput >> value: aNumber [
 	^ self sliderInput value: aNumber
 ]
 
-{ #category : #'api-events' }
+{ #category : 'api-events' }
 SpLabelledSliderInput >> whenValueChangedDo: aBlock [
 	self sliderInput whenValueChangedDo: aBlock
 ]

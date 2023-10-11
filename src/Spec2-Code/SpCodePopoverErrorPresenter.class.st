@@ -2,17 +2,19 @@
 I show a compiler error as a popover (instead inserting an error string, which pollutes the text)
 "
 Class {
-	#name : #SpCodePopoverErrorPresenter,
-	#superclass : #SpPopoverContentPresenter,
+	#name : 'SpCodePopoverErrorPresenter',
+	#superclass : 'SpPopoverContentPresenter',
 	#instVars : [
 		'code',
 		'text',
 		'message'
 	],
-	#category : #'Spec2-Code-Base'
+	#category : 'Spec2-Code-Base',
+	#package : 'Spec2-Code',
+	#tag : 'Base'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpCodePopoverErrorPresenter class >> newCode: aPresenter message: aString [
 
 	^ (self on: aString)
@@ -20,32 +22,32 @@ SpCodePopoverErrorPresenter class >> newCode: aPresenter message: aString [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodePopoverErrorPresenter >> code [
 
 	^ code
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodePopoverErrorPresenter >> code: aPresenter [
 
 	code := aPresenter
 ]
 
-{ #category : #'api - focus' }
+{ #category : 'api - focus' }
 SpCodePopoverErrorPresenter >> defaultKeyboardFocus [
 
 	^ text
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpCodePopoverErrorPresenter >> dismiss [
 
 	super dismiss.
 	self code takeKeyboardFocus
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCodePopoverErrorPresenter >> initializePresenters [
 
 	self initializeText.
@@ -63,7 +65,7 @@ SpCodePopoverErrorPresenter >> initializePresenters [
 			toAction: [ self dismiss ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCodePopoverErrorPresenter >> initializeText [
 
 	text := self newText
@@ -77,19 +79,19 @@ SpCodePopoverErrorPresenter >> initializeText [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodePopoverErrorPresenter >> message [
 
 	^ message
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodePopoverErrorPresenter >> message: aString [
 
 	message := aString
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 SpCodePopoverErrorPresenter >> setModelBeforeInitialization: aString [
 
 	message := aString

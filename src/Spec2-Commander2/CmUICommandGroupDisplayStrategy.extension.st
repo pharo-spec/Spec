@@ -1,6 +1,6 @@
-Extension { #name : #CmUICommandGroupDisplayStrategy }
+Extension { #name : 'CmUICommandGroupDisplayStrategy' }
 
-{ #category : #'*Spec2-Commander2' }
+{ #category : '*Spec2-Commander2' }
 CmUICommandGroupDisplayStrategy >> display: aCmSpecCommandGroup in: aMenuPresenter do: aBlock [
 	self subclassResponsibility
 ]

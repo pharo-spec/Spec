@@ -4,8 +4,8 @@ A DropListExample is a simple example of how to use drop lists.
 self example
 "
 Class {
-	#name : #SpDropListExample,
-	#superclass : #SpPresenter,
+	#name : 'SpDropListExample',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'container',
 		'morph1',
@@ -14,10 +14,11 @@ Class {
 		'uniformDropList',
 		'heterogeneousDropList'
 	],
-	#category : #'Spec2-Morphic-Examples'
+	#category : 'Spec2-Morphic-Examples',
+	#package : 'Spec2-Morphic-Examples'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDropListExample class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add:
@@ -30,35 +31,35 @@ SpDropListExample class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpDropListExample class >> example [
 
 	<sampleInstance>
 	^ self new open
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDropListExample class >> title [
 
 	^ 'Drop list'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDropListExample >> container [
 	^ container
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDropListExample >> containerMorph [
 	^ container morph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDropListExample >> heterogeneousDropList [
 	^ heterogeneousDropList
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDropListExample >> initializePresenters [
 
 	uniformDropList := self newDropList.
@@ -96,7 +97,7 @@ SpDropListExample >> initializePresenters [
 	self setFocus
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDropListExample >> instantiateMorphs [
 
 	morph1 := Morph new
@@ -113,7 +114,7 @@ SpDropListExample >> instantiateMorphs [
 					height: 50
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDropListExample >> setFocus [
 
 	self focusOrder
@@ -121,7 +122,7 @@ SpDropListExample >> setFocus [
 		add: heterogeneousDropList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDropListExample >> uniformDropList [
 
 	^ uniformDropList

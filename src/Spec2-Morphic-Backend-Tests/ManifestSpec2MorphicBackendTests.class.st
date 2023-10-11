@@ -6,7 +6,9 @@ Spec is a framework in Pharo for describing user interfaces. It allows for the c
 I contain the Morphic specific tests of Spec.
 "
 Class {
-	#name : #ManifestSpec2MorphicBackendTests,
-	#superclass : #PackageManifest,
-	#category : #'Spec2-Morphic-Backend-Tests-Manifest'
+	#name : 'ManifestSpec2MorphicBackendTests',
+	#superclass : 'PackageManifest',
+	#category : 'Spec2-Morphic-Backend-Tests-Manifest',
+	#package : 'Spec2-Morphic-Backend-Tests',
+	#tag : 'Manifest'
 }

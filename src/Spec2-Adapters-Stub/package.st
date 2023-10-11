@@ -1,1 +1,1 @@
-Package { #name : #'Spec2-Adapters-Stub' }
+Package { #name : 'Spec2-Adapters-Stub' }

@@ -1,30 +1,31 @@
 Class {
-	#name : #SpMorphicPatchLineDecorator,
-	#superclass : #RubParagraphDecorator,
+	#name : 'SpMorphicPatchLineDecorator',
+	#superclass : 'RubParagraphDecorator',
 	#instVars : [
 		'adapter'
 	],
-	#category : #'Spec2-Code-Diff-Morphic'
+	#category : 'Spec2-Code-Diff-Morphic',
+	#package : 'Spec2-Code-Diff-Morphic'
 }
 
-{ #category : #querying }
+{ #category : 'querying' }
 SpMorphicPatchLineDecorator class >> key [
 	^ #patchLineDecorator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPatchLineDecorator >> adapter [
 
 	^ adapter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPatchLineDecorator >> adapter: anAdapter [
 
 	adapter := anAdapter
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpMorphicPatchLineDecorator >> drawOn: aCanvas [ 
 	| lines |
 
@@ -38,7 +39,7 @@ SpMorphicPatchLineDecorator >> drawOn: aCanvas [
 			color: (self markAt: each value) backgroundColor ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPatchLineDecorator >> markAt: aSymbol [
 
 	^ self adapter markAt: aSymbol

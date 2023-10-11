@@ -1,10 +1,12 @@
 Class {
-	#name : #SpListPresenterHeaderTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpListPresenterHeaderTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpListPresenterHeaderTest >> testHeaderIsHiddenWhenNoTitleIsDefined [
 
 	| list |

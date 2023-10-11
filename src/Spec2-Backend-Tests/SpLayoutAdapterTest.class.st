@@ -1,38 +1,40 @@
 Class {
-	#name : #SpLayoutAdapterTest,
-	#superclass : #SpAbstractAdapterTest,
+	#name : 'SpLayoutAdapterTest',
+	#superclass : 'SpAbstractAdapterTest',
 	#instVars : [
 		'layout'
 	],
-	#category : #'Spec2-Backend-Tests-Layout'
+	#category : 'Spec2-Backend-Tests-Layout',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpLayoutAdapterTest class >> isAbstract [
 
 	^ self == SpLayoutAdapterTest
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLayoutAdapterTest >> classToTest [
 
 	^ SpEmptyPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpLayoutAdapterTest >> initializeTestedInstance [
 
 	layout := self newLayout.
 	presenter layout: layout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLayoutAdapterTest >> newLayout [
 	
 	self subclassResponsibility
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpLayoutAdapterTest >> testEmptyLayoutHasEmptyAdapter [
 
 	self assert: self adapter isEmpty

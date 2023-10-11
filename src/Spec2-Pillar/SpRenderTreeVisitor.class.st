@@ -1,36 +1,37 @@
 Class {
-	#name : #SpRenderTreeVisitor,
-	#superclass : #Object,
-	#category : #'Spec2-Pillar'
+	#name : 'SpRenderTreeVisitor',
+	#superclass : 'Object',
+	#category : 'Spec2-Pillar',
+	#package : 'Spec2-Pillar'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 SpRenderTreeVisitor >> render: aRenderObject [
 
 	^ aRenderObject acceptRenderObjectVisitor: self
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpRenderTreeVisitor >> visit: aPRRenderObject [ 
 	^ aPRRenderObject acceptRenderObjectVisitor: self 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpRenderTreeVisitor >> visitAll: aCollection [ 
 	^ aCollection collect: [ :each | self visit: each ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpRenderTreeVisitor >> visitCompositeObject: aPRCompositeRenderObject [ 
 	^ self visitAll: aPRCompositeRenderObject children
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpRenderTreeVisitor >> visitRenderObject: anItem [ 
 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpRenderTreeVisitor >> visitText: aText [
 	^  self visitRenderObject: aText
 ]

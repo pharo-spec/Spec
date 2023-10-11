@@ -5,24 +5,26 @@ Description
 Demo page for SpecDemoImagePresenter
 "
 Class {
-	#name : #SpDemoImagePage,
-	#superclass : #SpDemoPage,
-	#category : #'Spec2-Examples-Demo-Other'
+	#name : 'SpDemoImagePage',
+	#superclass : 'SpDemoPage',
+	#category : 'Spec2-Examples-Demo-Other',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Other'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoImagePage class >> pageName [
 
 	^ 'Images'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoImagePage class >> priority [
 
 	^ 1600
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoImagePage >> pageClass [
 
 	^ SpDemoImagePresenter

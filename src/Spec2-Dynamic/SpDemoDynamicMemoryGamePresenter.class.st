@@ -8,17 +8,19 @@ The purpose is to show that with DynamicPresentersListBuilder, you can easily bu
 The slider triggers rebuilds of the dynamic presenter in order to update the number of cards in the game.
 "
 Class {
-	#name : #SpDemoDynamicMemoryGamePresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoDynamicMemoryGamePresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'dynamicPresenter',
 		'builder',
 		'differentCardsCountSlider'
 	],
-	#category : #'Spec2-Dynamic-Demo'
+	#category : 'Spec2-Dynamic-Demo',
+	#package : 'Spec2-Dynamic',
+	#tag : 'Demo'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDemoDynamicMemoryGamePresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add: #dynamicPresenter;
@@ -26,37 +28,37 @@ SpDemoDynamicMemoryGamePresenter class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 SpDemoDynamicMemoryGamePresenter class >> example [
 	^ self new openWithSpec
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoDynamicMemoryGamePresenter >> cardPairsCount [
 	^ self differentCardsCountSlider value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoDynamicMemoryGamePresenter >> differentCardsCountSlider [
 	^ differentCardsCountSlider
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoDynamicMemoryGamePresenter >> dynamicPresenter [
 	^ dynamicPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoDynamicMemoryGamePresenter >> dynamicPresenter: anObject [
 	dynamicPresenter := anObject
 ]
 
-{ #category : #'game logic' }
+{ #category : 'game logic' }
 SpDemoDynamicMemoryGamePresenter >> foundIcon [
 	^ self iconNamed: #glamorousAccept
 ]
 
-{ #category : #'game logic' }
+{ #category : 'game logic' }
 SpDemoDynamicMemoryGamePresenter >> gameLogicWithShowedCards: showedCards objectConcerned: modelObject andAssociatedPresenter: presenter [
 	"The game logic, not as clean as it could be but the goal of this example is not to show how to design a memory game."
 	presenter
@@ -83,12 +85,12 @@ SpDemoDynamicMemoryGamePresenter >> gameLogicWithShowedCards: showedCards object
 							showedCards removeAll ] fork ] ] ]
 ]
 
-{ #category : #'game logic' }
+{ #category : 'game logic' }
 SpDemoDynamicMemoryGamePresenter >> hiddenIcon [
 	^ self iconNamed: #comments
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoDynamicMemoryGamePresenter >> initializePresenters [
 	dynamicPresenter := self newNullPresenter.
 
@@ -102,7 +104,7 @@ SpDemoDynamicMemoryGamePresenter >> initializePresenters [
 		value: 25
 ]
 
-{ #category : #'dynamic presenter' }
+{ #category : 'dynamic presenter' }
 SpDemoDynamicMemoryGamePresenter >> rebuildDynamicPresenter [
 	| allCards showedCards |
 	"Each card is duplicated and the resulting set is shuffled."

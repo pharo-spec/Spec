@@ -2,16 +2,18 @@
 This demo shows an action bar.
 "
 Class {
-	#name : #SpDemoActionBarPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoActionBarPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'actionBar',
 		'text'
 	],
-	#category : #'Spec2-Examples-Demo-Buttons'
+	#category : 'Spec2-Examples-Demo-Buttons',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Buttons'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoActionBarPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -20,7 +22,7 @@ SpDemoActionBarPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoActionBarPresenter >> initializePresenters [
 
 	actionBar := self newActionBar

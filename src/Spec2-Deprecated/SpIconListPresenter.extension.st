@@ -1,7 +1,7 @@
-Extension { #name : #SpIconListPresenter }
+Extension { #name : 'SpIconListPresenter' }
 
-{ #category : #'*Spec2-Deprecated' }
-SpIconListPresenter class >> example [
+{ #category : '*Spec2-Deprecated' }
+SpIconListPresenter classSide >> example [
 	<sampleInstance>
 	| example |
 	example := self new.
@@ -12,7 +12,7 @@ SpIconListPresenter class >> example [
 	^ example
 ]
 
-{ #category : #'*Spec2-Deprecated' }
-SpIconListPresenter class >> isDeprecated [
+{ #category : '*Spec2-Deprecated' }
+SpIconListPresenter classSide >> isDeprecated [
 	^ true
 ]

@@ -4,23 +4,25 @@ I am a simple example showing how to use a menu model to have a menu toolbar.
 self example
 "
 Class {
-	#name : #SpApplicationWithToolbar,
-	#superclass : #SpPresenter,
+	#name : 'SpApplicationWithToolbar',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'menu',
 		'text'
 	],
-	#category : #'Spec2-Examples-Standalone'
+	#category : 'Spec2-Examples-Standalone',
+	#package : 'Spec2-Examples',
+	#tag : 'Standalone'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpApplicationWithToolbar class >> example [
 
 	<sampleInstance>
 	^ self new open
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpApplicationWithToolbar >> addItemTo: aGroup [
 	aGroup
 		addItem: [ :item | 
@@ -34,7 +36,7 @@ SpApplicationWithToolbar >> addItemTo: aGroup [
 	self build
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpApplicationWithToolbar >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -43,7 +45,7 @@ SpApplicationWithToolbar >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpApplicationWithToolbar >> initializePresenters [
 	menu := self newMenuBar
 		addGroup: [ :group | 
@@ -102,12 +104,12 @@ SpApplicationWithToolbar >> initializePresenters [
 	self focusOrder add: text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpApplicationWithToolbar >> menu [
 	^ menu
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpApplicationWithToolbar >> subMenu [
 	^ self newMenu
 		addItem: [ :item | 
@@ -137,12 +139,12 @@ SpApplicationWithToolbar >> subMenu [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpApplicationWithToolbar >> text [
 	^ text
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpApplicationWithToolbar >> title [
 
 	^ 'Text editor'

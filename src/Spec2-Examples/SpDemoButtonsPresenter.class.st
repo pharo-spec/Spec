@@ -2,8 +2,8 @@
 This demo shows differenty styles of button elements.
 "
 Class {
-	#name : #SpDemoButtonsPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoButtonsPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'buttonNormal',
 		'buttonDisabled',
@@ -16,16 +16,18 @@ Class {
 		'buttonWithHelp',
 		'buttonWithDifferentFont'
 	],
-	#category : #'Spec2-Examples-Demo-Buttons'
+	#category : 'Spec2-Examples-Demo-Buttons',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Buttons'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoButtonsPresenter >> connectPresenters [
 
 	buttonWithShortcut action: [ self inform: 'button with shortcut pressed' ]																																														
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoButtonsPresenter >> defaultLayout [
 
 	^ SpGridLayout build: [ :builder | 
@@ -48,7 +50,7 @@ SpDemoButtonsPresenter >> defaultLayout [
 			add: buttonWithDifferentFont ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoButtonsPresenter >> initializePresenters [
 	buttonNormal := self newButton label: 'normal'.
 	buttonDisabled := self newButton
@@ -103,7 +105,7 @@ a multiline help';
 		add: buttonWithDifferentFont
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoButtonsPresenter >> subMenu [
 	^ self newMenu
 		addItem: [ :item | 

@@ -1,31 +1,33 @@
 Class {
-	#name : #SpKMCategoryBuilder,
-	#superclass : #CmVisitor,
+	#name : 'SpKMCategoryBuilder',
+	#superclass : 'CmVisitor',
 	#instVars : [
 		'kmCategory'
 	],
-	#category : #'Spec2-Commander2-Visitors'
+	#category : 'Spec2-Commander2-Visitors',
+	#package : 'Spec2-Commander2',
+	#tag : 'Visitors'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpKMCategoryBuilder class >> menuPresenterClass [
 	^ SpMenuPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpKMCategoryBuilder >> initialize [
 	
 	super initialize.
 	kmCategory := KMCategory new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpKMCategoryBuilder >> kmCategory [
 
 	^ kmCategory
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpKMCategoryBuilder >> visitCommand: aCmCommand [
 
 	aCmCommand hasShortcutKey ifFalse: [ ^ self ].

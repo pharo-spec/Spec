@@ -4,31 +4,33 @@ A CheckBoxExample is a simple example of how to use CheckBoxes.
 self example
 "
 Class {
-	#name : #SpCheckBoxExample,
-	#superclass : #SpPresenter,
+	#name : 'SpCheckBoxExample',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'button1',
 		'button2',
 		'button3',
 		'label'
 	],
-	#category : #'Spec2-Examples-Demo-Checkboxes'
+	#category : 'Spec2-Examples-Demo-Checkboxes',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Checkboxes'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpCheckBoxExample class >> example [
 
 	<sampleInstance>
 	^ self new open
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpCheckBoxExample class >> title [
 
 	^ 'CheckBox Example'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCheckBoxExample >> connectPresenters [
 	button1 whenActivatedDo: [ self updateLabel ].
 	button1 whenDeactivatedDo: [ self updateLabel ].
@@ -38,7 +40,7 @@ SpCheckBoxExample >> connectPresenters [
 	button3 whenChangedDo: [ self updateLabel ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpCheckBoxExample >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -52,7 +54,7 @@ SpCheckBoxExample >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCheckBoxExample >> initializePresenters [ 
 
 	button1 := self newCheckBox.
@@ -68,7 +70,7 @@ SpCheckBoxExample >> initializePresenters [
 	self setFocus.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCheckBoxExample >> setFocus [
 	self focusOrder
 		add: button1;
@@ -76,7 +78,7 @@ SpCheckBoxExample >> setFocus [
 		add: button3
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpCheckBoxExample >> updateLabel [
 
 	label label: (String streamContents: [ :s | 

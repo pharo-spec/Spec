@@ -2,16 +2,18 @@
 This demo shows a tool bar.
 "
 Class {
-	#name : #SpDemoToolbarPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoToolbarPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'toolBar',
 		'text'
 	],
-	#category : #'Spec2-Examples-Demo-Buttons'
+	#category : 'Spec2-Examples-Demo-Buttons',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Buttons'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoToolbarPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom 
@@ -20,7 +22,7 @@ SpDemoToolbarPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoToolbarPresenter >> initializePresenters [
 
 	toolBar := self newToolbar

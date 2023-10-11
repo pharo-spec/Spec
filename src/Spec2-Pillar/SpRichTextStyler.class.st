@@ -1,20 +1,21 @@
 Class {
-	#name : #SpRichTextStyler,
-	#superclass : #SpTextStyler,
-	#category : #'Spec2-Pillar'
+	#name : 'SpRichTextStyler',
+	#superclass : 'SpTextStyler',
+	#category : 'Spec2-Pillar',
+	#package : 'Spec2-Pillar'
 }
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SpRichTextStyler >> parseFormatString: formatString [
 	self subclassResponsibility 
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 SpRichTextStyler >> writeFormatString: aDocument [
 	self subclassResponsibility 
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 SpRichTextStyler >> writePlaintextString: aDocument [
 	self subclassResponsibility 
 ]

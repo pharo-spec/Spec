@@ -1,13 +1,14 @@
 Class {
-	#name : #SpPaginatorMorphTest,
-	#superclass : #TestCase,
+	#name : 'SpPaginatorMorphTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'morph'
 	],
-	#category : #'Spec2-Morphic-Tests'
+	#category : 'Spec2-Morphic-Tests',
+	#package : 'Spec2-Morphic-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpPaginatorMorphTest >> setUp [
 
 	super setUp.
@@ -21,14 +22,14 @@ SpPaginatorMorphTest >> setUp [
 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPaginatorMorphTest >> tearDown [
 
 	morph delete.
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPaginatorMorphTest >> testSelectPage [
 
 	self assert: morph selectedPages equals: #(1 2).
@@ -39,7 +40,7 @@ SpPaginatorMorphTest >> testSelectPage [
 	self assert: morph selectedPages equals: #(9 10)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPaginatorMorphTest >> testWhenNumberOfPagesShownChangedDo [
 	| numberShown |
 
@@ -50,7 +51,7 @@ SpPaginatorMorphTest >> testWhenNumberOfPagesShownChangedDo [
 	self assert: numberShown equals: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPaginatorMorphTest >> testWhenSelectedPageChangedDo [
 	| selectedPage |
 

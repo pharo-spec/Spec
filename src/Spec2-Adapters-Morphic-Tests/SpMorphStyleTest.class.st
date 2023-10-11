@@ -1,10 +1,11 @@
 Class {
-	#name : #SpMorphStyleTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Adapters-Morphic-Tests'
+	#name : 'SpMorphStyleTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Adapters-Morphic-Tests',
+	#package : 'Spec2-Adapters-Morphic-Tests'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphStyleTest >> newLookup: aString [
 	| rootClass |
 
@@ -12,7 +13,7 @@ SpMorphStyleTest >> newLookup: aString [
 	^ SpMorphStyle newStyles: rootClass flattenClasses 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphStyleTest >> testApplyTo [
 	| styleResolver morph |
 	
@@ -34,7 +35,7 @@ SpMorphStyleTest >> testApplyTo [
 	self assert: morph width equals: 42
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphStyleTest >> testDeepLookup [
 	"This should answer the deepest width"
 	| styleResolver |
@@ -52,7 +53,7 @@ SpMorphStyleTest >> testDeepLookup [
 	self assert: styleResolver width equals: 42
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphStyleTest >> testDeepMultipleLookup [
 	"This should answer the deepest width (last appearence)"
 	| styleResolver |
@@ -73,7 +74,7 @@ SpMorphStyleTest >> testDeepMultipleLookup [
 	self assert: styleResolver width equals: 42
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphStyleTest >> testFromStylesheetAdapter [
 
 	| lookup labelAdapter |
@@ -117,7 +118,7 @@ SpMorphStyleTest >> testFromStylesheetAdapter [
 		          adapter: labelAdapter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphStyleTest >> testNestedStyles [
 
 	| lookup labelAdapter styleSheet |
@@ -160,7 +161,7 @@ SpMorphStyleTest >> testNestedStyles [
 	self assert: lookup width equals: 84
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphStyleTest >> testSimpleLookup [
 	"this should answer the width defined in the only level"
 	| styleResolver |
@@ -172,7 +173,7 @@ SpMorphStyleTest >> testSimpleLookup [
 	self assert: styleResolver width equals: 42
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphStyleTest >> testTwoClassWithSameName [
 
 	| morphStyle style1 style2 property label |

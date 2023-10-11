@@ -2,25 +2,27 @@
 I am a demo page for the spec examples demo app to exemplify the use of SpScrollablePresenters
 "
 Class {
-	#name : #SpScrollableLayoutExamplePage,
-	#superclass : #SpDemoPage,
-	#category : #'Spec2-Examples-Demo-Layouts'
+	#name : 'SpScrollableLayoutExamplePage',
+	#superclass : 'SpDemoPage',
+	#category : 'Spec2-Examples-Demo-Layouts',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Layouts'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpScrollableLayoutExamplePage class >> pageName [
 
 	^'Scrollable layout'
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpScrollableLayoutExamplePage class >> priority [
 
 	^ 2100
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpScrollableLayoutExamplePage >> pageClass [
 
 	^SpScrollableLayoutExamplePresenter 

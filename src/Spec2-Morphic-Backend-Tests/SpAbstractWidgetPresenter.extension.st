@@ -1,6 +1,6 @@
-Extension { #name : #SpAbstractWidgetPresenter }
+Extension { #name : 'SpAbstractWidgetPresenter' }
 
-{ #category : #'*Spec2-Morphic-Backend-Tests' }
+{ #category : '*Spec2-Morphic-Backend-Tests' }
 SpAbstractWidgetPresenter class >> sampleInstanceForTest [
 
 	^ self new
