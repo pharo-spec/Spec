@@ -1,19 +1,20 @@
 Class {
-	#name : #SpCommandTest,
-	#superclass : #TestCase,
+	#name : 'SpCommandTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'command'
 	],
-	#category : #'Spec2-Commander2-Tests'
+	#category : 'Spec2-Commander2-Tests',
+	#package : 'Spec2-Commander2-Tests'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SpCommandTest >> banana [
 	"Does not return an icon, it is not needed for the test."
 	^ 42
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SpCommandTest >> iconNamed: aSymbol [
 	aSymbol ~= #banana
 		ifTrue: [ self error: 'Only #banana icon is needed for tests.' ].
@@ -21,13 +22,13 @@ SpCommandTest >> iconNamed: aSymbol [
 	^ self banana
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpCommandTest >> setUp [
 	super setUp.
 	command := SpCommand new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testAsButtonPresenter [
 	| buttonPresenter |
 	command := CmCommand forSpec
@@ -40,7 +41,7 @@ SpCommandTest >> testAsButtonPresenter [
 	self assert: buttonPresenter icon isNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testAsButtonPresenter2 [
 	| buttonPresenter |
 	command := CmCommand forSpec
@@ -56,7 +57,7 @@ SpCommandTest >> testAsButtonPresenter2 [
 		equals: (buttonPresenter iconNamed: #blank)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testAsButtonPresenterExecutesOnClick [
 	| flag buttonPresenter |
 	flag := false.
@@ -71,7 +72,7 @@ SpCommandTest >> testAsButtonPresenterExecutesOnClick [
 	self assert: flag equals: true
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testCanUpdateEnableStatus [
 	| buttonPresenter shouldBeAvailable |
 	shouldBeAvailable := true.
@@ -89,7 +90,7 @@ SpCommandTest >> testCanUpdateEnableStatus [
 	self deny: buttonPresenter isEnabled
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testConfigureAsButton [
 	| button |
 	command := (CmBlockCommand new
@@ -109,7 +110,7 @@ SpCommandTest >> testConfigureAsButton [
 	self assert: button action value equals: command execute
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testConfigureAsButtonWithIcon [
 	| button |
 	command := CmCommand forSpec
@@ -123,7 +124,7 @@ SpCommandTest >> testConfigureAsButtonWithIcon [
 	self assert: button icon equals: command icon
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testConfigureAsToolBarButton [
 	| button |
 	command := (CmBlockCommand new
@@ -143,7 +144,7 @@ SpCommandTest >> testConfigureAsToolBarButton [
 	self assert: button action value equals: command execute
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testConfigureAsToolBarToggleButton [
 	| button |
 	command := (CmBlockCommand new
@@ -163,7 +164,7 @@ SpCommandTest >> testConfigureAsToolBarToggleButton [
 	self assert: button action value equals: command execute
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testHasIcon [
 	self deny: command hasIcon.
 	
@@ -172,7 +173,7 @@ SpCommandTest >> testHasIcon [
 	self assert: command hasIcon
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testHasShortcutKey [
 	self deny: command hasShortcutKey.
 	
@@ -181,7 +182,7 @@ SpCommandTest >> testHasShortcutKey [
 	self assert: command hasShortcutKey.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testIcon [
 	self assert: command icon isNil.
 	
@@ -190,7 +191,7 @@ SpCommandTest >> testIcon [
 	self assert: command icon equals: (command iconNamed: #add).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testIconName [
 	self assert: command iconName isNil.
 	
@@ -201,7 +202,7 @@ SpCommandTest >> testIconName [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testIconNameFrom [
 
 	
@@ -211,7 +212,7 @@ SpCommandTest >> testIconNameFrom [
 	self assert: (command icon) equals: self banana
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testIconProvider [
 	
 	command iconProvider: self.
@@ -222,7 +223,7 @@ SpCommandTest >> testIconProvider [
 	self assert: (command icon) equals: self banana
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCommandTest >> testShortcutKey [
 	self should: [ command shortcutKey ] raise: CmNoShortcutIsDefined.
 	

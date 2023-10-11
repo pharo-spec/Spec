@@ -1,6 +1,6 @@
-Extension { #name : #SpSliderInput }
+Extension { #name : 'SpSliderInput' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpSliderInput >> autoAccept [
 	
 	self 
@@ -14,7 +14,7 @@ SpSliderInput >> autoAccept [
 	^ input autoAccept
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpSliderInput >> autoAccept: aBoolean [
 
 	self 

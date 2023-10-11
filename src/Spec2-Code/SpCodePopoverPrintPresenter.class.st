@@ -2,29 +2,31 @@
 I show the result of a printing as part of a popover 
 "
 Class {
-	#name : #SpCodePopoverPrintPresenter,
-	#superclass : #SpPopoverContentPresenter,
+	#name : 'SpCodePopoverPrintPresenter',
+	#superclass : 'SpPopoverContentPresenter',
 	#instVars : [
 		'object',
 		'code',
 		'text'
 	],
-	#category : #'Spec2-Code-Base'
+	#category : 'Spec2-Code-Base',
+	#package : 'Spec2-Code',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodePopoverPrintPresenter class >> linesToShow [
 
 	^ 15
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodePopoverPrintPresenter class >> maxLengthShownInPopover [
 
 	^ 80
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpCodePopoverPrintPresenter class >> newCode: aCodePresenter object: anObject [ 
 
 	^ (self on: anObject)
@@ -32,7 +34,7 @@ SpCodePopoverPrintPresenter class >> newCode: aCodePresenter object: anObject [
 		yourself 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpCodePopoverPrintPresenter >> basicObjectAsString [
 	
 	^ [ object printString ]
@@ -40,32 +42,32 @@ SpCodePopoverPrintPresenter >> basicObjectAsString [
 		do: [ '<error in printString: try ''Inspect it'' to debug>' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodePopoverPrintPresenter >> code [
 
 	^ code
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodePopoverPrintPresenter >> code: aCodePresenter [
 
 	code := aCodePresenter
 ]
 
-{ #category : #'api - focus' }
+{ #category : 'api - focus' }
 SpCodePopoverPrintPresenter >> defaultKeyboardFocus [
 
 	^ text
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpCodePopoverPrintPresenter >> dismiss [
 
 	super dismiss.
 	self code takeKeyboardFocus
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpCodePopoverPrintPresenter >> dismissAndInspect [
 
 	self dismiss.
@@ -73,21 +75,21 @@ SpCodePopoverPrintPresenter >> dismissAndInspect [
 	"(SpCodeInspectItCommand forContext: context) execute"
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpCodePopoverPrintPresenter >> dismissAndPrint [
 
 	self dismiss.
 	self code insertAndSelectAfterCurrentSelection: self objectAsPrintString
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpCodePopoverPrintPresenter >> dismissAndPrintWithoutColons [
 
 	self dismiss.
 	self code insertAndSelectAfterCurrentSelection: (' ', self basicObjectAsString)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCodePopoverPrintPresenter >> initializePresenters [
 
 	self initializeText.
@@ -108,7 +110,7 @@ SpCodePopoverPrintPresenter >> initializePresenters [
 			toAction: [ self dismiss ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCodePopoverPrintPresenter >> initializeText [
 	| string numLines |
 
@@ -123,7 +125,7 @@ SpCodePopoverPrintPresenter >> initializeText [
 		addStyle: 'codePopover'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCodePopoverPrintPresenter >> newTextMultiLine: aString withScrollBars: withScrollBars [
 	| newText |		
 
@@ -142,7 +144,7 @@ SpCodePopoverPrintPresenter >> newTextMultiLine: aString withScrollBars: withScr
 	^ newText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodePopoverPrintPresenter >> objectAsPrintString [
 	
 	^ String streamContents: [ :stream |
@@ -152,7 +154,7 @@ SpCodePopoverPrintPresenter >> objectAsPrintString [
 			<< '"' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodePopoverPrintPresenter >> objectAsString [
 	| string |
 	
@@ -169,7 +171,7 @@ SpCodePopoverPrintPresenter >> objectAsString [
 				separatedBy: [ stream cr ] ]
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 SpCodePopoverPrintPresenter >> setModelBeforeInitialization: anObject [
 
 	object := anObject

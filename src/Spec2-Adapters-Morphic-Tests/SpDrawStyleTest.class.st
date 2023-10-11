@@ -1,10 +1,11 @@
 Class {
-	#name : #SpDrawStyleTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Adapters-Morphic-Tests'
+	#name : 'SpDrawStyleTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Adapters-Morphic-Tests',
+	#package : 'Spec2-Adapters-Morphic-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDrawStyleTest >> testToColor [
 	| style |
 	

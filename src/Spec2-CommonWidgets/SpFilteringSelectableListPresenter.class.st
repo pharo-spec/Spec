@@ -2,8 +2,8 @@
 A presenter to show a list that can be filter, and which elements are selectable.
 "
 Class {
-	#name : #SpFilteringSelectableListPresenter,
-	#superclass : #SpFilteringListPresenter,
+	#name : 'SpFilteringSelectableListPresenter',
+	#superclass : 'SpFilteringListPresenter',
 	#instVars : [
 		'selectColumn',
 		'displayBlock',
@@ -13,10 +13,12 @@ Class {
 		'onActivation',
 		'onDeactivation'
 	],
-	#category : #'Spec2-CommonWidgets-Core'
+	#category : 'Spec2-CommonWidgets-Core',
+	#package : 'Spec2-CommonWidgets',
+	#tag : 'Core'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpFilteringSelectableListPresenter >> activateAll [
 
 	| itemsToSelect |
@@ -29,7 +31,7 @@ SpFilteringSelectableListPresenter >> activateAll [
 		itemsToSelect do: [ :item | valuable cull: item ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFilteringSelectableListPresenter >> activateItem: anObject [
 
 	selectedItems add: anObject.
@@ -37,7 +39,7 @@ SpFilteringSelectableListPresenter >> activateItem: anObject [
 	self onActivation ifNotNil: [ :valuable | valuable cull: anObject ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFilteringSelectableListPresenter >> deactivateItem: anObject [
 
 	selectedItems remove: anObject.
@@ -45,27 +47,27 @@ SpFilteringSelectableListPresenter >> deactivateItem: anObject [
 	self onDeactivation ifNotNil: [ :valuable | valuable cull: anObject ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringSelectableListPresenter >> display [
 
 	^ displayBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringSelectableListPresenter >> display: aBlock [
 
 	displayBlock := aBlock.
 	listPresenter columns: self listColumns
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringSelectableListPresenter >> displayIcon: aBlock [
 
 	displayIconBlock := aBlock.
 	listPresenter columns: self listColumns
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpFilteringSelectableListPresenter >> initialize [
 
 	selectedItems := Set new.
@@ -73,7 +75,7 @@ SpFilteringSelectableListPresenter >> initialize [
 	super initialize
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpFilteringSelectableListPresenter >> initializePresenters [
 
 	super initializePresenters.
@@ -98,7 +100,7 @@ SpFilteringSelectableListPresenter >> initializePresenters [
 		toAction: [ self activateAll ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFilteringSelectableListPresenter >> listColumns [
 	| column |
 
@@ -118,7 +120,7 @@ SpFilteringSelectableListPresenter >> listColumns [
 	^ { column }
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpFilteringSelectableListPresenter >> newListToFilter [
 	| table |
 	
@@ -128,31 +130,31 @@ SpFilteringSelectableListPresenter >> newListToFilter [
 	^ table
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringSelectableListPresenter >> onActivation [
 
 	^ onActivation
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringSelectableListPresenter >> onActivation: aBlock [
 
 	onActivation := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringSelectableListPresenter >> onDeactivation [
 
 	^ onDeactivation
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringSelectableListPresenter >> onDeactivation: aBlock [
 
 	onDeactivation := aBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFilteringSelectableListPresenter >> selectFrom: fromIndex to: toIndex [
 
 	| newItems |
@@ -168,26 +170,26 @@ SpFilteringSelectableListPresenter >> selectFrom: fromIndex to: toIndex [
 	listPresenter refresh
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringSelectableListPresenter >> selectItem: anObject [
 
 	self selectItems: (self selectedItems copyWith: anObject)
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringSelectableListPresenter >> selectItems: aCollection [
 
 	selectedItems := aCollection asSet.
 	listPresenter selectItems: selectedItems asOrderedCollection
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpFilteringSelectableListPresenter >> selectedItems [
 
 	^ selectedItems sorted: [ :a :b | (self items indexOf: a) < (self items indexOf: b) ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFilteringSelectableListPresenter >> toggleSelection [
 
 	| selectedItem |

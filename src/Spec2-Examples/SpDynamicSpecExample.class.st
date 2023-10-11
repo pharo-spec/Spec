@@ -6,38 +6,40 @@ self exampleNil
 self exampleString
 "
 Class {
-	#name : #SpDynamicSpecExample,
-	#superclass : #Object,
+	#name : 'SpDynamicSpecExample',
+	#superclass : 'Object',
 	#traits : 'TObservable',
 	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'#ui',
 		'#object => ObservableSlot'
 	],
-	#category : #'Spec2-Examples-Wrapper'
+	#category : 'Spec2-Examples-Wrapper',
+	#package : 'Spec2-Examples',
+	#tag : 'Wrapper'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpDynamicSpecExample class >> exampleInt [
 	<sampleInstance>
 	^ self new open: 42
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpDynamicSpecExample class >> exampleNil [
 	<sampleInstance>
 	^ self new
 		open: nil
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpDynamicSpecExample class >> exampleString [
 	<sampleInstance>
 	^ self new
 		open: 'Hello World'
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpDynamicSpecExample class >> object: object [
 
 	^ self new
@@ -45,36 +47,36 @@ SpDynamicSpecExample class >> object: object [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDynamicSpecExample >> initialize [
 	self class initializeSlots: self.
 	super initialize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicSpecExample >> object [
 	^ object
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicSpecExample >> object: anObject [
 	object := anObject
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpDynamicSpecExample >> open [
 	self object ifNil: [ ^ self openOnNil ].
 	self object isInteger ifTrue: [ ^ self openOnInteger: self object ].
 	self object isString ifTrue: [ ^ self openOnString: self object ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpDynamicSpecExample >> open: anObject [
 	object := anObject.
 	self open
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpDynamicSpecExample >> openOnInteger: anInteger [
 	ui := SpOpenOnIntExample new: anInteger.
 	ui
@@ -82,21 +84,21 @@ SpDynamicSpecExample >> openOnInteger: anInteger [
 		open
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpDynamicSpecExample >> openOnNil [
 	ui := SpOpenOnNilExample new.
 	ui 
 		extent: 200 @ 100; open
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpDynamicSpecExample >> openOnString: aString [
 	ui := SpOpenOnStringExample new:aString.
 	ui 
 		extent: 300 @ 200;open
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicSpecExample >> title [
 
 	^ 'Dynamic Examples'

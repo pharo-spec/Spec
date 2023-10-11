@@ -6,8 +6,8 @@ self example
 I show also how to dynamically redrawn a widget.
 "
 Class {
-	#name : #SpOpenOnStringExample,
-	#superclass : #SpPresenter,
+	#name : 'SpOpenOnStringExample',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'label',
 		'check',
@@ -15,10 +15,12 @@ Class {
 		'button',
 		'textToReset'
 	],
-	#category : #'Spec2-Examples-Wrapper'
+	#category : 'Spec2-Examples-Wrapper',
+	#package : 'Spec2-Examples',
+	#tag : 'Wrapper'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpOpenOnStringExample class >> example [
 
 	<sampleInstance>
@@ -28,22 +30,22 @@ SpOpenOnStringExample class >> example [
 		  yourself
 ]
 
-{ #category : #instantiation }
+{ #category : 'instantiation' }
 SpOpenOnStringExample class >> new: aString [
 	^ self new initialize: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOpenOnStringExample >> button [
 	^ button
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOpenOnStringExample >> check [
 	^ check
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOpenOnStringExample >> connectPresenters [
 	button action: [ input text: textToReset ].
 	input whenTextChangedDo: [ :text | label label: text ].
@@ -54,7 +56,7 @@ SpOpenOnStringExample >> connectPresenters [
 			self buildWithSpecLayout: self class bottomLayout ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpOpenOnStringExample >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -71,14 +73,14 @@ SpOpenOnStringExample >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOpenOnStringExample >> initialize: aString [
 	label label: aString.
 	input text: aString.
 	textToReset := aString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOpenOnStringExample >> initializePresenters [
 	label := self instantiate: SpLabelPresenter.
 	check := self instantiate: SpCheckBoxPresenter.
@@ -92,17 +94,17 @@ SpOpenOnStringExample >> initializePresenters [
 		state: false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOpenOnStringExample >> input [
 	^ input
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOpenOnStringExample >> label [
 	^ label
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOpenOnStringExample >> openOnString [
 	| ui temp object |
 	object whenChangedDo: [ :o | ui label label: o asString ].
@@ -110,12 +112,12 @@ SpOpenOnStringExample >> openOnString [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOpenOnStringExample >> textToReset [
 	^ textToReset
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOpenOnStringExample >> title [
 	^ 'OpenOnStringExample'
 ]

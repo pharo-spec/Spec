@@ -2,25 +2,27 @@
 I am a demo page to show how to use spec filtering lists.
 "
 Class {
-	#name : #SpFilteringListsDemoPage,
-	#superclass : #SpDemoPage,
-	#category : #'Spec2-Examples-Demo-Lists'
+	#name : 'SpFilteringListsDemoPage',
+	#superclass : 'SpDemoPage',
+	#category : 'Spec2-Examples-Demo-Lists',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Lists'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpFilteringListsDemoPage class >> pageName [
 
 	^ 'Filtering Lists'
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpFilteringListsDemoPage class >> priority [
 
 	^ 500
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpFilteringListsDemoPage >> pageClass [
 
 	^ SpDemoFilteringListsPresenter

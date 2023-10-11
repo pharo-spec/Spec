@@ -1,10 +1,11 @@
 Class {
-	#name : #SpCodeAdapterTest,
-	#superclass : #SpTextAdapterTest,
-	#category : #'Spec2-Code-Backend-Tests'
+	#name : 'SpCodeAdapterTest',
+	#superclass : 'SpTextAdapterTest',
+	#category : 'Spec2-Code-Backend-Tests',
+	#package : 'Spec2-Code-Backend-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeAdapterTest >> assertText: text at: index isStyle: styleName [
 	| tag |
 
@@ -14,27 +15,27 @@ SpCodeAdapterTest >> assertText: text at: index isStyle: styleName [
 	self assert: tag equals: (self style: styleName)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeAdapterTest >> assertText: text atInterval: interval isStyle: styleName [
 
 	interval do: [ :index |
 		self assertText: text at: index isStyle: styleName ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeAdapterTest >> classToTest [
 
 	^ SpCodePresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeAdapterTest >> fillTag: tag withAttribute: attr [
 
 	attr class = TextColor ifTrue: [ tag foreground: attr color ].
 	self flag: #TODO. "Other attributes"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeAdapterTest >> style: aSymbol [ 
 	| tag |
 	
@@ -46,7 +47,7 @@ SpCodeAdapterTest >> style: aSymbol [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeAdapterTest >> styleTableAt: styleName do: aBlock [ 
 	| attributes |	
 
@@ -54,7 +55,7 @@ SpCodeAdapterTest >> styleTableAt: styleName do: aBlock [
 	attributes do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeAdapterTest >> testRightClickShowsMenu [
 	| menu |
 
@@ -67,7 +68,7 @@ SpCodeAdapterTest >> testRightClickShowsMenu [
 	self assert: menu shown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeAdapterTest >> testTextWithStyle [
 
 	| text |
@@ -94,13 +95,13 @@ SpCodeAdapterTest >> testTextWithStyle [
 	self assertText: text atInterval: (13 to: 14) isStyle: #number "42"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeAdapterTest >> testWithSyntaxHighlight [
 	presenter withSyntaxHighlight.
 	self assert: self adapter hasSyntaxHighlightEnabled
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeAdapterTest >> testWithoutSyntaxHighlight [
 	presenter withoutSyntaxHighlight.
 	self deny: self adapter hasSyntaxHighlightEnabled

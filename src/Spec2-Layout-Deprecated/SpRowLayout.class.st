@@ -2,27 +2,28 @@
 A SpecRowLayout isthe layout used to specify a new row
 "
 Class {
-	#name : #SpRowLayout,
-	#superclass : #SpLayout,
+	#name : 'SpRowLayout',
+	#superclass : 'SpLayout',
 	#instVars : [
 		'width'
 	],
-	#category : #'Spec2-Layout-Deprecated'
+	#category : 'Spec2-Layout-Deprecated',
+	#package : 'Spec2-Layout-Deprecated'
 }
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpRowLayout >> add: aSpec width: aNumber [
 	
 	self add: aSpec origin: 0@0 corner: 1@1 offsetOrigin: 0@0 offsetCorner: aNumber @0
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpRowLayout >> addSplitter [
 
 	self commands add: (SpSplitterVertical commands: self commands)
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpRowLayout >> autoFractionComputation [
 	
 	self commands
@@ -34,7 +35,7 @@ SpRowLayout >> autoFractionComputation [
 				ifFalse: [ self setWidgetLayoutWithOffset: e at: idx ] ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpRowLayout >> countNumberOfProportionals [
 
 	self commands do: [ :e | 
@@ -45,7 +46,7 @@ SpRowLayout >> countNumberOfProportionals [
 				numberOfProportionals := numberOfProportionals + 1 ] ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpRowLayout >> manualFractionComputation [
 	| delta |
 	delta := numberOfProportionals isZero
@@ -58,7 +59,7 @@ SpRowLayout >> manualFractionComputation [
 				ifFalse: [ self setWidgetLayoutWithOffset: e at: idx ] ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpRowLayout >> privateAsArray [
 
 	self resetArrayComputation.
@@ -73,7 +74,7 @@ SpRowLayout >> privateAsArray [
 	^ super privateAsArray
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpRowLayout >> resetArrayComputation [
 
 	super resetArrayComputation.
@@ -86,7 +87,7 @@ SpRowLayout >> resetArrayComputation [
 	size := self commands size
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpRowLayout >> setWidgetLayoutWithNoOffset: widget at: index delta: delta [
 
 	widget layoutFrame: ((currentProportional @ 0 corner: (currentProportional + delta) @ 1) asSpLayoutFrame leftOffset: currentOffset).
@@ -96,7 +97,7 @@ SpRowLayout >> setWidgetLayoutWithNoOffset: widget at: index delta: delta [
 	lastFractionIndex := index
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpRowLayout >> setWidgetLayoutWithOffset: e at: idx [
 	| y0 y1 |
 	
@@ -118,7 +119,7 @@ SpRowLayout >> setWidgetLayoutWithOffset: e at: idx [
 			currentOffset := currentOffset + width ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpRowLayout >> shiftLastWidgets [
 	| index ante |
 	

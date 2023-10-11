@@ -4,17 +4,19 @@ A ClassMethodBrowser is a simple browser using spec and reusing MethodBrowser to
 self example
 "
 Class {
-	#name : #SpClassMethodBrowser,
-	#superclass : #SpPresenter,
+	#name : 'SpClassMethodBrowser',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'methodListPresenter',
 		'textPresenter',
 		'classListPresenter'
 	],
-	#category : #'Spec2-Examples-Standalone'
+	#category : 'Spec2-Examples-Standalone',
+	#package : 'Spec2-Examples',
+	#tag : 'Standalone'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpClassMethodBrowser class >> example [
 
 	<sampleInstance>
@@ -26,13 +28,13 @@ SpClassMethodBrowser class >> example [
 	^ example
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpClassMethodBrowser class >> title [
 
 	^ 'Class Method Browser'
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpClassMethodBrowser >> classes: aList [
 	classListPresenter items = aList ifTrue: [ ^ self ].
 
@@ -41,7 +43,7 @@ SpClassMethodBrowser >> classes: aList [
 		selectIndex: 1
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpClassMethodBrowser >> connectPresenters [
 	classListPresenter
 		transmitTo: methodListPresenter
@@ -55,7 +57,7 @@ SpClassMethodBrowser >> connectPresenters [
 			transmited ifNotNil: [ destination beForMethod: transmited ] ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpClassMethodBrowser >> defaultLayout [
 
 	^ SpPanedLayout newTopToBottom
@@ -67,7 +69,7 @@ SpClassMethodBrowser >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpClassMethodBrowser >> initializePresenters [
 	classListPresenter := self newList.
 	methodListPresenter := self newList.

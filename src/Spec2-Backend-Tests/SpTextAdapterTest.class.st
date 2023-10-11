@@ -1,16 +1,18 @@
 Class {
-	#name : #SpTextAdapterTest,
-	#superclass : #SpAbstractTextAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpTextAdapterTest',
+	#superclass : 'SpAbstractTextAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextAdapterTest >> classToTest [
 
 	^ SpTextPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextAdapterTest >> testKeyBindings [
 	| handled |
 
@@ -29,7 +31,7 @@ SpTextAdapterTest >> testKeyBindings [
 	self assert: handled
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextAdapterTest >> testLineAtCursorPosition [
 
 	self openInstance.
@@ -53,7 +55,7 @@ three'.
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextAdapterTest >> testRightClickShowsMenu [
 	| menu |
 
@@ -64,7 +66,7 @@ SpTextAdapterTest >> testRightClickShowsMenu [
 	self assert: menu shown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextAdapterTest >> testSettingTextManuallyAffectsTheUndoManager [
 	| undoManager |
 
@@ -76,7 +78,7 @@ SpTextAdapterTest >> testSettingTextManuallyAffectsTheUndoManager [
 	self assert: undoManager hasPrevious
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextAdapterTest >> testSettingTextManuallyClearsTheUndoManager [
 	| undoManager |
 
@@ -96,7 +98,7 @@ SpTextAdapterTest >> testSettingTextManuallyClearsTheUndoManager [
 	self assert: undoManager size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextAdapterTest >> testTextIsAlwaysString [
 
 	presenter text: 'one'.
@@ -106,7 +108,7 @@ SpTextAdapterTest >> testTextIsAlwaysString [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextAdapterTest >> testWithoutUndoRedoHistory [
 	| undoManager |
 

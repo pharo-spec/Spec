@@ -6,7 +6,9 @@ Spec is a framework in Pharo for describing user interfaces. It allows for the c
 I contain the layouts used by presenters to position their elements.
 "
 Class {
-	#name : #ManifestSpec2Layout,
-	#superclass : #PackageManifest,
-	#category : #'Spec2-Layout-Manifest'
+	#name : 'ManifestSpec2Layout',
+	#superclass : 'PackageManifest',
+	#category : 'Spec2-Layout-Manifest',
+	#package : 'Spec2-Layout',
+	#tag : 'Manifest'
 }

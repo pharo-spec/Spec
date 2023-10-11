@@ -1,6 +1,6 @@
-Extension { #name : #Morph }
+Extension { #name : 'Morph' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 Morph >> spSetModal: aSystemWindow [
 	|area mySysWin keyboardFocus|
 

@@ -1,6 +1,6 @@
-Extension { #name : #SpInputTextDropListTest }
+Extension { #name : 'SpInputTextDropListTest' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpInputTextDropListTest >> classToTest [
 	^ SpInputTextDropList
 ]

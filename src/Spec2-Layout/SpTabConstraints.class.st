@@ -1,19 +1,21 @@
 Class {
-	#name : #SpTabConstraints,
-	#superclass : #SpLayoutConstraints,
+	#name : 'SpTabConstraints',
+	#superclass : 'SpLayoutConstraints',
 	#instVars : [
 		'label'
 	],
-	#category : #'Spec2-Layout-Tab'
+	#category : 'Spec2-Layout-Tab',
+	#package : 'Spec2-Layout',
+	#tag : 'Tab'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTabConstraints >> label [
 
 	^ label
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTabConstraints >> label: anObject [
 
 	label := anObject

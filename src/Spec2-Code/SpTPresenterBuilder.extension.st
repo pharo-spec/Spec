@@ -1,6 +1,6 @@
-Extension { #name : #SpTPresenterBuilder }
+Extension { #name : 'SpTPresenterBuilder' }
 
-{ #category : #'*Spec2-Code' }
+{ #category : '*Spec2-Code' }
 SpTPresenterBuilder >> newCode [
 
 	^ self instantiate: SpCodePresenter

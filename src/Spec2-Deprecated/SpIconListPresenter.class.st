@@ -12,12 +12,14 @@ todo
 - getIconFor:
 "
 Class {
-	#name : #SpIconListPresenter,
-	#superclass : #SpListPresenter,
-	#category : #'Spec2-Deprecated-Replaced'
+	#name : 'SpIconListPresenter',
+	#superclass : 'SpListPresenter',
+	#category : 'Spec2-Deprecated-Replaced',
+	#package : 'Spec2-Deprecated',
+	#tag : 'Replaced'
 }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpIconListPresenter class >> example [
 	<sampleInstance>
 	| example |
@@ -29,7 +31,24 @@ SpIconListPresenter class >> example [
 	^ example
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
+SpIconListPresenter class >> example [
+	<sampleInstance>
+	| example |
+	example := self new.
+	example
+		icons: [ :e | example iconNamed: #forwardIcon ];
+		items: (1 to: 10) asArray;
+		openWithSpec.
+	^ example
+]
+
+{ #category : '*Spec2-Deprecated' }
+SpIconListPresenter class >> isDeprecated [
+	^ true
+]
+
+{ #category : '*Spec2-Deprecated' }
 SpIconListPresenter class >> isDeprecated [
 	^ true
 ]

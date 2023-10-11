@@ -5,24 +5,26 @@ Description
 Demo page for SpecDemoModalPresenter
 "
 Class {
-	#name : #SpDemoModalsPage,
-	#superclass : #SpDemoPage,
-	#category : #'Spec2-Examples-Demo-Modals'
+	#name : 'SpDemoModalsPage',
+	#superclass : 'SpDemoPage',
+	#category : 'Spec2-Examples-Demo-Modals',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Modals'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDemoModalsPage class >> pageName [
 
 	^ 'Modals'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoModalsPage class >> priority [
 
 	^ 1700
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoModalsPage >> pageClass [
 
 	^ SpDemoModalPresenter

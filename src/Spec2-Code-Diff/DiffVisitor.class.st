@@ -1,22 +1,23 @@
 Class {
-	#name : #DiffVisitor,
-	#superclass : #Object,
-	#category : #'Spec2-Code-Diff'
+	#name : 'DiffVisitor',
+	#superclass : 'Object',
+	#category : 'Spec2-Code-Diff',
+	#package : 'Spec2-Code-Diff'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 DiffVisitor >> visitDelete: anElement [
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 DiffVisitor >> visitInsert: anElement [
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 DiffVisitor >> visitMatch: anElement [
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 DiffVisitor >> visitPatch: aPatch [
 
 	aPatch elements 

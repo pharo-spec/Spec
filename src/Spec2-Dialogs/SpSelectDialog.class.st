@@ -2,8 +2,8 @@
 A dialog that allow the users to select from a list of `items`
 "
 Class {
-	#name : #SpSelectDialog,
-	#superclass : #SpDialogPresenter,
+	#name : 'SpSelectDialog',
+	#superclass : 'SpDialogPresenter',
 	#instVars : [
 		'label',
 		'title',
@@ -12,16 +12,17 @@ Class {
 		'cancelLabel',
 		'list'
 	],
-	#category : #'Spec2-Dialogs'
+	#category : 'Spec2-Dialogs',
+	#package : 'Spec2-Dialogs'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSelectDialog class >> defaultExtent [
 
 	^ 450@300
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpSelectDialog class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -32,13 +33,13 @@ SpSelectDialog class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpSelectDialog class >> documentFactoryMethodSelector [
 	
 	^ #newSelect
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpSelectDialog class >> example [
 
 	| presenter |
@@ -54,7 +55,7 @@ SpSelectDialog class >> example [
 		openDialog
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpSelectDialog class >> exampleModal [
 
 	| dialog selection |
@@ -71,62 +72,62 @@ SpSelectDialog class >> exampleModal [
 	selection ifNotNil: [ dialog inform: selection asString ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> acceptLabel [
 
 	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> acceptLabel: aString [
 
 	acceptLabel := aString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> cancelLabel [
 
 	^ cancelLabel ifNil: [ self class defaultCancelLabel ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> cancelLabel: aString [
 
 	cancelLabel := aString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> display: aBlock [
 
 	list display: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> displayIcon: aBlock [
 
 	list displayIcon: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> extent [
 
 	^ initialExtent ifNil: [ self class defaultExtent ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> extent: aPoint [
 
 	initialExtent := aPoint
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSelectDialog >> initialize [
 	
 	super initialize.
 	self title: 'Request'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSelectDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.
@@ -135,7 +136,7 @@ SpSelectDialog >> initializeDialogWindow: aDialogWindowPresenter [
 		addDefaultButton: self acceptLabel do: [ :presenter | self accept ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSelectDialog >> initializePresenters [
 
 	label := self newLabel.
@@ -145,7 +146,7 @@ SpSelectDialog >> initializePresenters [
 	list whenActivatedDo: [ self accept ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSelectDialog >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
@@ -154,25 +155,25 @@ SpSelectDialog >> initializeWindow: aWindowPresenter [
 		whenOpenedDo: [ list takeKeyboardFocus ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> items [
 
 	^ list items
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> items: aCollection [
 
 	list items: aCollection
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> label: aString [
 
 	label label: aString
 ]
 
-{ #category : #'api - showing' }
+{ #category : 'api - showing' }
 SpSelectDialog >> openModal [
 	| dialog |
 	
@@ -182,19 +183,19 @@ SpSelectDialog >> openModal [
 		ifFalse: [ nil ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> selectedItem [
 
 	^ list selectedItem
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> title [
 
 	^ title
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> title: aString [
 
 	title := aString

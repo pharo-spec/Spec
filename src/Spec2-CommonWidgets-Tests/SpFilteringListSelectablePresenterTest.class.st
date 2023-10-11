@@ -1,16 +1,17 @@
 Class {
-	#name : #SpFilteringListSelectablePresenterTest,
-	#superclass : #SpFilteringListPresenterTest,
-	#category : #'Spec2-CommonWidgets-Tests'
+	#name : 'SpFilteringListSelectablePresenterTest',
+	#superclass : 'SpFilteringListPresenterTest',
+	#category : 'Spec2-CommonWidgets-Tests',
+	#package : 'Spec2-CommonWidgets-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFilteringListSelectablePresenterTest >> classToTest [
 
 	^ SpFilteringSelectableListPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpFilteringListSelectablePresenterTest >> testSelectItemAccumulatesSelections [
 
 	listWithFilter items: { 
@@ -28,7 +29,7 @@ SpFilteringListSelectablePresenterTest >> testSelectItemAccumulatesSelections [
 		equals: { Array. Set }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpFilteringListSelectablePresenterTest >> testSelectedItemsOrderedBasedOnList [
 
 	listWithFilter items: { 

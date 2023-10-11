@@ -1,13 +1,14 @@
 Class {
-	#name : #SpChooserPresenterTest,
-	#superclass : #TestCase,
+	#name : 'SpChooserPresenterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'chooserPresenter'
 	],
-	#category : #'Spec2-CommonWidgets-Tests'
+	#category : 'Spec2-CommonWidgets-Tests',
+	#package : 'Spec2-CommonWidgets-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpChooserPresenterTest >> initializeChooser [
 
 	chooserPresenter := SpChooserPresenter
@@ -15,20 +16,20 @@ SpChooserPresenterTest >> initializeChooser [
 		                    displayBlock: #name
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpChooserPresenterTest >> items [
 
 	^ RBBrowserEnvironment default allClasses
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpChooserPresenterTest >> setUp [
 
 	super setUp.
 	self initializeChooser
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpChooserPresenterTest >> testAddAll [
 
 	self assert: chooserPresenter sourceList unfilteredItems isNotEmpty.
@@ -38,7 +39,7 @@ SpChooserPresenterTest >> testAddAll [
 	self assert: chooserPresenter targetList unfilteredItems isNotEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpChooserPresenterTest >> testAddItemUsingFilter [
 
 chooserPresenter sourceList applyFilter: 'HashedCollection'.
@@ -54,7 +55,7 @@ chooserPresenter sourceList applyFilter: 'HashedCollection'.
 				HashedCollection }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpChooserPresenterTest >> testAddSelected [
 
 	self assert: chooserPresenter sourceList selectedItems isEmpty.
@@ -69,7 +70,7 @@ SpChooserPresenterTest >> testAddSelected [
 		equals: self items size - 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpChooserPresenterTest >> testRemoveAll [
 
 	chooserPresenter removeAll.
@@ -77,7 +78,7 @@ SpChooserPresenterTest >> testRemoveAll [
 	self assert: chooserPresenter targetList unfilteredItems isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpChooserPresenterTest >> testRemoveItemUsingFilter [
 
 	chooserPresenter addAll.
@@ -94,7 +95,7 @@ SpChooserPresenterTest >> testRemoveItemUsingFilter [
 				HashedCollection }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpChooserPresenterTest >> testRemoveSelected [
 
 	chooserPresenter addAll.
@@ -109,7 +110,7 @@ SpChooserPresenterTest >> testRemoveSelected [
 		equals: self items size - 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpChooserPresenterTest >> testSourceLabel [
 
 	self
@@ -121,7 +122,7 @@ SpChooserPresenterTest >> testSourceLabel [
 	self assert: chooserPresenter sourceLabel equals: 'new source label'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpChooserPresenterTest >> testTargetLabel [
 
 	self

@@ -1,10 +1,12 @@
 Class {
-	#name : #SpDropListWithoutInitialSelectionAdapterTest,
-	#superclass : #SpDropListAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpDropListWithoutInitialSelectionAdapterTest',
+	#superclass : 'SpDropListAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDropListWithoutInitialSelectionAdapterTest >> initializeTestedInstance [ 
 
 	presenter startWithoutSelection.	
@@ -12,7 +14,7 @@ SpDropListWithoutInitialSelectionAdapterTest >> initializeTestedInstance [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListWithoutInitialSelectionAdapterTest >> testSelectionStartsEmptyIfStartWithoutSelectionIsSet [
 
 	self assert: self presenter selectedItem equals: nil.
@@ -20,7 +22,7 @@ SpDropListWithoutInitialSelectionAdapterTest >> testSelectionStartsEmptyIfStartW
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListWithoutInitialSelectionAdapterTest >> testStartWithoutSelectionDoesNotTriggersChange [
 	| count |
 

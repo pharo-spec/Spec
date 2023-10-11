@@ -1,6 +1,6 @@
-Extension { #name : #PRExternalLink }
+Extension { #name : 'PRExternalLink' }
 
-{ #category : #'*Spec2-Pillar' }
+{ #category : '*Spec2-Pillar' }
 PRExternalLink >> styleName [ 
 	^  #externalLink
 ]

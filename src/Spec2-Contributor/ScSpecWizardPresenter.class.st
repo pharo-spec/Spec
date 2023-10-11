@@ -1,16 +1,17 @@
 Class {
-	#name : #ScSpecWizardPresenter,
-	#superclass : #ScWizardPresenter,
-	#category : #'Spec2-Contributor'
+	#name : 'ScSpecWizardPresenter',
+	#superclass : 'ScWizardPresenter',
+	#category : 'Spec2-Contributor',
+	#package : 'Spec2-Contributor'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ScSpecWizardPresenter class >> title [
 
 	^ 'Spec Contributor'
 ]
 
-{ #category : #'private factory' }
+{ #category : 'private factory' }
 ScSpecWizardPresenter >> newPages [
 
 	^ { 

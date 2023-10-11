@@ -1,10 +1,11 @@
 Class {
-	#name : #DiffMatch,
-	#superclass : #DiffPatchElement,
-	#category : #'Spec2-Code-Diff'
+	#name : 'DiffMatch',
+	#superclass : 'DiffPatchElement',
+	#category : 'Spec2-Code-Diff',
+	#package : 'Spec2-Code-Diff'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DiffMatch class >> newOldPosition: index element: element [
 
 	^ (self newOldPosition: index) 
@@ -12,13 +13,13 @@ DiffMatch class >> newOldPosition: index element: element [
 		yourself
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 DiffMatch >> accept: aVisitor [
 
 	aVisitor visitMatch: self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 DiffMatch >> isMatch [
 
 	^ true

@@ -1,16 +1,17 @@
 Class {
-	#name : #SpImageAdapterTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Morphic-Tests'
+	#name : 'SpImageAdapterTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Morphic-Tests',
+	#package : 'Spec2-Morphic-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpImageAdapterTest >> classToTest [
 
 	^ SpImagePresenter
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpImageAdapterTest >> imageForm [
 
 	^ (PNGReadWriter on: 
@@ -18,7 +19,7 @@ SpImageAdapterTest >> imageForm [
 			nextImage
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpImageAdapterTest >> testAutoscale [
 
 	self presenter image: self imageForm.
@@ -31,7 +32,7 @@ SpImageAdapterTest >> testAutoscale [
 
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpImageAdapterTest >> testSettingAnImageSetsTheImage [
 
 	self presenter image: self imageForm.
@@ -39,7 +40,7 @@ SpImageAdapterTest >> testSettingAnImageSetsTheImage [
 
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpImageAdapterTest >> testSettingAnImageSetsTheImageAndThrowsEvent [
 
 	| happened |
@@ -50,7 +51,7 @@ SpImageAdapterTest >> testSettingAnImageSetsTheImageAndThrowsEvent [
 	self assert: happened
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpImageAdapterTest >> testSettingNilClearsTheImage [
 
 	self presenter image: self imageForm.

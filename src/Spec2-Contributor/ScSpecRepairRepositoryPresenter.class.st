@@ -1,13 +1,14 @@
 Class {
-	#name : #ScSpecRepairRepositoryPresenter,
-	#superclass : #IceTipRepairRepositoryDialog,
+	#name : 'ScSpecRepairRepositoryPresenter',
+	#superclass : 'IceTipRepairRepositoryDialog',
 	#instVars : [
 		'helpText'
 	],
-	#category : #'Spec2-Contributor'
+	#category : 'Spec2-Contributor',
+	#package : 'Spec2-Contributor'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 ScSpecRepairRepositoryPresenter class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
@@ -16,7 +17,7 @@ ScSpecRepairRepositoryPresenter class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 ScSpecRepairRepositoryPresenter >> accept [
 	
 	selectedOption executeWith: self model.
@@ -24,7 +25,7 @@ ScSpecRepairRepositoryPresenter >> accept [
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ScSpecRepairRepositoryPresenter >> initializePresenters [
 
 	super initializePresenters.
@@ -42,7 +43,7 @@ ScSpecRepairRepositoryPresenter >> initializePresenters [
 		yourself)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ScSpecRepairRepositoryPresenter >> refreshDialogButtons [
 
 ]

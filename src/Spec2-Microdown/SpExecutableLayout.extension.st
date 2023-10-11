@@ -1,6 +1,6 @@
-Extension { #name : #SpExecutableLayout }
+Extension { #name : 'SpExecutableLayout' }
 
-{ #category : #'*Spec2-Microdown' }
+{ #category : '*Spec2-Microdown' }
 SpExecutableLayout class >> buildMicroDownUsing: aBuilder withComment: aString [
 	
 	super buildMicroDownUsing: aBuilder withComment: aString.

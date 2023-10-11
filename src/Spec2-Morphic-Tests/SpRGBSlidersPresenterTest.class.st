@@ -1,15 +1,16 @@
 Class {
-	#name : #SpRGBSlidersPresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Morphic-Tests'
+	#name : 'SpRGBSlidersPresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Morphic-Tests',
+	#package : 'Spec2-Morphic-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRGBSlidersPresenterTest >> classToTest [
 	^ SpRGBSlidersPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpRGBSlidersPresenterTest >> testColor [
 
 	| random red green blue |
@@ -28,7 +29,7 @@ SpRGBSlidersPresenterTest >> testColor [
 			 range: 255)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpRGBSlidersPresenterTest >> testwhenChangedDo [
 	| numberOfChanges |
 	numberOfChanges := 0.

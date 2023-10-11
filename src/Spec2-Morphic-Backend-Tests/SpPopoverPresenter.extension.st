@@ -1,6 +1,6 @@
-Extension { #name : #SpPopoverPresenter }
+Extension { #name : 'SpPopoverPresenter' }
 
-{ #category : #'*Spec2-Morphic-Backend-Tests' }
+{ #category : '*Spec2-Morphic-Backend-Tests' }
 SpPopoverPresenter class >> sampleInstanceForTest [
 
 	^ super sampleInstanceForTest

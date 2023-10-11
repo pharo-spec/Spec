@@ -2,23 +2,25 @@
 I browse all instances of the class returned by the evaluation of my context
 "
 Class {
-	#name : #SpBrowseInstancesCommand,
-	#superclass : #SpSystemDiscoveryCommand,
-	#category : #'Spec2-Commands-Navigation'
+	#name : 'SpBrowseInstancesCommand',
+	#superclass : 'SpSystemDiscoveryCommand',
+	#category : 'Spec2-Commands-Navigation',
+	#package : 'Spec2-Commands',
+	#tag : 'Navigation'
 }
 
-{ #category : #default }
+{ #category : 'default' }
 SpBrowseInstancesCommand class >> defaultDescription [
 	^ 'Browse all instances of the selected class'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBrowseInstancesCommand class >> shortName [
 
 	^ 'all instances'
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 SpBrowseInstancesCommand >> execute [
 
 	self target instanceSide inspectAllInstances

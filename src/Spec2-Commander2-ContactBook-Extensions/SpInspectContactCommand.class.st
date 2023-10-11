@@ -2,17 +2,18 @@
 I am a command allowing to inspect a contact.
 "
 Class {
-	#name : #SpInspectContactCommand,
-	#superclass : #SpContactBookCommand,
-	#category : #'Spec2-Commander2-ContactBook-Extensions'
+	#name : 'SpInspectContactCommand',
+	#superclass : 'SpContactBookCommand',
+	#category : 'Spec2-Commander2-ContactBook-Extensions',
+	#package : 'Spec2-Commander2-ContactBook-Extensions'
 }
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 SpInspectContactCommand >> execute [
 	self context inspect
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpInspectContactCommand >> initialize [
 	super initialize.
 	self

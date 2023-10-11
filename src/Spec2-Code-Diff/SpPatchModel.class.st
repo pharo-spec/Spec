@@ -1,14 +1,15 @@
 Class {
-	#name : #SpPatchModel,
-	#superclass : #Object,
+	#name : 'SpPatchModel',
+	#superclass : 'Object',
 	#instVars : [
 		'source',
 		'destination'
 	],
-	#category : #'Spec2-Code-Diff'
+	#category : 'Spec2-Code-Diff',
+	#package : 'Spec2-Code-Diff'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpPatchModel class >> newFrom: aSource to: aDestination [
 
 	^ self new 
@@ -16,20 +17,20 @@ SpPatchModel class >> newFrom: aSource to: aDestination [
 		to: aDestination
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPatchModel >> destination [
 
 	^ destination ifNil: [ '' ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPatchModel >> from: aSource to: aDestination [
 
 	source := aSource.
 	destination := aDestination
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpPatchModel >> isEmpty [
 
 	^ self source isEmpty 
@@ -37,7 +38,7 @@ SpPatchModel >> isEmpty [
 		
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPatchModel >> patch [
 
 	^ DiffBuilder 
@@ -45,7 +46,7 @@ SpPatchModel >> patch [
 		to: self destination lines
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPatchModel >> source [
 
 	^ source ifNil: [ '' ]

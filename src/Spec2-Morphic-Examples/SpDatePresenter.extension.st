@@ -1,13 +1,13 @@
-Extension { #name : #SpDatePresenter }
+Extension { #name : 'SpDatePresenter' }
 
-{ #category : #'*Spec2-Morphic-Examples' }
+{ #category : '*Spec2-Morphic-Examples' }
 SpDatePresenter class >> example [
 
 	<sampleInstance>
 	^ self new open
 ]
 
-{ #category : #'*Spec2-Morphic-Examples' }
+{ #category : '*Spec2-Morphic-Examples' }
 SpDatePresenter class >> exampleModal [
 	<sampleInstance>
 	

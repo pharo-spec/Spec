@@ -2,12 +2,14 @@
 I am a command allowing to add a contact.
 "
 Class {
-	#name : #SpAddContactCommand,
-	#superclass : #SpContactBookCommand,
-	#category : #'Spec2-Commander2-ContactBook-Commands'
+	#name : 'SpAddContactCommand',
+	#superclass : 'SpContactBookCommand',
+	#category : 'Spec2-Commander2-ContactBook-Commands',
+	#package : 'Spec2-Commander2-ContactBook',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 SpAddContactCommand >> asSpecCommand [
 	"Here we define the additional information the command will need to know
 	 when used in the Spec framework.
@@ -17,7 +19,7 @@ SpAddContactCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 SpAddContactCommand >> execute [
 	"One should never manipulate UI directly from a command.
 	 Instead, you can use one of the subclasses of LtCommandNotification.
@@ -33,7 +35,7 @@ SpAddContactCommand >> execute [
 	self contactBookPresenter updateView
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAddContactCommand >> initialize [
 	super initialize.
 	self

@@ -5,18 +5,20 @@ A **model output port** defines an outgoing transmission triggered by a change o
 
 "
 Class {
-	#name : #SpModelChangedPort,
-	#superclass : #SpOutputPort,
-	#category : #'Spec2-Transmission-Base'
+	#name : 'SpModelChangedPort',
+	#superclass : 'SpOutputPort',
+	#category : 'Spec2-Transmission-Base',
+	#package : 'Spec2-Transmission',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpModelChangedPort class >> portName [
 	
 	^ #model
 ]
 
-{ #category : #attaching }
+{ #category : 'attaching' }
 SpModelChangedPort >> attachTransmission: aTransmission to: aPresenter [
 		
 	aPresenter announcingObject whenChangedDo: [ :model | 

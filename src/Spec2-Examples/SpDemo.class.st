@@ -3,18 +3,20 @@ Set of demos that show some of the capabilities of the Spec UI framework.
 Execute the following expression: `SpDemo open`
 "
 Class {
-	#name : #SpDemo,
-	#superclass : #SpPresenter,
+	#name : 'SpDemo',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'menu',
 		'list',
 		'page',
 		'selectedPage'
 	],
-	#category : #'Spec2-Examples-Demo'
+	#category : 'Spec2-Examples-Demo',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo'
 }
 
-{ #category : #'user interface' }
+{ #category : 'user interface' }
 SpDemo class >> menuExamplesOn: aBuilder [
 	"Add a custom menu item to the world menu"
 	<worldMenu>
@@ -27,7 +29,7 @@ SpDemo class >> menuExamplesOn: aBuilder [
 		action: [ self open ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpDemo class >> on: aModel [
 
 	^ self basicNew 
@@ -36,14 +38,14 @@ SpDemo class >> on: aModel [
 		yourself.
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDemo class >> open [
 	<example>
 	
 	^ self new open
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemo >> addItemTo: aGroup [
 	aGroup
 		addItem: [ :item | 
@@ -57,12 +59,12 @@ SpDemo >> addItemTo: aGroup [
 	self build
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemo >> availablePages [
 	^ SpDemoPage availablePages
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemo >> connectPresenters [
 
 	list selectItem: self selectedPage.
@@ -81,7 +83,7 @@ SpDemo >> connectPresenters [
 				list selectItem: self selectedPage ] ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemo >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -94,13 +96,13 @@ SpDemo >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemo >> defaultPage [
 
 	^ self availablePages first.
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDemo >> initialExtent [
 
 	| fontWidth rowHeight |
@@ -111,7 +113,7 @@ SpDemo >> initialExtent [
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemo >> initializePresenters [
 
 	page := SpBoxLayout newTopToBottom 
@@ -143,17 +145,17 @@ SpDemo >> initializePresenters [
 		addAll: page presenters 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemo >> list [
 	^ list
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemo >> list: anObject [
 	list := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemo >> mainMenu [
 	| aMenu |
 	aMenu := self newMenuBar
@@ -211,37 +213,37 @@ SpDemo >> mainMenu [
 	^ aMenu
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemo >> menu [
 	^ menu
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemo >> menu: anObject [
 	menu := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemo >> page [
 	^ page
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemo >> page: anObject [
 	page := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemo >> selectedPage [
 	^ selectedPage
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemo >> selectedPage: anObject [
 	selectedPage := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemo >> subMenu [
 	^ self newMenu
 		addItem: [ :item | 
@@ -271,7 +273,7 @@ SpDemo >> subMenu [
 		yourself
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDemo >> title [
 	
 	^ 'Spec UI Framework Demo'.

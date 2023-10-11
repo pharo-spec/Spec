@@ -1,16 +1,18 @@
 Class {
-	#name : #SpComponentListAdapterTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpComponentListAdapterTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpComponentListAdapterTest >> classToTest [
 
 	^ SpComponentListPresenter 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListAdapterTest >> testAddPresenterAddsWidget [
 
 	| button |
@@ -21,7 +23,7 @@ SpComponentListAdapterTest >> testAddPresenterAddsWidget [
 	self assert: self adapter children first equals: button adapter widget 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComponentListAdapterTest >> testEmptyPresenterHasEmptyAdapter [
 	
 	backendForTest waitUntilUIRedrawed.

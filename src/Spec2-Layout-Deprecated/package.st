@@ -1,1 +1,1 @@
-Package { #name : #'Spec2-Layout-Deprecated' }
+Package { #name : 'Spec2-Layout-Deprecated' }

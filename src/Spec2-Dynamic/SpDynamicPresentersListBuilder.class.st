@@ -9,8 +9,8 @@ See
 ]]]
 "
 Class {
-	#name : #SpDynamicPresentersListBuilder,
-	#superclass : #Object,
+	#name : 'SpDynamicPresentersListBuilder',
+	#superclass : 'Object',
 	#instVars : [
 		'configurationBlock',
 		'instVarCount',
@@ -20,10 +20,12 @@ Class {
 		'instVarToModelObject',
 		'presenterBlock'
 	],
-	#category : #'Spec2-Dynamic-Builder'
+	#category : 'Spec2-Dynamic-Builder',
+	#package : 'Spec2-Dynamic',
+	#tag : 'Builder'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 SpDynamicPresentersListBuilder class >> example [
 	| dynamicPresenter |
 	dynamicPresenter := SpDynamicPresentersListBuilder new
@@ -42,7 +44,7 @@ SpDynamicPresentersListBuilder class >> example [
 		yourself
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 SpDynamicPresentersListBuilder class >> example2 [
 	| dynamicPresenter |
 	dynamicPresenter := SpDynamicPresentersListBuilder new
@@ -62,14 +64,14 @@ SpDynamicPresentersListBuilder class >> example2 [
 		yourself
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpDynamicPresentersListBuilder >> build [
 	^ self buildDynamicPresenter
 		layout: self buildLayout;
 		yourself
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpDynamicPresentersListBuilder >> buildDynamicPresenter [
 	dynamicPresenter := SpDynamicPresenter new.
 	dynamicPresenter instantiatePresenters: self instVarNamesAndPresenterNamesArray.
@@ -80,22 +82,22 @@ SpDynamicPresentersListBuilder >> buildDynamicPresenter [
 	^ dynamicPresenter
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpDynamicPresentersListBuilder >> buildLayout [
 	^ self layoutBuilder buildFor: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicPresentersListBuilder >> configurationBlock [
 	^ configurationBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicPresentersListBuilder >> configurationBlock: anObject [
 	configurationBlock := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDynamicPresentersListBuilder >> createNullPresenters: anInteger [
 	nullPresentersInstVarNames := self generateNullPresentersInstVarNames: anInteger.
 
@@ -103,31 +105,31 @@ SpDynamicPresentersListBuilder >> createNullPresenters: anInteger [
 		instantiatePresenters: self nullPresentersInstVarNamesAndPresenterNamesArray
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDynamicPresentersListBuilder >> generateNullPresentersInstVarNames: anInteger [
 	^ (1 to: anInteger)
 		collect: [ :i | self generateUniqueInstanceVariableName ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDynamicPresentersListBuilder >> generateUniqueInstanceVariableName [
 	instVarCount := instVarCount + 1.
 	^ (#var , instVarCount asString) asSymbol
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDynamicPresentersListBuilder >> initialize [
 	super initialize.
 	instVarCount := 0.
 	nullPresentersInstVarNames := #()
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDynamicPresentersListBuilder >> instVarNames [
 	^ self instVarToModelObject collect: #key
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDynamicPresentersListBuilder >> instVarNamesAndPresenterNamesArray [
 	^ (self instVarToModelObject
 		inject: OrderedCollection new
@@ -138,45 +140,45 @@ SpDynamicPresentersListBuilder >> instVarNamesAndPresenterNamesArray [
 				yourself ]) asArray
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDynamicPresentersListBuilder >> instVarToModelObject [
 	^ instVarToModelObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDynamicPresentersListBuilder >> instVarToModelObjectDo: aBlock [
 	"Iterates on inst. var. names and model object and provides them as argument to the aBlock."
 	self instVarToModelObject do: [ :assoc |
 		aBlock value: assoc key value: assoc value ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicPresentersListBuilder >> layoutBuilder [
 	^ layoutBuilder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicPresentersListBuilder >> layoutBuilder: anObject [
 	layoutBuilder := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicPresentersListBuilder >> modelObjects [
 	^ instVarToModelObject collect: #value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicPresentersListBuilder >> modelObjects: aCollectionOfObjects [
 	instVarToModelObject := aCollectionOfObjects collect: [ :o |
 		self generateUniqueInstanceVariableName -> o ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDynamicPresentersListBuilder >> nullPresentersInstVarNames [
 	^ nullPresentersInstVarNames
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDynamicPresentersListBuilder >> nullPresentersInstVarNamesAndPresenterNamesArray [
 	^ (self nullPresentersInstVarNames
 		inject: OrderedCollection new
@@ -187,7 +189,7 @@ SpDynamicPresentersListBuilder >> nullPresentersInstVarNamesAndPresenterNamesArr
 				yourself ]) asArray
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDynamicPresentersListBuilder >> presenter: aPresenterClass configuredAs: twoArgumentsBlock [
 	"Configure the builder: 1. provide the presenter class to instantiate; and 2. specify how to configure it.
 	 - aPresenterClass is a the presenter class to instantiate for each model object.
@@ -195,17 +197,17 @@ SpDynamicPresentersListBuilder >> presenter: aPresenterClass configuredAs: twoAr
 	self presenterProvidedBy: [ :modelObject | aPresenterClass ] configuredAs: twoArgumentsBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicPresentersListBuilder >> presenterBlock [
 	^ presenterBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicPresentersListBuilder >> presenterBlock: anObject [
 	presenterBlock := anObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDynamicPresentersListBuilder >> presenterProvidedBy: blockReturningPresenter configuredAs: blockConfiguringThePresenter [
 	"Configure the builder: 1. provide a block returning presenter classes to instantiate; and 2. specify how to configure them.
 	 I do a job similar to #presenter:configuredAs: but I provide more flexibility since model objects can be shown as different presenters.

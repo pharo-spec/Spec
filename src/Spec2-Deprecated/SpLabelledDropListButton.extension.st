@@ -1,43 +1,43 @@
-Extension { #name : #SpLabelledDropListButton }
+Extension { #name : 'SpLabelledDropListButton' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> action: aBlock [
 	^self button action: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> button [
 	^ self dropListButton button
 ]
 
-{ #category : #'*Spec2-Deprecated' }
-SpLabelledDropListButton class >> defaultSpec [
+{ #category : '*Spec2-Deprecated' }
+SpLabelledDropListButton classSide >> defaultSpec [
 	<spec: #default>
 	^ super labelLeft 
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> displayBlock: aBlock [
 	^ self dropList display: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> dropList [
 	^ self dropListButton dropList
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> dropListButton [
 	^ subwidget
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> emptyList [
 	^self dropList emptyList
 ]
 
-{ #category : #'*Spec2-Deprecated' }
-SpLabelledDropListButton class >> example [
+{ #category : '*Spec2-Deprecated' }
+SpLabelledDropListButton classSide >> example [
 	<sampleInstance>
 	| example |
 	example := self abstractExample.
@@ -50,8 +50,8 @@ SpLabelledDropListButton class >> example [
 	^ example
 ]
 
-{ #category : #'*Spec2-Deprecated' }
-SpLabelledDropListButton class >> exampleUse [
+{ #category : '*Spec2-Deprecated' }
+SpLabelledDropListButton classSide >> exampleUse [
 	<sampleInstance>
 	| example |
 	example := self new.
@@ -65,62 +65,62 @@ SpLabelledDropListButton class >> exampleUse [
 	^ example
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> icon: anIcon [
 ^	self button icon: anIcon
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> initializePresenters [
 super initializePresenters.
 	self content: SpDropListButton.
 ]
 
-{ #category : #'*Spec2-Deprecated' }
-SpLabelledDropListButton class >> isDeprecated [
+{ #category : '*Spec2-Deprecated' }
+SpLabelledDropListButton classSide >> isDeprecated [
 	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
 
 	^ true
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> items: aList [
 	^self dropList items: aList
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> listSize [
 	^ self dropList listSize
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> resetSelection [
 ^	self dropList resetSelection
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> selectedItem [
 	^ self dropList selectedItem
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> setIndex: anIndex [
 	^ self dropList setIndex: anIndex
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> whenSelectedItemChanged: aBlock [
 	self dropList
 		whenSelectedItemChanged: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> whenSelectionChanged: aBlock [
 	self dropList
 		whenSelectionChanged: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropListButton >> whenSelectionIndexChanged: aBlock [
 	self dropList
 		whenSelectionIndexChanged: aBlock

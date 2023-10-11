@@ -2,30 +2,31 @@
 A dialog to present some simple information to users.
 "
 Class {
-	#name : #SpAlertDialog,
-	#superclass : #SpDialogPresenter,
+	#name : 'SpAlertDialog',
+	#superclass : 'SpDialogPresenter',
 	#instVars : [
 		'label',
 		'title',
 		'initialExtent',
 		'acceptLabel'
 	],
-	#category : #'Spec2-Dialogs'
+	#category : 'Spec2-Dialogs',
+	#package : 'Spec2-Dialogs'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAlertDialog class >> defaultAcceptLabel [
 
 	^ 'Ok'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAlertDialog class >> defaultExtent [
 
 	^ 450@120
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpAlertDialog class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -40,13 +41,13 @@ SpAlertDialog class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAlertDialog class >> documentFactoryMethodSelector [
 	
 	^ #newInform
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpAlertDialog class >> example [
 
 	self new
@@ -56,7 +57,7 @@ SpAlertDialog class >> example [
 		openDialog
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpAlertDialog class >> exampleModal [
 
 	self new
@@ -66,44 +67,44 @@ SpAlertDialog class >> exampleModal [
 		openModal
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAlertDialog >> acceptLabel [
 
 	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAlertDialog >> acceptLabel: aString [
 
 	acceptLabel := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAlertDialog >> defaultIcon [
 
 	^ self application iconNamed: #info
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAlertDialog >> extent [
 
 	^ initialExtent ifNil: [ self class defaultExtent ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAlertDialog >> extent: aPoint [
 
 	initialExtent := aPoint
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAlertDialog >> initialize [
 
 	super initialize.
 	self title: 'Inform'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAlertDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.
@@ -113,14 +114,14 @@ SpAlertDialog >> initializeDialogWindow: aDialogWindowPresenter [
 		
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAlertDialog >> initializePresenters [
 
 	image := self newImage image: self defaultIcon.
 	label := self newLabel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAlertDialog >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
@@ -128,19 +129,19 @@ SpAlertDialog >> initializeWindow: aWindowPresenter [
 		initialExtent: self extent
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAlertDialog >> label: aString [
 
 	label label: aString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAlertDialog >> title [
 
 	^ title
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAlertDialog >> title: aString [
 
 	title := aString

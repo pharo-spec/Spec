@@ -6,7 +6,9 @@ Spec is a framework in Pharo for describing user interfaces. It allows for the c
 I am a package whose responsibility is to define the commands that will be used by Spec.
 "
 Class {
-	#name : #ManifestSpec2Commands,
-	#superclass : #PackageManifest,
-	#category : #'Spec2-Commands-Manifest'
+	#name : 'ManifestSpec2Commands',
+	#superclass : 'PackageManifest',
+	#category : 'Spec2-Commands-Manifest',
+	#package : 'Spec2-Commands',
+	#tag : 'Manifest'
 }

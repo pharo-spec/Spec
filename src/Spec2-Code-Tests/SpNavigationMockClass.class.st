@@ -1,28 +1,29 @@
 Class {
-	#name : #SpNavigationMockClass,
-	#superclass : #Object,
+	#name : 'SpNavigationMockClass',
+	#superclass : 'Object',
 	#classVars : [
 		'SomeClassVariable'
 	],
 	#pools : [
 		'SpNavigationMockClassPool'
 	],
-	#category : #'Spec2-Code-Tests'
+	#category : 'Spec2-Code-Tests',
+	#package : 'Spec2-Code-Tests'
 }
 
-{ #category : #mock }
+{ #category : 'mock' }
 SpNavigationMockClass >> referenceToTheClassPoolVariable [
 
 	^ SomeClassPoolVariable
 ]
 
-{ #category : #mock }
+{ #category : 'mock' }
 SpNavigationMockClass >> referenceToTheClassVariable [
 
 	^ SomeClassVariable
 ]
 
-{ #category : #mock }
+{ #category : 'mock' }
 SpNavigationMockClass >> referenceToYourself [
 
 	^ SpNavigationMockClass

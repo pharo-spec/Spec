@@ -1,24 +1,26 @@
 Class {
-	#name : #SpChildrenAdded,
-	#superclass : #Announcement,
+	#name : 'SpChildrenAdded',
+	#superclass : 'Announcement',
 	#instVars : [
 		'parent',
 		'child'
 	],
-	#category : #'Spec2-Layout-Base'
+	#category : 'Spec2-Layout-Base',
+	#package : 'Spec2-Layout',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChildrenAdded >> child [
 	^ child
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChildrenAdded >> child: aPresenter [ 
 	child := aPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChildrenAdded >> parent: aPresenter [ 
 	parent := aPresenter
 ]

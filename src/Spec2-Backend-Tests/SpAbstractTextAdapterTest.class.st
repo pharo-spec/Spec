@@ -1,20 +1,22 @@
 Class {
-	#name : #SpAbstractTextAdapterTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpAbstractTextAdapterTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractTextAdapterTest class >> isAbstract [
 	^ self = SpAbstractTextAdapterTest
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractTextAdapterTest class >> shouldInheritSelectors [
 	^ true
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextAdapterTest >> testBeNotEditableAfterOpenWorks [
 
 	self openInstance.
@@ -24,7 +26,7 @@ SpAbstractTextAdapterTest >> testBeNotEditableAfterOpenWorks [
 	self assert: presenter text isEmpty	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextAdapterTest >> testBeNotEditableWorks [
 
 	presenter beNotEditable.
@@ -39,19 +41,19 @@ SpAbstractTextAdapterTest >> testBeNotEditableWorks [
 	self assert: presenter text isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextAdapterTest >> testChangePlaceholderTextUpdatesPresenter [
 	presenter placeholder: 'some text'.
 	self assert: self adapter placeHolderText equals: 'some text'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextAdapterTest >> testPresenterPlaceholderIsSetInWidget [
 	presenter placeholder: 'something'.
 	self assert: self adapter placeHolderText equals: 'something'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextAdapterTest >> testSelectionInterval [
 
 	presenter text: 'test'.
@@ -64,7 +66,7 @@ SpAbstractTextAdapterTest >> testSelectionInterval [
 		equals: (1 to: 4)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTextAdapterTest >> testSelectionIntervalNilUnselectsEverything [
 
 	presenter text: 'test'.

@@ -2,8 +2,8 @@
 A dialog to show a message and a progress bar.
 "
 Class {
-	#name : #SpProgressDialog,
-	#superclass : #SpDialogPresenter,
+	#name : 'SpProgressDialog',
+	#superclass : 'SpDialogPresenter',
 	#instVars : [
 		'title',
 		'label',
@@ -11,16 +11,17 @@ Class {
 		'maxValue',
 		'openAction'
 	],
-	#category : #'Spec2-Dialogs'
+	#category : 'Spec2-Dialogs',
+	#package : 'Spec2-Dialogs'
 }
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpProgressDialog class >> documentFactoryMethodSelector [
 	
 	^ #newProgress
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpProgressDialog class >> example [
 
 	self new
@@ -30,7 +31,7 @@ SpProgressDialog class >> example [
 		openDialog
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpProgressDialog class >> exampleInformUserDuring [
 
 	self new
@@ -43,7 +44,7 @@ SpProgressDialog class >> exampleInformUserDuring [
 				1 second wait ] ]
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpProgressDialog class >> exampleModal [
 
 	self new
@@ -53,13 +54,13 @@ SpProgressDialog class >> exampleModal [
 		openModal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpProgressDialog class >> extent [
 
 	^ 600@100
 ]
 
-{ #category : #'private - actions' }
+{ #category : 'private - actions' }
 SpProgressDialog >> afterOpenAction [
 		
 	openAction ifNil: [ ^ self ].
@@ -75,7 +76,7 @@ SpProgressDialog >> afterOpenAction [
 	] fork
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpProgressDialog >> informUser: aString during: aBlock [ 
 
 	self informUserDuring: [ :bar | 
@@ -83,7 +84,7 @@ SpProgressDialog >> informUser: aString during: aBlock [
 		aBlock value ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpProgressDialog >> informUserDuring: aBlock [
 	
 	openAction := aBlock.
@@ -92,7 +93,7 @@ SpProgressDialog >> informUserDuring: aBlock [
 		parentWindow takeKeyboardFocus ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpProgressDialog >> initialize [
 
 	super initialize.
@@ -100,7 +101,7 @@ SpProgressDialog >> initialize [
 	maxValue := 1.0
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpProgressDialog >> initializeDialogWindow: aDialogWindowPresenter [
 	
 	aDialogWindowPresenter whenOpenedDo: [ self afterOpenAction ].
@@ -110,7 +111,7 @@ SpProgressDialog >> initializeDialogWindow: aDialogWindowPresenter [
 		ifNil: [ aDialogWindowPresenter centered ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpProgressDialog >> initializePresenters [
 
 	self layout: (SpBoxLayout newTopToBottom
@@ -120,7 +121,7 @@ SpProgressDialog >> initializePresenters [
 		yourself)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpProgressDialog >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter 
@@ -128,19 +129,19 @@ SpProgressDialog >> initializeWindow: aWindowPresenter [
 		initialExtent: self class extent
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpProgressDialog >> label [
 
 	^ label label
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpProgressDialog >> label: aString [
 
 	label label: aString
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 SpProgressDialog >> max: aNumber [
 	"sets the maximum value. 
 	 Affects how #value: is calculated"
@@ -148,25 +149,25 @@ SpProgressDialog >> max: aNumber [
 	maxValue := aNumber asFloat
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpProgressDialog >> progress [
 
 	^ progressBar value
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpProgressDialog >> progress: aFraction [
 
 	progressBar fixedAt: aFraction
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpProgressDialog >> progressPercent: aNumber [
 
 	progressBar fixedPercentage: aNumber asFloat floor
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpProgressDialog >> reset [
 
 	self label: ''.
@@ -175,25 +176,25 @@ SpProgressDialog >> reset [
 	
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpProgressDialog >> title [
 
 	^ title
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpProgressDialog >> title: aString [
 
 	title := aString
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 SpProgressDialog >> value [
 
 	^ self progress
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 SpProgressDialog >> value: aFraction [
 
 	self progress: (aFraction / maxValue) asFloat

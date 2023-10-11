@@ -2,12 +2,14 @@
 I am a command allowing to remove a contact.
 "
 Class {
-	#name : #SpRemoveContactCommand,
-	#superclass : #SpContactBookCommand,
-	#category : #'Spec2-Commander2-ContactBook-Commands'
+	#name : 'SpRemoveContactCommand',
+	#superclass : 'SpContactBookCommand',
+	#category : 'Spec2-Commander2-ContactBook-Commands',
+	#package : 'Spec2-Commander2-ContactBook',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 SpRemoveContactCommand >> asSpecCommand [
 	"Here we define the additional information the command will need to know
 	 when used in the Spec framework.
@@ -18,18 +20,18 @@ SpRemoveContactCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 SpRemoveContactCommand >> canBeExecuted [
 	^ self context isContactSelected
 ]
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 SpRemoveContactCommand >> execute [
 	self contactBookPresenter removeContact: self selectedContact.
 	self contactBookPresenter updateView
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRemoveContactCommand >> initialize [
 	super initialize.
 	self

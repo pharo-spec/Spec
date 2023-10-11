@@ -1,6 +1,6 @@
-Extension { #name : #PRSuperscriptFormat }
+Extension { #name : 'PRSuperscriptFormat' }
 
-{ #category : #'*Spec2-Pillar' }
+{ #category : '*Spec2-Pillar' }
 PRSuperscriptFormat >> styleName [ 
 	^  #superScript
 ]

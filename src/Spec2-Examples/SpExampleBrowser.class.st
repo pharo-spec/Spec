@@ -2,8 +2,8 @@
 A simple browser to concentrate all examples in one place.
 "
 Class {
-	#name : #SpExampleBrowser,
-	#superclass : #SpPresenter,
+	#name : 'SpExampleBrowser',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'list',
 		'code',
@@ -11,10 +11,12 @@ Class {
 		'runButton',
 		'browseButton'
 	],
-	#category : #'Spec2-Examples-ExampleBrowser'
+	#category : 'Spec2-Examples-ExampleBrowser',
+	#package : 'Spec2-Examples',
+	#tag : 'ExampleBrowser'
 }
 
-{ #category : #'user interface' }
+{ #category : 'user interface' }
 SpExampleBrowser class >> menuExamplesOn: aBuilder [
 	"Add a custom menu item to the world menu"
 	<worldMenu>
@@ -28,20 +30,20 @@ SpExampleBrowser class >> menuExamplesOn: aBuilder [
 	aBuilder withSeparatorAfter
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpExampleBrowser class >> open [
 	<script>
 
 	^ self new open
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpExampleBrowser >> allPresentersWithExamples [
 
 	^ SpExampleNode allExampleClasses
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpExampleBrowser >> browseSelectedExample [
 	| entity |
 
@@ -49,7 +51,7 @@ SpExampleBrowser >> browseSelectedExample [
 	self systemNavigation browse: entity
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpExampleBrowser >> connectPresenters [
 
 	list transmitDo: [ :aNode |
@@ -58,7 +60,7 @@ SpExampleBrowser >> connectPresenters [
 		runButton isEnabled ifTrue: [ self runSelectedExample ] ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpExampleBrowser >> defaultLayout [
 
 	^ SpPanedLayout newHorizontal
@@ -80,7 +82,7 @@ SpExampleBrowser >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpExampleBrowser >> initializePresenters [
 
 	list := self newTree
@@ -109,7 +111,7 @@ SpExampleBrowser >> initializePresenters [
 	code beNotEditable
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpExampleBrowser >> initializeWindow: aWindow [
 
 	aWindow
@@ -117,7 +119,7 @@ SpExampleBrowser >> initializeWindow: aWindow [
 		initialExtent: 800@600
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpExampleBrowser >> listMenu [
 
 	^ self newMenu
@@ -130,7 +132,7 @@ SpExampleBrowser >> listMenu [
 			action: [ self runSelectedExample ] ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpExampleBrowser >> runSelectedExample [
 	| method |
 
@@ -140,7 +142,7 @@ SpExampleBrowser >> runSelectedExample [
 		arguments: #()
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpExampleBrowser >> updateClass: aClass [
 
 	self withWindowDo: [ :w | w title: ('Spec Examples: {1}' format: { aClass name  }) ].
@@ -149,7 +151,7 @@ SpExampleBrowser >> updateClass: aClass [
 	runButton enabled: false
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpExampleBrowser >> updateMethod: aMethod [
 
 	self withWindowDo: [ :w |
@@ -163,13 +165,13 @@ SpExampleBrowser >> updateMethod: aMethod [
 	runButton enabled: true
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpExampleBrowser >> updateNode: aNode [
 
 	aNode updateOn: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpExampleBrowser >> updatePresenter [
 
 	list items: self allPresentersWithExamples.

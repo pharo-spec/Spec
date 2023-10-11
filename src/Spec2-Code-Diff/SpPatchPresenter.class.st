@@ -1,22 +1,23 @@
 Class {
-	#name : #SpPatchPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpPatchPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'#patch => ObservableSlot',
 		'#interactionModel => ObservableSlot',
 		'#syntaxHighlightTheme',
 		'#marks'
 	],
-	#category : #'Spec2-Code-Diff'
+	#category : 'Spec2-Code-Diff',
+	#package : 'Spec2-Code-Diff'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpPatchPresenter class >> adapterName [
 
 	^ #PatchAdapter
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpPatchPresenter class >> defaultMarks [
 
 	^ {  
@@ -35,47 +36,47 @@ SpPatchPresenter class >> defaultMarks [
 	}
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPatchPresenter >> basicInteractionModel: anInteractionModel [
 
 	interactionModel := anInteractionModel
 ]
 
-{ #category : #'api - model' }
+{ #category : 'api - model' }
 SpPatchPresenter >> beForBehavior: aBehavior [
 	"used when browsing classes or alike"
 
 	self interactionModel: (SpCodeBehaviorInteractionModel on: aBehavior)
 ]
 
-{ #category : #'api - model' }
+{ #category : 'api - model' }
 SpPatchPresenter >> beForMethod: aMethod [
 	"used when browsing methods"
 
 	self interactionModel: (SpCodeMethodInteractionModel on: aMethod)
 ]
 
-{ #category : #'api - model' }
+{ #category : 'api - model' }
 SpPatchPresenter >> beForScripting [
 	"Use in playgrounds"
 
 	self interactionModel: SpCodeScriptingInteractionModel new
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPatchPresenter >> initialize [ 
 
 	super initialize.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPatchPresenter >> interactionModel: anInteractionModel [
 
 	anInteractionModel owner: self.
 	self basicInteractionModel: anInteractionModel
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPatchPresenter >> marks [
 
 	^ marks ifNil: [ 
@@ -83,7 +84,7 @@ SpPatchPresenter >> marks [
 		marks ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPatchPresenter >> marks: aCollectionOfMarks [
 
 	marks := aCollectionOfMarks 
@@ -91,19 +92,19 @@ SpPatchPresenter >> marks: aCollectionOfMarks [
 		as: SmallDictionary
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPatchPresenter >> model [
 
 	^ patch
 ]
 
-{ #category : #'api - model' }
+{ #category : 'api - model' }
 SpPatchPresenter >> patch: aPatchModel [
 
 	patch := aPatchModel
 ]
 
-{ #category : #'api - model' }
+{ #category : 'api - model' }
 SpPatchPresenter >> patchFrom: source to: destination [
 
 	self patch: (SpPatchModel 
@@ -111,7 +112,7 @@ SpPatchPresenter >> patchFrom: source to: destination [
 		to: destination)
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPatchPresenter >> syntaxHighlightTheme [
 	"The name of the syntax highlight theme to use (e.g. 'Blue', 'Vintage', 'Solarized', 'Tango'). 
 	 If not defined, the component will take the default value from the system."
@@ -119,14 +120,14 @@ SpPatchPresenter >> syntaxHighlightTheme [
 	^ syntaxHighlightTheme
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPatchPresenter >> syntaxHighlightTheme: aSymbol [
 	"The name of the syntax highlight theme to use (e.g. 'Blue', 'Vintage', 'Solarized', 'Tango')"
 
 	syntaxHighlightTheme := aSymbol
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpPatchPresenter >> whenPatchChangedDo: aBlock [
 
 	self property: #patch whenChangedDo: aBlock

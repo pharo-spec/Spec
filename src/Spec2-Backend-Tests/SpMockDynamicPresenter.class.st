@@ -1,14 +1,16 @@
 Class {
-	#name : #SpMockDynamicPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpMockDynamicPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'list',
 		'label'
 	],
-	#category : #'Spec2-Backend-Tests-Layout'
+	#category : 'Spec2-Backend-Tests-Layout',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpMockDynamicPresenter class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: #list;
@@ -16,13 +18,13 @@ SpMockDynamicPresenter class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMockDynamicPresenter class >> open [
 	<script>
 	^ self new open
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMockDynamicPresenter class >> openWithRebuildBeforeOpening [
 	<script>
 	^ self new
@@ -30,7 +32,7 @@ SpMockDynamicPresenter class >> openWithRebuildBeforeOpening [
 		open
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMockDynamicPresenter >> connectPresenters [
 
 	list whenSelectionChangedDo: [ :sel | 
@@ -40,7 +42,7 @@ SpMockDynamicPresenter >> connectPresenters [
 		self build ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMockDynamicPresenter >> initializePresenters [
 	list := self newList.
 	label := self newLabel.
@@ -48,12 +50,12 @@ SpMockDynamicPresenter >> initializePresenters [
 	list items: #(1 2 3)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMockDynamicPresenter >> label [
 	^ label
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 SpMockDynamicPresenter >> selectFirstElement [
 	list selectIndex: 1
 ]

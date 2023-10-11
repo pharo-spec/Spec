@@ -1,6 +1,6 @@
-Extension { #name : #PRCommentedLine }
+Extension { #name : 'PRCommentedLine' }
 
-{ #category : #'*Spec2-Pillar' }
+{ #category : '*Spec2-Pillar' }
 PRCommentedLine >> styleName [ 
 	^  #commentedLine
 ]

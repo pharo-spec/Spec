@@ -6,7 +6,9 @@ Spec is a framework in Pharo for describing user interfaces. It allows for the c
 I contain the code for a syntactic sugar of Spec allowing the developer to define the flow of its data using transmissions.
 "
 Class {
-	#name : #ManifestSpec2Transmission,
-	#superclass : #PackageManifest,
-	#category : #'Spec2-Transmission-Manifest'
+	#name : 'ManifestSpec2Transmission',
+	#superclass : 'PackageManifest',
+	#category : 'Spec2-Transmission-Manifest',
+	#package : 'Spec2-Transmission',
+	#tag : 'Manifest'
 }

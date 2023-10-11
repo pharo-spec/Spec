@@ -8,7 +8,9 @@ I contain a layer of compatibility for the Commander 2 project.
 Commander 2 is a project to create commands following the Command design pattern. With the compatibility layer you can add icons or shortcuts to your commands and integrate them easily in your presenters.
 "
 Class {
-	#name : #ManifestSpec2Commander2,
-	#superclass : #PackageManifest,
-	#category : #'Spec2-Commander2-Manifest'
+	#name : 'ManifestSpec2Commander2',
+	#superclass : 'PackageManifest',
+	#category : 'Spec2-Commander2-Manifest',
+	#package : 'Spec2-Commander2',
+	#tag : 'Manifest'
 }

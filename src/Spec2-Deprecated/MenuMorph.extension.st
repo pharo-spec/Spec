@@ -1,6 +1,6 @@
-Extension { #name : #MenuMorph }
+Extension { #name : 'MenuMorph' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 MenuMorph >> buildWithSpec [
 	^ self
 ]

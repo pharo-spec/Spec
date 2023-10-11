@@ -1,15 +1,17 @@
 Class {
-	#name : #SpAbstractListAdapterMultipleSelectionTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpAbstractListAdapterMultipleSelectionTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractListAdapterMultipleSelectionTest class >> isAbstract [
 	^ self == SpAbstractListAdapterMultipleSelectionTest
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractListAdapterMultipleSelectionTest >> initializeTestedInstance [
 
 	super initializeTestedInstance.
@@ -19,14 +21,14 @@ SpAbstractListAdapterMultipleSelectionTest >> initializeTestedInstance [
 		items: {10. 20. 30. 'aaa' asText}
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpAbstractListAdapterMultipleSelectionTest >> tearDown [
 
 	presenter delete.
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListAdapterMultipleSelectionTest >> testRightClickShowsMenu [
 	| menu |
 
@@ -36,7 +38,7 @@ SpAbstractListAdapterMultipleSelectionTest >> testRightClickShowsMenu [
 	self assert: menu shown
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpAbstractListAdapterMultipleSelectionTest >> testSelectManyIndexesKeepsAllSelected [
 	presenter selectIndex: 1.
 	presenter selectIndex: 2.
@@ -45,25 +47,25 @@ SpAbstractListAdapterMultipleSelectionTest >> testSelectManyIndexesKeepsAllSelec
 		equals: #(1 2)
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpAbstractListAdapterMultipleSelectionTest >> testSelectPresenterIndexOutsideRangeUnsetsSelectedIndexInWidget [
 	presenter selectIndex: 100.
 	self assert: self adapter selectedIndexes isEmpty
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpAbstractListAdapterMultipleSelectionTest >> testSelectPresenterIndexSetsSelectedIndexInWidget [
 	presenter selectIndex: 1.
 	self assert: (self adapter selectedIndexes includes: 1)
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpAbstractListAdapterMultipleSelectionTest >> testSelectPresenterItemSetsSelectedIndexInWidget [
 	presenter selectItem: 20.
 	self assert: (self adapter selectedIndexes includes: 2)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListAdapterMultipleSelectionTest >> testSelectPresenterWithScrollingMakeSelectedItemVisible [
 
 	| visibleItems |
@@ -87,7 +89,7 @@ SpAbstractListAdapterMultipleSelectionTest >> testSelectPresenterWithScrollingMa
 		(visibleItems includes: presenter selection selectedIndexes first)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListAdapterMultipleSelectionTest >> testSelectPresenterWithoutScrollingDoesNotScroll [
 
 	| visibleItems verticalAlignment |
@@ -114,7 +116,7 @@ SpAbstractListAdapterMultipleSelectionTest >> testSelectPresenterWithoutScrollin
 		equals: visibleItems
 ]
 
-{ #category : #'tests - widget-to-model' }
+{ #category : 'tests - widget-to-model' }
 SpAbstractListAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	counter := 0.
@@ -124,7 +126,7 @@ SpAbstractListAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelecti
 	self assert: counter equals: 1
 ]
 
-{ #category : #'tests - widget-to-model' }
+{ #category : 'tests - widget-to-model' }
 SpAbstractListAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedIndex |
 	presenter selection
@@ -133,20 +135,20 @@ SpAbstractListAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelecti
 	self assert: (selectedIndex includes: 1)
 ]
 
-{ #category : #'tests - widget-to-model' }
+{ #category : 'tests - widget-to-model' }
 SpAbstractListAdapterMultipleSelectionTest >> testStringColumnsShouldBeNonEditable [
 
 	self assert: (self adapter isNonEditableRow: 4 column: 1)
 ]
 
-{ #category : #'tests - widget-to-model' }
+{ #category : 'tests - widget-to-model' }
 SpAbstractListAdapterMultipleSelectionTest >> testSubscribeToEventDoesNotRaiseEvent [
 
 	presenter selection
 		whenChangedDo: [ :selection | self fail ].
 ]
 
-{ #category : #'tests - widget-to-model' }
+{ #category : 'tests - widget-to-model' }
 SpAbstractListAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesEmptySelectionChangeEvent [
 	| gotSelection |
 	self adapter selectIndex: 1.
@@ -156,7 +158,7 @@ SpAbstractListAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesEmpty
 	self assert: gotSelection isEmpty
 ]
 
-{ #category : #'tests - widget-to-model' }
+{ #category : 'tests - widget-to-model' }
 SpAbstractListAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	counter := 0.

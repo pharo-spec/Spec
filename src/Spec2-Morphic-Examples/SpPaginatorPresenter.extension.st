@@ -1,6 +1,6 @@
-Extension { #name : #SpPaginatorPresenter }
+Extension { #name : 'SpPaginatorPresenter' }
 
-{ #category : #'*Spec2-Morphic-Examples' }
+{ #category : '*Spec2-Morphic-Examples' }
 SpPaginatorPresenter class >> example [
 
 	^ SpPaginatorExample new open

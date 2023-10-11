@@ -1,10 +1,11 @@
 Class {
-	#name : #ScPagePresenter,
-	#superclass : #SpPresenter,
-	#category : #'Spec2-Contributor'
+	#name : 'ScPagePresenter',
+	#superclass : 'SpPresenter',
+	#category : 'Spec2-Contributor',
+	#package : 'Spec2-Contributor'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 ScPagePresenter >> isVisible [
 
 	^ true

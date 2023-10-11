@@ -1,15 +1,17 @@
 Class {
-	#name : #SpTestPresenterWithThreeRadioButtons,
-	#superclass : #SpPresenter,
+	#name : 'SpTestPresenterWithThreeRadioButtons',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'radio1',
 		'radio2',
 		'radio3'
 	],
-	#category : #'Spec2-Backend-Tests-TestClasses'
+	#category : 'Spec2-Backend-Tests-TestClasses',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'TestClasses'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpTestPresenterWithThreeRadioButtons class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom 
@@ -19,7 +21,7 @@ SpTestPresenterWithThreeRadioButtons class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTestPresenterWithThreeRadioButtons >> connectPresenters [ 
 
 	radio1 state: false.
@@ -28,7 +30,7 @@ SpTestPresenterWithThreeRadioButtons >> connectPresenters [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTestPresenterWithThreeRadioButtons >> initializePresenters [
 	
 	radio1 := self newRadioButton
@@ -46,17 +48,17 @@ SpTestPresenterWithThreeRadioButtons >> initializePresenters [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestPresenterWithThreeRadioButtons >> radio1 [
 	^ radio1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestPresenterWithThreeRadioButtons >> radio2 [
 	^ radio2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestPresenterWithThreeRadioButtons >> radio3 [
 	^ radio3
 ]

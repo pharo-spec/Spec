@@ -9,21 +9,23 @@ Finally, it can also define some operation to do after the transmission is compl
 Transmission are ''attached'' to a presenter (each concrete output port will override *method:SpOutputPort#attachTransmission:*).
 "
 Class {
-	#name : #SpOutputPort,
-	#superclass : #SpAbstractPort,
+	#name : 'SpOutputPort',
+	#superclass : 'SpAbstractPort',
 	#instVars : [
 		'transformations'
 	],
-	#category : #'Spec2-Transmission-Base'
+	#category : 'Spec2-Transmission-Base',
+	#package : 'Spec2-Transmission',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpOutputPort class >> isAbstract [
 
 	^ self name = #SpOutputPort
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 SpOutputPort >> , otherPort [
 
 	^ SpCompositeOutputPort new
@@ -32,7 +34,7 @@ SpOutputPort >> , otherPort [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpOutputPort >> applyTransform: anObject [
 	| transformedObject |
 
@@ -44,7 +46,7 @@ SpOutputPort >> applyTransform: anObject [
 	^ transformedObject 
 ]
 
-{ #category : #attaching }
+{ #category : 'attaching' }
 SpOutputPort >> attachTransmission: aTransmission [
 	"A transmission is no more than a definition of what to transmit to who. 
 	 By overriding this method, concrete output ports can listen the event they need to and 
@@ -70,19 +72,19 @@ SpOutputPort >> attachTransmission: aTransmission [
 				attachTransmission: aTransmission ]
 ]
 
-{ #category : #attaching }
+{ #category : 'attaching' }
 SpOutputPort >> attachTransmission: aTransmission to: aPresenter [
 		
 	self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpOutputPort >> isOutput [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOutputPort >> transform: aBlock [
 	"Sometimes you do not want to transmit to the outside the object you are using but a 
 	 transformation of it (for example, if you are using a list of wrapped elements instead the 
@@ -99,7 +101,7 @@ SpOutputPort >> transform: aBlock [
 	transformations := transformations copyWith: aBlock
 ]
 
-{ #category : #transmitting }
+{ #category : 'transmitting' }
 SpOutputPort >> transmitDo: aBlock [
 	
 	^ SpTransmission new
@@ -108,7 +110,7 @@ SpOutputPort >> transmitDo: aBlock [
 		apply
 ]
 
-{ #category : #transmitting }
+{ #category : 'transmitting' }
 SpOutputPort >> transmitDo: aBlock transform: transformBlock [
 	
 	^ SpTransmission new
@@ -118,7 +120,7 @@ SpOutputPort >> transmitDo: aBlock transform: transformBlock [
 		apply
 ]
 
-{ #category : #transmitting }
+{ #category : 'transmitting' }
 SpOutputPort >> transmitTo: aPort [
 
 	^ SpTransmission new
@@ -127,7 +129,7 @@ SpOutputPort >> transmitTo: aPort [
 		apply
 ]
 
-{ #category : #transmitting }
+{ #category : 'transmitting' }
 SpOutputPort >> transmitTo: aPort postTransmission: postValuable [
 
 	^ SpTransmission new
@@ -137,7 +139,7 @@ SpOutputPort >> transmitTo: aPort postTransmission: postValuable [
 		apply
 ]
 
-{ #category : #transmitting }
+{ #category : 'transmitting' }
 SpOutputPort >> transmitTo: aPort transform: aValuable [
 
 	^ SpTransmission new
@@ -147,7 +149,7 @@ SpOutputPort >> transmitTo: aPort transform: aValuable [
 		apply
 ]
 
-{ #category : #transmitting }
+{ #category : 'transmitting' }
 SpOutputPort >> transmitTo: aPort transform: aValuable postTransmission: postValuable [
 
 	^ SpTransmission new
@@ -158,7 +160,7 @@ SpOutputPort >> transmitTo: aPort transform: aValuable postTransmission: postVal
 		apply
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpOutputPort >> transmitWith: aTransmission value: transmitted [
 
 	aTransmission applyPreTransmissionWith: transmitted.

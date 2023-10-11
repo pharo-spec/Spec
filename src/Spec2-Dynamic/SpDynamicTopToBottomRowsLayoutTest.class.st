@@ -2,16 +2,18 @@
 I hold tests for DynamicTopToBottomRowsLayout.
 "
 Class {
-	#name : #SpDynamicTopToBottomRowsLayoutTest,
-	#superclass : #TestCase,
+	#name : 'SpDynamicTopToBottomRowsLayoutTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'presentersBuilder',
 		'layout'
 	],
-	#category : #'Spec2-Dynamic-Tests'
+	#category : 'Spec2-Dynamic-Tests',
+	#package : 'Spec2-Dynamic',
+	#tag : 'Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpDynamicTopToBottomRowsLayoutTest >> setUp [
 	super setUp.
 	presentersBuilder := SpDynamicPresentersListBuilder new
@@ -23,7 +25,7 @@ SpDynamicTopToBottomRowsLayoutTest >> setUp [
 	layout := SpDynamicTopToBottomRowsLayout rows: 7.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDynamicTopToBottomRowsLayoutTest >> testNullPresentersNeededFor [
 	self
 		assert: (layout nullPresentersNeededFor: presentersBuilder) equals: 0

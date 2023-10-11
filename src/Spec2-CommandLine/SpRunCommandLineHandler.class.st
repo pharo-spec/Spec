@@ -11,32 +11,33 @@ Example:
 	pharo Pharo.image run IDE
 "
 Class {
-	#name : #SpRunCommandLineHandler,
-	#superclass : #CommandLineHandler,
+	#name : 'SpRunCommandLineHandler',
+	#superclass : 'CommandLineHandler',
 	#instVars : [
 		'applicationName'
 	],
-	#category : #'Spec2-CommandLine'
+	#category : 'Spec2-CommandLine',
+	#package : 'Spec2-CommandLine'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRunCommandLineHandler class >> commandName [
 	^ 'run'
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 SpRunCommandLineHandler >> activate [
 	self activateHelpWithoutArguments ifTrue: [ ^ self ].
 	(self hasOption: 'list') ifTrue: [ ^ self listApplications ]. 
 	self runApplication
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 SpRunCommandLineHandler >> applicationName [
 	^ applicationName ifNil: [ applicationName := self argumentAt: 1 ]
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 SpRunCommandLineHandler >> listApplications [ 
 	| nl |
 	
@@ -50,7 +51,7 @@ SpRunCommandLineHandler >> listApplications [
 	self exitSuccess
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 SpRunCommandLineHandler >> runApplication [
 	| appClass |
 	

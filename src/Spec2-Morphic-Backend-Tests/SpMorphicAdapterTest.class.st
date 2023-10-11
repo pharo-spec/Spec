@@ -1,20 +1,21 @@
 Class {
-	#name : #SpMorphicAdapterTest,
-	#superclass : #ParametrizedTestCase,
+	#name : 'SpMorphicAdapterTest',
+	#superclass : 'ParametrizedTestCase',
 	#instVars : [
 		'presenter',
 		'specInitializationStrategy',
 		'window'
 	],
-	#category : #'Spec2-Morphic-Backend-Tests'
+	#category : 'Spec2-Morphic-Backend-Tests',
+	#package : 'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicAdapterTest class >> isAbstract [ 
 	^ self == SpMorphicAdapterTest
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicAdapterTest class >> testParameters [ 
 
 	^ ParametrizedTestMatrix new
@@ -22,55 +23,55 @@ SpMorphicAdapterTest class >> testParameters [
 		addOptions: { [ SpInitializationStrategy beforeTest ]. [ SpInitializationStrategy afterTest ] }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicAdapterTest >> adapter [
 
 	^ presenter adapter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicAdapterTest >> initializeTestedInstance [
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 SpMorphicAdapterTest >> openInstance [
 
 	window ifNil: [ window := presenter open ].
 	MorphicRenderLoop new doOneCycle.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicAdapterTest >> performTest [
 	
 	specInitializationStrategy beforeTest: self.
 	super performTest.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicAdapterTest >> presenter [
 	^ presenter
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpMorphicAdapterTest >> setUp [
 	super setUp.
 	presenter := self classToTest new.
 	self initializeTestedInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicAdapterTest >> specInitializationStrategy: aStrategy [
 	
 	specInitializationStrategy := aStrategy
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpMorphicAdapterTest >> tearDown [
 	window ifNotNil: [ window delete ].
 	super tearDown
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicAdapterTest >> widget [
 
 	"Force opening the spec instance here.

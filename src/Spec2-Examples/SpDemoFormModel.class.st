@@ -2,8 +2,8 @@
 Simple structure-like model for the form demo
 "
 Class {
-	#name : #SpDemoFormModel,
-	#superclass : #Object,
+	#name : 'SpDemoFormModel',
+	#superclass : 'Object',
 	#instVars : [
 		'name',
 		'surname',
@@ -16,20 +16,22 @@ Class {
 		'gender',
 		'selectedItems'
 	],
-	#category : #'Spec2-Examples-Demo-Forms'
+	#category : 'Spec2-Examples-Demo-Forms',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Forms'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> date [
 	^ date
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> date: anObject [
 	date := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> elements [
 	^ { 
 		'name' -> self name.
@@ -45,22 +47,22 @@ SpDemoFormModel >> elements [
 		}
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> gender [
 	^ gender
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> gender: anObject [
 	gender := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> genders [
 	^ #(male female)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoFormModel >> initialize [
 
 	super initialize.
@@ -78,88 +80,88 @@ SpDemoFormModel >> initialize [
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoFormModel >> items [
 
 	^ #('item 1' 'item 2' 'item 3' 'item 4' 'item 5')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> number1 [
 	^ number1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> number1: anObject [
 	number1 := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> number2 [
 	^ number2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> number2: anObject [
 	number2 := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> password [
 	^ password
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> password: anObject [
 	password := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> rememberMe [
 	^ rememberMe
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> rememberMe: anObject [
 	rememberMe := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> scale [
 	^ scale
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> scale: anObject [
 	scale := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> selectedItems [
 	^ selectedItems
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> selectedItems: anObject [
 	selectedItems := anObject asArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> surname [
 	^ surname
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormModel >> surname: anObject [
 	surname := anObject
 ]
