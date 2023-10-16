@@ -98,7 +98,6 @@ SpTransmissionComponentListExample >> initializePresenters [
 		sortingBlock: [ :a :b | a name < b name ];
 		items: RPackageOrganizer default packages.
 
-	"classesPresenter := self instantiate: SpTransmissionComponentPageExample on: self"
 	classesPresenter := self newComponentList.
 ]
 
