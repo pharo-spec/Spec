@@ -83,6 +83,14 @@ SpComponentListPresenter >> presenters: aSequenceableCollection [
 	^ self items: aSequenceableCollection
 ]
 
+{ #category : 'transmitting' }
+SpComponentListPresenter >> transmitTo: aPresenter transform: aValuable [
+	
+	^ self defaultOutputPort
+		transmitTo: aPresenter
+		transform: aValuable
+]
+
 { #category : 'api - events' }
 SpComponentListPresenter >> whenPresentersChangedDo: aBlock [
 	"Inform when the presenter list changed (See `SpComponentListPresenter>>#presenters:`.
