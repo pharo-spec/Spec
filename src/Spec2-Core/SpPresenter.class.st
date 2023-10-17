@@ -738,6 +738,11 @@ SpPresenter >> localeChanged [
 	
 ]
 
+{ #category : 'simple dialog helpers' }
+SpPresenter >> notify: aString [
+	self application notify: aString
+]
+
 { #category : 'private' }
 SpPresenter >> okToChange [
 
