@@ -11,7 +11,7 @@ Class {
 
 { #category : 'default' }
 SpBrowseMethodVersionsCommand class >> defaultDescription [ 
-	'Browse history of the method'
+	^'Browse history of the method' 
 ]
 
 { #category : 'default' }
