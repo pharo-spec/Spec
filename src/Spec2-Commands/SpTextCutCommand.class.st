@@ -1,21 +1,23 @@
 Class {
-	#name : #SpTextCutCommand,
-	#superclass : #SpTextEditionCommand,
-	#category : #'Spec2-Commands-Code'
+	#name : 'SpTextCutCommand',
+	#superclass : 'SpTextEditionCommand',
+	#category : 'Spec2-Commands-Code',
+	#package : 'Spec2-Commands',
+	#tag : 'Code'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpTextCutCommand class >> defaultIconName [
 	^#smallCut 
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpTextCutCommand class >> defaultName [
 
 	^ 'Cut'
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpTextCutCommand class >> defaultShortcutKey [
 
 	^ $x command mac 
@@ -23,7 +25,7 @@ SpTextCutCommand class >> defaultShortcutKey [
 		| $x control unix
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 SpTextCutCommand >> execute [
 
 	context doTextCut

@@ -1,27 +1,29 @@
 Class {
-	#name : #SpAcceptChangesCommand,
-	#superclass : #SpToolCommand,
-	#category : #'Spec2-Commands-Code'
+	#name : 'SpAcceptChangesCommand',
+	#superclass : 'SpToolCommand',
+	#category : 'Spec2-Commands-Code',
+	#package : 'Spec2-Commands',
+	#tag : 'Code'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpAcceptChangesCommand class >> defaultIconName [
 	^#smallOk 
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpAcceptChangesCommand class >> defaultName [
 
 	^ 'Accept'
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpAcceptChangesCommand class >> defaultShortcutKey [
 
 	^ $s command mac | $s ctrl win | $s ctrl unix
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 SpAcceptChangesCommand >> execute [
 
 	self context triggerSubmitAction
