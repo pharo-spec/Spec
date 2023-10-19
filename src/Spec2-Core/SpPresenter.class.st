@@ -84,8 +84,8 @@ SpMyPresenter >> initializeLayout
 Class {
 	#name : 'SpPresenter',
 	#superclass : 'SpAbstractPresenter',
-	#traits : 'SpTPresenterBuilder',
-	#classTraits : 'SpTPresenterBuilder classTrait',
+	#traits : 'SpTPresenterBuilder + SpTActionContainer',
+	#classTraits : 'SpTPresenterBuilder classTrait + SpTActionContainer classTrait',
 	#instVars : [
 		'#application',
 		'#focusOrder',
