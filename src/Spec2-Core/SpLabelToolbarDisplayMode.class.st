@@ -22,6 +22,12 @@ SpLabelToolbarDisplayMode >> extent [
 	^ (45@25) scaledByDisplayScaleFactor
 ]
 
+{ #category : 'testing' }
+SpLabelToolbarDisplayMode >> hasLabel [
+
+	^ true
+]
+
 { #category : 'accessing' }
 SpLabelToolbarDisplayMode >> label [
 

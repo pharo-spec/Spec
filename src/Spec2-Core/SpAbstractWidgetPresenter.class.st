@@ -121,13 +121,19 @@ SpAbstractWidgetPresenter class >> defaultLayout [
 
 { #category : 'documentation' }
 SpAbstractWidgetPresenter class >> documentExampleCode [
-
 	| exampleMethod |
-	exampleMethod := self class methods
-		                 detect: [ :method | method protocolName = self documentExamplesProtocol and: [ method selector = self documentExampleCodeSelector ] ]
-		                 ifNone: [ ^ nil ].
 
-	^ (exampleMethod sourceCode lines allButFirst reject: [ :each | each trimLeft beginsWith: '<' ]) asStringWithCr trimmed "Remove method name" "Remove pragmas"
+	exampleMethod := self class methods
+		detect: [ :method | 
+			method protocolName = self documentExamplesProtocol 
+			and: [ method selector = self documentExampleCodeSelector ] ]
+		ifNone: [ ^ nil ].
+			
+	^ (exampleMethod sourceCode lines 
+		allButFirst 	"Remove method name"
+		reject: [ :each | each trimLeft beginsWith: '<' ]) "Remove pragmas"
+		asStringWithCr
+		trimmed
 ]
 
 { #category : 'documentation' }
@@ -244,7 +250,7 @@ SpAbstractWidgetPresenter >> color: aColor [
 	^ color := aColor
 ]
 
-{ #category : 'initialization' }
+{ #category : 'TOREMOVE' }
 SpAbstractWidgetPresenter >> defaultColor [
 	^ self theme backgroundColor
 ]
@@ -315,11 +321,11 @@ SpAbstractWidgetPresenter >> initialize [
 	wantsDrop := [ :transfer | self dropEnabled ].
 	acceptDrop := [ :transfer | ].
 	self whenEnabledChangedDo: [ :value | 
-		self withAdapterDo: [ :w | w update: #enabled: with: { value } ] ].
+		self withAdapterDo: [ :anAdapter | anAdapter enabled: value ] ].
 	self property: #dragEnabled whenChangedDo: [ :value | 
-		self withWidgetDo: [ :w | w update: #dragEnabled: with: { value } ] ].
+		self withAdapterDo: [ :anAdapter | anAdapter dragEnabled: value  ] ].
 	self property: #dropEnabled whenChangedDo: [ :value | 
-		self withWidgetDo: [ :w | w update: #dropEnabled: with: { value } ] ]
+		self withAdapterDo: [ :anAdapter | anAdapter dropEnabled: value ] ]
 ]
 
 { #category : 'testing' }

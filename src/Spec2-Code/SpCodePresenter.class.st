@@ -111,8 +111,20 @@ SpCodePresenter class >> documentFactoryMethodSelector [
 SpCodePresenter class >> example [
 
 	^ self new
-		  text: 'some method: 42';
-		  open
+		text: '42 factorial';
+		open
+]
+
+{ #category : 'examples' }
+SpCodePresenter class >> exampleChangingSchemeAndHighlightTheme [
+	
+	"if you are using a dark theme, this will not look different (use 'codeLight' scheme to see
+	 something cool) ;)"
+	^ self new
+		syntaxHighlightTheme: 'Dark';
+		styleScheme: 'codeDark';
+		text: '42 factorial';
+		open
 ]
 
 { #category : 'examples' }
@@ -322,8 +334,8 @@ SpCodePresenter >> doBrowseImplementors [
 { #category : 'commands' }
 SpCodePresenter >> doBrowseMethodReferences [
 	"Browse references to Variables (Cmd-shift-n)"
-
 	| variableOrClassName variable usingMethods |
+
 	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
 
 	variable := self lookupEnvironment lookupVar: variableOrClassName.

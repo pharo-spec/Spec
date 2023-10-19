@@ -25,7 +25,7 @@ SpAbstractListAdapterSingleSelectionTest >> initializeTestedInstance [
 { #category : 'running' }
 SpAbstractListAdapterSingleSelectionTest >> tearDown [ 
 
-	presenter delete.
+	presenter ifNotNil: #delete.
 	super tearDown
 ]
 

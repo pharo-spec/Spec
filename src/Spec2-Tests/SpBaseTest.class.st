@@ -22,6 +22,12 @@ SpBaseTest >> adapter [
 	^ self subclassResponsibility
 ]
 
+{ #category : 'running' }
+SpBaseTest >> application [
+	
+	^ SpApplication new
+]
+
 { #category : 'assertions' }
 SpBaseTest >> assertEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlock [
 	
@@ -75,7 +81,7 @@ SpBaseTest >> presenter [
 { #category : 'running' }
 SpBaseTest >> setUp [
 	super setUp.
-	presenter := self classToTest new.
+	presenter := self classToTest newApplication: self application.
 	self initializeTestedInstance
 ]
 

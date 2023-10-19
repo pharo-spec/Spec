@@ -8,14 +8,12 @@ Class {
 	#traits : 'SpTContextMenu',
 	#classTraits : 'SpTContextMenu classTrait',
 	#instVars : [
-		'#hasUnacceptedEdits => ObservableSlot',
 		'#selection => ObservableSlot',
-		'#wantsVisualFeedback => ObservableSlot',
-		'#askBeforeDiscardingEdits => ObservableSlot',
 		'#text => ObservableSlot',
 		'#actionToPerform => ObservableSlot',
 		'#readSelection => ObservableSlot',
-		'#placeholder => ObservableSlot'
+		'#placeholder => ObservableSlot',
+		'#editable => ObservableSlot'
 	],
 	#category : 'Spec2-Core-Widgets',
 	#package : 'Spec2-Core',
@@ -35,14 +33,18 @@ SpAbstractTextPresenter >> acceptText: aString [
 	self property: #text rawValue: aString
 ]
 
-{ #category : 'TOREMOVE' }
-SpAbstractTextPresenter >> askBeforeDiscardingEdits [
-	^ askBeforeDiscardingEdits
+{ #category : 'api' }
+SpAbstractTextPresenter >> beEditable [
+	"Allow edition (deny readonly)."
+
+	self editable: true
 ]
 
-{ #category : 'TOREMOVE' }
-SpAbstractTextPresenter >> askBeforeDiscardingEdits: aBoolean [
-	askBeforeDiscardingEdits := aBoolean
+{ #category : 'api' }
+SpAbstractTextPresenter >> beNotEditable [
+	"Set content text as not editable (readonly)"
+
+	self editable: false
 ]
 
 { #category : 'api' }
@@ -101,27 +103,6 @@ SpAbstractTextPresenter >> hasEditingConflicts [
 		ifNotNil: [:w | w hasEditingConflicts ]
 ]
 
-{ #category : 'TOREMOVE' }
-SpAbstractTextPresenter >> hasEditingConflicts: aBoolean [
-	"Set if the text zone has editing conflicts"
-	
-	^ self changed: #hasEditingConflicts: with: { aBoolean }
-]
-
-{ #category : 'TOREMOVE' }
-SpAbstractTextPresenter >> hasUnacceptedEdits [
-	"Return if the text zone has unaccepted edits (orange corner)"
-
-	^ hasUnacceptedEdits
-]
-
-{ #category : 'TOREMOVE' }
-SpAbstractTextPresenter >> hasUnacceptedEdits: aBoolean [
-	"Return if the text zone has unaccepted edits (orange corner)"
-
-	hasUnacceptedEdits := aBoolean
-]
-
 { #category : 'initialization' }
 SpAbstractTextPresenter >> initialize [
 	super initialize.
@@ -130,12 +111,10 @@ SpAbstractTextPresenter >> initialize [
 	placeholder := ''.
 	actionToPerform := [ :txt |  ].
 	readSelection := [ selection ].
-	hasUnacceptedEdits := false.
 	selection := 1 to: 0.
-	wantsVisualFeedback := true.
-	askBeforeDiscardingEdits := true.
 
-	self registerEvents
+	self registerEvents.
+	self registerActions
 ]
 
 { #category : 'api' }
@@ -240,14 +219,21 @@ SpAbstractTextPresenter >> readSelectionBlock: aBlock [
 ]
 
 { #category : 'initialization' }
+SpAbstractTextPresenter >> registerActions [
+
+	self addActionWith: [ :action | action 
+		beShortcutOnly;
+		shortcut: $t ctrl unix | $t ctrl win | $t command mac;
+		action: [ self showContextMenu ] ]
+]
+
+{ #category : 'initialization' }
 SpAbstractTextPresenter >> registerEvents [
 
 	self whenTextChangedDo: [ self changed: #getText ].
-	self whenReadSelectionIsChangedDo: [ self changed: #readSelection ].
-	self property: #hasUnacceptedEdits whenChangedDo: [ :bool | self changed: #setHasUnacceptedEdits: with: {bool} ].
-	self property: #selection whenChangedDo: [ :block | self changed: #setSelectionFromModel: with: {block value} ].
-	self property: #wantsVisualFeedback whenChangedDo: [ :bool | self changed: #changed with: #() ].
-	self property: #askBeforeDiscardingEdits whenChangedDo: [ :bool | self changed: #askBeforeDiscardingEdits: with: {bool} ]
+	self 
+		property: #selection 
+		whenChangedDo: [ :aSelection | self updateSelectionFromModel: aSelection ]
 ]
 
 { #category : 'api - selection' }
@@ -340,14 +326,26 @@ SpAbstractTextPresenter >> typeByChar: aString [
 		self text: (self text ifNil: [ '' ]), (each asString) ]
 ]
 
-{ #category : 'TOREMOVE' }
-SpAbstractTextPresenter >> wantsVisualFeedback [
-	^ wantsVisualFeedback
+{ #category : 'api - selection' }
+SpAbstractTextPresenter >> unselectAll [
+	"Unselect text"
+	
+	self selectionInterval: (1 to: 0)
+]
+
+{ #category : 'private' }
+SpAbstractTextPresenter >> updateSelectionFromModel: aSelection [
+
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter setSelectionFromModel: aSelection ]
 ]
 
 { #category : 'TOREMOVE' }
-SpAbstractTextPresenter >> wantsVisualFeedback: aBoolean [
-	wantsVisualFeedback := aBoolean
+SpAbstractTextPresenter >> whenAboutToStyleChangedDo: aBlock [
+	"Set a block to perform when the about to style block changed"
+	
+	self whenAboutToStyleBlockChanged: [:block :old :announcement :anAnnouncer | 
+		aBlock cull: (block value) cull: old cull: announcement cull: anAnnouncer ]
 ]
 
 { #category : 'TOREMOVE' }
@@ -355,6 +353,17 @@ SpAbstractTextPresenter >> whenAcceptBlockChangedDo: aBlock [
 	"Set a block to perform when the accept block changed"
 	
 	self property: #actionToPerform whenChangedDo: aBlock
+]
+
+{ #category : 'api - events' }
+SpAbstractTextPresenter >> whenEditableChangedDo: aBlock [
+	"Inform when editable property has changed. 
+	 `aBlock` has three optional arguments: 
+	 - new value
+	 - old value
+	 - the announcement triggering this action"
+
+	self property: #editable whenChangedDo: aBlock
 ]
 
 { #category : 'api - events' }

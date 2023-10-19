@@ -24,6 +24,18 @@ SpIconAndLabelToolbarDisplayMode >> extent [
 	^ (45@45) scaledByDisplayScaleFactor
 ]
 
+{ #category : 'testing' }
+SpIconAndLabelToolbarDisplayMode >> hasIcon [
+
+	^ true
+]
+
+{ #category : 'testing' }
+SpIconAndLabelToolbarDisplayMode >> hasLabel [
+
+	^ true
+]
+
 { #category : 'printing' }
 SpIconAndLabelToolbarDisplayMode >> label [
 

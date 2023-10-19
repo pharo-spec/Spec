@@ -40,23 +40,9 @@ SpMorphicListAdapter >> backgroundColorFor: anItem at: index [
 SpMorphicListAdapter >> buildWidget [
 	| datasource |
 	
-	datasource := SpMorphicListDataSource new.
+	datasource := self newDataSource.
 	datasource model: self model.
-	widget := SpFTTableMorph new
-		dataSource: datasource;
-		hideColumnHeaders;
-		enableSearch;
-		beResizable;
-		columns: { self newListColumn };
-		setMultipleSelection: self model isMultipleSelection;
-		dragEnabled: self dragEnabled;
-		dropEnabled: self dropEnabled;
-		setBalloonText: self help;
-		hResizing: #spaceFill;
-		vResizing: #spaceFill;
-		onAnnouncement: FTSelectionChanged send: #selectionChanged: to: self;
-		onAnnouncement: FTStrongSelectionChanged send: #strongSelectionChanged: to: self;
-		yourself.
+	widget := self newTableWith: datasource.
 
 	self presenter whenModelChangedDo: [ widget refresh ].
 	self presenter whenSelectionChangedDo: [ self refreshWidgetSelection ].
@@ -64,10 +50,8 @@ SpMorphicListAdapter >> buildWidget [
 	self presenter whenSearchEnabledChangedDo: [ self updateSearch ].
 	self refreshWidgetHeaderTitle.
 	self refreshWidgetSelection.
-	self presenter whenItemFilterBlockChangedDo: [ :block | self updateItemFilterBlockWith: block ].
-	self updateItemFilterBlockWith: self itemFilter.
-
 	self configureScrolling.
+
 	widget 
 		bindKeyCombination: Character space 
 		toAction: [ self model clickOnSelectedItem ].
@@ -114,6 +98,12 @@ SpMorphicListAdapter >> listSize [
 ]
 
 { #category : 'factory' }
+SpMorphicListAdapter >> newDataSource [
+	
+	^ SpMorphicListDataSource new
+]
+
+{ #category : 'factory' }
 SpMorphicListAdapter >> newListColumn [
 	| column |
 	
@@ -136,6 +126,26 @@ SpMorphicListAdapter >> newListColumn [
 	
 	^ SpMorphicTableColumn new 
 		model: column;
+		yourself
+]
+
+{ #category : 'factory' }
+SpMorphicListAdapter >> newTableWith: datasource [
+	
+	^ SpFTTableMorph new
+		dataSource: datasource;
+		hideColumnHeaders;
+		enableSearch;
+		beResizable;
+		columns: { self newListColumn };
+		setMultipleSelection: self model isMultipleSelection;
+		dragEnabled: self dragEnabled;
+		dropEnabled: self dropEnabled;
+		setBalloonText: self help;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		onAnnouncement: FTSelectionChanged send: #selectionChanged: to: self;
+		onAnnouncement: FTStrongSelectionChanged send: #strongSelectionChanged: to: self;
 		yourself
 ]
 

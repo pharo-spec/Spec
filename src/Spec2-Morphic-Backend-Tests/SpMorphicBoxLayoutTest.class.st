@@ -229,11 +229,13 @@ SpMorphicBoxLayoutTest >> testNestedLayoutModifiesHeightOfTopLayout [
 
 { #category : 'tests' }
 SpMorphicBoxLayoutTest >> testPresenterTakesRightHeight [
-
 	| presenter l1 l2 |
-	(presenter := SpPresenter new) layout: (SpBoxLayout newTopToBottom
-			 add: (l1 := presenter newLabel label: 'Line 1') expand: false;
-			 add: (l2 := presenter newLabel label: 'Line 2') expand: false).
+	
+	(presenter := SpPresenter new) 
+		layout: (SpBoxLayout newTopToBottom
+			add: (l1 := presenter newLabel label: 'Line 1') expand: false;
+			add: (l2 := presenter newLabel label: 'Line 2') expand: false;
+			yourself).
 
 	presenter build.
 

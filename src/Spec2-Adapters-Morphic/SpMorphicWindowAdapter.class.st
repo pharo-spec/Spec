@@ -17,6 +17,13 @@ SpMorphicWindowAdapter >> aboutTitle [
 		ifFalse: [m class name]].
 ]
 
+{ #category : 'spec protocol' }
+SpMorphicWindowAdapter >> activate [
+
+	self widgetDo: [ :w |
+		w activate ]
+]
+
 { #category : 'initialization' }
 SpMorphicWindowAdapter >> addFocusRotationKeyBindings [
 	"Windows should not process keybindings (because then the active widget will not get 

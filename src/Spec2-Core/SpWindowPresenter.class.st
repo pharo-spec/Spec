@@ -91,6 +91,12 @@ SpWindowPresenter >> aboutTitle [
 	^ self presenter toolName
 ]
 
+{ #category : 'api' }
+SpWindowPresenter >> activate [
+
+	self withAdapterDo: [ :anAdapter | anAdapter activate ]
+]
+
 { #category : 'private - building' }
 SpWindowPresenter >> addPresenterIn: widget withSpecLayout: aSpec [
 	
@@ -670,7 +676,10 @@ SpWindowPresenter >> whenResizingDo: aBlock [
 	"Inform when window is resizing. 
 	 `aBlock` receives one optional argument (an instance of the announcement `SpWindowResizing`)"
 
-	self announcer when: SpWindowResizing do: aBlock for: aBlock receiver
+	self announcer 
+		when: SpWindowResizing 
+		do: aBlock 
+		for: aBlock receiver
 ]
 
 { #category : 'api - events' }

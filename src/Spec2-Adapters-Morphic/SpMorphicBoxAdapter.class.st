@@ -231,10 +231,10 @@ SpMorphicBoxAdapter >> newVertical [
 
 	^ (self newPanelWith: self newPanelLayout)
 		listDirection: #topToBottom;
-		addMorphBack: ((startPanel := self newPanel)
+		addMorphBack: ((startPanel := self newPanelWith: SpMorphicBoxChildLayout new)
 			listDirection: #topToBottom;
 			yourself);
-		addMorphBack: ((endPanel := self newPanel)
+		addMorphBack: ((endPanel := self newPanelWith: SpMorphicBoxChildLayout new)
 			listDirection: #topToBottom;
 			vResizing: #shrinkWrap;
 			height: 0;

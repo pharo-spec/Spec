@@ -12,6 +12,12 @@ SpRubTextFieldArea >> defaultBounds [
 	^ super defaultBounds topLeft extent: 3@3
 ]
 
+{ #category : #geometry }
+SpRubTextFieldArea >> height [
+
+	^ super height max: 1
+]
+
 { #category : 'accessing' }
 SpRubTextFieldArea >> updateMarginsWithHeight: aNumber [
 	| minHeight newMargin |

@@ -8,7 +8,6 @@ Class {
 	#instVars : [
 		'#entryCompletion => ObservableSlot',
 		'#isPassword => ObservableSlot',
-		'#editable => ObservableSlot',
 		'#maxLength => ObservableSlot'
 	],
 	#category : 'Spec2-Core-Widgets',
@@ -20,20 +19,6 @@ Class {
 SpTextInputFieldPresenter class >> adapterName [
 
 	^ #TextInputFieldAdapter
-]
-
-{ #category : 'api' }
-SpTextInputFieldPresenter >> beEditable [
-	"Allow edition (deny readonly)."
-
-	self editable: true
-]
-
-{ #category : 'api' }
-SpTextInputFieldPresenter >> beNotEditable [
-	"Set content text as not editable (readonly)"
-
-	self editable: false
 ]
 
 { #category : 'api' }
@@ -54,12 +39,6 @@ SpTextInputFieldPresenter >> beText [
 	"Set this input text as a text editor."
 
 	self bePassword: false
-]
-
-{ #category : 'private' }
-SpTextInputFieldPresenter >> editable: aBoolean [
-
-	editable := aBoolean
 ]
 
 { #category : 'api' }
@@ -122,6 +101,16 @@ SpTextInputFieldPresenter >> removeEntryCompletion [
 	self entryCompletion: nil
 ]
 
+{ #category : #'api - focus' }
+SpTextInputFieldPresenter >> takeKeyboardFocusWithoutSelecting [
+	"Causes this presenter to have the keyboard focus for the window it's inside. 
+	 Unlike `takeKeyboardFocus` this method will not select the text inside."
+
+	self flag: #MorphicMissing.
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter takeKeyboardFocusWithoutSelecting ]
+]
+
 { #category : 'api' }
 SpTextInputFieldPresenter >> text: aString [
 	"Set input text contents."
@@ -138,17 +127,6 @@ SpTextInputFieldPresenter >> updateText [
 	"Update text but applying lenght constraints"
 	
 	self text: self text.
-]
-
-{ #category : 'api - events' }
-SpTextInputFieldPresenter >> whenEditableChangedDo: aBlock [
-	"Inform when editable property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
-	self property: #editable whenChangedDo: aBlock
 ]
 
 { #category : 'api - events' }

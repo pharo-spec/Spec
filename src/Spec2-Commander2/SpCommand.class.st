@@ -104,13 +104,26 @@ SpCommand >> innerCommand [
 	^ innerCommand
 ]
 
+{ #category : 'testing' }
+SpCommand >> isEnabled [
+
+	^ self canBeExecuted
+]
+
+{ #category : 'testing' }
+SpCommand >> isVisible [
+
+	^ true
+]
+
 { #category : 'accessing' }
 SpCommand >> presenter [
 	^ presenter
 ]
 
 { #category : 'updating' }
-SpCommand >> updateEnableStatus [ 
+SpCommand >> updateEnableStatus [
+
  	self presenter ifNil: [ ^ self ].   
 	self presenter enabled: self canBeExecuted
 ]

@@ -24,7 +24,7 @@ SpAbstractListAdapterMultipleSelectionTest >> initializeTestedInstance [
 { #category : 'running' }
 SpAbstractListAdapterMultipleSelectionTest >> tearDown [
 
-	presenter delete.
+	presenter ifNotNil: #delete.
 	super tearDown
 ]
 
