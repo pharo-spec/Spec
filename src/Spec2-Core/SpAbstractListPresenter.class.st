@@ -4,8 +4,8 @@ A base for list presenters, it defines basic functionality common to all lists.
 Class {
 	#name : 'SpAbstractListPresenter',
 	#superclass : 'SpAbstractWidgetPresenter',
-	#traits : 'SpTHaveWrappingScrollBars + SpTContextMenu + SpTAlignableColumn',
-	#classTraits : 'SpTHaveWrappingScrollBars classTrait + SpTContextMenu classTrait + SpTAlignableColumn classTrait',
+	#traits : 'SpTHaveWrappingScrollBars + SpTContextMenu + SpTAlignableColumn + SpTSelectionMode',
+	#classTraits : 'SpTHaveWrappingScrollBars classTrait + SpTContextMenu classTrait + SpTAlignableColumn classTrait + SpTSelectionMode classTrait',
 	#instVars : [
 		'#activationBlock',
 		'#activateOnSingleClick',
