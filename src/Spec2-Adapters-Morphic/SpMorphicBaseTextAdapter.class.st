@@ -128,8 +128,7 @@ SpMorphicBaseTextAdapter >> getText [
 
 { #category : 'spec protocol' }
 SpMorphicBaseTextAdapter >> hasUnacceptedEdits: aBoolean [
-
-	self model hasUnacceptedEdits: aBoolean
+	"not used"
 ]
 
 { #category : 'initialization' }
