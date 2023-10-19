@@ -12,7 +12,7 @@ SpRubTextFieldArea >> defaultBounds [
 	^ super defaultBounds topLeft extent: 3@3
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 SpRubTextFieldArea >> height [
 
 	^ super height max: 1

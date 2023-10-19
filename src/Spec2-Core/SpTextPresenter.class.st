@@ -161,7 +161,7 @@ SpTextPresenter >> editionCommandsGroup [
 		toSetContext: self defaultCommandsContext
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTextPresenter >> editionContextKeyBindings [
 
 	^ self editionCommandsGroup asKMCategory

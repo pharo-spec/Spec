@@ -49,6 +49,12 @@ SpApplicationBackend >> defaultConfigurationFor: anApplication [
 	^ self subclassResponsibility
 ]
 
+{ #category : 'ui - dialogs' }
+SpApplicationBackend >> inform: aString [
+
+	self subclassResponsibility
+]
+
 { #category : 'initialization' }
 SpApplicationBackend >> initialize [
 

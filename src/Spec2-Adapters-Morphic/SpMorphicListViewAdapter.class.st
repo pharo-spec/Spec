@@ -2,12 +2,14 @@
 A morphic adapter for `SpListViewPresenter`
 "
 Class {
-	#name : #SpMorphicListViewAdapter,
-	#superclass : #SpMorphicListAdapter,
-	#category : #'Spec2-Adapters-Morphic-ListView'
+	#name : 'SpMorphicListViewAdapter',
+	#superclass : 'SpMorphicListAdapter',
+	#category : 'Spec2-Adapters-Morphic-ListView',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'ListView'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicListViewAdapter >> buildWidget [
 	| datasource |
 	
@@ -25,13 +27,13 @@ SpMorphicListViewAdapter >> buildWidget [
 	^ widget
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicListViewAdapter >> newDataSource [
 
 	^ SpMorphicListViewDataSource new
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicListViewAdapter >> newTableWith: datasource [
 	
 	^ SpFTTableMorph new

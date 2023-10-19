@@ -101,7 +101,7 @@ SpTextInputFieldPresenter >> removeEntryCompletion [
 	self entryCompletion: nil
 ]
 
-{ #category : #'api - focus' }
+{ #category : 'api - focus' }
 SpTextInputFieldPresenter >> takeKeyboardFocusWithoutSelecting [
 	"Causes this presenter to have the keyboard focus for the window it's inside. 
 	 Unlike `takeKeyboardFocus` this method will not select the text inside."

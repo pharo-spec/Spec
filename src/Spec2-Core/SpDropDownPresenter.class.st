@@ -1,6 +1,6 @@
 Class {
-	#name : #SpDropDownPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpDropDownPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'setupAction',
 		'bindAction',
@@ -8,34 +8,36 @@ Class {
 		'display',
 		'selection'
 	],
-	#category : #'Spec2-Core-Widgets-ListView'
+	#category : 'Spec2-Core-Widgets-ListView',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-ListView'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDropDownPresenter class >> adapterName [
 
 	^ #DropDownAdapter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropDownPresenter >> bind: aBlock [
 
 	bindAction := aBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropDownPresenter >> bindAction [
 
 	^ bindAction
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropDownPresenter >> display [
 
 	^ display
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropDownPresenter >> display: aBlock [
 	"Set the block that will be applied on the selected list item. 
 	 The result of the block will be used to display the item on the screen, 
@@ -46,7 +48,7 @@ SpDropDownPresenter >> display: aBlock [
 	display := aBlock
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDropDownPresenter >> initialize [
 	
 	super initialize.
@@ -56,7 +58,7 @@ SpDropDownPresenter >> initialize [
 	self display: [ :anObject | anObject asString ]	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDropDownPresenter >> initializeItemFactory [
 	"Just set up the defaults (to ensure we have a working list at any moment)"
 	
@@ -64,14 +66,14 @@ SpDropDownPresenter >> initializeItemFactory [
 	self bind: [ :aPresenter :anObject | aPresenter label: anObject asString ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropDownPresenter >> items [
 	"Answer the items of the list"
 	
 	^ self model collection
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropDownPresenter >> items: aSequenceableCollection [
 	"Set the items of the list.
 	`aSequenceableCollection` is a collection of your domain specific items.
@@ -80,7 +82,7 @@ SpDropDownPresenter >> items: aSequenceableCollection [
 	model collection: aSequenceableCollection
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropDownPresenter >> model [
 	"Answer the model for this list. 
 	 It is tipically, an instance of `SpCollectionListModel`."
@@ -88,7 +90,7 @@ SpDropDownPresenter >> model [
 	^ model
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropDownPresenter >> model: aModel [
 	"Sets the model used to feed the list presenter with elements of the list. 
 	 It is tipically an instance of `SpCollectionListModel`."
@@ -98,13 +100,13 @@ SpDropDownPresenter >> model: aModel [
 		self withAdapterDo: [ :anAdapter | anAdapter refreshList ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropDownPresenter >> newEmptyModel [
 
 	^ SpCollectionListModel on: #()
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpDropDownPresenter >> selectFirst [
 	"Select first element in list. 
 	 Useful to avoid selecting by index."
@@ -112,7 +114,7 @@ SpDropDownPresenter >> selectFirst [
 	^ self selectIndex: 1
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpDropDownPresenter >> selectIndex: anInteger [ 
 	"Select item at position `anInteger`.
 	 Selection will not scroll the presenter view to show selected element."
@@ -120,7 +122,7 @@ SpDropDownPresenter >> selectIndex: anInteger [
 	self selection selectIndex: anInteger
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpDropDownPresenter >> selectItem: anItem [ 
 	"Select `anItem` if it is included in model list.
 	 It does not scrolls to selected element."
@@ -128,21 +130,21 @@ SpDropDownPresenter >> selectItem: anItem [
 	self selection selectItem: anItem
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpDropDownPresenter >> selectedIndex [
 	"Return selected index."
 
 	^ self selection selectedIndex
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpDropDownPresenter >> selectedItem [
 	"Return selected item."
 
 	^ self selection selectedItem
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpDropDownPresenter >> selection [
 	"Answer the selection object (an instance of `SpSingleSelectionMode` or `SpMultipleSelectionMode`).
 	 This is not the item selected, but the selection container (it may contain one or many selected 
@@ -151,19 +153,19 @@ SpDropDownPresenter >> selection [
 	^ selection
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropDownPresenter >> setup: aBlock [
 
 	setupAction := aBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropDownPresenter >> setupAction [
 
 	^ setupAction
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpDropDownPresenter >> whenSelectedDo: aBlock [
 	"Inform when an item was selected (a real object in the items list).
 	 `aBlock` receives one argument (the new selected element)"
@@ -173,7 +175,7 @@ SpDropDownPresenter >> whenSelectedDo: aBlock [
 			ifNotNil: [ :item | aBlock value: item ] ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpDropDownPresenter >> whenSelectedItemChangedDo: aBlock [
 	"Inform when the selected item is changed.
 	 `aBlock` receive one optional argument: the selected item (can be nil)"
@@ -181,7 +183,7 @@ SpDropDownPresenter >> whenSelectedItemChangedDo: aBlock [
 	self selection whenChangedDo: [ aBlock cull: self selectedItem ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpDropDownPresenter >> whenSelectionChangedDo: aBlock [
 	"Inform when there are changes in selection.
 	This method works for all selection modes (single, multiple and no selection).

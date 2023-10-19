@@ -1,6 +1,6 @@
 Class {
-	#name : #SpEasyListRowPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpEasyListRowPresenter',
+	#superclass : 'SpPresenter',
 	#traits : 'SpTModel',
 	#classTraits : 'SpTModel classTrait',
 	#instVars : [
@@ -8,16 +8,18 @@ Class {
 		'iconPresenter',
 		'textPresenter'
 	],
-	#category : #'Spec2-Core-Widgets-ListView'
+	#category : 'Spec2-Core-Widgets-ListView',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-ListView'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpEasyListRowPresenter >> defaultLayout [
 
 	^ self textLayout
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpEasyListRowPresenter >> iconLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -27,20 +29,20 @@ SpEasyListRowPresenter >> iconLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpEasyListRowPresenter >> initializePresenters [
 
 	iconPresenter := self newImage.
 	textPresenter := self newLabel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpEasyListRowPresenter >> listView [
 
 	^ listView
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpEasyListRowPresenter >> listView: aListView [
 
 	listView := aListView.
@@ -49,7 +51,7 @@ SpEasyListRowPresenter >> listView: aListView [
 		ifFalse: [ self useTextLayout ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpEasyListRowPresenter >> textLayout [
 
 	^ SpBoxLayout newHorizontal
@@ -57,7 +59,7 @@ SpEasyListRowPresenter >> textLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpEasyListRowPresenter >> updatePresenter [
 
 	self model ifNil: [ ^ self ].
@@ -67,13 +69,13 @@ SpEasyListRowPresenter >> updatePresenter [
 	textPresenter label: (self listView display value: self model)
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpEasyListRowPresenter >> useIconLayout [
 
 	self layout: self iconLayout
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpEasyListRowPresenter >> useTextLayout [
 
 	self layout: self textLayout

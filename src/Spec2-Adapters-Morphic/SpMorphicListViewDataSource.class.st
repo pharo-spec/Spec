@@ -2,12 +2,14 @@
 A morphic datasource for `SpListViewPresenter`, to be used on the `SpMorphicListViewAdapter`.
 "
 Class {
-	#name : #SpMorphicListViewDataSource,
-	#superclass : #SpMorphicListDataSource,
-	#category : #'Spec2-Adapters-Morphic-ListView'
+	#name : 'SpMorphicListViewDataSource',
+	#superclass : 'SpMorphicListDataSource',
+	#category : 'Spec2-Adapters-Morphic-ListView',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'ListView'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicListViewDataSource >> cellColumn: column row: rowIndex [
 	| cell contentPresenter |
 
@@ -21,7 +23,7 @@ SpMorphicListViewDataSource >> cellColumn: column row: rowIndex [
 	^ cell addMorphBack: contentPresenter build
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicListViewDataSource >> headerColumn: column [
 
 	column id ifNil: [ ^ nil ]. 

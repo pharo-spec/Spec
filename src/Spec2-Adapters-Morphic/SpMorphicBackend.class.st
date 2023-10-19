@@ -39,6 +39,15 @@ SpMorphicBackend >> forceDefer: aBlock [
 	UIManager default defer: aBlock
 ]
 
+{ #category : 'ui - dialogs' }
+SpMorphicBackend >> inform: aString [
+
+	(ProvideAnswerNotification signal: aString) ifNotNil: [ :answer | ^ true ].
+	GrowlMorph
+		openWithLabel: 'Information' translated
+		contents: aString
+]
+
 { #category : 'private - notifying' }
 SpMorphicBackend >> notifyError: aSpecNotification [
 
@@ -57,13 +66,13 @@ SpMorphicBackend >> notifyInfo: aSpecNotification [
 		contents: aSpecNotification message
 ]
 
-{ #category : 'ui dialogs' }
+{ #category : 'ui - dialogs' }
 SpMorphicBackend >> selectDirectoryTitle: aString [
 
 	^ UIManager default chooseDirectory: aString path: ''
 ]
 
-{ #category : 'ui dialogs' }
+{ #category : 'ui - dialogs' }
 SpMorphicBackend >> selectFileTitle: aString [
 
 	^ UIManager default

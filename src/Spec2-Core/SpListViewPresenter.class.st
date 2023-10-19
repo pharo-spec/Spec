@@ -1,55 +1,57 @@
 Class {
-	#name : #SpListViewPresenter,
-	#superclass : #SpAbstractListPresenter,
+	#name : 'SpListViewPresenter',
+	#superclass : 'SpAbstractListPresenter',
 	#classTraits : 'SpTActionContainer classTrait',
 	#instVars : [
 		'#setupAction',
 		'#bindAction',
 		'#headerTitle => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets-ListView'
+	#category : 'Spec2-Core-Widgets-ListView',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-ListView'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpListViewPresenter class >> adapterName [
 
 	^ #ListViewAdapter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpListViewPresenter >> bind: aBlock [
 
 	bindAction := aBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpListViewPresenter >> bindAction [
 
 	^ bindAction
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpListViewPresenter >> hasHeaderTitle [
 	"Answer true if the list has a title (See `SpListPresenter>>#headerTitle:`)."
 
 	^ headerTitle isEmptyOrNil not
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpListViewPresenter >> headerTitle [
 	"Answer the header title."
 
 	^ headerTitle
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpListViewPresenter >> headerTitle: aString [
 	"Set the header title."
 
 	headerTitle := aString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpListViewPresenter >> initialize [
 	
 	super initialize.
@@ -58,7 +60,7 @@ SpListViewPresenter >> initialize [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpListViewPresenter >> initializeItemFactory [
 	"Just set up the defaults (to ensure we have a working list at any moment)"
 	
@@ -66,7 +68,7 @@ SpListViewPresenter >> initializeItemFactory [
 	self bind: [ :aPresenter :anObject | aPresenter label: anObject asString ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpListViewPresenter >> registerActions [
 
 	self addActionWith: [ :action | action 
@@ -75,7 +77,7 @@ SpListViewPresenter >> registerActions [
 		action: [ self showContextMenu ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpListViewPresenter >> registerEvents [
 
 	super registerEvents.
@@ -86,19 +88,19 @@ SpListViewPresenter >> registerEvents [
 			self withAdapterDo: [ :anAdapter | anAdapter refreshList ] ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpListViewPresenter >> setup: aBlock [
 
 	setupAction := aBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpListViewPresenter >> setupAction [
 
 	^ setupAction
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpListViewPresenter >> showContextMenu [ 
 	"If the presenter is displayed, shows the associated context menu"
 

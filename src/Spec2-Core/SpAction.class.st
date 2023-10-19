@@ -2,18 +2,20 @@
 An action is a spec command (`SpCommand`) that will be used for context menus and/or shortcuts in the presenters that implement `SpTActionContainer`
 "
 Class {
-	#name : #SpAction,
-	#superclass : #SpCommand,
+	#name : 'SpAction',
+	#superclass : 'SpCommand',
 	#instVars : [
 		'action',
 		'actionEnabled',
 		'visible',
 		'actionVisible'
 	],
-	#category : #'Spec2-Core-Base-Command'
+	#category : 'Spec2-Core-Base-Command',
+	#package : 'Spec2-Core',
+	#tag : 'Base-Command'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpAction class >> newName: aName action: aBlock [
 
 	^ self new 
@@ -22,7 +24,7 @@ SpAction class >> newName: aName action: aBlock [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpAction class >> newName: aName shortcut: aShortcut action: aBlock [
 
 	^ self new 
@@ -32,7 +34,7 @@ SpAction class >> newName: aName shortcut: aShortcut action: aBlock [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpAction class >> newShortcut: aShortcut action: aBlock [
 	"action without menu entry"
 	
@@ -44,38 +46,38 @@ SpAction class >> newShortcut: aShortcut action: aBlock [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAction >> action: aBlock [
 
 	action := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAction >> actionEnabled: aBlock [
 
 	actionEnabled := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAction >> actionVisible: aBlock [
 
 	actionVisible := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAction >> beShortcutOnly [
 
 	visible := false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAction >> canBeExecuted [
 
 	actionEnabled ifNil: [ ^ true ].
 	^ actionEnabled cull: self context
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 SpAction >> execute [
 	
 	action ifNil: [ ^ self ].
@@ -84,7 +86,7 @@ SpAction >> execute [
 	action cull: self context
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAction >> initialize [
 
 	decoratedCommand := CmCommand new.
@@ -94,14 +96,14 @@ SpAction >> initialize [
 	 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAction >> isVisible [
 
 	^ visible 
 		and: [ actionVisible isNil or: [ actionVisible value ] ]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 SpAction >> printOn: stream [
 
 	stream << 'a SpAction('.
@@ -112,7 +114,7 @@ SpAction >> printOn: stream [
 	stream << ')'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAction >> shortcut: aKeyCombination [
 	"just a synonym"
 	

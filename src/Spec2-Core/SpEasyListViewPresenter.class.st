@@ -1,6 +1,6 @@
 Class {
-	#name : #SpEasyListViewPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpEasyListViewPresenter',
+	#superclass : 'SpPresenter',
 	#traits : 'SpTSearchable',
 	#classTraits : 'SpTSearchable classTrait',
 	#instVars : [
@@ -11,16 +11,18 @@ Class {
 		'#headerPanel',
 		'#lastSelectedRow => WeakSlot'
 	],
-	#category : #'Spec2-Core-Widgets-ListView'
+	#category : 'Spec2-Core-Widgets-ListView',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-ListView'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpEasyListViewPresenter class >> adapterName [
 
 	^ #EasyListViewAdapter
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpEasyListViewPresenter class >> example [
 	"This example show a simple list with all classes, using all the default settings."
 
@@ -31,7 +33,7 @@ SpEasyListViewPresenter class >> example [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpEasyListViewPresenter class >> exampleMultipleSelection [
 
 	^ self new
@@ -42,7 +44,7 @@ SpEasyListViewPresenter class >> exampleMultipleSelection [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpEasyListViewPresenter class >> exampleWithHeaderTitle [
 
 	^ self new
@@ -53,7 +55,7 @@ SpEasyListViewPresenter class >> exampleWithHeaderTitle [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpEasyListViewPresenter class >> exampleWithIcons [
 	"This example show a simple list with icons."
 
@@ -65,31 +67,31 @@ SpEasyListViewPresenter class >> exampleWithIcons [
 		yourself
 ]
 
-{ #category : #'api - actions' }
+{ #category : 'api - actions' }
 SpEasyListViewPresenter >> actionGroup [
 
 	^ listView actionGroup
 ]
 
-{ #category : #'api - actions' }
+{ #category : 'api - actions' }
 SpEasyListViewPresenter >> actionGroup: aSpCommandGroup [
 
 	listView actionGroup: aSpCommandGroup
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> activateOnDoubleClick [
 
 	listView activateOnDoubleClick
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> activateOnSingleClick [
 
 	listView activateOnSingleClick
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpEasyListViewPresenter >> activateSearchWith: aString [
 
 	lastSelectedRow := listView selectedItem.
@@ -101,31 +103,31 @@ SpEasyListViewPresenter >> activateSearchWith: aString [
 	searchInput cursorPositionIndex: aString size
 ]
 
-{ #category : #'api - actions' }
+{ #category : 'api - actions' }
 SpEasyListViewPresenter >> addAction: aSpCommand [
 
 	listView addAction: aSpCommand
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> addScrollBarStyle: aStyle [
 
 	listView addScrollBarStyle: aStyle
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> beMultipleSelection [
 
 	listView beMultipleSelection
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> beSingleSelection [
 
 	listView beSingleSelection
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpEasyListViewPresenter >> connectPresenters [
 
 	searchInput 
@@ -142,7 +144,7 @@ SpEasyListViewPresenter >> connectPresenters [
 		whenFocusReceivedDo: [ :event | searchInput hide ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpEasyListViewPresenter >> deactivateSearch: acceptSelection [
 	| currentSelection |
 
@@ -154,7 +156,7 @@ SpEasyListViewPresenter >> deactivateSearch: acceptSelection [
 	listView takeKeyboardFocus
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpEasyListViewPresenter >> defaultLayout [
 
 	^ SpOverlayLayout new
@@ -166,13 +168,13 @@ SpEasyListViewPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> disable [
 
 	self enabled: false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> display [
 	"Answer the display block that will transform the objects from `SpAbstractListPresenter>>#model` into a
 	 displayable string."
@@ -180,7 +182,7 @@ SpEasyListViewPresenter >> display [
 	^ display
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> display: aBlock [
 	"Set the block that will be applied on each of the list items. 
 	 The result of the block will be used to display the item on the screen.
@@ -197,14 +199,14 @@ SpEasyListViewPresenter >> display: aBlock [
 	display := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> displayIcon [
 	"Return the block used to return an icon that will be displayed in the list"
 
 	^ displayIcon
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> displayIcon: aBlock [
 	"Set a block which takes an item as argument and returns the icon to display in the list. 
 	 `aBlock` receives one argument"
@@ -212,19 +214,19 @@ SpEasyListViewPresenter >> displayIcon: aBlock [
 	displayIcon := aBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpEasyListViewPresenter >> displayValueFor: anObject [
 
 	^ self display value: anObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> enable [
 
 	self enabled: true
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpEasyListViewPresenter >> findFirst: aString [
 	| items |
 
@@ -240,28 +242,28 @@ SpEasyListViewPresenter >> findFirst: aString [
 	^ 0
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpEasyListViewPresenter >> hasHeaderTitle [
 	"Answer true if the list has a title (See `SpListPresenter>>#headerTitle:`)."
 
 	^ headerPanel isVisible
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpEasyListViewPresenter >> hasIcons [
 	"Answer true if the list has an icon provider (See `SpListPresenter>>#icons:`)."
 
 	^ self displayIcon notNil
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> headerTitle [
 	"Answer the header title."
 
 	^ headerPanel label
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> headerTitle: aString [
 	"Set the header title."
 
@@ -271,13 +273,13 @@ SpEasyListViewPresenter >> headerTitle: aString [
 		ifFalse: [ headerPanel show ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> hideHeaderTitle [
 
 	headerPanel hide
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpEasyListViewPresenter >> iconFor: anItem [
 
 	^ self displayIcon
@@ -285,7 +287,7 @@ SpEasyListViewPresenter >> iconFor: anItem [
 		cull: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpEasyListViewPresenter >> initialize [
 
 	super initialize.
@@ -293,7 +295,7 @@ SpEasyListViewPresenter >> initialize [
 	display := [ :object | object asString ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpEasyListViewPresenter >> initializePresenters [
 
 	headerPanel := self newLabel.
@@ -311,19 +313,19 @@ SpEasyListViewPresenter >> initializePresenters [
 	searchInput hide
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> items [
 
 	^ listView items
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> items: anOrderedCollection [
 
 	listView items: anOrderedCollection
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpEasyListViewPresenter >> maybeActivateSearchOn: event [
 		
 	self isSearchEnabled ifFalse: [ ^ self ].
@@ -334,13 +336,13 @@ SpEasyListViewPresenter >> maybeActivateSearchOn: event [
 	self activateSearchWith: event keyCharacter asString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> model [
 
 	^ listView model
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpEasyListViewPresenter >> registerEvents [
 
 	super registerEvents.
@@ -348,19 +350,19 @@ SpEasyListViewPresenter >> registerEvents [
 	self whenDisplayChangedDo: [ listView refresh ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> removeScrollBarStyle: aStyle [
 
 	^ listView removeScrollBarStyle: aStyle
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> scrollBarStyles [
 
 	^ listView scrollBarStyles
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpEasyListViewPresenter >> selectFirst: aString [
 	| index |
 
@@ -370,19 +372,19 @@ SpEasyListViewPresenter >> selectFirst: aString [
 	listView selectIndex: index scrollToSelection: true
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpEasyListViewPresenter >> selectedItem [
 	
 	^ listView selectedItem
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> updateItemsKeepingSelection: aCollection [
 	
 	listView updateItemsKeepingSelection: aCollection
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpEasyListViewPresenter >> whenDisplayChangedDo: aBlock [
 	"Inform when the display block has changed.
  	 `aBlock` has three optional arguments: 
@@ -393,7 +395,7 @@ SpEasyListViewPresenter >> whenDisplayChangedDo: aBlock [
 	self property: #display whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpEasyListViewPresenter >> whenIconsChangedDo: aBlock [
 	"Inform when the icons block has changed.
  	 `aBlock` has three optional arguments: 
@@ -404,13 +406,13 @@ SpEasyListViewPresenter >> whenIconsChangedDo: aBlock [
 	self property: #displayIcon whenChangedDo: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> withScrollBars [
 
 	listView withScrollBars
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpEasyListViewPresenter >> withoutScrollBars [
 
 	listView withoutScrollBars

@@ -2,12 +2,14 @@
 An action group is a spec command group (`SpCommandGroup`) that will be used for context menus and/or shortcuts in the presenters that implement `SpTActionContainer`
 "
 Class {
-	#name : #SpActionGroup,
-	#superclass : #SpCommandGroup,
-	#category : #'Spec2-Core-Base-Command'
+	#name : 'SpActionGroup',
+	#superclass : 'SpCommandGroup',
+	#category : 'Spec2-Core-Base-Command',
+	#package : 'Spec2-Core',
+	#tag : 'Base-Command'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpActionGroup class >> newName: aName [
 
 	^ self new
@@ -15,7 +17,7 @@ SpActionGroup class >> newName: aName [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpActionGroup class >> newName: aName with: aBlock [
 	
 	^ (self newName: aName)
@@ -23,13 +25,13 @@ SpActionGroup class >> newName: aName with: aBlock [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpActionGroup >> add: anAction [
 
 	self register: anAction
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpActionGroup >> addActionWith: aBlock [
 	| action |
 	
@@ -38,7 +40,7 @@ SpActionGroup >> addActionWith: aBlock [
 	self add: action
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpActionGroup >> addGroupWith: aBlock [
 	| action |
 	
@@ -48,7 +50,7 @@ SpActionGroup >> addGroupWith: aBlock [
 		
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpActionGroup >> addShortcutWith: aBlock [
 	| action |
 	
@@ -58,7 +60,7 @@ SpActionGroup >> addShortcutWith: aBlock [
 	self add: action
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpActionGroup >> initialize [
 
 	decoratedGroup := SpBaseActionGroup new.

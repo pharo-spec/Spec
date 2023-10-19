@@ -2,26 +2,28 @@
 I'm a simple object representing a notification.
 "
 Class {
-	#name : #SpNotificationItem,
-	#superclass : #Object,
+	#name : 'SpNotificationItem',
+	#superclass : 'Object',
 	#instVars : [
 		'text'
 	],
-	#category : #'Spec2-Core-Notification'
+	#category : 'Spec2-Core-Notification',
+	#package : 'Spec2-Core',
+	#tag : 'Notification'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpNotificationItem class >> with: aString [
 
 	^ self new text: aString ; yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotificationItem >> text [
 	^ text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotificationItem >> text: aString [ 
 	text := aString
 ]

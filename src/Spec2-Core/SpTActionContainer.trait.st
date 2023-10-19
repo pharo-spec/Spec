@@ -1,18 +1,20 @@
 Trait {
-	#name : #SpTActionContainer,
+	#name : 'SpTActionContainer',
 	#instVars : [
 		'actionGroup'
 	],
-	#category : #'Spec2-Core-Base-Command'
+	#category : 'Spec2-Core-Base-Command',
+	#package : 'Spec2-Core',
+	#tag : 'Base-Command'
 }
 
-{ #category : #'api - actions' }
+{ #category : 'api - actions' }
 SpTActionContainer >> actionGroup [
 
 	^ actionGroup
 ]
 
-{ #category : #'api - actions' }
+{ #category : 'api - actions' }
 SpTActionContainer >> actionGroup: aSpCommandGroup [
 	"WARNING. Defining action in presenters that are not able to grab the keyboard focus 
 	 is mostly useless (because they will never have the focus to answer to). 
@@ -24,7 +26,7 @@ SpTActionContainer >> actionGroup: aSpCommandGroup [
 
 ]
 
-{ #category : #'api - actions' }
+{ #category : 'api - actions' }
 SpTActionContainer >> actionsWith: aBlock [
 	"WARNING. Defining action in presenters that are not able to grab the keyboard focus 
 	 is mostly useless (because they will never have the focus to answer to). 
@@ -35,19 +37,19 @@ SpTActionContainer >> actionsWith: aBlock [
 	aBlock value: self ensureActionGroup
 ]
 
-{ #category : #'api - actions' }
+{ #category : 'api - actions' }
 SpTActionContainer >> addAction: aSpCommand [
 
 	self ensureActionGroup add: aSpCommand
 ]
 
-{ #category : #'api - actions' }
+{ #category : 'api - actions' }
 SpTActionContainer >> addActionWith: aBlock [
 
 	self ensureActionGroup addActionWith: aBlock
 ]
 
-{ #category : #'api - actions' }
+{ #category : 'api - actions' }
 SpTActionContainer >> addShortcutWith: aBlock [
 	"WARNING. Defining action in presenters that are not able to grab the keyboard focus 
 	 is mostly useless (because they will never have the focus to answer to). 
@@ -57,20 +59,20 @@ SpTActionContainer >> addShortcutWith: aBlock [
 	self ensureActionGroup addShortcutWith: aBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTActionContainer >> ensureActionGroup [
 
 	^ actionGroup ifNil: [ actionGroup := SpActionGroup new beRoot ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTActionContainer >> initialize [
 
 	self class initializeSlots: self.
 	super initialize.
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTActionContainer >> whenCommandGroupChangedDo: aBlock [
 	"Inform when menu definition changed. 
 	 `aBlock` receives zero arguments."
