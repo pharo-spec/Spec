@@ -86,6 +86,14 @@ SpAbstractTextPresenter >> cursorPositionIndex: index [
  	^ self withAdapterDo: [ :anAdapter | anAdapter cursorPositionIndex: index ]
 ]
 
+
+{ #category : 'private' }
+SpAbstractTextPresenter >> editable: aBoolean [
+
+	editable := aBoolean
+]
+
+
 { #category : 'api' }
 SpAbstractTextPresenter >> enabled: aBoolean [
 	"Set if the widget is enabled (clickable or focusable)"
