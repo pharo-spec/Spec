@@ -16,7 +16,7 @@ Class {
 		'#resetBlock',
 		'#environment',
 		'#systemNavigation',
-		'#syntaxHighlightTheme => ObservableSlot'.
+		'#syntaxHighlightTheme => ObservableSlot',
 		'#styleScheme'
 	],
 	#category : 'Spec2-Code-Base',
