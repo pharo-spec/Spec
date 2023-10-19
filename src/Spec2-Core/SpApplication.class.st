@@ -286,7 +286,8 @@ SpApplication >> newPresenter: aPresenterClass [
 { #category : 'accessing' }
 SpApplication >> notificationCenter [
 	"should be placed in initialize."
-	^ notificationCenter ifNil: [ notificationCenter := SpNotificationCenter new forApplication: self; yourself ]
+	^ notificationCenter ifNil: [ 
+		notificationCenter := SpNotificationCenter new forApplication: self; yourself ]
 ]
 
 { #category : 'ui - dialogs' }
