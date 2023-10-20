@@ -708,6 +708,28 @@ SpCodePresenter >> smartCharacters: aBoolean [
 	smartCharacters := aBoolean
 ]
 
+{ #category : 'api' }
+SpCodePresenter >> styleScheme [
+	"The name of the style scheme theme to use (e.g. 'Adwaita', 'Adwaita-dark', 'classic', 
+	 'classic-dark', 'cobalt', 'cobalt-light', 'kate', 'kate-dark', 'oblivion', 'solarized-dark', 
+	 'solarized-light', 'tango'"
+
+	^ styleScheme
+]
+
+{ #category : 'api' }
+SpCodePresenter >> styleScheme: aSymbol [
+ 
+	"The name of the style scheme theme to use (e.g. 'Adwaita', 'Adwaita-dark', 'classic', 
+	 'classic-dark', 'cobalt', 'cobalt-light', 'kate', 'kate-dark', 'oblivion', 'solarized-dark', 
+	 'solarized-light', 'tango'. 
+
+	 Note: In morphic this will be interpreted as a simple style (since you can use a style
+	 to define a scheme)"
+
+	 styleScheme := aSymbol
+]
+
 { #category : 'private' }
 SpCodePresenter >> syntaxHighlight: aBoolean [
 
@@ -727,27 +749,6 @@ SpCodePresenter >> syntaxHighlightTheme: aSymbol [
 	"The name of the syntax highlight theme to use (e.g. 'Blue', 'Vintage', 'Solarized', 'Tango')"
 
 	syntaxHighlightTheme := aSymbol
-]
-
-{ #category : 'api' }
-SpCodePresenter >> styleScheme	[ 
-	"The name of the style scheme theme to use (e.g. 'Adwaita', 'Adwaita-dark', 'classic', 
-	 'classic-dark', 'cobalt', 'cobalt-light', 'kate', 'kate-dark', 'oblivion', 'solarized-dark', 
-	  'solarized-light', 'tango'"	
-
-	^ styleScheme
-]
-
-{ #category : 'api' }
-SpCodePresenter >> styleScheme: aSymbol[ 
-	"The name of the style scheme theme to use (e.g. 'Adwaita', 'Adwaita-dark', 'classic', 
-	 'classic-dark', 'cobalt', 'cobalt-light', 'kate', 'kate-dark', 'oblivion', 'solarized-dark', 
-	 'solarized-light', 'tango'. 		
-
-	 Note: In morphic this will be interpreted as a simple style (since you can use a style
-	 to define a scheme)"	
-
-	 styleScheme := aSymbol
 ]
 
 { #category : 'command support' }
@@ -887,4 +888,3 @@ SpCodePresenter >> withoutSyntaxHighlight [
 
 	self syntaxHighlight: false
 ]
-
