@@ -4,9 +4,9 @@ An action group is a spec command group (`SpCommandGroup`) that will be used for
 Class {
 	#name : 'SpActionGroup',
 	#superclass : 'SpCommandGroup',
-	#category : 'Spec2-Core-Base-Command',
-	#package : 'Spec2-Core',
-	#tag : 'Base-Command'
+	#category : 'Spec2-Commander2-Action',
+	#package : 'Spec2-Commander2',
+	#tag : 'Action'
 }
 
 { #category : 'instance creation' }

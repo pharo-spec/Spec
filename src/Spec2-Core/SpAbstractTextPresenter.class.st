@@ -92,14 +92,6 @@ SpAbstractTextPresenter >> editable: aBoolean [
 	editable := aBoolean
 ]
 
-{ #category : 'api' }
-SpAbstractTextPresenter >> enabled: aBoolean [
-	"Set if the widget is enabled (clickable or focusable)"
-
-	super enabled: aBoolean.
-	self changed: #enabled: with: { aBoolean }
-]
-
 { #category : 'TOREMOVE' }
 SpAbstractTextPresenter >> hasEditingConflicts [
 	"Return if the text zone has editing conflicts"

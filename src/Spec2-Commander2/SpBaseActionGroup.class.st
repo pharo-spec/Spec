@@ -1,9 +1,9 @@
 Class {
 	#name : 'SpBaseActionGroup',
 	#superclass : 'CmCommandGroup',
-	#category : 'Spec2-Core-Base-Command',
-	#package : 'Spec2-Core',
-	#tag : 'Base-Command'
+	#category : 'Spec2-Commander2-Action',
+	#package : 'Spec2-Commander2',
+	#tag : 'Action'
 }
 
 { #category : 'private' }

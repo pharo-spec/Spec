@@ -82,7 +82,7 @@ SpDialogWindowPresenter >> addDefaultButton: aButtonPresenter [
 	^ defaultButton
 ]
 
-{ #category : 'NOTUSED' }
+{ #category : 'api' }
 SpDialogWindowPresenter >> addDefaultButton: aString do: aBlock [
 	"Adds button logic to dialog."
 	
@@ -109,10 +109,7 @@ SpDialogWindowPresenter >> beOk [
 
 { #category : 'api' }
 SpDialogWindowPresenter >> buttons [ 
-	"Answer an OrderedCollection that contains all defined buttons. 
-	 Default action will always be the last one."
-	
-	self flag: #TODO. "Default action should be configurable, not the last action defined."
+	"Answer an OrderedCollection that contains all defined buttons."
 	
 	^ buttons 
 ]
@@ -146,11 +143,25 @@ SpDialogWindowPresenter >> cancelled [
 	^ cancelled
 ]
 
+{ #category : 'api' }
+SpDialogWindowPresenter >> defaultButton [
+	"add a previously defined defaultButton.
+	 this is also a 'suggested action'."
+
+	^ defaultButton
+]
+
 { #category : 'private' }
 SpDialogWindowPresenter >> executeDefaultAction [
 
 	defaultButton ifNil: [ ^ self ].
 	defaultButton action cull: self
+]
+
+{ #category : 'testing' }
+SpDialogWindowPresenter >> hasDefaultButton [
+
+	^ defaultButton notNil
 ]
 
 { #category : 'initialization' }
