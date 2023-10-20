@@ -19,7 +19,8 @@ Class {
 	#instVars : [
 		'editable',
 		'acceptAction',
-		'sortable'
+		'sortable',
+		'textChanged'
 	],
 	#category : #'Spec2-Core-Widgets-Table'
 }
@@ -123,6 +124,16 @@ SpStringTableColumn >> onAcceptEdition: aBlock [
 ]
 
 { #category : #api }
+SpStringTableColumn >> onTextChanged: aBlock [
+	"Set the block to execute when cell edition is edited.
+	 `aBlock` receives two arguments:
+		- the element of the table (See `SpAbstractListPresenter>>#items:`)
+		- the string entered while editing"
+
+	textChanged := aBlock
+]
+
+{ #category : #api }
 SpStringTableColumn >> sortFunction [
 
 	^ super sortFunction ifNil: [ self evaluation ascending ]
@@ -141,4 +152,10 @@ SpStringTableColumn >> sortFunction: aBlockOrSortFunction [
 	
 	super sortFunction: aBlockOrSortFunction asSortFunction.
 	self isSortable: aBlockOrSortFunction notNil
+]
+
+{ #category : #accessing }
+SpStringTableColumn >> textChanged [
+
+	^ textChanged
 ]
