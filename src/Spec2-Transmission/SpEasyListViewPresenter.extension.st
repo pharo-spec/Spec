@@ -1,18 +1,18 @@
-Extension { #name : #SpEasyListViewPresenter }
+Extension { #name : 'SpEasyListViewPresenter' }
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpEasyListViewPresenter >> defaultInputPort [
 
 	^ self inputItemsPort
 ]
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpEasyListViewPresenter >> defaultOutputPort [
 
 	^ self outputSelectionPort
 ]
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpEasyListViewPresenter >> inputItemsPort [
 
 	^ (SpListItemsPort newPresenter: self)
@@ -20,7 +20,7 @@ SpEasyListViewPresenter >> inputItemsPort [
 		yourself	
 ]
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpEasyListViewPresenter >> outputActivationPort [
 	
 	^ (SpActivationPort newPresenter: self)
@@ -28,7 +28,7 @@ SpEasyListViewPresenter >> outputActivationPort [
 		yourself
 ]
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpEasyListViewPresenter >> outputSelectionPort [
 	
 	^ (SpSelectionPort newPresenter: self)
