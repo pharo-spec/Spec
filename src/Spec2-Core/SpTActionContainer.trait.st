@@ -3,9 +3,9 @@ Trait {
 	#instVars : [
 		'actionGroup'
 	],
-	#category : 'Spec2-Commander2-Action',
-	#package : 'Spec2-Commander2',
-	#tag : 'Action'
+	#category : 'Spec2-Core-Base',
+	#package : 'Spec2-Core',
+	#tag : 'Base'
 }
 
 { #category : 'api - actions' }
@@ -62,7 +62,12 @@ SpTActionContainer >> addShortcutWith: aBlock [
 { #category : 'private' }
 SpTActionContainer >> ensureActionGroup [
 
-	^ actionGroup ifNil: [ actionGroup := SpActionGroup new beRoot ]
+	self flag: #TODO. "This is a fake break of dependency (dependency is 
+	still there, but hidden). Think about a real fix (like, not using commander for actions."
+	^ actionGroup ifNil: [
+		| c | 
+		c := self class environment at: #SpActionGroup.
+		actionGroup := c new beRoot ]
 ]
 
 { #category : 'initialization' }
