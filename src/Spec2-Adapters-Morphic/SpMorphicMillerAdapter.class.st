@@ -203,10 +203,9 @@ SpMorphicMillerAdapter >> recalculatePages [
 { #category : 'accessing' }
 SpMorphicMillerAdapter >> remove: aPresenter [
 
-	| morph |
-	needRecalculatePages := true.
-	morph := aPresenter adapter widget.	
-	innerWidget removeMorph: morph
+	aPresenter adapter ifNotNil: [ :adapter |
+		needRecalculatePages := true.
+		innerWidget removeMorph: adapter widget ]
 ]
 
 { #category : 'accessing' }
