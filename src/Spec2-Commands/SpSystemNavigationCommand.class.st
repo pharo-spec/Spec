@@ -5,22 +5,24 @@ I give a selector from a context that must:
 - evaluate to a string or symbol
 "
 Class {
-	#name : #SpSystemNavigationCommand,
-	#superclass : #SpToolCommand,
-	#category : #'Spec2-Commands-Navigation'
+	#name : 'SpSystemNavigationCommand',
+	#superclass : 'SpToolCommand',
+	#category : 'Spec2-Commands-Navigation',
+	#package : 'Spec2-Commands',
+	#tag : 'Navigation'
 }
 
-{ #category : #default }
+{ #category : 'default' }
 SpSystemNavigationCommand class >> defaultIconName [
 	^#smallSystemBrowser 
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpSystemNavigationCommand class >> defaultName [
 	^'Browse ', self shortName 
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpSystemNavigationCommand class >> documentContextRequiredSelectors [
 	"Using a String and not a Symbol because `RBBrowserEnvironmentTest>>#testMatches` fails 
 	 if answering a symbol (because it detects the referenced selector)"
@@ -28,24 +30,24 @@ SpSystemNavigationCommand class >> documentContextRequiredSelectors [
 	^ #('environment')
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpSystemNavigationCommand class >> shortName [
 	^self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSystemNavigationCommand >> environment [
 
 	^ self context environment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSystemNavigationCommand >> selector [
 
 	^ self target trimBoth asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSystemNavigationCommand >> systemNavigation [
 
 	^ self context systemNavigation

@@ -1,6 +1,6 @@
-Extension { #name : #SpToolbarPresenter }
+Extension { #name : 'SpToolbarPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpToolbarPresenter class >> example [
 	
 	| loremIpsumWords menuButton presenter |

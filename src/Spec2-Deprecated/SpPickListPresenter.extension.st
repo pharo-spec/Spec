@@ -1,31 +1,31 @@
-Extension { #name : #SpPickListPresenter }
+Extension { #name : 'SpPickListPresenter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> addPicked: item [
 
 	pickedItemsHolder add: item.
 	pickedItemsHolder valueChanged: true to: item.
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> blockToPerformOnWrappers [
 
 	^ blockToPerformOnWrappers value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> blockToPerformOnWrappers: aBlock [
 
 	blockToPerformOnWrappers value: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> checkboxFor: anItem [
 
 	^ associationsItemToWrapper at: anItem ifAbsent: [ nil ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> connectPresenters [
 	labelClickableHolder
 		whenChangedDo:
@@ -34,8 +34,8 @@ SpPickListPresenter >> connectPresenters [
 		whenChangedDo: [ :value | associationsWrapperToItem keysDo: [ :cb | cb state: value ] ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
-SpPickListPresenter class >> defaultSpec [
+{ #category : '*Spec2-Deprecated' }
+SpPickListPresenter classSide >> defaultSpec [
 	<spec>
 	
 	^ SpLayout composed 
@@ -43,26 +43,26 @@ SpPickListPresenter class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> defaultValue [
 
 	^ defaultValueHolder value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> defaultValue: aBoolean [
 
 	defaultValueHolder value: aBoolean
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> displayBlock: aBlock [
 
 	wrapHolder value: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
-SpPickListPresenter class >> example [
+{ #category : '*Spec2-Deprecated' }
+SpPickListPresenter classSide >> example [
 	<sampleInstance>
 	| example |
 	example := self new.
@@ -75,13 +75,13 @@ SpPickListPresenter class >> example [
 			^example
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> indexFor: aCheckbox [
 
 	^ listPresenter listItems indexOf: aCheckbox.
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> initialize [
 
 	wrapHolder := [ :i | i printString ] asValueHolder. 
@@ -96,27 +96,27 @@ SpPickListPresenter >> initialize [
 	super initialize.
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> initializePresenters [
 	listPresenter := self newList.
 	listPresenter display: [ :item | item ].
 	self focusOrder add: listPresenter
 ]
 
-{ #category : #'*Spec2-Deprecated' }
-SpPickListPresenter class >> isDeprecated [
+{ #category : '*Spec2-Deprecated' }
+SpPickListPresenter classSide >> isDeprecated [
 	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
 
 	^ true
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> itemFor: aCheckbox [
 
 	^ associationsWrapperToItem at: aCheckbox ifAbsent: [ nil ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> items: aCollection [
 
 	associationsWrapperToItem removeAll.
@@ -124,50 +124,50 @@ SpPickListPresenter >> items: aCollection [
 	listPresenter items: (aCollection collectWithIndex: [:e :i | self wrap: e at: i ]).
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> labelClickable [
 	
 	^ labelClickableHolder value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> labelClickable: aBoolean [
 
 	labelClickableHolder value: aBoolean
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> listPresenter [
 
 	^ listPresenter
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> pickedItems [
 	"Returns the selected items according to the order they have been picked"
 	
 	^ pickedItemsHolder value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> removePicked: item [
 
 	pickedItemsHolder remove: item ifAbsent: [ ^ self ].
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> resetSelection [
 
 	listPresenter resetSelection
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> selectedIndex [
 
 	^ listPresenter selectedIndex
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> selectedItem [
 
 	^ associationsWrapperToItem 
@@ -175,7 +175,7 @@ SpPickListPresenter >> selectedItem [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> selectedItems [
 	"Returns the selected items according to the list order"
 	| wrappers items |
@@ -189,31 +189,31 @@ SpPickListPresenter >> selectedItems [
 	^ items
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> setSelectedIndex: anIndex [
 
 	listPresenter setSelectedIndex: anIndex
 ]
 
-{ #category : #'*Spec2-Deprecated' }
-SpPickListPresenter class >> title [
+{ #category : '*Spec2-Deprecated' }
+SpPickListPresenter classSide >> title [
 
 	^ 'Pick List Example'
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> whenListChanged: aBlock [
 
 	listPresenter whenListChanged: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> whenPickedItemsChanged: aBlock [
 
 	pickedItemsHolder whenChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> whenSelectedItemChanged: aBlock [
 	| newBlock |
 	
@@ -221,7 +221,7 @@ SpPickListPresenter >> whenSelectedItemChanged: aBlock [
 	listPresenter whenSelectedItemChanged: newBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> whenSelectionChanged: aBlock [
 
 	"The method should be used only if you are interested in the fact that there was a change, without caring about what has changed
@@ -231,13 +231,13 @@ SpPickListPresenter >> whenSelectionChanged: aBlock [
 	listPresenter whenSelectionChanged: aBlock.
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> whenSelectionIndexChanged: aBlock [
 
 	listPresenter whenSelectionIndexChanged: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> wrap: item at: index [
 	| checkBox |
 	associationsIndexToWrapper at: index ifPresent: [ :cb | ^ cb ].
@@ -261,13 +261,13 @@ SpPickListPresenter >> wrap: item at: index [
 	^ checkBox
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> wrapHolder [
 
 	^ wrapHolder
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPickListPresenter >> wrappers [
 
 	^ associationsWrapperToItem keys

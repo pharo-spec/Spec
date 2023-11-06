@@ -1,6 +1,6 @@
-Extension { #name : #SpMillerColumnPresenter }
+Extension { #name : 'SpMillerColumnPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpMillerColumnPresenter class >> example [
 
 	^ SpMillerColumnPresenter new

@@ -1,15 +1,17 @@
 Class {
-	#name : #SpTableAdapterSingleSelectionTest,
-	#superclass : #SpAbstractListAdapterSingleSelectionTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpTableAdapterSingleSelectionTest',
+	#superclass : 'SpAbstractListAdapterSingleSelectionTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTableAdapterSingleSelectionTest >> classToTest [
 	^ SpTablePresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTableAdapterSingleSelectionTest >> initializeTestedInstance [ 
 
 	super initializeTestedInstance.

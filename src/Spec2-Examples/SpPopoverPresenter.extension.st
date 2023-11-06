@@ -1,6 +1,6 @@
-Extension { #name : #SpPopoverPresenter }
+Extension { #name : 'SpPopoverPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpPopoverPresenter class >> example [
 
 	^ SpPopoverExample new open

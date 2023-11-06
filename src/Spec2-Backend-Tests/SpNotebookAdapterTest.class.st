@@ -1,29 +1,31 @@
 Class {
-	#name : #SpNotebookAdapterTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpNotebookAdapterTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookAdapterTest >> classToTest [
 	^ SpNotebookPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNotebookAdapterTest >> initializeTestedInstance [
 	presenter
 		addPage: (SpNotebookPage title: 'Mock' icon: (self iconNamed: #changeUpdate) provider: [ SpButtonPresenter new ]);
 		addPage: (SpNotebookPage title: 'Mock2' icon: (self iconNamed: #changeUpdate) provider: [ SpLabelPresenter new ])
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookAdapterTest >> testAddPage [
 	self assert: self adapter numberOfTabs equals: 2.
 	presenter addPage: (SpNotebookPage title: 'Mock3' provider: [ SpLabelPresenter new ]).
 	self assert: self adapter numberOfTabs equals: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookAdapterTest >> testChangeTitleUpdatesTab [
 
 	presenter selectPageIndex: 2.
@@ -33,14 +35,14 @@ SpNotebookAdapterTest >> testChangeTitleUpdatesTab [
 	self assert: self adapter selectedPageName equals: 'Changed'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookAdapterTest >> testClickOnPage [
 
 	self adapter clickTab: 2.
 	self assert: self adapter selectedPageName equals: 'Mock2'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookAdapterTest >> testRemoveAll [
 
 	self assert: self adapter numberOfTabs equals: 2.
@@ -48,7 +50,7 @@ SpNotebookAdapterTest >> testRemoveAll [
 	self assert: self adapter numberOfTabs equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookAdapterTest >> testRemoveMiddlePageWhenLastIsSelected [
 
 	presenter addPage: (SpNotebookPage title: 'Mock3' provider: [ SpLabelPresenter new ]).
@@ -60,7 +62,7 @@ SpNotebookAdapterTest >> testRemoveMiddlePageWhenLastIsSelected [
 	self assert: self adapter selectedPageName equals: 'Mock3'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookAdapterTest >> testRemovePage [
 	| page |
 	presenter addPage: (page := SpNotebookPage title: 'Mock3' provider: [ SpLabelPresenter new ]).
@@ -69,7 +71,7 @@ SpNotebookAdapterTest >> testRemovePage [
 	self assert: self adapter numberOfTabs equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookAdapterTest >> testRemovePageAt [
 
 	presenter addPage: (SpNotebookPage title: 'Mock3' provider: [ SpLabelPresenter new ]).
@@ -81,13 +83,13 @@ SpNotebookAdapterTest >> testRemovePageAt [
 	self assert: self adapter selectedPageName equals: 'Mock'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookAdapterTest >> testSelectedPage [
 	presenter selectPageIndex: 2.
 	self assert: self adapter selectedPageName equals: 'Mock2'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookAdapterTest >> testSelectingPageShouldAnnounceChangeEvent [
 	| change |
 

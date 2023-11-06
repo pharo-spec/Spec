@@ -1,6 +1,6 @@
-Extension { #name : #PRList }
+Extension { #name : 'PRList' }
 
-{ #category : #'*Spec2-Pillar' }
+{ #category : '*Spec2-Pillar' }
 PRList >> styleName [ 
 	^ #list
 ]

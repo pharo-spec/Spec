@@ -1,6 +1,6 @@
-Extension { #name : #SpWindowPresenter }
+Extension { #name : 'SpWindowPresenter' }
 
-{ #category : #'*Spec2-Morphic-Backend-Tests' }
+{ #category : '*Spec2-Morphic-Backend-Tests' }
 SpWindowPresenter class >> sampleInstanceForTest [
 
 	^ nil

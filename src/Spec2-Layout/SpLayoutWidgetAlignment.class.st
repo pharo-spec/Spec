@@ -2,39 +2,41 @@
 I indicate the alignment of the presenter in relation with the layout.
 "
 Class {
-	#name : #SpLayoutWidgetAlignment,
-	#superclass : #Object,
+	#name : 'SpLayoutWidgetAlignment',
+	#superclass : 'Object',
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'Spec2-Layout-Base'
+	#category : 'Spec2-Layout-Base',
+	#package : 'Spec2-Layout',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLayoutWidgetAlignment class >> center [
 
 	^ SpLayoutWidgetAlignmentCenter uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLayoutWidgetAlignment class >> end [
 
 	^ SpLayoutWidgetAlignmentEnd uniqueInstance
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpLayoutWidgetAlignment class >> new [ 
 
 	self error: 'Use #uniqueInstance'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLayoutWidgetAlignment class >> start [
 
 	^ SpLayoutWidgetAlignmentStart uniqueInstance
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpLayoutWidgetAlignment class >> uniqueInstance [
 
 	self = SpLayoutWidgetAlignment ifTrue: [ 

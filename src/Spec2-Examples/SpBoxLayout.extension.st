@@ -1,6 +1,6 @@
-Extension { #name : #SpBoxLayout }
+Extension { #name : 'SpBoxLayout' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpBoxLayout class >> exampleAddLast [
 	| presenter |
 
@@ -15,7 +15,7 @@ SpBoxLayout class >> exampleAddLast [
 
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpBoxLayout class >> exampleBeHomogeneous [
 	"This example will show 3 presenters shown homogeneously (equaly distributed in space)"
 	| presenter |
@@ -33,7 +33,7 @@ SpBoxLayout class >> exampleBeHomogeneous [
 	presenter open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpBoxLayout class >> exampleBorderWidth [
 	| presenter |
 
@@ -52,7 +52,7 @@ SpBoxLayout class >> exampleBorderWidth [
 	presenter open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpBoxLayout class >> exampleBorderWidthAndSpacing [
 	| presenter |
 
@@ -73,7 +73,7 @@ SpBoxLayout class >> exampleBorderWidthAndSpacing [
 	presenter open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpBoxLayout class >> exampleComposite [
 	| presenter |
 
@@ -91,7 +91,7 @@ SpBoxLayout class >> exampleComposite [
 	presenter open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpBoxLayout class >> exampleExpand [
 	| presenter |
 
@@ -103,7 +103,7 @@ SpBoxLayout class >> exampleExpand [
 	presenter open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpBoxLayout class >> exampleHAlignCenter [
 
 	| presenter |
@@ -117,7 +117,7 @@ SpBoxLayout class >> exampleHAlignCenter [
 	presenter open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpBoxLayout class >> exampleHAlignEnd [
 
 	| presenter |
@@ -131,7 +131,7 @@ SpBoxLayout class >> exampleHAlignEnd [
 	presenter open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpBoxLayout class >> exampleHAlignStart [
 
 	| presenter |
@@ -145,7 +145,7 @@ SpBoxLayout class >> exampleHAlignStart [
 	presenter open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpBoxLayout class >> exampleVAlignAndHAlign [
 
 	| presenter |
@@ -160,7 +160,7 @@ SpBoxLayout class >> exampleVAlignAndHAlign [
 	presenter open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpBoxLayout class >> exampleVAlignCenter [
 
 	| presenter |
@@ -174,7 +174,7 @@ SpBoxLayout class >> exampleVAlignCenter [
 	presenter open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpBoxLayout class >> exampleVAlignEnd [
 
 	| presenter |
@@ -188,7 +188,7 @@ SpBoxLayout class >> exampleVAlignEnd [
 	presenter open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpBoxLayout class >> exampleVAlignStart [
 
 	| presenter |

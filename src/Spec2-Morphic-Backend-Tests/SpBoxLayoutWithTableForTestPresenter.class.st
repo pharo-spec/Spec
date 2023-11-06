@@ -1,13 +1,14 @@
 Class {
-	#name : #SpBoxLayoutWithTableForTestPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpBoxLayoutWithTableForTestPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'table'
 	],
-	#category : #'Spec2-Morphic-Backend-Tests'
+	#category : 'Spec2-Morphic-Backend-Tests',
+	#package : 'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpBoxLayoutWithTableForTestPresenter class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -15,14 +16,14 @@ SpBoxLayoutWithTableForTestPresenter class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpBoxLayoutWithTableForTestPresenter class >> open [ 
 	<script>
 	
 	self new open
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpBoxLayoutWithTableForTestPresenter class >> specWithPadding [
 
 	^ SpBoxLayout newTopToBottom
@@ -30,7 +31,7 @@ SpBoxLayoutWithTableForTestPresenter class >> specWithPadding [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpBoxLayoutWithTableForTestPresenter >> initializePresenters [
 	
 	(table := self newTable) 
@@ -43,7 +44,7 @@ SpBoxLayoutWithTableForTestPresenter >> initializePresenters [
 			addColumn: (SpStringTableColumn evaluated: [ :each | each name ])).
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBoxLayoutWithTableForTestPresenter >> table [
 
 	^ table

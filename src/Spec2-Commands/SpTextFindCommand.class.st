@@ -1,16 +1,18 @@
 Class {
-	#name : #SpTextFindCommand,
-	#superclass : #SpTextSearchCommand,
-	#category : #'Spec2-Commands-Code'
+	#name : 'SpTextFindCommand',
+	#superclass : 'SpTextSearchCommand',
+	#category : 'Spec2-Commands-Code',
+	#package : 'Spec2-Commands',
+	#tag : 'Code'
 }
 
-{ #category : #default }
+{ #category : 'default' }
 SpTextFindCommand class >> defaultIconName [
 
 	^ #smallFind
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpTextFindCommand class >> defaultShortcutKey [
 
 	^ $f command mac 
@@ -18,7 +20,7 @@ SpTextFindCommand class >> defaultShortcutKey [
 		| $f control win
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 SpTextFindCommand >> execute [
 
 	context doTextFind

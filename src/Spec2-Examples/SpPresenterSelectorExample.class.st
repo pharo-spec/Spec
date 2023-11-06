@@ -3,16 +3,18 @@ I am an example of a presenter chooser.
 I will show a list and a way to select it.
 "
 Class {
-	#name : #SpPresenterSelectorExample,
-	#superclass : #SpPresenter,
+	#name : 'SpPresenterSelectorExample',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'list',
 		'choice'
 	],
-	#category : #'Spec2-Examples-Standalone'
+	#category : 'Spec2-Examples-Standalone',
+	#package : 'Spec2-Examples',
+	#tag : 'Standalone'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpPresenterSelectorExample >> defaultLayout [
 
 	^ SpPanedLayout newLeftToRight
@@ -22,7 +24,7 @@ SpPresenterSelectorExample >> defaultLayout [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPresenterSelectorExample >> initializePresenters [
 	"self new openWithSpec"
 
@@ -44,7 +46,7 @@ SpPresenterSelectorExample >> initializePresenters [
 	list transmitTo: choice
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPresenterSelectorExample >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter title: 'Presenter Selector Example'

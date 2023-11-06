@@ -1,15 +1,16 @@
 Class {
-	#name : #SpJobListPresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Morphic-Tests'
+	#name : 'SpJobListPresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Morphic-Tests',
+	#package : 'Spec2-Morphic-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJobListPresenterTest >> classToTest [
 	^ SpJobListPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpJobListPresenterTest >> testJobIsFinishedWhenWaitingMoreThanWorkBlockDuration [
 
 	| progress job |
@@ -27,7 +28,7 @@ SpJobListPresenterTest >> testJobIsFinishedWhenWaitingMoreThanWorkBlockDuration 
 	self assert: job currentValue asInteger equals: job max 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpJobListPresenterTest >> testJobIsNotFinishedWhenWaitingLessThanWorkBlockDuration [
 	| progress job |
 
@@ -45,7 +46,7 @@ SpJobListPresenterTest >> testJobIsNotFinishedWhenWaitingLessThanWorkBlockDurati
 	self deny: job currentValue asInteger equals: job max 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpJobListPresenterTest >> testProgressDoesNotRefreshMoreThanRefreshRate [
 	"Ensure progress presenter will not slow down the workblock by calling too many UI refresh"
 	| job waitBetweenJobUpdate counter refreshRateInMs nbUpdates maxExpected |

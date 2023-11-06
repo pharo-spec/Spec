@@ -2,15 +2,17 @@
 A base for different display modes for a toolbar
 "
 Class {
-	#name : #SpToolbarDisplayMode,
-	#superclass : #Object,
+	#name : 'SpToolbarDisplayMode',
+	#superclass : 'Object',
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarDisplayMode class >> all [
 
 	^ { 
@@ -20,32 +22,32 @@ SpToolbarDisplayMode class >> all [
 	 }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarDisplayMode class >> default [
 	^ self modeIconAndLabel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarDisplayMode class >> modeIcon [
 	^ SpIconToolbarDisplayMode uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarDisplayMode class >> modeIconAndLabel [
 	^ SpIconAndLabelToolbarDisplayMode uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarDisplayMode class >> modeLabel [
 	^ SpLabelToolbarDisplayMode uniqueInstance
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpToolbarDisplayMode class >> new [
 	self error: 'Use #uniqueInstance'
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpToolbarDisplayMode class >> uniqueInstance [
 
 	self = SpToolbarDisplayMode 
@@ -53,39 +55,39 @@ SpToolbarDisplayMode class >> uniqueInstance [
 	^ uniqueInstance ifNil: [ uniqueInstance := self basicNew initialize ]
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpToolbarDisplayMode >> configureButton: aButton item: aToolbarItem [
 	self subclassResponsibility
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpToolbarDisplayMode >> configureDropList: aSpDropListMorph item: aSpDropListPresenter [ 
 	self flag: 'TODO: maybe customize the drop list to have a better look''n feel'.
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpToolbarDisplayMode >> configureMorph: aMorph item: itemPresenter [
 	aMorph configureWith: self item: itemPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarDisplayMode >> extent [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarDisplayMode >> height [
 
 	^ self extent y
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarDisplayMode >> styleName [ 
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarDisplayMode >> width [
 
 	^ self extent x

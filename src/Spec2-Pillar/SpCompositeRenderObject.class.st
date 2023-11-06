@@ -1,33 +1,34 @@
 Class {
-	#name : #SpCompositeRenderObject,
-	#superclass : #SpRenderObject,
+	#name : 'SpCompositeRenderObject',
+	#superclass : 'SpRenderObject',
 	#instVars : [
 		'children'
 	],
-	#category : #'Spec2-Pillar'
+	#category : 'Spec2-Pillar',
+	#package : 'Spec2-Pillar'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpCompositeRenderObject >> acceptRenderObjectVisitor: aVisitor [ 
 	^ aVisitor visitCompositeObject: self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpCompositeRenderObject >> add: aDocumentItem [
 	children add: aDocumentItem 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCompositeRenderObject >> children [
 	^ children
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCompositeRenderObject >> children: aCollection [ 
 	children := aCollection
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCompositeRenderObject >> initialize [
 	super initialize.
 	children := OrderedCollection new

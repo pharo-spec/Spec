@@ -1,6 +1,6 @@
-Extension { #name : #SpNotebookPresenter }
+Extension { #name : 'SpNotebookPresenter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpNotebookPresenter >> selectedPage: aPage [
 
 	self 
@@ -11,7 +11,7 @@ SpNotebookPresenter >> selectedPage: aPage [
 	self selectPage: aPage
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpNotebookPresenter >> selectedPageIndex: aNumber [
 	self 
 		deprecated: 'Use #selectPageIndex: instead' 
@@ -21,7 +21,7 @@ SpNotebookPresenter >> selectedPageIndex: aNumber [
 	self selectPageIndex: aNumber
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpNotebookPresenter >> whenSelectedPageChanged: aBlock [
 	self deprecated: 'Use #whenSelectedPageChangedDo: instead.' transformWith: '`@receiver whenSelectedPageChanged: `@statements' -> '`@receiver whenSelectedPageChangedDo: `@statements'.
 	self whenSelectedPageChangedDo: aBlock

@@ -2,34 +2,36 @@
 A presenter for Radio Buttons.
 "
 Class {
-	#name : #SpRadioButtonPresenter,
-	#superclass : #SpAbstractFormButtonPresenter,
+	#name : 'SpRadioButtonPresenter',
+	#superclass : 'SpAbstractFormButtonPresenter',
 	#instVars : [
 		'associatedRadioButtons',
 		'initialStateSet'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpRadioButtonPresenter class >> adapterName [
 
 	^ #RadioButtonAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpRadioButtonPresenter class >> documentFactoryMethodSelector [
 
 	^ #newRadioButton
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpRadioButtonPresenter class >> title [
 
 	^ 'Radio Button'
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRadioButtonPresenter >> associatedRadioButtons [
 	"Answer the collection of radio buttons associated (grouped) to this one.
 	 See also `SpRadioButtonPresenter>>#associatedRadioButtons:`"
@@ -37,7 +39,7 @@ SpRadioButtonPresenter >> associatedRadioButtons [
 	^ associatedRadioButtons
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRadioButtonPresenter >> associatedRadioButtons: aCollection [ 
 	"Set the list of radio buttons associated with this one.
 	 By using this, you will be grouping together this radio button along with the ones contained 
@@ -54,13 +56,13 @@ SpRadioButtonPresenter >> associatedRadioButtons: aCollection [
 	aCollection do: [ :each | each state: false ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpRadioButtonPresenter >> basicAssociatedRadioButtons: aCollection [ 
 	
 	associatedRadioButtons := aCollection copyWithout: self
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRadioButtonPresenter >> initialStateNotSet [
 	"Setting this value to the first radio button will cause the entire group to be unset 
 	 on first display. This will be ignored if sent to other than the own containing the 
@@ -69,7 +71,7 @@ SpRadioButtonPresenter >> initialStateNotSet [
 	initialStateSet := false
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRadioButtonPresenter >> initialize [
 
 	super initialize.
@@ -78,7 +80,7 @@ SpRadioButtonPresenter >> initialize [
 	associatedRadioButtons := #()
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpRadioButtonPresenter >> isInitialStateSet [
 	"Answer if the radio button and its associates start the display with one of the buttons 
 	 set. This is often used when you do not have a default option and you need to require the 
@@ -87,7 +89,7 @@ SpRadioButtonPresenter >> isInitialStateSet [
 	^ initialStateSet
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRadioButtonPresenter >> state: aValue [
 	"Set the state `aBoolean` of current radio button. 
 	 Changing the state affect other associated radio buttons by toggling also their state.

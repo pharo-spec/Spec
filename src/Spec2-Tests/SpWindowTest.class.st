@@ -2,15 +2,17 @@
 SUnit tests for SpecWindow
 "
 Class {
-	#name : #SpWindowTest,
-	#superclass : #TestCase,
+	#name : 'SpWindowTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'windowPresenter'
 	],
-	#category : #'Spec2-Tests-Core-Support'
+	#category : 'Spec2-Tests-Core-Support',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Support'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowTest >> testAboutText [
 
 	| presenter window |
@@ -27,7 +29,7 @@ SpWindowTest >> testAboutText [
 		window ifNotNil: #delete ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowTest >> testAllowedToClose [
 
 	| application appWindow |
@@ -53,7 +55,7 @@ SpWindowTest >> testAllowedToClose [
 	self assert: application windows isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowTest >> testCloseWindowRemovesItFromApplicationWindowCollection [
 
 	| application |
@@ -64,7 +66,7 @@ SpWindowTest >> testCloseWindowRemovesItFromApplicationWindowCollection [
 	self assert: application windows isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowTest >> testIsDisplayed [
 
 	"Test for case: 16800 -> ask a SpecWindow for #isDisplayed always returns true"
@@ -79,7 +81,7 @@ SpWindowTest >> testIsDisplayed [
 	self assert: windowPresenter isDisplayed not
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowTest >> testTitle [
 
 	| presenter window |

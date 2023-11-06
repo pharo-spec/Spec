@@ -3,36 +3,38 @@ A Checkbox Button that can be activated/deactivated.
 
 "
 Class {
-	#name : #SpCheckBoxPresenter,
-	#superclass : #SpAbstractFormButtonPresenter,
-	#category : #'Spec2-Core-Widgets'
+	#name : 'SpCheckBoxPresenter',
+	#superclass : 'SpAbstractFormButtonPresenter',
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpCheckBoxPresenter class >> adapterName [
 
 	^ #CheckBoxAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpCheckBoxPresenter class >> documentFactoryMethodSelector [
 
 	^ #newCheckBox
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpCheckBoxPresenter class >> title [
 
 	^ 'Checkbox Button'
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpCheckBoxPresenter >> labelOnLeft [
 
 	^ self changed: #labelOnLeft with: #()
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpCheckBoxPresenter >> labelOnRight [
 
 	^ self changed: #labelOnRight with: #()

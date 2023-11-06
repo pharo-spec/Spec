@@ -1,10 +1,12 @@
 Class {
-	#name : #SpAbstractWidgetPresenterDeferringActionTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Tests-Core'
+	#name : 'SpAbstractWidgetPresenterDeferringActionTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Tests-Core',
+	#package : 'Spec2-Tests',
+	#tag : 'Core'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractWidgetPresenterDeferringActionTest >> testWithAdapterPerformOrDeferDoesNotExecuteWhenNoAdapter [
 	| presenter executed |
 	
@@ -15,7 +17,7 @@ SpAbstractWidgetPresenterDeferringActionTest >> testWithAdapterPerformOrDeferDoe
 	self deny: executed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractWidgetPresenterDeferringActionTest >> testWithAdapterPerformOrDeferExecutesWhenAdapter [
 	| presenter executed |
 	

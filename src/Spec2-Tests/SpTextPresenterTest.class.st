@@ -1,15 +1,17 @@
 Class {
-	#name : #SpTextPresenterTest,
-	#superclass : #SpAbstractTextPresenterTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpTextPresenterTest',
+	#superclass : 'SpAbstractTextPresenterTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextPresenterTest >> classToTest [
 	^ SpTextPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextPresenterTest >> testEditable [
 
 	presenter beNotEditable.
@@ -37,7 +39,7 @@ SpTextPresenterTest >> testEditable [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextPresenterTest >> testInsertAt [
 	
 	self initializationText.
@@ -46,7 +48,7 @@ SpTextPresenterTest >> testInsertAt [
 	self assert: presenter text equals: 'Text for insertion tests.'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextPresenterTest >> testPropagateNaturalHeight [
 
 
@@ -61,7 +63,7 @@ SpTextPresenterTest >> testPropagateNaturalHeight [
 	self assert: presenter adapter widget height >= String loremIpsum asMorph height.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextPresenterTest >> testPropagateNaturalHeightWithMultipleLines [
 	| string |
 
@@ -77,7 +79,7 @@ SpTextPresenterTest >> testPropagateNaturalHeightWithMultipleLines [
 	self assert: presenter adapter widget height >= (string lines size * string asMorph height).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextPresenterTest >> testPropagateNaturalWidth [
 	| lipsum stringMorph expectedWidth |
 
@@ -104,7 +106,7 @@ SpTextPresenterTest >> testPropagateNaturalWidth [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextPresenterTest >> testSelectLine [
 
 	presenter text: 'Text for tests.
@@ -115,7 +117,7 @@ lines'.
 	self assert: presenter selectionInterval equals: (1 to: 15)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextPresenterTest >> testSelectLineSecondLine [
 
 	presenter text: 'Text for tests.

@@ -6,15 +6,17 @@ self example
 I display simply an TextInputFieldPresenter, disable to don't be edditable by the user.
 "
 Class {
-	#name : #SpOpenOnNilExample,
-	#superclass : #SpPresenter,
+	#name : 'SpOpenOnNilExample',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'text'
 	],
-	#category : #'Spec2-Examples-Wrapper'
+	#category : 'Spec2-Examples-Wrapper',
+	#package : 'Spec2-Examples',
+	#tag : 'Wrapper'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpOpenOnNilExample class >> example [
 
 	<sampleInstance>
@@ -24,7 +26,7 @@ SpOpenOnNilExample class >> example [
 		  yourself
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpOpenOnNilExample >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -32,12 +34,12 @@ SpOpenOnNilExample >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOpenOnNilExample >> initialize: anInteger [
 	text label: anInteger asString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOpenOnNilExample >> initializePresenters [
 	text := self instantiate: SpTextInputFieldPresenter.
 	text
@@ -45,12 +47,12 @@ SpOpenOnNilExample >> initializePresenters [
 		enabled: false.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOpenOnNilExample >> text [
 	^ text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOpenOnNilExample >> title [
 	^ 'OpenOnNilExample'
 ]

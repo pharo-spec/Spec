@@ -4,28 +4,30 @@ A button bar can be used to provide a consistent layout of buttons throughout yo
 
 "
 Class {
-	#name : #SpButtonBarPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpButtonBarPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'items',
 		'placeAtStart'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpButtonBarPresenter class >> adapterName [
 
 	^ #ButtonBarAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpButtonBarPresenter class >> documentFactoryMethodSelector [
 
 	^ #newButtonBar
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpButtonBarPresenter >> add: aButtonPresenter [
 	"Add `aButtonPresenter` to the button list."
 	
@@ -33,13 +35,13 @@ SpButtonBarPresenter >> add: aButtonPresenter [
 	items add: aButtonPresenter
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpButtonBarPresenter >> canTakeKeyboardFocus [
 
 	^ false
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpButtonBarPresenter >> initialize [
 
 	super initialize.
@@ -47,28 +49,28 @@ SpButtonBarPresenter >> initialize [
 	self placeAtEnd
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpButtonBarPresenter >> isPlaceAtEnd [
 	"Answer when the button bar will place buttons at the end of the bar"
 
 	^ self isPlaceAtStart not
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpButtonBarPresenter >> isPlaceAtStart [
 	"Answer when the button bar will place buttons at the start of the bar"
 
 	^ placeAtStart
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpButtonBarPresenter >> items [
 	"Answer list of buttons."
 
 	^ items value
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpButtonBarPresenter >> items: aCollectionOfButtonPresenters [
 	"Set buttons to show, taking elements in `aCollectionOfButtonPresenters`."
 
@@ -78,21 +80,21 @@ SpButtonBarPresenter >> items: aCollectionOfButtonPresenters [
 	items addAll: aCollectionOfButtonPresenters
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpButtonBarPresenter >> placeAtEnd [
 	"Indicate the button bar will place buttons at the end of the bar (arranged to the right)"
 
 	placeAtStart := false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpButtonBarPresenter >> placeAtStart [ 
 	"Indicate the button bar will place buttons at the start of the bar (arranged to the left)"
 
 	placeAtStart := true
 ]
 
-{ #category : #'private - traversing' }
+{ #category : 'private - traversing' }
 SpButtonBarPresenter >> presenters [
 	
 	^ self items

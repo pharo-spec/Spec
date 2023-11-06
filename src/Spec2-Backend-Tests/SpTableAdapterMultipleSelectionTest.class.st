@@ -1,15 +1,17 @@
 Class {
-	#name : #SpTableAdapterMultipleSelectionTest,
-	#superclass : #SpAbstractListAdapterMultipleSelectionTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpTableAdapterMultipleSelectionTest',
+	#superclass : 'SpAbstractListAdapterMultipleSelectionTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTableAdapterMultipleSelectionTest >> classToTest [
 	^ SpTablePresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTableAdapterMultipleSelectionTest >> initializeTestedInstance [
 
 	super initializeTestedInstance.

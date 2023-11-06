@@ -1,6 +1,6 @@
-Extension { #name : #SpActivatedSelection }
+Extension { #name : 'SpActivatedSelection' }
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpActivatedSelection >> transmission [
 
 	^ self value

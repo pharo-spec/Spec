@@ -1,13 +1,14 @@
 Class {
-	#name : #SpCodePopoverPrintPresenterTest,
-	#superclass : #TestCase,
+	#name : 'SpCodePopoverPrintPresenterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'presenter'
 	],
-	#category : #'Spec2-Code-Tests'
+	#category : 'Spec2-Code-Tests',
+	#package : 'Spec2-Code-Tests'
 }
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 SpCodePopoverPrintPresenterTest >> naturalSizeOf: string [
 	| stringMorph width height |
 
@@ -28,14 +29,14 @@ SpCodePopoverPrintPresenterTest >> naturalSizeOf: string [
 	^ width @ height
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpCodePopoverPrintPresenterTest >> setUp [
 
 	super setUp.
 	presenter := SpCodePopoverPrintPresenter new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodePopoverPrintPresenterTest >> testObjectAsString [
 	| string |
 
@@ -71,7 +72,7 @@ SpCodePopoverPrintPresenterTest >> testObjectAsString [
 		equals: string printString
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodePopoverPrintPresenterTest >> testPopoverPopupTextTakesExtentFromPresenter [
 
 	| window popover string naturalSize |

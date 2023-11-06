@@ -11,15 +11,17 @@ aPresenter
 """"Important:"""" This port is not meant to be used in the same way other input ports, instead, you will use the ==#transmitDo:== mechanism.
 "
 Class {
-	#name : #SpActionPort,
-	#superclass : #SpInputPort,
+	#name : 'SpActionPort',
+	#superclass : 'SpInputPort',
 	#instVars : [
 		'actionBlock'
 	],
-	#category : #'Spec2-Transmission-Base'
+	#category : 'Spec2-Transmission-Base',
+	#package : 'Spec2-Transmission',
+	#tag : 'Base'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpActionPort class >> newAction: aBlock [
 
 	^ self new
@@ -27,32 +29,32 @@ SpActionPort class >> newAction: aBlock [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpActionPort class >> portName [
 	"An action block does not has a name"
 	
 	^ nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpActionPort >> action [ 
 
 	^ actionBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpActionPort >> action: aBlock [
 
 	actionBlock := aBlock
 ]
 
-{ #category : #'handling transmission' }
+{ #category : 'handling transmission' }
 SpActionPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
 
 	self error: 'Should not arrive here'
 ]
 
-{ #category : #'handling transmission' }
+{ #category : 'handling transmission' }
 SpActionPort >> incomingTransmission: anObject from: outPort [
 
 	self action 

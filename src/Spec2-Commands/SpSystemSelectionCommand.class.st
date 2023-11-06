@@ -2,18 +2,20 @@
 A base for commands working on current text selection.
 "
 Class {
-	#name : #SpSystemSelectionCommand,
-	#superclass : #SpSystemNavigationCommand,
-	#category : #'Spec2-Commands-Navigation'
+	#name : 'SpSystemSelectionCommand',
+	#superclass : 'SpSystemNavigationCommand',
+	#category : 'Spec2-Commands-Navigation',
+	#package : 'Spec2-Commands',
+	#tag : 'Navigation'
 }
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpSystemSelectionCommand class >> documentContextRequiredSelectors [
 
 	^ super documentContextRequiredSelectors, #(selectedTextOrLine)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpSystemSelectionCommand >> evaluate: aString ifError: aBlock [
 
 	^ [
@@ -27,7 +29,7 @@ SpSystemSelectionCommand >> evaluate: aString ifError: aBlock [
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpSystemSelectionCommand >> selectedSelector [
 	| node selection |
 	
@@ -41,7 +43,7 @@ SpSystemSelectionCommand >> selectedSelector [
 	^ selection trimmed asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSystemSelectionCommand >> selectedTextOrLine [
 
 	^ self context selectedTextOrLine

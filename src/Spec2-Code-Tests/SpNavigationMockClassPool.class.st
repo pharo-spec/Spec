@@ -1,13 +1,14 @@
 Class {
-	#name : #SpNavigationMockClassPool,
-	#superclass : #SharedPool,
+	#name : 'SpNavigationMockClassPool',
+	#superclass : 'SharedPool',
 	#classVars : [
 		'SomeClassPoolVariable'
 	],
-	#category : #'Spec2-Code-Tests'
+	#category : 'Spec2-Code-Tests',
+	#package : 'Spec2-Code-Tests'
 }
 
-{ #category : #mock }
+{ #category : 'mock' }
 SpNavigationMockClassPool >> referenceToYourself [
 
 	^ SpNavigationMockClass

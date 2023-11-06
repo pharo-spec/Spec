@@ -6,7 +6,9 @@ Spec is a framework in Pharo for describing user interfaces. It allows for the c
 I contain examples of Spec usages.
 "
 Class {
-	#name : #ManifestSpec2Examples,
-	#superclass : #PackageManifest,
-	#category : #'Spec2-Examples-Manifest'
+	#name : 'ManifestSpec2Examples',
+	#superclass : 'PackageManifest',
+	#category : 'Spec2-Examples-Manifest',
+	#package : 'Spec2-Examples',
+	#tag : 'Manifest'
 }

@@ -1,13 +1,14 @@
 Class {
-	#name : #SpMorphicPanedLayoutTest,
-	#superclass : #TestCase,
+	#name : 'SpMorphicPanedLayoutTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'instance'
 	],
-	#category : #'Spec2-Morphic-Backend-Tests'
+	#category : 'Spec2-Morphic-Backend-Tests',
+	#package : 'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpMorphicPanedLayoutTest >> tearDown [
 
 	instance ifNotNil: [ 
@@ -16,7 +17,7 @@ SpMorphicPanedLayoutTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicPanedLayoutTest >> testListTakesAssignedSpace [
 
 	| list |
@@ -37,7 +38,7 @@ SpMorphicPanedLayoutTest >> testListTakesAssignedSpace [
 		equals: list adapter widget width
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicPanedLayoutTest >> testReplacePresenter [
 
 	| presenter p1 p2 p3 widget |

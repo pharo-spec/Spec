@@ -4,15 +4,17 @@ I build a ToolBarPresenter from a group of commands.
 To do that, I visit recursively groups of command breadth first and simple add each command encountered to the tool bar.
 "
 Class {
-	#name : #SpToolbarPresenterBuilder,
-	#superclass : #CmVisitor,
+	#name : 'SpToolbarPresenterBuilder',
+	#superclass : 'CmVisitor',
 	#instVars : [
 		'toolbarPresenter'
 	],
-	#category : #'Spec2-Commander2-Visitors'
+	#category : 'Spec2-Commander2-Visitors',
+	#package : 'Spec2-Commander2',
+	#tag : 'Visitors'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpToolbarPresenterBuilder >> addPopoverButtonFrom: aCommandsGroup [
 	| button |
 
@@ -27,23 +29,23 @@ SpToolbarPresenterBuilder >> addPopoverButtonFrom: aCommandsGroup [
 		yourself)	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpToolbarPresenterBuilder >> initialize [
 	super initialize.
 	self toolbarPresenter: SpToolbarPresenter new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarPresenterBuilder >> toolbarPresenter [
 	^ toolbarPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarPresenterBuilder >> toolbarPresenter: anObject [
 	toolbarPresenter := anObject
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpToolbarPresenterBuilder >> visitCommand: anEntry [
 
 	"initialize icon provider if it is not there."
@@ -54,7 +56,7 @@ SpToolbarPresenterBuilder >> visitCommand: anEntry [
 		toToolbar: self toolbarPresenter
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpToolbarPresenterBuilder >> visitCommandGroup: aGroup [
 	
 	"initialize icon provider if it is not there."

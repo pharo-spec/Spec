@@ -5,26 +5,28 @@ I can be used to create components that may have variable number of children.
 DEPRECATED: This trait should not be used, since all presenters are dynamic now.
 "
 Trait {
-	#name : #SpTDynamicPresenter,
+	#name : 'SpTDynamicPresenter',
 	#instVars : [
 		'presenters'
 	],
-	#category : #'Spec2-Core-Base'
+	#category : 'Spec2-Core-Base',
+	#package : 'Spec2-Core',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTDynamicPresenter classSide >> isDeprecated [
 
 	^ true
 ]
 
-{ #category : #'private - accessing' }
+{ #category : 'private - accessing' }
 SpTDynamicPresenter >> basicPresenters [
 
 	^ presenters ifNil: [ presenters := OrderedDictionary new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTDynamicPresenter >> presenterAt: aName [
 
 	^ self basicPresenters 
@@ -32,7 +34,7 @@ SpTDynamicPresenter >> presenterAt: aName [
 		ifAbsent: [ self readSlotNamed: aName  ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTDynamicPresenter >> presenterAt: aName ifAbsent: aBlock [
 	^ self basicPresenters
 		at: aName
@@ -41,7 +43,7 @@ SpTDynamicPresenter >> presenterAt: aName ifAbsent: aBlock [
 				do: aBlock ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTDynamicPresenter >> presenterAt: aName put: aPresenter [
 
 	^ self basicPresenters 
@@ -49,13 +51,13 @@ SpTDynamicPresenter >> presenterAt: aName put: aPresenter [
 		put: aPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTDynamicPresenter >> presenters [
 
 	^ self basicPresenters values
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 SpTDynamicPresenter >> presentersDo: aBlock [
 
 	self basicPresenters valuesDo: aBlock

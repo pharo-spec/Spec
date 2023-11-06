@@ -1,15 +1,17 @@
 Class {
-	#name : #SpNotebookPresenterTest,
-	#superclass : #SpSpecTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpNotebookPresenterTest',
+	#superclass : 'SpSpecTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPresenterTest >> classToTest [
 	^ SpNotebookPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPresenterTest >> mockPage [
 	^ SpNotebookPage
 		title: 'Mock'
@@ -17,7 +19,7 @@ SpNotebookPresenterTest >> mockPage [
 		provider: [ SpButtonPresenter new ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookPresenterTest >> testAddPage [
 	self assertEmpty: presenter pages.
 	presenter addPage: self mockPage.
@@ -25,7 +27,7 @@ SpNotebookPresenterTest >> testAddPage [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookPresenterTest >> testPageAt [
 	| page |
 	presenter addPage: self mockPage.
@@ -34,7 +36,7 @@ SpNotebookPresenterTest >> testPageAt [
 	self assert: (presenter pageAt: 2) equals: page
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookPresenterTest >> testRemoveAfterSettingPagesWithAnArray [
 	| page |
 	
@@ -47,7 +49,7 @@ SpNotebookPresenterTest >> testRemoveAfterSettingPagesWithAnArray [
 	self assertCollection: presenter pages hasSameElements: {page}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookPresenterTest >> testRemoveAll [
 	| page |
 	
@@ -59,7 +61,7 @@ SpNotebookPresenterTest >> testRemoveAll [
 	self assert: presenter pages size equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookPresenterTest >> testRemoveAllCleansSelection [
 	| page |
 	
@@ -74,7 +76,7 @@ SpNotebookPresenterTest >> testRemoveAllCleansSelection [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookPresenterTest >> testRemoveAllDoesNotSelectsAnyPage [
 
 	| page1 page2 selected |
@@ -98,7 +100,7 @@ SpNotebookPresenterTest >> testRemoveAllDoesNotSelectsAnyPage [
 	self assert: selected equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookPresenterTest >> testRemovePage [
 	| page |
 	presenter addPage: self mockPage.
@@ -109,7 +111,7 @@ SpNotebookPresenterTest >> testRemovePage [
 	self assert: presenter pages size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookPresenterTest >> testRemovePageAt [
 	| page |
 	presenter addPage: self mockPage.
@@ -120,7 +122,7 @@ SpNotebookPresenterTest >> testRemovePageAt [
 	self assertCollection: presenter pages hasSameElements: {page}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookPresenterTest >> testSelectPage [
 	| mock mock2 |
 	mock := self mockPage.
@@ -131,7 +133,7 @@ SpNotebookPresenterTest >> testSelectPage [
 	self assert: presenter selectedPage equals: mock2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookPresenterTest >> testSelectPageIndex [
 	| mock mock2 |
 	mock := self mockPage.
@@ -142,7 +144,7 @@ SpNotebookPresenterTest >> testSelectPageIndex [
 	self assert: presenter selectedPage equals: mock2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookPresenterTest >> testWhenPagesChangedDo [
 	| counter |
 	counter := 0.
@@ -152,7 +154,7 @@ SpNotebookPresenterTest >> testWhenPagesChangedDo [
 	self assert: counter equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpNotebookPresenterTest >> testWhenSelectedPageChangedDo [
 	| mock mock2 counter selected |
 	counter := 0.

@@ -1,6 +1,6 @@
-Extension { #name : #PREmptyParagraph }
+Extension { #name : 'PREmptyParagraph' }
 
-{ #category : #'*Spec2-Pillar' }
+{ #category : '*Spec2-Pillar' }
 PREmptyParagraph >> styleName [ 
 	^  nil
 ]

@@ -2,27 +2,28 @@
 A SpecColumnLayout is the layout used to specify a new column
 "
 Class {
-	#name : #SpColumnLayout,
-	#superclass : #SpLayout,
+	#name : 'SpColumnLayout',
+	#superclass : 'SpLayout',
 	#instVars : [
 		'height'
 	],
-	#category : #'Spec2-Layout-Deprecated'
+	#category : 'Spec2-Layout-Deprecated',
+	#package : 'Spec2-Layout-Deprecated'
 }
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpColumnLayout >> add: aSpec height: aNumber [
 	
 	self add: aSpec origin: 0@0 corner: 1@1 offsetOrigin: 0@0 offsetCorner: 0@aNumber 
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpColumnLayout >> addSplitter [
 
 	self commands add: (SpSplitterHorizontal commands: self commands)
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpColumnLayout >> autoFractionComputation [
 	| delta |
 	delta := numberOfProportionals isZero
@@ -35,7 +36,7 @@ SpColumnLayout >> autoFractionComputation [
 				ifFalse: [ self setWidgetLayoutWithOffset: e at: idx ] ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpColumnLayout >> countNumberOfProportionals [
 
 	self commands	do: [ :e | 
@@ -46,7 +47,7 @@ SpColumnLayout >> countNumberOfProportionals [
 				numberOfProportionals := numberOfProportionals + 1 ] ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpColumnLayout >> manualFractionComputation [
 	
 	self commands	doWithIndex: [ :e :idx | 
@@ -57,7 +58,7 @@ SpColumnLayout >> manualFractionComputation [
 			ifFalse: [ self setWidgetLayoutWithOffset: e at: idx ] ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpColumnLayout >> privateAsArray [
 	self resetArrayComputation.
 	self countNumberOfProportionals.
@@ -71,7 +72,7 @@ SpColumnLayout >> privateAsArray [
 	^ super privateAsArray
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpColumnLayout >> resetArrayComputation [
 
 	super resetArrayComputation.
@@ -84,7 +85,7 @@ SpColumnLayout >> resetArrayComputation [
 	currentProportional := 0
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpColumnLayout >> setWidgetLayoutWithNoOffset: widget at: index delta: delta [
 
 	widget layoutFrame:
@@ -98,7 +99,7 @@ SpColumnLayout >> setWidgetLayoutWithNoOffset: widget at: index delta: delta [
 	lastFractionIndex := index
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpColumnLayout >> setWidgetLayoutWithOffset: widget at: index [
 
 	height := widget bottomOffset - widget topOffset.
@@ -117,7 +118,7 @@ SpColumnLayout >> setWidgetLayoutWithOffset: widget at: index [
 			currentOffset := currentOffset + height ]
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpColumnLayout >> shiftLastWidgets [
 	| index ante |	
 	

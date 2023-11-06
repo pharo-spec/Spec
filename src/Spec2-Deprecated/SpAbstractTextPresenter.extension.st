@@ -1,6 +1,6 @@
-Extension { #name : #SpAbstractTextPresenter }
+Extension { #name : 'SpAbstractTextPresenter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> aboutToStyle: aBoolean [
 	"Set if the text zone must be styled"
 	
@@ -10,7 +10,7 @@ SpAbstractTextPresenter >> aboutToStyle: aBoolean [
 		in: #Pharo8
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> aboutToStyleBlock [
 	"Return the block used to know if the text must be styled"	
 
@@ -21,7 +21,7 @@ SpAbstractTextPresenter >> aboutToStyleBlock [
 
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> aboutToStyleBlock: aBlockReturningABoolean [
 	"Set the block used to know if the text must be styled.
 	The block must return a boolean"
@@ -33,7 +33,7 @@ SpAbstractTextPresenter >> aboutToStyleBlock: aBlockReturningABoolean [
 
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> accept [
 	"Accep the current pendingtext"
 
@@ -50,7 +50,7 @@ SpAbstractTextPresenter >> accept [
 	self actionPerformed
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> acceptBlock [
 	"Return the block to perform when the text is accepted.
 	The block must have one argument, which will be the accepted text"
@@ -66,7 +66,7 @@ SpAbstractTextPresenter >> acceptBlock [
 	^ actionToPerform
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> acceptBlock: aBlockWithOneArgument [
 	"Set the block to perform when the text is accepted.
 	The block must have one argument, which will be the accepted text.
@@ -83,7 +83,7 @@ SpAbstractTextPresenter >> acceptBlock: aBlockWithOneArgument [
 	actionToPerform := aBlockWithOneArgument
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> autoAccept [
 	"Return true if the text is accepted after ech keystroke"
 	
@@ -98,7 +98,7 @@ SpAbstractTextPresenter >> autoAccept [
 	^ autoAccept
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> autoAccept: aBoolean [
 	"Set if the text is accepted after each keystroke or not"
 
@@ -113,7 +113,7 @@ SpAbstractTextPresenter >> autoAccept: aBoolean [
 	autoAccept := aBoolean
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> beForCode [
 
 	self 
@@ -122,7 +122,7 @@ SpAbstractTextPresenter >> beForCode [
 		in: #Pharo8
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> beForText [
 
 	self 
@@ -131,7 +131,7 @@ SpAbstractTextPresenter >> beForText [
 		in: #Pharo8
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> behavior [
 	"Return the class corresponding to the method class of the source code you are editing"
 
@@ -141,7 +141,7 @@ SpAbstractTextPresenter >> behavior [
 		in: #Pharo8
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> behavior: aClass [
 	"Set the class corresponding to the method class of the source code you are editing"
 
@@ -151,7 +151,7 @@ SpAbstractTextPresenter >> behavior: aClass [
 		in: #Pharo8
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> doItContext [
 
 	self 
@@ -160,7 +160,7 @@ SpAbstractTextPresenter >> doItContext [
 		in: #Pharo8
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> doItContext: anObject [
 
 	self 
@@ -169,7 +169,7 @@ SpAbstractTextPresenter >> doItContext: anObject [
 		in: #Pharo8
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> doItReceiver [
 
 	self 
@@ -178,7 +178,7 @@ SpAbstractTextPresenter >> doItReceiver [
 		in: #Pharo8
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> doItReceiver: anObject [
 
 	self 
@@ -187,7 +187,7 @@ SpAbstractTextPresenter >> doItReceiver: anObject [
 		in: #Pharo8
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> getSelection [
 	"Get the text selection"
 	
@@ -199,13 +199,13 @@ SpAbstractTextPresenter >> getSelection [
 	^ self selection
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> getText [
 	self deprecated: 'Use #text instead' transformWith: '`@receiver getText' -> '`@receiver text'.
 	^ self text
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> isAboutToStyle [
 	"Return if the text zone is shouted or not"
 
@@ -215,7 +215,7 @@ SpAbstractTextPresenter >> isAboutToStyle [
 		in: #Pharo8
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> selection: anInterval [
 	self
 		deprecated:
@@ -224,7 +224,7 @@ SpAbstractTextPresenter >> selection: anInterval [
 	self selectionInterval: anInterval
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> setSelection: anInterval [
 	"Set the text selection without changing the readSelectionBlock"
 
@@ -236,13 +236,13 @@ SpAbstractTextPresenter >> setSelection: anInterval [
 	self selectionInterval: anInterval
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenAboutToStyleBlockChanged: aBlock [
 	self deprecated: 'Use #whenAboutToStyleBlockChangedDo: instead.' transformWith: '`@receiver whenAboutToStyleBlockChanged: `@statements' -> '`@receiver whenAboutToStyleBlockChangedDo: `@statements'.
 	self whenAboutToStyleBlockChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenAboutToStyleBlockChangedDo: aBlock [
 	"Set a block to perform when the about to style block changed"
 	
@@ -252,25 +252,25 @@ SpAbstractTextPresenter >> whenAboutToStyleBlockChangedDo: aBlock [
 		in: #Pharo8
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenAboutToStyleChanged: aBlock [
 	self deprecated: 'Use #whenAboutToStyleChangedDo: instead.' transformWith: '`@receiver whenAboutToStyleChanged: `@statements' -> '`@receiver whenAboutToStyleChangedDo: `@statements'.
 	self whenAboutToStyleChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenAcceptBlockChanged: aBlock [
 	self deprecated: 'Use #whenAcceptBlockChangedDo: instead.' transformWith: '`@receiver whenAcceptBlockChanged: `@statements' -> '`@receiver whenAcceptBlockChangedDo: `@statements'.
 	self whenAcceptBlockChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenAutoAcceptChanged: aBlock [
 	self deprecated: 'Use #whenAutoAcceptChangedDo: instead.' transformWith: '`@receiver whenAutoAcceptChanged: `@statements' -> '`@receiver whenAutoAcceptChangedDo: `@statements'.
 	self whenAutoAcceptChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenAutoAcceptChangedDo: aBlock [
 	"aBlock will be performed when autoAccept changed"
 
@@ -285,13 +285,13 @@ SpAbstractTextPresenter >> whenAutoAcceptChangedDo: aBlock [
 	self property: #autoAccept whenChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenBehaviorChanged: aBlock [
 	self deprecated: 'Use #whenBehaviorChangedDo: instead.' transformWith: '`@receiver whenBehaviorChanged: `@statements' -> '`@receiver whenBehaviorChangedDo: `@statements'.
 	self whenBehaviorChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenBehaviorChangedDo: aBlock [
 	"Set a block to perform when the behavior class changed"
 	
@@ -301,7 +301,7 @@ SpAbstractTextPresenter >> whenBehaviorChangedDo: aBlock [
 		in: #Pharo8
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenCodeCompletionAllowedChanged: aBlock [
 	self
 		deprecated: 'Use #whenTextIsAcceptedDo: instead or nothing. Currently, both those methods are doing the same thing but my name is really missleading. Thus, I''ll be removed.'
@@ -309,7 +309,7 @@ SpAbstractTextPresenter >> whenCodeCompletionAllowedChanged: aBlock [
 	self whenTextIsAcceptedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenCodeCompletionAllowedChangedDo: aBlock [
 	self
 		deprecated: 'Use #whenTextIsAcceptedDo: instead or nothing. Currently, both those methods are doing the same thing but my name is really missleading. Thus, I''ll be removed.'
@@ -318,37 +318,37 @@ SpAbstractTextPresenter >> whenCodeCompletionAllowedChangedDo: aBlock [
 	self whenTextIsAcceptedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenMenuHolderChanged: aBlock [
 	self deprecated: 'Use #whenMenuHolderChangedDo: instead.' transformWith: '`@receiver whenMenuHolderChanged: `@statements' -> '`@receiver whenMenuHolderChangedDo: `@statements'.
 	self whenMenuHolderChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenReadSelectionIsChanged: aBlock [
 	self deprecated: 'Use #whenReadSelectionIsChangedDo: instead.' transformWith: '`@receiver whenReadSelectionIsChanged: `@statements' -> '`@receiver whenReadSelectionIsChangedDo: `@statements'.
 	self whenReadSelectionIsChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenScrollValueChanged: aBlock [
 	self deprecated: 'Use #whenScrollValueChangedDo: instead.' transformWith: '`@receiver whenScrollValueChanged: `@statements' -> '`@receiver whenScrollValueChangedDo: `@statements'.
 	self whenScrollValueChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenTextChanged: aBlock [
 	self deprecated: 'Use #whenTextChangedDo: instead.' transformWith: '`@receiver whenTextChanged: `@statement' -> '`@receiver whenTextChangedDo: `@statement'.
 	self whenTextChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenTextIsAccepted: aBlock [
 	self deprecated: 'Use #whenTextIsAcceptedDo: instead.' transformWith: '`@receiver whenTextIsAccepted: `@statements' -> '`@receiver whenTextIsAcceptedDo: `@statements'.
 	self whenTextIsAcceptedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTextPresenter >> whenTextIsAcceptedDo: aBlock [
 	"Set a block to perform when the text is accepted"
 	

@@ -1,6 +1,6 @@
-Extension { #name : #SpLabelPresenter }
+Extension { #name : 'SpLabelPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpLabelPresenter class >> example [
 
 	"This example opens a spec window with a label."

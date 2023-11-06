@@ -2,8 +2,8 @@
 The presenter that provides only the standalone form for the form demo
 "
 Class {
-	#name : #SpDemoStandaloneFormPresenter,
-	#superclass : #SpPresenterWithModel,
+	#name : 'SpDemoStandaloneFormPresenter',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'workingModel',
 		'nameTextInput',
@@ -21,42 +21,44 @@ Class {
 		'submitButton',
 		'restoreButton'
 	],
-	#category : #'Spec2-Examples-Demo-Forms'
+	#category : 'Spec2-Examples-Demo-Forms',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Forms'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpDemoStandaloneFormPresenter class >> open [
 	<example>
 	(self on: SpDemoFormModel new) open
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> checkboxInput [
 	^ checkboxInput
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> checkboxInput: anObject [
 	checkboxInput := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoStandaloneFormPresenter >> connectPresenters [
 	self submitButton action: [ self submit ].
 	self restoreButton action: [ self restore ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> dateInput [
 	^ dateInput
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> dateInput: anObject [
 	dateInput := anObject
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoStandaloneFormPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -86,12 +88,12 @@ SpDemoStandaloneFormPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> femaleButton [
 	^ femaleButton
 ]
 
-{ #category : #'model updates' }
+{ #category : 'model updates' }
 SpDemoStandaloneFormPresenter >> fillFormWithWorkingModel [
 	| aModel |
 	aModel := self workingModel.
@@ -108,7 +110,7 @@ SpDemoStandaloneFormPresenter >> fillFormWithWorkingModel [
 	self itemsInput selectItems: self workingModel selectedItems
 ]
 
-{ #category : #'model updates' }
+{ #category : 'model updates' }
 SpDemoStandaloneFormPresenter >> fillModelWithFormContent [
 
 	self workingModel
@@ -127,7 +129,7 @@ SpDemoStandaloneFormPresenter >> fillModelWithFormContent [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoStandaloneFormPresenter >> initializePresenters [
 
 	nameTextInput := self newTextInput.
@@ -168,29 +170,29 @@ SpDemoStandaloneFormPresenter >> initializePresenters [
 	restoreButton := self newButton label: 'Restore'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoStandaloneFormPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
 		initialExtent: 400@400
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> itemsInput [
 	^ itemsInput
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> itemsInput: anObject [
 	itemsInput := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> maleButton [
 	^ maleButton
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoStandaloneFormPresenter >> modelChanged [
 
 	workingModel := self model copy.
@@ -200,47 +202,47 @@ SpDemoStandaloneFormPresenter >> modelChanged [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> nameTextInput [
 	^ nameTextInput
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> nameTextInput: anObject [
 	nameTextInput := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> number1Input [
 	^ number1Input
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> number1Input: anObject [
 	number1Input := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> number2Input [
 	^ number2Input
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> number2Input: anObject [
 	number2Input := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> passwordInput [
 	^ passwordInput
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> passwordInput: anObject [
 	passwordInput := anObject
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpDemoStandaloneFormPresenter >> restore [
 
 	self modelChanged
@@ -248,27 +250,27 @@ SpDemoStandaloneFormPresenter >> restore [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> restoreButton [
 	^ restoreButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> restoreButton: anObject [
 	restoreButton := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> scaleInput [
 	^ scaleInput
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> scaleInput: anObject [
 	scaleInput := anObject
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpDemoStandaloneFormPresenter >> submit [
 
 	self fillModelWithFormContent.
@@ -278,32 +280,32 @@ SpDemoStandaloneFormPresenter >> submit [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> submitButton [
 	^ submitButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> submitButton: anObject [
 	submitButton := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> surnameTextInput [
 	^ surnameTextInput
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoStandaloneFormPresenter >> surnameTextInput: anObject [
 	surnameTextInput := anObject
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 SpDemoStandaloneFormPresenter >> workingModel [
 	^ workingModel
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 SpDemoStandaloneFormPresenter >> workingModel: anObject [
 	workingModel := anObject
 ]

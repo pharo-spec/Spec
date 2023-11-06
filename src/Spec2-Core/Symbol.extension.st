@@ -1,6 +1,6 @@
-Extension { #name : #Symbol }
+Extension { #name : 'Symbol' }
 
-{ #category : #'*Spec2-Core' }
+{ #category : '*Spec2-Core' }
 Symbol >> asPresenterOn: aPresenter [
 
 	self flag: #TODO. "The additionalSubpresentersMap is a functionality that needs to 

@@ -4,8 +4,8 @@ A demo to show how to use associated toolbar toggle buttons with Spec.
 self example
 "
 Class {
-	#name : #SpToolbarToggleButtonExample,
-	#superclass : #SpPresenter,
+	#name : 'SpToolbarToggleButtonExample',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'button1',
 		'button2',
@@ -13,22 +13,24 @@ Class {
 		'label',
 		'toolbar'
 	],
-	#category : #'Spec2-Examples-Demo-Buttons'
+	#category : 'Spec2-Examples-Demo-Buttons',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Buttons'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpToolbarToggleButtonExample class >> example [
 
 	^ self new open
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpToolbarToggleButtonExample class >> title [
 
 	^ 'Toolbar Toggle Button Example'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpToolbarToggleButtonExample >> connectPresenters [
 
 	button1 whenActivatedDo: [ self updateLabel ].
@@ -37,7 +39,7 @@ SpToolbarToggleButtonExample >> connectPresenters [
 	button3 whenChangedDo: [ self updateLabel ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpToolbarToggleButtonExample >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -49,7 +51,7 @@ SpToolbarToggleButtonExample >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpToolbarToggleButtonExample >> initializePresenters [
 
 	toolbar := self newToolbar.
@@ -72,7 +74,7 @@ SpToolbarToggleButtonExample >> initializePresenters [
 	self updateLabel
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpToolbarToggleButtonExample >> updateLabel [
 	label
 		label:

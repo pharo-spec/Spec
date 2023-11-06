@@ -1,6 +1,6 @@
-Extension { #name : #SpNumberInputFieldPresenter }
+Extension { #name : 'SpNumberInputFieldPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpNumberInputFieldPresenter class >> example [
 
 	<sampleInstance>

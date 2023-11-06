@@ -1,6 +1,6 @@
-Extension { #name : #PRAbstractAnnotation }
+Extension { #name : 'PRAbstractAnnotation' }
 
-{ #category : #'*Spec2-Pillar' }
+{ #category : '*Spec2-Pillar' }
 PRAbstractAnnotation >> styleName [ 
 	^ #annotation
 ]

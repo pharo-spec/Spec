@@ -113,6 +113,11 @@ SpMorphicTreeTableAdapter >> addModelTo: tableMorph [
 			to: self
 ]
 
+{ #category : 'drawing' }
+SpMorphicTreeTableAdapter >> alternateRowsColor [
+	self widgetDo: [ :w | w alternateRowsColor: true ]
+]
+
 { #category : 'factory' }
 SpMorphicTreeTableAdapter >> basicSelectionChanged: ann [
 	| selection |

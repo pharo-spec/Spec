@@ -2,16 +2,17 @@
 A LtMenuPresenterBuilderTest is a test class for testing the behavior of LtMenuPresenterBuilder
 "
 Class {
-	#name : #SpMenuPresenterBuilderTest,
-	#superclass : #TestCase,
+	#name : 'SpMenuPresenterBuilderTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'menuBuilder',
 		'commandsGroup'
 	],
-	#category : #'Spec2-Commander2-Tests'
+	#category : 'Spec2-Commander2-Tests',
+	#package : 'Spec2-Commander2-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpMenuPresenterBuilderTest >> setUp [
 	super setUp.
 	menuBuilder := SpMenuPresenterBuilder new.
@@ -41,7 +42,7 @@ SpMenuPresenterBuilderTest >> setUp [
 		yourself
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMenuPresenterBuilderTest >> testVisitCommand [
 	| menuItem evaluationResult |
 	evaluationResult := nil.
@@ -64,7 +65,7 @@ SpMenuPresenterBuilderTest >> testVisitCommand [
 	self assert: evaluationResult equals: 42
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMenuPresenterBuilderTest >> testVisitCommandThatCantBeRunWithDisableStrategy [
 	self assert: menuBuilder menuPresenter defaultGroup menuItems isEmpty.
 	(CmBlockCommand new
@@ -79,7 +80,7 @@ SpMenuPresenterBuilderTest >> testVisitCommandThatCantBeRunWithDisableStrategy [
 		equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMenuPresenterBuilderTest >> testVisitCommandThatCantBeRunWithHideStrategy [
 	self assert: menuBuilder menuPresenter defaultGroup menuItems isEmpty.
 	(CmBlockCommand new
@@ -93,7 +94,7 @@ SpMenuPresenterBuilderTest >> testVisitCommandThatCantBeRunWithHideStrategy [
 	self assert: menuBuilder menuPresenter defaultGroup menuItems isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMenuPresenterBuilderTest >> testVisitCommandsGroup [
 	| menuItems |
 	self assert: menuBuilder menuPresenter defaultGroup menuItems isEmpty.

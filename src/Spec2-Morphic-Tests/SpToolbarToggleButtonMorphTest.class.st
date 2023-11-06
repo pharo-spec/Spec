@@ -1,25 +1,27 @@
 Class {
-	#name : #SpToolbarToggleButtonMorphTest,
-	#superclass : #SpSmokeTest,
+	#name : 'SpToolbarToggleButtonMorphTest',
+	#superclass : 'SpSmokeTest',
 	#traits : 'SpTMorphicUIRedrawer',
 	#classTraits : 'SpTMorphicUIRedrawer classTrait',
-	#category : #'Spec2-Morphic-Tests-Examples'
+	#category : 'Spec2-Morphic-Tests-Examples',
+	#package : 'Spec2-Morphic-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarToggleButtonMorphTest >> classToTest [
 
 	^ SpToolbarToggleButtonPresenter 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpToolbarToggleButtonMorphTest >> initialize [
 
 	super initialize.
 	self initializeSemaphore
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpToolbarToggleButtonMorphTest >> testClickDeactivatedCheckboxActivatesIt [
 	| state |
 

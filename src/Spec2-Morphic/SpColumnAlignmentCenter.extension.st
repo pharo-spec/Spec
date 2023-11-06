@@ -1,6 +1,6 @@
-Extension { #name : #SpColumnAlignmentCenter }
+Extension { #name : 'SpColumnAlignmentCenter' }
 
-{ #category : #'*Spec2-Morphic' }
+{ #category : '*Spec2-Morphic' }
 SpColumnAlignmentCenter >> asTextAlignment [
 
 	^ TextAlignment centered

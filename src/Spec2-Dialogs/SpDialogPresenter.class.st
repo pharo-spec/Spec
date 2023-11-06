@@ -3,18 +3,19 @@ I am base for Spec Standard Dialogs.
 Standard dialogs are available to provide simple I/O to users.
 "
 Class {
-	#name : #SpDialogPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDialogPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'#parentWindow => WeakSlot',
 		'#acceptAction',
 		'#cancelAction',
 		'#image'
 	],
-	#category : #'Spec2-Dialogs'
+	#category : 'Spec2-Dialogs',
+	#package : 'Spec2-Dialogs'
 }
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpDialogPresenter class >> addDocumentSection: aBuilder label: label methods: methods [
 	
 	methods ifEmpty: [ ^ self ].
@@ -27,7 +28,7 @@ SpDialogPresenter class >> addDocumentSection: aBuilder label: label methods: me
 				aBuilder monospace: (each methodClass name, '>>#', each selector) ] ] ]
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpDialogPresenter class >> addDocumentSectionExampleCode: aBuilder [
 	| exampleCode |
 
@@ -40,7 +41,7 @@ SpDialogPresenter class >> addDocumentSectionExampleCode: aBuilder [
 	aBuilder codeblock: exampleCode
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpDialogPresenter class >> addDocumentSectionFactoryMethod: aBuilder [
 	| selector |
 
@@ -57,19 +58,19 @@ SpDialogPresenter class >> addDocumentSectionFactoryMethod: aBuilder [
 	aBuilder text: '.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDialogPresenter class >> defaultAcceptLabel [
 
 	^ 'Accept'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDialogPresenter class >> defaultCancelLabel [
 
 	^ 'Cancel'
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpDialogPresenter class >> documentExampleCode [
 
 	| exampleMethod |
@@ -80,13 +81,13 @@ SpDialogPresenter class >> documentExampleCode [
 	^ (exampleMethod sourceCode lines allButFirst reject: [ :each | each trimLeft beginsWith: '<' ]) asStringWithCr trimmed "Remove method name" "Remove pragmas"
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpDialogPresenter class >> documentFactoryMethodSelector [
 	
 	^ nil
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpDialogPresenter class >> documentSections [
 
 	^ OrderedDictionary newFromPairs: {
@@ -100,28 +101,28 @@ SpDialogPresenter class >> documentSections [
 			  (self methods select: [ :method | method protocolName = #'api - events' ]) }
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpDialogPresenter class >> open [
 	<script>
 	
 	^ self new open
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpDialogPresenter class >> openDialog [
 	<script>
 	
 	^ self new openDialog
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpDialogPresenter class >> openModal [
 	<script>
 
 	^ self new openModal
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDialogPresenter >> accept [
 
 	self window 
@@ -130,7 +131,7 @@ SpDialogPresenter >> accept [
 		close
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDialogPresenter >> cancel [
 
 	self window 
@@ -139,19 +140,19 @@ SpDialogPresenter >> cancel [
 		close
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDialogPresenter >> defaultIcon [
 
 	^ self application iconNamed: #question
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDialogPresenter >> icon: aForm [
 
 	image ifNotNil: [ image image: aForm ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDialogPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 
 	aDialogWindowPresenter 
@@ -163,7 +164,7 @@ SpDialogPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 		ifNil: [ aDialogWindowPresenter centered ].
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpDialogPresenter >> onAccept: aBlock [
 	"When the dialog is accepted, it executes this action before close.
 	 `aBlock` receives one argument (this dialog)"
@@ -171,7 +172,7 @@ SpDialogPresenter >> onAccept: aBlock [
 	acceptAction := aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpDialogPresenter >> onCancel: aBlock [
 	"When the dialog is cancelled, it executes this action before close.
 	 `aBlock` receives one argument (this dialog)"
@@ -179,7 +180,7 @@ SpDialogPresenter >> onCancel: aBlock [
 	cancelAction := aBlock
 ]
 
-{ #category : #'api - showing' }
+{ #category : 'api - showing' }
 SpDialogPresenter >> openDialogWithParent: aWindow [
 	"Open dialog in a non-modal way, centering on parent window. "
 	
@@ -187,7 +188,7 @@ SpDialogPresenter >> openDialogWithParent: aWindow [
 	^ self openDialog
 ]
 
-{ #category : #'api - showing' }
+{ #category : 'api - showing' }
 SpDialogPresenter >> openModalWithParent: aWindow [
 	"Open dialog in a modal way, centering on parent window. "
 
@@ -195,13 +196,13 @@ SpDialogPresenter >> openModalWithParent: aWindow [
 	^ self openModal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDialogPresenter >> parentWindow [
 
 	^ parentWindow
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDialogPresenter >> parentWindow: aWindowPresenter [
 
 	parentWindow := aWindowPresenter

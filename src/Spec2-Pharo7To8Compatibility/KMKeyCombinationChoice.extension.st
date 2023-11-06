@@ -1,6 +1,6 @@
-Extension { #name : #KMKeyCombinationChoice }
+Extension { #name : 'KMKeyCombinationChoice' }
 
-{ #category : #'*Spec2-Pharo7To8Compatibility' }
+{ #category : '*Spec2-Pharo7To8Compatibility' }
 KMKeyCombinationChoice >> platformCharacter [
 
 	shortcuts do: [ :each | 
@@ -8,7 +8,7 @@ KMKeyCombinationChoice >> platformCharacter [
 	^ nil
 ]
 
-{ #category : #'*Spec2-Pharo7To8Compatibility' }
+{ #category : '*Spec2-Pharo7To8Compatibility' }
 KMKeyCombinationChoice >> platformModifier [
 
 	shortcuts do: [ :each | 

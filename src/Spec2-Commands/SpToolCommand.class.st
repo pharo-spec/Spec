@@ -4,15 +4,17 @@ My children will define actions that can be executed as part of the Pharo System
 
 "
 Class {
-	#name : #SpToolCommand,
-	#superclass : #CmCommand,
+	#name : 'SpToolCommand',
+	#superclass : 'CmCommand',
 	#instVars : [
 		'transform'
 	],
-	#category : #'Spec2-Commands-Presenters'
+	#category : 'Spec2-Commands-Presenters',
+	#package : 'Spec2-Commands',
+	#tag : 'Presenters'
 }
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpToolCommand class >> addDocumentContextRequiredSelectors: aBuilder [
 	| requiredSelectors |
 
@@ -32,24 +34,24 @@ SpToolCommand class >> addDocumentContextRequiredSelectors: aBuilder [
 			aBuilder text: '(No required API is defined)' ]
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpToolCommand class >> defaultIconName [
 	^nil
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpToolCommand class >> defaultShortcutKey [
 
 	^ nil
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpToolCommand class >> documentContextRequiredSelectors [
 
 	^ #()
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpToolCommand class >> shortName [
 	"For menus some commands can implement this helper to provide shorter names.
 	Example: default name = 'Browse Command', short name = 'command'.
@@ -58,7 +60,7 @@ SpToolCommand class >> shortName [
 	^ self defaultName
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 SpToolCommand >> asSpecCommand [
 	| command |
 	
@@ -72,37 +74,37 @@ SpToolCommand >> asSpecCommand [
 	^ SpToolCurrentApplicationCommand decorate: command
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolCommand >> defaultIconName [
 	^self class defaultIconName
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpToolCommand >> initialize [
 
 	super initialize.
 	transform := [ :aContext | aContext ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolCommand >> shortcutKey [
 
 	^ self class defaultShortcutKey
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolCommand >> target [
 
 	^ self transform value: self context
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolCommand >> transform [
 
 	^ transform
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolCommand >> transform: aBlock [
 
 	transform := aBlock

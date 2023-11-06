@@ -1,21 +1,22 @@
 Class {
-	#name : #SpMorphicBoxLayoutTest,
-	#superclass : #TestCase,
+	#name : 'SpMorphicBoxLayoutTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'instance',
 		'backend'
 	],
-	#category : #'Spec2-Morphic-Backend-Tests'
+	#category : 'Spec2-Morphic-Backend-Tests',
+	#package : 'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicBoxLayoutTest >> initialize [
 
 	super initialize.
 	backend := SpMorphicBackendForTest new
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpMorphicBoxLayoutTest >> tearDown [
 	instance
 		ifNotNil: [ instance close.
@@ -23,7 +24,7 @@ SpMorphicBoxLayoutTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicBoxLayoutTest >> testAddWithPaddingHorizontal [
 	| base presenter layout |
 
@@ -42,7 +43,7 @@ SpMorphicBoxLayoutTest >> testAddWithPaddingHorizontal [
 		equals: (presenter adapter widget owner extent - (20@0))
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicBoxLayoutTest >> testAddWithPaddingVertical [
 	| base presenter layout |
 
@@ -61,7 +62,7 @@ SpMorphicBoxLayoutTest >> testAddWithPaddingVertical [
 		equals: (presenter adapter widget owner extent - (0@20))
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicBoxLayoutTest >> testBeHomogeneous [
 
 	| presenter p1 p2 p3 |
@@ -92,7 +93,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneous [
 	self assert: p1 adapter widget width equals: p2 adapter widget width
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
 
 	| presenter p1 p2 p3 windowWidth presenterWidth width1 width2 width3 |
@@ -131,7 +132,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
 	self assert: windowWidth >= presenterWidth
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenExpandingWindow [
 
 	| presenter p1 p2 p3 |
@@ -165,7 +166,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenExpandingWindow [
 		>= presenter adapter widget width
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicBoxLayoutTest >> testClassIsDisplayedWithCorrectAlignment [
 
 	| presenter table |
@@ -177,7 +178,7 @@ SpMorphicBoxLayoutTest >> testClassIsDisplayedWithCorrectAlignment [
 	self assert: table left <= table submorphs first left
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicBoxLayoutTest >> testLayoutHeightTakesAllSpaceNeeded [
 
 	| string presenter textPresenter layout |
@@ -201,7 +202,7 @@ SpMorphicBoxLayoutTest >> testLayoutHeightTakesAllSpaceNeeded [
 		>= (string lines size * string asMorph height)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicBoxLayoutTest >> testNestedLayoutModifiesHeightOfTopLayout [
 	| base presenter layout |
 
@@ -226,7 +227,7 @@ SpMorphicBoxLayoutTest >> testNestedLayoutModifiesHeightOfTopLayout [
 		equals: presenter adapter widget height
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicBoxLayoutTest >> testPresenterTakesRightHeight [
 
 	| presenter l1 l2 |

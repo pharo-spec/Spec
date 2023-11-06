@@ -1,6 +1,6 @@
-Extension { #name : #SpTextInputFieldPresenter }
+Extension { #name : 'SpTextInputFieldPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTextInputFieldPresenter class >> example [
 
 	<sampleInstance>
@@ -11,7 +11,7 @@ SpTextInputFieldPresenter class >> example [
 		  open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTextInputFieldPresenter class >> exampleEntryCompletion [
 	| applicants entryCompletion |
 
@@ -30,7 +30,7 @@ SpTextInputFieldPresenter class >> exampleEntryCompletion [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTextInputFieldPresenter class >> examplePassword [
 
 	^ self new

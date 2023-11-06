@@ -9,52 +9,54 @@ You can evaluate this to have an example:
 	self example
 "
 Class {
-	#name : #SpOptionListPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpOptionListPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'contentLayout',
 		'optionsPresenter',
 		'options',
 		'acceptBlock'
 	],
-	#category : #'Spec2-CommonWidgets-Core'
+	#category : 'Spec2-CommonWidgets-Core',
+	#package : 'Spec2-CommonWidgets',
+	#tag : 'Core'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpOptionListPresenter class >> example [
 	^ SpOptionListExample example
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpOptionListPresenter class >> isAbstract [
 		
 	^ self == SpOptionListPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOptionListPresenter >> addOption: anOptionPresenter [
 
 	options addLast: anOptionPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOptionListPresenter >> addOptions: aListOfOptionPresenter [
 
 	aListOfOptionPresenter do: [ :each | self addOption: each ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOptionListPresenter >> allOptions [
 
 	^ options
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOptionListPresenter >> contentLayout [
 	^ contentLayout
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpOptionListPresenter >> defaultLayout [ 
 	
 	^ SpPanedLayout newLeftToRight 
@@ -64,13 +66,13 @@ SpOptionListPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 SpOptionListPresenter >> doAccept [
 
 	acceptBlock value: self selectedOption
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOptionListPresenter >> initialize [
 	
 	options := OrderedCollection new.
@@ -80,14 +82,14 @@ SpOptionListPresenter >> initialize [
 	super initialize.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOptionListPresenter >> initializeDialogWindow: aWindowPresenter [
 
 	super initializeDialogWindow: aWindowPresenter.
 	aWindowPresenter okAction: [ self doAccept ].
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOptionListPresenter >> initializePresenters [
 
 	optionsPresenter := self newTable
@@ -103,33 +105,33 @@ SpOptionListPresenter >> initializePresenters [
 	self whenBuiltDo: [ optionsPresenter selectFirst ].
 ]
 
-{ #category : #'private - testing' }
+{ #category : 'private - testing' }
 SpOptionListPresenter >> optionAt: anIndex [
 	^ optionsPresenter itemAt: anIndex
 ]
 
-{ #category : #'private - testing' }
+{ #category : 'private - testing' }
 SpOptionListPresenter >> optionsPresenter [
 	^ optionsPresenter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpOptionListPresenter >> selectIndex: anIndex [
 	^ optionsPresenter selectIndex: anIndex 
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpOptionListPresenter >> selectOptionAt: anIndex [
 
 	^ optionsPresenter selectIndex: anIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOptionListPresenter >> selectedOption [
 	^ optionsPresenter selectedItem
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpOptionListPresenter >> selectionChanged: anOption [
 
 	anOption ifNil: [ ^ self ].
@@ -139,7 +141,7 @@ SpOptionListPresenter >> selectionChanged: anOption [
 		add: anOption.
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpOptionListPresenter >> whenAcceptedDo: aBlock [
 	"aBlock will be executed when this presenter is open as a Dialog 
 	AND when the Ok button of the dialog is clicked.

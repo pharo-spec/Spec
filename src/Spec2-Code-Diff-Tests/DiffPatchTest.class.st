@@ -1,16 +1,17 @@
 Class {
-	#name : #DiffPatchTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Code-Diff-Tests'
+	#name : 'DiffPatchTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Code-Diff-Tests',
+	#package : 'Spec2-Code-Diff-Tests'
 }
 
-{ #category : #mock }
+{ #category : 'mock' }
 DiffPatchTest >> mockAST2 [
 
 	^ 42 - 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DiffPatchTest >> testPatch [
 	| fileA fileB patch patchString |
 
@@ -44,7 +45,7 @@ that will change
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DiffPatchTest >> testReply [
 	| fileA fileB patch |
 

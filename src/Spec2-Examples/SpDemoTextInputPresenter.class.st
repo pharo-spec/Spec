@@ -2,23 +2,25 @@
 This demo shows differenty styles of text inputs.
 "
 Class {
-	#name : #SpDemoTextInputPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoTextInputPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'fieldNormal',
 		'fieldDisabled',
 		'fieldEncrypted',
 		'fieldPlaceholderText'
 	],
-	#category : #'Spec2-Examples-Demo-TextInput'
+	#category : 'Spec2-Examples-Demo-TextInput',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-TextInput'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpDemoTextInputPresenter class >> example [
 	^ self new open
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoTextInputPresenter >> defaultLayout [
 
 	^ SpGridLayout new
@@ -34,47 +36,47 @@ SpDemoTextInputPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoTextInputPresenter >> fieldDisabled [
 	^ fieldDisabled
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoTextInputPresenter >> fieldDisabled: anObject [
 	fieldDisabled := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoTextInputPresenter >> fieldEncrypted [
 	^ fieldEncrypted
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoTextInputPresenter >> fieldEncrypted: anObject [
 	fieldEncrypted := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoTextInputPresenter >> fieldNormal [
 	^ fieldNormal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoTextInputPresenter >> fieldNormal: anObject [
 	fieldNormal := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoTextInputPresenter >> fieldPlaceholderText [
 	^ fieldPlaceholderText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoTextInputPresenter >> fieldPlaceholderText: anObject [
 	fieldPlaceholderText := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoTextInputPresenter >> initializePresenters [
 
 	fieldNormal := self newTextInput.

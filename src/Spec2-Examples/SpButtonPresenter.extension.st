@@ -1,6 +1,6 @@
-Extension { #name : #SpButtonPresenter }
+Extension { #name : 'SpButtonPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpButtonPresenter class >> example [
 	"Show a simple button with an action."
 	<sampleInstance>
@@ -12,7 +12,7 @@ SpButtonPresenter class >> example [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpButtonPresenter class >> exampleDisabled [
 	"Show a disabled button"
 

@@ -1,6 +1,6 @@
-Extension { #name : #SpMorphPresenter }
+Extension { #name : 'SpMorphPresenter' }
 
-{ #category : #'*Spec2-Morphic-Examples' }
+{ #category : '*Spec2-Morphic-Examples' }
 SpMorphPresenter class >> example [
 
 	^ self new 

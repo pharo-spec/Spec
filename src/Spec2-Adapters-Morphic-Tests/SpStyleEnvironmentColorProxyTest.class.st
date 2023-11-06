@@ -1,10 +1,11 @@
 Class {
-	#name : #SpStyleEnvironmentColorProxyTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Adapters-Morphic-Tests'
+	#name : 'SpStyleEnvironmentColorProxyTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Adapters-Morphic-Tests',
+	#package : 'Spec2-Adapters-Morphic-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpStyleEnvironmentColorProxyTest >> testSerializationWithFuelMaintainProxy [
 
  	| proxy byteArray deserialized |

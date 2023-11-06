@@ -1,15 +1,17 @@
 Class {
-	#name : #SpListCommonPropertiestTest,
-	#superclass : #SpAbstractListCommonPropertiestTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpListCommonPropertiestTest',
+	#superclass : 'SpAbstractListCommonPropertiestTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpListCommonPropertiestTest >> classToTest [
 	^ SpListPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpListCommonPropertiestTest >> testChangingFromMultipleToSingleSelection [
 	presenter beMultipleSelection.
 	self assert: presenter isMultipleSelection.
@@ -17,7 +19,7 @@ SpListCommonPropertiestTest >> testChangingFromMultipleToSingleSelection [
 	self deny: presenter isMultipleSelection
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpListCommonPropertiestTest >> testChangingFromSingleToMultipleSelection [
 	presenter beSingleSelection.
 	self deny: presenter isMultipleSelection.
@@ -25,7 +27,7 @@ SpListCommonPropertiestTest >> testChangingFromSingleToMultipleSelection [
 	self assert: presenter isMultipleSelection
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpListCommonPropertiestTest >> testEnablingFilteringUpdateOpenedList [
 	self deny: self adapter hasFilter.
 	presenter matchSubstring.
@@ -34,7 +36,7 @@ SpListCommonPropertiestTest >> testEnablingFilteringUpdateOpenedList [
 	self deny: self adapter hasFilter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpListCommonPropertiestTest >> testRemoveHeaderTitleInPresenterRemovesColumnHeaderMorph [
 	self flag: #pharo7.
 	SystemVersion current major < 8 ifTrue: [ self skip. "Feature not supported in Pharo 7" ].
@@ -45,7 +47,7 @@ SpListCommonPropertiestTest >> testRemoveHeaderTitleInPresenterRemovesColumnHead
 	backendForTest denyHasHeader: self adapter
 ]
 
-{ #category : #'tests - scrolling' }
+{ #category : 'tests - scrolling' }
 SpListCommonPropertiestTest >> testScrollDownToNonExistingIndexScrollsBottomToLastIndex [
 	self flag: #pharo7.
 	SystemVersion current major < 8 ifTrue: [ self skip. "Feature not supported in Pharo 7" ].
@@ -59,7 +61,7 @@ SpListCommonPropertiestTest >> testScrollDownToNonExistingIndexScrollsBottomToLa
 	self assert: presenter verticalAlignment lastVisibleRowIndex equals: 500
 ]
 
-{ #category : #'tests - scrolling' }
+{ #category : 'tests - scrolling' }
 SpListCommonPropertiestTest >> testScrollDownToPosteriorIndexScrollsBottomToIndex [
 	self flag: #pharo7.
 	SystemVersion current major < 8 ifTrue: [ self skip. "Feature not supported in Pharo 7" ].
@@ -74,7 +76,7 @@ SpListCommonPropertiestTest >> testScrollDownToPosteriorIndexScrollsBottomToInde
 	self assert: (presenter verticalAlignment lastVisibleRowIndex between: 100 and: 101)
 ]
 
-{ #category : #'tests - scrolling' }
+{ #category : 'tests - scrolling' }
 SpListCommonPropertiestTest >> testScrollUpToNegativeIndexScrollsTopToFirstIndex [
 	self flag: #pharo7.
 	SystemVersion current major < 8 ifTrue: [ self skip. "Feature not supported in Pharo 7" ].
@@ -87,7 +89,7 @@ SpListCommonPropertiestTest >> testScrollUpToNegativeIndexScrollsTopToFirstIndex
 	self assert: presenter verticalAlignment firstVisibleRowIndex equals: 1
 ]
 
-{ #category : #'tests - scrolling' }
+{ #category : 'tests - scrolling' }
 SpListCommonPropertiestTest >> testScrollUpToPreviousIndexScrollsTopToIndex [
 	self flag: #pharo7.
 	SystemVersion current major < 8 ifTrue: [ self skip. "Feature not supported in Pharo 7" ].
@@ -100,7 +102,7 @@ SpListCommonPropertiestTest >> testScrollUpToPreviousIndexScrollsTopToIndex [
 	self assert: presenter verticalAlignment firstVisibleRowIndex equals: 50
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpListCommonPropertiestTest >> testSelectingANotVisibleItemDoesNotScroll [
 	| verticalAlignment visibleItems |
 	presenter items: (1 to: 500).
@@ -114,7 +116,7 @@ SpListCommonPropertiestTest >> testSelectingANotVisibleItemDoesNotScroll [
 		equals: visibleItems
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpListCommonPropertiestTest >> testSetColumnTitleInPresenterPutsColumnHeaderMorph [
 
 	SystemVersion current major = 7
@@ -127,7 +129,7 @@ SpListCommonPropertiestTest >> testSetColumnTitleInPresenterPutsColumnHeaderMorp
 	backendForTest assertListHeaderOf: self adapter equals: #('test')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpListCommonPropertiestTest >> testSetColumnTitleInPresenterShowsThemInWidget [
 
 	self presenter headerTitle: 'test'.

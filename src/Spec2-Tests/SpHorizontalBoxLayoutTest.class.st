@@ -1,17 +1,19 @@
 Class {
-	#name : #SpHorizontalBoxLayoutTest,
-	#superclass : #SpBoxLayoutTest,
-	#category : #'Spec2-Tests-Layout'
+	#name : 'SpHorizontalBoxLayoutTest',
+	#superclass : 'SpBoxLayoutTest',
+	#category : 'Spec2-Tests-Layout',
+	#package : 'Spec2-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpHorizontalBoxLayoutTest >> initializeTestedInstance [
 
 	layout := SpBoxLayout newLeftToRight.
 	presenter layout: layout
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpHorizontalBoxLayoutTest >> testPresenterExtentFollowsChildrenExtent [
 	| label button |
 
@@ -25,7 +27,7 @@ SpHorizontalBoxLayoutTest >> testPresenterExtentFollowsChildrenExtent [
 	self assert: (self heightOf: presenter) >= ((self heightOf: label) max: (self heightOf: button))
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpHorizontalBoxLayoutTest >> testReplaceWithFixedWidth [
 	| p1 toReplace p3 replacement |
 
@@ -43,7 +45,7 @@ SpHorizontalBoxLayoutTest >> testReplaceWithFixedWidth [
 	self assert: layout children equals: { p1. replacement. p3 }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpHorizontalBoxLayoutTest >> testReplaceWithFixedWidthAllFixed [
 	| p1 toReplace p3 replacement |
 
@@ -61,7 +63,7 @@ SpHorizontalBoxLayoutTest >> testReplaceWithFixedWidthAllFixed [
 	self assert: layout children equals: { p1. replacement. p3 }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpHorizontalBoxLayoutTest >> testReplaceWithFixedWidthComposed [
 	| p1 layoutToReplace toReplace p3 replacement |
 

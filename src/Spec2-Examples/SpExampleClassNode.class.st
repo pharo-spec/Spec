@@ -2,12 +2,14 @@
 A node to keep classes.
 "
 Class {
-	#name : #SpExampleClassNode,
-	#superclass : #SpExampleNode,
-	#category : #'Spec2-Examples-ExampleBrowser'
+	#name : 'SpExampleClassNode',
+	#superclass : 'SpExampleNode',
+	#category : 'Spec2-Examples-ExampleBrowser',
+	#package : 'Spec2-Examples',
+	#tag : 'ExampleBrowser'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpExampleClassNode >> children [
 
 	^ (self entity class methods
@@ -16,19 +18,19 @@ SpExampleClassNode >> children [
 		sorted: #name ascending
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpExampleClassNode >> iconName [
 
 	^ self entity systemIconName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpExampleClassNode >> name [
 
 	^ self entity name
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpExampleClassNode >> updateOn: anExampleBrowser [
 
 	anExampleBrowser updateClass: self entity

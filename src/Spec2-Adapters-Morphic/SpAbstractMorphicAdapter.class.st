@@ -324,9 +324,10 @@ SpAbstractMorphicAdapter >> installEvent: anEvent [
 { #category : 'event installing' }
 SpAbstractMorphicAdapter >> installFocusLostEvent: anEvent to: aWidget [
 
-	aWidget announcer 
+	aWidget announcer
 		when: MorphLostFocus
 		do: [ anEvent action value ]
+		for: self
 ]
 
 { #category : 'event installing' }

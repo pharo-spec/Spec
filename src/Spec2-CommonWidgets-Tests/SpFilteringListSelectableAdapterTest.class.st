@@ -1,16 +1,17 @@
 Class {
-	#name : #SpFilteringListSelectableAdapterTest,
-	#superclass : #SpAbstractAdapterTest,
-	#category : #'Spec2-CommonWidgets-Tests'
+	#name : 'SpFilteringListSelectableAdapterTest',
+	#superclass : 'SpAbstractAdapterTest',
+	#category : 'Spec2-CommonWidgets-Tests',
+	#package : 'Spec2-CommonWidgets-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFilteringListSelectableAdapterTest >> classToTest [
 
 	^ SpFilteringSelectableListPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpFilteringListSelectableAdapterTest >> testClickOnRowTogglesSelection [
 
 	presenter items: { 
@@ -28,7 +29,7 @@ SpFilteringListSelectableAdapterTest >> testClickOnRowTogglesSelection [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpFilteringListSelectableAdapterTest >> testClickOnRowWithShiftSelectsRange [
 
 	self skip. "Failing on CI"
@@ -47,7 +48,7 @@ SpFilteringListSelectableAdapterTest >> testClickOnRowWithShiftSelectsRange [
 	self assert: (presenter selectedItems hasEqualElements: { Array. SequenceableCollection. Set })
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpFilteringListSelectableAdapterTest >> testClickOnRowWithShiftSelectsRangeReversed [
 
 	self skip. "Failing on CI"

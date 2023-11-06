@@ -1,15 +1,17 @@
 Class {
-	#name : #SpTreeTablePresenterMultipleSelectionTest,
-	#superclass : #SpSpecTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpTreeTablePresenterMultipleSelectionTest',
+	#superclass : 'SpSpecTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTreeTablePresenterMultipleSelectionTest >> classToTest [
 	^ SpTreeTablePresenter
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpTreeTablePresenterMultipleSelectionTest >> setUp [
 	super setUp.
 	presenter
@@ -23,74 +25,74 @@ SpTreeTablePresenterMultipleSelectionTest >> setUp [
 		yourself.
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectAbsentItemGivesEmptySelection [
 
 	presenter selectItem: 4000.
 	self assert: presenter selection isEmpty
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectInvalidPathHasNoSelectedItems [
 
 	presenter selectPath: #(4).
 	self assert: presenter selection selectedItems isEmpty
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectInvalidPathHasNoSelectedPaths [
 
 	presenter selectPath: #(4).
 	self assert: presenter selection selectedPaths isEmpty
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectInvalidPathsHasNoSelectedItems [
 	presenter selectPaths: { #(10 20) . #(20 20) }.
 	self assert: presenter selection selectedItems isEmpty
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectInvalidPathsHasNoSelectedPaths [
 	presenter selectPaths: { #(10 20) . #(20 20) }.
 	self assert: presenter selection selectedPaths isEmpty
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectInvalidPathsIsEmpty [
 	presenter selectPaths: { #(40) . #(10 20)}.
 	self assert: presenter selection isEmpty
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectItemAddsItemToSelectedItemList [
 
 	presenter selectItem: 10.
 	self assert: (presenter selection includesItem: 10)
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectItemAddsPathToSelectedPathList [
 
 	presenter selectItem: 10.
 	self assert: (presenter selection includesPath: #(1 3))
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectItemOutsideRangeHasNoSelectedItems [
 
 	presenter selectItem: 4000.
 	self assert: presenter selection selectedItems isEmpty
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectItemOutsideRangeHasNoSelectedPath [
 
 	presenter selectItem: 4000.
 	self assert: presenter selection selectedPaths isEmpty
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeepsFirstElement [
 
 	presenter selectItem: 10.
@@ -98,7 +100,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRang
 	self assert: (presenter selection includesItem: 10)
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeepsFirstPath [
 
 	presenter selectItem: 10.
@@ -108,7 +110,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRang
 		hasSameElements: #( #(1 3) )
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRangeKeepsSingleSelectedItem [
 
 	presenter selectItem: 10.
@@ -116,13 +118,13 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectItemThenSelectOutsideRang
 	self assert: presenter selection selectedItems size equals: 1
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectItemsAddsItemsToSelectedItemList [
 	presenter selectItems: {10 . 20}.
 	self assert: (presenter selection includesItems: {10 . 20})
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectItemsAddsPathsToSelectedPathList [
 	presenter selectItems: {10 . 20}.
 
@@ -131,34 +133,34 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectItemsAddsPathsToSelectedP
 		hasSameElements: { #(1 3) . #(1 1 3) }
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectItemsOutsideRangeHasNoSelectedItems [
 	presenter selectItems: {3000 . 4000}.
 	
 	self assert: presenter selection selectedItems isEmpty
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectItemsOutsideRangeHasNoSelectedPaths [
 	presenter selectItems: {3000 . 4000}.
 	
 	self assert: presenter selection selectedPaths isEmpty
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectItemsOutsideRangeIsEmpty [
 	presenter selectItems: {4000 . 5000}.
 	self assert: presenter selection isEmpty
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectItemsThenSelectOutsideRangeKeepsElements [
 	presenter selectItems: {10 . 20}.
 	presenter selectItems: {4000 . 5000}.
 	self assert: (presenter selection includesItems: {10 . 20})
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectItemsThenSelectOutsideRangeKeepsPaths [
 	presenter selectItems: {10 . 20}.
 	presenter selectItems: {5000 . 6000}.
@@ -168,7 +170,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectItemsThenSelectOutsideRan
 		hasSameElements: { #(1 1 3) . #(1 3) }
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectMultipleItemAddsAllToSelectedPathList [
 
 	presenter 
@@ -179,7 +181,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectMultipleItemAddsAllToSele
 		hasSameElements: { #(1 3) . #(1 2 3) }
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectMultipleItemsAddsAllToSelectedItemList [
 
 	presenter selectItem: 10.
@@ -188,7 +190,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectMultipleItemsAddsAllToSel
 	self assert: (presenter selection includesItem: 30).
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectMultipleItemsRaisesSelectionChangeEventMultipleTimes [
 	| events |
 	events := 0.
@@ -200,7 +202,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectMultipleItemsRaisesSelect
 	self assert: events equals: 2
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectMultiplePathsAddsAllToSelectedItemList [
 
 	presenter 
@@ -210,7 +212,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectMultiplePathsAddsAllToSel
 	self assert: (presenter selection includesItem: 6).
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectMultiplePathsAddsAllToSelectedPathList [
 
 	presenter 
@@ -223,7 +225,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectMultiplePathsAddsAllToSel
 	self assert: (presenter selection includesPath: #(2 2)).
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectMultiplePathsRaisesSelectionChangeEventMultipleTimes [
 	| events |
 	events := 0.
@@ -235,21 +237,21 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectMultiplePathsRaisesSelect
 	self assert: events equals: 2
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectPathAddsIndexToSelectedPathList [
 
 	presenter selectPath: #(1).
 	self assert: (presenter selection includesPath: #(1))
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectPathAddsItemToSelectedItemList [
 
 	presenter selectPath: #(1 3).
 	self assert: (presenter selection includesItem: 10)
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectPathRaisesSelectionChangeEventWithSelectedPath [
 	| selectedPaths |
 	presenter
@@ -260,7 +262,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectPathRaisesSelectionChange
 	self assert: (selectedPaths includes: #(1 2)).
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectPathThenSelectInvalidPathKeepsFirstElement [
 	
 	presenter selectPath: #(1 3).
@@ -268,7 +270,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectPathThenSelectInvalidPath
 	self assert: (presenter selection includesItem: 10)
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectPathThenSelectInvalidPathKeepsFirstPath [
 	
 	presenter selectPath: #(1 3).
@@ -276,7 +278,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectPathThenSelectInvalidPath
 	self assert: (presenter selection includesPath: #(1 3))
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectPathThenSelectInvalidPathKeepsSingleSelectedItem [
 	
 	presenter selectPath: #(1 3).
@@ -286,7 +288,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectPathThenSelectInvalidPath
 		equals: 1
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectPathTwiceAddsPathToSelectedPathListOnlyOnce [
 
 	presenter selectPath: #(1 3).
@@ -296,7 +298,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectPathTwiceAddsPathToSelect
 		equals: #( #(1 3) )
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectPathsAddsItemsToSelectedItemList [
 	| paths |
 	paths := { #(1 2) . #(2 2) }.
@@ -306,7 +308,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectPathsAddsItemsToSelectedI
 	
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectPathsAddsPathsToSelectedPathList [
 	| paths |
 	paths := { #(1 2) . #(2 2) }.
@@ -314,7 +316,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectPathsAddsPathsToSelectedP
 	self assert: (presenter selection includesPaths: paths).
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectPathsThenSelectInvalidPathKeepsElements [
 
 	presenter 
@@ -323,7 +325,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectPathsThenSelectInvalidPat
 	self assert: (presenter selection includesItems: #(10 6))
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectPathsThenSelectInvalidPathKeepsPaths [
 	| paths |
 	paths := {#(1 3) . #(2 2)}.
@@ -333,7 +335,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectPathsThenSelectInvalidPat
 	self assert: (presenter selection includesPaths: paths)
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectPathsTwiceAddsPathssToSelectedPathListOnlyOnce [
 	| paths |
 	paths := {#(1 3) . #(2 2)}.
@@ -345,7 +347,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectPathsTwiceAddsPathssToSel
 		hasSameElements: paths
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectedItemIsNilIfNothingIsSelected [
 
 	self assert: presenter selection selectedItem isNil.
@@ -355,7 +357,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectedItemIsNilIfNothingIsSel
 	self assert: presenter selection selectedItem isNil
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectedItemsIsEmptyIfNothingIsSelected [
 
 	self assert: presenter selection selectedItems isEmpty.
@@ -365,7 +367,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectedItemsIsEmptyIfNothingIs
 	self assert: presenter selection selectedItems isEmpty
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectedPathIsNilIfNothingIsSelected [
 
 	self assert: presenter selection selectedPath isNil.
@@ -375,7 +377,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectedPathIsNilIfNothingIsSel
 	self assert: presenter selection selectedPath isNil
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSelectedPathsIsEmptyIfNothingIsSelected [
 
 	self assert: presenter selection selectedPaths isEmpty.
@@ -385,7 +387,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSelectedPathsIsEmptyIfNothingIs
 	self assert: presenter selection selectedPaths isEmpty
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSetSelectInvalidPathDoesNotModifySelection [
 
 	presenter whenSelectionChangedDo: [ :selection | self fail ].
@@ -394,7 +396,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSetSelectInvalidPathDoesNotModi
 	"If we arrive here and the test did not fail, we succeeded".
 ]
 
-{ #category : #'tests - select-item' }
+{ #category : 'tests - select-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testSetSelectItemOutsideRangeDoesNotModifySelection [
 
 	presenter whenSelectionChangedDo: [ :selection | self fail ].
@@ -403,7 +405,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSetSelectItemOutsideRangeDoesNo
 	"If we arrive here and the test did not fail, we succeeded"
 ]
 
-{ #category : #'tests - select-index' }
+{ #category : 'tests - select-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testSetSelectPathRaisesSelectionChangeEventWithSelectedItem [
 	| selectedItems |
 	presenter
@@ -414,7 +416,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testSetSelectPathRaisesSelectionCha
 	self assert: (selectedItems includes: 10)
 ]
 
-{ #category : #'tests - unselect-index' }
+{ #category : 'tests - unselect-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testUnselectAllRaisesSelectionEventOnce [
 	"Because it does nothing in single selection mode"
 
@@ -431,7 +433,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testUnselectAllRaisesSelectionEvent
 	self assert: nbEvents equals: 1
 ]
 
-{ #category : #'tests - unselect-index' }
+{ #category : 'tests - unselect-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testUnselectAllUnselectsall [
 
 	presenter
@@ -441,7 +443,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testUnselectAllUnselectsall [
 	self assert: presenter selection isEmpty
 ]
 
-{ #category : #'tests - unselect-item' }
+{ #category : 'tests - unselect-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testUnselectSelectedItemRaisesSelectionEventOnce [
 	
 	| counter |
@@ -453,7 +455,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testUnselectSelectedItemRaisesSelec
 	self assert: counter equals: 1
 ]
 
-{ #category : #'tests - unselect-item' }
+{ #category : 'tests - unselect-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testUnselectSelectedItemRemovesItFromSelectionList [
 
 	presenter
@@ -462,7 +464,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testUnselectSelectedItemRemovesItFr
 	self assert: (presenter selection isEmpty)
 ]
 
-{ #category : #'tests - unselect-index' }
+{ #category : 'tests - unselect-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testUnselectSelectedPathRaisesSelectionEventOnce [
 	
 	| counter |
@@ -475,7 +477,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testUnselectSelectedPathRaisesSelec
 	self assert: counter equals: 1
 ]
 
-{ #category : #'tests - unselect-index' }
+{ #category : 'tests - unselect-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testUnselectSelectedPathRemovesItFromSelectionList [
 
 	presenter
@@ -484,7 +486,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testUnselectSelectedPathRemovesItFr
 	self assert: (presenter selection isEmpty)
 ]
 
-{ #category : #'tests - unselect-item' }
+{ #category : 'tests - unselect-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testUnselectUnselectedItemKeepsSelectionList [
 
 	presenter
@@ -493,7 +495,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testUnselectUnselectedItemKeepsSele
 	self assert: presenter selection selectedItems asArray equals: #(10)
 ]
 
-{ #category : #'tests - unselect-item' }
+{ #category : 'tests - unselect-item' }
 SpTreeTablePresenterMultipleSelectionTest >> testUnselectUnselectedItemRaisesNoSelectionEvent [
 	
 	| counter |
@@ -505,7 +507,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testUnselectUnselectedItemRaisesNoS
 	self assert: counter equals: 0
 ]
 
-{ #category : #'tests - unselect-index' }
+{ #category : 'tests - unselect-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testUnselectUnselectedPathKeepsSelectionList [
 
 	presenter
@@ -516,7 +518,7 @@ SpTreeTablePresenterMultipleSelectionTest >> testUnselectUnselectedPathKeepsSele
 		equals: { #(1 2) }
 ]
 
-{ #category : #'tests - unselect-index' }
+{ #category : 'tests - unselect-index' }
 SpTreeTablePresenterMultipleSelectionTest >> testUnselectUnselectedPathRaisesNoSelectionEvent [
 	
 	| counter |

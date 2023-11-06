@@ -4,17 +4,18 @@ I am an example that exposes to the world how to use a ScrollPane announcement t
 self example
 "
 Class {
-	#name : #SpScrollSyncExample,
-	#superclass : #SpPresenter,
+	#name : 'SpScrollSyncExample',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'text',
 		'sideRuler',
 		'currentVerticalScrollPosition'
 	],
-	#category : #'Spec2-Morphic-Examples'
+	#category : 'Spec2-Morphic-Examples',
+	#package : 'Spec2-Morphic-Examples'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpScrollSyncExample class >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
@@ -23,25 +24,25 @@ SpScrollSyncExample class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpScrollSyncExample class >> example [
 
 	<sampleInstance>
 	^ self new open
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpScrollSyncExample class >> title [
 
 	^ self name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpScrollSyncExample >> currentVerticalScrollPosition [
 	^ currentVerticalScrollPosition
 ]
 
-{ #category : #layouts }
+{ #category : 'layouts' }
 SpScrollSyncExample >> defaultSpecLayout [
 
 	
@@ -51,13 +52,13 @@ SpScrollSyncExample >> defaultSpecLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpScrollSyncExample >> initialize [
 	super initialize.
 	currentVerticalScrollPosition := 0
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpScrollSyncExample >> initializePresenters [
 	text := self newText.
 	sideRuler := self newMorph.
@@ -79,17 +80,17 @@ SpScrollSyncExample >> initializePresenters [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpScrollSyncExample >> loremIpsum [
 	^ String loremIpsum: 2854
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpScrollSyncExample >> sideRuler [
 	^ sideRuler
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpScrollSyncExample >> syncMorphPosition [
 
 	currentVerticalScrollPosition = text scrollValue y
@@ -97,7 +98,7 @@ SpScrollSyncExample >> syncMorphPosition [
 	currentVerticalScrollPosition := text scrollValue y
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpScrollSyncExample >> text [
 	^ text
 ]

@@ -1,22 +1,24 @@
 Class {
-	#name : #SpTextSearchCommand,
-	#superclass : #SpToolCommand,
-	#category : #'Spec2-Commands-Code'
+	#name : 'SpTextSearchCommand',
+	#superclass : 'SpToolCommand',
+	#category : 'Spec2-Commands-Code',
+	#package : 'Spec2-Commands',
+	#tag : 'Code'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextSearchCommand class >> allOrdered [
 
 	^ self allSubclasses sorted: #order ascending
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpTextSearchCommand class >> defaultName [
 
 	^ 'Find'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextSearchCommand class >> order [
 	"at the end by default"
 

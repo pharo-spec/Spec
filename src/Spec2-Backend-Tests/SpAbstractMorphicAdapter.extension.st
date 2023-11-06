@@ -1,6 +1,6 @@
-Extension { #name : #SpAbstractMorphicAdapter }
+Extension { #name : 'SpAbstractMorphicAdapter' }
 
-{ #category : #'*Spec2-Backend-Tests' }
+{ #category : '*Spec2-Backend-Tests' }
 SpAbstractMorphicAdapter >> typeForSearch: aString [
 	"emulate we are typing to perform a search"
 	

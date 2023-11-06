@@ -9,8 +9,8 @@ self exampleWithoutOptions.
 self exampleWithOptions.
 "
 Class {
-	#name : #SpDiffPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpDiffPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'#showOptions => ObservableSlot',
 		'#showOnlyDestination => ObservableSlot',
@@ -20,60 +20,48 @@ Class {
 		'#leftText => ObservableSlot',
 		'#rightLabel => ObservableSlot',
 		'#rightText => ObservableSlot',
-		'#beWrapped => ObservableSlot',
-		'#beNavigable => ObservableSlot'
+		'#beWrapped => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDiffPresenter class >> adapterName [
 
 	^ #DiffAdapter
 ]
 
-{ #category : #api }
-SpDiffPresenter >> beNavigable [
-
-	^ beNavigable
-]
-
-{ #category : #api }
-SpDiffPresenter >> beNavigable: aBoolean [
-
-	beNavigable := aBoolean
-]
-
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> beWrapped [
 
 	^ beWrapped
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> beWrapped: aBoolean [
 
 	beWrapped := aBoolean
 ]
 
-{ #category : #'undo-redo' }
+{ #category : 'undo-redo' }
 SpDiffPresenter >> clearUndoManager [
 	"The diff presenter does not allow edition, it does not have undo history. But this message is added to have polimorphism in the Message Browser"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> contextClass [
 	^ contextClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> contextClass: anObject [
 	contextClass := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDiffPresenter >> initialize [
-
 	super initialize.
 
 	leftText := ''.
@@ -82,123 +70,91 @@ SpDiffPresenter >> initialize [
 	showOnlyDestination := false.
 	showOnlySource := false.
 	beWrapped := true.
-	beNavigable := false.
 
-	self
-		property: #beWrapped
-		whenChangedDo: [ :aBoolean | 
-		self changed: #beWrapped: with: { aBoolean } ].
-	self
-		property: #beNavigable
-		whenChangedDo: [ :aBoolean | 
-		self changed: #beNavigable: with: { aBoolean } ].
-	self
-		property: #leftText
-		whenChangedDo: [ :newText | 
-		self changed: #leftText: with: { newText } ].
-	self
-		property: #rightText
-		whenChangedDo: [ :newText | 
-		self changed: #rightText: with: { newText } ].
-	self
-		property: #contextClass
-		whenChangedDo: [ :newClass | 
-		self changed: #contextClass: with: { newClass } ].
-	self
-		property: #showOptions
-		whenChangedDo: [ :aBoolean | 
-		self changed: #showOptions: with: { aBoolean } ].
-	self
-		property: #showOnlyDestination
-		whenChangedDo: [ :aBoolean | 
-		self changed: #showOnlyDestination: with: { aBoolean } ].
-	self
-		property: #showOnlySource
-		whenChangedDo: [ :aBoolean | 
-		self changed: #showOnlySource: with: { aBoolean } ].
-	self
-		property: #leftLabel
-		whenChangedDo: [ :newText | 
-		self changed: #leftLabel: with: { newText } ].
-	self
-		property: #rightLabel
-		whenChangedDo: [ :newText | 
-		self changed: #rightLabel: with: { newText } ]
+	self property: #beWrapped whenChangedDo: [ :aBoolean | self changed: #beWrapped: with: {aBoolean} ].
+	self property: #leftText whenChangedDo: [ :newText | self changed: #leftText: with: {newText} ].
+	self property: #rightText whenChangedDo: [ :newText | self changed: #rightText: with: {newText} ].
+	self property: #contextClass whenChangedDo: [ :newClass | self changed: #contextClass: with: {newClass} ].
+	self property: #showOptions whenChangedDo: [ :aBoolean | self changed: #showOptions: with: {aBoolean} ].
+	self property: #showOnlyDestination whenChangedDo: [ :aBoolean | self changed: #showOnlyDestination: with: {aBoolean} ].
+	self property: #showOnlySource whenChangedDo: [ :aBoolean | self changed: #showOnlySource: with: {aBoolean} ].
+	self property: #leftLabel whenChangedDo: [ :newText | self changed: #leftLabel: with: {newText} ].
+	self property: #rightLabel whenChangedDo: [ :newText | self changed: #rightLabel: with: {newText} ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> leftLabel [
 	^ leftLabel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> leftLabel: anObject [
 	leftLabel := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> leftText [
 	^ leftText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> leftText: anObject [
 	leftText := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> rightLabel [
 	^ rightLabel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> rightLabel: anObject [
 	rightLabel := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> rightText [
 	^ rightText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDiffPresenter >> rightText: anObject [
 	rightText := anObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> showBoth [
 	self property: #showOnlySource rawValue: false.
 	self property: #showOnlyDestination rawValue: false.
 	self changed: #showBoth with: {}
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> showOnlyDestination [
 	^ showOnlyDestination
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> showOnlyDestination: aBoolean [
 	showOnlyDestination := aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> showOnlySource [
 	^ showOnlySource
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> showOnlySource: aBoolean [
 	showOnlySource := aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> showOptions [
 	^ showOptions
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDiffPresenter >> showOptions: aBoolean [
 	showOptions := aBoolean
 ]

@@ -1,6 +1,6 @@
-Extension { #name : #SpLayoutWidgetAlignmentStart }
+Extension { #name : 'SpLayoutWidgetAlignmentStart' }
 
-{ #category : #'*Spec2-Morphic' }
+{ #category : '*Spec2-Morphic' }
 SpLayoutWidgetAlignmentStart >> asMorphicAlign [
 
 	^ #topLeft

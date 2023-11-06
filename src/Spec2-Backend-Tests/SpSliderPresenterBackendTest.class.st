@@ -1,15 +1,17 @@
 Class {
-	#name : #SpSliderPresenterBackendTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpSliderPresenterBackendTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSliderPresenterBackendTest >> classToTest [
 	^ SpSliderPresenter 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSliderPresenterBackendTest >> initializeTestedInstance [
 	presenter
 		min: 1;
@@ -18,12 +20,12 @@ SpSliderPresenterBackendTest >> initializeTestedInstance [
 		value: 20
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpSliderPresenterBackendTest >> testSmokeHorizontalTest [
 	self presenter beHorizontal.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpSliderPresenterBackendTest >> testSmokeVerticalTest [
 	self presenter beVertical.
 	

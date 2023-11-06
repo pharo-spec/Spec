@@ -1,6 +1,6 @@
-Extension { #name : #SpNotebookPresenter }
+Extension { #name : 'SpNotebookPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpNotebookPresenter class >> example [
 
 	^ self new 

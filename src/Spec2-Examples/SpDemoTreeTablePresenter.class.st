@@ -5,15 +5,17 @@ Description
 I show demos of tree tables
 "
 Class {
-	#name : #SpDemoTreeTablePresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoTreeTablePresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'table1'
 	],
-	#category : #'Spec2-Examples-Demo-Tables'
+	#category : 'Spec2-Examples-Demo-Tables',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Tables'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoTreeTablePresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -22,7 +24,7 @@ SpDemoTreeTablePresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoTreeTablePresenter >> initializePresenters [
 
 	table1 := self newTreeTable.
@@ -49,7 +51,7 @@ SpDemoTreeTablePresenter >> initializePresenters [
 		whenActivatedDo: [ :selection | selection selectedItem browse ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoTreeTablePresenter >> menu [
 	^ self newMenu
 		title: 'Context menu example';

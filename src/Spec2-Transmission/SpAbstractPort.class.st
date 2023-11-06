@@ -2,22 +2,24 @@
 I'm a base port.
 "
 Class {
-	#name : #SpAbstractPort,
-	#superclass : #Object,
+	#name : 'SpAbstractPort',
+	#superclass : 'Object',
 	#instVars : [
 		'name',
 		'presenter',
 		'delegation'
 	],
-	#category : #'Spec2-Transmission-Base'
+	#category : 'Spec2-Transmission-Base',
+	#package : 'Spec2-Transmission',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractPort class >> isAbstract [ 
 	^self name = #SpAbstractPort
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpAbstractPort class >> newDelegate: aBlock [ 
 
 	^ self new 
@@ -25,7 +27,7 @@ SpAbstractPort class >> newDelegate: aBlock [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpAbstractPort class >> newName: aName [
 
 	^ self new 
@@ -33,7 +35,7 @@ SpAbstractPort class >> newName: aName [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpAbstractPort class >> newName: aName delegate: aBlock [ 
 
 	^ self new 
@@ -42,7 +44,7 @@ SpAbstractPort class >> newName: aName delegate: aBlock [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpAbstractPort class >> newPresenter: aPresenter [
 
 	^ self new 
@@ -50,19 +52,19 @@ SpAbstractPort class >> newPresenter: aPresenter [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPort class >> portName [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPort >> delegateTo: aPresenter [
 
 	delegation := aPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPort >> destinationPresenterOrPort [
 
 	^ delegation 
@@ -70,36 +72,36 @@ SpAbstractPort >> destinationPresenterOrPort [
 		ifNil: [ presenter ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractPort >> isInput [ 
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractPort >> isOutput [
 
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPort >> name [
 
 	^ name ifNil: [ self class portName ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPort >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPort >> presenter [ 
 
 	^ presenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPort >> presenter: aPresenter [
 
 	presenter := aPresenter

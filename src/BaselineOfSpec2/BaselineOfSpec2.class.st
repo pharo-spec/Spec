@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfSpec2,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfSpec2
+	#name : 'BaselineOfSpec2',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfSpec2',
+	#package : 'BaselineOfSpec2'
 }
 
-{ #category : #baseline }
+{ #category : 'baseline' }
 BaselineOfSpec2 >> baseline: spec [
 	<baseline>
 	
@@ -49,7 +50,7 @@ BaselineOfSpec2 >> baseline: spec [
 	spec group: 'default' with: #('Base' 'Tests' 'Code' 'CodeTests').
 ]
 
-{ #category : #'external projects' }
+{ #category : 'external projects' }
 BaselineOfSpec2 >> defaultRepositoryURL [
 		
 	^ self class environment 
@@ -58,7 +59,7 @@ BaselineOfSpec2 >> defaultRepositoryURL [
 		ifAbsent: [ 'github://pharo-spec/Spec' ]
 ]
 
-{ #category : #'external projects' }
+{ #category : 'external projects' }
 BaselineOfSpec2 >> packageRepository [
 
 	" Tries to determine a repository from which the baseline is being loaded. Useful for 
@@ -73,7 +74,7 @@ BaselineOfSpec2 >> packageRepository [
 		ifEmpty: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BaselineOfSpec2 >> project [
 	"Atomic loading is needed for Spec because we are moving classes of package and it breaks their subclasses. 
 	
@@ -99,7 +100,7 @@ We need to use atomic loading only during update of existing Spec upgrade"
 	 
 ]
 
-{ #category : #'external projects' }
+{ #category : 'external projects' }
 BaselineOfSpec2 >> specCore: spec [
 
 	spec baseline: 'SpecCore' with: [ 
@@ -108,7 +109,7 @@ BaselineOfSpec2 >> specCore: spec [
 			loads: #('Base' 'Tests') ]
 ]
 
-{ #category : #'external projects' }
+{ #category : 'external projects' }
 BaselineOfSpec2 >> specCoreCode: spec [
 
 	spec baseline: 'SpecCoreCode' with: [ 

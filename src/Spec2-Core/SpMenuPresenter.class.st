@@ -4,8 +4,8 @@ A menu presenter contains groups of menu items (having one unique group by defau
 A menu presenter is included in presenters that implement the `#contextMenu:` (See below) method, but it can also be invoked by calling `SpMenuPresenter>>#openWithSpecAt:`
 "
 Class {
-	#name : #SpMenuPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpMenuPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'#groups',
 		'#title => ObservableSlot',
@@ -14,16 +14,18 @@ Class {
 		'#shortcutGroup',
 		'#defaultGroup'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpMenuPresenter class >> adapterName [
 
 	^ #MenuAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpMenuPresenter class >> addDocumentExtraSections: aBuilder [
 
 	aBuilder newLine.
@@ -34,19 +36,19 @@ SpMenuPresenter class >> addDocumentExtraSections: aBuilder [
 				aBuilder monospace: eachType name ] ] ]	
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpMenuPresenter class >> documentExampleCodeSelector [
 
 	^ #exampleShowAtPointer
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpMenuPresenter class >> documentFactoryMethodSelector [
 
 	^ #newMenu
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpMenuPresenter class >> popup [
 	<spec>
 	
@@ -54,7 +56,7 @@ SpMenuPresenter class >> popup [
 		adaptAsPopup: #(presenter))
 ]
 
-{ #category : #'api - building' }
+{ #category : 'api - building' }
 SpMenuPresenter >> addAllFromPragma: pragma target: target [
 
 	self fromSpec: (PragmaMenuBuilder 
@@ -62,7 +64,7 @@ SpMenuPresenter >> addAllFromPragma: pragma target: target [
 		model: target) menuSpec
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuPresenter >> addGroup: aBlock [
 	"Add a group of items. 
 	 If you do not want a multiple-group menu, you can use `SpMenuPresenter>>#addItem:` instead."
@@ -73,7 +75,7 @@ SpMenuPresenter >> addGroup: aBlock [
 	self addMenuGroup: group
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuPresenter >> addItem: aBlock [
 	"Add an item to the menu. When the menu group has not been specified previously, add the 
 	 item in a default group.
@@ -82,43 +84,43 @@ SpMenuPresenter >> addItem: aBlock [
 	self defaultGroup addItem: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuPresenter >> addKeybindingsTo: aPresenter [
 	"bind keybindings (shortcuts) defined in this menu to aPresenter"
 
 	aPresenter applyKeyBindingsFromMenu: self
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMenuPresenter >> addMenuGroup: aMenuGroup [
 
 	aMenuGroup owner: self.
 	groups add: aMenuGroup
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpMenuPresenter >> autoRefresh [
 	^ autoRefresh
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpMenuPresenter >> autoRefresh: aBoolean [
 	autoRefresh := aBoolean
 ]
 
-{ #category : #'api - building' }
+{ #category : 'api - building' }
 SpMenuPresenter >> buildWithSpecAsPopup [
 
 	^ self build
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMenuPresenter >> canTakeKeyboardFocus [
 
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMenuPresenter >> defaultGroup [
 
 	^ defaultGroup ifNil: [ 
@@ -127,7 +129,7 @@ SpMenuPresenter >> defaultGroup [
 		defaultGroup ]
 ]
 
-{ #category : #'api - building' }
+{ #category : 'api - building' }
 SpMenuPresenter >> fromSpec: aSpec [
 	| grps subgroup |
 	
@@ -148,35 +150,35 @@ SpMenuPresenter >> fromSpec: aSpec [
 			group addItem: [ :item | item fromSpec: spec ] ] ] ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuPresenter >> icon [
 	^ icon
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuPresenter >> icon: anIcon [
 	icon := anIcon
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpMenuPresenter >> iconName: aSymbol [
 	self icon: (self iconNamed: aSymbol)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMenuPresenter >> initialize [
 
 	super initialize.
 	groups := OrderedCollection new
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMenuPresenter >> isMenuPresenter [
 
 	^ true
 ]
 
-{ #category : #localization }
+{ #category : 'localization' }
 SpMenuPresenter >> localeChanged [
 
 	super localeChanged.
@@ -184,12 +186,12 @@ SpMenuPresenter >> localeChanged [
 	
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuPresenter >> menuGroups [
 	^ groups
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuPresenter >> openWithSpecAt: aPosition [
 	"Open this menu at `aPosition`. 
 	 `aPosition` os a instance of `Point`"
@@ -198,7 +200,7 @@ SpMenuPresenter >> openWithSpecAt: aPosition [
 	self withAdapterDo: [ :anAdapter | anAdapter openAt: aPosition ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuPresenter >> openWithSpecAtPointer [
 	"Open this menu at cursor position"
 
@@ -206,7 +208,7 @@ SpMenuPresenter >> openWithSpecAtPointer [
 	self withAdapterDo: [ :anAdapter | anAdapter openAtPointer ]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 SpMenuPresenter >> printOn: aStream [
 	super printOn: aStream.
 	self title value
@@ -217,7 +219,7 @@ SpMenuPresenter >> printOn: aStream [
 				nextPutAll: '''' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMenuPresenter >> rootMenu [
 
 	^ self owner isMenuPresenter 
@@ -226,7 +228,7 @@ SpMenuPresenter >> rootMenu [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMenuPresenter >> shortcutGroup [
 	"Some platforms use acceleration groups to store shortcut keys. 
 	 if that's the case, we use this property to access it later (and store 
@@ -235,18 +237,18 @@ SpMenuPresenter >> shortcutGroup [
 	^ shortcutGroup
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMenuPresenter >> shortcutGroup: aKeyGroup [
 	
 	shortcutGroup := aKeyGroup
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuPresenter >> title [
 	^ title
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuPresenter >> title: aString [
 	title := aString
 ]

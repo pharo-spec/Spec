@@ -1,18 +1,18 @@
-Extension { #name : #SpAbstractTwoButtonsTest }
+Extension { #name : 'SpAbstractTwoButtonsTest' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTwoButtonsTest >> classToTest [
 	^ SpTestingAbstractTwoButtons
 ]
 
-{ #category : #'*Spec2-Deprecated' }
-SpAbstractTwoButtonsTest class >> isDeprecated [
+{ #category : '*Spec2-Deprecated' }
+SpAbstractTwoButtonsTest classSide >> isDeprecated [
 	"This presenter does not add enough value to Spec to be kept in it. If you are using it, please copy the code in your own application."
 
 	^ true
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTwoButtonsTest >> testFirstActionSecondAction [
 	| action1 action2 |
 	action1 := false.
@@ -24,14 +24,14 @@ SpAbstractTwoButtonsTest >> testFirstActionSecondAction [
 	self assert: action2
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTwoButtonsTest >> testFirstIconSecondIcon [
 	presenter firstIcon: #thumbsUp secondIcon: #thumbsDown.
 	self assert: presenter firstButton icon == (self iconNamed: #thumbsUp).
 	self assert: presenter secondButton icon == (self iconNamed: #thumbsDown)
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractTwoButtonsTest >> testFirstLabelSecondLabel [
 	presenter firstLabel: 'label 1' secondLabel: 'label 2'.
 	self assert: presenter firstButton label asString equals: 'label 1'.

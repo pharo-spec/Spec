@@ -1,6 +1,6 @@
-Extension { #name : #SpAbstractListPresenter }
+Extension { #name : 'SpAbstractListPresenter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> doubleClickAction: aBlockClosure [ 
 	
 	self
@@ -11,51 +11,51 @@ SpAbstractListPresenter >> doubleClickAction: aBlockClosure [
 	self whenActivatedDo: [ :sel | aBlockClosure value: sel selectedItem]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> filteringBlock [
 	self
 		deprecated: 'This feature is now removed from Spec 2. If the visible elements of the list need to be changed, it''s the users of the lists that should manage it and update the list of items of the list.'.
 	^ nil
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> filteringBlock: aBlock [
 	self
 		deprecated: 'This feature is now removed from Spec 2. If the visible elements of the list need to be changed, it''s the users of the lists that should manage it and update the list of items of the list.'
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> getSelectionStateFor: anIndex [
 	self deprecated: 'This method from the old API will be removed.' transformWith: '`@receiver getSelectionStateFor: `@statements' -> '`@receiver selection selectedIndexes includes: `@statements'.
 
 	^ self selection selectedIndexes includes: anIndex
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> itemBeginsWithFilter [
 	self deprecated: 'Use #enableItemBeginsWithFilter instead' transformWith: '`@receiver itemBeginsWithFilter' -> '`@receiver enableItemBeginsWithFilter'.
 	self enableItemBeginsWithFilter
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> itemFilterBlock [
 	self deprecated: 'Use #itemFilter instead' transformWith: '`@receiver itemFilterBlock' -> '`@receiver itemFilter'.
 	^ self itemFilter
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> itemFilterBlock: aBlock [
 	self deprecated: 'Use #itemFilter: instead' transformWith: '`@receiver itemFilterBlock: `@statements1' -> '`@receiver itemFilter: `@statements1'.
 	^ self itemFilter: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> itemSubstringFilter [
 	self deprecated: 'Use #enableItemSubstringFilter instead' transformWith: '`@receiver itemSubstringFilter' -> '`@receiver enableItemSubstringFilter'.
 	self enableItemSubstringFilter
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> listItems [
 	
 	self
@@ -65,7 +65,7 @@ SpAbstractListPresenter >> listItems [
 	^ self model items
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> menu [
 	"Return the block used to defined the menu"
 	self 
@@ -76,7 +76,7 @@ SpAbstractListPresenter >> menu [
 	^ self contextMenu
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> menu: aBlock [
 	"Set the block used to defined the menu"
 
@@ -94,7 +94,7 @@ SpAbstractListPresenter >> menu: aBlock [
 				cull: false ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> menu: aBlock shifted: aBoolean [
 	self
 		deprecated:
@@ -110,7 +110,7 @@ SpAbstractListPresenter >> menu: aBlock shifted: aBoolean [
 				cull: true ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> resetSelection [
 	"Unselect every items"
 
@@ -122,7 +122,7 @@ SpAbstractListPresenter >> resetSelection [
 	self unselectAll
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> selectedIndex [
 	"Return the index of the selected item
 	In the case of a multiple selection list, it returns the last selected item"
@@ -135,7 +135,7 @@ SpAbstractListPresenter >> selectedIndex [
 	^  self selection selectedIndex
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> selectedIndex: anIndex [
 
 	"Set the index of the item you want to be selected"
@@ -147,7 +147,7 @@ SpAbstractListPresenter >> selectedIndex: anIndex [
 	self selectIndex: anIndex
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> selectedIndexes [
 	self
 		deprecated: 'Use the #selection object instead. This method assumes multiple selection'
@@ -157,7 +157,7 @@ SpAbstractListPresenter >> selectedIndexes [
 	^  self selection selectedIndexes
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> selectedItem [
 	"Return the selected item.
 	In the case of a multiple selection list, it returns the last selected item"
@@ -170,7 +170,7 @@ SpAbstractListPresenter >> selectedItem [
 	^ self selection selectedItem
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> selectedItem: anItem [
 	"Set the item you want to be selected"
 
@@ -182,7 +182,7 @@ SpAbstractListPresenter >> selectedItem: anItem [
 	self selectItem: anItem
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> setIndex: anIndex [
 	self
 		deprecated: 'Use #selectIndex: instead'
@@ -190,7 +190,7 @@ SpAbstractListPresenter >> setIndex: anIndex [
 	self selectIndex: anIndex
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> setIndexes: aCollectionOfIndexes [
 	"Set the indexexs of the selected items in case of multiple selection"
 	self
@@ -201,7 +201,7 @@ SpAbstractListPresenter >> setIndexes: aCollectionOfIndexes [
 	self selection selectIndexes: aCollectionOfIndexes
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> setSelectedIndex: anIndex [
 	self
 		deprecated: 'Use #selectedIndex: instead'
@@ -211,7 +211,7 @@ SpAbstractListPresenter >> setSelectedIndex: anIndex [
 	^ self selectIndex: anIndex
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> setSelectedItem: anIndex [
 	self
 		deprecated: 'Use #selectedItem: instead'
@@ -221,7 +221,7 @@ SpAbstractListPresenter >> setSelectedItem: anIndex [
 	^ self selectItem: anIndex
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> whenListChanged: aBlock [
 	"Specify a block to value after the contents of the list has changed"
 	"Basically when you set a new list of items"
@@ -233,13 +233,13 @@ SpAbstractListPresenter >> whenListChanged: aBlock [
 	self whenModelChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> whenMultiSelectionChanged: aBlock [
 	"Set a block to value when the multiSelection value has changed"
 	self deprecated: 'Should not use'
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> whenSelectedIndexChangedDo: aBlock [
 	"Set a block to value when the selection index has changed"
 	
@@ -251,7 +251,7 @@ SpAbstractListPresenter >> whenSelectedIndexChangedDo: aBlock [
 	^ self  selection whenChangedDo: [ :selection | aBlock value: selection selectedIndex ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> whenSelectedItemChanged: aBlock [
 	self
 		deprecated: 'Use #whenSelectedItemChangedDo: instead'
@@ -262,7 +262,7 @@ SpAbstractListPresenter >> whenSelectedItemChanged: aBlock [
 		whenSelectionChangedDo: [ :selection | aBlock cull: selection selectedItem ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> whenSelectedItemChangedDo: aBlock [
 	"Set a block to value when the select item is changed"
 
@@ -274,7 +274,7 @@ SpAbstractListPresenter >> whenSelectedItemChangedDo: aBlock [
 	self selection whenChangedDo: [ :selection | aBlock cull: selection selectedItem ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> whenSelectedItemsChanged: aBlock [
 	"Set a block to value when the select item is changed"
 	
@@ -286,7 +286,7 @@ SpAbstractListPresenter >> whenSelectedItemsChanged: aBlock [
 	self selection whenChangedDo: [ :selection | aBlock cull: selection selectedItems ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> whenSelectionChanged: aBlock [
 	
 	self
@@ -296,7 +296,7 @@ SpAbstractListPresenter >> whenSelectionChanged: aBlock [
 	^ self whenSelectionChangedDo: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> whenSelectionIndexChanged: aBlock [
 	
 	self
@@ -306,7 +306,7 @@ SpAbstractListPresenter >> whenSelectionIndexChanged: aBlock [
 	^ self  selection whenChangedDo: [ :selection | aBlock value: selection selectedIndex ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpAbstractListPresenter >> whenSelectionIndexesChanged: aBlock [
 	"Set a block to value when the selection index has changed"
 	

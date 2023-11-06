@@ -3,36 +3,38 @@ A validation report is used to collect possible validation failures in a tree of
 It holds errors so that the caller of the validation can determine if the validation is successful or provide a useful feedback to the user on failed validations.
 "
 Class {
-	#name : #SpValidationReport,
-	#superclass : #Object,
+	#name : 'SpValidationReport',
+	#superclass : 'Object',
 	#instVars : [
 		'errors'
 	],
-	#category : #'Spec2-CommonWidgets-Validation'
+	#category : 'Spec2-CommonWidgets-Validation',
+	#package : 'Spec2-CommonWidgets',
+	#tag : 'Validation'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpValidationReport >> add: aValidationFailure [ 
 	errors add: aValidationFailure
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpValidationReport >> addAll: aListOfValidationFailure [ 
 	errors addAll: aListOfValidationFailure 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpValidationReport >> errors [
 	^ errors
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpValidationReport >> hasErrors [
 
 	^ errors isNotEmpty
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpValidationReport >> initialize [ 
 	errors := OrderedCollection new.
 ]

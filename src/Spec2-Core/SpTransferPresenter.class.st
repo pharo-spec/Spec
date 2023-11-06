@@ -2,37 +2,39 @@
 I am a model representing a transfer during a drag and drop operation. I keep a pointer the source of the drag, and a pointer to what is dragged
 "
 Class {
-	#name : #SpTransferPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpTransferPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'#passenger => ObservableSlot',
 		'#source => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Support'
+	#category : 'Spec2-Core-Support',
+	#package : 'Spec2-Core',
+	#tag : 'Support'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpTransferPresenter class >> adapterName [
 
 	^ #TransferAdapter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransferPresenter >> from: aModel [
 	source := aModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransferPresenter >> passenger [
 	^ passenger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransferPresenter >> source [
 	^ source
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransferPresenter >> transfer: anObject [
 	passenger := anObject
 ]

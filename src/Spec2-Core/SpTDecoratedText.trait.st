@@ -5,7 +5,7 @@ A column can be decorated with certain attributes (see selectors defined) that r
 The valuable is always in the form [ :anItem | aResult ], but result may vary depending on the decoration (explained in messages).
 "
 Trait {
-	#name : #SpTDecoratedText,
+	#name : 'SpTDecoratedText',
 	#instVars : [
 		'colorAction',
 		'backgroundColorAction',
@@ -13,16 +13,18 @@ Trait {
 		'boldAction',
 		'underlineAction'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #api }
+{ #category : 'api' }
 SpTDecoratedText >> displayBackgroundColor [
 
 	^ backgroundColorAction
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTDecoratedText >> displayBackgroundColor: aBlock [
 	"Changes the background color of cells of the column. 
 	 `aBlock` receives an argument (the model element) and should answer an instance of Color. 
@@ -31,13 +33,13 @@ SpTDecoratedText >> displayBackgroundColor: aBlock [
 	backgroundColorAction := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTDecoratedText >> displayBold [
 
 	^ boldAction
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTDecoratedText >> displayBold: aBlock [
 	"If `aBlock` answer true, the cell will be displayed in bold.
 	 `aBlock` receives one argument (the model element)."
@@ -45,13 +47,13 @@ SpTDecoratedText >> displayBold: aBlock [
 	boldAction := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTDecoratedText >> displayColor [
 
 	^ colorAction
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTDecoratedText >> displayColor: aBlock [
 	"Changes the font color of cells of the column. 
 	 `aBlock` receives an argument (the model element) and should answer an instance of Color."
@@ -59,13 +61,13 @@ SpTDecoratedText >> displayColor: aBlock [
 	colorAction := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTDecoratedText >> displayItalic [
 
 	^ italicAction
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTDecoratedText >> displayItalic: aBlock [
 	"If `aBlock` answer true, the cell will be displayed in italic.
 	 `aBlock` receives one argument (the model element)."
@@ -73,13 +75,13 @@ SpTDecoratedText >> displayItalic: aBlock [
 	italicAction := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTDecoratedText >> displayUnderline [
 
 	^ underlineAction
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTDecoratedText >> displayUnderline: aBlock [
 	"If `aBlock` answer true, the cell will be displayed underlined.
 	 `aBlock` receives one argument (the model element)."

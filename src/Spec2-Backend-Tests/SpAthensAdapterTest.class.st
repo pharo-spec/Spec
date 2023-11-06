@@ -1,10 +1,12 @@
 Class {
-	#name : #SpAthensAdapterTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpAthensAdapterTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAthensAdapterTest >> circle: aSurface [
 	^ aSurface
 		createPath: [ :builder | 
@@ -17,18 +19,18 @@ SpAthensAdapterTest >> circle: aSurface [
 				ccwArcTo: 50 @ 150 angle: 90 degreesToRadians]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAthensAdapterTest >> classToTest [
 	^ SpAthensPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAthensAdapterTest >> initializeTestedInstance [
 	presenter drawBlock: [ "nothing to do" ].
 	presenter surfaceExtent: 800@600
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAthensAdapterTest >> testContextMenu [
 	| menu changed |
 	
@@ -42,7 +44,7 @@ SpAthensAdapterTest >> testContextMenu [
 	self assert: changed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAthensAdapterTest >> testPresentersBlockReceivesAthensCanvas [
 	| receivedCanvas |
 	self presenter drawBlock: [ :canvas | receivedCanvas := canvas ].
@@ -54,7 +56,7 @@ SpAthensAdapterTest >> testPresentersBlockReceivesAthensCanvas [
 	self assert: (receivedCanvas isKindOf: AthensCanvas)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAthensAdapterTest >> testResizeMakesCanvasResize [
 	| extent |
 	

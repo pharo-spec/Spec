@@ -1,10 +1,12 @@
 Class {
-	#name : #SpApplicationWithLocaleTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Morphic-Backend-Tests-Localization'
+	#name : 'SpApplicationWithLocaleTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Morphic-Backend-Tests-Localization',
+	#package : 'Spec2-Morphic-Backend-Tests',
+	#tag : 'Localization'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpApplicationWithLocaleTest >> testLabel [
 
 	| app label string |

@@ -1,25 +1,27 @@
 Class {
-	#name : #SpScrollableLayoutAdapterTest,
-	#superclass : #SpLayoutAdapterTest,
+	#name : 'SpScrollableLayoutAdapterTest',
+	#superclass : 'SpLayoutAdapterTest',
 	#instVars : [
 		'classFactory'
 	],
-	#category : #'Spec2-Backend-Tests-Layout'
+	#category : 'Spec2-Backend-Tests-Layout',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpScrollableLayoutAdapterTest >> newClassFactory [
 
 	^ ClassFactoryForTestCase new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpScrollableLayoutAdapterTest >> newLayout [
 
 	^ SpScrollableLayout new
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpScrollableLayoutAdapterTest >> tearDown [
 
 	classFactory ifNotNil: [ 
@@ -28,7 +30,7 @@ SpScrollableLayoutAdapterTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpScrollableLayoutAdapterTest >> testAddTwiceReplacesChild [
 
 	| first second |
@@ -37,7 +39,7 @@ SpScrollableLayoutAdapterTest >> testAddTwiceReplacesChild [
 	self assert: self adapter children first equals: second adapter widget
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpScrollableLayoutAdapterTest >> testAddTwiceSetsChildrenSingleTime [
 
 	| first second |
@@ -46,7 +48,7 @@ SpScrollableLayoutAdapterTest >> testAddTwiceSetsChildrenSingleTime [
 	self assert: self adapter children size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpScrollableLayoutAdapterTest >> testAddWithSymbolWorks [
 
 	| presenterClass |
@@ -66,14 +68,14 @@ SpScrollableLayoutAdapterTest >> testAddWithSymbolWorks [
 	self assert: presenter adapter childWidget equals: (presenter readSlotNamed: #textInput) adapter widget
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpScrollableLayoutAdapterTest >> testLayoutWithChildIsNotEmpty [
 
 	layout child: SpButtonPresenter new.
 	self deny: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpScrollableLayoutAdapterTest >> testRemoveChildAddedAfterOpenRemovesFromAdapter [
 
 	| element |
@@ -84,7 +86,7 @@ SpScrollableLayoutAdapterTest >> testRemoveChildAddedAfterOpenRemovesFromAdapter
 	self assert: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpScrollableLayoutAdapterTest >> testRemoveChildElementRemovesFromAdapter [
 
 	| element |

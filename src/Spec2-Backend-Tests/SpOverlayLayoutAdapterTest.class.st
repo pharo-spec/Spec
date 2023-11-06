@@ -1,16 +1,18 @@
 Class {
-	#name : #SpOverlayLayoutAdapterTest,
-	#superclass : #SpLayoutAdapterTest,
-	#category : #'Spec2-Backend-Tests-Layout'
+	#name : 'SpOverlayLayoutAdapterTest',
+	#superclass : 'SpLayoutAdapterTest',
+	#category : 'Spec2-Backend-Tests-Layout',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOverlayLayoutAdapterTest >> newLayout [
 
 	^ SpOverlayLayout new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOverlayLayoutAdapterTest >> testAddTwiceReplacesChild [
 
 	| first second |
@@ -19,7 +21,7 @@ SpOverlayLayoutAdapterTest >> testAddTwiceReplacesChild [
 	self assert: self adapter children first equals: second adapter widget
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOverlayLayoutAdapterTest >> testAddTwiceSetsChildrenSingleTime [
 
 	| first second |
@@ -28,7 +30,7 @@ SpOverlayLayoutAdapterTest >> testAddTwiceSetsChildrenSingleTime [
 	self assert: self adapter children size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOverlayLayoutAdapterTest >> testLayoutWithChildAndOverlayHasBothElements [
 
 	| overlay |
@@ -37,21 +39,21 @@ SpOverlayLayoutAdapterTest >> testLayoutWithChildAndOverlayHasBothElements [
 	self assert: self adapter children size equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOverlayLayoutAdapterTest >> testLayoutWithChildIsNotEmpty [
 
 	layout child: SpButtonPresenter new.
 	self deny: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOverlayLayoutAdapterTest >> testLayoutWithOverlayIsNotEmpty [
 
 	layout addOverlay: SpButtonPresenter new.
 	self deny: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOverlayLayoutAdapterTest >> testOverlaysAreAddedInOrder [
 	| first |
 
@@ -60,7 +62,7 @@ SpOverlayLayoutAdapterTest >> testOverlaysAreAddedInOrder [
 	self assert: self adapter children first equals: first adapter widget
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOverlayLayoutAdapterTest >> testOverlaysAreBeforeMainChild [
 
 	| overlay |
@@ -69,7 +71,7 @@ SpOverlayLayoutAdapterTest >> testOverlaysAreBeforeMainChild [
 	self assert: self adapter children first equals: overlay adapter widget
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOverlayLayoutAdapterTest >> testRemoveChildAddedAfterOpenRemovesFromAdapter [
 
 	| element |
@@ -80,7 +82,7 @@ SpOverlayLayoutAdapterTest >> testRemoveChildAddedAfterOpenRemovesFromAdapter [
 	self assert: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOverlayLayoutAdapterTest >> testRemoveChildElementRemovesFromAdapter [
 
 	| element |

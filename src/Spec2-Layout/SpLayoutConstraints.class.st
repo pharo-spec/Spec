@@ -1,25 +1,27 @@
 Class {
-	#name : #SpLayoutConstraints,
-	#superclass : #Object,
+	#name : 'SpLayoutConstraints',
+	#superclass : 'Object',
 	#instVars : [
 		'spec'
 	],
-	#category : #'Spec2-Layout-Base'
+	#category : 'Spec2-Layout-Base',
+	#package : 'Spec2-Layout',
+	#tag : 'Base'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpLayoutConstraints >> initialize [ 
 
 	super initialize.
 	self spec: #defaultLayout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLayoutConstraints >> spec [
 	^ spec
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLayoutConstraints >> spec: anObject [
 	spec := anObject
 ]

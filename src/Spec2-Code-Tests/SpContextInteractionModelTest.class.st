@@ -1,19 +1,20 @@
 Class {
-	#name : #SpContextInteractionModelTest,
-	#superclass : #SpCodeInteractionModelTest,
+	#name : 'SpContextInteractionModelTest',
+	#superclass : 'SpCodeInteractionModelTest',
 	#instVars : [
 		'instanceVariableForTest'
 	],
-	#category : #'Spec2-Code-Tests'
+	#category : 'Spec2-Code-Tests',
+	#package : 'Spec2-Code-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContextInteractionModelTest >> classToTest [
 
 	^ SpContextInteractionModel
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpContextInteractionModelTest >> initializeInstance: anInteractionModel [
 
 	| context |
@@ -26,13 +27,13 @@ SpContextInteractionModelTest >> initializeInstance: anInteractionModel [
 	anInteractionModel context: context
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpContextInteractionModelTest >> testBehavior [
 
 	self assert: interactionModel behavior equals: self class
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpContextInteractionModelTest >> testBindingOf [
 
 	self assert: (interactionModel bindingOf: #somethingNotExistent) isNil.
@@ -41,7 +42,7 @@ SpContextInteractionModelTest >> testBindingOf [
 	self assert: (interactionModel bindingOf: #tempVariableForTest) isNotNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpContextInteractionModelTest >> testCompile [
 
 	| result |
@@ -66,13 +67,13 @@ SpContextInteractionModelTest >> testCompile [
 	self assert: result equals: 53
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpContextInteractionModelTest >> testDoItReceiver [
 
 	self assert: interactionModel doItReceiver equals: self
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpContextInteractionModelTest >> testHasBindingOf [
 
 	self deny: (interactionModel hasBindingOf: #somethingNotExistent).

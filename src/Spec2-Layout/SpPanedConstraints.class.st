@@ -3,70 +3,72 @@ I define the constraints of a presenter to be shown in a Paned Layout.
 
 "
 Class {
-	#name : #SpPanedConstraints,
-	#superclass : #SpLayoutConstraints,
+	#name : 'SpPanedConstraints',
+	#superclass : 'SpLayoutConstraints',
 	#instVars : [
 		'resize',
 		'shrink'
 	],
-	#category : #'Spec2-Layout-Paned'
+	#category : 'Spec2-Layout-Paned',
+	#package : 'Spec2-Layout',
+	#tag : 'Paned'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpPanedConstraints class >> defaultExpand [
 
 	^ true
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpPanedConstraints class >> defaultFill [
 
 	^ true
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpPanedConstraints class >> defaultPadding [ 
 
 	^ 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPanedConstraints >> beNotResizable [
 
 	resize := false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPanedConstraints >> beNotShrinkable [
 
 	shrink := false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPanedConstraints >> beResizable [
 
 	resize := true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPanedConstraints >> beShrinkable [
 
 	shrink := true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpPanedConstraints >> canResize [
 
 	^ resize
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpPanedConstraints >> canShrink [
 
 	^ shrink
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPanedConstraints >> initialize [ 
 
 	super initialize.

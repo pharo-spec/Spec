@@ -1,6 +1,6 @@
-Extension { #name : #KMCategory }
+Extension { #name : 'KMCategory' }
 
-{ #category : #'*Spec2-Core' }
+{ #category : '*Spec2-Core' }
 KMCategory >> , aKMCategory [ 
 	| newCategory |
 	

@@ -33,7 +33,7 @@ SpMorphicTableDataSource >> elements [
 	
 	^ elements ifNil: [
 		self model 
-			ifNotNil: #items
+			ifNotNil: [:m| m items]
 			ifNil: [ #() ] ]
 ]
 

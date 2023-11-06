@@ -4,12 +4,14 @@ I am an abstract command for the contact book example.
 I define methods to access information in my #context more easily.
 "
 Class {
-	#name : #SpContactBookCommand,
-	#superclass : #CmCommand,
-	#category : #'Spec2-Commander2-ContactBook-Commands'
+	#name : 'SpContactBookCommand',
+	#superclass : 'CmCommand',
+	#category : 'Spec2-Commander2-ContactBook-Commands',
+	#package : 'Spec2-Commander2-ContactBook',
+	#tag : 'Commands'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBookCommand >> contactBook [
 	"Again, this is totally optional, it justs make access to selected contact easier.
 	 Thus code in #execute is easier to read.
@@ -17,7 +19,7 @@ SpContactBookCommand >> contactBook [
 	^ self contactBookPresenter contactBook
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBookCommand >> contactBookPresenter [
 	"Optional, simply aliasing the context (the LtContactBookPresenter) to a more explicit name.
 	 It will just make the code easier to read in #execute methods of my subclasses.
@@ -25,12 +27,12 @@ SpContactBookCommand >> contactBookPresenter [
 	^ self context
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpContactBookCommand >> hasSelectedContact [
 	^ self contactBookPresenter isContactSelected
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBookCommand >> selectedContact [
 	"Again, this is totally optional, it justs make access to selected contact easier.
 	 Thus code in #execute is easier to read.

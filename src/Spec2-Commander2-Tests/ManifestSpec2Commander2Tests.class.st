@@ -6,7 +6,9 @@ Spec is a framework in Pharo for describing user interfaces. It allows for the c
 I contain test about the integration of Commander 2 in Spec.
 "
 Class {
-	#name : #ManifestSpec2Commander2Tests,
-	#superclass : #PackageManifest,
-	#category : #'Spec2-Commander2-Tests-Manifest'
+	#name : 'ManifestSpec2Commander2Tests',
+	#superclass : 'PackageManifest',
+	#category : 'Spec2-Commander2-Tests-Manifest',
+	#package : 'Spec2-Commander2-Tests',
+	#tag : 'Manifest'
 }

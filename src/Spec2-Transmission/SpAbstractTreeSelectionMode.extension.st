@@ -1,6 +1,6 @@
-Extension { #name : #SpAbstractTreeSelectionMode }
+Extension { #name : 'SpAbstractTreeSelectionMode' }
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpAbstractTreeSelectionMode >> transmission [
 	self subclassResponsibility
 ]
