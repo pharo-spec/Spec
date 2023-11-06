@@ -1,13 +1,15 @@
 Class {
-	#name : #SpFTTableMorph,
-	#superclass : #FTTableMorph,
+	#name : 'SpFTTableMorph',
+	#superclass : 'FTTableMorph',
 	#instVars : [
 		'movementDispatcher'
 	],
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpFTTableMorph >> acceptDroppingMorph: aTransferMorph event: anEvent [
 
 	^ self dataSource model adapter
@@ -15,14 +17,14 @@ SpFTTableMorph >> acceptDroppingMorph: aTransferMorph event: anEvent [
 		event: anEvent
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpFTTableMorph >> drawKeyboardFocusOn: aCanvas [
 
 	self color = Color transparent ifTrue: [ ^ self ].
 	^ super drawKeyboardFocusOn: aCanvas
 ]
 
-{ #category : #'events-processing' }
+{ #category : 'events-processing' }
 SpFTTableMorph >> handleKeyDown: anEvent [
 	"System level event handling."
 
@@ -45,7 +47,7 @@ SpFTTableMorph >> handleKeyDown: anEvent [
 			fromMorph: self ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpFTTableMorph >> initializeKeyBindings [
 	"add keybindings used by table"
 
@@ -73,7 +75,7 @@ SpFTTableMorph >> initializeKeyBindings [
 		toAction: [ self selectAll ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFTTableMorph >> minWidth [
 	"answer the receiver's minHeight"
 	^ self
@@ -81,7 +83,7 @@ SpFTTableMorph >> minWidth [
 		ifAbsent: [ 100 ]
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpFTTableMorph >> wantsDroppedMorph: aTransferMorph event: anEvent [
 
 	aTransferMorph isTransferable ifFalse: [ ^ false ].

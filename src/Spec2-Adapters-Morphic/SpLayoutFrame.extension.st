@@ -1,6 +1,6 @@
-Extension { #name : #SpLayoutFrame }
+Extension { #name : 'SpLayoutFrame' }
 
-{ #category : #'*Spec2-Adapters-Morphic' }
+{ #category : '*Spec2-Adapters-Morphic' }
 SpLayoutFrame >> asMorphicLayout [
 	
 	^ LayoutFrame identity

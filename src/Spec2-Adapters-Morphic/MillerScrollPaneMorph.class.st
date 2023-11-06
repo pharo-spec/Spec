@@ -2,24 +2,26 @@
 A scroll pane to show a miller column list.
 "
 Class {
-	#name : #MillerScrollPaneMorph,
-	#superclass : #GeneralScrollPaneMorph,
+	#name : 'MillerScrollPaneMorph',
+	#superclass : 'GeneralScrollPaneMorph',
 	#instVars : [
 		'layoutChangeAction',
 		'updating',
 		'firstShowingMorph',
 		'keepShowingPage'
 	],
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 MillerScrollPaneMorph >> basicShowMorph: aMorph [
 
 	scroller offset: aMorph topLeft
 ]
 
-{ #category : #scrollbars }
+{ #category : 'scrollbars' }
 MillerScrollPaneMorph >> hScrollbarShowNever [
 
 	super hScrollbarShowNever.
@@ -27,7 +29,7 @@ MillerScrollPaneMorph >> hScrollbarShowNever [
 	self keepShowingPage: true
 ]
 
-{ #category : #scrollbars }
+{ #category : 'scrollbars' }
 MillerScrollPaneMorph >> hScrollbarShowWhenNeeded [
 
 	super hScrollbarShowWhenNeeded.
@@ -35,7 +37,7 @@ MillerScrollPaneMorph >> hScrollbarShowWhenNeeded [
 	self keepShowingPage: false
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 MillerScrollPaneMorph >> initialize [
 
 	super initialize.
@@ -43,13 +45,13 @@ MillerScrollPaneMorph >> initialize [
 	keepShowingPage := false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MillerScrollPaneMorph >> isUpdating [
 
 	^ updating ifNil: [ updating := false ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MillerScrollPaneMorph >> keepShowingPage: aBoolean [
 
 	keepShowingPage := aBoolean.
@@ -57,7 +59,7 @@ MillerScrollPaneMorph >> keepShowingPage: aBoolean [
 		firstShowingMorph := nil ]
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 MillerScrollPaneMorph >> layoutChanged [
 
 	self isUpdating ifTrue: [ ^ self ].
@@ -68,13 +70,13 @@ MillerScrollPaneMorph >> layoutChanged [
 		updating := false ]
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 MillerScrollPaneMorph >> onLayoutChange: aBlock [
 
 	layoutChangeAction := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MillerScrollPaneMorph >> showMorph: aMorph [
 	
 	keepShowingPage 
@@ -82,7 +84,7 @@ MillerScrollPaneMorph >> showMorph: aMorph [
 	self basicShowMorph: aMorph
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 MillerScrollPaneMorph >> updateScrollbars [
 
 	super updateScrollbars.
@@ -90,7 +92,7 @@ MillerScrollPaneMorph >> updateScrollbars [
 		scroller offset: firstShowingMorph topLeft ]
 ]
 
-{ #category : #scrollbars }
+{ #category : 'scrollbars' }
 MillerScrollPaneMorph >> vScrollbarNeeded [
 	"Return whether the vertical scrollbar is needed."
 

@@ -2,46 +2,48 @@
 I'm a visitor to be used to traverse TableColumn hierarchy.
 "
 Class {
-	#name : #SpMorphicTableColumnVisitor,
-	#superclass : #Object,
-	#category : #'Spec2-Adapters-Morphic-Table'
+	#name : 'SpMorphicTableColumnVisitor',
+	#superclass : 'Object',
+	#category : 'Spec2-Adapters-Morphic-Table',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Table'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableColumnVisitor >> visit: aTableColumn [
 
 	aTableColumn acceptColumnVisitor: self
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableColumnVisitor >> visitCheckboxColumn: aCheckboxTableColumn [
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableColumnVisitor >> visitCompositeColumn: aTableColumn [
 	
 	aTableColumn columns do: [ :each |
 		self visit: each  ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableColumnVisitor >> visitDropListColumn: aDropListTableColumn [
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableColumnVisitor >> visitImageColumn: aTableColumn [
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableColumnVisitor >> visitIndexColumn: aTableColumn [
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableColumnVisitor >> visitLinkColumn: aTableColumn [
 
 	self visitStringColumn: aTableColumn
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableColumnVisitor >> visitStringColumn: aTableColumn [
 ]

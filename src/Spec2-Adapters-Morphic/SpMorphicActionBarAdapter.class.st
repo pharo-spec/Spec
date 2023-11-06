@@ -2,24 +2,26 @@
 I'm an adapter to provide an action bar (which is represented using an SpToolbarMorph)
 "
 Class {
-	#name : #SpMorphicActionBarAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicActionBarAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicActionBarAdapter class >> defaultHeight [
 
 	^ 30
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicActionBarAdapter class >> defaultItemSeparation [
 	
 	^ 3@0
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicActionBarAdapter >> addModelTo: aMorph [
 
 	self flag: #TODO. "Maybe validate they are just buttons inside?"
@@ -29,7 +31,7 @@ SpMorphicActionBarAdapter >> addModelTo: aMorph [
 		aMorph addItemRight: (self buildActionButton: each) ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicActionBarAdapter >> buildActionButton: aButtonPresenter [
 
 	| morph |
@@ -44,7 +46,7 @@ SpMorphicActionBarAdapter >> buildActionButton: aButtonPresenter [
 	^ morph
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicActionBarAdapter >> buildWidget [
 	| panelMorph |
 	
@@ -56,7 +58,7 @@ SpMorphicActionBarAdapter >> buildWidget [
 	^ panelMorph
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicActionBarAdapter >> newPanelMorph [
 
 	^ Morph new

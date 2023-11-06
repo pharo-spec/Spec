@@ -3,15 +3,17 @@ A holder for an attribute `atomic` value.
 It holds numbers, strings, symbols.
 "
 Class {
-	#name : #SpStyleVariable,
-	#superclass : #SpStyleAbstractVariable,
+	#name : 'SpStyleVariable',
+	#superclass : 'SpStyleAbstractVariable',
 	#instVars : [
 		'value'
 	],
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpStyleVariable class >> newValue: anObject [
 
 	^ self new 
@@ -19,19 +21,19 @@ SpStyleVariable class >> newValue: anObject [
 		yourself
 ]
 
-{ #category : #'ston-core' }
+{ #category : 'ston-core' }
 SpStyleVariable class >> stonName [
 
-	^ 'Variable'
+	^ #Variable
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 SpStyleVariable >> nonscaledValue [
 
 	^ self value ifNil: [ 0 ]
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 SpStyleVariable >> preferredScaledValueWith: anObject [
 
 	^ self value = 0 
@@ -39,7 +41,7 @@ SpStyleVariable >> preferredScaledValueWith: anObject [
 		ifFalse: [ self scaledValue ]
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 SpStyleVariable >> preferredValueWith: anObject [
 
 	^ self value = 0 
@@ -47,13 +49,13 @@ SpStyleVariable >> preferredValueWith: anObject [
 		ifFalse: [ self value ]
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 SpStyleVariable >> scaledValue [
 
 	^ self nonscaledValue * self currentWorld displayScaleFactor
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpStyleVariable >> toColor: aColorOrSymbol [
 
 	"Try if color"
@@ -64,19 +66,19 @@ SpStyleVariable >> toColor: aColorOrSymbol [
 	^ Color fromHexString: aColorOrSymbol
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 SpStyleVariable >> value [
 
 	^ value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpStyleVariable >> value: anObject [
 
 	value := anObject
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 SpStyleVariable >> valueAsColor [
 
 	^ self toColor: self value

@@ -43,8 +43,8 @@ Font {
 
 "
 Class {
-	#name : #SpFontStyle,
-	#superclass : #SpPropertyStyle,
+	#name : 'SpFontStyle',
+	#superclass : 'SpPropertyStyle',
 	#instVars : [
 		'predefinedFont',
 		'name',
@@ -57,46 +57,48 @@ Class {
 		'ApplyDisplayScaleFactor',
 		'FontCache'
 	],
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpFontStyle class >> addFontToCache: aFont [
 
 	self fontCache add: aFont
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle class >> applyDisplayScaleFactor [
 
 	^ ApplyDisplayScaleFactor ifNil: [ true ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle class >> applyDisplayScaleFactor: aBoolean [
 
 	ApplyDisplayScaleFactor := aBoolean
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFontStyle class >> fontCache [
 
 	^ FontCache ifNil: [ FontCache := WeakSet new ]
 ]
 
-{ #category : #'ston-core' }
+{ #category : 'ston-core' }
 SpFontStyle class >> stonName [
 	
-	^ 'Font'
+	^ #Font
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFontStyle >> addFontToCache: aFont [
 
 	self class addFontToCache: aFont
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFontStyle >> anyFontDecorator [
 	
 	^ color notNil 
@@ -105,13 +107,13 @@ SpFontStyle >> anyFontDecorator [
 		or: [ italic notNil ] ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFontStyle >> applyDisplayScaleFactor [
 
 	^ self class applyDisplayScaleFactor
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 SpFontStyle >> applyTo: aMorph [
 
 	"not all morphs understand font, I need to verify it (which is not cool verifying a 
@@ -127,25 +129,25 @@ SpFontStyle >> applyTo: aMorph [
 	aMorph textColor: self colorVariable valueAsColor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle >> bold [
 
 	^ self boldVariable value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle >> bold: aBoolean [
 
 	bold := aBoolean asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : 'accessing - variables' }
 SpFontStyle >> boldVariable [
 
 	^ self toVariable: bold
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFontStyle >> calculateDefinedFont [
 	| font |
 	
@@ -159,7 +161,7 @@ SpFontStyle >> calculateDefinedFont [
 	^ font
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFontStyle >> calculateFontName [
 	| var |
 	
@@ -169,7 +171,7 @@ SpFontStyle >> calculateFontName [
 		ifFalse: [ var value ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFontStyle >> calculateFontSize [
 	
 	self sizeVariable ifNotNil: [ :aVariable |
@@ -183,7 +185,7 @@ SpFontStyle >> calculateFontSize [
 	^ nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle >> color [
   "This is meant to set the text color.
 	This property can be expressed as 
@@ -194,13 +196,13 @@ SpFontStyle >> color [
 	^ self colorVariable value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle >> color: aColorOrSymbol [
 
 	color := aColorOrSymbol asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : 'accessing - variables' }
 SpFontStyle >> colorVariable [
   "This is meant to set the text color.
 	This property can be expressed as 
@@ -211,7 +213,7 @@ SpFontStyle >> colorVariable [
 	^ self toVariable: color
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFontStyle >> definedFont [
 	| definedFont |
 
@@ -225,7 +227,7 @@ SpFontStyle >> definedFont [
 	^ definedFont
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFontStyle >> displayScaleFactor [
 
 	^ self applyDisplayScaleFactor
@@ -233,51 +235,51 @@ SpFontStyle >> displayScaleFactor [
 		ifFalse: [ 1 ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFontStyle >> hasPredefinedFont [
 
 	^ self predefinedFont notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpFontStyle >> isBold [
 	"property may be nil, we verify with strict comparisson"
 	
 	^ self boldVariable value == true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpFontStyle >> isItalic [
 	"property may be nil, we verify with strict comparisson"
 	
 	^ self italicVariable value == true 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpFontStyle >> isReset [
 
 	^ name notNil and: [ name isResetVariable ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle >> italic [
 
 	^ self italicVariable value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle >> italic: aBoolean [
 
 	italic := aBoolean asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : 'accessing - variables' }
 SpFontStyle >> italicVariable [
 
 	^ italic
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 SpFontStyle >> mergeWith: otherProperty [
 	| merged |
 
@@ -293,43 +295,43 @@ SpFontStyle >> mergeWith: otherProperty [
 	^ merged
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle >> name [
 
 	^ self nameVariable value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle >> name: aString [
 
 	name := aString asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : 'accessing - variables' }
 SpFontStyle >> nameVariable [
 
 	^ self toVariable: name
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFontStyle >> obtainPredefinedFont [
 
 	^ StandardFonts perform: (self predefinedFont value, 'Font') asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle >> predefinedFont [
 
 	^ predefinedFont
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle >> predefinedFont: aSymbol [
 
 	predefinedFont := aSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle >> scaledSize [
 
 	^ self applyDisplayScaleFactor
@@ -337,25 +339,25 @@ SpFontStyle >> scaledSize [
 		ifFalse: [ self sizeVariable nonscaledValue ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle >> size [
 
 	^ self sizeVariable value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFontStyle >> size: aNumber [
 
 	size := aNumber asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : 'accessing - variables' }
 SpFontStyle >> sizeVariable [
 
 	^ size
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpFontStyle >> withCachedFontDo: aBlock [
 
 	self class fontCache 

@@ -1,6 +1,6 @@
-Extension { #name : #FTAbstractSortingState }
+Extension { #name : 'FTAbstractSortingState' }
 
-{ #category : #'*Spec2-Adapters-Morphic' }
+{ #category : '*Spec2-Adapters-Morphic' }
 FTAbstractSortingState >> isSorted [ 
 	^ true
 ]

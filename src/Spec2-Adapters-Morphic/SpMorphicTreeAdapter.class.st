@@ -1,16 +1,18 @@
 Class {
-	#name : #SpMorphicTreeAdapter,
-	#superclass : #SpMorphicTreeTableAdapter,
-	#category : #'Spec2-Adapters-Morphic-Table'
+	#name : 'SpMorphicTreeAdapter',
+	#superclass : 'SpMorphicTreeTableAdapter',
+	#category : 'Spec2-Adapters-Morphic-Table',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Table'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeAdapter >> columns [
 	
 	^ #()
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeAdapter >> defaultColumn [
 	| column |
 
@@ -38,12 +40,12 @@ SpMorphicTreeAdapter >> defaultColumn [
 		ifNil: [ column ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeAdapter >> ensureAtLeastOneColumnIn: tableMorph [
 
 	tableMorph addColumn: (self newColumnFrom: self defaultColumn)
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeAdapter >> registerColumnsChangedEventTo: tableMorph [
 ]

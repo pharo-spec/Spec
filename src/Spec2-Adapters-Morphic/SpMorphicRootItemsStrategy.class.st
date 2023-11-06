@@ -1,10 +1,12 @@
 Class {
-	#name : #SpMorphicRootItemsStrategy,
-	#superclass : #FTRootItemsStrategy,
-	#category : #'Spec2-Adapters-Morphic-Table'
+	#name : 'SpMorphicRootItemsStrategy',
+	#superclass : 'FTRootItemsStrategy',
+	#category : 'Spec2-Adapters-Morphic-Table',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Table'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicRootItemsStrategy >> isMatching: anItem [
 
 	^ dataSource model 

@@ -2,18 +2,20 @@
 A variable to access environment colors (defined in `UITheme` and subclasses) 
 "
 Class {
-	#name : #SpStyleEnvironmentColorVariable,
-	#superclass : #SpStyleEnvironmentVariable,
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#name : 'SpStyleEnvironmentColorVariable',
+	#superclass : 'SpStyleEnvironmentVariable',
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpStyleEnvironmentColorVariable class >> documentExampleCode [
 
 	^ 'Draw { #color: EnvironmentColor(#background) }'
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpStyleEnvironmentColorVariable class >> documentValidValues [
 
 	^ UITheme selectors
@@ -23,13 +25,13 @@ SpStyleEnvironmentColorVariable class >> documentValidValues [
 		thenCollect: [ :each | each allButLast: 5 ]
 ]
 
-{ #category : #'ston-core' }
+{ #category : 'ston-core' }
 SpStyleEnvironmentColorVariable class >> stonName [
 
-	^ 'EnvironmentColor'
+	^ #EnvironmentColor
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 SpStyleEnvironmentColorVariable >> value [
 
 	self name ifNil: [ ^ nil ].
@@ -39,7 +41,7 @@ SpStyleEnvironmentColorVariable >> value [
 		yourself
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 SpStyleEnvironmentColorVariable >> valueAsColor [
 	
 	^ self value

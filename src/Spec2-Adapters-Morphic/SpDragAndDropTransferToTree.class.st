@@ -1,19 +1,21 @@
 Class {
-	#name : #SpDragAndDropTransferToTree,
-	#superclass : #SpDragAndDropTransferToTable,
+	#name : 'SpDragAndDropTransferToTree',
+	#superclass : 'SpDragAndDropTransferToTable',
 	#instVars : [
 		'target'
 	],
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDragAndDropTransferToTree >> target [
 
 	^ target
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDragAndDropTransferToTree >> target: anObject [
 
 	target := anObject

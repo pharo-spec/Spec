@@ -4,17 +4,19 @@ It uses one of the `SpMorphicBoxLayoutCalculator` to correctly distribute space,
 
 "
 Class {
-	#name : #SpMorphicBaseBoxLayout,
-	#superclass : #TableLayout,
+	#name : 'SpMorphicBaseBoxLayout',
+	#superclass : 'TableLayout',
 	#instVars : [
 		'specLayout',
 		'leftToRightCalculator',
 		'topToBottomCalculator'
 	],
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpMorphicBaseBoxLayout >> applyHorizontalHomogeneousLayout: aMorph in: aRect [
 	| allMorphs elementWidth |
 
@@ -28,7 +30,7 @@ SpMorphicBaseBoxLayout >> applyHorizontalHomogeneousLayout: aMorph in: aRect [
 		each setProperty: #homogeneousWidth toValue: elementWidth ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpMorphicBaseBoxLayout >> applyVerticalHomogeneousLayout: aMorph in: aRect [
 	| allMorphs elementHeight |
 
@@ -42,25 +44,25 @@ SpMorphicBaseBoxLayout >> applyVerticalHomogeneousLayout: aMorph in: aRect [
 		each minHeight: elementHeight ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicBaseBoxLayout >> borderWidth [
 
 	^ specLayout borderWidth
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicBaseBoxLayout >> direction [
 
 	^ specLayout direction
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicBaseBoxLayout >> isHomogeneous [
 
 	^ specLayout isHomogeneous
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpMorphicBaseBoxLayout >> layoutHomogeneous: aMorph in: aRect [
 
 	self direction 
@@ -69,7 +71,7 @@ SpMorphicBaseBoxLayout >> layoutHomogeneous: aMorph in: aRect [
 		in: aRect
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBaseBoxLayout >> layoutLeftToRight: aMorph in: newBounds [
 
 	self leftToRightCalculator
@@ -77,7 +79,7 @@ SpMorphicBaseBoxLayout >> layoutLeftToRight: aMorph in: newBounds [
 		in: newBounds
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBaseBoxLayout >> layoutTopToBottom: aMorph in: newBounds [
 
 	self topToBottomCalculator
@@ -85,37 +87,37 @@ SpMorphicBaseBoxLayout >> layoutTopToBottom: aMorph in: newBounds [
 		in: newBounds
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBaseBoxLayout >> leftToRightCalculator [
 
 	^ leftToRightCalculator ifNil: [ leftToRightCalculator := self newLeftToRightCalculator ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBaseBoxLayout >> newLeftToRightCalculator [
 
 	^ SpMorphicBoxLayoutCalculatorLeftToRight newProperties: properties
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBaseBoxLayout >> newTopToBottomCalculator [
 
 	^ SpMorphicBoxLayoutCalculatorTopToBottom newProperties: properties
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicBaseBoxLayout >> spacing [
 
 	^ specLayout spacing
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicBaseBoxLayout >> specLayout: aLayout [
 
 	specLayout := aLayout
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBaseBoxLayout >> topToBottomCalculator [
 	"there will be just one, we reuse the variable `calculator`"
 

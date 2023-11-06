@@ -2,12 +2,14 @@
 I am the adapter used to bridge to MenuMorph
 "
 Class {
-	#name : #SpMorphicMenuAdapter,
-	#superclass : #SpMorphicBaseMenuAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicMenuAdapter',
+	#superclass : 'SpMorphicBaseMenuAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMorphicMenuAdapter class >> adaptAsPopup: aPresenter [
 
 	^ self new
@@ -15,7 +17,7 @@ SpMorphicMenuAdapter class >> adaptAsPopup: aPresenter [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicMenuAdapter >> adaptAsPopup: aPresenter [
 
 	model := aPresenter.
@@ -23,7 +25,7 @@ SpMorphicMenuAdapter >> adaptAsPopup: aPresenter [
 	widget := self buildWidgetPopup
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicMenuAdapter >> basicMenuPopUp [
 
 	^ MenuMorph new
@@ -31,7 +33,7 @@ SpMorphicMenuAdapter >> basicMenuPopUp [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicMenuAdapter >> buildWidget [
 
 	widget := self basicMenuPopUp.
@@ -45,7 +47,7 @@ SpMorphicMenuAdapter >> buildWidget [
 	^ widget
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicMenuAdapter >> buildWidgetPopup [
 	
 	^ self buildWidget

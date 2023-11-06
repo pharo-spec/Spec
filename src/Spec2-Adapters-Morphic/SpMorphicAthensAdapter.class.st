@@ -2,12 +2,14 @@
 I'm an adapter to bridge to Athens using an instance of class `SpAthensMorph` as widget
 "
 Class {
-	#name : #SpMorphicAthensAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicAthensAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicAthensAdapter >> buildWidget [
 
 	| instance |
@@ -24,13 +26,13 @@ SpMorphicAthensAdapter >> buildWidget [
 	^ instance
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpMorphicAthensAdapter >> redraw [
 
 	widget redraw
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicAthensAdapter >> surface [
 
 	^ widget surface

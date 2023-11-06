@@ -6,39 +6,41 @@ To be able to react this, when declaring the usage of an environment-based color
 This is used exclusively in `SpStyleEnvironmentColorVariable>>#value`
 "
 Class {
-	#name : #SpStyleEnvironmentColorProxy,
-	#superclass : #ProtoObject,
+	#name : 'SpStyleEnvironmentColorProxy',
+	#superclass : 'ProtoObject',
 	#instVars : [
 		'colorSelector'
 	],
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 SpStyleEnvironmentColorProxy >> asStyleVariable [
 
 	^ SpStyleVariable newValue: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpStyleEnvironmentColorProxy >> colorSelector: aSelector [
 
 	colorSelector := aSelector
 ]
 
-{ #category : #'reflective operations' }
+{ #category : 'reflective operations' }
 SpStyleEnvironmentColorProxy >> doesNotUnderstand: aMessage [
 
 	^ aMessage sendTo: (Smalltalk ui theme perform: colorSelector)
 ]
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 SpStyleEnvironmentColorProxy >> fuelAccept: aGeneralMapper [
 
 	^ aGeneralMapper visitFixedObject: self 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpStyleEnvironmentColorProxy >> instVarAt: index [
 	"Primitive. Answer a fixed variable in an object. The numbering of the variables
 	 corresponds to the named instance variables, followed by the indexed instance
@@ -49,7 +51,7 @@ SpStyleEnvironmentColorProxy >> instVarAt: index [
 	self primitiveFailed	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpStyleEnvironmentColorProxy >> instVarAt: index put: anObject [
 	"Primitive. Store a value into a fixed variable in an object. The numbering of the
 	 variables corresponds to the named instance variables, followed by the indexed
@@ -61,6 +63,6 @@ SpStyleEnvironmentColorProxy >> instVarAt: index put: anObject [
 	self primitiveFailed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpStyleEnvironmentColorProxy >> yourself [
 ]

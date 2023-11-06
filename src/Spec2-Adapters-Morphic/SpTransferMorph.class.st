@@ -2,15 +2,17 @@
 I am a Spec specific subclass of TransferMorph used to initialize the trasnfer morph state correctly with the Spec constraints
 "
 Class {
-	#name : #SpTransferMorph,
-	#superclass : #TransferMorph,
+	#name : 'SpTransferMorph',
+	#superclass : 'TransferMorph',
 	#instVars : [
 		'model'
 	],
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTransferMorph >> initialize [
 
 	super initialize.
@@ -18,28 +20,28 @@ SpTransferMorph >> initialize [
 	dragHand := self activeHand
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransferMorph >> model [
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransferMorph >> model: anObject [
 	model := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransferMorph >> passenger: aBlock [
 	passenger := aBlock value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransferMorph >> shouldCopy [
 
 	^ self dragHand shiftPressed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransferMorph >> source: aBlock [
 	source := aBlock value
 ]
