@@ -17,7 +17,7 @@ Class {
 { #category : 'ston-core' }
 SpStyleResetVariable class >> stonName [
 
-	^ 'Reset'
+	^ #Reset
 ]
 
 { #category : 'instance creation' }

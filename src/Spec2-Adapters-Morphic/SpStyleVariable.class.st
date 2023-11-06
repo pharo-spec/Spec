@@ -24,7 +24,7 @@ SpStyleVariable class >> newValue: anObject [
 { #category : 'ston-core' }
 SpStyleVariable class >> stonName [
 
-	^ 'Variable'
+	^ #Variable
 ]
 
 { #category : 'evaluating' }

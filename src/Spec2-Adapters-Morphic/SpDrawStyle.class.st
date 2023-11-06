@@ -34,7 +34,7 @@ Class {
 { #category : 'ston-core' }
 SpDrawStyle class >> stonName [
 
-	^ 'Draw'
+	^ #Draw
 ]
 
 { #category : 'operations' }

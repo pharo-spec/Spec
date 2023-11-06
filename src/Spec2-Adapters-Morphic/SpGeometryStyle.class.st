@@ -47,7 +47,7 @@ Class {
 { #category : 'ston-core' }
 SpGeometryStyle class >> stonName [
 	
-	^ 'Geometry'
+	^ #Geometry
 ]
 
 { #category : 'operations' }
