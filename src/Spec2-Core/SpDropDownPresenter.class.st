@@ -55,15 +55,17 @@ SpDropDownPresenter >> initialize [
 	self model: 	self newEmptyModel.
 	self initializeItemFactory.
 	selection := SpSingleSelectionMode on: self.
-	self display: [ :anObject | anObject asString ]	
+	self display: [ :anObject | anObject asString ]
 ]
 
 { #category : 'initialization' }
 SpDropDownPresenter >> initializeItemFactory [
 	"Just set up the defaults (to ensure we have a working list at any moment)"
 	
-	self setup: [ :aPresenter | aPresenter newLabel ].
-	self bind: [ :aPresenter :anObject | aPresenter label: anObject asString ]
+	self setup: [ :aPresenter | 
+		aPresenter newLabel ].
+	self bind: [ :aPresenter :anObject | 
+		aPresenter label: (self display value: anObject) asString ]
 ]
 
 { #category : 'api' }
