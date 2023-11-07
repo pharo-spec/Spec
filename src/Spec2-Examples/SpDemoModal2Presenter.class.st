@@ -22,13 +22,12 @@ SpDemoModal2Presenter >> initializeDialogWindow: aDialog [
 
 	aDialog
 		closeOnBackdropClick: false;
-		addButton: 'Validate' do: [ :presenter |
-			self inform: 'Validate'.
-			presenter close ];
-		addButton: 'Reset'
-		do: [ :presenter |
+		addButton: 'Reset' do: [ :presenter |
 			self inform: 'This action does not close the modal' ];
 		addButton: 'Cancel' do: [ :presenter |
 			self inform: 'Cancel'.
+			presenter close ];
+		addDefaultButton: 'Validate' do: [ :presenter |
+			self inform: 'Validate'.
 			presenter close ]
 ]

@@ -14,7 +14,7 @@ SpDropListPresenter class >> example [
 		  yourself
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpDropListPresenter class >> exampleWithActions [
 	"This example shows how to add icons to a dropdown list."
 
@@ -28,7 +28,7 @@ SpDropListPresenter class >> exampleWithActions [
 		yourself
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpDropListPresenter class >> exampleWithIcons [
 	"This example shows how to add icons to a dropdown list."
 

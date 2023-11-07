@@ -76,7 +76,7 @@ SpListPresenter class >> exampleWithIcons [
 		yourself
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpListPresenter class >> exampleWithIconsAndSelectedItem [
 
 	^ self new

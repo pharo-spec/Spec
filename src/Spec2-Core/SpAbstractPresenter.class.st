@@ -312,12 +312,12 @@ SpAbstractPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 	 Override this to set buttons other than the default (Ok, Cancel)."
 	
 	aDialogWindowPresenter
-		addButton: 'Ok' do: [ :presenter | 
-			presenter triggerOkAction.
-			presenter close ];
 		addButton: 'Cancel' do: [ :presenter | 
 			presenter triggerCancelAction.
-			presenter close ]	
+			presenter close ];
+		addDefaultButton: 'Ok' do: [ :presenter | 
+			presenter triggerOkAction.
+			presenter close ]
 ]
 
 { #category : 'initialization' }

@@ -1,6 +1,6 @@
-Extension { #name : #SpDropDownPresenter }
+Extension { #name : 'SpDropDownPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpDropDownPresenter class >> example [
 	"This example show the simples list view you can make: A list with a label"
 	
@@ -13,7 +13,7 @@ SpDropDownPresenter class >> example [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpDropDownPresenter class >> exampleWithIcons [
 	"This example shows how to construct a list with icons. 
 	 It shows also the fact you can put any presenter inside, giving a huge power 
@@ -40,7 +40,7 @@ SpDropDownPresenter class >> exampleWithIcons [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpDropDownPresenter class >> exampleWithSelectedItem [
 	"This example show the simples list view you can make: A list with a label"
 	

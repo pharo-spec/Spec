@@ -140,11 +140,9 @@ SpEditableListPresenter >> initialize [
 { #category : 'initialization' }
 SpEditableListPresenter >> initializeDialogWindow: aWindow [
 
-	aWindow 
-		addButton: 'Ok' 
-		do: [ :presenter | 
-			self performOkAction. 
-			presenter close ]
+	aWindow addDefaultButton: 'Ok' do: [ :presenter | 
+		self performOkAction. 
+		presenter close ]
 ]
 
 { #category : 'initialization' }

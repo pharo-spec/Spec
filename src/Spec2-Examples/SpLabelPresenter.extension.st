@@ -2,7 +2,6 @@ Extension { #name : 'SpLabelPresenter' }
 
 { #category : '*Spec2-Examples' }
 SpLabelPresenter class >> example [
-
 	"This example opens a spec window with a label."
 
 	^ self new
@@ -10,7 +9,7 @@ SpLabelPresenter class >> example [
 		  open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpLabelPresenter class >> exampleWithDecoration [
 	"This example opens a spec window with a decorated label."
 

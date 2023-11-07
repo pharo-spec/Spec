@@ -1,6 +1,6 @@
-Extension { #name : #SpPanedLayout }
+Extension { #name : 'SpPanedLayout' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpPanedLayout class >> exampleNotResizingStartChild [ 
 	<example>
 	| app presenter child1 child2 |

@@ -1,6 +1,6 @@
-Extension { #name : #SpListViewPresenter }
+Extension { #name : 'SpListViewPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpListViewPresenter class >> example [
 	"This example show the simples list view you can make: A list with a label"
 	
@@ -12,7 +12,7 @@ SpListViewPresenter class >> example [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpListViewPresenter class >> exampleReplaceItems [
 	"This example shows how to replace dynamically the list of elements."
 	| presenter listView button items |
@@ -37,7 +37,7 @@ SpListViewPresenter class >> exampleReplaceItems [
 	^ presenter open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpListViewPresenter class >> exampleWithActions [
 	"This example show the simples list view you can make: A list with a label"
 	
@@ -78,7 +78,7 @@ SpListViewPresenter class >> exampleWithActions [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpListViewPresenter class >> exampleWithIcons [
 	"This example shows how to construct a list with icons. 
 	 It shows also the fact you can put any presenter inside, giving a huge power 
@@ -105,7 +105,7 @@ SpListViewPresenter class >> exampleWithIcons [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpListViewPresenter class >> exampleWithIconsAndSelectedItem [
 	"This example shows how to construct a list with icons. 
 	 It shows also the fact you can put any presenter inside, giving a huge power 
@@ -133,7 +133,7 @@ SpListViewPresenter class >> exampleWithIconsAndSelectedItem [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpListViewPresenter class >> exampleWithIconsMultipleSelection [
 	"This example shows how to construct a list with multiple selection available. 
 	 It shows also the fact you can put any presenter inside, giving a huge power 
