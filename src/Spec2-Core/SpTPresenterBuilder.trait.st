@@ -80,6 +80,12 @@ SpTPresenterBuilder >> newDiff [
 	^ self instantiate: SpDiffPresenter
 ]
 
+{ #category : 'scripting - lists' }
+SpTPresenterBuilder >> newDropDown [
+
+	^ self instantiate: SpDropDownPresenter
+]
+
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newDropList [
 	^ self instantiate: SpDropListPresenter
