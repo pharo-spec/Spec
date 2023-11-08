@@ -27,7 +27,7 @@ SpDemoNotebookPresenter >> browserPage [
 
 	^ SpNotebookPage
 		title: 'Browser'
-		icon: (self iconNamed: #nautilusIcon)
+		icon: (self iconNamed: #nautilus)
 		provider: [ 
 			SpClassMethodBrowser new
 				classes: self class environment allClasses;
@@ -58,7 +58,7 @@ SpDemoNotebookPresenter >> defaultLayout [
 
 { #category : 'pages' }
 SpDemoNotebookPresenter >> dynamicPage [
-	^ SpNotebookPage title: 'Dynamic' icon: (self iconNamed: #nautilusIcon) provider: [ SpDynamicWidgetChange new ]
+	^ SpNotebookPage title: 'Dynamic' icon: (self iconNamed: #nautilus) provider: [ SpDynamicWidgetChange new ]
 ]
 
 { #category : 'initialization' }
@@ -79,7 +79,7 @@ SpDemoNotebookPresenter >> objectClassPage [
 
 	^ (SpNotebookPage 
 		title: 'Object class' 
-		icon: (self iconNamed: #nautilusIcon) 
+		icon: (self iconNamed: #nautilus) 
 		provider: [ 
 			SpDemoMessageBrowser new
 				messages: Object methods;
@@ -91,7 +91,7 @@ SpDemoNotebookPresenter >> objectClassPage [
 { #category : 'pages' }
 SpDemoNotebookPresenter >> objectInspectorPage [
 
-	^ SpNotebookPage title: 'Object inspector' icon: (self iconNamed: #nautilusIcon) provider: [
+	^ SpNotebookPage title: 'Object inspector' icon: (self iconNamed: #nautilus) provider: [
 		  SpObjectInspector new
 			  inspect: Object;
 			  yourself ]

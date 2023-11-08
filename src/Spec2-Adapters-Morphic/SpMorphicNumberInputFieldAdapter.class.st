@@ -24,8 +24,8 @@ SpMorphicNumberInputFieldAdapter >> buildWidget [
 		color: Color transparent;
 		changeTableLayout;
 		listDirection: #topToBottom;
-		addMorph: (self newIconButtonAction: #decreaseValueOf: with: textMorph iconSelector: #arrowDoubleDownIcon);
-		addMorph: (self newIconButtonAction: #increaseValueOf: with: textMorph iconSelector: #arrowDoubleUpIcon);
+		addMorph: (self newIconButtonAction: #decreaseValueOf: with: textMorph iconSelector: #arrowDoubleDown);
+		addMorph: (self newIconButtonAction: #increaseValueOf: with: textMorph iconSelector: #arrowDoubleUp);
 		yourself.
 
 	"With the layout frame I set next to it, the arrows will be at the top right of the text morph. We should be able to make it vertically centered but I don't know how to do that with morphs. If someone knows, please do :)"
