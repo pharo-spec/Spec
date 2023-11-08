@@ -2,17 +2,19 @@
 I'm a simple object holding a limited list of notification items.
 "
 Class {
-	#name : #SpNotificationCenter,
-	#superclass : #Object,
+	#name : 'SpNotificationCenter',
+	#superclass : 'Object',
 	#instVars : [
 		'items',
 		'limit',
 		'application'
 	],
-	#category : #'Spec2-Core-Notification'
+	#category : 'Spec2-Core-Notification',
+	#package : 'Spec2-Core',
+	#tag : 'Notification'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpNotificationCenter >> add: aSpNotificationItem [ 
 	items size > limit
 		ifTrue: [ items removeLast: self bulkSize ].
@@ -20,12 +22,12 @@ SpNotificationCenter >> add: aSpNotificationItem [
 	self updateIfNecessary.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotificationCenter >> application [
 	^ application
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpNotificationCenter >> bulkSize [
 	"Returns the number of itesm that should be removed when the limit is reached.
 	Pay attention that the limit MUST always be larger than bulkSize"
@@ -33,13 +35,13 @@ SpNotificationCenter >> bulkSize [
 	^ 5
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpNotificationCenter >> forApplication: app [
 
 	application := app
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNotificationCenter >> initialize [
 
 	super initialize.
@@ -49,17 +51,17 @@ SpNotificationCenter >> initialize [
 	items := OrderedCollection new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotificationCenter >> items [
 	^ items
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotificationCenter >> limit [
 	^ limit
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpNotificationCenter >> updateIfNecessary [
 
 	| notifs |
