@@ -113,7 +113,5 @@ SpMorphicGridAdapter >> newPanel [
 { #category : 'removing' }
 SpMorphicGridAdapter >> remove: aPresenter [
 
-	| morph |
-	morph := aPresenter adapter widget.
-	widget removeMorph: morph
+	aPresenter adapter ifNotNil: [ :adapter | widget removeMorph: adapter widget ]
 ]
