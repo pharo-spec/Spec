@@ -89,7 +89,7 @@ SpFontStyle class >> fontCache [
 { #category : 'ston-core' }
 SpFontStyle class >> stonName [
 	
-	^ 'Font'
+	^ #Font
 ]
 
 { #category : 'private' }

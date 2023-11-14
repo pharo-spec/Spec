@@ -30,12 +30,6 @@ SpMorphicBoxAdapter >> add: aPresenter [
 	self add: aPresenter constraints: SpBoxConstraints new
 ]
 
-{ #category : 'adding' }
-SpMorphicBoxAdapter >> add: aPresenter constraints: constraints [
-
-	super add: aPresenter constraints: constraints
-]
-
 { #category : 'private' }
 SpMorphicBoxAdapter >> addConstraints: constraints toChild: childMorph [
 	"Adds constraits by child"
@@ -254,12 +248,12 @@ SpMorphicBoxAdapter >> newWrapMorph [
 { #category : 'accessing' }
 SpMorphicBoxAdapter >> remove: aPresenter [
 
-	| morph |
-	morph := aPresenter adapter widget.	
-	startPanel removeMorph: morph.
-	endPanel removeMorph: morph.
-	self verifyBoxExtent
-	
+	aPresenter adapter ifNotNil: [ :adapter |
+		| morph |
+		morph := adapter widget.
+		startPanel removeMorph: morph.
+		endPanel removeMorph: morph.
+		self verifyBoxExtent ]
 ]
 
 { #category : 'accessing' }

@@ -28,7 +28,7 @@ SpStyleEnvironmentColorVariable class >> documentValidValues [
 { #category : 'ston-core' }
 SpStyleEnvironmentColorVariable class >> stonName [
 
-	^ 'EnvironmentColor'
+	^ #EnvironmentColor
 ]
 
 { #category : 'evaluating' }

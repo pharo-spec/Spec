@@ -27,7 +27,7 @@ SpStyleEnvironmentFontVariable class >> documentValidValues [
 { #category : 'ston-core' }
 SpStyleEnvironmentFontVariable class >> stonName [
 
-	^ 'EnvironmentFont'
+	^ #EnvironmentFont
 ]
 
 { #category : 'accessing' }

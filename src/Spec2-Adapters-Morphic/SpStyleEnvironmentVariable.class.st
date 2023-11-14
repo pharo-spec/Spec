@@ -48,7 +48,7 @@ SpStyleEnvironmentVariable class >> documentValidValues [
 { #category : 'ston-core' }
 SpStyleEnvironmentVariable class >> stonName [
 
-	^ 'Environment'
+	^ #Environment
 ]
 
 { #category : 'instance creation' }
