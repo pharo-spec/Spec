@@ -51,6 +51,7 @@ SpLinkPresenter >> defaultColor [
 SpLinkPresenter >> initialize [
 
 	super initialize.
+
 	self whenLabelChangedDo: [ self changed: #getText ]
 ]
 
