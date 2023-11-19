@@ -342,7 +342,10 @@ SpExecutableLayout >> whenChildrenAddedDo: aBlock [
 { #category : 'events' }
 SpExecutableLayout >> whenChildrenRemovedDo: aBlock [
 
-	self announcer when: SpChildrenRemoved do: aBlock for: aBlock receiver
+	self announcer
+		when: SpChildrenRemoved
+		do: aBlock
+		for: aBlock receiver
 ]
 
 { #category : 'private' }
