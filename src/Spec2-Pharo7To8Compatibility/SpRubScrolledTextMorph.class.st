@@ -2,46 +2,47 @@
 I am the common morph to represent a text area. I should be created by my model, a RubScrolledTextModel. The tool should talk to my model and not me directly 
 "
 Class {
-	#name : #SpRubScrolledTextMorph,
-	#superclass : #RubScrolledTextMorph,
+	#name : 'SpRubScrolledTextMorph',
+	#superclass : 'RubScrolledTextMorph',
 	#instVars : [
 		'askBeforeDiscardingEdits'
 	],
-	#category : #'Spec2-Pharo7To8Compatibility'
+	#category : 'Spec2-Pharo7To8Compatibility',
+	#package : 'Spec2-Pharo7To8Compatibility'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpRubScrolledTextMorph class >> on: aModel [ 
 	^ self new on: aModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRubScrolledTextMorph >> askBeforeDiscardingEdits: anObject [
 	askBeforeDiscardingEdits := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRubScrolledTextMorph >> canDiscardEdits [
 	^ (self hasUnacceptedEdits and: [askBeforeDiscardingEdits]) not
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRubScrolledTextMorph >> ghostText [
 	^ (self rulerNamed: #ghostText) ghostText text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRubScrolledTextMorph >> ghostText: aText [
 	self withGhostText: aText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRubScrolledTextMorph >> ghostTextRuler [
 	^ self rulerNamed: #ghostText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRubScrolledTextMorph >> initialize [
 	askBeforeDiscardingEdits := true.
 	super initialize

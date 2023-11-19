@@ -9,17 +9,19 @@ I set their min at 0 and their max at 255.
 I provide the methods color that calculate the Color obtains with the current value of the sliders.
 "
 Class {
-	#name : #SpRGBSlidersPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpRGBSlidersPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'redSlider',
 		'greenSlider',
 		'blueSlider'
 	],
-	#category : #'Spec2-Morphic-Widgets'
+	#category : 'Spec2-Morphic-Widgets',
+	#package : 'Spec2-Morphic',
+	#tag : 'Widgets'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpRGBSlidersPresenter class >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		add: #redSlider;
@@ -28,12 +30,12 @@ SpRGBSlidersPresenter class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRGBSlidersPresenter >> blueSlider [
 	^ blueSlider
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRGBSlidersPresenter >> color [
 	^ (Color
 				r: redSlider value
@@ -42,12 +44,12 @@ SpRGBSlidersPresenter >> color [
 				range: 255)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRGBSlidersPresenter >> greenSlider [
 	^ greenSlider
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRGBSlidersPresenter >> initializePresenters [
 	redSlider := self instantiate: SpSliderInputPresenter.
 	greenSlider := self instantiate: SpSliderInputPresenter.
@@ -67,12 +69,12 @@ SpRGBSlidersPresenter >> initializePresenters [
 		add: blueSlider
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRGBSlidersPresenter >> redSlider [
 	^ redSlider
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRGBSlidersPresenter >> whenChangedDo: aBlock [
 	redSlider whenValueChangedDo: aBlock.
 	greenSlider whenValueChangedDo: aBlock.

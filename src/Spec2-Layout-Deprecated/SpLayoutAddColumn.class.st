@@ -2,12 +2,13 @@
 A SpecLayoutAddColumn is an action representing the addition of a column to a layout
 "
 Class {
-	#name : #SpLayoutAddColumn,
-	#superclass : #SpLayoutAdd,
-	#category : #'Spec2-Layout-Deprecated'
+	#name : 'SpLayoutAddColumn',
+	#superclass : 'SpLayoutAdd',
+	#category : 'Spec2-Layout-Deprecated',
+	#package : 'Spec2-Layout-Deprecated'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpLayoutAddColumn class >> block: aBlock layoutFrame: aLayoutFrame [
 
 	^ self new
@@ -16,7 +17,7 @@ SpLayoutAddColumn class >> block: aBlock layoutFrame: aLayoutFrame [
 			yourself
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpLayoutAddColumn >> block: aBlock layoutFrame: aLayoutFrame [
 	| column |
 	column := SpColumnLayout composed.

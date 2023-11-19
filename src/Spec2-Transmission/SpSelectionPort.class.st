@@ -7,18 +7,20 @@ The presenter exposing a selection output port need to define also the event `#w
 Presenters exposing this port: `SpAbstractListPresenter` subclasses and `SpTreeTablePresenter`
 "
 Class {
-	#name : #SpSelectionPort,
-	#superclass : #SpOutputPort,
-	#category : #'Spec2-Transmission-Base'
+	#name : 'SpSelectionPort',
+	#superclass : 'SpOutputPort',
+	#category : 'Spec2-Transmission-Base',
+	#package : 'Spec2-Transmission',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSelectionPort class >> portName [
 	
 	^ #selection
 ]
 
-{ #category : #attaching }
+{ #category : 'attaching' }
 SpSelectionPort >> attachTransmission: aTransmission to: aPresenter [
 		
 	aPresenter whenSelectionChangedDo: [ :selection | 

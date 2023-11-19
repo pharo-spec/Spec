@@ -1,6 +1,6 @@
-Extension { #name : #PRTable }
+Extension { #name : 'PRTable' }
 
-{ #category : #'*Spec2-Pillar' }
+{ #category : '*Spec2-Pillar' }
 PRTable >> styleName [ 
 	^ #table
 ]

@@ -30,21 +30,23 @@ SomePresenter >> initializeDialogWindow: aDialogPresenter
 ```
 "
 Class {
-	#name : #SpModalWindowPresenter,
-	#superclass : #SpDialogWindowPresenter,
+	#name : 'SpModalWindowPresenter',
+	#superclass : 'SpDialogWindowPresenter',
 	#instVars : [
 		'#closeOnBackdropClick => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Windows'
+	#category : 'Spec2-Core-Windows',
+	#package : 'Spec2-Core',
+	#tag : 'Windows'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpModalWindowPresenter class >> adapterName [
 
 	^ #ModalWindowAdapter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpModalWindowPresenter >> closeOnBackdropClick [
 	"Answer if the user will be able to click on the backdrop to close the modal 
 	 launching the cancel action."
@@ -52,7 +54,7 @@ SpModalWindowPresenter >> closeOnBackdropClick [
 	^ closeOnBackdropClick
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpModalWindowPresenter >> closeOnBackdropClick: aBoolean [
 	"Set when the user will be able to click on the backdrop to close the modal 
 	 launching the cancel action."
@@ -60,7 +62,7 @@ SpModalWindowPresenter >> closeOnBackdropClick: aBoolean [
 	closeOnBackdropClick := aBoolean
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpModalWindowPresenter >> initialize [
 
 	super initialize.

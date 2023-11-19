@@ -1,6 +1,6 @@
-Extension { #name : #SpMenuPresenter }
+Extension { #name : 'SpMenuPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpMenuPresenter class >> exampleShowAtPointer [
 
 	^ self new 
@@ -10,7 +10,7 @@ SpMenuPresenter class >> exampleShowAtPointer [
 		openWithSpecAt: self currentHand position
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpMenuPresenter class >> exampleWithGroups [
 
 	^ self new 

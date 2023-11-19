@@ -4,21 +4,23 @@ I am a model representing Pharo World.
 This way, every spec application can be opened as the Pharo system window as window, to simulate native a application.
 "
 Class {
-	#name : #SpWorldPresenter,
-	#superclass : #SpWindowPresenter,
+	#name : 'SpWorldPresenter',
+	#superclass : 'SpWindowPresenter',
 	#instVars : [
 		'widget'
 	],
-	#category : #'Spec2-Morphic-Widgets'
+	#category : 'Spec2-Morphic-Widgets',
+	#package : 'Spec2-Morphic',
+	#tag : 'Widgets'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpWorldPresenter class >> defaultLayout [
 	self setUpWorld.
 	^ SpAbstractWidgetLayout for: #WorldAdapter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWorldPresenter class >> setUpWorld [
 
 	self currentWorld changeProportionalLayout.
@@ -31,7 +33,7 @@ SpWorldPresenter class >> setUpWorld [
 	(Smalltalk at: #TaskbarMorph) perform: #showTaskbar: with: false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWorldPresenter >> addPresenterIn: container withSpecLayout: aSpec [
 
 	self presenter ifNil: [ ^ self ].
@@ -40,26 +42,19 @@ SpWorldPresenter >> addPresenterIn: container withSpecLayout: aSpec [
 		with: { container. aSpec }
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWorldPresenter >> defaultInitialExtent [
 	
 	^ self currentWorld extent
 ]
 
-{ #category : #api }
-SpWorldPresenter >> ensureExtentFor: aWidget [
-
-	self extent ifNotNil: [ :ext | DisplayScreen hostWindowSize: ext ].
-	self initialExtent ifNotNil: [ :ext | DisplayScreen hostWindowSize: ext ].
-]
-
-{ #category : #api }
+{ #category : 'api' }
 SpWorldPresenter >> isDisplayed [
 
 	^ true
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWorldPresenter >> openWithLayout: aSpecLayout [
 
 	self flag: 'Is it really neeed to redefine this method in World presenter?'.
@@ -68,14 +63,14 @@ SpWorldPresenter >> openWithLayout: aSpecLayout [
 	self updateTitle
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWorldPresenter >> updateTitle [
 	"Update the window title"
 
 	self title: self title
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWorldPresenter >> widget [
 
 	^ widget 

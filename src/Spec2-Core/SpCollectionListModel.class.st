@@ -4,8 +4,8 @@ A collection model to be used with list presenters (`SpAbstractListPresenter` an
 This model receives a `collection` of elements to be served to the list.
 "
 Class {
-	#name : #SpCollectionListModel,
-	#superclass : #Object,
+	#name : 'SpCollectionListModel',
+	#superclass : 'Object',
 	#traits : 'TObservable',
 	#classTraits : 'TObservable classTrait',
 	#instVars : [
@@ -13,10 +13,12 @@ Class {
 		'#collection',
 		'#sorting => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpCollectionListModel class >> on: aCollection [
 	
 	^ self new
@@ -24,7 +26,7 @@ SpCollectionListModel class >> on: aCollection [
 		yourself
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpCollectionListModel >> add: anItem [
 	
 	collection := collection copyWith: anItem.
@@ -34,30 +36,30 @@ SpCollectionListModel >> add: anItem [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCollectionListModel >> announcer [ 
 
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCollectionListModel >> at: anIndex [
 
 	^ collection at: anIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCollectionListModel >> at: anIndex ifAbsent: aBlock [
 
 	^ collection at: anIndex ifAbsent: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCollectionListModel >> collection [
 	^ collection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCollectionListModel >> collection: anObject [
 	| oldValue |
 
@@ -70,43 +72,43 @@ SpCollectionListModel >> collection: anObject [
 		newValue: collection)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCollectionListModel >> hasElementAt: index [
 
 	^ self size >= index
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCollectionListModel >> indexOf: anIndex ifAbsent: aBlock [
 
 	^ collection indexOf: anIndex ifAbsent: aBlock
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCollectionListModel >> initialize [
 	self class initializeSlots: self.
 	super initialize
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCollectionListModel >> isEmpty [
 
 	^ collection isEmpty
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCollectionListModel >> items [
 
 	^ collection
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 SpCollectionListModel >> refreshList [
 
 	self sortingBlock ifNotNil: [ :aSortFunction | collection := collection sorted: aSortFunction ]
 ]
 
-{ #category : #collection }
+{ #category : 'collection' }
 SpCollectionListModel >> removeAll [
 	
 	collection := #().
@@ -116,24 +118,24 @@ SpCollectionListModel >> removeAll [
 		
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCollectionListModel >> size [
 
 	^ collection size
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCollectionListModel >> sortingBlock [
 	^ sorting
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCollectionListModel >> sortingBlock: aBlock [
 	sorting := aBlock.
 	self refreshList
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpCollectionListModel >> whenChangedDo: aBlock [
 	
 	self announcer 
@@ -146,7 +148,7 @@ SpCollectionListModel >> whenChangedDo: aBlock [
 		for: self
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpCollectionListModel >> whenSortingBlockChangedDo: aBlock [
 
 	self property: #sorting whenChangedDo: aBlock

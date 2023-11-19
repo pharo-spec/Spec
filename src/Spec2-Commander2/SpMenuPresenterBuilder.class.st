@@ -2,21 +2,23 @@
 I am a visitor that builds a Spec MenuPresenter from a commands and commands group.
 "
 Class {
-	#name : #SpMenuPresenterBuilder,
-	#superclass : #CmVisitor,
+	#name : 'SpMenuPresenterBuilder',
+	#superclass : 'CmVisitor',
 	#instVars : [
 		'menuPresenter',
 		'stack'
 	],
-	#category : #'Spec2-Commander2-Visitors'
+	#category : 'Spec2-Commander2-Visitors',
+	#package : 'Spec2-Commander2',
+	#tag : 'Visitors'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMenuPresenterBuilder class >> menuPresenterClass [
 	^ SpMenuPresenter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMenuPresenterBuilder >> fillItem: aMenuItem with: aCommand [
 
 	aMenuItem
@@ -31,7 +33,7 @@ SpMenuPresenterBuilder >> fillItem: aMenuItem with: aCommand [
 	^ aMenuItem
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMenuPresenterBuilder >> initialize [
 	
 	super initialize.
@@ -41,17 +43,17 @@ SpMenuPresenterBuilder >> initialize [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMenuPresenterBuilder >> menuPresenter [
 	^ menuPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMenuPresenterBuilder >> menuPresenter: anObject [
 	menuPresenter := anObject
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMenuPresenterBuilder >> visitCommand: aCmCommand [
 
 	aCmCommand 
@@ -59,7 +61,7 @@ SpMenuPresenterBuilder >> visitCommand: aCmCommand [
 		do: [ :item | self fillItem: item with: aCmCommand ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMenuPresenterBuilder >> visitCommandGroup: aCmCommandsGroup [
 
 	aCmCommandsGroup isRoot ifTrue: [ 

@@ -1,6 +1,6 @@
-Extension { #name : #PRStrikethroughFormat }
+Extension { #name : 'PRStrikethroughFormat' }
 
-{ #category : #'*Spec2-Pillar' }
+{ #category : '*Spec2-Pillar' }
 PRStrikethroughFormat >> styleName [ 
 	^  #strikeThrough
 ]

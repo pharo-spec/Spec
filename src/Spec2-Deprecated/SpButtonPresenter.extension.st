@@ -1,6 +1,6 @@
-Extension { #name : #SpButtonPresenter }
+Extension { #name : 'SpButtonPresenter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpButtonPresenter >> getAction [
 	"get the block performed when the button is clicked"
 
@@ -8,7 +8,7 @@ SpButtonPresenter >> getAction [
 	^ self action
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpButtonPresenter >> menu [
 
 	self 
@@ -19,7 +19,7 @@ SpButtonPresenter >> menu [
 	^ self contextMenu
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpButtonPresenter >> menu: aMenu [
 
 	self 

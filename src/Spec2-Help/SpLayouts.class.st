@@ -4,17 +4,19 @@ See class side for selectors.
 
 "
 Class {
-	#name : #SpLayouts,
-	#superclass : #SpHelpTopics,
-	#category : #'Spec2-Help-Topics'
+	#name : 'SpLayouts',
+	#superclass : 'SpHelpTopics',
+	#category : 'Spec2-Help-Topics',
+	#package : 'Spec2-Help',
+	#tag : 'Topics'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLayouts class >> bookName [
 	^'Spec Layouts'
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpLayouts class >> columns [
 	^HelpTopic 
 		title: 'Layouts in columns'
@@ -29,7 +31,7 @@ SpLayouts class >> columns [
 			yourself'
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpLayouts class >> columnsAndRows [
 	^HelpTopic 
 		title: 'Combining Columns and Rows'
@@ -90,7 +92,7 @@ Note that it is generally considered a bad habit to hardcode the size of the wid
 
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpLayouts class >> intro [
 	^HelpTopic 
 		title: 'Layouts'
@@ -101,12 +103,12 @@ SpLayouts class >> intro [
 Often the layout of user interfaces can be described in rows and columns, and Spec provides for an easy way to specify such layouts.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLayouts class >> pages [
 	^#(intro columns rows columnsAndRows)
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpLayouts class >> rows [
 	^HelpTopic 
 		title: 'Layouts in rows'

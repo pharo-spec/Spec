@@ -1,14 +1,16 @@
 Class {
-	#name : #SpWorldPresenterTest,
-	#superclass : #TestCase,
+	#name : 'SpWorldPresenterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'application',
 		'worldMorph'
 	],
-	#category : #'Spec2-Morphic-Tests-Core-Support'
+	#category : 'Spec2-Morphic-Tests-Core-Support',
+	#package : 'Spec2-Morphic-Tests',
+	#tag : 'Core-Support'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpWorldPresenterTest >> setUp [
 
 	super setUp.
@@ -22,14 +24,14 @@ SpWorldPresenterTest >> setUp [
 	application := SpNullApplication new
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpWorldPresenterTest >> tearDown [
 
 	worldMorph delete.
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWorldPresenterTest >> testOpenPresenterInWorldDisplayInFullWorld [
 	| buttonPresenter |
 	
@@ -45,7 +47,7 @@ SpWorldPresenterTest >> testOpenPresenterInWorldDisplayInFullWorld [
 		equals: worldMorph extent - 8 "border"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWorldPresenterTest >> testOpenPresenterInWorldDisplayToolbarDoesNotHidePresenter [
 	| windowPresenter worldPanel |
 	windowPresenter := application
@@ -62,7 +64,7 @@ SpWorldPresenterTest >> testOpenPresenterInWorldDisplayToolbarDoesNotHidePresent
 		description: 'toolbar should not intersect with presenter when opening in world'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWorldPresenterTest >> testOpenPresenterInWorldRemoveExisitingMorphsInWorld [
 	| buttonPresenter |
 	worldMorph addMorph: CircleMorph new.

@@ -2,8 +2,8 @@
 I am a contact book. I hold a list of contacts.
 "
 Class {
-	#name : #SpContactBook,
-	#superclass : #Object,
+	#name : 'SpContactBook',
+	#superclass : 'Object',
 	#instVars : [
 		'contents'
 	],
@@ -11,10 +11,12 @@ Class {
 		'family',
 		'coworkers'
 	],
-	#category : #'Spec2-Commander2-ContactBook-Model'
+	#category : 'Spec2-Commander2-ContactBook-Model',
+	#package : 'Spec2-Commander2-ContactBook',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBook class >> coworkers [
 	^coworkers ifNil: [ 
 		coworkers := self new 
@@ -24,7 +26,7 @@ SpContactBook class >> coworkers [
 			yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBook class >> family [
 	^family ifNil: [ 
 		family := self new 
@@ -34,14 +36,14 @@ SpContactBook class >> family [
 			yourself]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpContactBook class >> reset [
 	<script>
 	coworkers := nil.
 	family := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBook >> add: contactName phone: phone [
 	| contact |
 	contact := SpContact named: contactName phone: phone.
@@ -49,39 +51,39 @@ SpContactBook >> add: contactName phone: phone [
 	^contact
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBook >> addContact: aContact [
 	contents add: aContact
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBook >> addContact: newContact after: contactAfter [ 
 	contents add: newContact after: contactAfter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBook >> contents [
 	^ contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBook >> contents: anObject [
 	contents := anObject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpContactBook >> includesContact: aContact [
 	^ contents includes: aContact
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpContactBook >> initialize [
 	super initialize.
 	contents := OrderedCollection new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBook >> removeContact: aContact [
 	contents remove: aContact
 ]

@@ -3,26 +3,28 @@ This trait defines a custom selectable presenter.
 
 "
 Trait {
-	#name : #SpTSelectable,
+	#name : 'SpTSelectable',
 	#instVars : [
 		'selectionAction'
 	],
-	#category : #'Spec2-Transmission-Custom'
+	#category : 'Spec2-Transmission-Custom',
+	#package : 'Spec2-Transmission',
+	#tag : 'Custom'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTSelectable >> hasOutputSelectionPort [
 
 	^ true
 ]
 
-{ #category : #transmission }
+{ #category : 'transmission' }
 SpTSelectable >> outputSelectionPort [
 
 	^ SpSelectionPort newPresenter: self
 ]
 
-{ #category : #'private - actions' }
+{ #category : 'private - actions' }
 SpTSelectable >> select [
 	"Perform here the activation. A common usage would be something like:
 
@@ -33,13 +35,13 @@ SpTSelectable >> select [
 	self shouldBeImplemented
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTSelectable >> selectionAction [
 
 	^ selectionAction
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTSelectable >> whenSelectionChangedDo: aBlock [
 	"Defines the selected event. 
 	 `aBlock` receives an optional argument, that needs to be an instance of `SpActivatedObject`.

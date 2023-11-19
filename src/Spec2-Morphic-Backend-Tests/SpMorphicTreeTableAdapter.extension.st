@@ -1,6 +1,6 @@
-Extension { #name : #SpMorphicTreeTableAdapter }
+Extension { #name : 'SpMorphicTreeTableAdapter' }
 
-{ #category : #'*Spec2-Morphic-Backend-Tests' }
+{ #category : '*Spec2-Morphic-Backend-Tests' }
 SpMorphicTreeTableAdapter >> expandRowAt: anInteger [
 	"Click on the iconic button of a row at an index in the tree."
 
@@ -19,7 +19,7 @@ SpMorphicTreeTableAdapter >> expandRowAt: anInteger [
 	expandIcon mouseUp: evt
 ]
 
-{ #category : #'*Spec2-Morphic-Backend-Tests' }
+{ #category : '*Spec2-Morphic-Backend-Tests' }
 SpMorphicTreeTableAdapter >> iconOfRowMorphAt: anInteger [
 	"Return the first icon of a row morph at a certain index in the tree. 
 	If it is expandable, it will be an IconicButton, else it will be an empty image morph."
@@ -32,14 +32,14 @@ SpMorphicTreeTableAdapter >> iconOfRowMorphAt: anInteger [
 	^ indentCell submorphs first
 ]
 
-{ #category : #'*Spec2-Morphic-Backend-Tests' }
+{ #category : '*Spec2-Morphic-Backend-Tests' }
 SpMorphicTreeTableAdapter >> isRowMorphExpandableAt: anInteger [
 	"Return true if the row at the index has an expandable icon. This is specific to FastTable."
 
 	^ (self iconOfRowMorphAt: anInteger) isKindOf: IconicButtonMorph
 ]
 
-{ #category : #'*Spec2-Morphic-Backend-Tests' }
+{ #category : '*Spec2-Morphic-Backend-Tests' }
 SpMorphicTreeTableAdapter >> rowMorphAt: anInteger [
 	"Return the row morph at an index. Used for tests."
 

@@ -1,6 +1,6 @@
-Extension { #name : #SpMorphicBaseTextAdapter }
+Extension { #name : 'SpMorphicBaseTextAdapter' }
 
-{ #category : #'*Spec2-Morphic-Backend-Tests' }
+{ #category : '*Spec2-Morphic-Backend-Tests' }
 SpMorphicBaseTextAdapter >> placeHolderText [
 	^ widget ghostText asString
 ]

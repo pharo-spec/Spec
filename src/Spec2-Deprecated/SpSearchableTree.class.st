@@ -2,30 +2,32 @@
 I am a tree plus an input field to be able to filter the tree elements
 "
 Class {
-	#name : #SpSearchableTree,
-	#superclass : #SpPresenter,
+	#name : 'SpSearchableTree',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'#inputField',
 		'#roots => SpObservableSlot',
 		'#tree',
 		'#button'
 	],
-	#category : #'Spec2-Deprecated-Obsolete'
+	#category : 'Spec2-Deprecated-Obsolete',
+	#package : 'Spec2-Deprecated',
+	#tag : 'Obsolete'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpSearchableTree class >> defaultSpec [
 	^ self searchAtBottom
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 SpSearchableTree class >> example [
 	<sampleInstance>
 	^ self new
 		openWithSpec
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpSearchableTree class >> searchAtBottom [
 	<spec>
 	^ SpBoxLayout newVertical
@@ -38,7 +40,7 @@ SpSearchableTree class >> searchAtBottom [
 		yourself
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpSearchableTree class >> searchAtTop [
 	<spec>
 	^ SpBoxLayout newVertical
@@ -51,73 +53,73 @@ SpSearchableTree class >> searchAtTop [
 		yourself
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> autoAccept: aBoolean [
 
 	inputField autoAccept: aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> autoMultiSelection: aBoolean [
 
 	tree autoMultiSelection: aBoolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSearchableTree >> button [
 
 	^ button
 ]
 
-{ #category : #'api-compatibility' }
+{ #category : 'api-compatibility' }
 SpSearchableTree >> childrenBlock [
 	
 	^ tree childrenBlock
 ]
 
-{ #category : #'api-compatibility' }
+{ #category : 'api-compatibility' }
 SpSearchableTree >> childrenBlock: aBlock [
 	
 	tree childrenBlock: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> columnInset: anInteger [
 
 	tree columnInset: anInteger
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> columns [
 	
 	^ tree columns
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> columns: aCollection [
 	
 	tree columns: aCollection
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSearchableTree >> connectPresenters [
 	inputField whenTextChangedDo: [ :text | self updateRootFor: text ].
 	tree whenTreeUpdatedDo: [ inputField text: '' ]
 ]
 
-{ #category : #'api-compatibility' }
+{ #category : 'api-compatibility' }
 SpSearchableTree >> display [
 
 	^ tree display
 ]
 
-{ #category : #'api-compatibility' }
+{ #category : 'api-compatibility' }
 SpSearchableTree >> display: aBlock [
 	
 	tree display: aBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SpSearchableTree >> displayBlock [
 
 	self
@@ -128,7 +130,7 @@ SpSearchableTree >> displayBlock [
 	^ tree display
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SpSearchableTree >> displayBlock: aBlock [
 	
 	self
@@ -139,38 +141,38 @@ SpSearchableTree >> displayBlock: aBlock [
 	tree display: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> doubleClick: aBlock [
 
 	tree doubleClick: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> evenRowColor: aColor [
 
 	tree evenRowColor: aColor
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> highlightedItem: aTreeNodePresenter [
 	
 	tree highlightedItem: aTreeNodePresenter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> iconBlock: aBlock [
 	
 	tree iconBlock: aBlock
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSearchableTree >> initialize [
 	super initialize.
 
 	roots := OrderedCollection new
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSearchableTree >> initializePresenters [
 
 	tree := self newTree. 
@@ -199,125 +201,125 @@ SpSearchableTree >> initializePresenters [
 		add: inputField
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSearchableTree >> inputField [
 	^ inputField
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> isCheckList: aBoolean [
 
 	tree isCheckList: aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> keyStrokeAction: aBlock [
 
 	tree keyStrokeAction: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> menu [
 	
 	^ tree menu
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> menu: aBlock [
 	
 	tree menu: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> multiSelection: aBoolean [
 
 	tree multiSelection: aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> preferedPaneColor: aColor [
 
 	tree preferedPaneColor: aColor
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> resetSelection [
 
 	tree resetSelection
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> resizerWidth: anInteger [
 
 	tree resizerWidth: anInteger
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> rootNodeHolder [
 
 	^ tree rootNodeHolder
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> rootNodeHolder: aBlock [
 
 	tree rootNodeHolder: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> roots [
 	
 	^ tree roots
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> roots: aCollection [
 	roots := aCollection asOrderedCollection.
 	tree roots: aCollection asOrderedCollection
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> rowInset: anInteger [
 
 	tree rowInset: anInteger
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> secondSelection: anItem [
 	
 	tree secondSelection: anItem
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> selectedItem [
 	
 	^ tree selectedItem
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> selectedItem: anItem [
 	
 	tree selectedItem: anItem
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> selectedItems [
 	
 	^ tree selectedItems
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> selectedItems: aCollection [
 	
 	tree selectedItems: aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSearchableTree >> tree [
 	^ tree
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpSearchableTree >> updateRootFor: aText [
 	| aFilter |
 	
@@ -325,42 +327,42 @@ SpSearchableTree >> updateRootFor: aText [
 	tree filterWith: aFilter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSearchableTree >> updateTree [
 	
 	tree updateTree
 ]
 
-{ #category : #'api-events-compatibility' }
+{ #category : 'api-events-compatibility' }
 SpSearchableTree >> whenChildrenBlockChanged: aBlock [
 	
 	tree whenChildrenBlockChanged: aBlock
 ]
 
-{ #category : #'api-events-compatibility' }
+{ #category : 'api-events-compatibility' }
 SpSearchableTree >> whenDisplayBlockChanged: aBlock [
 	
 	tree whenDisplayBlockChanged: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : 'api-events' }
 SpSearchableTree >> whenMenuChanged: aBlock [
 	
 	tree whenMenuChanged: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : 'api-events' }
 SpSearchableTree >> whenRootsChanged: aBlock [
 	self property: #roots whenChangedDo: aBlock
 ]
 
-{ #category : #'list api-events' }
+{ #category : 'list api-events' }
 SpSearchableTree >> whenSelectedItemChanged: aBlock [
 
 	tree whenSelectedItemChanged: aBlock
 ]
 
-{ #category : #'api-events' }
+{ #category : 'api-events' }
 SpSearchableTree >> whenSelectedItemsChanged: aBlock [
 	
 	tree whenSelectedItemsChanged: aBlock

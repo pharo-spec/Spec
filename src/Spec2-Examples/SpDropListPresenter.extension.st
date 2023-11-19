@@ -1,6 +1,6 @@
-Extension { #name : #SpDropListPresenter }
+Extension { #name : 'SpDropListPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpDropListPresenter class >> example [
 
 	^ (self new

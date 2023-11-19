@@ -1,37 +1,39 @@
 Class {
-	#name : #SpAbstractSelectionModeTest,
-	#superclass : #TestCase,
+	#name : 'SpAbstractSelectionModeTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'presenter'
 	],
-	#category : #'Spec2-Tests-Layout'
+	#category : 'Spec2-Tests-Layout',
+	#package : 'Spec2-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractSelectionModeTest class >> isAbstract [
 	^ self = SpAbstractSelectionModeTest
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractSelectionModeTest class >> shouldInheritSelectors [
 	^ true
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpAbstractSelectionModeTest >> setUp [
 	super setUp.
 	presenter := SpListPresenter new.
 	presenter items: (1 to: 10)
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpAbstractSelectionModeTest >> tearDown [ 
 
 	presenter delete.
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractSelectionModeTest >> testSubscriptionsAreTransfered [
 	self subclassResponsibility
 ]

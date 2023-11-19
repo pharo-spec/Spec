@@ -1,6 +1,6 @@
-Extension { #name : #SpPresenter }
+Extension { #name : 'SpPresenter' }
 
-{ #category : #'*Spec2-Interactions' }
+{ #category : '*Spec2-Interactions' }
 SpPresenter >> confirm: queryString label: titleString [
 	
 	^ (self application newConfirm 
@@ -10,7 +10,7 @@ SpPresenter >> confirm: queryString label: titleString [
 		isOk
 ]
 
-{ #category : #'*Spec2-Interactions' }
+{ #category : '*Spec2-Interactions' }
 SpPresenter >> request: request initialAnswer: initialAnwser title: title [
 	| answer |
 	

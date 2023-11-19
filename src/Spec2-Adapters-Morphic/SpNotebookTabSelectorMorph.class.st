@@ -1,10 +1,12 @@
 Class {
-	#name : #SpNotebookTabSelectorMorph,
-	#superclass : #TabSelectorMorph,
-	#category : #'Spec2-Adapters-Morphic-Notebook'
+	#name : 'SpNotebookTabSelectorMorph',
+	#superclass : 'TabSelectorMorph',
+	#category : 'Spec2-Adapters-Morphic-Notebook',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Notebook'
 }
 
-{ #category : #operations }
+{ #category : 'operations' }
 SpNotebookTabSelectorMorph >> newLabelMorph: aStringOrMorph [
 	"Answer a new label morph with the given label text."
 
@@ -23,7 +25,7 @@ SpNotebookTabSelectorMorph >> newLabelMorph: aStringOrMorph [
 		tabSelector: self
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 SpNotebookTabSelectorMorph >> newLabelMorph: aStringOrMorph selected: selectedStringOrMorph [
 	"Answer a new label morph with the given label text or morph and
 	alternate when selected."
@@ -43,7 +45,7 @@ SpNotebookTabSelectorMorph >> newLabelMorph: aStringOrMorph selected: selectedSt
 		tabSelector: self
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 SpNotebookTabSelectorMorph >> removeTabIndex: anInteger [
 	"Remove the tab at the given index and
 	adjust any selected (next or first if was last)."

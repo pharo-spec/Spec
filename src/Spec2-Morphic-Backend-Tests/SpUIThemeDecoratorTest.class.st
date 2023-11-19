@@ -2,21 +2,22 @@
 I hold tests for UIThemeDecorator.
 "
 Class {
-	#name : #SpUIThemeDecoratorTest,
-	#superclass : #TestCase,
+	#name : 'SpUIThemeDecoratorTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'themeDecorator'
 	],
-	#category : #'Spec2-Morphic-Backend-Tests'
+	#category : 'Spec2-Morphic-Backend-Tests',
+	#package : 'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpUIThemeDecoratorTest >> setUp [
 	super setUp.
 	themeDecorator := SpUIThemeDecorator exampleDecoratorToMakePluggableButtonRed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpUIThemeDecoratorTest >> testDoesNotUnderstand [
 	| block |
 	themeDecorator
@@ -38,7 +39,7 @@ SpUIThemeDecoratorTest >> testDoesNotUnderstand [
 	self assert: (themeDecorator fooBlock: 3) equals: 45.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpUIThemeDecoratorTest >> testHasProperty [
 	self
 		assert: (themeDecorator hasProperty: #buttonNormalFillStyleFor:);
@@ -49,7 +50,7 @@ SpUIThemeDecoratorTest >> testHasProperty [
 		deny: (themeDecorator hasProperty: #scrollbarThumbCornerStyleIn:)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpUIThemeDecoratorTest >> testPropertyReturnsValueOf [
 	| block |
 	themeDecorator

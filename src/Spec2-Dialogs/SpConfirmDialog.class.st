@@ -4,8 +4,8 @@ By default, it will show the `label` message and ask for a conformation with `Ye
 
 "
 Class {
-	#name : #SpConfirmDialog,
-	#superclass : #SpDialogPresenter,
+	#name : 'SpConfirmDialog',
+	#superclass : 'SpDialogPresenter',
 	#instVars : [
 		'label',
 		'title',
@@ -13,28 +13,29 @@ Class {
 		'acceptLabel',
 		'cancelLabel'
 	],
-	#category : #'Spec2-Dialogs'
+	#category : 'Spec2-Dialogs',
+	#package : 'Spec2-Dialogs'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpConfirmDialog class >> defaultAcceptLabel [
 
 	^ 'Yes'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpConfirmDialog class >> defaultCancelLabel [
 
 	^ 'No'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpConfirmDialog class >> defaultExtent [
 
 	^ 450@120
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpConfirmDialog class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -49,86 +50,91 @@ SpConfirmDialog class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpConfirmDialog class >> documentFactoryMethodSelector [
 	
 	^ #newConfirm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpConfirmDialog class >> example [
 
-	^ self new
-		title: 'Confirm example';
-		label: 'Are you sure?';
-		acceptLabel: 'Sure!';
-		cancelLabel: 'No, forget it';
-		label: 'Are you sure?';
-		onAccept: [ self inform: 'Yes!' ];
-		onCancel: [ self inform: 'No!' ];
-		openDialog
+	| dialog |
+	dialog := self new.
+	^ dialog
+		  title: 'Confirm example';
+		  label: 'Are you sure?';
+		  acceptLabel: 'Sure!';
+		  cancelLabel: 'No, forget it';
+		  label: 'Are you sure?';
+		  onAccept: [
+			  dialog inform: 'Yes!' ];
+		  onCancel: [
+			  dialog inform: 'No!' ];
+		  openDialog
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpConfirmDialog class >> exampleModal [
-	| ok |
 
-	ok := self new
-		title: 'Confirm modal example';
-		label: 'Are you sure?';
-		acceptLabel: 'Sure!';
-		cancelLabel: 'No, forget it';
-		openModal.
-	
-	self inform: (ok 
-		ifTrue: [ 'Yes!' ]
-		ifFalse: [ 'No!' ])
+	| ok dialog |
+	dialog := self new.
+	ok := dialog
+		      title: 'Confirm modal example';
+		      label: 'Are you sure?';
+		      acceptLabel: 'Sure!';
+		      cancelLabel: 'No, forget it';
+		      openModal.
+
+	dialog inform: (ok
+				 ifTrue: [ 'Yes!' ]
+				 ifFalse: [ 'No!' ])
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpConfirmDialog >> acceptLabel [
 
 	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpConfirmDialog >> acceptLabel: aString [
 
 	acceptLabel := aString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpConfirmDialog >> cancelLabel [
 
 	^ cancelLabel ifNil: [ self class defaultCancelLabel ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpConfirmDialog >> cancelLabel: aString [
 
 	cancelLabel := aString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpConfirmDialog >> extent [
 
 	^ initialExtent ifNil: [ self class defaultExtent ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpConfirmDialog >> extent: aPoint [
 
 	initialExtent := aPoint
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpConfirmDialog >> initialize [
 	
 	super initialize.
 	self title: 'Confirm'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpConfirmDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.
@@ -138,7 +144,7 @@ SpConfirmDialog >> initializeDialogWindow: aDialogWindowPresenter [
 		
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpConfirmDialog >> initializePresenters [
 
 	image := self newImage image: self defaultIcon.
@@ -146,7 +152,7 @@ SpConfirmDialog >> initializePresenters [
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpConfirmDialog >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
@@ -154,13 +160,13 @@ SpConfirmDialog >> initializeWindow: aWindowPresenter [
 		initialExtent: self extent
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpConfirmDialog >> label: aString [
 
 	label label: aString
 ]
 
-{ #category : #'api - showing' }
+{ #category : 'api - showing' }
 SpConfirmDialog >> openModal [
 	| dialog |
 	
@@ -168,13 +174,13 @@ SpConfirmDialog >> openModal [
 	^ dialog isOk
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpConfirmDialog >> title [
 
 	^ title
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpConfirmDialog >> title: aString [
 
 	title := aString

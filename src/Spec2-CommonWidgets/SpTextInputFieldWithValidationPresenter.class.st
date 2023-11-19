@@ -9,8 +9,8 @@ self example
 If you submit without entering text, you will see the error icon. Hovering the error icon will show the error message.
 "
 Class {
-	#name : #SpTextInputFieldWithValidationPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpTextInputFieldWithValidationPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'textInput',
 		'statusIcon',
@@ -18,10 +18,12 @@ Class {
 		'validationErrors',
 		'name'
 	],
-	#category : #'Spec2-CommonWidgets-Core'
+	#category : 'Spec2-CommonWidgets-Core',
+	#package : 'Spec2-CommonWidgets',
+	#tag : 'Core'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpTextInputFieldWithValidationPresenter class >> example [
 	<example>
 	
@@ -33,23 +35,23 @@ SpTextInputFieldWithValidationPresenter class >> example [
 		yourself
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldWithValidationPresenter >> addValidation: aSpValidation [ 
 	self validations add: aSpValidation.
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 SpTextInputFieldWithValidationPresenter >> addValidationError: aSpValidation [ 
 	aSpValidation target: self.
 	validationErrors add: aSpValidation.
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldWithValidationPresenter >> beRequired [
 	self addValidation: SpRequiredFieldValidation new
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpTextInputFieldWithValidationPresenter >> defaultLayout [ 
 		
 	^ SpBoxLayout newLeftToRight
@@ -59,12 +61,12 @@ SpTextInputFieldWithValidationPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextInputFieldWithValidationPresenter >> errorIcon [
 	^ self iconNamed: #smallError
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 SpTextInputFieldWithValidationPresenter >> errorIconMessage [
 
 	^ String streamContents: [ :stream |
@@ -73,12 +75,12 @@ SpTextInputFieldWithValidationPresenter >> errorIconMessage [
 				separatedBy: [ stream cr ]]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldWithValidationPresenter >> icon: aForm [ 
 	statusIcon image: aForm
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTextInputFieldWithValidationPresenter >> initializePresenters [ 
 	textInput := self newTextInput
 		whenSubmitDo: [ self submit ];
@@ -88,58 +90,58 @@ SpTextInputFieldWithValidationPresenter >> initializePresenters [
 	self layout: self defaultLayout
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldWithValidationPresenter >> isValid [
 	^ validationErrors isEmptyOrNil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextInputFieldWithValidationPresenter >> name [
 	^ name
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldWithValidationPresenter >> name: aString [ 
 	name := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextInputFieldWithValidationPresenter >> okIcon [
 	^ self iconNamed: #smallOk
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldWithValidationPresenter >> placeholder: aString [ 
 	textInput placeholder: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextInputFieldWithValidationPresenter >> statusIcon [
 	^ statusIcon 
 ]
 
-{ #category : #simulating }
+{ #category : 'simulating' }
 SpTextInputFieldWithValidationPresenter >> submit [
 	
 	self validate.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextInputFieldWithValidationPresenter >> text [
 	^ self textInput text
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextInputFieldWithValidationPresenter >> text: aString [ 
 	textInput text: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextInputFieldWithValidationPresenter >> textInput [
 	^ textInput 
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 SpTextInputFieldWithValidationPresenter >> updateStatus [
 	
 	statusIcon 
@@ -148,25 +150,25 @@ SpTextInputFieldWithValidationPresenter >> updateStatus [
 	  
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 SpTextInputFieldWithValidationPresenter >> validate [
 	validationErrors := OrderedCollection new.
 	self validations do: [ :validation | validation validate: self ].
 	self updateStatus.
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 SpTextInputFieldWithValidationPresenter >> validateInto: aValidationReport [
 	self validate.
 	aValidationReport addAll: validationErrors
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextInputFieldWithValidationPresenter >> validations [ 
 	^ validations ifNil: [ validations := OrderedCollection new ]
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 SpTextInputFieldWithValidationPresenter >> whenTextChangedDo: aBlock [
 
 	textInput whenTextChangedDo: aBlock

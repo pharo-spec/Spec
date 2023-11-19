@@ -1,23 +1,25 @@
 Class {
-	#name : #SpDemoSelectablePresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoSelectablePresenter',
+	#superclass : 'SpPresenter',
 	#traits : 'SpTSelectable',
 	#classTraits : 'SpTSelectable classTrait',
-	#category : #'Spec2-Examples-Demo-Transmission'
+	#category : 'Spec2-Examples-Demo-Transmission',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Transmission'
 }
 
-{ #category : #'instance creation' }
-SpDemoSelectablePresenter class >> open [ 
+{ #category : 'instance creation' }
+SpDemoSelectablePresenter class >> open [
+
 	<script>
 	| presenter |
-	
 	presenter := self new.
-	presenter outputSelectionPort 
-		transmitDo: [ :aValue | self inform: 'Selected ', aValue asString ].
+	presenter outputSelectionPort transmitDo: [ :aValue |
+		presenter inform: 'Selected ' , aValue asString ].
 	presenter open
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoSelectablePresenter >> initializePresenters [
 
 	self layout: (SpBoxLayout newVertical 
@@ -28,7 +30,7 @@ SpDemoSelectablePresenter >> initializePresenters [
 		yourself).
 ]
 
-{ #category : #'private - actions' }
+{ #category : 'private - actions' }
 SpDemoSelectablePresenter >> select [
 
 	self selectionAction ifNil: [ ^ self ].

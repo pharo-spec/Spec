@@ -3,23 +3,25 @@ A presenter that chains a miller list (`SpMillerColumnPresenter`) along with a p
 This is the most common usage of paginator, and there are several places where we want to use a miller list with pagination and this common presenter will be provifing basic functionality pre-made for consumption.
 "
 Class {
-	#name : #SpMillerPaginatorPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpMillerPaginatorPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'millerList',
 		'paginator',
 		'paginatorContainerLayout'
 	],
-	#category : #'Spec2-Core-Widgets-Advanced'
+	#category : 'Spec2-Core-Widgets-Advanced',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Advanced'
 }
 
-{ #category : #api }
+{ #category : 'api' }
 SpMillerPaginatorPresenter >> addPresenter: aPresenter [
 
 	self millerListPresenter addPresenter: aPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMillerPaginatorPresenter >> initializePresenters [
 
 	self layout: (SpBoxLayout newTopToBottom
@@ -35,50 +37,50 @@ SpMillerPaginatorPresenter >> initializePresenters [
 	self updatePaginator: 1
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMillerPaginatorPresenter >> millerListPresenter [
 
 	^ millerList
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMillerPaginatorPresenter >> newPaginator [
 		
 	^ self instantiate: SpPaginatorPresenter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMillerPaginatorPresenter >> pages [
 
 	^ millerList pages
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMillerPaginatorPresenter >> paginatorPresenter [
 
 	^ paginator
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMillerPaginatorPresenter >> removeAllFrom: aPresenter [
 
 	millerList removeAllFrom: aPresenter.
 	self updatePaginator: ((millerList pages size - millerList visiblePages + 1) max: 1)
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMillerPaginatorPresenter >> selectPage: aNumber [ 
 
 	self millerListPresenter selectPage: aNumber
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMillerPaginatorPresenter >> spacing: aNumber [
 
 	self millerListPresenter spacing: aNumber
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMillerPaginatorPresenter >> updatePaginator: pageSelected [
 
 	millerList pages size > 1 
@@ -97,7 +99,7 @@ SpMillerPaginatorPresenter >> updatePaginator: pageSelected [
 			paginator := nil ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMillerPaginatorPresenter >> visiblePages: aNumber [
 
 	self millerListPresenter visiblePages: 1.

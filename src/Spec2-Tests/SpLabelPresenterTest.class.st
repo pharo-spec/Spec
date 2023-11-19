@@ -1,15 +1,17 @@
 Class {
-	#name : #SpLabelPresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpLabelPresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLabelPresenterTest >> classToTest [
 	^ SpLabelPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpLabelPresenterTest >> testLabelChangeRaisesEvent [
 
 	self
@@ -18,7 +20,7 @@ SpLabelPresenterTest >> testLabelChangeRaisesEvent [
 		whenDoing: [ presenter label: 'test' ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpLabelPresenterTest >> testLabelChangeRaisesEventOnce [
 
 	self
@@ -28,7 +30,7 @@ SpLabelPresenterTest >> testLabelChangeRaisesEventOnce [
 		whenDoing: [ presenter label: 'test' ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpLabelPresenterTest >> testLabelIsSet [
 
 	presenter label: 'test'.

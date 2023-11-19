@@ -2,33 +2,35 @@
 A SpecAbstractWidgetLayoutTest is a test class for testing the behavior of SpecAbstractWidgetLayout
 "
 Class {
-	#name : #SpAbstractWidgetLayoutTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Tests-Layout'
+	#name : 'SpAbstractWidgetLayoutTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Tests-Layout',
+	#package : 'Spec2-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractWidgetLayoutTest >> testAdapterForBindings [
 	| layout |
 	layout := SpAbstractWidgetLayout for: #ListAdapter.
 	self assert: (layout adapterFor: SpListPresenter new bindings: SpStubAdapterBindings new) class equals: SpStubListAdapter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractWidgetLayoutTest >> testAdapterForBindingsRaiseErrorIfNoBinding [
 	| layout |
 	layout := SpAbstractWidgetLayout for: #NonExistingAdapter.
 	self should: [ layout adapterFor: SpListPresenter new bindings: SpStubAdapterBindings new ] raise: Error
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractWidgetLayoutTest >> testBuildAdapterForBindings [
 	| layout |
 	layout := SpAbstractWidgetLayout for: #ListAdapter.
 	self assert: (layout buildAdapterFor: SpListPresenter new bindings: SpStubAdapterBindings new) widget class equals: SpStubListView
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractWidgetLayoutTest >> testDynamicBuild [
 
 	"Cyril: This is currently a duplicated of a test in SpecInterpreter, but this test is useful for more that the SpecInterpreter and since we plan to remove the interpreter I want to ensure we do not lose this test. This comment can be removed once the SpecInterpreter will be removed."

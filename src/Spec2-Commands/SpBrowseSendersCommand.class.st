@@ -3,23 +3,25 @@ Browse all senders.
 
 "
 Class {
-	#name : #SpBrowseSendersCommand,
-	#superclass : #SpSystemSelectionCommand,
-	#category : #'Spec2-Commands-Navigation'
+	#name : 'SpBrowseSendersCommand',
+	#superclass : 'SpSystemSelectionCommand',
+	#category : 'Spec2-Commands-Navigation',
+	#package : 'Spec2-Commands',
+	#tag : 'Navigation'
 }
 
-{ #category : #default }
+{ #category : 'default' }
 SpBrowseSendersCommand class >> defaultDescription [
 	^ 'Browse all senders of the selected method or message'
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpBrowseSendersCommand class >> defaultName [
 
 	^ 'Senders of it'
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpBrowseSendersCommand class >> defaultShortcutKey [
 
 	^ $n command mac 
@@ -27,13 +29,13 @@ SpBrowseSendersCommand class >> defaultShortcutKey [
 		| $n control unix
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpBrowseSendersCommand class >> shortName [
 
 	^ 'senders'
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 SpBrowseSendersCommand >> execute [
 	
 	self context doBrowseSenders

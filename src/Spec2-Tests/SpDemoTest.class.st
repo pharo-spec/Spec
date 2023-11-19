@@ -1,15 +1,17 @@
 Class {
-	#name : #SpDemoTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Examples'
+	#name : 'SpDemoTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Tests-Examples',
+	#package : 'Spec2-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoTest >> classToTest [
 	^ SpDemo
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDemoTest >> testSmokeTestForDemoPages [
 
 	self timeLimit: 1 minute.

@@ -1,6 +1,6 @@
-Extension { #name : #SpTableColumn }
+Extension { #name : 'SpTableColumn' }
 
-{ #category : #'*Spec2-Microdown' }
+{ #category : '*Spec2-Microdown' }
 SpTableColumn class >> buildMicroDownUsing: aBuilder withComment: aString [
 	
 	super buildMicroDownUsing: aBuilder withComment: aString.

@@ -1,27 +1,29 @@
 Class {
-	#name : #SpAbstractLayoutTest,
-	#superclass : #ParametrizedTestCase,
+	#name : 'SpAbstractLayoutTest',
+	#superclass : 'ParametrizedTestCase',
 	#instVars : [
 		'presenter',
 		'window',
 		'backendForTest'
 	],
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractLayoutTest class >> isAbstract [ 
 	^ self = SpAbstractLayoutTest
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractLayoutTest class >> testParameters [
 	^ ParametrizedTestMatrix new
 		forSelector: #backendForTest addOptions: SpAbstractBackendForTest allSubclasses;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractLayoutTest >> adapter [
 
 	"Force opening the spec instance here.
@@ -31,38 +33,38 @@ SpAbstractLayoutTest >> adapter [
 	^ presenter adapter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractLayoutTest >> backendForTest: aClass [ 
 	
 	backendForTest := aClass new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractLayoutTest >> classToTest [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 SpAbstractLayoutTest >> openInstance [
 
 	backendForTest openInstanceOf: self 
 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpAbstractLayoutTest >> prepareToRunAgain [
 
 	backendForTest runTest: [ super prepareToRunAgain ]
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractLayoutTest >> presenter [
 	^ presenter
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpAbstractLayoutTest >> runCase [
 
 	self resources do: [:each | each availableFor: self].
@@ -75,30 +77,30 @@ SpAbstractLayoutTest >> runCase [
 		self cleanUpInstanceVariables]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpAbstractLayoutTest >> setUp [
 	super setUp.	"This super is useless but it's to make the release tests happy."
 	self error: 'Do not override me.... use #initializeTestedInstance'
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpAbstractLayoutTest >> tearDown [
 	window ifNotNil: [ window delete ].
 	super tearDown
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractLayoutTest >> widget [
 
 	^ self adapter widget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractLayoutTest >> window [
 	^ window
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractLayoutTest >> window: aWindowPresenter [ 
 	window := aWindowPresenter
 ]

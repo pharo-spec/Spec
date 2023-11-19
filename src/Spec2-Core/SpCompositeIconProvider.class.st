@@ -8,28 +8,30 @@ A typical usage is:
 ```
 "
 Class {
-	#name : #SpCompositeIconProvider,
-	#superclass : #SpIconProvider,
+	#name : 'SpCompositeIconProvider',
+	#superclass : 'SpIconProvider',
 	#instVars : [
 		'providers'
 	],
-	#category : #'Spec2-Core-IconProvider'
+	#category : 'Spec2-Core-IconProvider',
+	#package : 'Spec2-Core',
+	#tag : 'IconProvider'
 }
 
-{ #category : #copying }
+{ #category : 'copying' }
 SpCompositeIconProvider >> , aProvider [
 
 	self addProvider: aProvider.
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCompositeIconProvider >> addProvider: anIconProvider [
 
 	providers := providers copyWith: anIconProvider
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCompositeIconProvider >> iconNamed: aName ifAbsent: aBlock [
 
 	self providers do: [ :each |
@@ -39,14 +41,14 @@ SpCompositeIconProvider >> iconNamed: aName ifAbsent: aBlock [
 	^ aBlock value
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCompositeIconProvider >> initialize [
 
 	super initialize.
 	providers := #()
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCompositeIconProvider >> providers [
 	
 	^ providers

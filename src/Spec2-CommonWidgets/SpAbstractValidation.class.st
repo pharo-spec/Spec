@@ -5,26 +5,28 @@ My `target` instance variable holds the presenter the validation refers to. It i
 If you want to provide a custom validation, subclass me.
 "
 Class {
-	#name : #SpAbstractValidation,
-	#superclass : #Object,
+	#name : 'SpAbstractValidation',
+	#superclass : 'Object',
 	#instVars : [
 		'target'
 	],
-	#category : #'Spec2-CommonWidgets-Validation'
+	#category : 'Spec2-CommonWidgets-Validation',
+	#package : 'Spec2-CommonWidgets',
+	#tag : 'Validation'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractValidation class >> isAbstract [
 		
 	^ self == SpAbstractValidation
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractValidation >> isValid: aPresenter [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractValidation >> message [
 	"The subclasses should return a message to format and show to the user.
     The message can use the following indexes:
@@ -34,25 +36,25 @@ SpAbstractValidation >> message [
 	^ self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractValidation >> messageFor: field [
 
 	^ self message format: { field name . field value }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractValidation >> target [
 
 	^ target
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractValidation >> target: anObject [
 
 	target := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractValidation >> validate: aPresenter [
 
 	(self isValid: aPresenter textInput)

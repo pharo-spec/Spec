@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfSpecCore,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfSpecCore
+	#name : 'BaselineOfSpecCore',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfSpecCore',
+	#package : 'BaselineOfSpecCore'
 }
 
-{ #category : #baseline }
+{ #category : 'baseline' }
 BaselineOfSpecCore >> baseline: spec [
 	<baseline>
 	
@@ -64,14 +65,14 @@ BaselineOfSpecCore >> baseline: spec [
 	spec group: 'default' with: #('Base' 'BaseTests' 'Code' 'CodeTests').
 ]
 
-{ #category : #'external projects' }
+{ #category : 'external projects' }
 BaselineOfSpecCore >> pillar: spec [
 	spec
 		baseline: 'PillarCore'
 		with: [ spec repository: 'github://pillar-markup/pillar:dev-8/src' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BaselineOfSpecCore >> project [
 	"Atomic loading is needed for Spec because we are moving classes of package and it breaks their subclasses. 
 	

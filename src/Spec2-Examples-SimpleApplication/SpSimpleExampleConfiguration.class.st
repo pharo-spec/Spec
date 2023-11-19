@@ -7,12 +7,13 @@ You do this by extending *class:SpApplicationConfiguration* or one of its more s
 See *method:SpSimpleExampleConfiguration#styleSheet*
 "
 Class {
-	#name : #SpSimpleExampleConfiguration,
-	#superclass : #SpMorphicConfiguration,
-	#category : #'Spec2-Examples-SimpleApplication'
+	#name : 'SpSimpleExampleConfiguration',
+	#superclass : 'SpMorphicConfiguration',
+	#category : 'Spec2-Examples-SimpleApplication',
+	#package : 'Spec2-Examples-SimpleApplication'
 }
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpSimpleExampleConfiguration >> styleSheet [
 	"This method will answer the default stylesheed (provided by calling ==super styleSheed==) and 
 	 it will add a class called ==title== to be used by labels.

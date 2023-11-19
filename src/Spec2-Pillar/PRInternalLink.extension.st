@@ -1,6 +1,6 @@
-Extension { #name : #PRInternalLink }
+Extension { #name : 'PRInternalLink' }
 
-{ #category : #'*Spec2-Pillar' }
+{ #category : '*Spec2-Pillar' }
 PRInternalLink >> styleName [ 
 	^  #internalLink
 ]

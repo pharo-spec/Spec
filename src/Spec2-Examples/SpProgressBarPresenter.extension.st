@@ -1,6 +1,6 @@
-Extension { #name : #SpProgressBarPresenter }
+Extension { #name : 'SpProgressBarPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpProgressBarPresenter class >> example [
 	| progress |
 
@@ -10,7 +10,7 @@ SpProgressBarPresenter class >> example [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpProgressBarPresenter class >> exampleFixedAt [
 
 	^ self new 
@@ -19,7 +19,7 @@ SpProgressBarPresenter class >> exampleFixedAt [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpProgressBarPresenter class >> exampleFixedPercentage [
 
 	^ self new 
@@ -28,7 +28,7 @@ SpProgressBarPresenter class >> exampleFixedPercentage [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpProgressBarPresenter class >> exampleIndeterminate [
 
 	^ self new 

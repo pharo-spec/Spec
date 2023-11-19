@@ -4,17 +4,19 @@ See class side for selectors.
 
 "
 Class {
-	#name : #SpExamples,
-	#superclass : #SpHelpTopics,
-	#category : #'Spec2-Help-Topics'
+	#name : 'SpExamples',
+	#superclass : 'SpHelpTopics',
+	#category : 'Spec2-Help-Topics',
+	#package : 'Spec2-Help',
+	#tag : 'Topics'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpExamples class >> bookName [
 	^ 'Examples'
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpExamples class >> firstExample [
 	^HelpTopic 
 		title: 'A first example: ModelList'
@@ -66,7 +68,7 @@ The first UI is now done. The result can be seen by executing the following snip
 '
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpExamples class >> moreExamples [
 	^HelpTopic 
 		title: 'More Examples'
@@ -103,12 +105,12 @@ TabsExample new openWithSpec
 TextFieldExample new openWithSpec'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpExamples class >> pages [
 	^#(firstExample secondExample moreExamples)
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpExamples class >> secondExample [
 	^HelpTopic 
 		title: 'A second example: Protocol List'

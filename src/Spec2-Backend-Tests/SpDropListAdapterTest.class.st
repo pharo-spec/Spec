@@ -1,23 +1,25 @@
 Class {
-	#name : #SpDropListAdapterTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpDropListAdapterTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDropListAdapterTest >> classToTest [
 
 	^ SpDropListPresenter 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDropListAdapterTest >> initializeTestedInstance [ 
 	
 	super initializeTestedInstance.
 	presenter items: #(10 20 30).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListAdapterTest >> testAddingIconsShowTheIcon [
 	#(pharo add book) do: [ :each | self presenter addItemLabeled: each do: [  ] icon: (self iconNamed: each) ].
 
@@ -27,13 +29,13 @@ SpDropListAdapterTest >> testAddingIconsShowTheIcon [
 	backendForTest assertIcon: self adapter displayedIcon equals: (self iconNamed: #pharo)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListAdapterTest >> testDoesNotShowIcons [
 
 	backendForTest assertIcon: self adapter displayedIcon equals: nil. 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListAdapterTest >> testRemovingIconsAfterAddingThem [
 	#(pharo add book) do: [ :each | self presenter addItemLabeled: each do: [  ] icon: (self iconNamed: each) ].
 
@@ -46,7 +48,7 @@ SpDropListAdapterTest >> testRemovingIconsAfterAddingThem [
 	backendForTest assertIcon: self adapter displayedIcon equals: nil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListAdapterTest >> testResetingSelectionResetsSelection [
 
 	"reseting selection before start does not has sense if we set startWithSelection 
@@ -61,7 +63,7 @@ SpDropListAdapterTest >> testResetingSelectionResetsSelection [
 	self assert: self adapter selectedIndexes isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListAdapterTest >> testSelectingASecondElementSelectsIt [
 	self presenter selectItem: 10.
 	self presenter selectItem: 20.
@@ -70,7 +72,7 @@ SpDropListAdapterTest >> testSelectingASecondElementSelectsIt [
 	self assert: self adapter selectedIndexes equals: #(2)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListAdapterTest >> testSelectingAnElementInWidgetUpdatePresenter [
 
 	self adapter selectIndex: 2.
@@ -80,7 +82,7 @@ SpDropListAdapterTest >> testSelectingAnElementInWidgetUpdatePresenter [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListAdapterTest >> testSelectingAnElementSelectsIt [
 	self presenter selectItem: 10.
 
@@ -88,7 +90,7 @@ SpDropListAdapterTest >> testSelectingAnElementSelectsIt [
 	self assert: self adapter selectedIndexes equals: #(1)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListAdapterTest >> testSelectionExecutesBlock [
 	| selected |
 	self presenter
@@ -103,7 +105,7 @@ SpDropListAdapterTest >> testSelectionExecutesBlock [
 	self assert: selected equals: 20
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListAdapterTest >> testSelectionStartsSelectingFirst [
 
 	self assert: self presenter selectedItem equals: 10.
@@ -111,7 +113,7 @@ SpDropListAdapterTest >> testSelectionStartsSelectingFirst [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListAdapterTest >> testSettingNilResetsGeneratesEvent [
 	| changed |
 	self presenter selectItem: 10.
@@ -120,7 +122,7 @@ SpDropListAdapterTest >> testSettingNilResetsGeneratesEvent [
 	self assert: changed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDropListAdapterTest >> testSettingNilResetsSelection [
 
 	"reseting selection before start does not has sense if we set startWithSelection 

@@ -17,12 +17,14 @@ todo
 - canDeselectByClick
 "
 Class {
-	#name : #SpRadioButtonGroup,
-	#superclass : #Object,
+	#name : 'SpRadioButtonGroup',
+	#superclass : 'Object',
 	#instVars : [
 		'buttons',
 		'currentlyActivated',
 		'canDeselectByClick'
 	],
-	#category : #'Spec2-Deprecated-Support'
+	#category : 'Spec2-Deprecated-Support',
+	#package : 'Spec2-Deprecated',
+	#tag : 'Support'
 }

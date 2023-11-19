@@ -6,16 +6,18 @@ Basically, I add:
 - the strategy to display commands group in a MenuPresenter
 "
 Class {
-	#name : #SpCommandGroup,
-	#superclass : #CmUICommandGroup,
+	#name : 'SpCommandGroup',
+	#superclass : 'CmUICommandGroup',
 	#instVars : [
 		'toolbarPopoverButton',
 		'iconProvider'
 	],
-	#category : #'Spec2-Commander2-Core'
+	#category : 'Spec2-Commander2-Core',
+	#package : 'Spec2-Commander2',
+	#tag : 'Core'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 SpCommandGroup >> asKMCategory [
 
 	^ SpKMCategoryBuilder new
@@ -23,14 +25,14 @@ SpCommandGroup >> asKMCategory [
 		kmCategory	
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 SpCommandGroup >> asMenuBarPresenter [
 	^ SpMenuBarPresenterBuilder new
 		visit: self;
 		menuPresenter
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 SpCommandGroup >> asMenuBarPresenterWith: aBlock [
 	| builder |
 
@@ -41,7 +43,7 @@ SpCommandGroup >> asMenuBarPresenterWith: aBlock [
 		menuPresenter
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 SpCommandGroup >> asMenuPresenter [
 
 	^ SpMenuPresenterBuilder new
@@ -49,7 +51,7 @@ SpCommandGroup >> asMenuPresenter [
 		menuPresenter
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 SpCommandGroup >> asMenuPresenterWith: aBlock [
 	| builder |
 
@@ -60,19 +62,19 @@ SpCommandGroup >> asMenuPresenterWith: aBlock [
 		menuPresenter
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpCommandGroup >> beToolbarGroup [
 
 	toolbarPopoverButton := false
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpCommandGroup >> beToolbarPopoverButton [
 
 	toolbarPopoverButton := true
 ]
 
-{ #category : #displaying }
+{ #category : 'displaying' }
 SpCommandGroup >> displayIn: aMenuPresenter do: aBlock [
 
 	self displayStrategy 
@@ -81,7 +83,7 @@ SpCommandGroup >> displayIn: aMenuPresenter do: aBlock [
 		do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCommandGroup >> icon [
 
 	^ icon ifNil: [ 
@@ -90,45 +92,45 @@ SpCommandGroup >> icon [
 			ifNil: [ super icon ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCommandGroup >> iconName [
 
 	^ iconName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCommandGroup >> iconName: aName [
 
 	iconName := aName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCommandGroup >> iconProvider [
 
 	^ iconProvider
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCommandGroup >> iconProvider: anIconProvider [
 
 	iconProvider := anIconProvider
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCommandGroup >> initialize [
 
 	super initialize.
 	toolbarPopoverButton := false
 ]
 
-{ #category : #'shortcuts installation' }
+{ #category : 'shortcuts installation' }
 SpCommandGroup >> installShortcutsIn: aPresenter [ 
 	SpShortcutInstaller new
 		presenter: aPresenter;
 		visit: self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCommandGroup >> isToolbarPopoverButton [
 
 	^ toolbarPopoverButton

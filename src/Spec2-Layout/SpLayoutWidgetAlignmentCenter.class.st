@@ -2,7 +2,9 @@
 I will place the widget centered in relation to the layout.
 "
 Class {
-	#name : #SpLayoutWidgetAlignmentCenter,
-	#superclass : #SpLayoutWidgetAlignment,
-	#category : #'Spec2-Layout-Base'
+	#name : 'SpLayoutWidgetAlignmentCenter',
+	#superclass : 'SpLayoutWidgetAlignment',
+	#category : 'Spec2-Layout-Base',
+	#package : 'Spec2-Layout',
+	#tag : 'Base'
 }

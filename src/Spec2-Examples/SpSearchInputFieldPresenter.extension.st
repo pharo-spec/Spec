@@ -1,6 +1,6 @@
-Extension { #name : #SpSearchInputFieldPresenter }
+Extension { #name : 'SpSearchInputFieldPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpSearchInputFieldPresenter class >> example [
 	<sampleInstance>
 	

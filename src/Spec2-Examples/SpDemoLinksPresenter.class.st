@@ -5,24 +5,26 @@ Description
 This demo show how to use the link presenter
 "
 Class {
-	#name : #SpDemoLinksPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoLinksPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'link1',
 		'link2',
 		'link3',
 		'link4'
 	],
-	#category : #'Spec2-Examples-Demo-Other'
+	#category : 'Spec2-Examples-Demo-Other',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Other'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpDemoLinksPresenter class >> open [
 	<script>
 	self new open
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoLinksPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -33,7 +35,7 @@ SpDemoLinksPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoLinksPresenter >> initializePresenters [
 	link1 := self newLink.
 	link2 := self newLink.

@@ -7,17 +7,19 @@ The presenter exposing a selection output port need to define also the event ==#
 Presenters exposing this port: *class:SpAbstractTextPresenter* subclasses.
 "
 Class {
-	#name : #SpTextChangedPort,
-	#superclass : #SpOutputPort,
-	#category : #'Spec2-Transmission-Base'
+	#name : 'SpTextChangedPort',
+	#superclass : 'SpOutputPort',
+	#category : 'Spec2-Transmission-Base',
+	#package : 'Spec2-Transmission',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextChangedPort class >> portName [
 	^ #changed
 ]
 
-{ #category : #attaching }
+{ #category : 'attaching' }
 SpTextChangedPort >> attachTransmission: aTransmission to: aPresenter [
 
 	aPresenter whenTextChangedDo: [ :aString | 

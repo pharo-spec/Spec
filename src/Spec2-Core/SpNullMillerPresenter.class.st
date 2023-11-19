@@ -3,15 +3,17 @@ I'm a basic miller presenter that wraps a non-miller presenter and does nothing 
 Useful to wrap elements that do not need to flow to the right.
 "
 Class {
-	#name : #SpNullMillerPresenter,
-	#superclass : #SpMillerPresenter,
+	#name : 'SpNullMillerPresenter',
+	#superclass : 'SpMillerPresenter',
 	#instVars : [
 		'wrappedPresenter'
 	],
-	#category : #'Spec2-Core-Miller'
+	#category : 'Spec2-Core-Miller',
+	#package : 'Spec2-Core',
+	#tag : 'Miller'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpNullMillerPresenter class >> defaultLayout [
 	
 	^ SpBoxLayout newLeftToRight
@@ -19,19 +21,19 @@ SpNullMillerPresenter class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNullMillerPresenter >> setModelBeforeInitialization: aModel [
 
 	wrappedPresenter := aModel.
 	wrappedPresenter owner: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNullMillerPresenter >> whenActivatedDo: aBlock [
 	"Do nothing"
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNullMillerPresenter >> wrappedPresenter [
 
 	^ wrappedPresenter

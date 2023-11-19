@@ -1,10 +1,11 @@
 Class {
-	#name : #SpTextInputFieldPresenterStyleTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Adapters-Morphic-Tests'
+	#name : 'SpTextInputFieldPresenterStyleTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Adapters-Morphic-Tests',
+	#package : 'Spec2-Adapters-Morphic-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldPresenterStyleTest >> testApplyHeightChangesTheHeightOfTheWidget [
 	| app presenter textInputField |
 

@@ -1,10 +1,12 @@
 Class {
-	#name : #SpAbstractBackendForTest,
-	#superclass : #Object,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpAbstractBackendForTest',
+	#superclass : 'Object',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractBackendForTest >> emulateClick: mouseButtonCode onTest: anAdapterTest [ 
 
 	anAdapterTest openInstance.
@@ -15,4 +17,10 @@ SpAbstractBackendForTest >> emulateClick: mouseButtonCode onTest: anAdapterTest 
 	MouseButtonEvent redButton = mouseButtonCode 
 		ifTrue: [ anAdapterTest adapter clicked ].
 
+	self waitUntilUIRedrawed
+]
+
+{ #category : 'testing' }
+SpAbstractBackendForTest >> waitUntilUIRedrawed [
+	"Hook. I wait until the UI has been redrawn and events have been handled."
 ]

@@ -3,45 +3,47 @@ A presenter to create a menu button (a button who exposes a menu instead having 
 
 "
 Class {
-	#name : #SpMenuButtonPresenter,
-	#superclass : #SpAbstractButtonPresenter,
+	#name : 'SpMenuButtonPresenter',
+	#superclass : 'SpAbstractButtonPresenter',
 	#instVars : [
 		'#menu => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpMenuButtonPresenter class >> adapterName [
 
 	^ #MenuButtonAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpMenuButtonPresenter class >> documentFactoryMethodSelector [
 
 	^ #newMenuButton
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpMenuButtonPresenter class >> title [
 
 	^ 'MenuButton'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMenuButtonPresenter >> initialize [
 	super initialize.
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuButtonPresenter >> menu [
 	"Answer the menu (an instance of `SpMenuPresenter` or a block) to show."
 
 	^ menu
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuButtonPresenter >> menu: aValuable [
 	"Set the menu to show. 
 	 `aValuable` can be an instance of `SpMenuPresenter` or a block to allow dynamic behavior."
@@ -49,7 +51,7 @@ SpMenuButtonPresenter >> menu: aValuable [
 	menu := aValuable
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpMenuButtonPresenter >> whenMenuChangedDo: aBlock [
 	"Inform when menu  property has changed. 
 	 `aBlock` has three optional arguments: 

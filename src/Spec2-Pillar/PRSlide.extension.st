@@ -1,6 +1,6 @@
-Extension { #name : #PRSlide }
+Extension { #name : 'PRSlide' }
 
-{ #category : #'*Spec2-Pillar' }
+{ #category : '*Spec2-Pillar' }
 PRSlide >> styleName [ 
 	^ #slide
 ]

@@ -1,16 +1,18 @@
 Class {
-	#name : #SpListPresenterTest,
-	#superclass : #SpAbstractListPresenterTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpListPresenterTest',
+	#superclass : 'SpAbstractListPresenterTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpListPresenterTest >> classToTest [
 	
 	^ SpListPresenter
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 SpListPresenterTest >> testHideHeaderTitleUnsetsTitle [
 
 	presenter
@@ -20,7 +22,7 @@ SpListPresenterTest >> testHideHeaderTitleUnsetsTitle [
 	self deny: presenter hasHeaderTitle
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 SpListPresenterTest >> testIconFor [
 	presenter
 		items: #(#add #back #catalog);
@@ -28,7 +30,7 @@ SpListPresenterTest >> testIconFor [
 	self assert: (presenter iconFor: #add) equals: (Smalltalk ui icons iconNamed: #add)
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 SpListPresenterTest >> testSetHeaderTitleHasTitle [
 
 	presenter headerTitle: 'title'.
@@ -36,7 +38,7 @@ SpListPresenterTest >> testSetHeaderTitleHasTitle [
 	self assert: presenter hasHeaderTitle
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 SpListPresenterTest >> testSetHeaderTitleSetsTitle [
 
 	presenter headerTitle: 'title'.
@@ -44,7 +46,7 @@ SpListPresenterTest >> testSetHeaderTitleSetsTitle [
 	self assert: presenter headerTitle equals: 'title'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpListPresenterTest >> testWhenIconsChangedDo [
 	| icon counter |
 	counter := 0.

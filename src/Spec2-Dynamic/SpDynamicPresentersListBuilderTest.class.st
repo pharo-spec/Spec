@@ -2,22 +2,24 @@
 Test class for DynamicPresentersListBuilder.
 "
 Class {
-	#name : #SpDynamicPresentersListBuilderTest,
-	#superclass : #TestCase,
+	#name : 'SpDynamicPresentersListBuilderTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'builder'
 	],
-	#category : #'Spec2-Dynamic-Tests'
+	#category : 'Spec2-Dynamic-Tests',
+	#package : 'Spec2-Dynamic',
+	#tag : 'Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpDynamicPresentersListBuilderTest >> setUp [
 	"Hooks that subclasses may override to define the fixture of test."
 	super setUp.
 	builder := SpDynamicPresentersListBuilder new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDynamicPresentersListBuilderTest >> testGenerateNullPresentersInstVarNames [
 	builder
 		modelObjects: { 1 . 2 . 3 }.
@@ -26,13 +28,13 @@ SpDynamicPresentersListBuilderTest >> testGenerateNullPresentersInstVarNames [
 		assertCollection: (builder generateNullPresentersInstVarNames: 3) equals: #(var4 var5 var6)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDynamicPresentersListBuilderTest >> testGenerateUniqueInstanceVariableName [
 	1 to: 10 do: [ :i |
 		self assert: builder generateUniqueInstanceVariableName equals: (#var , i asString) asSymbol ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDynamicPresentersListBuilderTest >> testInstVarNames [
 	builder
 		modelObjects: { 3 . 2 . 1 }.
@@ -41,7 +43,7 @@ SpDynamicPresentersListBuilderTest >> testInstVarNames [
 		assertCollection: builder instVarNames hasSameElements: #(var1 var2 var3)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDynamicPresentersListBuilderTest >> testInstVarNamesAndPresenterNamesArray [
 	builder
 		modelObjects: { 3 . 2 . 1 };
@@ -51,7 +53,7 @@ SpDynamicPresentersListBuilderTest >> testInstVarNamesAndPresenterNamesArray [
 		assertCollection: builder instVarNamesAndPresenterNamesArray hasSameElements: #(var1 #SpButtonPresenter var2 #SpButtonPresenter var3 #SpButtonPresenter)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDynamicPresentersListBuilderTest >> testModelObjects [
 	builder
 		modelObjects: { 3 . 2 . 1 }.
@@ -60,7 +62,7 @@ SpDynamicPresentersListBuilderTest >> testModelObjects [
 		assertCollection: builder instVarToModelObject hasSameElements: { #var1 -> 3. #var2 -> 2. #var3 -> 1 }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDynamicPresentersListBuilderTest >> testNullPresentersInstVarNamesAndPresenterNamesArray [
 	builder
 		modelObjects: { 1 . 2 . 3 };
@@ -72,7 +74,7 @@ SpDynamicPresentersListBuilderTest >> testNullPresentersInstVarNamesAndPresenter
 		assertCollection: builder nullPresentersInstVarNamesAndPresenterNamesArray equals: #(var4 #SpNullPresenter var5 #SpNullPresenter var6 #SpNullPresenter)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDynamicPresentersListBuilderTest >> testPresenterConfiguredAs [
 	| block |
 	self
@@ -88,7 +90,7 @@ SpDynamicPresentersListBuilderTest >> testPresenterConfiguredAs [
 		assert: builder configurationBlock equals: block
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpDynamicPresentersListBuilderTest >> testPresenterProvidedByConfiguredAs [
 	| block |
 	self

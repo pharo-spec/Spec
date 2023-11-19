@@ -6,24 +6,26 @@ A table has columns with a type (See column types section).
 
 "
 Class {
-	#name : #SpTreeTablePresenter,
-	#superclass : #SpAbstractTreePresenter,
+	#name : 'SpTreeTablePresenter',
+	#superclass : 'SpAbstractTreePresenter',
 	#instVars : [
 		'#columns => ObservableSlot',
 		'#showColumnHeaders => ObservableSlot',
 		'#isResizable => ObservableSlot',
 		'#lazilyComputeChildren'
 	],
-	#category : #'Spec2-Core-Widgets-Tree'
+	#category : 'Spec2-Core-Widgets-Tree',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Tree'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpTreeTablePresenter class >> adapterName [
 
 	^ #TreeTableAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpTreeTablePresenter class >> addDocumentExtraSections: aBuilder [
 
 	aBuilder newLine.
@@ -34,32 +36,42 @@ SpTreeTablePresenter class >> addDocumentExtraSections: aBuilder [
 				aBuilder monospace: eachType name ] ] ]
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpTreeTablePresenter class >> documentFactoryMethodSelector [
 
 	^ #newTreeTable
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpTreeTablePresenter class >> documentSections [
-		
+
 	^ OrderedDictionary newFromPairs: {
-		'Examples'. self class methods select: [ :each | each protocol = self documentExamplesProtocol ].
-		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
-		'API Selection Methods'. self methods select: [ :each | each protocol = #'api - selection' ].
-		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api - events' ].
-	 }
+			  'Examples'.
+			  (self class methods select: [ :method | method protocolName = self documentExamplesProtocol ]).
+			  'API Methods'.
+			  (self methods select: [ :method | method protocolName = #api ]).
+			  'API Selection Methods'.
+			  (self methods select: [ :method | method protocolName = #'api - selection' ]).
+			  'Testing Methods'.
+			  (self methods select: [ :method | method protocolName = #testing ]).
+			  'Events'.
+			  (self methods select: [ :method | method protocolName = #'api - events' ]) }
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreeTablePresenter >> addColumn: aColumn [
 	"Add a column to the table. A column should be an instance of `SpTableColumn`"
 
 	columns := self columns copyWith: aColumn
 ]
 
-{ #category : #api }
+{ #category : 'drawing' }
+SpTreeTablePresenter >> alternateRowsColor [
+	" Will alternate Rows color for a better reading: one row lighter, the next row darker"
+	self withAdapterPerformOrDefer: [ :tableAdapter | tableAdapter alternateRowsColor ].
+]
+
+{ #category : 'api' }
 SpTreeTablePresenter >> beNotResizable [
 	"Mark the table as 'not resizable', which means there will be not possibility to resize the 
 	 columns of it."
@@ -67,21 +79,21 @@ SpTreeTablePresenter >> beNotResizable [
 	self isResizable: false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreeTablePresenter >> beResizable [
 	"Mark the table as 'resizable', which means there will be a slider to resize the columns."
 
 	self isResizable: true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreeTablePresenter >> columns [
 	"Answer the columns composing this table."
 
 	^ columns
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreeTablePresenter >> columns: aCollection [
 	"Set all columns at once. 
 	 `aCollection` is a list of instances of `SpTableColumn`"
@@ -89,14 +101,14 @@ SpTreeTablePresenter >> columns: aCollection [
 	columns := aCollection
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreeTablePresenter >> hideColumnHeaders [
 	"Hide the column headers"
 
 	showColumnHeaders := false
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTreeTablePresenter >> initialize [
 	super initialize.
 
@@ -118,38 +130,38 @@ SpTreeTablePresenter >> initialize [
 	self registerEvents
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTreeTablePresenter >> isResizable [
 	"Answer true if table allows resizing of its columns."
 
 	^ isResizable
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTreeTablePresenter >> isResizable: aBoolean [
 	isResizable := aBoolean
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTreeTablePresenter >> isShowingColumnHeaders [
 	"Answer true if the table is configured to show column headers."
 
 	^ showColumnHeaders
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTreeTablePresenter >> lazilyComputeChildren [
 	"When we compute lazily the children, we will show in all cases the expand arrow even if there is no children until we open this children."
 
 	lazilyComputeChildren := true
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTreeTablePresenter >> lazilyComputeChildren: aBoolean [
 	lazilyComputeChildren := aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreeTablePresenter >> selectionMode [
 	"Answer the selection object (an instance of `SpSingleSelectionMode` or `SpMultipleSelectionMode`).
 	 This is not the item selected, but the selection container (it may contain one or many selected 
@@ -159,19 +171,19 @@ SpTreeTablePresenter >> selectionMode [
 	^ selectionMode
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTreeTablePresenter >> shouldLazilyComputeChildren [
 	^ lazilyComputeChildren
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreeTablePresenter >> showColumnHeaders [
 	"Show column headers"
 
 	showColumnHeaders := true
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTreeTablePresenter >> whenColumnsChangedDo: aBlock [
 	"Inform when columns have changed. 
 	 `aBlock` has three optional arguments: 
@@ -183,7 +195,7 @@ SpTreeTablePresenter >> whenColumnsChangedDo: aBlock [
 	self property: #columns whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTreeTablePresenter >> whenIsResizableChangedDo: aBlock [
 	"Inform when resizable property has changed. 
 	 `aBlock` has three optional arguments: 

@@ -1,10 +1,12 @@
 Class {
-	#name : #SpApplicationWithToolbarTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Examples'
+	#name : 'SpApplicationWithToolbarTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Tests-Examples',
+	#package : 'Spec2-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpApplicationWithToolbarTest >> classToTest [
 	^ SpApplicationWithToolbar
 ]

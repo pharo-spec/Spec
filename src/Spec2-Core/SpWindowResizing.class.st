@@ -6,36 +6,38 @@ trigger this announcement.
 I provide the old and new window size.
 "
 Class {
-	#name : #SpWindowResizing,
-	#superclass : #SpWindowAnnouncement,
+	#name : 'SpWindowResizing',
+	#superclass : 'SpWindowAnnouncement',
 	#instVars : [
 		'newSize',
 		'oldSize'
 	],
-	#category : #'Spec2-Core-Windows'
+	#category : 'Spec2-Core-Windows',
+	#package : 'Spec2-Core',
+	#tag : 'Windows'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowResizing >> isResized [
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowResizing >> newSize [
 	^ newSize
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowResizing >> newSize: anObject [
 	newSize := anObject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowResizing >> oldSize [
 	^ oldSize
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowResizing >> oldSize: anObject [
 	oldSize := anObject
 ]

@@ -2,22 +2,24 @@
 I am the layout for which you define the number of rows to store you presenters and set them from top to bottom in these rows.
 "
 Class {
-	#name : #SpDynamicTopToBottomRowsLayout,
-	#superclass : #SpDynamicPresentersListLayout,
+	#name : 'SpDynamicTopToBottomRowsLayout',
+	#superclass : 'SpDynamicPresentersListLayout',
 	#instVars : [
 		'rowsCount'
 	],
-	#category : #'Spec2-Dynamic-Builder'
+	#category : 'Spec2-Dynamic-Builder',
+	#package : 'Spec2-Dynamic',
+	#tag : 'Builder'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpDynamicTopToBottomRowsLayout class >> rows: anInteger [
 	^ self new
 		rowsCount: anInteger;
 		yourself
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpDynamicTopToBottomRowsLayout >> buildLayoutFor: aDynamicPresentersListBuilder [
 	| layout |
 	layout := SpBoxLayout newVertical.
@@ -31,18 +33,18 @@ SpDynamicTopToBottomRowsLayout >> buildLayoutFor: aDynamicPresentersListBuilder 
 	^ layout
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpDynamicTopToBottomRowsLayout >> nullPresentersNeededFor: aDynamicPresentersListBuilder [
 	"Compute the number of empty presenters required to fill additional space if the number of model objects modulo the number of columns/rows is not equals to 0."
 	^ self rowsCount - ((aDynamicPresentersListBuilder modelObjects size - 1 % self rowsCount) + 1)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicTopToBottomRowsLayout >> rowsCount [
 	^ rowsCount
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicTopToBottomRowsLayout >> rowsCount: anObject [
 	(anObject isInteger and: [ anObject > 0 ])
 		ifFalse: [ self error: 'A positive integer is expected as parameter.' ].

@@ -1,20 +1,21 @@
 Class {
-	#name : #SpStyleTest,
-	#superclass : #TestCase,
+	#name : 'SpStyleTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'aClass'
 	],
-	#category : #'Spec2-Adapters-Morphic-Tests'
+	#category : 'Spec2-Adapters-Morphic-Tests',
+	#package : 'Spec2-Adapters-Morphic-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpStyleTest >> tearDown [ 
 
 	aClass ifNotNil: [ :e | e removeFromSystem ].
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpStyleTest >> testParsingAStyleIsNotAffectedByExistingClass [
 
 	| aStylesheet |

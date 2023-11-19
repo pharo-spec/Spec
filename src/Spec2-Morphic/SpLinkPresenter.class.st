@@ -5,34 +5,36 @@ If there is no `label` set, the `url` will be taken as label aswell.
 
 "
 Class {
-	#name : #SpLinkPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpLinkPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'#label => ObservableSlot',
 		'#action => ObservableSlot'
 	],
-	#category : #'Spec2-Morphic-Widgets'
+	#category : 'Spec2-Morphic-Widgets',
+	#package : 'Spec2-Morphic',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpLinkPresenter class >> adapterName [
 	^ #LinkAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpLinkPresenter class >> documentExamplesProtocol [
 	
 	^ #'*Spec2-Morphic-Examples'
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpLinkPresenter >> action [
 	"Answer the action to execute when link is pressed."
 
 	^ action
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpLinkPresenter >> action: aBlock [
 	"Set the action to execute when link is pressed.
 	 See also `SpLinkPresenter>>#url:`."
@@ -40,33 +42,33 @@ SpLinkPresenter >> action: aBlock [
 	action := aBlock
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpLinkPresenter >> defaultColor [
 	^ nil
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpLinkPresenter >> initialize [
 
 	super initialize.
 	self whenLabelChangedDo: [ self changed: #getText ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpLinkPresenter >> label [
 	"Answer the label to display as the link"
 	
 	^ label
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpLinkPresenter >> label: aString [
 	"Set the label to display as the link."
 
 	^ label := aString
 ]
 
-{ #category : #localization }
+{ #category : 'localization' }
 SpLinkPresenter >> localeChanged [
 
 	super localeChanged.
@@ -74,13 +76,13 @@ SpLinkPresenter >> localeChanged [
 		
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpLinkPresenter >> performAction [
 
 	self action value
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpLinkPresenter >> url: aString [
 	"Set the url to open when link is pressed. Also, it sets action (See `SpLinkPresenter>>#action:` 
 	 to open an external browser to the url.
@@ -91,7 +93,7 @@ SpLinkPresenter >> url: aString [
 	self label ifNil: [ self label: aString ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpLinkPresenter >> whenActionChangedDo: aBlock [
 	"Inform when action has changed. 
 	 `aBlock` has three optional arguments: 
@@ -102,7 +104,7 @@ SpLinkPresenter >> whenActionChangedDo: aBlock [
 	self property: #action whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpLinkPresenter >> whenLabelChangedDo: aBlock [
 	"Inform when label state has changed. 
 	 `aBlock` has three optional arguments: 
@@ -113,7 +115,7 @@ SpLinkPresenter >> whenLabelChangedDo: aBlock [
 	self property: #label whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpLinkPresenter >> whenUrlChangedDo: aBlock [
 	"Inform when label state has changed. 
 	 `aBlock` has three optional arguments: 

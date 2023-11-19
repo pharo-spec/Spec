@@ -1,20 +1,22 @@
 Class {
-	#name : #SpPopoverPresenterTest,
-	#superclass : #SpSmokeTest,
+	#name : 'SpPopoverPresenterTest',
+	#superclass : 'SpSmokeTest',
 	#instVars : [
 		'ownerPresenter'
 	],
-	#category : #'Spec2-Tests-Core-Widgets'
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPopoverPresenterTest >> classToTest [
 	
 	
 	^ SpPopoverPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPopoverPresenterTest >> initializeTestedInstance [
 
 	"Adding an owner to be sure it some functions (relative to its owner/referenced object) 
@@ -33,7 +35,7 @@ SpPopoverPresenterTest >> initializeTestedInstance [
 			 yourself)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPopoverPresenterTest >> testPopoverPopupTakesExtentFromPresenter [
 
 	[ 
@@ -50,7 +52,7 @@ SpPopoverPresenterTest >> testPopoverPopupTakesExtentFromPresenter [
 		presenter dismiss ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPopoverPresenterTest >> testPopoverPopupTextTakesExtentFromPresenter [
 
 	[ 
@@ -76,7 +78,7 @@ SpPopoverPresenterTest >> testPopoverPopupTextTakesExtentFromPresenter [
 		presenter dismiss ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPopoverPresenterTest >> testPopoverTakesExtentFromPresenter [
 
 	self openInstance.

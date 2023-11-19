@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfSpec2 }
+Package { #name : 'BaselineOfSpec2' }

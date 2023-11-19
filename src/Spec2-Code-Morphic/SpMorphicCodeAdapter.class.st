@@ -1,10 +1,11 @@
 Class {
-	#name : #SpMorphicCodeAdapter,
-	#superclass : #SpMorphicTextAdapter,
-	#category : #'Spec2-Code-Morphic'
+	#name : 'SpMorphicCodeAdapter',
+	#superclass : 'SpMorphicTextAdapter',
+	#category : 'Spec2-Code-Morphic',
+	#package : 'Spec2-Code-Morphic'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicCodeAdapter >> addKeyBindingsTo: aMorph [
 
 	super addKeyBindingsTo: aMorph.
@@ -15,19 +16,19 @@ SpMorphicCodeAdapter >> addKeyBindingsTo: aMorph [
 				toAction: each action ] ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicCodeAdapter >> behavior [
 
 	^ self presenter behavior
 ]
 
-{ #category : #'private - shout' }
+{ #category : 'private - shout' }
 SpMorphicCodeAdapter >> bindingOf: aString [
 
 	^ self presenter bindingOf: aString
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicCodeAdapter >> buildWidget [
 	| newWidget |
 	
@@ -52,7 +53,7 @@ SpMorphicCodeAdapter >> buildWidget [
 	^ newWidget
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicCodeAdapter >> changeLineNumbers: hasLineNumbers to: aMorph [ 
 
 	hasLineNumbers 
@@ -60,7 +61,7 @@ SpMorphicCodeAdapter >> changeLineNumbers: hasLineNumbers to: aMorph [
 		ifFalse: [ aMorph withoutLineNumbers ]
 ]
 
-{ #category : #'private - shout' }
+{ #category : 'private - shout' }
 SpMorphicCodeAdapter >> classOrMetaClass: aClass [
 
 	self suspendObservedPropertiesWhile: [ 
@@ -70,7 +71,7 @@ SpMorphicCodeAdapter >> classOrMetaClass: aClass [
 			forScripting: self isScripting ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicCodeAdapter >> computeOriginFor: aMorph [
 	| desiredTop desiredLeft |
 
@@ -82,50 +83,50 @@ SpMorphicCodeAdapter >> computeOriginFor: aMorph [
 	^ desiredLeft @ desiredTop
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicCodeAdapter >> doItContext [
 
 	^ self presenter doItContext
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicCodeAdapter >> doItReceiver [
 
 	^ self presenter doItReceiver
 ]
 
-{ #category : #NOCompletion }
+{ #category : 'NOCompletion' }
 SpMorphicCodeAdapter >> guessTypeForName: aString [
 
 	^nil
 ]
 
-{ #category : #'private - shout' }
+{ #category : 'private - shout' }
 SpMorphicCodeAdapter >> hasBindingOf: aString [
 
 	^ self presenter hasBindingOf: aString
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicCodeAdapter >> hasSmartCharacters [
 
 	^ self presenter hasSmartCharacters
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicCodeAdapter >> hasSyntaxHighlight [
 
 	^ self presenter hasSyntaxHighlight
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicCodeAdapter >> hasSyntaxHighlightEnabled [
 	"this is used just for testing"
 	
 	^ self presenter hasSyntaxHighlight
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicCodeAdapter >> insertPopoverAfterCurrentSelection: aPresenter style: styleName [
 
 	| popover pos |
@@ -147,7 +148,7 @@ SpMorphicCodeAdapter >> insertPopoverAfterCurrentSelection: aPresenter style: st
 		popover takeKeyboardFocus ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicCodeAdapter >> interactionModel: anInteractionModel [
 
 	self classOrMetaClass: anInteractionModel behavior.
@@ -155,13 +156,13 @@ SpMorphicCodeAdapter >> interactionModel: anInteractionModel [
 		self setInteractionModel: anInteractionModel to: w ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicCodeAdapter >> isScripting [
 
 	^ self presenter isScripting
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicCodeAdapter >> newCompletionEngine: anInteractionModel [
 
 	^ SpMorphicCodeCompletionEngine new 
@@ -173,7 +174,7 @@ SpMorphicCodeAdapter >> newCompletionEngine: anInteractionModel [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicCodeAdapter >> originMorphFor: aMorph [
 
 	(aMorph textArea hasSelection not and: [ 
@@ -182,32 +183,32 @@ SpMorphicCodeAdapter >> originMorphFor: aMorph [
 	^ aMorph textArea cursor
 ]
 
-{ #category : #NOCompletion }
+{ #category : 'NOCompletion' }
 SpMorphicCodeAdapter >> receiverClass [
 
 	^ self behavior
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicCodeAdapter >> refreshStyling [
 
 	self presenter hasSyntaxHighlight ifFalse: [ ^ self ].
 	self widgetDo: [ :w | w textArea shoutStyler refreshStyling ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicCodeAdapter >> selectedBehavior [
 
 	^ self presenter selectedBehavior
 ]
 
-{ #category : #NOCompletion }
+{ #category : 'NOCompletion' }
 SpMorphicCodeAdapter >> selectedClassOrMetaClass [
 
 	^ self behavior
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicCodeAdapter >> setEditingModeFor: textArea [
 
 	self hasSyntaxHighlight
@@ -221,38 +222,37 @@ SpMorphicCodeAdapter >> setEditingModeFor: textArea [
 			super setEditingModeFor: textArea ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicCodeAdapter >> setEditingModeFor: textArea withBehavior: aBehavior forScripting: aBoolean [
 
 	textArea model: self.
-	(aBoolean or: [ aBehavior isNil ]) 
-		ifTrue: [ 
+	(aBoolean or: [ aBehavior isNil ])
+		ifTrue: [
 			textArea beForSmalltalkScripting.
 			textArea editingMode classOrMetaClass: aBehavior ]
-		ifFalse: [
-			textArea beForSmalltalkCodeInClass: aBehavior ].
+		ifFalse: [ textArea beForSmalltalkCodeInClass: aBehavior ].
 	"Following code should bring correct requestor (a code presenter) with a proper code interaction model into styler to enable a visibility of external variables (like workspace variables)"
-	textArea shoutStyler styler 
-		isForWorkspace: aBoolean;
+	textArea shoutStyler styler
+		isScripting: aBoolean;
 		workspace: self presenter.
 	textArea shoutStyler refreshStyling
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicCodeAdapter >> setInteractionModel: anInteractionModel to: w [
 
 	w textArea editor isSmalltalkEditor ifFalse: [ ^ self ].
 	w completionEngine: (self newCompletionEngine: anInteractionModel)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicCodeAdapter >> setSmartCharactersFor: aWidget [
 
 	self suspendObservedPropertiesWhile: [  
 		aWidget textArea editor completionEngine smartCharacters: self hasSmartCharacters ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicCodeAdapter >> setSyntaxHighlightThemeFor: textArea [
 	| theme |
 	
@@ -264,7 +264,7 @@ SpMorphicCodeAdapter >> setSyntaxHighlightThemeFor: textArea [
 		refreshStyling
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicCodeAdapter >> suspendObservedPropertiesWhile: aBlock [ 
 	| textHolder textSubscriptions |
 
@@ -275,7 +275,7 @@ SpMorphicCodeAdapter >> suspendObservedPropertiesWhile: aBlock [
 		textHolder subscriptions: textSubscriptions ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicCodeAdapter >> textWithStyle [
 	"This method is to be used for testing. 
 	 DO NOT USE IT!"
@@ -283,7 +283,7 @@ SpMorphicCodeAdapter >> textWithStyle [
 	^ self widget getText
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicCodeAdapter >> userActionDuring: aBlock [
 
 	aBlock value

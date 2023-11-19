@@ -1,22 +1,24 @@
 Class {
-	#name : #SpTreeTableAdapterSingleColumnMultiSelectionTest,
-	#superclass : #SpAbstractTreeTableAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpTreeTableAdapterSingleColumnMultiSelectionTest',
+	#superclass : 'SpAbstractTreeTableAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTreeTableAdapterSingleColumnMultiSelectionTest >> initializeTestedInstance [
 	super initializeTestedInstance.
 	presenter beMultipleSelection
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTreeTableAdapterSingleColumnMultiSelectionTest >> testSelecting2ElementsUpdatesThePresenterCorrectly [
 
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTreeTableAdapterSingleColumnMultiSelectionTest >> testSelectingAPathUpdatesSelectionInPresenter [
 
 	self presenter selection 

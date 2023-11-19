@@ -1,6 +1,6 @@
-Extension { #name : #FTBasicItem }
+Extension { #name : 'FTBasicItem' }
 
-{ #category : #'*Spec2-Adapters-Morphic' }
+{ #category : '*Spec2-Adapters-Morphic' }
 FTBasicItem >> hasComputedChildren [
 	"I return true if I have computed children or if I don't have computed children."
 

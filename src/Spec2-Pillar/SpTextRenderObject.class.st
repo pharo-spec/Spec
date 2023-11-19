@@ -1,20 +1,21 @@
 Class {
-	#name : #SpTextRenderObject,
-	#superclass : #SpRenderObject,
-	#category : #'Spec2-Pillar'
+	#name : 'SpTextRenderObject',
+	#superclass : 'SpRenderObject',
+	#category : 'Spec2-Pillar',
+	#package : 'Spec2-Pillar'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpTextRenderObject >> acceptRenderObjectVisitor: aVisitor [ 
 	^ aVisitor visitText: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextRenderObject >> contents [
 	^ item text 
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 SpTextRenderObject >> printOn: aStream [
 	aStream << 'text object: ' << self contents
 ]

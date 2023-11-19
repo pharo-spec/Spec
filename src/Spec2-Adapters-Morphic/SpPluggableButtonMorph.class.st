@@ -1,26 +1,28 @@
 Class {
-	#name : #SpPluggableButtonMorph,
-	#superclass : #PluggableButtonMorph,
+	#name : 'SpPluggableButtonMorph',
+	#superclass : 'PluggableButtonMorph',
 	#instVars : [
 		'backgroundColor'
 	],
-	#category : #'Spec2-Adapters-Morphic-Button'
+	#category : 'Spec2-Adapters-Morphic-Button',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Button'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPluggableButtonMorph >> backgroundColor [
 
 	^ backgroundColor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPluggableButtonMorph >> backgroundColor: aColor [
 
 	backgroundColor := aColor.
 	self fillStyle: (SolidFillStyle color: aColor)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPluggableButtonMorph >> borderStyleToUse [
 
 	^ self borderWidth = 0 
@@ -28,7 +30,7 @@ SpPluggableButtonMorph >> borderStyleToUse [
 		ifFalse: [ super borderStyleToUse ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPluggableButtonMorph >> borderWidth: aNumber [
 
 	super borderWidth: aNumber.
@@ -37,7 +39,7 @@ SpPluggableButtonMorph >> borderWidth: aNumber [
 		color: self theme borderColor)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPluggableButtonMorph >> fillStyleToUse [
 
 	(self backgroundColor isNil or: [ self interactionState ~= #normal ])  

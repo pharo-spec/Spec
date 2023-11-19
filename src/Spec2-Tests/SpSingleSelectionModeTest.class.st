@@ -1,10 +1,12 @@
 Class {
-	#name : #SpSingleSelectionModeTest,
-	#superclass : #SpAbstractSelectionModeTest,
-	#category : #'Spec2-Tests-Layout'
+	#name : 'SpSingleSelectionModeTest',
+	#superclass : 'SpAbstractSelectionModeTest',
+	#category : 'Spec2-Tests-Layout',
+	#package : 'Spec2-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpSingleSelectionModeTest >> testDropListSelectionIsNotAffectedBySorting [
 
 	"To get the proper selection when a presenter is sorted, the selection asks the adapter to return the right element according to the sorting.
@@ -20,7 +22,7 @@ SpSingleSelectionModeTest >> testDropListSelectionIsNotAffectedBySorting [
 	self assert: presenter selection selectedItem model equals: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpSingleSelectionModeTest >> testDropListSelectionIsResetAfterItemsAssignment [
 	presenter := SpDropListPresenter new.
 	presenter
@@ -34,7 +36,7 @@ SpSingleSelectionModeTest >> testDropListSelectionIsResetAfterItemsAssignment [
 		equals: nil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpSingleSelectionModeTest >> testGetRightElementAfterSortingOfElementsChanged [
 
 	presenter := SpTablePresenter new. "use a TablePresenter since ListPresenter cannot sort"
@@ -51,7 +53,7 @@ SpSingleSelectionModeTest >> testGetRightElementAfterSortingOfElementsChanged [
 	self assert: presenter selection selectedItem equals: 8
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpSingleSelectionModeTest >> testSelectionIsResetAfterItemsAssignment [
 
 	presenter
@@ -64,7 +66,7 @@ SpSingleSelectionModeTest >> testSelectionIsResetAfterItemsAssignment [
 	self assert: presenter selection selectedItem equals: nil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpSingleSelectionModeTest >> testSelectionIsResetAfterSorting [
 
 	presenter := SpTablePresenter new. "use a TablePresenter since ListPresenter cannot sort"
@@ -83,7 +85,7 @@ SpSingleSelectionModeTest >> testSelectionIsResetAfterSorting [
 	self assert: presenter selection selectedItem equals: nil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpSingleSelectionModeTest >> testSubscriptionsAreTransfered [
 	| count |
 	count := 0.

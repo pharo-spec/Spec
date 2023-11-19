@@ -1,15 +1,16 @@
 Class {
-	#name : #SpPatchMark,
-	#superclass : #Object,
+	#name : 'SpPatchMark',
+	#superclass : 'Object',
 	#instVars : [
 		'name',
 		'backgroundColor',
 		'iconName'
 	],
-	#category : #'Spec2-Code-Diff'
+	#category : 'Spec2-Code-Diff',
+	#package : 'Spec2-Code-Diff'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpPatchMark class >> newName: aString [
 
 	^ self new 
@@ -17,37 +18,37 @@ SpPatchMark class >> newName: aString [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPatchMark >> backgroundColor [
 
 	^ backgroundColor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPatchMark >> backgroundColor: anObject [
 
 	backgroundColor := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPatchMark >> iconName [
 
 	^ iconName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPatchMark >> iconName: anObject [
 
 	iconName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPatchMark >> name [
 
 	^ name
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPatchMark >> name: anObject [
 
 	name := anObject

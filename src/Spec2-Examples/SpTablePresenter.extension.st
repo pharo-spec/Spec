@@ -1,6 +1,6 @@
-Extension { #name : #SpTablePresenter }
+Extension { #name : 'SpTablePresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTablePresenter class >> example [
 	<sampleInstance>
 	
@@ -13,7 +13,7 @@ SpTablePresenter class >> example [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTablePresenter class >> exampleDragAndDrop [
 	| table1 table2 |
 
@@ -36,7 +36,7 @@ SpTablePresenter class >> exampleDragAndDrop [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTablePresenter class >> exampleFixedWidth [
 	
 	^ self new
@@ -48,7 +48,7 @@ SpTablePresenter class >> exampleFixedWidth [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTablePresenter class >> exampleFixedWidthResizable [
 	"A fixed width cannot be changed even if the table is resizable"
 	
@@ -63,7 +63,7 @@ SpTablePresenter class >> exampleFixedWidthResizable [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTablePresenter class >> exampleResizableColumns [
 	
 	^ self new
@@ -76,7 +76,7 @@ SpTablePresenter class >> exampleResizableColumns [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTablePresenter class >> exampleSorting [
 	"Example shows the two kinds of sorting, using a boolean compare, or a threeway sorting"
 	| classNameCompare methodCountSorter |
@@ -96,7 +96,7 @@ SpTablePresenter class >> exampleSorting [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTablePresenter class >> exampleWithColumnHeaders [
 	<sampleInstance>
 
@@ -108,7 +108,7 @@ SpTablePresenter class >> exampleWithColumnHeaders [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTablePresenter class >> exampleWithCompositeColumn [
 	
 	^ self new
@@ -126,7 +126,7 @@ SpTablePresenter class >> exampleWithCompositeColumn [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTablePresenter class >> exampleWithDecoratedString [
 	
 	^ self new
@@ -148,7 +148,7 @@ SpTablePresenter class >> exampleWithDecoratedString [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTablePresenter class >> exampleWithIndexTableColumn [
 	"Shows the classes adding a column with the row number as column (because when you have a
 	 model, you don't know its position (row index) in the table, and sometimes you want to
@@ -168,7 +168,7 @@ SpTablePresenter class >> exampleWithIndexTableColumn [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTablePresenter class >> exampleWithSortableColumnHeaders [
 
 	^ self new
@@ -179,7 +179,7 @@ SpTablePresenter class >> exampleWithSortableColumnHeaders [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTablePresenter class >> exampleWithoutColumnHeaders [
 	<sampleInstance>
 	| example |
@@ -193,7 +193,7 @@ SpTablePresenter class >> exampleWithoutColumnHeaders [
 	^ example
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTablePresenter class >> exampleWriteableTable [
 	"The selector names are NOT stored, but serves merely to have something one can edit"
 	| items |

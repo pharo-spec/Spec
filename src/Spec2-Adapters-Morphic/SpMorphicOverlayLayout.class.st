@@ -32,12 +32,14 @@ p
 p openInWindow
 "
 Class {
-	#name : #SpMorphicOverlayLayout,
-	#superclass : #LayoutPolicy,
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#name : 'SpMorphicOverlayLayout',
+	#superclass : 'LayoutPolicy',
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpMorphicOverlayLayout >> calculatePosXOf: extent in: layoutBounds hAlign: hAlign [
 	
 	(hAlign = SpLayoutWidgetAlignment center)
@@ -50,7 +52,7 @@ SpMorphicOverlayLayout >> calculatePosXOf: extent in: layoutBounds hAlign: hAlig
 	self error: 'Should not arrive here'
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpMorphicOverlayLayout >> calculatePosYOf: extent in: layoutBounds vAlign: vAlign [
 	
 	(vAlign = SpLayoutWidgetAlignment center)
@@ -63,7 +65,7 @@ SpMorphicOverlayLayout >> calculatePosYOf: extent in: layoutBounds vAlign: vAlig
 	self error: 'Should not arrive here'
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpMorphicOverlayLayout >> layout: aMorph in: layoutBounds [
 
 	aMorph submorphsDo: [ :eachMorph | | constraints |
@@ -77,7 +79,7 @@ SpMorphicOverlayLayout >> layout: aMorph in: layoutBounds [
 				eachMorph bounds: (0@0 corner: 0@0) ] ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpMorphicOverlayLayout >> layoutOverlay: overlayMorph in: layoutBounds [
 	| constraints newExtent newBounds vAlign hAlign x y w h |
 	

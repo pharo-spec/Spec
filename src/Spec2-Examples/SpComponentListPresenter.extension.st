@@ -1,6 +1,6 @@
-Extension { #name : #SpComponentListPresenter }
+Extension { #name : 'SpComponentListPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpComponentListPresenter class >> example [
 	| list |
 	

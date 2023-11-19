@@ -2,12 +2,13 @@
 A component that should encapsulate a form part with a specific label
 "
 Class {
-	#name : #SpDemoLabeledContainer,
-	#superclass : #SpLabelledContainer,
-	#category : #'Spec2-Deprecated-Labelled'
+	#name : 'SpDemoLabeledContainer',
+	#superclass : 'SpLabelledContainer',
+	#category : 'Spec2-Deprecated-Labelled',
+	#package : 'Spec2-Deprecated-Labelled'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDemoLabeledContainer class >> defaultSpec [
 	^ SpBoxLayout newTopToBottom
 		add: #label withConstraints: [ :constraints | constraints height: self inputTextHeight ];
@@ -15,7 +16,7 @@ SpDemoLabeledContainer class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoLabeledContainer >> label: aString [
 
 	label label: ' - ', aString, ' - '

@@ -1,44 +1,45 @@
 Class {
-	#name : #DiffPatch,
-	#superclass : #Object,
+	#name : 'DiffPatch',
+	#superclass : 'Object',
 	#instVars : [
 		'elements'
 	],
-	#category : #'Spec2-Code-Diff'
+	#category : 'Spec2-Code-Diff',
+	#package : 'Spec2-Code-Diff'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DiffPatch class >> newElements: aCollection [
 
 	^ self new elements: aCollection	
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 DiffPatch >> accept: aVisitor [
 
 	^ aVisitor visitPatch: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DiffPatch >> elements [
 
 	^ elements
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DiffPatch >> elements: anObject [
 
 	elements := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DiffPatch >> initialize [
 
 	super initialize.
 	elements := OrderedCollection new
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 DiffPatch >> patch [
 	
 	^ DiffPatchVisitor new
@@ -46,7 +47,7 @@ DiffPatch >> patch [
 		contents
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 DiffPatch >> reply [
 	
 	^ DiffReplyVisitor new

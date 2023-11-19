@@ -3,18 +3,20 @@ A presenter that acts as tab label for the notebook page.
 It is possible to put any widget in as label, this is just the ""default"" implementation.
 "
 Class {
-	#name : #SpNotebookPageLabelPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpNotebookPageLabelPresenter',
+	#superclass : 'SpPresenter',
 	#traits : 'SpTModel',
 	#classTraits : 'SpTModel classTrait',
 	#instVars : [
 		'labelPresenter',
 		'iconPresenter'
 	],
-	#category : #'Spec2-Core-Widgets-Tab'
+	#category : 'Spec2-Core-Widgets-Tab',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Tab'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNotebookPageLabelPresenter >> initializePresenters [
 
 	self layout: (SpBoxLayout newLeftToRight
@@ -46,13 +48,13 @@ SpNotebookPageLabelPresenter >> initializePresenters [
 	"self eventHandler whenDoubleClickDo: [ :event | 'ok' crTrace  ]."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPageLabelPresenter >> label [
 
 	^ labelPresenter label
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 SpNotebookPageLabelPresenter >> model: aModel [
 
 	(model notNil 
@@ -63,19 +65,19 @@ SpNotebookPageLabelPresenter >> model: aModel [
 	self updatePresenter
 ]
 
-{ #category : #subscription }
+{ #category : 'subscription' }
 SpNotebookPageLabelPresenter >> unsubscribePage: aPage [
 
 	aPage unsubscribe: self
 ]
 
-{ #category : #'private - updating' }
+{ #category : 'private - updating' }
 SpNotebookPageLabelPresenter >> updateIcon [
 
 	iconPresenter image: self model icon
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNotebookPageLabelPresenter >> updatePresenter [
 
 	self model 
@@ -83,7 +85,7 @@ SpNotebookPageLabelPresenter >> updatePresenter [
 		whenIconChangedDo: [ self updateIcon ]
 ]
 
-{ #category : #'private - updating' }
+{ #category : 'private - updating' }
 SpNotebookPageLabelPresenter >> updateTitle [
 
 	labelPresenter label: self model title

@@ -1,6 +1,6 @@
-Extension { #name : #SpMorphicMultiColumnListAdapter }
+Extension { #name : 'SpMorphicMultiColumnListAdapter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpMorphicMultiColumnListAdapter >> buildWidget [
 	^ PluggableMultiColumnListMorph new
 		wrapSelector: #wrapItem:index:;
@@ -20,7 +20,7 @@ SpMorphicMultiColumnListAdapter >> buildWidget [
 		yourself
 ]
 
-{ #category : #'*Spec2-Deprecated' }
-SpMorphicMultiColumnListAdapter class >> isDeprecated [
+{ #category : '*Spec2-Deprecated' }
+SpMorphicMultiColumnListAdapter classSide >> isDeprecated [
 	^ true
 ]

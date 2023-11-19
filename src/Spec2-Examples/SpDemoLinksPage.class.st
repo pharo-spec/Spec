@@ -5,24 +5,26 @@ Description
 Demo page for SpecDemoLinksPresenter
 "
 Class {
-	#name : #SpDemoLinksPage,
-	#superclass : #SpDemoPage,
-	#category : #'Spec2-Examples-Demo-Other'
+	#name : 'SpDemoLinksPage',
+	#superclass : 'SpDemoPage',
+	#category : 'Spec2-Examples-Demo-Other',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Other'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDemoLinksPage class >> pageName [
 
 	^ 'Links'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoLinksPage class >> priority [
 
 	^ 1500
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoLinksPage >> pageClass [
 
 	^ SpDemoLinksPresenter

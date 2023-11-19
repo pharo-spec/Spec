@@ -2,18 +2,20 @@
 This demo shows differenty styles of check boxes.
 "
 Class {
-	#name : #SpDemoCheckboxesPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoCheckboxesPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'checkboxNormal',
 		'checkboxDisabled',
 		'checkboxWithHelp',
 		'checkboxExample'
 	],
-	#category : #'Spec2-Examples-Demo-Checkboxes'
+	#category : 'Spec2-Examples-Demo-Checkboxes',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Checkboxes'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoCheckboxesPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -24,7 +26,7 @@ SpDemoCheckboxesPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoCheckboxesPresenter >> initializePresenters [
 
 	checkboxNormal  := self newCheckBox

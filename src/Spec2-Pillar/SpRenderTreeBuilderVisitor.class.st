@@ -2,39 +2,40 @@
 I'm a render visitor that combines a pillar document items and computed styles. The render tree consists of all visible document items based on the type in pillar and the associated styles. 
 "
 Class {
-	#name : #SpRenderTreeBuilderVisitor,
-	#superclass : #PRVisitor,
+	#name : 'SpRenderTreeBuilderVisitor',
+	#superclass : 'PRVisitor',
 	#instVars : [
 		'styleProvider',
 		'current'
 	],
-	#category : #'Spec2-Pillar'
+	#category : 'Spec2-Pillar',
+	#package : 'Spec2-Pillar'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRenderTreeBuilderVisitor >> initialize [
 	super initialize.
 	current := OrderedCollection new
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 SpRenderTreeBuilderVisitor >> render: aPRDocument [ 
 	^ self visitDocument: aPRDocument 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRenderTreeBuilderVisitor >> styleProvider: aPRStyleProvider [ 
 	styleProvider := aPRStyleProvider
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 SpRenderTreeBuilderVisitor >> visitDocument: aDocument [
 	current := SpCompositeRenderObject new item: aDocument.
 	super visitDocumentGroup: aDocument.
 	^ current
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 SpRenderTreeBuilderVisitor >> visitDocumentGroup: anObject [
 	| previous |
 	previous := current.
@@ -48,12 +49,12 @@ SpRenderTreeBuilderVisitor >> visitDocumentGroup: anObject [
 		ensure: [ current := previous ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 SpRenderTreeBuilderVisitor >> visitDocumentItem: anObject [
 	current add: (SpTextRenderObject new item: anObject)
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 SpRenderTreeBuilderVisitor >> visitText: anObject [
 	current add: (SpTextRenderObject new
 		item: anObject)

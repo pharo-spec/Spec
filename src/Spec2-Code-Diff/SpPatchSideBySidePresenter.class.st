@@ -1,10 +1,11 @@
 Class {
-	#name : #SpPatchSideBySidePresenter,
-	#superclass : #SpPatchPresenter,
-	#category : #'Spec2-Code-Diff'
+	#name : 'SpPatchSideBySidePresenter',
+	#superclass : 'SpPatchPresenter',
+	#category : 'Spec2-Code-Diff',
+	#package : 'Spec2-Code-Diff'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpPatchSideBySidePresenter class >> adapterName [
 
 	^ #PatchSideBySideAdapter

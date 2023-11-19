@@ -1,6 +1,6 @@
-Extension { #name : #SpLabelledTextInput }
+Extension { #name : 'SpLabelledTextInput' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledTextInput >> acceptBlock: aBlockWithOneArgument [
 
 	self 
@@ -14,7 +14,7 @@ SpLabelledTextInput >> acceptBlock: aBlockWithOneArgument [
 	^ self input acceptBlock: aBlockWithOneArgument
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledTextInput >> acceptOnCR: aBoolean [
 
 	self 
@@ -28,7 +28,7 @@ SpLabelledTextInput >> acceptOnCR: aBoolean [
 	^ self input acceptOnCR: aBoolean
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledTextInput >> autoAccept: aBoolean [
 
 	self 
@@ -42,7 +42,7 @@ SpLabelledTextInput >> autoAccept: aBoolean [
 	^ self input autoAccept: aBoolean
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledTextInput >> ghostText: aText [
 	self deprecated: 'This API is too tight to Morph. Use #placeholder: instead.' transformWith: '`@receiver ghostText: `@statement' -> '`@receiver placeholder: `@statement'.
 	self placeholder: aText

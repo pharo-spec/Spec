@@ -2,12 +2,14 @@
 I am the adapter used to bridge a ListPresenter and a PluggableListMorph
 "
 Class {
-	#name : #SpMorphicListAdapter,
-	#superclass : #SpAbstractMorphicListAdapter,
-	#category : #'Spec2-Adapters-Morphic-List'
+	#name : 'SpMorphicListAdapter',
+	#superclass : 'SpAbstractMorphicListAdapter',
+	#category : 'Spec2-Adapters-Morphic-List',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'List'
 }
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicListAdapter >> acceptDroppingMorph: draggedMorph event: event inMorph: source [
 	| item index |
 	
@@ -17,24 +19,24 @@ SpMorphicListAdapter >> acceptDroppingMorph: draggedMorph event: event inMorph: 
 	^ self acceptDropBlock valueWithEnoughArguments: { draggedMorph model model . event. source model model. item. index }
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicListAdapter >> autoDeselect: aBoolean [
 
 	self widgetDo: [ :w | w autoDeselect: aBoolean ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicListAdapter >> backgroundColorFor: anItem [
 	^ self model backgroundColorFor: anItem
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicListAdapter >> backgroundColorFor: anItem at: index [
 
 	^ self model backgroundColorFor: anItem at: index
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicListAdapter >> buildWidget [
 	| datasource |
 	
@@ -73,19 +75,19 @@ SpMorphicListAdapter >> buildWidget [
 	^ widget
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpMorphicListAdapter >> firstRowIsHeader [ 
 
 	^ self widget container submorphs first class = FTTableHeaderRowMorph
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpMorphicListAdapter >> hasFilter [
 
 	^ self widget hasFilter
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicListAdapter >> isNonEditableRow: aRow column: aColumn [
 
 	^ (self widget dataSource
@@ -93,25 +95,25 @@ SpMorphicListAdapter >> isNonEditableRow: aRow column: aColumn [
 		row: aRow) submorphs allSatisfy: [ :e | e asReadOnlyMorph == e ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicListAdapter >> isShowColumnHeaders [
 	
 	^ widget isShowColumnHeaders 
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicListAdapter >> listElementAt: anIndex ifAbsent: aBlock [
 
 	^ self model listElementAt: anIndex ifAbsent: aBlock
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicListAdapter >> listSize [
 
 	^ self model listSize
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicListAdapter >> newListColumn [
 	| column |
 	
@@ -137,13 +139,13 @@ SpMorphicListAdapter >> newListColumn [
 		yourself
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicListAdapter >> refreshList [
 
 	^ self widget refresh
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicListAdapter >> refreshWidgetHeaderTitle [
 	
 	self presenter hasHeaderTitle 
@@ -159,7 +161,7 @@ SpMorphicListAdapter >> refreshWidgetHeaderTitle [
 				refresh ].
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicListAdapter >> refreshWidgetList [
 	(self widget showIndex < self widget dataSource numberOfRows
 		and: [ self widget isIndexVisible: self widget showIndex ])
@@ -172,7 +174,7 @@ SpMorphicListAdapter >> refreshWidgetList [
 	self widget refresh
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicListAdapter >> refreshWidgetSelection [
 	| rowIndexes |
 	rowIndexes := self presenter selection selectedIndexes.
@@ -184,7 +186,7 @@ SpMorphicListAdapter >> refreshWidgetSelection [
 	^ self widget refresh
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpMorphicListAdapter >> selectIndex: anInteger [ 
 	
 	(anInteger = 0 and: [ widget selectedIndexes isEmpty ]) ifTrue: [ ^ self ].	
@@ -192,13 +194,13 @@ SpMorphicListAdapter >> selectIndex: anInteger [
 	widget selectIndex: anInteger
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicListAdapter >> selectedIndexes [
 	
 	^ widget selectedIndexes
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicListAdapter >> selectionChanged: ann [
 	| diff |
 
@@ -219,7 +221,7 @@ SpMorphicListAdapter >> selectionChanged: ann [
 	self presenter selection unselectAll
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpMorphicListAdapter >> sendRightClickEvent [
 	| evt |
 
@@ -239,14 +241,14 @@ SpMorphicListAdapter >> sendRightClickEvent [
 	self widget click: evt
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpMorphicListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
 
 	self presenter isActiveOnDoubleClick ifFalse: [ ^ self ].
 	self presenter doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpMorphicListAdapter >> updateMenu [
 	
 	"there is no need to updateMenu here because it will be resolved at the dataSource"

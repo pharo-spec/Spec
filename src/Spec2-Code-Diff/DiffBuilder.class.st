@@ -1,13 +1,14 @@
 Class {
-	#name : #DiffBuilder,
-	#superclass : #Object,
+	#name : 'DiffBuilder',
+	#superclass : 'Object',
 	#instVars : [
 		'compareBlock'
 	],
-	#category : #'Spec2-Code-Diff'
+	#category : 'Spec2-Code-Diff',
+	#package : 'Spec2-Code-Diff'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 DiffBuilder class >> buildPatchFrom: source to: destination [
 
 	^ self new 
@@ -15,7 +16,7 @@ DiffBuilder class >> buildPatchFrom: source to: destination [
 		to: destination
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 DiffBuilder >> applyDiff2: diff origin: source dest: dest [
 	| deleteByPosition insertByPosition |
 	
@@ -47,7 +48,7 @@ DiffBuilder >> applyDiff2: diff origin: source dest: dest [
 						yourself) ] ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 DiffBuilder >> applyDiff: diff origin: source dest: dest [
 	| sequence i |
 	
@@ -83,7 +84,7 @@ DiffBuilder >> applyDiff: diff origin: source dest: dest [
 	^ sequence
 ]
 
-{ #category : #'creating patches' }
+{ #category : 'creating patches' }
 DiffBuilder >> buildPatchFrom: source to: dest [
 	| diff |
 
@@ -94,19 +95,19 @@ DiffBuilder >> buildPatchFrom: source to: dest [
 		dest: dest)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DiffBuilder >> comparator: aBlock [
 
 	compareBlock := aBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 DiffBuilder >> compare: a with: b [
 
 	^ compareBlock value: a value: b
 ]
 
-{ #category : #'creating patches' }
+{ #category : 'creating patches' }
 DiffBuilder >> diffFrom: origin to: dest [
 
 	^ self 
@@ -116,7 +117,7 @@ DiffBuilder >> diffFrom: origin to: dest [
 		posDest: 0
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 DiffBuilder >> diffSource: source dest: dest posSource: posSource posDest: posDest [
 	| sourceLength destLength totalLength matrixLength |
 
@@ -218,7 +219,7 @@ DiffBuilder >> diffSource: source dest: dest posSource: posSource posDest: posDe
 					^ (1 to: destLength) collect: [ :index | DiffInsert newOldPosition: posSource+1 newPosition: (posDest+index) ] ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DiffBuilder >> initialize [
 
 	super initialize.

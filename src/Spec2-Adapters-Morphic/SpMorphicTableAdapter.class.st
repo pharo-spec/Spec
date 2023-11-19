@@ -5,25 +5,27 @@ I will create a tree table (using FTTableMorph), using the columns TableColumn* 
 Is important notice here that most of the row/cell creation happens on SpMorphicTableDataSource. Check there for some implementation details.
 "
 Class {
-	#name : #SpMorphicTableAdapter,
-	#superclass : #SpAbstractMorphicListAdapter,
-	#category : #'Spec2-Adapters-Morphic-Table'
+	#name : 'SpMorphicTableAdapter',
+	#superclass : 'SpAbstractMorphicListAdapter',
+	#category : 'Spec2-Adapters-Morphic-Table',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Table'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTableAdapter class >> intercellSpacing [
 
 	^ 2@0
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicTableAdapter >> addKeyBindingsTo: aWidget [
 
 	super addKeyBindingsTo: aWidget.
 	self addContextMenuKeyBindings: aWidget
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTableAdapter >> addModelTo: tableMorph [
 
 	self model columns do: [ :each |
@@ -66,12 +68,12 @@ SpMorphicTableAdapter >> addModelTo: tableMorph [
 	self updateItemFilterBlockWith: self itemFilter
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpMorphicTableAdapter >> alternateRowsColor [
 	self widgetDo: [ :w | w alternateRowsColor: true ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTableAdapter >> buildWidget [
 
 	widget := SpFTTableMorph new
@@ -87,29 +89,29 @@ SpMorphicTableAdapter >> buildWidget [
 	^ widget
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpMorphicTableAdapter >> clickOnColumnHeaderAt: anIndex [
 	self widgetDo: [ :tableWidget | tableWidget clickOnColumnHeaderAt: anIndex ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTableAdapter >> columns [
 	^ widget columns
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTableAdapter >> defaultColumn [
 
 	^ SpStringTableColumn new evaluated: #yourself
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTableAdapter >> ensureAtLeastOneColumnIn: tableMorph [
 	self model columns ifNotEmpty: [ ^ self ].
 	tableMorph addColumn: (self newColumnFrom: self defaultColumn)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTableAdapter >> ifSorted: sortedBlock ifNotSorted: notSortedBlock [ 
 	widget columns 
 		do: [ :column | | state | 
@@ -121,7 +123,7 @@ SpMorphicTableAdapter >> ifSorted: sortedBlock ifNotSorted: notSortedBlock [
 	^ notSortedBlock value
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTableAdapter >> isNonEditableRow: aRow column: aColumn [
 
 	^ (self widget dataSource
@@ -129,23 +131,23 @@ SpMorphicTableAdapter >> isNonEditableRow: aRow column: aColumn [
 		row: aRow) submorphs allSatisfy: [ :e | e asReadOnlyMorph == e ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTableAdapter >> isResizable [
 	^ self model isResizable
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTableAdapter >> isShowColumnHeaders [
 
 	^ widget isShowColumnHeaders 	
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTableAdapter >> isShowingColumnHeaders [
 	^ self model isShowingColumnHeaders
 ]
 
-{ #category : #'private - factory' }
+{ #category : 'private - factory' }
 SpMorphicTableAdapter >> newColumnFrom: aTableColumn [
 
 	^ (SpMorphicTableColumn on: aTableColumn)
@@ -153,7 +155,7 @@ SpMorphicTableAdapter >> newColumnFrom: aTableColumn [
 		yourself
 ]
 
-{ #category : #'private - factory' }
+{ #category : 'private - factory' }
 SpMorphicTableAdapter >> newDataSource [ 
 
 	^ SpMorphicTableDataSource new
@@ -162,20 +164,20 @@ SpMorphicTableAdapter >> newDataSource [
 
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTableAdapter >> refreshColumnsInWidget [
 
 	widget columns: (self model columns collect: [ :each | self newColumnFrom: each ]).
 	self ensureAtLeastOneColumnIn: widget.
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 SpMorphicTableAdapter >> refreshList [
 
 	^ self widget refresh
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 SpMorphicTableAdapter >> refreshModel [
 
 	widget dataSource resetElements.
@@ -184,7 +186,7 @@ SpMorphicTableAdapter >> refreshModel [
 		ifNotSorted: [ self refreshList ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTableAdapter >> refreshShowColumnHeaders [
 	
 	self presenter isShowingColumnHeaders 
@@ -198,7 +200,7 @@ SpMorphicTableAdapter >> refreshShowColumnHeaders [
 				refresh ]
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 SpMorphicTableAdapter >> refreshWidgetSelection [
 	| rowIndexes |
 	rowIndexes := self presenter selection selectedIndexes.
@@ -210,7 +212,7 @@ SpMorphicTableAdapter >> refreshWidgetSelection [
 	^ self refreshList
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 SpMorphicTableAdapter >> selectIndex: anInteger [ 
 
 	(anInteger = 0 and: [ widget selectedIndexes isEmpty ]) ifTrue: [ ^ self ].	
@@ -218,13 +220,13 @@ SpMorphicTableAdapter >> selectIndex: anInteger [
 	widget selectIndex: anInteger
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTableAdapter >> selectedIndexes [
 	
 	^ widget selectedIndexes 
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTableAdapter >> selectionChanged: ann [
 	| diff selection |
 
@@ -244,7 +246,7 @@ SpMorphicTableAdapter >> selectionChanged: ann [
 	ann newSelectedIndexes ifEmpty: [ selection unselectAll ]
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpMorphicTableAdapter >> sendRightClickEvent [
 	| evt |
 
@@ -259,14 +261,14 @@ SpMorphicTableAdapter >> sendRightClickEvent [
 	self widget click: evt
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTableAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
 
 	self presenter isActiveOnDoubleClick ifFalse: [ ^ self ].
 	self presenter doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpMorphicTableAdapter >> transferFrom: aTransferMorph event: anEvent [
 	| rowAndColumn |
 
@@ -278,7 +280,7 @@ SpMorphicTableAdapter >> transferFrom: aTransferMorph event: anEvent [
 		yourself
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicTableAdapter >> updateMenu [
 	
 	"there is no need to updateMenu here because it will be resolved at the dataSource"

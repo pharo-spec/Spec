@@ -1,28 +1,30 @@
 Class {
-	#name : #SpBoxLayoutTest,
-	#superclass : #SpLayoutTest,
-	#category : #'Spec2-Tests-Layout'
+	#name : 'SpBoxLayoutTest',
+	#superclass : 'SpLayoutTest',
+	#category : 'Spec2-Tests-Layout',
+	#package : 'Spec2-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpBoxLayoutTest class >> isAbstract [
 
 	^ self == SpBoxLayoutTest
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpBoxLayoutTest >> extentOf: aPresenter [
 
 	^ aPresenter adapter widget bounds extent
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpBoxLayoutTest >> heightOf: aPresenter [
 
 	^ (self extentOf: aPresenter) y
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpBoxLayoutTest >> testElementsAreAddedInOrder [
 
 	| second |
@@ -31,14 +33,14 @@ SpBoxLayoutTest >> testElementsAreAddedInOrder [
 	self assert: layout children last equals: second
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpBoxLayoutTest >> testLayoutWithOneElementIsNotEmpty [
 
 	layout add: SpButtonPresenter new.
 	self deny: layout isEmpty
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpBoxLayoutTest >> testRemoveElementFromLayoutTakesItOut [
 
 	| element |
@@ -47,7 +49,7 @@ SpBoxLayoutTest >> testRemoveElementFromLayoutTakesItOut [
 	self assert: layout isEmpty
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpBoxLayoutTest >> testReplaceAtindexWith [
 	| p1 toReplace p3 replacement |
 
@@ -65,7 +67,7 @@ SpBoxLayoutTest >> testReplaceAtindexWith [
 	self assert: layout children equals: { p1. replacement. p3 }
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpBoxLayoutTest >> testReplaceWith [
 	| p1 toReplace p3 replacement |
 
@@ -83,7 +85,7 @@ SpBoxLayoutTest >> testReplaceWith [
 	self assert: layout children equals: { p1. replacement. p3 }
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpBoxLayoutTest >> widthOf: aPresenter [
 
 	^ (self extentOf: aPresenter) x

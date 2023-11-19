@@ -3,50 +3,52 @@ A SpecDialogWindow is a window made for embedding Spec models into dialog window
 
 "
 Class {
-	#name : #SpDialogWindowMorph,
-	#superclass : #DialogWindowMorph,
+	#name : 'SpDialogWindowMorph',
+	#superclass : 'DialogWindowMorph',
 	#instVars : [
 		'toolbar'
 	],
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpDialogWindowMorph >> addInitialPanel [
 	"Do nothing here because Spec will take care of adding the content"
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpDialogWindowMorph >> cancelAction: aBlock [
 
 	self toolbar cancelAction: aBlock 
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpDialogWindowMorph >> cancelled [
 
 	^ self toolbar cancelled
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpDialogWindowMorph >> escapePressed [
 
 	self model triggerCancelAction
 ]
 
-{ #category : #focus }
+{ #category : 'focus' }
 SpDialogWindowMorph >> giveFocusToNextFrom: aModel [ 
 
 	^ self model giveFocusToNextFrom: aModel 
 ]
 
-{ #category : #focus }
+{ #category : 'focus' }
 SpDialogWindowMorph >> giveFocusToPreviousFrom: aModel [ 
 
 	^ self model giveFocusToPreviousFrom: aModel
 ]
 
-{ #category : #'open/close' }
+{ #category : 'open/close' }
 SpDialogWindowMorph >> initialExtent [ 
 
 	^ self model
@@ -55,25 +57,25 @@ SpDialogWindowMorph >> initialExtent [
 						ifNil: [ super initialExtent ]]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDialogWindowMorph >> initialize [
 	super initialize.
 	self beResizeable
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDialogWindowMorph >> newButtonRow [
 
 	^ self toolbar ifNotNil: [ :t | t build ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpDialogWindowMorph >> okAction: aBlock [
 
 	self toolbar okAction: aBlock 
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpDialogWindowMorph >> setToolbarFrom: aBlock [
 	| newToolbar |
 	
@@ -81,14 +83,14 @@ SpDialogWindowMorph >> setToolbarFrom: aBlock [
 	self toolbar: newToolbar
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDialogWindowMorph >> toolbar [
 	"Lazy initialization because this method is called efore the initialize method"
 	
 	^ toolbar
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDialogWindowMorph >> toolbar: anObject [
 	| content |
 	

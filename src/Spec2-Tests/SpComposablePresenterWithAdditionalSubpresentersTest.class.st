@@ -1,19 +1,21 @@
 Class {
-	#name : #SpComposablePresenterWithAdditionalSubpresentersTest,
-	#superclass : #TestCase,
+	#name : 'SpComposablePresenterWithAdditionalSubpresentersTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'application'
 	],
-	#category : #'Spec2-Tests-Core'
+	#category : 'Spec2-Tests-Core',
+	#package : 'Spec2-Tests',
+	#tag : 'Core'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpComposablePresenterWithAdditionalSubpresentersTest >> setUp [
 	super setUp.
 	application := SpMockApplication new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpComposablePresenterWithAdditionalSubpresentersTest >> testOpening [
 
 	| aPresenter |

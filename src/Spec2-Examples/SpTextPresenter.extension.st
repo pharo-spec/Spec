@@ -1,6 +1,6 @@
-Extension { #name : #SpTextPresenter }
+Extension { #name : 'SpTextPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTextPresenter class >> example [
 
 	^ self new
@@ -9,7 +9,7 @@ If this had been an actual emergency...';
 		  open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTextPresenter class >> exampleWithoutEditionContextMenu [
 	"This example should show a text editor without the default edition context menu"
 

@@ -1,22 +1,24 @@
 Class {
-	#name : #SpTablePresenterTest,
-	#superclass : #SpAbstractListPresenterTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpTablePresenterTest',
+	#superclass : 'SpAbstractListPresenterTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTablePresenterTest >> classToTest [
 	
 	^ SpTablePresenter
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpTablePresenterTest >> tearDown [ 
 	presenter delete.
 	super tearDown.
 ]
 
-{ #category : #'tests - activation' }
+{ #category : 'tests - activation' }
 SpTablePresenterTest >> testAddColumnRaisesColumnChangedEvent [
 
 	| columnsChanged |
@@ -28,7 +30,7 @@ SpTablePresenterTest >> testAddColumnRaisesColumnChangedEvent [
 	self assert: columnsChanged
 ]
 
-{ #category : #'tests - activation' }
+{ #category : 'tests - activation' }
 SpTablePresenterTest >> testAddColumnRaisesOneEventOnly [
 
 	| count |
@@ -40,7 +42,7 @@ SpTablePresenterTest >> testAddColumnRaisesOneEventOnly [
 	self assert: count equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTablePresenterTest >> testGivenSortingIsActiveWhenAffectingNewItemsThenNewItemsAreSorted [
 
 	[ 
@@ -63,7 +65,7 @@ SpTablePresenterTest >> testGivenSortingIsActiveWhenAffectingNewItemsThenNewItem
 		ensure: [ presenter delete ]
 ]
 
-{ #category : #'tests - activation' }
+{ #category : 'tests - activation' }
 SpTablePresenterTest >> testHideColumnHeadersDoesNotShowHeaders [
 
 	presenter hideColumnHeaders.
@@ -71,7 +73,7 @@ SpTablePresenterTest >> testHideColumnHeadersDoesNotShowHeaders [
 	self deny: presenter isShowingColumnHeaders
 ]
 
-{ #category : #'tests - activation' }
+{ #category : 'tests - activation' }
 SpTablePresenterTest >> testHideColumnHeadersRaisesOneEventOnly [
 
 	| count |
@@ -82,7 +84,7 @@ SpTablePresenterTest >> testHideColumnHeadersRaisesOneEventOnly [
 	self assert: count equals: 1
 ]
 
-{ #category : #'tests - activation' }
+{ #category : 'tests - activation' }
 SpTablePresenterTest >> testRemoveColumnRaisesColumnChangedEvent [
 	| column columnsChanged |
 
@@ -96,7 +98,7 @@ SpTablePresenterTest >> testRemoveColumnRaisesColumnChangedEvent [
 	self assert: columnsChanged
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTablePresenterTest >> testSelectedItemsReturnsRightElementAfterSortingOfElementsChanged [
 
 	[ 
@@ -117,7 +119,7 @@ SpTablePresenterTest >> testSelectedItemsReturnsRightElementAfterSortingOfElemen
 		ensure: [ presenter delete ]
 ]
 
-{ #category : #'tests - activation' }
+{ #category : 'tests - activation' }
 SpTablePresenterTest >> testShowColumnHeadersRaisesOneEventOnly [
 
 	| count |
@@ -128,7 +130,7 @@ SpTablePresenterTest >> testShowColumnHeadersRaisesOneEventOnly [
 	self assert: count equals: 1
 ]
 
-{ #category : #'tests - activation' }
+{ #category : 'tests - activation' }
 SpTablePresenterTest >> testShowColumnHeadersShowHeaders [
 
 	presenter showColumnHeaders.

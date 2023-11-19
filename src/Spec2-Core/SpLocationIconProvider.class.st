@@ -5,16 +5,18 @@ It receive locations (directory references) where to find them.
 Alternatively, it can also look for gtk theme icons (stored by name in the gtk theme).
 "
 Class {
-	#name : #SpLocationIconProvider,
-	#superclass : #SpIconProvider,
+	#name : 'SpLocationIconProvider',
+	#superclass : 'SpIconProvider',
 	#instVars : [
 		'icons',
 		'locations'
 	],
-	#category : #'Spec2-Core-IconProvider'
+	#category : 'Spec2-Core-IconProvider',
+	#package : 'Spec2-Core',
+	#tag : 'IconProvider'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpLocationIconProvider class >> newLocation: aLocation [
 
 	^ self new 
@@ -22,13 +24,13 @@ SpLocationIconProvider class >> newLocation: aLocation [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLocationIconProvider >> addLocation: aReference [
 
 	locations := locations copyWith: aReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLocationIconProvider >> iconNamed: aName ifAbsent: aBlock [
 	| icon |
 	
@@ -42,13 +44,13 @@ SpLocationIconProvider >> iconNamed: aName ifAbsent: aBlock [
 	^ icon
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLocationIconProvider >> icons [
 
 	^ icons
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpLocationIconProvider >> initialize [
 
 	super initialize.
@@ -57,13 +59,13 @@ SpLocationIconProvider >> initialize [
 	self initializeBlankIcon
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpLocationIconProvider >> initializeBlankIcon [
 
 	self setBlankIcon: (Form extent: 16@16 depth: 8)
 ]
 
-{ #category : #inspecting }
+{ #category : 'inspecting' }
 SpLocationIconProvider >> inspectionIcons [
 	<inspectorPresentationOrder: 0 title: 'Icons'> 
 
@@ -74,7 +76,7 @@ SpLocationIconProvider >> inspectionIcons [
 		yourself
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 SpLocationIconProvider >> loadAllIcons [
 
 	self locations do: [ :eachLocation |
@@ -84,7 +86,7 @@ SpLocationIconProvider >> loadAllIcons [
 				put: (self loadIcon: each) ] ]
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 SpLocationIconProvider >> loadIcon: fileReference [
 
 	fileReference exists ifFalse: [ 
@@ -94,7 +96,7 @@ SpLocationIconProvider >> loadIcon: fileReference [
 		 Form fromBinaryStream: stream ]
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 SpLocationIconProvider >> loadIconNamed: aSymbol [
 
 	self locations do: [ :each | | ref |
@@ -104,19 +106,19 @@ SpLocationIconProvider >> loadIconNamed: aSymbol [
 	^ nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLocationIconProvider >> locations [
 
 	^ locations
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLocationIconProvider >> menuIconNamed: aName [ 
 
 	^ self iconNamed: aName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLocationIconProvider >> setBlankIcon: aForm [
 	"To be able to specify the form that represents a missing icon."
 	

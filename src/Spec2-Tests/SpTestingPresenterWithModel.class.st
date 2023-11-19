@@ -7,16 +7,18 @@ A testing presenter for testing of the class SpPresenterWithModel
 	presenter openWithSpec
 "
 Class {
-	#name : #SpTestingPresenterWithModel,
-	#superclass : #SpPresenterWithModel,
+	#name : 'SpTestingPresenterWithModel',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'x',
 		'y'
 	],
-	#category : #'Spec2-Tests-Utils'
+	#category : 'Spec2-Tests-Utils',
+	#package : 'Spec2-Tests',
+	#tag : 'Utils'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpTestingPresenterWithModel class >> defaultLayout [
 	^ SpBoxLayout newLeftToRight
 		add: #x;
@@ -24,7 +26,7 @@ SpTestingPresenterWithModel class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpTestingPresenterWithModel class >> open [
 
 	<example>
@@ -32,14 +34,14 @@ SpTestingPresenterWithModel class >> open [
 	(self on: 1@2) open
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTestingPresenterWithModel >> initializePresenters [
 	
 	x := self newTextInput.
 	y := self newTextInput.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTestingPresenterWithModel >> modelChanged [
 
 	x text: self model x asString.
@@ -47,28 +49,28 @@ SpTestingPresenterWithModel >> modelChanged [
 	
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTestingPresenterWithModel >> title [
 
 	^ 'Point'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestingPresenterWithModel >> x [
 	^ x
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestingPresenterWithModel >> x: anObject [
 	x := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestingPresenterWithModel >> y [
 	^ y
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestingPresenterWithModel >> y: anObject [
 	y := anObject
 ]

@@ -1,29 +1,31 @@
 Class {
-	#name : #SpWindowPresenterTest,
-	#superclass : #SpSpecTest,
-	#category : #'Spec2-Tests-Core'
+	#name : 'SpWindowPresenterTest',
+	#superclass : 'SpSpecTest',
+	#category : 'Spec2-Tests-Core',
+	#package : 'Spec2-Tests',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWindowPresenterTest >> classToTest [
 
 	^ SpWindowPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpWindowPresenterTest >> initializeTestedInstance [
 
 	presenter presenter: SpLabelPresenter new
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 SpWindowPresenterTest >> openInstance [
 
 	window ifNil: [ 
 		window := presenter openWithLayout: SpLabelPresenter defaultLayout ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowPresenterTest >> testBeNotResizeable [
 	
 	self openInstance.
@@ -34,14 +36,14 @@ SpWindowPresenterTest >> testBeNotResizeable [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowPresenterTest >> testInitialPosition [
 	presenter initialPosition: 100 @ 100.
 	self openInstance.
 	self assert: window adapter widget position equals: 100 @ 100
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowPresenterTest >> testIsClosed [
 	self assert: presenter isClosed.
 	self openInstance.
@@ -50,7 +52,7 @@ SpWindowPresenterTest >> testIsClosed [
 	self assert: presenter isClosed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowPresenterTest >> testIsTopWindow [
 
 	self deny: presenter isTopWindow.
@@ -61,7 +63,7 @@ SpWindowPresenterTest >> testIsTopWindow [
 	self deny: presenter isTopWindow
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowPresenterTest >> testRebuildPresenterDoNotLetReferencesInAnnouncer [
 	| oldSize newSize |
 	
@@ -74,7 +76,7 @@ SpWindowPresenterTest >> testRebuildPresenterDoNotLetReferencesInAnnouncer [
 	self assert: oldSize equals: newSize
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowPresenterTest >> testResize [
 	
 	self openInstance.
@@ -88,7 +90,7 @@ SpWindowPresenterTest >> testResize [
 		equals: 600@600
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowPresenterTest >> testUsingAsWindowCanOverrideTitle [
 	| windowPresenter |
 	
@@ -105,7 +107,7 @@ SpWindowPresenterTest >> testUsingAsWindowCanOverrideTitle [
 	self assert: windowPresenter title equals: 'Title Test'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowPresenterTest >> testWhenClosedDo [
 	| closed |
 	closed := false.
@@ -115,7 +117,7 @@ SpWindowPresenterTest >> testWhenClosedDo [
 	self assert: closed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowPresenterTest >> testWhenOpenedDo [
 	| opened |
 	opened := false.
@@ -124,7 +126,7 @@ SpWindowPresenterTest >> testWhenOpenedDo [
 	self assert: opened
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowPresenterTest >> testWhenWillCloseDo [
 	| willClose closed |
 

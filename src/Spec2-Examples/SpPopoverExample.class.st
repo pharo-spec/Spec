@@ -7,8 +7,8 @@ self new openWithSpec
 ]]]
 "
 Class {
-	#name : #SpPopoverExample,
-	#superclass : #SpPresenter,
+	#name : 'SpPopoverExample',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'top',
 		'left',
@@ -16,17 +16,19 @@ Class {
 		'right',
 		'popover'
 	],
-	#category : #'Spec2-Examples-Standalone'
+	#category : 'Spec2-Examples-Standalone',
+	#package : 'Spec2-Examples',
+	#tag : 'Standalone'
 }
 
-{ #category : #showing }
+{ #category : 'showing' }
 SpPopoverExample class >> open [
 	<script>
 
 	^ self new open
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpPopoverExample >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
@@ -39,7 +41,7 @@ SpPopoverExample >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPopoverExample >> initializePresenters [
 
 		top := self newButton
@@ -56,7 +58,7 @@ SpPopoverExample >> initializePresenters [
 			action: [ self showPopover: SpPopoverPosition right relativeTo: right ].
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPopoverExample >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter 
@@ -64,7 +66,7 @@ SpPopoverExample >> initializeWindow: aWindowPresenter [
 		initialExtent: 800@600
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPopoverExample >> showPopover: aPosition relativeTo: aPresenter [
 
 	popover ifNotNil: [ popover dismiss ].

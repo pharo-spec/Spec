@@ -2,16 +2,18 @@
 This demo shows a tool bar.
 "
 Class {
-	#name : #SpDemoToolbarPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoToolbarPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'toolBar',
 		'text'
 	],
-	#category : #'Spec2-Examples-Demo-Buttons'
+	#category : 'Spec2-Examples-Demo-Buttons',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Buttons'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoToolbarPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom 
@@ -20,22 +22,22 @@ SpDemoToolbarPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoToolbarPresenter >> initializePresenters [
-	
+
 	toolBar := self newToolbar
-		addItem: (SpToolbarButtonPresenter new
-			label: 'Ok';
-			icon: (self iconNamed: #smallOk);
-			help: 'Ok';
-			action: [ self inform: 'Ok' ];
-			yourself);
-		addItem: (SpToolbarButtonPresenter new
-			label: 'Cancel';
-			icon: (self iconNamed: #smallCancel);
-			help: 'Cancel';
-			action: [ self inform: 'Cancel' ];
-			yourself);
-		yourself.
+		           addItem: (SpToolbarButtonPresenter new
+				            label: 'Ok';
+				            icon: (self iconNamed: #smallOk);
+				            help: 'Ok';
+				            action: [ toolBar inform: 'Ok' ];
+				            yourself);
+		           addItem: (SpToolbarButtonPresenter new
+				            label: 'Cancel';
+				            icon: (self iconNamed: #smallCancel);
+				            help: 'Cancel';
+				            action: [ toolBar inform: 'Cancel' ];
+				            yourself);
+		           yourself.
 	text := self newText
 ]

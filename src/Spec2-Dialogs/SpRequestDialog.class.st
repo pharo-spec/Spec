@@ -2,8 +2,8 @@
 A simple dialog to request some information (a text)
 "
 Class {
-	#name : #SpRequestDialog,
-	#superclass : #SpDialogPresenter,
+	#name : 'SpRequestDialog',
+	#superclass : 'SpDialogPresenter',
 	#instVars : [
 		'label',
 		'textInput',
@@ -13,16 +13,17 @@ Class {
 		'cancelLabel',
 		'validateBlock'
 	],
-	#category : #'Spec2-Dialogs'
+	#category : 'Spec2-Dialogs',
+	#package : 'Spec2-Dialogs'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRequestDialog class >> defaultExtent [
 
 	^ 450@160
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpRequestDialog class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -39,92 +40,94 @@ SpRequestDialog class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpRequestDialog class >> documentFactoryMethodSelector [
 	
 	^ #newRequest
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpRequestDialog class >> example [
 
-	self new
+	| presenter |
+	presenter := self new.
+	presenter
 		title: 'Request example';
 		label: 'The meaning of life?';
 		text: 'I am tempted to say 42...';
 		acceptLabel: 'I know!';
 		cancelLabel: 'Cancel';
-		onAccept: [ :dialog | self inform: dialog presenter text ];
+		onAccept: [ :dialog | dialog presenter inform: dialog presenter text ];
 		openDialog
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpRequestDialog class >> exampleModal [
-	| string |
 
-	string := self new
-		title: 'Request modal example';
-		label: 'The meaning of life?';
-		text: 'I am tempted to say 42...';
-		acceptLabel: 'I know!';
-		cancelLabel: 'Cancel';
-		openModal.
-		
-	string ifNotNil: [ 
-		self inform: string ]
+	| string presenter |
+	presenter := self new.
+	string := presenter
+		          title: 'Request modal example';
+		          label: 'The meaning of life?';
+		          text: 'I am tempted to say 42...';
+		          acceptLabel: 'I know!';
+		          cancelLabel: 'Cancel';
+		          openModal.
+
+	string ifNotNil: [ presenter inform: string ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpRequestDialog >> accept [
 
 	self validateAnswer ifFalse: [ ^ self ].
 	super accept
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRequestDialog >> acceptLabel [
 
 	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRequestDialog >> acceptLabel: aString [
 
 	acceptLabel := aString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRequestDialog >> cancelLabel [
 
 	^ cancelLabel ifNil: [ self class defaultCancelLabel ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRequestDialog >> cancelLabel: aString [
 
 	cancelLabel := aString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRequestDialog >> extent [
 
 	^ initialExtent ifNil: [ self class defaultExtent ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRequestDialog >> extent: aPoint [
 
 	initialExtent := aPoint
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRequestDialog >> initialize [
 	
 	super initialize.
 	self title: 'Request'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRequestDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.
@@ -133,7 +136,7 @@ SpRequestDialog >> initializeDialogWindow: aDialogWindowPresenter [
 		addDefaultButton: self acceptLabel do: [ :presenter | self accept ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRequestDialog >> initializePresenters [
 
 	image := self newImage image: self defaultIcon.
@@ -141,7 +144,7 @@ SpRequestDialog >> initializePresenters [
 	textInput := self newTextInput
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRequestDialog >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
@@ -150,13 +153,13 @@ SpRequestDialog >> initializeWindow: aWindowPresenter [
 		whenOpenedDo: [ textInput takeKeyboardFocus ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRequestDialog >> label: aString [
 
 	label label: aString
 ]
 
-{ #category : #'api - showing' }
+{ #category : 'api - showing' }
 SpRequestDialog >> openModal [
 	| dialog |
 	
@@ -166,31 +169,31 @@ SpRequestDialog >> openModal [
 		ifFalse: [ nil ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRequestDialog >> text [ 
 	
 	^ textInput text trimmed
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRequestDialog >> text: aString [
 
 	textInput text: aString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRequestDialog >> title [
 
 	^ title
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRequestDialog >> title: aString [
 
 	title := aString
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpRequestDialog >> validateAnswer [
 	
 	validateBlock ifNotNil: [ 
@@ -199,7 +202,7 @@ SpRequestDialog >> validateAnswer [
 	^ true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpRequestDialog >> validateAnswer: aBlock [
 
 	validateBlock := aBlock

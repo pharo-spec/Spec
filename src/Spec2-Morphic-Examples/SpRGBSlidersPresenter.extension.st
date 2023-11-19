@@ -1,6 +1,6 @@
-Extension { #name : #SpRGBSlidersPresenter }
+Extension { #name : 'SpRGBSlidersPresenter' }
 
-{ #category : #'*Spec2-Morphic-Examples' }
+{ #category : '*Spec2-Morphic-Examples' }
 SpRGBSlidersPresenter class >> example [
 
 	<sampleInstance>

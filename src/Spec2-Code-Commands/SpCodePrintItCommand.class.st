@@ -3,30 +3,32 @@ I'm a ""print it"" command.
 I will evalute the selection (or line) of the playground and print the result as string
 "
 Class {
-	#name : #SpCodePrintItCommand,
-	#superclass : #SpCodeSelectionCommand,
-	#category : #'Spec2-Code-Commands-Base'
+	#name : 'SpCodePrintItCommand',
+	#superclass : 'SpCodeSelectionCommand',
+	#category : 'Spec2-Code-Commands-Base',
+	#package : 'Spec2-Code-Commands',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodePrintItCommand class >> defaultDescription [
 
 	^ 'Evaluate selection and print the result.'
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpCodePrintItCommand class >> defaultIconName [
 
 	^ #smallPrintIt
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpCodePrintItCommand class >> defaultName [
 
 	^ 'Print it'
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpCodePrintItCommand class >> defaultShortcutKey [
 
 	^ $p command mac
@@ -34,7 +36,7 @@ SpCodePrintItCommand class >> defaultShortcutKey [
 		| $p control unix
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 SpCodePrintItCommand >> execute [
 	"Treat the current text selection as an expression; evaluate it. Insert the 
 	description of the result of evaluation after the selection and then make 
@@ -44,13 +46,13 @@ SpCodePrintItCommand >> execute [
 		self printObject: result ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpCodePrintItCommand >> printObject: anObject [
 
 	self context insertPrintPopoverAfterCurrentSelection: anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpCodePrintItCommand >> toPrintableString: printString [
 
 	self flag: #TODO. "This is maybe not the best? 

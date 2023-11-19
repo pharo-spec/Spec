@@ -1,6 +1,6 @@
-Extension { #name : #SpColumnAlignmentRight }
+Extension { #name : 'SpColumnAlignmentRight' }
 
-{ #category : #'*Spec2-Morphic' }
+{ #category : '*Spec2-Morphic' }
 SpColumnAlignmentRight >> asTextAlignment [
 
 	^ TextAlignment rightFlush

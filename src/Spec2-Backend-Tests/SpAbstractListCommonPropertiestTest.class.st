@@ -1,21 +1,23 @@
 Class {
-	#name : #SpAbstractListCommonPropertiestTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpAbstractListCommonPropertiestTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractListCommonPropertiestTest class >> isAbstract [
 	^ self == SpAbstractListCommonPropertiestTest
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractListCommonPropertiestTest >> initializeTestedInstance [ 
 
 	presenter items: #(10 20 30).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListCommonPropertiestTest >> testChangeListInPresenterUpdatesWidget [
 
 	self presenter items: #( '1' '2' '3').
@@ -23,7 +25,7 @@ SpAbstractListCommonPropertiestTest >> testChangeListInPresenterUpdatesWidget [
 	backendForTest assertList: self adapter displayItems: #('1' '2' '3')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListCommonPropertiestTest >> testDoubleClickActivatesRowInDoubleClickActivationMode [
 
 	| activated |
@@ -36,14 +38,14 @@ SpAbstractListCommonPropertiestTest >> testDoubleClickActivatesRowInDoubleClickA
 	self assert: activated
 ]
 
-{ #category : #'tests - scrolling' }
+{ #category : 'tests - scrolling' }
 SpAbstractListCommonPropertiestTest >> testFirstVisibleRowIsInitiallyFirstRow [
 	presenter items: (1 to: 500).
 	self openInstance.
 	self assert: presenter verticalAlignment firstVisibleRowIndex equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListCommonPropertiestTest >> testRightClickShowsMenu [
 	| menu |
 
@@ -53,7 +55,7 @@ SpAbstractListCommonPropertiestTest >> testRightClickShowsMenu [
 	self assert: menu shown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListCommonPropertiestTest >> testRightClickShowsMenuWhenThereAreNoItems [
 	| menu |
 
@@ -66,7 +68,7 @@ SpAbstractListCommonPropertiestTest >> testRightClickShowsMenuWhenThereAreNoItem
 	self assert: menu shown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListCommonPropertiestTest >> testSingleClickActivatesRowInSingleClickActivationMode [
 
 	| activated |
@@ -80,7 +82,7 @@ SpAbstractListCommonPropertiestTest >> testSingleClickActivatesRowInSingleClickA
 	self assert: activated.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListCommonPropertiestTest >> testTypePerformsSearch [
 
 	self presenter selection selectIndex: 1. "10"

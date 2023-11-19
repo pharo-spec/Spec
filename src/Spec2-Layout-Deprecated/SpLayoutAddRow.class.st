@@ -3,12 +3,13 @@ A SpecLayoutAddRow is an action representing the addition of a row to a layout
 
 "
 Class {
-	#name : #SpLayoutAddRow,
-	#superclass : #SpLayoutAdd,
-	#category : #'Spec2-Layout-Deprecated'
+	#name : 'SpLayoutAddRow',
+	#superclass : 'SpLayoutAdd',
+	#category : 'Spec2-Layout-Deprecated',
+	#package : 'Spec2-Layout-Deprecated'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpLayoutAddRow class >> block: aBlock layoutFrame: aLayoutFrame [
 
 	^ self new
@@ -17,7 +18,7 @@ SpLayoutAddRow class >> block: aBlock layoutFrame: aLayoutFrame [
 			yourself
 ]
 
-{ #category : #'Spec2-Deprecated' }
+{ #category : 'Spec2-Deprecated' }
 SpLayoutAddRow >> block: aBlock layoutFrame: aLayoutFrame [
 	| row |
 	row := SpRowLayout composed.

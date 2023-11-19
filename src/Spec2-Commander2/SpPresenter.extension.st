@@ -1,6 +1,6 @@
-Extension { #name : #SpPresenter }
+Extension { #name : 'SpPresenter' }
 
-{ #category : #'*Spec2-Commander2' }
+{ #category : '*Spec2-Commander2' }
 SpPresenter class >> buildCommandsGroupWith: presenter forRoot: aCmCommandsGroup [
 	"This hook allows you to build your groups of commands.
 	 You must attach them to aLtCommandsGroup throught the registration mechanism.
@@ -9,7 +9,7 @@ SpPresenter class >> buildCommandsGroupWith: presenter forRoot: aCmCommandsGroup
 	"
 ]
 
-{ #category : #'*Spec2-Commander2' }
+{ #category : '*Spec2-Commander2' }
 SpPresenter class >> buildExtensionCommandsWith: aPresenter forRoot: rootCommandGroup [
 	
 	(Pragma allNamed: #extensionCommands in: self class) do: [ :pragma | 
@@ -18,7 +18,7 @@ SpPresenter class >> buildExtensionCommandsWith: aPresenter forRoot: rootCommand
 			withArguments: { aPresenter . rootCommandGroup }) ]
 ]
 
-{ #category : #'*Spec2-Commander2' }
+{ #category : '*Spec2-Commander2' }
 SpPresenter class >> buildRootCommandsGroupFor: aPresenter [
 	| rootCommandGroup |
 	
@@ -31,7 +31,7 @@ SpPresenter class >> buildRootCommandsGroupFor: aPresenter [
 	^ rootCommandGroup
 ]
 
-{ #category : #'*Spec2-Commander2' }
+{ #category : '*Spec2-Commander2' }
 SpPresenter >> defaultCommandsContext [
 	"The default context set to commands is the presenter itself.
 	 This method might be overriden to change this behaviour.
@@ -39,7 +39,7 @@ SpPresenter >> defaultCommandsContext [
 	^ self
 ]
 
-{ #category : #'*Spec2-Commander2' }
+{ #category : '*Spec2-Commander2' }
 SpPresenter >> rootCommandsGroup [
 
 	^ SpRecursiveContextSetter 

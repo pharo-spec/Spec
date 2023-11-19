@@ -1,6 +1,6 @@
-Extension { #name : #SpAbstractSelectionMode }
+Extension { #name : 'SpAbstractSelectionMode' }
 
-{ #category : #'*Spec2-Microdown' }
+{ #category : '*Spec2-Microdown' }
 SpAbstractSelectionMode class >> buildMicroDownUsing: aBuilder withComment: aString [
 	
 	super buildMicroDownUsing: aBuilder withComment: aString.

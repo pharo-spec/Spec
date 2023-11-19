@@ -1,6 +1,6 @@
-Extension { #name : #SpMorphicNotebookAdapter }
+Extension { #name : 'SpMorphicNotebookAdapter' }
 
-{ #category : #'*Spec2-Morphic-Backend-Tests' }
+{ #category : '*Spec2-Morphic-Backend-Tests' }
 SpMorphicNotebookAdapter >> clickTab: anIndex [
 	| evt tab |
 
@@ -18,12 +18,12 @@ SpMorphicNotebookAdapter >> clickTab: anIndex [
 			tab handleMouseDown: evt ]
 ]
 
-{ #category : #'*Spec2-Morphic-Backend-Tests' }
+{ #category : '*Spec2-Morphic-Backend-Tests' }
 SpMorphicNotebookAdapter >> numberOfTabs [
 	^ self widget tabSelectorMorph tabs size
 ]
 
-{ #category : #'*Spec2-Morphic-Backend-Tests' }
+{ #category : '*Spec2-Morphic-Backend-Tests' }
 SpMorphicNotebookAdapter >> selectedPageName [
 	"I am assuming I am testing the standard. Hence, the presenter will be an 
 	 instance of `SpNotebookPageLabelPresenter`. 

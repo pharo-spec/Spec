@@ -2,38 +2,40 @@
 A superclass for particular Spec demo pages, that need to define a page name and priority in the list of demos.
 "
 Class {
-	#name : #SpDemoPage,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoPage',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'tabManager'
 	],
-	#category : #'Spec2-Examples-Demo'
+	#category : 'Spec2-Examples-Demo',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoPage class >> availablePages [
 	^ self allSubclasses sort: #priority ascending
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoPage class >> pageName [
 
 	self subclassResponsibility 
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoPage class >> priority [
 
 	^ 999
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoPage >> codeFor: aClass [
 	^ TonelWriter sourceCodeOf: aClass
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoPage >> codeTab [
 	^ SpNotebookPage
 		title: 'Code'
@@ -43,7 +45,7 @@ SpDemoPage >> codeTab [
 				yourself ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoPage >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -51,12 +53,12 @@ SpDemoPage >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoPage >> exampleTab [
 	^ SpNotebookPage title: 'Example' icon: (self iconNamed: #smallPaint) provider: [ self instantiate: self pageClass ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoPage >> initializePresenters [
 
 	tabManager := self newNotebook.
@@ -66,19 +68,19 @@ SpDemoPage >> initializePresenters [
 		addPage: self codeTab.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoPage >> pageClass [
 
 	self subclassResponsibility 
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoPage >> tabManager [
 	^ tabManager
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoPage >> tabManager: anObject [
 	tabManager := anObject
 ]

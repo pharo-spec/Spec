@@ -1,10 +1,11 @@
 Class {
-	#name : #SpFontStyleTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Adapters-Morphic-Tests'
+	#name : 'SpFontStyleTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Adapters-Morphic-Tests',
+	#package : 'Spec2-Adapters-Morphic-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpFontStyleTest >> testResetFont [
 
 	| styleSheet app presenter font |

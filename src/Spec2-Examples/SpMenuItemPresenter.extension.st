@@ -1,6 +1,6 @@
-Extension { #name : #SpMenuItemPresenter }
+Extension { #name : 'SpMenuItemPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpMenuItemPresenter class >> exampleShowAtPointer [
 
 	^ SpMenuPresenter new
@@ -10,7 +10,7 @@ SpMenuItemPresenter class >> exampleShowAtPointer [
 		openWithSpecAt: self currentHand position.
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpMenuItemPresenter class >> exampleWithSubMenu [
 
 	^ SpMenuPresenter new
@@ -27,7 +27,7 @@ SpMenuItemPresenter class >> exampleWithSubMenu [
 		openWithSpecAt: self currentHand position.
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpMenuItemPresenter class >> exampleWithinMenuButton [
 	| presenter menuButton loremIpsumWords |
 

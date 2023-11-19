@@ -1,6 +1,6 @@
-Extension { #name : #SpDiffPresenter }
+Extension { #name : 'SpDiffPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpDiffPresenter class >> exampleWithOptions [
 	"
 	self exampleWithOptions
@@ -14,7 +14,7 @@ SpDiffPresenter class >> exampleWithOptions [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpDiffPresenter class >> exampleWithoutOptions [
 	"
 	self exampleWithoutOptions

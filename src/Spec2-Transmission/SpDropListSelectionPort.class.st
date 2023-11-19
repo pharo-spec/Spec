@@ -9,18 +9,20 @@ Presenters exposing this port: *class:SpDropListPresenter*
 @@NOTE Maybe this needs to be merged with SpSelectionPort?
 "
 Class {
-	#name : #SpDropListSelectionPort,
-	#superclass : #SpOutputPort,
-	#category : #'Spec2-Transmission-Base'
+	#name : 'SpDropListSelectionPort',
+	#superclass : 'SpOutputPort',
+	#category : 'Spec2-Transmission-Base',
+	#package : 'Spec2-Transmission',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDropListSelectionPort class >> portName [
 	
 	^ #selection
 ]
 
-{ #category : #attaching }
+{ #category : 'attaching' }
 SpDropListSelectionPort >> attachTransmission: aTransmission to: aPresenter [
 	
 	aPresenter whenSelectionChangedDo: [ :selection | 

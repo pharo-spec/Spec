@@ -10,12 +10,14 @@ CurrentSpecDefaultBindings value: SpecStubAdapterBindings during: [
 ].
 "
 Class {
-	#name : #SpStubAdapterBindings,
-	#superclass : #SpAdapterBindings,
-	#category : #'Spec2-Adapters-Stub-Support'
+	#name : 'SpStubAdapterBindings',
+	#superclass : 'SpAdapterBindings',
+	#category : 'Spec2-Adapters-Stub-Support',
+	#package : 'Spec2-Adapters-Stub',
+	#tag : 'Support'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 SpStubAdapterBindings >> abstractAdapterClass [
 	^ SpStubAbstractAdapter
 ]

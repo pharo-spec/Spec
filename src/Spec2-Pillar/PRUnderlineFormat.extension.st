@@ -1,6 +1,6 @@
-Extension { #name : #PRUnderlineFormat }
+Extension { #name : 'PRUnderlineFormat' }
 
-{ #category : #'*Spec2-Pillar' }
+{ #category : '*Spec2-Pillar' }
 PRUnderlineFormat >> styleName [ 
 	^ #underline
 ]

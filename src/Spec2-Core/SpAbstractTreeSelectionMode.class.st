@@ -1,16 +1,18 @@
 Class {
-	#name : #SpAbstractTreeSelectionMode,
-	#superclass : #Object,
+	#name : 'SpAbstractTreeSelectionMode',
+	#superclass : 'Object',
 	#traits : 'TObservable',
 	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'#selection => ObservableSlot',
 		'#presenter'
 	],
-	#category : #'Spec2-Core-Widgets-Tree'
+	#category : 'Spec2-Core-Widgets-Tree',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Tree'
 }
 
-{ #category : #'accessing method dictionary' }
+{ #category : 'accessing method dictionary' }
 SpAbstractTreeSelectionMode class >> on: aPresenter [
 
 	^ self new
@@ -18,13 +20,13 @@ SpAbstractTreeSelectionMode class >> on: aPresenter [
 		yourself
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpAbstractTreeSelectionMode >> clearSelection [
 
 	selection := #()
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractTreeSelectionMode >> initialize [
 	self class initializeSlots: self.
 	selection := #().
@@ -32,29 +34,29 @@ SpAbstractTreeSelectionMode >> initialize [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractTreeSelectionMode >> isEmpty [
 	
 	^ selection isEmpty
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractTreeSelectionMode >> isMultipleSelection [
 	^ false
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpAbstractTreeSelectionMode >> itemNotFoundAction [
 	"ignore. we do not change the selection"
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpAbstractTreeSelectionMode >> pathOf: anItem [
 	^ (self pathOf: anItem from: presenter roots)
 		ifNil: [ 	NotFound signalFor: anItem in: presenter roots ]
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpAbstractTreeSelectionMode >> pathOf: anItem from: aCollection [
     | index |
 
@@ -68,19 +70,19 @@ SpAbstractTreeSelectionMode >> pathOf: anItem from: aCollection [
     ^ nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractTreeSelectionMode >> presenter: aPresenter [
 	presenter := aPresenter
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpAbstractTreeSelectionMode >> selectItem: anItem [
 	[ self selectPath: (self pathOf: anItem) ]
 		on: NotFound
 		do: [ self itemNotFoundAction ]
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpAbstractTreeSelectionMode >> selectItems: aListOfItems [
 	aListOfItems do: 
 		[ :each |
@@ -89,7 +91,7 @@ SpAbstractTreeSelectionMode >> selectItems: aListOfItems [
 			do: [ "ignore. we do not change the selection" ] ]
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpAbstractTreeSelectionMode >> selectPath: aPath [
 	"Select a node in the tree by providing a list of indexes.
 	Example:
@@ -108,17 +110,17 @@ SpAbstractTreeSelectionMode >> selectPath: aPath [
 	self subclassResponsibility
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpAbstractTreeSelectionMode >> selectPaths: pathArray [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractTreeSelectionMode >> selectedItem [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractTreeSelectionMode >> selectedItemsInPath [
 	"Answer the items on a path, not just the indexes."
 	| path |
@@ -131,48 +133,48 @@ SpAbstractTreeSelectionMode >> selectedItemsInPath [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractTreeSelectionMode >> selectedPaths [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractTreeSelectionMode >> selectionHolder [
 
 	^ self observablePropertyNamed: #selection
 ]
 
-{ #category : #transfering }
+{ #category : 'transfering' }
 SpAbstractTreeSelectionMode >> transferSubscriptionsTo: anotherSelectionMode [
 
 	self selectionHolder transferSubscriptionsTo: anotherSelectionMode selectionHolder
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpAbstractTreeSelectionMode >> unselectAll [
 
 	self clearSelection
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpAbstractTreeSelectionMode >> unselectItem: anItem [
 	[ self unselectPath: (self pathOf: anItem) ]
 	on: NotFound 
 	do: [ "ignore. nothing to unselect" ]
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpAbstractTreeSelectionMode >> unselectPath: aPath [
 	self subclassResponsibility
 ]
 
-{ #category : #subscription }
+{ #category : 'subscription' }
 SpAbstractTreeSelectionMode >> unsubscribe: anObject [ 
 
 	(self observablePropertyNamed: #selection) unsubscribe: anObject
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAbstractTreeSelectionMode >> whenChangedDo: aBlock [
 	
 	self property: #selection whenChangedDo: aBlock

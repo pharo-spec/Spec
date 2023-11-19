@@ -2,12 +2,14 @@
 I'm the adapter used to bridge a ToolBarToggleButton and its morphic representation.
 "
 Class {
-	#name : #SpMorphicToolbarToggleButtonAdapter,
-	#superclass : #SpMorphicToolbarButtonAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicToolbarToggleButtonAdapter',
+	#superclass : 'SpMorphicToolbarButtonAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicToolbarToggleButtonAdapter >> buildWidget [
 	| newWidget |
 
@@ -18,7 +20,7 @@ SpMorphicToolbarToggleButtonAdapter >> buildWidget [
 	^ newWidget
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicToolbarToggleButtonAdapter >> buttonChanged [
 	| state associated |
 	
@@ -30,13 +32,13 @@ SpMorphicToolbarToggleButtonAdapter >> buttonChanged [
 	widget pressed: state
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicToolbarToggleButtonAdapter >> morphClass [ 
 
 	^ SpToolbarToggleButtonMorph
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicToolbarToggleButtonAdapter >> newButton [
 
 	^ super newButton
@@ -44,7 +46,7 @@ SpMorphicToolbarToggleButtonAdapter >> newButton [
 		yourself
 ]
 
-{ #category : #'accessing - structure variables' }
+{ #category : 'accessing - structure variables' }
 SpMorphicToolbarToggleButtonAdapter >> state [
 
 	^ self presenter isSelected

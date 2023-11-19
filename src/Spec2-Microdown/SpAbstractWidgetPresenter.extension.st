@@ -1,6 +1,6 @@
-Extension { #name : #SpAbstractWidgetPresenter }
+Extension { #name : 'SpAbstractWidgetPresenter' }
 
-{ #category : #'*Spec2-Microdown' }
+{ #category : '*Spec2-Microdown' }
 SpAbstractWidgetPresenter class >> buildMicroDownUsing: aBuilder withComment: aString [
 	
 	super buildMicroDownUsing: aBuilder withComment: aString.

@@ -1,67 +1,68 @@
 Class {
-	#name : #DiffPatchElement,
-	#superclass : #Object,
+	#name : 'DiffPatchElement',
+	#superclass : 'Object',
 	#instVars : [
 		'oldPosition',
 		'element'
 	],
-	#category : #'Spec2-Code-Diff'
+	#category : 'Spec2-Code-Diff',
+	#package : 'Spec2-Code-Diff'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DiffPatchElement class >> newOldPosition: aNumber [
 
 	^ self new oldPosition: aNumber 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 DiffPatchElement >> accept: aVisitor [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DiffPatchElement >> element [
 
 	^ element
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DiffPatchElement >> element: anObject [
 
 	element := anObject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 DiffPatchElement >> isDelete [
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 DiffPatchElement >> isInsert [
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 DiffPatchElement >> isMatch [
 
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DiffPatchElement >> oldPosition [
 
 	^ oldPosition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DiffPatchElement >> oldPosition: anObject [
 
 	oldPosition := anObject
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 DiffPatchElement >> printOn: stream [
 
 	super printOn: stream.
@@ -70,7 +71,7 @@ DiffPatchElement >> printOn: stream [
 	stream << ')'
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 DiffPatchElement >> printPositionOn: stream [
 	
 	stream << 'old='; print: self oldPosition

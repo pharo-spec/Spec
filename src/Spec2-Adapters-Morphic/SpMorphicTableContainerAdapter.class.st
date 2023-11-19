@@ -3,12 +3,14 @@ I am the adapter providing container with table layout
 
 "
 Class {
-	#name : #SpMorphicTableContainerAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicTableContainerAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTableContainerAdapter >> buildWidget [
 
 	^ PanelMorph new
@@ -18,7 +20,7 @@ SpMorphicTableContainerAdapter >> buildWidget [
 		  yourself
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicTableContainerAdapter >> height: aNumber [
 
 	self 
@@ -26,32 +28,32 @@ SpMorphicTableContainerAdapter >> height: aNumber [
 		widgetDo: [ :w | w height: aNumber ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicTableContainerAdapter >> isRedrawable [
 	"This must be overriden in the adapter representing your container"
 	
 	^ true
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicTableContainerAdapter >> layoutProperties: props [
 
 	self widgetDo: [ :w | w layoutProperties: props ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicTableContainerAdapter >> minHeight: aNumber [
 
 	self widgetDo: [ :w | w minHeight: aNumber ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicTableContainerAdapter >> minWidth: aNumber [
 
 	self widgetDo: [ :w | w minWidth: aNumber ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicTableContainerAdapter >> width: aNumber [
 
 	self

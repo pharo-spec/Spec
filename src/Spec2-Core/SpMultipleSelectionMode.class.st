@@ -2,15 +2,17 @@
 Implement multiple selection mode (Users can select multiple element of list or table)
 "
 Class {
-	#name : #SpMultipleSelectionMode,
-	#superclass : #SpAbstractSelectionMode,
+	#name : 'SpMultipleSelectionMode',
+	#superclass : 'SpAbstractSelectionMode',
 	#instVars : [
 		'#selectedIndexes => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpMultipleSelectionMode >> basicSelectIndex: indexToSelect [
 
 	"Adding to the selection an out of range should not change selection"
@@ -19,54 +21,54 @@ SpMultipleSelectionMode >> basicSelectIndex: indexToSelect [
 	self selectIndexes: (self selectedIndexes copyWith: indexToSelect)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMultipleSelectionMode >> includesIndex: anIndex [
 
 	^ self selectedIndexes includes: anIndex
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMultipleSelectionMode >> includesIndexes: aCollection [
 	^ aCollection allSatisfy: [ :anIndex | self selectedIndexes includes: anIndex ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMultipleSelectionMode >> includesItem: anItem [
 
 	^ self selectedItems includes: anItem
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMultipleSelectionMode >> includesItems: aCollection [
 	^ aCollection allSatisfy: [ :anItem | self selectedItems includes: anItem ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMultipleSelectionMode >> initialize [
 	super initialize.
 	selectedIndexes := OrderedCollection new
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMultipleSelectionMode >> isEmpty [
 	
 	^ self selectedIndexes isEmpty
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMultipleSelectionMode >> isMultipleSelection [
 	
 	^ true
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpMultipleSelectionMode >> selectAll [
 	"Select all items."
 	
 	self selectIndexes: (1 to: self model size)
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpMultipleSelectionMode >> selectIndexes: aCollectionOfIndexes [
 	"Select items at positions included in `aCollectionOfIndexes`."
 	| indexes |
@@ -83,14 +85,14 @@ SpMultipleSelectionMode >> selectIndexes: aCollectionOfIndexes [
 	^ selectedIndexes := indexes
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpMultipleSelectionMode >> selectItems: aCollection [
 	"Select items included in `aCollection` if they are included in model list."
 
 	self selectIndexes: (aCollection collect: [ :anItem | self indexOfItem: anItem ])
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpMultipleSelectionMode >> selectedIndex [
 	"Answer the first selected index."
 
@@ -99,14 +101,14 @@ SpMultipleSelectionMode >> selectedIndex [
 		ifEmpty: [ 0 ]
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpMultipleSelectionMode >> selectedIndexes [
 	"Answer a collection with indexes of all selected items."
 
 	^ selectedIndexes
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpMultipleSelectionMode >> selectedItem [
 	"Answer first selected item."
 
@@ -115,39 +117,39 @@ SpMultipleSelectionMode >> selectedItem [
 		ifEmpty: [ nil ]
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpMultipleSelectionMode >> selectedItems [
 	"Answer a collection with all selected items."
 
 	^ self widget itemsAt: self selectedIndexes
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMultipleSelectionMode >> selectedItemsSortedByIndex [
 
 	^ self widget itemsAt: self selectedIndexes sort
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMultipleSelectionMode >> selectionHolder [
 	^ self observablePropertyNamed: #selectedIndexes
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpMultipleSelectionMode >> unselectAll [
 	"Remove all selections."
 	
 	self selectIndexes: #()
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpMultipleSelectionMode >> unselectIndex: anIndex [
 	"Unselect item at position `anInteger`."
 
 	self selectIndexes: (self selectedIndexes copyWithout: anIndex)
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpMultipleSelectionMode >> whenChangedDo: aBlock [
 	"Inform when selection has changed. 
 	 `aBlock` has three optional arguments: 

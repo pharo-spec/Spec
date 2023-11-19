@@ -21,17 +21,19 @@ Internal Representation and Key Implementation Points.
 
 "
 Class {
-	#name : #SpProgressingProgressBarState,
-	#superclass : #SpProgressBarState,
+	#name : 'SpProgressingProgressBarState',
+	#superclass : 'SpProgressBarState',
 	#instVars : [
 		'refreshDelay',
 		'progression',
 		'currentValue'
 	],
-	#category : #'Spec2-Core-Utils'
+	#category : 'Spec2-Core-Utils',
+	#package : 'Spec2-Core',
+	#tag : 'Utils'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpProgressingProgressBarState class >> progression: aBlock every: aDelay [
 	^ self new
 		progression: aBlock;
@@ -39,39 +41,39 @@ SpProgressingProgressBarState class >> progression: aBlock every: aDelay [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpProgressingProgressBarState >> currentValue [
 	^ currentValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpProgressingProgressBarState >> currentValue: aNumber [
 	currentValue := aNumber
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpProgressingProgressBarState >> initialize [
 	self class initializeSlots: self.
 	super initialize.
 	currentValue := 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpProgressingProgressBarState >> progression [
 	^ progression
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpProgressingProgressBarState >> progression: aValuable [
 	progression := aValuable
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpProgressingProgressBarState >> refreshDelay [
 	^ refreshDelay
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpProgressingProgressBarState >> refreshDelay: aDelay [
 	refreshDelay := aDelay
 ]

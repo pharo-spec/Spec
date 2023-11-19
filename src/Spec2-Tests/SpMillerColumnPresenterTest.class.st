@@ -1,16 +1,18 @@
 Class {
-	#name : #SpMillerColumnPresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Miller'
+	#name : 'SpMillerColumnPresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Tests-Miller',
+	#package : 'Spec2-Tests',
+	#tag : 'Miller'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMillerColumnPresenterTest >> classToTest [
 	
 	^ SpMillerColumnPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMillerColumnPresenterTest >> testActivateSubPresenterPushesElementToList [
 
 	| mock |
@@ -21,21 +23,21 @@ SpMillerColumnPresenterTest >> testActivateSubPresenterPushesElementToList [
 	self assert: self presenter size equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMillerColumnPresenterTest >> testAddManyPresentersPushesThemToPresenterList [
 
 	3 timesRepeat: [self presenter addPresenter: (SpNullMillerPresenter on: SpLabelPresenter new)].
 	self assert: self presenter size equals: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMillerColumnPresenterTest >> testAddPresenterPushesItToPresenterList [
 
 	self presenter addPresenter: (SpNullMillerPresenter on: SpLabelPresenter new).
 	self assert: self presenter size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMillerColumnPresenterTest >> testPushModelUsesPresenterBlock [
 
 	| subpresenter |
@@ -45,7 +47,7 @@ SpMillerColumnPresenterTest >> testPushModelUsesPresenterBlock [
 	self assert: self presenter presenters first equals: subpresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMillerColumnPresenterTest >> testSetRootModelManyTimesPushesOnlyLastPresenterToList [
 
 	| nullMillerPresenter |
@@ -60,7 +62,7 @@ SpMillerColumnPresenterTest >> testSetRootModelManyTimesPushesOnlyLastPresenterT
 		equals: 3 asString
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMillerColumnPresenterTest >> testSetRootModelManyTimesPushesOnlyOnePresenterToList [
 
 	self presenter presenterBlock: [ :model | 
@@ -71,7 +73,7 @@ SpMillerColumnPresenterTest >> testSetRootModelManyTimesPushesOnlyOnePresenterTo
 	self assert: self presenter size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMillerColumnPresenterTest >> testSetRootModelPushesPresenterToList [
 
 	self presenter presenterBlock: [ :model | 
@@ -81,7 +83,7 @@ SpMillerColumnPresenterTest >> testSetRootModelPushesPresenterToList [
 	self assert: self presenter size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMillerColumnPresenterTest >> testSetRootModelResetsToSinglePresenter [
 
 	self presenter presenterBlock: [ :model | 
@@ -92,7 +94,7 @@ SpMillerColumnPresenterTest >> testSetRootModelResetsToSinglePresenter [
 	self assert: self presenter size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMillerColumnPresenterTest >> testSetRootModelWithPresenterDoesNotFail [
 
 	self presenter presenterBlock: [ :model | 
@@ -103,7 +105,7 @@ SpMillerColumnPresenterTest >> testSetRootModelWithPresenterDoesNotFail [
 		raise: Error
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMillerColumnPresenterTest >> testSetRootModelWithoutPresenterBlockFails [
 
 	self

@@ -4,31 +4,33 @@ My children will define (and install in an adaptor/widget) a specific kind of lo
 
 "
 Class {
-	#name : #SpBaseEventDefinition,
-	#superclass : #Object,
+	#name : 'SpBaseEventDefinition',
+	#superclass : 'Object',
 	#instVars : [
 		'action'
 	],
-	#category : #'Spec2-Core-Base-Event'
+	#category : 'Spec2-Core-Base-Event',
+	#package : 'Spec2-Core',
+	#tag : 'Base-Event'
 }
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 SpBaseEventDefinition class >> do: aBlock [
 
 	^ self new action: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBaseEventDefinition >> action [
 	^ action
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBaseEventDefinition >> action: anObject [
 	action := anObject
 ]
 
-{ #category : #installing }
+{ #category : 'installing' }
 SpBaseEventDefinition >> installOn: anAdapter target: aWidget [
 
 	self subclassResponsibility

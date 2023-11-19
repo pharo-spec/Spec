@@ -1,6 +1,6 @@
 Class {
-	#name : #ScWizardPresenter,
-	#superclass : #SpPresenter,
+	#name : 'ScWizardPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'pagePresenter',
 		'prevButton',
@@ -10,22 +10,23 @@ Class {
 		'finishButton',
 		'pages'
 	],
-	#category : #'Spec2-Contributor'
+	#category : 'Spec2-Contributor',
+	#package : 'Spec2-Contributor'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ScWizardPresenter class >> initialExtent [
 
 	^ 600@400
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ScWizardPresenter class >> title [
 
 	^ 'Wizard Unnamed'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ScWizardPresenter >> currentPage [
 
 	^ currentPage ifNil: [ 
@@ -33,7 +34,7 @@ ScWizardPresenter >> currentPage [
 		currentPage ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 ScWizardPresenter >> doBack [
 	
 	self previousPage ifNotNil: [ :aPage |
@@ -41,13 +42,13 @@ ScWizardPresenter >> doBack [
 		self updatePresenter ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 ScWizardPresenter >> doFinish [
 	
 	self window close
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 ScWizardPresenter >> doNext [
 	
 	self nextPage ifNotNil: [ :aPage |
@@ -55,7 +56,7 @@ ScWizardPresenter >> doNext [
 		self updatePresenter ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ScWizardPresenter >> initializePresenters [
 
 	self layout: (SpBoxLayout newTopToBottom
@@ -81,7 +82,7 @@ ScWizardPresenter >> initializePresenters [
 			yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ScWizardPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
@@ -89,19 +90,19 @@ ScWizardPresenter >> initializeWindow: aWindowPresenter [
 		title: self class title
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 ScWizardPresenter >> isFirst: aPage [ 
 
 	^ self pages first = aPage
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 ScWizardPresenter >> isLast: aPage [ 
 
 	^ self pages last = aPage
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ScWizardPresenter >> moveTo: aPage [
 
 	currentPage = aPage ifTrue: [ ^ self ].
@@ -114,13 +115,13 @@ ScWizardPresenter >> moveTo: aPage [
 	currentPage := aPage
 ]
 
-{ #category : #'private factory' }
+{ #category : 'private factory' }
 ScWizardPresenter >> newPages [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ScWizardPresenter >> nextPage [
 	| nextPage |
 	
@@ -131,13 +132,13 @@ ScWizardPresenter >> nextPage [
 	^ nextPage
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ScWizardPresenter >> pages [
 
 	^ pages ifNil: [ pages := self newPages ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ScWizardPresenter >> previousPage [
 	| previousPage |
 	
@@ -148,7 +149,7 @@ ScWizardPresenter >> previousPage [
 	^ previousPage
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ScWizardPresenter >> updatePresenter [
 
 	actionsLayout removeAll.

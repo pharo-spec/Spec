@@ -1,16 +1,18 @@
 Class {
-	#name : #SpTreeTableAdapterMultipleSelectionTest,
-	#superclass : #SpAbstractListAdapterMultipleSelectionTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpTreeTableAdapterMultipleSelectionTest',
+	#superclass : 'SpAbstractListAdapterMultipleSelectionTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTreeTableAdapterMultipleSelectionTest >> classToTest [
 
 	^ SpTreeTablePresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTreeTableAdapterMultipleSelectionTest >> initializeTestedInstance [ 
 
 	presenter
@@ -19,7 +21,7 @@ SpTreeTableAdapterMultipleSelectionTest >> initializeTestedInstance [
 		roots: #(10 20 30 'abc')
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeTableAdapterMultipleSelectionTest >> testSelectManyIndexesKeepsAllSelected [
 	
 	presenter selectPath: #(1).
@@ -29,21 +31,21 @@ SpTreeTableAdapterMultipleSelectionTest >> testSelectManyIndexesKeepsAllSelected
 		equals: #((1) (2))
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeTableAdapterMultipleSelectionTest >> testSelectPresenterIndexOutsideRangeUnsetsSelectedIndexInWidget [
 	
 	presenter selectPath: #(100).
 	self assert: self adapter selectedPaths isEmpty
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeTableAdapterMultipleSelectionTest >> testSelectPresenterIndexSetsSelectedIndexInWidget [
 	
 	presenter selectPath: #(1).
 	self assert: (self adapter selectedPaths includes: #(1))
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeTableAdapterMultipleSelectionTest >> testSelectPresenterItemSetsSelectedIndexInWidget [
 	"There is no selectedIndex in trees (but selectedPath).
 	 This cancels superclass method"
@@ -51,7 +53,7 @@ SpTreeTableAdapterMultipleSelectionTest >> testSelectPresenterItemSetsSelectedIn
 	self skip
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeTableAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	
@@ -62,7 +64,7 @@ SpTreeTableAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelectionI
 	self assert: counter equals: 1
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeTableAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedPaths |
 	
@@ -71,7 +73,7 @@ SpTreeTableAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelectionI
 	self assert: (selectedPaths includes: #(1))
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTreeTableAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesEmptySelectionChangeEvent [
 	| gotSelection |
 	
@@ -82,7 +84,7 @@ SpTreeTableAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesEmptySel
 	self assertEmpty: gotSelection
 ]
 
-{ #category : #'tests - widget-to-model' }
+{ #category : 'tests - widget-to-model' }
 SpTreeTableAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	
