@@ -1,15 +1,12 @@
 "
-A dialog to show a message and a progress bar.
+I'm a simple form showing a dialog with progress bar during a task proceeds. 
+The task can control the progress.
 "
 Class {
 	#name : 'SpProgressDialog',
-	#superclass : 'SpDialogPresenter',
+	#superclass : 'SpInformUserDialog',
 	#instVars : [
-		'title',
-		'label',
-		'progressBar',
-		'maxValue',
-		'openAction'
+		'maxValue'
 	],
 	#category : 'Spec2-Dialogs',
 	#package : 'Spec2-Dialogs'
@@ -19,16 +16,6 @@ Class {
 SpProgressDialog class >> documentFactoryMethodSelector [
 	
 	^ #newProgress
-]
-
-{ #category : 'examples' }
-SpProgressDialog class >> example [
-
-	self new
-		title: 'Example Progress';
-		label: 'You are seeing a progress dialog!';
-		progressPercent: 30;
-		openDialog
 ]
 
 { #category : 'examples' }
@@ -45,19 +32,21 @@ SpProgressDialog class >> exampleInformUserDuring [
 ]
 
 { #category : 'examples' }
+SpProgressDialog class >> exampleInformUserDuring2 [
+
+	self new
+		title: 'Example Progress';
+		informUserDuring: [ :bar | 
+				1 second wait ] 
+]
+
+{ #category : 'examples' }
 SpProgressDialog class >> exampleModal [
 
 	self new
 		title: 'Example Progress';
 		label: 'You are seeing a progress dialog!';
-		progressPercent: 30;
 		openModal
-]
-
-{ #category : 'accessing' }
-SpProgressDialog class >> extent [
-
-	^ 600@100
 ]
 
 { #category : 'private - actions' }
@@ -74,6 +63,15 @@ SpProgressDialog >> afterOpenAction [
 			self cancel.
 			e pass ].
 	] fork
+]
+
+{ #category : 'examples' }
+SpProgressDialog >> exampleModal [
+
+	self new
+		title: 'Example Progress';
+		label: 'You are seeing a progress dialog!';
+		openModal
 ]
 
 { #category : 'api' }
@@ -121,27 +119,7 @@ SpProgressDialog >> initializePresenters [
 		yourself)
 ]
 
-{ #category : 'initialization' }
-SpProgressDialog >> initializeWindow: aWindowPresenter [
-
-	aWindowPresenter 
-		title: self title;
-		initialExtent: self class extent
-]
-
-{ #category : 'api' }
-SpProgressDialog >> label [
-
-	^ label label
-]
-
-{ #category : 'api' }
-SpProgressDialog >> label: aString [
-
-	label label: aString
-]
-
-{ #category : 'compatibility' }
+{ #category : 'accessing' }
 SpProgressDialog >> max: aNumber [
 	"sets the maximum value. 
 	 Affects how #value: is calculated"
@@ -149,19 +127,13 @@ SpProgressDialog >> max: aNumber [
 	maxValue := aNumber asFloat
 ]
 
-{ #category : 'api' }
-SpProgressDialog >> progress [
-
-	^ progressBar value
-]
-
-{ #category : 'api' }
+{ #category : 'progress' }
 SpProgressDialog >> progress: aFraction [
 
 	progressBar fixedAt: aFraction
 ]
 
-{ #category : 'api' }
+{ #category : 'progress' }
 SpProgressDialog >> progressPercent: aNumber [
 
 	progressBar fixedPercentage: aNumber asFloat floor
@@ -174,28 +146,4 @@ SpProgressDialog >> reset [
 	self max: 1.0.
 	self progress: 0.0.
 	
-]
-
-{ #category : 'api' }
-SpProgressDialog >> title [
-
-	^ title
-]
-
-{ #category : 'api' }
-SpProgressDialog >> title: aString [
-
-	title := aString
-]
-
-{ #category : 'compatibility' }
-SpProgressDialog >> value [
-
-	^ self progress
-]
-
-{ #category : 'compatibility' }
-SpProgressDialog >> value: aFraction [
-
-	self progress: (aFraction / maxValue) asFloat
 ]
