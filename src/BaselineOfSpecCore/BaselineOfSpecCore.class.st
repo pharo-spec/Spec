@@ -16,8 +16,8 @@ BaselineOfSpecCore >> baseline: spec [
 			"Core"
 			package: 'Spec2-Layout';
 			package: 'Spec2-Core' with: [ spec requires: #('Spec2-Layout') ];
-			package: 'Spec2-Dialogs' with: [ spec requires: #('Spec2-Dialogs') ];
-			package: 'Spec2-Dialogs-Tests' with: [ spec requires: #('Spec2-Core') ];
+			package: 'Spec2-Dialogs' with: [ spec requires: #('Spec2-Core') ];
+			package: 'Spec2-Dialogs-Tests' with: [ spec requires: #('Spec2-Dialogs') ];
 			package: 'Spec2-CommandLine' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commands';
 			package: 'Spec2-Transmission' with: [ spec requires: #('Spec2-Core') ];
