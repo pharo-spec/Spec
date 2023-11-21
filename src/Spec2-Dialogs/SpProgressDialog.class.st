@@ -65,30 +65,14 @@ SpProgressDialog >> afterOpenAction [
 	] fork
 ]
 
-{ #category : 'examples' }
-SpProgressDialog >> exampleModal [
-
-	self new
-		title: 'Example Progress';
-		label: 'You are seeing a progress dialog!';
-		openModal
-]
-
 { #category : 'api' }
 SpProgressDialog >> informUser: aString during: aBlock [ 
-
+	"Pay attention that the aBlock argument does not expect an argument representing the bar.
+	Check class side example."
+	
 	self informUserDuring: [ :bar | 
 		bar label: aString. 
 		aBlock value ]
-]
-
-{ #category : 'api' }
-SpProgressDialog >> informUserDuring: aBlock [
-	
-	openAction := aBlock.
-	self openModal.
-	parentWindow ifNotNil: [
-		parentWindow takeKeyboardFocus ]
 ]
 
 { #category : 'initialization' }

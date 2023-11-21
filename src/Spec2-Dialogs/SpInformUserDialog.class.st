@@ -62,15 +62,20 @@ SpInformUserDialog >> afterOpenAction [
 
 { #category : 'api' }
 SpInformUserDialog >> informUser: aString during: aBlock [ 
-
-	self informUserDuring: [ :bar | 
-		bar label: aString. 
+	"Pay attention that the aBlock argument does not expect an argument representing the bar.
+	Check class side example."
+	
+	title := aString.
+	self informUserDuring: [
 		aBlock value ]
 ]
 
 { #category : 'api' }
 SpInformUserDialog >> informUserDuring: aBlock [
-	
+	"Inform the user with a title during an execution. 
+	Pay attention in this method the block is expecting no argument while in the subclass
+	it expects the progress bar.
+	Check examples on the class side"
 	openAction := aBlock.
 	self openModal.
 	parentWindow ifNotNil: [
