@@ -34,7 +34,7 @@ SpInformUserDialog class >> exampleModal [
 
 	self new
 		title: 'Example Progress';
-		label: 'You are seeing a progress dialog!';
+		label: 'You are seeing a progress dialog! Press escape!';
 		openModal
 ]
 
