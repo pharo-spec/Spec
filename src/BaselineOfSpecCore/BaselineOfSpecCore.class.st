@@ -17,6 +17,7 @@ BaselineOfSpecCore >> baseline: spec [
 			package: 'Spec2-Layout';
 			package: 'Spec2-Core' with: [ spec requires: #('Spec2-Layout') ];
 			package: 'Spec2-Dialogs' with: [ spec requires: #('Spec2-Core') ];
+			package: 'Spec2-Dialogs-Tests' with: [ spec requires: #('Spec2-Dialogs') ];
 			package: 'Spec2-CommandLine' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commands';
 			package: 'Spec2-Transmission' with: [ spec requires: #('Spec2-Core') ];
@@ -32,7 +33,7 @@ BaselineOfSpecCore >> baseline: spec [
 			"Tests"			
 			package: 'Spec2-Adapters-Stub' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commander2-Tests' with: [ spec requires: #('Spec2-Commander2') ];
-			package: 'Spec2-Tests' with: [ spec requires: #('Spec2-Core' 'Spec2-Examples') ];
+			package: 'Spec2-Tests' with: [ spec requires: #('Spec2-Core' 'Spec2-Examples' 'Spec2-Dialogs-Tests') ];
 			package: 'Spec2-Code-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Code') ];
 			package: 'Spec2-Code-Diff-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Code-Diff') ];
 			"Examples"

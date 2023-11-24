@@ -525,6 +525,13 @@ SpPresenter >> inform: aString [
 	^ self application inform: aString
 ]
 
+{ #category : 'simple dialog helpers' }
+SpPresenter >> informUser: aString during: aBlock [
+	"Displays a simple inform dialog while a task is perform without progress bar."
+
+	^ self application informUser: aString during: aBlock
+]
+
 { #category : 'TOREMOVE' }
 SpPresenter >> initialExtent [
 	
