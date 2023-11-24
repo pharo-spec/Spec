@@ -518,9 +518,7 @@ SpAbstractPresenter >> validateInto: aValidationReport [
 { #category : 'events' }
 SpAbstractPresenter >> whenBuiltDo: aBlock [
 
-	self announcer 
-		when: SpWidgetBuilt
-		do: aBlock
+	self announcer when: SpWidgetBuilt do: aBlock for: aBlock receiver
 ]
 
 { #category : 'events' }
