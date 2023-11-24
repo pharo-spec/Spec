@@ -24,12 +24,6 @@ SpMorphicFrameLayoutAdapter >> add: aPresenter [
 	self add: aPresenter constraints: SpBoxConstraints new
 ]
 
-{ #category : 'adding' }
-SpMorphicFrameLayoutAdapter >> add: aPresenter constraints: constraints [
-
-	super add: aPresenter constraints: constraints
-]
-
 { #category : 'factory' }
 SpMorphicFrameLayoutAdapter >> addConstraints: constraints toChild: childMorph [
 
@@ -161,11 +155,9 @@ SpMorphicFrameLayoutAdapter >> newPanelWith: aLayout label: aLabel [
 { #category : 'accessing' }
 SpMorphicFrameLayoutAdapter >> remove: aPresenter [
 
-	| morph |
-	morph := aPresenter adapter widget.	
-	framePanel removeMorph: morph.
-	self verifyBoxExtent
-	
+	aPresenter adapter ifNotNil: [ :adapter |
+		framePanel removeMorph: adapter widget.
+		self verifyBoxExtent ]
 ]
 
 { #category : 'accessing' }

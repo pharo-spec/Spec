@@ -15,7 +15,7 @@ Class {
 { #category : 'ston-core' }
 SpTextStyle class >> stonName [
 	
-	^ 'Text'
+	^ #Text
 ]
 
 { #category : 'operations' }

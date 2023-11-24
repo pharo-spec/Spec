@@ -36,7 +36,7 @@ Class {
 { #category : 'ston-core' }
 SpContainerStyle class >> stonName [
 
-	^ 'Container'
+	^ #Container
 ]
 
 { #category : 'operations' }

@@ -98,7 +98,7 @@ SpDatePresenter >> display: aBlock [
 { #category : 'private' }
 SpDatePresenter >> iconMorph [
 
-	^ ImageMorph new form: (self iconNamed: #calendarIcon)
+	^ ImageMorph new form: (self iconNamed: #calendar)
 ]
 
 { #category : 'initialization' }

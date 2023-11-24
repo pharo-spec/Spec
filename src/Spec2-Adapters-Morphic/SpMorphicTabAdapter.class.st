@@ -63,6 +63,8 @@ SpMorphicTabAdapter >> layout: aLayout [
 { #category : 'removing' }
 SpMorphicTabAdapter >> remove: aPresenter [
 
-	widget removePage: (widget pages 
-		detect: [ :each | each actualPageMorph = aPresenter adapter widget ])
+	aPresenter adapter ifNotNil: [ :adapter |
+		| morph |
+		morph := adapter widget.
+		widget removePage: (widget pages detect: [ :each | each actualPageMorph = morph ]) ]
 ]

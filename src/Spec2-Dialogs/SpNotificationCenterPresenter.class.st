@@ -1,15 +1,16 @@
 Class {
-	#name : #SpNotificationCenterPresenter,
-	#superclass : #SpPresenterWithModel,
+	#name : 'SpNotificationCenterPresenter',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'itemList',
 		'descriptionText',
 		'clearButton'
 	],
-	#category : #'Spec2-Dialogs'
+	#category : 'Spec2-Dialogs',
+	#package : 'Spec2-Dialogs'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpNotificationCenterPresenter class >> example2 [
 
 	<example>
@@ -21,14 +22,14 @@ SpNotificationCenterPresenter class >> example2 [
 	"1 to: 10 do: [ :each | app notify: each printString ]"
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNotificationCenterPresenter >> clearNotificationsAction [
 
 	itemList items: OrderedCollection new.
 	descriptionText text: '   No notification   '
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNotificationCenterPresenter >> connectPresenters [
 
 	"Why this is not working 
@@ -38,7 +39,7 @@ SpNotificationCenterPresenter >> connectPresenters [
 	
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpNotificationCenterPresenter >> defaultLayout [
 
 	| upperLayout lowerLayout |
@@ -56,7 +57,7 @@ SpNotificationCenterPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNotificationCenterPresenter >> initializePresenters [
 
 	itemList := self newList
@@ -70,20 +71,20 @@ SpNotificationCenterPresenter >> initializePresenters [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNotificationCenterPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter title: 'Notifications'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNotificationCenterPresenter >> modelChanged [
 	
 	itemList items: announcingObject value items.
 	itemList selectFirst
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpNotificationCenterPresenter >> updatePresenter [
 	
 	self modelChanged
