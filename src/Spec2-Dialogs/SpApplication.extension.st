@@ -36,8 +36,7 @@ SpApplication >> informUser: aString during: aBlock [
 
 	^ self newInformUser
 		title: aString; 
-		informUserDuring: aBlock;
-		 openModal
+		informUserDuring: aBlock
 ]
 
 { #category : '*Spec2-Dialogs' }

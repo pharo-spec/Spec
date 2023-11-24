@@ -20,6 +20,28 @@ SpDialogTest >> testInformUserDuringExecutesItsBlock [
 	self assert: executed.
 ]
 
+{ #category : 'tests - progress bar' }
+SpDialogTest >> testInformUserDuringExecutesTheBlockOnlyOnce [
+
+	| count |
+	count := 0.
+	SpInformUserDialog new 
+		informUser: 'I am a text' during: [ count := count + 1 ].
+		
+	self assert: count equals: 1
+]
+
+{ #category : 'tests - progress bar' }
+SpDialogTest >> testInformUserDuringInSpApplicationExecutesTheBlockOnlyOnce [
+
+	| count |
+	count := 0.
+	SpApplication new 
+		informUser: 'I am a text' during: [ count := count + 1 ].
+		
+	self assert: count equals: 1
+]
+
 { #category : 'tests - informUserDuring' }
 SpDialogTest >> testInformUserDuringViaApplication [
 
