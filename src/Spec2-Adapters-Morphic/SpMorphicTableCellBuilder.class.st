@@ -20,12 +20,31 @@ SpMorphicTableCellBuilder class >> on: aDataSource [
 
 { #category : #private }
 SpMorphicTableCellBuilder >> addAlignmentColumn: aTableColumn item: item to: content [
+	| block containerMorph alignment |
 
-	aTableColumn displayAlignment ifNotNil: [ :block |
-		^ content asText addAttribute: (block cull: item) asTextAlignment ].
+	(block := aTableColumn displayAlignment) ifNil: [ ^ content ].
+		
+	alignment := (block cull: item) asTextAlignment.
+	containerMorph := Morph new 
+		color: Color transparent;
+		layoutPolicy: TableLayout new;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		borderWidth: 0;
+		yourself.
+		
+	alignment = TextAlignment rightFlush ifTrue: [ 
+			containerMorph listDirection: #rightToLeft ].
+	alignment = TextAlignment leftFlush ifTrue: [ 
+			containerMorph listDirection: #leftToRight ].
+
+	alignment = TextAlignment centered 
+		ifTrue: [ containerMorph addMorphBack: self newFillerMorph ].
+	containerMorph addMorphBack: content asMorph asReadOnlyMorph.
+	alignment = TextAlignment centered 
+		ifTrue: [ containerMorph addMorphBack: self newFillerMorph ].
 	
-	^ content
-	
+	^ containerMorph
 ]
 
 { #category : #private }
@@ -142,6 +161,17 @@ SpMorphicTableCellBuilder >> dataSource: anObject [
 SpMorphicTableCellBuilder >> item [ 
 
 	^ self dataSource elementAt: self rowIndex
+]
+
+{ #category : #private }
+SpMorphicTableCellBuilder >> newFillerMorph [
+	"This is used as a helper to center text when applying alignment=centered"
+	
+	^ Morph new
+		color: Color transparent;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		yourself
 ]
 
 { #category : #accessing }
@@ -266,7 +296,6 @@ SpMorphicTableCellBuilder >> visitStringColumn: aTableColumn [
 
 	content := aTableColumn readObject: item.
 	"add properties"
-	content := self addAlignmentColumn: aTableColumn item: item to: content.
 	content := self addColorColumn: aTableColumn item: item to: content.
 	content := self addItalicColumn: aTableColumn item: item to: content.
 	content := self addBoldColumn: aTableColumn item: item to: content.
@@ -275,9 +304,12 @@ SpMorphicTableCellBuilder >> visitStringColumn: aTableColumn [
 	aTableColumn isEditable
 		ifTrue: [ self visitStringColumnEditable: aTableColumn on: content ]
 		ifFalse: [ "add cell"
+			"I need to calculate here alignement because I will wrap the content 
+			 into a container morph, so it needs to be the last one before applying"
+			content := self addAlignmentColumn: aTableColumn item: item to: content.
 			self addCell: content column: aTableColumn.
 			"add background (this is a special case of properties, 
-			since background needs to be applied to the cell and not to the text)"
+			 since background needs to be applied to the cell and not to the text)"
 			self addBackgroundColorColumn: aTableColumn item: item toMorph: cell ]
 ]
 

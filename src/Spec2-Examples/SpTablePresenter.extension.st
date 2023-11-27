@@ -97,6 +97,23 @@ SpTablePresenter class >> exampleSorting [
 ]
 
 { #category : #'*Spec2-Examples' }
+SpTablePresenter class >> exampleWithColumnAlignment [
+	"Shows how we can align columns"
+	| column |
+
+	column := SpStringTableColumn new
+		title: 'Alignments';
+		evaluated: [ :object | object ];
+		displayAlignment: [ :object | SpColumnAlignment perform: object ];
+		yourself.
+
+	SpTablePresenter new
+		items: { #right. #center. #left };
+		addColumn: column;
+		open
+]
+
+{ #category : #'*Spec2-Examples' }
 SpTablePresenter class >> exampleWithColumnHeaders [
 	<sampleInstance>
 
