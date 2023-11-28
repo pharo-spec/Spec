@@ -184,6 +184,18 @@ SpSelectDialog >> openModal [
 ]
 
 { #category : 'api' }
+SpSelectDialog >> selectIndex: aNumber [
+
+	list selectIndex: aNumber
+]
+
+{ #category : 'api' }
+SpSelectDialog >> selectItem: anObject [
+
+	list selectItem: anObject
+]
+
+{ #category : 'api' }
 SpSelectDialog >> selectedItem [
 
 	^ list selectedItem
