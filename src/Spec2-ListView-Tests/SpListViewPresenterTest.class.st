@@ -1,16 +1,17 @@
 Class {
-	#name : #SpListViewPresenterTest,
-	#superclass : #SpAbstractListPresenterTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpListViewPresenterTest',
+	#superclass : 'SpAbstractListPresenterTest',
+	#category : 'Spec2-ListView-Tests',
+	#package : 'Spec2-ListView-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpListViewPresenterTest >> classToTest [
 	
 	^ SpListViewPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpListViewPresenterTest >> initializeTestedInstance [
 
 	presenter
@@ -18,7 +19,7 @@ SpListViewPresenterTest >> initializeTestedInstance [
 		bind: [ :aPresenter :anObject | aPresenter label: anObject asString ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpListViewPresenterTest >> tearDown [
 
 	presenter withWindowDo: [ :w | w close ]

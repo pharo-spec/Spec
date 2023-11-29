@@ -1,20 +1,21 @@
 Class {
-	#name : #SpEasyListViewPresenterTest,
-	#superclass : #SpListViewPresenterTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpEasyListViewPresenterTest',
+	#superclass : 'SpListViewPresenterTest',
+	#category : 'Spec2-ListView-Tests',
+	#package : 'Spec2-ListView-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpEasyListViewPresenterTest >> classToTest [
 	
 	^ SpEasyListViewPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpEasyListViewPresenterTest >> initializeTestedInstance [
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 SpEasyListViewPresenterTest >> testHideHeaderTitleUnsetsTitle [
 
 	presenter
@@ -24,7 +25,7 @@ SpEasyListViewPresenterTest >> testHideHeaderTitleUnsetsTitle [
 	self deny: presenter hasHeaderTitle
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 SpEasyListViewPresenterTest >> testIconFor [
 	presenter
 		items: #(#add #back #catalog);
@@ -32,7 +33,7 @@ SpEasyListViewPresenterTest >> testIconFor [
 	self assert: (presenter iconFor: #add) equals: (Smalltalk ui icons iconNamed: #add)
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 SpEasyListViewPresenterTest >> testSetHeaderTitleHasTitle [
 
 	presenter headerTitle: 'title'.
@@ -40,7 +41,7 @@ SpEasyListViewPresenterTest >> testSetHeaderTitleHasTitle [
 	self assert: presenter hasHeaderTitle
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 SpEasyListViewPresenterTest >> testSetHeaderTitleSetsTitle [
 
 	presenter headerTitle: 'title'.
@@ -48,7 +49,7 @@ SpEasyListViewPresenterTest >> testSetHeaderTitleSetsTitle [
 	self assert: presenter headerTitle equals: 'title'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpEasyListViewPresenterTest >> testWhenIconsChangedDo [
 	| icon counter |
 
