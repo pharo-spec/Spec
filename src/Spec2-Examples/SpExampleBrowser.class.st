@@ -137,9 +137,7 @@ SpExampleBrowser >> runSelectedExample [
 	| method |
 
 	method := list selectedItem entity.
-	method
-		valueWithReceiver: method methodClass instanceSide
-		arguments: #()
+	method valueWithReceiver: method methodClass instanceSide
 ]
 
 { #category : 'updating' }
