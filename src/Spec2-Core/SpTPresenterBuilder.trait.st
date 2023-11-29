@@ -80,12 +80,6 @@ SpTPresenterBuilder >> newDiff [
 	^ self instantiate: SpDiffPresenter
 ]
 
-{ #category : 'scripting - lists' }
-SpTPresenterBuilder >> newDropDown [
-
-	^ self instantiate: SpDropDownPresenter
-]
-
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newDropList [
 	^ self instantiate: SpDropListPresenter
@@ -107,12 +101,6 @@ SpTPresenterBuilder >> newDynamicPresentersListIn: accessorSymbol usingBuilder: 
 	self build
 ]
 
-{ #category : 'scripting - lists' }
-SpTPresenterBuilder >> newEasyListView [
-	self flag: #TODO. "replace newList with this"
-	^ self instantiate: SpEasyListViewPresenter
-]
-
 { #category : 'scripting - layouts' }
 SpTPresenterBuilder >> newGridLayout [
 
@@ -132,12 +120,6 @@ SpTPresenterBuilder >> newLabel [
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newList [
 	^ self instantiate: SpListPresenter
-]
-
-{ #category : 'scripting - lists' }
-SpTPresenterBuilder >> newListView [
-
-	^ self instantiate: SpListViewPresenter
 ]
 
 { #category : 'scripting - widgets' }

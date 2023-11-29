@@ -8,9 +8,8 @@ Class {
 		'iconPresenter',
 		'textPresenter'
 	],
-	#category : 'Spec2-Core-Widgets-ListView',
-	#package : 'Spec2-Core',
-	#tag : 'Widgets-ListView'
+	#category : 'Spec2-ListView',
+	#package : 'Spec2-ListView'
 }
 
 { #category : 'layout' }

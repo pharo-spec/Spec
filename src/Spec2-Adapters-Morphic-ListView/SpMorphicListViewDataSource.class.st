@@ -5,8 +5,7 @@ Class {
 	#name : 'SpMorphicListViewDataSource',
 	#superclass : 'SpMorphicListDataSource',
 	#category : 'Spec2-Adapters-Morphic-ListView',
-	#package : 'Spec2-Adapters-Morphic',
-	#tag : 'ListView'
+	#package : 'Spec2-Adapters-Morphic-ListView'
 }
 
 { #category : 'accessing' }
