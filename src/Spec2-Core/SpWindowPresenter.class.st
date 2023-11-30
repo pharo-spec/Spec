@@ -689,10 +689,11 @@ SpWindowPresenter >> whenWillCloseDo: aBlock [
 	"Inform when window will close, allowing process before the close happen. 
 	 Note that user cannot cancel the close operation using this event. 
 	 `aBlock` receives one optional argument (an instance of the announcement `SpWindowWillClose`)."
-	
-	self announcer 
+
+	self announcer
 		when: SpWindowWillClose
 		do: aBlock
+		for: aBlock receiver
 ]
 
 { #category : 'private' }
