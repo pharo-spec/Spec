@@ -331,11 +331,11 @@ SpJob >> whenChangedDo: aBlock [
 { #category : 'events' }
 SpJob >> whenEndDo: aBlock [
 
-	self announcer when: JobEnd do: aBlock
+	self announcer when: JobEnd do: aBlock for: aBlock receiver
 ]
 
 { #category : 'events' }
 SpJob >> whenStartDo: aBlock [
 
-	self announcer when: JobStart do: aBlock
+	self announcer when: JobStart do: aBlock for: aBlock receiver
 ]
