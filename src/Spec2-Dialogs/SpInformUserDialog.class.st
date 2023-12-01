@@ -8,7 +8,8 @@ Class {
 		'title',
 		'label',
 		'progressBar',
-		'openAction'
+		'openAction',
+		'returnValue'
 	],
 	#category : 'Spec2-Dialogs',
 	#package : 'Spec2-Dialogs'
@@ -46,27 +47,24 @@ SpInformUserDialog class >> extent [
 
 { #category : 'private - actions' }
 SpInformUserDialog >> afterOpenAction [
-		
+
 	openAction ifNil: [ ^ self ].
 
-	[ 
-		[ 
-			openAction value.
-			self accept ]
-		on: Error 
-		fork: [ :e | 
-			self cancel.
-			e pass ].
-	] fork
+	[
+	[
+	returnValue := openAction value.
+	self accept ] on: Error fork: [ :e |
+		self cancel.
+		e pass ] ] fork
 ]
 
-{ #category : 'api' }
+{ #category : 'simple dialog helpers' }
 SpInformUserDialog >> informUser: aString during: aBlock [ 
 	"Pay attention that the aBlock argument does not expect an argument representing the bar.
 	Check class side example."
 	
 	title := aString.
-	self informUserDuring: [
+	^ self informUserDuring: [
 		aBlock value ]
 ]
 
@@ -79,7 +77,9 @@ SpInformUserDialog >> informUserDuring: aBlock [
 	openAction := aBlock.
 	self openModal.
 	parentWindow ifNotNil: [
-		parentWindow takeKeyboardFocus ]
+		parentWindow takeKeyboardFocus ].
+	
+	^ returnValue
 ]
 
 { #category : 'initialization' }

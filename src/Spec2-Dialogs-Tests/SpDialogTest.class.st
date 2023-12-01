@@ -57,6 +57,14 @@ SpDialogTest >> testInformUserDuringViaPresenter [
 ]
 
 { #category : 'tests - progress bar' }
+SpDialogTest >> testInformUserReturnsValueOfTheBlock [
+
+	| returned | 
+	returned := SpInformUserDialog new informUser: 'hello' during: [ 42 ].
+	self assert: returned equals: 42.
+]
+
+{ #category : 'tests - progress bar' }
 SpDialogTest >> testProgressInformUserDuringExecutesItsBlock [
 
 	| executed | 
