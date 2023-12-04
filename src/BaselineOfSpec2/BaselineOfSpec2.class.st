@@ -60,18 +60,16 @@ BaselineOfSpec2 >> defaultRepositoryURL [
 ]
 
 { #category : 'external projects' }
-BaselineOfSpec2 >> packageRepository [
-
-	" Tries to determine a repository from which the baseline is being loaded. Useful for 
+BaselineOfSpec2 >> packageRepositoryURLForSpec: spec ifAbsent: aBlock [
+	" Tries to determine a repository URL from which the baseline is being loaded. Useful for 
 	refering other baselines in the same repository. "
-	
-	^ (self class package mcWorkingCopy repositoryGroup repositories 
-		reject: [:each | each = MCCacheRepository uniqueInstance]) 
-		ifNotEmpty: [ :repositories | 
-				repositories 
-					detect: [ :each | each description beginsWith: 'tonel://' ]
-					ifNone: [ repositories anyOne ] ]
-		ifEmpty: [ nil ]
+
+	^ spec repositoryDescriptions
+		  detect: [ :each | each beginsWith: 'tonel://' ]
+		  ifNone: [
+			  spec repositoryDescriptions
+				  ifEmpty: [ aBlock value ]
+				  ifNotEmpty: [ :collection | collection anyOne ] ]
 ]
 
 { #category : 'accessing' }
@@ -105,7 +103,7 @@ BaselineOfSpec2 >> specCore: spec [
 
 	spec baseline: 'SpecCore' with: [ 
 		spec 
-			repository: (self packageRepositoryURL ifEmpty: [ self defaultRepositoryURL ]);
+			repository: (self packageRepositoryURLForSpec: spec ifAbsent: [ self defaultRepositoryURL ]);
 			loads: #('Base' 'Tests') ]
 ]
 
@@ -114,7 +112,7 @@ BaselineOfSpec2 >> specCoreCode: spec [
 
 	spec baseline: 'SpecCoreCode' with: [ 
 		spec 
-			repository: (self packageRepositoryURL ifEmpty: [ self defaultRepositoryURL ]);
+			repository: (self packageRepositoryURLForSpec: spec ifAbsent: [ self defaultRepositoryURL ]);
 			className: 'BaselineOfSpecCore';
 			loads: #('Code' 'CodeTests') ]
 ]
