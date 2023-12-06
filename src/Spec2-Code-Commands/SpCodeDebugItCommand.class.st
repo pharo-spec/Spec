@@ -58,14 +58,11 @@ SpCodeDebugItCommand >> compile: aStream for: anObject in: evalContext [
 SpCodeDebugItCommand >> debug: aStream [
 
 	| method doItReceiver doItContext |
-	(self context respondsTo: #doItReceiver)
-		ifTrue: [
-			doItReceiver := self context doItReceiver.
-			doItContext := self context doItContext ]
-		ifFalse: [ doItReceiver := doItContext := nil ].
+	doItReceiver := self context doItReceiver.
+	doItContext := self context doItContext.
 
 	method := self compile: aStream for: doItReceiver in: doItContext.
-	method isNil ifTrue: [ ^ self ].
+	method ifNil: [ ^ self ].
 	self debug: method receiver: doItReceiver in: doItContext
 ]
 
