@@ -56,7 +56,7 @@ SpScrollableLayoutAdapterTest >> testAddWithSymbolWorks [
 	presenterClass := classFactory make: [ :aBuilder |
 		                  aBuilder
 			                  superclass: SpPresenter;
-			                  slotsFromString: 'textInput';
+			                  slots: #(textInput);
 			                  package: self class package name ].
 
 	presenter := presenterClass new.
