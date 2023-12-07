@@ -75,8 +75,12 @@ SpMorphicOverlayLayout >> layout: aMorph in: layoutBounds [
 				constraints isOverlay
 					ifTrue: [ self layoutOverlay: eachMorph in: layoutBounds ]
 					ifFalse: [ eachMorph bounds: layoutBounds ] ]
-			ifFalse: [ 
-				eachMorph bounds: (0@0 corner: 0@0) ] ]
+			ifFalse: [
+				"in fact, this seems to not be necessary (while causing a problem on hide then show 
+				 again since I do not have the bounds anymore. If this fails, the solution is to 
+				 keep the old size in an extended property of the morph and then re-add it when 
+				 declaring it visible again (hopefully not needed)."
+				"eachMorph bounds: (0@0 corner: 0@0)" ] ]
 ]
 
 { #category : 'layout' }
