@@ -5,9 +5,9 @@ I will evalute the selection (or line) of the playground using a profiler.
 Class {
 	#name : 'SpCodeProfileItCommand',
 	#superclass : 'SpCodeSelectionCommand',
-	#category : 'Spec2-Code-Commands-TODO',
+	#category : 'Spec2-Code-Commands-Base',
 	#package : 'Spec2-Code-Commands',
-	#tag : 'TODO'
+	#tag : 'Base'
 }
 
 { #category : 'defaults' }
@@ -25,5 +25,15 @@ SpCodeProfileItCommand class >> defaultName [
 { #category : 'execution' }
 SpCodeProfileItCommand >> execute [
 
-	self flag: 'TODO'
+	| selection |
+	selection := self selectedTextOrLine.
+	selection trimBoth ifEmpty: [ ^ self ].
+
+	self profilerPresenterClass profileCode: selection
+]
+
+{ #category : 'constants' }
+SpCodeProfileItCommand >> profilerPresenterClass [
+
+	^ ProfilerPresenter
 ]
