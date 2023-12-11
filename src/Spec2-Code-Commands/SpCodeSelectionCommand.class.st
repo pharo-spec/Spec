@@ -42,6 +42,24 @@ SpCodeSelectionCommand >> asSpecCommand [
 ]
 
 { #category : 'private' }
+SpCodeSelectionCommand >> compile: aStream for: anObject in: evalContext [
+
+	| methodClass |
+	methodClass := evalContext
+		               ifNil: [ anObject class ]
+		               ifNotNil: [ evalContext methodClass ].
+
+	^ context class compiler
+		  source: aStream;
+		  class: methodClass;
+		  context: evalContext;
+		  requestor: context; "it should enable a visibility of current tool variables in new debugger"
+		  isScripting: true;
+		  failBlock: [ ^ nil ];
+		  compile
+]
+
+{ #category : 'private' }
 SpCodeSelectionCommand >> evaluate: aString andDo: aBlock [
 	"Treat the current selection as an expression; evaluate it and invoke 
 	 aBlock with the result."
