@@ -39,15 +39,9 @@ SpCodeProfileItCommand >> execute [
 		                  in: evaluationContext.
 	compiledMethod ifNil: [ ^ self ].
 
-	ProfilerPresenter new
+	StProfilerPresenter new
 		open;
 		profileBlock: [
 			compiledMethod valueWithReceiver: receiver arguments: #(  ) ]
 		displayCode: selection
-]
-
-{ #category : 'constants' }
-SpCodeProfileItCommand >> profilerPresenterClass [
-
-	^ ProfilerPresenter
 ]
