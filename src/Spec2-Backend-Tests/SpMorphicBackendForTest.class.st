@@ -1,28 +1,30 @@
 Class {
-	#name : #SpMorphicBackendForTest,
-	#superclass : #SpAbstractBackendForTest,
+	#name : 'SpMorphicBackendForTest',
+	#superclass : 'SpAbstractBackendForTest',
 	#traits : 'SpTMorphicUIRedrawer',
 	#classTraits : 'SpTMorphicUIRedrawer classTrait',
 	#instVars : [
 		'app'
 	],
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 SpMorphicBackendForTest >> assertHasHeader: anAdapter [
 	self waitUntilUIRedrawed.
 
 	self assert: (anAdapter widget instVarNamed: #showColumnHeaders)
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 SpMorphicBackendForTest >> assertIcon: anAlphaImageMorph equals: aForm [ 
 	
 	self assert: (anAlphaImageMorph ifNotNil: #form) = aForm
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicBackendForTest >> assertImage: actual equals: expected [ 
 	
 	(expected isNil and: [ actual isNil or: [actual width = 1 and: [ actual height =1 ]] ]) ifTrue: [ ^ self ].
@@ -32,7 +34,7 @@ SpMorphicBackendForTest >> assertImage: actual equals: expected [
 	self assert: actual bits = expected bits.		
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 SpMorphicBackendForTest >> assertList: anAdapter displayItems: aCollection [ 
 	
 	| tableContainer tableRowContents |
@@ -50,7 +52,7 @@ SpMorphicBackendForTest >> assertList: anAdapter displayItems: aCollection [
 	self assert: tableRowContents third = aCollection third.
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 SpMorphicBackendForTest >> assertListHeaderOf: anAdapter equals: aCollection [ 
 
 	| tableContainer tableRowMorph cells |
@@ -64,13 +66,13 @@ SpMorphicBackendForTest >> assertListHeaderOf: anAdapter equals: aCollection [
 	self assert: (cells collect: [ :c | c submorphs first contents]) asArray = aCollection asArray
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicBackendForTest >> canChangeFonts [
 	
 	^ true
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpMorphicBackendForTest >> clickFirstRowAndColumn: anAdapter [ 
 
 	self waitUntilUIRedrawed.
@@ -82,7 +84,7 @@ SpMorphicBackendForTest >> clickFirstRowAndColumn: anAdapter [
 
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 SpMorphicBackendForTest >> denyHasHeader: anAdapter [ 
 
 	| tableContainer |
@@ -92,24 +94,24 @@ SpMorphicBackendForTest >> denyHasHeader: anAdapter [
 	self assert: tableContainer submorphs size = 3
 ]
 
-{ #category : #simulating }
+{ #category : 'simulating' }
 SpMorphicBackendForTest >> doubleClickFirstRowAndColumn: anAdapter [ 
 
 	self waitUntilUIRedrawed.
 
-	anAdapter widget doubleClick: (MouseEvent new
+	anAdapter widget doubleClick: (MouseButtonEvent new
 		setPosition: anAdapter widget submorphs first submorphs first bounds center;
 		yourself).
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicBackendForTest >> initialize [
 	super initialize.
 	self initializeSemaphore
 ]
 
-{ #category : #opening }
+{ #category : 'opening' }
 SpMorphicBackendForTest >> openInstanceOf: aTest [
 
 	aTest window ifNil: [ 
@@ -119,7 +121,7 @@ SpMorphicBackendForTest >> openInstanceOf: aTest [
 	self waitUntilUIRedrawed
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpMorphicBackendForTest >> runTest: aBlock [
 	app := SpApplication new.
 	app useBackend: #Morphic.

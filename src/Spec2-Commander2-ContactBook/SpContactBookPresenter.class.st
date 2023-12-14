@@ -6,17 +6,19 @@ I provide a nice UI to manage the contacts of the contact book I am opened on.
 Check my class-side for example.
 "
 Class {
-	#name : #SpContactBookPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpContactBookPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'table',
 		'contactBook',
 		'menuBar'
 	],
-	#category : #'Spec2-Commander2-ContactBook-Spec'
+	#category : 'Spec2-Commander2-ContactBook-Spec',
+	#package : 'Spec2-Commander2-ContactBook',
+	#tag : 'Spec'
 }
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpContactBookPresenter class >> buildAddingGroupWith: presenterInstance [
 	^ (CmCommandGroup named: 'Adding') asSpecGroup
 		description: 'Commands related to contact addition.';
@@ -25,14 +27,14 @@ SpContactBookPresenter class >> buildAddingGroupWith: presenterInstance [
 		yourself
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpContactBookPresenter class >> buildCommandsGroupWith: presenterInstance forRoot: rootCommandGroup [
 	rootCommandGroup
 		register: (self buildMenuBarGroupWith: presenterInstance);
 		register: (self buildContextualMenuGroupWith: presenterInstance)
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpContactBookPresenter class >> buildContextualMenuGroupWith: presenterInstance [
 
 	^ (CmCommandGroup named: 'Context Menu') asSpecGroup
@@ -42,7 +44,7 @@ SpContactBookPresenter class >> buildContextualMenuGroupWith: presenterInstance 
 		yourself
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpContactBookPresenter class >> buildEditionGroupWith: presenterInstance [
 	^ (CmCommandGroup named: 'Edition') asSpecGroup
 		description: 'Commands related to contact edition.';
@@ -51,14 +53,14 @@ SpContactBookPresenter class >> buildEditionGroupWith: presenterInstance [
 		yourself
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpContactBookPresenter class >> buildMenuBarGroupWith: presenterInstance [
 	^ (CmCommandGroup named: 'MenuBar') asSpecGroup
 		register: SpPrintContactBookInTranscript forSpec;
 		yourself
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpContactBookPresenter class >> buildRemovingGroupWith: presenterInstance [
 	^ (CmCommandGroup named: 'Removing') asSpecGroup
 		description: 'Command related to contact removal.';
@@ -67,13 +69,13 @@ SpContactBookPresenter class >> buildRemovingGroupWith: presenterInstance [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpContactBookPresenter class >> coworkersExample [
 	<example>
 	^ (self on: SpContactBook coworkers) openWithSpec 
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpContactBookPresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add: #menuBar
@@ -82,18 +84,18 @@ SpContactBookPresenter class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpContactBookPresenter class >> familyExample [
 	<example>
 	^ (self on: SpContactBook family) openWithSpec 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBookPresenter >> contactBook [
 	^ contactBook
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpContactBookPresenter >> initializePresenters [
 	table := self newTable.
 	table 
@@ -107,19 +109,19 @@ SpContactBookPresenter >> initializePresenters [
 	menuBar := (self rootCommandsGroup / 'MenuBar') asMenuBarPresenter.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpContactBookPresenter >> initializeWindow: aWindowPresenter [
 	
 	super initializeWindow: aWindowPresenter.
 	self rootCommandsGroup installShortcutsIn: aWindowPresenter
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpContactBookPresenter >> isContactSelected [
 	^ table selection selectedItem notNil
 ]
 
-{ #category : #'user interaction' }
+{ #category : 'user interaction' }
 SpContactBookPresenter >> newContact [
 	| rawData splitted |
 	rawData := self request: 'Enter new contact name and phone (split by comma)' initialAnswer: '' title: 'Create new contact'.
@@ -135,7 +137,7 @@ SpContactBookPresenter >> newContact [
 		yourself
 ]
 
-{ #category : #'user interaction' }
+{ #category : 'user interaction' }
 SpContactBookPresenter >> newName [
 	| newName |
 	newName := self request: 'New name of the contact' initialAnswer: self selectedContact name title: 'Rename a contact'.
@@ -147,7 +149,7 @@ SpContactBookPresenter >> newName [
 	^ newName
 ]
 
-{ #category : #'user interaction' }
+{ #category : 'user interaction' }
 SpContactBookPresenter >> newPhone [
 	| phone |
 	phone := self request: 'New phone for the contact' initialAnswer: self selectedContact phone title: 'Set new phone for contact'.
@@ -159,7 +161,7 @@ SpContactBookPresenter >> newPhone [
 	^ phone
 ]
 
-{ #category : #'user interaction' }
+{ #category : 'user interaction' }
 SpContactBookPresenter >> removeContact: aCmContact [
 	| confirm |
 	confirm := self confirm: ('Are you sure you want to remove {1} contact' format: { aCmContact name }) label: 'Remove the contact'.
@@ -167,33 +169,33 @@ SpContactBookPresenter >> removeContact: aCmContact [
 		ifTrue: [ self contactBook removeContact: aCmContact ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBookPresenter >> selectedContact [
 	^ table selection selectedItem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBookPresenter >> selectedContacts [
 	^table selectedItems
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpContactBookPresenter >> setModelBeforeInitialization: aContactBook [
 	super setModelBeforeInitialization: aContactBook.
 	contactBook := aContactBook
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBookPresenter >> table [
 	^ table
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContactBookPresenter >> table: anObject [
 	table := anObject
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpContactBookPresenter >> updateView [
 	table items: contactBook contents
 ]

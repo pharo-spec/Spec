@@ -1,10 +1,12 @@
 Class {
-	#name : #SpSearchableTreeTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Deprecated-Tests'
+	#name : 'SpSearchableTreeTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Deprecated-Tests',
+	#package : 'Spec2-Deprecated',
+	#tag : 'Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpSearchableTreeTest >> classToTest [
 	^ SpSearchableTree
 ]

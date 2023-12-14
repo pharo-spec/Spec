@@ -2,25 +2,27 @@
 testing ListComposablePresenter
 "
 Class {
-	#name : #SpAbstractListPresenterTest,
-	#superclass : #SpSpecTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpAbstractListPresenterTest',
+	#superclass : 'SpSpecTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractListPresenterTest class >> isAbstract [
 
 	^ self == SpAbstractListPresenterTest
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpAbstractListPresenterTest >> setUp [
 
 	super setUp.
 	presenter items: #(10 20 30).
 ]
 
-{ #category : #'tests - activation' }
+{ #category : 'tests - activation' }
 SpAbstractListPresenterTest >> testActivationOnDoubleClickShouldActivateOnDoubleClick [
 
 	| activatedItem |
@@ -34,7 +36,7 @@ SpAbstractListPresenterTest >> testActivationOnDoubleClickShouldActivateOnDouble
 	self assert: activatedItem equals: 10.
 ]
 
-{ #category : #'tests - activation' }
+{ #category : 'tests - activation' }
 SpAbstractListPresenterTest >> testActivationOnDoubleClickShouldNotActivateOnClick [
 
 	| activatedItem |
@@ -48,7 +50,7 @@ SpAbstractListPresenterTest >> testActivationOnDoubleClickShouldNotActivateOnCli
 	self assert: activatedItem equals: nil.
 ]
 
-{ #category : #'tests - activation' }
+{ #category : 'tests - activation' }
 SpAbstractListPresenterTest >> testActivationOnSingleClickShouldActivateOnClick [
 
 	| activatedItem |
@@ -62,7 +64,7 @@ SpAbstractListPresenterTest >> testActivationOnSingleClickShouldActivateOnClick 
 	self assert: activatedItem equals: 10.
 ]
 
-{ #category : #'tests - activation' }
+{ #category : 'tests - activation' }
 SpAbstractListPresenterTest >> testActivationOnSingleClickShouldNotActivateOnClickOutside [
 
 	| activatedItem |
@@ -76,7 +78,7 @@ SpAbstractListPresenterTest >> testActivationOnSingleClickShouldNotActivateOnCli
 	self assert: activatedItem equals: nil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListPresenterTest >> testActivationWithTransformation [
 	| activatedItem |
 
@@ -92,7 +94,7 @@ SpAbstractListPresenterTest >> testActivationWithTransformation [
 	self assert: activatedItem equals: 100
 ]
 
-{ #category : #'tests - activation' }
+{ #category : 'tests - activation' }
 SpAbstractListPresenterTest >> testActivationWithoutActivationBlockDoesNothing [
 
 	| activatedItem |
@@ -104,7 +106,7 @@ SpAbstractListPresenterTest >> testActivationWithoutActivationBlockDoesNothing [
 	self assert: activatedItem equals: nil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListPresenterTest >> testContextMenu [
 	| menu changed |
 	
@@ -118,7 +120,7 @@ SpAbstractListPresenterTest >> testContextMenu [
 	self assert: changed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListPresenterTest >> testDisableActivationDuring [ 
 	| activated |
 
@@ -131,7 +133,7 @@ SpAbstractListPresenterTest >> testDisableActivationDuring [
 	self assert: presenter selectedItem equals: 20 "but the selection changed!"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListPresenterTest >> testReplaceItemList [
 	| changed |
 
@@ -145,7 +147,7 @@ SpAbstractListPresenterTest >> testReplaceItemList [
 	self assert: changed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListPresenterTest >> testSelectAll [
 
 	presenter beSingleSelection.
@@ -160,7 +162,7 @@ SpAbstractListPresenterTest >> testSelectAll [
 		equals: #(10 20 30)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListPresenterTest >> testSelectedItemsSortedByIndex [
 
 	presenter beMultipleSelection.
@@ -175,7 +177,7 @@ SpAbstractListPresenterTest >> testSelectedItemsSortedByIndex [
 		equals: #(10 30)
 ]
 
-{ #category : #'tests - smoke' }
+{ #category : 'tests - smoke' }
 SpAbstractListPresenterTest >> testSetSortingBlockBeforeItems [
 	| count |
 	count := 0.
@@ -186,13 +188,13 @@ SpAbstractListPresenterTest >> testSetSortingBlockBeforeItems [
 	self assert: (presenter model at: 1) equals: 0
 ]
 
-{ #category : #'tests - smoke' }
+{ #category : 'tests - smoke' }
 SpAbstractListPresenterTest >> testSmokeOpenEmptyPresenter [
 
 	window := presenter open
 ]
 
-{ #category : #'tests - smoke' }
+{ #category : 'tests - smoke' }
 SpAbstractListPresenterTest >> testSmokeOpenPresenterWithItems [
 
 	window := presenter
@@ -200,7 +202,7 @@ SpAbstractListPresenterTest >> testSmokeOpenPresenterWithItems [
 		          open
 ]
 
-{ #category : #'tests - smoke' }
+{ #category : 'tests - smoke' }
 SpAbstractListPresenterTest >> testSortingBlock [
 	| count |
 	count := 0.
@@ -211,7 +213,7 @@ SpAbstractListPresenterTest >> testSortingBlock [
 	self assert: (presenter model at: 1) equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListPresenterTest >> testUnselectAll [
 
 	presenter beMultipleSelection.
@@ -223,7 +225,7 @@ SpAbstractListPresenterTest >> testUnselectAll [
 	self assertEmpty: presenter selection selectedItems
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractListPresenterTest >> testUpdateItemsKeepingSelection [ 
 
 	presenter items: #($a $b $c).

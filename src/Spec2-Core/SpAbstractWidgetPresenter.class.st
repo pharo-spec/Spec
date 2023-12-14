@@ -2,8 +2,8 @@
 SpAbstractBasicWidget is an abstract class for basic widgets.
 "
 Class {
-	#name : #SpAbstractWidgetPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpAbstractWidgetPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'#borderWidth => ObservableSlot',
 		'#borderColor => ObservableSlot',
@@ -16,22 +16,24 @@ Class {
 		'#acceptDrop => ObservableSlot',
 		'#deferredActions'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpAbstractWidgetPresenter class >> adapterName [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAbstractWidgetPresenter class >> addDocumentExtraSections: aBuilder [
 	"a hook to add extra sections when needed"
 	
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAbstractWidgetPresenter class >> addDocumentSection: aBuilder label: label methods: methods [
 	
 	methods ifEmpty: [ ^ self ].
@@ -44,7 +46,7 @@ SpAbstractWidgetPresenter class >> addDocumentSection: aBuilder label: label met
 				aBuilder monospace: (each methodClass name, '>>#', each selector) ] ] ]
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAbstractWidgetPresenter class >> addDocumentSectionExampleCode: aBuilder [
 	| exampleCode |
 
@@ -57,7 +59,7 @@ SpAbstractWidgetPresenter class >> addDocumentSectionExampleCode: aBuilder [
 	aBuilder codeblock: exampleCode
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAbstractWidgetPresenter class >> addDocumentSectionFactoryMethod: aBuilder [
 	| selector |
 
@@ -74,7 +76,7 @@ SpAbstractWidgetPresenter class >> addDocumentSectionFactoryMethod: aBuilder [
 	aBuilder text: '.'
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAbstractWidgetPresenter class >> addDocumentSectionHierarchy: aBuilder [
 	
 	aBuilder newLine.
@@ -85,12 +87,12 @@ SpAbstractWidgetPresenter class >> addDocumentSectionHierarchy: aBuilder [
 		buildFor: self
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAbstractWidgetPresenter class >> addDocumentSectionTransmissions: aBuilder [
 	| transmissions defaultInputPort defaultOutputPort |
 	
 	transmissions := self methods select: [ :each | 
-		(each protocol = self documentTransmissionsProtocol) 
+		(each protocolName = self documentTransmissionsProtocol) 
 		and: [ (each selector beginsWith: 'default') not ] ].
 	transmissions ifEmpty: [ ^ self ].
 	
@@ -111,86 +113,83 @@ SpAbstractWidgetPresenter class >> addDocumentSectionTransmissions: aBuilder [
 					ifTrue: [ aBuilder monospace: ' (default)' ] ] ] ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpAbstractWidgetPresenter class >> defaultLayout [
 
 	^ SpAbstractWidgetLayout for: self adapterName
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAbstractWidgetPresenter class >> documentExampleCode [
+
 	| exampleMethod |
-	
-	exampleMethod := self class methods 
-		detect: [ :each | 
-			(each protocol = self documentExamplesProtocol) 
-			and: [ each selector = self documentExampleCodeSelector ] ]
-		ifNone: [ ^ nil ].
-			
-	^ (exampleMethod sourceCode lines 
-		allButFirst 	"Remove method name"
-		reject: [ :each | each trimLeft beginsWith: '<' ]) "Remove pragmas"
-		asStringWithCr
-		trimmed
+	exampleMethod := self class methods
+		                 detect: [ :method | method protocolName = self documentExamplesProtocol and: [ method selector = self documentExampleCodeSelector ] ]
+		                 ifNone: [ ^ nil ].
+
+	^ (exampleMethod sourceCode lines allButFirst reject: [ :each | each trimLeft beginsWith: '<' ]) asStringWithCr trimmed "Remove method name" "Remove pragmas"
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAbstractWidgetPresenter class >> documentExampleCodeSelector [
 	
 	^ #example
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAbstractWidgetPresenter class >> documentExamplesProtocol [
 	
 	^ #'*Spec2-Examples'
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAbstractWidgetPresenter class >> documentFactoryMethodSelector [
 
 	^ nil
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAbstractWidgetPresenter class >> documentSections [
-		
+
 	^ OrderedDictionary newFromPairs: {
-		'Examples'. self class methods select: [ :each | each protocol = self documentExamplesProtocol ].
-		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
-		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api - events' ].
-	 }
+			  'Examples'.
+			  (self class methods select: [ :method | method protocolName = self documentExamplesProtocol ]).
+			  'API Methods'.
+			  (self methods select: [ :method | method protocolName = #api ]).
+			  'Testing Methods'.
+			  (self methods select: [ :method | method protocolName = #testing ]).
+			  'Events'.
+			  (self methods select: [ :method | method protocolName = #'api - events' ]) }
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpAbstractWidgetPresenter class >> documentTransmissionsProtocol [
 
 	^ #'*Spec2-Transmission'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractWidgetPresenter class >> isAbstract [
 	^ self = SpAbstractWidgetPresenter
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractWidgetPresenter class >> isWindow [
 
 	^ false
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractWidgetPresenter >> acceptDrop [
 	^ acceptDrop
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractWidgetPresenter >> acceptDrop: aBlock [
 	acceptDrop := aBlock
 ]
 
-{ #category : #'private - deferring' }
+{ #category : 'private - deferring' }
 SpAbstractWidgetPresenter >> addDeferredAction: aBlock [
 	"Deferred actions are one-shot actions, performed during adapter initialization."
 
@@ -198,7 +197,7 @@ SpAbstractWidgetPresenter >> addDeferredAction: aBlock [
 	deferredActions := deferredActions copyWith: aBlock
 ]
 
-{ #category : #'private - building' }
+{ #category : 'private - building' }
 SpAbstractWidgetPresenter >> basicBuildAdapterWithLayout: aSpecLayout [
 	| builtAdapter |
 
@@ -207,84 +206,84 @@ SpAbstractWidgetPresenter >> basicBuildAdapterWithLayout: aSpecLayout [
 	^ builtAdapter
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractWidgetPresenter >> borderColor [
 	"Return the border color"
 
 	^ borderColor
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractWidgetPresenter >> borderColor: aColor [
 	"Set the border width"
 
 	borderColor := aColor
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractWidgetPresenter >> borderWidth [
 	"Return the border width"
 
 	^ borderWidth
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractWidgetPresenter >> borderWidth: anInteger [
 	"Set the border width"
 
 	borderWidth := anInteger
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractWidgetPresenter >> color [
 	^ color
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractWidgetPresenter >> color: aColor [
 	^ color := aColor
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractWidgetPresenter >> defaultColor [
 	^ self theme backgroundColor
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractWidgetPresenter >> disable [
 	"Disable the presenter"
 	
 	self enabled: false
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractWidgetPresenter >> dragEnabled [
 	^ dragEnabled
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractWidgetPresenter >> dragEnabled: aBoolean [
 	dragEnabled := aBoolean
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractWidgetPresenter >> dropEnabled [
 	^ dropEnabled
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractWidgetPresenter >> dropEnabled: aBoolean [
 	dropEnabled := aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractWidgetPresenter >> enable [
 	"Enable the presenter"
 	
 	self enabled: true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractWidgetPresenter >> enabled: aBooleanOrValuable [
 	"Set if the widget is enabled (clickable or focusable).
 	This can either be a boolean or a block returning a boolean."
@@ -292,21 +291,21 @@ SpAbstractWidgetPresenter >> enabled: aBooleanOrValuable [
 	enabled := aBooleanOrValuable
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractWidgetPresenter >> help [
 	"Return the help string to display as help (tooltip) to the user."
 
 	^ help
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractWidgetPresenter >> help: aString [
 	"Set a help string to display to the user if he let the mouse over the widget (a tooltip)."
 
 	help := aString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractWidgetPresenter >> initialize [
 	super initialize.
 
@@ -323,14 +322,14 @@ SpAbstractWidgetPresenter >> initialize [
 		self withWidgetDo: [ :w | w update: #dropEnabled: with: { value } ] ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractWidgetPresenter >> isEnabled [
 	"Answer if presenter is enabled"
 
 	^ enabled
 ]
 
-{ #category : #localization }
+{ #category : 'localization' }
 SpAbstractWidgetPresenter >> localeChanged [
 
 	super localeChanged.
@@ -338,7 +337,7 @@ SpAbstractWidgetPresenter >> localeChanged [
 	
 ]
 
-{ #category : #'private - deferring' }
+{ #category : 'private - deferring' }
 SpAbstractWidgetPresenter >> processDeferredActions [
 
 	deferredActions ifNil: [ ^ self ].
@@ -348,12 +347,12 @@ SpAbstractWidgetPresenter >> processDeferredActions [
 		deferredActions := nil ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractWidgetPresenter >> replaceLayoutWith: aLayout [
 	"do nothing, widgets do not have updatable layouts"
 ]
 
-{ #category : #'private - traversing' }
+{ #category : 'private - traversing' }
 SpAbstractWidgetPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
 	self canTakeKeyboardFocus ifFalse: [ ^ self ].
@@ -362,7 +361,7 @@ SpAbstractWidgetPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes 
 	aBlock value: self
 ]
 
-{ #category : #'private - traversing' }
+{ #category : 'private - traversing' }
 SpAbstractWidgetPresenter >> traversePresentersDo: aBlock excluding: excludes [
 	"Terminate"
 
@@ -370,31 +369,31 @@ SpAbstractWidgetPresenter >> traversePresentersDo: aBlock excluding: excludes [
 	aBlock value: self
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractWidgetPresenter >> wantsDrop [
 	^ wantsDrop
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractWidgetPresenter >> wantsDrop: aBlock [
 	wantsDrop := aBlock
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractWidgetPresenter >> whenBorderColorChangedDo: aBlock [
 	"Set a block to be performed when the brder width changed"
 
 	self property: #borderColor whenChangedDo: aBlock
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractWidgetPresenter >> whenBorderWidthChangedDo: aBlock [
 	"Set a block to be performed when the brder width changed"
 
 	self property: #borderWidth whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAbstractWidgetPresenter >> whenEnabledChangedDo: aBlock [
 	"Inform when enabled status has changed. 
 	 `aBlock` has three optional arguments: 
@@ -405,7 +404,7 @@ SpAbstractWidgetPresenter >> whenEnabledChangedDo: aBlock [
 	self property: #enabled whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAbstractWidgetPresenter >> whenHelpChangedDo: aBlock [
 	"Inform when help property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -416,7 +415,7 @@ SpAbstractWidgetPresenter >> whenHelpChangedDo: aBlock [
 	self property: #help whenChangedDo: aBlock
 ]
 
-{ #category : #'private - deferring' }
+{ #category : 'private - deferring' }
 SpAbstractWidgetPresenter >> withAdapterPerformOrDefer: aBlock [ 
 
 	self adapter 

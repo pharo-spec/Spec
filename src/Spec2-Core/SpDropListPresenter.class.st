@@ -5,8 +5,8 @@ _NOTE: I assume there is a little problem on an empty list, but frankly, who cre
 
 "
 Class {
-	#name : #SpDropListPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpDropListPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'#model => ObservableSlot',
 		'#startsWithSelection',
@@ -14,28 +14,30 @@ Class {
 		'#displayBlock => ObservableSlot',
 		'#iconBlock => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDropListPresenter class >> adapterName [
 
 	^ #DropListAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpDropListPresenter class >> documentFactoryMethodSelector [
 
 	^ #newDropList
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDropListPresenter class >> title [
 
 	^ 'Drop List'
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> addItemLabeled: aString do: aBlock [
 	"Add an item to the drop list, along with an action.
 	 `aString` is the label of the element.
@@ -44,7 +46,7 @@ SpDropListPresenter >> addItemLabeled: aString do: aBlock [
 	self addItemLabeled: aString do: aBlock icon: nil.
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> addItemLabeled: aString do: aBlock icon: anIcon [
 	"Add an item to the drop list, along with an icon and an action.
 	 `aString` is the label of the element.
@@ -60,13 +62,13 @@ SpDropListPresenter >> addItemLabeled: aString do: aBlock icon: anIcon [
 		ifFalse: [self appendCollection: { item } ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropListPresenter >> appendCollection: items [
 
 	model collection: (model collection, items)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropListPresenter >> disableSelectionDuring: aBlock [
 	| oldSubscriptions holder |
 	
@@ -77,7 +79,7 @@ SpDropListPresenter >> disableSelectionDuring: aBlock [
 		holder subscriptions: oldSubscriptions ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> display [
 	"Answer the formatting block to transform how the elements will be displayed. 
 	 See also `SpDropListPresenter>>#display:`"
@@ -85,7 +87,7 @@ SpDropListPresenter >> display [
 	^ displayBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> display: aBlock [
 	"Set the formatting block to transform how the elements will be displayed. 
 	 `aBlock` receives one argument (the element to be displayed) and it should answer a string.
@@ -95,14 +97,14 @@ SpDropListPresenter >> display: aBlock [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropListPresenter >> displayForItem: anItem [
 	"The order of the arguments may look weird, but then it seems more natural while using the widget"
 
 	^ self display cull: anItem model cull: anItem
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> displayIcon [
 	"Answer the block that will be used to retrieve the icon to be displayed along with the 
 	 elements."
@@ -110,7 +112,7 @@ SpDropListPresenter >> displayIcon [
 	^ iconBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> displayIcon: aBlock [	
 	"Answer a block that will be used to retrieve the icon to be displayed along with the elements.
 	 `aBlock` receives one argument (an element from the list)"
@@ -118,14 +120,14 @@ SpDropListPresenter >> displayIcon: aBlock [
 	iconBlock := aBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropListPresenter >> dropListItems: dropListItems [
 	"Populate the drop list with a list DropListItems"
 	
 	model collection: dropListItems
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> emptyList [
 	"Empty the list of elements used to populate the drop down list."
 	
@@ -134,25 +136,25 @@ SpDropListPresenter >> emptyList [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropListPresenter >> getIconFor: anItem [
 
 	^ self displayIcon cull: anItem model cull: anItem
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropListPresenter >> getIndex [
 
 	^ selection selectedIndex
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropListPresenter >> getList [
 
 	^ model items
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpDropListPresenter >> hasIcons [
 	"Answer whether the dropdown list will show icons"
 	
@@ -161,7 +163,7 @@ SpDropListPresenter >> hasIcons [
 			each icon notNil or: [ (self getIconFor: each) notNil ] ] ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> iconBlock [ 
 	"Answer the block that will be used to retrieve the icon to be displayed along with the 
 	 elements."
@@ -174,7 +176,7 @@ SpDropListPresenter >> iconBlock [
 	^ iconBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> iconBlock: aBlock [	
 	"Answer a block that will be used to retrieve the icon to be displayed along with the elements.
 	 `aBlock` receives one argument (an element from the list)"
@@ -187,7 +189,7 @@ SpDropListPresenter >> iconBlock: aBlock [
 	iconBlock := aBlock
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDropListPresenter >> initialize [
 	super initialize.
 
@@ -198,20 +200,20 @@ SpDropListPresenter >> initialize [
 	startsWithSelection := true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpDropListPresenter >> isStartWithSelection [
 
 	^ startsWithSelection
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> items [ 
 	"Return the list used to populate the drop list"
 
 	^ self listItems
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> items: aList [
 	"Populate the drop list with a list of ui specific items"
 	"`aList` is a list of domain specific objects. If you want to specify more precisely the item actions, see `SpDropListPresenter>>#addItemLabeled:do:`"
@@ -227,21 +229,21 @@ SpDropListPresenter >> items: aList [
 	self setCollection: dropListItems
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> listItems [
 	"Return the list used to populate the drop list"
 	
 	^ self getList collect: [ :e | e model ].
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> listSize [
 	"Return the size of the list of choices"
 
 	^ self listItems size
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> model [
 	"Answer the model containing the elements to be shown in the drop down list.
 	 Tipically, the model is a collection of `SpDropListItem`."
@@ -249,13 +251,13 @@ SpDropListPresenter >> model [
 	^ model
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 SpDropListPresenter >> resetSelection [
 	
 	self selection unselectAll 
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> selectIndex: anInteger [ 
 	"Select the element at position `anInteger` and executes the action associated with it."
 	
@@ -266,7 +268,7 @@ SpDropListPresenter >> selectIndex: anInteger [
 	self selection selectedItem value
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> selectItem: anItem [ 
 	"Select the element `anItem` if it is in the list. 
 	 It executes the action associated with the item if it is defined."
@@ -282,7 +284,7 @@ SpDropListPresenter >> selectItem: anItem [
 	realItem value
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> selectedIndex [
 	"Answer the index of selected item. 
 	 You usually do not need to use this method but `SpDropListPresenter>>#selectedItem`."
@@ -290,7 +292,7 @@ SpDropListPresenter >> selectedIndex [
 	^ self getIndex
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> selectedItem [
 	"Answer selected item"
 
@@ -298,14 +300,14 @@ SpDropListPresenter >> selectedItem [
 		ifNotNil: [ :anItem | anItem model ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> selection [
 	"Answer selection model, an instance of `SpSingleSelectionMode`."
 	
 	^ selection
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDropListPresenter >> setCollection: items [
 
 	model collection: items.
@@ -316,35 +318,35 @@ SpDropListPresenter >> setCollection: items [
 		ifFalse: [ self resetSelection ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> sortingBlock [
 	"Answer the block used to sort the elements of the list."
 
 	^ self model sortingBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> sortingBlock: aBlock [
 	"Set the block or `SortFunction` used to sort the elements of the list."
 
 	self model sortingBlock: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> startWithSelection [
 	"Indicate when drop list will start with an element selected."
 
 	startsWithSelection := true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> startWithoutSelection [
 	"Indicate when droplist will start without an element selected."
 
 	startsWithSelection := false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDropListPresenter >> updateItemsKeepingSelection: aCollection [
 	"Update list items keeping current selection. 
 	 WARNING: aCollection must includes the elements selected."
@@ -356,7 +358,7 @@ SpDropListPresenter >> updateItemsKeepingSelection: aCollection [
 		self selectItem: item ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpDropListPresenter >> whenSelectedItemChangedDo: aBlock [
 	"Inform when the selected item is changed.
 	 `aBlock` receive one optional argument: the selected item (can be nil)"
@@ -364,7 +366,7 @@ SpDropListPresenter >> whenSelectedItemChangedDo: aBlock [
 	selection whenChangedDo: [	aBlock cull: self selectedItem ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpDropListPresenter >> whenSelectionChangedDo: aBlock [
 	"Inform when the selection is changed.
 	 The method should be used only if you are interested in the fact that there was 
@@ -380,7 +382,7 @@ SpDropListPresenter >> whenSelectionChangedDo: aBlock [
 	selection whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpDropListPresenter >> whenSortingBlockChangedDo: aBlock [
 	"Inform when sorting block has changed.
 	 `aBlock` receive 3 optional arguments: 

@@ -1,15 +1,16 @@
 Class {
-	#name : #SpMockFocusOrderPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpMockFocusOrderPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'firstPresenter',
 		'secondPresenter',
 		'thirdPresenter'
 	],
-	#category : #'Spec2-Morphic-Backend-Tests'
+	#category : 'Spec2-Morphic-Backend-Tests',
+	#package : 'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpMockFocusOrderPresenter class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -19,13 +20,13 @@ SpMockFocusOrderPresenter class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMockFocusOrderPresenter >> firstPresenter [
 
 	^ firstPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMockFocusOrderPresenter >> initializePresenters [
 
 	firstPresenter := self newButton label: 'First'.
@@ -33,13 +34,13 @@ SpMockFocusOrderPresenter >> initializePresenters [
 	thirdPresenter := self newButton label: 'Third'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMockFocusOrderPresenter >> secondPresenter [
 
 	^ secondPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMockFocusOrderPresenter >> thirdPresenter [
 
 	^ thirdPresenter

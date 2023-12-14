@@ -1,10 +1,12 @@
 Class {
-	#name : #SpBoxLayoutAlignmentExample,
-	#superclass : #SpPresenter,
-	#category : #'Spec2-Examples-Demo-Layouts'
+	#name : 'SpBoxLayoutAlignmentExample',
+	#superclass : 'SpPresenter',
+	#category : 'Spec2-Examples-Demo-Layouts',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Layouts'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpBoxLayoutAlignmentExample >> initializePresenters [
 	<script: 'self new openWithSpec'>
 	| pages |
@@ -28,7 +30,7 @@ SpBoxLayoutAlignmentExample >> initializePresenters [
 				yourself ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpBoxLayoutAlignmentExample >> newHorizontalAlignmentLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -48,7 +50,7 @@ SpBoxLayoutAlignmentExample >> newHorizontalAlignmentLayout [
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpBoxLayoutAlignmentExample >> newVerticalAlignmentLayout [
 
 	^ SpBoxLayout newLeftToRight

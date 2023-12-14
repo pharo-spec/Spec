@@ -1,38 +1,40 @@
 Class {
-	#name : #SpTestLocalizedString,
-	#superclass : #Object,
+	#name : 'SpTestLocalizedString',
+	#superclass : 'Object',
 	#instVars : [
 		'string',
 		'requestsCount'
 	],
-	#category : #'Spec2-Tests-Localization'
+	#category : 'Spec2-Tests-Localization',
+	#package : 'Spec2-Tests',
+	#tag : 'Localization'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpTestLocalizedString class >> from: aString [
 
 	^ self new string: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestLocalizedString >> asString [ 
 	^ string asString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTestLocalizedString >> initialize [ 
 
 	super initialize.
 	requestsCount := 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestLocalizedString >> isEmptyOrNil [
 
 	^ self string isEmpty
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestLocalizedString >> localizedForPresenter: aPresenter [ 
 
 	requestsCount := requestsCount + 1.
@@ -40,17 +42,17 @@ SpTestLocalizedString >> localizedForPresenter: aPresenter [
 	^ string, '[', aPresenter locale localeID isoString, '](', requestsCount asString, ')'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestLocalizedString >> string [
 	^ string
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestLocalizedString >> string: anObject [
 	string := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestLocalizedString >> withAccentuatedCharacter: aCharacter [
 
 

@@ -1,16 +1,18 @@
 Class {
-	#name : #SpPanedLayoutAdapterTest,
-	#superclass : #SpLayoutAdapterTest,
-	#category : #'Spec2-Backend-Tests-Layout'
+	#name : 'SpPanedLayoutAdapterTest',
+	#superclass : 'SpLayoutAdapterTest',
+	#category : 'Spec2-Backend-Tests-Layout',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpPanedLayoutAdapterTest class >> isAbstract [
 
 	^ self == SpPanedLayoutAdapterTest
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPanedLayoutAdapterTest >> testAdapterElementsAreInExplicitOrder [
 	| first second |
 	
@@ -20,7 +22,7 @@ SpPanedLayoutAdapterTest >> testAdapterElementsAreInExplicitOrder [
 	self assert: self adapter children second equals: second adapter widget.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPanedLayoutAdapterTest >> testAddFirstElementAfterOpenAddsToAdapter [
 
 	layout second: SpButtonPresenter new.
@@ -30,7 +32,7 @@ SpPanedLayoutAdapterTest >> testAddFirstElementAfterOpenAddsToAdapter [
 	self assert: self adapter children size equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPanedLayoutAdapterTest >> testAddFirstTwiceReplacesChild [
 	| first second |
 
@@ -39,7 +41,7 @@ SpPanedLayoutAdapterTest >> testAddFirstTwiceReplacesChild [
 	self assert: self adapter children first equals: second adapter widget
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPanedLayoutAdapterTest >> testAddFirstTwiceSetsChildrenSingleTime [
 	| first second |
 	
@@ -48,7 +50,7 @@ SpPanedLayoutAdapterTest >> testAddFirstTwiceSetsChildrenSingleTime [
 	self assert: self adapter children size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPanedLayoutAdapterTest >> testAddSecondElementAfterOpenAddsToAdapter [
 
 	layout first: SpButtonPresenter new.
@@ -58,7 +60,7 @@ SpPanedLayoutAdapterTest >> testAddSecondElementAfterOpenAddsToAdapter [
 	self assert: self adapter children size equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPanedLayoutAdapterTest >> testAddSecondTwiceReplacesChild [
 
 	| first second |
@@ -69,7 +71,7 @@ SpPanedLayoutAdapterTest >> testAddSecondTwiceReplacesChild [
 		equals: second adapter widget
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPanedLayoutAdapterTest >> testAddSecondTwiceSetsChildrenSingleTime [
 
 	| first second |
@@ -78,21 +80,21 @@ SpPanedLayoutAdapterTest >> testAddSecondTwiceSetsChildrenSingleTime [
 	self assert: self adapter children size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPanedLayoutAdapterTest >> testLayoutWithFirstElementIsNotEmpty [
 
 	layout first: SpButtonPresenter new.
 	self deny: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPanedLayoutAdapterTest >> testLayoutWithSecondElementIsNotEmpty [
 
 	layout second: SpButtonPresenter new.
 	self deny: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPanedLayoutAdapterTest >> testRemoveFirstElementAddedAfterOpenRemovesFromAdapter [
 
 	| element |
@@ -103,7 +105,7 @@ SpPanedLayoutAdapterTest >> testRemoveFirstElementAddedAfterOpenRemovesFromAdapt
 	self assert: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPanedLayoutAdapterTest >> testRemoveFirstElementRemovesFromAdapter [
 
 	| element |
@@ -112,7 +114,7 @@ SpPanedLayoutAdapterTest >> testRemoveFirstElementRemovesFromAdapter [
 	self assert: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPanedLayoutAdapterTest >> testRemoveSecondElementAddedAfterOpenRemovesFromAdapter [
 
 	| element |
@@ -123,7 +125,7 @@ SpPanedLayoutAdapterTest >> testRemoveSecondElementAddedAfterOpenRemovesFromAdap
 	self assert: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPanedLayoutAdapterTest >> testRemoveSecondElementRemovesFromAdapter [
 
 	| element |

@@ -1,19 +1,21 @@
 Class {
-	#name : #SpMockMillerPresenter,
-	#superclass : #SpMillerPresenter,
+	#name : 'SpMockMillerPresenter',
+	#superclass : 'SpMillerPresenter',
 	#instVars : [
 		'activationBlock'
 	],
-	#category : #'Spec2-Tests-Miller'
+	#category : 'Spec2-Tests-Miller',
+	#package : 'Spec2-Tests',
+	#tag : 'Miller'
 }
 
-{ #category : #simulating }
+{ #category : 'simulating' }
 SpMockMillerPresenter >> activate [
 	
 	activationBlock value: (SpMillerActivation on: 1)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMockMillerPresenter >> whenActivatedDo: aBlock [
 
 	activationBlock := aBlock

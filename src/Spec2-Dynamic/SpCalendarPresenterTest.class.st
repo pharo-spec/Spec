@@ -2,21 +2,23 @@
 Tests for CalendarPresenter.
 "
 Class {
-	#name : #SpCalendarPresenterTest,
-	#superclass : #TestCase,
+	#name : 'SpCalendarPresenterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'calendar'
 	],
-	#category : #'Spec2-Dynamic-Tests'
+	#category : 'Spec2-Dynamic-Tests',
+	#package : 'Spec2-Dynamic',
+	#tag : 'Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpCalendarPresenterTest >> setUp [
 	super setUp.
 	calendar := SpCalendarPresenter new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCalendarPresenterTest >> testDayBeforeMonthOf [
 	self assert: (calendar dayBeforeMonthOf: (Date year: 2018 month: 9 day: 1)) equals: 6.
 	self assert: (calendar dayBeforeMonthOf: (Date year: 2018 month: 9 day: 14)) equals: 6.
@@ -26,7 +28,7 @@ SpCalendarPresenterTest >> testDayBeforeMonthOf [
 	self assert: (calendar dayBeforeMonthOf: (Date year: 2018 month: 10 day: 30)) equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCalendarPresenterTest >> testDaysAfterMonthOf [
 	self assert: (calendar daysAfterMonthOf: (Date year: 2018 month: 9 day: 1)) equals: 6.
 	self assert: (calendar daysAfterMonthOf: (Date year: 2018 month: 9 day: 14)) equals: 6.
@@ -36,7 +38,7 @@ SpCalendarPresenterTest >> testDaysAfterMonthOf [
 	self assert: (calendar daysAfterMonthOf: (Date year: 2018 month: 10 day: 30)) equals: 10
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCalendarPresenterTest >> testJulianDaysIntervalFor [
 	| interval |
 	interval := calendar julianDaysIntervalFor: (Date year: 2018 month: 9 day: 15).
@@ -47,7 +49,7 @@ SpCalendarPresenterTest >> testJulianDaysIntervalFor [
 		equals: ((Date year: 2018 month: 8 day: 26) julianDayNumber to: (Date year: 2018 month: 10 day: 6) julianDayNumber)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCalendarPresenterTest >> testJulianDaysIntervalFor2 [
 	| interval |
 	interval := calendar julianDaysIntervalFor: (Date year: 2018 month: 9 day: 17).
@@ -58,7 +60,7 @@ SpCalendarPresenterTest >> testJulianDaysIntervalFor2 [
 		equals: ((Date year: 2018 month: 8 day: 26) julianDayNumber to: (Date year: 2018 month: 10 day: 6) julianDayNumber)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCalendarPresenterTest >> testJulianDaysIntervalFor3 [
 	| interval |
 	interval := calendar julianDaysIntervalFor: (Date year: 2018 month: 9 day: 1).
@@ -69,7 +71,7 @@ SpCalendarPresenterTest >> testJulianDaysIntervalFor3 [
 		equals: ((Date year: 2018 month: 8 day: 26) julianDayNumber to: (Date year: 2018 month: 10 day: 6) julianDayNumber)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCalendarPresenterTest >> testJulianDaysIntervalFor4 [
 	| interval |
 	interval := calendar julianDaysIntervalFor: (Date year: 2018 month: 9 day: 30).
@@ -80,7 +82,7 @@ SpCalendarPresenterTest >> testJulianDaysIntervalFor4 [
 		equals: ((Date year: 2018 month: 8 day: 26) julianDayNumber to: (Date year: 2018 month: 10 day: 6) julianDayNumber)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCalendarPresenterTest >> testNextMonthButton [
 	| d |
 	d := (Date year: 2018 month: 9 day: 15).
@@ -92,7 +94,7 @@ SpCalendarPresenterTest >> testNextMonthButton [
 	self assert: calendar monthYearLabel label equals: (d addMonths: 1) month asString
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCalendarPresenterTest >> testPreviousMonthButton [
 	| d |
 	d := (Date year: 2018 month: 9 day: 15).
@@ -104,7 +106,7 @@ SpCalendarPresenterTest >> testPreviousMonthButton [
 	self assert: calendar monthYearLabel label equals: (d addMonths: -1) month asString
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCalendarPresenterTest >> testWhenDaySelectedBlock [
 	| blockExecuted d |
 	blockExecuted := false.

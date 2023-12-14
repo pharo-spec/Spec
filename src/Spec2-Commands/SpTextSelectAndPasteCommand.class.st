@@ -1,21 +1,23 @@
 Class {
-	#name : #SpTextSelectAndPasteCommand,
-	#superclass : #SpTextEditionCommand,
-	#category : #'Spec2-Commands-Code'
+	#name : 'SpTextSelectAndPasteCommand',
+	#superclass : 'SpTextEditionCommand',
+	#category : 'Spec2-Commands-Code',
+	#package : 'Spec2-Commands',
+	#tag : 'Code'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpTextSelectAndPasteCommand class >> defaultIconName [
 	^#smallCopy 
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpTextSelectAndPasteCommand class >> defaultName [
 
 	^ 'Paste...'
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 SpTextSelectAndPasteCommand >> execute [
 
 	context doTextSelectAndPaste

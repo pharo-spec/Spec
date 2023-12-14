@@ -1,23 +1,25 @@
 Class {
-	#name : #SpCheckboxAdapterTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpCheckboxAdapterTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCheckboxAdapterTest >> classToTest [
 
 	^ SpCheckBoxPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxAdapterTest >> testActivatedCheckboxPresenterStartsActivatedCheckboxMorph [
 
 	presenter state: true.
 	self assert: self adapter state
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxAdapterTest >> testChangeActivatedAfterOpenCheckboxDectivatesIt [
 
 	presenter state: false.
@@ -30,7 +32,7 @@ SpCheckboxAdapterTest >> testChangeActivatedAfterOpenCheckboxDectivatesIt [
 	self assert: presenter state
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxAdapterTest >> testChangeDeactivatedAfterOpenCheckboxDectivatesIt [
 
 	presenter state: true.
@@ -43,14 +45,14 @@ SpCheckboxAdapterTest >> testChangeDeactivatedAfterOpenCheckboxDectivatesIt [
 	self deny: presenter state
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxAdapterTest >> testChangingLabelAffectTheWidget [
 	
 	presenter label: 'ALabel'.
 	self assert: self widget label equals: 'ALabel'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxAdapterTest >> testClickActivatedCheckboxDectivatesIt [
 
 	presenter state: true.
@@ -59,7 +61,7 @@ SpCheckboxAdapterTest >> testClickActivatedCheckboxDectivatesIt [
 	self deny: presenter state
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxAdapterTest >> testClickDeactivatedCheckboxActivatesIt [
 
 	presenter state: false.
@@ -68,7 +70,7 @@ SpCheckboxAdapterTest >> testClickDeactivatedCheckboxActivatesIt [
 	self assert: presenter state
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxAdapterTest >> testClickRaisesChangedEvent [
 
 	| activated |
@@ -79,7 +81,7 @@ SpCheckboxAdapterTest >> testClickRaisesChangedEvent [
 	self assert: activated
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCheckboxAdapterTest >> testDeactivatedCheckboxPresenterStartsDeactivatedCheckboxMorph [
 
 	presenter state: false.

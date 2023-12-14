@@ -1,24 +1,24 @@
-Extension { #name : #SpAbstractPresenter }
+Extension { #name : 'SpAbstractPresenter' }
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpAbstractPresenter >> defaultInputPort [
 
 	^ nil
 ]
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpAbstractPresenter >> defaultOutputPort [
 
 	^ nil
 ]
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpAbstractPresenter >> transmitDo: aBlock [
 
 	^ self defaultOutputPort transmitDo: aBlock
 ]
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpAbstractPresenter >> transmitDo: aBlock transform: transformBlock [
 	
 	^ self defaultOutputPort
@@ -26,13 +26,13 @@ SpAbstractPresenter >> transmitDo: aBlock transform: transformBlock [
 		transform: transformBlock
 ]
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpAbstractPresenter >> transmitTo: aPresenter [
 	
 	^ self defaultOutputPort transmitTo: aPresenter defaultInputPort
 ]
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpAbstractPresenter >> transmitTo: aPresenter postTransmission: postValuable [
 	
 	^ self defaultOutputPort
@@ -40,7 +40,7 @@ SpAbstractPresenter >> transmitTo: aPresenter postTransmission: postValuable [
 		postTransmission: postValuable
 ]
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpAbstractPresenter >> transmitTo: aPresenter transform: aValuable [
 	
 	^ self defaultOutputPort
@@ -48,7 +48,7 @@ SpAbstractPresenter >> transmitTo: aPresenter transform: aValuable [
 		transform: aValuable
 ]
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpAbstractPresenter >> transmitTo: aPresenter transform: aValuable postTransmission: postValuable [
 	
 	^ self defaultOutputPort

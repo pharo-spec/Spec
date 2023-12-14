@@ -1,6 +1,6 @@
-Extension { #name : #SpMenuBarPresenter }
+Extension { #name : 'SpMenuBarPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpMenuBarPresenter class >> example [
 	| presenter menuBar submenuFile submenuEdit |
 

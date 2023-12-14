@@ -1,16 +1,18 @@
 Class {
-	#name : #SpGridLayoutAdapterTest,
-	#superclass : #SpLayoutAdapterTest,
-	#category : #'Spec2-Backend-Tests-Layout'
+	#name : 'SpGridLayoutAdapterTest',
+	#superclass : 'SpLayoutAdapterTest',
+	#category : 'Spec2-Backend-Tests-Layout',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGridLayoutAdapterTest >> newLayout [
 
 	^ SpGridLayout new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutAdapterTest >> testAddAtSamePositionTwiceReplacesChild [
 
 	| first second |
@@ -19,7 +21,7 @@ SpGridLayoutAdapterTest >> testAddAtSamePositionTwiceReplacesChild [
 	self assert: self adapter children first equals: second adapter widget
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutAdapterTest >> testAddAtSamePositionTwiceSetsChildrenSingleTime [
 
 	layout add: (SpButtonPresenter new) at: 1@1.
@@ -27,14 +29,14 @@ SpGridLayoutAdapterTest >> testAddAtSamePositionTwiceSetsChildrenSingleTime [
 	self assert: self adapter children size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutAdapterTest >> testAddElementAddsToAdapter [
 
 	layout add: SpButtonPresenter new at: 1@1.
 	self deny: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutAdapterTest >> testAddElementAfterOpenAddsToAdapter [
 
 	layout add: SpButtonPresenter new at: 1@1.
@@ -44,7 +46,7 @@ SpGridLayoutAdapterTest >> testAddElementAfterOpenAddsToAdapter [
 	self assert: self adapter children size equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutAdapterTest >> testBeColumnHomogeneous [
 
 	layout 
@@ -59,7 +61,7 @@ SpGridLayoutAdapterTest >> testBeColumnHomogeneous [
 		equals: presenter adapter widget submorphs second width
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutAdapterTest >> testBeColumnNotHomogeneous [
 
 	layout 
@@ -74,7 +76,7 @@ SpGridLayoutAdapterTest >> testBeColumnNotHomogeneous [
 		equals: presenter adapter widget submorphs second width
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutAdapterTest >> testBeRowHomogeneous [
 
 	layout 
@@ -89,7 +91,7 @@ SpGridLayoutAdapterTest >> testBeRowHomogeneous [
 		equals: presenter adapter widget submorphs second height
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutAdapterTest >> testBeRowNotHomogeneous [
 	| testMorph |
 	
@@ -110,7 +112,7 @@ SpGridLayoutAdapterTest >> testBeRowNotHomogeneous [
 		equals: presenter adapter widget submorphs second height
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutAdapterTest >> testColumnSpanColumnHomogeneous [
 
 	layout 
@@ -127,7 +129,7 @@ SpGridLayoutAdapterTest >> testColumnSpanColumnHomogeneous [
 			+ (presenter adapter widget submorphs third width))
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutAdapterTest >> testColumnSpanColumnNotHomogeneous [
 
 	layout 
@@ -148,7 +150,7 @@ SpGridLayoutAdapterTest >> testColumnSpanColumnNotHomogeneous [
 		assert: presenter adapter widget submorphs second width < (presenter adapter widget submorphs third width)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutAdapterTest >> testRemoveElementAddedAfterOpenRemovesFromAdapter [
 
 	| element |
@@ -159,7 +161,7 @@ SpGridLayoutAdapterTest >> testRemoveElementAddedAfterOpenRemovesFromAdapter [
 	self assert: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutAdapterTest >> testRemoveElementRemovesFromAdapter [
 
 	| element |
@@ -168,7 +170,7 @@ SpGridLayoutAdapterTest >> testRemoveElementRemovesFromAdapter [
 	self assert: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutAdapterTest >> testRowSpanRowHomogeneous [
 	| testMorph |
 	
@@ -190,7 +192,7 @@ SpGridLayoutAdapterTest >> testRowSpanRowHomogeneous [
 			+ presenter adapter widget submorphs third height
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpGridLayoutAdapterTest >> testRowSpanRowNotHomogeneous [
 	| testMorph |
 	

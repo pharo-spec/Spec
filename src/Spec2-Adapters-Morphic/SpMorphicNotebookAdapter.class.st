@@ -2,20 +2,22 @@
 I'm an adapter to show a notebook (a tab manager)
 "
 Class {
-	#name : #SpMorphicNotebookAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
+	#name : 'SpMorphicNotebookAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
 	#traits : 'SpTBackendUpdating',
 	#classTraits : 'SpTBackendUpdating classTrait',
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #'table defaults' }
+{ #category : 'table defaults' }
 SpMorphicNotebookAdapter class >> cellInset [ 
 
 	^ 3
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicNotebookAdapter >> addFocusRotationKeyBindings [
 
 	self widget tabSelectorMorph
@@ -25,7 +27,7 @@ SpMorphicNotebookAdapter >> addFocusRotationKeyBindings [
 			toAction: [ self focusPrevious ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicNotebookAdapter >> addModelTo: aNotebook [
 	
 	self presenter pages ifEmpty: [ ^ self ].
@@ -42,7 +44,7 @@ SpMorphicNotebookAdapter >> addModelTo: aNotebook [
 		to: self
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicNotebookAdapter >> addPage: aNotebookPage to: aNotebook [
 
 	aNotebook 
@@ -54,7 +56,7 @@ SpMorphicNotebookAdapter >> addPage: aNotebookPage to: aNotebook [
 	aNotebook pages last model: aNotebookPage
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicNotebookAdapter >> buildContentForPage: aPage [
 
 	^ aPage retrievePresenter ifNotNil: [ :presenter |
@@ -62,7 +64,7 @@ SpMorphicNotebookAdapter >> buildContentForPage: aPage [
 		presenter adapter widget ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicNotebookAdapter >> buildLabelForPage: aPage [
 
 	| labelPresenter labelMorph |
@@ -73,7 +75,7 @@ SpMorphicNotebookAdapter >> buildLabelForPage: aPage [
 	^ labelMorph
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicNotebookAdapter >> buildWidget [
 	| notebookMorph |
 
@@ -91,7 +93,7 @@ SpMorphicNotebookAdapter >> buildWidget [
 	^ notebookMorph
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicNotebookAdapter >> ensurePage: aPage isBuiltWithPresenter: presenter [
 
 	"is already built *for this notebook (owner)*"
@@ -101,40 +103,38 @@ SpMorphicNotebookAdapter >> ensurePage: aPage isBuiltWithPresenter: presenter [
 
 	"if not built or not same owner, I need to rebuild"
 	presenter owner: self presenter.
-	aPage layoutSpec
-		ifNil: [ presenter build ]
-		ifNotNil: [ :spec | 
-		presenter buildWithSpecLayout: (self perform: spec) ]
+	presenter build
+
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicNotebookAdapter >> initialize [
 
 	super initialize.
 	self initializeTBackendUpdating
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicNotebookAdapter >> pageChanged: ann [
 
 	self backendUpdatingDo: [ self presenter selectPage: ann page model ]
 	
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicNotebookAdapter >> selectPage: aPage [
 
 	self widgetDo: [ :w | 
 		w page: (aPage ifNotNil: [ (w pageWithModel: aPage) ]) ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicNotebookAdapter >> takeKeyboardFocus [
 
 	self widget tabSelectorMorph takeKeyboardFocus
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicNotebookAdapter >> updatePageContent: aPage [
 
 	self widgetDo: [ :w |
@@ -144,7 +144,7 @@ SpMorphicNotebookAdapter >> updatePageContent: aPage [
 			w updatePageIndex: (self model selectedPageIndex) ] ]
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicNotebookAdapter >> updatePageTitle: aPage [
 
 	self widgetDo: [ :w |
@@ -153,7 +153,7 @@ SpMorphicNotebookAdapter >> updatePageTitle: aPage [
 			with: (self buildLabelForPage: aPage) ]
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicNotebookAdapter >> updatePagesWith: aCollection [
 	| pagesToRemove |
 	

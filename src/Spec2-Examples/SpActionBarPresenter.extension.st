@@ -1,6 +1,6 @@
-Extension { #name : #SpActionBarPresenter }
+Extension { #name : 'SpActionBarPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpActionBarPresenter class >> example [
 	"Show an action bar as it is commonly used: as a sort of toolbar at the footer, with actions associated with the element on top (usually list)."
 	| presenter list actionBar |

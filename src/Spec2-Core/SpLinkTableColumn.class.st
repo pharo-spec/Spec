@@ -10,16 +10,18 @@ SpIndexTableColumn
 ```
 "
 Class {
-	#name : #SpLinkTableColumn,
-	#superclass : #SpTableColumn,
+	#name : 'SpLinkTableColumn',
+	#superclass : 'SpTableColumn',
 	#instVars : [
 		'action',
 		'url'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpLinkTableColumn class >> title: aString evaluated: aBlock action: actionBlock [
 
 	^ self new 
@@ -29,7 +31,7 @@ SpLinkTableColumn class >> title: aString evaluated: aBlock action: actionBlock 
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpLinkTableColumn class >> title: aString evaluated: aBlock url: urlBlock [
 
 	^ self new 
@@ -39,28 +41,28 @@ SpLinkTableColumn class >> title: aString evaluated: aBlock url: urlBlock [
 		yourself
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpLinkTableColumn >> acceptColumnVisitor: aBuilder [
 
 	^ aBuilder visitLinkColumn: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLinkTableColumn >> action [
 	^ action
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLinkTableColumn >> action: aBlock [
 	action := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLinkTableColumn >> url [
 	^ url
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLinkTableColumn >> url: anObject [
 	url := anObject
 ]

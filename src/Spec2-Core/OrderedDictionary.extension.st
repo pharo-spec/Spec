@@ -1,6 +1,6 @@
-Extension { #name : #OrderedDictionary }
+Extension { #name : 'OrderedDictionary' }
 
-{ #category : #'*Spec2-Core' }
+{ #category : '*Spec2-Core' }
 OrderedDictionary >> replaceKey: aKey with: otherKey [
 	| value index |
 	

@@ -6,17 +6,18 @@ It will show a simple title, a message and a button.
 
 "
 Class {
-	#name : #SpSimpleExamplePresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpSimpleExamplePresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'titleLabel',
 		'messageLabel',
 		'actionButton'
 	],
-	#category : #'Spec2-Examples-SimpleApplication'
+	#category : 'Spec2-Examples-SimpleApplication',
+	#package : 'Spec2-Examples-SimpleApplication'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpSimpleExamplePresenter class >> defaultSpec [
 	"A defaultSpec (@TODO change name for defaultLayout) will define the layout to arrange the
 	 different elements of this presenter. See *SpExecutableLayout*.
@@ -43,7 +44,7 @@ SpSimpleExamplePresenter class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSimpleExamplePresenter >> initializePresenters [
 	"Initialize presenters: you will add your presenters here.
 	 BEWARE! all your presenters names need to match the name defined in the *SpSimpleExamplePresenter class>>defaultSpec* method.
@@ -75,7 +76,7 @@ SpSimpleExamplePresenter >> initializePresenters [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSimpleExamplePresenter >> initializeWindow: aWindowPresenter [
 	"A presenter can be composed as part of another presenter. 
 	 But it can also be shown as a window. 

@@ -12,17 +12,31 @@ I Assume all my elements have the same number of columns.
 All columns have the same size
 "
 Class {
-	#name : #SpMultiColumnListPresenter,
-	#superclass : #SpFastTablePresenter,
-	#category : #'Spec2-Deprecated-Replaced'
+	#name : 'SpMultiColumnListPresenter',
+	#superclass : 'SpFastTablePresenter',
+	#category : 'Spec2-Deprecated-Replaced',
+	#package : 'Spec2-Deprecated',
+	#tag : 'Replaced'
 }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpMultiColumnListPresenter class >> isDeprecated [
 	^ true
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
+SpMultiColumnListPresenter class >> isDeprecated [
+	^ true
+]
+
+{ #category : '*Spec2-Deprecated' }
+SpMultiColumnListPresenter >> items: items [
+	
+	items ifNotEmpty: [ self numberOfColumns: (displayBlock value: items first) size ].
+	super items: items
+]
+
+{ #category : '*Spec2-Deprecated' }
 SpMultiColumnListPresenter >> items: items [
 	
 	items ifNotEmpty: [ self numberOfColumns: (displayBlock value: items first) size ].

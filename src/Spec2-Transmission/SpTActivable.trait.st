@@ -5,52 +5,53 @@ Add the trait when you want to define a presenter that can be used in the inspec
 see `SpDemoActivablePresenter`
 "
 Trait {
-	#name : #SpTActivable,
+	#name : 'SpTActivable',
 	#instVars : [
 		'activationAction'
 	],
-	#category : #'Spec2-Transmission-Custom'
+	#category : 'Spec2-Transmission-Custom',
+	#package : 'Spec2-Transmission',
+	#tag : 'Custom'
 }
 
-{ #category : #'private - actions' }
+{ #category : 'private - actions' }
 SpTActivable >> activate [
-	"Perform here the activation. A common usage would be something like: 
-	
+	"Perform here the activation. A common usage would be something like:
+
 	self activationAction ifNil: [ ^ self ].
-	self activationAction cull: (SpActivatedObject newValue: 42)
+	self activationAction cull: (SpActivatedSelection newValue: 42)
 	"
-	
+
 	self shouldBeImplemented
-	
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTActivable >> activateOnDoubleClick [
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTActivable >> activateOnSingleClick [
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTActivable >> activationAction [
 
 	^ activationAction
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTActivable >> hasOutputActivationPort [
 
 	^ true
 ]
 
-{ #category : #transmission }
+{ #category : 'transmission' }
 SpTActivable >> outputActivationPort [
 
 	^ SpActivationPort newPresenter: self
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTActivable >> whenActivatedDo: aBlock [
 	"Defines the activation event. 
 	 `aBlock` receives an optional argument, that needs to be an instance of `SpActivatedObject`.

@@ -4,35 +4,37 @@ A toggle button is a button that can be activated (toggled) or deactivated (unto
 
 "
 Class {
-	#name : #SpToggleButtonPresenter,
-	#superclass : #SpAbstractFormButtonPresenter,
+	#name : 'SpToggleButtonPresenter',
+	#superclass : 'SpAbstractFormButtonPresenter',
 	#instVars : [
 		'#associatedToggleButtons',
 		'#action => ObservableSlot',
 		'#icon => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpToggleButtonPresenter class >> adapterName [
 	
 	^ #ToggleButtonAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpToggleButtonPresenter class >> documentFactoryMethodSelector [
 
 	^ #newToggleButton
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpToggleButtonPresenter class >> title [
 
 	^ 'Toggle Button'
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToggleButtonPresenter >> action [ 
 	"Answer the action to execute when button is pressed.
 	 See `SpToggleButtonPresenter>>#action:`"
@@ -40,7 +42,7 @@ SpToggleButtonPresenter >> action [
 	^ action
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToggleButtonPresenter >> action: aBlock [
 	"Set the action to execute when button is pressed. 
 	 `aBlock` receives zero arguments."
@@ -48,13 +50,13 @@ SpToggleButtonPresenter >> action: aBlock [
 	action := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToggleButtonPresenter >> associatedToggleButtons [
 
 	^ associatedToggleButtons ifNil: [ #() ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToggleButtonPresenter >> associatedToggleButtons: aCollection [ 
 	"Set the list of toggle buttons associated with this one.
 	 By using this, you will be grouping together this toggle button along with the ones contained 
@@ -71,34 +73,34 @@ SpToggleButtonPresenter >> associatedToggleButtons: aCollection [
 	aCollection do: [ :each | each state: false ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpToggleButtonPresenter >> basicAssociatedToggleButtons: aCollection [ 
 	
 	associatedToggleButtons := aCollection copyWithout: self
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToggleButtonPresenter >> icon [
 	"Answer the icon (an instance of `Form`) to be shown with the button."
 
 	^ icon
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToggleButtonPresenter >> icon: anIcon [
 	"Set the icon (an instance of `Form`) to be shown with the button."
 
 	icon := anIcon
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpToggleButtonPresenter >> initialize [
 
 	super initialize.
 	action := [ ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpToggleButtonPresenter >> whenIconChangedDo: aBlock [
 	"Inform when icon property has changed. 
 	 `aBlock` has three optional arguments: 

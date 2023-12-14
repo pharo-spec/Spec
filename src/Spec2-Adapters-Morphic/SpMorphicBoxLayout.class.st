@@ -8,22 +8,24 @@ To calculate the size, it relies in one of the `SpMorphicBoxLayoutCalculator` ch
 To improve performance, it prevents recursive calls on it while it is still calculating. 
 "
 Class {
-	#name : #SpMorphicBoxLayout,
-	#superclass : #SpMorphicBaseBoxLayout,
+	#name : 'SpMorphicBoxLayout',
+	#superclass : 'SpMorphicBaseBoxLayout',
 	#instVars : [
 		'calculating'
 	],
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicBoxLayout >> initialize [
 
 	super initialize.
 	calculating := false
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpMorphicBoxLayout >> layout: aMorph in: aRect [
 
 	calculating ifTrue: [ ^ self ].

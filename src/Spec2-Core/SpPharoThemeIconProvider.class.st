@@ -2,12 +2,14 @@
 I'm a provider that redirects to the default Pharo icon provider.
 "
 Class {
-	#name : #SpPharoThemeIconProvider,
-	#superclass : #SpIconProvider,
-	#category : #'Spec2-Core-IconProvider'
+	#name : 'SpPharoThemeIconProvider',
+	#superclass : 'SpIconProvider',
+	#category : 'Spec2-Core-IconProvider',
+	#package : 'Spec2-Core',
+	#tag : 'IconProvider'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPharoThemeIconProvider >> iconNamed: aName [ 
 
 	^ self 
@@ -15,7 +17,7 @@ SpPharoThemeIconProvider >> iconNamed: aName [
 		ifAbsent: [ self noIcon ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPharoThemeIconProvider >> iconNamed: aName ifAbsent: aBlock [
 
 	aName ifNil: [ ^ aBlock value ].
@@ -25,7 +27,7 @@ SpPharoThemeIconProvider >> iconNamed: aName ifAbsent: aBlock [
 		ifNone: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPharoThemeIconProvider >> noIcon [
 
 	^ ThemeIcons current blankIcon

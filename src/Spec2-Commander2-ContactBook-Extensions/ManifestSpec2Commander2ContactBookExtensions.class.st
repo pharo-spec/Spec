@@ -6,7 +6,9 @@ Spec is a framework in Pharo for describing user interfaces. It allows for the c
 I contain examples of Commander2 integration with Spec.
 "
 Class {
-	#name : #ManifestSpec2Commander2ContactBookExtensions,
-	#superclass : #PackageManifest,
-	#category : #'Spec2-Commander2-ContactBook-Extensions-Manifest'
+	#name : 'ManifestSpec2Commander2ContactBookExtensions',
+	#superclass : 'PackageManifest',
+	#category : 'Spec2-Commander2-ContactBook-Extensions-Manifest',
+	#package : 'Spec2-Commander2-ContactBook-Extensions',
+	#tag : 'Manifest'
 }

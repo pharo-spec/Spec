@@ -2,15 +2,16 @@
 I can be used to convert a presenter #defaultSpec class method to a #defaultLayout class method 
 "
 Class {
-	#name : #SpRenameDefaultSpecToDefaultLayoutRefactoring,
-	#superclass : #RBAddMethodRefactoring,
+	#name : 'SpRenameDefaultSpecToDefaultLayoutRefactoring',
+	#superclass : 'RBAddMethodRefactoring',
 	#instVars : [
 		'presenterClass'
 	],
-	#category : #'Spec2-Transformations'
+	#category : 'Spec2-Transformations',
+	#package : 'Spec2-Transformations'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpRenameDefaultSpecToDefaultLayoutRefactoring class >> onPresenter: aPresenterClass [
 
 	^ self basicNew
@@ -20,7 +21,7 @@ SpRenameDefaultSpecToDefaultLayoutRefactoring class >> onPresenter: aPresenterCl
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRenameDefaultSpecToDefaultLayoutRefactoring >> initialize [ 
 	| layoutMethod |
 	layoutMethod := #defaultLayout , ((presenterClass>>#defaultSpec) ast sourceCode allButFirst: #defaultSpec size).
@@ -30,7 +31,7 @@ SpRenameDefaultSpecToDefaultLayoutRefactoring >> initialize [
 		inProtocols: 'layout' 
 ]
 
-{ #category : #preconditions }
+{ #category : 'preconditions' }
 SpRenameDefaultSpecToDefaultLayoutRefactoring >> preconditions [
 	| selector method |
 	method := self parserClass
@@ -43,7 +44,7 @@ SpRenameDefaultSpecToDefaultLayoutRefactoring >> preconditions [
 	^ self emptyCondition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRenameDefaultSpecToDefaultLayoutRefactoring >> presenterClass: aClass [
 	| env |
 	
@@ -54,7 +55,7 @@ SpRenameDefaultSpecToDefaultLayoutRefactoring >> presenterClass: aClass [
 			yourself).
 ]
 
-{ #category : #transforming }
+{ #category : 'transforming' }
 SpRenameDefaultSpecToDefaultLayoutRefactoring >> transform [ 
 	super transform.
 	(presenterClass>>#defaultSpec) removeFromSystem

@@ -1,15 +1,17 @@
 Class {
-	#name : #SpDemoMenuButtonPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoMenuButtonPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'text',
 		'menu',
 		'button'
 	],
-	#category : #'Spec2-Examples-Demo-Buttons'
+	#category : 'Spec2-Examples-Demo-Buttons',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Buttons'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoMenuButtonPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -22,7 +24,7 @@ SpDemoMenuButtonPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoMenuButtonPresenter >> initializePresenters [
 	<script: 'self new open'>
 
@@ -39,7 +41,7 @@ SpDemoMenuButtonPresenter >> initializePresenters [
 	text := self newText
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoMenuButtonPresenter >> newExampleMenu [
 	| loremIpsumWorlds |
 	

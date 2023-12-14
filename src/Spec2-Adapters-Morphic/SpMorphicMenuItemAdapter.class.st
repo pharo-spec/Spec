@@ -2,24 +2,26 @@
 I am the bridge between a MenuItemPresenter and a ToggleMenuItemMorph
 "
 Class {
-	#name : #SpMorphicMenuItemAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicMenuItemAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuItemAdapter >> action [
 
 	^ self model action
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuItemAdapter >> actionArguments [
 
 	^ [ Array with: self ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuItemAdapter >> autoRefresh [
 
 	| autoRefresh |
@@ -30,7 +32,7 @@ SpMorphicMenuItemAdapter >> autoRefresh [
 		  ifFalse: [ autoRefresh ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuItemAdapter >> balloonText [
 	| balloonText | 
 	
@@ -42,13 +44,13 @@ SpMorphicMenuItemAdapter >> balloonText [
 		ifFalse: [ balloonText ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicMenuItemAdapter >> buildWidget [
 
 	^ self buildWidgetNoRefresh
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicMenuItemAdapter >> buildWidgetNoRefresh [
 	| item |
 
@@ -72,7 +74,7 @@ SpMorphicMenuItemAdapter >> buildWidgetNoRefresh [
 	^ item
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicMenuItemAdapter >> defaultModifierShortcut [
 	
 	^ self shortcut first isUppercase
@@ -80,7 +82,7 @@ SpMorphicMenuItemAdapter >> defaultModifierShortcut [
 		ifFalse: [ OSPlatform current defaultModifier + self shortcut first ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuItemAdapter >> enabled [
 
 	| enabled |
@@ -91,7 +93,7 @@ SpMorphicMenuItemAdapter >> enabled [
 		  ifFalse: [ enabled ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuItemAdapter >> icon [
 
 	| icon |
@@ -102,7 +104,7 @@ SpMorphicMenuItemAdapter >> icon [
 		  ifFalse: [ icon ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuItemAdapter >> name [
 
 	| name |
@@ -115,13 +117,13 @@ SpMorphicMenuItemAdapter >> name [
 				  aString localizedForPresenter: self presenter ] ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuItemAdapter >> performMenuActionWith: arguments [
 
 	^ self model performMenuActionWith: arguments
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuItemAdapter >> shortcut [
 
 	| shortcut |
@@ -132,7 +134,7 @@ SpMorphicMenuItemAdapter >> shortcut [
 		  ifFalse: [ shortcut ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuItemAdapter >> shortcutText [
 	| shortcut |
 	
@@ -144,7 +146,7 @@ SpMorphicMenuItemAdapter >> shortcutText [
 	^ KMShortcutPrinter toString: shortcut asKeyCombination	
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuItemAdapter >> state [
 
 	| state |
@@ -155,13 +157,13 @@ SpMorphicMenuItemAdapter >> state [
 		  ifFalse: [ state ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuItemAdapter >> stateSelector [
 
 	^ self state ifNotNil: [ #state ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicMenuItemAdapter >> subMenu [
 
 	| subMenu |
@@ -173,14 +175,14 @@ SpMorphicMenuItemAdapter >> subMenu [
 		  ifFalse: [ subMenu buildWithSpecAsPopup ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicMenuItemAdapter >> widgetIcon [
 	"For testing purposes"
 	
 	^ self widget icon
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicMenuItemAdapter >> widgetName [
 	"For testing purposes"
 	

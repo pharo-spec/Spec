@@ -3,30 +3,32 @@ I'm a ""debug it"" command.
 I will debug the selection (or line) of the playground.
 "
 Class {
-	#name : #SpCodeDebugItCommand,
-	#superclass : #SpCodeSelectionCommand,
-	#category : #'Spec2-Code-Commands-Base'
+	#name : 'SpCodeDebugItCommand',
+	#superclass : 'SpCodeSelectionCommand',
+	#category : 'Spec2-Code-Commands-Base',
+	#package : 'Spec2-Code-Commands',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeDebugItCommand class >> defaultDescription [
 
 	^ 'Debug selection.'
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpCodeDebugItCommand class >> defaultIconName [
 
 	^ #smallDebug
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpCodeDebugItCommand class >> defaultName [ 
 
 	^ 'Debug it'
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 SpCodeDebugItCommand class >> defaultShortcutKey [
 
 	^ $d shift command mac 
@@ -34,44 +36,37 @@ SpCodeDebugItCommand class >> defaultShortcutKey [
 		| $d shift control unix
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpCodeDebugItCommand >> compile: aStream for: anObject in: evalContext [
-	| methodClass |
 
+	| methodClass |
 	methodClass := evalContext
-		ifNil: [ anObject class ]
-		ifNotNil: [ evalContext methodClass ].
+		               ifNil: [ anObject class ]
+		               ifNotNil: [ evalContext methodClass ].
 
 	^ context class compiler
-		source: aStream;
-		class: methodClass;
-		context: evalContext;
-		requestor: context; "it should enable a visibility of current tool variables in new debugger"
-		noPattern: true;
-		failBlock: [ ^ nil ];
-		compile
+		  source: aStream;
+		  class: methodClass;
+		  context: evalContext;
+		  requestor: context; "it should enable a visibility of current tool variables in new debugger"
+		  isScripting: true;
+		  failBlock: [ ^ nil ];
+		  compile
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpCodeDebugItCommand >> debug: aStream [
-	| method doItReceiver doItContext |
 
-	(self context respondsTo: #doItReceiver)
-		ifTrue: [ 
-			doItReceiver := self context doItReceiver.
-			doItContext := self context doItContext ]
-		ifFalse: [ 
-			doItReceiver := doItContext := nil ].
-		
+	| method doItReceiver doItContext |
+	doItReceiver := self context doItReceiver.
+	doItContext := self context doItContext.
+
 	method := self compile: aStream for: doItReceiver in: doItContext.
-	method isReturnSpecial ifTrue: [ 
-		self inform: 'Nothing to debug, the expression is optimized'.
-		^ self ].
-	method ifNotNil: [
-		self debug: method receiver: doItReceiver in: doItContext ]
+	method ifNil: [ ^ self ].
+	self debug: method receiver: doItReceiver in: doItContext
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpCodeDebugItCommand >> debug: aCompiledMethod receiver: anObject in: evalContext [
 	| process suspendedContext debugRequest |
 
@@ -93,7 +88,7 @@ SpCodeDebugItCommand >> debug: aCompiledMethod receiver: anObject in: evalContex
 	debugRequest submit
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 SpCodeDebugItCommand >> execute [
 	| selection |
 

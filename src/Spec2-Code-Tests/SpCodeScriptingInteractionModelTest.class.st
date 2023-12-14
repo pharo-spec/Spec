@@ -1,41 +1,42 @@
 Class {
-	#name : #SpCodeScriptingInteractionModelTest,
-	#superclass : #SpCodeInteractionModelTest,
-	#category : #'Spec2-Code-Tests'
+	#name : 'SpCodeScriptingInteractionModelTest',
+	#superclass : 'SpCodeInteractionModelTest',
+	#category : 'Spec2-Code-Tests',
+	#package : 'Spec2-Code-Tests'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCodeScriptingInteractionModelTest class >> shouldInheritSelectors [
 	
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeScriptingInteractionModelTest >> classToTest [
 
 	^ SpCodeScriptingInteractionModel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCodeScriptingInteractionModelTest >> initializeInstance: anInteractionModel [
 
 	anInteractionModel addBinding: (WorkspaceVariable  key: #testVar value: 42)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeScriptingInteractionModelTest >> testAddBinding [
 
 	interactionModel addBinding: (WorkspaceVariable key: #testVar2 value: 42).
 	self assert: interactionModel bindings size equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeScriptingInteractionModelTest >> testBehavior [
 
 	self assert: interactionModel behavior isNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeScriptingInteractionModelTest >> testBindingOf [
 
 	"auto create of bindings on demand (it will always answer a value)"
@@ -51,7 +52,7 @@ SpCodeScriptingInteractionModelTest >> testBindingOf [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeScriptingInteractionModelTest >> testHasBindingOf [
 
 	self deny: (interactionModel hasBindingOf: #somethingNotExistent).
@@ -60,14 +61,14 @@ SpCodeScriptingInteractionModelTest >> testHasBindingOf [
 	self assert: (interactionModel hasBindingOf: #testVar)	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeScriptingInteractionModelTest >> testRemoveBinding [
 
 	interactionModel removeBinding: (WorkspaceVariable key: #testVar).
 	self assert: interactionModel bindings isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeScriptingInteractionModelTest >> testVariableBindings [
 
 	"this is used in some contexts, but it is just a synonym"

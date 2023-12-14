@@ -2,24 +2,26 @@
 Demo page for SpecDemoButtonsPresenter
 "
 Class {
-	#name : #SpDemoButtonsPage,
-	#superclass : #SpDemoPage,
-	#category : #'Spec2-Examples-Demo-Buttons'
+	#name : 'SpDemoButtonsPage',
+	#superclass : 'SpDemoPage',
+	#category : 'Spec2-Examples-Demo-Buttons',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Buttons'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDemoButtonsPage class >> pageName [
 
 	^ 'Buttons'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoButtonsPage class >> priority [
 
 	^ 600
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoButtonsPage >> pageClass [
 
 	^ SpDemoButtonsPresenter

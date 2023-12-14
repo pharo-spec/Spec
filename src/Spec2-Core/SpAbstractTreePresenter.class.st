@@ -2,8 +2,8 @@
 A base for tree presenters, it defines basic functionality common to all trees.
 "
 Class {
-	#name : #SpAbstractTreePresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpAbstractTreePresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#traits : 'SpTHaveWrappingScrollBars + SpTContextMenu + SpTSearchable + SpTAlignableColumn',
 	#classTraits : 'SpTHaveWrappingScrollBars classTrait + SpTContextMenu classTrait + SpTSearchable classTrait + SpTAlignableColumn classTrait',
 	#instVars : [
@@ -14,16 +14,18 @@ Class {
 		'#selectionMode',
 		'#verticalAlignment'
 	],
-	#category : #'Spec2-Core-Widgets-Tree'
+	#category : 'Spec2-Core-Widgets-Tree',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Tree'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractTreePresenter class >> isAbstract [
 
 	^ super isAbstract or: [ self = SpAbstractTreePresenter ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> activateOnDoubleClick [
 	"Configure the list to trigger activation on double click.
 	 An element on a list can be 'activated', meaning it will trigger an event to execute an 
@@ -34,7 +36,7 @@ SpAbstractTreePresenter >> activateOnDoubleClick [
 	activateOnSingleClick := false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> activateOnSingleClick [
 	"Configure the list to trigger activation on single click.
 	 An element on a list can be 'activated', meaning it will trigger an event to execute an 
@@ -45,7 +47,7 @@ SpAbstractTreePresenter >> activateOnSingleClick [
 	activateOnSingleClick := true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractTreePresenter >> activatesOnDoubleClick [
 	"Answer true if activation event is triggered on double click"
 
@@ -56,7 +58,7 @@ SpAbstractTreePresenter >> activatesOnDoubleClick [
 	^ activateOnSingleClick not
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractTreePresenter >> activatesOnSingleClick [
 	"Answer true if activation event is triggered on single click"
 
@@ -67,27 +69,27 @@ SpAbstractTreePresenter >> activatesOnSingleClick [
 	^ activateOnSingleClick
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> beMultipleSelection [
 	"Enable multiple selection."
 
 	self selectionMode: (SpTreeMultipleSelectionMode on: self)
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> beSingleSelection [
 	"Enable single selection (this is the default)."
 	
 	self selectionMode: (SpTreeSingleSelectionMode on: self)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTreePresenter >> children [
 
 	^ childrenBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> children: aBlock [
 	"Set a block to answer the children of a node when it is expanded.
 	 `aBlock` receives one argument, the node element to expand.
@@ -96,13 +98,13 @@ SpAbstractTreePresenter >> children: aBlock [
 	childrenBlock := aBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTreePresenter >> childrenFor: anObject [ 
 
 	^ self children value: anObject
 ]
 
-{ #category : #simulation }
+{ #category : 'simulation' }
 SpAbstractTreePresenter >> clickAtPath: aPath [
 
 	self selectPaths: { aPath }.
@@ -111,7 +113,7 @@ SpAbstractTreePresenter >> clickAtPath: aPath [
 	self doActivateAtPath: aPath
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> collapseAll [
 	"Collapse all nodes of the tree. "
 
@@ -119,7 +121,7 @@ SpAbstractTreePresenter >> collapseAll [
 		anAdapter collapseAll ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> collapsePath: aPath [
 	"Collapse the tree path.
 	`aPath` is the path to collapse. A path is an array of node indexes (e.g. #(1 2 3))"
@@ -128,7 +130,7 @@ SpAbstractTreePresenter >> collapsePath: aPath [
 		anAdapter collapsePath: aPath ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTreePresenter >> disableActivationDuring: aBlock [
 	| oldActivate |
 	
@@ -138,7 +140,7 @@ SpAbstractTreePresenter >> disableActivationDuring: aBlock [
 		activationBlock := oldActivate ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTreePresenter >> doActivateAtPath: aPath [
 	"Activate only if there is an item at that position"
 
@@ -148,7 +150,7 @@ SpAbstractTreePresenter >> doActivateAtPath: aPath [
 		yourself)
 ]
 
-{ #category : #simulation }
+{ #category : 'simulation' }
 SpAbstractTreePresenter >> doubleClickAtPath: aPath [
 	self selectPath: aPath.
 	
@@ -156,7 +158,7 @@ SpAbstractTreePresenter >> doubleClickAtPath: aPath [
 	self doActivateAtPath: aPath
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> expandAll [
 	"Expand all nodes of the tree. 
 	 WARNING: If your tree is big, this operation can be slow."
@@ -165,7 +167,7 @@ SpAbstractTreePresenter >> expandAll [
 		anAdapter expandAll ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> expandPath: aPath [
 	"Expand the tree path.
 	`aPath` is the path to expand. A path is an array of node indexes (e.g. #(1 2 3))"
@@ -174,7 +176,7 @@ SpAbstractTreePresenter >> expandPath: aPath [
 		anAdapter expandPath: aPath ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> expandRoots [
 	"Expand all roots of the tree"
 
@@ -182,7 +184,7 @@ SpAbstractTreePresenter >> expandRoots [
 		anAdapter expandRoots ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractTreePresenter >> initialize [
 	
 	super initialize.
@@ -190,21 +192,21 @@ SpAbstractTreePresenter >> initialize [
 	self initializeTHaveWrappingScrollBars
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractTreePresenter >> isActiveOnDoubleClick [
 	"Answer true if activation event is triggered on double click"
 
 	^ activateOnSingleClick not
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractTreePresenter >> isActiveOnSingleClick [
 	"Answer true if activation event is triggered on single click"
 
 	^ activateOnSingleClick
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractTreePresenter >> isExpanded: aPath [ 
 
 	self withAdapterDo: [ :anAdapter |  
@@ -213,7 +215,7 @@ SpAbstractTreePresenter >> isExpanded: aPath [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTreePresenter >> itemAt: index of: anArray then: path [
 	"dives into elements of tree to find the one that corresponds to path"
 	| element |
@@ -229,7 +231,7 @@ SpAbstractTreePresenter >> itemAt: index of: anArray then: path [
 			element ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTreePresenter >> itemAtPath: anArray [
 	
 	self withAdapterDo: [ :anAdapter | 
@@ -241,21 +243,21 @@ SpAbstractTreePresenter >> itemAtPath: anArray [
 		then: anArray allButFirst
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTreePresenter >> itemAtPath: anArray ifAbsent: aBlock [
 	^ [ self itemAtPath: anArray ]
 		on: SubscriptOutOfBounds
 		do: [ aBlock value ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> items: aCollection [
 	"Set the roots of a tree. This is a convenience method, synonym of `SpTreePresenter>>#roots:`"
 
 	self roots: aCollection
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTreePresenter >> pathIndexOf: anArrayOfElements [
 
 	^ self 
@@ -263,7 +265,7 @@ SpAbstractTreePresenter >> pathIndexOf: anArrayOfElements [
 		in: self roots
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTreePresenter >> pathIndexOf: pathArray in: aCollection [ 
 	| pathElement |
 	
@@ -276,7 +278,7 @@ SpAbstractTreePresenter >> pathIndexOf: pathArray in: aCollection [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTreePresenter >> pathItemOf: aPath [
 	"answer an array of items following a path. 
 	 e.g. #(1 2 3) = { item1. item2. item3 }"
@@ -286,7 +288,7 @@ SpAbstractTreePresenter >> pathItemOf: aPath [
 		in: self roots
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTreePresenter >> pathItemOf: pathArray in: aCollection [ 
 	| pathElement |
 	
@@ -299,7 +301,7 @@ SpAbstractTreePresenter >> pathItemOf: pathArray in: aCollection [
 
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> refresh [
 	"Forces a refresh of the tree. 
 	 This is useful when some model contents has changed, but we do not want to reset the whole list 
@@ -308,21 +310,21 @@ SpAbstractTreePresenter >> refresh [
 	self withAdapterDo: [ :anAdapter | anAdapter refreshTree ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractTreePresenter >> registerEvents [
 
 	self whenMenuChangedDo: [ 
 		self withAdapterDo: [ :anAdapter | anAdapter updateMenu ] ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> roots [
 	"Answer the roots of the tree"
 
 	^ roots
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> roots: aCollection [
 	"Set the roots of the tree table.
 	 This is the starting point from where the whole tree will be shown."
@@ -331,13 +333,13 @@ SpAbstractTreePresenter >> roots: aCollection [
 	self selection clearSelection
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTreePresenter >> searchValueOf: item [ 
 
 	^ item asString
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractTreePresenter >> selectItem: anItem [
 	"Select `anItem` if it is included in model list.
 	 It does not scrolls to selected element."
@@ -345,7 +347,7 @@ SpAbstractTreePresenter >> selectItem: anItem [
 	self selection selectItem: anItem
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractTreePresenter >> selectItems: aListOfItem [
 	"Select items included in `aCollection` if they are included in model list.
 	 NOTE: In single selection mode it will select the first element of `aCollection` 
@@ -354,7 +356,7 @@ SpAbstractTreePresenter >> selectItems: aListOfItem [
 	self selection selectItems: aListOfItem
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractTreePresenter >> selectPath: aPath [
 	"Selects element in `aPath`
 	`aPath` is the path to select. A path is an array of node indexes (e.g. #(1 2 3)).
@@ -363,7 +365,7 @@ SpAbstractTreePresenter >> selectPath: aPath [
 	self selection selectPath: aPath
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractTreePresenter >> selectPath: aPath scrollToSelection: shouldScrollToSelection [
 	"Selects element in `aPath`
 	`aPath` is the path to select. A path is an array of node indexes (e.g. #(1 2 3)).
@@ -378,13 +380,13 @@ SpAbstractTreePresenter >> selectPath: aPath scrollToSelection: shouldScrollToSe
 		shouldScrollToSelection ifTrue: [ adapter scrollToSelection ] ]
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractTreePresenter >> selectPathByItems: pathArray [
 
 	self selectPathByItems: pathArray scrollToSelection: false
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractTreePresenter >> selectPathByItems: pathArray scrollToSelection: aBoolean [
 	"IMPORTANT: Scrolling to selection just has sense when the widget is already shown, because before it 
 	 is displayed it does not has real bounds. In morphic (and gtk) it has a minimal extent assigned, 
@@ -400,7 +402,7 @@ SpAbstractTreePresenter >> selectPathByItems: pathArray scrollToSelection: aBool
 		scrollToSelection: aBoolean
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractTreePresenter >> selectPaths: pathArray [
 	"Selects all elements in `pathsArray``
 	`pathsArray` is an array of paths. A path is an array of node indexes (e.g. #(1 2 3))"
@@ -408,21 +410,21 @@ SpAbstractTreePresenter >> selectPaths: pathArray [
 	self selection selectPaths: pathArray
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractTreePresenter >> selectedItem [
 	"Return selected item."
 	
 	^ self selection selectedItem
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractTreePresenter >> selectedItems [
 	"Return all the selected items in the case of a multiple selection list"
 	
 	^ self selection selectedItems
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractTreePresenter >> selection [
 	"Answer the selection object (an instance of `SpSingleSelectionMode` or `SpMultipleSelectionMode`).
 	 This is not the item selected, but the selection container (it may contain one or many selected 
@@ -431,7 +433,7 @@ SpAbstractTreePresenter >> selection [
 	^ selectionMode value
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTreePresenter >> selectionMode: aMode [
 	
 	selectionMode ifNotNil: [ 
@@ -439,21 +441,21 @@ SpAbstractTreePresenter >> selectionMode: aMode [
 	selectionMode := aMode
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractTreePresenter >> unselectAll [ 
 	"Remove all selections"
 
 	self selection unselectAll
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractTreePresenter >> unselectItem: anItem [
 	"Remove selection of element `anItem`"
 
 	self selection unselectItem: anItem
 ]
 
-{ #category : #'api - selection' }
+{ #category : 'api - selection' }
 SpAbstractTreePresenter >> unselectPath: aPath [
 	"Unselects element in `aPath`
 	`aPath` is the path to select. A path is an array of node indexes (e.g. #(1 2 3))"
@@ -461,7 +463,7 @@ SpAbstractTreePresenter >> unselectPath: aPath [
 	self selection unselectPath: aPath
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpAbstractTreePresenter >> updateRootsKeepingSelection: aCollection [ 
 	"Update tree roots keeping current selection. 
 	 WARNING: aCollection must includes the elements selected."
@@ -475,12 +477,12 @@ SpAbstractTreePresenter >> updateRootsKeepingSelection: aCollection [
 			self selectPaths: (selectedPaths collect: [ :each | self pathIndexOf: each ]) ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractTreePresenter >> verticalAlignment [
 	^ verticalAlignment
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAbstractTreePresenter >> whenActivatedDo: aBlock [
 	"Inform when an element has been 'activated'. 
 	 `aBlock` receives one argument (a selection object, see `SpAbstractSelectionMode`)"
@@ -488,7 +490,7 @@ SpAbstractTreePresenter >> whenActivatedDo: aBlock [
 	activationBlock := aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAbstractTreePresenter >> whenMultiSelectionChangedDo: aBlockClosure [ 
 	"Inform when selection mode has changed. 
 	 `aBlock` has three optional arguments: 
@@ -499,7 +501,7 @@ SpAbstractTreePresenter >> whenMultiSelectionChangedDo: aBlockClosure [
 	selectionMode whenChangedDo: aBlockClosure 
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAbstractTreePresenter >> whenRootsChangedDo: aBlockClosure [ 
 	"Inform when roots have changed. 
 	 `aBlock` has three optional arguments: 
@@ -510,7 +512,7 @@ SpAbstractTreePresenter >> whenRootsChangedDo: aBlockClosure [
 	self property: #roots whenChangedDo: aBlockClosure
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAbstractTreePresenter >> whenSelectedIndexChangedDo: aBlock [ 
 	"Inform when selected index has changed. 
 	 `aBlock` receives one optional argument (the new element)."
@@ -519,7 +521,7 @@ SpAbstractTreePresenter >> whenSelectedIndexChangedDo: aBlock [
 		aBlock cull: selection first ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAbstractTreePresenter >> whenSelectedItemChangedDo: aBlock [
 	"Inform when selected index has changed. 
 	 `aBlock` receives one optional argument (the new element)."
@@ -528,7 +530,7 @@ SpAbstractTreePresenter >> whenSelectedItemChangedDo: aBlock [
 		aBlock cull: (selection ifNotNil: [ selection selectedItem ]) ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAbstractTreePresenter >> whenSelectionChangedDo: aBlock [ 
 	"Inform when selection has changed. 
 	 `aBlock` has three optional arguments: 
@@ -539,7 +541,7 @@ SpAbstractTreePresenter >> whenSelectionChangedDo: aBlock [
 	self selection whenChangedDo: [ aBlock cull: selectionMode ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpAbstractTreePresenter >> whenShowColumnHeadersChangedDo: aBlock [ 
 	"Inform when showColumnHeaders property has changed. 
 	 `aBlock` has three optional arguments: 

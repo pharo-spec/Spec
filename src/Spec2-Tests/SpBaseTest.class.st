@@ -1,26 +1,28 @@
 Class {
-	#name : #SpBaseTest,
-	#superclass : #TestCase,
+	#name : 'SpBaseTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'presenter',
 		'window'
 	],
-	#category : #'Spec2-Tests-Utils'
+	#category : 'Spec2-Tests-Utils',
+	#package : 'Spec2-Tests',
+	#tag : 'Utils'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpBaseTest class >> isAbstract [
 
 	^ self = SpBaseTest
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBaseTest >> adapter [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #assertions }
+{ #category : 'assertions' }
 SpBaseTest >> assertEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlock [
 	
 	self
@@ -30,7 +32,7 @@ SpBaseTest >> assertEvent: anEventName isRaisedInPresenter: aPresenter whenDoing
 		whenDoing: aBlock
 ]
 
-{ #category : #assertions }
+{ #category : 'assertions' }
 SpBaseTest >> assertWith: assertionBlock timesRaisedEvent: anEventName inPresenter: aPresenter whenDoing: actionBlock [
 	
 	| timesCalled |
@@ -40,12 +42,12 @@ SpBaseTest >> assertWith: assertionBlock timesRaisedEvent: anEventName inPresent
 	assertionBlock value: timesCalled
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBaseTest >> classToTest [
 	self subclassResponsibility
 ]
 
-{ #category : #assertions }
+{ #category : 'assertions' }
 SpBaseTest >> denyEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlock [
 	
 	self
@@ -55,45 +57,45 @@ SpBaseTest >> denyEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: 
 		whenDoing: aBlock
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpBaseTest >> initializeTestedInstance [
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 SpBaseTest >> openInstance [
 
 	window ifNil: [ window := presenter open ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBaseTest >> presenter [
 	^ presenter
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpBaseTest >> setUp [
 	super setUp.
 	presenter := self classToTest new.
 	self initializeTestedInstance
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpBaseTest >> tearDown [
 	window ifNotNil: [ window delete ].
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBaseTest >> testNewPresenterIsNotBuilt [
 	self deny: presenter isBuilt
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBaseTest >> testNewPresenterIsNotDisplayed [
 	self deny: presenter isDisplayed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBaseTest >> testNonOpenPresenterDoesNotRaiseBuiltEvent [
 	| built |
 	built := false.
@@ -101,7 +103,7 @@ SpBaseTest >> testNonOpenPresenterDoesNotRaiseBuiltEvent [
 	self deny: built
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBaseTest >> testNonOpenPresenterDoesNotRaiseDisplayedEvent [
 	| displayed |
 	displayed := false.
@@ -109,19 +111,19 @@ SpBaseTest >> testNonOpenPresenterDoesNotRaiseDisplayedEvent [
 	self deny: displayed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBaseTest >> testOpenPresenterIsBuilt [
 	self openInstance.
 	self assert: presenter isBuilt
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBaseTest >> testOpenPresenterIsDisplayed [
 	self openInstance.
 	self assert: presenter isDisplayed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBaseTest >> testOpenPresenterRaisesBuiltEvent [
 	| built |
 	built := false.
@@ -130,7 +132,7 @@ SpBaseTest >> testOpenPresenterRaisesBuiltEvent [
 	self assert: built
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBaseTest >> testOpenPresenterRaisesDisplayEvent [
 	| displayed |
 	displayed := false.
@@ -139,7 +141,7 @@ SpBaseTest >> testOpenPresenterRaisesDisplayEvent [
 	self assert: displayed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBaseTest >> testRebuildPresenterDoNotLetReferencesInAnnouncer [
 
 	| oldSize newSize |
@@ -152,7 +154,7 @@ SpBaseTest >> testRebuildPresenterDoNotLetReferencesInAnnouncer [
 	self assert: oldSize equals: newSize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBaseTest >> widget [
 	
 	^ self adapter widget

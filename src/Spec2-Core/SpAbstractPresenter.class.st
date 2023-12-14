@@ -10,8 +10,8 @@ From a Spec2 users, my key methods are
 - `SpAbstractPresenter>>#openWithSpec: aSpecLayout` to open the receiver with the specified layout.
 "
 Class {
-	#name : #SpAbstractPresenter,
-	#superclass : #Model,
+	#name : 'SpAbstractPresenter',
+	#superclass : 'Model',
 	#traits : 'TObservable',
 	#classTraits : 'TObservable classTrait',
 	#instVars : [
@@ -20,22 +20,24 @@ Class {
 		'needRebuild',
 		'eventHandler'
 	],
-	#category : #'Spec2-Core-Base'
+	#category : 'Spec2-Core-Base',
+	#package : 'Spec2-Core',
+	#tag : 'Base'
 }
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractPresenter class >> buttonHeight [
 
 	^ self defaultFont height + 12
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractPresenter class >> buttonWidth [
 
 	^ (self defaultFont widthOfString: 'eilwp') + 44
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractPresenter class >> defaultFont [ 
 
 	self flag: #TODO. "This is so wrong. All this needs to be in the theme and in the 
@@ -53,31 +55,31 @@ SpAbstractPresenter class >> defaultFont [
 
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpAbstractPresenter class >> defaultLayout [
 	"Overrides me to define a layout in a static way"
 	
 	Error signal: 'You must define a layout either by defining #defaulLayout on your presenter or setting explicitly a layout with #layout:'.
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractPresenter class >> inputTextHeight [
 
 	^ self defaultFont height + 12
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractPresenter class >> isAbstract [
 	^ self = SpAbstractPresenter
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractPresenter class >> labelHeight [
 
 	^ self defaultFont height
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpAbstractPresenter class >> owner: anOwningPresenter [
 
 	^ self basicNew
@@ -86,32 +88,32 @@ SpAbstractPresenter class >> owner: anOwningPresenter [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPresenter class >> systemIconName [
 
 	^ #smallWindow
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPresenter class >> toolName [
 	"The tool name can be used in some places such as the About window's title."
 	
 	^ self name
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractPresenter class >> toolbarHeight [
 
 	^ self defaultFont height + 12
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPresenter >> adapter [
 
 	^ adapter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPresenter >> adapter: anAdapter [
 
 	"if there existed an adapter already, we need to unsubscribe it to avoid memory leaks"
@@ -122,7 +124,7 @@ SpAbstractPresenter >> adapter: anAdapter [
 	adapter := anAdapter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPresenter >> application [
 	"Answer application owner of this composition.
 	 The tree for a composition starts always with an application, which is responsible of 
@@ -131,35 +133,35 @@ SpAbstractPresenter >> application [
 	^ self owner application
 ]
 
-{ #category : #showing }
+{ #category : 'showing' }
 SpAbstractPresenter >> asBlockedDialogWindow [
 
 	^ self defaultBlockedDialogWindowPresenterClass presenter: self
 ]
 
-{ #category : #showing }
+{ #category : 'showing' }
 SpAbstractPresenter >> asDialogWindow [
 
 	^ self defaultDialogWindowPresenterClass presenter: self
 ]
 
-{ #category : #showing }
+{ #category : 'showing' }
 SpAbstractPresenter >> asModalWindow [
 
 	^ self defaultModalWindowPresenterClass presenter: self
 ]
 
-{ #category : #showing }
+{ #category : 'showing' }
 SpAbstractPresenter >> asWindow [
 
 	^ self defaultWindowPresenterClass presenter: self
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpAbstractPresenter >> autoAccept: aBoolean [
 ]
 
-{ #category : #'private - building' }
+{ #category : 'private - building' }
 SpAbstractPresenter >> basicBuildAdapterWithLayout: aSpecLayout [
 	"I assume the SpecBindings is well defined"
 	aSpecLayout ifNil: [ Error signal: 'You must define a layout either by defining #defaulLayout on your presenter or setting explicitly a layout with #layout:' ].
@@ -176,14 +178,14 @@ SpAbstractPresenter >> basicBuildAdapterWithLayout: aSpecLayout [
 	^ adapter
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpAbstractPresenter >> build [
 	"Build the widget using the default layout"
 	
 	^ self buildWithLayout: self layout
 ]
 
-{ #category : #'private - building' }
+{ #category : 'private - building' }
 SpAbstractPresenter >> buildAdapterWithLayout: aSpecLayout [
 	"Build the adapter using the spec name provided as argument"
 	
@@ -192,7 +194,7 @@ SpAbstractPresenter >> buildAdapterWithLayout: aSpecLayout [
 		during: [ self basicBuildAdapterWithLayout: aSpecLayout ]
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpAbstractPresenter >> buildWithLayout: aSpecLayout [
 
 	"Build the widget using the layout provided as argument"
@@ -200,7 +202,7 @@ SpAbstractPresenter >> buildWithLayout: aSpecLayout [
 	^ (self buildAdapterWithLayout: aSpecLayout) widget
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 SpAbstractPresenter >> buildWithSelector: aSelector [
 
 	"Build the widget using the layout selector name provided as argument"
@@ -208,19 +210,19 @@ SpAbstractPresenter >> buildWithSelector: aSelector [
 	^ self buildWithLayout: (self retrieveLayout: aSelector)
 ]
 
-{ #category : #'private - showing' }
+{ #category : 'private - showing' }
 SpAbstractPresenter >> defaultBlockedDialogWindowPresenterClass [
 
 	^ self application defaultBlockedDialogWindowPresenterClass
 ]
 
-{ #category : #'private - showing' }
+{ #category : 'private - showing' }
 SpAbstractPresenter >> defaultDialogWindowPresenterClass [
 		
 	^ self application defaultDialogWindowPresenterClass
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpAbstractPresenter >> defaultLayout [
 	" You should define a #defaulLayout method returning a Spec layout for your presenter.
 	See SpExecutableLayout hierarchy class comments for more information on how to use / define layouts.
@@ -229,25 +231,25 @@ SpAbstractPresenter >> defaultLayout [
 	^ self class defaultLayout
 ]
 
-{ #category : #'private - showing' }
+{ #category : 'private - showing' }
 SpAbstractPresenter >> defaultModalWindowPresenterClass [
 		
 	^ self application defaultModalWindowPresenterClass
 ]
 
-{ #category : #'private - showing' }
+{ #category : 'private - showing' }
 SpAbstractPresenter >> defaultWindowPresenterClass [ 
 
 	^ self application defaultWindowPresenterClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPresenter >> enabled: aBoolean [ 
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPresenter >> eventHandler [
 	"Answers an generic event handler where you can make your presenter listen to specific 
 	low-level events. 
@@ -260,43 +262,43 @@ SpAbstractPresenter >> eventHandler [
 	^ eventHandler ifNil: [ eventHandler := SpEventHandler for: self ]
 ]
 
-{ #category : #'private - utilities' }
+{ #category : 'private - utilities' }
 SpAbstractPresenter >> forceUpdateSlot: aSymbol [
 
 	^ (self rawValueHolderNamed: aSymbol) valueChanged
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractPresenter >> hasAdapter [
 
 	^ adapter notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractPresenter >> hasAnnouncer [
 
 	^ announcer notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractPresenter >> hasEventHandler [
 
 	^ eventHandler notNil and: [ eventHandler hasEvents ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractPresenter >> hasOwner [
 
 	^ self owner notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractPresenter >> hasWindow [
 
 	^ self root isWindowPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractPresenter >> initialize [ 
 
 	self class initializeSlots: self.
@@ -304,7 +306,7 @@ SpAbstractPresenter >> initialize [
 	needRebuild := true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 	"Used to initialize the model in the case of the use into a dialog window.
 	 Override this to set buttons other than the default (Ok, Cancel)."
@@ -318,7 +320,7 @@ SpAbstractPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 			presenter close ]	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractPresenter >> initializeWindow: aWindowPresenter [
 	"Override this to set window values before opening. 
 	 You may want to add a menu, a toolbar or a statusbar"
@@ -327,48 +329,48 @@ SpAbstractPresenter >> initializeWindow: aWindowPresenter [
 	want to do ButtonPresenter new openWithSpec)."
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractPresenter >> isMenuPresenter [
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractPresenter >> isPresenter [
 
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractPresenter >> isWindowPresenter [
 
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPresenter >> layout [
 	self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPresenter >> needRebuild [
 
 	^ needRebuild
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPresenter >> needRebuild: aBoolean [
 
 	needRebuild := aBoolean
 ]
 
-{ #category : #showing }
+{ #category : 'showing' }
 SpAbstractPresenter >> open [
 
 	^ self asWindow open
 ]
 
-{ #category : #showing }
+{ #category : 'showing' }
 SpAbstractPresenter >> openBlockedDialog [
 	"Build the widget using the default layout and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openModalWithSpec instead."
@@ -384,7 +386,7 @@ open
 	^ self asBlockedDialogWindow open
 ]
 
-{ #category : #showing }
+{ #category : 'showing' }
 SpAbstractPresenter >> openBlockedDialogWithLayout: aSpecLayout [
 	"Build the widget using the given layout and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openDialogAsModalWithSpec: instead."
@@ -392,7 +394,7 @@ SpAbstractPresenter >> openBlockedDialogWithLayout: aSpecLayout [
 	^ self asBlockedDialogWindow openWith: aSpecLayout
 ]
 
-{ #category : #showing }
+{ #category : 'showing' }
 SpAbstractPresenter >> openDialog [
 	"Build the widget using the default layout and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will keep the focus on other windows. If you want to make the user focus on your dialog only you should use #openModalWithSpec instead."
@@ -409,7 +411,7 @@ open
 	^ self asDialogWindow open
 ]
 
-{ #category : #showing }
+{ #category : 'showing' }
 SpAbstractPresenter >> openDialogWithLayout: aSpecLayout [
 	"Build the widget using the provided spec layout and display it into a dialog. 
 	 Beware: this way will not create a real modal in the sense that the user will 
@@ -419,43 +421,43 @@ SpAbstractPresenter >> openDialogWithLayout: aSpecLayout [
 	^ self asDialogWindow openWith: aSpecLayout
 ]
 
-{ #category : #showing }
+{ #category : 'showing' }
 SpAbstractPresenter >> openModal [
 
 	^ self asModalWindow open
 ]
 
-{ #category : #showing }
+{ #category : 'showing' }
 SpAbstractPresenter >> openModalWithLayout: aSpecLayout [
 
 	^ self asModalWindow openWith: aSpecLayout
 ]
 
-{ #category : #showing }
+{ #category : 'showing' }
 SpAbstractPresenter >> openWithLayout: aSpecLayout [
 
 	^ self asWindow openWith: aSpecLayout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPresenter >> owner [
 
 	^ owner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPresenter >> owner: aPresenter [
 
 	owner := aPresenter
 ]
 
-{ #category : #'private - utilities' }
+{ #category : 'private - utilities' }
 SpAbstractPresenter >> rawValueHolderNamed: aSymbol [
 
 	^ (self class slotNamed: aSymbol) rawRead: self.
 ]
 
-{ #category : #'private - building' }
+{ #category : 'private - building' }
 SpAbstractPresenter >> retrieveLayout: aSelector [
 	| layout |
 
@@ -467,7 +469,7 @@ SpAbstractPresenter >> retrieveLayout: aSelector [
 	^ layout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPresenter >> root [
 	"Answer root presenter of this composition."
 	
@@ -476,7 +478,7 @@ SpAbstractPresenter >> root [
 		ifNil: [ self ]
 ]
 
-{ #category : #subscription }
+{ #category : 'subscription' }
 SpAbstractPresenter >> unsubscribe: anObject [
 	"Observable slots keep subscriptions to them that can leak if not removed in certain cases."
 	| observableSlots |
@@ -491,20 +493,20 @@ SpAbstractPresenter >> unsubscribe: anObject [
 			slotValue unsubscribe: anObject ] ]
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpAbstractPresenter >> update: aParameter [
 
 	self changed: aParameter
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 SpAbstractPresenter >> validate [ 
 	" Validate inputs of the presenter are valid.
 	You should override me in a subclass if you need validation. 
 	"
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 SpAbstractPresenter >> validateInto: aValidationReport [
 	" Validate inputs of the presenter are valid.
 	You should override me in a subclass if you need to add validation failures
@@ -513,15 +515,13 @@ SpAbstractPresenter >> validateInto: aValidationReport [
 	self validate.
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpAbstractPresenter >> whenBuiltDo: aBlock [
 
-	self announcer 
-		when: SpWidgetBuilt
-		do: aBlock
+	self announcer when: SpWidgetBuilt do: aBlock for: aBlock receiver
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpAbstractPresenter >> whenWillBeBuiltDo: aBlock [
 
 	self announcer 
@@ -529,7 +529,7 @@ SpAbstractPresenter >> whenWillBeBuiltDo: aBlock [
 		do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractPresenter >> window [
 	"Answer window containing this composition."
 	
@@ -538,21 +538,21 @@ SpAbstractPresenter >> window [
 		ifFalse: [ nil ]
 ]
 
-{ #category : #'private - utilities' }
+{ #category : 'private - utilities' }
 SpAbstractPresenter >> withAdapterDo: aValuable [
 	"a convenience method to avoid verify by nil all the time"
 	
 	^ self adapter ifNotNil: aValuable
 ]
 
-{ #category : #'private - utilities' }
+{ #category : 'private - utilities' }
 SpAbstractPresenter >> withWidgetDo: aValuable [
 	"a convenience method to avoid verify by nil all the time"
 
 	^ self adapter ifNotNil: aValuable
 ]
 
-{ #category : #'private - utilities' }
+{ #category : 'private - utilities' }
 SpAbstractPresenter >> withWindowDo: aValuable [
 
 	self hasWindow ifFalse: [ ^ self ].

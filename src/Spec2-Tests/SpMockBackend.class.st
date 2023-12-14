@@ -1,22 +1,24 @@
 Class {
-	#name : #SpMockBackend,
-	#superclass : #SpApplicationBackend,
-	#category : #'Spec2-Tests-Core-Base'
+	#name : 'SpMockBackend',
+	#superclass : 'SpApplicationBackend',
+	#category : 'Spec2-Tests-Core-Base',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMockBackend class >> backendName [
 
 	^ #Mock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMockBackend >> adapterBindingsClass [
 
 	^ SpStubAdapterBindings
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMockBackend >> defaultConfigurationFor: anApplication [
 
 	^ SpMockConfiguration new

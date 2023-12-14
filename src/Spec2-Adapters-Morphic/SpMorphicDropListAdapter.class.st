@@ -2,12 +2,14 @@
 I am the adapter used to bridget a DropListPresenter and a DropListMorph
 "
 Class {
-	#name : #SpMorphicDropListAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicDropListAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicDropListAdapter >> buildWidget [
 
 	self verifyInitialStatus.
@@ -32,44 +34,44 @@ SpMorphicDropListAdapter >> buildWidget [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicDropListAdapter >> displayedIcon [
 	
 	self model hasIcons ifFalse: [^ nil].
 	^ self widget currentIcon
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicDropListAdapter >> elementAt: index [
 	
 	^ self presenter getList at: index
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 SpMorphicDropListAdapter >> getIconFor: aDropListItem [ 
 	
 	^ self model getIconFor: aDropListItem
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicDropListAdapter >> getIndex [
 
 	^ self model getIndex
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicDropListAdapter >> getList [
 
 	^ self model getList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicDropListAdapter >> selectIndex: anInteger [ 
 	
 	self widget listSelectionIndex: anInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicDropListAdapter >> selectedIndexes [
 
 	| selectedIndex |
@@ -79,14 +81,14 @@ SpMorphicDropListAdapter >> selectedIndexes [
 		  ifFalse: [ { selectedIndex } ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicDropListAdapter >> setIndex: anIndex [
 
 	self presenter selectedIndex = anIndex ifTrue: [ ^ self ].
 	self presenter selectIndex: anIndex
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicDropListAdapter >> verifyInitialStatus [
 
 	"Verify if I start with a selection or not"
@@ -100,7 +102,7 @@ SpMorphicDropListAdapter >> verifyInitialStatus [
 				ifFalse: [ self presenter resetSelection ] ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicDropListAdapter >> wrapItem: anItem index: anIndex [
 
 	| result |

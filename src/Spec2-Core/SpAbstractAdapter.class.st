@@ -10,8 +10,8 @@ In the future my instances should just be responsible to create a widget and ins
 I'm only interesting for back-ends developers. As a developer, using Spec to define application, you should not care and have to deal with me. 
 "
 Class {
-	#name : #SpAbstractAdapter,
-	#superclass : #Model,
+	#name : 'SpAbstractAdapter',
+	#superclass : 'Model',
 	#instVars : [
 		'model',
 		'widget',
@@ -19,10 +19,12 @@ Class {
 		'owner',
 		'unsubscribed'
 	],
-	#category : #'Spec2-Core-Base'
+	#category : 'Spec2-Core-Base',
+	#package : 'Spec2-Core',
+	#tag : 'Base'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpAbstractAdapter class >> adapt: aPresenter [
 	
 	^ self new
@@ -30,39 +32,39 @@ SpAbstractAdapter class >> adapt: aPresenter [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapter class >> adaptingAliases [
 	"Answers an array of aliases my class can adapt."
 
 	^ #()
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapter class >> adaptingName [
 	"Answers the name this component adapts."
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapter class >> allAdapters [
 	"The abstract adapters should be able to return all the adapters for a framework"
 	
 	^ self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractAdapter class >> isAbstract [
-	^ self = SpAbstractAdapter
+	^ self == SpAbstractAdapter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapter class >> owner: anOwner [
 
 	^ self new owner: anOwner; yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractAdapter >> adapt: aPresenter [
 
 	unsubscribed := false.
@@ -76,134 +78,135 @@ SpAbstractAdapter >> adapt: aPresenter [
 	widget := self buildWidget
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpAbstractAdapter >> adapterWasBuilt [
 	"hook to add after-build opeations (for example, initial status, etc.)"
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractAdapter >> add: aWidget [
 
 	self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractAdapter >> addEventsTo: aWidget [
 	
+	aWidget ifNil: [ ^ self ].
 	self presenter hasEventHandler ifFalse: [ ^ self ].
 	self presenter eventHandler 
 		installAllEventsTo: self 
 		target: (self eventHandlerReceiver: aWidget)
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpAbstractAdapter >> buildWidget [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractAdapter >> eventHandlerReceiver: aWidget [
 
 	^ aWidget
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractAdapter >> hRigid [
 
 	self subclassResponsibility
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractAdapter >> hShrinkWrap [
 
 	self subclassResponsibility
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractAdapter >> hSpaceFill [
 
 	self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractAdapter >> hasWidget: aMorphicButtonAdapter [ 
 	
 	^ self widget hasWidget: aMorphicButtonAdapter widget
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractAdapter >> isRedrawable [
 	"This must be overriden in the adapter representing your container"
 	
 	^ false
 ]
 
-{ #category : #visibility }
+{ #category : 'visibility' }
 SpAbstractAdapter >> isVisible [
 	
 	self subclassResponsibility
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractAdapter >> layout: aLayout [
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapter >> model [
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapter >> owner [
 
 	"Every object instantiated by the SpecInerpreter should have an owner that will assign it to a particular presenter"
 	^ owner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapter >> owner: anObject [
 	owner := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapter >> presenter [
 	^ model
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractAdapter >> removeSubWidgets [
 
 	self subclassResponsibility
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractAdapter >> replaceLayoutWith: aLayout [
 	
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapter >> selector [
 	
 	^ selector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapter >> selector: anObject [
 	
 	selector := anObject
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpAbstractAdapter >> sendRightClickEvent [
 
 	self subclassResponsibility
 ]
 
-{ #category : #releasing }
+{ #category : 'releasing' }
 SpAbstractAdapter >> unsubscribe [ 
 	"During initialization, adapters usually subscribe to various observable slots in the presenter. When the adapters are replaced by another during dynamic layouts switching, they need to be unsubscribed because it may cause a memory leaks and, in case of Gtk, even VM crashes.
 	
@@ -214,54 +217,54 @@ SpAbstractAdapter >> unsubscribe [
 	unsubscribed := true
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpAbstractAdapter >> update: aSymbol [
 
 	self changed: aSymbol
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpAbstractAdapter >> update: aSymbol with: anArray [
 
 	self perform: aSymbol withArguments: anArray
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractAdapter >> useProportionalLayout [
 
 	self subclassResponsibility
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractAdapter >> vRigid [
 
 	self subclassResponsibility
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractAdapter >> vShrinkWrap [
 
 	self subclassResponsibility
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractAdapter >> vSpaceFill [
 
 	self subclassResponsibility
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractAdapter >> when: anAnnouncement do: aBlock [
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapter >> widget [
 	^ widget
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractAdapter >> widgetDo: aBlock [
 
 	^ self widget ifNotNil: aBlock

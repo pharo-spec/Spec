@@ -1,6 +1,6 @@
-Extension { #name : #FTTableContainerMorph }
+Extension { #name : 'FTTableContainerMorph' }
 
-{ #category : #'*Spec2-Pharo7To8Compatibility' }
+{ #category : '*Spec2-Pharo7To8Compatibility' }
 FTTableContainerMorph >> firstVisibleRowIndex [
 
 	^ self exposedRows
@@ -8,12 +8,12 @@ FTTableContainerMorph >> firstVisibleRowIndex [
 		ifEmpty: [ 0 ]
 ]
 
-{ #category : #'*Spec2-Pharo7To8Compatibility' }
+{ #category : '*Spec2-Pharo7To8Compatibility' }
 FTTableContainerMorph >> headerRow [
 	^ headerRow
 ]
 
-{ #category : #'*Spec2-Pharo7To8Compatibility' }
+{ #category : '*Spec2-Pharo7To8Compatibility' }
 FTTableContainerMorph >> lastVisibleRowIndex [
 
 	^ self exposedRows

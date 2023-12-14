@@ -1,13 +1,14 @@
 Class {
-	#name : #SpMorphicPatchAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
+	#name : 'SpMorphicPatchAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
 	#instVars : [
 		'lineMarks'
 	],
-	#category : #'Spec2-Code-Diff-Morphic'
+	#category : 'Spec2-Code-Diff-Morphic',
+	#package : 'Spec2-Code-Diff-Morphic'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicPatchAdapter >> buildWidget [
 	| newWidget |
 	
@@ -39,38 +40,38 @@ SpMorphicPatchAdapter >> buildWidget [
 	^ newWidget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPatchAdapter >> lineMarks [
 
 	^ lineMarks ifNil: [ #() ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPatchAdapter >> markAt: aSymbol [
 
 	^ self presenter marks at: aSymbol
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicPatchAdapter >> setEditable: aBoolean to: aWidget [
 
 	aWidget textArea readOnly: aBoolean not
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicPatchAdapter >> setEditingModeFor: textArea [
 
 	textArea beForPlainText
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicPatchAdapter >> setPatch: aPatchModel [
 	
 	self widgetDo: [ :w |
 		self setPatch: aPatchModel patch to: w ]
 ]
 
-{ #category : #'private accessing' }
+{ #category : 'private accessing' }
 SpMorphicPatchAdapter >> setPatch: patch to: aWidget [ 
 	| visitor |
 	
@@ -85,7 +86,7 @@ SpMorphicPatchAdapter >> setPatch: patch to: aWidget [
 		to: aWidget
 ]
 
-{ #category : #'private accessing' }
+{ #category : 'private accessing' }
 SpMorphicPatchAdapter >> setPatchTo: aWidget [
 
 	(self presenter model isNil 
@@ -99,7 +100,7 @@ SpMorphicPatchAdapter >> setPatchTo: aWidget [
 		to: aWidget
 ]
 
-{ #category : #'private accessing' }
+{ #category : 'private accessing' }
 SpMorphicPatchAdapter >> setText: text to: aWidget [
 
 	aWidget textArea editingState clearUndoManager: nil.

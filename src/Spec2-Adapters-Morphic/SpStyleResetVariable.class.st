@@ -7,34 +7,36 @@ This variable has to be used when user want to override the value of a parent pr
 `Geometry { #height: Reset }`
 "
 Class {
-	#name : #SpStyleResetVariable,
-	#superclass : #SpStyleAbstractVariable,
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#name : 'SpStyleResetVariable',
+	#superclass : 'SpStyleAbstractVariable',
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #'ston-core' }
+{ #category : 'ston-core' }
 SpStyleResetVariable class >> stonName [
 
-	^ 'Reset'
+	^ #Reset
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpStyleResetVariable >> fromSton: stonReader [
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpStyleResetVariable >> isResetVariable [
 
 	^ true
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 SpStyleResetVariable >> preferredValueWith: anObject [
 
 	^ nil
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 SpStyleResetVariable >> value [
 
 	^ nil

@@ -4,12 +4,14 @@ It displays an additional ""clear"" icon.
 
 "
 Class {
-	#name : #SpSearchInputFieldPresenter,
-	#superclass : #SpTextInputFieldPresenter,
-	#category : #'Spec2-Core-Widgets'
+	#name : 'SpSearchInputFieldPresenter',
+	#superclass : 'SpTextInputFieldPresenter',
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpSearchInputFieldPresenter class >> adapterName [
 
 	^ #SearchInputFieldAdapter

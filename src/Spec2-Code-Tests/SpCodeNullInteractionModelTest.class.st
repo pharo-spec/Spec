@@ -1,29 +1,30 @@
 Class {
-	#name : #SpCodeNullInteractionModelTest,
-	#superclass : #SpCodeInteractionModelTest,
-	#category : #'Spec2-Code-Tests'
+	#name : 'SpCodeNullInteractionModelTest',
+	#superclass : 'SpCodeInteractionModelTest',
+	#category : 'Spec2-Code-Tests',
+	#package : 'Spec2-Code-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeNullInteractionModelTest >> classToTest [
 
 	^ SpCodeNullInteractionModel
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeNullInteractionModelTest >> testBehavior [
 
 	self assert: interactionModel behavior isNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeNullInteractionModelTest >> testBindingOf [
 
 	self assert: (interactionModel bindingOf: #somethingNotExistent) isNil.
 	self assert: (interactionModel bindingOf: #Object) isNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeNullInteractionModelTest >> testHasBindingOf [
 
 	self deny: (interactionModel hasBindingOf: #somethingNotExistent).

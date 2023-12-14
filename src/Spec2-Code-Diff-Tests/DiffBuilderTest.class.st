@@ -1,10 +1,11 @@
 Class {
-	#name : #DiffBuilderTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Code-Diff-Tests'
+	#name : 'DiffBuilderTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Code-Diff-Tests',
+	#package : 'Spec2-Code-Diff-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 DiffBuilderTest >> testDiffFromTo [
 	| fileA fileB patch |
 	
@@ -26,7 +27,7 @@ DiffBuilderTest >> testDiffFromTo [
 	self assert: (patch at: 5) newPosition equals: 6
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DiffBuilderTest >> testDiffIRecordsLastLineWhenMatching [
 	| patch fileA fileB |
 
@@ -57,7 +58,7 @@ DiffBuilderTest >> testDiffIRecordsLastLineWhenMatching [
 	self assert: patch elements last element equals: '		yourself'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DiffBuilderTest >> testDiffWithLines [
 	| fileA fileB patch |
 	
@@ -81,7 +82,7 @@ that will change
 	self assert: (patch at: 2) newPosition equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DiffBuilderTest >> testDiffWithLinesRecordsDelete [
 	| fileA fileB patch |
 	

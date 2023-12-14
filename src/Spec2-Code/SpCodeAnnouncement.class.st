@@ -1,13 +1,15 @@
 Class {
-	#name : #SpCodeAnnouncement,
-	#superclass : #Announcement,
+	#name : 'SpCodeAnnouncement',
+	#superclass : 'Announcement',
 	#instVars : [
 		'content'
 	],
-	#category : #'Spec2-Code-Announcements'
+	#category : 'Spec2-Code-Announcements',
+	#package : 'Spec2-Code',
+	#tag : 'Announcements'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpCodeAnnouncement class >> newContent: aString [
 
 	^ self new
@@ -15,13 +17,13 @@ SpCodeAnnouncement class >> newContent: aString [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeAnnouncement >> content [
 
 	^ content
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeAnnouncement >> content: anObject [
 
 	content := anObject

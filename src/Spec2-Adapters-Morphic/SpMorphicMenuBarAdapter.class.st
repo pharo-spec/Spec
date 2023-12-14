@@ -2,12 +2,14 @@
 I'm an adapter to provide a menu bar using a ToolDockingBarMorph
 "
 Class {
-	#name : #SpMorphicMenuBarAdapter,
-	#superclass : #SpMorphicBaseMenuAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicMenuBarAdapter',
+	#superclass : 'SpMorphicBaseMenuAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicMenuBarAdapter >> adoptMenuGroupModel: aGroupModel first: aBoolean [
 	| controls |
 	
@@ -24,7 +26,7 @@ SpMorphicMenuBarAdapter >> adoptMenuGroupModel: aGroupModel first: aBoolean [
 	self emptyAccumulator: controls
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicMenuBarAdapter >> adoptMenuItemModel: item accumulator: controls [
 	
 	item subMenu
@@ -43,7 +45,7 @@ SpMorphicMenuBarAdapter >> adoptMenuItemModel: item accumulator: controls [
 			widget addMorphBack: (self theme newToolSpacerIn: widget) ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicMenuBarAdapter >> buildButtonFor: item [
 
 	^ self theme
@@ -57,7 +59,7 @@ SpMorphicMenuBarAdapter >> buildButtonFor: item [
 		  help: item description
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicMenuBarAdapter >> buildWidget [
 
 	widget := ToolDockingBarMorph new
@@ -71,14 +73,14 @@ SpMorphicMenuBarAdapter >> buildWidget [
 	^ widget
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicMenuBarAdapter >> emptyAccumulator: controls [
 
 	controls do: [ :button | widget addMorphBack: button ].
 	controls removeAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicMenuBarAdapter >> menuGroup [
 
 	^ self presenter menuGroup

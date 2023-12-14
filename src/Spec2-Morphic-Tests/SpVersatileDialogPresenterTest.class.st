@@ -1,21 +1,22 @@
 Class {
-	#name : #SpVersatileDialogPresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Morphic-Tests'
+	#name : 'SpVersatileDialogPresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Morphic-Tests',
+	#package : 'Spec2-Morphic-Tests'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpVersatileDialogPresenterTest class >> isDeprecated [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenterTest >> classToTest [
 	^ SpVersatileDialogPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpVersatileDialogPresenterTest >> testListBox [
 
 	| dialog app listPresenter |
@@ -44,7 +45,7 @@ SpVersatileDialogPresenterTest >> testListBox [
 	self assert: dialog contentArea selection selectedItem equals: #two
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpVersatileDialogPresenterTest >> testResult [
 
 	| dialog app |

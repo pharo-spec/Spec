@@ -4,34 +4,36 @@ A toggle button is a button that can be activated (toggled) or deactivated (unto
 
 "
 Class {
-	#name : #SpToolbarToggleButtonPresenter,
-	#superclass : #SpToolbarButtonPresenter,
+	#name : 'SpToolbarToggleButtonPresenter',
+	#superclass : 'SpToolbarButtonPresenter',
 	#instVars : [
 		'#selected => ObservableSlot',
 		'#associatedToggleButtons'
 	],
-	#category : #'Spec2-Core-Widgets-Toolbar'
+	#category : 'Spec2-Core-Widgets-Toolbar',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Toolbar'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpToolbarToggleButtonPresenter class >> adapterName [
 
 	^ #ToolbarToggleButtonAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpToolbarToggleButtonPresenter class >> documentFactoryMethodSelector [
 
 	^ #newToolbarToggleButton
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToolbarToggleButtonPresenter >> associatedToggleButtons [
 
 	^ associatedToggleButtons ifNil: [ #() ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToolbarToggleButtonPresenter >> associatedToggleButtons: aCollection [ 
 	"Set the list of toggle buttons associated with this one.
 	 By using this, you will be grouping together this toggle button along with the ones contained 
@@ -48,27 +50,27 @@ SpToolbarToggleButtonPresenter >> associatedToggleButtons: aCollection [
 	aCollection do: [ :each | each state: false ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpToolbarToggleButtonPresenter >> basicAssociatedToggleButtons: aCollection [ 
 	
 	associatedToggleButtons := aCollection copyWithout: self
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToolbarToggleButtonPresenter >> beSelected [
 	"Set the status of the button to 'selected' (toggled)"
 	
 	self setSelection: true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToolbarToggleButtonPresenter >> beUnselected [
 	"Set the status of the button to 'unselected' (untoggled)"
 
 	self setSelection: false
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 SpToolbarToggleButtonPresenter >> execute: state [
 
 	self setSelection: state.
@@ -78,20 +80,20 @@ SpToolbarToggleButtonPresenter >> execute: state [
 		cull: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpToolbarToggleButtonPresenter >> initialize [
 
 	super initialize.
 	selected := false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpToolbarToggleButtonPresenter >> isSelected [
 
 	^ self state
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToolbarToggleButtonPresenter >> selected: aBoolean [
 
 	self 
@@ -100,33 +102,33 @@ SpToolbarToggleButtonPresenter >> selected: aBoolean [
 	self setSelection: aBoolean
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpToolbarToggleButtonPresenter >> setSelection: aBoolean [
 
 	selected := aBoolean.
 	self changed: #isSelected
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToolbarToggleButtonPresenter >> state [
 
 	^ selected
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToolbarToggleButtonPresenter >> state: aBoolean [
 
 	self setSelection: aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToolbarToggleButtonPresenter >> toggle [
 	"Toggles the status of the button"
 	
 	self setSelection: selected not
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpToolbarToggleButtonPresenter >> whenActivatedDo: aBlock [
 	"Inform when the button has been selected. 
 	 `aBlock` receives zero arguments."
@@ -135,7 +137,7 @@ SpToolbarToggleButtonPresenter >> whenActivatedDo: aBlock [
 		newSelectedValue ifTrue: [ aBlock value ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpToolbarToggleButtonPresenter >> whenChangedDo: aBlock [
 	"Only execute aBlock if old value is different from new value"
 
@@ -146,7 +148,7 @@ SpToolbarToggleButtonPresenter >> whenChangedDo: aBlock [
 				ifFalse: [ aBlock cull: newSelectedValue cull: oldSelectedValue ] ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpToolbarToggleButtonPresenter >> whenDeactivatedDo: aBlock [
 	"Inform when the button has been selected. 
 	 `aBlock` receives zero arguments."
@@ -155,7 +157,7 @@ SpToolbarToggleButtonPresenter >> whenDeactivatedDo: aBlock [
 		newSelectedValue ifFalse: [ aBlock value ] ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpToolbarToggleButtonPresenter >> whenSelectedDo: aBlock [
 	"Inform when the button has been selected. 
 	 `aBlock` receives zero arguments."
@@ -168,7 +170,7 @@ SpToolbarToggleButtonPresenter >> whenSelectedDo: aBlock [
 		newSelectedValue ifTrue: [ aBlock value ] ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpToolbarToggleButtonPresenter >> whenToggledDo: aBlock [ 
 	"Inform when the button has been toggles. 
 	 `aBlock` has three optional arguments: 
@@ -179,7 +181,7 @@ SpToolbarToggleButtonPresenter >> whenToggledDo: aBlock [
 	self property: #selected whenChangedDo: aBlock 
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpToolbarToggleButtonPresenter >> whenUnselectedDo: aBlock [
 	"Inform when the button has been unselected. 
 	 `aBlock` receives zero arguments."

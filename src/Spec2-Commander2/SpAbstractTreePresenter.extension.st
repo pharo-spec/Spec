@@ -1,6 +1,6 @@
-Extension { #name : #SpAbstractTreePresenter }
+Extension { #name : 'SpAbstractTreePresenter' }
 
-{ #category : #'*Spec2-Commander2' }
+{ #category : '*Spec2-Commander2' }
 SpAbstractTreePresenter >> contextMenuFromCommandsGroup: aValuable [
 	self contextMenu: [ aValuable value beRoot asMenuPresenter ]
 ]

@@ -2,12 +2,14 @@
 I am the adapter used to bridget a LabelPresenter and a LabelMorph
 "
 Class {
-	#name : #SpMorphicLabelAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicLabelAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicLabelAdapter >> applyDecorationsTo: aString [
 	| text |
 
@@ -31,14 +33,19 @@ SpMorphicLabelAdapter >> applyDecorationsTo: aString [
 	^ text
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpMorphicLabelAdapter >> applyStyle: aMorph [
 
 	aMorph fitContents.
-	super applyStyle: aMorph
+	super applyStyle: aMorph.
+	"when changing a font and affecting his size, it may happen than the result font 
+	 height is smaller than current height of morph, we need to take care about this 
+	 even if this means we cannot have a label smaller than the font :("
+	aMorph height < aMorph font height
+		ifTrue: [ aMorph height: aMorph font height ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicLabelAdapter >> buildWidget [
 
 	| label |
@@ -56,13 +63,13 @@ SpMorphicLabelAdapter >> buildWidget [
 	^ label
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicLabelAdapter >> getHelpText [
 
 	^ self presenter help ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
-{ #category : #'model access' }
+{ #category : 'model access' }
 SpMorphicLabelAdapter >> getText [
 
 	^ self presenter label
@@ -70,7 +77,7 @@ SpMorphicLabelAdapter >> getText [
 			self applyDecorationsTo: (aString localizedForPresenter: self presenter) ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLabelAdapter >> label [
 	
 	^ widget contents

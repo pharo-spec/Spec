@@ -2,18 +2,20 @@
 A decorator to wrap command on current application dynamic variable.
 "
 Class {
-	#name : #SpToolCurrentApplicationCommand,
-	#superclass : #CmCommandDecorator,
-	#category : #'Spec2-Commands-Presenters'
+	#name : 'SpToolCurrentApplicationCommand',
+	#superclass : 'CmCommandDecorator',
+	#category : 'Spec2-Commands-Presenters',
+	#package : 'Spec2-Commands',
+	#tag : 'Presenters'
 }
 
-{ #category : #'reflective operations' }
+{ #category : 'reflective operations' }
 SpToolCurrentApplicationCommand >> doesNotUnderstand: aMessage [
 
 	^ aMessage sendTo: self decoratedCommand
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 SpToolCurrentApplicationCommand >> execute [
 
 	SpToolCurrentApplication 

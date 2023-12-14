@@ -3,21 +3,23 @@ A tab layout that receives pages with labels.
 It is the layout version of `SpNotebookPresenter`
 "
 Class {
-	#name : #SpTabLayout,
-	#superclass : #SpExecutableLayout,
+	#name : 'SpTabLayout',
+	#superclass : 'SpExecutableLayout',
 	#instVars : [
 		'initialPageIndex'
 	],
-	#category : #'Spec2-Layout-Tab'
+	#category : 'Spec2-Layout-Tab',
+	#package : 'Spec2-Layout',
+	#tag : 'Tab'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpTabLayout >> adapterName [
 
 	^ #TabAdapter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTabLayout >> add: aName label: aString [
 
 	self 
@@ -26,39 +28,39 @@ SpTabLayout >> add: aName label: aString [
 			constraints label: aString ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTabLayout >> add: aPresenter withConstraints: aBlock [
 	
 	super add: aPresenter withConstraints: aBlock.
 	self announceChildAdded: aPresenter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTabLayout >> constraintsClass [
 
 	^ SpTabConstraints
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTabLayout >> initialPageIndex [
 	
 	^ initialPageIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTabLayout >> initialPageIndex: aNumber [
 
 	initialPageIndex := aNumber
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTabLayout >> initialize [
 
 	super initialize.
 	initialPageIndex := 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTabLayout >> select: aWindowPresenter [
 
 	self withAdapterDo: [ :anAdapter | 

@@ -5,23 +5,25 @@ Description
 I am a demo showing a demo of tree tables.
 "
 Class {
-	#name : #SpDemoTreeTablePage,
-	#superclass : #SpDemoPage,
-	#category : #'Spec2-Examples-Demo-Tables'
+	#name : 'SpDemoTreeTablePage',
+	#superclass : 'SpDemoPage',
+	#category : 'Spec2-Examples-Demo-Tables',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Tables'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoTreeTablePage class >> pageName [
 	^ 'Tree tables'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoTreeTablePage class >> priority [
 
 	^ 300
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoTreeTablePage >> pageClass [
 	^ SpDemoTreeTablePresenter
 ]

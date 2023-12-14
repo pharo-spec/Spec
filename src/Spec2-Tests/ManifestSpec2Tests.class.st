@@ -6,12 +6,14 @@ Spec is a framework in Pharo for describing user interfaces. It allows for the c
 I contain the tests of Spec2-Core. Those are the tests of Presenters that are independant of the backend used by the user.
 "
 Class {
-	#name : #ManifestSpec2Tests,
-	#superclass : #PackageManifest,
-	#category : #'Spec2-Tests-Manifest'
+	#name : 'ManifestSpec2Tests',
+	#superclass : 'PackageManifest',
+	#category : 'Spec2-Tests-Manifest',
+	#package : 'Spec2-Tests',
+	#tag : 'Manifest'
 }
 
-{ #category : #'code-critics' }
+{ #category : 'code-critics' }
 ManifestSpec2Tests class >> ruleRBSentNotImplementedRuleV1FalsePositive [
 	^ #(#(#(#RGClassDefinition #(#SpUIThemeDecoratorTest)) #'2018-10-10T14:57:43.139752+02:00') #(#(#RGMethodDefinition #(#RadioButtonGroupPresenterTest #testRebuildWidget #false)) #'2018-10-10T14:59:58.802602+02:00') )
 ]

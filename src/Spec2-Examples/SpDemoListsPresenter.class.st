@@ -5,8 +5,8 @@ Description
 I am a demo showing how to use Spec lists.
 "
 Class {
-	#name : #SpDemoListsPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoListsPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'list1',
 		'list2',
@@ -14,10 +14,12 @@ Class {
 		'label',
 		'multiLabel'
 	],
-	#category : #'Spec2-Examples-Demo-Lists'
+	#category : 'Spec2-Examples-Demo-Lists',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Lists'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoListsPresenter >> connectPresenters [
 
 	list1 whenSelectionChangedDo: [ :selection | 
@@ -41,7 +43,7 @@ SpDemoListsPresenter >> connectPresenters [
 			selection selectedItem ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoListsPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -67,24 +69,23 @@ SpDemoListsPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpDemoListsPresenter >> iconFor: class [
 	((class includesBehavior: (Smalltalk globals at: #TestCase ifAbsent: [ false ])) and: [ class isAbstract not ])
 		ifTrue: [ class hasPassedTest ifTrue: [ ^ self iconNamed: #testGreen ].
 			class hasFailedTest ifTrue: [ ^ self iconNamed: #testYellow ].
 			class hasErrorTest ifTrue: [ ^ self iconNamed: #testRed ].
 			^ self iconNamed: #testNotRun ].
-	class organization classComment ifEmpty: [ ^ self iconNamed: #uncommentedClass ].
+	class comment ifEmpty: [ ^ self iconNamed: #uncommentedClass ].
 	((class includesBehavior: (Smalltalk globals at: #TestCase ifAbsent: [ false ])) and: [ class isAbstract not ])
 		ifTrue: [ class hasPassedTest ifTrue: [ ^ self iconNamed: #testGreen ].
 			class hasFailedTest ifTrue: [ ^ self iconNamed: #testYellow ].
 			class hasErrorTest ifTrue: [ ^ self iconNamed: #testRed ].
 			^ self iconNamed: #testNotRun ].
-	class organization classComment ifEmpty: [ ^ self iconNamed: #uncommentedClass ].
 	^ self iconNamed: class systemIconName
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoListsPresenter >> initializePresenters [
 
 	list1 := self newList.
@@ -108,17 +109,17 @@ SpDemoListsPresenter >> initializePresenters [
 	multiLabel label: 'No multi selection (from list 2 only)'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoListsPresenter >> label [
 	^ label
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoListsPresenter >> list1 [
 	^ list1
 ]
 
-{ #category : #menu }
+{ #category : 'menu' }
 SpDemoListsPresenter >> list1Menu [
 	^ self newMenu
 		title: 'Context menu example';
@@ -169,17 +170,17 @@ SpDemoListsPresenter >> list1Menu [
 						action: [ list1 selectedItem traceCr ] ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoListsPresenter >> list2 [
 	^ list2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoListsPresenter >> list3 [
 	^ list3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoListsPresenter >> multiLabel [
 	^ multiLabel
 ]

@@ -1,15 +1,17 @@
 Class {
-	#name : #SpScrollableLayout,
-	#superclass : #SpExecutableLayout,
+	#name : 'SpScrollableLayout',
+	#superclass : 'SpExecutableLayout',
 	#traits : 'SpTAlignable',
 	#classTraits : 'SpTAlignable classTrait',
 	#instVars : [
 		'singleChild'
 	],
-	#category : #'Spec2-Layout-Scroll'
+	#category : 'Spec2-Layout-Scroll',
+	#package : 'Spec2-Layout',
+	#tag : 'Scroll'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpScrollableLayout class >> with: aSymbolOrPresenter [
 
 	^ self new 
@@ -17,19 +19,19 @@ SpScrollableLayout class >> with: aSymbolOrPresenter [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpScrollableLayout >> adapterName [
 
 	^ #ScrollableAdapter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpScrollableLayout >> child [
 
 	^ singleChild
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpScrollableLayout >> child: aPresenter [
 
 	singleChild ifNotNil: [ self remove: singleChild ].
@@ -40,13 +42,13 @@ SpScrollableLayout >> child: aPresenter [
 	self announceChildAdded: aPresenter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpScrollableLayout >> constraintsClass [
 
 	^ SpBoxConstraints
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpScrollableLayout >> remove: aPresenter [
 
 	singleChild := nil.
@@ -54,7 +56,7 @@ SpScrollableLayout >> remove: aPresenter [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpScrollableLayout >> scrollTo: aPoint [
 
 	self withAdapterDo: [ :anAdapter |

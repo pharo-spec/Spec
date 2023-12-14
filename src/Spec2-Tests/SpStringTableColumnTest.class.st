@@ -2,12 +2,14 @@
 A SpStringTableColumnTest is a test class for testing the behavior of SpStringTableColumn
 "
 Class {
-	#name : #SpStringTableColumnTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpStringTableColumnTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpStringTableColumnTest >> testIsSortable [
 	|widget|
 	widget := SpStringTableColumn new.

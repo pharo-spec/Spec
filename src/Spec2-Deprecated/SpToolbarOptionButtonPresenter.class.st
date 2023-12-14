@@ -2,27 +2,29 @@
 An option button
 "
 Class {
-	#name : #SpToolbarOptionButtonPresenter,
-	#superclass : #SpToolbarToggleButtonPresenter,
+	#name : 'SpToolbarOptionButtonPresenter',
+	#superclass : 'SpToolbarToggleButtonPresenter',
 	#instVars : [
 		'buttonGroup'
 	],
-	#category : #'Spec2-Deprecated-Replaced'
+	#category : 'Spec2-Deprecated-Replaced',
+	#package : 'Spec2-Deprecated',
+	#tag : 'Replaced'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpToolbarOptionButtonPresenter class >> adapterName [
 
 	^ #ToolbarOptionAdapter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarOptionButtonPresenter >> buttonGroup: anITOptionButtonGroup [ 
 	
 	buttonGroup := anITOptionButtonGroup
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 SpToolbarOptionButtonPresenter >> execute: state [
 
 	buttonGroup unselectAll.

@@ -11,37 +11,39 @@ This class has and extends API of FTColumn
 	index:		<Number>
 "
 Class {
-	#name : #SpFTArrayIndexColumn,
-	#superclass : #SpFTColumn,
+	#name : 'SpFTArrayIndexColumn',
+	#superclass : 'SpFTColumn',
 	#instVars : [
 		'index'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpFTArrayIndexColumn class >> index: aNumber [
 	^ self new 
 		index: aNumber
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpFTArrayIndexColumn class >> index: aNumber width: aNumber2 [
 	^ (self index: aNumber) 
 		width: aNumber2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFTArrayIndexColumn >> index [
 	^ index
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFTArrayIndexColumn >> index: anObject [
 	index := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFTArrayIndexColumn >> transform: anArray [
 	^ anArray at: self index
 ]

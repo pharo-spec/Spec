@@ -5,17 +5,19 @@ Description
 I show demos of tables
 "
 Class {
-	#name : #SpDemoTablePresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoTablePresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'table1',
 		'label',
 		'selectedClasses'
 	],
-	#category : #'Spec2-Examples-Demo-Tables'
+	#category : 'Spec2-Examples-Demo-Tables',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Tables'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoTablePresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -24,13 +26,13 @@ SpDemoTablePresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoTablePresenter >> initialize [
 	selectedClasses := OrderedCollection with: ASTCache with: ASTEvaluationTest with: Abort.
 	super initialize
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoTablePresenter >> initializePresenters [
 	table1 := self newTable.
 	label := self newLabel.
@@ -62,7 +64,7 @@ SpDemoTablePresenter >> initializePresenters [
 		beResizable
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoTablePresenter >> resetLabel [
 	label label: (selectedClasses ifEmpty: [ 'No class checked' ] ifNotEmpty: [ (selectedClasses collect: #printString) joinUsing: ' - '])
 ]

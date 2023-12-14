@@ -1,10 +1,11 @@
 Class {
-	#name : #SpPillarTextStyler,
-	#superclass : #SpRichTextStyler,
-	#category : #'Spec2-Pillar'
+	#name : 'SpPillarTextStyler',
+	#superclass : 'SpRichTextStyler',
+	#category : 'Spec2-Pillar',
+	#package : 'Spec2-Pillar'
 }
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SpPillarTextStyler >> parseFormatString: aFormatString [
 	self class environment 
 		at: #MicroDownParser
@@ -12,7 +13,7 @@ SpPillarTextStyler >> parseFormatString: aFormatString [
 	^ PRPillarParser parse: aFormatString 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPillarTextStyler >> styles [ 
 	^  SpSimpleStyleProvider new 
 			itemAt: #bold put: {  (TextEmphasis bold) };
@@ -39,12 +40,12 @@ SpPillarTextStyler >> styles [
 			yourself
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 SpPillarTextStyler >> writeFormatString: aDocument [
 	^ PRTextWriter new write: aDocument
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 SpPillarTextStyler >> writePlaintextString: aDocument [
 	^ SpPillarTextWriter write: aDocument
 ]

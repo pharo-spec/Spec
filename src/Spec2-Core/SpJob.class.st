@@ -19,8 +19,8 @@ job run.
 See `SpJobPresenter` for a graphical example.
 "
 Class {
-	#name : #SpJob,
-	#superclass : #Object,
+	#name : 'SpJob',
+	#superclass : 'Object',
 	#instVars : [
 		'block',
 		'currentValue',
@@ -33,17 +33,19 @@ Class {
 		'process',
 		'announcer'
 	],
-	#category : #'Spec2-Core-Job'
+	#category : 'Spec2-Core-Job',
+	#package : 'Spec2-Core',
+	#tag : 'Job'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJob class >> current [
 	"Answer the current job or nil if none."
 
 	^ CurrentJob value
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpJob class >> empty [
 
 	^ self new 
@@ -52,7 +54,7 @@ SpJob class >> empty [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpJob class >> newBlock: aBlock [
 
 	^ self new
@@ -60,7 +62,7 @@ SpJob class >> newBlock: aBlock [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpJob class >> newTitle: aString block: aBlock [ 
 
 	^ self new 
@@ -69,14 +71,14 @@ SpJob class >> newTitle: aString block: aBlock [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJob >> addChild: aJob [
 
 	children add: aJob.
 	aJob parent: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJob >> announce: anAnnouncementClass [
 
 	| announcement |
@@ -84,38 +86,38 @@ SpJob >> announce: anAnnouncementClass [
 	self announcer announce: announcement
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJob >> announceChange [
 
 	isRunning ifFalse: [ ^ self ].
 	self announce: JobChange
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJob >> announcer [
 
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJob >> block [
 	
 	^ block
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJob >> block: aBlock [
 	
 	block := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJob >> children [
 
 	^ children copy
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJob >> cleanupAfterRunning [
 
 	isRunning := false.
@@ -124,44 +126,44 @@ SpJob >> cleanupAfterRunning [
 	parent ifNotNil: [ :job | job removeChild: self ]
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 SpJob >> current [
 
 	^ self currentValue
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 SpJob >> current: aNumber [
 
 	self currentValue: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJob >> currentValue [
 	
 	^ currentValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJob >> currentValue: aNumber [
 	
 	currentValue := aNumber.
 	self announceChange
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 SpJob >> decrement [
 
 	self currentValue: self currentValue - 1
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 SpJob >> increment [
 
 	self currentValue: self currentValue + 1
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpJob >> initialize [
 
 	super initialize.
@@ -173,25 +175,25 @@ SpJob >> initialize [
 	children := OrderedCollection new
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpJob >> isRunning [
 
 	^ isRunning
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 SpJob >> label [
 
 	^ self title
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 SpJob >> label: aString [ 
 
 	self title: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJob >> lookup: lookupBlock ifNone: noneBlock [
 	"Detect a job that satisfies the lookupBlock, or value noneBlock if none satisfies. 
 	The lookup starts at myself, following recursevely through my parent."
@@ -203,19 +205,19 @@ SpJob >> lookup: lookupBlock ifNone: noneBlock [
 		ifNotNil: [ parent lookup: lookupBlock ifNone: noneBlock ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJob >> max [
 	
 	^ max
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJob >> max: aNumber [
 
 	self migrateProgressWhileUpdatingBounds: [ max := aNumber ].
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJob >> migrateProgressWhileUpdatingBounds: aBlockChangingBounds [
 	"Keep the progress value consistent while we change min / max"
 	| progress |
@@ -224,32 +226,32 @@ SpJob >> migrateProgressWhileUpdatingBounds: aBlockChangingBounds [
 	self progress: progress.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJob >> min [
 	
 	^ min
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJob >> min: aNumber [
 
 	self migrateProgressWhileUpdatingBounds: [ min := aNumber ].
 	self announceChange
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJob >> parent [
 
 	^ parent
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJob >> parent: aJob [ 
 
 	parent := aJob.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJob >> prepareForRunning [
 
 	isRunning := true.
@@ -257,7 +259,7 @@ SpJob >> prepareForRunning [
 	self announce: JobStart
 ]
 
-{ #category : #progress }
+{ #category : 'progress' }
 SpJob >> progress [
 	"Avoid negative progress and divideByZero."
 
@@ -266,7 +268,7 @@ SpJob >> progress [
 		ifFalse: [ (currentValue - min) / (max - min) ]
 ]
 
-{ #category : #progress }
+{ #category : 'progress' }
 SpJob >> progress: aNormalizedFloat [
 	"Set the progress: 0.0 - 1.0"
 
@@ -274,19 +276,19 @@ SpJob >> progress: aNormalizedFloat [
 	self announceChange
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 SpJob >> progressPercent: aNumber [ 
 	
 	self currentValue: aNumber
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJob >> removeChild: aJob [ 
 
 	children remove: aJob.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpJob >> run [
 
 	[ 
@@ -295,45 +297,45 @@ SpJob >> run [
 	ensure: [ self cleanupAfterRunning ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJob >> title [
 	
 	^ title
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJob >> title: anObject [
 	
 	title := anObject.
 	self announceChange
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 SpJob >> value [
 
 	^ self currentValue
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 SpJob >> value: aNumber [
 
 	self currentValue: aNumber
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpJob >> whenChangedDo: aBlock [
 
 	self announcer when: JobChange do: aBlock
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpJob >> whenEndDo: aBlock [
 
-	self announcer when: JobEnd do: aBlock
+	self announcer when: JobEnd do: aBlock for: aBlock receiver
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpJob >> whenStartDo: aBlock [
 
-	self announcer when: JobStart do: aBlock
+	self announcer when: JobStart do: aBlock for: aBlock receiver
 ]

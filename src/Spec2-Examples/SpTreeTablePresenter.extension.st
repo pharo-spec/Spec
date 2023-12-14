@@ -1,6 +1,6 @@
-Extension { #name : #SpTreeTablePresenter }
+Extension { #name : 'SpTreeTablePresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTreeTablePresenter class >> example [
 
 	^ self new
@@ -16,7 +16,7 @@ SpTreeTablePresenter class >> example [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTreeTablePresenter class >> exampleExpandPath [
 
 	^ self new
@@ -33,7 +33,7 @@ SpTreeTablePresenter class >> exampleExpandPath [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTreeTablePresenter class >> exampleExpandRoots [
 
 	^ self new
@@ -50,7 +50,7 @@ SpTreeTablePresenter class >> exampleExpandRoots [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTreeTablePresenter class >> exampleResizableColumns [
 
 	^ self  new
@@ -68,7 +68,7 @@ SpTreeTablePresenter class >> exampleResizableColumns [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTreeTablePresenter class >> exampleResizableColumnsFixedWidth [
 
 	^ self  new
@@ -88,7 +88,7 @@ SpTreeTablePresenter class >> exampleResizableColumnsFixedWidth [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTreeTablePresenter class >> exampleWithDecoratedString [
 	
 	^ self new
@@ -111,7 +111,7 @@ SpTreeTablePresenter class >> exampleWithDecoratedString [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpTreeTablePresenter class >> exampleWithTwoColumns [ 
 
 	^ self  new

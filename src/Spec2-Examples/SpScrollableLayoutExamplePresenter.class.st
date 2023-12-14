@@ -2,15 +2,17 @@
 In the current spec status (08/03/2022), I am a documented example of how to use SpScrollableLayouts.
 "
 Class {
-	#name : #SpScrollableLayoutExamplePresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpScrollableLayoutExamplePresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'scrollablePresenter'
 	],
-	#category : #'Spec2-Examples-Demo-Layouts'
+	#category : 'Spec2-Examples-Demo-Layouts',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Layouts'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 SpScrollableLayoutExamplePresenter >> addTextFieldTo: aLayout [
 
 	aLayout
@@ -23,13 +25,13 @@ SpScrollableLayoutExamplePresenter >> addTextFieldTo: aLayout [
 	aLayout add: self newText withConstraints: [ :c | c height: 120 ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpScrollableLayoutExamplePresenter >> defaultLayout [
 
 	^ SpScrollableLayout with: scrollablePresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpScrollableLayoutExamplePresenter >> initializePresenters [
 
 	| largeLayout |

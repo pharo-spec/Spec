@@ -13,18 +13,20 @@ Usage:
 As it is Spec-based, it can be easily adapted and composed into a larger UI.
 "
 Class {
-	#name : #SpDatePresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDatePresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'#chooseDateButton',
 		'#dateModel',
 		'#date',
 		'#displayBlock => ObservableSlot'
 	],
-	#category : #'Spec2-Morphic-Widgets'
+	#category : 'Spec2-Morphic-Widgets',
+	#package : 'Spec2-Morphic',
+	#tag : 'Widgets'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDatePresenter class >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
@@ -34,7 +36,7 @@ SpDatePresenter class >> defaultLayout [
 		
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDatePresenter >> chooseDate [
 
 	| calendar defaultDate |
@@ -46,19 +48,19 @@ SpDatePresenter >> chooseDate [
 		onChoiceSend: #onDateChosen: to: self.
 ]
 
-{ #category : #'accessing - widgets' }
+{ #category : 'accessing - widgets' }
 SpDatePresenter >> chooseDateButton [
 
 	^ chooseDateButton.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDatePresenter >> date [
 
 	^ date
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDatePresenter >> date: aDate [
 
 	| dateString |
@@ -67,18 +69,18 @@ SpDatePresenter >> date: aDate [
 	self dateModel text: dateString.
 ]
 
-{ #category : #'accessing - widgets' }
+{ #category : 'accessing - widgets' }
 SpDatePresenter >> dateModel [
 
 	^ dateModel.
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpDatePresenter >> defaultDate [
 	^ Date today 
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDatePresenter >> display [
 	"Return the one argument block used to wrap your domain specific items.
 	The block should return something that can be displayed in a list - like a String or a Text"
@@ -86,28 +88,28 @@ SpDatePresenter >> display [
 	^ displayBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDatePresenter >> display: aBlock [
 	"Set the one argument block used to transfrom your date into a string"
 
 	displayBlock := aBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDatePresenter >> iconMorph [
 
-	^ ImageMorph new form: (self iconNamed: #calendarIcon)
+	^ ImageMorph new form: (self iconNamed: #calendar)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDatePresenter >> initialize [
 	super initialize.
-	displayBlock := [ :object | object ifNotNil: [ object asStringOrText ] ifNil: '' ].
+	displayBlock := [ :object | object ifNotNil: [ object asStringOrText ] ifNil: [''] ].
 	self property: #displayBlock whenChangedDo: [ self date: self date ].
 	self date: self defaultDate
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDatePresenter >> initializePresenters [
 
 	dateModel := self newTextInput.
@@ -119,21 +121,21 @@ SpDatePresenter >> initializePresenters [
 		extent: self iconMorph extent.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDatePresenter >> onDateChosen: aChoseDate [
 
 	aChoseDate calendar delete.
 	self date: aChoseDate date
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpDatePresenter >> whenDateChanged: aBlock [
 
-	dateModel whenTextChanged: [ :newText :oldText :announcement :anAnnouncer |
+	dateModel whenTextChangedDo: [ :newText :oldText | 
 		| oldDate |
 		oldDate := date.
 		date := newText
-			ifNotEmpty: [ Date readFrom: newText readStream ]
-			ifEmpty: [ nil ].
-		aBlock cull: date cull: oldDate cull: announcement cull: anAnnouncer ]
+			        ifNotEmpty: [ Date readFrom: newText readStream ]
+			        ifEmpty: [ nil ].
+		aBlock cull: date cull: oldDate ]
 ]

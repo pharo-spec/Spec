@@ -1,6 +1,6 @@
-Extension { #name : #SpNotebookPage }
+Extension { #name : 'SpNotebookPage' }
 
-{ #category : #'*Spec2-Microdown' }
+{ #category : '*Spec2-Microdown' }
 SpNotebookPage class >> buildMicroDownUsing: aBuilder withComment: aString [
 	
 	super buildMicroDownUsing: aBuilder withComment: aString.

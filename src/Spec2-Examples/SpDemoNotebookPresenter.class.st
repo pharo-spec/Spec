@@ -5,34 +5,36 @@ Description
 I am a presenter to show how to use notebook with spec.
 "
 Class {
-	#name : #SpDemoNotebookPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoNotebookPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'notebook',
 		'checkbox',
 		'dynamicPage'
 	],
-	#category : #'Spec2-Examples-Demo-Notebook'
+	#category : 'Spec2-Examples-Demo-Notebook',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Notebook'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpDemoNotebookPresenter class >> example [
 	^ self new open
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpDemoNotebookPresenter >> browserPage [
 
 	^ SpNotebookPage
 		title: 'Browser'
-		icon: (self iconNamed: #nautilusIcon)
+		icon: (self iconNamed: #nautilus)
 		provider: [ 
 			SpClassMethodBrowser new
 				classes: self class environment allClasses;
 				yourself ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoNotebookPresenter >> connectPresenters [
 	super connectPresenters.
 
@@ -45,7 +47,7 @@ SpDemoNotebookPresenter >> connectPresenters [
 					dynamicPage := nil ] ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoNotebookPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -54,12 +56,12 @@ SpDemoNotebookPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpDemoNotebookPresenter >> dynamicPage [
-	^ SpNotebookPage title: 'Dynamic' icon: (self iconNamed: #nautilusIcon) provider: [ SpDynamicWidgetChange new ]
+	^ SpNotebookPage title: 'Dynamic' icon: (self iconNamed: #nautilus) provider: [ SpDynamicWidgetChange new ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoNotebookPresenter >> initializePresenters [
 
 	notebook := self newNotebook.
@@ -72,12 +74,12 @@ SpDemoNotebookPresenter >> initializePresenters [
 		addPage: self browserPage
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpDemoNotebookPresenter >> objectClassPage [
 
 	^ (SpNotebookPage 
 		title: 'Object class' 
-		icon: (self iconNamed: #nautilusIcon) 
+		icon: (self iconNamed: #nautilus) 
 		provider: [ 
 			SpDemoMessageBrowser new
 				messages: Object methods;
@@ -86,14 +88,11 @@ SpDemoNotebookPresenter >> objectClassPage [
 		yourself
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpDemoNotebookPresenter >> objectInspectorPage [
-	^ SpNotebookPage
-		title: 'Object inspector'
-		icon: (self iconNamed: #nautilusIcon)
-		provider: [ 
-			SpObjectInspector new
-				inspect: Object;
-				yourself ]
-		layoutSpec: #inspectorSpec
+
+	^ SpNotebookPage title: 'Object inspector' icon: (self iconNamed: #nautilus) provider: [
+		  SpObjectInspector new
+			  inspect: Object;
+			  yourself ]
 ]

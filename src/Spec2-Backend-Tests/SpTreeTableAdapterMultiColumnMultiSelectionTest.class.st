@@ -1,10 +1,12 @@
 Class {
-	#name : #SpTreeTableAdapterMultiColumnMultiSelectionTest,
-	#superclass : #SpTreeTableAdapterSingleColumnMultiSelectionTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpTreeTableAdapterMultiColumnMultiSelectionTest',
+	#superclass : 'SpTreeTableAdapterSingleColumnMultiSelectionTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTreeTableAdapterMultiColumnMultiSelectionTest >> initializeTestedInstance [ 
 
 	presenter

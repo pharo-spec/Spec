@@ -1,6 +1,6 @@
-Extension { #name : #SpColumnAlignment }
+Extension { #name : 'SpColumnAlignment' }
 
-{ #category : #'*Spec2-Morphic' }
+{ #category : '*Spec2-Morphic' }
 SpColumnAlignment >> asTextAlignment [
 
 	self subclassResponsibility

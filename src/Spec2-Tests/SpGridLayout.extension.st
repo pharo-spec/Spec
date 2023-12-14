@@ -1,6 +1,6 @@
-Extension { #name : #SpGridLayout }
+Extension { #name : 'SpGridLayout' }
 
-{ #category : #'*Spec2-Tests' }
+{ #category : '*Spec2-Tests' }
 SpGridLayout >> at: aPoint [
 	
 	^ childrenByPosition at: aPoint

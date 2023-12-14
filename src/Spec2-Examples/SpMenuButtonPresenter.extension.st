@@ -1,6 +1,6 @@
-Extension { #name : #SpMenuButtonPresenter }
+Extension { #name : 'SpMenuButtonPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpMenuButtonPresenter class >> example [
 	| presenter menuButton loremIpsumWords |
 

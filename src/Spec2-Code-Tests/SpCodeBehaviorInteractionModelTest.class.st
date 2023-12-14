@@ -1,34 +1,35 @@
 Class {
-	#name : #SpCodeBehaviorInteractionModelTest,
-	#superclass : #SpCodeInteractionModelTest,
-	#category : #'Spec2-Code-Tests'
+	#name : 'SpCodeBehaviorInteractionModelTest',
+	#superclass : 'SpCodeInteractionModelTest',
+	#category : 'Spec2-Code-Tests',
+	#package : 'Spec2-Code-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeBehaviorInteractionModelTest >> behaviorToTest [
 
 	^ SpCodePresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeBehaviorInteractionModelTest >> classToTest [
 
 	^ SpCodeBehaviorInteractionModel
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpCodeBehaviorInteractionModelTest >> initializeInstance: anInteractionModel [
 
 	anInteractionModel behavior: self behaviorToTest
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeBehaviorInteractionModelTest >> testBehavior [
 
 	self assert: interactionModel behavior equals: self behaviorToTest
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeBehaviorInteractionModelTest >> testBindingOf [
 
 	self assert: (interactionModel bindingOf: #somethingNotExistent) isNil.
@@ -37,9 +38,9 @@ SpCodeBehaviorInteractionModelTest >> testBindingOf [
 	self assert: (interactionModel bindingOf: #Object) value equals: Object
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeBehaviorInteractionModelTest >> testHasBindingOf [
 
 	self deny: (interactionModel hasBindingOf: #somethingNotExistent).
-	self deny: (interactionModel hasBindingOf: #Object)
+	self assert: (interactionModel hasBindingOf: #Object)
 ]

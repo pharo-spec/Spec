@@ -13,17 +13,19 @@ SpGridLayout build: [ :builder |
 		nextRow ]
 "
 Class {
-	#name : #SpGridLayoutBuilder,
-	#superclass : #Object,
+	#name : 'SpGridLayoutBuilder',
+	#superclass : 'Object',
 	#instVars : [
 		'currentColumn',
 		'currentRow',
 		'layout'
 	],
-	#category : #'Spec2-Layout-Grid'
+	#category : 'Spec2-Layout-Grid',
+	#package : 'Spec2-Layout',
+	#tag : 'Grid'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpGridLayoutBuilder class >> on: aGridLayout [
 
 	^ self basicNew
@@ -31,70 +33,70 @@ SpGridLayoutBuilder class >> on: aGridLayout [
 		yourself
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpGridLayoutBuilder >> add: aChild [
 	layout add: aChild at: self nextColumn @ self currentRow.
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpGridLayoutBuilder >> add: aChild span: spanPoint [
 			
 	layout add: aChild at: self nextColumn @ self currentRow span: spanPoint.
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpGridLayoutBuilder >> beColumnHomogeneous [
 
 	layout columnHomogeneous: true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpGridLayoutBuilder >> beColumnNotHomogeneous [
 
 	layout columnHomogeneous: false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpGridLayoutBuilder >> beRowHomogeneous [
 
 	layout rowHomogeneous: true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpGridLayoutBuilder >> beRowNotHomogeneous [
 
 	layout rowHomogeneous: false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpGridLayoutBuilder >> borderWidth: anInteger [
 	layout borderWidth: anInteger
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpGridLayoutBuilder >> column: aNumber expand: aBoolean [
 
 	layout column: aNumber expand: aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpGridLayoutBuilder >> column: aNumber withConstraints: aBlock [
 
 	layout column: aNumber withConstraints: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpGridLayoutBuilder >> columnSpacing: aNumber [
 
 	layout columnSpacing: aNumber
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpGridLayoutBuilder >> currentRow [
 	^ currentRow
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpGridLayoutBuilder >> initialize [ 
 
 	super initialize.
@@ -102,47 +104,47 @@ SpGridLayoutBuilder >> initialize [
 	self resetCurrentColumn.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpGridLayoutBuilder >> initializeLayout: aGridLayout [
 
 	layout := aGridLayout.
 	self initialize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGridLayoutBuilder >> layout [
 	^ layout 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpGridLayoutBuilder >> nextColumn [
 	^ currentColumn := currentColumn + 1
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpGridLayoutBuilder >> nextRow [
 	currentRow := currentRow + 1.
 	self resetCurrentColumn.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpGridLayoutBuilder >> resetCurrentColumn [
 	currentColumn := 0.
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpGridLayoutBuilder >> row: aNumber expand: aBoolean [
 
 	layout row: aNumber expand: aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpGridLayoutBuilder >> row: aNumber withConstraints: aBlock [
 
 	layout row: aNumber withConstraints: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpGridLayoutBuilder >> rowSpacing: aNumber [
 
 	layout rowSpacing: aNumber

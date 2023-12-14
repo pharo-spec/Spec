@@ -3,30 +3,32 @@ I'm an example of an Option List (mac style).
 My options reuse a layout already defined in other examples.
 "
 Class {
-	#name : #SpOptionListExample,
-	#superclass : #SpOptionListPresenter,
-	#category : #'Spec2-Examples-Standalone'
+	#name : 'SpOptionListExample',
+	#superclass : 'SpOptionListPresenter',
+	#category : 'Spec2-Examples-Standalone',
+	#package : 'Spec2-Examples',
+	#tag : 'Standalone'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpOptionListExample class >> example [
 
 	self new open
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpOptionListExample class >> exampleDialog [
 	self new openDialog
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOptionListExample >> allOptions [
 
 	^ { SpProgressBarDemo . SpOptionPresenterExample . SpDemoFormPresenter }
 		collect: [ :class | class new ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOptionListExample >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter

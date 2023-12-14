@@ -2,34 +2,36 @@
 I'm the adapter used to bridge a StatusBarPresenter and its morphic representation.
 "
 Class {
-	#name : #SpMorphicStatusBarAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
+	#name : 'SpMorphicStatusBarAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
 	#instVars : [
 		'pushedMessages'
 	],
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicStatusBarAdapter class >> defaultHeight [
 
 	^ 25
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicStatusBarAdapter class >> defaultItemSeparation [
 
 	^ 5
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicStatusBarAdapter >> addModelTo: aMorph [
 
 	self model message ifNotNil: [ :message |
 		self pushMessage: message to: aMorph ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicStatusBarAdapter >> buildWidget [
 
 	| panelMorph |
@@ -47,21 +49,21 @@ SpMorphicStatusBarAdapter >> buildWidget [
 	^ panelMorph
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicStatusBarAdapter >> initialize [ 
 
 	super initialize.
 	pushedMessages := OrderedCollection new
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMorphicStatusBarAdapter >> popMessage [
 
 	self widgetDo: [ :w |
 		self popMessageFrom: w ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicStatusBarAdapter >> popMessageFrom: aMorph [
 
 	| message |
@@ -74,7 +76,7 @@ SpMorphicStatusBarAdapter >> popMessageFrom: aMorph [
 		addMorph: message asStringMorph
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMorphicStatusBarAdapter >> pushMessage [
 
 	self widgetDo: [ :w |
@@ -83,7 +85,7 @@ SpMorphicStatusBarAdapter >> pushMessage [
 			to: w ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicStatusBarAdapter >> pushMessage: message to: aMorph [
 
 	pushedMessages add: message.
@@ -92,7 +94,7 @@ SpMorphicStatusBarAdapter >> pushMessage: message to: aMorph [
 		addMorph: message asStringMorph
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicStatusBarAdapter >> update: aSymbol [ 
 
 	aSymbol = #pushMessage ifTrue: [ self pushMessage ].

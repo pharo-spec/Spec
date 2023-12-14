@@ -5,33 +5,35 @@ I'm called ""horizonal"" (even if my draw is vertical) because I split horizonta
 self exampleHorizontal.
 "
 Class {
-	#name : #SpPanedResizerHorizontalMorph,
-	#superclass : #SpPanedResizerMorph,
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#name : 'SpPanedResizerHorizontalMorph',
+	#superclass : 'SpPanedResizerMorph',
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPanedResizerHorizontalMorph >> edgeName [
 	"Answer the value of edgeName"
 
 	^ #right
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpPanedResizerHorizontalMorph >> isHorizontal [
 	"Answer true if the receiver has a horizontal layout."
 	
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPanedResizerHorizontalMorph >> positionPoint: aPoint [
 	"Reposition based on ptName."
 	
 	^ self position: aPoint x @ self top
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPanedResizerHorizontalMorph >> setLayoutSizing [
 	"Adjust the sizing for use within table layouts."
 
@@ -40,7 +42,7 @@ SpPanedResizerHorizontalMorph >> setLayoutSizing [
 		vResizing: #spaceFill
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPanedResizerHorizontalMorph >> setTargetBounds [
 	| target |
 	
@@ -48,7 +50,7 @@ SpPanedResizerHorizontalMorph >> setTargetBounds [
 	target bounds: (target bounds withRight: self left - 1)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPanedResizerHorizontalMorph >> setTargetLayoutSizing [
 
 	(self target hResizing = #rigid) ifTrue: [ ^ self ].

@@ -3,12 +3,14 @@ I am an abstract class providing all the properties shared amongs all the stub a
 
 "
 Class {
-	#name : #SpStubAbstractAdapter,
-	#superclass : #SpAbstractAdapter,
-	#category : #'Spec2-Adapters-Stub-Adapters'
+	#name : 'SpStubAbstractAdapter',
+	#superclass : 'SpAbstractAdapter',
+	#category : 'Spec2-Adapters-Stub-Adapters',
+	#package : 'Spec2-Adapters-Stub',
+	#tag : 'Adapters'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpStubAbstractAdapter class >> adaptingName [
 	"Override me if adapter will not follow the common pattern"
 
@@ -17,103 +19,103 @@ SpStubAbstractAdapter class >> adaptingName [
 	^ (self name withoutPrefix: 'SpStub') asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpStubAbstractAdapter class >> allAdapters [
 
 	^ self allSubclasses
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpStubAbstractAdapter >> add: aWidget [
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubAbstractAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
 	
 	
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 SpStubAbstractAdapter >> bindKeyCombination: aShortcut toAction: aBlock [
 
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpStubAbstractAdapter >> borderColor: color [
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpStubAbstractAdapter >> borderWidth: width [
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubAbstractAdapter >> buildWidget [
 
 	^ self class new
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpStubAbstractAdapter >> color: color [
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpStubAbstractAdapter >> dragEnabled: aBoolean [
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpStubAbstractAdapter >> dropEnabled: aBoolean [
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpStubAbstractAdapter >> enabled: aBoolean [
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpStubAbstractAdapter >> hRigid [
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpStubAbstractAdapter >> hShrinkWrap [
 
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpStubAbstractAdapter >> hSpaceFill [
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpStubAbstractAdapter >> layout: aLayout [
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpStubAbstractAdapter >> removeSubWidgets [
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpStubAbstractAdapter >> setBalloonText: aString [
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubAbstractAdapter >> takeKeyboardFocus [
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubAbstractAdapter >> useProportionalLayout [
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpStubAbstractAdapter >> vRigid [
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpStubAbstractAdapter >> vShrinkWrap [
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpStubAbstractAdapter >> vSpaceFill [
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpStubAbstractAdapter >> when: anAnnouncement do: aBlock [
 ]

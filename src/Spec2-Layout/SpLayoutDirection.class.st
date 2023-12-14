@@ -1,19 +1,21 @@
 Class {
-	#name : #SpLayoutDirection,
-	#superclass : #Object,
+	#name : 'SpLayoutDirection',
+	#superclass : 'Object',
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'Spec2-Layout-Base'
+	#category : 'Spec2-Layout-Base',
+	#package : 'Spec2-Layout',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLayoutDirection class >> horizontal [
 
 	^ SpHorizontalLayoutDirection uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLayoutDirection class >> uniqueInstance [ 
 	
 	self = SpLayoutDirection ifTrue: [ 
@@ -21,25 +23,25 @@ SpLayoutDirection class >> uniqueInstance [
 	^ uniqueInstance ifNil: [ uniqueInstance := self basicNew initialize ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLayoutDirection class >> vertical [
 
 	^ SpVerticalLayoutDirection uniqueInstance
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpLayoutDirection >> isHorizontal [
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpLayoutDirection >> isVertical [
 
 	^ false
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpLayoutDirection >> newWidgetOn: anAdapter [
 
 	^ self subclassResponsibility

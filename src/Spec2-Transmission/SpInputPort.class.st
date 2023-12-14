@@ -8,24 +8,26 @@ This transmission happens in *method:SpInputPort#incomingTransmission:from:*, th
 See: *class:SpLabelPort*,*class:SpListItemsPort*, *class:SpModelPort*, *class:SpTextPort*, *class:SpActionPort*
 "
 Class {
-	#name : #SpInputPort,
-	#superclass : #SpAbstractPort,
-	#category : #'Spec2-Transmission-Base'
+	#name : 'SpInputPort',
+	#superclass : 'SpAbstractPort',
+	#category : 'Spec2-Transmission-Base',
+	#package : 'Spec2-Transmission',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpInputPort class >> isAbstract [
 
 	^ self name = #SpInputPort
 ]
 
-{ #category : #'handling transmission' }
+{ #category : 'handling transmission' }
 SpInputPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
 	
 	self subclassResponsibility
 ]
 
-{ #category : #'handling transmission' }
+{ #category : 'handling transmission' }
 SpInputPort >> incomingTransmission: anObject from: outPort [
 	"When a transmission happens, the origin transmission has is triggers a value ==anObject== 
 	 (already transformed if #transform: is specified) from the outPort *class:SpOutputPort*.
@@ -45,7 +47,7 @@ SpInputPort >> incomingTransmission: anObject from: outPort [
 	
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpInputPort >> isInput [ 
 
 	^ true

@@ -5,29 +5,30 @@ A page can have a title, an icon and some other interesting properties.
 An important member is `SpNotebookPage>>#presenterProvider`, which contains a block to retrieve the content of the page, which can be resolved lazily.
 "
 Class {
-	#name : #SpNotebookPage,
-	#superclass : #Object,
+	#name : 'SpNotebookPage',
+	#superclass : 'Object',
 	#traits : 'TObservable',
 	#classTraits : 'TObservable classTrait',
 	#instVars : [
 		'#owner',
 		'#title => ObservableSlot',
 		'#icon => ObservableSlot',
-		'#layoutSpec => ObservableSlot',
 		'#closeable',
 		'#presenterProvider',
 		'#retrievedBlock',
 		'#activePresenter => WeakSlot',
 		'#labelPresenter'
 	],
-	#category : #'Spec2-Core-Widgets-Tab'
+	#category : 'Spec2-Core-Widgets-Tab',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Tab'
 }
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpNotebookPage class >> addDocumentExtraSections: aBuilder [
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpNotebookPage class >> addDocumentSectionFactoryMethod: aBuilder [
 	| selector |
 
@@ -44,23 +45,25 @@ SpNotebookPage class >> addDocumentSectionFactoryMethod: aBuilder [
 	aBuilder text: '.'
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpNotebookPage class >> documentFactoryMethodSelector [
 
 	^ #newNotebookPage
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpNotebookPage class >> documentSections [
-		
+
 	^ OrderedDictionary newFromPairs: {
-		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
-		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api - events' ].
-	 }
+			  'API Methods'.
+			  (self methods select: [ :method | method protocolName = #api ]).
+			  'Testing Methods'.
+			  (self methods select: [ :method | method protocolName = #testing ]).
+			  'Events'.
+			  (self methods select: [ :method | method protocolName = #'api - events' ]) }
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpNotebookPage class >> title: aString icon: anIcon provider: aBlock [
 
 	^ self new 
@@ -70,18 +73,7 @@ SpNotebookPage class >> title: aString icon: anIcon provider: aBlock [
 		yourself
 ]
 
-{ #category : #'instance creation' }
-SpNotebookPage class >> title: aString icon: anIcon provider: aBlock layoutSpec: aSymbol [
-
-	^ self new 
-		title: aString;
-		icon: anIcon;
-		presenterProvider: aBlock;
-		layoutSpec: aSymbol;
-		yourself
-]
-
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpNotebookPage class >> title: aString provider: aBlock [
 
 	^ self new 
@@ -90,35 +82,35 @@ SpNotebookPage class >> title: aString provider: aBlock [
 		yourself
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpNotebookPage >> activePresenter [
 	"Answer current active presenter fot this page (it may be nil, if page has not been displayed yet)"
 	
 	^ activePresenter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpNotebookPage >> beCloseable [
 	"Set the page as closeable, make a closing button to appear with the title."
 
 	closeable := true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpNotebookPage >> icon [
 	"Answer the icon (an instance of `Form`) to show with title"
 
 	^ icon
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpNotebookPage >> icon: anIcon [
 	"Set the icon (an instance of `Form`) to show with title"
 
 	icon := anIcon
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpNotebookPage >> initialize [
 	
 	self class initializeSlots: self.
@@ -126,14 +118,14 @@ SpNotebookPage >> initialize [
 	closeable := false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpNotebookPage >> isCloseable [
 	"Answer when the page is closeable or not"
 
 	^ closeable
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPage >> labelPresenterFor: ownerPresenter [
 	"There is one, and *just one* active label presenter for each page.
 	 The only case I can think that can be changed is if owner changed (if we move the page from 
@@ -147,19 +139,7 @@ SpNotebookPage >> labelPresenterFor: ownerPresenter [
 	^ labelPresenter
 ]
 
-{ #category : #api }
-SpNotebookPage >> layoutSpec [
-
-	^ layoutSpec
-]
-
-{ #category : #api }
-SpNotebookPage >> layoutSpec: aSymbol [
-
-	layoutSpec := aSymbol
-]
-
-{ #category : #'private - factory' }
+{ #category : 'private - factory' }
 SpNotebookPage >> newLabelPresenterFor: ownerPresenter [
 	"override this to implement custom labels"
 
@@ -168,33 +148,33 @@ SpNotebookPage >> newLabelPresenterFor: ownerPresenter [
 		on: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPage >> owner [
 
 	^ owner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpNotebookPage >> owner: anObject [
 
 	owner := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpNotebookPage >> pageTitleChanged [
 
 	self owner ifNil: [ ^ self ].
 	self owner pageTitleChanged: self
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpNotebookPage >> presenterProvider [
 	"Answer the presenter provider (tipically a block, but any valuable could work)."
 
 	^ presenterProvider
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpNotebookPage >> presenterProvider: aBlock [
 	"Set the presenter provider (tipically a block, but any valuable could work).
 	 The block will be executed before showing the page contents."
@@ -202,21 +182,21 @@ SpNotebookPage >> presenterProvider: aBlock [
 	presenterProvider := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpNotebookPage >> removeFromNotebook [
 	"Remove this page from the notebook."
 
 	owner removePage: self
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpNotebookPage >> resetContent [
 	"force a redraw of contents of this page (next time it is selected)"
 	
 	self owner updatePageContent: self
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpNotebookPage >> retrievePresenter [
 	"refresh all the time, because content may have change"
 
@@ -226,21 +206,21 @@ SpNotebookPage >> retrievePresenter [
 	^ activePresenter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpNotebookPage >> title [
 	"Answer the title to show in the notebook"
 
 	^ title
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpNotebookPage >> title: aString [
 	"Set the title to show in the notebook"
 
 	title := aString
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpNotebookPage >> unsubscribe: anObject [
 	| observableSlots |
 	
@@ -253,13 +233,13 @@ SpNotebookPage >> unsubscribe: anObject [
 				slotValue unsubscribe: anObject ] ].
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpNotebookPage >> whenIconChangedDo: aBlock [
 
 	self property: #icon whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpNotebookPage >> whenRetrievedDo: aBlock [ 
 	"Inform when a page has been retrived, allowing extra settings.
 	 `aBlock` is a block with one orgument (the presenter retrieved)"
@@ -267,7 +247,7 @@ SpNotebookPage >> whenRetrievedDo: aBlock [
 	retrievedBlock := aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpNotebookPage >> whenTitleChangedDo: aBlock [
 
 	self property: #title whenChangedDo: aBlock

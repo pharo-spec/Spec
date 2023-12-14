@@ -1,13 +1,14 @@
 Class {
-	#name : #SpChangePhoneCommand,
-	#superclass : #SpContactBookCommand,
+	#name : 'SpChangePhoneCommand',
+	#superclass : 'SpContactBookCommand',
 	#instVars : [
 		'newPhone'
 	],
-	#category : #'Spec2-Commander2-ContactBook-Extensions'
+	#category : 'Spec2-Commander2-ContactBook-Extensions',
+	#package : 'Spec2-Commander2-ContactBook-Extensions'
 }
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 SpChangePhoneCommand >> execute [
 	"One should never manipulate UI directly from a commande.
 	 Instead, you can use one of the subclass of LtCommandNotification.
@@ -18,7 +19,7 @@ SpChangePhoneCommand >> execute [
 	self contactBookPresenter updateView
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpChangePhoneCommand >> initialize [
 	super initialize.
 	self
@@ -26,12 +27,12 @@ SpChangePhoneCommand >> initialize [
 		description: 'Change the phone number of the contact.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChangePhoneCommand >> newPhone [
 	^ newPhone
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChangePhoneCommand >> newPhone: anObject [
 	newPhone := anObject
 ]

@@ -6,24 +6,26 @@ Since it is designed to be contained in a specific morph (`SpPaginatorSelectionM
 - the target of the edge is the selection area always, and it can move (at least for the moment) just left or right.
 "
 Class {
-	#name : #SpPaginatorEdgeGripMorph,
-	#superclass : #EdgeGripMorph,
-	#category : #'Spec2-Adapters-Morphic-Paginator'
+	#name : 'SpPaginatorEdgeGripMorph',
+	#superclass : 'EdgeGripMorph',
+	#category : 'Spec2-Adapters-Morphic-Paginator',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Paginator'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorEdgeGripMorph >> beLeft [
 
 	self edgeName: #left
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorEdgeGripMorph >> beRight [
 
 	self edgeName: #right
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPaginatorEdgeGripMorph >> initialize [
 
 	super initialize. 
@@ -32,7 +34,7 @@ SpPaginatorEdgeGripMorph >> initialize [
 		vResizing: #spaceFill
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpPaginatorEdgeGripMorph >> mouseMove: anEvent [
 
 	self target ifNil: [ ^ self ].
@@ -53,14 +55,14 @@ SpPaginatorEdgeGripMorph >> mouseMove: anEvent [
 	self positionPoint: (lastMouse first - lastMouse second).
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpPaginatorEdgeGripMorph >> mouseUp: anEvent [
 
 	super mouseUp: anEvent.
 	self owner mouseUp: anEvent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorEdgeGripMorph >> positionPoint: aPoint [
 
 	self position: (aPoint x) @ self top

@@ -1,16 +1,18 @@
 Class {
-	#name : #SpTreeAdapterSingleSelectionTest,
-	#superclass : #SpAbstractListAdapterSingleSelectionTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpTreeAdapterSingleSelectionTest',
+	#superclass : 'SpAbstractListAdapterSingleSelectionTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTreeAdapterSingleSelectionTest >> classToTest [
 
 	^ SpTreePresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTreeAdapterSingleSelectionTest >> initializeTestedInstance [ 
 
 	presenter
@@ -19,7 +21,7 @@ SpTreeAdapterSingleSelectionTest >> initializeTestedInstance [
 	
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testSelectManyIndexesKeepsLastSelectionInWidget [
 	
 	presenter selectPath: #(1).
@@ -27,27 +29,27 @@ SpTreeAdapterSingleSelectionTest >> testSelectManyIndexesKeepsLastSelectionInWid
 	self assert: self adapter selectedPaths equals: #(#(2))
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testSelectPresenterIndexOutsideRangeUnsetsSelectedIndexInWidget [
 	
 	presenter selectPath: #(100).
 	self assert: self adapter selectedPaths isEmpty
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testSelectPresenterIndexSetsSelectedIndexInWidget [
 	
 	presenter selectPath: #(1).
 	self assert: (self adapter selectedPaths includes: #(1))
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testSelectPresenterItemSetsSelectedIndexInWidget [
 	
 	self skip. "No selectItem for the moment"
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testSelectPresenterWithScrollingMakeSelectedItemVisible [
 
 	| visibleItems |
@@ -63,7 +65,7 @@ SpTreeAdapterSingleSelectionTest >> testSelectPresenterWithScrollingMakeSelected
 		(visibleItems includes: presenter selection selectedPath first)
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testSelectPresenterWithoutScrollingDoesNotScroll [
 
 	| visibleItems verticalAlignment |
@@ -82,7 +84,7 @@ SpTreeAdapterSingleSelectionTest >> testSelectPresenterWithoutScrollingDoesNotSc
 		equals: visibleItems
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	
@@ -92,7 +94,7 @@ SpTreeAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexCha
 	self assert: counter equals: 1
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedPath |
 	
@@ -102,7 +104,7 @@ SpTreeAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexCha
 	self assert: selectedPath equals: #(1)
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testUnselectAllInWidgetNotRaisesEmptySelectionChangeEvent [
 	| gotSelection |
 	
@@ -112,7 +114,7 @@ SpTreeAdapterSingleSelectionTest >> testUnselectAllInWidgetNotRaisesEmptySelecti
 	self assert: gotSelection isNil
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	
@@ -124,7 +126,7 @@ SpTreeAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesSelectionIndexC
 	self assert: counter equals: 1
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testUnselectAllInWidgetWithoutSelectionDoesNotRaiseEvent [
 	| counter |
 	
@@ -135,7 +137,7 @@ SpTreeAdapterSingleSelectionTest >> testUnselectAllInWidgetWithoutSelectionDoesN
 	self assert: counter equals: 0
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testUnselectPresenterIndexUnselectsIndexInWidget [
 	
 	presenter
@@ -144,13 +146,13 @@ SpTreeAdapterSingleSelectionTest >> testUnselectPresenterIndexUnselectsIndexInWi
 	self assert: self adapter selectedPaths isEmpty
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testUnselectPresenterItemUnselectsIndexInWidget [
 	
 	self skip. "No selectItem for the moment"
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelectionIndexChangeEventOnce [
 	| counter |
 	
@@ -162,7 +164,7 @@ SpTreeAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelectionIndexC
 	self assert: counter equals: 1
 ]
 
-{ #category : #'tests - model-to-widget' }
+{ #category : 'tests - model-to-widget' }
 SpTreeAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelectionIndexChangeEventWithSelectedIndex [
 	| selectedPath |
 	

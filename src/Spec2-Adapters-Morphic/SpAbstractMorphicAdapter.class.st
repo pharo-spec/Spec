@@ -2,12 +2,14 @@
 I am an abstract class providing all the properties shared amongs all the morphic specific adapters
 "
 Class {
-	#name : #SpAbstractMorphicAdapter,
-	#superclass : #SpAbstractAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpAbstractMorphicAdapter',
+	#superclass : 'SpAbstractAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractMorphicAdapter class >> adaptingName [
 	"Override me if adapter will not follow the common pattern"
 
@@ -16,25 +18,31 @@ SpAbstractMorphicAdapter class >> adaptingName [
 	^ (self name withoutPrefix: 'SpMorphic') asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractMorphicAdapter class >> allAdapters [
 
 	^ self allSubclasses
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'testing' }
+SpAbstractMorphicAdapter class >> isAbstract [
+
+	^ self == SpAbstractMorphicAdapter
+]
+
+{ #category : 'drag and drop' }
 SpAbstractMorphicAdapter >> acceptDropBlock [
 
 	^ self model acceptDropBlock
 ]
 
-{ #category : #'drag and drop - private' }
+{ #category : 'drag and drop - private' }
 SpAbstractMorphicAdapter >> acceptDroppingMorph: draggedMorph event: event inMorph: source [
 
 	^ self acceptDropBlock cull: draggedMorph model model cull: event cull: source model model
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractMorphicAdapter >> adapt: aPresenter [
 
 	super adapt: aPresenter.
@@ -43,12 +51,12 @@ SpAbstractMorphicAdapter >> adapt: aPresenter [
 	self addEventsTo: self widget
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> add: anAdapter [
 	self widgetDo: [ :w | w spEnsureLayoutAndAddMorph: anAdapter widget ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractMorphicAdapter >> addContextMenuKeyBindings: aWidget [
 	
 	self flag: #TODO. "Take this from a configuration"
@@ -58,7 +66,7 @@ SpAbstractMorphicAdapter >> addContextMenuKeyBindings: aWidget [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractMorphicAdapter >> addFocusRotationKeyBindings [
 
 	self presenter canTakeKeyboardFocus ifFalse: [ ^ self ].
@@ -71,7 +79,7 @@ SpAbstractMorphicAdapter >> addFocusRotationKeyBindings [
 		toAction: [ self focusPrevious ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractMorphicAdapter >> addKeyBindingsTo: aMorph [
 
 	self addFocusRotationKeyBindings.
@@ -82,7 +90,7 @@ SpAbstractMorphicAdapter >> addKeyBindingsTo: aMorph [
 				toAction: each action ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractMorphicAdapter >> addSettingsTo: aMorph [
 	
 	self widget ifNil: [ ^ self ].
@@ -94,32 +102,32 @@ SpAbstractMorphicAdapter >> addSettingsTo: aMorph [
 	self applyVisibility
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpAbstractMorphicAdapter >> addStyle: aStyle [
 	"ignore style and just apply it again (the new style will not there)"
 	self applyStyle: self widget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractMorphicAdapter >> application [ 
 
 	^ self presenter application
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpAbstractMorphicAdapter >> applyStyle [
 
 	self applyStyle: self widget
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpAbstractMorphicAdapter >> applyStyle: morph [
 	"this will apply general properties to the built morph"
 
 	self style applyTo: morph
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractMorphicAdapter >> applyVisibility [
 	
 	"It may happen that some presenters use generic adapters and they do not have an associated presenter.
@@ -133,7 +141,7 @@ SpAbstractMorphicAdapter >> applyVisibility [
 			ifFalse: [ self widget hide ] ]
 ]
 
-{ #category : #'protocol - shortcuts' }
+{ #category : 'protocol - shortcuts' }
 SpAbstractMorphicAdapter >> bindKeyCombination: aShortcut toAction: aBlock [
 
 	self widgetDo: [ :w | 
@@ -142,31 +150,31 @@ SpAbstractMorphicAdapter >> bindKeyCombination: aShortcut toAction: aBlock [
 			toAction: aBlock ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> borderColor [
 
 	^ self model borderColor
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> borderColor: color [
 
 	self widget ifNotNil: [ :w | w borderColor: color ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> borderWidth [
 
 	^ self model borderWidth
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> borderWidth: width [
 
 	self widget ifNotNil: [ :w | w borderWidth: width ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractMorphicAdapter >> buildMenu: aMenuPresenter [
 
 	^ aMenuPresenter 
@@ -174,84 +182,84 @@ SpAbstractMorphicAdapter >> buildMenu: aMenuPresenter [
 		build
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpAbstractMorphicAdapter >> changed [
 
 	^ self widgetDo: [ :w | w changed ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> color [
 
 	^ self model color
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> color: color [
 
 	self widgetDo: [ :w | w color: color ]
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpAbstractMorphicAdapter >> delete [
 	
 	self widgetDo: [ :w | w delete ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> disable [
 	
 	self model enabled: false
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractMorphicAdapter >> dragEnabled [
 
 	^ self presenter dragEnabled
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractMorphicAdapter >> dragEnabled: aBoolean [
 
 	self widget ifNotNil: [ :w | w dragEnabled: aBoolean ]
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractMorphicAdapter >> dropEnabled [
 
 	^ self presenter dropEnabled
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractMorphicAdapter >> dropEnabled: aBoolean [
 
 	self widget ifNotNil: [ :w | w dropEnabled: aBoolean ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> enable [
 
 	self model enabled: true
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> enabled [
 	^ self presenter isEnabled
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> enabled: aBoolean [
 
 	self widgetDo: [ :w | w enabled: aBoolean ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> extent [
 
 	^ self widget extent
 ]
 
-{ #category : #'focus handling' }
+{ #category : 'focus handling' }
 SpAbstractMorphicAdapter >> focusNext [
 	
 	self presenter withWindowDo: [ :window | | presenters |
@@ -262,7 +270,7 @@ SpAbstractMorphicAdapter >> focusNext [
 			takeKeyboardFocus ]
 ]
 
-{ #category : #'focus handling' }
+{ #category : 'focus handling' }
 SpAbstractMorphicAdapter >> focusPrevious [
 	
 	self presenter withWindowDo: [ :window | | presenters |
@@ -273,37 +281,37 @@ SpAbstractMorphicAdapter >> focusPrevious [
 			takeKeyboardFocus ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> hRigid [
 	
 	self widgetDo: [ :w | w hResizing: #rigid ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> hShrinkWrap [
 	
 	self widgetDo: [ :w | w hResizing: #shrinkWrap ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> hSpaceFill [
 	
 	self widgetDo: [ :w | w hResizing: #spaceFill ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> help [
 
 	^ self model help
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractMorphicAdapter >> helpText [
 	
 	^ self widget balloonText 
 ]
 
-{ #category : #'event installing' }
+{ #category : 'event installing' }
 SpAbstractMorphicAdapter >> installEvent: anEvent [
 	"Used when installing events into presenters already built"
 
@@ -313,23 +321,25 @@ SpAbstractMorphicAdapter >> installEvent: anEvent [
 			target: (self eventHandlerReceiver: w) ]
 ]
 
-{ #category : #'event installing' }
+{ #category : 'event installing' }
 SpAbstractMorphicAdapter >> installFocusLostEvent: anEvent to: aWidget [
 
-	aWidget announcer 
+	aWidget announcer
 		when: MorphLostFocus
 		do: [ anEvent action value ]
+		for: self
 ]
 
-{ #category : #'event installing' }
+{ #category : 'event installing' }
 SpAbstractMorphicAdapter >> installFocusReceivedEvent: anEvent to: aWidget [
 
-	aWidget announcer 
+	aWidget announcer
 		when: MorphGotFocus
 		do: [ anEvent action value ]
+		for: self
 ]
 
-{ #category : #'event installing' }
+{ #category : 'event installing' }
 SpAbstractMorphicAdapter >> installKeyDownEvent: anEvent to: aWidget [
 
 	aWidget 
@@ -338,7 +348,7 @@ SpAbstractMorphicAdapter >> installKeyDownEvent: anEvent to: aWidget [
 		to: anEvent action
 ]
 
-{ #category : #'event installing' }
+{ #category : 'event installing' }
 SpAbstractMorphicAdapter >> installKeyUpEvent: anEvent to: aWidget [
 
 	aWidget 
@@ -347,7 +357,7 @@ SpAbstractMorphicAdapter >> installKeyUpEvent: anEvent to: aWidget [
 		to: anEvent action
 ]
 
-{ #category : #'event installing' }
+{ #category : 'event installing' }
 SpAbstractMorphicAdapter >> installMouseDoubleClickEvent: anEvent to: aWidget [
 
 	aWidget 
@@ -356,7 +366,7 @@ SpAbstractMorphicAdapter >> installMouseDoubleClickEvent: anEvent to: aWidget [
 		to: anEvent action
 ]
 
-{ #category : #'event installing' }
+{ #category : 'event installing' }
 SpAbstractMorphicAdapter >> installMouseDownEvent: anEvent to: aWidget [
 
 	aWidget 
@@ -365,7 +375,7 @@ SpAbstractMorphicAdapter >> installMouseDownEvent: anEvent to: aWidget [
 		to: anEvent action
 ]
 
-{ #category : #'event installing' }
+{ #category : 'event installing' }
 SpAbstractMorphicAdapter >> installMouseEnterEvent: anEvent to: aWidget [
 
 	aWidget 
@@ -374,7 +384,7 @@ SpAbstractMorphicAdapter >> installMouseEnterEvent: anEvent to: aWidget [
 		to: anEvent action
 ]
 
-{ #category : #'event installing' }
+{ #category : 'event installing' }
 SpAbstractMorphicAdapter >> installMouseLeaveEvent: anEvent to: aWidget [
 
 	aWidget 
@@ -383,7 +393,7 @@ SpAbstractMorphicAdapter >> installMouseLeaveEvent: anEvent to: aWidget [
 		to: anEvent action
 ]
 
-{ #category : #'event installing' }
+{ #category : 'event installing' }
 SpAbstractMorphicAdapter >> installMouseMoveEvent: anEvent to: aWidget [
 
 	aWidget 
@@ -392,7 +402,7 @@ SpAbstractMorphicAdapter >> installMouseMoveEvent: anEvent to: aWidget [
 		to: anEvent action
 ]
 
-{ #category : #'event installing' }
+{ #category : 'event installing' }
 SpAbstractMorphicAdapter >> installMouseUpEvent: anEvent to: aWidget [
 
 	aWidget 
@@ -401,19 +411,19 @@ SpAbstractMorphicAdapter >> installMouseUpEvent: anEvent to: aWidget [
 		to: anEvent action
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractMorphicAdapter >> isMorphicAdapter [
 
 	^ true
 ]
 
-{ #category : #visibility }
+{ #category : 'visibility' }
 SpAbstractMorphicAdapter >> isVisible [
 	
 	^ widget visible
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpAbstractMorphicAdapter >> keyDown: keyCode shift: shiftBoolean meta: metaBoolean control: controlBoolean option: optionBoolean [
 	
 	^ self 
@@ -425,7 +435,7 @@ SpAbstractMorphicAdapter >> keyDown: keyCode shift: shiftBoolean meta: metaBoole
 		option: optionBoolean
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpAbstractMorphicAdapter >> keyEvent: type code: keyCode shift: shiftBoolean meta: metaBoolean control: controlBoolean option: optionBoolean [
 	| evt modifiers |
 	
@@ -456,7 +466,7 @@ SpAbstractMorphicAdapter >> keyEvent: type code: keyCode shift: shiftBoolean met
 	10 milliSeconds wait
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpAbstractMorphicAdapter >> keyPressed: keyCode shift: shiftBoolean meta: metaBoolean control: controlBoolean option: optionBoolean [
 	
 	^ self 
@@ -468,40 +478,40 @@ SpAbstractMorphicAdapter >> keyPressed: keyCode shift: shiftBoolean meta: metaBo
 		option: optionBoolean
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> layout: aLayout [
 	| layout |
 	layout := aLayout asMorphicLayout.
 	self widgetDo: [ :w | w layoutFrame: layout ].
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpAbstractMorphicAdapter >> presenterStyles [
 	"The presenters in the style"
 
 	^ self presenter styles
 ]
 
-{ #category : #'protocol - shortcuts' }
+{ #category : 'protocol - shortcuts' }
 SpAbstractMorphicAdapter >> removeKeyCombination: aShortcut [
 
 	self widgetDo: [ :w | 
 		w removeKeyCombination: aShortcut ]
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpAbstractMorphicAdapter >> removeStyle: aStyle [
 	"ignore style and just apply it again (the removed style will not be there)"
 	self applyStyle: self widget
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> removeSubWidgets [
 	
 	self widgetDo: [ :w | w removeAllMorphs ]
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpAbstractMorphicAdapter >> sendClickEvent [
 	| evt |
 
@@ -518,7 +528,7 @@ SpAbstractMorphicAdapter >> sendClickEvent [
 		widget handleMouseUp: evt ]
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpAbstractMorphicAdapter >> sendMouseDownEvent: aMouseButtonEvent [
 	| evt |
 
@@ -534,7 +544,7 @@ SpAbstractMorphicAdapter >> sendMouseDownEvent: aMouseButtonEvent [
 		ifTrue: [ widget handleMouseDown: evt ]
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpAbstractMorphicAdapter >> sendMouseUpEvent: aMouseButtonEvent [
 	| evt |
 
@@ -552,7 +562,7 @@ SpAbstractMorphicAdapter >> sendMouseUpEvent: aMouseButtonEvent [
 	
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpAbstractMorphicAdapter >> sendRightClickEvent [
 	| evt |
 
@@ -569,7 +579,7 @@ SpAbstractMorphicAdapter >> sendRightClickEvent [
 		widget mouseUp: evt ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> setBalloonText: aString [
 
 	self widget ifNotNil: [ :w | 
@@ -578,20 +588,20 @@ SpAbstractMorphicAdapter >> setBalloonText: aString [
 	
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> show [ 
 
 	self widgetDo: #show
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractMorphicAdapter >> showContextMenu [
 
 	self presenter contextMenu ifNil: [ ^ self ].
 	self showMenu: self presenter contextMenu
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractMorphicAdapter >> showMenu: aValuable [
 	| lastShownMenu |
 	
@@ -599,7 +609,7 @@ SpAbstractMorphicAdapter >> showMenu: aValuable [
 	lastShownMenu open
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpAbstractMorphicAdapter >> style [
 
 	^ SpMorphStyle 
@@ -607,26 +617,26 @@ SpAbstractMorphicAdapter >> style [
 		adapter: self
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpAbstractMorphicAdapter >> styleName [
 	"i.e. SpButtonAdapter = button"
 	
 	^ ((self className withoutPrefix: 'SpMorphic') allButLast: 7) uncapitalized
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpAbstractMorphicAdapter >> styleSheet [
 
 	^ self application styleSheet
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> takeKeyboardFocus [
 	
 	self widgetDo: [ :w | w takeKeyboardFocus ]
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractMorphicAdapter >> transferFor: passenger from: source [
 
 	^ SpTransferPresenter new
@@ -635,7 +645,7 @@ SpAbstractMorphicAdapter >> transferFor: passenger from: source [
 		yourself
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpAbstractMorphicAdapter >> type: aString [
 
 	aString do: [ :each | 
@@ -647,7 +657,7 @@ SpAbstractMorphicAdapter >> type: aString [
 			option: false ]
 ]
 
-{ #category : #releasing }
+{ #category : 'releasing' }
 SpAbstractMorphicAdapter >> unsubscribe [
 
 	super unsubscribe.
@@ -658,38 +668,38 @@ SpAbstractMorphicAdapter >> unsubscribe [
 		unsubscribe: self
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> useProportionalLayout [
 
 	self widgetDo: [ :w | w changeProportionalLayout ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> vRigid [
 	
 	self widgetDo: [ :w | w vResizing: #rigid ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> vShrinkWrap [
 	
 	self widgetDo: [ :w | w vResizing: #shrinkWrap ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> vSpaceFill [
 	
 	self widgetDo: [ :w | w vResizing: #spaceFill ]
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAbstractMorphicAdapter >> when: anAnnouncement do: aBlock [
 
 	self widgetDo: [ :w | w announcer
 		when: anAnnouncement do: aBlock ]
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpAbstractMorphicAdapter >> widgetEventReceiver [
 	
 	^ self eventHandlerReceiver: widget

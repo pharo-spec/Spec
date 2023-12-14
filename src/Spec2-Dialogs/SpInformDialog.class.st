@@ -1,31 +1,32 @@
 "
-A dialog to present some simple information to users.
+I'm notification based interaction with the user. I'm not modal and I'm under development
 "
 Class {
-	#name : #SpInformDialog,
-	#superclass : #SpDialogPresenter,
+	#name : 'SpInformDialog',
+	#superclass : 'SpDialogPresenter',
 	#instVars : [
 		'label',
 		'title',
 		'initialExtent',
 		'acceptLabel'
 	],
-	#category : #'Spec2-Dialogs'
+	#category : 'Spec2-Dialogs',
+	#package : 'Spec2-Dialogs'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpInformDialog class >> defaultAcceptLabel [
 
 	^ 'Ok'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpInformDialog class >> defaultExtent [
 
 	^ 450@120
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpInformDialog class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -40,13 +41,13 @@ SpInformDialog class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpInformDialog class >> documentFactoryMethodSelector [
 	
 	^ #newInform
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpInformDialog class >> example [
 
 	self new
@@ -56,7 +57,7 @@ SpInformDialog class >> example [
 		openDialog
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpInformDialog class >> exampleModal [
 
 	self new
@@ -66,44 +67,44 @@ SpInformDialog class >> exampleModal [
 		openModal
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpInformDialog >> acceptLabel [
 
 	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpInformDialog >> acceptLabel: aString [
 
 	acceptLabel := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpInformDialog >> defaultIcon [
 
 	^ self application iconNamed: #info
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpInformDialog >> extent [
 
 	^ initialExtent ifNil: [ self class defaultExtent ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpInformDialog >> extent: aPoint [
 
 	initialExtent := aPoint
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpInformDialog >> initialize [
 
 	super initialize.
 	self title: 'Inform'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpInformDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.
@@ -113,14 +114,14 @@ SpInformDialog >> initializeDialogWindow: aDialogWindowPresenter [
 		
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpInformDialog >> initializePresenters [
 
 	image := self newImage image: self defaultIcon.
 	label := self newLabel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpInformDialog >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
@@ -128,19 +129,19 @@ SpInformDialog >> initializeWindow: aWindowPresenter [
 		initialExtent: self extent
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpInformDialog >> label: aString [
 
 	label label: aString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpInformDialog >> title [
 
 	^ title
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpInformDialog >> title: aString [
 
 	title := aString

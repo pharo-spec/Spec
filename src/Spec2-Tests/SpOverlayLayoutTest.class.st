@@ -1,31 +1,33 @@
 Class {
-	#name : #SpOverlayLayoutTest,
-	#superclass : #SpLayoutTest,
-	#category : #'Spec2-Tests-Layout'
+	#name : 'SpOverlayLayoutTest',
+	#superclass : 'SpLayoutTest',
+	#category : 'Spec2-Tests-Layout',
+	#package : 'Spec2-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOverlayLayoutTest >> initializeTestedInstance [
 
 	layout := SpOverlayLayout new.
 	presenter layout: layout
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOverlayLayoutTest >> testLayoutWithOneElementIsNotEmpty [
 
 	layout child: SpButtonPresenter new.
 	self deny: layout isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOverlayLayoutTest >> testLayoutWithOverlayWidgetIsNotEmpty [
 
 	layout addOverlay: SpButtonPresenter new.
 	self deny: layout isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOverlayLayoutTest >> testRemoveElementFromLayoutTakesItOut [
 
 	| element |
@@ -34,7 +36,7 @@ SpOverlayLayoutTest >> testRemoveElementFromLayoutTakesItOut [
 	self assert: layout isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOverlayLayoutTest >> testRemoveOverlayFromLayoutTakesItOut [
 
 	| element |
@@ -43,7 +45,7 @@ SpOverlayLayoutTest >> testRemoveOverlayFromLayoutTakesItOut [
 	self assert: layout isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOverlayLayoutTest >> testReplaceElementKeepsSingleElement [
 
 	| replacement |

@@ -4,32 +4,34 @@ I define my cells following the definition on columns (MorphicTableColumn).
 I use a builder (MorphicTreeTableCellBuilder) to realise the cell content. 
 "
 Class {
-	#name : #SpMorphicTreeTableDataSource,
-	#superclass : #FTTreeDataSource,
+	#name : 'SpMorphicTreeTableDataSource',
+	#superclass : 'FTTreeDataSource',
 	#traits : 'SpTMorphicTableDataSourceCommons',
 	#classTraits : 'SpTMorphicTableDataSourceCommons classTrait',
-	#category : #'Spec2-Adapters-Morphic-Table'
+	#category : 'Spec2-Adapters-Morphic-Table',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Table'
 }
 
-{ #category : #'search strategies' }
+{ #category : 'search strategies' }
 SpMorphicTreeTableDataSource class >> allItemsStrategy [
 
 	^ SpMorphicAllItemsStrategy
 ]
 
-{ #category : #'search strategies' }
+{ #category : 'search strategies' }
 SpMorphicTreeTableDataSource class >> defaultStrategy [
 
 	^ SpMorphicVisibleItemsStrategy
 ]
 
-{ #category : #'search strategies' }
+{ #category : 'search strategies' }
 SpMorphicTreeTableDataSource class >> rootsOnlyStrategy [
 
 	^ SpMorphicRootItemsStrategy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> buttonFor: item [
 
 	^ (self shouldDisplayExpandableArrowFor: item) 
@@ -37,7 +39,7 @@ SpMorphicTreeTableDataSource >> buttonFor: item [
 		ifFalse: [ self class emptyMorph ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> cellColumn: column row: rowIndex [
 	| cell builder item |
 	
@@ -56,13 +58,13 @@ SpMorphicTreeTableDataSource >> cellColumn: column row: rowIndex [
 	^ cell 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> cellIndentFor: item [ 
 
 	^ item depth * 16
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTreeTableDataSource >> collapsePath: aPath [
 
 	(self itemAtPath: aPath) ifNotNil:[ :aNode | 
@@ -70,14 +72,14 @@ SpMorphicTreeTableDataSource >> collapsePath: aPath [
 		self tableRefresh ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> expandPath: anArray [
 
 	self expandPath: anArray root: self rootItem children.
 	self tableRefresh
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> expandPath: anArray root: nodes [ 
 	| node |
 	
@@ -89,37 +91,37 @@ SpMorphicTreeTableDataSource >> expandPath: anArray root: nodes [
 	self expandPath: anArray allButFirst root: node children
 ]
 
-{ #category : #paths }
+{ #category : 'paths' }
 SpMorphicTreeTableDataSource >> indexFromPath: anArray [ 
 
 	^ anArray sum
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> indexOfItem: anItem [ 
 	
 	^ self allShownItems indexOf: anItem
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTreeTableDataSource >> isFirstColumn: column [
 	
 	^ (table columns indexOf: column) = 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> itemAtIndex: anInteger [ 
 	
 	^ self allShownItems at: anInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> itemAtPath: aPath [ 
 	
 	^ self itemAtPath: aPath expanding: false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> itemAtPath: aPath expanding: shouldExpandItems [
 	
 	| item |
@@ -136,14 +138,14 @@ SpMorphicTreeTableDataSource >> itemAtPath: aPath expanding: shouldExpandItems [
 	^ item
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpMorphicTreeTableDataSource >> passengerAt: rowIndex [
 	"Answer 'passenger' for drag&drop operation (a passenger is the object who will travel between 
 	 drag and drop). By default, passenger is same as current element"
 	^ (self allShownItems at: rowIndex) data
 ]
 
-{ #category : #paths }
+{ #category : 'paths' }
 SpMorphicTreeTableDataSource >> pathFromIndex: anInteger [ 
 	| item |
 	
@@ -151,7 +153,7 @@ SpMorphicTreeTableDataSource >> pathFromIndex: anInteger [
 	^ self pathOfNode: item root: rootItem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> pathOfItem: anItem root: aNode [
 	"Looks for the path of an item (contained in a node)"
 	
@@ -168,7 +170,7 @@ SpMorphicTreeTableDataSource >> pathOfItem: anItem root: aNode [
 	^ #()
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> pathOfNode: anItem root: aRoot [ 
 	
 	aRoot isExpanded ifFalse: [ ^#() ].
@@ -183,14 +185,14 @@ SpMorphicTreeTableDataSource >> pathOfNode: anItem root: aRoot [
 	^ #().
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> rootItem: anItem [
 
 	super rootItem: anItem.
 	self addSourceToRootItem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> searchText: aString [
 
 	^ (self class perform: (self searchStrategy, 'Strategy') asSymbol) 
@@ -198,7 +200,7 @@ SpMorphicTreeTableDataSource >> searchText: aString [
 		dataSource: self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTreeTableDataSource >> shouldDisplayExpandableArrowFor: item [
 	^ (self canDisplayChildrenOf: item) and: [
 			self model shouldLazilyComputeChildren
@@ -206,14 +208,14 @@ SpMorphicTreeTableDataSource >> shouldDisplayExpandableArrowFor: item [
 				ifFalse: [ item hasChildren ] ]
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 SpMorphicTreeTableDataSource >> sortElements: aSortFunction [
 
 	unsortedElements ifNil: [ unsortedElements := self rootsItems ].
 	self rootItem data: ((self rootItem children collect: #data) sorted: aSortFunction)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> toString: anItem [
 	"Override me if you expect something else."
 

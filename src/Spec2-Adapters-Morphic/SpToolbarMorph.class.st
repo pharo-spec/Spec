@@ -4,54 +4,56 @@ I can display toolbar items in left side or right side panels.
 
 "
 Class {
-	#name : #SpToolbarMorph,
-	#superclass : #Morph,
+	#name : 'SpToolbarMorph',
+	#superclass : 'Morph',
 	#instVars : [
 		'leftPanel',
 		'rightPanel',
 		'displayMode',
 		'toolbarItemFont'
 	],
-	#category : #'Spec2-Adapters-Morphic-Toolbar'
+	#category : 'Spec2-Adapters-Morphic-Toolbar',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Toolbar'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph class >> defaultHeight [
 	
 	^ self defaultMode height
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph class >> defaultItemSeparation [
 
 	^ 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph class >> defaultItemSize [
 
 	^ 50
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph class >> defaultMode [
 
 	^ SpToolbarDisplayMode default
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph class >> statusBarHeight [
 	
 	^ 25
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph >> addItem: aToolbarItem [
 	
 	self addItem: aToolbarItem position: SpToolbarItemPosition left
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph >> addItem: aToolbarItem position: aPosition [
 
 	aPosition addItem: aToolbarItem into: self.
@@ -61,7 +63,7 @@ SpToolbarMorph >> addItem: aToolbarItem position: aPosition [
 	self refresh
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph >> addItemLeft: aMorph [
 
 	leftPanel addMorphBack: (aMorph
@@ -69,7 +71,7 @@ SpToolbarMorph >> addItemLeft: aMorph [
 		yourself)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph >> addItemRight: aMorph [
 
 	self hasRightPanel
@@ -81,7 +83,7 @@ SpToolbarMorph >> addItemRight: aMorph [
 	rightPanel width: (rightPanel submorphs sum: #width)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph >> addItemsFromContext: aContext [
 	
 	self flag: #TODO.
@@ -93,47 +95,47 @@ SpToolbarMorph >> addItemsFromContext: aContext [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpToolbarMorph >> calculateWidth [
 
 	^ (leftPanel submorphs sum: #width) 
 		+ (self hasRightPanel ifTrue: [ rightPanel submorphs sum: #width ] ifFalse: [ 0 ])
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpToolbarMorph >> clearItems [
 	
 	leftPanel removeAllMorphs.
 	rightPanel removeAllMorphs.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph >> color: aColor [
 	color := aColor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph >> defaultColor [
 	^ Color transparent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph >> displayMode [
 	^ displayMode ifNil: [ displayMode := SpToolbarDisplayMode default ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph >> displayMode: anObject [
 	displayMode := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpToolbarMorph >> hasRightPanel [
 
 	^ self submorphs includes: rightPanel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpToolbarMorph >> initialize [
 	super initialize.
 
@@ -149,7 +151,7 @@ SpToolbarMorph >> initialize [
 	self initializePanels
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpToolbarMorph >> initializePanels [
 
 	leftPanel := self newPanelMorph.
@@ -160,17 +162,17 @@ SpToolbarMorph >> initializePanels [
 	self addMorphBack: leftPanel
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpToolbarMorph >> leftPanel [
 	^ leftPanel
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpToolbarMorph >> leftPanel: anObject [
 	leftPanel := anObject
 ]
 
-{ #category : #'private - factory' }
+{ #category : 'private - factory' }
 SpToolbarMorph >> newPanelMorph [
 
 	^ Morph new
@@ -184,7 +186,7 @@ SpToolbarMorph >> newPanelMorph [
 		yourself
 ]
 
-{ #category : #'private - factory' }
+{ #category : 'private - factory' }
 SpToolbarMorph >> newToolbarItemFont [
 	| buttonFont |
 
@@ -194,33 +196,33 @@ SpToolbarMorph >> newToolbarItemFont [
 		pointSize: buttonFont pointSize - 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph >> refresh [
 
 	self flag: #TODO. "Maybe remove?"
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpToolbarMorph >> rightPanel [
 	^ rightPanel
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpToolbarMorph >> rightPanel: anObject [
 	rightPanel := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph >> toolbarItemFont [
 	^ toolbarItemFont ifNil: [ toolbarItemFont := self newToolbarItemFont ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph >> toolbarItemFont: anObject [
 	toolbarItemFont := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpToolbarMorph >> toolbarItemSize [
 
 	^ self displayMode height

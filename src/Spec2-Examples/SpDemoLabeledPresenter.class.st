@@ -5,16 +5,18 @@ Description
 Demo for the labelled presenter
 "
 Class {
-	#name : #SpDemoLabeledPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoLabeledPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'email',
 		'password'
 	],
-	#category : #'Spec2-Examples-Demo-Labeled'
+	#category : 'Spec2-Examples-Demo-Labeled',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Labeled'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoLabeledPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -23,7 +25,7 @@ SpDemoLabeledPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoLabeledPresenter >> initializePresenters [
 	| passwordInput |
 

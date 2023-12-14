@@ -1,10 +1,11 @@
 Class {
-	#name : #SpStyleVariableTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Adapters-Morphic-Tests'
+	#name : 'SpStyleVariableTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Adapters-Morphic-Tests',
+	#package : 'Spec2-Adapters-Morphic-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpStyleVariableTest >> testParseBasicValue [
 	| property |
 
@@ -13,7 +14,7 @@ SpStyleVariableTest >> testParseBasicValue [
 	self assert: property heightVariable value equals: 25
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpStyleVariableTest >> testParseColorVariable [
 	| property |
 
@@ -29,7 +30,7 @@ SpStyleVariableTest >> testParseColorVariable [
 	self assert: property borderColorVariable valueAsColor equals: Color red
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpStyleVariableTest >> testParseFontVariable [
 	| property |
 	
@@ -39,7 +40,7 @@ SpStyleVariableTest >> testParseFontVariable [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpStyleVariableTest >> testParseResetVariable [
 	| property |
 

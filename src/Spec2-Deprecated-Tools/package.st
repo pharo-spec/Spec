@@ -1,1 +1,1 @@
-Package { #name : #'Spec2-Deprecated-Tools' }
+Package { #name : 'Spec2-Deprecated-Tools' }

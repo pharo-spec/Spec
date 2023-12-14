@@ -1,10 +1,12 @@
 Class {
-	#name : #SpComposablePresenterWithModelTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Tests-Core'
+	#name : 'SpComposablePresenterWithModelTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Tests-Core',
+	#package : 'Spec2-Tests',
+	#tag : 'Core'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpComposablePresenterWithModelTest >> testInstanceCreation [
 
 	| aPoint presenter |
@@ -19,7 +21,7 @@ SpComposablePresenterWithModelTest >> testInstanceCreation [
 	
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpComposablePresenterWithModelTest >> testInstanceCreationWithValueHolder [
 
 	| point valueHolder presenter |
@@ -35,7 +37,7 @@ SpComposablePresenterWithModelTest >> testInstanceCreationWithValueHolder [
 	
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpComposablePresenterWithModelTest >> testModelSettingModelToModel [
 
 	"we had a Model, new model is another Model"
@@ -55,7 +57,7 @@ SpComposablePresenterWithModelTest >> testModelSettingModelToModel [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpComposablePresenterWithModelTest >> testModelSettingModelToValueHolder [
 
 	| point model presenter |
@@ -78,7 +80,7 @@ SpComposablePresenterWithModelTest >> testModelSettingModelToValueHolder [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpComposablePresenterWithModelTest >> testModelSettingObjectToModel [
 
 	| point model presenter |
@@ -101,7 +103,7 @@ SpComposablePresenterWithModelTest >> testModelSettingObjectToModel [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpComposablePresenterWithModelTest >> testModelSettingObjectToValueHolder [
 
 	| point point2 presenter |
@@ -122,7 +124,7 @@ SpComposablePresenterWithModelTest >> testModelSettingObjectToValueHolder [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpComposablePresenterWithModelTest >> testModelSettingValueHolderToModel [
 
 	"we had a Model, new model is a value holder"
@@ -143,7 +145,7 @@ SpComposablePresenterWithModelTest >> testModelSettingValueHolderToModel [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpComposablePresenterWithModelTest >> testModelSettingValueHolderToValueHolder [
 
 	| point point2 valueHolder presenter |
@@ -168,7 +170,7 @@ SpComposablePresenterWithModelTest >> testModelSettingValueHolderToValueHolder [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpComposablePresenterWithModelTest >> testUpdateModel [
 
 	| aPoint presenter |
@@ -191,7 +193,7 @@ SpComposablePresenterWithModelTest >> testUpdateModel [
 	
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpComposablePresenterWithModelTest >> testUpdateModelWithValueHolder [
 
 	| aPoint aValueHolder presenter anAnnouncer |

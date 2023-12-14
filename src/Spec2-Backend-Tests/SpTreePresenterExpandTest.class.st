@@ -1,16 +1,18 @@
 Class {
-	#name : #SpTreePresenterExpandTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpTreePresenterExpandTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTreePresenterExpandTest >> classToTest [
 
 	^ SpTreePresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTreePresenterExpandTest >> initializeTestedInstance [ 
 
 	presenter 
@@ -21,7 +23,7 @@ SpTreePresenterExpandTest >> initializeTestedInstance [
 				ifFalse: [ #() ] ].
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTreePresenterExpandTest >> testCollapseAll [
 
 	presenter expandAll.
@@ -32,7 +34,7 @@ SpTreePresenterExpandTest >> testCollapseAll [
 	self deny: (presenter adapter isExpanded: (presenter itemAtPath: #(1 2 3)))
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTreePresenterExpandTest >> testCollapsePath [
 
 	presenter expandAll.
@@ -43,7 +45,7 @@ SpTreePresenterExpandTest >> testCollapsePath [
 	self deny: (presenter adapter isExpanded: (presenter itemAtPath: #(1 2 3)))
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTreePresenterExpandTest >> testExpandPath [
 
 	presenter expandPath: #(1 2 3).
@@ -52,7 +54,7 @@ SpTreePresenterExpandTest >> testExpandPath [
 	self assert: (presenter adapter isExpanded: (presenter itemAtPath: #(1 2 3)))
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTreePresenterExpandTest >> testExpandRoots [
 
 	presenter expandRoots.
@@ -63,7 +65,7 @@ SpTreePresenterExpandTest >> testExpandRoots [
 		equals: presenter roots
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTreePresenterExpandTest >> testExpandRootsAfterInitialization [
 
 	self openInstance.

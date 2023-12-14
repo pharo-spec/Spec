@@ -2,18 +2,20 @@
 I'm the adapter used to bridge a ToolBarButton and its morphic representation.
 "
 Class {
-	#name : #SpMorphicToolbarButtonAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicToolbarButtonAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicToolbarButtonAdapter >> badge [
 
 	^ self presenter badge
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicToolbarButtonAdapter >> buildWidget [
 	| button |
 	
@@ -25,26 +27,26 @@ SpMorphicToolbarButtonAdapter >> buildWidget [
 	^ button
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicToolbarButtonAdapter >> button [
 
 	^ widget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicToolbarButtonAdapter >> enabled: aBoolean [
 
 	super enabled: aBoolean.
 	self updateIcon
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 SpMorphicToolbarButtonAdapter >> execute [
 
 	self presenter action cull: self presenter
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 SpMorphicToolbarButtonAdapter >> execute: isPressed [
 
 	self presenter state: isPressed.
@@ -52,7 +54,7 @@ SpMorphicToolbarButtonAdapter >> execute: isPressed [
 		action cull: self presenter ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicToolbarButtonAdapter >> icon [
 	| icon |
 	
@@ -64,19 +66,19 @@ SpMorphicToolbarButtonAdapter >> icon [
 		ifFalse: [ icon asGrayScaleWithAlpha ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicToolbarButtonAdapter >> label [
 
 	^ self presenter label
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicToolbarButtonAdapter >> morphClass [
 
 	^ SpToolbarButtonMorph
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicToolbarButtonAdapter >> newButton [
 	
 	^ (self morphClass
@@ -93,19 +95,19 @@ SpMorphicToolbarButtonAdapter >> newButton [
 		yourself
 ]
 
-{ #category : #'accessing - structure variables' }
+{ #category : 'accessing - structure variables' }
 SpMorphicToolbarButtonAdapter >> state [
 
 	^ false
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicToolbarButtonAdapter >> updateIcon [
 
 	self button update: self button getIconSelector
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicToolbarButtonAdapter >> updateLabel [
 
 	self button update: self button getLabelSelector

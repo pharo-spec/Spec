@@ -1,6 +1,6 @@
-Extension { #name : #SpLabelledDropList }
+Extension { #name : 'SpLabelledDropList' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledDropList >> displayBlock: aBlock [
 
 	self

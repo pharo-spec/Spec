@@ -2,23 +2,25 @@
 Adapt the presenter on a stub view that displays no real UI elements.
 "
 Class {
-	#name : #SpStubListAdapter,
-	#superclass : #SpStubAbstractAdapter,
-	#category : #'Spec2-Adapters-Stub-Adapters'
+	#name : 'SpStubListAdapter',
+	#superclass : 'SpStubAbstractAdapter',
+	#category : 'Spec2-Adapters-Stub-Adapters',
+	#package : 'Spec2-Adapters-Stub',
+	#tag : 'Adapters'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubListAdapter >> buildWidget [
 
 	^ SpStubListView new
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubListAdapter >> refreshWidgetList [
 
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpStubListAdapter >> refreshWidgetSelection [
 
 ]

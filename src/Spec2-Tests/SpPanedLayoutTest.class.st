@@ -1,16 +1,18 @@
 Class {
-	#name : #SpPanedLayoutTest,
-	#superclass : #SpLayoutTest,
-	#category : #'Spec2-Tests-Layout'
+	#name : 'SpPanedLayoutTest',
+	#superclass : 'SpLayoutTest',
+	#category : 'Spec2-Tests-Layout',
+	#package : 'Spec2-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpPanedLayoutTest class >> isAbstract [
 
 	^ self == SpPanedLayoutTest
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPanedLayoutTest >> testElementsAreAddedInOrder [
 
 	| second |
@@ -19,7 +21,7 @@ SpPanedLayoutTest >> testElementsAreAddedInOrder [
 	self assert: layout children last equals: second
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPanedLayoutTest >> testElementsAreAddedInOrderIndependentlyOfTheConfigurationOrder [
 	| second |
 	
@@ -28,7 +30,7 @@ SpPanedLayoutTest >> testElementsAreAddedInOrderIndependentlyOfTheConfigurationO
 	self assert: layout children last equals: second
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPanedLayoutTest >> testElementsAreAddedInOrderWhenUsingAdd [
 
 	| second |
@@ -37,7 +39,7 @@ SpPanedLayoutTest >> testElementsAreAddedInOrderWhenUsingAdd [
 	self assert: layout children last equals: second
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPanedLayoutTest >> testElementsAreAddedInOrderWhenUsingAddWithConstraints [
 
 	| second |
@@ -46,21 +48,21 @@ SpPanedLayoutTest >> testElementsAreAddedInOrderWhenUsingAddWithConstraints [
 	self assert: layout children last equals: second
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPanedLayoutTest >> testLayoutWithOneFirstElementIsNotEmpty [
 
 	layout first: SpButtonPresenter new.
 	self deny: layout isEmpty
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPanedLayoutTest >> testLayoutWithOneSecondElementIsNotEmpty [
 
 	layout second: SpButtonPresenter new.
 	self deny: layout isEmpty
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPanedLayoutTest >> testRemoveFirstElementFromLayoutTakesItOut [
 
 	| element |
@@ -69,7 +71,7 @@ SpPanedLayoutTest >> testRemoveFirstElementFromLayoutTakesItOut [
 	self assert: layout isEmpty
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPanedLayoutTest >> testRemoveSecondElementFromLayoutTakesItOut [
 
 	| element |
@@ -78,7 +80,7 @@ SpPanedLayoutTest >> testRemoveSecondElementFromLayoutTakesItOut [
 	self assert: layout isEmpty
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPanedLayoutTest >> testReplaceFirst [
 
 	| replacement |
@@ -87,7 +89,7 @@ SpPanedLayoutTest >> testReplaceFirst [
 	self assert: layout children first equals: replacement
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPanedLayoutTest >> testReplaceFirstElementKeepsSingleElement [
 
 	| replacement |
@@ -96,7 +98,7 @@ SpPanedLayoutTest >> testReplaceFirstElementKeepsSingleElement [
 	self assert: layout children size equals: 1
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPanedLayoutTest >> testReplaceFirstElementReplacesIt [
 
 	| replacement |
@@ -105,7 +107,7 @@ SpPanedLayoutTest >> testReplaceFirstElementReplacesIt [
 	self assert: layout children first equals: replacement
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPanedLayoutTest >> testReplaceSecond [
 
 	| replacement |
@@ -115,7 +117,7 @@ SpPanedLayoutTest >> testReplaceSecond [
 	self assert: layout children second equals: replacement
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPanedLayoutTest >> testReplaceSecondElementKeepsSingleElement [
 
 	| replacement |
@@ -124,7 +126,7 @@ SpPanedLayoutTest >> testReplaceSecondElementKeepsSingleElement [
 	self assert: layout children size equals: 1
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpPanedLayoutTest >> testReplaceSecondElementReplacesIt [
 
 	| replacement |

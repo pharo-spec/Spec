@@ -3,28 +3,30 @@ A presenter for grouping menu items.
 A group is always part of a menu (See `SpMenuPresenter`), and it groups items (See `SpMenuItemPresenter`).
 "
 Class {
-	#name : #SpMenuGroupPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpMenuGroupPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'#items',
 		'#autoRefresh => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpMenuGroupPresenter class >> adapterName [
 
 	^ #MenuGroupAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpMenuGroupPresenter class >> documentExampleCodeSelector [
 
 	^ #exampleMenuGroup
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMenuGroupPresenter >> add: aName target: targetObject selector: aSelector [
 	
 	self flag: #TODO. "This is for compatibility with the old menu builder and needs to be removed!"
@@ -35,7 +37,7 @@ SpMenuGroupPresenter >> add: aName target: targetObject selector: aSelector [
 	^ self menuItems last
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuGroupPresenter >> addItem: aBlock [
 	| item |
 	
@@ -44,24 +46,24 @@ SpMenuGroupPresenter >> addItem: aBlock [
 	self addMenuItem: item
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMenuGroupPresenter >> addMenuItem: aMenuItem [
 
 	aMenuItem owner: self.
 	items add: aMenuItem
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpMenuGroupPresenter >> autoRefresh [
 	^ autoRefresh
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpMenuGroupPresenter >> autoRefresh: aBoolean [
 	autoRefresh := aBoolean
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMenuGroupPresenter >> buildWithLayout: aSpecLayout [
 	"Build the widget using the spec name provided as argument"
 	| widget|
@@ -71,39 +73,39 @@ SpMenuGroupPresenter >> buildWithLayout: aSpecLayout [
 	^ widget
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMenuGroupPresenter >> canTakeKeyboardFocus [
 	"Answer when the presenter can take keyboard focus."
 
 	^ false
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpMenuGroupPresenter >> fromSpec: aSpec [
 	self addItem: [ :item | item fromSpec: aSpec ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMenuGroupPresenter >> initialize [
 	super initialize.
 
 	items := OrderedCollection new asValueHolder
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMenuGroupPresenter >> isEmpty [
 	"Answer true if the group is empty"
 
 	^ items isEmpty
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuGroupPresenter >> menuItems [
 
 	^ items value
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMenuGroupPresenter >> rootMenu [
 
 	^ self owner rootMenu

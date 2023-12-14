@@ -6,7 +6,9 @@ Spec is a framework in Pharo for describing user interfaces. It allows for the c
 I contain code to manage interactions with the user.
 "
 Class {
-	#name : #ManifestSpec2Interactions,
-	#superclass : #PackageManifest,
-	#category : #'Spec2-Interactions-Manifest'
+	#name : 'ManifestSpec2Interactions',
+	#superclass : 'PackageManifest',
+	#category : 'Spec2-Interactions-Manifest',
+	#package : 'Spec2-Interactions',
+	#tag : 'Manifest'
 }

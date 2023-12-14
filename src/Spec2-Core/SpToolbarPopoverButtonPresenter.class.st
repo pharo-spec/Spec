@@ -2,27 +2,29 @@
 A presenter to create a popover button (a button who exposes a popover instead having an action) in a `SpToolbarPresenter`.
 "
 Class {
-	#name : #SpToolbarPopoverButtonPresenter,
-	#superclass : #SpToolbarButtonPresenter,
+	#name : 'SpToolbarPopoverButtonPresenter',
+	#superclass : 'SpToolbarButtonPresenter',
 	#instVars : [
 		'content'
 	],
-	#category : #'Spec2-Core-Widgets-Toolbar'
+	#category : 'Spec2-Core-Widgets-Toolbar',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Toolbar'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpToolbarPopoverButtonPresenter class >> adapterName [
 
 	^ #ToolbarPopoverButtonAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpToolbarPopoverButtonPresenter class >> documentFactoryMethodSelector [
 
 	^ #newToolbarPopoverButton
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToolbarPopoverButtonPresenter >> content [
 	"Answer the content presenter associated to this popover button. 
 	 It can also be a block (or valuable) which will answer an instance of `SpPresenter`
@@ -31,7 +33,7 @@ SpToolbarPopoverButtonPresenter >> content [
 	^ content
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpToolbarPopoverButtonPresenter >> content: aPresenterOrBlock [
 	"Set the presenter associated to this popover button. 
 	 It can also be a block (or valuable) which will answer an instance of `SpPresenter`

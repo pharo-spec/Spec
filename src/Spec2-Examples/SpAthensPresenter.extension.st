@@ -1,6 +1,6 @@
-Extension { #name : #SpAthensPresenter }
+Extension { #name : 'SpAthensPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpAthensPresenter class >> example [
 	"Show an athens (vectorial graphics) component embedded into a spec window presenter"
 	| extent |
@@ -22,7 +22,7 @@ SpAthensPresenter class >> example [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpAthensPresenter class >> exampleResizing [
 	"Show an athens (vectorial graphics) component embedded into a spec window presenter.
 It shows also how it resizes the athens component when the window is resized."

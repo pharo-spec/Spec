@@ -1,10 +1,11 @@
 Class {
-	#name : #SpPresenterBuildTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Morphic-Backend-Tests'
+	#name : 'SpPresenterBuildTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Morphic-Backend-Tests',
+	#package : 'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPresenterBuildTest >> testBuildPresenterWillSetPresenterProperty [
 
 	| presenter |
@@ -27,7 +28,7 @@ SpPresenterBuildTest >> testBuildPresenterWillSetPresenterProperty [
 	self assert: presenter adapter widget presenter equals: presenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPresenterBuildTest >> testBuildWidgetPresenterWillSetPresenterProperty [
 
 	| package |
@@ -44,7 +45,7 @@ SpPresenterBuildTest >> testBuildWidgetPresenterWillSetPresenterProperty [
 				self assert: presenter adapter widget presenter equals: presenter ] ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPresenterBuildTest >> testBuildWithoutLayoutRaiseError [
 	| presenter |
 	

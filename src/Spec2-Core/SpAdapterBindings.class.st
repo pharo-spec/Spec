@@ -4,27 +4,29 @@ I am an abstract class
 I am used to link a spec-oriented adapter name to a framework specific adapter class name
 "
 Class {
-	#name : #SpAdapterBindings,
-	#superclass : #Object,
+	#name : 'SpAdapterBindings',
+	#superclass : 'Object',
 	#instVars : [
 		'bindings'
 	],
-	#category : #'Spec2-Core-Base'
+	#category : 'Spec2-Core-Base',
+	#package : 'Spec2-Core',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAdapterBindings class >> isAbstract [ 
 
 	^ self name = #SpAdapterBindings
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAdapterBindings >> abstractAdapterClass [
 	
 	^ self subclassResponsibility
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 SpAdapterBindings >> adapterClass: aSymbol [ 
 	
 	^ Smalltalk 
@@ -32,12 +34,12 @@ SpAdapterBindings >> adapterClass: aSymbol [
 		ifAbsent: [ aSymbol ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAdapterBindings >> allAdapters [
 	^ self abstractAdapterClass allAdapters
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAdapterBindings >> initialize [
 
 	super initialize.
@@ -46,7 +48,7 @@ SpAdapterBindings >> initialize [
 	self initializeBindings
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAdapterBindings >> initializeBindings [
 	
 	self allAdapters do: [ :each |
@@ -59,7 +61,7 @@ SpAdapterBindings >> initializeBindings [
 				put: each name ] ]	
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpAdapterBindings >> translateSymbol: aSymbol [
 
 	^ bindings 

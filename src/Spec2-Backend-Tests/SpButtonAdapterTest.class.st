@@ -1,16 +1,18 @@
 Class {
-	#name : #SpButtonAdapterTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpButtonAdapterTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpButtonAdapterTest >> classToTest [
 
 	^ SpButtonPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonAdapterTest >> testChangingIconAffectTheWidget [
 	
 	presenter iconName: #pharo.
@@ -18,14 +20,14 @@ SpButtonAdapterTest >> testChangingIconAffectTheWidget [
 	self assertIcon: self adapter icon equals: (self iconNamed: #pharo)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonAdapterTest >> testChangingLabelAffectTheWidget [
 	
 	presenter label: 'ALabel'.
-	self assert: self widget label equals: 'ALabel'
+	self assert: self adapter label equals: 'ALabel'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonAdapterTest >> testClickExecuteAction [
 	| actionExecuted |	
 
@@ -36,7 +38,7 @@ SpButtonAdapterTest >> testClickExecuteAction [
 	self assert: actionExecuted
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonAdapterTest >> testNoClickDoesNotExecuteAction [
 	| actionExecuted |
 	actionExecuted := false.
@@ -45,7 +47,7 @@ SpButtonAdapterTest >> testNoClickDoesNotExecuteAction [
 	self deny: actionExecuted
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonAdapterTest >> testRightClickShouldNotExecuteAction [
 	| actionExecuted |
 
@@ -56,7 +58,7 @@ SpButtonAdapterTest >> testRightClickShouldNotExecuteAction [
 	self deny: actionExecuted
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonAdapterTest >> testRightClickShowsMenu [
 	| menu |
 
@@ -66,7 +68,7 @@ SpButtonAdapterTest >> testRightClickShowsMenu [
 	self assert: menu shown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpButtonAdapterTest >> testWhenActivatedDo [
 
 	| actionExecuted |	

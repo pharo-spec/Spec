@@ -2,15 +2,17 @@
 A presenter to stack jobs.
 "
 Class {
-	#name : #SpJobListPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpJobListPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'refreshRateInMs'
 	],
-	#category : #'Spec2-Core-Job'
+	#category : 'Spec2-Core-Job',
+	#package : 'Spec2-Core',
+	#tag : 'Job'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpJobListPresenter class >> example [ 
 	| jobList |
 	
@@ -33,7 +35,7 @@ SpJobListPresenter class >> example [
 	^ nil
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJobListPresenter >> addJobPresenter: aJob [
 	| presenter |
 	
@@ -48,13 +50,13 @@ SpJobListPresenter >> addJobPresenter: aJob [
 		window resize: 500@(layout children size *  self jobPresenterHeight) ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpJobListPresenter >> initializePresenters [
 
 	self layout: SpBoxLayout newTopToBottom
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpJobListPresenter >> initializeWindow: aWindowPresenter [ 
 
 	aWindowPresenter 
@@ -64,13 +66,13 @@ SpJobListPresenter >> initializeWindow: aWindowPresenter [
 		centered
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJobListPresenter >> jobPresenterHeight [
 
 	^ 70
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpJobListPresenter >> pushJob: aJob [
 
 	aJob whenStartDo: [ :ann | self addJobPresenter: ann job ].
@@ -79,12 +81,12 @@ SpJobListPresenter >> pushJob: aJob [
 	aJob run	
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpJobListPresenter >> refreshRateInMs: anInteger [ 
 	refreshRateInMs := anInteger.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpJobListPresenter >> removeJobPresenter: aJob [
 	| presenter |
 	

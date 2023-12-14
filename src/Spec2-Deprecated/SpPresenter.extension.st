@@ -1,6 +1,6 @@
-Extension { #name : #SpPresenter }
+Extension { #name : 'SpPresenter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> aboutText: aString [
 	self
 		deprecated:
@@ -11,7 +11,7 @@ SpPresenter >> aboutText: aString [
 	self window ifNil: [ aboutText := aString ] ifNotNil: [ :window | window aboutText: aString ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> askOkToClose: aBoolean [
 	self
 		deprecated:
@@ -22,7 +22,7 @@ SpPresenter >> askOkToClose: aBoolean [
 	self window ifNil: [ askOkToClose := aBoolean ] ifNotNil: [ :window | window askOkToClose: aBoolean ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> centerWidget: aWindow [
 	self
 		deprecated:
@@ -35,20 +35,20 @@ SpPresenter >> centerWidget: aWindow [
 		in: #Pharo8
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> defaultWindowModelClass [ 
 	self deprecated: 'Use #defaultWindowPresenterClass instead' transformWith: '`@receiver defaultWindowModelClass' -> '`@receiver defaultWindowPresenterClass'.
 	
 	^ self defaultWindowPresenterClass
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> icon: aSymbol [
 	self deprecated: 'Use #iconNamed: instead' transformWith: '`@receiver icon: `@statements' -> '`@receiver iconNamed: `@statements'.
 	^ self iconNamed: aSymbol
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> instantiateModels: aCollectionOfPairs [
 	
 	self deprecated: 'Use #instantiatePresenters: instead' transformWith: '`@receiver instantiateModels: `@statement' -> '`@receiver instantiatePresenters: `@statement'.
@@ -56,19 +56,19 @@ SpPresenter >> instantiateModels: aCollectionOfPairs [
 	^ self instantiatePresenters: aCollectionOfPairs
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> newIconList [
 	self deprecated: 'Please use #newList instead.' transformWith: '`@receiver newIconList' -> '`@receiver newList'.
 	^ self instantiate: SpIconListPresenter
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> newMultiColumnList [
 	self deprecated: 'Use newTable instead' on: '2019-02-05' in: #Pharo8.
 	^ self instantiate: SpMultiColumnListPresenter
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> newTab [
 
 	self 
@@ -78,7 +78,7 @@ SpPresenter >> newTab [
 	^ self instantiate: SpTabPresenter
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> newTabManager [
 	
 	
@@ -90,7 +90,7 @@ SpPresenter >> newTabManager [
 	^ self instantiate: SpTabManagerPresenter
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> newTree [
 	
 	self deprecated: 'Use #newTreeTable instead'.
@@ -98,7 +98,7 @@ SpPresenter >> newTree [
 	^ self instantiate: SpTreePresenter
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> on: aShortcut do: aBlock [
 
 	self 
@@ -109,7 +109,7 @@ SpPresenter >> on: aShortcut do: aBlock [
 	self bindKeyCombination: aShortcut toAction: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> setModal: aWindow [
 
 	self 
@@ -120,13 +120,13 @@ SpPresenter >> setModal: aWindow [
 	self changed: #setModal: with: { aWindow }
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> specSpacer [
 
 	^ SpSpacerPresenter new
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> title: aString [
 	self
 		deprecated:
@@ -137,7 +137,7 @@ SpPresenter >> title: aString [
 	self window ifNil: [ titleHolder := aString ] ifNotNil: [ :window | window title: aString ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> whenShortcutsChanged: aBlock [
 	"Set a block to value when the shortcuts block has changed"
 	
@@ -145,7 +145,7 @@ SpPresenter >> whenShortcutsChanged: aBlock [
 
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> widget [
 	"I return the adapter responsible of building my widget"
 	
@@ -155,7 +155,7 @@ SpPresenter >> widget [
 	^ self spec
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpPresenter >> windowIcon: aForm [
 	self
 		deprecated:

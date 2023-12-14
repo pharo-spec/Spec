@@ -4,15 +4,17 @@ I am an announcement  raised when a widget will be built.
 I may be used in situations when you need to change the content of the context menu before it will be displayed and so on.
 "
 Class {
-	#name : #SpWidgetWillBeBuilt,
-	#superclass : #Announcement,
+	#name : 'SpWidgetWillBeBuilt',
+	#superclass : 'Announcement',
 	#instVars : [
 		'model'
 	],
-	#category : #'Spec2-Core-Support'
+	#category : 'Spec2-Core-Support',
+	#package : 'Spec2-Core',
+	#tag : 'Support'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpWidgetWillBeBuilt class >> model: model [
 
 	^ self new
@@ -20,12 +22,12 @@ SpWidgetWillBeBuilt class >> model: model [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWidgetWillBeBuilt >> model [
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWidgetWillBeBuilt >> model: anObject [
 	model := anObject
 ]

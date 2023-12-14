@@ -6,25 +6,26 @@
 - #outputTextChangedPort (default)
 "
 Class {
-	#name : #SpPillarTextPresenter,
-	#superclass : #SpRichTextPresenter,
+	#name : 'SpPillarTextPresenter',
+	#superclass : 'SpRichTextPresenter',
 	#instVars : [
 		'formatString'
 	],
-	#category : #'Spec2-Pillar'
+	#category : 'Spec2-Pillar',
+	#package : 'Spec2-Pillar'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPillarTextPresenter >> defaultTextStyler [
 	^ SpPillarTextStyler new
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 SpPillarTextPresenter >> formatString [
 	^  formatString 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 SpPillarTextPresenter >> formatString: aString [
 	super formatString: aString.
 	formatString := aString

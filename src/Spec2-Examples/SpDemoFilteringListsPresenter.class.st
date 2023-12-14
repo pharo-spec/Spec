@@ -2,17 +2,19 @@
 I am a demo showing filtering lists examples
 "
 Class {
-	#name : #SpDemoFilteringListsPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoFilteringListsPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'listWithPackages',
 		'listWithMethodsAlreadyFiltered',
 		'selectableList'
 	],
-	#category : #'Spec2-Examples-Demo-Lists'
+	#category : 'Spec2-Examples-Demo-Lists',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Lists'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoFilteringListsPresenter >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
@@ -31,7 +33,7 @@ SpDemoFilteringListsPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoFilteringListsPresenter >> initializePresenters [
 
 	listWithPackages := self newFilteringList.

@@ -2,33 +2,54 @@
 I build cells for a MorphicTableAdapter.
 "
 Class {
-	#name : #SpMorphicTableCellBuilder,
-	#superclass : #SpMorphicTableColumnVisitor,
+	#name : 'SpMorphicTableCellBuilder',
+	#superclass : 'SpMorphicTableColumnVisitor',
 	#instVars : [
 		'dataSource',
 		'rowIndex',
 		'cell'
 	],
-	#category : #'Spec2-Adapters-Morphic-Table'
+	#category : 'Spec2-Adapters-Morphic-Table',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Table'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMorphicTableCellBuilder class >> on: aDataSource [
 
 	^ self new dataSource: aDataSource
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTableCellBuilder >> addAlignmentColumn: aTableColumn item: item to: content [
+	| block containerMorph alignment |
 
-	aTableColumn displayAlignment ifNotNil: [ :block |
-		^ content asText addAttribute: (block cull: item) asTextAlignment ].
+	(block := aTableColumn displayAlignment) ifNil: [ ^ content ].
+		
+	alignment := (block cull: item) asTextAlignment.
+	containerMorph := Morph new 
+		color: Color transparent;
+		layoutPolicy: TableLayout new;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		borderWidth: 0;
+		yourself.
+		
+	alignment = TextAlignment rightFlush ifTrue: [ 
+			containerMorph listDirection: #rightToLeft ].
+	alignment = TextAlignment leftFlush ifTrue: [ 
+			containerMorph listDirection: #leftToRight ].
+
+	alignment = TextAlignment centered 
+		ifTrue: [ containerMorph addMorphBack: self newFillerMorph ].
+	containerMorph addMorphBack: content asMorph asReadOnlyMorph.
+	alignment = TextAlignment centered 
+		ifTrue: [ containerMorph addMorphBack: self newFillerMorph ].
 	
-	^ content
-	
+	^ containerMorph
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTableCellBuilder >> addBackgroundColorColumn: aTableColumn item: item toMorph: aMorph [
 
 	aTableColumn displayBackgroundColor ifNotNil: [ :block |
@@ -39,7 +60,7 @@ SpMorphicTableCellBuilder >> addBackgroundColorColumn: aTableColumn item: item t
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTableCellBuilder >> addBoldColumn: aTableColumn item: item to: content [
 
 	aTableColumn displayBold ifNotNil: [ :block |
@@ -50,7 +71,7 @@ SpMorphicTableCellBuilder >> addBoldColumn: aTableColumn item: item to: content 
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTableCellBuilder >> addCell: anObject column: aTableColumn [
 	| morph |
 
@@ -62,7 +83,7 @@ SpMorphicTableCellBuilder >> addCell: anObject column: aTableColumn [
 		column: aTableColumn
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTableCellBuilder >> addCellColumn: aTableColumn [
 	
 	self 
@@ -70,7 +91,7 @@ SpMorphicTableCellBuilder >> addCellColumn: aTableColumn [
 		column: aTableColumn
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTableCellBuilder >> addCellMorph: morph column: aTableColumn [
 
 	aTableColumn isExpandable ifFalse: [
@@ -85,7 +106,7 @@ SpMorphicTableCellBuilder >> addCellMorph: morph column: aTableColumn [
 	cell addMorphBack: morph
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTableCellBuilder >> addColorColumn: aTableColumn item: item to: content [
 
 	aTableColumn displayColor ifNotNil: [ :block |
@@ -96,7 +117,7 @@ SpMorphicTableCellBuilder >> addColorColumn: aTableColumn item: item to: content
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTableCellBuilder >> addItalicColumn: aTableColumn item: item to: content [
 
 	aTableColumn displayItalic ifNotNil: [ :block |
@@ -107,7 +128,7 @@ SpMorphicTableCellBuilder >> addItalicColumn: aTableColumn item: item to: conten
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTableCellBuilder >> addUnderlineColumn: aTableColumn item: item to: content [
 
 	aTableColumn displayUnderline ifNotNil: [ :block |
@@ -118,43 +139,54 @@ SpMorphicTableCellBuilder >> addUnderlineColumn: aTableColumn item: item to: con
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTableCellBuilder >> cell [
 	^ cell
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTableCellBuilder >> cell: anObject [
 	cell := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTableCellBuilder >> dataSource [
 	^ dataSource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTableCellBuilder >> dataSource: anObject [
 	dataSource := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTableCellBuilder >> item [ 
 
 	^ self dataSource elementAt: self rowIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'private' }
+SpMorphicTableCellBuilder >> newFillerMorph [
+	"This is used as a helper to center text when applying alignment=centered"
+	
+	^ Morph new
+		color: Color transparent;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		yourself
+]
+
+{ #category : 'accessing' }
 SpMorphicTableCellBuilder >> rowIndex [
 	^ rowIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTableCellBuilder >> rowIndex: anObject [
 	rowIndex := anObject
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableCellBuilder >> visitCheckboxColumn: aTableColumn [
 	| presenter morph |
 	
@@ -176,7 +208,7 @@ SpMorphicTableCellBuilder >> visitCheckboxColumn: aTableColumn [
 		column: aTableColumn 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableCellBuilder >> visitCompositeColumn: aTableColumn [
 
 	super visitCompositeColumn: aTableColumn.
@@ -186,7 +218,7 @@ SpMorphicTableCellBuilder >> visitCompositeColumn: aTableColumn [
 			cell width: aTableColumn width ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableCellBuilder >> visitDropListColumn: aDropListTableColumn [
 
 	| presenter morph |
@@ -211,7 +243,7 @@ SpMorphicTableCellBuilder >> visitDropListColumn: aDropListTableColumn [
 	self addCellMorph: morph column: aDropListTableColumn.
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableCellBuilder >> visitImageColumn: aTableColumn [
 	| morph imageMorph image |
 	
@@ -230,7 +262,7 @@ SpMorphicTableCellBuilder >> visitImageColumn: aTableColumn [
 		column: aTableColumn
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableCellBuilder >> visitIndexColumn: aTableColumn [
 
 	self 
@@ -238,7 +270,7 @@ SpMorphicTableCellBuilder >> visitIndexColumn: aTableColumn [
 		column: aTableColumn
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableCellBuilder >> visitLinkColumn: aTableColumn [
 
 	| presenter morph |
@@ -258,7 +290,7 @@ SpMorphicTableCellBuilder >> visitLinkColumn: aTableColumn [
 	self addCellMorph: morph column: aTableColumn
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableCellBuilder >> visitStringColumn: aTableColumn [
 	| content item |
 	
@@ -266,7 +298,6 @@ SpMorphicTableCellBuilder >> visitStringColumn: aTableColumn [
 
 	content := aTableColumn readObject: item.
 	"add properties"
-	content := self addAlignmentColumn: aTableColumn item: item to: content.
 	content := self addColorColumn: aTableColumn item: item to: content.
 	content := self addItalicColumn: aTableColumn item: item to: content.
 	content := self addBoldColumn: aTableColumn item: item to: content.
@@ -275,13 +306,16 @@ SpMorphicTableCellBuilder >> visitStringColumn: aTableColumn [
 	aTableColumn isEditable
 		ifTrue: [ self visitStringColumnEditable: aTableColumn on: content ]
 		ifFalse: [ "add cell"
+			"I need to calculate here alignement because I will wrap the content 
+			 into a container morph, so it needs to be the last one before applying"
+			content := self addAlignmentColumn: aTableColumn item: item to: content.
 			self addCell: content column: aTableColumn.
 			"add background (this is a special case of properties, 
-			since background needs to be applied to the cell and not to the text)"
+			 since background needs to be applied to the cell and not to the text)"
 			self addBackgroundColorColumn: aTableColumn item: item toMorph: cell ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicTableCellBuilder >> visitStringColumnEditable: aTableColumn on: content [
 	| presenter morph |
 

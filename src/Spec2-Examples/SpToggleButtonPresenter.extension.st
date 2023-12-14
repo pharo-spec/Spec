@@ -1,16 +1,20 @@
-Extension { #name : #SpToggleButtonPresenter }
+Extension { #name : 'SpToggleButtonPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpToggleButtonPresenter class >> example [
 
-	self new
+	<script>
+	| presenter |
+	presenter := self new.
+	presenter
 		icon: (self iconNamed: #smallOk);
-		whenActivatedDo: [ UIManager default defer: [ self inform: 'Activated' ] ];
-		whenDeactivatedDo: [ UIManager default defer: [ self inform: 'Deactivated' ] ];
+		whenActivatedDo: [ presenter defer: [ presenter inform: 'Activated' ] ];
+		whenDeactivatedDo: [
+			presenter defer: [ presenter inform: 'Deactivated' ] ];
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpToggleButtonPresenter class >> exampleWithAssociatedButtons [
 
 	^ SpToggleButtonExample new open

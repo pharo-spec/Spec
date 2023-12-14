@@ -1,10 +1,12 @@
 Class {
-	#name : #SpRequiredFieldValidationTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpRequiredFieldValidationTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpRequiredFieldValidationTest >> testValidationIsKoWhenTextIsEmpty [
 	| validation presenter |
 	presenter := SpTextInputFieldPresenter new
@@ -15,7 +17,7 @@ SpRequiredFieldValidationTest >> testValidationIsKoWhenTextIsEmpty [
 	self deny: (validation isValid: presenter )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpRequiredFieldValidationTest >> testValidationIsKoWhenTextIsNil [
 	| validation presenter |
 	presenter := SpTextInputFieldPresenter new
@@ -26,7 +28,7 @@ SpRequiredFieldValidationTest >> testValidationIsKoWhenTextIsNil [
 	self deny: (validation isValid: presenter )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpRequiredFieldValidationTest >> testValidationIsKoWhenTextOnlyHasWhiteSpaces [
 	| validation presenter |
 	presenter := SpTextInputFieldPresenter new
@@ -37,7 +39,7 @@ SpRequiredFieldValidationTest >> testValidationIsKoWhenTextOnlyHasWhiteSpaces [
 	self deny: (validation isValid: presenter )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpRequiredFieldValidationTest >> testValidationIsOkWhenTextContainsOneChar [
 	| validation presenter |
 	presenter := SpTextInputFieldPresenter new

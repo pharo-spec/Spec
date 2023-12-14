@@ -1,6 +1,6 @@
-Extension { #name : #OSPlatform }
+Extension { #name : 'OSPlatform' }
 
-{ #category : #'*Spec2-Core' }
+{ #category : '*Spec2-Core' }
 OSPlatform >> configureApplication: anApplication configuration: aConfiguration [
 
 ]

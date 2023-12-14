@@ -4,27 +4,30 @@ I am a window used by WindowSpec.
 I have been introduced since it's currently the best solution to prevent to add dozen of respondsTo: in StandardWindow or add dirty extensions to Object (because all models are not subclasses of Model)
 "
 Class {
-	#name : #SpWindow,
-	#superclass : #StandardWindow,
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#name : 'SpWindow',
+	#superclass : 'StandardWindow',
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpWindow >> aboutText [
 
 	^ self model aboutText
 ]
 
-{ #category : #closing }
+{ #category : 'closing' }
 SpWindow >> allowedToClose [
 
 	super allowedToClose ifFalse: [ ^ false ].
+	self model ifNil: [ ^ true ].
 	^ self model askOkToClose 
 		ifTrue: [ self model requestWindowClose ]
 		ifFalse: [ true ].
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWindow >> announceWillClose [
 	| announcement |
 
@@ -36,21 +39,21 @@ SpWindow >> announceWillClose [
 	^ announcement canClose 
 ]
 
-{ #category : #'open/close' }
+{ #category : 'open/close' }
 SpWindow >> close [ 
 
 	self announceWillClose ifFalse: [ ^ self ].
 	super close.
 ]
 
-{ #category : #'open/close' }
+{ #category : 'open/close' }
 SpWindow >> deleteDiscardingChanges [
 
 	self announceWillClose.
 	^ super deleteDiscardingChanges
 ]
 
-{ #category : #'open/close' }
+{ #category : 'open/close' }
 SpWindow >> extent: aPoint [ 
 	| announcement oldExtent |
 
@@ -65,19 +68,19 @@ SpWindow >> extent: aPoint [
 	self currentWorld announcer announce: announcement
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindow >> hasWidget: aMorph [ 
 	
 	^ self allMorphs includes: aMorph
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpWindow >> okToChange [
 
 	^ self model okToChange
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWindow >> taskbarTask [
 	"Answer a taskbar task for the receiver.
 	 Answer nil if not required."

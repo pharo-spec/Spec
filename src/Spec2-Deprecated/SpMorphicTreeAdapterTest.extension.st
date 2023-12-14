@@ -1,23 +1,23 @@
-Extension { #name : #SpMorphicTreeAdapterTest }
+Extension { #name : 'SpMorphicTreeAdapterTest' }
 
-{ #category : #'*Spec2-Deprecated' }
-SpMorphicTreeAdapterTest class >> isDeprecated [
+{ #category : '*Spec2-Deprecated' }
+SpMorphicTreeAdapterTest classSide >> isDeprecated [
 	^ true
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpMorphicTreeAdapterTest >> modelClass [
 	^ SpTreePresenter
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpMorphicTreeAdapterTest >> setUp [
 	super setUp.
 	treeWithItems := self modelClass new.
 	treeWithItems roots: #(#first #second #third #fourth #fifth)
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpMorphicTreeAdapterTest >> testDefaultRowColors [
 	| defaultColor |
 	defaultColor := Smalltalk ui theme backgroundColor.
@@ -27,7 +27,7 @@ SpMorphicTreeAdapterTest >> testDefaultRowColors [
 		equals: (Array with: defaultColor with: defaultColor)
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpMorphicTreeAdapterTest >> testRowColorsAfterBuild [
 	treeWithItems buildWithSpec.
 	treeWithItems oddRowColor: Color red.
@@ -37,7 +37,7 @@ SpMorphicTreeAdapterTest >> testRowColorsAfterBuild [
 		equals: (Array with: Color green with: Color red)
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpMorphicTreeAdapterTest >> testRowColorsBeforeBuild [
 	treeWithItems oddRowColor: Color red.
 	treeWithItems evenRowColor: Color green.

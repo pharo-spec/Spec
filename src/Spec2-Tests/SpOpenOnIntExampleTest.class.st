@@ -1,10 +1,12 @@
 Class {
-	#name : #SpOpenOnIntExampleTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Examples-Wrapper'
+	#name : 'SpOpenOnIntExampleTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Tests-Examples-Wrapper',
+	#package : 'Spec2-Tests',
+	#tag : 'Examples-Wrapper'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOpenOnIntExampleTest >> classToTest [
 	^ SpOpenOnIntExample
 ]

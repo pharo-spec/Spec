@@ -2,31 +2,33 @@
 I am an announcement raised when a widget has been already shown in the screen.
 "
 Class {
-	#name : #SpWidgetDisplayed,
-	#superclass : #Announcement,
+	#name : 'SpWidgetDisplayed',
+	#superclass : 'Announcement',
 	#instVars : [
 		'presenter',
 		'widget'
 	],
-	#category : #'Spec2-Core-Support'
+	#category : 'Spec2-Core-Support',
+	#package : 'Spec2-Core',
+	#tag : 'Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWidgetDisplayed >> presenter [
 	^ presenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWidgetDisplayed >> presenter: anObject [
 	presenter := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWidgetDisplayed >> widget [
 	^ widget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWidgetDisplayed >> widget: anObject [
 	widget := anObject
 ]

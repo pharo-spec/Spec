@@ -1,6 +1,6 @@
-Extension { #name : #SpLabelledSliderInput }
+Extension { #name : 'SpLabelledSliderInput' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledSliderInput >> autoAccept [
 	
 	self 
@@ -14,7 +14,7 @@ SpLabelledSliderInput >> autoAccept [
 	^ self sliderInput autoAccept
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpLabelledSliderInput >> autoAccept: aBoolean [
 
 	self 

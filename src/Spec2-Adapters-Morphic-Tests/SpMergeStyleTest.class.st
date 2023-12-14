@@ -1,15 +1,16 @@
 Class {
-	#name : #SpMergeStyleTest,
-	#superclass : #TestCase,
+	#name : 'SpMergeStyleTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'result',
 		'left',
 		'right'
 	],
-	#category : #'Spec2-Adapters-Morphic-Tests'
+	#category : 'Spec2-Adapters-Morphic-Tests',
+	#package : 'Spec2-Adapters-Morphic-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpMergeStyleTest >> setUp [ 
 
 	super setUp.
@@ -32,7 +33,7 @@ SpMergeStyleTest >> setUp [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMergeStyleTest >> testMergingTwoStylesWithASameClassHasClassInBothSides [
 
 	result := (left mergeWith: right) flattenClasses.
@@ -42,7 +43,7 @@ SpMergeStyleTest >> testMergingTwoStylesWithASameClassHasClassInBothSides [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMergeStyleTest >> testMergingTwoStylesWithASameClassHasCorrectNumberOfEntries [
 
 	result := (left mergeWith: right) flattenClasses.
@@ -51,7 +52,7 @@ SpMergeStyleTest >> testMergingTwoStylesWithASameClassHasCorrectNumberOfEntries 
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMergeStyleTest >> testMergingTwoStylesWithASameClassHasLeftOnlyClass [
 
 	result := (left mergeWith: right) flattenClasses.
@@ -60,7 +61,7 @@ SpMergeStyleTest >> testMergingTwoStylesWithASameClassHasLeftOnlyClass [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMergeStyleTest >> testMergingTwoStylesWithASameClassHasRightOnlyClass [
 
 	result := (left mergeWith: right) flattenClasses.
@@ -69,7 +70,7 @@ SpMergeStyleTest >> testMergingTwoStylesWithASameClassHasRightOnlyClass [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMergeStyleTest >> testMergingTwoStylesWithASameClassHasThePropertiesCorrectInCommonClass [
 
 	| innerClass |

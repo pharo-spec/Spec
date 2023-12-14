@@ -2,34 +2,36 @@
 A composited output port that allow presenters to trigger output transmissions to several subpresenters (or itself)
 "
 Class {
-	#name : #SpCompositeOutputPort,
-	#superclass : #SpOutputPort,
+	#name : 'SpCompositeOutputPort',
+	#superclass : 'SpOutputPort',
 	#instVars : [
 		'ports'
 	],
-	#category : #'Spec2-Transmission-Base'
+	#category : 'Spec2-Transmission-Base',
+	#package : 'Spec2-Transmission',
+	#tag : 'Base'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpCompositeOutputPort >> add: aPort [ 
 
 	ports := ports copyWith: aPort
 ]
 
-{ #category : #attaching }
+{ #category : 'attaching' }
 SpCompositeOutputPort >> attachTransmission: aTransmission [
 
 	ports do: [ :each | 
 		each attachTransmission: aTransmission ]
 ]
 
-{ #category : #attaching }
+{ #category : 'attaching' }
 SpCompositeOutputPort >> attachTransmission: aTransmission to: aPresenter [
 	
 	self error: 'Should not arrive here.'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCompositeOutputPort >> initialize [
 
 	super initialize.
