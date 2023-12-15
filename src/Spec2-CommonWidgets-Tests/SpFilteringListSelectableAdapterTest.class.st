@@ -1,8 +1,9 @@
 Class {
 	#name : 'SpFilteringListSelectableAdapterTest',
 	#superclass : 'SpAbstractAdapterTest',
-	#category : 'Spec2-CommonWidgets-Tests',
-	#package : 'Spec2-CommonWidgets-Tests'
+	#category : 'Spec2-CommonWidgets-Tests-Core',
+	#package : 'Spec2-CommonWidgets-Tests',
+	#tag : 'Core'
 }
 
 { #category : 'accessing' }
