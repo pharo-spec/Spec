@@ -37,25 +37,6 @@ SpCodeDebugItCommand class >> defaultShortcutKey [
 ]
 
 { #category : 'private' }
-SpCodeDebugItCommand >> compile: aStream for: anObject in: evalContext [
-	| methodClass |
-
-	methodClass := evalContext
-		ifNotNil: [ evalContext methodClass ]
-		ifNil: [ anObject class ].
-
-	^ context class compiler
-		  source: aStream;
-		  class: methodClass;
-		  context: evalContext;
-		  requestor: context;
-		  "it should enable a visibility of current tool variables in new debugger"
-		  isScripting: true;
-		  failBlock: [ ^ nil ];
-		  compile
-]
-
-{ #category : 'private' }
 SpCodeDebugItCommand >> debug: aStream [
 
 	| method doItReceiver doItContext |
