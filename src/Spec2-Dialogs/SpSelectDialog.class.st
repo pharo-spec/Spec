@@ -164,7 +164,9 @@ SpSelectDialog >> items [
 { #category : 'api' }
 SpSelectDialog >> items: aCollection [
 
-	list items: aCollection
+	list items: aCollection.
+	aCollection size > 1
+		ifTrue: [ list selectItem: aCollection first ]
 ]
 
 { #category : 'api' }
