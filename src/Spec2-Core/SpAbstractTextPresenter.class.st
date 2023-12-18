@@ -338,21 +338,6 @@ SpAbstractTextPresenter >> updateSelectionFromModel: aSelection [
 		anAdapter setSelectionFromModel: aSelection ]
 ]
 
-{ #category : 'TOREMOVE' }
-SpAbstractTextPresenter >> whenAboutToStyleChangedDo: aBlock [
-	"Set a block to perform when the about to style block changed"
-	
-	self whenAboutToStyleBlockChanged: [:block :old :announcement :anAnnouncer | 
-		aBlock cull: (block value) cull: old cull: announcement cull: anAnnouncer ]
-]
-
-{ #category : 'TOREMOVE' }
-SpAbstractTextPresenter >> whenAcceptBlockChangedDo: aBlock [
-	"Set a block to perform when the accept block changed"
-	
-	self property: #actionToPerform whenChangedDo: aBlock
-]
-
 { #category : 'api - events' }
 SpAbstractTextPresenter >> whenEditableChangedDo: aBlock [
 	"Inform when editable property has changed. 

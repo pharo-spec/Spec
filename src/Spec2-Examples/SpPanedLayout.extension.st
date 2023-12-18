@@ -8,16 +8,14 @@ SpPanedLayout class >> exampleNotResizingStartChild [
 	app := SpApplication new.
 
 	presenter := SpPresenter newApplication: app.
-	presenter layout: (SpPanedLayout newVertical
+	presenter layout: (SpPanedLayout newTopToBottom
 		positionOfSlider: 50;
-		add: (child1 := presenter newListView) 
-			withConstraints: [ :c | c beNotResizable ];
-		add: (child2 := presenter newListView);
+		add: (child1 := presenter newList) withConstraints: [ :c | c beNotResizable ];
+		add: (child2 := presenter newList);
 		yourself).
 		
 	child1 items: #(one two).
 	child2 items: String loremIpsum substrings.
 
 	presenter open
-
 ]

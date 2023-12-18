@@ -76,8 +76,15 @@ SpDialogWindowPresenter >> addButton: aString do: aBlock [
 { #category : 'private' }
 SpDialogWindowPresenter >> addDefaultButton: aButtonPresenter [
 	"Adds button logic to dialog."
+	| actionBlock |
 	
+	
+	actionBlock := aButtonPresenter action.
 	defaultButton := self addButton: aButtonPresenter.
+	aButtonPresenter action: [ 
+		actionBlock value.
+		"this is ugly, but this is how we can ensure this is not keeping the status as cancelled."
+		self beOk ].
 	defaultButton addStyle: 'default'.
 	^ defaultButton
 ]
