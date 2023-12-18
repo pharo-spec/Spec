@@ -1,8 +1,9 @@
 Class {
 	#name : 'SpLinkPresenterTest',
 	#superclass : 'SpSmokeTest',
-	#category : 'Spec2-Morphic-Tests',
-	#package : 'Spec2-Morphic-Tests'
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
 { #category : 'accessing' }
