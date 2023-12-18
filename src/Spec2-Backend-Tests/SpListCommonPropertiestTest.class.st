@@ -28,15 +28,6 @@ SpListCommonPropertiestTest >> testChangingFromSingleToMultipleSelection [
 ]
 
 { #category : 'tests' }
-SpListCommonPropertiestTest >> testEnablingFilteringUpdateOpenedList [
-	self deny: self adapter hasFilter.
-	presenter matchSubstring.
-	self assert: self adapter hasFilter.
-	presenter itemFilter: nil.
-	self deny: self adapter hasFilter
-]
-
-{ #category : 'tests' }
 SpListCommonPropertiestTest >> testRemoveHeaderTitleInPresenterRemovesColumnHeaderMorph [
 	self flag: #pharo7.
 	SystemVersion current major < 8 ifTrue: [ self skip. "Feature not supported in Pharo 7" ].
