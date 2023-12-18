@@ -10,7 +10,6 @@ Class {
 		'#activationBlock',
 		'#activateOnSingleClick',
 		'#model',
-		'#itemFilter => ObservableSlot',
 		'#verticalAlignment'
 	],
 	#category : 'Spec2-Core-Widgets-Table',
