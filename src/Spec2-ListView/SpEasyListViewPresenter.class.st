@@ -155,6 +155,12 @@ SpEasyListViewPresenter >> deactivateSearch: acceptSelection [
 	listView takeKeyboardFocus
 ]
 
+{ #category : 'transmission' }
+SpEasyListViewPresenter >> defaultInputPort [
+
+	^ self inputItemsPort
+]
+
 { #category : 'layout' }
 SpEasyListViewPresenter >> defaultLayout [
 
@@ -165,6 +171,12 @@ SpEasyListViewPresenter >> defaultLayout [
 			yourself);
 		addOverlay: searchInput withConstraints: [ :c | c vAlignStart; hAlignEnd ];
 		yourself
+]
+
+{ #category : 'transmission' }
+SpEasyListViewPresenter >> defaultOutputPort [
+
+	^ self outputSelectionPort
 ]
 
 { #category : 'api' }
@@ -312,6 +324,14 @@ SpEasyListViewPresenter >> initializePresenters [
 	searchInput hide
 ]
 
+{ #category : 'transmission' }
+SpEasyListViewPresenter >> inputItemsPort [
+
+	^ (SpListItemsPort newPresenter: self)
+		delegateTo: [ listView ];
+		yourself	
+]
+
 { #category : 'api' }
 SpEasyListViewPresenter >> items [
 
@@ -339,6 +359,22 @@ SpEasyListViewPresenter >> maybeActivateSearchOn: event [
 SpEasyListViewPresenter >> model [
 
 	^ listView model
+]
+
+{ #category : 'transmission' }
+SpEasyListViewPresenter >> outputActivationPort [
+	
+	^ (SpActivationPort newPresenter: self)
+		delegateTo: [ listView ];
+		yourself
+]
+
+{ #category : 'transmission' }
+SpEasyListViewPresenter >> outputSelectionPort [
+	
+	^ (SpSelectionPort newPresenter: self)
+		delegateTo: [ listView ];
+		yourself
 ]
 
 { #category : 'initialization' }

@@ -85,6 +85,18 @@ SpDropDownPresenter >> bindAction [
 	^ bindAction
 ]
 
+{ #category : 'transmission' }
+SpDropDownPresenter >> defaultInputPort [
+
+	^ self inputItemsPort
+]
+
+{ #category : 'transmission' }
+SpDropDownPresenter >> defaultOutputPort [
+
+	^ self outputSelectionPort
+]
+
 { #category : 'private' }
 SpDropDownPresenter >> display [
 
@@ -120,6 +132,12 @@ SpDropDownPresenter >> initializeItemFactory [
 		aPresenter newLabel ].
 	self bind: [ :aPresenter :anObject | 
 		aPresenter label: (self display value: anObject) asString ]
+]
+
+{ #category : 'transmission' }
+SpDropDownPresenter >> inputItemsPort [
+
+	^ SpListItemsPort newPresenter: self
 ]
 
 { #category : 'api' }
@@ -160,6 +178,12 @@ SpDropDownPresenter >> model: aModel [
 SpDropDownPresenter >> newEmptyModel [
 
 	^ SpCollectionListModel on: #()
+]
+
+{ #category : 'transmission' }
+SpDropDownPresenter >> outputSelectionPort [
+
+	^ SpDropDownSelectionPort newPresenter: self
 ]
 
 { #category : 'api - selection' }
