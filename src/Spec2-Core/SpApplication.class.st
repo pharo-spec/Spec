@@ -183,7 +183,7 @@ SpApplication >> ensureConfiguration [
 
 	configuration ifNotNil: [ ^ configuration ].
 	self ensureBackend.
-	configuration ifNil: [ configuration := backend newDefaultConfiguration ].
+	configuration ifNil: [ configuration := backend defaultConfigurationFor: self ].
 
 	^ configuration
 ]

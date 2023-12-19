@@ -69,14 +69,6 @@ SpApplicationBackend >> name [
 ]
 
 { #category : 'ui - notifying' }
-SpApplicationBackend >> notify: aSpecNotification [
-
-	aSpecNotification type 
-		notify: aSpecNotification
-		on: self
-]
-
-{ #category : 'ui - notifying' }
 SpApplicationBackend >> notifyError: aSpecNotification [
 
 	self subclassResponsibility
