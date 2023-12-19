@@ -7,8 +7,9 @@ Class {
 	#instVars : [
 		'listWithFilter'
 	],
-	#category : 'Spec2-CommonWidgets-Tests',
-	#package : 'Spec2-CommonWidgets-Tests'
+	#category : 'Spec2-CommonWidgets-Tests-Core',
+	#package : 'Spec2-CommonWidgets-Tests',
+	#tag : 'Core'
 }
 
 { #category : 'accessing' }
@@ -76,7 +77,7 @@ SpFilteringListPresenterTest >> testEnableItemSubstringFilter [
 SpFilteringListPresenterTest >> testFilterListItems [
 
 	| listItems |
-	listItems := { 
+	listItems := {
 		             OrderedCollection.
 		             Array.
 		             SequenceableCollection.
@@ -84,7 +85,7 @@ SpFilteringListPresenterTest >> testFilterListItems [
 		             Dictionary }.
 	listWithFilter items: listItems.
 	listWithFilter filterListItems: 'collection'.
-	self assertCollection: listWithFilter items hasSameElements: { 
+	self assertCollection: listWithFilter items hasSameElements: {
 			OrderedCollection.
 			SequenceableCollection }.
 	listWithFilter filterListItems: 'xyz'.
@@ -108,7 +109,7 @@ SpFilteringListPresenterTest >> testFilterListItems [
 		assertCollection: listWithFilter items
 		hasSameElements: listItems.
 	listItems := #( 'a' 'e' 'i' 'o' 'u' ).
-	listWithFilter listPresenter items: listItems.
+	listWithFilter items: listItems.
 	listWithFilter filterListItems: '5'.
 	self assertEmpty: listWithFilter items.
 	listWithFilter filterListItems: 'a'.

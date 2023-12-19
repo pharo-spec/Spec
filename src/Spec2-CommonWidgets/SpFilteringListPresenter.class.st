@@ -105,11 +105,8 @@ SpFilteringListPresenter >> filterInputPresenter [
 SpFilteringListPresenter >> filterListItems: pattern [
 	| filteredItems |
 	
-	unfilteredItems ifNil: [ 
-		unfilteredItems := self items ].
-	
 	pattern ifEmpty: [ 
-		self items: unfilteredItems.
+		listPresenter items: unfilteredItems.
 		^ self ].
 
 	filteredItems := unfilteredItems select: [ :item |
@@ -130,9 +127,10 @@ SpFilteringListPresenter >> filterText [
 SpFilteringListPresenter >> initializePresenters [
 
 	filterInputPresenter := self newTextInput
-		placeholder: 'Filter...';
-		yourself.
+		                        placeholder: 'Filter...';
+		                        yourself.
 	listPresenter := self newListToFilter.
+	unfilteredItems := #(  ).
 	self matchSubstring
 ]
 
@@ -164,7 +162,8 @@ SpFilteringListPresenter >> items [
 SpFilteringListPresenter >> items: aCollection [
 
 	listPresenter items: aCollection.
-	unfilteredItems := nil
+	unfilteredItems := aCollection.
+	self reapplyOrResetFilter
 ]
 
 { #category : 'accessing' }
@@ -205,6 +204,19 @@ SpFilteringListPresenter >> outputSelectionPort [
 ]
 
 { #category : 'api' }
+SpFilteringListPresenter >> reapplyOrResetFilter [
+
+	self filterListItems: self filterText.
+	self items ifEmpty: [ self resetFilter ]
+]
+
+{ #category : 'api' }
+SpFilteringListPresenter >> resetFilter [
+
+	self applyFilter: ''
+]
+
+{ #category : 'api' }
 SpFilteringListPresenter >> selectItem: anObject [
 	
 	listPresenter selectItem: anObject
@@ -217,9 +229,15 @@ SpFilteringListPresenter >> selectedItem [
 ]
 
 { #category : 'accessing' }
+SpFilteringListPresenter >> sortingBlock: aBlockOrNil [
+
+	listPresenter sortingBlock: aBlockOrNil
+]
+
+{ #category : 'accessing' }
 SpFilteringListPresenter >> unfilteredItems [
 
-	^ unfilteredItems ifNil: [ unfilteredItems := self items ]
+	^ unfilteredItems
 ]
 
 { #category : 'api - events' }
