@@ -22,7 +22,6 @@ SpApplication >> confirm: aString [
 
 { #category : '*Spec2-Dialogs' }
 SpApplication >> inform: aString [
-	"Displays an inform dialog, for more configurable version please use `self application newInform title: ....`."
 
 	^ self backend inform: aString
 ]
