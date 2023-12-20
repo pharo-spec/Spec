@@ -41,19 +41,19 @@ SpAbstractMorphicListAdapter >> addKeyBindingsTo: aWidget [
 
 { #category : 'scrolling' }
 SpAbstractMorphicListAdapter >> configureScrolling [
-	self presenter verticalAlignment
-		whenChangedDo: [ widget
-				scrollToIndex: self presenter verticalAlignment desiredVisibleRow ].
-			
-	self presenter
-		whenDisplayDo: [ widget
-				scrollToIndex: self presenter verticalAlignment desiredVisibleRow.
-			self scrollingChanged ].
+	| vAlignment |
+	
+	vAlignment := self presenter verticalAlignment.
+	vAlignment whenChangedDo: [ 
+		widget scrollToIndex: vAlignment desiredVisibleRow ].
+	self presenter whenDisplayDo: [ 
+		widget scrollToIndex: vAlignment desiredVisibleRow.
+		self scrollingChanged ].
 		
 	widget
 		onAnnouncement: FTScrollingChanged
 		send: #scrollingChanged
-		to: self.
+		to: self
 ]
 
 { #category : 'widget API' }

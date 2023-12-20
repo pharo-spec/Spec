@@ -39,13 +39,15 @@ SpExecutableLayout class >> addDocumentSection: aBuilder label: label methods: m
 
 { #category : 'documentation' }
 SpExecutableLayout class >> addDocumentSectionHierarchy: aBuilder [
-	
+
 	aBuilder newLine.
-	aBuilder header: [ :builder | builder text: 'Hierarchy' ] withLevel: 2.
+	aBuilder
+		header: [ :builder | builder text: 'Hierarchy' ]
+		withLevel: 2.
 	SpDocumentHierarchyBuilder new
 		fromClass: Object;
 		builder: aBuilder;
-		filter: [ :eachClass | eachClass package packageName beginsWith: 'Spec2-' ];
+		filter: [ :eachClass | eachClass package name beginsWith: 'Spec2-' ];
 		buildFor: self
 ]
 

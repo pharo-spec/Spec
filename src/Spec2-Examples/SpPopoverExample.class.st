@@ -32,13 +32,14 @@ SpPopoverExample class >> open [
 SpPopoverExample >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
-		  hAlignCenter;
-		  vAlignCenter;
-		  add: top expand: false;
-		  add: left expand: false;
-		  add: bottom expand: false;
-		  add: right expand: false;
-		  yourself
+		spacing: 5;
+		hAlignCenter;
+		vAlignCenter;
+		add: left expand: false;
+		add: top expand: false;
+		add: bottom expand: false;
+		add: right expand: false;
+		yourself
 ]
 
 { #category : 'initialization' }

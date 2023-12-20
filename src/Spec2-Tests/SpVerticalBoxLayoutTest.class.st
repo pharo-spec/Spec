@@ -17,6 +17,8 @@ SpVerticalBoxLayoutTest >> initializeTestedInstance [
 SpVerticalBoxLayoutTest >> testPresenterExtentFollowsChildrenExtent [
 	| label button |
 
+	presenter application backend name = #Gtk ifTrue: [ self skip ].
+
 	layout 
 		add: ((label := presenter newLabel) label: 'Label1');
 		add: ((button := presenter newButton) label: 'Button1').

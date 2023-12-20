@@ -24,10 +24,7 @@ SpApplication >> confirm: aString [
 SpApplication >> inform: aString [
 	"Displays an inform dialog, for more configurable version please use `self application newInform title: ....`."
 
-	^ self newInform
-		  title: 'Alert';
-		  label: aString;
-		  openModal
+	^ self backend inform: aString
 ]
 
 { #category : '*Spec2-Dialogs' }

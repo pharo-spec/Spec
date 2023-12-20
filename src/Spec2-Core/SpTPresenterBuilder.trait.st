@@ -118,6 +118,11 @@ SpTPresenterBuilder >> newLabel [
 ]
 
 { #category : 'scripting - widgets' }
+SpTPresenterBuilder >> newLink [
+	^ self instantiate: SpLinkPresenter
+]
+
+{ #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newList [
 	^ self instantiate: SpListPresenter
 ]

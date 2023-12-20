@@ -260,6 +260,8 @@ SpBoxLayout >> addLast: aName [
 		- another layout or 
 		- a Symbol, matching the name of the instance variable who will contain the element to add."
 
+	self flag: #doNotUse.
+
 	self 
 		addLast: aName 
 		withConstraints: [ :constraints | ]
@@ -276,6 +278,8 @@ SpBoxLayout >> addLast: aName expand: shouldExpand [
 	`shouldExpand` is a boolean indicating whether the new child is to be given extra space allocated 
 	to the box."
 
+	self flag: #doNotUse.
+
 	self 
 		addLast: aName 
 		withConstraints: [ :constraints | 
@@ -284,6 +288,8 @@ SpBoxLayout >> addLast: aName expand: shouldExpand [
 
 { #category : 'private' }
 SpBoxLayout >> addLast: aName expand: shouldExpand fill: shouldFill [
+
+	self flag: #doNotUse.
 
 	self 
 		addLast: aName 
@@ -295,6 +301,8 @@ SpBoxLayout >> addLast: aName expand: shouldExpand fill: shouldFill [
 
 { #category : 'private' }
 SpBoxLayout >> addLast: aName expand: shouldExpand fill: shouldFill padding: aNumber [
+
+	self flag: #doNotUse.
 
 	self 
 		addLast: aName 
@@ -317,6 +325,8 @@ SpBoxLayout >> addLast: aName withConstraints: aBlock [
 	
 	NOTICE that the direct usage of this method is NOT recommended. Consider using add:/add:expand: 
 	instead"
+
+	self flag: #doNotUse.
 
 	self 
 		add: aName 

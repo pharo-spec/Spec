@@ -140,7 +140,8 @@ SpNumberInputFieldPresenter >> number [
 	"Answer the number ingressed."
 
 	^ self text trimmed 
-		ifNotEmpty: [ :aString | aString asNumber ]
+		ifNotEmpty: [ :aString | 
+			self numberType readFrom: aString ifFail: [ 0 ] ]
 		ifEmpty: [ 0 ]
 ]
 

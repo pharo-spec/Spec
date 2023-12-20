@@ -18,13 +18,15 @@ Class {
 
 { #category : 'documentation' }
 SpAbstractSelectionMode class >> addDocumentSectionHierarchy: aBuilder [
-	
+
 	aBuilder newLine.
-	aBuilder header: [ :builder | builder text: 'Hierarchy' ] withLevel: 2.
+	aBuilder
+		header: [ :builder | builder text: 'Hierarchy' ]
+		withLevel: 2.
 	SpDocumentHierarchyBuilder new
 		fromClass: SpAbstractSelectionMode;
 		builder: aBuilder;
-		filter: [ :eachClass | eachClass package packageName beginsWith: 'Spec2-' ];
+		filter: [ :eachClass | eachClass package name beginsWith: 'Spec2-' ];
 		buildFor: self
 ]
 

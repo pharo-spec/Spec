@@ -130,8 +130,8 @@ SpAbstractMorphicAdapter >> applyStyle: morph [
 { #category : 'initialization' }
 SpAbstractMorphicAdapter >> applyVisibility [
 	
-	"It may happen that some presenters use generic adapters and they do not have an associated presenter.
-	In that case, do not manage visibility..."
+	"It may happen that some presenters use generic adapters and they do not have an 
+	associated presenter. In that case, do not manage visibility..."
 	self presenter ifNil: [ ^ self ].
 
 	self widget visible: self presenter isVisible.
@@ -335,7 +335,7 @@ SpAbstractMorphicAdapter >> installFocusReceivedEvent: anEvent to: aWidget [
 
 	aWidget announcer
 		when: MorphGotFocus
-		do: [ anEvent action value ]
+		do: [ anEvent action cull: anEvent ]
 		for: self
 ]
 
@@ -695,8 +695,10 @@ SpAbstractMorphicAdapter >> vSpaceFill [
 { #category : 'protocol' }
 SpAbstractMorphicAdapter >> when: anAnnouncement do: aBlock [
 
-	self widgetDo: [ :w | w announcer
-		when: anAnnouncement do: aBlock ]
+	self widgetDo: [ :w | 
+		w announcer
+			when: anAnnouncement 
+			do: aBlock ]
 ]
 
 { #category : 'emulating' }

@@ -28,15 +28,6 @@ SpAbstractFormButtonPresenter >> click [
 	self toggleState
 ]
 
-{ #category : 'api' }
-SpAbstractFormButtonPresenter >> enabled: aBoolean [
-	"Set if the button is enabled."
-
-	super enabled: aBoolean.
-	self changed: #enabled.
-
-]
-
 { #category : 'initialization' }
 SpAbstractFormButtonPresenter >> initialize [
 	super initialize.

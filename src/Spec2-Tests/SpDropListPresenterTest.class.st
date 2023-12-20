@@ -42,6 +42,21 @@ SpDropListPresenterTest >> testEmptyList [
 ]
 
 { #category : 'tests' }
+SpDropListPresenterTest >> testSelectItemAfterOpen [
+
+	presenter items: #( $a $b $c ).
+	presenter selectItem: $c.
+
+	[ 
+		presenter open. 
+		self assert: presenter selectedItem equals: $c.
+		presenter selectItem: $b.
+		self assert: presenter selectedItem equals: $b.
+	] 
+	ensure: [ presenter withWindowDo: #close ]	
+]
+
+{ #category : 'tests' }
 SpDropListPresenterTest >> testSetItemsWithCollectionSmallerThanSelection [
 
 	| changed |

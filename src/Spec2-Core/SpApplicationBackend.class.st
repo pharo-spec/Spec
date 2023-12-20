@@ -49,6 +49,12 @@ SpApplicationBackend >> defaultConfigurationFor: anApplication [
 	^ self subclassResponsibility
 ]
 
+{ #category : 'ui - dialogs' }
+SpApplicationBackend >> inform: aString [
+
+	self subclassResponsibility
+]
+
 { #category : 'initialization' }
 SpApplicationBackend >> initialize [
 
@@ -60,14 +66,6 @@ SpApplicationBackend >> initialize [
 SpApplicationBackend >> name [
 
 	^ self class backendName
-]
-
-{ #category : 'ui - notifying' }
-SpApplicationBackend >> notify: aSpecNotification [
-
-	aSpecNotification type 
-		notify: aSpecNotification
-		on: self
 ]
 
 { #category : 'ui - notifying' }
