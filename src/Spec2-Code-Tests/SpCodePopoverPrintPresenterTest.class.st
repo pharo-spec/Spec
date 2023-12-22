@@ -1,6 +1,6 @@
 Class {
 	#name : 'SpCodePopoverPrintPresenterTest',
-	#superclass : 'TestCase',
+	#superclass : 'SpBaseTest',
 	#instVars : [
 		'presenter'
 	],
