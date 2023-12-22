@@ -13,7 +13,7 @@ Class {
 SpBaseTest >> application [
 
 	^ SpApplication new
-		  useMorphic;
+		  useBackend: #Morphic with: StPharoMorphicConfiguration new;
 		  yourself
 ]
 
