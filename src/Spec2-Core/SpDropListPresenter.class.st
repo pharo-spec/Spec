@@ -109,7 +109,7 @@ SpDropListPresenter >> displayBlock [
 SpDropListPresenter >> displayForItem: anItem [
 	"The order of the arguments may look weird, but then it seems more natural while using the widget"
 
-	^ self display cull: anItem model cull: anItem
+	^ self displayBlock cull: anItem model cull: anItem
 ]
 
 { #category : 'api' }
