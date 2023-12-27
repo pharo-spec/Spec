@@ -49,7 +49,7 @@ SpFilteringSelectableListPresenter >> deactivateItem: anObject [
 
 { #category : 'api' }
 SpFilteringSelectableListPresenter >> display [
-
+	self deprecated: 'Please use displayBlock' transformWith: '`aRec display' ->  '`aRec displayBlock' .
 	^ displayBlock
 ]
 
@@ -58,6 +58,12 @@ SpFilteringSelectableListPresenter >> display: aBlock [
 
 	displayBlock := aBlock.
 	listPresenter columns: self listColumns
+]
+
+{ #category : 'api' }
+SpFilteringSelectableListPresenter >> displayBlock [
+
+	^ displayBlock
 ]
 
 { #category : 'api' }

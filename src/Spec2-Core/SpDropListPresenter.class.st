@@ -83,7 +83,7 @@ SpDropListPresenter >> disableSelectionDuring: aBlock [
 SpDropListPresenter >> display [
 	"Answer the formatting block to transform how the elements will be displayed. 
 	 See also `SpDropListPresenter>>#display:`"
-	
+	self deprecated: 'Please use displayBlock' transformWith: '`aRec display' ->  '`aRec displayBlock'.
 	^ displayBlock
 ]
 
@@ -95,6 +95,14 @@ SpDropListPresenter >> display: aBlock [
 
 	displayBlock := aBlock 
 
+]
+
+{ #category : 'api' }
+SpDropListPresenter >> displayBlock [
+	"Answer the formatting block to transform how the elements will be displayed. 
+	 See also `SpDropListPresenter>>#display:`"
+	
+	^ displayBlock
 ]
 
 { #category : 'private' }

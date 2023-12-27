@@ -65,7 +65,7 @@ SpDatePresenter >> date: aDate [
 
 	| dateString |
 	date := aDate.
-	dateString := self display value: date.
+	dateString := self displayBlock value: date.
 	self dateModel text: dateString.
 ]
 
@@ -84,7 +84,7 @@ SpDatePresenter >> defaultDate [
 SpDatePresenter >> display [
 	"Return the one argument block used to wrap your domain specific items.
 	The block should return something that can be displayed in a list - like a String or a Text"
-
+	self deprecated: 'Please use displayBlock' transformWith: '`aRec display' ->  '`aRec displayBlock'.
 	^ displayBlock
 ]
 

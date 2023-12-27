@@ -211,7 +211,7 @@ SpChooserPresenter >> initializePresenters [
 SpChooserPresenter >> initializeSortingBlocks [
 
 	| sortingBlock |
-	sortingBlock := sourceList display ascending.
+	sortingBlock := sourceList displayBlock ascending.
 	sourceList sortingBlock: sortingBlock.
 	targetList sortingBlock: sortingBlock
 ]
