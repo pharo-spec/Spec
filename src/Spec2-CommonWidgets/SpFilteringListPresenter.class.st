@@ -79,14 +79,21 @@ SpFilteringListPresenter >> defaultOutputPort [
 
 { #category : 'api' }
 SpFilteringListPresenter >> display [ 
-
-	^ self listPresenter display
+	self deprecated: 'Please use displayBlock' transformWith: '`aRec display' ->  '`aRec displayBlock'.
+	
+	^ self listPresenter displayBlock
 ]
 
 { #category : 'api' }
 SpFilteringListPresenter >> display: aBlock [
 
 	self listPresenter display: aBlock
+]
+
+{ #category : 'api' }
+SpFilteringListPresenter >> displayBlock [ 
+	
+	^ self listPresenter displayBlock
 ]
 
 { #category : 'api' }
@@ -111,7 +118,7 @@ SpFilteringListPresenter >> filterListItems: pattern [
 
 	filteredItems := unfilteredItems select: [ :item |
 		itemFilterBlock
-			value: (self display value: item)
+			value: (self displayBlock value: item)
 			value: pattern ].
 
 	listPresenter items: filteredItems

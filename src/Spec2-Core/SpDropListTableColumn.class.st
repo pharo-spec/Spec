@@ -43,7 +43,7 @@ SpDropListTableColumn >> acceptColumnVisitor: aBuilder [
 
 { #category : 'accessing' }
 SpDropListTableColumn >> display [
-	
+	self deprecated: 'Please use displayBlock' transformWith: '`aRec display' ->  '`aRec displayBlock'.
 	^ display
 ]
 
@@ -51,6 +51,12 @@ SpDropListTableColumn >> display [
 SpDropListTableColumn >> display: aBlock [
 
 	display := aBlock
+]
+
+{ #category : 'accessing' }
+SpDropListTableColumn >> displayBlock [
+	
+	^ display
 ]
 
 { #category : 'initialization' }
