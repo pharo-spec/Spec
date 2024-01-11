@@ -51,11 +51,10 @@ SpListPresenter >> clickOnSelectedItem [
 
 { #category : 'api' }
 SpListPresenter >> display [
-	"Answer the display block that will transform the objects from `SpAbstractListPresenter>>#model` into a displayable string."
-	
-	self deprecated: 'Please use displayBlock' transformWith: '`aRec display' ->  '`aRec displayBlock'.
-	^ self displayBlock.
-	
+	"Answer the display block that will transform the objects from `SpAbstractListPresenter>>#model` into a
+	 displayable string."
+
+	^ display
 ]
 
 { #category : 'api' }
@@ -73,13 +72,6 @@ SpListPresenter >> display: aBlock [
 	 "
 
 	display := aBlock
-]
-
-{ #category : 'api' }
-SpListPresenter >> displayBlock [
-	"Answer the display block that will transform the objects from `SpAbstractListPresenter>>#model` into a displayable string."
-
-	^ display
 ]
 
 { #category : 'api' }
