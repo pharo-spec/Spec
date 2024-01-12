@@ -67,7 +67,7 @@ SpTreePresenter >> beResizable [
 { #category : 'api' }
 SpTreePresenter >> display [
 	"Answer the display block that will transform the model nodes into a displayable string."
-	self deprecated: 'Please use displayBlock' transformWith: '`aRec display' ->  '`aRec displayBlock'.
+
 	^ displayBlock
 ]
 
@@ -86,13 +86,6 @@ SpTreePresenter >> display: aBlock [
 	 "
 
 	displayBlock := aBlock
-]
-
-{ #category : 'api' }
-SpTreePresenter >> displayBlock [
-	"Answer the display block that will transform the model nodes into a displayable string."
-	
-	^ displayBlock
 ]
 
 { #category : 'api' }

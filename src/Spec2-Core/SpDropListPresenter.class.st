@@ -83,7 +83,7 @@ SpDropListPresenter >> disableSelectionDuring: aBlock [
 SpDropListPresenter >> display [
 	"Answer the formatting block to transform how the elements will be displayed. 
 	 See also `SpDropListPresenter>>#display:`"
-	self deprecated: 'Please use displayBlock' transformWith: '`aRec display' ->  '`aRec displayBlock'.
+	
 	^ displayBlock
 ]
 
@@ -97,19 +97,11 @@ SpDropListPresenter >> display: aBlock [
 
 ]
 
-{ #category : 'api' }
-SpDropListPresenter >> displayBlock [
-	"Answer the formatting block to transform how the elements will be displayed. 
-	 See also `SpDropListPresenter>>#display:`"
-	
-	^ displayBlock
-]
-
 { #category : 'private' }
 SpDropListPresenter >> displayForItem: anItem [
 	"The order of the arguments may look weird, but then it seems more natural while using the widget"
 
-	^ self displayBlock cull: anItem model cull: anItem
+	^ self display cull: anItem model cull: anItem
 ]
 
 { #category : 'api' }
