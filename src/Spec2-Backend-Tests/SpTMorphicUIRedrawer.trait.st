@@ -43,5 +43,5 @@ SpTMorphicUIRedrawer >> waitUntilUIRedrawed [
 			^ self ].
 
 	self currentWorld defer: [ uiWaitingSemaphore ifNotNil: [:sem | sem signal ]].
-	uiWaitingSemaphore waitTimeoutMilliseconds: self new defaultWaitMilliseconds
+	uiWaitingSemaphore waitTimeoutMilliseconds: self defaultWaitMilliseconds
 ]
