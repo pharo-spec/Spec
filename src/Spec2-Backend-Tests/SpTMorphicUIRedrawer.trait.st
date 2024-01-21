@@ -14,8 +14,8 @@ Trait {
 }
 
 { #category : 'running' }
-SpTMorphicUIRedrawer >> defaultWaitDuration [
-	^ 500 milliSecond
+SpTMorphicUIRedrawer >> defaultWaitMilliseconds [
+	^ 500 
 ]
 
 { #category : 'initialization' }
@@ -42,6 +42,6 @@ SpTMorphicUIRedrawer >> waitUntilUIRedrawed [
 			MorphicRenderLoop new doOneCycle.
 			^ self ].
 
-	self currentWorld defer: [ uiWaitingSemaphore ifNotNil: #signal ].
-	uiWaitingSemaphore wait: self defaultWaitDuration
+	self currentWorld defer: [ uiWaitingSemaphore ifNotNil: [:sem | sem signal ]].
+	uiWaitingSemaphore waitTimeoutMilliseconds: self new defaultWaitMilliseconds
 ]
