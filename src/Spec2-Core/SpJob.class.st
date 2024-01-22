@@ -12,7 +12,7 @@ job := self newBlock: [ :job |
 			progress: (0.1 * each);
 			title: 'Youpi ', each printString.
 		(Delay forMilliseconds: 100) wait.
-		] ]
+		] ].
 job run.
 ```
 
@@ -78,7 +78,7 @@ SpJob >> addChild: aJob [
 	aJob parent: self
 ]
 
-{ #category : 'accessing' }
+{ #category : 'announcing' }
 SpJob >> announce: anAnnouncementClass [
 
 	| announcement |
@@ -93,7 +93,7 @@ SpJob >> announceChange [
 	self announce: JobChange
 ]
 
-{ #category : 'accessing' }
+{ #category : 'announcing' }
 SpJob >> announcer [
 
 	^ announcer ifNil: [ announcer := Announcer new ]
@@ -201,8 +201,8 @@ SpJob >> lookup: lookupBlock ifNone: noneBlock [
 	(lookupBlock value: self) ifTrue: [ ^ self ].
 		
 	^ parent 
-		ifNil: noneBlock 
-		ifNotNil: [ parent lookup: lookupBlock ifNone: noneBlock ]
+		ifNotNil: [ parent lookup: lookupBlock ifNone: noneBlock ]	
+		ifNil: noneBlock
 ]
 
 { #category : 'accessing' }
@@ -291,10 +291,11 @@ SpJob >> removeChild: aJob [
 { #category : 'running' }
 SpJob >> run [
 
-	[ 
+	^ [ 
 		self prepareForRunning.
-	 	^ block cull: self ]
-	ensure: [ self cleanupAfterRunning ]
+	 	block cull: self ]
+	ensure: [ 
+		self cleanupAfterRunning ]
 ]
 
 { #category : 'accessing' }

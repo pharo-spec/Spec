@@ -45,15 +45,24 @@ SpJobPresenter class >> example [
 		run
 ]
 
+{ #category : 'layout' }
+SpJobPresenter >> defaultLayout [
+	
+	^ SpBoxLayout newTopToBottom
+		borderWidth: 10;
+		spacing: 5;
+		add: progressLabel expand: false;
+		add: progressBar expand: false;
+		yourself
+]
+
 { #category : 'initialization' }
 SpJobPresenter >> initializePresenters [
 
-	self layout: (SpBoxLayout newTopToBottom
-		borderWidth: 10;
-		spacing: 5;
-		add: (progressLabel := self newLabel) expand: false;
-		add: (progressBar := self newProgressBar) expand: false;
-		yourself)
+	progressLabel := self newLabel label: ''.
+	progressBar := self newProgressBar
+		indeterminate;
+		yourself
 ]
 
 { #category : 'initialization' }
@@ -115,12 +124,15 @@ SpJobPresenter >> setModelBeforeInitialization: aModel [
 
 { #category : 'initialization' }
 SpJobPresenter >> updatePresenter [
-	| currentJob |
 
-	currentJob := model ifNil: [ ^ SpJob empty ].
-	
+	model ifNil: [ ^ self ].
+
 	progressLabel label: model title.
-	progressBar fixedAt: model progress
+	model progress > 0 
+		ifTrue: [ progressBar fixedAt: model progress ]
+		ifFalse: [ progressBar indeterminate ].
+
+	progressBar withAdapterDo: [ :anAdapter | anAdapter updateState ]
 ]
 
 { #category : 'private' }
