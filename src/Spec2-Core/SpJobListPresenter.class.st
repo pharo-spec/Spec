@@ -48,7 +48,7 @@ SpJobListPresenter >> addJobPresenter: aJob [
 		ifTrue: [ self open ].
 	
 	self withWindowDo: [ :window | 
-		window resize: 500@(layout children size * self jobPresenterHeight) ]
+		window resize: 500@(layout children size * self jobPresenterHeight) + 10 ]
 ]
 
 { #category : 'private' }
