@@ -236,8 +236,9 @@ SpMorphicMillerAdapter >> scrollToShowLastPage [
 	self widget defer: [
 		| size firstMorphIndex |
 		size := innerWidget submorphs size.
-		firstMorphIndex := size - self presenter visiblePages + 1.
+
 		size > 0 ifTrue: [
+			firstMorphIndex := size - self presenter visiblePages + 1.
 			self widget showMorph:
 				(innerWidget submorphs at: ((firstMorphIndex max: 1) min: size)) ] ]
 ]
