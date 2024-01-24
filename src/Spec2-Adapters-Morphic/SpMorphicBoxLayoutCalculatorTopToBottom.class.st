@@ -44,7 +44,7 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateCellFor: aMorph [
 ]
 
 { #category : 'calculating' }
-SpMorphicBoxLayoutCalculatorTopToBottom >> calculateFor: aMorph in: newBounds [
+SpMorphicBoxLayoutCalculatorTopToBottom >> doCalculateFor: aMorph in: newBounds [
 	"An optimized top-to-bottom list layout"
 	| inset extent posX posY centering extraPerCell cell amount last submorphs |
 
@@ -107,7 +107,7 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateFor: aMorph in: newBounds [
 	number := 0.
 	extra := last := 0.
 	cell := firstCell.
-	[cell == nil] whileFalse:[
+	[ cell == nil ] whileFalse:[
 		number := number + 1.
 		height := cell cellSize.
 		(extraPerCell > 0 and:[cell vSpaceFill]) ifTrue:[
@@ -117,6 +117,5 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateFor: aMorph in: newBounds [
 		].
 		cell target layoutInBounds: (posX @ posY extent: width @ height).
 		posY := posY + height + inset.
-		cell := cell nextCell.
-	].
+		cell := cell nextCell ]
 ]

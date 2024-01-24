@@ -37,6 +37,19 @@ SpMorphicBoxLayoutCalculator class >> newProperties: anObject [
 { #category : 'calculating' }
 SpMorphicBoxLayoutCalculator >> calculateFor: aMorph in: newBounds [
 
+	[ self doCalculateFor: aMorph in: newBounds ]
+	ensure: [ self cleanUp ]
+]
+
+{ #category : 'private' }
+SpMorphicBoxLayoutCalculator >> cleanUp [
+
+	firstCell := lastCell := nil
+]
+
+{ #category : 'calculating' }
+SpMorphicBoxLayoutCalculator >> doCalculateFor: aMorph in: newBounds [
+
 	self subclassResponsibility
 ]
 

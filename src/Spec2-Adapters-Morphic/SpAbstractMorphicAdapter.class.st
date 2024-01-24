@@ -661,7 +661,6 @@ SpAbstractMorphicAdapter >> type: aString [
 SpAbstractMorphicAdapter >> unsubscribe [
 
 	super unsubscribe.
-	
 	self presenter hasAnnouncer ifFalse: [ ^ self ].
 	self presenter announcer 
 		unsubscribe: self widget;

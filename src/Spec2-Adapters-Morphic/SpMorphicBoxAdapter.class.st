@@ -250,6 +250,7 @@ SpMorphicBoxAdapter >> remove: aPresenter [
 
 	aPresenter adapter ifNotNil: [ :adapter |
 		| morph |
+		adapter unsubscribe.
 		morph := adapter widget.
 		startPanel removeMorph: morph.
 		endPanel removeMorph: morph.
