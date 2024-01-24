@@ -14,20 +14,19 @@ Class {
 
 { #category : 'examples' }
 SpJobListPresenter class >> example [ 
-	| jobList |
-	
-	jobList := self new.
+
 	[ 
 		1 to: 5 do: [ :index | 
 		[
-			jobList pushJob: (SpJob 
-				newTitle: 'Job ', index asString
+			Job new 
+				title: 'Job ', index asString;
 				block: [ :job | 
 					job min: 1; max: 10.
 					1 to: 10 do: [ :i | 
 						job title: ('Test {1}/10' format: {i}).
 						job value: i. 
-						250 milliSeconds wait ] ]).
+						250 milliSeconds wait ] ];
+				run.
 		] fork.
 		200 milliSeconds wait ]  
 	] fork.
@@ -38,12 +37,6 @@ SpJobListPresenter class >> example [
 { #category : 'private' }
 SpJobListPresenter >> addJobPresenter: aJob [
 	| presenter |
-	
-	('adding: {1}, {2}, max={3}, value={4}' format: { 
-		aJob class. 
-		aJob title.
-		aJob max.
-		aJob currentValue }) crTrace.
 	
 	aJob title ifEmpty: [ aJob title: 'Processing...' ].
 	
@@ -56,6 +49,14 @@ SpJobListPresenter >> addJobPresenter: aJob [
 	
 	self withWindowDo: [ :window | 
 		window resize: 500@(layout children size * self jobPresenterHeight) ]
+]
+
+{ #category : 'private' }
+SpJobListPresenter >> ensureOpen [
+	
+	self withWindowDo: [ :aWindow |
+		aWindow isOpen 
+			ifFalse: [ self open ] ]
 ]
 
 { #category : 'private' }
@@ -82,15 +83,22 @@ SpJobListPresenter >> initializeWindow: aWindowPresenter [
 		centered
 ]
 
-{ #category : 'private - events' }
-SpJobListPresenter >> jobChanged: ann [
-
-	(self findJob: ann job) 
-		ifNotNil: [ :aPresenter | aPresenter updatePresenter ]
+{ #category : 'testing' }
+SpJobListPresenter >> isEmpty [
+	
+	^ self layout children isEmpty
 ]
 
 { #category : 'private - events' }
-SpJobListPresenter >> jobEnd: ann [ 
+SpJobListPresenter >> jobChanged: ann [
+
+	(self findJob: ann job) ifNotNil: [ :aPresenter | 
+		aPresenter model title crTrace.
+		aPresenter updatePresenter ]
+]
+
+{ #category : 'private - events' }
+SpJobListPresenter >> jobEnd: ann [
 	
 	self removeJobPresenter: ann job
 ]
@@ -107,21 +115,18 @@ SpJobListPresenter >> jobStart: ann [
 	"Skip if already there"
 	(self findJob: ann job) ifNotNil: [ ^ self ].
 	self addJobPresenter: ann job.
-	ann job run
+	self ensureOpen
 ]
 
 { #category : 'private' }
 SpJobListPresenter >> newJob [
 	
-	^ SpJob new
+	^ Job new
 ]
 
 { #category : 'api' }
 SpJobListPresenter >> pushJob: aJob [
 
-	aJob whenStartDo: [ :ann | self addJobPresenter: ann job ].
-	aJob whenEndDo: [ :ann | self removeJobPresenter: ann job ]. 
-	
 	aJob run
 ]
 

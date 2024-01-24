@@ -74,6 +74,12 @@ SpProgressBarPresenter >> progress: aBlock every: aDelay [
 	self state: (SpProgressingProgressBarState progression: aBlock every: aDelay)
 ]
 
+{ #category : 'api' }
+SpProgressBarPresenter >> refresh [
+
+	^ self withAdapterDo: [ :anAdapter | anAdapter updateState ]
+]
+
 { #category : 'private' }
 SpProgressBarPresenter >> state [
 

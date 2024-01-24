@@ -270,7 +270,7 @@ SpExecutableLayout >> remove: aPresenter ifAbsent: aBlock [
 
 	^ (children includesKey: aPresenter)
 		ifTrue: [ children removeKey: aPresenter ]
-		ifFalse: aBlock
+		ifFalse: [ aBlock value ]
 ]
 
 { #category : 'private' }

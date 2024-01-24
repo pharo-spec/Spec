@@ -32,7 +32,7 @@ Class {
 SpJobPresenter class >> example [
 	| job |
 
-	job := SpJob newBlock: [ :aJob |
+	job := Job block: [ :aJob |
 		aJob title: 'Test'.
 		aJob min: 1; max: 10.
 		1 to: 10 do: [ :i | 
@@ -61,7 +61,7 @@ SpJobPresenter >> initializePresenters [
 
 	progressLabel := self newLabel label: ''.
 	progressBar := self newProgressBar
-		indeterminate;
+		"indeterminate;"
 		yourself
 ]
 
@@ -128,19 +128,19 @@ SpJobPresenter >> updatePresenter [
 	model ifNil: [ ^ self ].
 
 	progressLabel label: model title.
+	"progressBar fixedAt: model progress."
 	model progress > 0 
 		ifTrue: [ progressBar fixedAt: model progress ]
 		ifFalse: [ progressBar indeterminate ].
-
-	progressBar withAdapterDo: [ :anAdapter | anAdapter updateState ]
+	progressBar refresh
 ]
 
 { #category : 'private' }
 SpJobPresenter >> updateSubscriptions [
 	
-	model announcer weak 
+	"model announcer weak 
 		when: JobStart send: #jobStart: to: self;
 		when: JobChange send: #jobChanged: to: self;
-		when: JobEnd send: #jobEnd: to: self.
+		when: JobEnd send: #jobEnd: to: self."
 
 ]
