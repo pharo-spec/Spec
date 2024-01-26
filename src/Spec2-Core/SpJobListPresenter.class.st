@@ -113,7 +113,9 @@ SpJobListPresenter >> jobPresenterHeight [
 SpJobListPresenter >> jobStart: ann [
 
 	"Skip if already there"
-	(self findJob: ann job) ifNotNil: [ ^ self ].
+	(self findJob: ann job) ifNotNil: [ :aJobPresenter | 
+		aJobPresenter refresh.
+		^ self ].
 	self addJobPresenter: ann job.
 	self ensureOpen
 ]
