@@ -4,8 +4,11 @@ A presenter to stack jobs.
 Class {
 	#name : 'SpJobListPresenter',
 	#superclass : 'SpPresenter',
+	#classTraits : '{} + TraitedClass',
 	#instVars : [
-		'refreshRateInMs'
+		'refreshRateInMs',
+		'mutex',
+		'jobs'
 	],
 	#category : 'Spec2-Core-Job',
 	#package : 'Spec2-Core',
@@ -43,11 +46,12 @@ SpJobListPresenter >> addJobPresenter: aJob [
 	
 	presenter := self instantiate: SpJobPresenter on: aJob.
 	presenter refreshRateInMs: refreshRateInMs.
+	
+	jobs at: aJob put: presenter.
 	self layout add: presenter expand: false.
 	
 	self layout children size = 1 
 		ifTrue: [ self open ].
-	
 	self withWindowDo: [ :window | 
 		window resize: 500@((layout children size * self jobPresenterHeight) + 10) ]
 ]
@@ -63,15 +67,17 @@ SpJobListPresenter >> ensureOpen [
 { #category : 'private' }
 SpJobListPresenter >> findJob: aJob [
 	
-	^ self layout children 
-		detect: [ :each | each model = aJob ]
-		ifNone: [ nil ]
+	^ jobs 
+		at: aJob 
+		ifAbsent: [ nil ]
 ]
 
 { #category : 'initialization' }
 SpJobListPresenter >> initialize [
 
 	super initialize.
+	jobs := SmallDictionary new.
+	mutex := Mutex new.
 	self announcer
 		when: JobStart send: #jobStart: to: self;
 		when: JobChange send: #jobChanged: to: self;
@@ -103,15 +109,16 @@ SpJobListPresenter >> isEmpty [
 { #category : 'private - events' }
 SpJobListPresenter >> jobChanged: ann [
 
-	(self findJob: ann job) ifNotNil: [ :aPresenter | 
-		aPresenter model title crTrace.
-		aPresenter updatePresenter ]
+	mutex critical: [ 
+		(self findJob: ann job) 
+			ifNotNil: [ :aPresenter | aPresenter updatePresenter ] ]
 ]
 
 { #category : 'private - events' }
 SpJobListPresenter >> jobEnd: ann [
 	
-	self removeJobPresenter: ann job
+	mutex critical: [ 
+		self removeJobPresenter: ann job ]
 ]
 
 { #category : 'private' }
@@ -124,10 +131,12 @@ SpJobListPresenter >> jobPresenterHeight [
 SpJobListPresenter >> jobStart: ann [
 
 	"Skip if already there"
-	(self findJob: ann job) ifNotNil: [ :aJobPresenter | 
-		aJobPresenter refresh.
-		^ self ].
-	self addJobPresenter: ann job.
+	mutex critical: [ 
+		(self findJob: ann job) ifNotNil: [ :aJobPresenter | 
+			aJobPresenter refresh.
+			^ self ].
+		self addJobPresenter: ann job ].
+
 	self ensureOpen
 ]
 
@@ -166,15 +175,21 @@ SpJobListPresenter >> removeJobPresenter: aJob [
 	presenter := self findJob: aJob.
 	presenter ifNil: [ ^ self ].
 	
+	jobs removeKey: aJob.
 	self layout remove: presenter.
-	
+
 	self withWindowDo: [ :window | 
 		self layout children 
 			ifNotEmpty: [ 
 				window resize: 500@(layout children size * self jobPresenterHeight).
 				window centered	 ]
 			ifEmpty: [
-				window close ] ]
+				window close.
+				self flag: #HACK. "This is a hack to prevent a leak that I cannot 
+				detect while executing this several times. Removing the job list 
+				from the application will effectively clean up the process (but 
+				the leak is still there, somewhere in morphic...I need to find it)"
+				self application removeProperty: #jobList ] ]
 ]
 
 { #category : 'private' }
