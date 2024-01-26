@@ -95,7 +95,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneous [
 { #category : #tests }
 SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
 
-	| presenter p1 p2 p3 windowWidth presenterWidth width1 width2 width3 |
+	| presenter p1 p2 p3 windowWidth presenterWidth width1 width2 width3 initialWindowWidth |
 	"not working on CI :("
 	self skipOnPharoCITestingEnvironment.
 
@@ -114,6 +114,8 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
 	[
 	presenter open.
 	backend waitUntilUIRedrawed.
+	initialWindowWidth := presenter window adapter widget width.
+	self assert: initialWindowWidth equals: 400.
 	presenter withWindowDo: [ :window |
 		window adapter widgetDo: [ :widget |
 			"Make the presenter's width a multiple of 3,
@@ -136,7 +138,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
 { #category : #tests }
 SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenExpandingWindow [
 
-	| presenter p1 p2 p3 windowWidth presenterWidth width1 width2 width3 |
+	| presenter p1 p2 p3 windowWidth presenterWidth width1 width2 width3 initialWindowWidth |
 	presenter := SpPresenter new.
 	presenter layout: (SpBoxLayout newHorizontal
 			 beHomogeneous;
@@ -152,6 +154,8 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenExpandingWindow [
 	[
 	presenter open.
 	backend waitUntilUIRedrawed.
+	initialWindowWidth := presenter window adapter widget width.
+	self assert: initialWindowWidth equals: 400.
 	presenter withWindowDo: [ :window |
 		window adapter widgetDo: [ :widget |
 			"Make the presenter's width a multiple of 3,
