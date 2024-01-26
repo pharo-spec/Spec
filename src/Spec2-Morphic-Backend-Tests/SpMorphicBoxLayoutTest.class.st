@@ -129,7 +129,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
 	self assert: presenterWidth equals: (width1 + width2 + width3).
 	self assert: width1 equals: width2.
 	self assert: width2 equals: width3.
-	self assert: windowWidth >= presenterWidth
+	self assert: windowWidth equals: presenterWidth + 10 "5 + 5 of the window borders"
 ]
 
 { #category : #tests }
@@ -169,7 +169,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenExpandingWindow [
 	self assert: presenterWidth equals: (width1 + width2 + width3).
 	self assert: width1 equals: width2.
 	self assert: width2 equals: width3.
-	self assert: windowWidth >= presenterWidth
+	self assert: windowWidth equals: presenterWidth + 10 "5 + 5 of the window borders"
 ]
 
 { #category : #tests }
