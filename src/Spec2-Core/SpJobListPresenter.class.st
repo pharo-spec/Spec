@@ -14,19 +14,20 @@ Class {
 
 { #category : 'examples' }
 SpJobListPresenter class >> example [ 
-
+	| jobList |
+	
+	jobList := self new.
 	[ 
 		1 to: 5 do: [ :index | 
 		[
-			Job new 
+			jobList pushJob: (SpJob new 
 				title: 'Job ', index asString;
 				block: [ :job | 
 					job min: 1; max: 10.
 					1 to: 10 do: [ :i | 
 						job title: ('Test {1}/10' format: {i}).
 						job value: i. 
-						250 milliSeconds wait ] ];
-				run.
+						250 milliSeconds wait ] ]).
 		] fork.
 		200 milliSeconds wait ]  
 	] fork.
@@ -68,6 +69,16 @@ SpJobListPresenter >> findJob: aJob [
 ]
 
 { #category : 'initialization' }
+SpJobListPresenter >> initialize [
+
+	super initialize.
+	self announcer
+		when: JobStart send: #jobStart: to: self;
+		when: JobChange send: #jobChanged: to: self;
+		when: JobEnd send: #jobEnd: to: self
+]
+
+{ #category : 'initialization' }
 SpJobListPresenter >> initializePresenters [
 
 	self layout: SpBoxLayout newTopToBottom
@@ -106,7 +117,7 @@ SpJobListPresenter >> jobEnd: ann [
 { #category : 'private' }
 SpJobListPresenter >> jobPresenterHeight [
 
-	^ 70
+	^ 80
 ]
 
 { #category : 'private - events' }
@@ -129,6 +140,7 @@ SpJobListPresenter >> newJob [
 { #category : 'api' }
 SpJobListPresenter >> pushJob: aJob [
 
+	aJob installOn: self.
 	aJob run
 ]
 

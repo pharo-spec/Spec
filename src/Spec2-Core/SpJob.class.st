@@ -78,7 +78,7 @@ SpJob >> addChild: aJob [
 	aJob parent: self
 ]
 
-{ #category : 'announcing' }
+{ #category : 'private - announcing' }
 SpJob >> announce: anAnnouncementClass [
 
 	| announcement |
@@ -86,14 +86,25 @@ SpJob >> announce: anAnnouncementClass [
 	self announcer announce: announcement
 ]
 
-{ #category : 'private' }
+{ #category : 'private - announcing' }
 SpJob >> announceChange [
 
-	isRunning ifFalse: [ ^ self ].
 	self announce: JobChange
 ]
 
-{ #category : 'announcing' }
+{ #category : 'private - announcing' }
+SpJob >> announceEnd [
+
+	self announce: JobEnd
+]
+
+{ #category : 'private - announcing' }
+SpJob >> announceStart [
+
+	self announce: JobStart
+]
+
+{ #category : 'private - announcing' }
 SpJob >> announcer [
 
 	^ announcer ifNil: [ announcer := Announcer new ]
@@ -122,7 +133,7 @@ SpJob >> cleanupAfterRunning [
 
 	isRunning := false.
 	process := nil.
-	self announce: JobEnd.
+	self announceEnd.
 	parent ifNotNil: [ :job | job removeChild: self ]
 ]
 
@@ -175,6 +186,12 @@ SpJob >> initialize [
 	children := OrderedCollection new
 ]
 
+{ #category : 'instance creation' }
+SpJob >> installOn: aPresenter [
+
+	announcer := aPresenter
+]
+
 { #category : 'testing' }
 SpJob >> isRunning [
 
@@ -221,6 +238,7 @@ SpJob >> max: aNumber [
 SpJob >> migrateProgressWhileUpdatingBounds: aBlockChangingBounds [
 	"Keep the progress value consistent while we change min / max"
 	| progress |
+
 	progress := self progress.
 	aBlockChangingBounds value.
 	self progress: progress.
@@ -256,10 +274,10 @@ SpJob >> prepareForRunning [
 
 	isRunning := true.
 	process := Processor activeProcess.
-	self announce: JobStart
+	self announceStart
 ]
 
-{ #category : 'progress' }
+{ #category : 'accessing' }
 SpJob >> progress [
 	"Avoid negative progress and divideByZero."
 
@@ -268,7 +286,7 @@ SpJob >> progress [
 		ifFalse: [ (currentValue - min) / (max - min) ]
 ]
 
-{ #category : 'progress' }
+{ #category : 'accessing' }
 SpJob >> progress: aNormalizedFloat [
 	"Set the progress: 0.0 - 1.0"
 
