@@ -65,9 +65,6 @@ SpMorphicBoxLayoutTest >> testAddWithPaddingVertical [
 SpMorphicBoxLayoutTest >> testBeHomogeneous [
 
 	| presenter p1 p2 p3 presenterWidth width1 width2 width3 |
-	"not working on CI :("
-	self skipOnPharoCITestingEnvironment.
-
 	presenter := SpPresenter new.
 	presenter layout: (SpBoxLayout newHorizontal
 			 beHomogeneous;
@@ -81,6 +78,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneous [
 	p3 label: 'Button'.
 
 	[
+	"190 = 5 window border + 180 + 5 window border. 180 is a multiple of 3 (all presenters have the same width)."
 	presenter asWindow initialExtent: 190@150; open.
 	backend waitUntilUIRedrawed ] ensure: [
 		presenter withWindowDo: #close ].
@@ -98,9 +96,6 @@ SpMorphicBoxLayoutTest >> testBeHomogeneous [
 SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
 
 	| presenter p1 p2 p3 windowWidth presenterWidth width1 width2 width3 initialWindowWidth |
-	"not working on CI :("
-	self skipOnPharoCITestingEnvironment.
-
 	presenter := SpPresenter new.
 	presenter layout: (SpBoxLayout newHorizontal
 			 beHomogeneous;
@@ -114,12 +109,13 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
 	p3 label: 'Button'.
 
 	[
+	"190 = 5 window border + 180 + 5 window border. 180 is a multiple of 3 (all presenters have the same width)."
 	presenter asWindow initialExtent: 190@150; open.
 	backend waitUntilUIRedrawed.
 	initialWindowWidth := presenter window adapter widget width.
 	presenter withWindowDo: [ :window |
 		window adapter widgetDo: [ :widget |
-			"Make the presenter's width a multiple of 3,
+			"Keep the presenter's width a multiple of 3,
 			 so that there are no rounding differences in the width of the nested presenters."
 			widget extent: widget extent - (30 @ 50) ] ].
 	backend waitUntilUIRedrawed ] ensure: [
@@ -153,12 +149,13 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenExpandingWindow [
 	p3 label: 'Button'.
 
 	[
+	"190 = 5 window border + 180 + 5 window border. 180 is a multiple of 3 (all presenters have the same width)."
 	presenter asWindow initialExtent: 190@150; open.
 	backend waitUntilUIRedrawed.
 	initialWindowWidth := presenter window adapter widget width.
 	presenter withWindowDo: [ :window |
 		window adapter widgetDo: [ :widget |
-			"Make the presenter's width a multiple of 3,
+			"Keep the presenter's width a multiple of 3,
 			 so that there are no rounding differences in the width of the nested presenters."
 			widget extent: widget extent + (30 @ 10) ] ].
 	backend waitUntilUIRedrawed ] ensure: [
