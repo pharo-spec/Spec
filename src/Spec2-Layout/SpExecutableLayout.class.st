@@ -340,7 +340,7 @@ SpExecutableLayout >> unsubscribe [
 { #category : 'events' }
 SpExecutableLayout >> whenChildrenAddedDo: aBlock [
 
-	self announcer weak
+	self announcer
 		when: SpChildrenAdded 
 		do: aBlock 
 		for: aBlock receiver
@@ -349,7 +349,7 @@ SpExecutableLayout >> whenChildrenAddedDo: aBlock [
 { #category : 'events' }
 SpExecutableLayout >> whenChildrenRemovedDo: aBlock [
 
-	self announcer weak
+	self announcer
 		when: SpChildrenRemoved
 		do: aBlock
 		for: aBlock receiver

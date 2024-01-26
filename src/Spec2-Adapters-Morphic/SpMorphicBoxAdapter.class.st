@@ -247,14 +247,15 @@ SpMorphicBoxAdapter >> newWrapMorph [
 
 { #category : 'accessing' }
 SpMorphicBoxAdapter >> remove: aPresenter [
+	| morph adapter |
 
-	aPresenter adapter ifNotNil: [ :adapter |
-		| morph |
-		adapter unsubscribe.
-		morph := adapter widget.
-		startPanel removeMorph: morph.
-		endPanel removeMorph: morph.
-		self verifyBoxExtent ]
+	(adapter := aPresenter adapter) ifNil: [ ^ self ].
+	
+	adapter unsubscribe.
+	morph := adapter widget.
+	startPanel removeMorph: morph.
+	endPanel removeMorph: morph.
+	self verifyBoxExtent
 ]
 
 { #category : 'accessing' }
