@@ -49,7 +49,7 @@ SpJobListPresenter >> addJobPresenter: aJob [
 		ifTrue: [ self open ].
 	
 	self withWindowDo: [ :window | 
-		window resize: 500@((layout children size * self jobPresenterHeight) + 20) ]
+		window resize: 500@((layout children size * self jobPresenterHeight) + 10) ]
 ]
 
 { #category : 'private' }
@@ -81,7 +81,7 @@ SpJobListPresenter >> initialize [
 { #category : 'initialization' }
 SpJobListPresenter >> initializePresenters [
 
-	self layout: SpBoxLayout newTopToBottom
+	self resetLayout
 ]
 
 { #category : 'initialization' }
@@ -168,10 +168,17 @@ SpJobListPresenter >> removeJobPresenter: aJob [
 	
 	self layout remove: presenter.
 	
-	self layout children  
-		ifEmpty: [ self withWindowDo: [ :window | window close ] ].
+	self layout children ifEmpty: [ 
+		self withWindowDo: [ :window | window close ].
+		self resetLayout ].
 	
 	self withWindowDo: [ :window | 
 		window resize: 500@(layout children size * self jobPresenterHeight).
 		window centered ]
+]
+
+{ #category : 'private' }
+SpJobListPresenter >> resetLayout [
+	
+	self layout: SpBoxLayout newTopToBottom
 ]
