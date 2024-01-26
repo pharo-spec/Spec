@@ -306,12 +306,14 @@ SpExecutableLayout >> resolvePresenter: aPresenterOrLayout presenter: aPresenter
 
 { #category : 'accessing' }
 SpExecutableLayout >> selector [
+
 	^ selector
 ]
 
 { #category : 'accessing' }
-SpExecutableLayout >> selector: anObject [
-	selector := anObject
+SpExecutableLayout >> selector: aSelector [
+
+	selector := aSelector
 ]
 
 { #category : 'private' }
@@ -338,13 +340,16 @@ SpExecutableLayout >> unsubscribe [
 { #category : 'events' }
 SpExecutableLayout >> whenChildrenAddedDo: aBlock [
 
-	self announcer when: SpChildrenAdded do: aBlock for: aBlock receiver
+	self announcer weak
+		when: SpChildrenAdded 
+		do: aBlock 
+		for: aBlock receiver
 ]
 
 { #category : 'events' }
 SpExecutableLayout >> whenChildrenRemovedDo: aBlock [
 
-	self announcer
+	self announcer weak
 		when: SpChildrenRemoved
 		do: aBlock
 		for: aBlock receiver
