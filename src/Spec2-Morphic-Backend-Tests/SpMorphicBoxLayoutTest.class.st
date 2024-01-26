@@ -86,7 +86,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneous [
 		presenter withWindowDo: #close ].
 
 	self assert: presenter adapter widget width
-		>= (p1 adapter widget width + p2 adapter widget width
+		equals: (p1 adapter widget width + p2 adapter widget width
 			 + p3 adapter widget width).
 	self assert: p2 adapter widget width equals: p3 adapter widget width.
 	self assert: p1 adapter widget width equals: p2 adapter widget width
@@ -128,7 +128,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
 	width1 := p1 adapter widget width.
 	width2 := p2 adapter widget width.
 	width3 := p3 adapter widget width.
-	self assert: presenterWidth >= (width1 + width2 + width3).
+	self assert: presenterWidth equals: (width1 + width2 + width3).
 	self assert: width1 equals: width2.
 	self assert: width2 equals: width3.
 	self assert: windowWidth >= presenterWidth
@@ -167,7 +167,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenExpandingWindow [
 	width1 := p1 adapter widget width.
 	width2 := p2 adapter widget width.
 	width3 := p3 adapter widget width.
-	self assert: presenterWidth >= (width1 + width2 + width3).
+	self assert: presenterWidth equals: (width1 + width2 + width3).
 	self assert: width1 equals: width2.
 	self assert: width2 equals: width3.
 	self assert: windowWidth >= presenterWidth
