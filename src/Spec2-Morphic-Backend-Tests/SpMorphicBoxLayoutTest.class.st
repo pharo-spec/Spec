@@ -160,7 +160,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenExpandingWindow [
 		window adapter widgetDo: [ :widget |
 			"Make the presenter's width a multiple of 3,
 			 so that there are no rounding differences in the width of the nested presenters."
-			widget extent: widget extent + (210 @ 10) ] ].
+			widget extent: widget extent + (60 @ 10) ] ].
 	backend waitUntilUIRedrawed ] ensure: [
 		presenter withWindowDo: #close ].
 
