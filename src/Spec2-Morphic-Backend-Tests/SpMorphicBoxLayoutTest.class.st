@@ -112,7 +112,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
 	p3 items: #( one two three ).
 
 	[
-	presenter open.
+	presenter asWindow initialExtent: 400 @ 150; open.
 	backend waitUntilUIRedrawed.
 	initialWindowWidth := presenter window adapter widget width.
 	self assert: initialWindowWidth equals: 400.
@@ -152,7 +152,7 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenExpandingWindow [
 	p3 items: #( one two three ).
 
 	[
-	presenter open.
+	presenter asWindow initialExtent: 400 @ 150; open.
 	backend waitUntilUIRedrawed.
 	initialWindowWidth := presenter window adapter widget width.
 	self assert: initialWindowWidth equals: 400.
