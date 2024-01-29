@@ -65,60 +65,61 @@ SpMorphicBoxLayoutTest >> testAddWithPaddingVertical [
 { #category : 'tests' }
 SpMorphicBoxLayoutTest >> testBeHomogeneous [
 
-	| presenter p1 p2 p3 |
-	"not working on CI :("
-	self skipOnPharoCITestingEnvironment.
-
+	| presenter p1 p2 p3 presenterWidth width1 width2 width3 |
 	presenter := SpPresenter new.
 	presenter layout: (SpBoxLayout newHorizontal
 			 beHomogeneous;
 			 add: (p1 := presenter newButton);
 			 add: (p2 := presenter newLabel);
-			 add: (p3 := presenter newList);
+			 add: (p3 := presenter newButton);
 			 yourself).
 
 	p1 label: 'Button'.
 	p2 label: 'Label'.
-	p3 items: #( one two three ).
+	p3 label: 'Button'.
 
-	[ 
-	presenter open.
-	backend waitUntilUIRedrawed ] ensure: [ 
+	[
+	"190 = 5 window border + 180 + 5 window border. 180 is a multiple of 3 (all presenters have the same width)."
+	presenter asWindow initialExtent: 190@150; open.
+	backend waitUntilUIRedrawed ] ensure: [
 		presenter withWindowDo: #close ].
 
-	self assert: presenter adapter widget width
-		>= (p1 adapter widget width + p2 adapter widget width
-			 + p3 adapter widget width).
-	self assert: p2 adapter widget width equals: p3 adapter widget width.
-	self assert: p1 adapter widget width equals: p2 adapter widget width
+	presenterWidth := presenter adapter widget width.
+	width1 := p1 adapter widget width.
+	width2 := p2 adapter widget width.
+	width3 := p3 adapter widget width.
+	self assert: presenterWidth equals: (width1 + width2 + width3).
+	self assert: width1 equals: width2.
+	self assert: width2 equals: width3
 ]
 
 { #category : 'tests' }
 SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
 
-	| presenter p1 p2 p3 windowWidth presenterWidth width1 width2 width3 |
-	"not working on CI :("
-	self skipOnPharoCITestingEnvironment.
-
+	| presenter p1 p2 p3 windowWidth presenterWidth width1 width2 width3 initialWindowWidth |
 	presenter := SpPresenter new.
 	presenter layout: (SpBoxLayout newHorizontal
 			 beHomogeneous;
 			 add: (p1 := presenter newButton);
 			 add: (p2 := presenter newLabel);
-			 add: (p3 := presenter newList);
+			 add: (p3 := presenter newButton);
 			 yourself).
 
 	p1 label: 'Button'.
 	p2 label: 'Label'.
-	p3 items: #( one two three ).
+	p3 label: 'Button'.
 
-	[ 
-	presenter open.
+	[
+	"190 = 5 window border + 180 + 5 window border. 180 is a multiple of 3 (all presenters have the same width)."
+	presenter asWindow initialExtent: 190@150; open.
 	backend waitUntilUIRedrawed.
-	presenter withWindowDo: [ :window | 
-		window adapter widgetDo: [ :widget | 
-			widget extent: widget extent - (50 @ 50) ] ].
-	backend waitUntilUIRedrawed ] ensure: [ 
+	initialWindowWidth := presenter window adapter widget width.
+	presenter withWindowDo: [ :window |
+		window adapter widgetDo: [ :widget |
+			"Keep the presenter's width a multiple of 3,
+			 so that there are no rounding differences in the width of the nested presenters."
+			widget extent: widget extent - (30 @ 50) ] ].
+	backend waitUntilUIRedrawed ] ensure: [
 		presenter withWindowDo: #close ].
 
 	windowWidth := presenter window adapter widget width.
@@ -126,44 +127,50 @@ SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenContractingWindow [
 	width1 := p1 adapter widget width.
 	width2 := p2 adapter widget width.
 	width3 := p3 adapter widget width.
-	self assert: presenterWidth >= (width1 + width2 + width3).
+	self assert: presenterWidth equals: (width1 + width2 + width3).
 	self assert: width1 equals: width2.
 	self assert: width2 equals: width3.
-	self assert: windowWidth >= presenterWidth
+	self assert: windowWidth equals: presenterWidth + 10 "5 + 5 of the window borders"
 ]
 
 { #category : 'tests' }
 SpMorphicBoxLayoutTest >> testBeHomogeneousWorksWhenExpandingWindow [
 
-	| presenter p1 p2 p3 |
+	| presenter p1 p2 p3 windowWidth presenterWidth width1 width2 width3 initialWindowWidth |
 	presenter := SpPresenter new.
 	presenter layout: (SpBoxLayout newHorizontal
 			 beHomogeneous;
 			 add: (p1 := presenter newButton);
 			 add: (p2 := presenter newLabel);
-			 add: (p3 := presenter newList);
+			 add: (p3 := presenter newButton);
 			 yourself).
 
 	p1 label: 'Button'.
 	p2 label: 'Label'.
-	p3 items: #( one two three ).
+	p3 label: 'Button'.
 
-	[ 
-	presenter open.
+	[
+	"190 = 5 window border + 180 + 5 window border. 180 is a multiple of 3 (all presenters have the same width)."
+	presenter asWindow initialExtent: 190@150; open.
 	backend waitUntilUIRedrawed.
-	presenter withWindowDo: [ :window | 
-		window adapter widgetDo: [ :widget | 
-			widget extent: widget extent + (200 @ 10) ] ].
-	backend waitUntilUIRedrawed ] ensure: [ 
+	initialWindowWidth := presenter window adapter widget width.
+	presenter withWindowDo: [ :window |
+		window adapter widgetDo: [ :widget |
+			"Keep the presenter's width a multiple of 3,
+			 so that there are no rounding differences in the width of the nested presenters."
+			widget extent: widget extent + (30 @ 10) ] ].
+	backend waitUntilUIRedrawed ] ensure: [
 		presenter withWindowDo: #close ].
 
-	self assert: presenter adapter widget width
-		>= (p1 adapter widget width + p2 adapter widget width
-			 + p3 adapter widget width).
-	self assert: p2 adapter widget width equals: p3 adapter widget width.
-	self assert: p1 adapter widget width equals: p2 adapter widget width.
-	self assert: presenter window adapter widget width
-		>= presenter adapter widget width
+	windowWidth := presenter window adapter widget width.
+	presenterWidth := presenter adapter widget width.
+	width1 := p1 adapter widget width.
+	width2 := p2 adapter widget width.
+	width3 := p3 adapter widget width.
+	self assert: presenterWidth equals: (width1 + width2 + width3).
+	self assert: width1 equals: width2.
+	self assert: width2 equals: width3.
+	self assert: windowWidth equals: presenterWidth + 10 "5 + 5 of the window borders"
 ]
 
 { #category : 'tests' }
