@@ -208,6 +208,7 @@ SpMorphicBoxAdapter >> newHorizontal [
 			listDirection: #leftToRight;
 			hResizing: #shrinkWrap;
 			width: 0;
+			minWidth: 0; "Otherwise an empty endPanel has a width of 2 pixels due to Morph>>#minWidth."
 			yourself);
 	  yourself
 ]
@@ -232,6 +233,7 @@ SpMorphicBoxAdapter >> newVertical [
 			listDirection: #topToBottom;
 			vResizing: #shrinkWrap;
 			height: 0;
+			minHeight: 0; "Otherwise an empty endPanel has a height of 2 pixels due to Morph>>#minHeight."
 			yourself);
 		yourself
 ]
