@@ -5,7 +5,6 @@ The task can control the progress.
 Class {
 	#name : 'SpProgressDialog',
 	#superclass : 'SpInformUserDialog',
-	#classTraits : '{} + TraitedClass',
 	#instVars : [
 		'maxValue'
 	],

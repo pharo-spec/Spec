@@ -4,7 +4,6 @@ A presenter to stack jobs.
 Class {
 	#name : 'SpJobListPresenter',
 	#superclass : 'SpPresenter',
-	#classTraits : '{} + TraitedClass',
 	#instVars : [
 		'refreshRateInMs',
 		'mutex',
