@@ -231,7 +231,9 @@ SpMorphicWindowAdapter >> rebuildWithSpecLayout: aSpec [
 { #category : 'widget API' }
 SpMorphicWindowAdapter >> resize: aPoint [
 
-	widget extent: aPoint
+	widget extent: aPoint.
+	self presenter isCentered
+		ifTrue: [ self centered ]
 ]
 
 { #category : 'factory' }
