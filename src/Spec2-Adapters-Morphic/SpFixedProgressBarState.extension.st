@@ -9,5 +9,5 @@ SpFixedProgressBarState >> customizeMorphicBar: aProgressBarMorph [
 { #category : '*Spec2-Adapters-Morphic' }
 SpFixedProgressBarState >> customizeMorphicLabel: aLabelMorph [
 
-	aLabelMorph contents: (self value * 100) asInteger asString, '%'
+	aLabelMorph contents: ((self value * 100) asInteger min: 100) asString, '%'
 ]

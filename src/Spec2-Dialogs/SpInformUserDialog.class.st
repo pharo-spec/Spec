@@ -51,11 +51,13 @@ SpInformUserDialog >> afterOpenAction [
 	openAction ifNil: [ ^ self ].
 
 	[
-	[
-	returnValue := openAction value.
-	self accept ] on: Error fork: [ :e |
-		self cancel.
-		e pass ] ] fork
+		[
+			returnValue := openAction value.
+			self accept ] 
+		on: Error fork: [ :e |
+			self cancel.
+			e pass ] 
+	] fork
 ]
 
 { #category : 'simple dialog helpers' }

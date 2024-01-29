@@ -30,7 +30,7 @@ SpProgressBarPresenter class >> documentFactoryMethodSelector [
 SpProgressBarPresenter >> fixedAt: aNumber [
 	"Declare that the progress bar will be fixed at a certain value. 
 	 The value should be the completed ratio between 0 and 1."
-	
+
 	self state: (SpFixedProgressBarState value: aNumber)
 ]
 
@@ -72,6 +72,12 @@ SpProgressBarPresenter >> progress: aBlock every: aDelay [
 	 the delay will be used to know the delay between two refresh."
 
 	self state: (SpProgressingProgressBarState progression: aBlock every: aDelay)
+]
+
+{ #category : 'api' }
+SpProgressBarPresenter >> refresh [
+
+	^ self withAdapterDo: [ :anAdapter | anAdapter updateState ]
 ]
 
 { #category : 'private' }

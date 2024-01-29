@@ -53,7 +53,7 @@ SpMorphicBoxLayoutCalculatorLeftToRight >> calculateCellFor: aMorph [
 ]
 
 { #category : 'calculating' }
-SpMorphicBoxLayoutCalculatorLeftToRight >> calculateFor: aMorph in: newBounds [
+SpMorphicBoxLayoutCalculatorLeftToRight >> doCalculateFor: aMorph in: newBounds [
 	"An optimized left-to-right list layout"	
 	| inset extent posX posY centering extraPerCell cell amount last submorphs |
 	
@@ -126,6 +126,5 @@ SpMorphicBoxLayoutCalculatorLeftToRight >> calculateFor: aMorph in: newBounds [
 				width := width + amount ].
 		cell target layoutInBounds: (posX @ posY extent: width @ height).
 		posX := posX + width + inset.
-		cell := cell nextCell ].
-
+		cell := cell nextCell ]
 ]

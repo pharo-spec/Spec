@@ -270,7 +270,7 @@ SpExecutableLayout >> remove: aPresenter ifAbsent: aBlock [
 
 	^ (children includesKey: aPresenter)
 		ifTrue: [ children removeKey: aPresenter ]
-		ifFalse: aBlock
+		ifFalse: [ aBlock value ]
 ]
 
 { #category : 'private' }
@@ -306,12 +306,14 @@ SpExecutableLayout >> resolvePresenter: aPresenterOrLayout presenter: aPresenter
 
 { #category : 'accessing' }
 SpExecutableLayout >> selector [
+
 	^ selector
 ]
 
 { #category : 'accessing' }
-SpExecutableLayout >> selector: anObject [
-	selector := anObject
+SpExecutableLayout >> selector: aSelector [
+
+	selector := aSelector
 ]
 
 { #category : 'private' }
@@ -338,7 +340,10 @@ SpExecutableLayout >> unsubscribe [
 { #category : 'events' }
 SpExecutableLayout >> whenChildrenAddedDo: aBlock [
 
-	self announcer when: SpChildrenAdded do: aBlock for: aBlock receiver
+	self announcer
+		when: SpChildrenAdded 
+		do: aBlock 
+		for: aBlock receiver
 ]
 
 { #category : 'events' }

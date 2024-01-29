@@ -29,10 +29,25 @@ SpApplication >> inform: aString [
 { #category : '*Spec2-Dialogs' }
 SpApplication >> informUser: aString during: aBlock [
 	"Displays an inform user dialog."
+	| result |
 
-	^ self newInformUser
-		title: aString; 
-		informUserDuring: aBlock
+	result := nil.
+	self jobList pushJob: (Job new
+		title: aString;
+		block: [ :job | 
+			job min: 0; max: 100.
+			result := aBlock cull: job ];
+		yourself).
+
+	^ result
+]
+
+{ #category : '*Spec2-Dialogs' }
+SpApplication >> jobList [
+
+	^ self 
+		propertyAt: #jobList 
+		ifAbsentPut: [ self newJobList ]
 ]
 
 { #category : '*Spec2-Dialogs' }

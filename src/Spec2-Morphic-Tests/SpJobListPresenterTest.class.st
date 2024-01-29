@@ -17,9 +17,10 @@ SpJobListPresenterTest >> testJobIsFinishedWhenWaitingMoreThanWorkBlockDuration 
 
 	self skipOnPharoCITestingEnvironment.
 	progress := 0.
-	job := SpJob
-			newTitle: 'some job'
-			block: [ : myjob | 1 to: 25 do: [ :i | myjob value: i*4. 20 milliSeconds wait. ] ].
+	job := Job new
+		title: 'some job';
+		block: [ : myjob | 1 to: 25 do: [ :i | myjob value: i*4. 20 milliSeconds wait. ] ];
+		yourself.
 	[ presenter := SpJobListPresenter new 
 		pushJob: job;
 		yourself. ] fork. 
@@ -35,9 +36,10 @@ SpJobListPresenterTest >> testJobIsNotFinishedWhenWaitingLessThanWorkBlockDurati
 	self skipOnPharoCITestingEnvironment.
 
 	progress := 0.
-	job := SpJob
-			newTitle: 'some job'
-			block: [ : myjob | 1 to: 25 do: [ :i | myjob value: i*4. 60 milliSeconds wait. ] ].
+	job := Job new
+		title: 'some job';
+		block: [ : myjob | 1 to: 25 do: [ :i | myjob value: i*4. 60 milliSeconds wait ] ];
+		yourself.
 	[ presenter := SpJobListPresenter new 
 		pushJob: job;
 		yourself. ] fork. 
@@ -57,9 +59,12 @@ SpJobListPresenterTest >> testProgressDoesNotRefreshMoreThanRefreshRate [
 	refreshRateInMs := 150.
 	nbUpdates := 25.
 	counter := 0.
-	job := SpJob
-			newTitle: 'some job'
-			block: [ : myjob | 1 to: nbUpdates do: [ :i | myjob value: i * 4. waitBetweenJobUpdate wait. ] ].
+	job := Job new
+		title: 'some job';
+		block: [ : myjob | 
+			1 to: nbUpdates do: [ :i | 
+				myjob value: i * 4. waitBetweenJobUpdate wait ] ];
+		yourself.
 	presenter := SpJobPresenter on: job.
 	
 	[ presenter open.

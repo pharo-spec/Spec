@@ -331,6 +331,12 @@ SpApplication >> registerWindow: aWindow [
 	self windows add: aWindow
 ]
 
+{ #category : 'accessing - properties' }
+SpApplication >> removeProperty: aName [
+
+	^ self properties removeKey: aName ifAbsent: [ ]
+]
+
 { #category : 'accessing' }
 SpApplication >> reset [ 
 
