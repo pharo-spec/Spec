@@ -289,7 +289,10 @@ SpWindowPresenter >> initialPosition [
 { #category : 'api' }
 SpWindowPresenter >> initialPosition: aPoint [
 	"Set initial position of the window. 
-	 `aPoint` is an instance of `Point`, indicating x@y coordinates"
+	 `aPoint` is an instance of `Point`, indicating x@y coordinates
+	 WARNING: Not all backends will support this (for example Gtk lets
+	 the window manager position windows and hence it ignores any positioning 
+	 we set)."
 
 	initialPosition := aPoint
 ]
@@ -440,6 +443,20 @@ SpWindowPresenter >> minimize [
 	"Minimize the window."
 	
 	self withAdapterDo: [ :anAdapter | anAdapter minimize ]
+]
+
+{ #category : 'api' }
+SpWindowPresenter >> moveTo: aPoint [
+	"Moves the window to a specific location. 
+	 `aPoint` is an instance of `Point`, indicating x@y coordinates
+	
+	 To set initial position of a window, use #initialPosition:, not this.
+	 WARNING: Not all backends will support this (for example Gtk lets
+	 the window manager position windows and hence it ignores any positioning 
+	 we set)."
+	
+	self withAdapterPerformOrDefer: [ :anAdapter | anAdapter moveTo: aPoint ]	
+
 ]
 
 { #category : 'notifying' }

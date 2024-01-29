@@ -115,12 +115,6 @@ SpMorphicWindowAdapter >> delete [
 		self application windowClosed: self ]
 ]
 
-{ #category : 'protocol' }
-SpMorphicWindowAdapter >> extent: aPoint [
-
-	^ self widget extent: aPoint
-]
-
 { #category : 'widget API' }
 SpMorphicWindowAdapter >> initialExtent [
 
@@ -188,6 +182,12 @@ SpMorphicWindowAdapter >> maximize [
 SpMorphicWindowAdapter >> minimize [
 
 	self widgetDo: [ :w | w minimize ]
+]
+
+{ #category : 'protocol' }
+SpMorphicWindowAdapter >> moveTo: aPoint [
+
+	^ self widget position: aPoint
 ]
 
 { #category : 'widget API' }
