@@ -32,12 +32,12 @@ SpApplication >> informUser: aString during: aBlock [
 	| result |
 
 	result := nil.
-	self jobList pushJob: (Job new
+	Job new
 		title: aString;
 		block: [ :job | 
 			job min: 0; max: 100.
 			result := aBlock cull: job ];
-		yourself).
+		run.
 
 	^ result
 ]
