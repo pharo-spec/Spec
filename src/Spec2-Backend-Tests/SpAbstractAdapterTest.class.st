@@ -24,7 +24,7 @@ SpAbstractAdapterTest class >> testParameters [
 		forSelector: #specInitializationStrategy
 			addOptions: { [ SpInitializationStrategy beforeTest ]. [ SpInitializationStrategy afterTest ] };
 		forSelector: #backendForTest
-			addOptions: { SpMorphicBackendForTest };
+			addOptions: { SpMorphicBackendForTest. "GtkBackendForTest" };
 		yourself
 ]
 
@@ -161,6 +161,7 @@ SpAbstractAdapterTest >> testVisibilityWithBlock [
 
 { #category : 'tests' }
 SpAbstractAdapterTest >> testVisibilityWithBlockThatReturnsFalse [
+
 	presenter visibleIf: [ false ].
 	self deny: self adapter isVisible
 ]

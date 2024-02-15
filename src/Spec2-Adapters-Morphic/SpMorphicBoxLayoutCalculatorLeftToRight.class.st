@@ -47,13 +47,15 @@ SpMorphicBoxLayoutCalculatorLeftToRight >> calculateCellFor: aMorph [
 	lastCell := cell.
 	width := width + sizeX.
 	sizeY > height 
-		ifTrue: [ height := sizeY ]
+		ifTrue: [ height := sizeY ].
+		
+	^ sizeX@sizeY
 ]
 
 { #category : 'calculating' }
-SpMorphicBoxLayoutCalculatorLeftToRight >> calculateFor: aMorph in: newBounds [
+SpMorphicBoxLayoutCalculatorLeftToRight >> doCalculateFor: aMorph in: newBounds [
 	"An optimized left-to-right list layout"	
-	| inset extent posX posY centering extraPerCell cell amount last |
+	| inset extent posX posY centering extraPerCell cell amount last submorphs |
 	
 	size := properties minCellSize asPoint. minX := size x. minY := size y.
 	size := properties maxCellSize asPoint. maxX := size x. maxY := size y.
@@ -63,9 +65,17 @@ SpMorphicBoxLayoutCalculatorLeftToRight >> calculateFor: aMorph in: newBounds [
 	width := height := 0.
 	firstCell := lastCell := nil.
 
-	properties reverseTableCells
-		ifTrue:[ aMorph submorphsReverseDo: [ :each | self calculateCellFor: each ] ]
-		ifFalse:[ aMorph submorphsDo: [ :each | self calculateCellFor: each ] ].
+	submorphs := aMorph submorphs.
+	properties reverseTableCells ifTrue:[ submorphs := submorphs reversed ].
+	submorphs do: [ :each | 
+		| cellExtent oldExtent |
+		oldExtent := each extent.
+		cellExtent := each visible 
+			ifTrue: [ self calculateCellFor: each ]
+			ifFalse: [ 0@0 ].
+		"decide if restore or not"
+		((oldExtent x = 0) or: [ cellExtent x = 0 ]) ifTrue: [ 
+			each privateBounds: (each bounds topLeft extent: cellExtent) ] ].
 
 	number > 1 ifTrue:[ width := width + ((number-1) * inset) ].
 
@@ -116,6 +126,5 @@ SpMorphicBoxLayoutCalculatorLeftToRight >> calculateFor: aMorph in: newBounds [
 				width := width + amount ].
 		cell target layoutInBounds: (posX @ posY extent: width @ height).
 		posX := posX + width + inset.
-		cell := cell nextCell ].
-
+		cell := cell nextCell ]
 ]

@@ -4,14 +4,12 @@ A base for list presenters, it defines basic functionality common to all lists.
 Class {
 	#name : 'SpAbstractListPresenter',
 	#superclass : 'SpAbstractWidgetPresenter',
-	#traits : 'SpTHaveWrappingScrollBars + SpTContextMenu + SpTAlignableColumn',
-	#classTraits : 'SpTHaveWrappingScrollBars classTrait + SpTContextMenu classTrait + SpTAlignableColumn classTrait',
+	#traits : 'SpTHaveWrappingScrollBars + SpTContextMenu + SpTAlignableColumn + SpTSelectionMode',
+	#classTraits : 'SpTHaveWrappingScrollBars classTrait + SpTContextMenu classTrait + SpTAlignableColumn classTrait + SpTSelectionMode classTrait',
 	#instVars : [
-		'#selectionMode',
 		'#activationBlock',
 		'#activateOnSingleClick',
 		'#model',
-		'#itemFilter => ObservableSlot',
 		'#verticalAlignment'
 	],
 	#category : 'Spec2-Core-Widgets-Table',
@@ -124,11 +122,6 @@ SpAbstractListPresenter >> disableActivationDuring: aBlock [
 		activationBlock := oldActivate ]
 ]
 
-{ #category : 'TOREMOVE' }
-SpAbstractListPresenter >> disableFilter [
-	self itemFilter: nil
-]
-
 { #category : 'private' }
 SpAbstractListPresenter >> doActivateAtIndex: anIndex [
 
@@ -205,18 +198,6 @@ SpAbstractListPresenter >> itemAtPath: anArray [
 	^ self itemAt: anArray first
 ]
 
-{ #category : 'TOREMOVE' }
-SpAbstractListPresenter >> itemFilter [
-	^ itemFilter
-]
-
-{ #category : 'TOREMOVE' }
-SpAbstractListPresenter >> itemFilter: aBlock [
-	"This block will be used with the search field of the list to filter it with the user input dynamically."
-
-	itemFilter := aBlock
-]
-
 { #category : 'api' }
 SpAbstractListPresenter >> items [
 	"Answer the items of the list"
@@ -245,16 +226,6 @@ SpAbstractListPresenter >> listSize [
 
 	self flag: #TODO. "Maybe this should be called #itemsSize? (since we set #items: and not #list: )"
 	^ self model size
-]
-
-{ #category : 'TOREMOVE' }
-SpAbstractListPresenter >> matchBeginOfString [
-	self itemFilter: [ :each :pattern | each asLowercase beginsWith: pattern asLowercase ]
-]
-
-{ #category : 'TOREMOVE' }
-SpAbstractListPresenter >> matchSubstring [
-	self itemFilter: [ :each :pattern | each asLowercase includesSubstring: pattern asLowercase ]
 ]
 
 { #category : 'api' }
@@ -299,127 +270,6 @@ SpAbstractListPresenter >> registerEvents [
 		self withAdapterDo: [ :anAdapter | anAdapter updateMenu ] ]
 ]
 
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> selectAll [
-	"Select all items in the list or table. 
-	 It does not triggers activation event."
-	
-	self selection selectAll
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> selectFirst [
-	"Select first element in list. 
-	 Useful to avoid selecting by index."
-	
-	^ self selectIndex: 1
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> selectIndex: anInteger [ 
-	"Select item at position `anInteger`.
-	 Selection will not scroll the presenter view to show selected element."
-	
-	self selectionMode selectIndex: anInteger
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> selectIndex: anIndex scrollToSelection: shouldScrollToSelection [
-	"Select item at position `anInteger`.
-	 If `shouldScrollToSelection` is true, selection will scroll the presenter view 
-	 to show selected element."
-
-    self selectIndex: anIndex.
-    shouldScrollToSelection ifTrue: [ 
-        self verticalAlignment desiredVisibleRow: anIndex ].
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> selectIndexes: aCollectionOfIndexes [
-	"Select items at positions included in `aCollectionOfIndexes`.
-	 NOTE: in single selection mode, first element of `aCollectionOfIndexes` will be selected.
-	 Selection will not scroll the presenter view to show selected(s) element(s)."
-
-	self selectionMode selectIndexes: aCollectionOfIndexes
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> selectIndexes: aCollectionOfIndexes scrollToSelection: shouldScrollToSelection [
-	"Select items at positions included in `aCollectionOfIndexes`.
-	 NOTE: in single selection mode, first element of `aCollectionOfIndexes` will be selected.
-	 If `shouldScrollToSelection` is true, selection will scroll the presenter view 
-	 to show first selected element."
-  
-  self selectIndexes: aCollectionOfIndexes.
-    shouldScrollToSelection ifTrue: [ 
-        self verticalAlignment desiredVisibleRow: aCollectionOfIndexes first ].
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> selectItem: anItem [ 
-	"Select `anItem` if it is included in model list.
-	 It does not scrolls to selected element."
-	
-	self selectionMode selectItem: anItem
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> selectItems: aCollection [
-	"Select items included in `aCollection` if they are included in model list.
-	 NOTE: In single selection mode it will select the first element of `aCollection` 
-	 It does not scrolls to selected element."
-
-	self selectionMode selectItems: aCollection
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> selectedItem [
-	"Return selected item."
-
-	^ self selection selectedItem
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> selectedItems [
-	"Return all the selected items in the case of a multiple selection list"
-
-	^ self selection selectedItems
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> selectedItemsSorted [
-	"Return all the selected items sorted by their index"
-
-	^ self itemsAt: self selection selectedIndexes sort
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> selection [
-	"Answer the selection object (an instance of `SpSingleSelectionMode` or `SpMultipleSelectionMode`).
-	 This is not the item selected, but the selection container (it may contain one or many selected 
-	 items)"
-	
-	^ selectionMode
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> selectionMode [
-	"Answer the selection object (an instance of `SpSingleSelectionMode` or `SpMultipleSelectionMode`).
-	 This is not the item selected, but the selection container (it may contain one or many selected 
-	 items).
-	 This is the same as `SpAbstractListPresenter>>#selection`"
-	
-	^ selectionMode
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> selectionMode: aMode [
-	
-	selectionMode ifNotNil: [ 
-		selectionMode transferSubscriptionsTo: aMode ].
-	selectionMode := aMode
-]
-
 { #category : 'api' }
 SpAbstractListPresenter >> sortingBlock [
 	"Answer the sorting block defined to sort the model list.
@@ -437,27 +287,6 @@ SpAbstractListPresenter >> sortingBlock: aBlock [
 	 or a `SortFunction`"
 
 	self model sortingBlock: aBlock
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> unselectAll [
-	"Remove all selections"
-	
-	self selection unselectAll
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> unselectIndex: anInteger [ 
-	"Remove selection of element at index `anInteger`"
-	
-	self selection unselectIndex: anInteger
-]
-
-{ #category : 'api - selection' }
-SpAbstractListPresenter >> unselectItem: anObject [ 
-	"Remove selection of element `anObject`"
-	
-	self selection unselectItem: anObject
 ]
 
 { #category : 'api' }
@@ -486,12 +315,6 @@ SpAbstractListPresenter >> whenActivatedDo: aBlock [
 	activationBlock := aBlock
 ]
 
-{ #category : 'TOREMOVE' }
-SpAbstractListPresenter >> whenItemFilterBlockChangedDo: aBlock [
-
-	self property: #itemFilter whenChangedDo: aBlock
-]
-
 { #category : 'api - events' }
 SpAbstractListPresenter >> whenModelChangedDo: aBlock [
 	"Inform when model has been changed (see `SpAbstractListPresenter>>#model:`. 
@@ -504,56 +327,11 @@ SpAbstractListPresenter >> whenModelChangedDo: aBlock [
 ]
 
 { #category : 'api - events' }
-SpAbstractListPresenter >> whenNoneSelectedDo: aBlock [
-	"Inform when the list has clean selection (there are no items selected).
-	 `aBlock` receives zero arguments"
-
-	self whenSelectionChangedDo: [ :selection | 
-		selection selectedItem 
-			ifNil: [ aBlock value ] ]
-]
-
-{ #category : 'api - events' }
 SpAbstractListPresenter >> whenSearchEnabledChangedDo: aBlock [
 	"Inform when search enabled/disabled has changed.
 	`aBlock` receives zero arguments."
 	
 	self property: #searchEnabled whenChangedDo: aBlock
-]
-
-{ #category : 'api - events' }
-SpAbstractListPresenter >> whenSelectedDo: aBlock [
-	"Inform when an item was selected (a real object in the items list).
-	 `aBlock` receives one argument (the new selected element)"
-
-	self whenSelectionChangedDo: [ :selection | 
-		selection selectedItem 
-			ifNotNil: [ :item | aBlock value: item ] ]
-]
-
-{ #category : 'api - events' }
-SpAbstractListPresenter >> whenSelectedItemChangedDo: aBlock [
-	"Inform when the selected item is changed.
-	 `aBlock` receive one optional argument: the selected item (can be nil)"
-
-	self selection whenChangedDo: [ aBlock cull: self selectedItem ]
-]
-
-{ #category : 'api - events' }
-SpAbstractListPresenter >> whenSelectionChangedDo: aBlock [
-	"Inform when there are changes in selection.
-	This method works for all selection modes (single, multiple and no selection).
-	`aBlock` receives an optional argument with the selection object."
-
-	self selection whenChangedDo: aBlock
-]
-
-{ #category : 'api - events' }
-SpAbstractListPresenter >> whenSelectionModeChangedDo: aBlock [
-	"Inform when selection mode (single/multiple) changed. 
-	 `aBlock` receives zero arguments."
-
-	selectionMode whenChangedDo: aBlock
 ]
 
 { #category : 'api - events' }

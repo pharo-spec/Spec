@@ -1,6 +1,6 @@
 Class {
 	#name : 'SpSpecTest',
-	#superclass : 'SpBaseTest',
+	#superclass : 'SpBasePresenterTest',
 	#category : 'Spec2-Tests-Utils',
 	#package : 'Spec2-Tests',
 	#tag : 'Utils'

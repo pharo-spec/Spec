@@ -1,6 +1,6 @@
 Class {
 	#name : 'SpCodeInteractionModelTest',
-	#superclass : 'TestCase',
+	#superclass : 'SpBaseTest',
 	#instVars : [
 		'interactionModel'
 	],

@@ -183,7 +183,7 @@ SpApplication >> ensureConfiguration [
 
 	configuration ifNotNil: [ ^ configuration ].
 	self ensureBackend.
-	configuration ifNil: [ configuration := backend newDefaultConfiguration ].
+	configuration ifNil: [ configuration := backend defaultConfigurationFor: self ].
 
 	^ configuration
 ]
@@ -259,7 +259,8 @@ SpApplication >> newPresenter: aPresenterClass [
 { #category : 'accessing' }
 SpApplication >> notificationCenter [
 	"should be placed in initialize."
-	^ notificationCenter ifNil: [ notificationCenter := SpNotificationCenter new forApplication: self; yourself ]
+	^ notificationCenter ifNil: [ 
+		notificationCenter := SpNotificationCenter new forApplication: self; yourself ]
 ]
 
 { #category : 'accessing - properties' }
@@ -328,6 +329,12 @@ SpApplication >> propertyAt: aKey put: aValue [
 SpApplication >> registerWindow: aWindow [
 
 	self windows add: aWindow
+]
+
+{ #category : 'accessing - properties' }
+SpApplication >> removeProperty: aName [
+
+	^ self properties removeKey: aName ifAbsent: [ ]
 ]
 
 { #category : 'accessing' }

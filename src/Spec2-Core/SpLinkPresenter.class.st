@@ -11,8 +11,8 @@ Class {
 		'#label => ObservableSlot',
 		'#action => ObservableSlot'
 	],
-	#category : 'Spec2-Morphic-Widgets',
-	#package : 'Spec2-Morphic',
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
 	#tag : 'Widgets'
 }
 
@@ -51,6 +51,7 @@ SpLinkPresenter >> defaultColor [
 SpLinkPresenter >> initialize [
 
 	super initialize.
+
 	self whenLabelChangedDo: [ self changed: #getText ]
 ]
 

@@ -49,7 +49,7 @@ SpMorphicTextAdapter >> buildWidget [
 		setSelectionSelector: #setSelection:;
 		ghostText: self placeholder;
 		beWrapped;
-		askBeforeDiscardingEdits: self askBeforeDiscardingEdits;
+		askBeforeDiscardingEdits: false;
 		autoAccept: true;
 		vResizing: #spaceFill;
 		hResizing: #spaceFill;

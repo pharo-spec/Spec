@@ -33,7 +33,12 @@ SpCodeSystemNavigationMock >> browseHierarchy: aClass selector: aSelector [
 SpCodeSystemNavigationMock >> browseMessageList: aList name: labelString autoSelect: autoSelectString refreshingBlock: aBlock [
 
 	messageList 	:= aList
-	
+]
+
+{ #category : 'enumerating' }
+SpCodeSystemNavigationMock >> browseMessageList: aList name: labelString highlight: autoSelectString refreshingBlock: aBlock [
+
+	messageList 	:= aList
 ]
 
 { #category : 'accessing' }

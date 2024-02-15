@@ -22,21 +22,32 @@ SpApplication >> confirm: aString [
 
 { #category : '*Spec2-Dialogs' }
 SpApplication >> inform: aString [
-	"Displays an inform dialog, for more configurable version please use `self application newInform title: ....`."
 
-	^ self newInform
-		  title: 'Alert';
-		  label: aString;
-		  openModal
+	^ self backend inform: aString
 ]
 
 { #category : '*Spec2-Dialogs' }
 SpApplication >> informUser: aString during: aBlock [
 	"Displays an inform user dialog."
+	| result |
 
-	^ self newInformUser
-		title: aString; 
-		informUserDuring: aBlock
+	result := nil.
+	Job new
+		title: aString;
+		block: [ :job | 
+			job min: 0; max: 100.
+			result := aBlock cull: job ];
+		run.
+
+	^ result
+]
+
+{ #category : '*Spec2-Dialogs' }
+SpApplication >> jobList [
+
+	^ self 
+		propertyAt: #jobList 
+		ifAbsentPut: [ self newJobList ]
 ]
 
 { #category : '*Spec2-Dialogs' }

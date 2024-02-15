@@ -208,6 +208,7 @@ SpMorphicBoxAdapter >> newHorizontal [
 			listDirection: #leftToRight;
 			hResizing: #shrinkWrap;
 			width: 0;
+			minWidth: 0; "Otherwise an empty endPanel has a width of 2 pixels due to Morph>>#minWidth."
 			yourself);
 	  yourself
 ]
@@ -225,13 +226,14 @@ SpMorphicBoxAdapter >> newVertical [
 
 	^ (self newPanelWith: self newPanelLayout)
 		listDirection: #topToBottom;
-		addMorphBack: ((startPanel := self newPanel)
+		addMorphBack: ((startPanel := self newPanelWith: SpMorphicBoxChildLayout new)
 			listDirection: #topToBottom;
 			yourself);
-		addMorphBack: ((endPanel := self newPanel)
+		addMorphBack: ((endPanel := self newPanelWith: SpMorphicBoxChildLayout new)
 			listDirection: #topToBottom;
 			vResizing: #shrinkWrap;
 			height: 0;
+			minHeight: 0; "Otherwise an empty endPanel has a height of 2 pixels due to Morph>>#minHeight."
 			yourself);
 		yourself
 ]
@@ -247,13 +249,15 @@ SpMorphicBoxAdapter >> newWrapMorph [
 
 { #category : 'accessing' }
 SpMorphicBoxAdapter >> remove: aPresenter [
+	| morph adapter |
 
-	aPresenter adapter ifNotNil: [ :adapter |
-		| morph |
-		morph := adapter widget.
-		startPanel removeMorph: morph.
-		endPanel removeMorph: morph.
-		self verifyBoxExtent ]
+	(adapter := aPresenter adapter) ifNil: [ ^ self ].
+	
+	adapter unsubscribe.
+	morph := adapter widget.
+	startPanel removeMorph: morph.
+	endPanel removeMorph: morph.
+	self verifyBoxExtent
 ]
 
 { #category : 'accessing' }

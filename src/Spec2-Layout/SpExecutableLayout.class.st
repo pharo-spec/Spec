@@ -39,13 +39,15 @@ SpExecutableLayout class >> addDocumentSection: aBuilder label: label methods: m
 
 { #category : 'documentation' }
 SpExecutableLayout class >> addDocumentSectionHierarchy: aBuilder [
-	
+
 	aBuilder newLine.
-	aBuilder header: [ :builder | builder text: 'Hierarchy' ] withLevel: 2.
+	aBuilder
+		header: [ :builder | builder text: 'Hierarchy' ]
+		withLevel: 2.
 	SpDocumentHierarchyBuilder new
 		fromClass: Object;
 		builder: aBuilder;
-		filter: [ :eachClass | eachClass package packageName beginsWith: 'Spec2-' ];
+		filter: [ :eachClass | eachClass package name beginsWith: 'Spec2-' ];
 		buildFor: self
 ]
 
@@ -268,7 +270,7 @@ SpExecutableLayout >> remove: aPresenter ifAbsent: aBlock [
 
 	^ (children includesKey: aPresenter)
 		ifTrue: [ children removeKey: aPresenter ]
-		ifFalse: aBlock
+		ifFalse: [ aBlock value ]
 ]
 
 { #category : 'private' }
@@ -304,12 +306,14 @@ SpExecutableLayout >> resolvePresenter: aPresenterOrLayout presenter: aPresenter
 
 { #category : 'accessing' }
 SpExecutableLayout >> selector [
+
 	^ selector
 ]
 
 { #category : 'accessing' }
-SpExecutableLayout >> selector: anObject [
-	selector := anObject
+SpExecutableLayout >> selector: aSelector [
+
+	selector := aSelector
 ]
 
 { #category : 'private' }
@@ -336,7 +340,10 @@ SpExecutableLayout >> unsubscribe [
 { #category : 'events' }
 SpExecutableLayout >> whenChildrenAddedDo: aBlock [
 
-	self announcer when: SpChildrenAdded do: aBlock for: aBlock receiver
+	self announcer
+		when: SpChildrenAdded 
+		do: aBlock 
+		for: aBlock receiver
 ]
 
 { #category : 'events' }

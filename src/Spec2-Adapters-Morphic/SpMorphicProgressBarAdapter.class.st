@@ -49,16 +49,11 @@ SpMorphicProgressBarAdapter >> buildWidget [
 		vResizing: #spaceFill;
 		yourself.
 
-	progressLabel := LabelMorph new.
-
-	progressBar := (self progressBarState progressBarMorph from: 0 to: 1) 
-		"changeProportionalLayout;"
-		hResizing: #spaceFill;
-		vResizing: #rigid;
-		height: 5;
+	progressLabel := LabelMorph new
+		contents: '';
 		yourself.
 
-	self progressBarState customizeMorphicBar: progressBar.
+	progressBar := self newProgressBar.
 
 	panel 
 		addMorphBack: progressLabel;
@@ -86,6 +81,17 @@ SpMorphicProgressBarAdapter >> labelStyle [
 		otherStyles: self presenterStyles
 ]
 
+{ #category : 'factory' }
+SpMorphicProgressBarAdapter >> newProgressBar [
+
+	^ (self progressBarState progressBarMorph from: 0 to: 1) 
+		hResizing: #spaceFill;
+		vResizing: #rigid;
+		height: 5;
+		in: [ :this | self progressBarState customizeMorphicBar: this ];
+		yourself
+]
+
 { #category : 'accessing' }
 SpMorphicProgressBarAdapter >> progressBarState [
 
@@ -95,14 +101,28 @@ SpMorphicProgressBarAdapter >> progressBarState [
 { #category : 'accessing' }
 SpMorphicProgressBarAdapter >> refreshRateInMs: nbMilliSeconds [
 	"The progress  bar will only be updated if the time between 2 refresh is > nbMilliSeconds"
-	refreshRateInMs := nbMilliSeconds.
+	refreshRateInMs := nbMilliSeconds
+]
+
+{ #category : 'updating' }
+SpMorphicProgressBarAdapter >> updateProgressBar [
+	| newProgressBar |
+	
+	newProgressBar := self newProgressBar.
+	self widget 
+		replaceSubmorph: progressBar 
+		by: newProgressBar.
+	progressBar := newProgressBar
 ]
 
 { #category : 'updating' }
 SpMorphicProgressBarAdapter >> updateState [
-
 	| isTimeForRefresh |
-	self progressBarState 
+	
+	(self progressBarState progressBarMorph = progressBar class)
+		ifFalse: [ self updateProgressBar ].
+	
+	self progressBarState
 		customizeMorphicLabel: progressLabel;
 		customizeMorphicBar: progressBar.
 	

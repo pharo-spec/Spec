@@ -17,6 +17,13 @@ SpMorphicWindowAdapter >> aboutTitle [
 		ifFalse: [m class name]].
 ]
 
+{ #category : 'spec protocol' }
+SpMorphicWindowAdapter >> activate [
+
+	self widgetDo: [ :w |
+		w activate ]
+]
+
 { #category : 'initialization' }
 SpMorphicWindowAdapter >> addFocusRotationKeyBindings [
 	"Windows should not process keybindings (because then the active widget will not get 
@@ -108,12 +115,6 @@ SpMorphicWindowAdapter >> delete [
 		self application windowClosed: self ]
 ]
 
-{ #category : 'protocol' }
-SpMorphicWindowAdapter >> extent: aPoint [
-
-	^ self widget extent: aPoint
-]
-
 { #category : 'widget API' }
 SpMorphicWindowAdapter >> initialExtent [
 
@@ -183,6 +184,12 @@ SpMorphicWindowAdapter >> minimize [
 	self widgetDo: [ :w | w minimize ]
 ]
 
+{ #category : 'protocol' }
+SpMorphicWindowAdapter >> moveTo: aPoint [
+
+	^ self widget position: aPoint
+]
+
 { #category : 'widget API' }
 SpMorphicWindowAdapter >> okToChange [
 
@@ -224,7 +231,9 @@ SpMorphicWindowAdapter >> rebuildWithSpecLayout: aSpec [
 { #category : 'widget API' }
 SpMorphicWindowAdapter >> resize: aPoint [
 
-	widget extent: aPoint
+	widget extent: aPoint.
+	self presenter isCentered
+		ifTrue: [ self centered ]
 ]
 
 { #category : 'factory' }

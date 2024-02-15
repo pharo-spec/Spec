@@ -1,7 +1,4 @@
 "
-Description
---------------------
-
 I am the adapter used to bridge a URLPresenter and a morphic
 "
 Class {

@@ -84,8 +84,8 @@ SpMyPresenter >> initializeLayout
 Class {
 	#name : 'SpPresenter',
 	#superclass : 'SpAbstractPresenter',
-	#traits : 'SpTPresenterBuilder',
-	#classTraits : 'SpTPresenterBuilder classTrait',
+	#traits : 'SpTPresenterBuilder + SpTActionContainer',
+	#classTraits : 'SpTPresenterBuilder classTrait + SpTActionContainer classTrait',
 	#instVars : [
 		'#application',
 		'#focusOrder',
@@ -121,7 +121,7 @@ SpPresenter class >> isAbstract [
 	^ self = SpPresenter
 ]
 
-{ #category : 'labeled-presenters' }
+{ #category : 'TOREMOVE' }
 SpPresenter class >> labelWidth [
 	^ 100
 ]
@@ -637,7 +637,7 @@ SpPresenter >> initializeWindow: aWindowPresenter [
 		windowIcon: self windowIcon
 ]
 
-{ #category : 'inspector-extensions' }
+{ #category : 'inspector - extensions' }
 SpPresenter >> inspectionSubPresenters [
 	<inspectorPresentationOrder: 910 title: 'Subpresenters'>
 	
@@ -648,7 +648,7 @@ SpPresenter >> inspectionSubPresenters [
 		yourself
 ]
 
-{ #category : 'inspector-extensions' }
+{ #category : 'inspector - extensions' }
 SpPresenter >> inspectionSubPresentersContext: aContext [
 	
 	aContext active: self presenters notEmpty
