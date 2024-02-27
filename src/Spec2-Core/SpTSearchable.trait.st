@@ -31,7 +31,7 @@ SpTSearchable >> enableSearch [
 SpTSearchable >> hasCustomSearch [
 	"Answer true if the list has a custom search defined (See `SpListPresenter>>#searchMatching:`"
 
-	^ searchBlock notNil
+	^ searchBlock isNotNil
 ]
 
 { #category : 'initialization' }

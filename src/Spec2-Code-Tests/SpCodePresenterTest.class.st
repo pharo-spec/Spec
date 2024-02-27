@@ -57,7 +57,7 @@ SpCodePresenterTest >> testContextKeyBindings [
 	| contextKeyBindings |
 	
 	contextKeyBindings := presenter contextKeyBindings.
-	self assert: contextKeyBindings notNil.
+	self assert: contextKeyBindings isNotNil.
 	self assert: (contextKeyBindings isKindOf: KMCategory).
 	
 ]
@@ -141,7 +141,7 @@ SpCodePresenterTest >> testDoBrowseClassReferences [
 	presenter selectionInterval: (1 to: 19).
 	presenter doBrowseClassReferences.
 	
-	self assert: navigation messageList notNil.
+	self assert: navigation messageList isNotNil.
 	self assert: navigation messageList notEmpty
 ]
 

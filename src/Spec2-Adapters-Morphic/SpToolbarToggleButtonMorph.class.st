@@ -106,7 +106,7 @@ SpToolbarToggleButtonMorph >> getLabelSelector: aSelector [
 
 { #category : 'accessing' }
 SpToolbarToggleButtonMorph >> hasBadge [
-	^ self badge notNil
+	^ self badge isNotNil
 ]
 
 { #category : 'style' }

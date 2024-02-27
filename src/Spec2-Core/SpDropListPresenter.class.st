@@ -158,9 +158,9 @@ SpDropListPresenter >> getList [
 SpDropListPresenter >> hasIcons [
 	"Answer whether the dropdown list will show icons"
 	
-	^ iconBlock notNil and: [ 
+	^ iconBlock isNotNil and: [ 
 		self model collection anySatisfy: [ :each |
-			each icon notNil or: [ (self getIconFor: each) notNil ] ] ]
+			each icon isNotNil or: [ (self getIconFor: each) isNotNil ] ] ]
 ]
 
 { #category : 'api' }

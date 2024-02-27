@@ -9,7 +9,7 @@ SpApplication class >> applicationName [
 { #category : '*Spec2-CommandLine' }
 SpApplication class >> findAll [
 
-	^ self allSubclasses select: [ :each | each applicationName notNil ] 
+	^ self allSubclasses select: [ :each | each applicationName isNotNil ] 
 ]
 
 { #category : '*Spec2-CommandLine' }
