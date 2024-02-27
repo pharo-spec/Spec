@@ -212,7 +212,7 @@ SpMorphicTableCellBuilder >> visitCheckboxColumn: aTableColumn [
 SpMorphicTableCellBuilder >> visitCompositeColumn: aTableColumn [
 
 	super visitCompositeColumn: aTableColumn.
-	(aTableColumn isExpandable and: [ aTableColumn width notNil ]) 
+	(aTableColumn isExpandable and: [ aTableColumn width isNotNil ]) 
 		ifTrue: [ 
 			cell hResizing: #rigid.
 			cell width: aTableColumn width ]

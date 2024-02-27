@@ -142,5 +142,5 @@ SpStringTableColumn >> sortFunction: aBlockOrSortFunction [
 		^ self ].
 	
 	super sortFunction: aBlockOrSortFunction asSortFunction.
-	self isSortable: aBlockOrSortFunction notNil
+	self isSortable: aBlockOrSortFunction isNotNil
 ]

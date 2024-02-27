@@ -118,7 +118,7 @@ SpMorphicTableColumn >> width: aNumber [
 		widthToAdd := addEmptySpace 
 			ifTrue: [ aNumber - self emptySpace ]
 			ifFalse: [ aNumber ].
-		(self model isExpandable and: [ aNumber notNil ])
+		(self model isExpandable and: [ aNumber isNotNil ])
 			ifTrue: [ self model width: widthToAdd ] ].
 	super width: widthToAdd
 ]

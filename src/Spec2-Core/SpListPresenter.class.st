@@ -44,7 +44,7 @@ SpListPresenter >> clickOnSelectedItem [
 	| item |
 
 	item := self selection selectedItem.
-	^ item notNil 
+	^ item isNotNil 
 		and: [ (item respondsTo: #click) 
 		and: [ item click ] ]
 ]
@@ -114,7 +114,7 @@ SpListPresenter >> hasHeaderTitle [
 SpListPresenter >> hasIcons [
 	"Answer true if the list has an icon provider (See `SpListPresenter>>#icons:`)."
 
-	^ self displayIcon notNil
+	^ self displayIcon isNotNil
 ]
 
 { #category : 'api' }

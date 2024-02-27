@@ -382,7 +382,7 @@ SpCodePresenter >> doBrowseSenders [
 	variable := self lookupEnvironment lookupVar: variableOrClassName.
 
 	"For global and class variables, sender-of shows intead the using methods"
-	(variable notNil and: [(variable isGlobalVariable or: [variable isClassVariable])]) 
+	(variable isNotNil and: [(variable isGlobalVariable or: [variable isClassVariable])]) 
 		ifTrue: [ self systemNavigation openBrowserFor: variable name withMethods: variable usingMethods  ]
 		ifFalse: [ self systemNavigation browseAllReferencesTo: variableOrClassName  ]
 		
@@ -494,7 +494,7 @@ SpCodePresenter >> hasLineNumbers [
 { #category : 'testing' }
 SpCodePresenter >> hasResetAction [
 
-	^ resetBlock notNil
+	^ resetBlock isNotNil
 ]
 
 { #category : 'testing' }
@@ -506,7 +506,7 @@ SpCodePresenter >> hasSmartCharacters [
 { #category : 'testing' }
 SpCodePresenter >> hasSubmitAction [
 
-	^ submitBlock notNil
+	^ submitBlock isNotNil
 ]
 
 { #category : 'testing' }

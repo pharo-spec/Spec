@@ -43,7 +43,7 @@ SpTreeColumn >> setHeaderButtonLabel: aLabel font: aFont icon: anIconForm target
 		ifNotNil: [ self header label: aLabel font: aFont ].
 	anIconForm
 		ifNotNil: [ self header icon: (ImageMorph new form: anIconForm) ].
-	(aSelector notNil and: [ aReceiver notNil ])
+	(aSelector isNotNil and: [ aReceiver isNotNil ])
 		ifFalse: [ ^ self ].
 	self header actionSelector: aSelector.
 	self header target: aReceiver

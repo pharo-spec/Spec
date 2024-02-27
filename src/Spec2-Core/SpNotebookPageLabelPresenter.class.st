@@ -57,7 +57,7 @@ SpNotebookPageLabelPresenter >> label [
 { #category : 'accessing - model' }
 SpNotebookPageLabelPresenter >> model: aModel [
 
-	(model notNil 
+	(model isNotNil 
 		and: [ model ~= aModel ])
 		ifTrue: [ self unsubscribePage: model ].
 
