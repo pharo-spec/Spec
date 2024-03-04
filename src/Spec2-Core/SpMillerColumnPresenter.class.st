@@ -117,7 +117,7 @@ SpMillerColumnPresenter >> removeAllFrom: aPage [
 
 	index := (self pages indexOf: aPage) - 1.
 	self resetTo: index.
-	self selectPage: index
+	"self selectPage: aPage"
 ]
 
 { #category : 'private' }
