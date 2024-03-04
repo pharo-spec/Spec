@@ -21,6 +21,18 @@ SpMillerPaginatorPresenter >> addPresenter: aPresenter [
 	self millerListPresenter addPresenter: aPresenter
 ]
 
+{ #category : 'private' }
+SpMillerPaginatorPresenter >> basicUpdatePaginator: pageSelected [
+		
+	paginator ifNil: [ 
+		paginator := self newPaginator.
+		paginator visiblePages: millerList visiblePages.
+		paginatorContainerLayout add: paginator expand: false.
+		paginator chainTo: millerList ].
+	paginator pages: millerList pages.
+	"self selectPage: pageSelected"
+]
+
 { #category : 'initialization' }
 SpMillerPaginatorPresenter >> initializePresenters [
 
@@ -86,13 +98,7 @@ SpMillerPaginatorPresenter >> updatePaginator: pageSelected [
 	millerList pages size > 1 
 		ifTrue: [ 
 			"add a paginator, chained to the miller list"
-			paginator ifNil: [ 
-				paginator := self newPaginator.
-				paginator visiblePages: millerList visiblePages.
-				paginatorContainerLayout add: paginator expand: false.
-				paginator chainTo: millerList ].
-			paginator pages: millerList pages.
-			paginator selectPage: pageSelected ]
+			self basicUpdatePaginator: pageSelected ]
 		ifFalse: [
 			"we do not want the paginator, let's remove it"
 			paginatorContainerLayout removeAll. 

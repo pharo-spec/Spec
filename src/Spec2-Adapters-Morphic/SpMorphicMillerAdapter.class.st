@@ -9,8 +9,8 @@ Class {
 	#instVars : [
 		'innerWidget',
 		'lastExtent',
-		'lastPageSize',
-		'needRecalculatePages'
+		'needRecalculatePages',
+		'lastPageIndex'
 	],
 	#category : 'Spec2-Adapters-Morphic-Layout',
 	#package : 'Spec2-Adapters-Morphic',
@@ -170,13 +170,16 @@ SpMorphicMillerAdapter >> recalculatePageHeights [
 
 { #category : 'private' }
 SpMorphicMillerAdapter >> recalculatePageWidths [
-
 	| newWidth widgets width |
-	widgets := self childrenWidgets.
+
+	widgets := self childrenWidgets.	
 	width := self widget width.
 	newWidth := widgets size = 1
 		ifTrue: [ width ]
-		ifFalse: [ (width / (layout visiblePages min: widgets size)) - (layout spacing / (layout visiblePages min: widgets size)) ].
+		ifFalse: [ 
+			| visiblePages |
+			visiblePages := layout visiblePages min: widgets size.
+			(width / visiblePages) - (layout spacing / visiblePages) ].
 		
 	widgets reverseWithIndexDo: [ :each :index |
 		each 
@@ -189,23 +192,26 @@ SpMorphicMillerAdapter >> recalculatePages [
 
 	self widget ifNil: [ ^ self ].
 	self childrenWidgets ifEmpty: [ ^ self ].
-	(needRecalculatePages not 
-		and: [ lastExtent = self widget extent 
-		and: [ lastPageSize = self childrenWidgets size ] ]) 
-		ifTrue: [ ^ self ].
 
+	(needRecalculatePages not
+		and: [ lastExtent = self widget extent 
+		and: [ lastPageIndex = self childrenWidgets size ] ]) 
+		ifTrue: [ ^ self ].
+	
 	needRecalculatePages := false.
+
+	layout direction recalculatePages: self.
 	lastExtent := self widget extent.
-	lastPageSize := self childrenWidgets size.
-	layout direction recalculatePages: self
+	lastPageIndex := self childrenWidgets size
 ]
 
 { #category : 'accessing' }
 SpMorphicMillerAdapter >> remove: aPresenter [
 
-	aPresenter adapter ifNotNil: [ :adapter |
-		needRecalculatePages := true.
-		innerWidget removeMorph: adapter widget ]
+	aPresenter adapter ifNil: [ ^ self ].
+	
+	innerWidget removeMorph: aPresenter adapter widget.
+	needRecalculatePages := true
 ]
 
 { #category : 'accessing' }
@@ -235,12 +241,11 @@ SpMorphicMillerAdapter >> scrollToShowLastPage [
 
 	self widget defer: [
 		| size firstMorphIndex |
-		size := innerWidget submorphs size.
 
+		size := innerWidget submorphs size.
 		size > 0 ifTrue: [
 			firstMorphIndex := size - self presenter visiblePages + 1.
-			self widget showMorph:
-				(innerWidget submorphs at: ((firstMorphIndex max: 1) min: size)) ] ]
+			self widget showMorph: (innerWidget submorphs at: ((firstMorphIndex max: 1) min: size)) ] ]
 ]
 
 { #category : 'accessing' }
