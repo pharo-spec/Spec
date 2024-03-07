@@ -143,7 +143,7 @@ SpTableColumn >> isExpandable [
 SpTableColumn >> isSortable [
 	"Answer if this column is sortable"
 
-	^ self sortFunction notNil
+	^ self sortFunction isNotNil
 ]
 
 { #category : 'private' }

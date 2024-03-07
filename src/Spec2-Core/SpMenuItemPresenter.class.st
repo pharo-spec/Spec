@@ -68,7 +68,7 @@ SpMenuItemPresenter >> description: aString [
 { #category : 'testing' }
 SpMenuItemPresenter >> hasShortcut [
 
-	^ self shortcut notNil
+	^ self shortcut isNotNil
 ]
 
 { #category : 'api' }

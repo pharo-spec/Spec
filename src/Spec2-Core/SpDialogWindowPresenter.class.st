@@ -168,7 +168,7 @@ SpDialogWindowPresenter >> executeDefaultAction [
 { #category : 'testing' }
 SpDialogWindowPresenter >> hasDefaultButton [
 
-	^ defaultButton notNil
+	^ defaultButton isNotNil
 ]
 
 { #category : 'initialization' }

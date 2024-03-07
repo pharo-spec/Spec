@@ -61,14 +61,14 @@ SpTAlignable >> hasAlignment [
 SpTAlignable >> hasHAlign [
 	"Answer whether the component has an horizontal alignment defined"
 
-	^ hAlign notNil
+	^ hAlign isNotNil
 ]
 
 { #category : 'testing' }
 SpTAlignable >> hasVAlign [
 	"Answer whether the component has a vertical alignment defined"
 
-	^ vAlign notNil
+	^ vAlign isNotNil
 ]
 
 { #category : 'accessing' }

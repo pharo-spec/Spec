@@ -271,25 +271,25 @@ SpAbstractPresenter >> forceUpdateSlot: aSymbol [
 { #category : 'testing' }
 SpAbstractPresenter >> hasAdapter [
 
-	^ adapter notNil
+	^ adapter isNotNil
 ]
 
 { #category : 'testing' }
 SpAbstractPresenter >> hasAnnouncer [
 
-	^ announcer notNil
+	^ announcer isNotNil
 ]
 
 { #category : 'testing' }
 SpAbstractPresenter >> hasEventHandler [
 
-	^ eventHandler notNil and: [ eventHandler hasEvents ]
+	^ eventHandler isNotNil and: [ eventHandler hasEvents ]
 ]
 
 { #category : 'testing' }
 SpAbstractPresenter >> hasOwner [
 
-	^ self owner notNil
+	^ self owner isNotNil
 ]
 
 { #category : 'testing' }

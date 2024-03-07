@@ -41,7 +41,7 @@ SpMorphicTreeTableAdapter >> addColumnsFromPresenterTo: tableMorph [
 	 fixed width of column: I need to enlarge that width with the width of the expander."
 	self columns withIndexDo: [ :each :index | | column |
 		column := self newColumnFrom: each.
-		(index = 1 and: [ column width notNil ]) ifTrue: [ 
+		(index = 1 and: [ column width isNotNil ]) ifTrue: [ 
 			column addEmptySpace.
 			"column width: column width + SpMorphicTreeTableDataSource emptyMorph width" ]. 
 		tableMorph addColumn: column ].

@@ -101,10 +101,10 @@ SpFontStyle >> addFontToCache: aFont [
 { #category : 'private' }
 SpFontStyle >> anyFontDecorator [
 	
-	^ color notNil 
-		or: [ size notNil 
-		or: [ bold notNil 
-		or: [ italic notNil ] ] ]
+	^ color isNotNil 
+		or: [ size isNotNil 
+		or: [ bold isNotNil 
+		or: [ italic isNotNil ] ] ]
 ]
 
 { #category : 'private' }
@@ -217,7 +217,7 @@ SpFontStyle >> colorVariable [
 SpFontStyle >> definedFont [
 	| definedFont |
 
-	(self predefinedFont notNil and: [ self anyFontDecorator not ]) ifTrue: [ 
+	(self predefinedFont isNotNil and: [ self anyFontDecorator not ]) ifTrue: [ 
 		^ self obtainPredefinedFont  ].
 
 	self withCachedFontDo: [ :aFont | ^ aFont ].
@@ -238,7 +238,7 @@ SpFontStyle >> displayScaleFactor [
 { #category : 'private' }
 SpFontStyle >> hasPredefinedFont [
 
-	^ self predefinedFont notNil
+	^ self predefinedFont isNotNil
 ]
 
 { #category : 'testing' }
@@ -258,7 +258,7 @@ SpFontStyle >> isItalic [
 { #category : 'testing' }
 SpFontStyle >> isReset [
 
-	^ name notNil and: [ name isResetVariable ]
+	^ name isNotNil and: [ name isResetVariable ]
 ]
 
 { #category : 'accessing' }

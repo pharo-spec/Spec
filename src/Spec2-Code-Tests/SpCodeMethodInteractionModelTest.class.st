@@ -37,7 +37,7 @@ SpCodeMethodInteractionModelTest >> testBehavior [
 SpCodeMethodInteractionModelTest >> testBindingOf [
 
 	self assert: (interactionModel bindingOf: #somethingNotExistent) isNil.
-	self assert: (interactionModel bindingOf: #Object) notNil
+	self assert: (interactionModel bindingOf: #Object) isNotNil
 ]
 
 { #category : 'tests' }
