@@ -35,7 +35,7 @@ SpApplication >> informUser: aString during: aBlock [
 	Job new
 		title: aString;
 		block: [ :job | 
-			job min: 0; max: 100.
+			"job min: 0; max: 100."
 			result := aBlock cull: job ];
 		run.
 
