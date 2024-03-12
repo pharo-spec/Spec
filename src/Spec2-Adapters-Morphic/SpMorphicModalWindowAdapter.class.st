@@ -12,19 +12,18 @@ Class {
 	#tag : 'Base'
 }
 
-{ #category : 'protocol' }
-SpMorphicModalWindowAdapter >> close [
- 
-	backdropMorph ifNotNil: [ 
-		backdropMorph delete.
-		backdropMorph := nil ].
-	super close
-]
-
 { #category : 'testing' }
 SpMorphicModalWindowAdapter >> closeOnBackdropClick [
 
 	^ self model closeOnBackdropClick
+]
+
+{ #category : 'private' }
+SpMorphicModalWindowAdapter >> deleteBackdropMorph [
+
+	backdropMorph ifNil: [ ^ self ]. 
+	backdropMorph delete.
+	backdropMorph := nil
 ]
 
 { #category : 'event handling' }
@@ -62,4 +61,11 @@ SpMorphicModalWindowAdapter >> openWithDeferredAction: aBlock [
 SpMorphicModalWindowAdapter >> waitWhile: aBlock [
 	
 	MorphicRenderLoop new doOneCycleWhile: aBlock
+]
+
+{ #category : 'updating' }
+SpMorphicModalWindowAdapter >> windowClosed [
+
+	self deleteBackdropMorph.
+	super windowClosed
 ]
