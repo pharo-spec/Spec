@@ -11,7 +11,8 @@ Class {
 		'initialExtent',
 		'acceptLabel',
 		'cancelLabel',
-		'validateBlock'
+		'validateBlock',
+		'errorLabel'
 	],
 	#category : 'Spec2-Dialogs',
 	#package : 'Spec2-Dialogs'
@@ -20,7 +21,7 @@ Class {
 { #category : 'accessing' }
 SpRequestDialog class >> defaultExtent [
 
-	^ 450@160
+	^ 450@170
 ]
 
 { #category : 'layout' }
@@ -37,6 +38,7 @@ SpRequestDialog class >> defaultLayout [
 				yourself) 
 			expand: false;
 		add: #textInput expand: false;
+		add: #errorLabel;
 		yourself
 ]
 
@@ -108,6 +110,20 @@ SpRequestDialog >> cancelLabel: aString [
 	cancelLabel := aString
 ]
 
+{ #category : 'initialization' }
+SpRequestDialog >> connectPresenters [ 
+
+	super connectPresenters.
+
+	textInput 
+		bindKeyCombination: Character cr asKeyCombination
+		toAction: [ self accept ];
+
+		bindKeyCombination: Character escape asKeyCombination
+		toAction: [ self cancel ].
+
+]
+
 { #category : 'api' }
 SpRequestDialog >> extent [
 
@@ -141,7 +157,8 @@ SpRequestDialog >> initializePresenters [
 
 	image := self newImage image: self defaultIcon.
 	label := self newLabel.
-	textInput := self newTextInput
+	textInput := self newTextInput.
+	errorLabel := self newLabel.
 ]
 
 { #category : 'initialization' }
@@ -167,6 +184,12 @@ SpRequestDialog >> openModal [
 	^ dialog isOk
 		ifTrue: [ self text trimmed ]
 		ifFalse: [ nil ]
+]
+
+{ #category : 'initialization' }
+SpRequestDialog >> setErrorText: aText [
+
+	errorLabel label: aText.
 ]
 
 { #category : 'api' }
@@ -196,8 +219,13 @@ SpRequestDialog >> title: aString [
 { #category : 'private' }
 SpRequestDialog >> validateAnswer [
 	
+	| result |
+	
 	validateBlock ifNotNil: [ 
-		^ validateBlock value: textInput text].
+		result := validateBlock cull: textInput text cull: self.
+		result ifFalse: [ textInput takeKeyboardFocus ].
+		^ result].
+	
 	
 	^ true
 ]
