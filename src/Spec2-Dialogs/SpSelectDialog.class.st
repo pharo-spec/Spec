@@ -165,8 +165,8 @@ SpSelectDialog >> items [
 SpSelectDialog >> items: aCollection [
 
 	list items: aCollection.
-	aCollection size > 1
-		ifTrue: [ list selectItem: aCollection first ]
+	aCollection ifNotEmpty: [ 
+		list selectItem: aCollection first ]
 ]
 
 { #category : 'api' }
@@ -183,6 +183,12 @@ SpSelectDialog >> openModal [
 	^ dialog isOk
 		ifTrue: [ list selectedItem ]
 		ifFalse: [ nil ]
+]
+
+{ #category : 'api' }
+SpSelectDialog >> selectFirst [
+
+	list selectFirst
 ]
 
 { #category : 'api' }
