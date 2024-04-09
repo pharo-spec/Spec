@@ -3,13 +3,8 @@ A dialog that allow the users to select from a list of `items`
 "
 Class {
 	#name : 'SpSelectDialog',
-	#superclass : 'SpDialogPresenter',
+	#superclass : 'SpAbstractCancelableMessageDialog',
 	#instVars : [
-		'label',
-		'title',
-		'initialExtent',
-		'acceptLabel',
-		'cancelLabel',
 		'list'
 	],
 	#category : 'Spec2-Dialogs',
@@ -61,40 +56,29 @@ SpSelectDialog class >> exampleModal [
 	selection ifNotNil: [ dialog inform: selection asString ]
 ]
 
-{ #category : 'api' }
-SpSelectDialog >> acceptLabel [
+{ #category : 'examples' }
+SpSelectDialog class >> exampleMultiLineLabel [
 
-	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
-]
+	| presenter label |
 
-{ #category : 'api' }
-SpSelectDialog >> acceptLabel: aString [
-
-	acceptLabel := aString
-]
-
-{ #category : 'private' }
-SpSelectDialog >> calculateLabelHeight [
-
-	| labelText  |
-	labelText := label text.
-
-	labelText ifEmpty: [ ^ TextStyle defaultFont height ].
-
-	^ (labelText lineHeightsWrappingAtWidth: self extent y - 20) sum + 20
+	label := String streamContents: [ :s |
+		s nextPutAll: 'Select a class';
+		  cr;
+		  cr;
+		  nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap'
+		 ].
 	
-]
+	presenter := self new.
 
-{ #category : 'api' }
-SpSelectDialog >> cancelLabel [
-
-	^ cancelLabel ifNil: [ self class defaultCancelLabel ]
-]
-
-{ #category : 'api' }
-SpSelectDialog >> cancelLabel: aString [
-
-	cancelLabel := aString
+	presenter
+		title: 'Select example';
+		label: label;
+		items: Smalltalk allClassesAndTraits;
+		display: [ :each | each name ];
+		displayIcon: [ :each | self iconNamed: each systemIconName ];
+		onAccept: [ :dialog |
+			dialog presenter inform: dialog presenter selectedItem asString ];
+		openDialog
 ]
 
 { #category : 'layout' }
@@ -103,9 +87,15 @@ SpSelectDialog >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		borderWidth: 5;
 		spacing: 5;
-		add: #label height: self calculateLabelHeight;
-		add: #list;
+		add: label height: self calculateLabelHeight;
+		add: list;
 		yourself
+]
+
+{ #category : 'accessing' }
+SpSelectDialog >> defaultTitle [
+
+	^ 'Request'
 ]
 
 { #category : 'api' }
@@ -133,30 +123,10 @@ SpSelectDialog >> extent: aPoint [
 ]
 
 { #category : 'initialization' }
-SpSelectDialog >> initialize [
-	
-	super initialize.
-	self title: 'Request'
-]
-
-{ #category : 'initialization' }
-SpSelectDialog >> initializeDialogWindow: aDialogWindowPresenter [
-
-	super initializeDialogWindow: aDialogWindowPresenter.
-	aDialogWindowPresenter
-		addButton: self cancelLabel do: [ :presenter | self cancel ];
-		addDefaultButton: self acceptLabel do: [ :presenter | self accept ]
-]
-
-{ #category : 'initialization' }
 SpSelectDialog >> initializePresenters [
 
-	label := self newText
-		beNotEditable;
-		withoutScrollBars;
-		addStyle: 'textDisabled';
-		yourself.
-		
+	super initializePresenters.
+
 	list := self newList.
 	
 	list addStyle: 'spSelectList'.
@@ -166,10 +136,9 @@ SpSelectDialog >> initializePresenters [
 { #category : 'initialization' }
 SpSelectDialog >> initializeWindow: aWindowPresenter [
 
-	aWindowPresenter
-		title: self title;
-		initialExtent: self extent;
-		whenOpenedDo: [ list takeKeyboardFocus ]
+	super initializeWindow: aWindowPresenter.
+
+	aWindowPresenter whenOpenedDo: [ list takeKeyboardFocus ]
 ]
 
 { #category : 'api' }
@@ -184,12 +153,6 @@ SpSelectDialog >> items: aCollection [
 	list items: aCollection.
 	aCollection size > 1
 		ifTrue: [ list selectItem: aCollection first ]
-]
-
-{ #category : 'api' }
-SpSelectDialog >> label: aString [
-
-	label text: aString asText trim
 ]
 
 { #category : 'api - showing' }
@@ -218,16 +181,4 @@ SpSelectDialog >> selectItem: anObject [
 SpSelectDialog >> selectedItem [
 
 	^ list selectedItem
-]
-
-{ #category : 'api' }
-SpSelectDialog >> title [
-
-	^ title
-]
-
-{ #category : 'api' }
-SpSelectDialog >> title: aString [
-
-	title := aString
 ]

@@ -3,14 +3,10 @@ A simple dialog to request some information (a text)
 "
 Class {
 	#name : 'SpRequestDialog',
-	#superclass : 'SpDialogPresenter',
+	#superclass : 'SpAbstractCancelableMessageDialog',
+	#classTraits : '{} + TraitedClass',
 	#instVars : [
-		'label',
 		'textInput',
-		'title',
-		'initialExtent',
-		'acceptLabel',
-		'cancelLabel',
 		'validateBlock',
 		'errorLabel'
 	],
@@ -22,24 +18,6 @@ Class {
 SpRequestDialog class >> defaultExtent [
 
 	^ 450@170
-]
-
-{ #category : 'layout' }
-SpRequestDialog class >> defaultLayout [
-
-	^ SpBoxLayout newTopToBottom
-		borderWidth: 5;
-		spacing: 5;
-		add: (SpBoxLayout newLeftToRight
-				vAlignCenter;
-				spacing: 5;
-				add: #image expand: false; 
-				add: #label;
-				yourself) 
-			expand: false;
-		add: #textInput expand: false;
-		add: #errorLabel;
-		yourself
 ]
 
 { #category : 'documentation' }
@@ -79,35 +57,34 @@ SpRequestDialog class >> exampleModal [
 	string ifNotNil: [ presenter inform: string ]
 ]
 
-{ #category : 'visiting' }
+{ #category : 'examples' }
+SpRequestDialog class >> exampleMultiLineLabel [ 
+
+	| presenter label |
+
+	label := String streamContents: [ :s |
+		s nextPutAll: 'The meaning of life?';
+		  cr;
+		  cr;
+		  nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap'
+		 ].	
+
+	presenter := self new.
+	presenter
+		title: 'Request example';
+		label: label;
+		text: 'I am tempted to say 42...';
+		acceptLabel: 'I know!';
+		cancelLabel: 'Cancel';
+		onAccept: [ :dialog | dialog presenter inform: dialog presenter text ];
+		openDialog
+]
+
+{ #category : 'private' }
 SpRequestDialog >> accept [
 
 	self validateAnswer ifFalse: [ ^ self ].
 	super accept
-]
-
-{ #category : 'api' }
-SpRequestDialog >> acceptLabel [
-
-	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
-]
-
-{ #category : 'api' }
-SpRequestDialog >> acceptLabel: aString [
-
-	acceptLabel := aString
-]
-
-{ #category : 'api' }
-SpRequestDialog >> cancelLabel [
-
-	^ cancelLabel ifNil: [ self class defaultCancelLabel ]
-]
-
-{ #category : 'api' }
-SpRequestDialog >> cancelLabel: aString [
-
-	cancelLabel := aString
 ]
 
 { #category : 'initialization' }
@@ -124,56 +101,44 @@ SpRequestDialog >> connectPresenters [
 
 ]
 
-{ #category : 'api' }
-SpRequestDialog >> extent [
+{ #category : 'layout' }
+SpRequestDialog >> defaultLayout [
 
-	^ initialExtent ifNil: [ self class defaultExtent ]
+	^ SpBoxLayout newTopToBottom
+		  spacing: 5;
+		  add: (SpBoxLayout newLeftToRight
+				   add: (SpBoxLayout newTopToBottom
+						    vAlignStart;
+						    add: #image;
+						    yourself)
+				   expand: false;
+				   add: #label expand: true;
+				   yourself) height: self calculateLabelHeight;
+		  add: #textInput expand: false;
+		  add: #errorLabel;
+		  yourself
 ]
 
-{ #category : 'api' }
-SpRequestDialog >> extent: aPoint [
+{ #category : 'accessing' }
+SpRequestDialog >> defaultTitle [
 
-	initialExtent := aPoint
-]
-
-{ #category : 'initialization' }
-SpRequestDialog >> initialize [
-	
-	super initialize.
-	self title: 'Request'
-]
-
-{ #category : 'initialization' }
-SpRequestDialog >> initializeDialogWindow: aDialogWindowPresenter [
-
-	super initializeDialogWindow: aDialogWindowPresenter.
-	aDialogWindowPresenter
-		addButton: self cancelLabel do: [ :presenter | self cancel ];
-		addDefaultButton: self acceptLabel do: [ :presenter | self accept ]
+	^ 'Request'
 ]
 
 { #category : 'initialization' }
 SpRequestDialog >> initializePresenters [
 
-	image := self newImage image: self defaultIcon.
-	label := self newLabel.
+	super initializePresenters.
+
 	textInput := self newTextInput.
 	errorLabel := self newLabel.
 ]
 
 { #category : 'initialization' }
 SpRequestDialog >> initializeWindow: aWindowPresenter [
-
-	aWindowPresenter
-		title: self title;
-		initialExtent: self extent;
-		whenOpenedDo: [ textInput takeKeyboardFocus ]
-]
-
-{ #category : 'api' }
-SpRequestDialog >> label: aString [
-
-	label label: aString
+	
+	super initializeWindow: aWindowPresenter.
+	aWindowPresenter whenOpenedDo: [ textInput takeKeyboardFocus ]
 ]
 
 { #category : 'api - showing' }
@@ -202,18 +167,6 @@ SpRequestDialog >> text [
 SpRequestDialog >> text: aString [
 
 	textInput text: aString
-]
-
-{ #category : 'api' }
-SpRequestDialog >> title [
-
-	^ title
-]
-
-{ #category : 'api' }
-SpRequestDialog >> title: aString [
-
-	title := aString
 ]
 
 { #category : 'private' }

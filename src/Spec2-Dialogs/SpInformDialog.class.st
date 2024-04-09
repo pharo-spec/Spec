@@ -3,13 +3,7 @@ I'm notification based interaction with the user. I'm not modal and I'm under de
 "
 Class {
 	#name : 'SpInformDialog',
-	#superclass : 'SpDialogPresenter',
-	#instVars : [
-		'label',
-		'title',
-		'initialExtent',
-		'acceptLabel'
-	],
+	#superclass : 'SpAbstractMessageDialog',
 	#category : 'Spec2-Dialogs',
 	#package : 'Spec2-Dialogs'
 }
@@ -24,21 +18,6 @@ SpInformDialog class >> defaultAcceptLabel [
 SpInformDialog class >> defaultExtent [
 
 	^ 450@120
-]
-
-{ #category : 'layout' }
-SpInformDialog class >> defaultLayout [
-
-	^ SpBoxLayout newTopToBottom
-		borderWidth: 5;
-		spacing: 5;
-		add: (SpBoxLayout newLeftToRight
-			vAlignCenter;
-			spacing: 5;
-			add: #image expand: false;
-			add: #label;
-			yourself);
-		yourself
 ]
 
 { #category : 'documentation' }
@@ -67,16 +46,23 @@ SpInformDialog class >> exampleModal [
 		openModal
 ]
 
-{ #category : 'api' }
-SpInformDialog >> acceptLabel [
+{ #category : 'examples' }
+SpInformDialog class >> exampleMultiLineLabel [ 
 
-	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
-]
+	| label |
 
-{ #category : 'api' }
-SpInformDialog >> acceptLabel: aString [
+	label := String streamContents: [ :s |
+		s nextPutAll: 'You are seeing an inform dialog!';
+		  cr;
+		  cr;
+		  nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap'
+		 ].	
 
-	acceptLabel := aString
+	self new
+		title: 'Inform modal example';
+		label: label;
+		acceptLabel: 'Close this!';
+		openModal
 ]
 
 { #category : 'accessing' }
@@ -85,64 +71,8 @@ SpInformDialog >> defaultIcon [
 	^ self application iconNamed: #info
 ]
 
-{ #category : 'api' }
-SpInformDialog >> extent [
+{ #category : 'accessing' }
+SpInformDialog >> defaultTitle [
 
-	^ initialExtent ifNil: [ self class defaultExtent ]
-]
-
-{ #category : 'api' }
-SpInformDialog >> extent: aPoint [
-
-	initialExtent := aPoint
-]
-
-{ #category : 'initialization' }
-SpInformDialog >> initialize [
-
-	super initialize.
-	self title: 'Inform'
-]
-
-{ #category : 'initialization' }
-SpInformDialog >> initializeDialogWindow: aDialogWindowPresenter [
-
-	super initializeDialogWindow: aDialogWindowPresenter.
-	aDialogWindowPresenter
-		addDefaultButton: self acceptLabel 
-		do: [ :presenter | self accept ]
-		
-]
-
-{ #category : 'initialization' }
-SpInformDialog >> initializePresenters [
-
-	image := self newImage image: self defaultIcon.
-	label := self newLabel
-]
-
-{ #category : 'initialization' }
-SpInformDialog >> initializeWindow: aWindowPresenter [
-
-	aWindowPresenter
-		title: self title;
-		initialExtent: self extent
-]
-
-{ #category : 'api' }
-SpInformDialog >> label: aString [
-
-	label label: aString
-]
-
-{ #category : 'api' }
-SpInformDialog >> title [
-
-	^ title
-]
-
-{ #category : 'api' }
-SpInformDialog >> title: aString [
-
-	title := aString
+	^ 'Inform'
 ]
