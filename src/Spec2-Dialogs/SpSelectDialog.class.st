@@ -22,17 +22,6 @@ SpSelectDialog class >> defaultExtent [
 	^ 450@300
 ]
 
-{ #category : 'layout' }
-SpSelectDialog class >> defaultLayout [
-
-	^ SpBoxLayout newTopToBottom
-		borderWidth: 5;
-		spacing: 5;
-		add: #label expand: false;
-		add: #list;
-		yourself
-]
-
 { #category : 'documentation' }
 SpSelectDialog class >> documentFactoryMethodSelector [
 	
@@ -84,6 +73,18 @@ SpSelectDialog >> acceptLabel: aString [
 	acceptLabel := aString
 ]
 
+{ #category : 'private' }
+SpSelectDialog >> calculateLabelHeight [
+
+	| labelText  |
+	labelText := label text.
+
+	labelText ifEmpty: [ ^ TextStyle defaultFont height ].
+
+	^ (labelText lineHeightsWrappingAtWidth: self extent y - 20) sum + 20
+	
+]
+
 { #category : 'api' }
 SpSelectDialog >> cancelLabel [
 
@@ -94,6 +95,17 @@ SpSelectDialog >> cancelLabel [
 SpSelectDialog >> cancelLabel: aString [
 
 	cancelLabel := aString
+]
+
+{ #category : 'layout' }
+SpSelectDialog >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		borderWidth: 5;
+		spacing: 5;
+		add: #label height: self calculateLabelHeight;
+		add: #list;
+		yourself
 ]
 
 { #category : 'api' }
@@ -139,7 +151,12 @@ SpSelectDialog >> initializeDialogWindow: aDialogWindowPresenter [
 { #category : 'initialization' }
 SpSelectDialog >> initializePresenters [
 
-	label := self newLabel.
+	label := self newText
+		beNotEditable;
+		withoutScrollBars;
+		addStyle: 'textDisabled';
+		yourself.
+		
 	list := self newList.
 	
 	list addStyle: 'spSelectList'.
@@ -172,7 +189,7 @@ SpSelectDialog >> items: aCollection [
 { #category : 'api' }
 SpSelectDialog >> label: aString [
 
-	label label: aString
+	label text: aString asText trim
 ]
 
 { #category : 'api - showing' }
