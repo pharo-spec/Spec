@@ -105,7 +105,7 @@ SpFilteringSelectableListPresenter >> items: aCollection [
 	"If the items are changing, we need to remove the items that are not present anymore from the collection."
 
 	super items: aCollection.
-	self selectedItems: (selectedItems select: [ :item | aCollection includes: item ])
+	selectedItems := selectedItems select: [ :item | aCollection includes: item ]
 ]
 
 { #category : 'private' }
@@ -195,11 +195,6 @@ SpFilteringSelectableListPresenter >> selectItems: aCollection [
 SpFilteringSelectableListPresenter >> selectedItems [
 
 	^ selectedItems sorted: [ :a :b | (self items indexOf: a) < (self items indexOf: b) ]
-]
-
-{ #category : 'accessing' }
-SpFilteringSelectableListPresenter >> selectedItems: anObject [
-	selectedItems := anObject
 ]
 
 { #category : 'private' }
