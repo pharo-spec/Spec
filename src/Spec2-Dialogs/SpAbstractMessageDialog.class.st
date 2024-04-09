@@ -4,7 +4,6 @@ I am the abstract class that holds the common state and behavior of all the Mess
 Class {
 	#name : 'SpAbstractMessageDialog',
 	#superclass : 'SpDialogPresenter',
-	#classTraits : '{} + TraitedClass',
 	#instVars : [
 		'label',
 		'title',
