@@ -232,8 +232,7 @@ SpChooserPresenter >> moveSelectedFrom: fromList to: toList [
 
 	| newFromListItems |
 	toList items: toList unfilteredItems , fromList selectedItems.
-	newFromListItems := OrderedCollection withAll:
-		                    fromList unfilteredItems.
+	newFromListItems := OrderedCollection withAll: fromList unfilteredItems.
 	newFromListItems removeAllFoundIn: fromList selectedItems.
 	fromList items: newFromListItems
 ]

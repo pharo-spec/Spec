@@ -100,6 +100,14 @@ SpFilteringSelectableListPresenter >> initializePresenters [
 		toAction: [ self activateAll ]
 ]
 
+{ #category : 'api' }
+SpFilteringSelectableListPresenter >> items: aCollection [
+	"If the items are changing, we need to remove the items that are not present anymore from the collection."
+
+	super items: aCollection.
+	selectedItems := selectedItems select: [ :item | aCollection includes: item ]
+]
+
 { #category : 'private' }
 SpFilteringSelectableListPresenter >> listColumns [
 	| column |
