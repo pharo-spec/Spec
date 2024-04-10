@@ -175,6 +175,12 @@ SpMorphicButtonAdapter >> newButton [
 		  menu: #menu:
 ]
 
+{ #category : 'accessing' }
+SpMorphicButtonAdapter >> setAsDefault [
+
+	self widget isDefault: true
+]
+
 { #category : 'factory' }
 SpMorphicButtonAdapter >> setWidgetColor: button [
 
