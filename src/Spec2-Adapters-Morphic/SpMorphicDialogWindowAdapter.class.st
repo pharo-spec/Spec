@@ -16,16 +16,18 @@ SpMorphicDialogWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aS
 
 	super addPresenterIn: widgetToBuild withSpecLayout: aSpec.
 	self model buttons ifNotEmpty: [ 	
-		widgetToBuild setToolbarFrom: [ self buildButtonBar ] ]
+		widgetToBuild setToolbarFrom: [ self buildButtonBar ].
+		self presenter defaultButton 
+			ifNotNil: [ :aButton | aButton adapter setAsDefault ] ]
 ]
 
 { #category : 'factory' }
 SpMorphicDialogWindowAdapter >> buildButtonBar [
-
 	| buttonBar |
+
 	buttonBar := (SpButtonBarPresenter owner: self model) placeAtEnd.
-	self model buttons do: [ :buttonPresenter | 
-		buttonBar add: buttonPresenter ].
+	self model buttons 
+		do: [ :buttonPresenter | buttonBar add: buttonPresenter ].
 
 	^ buttonBar
 ]
