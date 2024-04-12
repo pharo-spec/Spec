@@ -4,7 +4,6 @@ A simple dialog to request some information (a text)
 Class {
 	#name : 'SpRequestDialog',
 	#superclass : 'SpAbstractCancelableMessageDialog',
-	#classTraits : '{} + TraitedClass',
 	#instVars : [
 		'textInput',
 		'validateBlock',
