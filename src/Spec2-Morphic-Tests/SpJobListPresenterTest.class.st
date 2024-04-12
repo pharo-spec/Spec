@@ -1,24 +1,26 @@
 Class {
-	#name : #SpJobListPresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Morphic-Tests'
+	#name : 'SpJobListPresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Morphic-Tests',
+	#package : 'Spec2-Morphic-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpJobListPresenterTest >> classToTest [
 	^ SpJobListPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpJobListPresenterTest >> testJobIsFinishedWhenWaitingMoreThanWorkBlockDuration [
 
 	| progress job |
 
 	self skipOnPharoCITestingEnvironment.
 	progress := 0.
-	job := SpJob
-			newTitle: 'some job'
-			block: [ : myjob | 1 to: 25 do: [ :i | myjob value: i*4. 20 milliSeconds wait. ] ].
+	job := Job new
+		title: 'some job';
+		block: [ : myjob | 1 to: 25 do: [ :i | myjob value: i*4. 20 milliSeconds wait. ] ];
+		yourself.
 	[ presenter := SpJobListPresenter new 
 		pushJob: job;
 		yourself. ] fork. 
@@ -27,16 +29,17 @@ SpJobListPresenterTest >> testJobIsFinishedWhenWaitingMoreThanWorkBlockDuration 
 	self assert: job currentValue asInteger equals: job max 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpJobListPresenterTest >> testJobIsNotFinishedWhenWaitingLessThanWorkBlockDuration [
 	| progress job |
 
 	self skipOnPharoCITestingEnvironment.
 
 	progress := 0.
-	job := SpJob
-			newTitle: 'some job'
-			block: [ : myjob | 1 to: 25 do: [ :i | myjob value: i*4. 60 milliSeconds wait. ] ].
+	job := Job new
+		title: 'some job';
+		block: [ : myjob | 1 to: 25 do: [ :i | myjob value: i*4. 60 milliSeconds wait ] ];
+		yourself.
 	[ presenter := SpJobListPresenter new 
 		pushJob: job;
 		yourself. ] fork. 
@@ -45,7 +48,7 @@ SpJobListPresenterTest >> testJobIsNotFinishedWhenWaitingLessThanWorkBlockDurati
 	self deny: job currentValue asInteger equals: job max 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpJobListPresenterTest >> testProgressDoesNotRefreshMoreThanRefreshRate [
 	"Ensure progress presenter will not slow down the workblock by calling too many UI refresh"
 	| job waitBetweenJobUpdate counter refreshRateInMs nbUpdates maxExpected |
@@ -56,9 +59,12 @@ SpJobListPresenterTest >> testProgressDoesNotRefreshMoreThanRefreshRate [
 	refreshRateInMs := 150.
 	nbUpdates := 25.
 	counter := 0.
-	job := SpJob
-			newTitle: 'some job'
-			block: [ : myjob | 1 to: nbUpdates do: [ :i | myjob value: i * 4. waitBetweenJobUpdate wait. ] ].
+	job := Job new
+		title: 'some job';
+		block: [ : myjob | 
+			1 to: nbUpdates do: [ :i | 
+				myjob value: i * 4. waitBetweenJobUpdate wait ] ];
+		yourself.
 	presenter := SpJobPresenter on: job.
 	
 	[ presenter open.

@@ -6,7 +6,9 @@ Spec is a framework in Pharo for describing user interfaces. It allows for the c
 I contain help for the HelpBrowser explaining how to use Spec 2.
 "
 Class {
-	#name : #ManifestSpec2Help,
-	#superclass : #PackageManifest,
-	#category : #'Spec2-Help-Manifest'
+	#name : 'ManifestSpec2Help',
+	#superclass : 'PackageManifest',
+	#category : 'Spec2-Help-Manifest',
+	#package : 'Spec2-Help',
+	#tag : 'Manifest'
 }

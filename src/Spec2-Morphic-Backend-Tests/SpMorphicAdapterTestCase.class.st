@@ -1,10 +1,11 @@
 Class {
-	#name : #SpMorphicAdapterTestCase,
-	#superclass : #SpMorphicAdapterTest,
-	#category : #'Spec2-Morphic-Backend-Tests'
+	#name : 'SpMorphicAdapterTestCase',
+	#superclass : 'SpMorphicAdapterTest',
+	#category : 'Spec2-Morphic-Backend-Tests',
+	#package : 'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicAdapterTestCase class >> isDeprecated [ 
 	^ true
 ]

@@ -6,7 +6,9 @@ Spec is a framework in Pharo for describing user interfaces. It allows for the c
 I contain stubs adapter to test Spec without any backend.
 "
 Class {
-	#name : #ManifestSpec2AdaptersStub,
-	#superclass : #PackageManifest,
-	#category : #'Spec2-Adapters-Stub-Manifest'
+	#name : 'ManifestSpec2AdaptersStub',
+	#superclass : 'PackageManifest',
+	#category : 'Spec2-Adapters-Stub-Manifest',
+	#package : 'Spec2-Adapters-Stub',
+	#tag : 'Manifest'
 }

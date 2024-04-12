@@ -12,8 +12,8 @@ SpStringTableColumn
 ```
 "
 Class {
-	#name : #SpStringTableColumn,
-	#superclass : #SpTableColumn,
+	#name : 'SpStringTableColumn',
+	#superclass : 'SpTableColumn',
 	#traits : 'SpTDecoratedText',
 	#classTraits : 'SpTDecoratedText classTrait',
 	#instVars : [
@@ -22,53 +22,55 @@ Class {
 		'sortable',
 		'textChanged'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #api }
+{ #category : 'api' }
 SpStringTableColumn >> acceptAction [
 	"Answer the action (set by `SpStringTablePresenter>>#onAcceptEdition:`) to execute when accepting an edition."
 	
 	^ acceptAction
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpStringTableColumn >> acceptColumnVisitor: aBuilder [
 
 	^ aBuilder visitStringColumn: self
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpStringTableColumn >> alignment [
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpStringTableColumn >> beEditable [ 
 	"Set the cell as editable."
 
 	editable := true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpStringTableColumn >> beNotEditable [ 
 	"Set the cell as not editable (this is the default)."
 
 	editable := false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpStringTableColumn >> beNotSortable [
 
 	self isSortable: false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpStringTableColumn >> beSortable [
 
 	self isSortable: true
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 SpStringTableColumn >> compareFunction: aBlock [
 	"sets the sorting of this column to use the two argument aBlock for comparing (aBlock should return a boolean). 
 	it is often simpler to use a boolean compare than the threeway compare required by sortFunction: "
@@ -86,7 +88,7 @@ SpStringTableColumn >> compareFunction: aBlock [
 	self isSortable: true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpStringTableColumn >> initialize [ 
 
 	super initialize.
@@ -94,26 +96,26 @@ SpStringTableColumn >> initialize [
 	sortable := false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpStringTableColumn >> isEditable [ 
 	"Answer true if column has editable cells"
 	
 	^ editable
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpStringTableColumn >> isSortable [
 
 	^ sortable
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpStringTableColumn >> isSortable: aBoolean [ 
 
 	sortable := aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpStringTableColumn >> onAcceptEdition: aBlock [
 	"Set the block to execute when cell edition is accepted.
 	 `aBlock` receives two arguments: 
@@ -139,7 +141,7 @@ SpStringTableColumn >> sortFunction [
 	^ super sortFunction ifNil: [ self evaluation ascending ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpStringTableColumn >> sortFunction: aBlockOrSortFunction [
 	"Set the THREEWAY sort function to apply to the values of this column in order to sort elements.
 	 `aBlockOrSortFunction` is a block that receives two arguments to compare or an instace of 
@@ -151,7 +153,7 @@ SpStringTableColumn >> sortFunction: aBlockOrSortFunction [
 		^ self ].
 	
 	super sortFunction: aBlockOrSortFunction asSortFunction.
-	self isSortable: aBlockOrSortFunction notNil
+	self isSortable: aBlockOrSortFunction isNotNil
 ]
 
 { #category : #accessing }

@@ -2,29 +2,31 @@
 A TextFieldExample is a simple example of how to use TextFields.
 "
 Class {
-	#name : #SpTextFieldExample,
-	#superclass : #SpPresenter,
+	#name : 'SpTextFieldExample',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'methodBrowser',
 		'textField'
 	],
-	#category : #'Spec2-Examples-Standalone'
+	#category : 'Spec2-Examples-Standalone',
+	#package : 'Spec2-Examples',
+	#tag : 'Standalone'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpTextFieldExample class >> example [
 
 	<sampleInstance>
 	^ self new open
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpTextFieldExample class >> title [
 
 	^ 'Text Field Example'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTextFieldExample >> connectPresenters [
 	
 	textField whenTextChangedDo: [ :text | 
@@ -34,7 +36,7 @@ SpTextFieldExample >> connectPresenters [
 			ifAbsent: [ methodBrowser messages: #() ] ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpTextFieldExample >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -43,12 +45,12 @@ SpTextFieldExample >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextFieldExample >> initialExtent [
 	^ 900@550
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTextFieldExample >> initializePresenters [
 
 	methodBrowser := self instantiate: SpDemoMessageBrowser.
@@ -59,13 +61,13 @@ SpTextFieldExample >> initializePresenters [
 		removeEntryCompletion
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextFieldExample >> methodBrowser [
 
 	^ methodBrowser
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextFieldExample >> textField [
 
 	^ textField

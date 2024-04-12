@@ -1,22 +1,24 @@
 Class {
-	#name : #SpImagePresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpImagePresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpImagePresenterTest >> classToTest [
 	^ SpImagePresenter
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpImagePresenterTest >> tearDown [ 
 
 	presenter ifNotNil: [ presenter delete ].
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpImagePresenterTest >> testAutoScale [
 	| count result |
 	count := 0.
@@ -29,7 +31,7 @@ SpImagePresenterTest >> testAutoScale [
 	self assert: result
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpImagePresenterTest >> testCanDefineImagePresenterFromAForm [
 	| title form windowPresenter presenterItems |
 	
@@ -46,7 +48,7 @@ SpImagePresenterTest >> testCanDefineImagePresenterFromAForm [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpImagePresenterTest >> testSwitchAutoScale [
 	| autoState |
 	autoState := presenter autoScale.

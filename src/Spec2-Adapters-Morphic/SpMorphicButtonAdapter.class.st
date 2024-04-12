@@ -5,31 +5,33 @@ SpecInterpreter
 
 "
 Class {
-	#name : #SpMorphicButtonAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
+	#name : 'SpMorphicButtonAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
 	#instVars : [
 		'subMenuWidget',
 		'styleName'
 	],
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicButtonAdapter >> action [
 
 	self showSubMenuIfPresent.
 
 	self widget ifNotNil: [:m | m takeKeyboardFocus ].
-	self model performAction.
+	self model performAction
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicButtonAdapter >> askBeforeChanging [
 
 	^ self model askBeforeChanging
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicButtonAdapter >> buildLabel: text withIcon: icon [
 	| iconLabel |
 
@@ -48,7 +50,7 @@ SpMorphicButtonAdapter >> buildLabel: text withIcon: icon [
 	^ iconLabel
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicButtonAdapter >> buildWidget [
 	| button | 
 
@@ -76,7 +78,7 @@ SpMorphicButtonAdapter >> buildWidget [
 	^ button
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpMorphicButtonAdapter >> clicked [
 
 	| evt |
@@ -94,56 +96,56 @@ SpMorphicButtonAdapter >> clicked [
 			mouseUp: evt ]
 ]
 
-{ #category : #'menus support' }
+{ #category : 'menus support' }
 SpMorphicButtonAdapter >> deleteIfPopUp: evt [
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicButtonAdapter >> enabled: aBoolean [
 
 	super enabled: aBoolean.
 	self widgetDo: [ :w | w label: self label ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicButtonAdapter >> font [
 
 	^ self model font
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicButtonAdapter >> getHelpText [
 
 	^ self presenter help ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicButtonAdapter >> getLabelText [
 
 	^ self presenter label ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicButtonAdapter >> helpText [
 
 	^ self widget helpText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicButtonAdapter >> icon [
 
 	^ widget label icon
 ]
 
-{ #category : #'menus support' }
+{ #category : 'menus support' }
 SpMorphicButtonAdapter >> isSelected: aBooolean [
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicButtonAdapter >> keyStroke: anEvent fromMorph: aMorph [
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicButtonAdapter >> label [
 	
 	^ self 
@@ -151,7 +153,7 @@ SpMorphicButtonAdapter >> label [
 		withIcon: self presenter icon
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicButtonAdapter >> menu: aMenu [
 
 	| menuPresenter |
@@ -162,7 +164,7 @@ SpMorphicButtonAdapter >> menu: aMenu [
 		  during: [ menuPresenter build ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicButtonAdapter >> newButton [
 
 	^ SpPluggableButtonMorph
@@ -173,7 +175,13 @@ SpMorphicButtonAdapter >> newButton [
 		  menu: #menu:
 ]
 
-{ #category : #factory }
+{ #category : 'accessing' }
+SpMorphicButtonAdapter >> setAsDefault [
+
+	self widget isDefault: true
+]
+
+{ #category : 'factory' }
 SpMorphicButtonAdapter >> setWidgetColor: button [
 
 	| normalColorBlock clickedColorBlock |
@@ -191,7 +199,7 @@ SpMorphicButtonAdapter >> setWidgetColor: button [
 							yourself)
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicButtonAdapter >> showSubMenu: aMenu [
 
 	aMenu menuGroups ifNil: [ ^ self ].
@@ -209,7 +217,7 @@ SpMorphicButtonAdapter >> showSubMenu: aMenu [
 	subMenuWidget popUpOwner: self
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicButtonAdapter >> showSubMenuIfPresent [
 
 	self presenter contextMenu ifNil: [ ^ self ].
@@ -217,31 +225,31 @@ SpMorphicButtonAdapter >> showSubMenuIfPresent [
 	
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicButtonAdapter >> state [
 
 	^ self model state
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicButtonAdapter >> styleName [
 
 	^ styleName ifNil: [ super styleName ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicButtonAdapter >> styleName: aString [ 
 
 	styleName := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicButtonAdapter >> unscaledInitialExtent [
 
 	^ 15@26
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicButtonAdapter >> updateMenu [	
 	"There is no need to updateMenu here because it will be resolved at #menu:"
 ]

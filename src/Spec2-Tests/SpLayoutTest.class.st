@@ -1,31 +1,33 @@
 Class {
-	#name : #SpLayoutTest,
-	#superclass : #SpSpecTest,
+	#name : 'SpLayoutTest',
+	#superclass : 'SpSpecTest',
 	#instVars : [
 		'layout'
 	],
-	#category : #'Spec2-Tests-Layout'
+	#category : 'Spec2-Tests-Layout',
+	#package : 'Spec2-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpLayoutTest class >> isAbstract [
 
 	^ self == SpLayoutTest
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpLayoutTest class >> shouldInheritSelectors [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLayoutTest >> classToTest [
 
 	^ SpEmptyPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpLayoutTest >> testInitialLayoutIsEmpty [
 
 	self assert: layout isEmpty

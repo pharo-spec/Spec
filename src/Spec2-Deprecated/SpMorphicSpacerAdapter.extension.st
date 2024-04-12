@@ -1,6 +1,6 @@
-Extension { #name : #SpMorphicSpacerAdapter }
+Extension { #name : 'SpMorphicSpacerAdapter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpMorphicSpacerAdapter >> buildWidget [
 	^ Morph new
 		color: Color transparent;
@@ -9,7 +9,7 @@ SpMorphicSpacerAdapter >> buildWidget [
 		yourself
 ]
 
-{ #category : #'*Spec2-Deprecated' }
-SpMorphicSpacerAdapter class >> isDeprecated [
+{ #category : '*Spec2-Deprecated' }
+SpMorphicSpacerAdapter classSide >> isDeprecated [
 	^ true
 ]

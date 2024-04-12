@@ -1,6 +1,6 @@
-Extension { #name : #SpCommandGroup }
+Extension { #name : 'SpCommandGroup' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpCommandGroup >> asToolBarPresenter [
 	self
 		deprecated: 'Use #asToolbarPresenter instead.'
@@ -8,7 +8,7 @@ SpCommandGroup >> asToolBarPresenter [
 	^ self asToolbarPresenter
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpCommandGroup >> asToolBarPresenterWith: aBlock [
 	self
 		deprecated: 'Use #asToolbarPresenterWith: instead.'

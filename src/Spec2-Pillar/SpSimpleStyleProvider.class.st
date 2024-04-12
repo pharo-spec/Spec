@@ -1,13 +1,14 @@
 Class {
-	#name : #SpSimpleStyleProvider,
-	#superclass : #SpStyleProvider,
+	#name : 'SpSimpleStyleProvider',
+	#superclass : 'SpStyleProvider',
 	#instVars : [
 		'itemStyles'
 	],
-	#category : #'Spec2-Pillar'
+	#category : 'Spec2-Pillar',
+	#package : 'Spec2-Pillar'
 }
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpSimpleStyleProvider >> computedStylesFor: aPRDocument [ 
 
 	itemStyles 
@@ -16,25 +17,25 @@ SpSimpleStyleProvider >> computedStylesFor: aPRDocument [
 	^ #()
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSimpleStyleProvider >> initialize [ 
 	super initialize.
 	itemStyles := Dictionary new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSimpleStyleProvider >> itemAt: itemName put: aCollection [
 	itemStyles 
 		at: itemName 
 		put: aCollection 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpSimpleStyleProvider >> itemNameFor: aDocumentItem [
 	^ aDocumentItem styleName
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 SpSimpleStyleProvider >> keysAndValuesDo: aBlock [
 	itemStyles keysAndValuesDo: aBlock
 ]

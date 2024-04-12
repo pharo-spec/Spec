@@ -4,8 +4,8 @@ I am a composable presenter to show a calendar to the user.
 See my example methods on class side.
 "
 Class {
-	#name : #SpCalendarPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpCalendarPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'previousMonthButton',
 		'nextMonthButton',
@@ -14,10 +14,12 @@ Class {
 		'daysButtons',
 		'whenDaySelectedBlock'
 	],
-	#category : #'Spec2-Dynamic-Presenter'
+	#category : 'Spec2-Dynamic-Presenter',
+	#package : 'Spec2-Dynamic',
+	#tag : 'Presenter'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpCalendarPresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add:
@@ -31,7 +33,7 @@ SpCalendarPresenter class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpCalendarPresenter class >> exampleInspectClickedDate [
 	SpCalendarPresenter new
 		adaptToDate: Date today;
@@ -39,7 +41,7 @@ SpCalendarPresenter class >> exampleInspectClickedDate [
 		openWithSpec
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpCalendarPresenter class >> exampleInspectClickedDateAndClose [
 	SpCalendarPresenter new
 		adaptToDate: Date today;
@@ -47,7 +49,7 @@ SpCalendarPresenter class >> exampleInspectClickedDateAndClose [
 		openWithSpec
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpCalendarPresenter class >> exampleSimple [
 	SpCalendarPresenter new
 		adaptToDate: Date today;
@@ -55,7 +57,7 @@ SpCalendarPresenter class >> exampleSimple [
 		openWithSpec
 ]
 
-{ #category : #adapting }
+{ #category : 'adapting' }
 SpCalendarPresenter >> adaptToDate: aDate [
 	self monthYearLabel label: aDate month asString.
 	self previousMonthButton
@@ -70,44 +72,44 @@ SpCalendarPresenter >> adaptToDate: aDate [
 		usingBuilder: (self daysButtonsBuilderFrom: aDate)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpCalendarPresenter >> datesToDisplayFor: aDate [
 	"Returns the dates to display in the calendar."
 	^ (self julianDaysIntervalFor: aDate)
 			collect: [ :julianNumber | Date julianDayNumber: julianNumber ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpCalendarPresenter >> dayBeforeMonthOf: aDate [
 	^ aDate month dates first dayOfWeek - 1
 ]
 
-{ #category : #'private - event' }
+{ #category : 'private - event' }
 SpCalendarPresenter >> dayClicked: aDate [
 	self whenDaySelectedBlock cull: aDate cull: self
 ]
 
-{ #category : #'private - constants' }
+{ #category : 'private - constants' }
 SpCalendarPresenter >> dayNames [
 	^ #('Sun' 'Mon' 'Tue' 'Wed' 'Thu' 'Fri' 'Sat')
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpCalendarPresenter >> daysAfterMonthOf: aDate [
 	^ self daysToDisplayCount - aDate month daysInMonth - (self dayBeforeMonthOf: aDate)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCalendarPresenter >> daysButtons [
 	^ daysButtons
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpCalendarPresenter >> daysButtons: anObject [
 	daysButtons := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpCalendarPresenter >> daysButtonsBuilderFrom: aDate [
 	^ SpDynamicPresentersListBuilder new
 		modelObjects: (self datesToDisplayFor: aDate);
@@ -124,13 +126,13 @@ SpCalendarPresenter >> daysButtonsBuilderFrom: aDate [
 		yourself
 ]
 
-{ #category : #'private - constants' }
+{ #category : 'private - constants' }
 SpCalendarPresenter >> daysInAWeek [
 	"The number of days in a week."
 	^ self dayNames size
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpCalendarPresenter >> daysLabelsBuilder [
 	^ SpDynamicPresentersListBuilder new
 		modelObjects: self dayNames;
@@ -140,18 +142,18 @@ SpCalendarPresenter >> daysLabelsBuilder [
 		yourself
 ]
 
-{ #category : #'private - constants' }
+{ #category : 'private - constants' }
 SpCalendarPresenter >> daysToDisplayCount [
 	^ self maxNumberOfWeeksToDisplay * self daysInAWeek
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCalendarPresenter >> initialize [
 	super initialize.
 	self whenDaySelectedBlock: [ :aDate |  ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCalendarPresenter >> initializePresenters [
 	previousMonthButton := self newButton.
 	previousMonthButton label: '<'.
@@ -167,12 +169,12 @@ SpCalendarPresenter >> initializePresenters [
 	daysButtons := self newNullPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCalendarPresenter >> initializeWindow: aWindowPresenter [
 	aWindowPresenter title: 'Calendar'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpCalendarPresenter >> julianDaysIntervalFor: aDate [
 	"Returns an interval of integers with the first one being the first day to display in the UI and the last integer the last day.
 	 The first and last days might not be in the same month as aDate provided as parameter."
@@ -183,43 +185,43 @@ SpCalendarPresenter >> julianDaysIntervalFor: aDate [
 	^ start to: end
 ]
 
-{ #category : #'private - constants' }
+{ #category : 'private - constants' }
 SpCalendarPresenter >> maxNumberOfWeeksToDisplay [
 	"Maximum number of weeks to display in the calendar for it to be always well displayed."
 	^ 6
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCalendarPresenter >> monthYearLabel [
 	^ monthYearLabel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCalendarPresenter >> namesOfDaysLabels [
 	^ namesOfDaysLabels
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCalendarPresenter >> namesOfDaysLabels: anObject [
 	namesOfDaysLabels := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCalendarPresenter >> nextMonthButton [
 	^ nextMonthButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCalendarPresenter >> previousMonthButton [
 	^ previousMonthButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCalendarPresenter >> whenDaySelectedBlock [
 	^ whenDaySelectedBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCalendarPresenter >> whenDaySelectedBlock: aBlockWith0To2Arguments [
 	"aBlockWith0To2Arguments provided as argument will be called when a day is clicked by the user.
 	 If the block has 0 argument, the block is called as is when the user clicked a day.

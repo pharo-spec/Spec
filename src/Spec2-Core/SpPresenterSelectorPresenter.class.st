@@ -11,23 +11,19 @@ choose := self newPresenterSelector
 ```
 "
 Class {
-	#name : #SpPresenterSelectorPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpPresenterSelectorPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'model',
 		'cases',
 		'default'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #transmission }
-SpPresenterSelectorPresenter >> defaultInputPort [
-
-	^ self inputModelPort
-]
-
-{ #category : #'api - focus' }
+{ #category : 'api - focus' }
 SpPresenterSelectorPresenter >> defaultKeyboardFocus [
 
 	^ layout children 
@@ -35,45 +31,39 @@ SpPresenterSelectorPresenter >> defaultKeyboardFocus [
 		ifEmpty: [ super defaultKeyboardFocus ]
 ]
 
-{ #category : #'defining conditions' }
+{ #category : 'defining conditions' }
 SpPresenterSelectorPresenter >> defaultShow: aPresenterOrBlock [
 
 	default := aPresenterOrBlock
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPresenterSelectorPresenter >> initialize [
 
 	cases := SmallDictionary new.
 	super initialize.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPresenterSelectorPresenter >> initializePresenters [
 
 	layout := SpBoxLayout newTopToBottom
 ]
 
-{ #category : #transmission }
-SpPresenterSelectorPresenter >> inputModelPort [
-
-	^ SpModelPort newPresenter: self
-]
-
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 SpPresenterSelectorPresenter >> setModel: anObject [
 
 	model := anObject.
 	self updatePresenter
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 SpPresenterSelectorPresenter >> setModelBeforeInitialization: anObject [
 
 	model := anObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpPresenterSelectorPresenter >> showingPresenter [
 
 	^ self layout children
@@ -81,7 +71,7 @@ SpPresenterSelectorPresenter >> showingPresenter [
 		ifEmpty: [ nil ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPresenterSelectorPresenter >> updatePresenter [
 
 	layout removeAll.
@@ -95,7 +85,7 @@ SpPresenterSelectorPresenter >> updatePresenter [
 		layout add: (default cull: model) ]
 ]
 
-{ #category : #'defining conditions' }
+{ #category : 'defining conditions' }
 SpPresenterSelectorPresenter >> when: conditionBlock show: aPresenterOrBlock [
 
 	cases 

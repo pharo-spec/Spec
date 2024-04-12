@@ -1,20 +1,22 @@
 Class {
-	#name : #SpOverlayConstraints,
-	#superclass : #SpLayoutConstraints,
+	#name : 'SpOverlayConstraints',
+	#superclass : 'SpLayoutConstraints',
 	#traits : 'SpTAlignable',
 	#instVars : [
 		'overlay'
 	],
-	#category : #'Spec2-Layout-Overlay'
+	#category : 'Spec2-Layout-Overlay',
+	#package : 'Spec2-Layout',
+	#tag : 'Overlay'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOverlayConstraints >> beOverlay [
 	
 	^ overlay := true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpOverlayConstraints >> isOverlay [
 	
 	^ overlay = true

@@ -1,6 +1,6 @@
-Extension { #name : #SpMenuGroupPresenter }
+Extension { #name : 'SpMenuGroupPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpMenuGroupPresenter class >> exampleMenuGroup [
 	| menu |
 	

@@ -1,159 +1,48 @@
+"
+I am an abstract test class that makes all my subclass' test run on the UI thread to avoid concurrency issues.
+"
 Class {
-	#name : #SpBaseTest,
-	#superclass : #TestCase,
-	#instVars : [
-		'presenter',
-		'window'
-	],
-	#category : #'Spec2-Tests-Utils'
+	#name : 'SpBaseTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Tests-Utils',
+	#package : 'Spec2-Tests',
+	#tag : 'Utils'
 }
 
-{ #category : #testing }
-SpBaseTest class >> isAbstract [
+{ #category : 'running' }
+SpBaseTest >> application [
 
-	^ self = SpBaseTest
+	^ SpApplication new
+		  useBackend: #Morphic;
+		  yourself
 ]
 
-{ #category : #accessing }
-SpBaseTest >> adapter [
+{ #category : 'running' }
+SpBaseTest >> run [
 
-	^ self subclassResponsibility
+	| finished result |
+	UIManager default uiProcess == Processor activeProcess ifTrue: [
+		^ super run ].
+
+	finished := Semaphore new.
+	self application defer: [
+		result := super run.
+		finished signal ].
+	finished wait.
+	^ result
 ]
 
-{ #category : #assertions }
-SpBaseTest >> assertEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlock [
-	
-	self
-		assertWith: [ :times | times > 0 ]
-		timesRaisedEvent: anEventName
-		inPresenter: aPresenter
-		whenDoing: aBlock
-]
+{ #category : 'running' }
+SpBaseTest >> run: aResult [
 
-{ #category : #assertions }
-SpBaseTest >> assertWith: assertionBlock timesRaisedEvent: anEventName inPresenter: aPresenter whenDoing: actionBlock [
-	
-	| timesCalled |
-	timesCalled := 0.
-	aPresenter perform: anEventName with: [ timesCalled := timesCalled + 1 ].
-	actionBlock value.
-	assertionBlock value: timesCalled
-]
+	| finished result |
+	UIManager default uiProcess == Processor activeProcess ifTrue: [
+		^ super run: aResult ].
 
-{ #category : #accessing }
-SpBaseTest >> classToTest [
-	self subclassResponsibility
-]
-
-{ #category : #assertions }
-SpBaseTest >> denyEvent: anEventName isRaisedInPresenter: aPresenter whenDoing: aBlock [
-	
-	self
-		assertWith: [ :times | times = 0 ]
-		timesRaisedEvent: anEventName
-		inPresenter: aPresenter
-		whenDoing: aBlock
-]
-
-{ #category : #initialization }
-SpBaseTest >> initializeTestedInstance [
-]
-
-{ #category : #utilities }
-SpBaseTest >> openInstance [
-
-	window ifNil: [ window := presenter open ]
-]
-
-{ #category : #accessing }
-SpBaseTest >> presenter [
-	^ presenter
-]
-
-{ #category : #running }
-SpBaseTest >> setUp [
-	super setUp.
-	presenter := self classToTest new.
-	self initializeTestedInstance
-]
-
-{ #category : #running }
-SpBaseTest >> tearDown [
-	window ifNotNil: [ window delete ].
-	super tearDown
-]
-
-{ #category : #tests }
-SpBaseTest >> testNewPresenterIsNotBuilt [
-	self deny: presenter isBuilt
-]
-
-{ #category : #tests }
-SpBaseTest >> testNewPresenterIsNotDisplayed [
-	self deny: presenter isDisplayed
-]
-
-{ #category : #tests }
-SpBaseTest >> testNonOpenPresenterDoesNotRaiseBuiltEvent [
-	| built |
-	built := false.
-	presenter whenBuiltDo: [ built := true ].
-	self deny: built
-]
-
-{ #category : #tests }
-SpBaseTest >> testNonOpenPresenterDoesNotRaiseDisplayedEvent [
-	| displayed |
-	displayed := false.
-	presenter whenDisplayDo: [ displayed := true ].
-	self deny: displayed
-]
-
-{ #category : #tests }
-SpBaseTest >> testOpenPresenterIsBuilt [
-	self openInstance.
-	self assert: presenter isBuilt
-]
-
-{ #category : #tests }
-SpBaseTest >> testOpenPresenterIsDisplayed [
-	self openInstance.
-	self assert: presenter isDisplayed
-]
-
-{ #category : #tests }
-SpBaseTest >> testOpenPresenterRaisesBuiltEvent [
-	| built |
-	built := false.
-	presenter whenBuiltDo: [ built := true ].
-	self openInstance.
-	self assert: built
-]
-
-{ #category : #tests }
-SpBaseTest >> testOpenPresenterRaisesDisplayEvent [
-	| displayed |
-	displayed := false.
-	presenter whenDisplayDo: [ displayed := true ].
-	self openInstance.
-	self assert: displayed
-]
-
-{ #category : #tests }
-SpBaseTest >> testRebuildPresenterDoNotLetReferencesInAnnouncer [
-
-	| oldSize newSize |
-	presenter build.
-	oldSize := presenter announcer subscriptions subscriptions size.
-	"rebuild"
-	presenter build.
-	newSize := presenter announcer subscriptions subscriptions size.
-
-	self assert: oldSize equals: newSize
-]
-
-{ #category : #accessing }
-SpBaseTest >> widget [
-	
-	^ self adapter widget
+	finished := Semaphore new.
+	self application backend defer: [
+		result := super run: aResult.
+		finished signal ].
+	finished wait.
+	^ result
 ]

@@ -2,21 +2,23 @@
 I'm the adapter used to bridge a ToolBarMenuButton and its morphic representation.
 "
 Class {
-	#name : #SpMorphicToolbarMenuButtonAdapter,
-	#superclass : #SpMorphicToolbarButtonAdapter,
+	#name : 'SpMorphicToolbarMenuButtonAdapter',
+	#superclass : 'SpMorphicToolbarButtonAdapter',
 	#instVars : [
 		'subMenuWidget'
 	],
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicToolbarMenuButtonAdapter >> askBeforeChanging [
 
 	^ false
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicToolbarMenuButtonAdapter >> buildWidget [
 
 	^ SpMorphicToolbarMenuButtonMorph
@@ -24,46 +26,46 @@ SpMorphicToolbarMenuButtonAdapter >> buildWidget [
 		  menuButton: self newMenuButton
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicToolbarMenuButtonAdapter >> button [
 
 	^ widget submorphs first
 ]
 
-{ #category : #control }
+{ #category : 'control' }
 SpMorphicToolbarMenuButtonAdapter >> deleteIfPopUp: anEvent [ 
 	
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpMorphicToolbarMenuButtonAdapter >> dragEnabled [
 
 	^ false
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpMorphicToolbarMenuButtonAdapter >> dropEnabled [
 
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicToolbarMenuButtonAdapter >> icon [
 
 	^ self presenter icon
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicToolbarMenuButtonAdapter >> isSelected: aBooolean [
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicToolbarMenuButtonAdapter >> menuIcon [
 
 	^ self application iconNamed: #arrowDown
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicToolbarMenuButtonAdapter >> newMenuButton [
 
 	^ IconicButtonMorph new
@@ -75,7 +77,7 @@ SpMorphicToolbarMenuButtonAdapter >> newMenuButton [
 		  borderWidth: 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicToolbarMenuButtonAdapter >> showMenu [
 
 	self presenter menu ifNotNil: [ :aValuable | 
@@ -85,7 +87,7 @@ SpMorphicToolbarMenuButtonAdapter >> showMenu [
 	self widget ifNotNil: [ :m | m takeKeyboardFocus ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicToolbarMenuButtonAdapter >> showSubMenu: aMenu [
 
 	aMenu menuGroups ifNil: [ ^ self ].

@@ -1,32 +1,34 @@
 Class {
-	#name : #SpAbstractAdapterTest,
-	#superclass : #ParametrizedTestCase,
+	#name : 'SpAbstractAdapterTest',
+	#superclass : 'ParametrizedTestCase',
 	#instVars : [
 		'presenter',
 		'specInitializationStrategy',
 		'window',
 		'backendForTest'
 	],
-	#category : #'Spec2-Backend-Tests-Base'
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractAdapterTest class >> isAbstract [ 
 	^ self == SpAbstractAdapterTest
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractAdapterTest class >> testParameters [ 
 
 	^ ParametrizedTestMatrix new
 		forSelector: #specInitializationStrategy
 			addOptions: { [ SpInitializationStrategy beforeTest ]. [ SpInitializationStrategy afterTest ] };
 		forSelector: #backendForTest
-			addOptions: { SpMorphicBackendForTest };
+			addOptions: { SpMorphicBackendForTest. "GtkBackendForTest" };
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapterTest >> adapter [
 
 	"Force opening the spec instance here.
@@ -36,60 +38,60 @@ SpAbstractAdapterTest >> adapter [
 	^ presenter adapter
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 SpAbstractAdapterTest >> assertIcon: anIcon equals: aForm [ 
 	
 	backendForTest assertIcon: anIcon equals: aForm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapterTest >> backendForTest: aClass [ 
 	
 	backendForTest := aClass new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapterTest >> classToTest [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #'utilities - emulation' }
+{ #category : 'utilities - emulation' }
 SpAbstractAdapterTest >> emulateCenterClick [
 
 	self emulateClick: MouseButtonEvent blueButton
 ]
 
-{ #category : #'utilities - emulation' }
+{ #category : 'utilities - emulation' }
 SpAbstractAdapterTest >> emulateClick: mouseButtonCode [
 
 	backendForTest emulateClick: mouseButtonCode onTest: self
 ]
 
-{ #category : #'utilities - emulation' }
+{ #category : 'utilities - emulation' }
 SpAbstractAdapterTest >> emulateLeftClick [
 
 	self emulateClick: MouseButtonEvent redButton
 ]
 
-{ #category : #'utilities - emulation' }
+{ #category : 'utilities - emulation' }
 SpAbstractAdapterTest >> emulateRightClick [
 
 	self emulateClick: MouseButtonEvent yellowButton
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractAdapterTest >> initializeTestedInstance [
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 SpAbstractAdapterTest >> openInstance [
 
 	backendForTest openInstanceOf: self 
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractAdapterTest >> performTest [
 	backendForTest
 		runTest: [ presenter := self classToTest new.
@@ -97,7 +99,7 @@ SpAbstractAdapterTest >> performTest [
 			super performTest ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpAbstractAdapterTest >> prepareToRunAgain [
 	"Redefined because setup is cancelled in this class"
 
@@ -105,12 +107,12 @@ SpAbstractAdapterTest >> prepareToRunAgain [
 	super setUp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapterTest >> presenter [
 	^ presenter
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpAbstractAdapterTest >> runCase [
 	self resources do: [ :each | each availableFor: self ].
 	[ super setUp.
@@ -119,62 +121,63 @@ SpAbstractAdapterTest >> runCase [
 			self cleanUpInstanceVariables ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpAbstractAdapterTest >> setUp [
 	super setUp.	"This super is useless but it's to make the release tests happy."
 	self error: 'Do not override me.... use #initializeTestedInstance'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapterTest >> specInitializationStrategy: aStrategy [
 	
 	specInitializationStrategy := aStrategy
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpAbstractAdapterTest >> tearDown [
 	window ifNotNil: [ window delete ].
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractAdapterTest >> testHidePresenterHidesWidget [
 	
 	self presenter hide.
 	self deny: self adapter isVisible
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractAdapterTest >> testShowPresenterShowsWidget [
 	
 	self presenter show.
 	self assert: self adapter isVisible
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractAdapterTest >> testVisibilityWithBlock [
 	presenter visibleIf: [ true ].
 	self assert: self adapter isVisible
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractAdapterTest >> testVisibilityWithBlockThatReturnsFalse [
+
 	presenter visibleIf: [ false ].
 	self deny: self adapter isVisible
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapterTest >> widget [
 
 	^ self adapter widget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapterTest >> window [
 	^ window
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractAdapterTest >> window: aWindowPresenter [ 
 	window := aWindowPresenter
 ]

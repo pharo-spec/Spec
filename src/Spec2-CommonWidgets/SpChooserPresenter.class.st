@@ -3,40 +3,40 @@ I am a presenter that is used to choose items from a list. `SpChooserPresenter>>
 Note that all the items are sorted according to the displayBlock that is provided by my users. If non block is provided, the default displayBlock of `SpListPresenter` is used. This widget is in work in progress so it will improved to be more fast and not sort the items everytime.
 "
 Class {
-	#name : #SpChooserPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpChooserPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'buttonBarLayout',
 		'sourceLabel',
 		'sourceList',
 		'targetLabel',
-		'targetList',
-		'displayBlock',
-		'sourceItems'
+		'targetList'
 	],
-	#category : #'Spec2-CommonWidgets-Core'
+	#category : 'Spec2-CommonWidgets-Core',
+	#package : 'Spec2-CommonWidgets',
+	#tag : 'Core'
 }
 
-{ #category : #'default values' }
+{ #category : 'default values' }
 SpChooserPresenter class >> defaultSourceLabel [
 
 	^ 'Available items' translated
 ]
 
-{ #category : #'default values' }
+{ #category : 'default values' }
 SpChooserPresenter class >> defaultTargetLabel [
 
 	^ 'Selected items' translated
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpChooserPresenter class >> example [
 
 	^ (self sourceItems: self package definedClasses asOrderedCollection)
 		  open
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpChooserPresenter class >> exampleClasses [
 
 	^ (self
@@ -45,7 +45,7 @@ SpChooserPresenter class >> exampleClasses [
 		   displayBlock: #name) open
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpChooserPresenter class >> examplePackages [
 
 	^ (self
@@ -55,7 +55,7 @@ SpChooserPresenter class >> examplePackages [
 		   displayBlock: #packageName) open
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpChooserPresenter class >> sourceItems: sourceItems [
 
 	^ self new
@@ -63,7 +63,7 @@ SpChooserPresenter class >> sourceItems: sourceItems [
 		  yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpChooserPresenter class >> sourceItems: sourceItems chosenItems: selectedItems [
 
 	^ self new
@@ -72,7 +72,7 @@ SpChooserPresenter class >> sourceItems: sourceItems chosenItems: selectedItems 
 		  yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpChooserPresenter class >> sourceItems: sourceItems chosenItems: selectedItems displayBlock: displayBlock [
 
 	^ self new
@@ -82,7 +82,7 @@ SpChooserPresenter class >> sourceItems: sourceItems chosenItems: selectedItems 
 		  yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpChooserPresenter class >> sourceItems: sourceItems displayBlock: displayBlock [
 
 	^ self new
@@ -91,55 +91,38 @@ SpChooserPresenter class >> sourceItems: sourceItems displayBlock: displayBlock 
 		  yourself
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpChooserPresenter class >> title [
 
 	^ 'Choose items'
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpChooserPresenter >> addAll [
 
-	| newSourceItems |
-	targetList items: targetList unfilteredItems , sourceList items.
-	newSourceItems := sourceItems asOrderedCollection.
-	newSourceItems removeAllFoundIn: targetList unfilteredItems.
-	sourceList items: newSourceItems.
-	self resetSelectedItems.
-	self sortLists
+	self moveAllFrom: sourceList to: targetList
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpChooserPresenter >> addSelected [
 
-	| newSourceItems |
-	targetList items:
-		targetList unfilteredItems , sourceList selectedItems.
-	newSourceItems := sourceItems copy asOrderedCollection.
-	newSourceItems removeAllFoundIn: targetList unfilteredItems.
-	sourceList items: newSourceItems.
-	self resetSelectedItems.
-	self sortLists
+	self moveSelectedFrom: sourceList to: targetList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChooserPresenter >> chosenItems [
 
 	^ targetList unfilteredItems
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChooserPresenter >> defaultChosenItems: aCollection [
 
-	| newItems |
 	targetList items: aCollection.
-	newItems := sourceList unfilteredItems copy asOrderedCollection.
-	newItems removeAllFoundIn: aCollection.
-	sourceList items: newItems.
-	self sortLists
+	sourceList items: sourceList unfilteredItems \ aCollection
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpChooserPresenter >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
@@ -158,15 +141,15 @@ SpChooserPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChooserPresenter >> displayBlock: aBlock [
 
-	displayBlock := aBlock.
 	sourceList display: aBlock.
-	targetList display: aBlock
+	targetList display: aBlock.
+	self initializeSortingBlocks
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpChooserPresenter >> initializeButtonBarLayout [
 
 	| addButton addAllButton removeButton removeAllButton |
@@ -207,15 +190,15 @@ SpChooserPresenter >> initializeButtonBarLayout [
 		add: SpNullPresenter new expand: true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpChooserPresenter >> initializeLists [
 
 	sourceList := self instantiate: SpFilteringSelectableListPresenter.
 	targetList := self instantiate: SpFilteringSelectableListPresenter.
-	displayBlock := sourceList display
+	self initializeSortingBlocks
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpChooserPresenter >> initializePresenters [
 
 	sourceLabel := self newLabel label: self class defaultSourceLabel.
@@ -224,96 +207,92 @@ SpChooserPresenter >> initializePresenters [
 	self initializeButtonBarLayout
 ]
 
-{ #category : #actions }
+{ #category : 'initialization' }
+SpChooserPresenter >> initializeSortingBlocks [
+
+	| sortingBlock |
+	sortingBlock := sourceList display ascending.
+	sourceList sortingBlock: sortingBlock.
+	targetList sortingBlock: sortingBlock
+]
+
+{ #category : 'private' }
+SpChooserPresenter >> moveAllFrom: fromList to: toList [
+
+	| newFromListItems |
+	toList items: toList unfilteredItems , fromList items.
+	newFromListItems := OrderedCollection withAll:
+		                    fromList unfilteredItems.
+	newFromListItems removeAllFoundIn: fromList items.
+	fromList items: newFromListItems
+]
+
+{ #category : 'private' }
+SpChooserPresenter >> moveSelectedFrom: fromList to: toList [
+
+	| newFromListItems |
+	toList items: toList unfilteredItems , fromList selectedItems.
+	newFromListItems := OrderedCollection withAll: fromList unfilteredItems.
+	newFromListItems removeAllFoundIn: fromList selectedItems.
+	fromList items: newFromListItems
+]
+
+{ #category : 'actions' }
 SpChooserPresenter >> removeAll [
 
-	| newTargetItems |
-	sourceList items: targetList items , sourceList unfilteredItems.
-	newTargetItems := targetList unfilteredItems copy asOrderedCollection.
-	newTargetItems removeAllFoundIn: sourceList unfilteredItems.
-	targetList items: newTargetItems.
-	self resetSelectedItems.
-	self sortLists
+	self moveAllFrom: targetList to: sourceList
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpChooserPresenter >> removeSelected [
 
-	| newTargetItems |
-	sourceList items:
-		sourceList unfilteredItems , targetList selectedItems.
-	newTargetItems := targetList unfilteredItems copy asOrderedCollection.
-	newTargetItems removeAllFoundIn: targetList selectedItems.
-	targetList items: newTargetItems.
-	self resetSelectedItems.
-	self sortLists
+	self moveSelectedFrom: targetList to: sourceList
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpChooserPresenter >> resetSelectedItems [
 	
 	sourceList selectItems: #().
 	targetList selectItems: #().
 ]
 
-{ #category : #actions }
-SpChooserPresenter >> sortLists [
-
-	self sortSourceList.
-	self sortTargetList
-]
-
-{ #category : #actions }
-SpChooserPresenter >> sortSourceList [
-
-	sourceList items: (sourceList items sorted: displayBlock ascending)
-]
-
-{ #category : #actions }
-SpChooserPresenter >> sortTargetList [
-
-	targetList items: (targetList items sorted: displayBlock ascending)
-]
-
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChooserPresenter >> sourceItems: aCollection [
 
-	sourceItems := aCollection.
-	sourceList items: aCollection.
-	self sortLists
+	sourceList items: aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChooserPresenter >> sourceLabel [
 
 	^ sourceLabel label
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChooserPresenter >> sourceLabel: aString [
 
 	sourceLabel label: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChooserPresenter >> sourceList [
 
 	^ sourceList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChooserPresenter >> targetLabel [
 
 	^ targetLabel label
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChooserPresenter >> targetLabel: aString [
 
 	targetLabel label: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpChooserPresenter >> targetList [
 
 	^ targetList

@@ -1,6 +1,6 @@
-Extension { #name : #CmUIDisplayAsSubMenu }
+Extension { #name : 'CmUIDisplayAsSubMenu' }
 
-{ #category : #'*Spec2-Commander2' }
+{ #category : '*Spec2-Commander2' }
 CmUIDisplayAsSubMenu >> display: aCmSpecCommandGroup in: aMenuPresenter do: aBlock [
 
 	aMenuPresenter addItem: [ :menuItem |
@@ -10,7 +10,7 @@ CmUIDisplayAsSubMenu >> display: aCmSpecCommandGroup in: aMenuPresenter do: aBlo
 			do: aBlock) ]
 ]
 
-{ #category : #'*Spec2-Commander2' }
+{ #category : '*Spec2-Commander2' }
 CmUIDisplayAsSubMenu >> fillSubMenuIn: menuItem with: aCmSpecCommandGroup do: aBlock [
 	| subMenu |
 	

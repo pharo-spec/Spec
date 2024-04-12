@@ -2,28 +2,30 @@
 A SpListWithFilterPresenterTest is a test class for testing the behavior of SpListWithFilterPresenter
 "
 Class {
-	#name : #SpFilteringListPresenterTest,
-	#superclass : #TestCase,
+	#name : 'SpFilteringListPresenterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'listWithFilter'
 	],
-	#category : #'Spec2-CommonWidgets-Tests'
+	#category : 'Spec2-CommonWidgets-Tests-Core',
+	#package : 'Spec2-CommonWidgets-Tests',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpFilteringListPresenterTest >> classToTest [
 
 	^ SpFilteringListPresenter
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpFilteringListPresenterTest >> setUp [
 
 	super setUp.
 	listWithFilter := self classToTest new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpFilteringListPresenterTest >> testEnableItemBeginsWithFilter [
 
 	listWithFilter matchBeginOfString.
@@ -48,7 +50,7 @@ SpFilteringListPresenterTest >> testEnableItemBeginsWithFilter [
 	self assert: listWithFilter items size equals: 6
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpFilteringListPresenterTest >> testEnableItemSubstringFilter [
 
 	listWithFilter matchSubstring.
@@ -71,11 +73,11 @@ SpFilteringListPresenterTest >> testEnableItemSubstringFilter [
 	self assert: listWithFilter items size equals: 6
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpFilteringListPresenterTest >> testFilterListItems [
 
 	| listItems |
-	listItems := { 
+	listItems := {
 		             OrderedCollection.
 		             Array.
 		             SequenceableCollection.
@@ -83,7 +85,7 @@ SpFilteringListPresenterTest >> testFilterListItems [
 		             Dictionary }.
 	listWithFilter items: listItems.
 	listWithFilter filterListItems: 'collection'.
-	self assertCollection: listWithFilter items hasSameElements: { 
+	self assertCollection: listWithFilter items hasSameElements: {
 			OrderedCollection.
 			SequenceableCollection }.
 	listWithFilter filterListItems: 'xyz'.
@@ -107,7 +109,7 @@ SpFilteringListPresenterTest >> testFilterListItems [
 		assertCollection: listWithFilter items
 		hasSameElements: listItems.
 	listItems := #( 'a' 'e' 'i' 'o' 'u' ).
-	listWithFilter listPresenter items: listItems.
+	listWithFilter items: listItems.
 	listWithFilter filterListItems: '5'.
 	self assertEmpty: listWithFilter items.
 	listWithFilter filterListItems: 'a'.
@@ -118,7 +120,7 @@ SpFilteringListPresenterTest >> testFilterListItems [
 		hasSameElements: listItems
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpFilteringListPresenterTest >> testFilterListItemsWithDifferentDisplay [
 
 	| listItems |
@@ -145,7 +147,7 @@ SpFilteringListPresenterTest >> testFilterListItemsWithDifferentDisplay [
 		hasSameElements: listItems
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpFilteringListPresenterTest >> testItemFilter [
 
 	| filterBlock |
@@ -156,14 +158,14 @@ SpFilteringListPresenterTest >> testItemFilter [
 	self assert: listWithFilter itemFilter equals: filterBlock
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpFilteringListPresenterTest >> testItems [
 
 	listWithFilter items: { Array }.
 	self assertCollection: listWithFilter items hasSameElements: { Array }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpFilteringListPresenterTest >> testWhenSelectionChangedDo [ 
 	| changed |
 

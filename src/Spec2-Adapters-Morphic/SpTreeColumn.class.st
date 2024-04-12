@@ -2,19 +2,21 @@
 I am a Tree column made especially to be used by the Spec framework
 "
 Class {
-	#name : #SpTreeColumn,
-	#superclass : #MorphTreeColumn,
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#name : 'SpTreeColumn',
+	#superclass : 'MorphTreeColumn',
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 SpTreeColumn >> bindKeyCombination: aKMCombination toAction: aBlock [
 
 	"Do nothing"
 	
 ]
 
-{ #category : #'column drawing' }
+{ #category : 'column drawing' }
 SpTreeColumn >> rowMorphFor: aNode [ 
 	| node rowMorph |
 	
@@ -30,7 +32,7 @@ SpTreeColumn >> rowMorphFor: aNode [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTreeColumn >> setHeaderButtonLabel: aLabel font: aFont icon: anIconForm target: aReceiver actionSelector: aSelector [
 	(aLabel isNil
 		and: [ anIconForm isNil and: [ aReceiver isNil or: [ aSelector isNil ] ] ])
@@ -41,13 +43,13 @@ SpTreeColumn >> setHeaderButtonLabel: aLabel font: aFont icon: anIconForm target
 		ifNotNil: [ self header label: aLabel font: aFont ].
 	anIconForm
 		ifNotNil: [ self header icon: (ImageMorph new form: anIconForm) ].
-	(aSelector notNil and: [ aReceiver notNil ])
+	(aSelector isNotNil and: [ aReceiver isNotNil ])
 		ifFalse: [ ^ self ].
 	self header actionSelector: aSelector.
 	self header target: aReceiver
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTreeColumn >> visible: aBoolean [
 
 	"Do nothing. Morphs implement visible but this column, though it inherits from Morphic column and has an adapter, dos not."

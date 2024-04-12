@@ -3,15 +3,17 @@ I add alignment properties to layouts.
 Alignments can be added by layout basis (see SpBoxLayout) or widget basis (see SpGridConstraints).
 "
 Trait {
-	#name : #SpTAlignable,
+	#name : 'SpTAlignable',
 	#instVars : [
 		'vAlign',
 		'hAlign'
 	],
-	#category : #'Spec2-Layout-Base'
+	#category : 'Spec2-Layout-Base',
+	#package : 'Spec2-Layout',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTAlignable >> hAlign [
 	"I define the horizontal alignment of the widgets in the layout.
 	 aligns can be start, center and end. 
@@ -20,56 +22,56 @@ SpTAlignable >> hAlign [
 	^ hAlign
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTAlignable >> hAlign: anAlignment [
 	"Sets the horizontal align property. See #hAlign to details"
 	
 	hAlign := anAlignment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTAlignable >> hAlignCenter [
 	"Sets the horizontal align property to CENTER. See #hAlign for details"
 
 	self hAlign: SpLayoutWidgetAlignment center
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTAlignable >> hAlignEnd [
 	"Sets the horizontal align property to END. See #hAlign for details"
 
 	self hAlign: SpLayoutWidgetAlignment end
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTAlignable >> hAlignStart [
 	"Sets the horizontal align property to START. See #hAlign for details"
 
 	self hAlign: SpLayoutWidgetAlignment start
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTAlignable >> hasAlignment [
 	"Answer whether the component has any alignment defined"
 
 	^ self hasVAlign or: [ self hasHAlign ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTAlignable >> hasHAlign [
 	"Answer whether the component has an horizontal alignment defined"
 
-	^ hAlign notNil
+	^ hAlign isNotNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTAlignable >> hasVAlign [
 	"Answer whether the component has a vertical alignment defined"
 
-	^ vAlign notNil
+	^ vAlign isNotNil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTAlignable >> vAlign [
 	"I define the vertical alignment of the widgets in the layout.
 	 aligns can be start, center and end. 
@@ -78,28 +80,28 @@ SpTAlignable >> vAlign [
 	^ vAlign
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTAlignable >> vAlign: anAlignment [
 	"Sets the vertical align property. See #vAlign to details"
 
 	vAlign := anAlignment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTAlignable >> vAlignCenter [
 	"Sets the vertical align property to CENTER. See #vAlign for details"
 
 	self vAlign: SpLayoutWidgetAlignment center
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTAlignable >> vAlignEnd [
 	"Sets the vertical align property to END. See #vAlign for details"
 
 	self vAlign: SpLayoutWidgetAlignment end
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTAlignable >> vAlignStart [
 	"Sets the vertical align property to START. See #vAlign for details"
 

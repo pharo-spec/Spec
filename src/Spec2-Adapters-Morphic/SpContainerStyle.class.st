@@ -21,23 +21,25 @@ Container {
 ```
 "
 Class {
-	#name : #SpContainerStyle,
-	#superclass : #SpPropertyStyle,
+	#name : 'SpContainerStyle',
+	#superclass : 'SpPropertyStyle',
 	#instVars : [
 		'borderWidth',
 		'padding',
 		'borderColor'
 	],
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #'ston-core' }
+{ #category : 'ston-core' }
 SpContainerStyle class >> stonName [
 
-	^ 'Container'
+	^ #Container
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 SpContainerStyle >> applyTo: aMorph [ 
 
 	self borderColorVariable ifNotNil: [ :aVariable | aMorph borderColor: aVariable valueAsColor ].
@@ -45,7 +47,7 @@ SpContainerStyle >> applyTo: aMorph [
 	self paddingVariable ifNotNil: [ :aVariable | aMorph cellInset: aVariable scaledValue ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContainerStyle >> borderColor [
   "This property can be expressed as 
 	- a STON map: ==Color { #red : 1., #green : 0, #blue : 0, #alpha : 1 }==
@@ -55,13 +57,13 @@ SpContainerStyle >> borderColor [
 	^ self borderColorVariable value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContainerStyle >> borderColor: aColor [
 
 	borderColor := aColor asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : 'accessing - variables' }
 SpContainerStyle >> borderColorVariable [
   "This property can be expressed as 
 	- a STON map: ==Color { #red : 1., #green : 0, #blue : 0, #alpha : 1 }==
@@ -71,37 +73,37 @@ SpContainerStyle >> borderColorVariable [
 	^ self toVariable: borderColor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContainerStyle >> borderWidth [
 
 	^ self borderWidthVariable scaledValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContainerStyle >> borderWidth: aNumber [
 
 	borderWidth := aNumber asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : 'accessing - variables' }
 SpContainerStyle >> borderWidthVariable [
 
 	^ self toVariable: borderWidth
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContainerStyle >> padding [
 
 	^ self paddingVariable scaledValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContainerStyle >> padding: aNumber [
 
 	padding := aNumber asStyleVariable
 ]
 
-{ #category : #'accessing - variables' }
+{ #category : 'accessing - variables' }
 SpContainerStyle >> paddingVariable [
 
 	^ self toVariable: padding

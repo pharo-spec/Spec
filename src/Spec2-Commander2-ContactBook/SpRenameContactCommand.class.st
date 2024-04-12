@@ -2,12 +2,14 @@
 I am a command allowing to rename a contact.
 "
 Class {
-	#name : #SpRenameContactCommand,
-	#superclass : #SpContactBookCommand,
-	#category : #'Spec2-Commander2-ContactBook-Commands'
+	#name : 'SpRenameContactCommand',
+	#superclass : 'SpContactBookCommand',
+	#category : 'Spec2-Commander2-ContactBook-Commands',
+	#package : 'Spec2-Commander2-ContactBook',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 SpRenameContactCommand >> asSpecCommand [
 	"Here we define the additional information the command will need to know
 	 when used in the Spec framework.
@@ -17,18 +19,18 @@ SpRenameContactCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 SpRenameContactCommand >> canBeExecuted [
 	^ self context isContactSelected
 ]
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 SpRenameContactCommand >> execute [
 	self selectedContact name: self context newName.
 	self contactBookPresenter updateView
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRenameContactCommand >> initialize [
 	super initialize.
 	self

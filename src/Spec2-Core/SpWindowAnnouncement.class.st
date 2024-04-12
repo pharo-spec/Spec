@@ -1,18 +1,20 @@
 Class {
-	#name : #SpWindowAnnouncement,
-	#superclass : #Announcement,
+	#name : 'SpWindowAnnouncement',
+	#superclass : 'Announcement',
 	#instVars : [
 		'window'
 	],
-	#category : #'Spec2-Core-Windows'
+	#category : 'Spec2-Core-Windows',
+	#package : 'Spec2-Core',
+	#tag : 'Windows'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWindowAnnouncement >> window [
 	^ window
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWindowAnnouncement >> window: anObject [
 	window := anObject
 ]

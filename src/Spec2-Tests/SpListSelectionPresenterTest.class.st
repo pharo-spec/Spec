@@ -1,10 +1,12 @@
 Class {
-	#name : #SpListSelectionPresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Examples'
+	#name : 'SpListSelectionPresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Tests-Examples',
+	#package : 'Spec2-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpListSelectionPresenterTest >> classToTest [
 	^ SpListSelectionPresenter
 ]

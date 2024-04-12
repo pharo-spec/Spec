@@ -4,31 +4,33 @@ I build a ActionBarPresenter from a group of commands.
 To do that, I visit recursively groups of command breadth first and simple add each command encountered to the action bar.
 "
 Class {
-	#name : #SpActionBarPresenterBuilder,
-	#superclass : #CmVisitor,
+	#name : 'SpActionBarPresenterBuilder',
+	#superclass : 'CmVisitor',
 	#instVars : [
 		'actionBarPresenter'
 	],
-	#category : #'Spec2-Commander2-Visitors'
+	#category : 'Spec2-Commander2-Visitors',
+	#package : 'Spec2-Commander2',
+	#tag : 'Visitors'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpActionBarPresenterBuilder >> actionBarPresenter [
 	^ actionBarPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpActionBarPresenterBuilder >> actionBarPresenter: anObject [
 	actionBarPresenter := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpActionBarPresenterBuilder >> initialize [
 	super initialize.
 	self actionBarPresenter: SpActionBarPresenter new.
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpActionBarPresenterBuilder >> visitCommand: aCmCommandEntry [ 
 	aCmCommandEntry positionStrategy
 		addButton: aCmCommandEntry asButtonPresenter

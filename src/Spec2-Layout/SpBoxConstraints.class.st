@@ -8,8 +8,8 @@ I can define:
 - width/height: fixed width and height to take. 
 "
 Class {
-	#name : #SpBoxConstraints,
-	#superclass : #SpLayoutConstraints,
+	#name : 'SpBoxConstraints',
+	#superclass : 'SpLayoutConstraints',
 	#instVars : [
 		'expand',
 		'fill',
@@ -18,52 +18,54 @@ Class {
 		'height',
 		'width'
 	],
-	#category : #'Spec2-Layout-Box'
+	#category : 'Spec2-Layout-Box',
+	#package : 'Spec2-Layout',
+	#tag : 'Box'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpBoxConstraints class >> defaultExpand [
 
 	^ true
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpBoxConstraints class >> defaultFill [
 
 	^ true
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 SpBoxConstraints class >> defaultPadding [ 
 
 	^ 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBoxConstraints >> bePlacedAtEnd [
 
 	placedAtStart := false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBoxConstraints >> bePlacedAtStart [
 
 	placedAtStart := true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBoxConstraints >> expand: aBoolean [
 
 	expand := aBoolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBoxConstraints >> fill: aBoolean [
 
 	fill := aBoolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBoxConstraints >> height [
 	"height of component.
 	 this just has sense in the case of expand=false"
@@ -71,7 +73,7 @@ SpBoxConstraints >> height [
 	^ height
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBoxConstraints >> height: aNumber [
 	"Height of component.
 	 Set the constraint of the presenter to assign a fixed height. 
@@ -86,41 +88,41 @@ SpBoxConstraints >> height: aNumber [
 	height := aNumber
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpBoxConstraints >> initialize [ 
 
 	super initialize.
 	self bePlacedAtStart
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpBoxConstraints >> isExpand [
 	^ expand ifNil: [ self class defaultExpand ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpBoxConstraints >> isFill [
 	^ fill ifNil: [ self class defaultFill ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpBoxConstraints >> isPlacedAtStart [
 	
 	^ placedAtStart
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBoxConstraints >> padding [
 	^ padding ifNil: [ self class defaultPadding ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBoxConstraints >> padding: aNumber [
 
 	padding := aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBoxConstraints >> width [
 	"width of component.
 	 this just has sense in the case of expand=false"
@@ -128,7 +130,7 @@ SpBoxConstraints >> width [
 	^ width
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpBoxConstraints >> width: aNumber [
 	"Width of component.
 	 Set the constraint of the presenter to assign a specific width. 

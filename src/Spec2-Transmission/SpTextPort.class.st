@@ -7,18 +7,20 @@ The presenter exposing a text input port need to define also the method ==#text:
 Presenters exposing this port: *class:SpAbstractTextPresenter* subclasses.
 "
 Class {
-	#name : #SpTextPort,
-	#superclass : #SpInputPort,
-	#category : #'Spec2-Transmission-Base'
+	#name : 'SpTextPort',
+	#superclass : 'SpInputPort',
+	#category : 'Spec2-Transmission-Base',
+	#package : 'Spec2-Transmission',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextPort class >> portName [
 
 	^ #text
 ]
 
-{ #category : #'handling transmission' }
+{ #category : 'handling transmission' }
 SpTextPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
 
 	aPresenter text: anObject

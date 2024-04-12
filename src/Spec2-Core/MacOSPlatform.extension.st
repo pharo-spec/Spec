@@ -1,6 +1,6 @@
-Extension { #name : #MacOSPlatform }
+Extension { #name : 'MacOSPlatform' }
 
-{ #category : #'*Spec2-Core' }
+{ #category : '*Spec2-Core' }
 MacOSPlatform >> configureApplication: anApplication configuration: aConfiguration [
 	
 	aConfiguration configureOSX: anApplication

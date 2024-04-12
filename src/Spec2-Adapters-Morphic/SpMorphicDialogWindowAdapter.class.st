@@ -2,33 +2,37 @@
 I am the adapter used to bridge a DialogWindowPresenter and a DialogWindow
 "
 Class {
-	#name : #SpMorphicDialogWindowAdapter,
-	#superclass : #SpMorphicWindowAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicDialogWindowAdapter',
+	#superclass : 'SpMorphicWindowAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicDialogWindowAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
 	"I replace the mainPanel (which contains contents and button bar) because like that I get the 
 	 status bar at the end (where it belongs)"
 
 	super addPresenterIn: widgetToBuild withSpecLayout: aSpec.
 	self model buttons ifNotEmpty: [ 	
-		widgetToBuild setToolbarFrom: [ self buildButtonBar ] ]
+		widgetToBuild setToolbarFrom: [ self buildButtonBar ].
+		self presenter defaultButton 
+			ifNotNil: [ :aButton | aButton adapter setAsDefault ] ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicDialogWindowAdapter >> buildButtonBar [
-
 	| buttonBar |
+
 	buttonBar := (SpButtonBarPresenter owner: self model) placeAtEnd.
-	self model buttons do: [ :buttonPresenter | 
-		buttonBar add: buttonPresenter ].
+	self model buttons 
+		do: [ :buttonPresenter | buttonBar add: buttonPresenter ].
 
 	^ buttonBar
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicDialogWindowAdapter >> buildWidget [
 
 	^ SpDialogWindowMorph new

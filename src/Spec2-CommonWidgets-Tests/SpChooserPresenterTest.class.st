@@ -1,13 +1,18 @@
+"
+A SpChooserPresenterTest is a test class for testing the behavior of SpChooserPresenter
+"
 Class {
-	#name : #SpChooserPresenterTest,
-	#superclass : #TestCase,
+	#name : 'SpChooserPresenterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'chooserPresenter'
 	],
-	#category : #'Spec2-CommonWidgets-Tests'
+	#category : 'Spec2-CommonWidgets-Tests-Core',
+	#package : 'Spec2-CommonWidgets-Tests',
+	#tag : 'Core'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpChooserPresenterTest >> initializeChooser [
 
 	chooserPresenter := SpChooserPresenter
@@ -15,20 +20,20 @@ SpChooserPresenterTest >> initializeChooser [
 		                    displayBlock: #name
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpChooserPresenterTest >> items [
 
 	^ RBBrowserEnvironment default allClasses
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpChooserPresenterTest >> setUp [
 
 	super setUp.
 	self initializeChooser
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpChooserPresenterTest >> testAddAll [
 
 	self assert: chooserPresenter sourceList unfilteredItems isNotEmpty.
@@ -38,7 +43,48 @@ SpChooserPresenterTest >> testAddAll [
 	self assert: chooserPresenter targetList unfilteredItems isNotEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
+SpChooserPresenterTest >> testAddAllOfFiltered [
+
+	| sourceItemsToAdd sourceItems targetItems allItems presenter |
+	sourceItemsToAdd := #( ToAdd1 ToAdd2 ).
+	sourceItems := { 'S1' } , sourceItemsToAdd.
+	targetItems := { 'T1'. 'T2' }.
+	allItems := sourceItems , targetItems.
+
+	presenter := SpChooserPresenter
+		             sourceItems: sourceItems copy
+		             chosenItems: targetItems copy.
+
+	presenter sourceList filterInputPresenter text: 'ToAdd'.
+
+	self
+		assertCollection: presenter sourceList items
+		hasSameElements: sourceItemsToAdd.
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter targetList items
+		hasSameElements: targetItems.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems.
+
+	presenter addAll.
+
+	self
+		assert: presenter sourceList filterInputPresenter text
+		equals: ''.
+	self
+		assertCollection: presenter sourceList items
+		hasSameElements: sourceItems \ sourceItemsToAdd.
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems \ sourceItemsToAdd
+]
+
+{ #category : 'tests' }
 SpChooserPresenterTest >> testAddItemUsingFilter [
 
 chooserPresenter sourceList applyFilter: 'HashedCollection'.
@@ -54,7 +100,7 @@ chooserPresenter sourceList applyFilter: 'HashedCollection'.
 				HashedCollection }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpChooserPresenterTest >> testAddSelected [
 
 	self assert: chooserPresenter sourceList selectedItems isEmpty.
@@ -69,7 +115,258 @@ SpChooserPresenterTest >> testAddSelected [
 		equals: self items size - 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
+SpChooserPresenterTest >> testAddSelectedAllOfFiltered [
+
+	| sourceItemsToAdd sourceItems targetItems allItems presenter |
+	sourceItemsToAdd := #( ToAdd1 ToAdd2 ).
+	sourceItems := { 'S1' } , sourceItemsToAdd.
+	targetItems := { 'T1'. 'T2' }.
+	allItems := sourceItems , targetItems.
+
+	presenter := SpChooserPresenter
+		             sourceItems: sourceItems copy
+		             chosenItems: targetItems copy.
+
+	presenter sourceList filterInputPresenter text: 'ToAdd'.
+
+	self
+		assertCollection: presenter sourceList items
+		hasSameElements: sourceItemsToAdd.
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter targetList items
+		hasSameElements: targetItems.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems.
+
+	presenter sourceList selectItems: sourceItemsToAdd.
+	presenter addSelected.
+
+	self
+		assert: presenter sourceList filterInputPresenter text
+		equals: ''.
+	self
+		assertCollection: presenter sourceList items
+		hasSameElements: sourceItems \ sourceItemsToAdd.
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems \ sourceItemsToAdd
+]
+
+{ #category : 'tests' }
+SpChooserPresenterTest >> testAddSelectedPartOfFiltered [
+
+	| sourceItemToAdd sourceItems targetItems allItems presenter |
+	sourceItemToAdd := 'ToAdd'.
+	sourceItems := {
+		               'S1'.
+		               'ToNotAdd'.
+		               sourceItemToAdd }.
+	targetItems := { 'T1'. 'T2' }.
+	allItems := sourceItems , targetItems.
+
+	presenter := SpChooserPresenter
+		             sourceItems: sourceItems copy
+		             chosenItems: targetItems copy.
+
+	presenter sourceList filterInputPresenter text: 'To'.
+
+	self
+		assertCollection: presenter sourceList items
+		hasSameElements: #( ToAdd ToNotAdd ).
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter targetList items
+		hasSameElements: targetItems.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems.
+
+	presenter sourceList selectItem: sourceItemToAdd.
+	presenter addSelected.
+
+	self
+		assert: presenter sourceList filterInputPresenter text
+		equals: 'To'.
+	self
+		assertCollection: presenter sourceList items
+		hasSameElements: { 'ToNotAdd' }.
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: (sourceItems copyWithout: sourceItemToAdd)
+]
+
+{ #category : 'tests' }
+SpChooserPresenterTest >> testAllRemoveThenAdd [
+
+	| targetItemToRemove sourceItemToAdd sourceItems targetItems allItems presenter |
+	targetItemToRemove := 'TargetToRemove'.
+	sourceItemToAdd := 'SourceToAdd'.
+	sourceItems := {
+		               'S1'.
+		               'S2'.
+		               sourceItemToAdd }.
+	targetItems := {
+		               'T1'.
+		               'T2'.
+		               targetItemToRemove }.
+	allItems := sourceItems , targetItems.
+
+	presenter := SpChooserPresenter
+		             sourceItems: sourceItems copy
+		             chosenItems: targetItems copy.
+
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems.
+
+	presenter targetList selectItem: targetItemToRemove.
+	presenter removeAll.
+
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: allItems.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: #(  ).
+
+	presenter sourceList selectItem: sourceItemToAdd.
+	presenter addAll.
+
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: #(  ).
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: allItems
+]
+
+{ #category : 'tests' }
+SpChooserPresenterTest >> testFilterBothThenRemove [
+
+	| targetItemToRemove sourceItemToAdd sourceItems targetItems allItems presenter |
+	targetItemToRemove := 'TargetToRemove'.
+	sourceItemToAdd := 'SourceToAdd'.
+	sourceItems := {
+		               'S1'.
+		               'S2'.
+		               sourceItemToAdd }.
+	targetItems := {
+		               'T1'.
+		               'T2'.
+		               targetItemToRemove }.
+	allItems := sourceItems , targetItems.
+
+	presenter := SpChooserPresenter
+		             sourceItems: sourceItems copy
+		             chosenItems: targetItems copy.
+
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems.
+
+	presenter sourceList filterInputPresenter text: 'ToAdd'.
+	presenter targetList filterInputPresenter text: 'ToRemove'.
+
+
+	self
+		assertCollection: presenter sourceList items
+		hasSameElements: { sourceItemToAdd }.
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter targetList items
+		hasSameElements: { targetItemToRemove }.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems.
+
+	presenter removeAll.
+
+	self
+		assert: presenter sourceList filterInputPresenter text
+		equals: 'ToAdd'.
+	self
+		assert: presenter targetList filterInputPresenter text
+		equals: ''.
+	self
+		assertCollection: presenter sourceList items
+		hasSameElements: { sourceItemToAdd }.
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems , { targetItemToRemove }.
+	self
+		assertCollection: presenter targetList items
+		hasSameElements: (targetItems copyWithout: targetItemToRemove).
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: (targetItems copyWithout: targetItemToRemove)
+]
+
+{ #category : 'tests' }
+SpChooserPresenterTest >> testFilteredRemoveThenAdd [
+
+	| targetItemToRemove sourceItemToAdd sourceItems targetItems allItems presenter |
+	targetItemToRemove := 'TargetToRemove'.
+	sourceItemToAdd := 'SourceToAdd'.
+	sourceItems := {
+		               'S1'.
+		               'S2'.
+		               sourceItemToAdd }.
+	targetItems := {
+		               'T1'.
+		               'T2'.
+		               targetItemToRemove }.
+	allItems := sourceItems , targetItems.
+
+	presenter := SpChooserPresenter
+		             sourceItems: sourceItems copy
+		             chosenItems: targetItems copy.
+
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems.
+
+	presenter targetList filterInputPresenter text: 'ToRemove'.
+	presenter removeAll.
+
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems , { targetItemToRemove }.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: (targetItems copyWithout: targetItemToRemove).
+
+	presenter sourceList filterInputPresenter text: 'ToAdd'.
+	presenter addAll.
+
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements:
+		(sourceItems copyWithout: sourceItemToAdd) , { targetItemToRemove }.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements:
+		(targetItems copyWithout: targetItemToRemove) , { sourceItemToAdd }
+]
+
+{ #category : 'tests' }
 SpChooserPresenterTest >> testRemoveAll [
 
 	chooserPresenter removeAll.
@@ -77,7 +374,48 @@ SpChooserPresenterTest >> testRemoveAll [
 	self assert: chooserPresenter targetList unfilteredItems isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
+SpChooserPresenterTest >> testRemoveAllOfFiltered [
+
+	| targetItemsToRemove sourceItems targetItems allItems presenter |
+	targetItemsToRemove := #( ToRemove1 ToRemove2 ).
+	sourceItems := { 'S1'. 'S2' }.
+	targetItems := { 'T1' } , targetItemsToRemove.
+	allItems := sourceItems , targetItems.
+
+	presenter := SpChooserPresenter
+		             sourceItems: sourceItems copy
+		             chosenItems: targetItems copy.
+
+	presenter targetList filterInputPresenter text: 'ToRemove'.
+
+	self
+		assertCollection: presenter sourceList items
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter targetList items
+		hasSameElements: targetItemsToRemove.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems.
+
+	presenter removeAll.
+
+	self
+		assert: presenter targetList filterInputPresenter text
+		equals: ''.
+	self
+		assertCollection: presenter targetList items
+		hasSameElements: targetItems \ targetItemsToRemove.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems \ targetItemsToRemove
+]
+
+{ #category : 'tests' }
 SpChooserPresenterTest >> testRemoveItemUsingFilter [
 
 	chooserPresenter addAll.
@@ -94,7 +432,7 @@ SpChooserPresenterTest >> testRemoveItemUsingFilter [
 				HashedCollection }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpChooserPresenterTest >> testRemoveSelected [
 
 	chooserPresenter addAll.
@@ -109,7 +447,194 @@ SpChooserPresenterTest >> testRemoveSelected [
 		equals: self items size - 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
+SpChooserPresenterTest >> testRemoveSelectedAllOfFiltered [
+
+	| targetItemsToRemove sourceItems targetItems allItems presenter |
+	targetItemsToRemove := #( ToRemove1 ToRemove2 ).
+	sourceItems := { 'S1'. 'S2' }.
+	targetItems := { 'T1' } , targetItemsToRemove.
+	allItems := sourceItems , targetItems.
+
+	presenter := SpChooserPresenter
+		             sourceItems: sourceItems copy
+		             chosenItems: targetItems copy.
+
+	presenter targetList filterInputPresenter text: 'ToRemove'.
+
+	self
+		assertCollection: presenter sourceList items
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter targetList items
+		hasSameElements: targetItemsToRemove.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems.
+
+	presenter targetList selectItems: targetItemsToRemove.
+	presenter removeSelected.
+
+	self
+		assert: presenter targetList filterInputPresenter text
+		equals: ''.
+	self
+		assertCollection: presenter targetList items
+		hasSameElements: targetItems \ targetItemsToRemove.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems \ targetItemsToRemove
+]
+
+{ #category : 'tests' }
+SpChooserPresenterTest >> testRemoveSelectedPartOfFiltered [
+
+	| targetItemToRemove sourceItems targetItems allItems presenter |
+	targetItemToRemove := 'ToRemove'.
+	sourceItems := { 'S1'. 'S2' }.
+	targetItems := {
+		               'T1'.
+		               'ToNotRemove'.
+		               targetItemToRemove }.
+	allItems := sourceItems , targetItems.
+
+	presenter := SpChooserPresenter
+		             sourceItems: sourceItems copy
+		             chosenItems: targetItems copy.
+
+	presenter targetList filterInputPresenter text: 'To'.
+
+	self
+		assertCollection: presenter sourceList items
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter targetList items
+		hasSameElements: #( ToNotRemove ToRemove ).
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems.
+
+	presenter targetList selectItem: targetItemToRemove.
+	presenter removeSelected.
+
+	self
+		assert: presenter targetList filterInputPresenter text
+		equals: 'To'.
+	self
+		assertCollection: presenter targetList items
+		hasSameElements: #( ToNotRemove ).
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: (targetItems copyWithout: targetItemToRemove)
+]
+
+{ #category : 'tests' }
+SpChooserPresenterTest >> testSelectedAddThenRemove [
+
+	| targetItemToRemove sourceItemToAdd sourceItems targetItems allItems presenter |
+	targetItemToRemove := 'TargetToRemove'.
+	sourceItemToAdd := 'SourceToAdd'.
+	sourceItems := {
+		               'S1'.
+		               'S2'.
+		               sourceItemToAdd }.
+	targetItems := {
+		               'T1'.
+		               'T2'.
+		               targetItemToRemove }.
+	allItems := sourceItems , targetItems.
+
+	presenter := SpChooserPresenter
+		             sourceItems: sourceItems copy
+		             chosenItems: targetItems copy.
+
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems.
+
+	presenter sourceList selectItem: sourceItemToAdd.
+	presenter addSelected.
+
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: (sourceItems copyWithout: sourceItemToAdd).
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems , { sourceItemToAdd }.
+
+	presenter targetList selectItem: targetItemToRemove.
+	presenter removeSelected.
+
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements:
+		(sourceItems copyWithout: sourceItemToAdd) , { targetItemToRemove }.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements:
+		(targetItems copyWithout: targetItemToRemove) , { sourceItemToAdd }
+]
+
+{ #category : 'tests' }
+SpChooserPresenterTest >> testSelectedRemoveThenAdd [
+
+	| targetItemToRemove sourceItemToAdd sourceItems targetItems allItems presenter |
+	targetItemToRemove := 'TargetToRemove'.
+	sourceItemToAdd := 'SourceToAdd'.
+	sourceItems := {
+		               'S1'.
+		               'S2'.
+		               sourceItemToAdd }.
+	targetItems := {
+		               'T1'.
+		               'T2'.
+		               targetItemToRemove }.
+	allItems := sourceItems , targetItems.
+
+	presenter := SpChooserPresenter
+		             sourceItems: sourceItems copy
+		             chosenItems: targetItems copy.
+
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: targetItems.
+
+	presenter targetList selectItem: targetItemToRemove.
+	presenter removeSelected.
+
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements: sourceItems , { targetItemToRemove }.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements: (targetItems copyWithout: targetItemToRemove).
+
+	presenter sourceList selectItem: sourceItemToAdd.
+	presenter addSelected.
+
+	self
+		assertCollection: presenter sourceList unfilteredItems
+		hasSameElements:
+		(sourceItems copyWithout: sourceItemToAdd) , { targetItemToRemove }.
+	self
+		assertCollection: presenter targetList unfilteredItems
+		hasSameElements:
+		(targetItems copyWithout: targetItemToRemove) , { sourceItemToAdd }
+]
+
+{ #category : 'tests' }
 SpChooserPresenterTest >> testSourceLabel [
 
 	self
@@ -121,7 +646,7 @@ SpChooserPresenterTest >> testSourceLabel [
 	self assert: chooserPresenter sourceLabel equals: 'new source label'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpChooserPresenterTest >> testTargetLabel [
 
 	self

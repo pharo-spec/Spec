@@ -2,27 +2,28 @@
 A presenter to handle basic multi-line text.
 "
 Class {
-	#name : #SpTextPresenter,
-	#superclass : #SpAbstractTextPresenter,
+	#name : 'SpTextPresenter',
+	#superclass : 'SpAbstractTextPresenter',
 	#traits : 'SpTHaveWrappingScrollBars',
 	#classTraits : 'SpTHaveWrappingScrollBars classTrait',
 	#instVars : [
 		'#scrollValue => ObservableSlot',
 		'#editionContextMenu => ObservableSlot',
-		'#editable => ObservableSlot',
 		'#wrapWord => ObservableSlot',
 		'#undoRedoHistory'
 	],
-	#category : #'Spec2-Core-Widgets-Text'
+	#category : 'Spec2-Core-Widgets-Text',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Text'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpTextPresenter class >> adapterName [
 
 	^ #TextAdapter
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpTextPresenter class >> buildEditionCommandsGroupFor: presenterInstance [
 	| rootCommandGroup |
 
@@ -34,7 +35,7 @@ SpTextPresenter class >> buildEditionCommandsGroupFor: presenterInstance [
 	^ rootCommandGroup
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpTextPresenter class >> buildEditionCommandsGroupWith: presenter forRoot: aCmCommandsGroup [
 
 	aCmCommandsGroup beDisplayedAsGroup.
@@ -42,13 +43,13 @@ SpTextPresenter class >> buildEditionCommandsGroupWith: presenter forRoot: aCmCo
 	aCmCommandsGroup register: (self textEditionCommandsGroupWith: presenter).
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpTextPresenter class >> documentFactoryMethodSelector [
 
 	^ #newText
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpTextPresenter class >> textEditionCommandsGroupWith: aPresenter [
 	| group |
 
@@ -63,7 +64,7 @@ SpTextPresenter class >> textEditionCommandsGroupWith: aPresenter [
 	^ group
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpTextPresenter class >> textSearchCommandsGroupWith: aPresenter [
 	| group |
 
@@ -78,13 +79,13 @@ SpTextPresenter class >> textSearchCommandsGroupWith: aPresenter [
 	^ group
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpTextPresenter class >> title [
 
 	^ 'Text'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTextPresenter >> backendIncludesEditionMenu [
 	"Some backends can contain bundled by default edition context menu (copy, cut, paste), 
 	 users may want to use it instead of Pharo's"
@@ -94,21 +95,7 @@ SpTextPresenter >> backendIncludesEditionMenu [
 	^ false
 ]
 
-{ #category : #api }
-SpTextPresenter >> beEditable [
-	"Allow edition (deny readonly)."
-
-	self editable: true
-]
-
-{ #category : #api }
-SpTextPresenter >> beNotEditable [
-	"Set content text as not editable (readonly)"
-
-	self editable: false
-]
-
-{ #category : #api }
+{ #category : 'api' }
 SpTextPresenter >> beNotWrapWord [
 	"Set component to not wrap words when text does not fit in screen.
 	 Instead, the editor will add an horizontal scrollbar."
@@ -116,63 +103,57 @@ SpTextPresenter >> beNotWrapWord [
 	self wrapWord: false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextPresenter >> beWrapWord [
 	"Set component to wrap words to make the text fit in screen."
 
 	self wrapWord: true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextPresenter >> cursorPosition [
 	"Answer a Point (column, row) with current cursor position"
 
 	^ self withAdapterDo: [ :anAdapter | anAdapter cursorPosition ]
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpTextPresenter >> doTextCopy [
 
 	self withAdapterDo: [ :anAdapter | anAdapter copyText ]
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpTextPresenter >> doTextCut [
 
 	self withAdapterDo: [ :anAdapter | anAdapter cutText ]
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpTextPresenter >> doTextFind [
 
 	self withAdapterDo: [ :anAdapter | anAdapter findText ]
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpTextPresenter >> doTextFindNext [
 
 		self withAdapterDo: [ :anAdapter | anAdapter findNextText ]
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpTextPresenter >> doTextPaste [
 
 		self withAdapterDo: [ :anAdapter | anAdapter pasteText ]
 ]
 
-{ #category : #commands }
+{ #category : 'commands' }
 SpTextPresenter >> doTextSelectAndPaste [
 
 	self withAdapterDo: [ :anAdapter | anAdapter selectAndPasteText ]
 ]
 
-{ #category : #private }
-SpTextPresenter >> editable: aBoolean [
-
-	editable := aBoolean
-]
-
-{ #category : #private }
+{ #category : 'private' }
 SpTextPresenter >> editionCommandsGroup [
 
 	^ SpRecursiveContextSetter 
@@ -180,31 +161,31 @@ SpTextPresenter >> editionCommandsGroup [
 		toSetContext: self defaultCommandsContext
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTextPresenter >> editionContextKeyBindings [
 
 	^ self editionCommandsGroup asKMCategory
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTextPresenter >> editionContextMenu [
 
 	^ self editionCommandsGroup asMenuPresenter
 ]
 
-{ #category : #'private - testing' }
+{ #category : 'private - testing' }
 SpTextPresenter >> hasEditionContextMenu [
 
 	^ editionContextMenu
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTextPresenter >> hasUndoRedoHistory [
 
 	^ undoRedoHistory
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTextPresenter >> initialize [ 
 
 	super initialize.
@@ -218,28 +199,28 @@ SpTextPresenter >> initialize [
 	self withUndoRedoHistory
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTextPresenter >> isEditable [
 	"Answer true if edition is allowed (component is NOT readonly)"
 
 	^ editable
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTextPresenter >> isWrapWord [
 	"Answer true if words will be wrapped to make text fit horizontally into component area."
 
 	^ wrapWord
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextPresenter >> lineAtCursorPosition [
 
 	self withAdapterDo: [ :anAdapter | ^ anAdapter lineAtCursorPosition ].
 	^ nil
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTextPresenter >> registerEvents [
 
 	super registerEvents.
@@ -247,21 +228,21 @@ SpTextPresenter >> registerEvents [
 		self changed: #setScrollValue: with: { newPosition } ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextPresenter >> scrollValue [
 	"Return the current scroll position"
 
 	^ scrollValue
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextPresenter >> scrollValue: aPoint [
 	"Set the scroll position"
 
 	^ scrollValue := aPoint
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTextPresenter >> whenCursorPositionChangedDo: aBlock [
 	"Inform when cursorPosition property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -272,18 +253,7 @@ SpTextPresenter >> whenCursorPositionChangedDo: aBlock [
 	self property: #cursorPosition whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
-SpTextPresenter >> whenEditableChangedDo: aBlock [
-	"Inform when editable property has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
-	self property: #editable whenChangedDo: aBlock
-]
-
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTextPresenter >> whenScrollValueChangedDo: aBlock [
 	"Inform when scrollValue property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -294,7 +264,7 @@ SpTextPresenter >> whenScrollValueChangedDo: aBlock [
 	self property: #scrollValue whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTextPresenter >> whenSubmitDo: aBlock [
 	"This method will add a 'submit' event to the widget. It will react when user 
 	 presses <meta+s> key (this is for historical reasons) and with enter (cr).
@@ -305,7 +275,7 @@ SpTextPresenter >> whenSubmitDo: aBlock [
 		toAction: [ aBlock value: self text ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpTextPresenter >> whenWrapWordChangedDo: aBlock [
 	"Inform when wordWrap property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -316,7 +286,7 @@ SpTextPresenter >> whenWrapWordChangedDo: aBlock [
 	self property: #wrapWord whenChangedDo: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextPresenter >> withEditionContextMenu [
 	"Enables edition context menu. When this option is selected, right-clicking in the text area 
 	 will show a standard edition menu (copy, cut, copy&paste). 
@@ -326,13 +296,13 @@ SpTextPresenter >> withEditionContextMenu [
 	editionContextMenu := true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextPresenter >> withUndoRedoHistory [
 
 	undoRedoHistory := true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextPresenter >> withoutEditionContextMenu [
 	"Disable default edition context menu. 
 	 See also `SpTextPresenter>>#withEditionContextMenu`."
@@ -340,13 +310,13 @@ SpTextPresenter >> withoutEditionContextMenu [
 	editionContextMenu := false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTextPresenter >> withoutUndoRedoHistory [
 
 	undoRedoHistory := false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTextPresenter >> wrapWord: aBoolean [
 
 	wrapWord := aBoolean

@@ -1,10 +1,12 @@
 Class {
-	#name : #SpMorphicComponentListAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-List'
+	#name : 'SpMorphicComponentListAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-List',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'List'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicComponentListAdapter >> addActivationKeyBindings: aWidget [
 
 	self 
@@ -12,7 +14,7 @@ SpMorphicComponentListAdapter >> addActivationKeyBindings: aWidget [
 		toAction: [ self triggerActivationAction ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicComponentListAdapter >> addKeyBindingsTo: aWidget [
 
 	super addKeyBindingsTo: aWidget.
@@ -20,7 +22,7 @@ SpMorphicComponentListAdapter >> addKeyBindingsTo: aWidget [
 	self addActivationKeyBindings: aWidget
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicComponentListAdapter >> buildWidget [
 
 	widget := SpFTTableMorph new
@@ -42,7 +44,7 @@ SpMorphicComponentListAdapter >> buildWidget [
 	^ widget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicComponentListAdapter >> children [
 
 	^ self rows collect: [ :row | | cell | 
@@ -50,20 +52,20 @@ SpMorphicComponentListAdapter >> children [
 		cell submorphs first ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicComponentListAdapter >> elementAt: index [ 
 	
 	^ self widget dataSource elementAt: index
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicComponentListAdapter >> isNonEditableRow: aRow column: aColumn [ 
 	"no rows are directly editable in a component list (they can be 
 	 if defined like that in the inner presenters, but it is handled different)"
 	^ true
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicComponentListAdapter >> newDataSource [
 	
 	^ SpComponentListDataSource new
@@ -71,13 +73,13 @@ SpMorphicComponentListAdapter >> newDataSource [
 		yourself
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicComponentListAdapter >> refreshList [
 
 	^ self widget refresh
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicComponentListAdapter >> refreshWidgetSelection [
 	| rowIndexes |
 
@@ -89,7 +91,7 @@ SpMorphicComponentListAdapter >> refreshWidgetSelection [
 	self refreshList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicComponentListAdapter >> rows [
 	| tableContainer |
 
@@ -97,7 +99,7 @@ SpMorphicComponentListAdapter >> rows [
 	^ tableContainer submorphs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicComponentListAdapter >> selectIndex: aNumber [ 
 	
 	(aNumber = 0 and: [ widget selectedIndexes isEmpty ]) ifTrue: [ ^ self ].	
@@ -105,13 +107,13 @@ SpMorphicComponentListAdapter >> selectIndex: aNumber [
 	widget selectIndex: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicComponentListAdapter >> selectedIndexes [
 
 	^ widget selectedIndexes
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpMorphicComponentListAdapter >> selectionChanged: ann [
 	| diff |
 
@@ -129,7 +131,7 @@ SpMorphicComponentListAdapter >> selectionChanged: ann [
 	self presenter selection unselectAll
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpMorphicComponentListAdapter >> sendRightClickEvent [
 	| evt |
 
@@ -144,21 +146,21 @@ SpMorphicComponentListAdapter >> sendRightClickEvent [
 	self widget click: evt
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicComponentListAdapter >> showContextMenu [
 
 	self widgetDo: [ :w |
 		w showMenuForIndex: { self presenter selection selectedIndex. 1 } ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicComponentListAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
 
 	self presenter isActiveOnDoubleClick ifFalse: [ ^ self ].
 	self presenter doubleClickAtIndex: aFTStrongSelectionChanged selectedIndex
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicComponentListAdapter >> triggerActivationAction [
 
 	self presenter doActivateAtIndex: self presenter selection selectedIndex

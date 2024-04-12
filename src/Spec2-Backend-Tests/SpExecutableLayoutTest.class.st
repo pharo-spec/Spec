@@ -1,15 +1,17 @@
 Class {
-	#name : #SpExecutableLayoutTest,
-	#superclass : #SpAbstractLayoutTest,
-	#category : #'Spec2-Backend-Tests-Layout'
+	#name : 'SpExecutableLayoutTest',
+	#superclass : 'SpAbstractLayoutTest',
+	#category : 'Spec2-Backend-Tests-Layout',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpExecutableLayoutTest >> classToTest [
 	^ SpMockDynamicPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpExecutableLayoutTest >> testCanDynamicallyRebuildPresenter [
 	self openInstance.
 	self assert: presenter label label equals: ''.
@@ -17,7 +19,7 @@ SpExecutableLayoutTest >> testCanDynamicallyRebuildPresenter [
 	self assert: presenter label label equals: '1'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpExecutableLayoutTest >> testRebuildPresenterBeforeOpeningWorks [
 	self assert: presenter label label equals: ''.
 	self

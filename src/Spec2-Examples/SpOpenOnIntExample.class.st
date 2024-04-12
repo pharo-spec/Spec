@@ -4,17 +4,19 @@ I am the component of DynamycSpecExample used for Integer.
 self example 
 "
 Class {
-	#name : #SpOpenOnIntExample,
-	#superclass : #SpPresenter,
+	#name : 'SpOpenOnIntExample',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'text',
 		'plus',
 		'minus'
 	],
-	#category : #'Spec2-Examples-Wrapper'
+	#category : 'Spec2-Examples-Wrapper',
+	#package : 'Spec2-Examples',
+	#tag : 'Wrapper'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpOpenOnIntExample class >> example [
 
 	<sampleInstance>
@@ -24,12 +26,12 @@ SpOpenOnIntExample class >> example [
 		  yourself
 ]
 
-{ #category : #instantiation }
+{ #category : 'instantiation' }
 SpOpenOnIntExample class >> new: anInteger [
 	^ self new initialize: anInteger
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOpenOnIntExample >> connectPresenters [
 	minus
 		action: [ | currentValue |
@@ -41,7 +43,7 @@ SpOpenOnIntExample >> connectPresenters [
 			text label: (currentValue + 1) asString ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpOpenOnIntExample >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -54,12 +56,12 @@ SpOpenOnIntExample >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOpenOnIntExample >> initialize: anInteger [
 	text label: anInteger asString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOpenOnIntExample >> initializePresenters [
 	text := self instantiate: SpLabelPresenter.
 	plus := self instantiate: SpButtonPresenter.
@@ -70,22 +72,22 @@ SpOpenOnIntExample >> initializePresenters [
 		label: '-'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOpenOnIntExample >> minus [
 	^ minus
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOpenOnIntExample >> plus [
 	^ plus
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOpenOnIntExample >> text [
 	^ text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOpenOnIntExample >> title [
 	^ 'OpenOnIntExample'
 ]

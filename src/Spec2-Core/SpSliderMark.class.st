@@ -1,29 +1,31 @@
 Class {
-	#name : #SpSliderMark,
-	#superclass : #Object,
+	#name : 'SpSliderMark',
+	#superclass : 'Object',
 	#instVars : [
 		'value',
 		'text'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSliderMark >> text [
 	^ text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSliderMark >> text: aText [
 	text := aText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSliderMark >> value [
 	^ value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSliderMark >> value: aValue [
 	value := aValue
 ]

@@ -1,53 +1,59 @@
 Class {
-	#name : #SpCodeSystemNavigationMock,
-	#superclass : #SystemNavigation,
+	#name : 'SpCodeSystemNavigationMock',
+	#superclass : 'SystemNavigation',
 	#instVars : [
 		'messageList',
 		'browseClass',
 		'browseSelector'
 	],
-	#category : #'Spec2-Code-Tests'
+	#category : 'Spec2-Code-Tests',
+	#package : 'Spec2-Code-Tests'
 }
 
-{ #category : #opening }
+{ #category : 'opening' }
 SpCodeSystemNavigationMock >> browse: aClass [
 
 	browseClass := aClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeSystemNavigationMock >> browseClass [
 
 	^ browseClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeSystemNavigationMock >> browseHierarchy: aClass selector: aSelector [
 
 	browseClass := aClass.
 	browseSelector := aSelector
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 SpCodeSystemNavigationMock >> browseMessageList: aList name: labelString autoSelect: autoSelectString refreshingBlock: aBlock [
 
 	messageList 	:= aList
-	
 ]
 
-{ #category : #accessing }
+{ #category : 'enumerating' }
+SpCodeSystemNavigationMock >> browseMessageList: aList name: labelString highlight: autoSelectString refreshingBlock: aBlock [
+
+	messageList 	:= aList
+]
+
+{ #category : 'accessing' }
 SpCodeSystemNavigationMock >> browseSelector [
 
 	^ browseSelector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeSystemNavigationMock >> messageList [
 
 	^ messageList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeSystemNavigationMock >> reset [
 
 	browseClass := nil.

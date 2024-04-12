@@ -1,29 +1,30 @@
 Class {
-	#name : #SpCodeInteractionModelTest,
-	#superclass : #TestCase,
+	#name : 'SpCodeInteractionModelTest',
+	#superclass : 'SpBaseTest',
 	#instVars : [
 		'interactionModel'
 	],
-	#category : #'Spec2-Code-Tests'
+	#category : 'Spec2-Code-Tests',
+	#package : 'Spec2-Code-Tests'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCodeInteractionModelTest class >> isAbstract [
 
 	^ super isAbstract or: [ self = SpCodeInteractionModelTest ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModelTest >> classToTest [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpCodeInteractionModelTest >> initializeInstance: anInteractionModel [
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpCodeInteractionModelTest >> setUp [
 
 	super setUp.
@@ -31,25 +32,25 @@ SpCodeInteractionModelTest >> setUp [
 	self initializeInstance: interactionModel
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeInteractionModelTest >> testBehavior [
 
 	self subclassResponsibility
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeInteractionModelTest >> testBindingOf [
 
 	self subclassResponsibility
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeInteractionModelTest >> testDoItReceiver [
 
 	self assert: interactionModel doItReceiver isNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeInteractionModelTest >> testHasBindingOf [
 
 	self subclassResponsibility

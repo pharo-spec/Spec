@@ -16,8 +16,8 @@ I have:
 
 "
 Class {
-	#name : #SpVersatileDialogPresenter,
-	#superclass : #SpDynamicPresenter,
+	#name : 'SpVersatileDialogPresenter',
+	#superclass : 'SpDynamicPresenter',
 	#traits : 'SpTDynamicPresenter',
 	#classTraits : 'SpTDynamicPresenter classTrait',
 	#instVars : [
@@ -41,10 +41,12 @@ Class {
 		'result',
 		'defaultButtonId'
 	],
-	#category : #'Spec2-Morphic-Widgets'
+	#category : 'Spec2-Morphic-Widgets',
+	#package : 'Spec2-Morphic',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpVersatileDialogPresenter class >> example1 [
 	<example>
 	| dialog |
@@ -65,7 +67,7 @@ SpVersatileDialogPresenter class >> example1 [
 	self inform: dialog moreOptionsArea state asString
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpVersatileDialogPresenter class >> example2 [
 	<example>
 	| dialog |
@@ -81,7 +83,7 @@ SpVersatileDialogPresenter class >> example2 [
 	dialog result traceCr
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpVersatileDialogPresenter class >> example3 [
 	<example>
 	| dialog |
@@ -102,7 +104,7 @@ SpVersatileDialogPresenter class >> example3 [
 	dialog result traceCr
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpVersatileDialogPresenter class >> example4 [
 	<example>
 	| dialog |
@@ -118,7 +120,7 @@ SpVersatileDialogPresenter class >> example4 [
 	dialog result traceCr
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpVersatileDialogPresenter class >> example5 [
 	<example>
 	| dialog listPresenter |
@@ -140,13 +142,13 @@ SpVersatileDialogPresenter class >> example5 [
 	dialog result traceCr
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpVersatileDialogPresenter >> addButton: id text: buttonText value: anObject [
 
 	^ self addButton: id text: buttonText value: anObject condition: true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpVersatileDialogPresenter >> addButton: id text: buttonText value: anObject condition: aCondition [
 	| aButton |
 	aButton := self newButton label: buttonText.
@@ -157,19 +159,19 @@ SpVersatileDialogPresenter >> addButton: id text: buttonText value: anObject con
 	self presenterAt: id put: aButton
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpVersatileDialogPresenter >> buttonAt: id [
 
 	^ buttons at: id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> buttons [
 
 	^ buttons
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpVersatileDialogPresenter >> connectPresenters [ 
 
 	super connectPresenters.
@@ -182,58 +184,58 @@ SpVersatileDialogPresenter >> connectPresenters [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> contentArea [
 
 	^ contentArea
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> contentArea: aTextOrPresenter [
 
 	contentArea := aTextOrPresenter.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> contentAreaPresenter [
 	^ contentAreaPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> defaultButtonId [
 	^ defaultButtonId
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> defaultButtonId: anObject [
 	defaultButtonId := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> footnoteArea [
 
 	^ footnoteArea
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> footnoteArea: aTextOrPresenter [
 
 	footnoteArea := aTextOrPresenter.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> footnoteIcon [
 
 	^ footnoteIcon
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> footnoteIcon: aForm [
 
 	footnoteIcon := aForm.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpVersatileDialogPresenter >> initialize [
 	super initialize.
 
@@ -241,12 +243,12 @@ SpVersatileDialogPresenter >> initialize [
 	buttons := OrderedDictionary new
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpVersatileDialogPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 	aDialogWindowPresenter initialExtent: 400 @ 200
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpVersatileDialogPresenter >> initializePresenters [ 
 
 	moreOptionsText := 'More options' asText.
@@ -255,7 +257,7 @@ SpVersatileDialogPresenter >> initializePresenters [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> layout [
 	| mainLayout row |
 	mainLayout := SpBoxLayout newTopToBottom.
@@ -312,94 +314,94 @@ SpVersatileDialogPresenter >> layout [
 	^ mainLayout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> lessOptionsText [
 
 	^ lessOptionsText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> lessOptionsText: aText [
 
 	lessOptionsText := aText.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> mainIcon [
 
 	^ mainIcon
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> mainIcon: aFrom [
 
 	mainIcon := aFrom
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> mainIconPresenter [
 	^ mainIconPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> mainMessage [
 
 	^ mainMessage
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> mainMessage: aTextOrPresenter [
 
 	mainMessage := aTextOrPresenter.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> mainMessagePresenter [
 	^ mainMessagePresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> moreOptionsArea [
 
 	^ moreOptionsArea
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> moreOptionsArea: aTextOrPresenter [
 
 	moreOptionsArea := aTextOrPresenter.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> moreOptionsButton [
 	^ moreOptionsButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> moreOptionsText [
 
 	^ moreOptionsText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> moreOptionsText: aText [
 
 	moreOptionsText := aText.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> result [
 
 	^ result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpVersatileDialogPresenter >> result: anObject [
 
 	result := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpVersatileDialogPresenter >> return: anObject [
 
 	self result: anObject.

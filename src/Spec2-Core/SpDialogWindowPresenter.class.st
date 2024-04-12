@@ -29,8 +29,8 @@ SomePresenter >> initializeDialogWindow: aDialogPresenter
 ```
 "
 Class {
-	#name : #SpDialogWindowPresenter,
-	#superclass : #SpWindowPresenter,
+	#name : 'SpDialogWindowPresenter',
+	#superclass : 'SpWindowPresenter',
 	#instVars : [
 		'buttons',
 		'okAction',
@@ -38,23 +38,25 @@ Class {
 		'cancelled',
 		'defaultButton'
 	],
-	#category : #'Spec2-Core-Windows'
+	#category : 'Spec2-Core-Windows',
+	#package : 'Spec2-Core',
+	#tag : 'Windows'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDialogWindowPresenter class >> adapterName [
 
 	^ #DialogWindowAdapter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDialogWindowPresenter >> addButton: aButtonPresenter [
 
 	buttons add: aButtonPresenter.
 	^ aButtonPresenter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDialogWindowPresenter >> addButton: aString do: aBlock [
 	"Adds button logic to dialog.
 	 This method will add a standard button to the button bar of the dialog, having `aString` 
@@ -71,16 +73,23 @@ SpDialogWindowPresenter >> addButton: aString do: aBlock [
 		yourself)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpDialogWindowPresenter >> addDefaultButton: aButtonPresenter [
 	"Adds button logic to dialog."
+	| actionBlock |
 	
+	
+	actionBlock := aButtonPresenter action.
 	defaultButton := self addButton: aButtonPresenter.
+	aButtonPresenter action: [ 
+		actionBlock value.
+		"this is ugly, but this is how we can ensure this is not keeping the status as cancelled."
+		self beOk ].
 	defaultButton addStyle: 'default'.
 	^ defaultButton
 ]
 
-{ #category : #NOTUSED }
+{ #category : 'api' }
 SpDialogWindowPresenter >> addDefaultButton: aString do: aBlock [
 	"Adds button logic to dialog."
 	
@@ -89,7 +98,7 @@ SpDialogWindowPresenter >> addDefaultButton: aString do: aBlock [
 	^ defaultButton
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDialogWindowPresenter >> beCancel [
 	"Set the status of this dialog as 'cancelled'. 
 	 See `SpDialogWindowPresenter>>#isCancelled`"
@@ -97,7 +106,7 @@ SpDialogWindowPresenter >> beCancel [
 	cancelled := true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDialogWindowPresenter >> beOk [
 	"Set the status of this dialog as 'Ok'. 
 	 See `SpDialogWindowPresenter>>#isOk`"
@@ -105,17 +114,14 @@ SpDialogWindowPresenter >> beOk [
 	cancelled := false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDialogWindowPresenter >> buttons [ 
-	"Answer an OrderedCollection that contains all defined buttons. 
-	 Default action will always be the last one."
-	
-	self flag: #TODO. "Default action should be configurable, not the last action defined."
+	"Answer an OrderedCollection that contains all defined buttons."
 	
 	^ buttons 
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDialogWindowPresenter >> cancelAction [
 	"Answer the defined cancel action (the one that is executed when pressed 'cancel' button 
 	 by default). In initialization phase, cancel action is defined as: 
@@ -129,14 +135,14 @@ SpDialogWindowPresenter >> cancelAction [
 	^ cancelAction
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDialogWindowPresenter >> cancelAction: aBlock [
 	"Set the action to execute when 'cancel' button is pressed."
 
 	cancelAction := aBlock
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpDialogWindowPresenter >> cancelled [
 	"Answer true if dialog has been cancelled. 
 	 This is a synonym of `SpDialogWindowPresenter>>#cancelled`"
@@ -144,14 +150,28 @@ SpDialogWindowPresenter >> cancelled [
 	^ cancelled
 ]
 
-{ #category : #private }
+{ #category : 'api' }
+SpDialogWindowPresenter >> defaultButton [
+	"add a previously defined defaultButton.
+	 this is also a 'suggested action'."
+
+	^ defaultButton
+]
+
+{ #category : 'private' }
 SpDialogWindowPresenter >> executeDefaultAction [
 
 	defaultButton ifNil: [ ^ self ].
 	defaultButton action cull: self
 ]
 
-{ #category : #initialization }
+{ #category : 'testing' }
+SpDialogWindowPresenter >> hasDefaultButton [
+
+	^ defaultButton isNotNil
+]
+
+{ #category : 'initialization' }
 SpDialogWindowPresenter >> initialize [
 
 	super initialize.
@@ -160,7 +180,7 @@ SpDialogWindowPresenter >> initialize [
 	self initializeDefaultActions
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDialogWindowPresenter >> initializeDefaultActions [
 	"default ok/cancel actions. 
 	 this is just for backwards compatibility"
@@ -172,14 +192,14 @@ SpDialogWindowPresenter >> initializeDefaultActions [
 		self close ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDialogWindowPresenter >> initializeWindow [
 		
 	super initializeWindow.
 	self presenter initializeDialogWindow: self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpDialogWindowPresenter >> isButtonEnabled: aButtonName [
 	| button |
 	button := self buttons detect: [ :aButton | aButton label = aButtonName ].
@@ -187,27 +207,27 @@ SpDialogWindowPresenter >> isButtonEnabled: aButtonName [
 		
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpDialogWindowPresenter >> isCancelled [
 	"Answer true if dialog has been cancelled."
 
 	^ cancelled
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpDialogWindowPresenter >> isDialog [
 
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpDialogWindowPresenter >> isOk [
 	"Answer true if dialog has been accepted."
 
 	^ self isCancelled not
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDialogWindowPresenter >> okAction [
 	"Answer the defined ok action (the one that is executed when pressed 'ok' button 
 	 by default). In initialization phase, ok action is defined as: 
@@ -221,14 +241,14 @@ SpDialogWindowPresenter >> okAction [
 	^ okAction
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDialogWindowPresenter >> okAction: aBlock [
 	"Set the action to execute when 'ok' button is pressed."
 
 	okAction := aBlock
 ]
 
-{ #category : #'private - traversing' }
+{ #category : 'private - traversing' }
 SpDialogWindowPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
 	super traverseInFocusOrderDo: aBlock excluding: excludes.
@@ -236,7 +256,7 @@ SpDialogWindowPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 		each traverseInFocusOrderDo: aBlock excluding: excludes ]	
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDialogWindowPresenter >> triggerCancelAction [
 	"Trigger defined cancel action. 
 	 See `SpDialogWindowPresenter>>#cancelAction:`"
@@ -245,7 +265,7 @@ SpDialogWindowPresenter >> triggerCancelAction [
 	cancelAction cull: self
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpDialogWindowPresenter >> triggerOkAction [
 	"Trigger defined ok action. 
 	 See `SpDialogWindowPresenter>>#okAction:`"

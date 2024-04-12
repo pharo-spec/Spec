@@ -1,29 +1,31 @@
 Class {
-	#name : #SpInitializationStrategy,
-	#superclass : #Object,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpInitializationStrategy',
+	#superclass : 'Object',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpInitializationStrategy class >> afterTest [
 	
 	^ SpAfterTestInitializationStrategy new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpInitializationStrategy class >> beforeTest [
 	
 	^ SpBeforeTestInitializationStrategy new
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpInitializationStrategy >> beforeAssertInTest: aSpecTest [
 
 	"By default do nothing.
 	Hook for subclasses"
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpInitializationStrategy >> beforeTest: aSpecTest [ 
 	
 	"By default do nothing.

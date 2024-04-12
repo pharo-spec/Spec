@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfSpecCore,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfSpecCore
+	#name : 'BaselineOfSpecCore',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfSpecCore',
+	#package : 'BaselineOfSpecCore'
 }
 
-{ #category : #baseline }
+{ #category : 'baseline' }
 BaselineOfSpecCore >> baseline: spec [
 	<baseline>
 	
@@ -13,15 +14,19 @@ BaselineOfSpecCore >> baseline: spec [
 		
 		spec
 			"Core"
-			package: 'Spec2-ObservableSlot';
-			package: 'Spec2-Layout' with: [ spec requires: #('Spec2-ObservableSlot') ];
-			package: 'Spec2-Core' with: [ spec requires: #('Spec2-ObservableSlot' 'Spec2-Layout') ];
+			package: 'Spec2-Layout';
+			package: 'Spec2-Core' with: [ spec requires: #('Spec2-Layout') ];
 			package: 'Spec2-Dialogs' with: [ spec requires: #('Spec2-Core') ];
+			package: 'Spec2-Dialogs-Tests' with: [ spec requires: #('Spec2-Dialogs') ];
 			package: 'Spec2-CommandLine' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commands';
 			package: 'Spec2-Transmission' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Interactions' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commander2' with: [ spec requires: #('Spec2-Core' 'Spec2-Interactions') ];
+			"ListView"
+			package: 'Spec2-ListView' with: [ spec requires: #('Spec2-Core') ];
+			package: 'Spec2-Adapters-Morphic-ListView' with: [ spec requires: #('Spec2-ListView') ];
+			package: 'Spec2-ListView-Tests' with: [ spec requires: #('Spec2-ListView') ];
 			"Code"
 			package: 'Spec2-Code' with: [ spec requires: #('Spec2-Core' 'Spec2-Commands') ];
 			package: 'Spec2-Code-Commands' with: [ spec requires: #('Spec2-Core' 'Spec2-Commands') ];
@@ -32,7 +37,7 @@ BaselineOfSpecCore >> baseline: spec [
 			"Tests"			
 			package: 'Spec2-Adapters-Stub' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commander2-Tests' with: [ spec requires: #('Spec2-Commander2') ];
-			package: 'Spec2-Tests' with: [ spec requires: #('Spec2-Core' 'Spec2-Examples') ];
+			package: 'Spec2-Tests' with: [ spec requires: #('Spec2-Core' 'Spec2-Examples' 'Spec2-Dialogs-Tests') ];
 			package: 'Spec2-Code-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Code') ];
 			package: 'Spec2-Code-Diff-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Code-Diff') ];
 			"Examples"
@@ -44,7 +49,6 @@ BaselineOfSpecCore >> baseline: spec [
 	].
 	
 	spec group: 'Core' with: #(
-		'Spec2-ObservableSlot' 
 		'Spec2-Layout' 
 		'Spec2-Transmission'
 		'Spec2-Commands' 
@@ -66,14 +70,14 @@ BaselineOfSpecCore >> baseline: spec [
 	spec group: 'default' with: #('Base' 'BaseTests' 'Code' 'CodeTests').
 ]
 
-{ #category : #'external projects' }
+{ #category : 'external projects' }
 BaselineOfSpecCore >> pillar: spec [
 	spec
 		baseline: 'PillarCore'
 		with: [ spec repository: 'github://pillar-markup/pillar:dev-8/src' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BaselineOfSpecCore >> project [
 	"Atomic loading is needed for Spec because we are moving classes of package and it breaks their subclasses. 
 	

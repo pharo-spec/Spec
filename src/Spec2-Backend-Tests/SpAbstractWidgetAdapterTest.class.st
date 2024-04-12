@@ -1,23 +1,25 @@
 Class {
-	#name : #SpAbstractWidgetAdapterTest,
-	#superclass : #SpAbstractAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpAbstractWidgetAdapterTest',
+	#superclass : 'SpAbstractAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractWidgetAdapterTest class >> isAbstract [ 
 
 	^ self name = #SpAbstractWidgetAdapterTest 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractWidgetAdapterTest >> testChangingHelpAffectTheWidget [
 	
 	presenter help: 'ALabel'.
 	self assert: self adapter helpText equals: 'ALabel'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractWidgetAdapterTest >> testEnabledAffectWidget [
 	
 	presenter enabled: false.

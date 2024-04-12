@@ -1,34 +1,36 @@
 Class {
-	#name : #SpAbstractSearchTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpAbstractSearchTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractSearchTest class >> isAbstract [
 
 	^ self = SpAbstractSearchTest
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractSearchTest >> initializeTestedInstance [ 
 
 	presenter items: #(10 20 30).
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractSearchTest >> selectIndex: index [
 
 	self presenter selection selectIndex: index	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractSearchTest >> selectedIndex [
 
 	^ self presenter selection selectedIndex
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractSearchTest >> testSearchWithFunction [
 
 	self presenter searchMatching: [ :item :textToSearch | 
@@ -40,7 +42,7 @@ SpAbstractSearchTest >> testSearchWithFunction [
 	self assert: self selectedIndex equals: 3 "20"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractSearchTest >> testTypePerformsSearch [
 
 	self selectIndex: 1. "10"

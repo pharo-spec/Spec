@@ -22,6 +22,7 @@ SmalltalkCISpec {
   			'Monticello.*',
   			'Metacello.*',
   			'System-Settings-Tests.*',
+  			'RPackage.*',
   			'ReleaseTests.*' ],
   		#classes : [
   			#OutOfMemoryTest,

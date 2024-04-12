@@ -1,6 +1,6 @@
-Extension { #name : #SpSliderPresenter }
+Extension { #name : 'SpSliderPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpSliderPresenter class >> example [
 
 	<sampleInstance>

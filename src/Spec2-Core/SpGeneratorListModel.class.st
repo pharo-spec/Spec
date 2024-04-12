@@ -6,16 +6,18 @@ See `Generator` class.
 
 "
 Class {
-	#name : #SpGeneratorListModel,
-	#superclass : #SpCollectionListModel,
+	#name : 'SpGeneratorListModel',
+	#superclass : 'SpCollectionListModel',
 	#instVars : [
 		'generator',
 		'size'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpGeneratorListModel class >> example [
 	| items generator |
 
@@ -32,7 +34,7 @@ SpGeneratorListModel class >> example [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpGeneratorListModel class >> on: aBlock [ 
 
 	^ self new 
@@ -40,7 +42,7 @@ SpGeneratorListModel class >> on: aBlock [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGeneratorListModel >> at: anIndex [
 
 	^ self 
@@ -48,7 +50,7 @@ SpGeneratorListModel >> at: anIndex [
 		ifAbsent: [ self error: 'Index not found' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGeneratorListModel >> at: anIndex ifAbsent: aBlock [
 
 	[ collection size < anIndex ] 
@@ -61,25 +63,25 @@ SpGeneratorListModel >> at: anIndex ifAbsent: aBlock [
 	^ collection at: anIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGeneratorListModel >> generator [
 	^ generator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGeneratorListModel >> generator: aGenerator [
 
 	generator := aGenerator.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpGeneratorListModel >> hasElementAt: index [
 
 	self at: index ifAbsent: [ ^ false ].
 	^ true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpGeneratorListModel >> initialize [
 
 	super initialize.
@@ -87,7 +89,7 @@ SpGeneratorListModel >> initialize [
 	size := 10000
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGeneratorListModel >> size [
 
 	^ size

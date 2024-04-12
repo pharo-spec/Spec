@@ -4,15 +4,17 @@ I am a filter for a token.
 If a node item contains my token I accept it
 "
 Class {
-	#name : #SpTokenTreeFilter,
-	#superclass : #SpAbstractTreeFilter,
+	#name : 'SpTokenTreeFilter',
+	#superclass : 'SpAbstractTreeFilter',
 	#instVars : [
 		'token'
 	],
-	#category : #'Spec2-Core-Support'
+	#category : 'Spec2-Core-Support',
+	#package : 'Spec2-Core',
+	#tag : 'Support'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpTokenTreeFilter class >> token: token [
 
 	^ self new
@@ -20,26 +22,20 @@ SpTokenTreeFilter class >> token: token [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTokenTreeFilter >> initialize [
 
 	super initialize.
 	token := ''.
 ]
 
-{ #category : #filtering }
-SpTokenTreeFilter >> keepTreeNode: aNode [
-
-	^ aNode matchTokenFilter: self
-]
-
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTokenTreeFilter >> token [
 
 	^ token
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTokenTreeFilter >> token: anObject [
 	
 	token := anObject

@@ -1,6 +1,6 @@
-Extension { #name : #ToggleMenuItemShortcut }
+Extension { #name : 'ToggleMenuItemShortcut' }
 
-{ #category : #'*Spec2-Adapters-Morphic' }
+{ #category : '*Spec2-Adapters-Morphic' }
 ToggleMenuItemShortcut >> normalizedKeyText: aString [
 	"Pass directly a normalised keytext"
 

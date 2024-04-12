@@ -1,15 +1,17 @@
 Class {
-	#name : #SpLinkPresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Morphic-Tests'
+	#name : 'SpLinkPresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLinkPresenterTest >> classToTest [
 	^ SpLinkPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpLinkPresenterTest >> testLabelIsUrlByDefault [
 	self assert: presenter label isNil.
 	presenter url: 'Test'.
@@ -18,7 +20,7 @@ SpLinkPresenterTest >> testLabelIsUrlByDefault [
 	self assert: presenter label equals: 'Label'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpLinkPresenterTest >> testWhenActionChangedDo [
 	| count result |
 	count := 0.
@@ -32,7 +34,7 @@ SpLinkPresenterTest >> testWhenActionChangedDo [
 	self assert: count equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpLinkPresenterTest >> testWhenLabelChangedDo [
 	| count result |
 	count := 0.

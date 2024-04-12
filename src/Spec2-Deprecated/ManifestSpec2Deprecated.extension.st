@@ -1,6 +1,6 @@
-Extension { #name : #ManifestSpec2Deprecated }
+Extension { #name : 'ManifestSpec2Deprecated' }
 
-{ #category : #'*Spec2-Deprecated' }
-ManifestSpec2Deprecated class >> isDeprecated [
+{ #category : '*Spec2-Deprecated' }
+ManifestSpec2Deprecated classSide >> isDeprecated [
 	^ true
 ]

@@ -2,8 +2,8 @@
 I am an example how transmissions work
 "
 Class {
-	#name : #SpTransmissionExample,
-	#superclass : #SpPresenter,
+	#name : 'SpTransmissionExample',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'packages',
 		'classes',
@@ -11,17 +11,19 @@ Class {
 		'methods',
 		'code'
 	],
-	#category : #'Spec2-Examples-Demo-Transmission'
+	#category : 'Spec2-Examples-Demo-Transmission',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Transmission'
 }
 
-{ #category : #showing }
+{ #category : 'showing' }
 SpTransmissionExample class >> open [ 
 	<script>
 	
 	^ self new open
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTransmissionExample >> classTemplateFor: aPackage [
 
 	aPackage ifNil: [ ^ '' ].
@@ -32,7 +34,7 @@ SpTransmissionExample >> classTemplateFor: aPackage [
 	package: ''' , aPackage name , ''' '
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTransmissionExample >> connectClassesPresenter [
 
 	classes
@@ -40,7 +42,7 @@ SpTransmissionExample >> connectClassesPresenter [
 		transform: [ :aClass | 
 			aClass
 				ifNotNil: [ 
-					aClass organization allProtocols
+					aClass protocols
 						collect: [ :each | aClass -> each ]
 						as: OrderedCollection ]
 				ifNil: [ #(  ) ] ]
@@ -51,7 +53,7 @@ SpTransmissionExample >> connectClassesPresenter [
 		transform: [ :aClass | aClass ifNotNil: [ aClass definitionString ] ifNil: [ '' ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTransmissionExample >> connectMethodsPresenter [
 
 	methods
@@ -59,7 +61,7 @@ SpTransmissionExample >> connectMethodsPresenter [
 		transform: [ :aMethod | aMethod ifNotNil: [ aMethod sourceCode ] ifNil: [ '' ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTransmissionExample >> connectPackagesPresenter [
 
 	packages
@@ -74,7 +76,7 @@ SpTransmissionExample >> connectPackagesPresenter [
 		transform: [ :aPackage | self classTemplateFor: aPackage ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTransmissionExample >> connectPresenters [
 
 	self connectPackagesPresenter.
@@ -83,7 +85,7 @@ SpTransmissionExample >> connectPresenters [
 	self connectMethodsPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTransmissionExample >> connectProtocolsPresenter [
 
 	protocols
@@ -101,7 +103,7 @@ SpTransmissionExample >> connectProtocolsPresenter [
 		transform: [ :aPair | aPair ifNotNil: [ aPair key sourceCodeTemplate ] ifNil: [ '' ] ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpTransmissionExample >> defaultLayout [
 
 	| packagesLayout classesLayout protocolsLayout methodsLayout |
@@ -138,7 +140,7 @@ SpTransmissionExample >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTransmissionExample >> initializeClassesPresenter [
 
 	classes := self newList.
@@ -148,13 +150,13 @@ SpTransmissionExample >> initializeClassesPresenter [
 		sortingBlock: [ :a :b | a name < b name ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTransmissionExample >> initializeCodePresenter [
 
 	code := self newCode
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTransmissionExample >> initializeMethodsPresenter [
 
 	methods := self newList.
@@ -163,7 +165,7 @@ SpTransmissionExample >> initializeMethodsPresenter [
 		sortingBlock: [ :a :b | a selector < b selector ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTransmissionExample >> initializePackagesPresenter [
 
 	packages := self newList.
@@ -174,7 +176,7 @@ SpTransmissionExample >> initializePackagesPresenter [
 		items: RPackageOrganizer default packages
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTransmissionExample >> initializePresenters [
 
 	self initializePackagesPresenter.
@@ -184,7 +186,7 @@ SpTransmissionExample >> initializePresenters [
 	self initializeCodePresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTransmissionExample >> initializeProtocolsPresenter [
 
 	protocols := self newList.
@@ -193,7 +195,7 @@ SpTransmissionExample >> initializeProtocolsPresenter [
 		sortingBlock: [ :a :b | a value name < b value name ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTransmissionExample >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter

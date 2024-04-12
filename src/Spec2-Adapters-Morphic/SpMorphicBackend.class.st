@@ -2,42 +2,53 @@
 I'm a Spec2 backend for the morphic UI framework. See class comment of class `SpApplicationBackend` for more details
 "
 Class {
-	#name : #SpMorphicBackend,
-	#superclass : #SpApplicationBackend,
-	#category : #'Spec2-Adapters-Morphic-Backend'
+	#name : 'SpMorphicBackend',
+	#superclass : 'SpApplicationBackend',
+	#category : 'Spec2-Adapters-Morphic-Backend',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Backend'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicBackend class >> backendName [
 
 	^ #Morphic
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBackend >> adapterBindingsClass [
 
 	^ SpMorphicAdapterBindings
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicBackend >> defaultConfigurationFor: anApplication [
 
 	^ anApplication defaultConfigurationForMorphic
 ]
 
-{ #category : #'deferred message' }
+{ #category : 'deferred message' }
 SpMorphicBackend >> defer: aBlock [
 
 	UIManager default defer: aBlock
 ]
 
-{ #category : #'deferred message' }
+{ #category : 'deferred message' }
 SpMorphicBackend >> forceDefer: aBlock [
 
 	UIManager default defer: aBlock
 ]
 
-{ #category : #'private - notifying' }
+{ #category : 'ui - dialogs' }
+SpMorphicBackend >> inform: aString [
+
+	(ProvideAnswerNotification signal: aString) ifNotNil: [ :answer | ^ true ].
+	GrowlMorph
+		openWithLabel: 'Information' translated
+		contents: aString
+]
+
+{ #category : 'private - notifying' }
 SpMorphicBackend >> notifyError: aSpecNotification [
 
 	GrowlMorph
@@ -47,7 +58,7 @@ SpMorphicBackend >> notifyError: aSpecNotification [
 		labelColor: GrowlMorph theme textColor
 ]
 
-{ #category : #'private - notifying' }
+{ #category : 'private - notifying' }
 SpMorphicBackend >> notifyInfo: aSpecNotification [
 
 	GrowlMorph 
@@ -55,13 +66,13 @@ SpMorphicBackend >> notifyInfo: aSpecNotification [
 		contents: aSpecNotification message
 ]
 
-{ #category : #'ui dialogs' }
+{ #category : 'ui - dialogs' }
 SpMorphicBackend >> selectDirectoryTitle: aString [
 
 	^ UIManager default chooseDirectory: aString path: ''
 ]
 
-{ #category : #'ui dialogs' }
+{ #category : 'ui - dialogs' }
 SpMorphicBackend >> selectFileTitle: aString [
 
 	^ UIManager default
@@ -70,7 +81,7 @@ SpMorphicBackend >> selectFileTitle: aString [
 		  path: ''
 ]
 
-{ #category : #display }
+{ #category : 'display' }
 SpMorphicBackend >> showWaitCursorWhile: aBlock inApplication: anApplication [
 
 	Cursor wait showWhile: aBlock

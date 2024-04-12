@@ -1,6 +1,6 @@
-Extension { #name : #SpDialogWindowPresenter }
+Extension { #name : 'SpDialogWindowPresenter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpDialogWindowPresenter >> toolbar [
 	[self deprecated: 'The way dialogs uses toolbars changed in Pharo 8 and this way is deprecated. 
 	

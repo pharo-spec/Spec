@@ -1,15 +1,17 @@
 Class {
-	#name : #SpTextInputFieldAdapterTest,
-	#superclass : #SpAbstractTextAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpTextInputFieldAdapterTest',
+	#superclass : 'SpAbstractTextAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextInputFieldAdapterTest >> classToTest [
 	^ SpTextInputFieldPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldAdapterTest >> testChangeWidgetTextUpdatesPresenter [
 
 	self adapter text: 'some text'.
@@ -17,28 +19,28 @@ SpTextInputFieldAdapterTest >> testChangeWidgetTextUpdatesPresenter [
 	self assert: presenter text equals: 'some text'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldAdapterTest >> testMaxLengthIsSetInWidget [
 
 	presenter maxLength: 10.
 	self assert: self widget maxLength equals: 10
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldAdapterTest >> testNotPasswordIsSetInWidget [
 
 	presenter bePassword: false.
 	self deny: self adapter isPassword
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldAdapterTest >> testPasswordIsSetInWidget [
 
 	presenter bePassword.
 	self assert: self adapter isPassword
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldAdapterTest >> testPresenterTextIsSetInWidget [
 
 	presenter text: 'something'.

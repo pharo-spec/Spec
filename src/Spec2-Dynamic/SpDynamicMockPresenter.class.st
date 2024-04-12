@@ -1,37 +1,39 @@
 Class {
-	#name : #SpDynamicMockPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDynamicMockPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'dynamicPresenter',
 		'builder'
 	],
-	#category : #'Spec2-Dynamic-Backend-Tests'
+	#category : 'Spec2-Dynamic-Backend-Tests',
+	#package : 'Spec2-Dynamic',
+	#tag : 'Backend-Tests'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDynamicMockPresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add: #dynamicPresenter;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicMockPresenter >> dynamicPresenter [
 	^ dynamicPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDynamicMockPresenter >> dynamicPresenter: anObject [
 	dynamicPresenter := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDynamicMockPresenter >> initializePresenters [
 	dynamicPresenter := self newNullPresenter.
 	self rebuildDynamicPresenter
 ]
 
-{ #category : #'dynamic presenter' }
+{ #category : 'dynamic presenter' }
 SpDynamicMockPresenter >> rebuildDynamicPresenter [
 
 	builder := SpDynamicPresentersListBuilder new

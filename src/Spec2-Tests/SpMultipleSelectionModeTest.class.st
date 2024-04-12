@@ -1,10 +1,12 @@
 Class {
-	#name : #SpMultipleSelectionModeTest,
-	#superclass : #SpAbstractSelectionModeTest,
-	#category : #'Spec2-Tests-Layout'
+	#name : 'SpMultipleSelectionModeTest',
+	#superclass : 'SpAbstractSelectionModeTest',
+	#category : 'Spec2-Tests-Layout',
+	#package : 'Spec2-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMultipleSelectionModeTest >> testGetRightElementAfterSortingOfElementsChanged [
 
 	presenter := SpTablePresenter new. "use a TablePresenter since ListPresenter cannot sort"
@@ -23,7 +25,7 @@ SpMultipleSelectionModeTest >> testGetRightElementAfterSortingOfElementsChanged 
 		equals: #( 10 8 )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMultipleSelectionModeTest >> testSelectionIsResetAfterItemsAssignment [
 
 	presenter
@@ -36,7 +38,7 @@ SpMultipleSelectionModeTest >> testSelectionIsResetAfterItemsAssignment [
 	self assert: presenter selection selectedItems asArray equals: #(  )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMultipleSelectionModeTest >> testSelectionIsResetAfterSorting [
 
 	presenter := SpTablePresenter new. "use a TablePresenter since ListPresenter cannot sort"
@@ -55,7 +57,7 @@ SpMultipleSelectionModeTest >> testSelectionIsResetAfterSorting [
 	self assert: presenter selection selectedItems isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMultipleSelectionModeTest >> testSubscriptionsAreTransfered [
 	| count |
 	count := 0.

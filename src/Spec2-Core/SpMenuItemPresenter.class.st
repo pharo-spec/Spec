@@ -7,8 +7,8 @@ A menu item can have: an action (See `SpMenuItemPresenter>>#action:`) **OR** it 
 Tipically, you do not call directly `SpMenuItemPresenter`. Instead, you use the builder method provided when building a `SpMenuPresenter` (See example below).
 "
 Class {
-	#name : #SpMenuItemPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpMenuItemPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'#name => ObservableSlot',
 		'#icon => ObservableSlot',
@@ -18,29 +18,31 @@ Class {
 		'#subMenu',
 		'#state'
 	],
-	#category : #'Spec2-Core-Widgets'
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpMenuItemPresenter class >> adapterName [
 
 	^ #MenuItemAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpMenuItemPresenter class >> documentExampleCodeSelector [
 
 	^ #exampleShowAtPointer
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuItemPresenter >> action [
 	"Answer the action to be executed when the menu item is selected."
 
 	^ action
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuItemPresenter >> action: aBlock [
 	"Set the action to be executed when the menu item is selected.
 	 `aBlock` receives zero arguments."
@@ -48,14 +50,14 @@ SpMenuItemPresenter >> action: aBlock [
 	action := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuItemPresenter >> description [
 	"Answer the description for the menu item."
 
 	^ description
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuItemPresenter >> description: aString [
 	"Set a description for the menu item. In some platforms (like Morphic), it can be shown as a 
 	 tooltip text."
@@ -63,33 +65,33 @@ SpMenuItemPresenter >> description: aString [
 	description := aString
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMenuItemPresenter >> hasShortcut [
 
-	^ self shortcut notNil
+	^ self shortcut isNotNil
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuItemPresenter >> icon [
 	"Answer the icon to be shown with the menu item."
 
 	^ icon
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuItemPresenter >> icon: anIcon [
 	"Set an icon (an instance of `Form`) to be shown with the menu item."
 
 	icon := anIcon
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpMenuItemPresenter >> iconName: aString [ 
 	
 	self icon: (self iconNamed: aString)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMenuItemPresenter >> initialize [
 	super initialize.
 
@@ -97,13 +99,13 @@ SpMenuItemPresenter >> initialize [
 	name := ''
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMenuItemPresenter >> isMenuPresenter [
 
 	^ true
 ]
 
-{ #category : #localization }
+{ #category : 'localization' }
 SpMenuItemPresenter >> localeChanged [
 
 	super localeChanged.
@@ -111,14 +113,14 @@ SpMenuItemPresenter >> localeChanged [
 	
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuItemPresenter >> name [
 	"Answer the name of the menu item. This will be displayed as label."
 
 	^ name
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuItemPresenter >> name: aString [
 	"The label of the menu item. 
 	 In certain backends (Gtk), we allow this label to contain mnemonics using an underscore ($_)
@@ -130,7 +132,7 @@ SpMenuItemPresenter >> name: aString [
 	name := aString
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMenuItemPresenter >> performMenuActionWith: aMenuItem [
 	| en |
 
@@ -141,18 +143,18 @@ SpMenuItemPresenter >> performMenuActionWith: aMenuItem [
 	self action cull: aMenuItem
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMenuItemPresenter >> rootMenu [ 
 	
 	^ self owner rootMenu
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuItemPresenter >> shortcut [
 	^ shortcut
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuItemPresenter >> shortcut: aShortcut [
 	"Set a shortcut (an instance of `KMKeyCombination`) that be shown with the menu item. 
 	 **IMPORTANT:** Since most menus are added dinamically to its presenters (as part of a 
@@ -163,26 +165,26 @@ SpMenuItemPresenter >> shortcut: aShortcut [
 	shortcut := aShortcut
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpMenuItemPresenter >> state [
 	^ state
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpMenuItemPresenter >> state: aBoolean [
 
 	self flag: #REVIEW. "Maybe not removed but implemented correctly?"
 	state := aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuItemPresenter >> subMenu [
 	"Answer the submenu that will be displayed with this menu if any, or nil."
 
 	^ subMenu
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMenuItemPresenter >> subMenu: aMenuPresenter [
 	"Set the submenu that will be displayed with this menu.
 	 If a submenu is shown, defined action (See `SpMenuItemPresenter>>#action:`) will be ignored."
@@ -192,7 +194,7 @@ SpMenuItemPresenter >> subMenu: aMenuPresenter [
 	subMenu := aMenuPresenter
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpMenuItemPresenter >> whenDescriptionChangedDo: aBlock [ 
 	"Inform when description has changed. 
 	 `aBlock` has three optional arguments: 
@@ -203,7 +205,7 @@ SpMenuItemPresenter >> whenDescriptionChangedDo: aBlock [
 	self property: #description whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpMenuItemPresenter >> whenIconChangedDo: aBlock [ 
 	"Inform when icon has changed. 
 	 `aBlock` has three optional arguments: 
@@ -214,7 +216,7 @@ SpMenuItemPresenter >> whenIconChangedDo: aBlock [
 	self property: #icon whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpMenuItemPresenter >> whenNameChangedDo: aBlock [ 
 	"Inform when name  has changed. 
 	 `aBlock` has three optional arguments: 

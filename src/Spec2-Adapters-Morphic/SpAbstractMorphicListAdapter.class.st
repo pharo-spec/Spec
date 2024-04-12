@@ -3,17 +3,19 @@ I am an abstract class with common behaviour for list and table adapters.
 See my subclasses for more details.
 "
 Class {
-	#name : #SpAbstractMorphicListAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-List'
+	#name : 'SpAbstractMorphicListAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-List',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'List'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractMorphicListAdapter class >> isAbstract [
 	^ self = SpAbstractMorphicListAdapter
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractMorphicListAdapter >> acceptDroppingMorph: aTransferMorph event: anEvent [ 
 	
 	self presenter acceptDrop cull: (self 
@@ -21,7 +23,7 @@ SpAbstractMorphicListAdapter >> acceptDroppingMorph: aTransferMorph event: anEve
 		event: anEvent)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractMorphicListAdapter >> addActivationKeyBindings: aWidget [
 
 	self 
@@ -29,7 +31,7 @@ SpAbstractMorphicListAdapter >> addActivationKeyBindings: aWidget [
 		toAction: [ self triggerActivationAction ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractMorphicListAdapter >> addKeyBindingsTo: aWidget [
 
 	super addKeyBindingsTo: aWidget.
@@ -37,35 +39,35 @@ SpAbstractMorphicListAdapter >> addKeyBindingsTo: aWidget [
 	self addActivationKeyBindings: aWidget
 ]
 
-{ #category : #scrolling }
+{ #category : 'scrolling' }
 SpAbstractMorphicListAdapter >> configureScrolling [
-	self presenter verticalAlignment
-		whenChangedDo: [ widget
-				scrollToIndex: self presenter verticalAlignment desiredVisibleRow ].
-			
-	self presenter
-		whenDisplayDo: [ widget
-				scrollToIndex: self presenter verticalAlignment desiredVisibleRow.
-			self scrollingChanged ].
+	| vAlignment |
+	
+	vAlignment := self presenter verticalAlignment.
+	vAlignment whenChangedDo: [ 
+		widget scrollToIndex: vAlignment desiredVisibleRow ].
+	self presenter whenDisplayDo: [ 
+		widget scrollToIndex: vAlignment desiredVisibleRow.
+		self scrollingChanged ].
 		
 	widget
 		onAnnouncement: FTScrollingChanged
 		send: #scrollingChanged
-		to: self.
+		to: self
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpAbstractMorphicListAdapter >> elementAt: index [
 
 	^ self widget dataSource elementAt: index
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpAbstractMorphicListAdapter >> itemFilter [
 	^ self model itemFilter
 ]
 
-{ #category : #scrolling }
+{ #category : 'scrolling' }
 SpAbstractMorphicListAdapter >> scrollingChanged [
 	widget container updateAllRows.
 	self presenter verticalAlignment
@@ -73,7 +75,7 @@ SpAbstractMorphicListAdapter >> scrollingChanged [
 		lastVisibleRowIndex: widget lastVisibleRowIndex
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpAbstractMorphicListAdapter >> sendClickEventToRow: aNumber [
 	| evt rowWidget |
 
@@ -91,7 +93,7 @@ SpAbstractMorphicListAdapter >> sendClickEventToRow: aNumber [
 		widget handleMouseUp: evt ]
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpAbstractMorphicListAdapter >> sendClickWithShiftEventToRow: aNumber [
 	| evt rowWidget |
 
@@ -109,14 +111,14 @@ SpAbstractMorphicListAdapter >> sendClickWithShiftEventToRow: aNumber [
 		widget handleMouseUp: evt ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractMorphicListAdapter >> showContextMenu [
 
 	self widgetDo: [ :w |
 		w showMenuForIndex: { self presenter selection selectedIndex. 1 } ]
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractMorphicListAdapter >> transferFrom: aTransferMorph event: anEvent [
 	| rowAndColumn |
 
@@ -127,13 +129,13 @@ SpAbstractMorphicListAdapter >> transferFrom: aTransferMorph event: anEvent [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpAbstractMorphicListAdapter >> triggerActivationAction [
 
 	self presenter doActivateAtIndex: self presenter selection selectedIndex
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpAbstractMorphicListAdapter >> updateItemFilterBlockWith: block [
 
 	^ block
@@ -145,7 +147,7 @@ SpAbstractMorphicListAdapter >> updateItemFilterBlockWith: block [
 			self updateSearch ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpAbstractMorphicListAdapter >> updateSearch [
 
 	self presenter isSearchEnabled
@@ -153,7 +155,7 @@ SpAbstractMorphicListAdapter >> updateSearch [
 		ifFalse: [ widget disableFunction ]
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpAbstractMorphicListAdapter >> wantsDroppedMorph: aTransferMorph event: anEvent [ 
 	
 	^ self presenter wantsDrop cull: (self 

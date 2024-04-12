@@ -1,20 +1,22 @@
 Class {
-	#name : #SpOverlayLayout,
-	#superclass : #SpExecutableLayout,
+	#name : 'SpOverlayLayout',
+	#superclass : 'SpExecutableLayout',
 	#instVars : [
 		'singleChild',
 		'overlays'
 	],
-	#category : #'Spec2-Layout-Overlay'
+	#category : 'Spec2-Layout-Overlay',
+	#package : 'Spec2-Layout',
+	#tag : 'Overlay'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpOverlayLayout >> adapterName [
 	
 	^ #OverlayAdapter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOverlayLayout >> addOverlay: aPresenter [
 	
 	self
@@ -24,7 +26,7 @@ SpOverlayLayout >> addOverlay: aPresenter [
 	self announceChildAdded: aPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOverlayLayout >> addOverlay: aPresenter withConstraints: aBlock [
 	
 	self
@@ -36,13 +38,13 @@ SpOverlayLayout >> addOverlay: aPresenter withConstraints: aBlock [
 	self announceChildAdded: aPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOverlayLayout >> child [
 
 	^ singleChild
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOverlayLayout >> child: aPresenter [
 
 	singleChild ifNotNil: [ self remove: singleChild ].
@@ -53,26 +55,26 @@ SpOverlayLayout >> child: aPresenter [
 	self announceChildAdded: aPresenter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpOverlayLayout >> constraintsClass [
 	
 	^ SpOverlayConstraints
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOverlayLayout >> initialize [
 	super initialize.
 	overlays := OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOverlayLayout >> remove: aPresenter [
 	
 	singleChild := nil.
 	super remove: aPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOverlayLayout >> removeOverlay: aPresenter [
 
 	overlays remove: aPresenter.	

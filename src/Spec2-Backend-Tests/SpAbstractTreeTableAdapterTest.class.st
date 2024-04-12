@@ -1,22 +1,24 @@
 Class {
-	#name : #SpAbstractTreeTableAdapterTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Backend-Tests-Base'
+	#name : 'SpAbstractTreeTableAdapterTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Backend-Tests-Base',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpAbstractTreeTableAdapterTest class >> isAbstract [ 
 	
 	^ self = SpAbstractTreeTableAdapterTest
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpAbstractTreeTableAdapterTest >> classToTest [
 
 	^ SpTreeTablePresenter 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpAbstractTreeTableAdapterTest >> initializeTestedInstance [
 	presenter
 		addColumn: (SpStringTableColumn title: 'Value' evaluated: #printString);
@@ -25,7 +27,7 @@ SpAbstractTreeTableAdapterTest >> initializeTestedInstance [
 		children: [ :aNumber | {(aNumber * 2) . (aNumber * 3) . (aNumber * 10)} ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreeTableAdapterTest >> testAfterOpeningEmptyLazyChildrenExpandIconVanish [
 	presenter
 		children: [ :aNumber | aNumber odd ifTrue: [ {(aNumber * 2) . (aNumber * 3) . (aNumber * 10)} ] ifFalse: [ #() ] ];
@@ -40,7 +42,7 @@ SpAbstractTreeTableAdapterTest >> testAfterOpeningEmptyLazyChildrenExpandIconVan
 	self deny: (self adapter isRowMorphExpandableAt: 2)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreeTableAdapterTest >> testChangingRootsResetsSelection [
 
 	self presenter selection selectPath: #(2 3).
@@ -50,7 +52,7 @@ SpAbstractTreeTableAdapterTest >> testChangingRootsResetsSelection [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreeTableAdapterTest >> testChangingRootsUpdateWidget [
 
 	self presenter roots: #(10 11 12).
@@ -60,7 +62,7 @@ SpAbstractTreeTableAdapterTest >> testChangingRootsUpdateWidget [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreeTableAdapterTest >> testItemsWithoutChildrenDoNotHaveExpandIcon [
 	presenter children: [ :aNumber | aNumber odd ifTrue: [ {(aNumber * 2) . (aNumber * 3) . (aNumber * 10)} ] ifFalse: [ #() ] ].
 
@@ -69,7 +71,7 @@ SpAbstractTreeTableAdapterTest >> testItemsWithoutChildrenDoNotHaveExpandIcon [
 	self assert: (self adapter isRowMorphExpandableAt: 3)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreeTableAdapterTest >> testLazilyComputeChildrenDoesNotComputeChildren [
 	presenter
 		children: [ :aNumber | aNumber odd ifTrue: [ {(aNumber * 2) . (aNumber * 3) . (aNumber * 10)} ] ifFalse: [ #() ] ];
@@ -82,7 +84,7 @@ SpAbstractTreeTableAdapterTest >> testLazilyComputeChildrenDoesNotComputeChildre
 	self assert: (self adapter isRowMorphExpandableAt: 3)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreeTableAdapterTest >> testRightClickShowsMenu [
 	| menu |
 
@@ -92,7 +94,7 @@ SpAbstractTreeTableAdapterTest >> testRightClickShowsMenu [
 	self assert: menu shown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreeTableAdapterTest >> testSelectItemRaiseEvent [
 
 	| called |
@@ -103,28 +105,28 @@ SpAbstractTreeTableAdapterTest >> testSelectItemRaiseEvent [
 	self assert: called equals: true
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreeTableAdapterTest >> testSelectItemSelectsTheGivenElement [
 
 	self presenter selection selectPath: #(2).
 	self assert: self adapter selectedItem equals: 2.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreeTableAdapterTest >> testSelectItemSelectsTheGivenElementAndExpandsTheBranches [
 
 	self presenter selection selectPath: #(2 3).
 	self assert: self adapter selectedItem equals: 20.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreeTableAdapterTest >> testSelectingAPathUpdatesSelectionInPresenter [
 
 	self presenter selection selectPath: #(2 3).
 	self assert: self presenter selectedItem equals: 20.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreeTableAdapterTest >> testSelectingOutOfRangeKeepOldSelection [
 	
 	self presenter selection selectPath: #(2 3).
@@ -133,7 +135,7 @@ SpAbstractTreeTableAdapterTest >> testSelectingOutOfRangeKeepOldSelection [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreeTableAdapterTest >> testShowingColumnDisplayColumn [
 
 	self presenter showColumnHeaders.
@@ -141,7 +143,7 @@ SpAbstractTreeTableAdapterTest >> testShowingColumnDisplayColumn [
 	backendForTest assertHasHeader: self adapter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpAbstractTreeTableAdapterTest >> testStartsWithoutSelection [
 
 	self assert: self adapter selectedItem equals: nil.

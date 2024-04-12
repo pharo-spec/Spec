@@ -1,1 +1,1 @@
-Package { #name : #'Spec2-Commander2' }
+Package { #name : 'Spec2-Commander2' }

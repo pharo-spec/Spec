@@ -2,12 +2,14 @@
 Display the toolbar with labels only
 "
 Class {
-	#name : #SpLabelToolbarDisplayMode,
-	#superclass : #SpToolbarDisplayMode,
-	#category : #'Spec2-Core-Widgets'
+	#name : 'SpLabelToolbarDisplayMode',
+	#superclass : 'SpToolbarDisplayMode',
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpLabelToolbarDisplayMode >> configureButton: aButton item: aToolbarItem [
 	"ask for label (no icon)"
 	aButton getLabelSelector: #label.
@@ -15,18 +17,24 @@ SpLabelToolbarDisplayMode >> configureButton: aButton item: aToolbarItem [
 	aButton getStateSelector: #state	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLabelToolbarDisplayMode >> extent [
-	^ 45@25
+	^ (45@25) scaledByDisplayScaleFactor
 ]
 
-{ #category : #accessing }
+{ #category : 'testing' }
+SpLabelToolbarDisplayMode >> hasLabel [
+
+	^ true
+]
+
+{ #category : 'accessing' }
 SpLabelToolbarDisplayMode >> label [
 
 	^ 'Label'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLabelToolbarDisplayMode >> styleName [
 
 	^ 'toolBar.label'

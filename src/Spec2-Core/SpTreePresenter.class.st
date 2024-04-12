@@ -6,8 +6,8 @@ A `SpTreePresenter` can be seen as a simplified `SpTreeTablePresenter`.
 
 "
 Class {
-	#name : #SpTreePresenter,
-	#superclass : #SpAbstractTreePresenter,
+	#name : 'SpTreePresenter',
+	#superclass : 'SpAbstractTreePresenter',
 	#traits : 'SpTDecoratedText',
 	#classTraits : 'SpTDecoratedText classTrait',
 	#instVars : [
@@ -16,34 +16,40 @@ Class {
 		'#iconBlock',
 		'#displayBlock'
 	],
-	#category : #'Spec2-Core-Widgets-Tree'
+	#category : 'Spec2-Core-Widgets-Tree',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Tree'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpTreePresenter class >> adapterName [
 
 	^ #TreeAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpTreePresenter class >> documentFactoryMethodSelector [
 
 	^ #newTree
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpTreePresenter class >> documentSections [
-		
+
 	^ OrderedDictionary newFromPairs: {
-		'Examples'. self class methods select: [ :each | each protocol = self documentExamplesProtocol ].
-		'API Methods'. self methods select: [ :each | each protocol = #'api' ].
-		'API Selection Methods'. self methods select: [ :each | each protocol = #'api - selection' ].
-		'Testing Methods'. self methods select: [ :each | each protocol = #'testing' ].
-		'Events'. self methods select: [ :each | each protocol = #'api - events' ].
-	 }
+			  'Examples'.
+			  (self class methods select: [ :method | method protocolName = self documentExamplesProtocol ]).
+			  'API Methods'.
+			  (self methods select: [ :method | method protocolName = #api ]).
+			  'API Selection Methods'.
+			  (self methods select: [ :method | method protocolName = #'api - selection' ]).
+			  'Testing Methods'.
+			  (self methods select: [ :method | method protocolName = #testing ]).
+			  'Events'.
+			  (self methods select: [ :method | method protocolName = #'api - events' ]) }
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreePresenter >> beNotResizable [
 	"Mark the table as 'not resizable', which means there will be not possibility to resize the 
 	 columns of it."
@@ -51,21 +57,21 @@ SpTreePresenter >> beNotResizable [
 	self isResizable: false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreePresenter >> beResizable [
 	"Mark the table as 'resizable', which means there will be a slider to resize the columns."
 
 	self isResizable: true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreePresenter >> display [
 	"Answer the display block that will transform the model nodes into a displayable string."
 
 	^ displayBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreePresenter >> display: aBlock [
 	"Set the block that will be applied on each of the list items. 
 	 The result of the block will be used to display the item on the screen.
@@ -82,14 +88,14 @@ SpTreePresenter >> display: aBlock [
 	displayBlock := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreePresenter >> displayIcon [
 	"Return the block used to return an icon that will be displayed in the tree"
 
 	^ iconBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreePresenter >> displayIcon: aBlock [
 	"Set a block which takes an item as argument and returns the icon to display in the tree.
 	 `aBlock` receives one argument"
@@ -97,14 +103,14 @@ SpTreePresenter >> displayIcon: aBlock [
 	iconBlock := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreePresenter >> hideColumnHeaders [
 	"Hide the column headers"
 
 	showColumnHeaders := false
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTreePresenter >> initialize [
 	super initialize.
 
@@ -124,32 +130,32 @@ SpTreePresenter >> initialize [
 	self registerEvents
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTreePresenter >> isResizable [
 	"Answer true if table allows resizing of its columns."
 
 	^ isResizable
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTreePresenter >> isResizable: aBoolean [
 	isResizable := aBoolean
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTreePresenter >> isShowingColumnHeaders [
 	"Answer true if the table is configured to show column headers."
 
 	^ showColumnHeaders
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTreePresenter >> shouldLazilyComputeChildren [
 
 	^ false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTreePresenter >> showColumnHeaders [
 	"Show column headers"
 

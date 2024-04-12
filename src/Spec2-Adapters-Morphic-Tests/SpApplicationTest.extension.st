@@ -1,6 +1,6 @@
-Extension { #name : #SpApplicationTest }
+Extension { #name : 'SpApplicationTest' }
 
-{ #category : #'*Spec2-Adapters-Morphic-Tests' }
+{ #category : '*Spec2-Adapters-Morphic-Tests' }
 SpApplicationTest >> testAdapterBindings [
 
 	self assert: application adapterBindings class equals: SpStubAdapterBindings.

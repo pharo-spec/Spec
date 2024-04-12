@@ -1,6 +1,6 @@
-Extension { #name : #SpListPresenter }
+Extension { #name : 'SpListPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpListPresenter class >> example [
 	<sampleInstance>
 	^ self new
@@ -9,7 +9,7 @@ SpListPresenter class >> example [
 		yourself
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpListPresenter class >> exampleDragAndDrop [
 	| list1 list2 |
 
@@ -30,7 +30,7 @@ SpListPresenter class >> exampleDragAndDrop [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpListPresenter class >> exampleMultipleSelection [
 	<sampleInstance>
 	^ self new
@@ -40,7 +40,7 @@ SpListPresenter class >> exampleMultipleSelection [
 		yourself
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpListPresenter class >> exampleWithDecoratedString [
 	
 	^ self new
@@ -56,7 +56,7 @@ SpListPresenter class >> exampleWithDecoratedString [
 		open
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpListPresenter class >> exampleWithHeaderTitle [
 	<sampleInstance>
 	^ self new
@@ -66,12 +66,23 @@ SpListPresenter class >> exampleWithHeaderTitle [
 		yourself
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpListPresenter class >> exampleWithIcons [
 	<sampleInstance>
 	^ self new
 		displayIcon: [ :e | self iconNamed: #forwardIcon ];
 		items: (1 to: 10) asArray;
+		open;
+		yourself
+]
+
+{ #category : '*Spec2-Examples' }
+SpListPresenter class >> exampleWithIconsAndSelectedItem [
+
+	^ self new
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
+		items: Smalltalk allClasses;
+		selectItem: Object scrollToSelection: true;
 		open;
 		yourself
 ]

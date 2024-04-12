@@ -1,10 +1,12 @@
 Class {
-	#name : #SpPrintContactBookInTranscript,
-	#superclass : #SpContactBookCommand,
-	#category : #'Spec2-Commander2-ContactBook-Spec'
+	#name : 'SpPrintContactBookInTranscript',
+	#superclass : 'SpContactBookCommand',
+	#category : 'Spec2-Commander2-ContactBook-Spec',
+	#package : 'Spec2-Commander2-ContactBook',
+	#tag : 'Spec'
 }
 
-{ #category : #executing }
+{ #category : 'executing' }
 SpPrintContactBookInTranscript >> execute [
 	"Execute the actions that should be done by the command.
 	 This method expect that the context has been put in #context inst. var. if any context is relevant."
@@ -13,7 +15,7 @@ SpPrintContactBookInTranscript >> execute [
 	self contactBook contents do: [ :contact | self traceCr: contact name , ' - ' , contact name ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPrintContactBookInTranscript >> initialize [
 	super initialize.
 	self

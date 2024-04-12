@@ -4,17 +4,19 @@ See class side for selectors.
 
 "
 Class {
-	#name : #SpTheHeartOfSpec,
-	#superclass : #SpHelpTopics,
-	#category : #'Spec2-Help-Topics'
+	#name : 'SpTheHeartOfSpec',
+	#superclass : 'SpHelpTopics',
+	#category : 'Spec2-Help-Topics',
+	#package : 'Spec2-Help',
+	#tag : 'Topics'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTheHeartOfSpec class >> bookName [
 	^'The Heart of Spec'
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpTheHeartOfSpec class >> connectPresenters [
 	^HelpTopic
 		title: 'The initializePresenter method'
@@ -22,7 +24,7 @@ SpTheHeartOfSpec class >> connectPresenters [
 Value holders provide a single method whenChangedDo: that is used to register a block to perform on change. In addition to this primitive whenChangedDo: method, the basic widgets provide more specific hooks, e.g. when an item in a list is selected or deselected.'
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpTheHeartOfSpec class >> initializePresenters [
 	^HelpTopic
 		title: 'The initializeWidgets method'
@@ -49,7 +51,7 @@ An example of the initializeWidgets method could be:
 Specifying this method is mandatory, as without it the UI would have no widgets.'
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpTheHeartOfSpec class >> intro [
 	^HelpTopic 
 		title: 'The Heart of Spec'
@@ -66,7 +68,7 @@ SpPresenter class>>#defaultSpec.
 These methods are hence typically found in the model for each user interface. In the following topics we describe the responsibility for each method, i.e. how these three work together to build the overall UI.'
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpTheHeartOfSpec class >> layouts [
 	^HelpTopic
 		title: 'The layout method'
@@ -95,12 +97,12 @@ Specifying this method is mandatory, as without it the UI would show no widgets 
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTheHeartOfSpec class >> pages [
 	^#(intro #initializePresenters widgetInstantiation #connectPresenters layouts)
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpTheHeartOfSpec class >> widgetInstantiation [
 	^HelpTopic
 		title: 'Widget Instantiation'

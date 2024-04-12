@@ -1,10 +1,11 @@
 Class {
-	#name : #SpPropertyStyleTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Adapters-Morphic-Tests'
+	#name : 'SpPropertyStyleTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Adapters-Morphic-Tests',
+	#package : 'Spec2-Adapters-Morphic-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPropertyStyleTest >> testMergeWith [
 	| p1 p2 p3 |
 	
@@ -23,7 +24,7 @@ SpPropertyStyleTest >> testMergeWith [
 	self assert: p3 height equals: 40	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPropertyStyleTest >> testMergeWithFontDoNotRemovePredefinedFontWhenNoFontIsDefined [
 	| p1 p2 p3 |
 	
@@ -41,7 +42,7 @@ SpPropertyStyleTest >> testMergeWithFontDoNotRemovePredefinedFontWhenNoFontIsDef
 	self assert: p3 color equals: Color white
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPropertyStyleTest >> testMergeWithFontRemovePredefinedFont [
 	| p1 p2 p3 |
 	
@@ -59,7 +60,7 @@ SpPropertyStyleTest >> testMergeWithFontRemovePredefinedFont [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpPropertyStyleTest >> testMergeWithPredefinedFontCanBeDecorated [
 	| p1 p2 p3 |
 	

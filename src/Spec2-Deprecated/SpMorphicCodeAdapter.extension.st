@@ -1,6 +1,6 @@
-Extension { #name : #SpMorphicCodeAdapter }
+Extension { #name : 'SpMorphicCodeAdapter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpMorphicCodeAdapter >> isAboutToStyle [
 	self deprecated: 'Use #okToStle instead' transformWith: '`@receiver isAboutToStyle' -> '`@receiver okToStyle'.
 	^ self okToStyle

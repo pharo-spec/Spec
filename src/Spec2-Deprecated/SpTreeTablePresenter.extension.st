@@ -1,6 +1,6 @@
-Extension { #name : #SpTreeTablePresenter }
+Extension { #name : 'SpTreeTablePresenter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreeTablePresenter >> doubleClickAction: aBlockClosure [
 	self deprecated: 'Use #whenActivatedDo: and #activateOnDoubleClick instead.'
 ]

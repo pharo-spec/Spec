@@ -2,173 +2,160 @@
 A dialog that allow the users to select from a list of `items`
 "
 Class {
-	#name : #SpSelectDialog,
-	#superclass : #SpDialogPresenter,
+	#name : 'SpSelectDialog',
+	#superclass : 'SpAbstractCancelableMessageDialog',
 	#instVars : [
-		'label',
-		'title',
-		'initialExtent',
-		'acceptLabel',
-		'cancelLabel',
 		'list'
 	],
-	#category : #'Spec2-Dialogs'
+	#category : 'Spec2-Dialogs',
+	#package : 'Spec2-Dialogs'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpSelectDialog class >> defaultExtent [
 
 	^ 450@300
 ]
 
-{ #category : #layout }
-SpSelectDialog class >> defaultLayout [
-
-	^ SpBoxLayout newTopToBottom
-		borderWidth: 5;
-		spacing: 5;
-		add: #label expand: false;
-		add: #list;
-		yourself
-]
-
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpSelectDialog class >> documentFactoryMethodSelector [
 	
 	^ #newSelect
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpSelectDialog class >> example [
 
-	self new
+	| presenter |
+	presenter := self new.
+	presenter
 		title: 'Select example';
 		label: 'Select a class';
 		items: Smalltalk allClassesAndTraits;
 		display: [ :each | each name ];
 		displayIcon: [ :each | self iconNamed: each systemIconName ];
-		onAccept: [ :dialog | self inform: dialog presenter selectedItem asString ];
+		onAccept: [ :dialog |
+			dialog presenter inform: dialog presenter selectedItem asString ];
 		openDialog
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpSelectDialog class >> exampleModal [
-	| selection |
 
-	selection := self new
-		title: 'Select modal example';
-		label: 'Select a class';
+	| dialog selection |
+	dialog := self new. 
+	selection := dialog
+		             title: 'Select modal example';
+		             label: 'Select a class';
+		             items: Smalltalk allClassesAndTraits;
+		             display: [ :each | each name ];
+		             displayIcon: [ :each |
+			             self iconNamed: each systemIconName ];
+		             openModal.
+
+	selection ifNotNil: [ dialog inform: selection asString ]
+]
+
+{ #category : 'examples' }
+SpSelectDialog class >> exampleMultiLineLabel [
+
+	| presenter label |
+
+	label := String streamContents: [ :s |
+		s nextPutAll: 'Select a class';
+		  cr;
+		  cr;
+		  nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap'
+		 ].
+	
+	presenter := self new.
+
+	presenter
+		title: 'Select example';
+		label: label;
 		items: Smalltalk allClassesAndTraits;
 		display: [ :each | each name ];
 		displayIcon: [ :each | self iconNamed: each systemIconName ];
-		openModal.
-		
-	selection ifNotNil: [ 
-		self inform: selection asString ]
+		onAccept: [ :dialog |
+			dialog presenter inform: dialog presenter selectedItem asString ];
+		openDialog
 ]
 
-{ #category : #api }
-SpSelectDialog >> acceptLabel [
+{ #category : 'layout' }
+SpSelectDialog >> defaultLayout [
 
-	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
+	^ SpBoxLayout newTopToBottom
+		borderWidth: 5;
+		spacing: 5;
+		add: label height: self calculateLabelHeight;
+		add: list;
+		yourself
 ]
 
-{ #category : #api }
-SpSelectDialog >> acceptLabel: aString [
+{ #category : 'accessing' }
+SpSelectDialog >> defaultTitle [
 
-	acceptLabel := aString
+	^ 'Request'
 ]
 
-{ #category : #api }
-SpSelectDialog >> cancelLabel [
-
-	^ cancelLabel ifNil: [ self class defaultCancelLabel ]
-]
-
-{ #category : #api }
-SpSelectDialog >> cancelLabel: aString [
-
-	cancelLabel := aString
-]
-
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> display: aBlock [
 
 	list display: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> displayIcon: aBlock [
 
 	list displayIcon: aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> extent [
 
 	^ initialExtent ifNil: [ self class defaultExtent ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> extent: aPoint [
 
 	initialExtent := aPoint
 ]
 
-{ #category : #initialization }
-SpSelectDialog >> initialize [
-	
-	super initialize.
-	self title: 'Request'
-]
-
-{ #category : #initialization }
-SpSelectDialog >> initializeDialogWindow: aDialogWindowPresenter [
-
-	super initializeDialogWindow: aDialogWindowPresenter.
-	aDialogWindowPresenter
-		addButton: self cancelLabel do: [ :presenter | self cancel ];
-		addDefaultButton: self acceptLabel do: [ :presenter | self accept ]
-]
-
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSelectDialog >> initializePresenters [
 
-	label := self newLabel.
+	super initializePresenters.
+
 	list := self newList.
 	
 	list addStyle: 'spSelectList'.
 	list whenActivatedDo: [ self accept ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpSelectDialog >> initializeWindow: aWindowPresenter [
 
-	aWindowPresenter
-		title: self title;
-		initialExtent: self extent;
-		whenOpenedDo: [ list takeKeyboardFocus ]
+	super initializeWindow: aWindowPresenter.
+
+	aWindowPresenter whenOpenedDo: [ list takeKeyboardFocus ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> items [
 
 	^ list items
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpSelectDialog >> items: aCollection [
 
-	list items: aCollection
+	list items: aCollection.
+	aCollection ifNotEmpty: [ 
+		list selectItem: aCollection first ]
 ]
 
-{ #category : #api }
-SpSelectDialog >> label: aString [
-
-	label label: aString
-]
-
-{ #category : #'api - showing' }
+{ #category : 'api - showing' }
 SpSelectDialog >> openModal [
 	| dialog |
 	
@@ -178,20 +165,26 @@ SpSelectDialog >> openModal [
 		ifFalse: [ nil ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
+SpSelectDialog >> selectFirst [
+
+	list selectFirst
+]
+
+{ #category : 'api' }
+SpSelectDialog >> selectIndex: aNumber [
+
+	list selectIndex: aNumber
+]
+
+{ #category : 'api' }
+SpSelectDialog >> selectItem: anObject [
+
+	list selectItem: anObject
+]
+
+{ #category : 'api' }
 SpSelectDialog >> selectedItem [
 
 	^ list selectedItem
-]
-
-{ #category : #api }
-SpSelectDialog >> title [
-
-	^ title
-]
-
-{ #category : #api }
-SpSelectDialog >> title: aString [
-
-	title := aString
 ]

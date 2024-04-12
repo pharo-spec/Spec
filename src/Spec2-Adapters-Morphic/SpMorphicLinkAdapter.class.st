@@ -1,22 +1,21 @@
 "
-Description
---------------------
-
 I am the adapter used to bridge a URLPresenter and a morphic
 "
 Class {
-	#name : #SpMorphicLinkAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicLinkAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLinkAdapter >> action [
 
 	^ self model action
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicLinkAdapter >> buildWidget [
 	"Since Pharo does not yet have a real morph for URL, I create my own. Maybe later we will have real links in Morphic?"
 
@@ -42,66 +41,66 @@ SpMorphicLinkAdapter >> buildWidget [
 	^ aMorph
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicLinkAdapter >> getHelpText [
 
 	^ self presenter help 
 		ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicLinkAdapter >> getLabelText [
 
 	^ self presenter label 
 		ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLinkAdapter >> label [
 
 	^ self getLabelText
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpMorphicLinkAdapter >> mouseDown: anEvent from: aMorph [
 
 	aMorph color: self urlDuringClickColor
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpMorphicLinkAdapter >> mouseEnter: anEvent from: aMorph [
 
 	aMorph color: self urlHoverColor.
 	self currentHand showTemporaryCursor: Cursor webLink
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpMorphicLinkAdapter >> mouseLeave: anEvent from: aMorph [
 
 	aMorph color: self urlColor.
 	self currentHand showTemporaryCursor: nil
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpMorphicLinkAdapter >> mouseUp: anEvent from: aMorph [
 
 	aMorph color: self urlHoverColor.
 	self action value
 ]
 
-{ #category : #'accessing - colors' }
+{ #category : 'accessing - colors' }
 SpMorphicLinkAdapter >> urlColor [
 
 	^ self color ifNil: [ self theme urlColor ]
 ]
 
-{ #category : #'accessing - colors' }
+{ #category : 'accessing - colors' }
 SpMorphicLinkAdapter >> urlDuringClickColor [
 
 	^ self urlHoverColor darker
 ]
 
-{ #category : #'accessing - colors' }
+{ #category : 'accessing - colors' }
 SpMorphicLinkAdapter >> urlHoverColor [
 
 	^ self urlColor darker

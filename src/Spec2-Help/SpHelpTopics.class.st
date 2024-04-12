@@ -4,17 +4,19 @@ See class side for selectors.
 
 "
 Class {
-	#name : #SpHelpTopics,
-	#superclass : #CustomHelp,
-	#category : #'Spec2-Help-Topics'
+	#name : 'SpHelpTopics',
+	#superclass : 'CustomHelp',
+	#category : 'Spec2-Help-Topics',
+	#package : 'Spec2-Help',
+	#tag : 'Topics'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpHelpTopics class >> bookName [
 	^ 'Spec'
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpHelpTopics class >> hookingWithTheInspector [
 	^HelpTopic 	
 		title: 'Inspector'
@@ -60,7 +62,7 @@ This method follow the naming convention. You simple need to use the method name
 '
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpHelpTopics class >> introduction [
 	^HelpTopic 	
 		title: 'About Spec'
@@ -69,17 +71,17 @@ SpHelpTopics class >> introduction [
 Spec is an attempt to support UI logic reuse. Spec is influenced by VisualWorks and Dolphin MVP in the sense that it recognizes the need for a Presenter or Application-Model class, in Spec called SpPresenter that manages the logic and the link between widgets and domain objects. Spec, following the tradition, uses value holders, simple object raising announcements when their values, often domain objects, change.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpHelpTopics class >> key [
 	^'Spec'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpHelpTopics class >> pages [
 	^#(introduction terminology #SpExamples #SpTheHeartOfSpec #SpLayouts #hookingWithTheInspector)
 ]
 
-{ #category : #pages }
+{ #category : 'pages' }
 SpHelpTopics class >> terminology [
 	^HelpTopic
 		title: 'Terminology'

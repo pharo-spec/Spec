@@ -17,17 +17,19 @@ The two parts of this window (form and table) should be rendered in boxes with a
 Text input for number 1 is limited directly on the level of user input. See `SpDemoStandaloneFormPresenter>>#initializePresenters` and `SpDemoStandaloneFormPresenter>>#connectPresenters`. 
 "
 Class {
-	#name : #SpDemoFormPresenter,
-	#superclass : #SpPresenterWithModel,
+	#name : 'SpDemoFormPresenter',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'form',
 		'resultPane',
 		'table'
 	],
-	#category : #'Spec2-Examples-Demo-Forms'
+	#category : 'Spec2-Examples-Demo-Forms',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Forms'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoFormPresenter >> defaultLayout [
 
 	^ SpPanedLayout newLeftToRight
@@ -37,13 +39,13 @@ SpDemoFormPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoFormPresenter >> initialize [
 	self model: SpDemoFormModel new.
 	super initialize
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoFormPresenter >> initializePresenters [
 
 	form := self newPresenter 
@@ -67,30 +69,30 @@ SpDemoFormPresenter >> initializePresenters [
 		beResizable
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoFormPresenter >> modelChanged [
 
 	table items: self model elements
 ]
 
-{ #category : #'option list presenter' }
+{ #category : 'option list presenter' }
 SpDemoFormPresenter >> optionIcon [
 	
 	^ self iconNamed: #smallWindow
 ]
 
-{ #category : #'option list presenter' }
+{ #category : 'option list presenter' }
 SpDemoFormPresenter >> optionTitle [
 
 	^ 'Form Presenter'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormPresenter >> table [
 	^ table
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoFormPresenter >> table: anObject [
 	table := anObject
 ]

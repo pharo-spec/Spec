@@ -2,12 +2,14 @@
 I am the layout for which you define the number of columns to store you presenters and set them from top to bottom in these rows.
 "
 Class {
-	#name : #SpDynamicTopToBottomColumnsLayout,
-	#superclass : #SpDynamicLeftToRightColumnsLayout,
-	#category : #'Spec2-Dynamic-Builder'
+	#name : 'SpDynamicTopToBottomColumnsLayout',
+	#superclass : 'SpDynamicLeftToRightColumnsLayout',
+	#category : 'Spec2-Dynamic-Builder',
+	#package : 'Spec2-Dynamic',
+	#tag : 'Builder'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 SpDynamicTopToBottomColumnsLayout >> instVarNamesFrom: aDynamicPresentersListBuilder [
 	| names streams |
 	names := super instVarNamesFrom: aDynamicPresentersListBuilder.

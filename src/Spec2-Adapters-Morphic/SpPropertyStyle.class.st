@@ -9,23 +9,25 @@ Style properties define different kind of properties a morphic component can hav
 - `SpGeometryStyle`
 "
 Class {
-	#name : #SpPropertyStyle,
-	#superclass : #SpStyle,
-	#category : #'Spec2-Adapters-Morphic-StyleSheet'
+	#name : 'SpPropertyStyle',
+	#superclass : 'SpStyle',
+	#category : 'Spec2-Adapters-Morphic-StyleSheet',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'StyleSheet'
 }
 
-{ #category : #copying }
+{ #category : 'copying' }
 SpPropertyStyle >> , other [
 
 	^ self mergeWith: other
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 SpPropertyStyle >> applyTo: aMorph [
 	
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpPropertyStyle >> fromSton: stonReader [
 
 	"I will use accessors because I want to be able to add convenience methods"
@@ -35,19 +37,19 @@ SpPropertyStyle >> fromSton: stonReader [
 			with: (value ifNotNil: [ value asStyleVariable ]) ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpPropertyStyle >> isGeometry [
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpPropertyStyle >> isStyleProperty [
 
 	^ true
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 SpPropertyStyle >> mergeWith: otherProperty [
 	| merged |
 
@@ -64,7 +66,7 @@ SpPropertyStyle >> mergeWith: otherProperty [
 	^ merged
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPropertyStyle >> toColor: aColorOrSymbol [
 
 	"Try if color"
@@ -75,7 +77,7 @@ SpPropertyStyle >> toColor: aColorOrSymbol [
 	^ Color fromHexString: aColorOrSymbol
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPropertyStyle >> toVariable: anObject [
 
 	^ anObject ifNotNil: [ anObject asStyleVariable ].

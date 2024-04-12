@@ -1,6 +1,6 @@
-Extension { #name : #SpMorphicFastTableAdapter }
+Extension { #name : 'SpMorphicFastTableAdapter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpMorphicFastTableAdapter >> buildWidget [
 	^ FTPluggableIconListMorphAdaptor new
 		model: self model;
@@ -28,24 +28,24 @@ SpMorphicFastTableAdapter >> buildWidget [
 		yourself
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpMorphicFastTableAdapter >> doubleClick: event [
 
 	^ self model doubleClick: event
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpMorphicFastTableAdapter >> getIconFor: anItem [
 
 	^ self model getIconFor: anItem
 ]
 
-{ #category : #'*Spec2-Deprecated' }
-SpMorphicFastTableAdapter class >> isDeprecated [
+{ #category : '*Spec2-Deprecated' }
+SpMorphicFastTableAdapter classSide >> isDeprecated [
 	^ true
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpMorphicFastTableAdapter >> wrapItem: anObject [
 
 	^ self model wrapItem: anObject

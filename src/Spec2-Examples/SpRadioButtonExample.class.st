@@ -4,30 +4,32 @@ I am a demo to show how to use radio buttons with Spec.
 self example
 "
 Class {
-	#name : #SpRadioButtonExample,
-	#superclass : #SpPresenter,
+	#name : 'SpRadioButtonExample',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'button1',
 		'button2',
 		'button3',
 		'label'
 	],
-	#category : #'Spec2-Examples-Demo-Buttons'
+	#category : 'Spec2-Examples-Demo-Buttons',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Buttons'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpRadioButtonExample class >> example [
 
 	^ self new open
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpRadioButtonExample class >> title [
 
 	^ 'Radio Button Example'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRadioButtonExample >> connectPresenters [
 
 	button1 whenActivatedDo: [ self updateLabel ].
@@ -36,7 +38,7 @@ SpRadioButtonExample >> connectPresenters [
 	button3 whenChangedDo: [ self updateLabel ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpRadioButtonExample >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -49,7 +51,7 @@ SpRadioButtonExample >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRadioButtonExample >> initializePresenters [
 
 	button1 := self newRadioButton.
@@ -65,7 +67,7 @@ SpRadioButtonExample >> initializePresenters [
 	self updateLabel.
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpRadioButtonExample >> updateLabel [
 	label
 		label:

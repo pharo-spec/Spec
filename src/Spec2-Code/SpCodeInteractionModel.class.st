@@ -15,21 +15,23 @@ SpCodeInteractionMode newForMethod: aMethod.
  
 "
 Class {
-	#name : #SpCodeInteractionModel,
-	#superclass : #Object,
+	#name : 'SpCodeInteractionModel',
+	#superclass : 'Object',
 	#instVars : [
 		'owner'
 	],
-	#category : #'Spec2-Code-Base'
+	#category : 'Spec2-Code-Base',
+	#package : 'Spec2-Code',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> behavior [
 
 	^ nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> bindings [
 
 	"no additional bindings provided by the Requestor"
@@ -37,99 +39,119 @@ SpCodeInteractionModel >> bindings [
 	^ #() asDictionary
 ]
 
-{ #category : #accessing }
+{ #category : 'testing' }
+SpCodeInteractionModel >> canAddBindingOf: name [
+	^ false
+]
+
+{ #category : 'accessing' }
+SpCodeInteractionModel >> compiler [
+	"Provide a compiler set up on the current context/class/receiver"
+
+	^ self doItReceiver class compiler
+		  context: self doItContext;
+		  receiver: self doItReceiver;
+		  requestor: self
+]
+
+{ #category : 'accessing' }
 SpCodeInteractionModel >> doItContext [
 
 	^ nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> doItReceiver [
 
 	^ nil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCodeInteractionModel >> hasBindingThatBeginsWith: aString [
 
 	^ self variableBindingNames 
 		anySatisfy: [ :each | each beginsWith: aString ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCodeInteractionModel >> isScripting [
 
 	^ false
 ]
 
-{ #category : #'interactive error protocol' }
+{ #category : 'testing' }
+SpCodeInteractionModel >> needRequestorScope [
+	^false
+]
+
+{ #category : 'interactive error protocol' }
 SpCodeInteractionModel >> notify: message at: location in: code [
 	| currentSelection stripMessage |
 
-	"self owner withAdapterDo: [ :anAdapter | 
+	"self owner withAdapterDo: [ :anAdapter |
 		anAdapter notify: message at: location in: code ]"
 
-	stripMessage := (message endsWith: '->')
+	stripMessage := (message endsWith: ' ->')
 		ifTrue: [ message allButLast: 3 ]
 		ifFalse: [ message ].
 
 	currentSelection := self owner selectionInterval.
-	self owner 
-		insertErrorPopover: (SpCodePopoverErrorPresenter 
-			newCode: self owner 
-			message: stripMessage) 
+	self owner
+		insertErrorPopover: (SpCodePopoverErrorPresenter
+			newCode: self owner
+			message: stripMessage)
 		atIndex: (currentSelection isEmptyOrNil
 			ifTrue: [ location ]
-			ifFalse: [ 
-				"both selection and location are 1-based, but position will be zero-based 
-				 (zero=first element), to actually arrive to the position I want I need to 
+			ifFalse: [
+				"both selection and location are 1-based, but position will be zero-based
+				 (zero=first element), to actually arrive to the position I want I need to
 				 substract two elements"
 				currentSelection first + location - 2 ])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> owner [
 
 	^ owner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> owner: aPresenter [
 
 	owner := aPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> selectedBehavior [
 
 	^ self behavior
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> selectedClass [
 
 	^ self behavior
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> selectedClassOrMetaClass [
 
 	^ self behavior
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> text [
 
 	^ self owner text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> variableBindingNames [
 	
 	^ self variableBindings keys
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeInteractionModel >> variableBindings [
 
 	^ Dictionary new

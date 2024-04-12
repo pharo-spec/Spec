@@ -1,13 +1,14 @@
 Class {
-	#name : #DiffInsert,
-	#superclass : #DiffPatchElement,
+	#name : 'DiffInsert',
+	#superclass : 'DiffPatchElement',
 	#instVars : [
 		'newPosition'
 	],
-	#category : #'Spec2-Code-Diff'
+	#category : 'Spec2-Code-Diff',
+	#package : 'Spec2-Code-Diff'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DiffInsert class >> newOldPosition: oldNumber newPosition: newNumber [
 
 	^ self new 
@@ -15,31 +16,31 @@ DiffInsert class >> newOldPosition: oldNumber newPosition: newNumber [
 		newPosition: newNumber
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 DiffInsert >> accept: aVisitor [
 
 	aVisitor visitInsert: self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 DiffInsert >> isInsert [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DiffInsert >> newPosition [
 
 	^ newPosition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DiffInsert >> newPosition: anObject [
 
 	newPosition := anObject
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 DiffInsert >> printPositionOn: stream [
 	
 	super printPositionOn: stream.

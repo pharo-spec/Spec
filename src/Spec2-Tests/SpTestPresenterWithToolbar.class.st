@@ -2,15 +2,17 @@
 A presenter with a tollbar and a button to use in Window / World tests.
 "
 Class {
-	#name : #SpTestPresenterWithToolbar,
-	#superclass : #SpPresenter,
+	#name : 'SpTestPresenterWithToolbar',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'button'
 	],
-	#category : #'Spec2-Tests-Core-Support'
+	#category : 'Spec2-Tests-Core-Support',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Support'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpTestPresenterWithToolbar class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -20,14 +22,14 @@ SpTestPresenterWithToolbar class >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTestPresenterWithToolbar >> initializePresenters [
 	button := self newButton
 		label: 'test';
 		yourself.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTestPresenterWithToolbar >> initializeWindow: aWindowPresenter [
 	| toolbar |
 	toolbar := SpToolbarPresenter new

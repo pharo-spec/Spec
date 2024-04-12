@@ -1,22 +1,23 @@
 Class {
-	#name : #SpCodeMethodInteractionModelTest,
-	#superclass : #SpCodeInteractionModelTest,
-	#category : #'Spec2-Code-Tests'
+	#name : 'SpCodeMethodInteractionModelTest',
+	#superclass : 'SpCodeInteractionModelTest',
+	#category : 'Spec2-Code-Tests',
+	#package : 'Spec2-Code-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeMethodInteractionModelTest >> classToTest [
 
 	^ SpCodeMethodInteractionModel
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpCodeMethodInteractionModelTest >> initializeInstance: anInteractionModel [
 
 	anInteractionModel method: self class >> #methodToTest
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeMethodInteractionModelTest >> methodToTest [
 	| a b |
 	
@@ -26,20 +27,20 @@ SpCodeMethodInteractionModelTest >> methodToTest [
 	^ a * b
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeMethodInteractionModelTest >> testBehavior [
 
 	self assert: interactionModel behavior equals: self class
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeMethodInteractionModelTest >> testBindingOf [
 
 	self assert: (interactionModel bindingOf: #somethingNotExistent) isNil.
-	self assert: (interactionModel bindingOf: #Object) notNil
+	self assert: (interactionModel bindingOf: #Object) isNotNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeMethodInteractionModelTest >> testDoItReceiver [
 
 	self 
@@ -47,9 +48,9 @@ SpCodeMethodInteractionModelTest >> testDoItReceiver [
 		equals: self class
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpCodeMethodInteractionModelTest >> testHasBindingOf [
 
 	self deny: (interactionModel hasBindingOf: #somethingNotExistent).
-	self deny: (interactionModel hasBindingOf: #Object)
+	self assert: (interactionModel hasBindingOf: #Object)
 ]

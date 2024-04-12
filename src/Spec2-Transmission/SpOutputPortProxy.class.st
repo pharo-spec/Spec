@@ -35,22 +35,24 @@ Collection>>inspectionProxiedItems: aBuilder
 ```
 "
 Class {
-	#name : #SpOutputPortProxy,
-	#superclass : #ProtoObject,
+	#name : 'SpOutputPortProxy',
+	#superclass : 'ProtoObject',
 	#instVars : [
 		'presenter',
 		'transform'
 	],
-	#category : #'Spec2-Transmission-Proxy'
+	#category : 'Spec2-Transmission-Proxy',
+	#package : 'Spec2-Transmission',
+	#tag : 'Proxy'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpOutputPortProxy class >> on: aPresenter [
 
 	^ self new presenter: aPresenter
 ]
 
-{ #category : #'reflective operations' }
+{ #category : 'reflective operations' }
 SpOutputPortProxy >> doesNotUnderstand: aMessage [
 	| result |
 	
@@ -62,19 +64,19 @@ SpOutputPortProxy >> doesNotUnderstand: aMessage [
 	^ result
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpOutputPortProxy >> initialize [
 
 	transform := IdentityDictionary new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOutputPortProxy >> presenter: aPresenter [
 
 	presenter := aPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOutputPortProxy >> transform: outputSelector with: aBlock [
 
 	transform 
@@ -82,6 +84,6 @@ SpOutputPortProxy >> transform: outputSelector with: aBlock [
 		put: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpOutputPortProxy >> yourself [
 ]

@@ -2,12 +2,14 @@
 Display the toolbar with icons and label only
 "
 Class {
-	#name : #SpIconAndLabelToolbarDisplayMode,
-	#superclass : #SpToolbarDisplayMode,
-	#category : #'Spec2-Core-Widgets'
+	#name : 'SpIconAndLabelToolbarDisplayMode',
+	#superclass : 'SpToolbarDisplayMode',
+	#category : 'Spec2-Core-Widgets',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets'
 }
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpIconAndLabelToolbarDisplayMode >> configureButton: aButton item: aToolbarItem [
 	"ask for icon and label"
 	aButton getLabelSelector: #label.
@@ -17,18 +19,30 @@ SpIconAndLabelToolbarDisplayMode >> configureButton: aButton item: aToolbarItem 
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpIconAndLabelToolbarDisplayMode >> extent [
-	^ 45@45
+	^ (45@45) scaledByDisplayScaleFactor
 ]
 
-{ #category : #printing }
+{ #category : 'testing' }
+SpIconAndLabelToolbarDisplayMode >> hasIcon [
+
+	^ true
+]
+
+{ #category : 'testing' }
+SpIconAndLabelToolbarDisplayMode >> hasLabel [
+
+	^ true
+]
+
+{ #category : 'printing' }
 SpIconAndLabelToolbarDisplayMode >> label [
 
 	^ 'Icon and Label'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpIconAndLabelToolbarDisplayMode >> styleName [ 
 
 	^ 'toolBar.iconsAndLabel'

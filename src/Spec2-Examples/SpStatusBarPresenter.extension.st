@@ -1,6 +1,6 @@
-Extension { #name : #SpStatusBarPresenter }
+Extension { #name : 'SpStatusBarPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpStatusBarPresenter class >> example [
 	| presenter pushButton popButton statusBar count |
 	

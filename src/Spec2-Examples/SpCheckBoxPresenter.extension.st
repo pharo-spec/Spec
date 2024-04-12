@@ -1,6 +1,6 @@
-Extension { #name : #SpCheckBoxPresenter }
+Extension { #name : 'SpCheckBoxPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpCheckBoxPresenter class >> example [ 
 
 	self new 

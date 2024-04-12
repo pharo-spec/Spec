@@ -5,23 +5,25 @@ Description
 Demo page for SpecDemoNotebookPresenter
 "
 Class {
-	#name : #SpDemoNotebookPage,
-	#superclass : #SpDemoPage,
-	#category : #'Spec2-Examples-Demo-Notebook'
+	#name : 'SpDemoNotebookPage',
+	#superclass : 'SpDemoPage',
+	#category : 'Spec2-Examples-Demo-Notebook',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Notebook'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpDemoNotebookPage class >> pageName [
 	^ 'Notebook'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoNotebookPage class >> priority [
 
 	^ 1100
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoNotebookPage >> pageClass [
 	^ SpDemoNotebookPresenter
 ]

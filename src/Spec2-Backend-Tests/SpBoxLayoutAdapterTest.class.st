@@ -1,16 +1,18 @@
 Class {
-	#name : #SpBoxLayoutAdapterTest,
-	#superclass : #SpLayoutAdapterTest,
-	#category : #'Spec2-Backend-Tests-Layout'
+	#name : 'SpBoxLayoutAdapterTest',
+	#superclass : 'SpLayoutAdapterTest',
+	#category : 'Spec2-Backend-Tests-Layout',
+	#package : 'Spec2-Backend-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpBoxLayoutAdapterTest class >> isAbstract [
 
 	^ self == SpBoxLayoutAdapterTest
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBoxLayoutAdapterTest >> testAdapterElementsAreInSameOrderThanLayout [
 
 	| first second |
@@ -20,14 +22,14 @@ SpBoxLayoutAdapterTest >> testAdapterElementsAreInSameOrderThanLayout [
 	self assert: self adapter children second equals: second adapter widget.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBoxLayoutAdapterTest >> testAddElementAddsToAdapter [
 
 	layout add: SpButtonPresenter new.
 	self deny: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBoxLayoutAdapterTest >> testAddElementAfterOpenAddsToAdapter [
 
 	layout add: SpButtonPresenter new.
@@ -37,7 +39,7 @@ SpBoxLayoutAdapterTest >> testAddElementAfterOpenAddsToAdapter [
 	self assert: self adapter children size equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBoxLayoutAdapterTest >> testLayoutCanHaveMoreThanTwoChildren [
 
 	layout add: SpButtonPresenter new.
@@ -47,7 +49,7 @@ SpBoxLayoutAdapterTest >> testLayoutCanHaveMoreThanTwoChildren [
 	self assert: layout children size equals: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBoxLayoutAdapterTest >> testRemoveElementAddedAfterOpenRemovesFromAdapter [
 
 	| element |
@@ -58,7 +60,7 @@ SpBoxLayoutAdapterTest >> testRemoveElementAddedAfterOpenRemovesFromAdapter [
 	self assert: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBoxLayoutAdapterTest >> testRemoveElementRemovesFromAdapter [
 
 	| element |
@@ -67,7 +69,7 @@ SpBoxLayoutAdapterTest >> testRemoveElementRemovesFromAdapter [
 	self assert: self adapter isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBoxLayoutAdapterTest >> testReplaceElementAfterOpen [
 	| p1 toReplace p2 replacement |
 	
@@ -88,7 +90,7 @@ SpBoxLayoutAdapterTest >> testReplaceElementAfterOpen [
 			p2 adapter widget }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBoxLayoutAdapterTest >> testReplaceElementAppliesStyle [
 	| p1 toReplace p2 replacement |
 	
@@ -107,7 +109,7 @@ SpBoxLayoutAdapterTest >> testReplaceElementAppliesStyle [
 		equals: StandardFonts codeFont
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpBoxLayoutAdapterTest >> testReplaceElementBeforeOpenAppliesStyle [
 	| p1 toReplace p2 replacement |
 	

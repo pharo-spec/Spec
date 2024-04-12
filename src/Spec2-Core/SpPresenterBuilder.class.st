@@ -10,21 +10,23 @@ list := self newList.
 ```
 "
 Class {
-	#name : #SpPresenterBuilder,
-	#superclass : #Object,
+	#name : 'SpPresenterBuilder',
+	#superclass : 'Object',
 	#traits : 'SpTPresenterBuilder',
 	#classTraits : 'SpTPresenterBuilder classTrait',
-	#category : #'Spec2-Core-Base'
+	#category : 'Spec2-Core-Base',
+	#package : 'Spec2-Core',
+	#tag : 'Base'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpPresenterBuilder >> instantiate: aPresenterClass [
 	"Instantiate a SpPresenter subclass and set its instance owner"
 	
 	^ aPresenterClass new
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpPresenterBuilder >> instantiate: aPresenterClass on: aModel [
 	"Instantiate a SpPresenter subclass and set its instance owner and model"
 

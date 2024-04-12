@@ -2,12 +2,14 @@
 I am the bridge between an ImagePresenter and a AlphaImageMorph
 "
 Class {
-	#name : #SpMorphicImageAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicImageAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicImageAdapter >> buildWidget [
 
 	| alphaImage |
@@ -30,25 +32,25 @@ SpMorphicImageAdapter >> buildWidget [
 	^ alphaImage
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicImageAdapter >> click [
 
 	^ self model action value
 ]
 
-{ #category : #'widget protocol' }
+{ #category : 'widget protocol' }
 SpMorphicImageAdapter >> getImage [
 
 	^ self model image
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicImageAdapter >> image [
 	
 	^ widget scaledImage
 ]
 
-{ #category : #'widget protocol' }
+{ #category : 'widget protocol' }
 SpMorphicImageAdapter >> layoutValue [
 
 	^ self model autoScale
@@ -56,7 +58,7 @@ SpMorphicImageAdapter >> layoutValue [
 		  ifFalse: [ #center ]
 ]
 
-{ #category : #'widget protocol' }
+{ #category : 'widget protocol' }
 SpMorphicImageAdapter >> switchAutoscale [
 
 	self widgetDo: [ :w | w layout: self layoutValue ]

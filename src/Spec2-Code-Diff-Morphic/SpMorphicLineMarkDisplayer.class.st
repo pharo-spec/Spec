@@ -1,41 +1,42 @@
 Class {
-	#name : #SpMorphicLineMarkDisplayer,
-	#superclass : #RubScrolledTextSideRuler,
+	#name : 'SpMorphicLineMarkDisplayer',
+	#superclass : 'RubScrolledTextSideRuler',
 	#instVars : [
 		'adapter'
 	],
-	#category : #'Spec2-Code-Diff-Morphic'
+	#category : 'Spec2-Code-Diff-Morphic',
+	#package : 'Spec2-Code-Diff-Morphic'
 }
 
-{ #category : #querying }
+{ #category : 'querying' }
 SpMorphicLineMarkDisplayer class >> key [
 	^ #patchLineMarks
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLineMarkDisplayer >> adapter [
 
 	^ adapter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLineMarkDisplayer >> adapter: anObject [
 
 	adapter := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLineMarkDisplayer >> backgroundColor [
 	^ self paragraphProvider lineNumbersBackgroundColor 
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 SpMorphicLineMarkDisplayer >> computedWidthFrom: aRectangle [
 	^ (((self fontToUse widthOfString: self paragraph numberOfPhysicalLines asString) + self horizontalGapBefore
 		+ self horizontalGapAfter + self verticalSeparatorWidth) max: self minimumWidth) truncated
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpMorphicLineMarkDisplayer >> drawOn: aCanvas [
 	| right font lines visibleRectangle left lineMarks lineMarkNumbers |
 	
@@ -79,7 +80,7 @@ SpMorphicLineMarkDisplayer >> drawOn: aCanvas [
 					at: lineBounds topLeft - (iconForm width@0) ] ]
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpMorphicLineMarkDisplayer >> drawOnAthensCanvas: aCanvas [
 	| prev right font lines visibleRectangle tcolor left |
 	
@@ -130,71 +131,71 @@ SpMorphicLineMarkDisplayer >> drawOnAthensCanvas: aCanvas [
 						prev := line lineNumber ] ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLineMarkDisplayer >> fontToUse [
 
 	^ self textArea font
 ]
 
-{ #category : #menus }
+{ #category : 'menus' }
 SpMorphicLineMarkDisplayer >> getMenu: shiftState [
 	"Answer the menu to be presented when the yellow button is pressed while the shift key is down"
 
 	^ nil "self menu"
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpMorphicLineMarkDisplayer >> handlesMouseDown: evt [
 	^ true
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 SpMorphicLineMarkDisplayer >> horizontalGapAfter [
 	^ 3
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 SpMorphicLineMarkDisplayer >> horizontalGapBefore [
 	^ 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLineMarkDisplayer >> iconNamed: aSymbol [
 
 	^ self adapter presenter application iconNamed: aSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLineMarkDisplayer >> level [
 	^ 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLineMarkDisplayer >> markAt: aSymbol [
 
 	^ self adapter markAt: aSymbol
 ]
 
-{ #category : #menus }
+{ #category : 'menus' }
 SpMorphicLineMarkDisplayer >> menu [
 	"Answer the menu to be presented when the yellow button is pressed while the shift key is down"
 
 	^ (PragmaMenuBuilder pragmaKeyword: self menuKeyword  model: self) menu
 ]
 
-{ #category : #menus }
+{ #category : 'menus' }
 SpMorphicLineMarkDisplayer >> menuKeyword [ 
 	^ #RubLineNumberMenu
 	
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 SpMorphicLineMarkDisplayer >> minimumWidth [
 	^ (self fontToUse widthOfString: 'MM') + self horizontalGapAfter + self horizontalGapBefore + self  verticalSeparatorWidth 
 
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpMorphicLineMarkDisplayer >> mouseDown: anEvent [
 	| lineIndex line |
 	(anEvent yellowButtonPressed and: [ anEvent commandKeyPressed not ]) "First check for option (menu) click"
@@ -206,7 +207,7 @@ SpMorphicLineMarkDisplayer >> mouseDown: anEvent [
 	self textArea mouseDown: anEvent
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpMorphicLineMarkDisplayer >> mouseMove: anEvent [
 	| lineIndex line |
 	lineIndex := self lineIndexForPoint: anEvent position.
@@ -216,7 +217,7 @@ SpMorphicLineMarkDisplayer >> mouseMove: anEvent [
 
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpMorphicLineMarkDisplayer >> mouseUp: anEvent [
 	| lineIndex line |
 	lineIndex := self lineIndexForPoint: anEvent position.
@@ -226,18 +227,18 @@ SpMorphicLineMarkDisplayer >> mouseUp: anEvent [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLineMarkDisplayer >> selectionColorToUse [
 	^ self primarySelectionColor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLineMarkDisplayer >> textColor [
 	^ self textArea lineNumbersTextColor 
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLineMarkDisplayer >> verticalSeparatorBounds [
 	| bnds  |
 	bnds := self bounds.
@@ -246,17 +247,17 @@ SpMorphicLineMarkDisplayer >> verticalSeparatorBounds [
 		ifFalse: [ (bnds topLeft corner: bnds bottomLeft + (self verticalSeparatorWidth @ 0)) ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLineMarkDisplayer >> verticalSeparatorColor [
 	^ (self textArea backgroundColor contrastingBlackAndWhiteColor ) alpha: 0.3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicLineMarkDisplayer >> verticalSeparatorWidth [
 	^ 1
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SpMorphicLineMarkDisplayer >> yellowButtonActivity: shiftKeyState [ 
 	"Invoke the text-editing menu.
 	Check if required first!"

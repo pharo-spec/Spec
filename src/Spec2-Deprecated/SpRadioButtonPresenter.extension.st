@@ -1,6 +1,6 @@
-Extension { #name : #SpRadioButtonPresenter }
+Extension { #name : 'SpRadioButtonPresenter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpRadioButtonPresenter >> actionWhenActivatedHolder [
 	
 	self deprecated: 'It breaks the encapsulation'.
@@ -8,7 +8,7 @@ SpRadioButtonPresenter >> actionWhenActivatedHolder [
 	^ nil
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpRadioButtonPresenter >> actionWhenDeactivatedHolder [
 	
 	self deprecated: 'It breaks encapsulation'.
@@ -16,7 +16,7 @@ SpRadioButtonPresenter >> actionWhenDeactivatedHolder [
 	^ nil
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpRadioButtonPresenter >> canDeselectByClick [
 	"Return true clicking on a selected radio button deselects it"
 	
@@ -25,7 +25,7 @@ SpRadioButtonPresenter >> canDeselectByClick [
 	^ false
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpRadioButtonPresenter >> canDeselectByClick: aBoolean [
 	"Set if clicking on a selected radio button can deselect it"
 	
@@ -34,7 +34,7 @@ SpRadioButtonPresenter >> canDeselectByClick: aBoolean [
 	
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpRadioButtonPresenter >> privateSetState: aBoolean [
 	"Should only be used by RadioButtonGroup"
 	
@@ -44,7 +44,7 @@ SpRadioButtonPresenter >> privateSetState: aBoolean [
 	self changed: #state
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpRadioButtonPresenter >> stateHolder [
 
 	self deprecated: 'It breaks encapsulation'.
@@ -52,13 +52,13 @@ SpRadioButtonPresenter >> stateHolder [
 	^ state
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpRadioButtonPresenter >> whenCanDeselectByClickChanged: aBlock [
 	self deprecated: 'It is not clear what option to select if deselected'.
 
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpRadioButtonPresenter >> whenCanDeselectByClickChangedDo: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	

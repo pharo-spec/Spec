@@ -1,23 +1,24 @@
 Class {
-	#name : #SpMorphPresenterTest,
-	#superclass : #SpAbstractWidgetAdapterTest,
-	#category : #'Spec2-Morphic-Tests'
+	#name : 'SpMorphPresenterTest',
+	#superclass : 'SpAbstractWidgetAdapterTest',
+	#category : 'Spec2-Morphic-Tests',
+	#package : 'Spec2-Morphic-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphPresenterTest >> classToTest [
 
 	^ SpMorphPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphPresenterTest >> testChangingHelpAffectTheWidget [
 	"It does not has sense here"
 
 	self skip
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphPresenterTest >> testChangingMorphUpdatesContents [
 	| m1 m2 |
 

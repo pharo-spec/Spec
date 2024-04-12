@@ -1,15 +1,17 @@
 Class {
-	#name : #SpTextInputFieldPresenterTest,
-	#superclass : #SpAbstractTextPresenterTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpTextInputFieldPresenterTest',
+	#superclass : 'SpAbstractTextPresenterTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTextInputFieldPresenterTest >> classToTest [
 	^ SpTextInputFieldPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldPresenterTest >> testBeNotPasswordIsSet [
 
 	presenter bePassword: false.
@@ -17,7 +19,7 @@ SpTextInputFieldPresenterTest >> testBeNotPasswordIsSet [
 	self deny: presenter isPassword
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldPresenterTest >> testBePasswordIsSet [
 
 	presenter bePassword.
@@ -25,37 +27,37 @@ SpTextInputFieldPresenterTest >> testBePasswordIsSet [
 	self assert: presenter isPassword
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldPresenterTest >> testBeTextIsSet [
 	presenter beText.
 	self deny: presenter isPassword
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldPresenterTest >> testDefaultIsNotPassword [
 
 	self deny: presenter isPassword
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldPresenterTest >> testDefaultMaxLengthIsZero [
 
 	self assert: presenter maxLength equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldPresenterTest >> testDefaultPlaceholderIsEmpty [
 
 	self assert: presenter placeholder isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldPresenterTest >> testDefaultTextIsEmpty [
 
 	self assert: presenter text isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldPresenterTest >> testMaxLengthIsSet [
 
 	presenter maxLength: 10.
@@ -63,7 +65,7 @@ SpTextInputFieldPresenterTest >> testMaxLengthIsSet [
 	self assert: presenter maxLength equals: 10
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldPresenterTest >> testMaxLengthTruncatesAlreadyTypedText [
 
 	presenter text: '1234567890 ---'.
@@ -71,7 +73,7 @@ SpTextInputFieldPresenterTest >> testMaxLengthTruncatesAlreadyTypedText [
 	self assert: presenter text equals: '1234567890'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldPresenterTest >> testMaxLengthTruncatesText [
 
 	presenter maxLength: 10.
@@ -79,7 +81,7 @@ SpTextInputFieldPresenterTest >> testMaxLengthTruncatesText [
 	self assert: presenter text equals: '1234567890'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldPresenterTest >> testTextIsSet [
 
 	presenter text: 'aText'.
@@ -87,7 +89,7 @@ SpTextInputFieldPresenterTest >> testTextIsSet [
 	self assert: presenter text equals: 'aText'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldPresenterTest >> testWhenPlaceholderChangesRaisesSingleEvent [
 
 	self
@@ -97,7 +99,7 @@ SpTextInputFieldPresenterTest >> testWhenPlaceholderChangesRaisesSingleEvent [
 		whenDoing: [ presenter placeholder: 'test' ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpTextInputFieldPresenterTest >> testWhenTextChangesRaisesSingleEvent [
 
 	self

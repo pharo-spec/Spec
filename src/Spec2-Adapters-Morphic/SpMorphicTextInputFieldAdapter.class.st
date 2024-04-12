@@ -2,12 +2,14 @@
 I am the adapter used to bridge a TextInputFieldPresenter and a PluggableTextFieldMorph
 "
 Class {
-	#name : #SpMorphicTextInputFieldAdapter,
-	#superclass : #SpMorphicBaseTextAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicTextInputFieldAdapter',
+	#superclass : 'SpMorphicBaseTextAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicTextInputFieldAdapter >> accept: aText notifying: aNotifyier [
 	"We use #asString because rubric send Text instead of strings."
 
@@ -16,7 +18,7 @@ SpMorphicTextInputFieldAdapter >> accept: aText notifying: aNotifyier [
 		notifying: aNotifyier
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTextInputFieldAdapter >> buildWidget [
 	| newWidget |
 
@@ -29,7 +31,7 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		entryCompletion: self entryCompletion;
 		ghostText: self getPlaceholderText;
 		encrypted: self encrypted;
-		askBeforeDiscardingEdits: self askBeforeDiscardingEdits;
+		askBeforeDiscardingEdits: false;
 		autoAccept: true;
 		vResizing: #spaceFill;
 		hResizing: #spaceFill;
@@ -59,18 +61,18 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 	^ newWidget
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicTextInputFieldAdapter >> cursorPositionIndex: index [ 
 
 	self widgetDo: [ :w | ^ w textArea editor selectAt: index ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicTextInputFieldAdapter >> encrypted [
 	^ self model isPassword
 ]
 
-{ #category : #'spec protocol' }
+{ #category : 'spec protocol' }
 SpMorphicTextInputFieldAdapter >> encrypted: aBoolean [
 
 	self widgetDo: [ :w | 
@@ -78,38 +80,38 @@ SpMorphicTextInputFieldAdapter >> encrypted: aBoolean [
 		w changed ]
 ]
 
-{ #category : #'widget API' }
+{ #category : 'widget API' }
 SpMorphicTextInputFieldAdapter >> entryCompletion [
 
 	^ self model entryCompletion
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTextInputFieldAdapter >> eventHandlerReceiver: aWidget [
 
 	^ aWidget textArea
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTextInputFieldAdapter >> getPlaceholderText [
 
 	^ self presenter placeholder ifNotNil: [ :aString | 
 		aString localizedForPresenter: self presenter ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTextInputFieldAdapter >> isPassword [
 	
 	^ self widget font isKindOf: FixedFaceFont
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTextInputFieldAdapter >> setEditable: aBoolean to: aWidget [
 
 	aWidget textArea readOnly: aBoolean not
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTextInputFieldAdapter >> text: aString [
 
 	widget
@@ -117,7 +119,7 @@ SpMorphicTextInputFieldAdapter >> text: aString [
 		acceptTextInModel
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpMorphicTextInputFieldAdapter >> widgetEventReceiver [
 	
 	^ widget

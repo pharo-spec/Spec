@@ -3,8 +3,8 @@ I'm an adapter for Box Layouts.
 A paned layout will split (horizontally or vertically) panels (in fixed yet proportional spaces).
 "
 Class {
-	#name : #SpMorphicBoxAdapter,
-	#superclass : #SpMorphicLayoutAdapter,
+	#name : 'SpMorphicBoxAdapter',
+	#superclass : 'SpMorphicLayoutAdapter',
 	#instVars : [
 		'startPanel',
 		'endPanel'
@@ -12,29 +12,25 @@ Class {
 	#classVars : [
 		'Experimental'
 	],
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #'experiment-toggle' }
+{ #category : 'experiment-toggle' }
 SpMorphicBoxAdapter class >> useExperimentalWhile: aBlock [
 
 	Experimental := true.
 	aBlock ensure: [ Experimental := false ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicBoxAdapter >> add: aPresenter [
  
 	self add: aPresenter constraints: SpBoxConstraints new
 ]
 
-{ #category : #adding }
-SpMorphicBoxAdapter >> add: aPresenter constraints: constraints [
-
-	super add: aPresenter constraints: constraints
-]
-
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBoxAdapter >> addConstraints: constraints toChild: childMorph [
 	"Adds constraits by child"
 	| theMorph |
@@ -64,7 +60,7 @@ SpMorphicBoxAdapter >> addConstraints: constraints toChild: childMorph [
 	^ theMorph 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBoxAdapter >> addHorizontalPadding: aNumber toMorph: aMorph [
 
 	^ self newWrapMorph
@@ -82,7 +78,7 @@ SpMorphicBoxAdapter >> addHorizontalPadding: aNumber toMorph: aMorph [
 		  yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBoxAdapter >> addPadding: aNumber toMorph: aMorph [
 	
 	aNumber = 0 ifTrue: [ ^ aMorph ].
@@ -93,7 +89,7 @@ SpMorphicBoxAdapter >> addPadding: aNumber toMorph: aMorph [
 		into: self
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBoxAdapter >> addVerticalPadding: aNumber toMorph: aMorph [
 
 	^ self newWrapMorph
@@ -111,7 +107,7 @@ SpMorphicBoxAdapter >> addVerticalPadding: aNumber toMorph: aMorph [
 		  yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBoxAdapter >> applyAlignmentTo: aWidget [
 
 	layout isVertical
@@ -135,7 +131,7 @@ SpMorphicBoxAdapter >> applyAlignmentTo: aWidget [
 	^ aWidget
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBoxAdapter >> applyAlignmentToChild: aWidget [
 
 	layout vAlign 
@@ -145,7 +141,7 @@ SpMorphicBoxAdapter >> applyAlignmentToChild: aWidget [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBoxAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
 	| childMorph |
 
@@ -161,19 +157,19 @@ SpMorphicBoxAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel 
 	^ childMorph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicBoxAdapter >> children [
 
 	^ startPanel submorphs, endPanel submorphs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicBoxAdapter >> childrenWidgets [
 	
 	^ self children
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicBoxAdapter >> layout: aLayout [
 
 	layout := aLayout.
@@ -200,7 +196,7 @@ SpMorphicBoxAdapter >> layout: aLayout [
 	super layout: aLayout
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicBoxAdapter >> newHorizontal [
 
 	^ (self newPanelWith: self newPanelLayout)
@@ -212,11 +208,12 @@ SpMorphicBoxAdapter >> newHorizontal [
 			listDirection: #leftToRight;
 			hResizing: #shrinkWrap;
 			width: 0;
+			minWidth: 0; "Otherwise an empty endPanel has a width of 2 pixels due to Morph>>#minWidth."
 			yourself);
 	  yourself
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicBoxAdapter >> newPanelLayout [
 
 	^ SpMorphicBoxLayout new
@@ -224,23 +221,24 @@ SpMorphicBoxAdapter >> newPanelLayout [
 		yourself
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicBoxAdapter >> newVertical [
 
 	^ (self newPanelWith: self newPanelLayout)
 		listDirection: #topToBottom;
-		addMorphBack: ((startPanel := self newPanel)
+		addMorphBack: ((startPanel := self newPanelWith: SpMorphicBoxChildLayout new)
 			listDirection: #topToBottom;
 			yourself);
-		addMorphBack: ((endPanel := self newPanel)
+		addMorphBack: ((endPanel := self newPanelWith: SpMorphicBoxChildLayout new)
 			listDirection: #topToBottom;
 			vResizing: #shrinkWrap;
 			height: 0;
+			minHeight: 0; "Otherwise an empty endPanel has a height of 2 pixels due to Morph>>#minHeight."
 			yourself);
 		yourself
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicBoxAdapter >> newWrapMorph [
 
 	^ Morph new
@@ -249,18 +247,20 @@ SpMorphicBoxAdapter >> newWrapMorph [
 		  borderColor: Color transparent yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicBoxAdapter >> remove: aPresenter [
+	| morph adapter |
 
-	| morph |
-	morph := aPresenter adapter widget.	
+	(adapter := aPresenter adapter) ifNil: [ ^ self ].
+	
+	adapter unsubscribe.
+	morph := adapter widget.
 	startPanel removeMorph: morph.
 	endPanel removeMorph: morph.
 	self verifyBoxExtent
-	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicBoxAdapter >> removeAll [
 
 	startPanel removeAllMorphs.
@@ -268,14 +268,14 @@ SpMorphicBoxAdapter >> removeAll [
 	self verifyBoxExtent
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicBoxAdapter >> removeSubWidgets [
 
 	startPanel removeAllMorphs.
 	endPanel removeAllMorphs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicBoxAdapter >> replace: aPresenter with: otherPresenter [
 
 	| panel oldMorph newMorph |	
@@ -291,7 +291,7 @@ SpMorphicBoxAdapter >> replace: aPresenter with: otherPresenter [
 	panel replaceSubmorph: oldMorph by: newMorph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicBoxAdapter >> replace: aPresenter with: otherPresenter withConstraints: constraints [
 
 	| panel oldMorph newMorph |	
@@ -307,21 +307,21 @@ SpMorphicBoxAdapter >> replace: aPresenter with: otherPresenter withConstraints:
 	panel replaceSubmorph: oldMorph by: newMorph
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicBoxAdapter >> updateSpacing [
 
 	{ startPanel. endPanel } 
 			do: [ :each | each cellInset: layout spacing ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBoxAdapter >> verifyBoxExtent [
 
 	(startPanel hasSubmorphs not and: [ endPanel hasSubmorphs not ])
 		ifTrue: [ widget extent: 0@0 ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicBoxAdapter >> verifyBoxExtentOf: aPanel withChild: childMorph [
 	| width height |
 

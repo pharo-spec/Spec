@@ -4,14 +4,16 @@ I define my cells following the definition on columns (MorphicTableColumn).
 I use a builder (MorphicTableCellBuilder) to realise the cell content. 
 "
 Class {
-	#name : #SpMorphicTableDataSource,
-	#superclass : #FTSimpleDataSource,
+	#name : 'SpMorphicTableDataSource',
+	#superclass : 'FTSimpleDataSource',
 	#traits : 'SpTMorphicTableDataSourceCommons',
 	#classTraits : 'SpTMorphicTableDataSourceCommons classTrait',
-	#category : #'Spec2-Adapters-Morphic-Table'
+	#category : 'Spec2-Adapters-Morphic-Table',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Table'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTableDataSource >> cellColumn: column row: rowIndex [
 	| cell builder |
 
@@ -26,16 +28,16 @@ SpMorphicTableDataSource >> cellColumn: column row: rowIndex [
 	^ cell
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTableDataSource >> elements [ 
 	
 	^ elements ifNil: [
 		self model 
-			ifNotNil: #items
+			ifNotNil: [:m| m items]
 			ifNil: [ #() ] ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTableDataSource >> isMatch: anObject pattern: aString [
 	| text |
 	
@@ -43,13 +45,13 @@ SpMorphicTableDataSource >> isMatch: anObject pattern: aString [
 	^ text beginsWith: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTableDataSource >> resetElements [
 
 	elements := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTableDataSource >> searchText: aString [
 	
 	aString isEmptyOrNil ifTrue: [ ^ #() ].

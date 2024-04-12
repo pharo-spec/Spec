@@ -1,43 +1,55 @@
 Class {
-	#name : #SpCodeObjectInteractionModel,
-	#superclass : #SpCodeInteractionModel,
+	#name : 'SpCodeObjectInteractionModel',
+	#superclass : 'SpCodeInteractionModel',
 	#instVars : [
 		'object'
 	],
-	#category : #'Spec2-Code-Base'
+	#category : 'Spec2-Code-Base',
+	#package : 'Spec2-Code',
+	#tag : 'Base'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpCodeObjectInteractionModel class >> on: anObject [
 
 	^ self new object: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeObjectInteractionModel >> behavior [
 
 	^ self object class
 ]
 
-{ #category : #accessing }
+{ #category : 'binding' }
+SpCodeObjectInteractionModel >> bindingOf: aString [
+	^ nil
+]
+
+{ #category : 'accessing' }
 SpCodeObjectInteractionModel >> doItReceiver [
 
 	^ self object
 ]
 
-{ #category : #testing }
+{ #category : 'binding' }
+SpCodeObjectInteractionModel >> hasBindingOf: aString [
+	^ false
+]
+
+{ #category : 'testing' }
 SpCodeObjectInteractionModel >> isScripting [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeObjectInteractionModel >> object [
 
 	^ object
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeObjectInteractionModel >> object: anObject [
 
 	object := anObject

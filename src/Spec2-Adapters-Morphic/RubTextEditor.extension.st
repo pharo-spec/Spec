@@ -1,6 +1,6 @@
-Extension { #name : #RubTextEditor }
+Extension { #name : 'RubTextEditor' }
 
-{ #category : #'*Spec2-Adapters-Morphic' }
+{ #category : '*Spec2-Adapters-Morphic' }
 RubTextEditor >> lineAtCursorPosition [
 	| string |
 	
@@ -10,7 +10,7 @@ RubTextEditor >> lineAtCursorPosition [
 		ifNil: [ '' ]
 ]
 
-{ #category : #'*Spec2-Adapters-Morphic' }
+{ #category : '*Spec2-Adapters-Morphic' }
 RubTextEditor >> lineIntervalAtCursorPosition [
 	| string lastEnd index lastStart |
 	

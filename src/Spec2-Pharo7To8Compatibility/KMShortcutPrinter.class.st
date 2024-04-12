@@ -3,18 +3,19 @@ I'm an util to convert a shortcut into the representation used in a platform (th
 
 "
 Class {
-	#name : #KMShortcutPrinter,
-	#superclass : #OSPlatformVisitor,
+	#name : 'KMShortcutPrinter',
+	#superclass : 'OSPlatformVisitor',
 	#instVars : [
 		'shortcut'
 	],
 	#classVars : [
 		'SymbolTable'
 	],
-	#category : #'Spec2-Pharo7To8Compatibility'
+	#category : 'Spec2-Pharo7To8Compatibility',
+	#package : 'Spec2-Pharo7To8Compatibility'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 KMShortcutPrinter class >> createSymbolTable [
 
 	^ Dictionary newFromPairs: { 
@@ -26,13 +27,13 @@ KMShortcutPrinter class >> createSymbolTable [
 		#Enter. 	(Character value: 16r23ce) asString }
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 KMShortcutPrinter class >> symbolTable [
 
 	^ SymbolTable ifNil: [ SymbolTable := self createSymbolTable ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 KMShortcutPrinter class >> symbolTableAt: anObject ifAbsent: aBlock [
 
 	^ self symbolTable 
@@ -40,7 +41,7 @@ KMShortcutPrinter class >> symbolTableAt: anObject ifAbsent: aBlock [
 		ifAbsent: aBlock
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 KMShortcutPrinter class >> toString: aShortcut [
 
 	^ self new
@@ -48,13 +49,13 @@ KMShortcutPrinter class >> toString: aShortcut [
 		visit
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 KMShortcutPrinter >> shortcut: aShortcut [
 
 	shortcut := aShortcut
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 KMShortcutPrinter >> shortcutModifiers [
 	| modifiers |
 	
@@ -67,7 +68,7 @@ KMShortcutPrinter >> shortcutModifiers [
 	^ modifiers		
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 KMShortcutPrinter >> visitGeneric: aPlatform [
 	
 	^ String streamContents: [ :stream |
@@ -79,7 +80,7 @@ KMShortcutPrinter >> visitGeneric: aPlatform [
 	
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 KMShortcutPrinter >> visitMacOS: aPlatform [
 	| keyParts symbols |
 

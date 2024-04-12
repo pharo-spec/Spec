@@ -7,18 +7,20 @@ The presenter exposing a text input port need to define also the method ==#label
 Presenters exposing this port: *class:SpLabelPresenter*.
 "
 Class {
-	#name : #SpLabelPort,
-	#superclass : #SpInputPort,
-	#category : #'Spec2-Transmission-Base'
+	#name : 'SpLabelPort',
+	#superclass : 'SpInputPort',
+	#category : 'Spec2-Transmission-Base',
+	#package : 'Spec2-Transmission',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpLabelPort class >> portName [
 
 	^ #text
 ]
 
-{ #category : #'handling transmission' }
+{ #category : 'handling transmission' }
 SpLabelPort >> applyIncomingTransmission: anObject from: outPort to: aPresenter [
 
 	aPresenter label: anObject

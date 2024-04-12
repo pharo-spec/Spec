@@ -4,25 +4,27 @@ A demo for progress bar usage
    self example
 "
 Class {
-	#name : #SpProgressBarDemo,
-	#superclass : #SpPresenter,
+	#name : 'SpProgressBarDemo',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'indeterminated',
 		'fixed',
 		'withProgressionBlock',
 		'withText'
 	],
-	#category : #'Spec2-Examples-Demo-Loading'
+	#category : 'Spec2-Examples-Demo-Loading',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Loading'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpProgressBarDemo class >> example [
 	<sampleInstance>
 	
 	^ self new open
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpProgressBarDemo >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -37,7 +39,7 @@ SpProgressBarDemo >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpProgressBarDemo >> initializePresenters [
 
 	| progress progress2 |
@@ -60,13 +62,13 @@ SpProgressBarDemo >> initializePresenters [
 		every: 1 second
 ]
 
-{ #category : #'option list presenter' }
+{ #category : 'option list presenter' }
 SpProgressBarDemo >> optionIcon [
 
 	^ self iconNamed: #image
 ]
 
-{ #category : #'option list presenter' }
+{ #category : 'option list presenter' }
 SpProgressBarDemo >> optionTitle [
 
 	^ 'Progress bar Presenter'

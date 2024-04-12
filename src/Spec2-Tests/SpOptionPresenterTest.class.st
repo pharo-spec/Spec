@@ -1,13 +1,15 @@
 Class {
-	#name : #SpOptionPresenterTest,
-	#superclass : #TestCase,
+	#name : 'SpOptionPresenterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'optionPresenterClass'
 	],
-	#category : #'Spec2-Tests-Common-Widgets'
+	#category : 'Spec2-Tests-Common-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Common-Widgets'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 SpOptionPresenterTest >> setUp [
 	super setUp.
 	
@@ -20,7 +22,7 @@ SpOptionPresenterTest >> setUp [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOptionPresenterTest >> testValidationFailsWhenValidationsNotSatisfied [
 	| optionPresenter validationReport |
 	
@@ -39,7 +41,7 @@ SpOptionPresenterTest >> testValidationFailsWhenValidationsNotSatisfied [
 	self assert: validationReport errors first target equals: optionPresenter input.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpOptionPresenterTest >> testValidationSucceedsWhenValidationsSatisfied [
 	| optionPresenter validationReport |
 	

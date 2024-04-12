@@ -1,6 +1,6 @@
-Extension { #name : #SpMultipleSelectionMode }
+Extension { #name : 'SpMultipleSelectionMode' }
 
-{ #category : #'*Spec2-Transmission' }
+{ #category : '*Spec2-Transmission' }
 SpMultipleSelectionMode >> transmission [ 
 	
 	^ self selectedItems

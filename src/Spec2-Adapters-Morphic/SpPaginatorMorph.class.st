@@ -5,8 +5,8 @@ A paginator is just another way to offer ""scrolling"" of contents: instead havi
 Users can add pages by calling `SpPaginatorMorph>>#addPage:` or `SpPaginatorMorph>>#addPages:`. Amount of pages to be part of the selected area (shown) are handled through `SpPaginatorMorph>>#numberOfPagesShown:`.
 "
 Class {
-	#name : #SpPaginatorMorph,
-	#superclass : #Morph,
+	#name : 'SpPaginatorMorph',
+	#superclass : 'Morph',
 	#traits : 'TObservable',
 	#instVars : [
 		'#pagesMorph',
@@ -14,22 +14,24 @@ Class {
 		'#selectedPage => ObservableSlot',
 		'#numberOfPagesShown => ObservableSlot'
 	],
-	#category : #'Spec2-Adapters-Morphic-Paginator'
+	#category : 'Spec2-Adapters-Morphic-Paginator',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Paginator'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorMorph class >> defaultHeight [
 
 	^ 18
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorMorph class >> defaultNumberOfPagesShown [
 
 	^ 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorMorph >> addPage: anObject [
 
 	pagesMorph addMorphBack: (SpPaginatorPageMorph new
@@ -40,13 +42,13 @@ SpPaginatorMorph >> addPage: anObject [
 	self width: pagesMorph submorphs size * self baseWidth
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorMorph >> addPages: aCollection [
 
 	aCollection do: [ :each | self addPage: each ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPaginatorMorph >> adjustSelectionToClosestPage [
 	| closestPage |
 
@@ -57,7 +59,7 @@ SpPaginatorMorph >> adjustSelectionToClosestPage [
 		ifFalse: [ self basicSelectPage: closestPage ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPaginatorMorph >> adjustShownPages [
 	| newShownPages |
 
@@ -66,45 +68,45 @@ SpPaginatorMorph >> adjustShownPages [
 		ifFalse: [ self numberOfPagesShown: newShownPages ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPaginatorMorph >> adjustValues [
 
 	self adjustSelectionToClosestPage.
 	self adjustShownPages
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPaginatorMorph >> baseWidth [
 
 	^ SpPaginatorPageMorph baseWidth
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPaginatorMorph >> basicSelectPage: aNumber [
 	
 	selectedPage := aNumber
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 SpPaginatorMorph >> bounds: aRectangle [
 
 	super bounds: aRectangle.
 	selectionMorph height: aRectangle height
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPaginatorMorph >> defaultColor [
 
 	^ Color transparent
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPaginatorMorph >> doSelectPageFromMorph: aMorph [
 
 	self selectPage: (pagesMorph submorphs indexOf: aMorph)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPaginatorMorph >> extent: aPoint [
 
 	super extent: aPoint.
@@ -112,7 +114,7 @@ SpPaginatorMorph >> extent: aPoint [
 	selectionMorph height: aPoint y
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPaginatorMorph >> initialize [
 
 	self class initializeSlots: self.
@@ -129,7 +131,7 @@ SpPaginatorMorph >> initialize [
 	self basicSelectPage: 1.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPaginatorMorph >> moveNext [
 	self flag: #REMOVE. 
 	selectionMorph left: (((selectionMorph left + selectionMorph width) + self baseWidth) > self right 
@@ -137,13 +139,13 @@ SpPaginatorMorph >> moveNext [
 		ifFalse: [ selectionMorph left + self baseWidth ])
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpPaginatorMorph >> moveSelectionToPage: aNumber [
 
 	selectionMorph left: self left + ((aNumber - 1) * self baseWidth)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPaginatorMorph >> newPagesMorph [
 
 	^ Morph new 
@@ -155,7 +157,7 @@ SpPaginatorMorph >> newPagesMorph [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpPaginatorMorph >> newSelectionMorph [
 	
 	^ SpPaginatorSelectionMorph new
@@ -163,80 +165,92 @@ SpPaginatorMorph >> newSelectionMorph [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorMorph >> numberOfPagesShown [
 
 	^ numberOfPagesShown
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorMorph >> numberOfPagesShown: aNumber [
 
 	numberOfPagesShown := aNumber.
-	selectionMorph updateSizePages: numberOfPagesShown pageWidth: self baseWidth
+	selectionMorph 
+		updateSizePages: numberOfPagesShown 
+		pageWidth: self baseWidth
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorMorph >> removeAllPages [
 
 	pagesMorph removeAllMorphs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorMorph >> removePage: anObject [
 
 	pagesMorph removeMorph: (pagesMorph submorphs 
 		detect: [ :each | each model = anObject ]) 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
+SpPaginatorMorph >> removeResizingEdges [
+
+	selectionMorph removeResizingEdges
+]
+
+{ #category : 'accessing' }
 SpPaginatorMorph >> selectLastPage [
 
 	self selectPage: (pagesMorph submorphs size)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorMorph >> selectPage: aNumber [
+	| effectivePageNumber numPages |
 
 	selectedPage = aNumber ifTrue: [ ^ self ].
-	(aNumber + self numberOfPagesShown - 1 > pagesMorph submorphs size) 
-		ifTrue: [ ^ self selectPage: aNumber - 1 ].
+	numPages := pagesMorph submorphs size.
 
-	self moveSelectionToPage: aNumber.
-	self basicSelectPage: aNumber
+	effectivePageNumber := aNumber > (numPages - self numberOfPagesShown)
+		ifTrue: [ numPages - self numberOfPagesShown + 1 ]
+		ifFalse: [ aNumber ].
+		
+	self moveSelectionToPage: effectivePageNumber.
+	self basicSelectPage: effectivePageNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorMorph >> selectedPage [
 
 	^ selectedPage
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorMorph >> selectedPages [
 	
 	^ (self selectedPage to: self selectedPage + self numberOfPagesShown - 1) asArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorMorph >> selectionColor: aColor [ 
 
 	selectionMorph color: aColor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpPaginatorMorph >> selectionMorph [
 
 	^ selectionMorph
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpPaginatorMorph >> whenNumberOfPagesShownChangedDo: aBlock [ 
 
 	self property: #numberOfPagesShown whenChangedDo: aBlock
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 SpPaginatorMorph >> whenSelectedPageChangedDo: aBlock [ 
 
 	self property: #selectedPage whenChangedDo: aBlock

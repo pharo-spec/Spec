@@ -4,20 +4,22 @@ I hold an instance of World that you can access using #currentWorld.
 I allows to test a WorldPresenter in a World that is not the current world.
 "
 Class {
-	#name : #SpTestWorldPresenter,
-	#superclass : #SpWorldPresenter,
+	#name : 'SpTestWorldPresenter',
+	#superclass : 'SpWorldPresenter',
 	#classVars : [
 		'TestWorld'
 	],
-	#category : #'Spec2-Morphic-Tests-Core-Support'
+	#category : 'Spec2-Morphic-Tests-Core-Support',
+	#package : 'Spec2-Morphic-Tests',
+	#tag : 'Core-Support'
 }
 
-{ #category : #'ui requests' }
+{ #category : 'ui requests' }
 SpTestWorldPresenter class >> currentWorld [
 	^ TestWorld ifNil: [ TestWorld := self newWorld ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpTestWorldPresenter class >> newWorld [
 	| hand |
 	hand := HandMorph new.
@@ -27,24 +29,24 @@ SpTestWorldPresenter class >> newWorld [
 		yourself
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 SpTestWorldPresenter class >> reset [
 	TestWorld := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestWorldPresenter >> currentWorld [
 	^ self class currentWorld
 ]
 
-{ #category : #'private - showing' }
+{ #category : 'private - showing' }
 SpTestWorldPresenter >> openWithLayout: aLayout [
 
 	super openWithLayout: aLayout.
 	isClosed := false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTestWorldPresenter >> widget [
 	^ self currentWorld
 ]

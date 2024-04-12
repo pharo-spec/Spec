@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfSpec2,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfSpec2
+	#name : 'BaselineOfSpec2',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfSpec2',
+	#package : 'BaselineOfSpec2'
 }
 
-{ #category : #baseline }
+{ #category : 'baseline' }
 BaselineOfSpec2 >> baseline: spec [
 	<baseline>
 	
@@ -49,7 +50,7 @@ BaselineOfSpec2 >> baseline: spec [
 	spec group: 'default' with: #('Base' 'Tests' 'Code' 'CodeTests').
 ]
 
-{ #category : #'external projects' }
+{ #category : 'external projects' }
 BaselineOfSpec2 >> defaultRepositoryURL [
 		
 	^ self class environment 
@@ -58,22 +59,7 @@ BaselineOfSpec2 >> defaultRepositoryURL [
 		ifAbsent: [ 'github://pharo-spec/Spec' ]
 ]
 
-{ #category : #'external projects' }
-BaselineOfSpec2 >> packageRepository [
-
-	" Tries to determine a repository from which the baseline is being loaded. Useful for 
-	refering other baselines in the same repository. "
-	
-	^ (self class package mcWorkingCopy repositoryGroup repositories 
-		reject: [:each | each = MCCacheRepository uniqueInstance]) 
-		ifNotEmpty: [ :repositories | 
-				repositories 
-					detect: [ :each | each description beginsWith: 'tonel://' ]
-					ifNone: [ repositories anyOne ] ]
-		ifEmpty: [ nil ]
-]
-
-{ #category : #accessing }
+{ #category : 'accessing' }
 BaselineOfSpec2 >> project [
 	"Atomic loading is needed for Spec because we are moving classes of package and it breaks their subclasses. 
 	
@@ -99,21 +85,23 @@ We need to use atomic loading only during update of existing Spec upgrade"
 	 
 ]
 
-{ #category : #'external projects' }
+{ #category : 'external projects' }
 BaselineOfSpec2 >> specCore: spec [
 
-	spec baseline: 'SpecCore' with: [ 
-		spec 
-			repository: (self packageRepositoryURL ifEmpty: [ self defaultRepositoryURL ]);
-			loads: #('Base' 'Tests') ]
+	spec baseline: 'SpecCore' with: [
+		spec
+			repository: ((self packageRepositoryURLForSpec: spec) ifEmpty: [
+						 self defaultRepositoryURL ]);
+			loads: #( 'Base' 'Tests' ) ]
 ]
 
-{ #category : #'external projects' }
+{ #category : 'external projects' }
 BaselineOfSpec2 >> specCoreCode: spec [
 
-	spec baseline: 'SpecCoreCode' with: [ 
-		spec 
-			repository: (self packageRepositoryURL ifEmpty: [ self defaultRepositoryURL ]);
+	spec baseline: 'SpecCoreCode' with: [
+		spec
+			repository: ((self packageRepositoryURLForSpec: spec) ifEmpty: [
+						 self defaultRepositoryURL ]);
 			className: 'BaselineOfSpecCore';
-			loads: #('Code' 'CodeTests') ]
+			loads: #( 'Code' 'CodeTests' ) ]
 ]

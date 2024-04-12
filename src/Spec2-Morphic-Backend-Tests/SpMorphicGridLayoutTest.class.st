@@ -1,6 +1,6 @@
 Class {
-	#name : #SpMorphicGridLayoutTest,
-	#superclass : #TestCase,
+	#name : 'SpMorphicGridLayoutTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'label1',
 		'morph1',
@@ -8,10 +8,11 @@ Class {
 		'morph2',
 		'panel'
 	],
-	#category : #'Spec2-Morphic-Backend-Tests'
+	#category : 'Spec2-Morphic-Backend-Tests',
+	#package : 'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicGridLayoutTest >> newLayout [
 	
 	^ SpMorphicGridLayout new
@@ -25,7 +26,7 @@ SpMorphicGridLayoutTest >> newLayout [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicGridLayoutTest >> place: aMorph at: aPoint [ 
 
 	aMorph 
@@ -33,7 +34,7 @@ SpMorphicGridLayoutTest >> place: aMorph at: aPoint [
 		toValue: (SpGridConstraints at: aPoint)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicGridLayoutTest >> place: aMorph at: aPoint span: spanPoint [
 
 	aMorph 
@@ -41,7 +42,7 @@ SpMorphicGridLayoutTest >> place: aMorph at: aPoint span: spanPoint [
 		toValue: (SpGridConstraints at: aPoint span: spanPoint)
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 SpMorphicGridLayoutTest >> setUp [
 	
 	super setUp.
@@ -59,13 +60,13 @@ SpMorphicGridLayoutTest >> setUp [
 		self style applyTo: each ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicGridLayoutTest >> style [ 
 
 	^ self styleExtent: 50@20
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicGridLayoutTest >> styleExtent: aPoint [
 	| rootStyle |
 
@@ -81,7 +82,7 @@ SpMorphicGridLayoutTest >> styleExtent: aPoint [
 	^ SpMorphStyle newStyles: rootStyle flattenClasses
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicGridLayoutTest >> styleMinExtent: aPoint [
 	| rootStyle |
 
@@ -92,7 +93,7 @@ SpMorphicGridLayoutTest >> styleMinExtent: aPoint [
 	^ SpMorphStyle newStyles: rootStyle flattenClasses
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicGridLayoutTest >> testBasicLayout [
 	"
 	-----------
@@ -117,7 +118,7 @@ SpMorphicGridLayoutTest >> testBasicLayout [
 	self assert: morph2 bounds equals: (50@20 corner: 100@40)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicGridLayoutTest >> testBorderWidthHomogeneous [
 	"
 	+---+----+----+---+
@@ -149,7 +150,7 @@ SpMorphicGridLayoutTest >> testBorderWidthHomogeneous [
 	self assert: morph2 bounds equals: (50@50 corner: 95@95)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicGridLayoutTest >> testBorderWidthNotHomogeneous [
 	"
 	+---+----+----+
@@ -179,7 +180,7 @@ SpMorphicGridLayoutTest >> testBorderWidthNotHomogeneous [
 	self assert: morph2 bounds equals: (55@25 corner: 105@45)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicGridLayoutTest >> testColumnHomogeneousDiferentRowsAndColumns [
 	"Each element in a different row and column
 	
@@ -214,7 +215,7 @@ SpMorphicGridLayoutTest >> testColumnHomogeneousDiferentRowsAndColumns [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicGridLayoutTest >> testColumnNotHomogeneousDiferentRowsAndColumns [
 	"Each element in a different row and column
 	
@@ -252,7 +253,7 @@ SpMorphicGridLayoutTest >> testColumnNotHomogeneousDiferentRowsAndColumns [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicGridLayoutTest >> testColumnNotHomogeneousPairedRowsAndColumns [
 	"Paired elements in rows and columns
 	
@@ -287,7 +288,7 @@ SpMorphicGridLayoutTest >> testColumnNotHomogeneousPairedRowsAndColumns [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicGridLayoutTest >> testColumnSpacing [
 	"
 	---------------
@@ -312,7 +313,7 @@ SpMorphicGridLayoutTest >> testColumnSpacing [
 	self assert: morph2 bounds equals: (55@20 corner: 105@40)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicGridLayoutTest >> testLayoutIn [
 	"This is a meta-test that tries all the others (just to have access to all tests while seeing 
 	 the class. Yes, I know that means all tests are executed twice in CI, but they are fast :)"
@@ -326,7 +327,7 @@ SpMorphicGridLayoutTest >> testLayoutIn [
 			self tearDown ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicGridLayoutTest >> testRowSpacing [
 	"
 	-----------
@@ -353,7 +354,7 @@ SpMorphicGridLayoutTest >> testRowSpacing [
 	self assert: morph2 bounds equals: (50@25 corner: 100@45)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicGridLayoutTest >> testSpanColumn [
 	"Each element in a different row and column
 	
@@ -380,7 +381,7 @@ SpMorphicGridLayoutTest >> testSpanColumn [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicGridLayoutTest >> testSpanRow [
 	"Each element in a different row and column
 	

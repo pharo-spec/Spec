@@ -9,43 +9,45 @@ Basically, I add:
 
 "
 Class {
-	#name : #SpCommand,
-	#superclass : #CmUICommand,
+	#name : 'SpCommand',
+	#superclass : 'CmUICommand',
 	#instVars : [
 		'buildPresenterBlock',
 		'presenter'
 	],
-	#category : #'Spec2-Commander2-Core'
+	#category : 'Spec2-Commander2-Core',
+	#package : 'Spec2-Commander2',
+	#tag : 'Core'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 SpCommand >> asButtonPresenter [
 	self flag: #TODO. "Needs to use inform user display strategy when available, no other available strategy can be used in this context. See issue #705"
 	self configureAsButton.
 	^ self buildPresenter
 ]
 
-{ #category : #'presenter building' }
+{ #category : 'presenter building' }
 SpCommand >> buildPresenter [
 	^ presenter := self buildPresenterBlock value: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCommand >> buildPresenterBlock [
 	^ buildPresenterBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCommand >> buildPresenterBlock: anObject [
 	buildPresenterBlock := anObject
 ]
 
-{ #category : #'presenter building' }
+{ #category : 'presenter building' }
 SpCommand >> configureAsButton [
 	self configureAsButtonOfClass: SpButtonPresenter
 ]
 
-{ #category : #'presenter building' }
+{ #category : 'presenter building' }
 SpCommand >> configureAsButtonOfClass: aButtonClass [
 	self
 		buildPresenterBlock: [ :specCommand | 
@@ -59,17 +61,17 @@ SpCommand >> configureAsButtonOfClass: aButtonClass [
 				yourself ]
 ]
 
-{ #category : #'presenter building' }
+{ #category : 'presenter building' }
 SpCommand >> configureAsToolBarToggleButton [
 	self configureAsButtonOfClass: SpToolbarToggleButtonPresenter
 ]
 
-{ #category : #'presenter building' }
+{ #category : 'presenter building' }
 SpCommand >> configureAsToolbarButton [
 	self configureAsButtonOfClass: SpToolbarButtonPresenter
 ]
 
-{ #category : #displaying }
+{ #category : 'displaying' }
 SpCommand >> displayIn: aMenuGroupOrPresenter do: aBlock [
 
 	self displayStrategy 
@@ -78,20 +80,20 @@ SpCommand >> displayIn: aMenuGroupOrPresenter do: aBlock [
 		do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCommand >> iconProvider [
 
 	^ iconProvider
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpCommand >> initialize [
 
 	super initialize.
 	self configureAsToolbarButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCommand >> innerCommand [
 	| innerCommand |
 
@@ -102,13 +104,26 @@ SpCommand >> innerCommand [
 	^ innerCommand
 ]
 
-{ #category : #accessing }
+{ #category : 'testing' }
+SpCommand >> isEnabled [
+
+	^ self canBeExecuted
+]
+
+{ #category : 'testing' }
+SpCommand >> isVisible [
+
+	^ true
+]
+
+{ #category : 'accessing' }
 SpCommand >> presenter [
 	^ presenter
 ]
 
-{ #category : #updating }
-SpCommand >> updateEnableStatus [ 
+{ #category : 'updating' }
+SpCommand >> updateEnableStatus [
+
  	self presenter ifNil: [ ^ self ].   
 	self presenter enabled: self canBeExecuted
 ]

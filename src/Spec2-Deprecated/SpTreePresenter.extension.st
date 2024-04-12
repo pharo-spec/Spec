@@ -1,63 +1,63 @@
-Extension { #name : #SpTreePresenter }
+Extension { #name : 'SpTreePresenter' }
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter class >> adapterName [
 	^ #TreeAdapter
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> allowMenuOnNoItem [
 
 	^ allowMenuOnNoItem value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> allowMenuOnNoItem: aBoolean [
 
 	allowMenuOnNoItem value: aBoolean
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> autoDeselection [
 
 	^ autoDeselection value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> autoDeselection: aBoolean [
 
 	autoDeselection value: aBoolean
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> autoMultiSelection [
 
 	^ autoMultiSelection value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> autoMultiSelection: aBoolean [
 
 	autoMultiSelection value: aBoolean
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> autoRefreshOnExpand [
 	^ autoRefreshOnExpand value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> autoRefreshOnExpand: aBoolean [
 	autoRefreshOnExpand value: aBoolean
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> beCheckList [
 
 	self isCheckList: true
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> childrenBlock [
 	"Return the block used to retrieve the children of a node.
 	The optional block arguments are:
@@ -67,7 +67,7 @@ SpTreePresenter >> childrenBlock [
 	^ childrenBlockHolder value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> childrenBlock: aBlock [
 	"Set the block used to retrieve the children of a node.
 	The optional block arguments are:
@@ -77,43 +77,43 @@ SpTreePresenter >> childrenBlock: aBlock [
 	childrenBlockHolder value: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> childrenFor: anItem [
 
 	^ self childrenBlock cull: anItem cull: self
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> collapseAll [
 	
 	self changed: #collapseAll with: #()
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> columnInset [
 
 	^ columnInset value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> columnInset: anInteger [
 
 	columnInset value: anInteger
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> columns [
 	
 	^ columns value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> columns: aCollection [
 	
 	columns value: aCollection
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> defaultNodeFor: item [
 
 	^ SpTreeNodePresenter new
@@ -123,13 +123,13 @@ SpTreePresenter >> defaultNodeFor: item [
 		yourself
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> deselectAll [
 	
 	self changed: #deselectAll with: #()
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> displayBlock [
 	"Return the block used to generate the display of the items.
 	The optioanl block arguments are:
@@ -139,7 +139,7 @@ SpTreePresenter >> displayBlock [
 	^ displayBlock value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> displayBlock: aBlock [
 	"Set the block used to generate the display of the items.
 	The optioanl block arguments are:
@@ -149,45 +149,45 @@ SpTreePresenter >> displayBlock: aBlock [
 	displayBlock value: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> doubleClick [
 
 	doubleClick value value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> doubleClick: aBlock [
 
 	doubleClick value: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> evenRowColor [
 
 	^ evenRowColor value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> evenRowColor: aColor [
 
 	evenRowColor value: aColor
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> eventKeyStrokesForNextFocus [
 	"String describing the keystroke to perform to jump to the next widget"	
 		
 	^ { Character tab asKeyCombination }
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> eventKeyStrokesForPreviousFocus [
 	"String describing the keystroke to perform to jump to the previous widget"
 	
 	^ { Character tab shift asKeyCombination }
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter class >> example [
 	<sampleInstance>
 	| m |
@@ -218,7 +218,7 @@ SpTreePresenter class >> example [
 	^ m
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter class >> exampleOfAutoRefreshOnExpand [
 	"Each time a node is expanded, the computation of the children is made again, instead of being cached as it is usually"
 
@@ -232,7 +232,7 @@ SpTreePresenter class >> exampleOfAutoRefreshOnExpand [
 		openWithSpec
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter class >> exampleWithCustomColumnsAndNodes [
 	<haltOrBreakpointForTesting>
 	| m col1 col2 |
@@ -275,7 +275,7 @@ SpTreePresenter class >> exampleWithCustomColumnsAndNodes [
 	col1 headerIcon: (self iconNamed: #nautilusIcon).
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter class >> exampleWithCustomColumnsAndNodesAndChildren [
 	<haltOrBreakpointForTesting>
 
@@ -305,7 +305,7 @@ SpTreePresenter class >> exampleWithCustomColumnsAndNodesAndChildren [
 		displayBlock: [ :node | (Character value: node content asString first asciiValue + 2) asString ]
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter class >> exampleWithNoSpecifiedNodes [
 	"self exampleWithNoSpecifiedNodes"
 
@@ -315,19 +315,19 @@ SpTreePresenter class >> exampleWithNoSpecifiedNodes [
 		 openWithSpec
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> expandAll [
 
 	self changed: #expandAll with: #()
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> expandRoots [
 
 	self changed: #expandRoots with: #()
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> filterWith: aFilter [
 	
 	self selection: nil.
@@ -339,7 +339,7 @@ SpTreePresenter >> filterWith: aFilter [
 	self expandAll.
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> hasChildrenBlock [
 	"Get the block used to check if a node has children.
 	The optional block arguments are:
@@ -349,7 +349,7 @@ SpTreePresenter >> hasChildrenBlock [
 	^ hasChildrenBlockHolder value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> hasChildrenBlock: aBlock [
 	"Set the block used to  check if a node has children.
 	The optional block arguments are:
@@ -359,27 +359,27 @@ SpTreePresenter >> hasChildrenBlock: aBlock [
 	hasChildrenBlockHolder value: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> hasChildrenFor: anItem [
 
 	^ self hasChildrenBlock cull: anItem cull: self
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> hasSelectedItem [
 	"Return true if the tree contains any selected items"
 	
 	^ selectionHolder value isNotEmpty
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> highlightedItem [
 	"Return the currently highlighted item"
 
 	^ highlightedItem value
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> highlightedItem: anItem [
 	"Set the highlightedItem item"
 	"In the case of keyboard navigation with checklist, it may differ from the last selected item"
@@ -387,19 +387,19 @@ SpTreePresenter >> highlightedItem: anItem [
 	highlightedItem value: anItem
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> iconBlock: aBlock [
 
 	iconBlock value: aBlock
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> iconFor: aNode [
 
 	^ iconBlock value cull: aNode content cull: aNode
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter >> initialize [
 	super initialize.
 
@@ -444,7 +444,7 @@ SpTreePresenter >> initialize [
 	self registerEvents
 ]
 
-{ #category : #'*Spec2-Deprecated' }
+{ #category : '*Spec2-Deprecated' }
 SpTreePresenter class >> isDeprecated [ 
 
 	^ true

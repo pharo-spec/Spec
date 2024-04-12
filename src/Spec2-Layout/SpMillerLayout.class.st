@@ -4,8 +4,8 @@ Since I am intended to be used dynamically (adding/removing components on demand
 You can also control borderWith and spacing between elements.
 "
 Class {
-	#name : #SpMillerLayout,
-	#superclass : #SpExecutableLayout,
+	#name : 'SpMillerLayout',
+	#superclass : 'SpExecutableLayout',
 	#traits : 'TObservable',
 	#classTraits : 'TObservable classTrait',
 	#instVars : [
@@ -14,46 +14,48 @@ Class {
 		'#borderWidth',
 		'#visiblePages => ObservableSlot'
 	],
-	#category : #'Spec2-Layout-Miller'
+	#category : 'Spec2-Layout-Miller',
+	#package : 'Spec2-Layout',
+	#tag : 'Miller'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMillerLayout class >> new [ 
 
 	self error: 'Use one of my siblings'
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMillerLayout class >> newHorizontal [ 
 
 	^ super new beHorizontal
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMillerLayout class >> newLeftToRight [
 
 	^ super new beHorizontal
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMillerLayout class >> newTopToBottom [
 
 	^ super new beVertical
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpMillerLayout class >> newVertical [ 
 
 	^ super new beVertical
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMillerLayout >> adapterName [
 
 	^ #MillerAdapter
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpMillerLayout >> add: aName [
 
 	self 
@@ -61,7 +63,7 @@ SpMillerLayout >> add: aName [
 		withConstraints: [ :constraints | ]
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SpMillerLayout >> add: aPresenter withConstraints: aBlock [
 	
 	super add: aPresenter withConstraints: aBlock.
@@ -69,55 +71,55 @@ SpMillerLayout >> add: aPresenter withConstraints: aBlock [
 		theAdapter add: aPresenter constraints: (children at: aPresenter) ]
 ]
 
-{ #category : #'initialization - deprecated' }
+{ #category : 'initialization - deprecated' }
 SpMillerLayout >> beHorizontal [
 
 	direction := SpLayoutDirection horizontal
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMillerLayout >> beLeftToRight [
 
 	direction := SpLayoutDirection horizontal
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMillerLayout >> beTopToBottom [
 
 	direction := SpLayoutDirection vertical
 ]
 
-{ #category : #'initialization - deprecated' }
+{ #category : 'initialization - deprecated' }
 SpMillerLayout >> beVertical [
 
 	direction := SpLayoutDirection vertical
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMillerLayout >> borderWidth [
 
 	^ borderWidth
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMillerLayout >> borderWidth: aNumber [
 
 	borderWidth := aNumber
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMillerLayout >> constraintsClass [
 
 	^ SpLayoutConstraints
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMillerLayout >> direction [ 
 
 	^ direction
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMillerLayout >> initialize [
 	
 	self class initializeSlots: self.
@@ -128,19 +130,19 @@ SpMillerLayout >> initialize [
 	self visiblePages: 2
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMillerLayout >> isHorizontal [ 
 
 	^ self direction = SpLayoutDirection horizontal
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMillerLayout >> isVertical [ 
 
 	^ self direction = SpLayoutDirection vertical
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 SpMillerLayout >> remove: aPresenter [
 
 	children 
@@ -149,7 +151,7 @@ SpMillerLayout >> remove: aPresenter [
 	adapter ifNotNil: [ :theAdapter | theAdapter remove: aPresenter ]
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 SpMillerLayout >> removeAll [
 
 	children removeAll.
@@ -158,31 +160,31 @@ SpMillerLayout >> removeAll [
 		anAdapter removeAll ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMillerLayout >> spacing [
 
 	^ spacing
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMillerLayout >> spacing: aNumber [
 
 	spacing := aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMillerLayout >> visiblePages [
 
 	^ visiblePages
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMillerLayout >> visiblePages: aNumber [
 
 	visiblePages := aNumber
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpMillerLayout >> whenVisiblePagesChangedDo: aBlock [
 
 	self property: #visiblePages whenChangedDo: aBlock

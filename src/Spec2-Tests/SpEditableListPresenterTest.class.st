@@ -1,15 +1,17 @@
 Class {
-	#name : #SpEditableListPresenterTest,
-	#superclass : #SpSmokeTest,
-	#category : #'Spec2-Tests-Core-Widgets'
+	#name : 'SpEditableListPresenterTest',
+	#superclass : 'SpSmokeTest',
+	#category : 'Spec2-Tests-Core-Widgets',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Widgets'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpEditableListPresenterTest >> classToTest [
 	^ SpEditableListPresenter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpEditableListPresenterTest >> testCanAddNewItem [
 	presenter 
 		items: #(1 2 3) asOrderedCollection;
@@ -22,7 +24,7 @@ SpEditableListPresenterTest >> testCanAddNewItem [
 		hasSameElements: #(1 2 3 4)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpEditableListPresenterTest >> testCanCancelAddNewItem [
 	presenter 
 		items: #(1 2 3) asOrderedCollection;
@@ -35,7 +37,7 @@ SpEditableListPresenterTest >> testCanCancelAddNewItem [
 		hasSameElements: #(1 2 3)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpEditableListPresenterTest >> testCanRemoveSelectedItem [
 	presenter 
 		items: #(1 2 3) asOrderedCollection;
@@ -48,7 +50,7 @@ SpEditableListPresenterTest >> testCanRemoveSelectedItem [
 		hasSameElements: #(1 3)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpEditableListPresenterTest >> testMoveElementAtTo [
 	presenter items: {'AAA' . 'BBB' . 'CCC'} asOrderedCollection.
 	presenter moveElementAt: 1 to: 3.
@@ -57,7 +59,7 @@ SpEditableListPresenterTest >> testMoveElementAtTo [
 		equals: {'BBB' . 'CCC' . 'AAA'}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpEditableListPresenterTest >> testRemoveBlockExecutedWhenSelectedItemRemoved [
 	| executed selectedItem |
 	executed := false.
@@ -76,7 +78,7 @@ SpEditableListPresenterTest >> testRemoveBlockExecutedWhenSelectedItemRemoved [
 		equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpEditableListPresenterTest >> testWhenAddingNewItemThenNewItemIsSelected [
 	presenter 
 		items: #(1 2 3) asOrderedCollection;

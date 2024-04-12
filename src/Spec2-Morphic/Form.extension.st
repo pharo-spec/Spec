@@ -1,6 +1,6 @@
-Extension { #name : #Form }
+Extension { #name : 'Form' }
 
-{ #category : #'*Spec2-Morphic' }
+{ #category : '*Spec2-Morphic' }
 Form >> asPresenter [
 
 	^ SpImagePresenter new 
@@ -8,7 +8,7 @@ Form >> asPresenter [
 		yourself
 ]
 
-{ #category : #'*Spec2-Morphic' }
+{ #category : '*Spec2-Morphic' }
 Form >> asPresenterOn: aSpPresenter [ 
 	
 	^ self asPresenter

@@ -1,21 +1,22 @@
 Class {
-	#name : #SpMorphicPatchLineVisitor,
-	#superclass : #DiffVisitor,
+	#name : 'SpMorphicPatchLineVisitor',
+	#superclass : 'DiffVisitor',
 	#instVars : [
 		'lineNumber',
 		'stream',
 		'lineMarks'
 	],
-	#category : #'Spec2-Code-Diff-Morphic'
+	#category : 'Spec2-Code-Diff-Morphic',
+	#package : 'Spec2-Code-Diff-Morphic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPatchLineVisitor >> contents [
 
 	^ stream contents
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicPatchLineVisitor >> initialize [
 
 	super initialize.
@@ -24,13 +25,13 @@ SpMorphicPatchLineVisitor >> initialize [
 	stream := String new writeStream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicPatchLineVisitor >> lineMarks [
 
 	^ lineMarks
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicPatchLineVisitor >> visitDelete: aPatchElement [
 
 	lineNumber := lineNumber + 1.
@@ -38,7 +39,7 @@ SpMorphicPatchLineVisitor >> visitDelete: aPatchElement [
 	stream << aPatchElement element << String cr
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicPatchLineVisitor >> visitInsert: aPatchElement [
 
 	lineNumber := lineNumber + 1.
@@ -46,7 +47,7 @@ SpMorphicPatchLineVisitor >> visitInsert: aPatchElement [
 	stream << aPatchElement element << String cr
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpMorphicPatchLineVisitor >> visitMatch: aPatchElement [
 
 	lineNumber := lineNumber + 1.

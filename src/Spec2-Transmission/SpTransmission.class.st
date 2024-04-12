@@ -75,8 +75,8 @@ list
 See `SpTransmission>>#postTransmission:`
 "
 Class {
-	#name : #SpTransmission,
-	#superclass : #Object,
+	#name : 'SpTransmission',
+	#superclass : 'Object',
 	#instVars : [
 		'fromPort',
 		'toPort',
@@ -84,15 +84,17 @@ Class {
 		'preTransmission',
 		'postTransmission'
 	],
-	#category : #'Spec2-Transmission-Base'
+	#category : 'Spec2-Transmission-Base',
+	#package : 'Spec2-Transmission',
+	#tag : 'Base'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 SpTransmission >> apply [
 	fromPort attachTransmission: self
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTransmission >> applyPostTransmissionWith: aTransmittedObject [
 
 	self postTransmission ifNil: [ ^ self ].
@@ -102,7 +104,7 @@ SpTransmission >> applyPostTransmissionWith: aTransmittedObject [
 		cull: aTransmittedObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTransmission >> applyPreTransmissionWith: aTransmittedObject [
 
 	self preTransmission ifNil: [ ^ self ].
@@ -112,19 +114,19 @@ SpTransmission >> applyPreTransmissionWith: aTransmittedObject [
 		cull: aTransmittedObject
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpTransmission >> do: aBlock [
 	"Will create a generic action block to handle transmission"
 	
 	self toPort: (SpActionPort newAction: aBlock)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTransmission >> from: aPresenter [
 	self fromPort: aPresenter defaultOutputPort
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpTransmission >> from: aPresenter port: aSymbol to: anotherPresenter transform: aValuable [
 	self
 		from: aPresenter
@@ -134,7 +136,7 @@ SpTransmission >> from: aPresenter port: aSymbol to: anotherPresenter transform:
 		postTransmission: nil
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpTransmission >> from: aPresenter port: aSymbol to: anotherPresenter transform: aValuable postTransmission: anotherValuable [
 
 	self
@@ -145,7 +147,7 @@ SpTransmission >> from: aPresenter port: aSymbol to: anotherPresenter transform:
 		apply
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpTransmission >> from: aPresenter to: anotherPresenter [
 	
 	self
@@ -154,7 +156,7 @@ SpTransmission >> from: aPresenter to: anotherPresenter [
 		transform: nil
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpTransmission >> from: aPresenter to: anotherPresenter transform: aValuable [
 	
 	self
@@ -164,7 +166,7 @@ SpTransmission >> from: aPresenter to: anotherPresenter transform: aValuable [
 		postTransmission: nil
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 SpTransmission >> from: aPresenter to: anotherPresenter transform: aValuable postTransmission: anotherValuable [
 	self
 		from: aPresenter;
@@ -174,71 +176,71 @@ SpTransmission >> from: aPresenter to: anotherPresenter transform: aValuable pos
 		apply
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransmission >> fromPort [
 
 	^ fromPort
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTransmission >> fromPort: aPort [
 	fromPort := aPort
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTransmission >> fromPresenter [
 	^ self fromPort presenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransmission >> postTransmission [
 	^ postTransmission
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransmission >> postTransmission: aValuable [
 	postTransmission := aValuable
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransmission >> preTransmission [
 	^ preTransmission
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransmission >> preTransmission: aValuable [
 	preTransmission := aValuable
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTransmission >> to: aPresenter [
 
 	self toPort: aPresenter defaultInputPort
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTransmission >> toPort [
 
 	^ toPort
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTransmission >> toPort: aPort [
 	toPort := aPort
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTransmission >> toPresenter [
 	^ self toPort presenter
 ]
 
-{ #category : #script }
+{ #category : 'script' }
 SpTransmission >> transform: aBlock [
 
 	transformBlock := aBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTransmission >> transformed: anObject [ 
 
 	transformBlock ifNil: [ ^ anObject ].

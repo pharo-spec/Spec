@@ -1,20 +1,22 @@
 Trait {
-	#name : #SpTMorphicTableDataSourceCommons,
+	#name : 'SpTMorphicTableDataSourceCommons',
 	#instVars : [
 		'model',
 		'headersByColumn'
 	],
-	#category : #'Spec2-Adapters-Morphic-Table'
+	#category : 'Spec2-Adapters-Morphic-Table',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Table'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTMorphicTableDataSourceCommons >> headerColumn: column [
 
 	(column id isNil and: [ self model isShowingColumnHeaders not ]) ifTrue: [ ^ nil ].
 	^ self headerForColumn: column
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTMorphicTableDataSourceCommons >> headerForColumn: aColumn [
 
 	^ self headersByColumn 
@@ -22,13 +24,13 @@ SpTMorphicTableDataSourceCommons >> headerForColumn: aColumn [
 		ifAbsentPut: [ self newHeaderColumn: aColumn ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTMorphicTableDataSourceCommons >> headersByColumn [ 
 
 	^ headersByColumn ifNil: [ headersByColumn := SmallDictionary new ]	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTMorphicTableDataSourceCommons >> menuColumn: column row: rowIndex [
 
 	| menuPresenter |
@@ -36,22 +38,22 @@ SpTMorphicTableDataSourceCommons >> menuColumn: column row: rowIndex [
 	menuPresenter ifNil: [ ^ nil ].
 	^ SpBindings
 		  value: self model application adapterBindings
-		  during: [ menuPresenter value build ]
+		  during: [ menuPresenter value ifNotNil: [ :presenter | presenter build ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTMorphicTableDataSourceCommons >> model [
 
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTMorphicTableDataSourceCommons >> model: aTablePresenter [
 
 	model := aTablePresenter
 ]
 
-{ #category : #'private - factory' }
+{ #category : 'private - factory' }
 SpTMorphicTableDataSourceCommons >> newHeaderColumn: column [
 	| headerMorph |
 	
@@ -70,7 +72,7 @@ SpTMorphicTableDataSourceCommons >> newHeaderColumn: column [
 	^ headerMorph
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpTMorphicTableDataSourceCommons >> setHeaderColumnLazyProperties: column [
 	"Some properties of a header just acquire value after rendering cells. This method makes sure 
 	 properties are set, but is responsibility of the user to actually call it (usually after create 
@@ -86,14 +88,14 @@ SpTMorphicTableDataSourceCommons >> setHeaderColumnLazyProperties: column [
 		headerMorph width: (column model width ifNil: [ 0 ]). ]
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 SpTMorphicTableDataSourceCommons >> sortByColumn: aColumn [
 
 	aColumn sortDataSource: self.
 	self model selection unselectAll.
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 SpTMorphicTableDataSourceCommons >> sortByColumn: aColumn event: anEvent morph: aMorph [
 
 	self sortByColumn: aColumn

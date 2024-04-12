@@ -5,20 +5,22 @@ Description
 I am an abstract class for example modals.
 "
 Class {
-	#name : #SpDemoAbstractModalPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoAbstractModalPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'explanation'
 	],
-	#category : #'Spec2-Examples-Demo-Modals'
+	#category : 'Spec2-Examples-Demo-Modals',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Modals'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoAbstractModalPresenter >> content [
 	^ self subclassResponsibility
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoAbstractModalPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -26,12 +28,12 @@ SpDemoAbstractModalPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDemoAbstractModalPresenter >> explanation [
 	^ explanation
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoAbstractModalPresenter >> initializePresenters [
 	explanation := self newText.
 	

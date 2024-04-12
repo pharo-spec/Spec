@@ -1,12 +1,12 @@
-Extension { #name : #Text }
+Extension { #name : 'Text' }
 
-{ #category : #'*Spec2-Adapters-Morphic' }
+{ #category : '*Spec2-Adapters-Morphic' }
 Text >> localizedForPresenter: aPresenter [
 
-	^ self asString
+	^ self
 ]
 
-{ #category : #'*Spec2-Adapters-Morphic' }
+{ #category : '*Spec2-Adapters-Morphic' }
 Text >> withAccentuatedCharacter: aCharacter [
 
 	| text index | 

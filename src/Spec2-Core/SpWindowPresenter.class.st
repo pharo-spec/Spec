@@ -20,8 +20,8 @@ SpTextPresenter new
 
 "
 Class {
-	#name : #SpWindowPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpWindowPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'#presenter => ObservableSlot',
 		'#initialPosition => ObservableSlot',
@@ -35,52 +35,54 @@ Class {
 		'#decorations => ObservableSlot',
 		'#resizable => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Windows'
+	#category : 'Spec2-Core-Windows',
+	#package : 'Spec2-Core',
+	#tag : 'Windows'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpWindowPresenter class >> adapterName [
 
 	^ #WindowAdapter
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpWindowPresenter class >> application: anApplication [
 	^ self new
 		application: anApplication;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpWindowPresenter class >> defaultTitle [
 
 	^ 'Untitled window'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter class >> isWindow [
 
 	^ true
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpWindowPresenter class >> presenter: aPresenter [
 	^ (self application: aPresenter application)
 		presenter: aPresenter;
 		yourself
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpWindowPresenter >> aboutText [
 	^ aboutText ifNil: [ aboutText := 'The about text for this window has not been set.' ]
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpWindowPresenter >> aboutText: aString [
 	aboutText := aString
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpWindowPresenter >> aboutTitle [
 	"Answer the title of my About window"
 
@@ -89,7 +91,13 @@ SpWindowPresenter >> aboutTitle [
 	^ self presenter toolName
 ]
 
-{ #category : #'private - building' }
+{ #category : 'api' }
+SpWindowPresenter >> activate [
+
+	self withAdapterDo: [ :anAdapter | anAdapter activate ]
+]
+
+{ #category : 'private - building' }
 SpWindowPresenter >> addPresenterIn: widget withSpecLayout: aSpec [
 	
 	self presenter ifNil: [ ^ self ].
@@ -97,13 +105,13 @@ SpWindowPresenter >> addPresenterIn: widget withSpecLayout: aSpec [
 		anAdapter addPresenterIn: widget withSpecLayout: aSpec ]
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpWindowPresenter >> askOkToClose: aBoolean [
 
 	askOkToClose := aBoolean
 ]
 
-{ #category : #'private - building' }
+{ #category : 'private - building' }
 SpWindowPresenter >> basicBuildWithSpecLayout: presenterSpecLayout [
 
 	"Build the widget using the layout provided as argument"
@@ -116,7 +124,7 @@ SpWindowPresenter >> basicBuildWithSpecLayout: presenterSpecLayout [
 		  ifFalse: [ self adapter widget ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> beNotResizable [
 	"Make the window NOT resizable (borders will be undraggable). 
 	 Window can still be resized progamatically."
@@ -124,21 +132,21 @@ SpWindowPresenter >> beNotResizable [
 	self resizable: false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> beResizable [
 	"Make the window resizable (borders will be draggable)"
 
 	self resizable: true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> beep [ 
 	"Emits a beep if the backend allows it."
 	
 	self adapter beep
 ]
 
-{ #category : #'private - building' }
+{ #category : 'private - building' }
 SpWindowPresenter >> buildWindowWithLayout: windowSpecLayout presenterLayout: presenterSpecLayout [
 
 	"set adapter of the window"
@@ -156,7 +164,7 @@ SpWindowPresenter >> buildWindowWithLayout: windowSpecLayout presenterLayout: pr
 	^ self window
 ]
 
-{ #category : #'private - building' }
+{ #category : 'private - building' }
 SpWindowPresenter >> buildWithSpecLayout: aSpecLayout [
 	
 	^ SpBindings 
@@ -164,20 +172,20 @@ SpWindowPresenter >> buildWithSpecLayout: aSpecLayout [
 		during: [ self basicBuildWithSpecLayout: aSpecLayout ]
 ]
 
-{ #category : #'dialog compatibility' }
+{ #category : 'dialog compatibility' }
 SpWindowPresenter >> cancelled [
 
 	^ false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> centered [
 	"Prepare the window to be centered"
 	
 	centered := true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> centeredRelativeTo: aWindowPresenter [
 	"Prepare the window to be centered to another window"
 
@@ -185,7 +193,7 @@ SpWindowPresenter >> centeredRelativeTo: aWindowPresenter [
 		anAdapter centeredRelativeTo: aWindowPresenter ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> centeredRelativeToTopWindow [
 	"Prepare the window to be centered to top window (the window that is currently active)"
 
@@ -194,7 +202,7 @@ SpWindowPresenter >> centeredRelativeToTopWindow [
 		ifNil: [ self centered ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> close [
 	"Close current window."
 
@@ -204,13 +212,13 @@ SpWindowPresenter >> close [
 		anAdapter close ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWindowPresenter >> defaultInitialExtent [
 	
 	^ 400@300
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWindowPresenter >> delete [
 	"DO NOT USE. This will destroy the window and maybe you do not want that :/
 	 I'm keeping this here because of testing."
@@ -218,43 +226,43 @@ SpWindowPresenter >> delete [
 	self withAdapterDo: [ :anAdapter | anAdapter delete ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> hasDecorations [
 	"Answer if window has decorations (header bar and buttons)"
 
 	^ decorations
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> hasMenu [ 
 	"Answer if window has a menu defined"
 	
-	^ self menu notNil
+	^ self menu isNotNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> hasPresenter: aPresenter [
 	"Answer if window includes `aPresenter`"
 
-	^ aPresenter isNotNil and: [aPresenter adapter notNil
+	^ aPresenter isNotNil and: [aPresenter adapter isNotNil
 		and: [ self adapter hasWidget: aPresenter adapter ]]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> hasStatusBar [
 	"Answer if window has a status bar defined"
 	
-	^ self statusBar notNil
+	^ self statusBar isNotNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> hasToolbar [
 	"Answer if window has a toolbar defined"
 
-	^ self toolbar notNil and: [ self toolbar notEmpty ]
+	^ self toolbar isNotNil and: [ self toolbar notEmpty ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> initialExtent [
 	"Answer initial extent of the window. By default, it answer what is defined 
 	 in `SpWindowPresenter>>#defaultInitialExtent`"
@@ -262,7 +270,7 @@ SpWindowPresenter >> initialExtent [
 	^ initialExtent ifNil: [ self defaultInitialExtent ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> initialExtent: anExtent [
 	"Set initial extent of the window. 
 	 `anExtent` is an instance of `Point`, indicating width@height"
@@ -270,7 +278,7 @@ SpWindowPresenter >> initialExtent: anExtent [
 	initialExtent := anExtent
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> initialPosition [
 	"Answer initial position of the window (if previously set).
 	 If initial position is not set, the backend will place the window within its own logic."
@@ -278,15 +286,18 @@ SpWindowPresenter >> initialPosition [
 	^ initialPosition
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> initialPosition: aPoint [
 	"Set initial position of the window. 
-	 `aPoint` is an instance of `Point`, indicating x@y coordinates"
+	 `aPoint` is an instance of `Point`, indicating x@y coordinates
+	 WARNING: Not all backends will support this (for example Gtk lets
+	 the window manager position windows and hence it ignores any positioning 
+	 we set)."
 
 	initialPosition := aPoint
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpWindowPresenter >> initialize [
 
 	super initialize.
@@ -309,34 +320,34 @@ SpWindowPresenter >> initialize [
 			self withAdapterDo: [ :anAdapter | anAdapter centered ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpWindowPresenter >> initializeWindow [
 		
 	self presenter initializeWindow: self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> isCentered [
 	"Answer if window is centered to screen."
 
 	^ centered
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> isClosed [
 	"Answer if window has is closed"
 
 	^ isClosed
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> isDialog [
 	"Answer if window instance is a dialog"
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> isDisplayed [
 	"Answer if window is displayed (visible)"
 
@@ -345,7 +356,7 @@ SpWindowPresenter >> isDisplayed [
 		ifNil: [ false ] 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> isMaximized [
 	"Answer if window is maximized"
 
@@ -353,7 +364,7 @@ SpWindowPresenter >> isMaximized [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> isMinimized [
 	"Answer if window is minimized"
 
@@ -361,21 +372,21 @@ SpWindowPresenter >> isMinimized [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> isOpen [
 	"Answer if window is open."
 	
 	^ self isClosed not
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> isResizable [
 	"Answer if window is resizeable"
 
 	^ resizable
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> isResizeable [
 	"Answer if window is resizeable"
 	
@@ -386,7 +397,7 @@ SpWindowPresenter >> isResizeable [
 	^ self isResizable
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> isTopWindow [
 	"Answer true if this si the active window (the one that has the focus)"
 	
@@ -396,21 +407,21 @@ SpWindowPresenter >> isTopWindow [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpWindowPresenter >> isWindowPresenter [
 	"Answer if current presenter instance is a window presenter"
 	
 	^ true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> maximize [
 	"Maximise the window"
 
 	self withAdapterDo: [ :anAdapter | anAdapter maximize ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> menu [
 	"Answer the menu of the window (if defined). 
 	 See also `SpWindowPresenter>>#menu:`"
@@ -418,7 +429,7 @@ SpWindowPresenter >> menu [
 	^ menu
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> menu: aMenuBarPresenter [
 	"Set a menu bar associated with this window.
 	 Menu will appear on top of the window allowing user to interact with it."
@@ -427,14 +438,28 @@ SpWindowPresenter >> menu: aMenuBarPresenter [
 	^ menu := aMenuBarPresenter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> minimize [
 	"Minimize the window."
 	
 	self withAdapterDo: [ :anAdapter | anAdapter minimize ]
 ]
 
-{ #category : #notifying }
+{ #category : 'api' }
+SpWindowPresenter >> moveTo: aPoint [
+	"Moves the window to a specific location. 
+	 `aPoint` is an instance of `Point`, indicating x@y coordinates
+	
+	 To set initial position of a window, use #initialPosition:, not this.
+	 WARNING: Not all backends will support this (for example Gtk lets
+	 the window manager position windows and hence it ignores any positioning 
+	 we set)."
+	
+	self withAdapterPerformOrDefer: [ :anAdapter | anAdapter moveTo: aPoint ]	
+
+]
+
+{ #category : 'notifying' }
 SpWindowPresenter >> notify: aSpecNotification [
 	"Receives a notification and delivers it as required"
 
@@ -444,7 +469,7 @@ SpWindowPresenter >> notify: aSpecNotification [
 			on: anAdapter ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWindowPresenter >> okToChange [
 
 	self flag: #TODO. "Maybe wrong?"
@@ -454,19 +479,19 @@ SpWindowPresenter >> okToChange [
 	^ self canDiscardEdits
 ]
 
-{ #category : #'api - showing' }
+{ #category : 'api - showing' }
 SpWindowPresenter >> open [
 
 	self openWith: self presenter layout
 ]
 
-{ #category : #'api - showing' }
+{ #category : 'api - showing' }
 SpWindowPresenter >> openWith: aSpecLayout [
 
 	self openWithLayout: aSpecLayout
 ]
 
-{ #category : #'private - showing' }
+{ #category : 'private - showing' }
 SpWindowPresenter >> openWithLayout: aSpecLayout [
 
 	self buildWithSpecLayout: aSpecLayout.
@@ -477,14 +502,14 @@ SpWindowPresenter >> openWithLayout: aSpecLayout [
 			self updateTitle ] ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> presenter [
 	"Answer the presenter to show as content of the window."
 
 	^ presenter
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> presenter: aPresenter [
 	"Set the presenter to show as content of the window."
 
@@ -493,14 +518,14 @@ SpWindowPresenter >> presenter: aPresenter [
 	self initializeWindow
 ]
 
-{ #category : #'private - building' }
+{ #category : 'private - building' }
 SpWindowPresenter >> rebuildWithSpecLayout: aSpecLayout [
 
 	self withAdapterDo: [ :anAdapter | 
 		anAdapter rebuildWithSpecLayout: aSpecLayout ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWindowPresenter >> requestWindowClose [
 
 	^ self presenter
@@ -508,27 +533,27 @@ SpWindowPresenter >> requestWindowClose [
 		ifNil: [ true ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWindowPresenter >> resizable: aBoolean [
 
 	resizable := aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> resize: anExtent [
 
 	self withAdapterPerformOrDefer: [ :anAdapter | 
 		anAdapter resize: anExtent ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> statusBar [
 	"Answer the status bar associated with this window (if defined)"
 
 	^ statusbar
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> statusBar: aStatusBarPresenter [
 	"Set a status bar for the window. 
 	 Status bar will be shown at the bottom of the window."
@@ -537,7 +562,7 @@ SpWindowPresenter >> statusBar: aStatusBarPresenter [
 	^ statusbar := aStatusBarPresenter
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpWindowPresenter >> taskbarIcon [
 
 	^ self windowIcon
@@ -547,24 +572,24 @@ SpWindowPresenter >> taskbarIcon [
 				ifNil: [ self taskbarIconName ]) ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWindowPresenter >> title [
 	^ titleHolder
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWindowPresenter >> title: aString [
 	titleHolder := aString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> toolbar [
 	"Answer the toolbar associated with this window (if defined)"
 
 	^ toolbar
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> toolbar: aToolbarPresenter [
 	"Set a toolbar associated with this window.
 	 Menu will appear on top of the window allowing user to interact with it."
@@ -573,7 +598,7 @@ SpWindowPresenter >> toolbar: aToolbarPresenter [
 	^ toolbar := aToolbarPresenter
 ]
 
-{ #category : #'private - traversing' }
+{ #category : 'private - traversing' }
 SpWindowPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
 	"I am not focusable (not with tab)"
@@ -582,31 +607,31 @@ SpWindowPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 		excluding: excludes
 ]
 
-{ #category : #'private - traversing' }
+{ #category : 'private - traversing' }
 SpWindowPresenter >> traversePresentersDo: aBlock excluding: excludes [
 	
 	super traversePresentersDo: aBlock excluding: excludes.
 	presenter traversePresentersDo: aBlock excluding: excludes
 ]
 
-{ #category : #'dialog compatibility' }
+{ #category : 'dialog compatibility' }
 SpWindowPresenter >> triggerCancelAction [
 	"Do nothing (ensure polymorphism with DialogWindow)"
 ]
 
-{ #category : #'dialog compatibility' }
+{ #category : 'dialog compatibility' }
 SpWindowPresenter >> triggerOkAction [
 	"Do nothing (ensure polymorphism with DialogWindow)"
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWindowPresenter >> updateTitle [
 	"Update the window title"
 
-	self changed: #title: with: { self title }
+	self withAdapterDo: [ :anAdapter | anAdapter title: self title ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpWindowPresenter >> whenClosedDo: aBlock [
 	"Inform when window is closed.
 	 `aBlock` receives zero arguments."
@@ -616,7 +641,7 @@ SpWindowPresenter >> whenClosedDo: aBlock [
 		whenChangedDo: [ :value | value ifTrue: aBlock ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpWindowPresenter >> whenDecorationsChangedDo: aBlock [
 	"Inform when decorations property has changed. 
 	 `aBlock` has three optional arguments: 
@@ -627,7 +652,7 @@ SpWindowPresenter >> whenDecorationsChangedDo: aBlock [
 	self property: #decorations whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpWindowPresenter >> whenFocusLostDo: aBlock [
 	"Inform when window lost focus. 
 	 This is a convenience method that exposes a functionality of the event handler 
@@ -637,7 +662,7 @@ SpWindowPresenter >> whenFocusLostDo: aBlock [
 	self eventHandler whenFocusLostDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpWindowPresenter >> whenFocusReceivedDo: aBlock [
 	"Inform when window receives focus. 
 	 This is a convenience method that exposes a functionality of the event handler 
@@ -647,7 +672,7 @@ SpWindowPresenter >> whenFocusReceivedDo: aBlock [
 	self eventHandler whenFocusReceivedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpWindowPresenter >> whenOpenedDo: aBlock [
 	"Inform when window is opened. 
 	 `aBlock` receives zero arguments."
@@ -657,23 +682,24 @@ SpWindowPresenter >> whenOpenedDo: aBlock [
 		whenChangedDo: [ :value | value ifFalse: aBlock ]
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpWindowPresenter >> whenResizableChangedDo: aBlock [
 
 	self property: #resizable whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpWindowPresenter >> whenResizingDo: aBlock [
 	"Inform when window is resizing. 
 	 `aBlock` receives one optional argument (an instance of the announcement `SpWindowResizing`)"
-	
+
 	self announcer 
-		when: SpWindowResizing
-		do: aBlock
+		when: SpWindowResizing 
+		do: aBlock 
+		for: aBlock receiver
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpWindowPresenter >> whenToolbarChangedDo: aBlock [
 	"Inform when the toolbar has been changed.
 	
@@ -684,70 +710,71 @@ SpWindowPresenter >> whenToolbarChangedDo: aBlock [
 	self property: #toolbar whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpWindowPresenter >> whenWillCloseDo: aBlock [
 	"Inform when window will close, allowing process before the close happen. 
 	 Note that user cannot cancel the close operation using this event. 
 	 `aBlock` receives one optional argument (an instance of the announcement `SpWindowWillClose`)."
-	
-	self announcer 
+
+	self announcer
 		when: SpWindowWillClose
 		do: aBlock
+		for: aBlock receiver
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWindowPresenter >> window [
 	^ window
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWindowPresenter >> window: aWindow [
 	window := aWindow
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWindowPresenter >> windowClosed [
 	
 	isClosed := true.
 	self application windowClosed: self
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWindowPresenter >> windowIcon [
 	^ windowIcon
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpWindowPresenter >> windowIcon: aForm [
 	windowIcon := aForm
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpWindowPresenter >> windowIsClosing [
 
 	self presenter windowIsClosing
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpWindowPresenter >> windowIsOpened [
 
 	isClosed := false
 ]
 
-{ #category : #TOREMOVE }
+{ #category : 'TOREMOVE' }
 SpWindowPresenter >> windowIsOpening [
 
 	self windowIsOpened
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> withDecorations [
 	"Add decorations on window (header bar and buttons)"
 	
 	decorations := true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpWindowPresenter >> withoutDecorations [
 	"Remove decorations on window (header bar and buttons)"
 	

@@ -3,18 +3,20 @@ I am the constraints in which an element is placed into a grid layout.
 I have a position and a span.
 "
 Class {
-	#name : #SpGridConstraints,
-	#superclass : #SpLayoutConstraints,
+	#name : 'SpGridConstraints',
+	#superclass : 'SpLayoutConstraints',
 	#traits : 'SpTAlignable',
 	#classTraits : 'SpTAlignable classTrait',
 	#instVars : [
 		'position',
 		'span'
 	],
-	#category : #'Spec2-Layout-Grid'
+	#category : 'Spec2-Layout-Grid',
+	#package : 'Spec2-Layout',
+	#tag : 'Grid'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpGridConstraints class >> at: aPoint [
 
 	^ self new 
@@ -22,7 +24,7 @@ SpGridConstraints class >> at: aPoint [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpGridConstraints class >> at: aPoint span: spanPoint [
 
 	^ self new 
@@ -31,19 +33,19 @@ SpGridConstraints class >> at: aPoint span: spanPoint [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGridConstraints >> column [
 
 	^ self position x
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGridConstraints >> columnSpan [
 
 	^ self span x
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpGridConstraints >> initialize [
 
 	super initialize.
@@ -51,36 +53,36 @@ SpGridConstraints >> initialize [
 	self span: 1@1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGridConstraints >> position [
 
 	^ position
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGridConstraints >> position: aPoint [
 
 	position := aPoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGridConstraints >> row [
 
 	^ self position y
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGridConstraints >> rowSpan [
 
 	^ self span y
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGridConstraints >> span [
 	^ span
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpGridConstraints >> span: anObject [
 	span := anObject
 ]

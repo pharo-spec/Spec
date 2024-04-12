@@ -2,15 +2,17 @@
 An example node, we use a tree to show examples, hence we need this as normalisation.
 "
 Class {
-	#name : #SpExampleNode,
-	#superclass : #Object,
+	#name : 'SpExampleNode',
+	#superclass : 'Object',
 	#instVars : [
 		'entity'
 	],
-	#category : #'Spec2-Examples-ExampleBrowser'
+	#category : 'Spec2-Examples-ExampleBrowser',
+	#package : 'Spec2-Examples',
+	#tag : 'ExampleBrowser'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpExampleNode class >> allExampleClasses [
 
 	^ (SpPresenter withAllSubclasses
@@ -23,43 +25,43 @@ SpExampleNode class >> allExampleClasses [
 		sorted: #name ascending
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpExampleNode class >> newEntity: anObject [
 
 	^ self new entity: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpExampleNode >> children [
 
 	^ #()
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpExampleNode >> entity [
 
 	^ entity
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpExampleNode >> entity: anObject [
 
 	entity := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpExampleNode >> iconName [
 
 	^ nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpExampleNode >> name [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpExampleNode >> updateOn: anExampleBrowser [
 
 	self subclassResponsibility

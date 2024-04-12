@@ -1,19 +1,21 @@
 Class {
-	#name : #SpCodeScriptingInteractionModel,
-	#superclass : #SpCodeInteractionModel,
+	#name : 'SpCodeScriptingInteractionModel',
+	#superclass : 'SpCodeInteractionModel',
 	#instVars : [
 		'bindings'
 	],
-	#category : #'Spec2-Code-Base'
+	#category : 'Spec2-Code-Base',
+	#package : 'Spec2-Code',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeScriptingInteractionModel >> addBinding: aBinding [
 
 	self bindings add: aBinding
 ]
 
-{ #category : #binding }
+{ #category : 'binding' }
 SpCodeScriptingInteractionModel >> bindingOf: aString [
 
 	"if there is no binding, I will include a key"
@@ -22,37 +24,50 @@ SpCodeScriptingInteractionModel >> bindingOf: aString [
 	^ self bindings associationAt: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeScriptingInteractionModel >> bindings [
 
 	^ bindings ifNil: [ bindings := Dictionary new ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
+SpCodeScriptingInteractionModel >> canAddBindingOf: name [
+
+	"Check is a special variable named `name` can be declared but without declaring it."
+	^ name first isUppercase not.
+
+]
+
+{ #category : 'testing' }
 SpCodeScriptingInteractionModel >> hasBindingOf: aString [
 
 	^ self bindings includesKey: aString asSymbol
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpCodeScriptingInteractionModel >> isScripting [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'testing' }
+SpCodeScriptingInteractionModel >> needRequestorScope [
+	^true
+]
+
+{ #category : 'accessing' }
 SpCodeScriptingInteractionModel >> removeAllBindings [
  
 	self bindings removeAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeScriptingInteractionModel >> removeBinding: aBinding [
  
 	self bindings removeKey: aBinding key
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpCodeScriptingInteractionModel >> variableBindings [
 
 	^ self bindings

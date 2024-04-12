@@ -2,15 +2,17 @@
 I am a supporting morph for the frame layout
 "
 Class {
-	#name : #SpMorphicFrameLayoutMorph,
-	#superclass : #Morph,
+	#name : 'SpMorphicFrameLayoutMorph',
+	#superclass : 'Morph',
 	#instVars : [
 		'label'
 	],
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpMorphicFrameLayoutMorph >> drawOn: aCanvas [
 
 	| frame color1 color2 textFrame labelOffset font labelWidth inset labelSpacing bothSidesLabelSpacing baseColor |
@@ -55,14 +57,14 @@ SpMorphicFrameLayoutMorph >> drawOn: aCanvas [
 			color: self theme textColor.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicFrameLayoutMorph >> font [ 
 
 	^ TextStyle defaultFont.
 	
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpMorphicFrameLayoutMorph >> frameBounds [
 
 	| aBorderWidth theBounds topInset |
@@ -75,14 +77,14 @@ SpMorphicFrameLayoutMorph >> frameBounds [
 	^ (theBounds topLeft + (aBorderWidth @ topInset)) corner: (theBounds bottomRight - (aBorderWidth @ aBorderWidth)) 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicFrameLayoutMorph >> headerHeight [ 
 
 	^ self font height ceiling max: self borderWidth.
 
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpMorphicFrameLayoutMorph >> innerBounds [
 
 	| aBorderWidth theBounds |
@@ -93,19 +95,19 @@ SpMorphicFrameLayoutMorph >> innerBounds [
 	^ (theBounds topLeft + (aBorderWidth @ self headerHeight)) corner: (theBounds bottomRight - (aBorderWidth @ aBorderWidth)) 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicFrameLayoutMorph >> label [
 
 	^ label
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicFrameLayoutMorph >> label: anObject [
 
 	label := anObject
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpMorphicFrameLayoutMorph >> labelSpacing [ 
 
 	^ self headerHeight // 3.

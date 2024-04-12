@@ -1,6 +1,6 @@
-Extension { #name : #SpEditableListPresenter }
+Extension { #name : 'SpEditableListPresenter' }
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpEditableListPresenter class >> example [
 
 	<sampleInstance>
@@ -16,7 +16,7 @@ SpEditableListPresenter class >> example [
 	^ presenter
 ]
 
-{ #category : #'*Spec2-Examples' }
+{ #category : '*Spec2-Examples' }
 SpEditableListPresenter class >> exampleWithoutOrderingBars [
 
 	<sampleInstance>

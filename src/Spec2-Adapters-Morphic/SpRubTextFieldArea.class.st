@@ -1,16 +1,24 @@
 Class {
-	#name : #SpRubTextFieldArea,
-	#superclass : #RubTextFieldArea,
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#name : 'SpRubTextFieldArea',
+	#superclass : 'RubTextFieldArea',
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRubTextFieldArea >> defaultBounds [
 
 	^ super defaultBounds topLeft extent: 3@3
 ]
 
-{ #category : #accessing }
+{ #category : 'geometry' }
+SpRubTextFieldArea >> height [
+
+	^ super height max: 1
+]
+
+{ #category : 'accessing' }
 SpRubTextFieldArea >> updateMarginsWithHeight: aNumber [
 	| minHeight newMargin |
 

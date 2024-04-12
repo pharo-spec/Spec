@@ -4,30 +4,32 @@ A ListSelectionPresenter is a basic example to show multi selection on lists
 self example
 "
 Class {
-	#name : #SpListSelectionPresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpListSelectionPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'listModel',
 		'textModel1',
 		'textModel2',
 		'textRefreshingProcess'
 	],
-	#category : #'Spec2-Examples-Standalone'
+	#category : 'Spec2-Examples-Standalone',
+	#package : 'Spec2-Examples',
+	#tag : 'Standalone'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpListSelectionPresenter class >> example [
 
 	<sampleInstance>
 	^ self new open
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpListSelectionPresenter >> connectPresenters [
 	listModel whenSelectionChangedDo: [ self updateText ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpListSelectionPresenter >> defaultLayout [
 
 	^ SpPanedLayout newTopToBottom
@@ -39,7 +41,7 @@ SpListSelectionPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpListSelectionPresenter >> initializePresenters [
 	listModel := self newList.
 	textModel1 := self newText.
@@ -48,25 +50,25 @@ SpListSelectionPresenter >> initializePresenters [
 	listModel items: self class environment allClasses
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpListSelectionPresenter >> listModel [
 
 	^ listModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpListSelectionPresenter >> textModel1 [
 
 	^ textModel1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpListSelectionPresenter >> textModel2 [
 
 	^ textModel2
 ]
 
-{ #category : #update }
+{ #category : 'update' }
 SpListSelectionPresenter >> updateText [
 	"update the displayed list in a separate thread to avoid UI blocking"
 
@@ -81,7 +83,7 @@ SpListSelectionPresenter >> updateText [
 	indexes := indexes joinUsing: '; '.
 	items := listModel selectedItems collect: [ :i | i printString ].
 	items := items sort joinUsing: '; '.
-	UIManager default
+	self
 		defer: [ textModel1 text: indexes.
 			textModel2 text: items ] ] fork
 ]

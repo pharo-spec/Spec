@@ -7,21 +7,23 @@ Backends define different things from an application:
 - ...
 "
 Class {
-	#name : #SpApplicationBackend,
-	#superclass : #Object,
+	#name : 'SpApplicationBackend',
+	#superclass : 'Object',
 	#instVars : [
 		'adapterBindings'
 	],
-	#category : #'Spec2-Core-Support'
+	#category : 'Spec2-Core-Support',
+	#package : 'Spec2-Core',
+	#tag : 'Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpApplicationBackend class >> backendName [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpApplicationBackend class >> findBackendNamed: aName [
 
 	^ (self allSubclasses 
@@ -29,70 +31,68 @@ SpApplicationBackend class >> findBackendNamed: aName [
 		new	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpApplicationBackend >> adapterBindings [
 
 	^ adapterBindings
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpApplicationBackend >> adapterBindingsClass [
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpApplicationBackend >> defaultConfigurationFor: anApplication [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : 'ui - dialogs' }
+SpApplicationBackend >> inform: aString [
+
+	self subclassResponsibility
+]
+
+{ #category : 'initialization' }
 SpApplicationBackend >> initialize [
 
 	super initialize.
 	self resetAdapterBindings
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpApplicationBackend >> name [
 
 	^ self class backendName
 ]
 
-{ #category : #'ui - notifying' }
-SpApplicationBackend >> notify: aSpecNotification [
-
-	aSpecNotification type 
-		notify: aSpecNotification
-		on: self
-]
-
-{ #category : #'ui - notifying' }
+{ #category : 'ui - notifying' }
 SpApplicationBackend >> notifyError: aSpecNotification [
 
 	self subclassResponsibility
 ]
 
-{ #category : #'ui - notifying' }
+{ #category : 'ui - notifying' }
 SpApplicationBackend >> notifyInfo: aSpecNotification [
 
 	self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpApplicationBackend >> resetAdapterBindings [
 
 	adapterBindings := self adapterBindingsClass new
 ]
 
-{ #category : #'ui - dialogs' }
+{ #category : 'ui - dialogs' }
 SpApplicationBackend >> selectFileTitle: aString [
 
 	self subclassResponsibility
 ]
 
-{ #category : #ui }
+{ #category : 'ui' }
 SpApplicationBackend >> showWaitCursorWhile: aBlock inApplication: anApplication [
 
 	self subclassResponsibility

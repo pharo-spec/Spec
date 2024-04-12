@@ -9,8 +9,8 @@ I can have several configurations:
 
 "
 Class {
-	#name : #SpMorphicCodeCompletionEngine,
-	#superclass : #CompletionEngine,
+	#name : 'SpMorphicCodeCompletionEngine',
+	#superclass : 'CompletionEngine',
 	#instVars : [
 		'scripting',
 		'completionClass',
@@ -19,89 +19,90 @@ Class {
 		'completionBuilder',
 		'smartCharacters'
 	],
-	#category : #'Spec2-Code-Morphic'
+	#category : 'Spec2-Code-Morphic',
+	#package : 'Spec2-Code-Morphic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicCodeCompletionEngine >> completionBuilder [
 
 	^ completionBuilder ifNil: [ CoASTHeuristicsResultSetBuilder new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicCodeCompletionEngine >> completionBuilder: anObject [
 
 	completionBuilder := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicCodeCompletionEngine >> completionClass [
 
 	^ completionClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicCodeCompletionEngine >> completionClass: anObject [
 
 	completionClass := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicCodeCompletionEngine >> doItContext [
 
 	^ doItContext
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicCodeCompletionEngine >> doItContext: aContext [
 
 	doItContext := aContext
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicCodeCompletionEngine >> doItRequestor [
 
 	^ doItRequestor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicCodeCompletionEngine >> doItRequestor: aRequestor [
 
 	doItRequestor := aRequestor
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicCodeCompletionEngine >> initialize [
 
 	super initialize.
 	contextClass := CoCompletionContext
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicCodeCompletionEngine >> isScripting [
 
 	^ scripting
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicCodeCompletionEngine >> scripting: aBoolean [ 
 
 	scripting := aBoolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicCodeCompletionEngine >> smartCharacters [
 
 	^ smartCharacters ifNil: [ super smartCharacters ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicCodeCompletionEngine >> smartCharacters: aBoolean [
 
 	smartCharacters := aBoolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicCodeCompletionEngine >> variableBindingNames [
 
 	^ self doItRequestor variableBindingNames

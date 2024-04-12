@@ -5,12 +5,14 @@ Internally, I create a normal panel morph with a SpMorphicOverlayLayout.
 The SpMorphicOverlayLayout collaborates with the layout's constraints to decide wether a child is the main widget or an overlay widget.
 "
 Class {
-	#name : #SpMorphicOverlayAdapter,
-	#superclass : #SpMorphicLayoutAdapter,
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#name : 'SpMorphicOverlayAdapter',
+	#superclass : 'SpMorphicLayoutAdapter',
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicOverlayAdapter >> addConstraints: constraints toChild: childMorph [
 	"Adds constraits by child"
 
@@ -22,7 +24,7 @@ SpMorphicOverlayAdapter >> addConstraints: constraints toChild: childMorph [
 	^ theMorph 
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicOverlayAdapter >> basicAdd: aPresenter constraints: constraints to: aWidget [
 	| childMorph |
 
@@ -34,13 +36,13 @@ SpMorphicOverlayAdapter >> basicAdd: aPresenter constraints: constraints to: aWi
 	^ childMorph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicOverlayAdapter >> children [
 	
 	^ widget submorphs
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 SpMorphicOverlayAdapter >> layout: aLayout [
 
 	widget ifNil: [ 
@@ -59,7 +61,7 @@ SpMorphicOverlayAdapter >> layout: aLayout [
 	super layout: aLayout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicOverlayAdapter >> removeChild: aPresenter [
 
 	| morph |

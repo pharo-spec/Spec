@@ -11,12 +11,14 @@ SpImageTableColumn
 ```
 "
 Class {
-	#name : #SpImageTableColumn,
-	#superclass : #SpTableColumn,
-	#category : #'Spec2-Core-Widgets-Table'
+	#name : 'SpImageTableColumn',
+	#superclass : 'SpTableColumn',
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpImageTableColumn class >> example [
 
 	SpTablePresenter new
@@ -32,7 +34,7 @@ SpImageTableColumn class >> example [
 		open
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpImageTableColumn >> acceptColumnVisitor: aBuilder [
 
 	^ aBuilder visitImageColumn: self

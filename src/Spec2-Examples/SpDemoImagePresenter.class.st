@@ -5,22 +5,24 @@ Description
 This demo show how to use the image presenter
 "
 Class {
-	#name : #SpDemoImagePresenter,
-	#superclass : #SpPresenter,
+	#name : 'SpDemoImagePresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'image1',
 		'image2'
 	],
-	#category : #'Spec2-Examples-Demo-Other'
+	#category : 'Spec2-Examples-Demo-Other',
+	#package : 'Spec2-Examples',
+	#tag : 'Demo-Other'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpDemoImagePresenter class >> open [
 	<script>
 	self new open
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 SpDemoImagePresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -40,7 +42,7 @@ SpDemoImagePresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDemoImagePresenter >> initializePresenters [
 
 	image1 := self newImage.
@@ -50,13 +52,13 @@ SpDemoImagePresenter >> initializePresenters [
 	image2 image: self currentWorld submorphs last form
 ]
 
-{ #category : #'option list presenter' }
+{ #category : 'option list presenter' }
 SpDemoImagePresenter >> optionIcon [
 
 	^ self iconNamed: #image
 ]
 
-{ #category : #'option list presenter' }
+{ #category : 'option list presenter' }
 SpDemoImagePresenter >> optionTitle [
 
 	^ 'Image Presenter'

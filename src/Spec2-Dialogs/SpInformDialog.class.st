@@ -1,52 +1,32 @@
 "
-A dialog to present some simple information to users.
+I'm notification based interaction with the user. I'm not modal and I'm under development
 "
 Class {
-	#name : #SpInformDialog,
-	#superclass : #SpDialogPresenter,
-	#instVars : [
-		'label',
-		'title',
-		'initialExtent',
-		'acceptLabel'
-	],
-	#category : #'Spec2-Dialogs'
+	#name : 'SpInformDialog',
+	#superclass : 'SpAbstractMessageDialog',
+	#category : 'Spec2-Dialogs',
+	#package : 'Spec2-Dialogs'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpInformDialog class >> defaultAcceptLabel [
 
 	^ 'Ok'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpInformDialog class >> defaultExtent [
 
 	^ 450@120
 ]
 
-{ #category : #layout }
-SpInformDialog class >> defaultLayout [
-
-	^ SpBoxLayout newTopToBottom
-		borderWidth: 5;
-		spacing: 5;
-		add: (SpBoxLayout newLeftToRight
-			vAlignCenter;
-			spacing: 5;
-			add: #image expand: false;
-			add: #label;
-			yourself);
-		yourself
-]
-
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpInformDialog class >> documentFactoryMethodSelector [
 	
 	^ #newInform
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpInformDialog class >> example [
 
 	self new
@@ -56,7 +36,7 @@ SpInformDialog class >> example [
 		openDialog
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpInformDialog class >> exampleModal [
 
 	self new
@@ -66,82 +46,33 @@ SpInformDialog class >> exampleModal [
 		openModal
 ]
 
-{ #category : #api }
-SpInformDialog >> acceptLabel [
+{ #category : 'examples' }
+SpInformDialog class >> exampleMultiLineLabel [ 
 
-	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
+	| label |
+
+	label := String streamContents: [ :s |
+		s nextPutAll: 'You are seeing an inform dialog!';
+		  cr;
+		  cr;
+		  nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap'
+		 ].	
+
+	self new
+		title: 'Inform modal example';
+		label: label;
+		acceptLabel: 'Close this!';
+		openModal
 ]
 
-{ #category : #api }
-SpInformDialog >> acceptLabel: aString [
-
-	acceptLabel := aString
-]
-
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpInformDialog >> defaultIcon [
 
 	^ self application iconNamed: #info
 ]
 
-{ #category : #api }
-SpInformDialog >> extent [
+{ #category : 'accessing' }
+SpInformDialog >> defaultTitle [
 
-	^ initialExtent ifNil: [ self class defaultExtent ]
-]
-
-{ #category : #api }
-SpInformDialog >> extent: aPoint [
-
-	initialExtent := aPoint
-]
-
-{ #category : #initialization }
-SpInformDialog >> initialize [
-
-	super initialize.
-	self title: 'Inform'
-]
-
-{ #category : #initialization }
-SpInformDialog >> initializeDialogWindow: aDialogWindowPresenter [
-
-	super initializeDialogWindow: aDialogWindowPresenter.
-	aDialogWindowPresenter
-		addDefaultButton: self acceptLabel 
-		do: [ :presenter | self accept ]
-		
-]
-
-{ #category : #initialization }
-SpInformDialog >> initializePresenters [
-
-	image := self newImage image: self defaultIcon.
-	label := self newLabel
-]
-
-{ #category : #initialization }
-SpInformDialog >> initializeWindow: aWindowPresenter [
-
-	aWindowPresenter
-		title: self title;
-		initialExtent: self extent
-]
-
-{ #category : #api }
-SpInformDialog >> label: aString [
-
-	label label: aString
-]
-
-{ #category : #api }
-SpInformDialog >> title [
-
-	^ title
-]
-
-{ #category : #api }
-SpInformDialog >> title: aString [
-
-	title := aString
+	^ 'Inform'
 ]

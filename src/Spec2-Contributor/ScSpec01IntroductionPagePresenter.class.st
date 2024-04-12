@@ -1,13 +1,14 @@
 Class {
-	#name : #ScSpec01IntroductionPagePresenter,
-	#superclass : #ScPagePresenter,
+	#name : 'ScSpec01IntroductionPagePresenter',
+	#superclass : 'ScPagePresenter',
 	#instVars : [
 		'introductionText'
 	],
-	#category : #'Spec2-Contributor'
+	#category : 'Spec2-Contributor',
+	#package : 'Spec2-Contributor'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ScSpec01IntroductionPagePresenter class >> introductionText [
 
 	^ 'Welcome to the Spec Contributor. 
@@ -25,7 +26,7 @@ YOU CAN KEEP THIS WIZARD OPEN DURING ALL THE PROCESS!'
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ScSpec01IntroductionPagePresenter >> initializePresenters [
 
 	self layout: (SpBoxLayout newTopToBottom

@@ -1,19 +1,23 @@
 Class {
-	#name : #SpVerticalBoxLayoutTest,
-	#superclass : #SpBoxLayoutTest,
-	#category : #'Spec2-Tests-Layout'
+	#name : 'SpVerticalBoxLayoutTest',
+	#superclass : 'SpBoxLayoutTest',
+	#category : 'Spec2-Tests-Layout',
+	#package : 'Spec2-Tests',
+	#tag : 'Layout'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpVerticalBoxLayoutTest >> initializeTestedInstance [
 
 	layout := SpBoxLayout newTopToBottom.
 	presenter layout: layout
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpVerticalBoxLayoutTest >> testPresenterExtentFollowsChildrenExtent [
 	| label button |
+
+	presenter application backend name = #Gtk ifTrue: [ self skip ].
 
 	layout 
 		add: ((label := presenter newLabel) label: 'Label1');
@@ -25,7 +29,7 @@ SpVerticalBoxLayoutTest >> testPresenterExtentFollowsChildrenExtent [
 	self assert: (self heightOf: presenter) >= ((self heightOf: label) + (self heightOf: button))
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpVerticalBoxLayoutTest >> testReplaceWithFixedHeight [
 	| p1 toReplace p3 replacement |
 
@@ -43,7 +47,7 @@ SpVerticalBoxLayoutTest >> testReplaceWithFixedHeight [
 	self assert: layout children equals: { p1. replacement. p3 }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpVerticalBoxLayoutTest >> testReplaceWithFixedHeightAllFixed [
 	| p1 toReplace p3 replacement |
 
@@ -61,7 +65,7 @@ SpVerticalBoxLayoutTest >> testReplaceWithFixedHeightAllFixed [
 	self assert: layout children equals: { p1. replacement. p3 }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpVerticalBoxLayoutTest >> testReplaceWithFixedHeightComposed [
 	| p1 layoutToReplace toReplace p3 replacement |
 

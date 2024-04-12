@@ -1,6 +1,6 @@
-Extension { #name : #SpInvalidUserInputError }
+Extension { #name : 'SpInvalidUserInputError' }
 
-{ #category : #'*Spec2-Commander2' }
+{ #category : '*Spec2-Commander2' }
 SpInvalidUserInputError >> actForSpec [
 	"Does nothing on purpose."
 	UIManager default

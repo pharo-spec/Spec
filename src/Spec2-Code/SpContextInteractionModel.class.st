@@ -1,25 +1,27 @@
 Class {
-	#name : #SpContextInteractionModel,
-	#superclass : #SpCodeInteractionModel,
+	#name : 'SpContextInteractionModel',
+	#superclass : 'SpCodeInteractionModel',
 	#instVars : [
 		'context'
 	],
-	#category : #'Spec2-Code-Base'
+	#category : 'Spec2-Code-Base',
+	#package : 'Spec2-Code',
+	#tag : 'Base'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SpContextInteractionModel class >> on: aContext [
 
 	^ self new context: aContext
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContextInteractionModel >> behavior [
 
 	^ self context receiver class
 ]
 
-{ #category : #binding }
+{ #category : 'binding' }
 SpContextInteractionModel >> bindingOf: aString [
 
 	"we can not call #lookupVar: without checking first as it would create the variable"
@@ -29,47 +31,46 @@ SpContextInteractionModel >> bindingOf: aString [
 		  ifFalse: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContextInteractionModel >> context [
 
 	^context
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContextInteractionModel >> context: aContext [
 	context := aContext
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContextInteractionModel >> doItContext [
 
 	^ self context
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContextInteractionModel >> doItReceiver [
 
 	^ self context receiver
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpContextInteractionModel >> hasBindingOf: aString [
-	"we lookup the name without creating a new variable"
-	^ (context lookupVar: aString declare: false) notNil
+	^ (context lookupVar: aString) notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpContextInteractionModel >> hasUnsavedCodeChanges [
 
-	^ context notNil and: [ context sourceCode ~= owner text asString ]
+	^ context isNotNil and: [ context sourceCode ~= owner text asString ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpContextInteractionModel >> isScripting [ 
 	^context belongsToDoIt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpContextInteractionModel >> object [
 
 	^ self doItReceiver

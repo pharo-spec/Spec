@@ -11,8 +11,8 @@ It means many fonctionality related to the selection (selected items, multiple i
 A list presenter does not offer the possibility to add one item in isolation instead you should use the `items:` setter to set the full list domain object. The responsibility to manage the items displayed by a list presenter is not the one of that list presenter but its users e.g, the presenter you will write and that instantiates and uses the list presenter. This is normal since there is no way that the list presenter could track changes into the domain object representing the list items.
 "
 Class {
-	#name : #SpListPresenter,
-	#superclass : #SpAbstractListPresenter,
+	#name : 'SpListPresenter',
+	#superclass : 'SpAbstractListPresenter',
 	#traits : 'SpTSearchable + SpTDecoratedText',
 	#classTraits : 'SpTSearchable classTrait + SpTDecoratedText classTrait',
 	#instVars : [
@@ -22,31 +22,34 @@ Class {
 		'#display => ObservableSlot',
 		'#icon => ObservableSlot'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpListPresenter class >> adapterName [
 
 	^ #ListAdapter
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpListPresenter class >> title [
 
 	^ 'List'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpListPresenter >> clickOnSelectedItem [
 	| item |
+
 	item := self selection selectedItem.
-	(item notNil and: [ item respondsTo: #click ])
-		ifTrue: [ ^ item click ]
-		ifFalse: [ ^ false ]
+	^ item isNotNil 
+		and: [ (item respondsTo: #click) 
+		and: [ item click ] ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpListPresenter >> display [
 	"Answer the display block that will transform the objects from `SpAbstractListPresenter>>#model` into a
 	 displayable string."
@@ -54,7 +57,7 @@ SpListPresenter >> display [
 	^ display
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpListPresenter >> display: aBlock [
 	"Set the block that will be applied on each of the list items. 
 	 The result of the block will be used to display the item on the screen.
@@ -71,14 +74,14 @@ SpListPresenter >> display: aBlock [
 	display := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpListPresenter >> displayIcon [
 	"Return the block used to return an icon that will be displayed in the list"
 
 	^ icon
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpListPresenter >> displayIcon: aBlock [
 	"Set a block which takes an item as argument and returns the icon to display in the list. 
 	 `aBlock` receives one argument"
@@ -86,7 +89,7 @@ SpListPresenter >> displayIcon: aBlock [
 	icon := aBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpListPresenter >> displayValueAt: anIndex [
 	"Return the effective string that is displayed on the list. 
 	Note that it is different from the item, because often an item is an object whose only a facette (e.g., name) is displayed. In such case displayValueAt: return the string of the displayed facette"
@@ -94,48 +97,48 @@ SpListPresenter >> displayValueAt: anIndex [
 	^ self displayValueFor: (model at: anIndex)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpListPresenter >> displayValueFor: anObject [
 
 	^ self display value: anObject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpListPresenter >> hasHeaderTitle [
 	"Answer true if the list has a title (See `SpListPresenter>>#headerTitle:`)."
 
 	^ headerTitle isEmptyOrNil not
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpListPresenter >> hasIcons [
 	"Answer true if the list has an icon provider (See `SpListPresenter>>#icons:`)."
 
-	^ self displayIcon notNil
+	^ self displayIcon isNotNil
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpListPresenter >> headerTitle [
 	"Answer the header title."
 
 	^ headerTitle
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpListPresenter >> headerTitle: aString [
 	"Set the header title."
 
 	headerTitle := aString
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpListPresenter >> hideHeaderTitle [
 	"Hide list header."
 
 	headerTitle := nil
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpListPresenter >> iconFor: anItem [
 
 	^ self displayIcon
@@ -143,7 +146,7 @@ SpListPresenter >> iconFor: anItem [
 		cull: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpListPresenter >> initialize [
 
 	super initialize.
@@ -153,12 +156,12 @@ SpListPresenter >> initialize [
 	display := [ :object | object asStringOrText ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpListPresenter >> prepareForFilteredDataSourceWith: items [
 	model := items
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpListPresenter >> registerEvents [
 	super registerEvents.
 	"Do not use whenAutoDeselectChangedDo: to avoid the deprecation warning."
@@ -173,19 +176,12 @@ SpListPresenter >> registerEvents [
 			self withAdapterDo: [ :anAdapter | anAdapter refreshWidgetHeaderTitle ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpListPresenter >> resetListSelection [
 	self selectIndex: 0
 ]
 
-{ #category : #TOREMOVE }
-SpListPresenter >> resetSortingBlock [
-	"Reset the sortering block with the default value which consists in not sorting"
-
-	self model sortingBlock: nil
-]
-
-{ #category : #api }
+{ #category : 'api' }
 SpListPresenter >> updateList [
 	"Update the list re taking the list defined in `SpAbstractListPresenter>>#model` and filling the list with 
 	 them (this is useful when the list contained changed internally (like adding element to a collection, etc.). 
@@ -195,7 +191,7 @@ SpListPresenter >> updateList [
 	self unselectAll
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpListPresenter >> whenDisplayChangedDo: aBlock [
 	"Inform when the display block has changed.
  	 `aBlock` has three optional arguments: 
@@ -206,7 +202,7 @@ SpListPresenter >> whenDisplayChangedDo: aBlock [
 	self property: #display whenChangedDo: aBlock
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpListPresenter >> whenIconsChangedDo: aBlock [
 	"Inform when the icons block has changed.
  	 `aBlock` has three optional arguments: 

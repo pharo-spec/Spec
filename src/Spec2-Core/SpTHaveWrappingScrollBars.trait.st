@@ -9,17 +9,19 @@ if your backend of choice supports it.
 THIS CANNOT BE CHANGED ONCE THE WIDGET IS CREATED.
 "
 Trait {
-	#name : #SpTHaveWrappingScrollBars,
+	#name : 'SpTHaveWrappingScrollBars',
 	#instVars : [
 		'wrapScrollBars',
 		'propagateNaturalHeight',
 		'propagateNaturalWidth',
 		'scrollBarStyles'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #api }
+{ #category : 'api' }
 SpTHaveWrappingScrollBars >> addScrollBarStyle: aStyle [
 	"Add a style for the scrollbar component. 
 	 In platforms that do not support separation from component and scrollbar (like Morphic), the 
@@ -30,7 +32,7 @@ SpTHaveWrappingScrollBars >> addScrollBarStyle: aStyle [
 	scrollBarStyles := scrollBarStyles copyWith: aStyle
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTHaveWrappingScrollBars >> hasScrollBars [
 	"Some backends like Morphic forces the scrollbars in their Tables and Lists. 
 	 But some others like Gtk3 don't. This option allows you to configure the precence 
@@ -42,7 +44,7 @@ SpTHaveWrappingScrollBars >> hasScrollBars [
 	^ wrapScrollBars
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpTHaveWrappingScrollBars >> initializeTHaveWrappingScrollBars [
 
 	scrollBarStyles := #().
@@ -50,7 +52,7 @@ SpTHaveWrappingScrollBars >> initializeTHaveWrappingScrollBars [
 	self propagateNaturalHeight: false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTHaveWrappingScrollBars >> isPropagateNaturalHeight [
 	"Indicate if component propagates natural heigth.
 	 See `SpTHaveWrappingScrollBars>>#propagateNaturalHeight:`"
@@ -58,7 +60,7 @@ SpTHaveWrappingScrollBars >> isPropagateNaturalHeight [
 	^ propagateNaturalHeight ifNil: [ false ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTHaveWrappingScrollBars >> isPropagateNaturalWidth [
 	"Indicate if component propagates natural width.
 	 See `SpTHaveWrappingScrollBars>>#propagateNaturalWidth:`"
@@ -66,7 +68,7 @@ SpTHaveWrappingScrollBars >> isPropagateNaturalWidth [
 	^ propagateNaturalWidth ifNil: [ false ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTHaveWrappingScrollBars >> propagateNaturalHeight: aBoolean [
 	"Indicate when component propagates natural heigth.
 	 Natural height propagation means that the height of the presenter containing both scrollbars and 
@@ -75,7 +77,7 @@ SpTHaveWrappingScrollBars >> propagateNaturalHeight: aBoolean [
 	propagateNaturalHeight := aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTHaveWrappingScrollBars >> propagateNaturalWidth: aBoolean [
 	"Indicate when component propagates natural width.
 	 Natural width propagation means that the width of the presenter containing both scrollbars and 
@@ -86,7 +88,7 @@ SpTHaveWrappingScrollBars >> propagateNaturalWidth: aBoolean [
 	propagateNaturalWidth := aBoolean
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTHaveWrappingScrollBars >> removeScrollBarStyle: aStyle [
 	"Remove `aStyle` from the list of scrollbar styles.
 	 See SpTHaveWrappingScrollBars>>#scrollBarStyles"
@@ -94,7 +96,7 @@ SpTHaveWrappingScrollBars >> removeScrollBarStyle: aStyle [
 	scrollBarStyles := scrollBarStyles copyWithout: aStyle
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTHaveWrappingScrollBars >> scrollBarStyles [
 	"Answer styles defined for the scrollbar component. 
 	 In platforms that do not support separation from component and scrollbar (like Morphic), the 
@@ -105,7 +107,7 @@ SpTHaveWrappingScrollBars >> scrollBarStyles [
 	^ scrollBarStyles ifNil: [ #() ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTHaveWrappingScrollBars >> withScrollBars [
 	"Some backends like Morphic forces the scrollbars in their Tables and Lists. 
 	 But some others like Gtk3 don't. This option allows you to configure the precence 
@@ -117,7 +119,7 @@ SpTHaveWrappingScrollBars >> withScrollBars [
 	wrapScrollBars := true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpTHaveWrappingScrollBars >> withoutScrollBars [
 	"Some backends like Morphic forces the scrollbars in their Tables and Lists. 
 	 But some others like Gtk3 don't. This option allows you to configure the precence 

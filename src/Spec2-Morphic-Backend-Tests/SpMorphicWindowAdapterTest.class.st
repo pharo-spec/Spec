@@ -1,10 +1,11 @@
 Class {
-	#name : #SpMorphicWindowAdapterTest,
-	#superclass : #TestCase,
-	#category : #'Spec2-Morphic-Backend-Tests'
+	#name : 'SpMorphicWindowAdapterTest',
+	#superclass : 'TestCase',
+	#category : 'Spec2-Morphic-Backend-Tests',
+	#package : 'Spec2-Morphic-Backend-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpMorphicWindowAdapterTest >> testOpenWidgetPresenterAppliesStyle [
 
 	| presenter window |

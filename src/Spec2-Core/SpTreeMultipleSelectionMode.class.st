@@ -1,36 +1,38 @@
 Class {
-	#name : #SpTreeMultipleSelectionMode,
-	#superclass : #SpAbstractTreeSelectionMode,
-	#category : #'Spec2-Core-Widgets-Tree'
+	#name : 'SpTreeMultipleSelectionMode',
+	#superclass : 'SpAbstractTreeSelectionMode',
+	#category : 'Spec2-Core-Widgets-Tree',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Tree'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTreeMultipleSelectionMode >> includesItem: anItem [
 	^ self selectedItems includes: anItem
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTreeMultipleSelectionMode >> includesItems: anItemList [
 	^ self selectedItems includesAll: anItemList
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTreeMultipleSelectionMode >> includesPath: aPath [
 	^ selection includes: aPath
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTreeMultipleSelectionMode >> includesPaths: aListOfPaths [
 	^ selection includesAll: aListOfPaths
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpTreeMultipleSelectionMode >> isMultipleSelection [
 
 	^ true
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 SpTreeMultipleSelectionMode >> selectPath: aPath [ 
 	"Check comment in my superclass to know how to use selectPath:"
 	
@@ -41,7 +43,7 @@ SpTreeMultipleSelectionMode >> selectPath: aPath [
 	selection := selection copyWith: aPath.
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 SpTreeMultipleSelectionMode >> selectPaths: pathArray [
 	(pathArray isEmpty 
 		or: [ 
@@ -56,7 +58,7 @@ SpTreeMultipleSelectionMode >> selectPaths: pathArray [
 	selection := pathArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTreeMultipleSelectionMode >> selectedItem [
 
 	^ self selectedPaths 
@@ -64,13 +66,13 @@ SpTreeMultipleSelectionMode >> selectedItem [
 		ifEmpty: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTreeMultipleSelectionMode >> selectedItems [
 	selection ifEmpty: [ ^ #() ].
 	^ selection collect: [ :path | presenter itemAtPath: path ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTreeMultipleSelectionMode >> selectedPath [
 	
 	^ self selectedPaths 
@@ -78,12 +80,12 @@ SpTreeMultipleSelectionMode >> selectedPath [
 		ifEmpty: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpTreeMultipleSelectionMode >> selectedPaths [
 	^ selection
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 SpTreeMultipleSelectionMode >> unselectPath: aPath [
 	self selectPaths: (self selectedPaths copyWithout: aPath)
 ]

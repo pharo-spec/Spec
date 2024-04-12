@@ -1,13 +1,15 @@
 Class {
-	#name : #SpRubTextFieldMorph,
-	#superclass : #RubTextFieldMorph,
+	#name : 'SpRubTextFieldMorph',
+	#superclass : 'RubTextFieldMorph',
 	#instVars : [
 		'drawKeyboardFocus'
 	],
-	#category : #'Spec2-Adapters-Morphic-Support'
+	#category : 'Spec2-Adapters-Morphic-Support',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Support'
 }
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpRubTextFieldMorph >> acceptDroppingMorph: aTransferMorph event: anEvent [
 
 	^ self model model acceptDrop cull: (SpDragAndDropTransfer new
@@ -15,53 +17,53 @@ SpRubTextFieldMorph >> acceptDroppingMorph: aTransferMorph event: anEvent [
 			   yourself)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRubTextFieldMorph >> defaultBounds [
 "answer the default bounds for the receiver"
 	^ 0 @ 0 corner: 4 @ 4
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpRubTextFieldMorph >> drawKeyboardFocus: aBoolean [
 
 	self drawFocusBorder: aBoolean.
 	drawKeyboardFocus := aBoolean
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpRubTextFieldMorph >> drawKeyboardFocusOn: aCanvas [
 
 	drawKeyboardFocus ifFalse: [ ^ self ].
 	^ super drawKeyboardFocusOn: aCanvas
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 SpRubTextFieldMorph >> extent: aPoint [
 
 	self updateTextAreaMarginsWith: aPoint y.
-	super extent: aPoint	
+	super extent: aPoint
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRubTextFieldMorph >> initialize [
 
 	super initialize. 
 	drawKeyboardFocus := true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpRubTextFieldMorph >> textAreaClass [
 
 	^ SpRubTextFieldArea
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 SpRubTextFieldMorph >> updateTextAreaMarginsWith: height [
 
 	self textArea updateMarginsWithHeight: (height - 1) asInteger
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 SpRubTextFieldMorph >> wantsDroppedMorph: aTransferMorph event: anEvent [
 
 	^ aTransferMorph isTransferable and: [ 

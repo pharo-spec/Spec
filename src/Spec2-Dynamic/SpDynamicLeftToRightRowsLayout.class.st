@@ -2,12 +2,14 @@
 I am the layout for which you define the number of rows to store you presenters and set them from left to right in these rows.
 "
 Class {
-	#name : #SpDynamicLeftToRightRowsLayout,
-	#superclass : #SpDynamicTopToBottomRowsLayout,
-	#category : #'Spec2-Dynamic-Builder'
+	#name : 'SpDynamicLeftToRightRowsLayout',
+	#superclass : 'SpDynamicTopToBottomRowsLayout',
+	#category : 'Spec2-Dynamic-Builder',
+	#package : 'Spec2-Dynamic',
+	#tag : 'Builder'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 SpDynamicLeftToRightRowsLayout >> instVarNamesFrom: aDynamicPresentersListBuilder [
 	| names streams |
 	names := super instVarNamesFrom: aDynamicPresentersListBuilder.

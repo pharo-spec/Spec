@@ -2,47 +2,51 @@
 A refactor of `TableLayout>>layoutTopToBottom:in:`
 "
 Class {
-	#name : #SpMorphicBoxLayoutCalculatorTopToBottom,
-	#superclass : #SpMorphicBoxLayoutCalculator,
-	#category : #'Spec2-Adapters-Morphic-Layout'
+	#name : 'SpMorphicBoxLayoutCalculatorTopToBottom',
+	#superclass : 'SpMorphicBoxLayoutCalculator',
+	#category : 'Spec2-Adapters-Morphic-Layout',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Layout'
 }
 
-{ #category : #calculating }
-SpMorphicBoxLayoutCalculatorTopToBottom >> calculateCellFor: m [
+{ #category : 'calculating' }
+SpMorphicBoxLayoutCalculatorTopToBottom >> calculateCellFor: aMorph [
  	| sizeX props sizeY cell |
 	
-	props := m layoutProperties ifNil:[m].
+	props := aMorph layoutProperties ifNil:[aMorph].
 	props disableTableLayout ifTrue:[ ^ self ].
 	
 	number := number + 1.
-	cell := LayoutCell new target: m.
+	cell := LayoutCell new target: aMorph.
 	(props vResizing == #spaceFill) ifTrue:[
 		cell vSpaceFill: true.
-		extra := m spaceFillWeight.
+		extra := aMorph spaceFillWeight.
 		cell extraSpace: extra.
 		sum := sum + extra.
 	] ifFalse:[cell vSpaceFill: false].
 	(props hResizing == #spaceFill) ifTrue:[vFill := true].
-	size := m minExtent. sizeX := size x. sizeY := size y.
+	size := aMorph minExtent. sizeX := size x. sizeY := size y.
 	sizeX < minX
 		ifTrue:[sizeX := minX]
 		ifFalse:[sizeX > maxX ifTrue:[sizeX := maxX]].
-	sizeY < minY
+
+	((sizeY < minY) or: [ aMorph visible not ])
 		ifTrue:[sizeY := minY]
 		ifFalse:[sizeY > maxY ifTrue:[sizeY := maxY]].
 	cell cellSize: sizeY.
-	firstCell ifNil:[firstCell := cell] ifNotNil:[lastCell nextCell: cell].
+	firstCell ifNil:[ firstCell := cell ] ifNotNil:[ lastCell nextCell: cell ].
 	lastCell := cell.
 	height := height + sizeY.
-	sizeX > width ifTrue:[width := sizeX].
 
-
+	sizeX > width ifTrue:[ width := sizeX ].
+	
+	^ sizeX@sizeY
 ]
 
-{ #category : #calculating }
-SpMorphicBoxLayoutCalculatorTopToBottom >> calculateFor: aMorph in: newBounds [
+{ #category : 'calculating' }
+SpMorphicBoxLayoutCalculatorTopToBottom >> doCalculateFor: aMorph in: newBounds [
 	"An optimized top-to-bottom list layout"
-	| inset extent posX posY centering extraPerCell cell amount last |
+	| inset extent posX posY centering extraPerCell cell amount last submorphs |
 
 	size := properties minCellSize asPoint. minX := size x. minY := size y.
 	size := properties maxCellSize asPoint. maxX := size x. maxY := size y.
@@ -52,11 +56,19 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateFor: aMorph in: newBounds [
 	width := height := 0.
 	firstCell := lastCell := nil.
 
-	properties reverseTableCells
-		ifTrue:[aMorph submorphsReverseDo: [ :each | self calculateCellFor: each]]
-		ifFalse:[aMorph submorphsDo: [ :each | self calculateCellFor: each]].
+	submorphs := aMorph submorphs.
+	properties reverseTableCells ifTrue:[ submorphs := submorphs reversed ].
+	submorphs do: [ :each | 
+		| cellExtent oldExtent |
+		oldExtent := each extent.
+		cellExtent := each visible 
+			ifTrue: [ self calculateCellFor: each ]
+			ifFalse: [ 0@0 ].
+		"decide if restore or not"
+		((oldExtent y = 0) or: [ cellExtent y = 0 ]) ifTrue: [ 
+			each privateBounds: (each bounds topLeft extent: cellExtent) ] ].
 
-	number > 1 ifTrue:[height := height + (number-1 * inset)].
+	number > 1 ifTrue:[height := height + (number-1 * inset) ].
 
 	(properties vResizing == #shrinkWrap and:[properties rubberBandCells or:[sum isZero]])
 		ifTrue:[extent := (extent x max: width) @ height].
@@ -95,7 +107,7 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateFor: aMorph in: newBounds [
 	number := 0.
 	extra := last := 0.
 	cell := firstCell.
-	[cell == nil] whileFalse:[
+	[ cell == nil ] whileFalse:[
 		number := number + 1.
 		height := cell cellSize.
 		(extraPerCell > 0 and:[cell vSpaceFill]) ifTrue:[
@@ -105,6 +117,5 @@ SpMorphicBoxLayoutCalculatorTopToBottom >> calculateFor: aMorph in: newBounds [
 		].
 		cell target layoutInBounds: (posX @ posY extent: width @ height).
 		posY := posY + height + inset.
-		cell := cell nextCell.
-	].
+		cell := cell nextCell ]
 ]

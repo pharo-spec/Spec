@@ -9,17 +9,19 @@ self example
 ```
 "
 Class {
-	#name : #SpDropListTableColumn,
-	#superclass : #SpTableColumn,
+	#name : 'SpDropListTableColumn',
+	#superclass : 'SpTableColumn',
 	#instVars : [
 		'display',
 		'selectedItemChangedAction',
 		'startWithSelection'
 	],
-	#category : #'Spec2-Core-Widgets-Table'
+	#category : 'Spec2-Core-Widgets-Table',
+	#package : 'Spec2-Core',
+	#tag : 'Widgets-Table'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 SpDropListTableColumn class >> example [
 
 	^ SpTablePresenter new
@@ -33,54 +35,54 @@ SpDropListTableColumn class >> example [
 		open
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 SpDropListTableColumn >> acceptColumnVisitor: aBuilder [
 
 	^ aBuilder visitDropListColumn: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDropListTableColumn >> display [
 	
 	^ display
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDropListTableColumn >> display: aBlock [
 
 	display := aBlock
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpDropListTableColumn >> initialize [
 
 	super initialize.
 	startWithSelection := true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDropListTableColumn >> selectedItemChangedAction [
 		
 	^ selectedItemChangedAction
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDropListTableColumn >> selectedItemChangedAction: aBlock [
 
 	selectedItemChangedAction := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDropListTableColumn >> shouldStartWithSelection [ 
 	^ startWithSelection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDropListTableColumn >> startWithSelection [ 
 	startWithSelection := true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpDropListTableColumn >> startWithoutSelection [ 
 	startWithSelection := false
 ]

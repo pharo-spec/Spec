@@ -5,18 +5,20 @@ I will create a tree table (using FTTableMorph), using the columns TableColumn* 
 Is important notice here that most of the row/cell creation happens on SpMorphicTreeTableDataSource. Check there for some implementation details.
 "
 Class {
-	#name : #SpMorphicTreeTableAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Table'
+	#name : 'SpMorphicTreeTableAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Table',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Table'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableAdapter class >> intercellSpacing [
 
 	^ 2@0
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeTableAdapter >> acceptDroppingMorph: aTransferMorph event: anEvent [ 
 	
 	self presenter acceptDrop cull: (self 
@@ -24,7 +26,7 @@ SpMorphicTreeTableAdapter >> acceptDroppingMorph: aTransferMorph event: anEvent 
 		event: anEvent)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicTreeTableAdapter >> addActivationKeyBindings: aWidget [
 
 	self 
@@ -32,27 +34,27 @@ SpMorphicTreeTableAdapter >> addActivationKeyBindings: aWidget [
 		toAction: [ self triggerActivationAction ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeTableAdapter >> addColumnsFromPresenterTo: tableMorph [
 
 	"I need to ensure first column will have the size required and this is tricky on 
 	 fixed width of column: I need to enlarge that width with the width of the expander."
 	self columns withIndexDo: [ :each :index | | column |
 		column := self newColumnFrom: each.
-		(index = 1 and: [ column width notNil ]) ifTrue: [ 
+		(index = 1 and: [ column width isNotNil ]) ifTrue: [ 
 			column addEmptySpace.
 			"column width: column width + SpMorphicTreeTableDataSource emptyMorph width" ]. 
 		tableMorph addColumn: column ].
 			
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicTreeTableAdapter >> addFocusRotationKeyBindings [
 	
 	^ super addFocusRotationKeyBindings
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SpMorphicTreeTableAdapter >> addKeyBindingsTo: aWidget [
 
 	super addKeyBindingsTo: aWidget.
@@ -60,7 +62,7 @@ SpMorphicTreeTableAdapter >> addKeyBindingsTo: aWidget [
 	self addActivationKeyBindings: aWidget
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeTableAdapter >> addModelTo: tableMorph [
 
 	self addColumnsFromPresenterTo: tableMorph.
@@ -111,7 +113,12 @@ SpMorphicTreeTableAdapter >> addModelTo: tableMorph [
 			to: self
 ]
 
-{ #category : #factory }
+{ #category : 'drawing' }
+SpMorphicTreeTableAdapter >> alternateRowsColor [
+	self widgetDo: [ :w | w alternateRowsColor: true ]
+]
+
+{ #category : 'factory' }
 SpMorphicTreeTableAdapter >> basicSelectionChanged: ann [
 	| selection |
 
@@ -126,7 +133,7 @@ SpMorphicTreeTableAdapter >> basicSelectionChanged: ann [
 		self presenter doActivateAtPath: selection selectedPath ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeTableAdapter >> buildWidget [
 	| tableMorph |
 
@@ -145,31 +152,31 @@ SpMorphicTreeTableAdapter >> buildWidget [
 	^ tableMorph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableAdapter >> collapseAll [
 
 	widget dataSource collapseAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableAdapter >> collapsePath: anArray [  
 
 	widget dataSource collapsePath: anArray
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTreeTableAdapter >> columnCount [
 	
 	^ self widget columns size
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeTableAdapter >> columns [
 	
 	^ self presenter columns
 ]
 
-{ #category : #scrolling }
+{ #category : 'scrolling' }
 SpMorphicTreeTableAdapter >> configureScrolling [
 	self presenter verticalAlignment
 		whenChangedDo: [ widget
@@ -186,37 +193,37 @@ SpMorphicTreeTableAdapter >> configureScrolling [
 		to: self.
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeTableAdapter >> defaultColumn [
 
 	^ SpStringTableColumn new evaluated: [ :each | each yourself ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeTableAdapter >> ensureAtLeastOneColumnIn: tableMorph [
 	self model columns ifNotEmpty: [ ^ self ].
 	tableMorph addColumn: (self newColumnFrom: self defaultColumn)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableAdapter >> expandAll [
 
 	widget dataSource expandAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableAdapter >> expandPath: anArray [  
 
 	widget dataSource expandPath: anArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableAdapter >> expandRoots [
 
 	widget dataSource expandRoots
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTreeTableAdapter >> isExpanded: anItem [
 	| path |
 	
@@ -231,7 +238,7 @@ SpMorphicTreeTableAdapter >> isExpanded: anItem [
 		ifNil: [ false ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTreeTableAdapter >> isNonEditableRow: aRow column: aColumn [
 
 	^ (self widget dataSource
@@ -240,25 +247,25 @@ SpMorphicTreeTableAdapter >> isNonEditableRow: aRow column: aColumn [
 		allSatisfy: [ :e | e asReadOnlyMorph == e ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTreeTableAdapter >> isResizable [
 
 	^ self presenter isResizable
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTreeTableAdapter >> isSearchEnabled [
 
 	^ self presenter isSearchEnabled
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicTreeTableAdapter >> isShowingColumnHeaders [
 
 	^ self presenter isShowingColumnHeaders
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableAdapter >> itemAtPath: anArray [
 
 	self widgetDo: [ :w | 
@@ -266,7 +273,7 @@ SpMorphicTreeTableAdapter >> itemAtPath: anArray [
 	^ nil
 ]
 
-{ #category : #'private - factory' }
+{ #category : 'private - factory' }
 SpMorphicTreeTableAdapter >> newColumnFrom: aTableColumn [
 
 	^ (SpMorphicTableColumn on: aTableColumn)
@@ -274,7 +281,7 @@ SpMorphicTreeTableAdapter >> newColumnFrom: aTableColumn [
 		yourself
 ]
 
-{ #category : #'private - factory' }
+{ #category : 'private - factory' }
 SpMorphicTreeTableAdapter >> newDataSource [ 
 
 	^ SpMorphicTreeTableDataSource new
@@ -284,13 +291,13 @@ SpMorphicTreeTableAdapter >> newDataSource [
 		yourself
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicTreeTableAdapter >> refreshTree [
 
 	self widget refresh
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeTableAdapter >> registerColumnsChangedEventTo: tableMorph [
 	
 	self presenter whenColumnsChangedDo: [
@@ -300,7 +307,7 @@ SpMorphicTreeTableAdapter >> registerColumnsChangedEventTo: tableMorph [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTreeTableAdapter >> rootForItems: aCollection [
 
 	^ FTRootItem new
@@ -308,12 +315,12 @@ SpMorphicTreeTableAdapter >> rootForItems: aCollection [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableAdapter >> scrollToSelection [
 	widget ensureVisibleFirstSelection.
 ]
 
-{ #category : #scrolling }
+{ #category : 'scrolling' }
 SpMorphicTreeTableAdapter >> scrollingChanged [
 	widget container updateAllRows.
 	self presenter verticalAlignment
@@ -321,7 +328,7 @@ SpMorphicTreeTableAdapter >> scrollingChanged [
 		lastVisibleRowIndex: widget lastVisibleRowIndex
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 SpMorphicTreeTableAdapter >> selectInto: aFTTableMorph paths: aCollectionOfPaths [ 
 	
 	| indexes items |
@@ -338,7 +345,7 @@ SpMorphicTreeTableAdapter >> selectInto: aFTTableMorph paths: aCollectionOfPaths
 	aFTTableMorph selectIndexes: indexes andMakeVisibleIf: false.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableAdapter >> selectPath: anArray [
 	| index |
 	
@@ -352,7 +359,7 @@ SpMorphicTreeTableAdapter >> selectPath: anArray [
 	widget selectIndex: index
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableAdapter >> selectedItem [
 	
 	| selectedIndex |
@@ -363,26 +370,26 @@ SpMorphicTreeTableAdapter >> selectedItem [
 	^ (self widget dataSource elementAt: selectedIndex) data
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableAdapter >> selectedPath [
 	
 	^ self selectedPaths first 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableAdapter >> selectedPaths [
 	
 	^ self widget selectedIndexes collect: [ :e | self widget dataSource pathFromIndex: e  ] 
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeTableAdapter >> selectionChanged: ann [
 
 	self suspendSelectionEventsDuring: [ 
 		self basicSelectionChanged: ann ]
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpMorphicTreeTableAdapter >> sendClickEventToRowAtPath: aPath [
 	| evt rowWidget index |
 
@@ -401,7 +408,7 @@ SpMorphicTreeTableAdapter >> sendClickEventToRowAtPath: aPath [
 		widget handleMouseUp: evt ]
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpMorphicTreeTableAdapter >> sendClickWithShiftEventToRowAtPath: aPath [
 	| evt rowWidget index |
 	
@@ -420,7 +427,7 @@ SpMorphicTreeTableAdapter >> sendClickWithShiftEventToRowAtPath: aPath [
 		widget handleMouseUp: evt ]
 ]
 
-{ #category : #emulating }
+{ #category : 'emulating' }
 SpMorphicTreeTableAdapter >> sendRightClickEvent [
 	| evt |
 
@@ -435,14 +442,14 @@ SpMorphicTreeTableAdapter >> sendRightClickEvent [
 	self widget click: evt
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTreeTableAdapter >> showContextMenu [
 
 	self widgetDo: [ :w |
 		w showMenuForIndex: { self presenter selection selectedIndex. 1 } ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicTreeTableAdapter >> sortByColumn: aColumn [ 
 	
 	self widgetDo: [ :w | 
@@ -450,14 +457,14 @@ SpMorphicTreeTableAdapter >> sortByColumn: aColumn [
 			detect: [ :each | each model = aColumn ]) ]
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeTableAdapter >> strongSelectionChanged: aFTStrongSelectionChanged [
 
 	self presenter isActiveOnDoubleClick ifFalse: [ ^ self ].
 	self presenter doubleClickAtPath: self selectedPath
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicTreeTableAdapter >> suspendSelectionEventsDuring: aBlock [
 	| registry subscriptions |
 
@@ -474,7 +481,7 @@ SpMorphicTreeTableAdapter >> suspendSelectionEventsDuring: aBlock [
 		 subscriptions do: [ :each | registry add: each ] ]
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicTreeTableAdapter >> transferFrom: aTransferMorph event: anEvent [
 	| rowAndColumn aTarget |
 
@@ -492,18 +499,18 @@ SpMorphicTreeTableAdapter >> transferFrom: aTransferMorph event: anEvent [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SpMorphicTreeTableAdapter >> triggerActivationAction [
 
 	self presenter doActivateAtPath: self presenter selection selectedPath
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicTreeTableAdapter >> updateMenu [
 	"there is no need to updateMenu here because it will be resolved at the dataSource"
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicTreeTableAdapter >> updateSelectionOf: tableMorph [
 	
 	self 
@@ -511,7 +518,7 @@ SpMorphicTreeTableAdapter >> updateSelectionOf: tableMorph [
 		paths: self model selection selectedPaths
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 SpMorphicTreeTableAdapter >> wantsDroppedMorph: aTransferMorph event: anEvent [ 
 	
 	^ self presenter wantsDrop cull: (self 

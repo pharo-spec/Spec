@@ -2,15 +2,17 @@
 SUnit tests for SpecWindow
 "
 Class {
-	#name : #SpWindowTest,
-	#superclass : #TestCase,
+	#name : 'SpWindowTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'windowPresenter'
 	],
-	#category : #'Spec2-Tests-Core-Support'
+	#category : 'Spec2-Tests-Core-Support',
+	#package : 'Spec2-Tests',
+	#tag : 'Core-Support'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowTest >> testAboutText [
 
 	| presenter window |
@@ -27,7 +29,33 @@ SpWindowTest >> testAboutText [
 		window ifNotNil: #delete ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
+SpWindowTest >> testAllowedToClose [
+
+	| application appWindow |
+	application := SpApplication new.
+	windowPresenter := (application newPresenter: SpTextPresenter) open.
+	appWindow := windowPresenter window.
+
+	windowPresenter askOkToClose: true.
+	self 
+		deny: appWindow model isNil
+		description: 'It tests the window presenter model is not nil by default'.
+	self 
+		assert: appWindow allowedToClose 
+		description: 'It tests the window presenter is allowed to close if its application window does have a model'.
+	windowPresenter askOkToClose: false.
+	self 
+		assert: appWindow allowedToClose
+		description: 'It tests the window presenter is allowed to close if its application window does NOT have a model'.
+
+	appWindow close.
+	
+	self deny: (application windows includes: windowPresenter).
+	self assert: application windows isEmpty
+]
+
+{ #category : 'tests' }
 SpWindowTest >> testCloseWindowRemovesItFromApplicationWindowCollection [
 
 	| application |
@@ -38,7 +66,7 @@ SpWindowTest >> testCloseWindowRemovesItFromApplicationWindowCollection [
 	self assert: application windows isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowTest >> testIsDisplayed [
 
 	"Test for case: 16800 -> ask a SpecWindow for #isDisplayed always returns true"
@@ -53,7 +81,7 @@ SpWindowTest >> testIsDisplayed [
 	self assert: windowPresenter isDisplayed not
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 SpWindowTest >> testTitle [
 
 	| presenter window |

@@ -3,47 +3,49 @@ A presenter to display a morph.
 Sometimes, an user may want to plug a custom morph into Spec2. 
 "
 Class {
-	#name : #SpMorphPresenter,
-	#superclass : #SpAbstractWidgetPresenter,
+	#name : 'SpMorphPresenter',
+	#superclass : 'SpAbstractWidgetPresenter',
 	#traits : 'SpTContextMenu',
 	#classTraits : 'SpTContextMenu classTrait',
 	#instVars : [
 		'#morph => ObservableSlot'
 	],
-	#category : #'Spec2-Morphic-Widgets'
+	#category : 'Spec2-Morphic-Widgets',
+	#package : 'Spec2-Morphic',
+	#tag : 'Widgets'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 SpMorphPresenter class >> adapterName [
 
 	^ #MorphAdapter
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpMorphPresenter class >> documentExamplesProtocol [
 	
 	^ #'*Spec2-Morphic-Examples'
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpMorphPresenter class >> documentFactoryMethodSelector [
 
 	^ #newMorph
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 SpMorphPresenter class >> documentTransmissionsProtocol [
 
 	^ #'transmission'
 ]
 
-{ #category : #transmission }
+{ #category : 'transmission' }
 SpMorphPresenter >> defaultInputPort [
 
 	^ self inputMorphPort
 ]
 
-{ #category : #transmission }
+{ #category : 'transmission' }
 SpMorphPresenter >> inputMorphPort [ 
 
 	^ self class environment 
@@ -52,21 +54,21 @@ SpMorphPresenter >> inputMorphPort [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMorphPresenter >> morph [
 	"Answer the morph that will be plugged into the presenter."
 
 	^ morph
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpMorphPresenter >> morph: aMorph [
 	"Set the morph that will be plugged into the presenter."
 
 	morph := aMorph
 ]
 
-{ #category : #'api - events' }
+{ #category : 'api - events' }
 SpMorphPresenter >> whenMorphChangedDo: aBlock [ 
 	"Inform when morph has changed. 
 	 `aBlock` has three optional arguments: 

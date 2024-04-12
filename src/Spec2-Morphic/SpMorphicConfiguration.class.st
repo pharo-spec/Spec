@@ -6,53 +6,55 @@ Morphic configurations will prepare your application to run in a Morphic backend
 - *method:SpMorphicConfiguration#styleSheet*
 "
 Class {
-	#name : #SpMorphicConfiguration,
-	#superclass : #SpApplicationConfiguration,
+	#name : 'SpMorphicConfiguration',
+	#superclass : 'SpApplicationConfiguration',
 	#instVars : [
 		'styleSheet'
 	],
-	#category : #'Spec2-Morphic-Application'
+	#category : 'Spec2-Morphic-Application',
+	#package : 'Spec2-Morphic',
+	#tag : 'Application'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicConfiguration class >> isAvailableFor: aBackend inApplication: anApplication [
 
 	^ aBackend name = #Morphic
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpMorphicConfiguration >> addStyleSheet: aStylesheet [
 
 	styleSheet := self styleSheet, aStylesheet
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpMorphicConfiguration >> addStyleSheetFromString: aString [
 
 	self addStyleSheet: (SpStyleVariableSTONReader fromString: aString)
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 SpMorphicConfiguration >> configure: anApplication [
 
 	super configure: anApplication.
 	self styleSheet "Initialize stylesheet"
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SpMorphicConfiguration >> isDarkTheme [
 	
 	"hacky, but works"
 	^ UITheme current isKindOf: PharoDarkTheme
 ]
 
-{ #category : #'private - factory' }
+{ #category : 'private - factory' }
 SpMorphicConfiguration >> newStyleSheet [
 
 	^ SpStyle defaultStyleSheet copy
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpMorphicConfiguration >> styleSheet [
 	"Define the default styleSheet to use in your application. You can override this and add your 
 	 own application dependent styles (and you can compose them, see `SpStyle`).
@@ -65,7 +67,7 @@ SpMorphicConfiguration >> styleSheet [
 	^ styleSheet ifNil: [ styleSheet := self newStyleSheet ]
 ]
 
-{ #category : #styling }
+{ #category : 'styling' }
 SpMorphicConfiguration >> styleSheet: aStyleSheet [
 
 	styleSheet := aStyleSheet
