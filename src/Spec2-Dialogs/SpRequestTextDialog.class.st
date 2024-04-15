@@ -36,19 +36,19 @@ SpRequestTextDialog class >> exampleModal [
 SpRequestTextDialog >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		  spacing: 5;
-		  add: (SpBoxLayout newLeftToRight
-				   add: (SpBoxLayout newTopToBottom
-						    vAlignStart;
-						    add: #image;
-						    yourself)
-				   expand: false;
-				   add: #label expand: true;
-				   yourself)
-		  height: self calculateLabelHeight;
-		  add: #textInput expand: true;
-		  add: #errorLabel expand: false;
-		  yourself
+		spacing: 5;
+	  	add: (SpBoxLayout newLeftToRight
+				add: (SpBoxLayout newTopToBottom
+						vAlignStart;
+						add: image;
+						yourself)
+					expand: false;
+				add: label expand: true;
+				yourself)
+	  		height: self calculateLabelHeight;
+		add: textInput expand: true;
+		add: errorLabel expand: false;
+		yourself
 ]
 
 { #category : 'initialization' }

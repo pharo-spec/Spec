@@ -43,7 +43,10 @@ SpAbstractMessageDialog >> adjustExtentToLabelHeight: anExtent [
 { #category : 'private' }
 SpAbstractMessageDialog >> calculateLabelHeight [
 
-	^ (self calculateLabelHeightForTextWithoutMargin: label text forExtent: self extent) + self labelMargin
+	^ (self 
+			calculateLabelHeightForTextWithoutMargin: label text 
+			forExtent: self extent) 
+		+ self labelMargin
 ]
 
 { #category : 'private' }
@@ -60,19 +63,15 @@ SpAbstractMessageDialog >> calculateLabelHeightForTextWithoutMargin: aText forEx
 SpAbstractMessageDialog >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		  spacing: 0;
-		  add: (SpBoxLayout newLeftToRight
-				   add: (SpBoxLayout newTopToBottom
-							 vAlignStart; 
-						    add: #image;
-						    yourself)
-				   expand: false;
-				   add: #label withConstraints: [ :c |
-				   c
-					   expand: true;
-					   fill: true ];
-				   yourself);
-		  yourself
+		add: (SpBoxLayout newLeftToRight
+			add: (SpBoxLayout newTopToBottom
+					vAlignStart; 
+					add: image;
+					yourself)
+				expand: false;
+			add: label expand: true;
+			yourself);
+		yourself
 ]
 
 { #category : 'accessing' }

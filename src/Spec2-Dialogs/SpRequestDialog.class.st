@@ -104,18 +104,19 @@ SpRequestDialog >> connectPresenters [
 SpRequestDialog >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		  spacing: 5;
-		  add: (SpBoxLayout newLeftToRight
-				   add: (SpBoxLayout newTopToBottom
-						    vAlignStart;
-						    add: #image;
-						    yourself)
-				   expand: false;
-				   add: #label expand: true;
-				   yourself) height: self calculateLabelHeight;
-		  add: #textInput expand: false;
-		  add: #errorLabel;
-		  yourself
+		spacing: 5;
+		add: (SpBoxLayout newLeftToRight
+				add: (SpBoxLayout newTopToBottom
+					vAlignStart;
+					add: image;
+					yourself)
+				expand: false;
+				add: label expand: true;
+				yourself) 
+			height: self calculateLabelHeight;
+		add: textInput expand: false;
+		add: errorLabel;
+		yourself
 ]
 
 { #category : 'accessing' }
