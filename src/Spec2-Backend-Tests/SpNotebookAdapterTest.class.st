@@ -104,3 +104,21 @@ SpNotebookAdapterTest >> testSelectingPageShouldAnnounceChangeEvent [
 	self assert: change oldPage model title equals: 'Mock'.
 	self assert: change page model title equals: 'Mock2'
 ]
+
+{ #category : 'tests' }
+SpNotebookAdapterTest >> testSelectingPageShouldAnnounceChangeEventWithNoInitialPages [
+
+	| changed |
+	"start with no pages"
+	presenter removeAll.
+	presenter whenSelectedPageChangedDo: [ changed := true ].
+	"build without any pages"
+	self widget.
+	"add pages after build"
+	self initializeTestedInstance.
+	presenter selectPageIndex: 1.
+	changed := false.
+	"this should trigger the page change"
+	self widget updatePageIndex: 2 oldIndex: 1.
+	self assert: changed
+]
