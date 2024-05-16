@@ -27,20 +27,31 @@ SpMorphicNotebookAdapter >> addFocusRotationKeyBindings [
 			toAction: [ self focusPrevious ]
 ]
 
-{ #category : 'factory' }
-SpMorphicNotebookAdapter >> addModelTo: aNotebook [
-	
+{ #category : 'private' }
+SpMorphicNotebookAdapter >> addInitialPagesTo: aNotebook [
+
 	self presenter pages ifEmpty: [ ^ self ].
+
 	self presenter pages do: [ :each | 
 		"Since I do not have the page added, I need to take it from the list. 
-		 But I know this will be the last added :)" 
+		 But I know this will be the last added :)"
 		self addPage: each to: aNotebook ].
+	
 	"force first page to be drawn"
-	self presenter selectedPage ifNil: [ self presenter selectPageIndex: 1 ].
-	aNotebook selectedPageIndex: self presenter selectedPageIndex.
-	aNotebook announcer 
-		when: SpNotebookPageChanged 
-		send: #pageChanged: 
+	self presenter selectedPage ifNil: [
+		self presenter selectPageIndex: 1 ].
+	
+	aNotebook selectedPageIndex: self presenter selectedPageIndex
+]
+
+{ #category : 'factory' }
+SpMorphicNotebookAdapter >> addModelTo: aNotebook [
+
+	self addInitialPagesTo: aNotebook.
+
+	aNotebook announcer
+		when: SpNotebookPageChanged
+		send: #pageChanged:
 		to: self
 ]
 
