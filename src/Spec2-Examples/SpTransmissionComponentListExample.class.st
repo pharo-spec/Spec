@@ -96,9 +96,9 @@ SpTransmissionComponentListExample >> initializePresenters [
 		display: [ :package | package name ];
 		displayIcon: [ self iconNamed: #package ];
 		sortingBlock: [ :a :b | a name < b name ];
-		items: RPackageOrganizer default packages.
+		items: self class packageOrganizer packages.
 
-	classesPresenter := self newComponentList.
+	classesPresenter := self newComponentList
 ]
 
 { #category : 'initialization' }
