@@ -173,7 +173,7 @@ SpTransmissionExample >> initializePackagesPresenter [
 		display: [ :package | package name ];
 		displayIcon: [ self iconNamed: #package ];
 		sortingBlock: [ :a :b | a name < b name ];
-		items: RPackageOrganizer default packages
+		items: self class packageOrganizer packages
 ]
 
 { #category : 'initialization' }
