@@ -48,7 +48,10 @@ SpChooserPresenter class >> exampleClasses [
 { #category : 'examples' }
 SpChooserPresenter class >> examplePackages [
 
-	^ (self sourceItems: self packageOrganizer packages chosenItems: { (self packageOrganizer packageNamed: 'Spec2-CommonWidgets') } displayBlock: #packageName)
+	^ (self
+		sourceItems: self packageOrganizer packages
+		chosenItems: { (self packageOrganizer packageNamed: 'Spec2-CommonWidgets') }
+		displayBlock: #packageName)
 		  open
 ]
 
