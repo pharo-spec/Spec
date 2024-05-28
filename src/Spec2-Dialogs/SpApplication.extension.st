@@ -109,6 +109,12 @@ SpApplication >> newSelect [
 ]
 
 { #category : '*Spec2-Dialogs' }
+SpApplication >> newSelectMultiple [
+
+	^ SpSelectMultipleDialog newApplication: self
+]
+
+{ #category : '*Spec2-Dialogs' }
 SpApplication >> notificationClass [ 
 
 	^ SpNotificationItem
