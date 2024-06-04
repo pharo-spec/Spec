@@ -79,6 +79,7 @@ SpMorphicTableAdapter >> buildWidget [
 		intercellSpacing: self class intercellSpacing;
 		dragEnabled: self dragEnabled;
 		dropEnabled: self dropEnabled;
+		disableFunction;
 		yourself.
 
 	self addModelTo: widget.

@@ -135,7 +135,7 @@ SpMorphicListAdapter >> newTableWith: datasource [
 	^ SpFTTableMorph new
 		dataSource: datasource;
 		hideColumnHeaders;
-		enableSearch;
+		disableFunction;
 		beResizable;
 		columns: { self newListColumn };
 		setMultipleSelection: self model isMultipleSelection;
