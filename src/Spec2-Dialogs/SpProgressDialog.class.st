@@ -100,7 +100,8 @@ SpProgressDialog >> initializePresenters [
 		borderWidth: 5;
 		add: (label := self newLabel) expand: false;
 		add: (progressBar := self newProgressBar) expand: false;
-		yourself)
+		yourself).
+	self progressPercent: 0.
 ]
 
 { #category : 'accessing' }
