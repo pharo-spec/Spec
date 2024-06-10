@@ -1,6 +1,6 @@
 Class {
-	#name : 'SpListViewPresenter',
-	#superclass : 'SpAbstractListPresenter',
+	#name : 'SpTreeListViewPresenter',
+	#superclass : 'SpAbstractTreePresenter',
 	#classTraits : 'SpTActionContainer classTrait',
 	#instVars : [
 		'#setupAction',
@@ -12,69 +12,76 @@ Class {
 }
 
 { #category : 'specs' }
-SpListViewPresenter class >> adapterName [
+SpTreeListViewPresenter class >> adapterName [
 
-	^ #ListViewAdapter
+	^ #TreeListViewAdapter
 ]
 
 { #category : 'examples' }
-SpListViewPresenter class >> example [
+SpTreeListViewPresenter class >> example [
 	"This example show the simples list view you can make: A list with a label"
 	
 	self new
 		application: (SpApplication new useBackend: #Gtk);
-		items: self environment allClasses;
+		items: { Object };
+		children: [ :aClass | aClass subclasses ];
 		setup: [ :aPresenter | aPresenter newLabel ];
 		bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
 		open
 ]
 
 { #category : 'examples' }
-SpListViewPresenter class >> exampleActivateOnDoubleClick [
+SpTreeListViewPresenter class >> exampleActivateOnDoubleClick [
 	"This example show the simples list view you can make: A list with a label"
+	| presenter |
 
-	self new
+	(presenter := self new)
 		application: (SpApplication new useBackend: #Gtk);
-		isActiveOnDoubleClick;
-		items: self environment allClasses;
+		activateOnDoubleClick;
+		items: { Object };
+		children: [ :aClass | aClass subclasses ];
 		setup: [ :aPresenter | aPresenter newLabel ];
 		bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
-		whenActivatedDo: [ 'OK' crTrace ];
+		whenActivatedDo: [ presenter selectedItem crTrace ];
 		open
 ]
 
-{ #category : 'as yet unclassified' }
-SpListViewPresenter class >> exampleReplaceItems [
-	"This example shows how to replace dynamically the list of elements."
-	| presenter listView button items |
+{ #category : 'examples' }
+SpTreeListViewPresenter class >> exampleRefreshList [
+	"this example just shows how the tree is refreshed when changing the model"
+	| presenter button tree |
+	
+	presenter := SpPresenter new.
+	presenter application: (SpApplication new useBackend: #Gtk).
 
-	items := #().
-
-	presenter := SpPresenter newApplication: (SpApplication new "useBackend: #Gtk").
-	presenter layout: (SpBoxLayout newVertical
-		add: (listView := presenter newListView);
-		add: (button := presenter newButton) expand: false;
+	presenter layout: (SpBoxLayout newHorizontal
+		add: (button := presenter newButton);
+		add: (tree := presenter newTreeListView);
 		yourself).
-	
-	listView 
-		items: #();
-		setup: [ :aPresenter | aPresenter newLabel ];
-		bind: [ :aPresenter :aClass | aPresenter label: aClass name ].
-
-	button 
-		label: 'Add';
-		action: [ listView items: (items := items copyWith: self environment allClasses atRandom) ].
 		
-	^ presenter open
+	tree 
+		roots: #();
+		children: [ :aClass | aClass subclasses ].	
+		
+	button 
+		label: 'Click'; 
+		action: [ 
+			| allClasses roots |
+			allClasses := Smalltalk allClasses.
+			roots := (1 to: 10) collect: [ :index | allClasses atRandom ]. 
+			tree roots: roots ].
+
+	presenter open
 ]
 
 { #category : 'examples' }
-SpListViewPresenter class >> exampleWithActions [
+SpTreeListViewPresenter class >> exampleWithActions [
 	"This example show the simples list view you can make: A list with a label"
 	
 	self new
 		application: (SpApplication new useBackend: #Gtk);
-		items: self environment allClasses;
+		items: { Object };
+		children: [ :aClass | aClass subclasses ];
 		setup: [ :aPresenter | aPresenter newLabel ];
 		bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
 		actionsWith: [ :rootGroup | rootGroup
@@ -110,14 +117,15 @@ SpListViewPresenter class >> exampleWithActions [
 ]
 
 { #category : 'examples' }
-SpListViewPresenter class >> exampleWithIcons [
+SpTreeListViewPresenter class >> exampleWithIcons [
 	"This example shows how to construct a list with icons. 
 	 It shows also the fact you can put any presenter inside, giving a huge power 
 	 to your lists."
 
 	^ self new
-		"application: (SpApplication new useBackend: #Gtk);"
-		items: self environment allClasses;
+		application: (SpApplication new useBackend: #Gtk);
+		items: { Object };
+		children: [ :aClass | aClass subclasses ];
 		setup: [ :aPresenter |
 			| presenter |
 			(presenter := aPresenter newPresenter)
@@ -137,14 +145,15 @@ SpListViewPresenter class >> exampleWithIcons [
 ]
 
 { #category : 'examples' }
-SpListViewPresenter class >> exampleWithIconsAndMorph [
+SpTreeListViewPresenter class >> exampleWithIconsAndMorph [
 	"This example shows how to construct a list with icons. 
 	 It shows also the fact you can put any presenter inside, giving a huge power 
 	 to your lists."
 
 	^ self new
 		application: (SpApplication new useBackend: #Gtk);
-		items: self environment allClasses;
+		items: { Object };
+		children: [ :aClass | aClass subclasses ];
 		setup: [ :aPresenter |
 			| presenter |
 			(presenter := aPresenter newPresenter)
@@ -168,106 +177,55 @@ SpListViewPresenter class >> exampleWithIconsAndMorph [
 		open
 ]
 
-{ #category : 'as yet unclassified' }
-SpListViewPresenter class >> exampleWithIconsAndSelectedItem [
-	"This example shows how to construct a list with icons. 
-	 It shows also the fact you can put any presenter inside, giving a huge power 
-	 to your lists."
-
-	^ self new
-		"application: (SpApplication new useBackend: #Gtk);"
-		items: self environment allClasses;
-		selectItem: Object scrollToSelection: true;
-		setup: [ :aPresenter |
-			| presenter |
-			(presenter := aPresenter newPresenter)
-				layout: (SpBoxLayout newHorizontal
-					spacing: 5;
-					add: presenter newImage expand: false;
-					add: presenter newLabel;
-					yourself);
-				yourself ];
-		bind: [ :aPresenter :aClass | | icon image label |
-			icon := Smalltalk ui icons iconNamed: aClass systemIconName.
-			image := aPresenter layout children first.
-			image image: icon.
-			label := aPresenter layout children second.
-			label label: aClass name ];
-		open
-]
-
-{ #category : 'as yet unclassified' }
-SpListViewPresenter class >> exampleWithIconsMultipleSelection [
-	"This example shows how to construct a list with multiple selection available. 
-	 It shows also the fact you can put any presenter inside, giving a huge power 
-	 to your lists."
-
-	^ self new
-		"application: (SpApplication new useBackend: #Gtk);"
-		beMultipleSelection;
-		items: self environment allClasses;
-		setup: [ :aPresenter |
-			| presenter |
-			(presenter := aPresenter newPresenter)
-				layout: (SpBoxLayout newHorizontal
-					spacing: 5;
-					add: presenter newImage expand: false;
-					add: presenter newLabel;
-					yourself);
-				yourself ];
-		bind: [ :aPresenter :aClass | | icon image label |
-			icon := Smalltalk ui icons iconNamed: aClass systemIconName.
-			image := aPresenter layout children first.
-			image image: icon.
-			label := aPresenter layout children second.
-			label label: aClass name ];
-		open
-]
-
 { #category : 'api' }
-SpListViewPresenter >> bind: aBlock [
+SpTreeListViewPresenter >> bind: aBlock [
 
 	bindAction := aBlock
 ]
 
 { #category : 'private' }
-SpListViewPresenter >> bindAction [
+SpTreeListViewPresenter >> bindAction [
 
 	^ bindAction
 ]
 
 { #category : 'testing' }
-SpListViewPresenter >> hasHeaderTitle [
+SpTreeListViewPresenter >> hasHeaderTitle [
 	"Answer true if the list has a title (See `SpListPresenter>>#headerTitle:`)."
 
 	^ headerTitle isEmptyOrNil not
 ]
 
 { #category : 'api' }
-SpListViewPresenter >> headerTitle [
+SpTreeListViewPresenter >> headerTitle [
 	"Answer the header title."
 
 	^ headerTitle
 ]
 
 { #category : 'api' }
-SpListViewPresenter >> headerTitle: aString [
+SpTreeListViewPresenter >> headerTitle: aString [
 	"Set the header title."
 
 	headerTitle := aString
 ]
 
 { #category : 'initialization' }
-SpListViewPresenter >> initialize [
+SpTreeListViewPresenter >> initialize [
 	
 	super initialize.
-	self registerActions.	
-	self initializeItemFactory.
 
+	childrenBlock := [ :item | #() ].
+	
+	self beSingleSelection.
+	self activateOnDoubleClick.
+
+	self registerActions.	
+	self initializeItemFactory
 ]
 
 { #category : 'initialization' }
-SpListViewPresenter >> initializeItemFactory [
+SpTreeListViewPresenter >> initializeItemFactory [
 	"Just set up the defaults (to ensure we have a working list at any moment)"
 	
 	self setup: [ :aPresenter | aPresenter newLabel ].
@@ -275,7 +233,7 @@ SpListViewPresenter >> initializeItemFactory [
 ]
 
 { #category : 'initialization' }
-SpListViewPresenter >> registerActions [
+SpTreeListViewPresenter >> registerActions [
 
 	self addActionWith: [ :action | action 
 		beShortcutOnly;
@@ -284,7 +242,7 @@ SpListViewPresenter >> registerActions [
 ]
 
 { #category : 'initialization' }
-SpListViewPresenter >> registerEvents [
+SpTreeListViewPresenter >> registerEvents [
 
 	super registerEvents.
 	self 
@@ -294,19 +252,19 @@ SpListViewPresenter >> registerEvents [
 ]
 
 { #category : 'api' }
-SpListViewPresenter >> setup: aBlock [
+SpTreeListViewPresenter >> setup: aBlock [
 
 	setupAction := aBlock
 ]
 
 { #category : 'private' }
-SpListViewPresenter >> setupAction [
+SpTreeListViewPresenter >> setupAction [
 
 	^ setupAction
 ]
 
 { #category : 'api' }
-SpListViewPresenter >> showContextMenu [ 
+SpTreeListViewPresenter >> showContextMenu [ 
 	"If the presenter is displayed, shows the associated context menu"
 
 	self withAdapterDo: [ :anAdapter | anAdapter showContextMenu ]

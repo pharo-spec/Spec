@@ -148,7 +148,7 @@ SpEditableListPresenter >> initializeDialogWindow: aWindow [
 { #category : 'initialization' }
 SpEditableListPresenter >> initializePresenters [
 	label := self newLabel.
-	list := self newList.
+	list := self newEasyListView.
 	addButton := self newButton.
 	removeButton := self newButton.
 	upButton := self newButton.
@@ -312,6 +312,6 @@ SpEditableListPresenter >> upButton [
 ]
 
 { #category : 'api' }
-SpEditableListPresenter >> whenSelectionChangedDo: aBlockClosure [ 
-	list whenSelectionChangedDo: aBlockClosure
+SpEditableListPresenter >> whenSelectionChangedDo: aBlock [
+	list whenSelectionChangedDo: aBlock
 ]

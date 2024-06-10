@@ -187,6 +187,12 @@ SpDropDownPresenter >> outputSelectionPort [
 ]
 
 { #category : 'api - selection' }
+SpDropDownPresenter >> resetSelection [
+	
+	self selection unselectAll 
+]
+
+{ #category : 'api - selection' }
 SpDropDownPresenter >> selectFirst [
 	"Select first element in list. 
 	 Useful to avoid selecting by index."
@@ -243,6 +249,12 @@ SpDropDownPresenter >> setup: aBlock [
 SpDropDownPresenter >> setupAction [
 
 	^ setupAction
+]
+
+{ #category : 'api' }
+SpDropDownPresenter >> sortingBlock: aBlock [
+
+	self flag: #TODO.
 ]
 
 { #category : 'api - events' }

@@ -113,7 +113,7 @@ SpAbstractMessageDialog >> initializeDialogWindow: aDialogWindowPresenter [
 SpAbstractMessageDialog >> initializePresenters [
 
 	image := self newImage image: self defaultIcon.
-	label := self newDialogLabel.
+	label := self newDialogLabel
 ]
 
 { #category : 'initialization' }

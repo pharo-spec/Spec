@@ -82,7 +82,8 @@ SpTPresenterBuilder >> newDiff [
 
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newDropList [
-	^ self instantiate: SpDropListPresenter
+
+	^ self instantiate: self application backend dropListClass
 ]
 
 { #category : 'scripting - widgets' }
@@ -124,7 +125,8 @@ SpTPresenterBuilder >> newLink [
 
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newList [
-	^ self instantiate: SpListPresenter
+
+	^ self instantiate: self application backend listClass
 ]
 
 { #category : 'scripting - widgets' }
@@ -254,7 +256,7 @@ SpTPresenterBuilder >> newStatusBar [
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newTable [
 
-	^ self instantiate: SpTablePresenter
+	^ self instantiate: self application backend tableClass
 ]
 
 { #category : 'scripting - widgets' }
@@ -306,11 +308,11 @@ SpTPresenterBuilder >> newToolbarToggleButton [
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newTree [
 
-	^ self instantiate: SpTreePresenter
+	^ self instantiate: self application backend treeClass
 ]
 
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newTreeTable [
 
-	^ self instantiate: SpTreeTablePresenter
+	^ self instantiate: self application backend treeTableClass
 ]

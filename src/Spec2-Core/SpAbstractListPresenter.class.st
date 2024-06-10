@@ -126,6 +126,7 @@ SpAbstractListPresenter >> disableActivationDuring: aBlock [
 SpAbstractListPresenter >> doActivateAtIndex: anIndex [
 
 	"Activate only if there is an item at that position"
+	activationBlock  ifNil: [ ^ self ].
 	self model at: anIndex ifAbsent: [ ^ self ].
 	
 	activationBlock cull: ((SpSingleSelectionMode on: self)
