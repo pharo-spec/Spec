@@ -22,6 +22,14 @@ Class {
 	#tag : 'Base'
 }
 
+{ #category : 'instance creation' }
+SpPresenterBuilder class >> newApplication: anApplication [
+	
+	^ self new 
+		application: anApplication;
+		yourself
+]
+
 { #category : 'accessing' }
 SpPresenterBuilder >> application [
 
