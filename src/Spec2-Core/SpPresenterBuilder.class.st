@@ -14,10 +14,25 @@ Class {
 	#superclass : 'Object',
 	#traits : 'SpTPresenterBuilder',
 	#classTraits : 'SpTPresenterBuilder classTrait',
+	#instVars : [
+		'application'
+	],
 	#category : 'Spec2-Core-Base',
 	#package : 'Spec2-Core',
 	#tag : 'Base'
 }
+
+{ #category : 'accessing' }
+SpPresenterBuilder >> application [
+
+	^ application
+]
+
+{ #category : 'accessing' }
+SpPresenterBuilder >> application: anApplication [
+
+	application := anApplication
+]
 
 { #category : 'instance creation' }
 SpPresenterBuilder >> instantiate: aPresenterClass [
