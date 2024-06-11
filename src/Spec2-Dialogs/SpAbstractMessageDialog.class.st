@@ -113,7 +113,8 @@ SpAbstractMessageDialog >> initializeDialogWindow: aDialogWindowPresenter [
 SpAbstractMessageDialog >> initializePresenters [
 
 	image := self newImage image: self defaultIcon.
-	label := self newDialogLabel
+	label := self newDialogLabel.
+	label hide
 ]
 
 { #category : 'initialization' }
@@ -127,7 +128,8 @@ SpAbstractMessageDialog >> initializeWindow: aWindowPresenter [
 { #category : 'api' }
 SpAbstractMessageDialog >> label: aString [
 
-	label text: aString asText trim
+	label text: aString asText trim.
+	label show
 ]
 
 { #category : 'private' }
