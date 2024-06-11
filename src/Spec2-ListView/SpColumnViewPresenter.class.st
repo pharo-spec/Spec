@@ -107,6 +107,15 @@ SpColumnViewPresenter >> addColumns: aCollection [
 ]
 
 { #category : 'api' }
+SpColumnViewPresenter >> alternateRowsColor [
+	"Will alternate Rows color for a better reading: one row lighter, the next row darker. 
+	 NOTE: Behavior in different backends may be slightly different."
+
+	self withAdapterPerformOrDefer: [ :anAdapter | 
+		anAdapter alternateRowsColor ]
+]
+
+{ #category : 'api' }
 SpColumnViewPresenter >> beNotResizable [
 	
 	self isResizable: false

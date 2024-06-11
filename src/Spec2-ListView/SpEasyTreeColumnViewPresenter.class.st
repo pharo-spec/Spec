@@ -32,7 +32,7 @@ SpEasyTreeColumnViewPresenter >> addColumn: aColumn [
 { #category : 'api' }
 SpEasyTreeColumnViewPresenter >> alternateRowsColor [
 	" Will alternate Rows color for a better reading: one row lighter, the next row darker"
-	self flag: #TODO.
+	contentView alternateRowsColor
 ]
 
 { #category : 'api' }

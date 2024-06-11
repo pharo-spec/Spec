@@ -49,12 +49,6 @@ SpEasyColumnViewPresenter >> addColumn: aColumn [
 	contentView addColumn: aColumn asColumnViewColumn
 ]
 
-{ #category : 'drawing' }
-SpEasyColumnViewPresenter >> alternateRowsColor [
-	
-	self flag: #TODO
-]
-
 { #category : 'api' }
 SpEasyColumnViewPresenter >> beNotResizable [
 
