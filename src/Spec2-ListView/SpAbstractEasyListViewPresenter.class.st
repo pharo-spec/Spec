@@ -123,17 +123,6 @@ SpAbstractEasyListViewPresenter >> sortingBlock: aBlock [
 	self model sortingBlock: aBlock
 ]
 
-{ #category : 'api - events' }
-SpAbstractEasyListViewPresenter >> whenDisplayChangedDo: aBlock [
-	"Inform when the display block has changed.
- 	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
-	self property: #display whenChangedDo: aBlock
-]
-
 { #category : 'api' }
 SpAbstractEasyListViewPresenter >> withScrollBars [
 
