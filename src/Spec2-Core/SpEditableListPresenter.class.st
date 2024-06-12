@@ -49,10 +49,10 @@ SpEditableListPresenter class >> layoutWithOrdering: useOrdering [
 		ifTrue: [ listLayout 
 					add:
 						(SpBoxLayout newTopToBottom
-							add: #topButton expand: false fill: false padding: 0;
-							add: #upButton expand: false fill: false padding: 0;
-							add: #downButton expand: false fill: false padding: 0;
-							add: #bottomButton expand: false fill: false padding: 0;
+							add: #topButton expand: false;
+							add: #upButton expand: false;
+							add: #downButton expand: false;
+							add: #bottomButton expand: false;
 							yourself)
 					expand: false ].
 
