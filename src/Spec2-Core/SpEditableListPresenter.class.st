@@ -147,6 +147,7 @@ SpEditableListPresenter >> initializeDialogWindow: aWindow [
 
 { #category : 'initialization' }
 SpEditableListPresenter >> initializePresenters [
+
 	label := self newLabel.
 	list := self newEasyListView.
 	addButton := self newButton.
@@ -157,26 +158,32 @@ SpEditableListPresenter >> initializePresenters [
 	bottomButton := self newButton.
 	addButton
 		addStyle: 'small';
+		addStyle: 'flat';
 		icon: (self iconNamed: #add);
 		help: 'Add a new item to the list'.
 	removeButton
 		addStyle: 'small';
+		addStyle: 'flat';
 		icon: (self iconNamed: #remove);
 		help: 'Remove a item from the list'.
 	upButton
 		addStyle: 'small';
+		addStyle: 'flat';
 		icon: (self iconNamed: #up);
 		help: 'Move this item up from one element'.
 	downButton
 		addStyle: 'small';
+		addStyle: 'flat';
 		icon: (self iconNamed: #down);
 		help: 'Move this item down from one element'.
 	topButton
 		addStyle: 'small';
+		addStyle: 'flat';
 		icon: (self iconNamed: #top);
 		help: 'Move this item on the first position of the list'.
 	bottomButton
 		addStyle: 'small';
+		addStyle: 'flat';
 		icon: (self iconNamed: #bottom);
 		help: 'Move this item on the last position of the list'
 ]
