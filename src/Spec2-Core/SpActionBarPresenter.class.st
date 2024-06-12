@@ -8,7 +8,8 @@ Class {
 	#name : 'SpActionBarPresenter',
 	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
-		'items'
+		'#items',
+		'#centerPresenter => ObservableSlot'
 	],
 	#category : 'Spec2-Core-Widgets',
 	#package : 'Spec2-Core',
@@ -31,6 +32,7 @@ SpActionBarPresenter class >> documentFactoryMethodSelector [
 SpActionBarPresenter >> add: aButtonPresenter [
 	"Add a button presenter to be shown at the start of the action bar (at the left)."
 	
+	aButtonPresenter owner: self.
 	(items 
 		at: #start
 		ifAbsentPut: [ OrderedCollection new ] ) 
@@ -41,10 +43,23 @@ SpActionBarPresenter >> add: aButtonPresenter [
 SpActionBarPresenter >> addLast: aButtonPresenter [
 	"Add a button presenter to be shown at the end of the action bar (at the right)."
 
+	aButtonPresenter owner: self.
 	(items 
 		at: #end
 		ifAbsentPut: [ OrderedCollection new ] ) 
 		add: aButtonPresenter
+]
+
+{ #category : 'api' }
+SpActionBarPresenter >> centerPresenter [
+
+	^ centerPresenter
+]
+
+{ #category : 'api' }
+SpActionBarPresenter >> centerPresenter: aPresenter [
+
+	centerPresenter := aPresenter
 ]
 
 { #category : 'initialization' }
@@ -80,4 +95,10 @@ SpActionBarPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 
 	self presentersInFocusOrder do: [ :each |
 		each traverseInFocusOrderDo: aBlock excluding: excludes ]
+]
+
+{ #category : 'api - events' }
+SpActionBarPresenter >> whenCenterPresenterChangedDo: aBlock [
+
+	self property: #centerPresenter whenChangedDo: aBlock
 ]
