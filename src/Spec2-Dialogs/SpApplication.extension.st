@@ -81,16 +81,6 @@ SpApplication >> newJobList [
 ]
 
 { #category : '*Spec2-Dialogs' }
-SpApplication >> newProgress [
-
-	self 
-		deprecated: 'Use #newJobList' 
-		transformWith:  '`@receiver newProgress' 
-						-> '`@receiver newJobList'.
-	^ SpJobListPresenter newApplication: self
-]
-
-{ #category : '*Spec2-Dialogs' }
 SpApplication >> newRequest [
 
 	^ SpRequestDialog newApplication: self

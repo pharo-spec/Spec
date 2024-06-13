@@ -117,15 +117,6 @@ SpApplication >> backend [
 		backend ]
 ]
 
-{ #category : 'showing' }
-SpApplication >> close [
-	
-	self 
-		deprecated: 'Use #closeAllWindows instead' 
-		transformWith: '`@receiver close' -> '`@receiver closeAllWindows'.
-	self closeAllWindows
-]
-
 { #category : 'accessing' }
 SpApplication >> closeAllWindows [
 
