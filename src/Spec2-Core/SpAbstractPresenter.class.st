@@ -550,5 +550,5 @@ SpAbstractPresenter >> withWindowDo: aValuable [
 
 	self hasWindow ifFalse: [ ^ self ].
 	"Since Presenter has window, root = window"
-	aValuable value: self root
+	^ aValuable value: self root
 ]
