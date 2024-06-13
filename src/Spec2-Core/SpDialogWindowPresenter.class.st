@@ -270,6 +270,6 @@ SpDialogWindowPresenter >> triggerOkAction [
 	"Trigger defined ok action. 
 	 See `SpDialogWindowPresenter>>#okAction:`"
 
-	okAction ifNil: [ ^ self ].
+	okAction ifNil: [ ^ nil ].
 	^ okAction cull: self
 ]

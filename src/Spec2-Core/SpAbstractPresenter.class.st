@@ -548,7 +548,7 @@ SpAbstractPresenter >> withAdapterDo: aValuable [
 { #category : 'private - utilities' }
 SpAbstractPresenter >> withWindowDo: aValuable [
 
-	self hasWindow ifFalse: [ ^ self ].
+	self hasWindow ifFalse: [ ^ nil ].
 	"Since Presenter has window, root = window"
 	^ aValuable value: self root
 ]
