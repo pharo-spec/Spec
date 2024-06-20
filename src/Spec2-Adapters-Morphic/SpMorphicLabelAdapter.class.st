@@ -26,6 +26,8 @@ SpMorphicLabelAdapter >> applyDecorationsTo: aString [
 	self presenter displayUnderline ifNotNil: [ :block |
 		(block cull: aString) ifTrue: [ 
 			text addAttribute: TextEmphasis underlined ] ].
+	"this in fact does not work (background in LabelMorph objects). 
+	 See applyStyle instead"
 	self presenter displayBackgroundColor ifNotNil: [ :block |
 		(block cull: aString) ifNotNil: [ :aColor |
 		  	text addAttribute: (TextBackgroundColor color: aColor) ] ].
@@ -42,7 +44,14 @@ SpMorphicLabelAdapter >> applyStyle: aMorph [
 	 height is smaller than current height of morph, we need to take care about this 
 	 even if this means we cannot have a label smaller than the font :("
 	aMorph height < aMorph font height
-		ifTrue: [ aMorph height: aMorph font height ]
+		ifTrue: [ aMorph height: aMorph font height ].
+		
+	"I need to check background here because a LabelMorph is uncapable of apply a 
+	 background color (because meh... morphic+polymorph)"
+	self presenter displayBackgroundColor ifNotNil: [ :block |
+		(block cull: self presenter label) ifNotNil: [ :aColor |
+		  	aMorph backgroundColor: aColor ] ].
+
 ]
 
 { #category : 'factory' }
