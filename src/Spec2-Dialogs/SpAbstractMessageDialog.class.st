@@ -103,9 +103,7 @@ SpAbstractMessageDialog >> initialize [
 SpAbstractMessageDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.
-
-	aDialogWindowPresenter initialExtent:
-		(self adjustExtentToLabelHeight: self class defaultExtent).
+	self initializeWindowExtent: aDialogWindowPresenter.
 	self addButtonsTo: aDialogWindowPresenter
 ]
 
@@ -123,6 +121,13 @@ SpAbstractMessageDialog >> initializeWindow: aWindowPresenter [
 	aWindowPresenter
 		title: self title;
 		initialExtent: self extent
+]
+
+{ #category : 'initialization' }
+SpAbstractMessageDialog >> initializeWindowExtent: aDialogWindowPresenter [
+	
+	aDialogWindowPresenter initialExtent:
+		(self adjustExtentToLabelHeight: self class defaultExtent)
 ]
 
 { #category : 'api' }
