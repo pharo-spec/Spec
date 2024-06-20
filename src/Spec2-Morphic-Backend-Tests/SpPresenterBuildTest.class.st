@@ -32,7 +32,7 @@ SpPresenterBuildTest >> testBuildPresenterWillSetPresenterProperty [
 SpPresenterBuildTest >> testBuildWidgetPresenterWillSetPresenterProperty [
 
 	| package |
-	package := RPackageOrganizer default packageNamed: 'Spec2-Core'.
+	package := self class packageOrganizer packageNamed: 'Spec2-Core'.
 	SpAbstractWidgetPresenter allSubclasses
 		select: [ :each | 
 			each package = package and: [ 

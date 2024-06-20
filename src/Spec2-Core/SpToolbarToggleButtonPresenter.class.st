@@ -93,15 +93,6 @@ SpToolbarToggleButtonPresenter >> isSelected [
 	^ self state
 ]
 
-{ #category : 'api' }
-SpToolbarToggleButtonPresenter >> selected: aBoolean [
-
-	self 
-		deprecated: 'Use #state: instead.' 
-		transformWith: '`@receiver selected: `@arg' -> '`@receiver state: `@arg'.  
-	self setSelection: aBoolean
-]
-
 { #category : 'private' }
 SpToolbarToggleButtonPresenter >> setSelection: aBoolean [
 
@@ -158,19 +149,6 @@ SpToolbarToggleButtonPresenter >> whenDeactivatedDo: aBlock [
 ]
 
 { #category : 'api - events' }
-SpToolbarToggleButtonPresenter >> whenSelectedDo: aBlock [
-	"Inform when the button has been selected. 
-	 `aBlock` receives zero arguments."
-
-	self 
-		deprecated: 'Use #whenActivatedDo: instead.' 
-		transformWith: '`@receiver whenSelectedDo: `@arg' -> '`@receiver whenActivatedDo: `@arg'.  
-
-	self whenChangedDo: [ :newSelectedValue | 
-		newSelectedValue ifTrue: [ aBlock value ] ]
-]
-
-{ #category : 'api - events' }
 SpToolbarToggleButtonPresenter >> whenToggledDo: aBlock [ 
 	"Inform when the button has been toggles. 
 	 `aBlock` has three optional arguments: 
@@ -179,17 +157,4 @@ SpToolbarToggleButtonPresenter >> whenToggledDo: aBlock [
 	 - the announcement triggering this action"
 
 	self property: #selected whenChangedDo: aBlock 
-]
-
-{ #category : 'api - events' }
-SpToolbarToggleButtonPresenter >> whenUnselectedDo: aBlock [
-	"Inform when the button has been unselected. 
-	 `aBlock` receives zero arguments."
-
-	self 
-		deprecated: 'Use #whenDeactivatedDo: instead.' 
-		transformWith: '`@receiver whenUnselectedDo: `@arg' -> '`@receiver whenDeactivatedDo: `@arg'.  
-
-	self whenChangedDo: [ :newSelectedValue | 
-		newSelectedValue ifFalse: [ aBlock value ] ]
 ]

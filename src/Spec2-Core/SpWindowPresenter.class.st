@@ -387,17 +387,6 @@ SpWindowPresenter >> isResizable [
 ]
 
 { #category : 'testing' }
-SpWindowPresenter >> isResizeable [
-	"Answer if window is resizeable"
-	
-	self 
-		deprecated: 'Use #isResizable instead'  
-		transformWith: '`@receiver isResizeable' -> '`@receiver isResizable'.
-
-	^ self isResizable
-]
-
-{ #category : 'testing' }
 SpWindowPresenter >> isTopWindow [
 	"Answer true if this si the active window (the one that has the focus)"
 	

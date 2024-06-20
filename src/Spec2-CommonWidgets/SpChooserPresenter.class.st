@@ -49,10 +49,10 @@ SpChooserPresenter class >> exampleClasses [
 SpChooserPresenter class >> examplePackages [
 
 	^ (self
-		   sourceItems: RPackageOrganizer default packages
-		   chosenItems:
-		   { (RPackageOrganizer default packageNamed: 'Spec2-CommonWidgets') }
-		   displayBlock: #packageName) open
+		sourceItems: self packageOrganizer packages
+		chosenItems: { (self packageOrganizer packageNamed: 'Spec2-CommonWidgets') }
+		displayBlock: #packageName)
+		  open
 ]
 
 { #category : 'instance creation' }

@@ -163,32 +163,6 @@ SpDropListPresenter >> hasIcons [
 			each icon isNotNil or: [ (self getIconFor: each) isNotNil ] ] ]
 ]
 
-{ #category : 'api' }
-SpDropListPresenter >> iconBlock [ 
-	"Answer the block that will be used to retrieve the icon to be displayed along with the 
-	 elements."
-	
-	self 
-		deprecated: 'Please use #displayIcon instead' 
-		transformWith:  '`@receiver iconBlock' 
-						-> '`@receiver displayIcon'.
-
-	^ iconBlock
-]
-
-{ #category : 'api' }
-SpDropListPresenter >> iconBlock: aBlock [	
-	"Answer a block that will be used to retrieve the icon to be displayed along with the elements.
-	 `aBlock` receives one argument (an element from the list)"
-	
-	self 
-		deprecated: 'Please use #displayIcon: instead' 
-		transformWith:  '`@receiver iconBlock: `@arg' 
-						-> '`@receiver displayIcon: `@arg'.
-
-	iconBlock := aBlock
-]
-
 { #category : 'initialization' }
 SpDropListPresenter >> initialize [
 	super initialize.

@@ -125,6 +125,12 @@ SpRequestDialog >> defaultTitle [
 	^ 'Request'
 ]
 
+{ #category : 'api' }
+SpRequestDialog >> entryCompletion: anEntryCompletion [
+
+	textInput entryCompletion: anEntryCompletion
+]
+
 { #category : 'initialization' }
 SpRequestDialog >> initializePresenters [
 
