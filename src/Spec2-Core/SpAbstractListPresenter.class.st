@@ -212,8 +212,8 @@ SpAbstractListPresenter >> items: aSequenceableCollection [
 	`aSequenceableCollection` is a collection of your domain specific items.
 	This resets the collection model and unselects any previously selected item."
 	
-	model collection: aSequenceableCollection.
-	self unselectAll
+	self unselectAll.	
+	model collection: aSequenceableCollection
 ]
 
 { #category : 'private' }
