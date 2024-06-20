@@ -139,7 +139,7 @@ SpAbstractMessageDialog >> label [
 SpAbstractMessageDialog >> label: aString [
 
 	label text: aString asText trim.
-	label show
+	aString ifNotNil: [ label show ]
 ]
 
 { #category : 'private' }
