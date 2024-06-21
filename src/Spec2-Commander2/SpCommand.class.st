@@ -39,14 +39,6 @@ SpCommand >> asButtonPresenter [
 ]
 
 { #category : 'converting' }
-SpCommand >> asLabeledButtonPresenter [
-	
-	^ self asActionButtonPresenter
-		label: self name;
-		yourself
-]
-
-{ #category : 'converting' }
 SpCommand >> asToggleButtonPresenter [
 	
 	^ SpToggleButtonPresenter new
