@@ -61,6 +61,12 @@ SpEasyColumnViewPresenter >> beResizable [
 	contentView beResizable
 ]
 
+{ #category : 'private' }
+SpEasyColumnViewPresenter >> displayValueFor: aImage [
+	
+	^ contentView displayValueFor: aImage
+]
+
 { #category : 'api' }
 SpEasyColumnViewPresenter >> hideColumnHeaders [
 	

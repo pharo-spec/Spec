@@ -206,6 +206,12 @@ SpTreeColumnViewPresenter >> registerActions [
 		action: [ self showContextMenu ] ]
 ]
 
+{ #category : 'private' }
+SpTreeColumnViewPresenter >> showContextMenu [
+
+	self withAdapterDo: [ :anAdapter | anAdapter showContextMenu ]
+]
+
 { #category : 'api - events' }
 SpTreeColumnViewPresenter >> whenColumnsChangedDo: aBlock [
 	"Inform when columns have changed. 
