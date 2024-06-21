@@ -21,10 +21,41 @@ Class {
 }
 
 { #category : 'converting' }
+SpCommand >> asActionButtonPresenter [
+	
+	^ SpButtonPresenter new
+		owner: self context;
+		help: self description;
+		icon: self icon;
+		action: [ self execute ];
+		yourself
+]
+
+{ #category : 'converting' }
 SpCommand >> asButtonPresenter [
 	self flag: #TODO. "Needs to use inform user display strategy when available, no other available strategy can be used in this context. See issue #705"
 	self configureAsButton.
 	^ self buildPresenter
+]
+
+{ #category : 'converting' }
+SpCommand >> asLabeledButtonPresenter [
+	
+	^ self asActionButtonPresenter
+		label: self name;
+		yourself
+]
+
+{ #category : 'converting' }
+SpCommand >> asToggleButtonPresenter [
+	
+	^ SpToggleButtonPresenter new
+		owner: self context;
+		help: self description;
+		icon: self icon;
+		whenActivatedDo: [ self execute ];
+		whenDeactivatedDo: [ self execute ];
+		yourself
 ]
 
 { #category : 'presenter building' }
