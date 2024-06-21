@@ -23,11 +23,8 @@ Class {
 { #category : 'converting' }
 SpCommand >> asActionButtonPresenter [
 	
-	^ SpButtonPresenter new
-		owner: self context;
-		help: self description;
-		icon: self icon;
-		action: [ self execute ];
+	^ self asButtonPresenter
+		label: nil;
 		yourself
 ]
 
@@ -41,13 +38,8 @@ SpCommand >> asButtonPresenter [
 { #category : 'converting' }
 SpCommand >> asToggleButtonPresenter [
 	
-	^ SpToggleButtonPresenter new
-		owner: self context;
-		help: self description;
-		icon: self icon;
-		whenActivatedDo: [ self execute ];
-		whenDeactivatedDo: [ self execute ];
-		yourself
+	self configureAsButtonOfClass: SpToggleButtonPresenter. 
+	^ self buildPresenter
 ]
 
 { #category : 'presenter building' }
@@ -67,25 +59,29 @@ SpCommand >> buildPresenterBlock: anObject [
 
 { #category : 'presenter building' }
 SpCommand >> configureAsButton [
+
 	self configureAsButtonOfClass: SpButtonPresenter
 ]
 
 { #category : 'presenter building' }
 SpCommand >> configureAsButtonOfClass: aButtonClass [
-	self
-		buildPresenterBlock: [ :specCommand | 
-			aButtonClass new
-				label: specCommand name;
-				help: specCommand description;
-				in: [ :button | 
-					specCommand hasIcon
-						ifTrue: [ button icon: specCommand icon ] ];
-				action: [ specCommand execute ];
-				yourself ]
+	
+	self buildPresenterBlock: [ :specCommand | 
+		aButtonClass new
+			label: specCommand name;
+			help: specCommand description;
+			in: [ :button | 
+				specCommand hasIcon
+					ifTrue: [ button icon: specCommand icon ] ];
+			action: [ 
+				specCommand canBeExecuted 
+					ifTrue: [ specCommand execute ] ];
+			yourself ]
 ]
 
 { #category : 'presenter building' }
 SpCommand >> configureAsToolBarToggleButton [
+
 	self configureAsButtonOfClass: SpToolbarToggleButtonPresenter
 ]
 
