@@ -67,6 +67,7 @@ SpTPresenterBuilder >> newButtonBar [
 
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newCheckBox [
+
 	^ self instantiate: SpCheckBoxPresenter
 ]
 
@@ -251,6 +252,12 @@ SpTPresenterBuilder >> newSpinner [
 SpTPresenterBuilder >> newStatusBar [
 
 	^ self instantiate: SpStatusBarPresenter
+]
+
+{ #category : 'scripting - widgets' }
+SpTPresenterBuilder >> newSwitch [ 
+
+	^ self instantiate: self application backend switchClass
 ]
 
 { #category : 'scripting - widgets' }

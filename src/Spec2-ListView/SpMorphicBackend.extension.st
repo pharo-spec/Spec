@@ -13,6 +13,12 @@ SpMorphicBackend >> listClass [
 ]
 
 { #category : '*Spec2-ListView' }
+SpMorphicBackend >> switchClass [
+
+	^ SpCheckBoxPresenter
+]
+
+{ #category : '*Spec2-ListView' }
 SpMorphicBackend >> tableClass [
 
 	^ SpTablePresenter

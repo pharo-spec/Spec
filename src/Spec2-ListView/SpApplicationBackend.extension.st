@@ -14,6 +14,12 @@ SpApplicationBackend >> listClass [
 ]
 
 { #category : '*Spec2-ListView' }
+SpApplicationBackend >> switchClass [
+
+	self subclassResponsibility
+]
+
+{ #category : '*Spec2-ListView' }
 SpApplicationBackend >> tableClass [
 
 	self subclassResponsibility
