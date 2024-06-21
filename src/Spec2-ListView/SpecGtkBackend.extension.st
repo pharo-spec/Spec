@@ -13,6 +13,12 @@ SpecGtkBackend >> listClass [
 ]
 
 { #category : '*Spec2-ListView' }
+SpecGtkBackend >> switchClass [
+
+	^ SpSwitchPresenter
+]
+
+{ #category : '*Spec2-ListView' }
 SpecGtkBackend >> tableClass [
 
 	^ SpEasyColumnViewPresenter
