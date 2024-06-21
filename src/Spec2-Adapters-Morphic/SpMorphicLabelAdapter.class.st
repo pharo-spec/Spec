@@ -54,10 +54,27 @@ SpMorphicLabelAdapter >> applyStyle: aMorph [
 
 ]
 
+{ #category : 'accessing' }
+SpMorphicLabelAdapter >> beJustifyCenter [
+]
+
+{ #category : 'accessing' }
+SpMorphicLabelAdapter >> beJustifyLeft [
+	
+]
+
+{ #category : 'accessing' }
+SpMorphicLabelAdapter >> beJustifyRight [
+]
+
+{ #category : 'accessing' }
+SpMorphicLabelAdapter >> beWrap [
+]
+
 { #category : 'factory' }
 SpMorphicLabelAdapter >> buildWidget [
-
 	| label |
+
 	label := LabelMorph new model: self.
 	label
 		getEnabledSelector: #enabled;
