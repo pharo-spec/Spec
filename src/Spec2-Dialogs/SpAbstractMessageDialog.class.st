@@ -55,7 +55,7 @@ SpAbstractMessageDialog >> calculateLabelHeightForTextWithoutMargin: aText forEx
 	"We have a minimal height "
 	aText ifEmpty: [ ^ self singleLineDefaultHeight ].
 
-	^ (aText lineHeightsWrappingAtWidth: anExtent x - 20) sum
+	^ (aText asText lineHeightsWrappingAtWidth: anExtent x - 20) sum
 	
 ]
 
