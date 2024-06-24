@@ -33,6 +33,35 @@ SpMorphicBackend >> defer: aBlock [
 	UIManager default defer: aBlock
 ]
 
+{ #category : 'private - dialogs' }
+SpMorphicBackend >> executeOpenDirectoryDialog: aFileDialog [
+
+	^ StOpenDirectoryPresenter new
+		defaultFolder: (aFileDialog path ifNil: [ StFileSystemModel defaultDirectory ]);
+		title: (aFileDialog title ifNil: [ 'Choose Directory' translated ]);
+		openModal;
+		selectedEntry
+]
+
+{ #category : 'private - dialogs' }
+SpMorphicBackend >> executeOpenFileDialog: aFileDialog [
+	| dialog |
+
+	dialog := self newFileDialogFor: aFileDialog.
+	^ dialog openModal answer 
+		ifNotNil: [ :aString | aString asFileReference ]
+]
+
+{ #category : 'private - dialogs' }
+SpMorphicBackend >> executeSaveFileDialog: aFileDialog [
+	| dialog |
+
+	dialog := self newFileDialogFor: aFileDialog.
+	dialog answerSaveFile.
+	^ dialog openModal answer 
+		ifNotNil: [ :aString | aString asFileReference ]
+]
+
 { #category : 'deferred message' }
 SpMorphicBackend >> forceDefer: aBlock [
 
@@ -46,6 +75,25 @@ SpMorphicBackend >> inform: aString [
 	GrowlMorph
 		openWithLabel: 'Information' translated
 		contents: aString
+]
+
+{ #category : 'private - dialogs' }
+SpMorphicBackend >> newFileDialogFor: aFileDialog [
+	| dialog |
+
+	dialog := FileDialogWindow basicNew
+		previewType: false;
+		initialize;
+		title: (aFileDialog title ifNil: [ 'Select File...' ]);
+		answerPathName.
+	
+	aFileDialog filters ifNotEmpty: [ :filters | 
+		dialog validExtensions: filters ].
+	aFileDialog path ifNotNil: [ :path | 
+		dialog fileNameText: path path fullName.
+		dialog selectPath: path fullName ].
+
+	^ dialog
 ]
 
 { #category : 'private - notifying' }
@@ -67,18 +115,12 @@ SpMorphicBackend >> notifyInfo: aSpecNotification [
 ]
 
 { #category : 'ui - dialogs' }
-SpMorphicBackend >> selectDirectoryTitle: aString [
+SpMorphicBackend >> openFileDialog: aFileDialog [
 
-	^ UIManager default chooseDirectory: aString path: ''
-]
-
-{ #category : 'ui - dialogs' }
-SpMorphicBackend >> selectFileTitle: aString [
-
-	^ UIManager default
-		  chooseExistingFileReference: aString
-		  extensions: nil
-		  path: ''
+	aFileDialog isOpenFile ifTrue: [ ^ self executeOpenFileDialog: aFileDialog ].
+	aFileDialog isOpenDirectory ifTrue: [ ^ self executeOpenDirectoryDialog: aFileDialog ].
+	
+	^ self executeSaveFileDialog: aFileDialog
 ]
 
 { #category : 'display' }

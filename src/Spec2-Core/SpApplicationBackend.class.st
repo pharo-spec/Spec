@@ -80,16 +80,16 @@ SpApplicationBackend >> notifyInfo: aSpecNotification [
 	self subclassResponsibility
 ]
 
+{ #category : 'ui - dialogs' }
+SpApplicationBackend >> openFileDialog: aFileDialog [
+
+	self subclassResponsibility
+]
+
 { #category : 'initialization' }
 SpApplicationBackend >> resetAdapterBindings [
 
 	adapterBindings := self adapterBindingsClass new
-]
-
-{ #category : 'ui - dialogs' }
-SpApplicationBackend >> selectFileTitle: aString [
-
-	self subclassResponsibility
 ]
 
 { #category : 'ui' }
