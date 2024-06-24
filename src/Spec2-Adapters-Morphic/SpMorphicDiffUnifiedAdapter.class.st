@@ -1,10 +1,12 @@
 Class {
-	#name : #SpMorphicDiffUnifiedAdapter,
-	#superclass : #SpMorphicDiffAdapter,
-	#category : #'Spec2-Adapters-Morphic-Base'
+	#name : 'SpMorphicDiffUnifiedAdapter',
+	#superclass : 'SpMorphicDiffAdapter',
+	#category : 'Spec2-Adapters-Morphic-Base',
+	#package : 'Spec2-Adapters-Morphic',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicDiffUnifiedAdapter >> buildWidget [
 
 	^ StUnifiedDiffChangesMorph new

@@ -236,6 +236,12 @@ SpMorphicWindowAdapter >> resize: aPoint [
 		ifTrue: [ self centered ]
 ]
 
+{ #category : 'window management' }
+SpMorphicWindowAdapter >> restore [
+
+	self widgetDo: [ :w | w restore ]
+]
+
 { #category : 'factory' }
 SpMorphicWindowAdapter >> subscribeToAnnouncements: aWindow [
 

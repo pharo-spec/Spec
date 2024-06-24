@@ -536,6 +536,13 @@ SpWindowPresenter >> resize: anExtent [
 ]
 
 { #category : 'api' }
+SpWindowPresenter >> restore [
+	"Restore the window"
+
+	self withAdapterDo: [ :anAdapter | anAdapter restore ]
+]
+
+{ #category : 'api' }
 SpWindowPresenter >> statusBar [
 	"Answer the status bar associated with this window (if defined)"
 
