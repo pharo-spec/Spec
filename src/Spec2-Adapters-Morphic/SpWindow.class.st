@@ -47,13 +47,6 @@ SpWindow >> close [
 ]
 
 { #category : 'open/close' }
-SpWindow >> deleteDiscardingChanges [
-
-	self announceWillClose.
-	^ super deleteDiscardingChanges
-]
-
-{ #category : 'open/close' }
 SpWindow >> extent: aPoint [ 
 	| announcement oldExtent |
 
