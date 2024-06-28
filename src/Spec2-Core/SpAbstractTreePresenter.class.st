@@ -164,10 +164,10 @@ SpAbstractTreePresenter >> doActivateSelected [
 		yourself)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'simulation' }
 SpAbstractTreePresenter >> doubleClickAtPath: aPath [
+
 	self selectPath: aPath.
-	
 	activateOnSingleClick ifTrue: [ ^ self ].
 	self doActivateAtPath: aPath
 ]
