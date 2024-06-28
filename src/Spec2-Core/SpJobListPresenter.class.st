@@ -120,6 +120,12 @@ SpJobListPresenter >> jobEnd: ann [
 		self removeJobPresenter: ann job ]
 ]
 
+{ #category : 'initialization' }
+SpJobListPresenter >> jobPresenterHeight [
+
+	^ 80
+]
+
 { #category : 'private - events' }
 SpJobListPresenter >> jobStart: ann [
 
