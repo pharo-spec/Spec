@@ -98,13 +98,13 @@ SpAbstractTreePresenter >> children: aBlock [
 	childrenBlock := aBlock
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> childrenFor: anObject [ 
 
 	^ self children value: anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'simulation' }
 SpAbstractTreePresenter >> clickAtPath: aPath [
 
 	self selectPaths: { aPath }.
@@ -130,7 +130,7 @@ SpAbstractTreePresenter >> collapsePath: aPath [
 		anAdapter collapsePath: aPath ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> disableActivationDuring: aBlock [
 	| oldActivate |
 	
@@ -140,7 +140,7 @@ SpAbstractTreePresenter >> disableActivationDuring: aBlock [
 		activationBlock := oldActivate ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> doActivateAtPath: aPath [
 	"Activate only if there is an item at that position"
 
@@ -151,7 +151,7 @@ SpAbstractTreePresenter >> doActivateAtPath: aPath [
 		yourself)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> doActivateSelected [
 	"Activate only if there is an item at that position"
 	| selectedPath |
@@ -207,21 +207,21 @@ SpAbstractTreePresenter >> initialize [
 	self withScrollBars
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 SpAbstractTreePresenter >> isActiveOnDoubleClick [
 	"Answer true if activation event is triggered on double click"
 
 	^ activateOnSingleClick not
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 SpAbstractTreePresenter >> isActiveOnSingleClick [
 	"Answer true if activation event is triggered on single click"
 
 	^ activateOnSingleClick
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 SpAbstractTreePresenter >> isExpanded: aPath [ 
 
 	self withAdapterDo: [ :anAdapter |  
@@ -230,7 +230,7 @@ SpAbstractTreePresenter >> isExpanded: aPath [
 	^ false
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> itemAt: index of: anArray then: path [
 	"dives into elements of tree to find the one that corresponds to path"
 	| element |
@@ -246,7 +246,7 @@ SpAbstractTreePresenter >> itemAt: index of: anArray then: path [
 			element ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> itemAtPath: anArray [
 	
 	self withAdapterDo: [ :anAdapter | 
@@ -258,7 +258,7 @@ SpAbstractTreePresenter >> itemAtPath: anArray [
 		then: anArray allButFirst
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> itemAtPath: anArray ifAbsent: aBlock [
 	^ [ self itemAtPath: anArray ]
 		on: SubscriptOutOfBounds
@@ -272,7 +272,7 @@ SpAbstractTreePresenter >> items: aCollection [
 	self roots: aCollection
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> pathIndexOf: anArrayOfElements [
 
 	^ self 
@@ -280,7 +280,7 @@ SpAbstractTreePresenter >> pathIndexOf: anArrayOfElements [
 		in: self roots
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> pathIndexOf: pathArray in: aCollection [ 
 	| pathElement |
 	
@@ -293,7 +293,7 @@ SpAbstractTreePresenter >> pathIndexOf: pathArray in: aCollection [
 
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> pathItemOf: aPath [
 	"answer an array of items following a path. 
 	 e.g. #(1 2 3) = { item1. item2. item3 }"
@@ -303,7 +303,7 @@ SpAbstractTreePresenter >> pathItemOf: aPath [
 		in: self roots
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> pathItemOf: pathArray in: aCollection [ 
 	| pathElement |
 	
@@ -348,7 +348,7 @@ SpAbstractTreePresenter >> roots: aCollection [
 	self selection clearSelection
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> searchValueOf: item [ 
 
 	^ item asString
@@ -458,7 +458,7 @@ SpAbstractTreePresenter >> selectionMode [
 	^ selectionMode
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> selectionMode: aMode [
 	
 	selectionMode ifNotNil: [ 
@@ -502,16 +502,16 @@ SpAbstractTreePresenter >> updateRootsKeepingSelection: aCollection [
 			self selectPaths: (selectedPaths collect: [ :each | self pathIndexOf: each ]) ] ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> verticalAlignment [
 	^ verticalAlignment
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api - events' }
 SpAbstractTreePresenter >> whenActivatedDo: aBlock [
 	"Inform when an element has been 'activated'. 
 	 `aBlock` receives one argument (a selection object, see `SpAbstractSelectionMode`)"
-
+ 
 	activationBlock := aBlock
 ]
 
