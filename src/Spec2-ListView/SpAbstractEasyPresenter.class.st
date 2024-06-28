@@ -90,10 +90,11 @@ SpAbstractEasyPresenter >> connectPresenters [
 		whenFocusReceivedDo: [ :event | searchInput hide ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api - actions' }
 SpAbstractEasyPresenter >> contextMenuFromCommandsGroup: aValuable [
 	
-	self flag: #TODO
+	self flag: #TODO.
+	"this is not really to be used... we have now actionGroup: :P"
 ]
 
 { #category : 'private' }

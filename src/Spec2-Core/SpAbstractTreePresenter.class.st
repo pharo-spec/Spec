@@ -25,7 +25,7 @@ SpAbstractTreePresenter class >> isAbstract [
 	^ super isAbstract or: [ self = SpAbstractTreePresenter ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api' }
 SpAbstractTreePresenter >> activateOnDoubleClick [
 	"Configure the list to trigger activation on double click.
 	 An element on a list can be 'activated', meaning it will trigger an event to execute an 
@@ -36,7 +36,7 @@ SpAbstractTreePresenter >> activateOnDoubleClick [
 	activateOnSingleClick := false
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api' }
 SpAbstractTreePresenter >> activateOnSingleClick [
 	"Configure the list to trigger activation on single click.
 	 An element on a list can be 'activated', meaning it will trigger an event to execute an 
@@ -69,21 +69,21 @@ SpAbstractTreePresenter >> activatesOnSingleClick [
 	^ activateOnSingleClick
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api' }
 SpAbstractTreePresenter >> beMultipleSelection [
 	"Enable multiple selection."
 
 	self selectionMode: (SpTreeMultipleSelectionMode on: self)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api' }
 SpAbstractTreePresenter >> beSingleSelection [
 	"Enable single selection (this is the default)."
 	
 	self selectionMode: (SpTreeSingleSelectionMode on: self)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api' }
 SpAbstractTreePresenter >> children [
 
 	^ childrenBlock

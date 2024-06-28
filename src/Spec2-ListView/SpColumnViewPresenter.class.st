@@ -106,7 +106,7 @@ SpColumnViewPresenter >> addColumns: aCollection [
 	aCollection do: [ :each | self addColumn: each ]
 ]
 
-{ #category : 'api' }
+{ #category : 'as yet unclassified' }
 SpColumnViewPresenter >> alternateRowsColor [
 	"Will alternate Rows color for a better reading: one row lighter, the next row darker. 
 	 NOTE: Behavior in different backends may be slightly different."
