@@ -149,7 +149,7 @@ SpEditableListPresenter >> initializeDialogWindow: aWindow [
 SpEditableListPresenter >> initializePresenters [
 
 	label := self newLabel.
-	list := self newEasyListView.
+	list := self newList.
 	addButton := self newButton.
 	removeButton := self newButton.
 	upButton := self newButton.
