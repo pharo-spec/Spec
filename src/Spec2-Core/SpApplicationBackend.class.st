@@ -112,12 +112,6 @@ SpApplicationBackend >> showWaitCursorWhile: aBlock inApplication: anApplication
 ]
 
 { #category : 'accessing' }
-SpApplicationBackend >> switchClass [
-
-	self subclassResponsibility
-]
-
-{ #category : 'accessing' }
 SpApplicationBackend >> tableClass [
 
 	self subclassResponsibility

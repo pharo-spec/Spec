@@ -257,7 +257,7 @@ SpTPresenterBuilder >> newStatusBar [
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newSwitch [ 
 
-	^ self instantiate: self application backend switchClass
+	^ self instantiate: SpSwitchPresenter
 ]
 
 { #category : 'scripting - widgets' }

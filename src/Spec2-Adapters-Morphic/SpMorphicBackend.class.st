@@ -142,12 +142,6 @@ SpMorphicBackend >> showWaitCursorWhile: aBlock inApplication: anApplication [
 ]
 
 { #category : 'accessing' }
-SpMorphicBackend >> switchClass [
-
-	^ SpCheckBoxPresenter
-]
-
-{ #category : 'accessing' }
 SpMorphicBackend >> tableClass [
 
 	^ SpTablePresenter
