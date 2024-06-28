@@ -47,7 +47,7 @@ SpAbstractTreePresenter >> activateOnSingleClick [
 	activateOnSingleClick := true
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api' }
 SpAbstractTreePresenter >> activatesOnDoubleClick [
 	"Answer true if activation event is triggered on double click"
 
@@ -58,7 +58,7 @@ SpAbstractTreePresenter >> activatesOnDoubleClick [
 	^ activateOnSingleClick not
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api' }
 SpAbstractTreePresenter >> activatesOnSingleClick [
 	"Answer true if activation event is triggered on single click"
 
