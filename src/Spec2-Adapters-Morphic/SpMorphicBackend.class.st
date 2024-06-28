@@ -33,6 +33,12 @@ SpMorphicBackend >> defer: aBlock [
 	UIManager default defer: aBlock
 ]
 
+{ #category : 'accessing' }
+SpMorphicBackend >> dropListClass [
+
+	^ SpDropListPresenter
+]
+
 { #category : 'private - dialogs' }
 SpMorphicBackend >> executeOpenDirectoryDialog: aFileDialog [
 
@@ -75,6 +81,12 @@ SpMorphicBackend >> inform: aString [
 	GrowlMorph
 		openWithLabel: 'Information' translated
 		contents: aString
+]
+
+{ #category : 'accessing' }
+SpMorphicBackend >> listClass [
+
+	^ SpListPresenter
 ]
 
 { #category : 'private - dialogs' }
@@ -127,4 +139,28 @@ SpMorphicBackend >> openFileDialog: aFileDialog [
 SpMorphicBackend >> showWaitCursorWhile: aBlock inApplication: anApplication [
 
 	Cursor wait showWhile: aBlock
+]
+
+{ #category : 'accessing' }
+SpMorphicBackend >> switchClass [
+
+	^ SpCheckBoxPresenter
+]
+
+{ #category : 'accessing' }
+SpMorphicBackend >> tableClass [
+
+	^ SpTablePresenter
+]
+
+{ #category : 'accessing' }
+SpMorphicBackend >> treeClass [
+
+	^ SpTreePresenter	
+]
+
+{ #category : 'accessing' }
+SpMorphicBackend >> treeTableClass [
+
+	^ SpTreeTablePresenter
 ]

@@ -49,6 +49,12 @@ SpApplicationBackend >> defaultConfigurationFor: anApplication [
 	^ self subclassResponsibility
 ]
 
+{ #category : 'accessing' }
+SpApplicationBackend >> dropListClass [
+
+	self subclassResponsibility
+]
+
 { #category : 'ui - dialogs' }
 SpApplicationBackend >> inform: aString [
 
@@ -60,6 +66,13 @@ SpApplicationBackend >> initialize [
 
 	super initialize.
 	self resetAdapterBindings
+]
+
+{ #category : 'accessing' }
+SpApplicationBackend >> listClass [
+
+	self subclassResponsibility
+	
 ]
 
 { #category : 'accessing' }
@@ -94,6 +107,31 @@ SpApplicationBackend >> resetAdapterBindings [
 
 { #category : 'ui' }
 SpApplicationBackend >> showWaitCursorWhile: aBlock inApplication: anApplication [
+
+	self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+SpApplicationBackend >> switchClass [
+
+	self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+SpApplicationBackend >> tableClass [
+
+	self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+SpApplicationBackend >> treeClass [
+
+	self subclassResponsibility
+	
+]
+
+{ #category : 'accessing' }
+SpApplicationBackend >> treeTableClass [
 
 	self subclassResponsibility
 ]
