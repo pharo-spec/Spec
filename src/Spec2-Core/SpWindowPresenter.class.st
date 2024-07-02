@@ -448,6 +448,12 @@ SpWindowPresenter >> moveTo: aPoint [
 
 ]
 
+{ #category : 'private' }
+SpWindowPresenter >> nearWindow [
+
+	^ self
+]
+
 { #category : 'notifying' }
 SpWindowPresenter >> notify: aSpecNotification [
 	"Receives a notification and delivers it as required"
