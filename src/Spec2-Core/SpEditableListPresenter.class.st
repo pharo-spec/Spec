@@ -234,9 +234,9 @@ SpEditableListPresenter >> moveElementAt: index to: newIndex [
 SpEditableListPresenter >> newList [
 	"Default list collection is an Array.
 	As this presenter aims to add / remove items from the list, we need a growable collection"
-	^ (self instantiate: SpListPresenter)
-			items: OrderedCollection new;
-			yourself
+	^ super newList
+		items: OrderedCollection new;
+		yourself
 ]
 
 { #category : 'api' }
