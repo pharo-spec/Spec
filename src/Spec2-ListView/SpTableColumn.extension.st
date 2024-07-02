@@ -8,6 +8,9 @@ SpTableColumn >> asColumnViewColumn [
 		expand: (self width isNil and: [ self isExpandable ]);
 		width: self width;
 		setup: [ :aPresenter | aPresenter newLabel ];
-		bind: [ :aPresenter :item | aPresenter label: (self readObject: item) asString ];
+		bind: [ :aPresenter :item | 
+			aPresenter label: (item 
+				ifNotNil: [ (self readObject: item) asString ]
+				ifNil: [ '']) ];
 		yourself
 ]
