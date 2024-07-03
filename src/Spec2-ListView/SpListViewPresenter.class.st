@@ -43,7 +43,7 @@ SpListViewPresenter class >> exampleActivateOnDoubleClick [
 		open
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'examples' }
 SpListViewPresenter class >> exampleReplaceItems [
 	"This example shows how to replace dynamically the list of elements."
 	| presenter listView button items |
@@ -168,7 +168,7 @@ SpListViewPresenter class >> exampleWithIconsAndMorph [
 		open
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'examples' }
 SpListViewPresenter class >> exampleWithIconsAndSelectedItem [
 	"This example shows how to construct a list with icons. 
 	 It shows also the fact you can put any presenter inside, giving a huge power 
@@ -196,7 +196,7 @@ SpListViewPresenter class >> exampleWithIconsAndSelectedItem [
 		open
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'examples' }
 SpListViewPresenter class >> exampleWithIconsMultipleSelection [
 	"This example shows how to construct a list with multiple selection available. 
 	 It shows also the fact you can put any presenter inside, giving a huge power 
