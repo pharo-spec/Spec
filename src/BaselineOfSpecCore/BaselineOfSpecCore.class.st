@@ -55,13 +55,15 @@ BaselineOfSpecCore >> baseline: spec [
 		'Spec2-Core' 
 		'Spec2-Dialogs' 
 		'Spec2-CommandLine' 
-		'Spec2-Adapters-Stub' 
+		'Spec2-Adapters-Stub'
+		'Spec2-Adapters-Morphic-ListView'
+		'Spec2-ListView'  
 		'Spec2-Interactions' 
 		'Spec2-Commander2' ).
 	spec group: 'Code' with: #('Core' 'Spec2-Code-Commands' 'Spec2-Code' 'Spec2-Code-Diff').
 	spec group: 'CodeTests' with: #('Spec2-Code-Tests' 'Spec2-Code-Diff-Tests').
 	spec group: 'Support' with: #('Core' 'Spec2-Examples').
-	spec group: 'Tests' with: #('Core' 'Spec2-Tests' 'Spec2-Commander2-Tests').
+	spec group: 'Tests' with: #('Core' 'Spec2-Tests' 'Spec2-Commander2-Tests' 'Spec2-ListView-Tests').
 	spec group: 'SupportTests' with: #('Support').
 	spec group: 'Pillar' with: #('Spec2-Pillar' ).
 	spec group: 'Base' with: #('Core' 'Support').
