@@ -81,6 +81,12 @@ SpEasyColumnViewPresenter >> initializePresenters [
 
 ]
 
+{ #category : 'api - selection' }
+SpEasyColumnViewPresenter >> unselectAll [
+	
+	contentView unselectAll
+]
+
 { #category : 'api - events' }
 SpEasyColumnViewPresenter >> whenIsResizableChangedDo: aBlock [
 	
