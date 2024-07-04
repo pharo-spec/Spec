@@ -81,7 +81,7 @@ SpCollectionListModel >> hasElementAt: index [
 { #category : 'accessing' }
 SpCollectionListModel >> indexOf: anIndex ifAbsent: aBlock [
 
-	^ collection indexOf: anIndex ifAbsent: aBlock
+	^ collection identityIndexOf: anIndex ifAbsent: aBlock
 ]
 
 { #category : 'initialization' }
