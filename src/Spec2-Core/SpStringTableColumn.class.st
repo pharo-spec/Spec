@@ -125,7 +125,7 @@ SpStringTableColumn >> onAcceptEdition: aBlock [
 	acceptAction := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpStringTableColumn >> onTextChanged: aBlock [
 	"Set the block to execute when cell edition is edited.
 	 `aBlock` receives two arguments:
@@ -135,7 +135,7 @@ SpStringTableColumn >> onTextChanged: aBlock [
 	textChanged := aBlock
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 SpStringTableColumn >> sortFunction [
 
 	^ super sortFunction ifNil: [ self evaluation ascending ]
@@ -156,7 +156,7 @@ SpStringTableColumn >> sortFunction: aBlockOrSortFunction [
 	self isSortable: aBlockOrSortFunction isNotNil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpStringTableColumn >> textChanged [
 
 	^ textChanged

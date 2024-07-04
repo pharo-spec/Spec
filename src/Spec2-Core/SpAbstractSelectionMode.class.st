@@ -74,10 +74,8 @@ SpAbstractSelectionMode >> includesItem: anItem [
 
 { #category : 'private' }
 SpAbstractSelectionMode >> indexOfItem: anItem [
-	
-	^ self model
-		indexOf: anItem
-		ifAbsent: [ 0 ].
+
+	^ self model indexOf: anItem ifAbsent: 0
 ]
 
 { #category : 'initialization' }
