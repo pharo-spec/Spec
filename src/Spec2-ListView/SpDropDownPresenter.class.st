@@ -157,6 +157,12 @@ SpDropDownPresenter >> items: aSequenceableCollection [
 ]
 
 { #category : 'api' }
+SpDropDownPresenter >> listSize [
+
+	^ self items size
+]
+
+{ #category : 'api' }
 SpDropDownPresenter >> model [
 	"Answer the model for this list. 
 	 It is tipically, an instance of `SpCollectionListModel`."

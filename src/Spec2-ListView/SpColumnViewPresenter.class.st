@@ -3,7 +3,8 @@ Class {
 	#superclass : 'SpAbstractListPresenter',
 	#instVars : [
 		'#columns => ObservableSlot',
-		'#isResizable => ObservableSlot'
+		'#isResizable => ObservableSlot',
+		'#showColumnHeaders => ObservableSlot'
 	],
 	#category : 'Spec2-ListView',
 	#package : 'Spec2-ListView'
@@ -132,10 +133,26 @@ SpColumnViewPresenter >> columns [
 	^ columns
 ]
 
+{ #category : 'accessing' }
+SpColumnViewPresenter >> columns: aCollection [ 
+	
+	columns := #().
+	aCollection do: [ :each |
+		self addColumn: each  ]
+]
+
+{ #category : 'api' }
+SpColumnViewPresenter >> hideColumnHeaders [
+	"Hide the column headers"
+
+	showColumnHeaders := false
+]
+
 { #category : 'initialization' }
 SpColumnViewPresenter >> initialize [
 
 	super initialize.
+	self showColumnHeaders.
 	columns := #()
 ]
 
@@ -149,6 +166,20 @@ SpColumnViewPresenter >> isResizable [
 SpColumnViewPresenter >> isResizable: aBoolean [
 
 	isResizable := aBoolean
+]
+
+{ #category : 'testing' }
+SpColumnViewPresenter >> isShowingColumnHeaders [
+	"Answer true if the table is configured to show column headers."
+
+	^ showColumnHeaders
+]
+
+{ #category : 'api' }
+SpColumnViewPresenter >> showColumnHeaders [
+	"Show column headers"
+
+	showColumnHeaders := true
 ]
 
 { #category : 'api - events' }

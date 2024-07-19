@@ -7,10 +7,14 @@ SpTableColumn >> asColumnViewColumn [
 		title: self title;
 		expand: (self width isNil and: [ self isExpandable ]);
 		width: self width;
-		setup: [ :aPresenter | aPresenter newLabel ];
+		setup: [ :aPresenter | 
+			SpEasyColumnSetupBuilder new
+				presenter: aPresenter;
+				visit: self ];
 		bind: [ :aPresenter :item | 
-			aPresenter label: (item 
-				ifNotNil: [ (self readObject: item) asString ]
-				ifNil: [ '']) ];
+			SpEasyColumnBindBuilder new
+				presenter: aPresenter;
+				item: item;
+				visit: self ];
 		yourself
 ]

@@ -61,6 +61,19 @@ SpEasyColumnViewPresenter >> beResizable [
 	contentView beResizable
 ]
 
+{ #category : 'accessing' }
+SpEasyColumnViewPresenter >> columns: aCollection [ 
+	
+	contentView columns: aCollection 
+
+]
+
+{ #category : 'api' }
+SpEasyColumnViewPresenter >> contextMenu: aBlock [ 
+	
+	self flag: #TODO. "ignored, as this is deprecated"
+]
+
 { #category : 'private' }
 SpEasyColumnViewPresenter >> displayValueFor: aImage [
 	
@@ -70,7 +83,7 @@ SpEasyColumnViewPresenter >> displayValueFor: aImage [
 { #category : 'api' }
 SpEasyColumnViewPresenter >> hideColumnHeaders [
 	
-	self flag: #TODO
+	contentView hideColumnHeaders
 ]
 
 { #category : 'initialization' }
@@ -79,6 +92,19 @@ SpEasyColumnViewPresenter >> initializePresenters [
 	super initializePresenters.
 	contentView := self newColumnView.
 
+]
+
+{ #category : 'testing' }
+SpEasyColumnViewPresenter >> isShowingColumnHeaders [
+	"Answer true if the table is configured to show column headers."
+	
+	^ contentView isShowingColumnHeaders
+]
+
+{ #category : 'api' }
+SpEasyColumnViewPresenter >> showColumnHeaders [
+	
+	contentView showColumnHeaders
 ]
 
 { #category : 'api - selection' }
@@ -92,4 +118,16 @@ SpEasyColumnViewPresenter >> whenIsResizableChangedDo: aBlock [
 	
 	contentView whenIsResizableChangedDo: aBlock
 
+]
+
+{ #category : 'enumerating' }
+SpEasyColumnViewPresenter >> whenSelectedDo: aBlock [ 
+	
+	contentView whenSelectedDo: aBlock
+]
+
+{ #category : 'enumerating' }
+SpEasyColumnViewPresenter >> whenSelectedItemChangedDo: aBlock [ 
+	
+	contentView whenSelectedItemChangedDo: aBlock
 ]

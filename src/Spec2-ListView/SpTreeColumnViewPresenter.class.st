@@ -3,7 +3,8 @@ Class {
 	#superclass : 'SpAbstractTreePresenter',
 	#instVars : [
 		'#columns => ObservableSlot',
-		'#isResizable => ObservableSlot'
+		'#isResizable => ObservableSlot',
+		'#showColumnHeaders => ObservableSlot'
 	],
 	#category : 'Spec2-ListView',
 	#package : 'Spec2-ListView'
@@ -172,6 +173,13 @@ SpTreeColumnViewPresenter >> columns [
 	^ columns
 ]
 
+{ #category : 'api' }
+SpTreeColumnViewPresenter >> hideColumnHeaders [
+	"Hide the column headers"
+
+	showColumnHeaders := false
+]
+
 { #category : 'initialization' }
 SpTreeColumnViewPresenter >> initialize [
 
@@ -181,6 +189,7 @@ SpTreeColumnViewPresenter >> initialize [
 	self beSingleSelection.
 	self activateOnDoubleClick.
 	self beResizable.
+	self showColumnHeaders.
 	
 	self registerActions
 ]
@@ -197,6 +206,13 @@ SpTreeColumnViewPresenter >> isResizable: aBoolean [
 	isResizable := aBoolean
 ]
 
+{ #category : 'testing' }
+SpTreeColumnViewPresenter >> isShowingColumnHeaders [
+	"Answer true if the table is configured to show column headers."
+
+	^ showColumnHeaders
+]
+
 { #category : 'initialization' }
 SpTreeColumnViewPresenter >> registerActions [
 
@@ -204,6 +220,13 @@ SpTreeColumnViewPresenter >> registerActions [
 		beShortcutOnly;
 		shortcut: $t ctrl unix | $t ctrl win | $t command mac;
 		action: [ self showContextMenu ] ]
+]
+
+{ #category : 'api' }
+SpTreeColumnViewPresenter >> showColumnHeaders [
+	"Show column headers"
+
+	showColumnHeaders := true
 ]
 
 { #category : 'private' }

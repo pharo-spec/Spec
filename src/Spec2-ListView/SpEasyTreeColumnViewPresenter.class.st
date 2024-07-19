@@ -66,10 +66,16 @@ SpEasyTreeColumnViewPresenter >> columns: aCollection [
 ]
 
 { #category : 'api' }
+SpEasyTreeColumnViewPresenter >> contextMenu: aBlock [ 
+	
+	"do nothing, this does not work on gtk4"
+]
+
+{ #category : 'api' }
 SpEasyTreeColumnViewPresenter >> hideColumnHeaders [
 	"Hide the column headers"
 
-	self flag: #TODO
+	contentView hideColumnHeaders
 ]
 
 { #category : 'initialization' }
@@ -89,16 +95,15 @@ SpEasyTreeColumnViewPresenter >> isResizable [
 { #category : 'testing' }
 SpEasyTreeColumnViewPresenter >> isShowingColumnHeaders [
 	"Answer true if the table is configured to show column headers."
-
-	self flag: #TODO.
-	^ true
+	
+	^ contentView isShowingColumnHeaders
 ]
 
 { #category : 'api' }
 SpEasyTreeColumnViewPresenter >> showColumnHeaders [
-	"Show column headers"
+	"Hide the column headers"
 
-	self flag: #TODO
+	contentView showColumnHeaders
 ]
 
 { #category : 'api - events' }
@@ -122,4 +127,9 @@ SpEasyTreeColumnViewPresenter >> whenIsResizableChangedDo: aBlock [
 	 - the announcement triggering this action"
 
 	contentView whenIsResizableChangedDo: aBlock
+]
+
+{ #category : 'private - deferring' }
+SpEasyTreeColumnViewPresenter >> withAdapterPerformOrDefer: aFullBlockClosure [ 
+	self shouldBeImplemented.
 ]

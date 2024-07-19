@@ -58,8 +58,7 @@ SpAbstractEasyTreeListViewPresenter >> expandAll [
 	"Expand all nodes of the tree. 
 	 WARNING: If your tree is big, this operation can be slow."
 
-	self withAdapterPerformOrDefer: [ :anAdapter | 
-		anAdapter expandAll ]
+	contentView expandAll
 ]
 
 { #category : 'api' }
@@ -73,10 +72,8 @@ SpAbstractEasyTreeListViewPresenter >> expandPath: aPath [
 
 { #category : 'api' }
 SpAbstractEasyTreeListViewPresenter >> expandRoots [
-	"Expand all roots of the tree"
 
-	self withAdapterPerformOrDefer: [ :anAdapter | 
-		anAdapter expandRoots ]
+	contentView expandRoots
 ]
 
 { #category : 'initialization' }

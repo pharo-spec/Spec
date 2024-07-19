@@ -16,6 +16,12 @@ SpEasyTreeListViewPresenter >> children: aBlock [
 	contentView children: aBlock
 ]
 
+{ #category : 'api' }
+SpEasyTreeListViewPresenter >> contextMenu: aBlock [ 
+	
+	self flag: #TODO
+]
+
 { #category : 'layout' }
 SpEasyTreeListViewPresenter >> defaultLayout [
 
@@ -51,6 +57,12 @@ SpEasyTreeListViewPresenter >> display: aBlock [
 	 "
 
 	display := aBlock
+]
+
+{ #category : 'api' }
+SpEasyTreeListViewPresenter >> displayColor: aBlock [
+	
+	self flag: #TODO
 ]
 
 { #category : 'api' }

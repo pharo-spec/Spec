@@ -67,6 +67,13 @@ SpEasyListViewPresenter >> connectPresenters [
 	super connectPresenters
 ]
 
+{ #category : 'api' }
+SpEasyListViewPresenter >> contextMenu: aBlock [
+ 
+	self flag: #TODO. "Ignored, as this should be deprecated"
+	
+]
+
 { #category : 'layout' }
 SpEasyListViewPresenter >> defaultLayout [
 

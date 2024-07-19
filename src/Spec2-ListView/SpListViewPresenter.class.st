@@ -146,14 +146,19 @@ SpListViewPresenter class >> exampleWithIconsAndMorph [
 		application: (SpApplication new useBackend: #Gtk);
 		items: self environment allClasses;
 		setup: [ :aPresenter |
-			| presenter |
+			| presenter morph |
 			(presenter := aPresenter newPresenter)
 				layout: (SpBoxLayout newHorizontal
 					spacing: 5;
 					add: presenter newImage expand: false;
 					add: presenter newLabel;
 					add: (presenter newMorph 
-						morph: SimpleButtonMorph new;
+						morph: ((morph := SimpleButtonMorph new)
+							color: Color blue;
+							target: [ 
+								self inform: 'Clicked: ', morph label ];
+							actionSelector: #value;
+							yourself);
 						yourself);
 					yourself);
 				yourself ];
