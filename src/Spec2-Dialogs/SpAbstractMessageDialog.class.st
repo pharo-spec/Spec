@@ -131,11 +131,6 @@ SpAbstractMessageDialog >> initializeWindowExtent: aDialogWindowPresenter [
 ]
 
 { #category : 'api' }
-SpAbstractMessageDialog >> label [
-	^ label text
-]
-
-{ #category : 'api' }
 SpAbstractMessageDialog >> label: aString [
 
 	label text: aString asText trim.

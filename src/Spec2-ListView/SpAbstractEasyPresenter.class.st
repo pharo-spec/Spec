@@ -54,7 +54,7 @@ SpAbstractEasyPresenter >> addAction: aSpCommand [
 	contentView addAction: aSpCommand
 ]
 
-{ #category : 'drawing' }
+{ #category : 'api' }
 SpAbstractEasyPresenter >> alternateRowsColor [
 	
 	contentView alternateRowsColor

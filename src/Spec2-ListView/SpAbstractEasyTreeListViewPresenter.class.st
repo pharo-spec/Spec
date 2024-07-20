@@ -28,8 +28,7 @@ SpAbstractEasyTreeListViewPresenter >> children: aBlock [
 SpAbstractEasyTreeListViewPresenter >> collapseAll [
 	"Collapse all nodes of the tree. "
 
-	self withAdapterPerformOrDefer: [ :anAdapter | 
-		anAdapter collapseAll ]
+	contentView collapseAll
 ]
 
 { #category : 'api' }
@@ -37,20 +36,13 @@ SpAbstractEasyTreeListViewPresenter >> collapsePath: aPath [
 	"Collapse the tree path.
 	`aPath` is the path to collapse. A path is an array of node indexes (e.g. #(1 2 3))"
 
-	self withAdapterPerformOrDefer: [ :anAdapter |
-		anAdapter collapsePath: aPath ]
+	contentView collapsePath: aPath
 ]
 
 { #category : 'transmission' }
 SpAbstractEasyTreeListViewPresenter >> defaultInputPort [
 
 	^ self inputRootsPort
-]
-
-{ #category : 'transmission' }
-SpAbstractEasyTreeListViewPresenter >> defaultOutputPort [
-
-	^ self outputSelectionPort
 ]
 
 { #category : 'api' }
@@ -66,12 +58,12 @@ SpAbstractEasyTreeListViewPresenter >> expandPath: aPath [
 	"Expand the tree path.
 	`aPath` is the path to expand. A path is an array of node indexes (e.g. #(1 2 3))"
 
-	self withAdapterPerformOrDefer: [ :anAdapter |
-		anAdapter expandPath: aPath ]
+	contentView expandPath: aPath
 ]
 
 { #category : 'api' }
 SpAbstractEasyTreeListViewPresenter >> expandRoots [
+	"Expand all roots of the tree"
 
 	contentView expandRoots
 ]
@@ -100,7 +92,7 @@ SpAbstractEasyTreeListViewPresenter >> items: aCollection [
 { #category : 'private' }
 SpAbstractEasyTreeListViewPresenter >> lazilyComputeChildren: aBoolean [ 
 	
-	self flag: #TODO.
+	self flag: #TOREMOVE.
 ]
 
 { #category : 'transmission' }
@@ -121,14 +113,7 @@ SpAbstractEasyTreeListViewPresenter >> refresh [
 	 This is useful when some model contents has changed, but we do not want to reset the whole list 
 	 (and losing selections with it)"
 
-	self withAdapterDo: [ :anAdapter | anAdapter refreshTree ]
-]
-
-{ #category : 'initialization' }
-SpAbstractEasyTreeListViewPresenter >> registerEvents [
-
-	"self whenMenuChangedDo: [ 
-		self withAdapterDo: [ :anAdapter | anAdapter updateMenu ] ]"
+	contentView refresh
 ]
 
 { #category : 'api' }
@@ -151,7 +136,7 @@ SpAbstractEasyTreeListViewPresenter >> selectItem: anItem [
 	"Select `anItem` if it is included in model list.
 	 It does not scrolls to selected element."
 
-	self selection selectItem: anItem
+	contentView selectItem: anItem
 ]
 
 { #category : 'api - selection' }
@@ -160,7 +145,7 @@ SpAbstractEasyTreeListViewPresenter >> selectItems: aListOfItem [
 	 NOTE: In single selection mode it will select the first element of `aCollection` 
 	 It does not scrolls to selected element."
 
-	self selection selectItems: aListOfItem
+	contentView selectItems: aListOfItem
 ]
 
 { #category : 'api - selection' }
@@ -169,7 +154,7 @@ SpAbstractEasyTreeListViewPresenter >> selectPath: aPath [
 	`aPath` is the path to select. A path is an array of node indexes (e.g. #(1 2 3)).
 	 It does not scrolls to selected element."
 
-	self selection selectPath: aPath
+	contentView selectPath: aPath
 ]
 
 { #category : 'api - selection' }
@@ -190,7 +175,8 @@ SpAbstractEasyTreeListViewPresenter >> selectPath: aPath scrollToSelection: shou
 { #category : 'api - selection' }
 SpAbstractEasyTreeListViewPresenter >> selectPathByItems: pathArray [
 
-	self selectPathByItems: pathArray scrollToSelection: false
+	contentView selectPathByItems: pathArray 
+		
 ]
 
 { #category : 'api - selection' }
@@ -199,13 +185,9 @@ SpAbstractEasyTreeListViewPresenter >> selectPathByItems: pathArray scrollToSele
 	 is displayed it does not has real bounds. In morphic (and gtk) it has a minimal extent assigned, 
 	 but that will change as soon as the widget is inserted in a container and the container applies its 
 	 layout."
-	| pathIndexes |
-
-	pathIndexes := self pathIndexOf: pathArray.
-	pathIndexes size > 1 ifTrue: [ 
-		self expandPath: pathIndexes allButLast ].
-	self 
-		selectPath: pathIndexes
+		
+	contentView 
+		selectPathByItems: pathArray 
 		scrollToSelection: aBoolean
 ]
 
@@ -214,21 +196,21 @@ SpAbstractEasyTreeListViewPresenter >> selectPaths: pathArray [
 	"Selects all elements in `pathsArray``
 	`pathsArray` is an array of paths. A path is an array of node indexes (e.g. #(1 2 3))"
 
-	self selection selectPaths: pathArray
+	contentView selectPaths: pathArray
 ]
 
 { #category : 'api - selection' }
 SpAbstractEasyTreeListViewPresenter >> selectedItem [
 	"Return selected item."
 	
-	^ self selection selectedItem
+	^ contentView selectedItem
 ]
 
 { #category : 'api - selection' }
 SpAbstractEasyTreeListViewPresenter >> selectedItems [
 	"Return all the selected items in the case of a multiple selection list"
 	
-	^ self selection selectedItems
+	^ contentView selectedItems
 ]
 
 { #category : 'api - selection' }
@@ -317,17 +299,6 @@ SpAbstractEasyTreeListViewPresenter >> whenSelectedItemChangedDo: aBlock [
 	
 	contentView whenSelectedItemChangedDo: aBlock
 
-]
-
-{ #category : 'api - events' }
-SpAbstractEasyTreeListViewPresenter >> whenSelectionChangedDo: aBlock [ 
-	"Inform when selection has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-	
-	contentView whenSelectionChangedDo: aBlock
 ]
 
 { #category : 'api - events' }

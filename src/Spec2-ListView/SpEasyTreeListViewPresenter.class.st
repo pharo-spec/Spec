@@ -11,12 +11,6 @@ Class {
 }
 
 { #category : 'api' }
-SpEasyTreeListViewPresenter >> children: aBlock [
-
-	contentView children: aBlock
-]
-
-{ #category : 'api' }
 SpEasyTreeListViewPresenter >> contextMenu: aBlock [ 
 	
 	self flag: #TODO

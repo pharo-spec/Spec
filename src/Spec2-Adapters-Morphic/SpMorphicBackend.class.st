@@ -91,19 +91,17 @@ SpMorphicBackend >> listClass [
 
 { #category : 'private - dialogs' }
 SpMorphicBackend >> newFileDialogFor: aFileDialog [
-	| dialog |
-
-	dialog := FileDialogWindow basicNew
-		previewType: false;
-		initialize;
-		title: (aFileDialog title ifNil: [ 'Select File...' ]);
-		answerPathName.
+	| dialog dialogClass |
 	
-	aFileDialog filters ifNotEmpty: [ :filters | 
-		dialog validExtensions: filters ].
-	aFileDialog path ifNotNil: [ :path | 
-		dialog fileNameText: path path fullName.
-		dialog selectPath: path fullName ].
+	dialogClass := aFileDialog isOpenFile
+		ifTrue: [ StOpenFilePresenter ]
+		ifFalse: [ StOpenDirectoryPresenter ].
+	dialog := dialogClass for: aFileDialog.
+	
+	aFileDialog path ifNotNil: [ :folder | dialog openFolder: folder ].
+	aFileDialog filters ifNotEmpty: [ :filters |
+		dialog fileNavigationSystem 
+			filter: (StCustomExtensionsFilter extensions: { filters }) ].
 
 	^ dialog
 ]
