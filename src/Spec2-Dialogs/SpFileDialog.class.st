@@ -12,6 +12,7 @@ Class {
 		'filters',
 		'path',
 		'application',
+		'parentWindow',
 		'action'
 	],
 	#category : 'Spec2-Dialogs',
@@ -105,6 +106,18 @@ SpFileDialog >> isSaveFile [
 SpFileDialog >> openModal [
 
 	^ self application backend openFileDialog: self
+]
+
+{ #category : 'accessing' }
+SpFileDialog >> parentWindow [
+
+	^ parentWindow
+]
+
+{ #category : 'accessing' }
+SpFileDialog >> parentWindow: anObject [
+
+	parentWindow := anObject
 ]
 
 { #category : 'api' }
