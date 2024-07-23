@@ -1,81 +1,23 @@
 Class {
-	#name : 'SpEasyListViewPresenter',
-	#superclass : 'SpAbstractEasyListViewPresenter',
+	#name : 'SpEasyTreeListViewPresenter',
+	#superclass : 'SpAbstractEasyTreeListViewPresenter',
 	#instVars : [
+		'#headerPanel',
 		'#display => ObservableSlot',
-		'#displayIcon => ObservableSlot',
-		'#headerPanel'
+		'#displayIcon => ObservableSlot'
 	],
 	#category : 'Spec2-ListView',
 	#package : 'Spec2-ListView'
 }
 
-{ #category : 'specs' }
-SpEasyListViewPresenter class >> adapterName [
-
-	^ #EasyListViewAdapter
-]
-
-{ #category : 'examples' }
-SpEasyListViewPresenter class >> example [
-	"This example show a simple list with all classes, using all the default settings."
-
-	^ self new
-		application: (SpApplication new useBackend: #Gtk);
-		items: self environment allClasses;
-		open;
-		yourself
-]
-
-{ #category : 'examples' }
-SpEasyListViewPresenter class >> exampleMultipleSelection [
-
-	^ self new
-		application: (SpApplication new useBackend: #Gtk);
-		items: self environment allClasses;
-		beMultipleSelection;
-		open;
-		yourself
-]
-
-{ #category : 'examples' }
-SpEasyListViewPresenter class >> exampleWithHeaderTitle [
-
-	^ self new
-		application: (SpApplication new useBackend: #Gtk);
-		items: self environment allClasses;
-		headerTitle: 'Title';
-		open;
-		yourself
-]
-
-{ #category : 'examples' }
-SpEasyListViewPresenter class >> exampleWithIcons [
-	"This example show a simple list with icons."
-
-	^ self new
-		application: (SpApplication new useBackend: #Gtk);
-		displayIcon: [ :e | self iconNamed: #forwardIcon ];
-		items: (1 to: 10) asArray;
-		open;
-		yourself
-]
-
-{ #category : 'initialization' }
-SpEasyListViewPresenter >> connectPresenters [
-
-	super connectPresenters
-]
-
 { #category : 'api' }
-SpEasyListViewPresenter >> contextMenu: aBlock [
- 
-	self flag: #TODO. "Ignored, as this should be deprecated"
+SpEasyTreeListViewPresenter >> contextMenu: aBlock [ 
 	
+	self flag: #TODO
 ]
 
 { #category : 'layout' }
-SpEasyListViewPresenter >> defaultLayout [
+SpEasyTreeListViewPresenter >> defaultLayout [
 
 	^ SpOverlayLayout new
 		child: (SpBoxLayout newVertical 
@@ -87,7 +29,7 @@ SpEasyListViewPresenter >> defaultLayout [
 ]
 
 { #category : 'api' }
-SpEasyListViewPresenter >> display [
+SpEasyTreeListViewPresenter >> display [
 	"Answer the display block that will transform the objects from `SpAbstractListPresenter>>#model` into a
 	 displayable string."
 
@@ -95,7 +37,7 @@ SpEasyListViewPresenter >> display [
 ]
 
 { #category : 'api' }
-SpEasyListViewPresenter >> display: aBlock [
+SpEasyTreeListViewPresenter >> display: aBlock [
 	"Set the block that will be applied on each of the list items. 
 	 The result of the block will be used to display the item on the screen.
 	 `aBlock` receives one argument.
@@ -103,7 +45,7 @@ SpEasyListViewPresenter >> display: aBlock [
 
 	 initializePresenters
    		...
-   		fontFamilyList := self newList.
+   		fontFamilyList := self newTree.
 		fontFamilyList display: [ :fontFamily | fontFamily familyName ]
    		...
 	 "
@@ -112,14 +54,20 @@ SpEasyListViewPresenter >> display: aBlock [
 ]
 
 { #category : 'api' }
-SpEasyListViewPresenter >> displayIcon [
+SpEasyTreeListViewPresenter >> displayColor: aBlock [
+	
+	self flag: #TODO
+]
+
+{ #category : 'api' }
+SpEasyTreeListViewPresenter >> displayIcon [
 	"Return the block used to return an icon that will be displayed in the list"
 
 	^ displayIcon
 ]
 
 { #category : 'api' }
-SpEasyListViewPresenter >> displayIcon: aBlock [
+SpEasyTreeListViewPresenter >> displayIcon: aBlock [
 	"Set a block which takes an item as argument and returns the icon to display in the list. 
 	 `aBlock` receives one argument"
 
@@ -127,34 +75,34 @@ SpEasyListViewPresenter >> displayIcon: aBlock [
 ]
 
 { #category : 'private' }
-SpEasyListViewPresenter >> displayValueFor: anObject [
+SpEasyTreeListViewPresenter >> displayValueFor: anObject [
 
 	^ self display value: anObject
 ]
 
 { #category : 'testing' }
-SpEasyListViewPresenter >> hasHeaderTitle [
+SpEasyTreeListViewPresenter >> hasHeaderTitle [
 	"Answer true if the list has a title (See `SpListPresenter>>#headerTitle:`)."
 
 	^ headerPanel isVisible
 ]
 
 { #category : 'testing' }
-SpEasyListViewPresenter >> hasIcons [
+SpEasyTreeListViewPresenter >> hasIcons [
 	"Answer true if the list has an icon provider (See `SpListPresenter>>#icons:`)."
 
 	^ self displayIcon notNil
 ]
 
 { #category : 'api' }
-SpEasyListViewPresenter >> headerTitle [
+SpEasyTreeListViewPresenter >> headerTitle [
 	"Answer the header title."
 
 	^ headerPanel label
 ]
 
 { #category : 'api' }
-SpEasyListViewPresenter >> headerTitle: aString [
+SpEasyTreeListViewPresenter >> headerTitle: aString [
 	"Set the header title."
 
 	headerPanel label:( aString ifNil: [ '' ]). 
@@ -164,13 +112,13 @@ SpEasyListViewPresenter >> headerTitle: aString [
 ]
 
 { #category : 'api' }
-SpEasyListViewPresenter >> hideHeaderTitle [
+SpEasyTreeListViewPresenter >> hideHeaderTitle [
 
 	headerPanel hide
 ]
 
 { #category : 'private' }
-SpEasyListViewPresenter >> iconFor: anItem [
+SpEasyTreeListViewPresenter >> iconFor: anItem [
 
 	^ self displayIcon
 		cull: anItem
@@ -178,19 +126,19 @@ SpEasyListViewPresenter >> iconFor: anItem [
 ]
 
 { #category : 'initialization' }
-SpEasyListViewPresenter >> initialize [
+SpEasyTreeListViewPresenter >> initialize [
 
 	super initialize.
 	display := [ :object | object asString ]
 ]
 
 { #category : 'initialization' }
-SpEasyListViewPresenter >> initializePresenters [
+SpEasyTreeListViewPresenter >> initializePresenters [
 
 	super initializePresenters.
 
 	headerPanel := self newLabel.
-	contentView := self newListView
+	contentView := self newTreeListView
 		setup: [ :aPresenter | 
 			(aPresenter instantiate: SpEasyListRowPresenter)
 				listView: self;
@@ -203,20 +151,14 @@ SpEasyListViewPresenter >> initializePresenters [
 ]
 
 { #category : 'initialization' }
-SpEasyListViewPresenter >> registerEvents [
+SpEasyTreeListViewPresenter >> registerEvents [
 
 	super registerEvents.
 	self whenDisplayChangedDo: [ contentView refresh ]
 ]
 
-{ #category : 'api' }
-SpEasyListViewPresenter >> updateItemsKeepingSelection: aCollection [
-	
-	contentView updateItemsKeepingSelection: aCollection
-]
-
 { #category : 'api - events' }
-SpEasyListViewPresenter >> whenDisplayChangedDo: aBlock [
+SpEasyTreeListViewPresenter >> whenDisplayChangedDo: aBlock [
 	"Inform when the display block has changed.
  	 `aBlock` has three optional arguments: 
 	 - new value
@@ -227,7 +169,7 @@ SpEasyListViewPresenter >> whenDisplayChangedDo: aBlock [
 ]
 
 { #category : 'api - events' }
-SpEasyListViewPresenter >> whenIconsChangedDo: aBlock [
+SpEasyTreeListViewPresenter >> whenIconsChangedDo: aBlock [
 	"Inform when the icons block has changed.
  	 `aBlock` has three optional arguments: 
 	 - new value

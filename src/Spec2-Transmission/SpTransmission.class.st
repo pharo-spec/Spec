@@ -140,7 +140,8 @@ SpTransmission >> from: aPresenter port: aSymbol to: anotherPresenter transform:
 SpTransmission >> from: aPresenter port: aSymbol to: anotherPresenter transform: aValuable postTransmission: anotherValuable [
 
 	self
-		from: aPresenter port: aSymbol;
+		from: aPresenter; 
+		fromPort: aSymbol;
 		to: anotherPresenter;
 		transform: aValuable;
 		postTransmission: anotherValuable;
