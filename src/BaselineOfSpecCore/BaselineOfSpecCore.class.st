@@ -25,7 +25,6 @@ BaselineOfSpecCore >> baseline: spec [
 			package: 'Spec2-Commander2' with: [ spec requires: #('Spec2-Core' 'Spec2-Interactions') ];
 			"ListView"
 			package: 'Spec2-ListView' with: [ spec requires: #('Spec2-Core') ];
-			package: 'Spec2-Adapters-Morphic-ListView' with: [ spec requires: #('Spec2-ListView') ];
 			package: 'Spec2-ListView-Tests' with: [ spec requires: #('Spec2-ListView') ];
 			"Code"
 			package: 'Spec2-Code' with: [ spec requires: #('Spec2-Core' 'Spec2-Commands') ];
@@ -56,7 +55,6 @@ BaselineOfSpecCore >> baseline: spec [
 		'Spec2-Dialogs' 
 		'Spec2-CommandLine' 
 		'Spec2-Adapters-Stub'
-		'Spec2-Adapters-Morphic-ListView'
 		'Spec2-ListView'  
 		'Spec2-Interactions' 
 		'Spec2-Commander2' ).
