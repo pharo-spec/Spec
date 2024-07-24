@@ -67,7 +67,6 @@ SpTPresenterBuilder >> newButtonBar [
 
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newCheckBox [
-
 	^ self instantiate: SpCheckBoxPresenter
 ]
 
@@ -83,8 +82,7 @@ SpTPresenterBuilder >> newDiff [
 
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newDropList [
-
-	^ self instantiate: self application backend dropListClass
+	^ self instantiate: SpDropListPresenter
 ]
 
 { #category : 'scripting - widgets' }
@@ -126,8 +124,7 @@ SpTPresenterBuilder >> newLink [
 
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newList [
-
-	^ self instantiate: self application backend listClass
+	^ self instantiate: SpListPresenter
 ]
 
 { #category : 'scripting - widgets' }
@@ -255,15 +252,9 @@ SpTPresenterBuilder >> newStatusBar [
 ]
 
 { #category : 'scripting - widgets' }
-SpTPresenterBuilder >> newSwitch [ 
-
-	^ self instantiate: SpSwitchPresenter
-]
-
-{ #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newTable [
 
-	^ self instantiate: self application backend tableClass
+	^ self instantiate: SpTablePresenter
 ]
 
 { #category : 'scripting - widgets' }
@@ -315,11 +306,11 @@ SpTPresenterBuilder >> newToolbarToggleButton [
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newTree [
 
-	^ self instantiate: self application backend treeClass
+	^ self instantiate: SpTreePresenter
 ]
 
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newTreeTable [
 
-	^ self instantiate: self application backend treeTableClass
+	^ self instantiate: SpTreeTablePresenter
 ]

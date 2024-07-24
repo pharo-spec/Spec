@@ -30,20 +30,6 @@ SpListViewPresenter class >> example [
 ]
 
 { #category : 'examples' }
-SpListViewPresenter class >> exampleActivateOnDoubleClick [
-	"This example show the simples list view you can make: A list with a label"
-
-	self new
-		application: (SpApplication new useBackend: #Gtk);
-		isActiveOnDoubleClick;
-		items: self environment allClasses;
-		setup: [ :aPresenter | aPresenter newLabel ];
-		bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
-		whenActivatedDo: [ 'OK' crTrace ];
-		open
-]
-
-{ #category : 'examples' }
 SpListViewPresenter class >> exampleReplaceItems [
 	"This example shows how to replace dynamically the list of elements."
 	| presenter listView button items |
@@ -133,43 +119,6 @@ SpListViewPresenter class >> exampleWithIcons [
 			image image: icon.
 			label := aPresenter layout children second.
 			label label: aClass name ];
-		open
-]
-
-{ #category : 'examples' }
-SpListViewPresenter class >> exampleWithIconsAndMorph [
-	"This example shows how to construct a list with icons. 
-	 It shows also the fact you can put any presenter inside, giving a huge power 
-	 to your lists."
-
-	^ self new
-		application: (SpApplication new useBackend: #Gtk);
-		items: self environment allClasses;
-		setup: [ :aPresenter |
-			| presenter morph |
-			(presenter := aPresenter newPresenter)
-				layout: (SpBoxLayout newHorizontal
-					spacing: 5;
-					add: presenter newImage expand: false;
-					add: presenter newLabel;
-					add: (presenter newMorph 
-						morph: ((morph := SimpleButtonMorph new)
-							color: Color blue;
-							target: [ 
-								self inform: 'Clicked: ', morph label ];
-							actionSelector: #value;
-							yourself);
-						yourself);
-					yourself);
-				yourself ];
-		bind: [ :aPresenter :aClass | | icon image label morph |
-			icon := Smalltalk ui icons iconNamed: aClass systemIconName.
-			image := aPresenter layout children first.
-			image image: icon.
-			label := aPresenter layout children second.
-			label label: aClass name.
-			morph := aPresenter layout children third.
-			morph morph label: aClass name ];
 		open
 ]
 
@@ -292,6 +241,7 @@ SpListViewPresenter >> registerActions [
 SpListViewPresenter >> registerEvents [
 
 	super registerEvents.
+
 	self 
 		property: #headerTitle 
 		whenChangedDo: [ 

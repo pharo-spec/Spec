@@ -104,7 +104,6 @@ SpAbstractListPresenter >> disableActivationDuring: aBlock [
 SpAbstractListPresenter >> doActivateAtIndex: anIndex [
 
 	"Activate only if there is an item at that position"
-	activationBlock  ifNil: [ ^ self ].
 	self model at: anIndex ifAbsent: [ ^ self ].
 	
 	activationBlock cull: ((SpSingleSelectionMode on: self)
@@ -190,8 +189,8 @@ SpAbstractListPresenter >> items: aSequenceableCollection [
 	`aSequenceableCollection` is a collection of your domain specific items.
 	This resets the collection model and unselects any previously selected item."
 	
-	self unselectAll.	
-	model collection: aSequenceableCollection
+	model collection: aSequenceableCollection.
+	self unselectAll
 ]
 
 { #category : 'private' }

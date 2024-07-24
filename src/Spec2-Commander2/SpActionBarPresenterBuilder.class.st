@@ -32,7 +32,6 @@ SpActionBarPresenterBuilder >> initialize [
 
 { #category : 'visiting' }
 SpActionBarPresenterBuilder >> visitCommand: aCmCommandEntry [ 
-
 	aCmCommandEntry positionStrategy
 		addButton: aCmCommandEntry asButtonPresenter
 		toActionBar: self actionBarPresenter

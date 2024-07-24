@@ -33,41 +33,6 @@ SpMorphicBackend >> defer: aBlock [
 	UIManager default defer: aBlock
 ]
 
-{ #category : 'accessing' }
-SpMorphicBackend >> dropListClass [
-
-	^ SpDropListPresenter
-]
-
-{ #category : 'private - dialogs' }
-SpMorphicBackend >> executeOpenDirectoryDialog: aFileDialog [
-
-	^ StOpenDirectoryPresenter new
-		defaultFolder: (aFileDialog path ifNil: [ StFileSystemModel defaultDirectory ]);
-		title: (aFileDialog title ifNil: [ 'Choose Directory' translated ]);
-		openModal;
-		selectedEntry
-]
-
-{ #category : 'private - dialogs' }
-SpMorphicBackend >> executeOpenFileDialog: aFileDialog [
-	| dialog |
-
-	dialog := self newFileDialogFor: aFileDialog.
-	^ dialog openModal answer 
-		ifNotNil: [ :aString | aString asFileReference ]
-]
-
-{ #category : 'private - dialogs' }
-SpMorphicBackend >> executeSaveFileDialog: aFileDialog [
-	| dialog |
-
-	dialog := self newFileDialogFor: aFileDialog.
-	dialog answerSaveFile.
-	^ dialog openModal answer 
-		ifNotNil: [ :aString | aString asFileReference ]
-]
-
 { #category : 'deferred message' }
 SpMorphicBackend >> forceDefer: aBlock [
 
@@ -81,29 +46,6 @@ SpMorphicBackend >> inform: aString [
 	GrowlMorph
 		openWithLabel: 'Information' translated
 		contents: aString
-]
-
-{ #category : 'accessing' }
-SpMorphicBackend >> listClass [
-
-	^ SpListPresenter
-]
-
-{ #category : 'private - dialogs' }
-SpMorphicBackend >> newFileDialogFor: aFileDialog [
-	| dialog dialogClass |
-	
-	dialogClass := aFileDialog isOpenFile
-		ifTrue: [ StOpenFilePresenter ]
-		ifFalse: [ StOpenDirectoryPresenter ].
-	dialog := dialogClass for: aFileDialog.
-	
-	aFileDialog path ifNotNil: [ :folder | dialog openFolder: folder ].
-	aFileDialog filters ifNotEmpty: [ :filters |
-		dialog fileNavigationSystem 
-			filter: (StCustomExtensionsFilter extensions: { filters }) ].
-
-	^ dialog
 ]
 
 { #category : 'private - notifying' }
@@ -125,34 +67,22 @@ SpMorphicBackend >> notifyInfo: aSpecNotification [
 ]
 
 { #category : 'ui - dialogs' }
-SpMorphicBackend >> openFileDialog: aFileDialog [
+SpMorphicBackend >> selectDirectoryTitle: aString [
 
-	aFileDialog isOpenFile ifTrue: [ ^ self executeOpenFileDialog: aFileDialog ].
-	aFileDialog isOpenDirectory ifTrue: [ ^ self executeOpenDirectoryDialog: aFileDialog ].
-	
-	^ self executeSaveFileDialog: aFileDialog
+	^ UIManager default chooseDirectory: aString path: ''
+]
+
+{ #category : 'ui - dialogs' }
+SpMorphicBackend >> selectFileTitle: aString [
+
+	^ UIManager default
+		  chooseExistingFileReference: aString
+		  extensions: nil
+		  path: ''
 ]
 
 { #category : 'display' }
 SpMorphicBackend >> showWaitCursorWhile: aBlock inApplication: anApplication [
 
 	Cursor wait showWhile: aBlock
-]
-
-{ #category : 'accessing' }
-SpMorphicBackend >> tableClass [
-
-	^ SpTablePresenter
-]
-
-{ #category : 'accessing' }
-SpMorphicBackend >> treeClass [
-
-	^ SpTreePresenter	
-]
-
-{ #category : 'accessing' }
-SpMorphicBackend >> treeTableClass [
-
-	^ SpTreeTablePresenter
 ]
