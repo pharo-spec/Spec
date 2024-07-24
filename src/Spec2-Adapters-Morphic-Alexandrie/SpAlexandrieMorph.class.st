@@ -1,48 +1,43 @@
 Class {
-	#name : 'SpAlexandrieMorph',
-	#superclass : 'Morph',
+	#name : #SpAlexandrieMorph,
+	#superclass : #Morph,
 	#instVars : [
 		'surface',
 		'drawBlock',
 		'lastExtent'
 	],
-	#category : 'Spec2-Adapters-Morphic-Alexandrie-Base',
-	#package : 'Spec2-Adapters-Morphic-Alexandrie',
-	#tag : 'Base'
+	#category : #'Spec2-Adapters-Morphic-Alexandrie-Base'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 SpAlexandrieMorph >> drawBlock: aBlock [
 
 	drawBlock := aBlock
 ]
 
-{ #category : 'drawing' }
+{ #category : #drawing }
 SpAlexandrieMorph >> drawOn: aMorphicCanvas [
 
 	self redraw.
-	aMorphicCanvas
-		image: self surface asForm
-		at: self position
-		sourceRect: (0@0 extent: self extent)
-		rule: 34
+	self surface 
+		displayOnMorphicCanvas: aMorphicCanvas 
+		at: bounds origin
 ]
 
-{ #category : 'drawing' }
+{ #category : #drawing }
 SpAlexandrieMorph >> redraw [
-	| context |
 
-	context := self surface newContext. 
-	drawBlock 
-		cull: context
-		cull: (0@0 extent: self extent)
+	self surface drawDuring: [ :canvas | 
+		drawBlock 
+			cull: canvas
+			cull: (0@0 extent: self extent) ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 SpAlexandrieMorph >> surface [
  
 	lastExtent = self extent ifFalse: [ surface := nil ].
 	^ surface ifNil: [ 
 		lastExtent := self extent.
-		surface := AeCairoImageSurface extent: self extent ]
+		surface := AthensCairoSurface extent: self extent ]
 ]

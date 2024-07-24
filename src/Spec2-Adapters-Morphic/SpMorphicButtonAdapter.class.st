@@ -147,13 +147,9 @@ SpMorphicButtonAdapter >> keyStroke: anEvent fromMorph: aMorph [
 
 { #category : 'widget API' }
 SpMorphicButtonAdapter >> label [
-	| labelString |
-	
-	labelString := self presenter label 
-		ifNotNil: [ :aString | aString withAccentuatedCharacter: self presenter shortcutCharacter ].
 	
 	^ self 
-		buildLabel: labelString 
+		buildLabel: (self presenter label withAccentuatedCharacter: self presenter shortcutCharacter) 
 		withIcon: self presenter icon
 ]
 

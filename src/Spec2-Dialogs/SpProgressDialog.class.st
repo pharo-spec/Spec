@@ -84,6 +84,16 @@ SpProgressDialog >> initialize [
 ]
 
 { #category : 'initialization' }
+SpProgressDialog >> initializeDialogWindow: aDialogWindowPresenter [
+	
+	aDialogWindowPresenter whenOpenedDo: [ self afterOpenAction ].
+	
+	self parentWindow 
+		ifNotNil: [ :w | aDialogWindowPresenter centeredRelativeTo: w ] 
+		ifNil: [ aDialogWindowPresenter centered ]
+]
+
+{ #category : 'initialization' }
 SpProgressDialog >> initializePresenters [
 
 	self layout: (SpBoxLayout newTopToBottom

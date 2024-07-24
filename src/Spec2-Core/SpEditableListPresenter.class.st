@@ -49,10 +49,10 @@ SpEditableListPresenter class >> layoutWithOrdering: useOrdering [
 		ifTrue: [ listLayout 
 					add:
 						(SpBoxLayout newTopToBottom
-							add: #topButton expand: false;
-							add: #upButton expand: false;
-							add: #downButton expand: false;
-							add: #bottomButton expand: false;
+							add: #topButton expand: false fill: false padding: 0;
+							add: #upButton expand: false fill: false padding: 0;
+							add: #downButton expand: false fill: false padding: 0;
+							add: #bottomButton expand: false fill: false padding: 0;
 							yourself)
 					expand: false ].
 
@@ -147,7 +147,6 @@ SpEditableListPresenter >> initializeDialogWindow: aWindow [
 
 { #category : 'initialization' }
 SpEditableListPresenter >> initializePresenters [
-
 	label := self newLabel.
 	list := self newList.
 	addButton := self newButton.
@@ -158,32 +157,26 @@ SpEditableListPresenter >> initializePresenters [
 	bottomButton := self newButton.
 	addButton
 		addStyle: 'small';
-		addStyle: 'flat';
 		icon: (self iconNamed: #add);
 		help: 'Add a new item to the list'.
 	removeButton
 		addStyle: 'small';
-		addStyle: 'flat';
 		icon: (self iconNamed: #remove);
 		help: 'Remove a item from the list'.
 	upButton
 		addStyle: 'small';
-		addStyle: 'flat';
 		icon: (self iconNamed: #up);
 		help: 'Move this item up from one element'.
 	downButton
 		addStyle: 'small';
-		addStyle: 'flat';
 		icon: (self iconNamed: #down);
 		help: 'Move this item down from one element'.
 	topButton
 		addStyle: 'small';
-		addStyle: 'flat';
 		icon: (self iconNamed: #top);
 		help: 'Move this item on the first position of the list'.
 	bottomButton
 		addStyle: 'small';
-		addStyle: 'flat';
 		icon: (self iconNamed: #bottom);
 		help: 'Move this item on the last position of the list'
 ]
@@ -234,9 +227,9 @@ SpEditableListPresenter >> moveElementAt: index to: newIndex [
 SpEditableListPresenter >> newList [
 	"Default list collection is an Array.
 	As this presenter aims to add / remove items from the list, we need a growable collection"
-	^ super newList
-		items: OrderedCollection new;
-		yourself
+	^ (self instantiate: SpListPresenter)
+			items: OrderedCollection new;
+			yourself
 ]
 
 { #category : 'api' }
@@ -319,6 +312,6 @@ SpEditableListPresenter >> upButton [
 ]
 
 { #category : 'api' }
-SpEditableListPresenter >> whenSelectionChangedDo: aBlock [
-	list whenSelectionChangedDo: aBlock
+SpEditableListPresenter >> whenSelectionChangedDo: aBlockClosure [ 
+	list whenSelectionChangedDo: aBlockClosure
 ]

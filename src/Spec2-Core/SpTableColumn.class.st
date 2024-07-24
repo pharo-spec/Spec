@@ -111,12 +111,6 @@ SpTableColumn >> evaluation [
 	^ evaluation
 ]
 
-{ #category : 'testing' }
-SpTableColumn >> hasFixedWidth [
-
-	^ (self width isNil or: [ self width = 0 ]) not
-]
-
 { #category : 'initialization' }
 SpTableColumn >> initialize [
 

@@ -120,7 +120,7 @@ SpJobListPresenter >> jobEnd: ann [
 		self removeJobPresenter: ann job ]
 ]
 
-{ #category : 'initialization' }
+{ #category : 'private' }
 SpJobListPresenter >> jobPresenterHeight [
 
 	^ 80

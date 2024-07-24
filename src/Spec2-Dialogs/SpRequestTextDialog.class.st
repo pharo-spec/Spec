@@ -58,6 +58,4 @@ SpRequestTextDialog >> initializePresenters [
 	label := self newDialogLabel.
 	textInput := self newTextInput.
 	errorLabel := self newLabel.
-	
-	label hide
 ]

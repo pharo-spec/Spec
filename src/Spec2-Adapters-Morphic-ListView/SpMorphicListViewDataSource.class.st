@@ -21,3 +21,13 @@ SpMorphicListViewDataSource >> cellColumn: column row: rowIndex [
 
 	^ cell addMorphBack: contentPresenter build
 ]
+
+{ #category : 'accessing' }
+SpMorphicListViewDataSource >> headerColumn: column [
+
+	column id ifNil: [ ^ nil ]. 
+	^ FTCellMorph new 
+		listCentering: #left;
+		addMorph: column id asMorph asReadOnlyMorph;
+		yourself
+]
