@@ -23,9 +23,6 @@ BaselineOfSpecCore >> baseline: spec [
 			package: 'Spec2-Transmission' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Interactions' with: [ spec requires: #('Spec2-Core') ];
 			package: 'Spec2-Commander2' with: [ spec requires: #('Spec2-Core' 'Spec2-Interactions') ];
-			"ListView"
-			package: 'Spec2-ListView' with: [ spec requires: #('Spec2-Core') ];
-			package: 'Spec2-ListView-Tests' with: [ spec requires: #('Spec2-ListView' 'Spec2-Tests') ];
 			"Code"
 			package: 'Spec2-Code' with: [ spec requires: #('Spec2-Core' 'Spec2-Commands') ];
 			package: 'Spec2-Code-Commands' with: [ spec requires: #('Spec2-Core' 'Spec2-Commands') ];
