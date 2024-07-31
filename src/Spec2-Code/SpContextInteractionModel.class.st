@@ -62,7 +62,7 @@ SpContextInteractionModel >> hasBindingOf: aString [
 { #category : 'testing' }
 SpContextInteractionModel >> hasUnsavedCodeChanges [
 
-	^ context notNil and: [ context sourceCode ~= owner text asString ]
+	^ context isNotNil and: [ context sourceCode ~= owner text asString ]
 ]
 
 { #category : 'testing' }

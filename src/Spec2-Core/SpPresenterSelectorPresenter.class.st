@@ -23,12 +23,6 @@ Class {
 	#tag : 'Widgets'
 }
 
-{ #category : 'transmission' }
-SpPresenterSelectorPresenter >> defaultInputPort [
-
-	^ self inputModelPort
-]
-
 { #category : 'api - focus' }
 SpPresenterSelectorPresenter >> defaultKeyboardFocus [
 
@@ -54,12 +48,6 @@ SpPresenterSelectorPresenter >> initialize [
 SpPresenterSelectorPresenter >> initializePresenters [
 
 	layout := SpBoxLayout newTopToBottom
-]
-
-{ #category : 'transmission' }
-SpPresenterSelectorPresenter >> inputModelPort [
-
-	^ SpModelPort newPresenter: self
 ]
 
 { #category : 'accessing - model' }

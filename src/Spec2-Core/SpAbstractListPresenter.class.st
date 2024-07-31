@@ -61,28 +61,6 @@ SpAbstractListPresenter >> activateOnSingleClick [
 	activateOnSingleClick := true
 ]
 
-{ #category : 'testing' }
-SpAbstractListPresenter >> activatesOnDoubleClick [
-	"Answer true if activation event is triggered on double click"
-
-	self
-		deprecated: 'Use isActiveOnDoubleClick'
-		transformWith: '`@receiver activatesOnDoubleClick' -> '`@receiver isActiveOnDoubleClick'.
-
-	^ activateOnSingleClick not
-]
-
-{ #category : 'testing' }
-SpAbstractListPresenter >> activatesOnSingleClick [
-	"Answer true if activation event is triggered on single click"
-
-	self
-		deprecated: 'Use isActiveOnSingleClick'
-		transformWith: '`@receiver activatesOnSingleClick' -> '`@receiver isActiveOnSingleClick'.
-
-	^ activateOnSingleClick
-]
-
 { #category : 'api' }
 SpAbstractListPresenter >> beMultipleSelection [
 	"Enable multiple selection."

@@ -158,35 +158,9 @@ SpDropListPresenter >> getList [
 SpDropListPresenter >> hasIcons [
 	"Answer whether the dropdown list will show icons"
 	
-	^ iconBlock notNil and: [ 
+	^ iconBlock isNotNil and: [ 
 		self model collection anySatisfy: [ :each |
-			each icon notNil or: [ (self getIconFor: each) notNil ] ] ]
-]
-
-{ #category : 'api' }
-SpDropListPresenter >> iconBlock [ 
-	"Answer the block that will be used to retrieve the icon to be displayed along with the 
-	 elements."
-	
-	self 
-		deprecated: 'Please use #displayIcon instead' 
-		transformWith:  '`@receiver iconBlock' 
-						-> '`@receiver displayIcon'.
-
-	^ iconBlock
-]
-
-{ #category : 'api' }
-SpDropListPresenter >> iconBlock: aBlock [	
-	"Answer a block that will be used to retrieve the icon to be displayed along with the elements.
-	 `aBlock` receives one argument (an element from the list)"
-	
-	self 
-		deprecated: 'Please use #displayIcon: instead' 
-		transformWith:  '`@receiver iconBlock: `@arg' 
-						-> '`@receiver displayIcon: `@arg'.
-
-	iconBlock := aBlock
+			each icon isNotNil or: [ (self getIconFor: each) isNotNil ] ] ]
 ]
 
 { #category : 'initialization' }

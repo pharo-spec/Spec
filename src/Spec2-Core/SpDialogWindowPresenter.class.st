@@ -168,7 +168,7 @@ SpDialogWindowPresenter >> executeDefaultAction [
 { #category : 'testing' }
 SpDialogWindowPresenter >> hasDefaultButton [
 
-	^ defaultButton notNil
+	^ defaultButton isNotNil
 ]
 
 { #category : 'initialization' }
@@ -270,6 +270,6 @@ SpDialogWindowPresenter >> triggerOkAction [
 	"Trigger defined ok action. 
 	 See `SpDialogWindowPresenter>>#okAction:`"
 
-	okAction ifNil: [ ^ self ].
-	okAction cull: self
+	okAction ifNil: [ ^ nil ].
+	^ okAction cull: self
 ]

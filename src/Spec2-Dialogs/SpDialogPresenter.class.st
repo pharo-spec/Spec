@@ -154,10 +154,9 @@ SpDialogPresenter >> icon: aForm [
 
 { #category : 'initialization' }
 SpDialogPresenter >> initializeDialogWindow: aDialogWindowPresenter [
-
-	aDialogWindowPresenter 
-		okAction: acceptAction;
-		cancelAction: cancelAction.
+	
+	acceptAction ifNotNil: [ aDialogWindowPresenter okAction: acceptAction ].
+	cancelAction ifNotNil: [ aDialogWindowPresenter cancelAction: cancelAction ].
 	
 	self parentWindow 
 		ifNotNil: [ :w | aDialogWindowPresenter centeredRelativeTo: w ] 

@@ -86,30 +86,6 @@ SpPanedLayout >> add: aChild withConstraints: aBlock place: aPosition [
 	self announceChildAdded: aChild.
 ]
 
-{ #category : 'api - adding' }
-SpPanedLayout >> addFirst: aPresenter [
-	"Add aPresenter as first element of the paned layout."
-	
-	self
-		deprecated: 'Use #first: instead'
-		transformWith: '`@receiver addFirst: `@arg' 
-						-> '`@receiver first: `@arg'.
-	
-	self first: aPresenter
-]
-
-{ #category : 'api - adding' }
-SpPanedLayout >> addSecond: aPresenterOrName [
-	"Add aPresenterOrName as second element of the paned layout."
-
-	self
-		deprecated: 'Use #second: instead'
-		transformWith: '`@receiver addSecond: `@arg' 
-						-> '`@receiver second: `@arg'.
-
-	self second: aPresenterOrName
-]
-
 { #category : 'api' }
 SpPanedLayout >> children [
 
@@ -156,35 +132,6 @@ SpPanedLayout >> isHorizontal [
 SpPanedLayout >> isVertical [ 
 
 	^ self direction = SpLayoutDirection vertical
-]
-
-{ #category : 'api' }
-SpPanedLayout >> position [
-	"Indicates original position of splitter. 
-	 It can be nil (then it defaults to 50%).
-	 It can be a percentage (e.g. 30 percent)"
-	
-	self
-		deprecated: 'Use #positionOfSlider instead'
-		transformWith: '`@receiver position' -> '`@receiver positionOfSlider'.
-
-	^ positionOfSlider
-]
-
-{ #category : 'api' }
-SpPanedLayout >> position: aNumber [
-	"Position of the slider. 
-	 - `aNumber` can be a fixed number indicating the exact position where the slider will 
-	 be placed in the pane.
-	 - `aNumber` can also be a fraction or a percentage, indicating the percentage position 
-	 of the slider. E.g. 30 percent (0.3) indicates the slider will be place at 1/3 of the 
-	 panel."
-
-	self
-		deprecated: 'Use #positionOfSlider: instead'
-		transformWith: '`@receiver position: `@arg' -> '`@receiver positionOfSlider: `@arg'.
-	
-	positionOfSlider := aNumber
 ]
 
 { #category : 'api' }

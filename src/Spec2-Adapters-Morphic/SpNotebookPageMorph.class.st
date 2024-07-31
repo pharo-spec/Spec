@@ -31,7 +31,7 @@ SpNotebookPageMorph >> actualPageMorph: anObject [
 { #category : 'testing' }
 SpNotebookPageMorph >> isRendered [
 
-	^ actualPageMorph notNil
+	^ actualPageMorph isNotNil
 ]
 
 { #category : 'accessing' }

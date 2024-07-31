@@ -40,13 +40,13 @@ SpCodeScriptingInteractionModelTest >> testBehavior [
 SpCodeScriptingInteractionModelTest >> testBindingOf [
 
 	"auto create of bindings on demand (it will always answer a value)"
-	self assert: (interactionModel bindingOf: #somethingNotExistent) notNil.
+	self assert: (interactionModel bindingOf: #somethingNotExistent) isNotNil.
 	self assert: (interactionModel bindingOf: #somethingNotExistent) value isNil.
 	"... even if it is an Object variable... is this correct?"
-	self assert: (interactionModel bindingOf: #Object) notNil.
+	self assert: (interactionModel bindingOf: #Object) isNotNil.
 	self assert: (interactionModel bindingOf: #Object) value isNil.
 	"and of course it will answer our added bindings"
-	self assert: (interactionModel bindingOf: #testVar) notNil.
+	self assert: (interactionModel bindingOf: #testVar) isNotNil.
 	self assert: (interactionModel bindingOf: #testVar) value equals: 42
 	
 	

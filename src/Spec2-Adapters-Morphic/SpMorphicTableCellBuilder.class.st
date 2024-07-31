@@ -212,7 +212,7 @@ SpMorphicTableCellBuilder >> visitCheckboxColumn: aTableColumn [
 SpMorphicTableCellBuilder >> visitCompositeColumn: aTableColumn [
 
 	super visitCompositeColumn: aTableColumn.
-	(aTableColumn isExpandable and: [ aTableColumn width notNil ]) 
+	(aTableColumn isExpandable and: [ aTableColumn width isNotNil ]) 
 		ifTrue: [ 
 			cell hResizing: #rigid.
 			cell width: aTableColumn width ]
@@ -324,10 +324,13 @@ SpMorphicTableCellBuilder >> visitStringColumnEditable: aTableColumn on: content
   		text: content;
 		yourself.
 
-	aTableColumn acceptAction ifNotNil: [ :valuable | 
+	aTableColumn acceptAction ifNotNil: [ :valuable |
 		presenter whenSubmitDo: [ :aString |
 			valuable cull: self item cull: aString ] ].
-	
+
+		aTableColumn textChanged ifNotNil: [ :valuable |
+		presenter whenTextChangedDo: [ :aString |
+			valuable cull: self item cull: aString ] ].
 	"add cell"
 	morph := presenter build.
 	presenter adapter applyStyle.

@@ -49,10 +49,10 @@ SpChooserPresenter class >> exampleClasses [
 SpChooserPresenter class >> examplePackages [
 
 	^ (self
-		   sourceItems: RPackageOrganizer default packages
-		   chosenItems:
-		   { (RPackageOrganizer default packageNamed: 'Spec2-CommonWidgets') }
-		   displayBlock: #packageName) open
+		sourceItems: self packageOrganizer packages
+		chosenItems: { (self packageOrganizer packageNamed: 'Spec2-CommonWidgets') }
+		displayBlock: #packageName)
+		  open
 ]
 
 { #category : 'instance creation' }
@@ -232,8 +232,7 @@ SpChooserPresenter >> moveSelectedFrom: fromList to: toList [
 
 	| newFromListItems |
 	toList items: toList unfilteredItems , fromList selectedItems.
-	newFromListItems := OrderedCollection withAll:
-		                    fromList unfilteredItems.
+	newFromListItems := OrderedCollection withAll: fromList unfilteredItems.
 	newFromListItems removeAllFoundIn: fromList selectedItems.
 	fromList items: newFromListItems
 ]

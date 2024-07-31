@@ -35,7 +35,7 @@ SpApplication >> informUser: aString during: aBlock [
 	Job new
 		title: aString;
 		block: [ :job | 
-			job min: 0; max: 100.
+			"job min: 0; max: 100."
 			result := aBlock cull: job ];
 		run.
 
@@ -81,16 +81,6 @@ SpApplication >> newJobList [
 ]
 
 { #category : '*Spec2-Dialogs' }
-SpApplication >> newProgress [
-
-	self 
-		deprecated: 'Use #newJobList' 
-		transformWith:  '`@receiver newProgress' 
-						-> '`@receiver newJobList'.
-	^ SpJobListPresenter newApplication: self
-]
-
-{ #category : '*Spec2-Dialogs' }
 SpApplication >> newRequest [
 
 	^ SpRequestDialog newApplication: self
@@ -106,6 +96,12 @@ SpApplication >> newRequestText [
 SpApplication >> newSelect [
 
 	^ SpSelectDialog newApplication: self
+]
+
+{ #category : '*Spec2-Dialogs' }
+SpApplication >> newSelectMultiple [
+
+	^ SpSelectMultipleDialog newApplication: self
 ]
 
 { #category : '*Spec2-Dialogs' }

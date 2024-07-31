@@ -25,5 +25,5 @@ SpAbstractWidgetPresenterDeferringActionTest >> testWithAdapterPerformOrDeferExe
 	presenter adapter: Object new.
 	presenter withAdapterPerformOrDefer: [ :anAdapter | 
 		executed := anAdapter. ].
-	self assert: executed notNil
+	self assert: executed isNotNil
 ]

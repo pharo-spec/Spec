@@ -237,14 +237,14 @@ SpWindowPresenter >> hasDecorations [
 SpWindowPresenter >> hasMenu [ 
 	"Answer if window has a menu defined"
 	
-	^ self menu notNil
+	^ self menu isNotNil
 ]
 
 { #category : 'testing' }
 SpWindowPresenter >> hasPresenter: aPresenter [
 	"Answer if window includes `aPresenter`"
 
-	^ aPresenter isNotNil and: [aPresenter adapter notNil
+	^ aPresenter isNotNil and: [aPresenter adapter isNotNil
 		and: [ self adapter hasWidget: aPresenter adapter ]]
 ]
 
@@ -252,14 +252,14 @@ SpWindowPresenter >> hasPresenter: aPresenter [
 SpWindowPresenter >> hasStatusBar [
 	"Answer if window has a status bar defined"
 	
-	^ self statusBar notNil
+	^ self statusBar isNotNil
 ]
 
 { #category : 'testing' }
 SpWindowPresenter >> hasToolbar [
 	"Answer if window has a toolbar defined"
 
-	^ self toolbar notNil and: [ self toolbar notEmpty ]
+	^ self toolbar isNotNil and: [ self toolbar notEmpty ]
 ]
 
 { #category : 'api' }
@@ -384,17 +384,6 @@ SpWindowPresenter >> isResizable [
 	"Answer if window is resizeable"
 
 	^ resizable
-]
-
-{ #category : 'testing' }
-SpWindowPresenter >> isResizeable [
-	"Answer if window is resizeable"
-	
-	self 
-		deprecated: 'Use #isResizable instead'  
-		transformWith: '`@receiver isResizeable' -> '`@receiver isResizable'.
-
-	^ self isResizable
 ]
 
 { #category : 'testing' }
@@ -544,6 +533,13 @@ SpWindowPresenter >> resize: anExtent [
 
 	self withAdapterPerformOrDefer: [ :anAdapter | 
 		anAdapter resize: anExtent ]
+]
+
+{ #category : 'api' }
+SpWindowPresenter >> restore [
+	"Restore the window"
+
+	self withAdapterDo: [ :anAdapter | anAdapter restore ]
 ]
 
 { #category : 'api' }

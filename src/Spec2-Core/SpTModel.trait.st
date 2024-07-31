@@ -11,18 +11,6 @@ Trait {
 	#tag : 'Widgets'
 }
 
-{ #category : 'transmission' }
-SpTModel >> defaultInputPort [
-
-	^ self inputModelPort
-]
-
-{ #category : 'transmission' }
-SpTModel >> inputModelPort [
-
-	^ SpModelPort newPresenter: self
-]
-
 { #category : 'accessing - model' }
 SpTModel >> model [
 

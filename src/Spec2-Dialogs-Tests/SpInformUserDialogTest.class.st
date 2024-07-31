@@ -1,18 +1,18 @@
 Class {
-	#name : 'SpDialogTest',
+	#name : 'SpInformUserDialogTest',
 	#superclass : 'TestCase',
 	#category : 'Spec2-Dialogs-Tests',
 	#package : 'Spec2-Dialogs-Tests'
 }
 
 { #category : 'tests - informUserDuring' }
-SpDialogTest >> testInformUserDuring [
+SpInformUserDialogTest >> testInformUserDuring [
 
 	self shouldnt: [ SpInformUserDialog new informUser: 'hello' during: [  (Delay forMilliseconds: 100)  wait] ] raise: Error
 ]
 
 { #category : 'tests - progress bar' }
-SpDialogTest >> testInformUserDuringExecutesItsBlock [
+SpInformUserDialogTest >> testInformUserDuringExecutesItsBlock [
 
 	| executed | 
 	executed := false. 
@@ -21,7 +21,7 @@ SpDialogTest >> testInformUserDuringExecutesItsBlock [
 ]
 
 { #category : 'tests - progress bar' }
-SpDialogTest >> testInformUserDuringExecutesTheBlockOnlyOnce [
+SpInformUserDialogTest >> testInformUserDuringExecutesTheBlockOnlyOnce [
 
 	| count |
 	count := 0.
@@ -32,7 +32,7 @@ SpDialogTest >> testInformUserDuringExecutesTheBlockOnlyOnce [
 ]
 
 { #category : 'tests - progress bar' }
-SpDialogTest >> testInformUserDuringInSpApplicationExecutesTheBlockOnlyOnce [
+SpInformUserDialogTest >> testInformUserDuringInSpApplicationExecutesTheBlockOnlyOnce [
 
 	| count |
 	count := 0.
@@ -43,21 +43,21 @@ SpDialogTest >> testInformUserDuringInSpApplicationExecutesTheBlockOnlyOnce [
 ]
 
 { #category : 'tests - informUserDuring' }
-SpDialogTest >> testInformUserDuringViaApplication [
+SpInformUserDialogTest >> testInformUserDuringViaApplication [
 
 	self shouldnt: [ SpPresenter new application informUser: 'hello' during: [  (Delay forMilliseconds: 100)  wait] ] raise: Error.
 	
 ]
 
 { #category : 'tests - informUserDuring' }
-SpDialogTest >> testInformUserDuringViaPresenter [
+SpInformUserDialogTest >> testInformUserDuringViaPresenter [
 
 	self shouldnt: [ SpPresenter new informUser: 'hello' during: [  (Delay forMilliseconds: 100)  wait] ] raise: Error.
 	self shouldnt: [ SpPresenter new informUser: 'hello' during: [  (Delay forMilliseconds: 100)  wait] ] raise: Error
 ]
 
 { #category : 'tests - progress bar' }
-SpDialogTest >> testInformUserReturnsValueOfTheBlock [
+SpInformUserDialogTest >> testInformUserReturnsValueOfTheBlock [
 
 	| returned | 
 	returned := SpInformUserDialog new informUser: 'hello' during: [ 42 ].
@@ -65,7 +65,7 @@ SpDialogTest >> testInformUserReturnsValueOfTheBlock [
 ]
 
 { #category : 'tests - progress bar' }
-SpDialogTest >> testProgressInformUserDuringExecutesItsBlock [
+SpInformUserDialogTest >> testProgressInformUserDuringExecutesItsBlock [
 
 	| executed | 
 	executed := false. 
