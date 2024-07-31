@@ -10,12 +10,6 @@ Class {
 }
 
 { #category : 'running' }
-SpMorphicScrollableAdapterTest >> configureBasicContainer [
-
-	self configureBasicContainer: 100
-]
-
-{ #category : 'running' }
 SpMorphicScrollableAdapterTest >> configureBasicContainer: aNumber [
 
 	| boxLayout widgets |
@@ -29,7 +23,7 @@ SpMorphicScrollableAdapterTest >> configureBasicContainer: aNumber [
 				layout: boxLayout;
 				yourself);
 			yourself);
-		withWindowDo: [ : w | w height: 270 ];
+		extent: 100 @  270;
 		yourself.
 ]
 
@@ -45,8 +39,11 @@ SpMorphicScrollableAdapterTest >> testVScrollToAfterOpen100SubPresenters [
 	
 	| adapterWidget |
 	
-	self configureBasicContainer.
+	self configureBasicContainer: 100.
 	presenter open.
+	self assert: presenter isDisplayed.
+	self assert: presenter isVisible.
+	self assert: presenter extent y equals: 270.
 	scrollable scrollTo: 0.1 @ 2.
 	adapterWidget := scrollable adapter widget.
 	self assert: adapterWidget vScrollbarValue closeTo: 0.74074074074074.
@@ -73,7 +70,7 @@ SpMorphicScrollableAdapterTest >> testVScrollToBeforeOpen100SubPresenters [
 	
 	| adapterWidget |
 	
-	self configureBasicContainer.
+	self configureBasicContainer: 100.
 	scrollable scrollTo: 0.1 @ 2.
 	presenter open.
 	adapterWidget := scrollable adapter widget.
