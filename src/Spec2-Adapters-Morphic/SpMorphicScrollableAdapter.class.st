@@ -111,13 +111,24 @@ SpMorphicScrollableAdapter >> removeChild: aPresenter [
 	widget scrollTarget: emptyLayoutMarker
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicScrollableAdapter >> scrollTo: aPoint [
 	" Scroll the receiver horizontally and vertically determined by aPoint x and y respectively.
-	x and y should be in range [0,1] "
+	If aPoint x and y are greater than 1, transform aPoint into a percentage. 
+	If x and y are in range [0,1], interpret values as percentages  "
+
+	| x y |
+	
+	x := aPoint x.
+	y := aPoint y.
+
+	y > 1
+		ifTrue: [ y := y * 100 / widget height ].
+	x > 1
+		ifTrue: [ x := x * 100 / widget width ].
 
 	widget
-		vScrollbarValue: aPoint x;
-		hScrollbarValue: aPoint y;
+		hScrollbarValue: x;
+		vScrollbarValue: y;
 		updateScrollbars
 ]
