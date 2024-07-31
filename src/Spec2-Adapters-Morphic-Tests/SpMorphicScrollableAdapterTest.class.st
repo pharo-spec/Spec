@@ -29,6 +29,7 @@ SpMorphicScrollableAdapterTest >> configureBasicContainer: aNumber [
 				layout: boxLayout;
 				yourself);
 			yourself);
+		withWindowDo: [ : w | w height: 270 ];
 		yourself.
 ]
 
