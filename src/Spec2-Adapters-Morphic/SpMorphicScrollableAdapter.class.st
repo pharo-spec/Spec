@@ -2,7 +2,26 @@
 I'm a morphic adapter for a scrollable layout. I contain a main widget that takes as much space as he wants and I add scrolling to it.
 
 Internally, I create a GeneralScrollPane.
+
 When I'm empty, I set the GeneralScrollPane's to an empty panel morph which I keep around to know if I'm empty or not.
+
+## Example
+
+```language=Pharo
+| scrollable widgets boxLayout |
+
+boxLayout := SpBoxLayout newVertical.
+widgets := (1 to: 100) collect: [ : i | 
+	boxLayout add: (SpButtonPresenter new label: i asString; yourself) ].
+SpPresenter new
+	layout: (scrollable := SpScrollableLayout new
+		child:(SpPresenter new
+			layout: boxLayout;
+			yourself);
+		yourself);
+	open.
+scrollable scrollTo: 0.1 @ 0.2
+```
 "
 Class {
 	#name : 'SpMorphicScrollableAdapter',
@@ -90,4 +109,26 @@ SpMorphicScrollableAdapter >> removeChild: aPresenter [
 
 	self assert: aPresenter adapter widget == widget scrollTarget.
 	widget scrollTarget: emptyLayoutMarker
+]
+
+{ #category : 'accessing' }
+SpMorphicScrollableAdapter >> scrollTo: aPoint [
+	" Scroll the receiver horizontally and vertically determined by aPoint x and y respectively.
+	If aPoint x and y are greater than 1, transform aPoint into a percentage. 
+	If x and y are in range [0,1], interpret values as percentages  "
+
+	| x y |
+	
+	x := aPoint x.
+	y := aPoint y.
+
+	y > 1
+		ifTrue: [ y := y * 100 / widget height ].
+	x > 1
+		ifTrue: [ x := x * 100 / widget width ].
+
+	widget
+		hScrollbarValue: x;
+		vScrollbarValue: y;
+		updateScrollbars
 ]
