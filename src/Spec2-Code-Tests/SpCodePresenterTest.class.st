@@ -178,6 +178,31 @@ SpCodePresenterTest >> testDoBrowseImplementors [
 ]
 
 { #category : 'tests - commands' }
+SpCodePresenterTest >> testDoBrowseMethod [
+
+	| navigation |
+	navigation := SpCodeSystemNavigationMock new.
+	presenter systemNavigation: navigation.
+	presenter environment add: SpCodePresenterTest binding.
+	presenter environment add: SpCodeSystemNavigationMock binding.
+	presenter beForScripting.
+	self openInstance.
+
+
+	presenter text: 'Object'.
+	presenter doBrowseClass.
+
+	self assert: navigation messageList isNil.
+
+	navigation reset.
+	presenter text: 'selectAll'.
+	presenter doBrowseClass.
+
+	self assert: navigation browseSelector notEmpty.
+	self assert: navigation browseSelector equals: #selectAll
+]
+
+{ #category : 'tests - commands' }
 SpCodePresenterTest >> testDoBrowseMethodReferences [
 
 	| navigation |
