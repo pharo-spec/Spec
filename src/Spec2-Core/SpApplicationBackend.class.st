@@ -44,6 +44,12 @@ SpApplicationBackend >> adapterBindingsClass [
 ]
 
 { #category : 'accessing' }
+SpApplicationBackend >> componentListClass [
+
+	^ self subclassResponsibility
+]
+
+{ #category : 'accessing' }
 SpApplicationBackend >> defaultConfigurationFor: anApplication [
 
 	^ self subclassResponsibility
