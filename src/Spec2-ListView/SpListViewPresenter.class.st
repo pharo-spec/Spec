@@ -266,9 +266,7 @@ SpListViewPresenter >> headerTitle: aString [
 SpListViewPresenter >> initialize [
 	
 	super initialize.
-	self registerActions.	
-	self initializeItemFactory.
-
+	self initializeItemFactory
 ]
 
 { #category : 'initialization' }
@@ -277,15 +275,6 @@ SpListViewPresenter >> initializeItemFactory [
 	
 	self setup: [ :aPresenter | aPresenter newLabel ].
 	self bind: [ :aPresenter :anObject | aPresenter label: anObject asString ]
-]
-
-{ #category : 'initialization' }
-SpListViewPresenter >> registerActions [
-
-	self addActionWith: [ :action | action 
-		beShortcutOnly;
-		shortcut: $t ctrl unix | $t ctrl win | $t command mac;
-		action: [ self showContextMenu ] ]
 ]
 
 { #category : 'initialization' }
@@ -308,11 +297,4 @@ SpListViewPresenter >> setup: aBlock [
 SpListViewPresenter >> setupAction [
 
 	^ setupAction
-]
-
-{ #category : 'api' }
-SpListViewPresenter >> showContextMenu [ 
-	"If the presenter is displayed, shows the associated context menu"
-
-	self withAdapterDo: [ :anAdapter | anAdapter showContextMenu ]
 ]

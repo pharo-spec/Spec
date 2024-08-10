@@ -242,15 +242,6 @@ SpTreeListViewPresenter >> initializeItemFactory [
 ]
 
 { #category : 'initialization' }
-SpTreeListViewPresenter >> registerActions [
-
-	self addActionWith: [ :action | action 
-		beShortcutOnly;
-		shortcut: $t ctrl unix | $t ctrl win | $t command mac;
-		action: [ self showContextMenu ] ]
-]
-
-{ #category : 'initialization' }
 SpTreeListViewPresenter >> registerEvents [
 
 	super registerEvents.
@@ -270,11 +261,4 @@ SpTreeListViewPresenter >> setup: aBlock [
 SpTreeListViewPresenter >> setupAction [
 
 	^ setupAction
-]
-
-{ #category : 'api' }
-SpTreeListViewPresenter >> showContextMenu [ 
-	"If the presenter is displayed, shows the associated context menu"
-
-	self withAdapterDo: [ :anAdapter | anAdapter showContextMenu ]
 ]

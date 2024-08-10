@@ -124,10 +124,8 @@ SpTreeTablePresenter >> initialize [
 	lazilyComputeChildren := false.
 	verticalAlignment := SpVerticalAlignment new.
 
-
 	self beSingleSelection.
-	self activateOnDoubleClick.
-	self registerEvents
+	self activateOnDoubleClick
 ]
 
 { #category : 'testing' }

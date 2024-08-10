@@ -221,7 +221,7 @@ SpAbstractTextPresenter >> registerActions [
 
 	self addActionWith: [ :action | action 
 		beShortcutOnly;
-		shortcut: $t ctrl unix | $t ctrl win | $t command mac;
+		shortcut: $t actionModifier;
 		action: [ self showContextMenu ] ]
 ]
 

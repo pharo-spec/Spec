@@ -204,7 +204,8 @@ SpAbstractTreePresenter >> initialize [
 	super initialize.
 	self initializeTSearchable.
 	self initializeTHaveWrappingScrollBars.
-	self withScrollBars
+	self withScrollBars.
+	self registerEvents
 ]
 
 { #category : 'testing' }
@@ -323,6 +324,15 @@ SpAbstractTreePresenter >> refresh [
 	 (and losing selections with it)"
 
 	self withAdapterDo: [ :anAdapter | anAdapter refreshTree ]
+]
+
+{ #category : 'initialization' }
+SpAbstractTreePresenter >> registerActions [
+
+	self addActionWith: [ :action | action 
+		beShortcutOnly;
+		shortcut: $t actionModifier;
+		action: [ self showContextMenu ] ]
 ]
 
 { #category : 'initialization' }

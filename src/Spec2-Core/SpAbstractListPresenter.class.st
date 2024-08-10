@@ -135,6 +135,7 @@ SpAbstractListPresenter >> initialize [
 	self beSingleSelection.
 	self activateOnDoubleClick.
 
+	self registerActions.
 	self registerEvents
 ]
 
@@ -238,6 +239,15 @@ SpAbstractListPresenter >> refresh [
 	 (and losing selections with it)"
 
 	self withAdapterDo: [ :anAdapter | anAdapter refreshList ]
+]
+
+{ #category : 'initialization' }
+SpAbstractListPresenter >> registerActions [
+
+	self addActionWith: [ :action | action 
+		beShortcutOnly;
+		shortcut: $t actionModifier;
+		action: [ self showContextMenu ] ]
 ]
 
 { #category : 'initialization' }

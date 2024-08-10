@@ -189,9 +189,7 @@ SpTreeColumnViewPresenter >> initialize [
 	self beSingleSelection.
 	self activateOnDoubleClick.
 	self beResizable.
-	self showColumnHeaders.
-	
-	self registerActions
+	self showColumnHeaders
 ]
 
 { #category : 'testing' }
@@ -213,26 +211,11 @@ SpTreeColumnViewPresenter >> isShowingColumnHeaders [
 	^ showColumnHeaders
 ]
 
-{ #category : 'initialization' }
-SpTreeColumnViewPresenter >> registerActions [
-
-	self addActionWith: [ :action | action 
-		beShortcutOnly;
-		shortcut: $t ctrl unix | $t ctrl win | $t command mac;
-		action: [ self showContextMenu ] ]
-]
-
 { #category : 'api' }
 SpTreeColumnViewPresenter >> showColumnHeaders [
 	"Show column headers"
 
 	showColumnHeaders := true
-]
-
-{ #category : 'private' }
-SpTreeColumnViewPresenter >> showContextMenu [
-
-	self withAdapterDo: [ :anAdapter | anAdapter showContextMenu ]
 ]
 
 { #category : 'api - events' }
