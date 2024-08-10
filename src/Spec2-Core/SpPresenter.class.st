@@ -887,6 +887,14 @@ SpPresenter >> show [
 	visible := true
 ]
 
+{ #category : 'private' }
+SpPresenter >> showContextMenu [
+	"If the presenter is displayed, shows the associated context menu. 
+	 WARNING: Not all presenters have an associated context menu"
+
+	self withAdapterDo: [ :anAdapter | anAdapter showContextMenu ]
+]
+
 { #category : 'api' }
 SpPresenter >> styles [ 
 	"Answer the collection of styles to be applied to this presenter"
