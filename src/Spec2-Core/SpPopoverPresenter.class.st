@@ -148,6 +148,15 @@ SpPopoverPresenter >> relativeTo: aPresenter [
 	relativeTo := aPresenter
 ]
 
+{ #category : 'private - traversing' }
+SpPopoverPresenter >> traversePresentersDo: aBlock excluding: excludes [
+
+	super traversePresentersDo: aBlock excluding: excludes.
+	self presenter 
+		traversePresentersDo: aBlock 
+		excluding: excludes
+]
+
 { #category : 'api - events' }
 SpPopoverPresenter >> whenPresenterChangedDo: aBlock [
 	"Inform when content presenter has changed. 
