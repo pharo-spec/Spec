@@ -22,6 +22,12 @@ SpMorphicBackend >> adapterBindingsClass [
 ]
 
 { #category : 'accessing' }
+SpMorphicBackend >> componentListClass [
+
+	^ SpComponentListPresenter
+]
+
+{ #category : 'accessing' }
 SpMorphicBackend >> defaultConfigurationFor: anApplication [
 
 	^ anApplication defaultConfigurationForMorphic
