@@ -26,9 +26,9 @@ SpActionGroup class >> newName: aName with: aBlock [
 ]
 
 { #category : 'accessing' }
-SpActionGroup >> add: anAction [
+SpActionGroup >> add: anActionOrGroup [
 
-	self register: anAction
+	self register: anActionOrGroup
 ]
 
 { #category : 'accessing' }
