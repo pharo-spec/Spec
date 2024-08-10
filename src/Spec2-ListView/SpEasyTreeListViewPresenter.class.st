@@ -4,11 +4,18 @@ Class {
 	#instVars : [
 		'#headerPanel',
 		'#display => ObservableSlot',
-		'#displayIcon => ObservableSlot'
+		'#displayIcon => ObservableSlot',
+		'#rowPresenterClass'
 	],
 	#category : 'Spec2-ListView',
 	#package : 'Spec2-ListView'
 }
+
+{ #category : 'accessing' }
+SpEasyTreeListViewPresenter class >> defaultRowPresenterClass [
+
+	^ SpEasyListRowPresenter
+]
 
 { #category : 'api' }
 SpEasyTreeListViewPresenter >> contextMenu: aBlock [ 
@@ -140,7 +147,7 @@ SpEasyTreeListViewPresenter >> initializePresenters [
 	headerPanel := self newLabel.
 	contentView := self newTreeListView
 		setup: [ :aPresenter | 
-			(aPresenter instantiate: SpEasyListRowPresenter)
+			(aPresenter instantiate: self rowPresenterClass)
 				listView: self;
 				yourself ];
 		bind: [ :aPresenter :anObject | 
@@ -155,6 +162,18 @@ SpEasyTreeListViewPresenter >> registerEvents [
 
 	super registerEvents.
 	self whenDisplayChangedDo: [ contentView refresh ]
+]
+
+{ #category : 'api' }
+SpEasyTreeListViewPresenter >> rowPresenterClass [
+
+	^ rowPresenterClass ifNil: [ rowPresenterClass := self class defaultRowPresenterClass ]
+]
+
+{ #category : 'api' }
+SpEasyTreeListViewPresenter >> rowPresenterClass: aPresenterClass [
+
+	rowPresenterClass := aPresenterClass
 ]
 
 { #category : 'api - events' }

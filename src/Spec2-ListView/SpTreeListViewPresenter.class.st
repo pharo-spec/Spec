@@ -84,7 +84,7 @@ SpTreeListViewPresenter class >> exampleWithActions [
 		children: [ :aClass | aClass subclasses ];
 		setup: [ :aPresenter | aPresenter newLabel ];
 		bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
-		actionsWith: [ :rootGroup | rootGroup
+		withRootActionGroupDo: [ :rootGroup | rootGroup
 			addGroupWith: [ :aGroup | aGroup 
 				name: 'Group 1';
 				beDisplayedAsGroup;

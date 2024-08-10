@@ -1,10 +1,7 @@
 Class {
 	#name : 'SpEasyListRowPresenter',
-	#superclass : 'SpPresenter',
-	#traits : 'SpTModel',
-	#classTraits : 'SpTModel classTrait',
+	#superclass : 'SpEasyAbstractRowPresenter',
 	#instVars : [
-		'listView',
 		'iconPresenter',
 		'textPresenter'
 	],
@@ -36,16 +33,10 @@ SpEasyListRowPresenter >> initializePresenters [
 ]
 
 { #category : 'accessing' }
-SpEasyListRowPresenter >> listView [
-
-	^ listView
-]
-
-{ #category : 'accessing' }
 SpEasyListRowPresenter >> listView: aListView [
 
-	listView := aListView.
-	listView hasIcons
+	super listView: aListView.
+	aListView hasIcons
 		ifTrue: [ self useIconLayout ]
 		ifFalse: [ self useTextLayout ]
 ]

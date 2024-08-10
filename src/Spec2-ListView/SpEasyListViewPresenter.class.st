@@ -11,10 +11,10 @@ Class {
 	#package : 'Spec2-ListView'
 }
 
-{ #category : 'specs' }
-SpEasyListViewPresenter class >> adapterName [
+{ #category : 'accessing' }
+SpEasyListViewPresenter class >> defaultRowPresenterClass [
 
-	^ #EasyListViewAdapter
+	^ SpEasyListRowPresenter
 ]
 
 { #category : 'examples' }
@@ -180,9 +180,9 @@ SpEasyListViewPresenter >> iconFor: anItem [
 
 { #category : 'initialization' }
 SpEasyListViewPresenter >> initialize [
-
+	
 	super initialize.
-	display := [ :object | object asString ]
+	display := [ :anObject | anObject asString ]
 ]
 
 { #category : 'initialization' }
@@ -193,7 +193,7 @@ SpEasyListViewPresenter >> initializePresenters [
 	headerPanel := self newLabel.
 	contentView := self newListView
 		setup: [ :aPresenter | 
-			(aPresenter instantiate: SpEasyListRowPresenter)
+			(aPresenter instantiate: self rowPresenterClass)
 				listView: self;
 				yourself ];
 		bind: [ :aPresenter :anObject | 
@@ -210,13 +210,13 @@ SpEasyListViewPresenter >> registerEvents [
 	self whenDisplayChangedDo: [ contentView refresh ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api' }
 SpEasyListViewPresenter >> rowPresenterClass [
 	
 	^ rowPresenterClass ifNil: [ rowPresenterClass := self class defaultRowPresenterClass ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api' }
 SpEasyListViewPresenter >> rowPresenterClass: aClass [
 	
 	rowPresenterClass := aClass
@@ -228,7 +228,7 @@ SpEasyListViewPresenter >> updateItemsKeepingSelection: aCollection [
 	contentView updateItemsKeepingSelection: aCollection
 ]
 
-{ #category : 'api - events' }
+{ #category : 'private' }
 SpEasyListViewPresenter >> whenDisplayChangedDo: aBlock [
 	"Inform when the display block has changed.
  	 `aBlock` has three optional arguments: 
@@ -239,7 +239,7 @@ SpEasyListViewPresenter >> whenDisplayChangedDo: aBlock [
 	self property: #display whenChangedDo: aBlock
 ]
 
-{ #category : 'api - events' }
+{ #category : 'private' }
 SpEasyListViewPresenter >> whenIconsChangedDo: aBlock [
 	"Inform when the icons block has changed.
  	 `aBlock` has three optional arguments: 
