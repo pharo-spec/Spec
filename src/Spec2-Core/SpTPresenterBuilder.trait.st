@@ -73,7 +73,8 @@ SpTPresenterBuilder >> newCheckBox [
 
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newComponentList [
-	^ self instantiate: SpComponentListPresenter
+
+	^ self instantiate: self application backend componentListClass
 ]
 
 { #category : 'scripting - widgets' }
