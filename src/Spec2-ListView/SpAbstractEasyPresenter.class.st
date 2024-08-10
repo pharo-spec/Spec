@@ -12,18 +12,6 @@ Class {
 	#package : 'Spec2-ListView'
 }
 
-{ #category : 'api - actions' }
-SpAbstractEasyPresenter >> actionGroup [
-
-	^ contentView actionGroup
-]
-
-{ #category : 'api - actions' }
-SpAbstractEasyPresenter >> actionGroup: aSpCommandGroup [
-
-	contentView actionGroup: aSpCommandGroup
-]
-
 { #category : 'api' }
 SpAbstractEasyPresenter >> activateOnDoubleClick [
 
@@ -52,6 +40,12 @@ SpAbstractEasyPresenter >> activateSearchWith: aString [
 SpAbstractEasyPresenter >> addAction: aSpCommand [
 
 	contentView addAction: aSpCommand
+]
+
+{ #category : 'api - actions' }
+SpAbstractEasyPresenter >> addActionGroup: aSpCommandGroup [
+
+	contentView addActionGroup: aSpCommandGroup
 ]
 
 { #category : 'api' }
@@ -208,6 +202,12 @@ SpAbstractEasyPresenter >> outputSelectionPort [
 
 { #category : 'initialization' }
 SpAbstractEasyPresenter >> registerEvents [
+]
+
+{ #category : 'api - actions' }
+SpAbstractEasyPresenter >> rootActionGroup [
+
+	^ contentView rootActionGroup
 ]
 
 { #category : 'private' }

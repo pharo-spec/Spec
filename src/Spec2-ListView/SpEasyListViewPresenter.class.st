@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'#display => ObservableSlot',
 		'#displayIcon => ObservableSlot',
-		'#headerPanel'
+		'#headerPanel',
+		'#rowPresenterClass'
 	],
 	#category : 'Spec2-ListView',
 	#package : 'Spec2-ListView'
@@ -207,6 +208,18 @@ SpEasyListViewPresenter >> registerEvents [
 
 	super registerEvents.
 	self whenDisplayChangedDo: [ contentView refresh ]
+]
+
+{ #category : 'as yet unclassified' }
+SpEasyListViewPresenter >> rowPresenterClass [
+	
+	^ rowPresenterClass ifNil: [ rowPresenterClass := self class defaultRowPresenterClass ]
+]
+
+{ #category : 'as yet unclassified' }
+SpEasyListViewPresenter >> rowPresenterClass: aClass [
+	
+	rowPresenterClass := aClass
 ]
 
 { #category : 'api' }
