@@ -11,6 +11,7 @@ Class {
 
 { #category : 'default' }
 SpBrowseMethodReferencesCommand class >> defaultDescription [
+
 	^ 'Browse all references to the selected method or selector'
 ]
 
