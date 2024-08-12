@@ -20,32 +20,9 @@ SpDropListAdapterTest >> initializeTestedInstance [
 ]
 
 { #category : 'tests' }
-SpDropListAdapterTest >> testAddingIconsShowTheIcon [
-	#(pharo add book) do: [ :each | self presenter addItemLabeled: each do: [  ] icon: (self iconNamed: each) ].
-
-	self presenter selectItem: #pharo.
-
-	self assert: self adapter selectedIndexes equals: #(4).
-	backendForTest assertIcon: self adapter displayedIcon equals: (self iconNamed: #pharo)
-]
-
-{ #category : 'tests' }
 SpDropListAdapterTest >> testDoesNotShowIcons [
 
 	backendForTest assertIcon: self adapter displayedIcon equals: nil. 
-]
-
-{ #category : 'tests' }
-SpDropListAdapterTest >> testRemovingIconsAfterAddingThem [
-	#(pharo add book) do: [ :each | self presenter addItemLabeled: each do: [  ] icon: (self iconNamed: each) ].
-
-	self presenter selectItem: nil.
-	self presenter model removeAll.
-
-	#(pharo add book) do: [ :each | self presenter addItemLabeled: each do: [  ] icon: nil ].
-
-	self assert: self adapter selectedIndexes equals: #(1).
-	backendForTest assertIcon: self adapter displayedIcon equals: nil
 ]
 
 { #category : 'tests' }

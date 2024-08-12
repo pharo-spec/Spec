@@ -21,7 +21,7 @@ SpDropListItem class >> named: label do: aBlock [
 	^ self new
 		action: aBlock;
 		model: label;
-		display: [ :e | e ];
+		display: [ :aString | aString ];
 		yourself
 ]
 
@@ -83,7 +83,7 @@ SpDropListItem >> initialize [
 
 	super initialize.
 	action := [  ].
-	displayBlock := [ :e | e asString ]
+	displayBlock := [ :anObject | anObject asString ]
 ]
 
 { #category : 'accessing' }
