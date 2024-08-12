@@ -41,6 +41,12 @@ SpAbstractEasyListViewPresenter >> items: aCollection [
 ]
 
 { #category : 'api' }
+SpAbstractEasyListViewPresenter >> listSize [
+
+	^ contentView listSize
+]
+
+{ #category : 'api' }
 SpAbstractEasyListViewPresenter >> model [
 
 	^ contentView model
@@ -74,7 +80,7 @@ SpAbstractEasyListViewPresenter >> selectFirst: aString [
 	contentView selectIndex: index scrollToSelection: true
 ]
 
-{ #category : 'accessing' }
+{ #category : 'api - selection' }
 SpAbstractEasyListViewPresenter >> selectIndex: anInteger [ 
 	
 	contentView selectIndex: anInteger
@@ -99,13 +105,13 @@ SpAbstractEasyListViewPresenter >> selectedItem [
 	^ contentView selectedItem
 ]
 
-{ #category : 'accessing' }
+{ #category : 'api - selection' }
 SpAbstractEasyListViewPresenter >> selectedItems [
 	
 	^ contentView selectedItems
 ]
 
-{ #category : 'accessing' }
+{ #category : 'api - selection' }
 SpAbstractEasyListViewPresenter >> selection [
 	
 	^ contentView selection
@@ -121,6 +127,12 @@ SpAbstractEasyListViewPresenter >> showColumnHeaders [
 SpAbstractEasyListViewPresenter >> sortingBlock: aBlock [ 
 
 	self model sortingBlock: aBlock
+]
+
+{ #category : 'api - events' }
+SpAbstractEasyListViewPresenter >> whenModelChangedDo: aBlock [
+
+	contentView whenModelChangedDo: aBlock
 ]
 
 { #category : 'api' }
