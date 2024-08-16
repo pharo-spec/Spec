@@ -119,6 +119,15 @@ SpAbstractListPresenter >> doubleClickAtIndex: anIndex [
 	self doActivateAtIndex: anIndex
 ]
 
+{ #category : 'api' }
+SpAbstractListPresenter >> indexOf: anItem ifAbsent: aBlock [
+	"Answer the index of the first occurrence of anElement within the receiver. If the receiver does not contain anElement, answer the result of evaluating the argument, exceptionBlock."
+	
+	^ self model 
+		indexOf: anItem 
+		ifAbsent: aBlock
+]
+
 { #category : 'initialization' }
 SpAbstractListPresenter >> initialize [
 
