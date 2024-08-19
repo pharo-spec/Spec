@@ -272,6 +272,7 @@ SpMorphicTableAdapter >> transferFrom: aTransferMorph event: anEvent [
 	rowAndColumn := self widget container rowAndColumnIndexContainingPoint: anEvent position.
 	^ SpDragAndDropTransferToTable new
 		passenger: aTransferMorph passenger;
+		shouldCopy: aTransferMorph shouldCopy;
 		row: (rowAndColumn first ifNil: [ 0 ]);
 		column: (rowAndColumn second ifNil: [ 0 ]);
 		yourself
