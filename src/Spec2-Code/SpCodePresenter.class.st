@@ -283,8 +283,10 @@ SpCodePresenter >> doBrowseClass [
 		ifTrue: [ 
 				| classToBrowse |
 				classToBrowse := self class environment at: result ifAbsent: [ nil ].	
-					classToBrowse ifNotNil: [ ^ self systemNavigation browse: classToBrowse ] ].
-	self systemNavigation browse: result 
+				classToBrowse ifNotNil: [ ^ self systemNavigation browse: classToBrowse ] ].
+	result 
+		ifNil: [ self systemNavigation browseAllImplementorsOf: self selectedTextOrLine asSymbol ] 
+		ifNotNil: [ self systemNavigation browse: result ]
 ]
 
 { #category : 'commands' }
