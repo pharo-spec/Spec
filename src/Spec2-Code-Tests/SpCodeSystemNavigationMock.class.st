@@ -19,7 +19,8 @@ SpCodeSystemNavigationMock >> browse: aClass [
 { #category : 'opening' }
 SpCodeSystemNavigationMock >> browseAllImplementorsOf: aSelector [
 
-	browseSelector := aSelector
+	browseSelector := aSelector.
+	messageList 	:= (self allImplementorsOf: aSelector)
 ]
 
 { #category : 'accessing' }
