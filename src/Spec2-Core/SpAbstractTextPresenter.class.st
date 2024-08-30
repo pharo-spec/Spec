@@ -238,7 +238,7 @@ SpAbstractTextPresenter >> registerEvents [
 SpAbstractTextPresenter >> selectAll [
 	"Select all text"
 
-	self selectionInterval: (0 to: self text size)
+	self selectionInterval: (1 to: self text size)
 ]
 
 { #category : 'api - selection' }

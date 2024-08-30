@@ -82,8 +82,10 @@ SpAbstractTextPresenterTest >> testSelectAll [
 
 	self initializationText.
 	"We should try to do the selectAll before opening the instance to be sure it will be taken into account."
+
 	presenter selectAll.
 	self openInstance.
+	
 	self assert: presenter selectionInterval equals: (1 to: 15)
 ]
 
@@ -92,7 +94,18 @@ SpAbstractTextPresenterTest >> testSelectAllAfterOpening [
 
 	self initializationText.
 	self openInstance.
+	
 	presenter selectAll.
+	
+	self assert: presenter selectionInterval equals: (1 to: 15)
+]
+
+{ #category : 'tests' }
+SpAbstractTextPresenterTest >> testSelectAllWithoutOpening [
+
+	self initializationText.
+	presenter selectAll.
+	
 	self assert: presenter selectionInterval equals: (1 to: 15)
 ]
 
