@@ -595,7 +595,7 @@ SpCodePresenter >> isScripting [
 		ifNil: [ false ]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'private' }
 SpCodePresenter >> lineNumbers: aBoolean [
 
 	lineNumbers := aBoolean
@@ -610,7 +610,7 @@ SpCodePresenter >> lookupEnvironment [
 				ifNil: [ self class environment ] ])
 ]
 
-{ #category : 'testing' }
+{ #category : 'private - testing' }
 SpCodePresenter >> needRequestorScope [
 
 	^ self interactionModel
