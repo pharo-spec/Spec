@@ -542,6 +542,16 @@ SpWindowPresenter >> resize: anExtent [
 ]
 
 { #category : 'api' }
+SpWindowPresenter >> size [
+	"Answer current window size. 
+	 This message will return 0@0 is window is not opened."
+
+	self withAdapterDo: [ :anAdapter | ^ anAdapter size ].
+	
+	^ 0@0
+]
+
+{ #category : 'api' }
 SpWindowPresenter >> statusBar [
 	"Answer the status bar associated with this window (if defined)"
 

@@ -236,6 +236,12 @@ SpMorphicWindowAdapter >> resize: aPoint [
 		ifTrue: [ self centered ]
 ]
 
+{ #category : 'widget API' }
+SpMorphicWindowAdapter >> size [
+
+	^ widget extent
+]
+
 { #category : 'factory' }
 SpMorphicWindowAdapter >> subscribeToAnnouncements: aWindow [
 
