@@ -33,37 +33,37 @@ SpEasyColumnVisitor >> visit: aColumn [
 { #category : 'visiting' }
 SpEasyColumnVisitor >> visitCheckboxColumn: aColumn [
 
-	self visitStringColumn: aColumn
+	^ self visitStringColumn: aColumn
 ]
 
 { #category : 'visiting' }
 SpEasyColumnVisitor >> visitCompositeColumn: aColumn [
 
-	self visitStringColumn: aColumn
+	^ self visitStringColumn: aColumn
 ]
 
 { #category : 'visiting' }
 SpEasyColumnVisitor >> visitDropListColumn: aColumn [
 
-	self visitStringColumn: aColumn
+	^ self visitStringColumn: aColumn
 ]
 
 { #category : 'visiting' }
 SpEasyColumnVisitor >> visitImageColumn: aColumn [
 
-	self visitStringColumn: aColumn
+	^ self visitStringColumn: aColumn
 ]
 
 { #category : 'visiting' }
 SpEasyColumnVisitor >> visitIndexColumn: aColumn [
 
-	self visitStringColumn: aColumn
+	^ self visitStringColumn: aColumn
 ]
 
 { #category : 'visiting' }
 SpEasyColumnVisitor >> visitLinkColumn: aColumn [
 
-	self visitStringColumn: aColumn
+	^ self visitStringColumn: aColumn
 ]
 
 { #category : 'visiting' }
