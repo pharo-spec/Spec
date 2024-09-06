@@ -63,6 +63,12 @@ SpFileDialog >> beSaveFile [
 	action := #saveFile
 ]
 
+{ #category : 'as yet unclassified' }
+SpFileDialog >> doInteraction [
+	
+	^ self openModal
+]
+
 { #category : 'api' }
 SpFileDialog >> filters [
 

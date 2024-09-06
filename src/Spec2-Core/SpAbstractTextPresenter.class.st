@@ -219,9 +219,8 @@ SpAbstractTextPresenter >> readSelectionBlock: aBlock [
 { #category : 'initialization' }
 SpAbstractTextPresenter >> registerActions [
 
-	self addActionWith: [ :action | action 
-		beShortcutOnly;
-		shortcut: $t actionModifier;
+	self addShortcutWith: [ :action | action
+		shortcutKey: $t actionModifier;
 		action: [ self showContextMenu ] ]
 ]
 
@@ -238,7 +237,7 @@ SpAbstractTextPresenter >> registerEvents [
 SpAbstractTextPresenter >> selectAll [
 	"Select all text"
 	
-	self changed: #selectAll with: #()
+	self withAdapterDo: [ :anAdapter | anAdapter selectAll ]
 ]
 
 { #category : 'api - selection' }

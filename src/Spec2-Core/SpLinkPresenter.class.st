@@ -7,6 +7,8 @@ If there is no `label` set, the `url` will be taken as label aswell.
 Class {
 	#name : 'SpLinkPresenter',
 	#superclass : 'SpAbstractWidgetPresenter',
+	#traits : 'SpTDecoratedText + SpTContextMenu',
+	#classTraits : 'SpTDecoratedText classTrait + SpTContextMenu classTrait',
 	#instVars : [
 		'#label => ObservableSlot',
 		'#action => ObservableSlot'

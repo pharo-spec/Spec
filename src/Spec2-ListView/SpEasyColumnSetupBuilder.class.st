@@ -9,6 +9,12 @@ Class {
 }
 
 { #category : 'visiting' }
+SpEasyColumnSetupBuilder >> visitCheckboxColumn: aColumn [
+
+	^ self presenter newSwitch
+]
+
+{ #category : 'visiting' }
 SpEasyColumnSetupBuilder >> visitCompositeColumn: aColumn [
 	| compositePresenter layout lastColumn |
 	
