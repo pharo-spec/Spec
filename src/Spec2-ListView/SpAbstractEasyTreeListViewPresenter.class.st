@@ -5,8 +5,9 @@ Class {
 	#name : 'SpAbstractEasyTreeListViewPresenter',
 	#superclass : 'SpAbstractEasyPresenter',
 	#classTraits : 'SpTSearchable classTrait',
-	#category : 'Spec2-ListView',
-	#package : 'Spec2-ListView'
+	#category : 'Spec2-ListView-Easy',
+	#package : 'Spec2-ListView',
+	#tag : 'Easy'
 }
 
 { #category : 'testing' }

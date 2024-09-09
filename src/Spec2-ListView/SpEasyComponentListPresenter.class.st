@@ -4,8 +4,9 @@ Note: while this list in general has no sense now with the new ListView/ColumnVi
 Class {
 	#name : 'SpEasyComponentListPresenter',
 	#superclass : 'SpAbstractEasyListViewPresenter',
-	#category : 'Spec2-ListView',
-	#package : 'Spec2-ListView'
+	#category : 'Spec2-ListView-Easy',
+	#package : 'Spec2-ListView',
+	#tag : 'Easy'
 }
 
 { #category : 'examples' }

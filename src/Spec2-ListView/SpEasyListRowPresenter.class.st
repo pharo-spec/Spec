@@ -5,8 +5,9 @@ Class {
 		'iconPresenter',
 		'textPresenter'
 	],
-	#category : 'Spec2-ListView',
-	#package : 'Spec2-ListView'
+	#category : 'Spec2-ListView-Widget',
+	#package : 'Spec2-ListView',
+	#tag : 'Widget'
 }
 
 { #category : 'layout' }

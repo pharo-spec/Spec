@@ -7,8 +7,9 @@ Class {
 		'#headerPanel',
 		'#rowPresenterClass'
 	],
-	#category : 'Spec2-ListView',
-	#package : 'Spec2-ListView'
+	#category : 'Spec2-ListView-Easy',
+	#package : 'Spec2-ListView',
+	#tag : 'Easy'
 }
 
 { #category : 'accessing' }
