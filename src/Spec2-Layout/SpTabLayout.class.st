@@ -30,7 +30,7 @@ SpTabLayout >> add: aName label: aString [
 
 { #category : 'accessing' }
 SpTabLayout >> add: aPresenter withConstraints: aBlock [
-	
+
 	super add: aPresenter withConstraints: aBlock.
 	self announceChildAdded: aPresenter
 ]

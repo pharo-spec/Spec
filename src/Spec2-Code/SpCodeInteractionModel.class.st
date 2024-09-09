@@ -52,7 +52,8 @@ SpCodeInteractionModel >> compiler [
 		context: self doItContext;
 		receiver: self doItReceiver;
 		isScripting: self isScripting;
-		requestor: self
+		requestor: self;
+		yourself
 ]
 
 { #category : 'accessing' }
