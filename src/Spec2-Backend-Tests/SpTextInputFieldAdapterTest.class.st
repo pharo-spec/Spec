@@ -44,5 +44,5 @@ SpTextInputFieldAdapterTest >> testPasswordIsSetInWidget [
 SpTextInputFieldAdapterTest >> testPresenterTextIsSetInWidget [
 
 	presenter text: 'something'.
-	self assert: self widget text equals: 'something'
+	self assert: self adapter getText equals: 'something'
 ]
