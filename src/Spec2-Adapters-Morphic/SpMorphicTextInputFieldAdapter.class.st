@@ -105,6 +105,12 @@ SpMorphicTextInputFieldAdapter >> isPassword [
 	^ self widget font isKindOf: FixedFaceFont
 ]
 
+{ #category : 'accessing' }
+SpMorphicTextInputFieldAdapter >> maxLength [
+	
+	^ widget maxLength
+]
+
 { #category : 'private' }
 SpMorphicTextInputFieldAdapter >> setEditable: aBoolean to: aWidget [
 
