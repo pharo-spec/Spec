@@ -16,7 +16,7 @@ SpRadioButtonAdapterTest >> classToTest [
 SpRadioButtonAdapterTest >> testChangingLabelAffectTheWidget [
 	
 	presenter label: 'ALabel'.
-	self assert: self widget label equals: 'ALabel'
+	self assert: self adapter label equals: 'ALabel'
 ]
 
 { #category : 'tests' }
