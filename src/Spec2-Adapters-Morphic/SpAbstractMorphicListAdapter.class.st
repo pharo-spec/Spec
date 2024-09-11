@@ -125,6 +125,7 @@ SpAbstractMorphicListAdapter >> transferFrom: aTransferMorph event: anEvent [
 	rowAndColumn := self widget container rowAndColumnIndexContainingPoint: anEvent position.
 	^ SpDragAndDropTransferToList new
 		passenger: aTransferMorph passenger;
+		shouldCopy: aTransferMorph shouldCopy;
 		index: (rowAndColumn first ifNil: [ 0 ]);
 		yourself
 ]
