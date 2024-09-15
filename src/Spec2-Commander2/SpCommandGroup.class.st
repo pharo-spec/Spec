@@ -1,9 +1,9 @@
 "
-I am a command group decorator adding informations useful when for usage in context of a Spec application.
+I am a command group decorator adding information useful in the context of a Spec application.
 
 Basically, I add:
 - an #icon (#blank by default)
-- the strategy to display commands group in a MenuPresenter
+- the strategy to display command groups in a `SpMenuPresenter`, `SpMenuBarPresenter`, or `SpToolbarPresenter`
 "
 Class {
 	#name : 'SpCommandGroup',
@@ -61,6 +61,25 @@ SpCommandGroup >> asMenuPresenterWith: aBlock [
 	^ builder
 		visit: self;
 		menuPresenter
+]
+
+{ #category : 'converting' }
+SpCommandGroup >> asToolbarPresenter [
+
+	^ SpToolbarPresenterBuilder new
+		visit: self;
+		toolbarPresenter
+]
+
+{ #category : 'converting' }
+SpCommandGroup >> asToolbarPresenterWith: aBlock [
+
+	| builder |
+	builder := SpToolbarPresenterBuilder new.
+	aBlock value: builder toolbarPresenter.
+	^ builder
+		visit: self;
+		toolbarPresenter
 ]
 
 { #category : 'configuring' }
