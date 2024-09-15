@@ -27,6 +27,7 @@ SpCommandGroup >> asKMCategory [
 
 { #category : 'converting' }
 SpCommandGroup >> asMenuBarPresenter [
+
 	^ SpMenuBarPresenterBuilder new
 		visit: self;
 		menuPresenter
@@ -34,8 +35,8 @@ SpCommandGroup >> asMenuBarPresenter [
 
 { #category : 'converting' }
 SpCommandGroup >> asMenuBarPresenterWith: aBlock [
-	| builder |
 
+	| builder |
 	builder := SpMenuBarPresenterBuilder new.
 	aBlock value: builder menuPresenter.
 	^ builder
@@ -53,8 +54,8 @@ SpCommandGroup >> asMenuPresenter [
 
 { #category : 'converting' }
 SpCommandGroup >> asMenuPresenterWith: aBlock [
-	| builder |
 
+	| builder |
 	builder := SpMenuPresenterBuilder new.
 	aBlock value: builder menuPresenter.
 	^ builder
