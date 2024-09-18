@@ -244,10 +244,10 @@ SpAbstractListPresenter >> refresh [
 { #category : 'initialization' }
 SpAbstractListPresenter >> registerActions [
 
-	self addActionWith: [ :action | action 
-		beShortcutOnly;
-		shortcut: $t actionModifier;
-		action: [ self showContextMenu ] ]
+	self ensureInternalActions 
+		addShortcutWith: [ :action | action 
+			shortcutKey: $t actionModifier;
+			action: [ self showContextMenu ] ]
 ]
 
 { #category : 'initialization' }

@@ -18,13 +18,6 @@ SpMorphicTableAdapter class >> intercellSpacing [
 	^ 2@0
 ]
 
-{ #category : 'initialization' }
-SpMorphicTableAdapter >> addKeyBindingsTo: aWidget [
-
-	super addKeyBindingsTo: aWidget.
-	self addContextMenuKeyBindings: aWidget
-]
-
 { #category : 'factory' }
 SpMorphicTableAdapter >> addModelTo: tableMorph [
 

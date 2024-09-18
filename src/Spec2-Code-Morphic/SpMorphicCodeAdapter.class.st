@@ -5,17 +5,6 @@ Class {
 	#package : 'Spec2-Code-Morphic'
 }
 
-{ #category : 'initialization' }
-SpMorphicCodeAdapter >> addKeyBindingsTo: aMorph [
-
-	super addKeyBindingsTo: aMorph.
-	self presenter contextKeyBindings ifNotNil: [ :kmCategory |
-	 	kmCategory allEntries keymaps do: [ :each |
-			self
-				bindKeyCombination: each shortcut 
-				toAction: each action ] ]
-]
-
 { #category : 'widget API' }
 SpMorphicCodeAdapter >> behavior [
 

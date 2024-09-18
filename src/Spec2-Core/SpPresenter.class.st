@@ -319,6 +319,11 @@ SpPresenter >> application: anApplication [
 SpPresenter >> applyKeyBindingsFromMenu: aMenuPresenter [
 	"traverses aMenuPresenter and bind shortcuts associated "
 
+	self 
+		deprecated: 'Keybindings usege is deprecated in favor of addShortcut: system' 
+		on: '2024/09/11' 
+		in: #Pharo13.
+
 	aMenuPresenter menuGroups do: [ :group |
 		group menuItems do: [ :item |
 			item shortcut ifNotNil: [ :shortcut | 
@@ -368,6 +373,11 @@ SpPresenter >> bindKeyCombination: aShortcut toAction: aBlock [
 	 will be executed when presenter the key combination is presseed.
 	 - `aShortcut` is an instance of `KMKeyCombination`
 	 - `aBlock` receive zero arguments."
+
+	self 
+		deprecated: 'Keybindings usege is deprecated in favor of addShortcut: system' 
+		on: '2024/09/11' 
+		in: #Pharo13.
 
 	contextKeyBindings ifNil: [ contextKeyBindings := KMCategory new ].
 	contextKeyBindings addKeymapEntry: (KMKeymap

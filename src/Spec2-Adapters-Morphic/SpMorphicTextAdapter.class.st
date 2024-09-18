@@ -29,7 +29,7 @@ SpMorphicTextAdapter >> backendIncludesEditionMenu [
 ]
 
 { #category : 'protocol - shortcuts' }
-SpMorphicTextAdapter >> bindKeyCombination: aShortcut toAction: aBlock [ 
+SpMorphicTextAdapter >> bindKeyCombination: aShortcut toAction: aBlock [
 
 	self widgetDo: [ :w | 
 		w textArea
@@ -86,9 +86,9 @@ SpMorphicTextAdapter >> buildWidget [
 { #category : 'widget API' }
 SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
 	| menuPresenter |
-	
-	menuPresenter := self model contextMenu value
-		ifNotNil: [ :contextMenu | contextMenu ]
+
+	menuPresenter := self model actions 
+		ifNotNil: [ :actionGroup | actionGroup asMenuPresenter ]
 		ifNil: [ SpMenuPresenter new ].
 	
 	self presenter hasEditionContextMenu ifTrue: [ 
@@ -250,4 +250,11 @@ SpMorphicTextAdapter >> updateExtentPropagationOf: string on: aWidget [
 				width: width;
 				yourself) height + 2)"min: self currentWorld height / 3". 
 			aWidget height: height ]
+]
+
+{ #category : 'initialization' }
+SpMorphicTextAdapter >> updateKeyBindings [
+
+	self widgetDo: [ :w | w textArea removeProperty: #kmDispatcher ].
+	super updateKeyBindings
 ]

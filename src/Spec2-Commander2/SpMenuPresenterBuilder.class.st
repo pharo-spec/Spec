@@ -67,11 +67,11 @@ SpMenuPresenterBuilder >> visitCommandGroup: aCmCommandsGroup [
 	aCmCommandsGroup isRoot ifTrue: [ 
 		super visitCommandGroup: aCmCommandsGroup.
 		^ self ].
-	
+
 	aCmCommandsGroup 
 		displayIn: stack top 
 		do: [ :specGroupOrSubMenu |
 			stack push: specGroupOrSubMenu.
-			super visitCommandGroup: aCmCommandsGroup.
-			stack pop ]
+			[ super visitCommandGroup: aCmCommandsGroup ]
+			ensure: [ stack pop ] ]
 ]

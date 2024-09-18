@@ -15,11 +15,6 @@ SpMorphicBaseMenuAdapter class >> isAbstract [
 	^ self name = #SpMorphicBaseMenuAdapter
 ]
 
-{ #category : 'initialization' }
-SpMorphicBaseMenuAdapter >> addKeyBindingsTo: aMorph [
-	"This does not have keybindings"
-]
-
 { #category : 'private' }
 SpMorphicBaseMenuAdapter >> getTitleText [
 

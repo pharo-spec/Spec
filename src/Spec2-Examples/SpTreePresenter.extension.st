@@ -52,12 +52,16 @@ SpTreePresenter class >> exampleSelectPathByItems [
 SpTreePresenter class >> exampleWithContextMenu [
 	<sampleInstance>
 	| tree |
-	
+
+	self flag: #TODO. "This contextMenu was better, since it was updating before 
+	execution... I need to be able to reproduce it."
+	 	
 	^ (tree := self new)
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
 		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
 		display: [ :aClass | aClass name ];
+		addActionWith: [ :item | item name: tree selectedItem asString ];
 		contextMenu: [
 			SpMenuPresenter new 
 				addGroup: [ :group | group 

@@ -78,7 +78,7 @@ SpListViewPresenter class >> exampleWithActions [
 		items: self environment allClasses;
 		setup: [ :aPresenter | aPresenter newLabel ];
 		bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
-		withRootActionGroupDo: [ :rootGroup | rootGroup
+		actionsWith: [ :rootGroup | rootGroup
 			addGroupWith: [ :aGroup | aGroup 
 				name: 'Group 1';
 				beDisplayedAsGroup;

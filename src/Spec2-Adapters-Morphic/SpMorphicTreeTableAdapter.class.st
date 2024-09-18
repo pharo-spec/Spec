@@ -58,7 +58,6 @@ SpMorphicTreeTableAdapter >> addFocusRotationKeyBindings [
 SpMorphicTreeTableAdapter >> addKeyBindingsTo: aWidget [
 
 	super addKeyBindingsTo: aWidget.
-	self addContextMenuKeyBindings: aWidget.
 	self addActivationKeyBindings: aWidget
 ]
 

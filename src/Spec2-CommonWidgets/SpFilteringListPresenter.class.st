@@ -47,6 +47,18 @@ SpFilteringListPresenter class >> topLayout [
 		  yourself
 ]
 
+{ #category : 'api - actions' }
+SpFilteringListPresenter >> actions [
+
+	^ listPresenter actions
+]
+
+{ #category : 'api - actions' }
+SpFilteringListPresenter >> actions: aCommandGroup [
+	
+	listPresenter actions: aCommandGroup
+]
+
 { #category : 'api' }
 SpFilteringListPresenter >> applyFilter: aString [
 
@@ -93,6 +105,12 @@ SpFilteringListPresenter >> display: aBlock [
 SpFilteringListPresenter >> displayIcon: aBlock [
 
 	self listPresenter displayIcon: aBlock
+]
+
+{ #category : 'private - actions' }
+SpFilteringListPresenter >> ensureActions [
+
+	^ listPresenter ensureActions
 ]
 
 { #category : 'accessing' }

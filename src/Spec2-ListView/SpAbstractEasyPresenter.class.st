@@ -13,6 +13,18 @@ Class {
 	#tag : 'Easy'
 }
 
+{ #category : 'api - actions' }
+SpAbstractEasyPresenter >> actions [
+
+	^ contentView actions
+]
+
+{ #category : 'api - actions' }
+SpAbstractEasyPresenter >> actions: aSpCommandGroup [
+
+	contentView actions: aSpCommandGroup
+]
+
 { #category : 'api' }
 SpAbstractEasyPresenter >> activateOnDoubleClick [
 
@@ -35,18 +47,6 @@ SpAbstractEasyPresenter >> activateSearchWith: aString [
 	searchInput takeKeyboardFocus.
 	searchInput unselectAll.
 	searchInput cursorPositionIndex: aString size
-]
-
-{ #category : 'api - actions' }
-SpAbstractEasyPresenter >> addAction: aSpCommand [
-
-	contentView addAction: aSpCommand
-]
-
-{ #category : 'api - actions' }
-SpAbstractEasyPresenter >> addActionGroup: aSpCommandGroup [
-
-	contentView addActionGroup: aSpCommandGroup
 ]
 
 { #category : 'api' }
@@ -73,10 +73,10 @@ SpAbstractEasyPresenter >> connectPresenters [
 
 	searchInput 
 		addAction: (SpAction
-			newShortcut: Character escape asKeyCombination 
+			newShortcutKey: Character escape asKeyCombination 
 			action: [ self deactivateSearch: false ]);
 		addAction: (SpAction
-			newShortcut: Character cr asKeyCombination 
+			newShortcutKey: Character cr asKeyCombination 
 			action: [ self deactivateSearch: true ]);
 		whenTextChangedDo: [ :aString | self selectFirst: aString ].
 	
@@ -88,8 +88,7 @@ SpAbstractEasyPresenter >> connectPresenters [
 { #category : 'api - actions' }
 SpAbstractEasyPresenter >> contextMenuFromCommandsGroup: aValuable [
 	
-	self flag: #TODO.
-	"this is not really to be used... we have now actionGroup: :P"
+	self actions: aValuable value
 ]
 
 { #category : 'private' }
@@ -135,6 +134,12 @@ SpAbstractEasyPresenter >> disable [
 SpAbstractEasyPresenter >> enable [
 
 	self enabled: true
+]
+
+{ #category : 'private - actions' }
+SpAbstractEasyPresenter >> ensureActions [
+
+	^ contentView ensureActions
 ]
 
 { #category : 'initialization' }
@@ -203,12 +208,6 @@ SpAbstractEasyPresenter >> outputSelectionPort [
 
 { #category : 'initialization' }
 SpAbstractEasyPresenter >> registerEvents [
-]
-
-{ #category : 'api - actions' }
-SpAbstractEasyPresenter >> rootActionGroup [
-
-	^ contentView rootActionGroup
 ]
 
 { #category : 'private' }

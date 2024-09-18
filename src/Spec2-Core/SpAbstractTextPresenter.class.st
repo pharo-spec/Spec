@@ -219,9 +219,10 @@ SpAbstractTextPresenter >> readSelectionBlock: aBlock [
 { #category : 'initialization' }
 SpAbstractTextPresenter >> registerActions [
 
-	self addShortcutWith: [ :action | action
-		shortcutKey: $t actionModifier;
-		action: [ self showContextMenu ] ]
+	self ensureInternalActions 
+		addShortcutWith: [ :action | action
+			shortcutKey: $t actionModifier;
+			action: [ self showContextMenu ] ]
 ]
 
 { #category : 'initialization' }
@@ -370,9 +371,10 @@ SpAbstractTextPresenter >> whenResetDo: aBlock [
 	"Inform when a 'reset' event is triggered.
 	 It will react when user presses <meta+l> key (this is for historical reasons)."
 
-	self 
-		bindKeyCombination: SpCancelChangesCommand defaultShortcutKey
-		toAction: aBlock
+	self ensureInternalActions 
+		addShortcutWith: [ :action | action 
+			shortcutKey:  SpCancelChangesCommand defaultShortcutKey;
+			action: aBlock ]
 ]
 
 { #category : 'api - events' }

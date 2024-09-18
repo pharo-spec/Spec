@@ -27,6 +27,7 @@ SpCommandGroup >> asKMCategory [
 
 { #category : 'converting' }
 SpCommandGroup >> asMenuBarPresenter [
+
 	^ SpMenuBarPresenterBuilder new
 		visit: self;
 		menuPresenter
@@ -60,6 +61,15 @@ SpCommandGroup >> asMenuPresenterWith: aBlock [
 	^ builder
 		visit: self;
 		menuPresenter
+]
+
+{ #category : 'initialization' }
+SpCommandGroup >> assignUniqueName [
+
+(self name isNotNil and: [ self name ~= CmCommandGroup defaultName ]) 
+		ifTrue: [ ^ self ].
+
+	self name: UUID new asString
 ]
 
 { #category : 'configuring' }

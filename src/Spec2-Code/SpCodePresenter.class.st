@@ -135,9 +135,7 @@ SpCodePresenter class >> exampleOverridingContextMenu [
 	
 	^ self new
 		overridingContextMenu;
-		contextMenu: (SpMenuPresenter new
-			addGroup: [ :group | group addItem: [ :item | 
-				item name: 'Testing' ] ]);
+		addActionWith: [ :action| action name: 'Testing' ];
 		text: 'some method: 42';
 		open
 ]

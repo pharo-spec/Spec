@@ -39,7 +39,6 @@ SpMorphicLayoutAdapter >> addConstraints: constraints toChild: childMorph [
 SpMorphicLayoutAdapter >> addKeyBindingsTo: aMorph [
 	"This is called before the layout actually exists. 
 	 Skipping it."
-	
 ]
 
 { #category : 'private' }

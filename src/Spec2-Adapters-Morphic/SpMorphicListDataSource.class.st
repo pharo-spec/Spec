@@ -65,7 +65,8 @@ SpMorphicListDataSource >> listModel [
 SpMorphicListDataSource >> menuColumn: column row: rowIndex [
 	| menuPresenter |
 
-	menuPresenter := self model contextMenu.
+	self model actions ifNil: [ ^ nil ].
+	menuPresenter := self model actions asMenuPresenter.
 	menuPresenter ifNil: [ ^ nil ].
 	^ SpBindings
 		  value: self model application adapterBindings

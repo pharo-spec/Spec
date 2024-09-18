@@ -8,7 +8,8 @@ Class {
 		'action',
 		'actionEnabled',
 		'visible',
-		'actionVisible'
+		'actionVisible',
+		'id'
 	],
 	#category : 'Spec2-Commander2-Action',
 	#package : 'Spec2-Commander2',
@@ -25,7 +26,7 @@ SpAction class >> newName: aName action: aBlock [
 ]
 
 { #category : 'instance creation' }
-SpAction class >> newName: aName shortcut: aShortcut action: aBlock [
+SpAction class >> newName: aName shortcutKey: aShortcut action: aBlock [
 
 	^ self new 
 		name: aName;
@@ -35,15 +36,23 @@ SpAction class >> newName: aName shortcut: aShortcut action: aBlock [
 ]
 
 { #category : 'instance creation' }
-SpAction class >> newShortcut: aShortcut action: aBlock [
+SpAction class >> newShortcutKey: aShortcut action: aBlock [
 	"action without menu entry"
 	
 	^ self new 
-		name: aShortcut asString;
+		beShortcutOnly;
 		shortcutKey: aShortcut;
 		action: aBlock;
-		beShortcutOnly;
 		yourself
+]
+
+{ #category : 'comparing' }
+SpAction >> = anObject [
+	"Answer whether the receiver and anObject represent the same object."
+
+	self == anObject ifTrue: [ ^ true ].
+	self class = anObject class ifFalse: [ ^ false ].
+	^ self id = anObject id
 ]
 
 { #category : 'accessing' }
@@ -92,6 +101,19 @@ SpAction >> execute [
 	action cull: self context
 ]
 
+{ #category : 'comparing' }
+SpAction >> hash [
+	"Answer an integer value that is related to the identity of the receiver."
+
+	^ self id hash
+]
+
+{ #category : 'accessing' }
+SpAction >> id [
+
+	^ id ifNil: [ id := super id ]
+]
+
 { #category : 'initialization' }
 SpAction >> initialize [
 
@@ -122,7 +144,9 @@ SpAction >> printOn: stream [
 
 { #category : 'accessing' }
 SpAction >> shortcut: aKeyCombination [
-	"just a synonym"
-	
+
+	self 
+		deprecated: 'It was a bad idea' 
+		transformWith: '@receiver shortcut: `@arg1' -> '@receiver shortcutKey: `@arg1'.	
 	self shortcutKey: aKeyCombination
 ]

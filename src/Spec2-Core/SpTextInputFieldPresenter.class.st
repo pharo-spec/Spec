@@ -167,7 +167,8 @@ SpTextInputFieldPresenter >> whenSubmitDo: aBlock [
 	 presses <meta+s> key (this is for historical reasons), and with enter (cr).
 	 `aBlock` receives one argument (the submited text)"
 
-	self 
-		bindKeyCombination: SpAcceptChangesCommand defaultShortcutKey | Character cr asKeyCombination 
-		toAction: [ aBlock value: self text ]
+	self ensureInternalActions 
+		addShortcutWith: [ :action | action 
+			shortcutKey: SpAcceptChangesCommand defaultShortcutKey | Character cr asKeyCombination;
+			action: [ aBlock value: self text ] ]
 ]

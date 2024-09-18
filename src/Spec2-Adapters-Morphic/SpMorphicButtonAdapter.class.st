@@ -159,9 +159,10 @@ SpMorphicButtonAdapter >> label [
 
 { #category : 'widget API' }
 SpMorphicButtonAdapter >> menu: aMenu [
-
 	| menuPresenter |
-	menuPresenter := self presenter contextMenu.
+	
+	self presenter actions ifNil: [ ^ nil ].
+	menuPresenter := self presenter actions asMenuPresenter.
 	menuPresenter ifNil: [ ^ nil ].
 	^ SpBindings
 		  value: self presenter application adapterBindings
@@ -224,9 +225,8 @@ SpMorphicButtonAdapter >> showSubMenu: aMenu [
 { #category : 'widget API' }
 SpMorphicButtonAdapter >> showSubMenuIfPresent [
 
-	self presenter contextMenu ifNil: [ ^ self ].
-	self showSubMenu: self presenter contextMenu
-	
+	self presenter actions ifNil: [ ^ self ].
+	self showSubMenu: self presenter actions asMenuPresenter
 ]
 
 { #category : 'widget API' }

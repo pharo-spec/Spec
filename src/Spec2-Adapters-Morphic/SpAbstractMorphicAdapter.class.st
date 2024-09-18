@@ -56,22 +56,12 @@ SpAbstractMorphicAdapter >> add: anAdapter [
 	self widgetDo: [ :w | w spEnsureLayoutAndAddMorph: anAdapter widget ]
 ]
 
-{ #category : 'private' }
-SpAbstractMorphicAdapter >> addContextMenuKeyBindings: aWidget [
-	
-	self flag: #TODO. "Take this from a configuration"
-	self 
-		bindKeyCombination: $t command mac | $t control unix | $t control win
-		toAction: [ self showContextMenu ]
-
-]
-
 { #category : 'initialization' }
 SpAbstractMorphicAdapter >> addFocusRotationKeyBindings [
 
 	self presenter canTakeKeyboardFocus ifFalse: [ ^ self ].
 
-	self 
+	self
 		bindKeyCombination: Character tab asKeyCombination 
 		toAction: [ self focusNext ]. 
 	self
@@ -80,14 +70,22 @@ SpAbstractMorphicAdapter >> addFocusRotationKeyBindings [
 ]
 
 { #category : 'initialization' }
+SpAbstractMorphicAdapter >> addKeyBindingsFromGroup: actionGroup [
+	
+	actionGroup asKMCategory allEntries keymaps do: [ :each |
+		self 
+			bindKeyCombination: each shortcut 
+			toAction: each action ]
+]
+
+{ #category : 'initialization' }
 SpAbstractMorphicAdapter >> addKeyBindingsTo: aMorph [
 
 	self addFocusRotationKeyBindings.
-	self presenter contextKeyBindings ifNotNil: [ :aCategory | 
-		aCategory allEntries keymaps do: [ :each |
-			self 
-				bindKeyCombination: each shortcut 
-				toAction: each action ] ]
+	self presenter internalActions ifNotNil: [ :actionGroup | 
+		self addKeyBindingsFromGroup: actionGroup ].
+	self presenter actions ifNotNil: [ :actionGroup | 
+		self addKeyBindingsFromGroup: actionGroup ]
 ]
 
 { #category : 'initialization' }
@@ -99,7 +97,9 @@ SpAbstractMorphicAdapter >> addSettingsTo: aMorph [
 	 somehow, but no time to dig at it."
 	self widget isMorph
 		ifTrue: [ self widget presenter: self presenter ].
-	self applyVisibility
+	self applyVisibility.
+	
+	self presenter whenActionsChangedDo: [ self updateKeyBindings ]
 ]
 
 { #category : 'styling' }
@@ -597,8 +597,9 @@ SpAbstractMorphicAdapter >> show [
 { #category : 'private' }
 SpAbstractMorphicAdapter >> showContextMenu [
 
-	self presenter contextMenu ifNil: [ ^ self ].
-	self showMenu: self presenter contextMenu
+	self presenter actions ifNil: [ ^ self ].
+	self presenter actions asMenuPresenter 
+		ifNotNil: [ :aMenuPresenter | self showMenu: aMenuPresenter ]
 ]
 
 { #category : 'private' }
@@ -665,6 +666,13 @@ SpAbstractMorphicAdapter >> unsubscribe [
 	self presenter announcer 
 		unsubscribe: self widget;
 		unsubscribe: self
+]
+
+{ #category : 'initialization' }
+SpAbstractMorphicAdapter >> updateKeyBindings [
+
+	self widget removeProperty: #kmDispatcher. 
+	self addKeyBindingsTo: self widget
 ]
 
 { #category : 'protocol' }

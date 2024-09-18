@@ -29,9 +29,9 @@ SpAbstractTextPresenterTest >> testAddAction [
 		action: [ ];
 		yourself).
 
-	self assert: presenter rootActionGroup notNil.
-	self assert: presenter rootActionGroup allCommands isNotEmpty.
-	self assert: (presenter rootActionGroup allCommands anySatisfy: [ :each | each name = 'test menu' ]).
+	self assert: presenter actions notNil.
+	self assert: presenter actions allCommands isNotEmpty.
+	self assert: (presenter actions allCommands anySatisfy: [ :each | each name = 'test menu' ]).
 ]
 
 { #category : 'tests - actions' }
@@ -41,9 +41,9 @@ SpAbstractTextPresenterTest >> testAddActionWith [
 		name: 'test menu';
 		action: [ ] ].
 
-	self assert: presenter rootActionGroup notNil.
-	self assert: presenter rootActionGroup allCommands isNotEmpty.
-	self assert: (presenter rootActionGroup allCommands anySatisfy: [ :each | each name = 'test menu' ]).
+	self assert: presenter actions notNil.
+	self assert: presenter actions allCommands isNotEmpty.
+	self assert: (presenter actions allCommands anySatisfy: [ :each | each name = 'test menu' ]).
 ]
 
 { #category : 'tests - actions' }
@@ -55,9 +55,9 @@ SpAbstractTextPresenterTest >> testAddShortcut [
 		action: [ ];
 		yourself).
 
-	self assert: presenter rootActionGroup notNil.
-	self assert: presenter rootActionGroup allCommands isNotEmpty.
-	self assert: (presenter rootActionGroup allCommands anySatisfy: [ :each | 
+	self assert: presenter actions notNil.
+	self assert: presenter actions allCommands isNotEmpty.
+	self assert: (presenter actions allCommands anySatisfy: [ :each | 
 		each shortcutKey = $x ctrl ])
 ]
 
@@ -68,9 +68,9 @@ SpAbstractTextPresenterTest >> testAddShortcutWith [
 		shortcutKey: $x ctrl;
 		action: [ ] ].
 
-	self assert: presenter rootActionGroup notNil.
-	self assert: presenter rootActionGroup allCommands isNotEmpty.
-	self assert: (presenter rootActionGroup allCommands anySatisfy: [ :each | 
+	self assert: presenter actions notNil.
+	self assert: presenter actions allCommands isNotEmpty.
+	self assert: (presenter actions allCommands anySatisfy: [ :each | 
 		each shortcutKey = $x ctrl ]).
 ]
 

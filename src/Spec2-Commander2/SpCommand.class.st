@@ -42,6 +42,17 @@ SpCommand >> asToggleButtonPresenter [
 	^ self buildPresenter
 ]
 
+{ #category : 'initialization' }
+SpCommand >> assignUniqueName [
+	"we can find a name in case this command has a shortcut (and no name, 
+	 whoich would mean it will be *just* a shortcut."
+	
+	self name ifNotNil: [ ^ self ].
+	self hasShortcutKey ifFalse: [ ^ self ].
+
+	self name: self id
+]
+
 { #category : 'presenter building' }
 SpCommand >> buildPresenter [
 	^ presenter := self buildPresenterBlock value: self

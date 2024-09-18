@@ -100,14 +100,20 @@ SpCodePopoverPrintPresenter >> initializePresenters [
 
 	self flag: #TODO. "This is uber bad. Keybindings needs to come from application configuration"
 	text
-		bindKeyCombination: Character cr asKeyCombination
-			toAction: [ self dismissAndPrint ];
-		bindKeyCombination: $p meta
-			toAction: [ self dismissAndPrintWithoutColons ];
-		bindKeyCombination: $i meta 
-			toAction: [ self dismissAndInspect ];
-		bindKeyCombination: Character escape asKeyCombination | Character backspace asKeyCombination | $l meta
-			toAction: [ self dismiss ]
+		addShortcutWith: [ :action | action 
+			shortcutKey: Character cr asKeyCombination;
+			action: [ self dismissAndPrint ] ];
+		addShortcutWith: [ :action | action 
+			shortcutKey: $p actionModifier;
+			action: [ self dismissAndPrintWithoutColons ] ];
+		addShortcutWith: [ :action | action 
+			shortcutKey: $i actionModifier;
+			action: [ self dismissAndInspect ] ];
+		addShortcutWith: [ :action | action 
+			shortcutKey: Character escape asKeyCombination 
+				| Character backspace asKeyCombination 
+				| $l actionModifier;
+			action: [ self dismiss ] ]
 ]
 
 { #category : 'initialization' }
