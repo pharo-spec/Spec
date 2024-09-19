@@ -5,6 +5,6 @@ CmUICommandDisplayStrategy >> display: aCmSpecCommand in: aMenuOrGroupPresenter 
 	aMenuOrGroupPresenter
 		addItem: [ :item |
 			aBlock value: item.
-			item enabled: aCmSpecCommand canBeExecuted.
+			item enabled: [ aCmSpecCommand canBeExecuted ].
 			item ]
 ]
