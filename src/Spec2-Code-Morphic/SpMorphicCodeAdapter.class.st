@@ -25,15 +25,18 @@ SpMorphicCodeAdapter >> buildWidget [
 	
 	self presenter hasLineNumbers ifTrue: [ 
 		newWidget withLineNumbers ].
-	self presenter interactionModel ifNotNil: [ :im | 
-		self setInteractionModel: im to: newWidget ].
 	self presenter whenLineNumbersChangedDo: [ :hasLineNumbers | 
 		self changeLineNumbers: hasLineNumbers to: newWidget ].
+
+	self presenter interactionModel ifNotNil: [ :im | 
+		self setInteractionModel: im to: newWidget ].
+
 	self presenter whenSyntaxHighlightChangedDo: [ :hasSyntaxHighlight | 
 		self setEditingModeFor: newWidget ].
+
 	self presenter whenSmartCharactersChangedDo: [ :hasSmartCharacters | 
 		self setSmartCharactersFor: newWidget ].
-	
+
 	self presenter syntaxHighlightTheme ifNotNil: [ 
 		self setSyntaxHighlightThemeFor: newWidget ].
 	self presenter whenSyntaxHighlightThemeChangedDo: [ :value |

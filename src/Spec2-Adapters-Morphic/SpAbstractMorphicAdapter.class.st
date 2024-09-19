@@ -82,10 +82,19 @@ SpAbstractMorphicAdapter >> addKeyBindingsFromGroup: actionGroup [
 SpAbstractMorphicAdapter >> addKeyBindingsTo: aMorph [
 
 	self addFocusRotationKeyBindings.
+
 	self presenter internalActions ifNotNil: [ :actionGroup | 
 		self addKeyBindingsFromGroup: actionGroup ].
 	self presenter actions ifNotNil: [ :actionGroup | 
-		self addKeyBindingsFromGroup: actionGroup ]
+		self addKeyBindingsFromGroup: actionGroup ].
+	
+	self presenter contextKeyBindings ifNotNil: [ :aKMCategory | 
+		self presenter actions ifNotNil: [ 
+			Error signal: 'You are using contextKeyBindings: and actions: at the same time. Both mechanisms are mutually exclusive.' ].
+		aKMCategory allEntries keymaps do: [ :each |
+			self 
+				bindKeyCombination: each shortcut 
+				toAction: each action ] ]
 ]
 
 { #category : 'initialization' }
@@ -596,12 +605,19 @@ SpAbstractMorphicAdapter >> show [
 
 { #category : 'private' }
 SpAbstractMorphicAdapter >> showContextMenu [
-	| menu |
+	| menuPresenter |
 
-	self presenter actions ifNil: [ ^ self ].
-	menu := self presenter newMenu.
-	menu fillWith: self presenter actions.
-	self showMenu: menu
+	"apply actions"
+	self presenter actions ifNotNil: [ :actions |
+		menuPresenter := self presenter newMenu.
+		menuPresenter fillWith: actions ].
+	"apply context menu if there is one"
+	self presenter contextMenu ifNotNil: [ :aContextMenu | 
+		self presenter actions ifNotNil: [ 
+			Error signal: 'You are using contextMenu: and actions: at the same time. Both mechanisms are mutually exclusive.' ].
+		menuPresenter := aContextMenu ].
+	
+	self showMenu: menuPresenter
 ]
 
 { #category : 'private' }

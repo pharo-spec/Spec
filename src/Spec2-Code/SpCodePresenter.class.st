@@ -209,34 +209,6 @@ SpCodePresenter >> bindingOf: aString [
 	^ nil
 ]
 
-{ #category : 'private' }
-SpCodePresenter >> buildContextKeyBindingsWith: aCategory [
-	| category |
-	
-	category := self newContextMenuKeyBindings.
-	aCategory ifNotNil: [ 
-		aCategory allEntries keymaps do: [ :each |
-			category addKeymapEntry: each ] ].
-	
-	^ category
-]
-
-{ #category : 'private' }
-SpCodePresenter >> buildContextMenuWith: aValuable [
-	| menuPresenter |
-	
-	overrideContextMenu ifTrue: [
-		^ aValuable ].
-
-	menuPresenter := self newContextMenu.
-	aValuable ifNotNil: [ 
-		aValuable value ifNotNil: [ :menu |
-			menu menuGroups do: [ :aGroup |
-				menuPresenter addMenuGroup: aGroup ] ] ].
-
-	^ menuPresenter
-]
-
 { #category : 'testing' }
 SpCodePresenter >> canAddBindingOf: name [
 
@@ -249,24 +221,6 @@ SpCodePresenter >> canAddBindingOf: name [
 SpCodePresenter >> clearInteractionModel [
 
 	self interactionModel: SpCodeNullInteractionModel new
-]
-
-{ #category : 'api - shortcuts' }
-SpCodePresenter >> contextKeyBindings [
-
-	^ self buildContextKeyBindingsWith: super contextKeyBindings
-]
-
-{ #category : 'api' }
-SpCodePresenter >> contextMenu [
-	"The code presenter context menu is a compound of two menus: 
-		1) the basic interoperation menu (that includes operations like cut&paste but also do it, 
-		print it, etc.
-		2) the user defined context menu.
-    If you want to override completely this menu you need to set the 'overrideMenu' property 
-	 to true"
-
-	^ [ self buildContextMenuWith: super contextMenu ]
 ]
 
 { #category : 'commands' }
@@ -614,18 +568,6 @@ SpCodePresenter >> needRequestorScope [
 	^ self interactionModel
 		  ifNotNil: [ :sp | sp needRequestorScope ]
 		  ifNil: [ false ]
-]
-
-{ #category : 'private' }
-SpCodePresenter >> newContextMenu [
-	
-	^ self rootCommandsGroup asMenuPresenter
-]
-
-{ #category : 'private' }
-SpCodePresenter >> newContextMenuKeyBindings [
-	
-	^ self rootCommandsGroup asKMCategory
 ]
 
 { #category : 'private' }

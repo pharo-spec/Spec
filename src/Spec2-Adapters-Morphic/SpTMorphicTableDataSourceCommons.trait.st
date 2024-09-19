@@ -33,14 +33,23 @@ SpTMorphicTableDataSourceCommons >> headersByColumn [
 { #category : 'accessing' }
 SpTMorphicTableDataSourceCommons >> menuColumn: column row: rowIndex [
 	| menuPresenter |
-	
-	self model actions ifNil: [ ^ nil ].
 
-	menuPresenter := self model actions asMenuPresenter.
-	menuPresenter ifNil: [ ^ nil ].
+	"apply actions"
+	self model actions ifNotNil: [ :actions |
+		menuPresenter := self model newMenu.
+		menuPresenter fillWith: actions ].
+	"apply context menu if there is one"
+	self model contextMenu ifNotNil: [ :aContextMenu | 
+		self model actions ifNotNil: [ 
+			self error: 'You are using contextMenu: and actions: at the same time. Both mechanisms are mutually exclusive.' ].
+		menuPresenter := aContextMenu ].
+	
+	menuPresenter ifNil: [ ^ self ].
+
 	^ SpBindings
 		  value: self model application adapterBindings
-		  during: [ menuPresenter value ifNotNil: [ :presenter | presenter build ] ]
+		  during: [ menuPresenter value 
+			ifNotNil: [ :presenter | presenter build ] ]
 ]
 
 { #category : 'accessing' }

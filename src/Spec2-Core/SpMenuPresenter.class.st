@@ -136,7 +136,7 @@ SpMenuPresenter >> fillWith: anActionGroup [
 	groups removeAll.
 	SpActionMenuPresenterBuilder new
 		menuPresenter: self;
-		visit: self
+		visit: anActionGroup
 ]
 
 { #category : 'api - building' }

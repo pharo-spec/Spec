@@ -85,15 +85,19 @@ SpMorphicTextAdapter >> buildWidget [
 
 { #category : 'widget API' }
 SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
-	| menuPresenter |
-
-	menuPresenter := self model actions 
-		ifNotNil: [ :actionGroup | actionGroup asMenuPresenter ]
-		ifNil: [ SpMenuPresenter new ].
+	| menuPresenter actionGroup |
 	
+	actionGroup := SpActionGroup new beRoot.
+	
+	self presenter internalActions ifNotNil: [ :group |
+		actionGroup add: group beRoot ].
+	self presenter actions ifNotNil: [ :group |
+		actionGroup add: group beRoot ].
 	self presenter hasEditionContextMenu ifTrue: [ 
-		self presenter editionContextMenu menuGroups do: [ :each | 
-			menuPresenter addMenuGroup: each ] ].
+		actionGroup add: self presenter editionCommandsGroup beRoot ].
+
+	menuPresenter := self presenter newMenu.
+	menuPresenter fillWith: actionGroup.
 	
 	^ SpBindings
 		  value: self model application adapterBindings

@@ -13,6 +13,15 @@ SpActionMenuPresenterBuilder >> fillItem: aMenuItem with: aCommand [
 	aMenuItem name: aCommand dynamicName
 ]
 
+{ #category : 'accessing' }
+SpActionMenuPresenterBuilder >> menuPresenter: aMenuPresenter [
+
+	menuPresenter := aMenuPresenter.
+	stack := Stack new
+		push: self menuPresenter;
+		yourself
+]
+
 { #category : 'visiting' }
 SpActionMenuPresenterBuilder >> visitCommand: aCmCommand [
 
