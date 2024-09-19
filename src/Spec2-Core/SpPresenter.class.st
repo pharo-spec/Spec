@@ -319,18 +319,13 @@ SpPresenter >> application: anApplication [
 SpPresenter >> applyKeyBindingsFromMenu: aMenuPresenter [
 	"traverses aMenuPresenter and bind shortcuts associated "
 
-	self 
-		deprecated: 'Keybindings usege is deprecated in favor of addShortcut: system' 
-		on: '2024/09/11' 
-		in: #Pharo13.
-
 	aMenuPresenter menuGroups do: [ :group |
 		group menuItems do: [ :item |
 			item shortcut ifNotNil: [ :shortcut | 
-				self 
-					bindKeyCombination: shortcut 
-					toAction: [ item performMenuActionWith: #() ] ].
-			item subMenu ifNotNil: [ :subMenu | subMenu addKeybindingsTo: self	] ] ]
+				self addShortcutWith: [ :action | action
+					shortcutKey: shortcut;
+					action: [ item performMenuActionWith: #() ] ] ].
+			item subMenu ifNotNil: [ :subMenu | subMenu addKeyBindingsTo: self	] ] ]
 ]
 
 { #category : 'converting' }

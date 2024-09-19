@@ -9,7 +9,8 @@ Class {
 		'actionEnabled',
 		'visible',
 		'actionVisible',
-		'id'
+		'id',
+		'dynamicName'
 	],
 	#category : 'Spec2-Commander2-Action',
 	#package : 'Spec2-Commander2',
@@ -90,6 +91,23 @@ SpAction >> canBeExecuted [
 
 	actionEnabled ifNil: [ ^ true ].
 	^ actionEnabled cull: self context
+]
+
+{ #category : 'accessing' }
+SpAction >> dynamicName [
+
+	^ dynamicName 
+		ifNotNil: [ :aBlock | aBlock value ]
+		ifNil: [ super dynamicName ]
+]
+
+{ #category : 'accessing' }
+SpAction >> dynamicName: aBlock [
+
+	"since name works also as identifier, we need one"
+	self name 
+		ifNil: [ self name:  'dynamic-', UUID new asString ]. 
+	dynamicName := aBlock
 ]
 
 { #category : 'executing' }

@@ -121,7 +121,7 @@ SpDemo >> initializePresenters [
 		yourself.
 	
 	menu := self mainMenu.
-	menu addKeybindingsTo: self.
+	menu addKeyBindingsTo: self.
 	
 	list := self newList.
 	list

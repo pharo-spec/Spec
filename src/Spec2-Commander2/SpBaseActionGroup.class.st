@@ -1,3 +1,8 @@
+"
+Since spec command groups require a parent command group we define a base that may be used to create `SpActionGroup` instances without needing a `CmCommandGroup` before.
+
+Users should not use this class directly.
+"
 Class {
 	#name : 'SpBaseActionGroup',
 	#superclass : 'CmCommandGroup',

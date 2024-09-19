@@ -596,10 +596,12 @@ SpAbstractMorphicAdapter >> show [
 
 { #category : 'private' }
 SpAbstractMorphicAdapter >> showContextMenu [
+	| menu |
 
 	self presenter actions ifNil: [ ^ self ].
-	self presenter actions asMenuPresenter 
-		ifNotNil: [ :aMenuPresenter | self showMenu: aMenuPresenter ]
+	menu := self presenter newMenu.
+	menu fillWith: self presenter actions.
+	self showMenu: menu
 ]
 
 { #category : 'private' }

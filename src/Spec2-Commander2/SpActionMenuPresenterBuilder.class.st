@@ -6,6 +6,13 @@ Class {
 	#tag : 'Action'
 }
 
+{ #category : 'private' }
+SpActionMenuPresenterBuilder >> fillItem: aMenuItem with: aCommand [
+
+	super fillItem: aMenuItem with: aCommand.
+	aMenuItem name: aCommand dynamicName
+]
+
 { #category : 'visiting' }
 SpActionMenuPresenterBuilder >> visitCommand: aCmCommand [
 
