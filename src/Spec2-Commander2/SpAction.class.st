@@ -126,7 +126,7 @@ SpAction >> hash [
 	^ self id hash
 ]
 
-{ #category : 'accessing' }
+{ #category : 'private' }
 SpAction >> id [
 
 	^ id ifNil: [ id := super id ]
