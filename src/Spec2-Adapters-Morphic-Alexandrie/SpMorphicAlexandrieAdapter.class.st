@@ -8,9 +8,9 @@ Class {
 
 { #category : 'factory' }
 SpMorphicAlexandrieAdapter >> buildWidget [
+
 	| instance |
-	
-	instance := SpAlexandrieMorph new.
+	instance := SpAthensMorph new.
 	self presenter whenDrawBlockChangedDo: [ :newBlock | 
 		instance drawBlock: newBlock ].
 	self presenter whenExtentChangedDo: [ :newExtent | 

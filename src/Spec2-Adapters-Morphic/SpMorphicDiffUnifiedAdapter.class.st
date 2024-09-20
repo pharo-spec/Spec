@@ -9,7 +9,7 @@ Class {
 { #category : 'factory' }
 SpMorphicDiffUnifiedAdapter >> buildWidget [
 
-	^ StUnifiedDiffChangesMorph new
+	^ UnifiedDiffChangesMorph new
 		  on: self;
 		  from: self leftText
 		  to: self rightText

@@ -295,7 +295,7 @@ SpAbstractPresenter >> hasOwner [
 { #category : 'testing' }
 SpAbstractPresenter >> hasWindow [
 
-	^ self nearWindow notNil
+	^ self root isWindowPresenter
 ]
 
 { #category : 'initialization' }
@@ -350,12 +350,6 @@ SpAbstractPresenter >> isWindowPresenter [
 { #category : 'accessing' }
 SpAbstractPresenter >> layout [
 	self subclassResponsibility 
-]
-
-{ #category : 'private' }
-SpAbstractPresenter >> nearWindow [
-
-	^ self owner ifNotNil: [ :anOwner | anOwner nearWindow ]
 ]
 
 { #category : 'accessing' }
@@ -537,22 +531,24 @@ SpAbstractPresenter >> whenWillBeBuiltDo: aBlock [
 
 { #category : 'accessing' }
 SpAbstractPresenter >> window [
-	"Answer window containing this composition (windows can be nested, so we 
-	 need to answer the closest one)."
+	"Answer window containing this composition."
 	
-	^ self nearWindow
+	^ self hasWindow
+		ifTrue: [ self root ]
+		ifFalse: [ nil ]
 ]
 
 { #category : 'private - utilities' }
 SpAbstractPresenter >> withAdapterDo: aValuable [
 	"a convenience method to avoid verify by nil all the time"
 	
-	^ self adapter ifNotNil: [ :anAdapter | aValuable value: anAdapter ]
+	^ self adapter ifNotNil: aValuable
 ]
 
 { #category : 'private - utilities' }
 SpAbstractPresenter >> withWindowDo: aValuable [
 
-	^ self nearWindow 
-		ifNotNil: [ :nearWindow | aValuable value: nearWindow ]
+	self hasWindow ifFalse: [ ^ nil ].
+	"Since Presenter has window, root = window"
+	^ aValuable value: self root
 ]

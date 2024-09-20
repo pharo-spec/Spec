@@ -141,6 +141,13 @@ SpFilteringListPresenter >> filterText [
 	^  self filterInputPresenter text
 ]
 
+{ #category : 'api' }
+SpFilteringListPresenter >> headerTitle: aString [ 
+	"Set the receiver's title to aString"
+
+	listPresenter headerTitle: aString
+]
+
 { #category : 'initialization' }
 SpFilteringListPresenter >> initializePresenters [
 

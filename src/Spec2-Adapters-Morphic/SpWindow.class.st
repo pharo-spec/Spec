@@ -79,13 +79,6 @@ SpWindow >> okToChange [
 	^ self model okToChange
 ]
 
-{ #category : 'private' }
-SpWindow >> taskbarIcon [
-
-	^ self model windowIcon 
-		ifNil: [ super taskbarIcon ]
-]
-
 { #category : 'accessing' }
 SpWindow >> taskbarTask [
 	"Answer a taskbar task for the receiver.

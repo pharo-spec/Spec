@@ -158,12 +158,6 @@ SpDropDownPresenter >> items: aSequenceableCollection [
 ]
 
 { #category : 'api' }
-SpDropDownPresenter >> listSize [
-
-	^ self items size
-]
-
-{ #category : 'api' }
 SpDropDownPresenter >> model [
 	"Answer the model for this list. 
 	 It is tipically, an instance of `SpCollectionListModel`."
@@ -191,12 +185,6 @@ SpDropDownPresenter >> newEmptyModel [
 SpDropDownPresenter >> outputSelectionPort [
 
 	^ SpDropDownSelectionPort newPresenter: self
-]
-
-{ #category : 'api - selection' }
-SpDropDownPresenter >> resetSelection [
-	
-	self selection unselectAll 
 ]
 
 { #category : 'api - selection' }
@@ -256,12 +244,6 @@ SpDropDownPresenter >> setup: aBlock [
 SpDropDownPresenter >> setupAction [
 
 	^ setupAction
-]
-
-{ #category : 'api' }
-SpDropDownPresenter >> sortingBlock: aBlock [
-
-	self flag: #TODO.
 ]
 
 { #category : 'api - events' }

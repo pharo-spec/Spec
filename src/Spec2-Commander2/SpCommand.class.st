@@ -21,24 +21,9 @@ Class {
 }
 
 { #category : 'converting' }
-SpCommand >> asActionButtonPresenter [
-	
-	^ self asButtonPresenter
-		label: nil;
-		yourself
-]
-
-{ #category : 'converting' }
 SpCommand >> asButtonPresenter [
 	self flag: #TODO. "Needs to use inform user display strategy when available, no other available strategy can be used in this context. See issue #705"
 	self configureAsButton.
-	^ self buildPresenter
-]
-
-{ #category : 'converting' }
-SpCommand >> asToggleButtonPresenter [
-	
-	self configureAsButtonOfClass: SpToggleButtonPresenter. 
 	^ self buildPresenter
 ]
 
@@ -70,29 +55,25 @@ SpCommand >> buildPresenterBlock: anObject [
 
 { #category : 'presenter building' }
 SpCommand >> configureAsButton [
-
 	self configureAsButtonOfClass: SpButtonPresenter
 ]
 
 { #category : 'presenter building' }
 SpCommand >> configureAsButtonOfClass: aButtonClass [
-	
-	self buildPresenterBlock: [ :specCommand | 
-		aButtonClass new
-			label: specCommand name;
-			help: specCommand description;
-			in: [ :button | 
-				specCommand hasIcon
-					ifTrue: [ button icon: specCommand icon ] ];
-			action: [ 
-				specCommand canBeExecuted 
-					ifTrue: [ specCommand execute ] ];
-			yourself ]
+	self
+		buildPresenterBlock: [ :specCommand | 
+			aButtonClass new
+				label: specCommand name;
+				help: specCommand description;
+				in: [ :button | 
+					specCommand hasIcon
+						ifTrue: [ button icon: specCommand icon ] ];
+				action: [ specCommand execute ];
+				yourself ]
 ]
 
 { #category : 'presenter building' }
 SpCommand >> configureAsToolBarToggleButton [
-
 	self configureAsButtonOfClass: SpToolbarToggleButtonPresenter
 ]
 

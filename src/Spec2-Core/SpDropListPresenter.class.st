@@ -234,13 +234,7 @@ SpDropListPresenter >> resetSelection [
 	self selection unselectAll 
 ]
 
-{ #category : 'api - selection' }
-SpDropListPresenter >> selectFirst [
-	
-	self selectIndex: 1
-]
-
-{ #category : 'api - selection' }
+{ #category : 'api' }
 SpDropListPresenter >> selectIndex: anInteger [ 
 	"Select the element at position `anInteger` and executes the action associated with it."
 	
@@ -251,7 +245,7 @@ SpDropListPresenter >> selectIndex: anInteger [
 	self selection selectedItem value
 ]
 
-{ #category : 'api - selection' }
+{ #category : 'api' }
 SpDropListPresenter >> selectItem: anItem [ 
 	"Select the element `anItem` if it is in the list. 
 	 It executes the action associated with the item if it is defined."
@@ -267,7 +261,7 @@ SpDropListPresenter >> selectItem: anItem [
 	realItem value
 ]
 
-{ #category : 'api - selection' }
+{ #category : 'api' }
 SpDropListPresenter >> selectedIndex [
 	"Answer the index of selected item. 
 	 You usually do not need to use this method but `SpDropListPresenter>>#selectedItem`."
@@ -275,7 +269,7 @@ SpDropListPresenter >> selectedIndex [
 	^ self getIndex
 ]
 
-{ #category : 'api - selection' }
+{ #category : 'api' }
 SpDropListPresenter >> selectedItem [
 	"Answer selected item"
 
@@ -283,7 +277,7 @@ SpDropListPresenter >> selectedItem [
 		ifNotNil: [ :anItem | anItem model ]
 ]
 
-{ #category : 'api - selection' }
+{ #category : 'api' }
 SpDropListPresenter >> selection [
 	"Answer selection model, an instance of `SpSingleSelectionMode`."
 	

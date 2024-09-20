@@ -48,28 +48,6 @@ SpAbstractTreePresenter >> activateOnSingleClick [
 ]
 
 { #category : 'api' }
-SpAbstractTreePresenter >> activatesOnDoubleClick [
-	"Answer true if activation event is triggered on double click"
-
-	self
-		deprecated: 'Use isActiveOnDoubleClick'
-		transformWith: '`@receiver activatesOnDoubleClick' -> '`@receiver isActiveOnDoubleClick'.
-
-	^ activateOnSingleClick not
-]
-
-{ #category : 'api' }
-SpAbstractTreePresenter >> activatesOnSingleClick [
-	"Answer true if activation event is triggered on single click"
-
-	self
-		deprecated: 'Use isActiveOnSingleClick'
-		transformWith: '`@receiver activatesOnSingleClick' -> '`@receiver isActiveOnSingleClick'.
-
-	^ activateOnSingleClick
-]
-
-{ #category : 'api' }
 SpAbstractTreePresenter >> beMultipleSelection [
 	"Enable multiple selection."
 
@@ -83,7 +61,7 @@ SpAbstractTreePresenter >> beSingleSelection [
 	self selectionMode: (SpTreeSingleSelectionMode on: self)
 ]
 
-{ #category : 'api' }
+{ #category : 'private' }
 SpAbstractTreePresenter >> children [
 
 	^ childrenBlock
@@ -144,30 +122,16 @@ SpAbstractTreePresenter >> disableActivationDuring: aBlock [
 SpAbstractTreePresenter >> doActivateAtPath: aPath [
 	"Activate only if there is an item at that position"
 
-	activationBlock  ifNil: [ ^ self ].
 	self itemAtPath: aPath ifAbsent: [ ^ self ].
 	activationBlock cull: ((SpTreeSingleSelectionMode on: self)
 		selectPath: aPath;
 		yourself)
 ]
 
-{ #category : 'private' }
-SpAbstractTreePresenter >> doActivateSelected [
-	"Activate only if there is an item at that position"
-	| selectedPath |
-
-	activationBlock ifNil: [ ^ self ].
-	selectedPath := self selection selectedPath.
-	selectedPath ifNil:  [ ^ self ].
-	activationBlock cull: ((SpTreeSingleSelectionMode on: self)
-		selectPath: selectedPath;
-		yourself)
-]
-
 { #category : 'simulation' }
 SpAbstractTreePresenter >> doubleClickAtPath: aPath [
-
 	self selectPath: aPath.
+	
 	activateOnSingleClick ifTrue: [ ^ self ].
 	self doActivateAtPath: aPath
 ]
@@ -458,16 +422,6 @@ SpAbstractTreePresenter >> selection [
 	^ selectionMode value
 ]
 
-{ #category : 'api' }
-SpAbstractTreePresenter >> selectionMode [
-	"Answer the selection object (an instance of `SpSingleSelectionMode` or `SpMultipleSelectionMode`).
-	 This is not the item selected, but the selection container (it may contain one or many selected 
-	 items).
-	 This is the same as `SpAbstractListPresenter>>#selection`"
-
-	^ selectionMode
-]
-
 { #category : 'private' }
 SpAbstractTreePresenter >> selectionMode: aMode [
 	
@@ -521,7 +475,7 @@ SpAbstractTreePresenter >> verticalAlignment [
 SpAbstractTreePresenter >> whenActivatedDo: aBlock [
 	"Inform when an element has been 'activated'. 
 	 `aBlock` receives one argument (a selection object, see `SpAbstractSelectionMode`)"
- 
+
 	activationBlock := aBlock
 ]
 

@@ -344,7 +344,7 @@ SpJob >> value: aNumber [
 { #category : 'events' }
 SpJob >> whenChangedDo: aBlock [
 
-	self announcer when: JobChange do: aBlock for: aBlock receiver
+	self announcer when: JobChange do: aBlock
 ]
 
 { #category : 'events' }
