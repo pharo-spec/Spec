@@ -98,6 +98,12 @@ SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
 
 	menuPresenter := self presenter newMenu.
 	menuPresenter fillWith: actionGroup.
+
+	"apply context menu if there is one"
+	self presenter contextMenu ifNotNil: [ :aContextMenu | 
+		self presenter actions ifNotNil: [ 
+			Error signal: 'You are using contextMenu: and actions: at the same time. Both mechanisms are mutually exclusive.' ].
+		menuPresenter := aContextMenu ].
 	
 	^ SpBindings
 		  value: self model application adapterBindings
