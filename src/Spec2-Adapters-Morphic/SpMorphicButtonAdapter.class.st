@@ -19,7 +19,7 @@ Class {
 { #category : 'widget API' }
 SpMorphicButtonAdapter >> action [
 
-	self showSubMenuIfPresent.
+	"self showSubMenuIfPresent."
 
 	self widget ifNotNil: [:m | m takeKeyboardFocus ].
 	self model performAction
@@ -161,12 +161,19 @@ SpMorphicButtonAdapter >> label [
 SpMorphicButtonAdapter >> menu: aMenu [
 	| menuPresenter |
 	
-	self presenter actions ifNil: [ ^ nil ].
-	menuPresenter := self presenter actions asMenuPresenter.
-	menuPresenter ifNil: [ ^ nil ].
+	"apply actions"
+	self presenter actions ifNotNil: [ :actions |
+		menuPresenter := self presenter newMenu.
+		menuPresenter fillWith: actions ].
+	"apply context menu if there is one"
+	self presenter contextMenu ifNotNil: [ :aContextMenu | 
+		self presenter actions ifNotNil: [ 
+			Error signal: 'You are using contextMenu: and actions: at the same time. Both mechanisms are mutually exclusive.' ].
+		menuPresenter := aContextMenu ].
+	
 	^ SpBindings
 		  value: self presenter application adapterBindings
-		  during: [ menuPresenter build ]
+		  during: [ menuPresenter value build ]
 ]
 
 { #category : 'factory' }
@@ -224,9 +231,20 @@ SpMorphicButtonAdapter >> showSubMenu: aMenu [
 
 { #category : 'widget API' }
 SpMorphicButtonAdapter >> showSubMenuIfPresent [
+	| menuPresenter |
+
+	"apply actions"
+	self presenter actions ifNotNil: [ :actions |
+		menuPresenter := self presenter newMenu.
+		menuPresenter fillWith: actions ].
+	"apply context menu if there is one"
+	self presenter contextMenu ifNotNil: [ :aContextMenu | 
+		self presenter actions ifNotNil: [ 
+			Error signal: 'You are using contextMenu: and actions: at the same time. Both mechanisms are mutually exclusive.' ].
+		menuPresenter := aContextMenu ].
 
 	self presenter actions ifNil: [ ^ self ].
-	self showSubMenu: self presenter actions asMenuPresenter
+	self showSubMenu: menuPresenter
 ]
 
 { #category : 'widget API' }
