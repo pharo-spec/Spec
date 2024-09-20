@@ -68,7 +68,7 @@ SpSearchInputFieldOptionsPresenter >> initializeSearchTypePresenters [
 	regexpOptionButton := self newRadioButton 
 		label: 'Regexp';
 		state: false;
-		help: 'Use regular expression';
+		help: 'Use regular expression. For instance, use ^AB(.*)$ to match anything begining with AB';
 		yourself.
 		
 	exactOptionButton := self newRadioButton 
