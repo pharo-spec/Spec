@@ -39,6 +39,13 @@ SpAbstractFormButtonPresenter >> initialize [
 	self whenLabelClickableChangedDo: [ :aBoolean | self changed: {#labelClickable: . aBoolean} ]
 ]
 
+{ #category : 'testing' }
+SpAbstractFormButtonPresenter >> isActive [
+	"Answer <true> if the receiver is selected"
+
+	^ self state
+]
+
 { #category : 'api' }
 SpAbstractFormButtonPresenter >> label [
 	"Answers the label to be shown by the button"
