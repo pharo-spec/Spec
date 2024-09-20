@@ -169,6 +169,7 @@ SpAbstractTreePresenter >> initialize [
 	self initializeTSearchable.
 	self initializeTHaveWrappingScrollBars.
 	self withScrollBars.
+	self registerActions.
 	self registerEvents
 ]
 
