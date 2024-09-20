@@ -42,14 +42,13 @@ SpWindow >> announceWillClose [
 { #category : 'open/close' }
 SpWindow >> close [ 
 
-	self announceWillClose ifFalse: [ ^ self ].
 	super close.
 ]
 
 { #category : 'open/close' }
 SpWindow >> deleteDiscardingChanges [
 
-	self announceWillClose.
+	self announceWillClose ifFalse: [ ^ self ].
 	^ super deleteDiscardingChanges
 ]
 
@@ -92,12 +91,13 @@ SpWindow >> taskbarTask [
 	"Answer a taskbar task for the receiver.
 	 Answer nil if not required."
 
-	(self valueOfProperty: #noTaskbarTask ifAbsent: [false]) ifTrue: [ ^ nil ].
+	(self valueOfProperty: #noTaskbarTask ifAbsent: [ false ]) ifTrue: [
+		^ nil ].
 
 	taskbarTask := TaskbarTask
 		morph: self
 		state: self taskbarState
-		icon: self model taskbarIcon
+		icon: (self model iconNamed: self model taskbarIconName)
 		label: self taskbarLabel.
 
 	^ taskbarTask
