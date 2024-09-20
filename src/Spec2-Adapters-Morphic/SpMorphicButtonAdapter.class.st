@@ -171,6 +171,8 @@ SpMorphicButtonAdapter >> menu: aMenu [
 			Error signal: 'You are using contextMenu: and actions: at the same time. Both mechanisms are mutually exclusive.' ].
 		menuPresenter := aContextMenu ].
 	
+	menuPresenter ifNil: [ ^ nil ].
+	
 	^ SpBindings
 		  value: self presenter application adapterBindings
 		  during: [ menuPresenter value build ]
