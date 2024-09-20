@@ -31,6 +31,12 @@ SpSearchInputFieldOptionsPresenter class >> open [
 	^ self new open
 ]
 
+{ #category : 'accessing' }
+SpSearchInputFieldOptionsPresenter >> caseCheckBox [
+
+	^ caseCheckBox
+]
+
 { #category : 'layout' }
 SpSearchInputFieldOptionsPresenter >> defaultLayout [
 
@@ -41,6 +47,12 @@ SpSearchInputFieldOptionsPresenter >> defaultLayout [
 		add: exactOptionButton width: 70;
 		add: caseCheckBox width: 70;
 		yourself
+]
+
+{ #category : 'accessing' }
+SpSearchInputFieldOptionsPresenter >> exactOptionButton [
+
+	^ exactOptionButton
 ]
 
 { #category : 'initialization' }
@@ -79,28 +91,30 @@ SpSearchInputFieldOptionsPresenter >> initializeSearchTypePresenters [
 		yourself.
 ]
 
+{ #category : 'accessing' }
+SpSearchInputFieldOptionsPresenter >> regexpOptionButton [
+
+	^ regexpOptionButton
+]
+
 { #category : 'updating' }
 SpSearchInputFieldOptionsPresenter >> selectBlock [
 	"Answer a <BlockClosure> with the matching strategy depending of the active searching options in the receiver"
 	
+	(regexpOptionButton isActive and: [ caseCheckBox isActive ])
+		ifTrue: [ ^ [ : item : regex | regex asRegex  search: item ] ].
 	(regexpOptionButton isActive and: [ caseCheckBox isActive not ])
 		ifTrue: [ ^ [ : item : regex | regex asRegexIgnoringCase search: item ] ].
-	
-	(regexpOptionButton isActive and: [ caseCheckBox isActive ])
-		ifTrue: [ ^ [ : item : regex | regex search: item ] ].
-		
-	(exactOptionButton isActive and: [ caseCheckBox isActive and: [ regexpOptionButton isActive not ]])
+
+	(exactOptionButton isActive and: [ caseCheckBox isActive])
 		ifTrue: [ ^ [ : item : pattern | item = pattern ]  ].
+	(exactOptionButton isActive and: [ caseCheckBox isActive not ])
+		ifTrue: [ ^ [ : item : pattern | item asLowercase = pattern asLowercase ] ].
 
-	(exactOptionButton isActive and: [ caseCheckBox isActive not and: [ regexpOptionButton isActive not ] ])
-		ifTrue: [ ^ [ : item : pattern | item asLowercase = pattern asLowercase  ] ].
-
-	(exactOptionButton isActive not and: [ caseCheckBox isActive and: [ regexpOptionButton isActive not ] ])
+	(substringOptionButton isActive and: [ caseCheckBox isActive ])
 		ifTrue: [ ^ [ : item : pattern | item includesSubstring: pattern caseSensitive: true ] ].
-
-	(exactOptionButton isActive not and: [ caseCheckBox isActive not and: [ regexpOptionButton isActive not ] ])
+	(substringOptionButton isActive and: [ caseCheckBox isActive not ])
 		ifTrue: [ ^ [ : item : pattern | item includesSubstring: pattern caseSensitive: false ] ].
-
 
 ]
 
