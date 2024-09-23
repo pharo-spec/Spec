@@ -1,5 +1,5 @@
 "
-This presenters contains two presenters provided by the user. The first presenter is fixed and can be expanded or splitted. The second presenter is dynamic and can be shown splitted or hidden. Split can be done horizontally or vertically.
+This presenter contains two presenters provided by the user. The first presenter is fixed and can be expanded or splitted. The second presenter is dynamic and can be shown split or hidden. Split can be done horizontally or vertically.
 
 ## Structure
 
@@ -36,7 +36,8 @@ Class {
 		'toggleButton',
 		'showString',
 		'hideString',
-		'layoutDirection'
+		'layoutDirection',
+		'positionOfSlider'
 	],
 	#category : 'Spec2-CommonWidgets-Core',
 	#package : 'Spec2-CommonWidgets',
@@ -78,6 +79,22 @@ SpToggleSplitPresenter class >> exampleOpenSplitted [
 ]
 
 { #category : 'examples' }
+SpToggleSplitPresenter class >> exampleOpenVerticalCustomProportionSplit [
+
+	| list text |
+	
+	text := SpTextPresenter new text: String loremIpsum.
+	list := SpListPresenter new items: (1 to: 10); yourself.
+	^ self new
+		layoutDirection: #newLeftToRight;
+		positionOfSlider: 30 percent;
+		first: text label: 'Show list';
+		second: list label: 'Hide list';
+		setSplittedInitialState;
+		open.
+]
+
+{ #category : 'examples' }
 SpToggleSplitPresenter class >> exampleOpenVerticalSplit [
 
 	| list text |
@@ -101,6 +118,12 @@ SpToggleSplitPresenter >> defaultLayout [
 		yourself.
 ]
 
+{ #category : 'initialization' }
+SpToggleSplitPresenter >> defaultSliderPosition [
+
+	^ 50 percent
+]
+
 { #category : 'accessing' }
 SpToggleSplitPresenter >> first [
 
@@ -112,6 +135,12 @@ SpToggleSplitPresenter >> first: anObject label: showLabelString [
 
 	first := anObject.
 	showString := showLabelString
+]
+
+{ #category : 'accessing' }
+SpToggleSplitPresenter >> hideString: anObject [
+
+	hideString := anObject
 ]
 
 { #category : 'initialization' }
@@ -141,6 +170,20 @@ SpToggleSplitPresenter >> layoutDirection [
 SpToggleSplitPresenter >> layoutDirection: anObject [
 
 	layoutDirection := anObject
+]
+
+{ #category : 'initialization' }
+SpToggleSplitPresenter >> positionOfSlider [
+	"Answer a <Number> representing the position where the slider will be placed in the pane."
+	
+	^ positionOfSlider
+		ifNil: [ positionOfSlider := self defaultSliderPosition ]
+]
+
+{ #category : 'accessing' }
+SpToggleSplitPresenter >> positionOfSlider: anObject [
+
+	positionOfSlider := anObject
 ]
 
 { #category : 'accessing' }
@@ -173,6 +216,12 @@ SpToggleSplitPresenter >> setSplittedInitialState [
 		label: hideString 
 ]
 
+{ #category : 'accessing' }
+SpToggleSplitPresenter >> showString: anObject [
+
+	showString := anObject
+]
+
 { #category : 'initialization' }
 SpToggleSplitPresenter >> switchLayout [
 
@@ -183,6 +232,7 @@ SpToggleSplitPresenter >> switchLayout [
 				  yourself ]
 		  ifFalse: [
 			  (SpPanedLayout perform: self layoutDirection)
+				  positionOfSlider: self positionOfSlider;
 				  add: first;
 				  add: second;
 				  yourself ]

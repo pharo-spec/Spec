@@ -1,15 +1,19 @@
 Class {
 	#name : 'SpToggleSplitPresenterTest',
-	#superclass : 'SpSmokeTest',
+	#superclass : 'TestCase',
+	#instVars : [
+		'presenter'
+	],
 	#category : 'Spec2-Tests-Common-Widgets',
 	#package : 'Spec2-Tests',
 	#tag : 'Common-Widgets'
 }
 
-{ #category : 'accessing' }
-SpToggleSplitPresenterTest >> classToTest [
+{ #category : 'running' }
+SpToggleSplitPresenterTest >> setUp [
 	
-	^ SpToggleSplitPresenter
+	super setUp.
+	presenter := SpToggleSplitPresenter new.
 ]
 
 { #category : 'running' }
