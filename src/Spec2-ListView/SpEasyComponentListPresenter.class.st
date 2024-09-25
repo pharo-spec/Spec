@@ -23,26 +23,11 @@ SpEasyComponentListPresenter class >> example [
 		open
 ]
 
-{ #category : 'initialization' }
-SpEasyComponentListPresenter >> connectPresenters [
-
-	super connectPresenters
-]
-
 { #category : 'api' }
 SpEasyComponentListPresenter >> contextMenu: aBlock [
  
 	self flag: #TODO. "Ignored, as this should be deprecated"
 	
-]
-
-{ #category : 'layout' }
-SpEasyComponentListPresenter >> defaultLayout [
-
-	^ SpOverlayLayout new
-		child: contentView;
-		addOverlay: searchInput withConstraints: [ :c | c vAlignStart; hAlignEnd ];
-		yourself
 ]
 
 { #category : 'initialization' }
@@ -63,22 +48,16 @@ SpEasyComponentListPresenter >> initializePresenters [
 		yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api' }
 SpEasyComponentListPresenter >> presenters [
 
 	^ self items
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api' }
 SpEasyComponentListPresenter >> presenters: aCollectionOfPresenters [
 
 	self items: aCollectionOfPresenters
-]
-
-{ #category : 'initialization' }
-SpEasyComponentListPresenter >> registerEvents [
-
-	super registerEvents.
 ]
 
 { #category : 'api' }
@@ -87,7 +66,7 @@ SpEasyComponentListPresenter >> updateItemsKeepingSelection: aCollection [
 	contentView updateItemsKeepingSelection: aCollection
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api - events' }
 SpEasyComponentListPresenter >> whenPresentersChangedDo: aBlock [
 	"Inform when the presenter list changed (See `SpComponentListPresenter>>#presenters:`.
 	 `aBlock` receive 3 optional arguments: 

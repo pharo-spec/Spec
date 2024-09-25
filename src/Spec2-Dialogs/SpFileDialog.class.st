@@ -63,7 +63,7 @@ SpFileDialog >> beSaveFile [
 	action := #saveFile
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api' }
 SpFileDialog >> doInteraction [
 	
 	^ self openModal
