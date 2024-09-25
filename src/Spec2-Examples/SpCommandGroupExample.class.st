@@ -19,7 +19,17 @@ SpCommandGroupExample class >> buildCommandsGroupWith: presenter forRoot: rootCo
 
 	rootCommandGroup
 		register: (self buildMenuBarGroupWith: presenter);
-		register: (self buildToolBarGroupWith: presenter)
+		register: (self buildToolBarGroupWith: presenter);
+		register: (self buildListMenuWith: presenter)
+]
+
+{ #category : 'commands' }
+SpCommandGroupExample class >> buildListMenuWith: presenter [
+
+	^ (CmCommandGroup named: 'List') asSpecGroup
+		beRoot;
+		register: (SpExampleNewCommand forSpec context: presenter);
+		yourself
 ]
 
 { #category : 'commands' }
@@ -59,18 +69,32 @@ SpCommandGroupExample class >> example [
 SpCommandGroupExample >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
+		add: list;
+		yourself
+]
+
+{ #category : 'initialization' }
+SpCommandGroupExample >> initializeList [
+
+	| contextMenu |
+	list := self newList.
+	contextMenu := self newMenu.
+	contextMenu fillWith: self rootCommandsGroup / 'List'.
+	list contextMenu: contextMenu
 ]
 
 { #category : 'initialization' }
 SpCommandGroupExample >> initializeMenuBar [
 
-	menuBar := (self rootCommandsGroup / 'MenuBar') asMenuBarPresenter
+	menuBar := self newMenuBar.
+	menuBar fillWith: self rootCommandsGroup / 'MenuBar'
 ]
 
 { #category : 'initialization' }
 SpCommandGroupExample >> initializePresenters [
 
 	super initializePresenters.
+	self initializeList.
 	self initializeMenuBar.
 	self initializeToolBar
 ]
@@ -87,8 +111,8 @@ SpCommandGroupExample >> initializeWindow: aWindowPresenter [
 
 	super initializeWindow: aWindowPresenter.
 	aWindowPresenter
-		title: 'Example with menubar and toolbar based on commands';
-		initialExtent: 500@200;
+		title: 'Example with context menu, menubar and toolbar based on commands';
+		initialExtent: 600@300;
 		menu: menuBar;
 		toolbar: toolBar
 ]
