@@ -32,10 +32,10 @@ SpTContextMenu >> contextMenu: aValuableOrMenuPresenter [
 	 If your context menu is defined through a block it means is dynamic, and it will be evaluated 
 	 each time the context menu is invoked."
 
-	self
+	"self
 		deprecated: 'contextMenu has been deprecated in favor of actions.'  
 		on: '2024/09/15' 
-		in: #Pharo13.
+		in: #Pharo13."
 
 	contextMenu := aValuableOrMenuPresenter
 ]

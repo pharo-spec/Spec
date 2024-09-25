@@ -165,25 +165,25 @@ SpSelectDialog >> openModal [
 		ifFalse: [ nil ]
 ]
 
-{ #category : 'api' }
+{ #category : 'api - selection' }
 SpSelectDialog >> selectFirst [
 
 	list selectFirst
 ]
 
-{ #category : 'api' }
+{ #category : 'api - selection' }
 SpSelectDialog >> selectIndex: aNumber [
 
 	list selectIndex: aNumber
 ]
 
-{ #category : 'api' }
+{ #category : 'api - selection' }
 SpSelectDialog >> selectItem: anObject [
 
 	list selectItem: anObject
 ]
 
-{ #category : 'api' }
+{ #category : 'api - selection' }
 SpSelectDialog >> selectedItem [
 
 	^ list selectedItem

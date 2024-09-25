@@ -25,6 +25,49 @@ SpAbstractEasyPresenter >> actions: aSpCommandGroup [
 	contentView actions: aSpCommandGroup
 ]
 
+{ #category : 'api' }
+SpAbstractEasyPresenter >> activateOnDoubleClick [
+
+	contentView activateOnDoubleClick
+]
+
+{ #category : 'api' }
+SpAbstractEasyPresenter >> activateOnSingleClick [
+
+	contentView activateOnSingleClick
+]
+
+{ #category : 'private' }
+SpAbstractEasyPresenter >> activateSearchWith: aString [
+
+	lastSelectedRow := contentView selectedItem.
+
+	searchInput text: aString.
+	searchInput show.
+	searchInput takeKeyboardFocus.
+	searchInput unselectAll.
+	searchInput cursorPositionIndex: aString size
+]
+
+{ #category : 'api' }
+SpAbstractEasyPresenter >> alternateRowsColor [
+	
+	contentView alternateRowsColor
+
+]
+
+{ #category : 'api' }
+SpAbstractEasyPresenter >> beMultipleSelection [
+
+	contentView beMultipleSelection
+]
+
+{ #category : 'api' }
+SpAbstractEasyPresenter >> beSingleSelection [
+
+	contentView beSingleSelection
+]
+
 { #category : 'initialization' }
 SpAbstractEasyPresenter >> connectPresenters [
 
@@ -48,8 +91,139 @@ SpAbstractEasyPresenter >> contextMenuFromCommandsGroup: aValuable [
 	self actions: aValuable value
 ]
 
+{ #category : 'private' }
+SpAbstractEasyPresenter >> deactivateSearch: acceptSelection [
+	| currentSelection |
+
+	currentSelection := contentView selectedItem.
+	searchInput hide.
+	contentView selectItem: (acceptSelection 
+		ifTrue: [ currentSelection ]
+		ifFalse: [ lastSelectedRow ]).
+	contentView takeKeyboardFocus
+]
+
+{ #category : 'transmission' }
+SpAbstractEasyPresenter >> defaultInputPort [
+
+	^ self inputItemsPort
+]
+
+{ #category : 'layout' }
+SpAbstractEasyPresenter >> defaultLayout [
+
+	^ SpOverlayLayout new
+		child: contentView;
+		addOverlay: searchInput withConstraints: [ :c | c vAlignStart; hAlignEnd ];
+		yourself
+]
+
+{ #category : 'transmission' }
+SpAbstractEasyPresenter >> defaultOutputPort [
+
+	^ self outputSelectionPort
+]
+
+{ #category : 'api' }
+SpAbstractEasyPresenter >> disable [
+
+	self enabled: false
+]
+
+{ #category : 'api' }
+SpAbstractEasyPresenter >> enable [
+
+	self enabled: true
+]
+
 { #category : 'private - actions' }
 SpAbstractEasyPresenter >> ensureActions [
 
 	^ contentView ensureActions
+]
+
+{ #category : 'initialization' }
+SpAbstractEasyPresenter >> initialize [
+	
+	super initialize.
+	self initializeTSearchable.
+	self registerEvents
+]
+
+{ #category : 'initialization' }
+SpAbstractEasyPresenter >> initializePresenters [
+
+	searchInput := self newTextInput.
+	searchInput hide
+]
+
+{ #category : 'transmission' }
+SpAbstractEasyPresenter >> inputItemsPort [
+
+	^ (SpListItemsPort newPresenter: self)
+		delegateTo: [ contentView ];
+		yourself	
+]
+
+{ #category : 'testing' }
+SpAbstractEasyPresenter >> isActiveOnDoubleClick [
+	"Answer true if activation event is triggered on double click"
+
+	^ contentView isActiveOnDoubleClick
+]
+
+{ #category : 'testing' }
+SpAbstractEasyPresenter >> isActiveOnSingleClick [
+	"Answer true if activation event is triggered on single click"
+
+	^ contentView isActiveOnSingleClick
+]
+
+{ #category : 'private' }
+SpAbstractEasyPresenter >> maybeActivateSearchOn: event [
+		
+	self isSearchEnabled ifFalse: [ ^ self ].
+	"any modifier other than shift?"
+	(event anyModifierKeyPressed 
+		or: [ (event keyValue between: 32 and: 127) not ])
+		ifTrue: [ ^ self ].
+	self activateSearchWith: event keyCharacter asString
+]
+
+{ #category : 'transmission' }
+SpAbstractEasyPresenter >> outputActivationPort [
+	
+	^ (SpActivationPort newPresenter: self)
+		delegateTo: [ contentView ];
+		yourself
+]
+
+{ #category : 'transmission' }
+SpAbstractEasyPresenter >> outputSelectionPort [
+	
+	^ (SpSelectionPort newPresenter: self)
+		delegateTo: [ contentView ];
+		yourself
+]
+
+{ #category : 'initialization' }
+SpAbstractEasyPresenter >> registerEvents [
+]
+
+{ #category : 'private' }
+SpAbstractEasyPresenter >> selectFirst: aString [
+
+	self subclassResponsibility
+]
+
+{ #category : 'api - events' }
+SpAbstractEasyPresenter >> whenActivatedDo: aBlock [
+
+	contentView whenActivatedDo: aBlock 
+]
+
+{ #category : 'api - events' }
+SpAbstractEasyPresenter >> whenSelectionChangedDo: aBlock [
+	
+	contentView whenSelectionChangedDo: aBlock
 ]

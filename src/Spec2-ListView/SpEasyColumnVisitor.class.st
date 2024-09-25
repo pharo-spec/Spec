@@ -13,6 +13,24 @@ Class {
 	#tag : 'Easy'
 }
 
+{ #category : 'accessing' }
+SpEasyColumnVisitor >> presenter [
+
+	^ presenter
+]
+
+{ #category : 'accessing' }
+SpEasyColumnVisitor >> presenter: aPresenter [
+
+	presenter := aPresenter
+]
+
+{ #category : 'visiting' }
+SpEasyColumnVisitor >> visit: aColumn [
+
+	^ aColumn acceptColumnVisitor: self
+]
+
 { #category : 'visiting' }
 SpEasyColumnVisitor >> visitCheckboxColumn: aColumn [
 
@@ -47,4 +65,10 @@ SpEasyColumnVisitor >> visitIndexColumn: aColumn [
 SpEasyColumnVisitor >> visitLinkColumn: aColumn [
 
 	^ self visitStringColumn: aColumn
+]
+
+{ #category : 'visiting' }
+SpEasyColumnVisitor >> visitStringColumn: aColumn [
+
+	^ self subclassResponsibility
 ]

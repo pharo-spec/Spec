@@ -59,7 +59,7 @@ SpDemoTreeTablePresenter >> menuActions [
 		addGroupWith: [ :aGroup | aGroup
 			addActionWith: [ :anItem | anItem
 				name: 'Print in transcript';
-				shortcut: $p actionModifier;
+				shortcutKey: $p actionModifier;
 				description: 'Print the selected class on Transcript';
 				action: [ table1 selectedItem traceCr ] ];
 			addActionWith: [ :anItem | anItem

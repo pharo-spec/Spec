@@ -6,7 +6,8 @@ Class {
 	#name : 'SpDialogWindowMorph',
 	#superclass : 'DialogWindowMorph',
 	#instVars : [
-		'toolbar'
+		'toolbar',
+		'toolbarMorph'
 	],
 	#category : 'Spec2-Adapters-Morphic-Support',
 	#package : 'Spec2-Adapters-Morphic',
@@ -75,6 +76,13 @@ SpDialogWindowMorph >> okAction: aBlock [
 	self toolbar okAction: aBlock 
 ]
 
+{ #category : 'accessing' }
+SpDialogWindowMorph >> removeToolbar [
+
+	toolbarMorph ifNil: [ ^ self ].
+	self submorphs last removeMorph: toolbarMorph
+]
+
 { #category : 'protocol' }
 SpDialogWindowMorph >> setToolbarFrom: aBlock [
 	| newToolbar |
@@ -95,11 +103,18 @@ SpDialogWindowMorph >> toolbar: anObject [
 	| content |
 	
 	toolbar := anObject.
-	self removeMorph: (content := self submorphs last).
-	self 
-		addMorph: (self newDialogPanel 
-			addMorphBack: content; 
-			addMorphBack: self newButtonRow; 
-			yourself) 
-		frame: (0 @ 0 corner: 1 @ 1)
+	toolbarMorph 
+		ifNotNil: [
+			self removeToolbar.
+			toolbarMorph := self newButtonRow.
+			self submorphs last addMorphBack: toolbarMorph ]
+		ifNil: [
+			toolbarMorph := self newButtonRow.   
+			self removeMorph: (content := self submorphs last).
+			self 
+				addMorph: (self newDialogPanel 
+					addMorphBack: content; 
+					addMorphBack: toolbarMorph; 
+					yourself) 
+				frame: (0 @ 0 corner: 1 @ 1) ]
 ]

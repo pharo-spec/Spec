@@ -369,10 +369,10 @@ SpPresenter >> bindKeyCombination: aShortcut toAction: aBlock [
 	 - `aShortcut` is an instance of `KMKeyCombination`
 	 - `aBlock` receive zero arguments."
 
-	self 
+	"self 
 		deprecated: 'Keybindings usege is deprecated in favor of addShortcut: system' 
 		on: '2024/09/11' 
-		in: #Pharo13.
+		in: #Pharo13."
 
 	contextKeyBindings ifNil: [ contextKeyBindings := KMCategory new ].
 	contextKeyBindings addKeymapEntry: (KMKeymap
@@ -429,10 +429,10 @@ SpPresenter >> contextKeyBindings [
 SpPresenter >> contextKeyBindings: aKMCategory [
 	"Set the context keybindings for this presenter."
 	
-	self
+	"self
 		deprecated: 'contextKeyBindings have been deprecated in favor of actions.'  
 		on: '2024/09/15' 
-		in: #Pharo13.
+		in: #Pharo13."
 	
 	contextKeyBindings := contextKeyBindings 
 		ifNotNil: [ contextKeyBindings, aKMCategory ]
@@ -836,10 +836,10 @@ SpPresenter >> rebuildLayout [
 SpPresenter >> removeKeyCombination: aShortcut [
 	"Remove the action associated to `aShortcut`"
 
-	self 
+	"self 
 		deprecated: 'Keybindings usege is deprecated in favor of addShortcut: system' 
 		on: '2024/09/11' 
-		in: #Pharo13.
+		in: #Pharo13."
 
 	self contextKeyBindings removeKey: aShortcut ifAbsent: [ ^ self ].
 	self withAdapterDo: [ :anAdapter | 

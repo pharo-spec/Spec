@@ -125,7 +125,7 @@ SpDemoListsPresenter >> list1MenuActions [
 	^ SpActionGroup new
 		addActionWith: [ :anItem | anItem
 			name: 'Print in transcript';
-			shortcut: $p meta;
+			shortcutKey: $p meta;
 			description: 'Print the selected class on Transcript';
 			action: [ list1 selectedItem traceCr ] ];
 		addActionWith: [ :anItem | anItem

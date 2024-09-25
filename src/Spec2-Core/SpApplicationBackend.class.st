@@ -55,6 +55,12 @@ SpApplicationBackend >> defaultConfigurationFor: anApplication [
 	^ self subclassResponsibility
 ]
 
+{ #category : 'accessing' }
+SpApplicationBackend >> dropListClass [
+
+	self subclassResponsibility
+]
+
 { #category : 'ui - dialogs' }
 SpApplicationBackend >> inform: aString [
 
@@ -66,6 +72,13 @@ SpApplicationBackend >> initialize [
 
 	super initialize.
 	self resetAdapterBindings
+]
+
+{ #category : 'accessing' }
+SpApplicationBackend >> listClass [
+
+	self subclassResponsibility
+	
 ]
 
 { #category : 'accessing' }
@@ -86,20 +99,39 @@ SpApplicationBackend >> notifyInfo: aSpecNotification [
 	self subclassResponsibility
 ]
 
+{ #category : 'ui - dialogs' }
+SpApplicationBackend >> openFileDialog: aFileDialog [
+
+	self subclassResponsibility
+]
+
 { #category : 'initialization' }
 SpApplicationBackend >> resetAdapterBindings [
 
 	adapterBindings := self adapterBindingsClass new
 ]
 
-{ #category : 'ui - dialogs' }
-SpApplicationBackend >> selectFileTitle: aString [
+{ #category : 'ui' }
+SpApplicationBackend >> showWaitCursorWhile: aBlock inApplication: anApplication [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'ui' }
-SpApplicationBackend >> showWaitCursorWhile: aBlock inApplication: anApplication [
+{ #category : 'accessing' }
+SpApplicationBackend >> tableClass [
+
+	self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+SpApplicationBackend >> treeClass [
+
+	self subclassResponsibility
+	
+]
+
+{ #category : 'accessing' }
+SpApplicationBackend >> treeTableClass [
 
 	self subclassResponsibility
 ]

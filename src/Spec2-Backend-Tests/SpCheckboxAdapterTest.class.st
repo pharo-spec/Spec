@@ -49,7 +49,7 @@ SpCheckboxAdapterTest >> testChangeDeactivatedAfterOpenCheckboxDectivatesIt [
 SpCheckboxAdapterTest >> testChangingLabelAffectTheWidget [
 	
 	presenter label: 'ALabel'.
-	self assert: self adapter label equals: 'ALabel'
+	self assert: self widget label equals: 'ALabel'
 ]
 
 { #category : 'tests' }
