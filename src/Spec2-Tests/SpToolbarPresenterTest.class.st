@@ -50,6 +50,24 @@ SpToolbarPresenterTest >> testDisplayMode [
 ]
 
 { #category : 'tests' }
+SpToolbarPresenterTest >> testFillWith [
+
+	| commandGroup command toolbarButton |
+	command := CmCommand new
+		name: 'Test';
+		context: presenter;
+		asSpecCommand.
+	commandGroup := (CmCommandGroup named: 'ToolBar') asSpecGroup
+		beRoot;
+		register: command;
+		yourself.
+	presenter fillWith: commandGroup.
+	self assert: presenter items size equals: 1.
+	toolbarButton := presenter items first.
+	self assert: toolbarButton label equals: 'Test'
+]
+
+{ #category : 'tests' }
 SpToolbarPresenterTest >> testIsEmpty [ 
 
 	self assert: presenter isEmpty.

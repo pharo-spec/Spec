@@ -6,7 +6,8 @@ Class {
 	#superclass : 'SpPresenter',
 	#instVars : [
 		'menuBar',
-		'toolBar'
+		'toolBar',
+		'list'
 	],
 	#category : 'Spec2-Examples-Demo-CommandGroup',
 	#package : 'Spec2-Examples',
@@ -77,7 +78,8 @@ SpCommandGroupExample >> initializePresenters [
 { #category : 'initialization' }
 SpCommandGroupExample >> initializeToolBar [
 
-	toolBar := (self rootCommandsGroup / 'ToolBar') asToolbarPresenter
+	toolBar := self newToolbar.
+	toolBar fillWith: self rootCommandsGroup / 'ToolBar'
 ]
 
 { #category : 'initialization' }

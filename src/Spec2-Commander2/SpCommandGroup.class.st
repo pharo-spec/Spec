@@ -63,25 +63,6 @@ SpCommandGroup >> asMenuPresenterWith: aBlock [
 		menuPresenter
 ]
 
-{ #category : 'converting' }
-SpCommandGroup >> asToolbarPresenter [
-
-	^ SpToolbarPresenterBuilder new
-		visit: self;
-		toolbarPresenter
-]
-
-{ #category : 'converting' }
-SpCommandGroup >> asToolbarPresenterWith: aBlock [
-
-	| builder |
-	builder := SpToolbarPresenterBuilder new.
-	aBlock value: builder toolbarPresenter.
-	^ builder
-		visit: self;
-		toolbarPresenter
-]
-
 { #category : 'configuring' }
 SpCommandGroup >> beToolbarGroup [
 
