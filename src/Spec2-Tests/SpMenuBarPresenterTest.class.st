@@ -5,3 +5,8 @@ Class {
 	#package : 'Spec2-Tests',
 	#tag : 'Core-Widgets'
 }
+
+{ #category : 'accessing' }
+SpMenuBarPresenterTest >> classToTest [
+	^ SpMenuBarPresenter
+]
