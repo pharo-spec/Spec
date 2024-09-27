@@ -130,7 +130,7 @@ SpMorphicTreeTableDataSource >> itemAtPath: aPath expanding: shouldExpandItems [
 	item := self rootItem.
 	
 	aPath do: [ :index |
-		(shouldExpandItems and: [item isRoot not]) ifTrue: [ item expand ].
+		(shouldExpandItems and: [item isRootItem not]) ifTrue: [ item expand ].
 		item children size < index ifTrue: [ ^ nil ].		
 		item := item children at: index.
 	].
