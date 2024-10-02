@@ -22,3 +22,9 @@ CmUIDisplayAsSubMenu >> fillSubMenuIn: menuItem with: aCmSpecCommandGroup do: aB
 	aBlock value: subMenu.
 	^ subMenu
 ]
+
+{ #category : '*Spec2-Commander2' }
+CmUIDisplayAsSubMenu >> isGroup [
+
+	^ false
+]
