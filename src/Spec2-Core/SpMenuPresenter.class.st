@@ -229,6 +229,12 @@ SpMenuPresenter >> printOn: aStream [
 				nextPutAll: '''' ]
 ]
 
+{ #category : 'private' }
+SpMenuPresenter >> removeAllItems [
+
+	groups := OrderedCollection new
+]
+
 { #category : 'accessing' }
 SpMenuPresenter >> rootMenu [
 
