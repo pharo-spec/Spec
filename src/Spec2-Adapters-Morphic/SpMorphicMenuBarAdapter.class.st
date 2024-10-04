@@ -63,9 +63,10 @@ SpMorphicMenuBarAdapter >> buildButtonFor: item [
 SpMorphicMenuBarAdapter >> buildWidget [
 
 	widget := ToolDockingBarMorph new
-		          hResizing: #spaceFill;
-		          vResizing: #spaceFill;
-		          yourself.
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		height: 24 * self currentWorld displayScaleFactor;
+		yourself.
 
 	self menuGroups doWithIndex: [ :aGroup :index | 
 		self adoptMenuGroupModel: aGroup first: index = 1 ].
