@@ -63,7 +63,7 @@ SpEasyListViewPresenter class >> exampleWithIcons [
 		yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'initialization' }
 SpEasyListViewPresenter >> connectPresenters [
 
 	super connectPresenters
@@ -76,7 +76,7 @@ SpEasyListViewPresenter >> contextMenu: aBlock [
 	
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'layout' }
 SpEasyListViewPresenter >> defaultLayout [
 
 	^ SpOverlayLayout new
@@ -204,7 +204,7 @@ SpEasyListViewPresenter >> initializePresenters [
 	headerPanel hide
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'initialization' }
 SpEasyListViewPresenter >> registerEvents [
 
 	super registerEvents.
