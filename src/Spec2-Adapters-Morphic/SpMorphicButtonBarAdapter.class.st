@@ -12,13 +12,13 @@ Class {
 { #category : 'accessing' }
 SpMorphicButtonBarAdapter class >> defaultHeight [
 
-	^ 30 scaledByDisplayScaleFactor
+	^ 30
 ]
 
 { #category : 'accessing' }
 SpMorphicButtonBarAdapter class >> defaultItemSeparation [
 	
-	^ (3@0) scaledByDisplayScaleFactor
+	^ (3@0)
 ]
 
 { #category : 'factory' }
@@ -27,7 +27,7 @@ SpMorphicButtonBarAdapter >> addModelTo: panelMorph [
 	self model items do: [ :each |
 		self model focusOrder add: each.
 		panelMorph addMorph: (each build
-			width: 100 scaledByDisplayScaleFactor;
+			width: 100;
 			hResizing: #rigid;
 			yourself) ]
 ]

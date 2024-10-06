@@ -41,7 +41,7 @@ SpMorphicListAdapterTest >> testScrollToIndexVisibleScrollbars [
 	self configureList: 100.
 	presenter 
 		open;
-		withWindowDo: [ : w | w resize: (200 @ 400) scaledByDisplayScaleFactor ].
+		withWindowDo: [ : w | w resize: (200 @ 400) ].
 	self 
 		assert: presenter scrollIndex
 		equals: 1.
