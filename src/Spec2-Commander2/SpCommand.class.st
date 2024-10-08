@@ -58,6 +58,7 @@ SpCommand >> configureAsButtonOfClass: aButtonClass [
 					specCommand hasIcon
 						ifTrue: [ button icon: specCommand icon ] ];
 				action: [ specCommand execute ];
+				enabled: specCommand canBeExecuted;
 				yourself ]
 ]
 
