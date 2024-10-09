@@ -141,6 +141,7 @@ SpCommandTest >> testConfigureAsToolBarButton [
 	self assert: button label equals: command name.
 	self assert: button help equals: command description.
 	self assert: button icon isNil.
+	self assert: button isEnabled.
 	self assert: button action value equals: command execute
 ]
 
@@ -230,4 +231,28 @@ SpCommandTest >> testShortcutKey [
 	command shortcutKey: $a asKeyCombination.
 	
 	self assert: command shortcutKey equals:  $a asKeyCombination
+]
+
+{ #category : 'tests' }
+SpCommandTest >> testToolBarButtonEnablement [
+
+	| button context |
+	context := OrderedCollection new.
+	command := (CmBlockCommand new
+		name: 'foo';
+		description: 'bar';
+		canBeExecutedBlock: [:collection | collection isNotEmpty ];
+		context: context;
+		yourself) asSpecCommand.
+
+	button := command
+					configureAsToolbarButton;
+					buildPresenter.
+	self deny: button isEnabled.
+
+	context add: 1.
+	button := command
+					configureAsToolbarButton;
+					buildPresenter.
+	self assert: button isEnabled.
 ]
