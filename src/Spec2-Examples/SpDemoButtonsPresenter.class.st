@@ -79,7 +79,7 @@ SpDemoButtonsPresenter >> initializePresenters [
 		actions: self subMenuActions;
 		yourself.
 	buttonWithShortcut := self newButton
-		shortcutKey: $o meta;
+		shortcut: $o meta;
 		label: 'with shortcut';
 		yourself.
 	buttonWithHelp := self newButton

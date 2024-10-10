@@ -152,7 +152,7 @@ SpDemoListsPresenter >> list1MenuActions [
 				action: [ list1 selectedItem traceCr ] ];
 			addActionWith: [ :anItem | anItem
 				name: 'Disabled if class begins with A';
-				enabled: [ list1 selectedItem printString first ~= $A ];
+				actionEnabled: [ list1 selectedItem printString first ~= $A ];
 				action: [ list1 selectedItem traceCr ] ] ];
 			yourself
 ]
