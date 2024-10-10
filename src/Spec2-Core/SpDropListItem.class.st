@@ -40,7 +40,7 @@ SpDropListItem >> = anObject [
 
 	self == anObject ifTrue: [ ^ true ].
 	self class = anObject class ifFalse: [ ^ false ].
-	^ self label = anObject label and: [ action = anObject action ]
+	^ self model = anObject model
 ]
 
 { #category : 'protocol' }
