@@ -237,8 +237,8 @@ SpAbstractTextPresenter >> registerEvents [
 { #category : 'api - selection' }
 SpAbstractTextPresenter >> selectAll [
 	"Select all text"
-	
-	self withAdapterDo: [ :anAdapter | anAdapter selectAll ]
+
+	self selectionInterval: (1 to: self text size)
 ]
 
 { #category : 'api - selection' }
