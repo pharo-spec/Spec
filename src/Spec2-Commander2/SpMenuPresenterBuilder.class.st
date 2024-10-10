@@ -37,7 +37,10 @@ SpMenuPresenterBuilder >> fillItem: aMenuItem with: aCommand [
 SpMenuPresenterBuilder >> initialize [
 	
 	super initialize.
-	self menuPresenter: self class menuPresenterClass new
+	self menuPresenter: self class menuPresenterClass new.
+	stack := Stack new
+		push: self menuPresenter;
+		yourself
 ]
 
 { #category : 'accessing' }
@@ -47,11 +50,7 @@ SpMenuPresenterBuilder >> menuPresenter [
 
 { #category : 'accessing' }
 SpMenuPresenterBuilder >> menuPresenter: anObject [
-
-	menuPresenter := anObject.
-	stack := Stack new
-		push: self menuPresenter;
-		yourself
+	menuPresenter := anObject
 ]
 
 { #category : 'visiting' }

@@ -28,3 +28,18 @@ SpActionMenuPresenterBuilder >> visitCommand: aCmCommand [
 	aCmCommand isVisible ifFalse: [ ^ self ].
 	super visitCommand: aCmCommand
 ]
+
+{ #category : 'visiting' }
+SpActionMenuPresenterBuilder >> visitCommandDynamicGroup: aDynamicGroup [
+
+	aDynamicGroup 
+		displayIn: stack top 
+		do: [ :specGroupOrSubMenu | 
+			| group |
+			stack push: specGroupOrSubMenu.
+			group := SpActionGroup new.
+			aDynamicGroup dynamicBuilder value: group.
+			group entries do: [ :each |
+				each acceptVisitor: self ].
+			stack pop ]
+]
