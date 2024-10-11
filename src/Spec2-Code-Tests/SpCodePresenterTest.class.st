@@ -66,7 +66,7 @@ SpCodePresenterTest >> testContextKeyBindings [
 SpCodePresenterTest >> testContextMenu [
 	| menu changed |
 	
-	self assert: presenter contextMenu isNotNil. "The code presenter comes with a menu by default"
+	self assert: presenter contextMenu isNil.
 	menu := SpMenuPresenter new.
 	changed := false.
 	presenter whenMenuChangedDo: [ 
