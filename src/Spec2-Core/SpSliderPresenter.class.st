@@ -73,13 +73,6 @@ SpSliderPresenter >> beVertical [
 	isHorizontal := false
 ]
 
-{ #category : 'api' }
-SpSliderPresenter >> color: aColor [
-
-	"Hack because during the interpretation, the state is slightly inconistent"
-	self widget ifNotNil: [:w | w == self ifFalse: [ super color: aColor ]]
-]
-
 { #category : 'initialization' }
 SpSliderPresenter >> initialize [
 	| isChanging |

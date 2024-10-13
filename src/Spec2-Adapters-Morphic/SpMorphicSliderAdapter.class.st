@@ -9,90 +9,80 @@ Class {
 	#tag : 'Base'
 }
 
-{ #category : 'widget API' }
-SpMorphicSliderAdapter >> absoluteValue [
-
-	^ self presenter absoluteValue
-]
-
-{ #category : 'widget API' }
-SpMorphicSliderAdapter >> absoluteValue: aFloat [
-
-	^ self presenter absoluteValue: aFloat
-]
-
 { #category : 'factory' }
 SpMorphicSliderAdapter >> buildWidget [
 
-	| preWidget |
-	preWidget := PluggableSliderMorph new
-		             model: self;
-		             getValueSelector: #value;
-		             setValueSelector: #value:;
-		             value: self absoluteValue;
-		             getLabelSelector: #label;
-		             max: self max;
-		             min: self min;
-		             quantum: self quantum;
-		             setBalloonText: self help;
-		             vResizing: #spaceFill;
-		             hResizing: #spaceFill;
-		             yourself.
-	self presenter isHorizontal ifFalse: [ 
-		preWidget := TransformationMorph new asFlexOf: preWidget.
-		preWidget transform withAngle: 90 degreesToRadians negated ].
+	| aSliderMorph |
+	aSliderMorph :=
+		(PluggableSliderMorph
+			on: self
+			getValue: #presenterValue
+			setValue: #presenterValue:
+			min: self presenter min
+			max: self presenter max
+			quantum: self presenter quantum)
+				getLabelSelector: #presenterLabel;
+				setBalloonText: self help;
+				vResizing: #spaceFill;
+				hResizing: #spaceFill;
+				yourself.
 
-	self presenter whenMinChangedDo: [ :newValue | 
-		preWidget min: newValue ].
-	self presenter whenMaxChangedDo: [ :newValue | 
-		preWidget max: newValue ].
-	self presenter whenQuantumChangedDo: [ :newValue | 
-		preWidget quantum: newValue ].
-	self presenter whenValueChangedDo: [ :newValue | 
-		preWidget value: newValue ].
+	self presenter whenMinChangedDo: [ :newValue |
+		aSliderMorph min: newValue ].
+	self presenter whenMaxChangedDo: [ :newValue |
+		aSliderMorph max: newValue ].
+	self presenter whenQuantumChangedDo: [ :newValue |
+		aSliderMorph quantum: newValue ].
+	self presenter whenLabelChangedDo: [ :newLabel |
+		aSliderMorph label: newLabel ].
+	self presenter whenAbsoluteValueChangedDo: [ :newValue |
+		aSliderMorph setValue: newValue ].
 
-	^ preWidget
+	^ aSliderMorph
 ]
 
-{ #category : 'widget API' }
-SpMorphicSliderAdapter >> label [
-
+{ #category : 'accessing' }
+SpMorphicSliderAdapter >> presenterLabel [
+	
 	^ self presenter label
 ]
 
-{ #category : 'widget API' }
-SpMorphicSliderAdapter >> max [
+{ #category : 'accessing' }
+SpMorphicSliderAdapter >> presenterValue [
 
-	^ self presenter max
-]
-
-{ #category : 'widget API' }
-SpMorphicSliderAdapter >> min [
-
-	^ self presenter min
-]
-
-{ #category : 'widget API' }
-SpMorphicSliderAdapter >> quantum [
-
-	^ self model quantum
-]
-
-{ #category : 'widget API' }
-SpMorphicSliderAdapter >> value [
 	^ self presenter value
 ]
 
-{ #category : 'widget API' }
-SpMorphicSliderAdapter >> value: aValue [
+{ #category : 'accessing' }
+SpMorphicSliderAdapter >> presenterValue: aValue [
 
-	| value |	
-	value := aValue isNumber
-		ifTrue: [ aValue ] 
-		ifFalse: [ 
-			(aValue includes: $/)
-				ifTrue: [ (NumberParser on: aValue) nextFraction ]
-				ifFalse: [ aValue asNumber ] ].
+	self presenter value: aValue
+]
 
-	^ self presenter value: value asFloat
+{ #category : 'debug' }
+SpMorphicSliderAdapter >> widgetAbsoluteValue [
+
+	^ widget value asFloat
+]
+
+{ #category : 'debug' }
+SpMorphicSliderAdapter >> widgetLabel [
+
+	^ widget label
+]
+
+{ #category : 'debug' }
+SpMorphicSliderAdapter >> widgetValue [
+
+	^ widget scaledValue
+]
+
+{ #category : 'debug' }
+SpMorphicSliderAdapter >> widgetValue: aNumber [
+	"Emulate a change in the widget value, as if there was a scroll.
+	Note: We intentionally use #setValue: instead of #value: due to a bug in
+	the widget, that doesn't perform the setValue selector with the new value
+	when using #value:, and we need it."
+
+	widget setValue: (self presenter valueToAbsoluteValue: aNumber)
 ]
