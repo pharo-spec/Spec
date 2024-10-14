@@ -57,9 +57,13 @@ SpCodePresenterTest >> testContextKeyBindings [
 	| contextKeyBindings |
 	
 	contextKeyBindings := presenter contextKeyBindings.
-	self assert: contextKeyBindings isNotNil.
-	self assert: (contextKeyBindings isKindOf: KMCategory).
+	self assert: contextKeyBindings isNil.
 	
+	presenter bindKeyCombination: $x asKeyCombination toAction: [ "none" ].
+	
+	contextKeyBindings := presenter contextKeyBindings.
+	self deny: contextKeyBindings isNil.
+	self assert: (contextKeyBindings isKindOf: KMCategory)
 ]
 
 { #category : 'tests' }
