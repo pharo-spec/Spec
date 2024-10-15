@@ -45,35 +45,6 @@ SpMorphicBackend >> dropListClass [
 	^ SpDropListPresenter
 ]
 
-{ #category : 'private - dialogs' }
-SpMorphicBackend >> executeOpenDirectoryDialog: aFileDialog [
-
-	^ StOpenDirectoryPresenter new
-		defaultFolder: (aFileDialog path ifNil: [ StFileSystemModel defaultDirectory ]);
-		title: (aFileDialog title ifNil: [ 'Choose Directory' translated ]);
-		openModal;
-		selectedEntry
-]
-
-{ #category : 'private - dialogs' }
-SpMorphicBackend >> executeOpenFileDialog: aFileDialog [
-	| dialog |
-
-	dialog := self newFileDialogFor: aFileDialog.
-	^ dialog openModal answer 
-		ifNotNil: [ :aString | aString asFileReference ]
-]
-
-{ #category : 'private - dialogs' }
-SpMorphicBackend >> executeSaveFileDialog: aFileDialog [
-	| dialog |
-
-	dialog := self newFileDialogFor: aFileDialog.
-	dialog answerSaveFile.
-	^ dialog openModal answer 
-		ifNotNil: [ :aString | aString asFileReference ]
-]
-
 { #category : 'deferred message' }
 SpMorphicBackend >> forceDefer: aBlock [
 
@@ -95,23 +66,6 @@ SpMorphicBackend >> listClass [
 	^ SpListPresenter
 ]
 
-{ #category : 'private - dialogs' }
-SpMorphicBackend >> newFileDialogFor: aFileDialog [
-	| dialog dialogClass |
-	
-	dialogClass := aFileDialog isOpenFile
-		ifTrue: [ StOpenFilePresenter ]
-		ifFalse: [ StOpenDirectoryPresenter ].
-	dialog := dialogClass for: aFileDialog.
-	
-	aFileDialog path ifNotNil: [ :folder | dialog openFolder: folder ].
-	aFileDialog filters ifNotEmpty: [ :filters |
-		dialog fileNavigationSystem 
-			filter: (StCustomExtensionsFilter extensions: { filters }) ].
-
-	^ dialog
-]
-
 { #category : 'private - notifying' }
 SpMorphicBackend >> notifyError: aSpecNotification [
 
@@ -128,15 +82,6 @@ SpMorphicBackend >> notifyInfo: aSpecNotification [
 	GrowlMorph 
 		openWithLabel: 'Information' translated 
 		contents: aSpecNotification message
-]
-
-{ #category : 'ui - dialogs' }
-SpMorphicBackend >> openFileDialog: aFileDialog [
-
-	aFileDialog isOpenFile ifTrue: [ ^ self executeOpenFileDialog: aFileDialog ].
-	aFileDialog isOpenDirectory ifTrue: [ ^ self executeOpenDirectoryDialog: aFileDialog ].
-	
-	^ self executeSaveFileDialog: aFileDialog
 ]
 
 { #category : 'display' }
