@@ -108,7 +108,7 @@ SpSelectEntity >> initializePresenters [
 		entryCompletion: self entitiesEntryCompletion;
 		yourself.
 	selectEntity := self newButton
-		icon: (self iconNamed: #glamorousSearch);
+		icon: (self iconNamed: #search);
 		help: 'Open a selection dialog'.
 	self focusOrder
 		add: entityText;

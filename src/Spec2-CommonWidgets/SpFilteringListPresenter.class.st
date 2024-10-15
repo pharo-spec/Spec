@@ -247,6 +247,13 @@ SpFilteringListPresenter >> selectedItem [
 ]
 
 { #category : 'accessing' }
+SpFilteringListPresenter >> selectedItems [
+	"Answer a <Collection> of receiver's selected objects"
+
+	^ listPresenter selectedItems
+]
+
+{ #category : 'accessing' }
 SpFilteringListPresenter >> sortingBlock: aBlockOrNil [
 
 	listPresenter sortingBlock: aBlockOrNil

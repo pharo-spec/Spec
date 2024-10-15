@@ -52,7 +52,7 @@ SpStyleVariable >> preferredValueWith: anObject [
 { #category : 'evaluating' }
 SpStyleVariable >> scaledValue [
 
-	^ self nonscaledValue * self currentWorld displayScaleFactor
+	^ self nonscaledValue
 ]
 
 { #category : 'private' }

@@ -178,9 +178,9 @@ SpFontStyle >> calculateFontSize [
 		aVariable value ifNotNil: [ 
 			^ self scaledSize ] ].
 	self nameVariable isEnvironmentVariable ifTrue: [ 
-		^ self nameVariable pointSize * self displayScaleFactor ].
+		^ self nameVariable pointSize ].
 	self hasPredefinedFont ifTrue: [ 
-		^ self obtainPredefinedFont pointSize * self displayScaleFactor ].
+		^ self obtainPredefinedFont pointSize ].
 
 	^ nil
 ]
