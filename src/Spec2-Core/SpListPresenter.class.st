@@ -182,6 +182,20 @@ SpListPresenter >> resetListSelection [
 ]
 
 { #category : 'api' }
+SpListPresenter >> scrollIndex [
+	"Answer a <Number> representing the receiver's element scroll index"
+
+	^ self adapter widget showIndex.
+]
+
+{ #category : 'api' }
+SpListPresenter >> scrollToIndex: anIndex [
+	"Scroll the receiver to the element whose index is anIndex."
+
+	self adapter widget scrollToIndex: anIndex
+]
+
+{ #category : 'api' }
 SpListPresenter >> updateList [
 	"Update the list re taking the list defined in `SpAbstractListPresenter>>#model` and filling the list with 
 	 them (this is useful when the list contained changed internally (like adding element to a collection, etc.). 
