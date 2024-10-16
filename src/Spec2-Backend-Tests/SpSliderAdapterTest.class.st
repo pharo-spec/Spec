@@ -5,3 +5,9 @@ Class {
 	#package : 'Spec2-Backend-Tests',
 	#tag : 'Base'
 }
+
+{ #category : 'accessing' }
+SpSliderAdapterTest >> classToTest [
+
+	^ SpSliderPresenter
+]
