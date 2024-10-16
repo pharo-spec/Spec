@@ -89,7 +89,7 @@ SpExampleBrowser >> initializePresenters [
 		display: [ :aNode | aNode name ];
 		displayIcon: [ :aNode | aNode iconName ifNotNil: [ :aName | self iconNamed: aName ] ];
 		children: [ :aNode | aNode children ];
-		contextMenu: [ self listMenu  ];
+		actions: self listMenuActions;
 		expandRoots.
 
 	browseButton := self newButton
@@ -120,16 +120,17 @@ SpExampleBrowser >> initializeWindow: aWindow [
 ]
 
 { #category : 'initialization' }
-SpExampleBrowser >> listMenu [
+SpExampleBrowser >> listMenuActions [
 
-	^ self newMenu
-		addItem: [ :item | item
+	^ SpActionGroup new
+		addActionWith: [ :item | item
 			name: 'Browse';
 			action: [ self browseSelectedExample ] ];
-		addItem: [ :item | item
+		addActionWith: [ :item | item
 			name: 'Run';
 			enabled: runButton isEnabled;
-			action: [ self runSelectedExample ] ]
+			action: [ self runSelectedExample ] ];
+		yourself
 ]
 
 { #category : 'actions' }

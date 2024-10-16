@@ -92,12 +92,12 @@ SpRequestDialog >> connectPresenters [
 	super connectPresenters.
 
 	textInput 
-		bindKeyCombination: Character cr asKeyCombination
-		toAction: [ self accept ];
-
-		bindKeyCombination: Character escape asKeyCombination
-		toAction: [ self cancel ].
-
+		addShortcutWith: [ :action | action 
+			shortcutKey: Character cr asKeyCombination;
+			action: [ self accept ] ];
+		addShortcutWith: [ :action | action 
+			shortcutKey: Character escape asKeyCombination;
+			action: [ self cancel ] ]
 ]
 
 { #category : 'layout' }

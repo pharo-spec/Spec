@@ -85,7 +85,7 @@ SpMenuPresenter >> addItem: aBlock [
 ]
 
 { #category : 'api' }
-SpMenuPresenter >> addKeybindingsTo: aPresenter [
+SpMenuPresenter >> addKeyBindingsTo: aPresenter [
 	"bind keybindings (shortcuts) defined in this menu to aPresenter"
 
 	aPresenter applyKeyBindingsFromMenu: self
@@ -127,6 +127,16 @@ SpMenuPresenter >> defaultGroup [
 		defaultGroup := self instantiate: SpMenuGroupPresenter.
 		self addMenuGroup: defaultGroup.
 		defaultGroup ]
+]
+
+{ #category : 'api' }
+SpMenuPresenter >> fillWith: anActionGroup [
+	"fills this menu with the actions comming from the action group"
+
+	groups removeAll.
+	SpActionMenuPresenterBuilder new
+		menuPresenter: self;
+		visit: anActionGroup
 ]
 
 { #category : 'api - building' }

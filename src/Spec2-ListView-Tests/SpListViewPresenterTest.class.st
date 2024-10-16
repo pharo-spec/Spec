@@ -22,5 +22,6 @@ SpListViewPresenterTest >> initializeTestedInstance [
 { #category : 'running' }
 SpListViewPresenterTest >> tearDown [
 
-	presenter withWindowDo: [ :w | w close ]
+	presenter withWindowDo: [ :w | w close ].
+	super tearDown
 ]

@@ -52,6 +52,7 @@ SpDemoButtonsPresenter >> defaultLayout [
 
 { #category : 'initialization' }
 SpDemoButtonsPresenter >> initializePresenters [
+
 	buttonNormal := self newButton label: 'normal'.
 	buttonDisabled := self newButton
 		label: 'disabled';
@@ -75,7 +76,7 @@ SpDemoButtonsPresenter >> initializePresenters [
 		yourself.
 	buttonWithMenu := self newButton
 		label: 'with menu';
-		contextMenu: self subMenu;
+		actions: self subMenuActions;
 		yourself.
 	buttonWithShortcut := self newButton
 		shortcut: $o meta;
@@ -90,47 +91,32 @@ a multiline help';
 	buttonWithDifferentFont := self newButton
 		label: 'different font';
 		font: StandardFonts codeFont;
-		yourself.
-	
-	self focusOrder
-		add: buttonNormal;
-		add: buttonDisabled;
-		add: buttonWithIcon;
-		add: buttonWithIconOnly;
-		add: buttonHighlighted;
-		add: buttonWithColor;
-		add: buttonWithMenu;
-		add: buttonWithShortcut;
-		add: buttonWithHelp;
-		add: buttonWithDifferentFont
+		yourself
 ]
 
 { #category : 'initialization' }
-SpDemoButtonsPresenter >> subMenu [
-	^ self newMenu
-		addItem: [ :item | 
-			item
-				name: 'Open';
-				icon: (self iconNamed: #opens);
-				shortcut: $o meta;
-				action: [ self inform: 'Open' ] ];
-		addItem: [ :item | 
-			item
-				name: 'Save';
-				icon: (self iconNamed: #smallSave);
-				shortcut: $s meta;
-				action: [ self inform: 'Save' ] ];
-		addItem: [ :item | 
-			item
-				name: 'Print';
-				shortcut: $p meta;
-				icon: (self iconNamed: #smallPrint);
-				action: [ self inform: 'Print' ] ];
-		addItem: [ :item | 
-			item
-				name: 'Kill';
-				shortcut: $k meta;
-				icon: (self iconNamed: #smallCancel);
-				action: [ self inform: 'Kill' ] ];
+SpDemoButtonsPresenter >> subMenuActions [
+
+	^ SpActionGroup new
+		addActionWith: [ :item | item
+			name: 'Open';
+			iconName: #opens;
+			shortcut: $o actionModifier;
+			action: [ self inform: 'Open' ] ];
+		addActionWith: [ :item | item
+			name: 'Save';
+			iconName: #smallSave;
+			shortcut: $s actionModifier;
+			action: [ self inform: 'Save' ] ];
+		addActionWith: [ :item | item
+			name: 'Print';
+			shortcut: $p actionModifier;
+			iconName: #smallPrint;
+			action: [ self inform: 'Print' ] ];
+		addActionWith: [ :item | item
+			name: 'Kill';
+			shortcut: $k actionModifier;
+			iconName: #smallCancel;
+			action: [ self inform: 'Kill' ] ];
 		yourself
 ]

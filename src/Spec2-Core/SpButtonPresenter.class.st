@@ -131,8 +131,9 @@ SpButtonPresenter >> registerShortcut: newShortcut [
 	receiver := self window.
 	(receiver isNil or: [ newShortcut isNil ]) ifTrue: [ ^ self ].
 	receiver presenter
-		bindKeyCombination: newShortcut
-		toAction: [ self performAction ]
+		addShortcutWith: [ :act | act 
+			shortcutKey: newShortcut;
+			action: [ self performAction ] ]
 ]
 
 { #category : 'api' }

@@ -55,7 +55,7 @@ SpAbstractMessageDialog >> calculateLabelHeightForTextWithoutMargin: aText forEx
 	"We have a minimal height "
 	aText ifEmpty: [ ^ self singleLineDefaultHeight ].
 
-	^ (aText lineHeightsWrappingAtWidth: anExtent x - 20) sum
+	^ (aText asText lineHeightsWrappingAtWidth: anExtent x - 20) sum
 	
 ]
 
@@ -103,9 +103,7 @@ SpAbstractMessageDialog >> initialize [
 SpAbstractMessageDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.
-
-	aDialogWindowPresenter initialExtent:
-		(self adjustExtentToLabelHeight: self class defaultExtent).
+	self initializeWindowExtent: aDialogWindowPresenter.
 	self addButtonsTo: aDialogWindowPresenter
 ]
 
@@ -114,6 +112,7 @@ SpAbstractMessageDialog >> initializePresenters [
 
 	image := self newImage image: self defaultIcon.
 	label := self newDialogLabel.
+	label hide
 ]
 
 { #category : 'initialization' }
@@ -124,15 +123,18 @@ SpAbstractMessageDialog >> initializeWindow: aWindowPresenter [
 		initialExtent: self extent
 ]
 
-{ #category : 'api' }
-SpAbstractMessageDialog >> label [
-	^ label text
+{ #category : 'initialization' }
+SpAbstractMessageDialog >> initializeWindowExtent: aDialogWindowPresenter [
+	
+	aDialogWindowPresenter initialExtent:
+		(self adjustExtentToLabelHeight: self class defaultExtent)
 ]
 
 { #category : 'api' }
 SpAbstractMessageDialog >> label: aString [
 
-	label text: aString asText trim
+	label text: aString asText trim.
+	aString ifNotNil: [ label show ]
 ]
 
 { #category : 'private' }

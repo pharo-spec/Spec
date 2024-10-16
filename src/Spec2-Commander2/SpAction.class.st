@@ -8,7 +8,9 @@ Class {
 		'action',
 		'actionEnabled',
 		'visible',
-		'actionVisible'
+		'actionVisible',
+		'id',
+		'dynamicName'
 	],
 	#category : 'Spec2-Commander2-Action',
 	#package : 'Spec2-Commander2',
@@ -25,7 +27,7 @@ SpAction class >> newName: aName action: aBlock [
 ]
 
 { #category : 'instance creation' }
-SpAction class >> newName: aName shortcut: aShortcut action: aBlock [
+SpAction class >> newName: aName shortcutKey: aShortcut action: aBlock [
 
 	^ self new 
 		name: aName;
@@ -35,15 +37,23 @@ SpAction class >> newName: aName shortcut: aShortcut action: aBlock [
 ]
 
 { #category : 'instance creation' }
-SpAction class >> newShortcut: aShortcut action: aBlock [
+SpAction class >> newShortcutKey: aShortcut action: aBlock [
 	"action without menu entry"
 	
 	^ self new 
-		name: aShortcut asString;
+		beShortcutOnly;
 		shortcutKey: aShortcut;
 		action: aBlock;
-		beShortcutOnly;
 		yourself
+]
+
+{ #category : 'comparing' }
+SpAction >> = anObject [
+	"Answer whether the receiver and anObject represent the same object."
+
+	self == anObject ifTrue: [ ^ true ].
+	self class = anObject class ifFalse: [ ^ false ].
+	^ self id = anObject id
 ]
 
 { #category : 'accessing' }
@@ -83,6 +93,23 @@ SpAction >> canBeExecuted [
 	^ actionEnabled cull: self context
 ]
 
+{ #category : 'accessing' }
+SpAction >> dynamicName [
+
+	^ dynamicName 
+		ifNotNil: [ :aBlock | aBlock value ]
+		ifNil: [ super dynamicName ]
+]
+
+{ #category : 'accessing' }
+SpAction >> dynamicName: aBlock [
+
+	"since name works also as identifier, we need one"
+	self name 
+		ifNil: [ self name:  'dynamic-', UUID new asString ]. 
+	dynamicName := aBlock
+]
+
 { #category : 'executing' }
 SpAction >> execute [
 	
@@ -90,6 +117,19 @@ SpAction >> execute [
 	self canBeExecuted ifFalse: [ ^ self ].
 
 	action cull: self context
+]
+
+{ #category : 'comparing' }
+SpAction >> hash [
+	"Answer an integer value that is related to the identity of the receiver."
+
+	^ self id hash
+]
+
+{ #category : 'private' }
+SpAction >> id [
+
+	^ id ifNil: [ id := super id ]
 ]
 
 { #category : 'initialization' }
@@ -122,7 +162,9 @@ SpAction >> printOn: stream [
 
 { #category : 'accessing' }
 SpAction >> shortcut: aKeyCombination [
-	"just a synonym"
-	
+
+	self 
+		deprecated: 'It was a bad idea' 
+		transformWith: '@receiver shortcut: `@arg1' -> '@receiver shortcutKey: `@arg1'.	
 	self shortcutKey: aKeyCombination
 ]

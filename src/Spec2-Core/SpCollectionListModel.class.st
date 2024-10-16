@@ -11,8 +11,7 @@ Class {
 	#instVars : [
 		'#announcer',
 		'#collection',
-		'#sorting => ObservableSlot',
-		'#comparisonStrategy'
+		'#sorting => ObservableSlot'
 	],
 	#category : 'Spec2-Core-Widgets-Table',
 	#package : 'Spec2-Core',
@@ -73,20 +72,6 @@ SpCollectionListModel >> collection: anObject [
 		newValue: collection)
 ]
 
-{ #category : 'accessing' }
-SpCollectionListModel >> comparisonStrategy [
-	"Answer a <BlockClosure> that specifies how receiver's elements are compared"
-
-    ^ comparisonStrategy
-]
-
-{ #category : 'accessing' }
-SpCollectionListModel >> comparisonStrategy: aBlockClosure [
-	"Set the receiver's comparison strategy to a two argument's <BlockClosure>, that specifies how receiver's elements are compared"
-
-	comparisonStrategy := aBlockClosure
-]
-
 { #category : 'testing' }
 SpCollectionListModel >> hasElementAt: index [
 
@@ -94,18 +79,15 @@ SpCollectionListModel >> hasElementAt: index [
 ]
 
 { #category : 'accessing' }
-SpCollectionListModel >> indexOf: anItem ifAbsent: aBlock [
-	"Answer the index of the first occurrence of anElement within the receiver. If the receiver does not contain anElement, answer the result of evaluating the argument, exceptionBlock."
-	
-	^ collection indexOf: anItem ifAbsent: aBlock using: self comparisonStrategy
+SpCollectionListModel >> indexOf: anIndex ifAbsent: aBlock [
+
+	^ collection indexOf: anIndex ifAbsent: aBlock
 ]
 
 { #category : 'initialization' }
 SpCollectionListModel >> initialize [
-
 	self class initializeSlots: self.
-	super initialize.
-	comparisonStrategy := [ :a :b | a == b].
+	super initialize
 ]
 
 { #category : 'testing' }

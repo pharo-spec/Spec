@@ -37,6 +37,13 @@ SpMenuGroupPresenter >> add: aName target: targetObject selector: aSelector [
 	^ self menuItems last
 ]
 
+{ #category : 'private' }
+SpMenuGroupPresenter >> addGroup: aBlock [
+
+	"in case we are adding a group to a group"
+	aBlock value: self
+]
+
 { #category : 'api' }
 SpMenuGroupPresenter >> addItem: aBlock [
 	| item |

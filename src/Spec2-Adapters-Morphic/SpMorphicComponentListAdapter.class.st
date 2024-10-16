@@ -18,7 +18,6 @@ SpMorphicComponentListAdapter >> addActivationKeyBindings: aWidget [
 SpMorphicComponentListAdapter >> addKeyBindingsTo: aWidget [
 
 	super addKeyBindingsTo: aWidget.
-	self addContextMenuKeyBindings: aWidget.
 	self addActivationKeyBindings: aWidget
 ]
 

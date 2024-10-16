@@ -47,9 +47,7 @@ SpMorphicBaseTextAdapter >> addKeyBindingsTo: aMorph [
 	super addKeyBindingsTo: aMorph.
 	self 
 		bindKeyCombination: Character escape asKeyCombination 
-			toAction: [ :target :morph :event | self bubbleUpEvent: event ];
-		bindKeyCombination: $t meta 
-			toAction: [ self showContextMenu ]
+		toAction: [ :target :morph :event | self bubbleUpEvent: event ]
 ]
 
 { #category : 'accessing' }
@@ -62,6 +60,7 @@ SpMorphicBaseTextAdapter >> announcer [
 SpMorphicBaseTextAdapter >> bubbleUpEvent: anEvent [
 
 	anEvent wasHandled: false.
+	self presenter hasWindow ifFalse: [ ^ self ].
 	self presenter window adapter widget handleEvent: anEvent
 ]
 
@@ -86,9 +85,10 @@ SpMorphicBaseTextAdapter >> clearUserEditFlag [
 
 { #category : 'widget API' }
 SpMorphicBaseTextAdapter >> codePaneMenu: aMenu shifted: shifted [
-
 	| menuPresenter |
-	menuPresenter := self model contextMenu.
+	
+	self model actions ifNil: [ ^ nil ].
+	menuPresenter := self model actions asMenuPresenter.
 	menuPresenter ifNil: [ ^ nil ].
 	^ SpBindings
 		  value: self model application adapterBindings

@@ -35,7 +35,6 @@ SpAbstractMorphicListAdapter >> addActivationKeyBindings: aWidget [
 SpAbstractMorphicListAdapter >> addKeyBindingsTo: aWidget [
 
 	super addKeyBindingsTo: aWidget.
-	self addContextMenuKeyBindings: aWidget.
 	self addActivationKeyBindings: aWidget
 ]
 

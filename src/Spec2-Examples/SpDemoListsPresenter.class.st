@@ -96,7 +96,7 @@ SpDemoListsPresenter >> initializePresenters [
 
 	list1
 		items: self class environment allClasses;
-		contextMenu: self list1Menu.
+		actions: self list1MenuActions.
 	list2
 		items: self class environment allClasses;
 		sortingBlock: [ :a :b | a asString size < b asString size ];
@@ -120,54 +120,41 @@ SpDemoListsPresenter >> list1 [
 ]
 
 { #category : 'menu' }
-SpDemoListsPresenter >> list1Menu [
-	^ self newMenu
-		title: 'Context menu example';
-		addGroup: [ :aGroup | 
-			aGroup
-				addItem: [ :anItem | 
-					anItem
-						name: 'Print in transcript';
-						shortcut: $p meta;
-						description: 'Print the selected class on Transcript';
-						action: [ list1 selectedItem traceCr ] ];
-				addItem: [ :anItem | 
-					anItem
-						name: 'Browse';
-						iconName: #open;
-						action: [ list1 selectedItem browse ] ];
-				addItem: [ :anItem | 
-					anItem
-						name: 'Print infos';
-						subMenu:
-							(self newMenu
-								addGroup: [ :aSubGroup | 
-									aSubGroup
-										addItem: [ :item | 
-											item
-												name: 'Print number of methods';
-												action: [ list1 selectedItem methods size traceCr ] ];
-										addItem: [ :item | 
-											item
-												name: 'Print number of variables';
-												action: [ list1 selectedItem instanceVariables size traceCr ] ] ]) ] ];
-		addGroup: [ :aGroup | 
-			aGroup
-				addItem: [ :anItem | 
-					anItem
-						name: 'Item showing only if item a odd number of letters';
-						visibleIf: [ list1 selectedItem printString size odd ];
-						action: [ list1 selectedItem traceCr ] ];
-				addItem: [ :anItem | 
-					anItem
-						name: 'Disabled in second group';
-						disable;
-						action: [ list1 selectedItem traceCr ] ];
-				addItem: [ :anItem | 
-					anItem
-						name: 'Disabled if class begins with A';
-						enabled: [ list1 selectedItem printString first ~= $A ];
-						action: [ list1 selectedItem traceCr ] ] ]
+SpDemoListsPresenter >> list1MenuActions [
+
+	^ SpActionGroup new
+		addActionWith: [ :anItem | anItem
+			name: 'Print in transcript';
+			shortcutKey: $p meta;
+			description: 'Print the selected class on Transcript';
+			action: [ list1 selectedItem traceCr ] ];
+		addActionWith: [ :anItem | anItem
+			name: 'Browse';
+			iconName: #open;
+			action: [ list1 selectedItem browse ] ];
+		addGroupWith: [ :aGroup | aGroup
+			name: 'Print infos';
+			beDisplayedAsSubMenu;
+			addActionWith: [ :item | item
+				name: 'Print number of methods';
+				action: [ list1 selectedItem methods size traceCr ] ];
+			addActionWith: [ :item | item
+				name: 'Print number of variables';
+				action: [ list1 selectedItem instanceVariables size traceCr ] ] ];
+		addGroupWith: [ :aGroup | aGroup
+			addActionWith: [ :anItem | anItem
+				name: 'Item showing only if item a odd number of letters';
+				actionEnabled: [ list1 selectedItem printString size odd ];
+				action: [ list1 selectedItem traceCr ] ];
+			addActionWith: [ :anItem | anItem
+				name: 'Disabled in second group';
+				actionEnabled: [ false ];
+				action: [ list1 selectedItem traceCr ] ];
+			addActionWith: [ :anItem | anItem
+				name: 'Disabled if class begins with A';
+				actionEnabled: [ list1 selectedItem printString first ~= $A ];
+				action: [ list1 selectedItem traceCr ] ] ];
+			yourself
 ]
 
 { #category : 'accessing' }

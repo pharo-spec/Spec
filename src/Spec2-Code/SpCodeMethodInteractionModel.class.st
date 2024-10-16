@@ -28,6 +28,14 @@ SpCodeMethodInteractionModel >> bindingOf: aString [
 ]
 
 { #category : 'accessing' }
+SpCodeMethodInteractionModel >> compiler [
+
+	^ super compiler
+		class: self behavior;
+		yourself
+]
+
+{ #category : 'accessing' }
 SpCodeMethodInteractionModel >> doItReceiver [
 
 	^ self behavior instanceSide
@@ -42,7 +50,9 @@ SpCodeMethodInteractionModel >> hasBindingOf: aString [
 { #category : 'testing' }
 SpCodeMethodInteractionModel >> isScripting [
 
-	^ method ifNotNil: [ method isDoIt ] ifNil: [ false ] 
+	^ method 
+		ifNotNil: [ method isDoIt ] 
+		ifNil: [ false ] 
 ]
 
 { #category : 'accessing' }

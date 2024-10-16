@@ -88,6 +88,12 @@ SpMorphicDropListAdapter >> setIndex: anIndex [
 	self presenter selectIndex: anIndex
 ]
 
+{ #category : 'accessing' }
+SpMorphicDropListAdapter >> styleName: aString [ 
+
+	"for compatibility with tool buttons, but not used at the moment"
+]
+
 { #category : 'factory' }
 SpMorphicDropListAdapter >> verifyInitialStatus [
 

@@ -32,11 +32,12 @@ Class {
 	#name : 'SpDialogWindowPresenter',
 	#superclass : 'SpWindowPresenter',
 	#instVars : [
-		'buttons',
-		'okAction',
-		'cancelAction',
-		'cancelled',
-		'defaultButton'
+		'#buttons',
+		'#okAction',
+		'#cancelAction',
+		'#cancelled',
+		'#defaultButton',
+		'#buttonDecorations => ObservableSlot'
 	],
 	#category : 'Spec2-Core-Windows',
 	#package : 'Spec2-Core',
@@ -166,6 +167,12 @@ SpDialogWindowPresenter >> executeDefaultAction [
 ]
 
 { #category : 'testing' }
+SpDialogWindowPresenter >> hasButtonDecorations [
+	
+	^ buttonDecorations and: [ self buttons isNotEmpty ]
+]
+
+{ #category : 'testing' }
 SpDialogWindowPresenter >> hasDefaultButton [
 
 	^ defaultButton isNotNil
@@ -177,7 +184,9 @@ SpDialogWindowPresenter >> initialize [
 	super initialize.
 	buttons := OrderedCollection new.
 	cancelled := true.
+	self withButtons.
 	self initializeDefaultActions
+	
 ]
 
 { #category : 'initialization' }
@@ -272,4 +281,26 @@ SpDialogWindowPresenter >> triggerOkAction [
 
 	okAction ifNil: [ ^ nil ].
 	^ okAction cull: self
+]
+
+{ #category : 'api - events' }
+SpDialogWindowPresenter >> whenButtonDecorationsChangedDo: aBlock [
+
+	self 
+		property: #buttonDecorations 
+		whenChangedDo: aBlock 
+]
+
+{ #category : 'api' }
+SpDialogWindowPresenter >> withButtons [
+	"Show buttons"
+
+	buttonDecorations := true
+]
+
+{ #category : 'api' }
+SpDialogWindowPresenter >> withoutButtons [
+	"Remove all previously added buttons"
+
+	buttonDecorations := false
 ]

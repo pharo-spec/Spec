@@ -70,6 +70,7 @@ SpDropListExample >> initializePresenters [
 	self containerMorph
 		changeTableLayout;
 		listDirection: #bottomToLeft.
+
 	uniformDropList
 		items: {
 				morph1.
@@ -81,13 +82,24 @@ SpDropListExample >> initializePresenters [
 			self containerMorph
 				removeAllMorphs;
 				addMorph: m ].
+	
 	heterogeneousDropList
-		addItemLabeled: 'Option one'
-		do: [  ]
-		icon: (self iconNamed: #smallOk);
-		addItemLabeled: 'Inspect current morph'
-		do: [ self systemNavigation inspect: uniformDropList selectedItem ]
-		icon: (self iconNamed: #testRed).
+		display: [ :item | item label ];
+		displayIcon: [ :item | item icon ];
+		whenSelectedItemChangedDo: [ :item | item value ];
+		items: { 
+			SpDropListItem new
+				action: [  ];
+				label: 'Option one';
+				icon: (self iconNamed: #smallOk);
+				yourself.
+			SpDropListItem new
+				action: [ 
+					self systemNavigation inspect: uniformDropList selectedItem ];
+				label: 'Inspect current morph';
+				icon: ((self iconNamed: #testRed));
+				yourself.
+		 }.
 
 	"If this is uncommented, it will fire the action of the first item, which is not what we want:
 	heterogeneousDropList setSelectedIndex: 1.

@@ -17,6 +17,7 @@ BaselineOfSpec2 >> baseline: spec [
 		spec
 			"Core"
 			package: 'Spec2-Adapters-Morphic' with: [ spec requires: #('SpecCore') ];
+			package: 'Spec2-Adapters-Morphic-ListView' with: [ spec requires: #('SpecCore' 'Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Code-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Code-Diff-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Morphic' with: [ spec requires: #('Spec2-Adapters-Morphic') ];
@@ -31,7 +32,7 @@ BaselineOfSpec2 >> baseline: spec [
 			package: 'Spec2-Microdown' with: [ spec requires: #('SpecCore' 'Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Transformations' ].
 	
-	spec group: 'Core' with: #('SpecCore' 'Spec2-Microdown' 'Spec2-Morphic' 'Spec2-Adapters-Morphic').
+	spec group: 'Core' with: #('SpecCore' 'Spec2-Microdown' 'Spec2-Morphic' 'Spec2-Adapters-Morphic' 'Spec2-Adapters-Morphic-ListView').
 	spec group: 'Code' with: #('Core' 'SpecCoreCode' 'Spec2-Code-Morphic' 'Spec2-Code-Diff-Morphic').
 	spec group: 'CodeTests' with: #('Code' 'Spec2-Code-Backend-Tests').
 	spec group: 'Support' with: #('Core' 'Spec2-Morphic-Examples').

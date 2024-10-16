@@ -22,6 +22,12 @@ SpMorphicBackend >> adapterBindingsClass [
 ]
 
 { #category : 'accessing' }
+SpMorphicBackend >> componentListClass [
+
+	^ SpComponentListPresenter
+]
+
+{ #category : 'accessing' }
 SpMorphicBackend >> defaultConfigurationFor: anApplication [
 
 	^ anApplication defaultConfigurationForMorphic
@@ -31,6 +37,12 @@ SpMorphicBackend >> defaultConfigurationFor: anApplication [
 SpMorphicBackend >> defer: aBlock [
 
 	UIManager default defer: aBlock
+]
+
+{ #category : 'accessing' }
+SpMorphicBackend >> dropListClass [
+
+	^ SpDropListPresenter
 ]
 
 { #category : 'deferred message' }
@@ -46,6 +58,12 @@ SpMorphicBackend >> inform: aString [
 	GrowlMorph
 		openWithLabel: 'Information' translated
 		contents: aString
+]
+
+{ #category : 'accessing' }
+SpMorphicBackend >> listClass [
+
+	^ SpListPresenter
 ]
 
 { #category : 'private - notifying' }
@@ -66,23 +84,26 @@ SpMorphicBackend >> notifyInfo: aSpecNotification [
 		contents: aSpecNotification message
 ]
 
-{ #category : 'ui - dialogs' }
-SpMorphicBackend >> selectDirectoryTitle: aString [
-
-	^ UIManager default chooseDirectory: aString path: ''
-]
-
-{ #category : 'ui - dialogs' }
-SpMorphicBackend >> selectFileTitle: aString [
-
-	^ UIManager default
-		  chooseExistingFileReference: aString
-		  extensions: nil
-		  path: ''
-]
-
 { #category : 'display' }
 SpMorphicBackend >> showWaitCursorWhile: aBlock inApplication: anApplication [
 
 	Cursor wait showWhile: aBlock
+]
+
+{ #category : 'accessing' }
+SpMorphicBackend >> tableClass [
+
+	^ SpTablePresenter
+]
+
+{ #category : 'accessing' }
+SpMorphicBackend >> treeClass [
+
+	^ SpTreePresenter	
+]
+
+{ #category : 'accessing' }
+SpMorphicBackend >> treeTableClass [
+
+	^ SpTreeTablePresenter
 ]

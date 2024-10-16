@@ -81,6 +81,12 @@ SpApplication >> newJobList [
 ]
 
 { #category : '*Spec2-Dialogs' }
+SpApplication >> newOpenFile [
+		
+	^ SpFileDialog newApplication: self
+]
+
+{ #category : '*Spec2-Dialogs' }
 SpApplication >> newRequest [
 
 	^ SpRequestDialog newApplication: self
@@ -119,11 +125,16 @@ SpApplication >> notify: aString [
 { #category : '*Spec2-Dialogs' }
 SpApplication >> selectDirectoryTitle: aString [
 
-	^ self backend selectDirectoryTitle: aString
+	^ self newOpenFile 
+		title: aString;
+		beOpenDirectory;
+		openModal
 ]
 
 { #category : '*Spec2-Dialogs' }
 SpApplication >> selectFileTitle: aString [
 
-	^ self backend selectFileTitle: aString
+	^ self newOpenFile
+		title: aString;
+		openModal
 ]

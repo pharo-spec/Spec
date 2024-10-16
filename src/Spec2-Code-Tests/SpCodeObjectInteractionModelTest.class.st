@@ -49,8 +49,8 @@ SpCodeObjectInteractionModelTest >> testBindingOf [
 
 { #category : 'tests' }
 SpCodeObjectInteractionModelTest >> testCompiler [
-
 	| result |
+	
 	result := interactionModel compiler evaluate: 'self'.
 	self assert: result equals: self.
 

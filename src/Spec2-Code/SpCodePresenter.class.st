@@ -135,9 +135,7 @@ SpCodePresenter class >> exampleOverridingContextMenu [
 	
 	^ self new
 		overridingContextMenu;
-		contextMenu: (SpMenuPresenter new
-			addGroup: [ :group | group addItem: [ :item | 
-				item name: 'Testing' ] ]);
+		addActionWith: [ :action| action name: 'Testing' ];
 		text: 'some method: 42';
 		open
 ]
@@ -211,34 +209,6 @@ SpCodePresenter >> bindingOf: aString [
 	^ nil
 ]
 
-{ #category : 'private' }
-SpCodePresenter >> buildContextKeyBindingsWith: aCategory [
-	| category |
-	
-	category := self newContextMenuKeyBindings.
-	aCategory ifNotNil: [ 
-		aCategory allEntries keymaps do: [ :each |
-			category addKeymapEntry: each ] ].
-	
-	^ category
-]
-
-{ #category : 'private' }
-SpCodePresenter >> buildContextMenuWith: aValuable [
-	| menuPresenter |
-	
-	overrideContextMenu ifTrue: [
-		^ aValuable ].
-
-	menuPresenter := self newContextMenu.
-	aValuable ifNotNil: [ 
-		aValuable value ifNotNil: [ :menu |
-			menu menuGroups do: [ :aGroup |
-				menuPresenter addMenuGroup: aGroup ] ] ].
-
-	^ menuPresenter
-]
-
 { #category : 'testing' }
 SpCodePresenter >> canAddBindingOf: name [
 
@@ -253,24 +223,6 @@ SpCodePresenter >> clearInteractionModel [
 	self interactionModel: SpCodeNullInteractionModel new
 ]
 
-{ #category : 'api - shortcuts' }
-SpCodePresenter >> contextKeyBindings [
-
-	^ self buildContextKeyBindingsWith: super contextKeyBindings
-]
-
-{ #category : 'api' }
-SpCodePresenter >> contextMenu [
-	"The code presenter context menu is a compound of two menus: 
-		1) the basic interoperation menu (that includes operations like cut&paste but also do it, 
-		print it, etc.
-		2) the user defined context menu.
-    If you want to override completely this menu you need to set the 'overrideMenu' property 
-	 to true"
-
-	^ [ self buildContextMenuWith: super contextMenu ]
-]
-
 { #category : 'commands' }
 SpCodePresenter >> doBrowseClass [
 	| result |
@@ -283,10 +235,8 @@ SpCodePresenter >> doBrowseClass [
 		ifTrue: [ 
 				| classToBrowse |
 				classToBrowse := self class environment at: result ifAbsent: [ nil ].	
-				classToBrowse ifNotNil: [ ^ self systemNavigation browse: classToBrowse ] ].
-	result 
-		ifNil: [ self systemNavigation browseAllImplementorsOf: self selectedTextOrLine asSymbol ] 
-		ifNotNil: [ self systemNavigation browse: result ]
+					classToBrowse ifNotNil: [ ^ self systemNavigation browse: classToBrowse ] ].
+	self systemNavigation browse: result 
 ]
 
 { #category : 'commands' }
@@ -597,7 +547,7 @@ SpCodePresenter >> isScripting [
 		ifNil: [ false ]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'private' }
 SpCodePresenter >> lineNumbers: aBoolean [
 
 	lineNumbers := aBoolean
@@ -612,24 +562,12 @@ SpCodePresenter >> lookupEnvironment [
 				ifNil: [ self class environment ] ])
 ]
 
-{ #category : 'testing' }
+{ #category : 'private - testing' }
 SpCodePresenter >> needRequestorScope [
 
 	^ self interactionModel
 		  ifNotNil: [ :sp | sp needRequestorScope ]
 		  ifNil: [ false ]
-]
-
-{ #category : 'private' }
-SpCodePresenter >> newContextMenu [
-	
-	^ self rootCommandsGroup asMenuPresenter
-]
-
-{ #category : 'private' }
-SpCodePresenter >> newContextMenuKeyBindings [
-	
-	^ self rootCommandsGroup asKMCategory
 ]
 
 { #category : 'private' }

@@ -13,6 +13,26 @@ SpTextAdapterTest >> classToTest [
 ]
 
 { #category : 'accessing' }
+SpTextAdapterTest >> testAddShortcut [
+	| handled |
+
+	handled := false.
+	presenter 
+		addShortcutWith: [ :action | action
+			shortcutKey: $x meta; 
+			action: [ handled := true ] ].
+
+	self adapter 
+		keyDown: $x 
+		shift: false 
+		meta: true
+		control: false
+		option: false. 
+
+	self assert: handled
+]
+
+{ #category : 'accessing' }
 SpTextAdapterTest >> testKeyBindings [
 	| handled |
 

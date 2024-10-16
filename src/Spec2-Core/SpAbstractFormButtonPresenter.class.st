@@ -28,6 +28,12 @@ SpAbstractFormButtonPresenter >> click [
 	self toggleState
 ]
 
+{ #category : 'testing' }
+SpAbstractFormButtonPresenter >> hasLabel [
+
+	^ self label isEmptyOrNil not
+]
+
 { #category : 'initialization' }
 SpAbstractFormButtonPresenter >> initialize [
 	super initialize.

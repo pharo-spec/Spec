@@ -33,6 +33,7 @@ SpComponentListPresenter >> addPresenter: aPresenter [
 SpComponentListPresenter >> doActivateAtIndex: index [
 	
 	"Activate only if there is an item at that position"
+	activationBlock  ifNil: [ ^ self ].
 	self presenters at: index ifAbsent: [ ^ self ].
 	
 	activationBlock cull: ((SpSingleSelectionMode on: self)

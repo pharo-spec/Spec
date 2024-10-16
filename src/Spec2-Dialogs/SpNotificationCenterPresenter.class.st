@@ -83,9 +83,3 @@ SpNotificationCenterPresenter >> modelChanged [
 	itemList items: announcingObject value items.
 	itemList selectFirst
 ]
-
-{ #category : 'updating' }
-SpNotificationCenterPresenter >> updatePresenter [
-	
-	self modelChanged
-]

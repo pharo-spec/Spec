@@ -21,10 +21,36 @@ Class {
 }
 
 { #category : 'converting' }
+SpCommand >> asActionButtonPresenter [
+	
+	^ self asButtonPresenter
+		label: nil;
+		yourself
+]
+
+{ #category : 'converting' }
 SpCommand >> asButtonPresenter [
 	self flag: #TODO. "Needs to use inform user display strategy when available, no other available strategy can be used in this context. See issue #705"
 	self configureAsButton.
 	^ self buildPresenter
+]
+
+{ #category : 'converting' }
+SpCommand >> asToggleButtonPresenter [
+	
+	self configureAsButtonOfClass: SpToggleButtonPresenter. 
+	^ self buildPresenter
+]
+
+{ #category : 'initialization' }
+SpCommand >> assignUniqueName [
+	"we can find a name in case this command has a shortcut (and no name, 
+	 whoich would mean it will be *just* a shortcut."
+	
+	self name ifNotNil: [ ^ self ].
+	self hasShortcutKey ifFalse: [ ^ self ].
+
+	self name: self id
 ]
 
 { #category : 'presenter building' }
@@ -44,6 +70,7 @@ SpCommand >> buildPresenterBlock: anObject [
 
 { #category : 'presenter building' }
 SpCommand >> configureAsButton [
+
 	self configureAsButtonOfClass: SpButtonPresenter
 ]
 
@@ -64,6 +91,7 @@ SpCommand >> configureAsButtonOfClass: aButtonClass [
 
 { #category : 'presenter building' }
 SpCommand >> configureAsToolBarToggleButton [
+
 	self configureAsButtonOfClass: SpToolbarToggleButtonPresenter
 ]
 
@@ -85,6 +113,22 @@ SpCommand >> displayIn: aMenuGroupOrPresenter do: aBlock [
 SpCommand >> iconProvider [
 
 	^ iconProvider
+]
+
+{ #category : 'private' }
+SpCommand >> id [
+
+	^ String streamContents: [ :stream |
+		| parts name |
+		
+		name := self name 
+			ifNil: [ 
+				self shortcutKey
+					ifNotNil: [ 'shortcut ', (KMShortcutPrinter toString: self shortcutKey) ]
+					ifNil: [ 'unknown' ] ].
+		parts := name substrings.
+		stream << parts first asLowercase.
+		parts allButFirstDo: [ :each | stream << each capitalized ] ]
 ]
 
 { #category : 'initialization' }

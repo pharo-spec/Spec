@@ -1,1 +1,1 @@
-Package { #name : #'Spec2-Adapters-Morphic-Alexandrie' }
+Package { #name : 'Spec2-Adapters-Morphic-Alexandrie' }

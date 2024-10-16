@@ -21,6 +21,59 @@ SpAbstractTextPresenterTest >> initializationText [
 	presenter text: 'Text for tests.'
 ]
 
+{ #category : 'tests - actions' }
+SpAbstractTextPresenterTest >> testAddAction [
+
+	presenter addAction: (SpAction new
+		name: 'test menu';
+		action: [ ];
+		yourself).
+
+	self assert: presenter actions notNil.
+	self assert: presenter actions allCommands isNotEmpty.
+	self assert: (presenter actions allCommands anySatisfy: [ :each | each name = 'test menu' ]).
+]
+
+{ #category : 'tests - actions' }
+SpAbstractTextPresenterTest >> testAddActionWith [
+
+	presenter addActionWith: [ :action | action
+		name: 'test menu';
+		action: [ ] ].
+
+	self assert: presenter actions notNil.
+	self assert: presenter actions allCommands isNotEmpty.
+	self assert: (presenter actions allCommands anySatisfy: [ :each | each name = 'test menu' ]).
+]
+
+{ #category : 'tests - actions' }
+SpAbstractTextPresenterTest >> testAddShortcut [
+
+	presenter addAction: (SpAction new
+		beShortcutOnly;
+		shortcutKey: $x ctrl;
+		action: [ ];
+		yourself).
+
+	self assert: presenter actions notNil.
+	self assert: presenter actions allCommands isNotEmpty.
+	self assert: (presenter actions allCommands anySatisfy: [ :each | 
+		each shortcutKey = $x ctrl ])
+]
+
+{ #category : 'tests - actions' }
+SpAbstractTextPresenterTest >> testAddShortcutWith [
+
+	presenter addShortcutWith: [ :action | action
+		shortcutKey: $x ctrl;
+		action: [ ] ].
+
+	self assert: presenter actions notNil.
+	self assert: presenter actions allCommands isNotEmpty.
+	self assert: (presenter actions allCommands anySatisfy: [ :each | 
+		each shortcutKey = $x ctrl ]).
+]
+
 { #category : 'tests' }
 SpAbstractTextPresenterTest >> testClearContent [
 	self initializationText.
