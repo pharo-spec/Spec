@@ -34,6 +34,7 @@ SpTMorphicTableDataSourceCommons >> headersByColumn [
 SpTMorphicTableDataSourceCommons >> menuColumn: column row: rowIndex [
 	| menuPresenter |
 
+	menuPresenter := nil.
 	"apply actions"
 	self model actions ifNotNil: [ :actions |
 		menuPresenter := self model newMenu.
@@ -44,7 +45,7 @@ SpTMorphicTableDataSourceCommons >> menuColumn: column row: rowIndex [
 			self error: 'You are using contextMenu: and actions: at the same time. Both mechanisms are mutually exclusive.' ].
 		menuPresenter := aContextMenu ].
 	
-	menuPresenter ifNil: [ ^ self ].
+	menuPresenter ifNil: [ ^ nil ].
 
 	^ SpBindings
 		  value: self model application adapterBindings

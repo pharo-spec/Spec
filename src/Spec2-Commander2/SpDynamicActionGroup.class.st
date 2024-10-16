@@ -29,6 +29,12 @@ SpDynamicActionGroup class >> newName: aName with: aBlock [
 		yourself
 ]
 
+{ #category : 'instance creation' }
+SpDynamicActionGroup class >> with: aBlock [
+
+	^ self new with: aBlock
+]
+
 { #category : 'comparing' }
 SpDynamicActionGroup >> = anObject [
 	"Answer whether the receiver and anObject represent the same object."
