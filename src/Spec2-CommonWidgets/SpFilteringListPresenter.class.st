@@ -266,9 +266,9 @@ SpFilteringListPresenter >> unfilteredItems [
 ]
 
 { #category : 'accessing' }
-SpFilteringListPresenter >> unfilteredItems: col [
+SpFilteringListPresenter >> unfilteredItems: someItems [
 
-	unfilteredItems := col
+	unfilteredItems := someItems
 ]
 
 { #category : 'api - events' }
