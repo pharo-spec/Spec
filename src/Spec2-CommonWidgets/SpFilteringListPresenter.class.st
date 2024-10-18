@@ -265,6 +265,12 @@ SpFilteringListPresenter >> unfilteredItems [
 	^ unfilteredItems
 ]
 
+{ #category : 'accessing' }
+SpFilteringListPresenter >> unfilteredItems: col [
+
+	unfilteredItems := col
+]
+
 { #category : 'api - events' }
 SpFilteringListPresenter >> whenSelectionChangedDo: aBlock [
  
