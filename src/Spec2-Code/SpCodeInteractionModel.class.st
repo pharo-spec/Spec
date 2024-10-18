@@ -49,9 +49,11 @@ SpCodeInteractionModel >> compiler [
 	"Provide a compiler set up on the current context/class/receiver"
 
 	^ self doItReceiver class compiler
-		  context: self doItContext;
-		  receiver: self doItReceiver;
-		  requestor: self
+		context: self doItContext;
+		receiver: self doItReceiver;
+		isScripting: self isScripting;
+		requestor: self;
+		yourself
 ]
 
 { #category : 'accessing' }

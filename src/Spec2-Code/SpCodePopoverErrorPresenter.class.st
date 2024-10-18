@@ -52,17 +52,16 @@ SpCodePopoverErrorPresenter >> initializePresenters [
 
 	self initializeText.
 
-	layout := SpBoxLayout newTopToBottom
+	self layout: (SpBoxLayout newTopToBottom
 		add: text expand: false;
-		yourself.
+		yourself).
 
 	self flag: #TODO. "This is uber bad. Keybindings needs to come from application configuration"
-	text
-		bindKeyCombination: 
-			Character escape asKeyCombination 
+	text addShortcutWith: [ :action | action 
+		shortcutKey: Character escape asKeyCombination 			
 			| Character backspace asKeyCombination 
-			| Character cr asKeyCombination
-			toAction: [ self dismiss ]
+			| Character cr asKeyCombination;
+		action: [ self dismiss ] ]
 ]
 
 { #category : 'initialization' }

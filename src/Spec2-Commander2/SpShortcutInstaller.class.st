@@ -24,10 +24,12 @@ SpShortcutInstaller >> presenter: anObject [
 
 { #category : 'visiting' }
 SpShortcutInstaller >> visitCommand: aCmCommand [
+	
 	aCmCommand hasShortcutKey
 		ifFalse: [ ^ self ].
-	self presenter
-		bindKeyCombination: aCmCommand shortcutKey
-		toAction: [ aCmCommand canBeExecuted
-				ifTrue: [ aCmCommand execute ] ]
+	
+	self presenter addShortcutWith: [ :action | action 
+		shortcutKey: aCmCommand shortcutKey;
+		action: [ aCmCommand canBeExecuted
+			ifTrue: [ aCmCommand execute ] ] ]
 ]

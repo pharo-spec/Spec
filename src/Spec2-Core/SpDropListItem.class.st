@@ -21,7 +21,7 @@ SpDropListItem class >> named: label do: aBlock [
 	^ self new
 		action: aBlock;
 		model: label;
-		display: [ :e | e ];
+		display: [ :aString | aString ];
 		yourself
 ]
 
@@ -40,7 +40,7 @@ SpDropListItem >> = anObject [
 
 	self == anObject ifTrue: [ ^ true ].
 	self class = anObject class ifFalse: [ ^ false ].
-	^ self label = anObject label and: [ action = anObject action ]
+	^ self model = anObject model
 ]
 
 { #category : 'protocol' }
@@ -83,7 +83,7 @@ SpDropListItem >> initialize [
 
 	super initialize.
 	action := [  ].
-	displayBlock := [ :e | e asString ]
+	displayBlock := [ :anObject | anObject asString ]
 ]
 
 { #category : 'accessing' }

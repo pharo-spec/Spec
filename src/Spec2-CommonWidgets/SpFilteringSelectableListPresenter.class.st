@@ -80,12 +80,12 @@ SpFilteringSelectableListPresenter >> initializePresenters [
 
 	super initializePresenters.
 	listPresenter
-		bindKeyCombination: Character space
-		toAction: [ self toggleSelection ].
+		addShortcutWith: [ :action | action 
+			shortcutKey: Character space asKeyCombination;
+			action: [ self toggleSelection ] ].
 
-	listPresenter selection whenSelectedIndexChangedDo: [ 
-		:newIndex 
-		:prevIndex | previousSelectedIndex := prevIndex ].
+	listPresenter selection whenSelectedIndexChangedDo: [ :newIndex :prevIndex |
+		previousSelectedIndex := prevIndex ].
 
 	listPresenter eventHandler whenMouseDownDo: [ :event | 
 		event shiftPressed
@@ -96,8 +96,9 @@ SpFilteringSelectableListPresenter >> initializePresenters [
 			ifFalse: [ self toggleSelection ] ].
 
 	listPresenter
-		bindKeyCombination: $a meta
-		toAction: [ self activateAll ]
+		addShortcutWith: [ :action | action 
+			shortcutKey: $a actionModifier;
+			action: [ self activateAll ] ]
 ]
 
 { #category : 'api' }

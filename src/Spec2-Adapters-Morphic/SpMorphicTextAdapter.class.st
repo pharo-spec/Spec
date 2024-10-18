@@ -29,7 +29,7 @@ SpMorphicTextAdapter >> backendIncludesEditionMenu [
 ]
 
 { #category : 'protocol - shortcuts' }
-SpMorphicTextAdapter >> bindKeyCombination: aShortcut toAction: aBlock [ 
+SpMorphicTextAdapter >> bindKeyCombination: aShortcut toAction: aBlock [
 
 	self widgetDo: [ :w | 
 		w textArea
@@ -85,15 +85,25 @@ SpMorphicTextAdapter >> buildWidget [
 
 { #category : 'widget API' }
 SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
-	| menuPresenter |
+	| menuPresenter actionGroup |
 	
-	menuPresenter := self model contextMenu value
-		ifNotNil: [ :contextMenu | contextMenu ]
-		ifNil: [ SpMenuPresenter new ].
+	actionGroup := SpActionGroup new beRoot.
 	
+	self presenter internalActions ifNotNil: [ :group |
+		actionGroup add: group beRoot ].
+	self presenter actions ifNotNil: [ :group |
+		actionGroup add: group beRoot ].
 	self presenter hasEditionContextMenu ifTrue: [ 
-		self presenter editionContextMenu menuGroups do: [ :each | 
-			menuPresenter addMenuGroup: each ] ].
+		actionGroup add: self presenter editionCommandsGroup beRoot ].
+
+	menuPresenter := self presenter newMenu.
+	menuPresenter fillWith: actionGroup.
+
+	"apply context menu if there is one"
+	self presenter contextMenu ifNotNil: [ :aContextMenu | 
+		self presenter actions ifNotNil: [ 
+			Error signal: 'You are using contextMenu: and actions: at the same time. Both mechanisms are mutually exclusive.' ].
+		menuPresenter := aContextMenu ].
 	
 	^ SpBindings
 		  value: self model application adapterBindings
@@ -250,4 +260,11 @@ SpMorphicTextAdapter >> updateExtentPropagationOf: string on: aWidget [
 				width: width;
 				yourself) height + 2)"min: self currentWorld height / 3". 
 			aWidget height: height ]
+]
+
+{ #category : 'initialization' }
+SpMorphicTextAdapter >> updateKeyBindings [
+
+	self widgetDo: [ :w | w textArea removeProperty: #kmDispatcher ].
+	super updateKeyBindings
 ]

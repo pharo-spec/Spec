@@ -12,6 +12,12 @@ SpTextInputFieldPresenterTest >> classToTest [
 ]
 
 { #category : 'tests' }
+SpTextInputFieldPresenterTest >> testAddActionWith [
+
+	super testAddActionWith
+]
+
+{ #category : 'tests' }
 SpTextInputFieldPresenterTest >> testBeNotPasswordIsSet [
 
 	presenter bePassword: false.

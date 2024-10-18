@@ -99,13 +99,6 @@ SpTablePresenter >> columns: aCollection [
 	columns := aCollection
 ]
 
-{ #category : 'accessing' }
-SpTablePresenter >> comparisonStrategy: aFullBlockClosure [ 
-	"See comment in SpAbstractSelectionMode >> #comparisonStrategy:"
-
-	self model comparisonStrategy: aFullBlockClosure 
-]
-
 { #category : 'api' }
 SpTablePresenter >> hideColumnHeaders [
 	"Hide the column headers"

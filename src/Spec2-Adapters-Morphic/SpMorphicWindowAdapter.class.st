@@ -242,6 +242,12 @@ SpMorphicWindowAdapter >> restore [
 	self widgetDo: [ :w | w restore ]
 ]
 
+{ #category : 'widget API' }
+SpMorphicWindowAdapter >> size [
+
+	^ widget extent
+]
+
 { #category : 'factory' }
 SpMorphicWindowAdapter >> subscribeToAnnouncements: aWindow [
 

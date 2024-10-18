@@ -1,14 +1,16 @@
 Class {
-	#name : #SpMorphicAlexandrieAdapter,
-	#superclass : #SpAbstractMorphicAdapter,
-	#category : #'Spec2-Adapters-Morphic-Alexandrie-Base'
+	#name : 'SpMorphicAlexandrieAdapter',
+	#superclass : 'SpAbstractMorphicAdapter',
+	#category : 'Spec2-Adapters-Morphic-Alexandrie-Base',
+	#package : 'Spec2-Adapters-Morphic-Alexandrie',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 SpMorphicAlexandrieAdapter >> buildWidget [
-
 	| instance |
-	instance := SpAthensMorph new.
+	
+	instance := SpAlexandrieMorph new.
 	self presenter whenDrawBlockChangedDo: [ :newBlock | 
 		instance drawBlock: newBlock ].
 	self presenter whenExtentChangedDo: [ :newExtent | 
@@ -21,13 +23,13 @@ SpMorphicAlexandrieAdapter >> buildWidget [
 	^ instance
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 SpMorphicAlexandrieAdapter >> redraw [
 
 	widget redraw
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpMorphicAlexandrieAdapter >> surface [
 
 	^ widget surface

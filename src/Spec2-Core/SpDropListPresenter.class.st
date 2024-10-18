@@ -42,7 +42,8 @@ SpDropListPresenter >> addItemLabeled: aString do: aBlock [
 	"Add an item to the drop list, along with an action.
 	 `aString` is the label of the element.
 	 `aBlock` is the action asociated to this element. It receives zero arguments."
-
+	
+	self deprecated: 'This accessor introduces a wrong way to handle models (since it exposes an internal mechanism to the user. To use correctly this component, you need to follow a different pattent, e.g. what you can find in the examples section in class side of this presenter. Note that you can use SpDropListItem elements as model if you want to replicate the mechanism.'.
 	self addItemLabeled: aString do: aBlock icon: nil.
 ]
 
@@ -54,12 +55,14 @@ SpDropListPresenter >> addItemLabeled: aString do: aBlock icon: anIcon [
 	 `anIcon` is the icon (an instance of `Form`) to be shown."
 	| item |
 
+	self deprecated: 'This accessor introduces a wrong way to handle models (since it exposes an internal mechanism to the user. To use correctly this component, you need to follow a different pattent, e.g. what you can find in the examples section in class side of this presenter. Note that you can use SpDropListItem elements as model if you want to replicate the mechanism.'.
+
 	item := SpDropListItem on: aString do: aBlock.
 	item icon: anIcon.
 
 	model isEmpty 
 		ifTrue: [ self setCollection: { item } ]
-		ifFalse: [self appendCollection: { item } ]
+		ifFalse: [ self appendCollection: { item } ]
 ]
 
 { #category : 'private' }
@@ -231,7 +234,13 @@ SpDropListPresenter >> resetSelection [
 	self selection unselectAll 
 ]
 
-{ #category : 'api' }
+{ #category : 'api - selection' }
+SpDropListPresenter >> selectFirst [
+	
+	self selectIndex: 1
+]
+
+{ #category : 'api - selection' }
 SpDropListPresenter >> selectIndex: anInteger [ 
 	"Select the element at position `anInteger` and executes the action associated with it."
 	
@@ -242,7 +251,7 @@ SpDropListPresenter >> selectIndex: anInteger [
 	self selection selectedItem value
 ]
 
-{ #category : 'api' }
+{ #category : 'api - selection' }
 SpDropListPresenter >> selectItem: anItem [ 
 	"Select the element `anItem` if it is in the list. 
 	 It executes the action associated with the item if it is defined."
@@ -258,7 +267,7 @@ SpDropListPresenter >> selectItem: anItem [
 	realItem value
 ]
 
-{ #category : 'api' }
+{ #category : 'api - selection' }
 SpDropListPresenter >> selectedIndex [
 	"Answer the index of selected item. 
 	 You usually do not need to use this method but `SpDropListPresenter>>#selectedItem`."
@@ -266,7 +275,7 @@ SpDropListPresenter >> selectedIndex [
 	^ self getIndex
 ]
 
-{ #category : 'api' }
+{ #category : 'api - selection' }
 SpDropListPresenter >> selectedItem [
 	"Answer selected item"
 
@@ -274,7 +283,7 @@ SpDropListPresenter >> selectedItem [
 		ifNotNil: [ :anItem | anItem model ]
 ]
 
-{ #category : 'api' }
+{ #category : 'api - selection' }
 SpDropListPresenter >> selection [
 	"Answer selection model, an instance of `SpSingleSelectionMode`."
 	

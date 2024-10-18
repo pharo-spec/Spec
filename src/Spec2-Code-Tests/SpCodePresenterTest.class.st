@@ -57,16 +57,20 @@ SpCodePresenterTest >> testContextKeyBindings [
 	| contextKeyBindings |
 	
 	contextKeyBindings := presenter contextKeyBindings.
-	self assert: contextKeyBindings isNotNil.
-	self assert: (contextKeyBindings isKindOf: KMCategory).
+	self assert: contextKeyBindings isNil.
 	
+	presenter bindKeyCombination: $x asKeyCombination toAction: [ "none" ].
+	
+	contextKeyBindings := presenter contextKeyBindings.
+	self deny: contextKeyBindings isNil.
+	self assert: (contextKeyBindings isKindOf: KMCategory)
 ]
 
 { #category : 'tests' }
 SpCodePresenterTest >> testContextMenu [
 	| menu changed |
 	
-	self assert: presenter contextMenu isNotNil. "The code presenter comes with a menu by default"
+	self assert: presenter contextMenu isNil.
 	menu := SpMenuPresenter new.
 	changed := false.
 	presenter whenMenuChangedDo: [ 
@@ -175,31 +179,6 @@ SpCodePresenterTest >> testDoBrowseImplementors [
 	self 
 		assert: navigation messageList asArray
 		equals: { SpCodePresenterTest>>#testDoBrowseImplementors }
-]
-
-{ #category : 'tests - commands' }
-SpCodePresenterTest >> testDoBrowseMethod [
-
-	| navigation |
-	navigation := SpCodeSystemNavigationMock new.
-	presenter systemNavigation: navigation.
-	presenter environment add: SpCodePresenterTest binding.
-	presenter environment add: SpCodeSystemNavigationMock binding.
-	presenter beForScripting.
-	self openInstance.
-
-
-	presenter text: 'Object'.
-	presenter doBrowseClass.
-
-	self assert: navigation messageList isNil.
-
-	navigation reset.
-	presenter text: 'selectAll'.
-	presenter doBrowseClass.
-
-	self assert: navigation browseSelector notEmpty.
-	self assert: navigation browseSelector equals: #selectAll
 ]
 
 { #category : 'tests - commands' }

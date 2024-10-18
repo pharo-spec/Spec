@@ -198,6 +198,14 @@ SpToolbarPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 		each traverseInFocusOrderDo: aBlock excluding: excludes ]
 ]
 
+{ #category : 'private - traversing' }
+SpToolbarPresenter >> traversePresentersDo: aBlock excluding: excludes [
+
+	super traversePresentersDo: aBlock excluding: excludes.
+	self presenters do: [ :each |
+		each traversePresentersDo: aBlock excluding: excludes ]
+]
+
 { #category : 'events' }
 SpToolbarPresenter >> whenItemsChangeDo: aBlockClosure [ 
 	

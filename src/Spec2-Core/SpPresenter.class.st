@@ -322,10 +322,10 @@ SpPresenter >> applyKeyBindingsFromMenu: aMenuPresenter [
 	aMenuPresenter menuGroups do: [ :group |
 		group menuItems do: [ :item |
 			item shortcut ifNotNil: [ :shortcut | 
-				self 
-					bindKeyCombination: shortcut 
-					toAction: [ item performMenuActionWith: #() ] ].
-			item subMenu ifNotNil: [ :subMenu | subMenu addKeybindingsTo: self	] ] ]
+				self addShortcutWith: [ :action | action
+					shortcutKey: shortcut;
+					action: [ item performMenuActionWith: #() ] ] ].
+			item subMenu ifNotNil: [ :subMenu | subMenu addKeyBindingsTo: self	] ] ]
 ]
 
 { #category : 'converting' }
@@ -368,6 +368,11 @@ SpPresenter >> bindKeyCombination: aShortcut toAction: aBlock [
 	 will be executed when presenter the key combination is presseed.
 	 - `aShortcut` is an instance of `KMKeyCombination`
 	 - `aBlock` receive zero arguments."
+
+	"self 
+		deprecated: 'Keybindings usege is deprecated in favor of addShortcut: system' 
+		on: '2024/09/11' 
+		in: #Pharo13."
 
 	contextKeyBindings ifNil: [ contextKeyBindings := KMCategory new ].
 	contextKeyBindings addKeymapEntry: (KMKeymap
@@ -423,6 +428,11 @@ SpPresenter >> contextKeyBindings [
 { #category : 'api - shortcuts' }
 SpPresenter >> contextKeyBindings: aKMCategory [
 	"Set the context keybindings for this presenter."
+	
+	"self
+		deprecated: 'contextKeyBindings have been deprecated in favor of actions.'  
+		on: '2024/09/15' 
+		in: #Pharo13."
 	
 	contextKeyBindings := contextKeyBindings 
 		ifNotNil: [ contextKeyBindings, aKMCategory ]
@@ -826,6 +836,11 @@ SpPresenter >> rebuildLayout [
 SpPresenter >> removeKeyCombination: aShortcut [
 	"Remove the action associated to `aShortcut`"
 
+	"self 
+		deprecated: 'Keybindings usege is deprecated in favor of addShortcut: system' 
+		on: '2024/09/11' 
+		in: #Pharo13."
+
 	self contextKeyBindings removeKey: aShortcut ifAbsent: [ ^ self ].
 	self withAdapterDo: [ :anAdapter | 
 		anAdapter removeKeyCombination: aShortcut ]
@@ -885,6 +900,14 @@ SpPresenter >> show [
 	"show current presenter making it visible for the user"
 
 	visible := true
+]
+
+{ #category : 'private' }
+SpPresenter >> showContextMenu [
+	"If the presenter is displayed, shows the associated context menu. 
+	 WARNING: Not all presenters have an associated context menu"
+
+	self withAdapterDo: [ :anAdapter | anAdapter showContextMenu ]
 ]
 
 { #category : 'api' }

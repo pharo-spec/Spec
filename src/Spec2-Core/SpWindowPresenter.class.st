@@ -448,6 +448,12 @@ SpWindowPresenter >> moveTo: aPoint [
 
 ]
 
+{ #category : 'private' }
+SpWindowPresenter >> nearWindow [
+
+	^ self
+]
+
 { #category : 'notifying' }
 SpWindowPresenter >> notify: aSpecNotification [
 	"Receives a notification and delivers it as required"
@@ -536,10 +542,13 @@ SpWindowPresenter >> resize: anExtent [
 ]
 
 { #category : 'api' }
-SpWindowPresenter >> restore [
-	"Restore the window"
+SpWindowPresenter >> size [
+	"Answer current window size. 
+	 This message will return 0@0 is window is not opened."
 
-	self withAdapterDo: [ :anAdapter | anAdapter restore ]
+	self withAdapterDo: [ :anAdapter | ^ anAdapter size ].
+	
+	^ 0@0
 ]
 
 { #category : 'api' }

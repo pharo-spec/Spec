@@ -99,7 +99,7 @@ SpApplicationWithToolbar >> initializePresenters [
 						description: 'Add menu item';
 						icon: (self iconNamed: #add);
 						action: [ self addItemTo: group ] ] ].
-	menu addKeybindingsTo: self.
+	menu addKeyBindingsTo: self.
 	text := self newText.
 	self focusOrder add: text
 ]

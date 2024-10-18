@@ -181,14 +181,14 @@ SpListPresenter >> resetListSelection [
 	self selectIndex: 0
 ]
 
-{ #category : 'scrolling' }
+{ #category : 'api' }
 SpListPresenter >> scrollIndex [
 	"Answer a <Number> representing the receiver's element scroll index"
 
 	^ self adapter widget showIndex.
 ]
 
-{ #category : 'scrolling' }
+{ #category : 'api' }
 SpListPresenter >> scrollToIndex: anIndex [
 	"Scroll the receiver to the element whose index is anIndex."
 

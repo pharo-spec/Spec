@@ -18,13 +18,6 @@ SpMorphicTableAdapter class >> intercellSpacing [
 	^ 2@0
 ]
 
-{ #category : 'initialization' }
-SpMorphicTableAdapter >> addKeyBindingsTo: aWidget [
-
-	super addKeyBindingsTo: aWidget.
-	self addContextMenuKeyBindings: aWidget
-]
-
 { #category : 'factory' }
 SpMorphicTableAdapter >> addModelTo: tableMorph [
 
@@ -272,7 +265,6 @@ SpMorphicTableAdapter >> transferFrom: aTransferMorph event: anEvent [
 	rowAndColumn := self widget container rowAndColumnIndexContainingPoint: anEvent position.
 	^ SpDragAndDropTransferToTable new
 		passenger: aTransferMorph passenger;
-		shouldCopy: aTransferMorph shouldCopy;
 		row: (rowAndColumn first ifNil: [ 0 ]);
 		column: (rowAndColumn second ifNil: [ 0 ]);
 		yourself

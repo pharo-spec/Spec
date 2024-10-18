@@ -65,7 +65,7 @@ SpTreeTablePresenter >> addColumn: aColumn [
 	columns := self columns copyWith: aColumn
 ]
 
-{ #category : 'drawing' }
+{ #category : 'api' }
 SpTreeTablePresenter >> alternateRowsColor [
 	" Will alternate Rows color for a better reading: one row lighter, the next row darker"
 	self withAdapterPerformOrDefer: [ :tableAdapter | tableAdapter alternateRowsColor ].
@@ -124,10 +124,8 @@ SpTreeTablePresenter >> initialize [
 	lazilyComputeChildren := false.
 	verticalAlignment := SpVerticalAlignment new.
 
-
 	self beSingleSelection.
-	self activateOnDoubleClick.
-	self registerEvents
+	self activateOnDoubleClick
 ]
 
 { #category : 'testing' }
@@ -159,16 +157,6 @@ SpTreeTablePresenter >> lazilyComputeChildren [
 { #category : 'private' }
 SpTreeTablePresenter >> lazilyComputeChildren: aBoolean [
 	lazilyComputeChildren := aBoolean
-]
-
-{ #category : 'api' }
-SpTreeTablePresenter >> selectionMode [
-	"Answer the selection object (an instance of `SpSingleSelectionMode` or `SpMultipleSelectionMode`).
-	 This is not the item selected, but the selection container (it may contain one or many selected 
-	 items).
-	 This is the same as `SpAbstractListPresenter>>#selection`"
-
-	^ selectionMode
 ]
 
 { #category : 'private' }

@@ -121,28 +121,24 @@ SpDemo >> initializePresenters [
 		yourself.
 	
 	menu := self mainMenu.
-	menu addKeybindingsTo: self.
+	menu addKeyBindingsTo: self.
 	
 	list := self newList.
 	list
 		items: self availablePages;
 		display: [ :item | item pageName ];
-		contextMenu: (self newMenu
-			addItem: [ :item | 
-				item
-					name: 'Browse';
-					icon: (self iconNamed: #smallHelp);
-					action: [ list selectedItem browse ] ];
-			addItem: [ :item | 
-				item
-					name: 'Browse presenter';
-					icon: (self iconNamed: #smallHelp);
-					action: [ list selectedItem new pageClass browse ] ];
-			yourself).
+		addActionWith: [ :item | item
+			name: 'Browse';
+			iconName: #smallHelp;
+			action: [ list selectedItem browse ] ];
+		addActionWith: [ :item | item
+			name: 'Browse presenter';
+			iconName: #smallHelp;
+			action: [ list selectedItem new pageClass browse ] ].
 
 	self focusOrder
 		add: list;
-		addAll: page presenters 
+		addAll: page presenters
 ]
 
 { #category : 'accessing' }
