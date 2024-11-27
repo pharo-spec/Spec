@@ -352,15 +352,11 @@ SpDropListPresenter >> whenSelectedItemChangedDo: aBlock [
 { #category : 'api - events' }
 SpDropListPresenter >> whenSelectionChangedDo: aBlock [
 	"Inform when the selection is changed.
-	 The method should be used only if you are interested in the fact that there was 
-	 a change, without caring about what has changed.
+	 The method should be used only if you are interested in the fact that 
+	 there was a change, without caring about what has changed.
 	 If you are interested in the items, use `SpDropListPresenter>>#whenSelectedItemChanged:`
-	
-	 `aBlock` receive 3 optional arguments: 
-	 - new value 
-	 - old value 
-	 - announcement triggered"
 
+	`aBlock` receives an optional argument with the selection object."
 
 	selection whenChangedDo: aBlock
 ]
