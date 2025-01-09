@@ -100,6 +100,9 @@ Class {
 		'#extent => ObservableSlot',
 		'#styles'
 	],
+	#classInstVars : [
+		'#customExtent'
+	],
 	#category : 'Spec2-Core-Base',
 	#package : 'Spec2-Core',
 	#tag : 'Base'
@@ -109,6 +112,24 @@ Class {
 SpPresenter class >> currentApplication [ 
 
 	^ SpApplication defaultApplication
+]
+
+{ #category : 'accessing' }
+SpPresenter class >> customExtent [
+
+	^ customExtent ifNil: [ customExtent := self defaultCustomExtent ]
+]
+
+{ #category : 'accessing' }
+SpPresenter class >> customExtent: aPoint [
+
+	customExtent := aPoint
+]
+
+{ #category : 'as yet unclassified' }
+SpPresenter class >> defaultCustomExtent [
+
+	^ 700 @ 500
 ]
 
 { #category : 'labeled-presenters' }
@@ -448,6 +469,21 @@ SpPresenter >> createInstanceFor: aClassSymbol [
 	^ self instantiate: class.
 ]
 
+{ #category : 'accessing' }
+SpPresenter >> customExtent [
+	"The preferred extent logic manages the fact that if the user resizes a window, the preferred extent reflects this new size. Notice that this preferred extent is on a per presenter (i.e. class level) shared between all the instances of the class."
+
+	^ self class customExtent
+]
+
+{ #category : 'accessing' }
+SpPresenter >> customExtent: aSize [
+
+	(self window isMaximized or: [ self window isMinimized ]) ifTrue: [
+		^ self ].
+	self class customExtent: aSize
+]
+
 { #category : 'api - focus' }
 SpPresenter >> defaultKeyboardFocus [
 	"Answer the presentar that will act as default responder when showing this presenter or 
@@ -643,8 +679,9 @@ SpPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
 		title: self title;
-		initialExtent: self initialExtent;
-		windowIcon: self windowIcon
+		initialExtent: self class customExtent;
+		windowIcon: self windowIcon;
+		whenResizingDo: [ :ann | self customExtent: ann newSize ].
 ]
 
 { #category : 'inspector - extensions' }
