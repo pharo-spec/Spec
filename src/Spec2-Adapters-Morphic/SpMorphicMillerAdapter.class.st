@@ -153,33 +153,37 @@ SpMorphicMillerAdapter >> newVertical [
 { #category : #private }
 SpMorphicMillerAdapter >> recalculatePageHeights [
 
-	| newHeight widgets height |
+	| newHeight widgets height bottom |
 	height := self widget height.
 	widgets := self childrenWidgets.
 	newHeight := widgets size = 1
 		ifTrue: [ height ]
 		ifFalse: [ height / (layout visiblePages min: widgets size) - (layout spacing / (layout visiblePages min: widgets size)) ].
 		
+	bottom := (widgets size * newHeight) floor.
 	widgets reverseWithIndexDo: [ :each :index |
-		each 
-			top: (index - 1) * newHeight;
-			height: newHeight ]
+		| top |
+		top := ((index - 1) * newHeight) floor.
+		each top: top; height: bottom - top.
+		bottom := top ]
 ]
 
 { #category : #private }
 SpMorphicMillerAdapter >> recalculatePageWidths [
 
-	| newWidth widgets width |
+	| newWidth widgets width right |
 	widgets := self childrenWidgets.
 	width := self widget width.
 	newWidth := widgets size = 1
 		ifTrue: [ width ]
 		ifFalse: [ (width / (layout visiblePages min: widgets size)) - (layout spacing / (layout visiblePages min: widgets size)) ].
 		
+	right := (widgets size * newWidth) floor.
 	widgets reverseWithIndexDo: [ :each :index |
-		each 
-			left: (index - 1) * newWidth;
-			width: newWidth ]
+		| left |
+		left := ((index - 1) * newWidth) floor.
+		each left: left; width: right - left.
+		right := left ]
 ]
 
 { #category : #private }
