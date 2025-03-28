@@ -4,8 +4,6 @@ Extension { #name : 'SpInvalidUserInputError' }
 SpInvalidUserInputError >> actForSpec [
 	"Does nothing on purpose."
 
-	SpInformDialog new
-		label: self messageText;
-		openDialog.
+	SpApplication defaultApplication inform: self messageText.
 	self flag: #TODO "In the best world, we should delegate the behaviour to the Spec presenter which originated the error."
 ]
