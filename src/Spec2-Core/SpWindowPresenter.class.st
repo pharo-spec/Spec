@@ -215,7 +215,10 @@ SpWindowPresenter >> close [
 	"Only manage closing if the presenter is really open"
 	self isOpen ifFalse: [ ^ self ].
 	self withAdapterDo: [ :anAdapter | 
-		anAdapter close ]
+		anAdapter close ].
+	
+	"Always that a new window is closed it must disappear from the taskbar"
+	self window worldTaskbar ifNotNil: [:taskbar | taskbar updateTasks]
 ]
 
 { #category : 'private' }
@@ -511,7 +514,10 @@ SpWindowPresenter >> openWithLayout: aSpecLayout [
 	self withAdapterDo: [ :anAdapter | 
 		anAdapter openWithDeferredAction: [ 
 			self allPresenters do: [ :each | each announceDisplayed ].
-			self updateTitle ] ]
+			self updateTitle ] ].
+	
+	"Always that a new window is opened it must appear in the taskbar"
+	self window worldTaskbar ifNotNil: [:taskbar | taskbar updateTasks]
 ]
 
 { #category : 'api' }
