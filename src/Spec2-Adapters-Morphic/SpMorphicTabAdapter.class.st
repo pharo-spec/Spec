@@ -1,6 +1,9 @@
 Class {
 	#name : 'SpMorphicTabAdapter',
 	#superclass : 'SpMorphicLayoutAdapter',
+	#instVars : [
+		'lastPage'
+	],
 	#category : 'Spec2-Adapters-Morphic-Layout',
 	#package : 'Spec2-Adapters-Morphic',
 	#tag : 'Layout'
@@ -41,10 +44,7 @@ SpMorphicTabAdapter >> layout: aLayout [
 	layout := aLayout.
 
 	widget ifNil: [
-		widget := SpNotebookMorph new
-			vResizing: #spaceFill;
-			hResizing: #spaceFill;
-			yourself ].
+		widget := self newNotebookMorph ].
 
 	aLayout whenChildrenAddedDo: [ :ann |
 		self
@@ -60,6 +60,31 @@ SpMorphicTabAdapter >> layout: aLayout [
 	super layout: aLayout
 ]
 
+{ #category : 'private' }
+SpMorphicTabAdapter >> newNotebookMorph [
+	| notebookMorph |
+
+	notebookMorph := SpNotebookMorph new
+		vResizing: #spaceFill;
+		hResizing: #spaceFill;
+		yourself.
+		
+	notebookMorph announcer 
+		when: SpNotebookPageChanged
+		send: #pageChanged: 
+		to: self.
+	
+	^ notebookMorph
+]
+
+{ #category : 'private' }
+SpMorphicTabAdapter >> pageChanged: ann [
+	lastPage ifNotNil: [
+		layout announce: (SpTabUnselected newPresenter: lastPage) ].
+	lastPage := layout children at: ann pageIndex.
+	layout announce: (SpTabSelected newPresenter: lastPage)
+]
+
 { #category : 'removing' }
 SpMorphicTabAdapter >> remove: aPresenter [
 
@@ -67,4 +92,10 @@ SpMorphicTabAdapter >> remove: aPresenter [
 		| morph |
 		morph := adapter widget.
 		widget removePage: (widget pages detect: [ :each | each actualPageMorph = morph ]) ]
+]
+
+{ #category : 'accessing' }
+SpMorphicTabAdapter >> selectIndex: aNumber [
+	
+	self widget selectedPageIndex: aNumber
 ]

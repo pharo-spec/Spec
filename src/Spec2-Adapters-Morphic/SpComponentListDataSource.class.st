@@ -59,13 +59,12 @@ SpComponentListDataSource >> menuColumn: column row: rowIndex [
 		menuPresenter := aContextMenu ].
 
 	^ SpBindings
-		  value: self model application adapterBindings
-		  during: [ 
-			  | m |
-			  m := menuPresenter value.
-			  m isMorph
-				  ifTrue: [ m ]
-				  ifFalse: [ m build ] ]
+		value: self model application adapterBindings
+		during: [
+			menuPresenter value ifNotNil: [ :aMenuOrBlock |
+				aMenuOrBlock isMorph
+					ifTrue: [ aMenuOrBlock ]
+					ifFalse: [ aMenuOrBlock build ] ] ]
 ]
 
 { #category : 'accessing' }

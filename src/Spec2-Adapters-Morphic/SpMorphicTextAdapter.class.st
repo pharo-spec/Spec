@@ -28,6 +28,12 @@ SpMorphicTextAdapter >> addFocusRotationKeyBindings [
 	"Text areas needs to be able to process tab. Cancel the binding."
 ]
 
+{ #category : 'accessing' }
+SpMorphicTextAdapter >> appendText: aString [
+
+	self widget appendText: aString
+]
+
 { #category : 'api' }
 SpMorphicTextAdapter >> backendIncludesEditionMenu [
 

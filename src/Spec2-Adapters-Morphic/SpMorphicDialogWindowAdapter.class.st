@@ -51,3 +51,11 @@ SpMorphicDialogWindowAdapter >> buildWidget [
 		  in: [ :this | self subscribeToAnnouncements: this ];
 		  yourself
 ]
+
+{ #category : 'private' }
+SpMorphicDialogWindowAdapter >> waitWhile: aBlock [
+	
+	SpWindowForceOpenNonModal value ifTrue: [ ^ self ].
+	
+	MorphicRenderLoop new doOneCycleWhile: aBlock
+]

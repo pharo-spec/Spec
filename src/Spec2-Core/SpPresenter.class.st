@@ -685,28 +685,6 @@ SpPresenter >> initializeWidgets [
 	"Now, presenters should implement #initializePresenters instead."
 ]
 
-{ #category : 'initialization' }
-SpPresenter >> initializeWindow: aWindowPresenter [
-	"override this to set window values before opening, but always do a super send message. You may want to add a menu, a toolbar or a statusbar."
-
-	"IMPORTANT: please always include
-	initializeWindow: aWindowPresenter
-		
-		super initializeWindow: aWindowPresenter
-		your code
-		
-	"
-
-	aWindowPresenter
-		title: self windowTitle;
-		initialExtent: self class preferredExtent;
-		windowIcon: self windowIcon;
-		"Notice that preferredExtent: is used here because it is stateful
-		in the sense that it will set the preferred extent to be remembered.
-		Of course only when resizable allows it."
-		whenResizingDo: [ :ann | self windowResizedTo: ann newSize ].
-]
-
 { #category : 'inspector - extensions' }
 SpPresenter >> inspectionSubPresenters: aBuilder [
 	<inspectorPresentationOrder: 910 title: 'Subpresenters'>

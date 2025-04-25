@@ -24,7 +24,9 @@ SmalltalkCISpec {
   			'System-Settings-Tests.*',
   			'System-Dependencies-Tests',
   			'RPackage.*',
-  			'ReleaseTests.*' ],
+  			'ReleaseTests.*',
+  			'Files-Tests.*',
+  			'Zinc-Tests.*' ],
   		#classes : [
   			#OutOfMemoryTest,
   			#TraitFileOutTest,

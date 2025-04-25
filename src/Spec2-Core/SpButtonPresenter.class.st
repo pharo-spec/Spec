@@ -120,14 +120,12 @@ SpButtonPresenter >> performAction [
 
 { #category : 'private' }
 SpButtonPresenter >> registerShortcut: newShortcut [
-	| receiver |
-	
-	receiver := self window.
-	(receiver isNil or: [ newShortcut isNil ]) ifTrue: [ ^ self ].
-	receiver presenter
-		addShortcutWith: [ :act | act 
+
+	newShortcut ifNil: [ ^ self ].
+	self withWindowDo: [ :receiver |
+		receiver presenter addShortcutWith: [ :act | act
 			shortcutKey: newShortcut;
-			action: [ self performAction ] ]
+			action: [ self performAction ] ] ]
 ]
 
 { #category : 'api' }

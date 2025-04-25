@@ -15,13 +15,6 @@ Trait {
 }
 
 { #category : 'private' }
-SpTBackendUpdating >> backendDetectCyclesDo: aBlock [ 
-
-	self isBackendUpdating ifTrue: [ ^ self ].
-	^ aBlock value
-]
-
-{ #category : 'private' }
 SpTBackendUpdating >> backendUpdatingDo: aBlock [ 
 	| oldStatus |
 
@@ -41,4 +34,11 @@ SpTBackendUpdating >> initializeTBackendUpdating [
 SpTBackendUpdating >> isBackendUpdating [
 
 	^ backendUpdating
+]
+
+{ #category : 'private' }
+SpTBackendUpdating >> withCycleDetectionOnBackendDo: aBlock [ 
+
+	self isBackendUpdating ifTrue: [ ^ self ].
+	^ aBlock value
 ]

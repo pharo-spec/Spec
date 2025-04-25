@@ -98,7 +98,7 @@ SpMorphicFrameLayoutAdapter >> layout: aLayout [
 	
 	widget ifNil: [
 		"build of widget was differed up to here (to know what is the direction)"
-		widget := self newLabel: aLayout label.
+		widget := self newLabel: (aLayout label ifNil: [ '' ]).
 
 		"widget borderWidth: aLayout borderWidth."
 		"aLayout hasAlignment 
@@ -222,4 +222,10 @@ SpMorphicFrameLayoutAdapter >> verifyBoxExtentOf: aPanel withChild: childMorph [
 	height := height + aPanel height + aPanel cellInset.
 			 
 	aPanel extent: (aPanel width max: width)@(aPanel height max: height)
+]
+
+{ #category : 'private - test support' }
+SpMorphicFrameLayoutAdapter >> widgetLabel [
+	
+	^ self widget label
 ]

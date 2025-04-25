@@ -79,6 +79,15 @@ SpTextPresenter class >> textSearchCommandsGroupWith: aPresenter [
 	^ group
 ]
 
+{ #category : 'accessing - text' }
+SpTextPresenter >> appendText: aString [
+	"appends a text to the end of current text buffer. 
+	 this will work just if the presenter is already built."
+	
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter appendText: aString ]
+]
+
 { #category : 'testing' }
 SpTextPresenter >> backendIncludesEditionMenu [
 	"Some backends can contain bundled by default edition context menu (copy, cut, paste), 

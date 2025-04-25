@@ -286,6 +286,12 @@ SpAbstractEasyTreeListViewPresenter >> updateRootsKeepingSelection: aCollection 
 	contentView updateRootsKeepingSelection: aCollection
 ]
 
+{ #category : 'accessing' }
+SpAbstractEasyTreeListViewPresenter >> verticalAlignment [ 
+
+	^ contentView verticalAlignment
+]
+
 { #category : 'api - events' }
 SpAbstractEasyTreeListViewPresenter >> whenMenuChangedDo: aBlock [
 

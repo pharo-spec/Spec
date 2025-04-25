@@ -23,6 +23,18 @@ SpEasyTreeColumnViewPresenter class >> example [
 		open
 ]
 
+{ #category : 'api - drag and drop' }
+SpEasyTreeColumnViewPresenter >> acceptDrop [
+
+	^ contentView acceptDrop
+]
+
+{ #category : 'api - drag and drop' }
+SpEasyTreeColumnViewPresenter >> acceptDrop: aBoolean [
+
+	contentView acceptDrop: aBoolean
+]
+
 { #category : 'api' }
 SpEasyTreeColumnViewPresenter >> addColumn: aColumn [
 	"Add a column to the table. A column should be an instance of `SpTableColumn`"
@@ -60,6 +72,30 @@ SpEasyTreeColumnViewPresenter >> columns: aCollection [
 	self flag: #TODO
 ]
 
+{ #category : 'api - drag and drop' }
+SpEasyTreeColumnViewPresenter >> dragEnabled [
+
+	^ contentView dragEnabled
+]
+
+{ #category : 'api - drag and drop' }
+SpEasyTreeColumnViewPresenter >> dragEnabled: aBoolean [
+
+	contentView dragEnabled: aBoolean
+]
+
+{ #category : 'api - drag and drop' }
+SpEasyTreeColumnViewPresenter >> dropEnabled [
+
+	^ contentView dropEnabled
+]
+
+{ #category : 'api - drag and drop' }
+SpEasyTreeColumnViewPresenter >> dropEnabled: aBoolean [
+
+	contentView dropEnabled: aBoolean
+]
+
 { #category : 'api' }
 SpEasyTreeColumnViewPresenter >> hideColumnHeaders [
 	"Hide the column headers"
@@ -95,6 +131,12 @@ SpEasyTreeColumnViewPresenter >> showColumnHeaders [
 	contentView showColumnHeaders
 ]
 
+{ #category : 'api - drag and drop' }
+SpEasyTreeColumnViewPresenter >> wantsDrop: aBlock [ 
+	
+	contentView wantsDrop: aBlock
+]
+
 { #category : 'api - events' }
 SpEasyTreeColumnViewPresenter >> whenColumnsChangedDo: aBlock [
 	"Inform when columns have changed. 
@@ -105,6 +147,12 @@ SpEasyTreeColumnViewPresenter >> whenColumnsChangedDo: aBlock [
 	
 
 	contentView whenColumnsChangedDo: aBlock
+]
+
+{ #category : 'enumerating' }
+SpEasyTreeColumnViewPresenter >> whenDragStartDo: aBlock [
+
+	contentView whenDragStartDo: aBlock
 ]
 
 { #category : 'api - events' }

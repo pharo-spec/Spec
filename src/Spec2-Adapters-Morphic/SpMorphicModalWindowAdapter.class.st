@@ -56,12 +56,6 @@ SpMorphicModalWindowAdapter >> openWithDeferredAction: aBlock [
 	self waitWhile: [ self widget isInWorld ]
 ]
 
-{ #category : 'private' }
-SpMorphicModalWindowAdapter >> waitWhile: aBlock [
-	
-	MorphicRenderLoop new doOneCycleWhile: aBlock
-]
-
 { #category : 'updating' }
 SpMorphicModalWindowAdapter >> windowClosed [
 

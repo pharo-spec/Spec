@@ -85,6 +85,11 @@ SpColumnViewColumn >> isExpand [
 ]
 
 { #category : 'testing' }
+SpColumnViewColumn >> isExpandable [
+	^ self isExpand
+]
+
+{ #category : 'testing' }
 SpColumnViewColumn >> isSortable [
 
 	^ self sortFunction isNotNil

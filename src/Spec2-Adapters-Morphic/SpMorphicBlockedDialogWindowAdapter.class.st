@@ -35,5 +35,5 @@ SpMorphicBlockedDialogWindowAdapter >> openWithDeferredAction: aBlock [
 	self centerIfNeeded.
 	self presenter windowIsOpened.
 	aBlock value.
-	MorphicRenderLoop new doOneCycleWhile: [ self widget isInWorld ]
+	self waitWhile: [ self widget isInWorld ]
 ]

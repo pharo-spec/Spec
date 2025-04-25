@@ -12,6 +12,18 @@ SpTextPresenterTest >> classToTest [
 ]
 
 { #category : 'tests' }
+SpTextPresenterTest >> testAppendText [
+
+	self openInstance.
+	
+	self assert: presenter text isEmpty.
+	presenter appendText: 'Test'.
+	self assert: presenter text equals: 'Test'.
+	presenter appendText: 'Final'.
+	self assert: presenter text equals: 'TestFinal'	
+]
+
+{ #category : 'tests' }
 SpTextPresenterTest >> testEditable [
 
 	presenter beNotEditable.
