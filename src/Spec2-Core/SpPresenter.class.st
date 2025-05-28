@@ -690,6 +690,7 @@ SpPresenter >> inspectionSubPresenters: aBuilder [
 	<inspectorPresentationOrder: 910 title: 'Subpresenters'>
 	
 	^ aBuilder newTree
+		addStyle: 'stTree';
 		roots: self presenters;
 		children: [ :each | each presenters ];
 		expandRoots;

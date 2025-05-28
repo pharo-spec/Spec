@@ -254,9 +254,12 @@ SpEasyListViewPresenter >> rowPresenterClass [
 ]
 
 { #category : 'api' }
-SpEasyListViewPresenter >> rowPresenterClass: aClass [
+SpEasyListViewPresenter >> rowPresenterClass: aPresenterClass [
+	"Presenter to be used for the row. 
+	 Anything defined in #display: and #displayIcon: will be ignored.
+	 Notice that `aPresenterClass` needs to understand #model:"
 	
-	rowPresenterClass := aClass
+	rowPresenterClass := aPresenterClass
 ]
 
 { #category : 'api - selection' }

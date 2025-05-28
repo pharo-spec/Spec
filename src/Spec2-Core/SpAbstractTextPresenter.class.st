@@ -239,6 +239,8 @@ SpAbstractTextPresenter >> registerEvents [
 SpAbstractTextPresenter >> selectAll [
 	"Select all text"
 
+	self text ifNil:  [ ^ self ].
+	
 	self selectionInterval: (1 to: self text size)
 ]
 

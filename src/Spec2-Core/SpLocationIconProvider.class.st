@@ -70,6 +70,7 @@ SpLocationIconProvider >> inspectionIcons: aBuilder [
 	<inspectorPresentationOrder: 0 title: 'Icons'> 
 
 	^ aBuilder newList
+		addStyle: 'stList';
 		items: (icons associations sorted: [ :a :b | a key < b key ]);
 		displayIcon: [ :each | each value ];
 		display: [ :each | each key ];

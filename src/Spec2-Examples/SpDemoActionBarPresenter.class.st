@@ -18,7 +18,7 @@ SpDemoActionBarPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		  add: text;
-		  addLast: actionBar expand: false;
+		  add: actionBar expand: false;
 		  yourself
 ]
 

@@ -8,7 +8,11 @@ SpBoxLayout class >> exampleAddLast [
 	presenter layout: (self newTopToBottom
 		add: 'Enter text' expand: false;
 		add: presenter newTextInput expand: false;
-		addLast: (presenter newButton label: 'Ok') expand: false;
+		add: (SpBoxLayout newTopToBottom
+				vAlignEnd;
+				add: presenter newButton label: 'Ok';
+				yourself) 
+			expand: false;
 		yourself).
 			
 	presenter open
@@ -43,8 +47,9 @@ SpBoxLayout class >> exampleBorderWidth [
 		add: 'Enter text' expand: false;
 		add: presenter newTextInput expand: false;
 		addLast: (self newLeftToRight
-				addLast: (presenter newButton label: 'Ok') expand: false;
-				addLast: (presenter newButton label: 'Cancel') expand: false;
+				hAlignEnd;
+				add: (presenter newButton label: 'Ok') expand: false;
+				add: (presenter newButton label: 'Cancel') expand: false;
 				yourself)
 			expand: false;
 		yourself).

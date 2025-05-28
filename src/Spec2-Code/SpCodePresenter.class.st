@@ -462,17 +462,18 @@ SpCodePresenter >> hasSyntaxHighlight [
 ]
 
 { #category : 'initialization' }
-SpCodePresenter >> initialize [ 
+SpCodePresenter >> initialize [
 
 	super initialize.
 
 	"Use the default menu"
 	overrideContextMenu := false.
-	
+
 	self withSyntaxHighlight.
 	self withSmartCharacters.
-	self withLineNumbers.
-	
+	self showLineNumbers.
+	self subscribeToSettingsChangesAnnouncements.
+
 	self registerEventsForStyling.
 	self clearInteractionModel
 ]
@@ -649,6 +650,12 @@ SpCodePresenter >> selectedTextOrLine [
 ]
 
 { #category : 'private' }
+SpCodePresenter >> showLineNumbers [
+
+	self lineNumbers: self application codeShowLineNumbers
+]
+
+{ #category : 'private' }
 SpCodePresenter >> smartCharacters: aBoolean [
 
 	smartCharacters := aBoolean
@@ -674,6 +681,15 @@ SpCodePresenter >> styleScheme: aSymbol [
 	 to define a scheme)"
 
 	 styleScheme := aSymbol
+]
+
+{ #category : 'initialization' }
+SpCodePresenter >> subscribeToSettingsChangesAnnouncements [
+
+	self announcer
+		when: SpCodeShowLineNumbersChanged
+		send: #showLineNumbers
+		to: self
 ]
 
 { #category : 'private' }

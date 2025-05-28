@@ -57,7 +57,7 @@ SpEasyListRowPresenter >> updatePresenter [
 	self model ifNil: [ ^ self ].
 	
 	self listView hasIcons
-		ifTrue: [ iconPresenter image: (self listView displayIcon value: self model) ].
+		ifTrue: [ iconPresenter image: (self listView displayIcon cull: self model) ].
 	textPresenter label: (self listView display value: self model)
 ]
 

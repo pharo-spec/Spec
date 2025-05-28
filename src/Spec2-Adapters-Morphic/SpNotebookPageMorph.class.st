@@ -80,7 +80,7 @@ SpNotebookPageMorph >> reset [
 SpNotebookPageMorph >> themeChanged [
 
 	super themeChanged.
-	labelMorph themeChanged.
+	labelMorph ifNotNil: [ :aMorph | aMorph themeChanged ].
 	actualPageMorph ifNotNil: [ 
 		actualPageMorph themeChanged ]
 ]

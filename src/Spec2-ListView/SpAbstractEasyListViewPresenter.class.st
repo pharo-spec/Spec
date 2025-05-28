@@ -90,9 +90,21 @@ SpAbstractEasyListViewPresenter >> model [
 ]
 
 { #category : 'api' }
+SpAbstractEasyListViewPresenter >> model: aListModel [ 
+	
+	contentView model: aListModel
+]
+
+{ #category : 'api' }
 SpAbstractEasyListViewPresenter >> removeScrollBarStyle: aStyle [
 
 	^ contentView removeScrollBarStyle: aStyle
+]
+
+{ #category : 'initialization' }
+SpAbstractEasyListViewPresenter >> resetListSelection [
+	
+	self selectIndex: 0
 ]
 
 { #category : 'api' }
@@ -126,6 +138,12 @@ SpAbstractEasyListViewPresenter >> selectIndex: anInteger [
 ]
 
 { #category : 'api - selection' }
+SpAbstractEasyListViewPresenter >> selectIndexes: anArray [
+	
+	contentView selectIndexes: anArray
+]
+
+{ #category : 'api - selection' }
 SpAbstractEasyListViewPresenter >> selectItem: anObject [
 	
 	contentView selectItem: anObject
@@ -137,6 +155,12 @@ SpAbstractEasyListViewPresenter >> selectItem: anObject scrollToSelection: aBool
 	contentView 
 		selectItem: anObject 
 		scrollToSelection: aBoolean
+]
+
+{ #category : 'api - selection' }
+SpAbstractEasyListViewPresenter >> selectItems: anArray [
+
+	contentView selectItems: anArray
 ]
 
 { #category : 'api - selection' }

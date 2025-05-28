@@ -82,6 +82,12 @@ SpAbstractEasyPresenter >> connectPresenters [
 		whenFocusReceivedDo: [ :event | searchBox hide ]
 ]
 
+{ #category : 'private' }
+SpAbstractEasyPresenter >> contentView [
+
+	^ contentView
+]
+
 { #category : 'api - actions' }
 SpAbstractEasyPresenter >> contextMenuFromCommandsGroup: aValuable [
 	
@@ -153,6 +159,12 @@ SpAbstractEasyPresenter >> enableSearch [
 SpAbstractEasyPresenter >> ensureActions [
 
 	^ contentView ensureActions
+]
+
+{ #category : 'accessing' }
+SpAbstractEasyPresenter >> eventHandler [
+
+	^ contentView eventHandler
 ]
 
 { #category : 'initialization' }

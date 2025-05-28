@@ -471,16 +471,6 @@ SpWindowPresenter >> nearWindowLike [
 	^ self
 ]
 
-{ #category : 'notifying' }
-SpWindowPresenter >> notify: aSpecNotification [
-	"Receives a notification and delivers it as required"
-
-	self withAdapterDo: [ :anAdapter |
-		aSpecNotification type 
-			notify: aSpecNotification 
-			on: anAdapter ]
-]
-
 { #category : 'private' }
 SpWindowPresenter >> okToChange [
 

@@ -105,6 +105,13 @@ SpTSelectionMode >> selectLast [
 ]
 
 { #category : 'api - selection' }
+SpTSelectionMode >> selectedIndex [
+	"Answer index of current selected element"
+
+	^ self selection selectedIndex
+]
+
+{ #category : 'api - selection' }
 SpTSelectionMode >> selectedItem [
 	"Return selected item."
 
