@@ -98,6 +98,9 @@ SpStyle class >> defaultStyleSheetData [
 		Geometry { #width: 150, #minHeight: 125, #hResizing: true, #vResizing: true },
 		.rows4 [ Geometry { #minHeight: 80, #height: 80 } ],
 		.rows8 [ Geometry { #minHeight: 160, #height: 160 } ] ],
+	.shortRowList [ Container { #rowHeight: 18, #intercellSpacing: 1 } ],
+	.mediumRowList [ Container { #rowHeight: 26, #intercellSpacing: 1 } ],
+	.tallRowList [ Container { #rowHeight: 40, #intercellSpacing: 1 } ],
 	.slider [ Geometry { #width: 150, #hResizing: true } ],
 	.actionBar [  
 		Container { #borderWidth: 0, #padding: 5 },
