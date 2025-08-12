@@ -266,6 +266,12 @@ SpFilteringListPresenter >> rowPresenterClass: aPresenterClass [
 ]
 
 { #category : 'api - selection' }
+SpFilteringListPresenter >> selectIndex: index [
+
+	^ listPresenter selectIndex: index
+]
+
+{ #category : 'api - selection' }
 SpFilteringListPresenter >> selectIndex: aNumber scrollToSelection: aBoolean [ 
 	
 	listPresenter selectIndex: aNumber scrollToSelection: aBoolean
