@@ -245,6 +245,16 @@ SpAbstractTextPresenter >> selectAll [
 ]
 
 { #category : 'api - selection' }
+SpAbstractTextPresenter >> selectFirst: aString ifAbsent: aBlock [
+
+	| index |
+	index := self text findString: aString.
+	index = 0 ifTrue: [ ^ aBlock value ].
+	self selectionInterval: (index to: index + aString size -1)
+	
+]
+
+{ #category : 'api - selection' }
 SpAbstractTextPresenter >> selectLine [
 	"Select line where the cursor is placed at this moment and answer the resulting selection 
 	(See `SpAbstractTextPresenter>>#selectionInterval`). "

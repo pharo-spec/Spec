@@ -162,6 +162,39 @@ SpAbstractTextPresenterTest >> testSelectAllWithoutOpening [
 ]
 
 { #category : 'tests' }
+SpAbstractTextPresenterTest >> testSelectFirst [
+
+	| startIndex |
+	self initializationText.
+	presenter selectFirst: 'for' ifAbsent: [  ]. 
+	startIndex := presenter text findString: 'for'.
+	
+	self assert: presenter selectionInterval equals: (startIndex to: startIndex+2)
+]
+
+{ #category : 'tests' }
+SpAbstractTextPresenterTest >> testSelectFirstWhenAbsent [
+
+	| startIndex passByAbsent |
+	self initializationText.
+	passByAbsent := false.
+	presenter selectFirst: 'ZZZ' ifAbsent: [ passByAbsent := true ]. 
+	startIndex := presenter text findString: 'for'.
+	
+	self assertEmpty: presenter selectionInterval.
+	self assert: passByAbsent
+]
+
+{ #category : 'tests' }
+SpAbstractTextPresenterTest >> testSelectFirstWhenMultiplePossibleSelection [
+
+	presenter text: 'this is a test'.
+	presenter selectFirst: 'is' ifAbsent: [  ].
+	
+	self assert: presenter selectionInterval equals: (3 to: 4)
+]
+
+{ #category : 'tests' }
 SpAbstractTextPresenterTest >> testTextIsSetAndCursorPositionedCorrectly [
 
 	presenter text: 'aText'.
