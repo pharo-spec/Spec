@@ -27,7 +27,7 @@ SpComposablePresenterWithModelTest >> testInstanceCreationWithValueHolder [
 	| point valueHolder presenter |
 	
 	point := (40@54).
-	valueHolder := point asValueHolder.
+	valueHolder := NewValueHolder value: point.
 	presenter := SpTestingPresenterWithModel on: valueHolder.
 	
 	self assert: presenter model equals: point.
