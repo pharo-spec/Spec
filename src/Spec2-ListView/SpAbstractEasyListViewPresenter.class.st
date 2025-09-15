@@ -183,6 +183,12 @@ SpAbstractEasyListViewPresenter >> selectedItems [
 ]
 
 { #category : 'api - selection' }
+SpAbstractEasyListViewPresenter >> selectedRowPresenter [
+
+	^ contentView selectedRowPresenter
+]
+
+{ #category : 'api - selection' }
 SpAbstractEasyListViewPresenter >> selection [
 	
 	^ contentView selection

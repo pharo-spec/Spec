@@ -62,6 +62,28 @@ SpEasyListViewPresenter class >> exampleMultipleSelection [
 ]
 
 { #category : 'examples' }
+SpEasyListViewPresenter class >> examplePopover [
+	"This example show a simple list with all classes, and adds a popover when selection changes."
+	| app listView popover |
+
+	app := SpApplication new.
+	popover := nil.
+	
+	(listView := self newApplication: app)
+		items: self environment allClasses;
+		whenSelectionChangedDo: [ :selection |
+			selection printToStdout.
+			(selection isNotNil and: [ selection selectedItem isNotNil ]) ifTrue: [ 
+				popover ifNotNil: [ popover dismiss ].
+				(popover := listView newPopover) 
+					presenter: (listView newLabel label: selection selectedItem name);
+					relativeTo: (listView selectedRowPresenter ifNil: [ listView  ]); 
+					doNotTransferFocus;
+					popup	] ];
+		open
+]
+
+{ #category : 'examples' }
 SpEasyListViewPresenter class >> exampleWithHeaderTitle [
 
 	^ self new

@@ -25,7 +25,8 @@ SpMorphicTreeColumnViewDataSource >> cellColumn: column row: rowIndex [
 		value: item data.
 		
 	contentMorph := contentPresenter build.
-
+	contentMorph setProperty: #presenter toValue: contentPresenter.
+	
 	"register for height"
 	rowHeights at: rowIndex put: contentMorph height.
 
