@@ -79,7 +79,7 @@ SpTextPresenter class >> textSearchCommandsGroupWith: aPresenter [
 	^ group
 ]
 
-{ #category : 'accessing - text' }
+{ #category : 'api' }
 SpTextPresenter >> appendText: aString [
 	"appends a text to the end of current text buffer. 
 	 this will work just if the presenter is already built."
@@ -228,7 +228,8 @@ SpTextPresenter >> registerEvents [
 
 	super registerEvents.
 	self whenScrollValueChangedDo: [ :newPosition | 
-		self changed: #setScrollValue: with: { newPosition } ]
+		self withAdapterDo: [ :anAdapter |
+			anAdapter setScrollValue: newPosition ] ]
 ]
 
 { #category : 'api' }
