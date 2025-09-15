@@ -54,12 +54,15 @@ SpMorphicDialogWindowAdapter >> buildWidget [
 
 { #category : 'private' }
 SpMorphicDialogWindowAdapter >> waitWhile: aBlock [
-	
-	SpWindowForceOpenNonModal value ifTrue: [ ^ self ].
+
+	SpWindowForceOpenNonModal value ifTrue: [ 
+			"ensure the window opening before returning"
+			self currentWorld doOneCycle.
+			^ self ].
 	SpWindowSimulateOpenModal value ifNotNil: [ :aValuable |
-		aValuable value: self presenter.
-		self presenter close.
-		^ self ].
-	
+			aValuable value: self presenter.
+			self presenter close.
+			^ self ].
+
 	MorphicRenderLoop new doOneCycleWhile: aBlock
 ]
