@@ -68,6 +68,20 @@ SpCheckboxPresenterTest >> testActivateRaisesChangedEventOnce [
 ]
 
 { #category : 'tests' }
+SpCheckboxPresenterTest >> testClickDoesNotToggleStateWhenCheckboxIsDisabled [
+
+	presenter state: false.
+
+	presenter enabled: false.
+	presenter click.
+	self deny: presenter state.
+
+	presenter enabled: true.
+	presenter click.
+	self assert: presenter state
+]
+
+{ #category : 'tests' }
 SpCheckboxPresenterTest >> testDeactivateDoesNotRaiseActivateEvent [
 
 	presenter state: true.
