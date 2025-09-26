@@ -120,7 +120,7 @@ SpPresenter class >> defaultPreferredExtent [
 	^ 700@500
 ]
 
-{ #category : 'labeled-presenters' }
+{ #category : 'labeled - presenters' }
 SpPresenter class >> iconWidth [
 	^ 24
 ]
