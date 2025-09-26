@@ -72,7 +72,7 @@ SpNotebookPresenter >> pageAt: index [
 SpNotebookPresenter >> pageNamed: aTitle [
 	"Answer the receiver's <SpNotebookPage> with aTitle as name. Raise a <NotFound> exception if not present"
 
-	^ self pages detect: [ : page | page title = aTitle ]
+	^ self pages detect: [ :page | page title = aTitle ] ifNone: [ ^ nil ] 
 ]
 
 { #category : 'private' }
