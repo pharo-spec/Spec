@@ -276,7 +276,11 @@ SpListViewPresenter >> initializeItemFactory [
 	"Just set up the defaults (to ensure we have a working list at any moment)"
 	
 	self setup: [ :aPresenter | aPresenter newLabel ].
-	self bind: [ :aPresenter :anObject | aPresenter label: anObject asString ]
+	self bind: [ :aPresenter :anObject | 
+		aPresenter label: ([  anObject asString ]
+			on: Error 
+			fork: [ :e | e pass ] 
+			return: [ 'OBJECT PRINT ERROR' ] ) ]
 ]
 
 { #category : 'initialization' }

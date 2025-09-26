@@ -201,7 +201,7 @@ SpEasyListViewPresenter >> hasHeaderTitle [
 
 { #category : 'testing' }
 SpEasyListViewPresenter >> hasIcons [
-	"Answer true if the list has an icon provider (See `SpListPresenter>>#icons:`)."
+	"Answer true if the list has an icon provider (See `SpListViewPresenter>>#displayIcon:`)."
 
 	^ self displayIcon notNil
 ]

@@ -128,7 +128,7 @@ SpEasyTreeListViewPresenter >> hasHeaderTitle [
 
 { #category : 'testing' }
 SpEasyTreeListViewPresenter >> hasIcons [
-	"Answer true if the list has an icon provider (See `SpListPresenter>>#icons:`)."
+	"Answer true if the list has an icon provider (See `SpEasyTreeListViewPresenter>>#displayIcon:`)."
 
 	^ self displayIcon notNil
 ]
