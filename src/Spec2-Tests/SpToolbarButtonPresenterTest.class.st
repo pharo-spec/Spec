@@ -1,6 +1,6 @@
 Class {
 	#name : 'SpToolbarButtonPresenterTest',
-	#superclass : 'SpAbstractButtonPresenterTest',
+	#superclass : 'SpSpecTest',
 	#category : 'Spec2-Tests-Core-Widgets',
 	#package : 'Spec2-Tests',
 	#tag : 'Core-Widgets'
