@@ -64,8 +64,10 @@ SpToolbarButtonPresenter >> badge: aString [
 
 { #category : 'simulating' }
 SpToolbarButtonPresenter >> click [
+	"Simulate a click on the toolbar button."
 	
-	self action cull: self
+	self isEnabled ifFalse: [ ^ self ].
+	self performAction
 ]
 
 { #category : 'execution' }
