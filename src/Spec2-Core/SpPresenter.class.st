@@ -898,6 +898,14 @@ SpPresenter >> rebuildLayout [
 	self replaceLayoutWith: self layout
 ]
 
+{ #category : 'api' }
+SpPresenter >> removeAllStyles [
+	"remove all styles associated to this presenter"
+
+	self styles copy 
+		do: [ :each | self removeStyle: each ]
+]
+
 { #category : 'api - shortcuts' }
 SpPresenter >> removeKeyCombination: aShortcut [
 	"Remove the action associated to `aShortcut`"
@@ -914,8 +922,7 @@ SpPresenter >> removeKeyCombination: aShortcut [
 
 { #category : 'api' }
 SpPresenter >> removeStyle: aName [
-	"Remove style from presenter.
-	 See `SpPresenter>>#removeStyle:`"
+	"Remove style from presenter."
 
 	(styles includes: aName) ifFalse: [ ^ self ].
 	styles := styles copyWithout: aName.
