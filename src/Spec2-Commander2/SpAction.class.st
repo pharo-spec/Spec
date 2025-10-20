@@ -5,6 +5,7 @@ Class {
 	#name : 'SpAction',
 	#superclass : 'SpCommand',
 	#instVars : [
+		'priority',
 		'action',
 		'actionEnabled',
 		'visible',
@@ -150,6 +151,7 @@ SpAction >> initialize [
 	decoratedCommand := CmCommand new.
 	decoratedCommand name: nil.
 	visible := true.
+	priority := 0.
 	super initialize
 ]
 
@@ -169,6 +171,18 @@ SpAction >> printOn: stream [
 		ifNotNil: [ :key | key asString ] 
 		ifNil: [ 'No shortcut' ]).
 	stream << ')'
+]
+
+{ #category : 'accessing' }
+SpAction >> priority [
+
+	^ priority
+]
+
+{ #category : 'accessing' }
+SpAction >> priority: aNumber [
+
+	priority := aNumber
 ]
 
 { #category : 'accessing' }
