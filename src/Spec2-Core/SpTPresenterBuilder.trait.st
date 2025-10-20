@@ -79,7 +79,8 @@ SpTPresenterBuilder >> newComponentList [
 
 { #category : 'scripting - widgets' }
 SpTPresenterBuilder >> newDiff [
-	^ self instantiate: SpDiffPresenter
+
+	^ self instantiate: self application backend diffClass
 ]
 
 { #category : 'scripting - widgets' }

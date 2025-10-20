@@ -56,6 +56,12 @@ SpApplicationBackend >> defaultConfigurationFor: anApplication [
 ]
 
 { #category : 'accessing' }
+SpApplicationBackend >> diffClass [
+
+	self subclassResponsibility
+]
+
+{ #category : 'accessing' }
 SpApplicationBackend >> dropListClass [
 
 	self subclassResponsibility
