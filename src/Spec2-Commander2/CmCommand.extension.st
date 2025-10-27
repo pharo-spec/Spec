@@ -52,3 +52,9 @@ CmCommand class >> forSpecWithIconNamed: aSymbol shortcutKey: aKMKeyCombination 
 	^ self new
 		asSpecCommandWithIconNamed: aSymbol shortcutKey: aKMKeyCombination
 ]
+
+{ #category : '*Spec2-Commander2' }
+CmCommand >> inform: aString [ 
+
+	StPharoApplication current inform: aString
+]
