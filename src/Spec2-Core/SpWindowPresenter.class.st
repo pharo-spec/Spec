@@ -554,6 +554,13 @@ SpWindowPresenter >> resize: anExtent [
 ]
 
 { #category : 'api' }
+SpWindowPresenter >> restore [
+	"Restore the window"
+
+	self withAdapterDo: [ :anAdapter | anAdapter restore ]
+]
+
+{ #category : 'api' }
 SpWindowPresenter >> size [
 	"Answer current window size. 
 	 This message will return 0@0 is window is not opened."
