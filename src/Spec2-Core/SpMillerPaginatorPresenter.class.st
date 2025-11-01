@@ -41,7 +41,7 @@ SpMillerPaginatorPresenter >> initializePresenters [
 		add: ((paginatorContainerLayout := SpBoxLayout newLeftToRight)
 				hAlignCenter; 
 				yourself)
-			expand: false;
+			height: 20;
 		yourself).
 
 	millerList withoutHorizontalScrollBar.
