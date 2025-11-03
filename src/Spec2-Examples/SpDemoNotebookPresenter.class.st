@@ -92,7 +92,7 @@ SpDemoNotebookPresenter >> objectClassPage [
 SpDemoNotebookPresenter >> objectInspectorPage [
 
 	^ SpNotebookPage title: 'Object inspector' icon: (self iconNamed: #nautilus) provider: [
-		  SpObjectInspector new
+		  SpDemoObjectInspectorPresenter new
 			  inspect: Object;
 			  yourself ]
 ]

@@ -6,7 +6,7 @@ self example
 ```
 "
 Class {
-	#name : 'SpObjectInspector',
+	#name : 'SpDemoObjectInspectorPresenter',
 	#superclass : 'SpPresenter',
 	#instVars : [
 		'variablesList',
@@ -20,13 +20,13 @@ Class {
 }
 
 { #category : 'examples' }
-SpObjectInspector class >> example [
+SpDemoObjectInspectorPresenter class >> example [
 
 	self inspect: self new
 ]
 
 { #category : 'instance creation' }
-SpObjectInspector class >> inspect: anObject [
+SpDemoObjectInspectorPresenter class >> inspect: anObject [
 
 	^ self new 
 		inspect: anObject;
@@ -34,7 +34,7 @@ SpObjectInspector class >> inspect: anObject [
 ]
 
 { #category : 'initialization' }
-SpObjectInspector >> initializePresenters [
+SpDemoObjectInspectorPresenter >> initializePresenters [
 
 	self layout: (SpPanedLayout newTopToBottom
 		positionOfSlider: 70 percent;
@@ -49,20 +49,20 @@ SpObjectInspector >> initializePresenters [
 ]
 
 { #category : 'instance creation' }
-SpObjectInspector >> inspect: anObject [
+SpDemoObjectInspectorPresenter >> inspect: anObject [
 
 	inspectedObject := anObject.
 	self updatePresenter
 ]
 
 { #category : 'initialization' }
-SpObjectInspector >> updatePresenter [
+SpDemoObjectInspectorPresenter >> updatePresenter [
 
 	variablesList items: inspectedObject class allSlots
 ]
 
 { #category : 'accessing' }
-SpObjectInspector >> windowTitle [
+SpDemoObjectInspectorPresenter >> windowTitle [
 
 	^ 'Object Inspector'
 ]

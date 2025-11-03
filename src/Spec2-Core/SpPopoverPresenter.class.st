@@ -111,6 +111,13 @@ SpPopoverPresenter >> isPopover [
 ]
 
 { #category : 'testing' }
+SpPopoverPresenter >> isTopWindow [
+	"for compatibility with windows. But a popover can never be a top window."
+
+	^ false
+]
+
+{ #category : 'testing' }
 SpPopoverPresenter >> isTransferFocus [
 
 	^ isTransferFocus

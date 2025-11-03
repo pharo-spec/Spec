@@ -12,6 +12,12 @@ SpBoxLayoutAdapterTest class >> isAbstract [
 	^ self == SpBoxLayoutAdapterTest
 ]
 
+{ #category : 'helpers' }
+SpBoxLayoutAdapterTest >> add16By16ImageTo: aLayout [
+
+	aLayout add: (presenter newImage image: (presenter iconNamed: 'box')) withConstraints: [ :constraints | constraints height: 16; width: 16 ]
+]
+
 { #category : 'tests' }
 SpBoxLayoutAdapterTest >> testAdapterElementsAreInSameOrderThanLayout [
 

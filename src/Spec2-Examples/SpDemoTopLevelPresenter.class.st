@@ -4,7 +4,7 @@ I am a simple example showing how to use a menu model to have a menu toolbar.
 self example
 "
 Class {
-	#name : 'SpApplicationWithToolbar',
+	#name : 'SpDemoTopLevelPresenter',
 	#superclass : 'SpPresenter',
 	#instVars : [
 		'menu',
@@ -16,14 +16,14 @@ Class {
 }
 
 { #category : 'examples' }
-SpApplicationWithToolbar class >> example [
+SpDemoTopLevelPresenter class >> example [
 
 	<sampleInstance>
 	^ self new open
 ]
 
 { #category : 'initialization' }
-SpApplicationWithToolbar >> addItemTo: aGroup [
+SpDemoTopLevelPresenter >> addItemTo: aGroup [
 	aGroup
 		addItem: [ :item | 
 			item
@@ -37,7 +37,7 @@ SpApplicationWithToolbar >> addItemTo: aGroup [
 ]
 
 { #category : 'layout' }
-SpApplicationWithToolbar >> defaultLayout [
+SpDemoTopLevelPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		add: menu expand: false;
@@ -46,7 +46,7 @@ SpApplicationWithToolbar >> defaultLayout [
 ]
 
 { #category : 'initialization' }
-SpApplicationWithToolbar >> initializePresenters [
+SpDemoTopLevelPresenter >> initializePresenters [
 	menu := self newMenuBar
 		addGroup: [ :group | 
 			group
@@ -105,12 +105,12 @@ SpApplicationWithToolbar >> initializePresenters [
 ]
 
 { #category : 'accessing' }
-SpApplicationWithToolbar >> menu [
+SpDemoTopLevelPresenter >> menu [
 	^ menu
 ]
 
 { #category : 'initialization' }
-SpApplicationWithToolbar >> subMenu [
+SpDemoTopLevelPresenter >> subMenu [
 	^ self newMenu
 		addItem: [ :item | 
 			item
@@ -140,12 +140,12 @@ SpApplicationWithToolbar >> subMenu [
 ]
 
 { #category : 'accessing' }
-SpApplicationWithToolbar >> text [
+SpDemoTopLevelPresenter >> text [
 	^ text
 ]
 
 { #category : 'api' }
-SpApplicationWithToolbar >> windowTitle [
+SpDemoTopLevelPresenter >> windowTitle [
 
 	^ 'Text editor'
 ]

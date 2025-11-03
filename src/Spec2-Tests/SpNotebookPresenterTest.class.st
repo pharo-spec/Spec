@@ -123,6 +123,42 @@ SpNotebookPresenterTest >> testRemovePageAt [
 ]
 
 { #category : 'tests' }
+SpNotebookPresenterTest >> testSelectAPageWillSetAnActivePresenter [
+	| app mainPresenter notebookPresenter results |
+	
+	app := SpApplication new.
+	
+	mainPresenter := SpPresenter newApplication: app.
+	mainPresenter layout: (SpBoxLayout new 
+		add: (notebookPresenter := mainPresenter newNotebook);
+		yourself).
+		
+	notebookPresenter addPage: (SpNotebookPage 
+		title: 'Test 1' 
+		provider: [ mainPresenter newLabel label: 'Added 1' ]).
+
+	 notebookPresenter addPage: (SpNotebookPage 
+		title: 'Test 2' 
+		provider: [ mainPresenter newLabel label: 'Added 2' ]).	
+
+	notebookPresenter whenSelectedPageChangedDo: [ :page |
+		results add: page activePresenter isNotNil ].
+	results := OrderedCollection new.
+	[ 
+		mainPresenter open.
+		10 milliSeconds wait.
+		notebookPresenter selectPageIndex: 2.
+		10 milliSeconds wait.
+		notebookPresenter selectPageIndex: 1.
+		10 milliSeconds wait ] 
+	ensure: [
+		mainPresenter withWindowDo: [ :each | each close ] ].
+
+	self assert: (notebookPresenter pages count: [ :each | each activePresenter isNotNil ]) equals: 2.
+	self assert: results asArray equals: #(true true true)
+]
+
+{ #category : 'tests' }
 SpNotebookPresenterTest >> testSelectPage [
 	| mock mock2 |
 	mock := self mockPage.
@@ -157,13 +193,13 @@ SpNotebookPresenterTest >> testWhenPagesChangedDo [
 { #category : 'tests' }
 SpNotebookPresenterTest >> testWhenSelectedPageChangedDo [
 	| mock mock2 counter selected |
+	
 	counter := 0.
 	mock := self mockPage.
 	mock2 := SpNotebookPage title: 'test' provider: [ SpButtonPresenter new ].
-	presenter
-		whenSelectedPageChangedDo: [ :page | 
-			selected := page.
-			counter := counter + 1 ].
+	presenter whenSelectedPageChangedDo: [ :page | 
+		selected := page.
+		counter := counter + 1 ].
 	presenter addPage: mock.
 	presenter addPage: mock2.
 	presenter selectPageIndex: 2.

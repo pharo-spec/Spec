@@ -317,20 +317,41 @@ SpMorphicBoxAdapter >> updateSpacing [
 { #category : 'private' }
 SpMorphicBoxAdapter >> verifyBoxExtent [
 
-	(startPanel hasSubmorphs not and: [ endPanel hasSubmorphs not ])
-		ifTrue: [ widget extent: 0@0 ]
+	| newWidgetWidth newWidgetHeight |
+	(startPanel hasSubmorphs not and: [ endPanel hasSubmorphs not ]) ifFalse: [ ^ self ].
+	newWidgetWidth := widget hResizing = #rigid
+		ifTrue: [ widget width ]
+		ifFalse: [ 0 ].
+	newWidgetHeight := widget vResizing = #rigid
+		ifTrue: [ widget height ]
+		ifFalse: [ 0 ].
+	widget extent: newWidgetWidth @ newWidgetHeight
 ]
 
 { #category : 'private' }
 SpMorphicBoxAdapter >> verifyBoxExtentOf: aPanel withChild: childMorph [
-	| width height |
+	| width height newPanelWidth newPanelHeight spacing |
 
-	width := childMorph width + (widget borderWidth * 2).
-	height := childMorph height + (widget borderWidth * 2).
+	width := childMorph width.
+	height := childMorph height.
+	"The cellInset of the startPanel and the endPanel hold the spacing of the box layout.
+	 They are the same. See #layout."
+	spacing := startPanel cellInset.
+	startPanel submorphCount + endPanel submorphCount = 0
+		ifTrue: [
+			width := width + (widget borderWidth * 2).
+			height := height + (widget borderWidth * 2).
+			spacing := 0 ].
 
 	layout isVertical 
-		ifTrue: [ height := height + aPanel height + aPanel cellInset ]
-		ifFalse: [ width := width + aPanel width + aPanel cellInset ].
-		 
-	aPanel extent: (aPanel width max: width)@(aPanel height max: height)
+		ifTrue: [ height := height + aPanel height + spacing ]
+		ifFalse: [ width := width + aPanel width + spacing ].
+
+	newPanelWidth := aPanel hResizing = #rigid
+		ifTrue: [ aPanel width ]
+		ifFalse: [ aPanel width max: width ].
+	newPanelHeight := aPanel vResizing = #rigid
+		ifTrue: [ aPanel height ]
+		ifFalse: [ aPanel height max: height ].
+	aPanel extent: newPanelWidth @ newPanelHeight
 ]
