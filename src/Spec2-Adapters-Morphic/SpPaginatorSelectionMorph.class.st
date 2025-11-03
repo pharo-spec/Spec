@@ -159,6 +159,12 @@ SpPaginatorSelectionMorph >> resetPosition [
 	lastX := nil
 ]
 
+{ #category : 'theme' }
+SpPaginatorSelectionMorph >> themeChanged [
+
+	self color: self defaultColor
+]
+
 { #category : 'accessing' }
 SpPaginatorSelectionMorph >> updateSizePages: pages pageWidth: pageWidth [ 
 	

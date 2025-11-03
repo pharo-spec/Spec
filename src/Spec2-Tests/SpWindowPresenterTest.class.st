@@ -81,9 +81,13 @@ SpWindowPresenterTest >> testResize [
 	
 	self openInstance.
 
+	"Let's not assume a default size ~= 600@600.
+	Instead, initially resize the window to 500@500, and then to 600@600.
+	Each resize should be observable."
+	presenter resize: 500@500.
 	self 
-		deny: presenter adapter windowSize 
-		equals: 600@600.
+		assert: presenter adapter windowSize 
+		equals: 500@500.
 	presenter resize: 600@600.
 	self 
 		assert: presenter adapter windowSize

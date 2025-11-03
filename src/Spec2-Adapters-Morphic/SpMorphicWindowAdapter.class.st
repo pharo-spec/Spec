@@ -261,6 +261,13 @@ SpMorphicWindowAdapter >> subscribeToAnnouncements: aWindow [
 		when: WindowClosed send: #windowClosed to: self
 ]
 
+{ #category : 'widget API' }
+SpMorphicWindowAdapter >> takeSnapshotIn: aFileReference [
+
+	self widgetDo: [ :window |
+		window asForm writePNGFileNamed: aFileReference fullName ]
+]
+
 { #category : 'icons' }
 SpMorphicWindowAdapter >> taskbarIcon [
 
