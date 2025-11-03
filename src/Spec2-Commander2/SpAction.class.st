@@ -108,7 +108,7 @@ SpAction >> canBeExecuted [
 SpAction >> dynamicName [
 
 	^ dynamicName 
-		ifNotNil: [ :aBlock | aBlock value ]
+		ifNotNil: [ :aBlock | aBlock cull: self context ]
 		ifNil: [ super dynamicName ]
 ]
 
@@ -159,7 +159,7 @@ SpAction >> initialize [
 SpAction >> isVisible [
 
 	^ visible 
-		and: [ actionVisible isNil or: [ actionVisible value ] ]
+		and: [ actionVisible isNil or: [ actionVisible cull: self context ] ]
 ]
 
 { #category : 'printing' }
