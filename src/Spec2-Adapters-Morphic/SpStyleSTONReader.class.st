@@ -45,7 +45,7 @@ SpStyleSTONReader >> lookupClass: name [
 		at: name 
 		ifAbsentPut: [ 
 			self styleClasses 
-				detect: [ :class | class isMeta not and: [ class stonName = name ]  ]
+				detect: [ :class | class isMeta not and: [ class stonName sameContents: name ]  ]
 				ifNone: [ NotFound signalFor: name ] ]
 ]
 
