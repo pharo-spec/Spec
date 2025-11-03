@@ -25,6 +25,7 @@ SpAbstractFormButtonPresenter >> click [
 	"Simulate a click on the checkbox
 	Used when the checkbox is a list item"
 
+	self isEnabled ifFalse: [ ^ self ].
 	self toggleState
 ]
 
