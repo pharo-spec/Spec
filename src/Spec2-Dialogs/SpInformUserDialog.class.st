@@ -3,7 +3,7 @@ I'm a simple dialog to display something during a task proceeds.
 "
 Class {
 	#name : 'SpInformUserDialog',
-	#superclass : 'SpDialogPresenter',
+	#superclass : 'SpStandardDialogPresenter',
 	#instVars : [
 		'title',
 		'label',

@@ -3,12 +3,12 @@ I am the abstract class that holds the common state and behavior of all the Mess
 "
 Class {
 	#name : 'SpAbstractMessageDialog',
-	#superclass : 'SpDialogPresenter',
+	#superclass : 'SpStandardDialogPresenter',
 	#instVars : [
-		'label',
 		'title',
 		'initialExtent',
-		'acceptLabel'
+		'acceptLabel',
+		'messagePresenter'
 	],
 	#category : 'Spec2-Dialogs',
 	#package : 'Spec2-Dialogs'
@@ -44,7 +44,7 @@ SpAbstractMessageDialog >> adjustExtentToLabelHeight: anExtent [
 SpAbstractMessageDialog >> calculateLabelHeight [
 
 	^ (self 
-			calculateLabelHeightForTextWithoutMargin: label text 
+			calculateLabelHeightForTextWithoutMargin: messagePresenter text 
 			forExtent: self extent) 
 		+ self labelMargin
 ]
@@ -64,10 +64,10 @@ SpAbstractMessageDialog >> defaultLayout [
 		add: (SpBoxLayout newLeftToRight
 			add: (SpBoxLayout newTopToBottom
 					vAlignStart; 
-					add: image;
+					add: imagePresenter;
 					yourself)
 				expand: false;
-			add: label expand: true;
+			add: messagePresenter expand: true;
 			yourself);
 		yourself
 ]
@@ -94,7 +94,7 @@ SpAbstractMessageDialog >> extent: aPoint [
 { #category : 'private' }
 SpAbstractMessageDialog >> getLabel [
 
-	^ label text
+	^ messagePresenter text
 ]
 
 { #category : 'initialization' }
@@ -115,9 +115,12 @@ SpAbstractMessageDialog >> initializeDialogWindow: aDialogWindowPresenter [
 { #category : 'initialization' }
 SpAbstractMessageDialog >> initializePresenters [
 
-	image := self newImage image: self defaultIcon.
-	label := self newDialogLabel.
-	label hide
+	imagePresenter := self newImage.
+	self defaultIcon 
+		ifNotNil: [ :anIcon | imagePresenter image: self defaultIcon ]
+		ifNil: [ imagePresenter hide ] .
+	messagePresenter := self newDialogLabel.
+	messagePresenter hide
 ]
 
 { #category : 'initialization' }
@@ -136,15 +139,25 @@ SpAbstractMessageDialog >> initializeWindowExtent: aDialogWindowPresenter [
 
 { #category : 'api' }
 SpAbstractMessageDialog >> label: aString [
+	self 
+		deprecated: 'use #message: instead'
+		transformWith: '`@receiver label: `@arg'
+					-> '`@receiver message: `@arg'.
 
-	self setLabel: aString asText trim.
-	aString ifNotNil: [ label show ]
+	self message: aString
 ]
 
 { #category : 'private' }
 SpAbstractMessageDialog >> labelMargin [
 
 	^ 20
+]
+
+{ #category : 'api' }
+SpAbstractMessageDialog >> message: aString [
+
+	self setLabel: aString trimBoth.
+	aString ifNotNil: [ messagePresenter show ]
 ]
 
 { #category : 'private' }
@@ -161,7 +174,7 @@ SpAbstractMessageDialog >> newDialogLabel [
 { #category : 'private' }
 SpAbstractMessageDialog >> setLabel: aString [
 
-	label text: aString
+	messagePresenter text: aString
 ]
 
 { #category : 'private' }

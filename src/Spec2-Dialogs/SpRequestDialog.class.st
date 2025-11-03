@@ -134,10 +134,10 @@ SpRequestDialog >> defaultLayout [
 		add: (SpBoxLayout newLeftToRight
 				add: (SpBoxLayout newTopToBottom
 					vAlignStart;
-					add: image;
+					add: imagePresenter;
 					yourself)
 				expand: false;
-				add: label expand: true;
+				add: messagePresenter expand: true;
 				yourself) 
 			height: self calculateLabelHeight;
 		add: textInput expand: false;
@@ -157,6 +157,12 @@ SpRequestDialog >> entryCompletion: anEntryCompletion [
 	textInput entryCompletion: anEntryCompletion
 ]
 
+{ #category : 'api' }
+SpRequestDialog >> errorText: aString [
+
+	errorLabel label: aString
+]
+
 { #category : 'initialization' }
 SpRequestDialog >> initializePresenters [
 
@@ -170,7 +176,8 @@ SpRequestDialog >> initializePresenters [
 SpRequestDialog >> initializeWindow: aWindowPresenter [
 	
 	super initializeWindow: aWindowPresenter.
-	aWindowPresenter whenOpenedDo: [ textInput takeKeyboardFocus; selectAll  ]
+	aWindowPresenter whenOpenedDo: [ 
+		textInput takeKeyboardFocus; selectAll  ]
 ]
 
 { #category : 'testing' }
@@ -192,7 +199,11 @@ SpRequestDialog >> openModal [
 { #category : 'initialization' }
 SpRequestDialog >> setErrorText: aText [
 
-	errorLabel label: aText.
+	self 
+		deprecated: 'Name does not follow conventions, use #errorText:' 
+		transformWith: '`@receiver setErrorText: `@arg' -> '`@receiver errorText: `@arg'. 
+
+	errorLabel label: aText
 ]
 
 { #category : 'api' }
