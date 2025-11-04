@@ -23,17 +23,16 @@ SpButtonPresenterTest >> morph [
 
 { #category : 'tests' }
 SpButtonPresenterTest >> testAction [
+
 	| actionExecuted |
-
 	actionExecuted := false.
-	self assert: actionExecuted equals: false.
-
 	presenter action: [ actionExecuted := true ].
+
 	self openInstance.
-	self assert: actionExecuted equals: false.
+	self deny: actionExecuted.
 
 	presenter adapter action.
-	self assert: actionExecuted equals: true
+	self assert: actionExecuted
 ]
 
 { #category : 'tests' }
@@ -48,6 +47,25 @@ SpButtonPresenterTest >> testAskBeforeChanging [
 	presenter askBeforeChanging: true.
 	state := presenter adapter askBeforeChanging.
 	self assert: state
+]
+
+{ #category : 'tests' }
+SpButtonPresenterTest >> testClickDoesNotExecuteActionWhenButtonIsDisabled [
+
+	| actionExecuted |
+	actionExecuted := false.
+
+	presenter action: [ actionExecuted := true ].
+	self openInstance.
+	self deny: actionExecuted.
+
+	presenter enabled: false.
+	presenter click.
+	self deny: actionExecuted.
+
+	presenter enabled: true.
+	presenter click.
+	self assert: actionExecuted
 ]
 
 { #category : 'tests' }
@@ -82,7 +100,7 @@ SpButtonPresenterTest >> testWhenActionChangedDo [
 	newBlock := [ 1 ].
 	oldBlock := presenter action.
 
-	self assert: actionModified equals: false.
+	self deny: actionModified.
 
 	presenter whenActionChangedDo: [ :new :old |
 		self assert: old equals: oldBlock.
@@ -90,37 +108,28 @@ SpButtonPresenterTest >> testWhenActionChangedDo [
 		actionModified := true ].
 
 	self openInstance.
-
-	self assert: actionModified equals: false.
+	self deny: actionModified.
 
 	presenter action: newBlock.
-
-	self assert: actionModified equals: true
+	self assert: actionModified
 ]
 
 { #category : 'tests' }
 SpButtonPresenterTest >> testWhenActionPerformedDo [
 
 	| actionExecuted actionPerformed |
-
 	actionExecuted := false.
 	actionPerformed := false.
-
-	self assert: actionExecuted equals: false.
-	self assert: actionPerformed equals: false.
-
 	presenter action: [ actionExecuted := true ].
 	presenter whenActionPerformedDo: [ actionPerformed := true ].
 
 	self openInstance.
-
-	self assert: actionExecuted equals: false.
-	self assert: actionPerformed equals: false.
+	self deny: actionExecuted.
+	self deny: actionPerformed.
 
 	presenter adapter action.
-
-	self assert: actionExecuted equals: true.
-	self assert: actionPerformed equals: true.
+	self assert: actionExecuted.
+	self assert: actionPerformed
 
 ]
 
@@ -128,23 +137,16 @@ SpButtonPresenterTest >> testWhenActionPerformedDo [
 SpButtonPresenterTest >> testWhenActionPerformedDoAfterAction [
 
 	| actionExecuted actionPerformed |
-
 	actionExecuted := 0.
 	actionPerformed := 0.
-
-	self assert: actionExecuted equals: 0.
-	self assert: actionPerformed equals: 0.
-
 	presenter action: [ actionExecuted := Time microsecondClockValue. 1 milliSecond wait  ].
 	presenter whenActionPerformedDo: [ actionPerformed := Time microsecondClockValue ].
 
 	self openInstance.
-
 	self assert: actionExecuted equals: 0.
 	self assert: actionPerformed equals: 0.
 
 	presenter adapter action.
-
 	self assert: actionExecuted < actionPerformed.
 ]
 

@@ -81,6 +81,16 @@ SpPaginatorPageMorph >> newContentMorph [
 		yourself
 ]
 
+{ #category : 'theme' }
+SpPaginatorPageMorph >> themeChanged [
+
+	self submorphsDo: [ :submorph |
+			submorph
+				color: self theme backgroundColor;
+				borderColor: self theme borderColor ].
+	super themeChanged
+]
+
 { #category : 'events' }
 SpPaginatorPageMorph >> whenSelectedDo: aBlock [
 

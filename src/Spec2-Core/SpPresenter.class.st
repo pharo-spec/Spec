@@ -1003,6 +1003,14 @@ SpPresenter >> takeKeyboardFocus [
 		anAdapter takeKeyboardFocus ]
 ]
 
+{ #category : 'snapshoting' }
+SpPresenter >> takeSnapshotIn: aFileReference [
+
+	"Take a Snapshot of the window containing myself and write it into the PNG file."
+	self withWindowDo: [ :window |
+			window withAdapterDo: [ :windowAdapter | windowAdapter takeSnapshotIn: aFileReference ] ]
+]
+
 { #category : 'accessing - deprecated' }
 SpPresenter >> title [
 	"Deprecated use the windowTitle method instead."
