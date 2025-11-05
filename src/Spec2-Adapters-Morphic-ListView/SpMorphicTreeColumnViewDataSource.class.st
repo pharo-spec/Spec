@@ -10,14 +10,16 @@ Class {
 
 { #category : 'accessing' }
 SpMorphicTreeColumnViewDataSource >> cellColumn: column row: rowIndex [
-	| cell item contentPresenter contentMorph |
+	| cell item contentPresenter contentMorph first |
 
 	item := self elementAt: rowIndex.
 
 	cell := FTIndentedCellMorph new.
+	first := false.
 	(self isFirstColumn: column) ifTrue: [
 		cell indentBy: (self cellIndentFor: item).
-		cell addMorphBack: (self buttonFor: item) ].
+		cell addMorphBack: (self buttonFor: item).
+		first := true ].
 
 	contentPresenter := column setupAction value: self model.	
 	column bindAction 
@@ -25,7 +27,8 @@ SpMorphicTreeColumnViewDataSource >> cellColumn: column row: rowIndex [
 		value: item data.
 		
 	contentMorph := contentPresenter build.
-	contentMorph setProperty: #presenter toValue: contentPresenter.
+	first ifTrue: [
+		contentMorph setProperty: #treeItemModel toValue: item data ].
 	
 	"register for height"
 	rowHeights at: rowIndex put: contentMorph height.

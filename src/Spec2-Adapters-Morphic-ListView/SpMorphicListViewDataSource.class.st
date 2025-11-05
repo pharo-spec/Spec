@@ -23,7 +23,6 @@ SpMorphicListViewDataSource >> cellColumn: column row: rowIndex [
 		value: (self elementAt: rowIndex).
 
 	contentMorph := contentPresenter build.
-	contentMorph setProperty: #presenter toValue: contentPresenter.
 
 	"register for height"
 	rowHeights at: rowIndex put: contentMorph height.
