@@ -43,7 +43,7 @@ SpRequestTextDialog >> defaultLayout [
 						add: image;
 						yourself)
 					expand: false;
-				add: messagePresenter expand: true;
+				add: label expand: true;
 				yourself)
 	  		height: self calculateLabelHeight;
 		add: textInput expand: true;
@@ -55,9 +55,9 @@ SpRequestTextDialog >> defaultLayout [
 SpRequestTextDialog >> initializePresenters [
 
 	image := self newImage image: (self iconNamed: #question).
-	messagePresenter := self newDialogLabel.
+	label := self newDialogLabel.
 	textInput := self newTextInput.
 	errorLabel := self newLabel.
 	
-	messagePresenter hide
+	label hide
 ]

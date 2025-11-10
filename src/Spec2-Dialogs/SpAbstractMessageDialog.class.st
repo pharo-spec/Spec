@@ -8,7 +8,7 @@ Class {
 		'title',
 		'initialExtent',
 		'acceptLabel',
-		'messagePresenter'
+		'label'
 	],
 	#category : 'Spec2-Dialogs',
 	#package : 'Spec2-Dialogs'
@@ -44,7 +44,7 @@ SpAbstractMessageDialog >> adjustExtentToLabelHeight: anExtent [
 SpAbstractMessageDialog >> calculateLabelHeight [
 
 	^ (self 
-			calculateLabelHeightForTextWithoutMargin: messagePresenter text 
+			calculateLabelHeightForTextWithoutMargin: label text 
 			forExtent: self extent) 
 		+ self labelMargin
 ]
@@ -67,7 +67,7 @@ SpAbstractMessageDialog >> defaultLayout [
 					add: imagePresenter;
 					yourself)
 				expand: false;
-			add: messagePresenter expand: true;
+			add: label expand: true;
 			yourself);
 		yourself
 ]
@@ -94,7 +94,7 @@ SpAbstractMessageDialog >> extent: aPoint [
 { #category : 'private' }
 SpAbstractMessageDialog >> getLabel [
 
-	^ messagePresenter text
+	^ label text
 ]
 
 { #category : 'initialization' }
@@ -119,8 +119,8 @@ SpAbstractMessageDialog >> initializePresenters [
 	self defaultIcon 
 		ifNotNil: [ :anIcon | imagePresenter image: self defaultIcon ]
 		ifNil: [ imagePresenter hide ] .
-	messagePresenter := self newDialogLabel.
-	messagePresenter hide
+	label := self newDialogLabel.
+	label hide
 ]
 
 { #category : 'initialization' }
@@ -157,7 +157,7 @@ SpAbstractMessageDialog >> labelMargin [
 SpAbstractMessageDialog >> message: aString [
 
 	self setLabel: aString trimBoth.
-	aString ifNotNil: [ messagePresenter show ]
+	aString ifNotNil: [ label show ]
 ]
 
 { #category : 'private' }
@@ -174,7 +174,7 @@ SpAbstractMessageDialog >> newDialogLabel [
 { #category : 'private' }
 SpAbstractMessageDialog >> setLabel: aString [
 
-	messagePresenter text: aString
+	label text: aString
 ]
 
 { #category : 'private' }
