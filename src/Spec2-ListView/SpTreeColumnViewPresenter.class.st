@@ -230,6 +230,19 @@ SpTreeColumnViewPresenter >> registerActions [
 			action: [ self collapsePath: self selection selectedPath ] ]
 ]
 
+{ #category : 'api - selection' }
+SpTreeColumnViewPresenter >> selectedRowPresenter [
+	"answer the selected row presenter (the one being displayed) of the list. 
+	 this is useful to attach other objects to the presenter (e.g. popovers). 
+	 WARNING: Depending on the details of the implementation, this message can 
+	 answer nil *even if there is a selected item*."
+
+	self withAdapterDo: [ :anAdapter | 
+		^ anAdapter selectedRowPresenter ].
+		
+	^ nil
+]
+
 { #category : 'api' }
 SpTreeColumnViewPresenter >> showColumnHeaders [
 	"Show column headers"

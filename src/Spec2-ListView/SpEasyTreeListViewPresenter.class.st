@@ -30,6 +30,31 @@ SpEasyTreeListViewPresenter class >> example [
 		open
 ]
 
+{ #category : 'examples' }
+SpEasyTreeListViewPresenter class >> examplePopover [
+	"This example show a simple list with all classes, and adds a popover when selection changes."
+	| app treeView popover |
+
+	app := SpApplication new.
+	popover := nil.
+	
+	(treeView := self newApplication: app)
+		roots: { Object };
+		children: [ :aClass | aClass subclasses ];
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
+		display: [ :aClass | aClass name ];
+		whenSelectionChangedDo: [ :selection |
+			selection printToStdout.
+			(selection isNotNil and: [ selection selectedItem isNotNil ]) ifTrue: [ 
+				popover ifNotNil: [ popover dismiss ].
+				(popover := treeView newPopover) 
+					presenter: (treeView newLabel label: selection selectedItem name);
+					relativeTo: (treeView selectedRowPresenter ifNil: [ treeView ]); 
+					doNotTransferFocus;
+					popup	] ];
+		open
+]
+
 { #category : 'layout' }
 SpEasyTreeListViewPresenter >> defaultLayout [
 
@@ -103,7 +128,7 @@ SpEasyTreeListViewPresenter >> hasHeaderTitle [
 
 { #category : 'testing' }
 SpEasyTreeListViewPresenter >> hasIcons [
-	"Answer true if the list has an icon provider (See `SpListPresenter>>#icons:`)."
+	"Answer true if the list has an icon provider (See `SpEasyTreeListViewPresenter>>#displayIcon:`)."
 
 	^ self displayIcon notNil
 ]
@@ -181,6 +206,12 @@ SpEasyTreeListViewPresenter >> rowPresenterClass [
 SpEasyTreeListViewPresenter >> rowPresenterClass: aPresenterClass [
 
 	rowPresenterClass := aPresenterClass
+]
+
+{ #category : 'api - selection' }
+SpEasyTreeListViewPresenter >> selectedRowPresenter [
+
+	^ contentView selectedRowPresenter
 ]
 
 { #category : 'api - events' }

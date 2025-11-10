@@ -1,7 +1,7 @@
-Extension { #name : 'SpDialogPresenter' }
+Extension { #name : 'SpStandardDialogPresenter' }
 
 { #category : '*Spec2-Microdown' }
-SpDialogPresenter class >> buildMicroDownUsing: aBuilder withComment: aString [
+SpStandardDialogPresenter class >> buildMicroDownUsing: aBuilder withComment: aString [
 	
 	super buildMicroDownUsing: aBuilder withComment: aString.
 	"Example code"

@@ -267,7 +267,6 @@ SpPopoverMorph >> popupPointingTo: aRectangle [
 	self setSize.
 	self setPositionFrom: aRectangle.
 	self openInWorld.
-	self takeKeyboardFocus.
 	self registerToDeleteEvents
 ]
 

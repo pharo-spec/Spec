@@ -64,6 +64,12 @@ SpPatchPresenter >> beForScripting [
 	self interactionModel: SpCodeScriptingInteractionModel new
 ]
 
+{ #category : 'private' }
+SpPatchPresenter >> ensurePatch [
+
+	^ patch ifNil: [ patch := SpPatchModel newFrom: '' to: '' ]
+]
+
 { #category : 'initialization' }
 SpPatchPresenter >> initialize [ 
 
@@ -75,6 +81,15 @@ SpPatchPresenter >> interactionModel: anInteractionModel [
 
 	anInteractionModel owner: self.
 	self basicInteractionModel: anInteractionModel
+]
+
+{ #category : 'api - model' }
+SpPatchPresenter >> leftText: aString [
+	"compatibility with SpDiffPresenter. Better not use."
+
+	self ensurePatch
+		from: aString 
+		to: (self ensurePatch destination)
 ]
 
 { #category : 'api' }
@@ -111,6 +126,15 @@ SpPatchPresenter >> patchFrom: source to: destination [
 	self patch: (SpPatchModel 
 		newFrom: source 
 		to: destination)
+]
+
+{ #category : 'api - model' }
+SpPatchPresenter >> rightText: aString [
+	"compatibility with SpDiffPresenter. Better not use."
+
+	self ensurePatch
+		from: (self ensurePatch destination) 
+		to: aString
 ]
 
 { #category : 'private' }

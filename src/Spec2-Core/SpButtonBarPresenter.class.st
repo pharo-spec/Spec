@@ -27,6 +27,12 @@ SpButtonBarPresenter class >> documentFactoryMethodSelector [
 	^ #newButtonBar
 ]
 
+{ #category : 'testing' }
+SpButtonBarPresenter class >> isDeprecated [
+
+	^ true
+]
+
 { #category : 'api' }
 SpButtonBarPresenter >> add: aButtonPresenter [
 	"Add `aButtonPresenter` to the button list."

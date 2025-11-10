@@ -78,6 +78,8 @@ SpMorphicPopoverAdapter >> popupModal: aBoolean pointingTo: aRectangle [
 		aRectangle
 			ifNotNil: [ w popupPointingTo: aRectangle ]
 			ifNil: [ w popup ].
+		self presenter isTransferFocus 
+			ifTrue: [ w 	takeKeyboardFocus ].
 		self presenter popoverOpened ]
 ]
 

@@ -40,6 +40,12 @@ SpMorphicBackend >> defer: aBlock [
 ]
 
 { #category : 'accessing' }
+SpMorphicBackend >> diffClass [
+
+	^ SpDiffPresenter
+]
+
+{ #category : 'accessing' }
 SpMorphicBackend >> dropListClass [
 
 	^ SpDropListPresenter

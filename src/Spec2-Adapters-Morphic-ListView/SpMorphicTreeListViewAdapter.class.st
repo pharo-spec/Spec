@@ -83,3 +83,22 @@ SpMorphicTreeListViewAdapter >> newDataSource [
 		childrenBlock: [ :data :item | self model childrenFor: data ];
 		yourself
 ]
+
+{ #category : 'api - selection' }
+SpMorphicTreeListViewAdapter >> selectedRowPresenter [
+	| item exposedRows |
+	
+	item := self presenter selectedItem.
+	item ifNil: [ ^ nil ].
+	exposedRows := self widget container submorphs.
+	^ exposedRows
+		detect: [ :each | 	
+			| presenter |
+			"first content cell, second content the presenter"
+			presenter := (each content content 
+				valueOfProperty: #presenter 
+				ifAbsent: [ nil ]).
+			presenter model = item ]
+		ifFound: [ :aRow | aRow content content valueOfProperty: #presenter ]
+		ifNone: [ nil ] 
+]

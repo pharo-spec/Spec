@@ -124,6 +124,12 @@ SpEasyTreeColumnViewPresenter >> isShowingColumnHeaders [
 	^ contentView isShowingColumnHeaders
 ]
 
+{ #category : 'api - selection' }
+SpEasyTreeColumnViewPresenter >> selectedRowPresenter [
+
+	^ contentView selectedRowPresenter
+]
+
 { #category : 'api' }
 SpEasyTreeColumnViewPresenter >> showColumnHeaders [
 	"Hide the column headers"

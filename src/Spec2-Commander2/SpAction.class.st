@@ -5,6 +5,7 @@ Class {
 	#name : 'SpAction',
 	#superclass : 'SpCommand',
 	#instVars : [
+		'priority',
 		'action',
 		'actionEnabled',
 		'visible',
@@ -107,7 +108,7 @@ SpAction >> canBeExecuted [
 SpAction >> dynamicName [
 
 	^ dynamicName 
-		ifNotNil: [ :aBlock | aBlock value ]
+		ifNotNil: [ :aBlock | aBlock cull: self context ]
 		ifNil: [ super dynamicName ]
 ]
 
@@ -150,6 +151,7 @@ SpAction >> initialize [
 	decoratedCommand := CmCommand new.
 	decoratedCommand name: nil.
 	visible := true.
+	priority := 0.
 	super initialize
 ]
 
@@ -157,7 +159,7 @@ SpAction >> initialize [
 SpAction >> isVisible [
 
 	^ visible 
-		and: [ actionVisible isNil or: [ actionVisible value ] ]
+		and: [ actionVisible isNil or: [ actionVisible cull: self context ] ]
 ]
 
 { #category : 'printing' }
@@ -169,6 +171,18 @@ SpAction >> printOn: stream [
 		ifNotNil: [ :key | key asString ] 
 		ifNil: [ 'No shortcut' ]).
 	stream << ')'
+]
+
+{ #category : 'accessing' }
+SpAction >> priority [
+
+	^ priority
+]
+
+{ #category : 'accessing' }
+SpAction >> priority: aNumber [
+
+	priority := aNumber
 ]
 
 { #category : 'accessing' }

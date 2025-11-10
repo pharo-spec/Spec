@@ -6,7 +6,7 @@ SpApplication >> alert: aString [
 
 	^ self newAlert
 		  title: 'Alert';
-		  label: aString;
+		  message: aString;
 		  openModal
 ]
 
@@ -16,7 +16,7 @@ SpApplication >> confirm: aString [
 
 	^ self newConfirm
 		  title: 'Please confirm';
-		  label: aString;
+		  message: aString;
 		  openModal
 ]
 

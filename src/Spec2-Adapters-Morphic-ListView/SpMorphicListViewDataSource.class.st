@@ -26,7 +26,7 @@ SpMorphicListViewDataSource >> cellColumn: column row: rowIndex [
 
 	"register for height"
 	rowHeights at: rowIndex put: contentMorph height.
-
+ 
 	^ cell addMorphBack: contentMorph
 ]
 
