@@ -54,7 +54,7 @@ SpRequestTextDialog >> defaultLayout [
 { #category : 'initialization' }
 SpRequestTextDialog >> initializePresenters [
 
-	image := self newImage image: (self iconNamed: #question).
+	imagePresenter := self newImage image: (self iconNamed: #question).
 	label := self newDialogLabel.
 	textInput := self newTextInput.
 	errorLabel := self newLabel.
