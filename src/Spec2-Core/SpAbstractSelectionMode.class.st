@@ -58,6 +58,12 @@ SpAbstractSelectionMode >> basicSelectIndex: indexToSelect [
 	self subclassResponsibility
 ]
 
+{ #category : 'private' }
+SpAbstractSelectionMode >> disableChangedDuring: aBlock [
+
+	self subclassResponsibility
+]
+
 { #category : 'testing' }
 SpAbstractSelectionMode >> includesIndex: anIndex [
 	"Answer true if selection includes element at index `anIndex`."

@@ -172,6 +172,15 @@ SpNotebookPresenter >> traverseInFocusOrderDo: aBlock excluding: excludes [
 		excluding: excludes
 ]
 
+{ #category : 'private - traversing' }
+SpNotebookPresenter >> traversePresentersDo: aBlock excluding: excludes [
+
+	super traversePresentersDo: aBlock excluding: excludes.
+	self pages do: [ :each |
+		each activePresenter ifNotNil: [ :aPresenter | 
+			aPresenter traversePresentersDo: aBlock excluding: excludes ] ]
+]
+
 { #category : 'private' }
 SpNotebookPresenter >> updatePageContent: aPage [
 

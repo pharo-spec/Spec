@@ -736,6 +736,7 @@ SpPresenter >> isDisplayed [
 
 { #category : 'testing' }
 SpPresenter >> isPopover [
+
 	^ false
 ]
 

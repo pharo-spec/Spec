@@ -72,7 +72,6 @@ SpEasyListViewPresenter class >> examplePopover [
 	(listView := self newApplication: app)
 		items: self environment allClasses;
 		whenSelectionChangedDo: [ :selection |
-			selection printToStdout.
 			(selection isNotNil and: [ selection selectedItem isNotNil ]) ifTrue: [ 
 				popover ifNotNil: [ popover dismiss ].
 				(popover := listView newPopover) 

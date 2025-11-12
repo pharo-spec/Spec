@@ -8,7 +8,7 @@ Class {
 		'title',
 		'initialExtent',
 		'acceptLabel',
-		'label'
+		'messagePresenter'
 	],
 	#category : 'Spec2-Dialogs',
 	#package : 'Spec2-Dialogs'
@@ -44,7 +44,7 @@ SpAbstractMessageDialog >> adjustExtentToLabelHeight: anExtent [
 SpAbstractMessageDialog >> calculateLabelHeight [
 
 	^ (self 
-			calculateLabelHeightForTextWithoutMargin: label text 
+			calculateLabelHeightForTextWithoutMargin: messagePresenter text 
 			forExtent: self extent) 
 		+ self labelMargin
 ]
@@ -67,7 +67,7 @@ SpAbstractMessageDialog >> defaultLayout [
 					add: imagePresenter;
 					yourself)
 				expand: false;
-			add: label expand: true;
+			add: messagePresenter expand: true;
 			yourself);
 		yourself
 ]
@@ -94,7 +94,7 @@ SpAbstractMessageDialog >> extent: aPoint [
 { #category : 'private' }
 SpAbstractMessageDialog >> getLabel [
 
-	^ label text
+	^ messagePresenter text
 ]
 
 { #category : 'initialization' }
@@ -109,7 +109,8 @@ SpAbstractMessageDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.
 	self initializeWindowExtent: aDialogWindowPresenter.
-	self addButtonsTo: aDialogWindowPresenter
+	self addButtonsTo: aDialogWindowPresenter.
+	self centerToParentWindow: aDialogWindowPresenter
 ]
 
 { #category : 'initialization' }
@@ -119,8 +120,8 @@ SpAbstractMessageDialog >> initializePresenters [
 	self defaultIcon 
 		ifNotNil: [ :anIcon | imagePresenter image: self defaultIcon ]
 		ifNil: [ imagePresenter hide ] .
-	label := self newDialogLabel.
-	label hide
+	messagePresenter := self newDialogLabel.
+	messagePresenter hide
 ]
 
 { #category : 'initialization' }
@@ -157,7 +158,7 @@ SpAbstractMessageDialog >> labelMargin [
 SpAbstractMessageDialog >> message: aString [
 
 	self setLabel: aString trimBoth.
-	aString ifNotNil: [ label show ]
+	aString ifNotNil: [ messagePresenter show ]
 ]
 
 { #category : 'private' }
@@ -174,7 +175,7 @@ SpAbstractMessageDialog >> newDialogLabel [
 { #category : 'private' }
 SpAbstractMessageDialog >> setLabel: aString [
 
-	label text: aString
+	messagePresenter text: aString
 ]
 
 { #category : 'private' }
