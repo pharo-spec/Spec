@@ -40,7 +40,7 @@ SpRequestTextDialog >> defaultLayout [
 	  	add: (SpBoxLayout newLeftToRight
 				add: (SpBoxLayout newTopToBottom
 						vAlignStart;
-						add: image;
+						add: imagePresenter;
 						yourself)
 					expand: false;
 				add: label expand: true;
