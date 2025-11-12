@@ -415,6 +415,15 @@ SpWindowPresenter >> isWindowPresenter [
 ]
 
 { #category : 'api' }
+SpWindowPresenter >> lastPresenterFocused [
+
+	self withAdapterDo: [ :anAdapter | 
+		^ anAdapter lastPresenterFocused ].
+		
+	^ nil
+]
+
+{ #category : 'api' }
 SpWindowPresenter >> maximize [
 	"Maximise the window"
 

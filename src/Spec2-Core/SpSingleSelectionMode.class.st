@@ -17,6 +17,17 @@ SpSingleSelectionMode >> basicSelectIndex: indexToSelect [
 	selectedIndex := indexToSelect
 ]
 
+{ #category : 'private' }
+SpSingleSelectionMode >> disableChangedDuring: aBlock [
+	| holder oldSubscriptions |
+	
+	holder := self observablePropertyNamed: #selectedIndex.
+	oldSubscriptions := holder subscriptions.
+	holder subscriptions: #().
+	aBlock ensure: [ 
+		holder subscriptions: oldSubscriptions ]
+]
+
 { #category : 'testing' }
 SpSingleSelectionMode >> includesIndex: anIndex [
 	^ self selectedIndex = anIndex

@@ -117,14 +117,6 @@ SpDropDownPresenter >> display: aBlock [
 	display := aBlock
 ]
 
-{ #category : 'api' }
-SpDropDownPresenter >> displayIcon: aBlock [	
-	"Answer a block that will be used to retrieve the icon to be displayed along with the elements.
-	 `aBlock` receives one argument (an element from the list)"
-	
-	displayIcon := aBlock
-]
-
 { #category : 'initialization' }
 SpDropDownPresenter >> initialize [
 	

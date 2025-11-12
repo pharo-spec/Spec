@@ -109,7 +109,8 @@ SpAbstractMessageDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.
 	self initializeWindowExtent: aDialogWindowPresenter.
-	self addButtonsTo: aDialogWindowPresenter
+	self addButtonsTo: aDialogWindowPresenter.
+	self centerToParentWindow: aDialogWindowPresenter
 ]
 
 { #category : 'initialization' }

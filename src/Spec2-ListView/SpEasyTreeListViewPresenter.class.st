@@ -44,7 +44,6 @@ SpEasyTreeListViewPresenter class >> examplePopover [
 		displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
 		display: [ :aClass | aClass name ];
 		whenSelectionChangedDo: [ :selection |
-			selection printToStdout.
 			(selection isNotNil and: [ selection selectedItem isNotNil ]) ifTrue: [ 
 				popover ifNotNil: [ popover dismiss ].
 				(popover := treeView newPopover) 

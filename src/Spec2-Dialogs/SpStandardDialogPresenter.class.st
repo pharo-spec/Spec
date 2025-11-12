@@ -146,6 +146,14 @@ SpStandardDialogPresenter >> cancel [
 		close
 ]
 
+{ #category : 'initialization' }
+SpStandardDialogPresenter >> centerToParentWindow: aDialogWindowPresenter [
+		
+	self parentWindow 
+		ifNotNil: [ :w | aDialogWindowPresenter centeredRelativeTo: w ] 
+		ifNil: [ aDialogWindowPresenter centered ]
+]
+
 { #category : 'private' }
 SpStandardDialogPresenter >> defaultIcon [
 
@@ -166,9 +174,7 @@ SpStandardDialogPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 	acceptAction ifNotNil: [ aDialogWindowPresenter okAction: acceptAction ].
 	cancelAction ifNotNil: [ aDialogWindowPresenter cancelAction: cancelAction ].
 	
-	self parentWindow 
-		ifNotNil: [ :w | aDialogWindowPresenter centeredRelativeTo: w ] 
-		ifNil: [ aDialogWindowPresenter centered ].
+	self centerToParentWindow: aDialogWindowPresenter
 ]
 
 { #category : 'initialization' }

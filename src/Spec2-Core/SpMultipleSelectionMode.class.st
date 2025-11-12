@@ -21,6 +21,17 @@ SpMultipleSelectionMode >> basicSelectIndex: indexToSelect [
 	self selectIndexes: (self selectedIndexes copyWith: indexToSelect)
 ]
 
+{ #category : 'private' }
+SpMultipleSelectionMode >> disableChangedDuring: aBlock [
+	| holder oldSubscriptions |
+	
+	holder := self observablePropertyNamed: #selectedIndexes.
+	oldSubscriptions := holder subscriptions.
+	holder subscriptions: #().
+	aBlock ensure: [ 
+		holder subscriptions: oldSubscriptions ]
+]
+
 { #category : 'testing' }
 SpMultipleSelectionMode >> includesIndex: anIndex [
 

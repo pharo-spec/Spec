@@ -97,9 +97,7 @@ SpInformUserDialog >> initializeDialogWindow: aDialogWindowPresenter [
 	
 	aDialogWindowPresenter whenOpenedDo: [ self afterOpenAction ].
 	
-	self parentWindow 
-		ifNotNil: [ :w | aDialogWindowPresenter centeredRelativeTo: w ] 
-		ifNil: [ aDialogWindowPresenter centered ]
+	self centerToParentWindow: aDialogWindowPresenter
 ]
 
 { #category : 'initialization' }
