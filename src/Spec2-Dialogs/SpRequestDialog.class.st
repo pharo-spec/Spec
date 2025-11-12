@@ -137,7 +137,7 @@ SpRequestDialog >> defaultLayout [
 					add: imagePresenter;
 					yourself)
 				expand: false;
-				add: messagePresenter expand: true;
+				add: label expand: true;
 				yourself) 
 			height: self calculateLabelHeight;
 		add: textInput expand: false;
