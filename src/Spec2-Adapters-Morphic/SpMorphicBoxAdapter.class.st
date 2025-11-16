@@ -54,8 +54,8 @@ SpMorphicBoxAdapter >> addConstraints: constraints toChild: childMorph [
 		ifFalse: [
 			"Set morph to stay rigid"
 			layout direction setRigidityOfNonExpandedMorph: theMorph.
-			constraints width ifNotNil: [ :w | theMorph width: w ].
-			constraints height ifNotNil: [ :h | theMorph height: h ] ].
+			constraints width ifNotNil: [ :w | self setFixedWidth: w toMorph: theMorph].
+			constraints height ifNotNil: [ :h | self setFixedHeight: h toMorph: theMorph ] ].
 	
 	^ theMorph 
 ]
@@ -167,6 +167,17 @@ SpMorphicBoxAdapter >> children [
 SpMorphicBoxAdapter >> childrenWidgets [
 	
 	^ self children
+]
+
+{ #category : 'private' }
+SpMorphicBoxAdapter >> hasFixedSize: aPanel [
+
+	| props minCellSize |
+	props := aPanel layoutProperties.
+	props ifNil: [ ^ false ].
+	minCellSize := props minCellSize.
+	minCellSize ifNil: [ ^ false ].
+	^ minCellSize = props maxCellSize
 ]
 
 { #category : 'factory' }
@@ -307,6 +318,24 @@ SpMorphicBoxAdapter >> replace: aPresenter with: otherPresenter withConstraints:
 	panel replaceSubmorph: oldMorph by: newMorph
 ]
 
+{ #category : 'private' }
+SpMorphicBoxAdapter >> setFixedHeight: aNumber toMorph: aMorph [
+
+	aMorph
+		minCellSize: aNumber;
+		maxCellSize: aNumber;
+		height: aNumber
+]
+
+{ #category : 'private' }
+SpMorphicBoxAdapter >> setFixedWidth: aNumber toMorph: aMorph [
+
+	aMorph
+		minCellSize: aNumber;
+		maxCellSize: aNumber;
+		width: aNumber
+]
+
 { #category : 'updating' }
 SpMorphicBoxAdapter >> updateSpacing [
 
@@ -347,10 +376,10 @@ SpMorphicBoxAdapter >> verifyBoxExtentOf: aPanel withChild: childMorph [
 		ifTrue: [ height := height + aPanel height + spacing ]
 		ifFalse: [ width := width + aPanel width + spacing ].
 
-	newPanelWidth := aPanel hResizing = #rigid
+	newPanelWidth := (layout isHorizontal and: [ self hasFixedSize: aPanel ])
 		ifTrue: [ aPanel width ]
 		ifFalse: [ aPanel width max: width ].
-	newPanelHeight := aPanel vResizing = #rigid
+	newPanelHeight := (layout isVertical and: [ self hasFixedSize: aPanel ])
 		ifTrue: [ aPanel height ]
 		ifFalse: [ aPanel height max: height ].
 	aPanel extent: newPanelWidth @ newPanelHeight
