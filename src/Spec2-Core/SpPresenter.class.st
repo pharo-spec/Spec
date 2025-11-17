@@ -1059,9 +1059,12 @@ SpPresenter >> traversePresentersDo: aBlock excluding: excludes [
 	aBlock value: self.
 
 	self layout ifNil: [ ^ self ].
-	self layout allPresenters do: [ :each | | var |
-		var := each asPresenterOn: self. 
-		var traversePresentersDo: aBlock excluding: excludes ]
+	self layout allPresenters 
+		reject: [ :each | each isNil ]
+		thenDo: [ :each | 
+			| var |
+			var := each asPresenterOn: self. 
+			var traversePresentersDo: aBlock excluding: excludes ]
 ]
 
 { #category : 'TOREMOVE' }

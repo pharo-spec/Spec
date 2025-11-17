@@ -22,3 +22,9 @@ SpBaseActionGroup >> ensureNotDuplicated: aCommandOrGroup [
 			aCommandOrGroup assignUniqueName ].
 	super ensureNotDuplicated: aCommandOrGroup
 ]
+
+{ #category : 'private' }
+SpBaseActionGroup >> entries: aCollection [
+
+	entries := aCollection
+]

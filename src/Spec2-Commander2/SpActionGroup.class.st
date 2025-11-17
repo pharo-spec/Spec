@@ -5,6 +5,7 @@ Class {
 	#name : 'SpActionGroup',
 	#superclass : 'SpCommandGroup',
 	#instVars : [
+		'priority',
 		'id'
 	],
 	#category : 'Spec2-Commander2-Action',
@@ -58,10 +59,23 @@ SpActionGroup >> addActionWith: aBlock [
 	self add: action
 ]
 
-{ #category : 'adding' }
+{ #category : 'accessing' }
 SpActionGroup >> addAll: aCollection [ 
 
 	aCollection do: [ :each | self add: each ]
+]
+
+{ #category : 'accessing' }
+SpActionGroup >> addGroup: anId with: aBlock [
+	| group |
+
+	group := self findGroupWithId: anId.
+	group ifNil: [
+		group := self class new.
+		group id: anId.
+		self add: group ].
+
+	aBlock value: group
 ]
 
 { #category : 'accessing' }
@@ -92,6 +106,14 @@ SpActionGroup >> asMenuPresenter [
 		menuPresenter
 ]
 
+{ #category : 'private' }
+SpActionGroup >> findGroupWithId: anId [
+
+	^ self groups
+		detect: [ :each | each id = anId ]
+		ifNone: [ nil ]
+]
+
 { #category : 'comparing' }
 SpActionGroup >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
@@ -105,11 +127,44 @@ SpActionGroup >> id [
 	^ id ifNil: [ id := super id ]
 ]
 
+{ #category : 'accessing' }
+SpActionGroup >> id: anId [
+
+	id := anId
+]
+
 { #category : 'initialization' }
 SpActionGroup >> initialize [
 
 	decoratedGroup := SpBaseActionGroup new.
 	super initialize
+]
+
+{ #category : 'accessing' }
+SpActionGroup >> priority [
+
+	^ priority
+]
+
+{ #category : 'accessing' }
+SpActionGroup >> priority: aNumber [
+
+	priority := aNumber
+]
+
+{ #category : 'registering' }
+SpActionGroup >> registerGroup: groupId with: aCollectionOfActions [
+	| group |
+
+	group := self groups 
+		detect: [ :each | each id = groupId ]
+		ifNone: [ 
+			self class new 
+				id: groupId;
+				name: groupId capitalized;
+				yourself ].
+			
+	group addAll: aCollectionOfActions
 ]
 
 { #category : 'accessing' }
@@ -124,4 +179,10 @@ SpActionGroup >> removeAll [
 	self entries copy 
 		do: [ :each | self remove: each ]
 	
+]
+
+{ #category : 'sorting' }
+SpActionGroup >> sortBy: aSortFunction [
+
+	self entries: (self entries sortedBy: aSortFunction)
 ]
