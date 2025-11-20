@@ -110,7 +110,7 @@ SpAbstractListPresenter >> disableSelectionDuring: aBlock [
 SpAbstractListPresenter >> doActivateAtIndex: anIndex [
 
 	"Activate only if there is an item at that position"
-	activationBlock  ifNil: [ ^ self ].
+	activationBlock ifNil: [ ^ self ].
 	self model at: anIndex ifAbsent: [ ^ self ].
 	
 	activationBlock cull: ((SpSingleSelectionMode on: self)
@@ -297,10 +297,11 @@ SpAbstractListPresenter >> updateItemsKeepingSelection: aCollection [
 	 WARNING: aCollection must includes the elements selected."
 	
 	self disableActivationDuring: [ 
-		| items |
-		items := self selection selectedItems.
-		self items: aCollection.
-		self selectItems: items ]
+		self disableSelectionDuring: [
+			| items |
+			items := self selection selectedItems.
+			self items: aCollection.
+			self selectItems: items ] ]
 ]
 
 { #category : 'accessing' }
