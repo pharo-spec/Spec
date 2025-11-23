@@ -43,15 +43,14 @@ SpSelectDialog class >> example [
 SpSelectDialog class >> exampleModal [
 
 	| dialog selection |
-	dialog := self new. 
-	selection := dialog
+	dialog := self new
+
 		             title: 'Select modal example';
-		             label: 'Select a class';
+		             message: 'Select a class';
 		             items: Smalltalk allClassesAndTraits;
 		             display: [ :each | each name ];
-		             displayIcon: [ :each |
-			             self iconNamed: each systemIconName ];
-		             openModal.
+		             displayIcon: [ :each | self iconNamed: each systemIconName ].
+	selection := dialog openModal.
 
 	selection ifNotNil: [ dialog inform: selection asString ]
 ]
