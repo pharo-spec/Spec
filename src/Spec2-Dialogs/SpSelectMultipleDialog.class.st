@@ -36,21 +36,36 @@ SpSelectMultipleDialog class >> example [
 		openDialog
 ]
 
-{ #category : 'examples' }
+{ #category : 'Protocol (examples) - 3 selector(s)' }
 SpSelectMultipleDialog class >> exampleModal [
 
 	| dialog selection |
-	dialog := self new. 
+	dialog := self new.
 	selection := dialog
 		             title: 'Select multiple modal example';
-		             label: 'Select multiple classes';
+		             message: 'Select multiple classes';
 		             items: Smalltalk allClassesAndTraits;
 		             display: [ :each | each name ];
-		             displayIcon: [ :each |
-			             self iconNamed: each systemIconName ];
+		             displayIcon: [ :each | self iconNamed: each systemIconName ];
 		             openModal.
 
 	selection ifNotNil: [ dialog inform: dialog selectedItems asString ]
+]
+
+{ #category : 'examples' }
+SpSelectMultipleDialog class >> exampleModalWithSelection [
+
+	| dialog selection |
+	dialog := self new.
+	selection := dialog
+		             title: 'Select multiple modal example';
+		             message: 'Select multiple classes';
+		             items: Smalltalk allClassesAndTraits;
+		             display: [ :each | each name ];
+		             displayIcon: [ :each | self iconNamed: each systemIconName ];
+		             openModal.
+
+	selection ifNotNil: [ dialog inform: selection asString ]
 ]
 
 { #category : 'examples' }
@@ -164,6 +179,16 @@ SpSelectMultipleDialog >> items: aCollection [
 	table1 items: aCollection
 ]
 
+{ #category : 'accessing' }
+SpSelectMultipleDialog >> openModal [
+
+	| dialog |
+	dialog := super openModal.
+	^ dialog isOk
+		ifTrue: [ selectedItems ]
+		ifFalse: [ nil ]
+]
+
 { #category : 'updating' }
 SpSelectMultipleDialog >> refreshTable [
 
@@ -174,4 +199,10 @@ SpSelectMultipleDialog >> refreshTable [
 SpSelectMultipleDialog >> selectedItems [
 
 	^ selectedItems
+]
+
+{ #category : 'accessing' }
+SpSelectMultipleDialog >> selectedItems: aCollection [
+
+	selectedItems := aCollection
 ]
