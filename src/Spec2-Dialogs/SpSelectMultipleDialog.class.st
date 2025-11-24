@@ -200,3 +200,9 @@ SpSelectMultipleDialog >> selectedItems [
 
 	^ selectedItems
 ]
+
+{ #category : 'accessing' }
+SpSelectMultipleDialog >> selectedItems: aCollection [
+
+	selectedItems := aCollection
+]
