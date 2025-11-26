@@ -313,6 +313,12 @@ SpEasyListViewPresenter >> updateItemsKeepingSelection: aCollection [
 	contentView updateItemsKeepingSelection: aCollection
 ]
 
+{ #category : 'accessing' }
+SpEasyListViewPresenter >> verticalAlignment [
+
+	^ contentView verticalAlignment
+]
+
 { #category : 'private' }
 SpEasyListViewPresenter >> whenDisplayChangedDo: aBlock [
 	"Inform when the display block has changed.
