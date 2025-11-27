@@ -1,3 +1,10 @@
+"
+An easy presenter for a column view.
+A column view has columns to display information. 
+
+### Adding column 
+In addition of the column types that can be added (calling `addColum:`)  that has to receive one element of the `SpTableColumn` hierarchy 
+"
 Class {
 	#name : 'SpEasyColumnViewPresenter',
 	#superclass : 'SpAbstractEasyListViewPresenter',

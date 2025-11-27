@@ -1,3 +1,14 @@
+"
+A foundation for the easy list family. 
+The purpose of the *easy* family is to provide the users with a simple way to work with list, without the extra work that may cause the adoption of `SpListViewPresenter` and `SpColumnViewPresenter`.
+
+## Why this hierarchy?
+The first iteration of Spec had List and Table components which provided `display:`/`displayIcon:` access in the case of lists and a set of predefined column types for tables (`String`, `Checkbox`, `Image`...) . 
+This is fine for many cases, but of course it has limits, that we try to overcome with this new versions: 
+
+1. new list/table versions are polymorphic with the older, no change should be done to use them *as is*.
+2. But older version was not flexible enough and was imposing very limited UI elements. Now we fix this by provinding `#rowPresenterClass:` accessor to define any arbitrary presenter as your row, in the case of lists, and the `SpEasyColumnViewColumn` (yes, the name is weird) that understands `#cellPresenterClass:` to set an arbitrary presenter to be used.
+"
 Class {
 	#name : 'SpAbstractEasyListViewPresenter',
 	#superclass : 'SpAbstractEasyPresenter',

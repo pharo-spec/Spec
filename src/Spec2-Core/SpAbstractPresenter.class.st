@@ -373,6 +373,10 @@ SpAbstractPresenter >> nearWindow [
 
 { #category : 'private' }
 SpAbstractPresenter >> nearWindowLike [
+	"answer the nearest window in this presenter chain. 
+	 this is useful to set things to differently depending on the 
+	 position of the presenter. 
+	 Yes, this is a little hacky, but powerful :)" 
 
 	^ self owner ifNotNil: [ :anOwner | anOwner nearWindowLike ]
 ]
