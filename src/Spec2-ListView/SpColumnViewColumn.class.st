@@ -27,6 +27,12 @@ SpColumnViewColumn class >> newTitle: aTitle setup: setupBlock bind: bindBlock [
 		yourself
 ]
 
+{ #category : 'converting' }
+SpColumnViewColumn >> asColumnViewColumn [
+
+	^ self
+]
+
 { #category : 'accessing' }
 SpColumnViewColumn >> beExpandable [ 
 	

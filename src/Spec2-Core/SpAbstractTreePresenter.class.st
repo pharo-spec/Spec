@@ -553,12 +553,13 @@ SpAbstractTreePresenter >> updateRootsKeepingSelection: aCollection [
 	 WARNING: aCollection must includes the elements selected."
 
 	self disableActivationDuring: [ 
-		| selectedPaths |
-		
-		selectedPaths := (self selection selectedPaths collect: [ :each | self pathItemOf: each ]).
-		self roots: aCollection.
-		selectedPaths ifNotEmpty: [ 
-			self selectPaths: (selectedPaths collect: [ :each | self pathIndexOf: each ]) ] ]
+		self disableSelectionDuring: [
+			| selectedPaths |
+			
+			selectedPaths := (self selection selectedPaths collect: [ :each | self pathItemOf: each ]).
+			self roots: aCollection.
+			selectedPaths ifNotEmpty: [
+				self selectPaths: (selectedPaths collect: [ :each | self pathIndexOf: each ]) ] ] ]
 ]
 
 { #category : 'private' }

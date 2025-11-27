@@ -3,35 +3,13 @@
 
 Often, I am used to display other subclasses of `SpPresenter` or subclasses of `SpAbstractWidgetPresenter`.
 
-I collaborate with 
-- `ObservableSlot` to manage some of my variables.
-- `SpLayout`
-- `SpWindowPresenter` or `SpDialogWindowPresenter` to display myself.
-
-A new subclass of `SpPresenter` must at least define `initializeWidgets` and `defaultSpec` on the class side.
-
-I provide the following methods
-- aboutText: set the text displayed in the About.
-- initializeWindow: to set the title, and other information related to the window.
-- extent: set the initial size of the window, alternative possibility is define again initialExtent, it must be called before have displayed the widget. 
-- focusOrder: set an instance what manage the order of focus of the keyboard navigation.
-- bindKeyCombination:toAction: create a shortcut on keyboard what perform the block of the  action.
-- owner getter of my parent.
-- window getter of the window displaying me.
-
-On my class side, I provide methods returning standard height and width for some elements.
+A new subclass of `SpPresenter` must at least define `initializePresenters` and `defaultLayout`.
 
 ## Window
 
-- `SpPresenter>>#openWithSpec` instantiates a `SpWindowPresenter` using the lookup to found the layout to use.
-- `SpPresenter>>#openDialogWithSpec` instanciates a `SpDialogWindowPresenter` using the lookup to found the layout to use.
-Their variants `openWithSpec:` and `openDialogWithSpec:` use the layout parameter.
-
-These methods can be useful to manage the window
-- `SpPresenter>>#isDisplayed` returns true if the window of the widget is displayed
-- `SpPresenter>>#hasWindow` returns true if the widget have a window
-- `SpPresenter>>#centered` to center the window in the world.
-- `SpPresenter>>#delete` to delete the window.
+- `SpPresenter>>#open` instantiates a `SpWindowPresenter` using the lookup to found the layout to use.
+- `SpPresenter>>#openModal` instanciates a `SpModalWindowPresenter` using the lookup to found the layout to use.
+- `SpPresenter>>#openDialog` instanciates a `SpDialogWindowPresenter` using the lookup to found the layout to use.
 
 ## Instantiation
 
@@ -60,26 +38,9 @@ Normally in Spec initializing instance variables should be done BEFORE calling `
 
 As a general principle refer to the subclasses of`SpExecutableLayout`.
 
-`defaultSpec` or a method containing the pragma `<spec: #default>` must be defined in the class side of my subclasses.
+`defaultLayout` must be defined in the class side of my subclasses.
 It contains information about how visually position its elements.
-It possible to define more than one method to give the possibility to use another layout, by default the one containing the pragma will be used if it exists, if not `defaultSpec` will be used.
-
-Developer may also want to define instance level layouts. A good idiom is the following one:
-
-```
-SpMyPresenter >> initializePresenters
-	... instantiate presenters ...
-	self initializeLayout
-```
-
-```
-SpMyPresenter >> initializeLayout
-	self layout: (SpXXLayout new add: ...; yourself)
-```
-
-
-
-
+It possible to define more than one method to give the possibility to use another layout, by setting `layout:` arbitrarily.
 "
 Class {
 	#name : 'SpPresenter',
@@ -539,8 +500,9 @@ SpPresenter >> focusOrder [
 ]
 
 { #category : 'accessing' }
-SpPresenter >> focusOrder: anObject [
-	^ focusOrder := anObject
+SpPresenter >> focusOrder: anOrderedCollection [
+
+	focusOrder := anOrderedCollection
 ]
 
 { #category : 'api - focus' }
@@ -1059,9 +1021,12 @@ SpPresenter >> traversePresentersDo: aBlock excluding: excludes [
 	aBlock value: self.
 
 	self layout ifNil: [ ^ self ].
-	self layout allPresenters do: [ :each | | var |
-		var := each asPresenterOn: self. 
-		var traversePresentersDo: aBlock excluding: excludes ]
+	self layout allPresenters 
+		reject: [ :each | each isNil ]
+		thenDo: [ :each | 
+			| var |
+			var := each asPresenterOn: self. 
+			var traversePresentersDo: aBlock excluding: excludes ]
 ]
 
 { #category : 'TOREMOVE' }

@@ -1,5 +1,9 @@
 "
-Note: while this list in general has no sense now with the new ListView/ColumnView components, it may still has a small use case for where each presenter is really different.
+A presenter to show a dynamic list of presenters. 
+When you do not have a list of elements that can be presented as a single list or table, it is possible to display a collection of presenters as a list using this component.
+
+**IMPORTANT:** while this list type in general has no sense now with the new `SpEasyListViewPresenter`/`SpEasyColumnViewPresenter` components that can display arbitrary presenters, it may still has a small use case for where each presenter is really different.  
+Please verify this is really needed before using it.
 "
 Class {
 	#name : 'SpEasyComponentListPresenter',
