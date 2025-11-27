@@ -147,11 +147,23 @@ SpAbstractEasyPresenter >> disableActivationDuring: aBlock [
     contentView disableActivationDuring: aBlock
 ]
 
+{ #category : 'private' }
+SpAbstractEasyPresenter >> disableEventsDuring: aBlock [
+
+    contentView disableEventsDuring: aBlock
+]
+
 { #category : 'api' }
 SpAbstractEasyPresenter >> disableSearch [
 	"Disable searching"
 
 	contentView disableSearch
+]
+
+{ #category : 'private' }
+SpAbstractEasyPresenter >> disableSelectionDuring: aBlock [
+
+    contentView disableSelectionDuring: aBlock
 ]
 
 { #category : 'api' }
