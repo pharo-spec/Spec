@@ -131,7 +131,7 @@ SpAbstractListPresenter >> initialize [
 	verticalAlignment := SpVerticalAlignment new.
 
 	self withScrollBars.
-	self model: 	self newEmptyModel.
+	self model: self newEmptyModel.
 
 	self beSingleSelection.
 	self activateOnDoubleClick.

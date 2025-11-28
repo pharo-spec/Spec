@@ -12,7 +12,7 @@ Class {
 { #category : 'visiting' }
 SpEasyColumnSetupBuilder >> visitCheckboxColumn: aColumn [
 
-	^ self presenter newSwitch
+	^ self presenter newCheckBox
 ]
 
 { #category : 'visiting' }

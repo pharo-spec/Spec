@@ -6,6 +6,17 @@ Class {
 	#tag : 'Widgets-Tree'
 }
 
+{ #category : 'adding' }
+SpTreeMultipleSelectionMode >> addAllPathsOf: items parentPath: aCollection to: allPaths [
+
+	items withIndexDo: [ :item :index |
+			| itemPath |
+			itemPath := aCollection , { index }.
+			allPaths add: itemPath.
+			(presenter childrenFor: item) ifNotEmpty: [ :childrens |
+				self addAllPathsOf: childrens parentPath: itemPath to: allPaths ] ]
+]
+
 { #category : 'testing' }
 SpTreeMultipleSelectionMode >> includesItem: anItem [
 	^ self selectedItems includes: anItem
@@ -32,6 +43,15 @@ SpTreeMultipleSelectionMode >> isMultipleSelection [
 	^ true
 ]
 
+{ #category : 'selecting' }
+SpTreeMultipleSelectionMode >> selectAll [
+
+	| paths |
+	paths := OrderedCollection new.
+	self addAllPathsOf: presenter roots parentPath: #(  ) to: paths.
+	self selectPaths: paths
+]
+
 { #category : 'selection' }
 SpTreeMultipleSelectionMode >> selectPath: aPath [ 
 	"Check comment in my superclass to know how to use selectPath:"
@@ -45,17 +65,15 @@ SpTreeMultipleSelectionMode >> selectPath: aPath [
 
 { #category : 'selection' }
 SpTreeMultipleSelectionMode >> selectPaths: pathArray [
-	(pathArray isEmpty 
-		or: [ 
-			pathArray size = 1 
-			and: [ pathArray first isEmpty] ]) 
-		ifTrue: [ ^ self unselectAll ].
 
-	pathArray
-		do: [ :path | presenter itemAtPath: path ifAbsent: [ ^ self ] ].
-	selection = pathArray ifTrue: [ ^ self ].
-	
-	selection := pathArray
+	| paths |
+	paths := pathArray asArray.
+	(paths isEmpty or: [ paths size = 1 and: [ paths first isEmpty ] ]) ifTrue: [ ^ self unselectAll ].
+
+	paths do: [ :path | presenter itemAtPath: path ifAbsent: [ ^ self ] ].
+	selection = paths ifTrue: [ ^ self ].
+
+	selection := paths
 ]
 
 { #category : 'accessing' }

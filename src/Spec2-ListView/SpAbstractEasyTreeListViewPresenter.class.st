@@ -156,6 +156,12 @@ SpAbstractEasyTreeListViewPresenter >> roots: aCollection [
 ]
 
 { #category : 'api - selection' }
+SpAbstractEasyTreeListViewPresenter >> selectAll [
+
+	self selection selectAll  
+]
+
+{ #category : 'api - selection' }
 SpAbstractEasyTreeListViewPresenter >> selectItem: anItem [
 	"Select `anItem` if it is included in model list.
 	 It does not scrolls to selected element."

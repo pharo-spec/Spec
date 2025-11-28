@@ -19,6 +19,18 @@ SpDialogWindowMorph >> addInitialPanel [
 	"Do nothing here because Spec will take care of adding the content"
 ]
 
+{ #category : 'private' }
+SpDialogWindowMorph >> announceWillClose [
+	| announcement |
+
+	announcement := SpWindowWillClose new
+		window: self;
+		yourself.
+	self announce: announcement.
+	self currentWorld announcer announce: announcement.
+	^ announcement canClose
+]
+
 { #category : 'protocol' }
 SpDialogWindowMorph >> cancelAction: aBlock [
 
@@ -31,10 +43,34 @@ SpDialogWindowMorph >> cancelled [
 	^ self toolbar cancelled
 ]
 
+{ #category : 'private' }
+SpDialogWindowMorph >> deleteDiscardingChanges [
+
+	self announceWillClose ifFalse: [ ^ self ].
+	^ super deleteDiscardingChanges
+]
+
 { #category : 'actions' }
 SpDialogWindowMorph >> escapePressed [
 
 	self model triggerCancelAction
+]
+
+{ #category : 'resize/collapse' }
+SpDialogWindowMorph >> extent: aPoint [ 
+	| announcement oldExtent |
+	
+	oldExtent := self extent. 
+	super extent: aPoint.
+	
+	oldExtent = aPoint ifFalse: [  	
+		announcement := SpWindowResizing new
+			window: self;
+			oldSize: oldExtent;
+			newSize: aPoint;
+			yourself.
+		self announce: announcement.
+		self currentWorld announcer announce: announcement ]
 ]
 
 { #category : 'focus' }

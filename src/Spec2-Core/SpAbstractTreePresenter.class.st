@@ -230,7 +230,7 @@ SpAbstractTreePresenter >> isActiveOnSingleClick [
 SpAbstractTreePresenter >> isExpanded: aPath [ 
 
 	self withAdapterDo: [ :anAdapter |  
-		^ anAdapter isExpanded: (anAdapter itemAtPath: aPath) ].
+		^ anAdapter isExpanded: aPath ].
 
 	^ false
 ]
@@ -273,7 +273,7 @@ SpAbstractTreePresenter >> itemAtPath: anArray ifAbsent: aBlock [
 { #category : 'api' }
 SpAbstractTreePresenter >> items: aCollection [
 	"Set the roots of a tree. This is a convenience method, synonym of `SpTreePresenter>>#roots:`"
-
+	self unselectAll.
 	self roots: aCollection
 ]
 
@@ -366,6 +366,12 @@ SpAbstractTreePresenter >> roots: aCollection [
 SpAbstractTreePresenter >> searchValueOf: item [ 
 
 	^ item asString
+]
+
+{ #category : 'api - selection' }
+SpAbstractTreePresenter >> selectAll [ 
+
+	self selection selectAll
 ]
 
 { #category : 'private' }

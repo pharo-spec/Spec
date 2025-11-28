@@ -26,7 +26,9 @@ Class {
 	#instVars : [
 		'borderWidth',
 		'padding',
-		'borderColor'
+		'borderColor',
+		'intercellSpacing',
+		'rowHeight'
 	],
 	#category : 'Spec2-Adapters-Morphic-StyleSheet',
 	#package : 'Spec2-Adapters-Morphic',
@@ -44,7 +46,13 @@ SpContainerStyle >> applyTo: aMorph [
 
 	self borderColorVariable ifNotNil: [ :aVariable | aMorph borderColor: aVariable valueAsColor ].
 	self borderWidthVariable ifNotNil: [ :aVariable | aMorph borderWidth: aVariable scaledValue ].
-	self paddingVariable ifNotNil: [ :aVariable | aMorph cellInset: aVariable scaledValue ]
+	self paddingVariable ifNotNil: [ :aVariable | aMorph cellInset: aVariable scaledValue ].
+	self intercellSpacingVariable ifNotNil: [ :aVariable | 
+		(aMorph respondsTo: #intercellSpacing:)
+			ifTrue: [ aMorph intercellSpacing: aVariable scaledValue ] ].
+	self rowHeightVariable ifNotNil: [ :aVariable | 
+		(aMorph respondsTo: #rowHeight:)
+			ifTrue: [ aMorph rowHeight: aVariable scaledValue ] ]
 ]
 
 { #category : 'accessing' }
@@ -92,6 +100,24 @@ SpContainerStyle >> borderWidthVariable [
 ]
 
 { #category : 'accessing' }
+SpContainerStyle >> intercellSpacing [
+   "WARNING: This style will not work outside lists, tables and trees."
+	^ self intercellSpacingVariable scaledValue
+]
+
+{ #category : 'accessing' }
+SpContainerStyle >> intercellSpacing: aNumberOrPoint [
+
+	intercellSpacing := aNumberOrPoint asStyleVariable
+]
+
+{ #category : 'accessing - variables' }
+SpContainerStyle >> intercellSpacingVariable [
+
+	^ self toVariable: intercellSpacing
+]
+
+{ #category : 'accessing' }
 SpContainerStyle >> padding [
 
 	^ self paddingVariable scaledValue
@@ -107,4 +133,22 @@ SpContainerStyle >> padding: aNumber [
 SpContainerStyle >> paddingVariable [
 
 	^ self toVariable: padding
+]
+
+{ #category : 'accessing' }
+SpContainerStyle >> rowHeight [
+   "WARNING: This style will not work outside lists, tables and trees."
+	^ self rowHeightVariable scaledValue
+]
+
+{ #category : 'accessing' }
+SpContainerStyle >> rowHeight: aNumber [
+
+	rowHeight := aNumber asStyleVariable
+]
+
+{ #category : 'accessing - variables' }
+SpContainerStyle >> rowHeightVariable [
+
+	^ self toVariable: rowHeight
 ]

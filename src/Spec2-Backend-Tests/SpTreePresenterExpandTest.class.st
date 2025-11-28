@@ -29,9 +29,9 @@ SpTreePresenterExpandTest >> testCollapseAll [
 	presenter expandAll.
 	self openInstance.
 	self deny: presenter roots isEmpty.
-	self assert: (presenter adapter isExpanded: (presenter itemAtPath: #(1 2 3))).	
+	self assert: (presenter adapter isExpanded: #(1 2 3)).	
 	presenter collapseAll.
-	self deny: (presenter adapter isExpanded: (presenter itemAtPath: #(1 2 3)))
+	self deny: (presenter adapter isExpanded: #(1 2 3))
 ]
 
 { #category : 'tests' }
@@ -40,9 +40,9 @@ SpTreePresenterExpandTest >> testCollapsePath [
 	presenter expandAll.
 	self openInstance.
 	self deny: presenter roots isEmpty.
-	self assert: (presenter adapter isExpanded: (presenter itemAtPath: #(1 2 3))).	
+	self assert: (presenter adapter isExpanded: #(1 2 3)).	
 	presenter collapsePath: #(1 2 3).
-	self deny: (presenter adapter isExpanded: (presenter itemAtPath: #(1 2 3)))
+	self deny: (presenter adapter isExpanded: #(1 2 3))
 ]
 
 { #category : 'tests' }
@@ -51,7 +51,7 @@ SpTreePresenterExpandTest >> testExpandPath [
 	presenter expandPath: #(1 2 3).
 	self openInstance.
 	self deny: presenter roots isEmpty.
-	self assert: (presenter adapter isExpanded: (presenter itemAtPath: #(1 2 3)))
+	self assert: (presenter adapter isExpanded: #(1 2 3))
 ]
 
 { #category : 'tests' }
@@ -61,7 +61,8 @@ SpTreePresenterExpandTest >> testExpandRoots [
 	self openInstance.
 	self deny: presenter roots isEmpty.
 	self 
-		assert: (presenter roots select: [ :anItem | presenter adapter isExpanded: anItem ])
+		assert: (presenter roots 
+			withIndexSelect: [ :anItem :index | presenter adapter isExpanded: { index } ])
 		equals: presenter roots
 ]
 
@@ -72,6 +73,7 @@ SpTreePresenterExpandTest >> testExpandRootsAfterInitialization [
 	presenter expandRoots.
 	self deny: presenter roots isEmpty.
 	self 
-		assert: (presenter roots select: [ :anItem | presenter adapter isExpanded: anItem ])
+		assert: (presenter roots 
+			withIndexSelect: [ :anItem :index | presenter adapter isExpanded: { index } ])
 		equals: presenter roots
 ]

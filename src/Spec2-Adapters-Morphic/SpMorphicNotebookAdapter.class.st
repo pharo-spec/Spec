@@ -36,12 +36,13 @@ SpMorphicNotebookAdapter >> addInitialPagesTo: aNotebook [
 		"Since I do not have the page added, I need to take it from the list. 
 		 But I know this will be the last added :)"
 		self addPage: each to: aNotebook ].
-	
+
 	"force first page to be drawn"
-	self presenter selectedPage ifNil: [
-		self presenter selectPageIndex: 1 ].
-	
-	aNotebook selectedPageIndex: self presenter selectedPageIndex
+	aNotebook pages first actualPageMorph.
+	self presenter selectedPage 
+		ifNil: [ self presenter selectPageIndex: 1 ].
+
+	aNotebook selectedPageIndex: self presenter selectedPageIndex.
 ]
 
 { #category : 'factory' }
@@ -98,8 +99,7 @@ SpMorphicNotebookAdapter >> buildWidget [
 	self addModelTo: notebookMorph.
 
 	self presenter 
-		whenPagesChangedDo: [ :pages | self updatePagesWith: pages ];
-		whenSelectedPageChangedDo: [ :page | self selectPage: page ].
+		whenPagesChangedDo: [ :pages | self updatePagesWith: pages ].
 
 	^ notebookMorph
 ]
@@ -152,7 +152,7 @@ SpMorphicNotebookAdapter >> updatePageContent: aPage [
 		(w pageWithModel: aPage) reset.
 		"if we are updating the page being displayed, we need to trigger a refresh"
 		aPage = self presenter selectedPage ifTrue: [ 
-			w updatePageIndex: (self model selectedPageIndex) ] ]
+			w updatePageIndex: self model selectedPageIndex ] ]
 ]
 
 { #category : 'updating' }

@@ -181,12 +181,12 @@ SpRequestDialog >> isPassword [
 
 { #category : 'api - showing' }
 SpRequestDialog >> openModal [
+
 	| dialog |
-	
 	dialog := super openModal.
 	^ dialog isOk
-		ifTrue: [ self text trimmed ]
-		ifFalse: [ nil ]
+		  ifTrue: [ self text trimBoth ]
+		  ifFalse: [ nil ]
 ]
 
 { #category : 'initialization' }
@@ -196,9 +196,9 @@ SpRequestDialog >> setErrorText: aText [
 ]
 
 { #category : 'api' }
-SpRequestDialog >> text [ 
-	
-	^ textInput text trimmed
+SpRequestDialog >> text [
+
+	^ textInput text trimBoth
 ]
 
 { #category : 'api' }

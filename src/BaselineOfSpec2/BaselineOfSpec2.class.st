@@ -28,6 +28,9 @@ BaselineOfSpec2 >> baseline: spec [
 			package: 'Spec2-Adapters-Morphic-Tests' with: [ spec requires: #('Spec2-Backend-Tests') ];
 			package: 'Spec2-Morphic-Tests' with: [ spec requires: #('Spec2-Morphic' 'Spec2-Backend-Tests') ];
 			package: 'Spec2-Code-Backend-Tests' with: [ spec requires: #('Spec2-Backend-Tests') ];
+			"alexandrie"
+			package: 'Spec2-Alexandrie' with: [ spec requires: #('SpecCore') ];
+			package: 'Spec2-Adapters-Morphic-Alexandrie' with: [ spec requires: #('Spec2-Alexandrie' 'Spec2-Adapters-Morphic') ];
 			"others"
 			package: 'Spec2-Microdown' with: [ spec requires: #('SpecCore' 'Spec2-Adapters-Morphic') ];
 			package: 'Spec2-Transformations' ].

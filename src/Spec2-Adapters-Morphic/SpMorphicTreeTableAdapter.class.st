@@ -223,16 +223,11 @@ SpMorphicTreeTableAdapter >> expandRoots [
 ]
 
 { #category : 'testing' }
-SpMorphicTreeTableAdapter >> isExpanded: anItem [
-	| path |
-	
-	path := widget dataSource 
-		pathOfItem: anItem 
-		root: widget dataSource rootItem.
+SpMorphicTreeTableAdapter >> isExpanded: aPath [
 
-  path ifEmpty: [ ^ false ].
+  aPath ifEmpty: [ ^ false ].
 	
-	^ (widget dataSource itemAtPath: path) 
+	^ (widget dataSource itemAtPath: aPath) 
 		ifNotNil: [ :node | node isExpanded ]
 		ifNil: [ false ]
 ]

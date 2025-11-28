@@ -637,6 +637,13 @@ SpAbstractPresenter >> withAdapterDo: aValuable [
 ]
 
 { #category : 'private - utilities' }
+SpAbstractPresenter >> withNearWindowLikeDo: aValuable [
+
+	^ self nearWindowLike 
+		ifNotNil: [ :nearWindow | aValuable value: nearWindow ]
+]
+
+{ #category : 'private - utilities' }
 SpAbstractPresenter >> withWindowDo: aValuable [
 
 	^ self nearWindow 

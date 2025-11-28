@@ -66,7 +66,7 @@ SpMorphicWindowAdapter >> beep [
 { #category : 'factory' }
 SpMorphicWindowAdapter >> buildWidget [
 
-	^ SpWindow new
+	^ SpWindowMorph new
 		model: model;
 		isResizeable: self isResizable;
 		in: [ :this | self subscribeToAnnouncements: this ];

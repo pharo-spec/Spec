@@ -11,17 +11,25 @@ SpTreeSingleSelectionMode >> itemNotFoundAction [
 	self clearSelection
 ]
 
+{ #category : 'selecting' }
+SpTreeSingleSelectionMode >> selectAll [
+	"Do nothing, since single selection mode wont allow for selecting all elements."
+
+	
+]
+
 { #category : 'accessing' }
 SpTreeSingleSelectionMode >> selectPath: aPath [
 	"Check comment in my superclass to know how to use selectPath:"
 
 	"If the path is out of range, keep the selection."
-	aPath ifEmpty: [ ^ self unselectAll ].
-	presenter 
-		itemAtPath: aPath 
-		ifAbsent: [ ^ self ].
-	selection := aPath
 
+	| path |
+	path := aPath asArray.
+	path ifEmpty: [ ^ self unselectAll ].
+	presenter itemAtPath: path ifAbsent: [ ^ self ].
+	selection = path ifTrue: [ ^ self ].
+	selection := path
 ]
 
 { #category : 'accessing' }

@@ -23,7 +23,6 @@ SpListViewPresenter class >> example [
 	"This example show the simples list view you can make: A list with a label"
 	
 	self new
-		application: (SpApplication new useBackend: #Gtk);
 		items: self environment allClasses;
 		setup: [ :aPresenter | aPresenter newLabel ];
 		bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
@@ -144,7 +143,7 @@ SpListViewPresenter class >> exampleWithIconsAndMorph [
 	 to your lists."
 
 	| application |
-	application := SpApplication new useBackend: #Gtk.
+	application := SpApplication new.
 	^ self new
 		application: application;
 		items: self environment allClasses;
@@ -277,7 +276,11 @@ SpListViewPresenter >> initializeItemFactory [
 	"Just set up the defaults (to ensure we have a working list at any moment)"
 	
 	self setup: [ :aPresenter | aPresenter newLabel ].
-	self bind: [ :aPresenter :anObject | aPresenter label: anObject asString ]
+	self bind: [ :aPresenter :anObject | 
+		aPresenter label: ([  anObject asString ]
+			on: Error 
+			fork: [ :e | e pass ] 
+			return: [ 'OBJECT PRINT ERROR' ] ) ]
 ]
 
 { #category : 'initialization' }
@@ -288,6 +291,19 @@ SpListViewPresenter >> registerEvents [
 		property: #headerTitle 
 		whenChangedDo: [ 
 			self withAdapterDo: [ :anAdapter | anAdapter refreshList ] ]
+]
+
+{ #category : 'api - selection' }
+SpListViewPresenter >> selectedRowPresenter [
+	"answer the selected row presenter (the one being displayed) of the list. 
+	 this is useful to attach other objects to the presenter (e.g. popovers). 
+	 WARNING: Depending on the details of the implementation, this message can 
+	 answer nil *even if there is a selected item*."
+
+	self withAdapterDo: [ :anAdapter | 
+		^ anAdapter selectedRowPresenter ].
+		
+	^ nil
 ]
 
 { #category : 'api' }

@@ -2,7 +2,7 @@
 SUnit tests for SpecWindow
 "
 Class {
-	#name : 'SpWindowTest',
+	#name : 'SpWindowMorphTest',
 	#superclass : 'TestCase',
 	#instVars : [
 		'windowPresenter'
@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : 'tests' }
-SpWindowTest >> testAboutText [
+SpWindowMorphTest >> testAboutText [
 
 	| presenter window |
 	windowPresenter := SpWindowPresenter new.
@@ -30,7 +30,7 @@ SpWindowTest >> testAboutText [
 ]
 
 { #category : 'tests' }
-SpWindowTest >> testAllowedToClose [
+SpWindowMorphTest >> testAllowedToClose [
 
 	| application appWindow |
 	application := SpApplication new.
@@ -56,7 +56,7 @@ SpWindowTest >> testAllowedToClose [
 ]
 
 { #category : 'tests' }
-SpWindowTest >> testCloseWindowRemovesItFromApplicationWindowCollection [
+SpWindowMorphTest >> testCloseWindowRemovesItFromApplicationWindowCollection [
 
 	| application |
 	application := SpApplication new.
@@ -67,7 +67,7 @@ SpWindowTest >> testCloseWindowRemovesItFromApplicationWindowCollection [
 ]
 
 { #category : 'tests' }
-SpWindowTest >> testIsDisplayed [
+SpWindowMorphTest >> testIsDisplayed [
 
 	"Test for case: 16800 -> ask a SpecWindow for #isDisplayed always returns true"
 
@@ -82,7 +82,7 @@ SpWindowTest >> testIsDisplayed [
 ]
 
 { #category : 'tests' }
-SpWindowTest >> testTitle [
+SpWindowMorphTest >> testTitle [
 
 	| presenter window |
 	windowPresenter := SpTextPresenter new open.

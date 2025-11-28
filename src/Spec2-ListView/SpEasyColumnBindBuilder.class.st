@@ -51,6 +51,14 @@ SpEasyColumnBindBuilder >> visitImageColumn: aColumn [
 ]
 
 { #category : 'visiting' }
+SpEasyColumnBindBuilder >> visitIndexColumn: aColumn [
+
+	^ self presenter label: (self item 
+		ifNotNil: [ :anObject | ( presenter owner items indexOf: anObject) asString ]
+		ifNil: [ '' ])	
+]
+
+{ #category : 'visiting' }
 SpEasyColumnBindBuilder >> visitLinkColumn: aColumn [
 
 	self item ifNil: [ 

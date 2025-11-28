@@ -76,6 +76,12 @@ SpAbstractTreeSelectionMode >> presenter: aPresenter [
 ]
 
 { #category : 'selecting' }
+SpAbstractTreeSelectionMode >> selectAll [
+
+	self subclassResponsibility
+]
+
+{ #category : 'selecting' }
 SpAbstractTreeSelectionMode >> selectItem: anItem [
 	[ self selectPath: (self pathOf: anItem) ]
 		on: NotFound

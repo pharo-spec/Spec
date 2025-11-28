@@ -12,6 +12,12 @@ Class {
 	#tag : 'Action'
 }
 
+{ #category : 'default' }
+SpActionGroup class >> defaultDisplayStrategy [
+
+	^ CmUIDisplayAsGroup new
+]
+
 { #category : 'instance creation' }
 SpActionGroup class >> newName: aName [
 

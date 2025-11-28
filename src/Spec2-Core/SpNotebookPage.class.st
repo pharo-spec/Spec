@@ -84,7 +84,7 @@ SpNotebookPage class >> title: aString provider: aBlock [
 
 { #category : 'api' }
 SpNotebookPage >> activePresenter [
-	"Answer current active presenter fot this page (it may be nil, if page has not been displayed yet)"
+	"Answer current active presenter for this page (it may be nil, if page has not been displayed yet)"
 	
 	^ activePresenter
 ]
@@ -199,10 +199,15 @@ SpNotebookPage >> resetContent [
 { #category : 'private' }
 SpNotebookPage >> retrievePresenter [
 	"refresh all the time, because content may have change"
-
-	activePresenter := self presenterProvider value.
+	| retrievedPresenter |
+	
+	retrievedPresenter := self presenterProvider value. 
+	retrievedPresenter ifNil: [ ^ nil ].
+	
+	activePresenter := retrievedPresenter.
 	retrievedBlock ifNotNil: [ 
 		retrievedBlock cull: activePresenter ].
+
 	^ activePresenter
 ]
 

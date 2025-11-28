@@ -8,5 +8,5 @@ Class {
 
 { #category : 'accessing' }
 SpApplicationWithToolbarTest >> classToTest [
-	^ SpApplicationWithToolbar
+	^ SpDemoTopLevelPresenter
 ]

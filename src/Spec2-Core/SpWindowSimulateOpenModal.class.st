@@ -7,8 +7,7 @@ Example:
 SpWindowSimulateOpenModal 
 	value: [ :aDialogPresenter |
 		aDalogPresenter presenter inputText: 'The text of the sample'.
-		aDialogPresenter beOk. 
-		true ]
+		aDialogPresenter beOk ]
 	durying [ ""some code thet will call dialog openModal"" ]
 ```
 "

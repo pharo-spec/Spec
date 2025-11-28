@@ -12,7 +12,8 @@ Class {
 		'#isClosed => ObservableSlot',
 		'#presenter => ObservableSlot',
 		'#position',
-		'#relativeTo'
+		'#relativeTo',
+		'#isTransferFocus'
 	],
 	#category : 'Spec2-Core-Widgets',
 	#package : 'Spec2-Core',
@@ -86,10 +87,19 @@ SpPopoverPresenter >> dismiss [
 	^ self withAdapterDo: [ :anAdapter | anAdapter dismiss ]
 ]
 
+{ #category : 'api' }
+SpPopoverPresenter >> doNotTransferFocus [
+	"Set the popover to not transfer automatically the focus when showing it. 
+	 This is useful in cases when you have to show things but maybe not interact with them."
+
+	isTransferFocus := false
+]
+
 { #category : 'initialization' }
 SpPopoverPresenter >> initialize [
 
 	super initialize.
+	isTransferFocus := true.
 	isClosed := true.
 	self bePositionBottom
 ]
@@ -98,6 +108,19 @@ SpPopoverPresenter >> initialize [
 SpPopoverPresenter >> isPopover [
 
 	^ true
+]
+
+{ #category : 'testing' }
+SpPopoverPresenter >> isTopWindow [
+	"for compatibility with windows. But a popover can never be a top window."
+
+	^ false
+]
+
+{ #category : 'testing' }
+SpPopoverPresenter >> isTransferFocus [
+
+	^ isTransferFocus
 ]
 
 { #category : 'private' }
@@ -109,31 +132,41 @@ SpPopoverPresenter >> nearWindowLike [
 { #category : 'private' }
 SpPopoverPresenter >> popoverClosed [
 
-	isClosed := true
+	isClosed := true.
+	self application unregisterWindow: self
 	
 ]
 
 { #category : 'private' }
 SpPopoverPresenter >> popoverOpened [
-
+	self application registerWindow: self.
 	isClosed := false
 ]
 
 { #category : 'api' }
 SpPopoverPresenter >> popup [
-
 	"Shows the popover, relative to `SpPopoverPresenter>>#relativeTo`."
 
-	self adapter ifNil: [ self build ].
-	self withAdapterDo: [ :anAdapter | anAdapter popup ]
+	self 
+		popupModal: false 
+		pointingTo: nil
 ]
 
 { #category : 'api' }
 SpPopoverPresenter >> popupModal [
 	"Shows the popover modaly, relative to `SpPopoverPresenter>>#relativeTo`"
+	
+	self popupModal: true pointingTo: nil
+]
+
+{ #category : 'api' }
+SpPopoverPresenter >> popupModal: aBoolean pointingTo: aRectangle [
+	"Shows the popover, relative to `SpPopoverPresenter>>#relativeTo`, and 
+	 pointing to `aRectangle`"
 
 	self adapter ifNil: [ self build ].
-	self withAdapterDo: [ :anAdapter | anAdapter popupModal ]
+	self withAdapterDo: [ :anAdapter |
+		anAdapter popupModal: aBoolean pointingTo: aRectangle ]
 ]
 
 { #category : 'api' }
@@ -155,9 +188,7 @@ SpPopoverPresenter >> popupModalPointingTo: aRectangle [
 	"Shows the popover, relative to `SpPopoverPresenter>>#relativeTo`, and 
 	 pointing to `aRectangle`"
 
-	self adapter ifNil: [ self build ].
-	self withAdapterDo: [ :anAdapter |
-		anAdapter popupModalPointingTo: aRectangle ]
+	self popupModal: true pointingTo: aRectangle
 ]
 
 { #category : 'api' }
@@ -165,9 +196,7 @@ SpPopoverPresenter >> popupPointingTo: aRectangle [
 	"Shows the popover, relative to `SpPopoverPresenter>>#relativeTo`, and 
 	 pointing to `aRectangle`"
 
-	self adapter ifNil: [ self build ].
-	self withAdapterDo: [ :anAdapter |
-		anAdapter popupPointingTo: aRectangle ]
+	self popupModal: false pointingTo: aRectangle
 ]
 
 { #category : 'api' }
@@ -212,6 +241,14 @@ SpPopoverPresenter >> relativeTo: aPresenter [
 	"Set the presenter that will show the popover (and the popover will be shown relative to it)."
 
 	relativeTo := aPresenter
+]
+
+{ #category : 'api' }
+SpPopoverPresenter >> transferFocus [
+	"Set the popover to transfer automatically the focus when showing it.
+	 This is the default value."
+
+	isTransferFocus := true
 ]
 
 { #category : 'private - traversing' }
