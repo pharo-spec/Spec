@@ -11,7 +11,6 @@ It means many fonctionality related to the selection (selected items, multiple i
 A list presenter does not offer the possibility to add one item in isolation instead you should use the `items:` setter to set the full list domain object. The responsibility to manage the items displayed by a list presenter is not the one of that list presenter but its users e.g, the presenter you will write and that instantiates and uses the list presenter. This is normal since there is no way that the list presenter could track changes into the domain object representing the list items.
 
 ### Defining row presenters
-
 The easy list view presenter implements `rowPresenterClass:`. This message allows users to define their own arbitrary presenters to use with lists. This presenters however require two conditions to be fulfilled: 
 - they need to implement `model:`. This is used receive the element to be displayed. This can be achieved by using `SpTModel` presenter, for example)
 - they need to implement `listView:`. This is used to set the list that ""owns"" the row element, which can be used to get contextual information.

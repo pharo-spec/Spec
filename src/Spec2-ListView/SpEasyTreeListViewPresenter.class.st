@@ -1,3 +1,17 @@
+"
+A presenter to display tree of elements.
+A `SpEasyTreeListViewPresenter` will display a line with a description of the element (See `SpEasyTreeListViewPresenter>>#display:`, and optionally an icon (See `SpEasyTreeListViewPresenter>>#displayIcon:`).
+
+A `SpEasyTreeListViewPresenter` can be seen as a simplified `SpEasyTreeColumnViewPresenter`.
+ 
+### Defining row presenters
+The easy tree view presenter implements `rowPresenterClass:`. This message allows users to define their own arbitrary presenters to use with trees. This presenters however require two conditions to be fulfilled: 
+- they need to implement `model:`. This is used receive the element to be displayed. This can be achieved by using `SpTModel` presenter, for example)
+- they need to implement `listView:`. This is used to set the list that ""owns"" the row element, which can be used to get contextual information.
+
+**Important:** The easiest way to fulfill this conditions is to extent `SpEasyAbstractRowPresenter`. Look at its hierarchy for examples.
+
+"
 Class {
 	#name : 'SpEasyTreeListViewPresenter',
 	#superclass : 'SpAbstractEasyTreeListViewPresenter',

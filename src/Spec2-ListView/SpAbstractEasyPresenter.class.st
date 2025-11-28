@@ -63,6 +63,12 @@ SpAbstractEasyPresenter >> alternateRowsColor [
 
 ]
 
+{ #category : 'accessing' }
+SpAbstractEasyPresenter >> announcer [
+
+	^ contentView announcer
+]
+
 { #category : 'api' }
 SpAbstractEasyPresenter >> beMultipleSelection [
 
