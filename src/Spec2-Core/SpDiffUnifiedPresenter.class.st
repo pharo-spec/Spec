@@ -14,3 +14,10 @@ SpDiffUnifiedPresenter class >> adapterName [
 
 	^ #DiffUnifiedAdapter
 ]
+
+{ #category : 'initialization' }
+SpDiffUnifiedPresenter >> initialize [ 
+
+	super initialize.
+	showOnlyDestination := true
+]
