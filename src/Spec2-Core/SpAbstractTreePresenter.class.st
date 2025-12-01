@@ -141,6 +141,14 @@ SpAbstractTreePresenter >> disableActivationDuring: aBlock [
 ]
 
 { #category : 'private' }
+SpAbstractTreePresenter >> disableEventsDuring: aBlock [
+	
+	self disableActivationDuring: [ 
+		self disableSelectionDuring: [ 
+			aBlock value ] ]
+]
+
+{ #category : 'private' }
 SpAbstractTreePresenter >> disableSelectionDuring: aBlock [
 	
 	self selection disableChangedDuring: aBlock

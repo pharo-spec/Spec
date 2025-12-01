@@ -63,6 +63,12 @@ SpAbstractEasyPresenter >> alternateRowsColor [
 
 ]
 
+{ #category : 'accessing' }
+SpAbstractEasyPresenter >> announcer [
+
+	^ contentView announcer
+]
+
 { #category : 'api' }
 SpAbstractEasyPresenter >> beMultipleSelection [
 
@@ -147,11 +153,23 @@ SpAbstractEasyPresenter >> disableActivationDuring: aBlock [
     contentView disableActivationDuring: aBlock
 ]
 
+{ #category : 'private' }
+SpAbstractEasyPresenter >> disableEventsDuring: aBlock [
+
+    contentView disableEventsDuring: aBlock
+]
+
 { #category : 'api' }
 SpAbstractEasyPresenter >> disableSearch [
 	"Disable searching"
 
 	contentView disableSearch
+]
+
+{ #category : 'private' }
+SpAbstractEasyPresenter >> disableSelectionDuring: aBlock [
+
+    contentView disableSelectionDuring: aBlock
 ]
 
 { #category : 'api' }

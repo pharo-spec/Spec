@@ -101,6 +101,14 @@ SpAbstractListPresenter >> disableActivationDuring: aBlock [
 ]
 
 { #category : 'private' }
+SpAbstractListPresenter >> disableEventsDuring: aBlock [
+	
+	self disableActivationDuring: [ 
+		self disableSelectionDuring: [ 
+			aBlock value ] ]
+]
+
+{ #category : 'private' }
 SpAbstractListPresenter >> disableSelectionDuring: aBlock [
 	
 	self selection disableChangedDuring: aBlock
