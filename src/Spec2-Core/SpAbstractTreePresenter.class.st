@@ -11,6 +11,7 @@ Class {
 		'#childrenBlock',
 		'#activateOnSingleClick',
 		'#activationBlock',
+		'#activationCount',
 		'#selectionMode',
 		'#verticalAlignment'
 	],
@@ -132,12 +133,18 @@ SpAbstractTreePresenter >> collapsePath: aPath [
 
 { #category : 'private' }
 SpAbstractTreePresenter >> disableActivationDuring: aBlock [
-	| oldActivate |
-	
-	oldActivate := activationBlock.
-	activationBlock := [ ].
+
+	"since in a multithread context we can call several times this function
+	 I cannot just replace the activation block (as in older versions of this method).
+	 Instead, I will just keep an activationCount variable that will change value 
+	 while entering here... this will allow us to later suspend the activation (see 
+	 #doActivateAtPath:) without changing the block at all.
+	 This will fix two different cases: 
+	 - I may be updating something *elsewere* that should trigger an activation.
+	 - I can run the deactivation in different threads, and I will be sure they will be correctly deactivated."
+	activationCount := activationCount + 1.
 	aBlock ensure: [ 
-		activationBlock := oldActivate ]
+		activationCount := activationCount - 1 ]
 ]
 
 { #category : 'private' }
@@ -157,8 +164,8 @@ SpAbstractTreePresenter >> disableSelectionDuring: aBlock [
 { #category : 'private' }
 SpAbstractTreePresenter >> doActivateAtPath: aPath [
 	"Activate only if there is an item at that position"
-
-	activationBlock  ifNil: [ ^ self ].
+	
+	(activationBlock isNil or: [ activationCount > 0 ]) ifTrue: [ ^ self ].
 	self itemAtPath: aPath ifAbsent: [ ^ self ].
 	activationBlock cull: ((SpTreeSingleSelectionMode on: self)
 		selectPath: aPath;
@@ -170,7 +177,7 @@ SpAbstractTreePresenter >> doActivateSelected [
 	"Activate only if there is an item at that position"
 	| selectedPath |
 
-	activationBlock ifNil: [ ^ self ].
+	(activationBlock isNil or: [ activationCount > 0 ]) ifTrue: [ ^ self ].
 	selectedPath := self selection selectedPath.
 	selectedPath ifNil:  [ ^ self ].
 	activationBlock cull: ((SpTreeSingleSelectionMode on: self)
@@ -220,6 +227,8 @@ SpAbstractTreePresenter >> initialize [
 	self initializeTHaveWrappingScrollBars.
 	
 	verticalAlignment := SpVerticalAlignment new.
+	activationCount := 0.
+	activationBlock := [].
 
 	self withScrollBars.
 	self registerActions.
@@ -580,6 +589,7 @@ SpAbstractTreePresenter >> whenActivatedDo: aBlock [
 	"Inform when an element has been 'activated'. 
 	 `aBlock` receives one argument (a selection object, see `SpAbstractSelectionMode`)"
  
+ 	activationCount := 0.
 	activationBlock := aBlock
 ]
 

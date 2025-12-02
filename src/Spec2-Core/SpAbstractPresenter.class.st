@@ -41,7 +41,7 @@ SpAbstractPresenter class >> buttonWidth [
 { #category : 'TOREMOVE' }
 SpAbstractPresenter class >> defaultFont [ 
 
-	self flag: #TODO. "This is so wrong. All this needs to be in the theme and in the 
+	self flag: #TOREMOVE. "This is so wrong. All this needs to be in the theme and in the 
 	application"
 		
 	self class environment at: #StandardFonts ifPresent: [ :standardFonts | 
@@ -53,7 +53,6 @@ SpAbstractPresenter class >> defaultFont [
 		stretchValue: 5
 		weightValue: 400
 		slantValue: 0
-
 ]
 
 { #category : 'layout' }

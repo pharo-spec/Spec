@@ -35,7 +35,6 @@ Be careful about code order if you are overriding initialize method.
 Normally in Spec initializing instance variables should be done BEFORE calling `super initialize` (so the opposite of the normal approach), because super initialize calls `initalizePresenters` and `connectPresenters` that normally would make use of those variables.
 
 ## Layout
-
 As a general principle refer to the subclasses of`SpExecutableLayout`.
 
 `defaultLayout` must be defined in the class side of my subclasses.

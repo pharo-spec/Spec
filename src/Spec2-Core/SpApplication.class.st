@@ -15,7 +15,6 @@ It is  important that after you initiate your application, you ==run== it.
 The following example shows how to change the backend of an application. 
 
 ```
-
 | app |
 ""You want to subclass SpApplication to create your app""
 app := SpApplication new.
