@@ -143,7 +143,7 @@ SpActionGroup >> initialize [
 { #category : 'accessing' }
 SpActionGroup >> priority [
 
-	^ priority
+	^ priority ifNil: [ priority := 1 ]
 ]
 
 { #category : 'accessing' }

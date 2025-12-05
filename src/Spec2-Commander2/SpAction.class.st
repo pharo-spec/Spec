@@ -176,7 +176,7 @@ SpAction >> printOn: stream [
 { #category : 'accessing' }
 SpAction >> priority [
 
-	^ priority
+	^ priority ifNil: [ priority := 1 ]
 ]
 
 { #category : 'accessing' }
