@@ -101,6 +101,12 @@ SpFilteringListPresenter >> defaultOutputPort [
 	^ self outputSelectionPort
 ]
 
+{ #category : 'private' }
+SpFilteringListPresenter >> disableActivationDuring: aBlock [
+
+	listPresenter disableActivationDuring: aBlock
+]
+
 { #category : 'api' }
 SpFilteringListPresenter >> display [ 
 
@@ -265,6 +271,12 @@ SpFilteringListPresenter >> rowPresenterClass: aPresenterClass [
 	listPresenter rowPresenterClass: aPresenterClass
 ]
 
+{ #category : 'api' }
+SpFilteringListPresenter >> searchMatching: aBlock [
+
+	listPresenter searchMatching: aBlock
+]
+
 { #category : 'api - selection' }
 SpFilteringListPresenter >> selectIndex: index [
 
@@ -283,6 +295,14 @@ SpFilteringListPresenter >> selectItem: anObject [
 	listPresenter selectItem: anObject
 ]
 
+{ #category : 'api - selection' }
+SpFilteringListPresenter >> selectItem: anObject scrollToSelection: aBoolean [ 
+	
+	listPresenter
+		selectItem: anObject 
+		scrollToSelection: aBoolean
+]
+
 { #category : 'selection' }
 SpFilteringListPresenter >> selectLast [
 	listPresenter selectLast
@@ -299,6 +319,12 @@ SpFilteringListPresenter >> selectedItems [
 	"Answer a <Collection> of receiver's selected objects"
 
 	^ listPresenter selectedItems
+]
+
+{ #category : 'api - selection' }
+SpFilteringListPresenter >> selectedRowPresenter [
+
+	^ listPresenter selectedRowPresenter
 ]
 
 { #category : 'accessing' }
