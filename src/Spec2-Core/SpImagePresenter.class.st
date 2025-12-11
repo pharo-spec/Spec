@@ -8,7 +8,7 @@ Class {
 	#instVars : [
 		'#image => ObservableSlot',
 		'#action => ObservableSlot',
-		'#autoScale => ObservableSlot'
+		'#autoScale'
 	],
 	#category : 'Spec2-Core-Widgets',
 	#package : 'Spec2-Core',
@@ -40,11 +40,15 @@ SpImagePresenter >> action: aBlock [
 	action := aBlock
 ]
 
-{ #category : 'api' }
+{ #category : 'TOREMOVE' }
 SpImagePresenter >> autoScale [
 	"Answer if image has autoscale activated."
 
-	^ autoScale
+	self 
+		deprecated: 'Use #isAutoScale' 
+		transformWith: '`@receiver autoScale -> `@receiver isAutoScale'.	
+
+	^ self isAutoScale
 ]
 
 { #category : 'api' }
@@ -76,23 +80,18 @@ SpImagePresenter >> initialize [
 	autoScale := false
 ]
 
+{ #category : 'testing' }
+SpImagePresenter >> isAutoScale [
+
+	^ autoScale
+]
+
 { #category : 'api' }
 SpImagePresenter >> switchAutoscale [
 	"Toggles autoscale state."
 	
 	autoScale := autoScale not
 
-]
-
-{ #category : 'api - events' }
-SpImagePresenter >> whenAutoScaleChangeDo: aBlockClosure [
-	"Inform when autoScale state has changed. 
-	 `aBlock` has three optional arguments: 
-	 - new value
-	 - old value
-	 - the announcement triggering this action"
-
-	self property: #autoScale whenChangedDo: aBlockClosure
 ]
 
 { #category : 'api - events' }
