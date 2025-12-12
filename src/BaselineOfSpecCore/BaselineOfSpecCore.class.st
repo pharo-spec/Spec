@@ -29,6 +29,9 @@ BaselineOfSpecCore >> baseline: spec [
 			package: 'Spec2-Code' with: [ spec requires: #('Spec2-Core' 'Spec2-Commands') ];
 			package: 'Spec2-Code-Commands' with: [ spec requires: #('Spec2-Core' 'Spec2-Commands') ];
 			package: 'Spec2-Code-Diff' with: [ spec requires: #('Spec2-Code') ];
+			"Rules"
+			package: 'Spec2-Rules' with: [ spec requires: #('Spec2-Core') ];
+			package: 'Spec2-Rules-Tests' with: [ spec requires: #(Spec2-Tests'Spec2-Rules') ];
 			"Common widgets"
 			package: 'Spec2-CommonWidgets' with: [ spec requires: #('Spec2-Core' 'Spec2-Layout') ];
 			package: 'Spec2-CommonWidgets-Tests' with: [ spec requires: #('Spec2-CommonWidgets' 'Spec2-Tests') ];
@@ -58,10 +61,11 @@ BaselineOfSpecCore >> baseline: spec [
 		'Spec2-ListView'  
 		'Spec2-Interactions' 
 		'Spec2-Commander2' ).
+	spec group: 'Rules' with: #('Core' 'Spec2-Rules').
 	spec group: 'Code' with: #('Core' 'Spec2-Code-Commands' 'Spec2-Code' 'Spec2-Code-Diff').
 	spec group: 'CodeTests' with: #('Spec2-Code-Tests' 'Spec2-Code-Diff-Tests').
 	spec group: 'Support' with: #('Core' 'Spec2-Examples').
-	spec group: 'Tests' with: #('Core' 'Spec2-Tests' 'Spec2-Commander2-Tests' 'Spec2-ListView-Tests').
+	spec group: 'Tests' with: #('Core' 'Spec2-Tests' 'Spec2-Commander2-Tests' 'Spec2-ListView-Tests' 'Spec2-Rules-Tests').
 	spec group: 'SupportTests' with: #('Support').
 	spec group: 'Pillar' with: #('Spec2-Pillar' ).
 	spec group: 'Base' with: #('Core' 'Support').
