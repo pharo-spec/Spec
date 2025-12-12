@@ -31,7 +31,7 @@ BaselineOfSpecCore >> baseline: spec [
 			package: 'Spec2-Code-Diff' with: [ spec requires: #('Spec2-Code') ];
 			"Rules"
 			package: 'Spec2-Rules' with: [ spec requires: #('Spec2-Core') ];
-			package: 'Spec2-Rules-Tests' with: [ spec requires: #(Spec2-Tests'Spec2-Rules') ];
+			package: 'Spec2-Rules-Tests' with: [ spec requires: #('Spec2-Tests' 'Spec2-Rules') ];
 			"Common widgets"
 			package: 'Spec2-CommonWidgets' with: [ spec requires: #('Spec2-Core' 'Spec2-Layout') ];
 			package: 'Spec2-CommonWidgets-Tests' with: [ spec requires: #('Spec2-CommonWidgets' 'Spec2-Tests') ];
