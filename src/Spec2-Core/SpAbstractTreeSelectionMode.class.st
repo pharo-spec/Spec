@@ -26,6 +26,14 @@ SpAbstractTreeSelectionMode >> clearSelection [
 	selection := #()
 ]
 
+{ #category : 'private' }
+SpAbstractTreeSelectionMode >> disableChangedDuring: aBlock [
+	| holder |
+
+	holder := self observablePropertyNamed: #selection.
+	holder disableChangedDuring: aBlock
+]
+
 { #category : 'initialization' }
 SpAbstractTreeSelectionMode >> initialize [
 	self class initializeSlots: self.
