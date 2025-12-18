@@ -125,7 +125,7 @@ SpWindowPresenter >> basicBuildWithSpecLayout: presenterSpecLayout [
 	^ (self adapter isNil or: [ self needRebuild ])
 		  ifTrue: [ 
 			  self
-				  buildWindowWithLayout: self defaultLayout
+				  buildWindowWithLayout: self layout
 				  presenterLayout: presenterSpecLayout ]
 		  ifFalse: [ self adapter widget ]
 ]
