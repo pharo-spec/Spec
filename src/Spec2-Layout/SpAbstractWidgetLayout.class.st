@@ -17,7 +17,8 @@ Class {
 	#name : 'SpAbstractWidgetLayout',
 	#superclass : 'Object',
 	#instVars : [
-		'adapterName'
+		'adapterName',
+		'adapterClass'
 	],
 	#category : 'Spec2-Layout-Base',
 	#package : 'Spec2-Layout',
@@ -41,12 +42,22 @@ SpAbstractWidgetLayout >> adapt: aPresenter bindings: adapterBindings [
 	^ adapter
 ]
 
+{ #category : 'accessing' }
+SpAbstractWidgetLayout >> adapterClass: aClass [ 
+	adapterClass := aClass
+]
+
 { #category : 'building' }
 SpAbstractWidgetLayout >> adapterFor: aPresenter bindings: adapterBindings [
-	^ self class environment
-		at: (adapterBindings translateSymbol: self adapterName)
-		ifPresent: [ :class | class owner: aPresenter ]
-		ifAbsent: [ self error: 'No binding for ' , self adapterName , ' found.' ]
+
+	| aClass |
+
+	aClass := adapterClass ifNil: [
+			          self class environment
+				          at: (adapterBindings translateSymbol: self adapterName)
+				          ifAbsent: [ self error: 'No binding for ' , self adapterName , ' found.' ] ].
+
+	^ aClass owner: aPresenter
 ]
 
 { #category : 'accessing' }
