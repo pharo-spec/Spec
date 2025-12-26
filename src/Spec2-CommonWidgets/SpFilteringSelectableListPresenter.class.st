@@ -136,7 +136,8 @@ SpFilteringSelectableListPresenter >> newListToFilter [
 	table := self newTable. 
 	table hideColumnHeaders.
 	table columns: self listColumns.
-	^ table
+	
+^ table
 ]
 
 { #category : 'api' }

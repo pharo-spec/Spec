@@ -139,8 +139,7 @@ SpEasyColumnViewPresenter >> clickAtIndex: aNumber [
 { #category : 'api' }
 SpEasyColumnViewPresenter >> columns: aCollection [ 
 	
-	contentView columns: aCollection 
-
+	contentView columns: (aCollection collect: #asColumnViewColumn)
 ]
 
 { #category : 'api' }

@@ -125,6 +125,12 @@ SpFilteringListPresenter >> displayIcon: aBlock [
 	self listPresenter displayIcon: aBlock
 ]
 
+{ #category : 'api' }
+SpFilteringListPresenter >> enableSearch [
+
+	listPresenter enableSearch
+]
+
 { #category : 'private - actions' }
 SpFilteringListPresenter >> ensureActions [
 
