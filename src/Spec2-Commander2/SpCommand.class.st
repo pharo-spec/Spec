@@ -106,6 +106,15 @@ SpCommand >> configureAsToolbarButton [
 	self configureAsButtonOfClass: SpToolbarButtonPresenter
 ]
 
+{ #category : 'copying' }
+SpCommand >> copyWithContext: aContext [
+
+	^ self copy 
+		decoratedCommand: self decoratedCommand copy;
+		context: aContext;
+		yourself
+]
+
 { #category : 'displaying' }
 SpCommand >> displayIn: aMenuGroupOrPresenter do: aBlock [
 

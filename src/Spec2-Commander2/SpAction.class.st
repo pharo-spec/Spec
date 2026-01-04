@@ -180,9 +180,9 @@ SpAction >> printOn: stream [
 
 	stream << 'a SpAction('.
 	stream << 'Name: ' << (self name ifNil: [ 'No name' ]).
-	stream << ' Shortcut: ' << (self shortcutKey 
-		ifNotNil: [ :key | key asString ] 
-		ifNil: [ 'No shortcut' ]).
+	stream << ' Shortcut: ' << (self hasShortcutKey 
+		ifTrue: [ self shortcutKey asString ] 
+		ifFalse: [ 'No shortcut' ]).
 	stream << ')'
 ]
 

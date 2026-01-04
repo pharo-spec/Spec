@@ -77,11 +77,27 @@ SpDynamicActionGroup >> id [
 	^ id ifNil: [ id := super id ]
 ]
 
+{ #category : 'accessing' }
+SpDynamicActionGroup >> id: anId [
+
+	id := anId
+]
+
 { #category : 'initialization' }
 SpDynamicActionGroup >> initialize [
 
 	decoratedGroup := SpBaseActionGroup new.
 	super initialize
+]
+
+{ #category : 'resolving' }
+SpDynamicActionGroup >> resolve [
+	| group |
+	
+	group := SpActionGroup new.
+	group id: self id.
+	self dynamicBuilder value: group.
+	^ group
 ]
 
 { #category : 'accessing' }
