@@ -57,9 +57,9 @@ SpAbstractPresenter class >> defaultFont [
 
 { #category : 'layout' }
 SpAbstractPresenter class >> defaultLayout [
-	"Overrides me to define a layout in a static way"
+	"Override me to define a layout in a static way."
 	
-	Error signal: 'You must define a layout either by defining #defaulLayout on your presenter or setting explicitly a layout with #layout:'.
+	Error signal: 'You must define a layout either by defining #defaultLayout on your presenter or by using #layout: to explicitly set a layout.'
 ]
 
 { #category : 'TOREMOVE' }

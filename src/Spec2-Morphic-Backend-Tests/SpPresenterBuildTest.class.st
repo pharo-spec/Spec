@@ -54,7 +54,7 @@ SpPresenterBuildTest >> testBuildWithoutLayoutRaiseError [
 	self 
 		should: [ presenter build ]
 		raise: Error
-		whoseDescriptionIncludes: '#defaulLayout'
+		whoseDescriptionIncludes: '#defaultLayout'
 		description: 'Build does not raise Missing layout!'
 		
 ]

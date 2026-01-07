@@ -59,11 +59,24 @@ SpMorphicBackend >> forceDefer: aBlock [
 
 { #category : 'ui - dialogs' }
 SpMorphicBackend >> inform: aString [
+	"If we are not in interactive mode, we log in the stdout. Else we delegate to the Morphic notification"
 
-	(ProvideAnswerNotification signal: aString) ifNotNil: [ :answer | ^ true ].
-	GrowlMorph
-		openWithLabel: 'Information' translated
-		contents: aString
+	Smalltalk isInteractive
+		ifTrue: [ GrowlMorph openWithLabel: 'Information' translated contents: aString ]
+		ifFalse: [
+				| logBlock |
+				logBlock := [ :logger |
+					            logger
+						            cr;
+						            nextPutAll: (String new: 79 withAll: $=);
+						            cr;
+						            nextPutAll: 'Notice: ';
+						            nextPutAll: aString;
+						            cr;
+						            nextPutAll: (String new: 79 withAll: $=);
+						            cr ].
+
+				Smalltalk logDuring: logBlock ]
 ]
 
 { #category : 'accessing' }
