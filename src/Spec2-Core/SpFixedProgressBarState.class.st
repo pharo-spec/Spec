@@ -36,8 +36,7 @@ SpFixedProgressBarState class >> value: aNumber [
 
 { #category : 'initialization' }
 SpFixedProgressBarState >> initialize [
-	
-	self class initializeSlots: self.
+
 	super initialize.
 	value := 0
 ]
