@@ -209,6 +209,25 @@ SpAbstractMorphicAdapter >> color: color [
 	self widgetDo: [ :w | w color: color ]
 ]
 
+{ #category : 'styling' }
+SpAbstractMorphicAdapter >> deepPresenterStyles [
+	"The presenters in the style combined with its parents"
+	| styles allStyles |
+	
+	styles := self presenterStyles.
+	styles isEmptyOrNil ifFalse: [ 
+		self presenter owner ifNotNil: [ :anOwner |
+			anOwner withAdapterDo: [ :anAdapter | 
+				allStyles := anAdapter deepPresenterStyles
+					flatCollect: [ :eachOwnerStyle | styles collect: [ :eachStyle | eachOwnerStyle, '.', eachStyle ] ].
+				styles := (allStyles, styles) reversed 
+			] 
+		].
+	].
+
+	^ styles
+]
+
 { #category : 'spec protocol' }
 SpAbstractMorphicAdapter >> delete [
 	

@@ -44,7 +44,7 @@ SpMorphStyle class >> fromStylesheet: aStyle adapter: anAdapter [
 	^ self 
 		fromStylesheet: aStyle 
 		baseStyleName: anAdapter styleName 
-		otherStyles: anAdapter presenterStyles
+		otherStyles: anAdapter deepPresenterStyles
 ]
 
 { #category : 'instance creation' }
