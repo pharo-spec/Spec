@@ -313,7 +313,6 @@ SpAbstractPresenter >> hasWindow [
 { #category : 'initialization' }
 SpAbstractPresenter >> initialize [ 
 
-	self class initializeSlots: self.
 	super initialize.
 	needRebuild := true.
 	"in the future we could use a trait TProperties"
