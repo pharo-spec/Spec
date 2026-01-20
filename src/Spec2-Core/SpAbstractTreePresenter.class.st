@@ -357,7 +357,8 @@ SpAbstractTreePresenter >> refresh [
 SpAbstractTreePresenter >> registerActions [
 
 	self ensureInternalActions
-		addShortcutWith: [ :action | action 
+		addShortcutWith: [ :action | action
+			name: 'show-context-menu';
 			shortcutKey: $t actionModifier;
 			action: [ self showContextMenu ] ]
 ]
