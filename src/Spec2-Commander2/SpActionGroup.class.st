@@ -127,6 +127,12 @@ SpActionGroup >> asMenuPresenter [
 		menuPresenter
 ]
 
+{ #category : 'accessing' }
+SpActionGroup >> entries [
+
+	^ super entries sorted: #priority ascending
+]
+
 { #category : 'private' }
 SpActionGroup >> findGroupWithId: anId [
 
