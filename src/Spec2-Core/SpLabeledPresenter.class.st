@@ -69,7 +69,11 @@ SpLabeledPresenter >> descriptionPresenter: anObject [
 { #category : 'initialization' }
 SpLabeledPresenter >> initializePresenters [
 
-	labelPresenter := self newLabel.
+	self addStyle: 'labeledPresenter'.
+
+	labelPresenter := self newLabel
+		addStyle: 'labeledPresenterLabel';
+		yourself.
 	descriptionPresenter :=  self newNullPresenter. "By default it is null"
 ]
 
@@ -81,6 +85,7 @@ SpLabeledPresenter >> input [
 { #category : 'accessing' }
 SpLabeledPresenter >> input: anObject [
 	input := anObject.
+	input addStyle: 'labeledPresenterInput'.
 	self focusOrder add: input
 ]
 
