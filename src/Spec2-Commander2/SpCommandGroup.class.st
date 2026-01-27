@@ -145,3 +145,9 @@ SpCommandGroup >> isToolbarPopoverButton [
 
 	^ toolbarPopoverButton
 ]
+
+{ #category : 'accessing' }
+SpCommandGroup >> priority [
+	
+	^ 1
+]

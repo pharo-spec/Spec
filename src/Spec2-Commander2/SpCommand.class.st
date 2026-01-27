@@ -159,6 +159,11 @@ SpCommand >> presenter [
 	^ presenter
 ]
 
+{ #category : 'accessing' }
+SpCommand >> priority [
+	self shouldBeImplemented.
+]
+
 { #category : 'updating' }
 SpCommand >> updateEnableStatus [
 
