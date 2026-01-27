@@ -5,7 +5,7 @@ Class {
 	#name : 'SpMultipleSelectionMode',
 	#superclass : 'SpAbstractSelectionMode',
 	#instVars : [
-		'#selectedIndexes => ObservableSlot'
+		'#selectedIndexes => SpSuspendableSlot'
 	],
 	#category : 'Spec2-Core-Widgets-Table',
 	#package : 'Spec2-Core',
@@ -19,6 +19,14 @@ SpMultipleSelectionMode >> basicSelectIndex: indexToSelect [
 	indexToSelect = 0 ifTrue: [ ^ self ].
 
 	self selectIndexes: (self selectedIndexes copyWith: indexToSelect)
+]
+
+{ #category : 'private' }
+SpMultipleSelectionMode >> disableChangedDuring: aBlock [
+	| holder |
+	
+	holder := self observablePropertyNamed: #selectedIndexes.
+	holder suspendChangedDuring: aBlock
 ]
 
 { #category : 'testing' }

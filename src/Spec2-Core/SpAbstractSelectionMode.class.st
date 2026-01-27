@@ -58,6 +58,12 @@ SpAbstractSelectionMode >> basicSelectIndex: indexToSelect [
 	self subclassResponsibility
 ]
 
+{ #category : 'private' }
+SpAbstractSelectionMode >> disableChangedDuring: aBlock [
+
+	self subclassResponsibility
+]
+
 { #category : 'testing' }
 SpAbstractSelectionMode >> includesIndex: anIndex [
 	"Answer true if selection includes element at index `anIndex`."
@@ -106,6 +112,17 @@ SpAbstractSelectionMode >> model [
 	 See also `SpAbstractListPresenter>>#model`."
 
 	^ widget model
+]
+
+{ #category : 'events' }
+SpAbstractSelectionMode >> observablePropertyNamed: aName [
+	| slot |
+	slot := self class slotNamed: aName.
+	slot isObservableSlot ifFalse: [ NonObservableSlotError signal: aName ].
+
+	"Obtain the raw value.
+	We need to access the underlying value holder to subscribe to it"
+	^ slot rawRead: self
 ]
 
 { #category : 'api - selection' }

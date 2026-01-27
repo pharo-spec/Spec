@@ -5,7 +5,7 @@ Class {
 	#name : 'SpSingleSelectionMode',
 	#superclass : 'SpAbstractSelectionMode',
 	#instVars : [
-		'#selectedIndex => ObservableSlot'
+		'#selectedIndex => SpSuspendableSlot'
 	],
 	#category : 'Spec2-Core-Widgets-Table',
 	#package : 'Spec2-Core',
@@ -15,6 +15,14 @@ Class {
 { #category : 'private' }
 SpSingleSelectionMode >> basicSelectIndex: indexToSelect [
 	selectedIndex := indexToSelect
+]
+
+{ #category : 'private' }
+SpSingleSelectionMode >> disableChangedDuring: aBlock [
+	| holder |
+	
+	holder := self observablePropertyNamed: #selectedIndex.
+	holder suspendChangedDuring: aBlock 
 ]
 
 { #category : 'testing' }

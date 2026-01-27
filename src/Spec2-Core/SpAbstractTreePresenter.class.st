@@ -141,6 +141,12 @@ SpAbstractTreePresenter >> disableActivationDuring: aBlock [
 ]
 
 { #category : 'private' }
+SpAbstractTreePresenter >> disableSelectionDuring: aBlock [
+	
+	self selection disableChangedDuring: aBlock
+]
+
+{ #category : 'private' }
 SpAbstractTreePresenter >> doActivateAtPath: aPath [
 	"Activate only if there is an item at that position"
 

@@ -101,6 +101,12 @@ SpAbstractListPresenter >> disableActivationDuring: aBlock [
 ]
 
 { #category : 'private' }
+SpAbstractListPresenter >> disableSelectionDuring: aBlock [
+	
+	self selection disableChangedDuring: aBlock
+]
+
+{ #category : 'private' }
 SpAbstractListPresenter >> doActivateAtIndex: anIndex [
 
 	"Activate only if there is an item at that position"
