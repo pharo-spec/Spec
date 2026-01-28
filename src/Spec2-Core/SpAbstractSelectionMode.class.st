@@ -114,18 +114,6 @@ SpAbstractSelectionMode >> model [
 	^ widget model
 ]
 
-{ #category : 'events' }
-SpAbstractSelectionMode >> observablePropertyNamed: aName [
-	| slot |
-
-	slot := self class slotNamed: aName.
-	slot isObservableSlot ifFalse: [ NonObservableSlotError signal: aName ].
-
-	"Obtain the raw value.
-	We need to access the underlying value holder to subscribe to it"
-	^ slot rawRead: self
-]
-
 { #category : 'api - selection' }
 SpAbstractSelectionMode >> selectAll [
 	"Select all items."
