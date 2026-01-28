@@ -565,7 +565,8 @@ SpPresenter >> initialExtent [
 
 { #category : 'initialization' }
 SpPresenter >> initialize [
-
+	
+	self class initializeSlots: self.
 	super initialize.
 
 	visible := true.
