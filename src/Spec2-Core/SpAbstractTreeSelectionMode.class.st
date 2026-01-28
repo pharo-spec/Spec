@@ -4,7 +4,7 @@ Class {
 	#traits : 'TObservable',
 	#classTraits : 'TObservable classTrait',
 	#instVars : [
-		'#selection => ObservableSlot',
+		'#selection => SpSuspendableSlot',
 		'#presenter'
 	],
 	#category : 'Spec2-Core-Widgets-Tree',
@@ -31,7 +31,7 @@ SpAbstractTreeSelectionMode >> disableChangedDuring: aBlock [
 	| holder |
 
 	holder := self observablePropertyNamed: #selection.
-	holder disableChangedDuring: aBlock
+	holder suspendChangedDuring: aBlock
 ]
 
 { #category : 'initialization' }
