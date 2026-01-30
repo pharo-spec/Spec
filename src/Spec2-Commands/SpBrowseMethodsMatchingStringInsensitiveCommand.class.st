@@ -18,7 +18,7 @@ SpBrowseMethodsMatchingStringInsensitiveCommand class >> defaultDescription [
 { #category : 'default' }
 SpBrowseMethodsMatchingStringInsensitiveCommand class >> defaultName [
 
-	^ 'Case insensitive method literal strings with it'
+	^ 'Strings with it (case insensitive)'
 ]
 
 { #category : 'defaults' }
