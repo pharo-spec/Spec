@@ -162,21 +162,34 @@ SpAction >> isVisible [
 		and: [ actionVisible isNil or: [ actionVisible cull: self context ] ]
 ]
 
+{ #category : 'accessing' }
+SpAction >> presenterClass: aClass [
+	"this is an easy way to to define a special presenter that will be responsible of the UI
+	 of the action. The only condition of this presenter is that it has to be able to receive 
+	 a model."
+	
+	self flag: #CHECK. "Maybe I need to keep the presenter class?" 
+	 self buildPresenterBlock: [ :aCommand | 
+	 	self context 
+	 		instantiate: aClass 
+	 		on: aCommand ]
+]
+
 { #category : 'printing' }
 SpAction >> printOn: stream [
 
 	stream << 'a SpAction('.
 	stream << 'Name: ' << (self name ifNil: [ 'No name' ]).
-	stream << ' Shortcut: ' << (self shortcutKey 
-		ifNotNil: [ :key | key asString ] 
-		ifNil: [ 'No shortcut' ]).
+	stream << ' Shortcut: ' << (self hasShortcutKey 
+		ifTrue: [ self shortcutKey asString ] 
+		ifFalse: [ 'No shortcut' ]).
 	stream << ')'
 ]
 
 { #category : 'accessing' }
 SpAction >> priority [
 
-	^ priority
+	^ priority ifNil: [ priority := 1 ]
 ]
 
 { #category : 'accessing' }

@@ -66,6 +66,27 @@ SpActionGroup >> addAll: aCollection [
 ]
 
 { #category : 'accessing' }
+SpActionGroup >> addDynamicGroup: anId with: aBlock [
+	| group |
+
+	group := self findGroupWithId: anId.
+	group ifNil: [
+		group := SpDynamicActionGroup new.
+		group id: anId.
+		group with: aBlock.
+		self add: group ]
+]
+
+{ #category : 'accessing' }
+SpActionGroup >> addDynamicGroupWith: aBlock [
+	| action |
+	
+	action := SpDynamicActionGroup new.
+	action with: aBlock.
+	self add: action
+]
+
+{ #category : 'accessing' }
 SpActionGroup >> addGroup: anId with: aBlock [
 	| group |
 
@@ -106,6 +127,12 @@ SpActionGroup >> asMenuPresenter [
 		menuPresenter
 ]
 
+{ #category : 'accessing' }
+SpActionGroup >> entries [
+
+	^ super entries sorted: #priority ascending
+]
+
 { #category : 'private' }
 SpActionGroup >> findGroupWithId: anId [
 
@@ -143,7 +170,7 @@ SpActionGroup >> initialize [
 { #category : 'accessing' }
 SpActionGroup >> priority [
 
-	^ priority
+	^ priority ifNil: [ priority := 1 ]
 ]
 
 { #category : 'accessing' }

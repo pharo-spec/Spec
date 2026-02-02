@@ -9,7 +9,9 @@ Form >> asPresenter [
 ]
 
 { #category : '*Spec2-Morphic' }
-Form >> asPresenterOn: aSpPresenter [ 
+Form >> asPresenterOn: aPresenter [ 
 	
-	^ self asPresenter
+	^ aPresenter newImage 
+		image: self;
+		yourself
 ]

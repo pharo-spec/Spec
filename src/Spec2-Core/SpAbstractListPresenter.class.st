@@ -10,7 +10,8 @@ Class {
 		'#activationBlock',
 		'#activateOnSingleClick',
 		'#model',
-		'#verticalAlignment'
+		'#verticalAlignment',
+		'#activationCount'
 	],
 	#category : 'Spec2-Core-Widgets-Table',
 	#package : 'Spec2-Core',
@@ -92,12 +93,10 @@ SpAbstractListPresenter >> clickItem: anInteger [
 
 { #category : 'private' }
 SpAbstractListPresenter >> disableActivationDuring: aBlock [
-	| oldActivate |
-	
-	oldActivate := activationBlock.
-	activationBlock := [ ].
-	aBlock ensure: [ 
-		activationBlock := oldActivate ]
+
+	activationCount := activationCount + 1.
+	aBlock ensure: [
+		activationCount := activationCount - 1 ]
 ]
 
 { #category : 'private' }
@@ -118,7 +117,7 @@ SpAbstractListPresenter >> disableSelectionDuring: aBlock [
 SpAbstractListPresenter >> doActivateAtIndex: anIndex [
 
 	"Activate only if there is an item at that position"
-	activationBlock ifNil: [ ^ self ].
+	(activationBlock isNil or: [ activationCount > 0 ]) ifTrue: [ ^ self ].
 	self model at: anIndex ifAbsent: [ ^ self ].
 	
 	activationBlock cull: ((SpSingleSelectionMode on: self)
@@ -141,6 +140,7 @@ SpAbstractListPresenter >> initialize [
 	self initializeTHaveWrappingScrollBars.
 	self initializeTSearchable.
 	
+	activationCount := 0.
 	activationBlock := [ ].
 	verticalAlignment := SpVerticalAlignment new.
 
@@ -260,7 +260,8 @@ SpAbstractListPresenter >> refresh [
 SpAbstractListPresenter >> registerActions [
 
 	self ensureInternalActions 
-		addShortcutWith: [ :action | action 
+		addShortcutWith: [ :action | action
+			name: 'show-context-menu';
 			shortcutKey: $t actionModifier;
 			action: [ self showContextMenu ] ]
 ]
@@ -323,6 +324,7 @@ SpAbstractListPresenter >> whenActivatedDo: aBlock [
 	"Inform when an element has been 'activated'. 
 	 `aBlock` receives one argument (a selection object, see `SpAbstractSelectionMode`)"
 	
+	activationCount := 0.
 	activationBlock := aBlock
 ]
 

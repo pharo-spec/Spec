@@ -283,6 +283,12 @@ SpEasyListViewPresenter >> initializePresenters [
 	headerPanel hide
 ]
 
+{ #category : 'accessing' }
+SpEasyListViewPresenter >> itemAt: aNumber [
+
+	^ contentView itemAt: aNumber
+]
+
 { #category : 'initialization' }
 SpEasyListViewPresenter >> registerEvents [
 
