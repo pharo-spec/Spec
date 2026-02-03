@@ -39,7 +39,7 @@ SpEasyColumnViewPresenter class >> exampleActivateOnDoubleClick [
 	"This example show the simples list view you can make: A list with a label"
 	
 	self new
-		application: (SpApplication new useBackend: #Gtk);
+		application: SpApplication new;
 		items: self environment allClasses;
 		addColumn: (SpStringTableColumn new 
 			title: 'Class';
@@ -78,7 +78,7 @@ SpEasyColumnViewPresenter class >> exampleSortableColumns [
 	"This example show the simples list view you can make: A list with a label"
 	
 	self new
-		application: (SpApplication new useBackend: #Gtk);
+		application: SpApplication new;
 		items: SpPresenter subclasses;
 		beResizable;
 		addColumn: (SpStringTableColumn new 
