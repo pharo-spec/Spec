@@ -792,6 +792,13 @@ SpCodePresenter >> whenSmartCharactersChangedDo: aBlock [
 ]
 
 { #category : 'api - events' }
+SpCodePresenter >> whenStyleSchemeChangedDo: aBlock [
+	"Set a block to perform when the style scheme is changed"
+
+	self property: #styleScheme whenChangedDo: aBlock
+]
+
+{ #category : 'api - events' }
 SpCodePresenter >> whenSubmitDo: aBlock [
 	"This method will add a 'submit' event to the widget. It will react when user 
 	 presses <meta+s> key (this is for historical reasons) and with enter (cr).
