@@ -218,7 +218,8 @@ SpChooserPresenter >> moveAllFrom: fromList to: toList [
 	newFromListItems := OrderedCollection withAll:
 		                    fromList unfilteredItems.
 	newFromListItems removeAllFoundIn: fromList items.
-	fromList items: newFromListItems
+	fromList items: newFromListItems.
+	self announce: ValueChanged
 ]
 
 { #category : 'private' }
@@ -228,7 +229,8 @@ SpChooserPresenter >> moveSelectedFrom: fromList to: toList [
 	toList items: toList unfilteredItems , fromList selectedItems.
 	newFromListItems := OrderedCollection withAll: fromList unfilteredItems.
 	newFromListItems removeAllFoundIn: fromList selectedItems.
-	fromList items: newFromListItems
+	fromList items: newFromListItems.
+	self announce: ValueChanged
 ]
 
 { #category : 'actions' }
