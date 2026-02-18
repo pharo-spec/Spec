@@ -17,7 +17,7 @@ Class {
 		'#environment',
 		'#systemNavigation',
 		'#syntaxHighlightTheme => ObservableSlot',
-		'#styleScheme'
+		'#styleScheme => ObservableSlot'
 	],
 	#category : 'Spec2-Code-Base',
 	#package : 'Spec2-Code',
