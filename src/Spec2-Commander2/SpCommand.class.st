@@ -124,6 +124,12 @@ SpCommand >> displayIn: aMenuGroupOrPresenter do: aBlock [
 		do: aBlock
 ]
 
+{ #category : 'testing' }
+SpCommand >> hasState [
+
+	^ false
+]
+
 { #category : 'accessing' }
 SpCommand >> iconProvider [
 
