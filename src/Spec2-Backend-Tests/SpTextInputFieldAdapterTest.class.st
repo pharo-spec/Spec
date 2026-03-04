@@ -22,8 +22,11 @@ SpTextInputFieldAdapterTest >> testChangeWidgetTextUpdatesPresenter [
 { #category : 'tests' }
 SpTextInputFieldAdapterTest >> testMaxLengthIsSetInWidget [
 
-	presenter maxLength: 10.
-	self assert: self widget maxLength equals: 10
+	presenter
+		maxLength: 4;
+		type: '1234567'.
+
+	self assert: self adapter getText equals: '1234'
 ]
 
 { #category : 'tests' }
@@ -36,13 +39,17 @@ SpTextInputFieldAdapterTest >> testNotPasswordIsSetInWidget [
 { #category : 'tests' }
 SpTextInputFieldAdapterTest >> testPasswordIsSetInWidget [
 
-	presenter bePassword.
-	self assert: self adapter isPassword
+	presenter
+		bePassword;
+		type: '1234'.
+
+	self assert: self adapter isPassword.
+	self assert: self adapter getText equals: '1234'
 ]
 
 { #category : 'tests' }
 SpTextInputFieldAdapterTest >> testPresenterTextIsSetInWidget [
 
 	presenter text: 'something'.
-	self assert: self widget text equals: 'something'
+	self assert: self adapter getText equals: 'something'
 ]
