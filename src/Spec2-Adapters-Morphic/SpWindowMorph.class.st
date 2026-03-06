@@ -74,6 +74,13 @@ SpWindowMorph >> okToChange [
 	^ self model okToChange
 ]
 
+{ #category : 'geometry' }
+SpWindowMorph >> position: aNewPosition [
+
+	super position: aNewPosition.
+	model ifNotNil: [ model position: aNewPosition ]
+]
+
 { #category : 'private' }
 SpWindowMorph >> taskbarIcon [
 	"If we close the window programatically while the taskbar is been updated the model can be nil in some cases."
