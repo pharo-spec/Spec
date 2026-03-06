@@ -19,6 +19,8 @@ SpUIThemeDecoratorTest >> setUp [
 
 { #category : 'tests' }
 SpUIThemeDecoratorTest >> testDoesNotUnderstand [
+
+	<ignoreNotImplementedSelectors: #( fooBlock fooBlock: )>
 	| block |
 	themeDecorator
 		property: #foo returnsValueOf: 42.
