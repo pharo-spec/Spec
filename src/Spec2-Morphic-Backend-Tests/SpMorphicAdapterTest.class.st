@@ -40,13 +40,6 @@ SpMorphicAdapterTest >> openInstance [
 	MorphicRenderLoop new doOneCycle.
 ]
 
-{ #category : 'private' }
-SpMorphicAdapterTest >> performTest [
-	
-	specInitializationStrategy beforeTest: self.
-	super performTest.
-]
-
 { #category : 'accessing' }
 SpMorphicAdapterTest >> presenter [
 	^ presenter
@@ -56,7 +49,8 @@ SpMorphicAdapterTest >> presenter [
 SpMorphicAdapterTest >> setUp [
 	super setUp.
 	presenter := self classToTest new.
-	self initializeTestedInstance
+	self initializeTestedInstance.
+	specInitializationStrategy beforeTest: self.
 ]
 
 { #category : 'accessing' }
