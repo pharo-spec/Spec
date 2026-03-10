@@ -17,7 +17,7 @@ Class {
 		'#environment',
 		'#systemNavigation',
 		'#syntaxHighlightTheme => ObservableSlot',
-		'#styleScheme'
+		'#styleScheme => ObservableSlot'
 	],
 	#category : 'Spec2-Code-Base',
 	#package : 'Spec2-Code',
@@ -789,6 +789,13 @@ SpCodePresenter >> whenSmartCharactersChangedDo: aBlock [
 	"Set a block to perform when the smart characters is enabled/disabled"
 
 	self property: #smartCharacters whenChangedDo: aBlock
+]
+
+{ #category : 'api - events' }
+SpCodePresenter >> whenStyleSchemeChangedDo: aBlock [
+	"Set a block to perform when the style scheme is changed"
+
+	self property: #styleScheme whenChangedDo: aBlock
 ]
 
 { #category : 'api - events' }
