@@ -1,6 +1,12 @@
 Extension { #name : 'CmUICommand' }
 
 { #category : '*Spec2-Commander2' }
+CmUICommand >> hasState [
+	
+	^ false
+]
+
+{ #category : '*Spec2-Commander2' }
 CmUICommand >> id [
 
 	^ String streamContents: [ :stream |
