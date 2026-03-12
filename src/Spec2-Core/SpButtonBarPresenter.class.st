@@ -51,7 +51,7 @@ SpButtonBarPresenter >> canTakeKeyboardFocus [
 SpButtonBarPresenter >> initialize [
 
 	super initialize.
-	items := OrderedCollection new asValueHolder.
+	items := CollectionValueHolder value: OrderedCollection new.
 	self placeAtEnd
 ]
 
@@ -80,7 +80,7 @@ SpButtonBarPresenter >> items [
 SpButtonBarPresenter >> items: aCollectionOfButtonPresenters [
 	"Set buttons to show, taking elements in `aCollectionOfButtonPresenters`."
 
-	items := OrderedCollection new asValueHolder.
+	items := CollectionValueHolder value: OrderedCollection new.
 	aCollectionOfButtonPresenters 
 		do: [ :each | each owner: self ].
 	items addAll: aCollectionOfButtonPresenters

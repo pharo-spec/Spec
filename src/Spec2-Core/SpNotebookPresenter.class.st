@@ -57,7 +57,7 @@ SpNotebookPresenter >> hasPages [
 SpNotebookPresenter >> initialize [
 
 	super initialize.
-	pagesHolder := OrderedCollection new asValueHolder.
+	pagesHolder := CollectionValueHolder value: OrderedCollection new.
 	self whenSelectedPageChangedDo: [ :aPage | 
 		self withAdapterDo: [ :anAdapter | anAdapter selectPage: aPage ] ]
 ]

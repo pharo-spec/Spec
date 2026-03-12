@@ -147,14 +147,14 @@ SpMorphicButtonAdapter >> keyStroke: anEvent fromMorph: aMorph [
 
 { #category : 'widget API' }
 SpMorphicButtonAdapter >> label [
+
 	| labelString |
-	
-	labelString := self presenter label 
-		ifNotNil: [ :aString | aString withAccentuatedCharacter: self presenter shortcutCharacter ].
-	
-	^ self 
-		buildLabel: labelString 
-		withIcon: self presenter icon
+	labelString := self presenter label ifNotNil: [ :aString |
+		self
+			textFromString: aString
+			withAccentuatedCharacter: self presenter shortcutCharacter ].
+
+	^ self buildLabel: labelString withIcon: self presenter icon
 ]
 
 { #category : 'widget API' }
@@ -265,6 +265,20 @@ SpMorphicButtonAdapter >> styleName [
 SpMorphicButtonAdapter >> styleName: aString [ 
 
 	styleName := aString
+]
+
+{ #category : 'widget API' }
+SpMorphicButtonAdapter >> textFromString: aString withAccentuatedCharacter: aKey [
+
+	| text index |
+	text := aString asText copy.
+	aKey ifNil: [ ^ text ].
+	index := aString asLowercase indexOf: aKey name asLowercase.
+	index isZero ifTrue: [ ^ text ].
+
+	^ text
+		  addAttribute: TextEmphasis underlined from: index to: index;
+		  yourself
 ]
 
 { #category : 'accessing' }

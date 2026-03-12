@@ -51,9 +51,3 @@ SpTestLocalizedString >> string [
 SpTestLocalizedString >> string: anObject [
 	string := anObject
 ]
-
-{ #category : 'accessing' }
-SpTestLocalizedString >> withAccentuatedCharacter: aCharacter [
-
-
-]

@@ -53,7 +53,12 @@ SpAbstractMorphicAdapter >> adapt: aPresenter [
 
 { #category : 'protocol' }
 SpAbstractMorphicAdapter >> add: anAdapter [
-	self widgetDo: [ :w | w spEnsureLayoutAndAddMorph: anAdapter widget ]
+
+	self widgetDo: [ :w |
+			"Make sure the widget has a layout"
+			anAdapter widget layoutFrame
+				ifNil: [ anAdapter widget layoutFrame: LayoutFrame identity ].
+			w addMorph: anAdapter widget ]
 ]
 
 { #category : 'initialization' }

@@ -66,7 +66,7 @@ SpPaginatorPresenter >> dragging: aNumber [
 SpPaginatorPresenter >> initialize [
 
 	super initialize.
-	pagesHolder := OrderedCollection new asValueHolder.
+	pagesHolder := CollectionValueHolder value: OrderedCollection new.
 	visiblePages := self class defaultVisiblePages
 ]
 

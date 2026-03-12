@@ -78,7 +78,7 @@ SpActionBarPresenter >> centerPresenter: aPresenter [
 SpActionBarPresenter >> initialize [
 
 	super initialize.
-	items := Dictionary new asValueHolder
+	items := DictionaryValueHolder value: Dictionary new
 ]
 
 { #category : 'api' }
