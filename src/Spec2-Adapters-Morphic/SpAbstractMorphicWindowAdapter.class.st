@@ -29,25 +29,21 @@ SpAbstractMorphicWindowAdapter >> add: containerMorph toWindow: aSpecWindow [
 
 { #category : 'private' }
 SpAbstractMorphicWindowAdapter >> addContent: aMorph toWindow: aSpecWindow [
-	| containerMorph |
-	
-	containerMorph := self newContainerMorph.
-	containerMorph layoutFrame: aMorph layoutFrame.
 
-	"add all decorations (menu, toolbar and statusbar)"
+	| containerMorph |
+	containerMorph := self newContainerMorph.
+	containerMorph layoutFrame: aMorph layoutFrame. "add all decorations (menu, toolbar and statusbar)"
 	self model hasMenu ifTrue: [ self addMenuTo: containerMorph ].
 
-	self setToolbarTo: containerMorph.
-
-	"Register for changes in the toolbar"
+	self setToolbarTo: containerMorph. "Register for changes in the toolbar"
 	self model whenToolbarChangedDo: [ self setToolbarTo: containerMorph ].
 
 	containerMorph addMorphBack: aMorph.
 	aMorph
 		hResizing: #spaceFill;
 		vResizing: #spaceFill.
-	self model hasStatusBar ifTrue: [ self addStatusBarTo: containerMorph ].
-	
+	self model hasStatusbar ifTrue: [ self addStatusBarTo: containerMorph ].
+
 	self add: containerMorph toWindow: aSpecWindow
 ]
 
