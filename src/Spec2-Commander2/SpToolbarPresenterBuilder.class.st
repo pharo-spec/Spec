@@ -80,9 +80,10 @@ SpToolbarPresenterBuilder >> visitCommandGroup: aGroup [
 	aGroup isToolbarPopoverButton 
 		ifTrue: [ ^ self addPopoverButtonFrom: aGroup ].
 		
-	"if this is to be presented as submenu, do not flat it: add a menu button"
-	aGroup displayStrategy isGroup
-		ifFalse: [ ^ self addMenuButtonFrom: aGroup ].
+	"if this is to be presented as a menu, do not flatten it: add a menu button"
+	aGroup isToolbarMenuButton
+		ifTrue: [ ^ self addMenuButtonFrom: aGroup ].
 	
+	"otherwise flatten it"
 	super visitCommandGroup: aGroup
 ]
