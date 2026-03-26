@@ -15,6 +15,19 @@ Class {
 }
 
 { #category : 'private' }
+SpToolbarPresenterBuilder >> addMenuButtonFrom: aCommandsGroup [
+
+	self toolbarPresenter addItem: (self toolbarPresenter newToolbarMenuButton 
+		label: aCommandsGroup name;
+		icon: aCommandsGroup icon;
+		help: aCommandsGroup description;
+		actions: (aCommandsGroup
+			beDisplayedAsGroup;
+			yourself); 
+		yourself)
+]
+
+{ #category : 'private' }
 SpToolbarPresenterBuilder >> addPopoverButtonFrom: aCommandsGroup [
 	| button |
 
@@ -62,7 +75,14 @@ SpToolbarPresenterBuilder >> visitCommandGroup: aGroup [
 	"initialize icon provider if it is not there."
 	aGroup iconProvider ifNil: [ 
 		aGroup iconProvider: self toolbarPresenter application ].
+	
+	"if this is a popover menu (not working on gtk, still used on morphic)"
 	aGroup isToolbarPopoverButton 
-		ifTrue: [ self addPopoverButtonFrom: aGroup ]
-		ifFalse: [ super visitCommandGroup: aGroup ]
+		ifTrue: [ ^ self addPopoverButtonFrom: aGroup ].
+		
+	"if this is to be presented as submenu, do not flat it: add a menu button"
+	"aGroup displayStrategy isGroup
+		ifFalse: [ ^ self addMenuButtonFrom: aGroup ]."
+	
+	super visitCommandGroup: aGroup
 ]
