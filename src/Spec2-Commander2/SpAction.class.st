@@ -11,7 +11,8 @@ Class {
 		'visible',
 		'actionVisible',
 		'id',
-		'dynamicName'
+		'dynamicName',
+		'state'
 	],
 	#category : 'Spec2-Commander2-Action',
 	#package : 'Spec2-Commander2',
@@ -94,7 +95,19 @@ SpAction >> beShortcutOnly [
 { #category : 'accessing' }
 SpAction >> beToggleButton [
 
-	self configureAsToolBarToggleButton
+	self state: false.
+	self buildPresenterBlock: [ :specCommand | 
+		SpToolbarToggleButtonPresenter new
+			label: specCommand name;
+			help: specCommand description;
+			in: [ :button | 
+				specCommand hasIcon
+					ifTrue: [ button icon: specCommand icon ] ];
+			action: [
+				self toggleState.
+				specCommand execute ];
+			enabled: specCommand canBeExecuted;
+			yourself ]
 ]
 
 { #category : 'testing' }
@@ -130,6 +143,13 @@ SpAction >> execute [
 	action 
 		cull: self context
 		cull: self
+]
+
+{ #category : 'testing' }
+SpAction >> hasState [
+	"state can be true/false. If nil this is a regular menu."
+
+	^ state isNotNil
 ]
 
 { #category : 'comparing' }
@@ -205,4 +225,25 @@ SpAction >> shortcut: aKeyCombination [
 		deprecated: 'It was a bad idea' 
 		transformWith: '@receiver shortcut: `@arg1' -> '@receiver shortcutKey: `@arg1'.	
 	self shortcutKey: aKeyCombination
+]
+
+{ #category : 'accessing - state' }
+SpAction >> state [
+	"state can be true/false or nil. This will be used for check menu items (and toggleable buttons)"
+
+	^ state
+]
+
+{ #category : 'accessing - state' }
+SpAction >> state: aBoolean [ 
+	
+	state := aBoolean
+]
+
+{ #category : 'accessing - state' }
+SpAction >> toggleState [
+
+	self hasState ifFalse: [ ^ self ].
+
+	self state: self state not
 ]

@@ -693,7 +693,9 @@ SpPresenter >> isBuilt [
 SpPresenter >> isDisplayed [
 	"Answer if the widget is currently displayed on screen"
 
-	^ self hasWindow and: [ self root isDisplayed ]
+	self withWindowDo: [ :w | ^ w isDisplayed ].
+	
+	^ false
 ]
 
 { #category : 'testing' }

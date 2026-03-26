@@ -21,13 +21,19 @@ Class {
 SpApplicationConfiguration >> configure: anApplication [
 	"Override this to add your application configuration"
 	
-	OSPlatform current 
-		configureApplication: anApplication 
-		configuration: self
+	self configurePlatform: anApplication
 ]
 
 { #category : 'configuring' }
 SpApplicationConfiguration >> configureOSX: anApplication [
+]
+
+{ #category : 'configuring' }
+SpApplicationConfiguration >> configurePlatform: anApplication [
+
+	OSPlatform current 
+		configureApplication: anApplication 
+		configuration: self
 ]
 
 { #category : 'configuring' }

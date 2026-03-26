@@ -257,8 +257,18 @@ SpWindowPresenter >> hasPresenter: aPresenter [
 { #category : 'testing' }
 SpWindowPresenter >> hasStatusBar [
 	"Answer if window has a status bar defined"
-	
-	^ self statusBar isNotNil
+	self
+		deprecated: 'statusBar was a bad name. Use statusbar instead'
+		transformWith: '`@receiver hasStatusBar' -> '`@receiver hasStatusbar'.
+
+	^ self statusbar isNotNil
+]
+
+{ #category : 'testing' }
+SpWindowPresenter >> hasStatusbar [
+	"Answer if window has a status bar defined"
+
+	^ self statusbar isNotNil
 ]
 
 { #category : 'testing' }
@@ -582,6 +592,9 @@ SpWindowPresenter >> size [
 { #category : 'api' }
 SpWindowPresenter >> statusBar [
 	"Answer the status bar associated with this window (if defined)"
+	self 
+		deprecated: 'statusBar was a bad name. Use statusbar instead'
+		transformWith: '`@receiver statusBar' -> '`@receiver statusbar'. 
 
 	^ statusbar
 ]
@@ -590,9 +603,27 @@ SpWindowPresenter >> statusBar [
 SpWindowPresenter >> statusBar: aStatusBarPresenter [
 	"Set a status bar for the window. 
 	 Status bar will be shown at the bottom of the window."
+	self 
+		deprecated: 'statusBar: was a bad name. Use statusbar: instead'
+		transformWith: '`@receiver statusBar: `@arg' -> '`@receiver statusbar: `@arg'. 
 
-	aStatusBarPresenter ifNotNil: [ aStatusBarPresenter owner: self ].
-	^ statusbar := aStatusBarPresenter
+	self statusbar: aStatusBarPresenter
+]
+
+{ #category : 'api' }
+SpWindowPresenter >> statusbar [
+	"Answer the status bar associated with this window (if defined)"
+
+	^ statusbar
+]
+
+{ #category : 'api' }
+SpWindowPresenter >> statusbar: aStatusbarPresenter [
+	"Set a status bar for the window. 
+	 Status bar will be shown at the bottom of the window."
+
+	aStatusbarPresenter ifNotNil: [ aStatusbarPresenter owner: self ].
+	statusbar := aStatusbarPresenter
 ]
 
 { #category : 'TOREMOVE' }

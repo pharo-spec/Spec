@@ -19,7 +19,7 @@ SpCodeMethodInteractionModel class >> on: aMethod [
 SpCodeMethodInteractionModel >> behavior [
 
 	^ self method ifNotNil: [ 
-		self method methodClass ifNotNil: #instanceSide ]
+		self method methodClass "ifNotNil: #instanceSide" ]
 ]
 
 { #category : 'accessing' }
