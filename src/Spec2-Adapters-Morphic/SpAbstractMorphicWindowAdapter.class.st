@@ -61,7 +61,7 @@ SpAbstractMorphicWindowAdapter >> addMenuTo: aMorph [
 SpAbstractMorphicWindowAdapter >> addStatusBarTo: aMorph [
 
 	| statusBarMorph |
-	statusBarMorph := self model statusBar build.
+	statusBarMorph := self model statusbar build.
 	aMorph addMorphBack: statusBarMorph.
 	statusBarMorph
 		hResizing: #spaceFill;

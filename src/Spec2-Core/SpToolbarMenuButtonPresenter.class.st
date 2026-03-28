@@ -37,6 +37,8 @@ SpToolbarMenuButtonPresenter >> menu [
 	 It can also be a block (or valuable) which will answer an instance of `SpMenuPresenter`
 	 when evaluated. "
 
+	self deprecated: 'Use #actions' on: '2026-03-26' in: #Pharo14.
+
 	^ menu
 ]
 
@@ -45,6 +47,8 @@ SpToolbarMenuButtonPresenter >> menu: aMenuOrBlock [
 	"Set the menu associated to this menu button. 
 	 It can also be a block (or valuable) which will answer an instance of `SpMenuPresenter`
 	 when evaluated. "
+	
+	self deprecated: 'Use #actions:' on: '2026-03-26' in: #Pharo14.
 
 	menu := aMenuOrBlock
 ]

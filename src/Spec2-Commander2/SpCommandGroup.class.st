@@ -9,8 +9,8 @@ Class {
 	#name : 'SpCommandGroup',
 	#superclass : 'CmUICommandGroup',
 	#instVars : [
-		'toolbarPopoverButton',
-		'iconProvider'
+		'iconProvider',
+		'toolbarButtonKind'
 	],
 	#category : 'Spec2-Commander2-Core',
 	#package : 'Spec2-Commander2',
@@ -75,13 +75,19 @@ SpCommandGroup >> assignUniqueName [
 { #category : 'configuring' }
 SpCommandGroup >> beToolbarGroup [
 
-	toolbarPopoverButton := false
+	toolbarButtonKind := nil
+]
+
+{ #category : 'configuring' }
+SpCommandGroup >> beToolbarMenuButton [
+
+	toolbarButtonKind := #menu
 ]
 
 { #category : 'configuring' }
 SpCommandGroup >> beToolbarPopoverButton [
 
-	toolbarPopoverButton := true
+	toolbarButtonKind := #popover
 ]
 
 { #category : 'displaying' }
@@ -130,7 +136,7 @@ SpCommandGroup >> iconProvider: anIconProvider [
 SpCommandGroup >> initialize [
 
 	super initialize.
-	toolbarPopoverButton := false
+	toolbarButtonKind := false
 ]
 
 { #category : 'shortcuts installation' }
@@ -141,9 +147,15 @@ SpCommandGroup >> installShortcutsIn: aPresenter [
 ]
 
 { #category : 'testing' }
+SpCommandGroup >> isToolbarMenuButton [
+
+	^ toolbarButtonKind = #menu
+]
+
+{ #category : 'testing' }
 SpCommandGroup >> isToolbarPopoverButton [
 
-	^ toolbarPopoverButton
+	^ toolbarButtonKind = #popover
 ]
 
 { #category : 'accessing' }
