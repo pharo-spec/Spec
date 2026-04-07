@@ -106,6 +106,12 @@ SpAbstractEasyListViewPresenter >> model: aListModel [
 	contentView model: aListModel
 ]
 
+{ #category : 'accessing' }
+SpAbstractEasyListViewPresenter >> refresh [
+
+	contentView refresh
+]
+
 { #category : 'api' }
 SpAbstractEasyListViewPresenter >> removeScrollBarStyle: aStyle [
 
