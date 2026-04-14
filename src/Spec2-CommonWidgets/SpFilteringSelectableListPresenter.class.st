@@ -5,9 +5,6 @@ Class {
 	#name : 'SpFilteringSelectableListPresenter',
 	#superclass : 'SpFilteringListPresenter',
 	#instVars : [
-		'selectColumn',
-		'displayBlock',
-		'displayIconBlock',
 		'selectedItems',
 		'previousSelectedIndex',
 		'onActivation',
@@ -18,21 +15,34 @@ Class {
 	#tag : 'Core'
 }
 
+{ #category : 'examples' }
+SpFilteringSelectableListPresenter class >> example [
+	<sampleInstance>
+
+	^ self new
+		items: Smalltalk allClassesAndTraits;
+		open
+]
+
 { #category : 'private' }
 SpFilteringSelectableListPresenter >> activateAll [
-
 	| itemsToSelect |
+	
+	logger trace.
+	
 	itemsToSelect := self items \ selectedItems.
 	itemsToSelect ifEmpty: [ ^ self ].
 
 	self selectItems: self items.
 
 	self onActivation ifNotNil: [ :valuable | 
-		itemsToSelect do: [ :item | valuable cull: item ] ]
+		itemsToSelect do: [ :item | valuable cull: item ] ]		
 ]
 
 { #category : 'private' }
 SpFilteringSelectableListPresenter >> activateItem: anObject [
+
+	logger trace: anObject.
 
 	selectedItems add: anObject.
 	
@@ -42,7 +52,9 @@ SpFilteringSelectableListPresenter >> activateItem: anObject [
 { #category : 'private' }
 SpFilteringSelectableListPresenter >> deactivateItem: anObject [
 
-	selectedItems remove: anObject.
+	logger trace: anObject.
+
+	selectedItems remove: anObject ifAbsent: [ ^ self ].
 	
 	self onDeactivation ifNotNil: [ :valuable | valuable cull: anObject ]
 ]
@@ -50,28 +62,25 @@ SpFilteringSelectableListPresenter >> deactivateItem: anObject [
 { #category : 'api' }
 SpFilteringSelectableListPresenter >> display [
 
-	^ displayBlock
+	^ listPresenter display
 ]
 
 { #category : 'api' }
 SpFilteringSelectableListPresenter >> display: aBlock [
 
-	displayBlock := aBlock.
-	listPresenter columns: self listColumns
+	listPresenter display: aBlock
 ]
 
 { #category : 'api' }
 SpFilteringSelectableListPresenter >> displayIcon: aBlock [
 
-	displayIconBlock := aBlock.
-	listPresenter columns: self listColumns
+	listPresenter displayIcon: aBlock
 ]
 
 { #category : 'initialization' }
 SpFilteringSelectableListPresenter >> initialize [
 
 	selectedItems := Set new.
-	displayBlock := [ :anObject | anObject asString ].
 	super initialize
 ]
 
@@ -79,26 +88,22 @@ SpFilteringSelectableListPresenter >> initialize [
 SpFilteringSelectableListPresenter >> initializePresenters [
 
 	super initializePresenters.
+	
 	listPresenter
 		addShortcutWith: [ :action | action 
 			shortcutKey: Character space asKeyCombination;
-			action: [ self toggleSelection ] ].
-
-	listPresenter selection whenSelectedIndexChangedDo: [ :newIndex :prevIndex |
-		previousSelectedIndex := prevIndex ].
-
-	listPresenter eventHandler whenMouseDownDo: [ :event | 
-		event shiftPressed
-			ifTrue: [ 
-				self
-					selectFrom: previousSelectedIndex
-					to: listPresenter selection selectedIndex ]
-			ifFalse: [ self toggleSelection ] ].
-
-	listPresenter
+			action: [ self toggleSelection ] ];
 		addShortcutWith: [ :action | action 
 			shortcutKey: $a actionModifier;
-			action: [ self activateAll ] ]
+			action: [ self activateAll ] ];
+		activateOnSingleClick;
+		whenActivatedDo: [ self toggleSelection ]
+]
+
+{ #category : 'private' }
+SpFilteringSelectableListPresenter >> isActive: anItem [
+
+	^ selectedItems includes: anItem
 ]
 
 { #category : 'api' }
@@ -109,35 +114,14 @@ SpFilteringSelectableListPresenter >> items: aCollection [
 	selectedItems := selectedItems select: [ :item | aCollection includes: item ]
 ]
 
-{ #category : 'private' }
-SpFilteringSelectableListPresenter >> listColumns [
-	| column |
-
-	column := SpCompositeTableColumn new.
-	
-	column addColumn: (selectColumn := (SpCheckBoxTableColumn new
-		evaluated: [ :anObject | selectedItems includes: anObject ];
-		onActivation: [ :anObject | self activateItem: anObject ];
-		onDeactivation: [ :anObject |self deactivateItem: anObject ];
-		beNotExpandable)).
-		
-	displayIconBlock ifNotNil: [
-		column addColumn: (SpImageTableColumn evaluated: displayIconBlock) beNotExpandable ].
-	
-	column addColumn: (SpStringTableColumn evaluated: self display).
-
-	^ { column }
-]
-
 { #category : 'initialization' }
 SpFilteringSelectableListPresenter >> newListToFilter [
-	| table |
-	
-	table := self newTable. 
-	table hideColumnHeaders.
-	table columns: self listColumns.
-	
-^ table
+
+	^ self newEasyListView
+		rowPresenterClass: SpFilteredSelectableRowPresenter;
+		whenRowPresenterInstantiatedDo: [ :aRowPresenter | 
+			aRowPresenter stateProvider: self ];
+		yourself
 ]
 
 { #category : 'api' }
@@ -201,11 +185,14 @@ SpFilteringSelectableListPresenter >> selectedItems [
 
 { #category : 'private' }
 SpFilteringSelectableListPresenter >> toggleSelection [
-
 	| selectedItem |
+	
+	logger trace.
+	
 	selectedItem := listPresenter selectedItem.
-	(selectedItems includes: selectedItem)
+	(self isActive: selectedItem)
 		ifTrue: [ self deactivateItem: selectedItem ]
 		ifFalse: [ self activateItem: selectedItem ].
-	listPresenter refresh
+	"update just the one we need"
+	listPresenter selectedRowPresenter updatePresenter 
 ]

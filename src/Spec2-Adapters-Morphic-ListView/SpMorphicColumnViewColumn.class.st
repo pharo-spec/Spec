@@ -17,6 +17,12 @@ SpMorphicColumnViewColumn >> isExpandable [
 	^ self model isExpand
 ]
 
+{ #category : 'accessing' }
+SpMorphicColumnViewColumn >> model: aColumnViewColumn [
+
+	model := aColumnViewColumn
+]
+
 { #category : 'private' }
 SpMorphicColumnViewColumn >> setupAction [
 
