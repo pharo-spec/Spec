@@ -221,6 +221,20 @@ SpApplication >> iconProvider: anIconProvider [
 	iconProvider := anIconProvider
 ]
 
+{ #category : 'scripting' }
+SpApplication >> instantiate: aPresenterClass [
+	"provided to provide polymorphism with SpPresenter and still be part of the POM"
+
+	^ aPresenterClass newApplication: self
+]
+
+{ #category : 'scripting' }
+SpApplication >> instantiate: aPresenterClass on: aModel [
+	"provided to provide polymorphism with SpPresenter and still be part of the POM"
+
+	^ aPresenterClass newApplication: self model: aModel
+]
+
 { #category : 'accessing' }
 SpApplication >> locale [
 
@@ -230,6 +244,10 @@ SpApplication >> locale [
 { #category : 'factory' }
 SpApplication >> new: aPresenter [
 	"a synonym for #newPresenter:"
+	
+	self 
+		deprecated: 'Use #instantiate: which is the polymorphic name' 
+		transformWith: '`@receiver new: `@arg' -> '`@receiver instantiate: `@arg'.
 	
 	^ self newPresenter: aPresenter
 ]
@@ -243,7 +261,11 @@ SpApplication >> newIconProvider [
 { #category : 'factory' }
 SpApplication >> newPresenter: aPresenterClass [
 
-	^ aPresenterClass newApplication: self
+	self 
+		deprecated: 'Use #instantiate: which is the polymorphic name' 
+		transformWith: '`@receiver new: `@arg' -> '`@receiver instantiate: `@arg'.
+
+	^ self instantiate: aPresenterClass
 ]
 
 { #category : 'accessing' }
