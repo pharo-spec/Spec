@@ -52,8 +52,6 @@ SpFilteringSelectableListPresenter >> activateItem: anObject [
 { #category : 'private' }
 SpFilteringSelectableListPresenter >> deactivateItem: anObject [
 
-	logger trace: anObject.
-
 	selectedItems remove: anObject ifAbsent: [ ^ self ].
 	
 	self onDeactivation ifNotNil: [ :valuable | valuable cull: anObject ]
