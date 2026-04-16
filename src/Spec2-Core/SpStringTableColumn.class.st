@@ -93,7 +93,7 @@ SpStringTableColumn >> initialize [
 
 	super initialize.
 	editable := false.
-	sortable := false
+	sortable := true.
 ]
 
 { #category : 'testing' }
