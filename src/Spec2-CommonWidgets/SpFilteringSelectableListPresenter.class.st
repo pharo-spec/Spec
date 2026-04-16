@@ -182,8 +182,6 @@ SpFilteringSelectableListPresenter >> selectedItems [
 SpFilteringSelectableListPresenter >> toggleSelection [
 	| selectedItem |
 	
-	logger trace.
-	
 	selectedItem := listPresenter selectedItem.
 	(self isActive: selectedItem)
 		ifTrue: [ self deactivateItem: selectedItem ]
