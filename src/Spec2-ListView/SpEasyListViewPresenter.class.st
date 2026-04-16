@@ -27,7 +27,8 @@ Class {
 		'#display => ObservableSlot',
 		'#displayIcon => ObservableSlot',
 		'#headerPanel',
-		'#rowPresenterClass'
+		'#rowPresenterClass',
+		'#rowPresenterInstantiatedAction'
 	],
 	#category : 'Spec2-ListView-Easy',
 	#package : 'Spec2-ListView',
@@ -123,6 +124,13 @@ SpEasyListViewPresenter class >> exampleWithIcons [
 		items: (1 to: 10) asArray;
 		open;
 		yourself
+]
+
+{ #category : 'private' }
+SpEasyListViewPresenter >> announceRowPresenterInstantiated: rowPresenter [
+
+	rowPresenterInstantiatedAction ifNil: [ ^ self ].
+	rowPresenterInstantiatedAction value: rowPresenter
 ]
 
 { #category : 'simulation' }
@@ -272,12 +280,8 @@ SpEasyListViewPresenter >> initializePresenters [
 
 	headerPanel := self newLabel.
 	contentView := self newListView
-		setup: [ :aPresenter | 
-			(aPresenter instantiate: self rowPresenterClass)
-				listView: self;
-				yourself ];
-		bind: [ :aPresenter :anObject | 
-			aPresenter model: anObject ];
+		setup: [ :aPresenter | self newRowPresenterOn: aPresenter ];
+		bind: [ :rowPresenter :anObject | rowPresenter model: anObject ];
 		yourself.
 		
 	headerPanel hide
@@ -287,6 +291,19 @@ SpEasyListViewPresenter >> initializePresenters [
 SpEasyListViewPresenter >> itemAt: aNumber [
 
 	^ contentView itemAt: aNumber
+]
+
+{ #category : 'private' }
+SpEasyListViewPresenter >> newRowPresenterOn: aPresenter [
+	| rowPresenter |
+	
+	rowPresenter := (aPresenter instantiate: self rowPresenterClass)
+		listView: self;
+		yourself.
+		
+	self announceRowPresenterInstantiated: rowPresenter.
+		
+	^ rowPresenter
 ]
 
 { #category : 'initialization' }
@@ -348,7 +365,7 @@ SpEasyListViewPresenter >> verticalAlignment [
 	^ contentView verticalAlignment
 ]
 
-{ #category : 'private' }
+{ #category : 'api - events' }
 SpEasyListViewPresenter >> whenDisplayChangedDo: aBlock [
 	"Inform when the display block has changed.
  	 `aBlock` has three optional arguments: 
@@ -359,7 +376,7 @@ SpEasyListViewPresenter >> whenDisplayChangedDo: aBlock [
 	self property: #display whenChangedDo: aBlock
 ]
 
-{ #category : 'private' }
+{ #category : 'api - events' }
 SpEasyListViewPresenter >> whenIconsChangedDo: aBlock [
 	"Inform when the icons block has changed.
  	 `aBlock` has three optional arguments: 
@@ -374,6 +391,12 @@ SpEasyListViewPresenter >> whenIconsChangedDo: aBlock [
 SpEasyListViewPresenter >> whenMenuChangedDo: aBlock [
 
 	contentView whenMenuChangedDo: aBlock
+]
+
+{ #category : 'api - events' }
+SpEasyListViewPresenter >> whenRowPresenterInstantiatedDo: aBlock [
+
+	rowPresenterInstantiatedAction := aBlock
 ]
 
 { #category : 'api - events' }

@@ -65,10 +65,10 @@ SpMorphicListViewAdapter >> selectedRowPresenter [
 		detect: [ :each | 	
 			| presenter |
 			"first content cell, second content the presenter"
-			presenter := (each content content 
+			presenter := (each submorphs first submorphs last 
 				valueOfProperty: #presenter 
 				ifAbsent: [ nil ]).
 			presenter model = item ]
-		ifFound: [ :aRow | aRow content content valueOfProperty: #presenter ]
+		ifFound: [ :aRow | aRow submorphs first submorphs last valueOfProperty: #presenter ]
 		ifNone: [ nil ] 
 ]

@@ -174,6 +174,7 @@ SpFilteringListPresenter >> headerTitle: aString [
 
 { #category : 'initialization' }
 SpFilteringListPresenter >> initializePresenters [
+
 	self addStyle: 'filteringList'.
 
 	filterInputPresenter := self newTextInput
