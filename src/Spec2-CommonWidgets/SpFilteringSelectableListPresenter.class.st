@@ -6,7 +6,6 @@ Class {
 	#superclass : 'SpFilteringListPresenter',
 	#instVars : [
 		'selectedItems',
-		'previousSelectedIndex',
 		'onActivation',
 		'onDeactivation'
 	],
