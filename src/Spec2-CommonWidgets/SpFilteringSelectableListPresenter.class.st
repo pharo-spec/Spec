@@ -95,9 +95,7 @@ SpFilteringSelectableListPresenter >> initializePresenters [
 			action: [ self toggleSelection ] ];
 		addShortcutWith: [ :action | action 
 			shortcutKey: $a actionModifier;
-			action: [ self activateAll ] ];
-		activateOnSingleClick;
-		whenActivatedDo: [ self toggleSelection ]
+			action: [ self activateAll ] ]
 ]
 
 { #category : 'private' }

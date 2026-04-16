@@ -1,3 +1,9 @@
+"
+This is a row presenter to be used on `SpFilteredSelectableListPresenter`.  
+In addition to a label and an optional icon, it shows a checkbox to perform the select.  
+
+IMPORTANT! It requires a `stateProvider` that understands `isActive:`, `activateItem:` and `deactivateItem`
+"
 Class {
 	#name : 'SpFilteredSelectableRowPresenter',
 	#superclass : 'SpEasyListRowPresenter',
@@ -22,6 +28,15 @@ SpFilteredSelectableRowPresenter >> doDeactivate [
 	stateProvider deactivateItem: self model
 ]
 
+{ #category : 'private - actions' }
+SpFilteredSelectableRowPresenter >> doToggleSelection [
+
+	(stateProvider isActive: self model)
+		ifTrue: [ self doDeactivate ]
+		ifFalse: [ self doActivate ].
+	self updatePresenter
+]
+
 { #category : 'layout' }
 SpFilteredSelectableRowPresenter >> iconLayout [
 
@@ -42,7 +57,11 @@ SpFilteredSelectableRowPresenter >> initializePresenters [
 		addStyle: 'compact';
 		whenActivatedDo: [ self doActivate ];
 		whenDeactivatedDo: [ self doDeactivate ];
-		yourself
+		yourself.
+		
+	self eventHandler whenMouseDownDo: [ :event |
+		self doToggleSelection.
+		event wasHandled: false ]
 ]
 
 { #category : 'testing' }
