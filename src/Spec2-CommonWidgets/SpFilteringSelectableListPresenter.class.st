@@ -27,8 +27,6 @@ SpFilteringSelectableListPresenter class >> example [
 SpFilteringSelectableListPresenter >> activateAll [
 	| itemsToSelect |
 	
-	logger trace.
-	
 	itemsToSelect := self items \ selectedItems.
 	itemsToSelect ifEmpty: [ ^ self ].
 
@@ -40,8 +38,6 @@ SpFilteringSelectableListPresenter >> activateAll [
 
 { #category : 'private' }
 SpFilteringSelectableListPresenter >> activateItem: anObject [
-
-	logger trace: anObject.
 
 	selectedItems add: anObject.
 	
@@ -145,8 +141,8 @@ SpFilteringSelectableListPresenter >> onDeactivation: aBlock [
 
 { #category : 'private' }
 SpFilteringSelectableListPresenter >> selectFrom: fromIndex to: toIndex [
-
 	| newItems |
+	
 	newItems := fromIndex < toIndex
 		ifTrue: [ listPresenter items copyFrom: fromIndex to: toIndex ]
 		ifFalse: [ listPresenter items copyFrom: toIndex to: fromIndex ].
