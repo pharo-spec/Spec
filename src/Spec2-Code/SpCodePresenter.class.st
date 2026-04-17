@@ -632,8 +632,8 @@ SpCodePresenter >> selectedNode [
 	fullSource ifNil: [ ^ nil ].
 	index := self cursorPositionIndex ifNil: [ 1 ].
 	ast := self isScripting
-		       ifTrue: [ RBParser parseFaultyExpression: fullSource ]
-		       ifFalse: [ RBParser parseFaultyMethod: fullSource ].
+		       ifTrue: [ OpalCompiler new isScripting: true; parse: fullSource ]
+		       ifFalse: [ OpalCompiler new isScripting: false; parse: fullSource ].
 	^ ast bestNodeForPosition: index 
 ]
 
