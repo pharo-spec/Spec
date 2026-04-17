@@ -616,7 +616,14 @@ SpCodePresenter >> selectedClassOrMetaClass [
 	^ self interactionModel ifNotNil: [ :im | im selectedClassOrMetaClass ]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'command support' }
+SpCodePresenter >> selectedMethod [
+	"Return the CompiledMethod being browsed, if any."
+
+	^ self interactionModel ifNotNil: [ :im | im method ] ifNil: [ nil ]
+]
+
+{ #category : 'command support' }
 SpCodePresenter >> selectedNode [
 	"Return the AST node at the current cursor position, or nil."
 
