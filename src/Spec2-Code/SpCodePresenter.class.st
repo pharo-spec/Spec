@@ -616,6 +616,20 @@ SpCodePresenter >> selectedClassOrMetaClass [
 	^ self interactionModel ifNotNil: [ :im | im selectedClassOrMetaClass ]
 ]
 
+{ #category : 'accessing' }
+SpCodePresenter >> selectedNode [
+	"Return the AST node at the current cursor position, or nil."
+
+	| fullSource index ast |
+	fullSource := self text.
+	fullSource ifNil: [ ^ nil ].
+	index := self cursorPositionIndex ifNil: [ 1 ].
+	ast := self isScripting
+		       ifTrue: [ RBParser parseFaultyExpression: fullSource ]
+		       ifFalse: [ RBParser parseFaultyMethod: fullSource ].
+	^ ast bestNodeForPosition: index 
+]
+
 { #category : 'command support' }
 SpCodePresenter >> selectedSelector [
 	"If text is selected, extract the selectors from the selected text. If there is no selection, try to extract the selectors under the caret position."
