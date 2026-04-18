@@ -617,6 +617,27 @@ SpCodePresenter >> selectedClassOrMetaClass [
 ]
 
 { #category : 'command support' }
+SpCodePresenter >> selectedMethod [
+	"Return the CompiledMethod being browsed, if any."
+
+	^ self interactionModel ifNotNil: [ :im | im method ] ifNil: [ nil ]
+]
+
+{ #category : 'command support' }
+SpCodePresenter >> selectedNode [
+	"Return the AST node at the current cursor position, or nil."
+
+	| fullSource index ast |
+	fullSource := self text.
+	fullSource ifNil: [ ^ nil ].
+	index := self cursorPositionIndex ifNil: [ 1 ].
+	ast := self isScripting
+		       ifTrue: [ OpalCompiler new isScripting: true; parse: fullSource ]
+		       ifFalse: [ OpalCompiler new isScripting: false; parse: fullSource ].
+	^ ast bestNodeForPosition: index 
+]
+
+{ #category : 'command support' }
 SpCodePresenter >> selectedSelector [
 	"If text is selected, extract the selectors from the selected text. If there is no selection, try to extract the selectors under the caret position."
 	| extractor selectedText fullSource |
