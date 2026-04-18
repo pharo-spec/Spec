@@ -16,6 +16,12 @@ SpEasyDropDownPresenter class >> defaultRowPresenterClass [
 	^ SpEasyListRowPresenter
 ]
 
+{ #category : 'private' }
+SpEasyDropDownPresenter >> disableSelectionDuring: aBlock [
+
+	aBlock value
+]
+
 { #category : 'api' }
 SpEasyDropDownPresenter >> displayIcon [
 
