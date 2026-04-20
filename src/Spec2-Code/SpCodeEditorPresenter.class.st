@@ -71,9 +71,30 @@ SpCodeEditorPresenter >> addTextSegmentDecoration: aDecoration [
 ]
 
 { #category : 'api - model' }
+SpCodeEditorPresenter >> beForBehavior: aBehavior [
+	"used when browsing classes or alike"
+
+	codePresenter beForBehavior: aBehavior
+]
+
+{ #category : 'api - model' }
 SpCodeEditorPresenter >> beForMethod: aMethod [
 
 	codePresenter beForMethod: aMethod
+]
+
+{ #category : 'api - model' }
+SpCodeEditorPresenter >> beForObject: anObject [
+	"Used when inspecting objects"
+
+	codePresenter beForObject: anObject
+]
+
+{ #category : 'api - model' }
+SpCodeEditorPresenter >> beForScripting [
+	"Use in playgrounds"
+
+	codePresenter beForScripting
 ]
 
 { #category : 'accessing' }
@@ -82,7 +103,7 @@ SpCodeEditorPresenter >> codePresenter [
 	^ codePresenter
 ]
 
-{ #category : 'api' }
+{ #category : 'private' }
 SpCodeEditorPresenter >> conflict: aBoolean [
 
 	self isUpdating ifTrue: [ ^ self ].
@@ -200,7 +221,8 @@ SpCodeEditorPresenter >> text: aString [
 	self updatingWhile: [ codePresenter text: aString ].
 	"we assume that this is not dirty if we are setting it directly, users wanting
 	 to make its setted code dirty have to do it themselves by calling #markDirty"
-	self unmarkDirty
+	self unmarkDirty.
+	self unmarkConflict
 ]
 
 { #category : 'api' }
@@ -248,13 +270,13 @@ SpCodeEditorPresenter >> whenDirtyChangedDo: aBlock [
 	self property: #isDirty whenChangedDo: aBlock
 ]
 
-{ #category : 'api' }
+{ #category : 'api - events' }
 SpCodeEditorPresenter >> whenResetDo: aBlock [
 
 	codePresenter whenResetDo: aBlock
 ]
 
-{ #category : 'api' }
+{ #category : 'api - events' }
 SpCodeEditorPresenter >> whenSubmitDo: aBlock [
 
 	codePresenter whenSubmitDo: aBlock
