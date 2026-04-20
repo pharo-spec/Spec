@@ -27,11 +27,11 @@ StExtractTempCommand >> canBeExecuted [
 ]
 
 { #category : 'executing' }
-StExtractTempCommand >> execute [
+StExtractTempCommand >> prepareDriver [
 
-	(ReExtractTempDriver new
-		 extract: self codePresenter selectedNode sourceInterval
-		 from: context selectedMethod selector
-		 in: context selectedMethod origin;
-		 scopes: context allScopes) runRefactoring
+	^ (ReExtractTempDriver newApplication: self application)
+		  extract: self codePresenter selectedNode sourceInterval
+		  from: context selectedMethod selector
+		  in: context selectedMethod origin;
+		  scopes: context allScopes
 ]

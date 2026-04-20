@@ -27,11 +27,11 @@ StConvertTempToInstVarCommand >> canBeExecuted [
 ]
 
 { #category : 'executing' }
-StConvertTempToInstVarCommand >> execute [ 
+StConvertTempToInstVarCommand >> prepareDriver [
 
-((ReConvertTemporaryToInstanceVariableDriver newApplication: self application)
-		   scopes: context allScopes
-		   class: context selectedMethod origin
-		   selector: context selectedMethod selector
-		   variable: self codePresenter selectedNode name) runRefactoring
+	^ (ReConvertTemporaryToInstanceVariableDriver newApplication: self application)
+		  scopes: context allScopes
+		  class: context selectedMethod origin
+		  selector: context selectedMethod selector
+		  variable: self codePresenter selectedNode name
 ]

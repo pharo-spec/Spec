@@ -14,3 +14,15 @@ StRefactoringCommand >> codePresenter [
 
 	^ context codePresenter
 ]
+
+{ #category : 'executing' }
+StRefactoringCommand >> execute [
+
+	self prepareDriver runRefactoring
+]
+
+{ #category : 'executing' }
+StRefactoringCommand >> prepareDriver [
+
+	^ self subclassResponsibility
+]
