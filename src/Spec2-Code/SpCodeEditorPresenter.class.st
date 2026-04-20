@@ -1,3 +1,15 @@
+"
+This presenter wraps a `SpCodePresenter` with editor-specific functionality.
+
+It keep track of two visual statuses, dirty and conflict, and show them as overlay adornments on top of the code widget when required.  
+Typing marks the editor dirty. Setting the text directly resets both statuses, and submit/reset actions also clear them.  
+
+Prefer it over the low-level code presenter in general, as it provides better user feedback over the general status of the code in edition. 
+
+WIP: This presenter does now yet delegates all functionality it should, and it does not offer yet all high-level functions it should.  
+Known TODO:  
+- Search & Replace
+"
 Class {
 	#name : 'SpCodeEditorPresenter',
 	#superclass : 'SpPresenter',
@@ -137,7 +149,7 @@ SpCodeEditorPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : 'api' }
+{ #category : 'private' }
 SpCodeEditorPresenter >> dirty: aBoolean [
 
 	self isUpdating ifTrue: [ ^ self ].
@@ -273,11 +285,17 @@ SpCodeEditorPresenter >> whenDirtyChangedDo: aBlock [
 { #category : 'api - events' }
 SpCodeEditorPresenter >> whenResetDo: aBlock [
 
-	codePresenter whenResetDo: aBlock
+	codePresenter whenResetDo: [
+		self unmarkDirty.
+		self unmarkConflict.
+		aBlock cull: codePresenter text ]
 ]
 
 { #category : 'api - events' }
 SpCodeEditorPresenter >> whenSubmitDo: aBlock [
 
-	codePresenter whenSubmitDo: aBlock
+	codePresenter whenSubmitDo: [ :text |
+		self unmarkDirty.
+		self unmarkConflict.
+		aBlock cull: text ]
 ]
