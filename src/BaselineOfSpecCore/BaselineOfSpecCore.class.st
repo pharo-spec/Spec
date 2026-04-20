@@ -25,8 +25,9 @@ BaselineOfSpecCore >> baseline: spec [
 			package: 'Spec2-Commander2' with: [ spec requires: #('Spec2-Core' 'Spec2-Interactions') ];
 			"ListView"
 			package: 'Spec2-ListView' with: [ spec requires: #('Spec2-Core') ];
-			"Code"
+			"Code" 
 			package: 'Spec2-Code' with: [ spec requires: #('Spec2-Core' 'Spec2-Commands') ];
+			package: 'Spec2-Refactoring-Commands' with: [ spec requires: #('Spec2-Core' 'Spec2-Commands') ];
 			package: 'Spec2-Code-Commands' with: [ spec requires: #('Spec2-Core' 'Spec2-Commands') ];
 			package: 'Spec2-Code-Diff' with: [ spec requires: #('Spec2-Code') ];
 			"Common widgets"
@@ -58,7 +59,7 @@ BaselineOfSpecCore >> baseline: spec [
 		'Spec2-ListView'  
 		'Spec2-Interactions' 
 		'Spec2-Commander2' ).
-	spec group: 'Code' with: #('Core' 'Spec2-Code-Commands' 'Spec2-Code' 'Spec2-Code-Diff').
+	spec group: 'Code' with: #('Core' 'Spec2-Code-Commands' 'Spec2-Code' 'Spec2-Code-Diff' 'Spec2-Refactoring-Commands').
 	spec group: 'CodeTests' with: #('Spec2-Code-Tests' 'Spec2-Code-Diff-Tests').
 	spec group: 'Support' with: #('Core' 'Spec2-Examples').
 	spec group: 'Tests' with: #('Core' 'Spec2-Tests' 'Spec2-Commander2-Tests' 'Spec2-ListView-Tests').
