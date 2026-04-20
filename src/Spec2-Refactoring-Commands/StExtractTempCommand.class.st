@@ -23,13 +23,15 @@ StExtractTempCommand class >> defaultName [
 { #category : 'testing' }
 StExtractTempCommand >> canBeExecuted [
 
-	^ context selectedMethod isNotNil
+	^ self codePresenter selectionInterval isNotEmpty
 ]
 
 { #category : 'executing' }
 StExtractTempCommand >> execute [
 
 	(ReExtractTempDriver new
-		 extract: self codePresenter selectionInterval from: context selectedMethod selector in: context selectedMethod origin;
+		 extract: self codePresenter selectedNode sourceInterval
+		 from: context selectedMethod selector
+		 in: context selectedMethod origin;
 		 scopes: context allScopes) runRefactoring
 ]
