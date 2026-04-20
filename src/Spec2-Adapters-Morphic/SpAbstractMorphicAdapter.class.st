@@ -470,32 +470,31 @@ SpAbstractMorphicAdapter >> keyDown: keyCode shift: shiftBoolean meta: metaBoole
 
 { #category : 'emulating' }
 SpAbstractMorphicAdapter >> keyEvent: type code: keyCode shift: shiftBoolean meta: metaBoolean control: controlBoolean option: optionBoolean [
+
 	| evt modifiers |
-	
 	modifiers := 0.
 	shiftBoolean ifTrue: [ modifiers := modifiers | 8 ].
-	metaBoolean ifTrue: [ modifiers := modifiers |
-		(Smalltalk os isWindows | Smalltalk os isUnix
-			ifTrue: [ 2r00010000 ]
-			ifFalse: [ 2r01000000 ]) ].
+	metaBoolean ifTrue: [
+			modifiers := modifiers | (OSPlatform current isWindows | OSPlatform current isUnix
+				              ifTrue: [ 2r00010000 ]
+				              ifFalse: [ 2r01000000 ]) ].
 	controlBoolean ifTrue: [ modifiers := modifiers | 2r00010000 ].
-	optionBoolean ifTrue: [ modifiers := modifiers |
-		(Smalltalk os isWindows | Smalltalk os isUnix
-			ifTrue: [ 2r01000000 ]
-			ifFalse: [ 2r00100000 ]) ].
-		
+	optionBoolean ifTrue: [
+			modifiers := modifiers | (Smalltalk os isWindows | Smalltalk os isUnix
+				              ifTrue: [ 2r01000000 ]
+				              ifFalse: [ 2r00100000 ]) ].
+
 	evt := KeyboardEvent new
-		setType: type
-		buttons: modifiers
-		position: self widget position + (1 @ 1)
-		keyValue: keyCode
-		charCode: keyCode
-		hand: self currentWorld activeHand
-		stamp: Time millisecondClockValue.
+		       setType: type
+		       buttons: modifiers
+		       position: self widget position + (1 @ 1)
+		       keyValue: keyCode
+		       charCode: keyCode
+		       hand: self currentWorld activeHand
+		       stamp: Time millisecondClockValue.
 
 	evt key: (KeyboardKey fromCharacter: keyCode asCharacter).
-	evt sentTo: self widgetEventReceiver.
-	"Some time to allow things to happen?"
+	evt sentTo: self widgetEventReceiver. "Some time to allow things to happen?"
 	10 milliSeconds wait
 ]
 

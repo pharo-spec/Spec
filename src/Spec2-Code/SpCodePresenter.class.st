@@ -713,7 +713,7 @@ SpCodePresenter >> subscribeToSettingsChangesAnnouncements [
 		to: self
 ]
 
-{ #category : 'private' }
+{ #category : 'api' }
 SpCodePresenter >> syntaxHighlight: aBoolean [
 
 	syntaxHighlight := aBoolean 
