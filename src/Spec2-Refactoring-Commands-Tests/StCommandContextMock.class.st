@@ -3,7 +3,6 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'selectedMethod',
-		'selectedNode',
 		'name'
 	],
 	#category : 'Spec2-Refactoring-Commands-Tests',
