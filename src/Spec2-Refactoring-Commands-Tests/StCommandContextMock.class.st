@@ -56,3 +56,9 @@ StCommandContextMock >> selectedNode [
 
 	^ self
 ]
+
+{ #category : 'evaluating' }
+StCommandContextMock >> value [
+
+	^ self
+]
