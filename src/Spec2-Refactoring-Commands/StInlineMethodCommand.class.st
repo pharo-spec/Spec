@@ -13,7 +13,7 @@ StInlineMethodCommand class >> defaultIconName [
 	^ #smallRightFlush
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'default' }
 StInlineMethodCommand class >> defaultName [
 
 	^ 'Inline method'
