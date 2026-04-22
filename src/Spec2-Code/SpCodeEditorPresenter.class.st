@@ -115,6 +115,12 @@ SpCodeEditorPresenter >> codePresenter [
 	^ codePresenter
 ]
 
+{ #category : 'accessing' }
+SpCodeEditorPresenter >> codePresenter: aCodePresenter [
+
+	codePresenter := aCodePresenter
+]
+
 { #category : 'private' }
 SpCodeEditorPresenter >> conflict: aBoolean [
 

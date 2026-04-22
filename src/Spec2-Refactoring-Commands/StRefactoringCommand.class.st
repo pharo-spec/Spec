@@ -12,7 +12,7 @@ Class {
 { #category : 'accessing' }
 StRefactoringCommand >> codePresenter [
 
-	^ context codePresenter
+	^ context codeEditor codePresenter
 ]
 
 { #category : 'executing' }
