@@ -3,7 +3,10 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'selectedMethod',
-		'name'
+		'name',
+		'sourceInterval',
+		'selector',
+		'origin'
 	],
 	#category : 'Spec2-Refactoring-Commands-Tests',
 	#package : 'Spec2-Refactoring-Commands-Tests'
@@ -40,6 +43,18 @@ StCommandContextMock >> name: aName [
 ]
 
 { #category : 'accessing' }
+StCommandContextMock >> origin [
+
+	^ origin
+]
+
+{ #category : 'accessing' }
+StCommandContextMock >> origin: aClass [
+
+	origin := aClass 
+]
+
+{ #category : 'accessing' }
 StCommandContextMock >> selectedMethod [
 
 	^ selectedMethod
@@ -55,6 +70,30 @@ StCommandContextMock >> selectedMethod: aCompiledMethod [
 StCommandContextMock >> selectedNode [
 
 	^ self
+]
+
+{ #category : 'accessing' }
+StCommandContextMock >> selector [
+
+	^ selector
+]
+
+{ #category : 'accessing' }
+StCommandContextMock >> selector: aSelector [
+
+	selector := aSelector
+]
+
+{ #category : 'accessing' }
+StCommandContextMock >> sourceInterval [
+
+	^ sourceInterval
+]
+
+{ #category : 'accessing' }
+StCommandContextMock >> sourceInterval: anInterval [
+
+	sourceInterval := anInterval
 ]
 
 { #category : 'evaluating' }
