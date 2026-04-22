@@ -6,7 +6,7 @@ Class {
 }
 
 { #category : 'tests' }
-ReConvertTemporaryToInstanceVariableCommandTest >> testConvertTempCommandSucess [
+ReConvertTemporaryToInstanceVariableCommandTest >> testConvertTempCommandSuccess [
 
 	| driver command context |
 	command := StConvertTempToInstVarCommand new.

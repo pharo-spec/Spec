@@ -6,7 +6,7 @@ Class {
 }
 
 { #category : 'tests' }
-ReRenameClassCommandTest >> testRenameClassCommandSucess [
+ReRenameClassCommandTest >> testRenameClassCommandSuccess [
 
 	| driver command context dialogMock |
 	command := StRenameClassCommand new.
@@ -20,6 +20,6 @@ ReRenameClassCommandTest >> testRenameClassCommandSucess [
 		forTesting: true;
 		runRefactoring.
 
-	self assert: driver changes changes size equals: 5.
+	self assert: driver changes changes size equals: 6.
 
 ]

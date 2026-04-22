@@ -6,7 +6,8 @@ Class {
 		'name',
 		'sourceInterval',
 		'selector',
-		'origin'
+		'origin',
+		'selectedNode'
 	],
 	#category : 'Spec2-Refactoring-Commands-Tests',
 	#package : 'Spec2-Refactoring-Commands-Tests'
@@ -22,6 +23,12 @@ StCommandContextMock >> allScopes [
 StCommandContextMock >> application [
 
 	^ StPharoApplication new
+]
+
+{ #category : 'accessing' }
+StCommandContextMock >> codeEditor [
+
+	^ self
 ]
 
 { #category : 'accessing' }
@@ -69,7 +76,13 @@ StCommandContextMock >> selectedMethod: aCompiledMethod [
 { #category : 'accessing' }
 StCommandContextMock >> selectedNode [
 
-	^ self
+	^ selectedNode ifNil: [ self ]
+]
+
+{ #category : 'accessing' }
+StCommandContextMock >> selectedNode: aNode [
+
+	selectedNode := aNode
 ]
 
 { #category : 'accessing' }

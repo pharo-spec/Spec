@@ -6,7 +6,7 @@ Class {
 }
 
 { #category : 'tests' }
-ReInlineMethodCommandTest >> testInlineMethodCommandSucess [
+ReInlineMethodCommandTest >> testInlineMethodCommandSuccess [
 
 	| driver command context |
 	command := StInlineMethodCommand new.
