@@ -625,16 +625,17 @@ SpCodePresenter >> selectedMethod [
 
 { #category : 'command support' }
 SpCodePresenter >> selectedNode [
-	"Return the AST node at the current cursor position, or nil."
 
-	| fullSource index ast |
-	fullSource := self text.
-	fullSource ifNil: [ ^ nil ].
-	index := self cursorPositionIndex ifNil: [ 1 ].
-	ast := self isScripting
-		       ifTrue: [ OpalCompiler new isScripting: true; parse: fullSource ]
-		       ifFalse: [ OpalCompiler new isScripting: false; parse: fullSource ].
-	^ ast bestNodeForPosition: index 
+	| ast |
+
+	ast := OpalCompiler new
+		       class: self behavior;
+		       isScripting: self isScripting;
+		       parse: self text.
+
+	^ self selectionInterval isEmpty
+		  ifTrue: [ ast bestNodeForPosition: (self cursorPositionIndex ifNil: [ 1 ]) ]
+		  ifFalse: [ ast bestNodeFor: self selectionInterval ]
 ]
 
 { #category : 'command support' }
