@@ -627,7 +627,9 @@ SpCodePresenter >> selectedMethod [
 SpCodePresenter >> selectedNode [
 
 	| ast |
+
 	ast := OpalCompiler new
+		       class: self behavior;
 		       isScripting: self isScripting;
 		       parse: self text.
 

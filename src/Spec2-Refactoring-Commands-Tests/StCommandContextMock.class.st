@@ -37,6 +37,12 @@ StCommandContextMock >> codePresenter [
 ^ self
 ]
 
+{ #category : 'testing' }
+StCommandContextMock >> isInstanceSide [
+
+	^ true
+]
+
 { #category : 'accessing' }
 StCommandContextMock >> name [
 
