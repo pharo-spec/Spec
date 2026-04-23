@@ -11,9 +11,9 @@ ReGenerateVariableAccessorCommandTest >> testGenerateAccessorCommandSuccess [
 	| driver command context |
 	command := StGenerateVariableAccessorCommand new.
 	context := StCommandContextMock new
-		           origin: RBTransformationRuleTestData;
+		           behavior: RBTransformationRuleTestData;
 		           name: #builder.
-	context selectedMethod: context.
+	context method: context.
 	command context: context.
 	driver := command prepareDriver.
 	driver

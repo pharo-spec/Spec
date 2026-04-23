@@ -37,7 +37,7 @@ StConvertTempToInstVarCommand >> prepareDriver [
 
 	^ (ReConvertTemporaryToInstanceVariableDriver newApplication: self application)
 		  scopes: context allScopes
-		  class: context selectedMethod origin
-		  selector: context selectedMethod selector
+		  class: self codePresenter behavior
+		  selector: self codePresenter interactionModel method selector
 		  variable: self codePresenter selectedNode name
 ]

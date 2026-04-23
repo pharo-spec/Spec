@@ -1,12 +1,12 @@
 Class {
-	#name : 'ReRenameArgOrTempCommandCommandTest',
+	#name : 'ReRenameArgOrTempCommandTest',
 	#superclass : 'TestCase',
 	#category : 'Spec2-Refactoring-Commands-Tests',
 	#package : 'Spec2-Refactoring-Commands-Tests'
 }
 
 { #category : 'tests' }
-ReRenameArgOrTempCommandCommandTest >> testRenameArgOrTempCommandSuccess [
+ReRenameArgOrTempCommandTest >> testRenameArgOrTempCommandSuccess [
 
 	| driver command context method ast node dialogMock |
 	method := ReClassToConvertTemporaryToInstanceVariable >> #doAction1.
@@ -15,7 +15,7 @@ ReRenameArgOrTempCommandCommandTest >> testRenameArgOrTempCommandSuccess [
 
 	command := StRenameArgOrTempCommand new.
 	context := StCommandContextMock new
-		           selectedMethod: method;
+		           method: method;
 		           selectedNode: node.
 	command context: context.
 	driver := command prepareDriver.

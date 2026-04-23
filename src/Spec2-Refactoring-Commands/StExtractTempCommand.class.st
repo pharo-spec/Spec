@@ -37,7 +37,7 @@ StExtractTempCommand >> prepareDriver [
 
 	^ (ReExtractTempDriver newApplication: self application)
 		  extract: self codePresenter selectedNode sourceInterval
-		  from: context selectedMethod selector
-		  in: context selectedMethod origin;
+		  from: self codePresenter interactionModel method selector
+		  in: self codePresenter behavior;
 		  scopes: context allScopes
 ]

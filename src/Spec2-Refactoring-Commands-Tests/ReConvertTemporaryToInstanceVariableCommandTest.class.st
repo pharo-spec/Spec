@@ -12,7 +12,9 @@ ReConvertTemporaryToInstanceVariableCommandTest >> testConvertTempCommandSuccess
 	command := StConvertTempToInstVarCommand new.
 	context := StCommandContextMock new
 		           name: #temp;
-		           selectedMethod: ReClassToConvertTemporaryToInstanceVariable >> #doAction1.
+		           behavior: ReClassToConvertTemporaryToInstanceVariable;
+		           selector: #doAction1.
+	context method: context.
 	command context: context.
 	driver := command prepareDriver.
 	driver

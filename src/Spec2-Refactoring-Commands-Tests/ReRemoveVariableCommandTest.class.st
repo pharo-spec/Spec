@@ -1,20 +1,19 @@
 Class {
-	#name : 'ReInlineMethodCommandTest',
+	#name : 'ReRemoveVariableCommandTest',
 	#superclass : 'TestCase',
 	#category : 'Spec2-Refactoring-Commands-Tests',
 	#package : 'Spec2-Refactoring-Commands-Tests'
 }
 
 { #category : 'tests' }
-ReInlineMethodCommandTest >> testInlineMethodCommandSuccess [
+ReRemoveVariableCommandTest >> testRemoveVariableToClassSideCommandSuccess [
 
 	| driver command context |
-	command := StInlineMethodCommand new.
+	command := StRemoveVariableCommand new.
 	context := StCommandContextMock new
-		           sourceInterval: (63 to: 78);
-		           selector: #rewriteUsing:;
-		           behavior: RBTransformationRuleTestData.
-	context method: context.
+		           name: 'foo1';
+		           behavior: RBLintRuleTestData .
+	context variable: context.
 	command context: context.
 	driver := command prepareDriver.
 	driver

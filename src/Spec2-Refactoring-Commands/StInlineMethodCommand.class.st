@@ -37,6 +37,6 @@ StInlineMethodCommand >> prepareDriver [
 	^ (ReInlineMethodDriver newApplication: self application)
 		  scopes: context allScopes
 		  interval: self codePresenter selectedNode sourceInterval
-		  selector: context selectedMethod selector
-		  class: context selectedMethod origin
+		  selector: self codePresenter interactionModel method selector
+		  class: self codePresenter behavior
 ]

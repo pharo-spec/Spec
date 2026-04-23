@@ -10,6 +10,12 @@ Class {
 	#package : 'Spec2-Refactoring-Commands'
 }
 
+{ #category : 'default' }
+StRenameArgOrTempCommand class >> defaultDescription [
+
+	^ 'Rename the selected temporary variable or arg'
+]
+
 { #category : 'accessing' }
 StRenameArgOrTempCommand class >> defaultIconName [
 
@@ -33,7 +39,7 @@ StRenameArgOrTempCommand >> prepareDriver [
 
 	^ ReRenameArgumentOrTemporaryDriver new
 		  sourceNode: self codePresenter selectedNode;
-		  method: context selectedMethod;
+		  method: self codePresenter interactionModel method;
 		  scopes: context allScopes;
 		  yourself
 ]

@@ -8,7 +8,9 @@ Class {
 		'selector',
 		'origin',
 		'selectedNode',
-		'variable'
+		'variable',
+		'behavior',
+		'method'
 	],
 	#category : 'Spec2-Refactoring-Commands-Tests',
 	#package : 'Spec2-Refactoring-Commands-Tests'
@@ -27,6 +29,18 @@ StCommandContextMock >> application [
 ]
 
 { #category : 'accessing' }
+StCommandContextMock >> behavior [
+
+	^ behavior
+]
+
+{ #category : 'accessing' }
+StCommandContextMock >> behavior: aBehavior [
+
+	behavior := aBehavior
+]
+
+{ #category : 'accessing' }
 StCommandContextMock >> codeEditor [
 
 	^ self
@@ -38,10 +52,34 @@ StCommandContextMock >> codePresenter [
 ^ self
 ]
 
+{ #category : 'accessing' }
+StCommandContextMock >> interactionModel [
+
+	^ self
+]
+
+{ #category : 'testing' }
+StCommandContextMock >> isClassVariable [
+
+	^ false
+]
+
 { #category : 'testing' }
 StCommandContextMock >> isInstanceSide [
 
 	^ true
+]
+
+{ #category : 'accessing' }
+StCommandContextMock >> method [
+
+	^ method
+]
+
+{ #category : 'accessing' }
+StCommandContextMock >> method: anObject [
+
+	method := anObject
 ]
 
 { #category : 'accessing' }
