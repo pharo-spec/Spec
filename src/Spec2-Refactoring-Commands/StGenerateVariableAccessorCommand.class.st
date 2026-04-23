@@ -9,6 +9,12 @@ Class {
 }
 
 { #category : 'default' }
+StGenerateVariableAccessorCommand class >> defaultDescription [
+
+	^ 'Generate accessor for the selected instance variable'
+]
+
+{ #category : 'default' }
 StGenerateVariableAccessorCommand class >> defaultIconName [
 
 	^ #smallAdd
@@ -17,7 +23,7 @@ StGenerateVariableAccessorCommand class >> defaultIconName [
 { #category : 'default' }
 StGenerateVariableAccessorCommand class >> defaultName [
 
-	^ ' (T) Generate accessors'
+	^ '(T) Generate accessor'
 ]
 
 { #category : 'testing' }

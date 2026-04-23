@@ -8,6 +8,12 @@ Class {
 	#package : 'Spec2-Refactoring-Commands'
 }
 
+{ #category : 'default' }
+StExtractTempCommand class >> defaultDescription [
+
+	^ 'Extract the selected code into a new temporary variable'
+]
+
 { #category : 'accessing' }
 StExtractTempCommand class >> defaultIconName [
 

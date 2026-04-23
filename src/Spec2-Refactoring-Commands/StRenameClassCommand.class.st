@@ -37,7 +37,7 @@ StRenameClassCommand >> canBeExecuted [
 { #category : 'executing' }
 StRenameClassCommand >> prepareDriver [
 
-	^ (ReRenameClassDriver rename: self codePresenter selectedNode value name)
+	^ (ReRenameClassDriver rename: self codePresenter selectedNode name)
 		  model: RBBrowserEnvironment new;
 		  scopes: context allScopes
 ]

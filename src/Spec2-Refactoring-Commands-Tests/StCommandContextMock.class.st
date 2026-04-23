@@ -114,9 +114,3 @@ StCommandContextMock >> sourceInterval: anInterval [
 
 	sourceInterval := anInterval
 ]
-
-{ #category : 'evaluating' }
-StCommandContextMock >> value [
-
-	^ self
-]

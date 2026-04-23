@@ -8,6 +8,12 @@ Class {
 	#package : 'Spec2-Refactoring-Commands'
 }
 
+{ #category : 'default' }
+StConvertTempToInstVarCommand class >> defaultDescription [
+
+	^ 'Convert selected temporary variable into a new instance variable'
+]
+
 { #category : 'accessing' }
 StConvertTempToInstVarCommand class >> defaultIconName [
 

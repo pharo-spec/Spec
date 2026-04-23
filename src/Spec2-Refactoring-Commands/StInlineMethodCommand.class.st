@@ -8,6 +8,12 @@ Class {
 	#package : 'Spec2-Refactoring-Commands'
 }
 
+{ #category : 'default' }
+StInlineMethodCommand class >> defaultDescription [
+
+	^ 'Inline "self send" method directly into sender method'
+]
+
 { #category : 'accessing' }
 StInlineMethodCommand class >> defaultIconName [
 	^ #smallRightFlush
