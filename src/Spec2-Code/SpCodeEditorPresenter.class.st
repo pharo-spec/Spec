@@ -76,10 +76,35 @@ SpCodeEditorPresenter class >> dirtyAdornment [
 		ifAbsentPut: [ self createAdornmentColor: Color orange ]
 ]
 
+{ #category : 'api - actions' }
+SpCodeEditorPresenter >> actions [
+
+	^ codePresenter actions
+]
+
+{ #category : 'api - actions' }
+SpCodeEditorPresenter >> actions: anActionGroup [
+
+	codePresenter actions: anActionGroup
+]
+
+{ #category : 'api' }
+SpCodeEditorPresenter >> addCodeStyle: aString [
+
+	codePresenter addStyle: aString
+]
+
 { #category : 'api' }
 SpCodeEditorPresenter >> addTextSegmentDecoration: aDecoration [
 
 	codePresenter addTextSegmentDecoration: aDecoration
+]
+
+{ #category : 'api' }
+SpCodeEditorPresenter >> beEditable [
+	"Allow edition (deny readonly)."
+	
+	codePresenter beEditable
 ]
 
 { #category : 'api - model' }
@@ -107,6 +132,13 @@ SpCodeEditorPresenter >> beForScripting [
 	"Use in playgrounds"
 
 	codePresenter beForScripting
+]
+
+{ #category : 'api' }
+SpCodeEditorPresenter >> beNotEditable [
+	"Set content text as not editable (readonly)"
+
+	codePresenter beNotEditable
 ]
 
 { #category : 'accessing' }
@@ -137,6 +169,12 @@ SpCodeEditorPresenter >> connectPresenters [
 	self whenConflictChangedDo: [ self updateConflictPresenter ].
 	
 	codePresenter whenTextChangedDo: [ :aString | self markDirty ]
+]
+
+{ #category : 'api' }
+SpCodeEditorPresenter >> contextMenu: aBlock [
+
+	codePresenter contextMenu: aBlock
 ]
 
 { #category : 'layout' }
@@ -185,6 +223,18 @@ SpCodeEditorPresenter >> initializePresenters [
 	conflictPresenter hide
 ]
 
+{ #category : 'api' }
+SpCodeEditorPresenter >> interactionModel [
+
+	^ codePresenter interactionModel
+]
+
+{ #category : 'api' }
+SpCodeEditorPresenter >> interactionModel: anInteractionModel [
+
+	codePresenter interactionModel: anInteractionModel
+]
+
 { #category : 'testing' }
 SpCodeEditorPresenter >> isConflict [
 
@@ -216,9 +266,33 @@ SpCodeEditorPresenter >> markDirty [
 ]
 
 { #category : 'api' }
+SpCodeEditorPresenter >> placeholder: aString [
+
+	codePresenter placeholder: aString
+]
+
+{ #category : 'api' }
+SpCodeEditorPresenter >> removeCodeStyle: aString [
+
+	codePresenter removeStyle: aString
+]
+
+{ #category : 'api' }
 SpCodeEditorPresenter >> syntaxHighlight: aBoolean [
 
 	codePresenter syntaxHighlight: aBoolean
+]
+
+{ #category : 'api' }
+SpCodeEditorPresenter >> syntaxHighlightTheme [
+	"The name of the syntax highlight theme to use (e.g. 'Blue', 'Vintage', 'Solarized', 'Tango')"
+	^ codePresenter syntaxHighlightTheme
+]
+
+{ #category : 'api' }
+SpCodeEditorPresenter >> syntaxHighlightTheme: aSymbol [
+	"The name of the syntax highlight theme to use (e.g. 'Blue', 'Vintage', 'Solarized', 'Tango')"
+	codePresenter syntaxHighlightTheme: aSymbol
 ]
 
 { #category : 'api' }
@@ -298,4 +372,28 @@ SpCodeEditorPresenter >> whenSubmitDo: aBlock [
 		self unmarkDirty.
 		self unmarkConflict.
 		aBlock cull: text ]
+]
+
+{ #category : 'api' }
+SpCodeEditorPresenter >> withLineNumbers [
+
+	codePresenter withLineNumbers
+]
+
+{ #category : 'api' }
+SpCodeEditorPresenter >> withSyntaxHighlight [
+
+	codePresenter withSyntaxHighlight
+]
+
+{ #category : 'api' }
+SpCodeEditorPresenter >> withoutLineNumbers [
+
+	codePresenter withoutLineNumbers
+]
+
+{ #category : 'api' }
+SpCodeEditorPresenter >> withoutSyntaxHighlight [
+
+	codePresenter withoutSyntaxHighlight
 ]
