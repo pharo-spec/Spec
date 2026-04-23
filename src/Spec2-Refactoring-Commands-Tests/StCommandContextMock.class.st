@@ -7,7 +7,8 @@ Class {
 		'sourceInterval',
 		'selector',
 		'origin',
-		'selectedNode'
+		'selectedNode',
+		'variable'
 	],
 	#category : 'Spec2-Refactoring-Commands-Tests',
 	#package : 'Spec2-Refactoring-Commands-Tests'
@@ -113,4 +114,16 @@ StCommandContextMock >> sourceInterval [
 StCommandContextMock >> sourceInterval: anInterval [
 
 	sourceInterval := anInterval
+]
+
+{ #category : 'accessing' }
+StCommandContextMock >> variable [
+
+	^ variable
+]
+
+{ #category : 'accessing' }
+StCommandContextMock >> variable: aVariable [
+
+	variable := aVariable
 ]
