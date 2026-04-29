@@ -400,7 +400,7 @@ SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: 
 				            source: aString;
 				            environment: self environment;
 				            evaluate ]
-			  on: OCRuntimeSyntaxError , OCUndeclaredVariableWarning
+			  on: OCCodeError, OCRuntimeSyntaxError , OCUndeclaredVariableWarning
 			  do: [ :err |
 					  self announcer announce: (SpCodeEvaluationFailedAnnouncement newContent: aString).
 					  ^ compileErrorBlock value ].
