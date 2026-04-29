@@ -371,7 +371,7 @@ SpCodePresenter >> environment: anEnvironment [
 ]
 
 { #category : 'command support' }
-SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: errorBlock [ 
+SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: errorBlock [
 	"evaluate aString. 
 	 evaluate compileErrorBlock if there are compilation errors. 
 	 evaluate errorBlock is anything happens *during* evaluation (code compiled, but it does not 
@@ -384,28 +384,27 @@ SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: 
 	 anything. 
 	 Instead, the on:do: will catch all errors happening while executing the code once it is 
 	 compiled. "
+
 	| result oldBindings |
-	
 	^ [
-		self announcer announce: (SpCodeWillBeEvaluatedAnnouncement newContent: aString).
-		oldBindings := self interactionModel bindings copy.
-		result := self interactionModel compiler
-			source: aString;
-			environment: self environment;
-			failBlock:  [ 
-				self announcer announce: (SpCodeEvaluationFailedAnnouncement newContent: aString).
-				^ compileErrorBlock value ];
-			evaluate.
-		oldBindings size = self interactionModel bindings size 
-			ifFalse: [ self refreshStyling ].
-		self announcer announce: (SpCodeEvaluationSucceedAnnouncement newContent: aString).
-		result ]
-	on: Error 
-	do: [ :e |
-		self announcer announce: (SpCodeEvaluationFailedAnnouncement 
-			newContent: aString
-			error: e).
-		errorBlock value: e ]
+		  self announcer announce: (SpCodeWillBeEvaluatedAnnouncement newContent: aString).
+		  oldBindings := self interactionModel bindings copy.
+		  [
+			  result := self interactionModel compiler
+				            source: aString;
+				            environment: self environment;
+				            evaluate ]
+			  on: OCRuntimeSyntaxError , OCUndeclaredVariableWarning
+			  do: [ :err |
+					  self announcer announce: (SpCodeEvaluationFailedAnnouncement newContent: aString).
+					  ^ compileErrorBlock value ].
+		  oldBindings size = self interactionModel bindings size ifFalse: [ self refreshStyling ].
+		  self announcer announce: (SpCodeEvaluationSucceedAnnouncement newContent: aString).
+		  result ]
+		  on: Error
+		  do: [ :e |
+				  self announcer announce: (SpCodeEvaluationFailedAnnouncement newContent: aString error: e).
+				  errorBlock value: e ]
 ]
 
 { #category : 'private - bindings' }

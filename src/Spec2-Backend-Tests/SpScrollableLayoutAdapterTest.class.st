@@ -12,7 +12,7 @@ Class {
 { #category : 'accessing' }
 SpScrollableLayoutAdapterTest >> newClassFactory [
 
-	^ ClassFactoryForTestCase new
+	^ ClassFactoryForTestCase environment: SystemEnvironment new
 ]
 
 { #category : 'accessing' }

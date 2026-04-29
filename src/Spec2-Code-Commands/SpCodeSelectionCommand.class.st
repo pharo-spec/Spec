@@ -49,16 +49,16 @@ SpCodeSelectionCommand >> compile: aStream for: anObject in: evalContext [
 		            source: aStream;
 		            yourself.
 
-	evalContext
-		ifNil: [ compiler receiver: anObject ]
-		ifNotNil: [ compiler context: evalContext ].
+	evalContext ifNil: [ compiler receiver: anObject ] ifNotNil: [ compiler context: evalContext ].
 
-	^ compiler
-		  requestor: context;
-		  "it should enable a visibility of current tool variables in new debugger"
-		  isScripting: true;
-		  failBlock: [ ^ nil ];
-		  compile
+	^ [
+		  compiler
+			  requestor: context;
+			  "it should enable a visibility of current tool variables in new debugger"
+			  isScripting: true;
+			  compile ]
+		  on: OCRuntimeSyntaxError , OCUndeclaredVariableWarning
+		  do: [ nil ]
 ]
 
 { #category : 'private' }
