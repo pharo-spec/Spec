@@ -48,7 +48,7 @@ SpGridLayoutBuilderTest >> testBuilderCanAddElementsOnMultipleRaws [
 	self assert: (layout atPoint: 1 @ 1) equals: presenters first.
 	self assert: (layout atPoint: 2 @ 1) equals: presenters second.
 	self assert: (layout atPoint: 1 @ 2) equals: presenters third.
-	self assert: (layout at: 1 @ 3) equals: presenters fourth.
+	self assert: (layout atPoint: 1 @ 3) equals: presenters fourth.
 	self assert: (layout at: 2 @ 3) equals: presenters fifth
 ]
 
