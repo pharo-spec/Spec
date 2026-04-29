@@ -203,6 +203,12 @@ SpCodePresenter >> bindingOf: aString [
 	^ nil
 ]
 
+{ #category : 'accessing' }
+SpCodePresenter >> bindings [
+	
+	^ self interactionModel bindings
+]
+
 { #category : 'testing' }
 SpCodePresenter >> canAddBindingOf: name [
 
