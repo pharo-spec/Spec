@@ -14,7 +14,7 @@ SpApplicationWithLocaleTest >> testLabel [
 	app locale: (Locale isoLanguage: 'en' isoCountry: 'US').
 	app useBackend: #Morphic.
 	string := SpTestLocalizedString from: 'string'.
-	label := app newPresenter: SpLabelPresenter.
+	label := app instantiate: SpLabelPresenter.
 	label label: string.
 	label open.
 	self assert: label adapter widget contents equals: 'string[en-US](1)'.
