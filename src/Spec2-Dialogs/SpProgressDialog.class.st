@@ -45,7 +45,7 @@ SpProgressDialog class >> exampleModal [
 
 	self new
 		title: 'Example Progress';
-		label: 'You are seeing a progress dialog!';
+		message: 'You are seeing a progress dialog!';
 		openModal
 ]
 
@@ -66,13 +66,13 @@ SpProgressDialog >> afterOpenAction [
 ]
 
 { #category : 'api' }
-SpProgressDialog >> informUser: aString during: aBlock [ 
+SpProgressDialog >> informUser: aString during: aBlock [
 	"Pay attention that the aBlock argument does not expect an argument representing the bar.
 	Check class side example."
-	
-	self informUserDuring: [ :bar | 
-		bar label: aString. 
-		aBlock value ]
+
+	self informUserDuring: [ :bar |
+			bar message: aString.
+			aBlock value ]
 ]
 
 { #category : 'initialization' }
