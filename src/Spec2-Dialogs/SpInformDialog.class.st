@@ -31,7 +31,7 @@ SpInformDialog class >> example [
 
 	self new
 		title: 'Inform example';
-		label: 'You are seeing an inform dialog!';
+		message: 'You are seeing an inform dialog!';
 		acceptLabel: 'Close this!';
 		openDialog
 ]
@@ -41,26 +41,25 @@ SpInformDialog class >> exampleModal [
 
 	self new
 		title: 'Inform modal example';
-		label: 'You are seeing an inform dialog!';
+		message: 'You are seeing an inform dialog!';
 		acceptLabel: 'Close this!';
 		openModal
 ]
 
 { #category : 'examples' }
-SpInformDialog class >> exampleMultiLineLabel [ 
+SpInformDialog class >> exampleMultiLineLabel [
 
 	| label |
-
 	label := String streamContents: [ :s |
-		s nextPutAll: 'You are seeing an inform dialog!';
-		  cr;
-		  cr;
-		  nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap'
-		 ].	
+			         s
+				         nextPutAll: 'You are seeing an inform dialog!';
+				         cr;
+				         cr;
+				         nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap' ].
 
 	self new
 		title: 'Inform modal example';
-		label: label;
+		message: label;
 		acceptLabel: 'Close this!';
 		openModal
 ]

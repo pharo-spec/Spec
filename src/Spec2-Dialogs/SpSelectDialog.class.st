@@ -30,12 +30,11 @@ SpSelectDialog class >> example [
 	presenter := self new.
 	presenter
 		title: 'Select example';
-		label: 'Select a class';
+		message: 'Select a class';
 		items: Smalltalk allClassesAndTraits;
 		display: [ :each | each name ];
 		displayIcon: [ :each | self iconNamed: each systemIconName ];
-		onAccept: [ :dialog |
-			dialog presenter inform: dialog presenter selectedItem asString ];
+		onAccept: [ :dialog | dialog presenter inform: dialog presenter selectedItem asString ];
 		openDialog
 ]
 
@@ -59,24 +58,22 @@ SpSelectDialog class >> exampleModal [
 SpSelectDialog class >> exampleMultiLineLabel [
 
 	| presenter label |
-
 	label := String streamContents: [ :s |
-		s nextPutAll: 'Select a class';
-		  cr;
-		  cr;
-		  nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap'
-		 ].
-	
+			         s
+				         nextPutAll: 'Select a class';
+				         cr;
+				         cr;
+				         nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap' ].
+
 	presenter := self new.
 
 	presenter
 		title: 'Select example';
-		label: label;
+		message: label;
 		items: Smalltalk allClassesAndTraits;
 		display: [ :each | each name ];
 		displayIcon: [ :each | self iconNamed: each systemIconName ];
-		onAccept: [ :dialog |
-			dialog presenter inform: dialog presenter selectedItem asString ];
+		onAccept: [ :dialog | dialog presenter inform: dialog presenter selectedItem asString ];
 		openDialog
 ]
 
