@@ -263,7 +263,7 @@ SpApplication >> newPresenter: aPresenterClass [
 
 	self 
 		deprecated: 'Use #instantiate: which is the polymorphic name' 
-		transformWith: '`@receiver new: `@arg' -> '`@receiver instantiate: `@arg'.
+		transformWith: '`@receiver newPresenter: `@arg' -> '`@receiver instantiate: `@arg'.
 
 	^ self instantiate: aPresenterClass
 ]
