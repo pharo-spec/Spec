@@ -41,7 +41,7 @@ SpInformUserDialog class >> exampleModal [
 
 	self new
 		title: 'Example Progress';
-		label: 'You are seeing a progress dialog! Press escape!';
+		message: 'You are seeing a progress dialog! Press escape!';
 		openModal
 ]
 
@@ -117,8 +117,19 @@ SpInformUserDialog >> label [
 
 { #category : 'api' }
 SpInformUserDialog >> label: aString [
+	self 
+		deprecated: 'use #message: instead'
+		transformWith: '`@receiver label: `@arg'
+					-> '`@receiver message: `@arg'.
 
-	label label: aString
+	self message: aString
+]
+
+{ #category : 'api' }
+SpInformUserDialog >> message: aString [
+
+	self setLabel: aString trimBoth.
+	aString ifNotNil: [ label show ]
 ]
 
 { #category : 'initialization' }
@@ -126,6 +137,12 @@ SpInformUserDialog >> reset [
 
 	self label: ''.
 	
+]
+
+{ #category : 'api' }
+SpInformUserDialog >> setLabel: aString [
+
+	label label: aString
 ]
 
 { #category : 'api' }
