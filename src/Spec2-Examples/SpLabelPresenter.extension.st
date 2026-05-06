@@ -16,8 +16,9 @@ SpLabelPresenter class >> exampleWithDecoration [
 	^ self new
 	  	label: 'Label example';
 		displayColor: [ Color random ];
-		displayItalic: [ :aClass | true ];
-		displayBold: [ :aClass | true ];
-		displayUnderline: [ :aClass | true ];
+		displayItalic: [ true ];
+		displayBold: [ true ];
+		displayUnderline: [ true ];
+		displayStrikethrough: [ true ];
 	  	open
 ]

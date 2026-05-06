@@ -82,6 +82,7 @@ SpListPresenter class >> exampleWithDecoratedString [
 		displayItalic: [ :aClass | aClass name includesSubstring: 'abstract' caseSensitive: false ];
 		displayBold: [ :aClass | aClass hasSubclasses ];
 		displayUnderline: [ :aClass | aClass numberOfMethods > 10 ];
+		displayStrikethrough: [ :aClass | aClass isDeprecated ];
 		open
 ]
 

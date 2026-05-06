@@ -123,19 +123,15 @@ SpAbstractWidgetPresenter class >> defaultLayout [
 
 { #category : 'documentation' }
 SpAbstractWidgetPresenter class >> documentExampleCode [
-	| exampleMethod |
 
+	| exampleMethod |
 	exampleMethod := self class methods
-		detect: [ :method | 
-			method protocolName = self documentExamplesProtocol 
-			and: [ method selector = self documentExampleCodeSelector ] ]
-		ifNone: [ ^ nil ].
-			
-	^ ((exampleMethod sourceCode lines 
-		allButFirst 	"Remove method name"
-		reject: [ :each | each trimLeft beginsWith: '<' ]) "Remove pragmas"
-		joinUsing: Character cr)
-		trimmed
+		                 detect: [ :method |
+		                 method protocolName = self documentExamplesProtocol and: [ method selector = self documentExampleCodeSelector ] ]
+		                 ifNone: [ ^ nil ].
+
+	^ ((exampleMethod sourceCode lines allButFirst reject: [ :each | each trimLeft beginsWith: '<' ]) joinUsing: Character cr)
+		  trimBoth "Remove method name" "Remove pragmas"
 ]
 
 { #category : 'documentation' }

@@ -11,7 +11,8 @@ Trait {
 		'backgroundColorAction',
 		'italicAction',
 		'boldAction',
-		'underlineAction'
+		'underlineAction',
+		'striketroughAction'
 	],
 	#category : 'Spec2-Core-Widgets-Table',
 	#package : 'Spec2-Core',
@@ -73,6 +74,20 @@ SpTDecoratedText >> displayItalic: aBlock [
 	 `aBlock` receives one argument (the model element)."
 
 	italicAction := aBlock
+]
+
+{ #category : 'api' }
+SpTDecoratedText >> displayStrikethrough [
+
+	^ striketroughAction
+]
+
+{ #category : 'api' }
+SpTDecoratedText >> displayStrikethrough: aBlock [
+	"If `aBlock` answer true, the cell will be displayed strikethrough.
+	 `aBlock` receives one argument (the model element)."
+
+	striketroughAction := aBlock
 ]
 
 { #category : 'api' }
