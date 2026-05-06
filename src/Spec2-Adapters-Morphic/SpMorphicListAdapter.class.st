@@ -123,6 +123,8 @@ SpMorphicListAdapter >> newListColumn [
 		ifNotNil: [ :aBlock | column displayUnderline: aBlock ].
 	self presenter displayBackgroundColor 
 		ifNotNil: [ :aBlock | column displayBackgroundColor: aBlock ].
+	self presenter displayStruckOut 
+		ifNotNil: [ :aBlock | column displayStruckOut: aBlock ].
 	
 	^ SpMorphicTableColumn new 
 		model: column;

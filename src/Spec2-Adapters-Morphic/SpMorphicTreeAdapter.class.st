@@ -30,6 +30,8 @@ SpMorphicTreeAdapter >> defaultColumn [
 		ifNotNil: [ :aBlock | column displayUnderline: aBlock ].
 	self presenter displayBackgroundColor 
 		ifNotNil: [ :aBlock | column displayBackgroundColor: aBlock ].
+	self presenter displayStruckOut 
+		ifNotNil: [ :aBlock | column displayStruckOut: aBlock ].
 
 	^ self presenter displayIcon 
 		ifNotNil: [ :iconBlock |

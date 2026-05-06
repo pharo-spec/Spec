@@ -20,6 +20,9 @@ SpMorphicLabelAdapter >> applyDecorationsTo: aString [
 	self presenter displayBold ifNotNil: [ :block |
 		(block cull: aString) ifTrue: [ 
 			text addAttribute: TextEmphasis bold ] ].
+	self presenter displayStruckOut ifNotNil: [ :block |
+		(block cull: aString) ifTrue: [ 
+			text addAttribute: TextEmphasis struckOut ] ].
 	self presenter displayItalic ifNotNil: [ :block |
 		(block cull: aString) ifTrue: [ 
 			text addAttribute: TextEmphasis italic ] ].

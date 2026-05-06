@@ -129,6 +129,17 @@ SpMorphicTableCellBuilder >> addItalicColumn: aTableColumn item: item to: conten
 ]
 
 { #category : 'private' }
+SpMorphicTableCellBuilder >> addStruckOutColumn: aTableColumn item: item to: content [
+
+	aTableColumn displayStruckOut ifNotNil: [ :block |
+		(block cull: item) ifTrue: [ 
+			^ content asText addAttribute: TextEmphasis struckOut ] ].
+	
+	^ content
+	
+]
+
+{ #category : 'private' }
 SpMorphicTableCellBuilder >> addUnderlineColumn: aTableColumn item: item to: content [
 
 	aTableColumn displayUnderline ifNotNil: [ :block |
