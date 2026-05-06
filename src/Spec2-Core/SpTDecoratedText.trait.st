@@ -11,7 +11,8 @@ Trait {
 		'backgroundColorAction',
 		'italicAction',
 		'boldAction',
-		'underlineAction'
+		'underlineAction',
+		'displayStruckOut'
 	],
 	#category : 'Spec2-Core-Widgets-Table',
 	#package : 'Spec2-Core',
@@ -73,6 +74,18 @@ SpTDecoratedText >> displayItalic: aBlock [
 	 `aBlock` receives one argument (the model element)."
 
 	italicAction := aBlock
+]
+
+{ #category : 'accessing' }
+SpTDecoratedText >> displayStruckOut [
+
+	^ displayStruckOut
+]
+
+{ #category : 'accessing' }
+SpTDecoratedText >> displayStruckOut: aBlock [
+
+	displayStruckOut := aBlock 
 ]
 
 { #category : 'api' }
