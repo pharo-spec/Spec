@@ -121,6 +121,8 @@ SpMorphicListAdapter >> newListColumn [
 		ifNotNil: [ :aBlock | column displayItalic: aBlock ].
 	self presenter displayUnderline
 		ifNotNil: [ :aBlock | column displayUnderline: aBlock ].
+	self presenter displayStrikethrough
+		ifNotNil: [ :aBlock | column displayStrikethrough: aBlock ].
 	self presenter displayBackgroundColor 
 		ifNotNil: [ :aBlock | column displayBackgroundColor: aBlock ].
 	
