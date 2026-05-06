@@ -9,7 +9,7 @@ CmUICommand >> id [
 			self shortcutKey
 				ifNotNil: [ 'shortcut ', (KMShortcutPrinter toString: self shortcutKey) ]
 				ifNil: [ 'unknown' ] ].
-		parts := name substrings: ' :'.
+		parts := name substrings: ' :()'.
 		stream << parts first asLowercase.
 		parts allButFirstDo: [ :each | stream << each capitalized ] ]
 ]
