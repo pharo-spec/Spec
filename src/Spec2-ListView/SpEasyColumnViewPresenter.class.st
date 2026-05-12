@@ -160,6 +160,12 @@ SpEasyColumnViewPresenter >> displayValueFor: aImage [
 	^ contentView displayValueFor: aImage
 ]
 
+{ #category : 'private' }
+SpEasyColumnViewPresenter >> doActivateAtIndex: aNumber [
+	
+	contentView doActivateAtIndex: aNumber
+]
+
 { #category : 'simulation' }
 SpEasyColumnViewPresenter >> doubleClickAtIndex: aNumber [
 
