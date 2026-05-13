@@ -178,8 +178,8 @@ SpAction >> initialize [
 { #category : 'testing' }
 SpAction >> isVisible [
 
-	^ visible 
-		and: [ actionVisible isNil or: [ actionVisible cull: self context ] ]
+	^ visible and: [ 
+		actionVisible isNil or: [ actionVisible cull: self context ] ]
 ]
 
 { #category : 'accessing' }
