@@ -40,8 +40,9 @@ SpStringTableColumnTest >> testDisplayObjectWithoutFormattingReturnsTheObjectIts
 { #category : 'tests' }
 SpStringTableColumnTest >> testIsSortable [
 	|widget|
+	
 	widget := SpStringTableColumn new.
-	self deny: widget isSortable.
+	self assert: widget isSortable.
 	widget sortFunction: [:a :b|].
 	self assert: widget isSortable.
 	widget sortFunction: nil.
