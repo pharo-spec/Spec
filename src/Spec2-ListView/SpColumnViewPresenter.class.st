@@ -254,6 +254,16 @@ SpColumnViewPresenter >> showColumnHeaders [
 	showColumnHeaders := true
 ]
 
+{ #category : 'private - traversing' }
+SpColumnViewPresenter >> traversePresentersDo: aBlock excluding: aSet [
+
+	super traversePresentersDo: aBlock excluding: aSet.
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter 
+			traversePresentersDo: aBlock 
+			excluding: aSet ]
+]
+
 { #category : 'api - events' }
 SpColumnViewPresenter >> whenColumnsChangedDo: aBlock [
 	"Inform when columns have changed. 
