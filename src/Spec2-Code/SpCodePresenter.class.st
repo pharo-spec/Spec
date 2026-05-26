@@ -663,7 +663,7 @@ SpCodePresenter >> selectedSelector [
 						  extractSelectorFromSource: fullSource
 						  atPosition: index ]
 					ifFalse: [ 
-						extractor extractSelectorFromAST: (RBParser parseFaultyMethod: fullSource)
+						extractor extractSelectorFromAST: (OCParser parseFaultyMethod: fullSource)
 		  					atPosition: index ]
 					]
 ]
