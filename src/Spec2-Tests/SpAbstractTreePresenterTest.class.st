@@ -208,6 +208,48 @@ SpAbstractTreePresenterTest >> testUpdateRootsKeepingSelection [
 ]
 
 { #category : 'tests' }
+SpAbstractTreePresenterTest >> testWhenExpandChangedDoIsRaised [
+	| called |
+	
+	called := false.
+	presenter whenExpandChangedDo: [ :ann | called := true ].
+	presenter announce: (SpTreeExpansionChanged new
+		item: 1;
+		expanded: true;
+		yourself).
+	
+	self assert: called
+]
+
+{ #category : 'tests' }
+SpAbstractTreePresenterTest >> testWhenExpandChangedDoReceivesExpandedFlag [
+	| receivedExpanded |
+	
+	receivedExpanded := nil.
+	presenter whenExpandChangedDo: [ :ann | receivedExpanded := ann expanded ].
+	presenter announce: (SpTreeExpansionChanged new
+		item: 1;
+		expanded: false;
+		yourself).
+			 
+	self deny: receivedExpanded
+]
+
+{ #category : 'tests' }
+SpAbstractTreePresenterTest >> testWhenExpandChangedDoReceivesItem [
+	| receivedItem |
+	
+	receivedItem := nil.
+	presenter whenExpandChangedDo: [ :ann | receivedItem := ann item ].
+	presenter announce: (SpTreeExpansionChanged new
+		item: #test;
+		expanded: true;
+		yourself).
+			 
+	self assert: receivedItem equals: #test
+]
+
+{ #category : 'tests' }
 SpAbstractTreePresenterTest >> testWhenSelectedItemChangedDo [
 	| selectedItem |
 

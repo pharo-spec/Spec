@@ -67,49 +67,43 @@ SpMorphicTreeTableAdapter >> addModelTo: tableMorph [
 	self addColumnsFromPresenterTo: tableMorph.
 	self ensureAtLeastOneColumnIn: tableMorph.
 
-	self presenter selection isMultipleSelection ifTrue: [  
-		tableMorph beMultipleSelection ].
+	self presenter selection isMultipleSelection ifTrue: [ tableMorph beMultipleSelection ].
 
-	self isShowingColumnHeaders 
-		ifTrue: [ tableMorph showColumnHeaders ] 
+	self isShowingColumnHeaders
+		ifTrue: [ tableMorph showColumnHeaders ]
 		ifFalse: [ tableMorph hideColumnHeaders ].
 
-	self isResizable 
-		ifTrue: [ tableMorph beResizable ] 
+	self isResizable
+		ifTrue: [ tableMorph beResizable ]
 		ifFalse: [ tableMorph beNotResizable ].
-		
+
 	self isSearchEnabled
 		ifTrue: [ tableMorph enableSearch ]
 		ifFalse: [ tableMorph disableFunction ].
 
 	tableMorph setBalloonText: self model help.
-	
+
 	tableMorph dataSource: self newDataSource.
-	
-	self presenter selection isEmpty 
-		ifFalse: [ self updateSelectionOf: tableMorph ].
-	
-	self presenter whenSelectionChangedDo: [ 
-		self updateSelectionOf: tableMorph ].
-	
-	self presenter whenRootsChangedDo: [ 
-		tableMorph selectIndexes: #().
-		tableMorph dataSource: self newDataSource ].
-	
-	self presenter whenShowColumnHeadersChangedDo: [ 	
-		self isShowingColumnHeaders 
-			ifTrue: [ tableMorph showColumnHeaders ] 
-			ifFalse: [ tableMorph hideColumnHeaders ] ].
-		
+
+	self presenter selection isEmpty ifFalse: [ self updateSelectionOf: tableMorph ].
+
+	self presenter whenSelectionChangedDo: [ self updateSelectionOf: tableMorph ].
+
+	self presenter whenRootsChangedDo: [
+			tableMorph selectIndexes: #(  ).
+			tableMorph dataSource: self newDataSource ].
+
+	self presenter whenShowColumnHeadersChangedDo: [
+			self isShowingColumnHeaders
+				ifTrue: [ tableMorph showColumnHeaders ]
+				ifFalse: [ tableMorph hideColumnHeaders ] ].
+
 	self registerColumnsChangedEventTo: tableMorph.
-	
+
 	tableMorph
-		onAnnouncement: FTSelectionChanged
-			send: #selectionChanged:
-			to: self;
-		onAnnouncement: FTStrongSelectionChanged
-			send: #strongSelectionChanged:
-			to: self
+		onAnnouncement: FTSelectionChanged send: #selectionChanged: to: self;
+		onAnnouncement: FTStrongSelectionChanged send: #strongSelectionChanged: to: self;
+		onAnnouncement: FTTreeExpansionChanged send: #treeExpansionChanged: to: self
 ]
 
 { #category : 'drawing' }
@@ -492,6 +486,15 @@ SpMorphicTreeTableAdapter >> transferFrom: aTransferMorph event: anEvent [
 		column: (rowAndColumn second ifNil: [ 0 ]);
 		target: aTarget;
 		yourself
+]
+
+{ #category : 'private' }
+SpMorphicTreeTableAdapter >> treeExpansionChanged: anAnnouncement [
+
+	self presenter announce: (SpTreeExpansionChanged new
+			 item: anAnnouncement item;
+			 expanded: anAnnouncement expanded;
+			 yourself)
 ]
 
 { #category : 'private' }
