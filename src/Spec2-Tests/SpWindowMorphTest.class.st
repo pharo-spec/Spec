@@ -34,23 +34,21 @@ SpWindowMorphTest >> testAllowedToClose [
 
 	| application appWindow |
 	application := SpApplication new.
-	windowPresenter := (application newPresenter: SpTextPresenter) open.
+	windowPresenter := (application instantiate: SpTextPresenter) open.
 	appWindow := windowPresenter window.
 
 	windowPresenter askOkToClose: true.
-	self 
-		deny: appWindow model isNil
-		description: 'It tests the window presenter model is not nil by default'.
-	self 
-		assert: appWindow allowedToClose 
+	self deny: appWindow model isNil description: 'It tests the window presenter model is not nil by default'.
+	self
+		assert: appWindow allowedToClose
 		description: 'It tests the window presenter is allowed to close if its application window does have a model'.
 	windowPresenter askOkToClose: false.
-	self 
+	self
 		assert: appWindow allowedToClose
 		description: 'It tests the window presenter is allowed to close if its application window does NOT have a model'.
 
 	appWindow close.
-	
+
 	self deny: (application windows includes: windowPresenter).
 	self assert: application windows isEmpty
 ]
@@ -60,7 +58,7 @@ SpWindowMorphTest >> testCloseWindowRemovesItFromApplicationWindowCollection [
 
 	| application |
 	application := SpApplication new.
-	windowPresenter := (application newPresenter: SpButtonPresenter) open.
+	windowPresenter := (application instantiate: SpButtonPresenter) open.
 	windowPresenter window close.
 	self deny: (application windows includes: windowPresenter).
 	self assert: application windows isEmpty

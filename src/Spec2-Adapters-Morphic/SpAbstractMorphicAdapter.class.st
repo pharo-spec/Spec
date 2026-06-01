@@ -480,7 +480,7 @@ SpAbstractMorphicAdapter >> keyEvent: type code: keyCode shift: shiftBoolean met
 				              ifFalse: [ 2r01000000 ]) ].
 	controlBoolean ifTrue: [ modifiers := modifiers | 2r00010000 ].
 	optionBoolean ifTrue: [
-			modifiers := modifiers | (Smalltalk os isWindows | Smalltalk os isUnix
+			modifiers := modifiers | (OSPlatform current isWindows |  OSPlatform current isUnix
 				              ifTrue: [ 2r01000000 ]
 				              ifFalse: [ 2r00100000 ]) ].
 
