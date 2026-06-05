@@ -263,6 +263,12 @@ SpFilteringListPresenter >> reapplyOrResetFilter [
 	self items ifEmpty: [ self resetFilter ]
 ]
 
+{ #category : 'accessing' }
+SpFilteringListPresenter >> refresh [
+
+	listPresenter refresh
+]
+
 { #category : 'api' }
 SpFilteringListPresenter >> resetFilter [
 

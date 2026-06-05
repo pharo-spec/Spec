@@ -119,6 +119,12 @@ SpLocationIconProvider >> menuIconNamed: aName [
 	^ self iconNamed: aName
 ]
 
+{ #category : 'initialization' }
+SpLocationIconProvider >> reset [
+
+	icons := Dictionary new
+]
+
 { #category : 'accessing' }
 SpLocationIconProvider >> setBlankIcon: aForm [
 	"To be able to specify the form that represents a missing icon."

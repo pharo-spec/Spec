@@ -293,3 +293,24 @@ SpTreeListViewPresenter >> setupAction [
 
 	^ setupAction
 ]
+
+{ #category : 'private - traversing' }
+SpTreeListViewPresenter >> traversePresentersDo: aBlock excluding: aSet [
+
+	super traversePresentersDo: aBlock excluding: aSet.
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter 
+			traversePresentersDo: aBlock 
+			excluding: aSet ]
+]
+
+{ #category : 'events' }
+SpTreeListViewPresenter >> whenExpandChangedDo: aBlock [
+	"Inform when a tree node has been expanded or collapsed.
+	 `aBlock` receives one optional argument (an instance of `SpTreeExpansionChanged`)."
+
+	self announcer 
+		when: SpTreeExpansionChanged 
+		do: aBlock 
+		for: aBlock receiver
+]

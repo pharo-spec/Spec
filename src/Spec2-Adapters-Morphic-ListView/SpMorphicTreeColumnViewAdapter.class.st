@@ -42,3 +42,23 @@ SpMorphicTreeColumnViewAdapter >> selectedRowPresenter [
 		ifFound: [ :aRow | aRow submorphs first submorphs last presenter ]
 		ifNone: [ nil ] 
 ]
+
+{ #category : 'api - selection' }
+SpMorphicTreeColumnViewAdapter >> traversePresentersDo: aBlock excluding: aSet [
+	| exposedRows |
+	
+	exposedRows := self widget container submorphs 
+		select: [ :each | each class = FTTableRowMorph ].
+	
+	(exposedRows
+		flatCollect: [ :each | 	
+			"FTTableRowMorph, 
+			 FTIndentedCellMorph, 
+			 last morph = our morph"
+			each submorphs first submorphs collect: #presenter ])
+		do: [ :each | 
+			each ifNotNil: [
+				each 
+					traversePresentersDo: aBlock 
+					excluding: aSet ] ]
+]

@@ -12,7 +12,8 @@ Class {
 		'actionVisible',
 		'id',
 		'dynamicName',
-		'state'
+		'state',
+		'actionState'
 	],
 	#category : 'Spec2-Commander2-Action',
 	#package : 'Spec2-Commander2',
@@ -78,6 +79,12 @@ SpAction >> action: aBlock [
 SpAction >> actionEnabled: aBlock [
 
 	actionEnabled := aBlock
+]
+
+{ #category : 'accessing' }
+SpAction >> actionState: aBlock [
+
+	actionState := aBlock
 ]
 
 { #category : 'accessing' }
@@ -149,7 +156,7 @@ SpAction >> execute [
 SpAction >> hasState [
 	"state can be true/false. If nil this is a regular menu."
 
-	^ state isNotNil
+	^ state isNotNil or: [ actionState isNotNil ]
 ]
 
 { #category : 'comparing' }
@@ -230,8 +237,9 @@ SpAction >> shortcut: aKeyCombination [
 { #category : 'accessing - state' }
 SpAction >> state [
 	"state can be true/false or nil. This will be used for check menu items (and toggleable buttons)"
+	actionState ifNotNil: [ ^ actionState cull: self context ].
 
-	^ state
+	^ state 
 ]
 
 { #category : 'accessing - state' }
