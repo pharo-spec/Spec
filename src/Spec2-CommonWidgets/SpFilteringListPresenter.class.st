@@ -380,7 +380,14 @@ SpFilteringListPresenter >> whenActivatedDo: aBlock [
 
 { #category : 'api - events' }
 SpFilteringListPresenter >> whenFilterChangedDo: aBlock [
+
 	filterInputPresenter whenTextChangedDo: aBlock
+]
+
+{ #category : 'api - events' }
+SpFilteringListPresenter >> whenRowPresenterInstantiatedDo:  aBlock [
+
+	listPresenter whenRowPresenterInstantiatedDo:  aBlock
 ]
 
 { #category : 'api - events' }
