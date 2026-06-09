@@ -56,6 +56,11 @@ SpCodeInteractionModel >> compiler [
 		yourself
 ]
 
+{ #category : 'interactive error protocol' }
+SpCodeInteractionModel >> correctFrom: start to: stop with: aString [ 
+	self owner adapter widget correctFrom: start to: stop with: aString 
+]
+
 { #category : 'accessing' }
 SpCodeInteractionModel >> doItContext [
 
