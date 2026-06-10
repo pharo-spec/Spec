@@ -112,6 +112,23 @@ SpTreeTablePresenter class >> exampleWithDecoratedString [
 ]
 
 { #category : '*Spec2-Examples' }
+SpTreeTablePresenter class >> exampleWithExpansion [
+
+	^ self new
+		addColumn: (SpCompositeTableColumn new
+			title: 'Classes';
+			addColumn: (SpImageTableColumn new 
+				evaluated: [ :aClass | self iconNamed: aClass systemIconName]; 
+				width: 20);
+			addColumn: (SpStringTableColumn evaluated: #name);
+			yourself);
+		roots: { Object };
+		children: [ :aClass | aClass subclasses ];
+		whenExpandChangedDo: [ :ann | (ann item -> ann expanded) crTrace ];
+		open
+]
+
+{ #category : '*Spec2-Examples' }
 SpTreeTablePresenter class >> exampleWithTwoColumns [ 
 
 	^ self  new
