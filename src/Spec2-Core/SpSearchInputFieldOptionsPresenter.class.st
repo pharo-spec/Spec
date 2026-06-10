@@ -42,10 +42,10 @@ SpSearchInputFieldOptionsPresenter >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
 		spacing: 2;
-		add: substringOptionButton width: 95;
-		add: regexpOptionButton width: 70;
-		add: exactOptionButton width: 70;
-		add: caseCheckBox width: 70;
+		add: substringOptionButton;
+		add: regexpOptionButton;
+		add: exactOptionButton;
+		add: caseCheckBox;
 		yourself
 ]
 
