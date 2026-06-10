@@ -303,14 +303,3 @@ SpTreeListViewPresenter >> traversePresentersDo: aBlock excluding: aSet [
 			traversePresentersDo: aBlock 
 			excluding: aSet ]
 ]
-
-{ #category : 'events' }
-SpTreeListViewPresenter >> whenExpandChangedDo: aBlock [
-	"Inform when a tree node has been expanded or collapsed.
-	 `aBlock` receives one optional argument (an instance of `SpTreeExpansionChanged`)."
-
-	self announcer 
-		when: SpTreeExpansionChanged 
-		do: aBlock 
-		for: aBlock receiver
-]

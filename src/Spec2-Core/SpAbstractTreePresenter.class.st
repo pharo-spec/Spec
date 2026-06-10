@@ -595,6 +595,17 @@ SpAbstractTreePresenter >> whenActivatedDo: aBlock [
 ]
 
 { #category : 'api - events' }
+SpAbstractTreePresenter >> whenExpandChangedDo: aBlock [
+	"Inform when a tree node has been expanded or collapsed.
+	 `aBlock` receives one optional argument (an instance of `SpTreeExpansionChanged`)."
+
+	self announcer 
+		when: SpTreeExpansionChanged 
+		do: aBlock 
+		for: aBlock receiver
+]
+
+{ #category : 'api - events' }
 SpAbstractTreePresenter >> whenMultiSelectionChangedDo: aBlockClosure [ 
 	"Inform when selection mode has changed. 
 	 `aBlock` has three optional arguments: 

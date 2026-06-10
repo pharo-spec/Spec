@@ -271,17 +271,6 @@ SpTreeColumnViewPresenter >> whenColumnsChangedDo: aBlock [
 	self property: #columns whenChangedDo: aBlock
 ]
 
-{ #category : 'events' }
-SpTreeColumnViewPresenter >> whenExpandChangedDo: aBlock [
-	"Inform when a tree node has been expanded or collapsed.
-	 `aBlock` receives one optional argument (an instance of `SpTreeExpansionChanged`)."
-
-	self announcer 
-		when: SpTreeExpansionChanged 
-		do: aBlock 
-		for: aBlock receiver
-]
-
 { #category : 'api - events' }
 SpTreeColumnViewPresenter >> whenIsResizableChangedDo: aBlock [
 	"Inform when resizable property has changed. 
