@@ -492,9 +492,9 @@ SpMorphicTreeTableAdapter >> transferFrom: aTransferMorph event: anEvent [
 SpMorphicTreeTableAdapter >> treeExpansionChanged: anAnnouncement [
 
 	self presenter announce: (SpTreeExpansionChanged new
-			 item: anAnnouncement item;
-			 expanded: anAnnouncement expanded;
-			 yourself)
+		item: anAnnouncement item;
+		expanded: anAnnouncement expanded;
+		yourself)
 ]
 
 { #category : 'private' }
