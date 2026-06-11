@@ -328,17 +328,14 @@ SpCodePresenter >> doBrowseMethodsMatchingStringSensitive [
 
 { #category : 'commands' }
 SpCodePresenter >> doBrowseSenders [
-	| variableOrClassName variable |
-	
-	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
-	variable := self lookupEnvironment lookupVar: variableOrClassName.
 
-	"For global and class variables, sender-of shows intead the using methods"
-	(variable isNotNil and: [(variable isGlobalVariable or: [variable isClassVariable])]) 
-		ifTrue: [ self systemNavigation openBrowserFor: variable name withMethods: variable usingMethods  ]
-		ifFalse: [ self systemNavigation browseAllReferencesTo: variableOrClassName  ]
-		
-	
+	| variableOrClassName variable |
+	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
+	variable := self lookupEnvironment lookupVar: variableOrClassName. "For global and class variables, sender-of shows intead the using methods"
+	(variable isNotNil and: [ variable isGlobalVariable or: [ variable isClassVariable ] ])
+		ifTrue: [ self systemNavigation openBrowserFor: variable name withMethods: variable usingMethods ]
+		ifFalse: [
+		(Smalltalk tools toolNamed: #messageList) browseSendersOfAll: { variableOrClassName } from: self interactionModel behavior ]
 ]
 
 { #category : 'private - bindings' }
