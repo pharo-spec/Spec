@@ -27,5 +27,6 @@ SpIconStylerRenderer >> addDecoration: aDecoration [
 { #category : 'rendering' }
 SpIconStylerRenderer >> clearDecorations [
 
-	textModel removeAllTextSegmentDecorations
+	"do nothing, we do not clean decorations for now"
+	"textModel removeAllTextSegmentDecorations"
 ]
