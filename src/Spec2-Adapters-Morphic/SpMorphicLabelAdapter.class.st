@@ -57,6 +57,12 @@ SpMorphicLabelAdapter >> applyStyle: aMorph [
 
 ]
 
+{ #category : 'testing' }
+SpMorphicLabelAdapter >> backgroundColor [
+
+	^ self widget backgroundColor
+]
+
 { #category : 'accessing' }
 SpMorphicLabelAdapter >> beJustifyCenter [
 ]
