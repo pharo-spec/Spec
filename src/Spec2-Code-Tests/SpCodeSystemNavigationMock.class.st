@@ -17,6 +17,18 @@ SpCodeSystemNavigationMock >> browse: aClass [
 ]
 
 { #category : 'accessing' }
+SpCodeSystemNavigationMock >> browseAllImplementorsOf: aSymbol from: aCallerClass [
+
+	messageList := self allImplementorsOf: aSymbol 
+]
+
+{ #category : 'accessing' }
+SpCodeSystemNavigationMock >> browseAllSendersOf: aSymbol from: aCallerClass [
+
+	messageList := self allSendersOf: aSymbol
+]
+
+{ #category : 'accessing' }
 SpCodeSystemNavigationMock >> browseClass [
 
 	^ browseClass
