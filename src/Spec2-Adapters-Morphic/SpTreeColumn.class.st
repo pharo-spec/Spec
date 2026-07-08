@@ -20,6 +20,7 @@ SpTreeColumn >> bindKeyCombination: aKMCombination toAction: aBlock [
 SpTreeColumn >> rowMorphFor: aNode [ 
 	| node rowMorph |
 	
+	<ignoreNotImplementedSelectors: #( nodeModel )>
 	node := aNode nodeModel.
 	rowMorph := self rowMorphGetSelector
 		ifNil: [node rowMorphForColumn: self]

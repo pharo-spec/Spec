@@ -27,11 +27,11 @@ SpDemoTextInputPresenter >> defaultLayout [
 		  add: 'Normal:' atPoint: 1 @ 1;
 		  add: fieldNormal atPoint: 2 @ 1 span: 2 @ 1;
 		  add: 'Disabled:' atPoint: 1 @ 2;
-		  add: fieldDisabled at: 2 @ 2 span: 2 @ 1;
-		  add: 'Placeholder:' at: 1 @ 3;
-		  add: fieldPlaceholderText at: 2 @ 3 span: 2 @ 1;
-		  add: 'Password:' at: 1 @ 4;
-		  add: fieldEncrypted at: 2 @ 4 span: 2 @ 1;
+		  add: fieldDisabled atPoint: 2 @ 2 span: 2 @ 1;
+		  add: 'Placeholder:' atPoint: 1 @ 3;
+		  add: fieldPlaceholderText atPoint: 2 @ 3 span: 2 @ 1;
+		  add: 'Password:' atPoint: 1 @ 4;
+		  add: fieldEncrypted atPoint: 2 @ 4 span: 2 @ 1;
 		  beColumnNotHomogeneous;
 		  yourself
 ]

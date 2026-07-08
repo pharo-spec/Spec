@@ -34,7 +34,7 @@ SpMorphicProgressBarAdapter >> barStyle [
 	^ SpMorphStyle 
 		fromStylesheet: self styleSheet 
 		baseStyleName: self styleName, ':bar'
-		otherStyles: self presenterStyles
+		otherStyles: self deepPresenterStyles
 ]
 
 { #category : 'factory' }
@@ -78,7 +78,7 @@ SpMorphicProgressBarAdapter >> labelStyle [
 	^ SpMorphStyle
 		fromStylesheet: self styleSheet 
 		baseStyleName: self styleName, ':label'
-		otherStyles: self presenterStyles
+		otherStyles: self deepPresenterStyles
 ]
 
 { #category : 'factory' }

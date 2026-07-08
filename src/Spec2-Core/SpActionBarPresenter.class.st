@@ -40,6 +40,18 @@ SpActionBarPresenter >> add: aButtonPresenter [
 ]
 
 { #category : 'api' }
+SpActionBarPresenter >> addItemLeft: anItem [
+
+	self add: anItem
+]
+
+{ #category : 'api' }
+SpActionBarPresenter >> addItemRight: anItem [
+
+	self addLast: anItem
+]
+
+{ #category : 'api' }
 SpActionBarPresenter >> addLast: aButtonPresenter [
 	"Add a button presenter to be shown at the end of the action bar (at the right)."
 
@@ -66,7 +78,7 @@ SpActionBarPresenter >> centerPresenter: aPresenter [
 SpActionBarPresenter >> initialize [
 
 	super initialize.
-	items := Dictionary new asValueHolder
+	items := DictionaryValueHolder value: Dictionary new
 ]
 
 { #category : 'api' }

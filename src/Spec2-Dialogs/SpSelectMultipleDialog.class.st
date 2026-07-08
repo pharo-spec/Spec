@@ -27,12 +27,11 @@ SpSelectMultipleDialog class >> example [
 	presenter := self new.
 	presenter
 		title: 'Multiple select example';
-		label: 'Select multiple classes';
+		message: 'Select multiple classes';
 		items: Smalltalk allClassesAndTraits;
 		display: [ :each | each name ];
 		displayIcon: [ :each | self iconNamed: each systemIconName ];
-		onAccept: [ :dialog |
-			dialog presenter inform: dialog presenter selectedItems asString ];
+		onAccept: [ :dialog | dialog presenter inform: dialog presenter selectedItems asString ];
 		openDialog
 ]
 
@@ -72,24 +71,22 @@ SpSelectMultipleDialog class >> exampleModalWithSelection [
 SpSelectMultipleDialog class >> exampleMultiLineLabel [
 
 	| presenter label |
-
 	label := String streamContents: [ :s |
-		s nextPutAll: 'Select multiple classes';
-		  cr;
-		  cr;
-		  nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap'
-		 ].
-	
+			         s
+				         nextPutAll: 'Select multiple classes';
+				         cr;
+				         cr;
+				         nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap' ].
+
 	presenter := self new.
 
 	presenter
 		title: 'Select multiple example';
-		label: label;
+		message: label;
 		items: Smalltalk allClassesAndTraits;
 		display: [ :each | each name ];
 		displayIcon: [ :each | self iconNamed: each systemIconName ];
-		onAccept: [ :dialog |
-			dialog presenter inform: dialog presenter selectedItem asString ];
+		onAccept: [ :dialog | dialog presenter inform: dialog presenter selectedItems asString ];
 		openDialog
 ]
 

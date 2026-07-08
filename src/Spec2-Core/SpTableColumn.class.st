@@ -174,6 +174,15 @@ SpTableColumn >> isEditable [
 ]
 
 { #category : 'testing' }
+SpTableColumn >> isExpand [
+	self 
+		deprecated: 'This was wrong from the start, but we carried of for too much time so now is everywhere.'
+		transformWith: '`@receiver isExpand' -> '`@receiver isExpandable'.
+
+	^ self isExpandable
+]
+
+{ #category : 'testing' }
 SpTableColumn >> isExpandable [
 	"Answer if this column is expandable"
 

@@ -20,19 +20,6 @@ SpImageAdapterTest >> imageForm [
 ]
 
 { #category : 'building' }
-SpImageAdapterTest >> testAutoscale [
-
-	self presenter image: self imageForm.
-
-	self presenter autoScale: false.
-	self deny: self adapter hasImageAutoscaled.
-
-	self presenter autoScale: true.
-	self assert: self adapter hasImageAutoscaled.
-
-]
-
-{ #category : 'building' }
 SpImageAdapterTest >> testSettingAnImageSetsTheImage [
 
 	self presenter image: self imageForm.

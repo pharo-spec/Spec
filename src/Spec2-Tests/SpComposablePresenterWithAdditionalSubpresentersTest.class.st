@@ -19,11 +19,8 @@ SpComposablePresenterWithAdditionalSubpresentersTest >> setUp [
 SpComposablePresenterWithAdditionalSubpresentersTest >> testOpening [
 
 	| aPresenter |
-	aPresenter := application newPresenter:
-		              SpTestingPresenterWithAdditionalPresenters.
+	aPresenter := application instantiate: SpTestingPresenterWithAdditionalPresenters.
 	aPresenter open.
-	#( subpresenter1 subpresenter2 subpresenter3 ) do: [ :aKey | 
-		self
-			assert: (aPresenter additionalSubpresentersMap at: aKey) owner
-			equals: aPresenter ]
+	#( subpresenter1 subpresenter2 subpresenter3 ) do: [ :aKey |
+		self assert: (aPresenter additionalSubpresentersMap at: aKey) owner equals: aPresenter ]
 ]

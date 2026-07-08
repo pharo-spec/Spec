@@ -306,6 +306,16 @@ SpAbstractEasyTreeListViewPresenter >> verticalAlignment [
 	^ contentView verticalAlignment
 ]
 
+{ #category : 'events' }
+SpAbstractEasyTreeListViewPresenter >> whenExpandChangedDo: aBlock [
+	"Inform when notification of expand happens."
+
+	self announcer 
+		when: SpTreeExpansionChanged 
+		do: aBlock 
+		for: aBlock receiver
+]
+
 { #category : 'api - events' }
 SpAbstractEasyTreeListViewPresenter >> whenMenuChangedDo: aBlock [
 

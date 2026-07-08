@@ -33,6 +33,12 @@ SpMorphicCodeAdapter >> bindingOf: aString [
 	^ self presenter bindingOf: aString
 ]
 
+{ #category : 'accessing' }
+SpMorphicCodeAdapter >> bindings [
+
+	^ self presenter bindings
+]
+
 { #category : 'factory' }
 SpMorphicCodeAdapter >> buildWidget [
 	| newWidget |

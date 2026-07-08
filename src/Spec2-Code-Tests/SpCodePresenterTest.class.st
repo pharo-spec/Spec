@@ -607,6 +607,14 @@ SpCodePresenterTest >> testEvaluateSendAnnouncements [
 	self assert: failed
 ]
 
+{ #category : 'tests - command support' }
+SpCodePresenterTest >> testEvaluateTokenizerError [
+
+	self 
+		assert: (presenter evaluate: '#1' onCompileError: [ #compile ] onError: [ :e | #error ])
+		equals: #compile
+]
+
 { #category : 'tests' }
 SpCodePresenterTest >> testNilTestSelectedSelectorDoesNotBreakExecution [
 	"Code presenter has nil text for some reason"

@@ -85,3 +85,16 @@ SpTreePresenter class >> exampleWithDecoratedString [
 		children: [ :aClass | aClass subclasses ];
 		open
 ]
+
+{ #category : '*Spec2-Examples' }
+SpTreePresenter class >> exampleWithExpansion [
+
+	<sampleInstance>
+	^ self new
+		  roots: { Object };
+		  children: [ :aClass | aClass subclasses ];
+		  displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
+		  display: [ :aClass | aClass name ];
+		  whenExpandChangedDo: [ :ann | (ann item -> ann expanded) crTrace ];
+		  open
+]

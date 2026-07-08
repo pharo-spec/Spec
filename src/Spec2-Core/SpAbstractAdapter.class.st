@@ -70,7 +70,11 @@ SpAbstractAdapter >> adapt: aPresenter [
 	unsubscribed := false.
 	"Check if the presenter already had an adapter. If yes, we must first notify it to give it a chance
 	to cancel its subscriptions to avoid memory leaks and potential VM crashes"
-	aPresenter adapter ifNotNil: [ :oldAdapter | oldAdapter unsubscribe ].
+	aPresenter adapter ifNotNil: [
+		"setting it to nil will trigger the ubsubscribe correctly. 
+		 is important to keep the adapter removal cycle in one single point to avoid
+		 possible leaks"
+		aPresenter adapter: nil ].
 
 	model := aPresenter.
 	aPresenter addDependent: self.

@@ -18,7 +18,8 @@ SpCodeMethodInteractionModel class >> on: aMethod [
 { #category : 'accessing' }
 SpCodeMethodInteractionModel >> behavior [
 
-	^ self method ifNotNil: [ self method methodClass ]
+	^ self method ifNotNil: [ 
+		self method methodClass "ifNotNil: #instanceSide" ]
 ]
 
 { #category : 'accessing' }
@@ -31,14 +32,14 @@ SpCodeMethodInteractionModel >> bindingOf: aString [
 SpCodeMethodInteractionModel >> compiler [
 
 	^ super compiler
-		class: self behavior;
+		"class: self behavior;"
 		yourself
 ]
 
 { #category : 'accessing' }
 SpCodeMethodInteractionModel >> doItReceiver [
 
-	^ self behavior instanceSide
+	^ self behavior ifNotNil: #instanceSide
 ]
 
 { #category : 'testing' }

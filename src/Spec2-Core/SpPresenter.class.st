@@ -35,7 +35,6 @@ Be careful about code order if you are overriding initialize method.
 Normally in Spec initializing instance variables should be done BEFORE calling `super initialize` (so the opposite of the normal approach), because super initialize calls `initalizePresenters` and `connectPresenters` that normally would make use of those variables.
 
 ## Layout
-
 As a general principle refer to the subclasses of`SpExecutableLayout`.
 
 `defaultLayout` must be defined in the class side of my subclasses.
@@ -566,7 +565,8 @@ SpPresenter >> initialExtent [
 
 { #category : 'initialization' }
 SpPresenter >> initialize [
-
+	
+	self class initializeSlots: self.
 	super initialize.
 
 	visible := true.
@@ -693,7 +693,9 @@ SpPresenter >> isBuilt [
 SpPresenter >> isDisplayed [
 	"Answer if the widget is currently displayed on screen"
 
-	^ self hasWindow and: [ self root isDisplayed ]
+	self withWindowDo: [ :w | ^ w isDisplayed ].
+	
+	^ false
 ]
 
 { #category : 'testing' }

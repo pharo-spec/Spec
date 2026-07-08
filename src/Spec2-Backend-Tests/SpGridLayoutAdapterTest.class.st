@@ -59,8 +59,8 @@ SpGridLayoutAdapterTest >> testBeColumnHomogeneous [
 	self openInstance.
 
 	self
-		assert: presenter adapter widget submorphs first width
-		equals: presenter adapter widget submorphs second width
+		assert: (self adapter extentOfChildAt: 1) x
+		equals: (self adapter extentOfChildAt: 2) x
 ]
 
 { #category : 'tests' }
@@ -74,8 +74,8 @@ SpGridLayoutAdapterTest >> testBeColumnNotHomogeneous [
 	self openInstance.
 
 	self
-		deny: presenter adapter widget submorphs first width
-		equals: presenter adapter widget submorphs second width
+		deny: (self adapter extentOfChildAt: 1) x
+		equals: (self adapter extentOfChildAt: 2) x
 ]
 
 { #category : 'tests' }
@@ -84,35 +84,29 @@ SpGridLayoutAdapterTest >> testBeRowHomogeneous [
 	layout
 		beRowHomogeneous;
 		add: 'Test' atPoint: 1 @ 1;
-		add: (presenter newMorph morph: (Morph new extent: 40 @ 40))
+		add: (presenter newButton extent: 40 @ 40; yourself)
 		atPoint: 1 @ 2.
 
 	self openInstance.
 
 	self
-		assert: presenter adapter widget submorphs first height
-		equals: presenter adapter widget submorphs second height
+		assert: (self adapter extentOfChildAt: 1) y
+		equals: (self adapter extentOfChildAt: 2) y
 ]
 
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testBeRowNotHomogeneous [
 
-	| testMorph |
-	testMorph := Morph new
-		             vResizing: #rigid;
-		             extent: 40 @ 40;
-		             yourself.
-
 	layout
 		beRowNotHomogeneous;
 		add: 'Test' atPoint: 1 @ 1;
-		add: (presenter newMorph morph: testMorph) atPoint: 1 @ 2.
+		add: (presenter newButton extent: 40 @ 40; yourself) atPoint: 1 @ 2.
 
 	self openInstance.
 
 	self
-		deny: presenter adapter widget submorphs first height
-		equals: presenter adapter widget submorphs second height
+		deny: (self adapter extentOfChildAt: 1) y
+		equals: (self adapter extentOfChildAt: 2) y
 ]
 
 { #category : 'tests' }
@@ -127,9 +121,9 @@ SpGridLayoutAdapterTest >> testColumnSpanColumnHomogeneous [
 	self openInstance.
 
 	self
-		assert: presenter adapter widget submorphs first width
-		equals: presenter adapter widget submorphs second width
-			+ presenter adapter widget submorphs third width
+		assert: (self adapter extentOfChildAt: 1) x
+		equals: (self adapter extentOfChildAt: 2) x
+			+ (self adapter extentOfChildAt: 3) x
 ]
 
 { #category : 'tests' }
@@ -145,12 +139,12 @@ SpGridLayoutAdapterTest >> testColumnSpanColumnNotHomogeneous [
 
 	"the first column width is equal to the sum of two columns"
 	self
-		assert: presenter adapter widget submorphs first width
-		equals: presenter adapter widget submorphs second width
-			+ presenter adapter widget submorphs third width.
+		assert: (self adapter extentOfChildAt: 1) x
+		equals: (self adapter extentOfChildAt: 2) x
+			+ (self adapter extentOfChildAt: 3) x.
 	"the first column still needs to be smaller than the first"
-	self assert: presenter adapter widget submorphs second width
-		< presenter adapter widget submorphs third width
+	self assert: (self adapter extentOfChildAt: 2) x
+		< (self adapter extentOfChildAt: 3) x
 ]
 
 { #category : 'tests' }
@@ -176,40 +170,29 @@ SpGridLayoutAdapterTest >> testRemoveElementRemovesFromAdapter [
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testRowSpanRowHomogeneous [
 
-	| testMorph |
-	testMorph := Morph new
-		             vResizing: #rigid;
-		             extent: 40 @ 40;
-		             yourself.
-
 	layout
 		beRowHomogeneous;
 		add: 'Test 1' atPoint: 1 @ 1;
-		add: (presenter newMorph morph: testMorph)
+		add: (presenter newButton extent: 40 @ 40; yourself)
 		atPoint: 2 @ 1
 		span: 1 @ 2;
 		add: 'Test 2' atPoint: 1 @ 2.
 
 	self openInstance.
+
 	self
-		assert: presenter adapter widget submorphs second height
-		equals: presenter adapter widget submorphs first height
-			+ presenter adapter widget submorphs third height
+		assert: (self adapter extentOfChildAt: 2) y
+		equals: (self adapter extentOfChildAt: 1) y
+			+ (self adapter extentOfChildAt: 3) y
 ]
 
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testRowSpanRowNotHomogeneous [
 
-	| testMorph |
-	testMorph := Morph new
-		             vResizing: #rigid;
-		             extent: 40 @ 40;
-		             yourself.
-
 	layout
 		beRowNotHomogeneous;
 		add: 'Test 1' atPoint: 1 @ 1;
-		add: (presenter newMorph morph: testMorph)
+		add: (presenter newButton extent: 40 @ 40; yourself)
 		atPoint: 2 @ 1
 		span: 1 @ 2;
 		add: 'Test 2' atPoint: 1 @ 2.
@@ -217,7 +200,7 @@ SpGridLayoutAdapterTest >> testRowSpanRowNotHomogeneous [
 	self openInstance.
 
 	self
-		assert: presenter adapter widget submorphs second height
-		equals: presenter adapter widget submorphs first height
-			+ presenter adapter widget submorphs third height
+		assert: (self adapter extentOfChildAt: 2) y
+		equals: (self adapter extentOfChildAt: 1) y
+			+ (self adapter extentOfChildAt: 3) y
 ]

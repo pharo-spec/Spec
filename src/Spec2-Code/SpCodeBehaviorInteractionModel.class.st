@@ -36,8 +36,14 @@ SpCodeBehaviorInteractionModel >> bindingOf: aString [
 SpCodeBehaviorInteractionModel >> compiler [
 
 	^ super compiler
-		class: self behavior;
+		"class: self behavior;"
 		yourself
+]
+
+{ #category : 'accessing' }
+SpCodeBehaviorInteractionModel >> doItReceiver [
+
+	^ self behavior instanceSide
 ]
 
 { #category : 'testing' }

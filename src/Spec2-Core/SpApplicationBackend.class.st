@@ -117,6 +117,12 @@ SpApplicationBackend >> resetAdapterBindings [
 	adapterBindings := self adapterBindingsClass new
 ]
 
+{ #category : 'running' }
+SpApplicationBackend >> runOn: anApplication [
+
+	^ anApplication start
+]
+
 { #category : 'ui' }
 SpApplicationBackend >> showWaitCursorWhile: aBlock inApplication: anApplication [
 

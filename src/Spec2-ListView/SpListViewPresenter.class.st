@@ -317,3 +317,13 @@ SpListViewPresenter >> setupAction [
 
 	^ setupAction
 ]
+
+{ #category : 'private - traversing' }
+SpListViewPresenter >> traversePresentersDo: aBlock excluding: aSet [
+
+	super traversePresentersDo: aBlock excluding: aSet.
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter 
+			traversePresentersDo: aBlock 
+			excluding: aSet ]
+]

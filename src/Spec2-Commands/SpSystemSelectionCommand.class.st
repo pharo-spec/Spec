@@ -34,7 +34,7 @@ SpSystemSelectionCommand >> selectedSelector [
 	| node selection |
 	
 	selection := self selectedTextOrLine.
-	node := RBParser parseFaultyExpression: selection.
+	node := OCParser parseFaultyExpression: selection.
 	node nodesDo: [ :n | 
 		n isMessage ifTrue: [ ^ n selector ].
 		n isVariable ifTrue: [ ^ n name ].

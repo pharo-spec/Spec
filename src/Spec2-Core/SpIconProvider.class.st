@@ -32,3 +32,8 @@ SpIconProvider >> iconNamed: aName ifAbsent: aBlock [
 
 	self subclassResponsibility
 ]
+
+{ #category : 'initialization' }
+SpIconProvider >> reset [
+	
+]

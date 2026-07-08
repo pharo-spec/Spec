@@ -63,8 +63,10 @@ SpToggleButtonPresenter >> associatedToggleButtons: aCollection [
 	allElements do: [ :each | 
 		each basicAssociatedToggleButtons: allElements ].
 	
-	"self state: true."
-	aCollection do: [ :each | each state: false ]
+	((aCollection select: [ :each | each state ]) size > 1) ifTrue: [
+		"self state: true."
+		"there cannot be more than one true"
+		aCollection do: [ :each | each state: false ] ]
 ]
 
 { #category : 'private' }

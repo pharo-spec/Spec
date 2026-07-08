@@ -14,7 +14,8 @@ Class {
 	#name : 'SpEasyColumnViewColumn',
 	#superclass : 'SpColumnViewColumn',
 	#instVars : [
-		'cellPresenterClass'
+		'cellPresenterClass',
+		'cellPresenterInstantiatedAction'
 	],
 	#category : 'Spec2-ListView-Easy',
 	#package : 'Spec2-ListView',
@@ -27,13 +28,20 @@ SpEasyColumnViewColumn class >> defaultCellPresenterClass [
 	^ SpEasyColumnCellPresenter
 ]
 
-{ #category : 'accessing' }
+{ #category : 'private' }
+SpEasyColumnViewColumn >> announceCellPresenterInstantiated: cellPresenter [
+
+	cellPresenterInstantiatedAction ifNil: [ ^ self ].
+	cellPresenterInstantiatedAction value: cellPresenter
+]
+
+{ #category : 'api' }
 SpEasyColumnViewColumn >> cellPresenterClass [
 
 	^ cellPresenterClass ifNil: [ cellPresenterClass := self class defaultCellPresenterClass ]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'api' }
 SpEasyColumnViewColumn >> cellPresenterClass: aPresenterClass [
 
 	cellPresenterClass := aPresenterClass
@@ -43,6 +51,23 @@ SpEasyColumnViewColumn >> cellPresenterClass: aPresenterClass [
 SpEasyColumnViewColumn >> initialize [
 
 	super initialize. 
-	self setup: [ :aPresenter | aPresenter instantiate: self cellPresenterClass ]. 
-	self bind: [ :aPresenter :anObject | aPresenter model: anObject ]
+	self setup: [ :aPresenter | self newCellPresenterOn: aPresenter ]. 
+	self bind: [ :rowPresenter :anObject | rowPresenter model: anObject ]
+]
+
+{ #category : 'private' }
+SpEasyColumnViewColumn >> newCellPresenterOn: aPresenter [ 
+	| cellPresenter |
+
+	cellPresenter := aPresenter instantiate: self cellPresenterClass.
+	
+	self announceCellPresenterInstantiated: cellPresenter.
+	
+	^ cellPresenter
+]
+
+{ #category : 'api - events' }
+SpEasyColumnViewColumn >> whenCellPresenterInstantiatedDo: aBlock [
+
+	cellPresenterInstantiatedAction := aBlock
 ]

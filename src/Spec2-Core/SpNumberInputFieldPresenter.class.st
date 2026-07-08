@@ -139,10 +139,7 @@ SpNumberInputFieldPresenter >> minimum: aNumber [
 SpNumberInputFieldPresenter >> number [
 	"Answer the number ingressed."
 
-	^ self text trimmed 
-		ifNotEmpty: [ :aString | 
-			self numberType readFrom: aString ifFail: [ 0 ] ]
-		ifEmpty: [ 0 ]
+	^ self text trimBoth ifNotEmpty: [ :aString | self numberType readFrom: aString ifFail: [ 0 ] ] ifEmpty: [ 0 ]
 ]
 
 { #category : 'api' }

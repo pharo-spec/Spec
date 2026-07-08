@@ -66,3 +66,20 @@ SpMorphicColumnViewAdapter >> newDataSource [
 		model: self presenter;
 		yourself
 ]
+
+{ #category : 'enumerating' }
+SpMorphicColumnViewAdapter >> traversePresentersDo: aBlock excluding: aSet [
+	| exposedRows |
+	
+	exposedRows := self widget container submorphs 
+		select: [ :each | each class = FTTableRowMorph ].
+	
+	(exposedRows
+		flatCollect: [ :each | 	
+			each submorphs collect: #presenter ])
+		do: [ :each | 
+			each ifNotNil: [
+				each 
+					traversePresentersDo: aBlock 
+					excluding: aSet ] ]
+]

@@ -19,19 +19,6 @@ SpImagePresenterTest >> tearDown [
 ]
 
 { #category : 'tests' }
-SpImagePresenterTest >> testAutoScale [
-	| count result |
-	count := 0.
-	presenter
-		whenAutoScaleChangeDo: [ :value | 
-			result := value.
-			count := count + 1 ].
-	presenter autoScale: true.
-	self assert: count equals: 1.
-	self assert: result
-]
-
-{ #category : 'tests' }
 SpImagePresenterTest >> testCanDefineImagePresenterFromAForm [
 	| title form windowPresenter presenterItems |
 	
@@ -46,12 +33,4 @@ SpImagePresenterTest >> testCanDefineImagePresenterFromAForm [
 	self assert: presenterItems first equals: title.
 	self assert: presenterItems second equals: form.
 	
-]
-
-{ #category : 'tests' }
-SpImagePresenterTest >> testSwitchAutoScale [
-	| autoState |
-	autoState := presenter autoScale.
-	presenter switchAutoscale.
-	self assert: presenter autoScale equals: autoState not
 ]

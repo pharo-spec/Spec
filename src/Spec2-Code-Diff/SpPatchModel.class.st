@@ -2,6 +2,7 @@ Class {
 	#name : 'SpPatchModel',
 	#superclass : 'Object',
 	#instVars : [
+		'originBehavior',
 		'source',
 		'destination'
 	],
@@ -36,6 +37,18 @@ SpPatchModel >> isEmpty [
 	^ self source isEmpty 
 		and: [ self destination isEmpty ] 
 		
+]
+
+{ #category : 'accessing' }
+SpPatchModel >> originBehavior [
+
+	^ originBehavior
+]
+
+{ #category : 'accessing' }
+SpPatchModel >> originBehavior: aBehavior [
+
+	originBehavior := aBehavior
 ]
 
 { #category : 'accessing' }

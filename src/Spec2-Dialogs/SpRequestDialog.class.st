@@ -32,7 +32,7 @@ SpRequestDialog class >> example [
 	presenter := self new.
 	presenter
 		title: 'Request example';
-		label: 'The meaning of life?';
+		message: 'The meaning of life?';
 		text: 'I am tempted to say 42...';
 		acceptLabel: 'I know!';
 		cancelLabel: 'Cancel';
@@ -47,7 +47,7 @@ SpRequestDialog class >> exampleModal [
 	presenter := self new.
 	string := presenter
 		          title: 'Request modal example';
-		          label: 'The meaning of life?';
+		          message: 'The meaning of life?';
 		          text: 'I am tempted to say 42...';
 		          acceptLabel: 'I know!';
 		          cancelLabel: 'Cancel';
@@ -57,21 +57,20 @@ SpRequestDialog class >> exampleModal [
 ]
 
 { #category : 'examples' }
-SpRequestDialog class >> exampleMultiLineLabel [ 
+SpRequestDialog class >> exampleMultiLineLabel [
 
 	| presenter label |
-
 	label := String streamContents: [ :s |
-		s nextPutAll: 'The meaning of life?';
-		  cr;
-		  cr;
-		  nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap'
-		 ].	
+			         s
+				         nextPutAll: 'The meaning of life?';
+				         cr;
+				         cr;
+				         nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap' ].
 
 	presenter := self new.
 	presenter
 		title: 'Request example';
-		label: label;
+		message: label;
 		text: 'I am tempted to say 42...';
 		acceptLabel: 'I know!';
 		cancelLabel: 'Cancel';
@@ -85,7 +84,7 @@ SpRequestDialog class >> examplePassword [
 	self new
 		bePassword;
 		title: 'Secret request example';
-		label: 'The meaning of life?';
+		message: 'The meaning of life?';
 		text: 'I am tempted to say 42...';
 		acceptLabel: 'I know!';
 		cancelLabel: 'Cancel';

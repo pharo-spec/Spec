@@ -101,6 +101,12 @@ SpFilteringListPresenter >> defaultOutputPort [
 	^ self outputSelectionPort
 ]
 
+{ #category : 'private' }
+SpFilteringListPresenter >> disableActivationDuring: aBlock [
+
+	listPresenter disableActivationDuring: aBlock
+]
+
 { #category : 'api' }
 SpFilteringListPresenter >> display [ 
 
@@ -117,6 +123,12 @@ SpFilteringListPresenter >> display: aBlock [
 SpFilteringListPresenter >> displayIcon: aBlock [
 
 	self listPresenter displayIcon: aBlock
+]
+
+{ #category : 'api' }
+SpFilteringListPresenter >> enableSearch [
+
+	listPresenter enableSearch
 ]
 
 { #category : 'private - actions' }
@@ -162,6 +174,7 @@ SpFilteringListPresenter >> headerTitle: aString [
 
 { #category : 'initialization' }
 SpFilteringListPresenter >> initializePresenters [
+
 	self addStyle: 'filteringList'.
 
 	filterInputPresenter := self newTextInput
@@ -250,6 +263,12 @@ SpFilteringListPresenter >> reapplyOrResetFilter [
 	self items ifEmpty: [ self resetFilter ]
 ]
 
+{ #category : 'accessing' }
+SpFilteringListPresenter >> refresh [
+
+	listPresenter refresh
+]
+
 { #category : 'api' }
 SpFilteringListPresenter >> resetFilter [
 
@@ -263,6 +282,12 @@ SpFilteringListPresenter >> rowPresenterClass: aPresenterClass [
 	 anyway" 
 
 	listPresenter rowPresenterClass: aPresenterClass
+]
+
+{ #category : 'api' }
+SpFilteringListPresenter >> searchMatching: aBlock [
+
+	listPresenter searchMatching: aBlock
 ]
 
 { #category : 'api - selection' }
@@ -283,6 +308,14 @@ SpFilteringListPresenter >> selectItem: anObject [
 	listPresenter selectItem: anObject
 ]
 
+{ #category : 'api - selection' }
+SpFilteringListPresenter >> selectItem: anObject scrollToSelection: aBoolean [ 
+	
+	listPresenter
+		selectItem: anObject 
+		scrollToSelection: aBoolean
+]
+
 { #category : 'selection' }
 SpFilteringListPresenter >> selectLast [
 	listPresenter selectLast
@@ -299,6 +332,12 @@ SpFilteringListPresenter >> selectedItems [
 	"Answer a <Collection> of receiver's selected objects"
 
 	^ listPresenter selectedItems
+]
+
+{ #category : 'api - selection' }
+SpFilteringListPresenter >> selectedRowPresenter [
+
+	^ listPresenter selectedRowPresenter
 ]
 
 { #category : 'accessing' }
@@ -341,7 +380,14 @@ SpFilteringListPresenter >> whenActivatedDo: aBlock [
 
 { #category : 'api - events' }
 SpFilteringListPresenter >> whenFilterChangedDo: aBlock [
+
 	filterInputPresenter whenTextChangedDo: aBlock
+]
+
+{ #category : 'api - events' }
+SpFilteringListPresenter >> whenRowPresenterInstantiatedDo:  aBlock [
+
+	listPresenter whenRowPresenterInstantiatedDo:  aBlock
 ]
 
 { #category : 'api - events' }

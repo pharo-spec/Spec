@@ -12,6 +12,9 @@ See also: `SpMorphicConfiguration` and `SpGtkConfiguration`
 Class {
 	#name : 'SpApplicationConfiguration',
 	#superclass : 'Object',
+	#instVars : [
+		'syntaxHighlightThemeName'
+	],
 	#category : 'Spec2-Core-Base',
 	#package : 'Spec2-Core',
 	#tag : 'Base'
@@ -21,13 +24,19 @@ Class {
 SpApplicationConfiguration >> configure: anApplication [
 	"Override this to add your application configuration"
 	
-	OSPlatform current 
-		configureApplication: anApplication 
-		configuration: self
+	self configurePlatform: anApplication
 ]
 
 { #category : 'configuring' }
 SpApplicationConfiguration >> configureOSX: anApplication [
+]
+
+{ #category : 'configuring' }
+SpApplicationConfiguration >> configurePlatform: anApplication [
+
+	OSPlatform current 
+		configureApplication: anApplication 
+		configuration: self
 ]
 
 { #category : 'configuring' }
@@ -41,4 +50,18 @@ SpApplicationConfiguration >> configureWindows: anApplication [
 { #category : 'initialization' }
 SpApplicationConfiguration >> reset [
 	"a hook to allow users to reset its configuration"
+]
+
+{ #category : 'accessing - style' }
+SpApplicationConfiguration >> syntaxHighlightTheme [
+	"Name of theme: Blue, Dark, Vintage, Solarized, Tango"
+
+	^ syntaxHighlightThemeName
+]
+
+{ #category : 'accessing - style' }
+SpApplicationConfiguration >> syntaxHighlightTheme: aName [
+	"Name of theme: Blue, Dark, Vintage, Solarized, Tango"
+
+	syntaxHighlightThemeName := aName
 ]

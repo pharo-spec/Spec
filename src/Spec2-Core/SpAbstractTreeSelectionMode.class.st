@@ -4,7 +4,7 @@ Class {
 	#traits : 'TObservable',
 	#classTraits : 'TObservable classTrait',
 	#instVars : [
-		'#selection => ObservableSlot',
+		'#selection => SpSuspendableSlot',
 		'#presenter'
 	],
 	#category : 'Spec2-Core-Widgets-Tree',
@@ -28,13 +28,10 @@ SpAbstractTreeSelectionMode >> clearSelection [
 
 { #category : 'private' }
 SpAbstractTreeSelectionMode >> disableChangedDuring: aBlock [
-	| holder oldSubscriptions |
-	
+	| holder |
+
 	holder := self observablePropertyNamed: #selection.
-	oldSubscriptions := holder subscriptions.
-	holder subscriptions: #().
-	aBlock ensure: [ 
-		holder subscriptions: oldSubscriptions ]
+	holder suspendChangedDuring: aBlock
 ]
 
 { #category : 'initialization' }

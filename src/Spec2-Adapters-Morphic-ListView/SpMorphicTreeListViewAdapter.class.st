@@ -102,3 +102,20 @@ SpMorphicTreeListViewAdapter >> selectedRowPresenter [
 		ifFound: [ :aRow | aRow content content valueOfProperty: #presenter ]
 		ifNone: [ nil ] 
 ]
+
+{ #category : 'api - selection' }
+SpMorphicTreeListViewAdapter >> traversePresentersDo: aBlock excluding: aSet [
+	| exposedRows |
+	
+	exposedRows := self widget container submorphs.
+	exposedRows
+		collect: [ :each | 	
+			(each submorphs first submorphs last 
+				valueOfProperty: #presenter 
+				ifAbsent: [ nil ]) ]
+		thenDo: [ :each | 
+			each ifNotNil: [
+				each 
+					traversePresentersDo: aBlock 
+					excluding: aSet ] ]
+]

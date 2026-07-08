@@ -11,7 +11,9 @@ Class {
 		'visible',
 		'actionVisible',
 		'id',
-		'dynamicName'
+		'dynamicName',
+		'state',
+		'actionState'
 	],
 	#category : 'Spec2-Commander2-Action',
 	#package : 'Spec2-Commander2',
@@ -80,6 +82,12 @@ SpAction >> actionEnabled: aBlock [
 ]
 
 { #category : 'accessing' }
+SpAction >> actionState: aBlock [
+
+	actionState := aBlock
+]
+
+{ #category : 'accessing' }
 SpAction >> actionVisible: aBlock [
 
 	actionVisible := aBlock
@@ -94,7 +102,19 @@ SpAction >> beShortcutOnly [
 { #category : 'accessing' }
 SpAction >> beToggleButton [
 
-	self configureAsToolBarToggleButton
+	self state: false.
+	self buildPresenterBlock: [ :specCommand | 
+		SpToolbarToggleButtonPresenter new
+			label: specCommand name;
+			help: specCommand description;
+			in: [ :button | 
+				specCommand hasIcon
+					ifTrue: [ button icon: specCommand icon ] ];
+			action: [
+				self toggleState.
+				specCommand execute ];
+			enabled: specCommand canBeExecuted;
+			yourself ]
 ]
 
 { #category : 'testing' }
@@ -132,6 +152,13 @@ SpAction >> execute [
 		cull: self
 ]
 
+{ #category : 'testing' }
+SpAction >> hasState [
+	"state can be true/false. If nil this is a regular menu."
+
+	^ state isNotNil or: [ actionState isNotNil ]
+]
+
 { #category : 'comparing' }
 SpAction >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
@@ -158,8 +185,21 @@ SpAction >> initialize [
 { #category : 'testing' }
 SpAction >> isVisible [
 
-	^ visible 
-		and: [ actionVisible isNil or: [ actionVisible cull: self context ] ]
+	^ visible and: [ 
+		actionVisible isNil or: [ actionVisible cull: self context ] ]
+]
+
+{ #category : 'accessing' }
+SpAction >> presenterClass: aClass [
+	"this is an easy way to to define a special presenter that will be responsible of the UI
+	 of the action. The only condition of this presenter is that it has to be able to receive 
+	 a model."
+	
+	self flag: #CHECK. "Maybe I need to keep the presenter class?" 
+	 self buildPresenterBlock: [ :aCommand | 
+	 	self context 
+	 		instantiate: aClass 
+	 		on: aCommand ]
 ]
 
 { #category : 'printing' }
@@ -167,16 +207,16 @@ SpAction >> printOn: stream [
 
 	stream << 'a SpAction('.
 	stream << 'Name: ' << (self name ifNil: [ 'No name' ]).
-	stream << ' Shortcut: ' << (self shortcutKey 
-		ifNotNil: [ :key | key asString ] 
-		ifNil: [ 'No shortcut' ]).
+	stream << ' Shortcut: ' << (self hasShortcutKey 
+		ifTrue: [ self shortcutKey asString ] 
+		ifFalse: [ 'No shortcut' ]).
 	stream << ')'
 ]
 
 { #category : 'accessing' }
 SpAction >> priority [
 
-	^ priority
+	^ priority ifNil: [ priority := 1 ]
 ]
 
 { #category : 'accessing' }
@@ -192,4 +232,26 @@ SpAction >> shortcut: aKeyCombination [
 		deprecated: 'It was a bad idea' 
 		transformWith: '@receiver shortcut: `@arg1' -> '@receiver shortcutKey: `@arg1'.	
 	self shortcutKey: aKeyCombination
+]
+
+{ #category : 'accessing - state' }
+SpAction >> state [
+	"state can be true/false or nil. This will be used for check menu items (and toggleable buttons)"
+	actionState ifNotNil: [ ^ actionState cull: self context ].
+
+	^ state 
+]
+
+{ #category : 'accessing - state' }
+SpAction >> state: aBoolean [ 
+	
+	state := aBoolean
+]
+
+{ #category : 'accessing - state' }
+SpAction >> toggleState [
+
+	self hasState ifFalse: [ ^ self ].
+
+	self state: self state not
 ]

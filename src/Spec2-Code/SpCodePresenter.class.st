@@ -203,6 +203,12 @@ SpCodePresenter >> bindingOf: aString [
 	^ nil
 ]
 
+{ #category : 'accessing' }
+SpCodePresenter >> bindings [
+	
+	^ self interactionModel bindings
+]
+
 { #category : 'testing' }
 SpCodePresenter >> canAddBindingOf: name [
 
@@ -292,7 +298,7 @@ SpCodePresenter >> doBrowseMethodReferences [
 
 	"the dialog sadly hard-codes 'senders'"
 	^ self systemNavigation
-		  openBrowserFor: variable name
+		  openBrowserFor: variable
 		  withMethods: usingMethods
 ]
 
@@ -322,17 +328,14 @@ SpCodePresenter >> doBrowseMethodsMatchingStringSensitive [
 
 { #category : 'commands' }
 SpCodePresenter >> doBrowseSenders [
-	| variableOrClassName variable |
-	
-	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
-	variable := self lookupEnvironment lookupVar: variableOrClassName.
 
-	"For global and class variables, sender-of shows intead the using methods"
-	(variable isNotNil and: [(variable isGlobalVariable or: [variable isClassVariable])]) 
-		ifTrue: [ self systemNavigation openBrowserFor: variable name withMethods: variable usingMethods  ]
-		ifFalse: [ self systemNavigation browseAllReferencesTo: variableOrClassName  ]
-		
-	
+	| variableOrClassName variable |
+	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
+	variable := self lookupEnvironment lookupVar: variableOrClassName. "For global and class variables, sender-of shows intead the using methods"
+	(variable isNotNil and: [ variable isGlobalVariable or: [ variable isClassVariable ] ])
+		ifTrue: [ self systemNavigation openBrowserFor: variable withMethods: variable usingMethods ]
+		ifFalse: [
+		(Smalltalk tools toolNamed: #messageList) browseSendersOfAll: { variableOrClassName } from: self interactionModel behavior ]
 ]
 
 { #category : 'private - bindings' }
@@ -617,6 +620,28 @@ SpCodePresenter >> selectedClassOrMetaClass [
 ]
 
 { #category : 'command support' }
+SpCodePresenter >> selectedMethod [
+	"Return the CompiledMethod being browsed, if any."
+
+	^ self interactionModel ifNotNil: [ :im | im method ] ifNil: [ nil ]
+]
+
+{ #category : 'command support' }
+SpCodePresenter >> selectedNode [
+
+	| ast |
+
+	ast := OpalCompiler new
+		       class: self behavior;
+		       isScripting: self isScripting;
+		       parse: self text.
+
+	^ self selectionInterval isEmpty
+		  ifTrue: [ ast bestNodeForPosition: (self cursorPositionIndex ifNil: [ 1 ]) ]
+		  ifFalse: [ ast bestNodeFor: self selectionInterval ]
+]
+
+{ #category : 'command support' }
 SpCodePresenter >> selectedSelector [
 	"If text is selected, extract the selectors from the selected text. If there is no selection, try to extract the selectors under the caret position."
 	| extractor selectedText fullSource |
@@ -636,7 +661,7 @@ SpCodePresenter >> selectedSelector [
 						  extractSelectorFromSource: fullSource
 						  atPosition: index ]
 					ifFalse: [ 
-						extractor extractSelectorFromAST: (RBParser parseFaultyMethod: fullSource)
+						extractor extractSelectorFromAST: (OCParser parseFaultyMethod: fullSource)
 		  					atPosition: index ]
 					]
 ]
@@ -692,7 +717,7 @@ SpCodePresenter >> subscribeToSettingsChangesAnnouncements [
 		to: self
 ]
 
-{ #category : 'private' }
+{ #category : 'api' }
 SpCodePresenter >> syntaxHighlight: aBoolean [
 
 	syntaxHighlight := aBoolean 

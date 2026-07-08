@@ -129,6 +129,16 @@ SpMorphicTableCellBuilder >> addItalicColumn: aTableColumn item: item to: conten
 ]
 
 { #category : 'private' }
+SpMorphicTableCellBuilder >> addStrikethrough: aTableColumn item: item to: content [
+
+	aTableColumn displayUnderline ifNotNil: [ :block |
+		(block cull: item) ifTrue: [ 
+			^ content asText addAttribute: TextEmphasis struckOut ] ].
+	
+	^ content
+]
+
+{ #category : 'private' }
 SpMorphicTableCellBuilder >> addUnderlineColumn: aTableColumn item: item to: content [
 
 	aTableColumn displayUnderline ifNotNil: [ :block |
@@ -302,6 +312,7 @@ SpMorphicTableCellBuilder >> visitStringColumn: aTableColumn [
 	content := self addItalicColumn: aTableColumn item: item to: content.
 	content := self addBoldColumn: aTableColumn item: item to: content.
 	content := self addUnderlineColumn: aTableColumn item: item to: content.
+	content := self addStrikethrough: aTableColumn item: item to: content.
 
 	aTableColumn isEditable
 		ifTrue: [ self visitStringColumnEditable: aTableColumn on: content ]

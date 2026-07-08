@@ -96,13 +96,23 @@ SpMorphicBackendForTest >> denyHasHeader: anAdapter [
 
 { #category : 'simulating' }
 SpMorphicBackendForTest >> doubleClickFirstRowAndColumn: anAdapter [ 
+	| event position |
 
 	self waitUntilUIRedrawed.
 
-	anAdapter widget doubleClick: (MouseButtonEvent new
-		setPosition: anAdapter widget submorphs first submorphs first bounds center;
-		yourself).
-
+	position := anAdapter widget submorphs first submorphs first bounds center.
+	event := MouseButtonEvent new
+		setType: #mouseDown
+			position: position 
+			buttons: 0
+			hand: HandMorph new; 
+		yourself.
+		
+	"simulating double click means send one mouseDown: and one double-click because 
+	 when doing a real one, we always receive the first click then the one we want."
+	anAdapter widget 
+		mouseDown: event;
+		doubleClick: event
 ]
 
 { #category : 'initialization' }

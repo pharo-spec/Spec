@@ -250,6 +250,16 @@ SpTreeColumnViewPresenter >> showColumnHeaders [
 	showColumnHeaders := true
 ]
 
+{ #category : 'private - traversing' }
+SpTreeColumnViewPresenter >> traversePresentersDo: aBlock excluding: aSet [
+
+	super traversePresentersDo: aBlock excluding: aSet.
+	self withAdapterDo: [ :anAdapter | 
+		anAdapter 
+			traversePresentersDo: aBlock 
+			excluding: aSet ]
+]
+
 { #category : 'api - events' }
 SpTreeColumnViewPresenter >> whenColumnsChangedDo: aBlock [
 	"Inform when columns have changed. 

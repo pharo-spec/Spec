@@ -21,7 +21,7 @@ SpLabelAdapterTest >> testBackgroundColorChangesColor [
 	presenter label: 'Test'.
 	presenter displayBackgroundColor: [ Color green ].
 	self openInstance.
-	self assert: self adapter widget backgroundColor equals: Color green
+	self assert: self adapter backgroundColor equals: Color green
 ]
 
 { #category : 'tests' }

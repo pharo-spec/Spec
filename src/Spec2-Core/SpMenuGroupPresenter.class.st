@@ -96,7 +96,7 @@ SpMenuGroupPresenter >> fromSpec: aSpec [
 SpMenuGroupPresenter >> initialize [
 	super initialize.
 
-	items := OrderedCollection new asValueHolder
+	items := CollectionValueHolder value: OrderedCollection new
 ]
 
 { #category : 'testing' }

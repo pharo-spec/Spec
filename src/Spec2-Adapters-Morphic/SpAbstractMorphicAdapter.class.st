@@ -53,7 +53,12 @@ SpAbstractMorphicAdapter >> adapt: aPresenter [
 
 { #category : 'protocol' }
 SpAbstractMorphicAdapter >> add: anAdapter [
-	self widgetDo: [ :w | w spEnsureLayoutAndAddMorph: anAdapter widget ]
+
+	self widgetDo: [ :w |
+			"Make sure the widget has a layout"
+			anAdapter widget layoutFrame
+				ifNil: [ anAdapter widget layoutFrame: LayoutFrame identity ].
+			w addMorph: anAdapter widget ]
 ]
 
 { #category : 'initialization' }
@@ -207,6 +212,25 @@ SpAbstractMorphicAdapter >> color [
 SpAbstractMorphicAdapter >> color: color [
 
 	self widgetDo: [ :w | w color: color ]
+]
+
+{ #category : 'styling' }
+SpAbstractMorphicAdapter >> deepPresenterStyles [
+	"The presenters in the style combined with its parents"
+	| styles allStyles |
+	
+	styles := self presenterStyles.
+	styles isEmptyOrNil ifFalse: [ 
+		self presenter owner ifNotNil: [ :anOwner |
+			anOwner withAdapterDo: [ :anAdapter | 
+				allStyles := anAdapter deepPresenterStyles
+					flatCollect: [ :eachOwnerStyle | styles collect: [ :eachStyle | eachOwnerStyle, '.', eachStyle ] ].
+				styles := (allStyles, styles) reversed 
+			] 
+		].
+	].
+
+	^ styles
 ]
 
 { #category : 'spec protocol' }
@@ -446,32 +470,31 @@ SpAbstractMorphicAdapter >> keyDown: keyCode shift: shiftBoolean meta: metaBoole
 
 { #category : 'emulating' }
 SpAbstractMorphicAdapter >> keyEvent: type code: keyCode shift: shiftBoolean meta: metaBoolean control: controlBoolean option: optionBoolean [
+
 	| evt modifiers |
-	
 	modifiers := 0.
 	shiftBoolean ifTrue: [ modifiers := modifiers | 8 ].
-	metaBoolean ifTrue: [ modifiers := modifiers |
-		(Smalltalk os isWindows | Smalltalk os isUnix
-			ifTrue: [ 2r00010000 ]
-			ifFalse: [ 2r01000000 ]) ].
+	metaBoolean ifTrue: [
+			modifiers := modifiers | (OSPlatform current isWindows | OSPlatform current isUnix
+				              ifTrue: [ 2r00010000 ]
+				              ifFalse: [ 2r01000000 ]) ].
 	controlBoolean ifTrue: [ modifiers := modifiers | 2r00010000 ].
-	optionBoolean ifTrue: [ modifiers := modifiers |
-		(Smalltalk os isWindows | Smalltalk os isUnix
-			ifTrue: [ 2r01000000 ]
-			ifFalse: [ 2r00100000 ]) ].
-		
+	optionBoolean ifTrue: [
+			modifiers := modifiers | (OSPlatform current isWindows |  OSPlatform current isUnix
+				              ifTrue: [ 2r01000000 ]
+				              ifFalse: [ 2r00100000 ]) ].
+
 	evt := KeyboardEvent new
-		setType: type
-		buttons: modifiers
-		position: self widget position + (1 @ 1)
-		keyValue: keyCode
-		charCode: keyCode
-		hand: self currentWorld activeHand
-		stamp: Time millisecondClockValue.
+		       setType: type
+		       buttons: modifiers
+		       position: self widget position + (1 @ 1)
+		       keyValue: keyCode
+		       charCode: keyCode
+		       hand: self currentWorld activeHand
+		       stamp: Time millisecondClockValue.
 
 	evt key: (KeyboardKey fromCharacter: keyCode asCharacter).
-	evt sentTo: self widgetEventReceiver.
-	"Some time to allow things to happen?"
+	evt sentTo: self widgetEventReceiver. "Some time to allow things to happen?"
 	10 milliSeconds wait
 ]
 

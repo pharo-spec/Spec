@@ -39,6 +39,12 @@ SpCodeBehaviorInteractionModelTest >> testBindingOf [
 ]
 
 { #category : 'tests' }
+SpCodeBehaviorInteractionModelTest >> testDoItReceiver [
+
+	self assert: interactionModel doItReceiver equals: SpCodePresenter.
+]
+
+{ #category : 'tests' }
 SpCodeBehaviorInteractionModelTest >> testHasBindingOf [
 
 	self deny: (interactionModel hasBindingOf: #somethingNotExistent).

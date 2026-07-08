@@ -26,6 +26,9 @@ SpMorphicLabelAdapter >> applyDecorationsTo: aString [
 	self presenter displayUnderline ifNotNil: [ :block |
 		(block cull: aString) ifTrue: [ 
 			text addAttribute: TextEmphasis underlined ] ].
+	self presenter displayStrikethrough ifNotNil: [ :block |
+		(block cull: aString) ifTrue: [ 
+			text addAttribute: TextEmphasis struckOut ] ].
 	"this in fact does not work (background in LabelMorph objects). 
 	 See applyStyle instead"
 	self presenter displayBackgroundColor ifNotNil: [ :block |
@@ -52,6 +55,12 @@ SpMorphicLabelAdapter >> applyStyle: aMorph [
 		(block cull: self presenter label) ifNotNil: [ :aColor |
 		  	aMorph backgroundColor: aColor ] ].
 
+]
+
+{ #category : 'testing' }
+SpMorphicLabelAdapter >> backgroundColor [
+
+	^ self widget backgroundColor
 ]
 
 { #category : 'accessing' }

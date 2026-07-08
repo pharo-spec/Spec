@@ -28,7 +28,7 @@ SpApplicationTest >> testCloseDialogWindowRemovesItFromWindowCollection [
 
 	| window |
 	application := SpApplication new.
-	window := (application newPresenter: SpButtonPresenter) openDialog.
+	window := (application instantiate: SpButtonPresenter) openDialog.
 	window close.
 	self deny: (application windows includes: window)
 ]
@@ -38,7 +38,7 @@ SpApplicationTest >> testCloseWindowRemovesItFromWindowCollection [
 
 	| window |
 	application := SpApplication new.
-	window := (application newPresenter: SpButtonPresenter) open.
+	window := (application instantiate: SpButtonPresenter) open.
 	window close.
 	self deny: (application windows includes: window)
 ]
@@ -51,9 +51,9 @@ SpApplicationTest >> testIsPresenter [
 
 { #category : 'tests' }
 SpApplicationTest >> testNewPresenter [
-	| presenter |
 
-	presenter := application newPresenter: SpButtonPresenter.
+	| presenter |
+	presenter := application instantiate: SpButtonPresenter.
 	self assert: presenter application equals: application
 ]
 
@@ -61,7 +61,7 @@ SpApplicationTest >> testNewPresenter [
 SpApplicationTest >> testOpenDialogWindowAddsItToWindowCollection [
 
 	| window |
-	window := (application newPresenter: SpButtonPresenter) openDialog.
+	window := (application instantiate: SpButtonPresenter) openDialog.
 
 	self assert: (application windows includes: window)
 ]
@@ -70,7 +70,7 @@ SpApplicationTest >> testOpenDialogWindowAddsItToWindowCollection [
 SpApplicationTest >> testOpenWindowAddsItToWindowCollection [
 
 	| window |
-	window := (application newPresenter: SpButtonPresenter) open.
+	window := (application instantiate: SpButtonPresenter) open.
 
 	self assert: (application windows includes: window)
 ]

@@ -81,6 +81,12 @@ SpMorphicGridAdapter >> children [
 	^ widget submorphs
 ]
 
+{ #category : 'accessing' }
+SpMorphicGridAdapter >> extentOfChildAt: index [
+
+	^ (widget submorphs at: index) extent
+]
+
 { #category : 'factory' }
 SpMorphicGridAdapter >> layout: aLayout [
 	"Build of widget was differed up to here (to know what is the direction)"

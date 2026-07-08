@@ -53,3 +53,9 @@ SpCompositeIconProvider >> providers [
 	
 	^ providers
 ]
+
+{ #category : 'initialization' }
+SpCompositeIconProvider >> reset [
+
+	providers do: #reset
+]

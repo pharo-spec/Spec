@@ -11,7 +11,7 @@ String >> asPresenter [
 { #category : '*Spec2-Core' }
 String >> asPresenterOn: aPresenter [
 
-	^ SpLabelPresenter new 
+	^ aPresenter newLabel 
 		label: self;
 		yourself
 ]

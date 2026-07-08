@@ -47,13 +47,11 @@ SpConfirmDialog class >> example [
 	dialog := self new.
 	^ dialog
 		  title: 'Confirm example';
-		  label: 'Are you sure?';
+		  message: 'Are you sure?';
 		  acceptLabel: 'Sure!';
 		  cancelLabel: 'No, forget it';
-		  onAccept: [
-			  dialog inform: 'Yes!' ];
-		  onCancel: [
-			  dialog inform: 'No!' ];
+		  onAccept: [ dialog inform: 'Yes!' ];
+		  onCancel: [ dialog inform: 'No!' ];
 		  openDialog
 ]
 
@@ -64,38 +62,35 @@ SpConfirmDialog class >> exampleModal [
 	dialog := self new.
 	ok := dialog
 		      title: 'Confirm modal example';
-		      label: 'Are you sure?';
+		      message: 'Are you sure?';
 		      acceptLabel: 'Sure!';
 		      cancelLabel: 'No, forget it';
 		      openModal.
 
 	dialog inform: (ok
-				 ifTrue: [ 'Yes!' ]
-				 ifFalse: [ 'No!' ])
+			 ifTrue: [ 'Yes!' ]
+			 ifFalse: [ 'No!' ])
 ]
 
 { #category : 'examples' }
-SpConfirmDialog class >> exampleMultiLineLabel [ 
+SpConfirmDialog class >> exampleMultiLineLabel [
 
-	| dialog label|
-
+	| dialog label |
 	label := String streamContents: [ :s |
-		s nextPutAll: 'Are you sure?';
-		  cr;
-		  cr;
-		  nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap'
-		 ].	
+			         s
+				         nextPutAll: 'Are you sure?';
+				         cr;
+				         cr;
+				         nextPutAll: 'Something else two lines bellow with a really long long long long text that will wrap' ].
 
 	dialog := self new.
 	^ dialog
 		  title: 'Confirm example';
-		  label: label;
+		  message: label;
 		  acceptLabel: 'Sure!';
 		  cancelLabel: 'No, forget it';
-		  onAccept: [
-			  dialog inform: 'Yes!' ];
-		  onCancel: [
-			  dialog inform: 'No!' ];
+		  onAccept: [ dialog inform: 'Yes!' ];
+		  onCancel: [ dialog inform: 'No!' ];
 		  openDialog
 ]
 

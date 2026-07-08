@@ -106,6 +106,15 @@ SpCommand >> configureAsToolbarButton [
 	self configureAsButtonOfClass: SpToolbarButtonPresenter
 ]
 
+{ #category : 'copying' }
+SpCommand >> copyWithContext: aContext [
+
+	^ self copy 
+		decoratedCommand: self decoratedCommand copy;
+		context: aContext;
+		yourself
+]
+
 { #category : 'displaying' }
 SpCommand >> displayIn: aMenuGroupOrPresenter do: aBlock [
 
@@ -113,6 +122,12 @@ SpCommand >> displayIn: aMenuGroupOrPresenter do: aBlock [
 		display: self 
 		in: aMenuGroupOrPresenter 
 		do: aBlock
+]
+
+{ #category : 'testing' }
+SpCommand >> hasState [
+
+	^ false
 ]
 
 { #category : 'accessing' }
@@ -148,6 +163,12 @@ SpCommand >> isEnabled [
 { #category : 'accessing' }
 SpCommand >> presenter [
 	^ presenter
+]
+
+{ #category : 'accessing' }
+SpCommand >> priority [
+	
+	^ 1
 ]
 
 { #category : 'updating' }

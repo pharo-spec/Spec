@@ -17,7 +17,7 @@ SpBrowseMethodsMatchingStringSensitiveCommand class >> defaultDescription [
 { #category : 'default' }
 SpBrowseMethodsMatchingStringSensitiveCommand class >> defaultName [
 
-	^ 'Case sensitive method literal strings with it'
+	^ 'Strings with it'
 ]
 
 { #category : 'defaults' }
@@ -29,7 +29,7 @@ SpBrowseMethodsMatchingStringSensitiveCommand class >> defaultShortcutKey [
 { #category : 'default' }
 SpBrowseMethodsMatchingStringSensitiveCommand class >> shortName [
 
-	^ 'methods literal strings (case-sensitive)'
+	^ 'Strings with it'
 ]
 
 { #category : 'executing' }

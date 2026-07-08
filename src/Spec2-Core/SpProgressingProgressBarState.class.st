@@ -53,7 +53,7 @@ SpProgressingProgressBarState >> currentValue: aNumber [
 
 { #category : 'initialization' }
 SpProgressingProgressBarState >> initialize [
-	self class initializeSlots: self.
+
 	super initialize.
 	currentValue := 0
 ]
