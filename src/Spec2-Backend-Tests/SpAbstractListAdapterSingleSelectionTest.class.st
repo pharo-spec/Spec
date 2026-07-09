@@ -31,9 +31,10 @@ SpAbstractListAdapterSingleSelectionTest >> tearDown [
 
 { #category : 'tests - model-to-widget' }
 SpAbstractListAdapterSingleSelectionTest >> testSelectManyIndexesKeepsLastSelectionInWidget [
+
 	presenter selectIndex: 1.
 	presenter selectIndex: 2.
-	self assert: self adapter selectedIndexes equals: #(2)
+	self assert: self adapter selectedIndexes equals: #( 2 )
 ]
 
 { #category : 'tests - model-to-widget' }
@@ -110,6 +111,7 @@ SpAbstractListAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelection
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
 	self adapter selectIndex: 1.
+	backendForTest waitUntilUIRedrawed.
 	self assert: counter equals: 1
 ]
 
@@ -119,6 +121,7 @@ SpAbstractListAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelection
 	presenter selection
 		whenChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
 	self adapter selectIndex: 1.
+	backendForTest waitUntilUIRedrawed.
 	self assert: selectedIndex equals: 1
 ]
 
@@ -135,6 +138,7 @@ SpAbstractListAdapterSingleSelectionTest >> testUnselectAllInWidgetNotRaisesEmpt
 	presenter selection
 		whenChangedDo: [ :selection | gotSelection := selection ].
 	self adapter selectIndex: 0.
+	backendForTest waitUntilUIRedrawed.
 	self assert: gotSelection isNil
 ]
 
@@ -145,6 +149,7 @@ SpAbstractListAdapterSingleSelectionTest >> testUnselectAllInWidgetWithoutSelect
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
 	self adapter selectIndex: 0.
+	backendForTest waitUntilUIRedrawed.
 	self assert: counter equals: 0
 ]
 
@@ -172,6 +177,7 @@ SpAbstractListAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelecti
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
 	self adapter selectIndex: 0.
+	backendForTest waitUntilUIRedrawed.
 	self assert: counter equals: 1
 ]
 
@@ -182,5 +188,6 @@ SpAbstractListAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelecti
 	presenter selection
 		whenChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
 	self adapter selectIndex: 0.
+	backendForTest waitUntilUIRedrawed.
 	self assert: selectedIndex equals: 0
 ]

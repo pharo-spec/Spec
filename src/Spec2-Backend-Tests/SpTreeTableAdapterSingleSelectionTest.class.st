@@ -61,6 +61,7 @@ SpTreeTableAdapterSingleSelectionTest >> testSelectPresenterWithScrollingMakeSel
 	presenter selectPath: { 150 } scrollToSelection: true.
 	visibleItems := presenter verticalAlignment firstVisibleRowIndex to:
 	                presenter verticalAlignment lastVisibleRowIndex.
+	backendForTest waitUntilUIRedrawed.
 
 	self assert:
 		(visibleItems includes: presenter selection selectedPath first)
@@ -78,6 +79,7 @@ SpTreeTableAdapterSingleSelectionTest >> testSelectPresenterWithoutScrollingDoes
 	                verticalAlignment lastVisibleRowIndex.
 
 	presenter selectPath: { 150 } scrollToSelection: false.
+	backendForTest waitUntilUIRedrawed.
 
 	self
 		assert: (verticalAlignment firstVisibleRowIndex to:
@@ -100,6 +102,7 @@ SpTreeTableAdapterSingleSelectionTest >> testSelectWhenSortedTransmitsCorrectEle
 	presenter adapter sortByColumn: presenter columns first.
 	"click last element, since they are inversed, it will be the same as before"
 	presenter clickAtPath: #(3).
+	backendForTest waitUntilUIRedrawed.
 	self assert: item equals: 10
 ]
 
@@ -110,6 +113,7 @@ SpTreeTableAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionInd
 	counter := 0.
 	presenter selection whenChangedDo: [ :selection | counter := counter + 1 ].
 	self adapter selectPath: #(1).
+	backendForTest waitUntilUIRedrawed.
 	self assert: counter equals: 1
 ]
 
@@ -120,6 +124,7 @@ SpTreeTableAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionInd
 	presenter selection
 		whenChangedDo: [ :selection | selectedPath := selection ].
 	self adapter selectPath: #(1).
+	backendForTest waitUntilUIRedrawed.
 	self assert: selectedPath equals: #(1)
 ]
 
@@ -130,6 +135,7 @@ SpTreeTableAdapterSingleSelectionTest >> testUnselectAllInWidgetNotRaisesEmptySe
 	presenter selection
 		whenChangedDo: [ :selection | gotSelection := selection ].
 	self adapter selectPath: #().
+	backendForTest waitUntilUIRedrawed.
 	self assert: gotSelection isNil
 ]
 
@@ -142,6 +148,7 @@ SpTreeTableAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesSelectionI
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
 	self adapter selectPath: #().
+	backendForTest waitUntilUIRedrawed.
 	self assert: counter equals: 1
 ]
 
@@ -153,6 +160,7 @@ SpTreeTableAdapterSingleSelectionTest >> testUnselectAllInWidgetWithoutSelection
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
 	self adapter selectPath: #().
+	backendForTest waitUntilUIRedrawed.
 	self assert: counter equals: 0
 ]
 
@@ -180,6 +188,7 @@ SpTreeTableAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelectionI
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
 	self adapter selectPath: #().
+	backendForTest waitUntilUIRedrawed.
 	self assert: counter equals: 1
 ]
 
@@ -191,5 +200,6 @@ SpTreeTableAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelectionI
 	presenter selection 
 		whenChangedDo: [ :selection | selectedPath := selection ].
 	self adapter selectPath: #().
+	backendForTest waitUntilUIRedrawed.
 	self assertEmpty: selectedPath
 ]
