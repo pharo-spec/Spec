@@ -174,6 +174,9 @@ SpCommand >> priority [
 { #category : 'updating' }
 SpCommand >> updateEnableStatus [
 
- 	self presenter ifNil: [ ^ self ].   
-	self presenter enabled: self canBeExecuted
+ 	self presenter ifNil: [ ^ self ].
+ 	
+	self presenter 
+		visible: self isVisible;
+		enabled: self isEnabled
 ]

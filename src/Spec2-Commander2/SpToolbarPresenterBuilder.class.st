@@ -60,12 +60,17 @@ SpToolbarPresenterBuilder >> toolbarPresenter: anObject [
 
 { #category : 'visiting' }
 SpToolbarPresenterBuilder >> visitCommand: anEntry [
+	| presenter |
 
 	"initialize icon provider if it is not there."
 	anEntry iconProvider ifNil: [ 
 		anEntry iconProvider: self toolbarPresenter application ].
+	
+	presenter := anEntry buildPresenter.
+	presenter visible: anEntry isVisible.
+	
 	anEntry positionStrategy
-		addButton: anEntry buildPresenter
+		addButton: presenter
 		toToolbar: self toolbarPresenter
 ]
 
