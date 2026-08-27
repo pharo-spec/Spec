@@ -1046,6 +1046,12 @@ SpPresenter >> update [
 SpPresenter >> updatePresenter [
 ]
 
+{ #category : 'as yet unclassified' }
+SpPresenter >> viewType [
+	
+	^ self class
+]
+
 { #category : 'api' }
 SpPresenter >> visible: aBoolean [
 	"set the visibility status of the presenter (it can be hidden or shown)"
