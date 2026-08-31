@@ -104,7 +104,7 @@ SpNotebookMorph >> newCloseButtonFor: aSpNotebookPage [
 		newCloseControlIn: self
 		for: aSpNotebookPage
 		action: [ aSpNotebookPage removeFromNotebook ]
-		help: 'Close this page' translated
+		help: 'Close this page'
 ]
 
 { #category : 'factory' }
