@@ -62,7 +62,7 @@ SpMorphicBackend >> inform: aString [
 	"If we are not in interactive mode, we log in the stdout. Else we delegate to the Morphic notification"
 
 	Smalltalk isInteractive
-		ifTrue: [ GrowlMorph openWithLabel: 'Information' translated contents: aString ]
+		ifTrue: [ GrowlMorph openWithLabel: 'Information' contents: aString ]
 		ifFalse: [
 				| logBlock |
 				logBlock := [ :logger |
@@ -99,7 +99,7 @@ SpMorphicBackend >> notifyError: aSpecNotification [
 SpMorphicBackend >> notifyInfo: aSpecNotification [
 
 	GrowlMorph 
-		openWithLabel: 'Information' translated 
+		openWithLabel: 'Information' 
 		contents: aSpecNotification message
 ]
 
