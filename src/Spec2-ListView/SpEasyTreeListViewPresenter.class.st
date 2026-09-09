@@ -206,7 +206,7 @@ SpEasyTreeListViewPresenter >> initializePresenters [
 	headerPanel hide
 ]
 
-{ #category : 'instance creation' }
+{ #category : 'private' }
 SpEasyTreeListViewPresenter >> newRowPresenterOn: aPresenter [
 	| rowPresenter |
 	
