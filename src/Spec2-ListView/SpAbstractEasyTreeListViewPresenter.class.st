@@ -87,6 +87,15 @@ SpAbstractEasyTreeListViewPresenter >> expandAll [
 ]
 
 { #category : 'api' }
+SpAbstractEasyTreeListViewPresenter >> expandItem: anItem [
+	"Expand the item at the tree path.
+	`anItem` is the item to expand (we assume it will have children, if it is 
+	 not the case, no expansion will happen"
+
+	contentView expandItem: anItem
+]
+
+{ #category : 'api' }
 SpAbstractEasyTreeListViewPresenter >> expandPath: aPath [
 	"Expand the tree path.
 	`aPath` is the path to expand. A path is an array of node indexes (e.g. #(1 2 3))"
@@ -306,14 +315,12 @@ SpAbstractEasyTreeListViewPresenter >> verticalAlignment [
 	^ contentView verticalAlignment
 ]
 
-{ #category : 'events' }
+{ #category : 'api - events' }
 SpAbstractEasyTreeListViewPresenter >> whenExpandChangedDo: aBlock [
-	"Inform when notification of expand happens."
+	"Inform when a tree node has been expanded or collapsed.
+	 `aBlock` receives one optional argument (an instance of `SpTreeExpansionChanged`)."
 
-	self announcer 
-		when: SpTreeExpansionChanged 
-		do: aBlock 
-		for: aBlock receiver
+	contentView whenExpandChangedDo: aBlock
 ]
 
 { #category : 'api - events' }

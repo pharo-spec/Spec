@@ -19,7 +19,8 @@ Class {
 		'#headerPanel',
 		'#display => ObservableSlot',
 		'#displayIcon => ObservableSlot',
-		'#rowPresenterClass'
+		'#rowPresenterClass',
+		'#rowPresenterInstantiatedAction'
 	],
 	#category : 'Spec2-ListView-Easy',
 	#package : 'Spec2-ListView',
@@ -66,6 +67,13 @@ SpEasyTreeListViewPresenter class >> examplePopover [
 					doNotTransferFocus;
 					popup	] ];
 		open
+]
+
+{ #category : 'private' }
+SpEasyTreeListViewPresenter >> announceRowPresenterInstantiated: rowPresenter [
+
+	rowPresenterInstantiatedAction ifNil: [ ^ self ].
+	rowPresenterInstantiatedAction value: rowPresenter
 ]
 
 { #category : 'layout' }
@@ -191,15 +199,24 @@ SpEasyTreeListViewPresenter >> initializePresenters [
 
 	headerPanel := self newLabel.
 	contentView := self newTreeListView
-		setup: [ :aPresenter | 
-			(aPresenter instantiate: self rowPresenterClass)
-				listView: self;
-				yourself ];
-		bind: [ :aPresenter :anObject | 
-			aPresenter model: anObject ];
+		setup: [ :aPresenter | self newRowPresenterOn: aPresenter ];
+		bind: [ :rowPresenter :anObject | rowPresenter model: anObject ];
 		yourself.
 		
 	headerPanel hide
+]
+
+{ #category : 'private' }
+SpEasyTreeListViewPresenter >> newRowPresenterOn: aPresenter [
+	| rowPresenter |
+	
+	rowPresenter := (aPresenter instantiate: self rowPresenterClass)
+		listView: self;
+		yourself.
+		
+	self announceRowPresenterInstantiated: rowPresenter.
+		
+	^ rowPresenter
 ]
 
 { #category : 'initialization' }
@@ -247,4 +264,10 @@ SpEasyTreeListViewPresenter >> whenIconsChangedDo: aBlock [
 	 - the announcement triggering this action"
 
 	self property: #displayIcon whenChangedDo: aBlock
+]
+
+{ #category : 'api - events' }
+SpEasyTreeListViewPresenter >> whenRowPresenterInstantiatedDo: aBlock [
+
+	rowPresenterInstantiatedAction := aBlock
 ]
