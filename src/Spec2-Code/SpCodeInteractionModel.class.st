@@ -58,7 +58,23 @@ SpCodeInteractionModel >> compiler [
 
 { #category : 'interactive error protocol' }
 SpCodeInteractionModel >> correctFrom: start to: stop with: aString [ 
-	self owner adapter widget correctFrom: start to: stop with: aString 
+	"this line of code marks the underlying widget as dirty.
+	But... see below"
+	self owner adapter widget correctFrom: start to: stop with: aString.
+	
+	"We need to unmark the dirtyness here.
+
+	Otherwise, once compilation is done, the method installer will announce it.
+	And the method browser will catch it and see it was dirty and launch a popup.
+	And this happens before the `submit` callback returns!
+	So this is not clear where to do it.
+	
+	But this is not so easy because here we are deep in the presenter hierarchy.
+	Our owner owner may be a SpCodeEditor or not!
+	
+	This needs to be redesigned somehow..."
+	(self owner owner respondsTo: #unmarkDirty)
+		ifTrue: [ self owner owner unmarkDirty ] 
 ]
 
 { #category : 'accessing' }
