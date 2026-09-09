@@ -56,13 +56,13 @@ SpRGBSlidersPresenter >> initializePresenters [
 	blueSlider := self instantiate: SpSliderInputPresenter.
 	redSlider
 		min: 0;
-		max: 255; label: 'Red' translated.
+		max: 255; label: 'Red'.
 	greenSlider
 		min: 0;
-		max: 255; label: 'Green' translated.
+		max: 255; label: 'Green'.
 	blueSlider
 		min: 0;
-		max: 255; label: 'Blue' translated.
+		max: 255; label: 'Blue'.
 	self focusOrder
 		add: redSlider;
 		add: greenSlider;
