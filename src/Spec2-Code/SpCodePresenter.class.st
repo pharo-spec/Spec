@@ -331,11 +331,12 @@ SpCodePresenter >> doBrowseSenders [
 
 	| variableOrClassName variable |
 	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
-	variable := self lookupEnvironment lookupVar: variableOrClassName. "For global and class variables, sender-of shows intead the using methods"
+	variable := self lookupEnvironment lookupVar: variableOrClassName.
+	
+	"For global and class variables, sender-of shows intead the using methods"
 	(variable isNotNil and: [ variable isGlobalVariable or: [ variable isClassVariable ] ])
 		ifTrue: [ self systemNavigation openBrowserFor: variable withMethods: variable usingMethods ]
-		ifFalse: [
-		(Smalltalk tools toolNamed: #messageList) browseSendersOfAll: { variableOrClassName } from: self interactionModel behavior ]
+		ifFalse: [ self systemNavigation browseAllSendersOf: variableOrClassName ]
 ]
 
 { #category : 'private - bindings' }
