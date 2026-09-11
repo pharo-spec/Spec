@@ -44,16 +44,21 @@ SpPanedResizerHorizontalMorph >> setLayoutSizing [
 
 { #category : 'private' }
 SpPanedResizerHorizontalMorph >> setTargetBounds [
-	| target |
-	
-	target := self target.
-	target bounds: (target bounds withRight: self left - 1)
+	self target ifNotNil: [ :targetMorph |
+		targetMorph bounds: (targetMorph bounds withRight: self left) ].
+	self targetAfter ifNotNil: [ :targetAfterMorph |
+		targetAfterMorph bounds: (self right @ targetAfterMorph top corner: targetAfterMorph bottomRight) ]
 ]
 
 { #category : 'private' }
 SpPanedResizerHorizontalMorph >> setTargetLayoutSizing [
-
-	(self target hResizing = #rigid) ifTrue: [ ^ self ].
-	self target hResizing: #rigid.
-	self targetAfter hResizing: #spaceFill.
+	self isFromEnd
+		ifTrue: [
+			self targetAfter hResizing = #rigid ifTrue: [ ^ self ].
+			self targetAfter hResizing: #rigid.
+			self target hResizing: #spaceFill ]
+		ifFalse: [
+			self target hResizing = #rigid ifTrue: [ ^ self ].
+			self target hResizing: #rigid.
+			self targetAfter hResizing: #spaceFill ]
 ]
