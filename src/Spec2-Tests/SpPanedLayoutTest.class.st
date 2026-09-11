@@ -62,6 +62,15 @@ SpPanedLayoutTest >> testLayoutWithOneSecondElementIsNotEmpty [
 	self deny: layout isEmpty
 ]
 
+{ #category : 'tests' }
+SpPanedLayoutTest >> testPositionOfSliderAllowsNegativeValues [
+	layout positionOfSlider: -200.
+	self assert: layout positionOfSlider equals: -200.
+	
+	layout positionOfSlider: -30 percent.
+	self assert: layout positionOfSlider equals: -30 percent
+]
+
 { #category : 'running' }
 SpPanedLayoutTest >> testRemoveFirstElementFromLayoutTakesItOut [
 

@@ -1,8 +1,13 @@
 "
-A layout with two **adjustable** panels. 
-A paned layout manages two and only two children, a first and a second one.
+A layout with two adjustable panels separated by a draggable splitter.
 
-From that perspective, a paned layout is like a `SpBoxLayout`: it places childen in vertical or horizontal fashion, but it will add a splitter in between, that user can drag to resize the panel.
+A paned layout manages exactly two children (first and second).
+The position and sizing behavior of the panes is controlled by `#positionOfSlider:`:
+
+- Values with absolute magnitude < 1 (e.g. 0.3, 30 percent, -0.2) define proportional splits that resize dynamically when the container is resized.
+- Values with absolute magnitude >= 1 (e.g. 200, -200) define fixed pixel sizes that do not resize with the window.
+- Positive values anchor the fixed/proportional constraint to the start pane (left or top).
+- Negative values anchor the fixed/proportional constraint to the end pane (right or bottom).
 "
 Class {
 	#name : 'SpPanedLayout',
@@ -145,13 +150,21 @@ SpPanedLayout >> positionOfSlider [
 
 { #category : 'api' }
 SpPanedLayout >> positionOfSlider: aNumber [
-	"Position of the slider. 
-	 - `aNumber` can be a fixed number indicating the exact position where the slider will 
-	 be placed in the pane.
-	 - `aFloat` can also be a fraction or a percentage, indicating the percentage position 
-	 of the slider, e.g. 30 percent (0.3) indicates the slider will be place at 1/3 of the panel."
+	"Sets the position and sizing mode of the paned splitter:
 
-  positionOfSlider := aNumber
+	- Proportional sizing (|aNumber| < 1):
+	    Positive (e.g. 0.3 or 30 percent): Splitted proportionally from the start (left or top).
+	    Negative (e.g. -0.3 or -30 percent): Splitted proportionally from the end (right or bottom).
+	    Both panes resize proportionally when the container is resized.
+
+	- Fixed sizing (|aNumber| >= 1):
+	    Positive integer (e.g. 200): Fixed offset in pixels from the start (left or top).
+	      The start pane retains its fixed width/height when the window is resized.
+	    Negative integer (e.g. -200): Fixed offset in pixels from the end (right or bottom).
+	      The end pane retains its fixed width/height when the window is resized.
+
+	When the user drags the splitter, the sizing mode (fixed vs proportional, start vs end) is preserved."
+	positionOfSlider := aNumber
 ]
 
 { #category : 'api' }
