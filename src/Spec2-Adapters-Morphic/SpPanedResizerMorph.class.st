@@ -130,6 +130,13 @@ SpPanedResizerMorph >> initialize [
 ]
 
 { #category : 'testing' }
+SpPanedResizerMorph >> isFromEnd [
+	^ self owner
+		ifNotNil: [ :o | o layoutPolicy ifNotNil: [ :lp | lp isFromEnd ] ]
+		ifNil: [ false ]
+]
+
+{ #category : 'testing' }
 SpPanedResizerMorph >> isHorizontal [
 	"Answer true if the receiver has a horizontal layout."
 	
