@@ -7,14 +7,6 @@ SystemNavigation >> browse: anObject [
 ]
 
 { #category : '*Spec2-Code-Commands' }
-SystemNavigation >> browseAllSendersOf: aVariableOrClassName from: aContext [
-
-	(Smalltalk tools toolNamed: #messageList)
-		browseSendersOfAll: { aVariableOrClassName } 
-		from: aContext
-]
-
-{ #category : '*Spec2-Code-Commands' }
 SystemNavigation >> inspect: anObject [
 
 	(self  tools toolNamed: #inspector) inspect: anObject
