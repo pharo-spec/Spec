@@ -328,8 +328,8 @@ SpCodePresenter >> doBrowseMethodsMatchingStringSensitive [
 
 { #category : 'commands' }
 SpCodePresenter >> doBrowseSenders [
-
 	| variableOrClassName variable |
+	
 	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
 	variable := self lookupEnvironment lookupVar: variableOrClassName.
 	

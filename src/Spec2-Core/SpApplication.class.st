@@ -360,7 +360,7 @@ SpApplication >> reset [
 { #category : 'running' }
 SpApplication >> run [ 
 
-	self start
+	self backend runOn: self
 ]
 
 { #category : 'ui' }

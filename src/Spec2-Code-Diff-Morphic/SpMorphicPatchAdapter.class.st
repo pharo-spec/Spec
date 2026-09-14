@@ -23,20 +23,25 @@ SpMorphicPatchAdapter >> buildWidget [
 		dropEnabled: self dropEnabled;
 		hScrollbarShowWhenNeeded;
 		yourself.
-	
+
 	self setEditable: false to: newWidget.
 	self setEditingModeFor: newWidget.
+
+	self presenter whenSyntaxHighlightChangedDo: [ :hasSyntaxHighlight | 
+		self setEditingModeFor: newWidget ].
+
 	self setPatchTo: newWidget.
+
 	self presenter whenPatchChangedDo: [ :aPatchModel | 
 		self setPatch: aPatchModel ].
-	
+
 	newWidget withRuler: (SpMorphicLineMarkDisplayer new
 		adapter: self;
 		yourself).
 	newWidget textArea withDecorator: (SpMorphicPatchLineDecorator new
 		adapter: self;
 		yourself).
-	
+
 	^ newWidget
 ]
 
@@ -61,7 +66,9 @@ SpMorphicPatchAdapter >> setEditable: aBoolean to: aWidget [
 { #category : 'factory' }
 SpMorphicPatchAdapter >> setEditingModeFor: textArea [
 
-	textArea beForPlainText
+	self presenter hasSyntaxHighlight
+		ifTrue: [ textArea beForSmalltalkScripting ]
+		ifFalse: [ textArea beForPlainText ]
 ]
 
 { #category : 'factory' }

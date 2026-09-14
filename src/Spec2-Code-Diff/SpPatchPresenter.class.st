@@ -3,7 +3,8 @@ Class {
 	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
 		'#patch => ObservableSlot',
-		'#interactionModel => ObservableSlot',
+		'#syntaxHighlight => ObservableSlot',
+		'#interactionModel',
 		'#syntaxHighlightTheme',
 		'#marks',
 		'#styleScheme'
@@ -70,10 +71,17 @@ SpPatchPresenter >> ensurePatch [
 	^ patch ifNil: [ patch := SpPatchModel newFrom: '' to: '' ]
 ]
 
+{ #category : 'testing' }
+SpPatchPresenter >> hasSyntaxHighlight [
+
+	^ syntaxHighlight
+]
+
 { #category : 'initialization' }
-SpPatchPresenter >> initialize [ 
+SpPatchPresenter >> initialize [
 
 	super initialize.
+	self withSyntaxHighlight
 ]
 
 { #category : 'private' }
@@ -160,6 +168,12 @@ SpPatchPresenter >> styleScheme: aSymbol [
 ]
 
 { #category : 'api' }
+SpPatchPresenter >> syntaxHighlight: aBoolean [
+
+	syntaxHighlight := aBoolean
+]
+
+{ #category : 'api' }
 SpPatchPresenter >> syntaxHighlightTheme [
 	"The name of the syntax highlight theme to use (e.g. 'Blue', 'Vintage', 'Solarized', 'Tango'). 
 	 If not defined, the component will take the default value from the system."
@@ -178,4 +192,22 @@ SpPatchPresenter >> syntaxHighlightTheme: aSymbol [
 SpPatchPresenter >> whenPatchChangedDo: aBlock [
 
 	self property: #patch whenChangedDo: aBlock
+]
+
+{ #category : 'api - events' }
+SpPatchPresenter >> whenSyntaxHighlightChangedDo: aBlock [
+
+	self property: #syntaxHighlight whenChangedDo: aBlock
+]
+
+{ #category : 'api' }
+SpPatchPresenter >> withSyntaxHighlight [
+
+	self syntaxHighlight: true
+]
+
+{ #category : 'api' }
+SpPatchPresenter >> withoutSyntaxHighlight [
+
+	self syntaxHighlight: false
 ]

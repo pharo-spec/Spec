@@ -39,7 +39,7 @@ SpToolbarPresenterBuilder >> addPopoverButtonFrom: aCommandsGroup [
 				toolbarPresenter: self toolbarPresenter newToolbar;
 				visit: aCommandsGroup copy beToolbarGroup;
 				toolbarPresenter ];
-		yourself)	
+		yourself)
 ]
 
 { #category : 'initialization' }
@@ -60,13 +60,19 @@ SpToolbarPresenterBuilder >> toolbarPresenter: anObject [
 
 { #category : 'visiting' }
 SpToolbarPresenterBuilder >> visitCommand: anEntry [
+	| presenter |
 
 	"initialize icon provider if it is not there."
 	anEntry iconProvider ifNil: [ 
 		anEntry iconProvider: self toolbarPresenter application ].
+	
+	presenter := anEntry buildPresenter.
+	
 	anEntry positionStrategy
-		addButton: anEntry buildPresenter
-		toToolbar: self toolbarPresenter
+		addButton: presenter
+		toToolbar: self toolbarPresenter.
+		
+	presenter visible: anEntry isVisible
 ]
 
 { #category : 'visiting' }
