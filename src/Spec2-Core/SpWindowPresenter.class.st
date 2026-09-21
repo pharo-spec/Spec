@@ -224,7 +224,7 @@ SpWindowPresenter >> defaultInitialExtent [
 	^ 400@300
 ]
 
-{ #category : 'private' }
+{ #category : 'TOREMOVE' }
 SpWindowPresenter >> delete [
 	"DO NOT USE. This will destroy the window and maybe you do not want that :/
 	 I'm keeping this here because of testing."

@@ -467,7 +467,7 @@ SpPresenter >> defer: aBlock [
 	self application defer: aBlock
 ]
 
-{ #category : 'private' }
+{ #category : 'TOREMOVE' }
 SpPresenter >> delete [
 
 	self withWindowDo: #delete
