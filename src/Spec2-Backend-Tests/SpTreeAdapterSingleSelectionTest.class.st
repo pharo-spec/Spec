@@ -77,7 +77,7 @@ SpTreeAdapterSingleSelectionTest >> testSelectPresenterWithoutScrollingDoesNotSc
 	                verticalAlignment lastVisibleRowIndex.
 
 	presenter selectPath: { 150 } scrollToSelection: false.
-
+	backendForTest waitUntilUIRedrawed.
 	self
 		assert: (verticalAlignment firstVisibleRowIndex to:
 			 verticalAlignment lastVisibleRowIndex)
@@ -91,6 +91,7 @@ SpTreeAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexCha
 	counter := 0.
 	presenter selection whenChangedDo: [ :selection | counter := counter + 1 ].
 	self adapter selectPath: #(1).
+	backendForTest waitUntilUIRedrawed.
 	self assert: counter equals: 1
 ]
 
@@ -101,6 +102,7 @@ SpTreeAdapterSingleSelectionTest >> testSelectWidgetIndexRaisesSelectionIndexCha
 	presenter selection
 		whenChangedDo: [ :selection | selectedPath := selection ].
 	self adapter selectPath: #(1).
+	backendForTest waitUntilUIRedrawed.
 	self assert: selectedPath equals: #(1)
 ]
 
@@ -111,6 +113,7 @@ SpTreeAdapterSingleSelectionTest >> testUnselectAllInWidgetNotRaisesEmptySelecti
 	presenter selection
 		whenChangedDo: [ :selection | gotSelection := selection ].
 	self adapter selectPath: #().
+	backendForTest waitUntilUIRedrawed.
 	self assert: gotSelection isNil
 ]
 
@@ -123,6 +126,7 @@ SpTreeAdapterSingleSelectionTest >> testUnselectAllInWidgetRaisesSelectionIndexC
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
 	self adapter selectPath: #().
+	backendForTest waitUntilUIRedrawed.
 	self assert: counter equals: 1
 ]
 
@@ -134,6 +138,7 @@ SpTreeAdapterSingleSelectionTest >> testUnselectAllInWidgetWithoutSelectionDoesN
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
 	self adapter selectPath: #().
+	backendForTest waitUntilUIRedrawed.
 	self assert: counter equals: 0
 ]
 
@@ -161,6 +166,7 @@ SpTreeAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelectionIndexC
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
 	self adapter selectPath: #().
+	backendForTest waitUntilUIRedrawed.
 	self assert: counter equals: 1
 ]
 
