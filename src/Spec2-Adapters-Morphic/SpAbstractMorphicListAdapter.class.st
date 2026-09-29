@@ -72,6 +72,18 @@ SpAbstractMorphicListAdapter >> itemFilter [
 	^ self model itemFilter
 ]
 
+{ #category : 'events' }
+SpAbstractMorphicListAdapter >> refreshList [ 
+
+	self subclassResponsibility
+]
+
+{ #category : 'events' }
+SpAbstractMorphicListAdapter >> refreshList: anAnnouncement [
+
+	self refreshList 
+]
+
 { #category : 'scrolling' }
 SpAbstractMorphicListAdapter >> scrollingChanged [
 	widget container updateAllRows.
