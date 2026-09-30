@@ -173,12 +173,6 @@ SpMorphicTableAdapter >> refreshList [
 	^ self widget refresh
 ]
 
-{ #category : 'widget API' }
-SpMorphicTableAdapter >> refreshList: aValueChanged [ 
-	
-	^ self refreshList 
-]
-
 { #category : 'refreshing' }
 SpMorphicTableAdapter >> refreshModel [
 
