@@ -81,7 +81,7 @@ SpAbstractMorphicListAdapter >> refreshList [
 { #category : 'events' }
 SpAbstractMorphicListAdapter >> refreshList: anAnnouncement [
 
-	self refreshList 
+	self refreshList
 ]
 
 { #category : 'scrolling' }
