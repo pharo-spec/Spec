@@ -157,6 +157,18 @@ SpMorphicTreeTableAdapter >> collapsePath: anArray [
 	widget dataSource collapsePath: anArray
 ]
 
+{ #category : 'accessing' }
+SpMorphicTreeTableAdapter >> collapsePaths: aCollectionOfPaths [
+
+	| collapsedItems |
+	collapsedItems := (aCollectionOfPaths collect: [ :each | (widget dataSource itemAtPath: each) ifNotNil: [ :item | item data ] ]) reject: [ :each | each isNil ].
+	widget dataSource collapsePaths: aCollectionOfPaths.
+	self presenter announce: (SpTreeExpansionChanged new
+			 expanded: false;
+			 items: collapsedItems;
+			 yourself)
+]
+
 { #category : 'testing' }
 SpMorphicTreeTableAdapter >> columnCount [
 	

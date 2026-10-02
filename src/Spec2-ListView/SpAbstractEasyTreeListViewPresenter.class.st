@@ -55,6 +55,13 @@ SpAbstractEasyTreeListViewPresenter >> collapsePath: aPath [
 ]
 
 { #category : 'api' }
+SpAbstractEasyTreeListViewPresenter >> collapsePaths: aCollectionOfPaths [
+	"Collapse all given paths at once. `aCollectionOfPaths` is a collection of paths, each an array of node indexes (e.g. { #(1 2 3). #(1 2 4) })."
+
+	contentView collapsePaths: aCollectionOfPaths
+]
+
+{ #category : 'api' }
 SpAbstractEasyTreeListViewPresenter >> contextMenu [
 
 	^ contentView contextMenu
@@ -92,6 +99,13 @@ SpAbstractEasyTreeListViewPresenter >> expandPath: aPath [
 	`aPath` is the path to expand. A path is an array of node indexes (e.g. #(1 2 3))"
 
 	contentView expandPath: aPath
+]
+
+{ #category : 'api' }
+SpAbstractEasyTreeListViewPresenter >> expandPaths: aCollectionOfPaths [
+	"Expand all given paths at once. `aCollectionOfPaths` is a collection of paths, each an array of node indexes (e.g. { #(1 2 3). #(1 2 4) })."
+
+	contentView expandPaths: aCollectionOfPaths
 ]
 
 { #category : 'api' }

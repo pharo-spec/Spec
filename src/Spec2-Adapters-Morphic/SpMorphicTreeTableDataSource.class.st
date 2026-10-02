@@ -74,6 +74,15 @@ SpMorphicTreeTableDataSource >> collapsePath: aPath [
 ]
 
 { #category : 'accessing' }
+SpMorphicTreeTableDataSource >> collapsePaths: aCollectionOfPaths [
+	"Collapse all given paths silently, then refresh the table once.
+	 The notification is the caller responsibility."
+
+	aCollectionOfPaths do: [ :each | (self itemAtPath: each) ifNotNil: [ :item | item collapseWithoutChange ] ].
+	self tableRefresh
+]
+
+{ #category : 'accessing' }
 SpMorphicTreeTableDataSource >> expandPath: aPath [
 
 	self expandPath: aPath root: self rootItem children.

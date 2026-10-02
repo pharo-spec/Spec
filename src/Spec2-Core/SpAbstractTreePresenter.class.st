@@ -131,6 +131,14 @@ SpAbstractTreePresenter >> collapsePath: aPath [
 		anAdapter collapsePath: aPath ]
 ]
 
+{ #category : 'api' }
+SpAbstractTreePresenter >> collapsePaths: aCollectionOfPaths [
+	"`aCollectionOfPaths` is a collection of paths, each an array of node indexes (e.g. { #(1 2 3). #(1 2 4) }).
+	 This collapses the paths, refreshes the widget only once, leaves the selection unchanged, and notifies #whenExpandChangedDo: handlers a single time."
+
+	self withAdapterPerformOrDefer: [ :anAdapter | anAdapter collapsePaths: aCollectionOfPaths ]
+]
+
 { #category : 'private' }
 SpAbstractTreePresenter >> disableActivationDuring: aBlock [
 
