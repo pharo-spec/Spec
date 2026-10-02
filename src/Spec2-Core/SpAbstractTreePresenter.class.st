@@ -212,6 +212,14 @@ SpAbstractTreePresenter >> expandPath: aPath [
 ]
 
 { #category : 'api' }
+SpAbstractTreePresenter >> expandPaths: aCollectionOfPaths [
+	"`aCollectionOfPaths` is a collection of paths, each an array of node indexes (e.g. { #(1 2 3). #(1 2 4) }).
+	 This expands the paths, refreshes the widget only once, leaves the selection unchanged, and notifies #whenExpandChangedDo: handlers a single time."
+
+	self withAdapterPerformOrDefer: [ :anAdapter | anAdapter expandPaths: aCollectionOfPaths ]
+]
+
+{ #category : 'api' }
 SpAbstractTreePresenter >> expandRoots [
 	"Expand all roots of the tree"
 

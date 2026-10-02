@@ -211,6 +211,19 @@ SpMorphicTreeTableAdapter >> expandPath: anArray [
 ]
 
 { #category : 'accessing' }
+SpMorphicTreeTableAdapter >> expandPaths: aCollectionOfPaths [
+	"Expand all given paths at once, refresh the widget once and notify #whenExpandChangedDo: handlers a single time."
+
+	| expandedItems |
+	expandedItems := (aCollectionOfPaths collect: [ :each | (widget dataSource itemAtPath: each) ifNotNil: [ :item | item data ] ]) reject: [ :each | each isNil ].
+	widget dataSource expandPaths: aCollectionOfPaths.
+	self presenter announce: (SpTreeExpansionChanged new
+			 expanded: true;
+			 items: expandedItems;
+			 yourself)
+]
+
+{ #category : 'accessing' }
 SpMorphicTreeTableAdapter >> expandRoots [
 
 	widget dataSource expandRoots
