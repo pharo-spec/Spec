@@ -17,7 +17,8 @@ Class {
 		'children',
 		'selector',
 		'adapter',
-		'announcer'
+		'announcer',
+		'nestedToLayout'
 	],
 	#category : 'Spec2-Layout-Base',
 	#package : 'Spec2-Layout',
@@ -76,12 +77,15 @@ SpExecutableLayout >> adapterName [
 ]
 
 { #category : 'accessing' }
-SpExecutableLayout >> add: aName withConstraints: aBlock [
-
+SpExecutableLayout >> add: aPresenterOrLayout withConstraints: aBlock [
 	| constraints |
+	
 	constraints := self constraintsClass new.
 	aBlock value: constraints.
-	children at: aName put: constraints
+	children at: aPresenterOrLayout put: constraints.
+	
+	aPresenterOrLayout isSpLayout 
+		ifTrue: [ aPresenterOrLayout nestedToLayout: self ]
 ]
 
 { #category : 'accessing' }
@@ -222,9 +226,27 @@ SpExecutableLayout >> isExecutable [
 ]
 
 { #category : 'testing' }
+SpExecutableLayout >> isNested [
+
+	^ self nestedToLayout isNotNil
+]
+
+{ #category : 'testing' }
 SpExecutableLayout >> isSpLayout [
 
 	^ true
+]
+
+{ #category : 'accessing' }
+SpExecutableLayout >> nestedToLayout [
+
+	^ nestedToLayout
+]
+
+{ #category : 'accessing' }
+SpExecutableLayout >> nestedToLayout: aLayout [
+
+	nestedToLayout := aLayout
 ]
 
 { #category : 'accessing' }

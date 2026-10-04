@@ -56,7 +56,11 @@ SpPanedLayout >> add: aPresenterLayoutOrSymbol layout: aSelector [
 
 { #category : 'private' }
 SpPanedLayout >> add: aChild withConstraints: aBlock [
-	self add: aChild withConstraints: aBlock place: children size + 1
+
+	self 
+		add: aChild 
+		withConstraints: aBlock 
+		place: children size + 1
 ]
 
 { #category : 'private' }
@@ -82,6 +86,9 @@ SpPanedLayout >> add: aChild withConstraints: aBlock place: aPosition [
 	children 
 		at: aChild 
 		put: constraints.
+	
+	aChild isSpLayout 
+		ifTrue: [ aChild nestedToLayout: self ].
 	
 	self announceChildAdded: aChild.
 ]
