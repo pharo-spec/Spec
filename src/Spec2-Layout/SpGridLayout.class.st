@@ -157,7 +157,9 @@ SpGridLayout >> add: aName atPoint: aPoint span: spanPoint [
 SpGridLayout >> add: aChild withConstraints: aBlock [
 
 	super add: aChild withConstraints: aBlock.
-	childrenByPosition at: (children at: aChild) position put: aChild.
+	childrenByPosition 
+		at: (children at: aChild) position 
+		put: aChild.
 	self announceChildAdded: aChild.
 ]
 

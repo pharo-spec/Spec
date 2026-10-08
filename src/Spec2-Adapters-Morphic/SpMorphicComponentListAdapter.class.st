@@ -78,6 +78,14 @@ SpMorphicComponentListAdapter >> refreshList [
 	^ self application defer: [ self widget refresh ]
 ]
 
+{ #category : 'updating' }
+SpMorphicComponentListAdapter >> refreshList: anAnnouncement [
+	"this can provide special handling of the kind of refresh, but for now just 
+	 letting it as is"
+	
+	self refreshList
+]
+
 { #category : 'factory' }
 SpMorphicComponentListAdapter >> refreshWidgetSelection [
 	| rowIndexes |
