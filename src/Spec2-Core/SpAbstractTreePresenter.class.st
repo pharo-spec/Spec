@@ -203,6 +203,16 @@ SpAbstractTreePresenter >> expandAll [
 ]
 
 { #category : 'api' }
+SpAbstractTreePresenter >> expandItem: anItem [
+	"Expand the item at the tree path.
+	`anItem` is the item to expand (we assume it will have children, if it is 
+	 not the case, no expansion will happen"
+
+	(self selection pathOf: anItem)
+		ifNotEmpty: [ :aPath | self expandPath: aPath ] 
+]
+
+{ #category : 'api' }
 SpAbstractTreePresenter >> expandPath: aPath [
 	"Expand the tree path.
 	`aPath` is the path to expand. A path is an array of node indexes (e.g. #(1 2 3))"

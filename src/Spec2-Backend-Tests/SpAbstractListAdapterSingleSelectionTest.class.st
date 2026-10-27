@@ -182,5 +182,6 @@ SpAbstractListAdapterSingleSelectionTest >> testUnselectWidgetIndexRaisesSelecti
 	presenter selection
 		whenChangedDo: [ :selection | selectedIndex := selection selectedIndex ].
 	self adapter selectIndex: 0.
+	backendForTest waitUntilUIRedrawed.
 	self assert: selectedIndex equals: 0
 ]

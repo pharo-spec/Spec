@@ -7,6 +7,12 @@ Object >> asPresenter [
 ]
 
 { #category : '*Spec2-Core' }
+Object >> asPresenterOn: aPresenter [
+
+	^ self asString asPresenterOn: aPresenter
+]
+
+{ #category : '*Spec2-Core' }
 Object >> isPresenter [
 
 	^ false

@@ -27,6 +27,14 @@ SpApplication >> inform: aString [
 ]
 
 { #category : '*Spec2-Dialogs' }
+SpApplication >> inform: aString action: aBlock [ 
+
+	^ self backend 
+		inform: aString
+		action: aBlock
+]
+
+{ #category : '*Spec2-Dialogs' }
 SpApplication >> informUser: aString during: aBlock [
 	"Displays an inform user dialog."
 	| result |

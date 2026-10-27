@@ -217,6 +217,12 @@ SpRequestDialog >> text: aString [
 	textInput text: aString
 ]
 
+{ #category : 'private - accessing' }
+SpRequestDialog >> textInputPresenter [
+
+	^ textInput
+]
+
 { #category : 'private' }
 SpRequestDialog >> validateAnswer [
 	

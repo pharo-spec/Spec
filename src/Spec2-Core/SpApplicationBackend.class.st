@@ -73,6 +73,13 @@ SpApplicationBackend >> inform: aString [
 	self subclassResponsibility
 ]
 
+{ #category : 'ui - dialogs' }
+SpApplicationBackend >> inform: aString action: aBlock [
+	"an inform action that has an associated action."
+
+	self subclassResponsibility
+]
+
 { #category : 'initialization' }
 SpApplicationBackend >> initialize [
 

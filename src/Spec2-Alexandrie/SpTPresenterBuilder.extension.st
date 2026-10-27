@@ -1,6 +1,6 @@
-Extension { #name : #SpTPresenterBuilder }
+Extension { #name : 'SpTPresenterBuilder' }
 
-{ #category : #'*Spec2-Alexandrie' }
+{ #category : '*Spec2-Alexandrie' }
 SpTPresenterBuilder >> newAlexandrie [
 
 	^ self instantiate: SpAlexandriePresenter

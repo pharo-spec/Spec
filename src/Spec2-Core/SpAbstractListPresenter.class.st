@@ -237,8 +237,9 @@ SpAbstractListPresenter >> model: aModel [
 	 It is tipically an instance of `SpCollectionListModel`."
 	
 	model := aModel.
-	model whenChangedDo: [ 
-		self withAdapterDo: [ :anAdapter | anAdapter refreshList ] ]
+	self withAdapterDo: [ :anAdapter | anAdapter refreshList ].
+	model whenChangedDo: [ :newValue :oldValue :originAnnouncement |
+		self withAdapterDo: [ :anAdapter | anAdapter refreshList: originAnnouncement ] ]
 ]
 
 { #category : 'private' }
