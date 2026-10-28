@@ -130,6 +130,8 @@ SpMorphicGridLayoutComputation >> calculateNotHomogeneousColumnWidths [
 		accumulatedWidth := (newColumnWidths reject: [ :each | each isZero ]) 
 			ifNotEmpty: [ :nonZeroWidths | nonZeroWidths sum ]
 			ifEmpty: [ 0 ]. 
+		"Column positions add columnSpacing between columns: keep it out of the remaining width"
+		accumulatedWidth := accumulatedWidth + ((numColumns - 1) * self layout columnSpacing).
 		width := ((bounds width - accumulatedWidth) / expandables) asInteger.
 		newColumnWidths := newColumnWidths collect: [ :each | 
 			each = 0 
@@ -287,7 +289,7 @@ SpMorphicGridLayoutComputation >> heightOf: aMorph [
 	
 	height := (self geometryPropertyOf: aMorph) ifNotNil: [ :geometry | geometry height ].
 	^ (height isNil or: [ height = 0 ])
-		ifTrue: [ aMorph height ]
+		ifTrue: [ (self naturalExtentOf: aMorph) y ]
 		ifFalse: [ height ]
 ]
 
@@ -348,6 +350,17 @@ SpMorphicGridLayoutComputation >> numRows [
 	^ numRows
 ]
 
+{ #category : 'private' }
+SpMorphicGridLayoutComputation >> naturalExtentOf: aMorph [
+	"Alignment wrappers (see SpMorphicGridAdapter>>#basicApplyChildrenAlignmentTo:constraints:)
+	 are rigid: their extent is the default morph extent or the one of the cell they were laid
+	 in, not the one of their content. Measure their content instead."
+
+	^ (aMorph hasProperty: #gridAlignmentWrapper)
+		ifTrue: [ aMorph layoutPolicy minExtentOf: aMorph in: aMorph bounds ]
+		ifFalse: [ aMorph extent ]
+]
+
 { #category : 'accessing' }
 SpMorphicGridLayoutComputation >> positionAt: aPoint [
 
@@ -380,6 +393,6 @@ SpMorphicGridLayoutComputation >> widthOf: aMorph [
 
 	width := (self geometryPropertyOf: aMorph) ifNotNil: [ :geometry | geometry width ].
 	^ (width isNil or: [ width = 0 ])
-		ifTrue: [ aMorph width ]
+		ifTrue: [ (self naturalExtentOf: aMorph) x ]
 		ifFalse: [ width ]
 ]
