@@ -35,6 +35,9 @@ SpAbstractAdapterTest >> adapter [
 	The action should have been correctly configured before
 	depending on the spec initialization strategy"
 	backendForTest openInstanceOf: self.
+	"Force checking that the UI has no more action to perform.
+	It ensures that when accessing information through the adapter it is uptodate, which is important in assertion when checking that clicking on element has be taken into account"
+	backendForTest waitUntilUIRedrawed.
 	^ presenter adapter
 ]
 
