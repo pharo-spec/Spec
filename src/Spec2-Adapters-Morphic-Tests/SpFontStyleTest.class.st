@@ -6,6 +6,46 @@ Class {
 }
 
 { #category : 'tests' }
+SpFontStyleTest >> testBoldFontDoesNotChangeSharedRegularFont [
+
+	| style regularFont boldFont |
+	style := SpFontStyle new
+		name: StandardFonts defaultFont familyName;
+		size: 13;
+		bold: true;
+		yourself.
+	"A regular font with the same family and size, shared through LogicalFont registry"
+	regularFont := LogicalFont
+		familyName: style name
+		pointSize: style scaledSize.
+
+	boldFont := style definedFont.
+
+	self assert: boldFont isBold.
+	self deny: regularFont isBold
+]
+
+{ #category : 'tests' }
+SpFontStyleTest >> testItalicFontDoesNotChangeSharedRegularFont [
+
+	| style regularFont italicFont |
+	style := SpFontStyle new
+		name: StandardFonts defaultFont familyName;
+		size: 13;
+		italic: true;
+		yourself.
+	"A regular font with the same family and size, shared through LogicalFont registry"
+	regularFont := LogicalFont
+		familyName: style name
+		pointSize: style scaledSize.
+
+	italicFont := style definedFont.
+
+	self assert: italicFont isItalic.
+	self deny: regularFont isItalic
+]
+
+{ #category : 'tests' }
 SpFontStyleTest >> testResetFont [
 
 	| styleSheet app presenter font |

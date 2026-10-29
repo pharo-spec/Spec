@@ -149,16 +149,21 @@ SpFontStyle >> boldVariable [
 
 { #category : 'private' }
 SpFontStyle >> calculateDefinedFont [
-	| font |
-	
-	font := LogicalFont
+	"LogicalFont instances are shared (see LogicalFont class>>#familyName:fallbackFamilyNames:pointSize:stretchValue:weightValue:slantValue:).
+	 Ask for the right weight and slant instead of forcing them on the answered font: that would change the font
+	 of every morph using it (e.g. the default font)."
+
+	^ LogicalFont
 		familyName: self calculateFontName
-		pointSize: self calculateFontSize.
-
-	self isItalic ifTrue: [ font forceItalicOrOblique ].
-	self isBold ifTrue: [ font forceBold ].
-
-	^ font
+		fallbackFamilyNames: nil
+		pointSize: self calculateFontSize
+		stretchValue: LogicalFont stretchRegular
+		weightValue: (self isBold
+			ifTrue: [ LogicalFont weightBold ]
+			ifFalse: [ LogicalFont weightRegular ])
+		slantValue: (self isItalic
+			ifTrue: [ LogicalFont slantItalic ]
+			ifFalse: [ LogicalFont slantRegular ])
 ]
 
 { #category : 'private' }
