@@ -272,16 +272,16 @@ SpCodePresenter >> doBrowseHierarchy [
 
 { #category : 'commands' }
 SpCodePresenter >> doBrowseImplementors [
+
 	| variableOrClassName variable |
-	
 	variableOrClassName := self selectedSelector ifNil: [ ^ nil ].
 	variable := self lookupEnvironment lookupVar: variableOrClassName.
-	
+
 	"For global and class variables, implementors-of browses the class of the value of the variable, 
 	for classes this means it browses the class"
-	(variable isNotNil and: [variable isGlobalVariable or: [variable isClassVariable]]) 
-		ifTrue: [ self systemNavigation browse: variable value ]
-		ifFalse: [ self systemNavigation browseAllImplementorsOf: variableOrClassName ]
+	(variable isNotNil and: [ variable isGlobalVariable or: [ variable isClassVariable ] ])
+		ifTrue: [ variable value browse ]
+		ifFalse: [ StMethodBrowser browseImplementorsOfAll: { variableOrClassName } from: self behavior ]
 ]
 
 { #category : 'commands' }
