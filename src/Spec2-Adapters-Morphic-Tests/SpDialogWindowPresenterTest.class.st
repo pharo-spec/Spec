@@ -28,6 +28,31 @@ SpDialogWindowPresenterTest >> tearDown [
 ]
 
 { #category : 'tests' }
+SpDialogWindowPresenterTest >> testCloseBoxCancelsDialog [
+
+	| window |
+	spec whenOpenedDo: [
+		spec beOk.
+		spec withAdapterDo: [ :anAdapter |
+			window := anAdapter widget.
+			window closeBoxHit ] ].
+	spec open.
+	self assert: spec isCancelled.
+	self deny: window isInWorld
+]
+
+{ #category : 'tests' }
+SpDialogWindowPresenterTest >> testDialogHasCloseBox [
+
+	| hasCloseBox |
+	spec whenOpenedDo: [
+		spec withAdapterDo: [ :anAdapter | hasCloseBox := anAdapter widget hasCloseBox ].
+		spec close ].
+	spec open.
+	self assert: hasCloseBox
+]
+
+{ #category : 'tests' }
 SpDialogWindowPresenterTest >> testWhenResizingDo [
 
 	| resizingEventWasActivated |
