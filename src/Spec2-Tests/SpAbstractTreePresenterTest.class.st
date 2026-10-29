@@ -74,6 +74,50 @@ SpAbstractTreePresenterTest >> testActivationOnSingleClickShouldNotActivateOnCli
 ]
 
 { #category : 'tests' }
+SpAbstractTreePresenterTest >> testCollapsePaths [
+
+	self openInstance.
+
+	presenter expandPaths: {
+			#( 1 ).
+			#( 1 1 ).
+			#( 2 ) }.
+	self assert: (presenter isExpanded: #( 1 1 )).
+	self assert: (presenter isExpanded: #( 2 )).
+
+	presenter collapsePaths: {
+			#( 1 1 ).
+			#( 2 ) }.
+
+	self deny: (presenter isExpanded: #( 1 1 )).
+	self deny: (presenter isExpanded: #( 2 )).
+	self assert: (presenter isExpanded: #( 1 ))
+]
+
+{ #category : 'tests' }
+SpAbstractTreePresenterTest >> testCollapsePathsNotifiesOnce [
+
+	| count receivedExpanded receivedItems |
+	self openInstance.
+
+	presenter expandPaths: {
+			#( 1 ).
+			#( 1 1 ) }.
+
+	count := 0.
+	presenter whenExpandChangedDo: [ :ann |
+			count := count + 1.
+			receivedExpanded := ann expanded.
+			receivedItems := ann items ].
+
+	presenter collapsePaths: { #( 1 1 ) }.
+
+	self assert: count equals: 1.
+	self deny: receivedExpanded.
+	self assertCollection: receivedItems hasSameElements: #( 10 )
+]
+
+{ #category : 'tests' }
 SpAbstractTreePresenterTest >> testContextMenu [
 	| menu changed |
 	self assert: presenter contextMenu isNil.
@@ -114,6 +158,55 @@ SpAbstractTreePresenterTest >> testExpandAtPathExpandsTheNode [
 	self assert: (presenter isExpanded: #(1 2)). 
 	self assert: (presenter isExpanded: #(1 2 1)). 
 
+]
+
+{ #category : 'tests' }
+SpAbstractTreePresenterTest >> testExpandPaths [
+
+	self openInstance.
+
+	self deny: (presenter isExpanded: #( 1 )).
+	self deny: (presenter isExpanded: #( 1 1 )).
+	self deny: (presenter isExpanded: #( 2 )).
+
+	presenter expandPaths: {
+			#( 1 ).
+			#( 1 1 ).
+			#( 2 ) }.
+
+	self assert: (presenter isExpanded: #( 1 )).
+	self assert: (presenter isExpanded: #( 1 1 )).
+	self assert: (presenter isExpanded: #( 2 )).
+	self deny: (presenter isExpanded: #( 1 2 ))
+]
+
+{ #category : 'tests' }
+SpAbstractTreePresenterTest >> testExpandPathsNotifiesOnce [
+
+	| count receivedExpanded receivedItems |
+	self openInstance.
+
+	count := 0.
+	presenter whenExpandChangedDo: [ :ann |
+			count := count + 1.
+			receivedExpanded := ann expanded.
+			receivedItems := ann items ].
+
+	presenter expandPaths: {
+			#( 1 ).
+			#( 1 1 ) }.
+
+	self assert: count equals: 1.
+	self assert: receivedExpanded.
+	self assertCollection: receivedItems hasSameElements: #( 1 10 )
+]
+
+{ #category : 'tests' }
+SpAbstractTreePresenterTest >> testItemSignalsErrorForMultipleItems [
+
+	| ann |
+	ann := SpTreeExpansionChanged new items: #( #a #b ).
+	self should: [ ann item ] raise: Error
 ]
 
 { #category : 'tests' }
@@ -247,6 +340,20 @@ SpAbstractTreePresenterTest >> testWhenExpandChangedDoReceivesItem [
 		yourself).
 			 
 	self assert: receivedItem equals: #test
+]
+
+{ #category : 'tests' }
+SpAbstractTreePresenterTest >> testWhenExpandChangedDoReceivesItemsCollection [
+
+	| receivedItems |
+	receivedItems := nil.
+	presenter whenExpandChangedDo: [ :ann | receivedItems := ann items ].
+	presenter announce: (SpTreeExpansionChanged new
+			 items: #( #a #b );
+			 expanded: true;
+			 yourself).
+
+	self assertCollection: receivedItems hasSameElements: #( #a #b )
 ]
 
 { #category : 'tests' }
