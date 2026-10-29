@@ -43,16 +43,21 @@ SpPanedResizerVerticalMorph >> setLayoutSizing [
 
 { #category : 'private' }
 SpPanedResizerVerticalMorph >> setTargetBounds [
-
-	| target |
-	target := self target.
-	target bounds: (target position corner: (target right @ (self top - 1)))
+	self target ifNotNil: [ :targetMorph |
+		targetMorph bounds: (targetMorph position corner: (targetMorph right @ self top)) ].
+	self targetAfter ifNotNil: [ :targetAfterMorph |
+		targetAfterMorph bounds: (targetAfterMorph left @ self bottom corner: targetAfterMorph bottomRight) ]
 ]
 
 { #category : 'private' }
 SpPanedResizerVerticalMorph >> setTargetLayoutSizing [
-
-	(self target vResizing = #rigid) ifTrue: [ ^ self ].
-	self target vResizing: #rigid.
-	self targetAfter vResizing: #spaceFill
+	self isFromEnd
+		ifTrue: [
+			self targetAfter vResizing = #rigid ifTrue: [ ^ self ].
+			self targetAfter vResizing: #rigid.
+			self target vResizing: #spaceFill ]
+		ifFalse: [
+			self target vResizing = #rigid ifTrue: [ ^ self ].
+			self target vResizing: #rigid.
+			self targetAfter vResizing: #spaceFill ]
 ]

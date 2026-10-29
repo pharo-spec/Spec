@@ -33,44 +33,38 @@ SpWorldPresenterTest >> tearDown [
 
 { #category : 'tests' }
 SpWorldPresenterTest >> testOpenPresenterInWorldDisplayInFullWorld [
+
 	| buttonPresenter |
-	
-	buttonPresenter := (application newPresenter: SpButtonPresenter)
-		label: 'test'.
-	
+	buttonPresenter := (application instantiate: SpButtonPresenter) label: 'test'.
+
 	(SpTestWorldPresenter presenter: buttonPresenter) open.
-	
+
 	self currentWorld addMorph: worldMorph.
-	
-	self
-		assert: worldMorph submorphs first submorphs first extent
-		equals: worldMorph extent - 8 "border"
+
+	self assert: worldMorph submorphs first submorphs first extent equals: worldMorph extent - 8 "border"
 ]
 
 { #category : 'tests' }
 SpWorldPresenterTest >> testOpenPresenterInWorldDisplayToolbarDoesNotHidePresenter [
+
 	| windowPresenter worldPanel |
-	windowPresenter := application
-		newPresenter: SpTestPresenterWithToolbar.
-		
+	windowPresenter := application instantiate: SpTestPresenterWithToolbar.
+
 	(SpTestWorldPresenter presenter: windowPresenter) open.
-		
+
 	worldPanel := worldMorph submorphs first.
 	self
-		assert:
-			(worldPanel submorphs first bounds
-				intersect: worldPanel submorphs second bounds)
-				= (0 @ 0 extent: 0 @ 0)
+		assert: (worldPanel submorphs first bounds intersect: worldPanel submorphs second bounds) = (0 @ 0 extent: 0 @ 0)
 		description: 'toolbar should not intersect with presenter when opening in world'
 ]
 
 { #category : 'tests' }
 SpWorldPresenterTest >> testOpenPresenterInWorldRemoveExisitingMorphsInWorld [
+
 	| buttonPresenter |
 	worldMorph addMorph: CircleMorph new.
-	buttonPresenter := (application newPresenter: SpButtonPresenter)
-		label: 'testOpenPresenterInWorldRemoveExisitingMorphsInWorld'. 
-	
+	buttonPresenter := (application instantiate: SpButtonPresenter) label: 'testOpenPresenterInWorldRemoveExisitingMorphsInWorld'.
+
 	(SpTestWorldPresenter presenter: buttonPresenter) open.
 
 	self deny: (worldMorph submorphs anySatisfy: [ :morph | morph class = CircleMorph ]).
