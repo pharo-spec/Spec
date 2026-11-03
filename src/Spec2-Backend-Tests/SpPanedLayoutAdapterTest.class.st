@@ -81,6 +81,21 @@ SpPanedLayoutAdapterTest >> testAddSecondTwiceSetsChildrenSingleTime [
 ]
 
 { #category : 'tests' }
+SpPanedLayoutAdapterTest >> testBuildWithVariousSliderPositions [
+	layout positionOfSlider: -200.
+	layout first: SpButtonPresenter new.
+	layout second: SpButtonPresenter new.
+	self openInstance.
+	self assert: self adapter children size equals: 2.
+
+	layout positionOfSlider: 300.
+	self assert: layout positionOfSlider equals: 300.
+
+	layout positionOfSlider: -0.3.
+	self assert: layout positionOfSlider closeTo: -0.3
+]
+
+{ #category : 'tests' }
 SpPanedLayoutAdapterTest >> testLayoutWithFirstElementIsNotEmpty [
 
 	layout first: SpButtonPresenter new.
