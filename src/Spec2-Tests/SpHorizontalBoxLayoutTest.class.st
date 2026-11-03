@@ -85,55 +85,81 @@ SpHorizontalBoxLayoutTest >> testReplaceWithFixedWidthComposed [
 { #category : 'tests' }
 SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenWindowHeightDecrease [
 
-    | searchPresenter buttonPresenter windowWidget buttonWidget searchWidget |
-    searchPresenter :=  SpSearchInputFieldPresenter new.
-    buttonPresenter := SpButtonPresenter new label: 'click me'.
-    presenter := SpPresenter new
-                     layout: (SpBoxLayout newLeftToRight
-                              add: searchPresenter;
-                              add: buttonPresenter;
-                              yourself);
-                     yourself.
-    window := presenter open.
+	| searchPresenter buttonPresenter windowWidget buttonWidget searchWidget originalExtent |
+	searchPresenter := SpSearchInputFieldPresenter new.
+	buttonPresenter := SpButtonPresenter new label: 'click me'.
+	presenter := SpPresenter new
+		             layout: (SpBoxLayout newLeftToRight
+				              add: searchPresenter;
+				              add: buttonPresenter;
+				              yourself);
+		             yourself.
+	window := presenter open.
 
-    windowWidget := window adapter widget.
-    buttonWidget := buttonPresenter adapter widget.
-    searchWidget := searchPresenter adapter widget.
+	windowWidget := window adapter widget.
+	buttonWidget := buttonPresenter adapter widget.
+	searchWidget := searchPresenter adapter widget.
 
-    self assert: (windowWidget bounds containsRect: buttonWidget bounds).
-    self assert: (windowWidget bounds containsRect: searchWidget bounds).
+	self
+		assert: (windowWidget bounds containsRect: buttonWidget bounds)
+		description: 'Button outside window before resize, window: ' , windowWidget bounds printString , ', button: ' , buttonWidget bounds printString.
+	self
+		assert: (windowWidget bounds containsRect: searchWidget bounds)
+		description: 'Search field outside window before resize, window: ' , windowWidget bounds printString , ', search: ' , searchWidget bounds printString.
 
-    windowWidget extent: windowWidget extent - (0 @ 100).
-    self currentWorld doOneCycle.
+	originalExtent := windowWidget extent.
+	windowWidget extent: windowWidget extent - (0 @ 100).
+	self currentWorld doOneCycle.
 
-    self assert: (windowWidget bounds containsRect: buttonWidget bounds).
-    self assert: (windowWidget bounds containsRect: searchWidget bounds)
+	self
+		assert: (windowWidget bounds containsRect: buttonWidget bounds)
+		description:
+			'Button outside window after resize, extent before: ' , originalExtent printString , ', extent after: ' , windowWidget extent printString , ', window: ' , windowWidget bounds printString
+			, ', button: ' , buttonWidget bounds printString.
+	self
+		assert: (windowWidget bounds containsRect: searchWidget bounds)
+		description:
+			'Search field outside window after resize, extent before: ' , originalExtent printString , ', extent after: ' , windowWidget extent printString , ', window: ' , windowWidget bounds printString
+			, ', search: ' , searchWidget bounds printString
 ]
 
 { #category : 'tests' }
 SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenWindowWidthDecrease [
 
-    | searchPresenter buttonPresenter windowWidget buttonWidget searchWidget |
-    searchPresenter := SpSearchInputFieldPresenter new.
-    buttonPresenter := SpButtonPresenter new label: 'click me'.
-    presenter := SpPresenter new
-                     layout: (SpBoxLayout newLeftToRight
-                              add: searchPresenter;
-                              add: buttonPresenter;
-                              yourself);
-                     yourself.
-    window := presenter open.
+	| searchPresenter buttonPresenter windowWidget buttonWidget searchWidget originalExtent |
+	searchPresenter := SpSearchInputFieldPresenter new.
+	buttonPresenter := SpButtonPresenter new label: 'click me'.
+	presenter := SpPresenter new
+		             layout: (SpBoxLayout newLeftToRight
+				              add: searchPresenter;
+				              add: buttonPresenter;
+				              yourself);
+		             yourself.
+	window := presenter open.
 
-    windowWidget := window adapter widget.
-    buttonWidget := buttonPresenter adapter widget.
-    searchWidget := searchPresenter adapter widget.
+	windowWidget := window adapter widget.
+	buttonWidget := buttonPresenter adapter widget.
+	searchWidget := searchPresenter adapter widget.
 
-    self assert: (windowWidget bounds containsRect: buttonWidget bounds).
-    self assert: (windowWidget bounds containsRect: searchWidget bounds).
+	self
+		assert: (windowWidget bounds containsRect: buttonWidget bounds)
+		description: 'Button outside window before resize, window: ' , windowWidget bounds printString , ', button: ' , buttonWidget bounds printString.
+	self
+		assert: (windowWidget bounds containsRect: searchWidget bounds)
+		description: 'Search field outside window before resize, window: ' , windowWidget bounds printString , ', search: ' , searchWidget bounds printString.
 
-    windowWidget extent: windowWidget extent - (100 @ 0).
-    self currentWorld doOneCycle.
+	originalExtent := windowWidget extent.
+	windowWidget extent: windowWidget extent - (100 @ 0).
+	self currentWorld doOneCycle.
 
-    self assert: (windowWidget bounds containsRect: buttonWidget bounds).
-    self assert: (windowWidget bounds containsRect: searchWidget bounds)
+	self
+		assert: (windowWidget bounds containsRect: buttonWidget bounds)
+		description:
+			'Button outside window after resize, extent before: ' , originalExtent printString , ', extent after: ' , windowWidget extent printString , ', window: ' , windowWidget bounds printString
+			, ', button: ' , buttonWidget bounds printString.
+	self
+		assert: (windowWidget bounds containsRect: searchWidget bounds)
+		description:
+			'Search field outside window after resize, extent before: ' , originalExtent printString , ', extent after: ' , windowWidget extent printString , ', window: ' , windowWidget bounds printString
+			, ', search: ' , searchWidget bounds printString
 ]
