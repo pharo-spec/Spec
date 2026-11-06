@@ -1,5 +1,4 @@
 ## Where to find correct information
-## Where to find correct information
 
 1. **Book index first.** Read
    `https://github.com/SquareBracketAssociates/BuildingApplicationWithSpec2/BOOK-INDEX.md`
