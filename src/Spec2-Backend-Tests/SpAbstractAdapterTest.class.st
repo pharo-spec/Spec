@@ -17,17 +17,6 @@ SpAbstractAdapterTest class >> isAbstract [
 	^ self == SpAbstractAdapterTest
 ]
 
-{ #category : 'testing' }
-SpAbstractAdapterTest class >> testParameters [ 
-
-	^ ParametrizedTestMatrix new
-		forSelector: #specInitializationStrategy
-			addOptions: { [ SpInitializationStrategy beforeTest ]. [ SpInitializationStrategy afterTest ] };
-		forSelector: #backendForTest
-			addOptions: { SpMorphicBackendForTest. "GtkBackendForTest" };
-		yourself
-]
-
 { #category : 'accessing' }
 SpAbstractAdapterTest >> adapter [
 
