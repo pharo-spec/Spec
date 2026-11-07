@@ -29,6 +29,21 @@ SpMorphicLayoutAdapter >> add: aPresenter constraints: constraints [
 			to: aPanel ]
 ]
 
+{ #category : 'initialization' }
+SpMorphicLayoutAdapter >> addActionsTo: aMorph forLayout: aLayout [
+	"Make the actions declared on my presenter available from the morph of its layout.
+	 Their shortcuts are installed on aMorph: Morphic dispatches keystrokes through the owner chain, so they work when any child has the focus.
+	 A right click on aMorph opens a context menu with the actions visible in menus.
+	 Only the root layout of the presenter does it, not its nested layouts."
+
+	aMorph ifNil: [ ^ self ].
+	self presenter layout == aLayout ifFalse: [ ^ self ].
+	self presenter actions ifNil: [ ^ self ].
+
+	self addKeyBindingsFromGroup: self presenter actions.
+	aMorph on: #mouseDown send: #mouseDownForActions: to: self
+]
+
 { #category : 'private' }
 SpMorphicLayoutAdapter >> addConstraints: constraints toChild: childMorph [
 
@@ -112,6 +127,13 @@ SpMorphicLayoutAdapter >> children [
 	^ self subclassResponsibility
 ]
 
+{ #category : 'private - actions' }
+SpMorphicLayoutAdapter >> hasMenuVisibleActions [
+	"Answer whether my presenter declares actions to show in a context menu (shortcut only actions are not)"
+
+	^ self presenter actions isNotNil and: [ self presenter actions allCommands anySatisfy: [ :each | each isVisible ] ]
+]
+
 { #category : 'testing' }
 SpMorphicLayoutAdapter >> isEmpty [
 
@@ -130,16 +152,27 @@ SpMorphicLayoutAdapter >> layout [
 	^ layout
 ]
 
-{ #category : 'protocol' }
+{ #category : 'factory' }
 SpMorphicLayoutAdapter >> layout: aLayout [
-
 	"Basic apply visibility to the widget.
 	This call is here because layouts and widgets work differently"
+
 	self widget presenter: self presenter.
 	self applyVisibility.
 	self applyStyle.
 	self addKeyBindingsTo: self widget.
+	self addActionsTo: self widget forLayout: aLayout.
 	self addEventsTo: self widget
+]
+
+{ #category : 'private - actions' }
+SpMorphicLayoutAdapter >> mouseDownForActions: anEvent [
+	"Open the context menu of my presenter actions on a right click. Answer whether anEvent was handled."
+
+	anEvent yellowButtonPressed ifFalse: [ ^ false ].
+	self hasMenuVisibleActions ifFalse: [ ^ false ].
+	self showActionsMenu.
+	^ true
 ]
 
 { #category : 'factory' }
@@ -178,6 +211,15 @@ SpMorphicLayoutAdapter >> replaceLayoutWith: aLayout [
 	oldAdapter widget owner 
 		replaceSubmorph: oldAdapter widget  
 		by: self model adapter widget
+]
+
+{ #category : 'private - actions' }
+SpMorphicLayoutAdapter >> showActionsMenu [
+	"Open a context menu holding the actions of my presenter"
+
+	self presenter newMenu
+		fillWith: self presenter actions;
+		openWithSpecAtPointer
 ]
 
 { #category : 'protocol' }
