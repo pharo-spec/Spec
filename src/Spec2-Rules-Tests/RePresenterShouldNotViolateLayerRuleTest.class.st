@@ -11,6 +11,7 @@ I test `RePresenterShouldNotViolateLayerRule`, the rule reporting presenters tha
 
 - `ReAbstractRuleTestCase`: derives the rule from my name, runs it on every node of a method (`myCritiquesOnMethod:`, which does not call `shouldCheckMethod:`) and removes the compiled methods in `tearDown`.
 - Anonymous subclasses of `SpPresenter`, `SpAbstractWidgetPresenter` and `SpAbstractAdapter`, created in `setUp`, so that no violating fixture stays in the image.
+- Two fixture classes, `ReLayerRuleBackendFixture` and `ReLayerRuleBackendPresenterFixture` (an `SpPresenter`), created in `setUp` in the package `Morphic-Spec2-Rules-Tests-Fixture` and removed in `tearDown`. Their package name marks a backend, so they play the backend class and the backend presenter without loading Morphic, Toplo or Bloc: Spec tests must not depend on a backend. Only `testWorldGlobalIsReported` needs Morphic (the `World` global) and is skipped without it.
 
 ## Public API and Key Messages
 
@@ -25,6 +26,7 @@ RePresenterShouldNotViolateLayerRuleTest run: #testBackendClassReferenceIsReport
 - `presenter`: an anonymous subclass of `SpPresenter`.
 - `widgetPresenter`: an anonymous subclass of `SpAbstractWidgetPresenter`.
 - `adapter`: an anonymous subclass of `SpAbstractAdapter`.
+- `backendClass`, `backendPresenter`: the fixture classes of the backend-named package.
 "
 Class {
 	#name : 'RePresenterShouldNotViolateLayerRuleTest',
@@ -32,7 +34,9 @@ Class {
 	#instVars : [
 		'presenter',
 		'widgetPresenter',
-		'adapter'
+		'adapter',
+		'backendClass',
+		'backendPresenter'
 	],
 	#category : 'Spec2-Rules-Tests',
 	#package : 'Spec2-Rules-Tests'
@@ -45,25 +49,54 @@ RePresenterShouldNotViolateLayerRuleTest >> critiquesOn: aSource in: aBehavior [
 	^ self myCritiquesOnMethod: (self generateMethod: aSource classified: #tests in: aBehavior)
 ]
 
+{ #category : 'helpers' }
+RePresenterShouldNotViolateLayerRuleTest >> fixturePackageName [
+	"A package named like a backend, so that its classes play the role of backend classes without loading Morphic, Toplo or Bloc."
+
+	^ 'Morphic-Spec2-Rules-Tests-Fixture'
+]
+
+{ #category : 'helpers' }
+RePresenterShouldNotViolateLayerRuleTest >> newFixtureClassNamed: aSymbol superclass: aClass [
+	"Create a class in the backend-named fixture package; tearDown removes it."
+
+	^ ShiftClassInstaller make: [ :builder |
+		builder
+			name: aSymbol;
+			superclass: aClass;
+			package: self fixturePackageName ]
+]
+
 { #category : 'running' }
 RePresenterShouldNotViolateLayerRuleTest >> setUp [
 
 	super setUp.
 	presenter := SpPresenter newAnonymousSubclass.
 	widgetPresenter := SpAbstractWidgetPresenter newAnonymousSubclass.
-	adapter := SpAbstractAdapter newAnonymousSubclass
+	adapter := SpAbstractAdapter newAnonymousSubclass.
+	backendClass := self newFixtureClassNamed: #ReLayerRuleBackendFixture superclass: Object.
+	backendPresenter := self newFixtureClassNamed: #ReLayerRuleBackendPresenterFixture superclass: SpPresenter
+]
+
+{ #category : 'running' }
+RePresenterShouldNotViolateLayerRuleTest >> tearDown [
+
+	{ backendPresenter. backendClass } do: [ :each | each ifNotNil: [ each removeFromSystem ] ].
+	(self packageOrganizer packageNamed: self fixturePackageName ifAbsent: [ nil ])
+		ifNotNil: [ :package | package removeFromSystem ].
+	super tearDown
 ]
 
 { #category : 'tests' }
 RePresenterShouldNotViolateLayerRuleTest >> testAdapterIsNotReported [
 
-	self assertEmpty: (self critiquesOn: 'foo ^ Morph new extent: self currentWorld extent' in: adapter)
+	self assertEmpty: (self critiquesOn: 'foo ^ ReLayerRuleBackendFixture new -> self currentWorld' in: adapter)
 ]
 
 { #category : 'tests' }
 RePresenterShouldNotViolateLayerRuleTest >> testBackendClassReferenceIsReported [
 
-	self assert: (self critiquesOn: 'foo ^ Morph new' in: presenter) size equals: 1
+	self assert: (self critiquesOn: 'foo ^ ReLayerRuleBackendFixture new' in: presenter) size equals: 1
 ]
 
 { #category : 'tests' }
@@ -76,7 +109,7 @@ RePresenterShouldNotViolateLayerRuleTest >> testBackendPackageNamesAreRecognized
 { #category : 'tests' }
 RePresenterShouldNotViolateLayerRuleTest >> testClassSideMethodOfPresenterIsReported [
 
-	self assert: (self critiquesOn: 'foo ^ Morph new' in: presenter class) size equals: 1
+	self assert: (self critiquesOn: 'foo ^ ReLayerRuleBackendFixture new' in: presenter class) size equals: 1
 ]
 
 { #category : 'tests' }
@@ -88,13 +121,13 @@ RePresenterShouldNotViolateLayerRuleTest >> testCurrentWorldSendIsReported [
 { #category : 'tests' }
 RePresenterShouldNotViolateLayerRuleTest >> testEachOffendingNodeIsReported [
 
-	self assert: (self critiquesOn: 'foo ^ Morph new extent: self currentWorld extent' in: presenter) size equals: 2
+	self assert: (self critiquesOn: 'foo ^ ReLayerRuleBackendFixture new -> self currentWorld' in: presenter) size equals: 2
 ]
 
 { #category : 'tests' }
 RePresenterShouldNotViolateLayerRuleTest >> testMethodInBackendPackageIsNotReported [
 
-	self assertEmpty: (self myCritiquesOnMethod: SpDatePresenter >> #chooseDate)
+	self assertEmpty: (self critiquesOn: 'foo ^ ReLayerRuleBackendFixture new' in: backendPresenter)
 ]
 
 { #category : 'tests' }
@@ -131,17 +164,19 @@ RePresenterShouldNotViolateLayerRuleTest >> testShouldNotCheckAdapterMethods [
 { #category : 'tests' }
 RePresenterShouldNotViolateLayerRuleTest >> testSpecPresenterFromBackendPackageIsNotReported [
 
-	self assertEmpty: (self critiquesOn: 'foo ^ self instantiate: SpBlSpaceInMorphPresenter' in: presenter)
+	self assertEmpty: (self critiquesOn: 'foo ^ self instantiate: ReLayerRuleBackendPresenterFixture' in: presenter)
 ]
 
 { #category : 'tests' }
 RePresenterShouldNotViolateLayerRuleTest >> testWidgetPresenterIsReported [
 
-	self assert: (self critiquesOn: 'foo ^ Morph new' in: widgetPresenter) size equals: 1
+	self assert: (self critiquesOn: 'foo ^ ReLayerRuleBackendFixture new' in: widgetPresenter) size equals: 1
 ]
 
 { #category : 'tests' }
 RePresenterShouldNotViolateLayerRuleTest >> testWorldGlobalIsReported [
+	"The World global is defined by Morphic; without it there is nothing to reference."
 
+	(Smalltalk globals includesKey: #World) ifFalse: [ ^ self skip: 'needs the World global (Morphic)' ].
 	self assert: (self critiquesOn: 'foo ^ World' in: presenter) size equals: 1
 ]
