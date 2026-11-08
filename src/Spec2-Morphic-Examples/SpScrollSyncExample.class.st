@@ -74,7 +74,7 @@ SpScrollSyncExample >> initializePresenters [
 				yourself).
 
 	text whenScrollValueChangedDo: [ :newPosition | 
-		self traceCr: 'scroll position: ' , newPosition asString. 
+		self traceNewLine: 'scroll position: ' , newPosition asString. 
 		self syncMorphPosition ].
 	text text: self loremIpsum.
 

@@ -127,7 +127,7 @@ SpDemoListsPresenter >> list1MenuActions [
 			name: 'Print in transcript';
 			shortcutKey: $p meta;
 			description: 'Print the selected class on Transcript';
-			action: [ list1 selectedItem traceCr ] ];
+			action: [ list1 selectedItem traceNewLine ] ];
 		addActionWith: [ :anItem | anItem
 			name: 'Browse';
 			iconName: #open;
@@ -137,23 +137,23 @@ SpDemoListsPresenter >> list1MenuActions [
 			beDisplayedAsSubMenu;
 			addActionWith: [ :item | item
 				name: 'Print number of methods';
-				action: [ list1 selectedItem methods size traceCr ] ];
+				action: [ list1 selectedItem methods size traceNewLine ] ];
 			addActionWith: [ :item | item
 				name: 'Print number of variables';
-				action: [ list1 selectedItem instanceVariables size traceCr ] ] ];
+				action: [ list1 selectedItem instanceVariables size traceNewLine ] ] ];
 		addGroupWith: [ :aGroup | aGroup
 			addActionWith: [ :anItem | anItem
 				name: 'Item showing only if item a odd number of letters';
 				actionEnabled: [ list1 selectedItem printString size odd ];
-				action: [ list1 selectedItem traceCr ] ];
+				action: [ list1 selectedItem traceNewLine ] ];
 			addActionWith: [ :anItem | anItem
 				name: 'Disabled in second group';
 				actionEnabled: [ false ];
-				action: [ list1 selectedItem traceCr ] ];
+				action: [ list1 selectedItem traceNewLine ] ];
 			addActionWith: [ :anItem | anItem
 				name: 'Disabled if class begins with A';
 				actionEnabled: [ list1 selectedItem printString first ~= $A ];
-				action: [ list1 selectedItem traceCr ] ] ];
+				action: [ list1 selectedItem traceNewLine ] ] ];
 			yourself
 ]
 
