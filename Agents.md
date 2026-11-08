@@ -12,7 +12,8 @@
 2. **Image examples for the current API.** Use the `Image examples:` line of the index:
    - class-side `example…` methods of the widget presenters (`SpTablePresenter class>>exampleSorting`, …);
    - presenters of the `Spec2-Examples` package, gathered by `SpDemo open`.
-   - subclasses of SpPresenter give concrete examples of exciting tools.
+   - the `SpPresenter` subclasses of the `NewTools-*` packages, always loaded since they are the IDE tools
+     (inspector, debugger, playground, finder, settings browser, …): real, well-written Spec applications.
    Read their source in the image before imitating them. Many `example…` methods open a window
    instead of answering an instance; do not run them in tests.
 3. **The image decides.** The book is the reference for design, the image for API names.
@@ -28,7 +29,10 @@
   Mention a backend only when choosing or configuring it in the application configuration.
 - Structure a presenter with the three hooks `initializePresenters`, `connectPresenters` and
   `defaultLayout` (book: ThreePillarsOfSpec); use `SpPresenterWithModel` when the presenter shows a domain object.
-- Open tools and other presenters through the application (`self application newPresenter:`,
-  `toolNamed:`), not through globals.
+- Open tools and other presenters through the application (`self application instantiate:`,
+  `toolNamed:`), not through globals; create subpresenters with `self instantiate:` or a `newXxx` factory,
+  never with `new` or `on:`.
 - Test interaction logic on presenters without opening windows when possible (book: TestingInSpec);
-  close any window a test opens
+  close any window a test opens.
+- Check new or changed presenters with the `Spec2-Rules` critiques (group 'Spec'), for example
+  `(MyPresenter >> #defaultLayout) critiques` or `ReSmalllintChecker` on the package, and fix what they report.
