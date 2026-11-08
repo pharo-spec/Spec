@@ -3,7 +3,7 @@ I test `RePresenterShouldNotViolateLayerRule`, the rule reporting presenters tha
 
 ## Responsibility:
 
-- Check that each kind of backend reference is reported: a backend class, the `World` global, `currentWorld` and `scaledByDisplayScaleFactor` sends, on both sides and in widgets, one critique per node.
+- Check that each kind of backend reference is reported: a backend class, `currentWorld` and `scaledByDisplayScaleFactor` sends, on both sides and in widgets, one critique per node.
 - Check what is not reported: Spec presenter classes living in backend packages, neutral classes, adapters, and presenters of backend-specific packages.
 - Check the package name convention (`isBackendPackageName:`) and the method filter (`shouldCheckMethod:`).
 
@@ -11,7 +11,7 @@ I test `RePresenterShouldNotViolateLayerRule`, the rule reporting presenters tha
 
 - `ReAbstractRuleTestCase`: derives the rule from my name, runs it on every node of a method (`myCritiquesOnMethod:`, which does not call `shouldCheckMethod:`) and removes the compiled methods in `tearDown`.
 - Anonymous subclasses of `SpPresenter`, `SpAbstractWidgetPresenter` and `SpAbstractAdapter`, created in `setUp`, so that no violating fixture stays in the image.
-- Two fixture classes, `ReLayerRuleBackendFixture` and `ReLayerRuleBackendPresenterFixture` (an `SpPresenter`), created in `setUp` in the package `Morphic-Spec2-Rules-Tests-Fixture` and removed in `tearDown`. Their package name marks a backend, so they play the backend class and the backend presenter without loading Morphic, Toplo or Bloc: Spec tests must not depend on a backend. Only `testWorldGlobalIsReported` needs Morphic (the `World` global) and is skipped without it.
+- Two fixture classes, `ReLayerRuleBackendFixture` and `ReLayerRuleBackendPresenterFixture` (an `SpPresenter`), created in `setUp` in the package `Morphic-Spec2-Rules-Tests-Fixture` and removed in `tearDown`. Their package name marks a backend, so they play the backend class and the backend presenter without loading Morphic, Toplo or Bloc: Spec tests must not depend on a backend. The backend globals are tested without Morphic: `testWorldIsABackendGlobal` checks that `World` is in `backendGlobalNames`, and `testGlobalNamedAsBackendGlobalIsReported` uses a fixture subclass of the rule listing `SpPresenter`.
 
 ## Public API and Key Messages
 
@@ -41,6 +41,18 @@ Class {
 	#category : 'Spec2-Rules-Tests',
 	#package : 'Spec2-Rules-Tests'
 }
+
+{ #category : 'helpers' }
+RePresenterShouldNotViolateLayerRuleTest >> critiquesOf: aRuleClass on: aSource in: aBehavior [
+	"Compile aSource in aBehavior (removed in tearDown) and answer the critiques of aRuleClass, a node rule, on its nodes."
+
+	| method rule critiques |
+	method := self generateMethod: aSource classified: #tests in: aBehavior.
+	rule := aRuleClass new.
+	critiques := OrderedCollection new.
+	method ast nodesDo: [ :node | rule check: node forCritiquesDo: [ :critique | critiques add: critique ] ].
+	^ critiques
+]
 
 { #category : 'helpers' }
 RePresenterShouldNotViolateLayerRuleTest >> critiquesOn: aSource in: aBehavior [
@@ -125,6 +137,24 @@ RePresenterShouldNotViolateLayerRuleTest >> testEachOffendingNodeIsReported [
 ]
 
 { #category : 'tests' }
+RePresenterShouldNotViolateLayerRuleTest >> testGlobalNamedAsBackendGlobalIsReported [
+	"SpPresenter plays a backend global for a rule listing it, so the test does not need the World global of Morphic."
+
+	| rule |
+	rule := self newFixtureClassNamed: #ReLayerRuleWithFixtureGlobal superclass: RePresenterShouldNotViolateLayerRule.
+	[ rule class compile: 'backendGlobalNames
+	^ #( #SpPresenter )' classified: #accessing.
+	self assert: (self critiquesOf: rule on: 'foo ^ SpPresenter' in: presenter) size equals: 1 ]
+		ensure: [ rule removeFromSystem ]
+]
+
+{ #category : 'tests' }
+RePresenterShouldNotViolateLayerRuleTest >> testGlobalNotNamedAsBackendGlobalIsNotReported [
+
+	self assertEmpty: (self critiquesOn: 'foo ^ SpPresenter' in: presenter)
+]
+
+{ #category : 'tests' }
 RePresenterShouldNotViolateLayerRuleTest >> testMethodInBackendPackageIsNotReported [
 
 	self assertEmpty: (self critiquesOn: 'foo ^ ReLayerRuleBackendFixture new' in: backendPresenter)
@@ -174,9 +204,7 @@ RePresenterShouldNotViolateLayerRuleTest >> testWidgetPresenterIsReported [
 ]
 
 { #category : 'tests' }
-RePresenterShouldNotViolateLayerRuleTest >> testWorldGlobalIsReported [
-	"The World global is defined by Morphic; without it there is nothing to reference."
+RePresenterShouldNotViolateLayerRuleTest >> testWorldIsABackendGlobal [
 
-	(Smalltalk globals includesKey: #World) ifFalse: [ ^ self skip: 'needs the World global (Morphic)' ].
-	self assert: (self critiquesOn: 'foo ^ World' in: presenter) size equals: 1
+	self assert: (RePresenterShouldNotViolateLayerRule backendGlobalNames includes: #World)
 ]
