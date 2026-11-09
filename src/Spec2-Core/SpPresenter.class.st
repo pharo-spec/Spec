@@ -60,6 +60,9 @@ Class {
 		'#extent => ObservableSlot',
 		'#styles'
 	],
+	#classVars : [
+		'#IsExtentRememberingEnabled'
+	],
 	#classInstVars : [
 		'#customExtent'
 	],
@@ -80,6 +83,16 @@ SpPresenter class >> defaultPreferredExtent [
 	^ 700@500
 ]
 
+{ #category : 'accessing' }
+SpPresenter class >> disableExtentRememberingDuring: aBlock [
+	"Evaluate aBlock without remembering the extent of the windows that get resized, and answer its value."
+
+	| wasEnabled |
+	wasEnabled := self isExtentRememberingEnabled.
+	IsExtentRememberingEnabled := false.
+	^ aBlock ensure: [ IsExtentRememberingEnabled := wasEnabled ]
+]
+
 { #category : 'labeled - presenters' }
 SpPresenter class >> iconWidth [
 	^ 24
@@ -88,6 +101,13 @@ SpPresenter class >> iconWidth [
 { #category : 'testing' }
 SpPresenter class >> isAbstract [
 	^ self = SpPresenter
+]
+
+{ #category : 'accessing' }
+SpPresenter class >> isExtentRememberingEnabled [
+	"Answer whether resizing a window remembers its extent as the preferred extent of the presenter class. It is true except inside #disableExtentRememberingDuring:."
+
+	^ IsExtentRememberingEnabled ifNil: [ IsExtentRememberingEnabled := true ]
 ]
 
 { #category : 'TOREMOVE' }
@@ -802,9 +822,8 @@ SpPresenter >> preferredExtent [
 { #category : 'accessing' }
 SpPresenter >> preferredExtent: aSize [
 
-	(self window isMaximized 
-		or: [ self window isMinimized ])
-		ifTrue: [ ^ self ].
+	(self window isMaximized or: [ self window isMinimized ]) ifTrue: [ ^ self ].
+	self class isExtentRememberingEnabled ifFalse: [ ^ self ].
 	self class preferredExtent: aSize
 ]
 

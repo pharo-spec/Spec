@@ -94,33 +94,51 @@ SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenW
 				              add: buttonPresenter;
 				              yourself);
 		             yourself.
-	window := presenter open.
-
+	window := presenter asWindow
+		          initialExtent: 400 @ 300;
+		          open;
+		          yourself.
 	windowWidget := window adapter widget.
 	buttonWidget := buttonPresenter adapter widget.
 	searchWidget := searchPresenter adapter widget.
 
-	self
-		assert: (windowWidget bounds containsRect: buttonWidget bounds)
-		description: 'Button outside window before resize, window: ' , windowWidget bounds printString , ', button: ' , buttonWidget bounds printString.
-	self
-		assert: (windowWidget bounds containsRect: searchWidget bounds)
-		description: 'Search field outside window before resize, window: ' , windowWidget bounds printString , ', search: ' , searchWidget bounds printString.
+	self assert: (windowWidget bounds containsRect: buttonWidget bounds) description: (String streamContents: [ :stream |
+				 stream
+					 nextPutAll: 'Button outside window before resize, window: ';
+					 print: windowWidget bounds;
+					 nextPutAll: ', button: ';
+					 print: buttonWidget bounds ]).
+	self assert: (windowWidget bounds containsRect: searchWidget bounds) description: (String streamContents: [ :stream |
+				 stream
+					 nextPutAll: 'Search field outside window before resize, window: ';
+					 print: windowWidget bounds;
+					 nextPutAll: ', search: ';
+					 print: searchWidget bounds ]).
 
 	originalExtent := windowWidget extent.
 	windowWidget extent: windowWidget extent - (0 @ 100).
 	self currentWorld doOneCycle.
 
-	self
-		assert: (windowWidget bounds containsRect: buttonWidget bounds)
-		description:
-			'Button outside window after resize, extent before: ' , originalExtent printString , ', extent after: ' , windowWidget extent printString , ', window: ' , windowWidget bounds printString
-			, ', button: ' , buttonWidget bounds printString.
-	self
-		assert: (windowWidget bounds containsRect: searchWidget bounds)
-		description:
-			'Search field outside window after resize, extent before: ' , originalExtent printString , ', extent after: ' , windowWidget extent printString , ', window: ' , windowWidget bounds printString
-			, ', search: ' , searchWidget bounds printString
+	self assert: (windowWidget bounds containsRect: buttonWidget bounds) description: (String streamContents: [ :stream |
+				 stream
+					 nextPutAll: 'Button outside window after resize, extent before: ';
+					 print: originalExtent;
+					 nextPutAll: ', extent after: ';
+					 print: windowWidget extent;
+					 nextPutAll: ', window: ';
+					 print: windowWidget bounds;
+					 nextPutAll: ', button: ';
+					 print: buttonWidget bounds ]).
+	self assert: (windowWidget bounds containsRect: searchWidget bounds) description: (String streamContents: [ :stream |
+				 stream
+					 nextPutAll: 'Search field outside window after resize, extent before: ';
+					 print: originalExtent;
+					 nextPutAll: ', extent after: ';
+					 print: windowWidget extent;
+					 nextPutAll: ', window: ';
+					 print: windowWidget bounds;
+					 nextPutAll: ', search: ';
+					 print: searchWidget bounds ])
 ]
 
 { #category : 'tests' }
@@ -135,31 +153,49 @@ SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenW
 				              add: buttonPresenter;
 				              yourself);
 		             yourself.
-	window := presenter open.
-
+	window := presenter asWindow
+		          initialExtent: 400 @ 300;
+		          open;
+		          yourself.
 	windowWidget := window adapter widget.
 	buttonWidget := buttonPresenter adapter widget.
 	searchWidget := searchPresenter adapter widget.
 
-	self
-		assert: (windowWidget bounds containsRect: buttonWidget bounds)
-		description: 'Button outside window before resize, window: ' , windowWidget bounds printString , ', button: ' , buttonWidget bounds printString.
-	self
-		assert: (windowWidget bounds containsRect: searchWidget bounds)
-		description: 'Search field outside window before resize, window: ' , windowWidget bounds printString , ', search: ' , searchWidget bounds printString.
+	self assert: (windowWidget bounds containsRect: buttonWidget bounds) description: (String streamContents: [ :stream |
+				 stream
+					 nextPutAll: 'Button outside window before resize, window: ';
+					 print: windowWidget bounds;
+					 nextPutAll: ', button: ';
+					 print: buttonWidget bounds ]).
+	self assert: (windowWidget bounds containsRect: searchWidget bounds) description: (String streamContents: [ :stream |
+				 stream
+					 nextPutAll: 'Search field outside window before resize, window: ';
+					 print: windowWidget bounds;
+					 nextPutAll: ', search: ';
+					 print: searchWidget bounds ]).
 
 	originalExtent := windowWidget extent.
 	windowWidget extent: windowWidget extent - (100 @ 0).
 	self currentWorld doOneCycle.
 
-	self
-		assert: (windowWidget bounds containsRect: buttonWidget bounds)
-		description:
-			'Button outside window after resize, extent before: ' , originalExtent printString , ', extent after: ' , windowWidget extent printString , ', window: ' , windowWidget bounds printString
-			, ', button: ' , buttonWidget bounds printString.
-	self
-		assert: (windowWidget bounds containsRect: searchWidget bounds)
-		description:
-			'Search field outside window after resize, extent before: ' , originalExtent printString , ', extent after: ' , windowWidget extent printString , ', window: ' , windowWidget bounds printString
-			, ', search: ' , searchWidget bounds printString
+	self assert: (windowWidget bounds containsRect: buttonWidget bounds) description: (String streamContents: [ :stream |
+				 stream
+					 nextPutAll: 'Button outside window after resize, extent before: ';
+					 print: originalExtent;
+					 nextPutAll: ', extent after: ';
+					 print: windowWidget extent;
+					 nextPutAll: ', window: ';
+					 print: windowWidget bounds;
+					 nextPutAll: ', button: ';
+					 print: buttonWidget bounds ]).
+	self assert: (windowWidget bounds containsRect: searchWidget bounds) description: (String streamContents: [ :stream |
+				 stream
+					 nextPutAll: 'Search field outside window after resize, extent before: ';
+					 print: originalExtent;
+					 nextPutAll: ', extent after: ';
+					 print: windowWidget extent;
+					 nextPutAll: ', window: ';
+					 print: windowWidget bounds;
+					 nextPutAll: ', search: ';
+					 print: searchWidget bounds ])
 ]
