@@ -43,7 +43,7 @@ SpColumnViewPresenter class >> exampleActivateOnDoubleClick [
 		  setup: [ :aPresenter | aPresenter newLabel ]
 		  bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
 		  items: Smalltalk allClasses;
-		  whenActivatedDo: [ :selection | selection selectedItem crTrace ];
+		  whenActivatedDo: [ :selection | selection selectedItem newLineTrace ];
 		  open
 ]
 

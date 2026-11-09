@@ -23,7 +23,7 @@ SpGeneratorListModel class >> example [
 
 	items := ($a to: $z) asArray.
 	generator := Generator on: [ :g | items do: [ :each | 
-		each crTrace.
+		each newLineTrace.
 		g yield: each asUppercase ] ].
 
 	SpEasyListViewPresenter new 

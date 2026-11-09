@@ -8,7 +8,7 @@ SpButtonPresenter class >> example [
 	^ self new
 		icon: (self iconNamed: #smallOk);
 		label: 'Click me!';
-		action: [ 'Clicked!' crTrace ];
+		action: [ 'Clicked!' newLineTrace ];
 		open
 ]
 
@@ -19,7 +19,7 @@ SpButtonPresenter class >> exampleDisabled [
 	^ self new
 		icon: (self iconNamed: #smallCancel);
 		label: 'Click me!';
-		action: [ 'Clicked!' crTrace ];
+		action: [ 'Clicked!' newLineTrace ];
 		disable;
 		open
 ]
