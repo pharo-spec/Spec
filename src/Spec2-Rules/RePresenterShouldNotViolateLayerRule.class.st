@@ -13,7 +13,7 @@ The fix is to go through Spec (the application, the window presenter, a presente
 
 ## Responsibility:
 
-- Check the nodes of methods (both sides) of classes in the `SpPresenter` hierarchy, widgets included, and report each node that references the backend: a class defined in a package whose name starts with `Morphic`, `Toplo` or `Bloc` (unless it is itself a Spec presenter), the `World` global, and the sends of `#currentWorld` and `#scaledByDisplayScaleFactor`, which are defined only by Morphic.
+- Check the nodes of methods (both sides) of classes in the `SpPresenter` hierarchy, widgets included, and report each node that references the backend: a class defined in a package whose name starts with `Morphic`, `Toplo` or `Bloc` (unless it is itself a Spec presenter), a global that only a backend defines (`backendGlobalNames`, class side: `World`), and the sends of `#currentWorld` and `#scaledByDisplayScaleFactor`, which are defined only by Morphic.
 - Leave out presenters living in backend-specific packages (`isBackendPackageName:`): a name starting with `Morphic`, `Toplo` or `Bloc`, or having `Morphic` as one of its dash-separated parts, such as `Spec2-Morphic` or `Spec2-Morphic-Examples`.
 - Explain the fix; I offer no automatic transformation.
 
@@ -44,6 +44,13 @@ Class {
 	#category : 'Spec2-Rules',
 	#package : 'Spec2-Rules'
 }
+
+{ #category : 'accessing' }
+RePresenterShouldNotViolateLayerRule class >> backendGlobalNames [
+	"Answer the names of the globals that only a backend defines: a presenter referencing one of them is tied to that backend."
+
+	^ #( #World )
+]
 
 { #category : 'accessing' }
 RePresenterShouldNotViolateLayerRule class >> backendPackagePrefixes [
@@ -103,11 +110,11 @@ RePresenterShouldNotViolateLayerRule >> isBackendClass: anObject [
 
 { #category : 'private' }
 RePresenterShouldNotViolateLayerRule >> isBackendReference: aNode [
-	"Answer whether aNode reaches the backend: a backend class, the World global, or a Morphic-only message."
+	"Answer whether aNode reaches the backend: a backend class, a backend global (see backendGlobalNames), or a Morphic-only message."
 
 	aNode isMessage ifTrue: [ ^ #( #currentWorld #scaledByDisplayScaleFactor ) includes: aNode selector ].
 	(aNode isVariable and: [ aNode isGlobalVariable ]) ifFalse: [ ^ false ].
-	aNode name asSymbol = #World ifTrue: [ ^ true ].
+	(self class backendGlobalNames includes: aNode name asSymbol) ifTrue: [ ^ true ].
 	^ self isBackendClass: aNode variable value
 ]
 
