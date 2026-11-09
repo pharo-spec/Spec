@@ -95,6 +95,6 @@ SpTreePresenter class >> exampleWithExpansion [
 		  children: [ :aClass | aClass subclasses ];
 		  displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
 		  display: [ :aClass | aClass name ];
-		  whenExpandChangedDo: [ :ann | (ann item -> ann expanded) crTrace ];
+		  whenExpandChangedDo: [ :ann | (ann item -> ann expanded) newLineTrace ];
 		  open
 ]

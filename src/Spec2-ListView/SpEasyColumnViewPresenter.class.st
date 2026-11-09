@@ -50,7 +50,7 @@ SpEasyColumnViewPresenter class >> exampleActivateOnDoubleClick [
 			evaluated: [ :each | each linesOfCode ];
 			yourself);
 		activateOnDoubleClick;
-		whenActivatedDo: [ :selection| selection selectedItem crTrace ];
+		whenActivatedDo: [ :selection| selection selectedItem newLineTrace ];
 		open
 ]
 

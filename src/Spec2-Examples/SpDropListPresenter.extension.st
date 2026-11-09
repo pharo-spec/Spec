@@ -8,7 +8,7 @@ SpDropListPresenter class >> example [
 		   help: 'Select the presenter.';
 		   items: SpPresenter withAllSubclasses;
 		   display: [ :aClass | aClass name ];
-		   whenSelectedItemChangedDo: [ :aClass | aClass crTrace ];
+		   whenSelectedItemChangedDo: [ :aClass | aClass newLineTrace ];
 		   open)
 		  extent: 400 @ 25;
 		  yourself
@@ -23,7 +23,7 @@ SpDropListPresenter class >> exampleWithIcons [
 		   items: SpPresenter withAllSubclasses;
 		   display: [ :aClass | aClass name ];
 			displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
-		   whenSelectedItemChangedDo: [ :aClass | aClass crTrace ];
+		   whenSelectedItemChangedDo: [ :aClass | aClass newLineTrace ];
 		   open)
 		resize: 400 @ 25;
 		yourself

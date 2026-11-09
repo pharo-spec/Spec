@@ -72,7 +72,7 @@ SpDropDownPresenter class >> exampleWithSelectedItem [
 		setup: [ :aPresenter | aPresenter newLabel ];
 		bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
 		selectItem: Object;
-		whenSelectionChangedDo: [ :aSelection | aSelection selectedItem crTrace ];
+		whenSelectionChangedDo: [ :aSelection | aSelection selectedItem newLineTrace ];
 		open
 ]
 

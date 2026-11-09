@@ -93,10 +93,13 @@ SpAbstractAdapterTest >> openInstance [
 
 { #category : 'private' }
 SpAbstractAdapterTest >> performTest [
-	backendForTest
-		runTest: [ presenter := self classToTest new.
-			self initializeTestedInstance.
-			super performTest ]
+	"The tests must not change the extent remembered by the presenters for the rest of the system."
+
+	SpPresenter disableExtentRememberingDuring: [
+			backendForTest runTest: [
+					presenter := self classToTest new.
+					self initializeTestedInstance.
+					super performTest ] ]
 ]
 
 { #category : 'running' }

@@ -52,7 +52,7 @@ SpTreeColumnViewPresenter class >> exampleActivateOnDoubleClick [
 	  		bind: [ :aPresenter :aClass | aPresenter label: aClass linesOfCode asString ];
 	  	items: { Object };
 	  	children: [ :aClass | aClass subclasses ];
-	  	whenActivatedDo: [ :selection | selection selectedItem crTrace ];
+	  	whenActivatedDo: [ :selection | selection selectedItem newLineTrace ];
 	  	open
 ]
 

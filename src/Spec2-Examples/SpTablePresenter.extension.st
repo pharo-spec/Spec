@@ -222,8 +222,8 @@ SpTablePresenter class >> exampleWriteableTable [
 			evaluated: [ :m | m selector ];
 			displayBold: [ :m | m selector isKeyword ];
 			beEditable ;
-			onAcceptEdition: [ :m :t | Transcript nextPutAll: t;cr;endEntry ];
-			onTextChanged: [ :m :t | Transcript nextPutAll: t;cr;endEntry ];
+			onAcceptEdition: [ :m :t | Transcript nextPutAll: t;newLine;endEntry ];
+			onTextChanged: [ :m :t | Transcript nextPutAll: t;newLine;endEntry ];
 			yourself);
 		addColumn: (SpStringTableColumn title: 'Size' evaluated: #size) beSortable;
 		showColumnHeaders;

@@ -17,6 +17,13 @@ SpMorphicListAdapterTest >> configureList: aNumber [
 
 ]
 
+{ #category : 'private' }
+SpMorphicListAdapterTest >> performTest [
+	"The tests must not change the extent remembered by the presenters for the rest of the system."
+
+	SpPresenter disableExtentRememberingDuring: [ super performTest ]
+]
+
 { #category : 'running' }
 SpMorphicListAdapterTest >> tearDown [
 

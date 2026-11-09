@@ -48,7 +48,7 @@ SpTreeListViewPresenter class >> exampleActivateOnDoubleClick [
 		children: [ :aClass | aClass subclasses ];
 		setup: [ :aPresenter | aPresenter newLabel ];
 		bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
-		whenActivatedDo: [ presenter selectedItem crTrace ];
+		whenActivatedDo: [ presenter selectedItem newLineTrace ];
 		open
 ]
 
@@ -97,28 +97,28 @@ SpTreeListViewPresenter class >> exampleWithActions [
 				addActionWith: [ :act | act 
 					name: 'Test 1'; 
 					shortcutKey: $a ctrl;
-					action: [ 'Test 1.1' crTrace ] ];
+					action: [ 'Test 1.1' newLineTrace ] ];
 				addActionWith: [ :act | act 
 					name: 'Test 2'; 
-					action: [ 'Test 1.2' crTrace ] ] ];
+					action: [ 'Test 1.2' newLineTrace ] ] ];
 			addGroupWith: [ :subGroup1 | subGroup1 
 				name: 'Group 2';
 				addActionWith: [ :act | act 
 					name: 'Test 1';
 					shortcutKey: $y ctrl;  
-					action: [ 'Test 2.1' crTrace ]; 
+					action: [ 'Test 2.1' newLineTrace ]; 
 					actionEnabled: [ false ] ];
 				addActionWith: [ :act | act 
 					name: 'Test 2';
-					action: [ 'Test 2.2' crTrace ] ] ];
+					action: [ 'Test 2.2' newLineTrace ] ] ];
 			addActionWith: [ :act | act 
 				name: 'Test 3'; 
 				shortcutKey: $a ctrl; 
-				action: [ 'Test 3' crTrace ] ];
+				action: [ 'Test 3' newLineTrace ] ];
 			addActionWith: [ :act | act 
 				name: 'Test 4'; 
 				shortcutKey: Character escape asKeyCombination; 
-				action: [ 'Test 4' crTrace ] ] ];
+				action: [ 'Test 4' newLineTrace ] ] ];
 		open
 ]
 

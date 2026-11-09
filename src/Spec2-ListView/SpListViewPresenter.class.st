@@ -39,7 +39,7 @@ SpListViewPresenter class >> exampleActivateOnDoubleClick [
 		items: self environment allClasses;
 		setup: [ :aPresenter | aPresenter newLabel ];
 		bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
-		whenActivatedDo: [ 'OK' crTrace ];
+		whenActivatedDo: [ 'OK' newLineTrace ];
 		open
 ]
 
@@ -84,28 +84,28 @@ SpListViewPresenter class >> exampleWithActions [
 				addActionWith: [ :act | act 
 					name: 'Test 1'; 
 					shortcutKey: $a ctrl;
-					action: [ 'Test 1.1' crTrace ] ];
+					action: [ 'Test 1.1' newLineTrace ] ];
 				addActionWith: [ :act | act 
 					name: 'Test 2'; 
-					action: [ 'Test 1.2' crTrace ] ] ];
+					action: [ 'Test 1.2' newLineTrace ] ] ];
 			addGroupWith: [ :subGroup1 | subGroup1 
 				name: 'Group 2';
 				addActionWith: [ :act | act 
 					name: 'Test 1';
 					shortcutKey: $y ctrl;  
-					action: [ 'Test 2.1' crTrace ]; 
+					action: [ 'Test 2.1' newLineTrace ]; 
 					actionEnabled: [ false ] ];
 				addActionWith: [ :act | act 
 					name: 'Test 2';
-					action: [ 'Test 2.2' crTrace ] ] ];
+					action: [ 'Test 2.2' newLineTrace ] ] ];
 			addActionWith: [ :act | act 
 				name: 'Test 3'; 
 				shortcutKey: $a ctrl; 
-				action: [ 'Test 3' crTrace ] ];
+				action: [ 'Test 3' newLineTrace ] ];
 			addActionWith: [ :act | act 
 				name: 'Test 4'; 
 				shortcutKey: Character escape asKeyCombination; 
-				action: [ 'Test 4' crTrace ] ] ];
+				action: [ 'Test 4' newLineTrace ] ] ];
 		open
 ]
 

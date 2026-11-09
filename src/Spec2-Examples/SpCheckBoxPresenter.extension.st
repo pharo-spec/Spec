@@ -6,7 +6,7 @@ SpCheckBoxPresenter class >> example [
 	self new 
 		label: 'Example';
 		state: false;
-		whenActivatedDo: [ 'Activated' crTrace ];
-		whenDeactivatedDo: [ 'Deactivated' crTrace ];
+		whenActivatedDo: [ 'Activated' newLineTrace ];
+		whenDeactivatedDo: [ 'Deactivated' newLineTrace ];
 		open
 ]

@@ -124,7 +124,7 @@ SpTreeTablePresenter class >> exampleWithExpansion [
 			yourself);
 		roots: { Object };
 		children: [ :aClass | aClass subclasses ];
-		whenExpandChangedDo: [ :ann | (ann item -> ann expanded) crTrace ];
+		whenExpandChangedDo: [ :ann | (ann item -> ann expanded) newLineTrace ];
 		open
 ]
 
