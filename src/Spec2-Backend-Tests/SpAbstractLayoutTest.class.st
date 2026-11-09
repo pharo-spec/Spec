@@ -52,6 +52,13 @@ SpAbstractLayoutTest >> openInstance [
 
 ]
 
+{ #category : 'private' }
+SpAbstractLayoutTest >> performTest [
+	"The tests must not change the extent remembered by the presenters for the rest of the system."
+
+	SpPresenter disableExtentRememberingDuring: [ super performTest ]
+]
+
 { #category : 'running' }
 SpAbstractLayoutTest >> prepareToRunAgain [
 

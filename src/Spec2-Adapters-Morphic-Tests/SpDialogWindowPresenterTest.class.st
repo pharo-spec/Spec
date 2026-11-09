@@ -8,6 +8,13 @@ Class {
 	#package : 'Spec2-Adapters-Morphic-Tests'
 }
 
+{ #category : 'private' }
+SpDialogWindowPresenterTest >> performTest [
+	"The tests must not change the extent remembered by the presenters for the rest of the system."
+
+	SpPresenter disableExtentRememberingDuring: [ super performTest ]
+]
+
 { #category : 'running' }
 SpDialogWindowPresenterTest >> setUp [
 	super setUp.

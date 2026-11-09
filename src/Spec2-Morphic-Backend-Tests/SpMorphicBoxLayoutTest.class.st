@@ -16,6 +16,13 @@ SpMorphicBoxLayoutTest >> initialize [
 	backend := SpMorphicBackendForTest new
 ]
 
+{ #category : 'private' }
+SpMorphicBoxLayoutTest >> performTest [
+	"The tests must not change the extent remembered by the presenters for the rest of the system."
+
+	SpPresenter disableExtentRememberingDuring: [ super performTest ]
+]
+
 { #category : 'running' }
 SpMorphicBoxLayoutTest >> tearDown [
 	instance
