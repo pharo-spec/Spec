@@ -47,13 +47,17 @@ SpWorldPresenterTest >> testOpenPresenterInWorldDisplayInFullWorld [
 { #category : 'tests' }
 SpWorldPresenterTest >> testOpenPresenterInWorldDisplayToolbarDoesNotHidePresenter [
 
-	| windowPresenter worldPanel |
+	| windowPresenter worldPanel presentersIntersection |
 	windowPresenter := application instantiate: SpTestPresenterWithToolbar.
 
 	(SpTestWorldPresenter presenter: windowPresenter) open.
 
 	worldPanel := worldMorph submorphs first.
-	self assert: (worldPanel submorphs first bounds intersect: worldPanel submorphs second bounds) = (0 @ 0 extent: 0 @ 0) description: 'toolbar should not intersect with presenter when opening in world'
+	presentersIntersection := worldPanel submorphs first bounds intersect: worldPanel submorphs second bounds.
+
+	self
+		assert: presentersIntersection = (0 @ 0 extent: 0 @ 0)
+		description: 'toolbar should not intersect with presenter when opening in world'
 ]
 
 { #category : 'tests' }
