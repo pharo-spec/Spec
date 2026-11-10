@@ -11,7 +11,7 @@ Class {
 
 { #category : 'running' }
 SpBaseTest >> application [
-
+	self flag: #MorphicReference. 
 	^ SpApplication new
 		  useBackend: #Morphic;
 		  yourself

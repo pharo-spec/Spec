@@ -33,7 +33,11 @@ BaselineOfSpec2 >> baseline: spec [
 			package: 'Spec2-Adapters-Morphic-Alexandrie' with: [ spec requires: #('Spec2-Alexandrie' 'Spec2-Adapters-Morphic') ];
 			"others"
 			package: 'Spec2-Microdown' with: [ spec requires: #('SpecCore' 'Spec2-Adapters-Morphic') ];
-			package: 'Spec2-Transformations' ].
+			package: 'Spec2-Transformations';
+			
+			"rules"
+			package: 'Spec2-Rules' with: [ spec requires: #('SpecCore') ];
+			package: 'Spec2-Rules-Tests' with: [ spec requires: #('Spec2-Rules') ] ].
 	
 	spec group: 'Core' with: #('SpecCore' 'Spec2-Microdown' 'Spec2-Morphic' 'Spec2-Adapters-Morphic' 'Spec2-Adapters-Morphic-ListView').
 	spec group: 'Code' with: #('Core' 'SpecCoreCode' 'Spec2-Code-Morphic' 'Spec2-Code-Diff-Morphic').
@@ -50,7 +54,9 @@ BaselineOfSpec2 >> baseline: spec [
 		'SpecCore'
 		'Core'
 		'Support').
-
+	
+	spec group: 'Rules' with: #('Spec2-Rules' 'Spec2-Rules-Tests').
+	 
 	spec group: 'default' with: #('Base' 'Tests' 'Code' 'CodeTests').
 ]
 
