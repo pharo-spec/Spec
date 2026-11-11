@@ -25,6 +25,8 @@ SpMorphicProgressBarAdapter >> applyStyle: morph [
 
 	super applyStyle: morph.
 	self labelStyle applyTo: progressLabel.
+	"The label style inherits the height of the application style: keep the room for the bar"
+	progressLabel fitContents.
 	self barStyle applyTo: progressBar
 ]
 
