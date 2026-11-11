@@ -20,6 +20,12 @@ SpInformDialog class >> defaultExtent [
 	^ 450@120
 ]
 
+{ #category : 'accessing' }
+SpInformDialog class >> defaultPreferredExtent [
+
+	^ 450@120
+]
+
 { #category : 'documentation' }
 SpInformDialog class >> documentFactoryMethodSelector [
 	
