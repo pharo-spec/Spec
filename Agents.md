@@ -71,7 +71,7 @@ reuse, transmissions, …), but it is less up to date than the image.
   `defaultLayout` (book: ThreePillarsOfSpec); use `SpPresenterWithModel` when the presenter shows a domain object.
 - Open other presenters through the application (`self application instantiate:`), not through globals;
   create subpresenters with `self instantiate:` or a `newXxx` factory, never with `new` or `on:`.
-- `toolNamed:` is for the Pharo IDE only: it is answered by `StApplication`, so only IDE tools
+- `toolNamed:` is for the Pharo IDE only: it is answered by `StPharoApplication`, so only IDE tools
   (`St…` presenters of the `NewTools-*` packages) use it. Presenters of other applications must not use it.
 - Test interaction logic on presenters without opening windows when possible (book: TestingInSpec);
   close any window a test opens.
