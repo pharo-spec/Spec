@@ -85,7 +85,7 @@ SpHorizontalBoxLayoutTest >> testReplaceWithFixedWidthComposed [
 { #category : 'tests' }
 SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenWindowHeightDecrease [
 
-	| searchPresenter buttonPresenter windowWidget buttonWidget searchWidget originalExtent |
+	| searchPresenter buttonPresenter windowWidget buttonWidget searchWidget originalExtent previousButtonBounds attempts |
 	searchPresenter := SpSearchInputFieldPresenter new.
 	buttonPresenter := SpButtonPresenter new label: 'click me'.
 	presenter := SpPresenter new
@@ -117,7 +117,13 @@ SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenW
 
 	originalExtent := windowWidget extent.
 	windowWidget extent: windowWidget extent - (0 @ 100).
-	self currentWorld doOneCycle.
+	"Window layout may not be finished after a single world cycle, so run cycles until the button bounds stop changing. The attempt limit prevents waiting forever."
+	attempts := 0.
+	previousButtonBounds := nil.
+	[ previousButtonBounds = buttonWidget bounds or: [ attempts >= 10 ] ] whileFalse: [
+			previousButtonBounds := buttonWidget bounds.
+			attempts := attempts + 1.
+			self currentWorld doOneCycle ].
 
 	self assert: (windowWidget bounds containsRect: buttonWidget bounds) description: (String streamContents: [ :stream |
 				 stream
@@ -128,7 +134,11 @@ SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenW
 					 nextPutAll: ', window: ';
 					 print: windowWidget bounds;
 					 nextPutAll: ', button: ';
-					 print: buttonWidget bounds ]).
+					 print: buttonWidget bounds;
+					 nextPutAll: ', attempts: ';
+					 print: attempts;
+					 nextPutAll: ', platform: ';
+					 print: OSPlatform current ]).
 	self assert: (windowWidget bounds containsRect: searchWidget bounds) description: (String streamContents: [ :stream |
 				 stream
 					 nextPutAll: 'Search field outside window after resize, extent before: ';
@@ -144,7 +154,7 @@ SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenW
 { #category : 'tests' }
 SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenWindowWidthDecrease [
 
-	| searchPresenter buttonPresenter windowWidget buttonWidget searchWidget originalExtent |
+	| searchPresenter buttonPresenter windowWidget buttonWidget searchWidget originalExtent previousButtonBounds attempts |
 	searchPresenter := SpSearchInputFieldPresenter new.
 	buttonPresenter := SpButtonPresenter new label: 'click me'.
 	presenter := SpPresenter new
@@ -176,7 +186,13 @@ SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenW
 
 	originalExtent := windowWidget extent.
 	windowWidget extent: windowWidget extent - (100 @ 0).
-	self currentWorld doOneCycle.
+	"Window layout may not be finished after a single world cycle, so run cycles until the button bounds stop changing. The attempt limit prevents waiting forever."
+	attempts := 0.
+	previousButtonBounds := nil.
+	[ previousButtonBounds = buttonWidget bounds or: [ attempts >= 10 ] ] whileFalse: [
+			previousButtonBounds := buttonWidget bounds.
+			attempts := attempts + 1.
+			self currentWorld doOneCycle ].
 
 	self assert: (windowWidget bounds containsRect: buttonWidget bounds) description: (String streamContents: [ :stream |
 				 stream
@@ -187,7 +203,11 @@ SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenW
 					 nextPutAll: ', window: ';
 					 print: windowWidget bounds;
 					 nextPutAll: ', button: ';
-					 print: buttonWidget bounds ]).
+					 print: buttonWidget bounds;
+					 nextPutAll: ', attempts: ';
+					 print: attempts;
+					 nextPutAll: ', platform: ';
+					 print: OSPlatform current ]).
 	self assert: (windowWidget bounds containsRect: searchWidget bounds) description: (String streamContents: [ :stream |
 				 stream
 					 nextPutAll: 'Search field outside window after resize, extent before: ';
