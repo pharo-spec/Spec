@@ -16,6 +16,8 @@ SpMorphicListViewAdapter >> buildWidget [
 	datasource model: self model.
 	
 	widget := self newTableWith: datasource.
+	"rows are presenters that can have different heights (see the data source)"
+	widget beRowNotHomogeneous.
 	"no search on list view (it has to be provided elsewhere)"
 	widget disableFunction. 
 	
