@@ -65,7 +65,8 @@ SpMorphicGridAdapter >> basicApplyChildrenAlignmentTo: aWidget constraints: cons
 	alignmentWidget := Morph new
 		changeTableLayout; 
 		color: Color transparent;
-		addMorphBack: aWidget.
+		addMorphBack: aWidget;
+		setProperty: #gridAlignmentWrapper toValue: true.
 
 	constraints vAlign ifNotNil: [ :align |
 		alignmentWidget listCentering: align asMorphicAlign ].
