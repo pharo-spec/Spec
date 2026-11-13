@@ -37,15 +37,17 @@ SpMorphicLinkAdapter >> buildWidget [
 	self presenter whenLabelChangedDo: [ :newLabel | 
 		aMorph contents: (newLabel ifNotNil: [ :aString | 
 				 aString localizedForPresenter: self presenter ]) ].
+	self presenter whenHelpChangedDo: [ aMorph setBalloonText: self getHelpText ].
 
 	^ aMorph
 ]
 
 { #category : 'private' }
 SpMorphicLinkAdapter >> getHelpText [
+	"An empty help would display an empty balloon"
 
-	^ self presenter help 
-		ifNotNil: [ :aString | aString localizedForPresenter: self presenter ]
+	^ self presenter help ifNotNil: [ :aString |
+		  aString ifNotEmpty: [ aString localizedForPresenter: self presenter ] ifEmpty: [ nil ] ]
 ]
 
 { #category : 'private' }
