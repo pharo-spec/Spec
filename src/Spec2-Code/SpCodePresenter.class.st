@@ -374,20 +374,13 @@ SpCodePresenter >> environment: anEnvironment [
 	environment := anEnvironment
 ]
 
-{ #category : 'command support' }
+{ #category : 'Protocol (Protocol (command support) - 9 selector(s)) - 1 selector(s)' }
 SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: errorBlock [ 
-	"evaluate aString. 
-	 evaluate compileErrorBlock if there are compilation errors. 
-	 evaluate errorBlock is anything happens *during* evaluation (code compiled, but it does not 
-	 executes.). 
-	 NOTE for future me. This is how I understand the evaluation works and why we need to catch 
-	 differently the error: If there is a syntax error (avoiding compilation), it will evaluate 
-	 requestor>>#notify:at:in: to notify the error and then it will call failBlock: *which is not 
-	 intended to be used to throw an error*, since that should be handled (and it is) in the 
-	 notification. Instead, most users of failBlock: use it to return execution without doing 
-	 anything. 
-	 Instead, the on:do: will catch all errors happening while executing the code once it is 
-	 compiled. "
+	"Evaluate aString. Evaluate compileErrorBlock when there are compilation errors,
+	 and errorBlock when something happens *during* evaluation (code compiled but did not
+	 execute). Compilation errors travel through evaluateWithErrorsDo: (doCompile plus the
+	 notice list), not through the deprecated compiler failBlock: API. The on:do: below
+	 catches errors raised while executing the compiled code."
 	| result oldBindings |
 	
 	^ [
@@ -396,10 +389,9 @@ SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: 
 		result := self interactionModel compiler
 			source: aString;
 			environment: self environment;
-			failBlock:  [ 
+			evaluateWithErrorsDo: [
 				self announcer announce: (SpCodeEvaluationFailedAnnouncement newContent: aString).
-				^ compileErrorBlock value ];
-			evaluate.
+				^ compileErrorBlock value ].
 		oldBindings size = self interactionModel bindings size 
 			ifFalse: [ self refreshStyling ].
 		self announcer announce: (SpCodeEvaluationSucceedAnnouncement newContent: aString).
