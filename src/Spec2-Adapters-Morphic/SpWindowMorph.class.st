@@ -106,3 +106,9 @@ SpWindowMorph >> taskbarTask [
 
 	^ taskbarTask
 ]
+
+{ #category : 'as yet unclassified' }
+SpWindowMorph >> viewType [
+
+	^ self presenter presenter viewType
+]
