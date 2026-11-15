@@ -116,12 +116,14 @@ RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testCritiqueProvidesChange [
 
 { #category : 'tests - windows' }
 RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testDialogOpenedInCascadeIsNotReported [
+	"A presenter opened as a dialog is not reported (https://github.com/pharo-spec/Spec/issues/1967, see testWindowOpenedThroughAssignmentIsNotReported); SpButtonPresenter only stands for such a dialog. Message dialogs such as SpConfirmDialog are reported even when opened (testOpenedMessageDialogIsReported). Here openModal is the last message of the cascade."
 
 	self assertEmpty: (self critiquesOn: 'foo ^ SpButtonPresenter new title: ''t''; openModal' in: presenter)
 ]
 
 { #category : 'tests - windows' }
 RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testDialogOpenedInsideCascadeIsNotReported [
+	"A presenter opened as a dialog is not reported (https://github.com/pharo-spec/Spec/issues/1967, see testWindowOpenedThroughAssignmentIsNotReported); SpButtonPresenter only stands for such a dialog. Here openModal is not the last message of the cascade."
 
 	self assertEmpty: (self critiquesOn: 'foo ^ SpButtonPresenter new openModal; yourself' in: presenter)
 ]
@@ -274,6 +276,14 @@ RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testMessageDialogGivenItsApp
 ]
 
 { #category : 'tests - dialogs' }
+RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testMessageDialogGivenItsApplicationThroughAssignmentIsNotReported [
+
+	self assertEmpty: (self
+			 critiquesOn: 'foo | dialog | (dialog := SpSelectDialog new) application: self application; openModal. ^ dialog'
+			 in: presenter)
+]
+
+{ #category : 'tests - dialogs' }
 RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testMessageDialogSubclassIsReported [
 
 	self assert: (self critiquesOn: 'foo ^ SpProgressDialog new openModal' in: presenter) size equals: 1
@@ -368,12 +378,29 @@ RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testWidgetPresenterIsReporte
 
 { #category : 'tests - windows' }
 RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testWindowOpenedAfterCascadeIsNotReported [
+	"A presenter opened as a window is not reported (https://github.com/pharo-spec/Spec/issues/1967, see testWindowOpenedThroughAssignmentIsNotReported); SpButtonPresenter only stands for such a window. Here the window is opened after the cascade configuring it."
 
 	self assertEmpty: (self critiquesOn: 'foo ^ (SpButtonPresenter new title: ''t''; yourself) asModalWindow' in: presenter)
 ]
 
 { #category : 'tests - windows' }
 RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testWindowOpenedInChainIsNotReported [
+	"A presenter opened as a window is not reported (https://github.com/pharo-spec/Spec/issues/1967, see testWindowOpenedThroughAssignmentIsNotReported); SpButtonPresenter only stands for such a window. Here open is sent directly to the creation."
 
 	self assertEmpty: (self critiquesOn: 'foo ^ SpButtonPresenter new open' in: presenter)
+]
+
+{ #category : 'tests - windows' }
+RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testWindowOpenedInChainThroughAssignmentIsNotReported [
+	"A presenter opened as a window is not reported (https://github.com/pharo-spec/Spec/issues/1967, see testWindowOpenedThroughAssignmentIsNotReported); SpButtonPresenter only stands for such a window. Here the assigned creation is opened in a message chain."
+
+	self assertEmpty: (self critiquesOn: 'foo | window | ^ (window := SpButtonPresenter new) open' in: presenter)
+]
+
+{ #category : 'tests - windows' }
+RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testWindowOpenedThroughAssignmentIsNotReported [
+	"A presenter opened as a window is not reported, even when it is not a subpresenter: how it should be created is not decided yet (https://github.com/pharo-spec/Spec/issues/1967), and self instantiate: would make the window a child of the presenter opening it. SpButtonPresenter only stands for such a window; without open, SpButtonPresenter new is reported (testNewOfPresenterClassIsReported). Here the creation is assigned before being opened in a cascade, as in StPlaygroundPagesPresenter>>doLoadPageOnNewPlayground: (playground := StPlaygroundPresenter new) loadPage: ...; open."
+
+	self assertEmpty:
+		(self critiquesOn: 'foo | window | (window := SpButtonPresenter new) label: ''t''; open. ^ window' in: presenter)
 ]

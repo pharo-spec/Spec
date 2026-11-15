@@ -179,6 +179,16 @@ RePresenterShouldBeInstantiatedWithOwnerRule >> basicCheck: aNode [
 	^ aNode methodNode methodClass ifNil: [ false ] ifNotNil: [ :class | self isInScope: class ]
 ]
 
+{ #category : 'private' }
+RePresenterShouldBeInstantiatedWithOwnerRule >> cascadeOf: aMessageNode [
+	"Answer the cascade aMessageNode belongs to, or nil."
+
+	| parent |
+	parent := aMessageNode parent.
+	(parent isNotNil and: [ parent isCascade ]) ifFalse: [ ^ nil ].
+	^ parent
+]
+
 { #category : 'running' }
 RePresenterShouldBeInstantiatedWithOwnerRule >> check: aNode forCritiquesDo: aBlock [
 
@@ -247,18 +257,16 @@ RePresenterShouldBeInstantiatedWithOwnerRule >> isPresenterClass: anObject [
 
 { #category : 'private' }
 RePresenterShouldBeInstantiatedWithOwnerRule >> isSentOneOf: someSelectors toPresenterCreatedBy: aNode [
-	"Answer whether one of someSelectors is sent to the presenter created by aNode, in its message chain or its cascade."
+	"Answer whether one of someSelectors is sent to the presenter created by aNode, in its message chain or its cascade, also through an assignment such as (window := X new) open."
 
-	| current parent |
+	| current message |
 	current := aNode.
-	[
-		parent := current parent.
-		parent isNotNil and: [ parent isMessage and: [ parent receiver == current ] ] ] whileTrue: [
-			(someSelectors includes: parent selector) ifTrue: [ ^ true ].
-			current := parent.
-			(parent parent isNotNil and: [ parent parent isCascade ]) ifTrue: [
-					(parent parent messages anySatisfy: [ :each | someSelectors includes: each selector ]) ifTrue: [ ^ true ].
-					current := parent parent ] ].
+	[ (message := self messageSentTo: current) isNotNil ] whileTrue: [
+			(someSelectors includes: message selector) ifTrue: [ ^ true ].
+			current := message.
+			(self cascadeOf: message) ifNotNil: [ :cascade |
+					(cascade messages anySatisfy: [ :each | someSelectors includes: each selector ]) ifTrue: [ ^ true ].
+					current := cascade ] ].
 	^ false
 ]
 
@@ -285,6 +293,20 @@ RePresenterShouldBeInstantiatedWithOwnerRule >> keywordCreationSourceFor: aNode 
 								   ifTrue: [ ' model: ' ]
 								   ifFalse: [ ' on: ' ]);
 						  nextPutAll: aNode arguments first sourceCode ] ]
+]
+
+{ #category : 'private' }
+RePresenterShouldBeInstantiatedWithOwnerRule >> messageSentTo: aNode [
+	"Answer the message sent to the value of aNode, directly or through an assignment of it (as in (window := X new) open), or nil when there is none."
+
+	| receiver parent |
+	receiver := aNode.
+	parent := receiver parent.
+	(parent isNotNil and: [ parent isAssignment and: [ parent value == receiver ] ]) ifTrue: [
+			receiver := parent.
+			parent := receiver parent ].
+	(parent isNotNil and: [ parent isMessage and: [ parent receiver == receiver ] ]) ifFalse: [ ^ nil ].
+	^ parent
 ]
 
 { #category : 'fixing' }
