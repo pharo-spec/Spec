@@ -66,6 +66,12 @@ RePresenterShouldBeInstantiatedWithOwnerRuleTest >> setUp [
 	nonPresenter := Object newAnonymousSubclass
 ]
 
+{ #category : 'tests - dialogs' }
+RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testApplicationFactoryOfMessageDialogIsNotReported [
+
+	self assertEmpty: (self critiquesOn: 'foo ^ self application newConfirm title: ''t''; openModal' in: presenter)
+]
+
 { #category : 'tests' }
 RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testApplicationInstantiateIsNotReported [
 
@@ -166,6 +172,30 @@ RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testFixOfClassVariableReceiv
 	self assert: (self fixedSourceOf: 'foo ^ DetailPresenterClass new') equals: 'foo ^ self instantiate: DetailPresenterClass'
 ]
 
+{ #category : 'tests - dialogs' }
+RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testFixOfMessageDialogOnUsesNewApplicationModel [
+
+	self
+		assert: (self fixedSourceOf: 'foo ^ SpConfirmDialog on: 3')
+		equals: 'foo ^ SpConfirmDialog newApplication: self application model: 3'
+]
+
+{ #category : 'tests - dialogs' }
+RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testFixOfMessageDialogUsesApplicationFactory [
+
+	self
+		assert: (self fixedSourceOf: 'foo ^ SpConfirmDialog new title: ''t''; openModal')
+		equals: 'foo ^ self application newConfirm title: ''t''; openModal'
+]
+
+{ #category : 'tests - dialogs' }
+RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testFixOfMessageDialogWithoutFactoryUsesNewApplication [
+
+	self
+		assert: (self fixedSourceOf: 'foo ^ SpProgressDialog new title: ''t''; openModal')
+		equals: 'foo ^ (SpProgressDialog newApplication: self application) title: ''t''; openModal'
+]
+
 { #category : 'tests - fix' }
 RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testFixOfOnUsesInstantiateOn [
 
@@ -221,6 +251,34 @@ RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testMenuIsReported [
 	self assert: (self critiquesOn: 'foo ^ SpMenuPresenter new' in: presenter) size equals: 1
 ]
 
+{ #category : 'tests - dialogs' }
+RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testMessageDialogFactoriesAnswerTheirDialog [
+
+	| application |
+	application := SpApplication new.
+	self subjectUnderTest messageDialogFactorySelectors keysAndValuesDo: [ :className :factory |
+		self assert: (application perform: factory) class name equals: className ]
+]
+
+{ #category : 'tests - dialogs' }
+RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testMessageDialogGivenItsApplicationInCascadeIsNotReported [
+
+	self assertEmpty:
+		(self critiquesOn: 'foo ^ SpSelectDialog new application: self application; title: ''t''; openModal' in: presenter)
+]
+
+{ #category : 'tests - dialogs' }
+RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testMessageDialogGivenItsApplicationInChainIsNotReported [
+
+	self assertEmpty: (self critiquesOn: 'foo ^ (SpSelectDialog new application: self application) openModal' in: presenter)
+]
+
+{ #category : 'tests - dialogs' }
+RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testMessageDialogSubclassIsReported [
+
+	self assert: (self critiquesOn: 'foo ^ SpProgressDialog new openModal' in: presenter) size equals: 1
+]
+
 { #category : 'tests' }
 RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testNewApplicationAndOwnerAreNotReported [
 
@@ -259,6 +317,19 @@ RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testOneChangeFixesAllNodesOf
 	expected := 'foo ^ self newButton -> (self instantiate: SpLabelPresenter on: 42)'.
 	self assert: critiques size equals: 2.
 	critiques do: [ :each | self assert: each change source equals: expected ]
+]
+
+{ #category : 'tests - dialogs' }
+RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testOpenedMessageDialogInChainIsReported [
+
+	self assert: (self critiquesOn: 'foo ^ SpInformDialog new openModal' in: presenter) size equals: 1
+]
+
+{ #category : 'tests - dialogs' }
+RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testOpenedMessageDialogIsReported [
+	"Not counted: Renraku reports a cascade receiver once per cascade message (see testCascadeReceiverIsReportedOncePerCascadeMessage)."
+
+	self denyEmpty: (self critiquesOn: 'foo ^ SpConfirmDialog new title: ''t''; openModal' in: presenter)
 ]
 
 { #category : 'tests' }
