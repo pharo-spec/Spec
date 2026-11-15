@@ -104,7 +104,7 @@ RePresenterShouldBeInstantiatedWithOwnerRuleTest >> testCritiqueProvidesChange [
 
 	| critique |
 	critique := (self critiquesOn: 'foo ^ SpButtonPresenter new' in: presenter) first.
-	self assert: critique class name equals: #ReInstantiatePresenterWithOwnerCritique.
+	self assert: critique class name equals: #ReInstantiatePresenterWithoutOwnerCritique.
 	self assert: critique providesChange
 ]
 

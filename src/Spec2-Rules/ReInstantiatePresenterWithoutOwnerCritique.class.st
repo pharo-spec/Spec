@@ -13,7 +13,7 @@ I am the critique of `RePresenterShouldBeInstantiatedWithOwnerRule`: a presenter
 
 ## Public API and Key Messages
 
-- `ReInstantiatePresenterWithOwnerCritique for: aNode by: aRule` creates me.
+- `ReInstantiatePresenterWithoutOwnerCritique for: aNode by: aRule` creates me.
 - `providesChange` answers true while the method still exists; `change` answers the change; `currentMethod` answers the method as it is now.
 
 ```
@@ -30,18 +30,19 @@ critique change source
 
 "
 Class {
-	#name : 'ReInstantiatePresenterWithOwnerCritique',
+	#name : 'ReInstantiatePresenterWithoutOwnerCritique',
 	#superclass : 'ReAbstractCritique',
 	#instVars : [
 		'methodClass',
 		'selector'
 	],
-	#category : 'Spec2-Rules',
-	#package : 'Spec2-Rules'
+	#category : 'Spec2-Rules-Violations',
+	#package : 'Spec2-Rules',
+	#tag : 'Violations'
 }
 
 { #category : 'instance creation' }
-ReInstantiatePresenterWithOwnerCritique class >> for: aNode by: aRule [
+ReInstantiatePresenterWithoutOwnerCritique class >> for: aNode by: aRule [
 	"Answer a critique of aRule about aNode, which remembers the method of aNode so that the fix works on its current version."
 
 	^ (self withAnchor: (aRule anchorFor: aNode) by: aRule)
@@ -50,7 +51,7 @@ ReInstantiatePresenterWithOwnerCritique class >> for: aNode by: aRule [
 ]
 
 { #category : 'accessing' }
-ReInstantiatePresenterWithOwnerCritique >> change [
+ReInstantiatePresenterWithoutOwnerCritique >> change [
 	"Answer a change rewriting every presenter created without owner in the current method."
 
 	^ ReChangeFactory instance
@@ -59,21 +60,21 @@ ReInstantiatePresenterWithOwnerCritique >> change [
 ]
 
 { #category : 'accessing' }
-ReInstantiatePresenterWithOwnerCritique >> currentMethod [
+ReInstantiatePresenterWithoutOwnerCritique >> currentMethod [
 	"Answer the method as it is now, which may differ from the one the rule checked."
 
 	^ methodClass ifNotNil: [ methodClass compiledMethodAt: selector ifAbsent: [ nil ] ]
 ]
 
 { #category : 'initialization' }
-ReInstantiatePresenterWithOwnerCritique >> methodClass: aClass selector: aSymbol [
+ReInstantiatePresenterWithoutOwnerCritique >> methodClass: aClass selector: aSymbol [
 
 	methodClass := aClass.
 	selector := aSymbol
 ]
 
 { #category : 'testing' }
-ReInstantiatePresenterWithOwnerCritique >> providesChange [
+ReInstantiatePresenterWithoutOwnerCritique >> providesChange [
 
 	^ self currentMethod isNotNil
 ]

@@ -30,7 +30,7 @@ A presenter class having a factory in `SpPresenter` (`factorySelectors`, e.g. `S
 ## Collaborators: 
 
 - `ReNodeBasedRule`: Renraku calls `shouldCheckMethod:` before parsing a method, then `check:forCritiquesDo:` on each node.
-- `ReInstantiatePresenterWithOwnerCritique`: my critique; its change fixes the current version of the whole method.
+- `ReInstantiatePresenterWithoutOwnerCritique`: my critique; its change fixes the current version of the whole method.
 - `SpPresenter>>#instantiate:`, `instantiate:on:` and the `newXxx` factories: the code my fix writes.
 
 ## Public API and Key Messages
@@ -64,8 +64,9 @@ checker criticsOf: rule
 Class {
 	#name : 'RePresenterShouldBeInstantiatedWithOwnerRule',
 	#superclass : 'ReNodeBasedRule',
-	#category : 'Spec2-Rules',
-	#package : 'Spec2-Rules'
+	#category : 'Spec2-Rules-Rules',
+	#package : 'Spec2-Rules',
+	#tag : 'Rules'
 }
 
 { #category : 'accessing' }
@@ -165,7 +166,7 @@ RePresenterShouldBeInstantiatedWithOwnerRule >> basicCheck: aNode [
 { #category : 'running' }
 RePresenterShouldBeInstantiatedWithOwnerRule >> check: aNode forCritiquesDo: aBlock [
 
-	(self basicCheck: aNode) ifTrue: [ aBlock cull: (ReInstantiatePresenterWithOwnerCritique for: aNode by: self) ]
+	(self basicCheck: aNode) ifTrue: [ aBlock cull: (ReInstantiatePresenterWithoutOwnerCritique for: aNode by: self) ]
 ]
 
 { #category : 'fixing' }
