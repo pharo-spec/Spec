@@ -17,7 +17,8 @@ Class {
 		'#presenterProvider',
 		'#retrievedBlock',
 		'#activePresenter => WeakSlot',
-		'#labelPresenter'
+		'#labelPresenter',
+		'#help => ObservableSlot'
 	],
 	#category : 'Spec2-Core-Widgets-Tab',
 	#package : 'Spec2-Core',
@@ -94,6 +95,20 @@ SpNotebookPage >> beCloseable [
 	"Set the page as closeable, make a closing button to appear with the title."
 
 	closeable := true
+]
+
+{ #category : 'api' }
+SpNotebookPage >> help [
+	"Answer the help text to show when the mouse is over the page tab"
+
+	^ help
+]
+
+{ #category : 'api' }
+SpNotebookPage >> help: aString [
+	"Set the help text to show when the mouse is over the page tab"
+
+	help := aString
 ]
 
 { #category : 'api' }
@@ -236,6 +251,12 @@ SpNotebookPage >> unsubscribe: anObject [
 			slotValue := aSlot rawRead: self.
 			slotValue ifNotNil: [ 
 				slotValue unsubscribe: anObject ] ].
+]
+
+{ #category : 'api - events' }
+SpNotebookPage >> whenHelpChangedDo: aBlock [
+
+	self property: #help whenChangedDo: aBlock
 ]
 
 { #category : 'api - events' }

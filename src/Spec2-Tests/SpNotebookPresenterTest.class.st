@@ -28,12 +28,42 @@ SpNotebookPresenterTest >> testAddPage [
 ]
 
 { #category : 'tests' }
+SpNotebookPresenterTest >> testChangingPageHelpUpdatesItsLabel [
+
+	| page tab |
+	page := self mockPage.
+	presenter addPage: page.
+	tab := page labelPresenterFor: presenter.
+
+	page help: 'Explains it'.
+
+	"The tab shows the page icon and its title: hovering either one shows the help"
+	self assert: tab presenters size equals: 2.
+	tab presenters do: [ :each | self assert: each help equals: 'Explains it' ]
+]
+
+{ #category : 'tests' }
 SpNotebookPresenterTest >> testPageAt [
 	| page |
 	presenter addPage: self mockPage.
 	page := SpNotebookPage title: 'test' provider: [ SpButtonPresenter new ].
 	presenter addPage: page.
 	self assert: (presenter pageAt: 2) equals: page
+]
+
+{ #category : 'tests' }
+SpNotebookPresenterTest >> testPageHelpIsShownByItsLabel [
+
+	| page tab |
+	page := self mockPage.
+	page help: 'Explains it'.
+	presenter addPage: page.
+	tab := page labelPresenterFor: presenter.
+
+	"The tab shows the page icon and its title: hovering either one shows the help"
+	"The tab has two presenters, a label and an icon"
+	self assert: tab presenters size equals: 2.
+	tab presenters do: [ :each | self assert: each help equals: 'Explains it' ]
 ]
 
 { #category : 'tests' }

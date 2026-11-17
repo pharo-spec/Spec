@@ -19,6 +19,14 @@ SpImageAdapterTest >> imageForm [
 			nextImage
 ]
 
+{ #category : 'tests' }
+SpImageAdapterTest >> testChangingHelpAfterOpeningAffectsTheWidget [
+
+	self adapter.
+	presenter help: 'ALabel'.
+	self assert: self adapter helpText equals: 'ALabel'
+]
+
 { #category : 'building' }
 SpImageAdapterTest >> testSettingAnImageSetsTheImage [
 
