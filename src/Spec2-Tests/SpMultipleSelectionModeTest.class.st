@@ -26,6 +26,17 @@ SpMultipleSelectionModeTest >> testGetRightElementAfterSortingOfElementsChanged 
 ]
 
 { #category : 'tests' }
+SpMultipleSelectionModeTest >> testSelectionIsNotEmpty [
+
+	presenter beMultipleSelection.
+	self deny: presenter selection isNotEmpty.
+
+	presenter selectIndex: 1.
+
+	self assert: presenter selection isNotEmpty
+]
+
+{ #category : 'tests' }
 SpMultipleSelectionModeTest >> testSelectionIsResetAfterItemsAssignment [
 
 	presenter
