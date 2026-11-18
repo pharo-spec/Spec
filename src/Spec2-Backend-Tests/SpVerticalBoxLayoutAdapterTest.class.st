@@ -6,6 +6,16 @@ Class {
 	#tag : 'Layout'
 }
 
+{ #category : 'helpers' }
+SpVerticalBoxLayoutAdapterTest >> layOutWindow [
+	"We need to lay out twice. As this is a wrapping morph, when the width changes, the height may change too (because of the wrapping, narrowing it can make it larger). We need to lay out twice to apply the changes to the height, too."
+
+	self window adapter widget fullBounds.
+	"a wrapping label whose height changed asks its owner to lay out again, in the next UI cycle"
+	self adapter.
+	self window adapter widget fullBounds
+]
+
 { #category : 'accessing' }
 SpVerticalBoxLayoutAdapterTest >> newLayout [
 
@@ -145,4 +155,33 @@ SpVerticalBoxLayoutAdapterTest >> testAddingElementsToFixedHeightLayoutDoesNotIm
 
 	nestedLayout remove: secondButton.
 	self assert: layoutWidget height equals: fixedHeight
+]
+
+{ #category : 'tests' }
+SpVerticalBoxLayoutAdapterTest >> testWrappingLabelKeepsTheElementBelowNextToItWhenResized [
+
+	| label below |
+	label := SpLabelPresenter new
+		         label: 'A long label that cannot fit on one line in a narrow window';
+		         beWrap;
+		         yourself.
+	below := SpButtonPresenter new
+		         label: 'Below';
+		         yourself.
+	layout
+		add: label expand: false;
+		add: below expand: false.
+	self openInstance.
+
+	"Narrower: the label takes more lines, the button must not overlap it"
+	self window resize: 150 @ 300.
+	self layOutWindow.
+	self assert: label adapter numberOfLines > 1.
+	self assert: below adapter widget top equals: label adapter widget bottom.
+
+	"Wider: the label takes one line, the button must not stay where the lines ended"
+	self window resize: 700 @ 300.
+	self layOutWindow.
+	self assert: label adapter numberOfLines equals: 1.
+	self assert: below adapter widget top equals: label adapter widget bottom
 ]
