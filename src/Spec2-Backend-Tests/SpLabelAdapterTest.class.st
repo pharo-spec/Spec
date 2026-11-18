@@ -61,6 +61,15 @@ SpLabelAdapterTest >> testChangingHelpAfterOpeningAffectsTheWidget [
 ]
 
 { #category : 'tests' }
+SpLabelAdapterTest >> testChangingHelpOfWrappingLabelAfterOpeningAffectsTheWidget [
+
+	presenter beWrap.
+	self adapter.
+	presenter help: 'ALabel'.
+	self assert: self adapter helpText equals: 'ALabel'
+]
+
+{ #category : 'tests' }
 SpLabelAdapterTest >> testSetLabelInPresenterAffectsWidget [
 	presenter label: 'something'.
 	self assert: self adapter label equals: 'something'
