@@ -25,6 +25,34 @@ SpLabelAdapterTest >> testBackgroundColorChangesColor [
 ]
 
 { #category : 'tests' }
+SpLabelAdapterTest >> testBeNotWrapAfterOpeningShowsOneLine [
+
+	presenter
+		label: 'A long label that cannot fit on one line in a narrow window';
+		beWrap.
+	self openInstance.
+	
+	self window resize: 150 @ 300.
+
+	presenter beNotWrap.
+
+	self assert: self adapter numberOfLines equals: 1
+]
+
+{ #category : 'tests' }
+SpLabelAdapterTest >> testBeWrapAfterOpeningShowsSeveralLines [
+
+	presenter label: 'A long label that cannot fit on one line in a narrow window'.
+	self openInstance.
+	self window resize: 150 @ 300.
+	self assert: self adapter numberOfLines equals: 1.
+
+	presenter beWrap.
+
+	self assert: self adapter numberOfLines > 1
+]
+
+{ #category : 'tests' }
 SpLabelAdapterTest >> testChangingHelpAfterOpeningAffectsTheWidget [
 
 	self adapter.
@@ -36,4 +64,24 @@ SpLabelAdapterTest >> testChangingHelpAfterOpeningAffectsTheWidget [
 SpLabelAdapterTest >> testSetLabelInPresenterAffectsWidget [
 	presenter label: 'something'.
 	self assert: self adapter label equals: 'something'
+]
+
+{ #category : 'tests' }
+SpLabelAdapterTest >> testSetLabelInWrappingPresenterAffectsWidget [
+
+	presenter beWrap.
+	presenter label: 'something'.
+	self assert: self adapter label equals: 'something'
+]
+
+{ #category : 'tests' }
+SpLabelAdapterTest >> testWrappingLabelInNarrowWindowShowsSeveralLines [
+
+	presenter
+		label: 'A long label that cannot fit on one line in a narrow window';
+		beWrap.
+	self openInstance.
+	self window resize: 150 @ 300.
+
+	self assert: self adapter numberOfLines > 1
 ]
