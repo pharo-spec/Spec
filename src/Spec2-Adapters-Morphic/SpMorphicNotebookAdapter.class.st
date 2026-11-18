@@ -159,21 +159,19 @@ SpMorphicNotebookAdapter >> updatePageContent: aPage [
 SpMorphicNotebookAdapter >> updatePageTitle: aPage [
 
 	self widgetDo: [ :w |
-		w 
-			relabelPage: (w pageWithModel: aPage) 
-			with: (self buildLabelForPage: aPage) ]
+		(w hasPageWithModel: aPage) ifFalse: [
+			self traceNewLine: 'SpNotebook: title update for a page missing from the widget: ' , aPage printString , ' widget pages: ' , (w pages collect: [ :pageMorph | pageMorph model ]) printString ].
+		w relabelPage: (w pageWithModel: aPage) with: (self buildLabelForPage: aPage) ]
 ]
 
 { #category : 'updating' }
 SpMorphicNotebookAdapter >> updatePagesWith: aCollection [
+
 	| pagesToRemove |
-	
 	self widget ifNil: [ ^ self ].
-		
-	pagesToRemove := self widget pages reject: [ :pageMorph | 
-		aCollection anySatisfy: [ :page | page = pageMorph model ] ].
-	pagesToRemove do: [ :pageMorph | self widget removePage: pageMorph ].
-	aCollection 
-		reject: [ :page | self widget hasPageWithModel: page ] 
-		thenDo: [ :page | self addPage: page to: self widget ]
+	pagesToRemove := self widget pages reject: [ :pageMorph | aCollection anySatisfy: [ :page | page = pageMorph model ] ].
+	pagesToRemove do: [ :pageMorph |
+		self traceNewLine: 'SpNotebook: removing page ' , pageMorph model printString.
+		self widget removePage: pageMorph ].
+	aCollection reject: [ :page | self widget hasPageWithModel: page ] thenDo: [ :page | self addPage: page to: self widget ]
 ]
