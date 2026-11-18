@@ -95,6 +95,22 @@ SpWindowPresenterTest >> testResize [
 ]
 
 { #category : 'tests' }
+SpWindowPresenterTest >> testUpdateWindowTitle [
+
+	| listPresenter windowPresenter |
+	listPresenter := SpEditableListPresenter new.
+	listPresenter title: 'First title'.
+	windowPresenter := listPresenter open.
+	[
+		self assert: windowPresenter title equals: 'First title'.
+
+		listPresenter title: 'Second title'.
+		listPresenter updateWindowTitle.
+
+		self assert: windowPresenter title equals: 'Second title' ] ensure: [ windowPresenter close ]
+]
+
+{ #category : 'tests' }
 SpWindowPresenterTest >> testUsingAsWindowCanOverrideTitle [
 	| windowPresenter |
 	

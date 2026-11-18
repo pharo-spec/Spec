@@ -1066,6 +1066,12 @@ SpPresenter >> updatePresenter [
 ]
 
 { #category : 'api' }
+SpPresenter >> updateWindowTitle [
+
+	titleHolder := self windowTitle
+]
+
+{ #category : 'api' }
 SpPresenter >> visible: aBoolean [
 	"set the visibility status of the presenter (it can be hidden or shown)"
 
@@ -1151,6 +1157,8 @@ SpPresenter >> windowTitle [
 		windowTitle
 
 			^ self model windowTitle
+
+	The window reads this title when it opens. If the answer changes while the window is open, send #updateWindowTitle to show the new title.
 	"
 
 	^ titleHolder ifNil: [ titleHolder := 'Unnamed Window' ]
