@@ -20,30 +20,34 @@ Class {
 SpNotebookPageLabelPresenter >> initializePresenters [
 
 	self layout: (SpBoxLayout newLeftToRight
-		spacing: 3;
-		yourself).
+		 spacing: 3;
+		 yourself).
 
 	self model icon ifNotNil: [
 		self layout
-			add: (iconPresenter := (self newImage image: self model icon))
+			add: (iconPresenter := self newImage
+				                  image: self model icon;
+				                  help: self model help;
+				                  yourself)
 			expand: false ].
 
 	self layout
 		vAlignCenter;
 		add: (labelPresenter := self newLabel
-			label: self model title asString;
-			yourself)
+			                   label: self model title asString;
+			                   help: self model help;
+			                   yourself)
 		expand: false.
 
 	self model isCloseable ifTrue: [
 		self layout
 			addLast: (self newButton
-				addStyle: 'small';
-				addStyle: 'flat';
-				icon: (self iconNamed: #windowCloseInactive);
-				action: [ self model removeFromNotebook ];
-				yourself)
-			expand: false ].
+				 addStyle: 'small';
+				 addStyle: 'flat';
+				 icon: (self iconNamed: #windowCloseInactive);
+				 action: [ self model removeFromNotebook ];
+				 yourself)
+			expand: false ]
 
 	"self eventHandler whenDoubleClickDo: [ :event | 'ok' crTrace  ]."
 ]
@@ -72,6 +76,13 @@ SpNotebookPageLabelPresenter >> unsubscribePage: aPage [
 ]
 
 { #category : 'private - updating' }
+SpNotebookPageLabelPresenter >> updateHelp [
+
+	iconPresenter ifNotNil: [ iconPresenter help: self model help ].
+	labelPresenter help: self model help
+]
+
+{ #category : 'private - updating' }
 SpNotebookPageLabelPresenter >> updateIcon [
 
 	iconPresenter image: self model icon
@@ -80,9 +91,10 @@ SpNotebookPageLabelPresenter >> updateIcon [
 { #category : 'initialization' }
 SpNotebookPageLabelPresenter >> updatePresenter [
 
-	self model 
+	self model
 		whenTitleChangedDo: [ self updateTitle ];
-		whenIconChangedDo: [ self updateIcon ]
+		whenIconChangedDo: [ self updateIcon ];
+		whenHelpChangedDo: [ self updateHelp ]
 ]
 
 { #category : 'private - updating' }
