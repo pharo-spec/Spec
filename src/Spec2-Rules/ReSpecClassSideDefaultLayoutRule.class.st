@@ -51,8 +51,9 @@ ReSpecClassSideDefaultLayoutRule new basicCheck: SpSliderInputPresenter class >>
 Class {
 	#name : 'ReSpecClassSideDefaultLayoutRule',
 	#superclass : 'ReAbstractRule',
-	#category : 'Spec2-Rules',
-	#package : 'Spec2-Rules'
+	#category : 'Spec2-Rules-Rules',
+	#package : 'Spec2-Rules',
+	#tag : 'Rules'
 }
 
 { #category : 'testing - interest' }

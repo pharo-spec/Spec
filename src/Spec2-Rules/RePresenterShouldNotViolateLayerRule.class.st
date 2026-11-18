@@ -41,8 +41,9 @@ RePresenterShouldNotViolateLayerRule isBackendPackageName: 'Spec2-Morphic-Exampl
 Class {
 	#name : 'RePresenterShouldNotViolateLayerRule',
 	#superclass : 'ReNodeBasedRule',
-	#category : 'Spec2-Rules',
-	#package : 'Spec2-Rules'
+	#category : 'Spec2-Rules-Rules',
+	#package : 'Spec2-Rules',
+	#tag : 'Rules'
 }
 
 { #category : 'accessing' }
