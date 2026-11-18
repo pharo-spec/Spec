@@ -106,6 +106,12 @@ SpAbstractSelectionMode >> isMultipleSelection [
 	^ false
 ]
 
+{ #category : 'testing' }
+SpAbstractSelectionMode >> isNotEmpty [
+
+	^ self isEmpty not
+]
+
 { #category : 'api' }
 SpAbstractSelectionMode >> model [
 	"Answer the model used to act the selection.

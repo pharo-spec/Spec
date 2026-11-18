@@ -54,6 +54,17 @@ SpSingleSelectionModeTest >> testGetRightElementAfterSortingOfElementsChanged [
 ]
 
 { #category : 'tests' }
+SpSingleSelectionModeTest >> testSelectionIsNotEmpty [
+
+	presenter beSingleSelection.
+	self deny: presenter selection isNotEmpty.
+
+	presenter selectIndex: 1.
+
+	self assert: presenter selection isNotEmpty
+]
+
+{ #category : 'tests' }
 SpSingleSelectionModeTest >> testSelectionIsResetAfterItemsAssignment [
 
 	presenter

@@ -13,6 +13,27 @@ SpTreePresenterTest >> classToTest [
 ]
 
 { #category : 'tests' }
+SpTreePresenterTest >> testSelectedItemsInSingleSelection [
+
+	presenter beSingleSelection.
+	self assertEmpty: presenter selectedItems.
+
+	presenter selectPath: #( 1 ).
+
+	self assert: presenter selectedItems equals: { presenter selectedItem }
+]
+
+{ #category : 'tests' }
+SpTreePresenterTest >> testSelectionIsNotEmpty [
+
+	self deny: presenter selection isNotEmpty.
+
+	presenter selectPath: #( 1 ).
+
+	self assert: presenter selection isNotEmpty
+]
+
+{ #category : 'tests' }
 SpTreePresenterTest >> testWhenSelectedItemChangedDoNotFiredIfWeSelectTheSameElementsInMultipleSelection [
 
 	presenter beMultipleSelection.

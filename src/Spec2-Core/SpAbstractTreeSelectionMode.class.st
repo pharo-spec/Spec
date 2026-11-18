@@ -53,6 +53,12 @@ SpAbstractTreeSelectionMode >> isMultipleSelection [
 	^ false
 ]
 
+{ #category : 'testing' }
+SpAbstractTreeSelectionMode >> isNotEmpty [
+
+	^ self isEmpty not
+]
+
 { #category : 'selecting' }
 SpAbstractTreeSelectionMode >> itemNotFoundAction [
 	"ignore. we do not change the selection"
@@ -131,6 +137,13 @@ SpAbstractTreeSelectionMode >> selectPaths: pathArray [
 
 { #category : 'accessing' }
 SpAbstractTreeSelectionMode >> selectedItem [
+	^ self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+SpAbstractTreeSelectionMode >> selectedItems [
+	"Answer a collection with all selected items."
+
 	^ self subclassResponsibility
 ]
 

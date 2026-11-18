@@ -129,6 +129,8 @@ SpMorphicLabelAdapter >> newLabelMorph [
 		setBalloonText: self getHelpText;
 		setProperty: #minWidth toValue: 3. "3 is the default value of StringMorph. We do not want the default value of LabelMorph that is the min width of the content..."
 
+	self presenter whenHelpChangedDo: [ :newHelp | self setBalloonText: newHelp ].
+
 	^ label
 ]
 

@@ -19,25 +19,26 @@ MyPresenter >> initializePresenters
 	detail := self instantiate: MyDetailPresenter on: self model
 ```
 
-A presenter class having a factory in `SpPresenter` (`factorySelectors`, e.g. `SpMenuPresenter` -> `newMenu`) gets its factory; any other gets `self instantiate:`, and `X on: aModel` gets `self instantiate: X on: aModel`.
+A presenter class having a factory in `SpPresenter` (`factorySelectors`, e.g. `SpMenuPresenter` -> `newMenu`) gets its factory; any other gets `self instantiate:`, and `X on: aModel` gets `self instantiate: X on: aModel`. A message dialog is created in the application of its owner, without becoming its child: `SpConfirmDialog new` gets its `SpApplication` factory (`messageDialogFactorySelectors`), `self application newConfirm`; a dialog without factory gets `X newApplication: self application`, and `X on: aModel` gets `X newApplication: self application model: aModel`.
 
 ## Responsibility:
 
 - Check the nodes of the instance-side methods of classes in the `SpPresenter` hierarchy, widgets included, whatever their package, and report each `new` or `on:` message whose receiver is a global, class or pool variable bound to a presenter class (a class including `SpAbstractPresenter`), such as `SpListPresenter new` or `DetailPresenterClass new`.
-- Leave out presenters opened as a window or a dialog (a `windowSelectors` message such as `open` or `openModal` in their message chain or cascade): how they should be created is not decided yet, see https://github.com/pharo-spec/Spec/issues/1967.
+- Leave out presenters opened as a window or a dialog (a `windowSelectors` message such as `open` or `openModal` in their message chain or cascade): how they should be created is not decided yet, see https://github.com/pharo-spec/Spec/issues/1967. Message dialogs (`SpStandardDialogPresenter` and its subclasses, such as `SpConfirmDialog`) are an exception: they are reported even when opened, unless they get their application (`application:`) in their message chain or cascade.
 - Answer the source of a method where every reported creation goes through its owner (`fixedSourceOf:`), used by my critiques.
 
 ## Collaborators: 
 
 - `ReNodeBasedRule`: Renraku calls `shouldCheckMethod:` before parsing a method, then `check:forCritiquesDo:` on each node.
-- `ReInstantiatePresenterWithOwnerCritique`: my critique; its change fixes the current version of the whole method.
+- `ReInstantiatePresenterWithoutOwnerCritique`: my critique; its change fixes the current version of the whole method.
 - `SpPresenter>>#instantiate:`, `instantiate:on:` and the `newXxx` factories: the code my fix writes.
+- `SpApplication>>#newConfirm` and the other message dialog factories, `SpPresenter class>>#newApplication:`: the code my fix writes for message dialogs.
 
 ## Public API and Key Messages
 
 - `shouldCheckMethod:` answers whether a method belongs to my scope; `basicCheck:` answers whether a node creates a presenter without owner (it also checks the scope, since some callers do not use `shouldCheckMethod:`).
 - `fixedSourceOf: aMethod` answers the fixed source of aMethod.
-- `factorySelectors` and `windowSelectors` (class side) hold the presenter classes with a factory and the messages opening a window.
+- `factorySelectors`, `messageDialogFactorySelectors` and `windowSelectors` (class side) hold the presenter classes with an `SpPresenter` factory, the message dialog classes with an `SpApplication` factory, and the messages opening a window.
 - `ruleName`, `rationale`, `group` ('Spec') and `severity` ('warning') describe me in the Critic Browser.
 
 Run me on a package:
@@ -64,8 +65,9 @@ checker criticsOf: rule
 Class {
 	#name : 'RePresenterShouldBeInstantiatedWithOwnerRule',
 	#superclass : 'ReNodeBasedRule',
-	#category : 'Spec2-Rules',
-	#package : 'Spec2-Rules'
+	#category : 'Spec2-Rules-Rules',
+	#package : 'Spec2-Rules',
+	#tag : 'Rules'
 }
 
 { #category : 'accessing' }
@@ -136,9 +138,24 @@ RePresenterShouldBeInstantiatedWithOwnerRule class >> groupSelector [
 ]
 
 { #category : 'accessing' }
+RePresenterShouldBeInstantiatedWithOwnerRule class >> messageDialogFactorySelectors [
+	"Message dialog class names and the SpApplication factory creating such a dialog in an application."
+
+	^ Dictionary newFrom: {
+			  (#SpAlertDialog -> #newAlert).
+			  (#SpConfirmDialog -> #newConfirm).
+			  (#SpInformDialog -> #newInform).
+			  (#SpInformUserDialog -> #newInformUser).
+			  (#SpRequestDialog -> #newRequest).
+			  (#SpRequestTextDialog -> #newRequestText).
+			  (#SpSelectDialog -> #newSelect).
+			  (#SpSelectMultipleDialog -> #newSelectMultiple) }
+]
+
+{ #category : 'accessing' }
 RePresenterShouldBeInstantiatedWithOwnerRule class >> rationale [
 
-	^ 'A presenter created with #new or #on: from another presenter has no owner and silently uses SpApplication defaultApplication instead of the application of its owner, so it can lose its styles, backend and configuration. Use a newXxx factory, self instantiate: or self instantiate:on: (the automatic fix does it). Presenters opened as a window or a dialog are not reported yet (https://github.com/pharo-spec/Spec/issues/1967).'
+	^ 'A presenter created with #new or #on: from another presenter has no owner and silently uses SpApplication defaultApplication instead of the application of its owner, so it can lose its styles, backend and configuration. Use a newXxx factory, self instantiate: or self instantiate:on: (the automatic fix does it). Create a message dialog (SpConfirmDialog, SpInformDialog, SpRequestDialog, ...) through the application, even when it is opened: self application newConfirm, or newApplication: self application. Other presenters opened as a window or a dialog are not reported yet (https://github.com/pharo-spec/Spec/issues/1967).'
 ]
 
 { #category : 'accessing' }
@@ -162,10 +179,20 @@ RePresenterShouldBeInstantiatedWithOwnerRule >> basicCheck: aNode [
 	^ aNode methodNode methodClass ifNil: [ false ] ifNotNil: [ :class | self isInScope: class ]
 ]
 
+{ #category : 'private' }
+RePresenterShouldBeInstantiatedWithOwnerRule >> cascadeOf: aMessageNode [
+	"Answer the cascade aMessageNode belongs to, or nil."
+
+	| parent |
+	parent := aMessageNode parent.
+	(parent isNotNil and: [ parent isCascade ]) ifFalse: [ ^ nil ].
+	^ parent
+]
+
 { #category : 'running' }
 RePresenterShouldBeInstantiatedWithOwnerRule >> check: aNode forCritiquesDo: aBlock [
 
-	(self basicCheck: aNode) ifTrue: [ aBlock cull: (ReInstantiatePresenterWithOwnerCritique for: aNode by: self) ]
+	(self basicCheck: aNode) ifTrue: [ aBlock cull: (ReInstantiatePresenterWithoutOwnerCritique for: aNode by: self) ]
 ]
 
 { #category : 'fixing' }
@@ -186,6 +213,12 @@ RePresenterShouldBeInstantiatedWithOwnerRule >> isInScope: aBehavior [
 	^ aBehavior isMeta not and: [ aBehavior includesBehavior: SpPresenter ]
 ]
 
+{ #category : 'private' }
+RePresenterShouldBeInstantiatedWithOwnerRule >> isMessageDialogClass: anObject [
+
+	^ anObject isClass and: [ anObject includesBehavior: SpStandardDialogPresenter ]
+]
+
 { #category : 'fixing' }
 RePresenterShouldBeInstantiatedWithOwnerRule >> isNode: aNode nestedInOneOf: someNodes [
 	"Answer whether aNode lies inside the source of another node of someNodes."
@@ -198,34 +231,82 @@ RePresenterShouldBeInstantiatedWithOwnerRule >> isNode: aNode nestedInOneOf: som
 RePresenterShouldBeInstantiatedWithOwnerRule >> isOpenedAsWindow: aNode [
 	"Answer whether a window selector is sent to the presenter created by aNode, in its message chain or its cascade."
 
-	| current parent |
-	current := aNode.
-	[ parent := current parent.
-	parent isNotNil and: [ parent isMessage and: [ parent receiver == current ] ] ] whileTrue: [
-		(self class windowSelectors includes: parent selector) ifTrue: [ ^ true ].
-		current := parent.
-		(parent parent isNotNil and: [ parent parent isCascade ]) ifTrue: [
-			(parent parent messages anySatisfy: [ :each | self class windowSelectors includes: each selector ]) ifTrue: [ ^ true ].
-			current := parent parent ] ].
-	^ false
+	^ self isSentOneOf: self class windowSelectors toPresenterCreatedBy: aNode
 ]
 
 { #category : 'private' }
 RePresenterShouldBeInstantiatedWithOwnerRule >> isOrphanPresenterCreation: aNode [
-	"Answer whether aNode sends #new or #on: to a presenter class named directly (a global, class or pool variable), unless the presenter is opened as a window or a dialog."
+	"Answer whether aNode sends #new or #on: to a presenter class named directly (a global, class or pool variable), unless the presenter is opened as a window or a dialog. A message dialog is reported even when opened, unless it gets its application (application:) in its chain or cascade."
 
-	| receiver |
+	| receiver class |
 	aNode isMessage ifFalse: [ ^ false ].
 	(#( #new #on: ) includes: aNode selector) ifFalse: [ ^ false ].
 	receiver := aNode receiver.
 	(receiver isVariable and: [ receiver variable isLiteralVariable ]) ifFalse: [ ^ false ].
-	^ (self isPresenterClass: receiver variable value) and: [ (self isOpenedAsWindow: aNode) not ]
+	class := receiver variable value.
+	(self isPresenterClass: class) ifFalse: [ ^ false ].
+	(self isMessageDialogClass: class) ifTrue: [ ^ (self isSentOneOf: #( #application: ) toPresenterCreatedBy: aNode) not ].
+	^ (self isOpenedAsWindow: aNode) not
 ]
 
 { #category : 'private' }
 RePresenterShouldBeInstantiatedWithOwnerRule >> isPresenterClass: anObject [
 
 	^ anObject isClass and: [ anObject includesBehavior: SpAbstractPresenter ]
+]
+
+{ #category : 'private' }
+RePresenterShouldBeInstantiatedWithOwnerRule >> isSentOneOf: someSelectors toPresenterCreatedBy: aNode [
+	"Answer whether one of someSelectors is sent to the presenter created by aNode, in its message chain or its cascade, also through an assignment such as (window := X new) open."
+
+	| current message |
+	current := aNode.
+	[ (message := self messageSentTo: current) isNotNil ] whileTrue: [
+			(someSelectors includes: message selector) ifTrue: [ ^ true ].
+			current := message.
+			(self cascadeOf: message) ifNotNil: [ :cascade |
+					(cascade messages anySatisfy: [ :each | someSelectors includes: each selector ]) ifTrue: [ ^ true ].
+					current := cascade ] ].
+	^ false
+]
+
+{ #category : 'private' }
+RePresenterShouldBeInstantiatedWithOwnerRule >> keywordCreationSourceFor: aNode [
+	"Answer the keyword message creating the presenter of aNode in the application of its owner: newApplication: (and model:) for a message dialog, instantiate: (and on:) otherwise."
+
+	| className isDialog |
+	className := aNode receiver name.
+	isDialog := self isMessageDialogClass: aNode receiver variable value.
+	^ String streamContents: [ :stream |
+			  isDialog
+				  ifTrue: [
+						  stream
+							  nextPutAll: className;
+							  nextPutAll: ' newApplication: self application' ]
+				  ifFalse: [
+						  stream
+							  nextPutAll: 'self instantiate: ';
+							  nextPutAll: className ].
+			  aNode selector = #on: ifTrue: [
+					  stream
+						  nextPutAll: (isDialog
+								   ifTrue: [ ' model: ' ]
+								   ifFalse: [ ' on: ' ]);
+						  nextPutAll: aNode arguments first sourceCode ] ]
+]
+
+{ #category : 'private' }
+RePresenterShouldBeInstantiatedWithOwnerRule >> messageSentTo: aNode [
+	"Answer the message sent to the value of aNode, directly or through an assignment of it (as in (window := X new) open), or nil when there is none."
+
+	| receiver parent |
+	receiver := aNode.
+	parent := receiver parent.
+	(parent isNotNil and: [ parent isAssignment and: [ parent value == receiver ] ]) ifTrue: [
+			receiver := parent.
+			parent := receiver parent ].
+	(parent isNotNil and: [ parent isMessage and: [ parent receiver == receiver ] ]) ifFalse: [ ^ nil ].
+	^ parent
 ]
 
 { #category : 'fixing' }
@@ -252,19 +333,26 @@ RePresenterShouldBeInstantiatedWithOwnerRule >> outermostOrphanCreationsIn: aMet
 
 { #category : 'fixing' }
 RePresenterShouldBeInstantiatedWithOwnerRule >> replacementSourceFor: aNode [
-	"Answer the source creating the presenter of aNode through its owner: a factory, instantiate: or instantiate:on:."
+	"Answer the source creating the presenter of aNode through its owner: a factory, instantiate: or instantiate:on:. A message dialog is created in the application of its owner: an SpApplication factory, newApplication: or newApplication:model:."
 
-	| className |
-	className := aNode receiver name.
+	| className isDialog parenthesized |
+	className := aNode receiver name asSymbol.
+	isDialog := self isMessageDialogClass: aNode receiver variable value.
 	aNode selector = #on: ifFalse: [
-		self class factorySelectors at: className asSymbol ifPresent: [ :factory | ^ 'self ', factory ] ].
+			(isDialog
+				 ifTrue: [ self class messageDialogFactorySelectors ]
+				 ifFalse: [ self class factorySelectors ]) at: className ifPresent: [ :factory |
+					^ String streamContents: [ :stream |
+							  stream
+								  nextPutAll: (isDialog
+										   ifTrue: [ 'self application ' ]
+										   ifFalse: [ 'self ' ]);
+								  nextPutAll: factory ] ] ].
+	parenthesized := self needsParenthesesAround: aNode.
 	^ String streamContents: [ :stream |
-		| parenthesized |
-		parenthesized := self needsParenthesesAround: aNode.
-		parenthesized ifTrue: [ stream nextPut: $( ].
-		stream nextPutAll: 'self instantiate: '; nextPutAll: className.
-		aNode selector = #on: ifTrue: [ stream nextPutAll: ' on: '; nextPutAll: aNode arguments first sourceCode ].
-		parenthesized ifTrue: [ stream nextPut: $) ] ]
+			  parenthesized ifTrue: [ stream nextPut: $( ].
+			  stream nextPutAll: (self keywordCreationSourceFor: aNode).
+			  parenthesized ifTrue: [ stream nextPut: $) ] ]
 ]
 
 { #category : 'testing' }
