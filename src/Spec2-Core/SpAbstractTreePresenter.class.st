@@ -515,8 +515,8 @@ SpAbstractTreePresenter >> selectedItem [
 
 { #category : 'api - selection' }
 SpAbstractTreePresenter >> selectedItems [
-	"Return all the selected items in the case of a multiple selection list"
-	
+	"Return all the selected items. In single selection, it has at most one element."
+
 	^ self selection selectedItems
 ]
 

@@ -49,6 +49,13 @@ SpTreeSingleSelectionMode >> selectedItem [
 ]
 
 { #category : 'accessing' }
+SpTreeSingleSelectionMode >> selectedItems [
+	"Answer an array with a single element, the selected item"
+
+	^ self selectedItem ifNotNil: [ :anItem | { anItem } ] ifNil: [ #(  ) ]
+]
+
+{ #category : 'accessing' }
 SpTreeSingleSelectionMode >> selectedPath [
 	
 	^ selection
