@@ -30,7 +30,12 @@ more powerful and keep the API of the older presenters (backward compatible).
 | `SpTreePresenter` | `SpEasyTreeListViewPresenter` | `newEasyTreeListView` |
 | `SpTreeTablePresenter` | `SpEasyTreeColumnViewPresenter` | `newEasyTreeColumnView` |
 | `SpComponentListPresenter` | `SpEasyComponentListPresenter` | |
-| `SpDropDownPresenter` | `SpEasyDropDownPresenter` | |
+| `SpDropDownPresenter` | `SpEasyDropDownPresenter` (not with Morphic, see below) | |
+
+Exception: `SpEasyDropDownPresenter` (like `SpDropDownPresenter`) has no Morphic adapter: the Morphic backend has no
+binding for `DropDownAdapter` (its `example…` methods open with `useBackend: #Gtk`). With Morphic,
+building it fails with "No binding for DropDownAdapter found", so keep `SpDropListPresenter` (`newDropList`)
+for drop-downs in Morphic applications.
 
 Their class-side `example…` methods show the API (e.g. `SpEasyListViewPresenter class>>exampleMultipleSelection`,
 `SpEasyColumnViewPresenter class>>exampleSortableColumns`). The book still uses the older presenters.
