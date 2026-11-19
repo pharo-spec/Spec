@@ -123,6 +123,7 @@ SpAbstractListAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelecti
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
 	self adapter selectIndex: 1.
+	backendForTest waitUntilUIRedrawed.
 	self assert: counter equals: 1
 ]
 
@@ -132,6 +133,7 @@ SpAbstractListAdapterMultipleSelectionTest >> testSelectWidgetIndexRaisesSelecti
 	presenter selection
 		whenChangedDo: [ :selection | selectedIndex := selection selectedIndexes ].
 	self adapter selectIndex: 1.
+	backendForTest waitUntilUIRedrawed.
 	self assert: (selectedIndex includes: 1)
 ]
 
@@ -155,6 +157,7 @@ SpAbstractListAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesEmpty
 	presenter selection
 		whenChangedDo: [ :selection | gotSelection := selection ].
 	self adapter selectIndex: 0.
+	backendForTest waitUntilUIRedrawed.
 	self assert: gotSelection isEmpty
 ]
 
@@ -166,5 +169,6 @@ SpAbstractListAdapterMultipleSelectionTest >> testUnselectAllInWidgetRaisesSelec
 	presenter selection
 		whenChangedDo: [ :selection | counter := counter + 1 ].
 	self adapter selectIndex: 0.
+	backendForTest waitUntilUIRedrawed.
 	self assert: counter equals: 1
 ]
