@@ -137,3 +137,12 @@ SpTablePresenterTest >> testShowColumnHeadersShowHeaders [
 
 	self assert: presenter isShowingColumnHeaders
 ]
+
+{ #category : 'tests' }
+SpTablePresenterTest >> testTableAnswersItsColumns [
+
+  
+        presenter := SpTablePresenter new.
+        presenter columns: { (SpStringTableColumn title: 'Name' evaluated: [ :each | each printString ]) }.
+        self assert: (presenter columns collect: [ :each | each title ] as: Array) equals: #( 'Name' )
+]

@@ -25,6 +25,14 @@ SpEasyColumnViewPresenterTest >> testDisableActivationDuring [
 	self skip
 ]
 
+{ #category : 'tests' }
+SpEasyColumnViewPresenterTest >> testEasyColumnViewAnswersItsColumns [
+
+	presenter := SpEasyColumnViewPresenter new.
+	presenter columns: { (SpStringTableColumn title: 'Name' evaluated: [ :each | each printString ]) }.
+	self assert: (presenter columns collect: [ :each | each title ] as: Array) equals: #( 'Name' )
+]
+
 { #category : 'tests - smoke' }
 SpEasyColumnViewPresenterTest >> testSetSortingBlockBeforeItems [
 
