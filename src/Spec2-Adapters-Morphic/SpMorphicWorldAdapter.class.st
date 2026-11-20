@@ -9,6 +9,14 @@ Class {
 	#tag : 'Base'
 }
 
+{ #category : 'private' }
+SpMorphicWorldAdapter >> add: containerMorph toWindow: aWorld [
+
+	super add: containerMorph toWindow: aWorld.
+	"The display cycle does not lay out the world: lay out its content now"
+	aWorld fullBounds
+]
+
 { #category : 'adding' }
 SpMorphicWorldAdapter >> addPresenterIn: widgetToBuild withSpecLayout: aSpec [
 
