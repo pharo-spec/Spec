@@ -13,6 +13,32 @@ SpHorizontalBoxLayoutTest >> initializeTestedInstance [
 	presenter layout: layout
 ]
 
+{ #category : 'private' }
+SpHorizontalBoxLayoutTest >> layoutDiagnosticsOf: widgets history: boundsHistory [
+	"Describe the widgets and the bounds they had after each world cycle to understand why a layout did not fit in its window"
+
+	^ String streamContents: [ :stream |
+		  stream nextPutAll: 'widgets (class, bounds, minimum width, minimum height, horizontal resizing): '.
+		  widgets
+			  do: [ :widget |
+				  stream
+					  print: widget class;
+					  space;
+					  print: widget bounds;
+					  space;
+					  print: widget minWidth;
+					  space;
+					  print: widget minHeight;
+					  space;
+					  print: widget hResizing ]
+			  separatedBy: [ stream nextPutAll: '; ' ].
+		  stream
+			  nextPutAll: '. Bounds of the window, the search field and the button after each world cycle: ';
+			  print: boundsHistory;
+			  nextPutAll: '. Default font: ';
+			  print: StandardFonts defaultFont ]
+]
+
 { #category : 'tests' }
 SpHorizontalBoxLayoutTest >> testPresenterExtentFollowsChildrenExtent [
 	| label button |
@@ -85,14 +111,14 @@ SpHorizontalBoxLayoutTest >> testReplaceWithFixedWidthComposed [
 { #category : 'tests' }
 SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenWindowHeightDecrease [
 
-	| searchPresenter buttonPresenter windowWidget buttonWidget searchWidget originalExtent previousButtonBounds attempts |
+	| searchPresenter buttonPresenter windowWidget buttonWidget searchWidget originalExtent previousButtonBounds attempts boundsHistory |
 	searchPresenter := SpSearchInputFieldPresenter new.
 	buttonPresenter := SpButtonPresenter new label: 'click me'.
 	presenter := SpPresenter new
 		             layout: (SpBoxLayout newLeftToRight
-				              add: searchPresenter;
-				              add: buttonPresenter;
-				              yourself);
+			              add: searchPresenter;
+			              add: buttonPresenter;
+			              yourself);
 		             yourself.
 	window := presenter asWindow
 		          initialExtent: 400 @ 300;
@@ -103,65 +129,84 @@ SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenW
 	searchWidget := searchPresenter adapter widget.
 
 	self assert: (windowWidget bounds containsRect: buttonWidget bounds) description: (String streamContents: [ :stream |
-				 stream
-					 nextPutAll: 'Button outside window before resize, window: ';
-					 print: windowWidget bounds;
-					 nextPutAll: ', button: ';
-					 print: buttonWidget bounds ]).
+		 stream
+			 nextPutAll: 'Button outside window before resize, window: ';
+			 print: windowWidget bounds;
+			 nextPutAll: ', button: ';
+			 print: buttonWidget bounds ]).
 	self assert: (windowWidget bounds containsRect: searchWidget bounds) description: (String streamContents: [ :stream |
-				 stream
-					 nextPutAll: 'Search field outside window before resize, window: ';
-					 print: windowWidget bounds;
-					 nextPutAll: ', search: ';
-					 print: searchWidget bounds ]).
+		 stream
+			 nextPutAll: 'Search field outside window before resize, window: ';
+			 print: windowWidget bounds;
+			 nextPutAll: ', search: ';
+			 print: searchWidget bounds ]).
 
 	originalExtent := windowWidget extent.
 	windowWidget extent: windowWidget extent - (0 @ 100).
 	"Window layout may not be finished after a single world cycle, so run cycles until the button bounds stop changing. The attempt limit prevents waiting forever."
 	attempts := 0.
+	boundsHistory := OrderedCollection new.
 	previousButtonBounds := nil.
 	[ previousButtonBounds = buttonWidget bounds or: [ attempts >= 10 ] ] whileFalse: [
-			previousButtonBounds := buttonWidget bounds.
-			attempts := attempts + 1.
-			self currentWorld doOneCycle ].
+		previousButtonBounds := buttonWidget bounds.
+		attempts := attempts + 1.
+		self currentWorld doOneCycle.
+		boundsHistory add: {
+			windowWidget bounds.
+			searchWidget bounds.
+			buttonWidget bounds } ].
 
 	self assert: (windowWidget bounds containsRect: buttonWidget bounds) description: (String streamContents: [ :stream |
-				 stream
-					 nextPutAll: 'Button outside window after resize, extent before: ';
-					 print: originalExtent;
-					 nextPutAll: ', extent after: ';
-					 print: windowWidget extent;
-					 nextPutAll: ', window: ';
-					 print: windowWidget bounds;
-					 nextPutAll: ', button: ';
-					 print: buttonWidget bounds;
-					 nextPutAll: ', attempts: ';
-					 print: attempts;
-					 nextPutAll: ', platform: ';
-					 print: OSPlatform current ]).
+		 stream
+			 nextPutAll: 'Button outside window after resize, extent before: ';
+			 print: originalExtent;
+			 nextPutAll: ', extent after: ';
+			 print: windowWidget extent;
+			 nextPutAll: ', window: ';
+			 print: windowWidget bounds;
+			 nextPutAll: ', button: ';
+			 print: buttonWidget bounds;
+			 nextPutAll: ', attempts: ';
+			 print: attempts;
+			 nextPutAll: ', platform: ';
+			 print: OSPlatform current;
+			 nextPutAll: '. ';
+			 nextPutAll: (self
+				  layoutDiagnosticsOf: {
+					  windowWidget.
+					  searchWidget.
+					  buttonWidget }
+				  history: boundsHistory) ]).
 	self assert: (windowWidget bounds containsRect: searchWidget bounds) description: (String streamContents: [ :stream |
-				 stream
-					 nextPutAll: 'Search field outside window after resize, extent before: ';
-					 print: originalExtent;
-					 nextPutAll: ', extent after: ';
-					 print: windowWidget extent;
-					 nextPutAll: ', window: ';
-					 print: windowWidget bounds;
-					 nextPutAll: ', search: ';
-					 print: searchWidget bounds ])
+		 stream
+			 nextPutAll: 'Search field outside window after resize, extent before: ';
+			 print: originalExtent;
+			 nextPutAll: ', extent after: ';
+			 print: windowWidget extent;
+			 nextPutAll: ', window: ';
+			 print: windowWidget bounds;
+			 nextPutAll: ', search: ';
+			 print: searchWidget bounds;
+			 nextPutAll: '. ';
+			 nextPutAll: (self
+				  layoutDiagnosticsOf: {
+					  windowWidget.
+					  searchWidget.
+					  buttonWidget }
+				  history: boundsHistory) ])
 ]
 
 { #category : 'tests' }
 SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenWindowWidthDecrease [
 
-	| searchPresenter buttonPresenter windowWidget buttonWidget searchWidget originalExtent previousButtonBounds attempts |
+	| searchPresenter buttonPresenter windowWidget buttonWidget searchWidget originalExtent previousButtonBounds attempts boundsHistory |
 	searchPresenter := SpSearchInputFieldPresenter new.
 	buttonPresenter := SpButtonPresenter new label: 'click me'.
 	presenter := SpPresenter new
 		             layout: (SpBoxLayout newLeftToRight
-				              add: searchPresenter;
-				              add: buttonPresenter;
-				              yourself);
+			              add: searchPresenter;
+			              add: buttonPresenter;
+			              yourself);
 		             yourself.
 	window := presenter asWindow
 		          initialExtent: 400 @ 300;
@@ -172,50 +217,69 @@ SpHorizontalBoxLayoutTest >> testSpSearchInputFieldPresenterResizeCorrectlyWhenW
 	searchWidget := searchPresenter adapter widget.
 
 	self assert: (windowWidget bounds containsRect: buttonWidget bounds) description: (String streamContents: [ :stream |
-				 stream
-					 nextPutAll: 'Button outside window before resize, window: ';
-					 print: windowWidget bounds;
-					 nextPutAll: ', button: ';
-					 print: buttonWidget bounds ]).
+		 stream
+			 nextPutAll: 'Button outside window before resize, window: ';
+			 print: windowWidget bounds;
+			 nextPutAll: ', button: ';
+			 print: buttonWidget bounds ]).
 	self assert: (windowWidget bounds containsRect: searchWidget bounds) description: (String streamContents: [ :stream |
-				 stream
-					 nextPutAll: 'Search field outside window before resize, window: ';
-					 print: windowWidget bounds;
-					 nextPutAll: ', search: ';
-					 print: searchWidget bounds ]).
+		 stream
+			 nextPutAll: 'Search field outside window before resize, window: ';
+			 print: windowWidget bounds;
+			 nextPutAll: ', search: ';
+			 print: searchWidget bounds ]).
 
 	originalExtent := windowWidget extent.
 	windowWidget extent: windowWidget extent - (100 @ 0).
 	"Window layout may not be finished after a single world cycle, so run cycles until the button bounds stop changing. The attempt limit prevents waiting forever."
 	attempts := 0.
+	boundsHistory := OrderedCollection new.
 	previousButtonBounds := nil.
 	[ previousButtonBounds = buttonWidget bounds or: [ attempts >= 10 ] ] whileFalse: [
-			previousButtonBounds := buttonWidget bounds.
-			attempts := attempts + 1.
-			self currentWorld doOneCycle ].
+		previousButtonBounds := buttonWidget bounds.
+		attempts := attempts + 1.
+		self currentWorld doOneCycle.
+		boundsHistory add: {
+			windowWidget bounds.
+			searchWidget bounds.
+			buttonWidget bounds } ].
 
 	self assert: (windowWidget bounds containsRect: buttonWidget bounds) description: (String streamContents: [ :stream |
-				 stream
-					 nextPutAll: 'Button outside window after resize, extent before: ';
-					 print: originalExtent;
-					 nextPutAll: ', extent after: ';
-					 print: windowWidget extent;
-					 nextPutAll: ', window: ';
-					 print: windowWidget bounds;
-					 nextPutAll: ', button: ';
-					 print: buttonWidget bounds;
-					 nextPutAll: ', attempts: ';
-					 print: attempts;
-					 nextPutAll: ', platform: ';
-					 print: OSPlatform current ]).
+		 stream
+			 nextPutAll: 'Button outside window after resize, extent before: ';
+			 print: originalExtent;
+			 nextPutAll: ', extent after: ';
+			 print: windowWidget extent;
+			 nextPutAll: ', window: ';
+			 print: windowWidget bounds;
+			 nextPutAll: ', button: ';
+			 print: buttonWidget bounds;
+			 nextPutAll: ', attempts: ';
+			 print: attempts;
+			 nextPutAll: ', platform: ';
+			 print: OSPlatform current;
+			 nextPutAll: '. ';
+			 nextPutAll: (self
+				  layoutDiagnosticsOf: {
+					  windowWidget.
+					  searchWidget.
+					  buttonWidget }
+				  history: boundsHistory) ]).
 	self assert: (windowWidget bounds containsRect: searchWidget bounds) description: (String streamContents: [ :stream |
-				 stream
-					 nextPutAll: 'Search field outside window after resize, extent before: ';
-					 print: originalExtent;
-					 nextPutAll: ', extent after: ';
-					 print: windowWidget extent;
-					 nextPutAll: ', window: ';
-					 print: windowWidget bounds;
-					 nextPutAll: ', search: ';
-					 print: searchWidget bounds ])
+		 stream
+			 nextPutAll: 'Search field outside window after resize, extent before: ';
+			 print: originalExtent;
+			 nextPutAll: ', extent after: ';
+			 print: windowWidget extent;
+			 nextPutAll: ', window: ';
+			 print: windowWidget bounds;
+			 nextPutAll: ', search: ';
+			 print: searchWidget bounds;
+			 nextPutAll: '. ';
+			 nextPutAll: (self
+				  layoutDiagnosticsOf: {
+					  windowWidget.
+					  searchWidget.
+					  buttonWidget }
+				  history: boundsHistory) ])
 ]
