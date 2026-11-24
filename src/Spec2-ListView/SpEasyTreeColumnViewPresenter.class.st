@@ -181,8 +181,3 @@ SpEasyTreeColumnViewPresenter >> whenIsResizableChangedDo: aBlock [
 
 	contentView whenIsResizableChangedDo: aBlock
 ]
-
-{ #category : 'private - deferring' }
-SpEasyTreeColumnViewPresenter >> withAdapterPerformOrDefer: aFullBlockClosure [ 
-	self shouldBeImplemented.
-]
