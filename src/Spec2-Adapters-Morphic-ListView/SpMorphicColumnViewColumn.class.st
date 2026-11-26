@@ -11,12 +11,6 @@ SpMorphicColumnViewColumn >> bindAction [
 	^ self model bindAction
 ]
 
-{ #category : 'testing' }
-SpMorphicColumnViewColumn >> isExpandable [
-
-	^ self model isExpand
-]
-
 { #category : 'private' }
 SpMorphicColumnViewColumn >> setupAction [
 
