@@ -81,3 +81,25 @@ SpInformDialog >> defaultTitle [
 
 	^ 'Inform'
 ]
+
+{ #category : 'private' }
+SpInformDialog >> getLabel [
+
+	^ label label
+]
+
+{ #category : 'private' }
+SpInformDialog >> newDialogLabel [
+	"My window grows to fit the message, so a wrapping label can show all of it.
+	 Dialogs whose layout sizes the message by #calculateLabelHeight keep a scrollable text."
+
+	^ self newLabel
+		beWrap;
+		yourself
+]
+
+{ #category : 'private' }
+SpInformDialog >> setLabel: aString [
+
+	label label: aString
+]

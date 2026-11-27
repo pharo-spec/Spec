@@ -100,10 +100,32 @@ SpConfirmDialog >> defaultTitle [
 	^ 'Confirm'
 ]
 
+{ #category : 'private' }
+SpConfirmDialog >> getLabel [
+
+	^ label label
+]
+
+{ #category : 'private' }
+SpConfirmDialog >> newDialogLabel [
+	"My window grows to fit the message, so a wrapping label can show all of it.
+	 Dialogs whose layout sizes the message by #calculateLabelHeight keep a scrollable text."
+
+	^ self newLabel
+		beWrap;
+		yourself
+]
+
 { #category : 'api - showing' }
 SpConfirmDialog >> openModal [
 	| dialog |
 	
 	dialog := super openModal.
 	^ dialog isOk
+]
+
+{ #category : 'private' }
+SpConfirmDialog >> setLabel: aString [
+
+	label label: aString
 ]
