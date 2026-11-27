@@ -124,6 +124,12 @@ SpCommand >> displayIn: aMenuGroupOrPresenter do: aBlock [
 		do: aBlock
 ]
 
+{ #category : 'accessing' }
+SpCommand >> dynamicIcon [
+
+	^ self icon
+]
+
 { #category : 'testing' }
 SpCommand >> hasState [
 
