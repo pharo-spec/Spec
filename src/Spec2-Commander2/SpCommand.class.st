@@ -127,13 +127,7 @@ SpCommand >> displayIn: aMenuGroupOrPresenter do: aBlock [
 { #category : 'accessing' }
 SpCommand >> dynamicIcon [
 
-	^ self dynamicIconName ifNotNil: [ :anIconName | self iconNamed: anIconName ]
-]
-
-{ #category : 'accessing' }
-SpCommand >> dynamicIconName [
-
-	^ self iconName
+	^ self icon
 ]
 
 { #category : 'testing' }

@@ -126,9 +126,16 @@ SpAction >> canBeExecuted [
 ]
 
 { #category : 'accessing' }
+SpAction >> dynamicIcon [
+
+	dynamicIconName ifNil: [ ^ super dynamicIcon ].
+	^ self dynamicIconName ifNotNil: [ :anIconName | self iconNamed: anIconName ]
+]
+
+{ #category : 'accessing' }
 SpAction >> dynamicIconName [
 
-	^ dynamicIconName ifNotNil: [ :aBlock | aBlock cull: self context ] ifNil: [ super dynamicIconName ]
+	^ dynamicIconName ifNotNil: [ :aBlock | aBlock cull: self context ] ifNil: [ self iconName ]
 ]
 
 { #category : 'accessing' }

@@ -13,6 +13,18 @@ SpActionTest >> iconNamed: aSymbol [
 ]
 
 { #category : 'tests' }
+SpActionTest >> testDynamicIconFollowsAnOverriddenIcon [
+
+	| actionClass action |
+	actionClass := SpAction newAnonymousSubclass.
+	actionClass compile: 'icon
+	^ #overriddenIcon'.
+	action := actionClass newName: 'Mark' action: [  ].
+
+	self assert: action dynamicIcon equals: #overriddenIcon
+]
+
+{ #category : 'tests' }
 SpActionTest >> testDynamicIconIsNilWithoutIconName [
 
 	| action |
