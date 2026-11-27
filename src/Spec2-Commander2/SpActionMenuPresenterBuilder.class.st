@@ -10,7 +10,9 @@ Class {
 SpActionMenuPresenterBuilder >> fillItem: aMenuItem with: aCommand [
 
 	super fillItem: aMenuItem with: aCommand.
-	aMenuItem name: aCommand dynamicName
+	aMenuItem
+		name: aCommand dynamicName;
+		icon: aCommand dynamicIcon
 ]
 
 { #category : 'accessing' }

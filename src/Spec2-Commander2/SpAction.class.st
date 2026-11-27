@@ -13,7 +13,8 @@ Class {
 		'id',
 		'dynamicName',
 		'state',
-		'actionState'
+		'actionState',
+		'dynamicIconName'
 	],
 	#category : 'Spec2-Commander2-Action',
 	#package : 'Spec2-Commander2',
@@ -122,6 +123,18 @@ SpAction >> canBeExecuted [
 
 	actionEnabled ifNil: [ ^ true ].
 	^ actionEnabled cull: self context
+]
+
+{ #category : 'accessing' }
+SpAction >> dynamicIconName [
+
+	^ dynamicIconName ifNotNil: [ :aBlock | aBlock cull: self context ] ifNil: [ super dynamicIconName ]
+]
+
+{ #category : 'accessing' }
+SpAction >> dynamicIconName: aBlock [
+
+	dynamicIconName := aBlock
 ]
 
 { #category : 'accessing' }
