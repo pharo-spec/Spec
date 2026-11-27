@@ -145,7 +145,9 @@ SpMorphicBoxAdapter >> applyAlignmentToChild: aWidget [
 SpMorphicBoxAdapter >> basicAdd: aPresenter constraints: constraints to: aPanel [
 	| childMorph |
 
-	childMorph := self buildMorph: aPresenter constraints: constraints.	
+	childMorph := self buildMorph: aPresenter constraints: constraints.
+	(self isNonExpandedLayout: aPresenter constraints: constraints)
+		ifTrue: [ layout direction setResizingOfNonExpandedLayoutMorph: childMorph ].
 
 	self applyAlignmentToChild: childMorph.
 	self verifyBoxExtentOf: aPanel withChild: childMorph.
@@ -178,6 +180,15 @@ SpMorphicBoxAdapter >> hasFixedSize: aPanel [
 	minCellSize := props minCellSize.
 	minCellSize ifNil: [ ^ false ].
 	^ minCellSize = props maxCellSize
+]
+
+{ #category : 'private' }
+SpMorphicBoxAdapter >> isNonExpandedLayout: aPresenter constraints: constraints [
+
+	^ aPresenter isSpLayout and: [
+		  constraints isExpand not and: [
+			  constraints padding = 0 and: [
+				  constraints width isNil and: [ constraints height isNil ] ] ] ]
 ]
 
 { #category : 'factory' }

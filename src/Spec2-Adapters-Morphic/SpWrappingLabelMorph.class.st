@@ -58,6 +58,13 @@ SpWrappingLabelMorph >> initialize [
 	self wrapFlag: true
 ]
 
+{ #category : 'layout' }
+SpWrappingLabelMorph >> minExtent [
+	"At my current width I need all my lines: an owner that shrink-wraps must not make me shorter."
+
+	^ super minExtent max: 0 @ self height
+]
+
 { #category : 'event handling' }
 SpWrappingLabelMorph >> mouseDown: evt [
 	"Unlike a TextMorph, do not take the keyboard focus nor open the text editing menu."

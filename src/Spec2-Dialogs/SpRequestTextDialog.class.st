@@ -45,7 +45,7 @@ SpRequestTextDialog >> defaultLayout [
 					expand: false;
 				add: label expand: true;
 				yourself)
-	  		height: self calculateLabelHeight;
+	  		expand: false;
 		add: textInput expand: true;
 		add: errorLabel expand: false;
 		yourself

@@ -123,7 +123,7 @@ SpSelectMultipleDialog >> columns [
 SpSelectMultipleDialog >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		add: label height: self calculateLabelHeight;
+		add: label expand: false;
 		add: table1;
 		yourself
 ]
