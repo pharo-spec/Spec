@@ -26,6 +26,15 @@ SpVerticalLayoutDirection >> recalculatePages: anAdaptor [
 ]
 
 { #category : '*Spec2-Adapters-Morphic' }
+SpVerticalLayoutDirection >> setResizingOfNonExpandedLayoutMorph: aMorph [
+	"A nested layout takes the height of its content, which can change after it is built: a wrapping label gets its real width, and so its height, only when the window is laid out."
+
+	aMorph
+		hResizing: #spaceFill;
+		vResizing: #shrinkWrap
+]
+
+{ #category : '*Spec2-Adapters-Morphic' }
 SpVerticalLayoutDirection >> setRigidityOfNonExpandedMorph: aMorph [
 
 	aMorph 

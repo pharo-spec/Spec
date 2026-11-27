@@ -83,7 +83,7 @@ SpSelectDialog >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		borderWidth: 5;
 		spacing: 5;
-		add: label height: self calculateLabelHeight;
+		add: label expand: false;
 		add: list;
 		yourself
 ]

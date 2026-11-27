@@ -158,6 +158,61 @@ SpVerticalBoxLayoutAdapterTest >> testAddingElementsToFixedHeightLayoutDoesNotIm
 ]
 
 { #category : 'tests' }
+SpVerticalBoxLayoutAdapterTest >> testWrappingLabelInNestedRowKeepsTheElementBelowNextToIt [
+	"As message dialogs lay out their icon and message: the wrapping label is in a left-to-right row, and that row does not expand."
+
+	| row label below |
+	label := SpLabelPresenter new
+		         label: 'A long label that cannot fit on one line in a narrow window';
+		         beWrap;
+		         yourself.
+	below := SpButtonPresenter new
+		         label: 'Below';
+		         yourself.
+	row := SpBoxLayout newLeftToRight
+		       add: (presenter newImage image: (presenter iconNamed: 'box')) expand: false;
+		       add: label expand: true;
+		       yourself.
+	layout
+		add: row expand: false;
+		add: below expand: false.
+	self openInstance.
+
+	self window resize: 150 @ 300.
+	self layOutWindow.
+	self assert: label adapter numberOfLines > 1.
+	self assert: below adapter widget top equals: row adapter widget bottom.
+	self assert: row adapter widget bottom >= label adapter widget bottom
+]
+
+{ #category : 'tests' }
+SpVerticalBoxLayoutAdapterTest >> testWrappingLabelInNestedRowKeepsTheElementBelowNextToItWhenOpened [
+	"As message dialogs lay out their icon and message, checked on the first layout, without resizing the window."
+
+	| row label below |
+	label := SpLabelPresenter new
+		         label: (' ' join: (Array new: 150 withAll: 'word'));
+		         beWrap;
+		         yourself.
+	below := SpButtonPresenter new
+		         label: 'Below';
+		         yourself.
+	row := SpBoxLayout newLeftToRight
+		       add: (presenter newImage image: (presenter iconNamed: 'box')) expand: false;
+		       add: label expand: true;
+		       yourself.
+	layout
+		add: row expand: false;
+		add: below expand: false.
+	self openInstance.
+	self layOutWindow.
+
+	self assert: label adapter numberOfLines > 1.
+	self assert: row adapter widget bottom equals: label adapter widget bottom.
+	self assert: below adapter widget top equals: row adapter widget bottom
+]
+
+{ #category : 'tests' }
 SpVerticalBoxLayoutAdapterTest >> testWrappingLabelKeepsTheElementBelowNextToItWhenResized [
 
 	| label below |

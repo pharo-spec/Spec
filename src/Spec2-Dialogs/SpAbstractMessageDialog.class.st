@@ -41,15 +41,6 @@ SpAbstractMessageDialog >> adjustExtentToLabelHeight: anExtent [
 ]
 
 { #category : 'private' }
-SpAbstractMessageDialog >> calculateLabelHeight [
-
-	^ (self 
-			calculateLabelHeightForTextWithoutMargin: label text 
-			forExtent: self extent) 
-		+ self labelMargin
-]
-
-{ #category : 'private' }
 SpAbstractMessageDialog >> calculateLabelHeightForTextWithoutMargin: aText forExtent: anExtent [
 	
 	aText ifEmpty: [ ^ self singleLineDefaultHeight ].
@@ -94,7 +85,7 @@ SpAbstractMessageDialog >> extent: aPoint [
 { #category : 'private' }
 SpAbstractMessageDialog >> getLabel [
 
-	^ label text
+	^ label label
 ]
 
 { #category : 'initialization' }
@@ -148,12 +139,6 @@ SpAbstractMessageDialog >> label: aString [
 	self message: aString
 ]
 
-{ #category : 'private' }
-SpAbstractMessageDialog >> labelMargin [
-
-	^ 20
-]
-
 { #category : 'api' }
 SpAbstractMessageDialog >> message: aString [
 
@@ -164,18 +149,15 @@ SpAbstractMessageDialog >> message: aString [
 { #category : 'private' }
 SpAbstractMessageDialog >> newDialogLabel [
 
-	^ self newText
-		beNotEditable;
-		withoutScrollBars;
-		addStyle: 'textDisabled';
-		propagateNaturalHeight: true;
-		yourself.
+	^ self newLabel
+		beWrap;
+		yourself
 ]
 
 { #category : 'private' }
 SpAbstractMessageDialog >> setLabel: aString [
 
-	label text: aString
+	label label: aString
 ]
 
 { #category : 'private' }

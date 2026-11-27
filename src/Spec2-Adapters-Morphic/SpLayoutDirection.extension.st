@@ -24,6 +24,12 @@ SpLayoutDirection >> recalculatePages: anAdaptor [
 ]
 
 { #category : '*Spec2-Adapters-Morphic' }
+SpLayoutDirection >> setResizingOfNonExpandedLayoutMorph: aMorph [
+
+	self setRigidityOfNonExpandedMorph: aMorph
+]
+
+{ #category : '*Spec2-Adapters-Morphic' }
 SpLayoutDirection >> setRigidityOfNonExpandedMorph: aMorph [ 
 	self subclassResponsibility
 ]
