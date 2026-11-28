@@ -11,8 +11,8 @@ SpActionMenuPresenterBuilder >> fillItem: aMenuItem with: aCommand [
 
 	super fillItem: aMenuItem with: aCommand.
 	aMenuItem
-		name: aCommand dynamicName;
-		icon: aCommand dynamicIcon
+		name: aCommand name;
+		icon: aCommand icon
 ]
 
 { #category : 'accessing' }
